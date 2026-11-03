@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 from pipeline.apply import apply_overrides, build_object
-from pipeline.bundle import read_unity_version
+from pipeline.bundle import FoundObject, _select_database, read_unity_version
 from pipeline.bundle_stream import extract_file, pack_files, read_index, write_bundle
 from pipeline.config import load_config
 from pipeline.constants import load_constants
@@ -121,7 +121,25 @@ class IdentityTests(unittest.TestCase):
         raw = bytes(buf)
         blob = parse_database(raw)
         self.assertEqual(blob.level, 2)
+        self.assertFalse(blob.main_build_database)
         self.assertEqual(blob.fields["Units"], fields["Units"])
+        self.assertEqual(rebuild(blob, dict(blob.fields)), raw)
+
+    def test_main_flag_is_true_and_round_trips(self):
+        fields = sample_fields()
+        buf = bytearray()
+        _pptr(buf, 0, 0)
+        buf += struct.pack("<i", 1)
+        _pptr(buf, 1, 42)
+        _string(buf, "DataBaseCompiled")
+        buf += b"\x01\x00\x00\x00"
+        for name in FIELD_ORDER:
+            _string(buf, fields[name])
+        buf += struct.pack("<i", 2)
+        raw = bytes(buf)
+        blob = parse_database(raw)
+        self.assertTrue(blob.main_build_database)
+        self.assertEqual(blob.level, 2)
         self.assertEqual(rebuild(blob, dict(blob.fields)), raw)
 
 
@@ -184,6 +202,76 @@ class ApplyTests(unittest.TestCase):
             for name in FIELD_ORDER:
                 if name != "Units":
                     self.assertEqual(parsed.fields[name], fields[name])
+
+    def test_broken_link_is_rejected_before_ciphertext_changes(self):
+        fields = sample_fields()
+        raw = make_blob(fields)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            vanilla = root / "vanilla"
+            vanilla.mkdir()
+            (vanilla / "object.bin").write_bytes(raw)
+            for name in FIELD_ORDER:
+                row = {"Id": 1, "Cost": 10}
+                if name == "WeaponAmmunitionsJson":
+                    row["AmmunitionId"] = 1
+                write_json(vanilla / f"{name}.json", [row])
+                (vanilla / f"{name}.b64").write_text(fields[name], encoding="ascii")
+            constants = root / "constants"
+            constants.mkdir()
+            (constants / "weapon_ammunitions.json").write_text(
+                '{"1": {"AmmunitionId": 99}}\n',
+                encoding="utf-8",
+            )
+            with self.assertRaises(PipelineError) as caught:
+                build_object(vanilla, load_constants(constants))
+            self.assertIn("weapon_ammunitions.json", str(caught.exception))
+            self.assertIn("AmmunitionId", str(caught.exception))
+            self.assertIn("ammunitions.json", str(caught.exception))
+            self.assertEqual((vanilla / "object.bin").read_bytes(), raw)
+
+
+class SelectTests(unittest.TestCase):
+    def test_main_level_two_beats_a_larger_snapshot(self):
+        small = _flagged_blob(main=True, level=2, units=1)
+        large = _flagged_blob(main=False, level=2, units=4)
+        chosen = _select_database([_found(large, 10), _found(small, 20)])
+        self.assertEqual(chosen.path_id, 20)
+
+    def test_without_a_flag_the_most_units_win(self):
+        small = make_blob(sample_fields(), level=2)
+        fields = sample_fields()
+        fields["Units"] = aes_encrypt(json.dumps([{"Id": 1}, {"Id": 2}]).encode("utf-8"))
+        large = make_blob(fields, level=2)
+        chosen = _select_database([_found(small, 1), _found(large, 2)])
+        self.assertEqual(chosen.path_id, 2)
+
+
+def _found(raw: bytes, path_id: int) -> FoundObject:
+    return FoundObject(
+        obj=None,
+        path_id=path_id,
+        raw=raw,
+        blob=parse_database(raw),
+        typetree=False,
+        inspected=[],
+    )
+
+
+def _flagged_blob(*, main: bool, level: int, units: int) -> bytes:
+    fields = sample_fields()
+    rows = [{"Id": index + 1, "Cost": 1} for index in range(units)]
+    fields["Units"] = aes_encrypt(json.dumps(rows).encode("utf-8"))
+    buf = bytearray()
+    _pptr(buf, 0, 0)
+    buf += struct.pack("<i", 1)
+    _pptr(buf, 1, 42)
+    _string(buf, "DataBaseCompiled")
+    buf += b"\x01\x00\x00\x00" if main else b"\x00\x00\x00\x00"
+    for name in FIELD_ORDER:
+        _string(buf, fields[name])
+    buf += struct.pack("<i", level)
+    return bytes(buf)
 
 
 class RebaseTests(unittest.TestCase):
@@ -397,6 +485,60 @@ class ManifestTests(unittest.TestCase):
             self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["build_id"], "6000.3.24f1-abc")
 
 
+def _serialization_types() -> dict:
+    field = {"access": "public", "static": False, "const": False, "serialized": True}
+    return {
+        "SerializationData": {
+            "name": "SerializationData",
+            "base": "ValueType",
+            "own_generic": [],
+            "base_args": [],
+            "fields": [
+                {**field, "type": "DataFormat", "name": "SerializedFormat"},
+                {**field, "type": "byte[]", "name": "SerializedBytes"},
+                {**field, "type": "List<Object>", "name": "ReferencedUnityObjects"},
+                {**field, "type": "string", "name": "SerializedBytesString"},
+                {**field, "type": "Object", "name": "Prefab"},
+                {**field, "type": "List<Object>", "name": "PrefabModificationsReferencedUnityObjects"},
+                {**field, "type": "List<string>", "name": "PrefabModifications"},
+                {**field, "type": "List<SerializationNode>", "name": "SerializationNodes"},
+            ],
+        },
+        "SerializationNode": {
+            "name": "SerializationNode",
+            "base": "ValueType",
+            "own_generic": [],
+            "base_args": [],
+            "fields": [
+                {**field, "type": "string", "name": "Name"},
+                {**field, "type": "EntryType", "name": "Entry"},
+                {**field, "type": "string", "name": "Data"},
+            ],
+        },
+    }
+
+
+def _serialization_data(fmt: int, payload: bytes = b"", nodes: list[tuple[str, int, str]] | None = None) -> bytes:
+    buf = bytearray()
+    buf += struct.pack("<i", fmt)
+    buf += struct.pack("<i", len(payload))
+    buf += payload
+    while len(buf) % 4:
+        buf += b"\x00"
+    buf += struct.pack("<i", 0)
+    buf += struct.pack("<i", 0)
+    _pptr(buf, 0, 0)
+    buf += struct.pack("<i", 0)
+    buf += struct.pack("<i", 0)
+    nodes = nodes or []
+    buf += struct.pack("<i", len(nodes))
+    for name, entry, data in nodes:
+        _string(buf, name)
+        buf += struct.pack("<i", entry)
+        _string(buf, data)
+    return bytes(buf)
+
+
 def _mono(name: str, strings: list[str]) -> bytes:
     buf = bytearray()
     _pptr(buf, 0, 0)
@@ -526,6 +668,59 @@ class Il2CppTests(unittest.TestCase):
         values = decode_fields(bytes(raw), fields)
         self.assertEqual(values, {"DamageModifier": 0.5, "Enabled": True})
         self.assertIsNone(decode_fields(bytes(raw) + b"\x00\x00\x00\x00", fields))
+        self.assertEqual(
+            decode_fields(bytes(raw), fields, base="ScriptableObject"),
+            {"DamageModifier": 0.5, "Enabled": True},
+        )
+
+    def test_serialized_object_reads_odin_block_before_its_own_float(self):
+        fields = [
+            {"access": "public", "static": False, "const": False, "type": "float", "name": "FontSize", "offset": "0x18"},
+        ]
+        raw = bytearray(_mono("FOWToolConfig", []))
+        raw += _serialization_data(0)
+        raw += struct.pack("<f", 1.5)
+        values = decode_fields(bytes(raw), fields, types=_serialization_types(), base="SerializedScriptableObject")
+        self.assertEqual(values["FontSize"], 1.5)
+        self.assertEqual(values["serializationData"]["SerializedFormat"], 0)
+        self.assertEqual(values["serializationData"]["SerializedBytes"], [])
+
+    def test_hashset_between_floats_is_not_read_from_the_unity_cursor(self):
+        fields = [
+            {"access": "public", "static": False, "const": False, "type": "float", "name": "Before", "offset": "0x18"},
+            {"access": "public", "static": False, "const": False, "type": "HashSet<int>", "name": "ShowWeaponRangesByRelation", "offset": "0x20"},
+            {"access": "public", "static": False, "const": False, "type": "float", "name": "After", "offset": "0x28"},
+        ]
+        payload = b"ShowWeaponRangesByRelation"
+        raw = bytearray(_mono("FOWToolConfig", []))
+        raw += _serialization_data(0, payload)
+        raw += struct.pack("<f", 1.0)
+        raw += struct.pack("<f", 2.0)
+        values = decode_fields(bytes(raw), fields, types=_serialization_types(), base="SerializedScriptableObject")
+        self.assertEqual(values["Before"], 1.0)
+        self.assertEqual(values["After"], 2.0)
+        self.assertEqual(values["ShowWeaponRangesByRelation"], {"undecoded": True, "in_payload": True})
+
+    def test_nodes_format_attaches_named_collection_entries(self):
+        fields = [
+            {"access": "public", "static": False, "const": False, "type": "HashSet<int>", "name": "LowHighAltRangeWeapons", "offset": "0x18"},
+            {"access": "public", "static": False, "const": False, "type": "float", "name": "FontSize", "offset": "0x20"},
+        ]
+        raw = bytearray(_mono("FOWToolConfig", []))
+        raw += _serialization_data(2, nodes=[("LowHighAltRangeWeapons", 3, "kept"), ("Other", 1, "no")])
+        raw += struct.pack("<f", 14.0)
+        values = decode_fields(
+            bytes(raw),
+            fields,
+            enums={"EntryType": "int"},
+            types=_serialization_types(),
+            base="SerializedScriptableObject",
+        )
+        self.assertEqual(values["FontSize"], 14.0)
+        self.assertEqual(
+            values["LowHighAltRangeWeapons"],
+            {"undecoded": True, "nodes": [{"Name": "LowHighAltRangeWeapons", "Entry": 3, "Data": "kept"}]},
+        )
 
 
 class CliTests(unittest.TestCase):

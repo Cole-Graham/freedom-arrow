@@ -151,10 +151,26 @@ def find_database(env) -> FoundObject:
 
 
 def _select_database(matches: list[FoundObject]) -> FoundObject:
-    """The live roster is the DataBaseCompiled with the most unit rows.
+    """Prefer MainBuildDatabase with level 2.
 
-    The bundle also carries smaller copies used as mission snapshots.
+    The bundle also carries mission snapshots. When no object exposes that
+    flag, the roster with the most unit rows is the fallback, and every
+    candidate path id and unit count is printed.
     """
+    listed = ", ".join(
+        f"{item.path_id}:{_unit_count(item)} main={item.blob.main_build_database} level={item.blob.level}"
+        for item in matches
+    )
+    flagged = [
+        item
+        for item in matches
+        if item.blob.main_build_database is True and item.blob.level == 2
+    ]
+    if flagged:
+        chosen = max(flagged, key=lambda item: (_unit_count(item), len(item.raw)))
+        print(f"main database path_id={chosen.path_id} candidates=[{listed}]", flush=True)
+        return chosen
+    print(f"no MainBuildDatabase level 2; using most units. candidates=[{listed}]", flush=True)
     return max(matches, key=lambda item: (_unit_count(item), len(item.raw)))
 
 

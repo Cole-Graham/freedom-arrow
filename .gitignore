@@ -233,3 +233,7 @@ dist/
 # Mod stuff
 BrokenArrow_Data/
 GameAssembly.dll
+
+# Plugin build output
+runtime/**/bin/
+runtime/**/obj/

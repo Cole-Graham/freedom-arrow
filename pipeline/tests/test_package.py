@@ -13,6 +13,12 @@ from pipeline.errors import PipelineError
 from pipeline.package import package
 
 
+def _plant_plugin(root: Path) -> None:
+    path = root / "runtime" / "FreedomArrow" / "bin" / "Release" / "net6.0" / "FreedomArrow.dll"
+    path.parent.mkdir(parents=True)
+    path.write_bytes(b"MZ-freedom-arrow")
+
+
 def _cfg(root: Path) -> Config:
     return Config(
         repo_root=root,
@@ -52,6 +58,20 @@ class PackageTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            formula = {
+                "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+                "change": "after",
+                "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
+                "terrain": "TerrainType.Forest",
+                "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
+                "reduction": 0.30,
+                "damage": "return",
+                "IgnoreCover": "Ammunitions.IgnoreCover",
+            }
+            formula_path = root / "mod" / "formulas" / "BattleSystemHelpers" / "CalculateHitDamage.json"
+            formula_path.parent.mkdir(parents=True)
+            formula_path.write_text(json.dumps(formula), encoding="utf-8")
+            _plant_plugin(root)
             (root / "dist" / "stable").mkdir(parents=True)
             (root / "dist" / "stable" / "channel.json").write_text(
                 json.dumps({"channel": "stable", "build_id": "6000.3.24f1-abc", "sha256": "ff"}),
@@ -67,6 +87,12 @@ class PackageTests(unittest.TestCase):
                 self.assertIn("README.md", names)
                 self.assertIn("UserData/FreedomArrow/constants/units.json", names)
                 self.assertNotIn("UserData/FreedomArrow/constants/weapons.json", names)
+                self.assertIn("Mods/FreedomArrow.dll", names)
+                self.assertIn(
+                    "UserData/FreedomArrow/formulas/BattleSystemHelpers/CalculateHitDamage.json",
+                    names,
+                )
+                self.assertEqual(archive.read("Mods/FreedomArrow.dll"), b"MZ-freedom-arrow")
                 info = json.loads(archive.read("mod.json"))
                 self.assertEqual(info["type"], "modpack")
                 self.assertEqual(info["id"], "freedomarrow.gameplay")

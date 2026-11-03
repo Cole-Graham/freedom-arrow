@@ -24,6 +24,7 @@ class DatabaseBlob:
     game_object: tuple[int, int] | None
     enabled: int | None
     level: int | None
+    main_build_database: bool | None = None
 
     @property
     def name(self) -> str:
@@ -118,6 +119,9 @@ def _read_fields(
     stays in the prefix so an unchanged object round-trips byte for byte.
     """
     try:
+        main = _take_main_flag(raw, offset)
+        if main is not None:
+            offset += 4
         markers: list[tuple[str, int, int]] = []
         while len(markers) < len(FIELD_ORDER):
             value, start, end = _read_string(raw, offset)
@@ -143,7 +147,28 @@ def _read_fields(
         game_object=game_object,
         enabled=enabled,
         level=level,
+        main_build_database=main,
     )
+
+
+def _take_main_flag(raw: bytes, offset: int) -> bool | None:
+    """MainBuildDatabase is one aligned bool immediately before the tables.
+
+    Four zero bytes are also how an empty string is stored. They count as the
+    flag only when a marker string follows, which is the live asset layout.
+    """
+    if offset + 8 > len(raw):
+        return None
+    flag = raw[offset : offset + 4]
+    if flag not in (b"\x00\x00\x00\x00", b"\x01\x00\x00\x00"):
+        return None
+    try:
+        nxt, _start, _end = _read_string(raw, offset + 4)
+    except ValueError:
+        return None
+    if not has_marker(nxt):
+        return None
+    return flag[0] == 1
 
 
 def _read_pptr(raw: bytes, offset: int) -> tuple[tuple[int, int], int]:

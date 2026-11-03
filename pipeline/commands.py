@@ -343,6 +343,7 @@ def _discover_record(identity, found, assets_file: str) -> dict:
         "typetree": found.typetree,
         "m_name": OBJECT_NAME,
         "level": found.blob.level,
+        "main_build_database": found.blob.main_build_database,
         "enabled": found.blob.enabled,
         "assets_file": assets_file,
         "candidates": [
@@ -356,6 +357,7 @@ def _print_found(build_id: str, found, assets_file: str) -> None:
     counts = ", ".join(f"{path_id}:{count}" for path_id, count in found.candidates) or "n/a"
     print(
         f"build {build_id}  {OBJECT_NAME} file={assets_file} path_id={found.path_id} "
-        f"bytes={len(found.raw)} typetree={found.typetree} script={script} candidates=[{counts}]",
+        f"bytes={len(found.raw)} typetree={found.typetree} script={script} "
+        f"main={found.blob.main_build_database} level={found.blob.level} candidates=[{counts}]",
         flush=True,
     )

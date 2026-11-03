@@ -70,9 +70,13 @@ _PPTR_BASES = frozenset(
         "Behaviour",
         "MonoBehaviour",
         "ScriptableObject",
-        "SerializedScriptableObject",
     }
 )
+# Sirenix.Serialization.DataFormat is a 4-byte enum. A protobuf enum earlier
+# in dump.cs uses the same short name, so this field is not looked up there.
+_SIRENIX_INT_ENUMS = frozenset({"DataFormat"})
+_ODIN_NAMES = ("ShowWeaponRangesByRelation", "LowHighAltRangeWeapons")
+_ODIN_BASE = "SerializedScriptableObject"
 _STRUCTS = {
     "Vector2": ("float", "float"),
     "Vector3": ("float", "float", "float"),
@@ -230,10 +234,12 @@ def decode_fields(
     fields: list[dict],
     enums: set[str] | dict[str, str] | None = None,
     types: dict | None = None,
+    base: str | None = None,
 ) -> dict | None:
     """Walk serialized fields after m_Name. Return None unless the walk ends on the last byte."""
     enum_map = _enum_map(enums)
     type_map = types or {}
+    fields = _with_odin_prefix(fields, base, type_map)
     successes: list[dict] = []
     for public_only in (False, True):
         for hashset_as_list in (False, True):
@@ -243,7 +249,7 @@ def decode_fields(
             except (ValueError, struct.error, KeyError, RecursionError):
                 continue
             if offset == len(raw):
-                successes.append(values)
+                successes.append(_note_odin_collections(values))
     unique = []
     for values in successes:
         if values not in unique:
@@ -389,7 +395,17 @@ def _build_report(build_id: str, version: int, extracted: dict, objects: list[di
         fields = class_info["fields"] if class_info else []
         first = group[0]["raw"]
         for obj in group:
-            values = decode_fields(obj["raw"], fields, extracted["enums"], extracted.get("types")) if fields else None
+            values = (
+                decode_fields(
+                    obj["raw"],
+                    fields,
+                    extracted["enums"],
+                    extracted.get("types"),
+                    base=class_info.get("base") if class_info else None,
+                )
+                if fields
+                else None
+            )
             entry = {
                 "m_name": obj["m_name"],
                 "class": class_name,
@@ -501,6 +517,66 @@ def _is_serialized(field: dict, public_only: bool) -> bool:
     return True
 
 
+def _with_odin_prefix(fields: list[dict], base: str | None, types: dict) -> list[dict]:
+    """SerializedScriptableObject stores Odin data before the class fields."""
+    if not _inherits_odin(base, types):
+        return fields
+    prefix = {
+        "access": "private",
+        "static": False,
+        "const": False,
+        "serialized": True,
+        "type": "SerializationData",
+        "name": "serializationData",
+    }
+    return [prefix, *fields]
+
+
+def _inherits_odin(base: str | None, types: dict) -> bool:
+    seen: set[str] = set()
+    current = base
+    while current and current not in seen:
+        if current == _ODIN_BASE:
+            return True
+        seen.add(current)
+        info = types.get(current)
+        current = info.get("base") if info else None
+    return False
+
+
+def _odin_collection(type_name: str) -> bool:
+    simple = type_name.split(".")[-1]
+    return (simple.startswith("HashSet<") and simple.endswith(">")) or (
+        simple.startswith("Dictionary<") and simple.endswith(">")
+    )
+
+
+def _note_odin_collections(values: dict) -> dict:
+    """Name the two collections inside the Odin payload. Do not parse Binary."""
+    data = values.get("serializationData")
+    if not isinstance(data, dict):
+        return values
+    fmt = data.get("SerializedFormat")
+    nodes = data.get("SerializationNodes") if isinstance(data.get("SerializationNodes"), list) else []
+    payload = _payload_bytes(data.get("SerializedBytes"))
+    noted = dict(values)
+    for name in _ODIN_NAMES:
+        if name not in noted:
+            continue
+        if fmt == 2:
+            matched = [node for node in nodes if isinstance(node, dict) and node.get("Name") == name]
+            noted[name] = {"undecoded": True, "nodes": matched}
+        elif fmt == 0:
+            noted[name] = {"undecoded": True, "in_payload": name.encode("utf-8") in payload}
+    return noted
+
+
+def _payload_bytes(value) -> bytes:
+    if isinstance(value, list) and all(isinstance(item, int) and not isinstance(item, bool) for item in value):
+        return bytes(item & 0xFF for item in value)
+    return b""
+
+
 def _walk(raw: bytes, fields: list[dict], enums: dict[str, str], types: dict, hashset_as_list: bool) -> tuple[dict, int]:
     header = _parse_header(raw)
     if header is None:
@@ -514,7 +590,8 @@ def _read_fields(raw, offset, fields, enums, types, hashset_as_list, generic: di
     values: dict = {}
     for field in fields:
         type_name = _substitute(field["type"], generic)
-        if type_name.startswith("HashSet<") and type_name.endswith(">") and not hashset_as_list:
+        if _odin_collection(type_name):
+            values[field["name"]] = {"undecoded": True}
             continue
         value, offset = _read_type(raw, offset, type_name, enums, types, hashset_as_list)
         values[field["name"]] = value
@@ -532,6 +609,8 @@ def _read_type(raw, offset, type_name, enums, types, hashset_as_list):
             raise ValueError(type_name)
         return _read_array(raw, offset, type_name[len("HashSet<") : -1], enums, types, hashset_as_list)
     simple = type_name.split(".")[-1]
+    if simple in _SIRENIX_INT_ENUMS:
+        return _read_value(raw, offset, "int")
     if simple in _STRUCTS:
         values = []
         for kind in _STRUCTS[simple]:

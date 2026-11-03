@@ -30,6 +30,13 @@ def constants_dir(cfg: Config, channel: str) -> Path:
     return cfg.repo_root / "mod" / "testing" / "constants"
 
 
+def formulas_dir(cfg: Config, channel: str) -> Path:
+    channel = parse_channel(channel)
+    if channel == STABLE:
+        return cfg.repo_root / "mod" / "formulas"
+    return cfg.repo_root / "mod" / "testing" / "formulas"
+
+
 def manifest_path(cfg: Config, channel: str) -> Path:
     channel = parse_channel(channel)
     if channel == STABLE:

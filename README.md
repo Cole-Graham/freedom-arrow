@@ -1,8 +1,8 @@
 # freedom-arrow
 
-Tools and data for a Broken Arrow gameplay mod. Unit, weapon, and ammo changes live in JSON constants. A Python pipeline reads the game's encrypted unit database, applies those constants, and writes a patched `data.unity3d` for local testing. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
+Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
-The game is a Unity 6 IL2CPP title. The database is one `DataBaseCompiled` object inside `BrokenArrow_Data/data.unity3d`: 24 AES-256-CBC JSON tables. This project patches that object. BAModLauncher is what players press. It installs MelonLoader and this modpack, starts the game with Anti-Cheat disabled, and **Play vanilla with no mods** removes MelonLoader's `version.dll`.
+The game is a Unity 6 IL2CPP title. The database is one `DataBaseCompiled` object inside `BrokenArrow_Data/data.unity3d`: 24 AES-256-CBC JSON tables. BAModLauncher is what players press. It installs MelonLoader and this modpack, starts the game with Anti-Cheat disabled, and **Play vanilla with no mods** removes MelonLoader's `version.dll`.
 
 Do not play ranked or quick match while MelonLoader is installed.
 
@@ -11,9 +11,12 @@ Do not play ranked or quick match while MelonLoader is installed.
 | Path | What it is |
 | --- | --- |
 | `pipeline/` | Extract, patch, inject, rebase, and pack a `.bamod` |
-| `mod/constants/` | Stable gameplay changes |
+| `runtime/FreedomArrow/` | MelonLoader plugin that applies constants and formulas |
+| `mod/constants/` | Stable gameplay changes to the 24 tables |
 | `mod/manifest.json` | Game build the stable constants were last reconciled with |
+| `mod/formulas/` | Stable injected formulas, one file per game method |
 | `mod/testing/constants/` | Testing gameplay changes |
+| `mod/testing/formulas/` | Testing injected formulas |
 | `mod/testing/manifest.json` | Game build the testing constants were last reconciled with |
 | `mod/modpack.json` | Modpack id, version, and GitHub repos for Stable and Testing |
 | `config.template.YAML` | Committed config template |
@@ -38,7 +41,13 @@ On Linux or macOS, `cp config.template.YAML config.YAML`.
 
 Edit `config.YAML` and set `game_root` to the install directory. Quote the path. Forward slashes work on Windows and Linux. Examples are in the template. `config.YAML` is gitignored. Every pipeline command stops if it is missing.
 
-Leave `write_game_bundle` false until you intend to copy a bundle over the game. `discover`, `decrypt`, `survey`, `il2cpp`, `apply`, `inject`, and `package` never write inside `game_root`. `hangar` does, and only when that flag is true.
+Leave `write_game_bundle` false until you intend to copy a bundle over the game. `discover`, `decrypt`, `survey`, `il2cpp`, `apply`, and `package` never write inside `game_root`. `inject` writes `dist/`, not the game. `hangar` writes inside `game_root`, and only when that flag is true.
+
+Build the plugin before packaging:
+
+```text
+dotnet build runtime/FreedomArrow/FreedomArrow.csproj -c Release
+```
 
 Run commands from the repo root so Python can import `pipeline`:
 
@@ -49,13 +58,17 @@ python -m pipeline inject
 python -m unittest pipeline.tests.test_pipeline pipeline.tests.test_package
 ```
 
-`decrypt` reads the live database (the `DataBaseCompiled` with the most units; smaller copies in the same file are mission snapshots and are left alone) and writes `cache/vanilla/<build-id>/`. The first run hashes `data.unity3d` and extracts `globalgamemanagers.assets`. Later runs reuse that snapshot.
+`decrypt` reads the live database and writes `cache/vanilla/<build-id>/`. When an object has `MainBuildDatabase` and level 2, that object is the live database. Otherwise the one with the most units is used, and every candidate path id and unit count is printed. The first run hashes `data.unity3d` and extracts `globalgamemanagers.assets`. Later runs reuse that snapshot.
 
 `inject` repacks the whole archive into `dist/<channel>/data.unity3d`. On a current game that is several gigabytes and takes a few minutes. It also writes `dist/<channel>/channel.json` with the vanilla build id the bundle was built from.
 
-## Changing the game
+## How constants are written
 
-Edit `mod/constants/<table>.json`. Each file is one of the 24 tables. An empty object changes nothing. A constant names a row `Id` and the fields it sets, using the game's PascalCase names:
+This section is the authoring shape. The cost object and the hit-damage file are examples of that shape. They are not a catalogue of mechanics.
+
+A constant file names the place the game or the plugin actually applies the change. A number is a new literal. A string names something that already exists: a field, a return value, a component, or an enum. Do not add a key the game or the hook does not have.
+
+**Existing table data.** `mod/constants/<table>.json` is one of the 24 database tables. An empty object changes nothing. The example sets one field on one row:
 
 ```json
 {
@@ -63,18 +76,37 @@ Edit `mod/constants/<table>.json`. Each file is one of the 24 tables. An empty o
 }
 ```
 
-A list of rows with an `Id` field is also accepted. The pipeline rejects an unknown file, a missing `Id`, and a type change such as a number replaced by a string. Rows you do not mention stay as the original ciphertext, so an empty constants directory round-trips to the original object bytes.
+A list of rows with an `Id` field is also accepted. The pipeline rejects an unknown file, a missing `Id`, a type change, and a foreign key that does not point at a row. Rows you do not mention stay as the original ciphertext, so an empty constants directory round-trips to the original object bytes.
 
-Build and install the stable channel:
+**Existing serialized fields.** `mod/configs/<ClassName>.json` is the same kind of edit for a field on a ScriptableObject. The class and the field names come from `dump.cs`. There is no config file in the repo yet.
 
-```text
-python -m pipeline apply --channel stable
-python -m pipeline inject --channel stable
+**Code at a method.** `mod/formulas/<Class>/<Method>.json` is a calculation the plugin runs at that method. `change` says how it sits on the game's own calculation: `after` the method returns, `before` it runs, `inside` it at the inner method named by `at`, or `instead` of it. Only `after` is accepted today. The other three are rejected until a hook implements them.
+
+This file is one `after` example. Its keys describe that one hook. Another change uses whatever conditions that hook actually checks.
+
+```json
+{
+  "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+  "change": "after",
+  "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
+  "terrain": "TerrainType.Forest",
+  "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
+  "reduction": 0.30,
+  "damage": "return",
+  "IgnoreCover": "Ammunitions.IgnoreCover"
+}
 ```
 
-`--channel` defaults to `stable`. Testing uses `mod/testing/constants/` and writes `dist/testing/`.
+`change` `after` means the named method still runs and `damage` is its return value. `requires` and `terrain` are the conditions for this hook. `reduction` is the new number. `IgnoreCover` is an existing field the formula reads.
 
-`python -m pipeline hangar` is the local check of a patched database: it installs `dist/stable/data.unity3d`, launches the game, and restores the previous file when the process exits. Set `write_game_bundle` first. Day-to-day play, MelonLoader install, and **Play vanilla with no mods** belong to BAModManager, not this command.
+Day-to-day and release are `package`, then BAModManager or BAModLauncher PLAY. The plugin applies whatever constants and formulas are in the package. **Play vanilla** stays the manager's button.
+
+```text
+python -m pipeline package --channel stable
+python -m pipeline package --channel testing
+```
+
+`decrypt`, `apply`, and `rebase` are the offline checks. `apply` merges constants and checks links without touching the game. `inject` and `hangar` are diagnostics. `hangar` still requires `write_game_bundle`: it installs `dist/stable/data.unity3d`, launches the game, and restores the previous file when the process exits.
 
 ## BAModManager
 
@@ -96,7 +128,7 @@ python -m pipeline package --channel stable
 python -m pipeline package --channel testing
 ```
 
-Each command writes `dist/<channel>/FreedomArrow-<version>.bamod`. The zip contains `mod.json` (`"type": "modpack"`) and the non-empty constant files under `UserData/FreedomArrow/constants/`. BAModManager installs those paths and skips anything else. The patched `data.unity3d` is not inside the package: it is several gigabytes, and the manager does not replace `BrokenArrow_Data`. When `mod/modpack.json` has repos, packaging also writes `dist/launcher.json`:
+Each command writes `dist/<channel>/FreedomArrow-<version>.bamod`. The zip contains `mod.json` (`"type": "modpack"`), `Mods/FreedomArrow.dll`, the non-empty constant files under `UserData/FreedomArrow/constants/`, and formula files under `UserData/FreedomArrow/formulas/`. BAModManager installs those paths. The patched `data.unity3d` is not inside the package: it is several gigabytes, and the manager does not replace `BrokenArrow_Data`. When `mod/modpack.json` has repos, packaging also writes `dist/launcher.json`:
 
 ```json
 { "modpack": "owner/freedom-arrow", "testing": "owner/freedom-arrow-testing" }
@@ -133,7 +165,7 @@ python -m pipeline rebase --channel stable --accept
 | `il2cpp` | Dump `GameAssembly.dll` from `game_root` and write cover-config fields and values to `cache/il2cpp/<build-id>/configs.json` |
 | `apply --channel` | Merge that channel's constants onto the vanilla snapshot |
 | `inject --channel` | Repack `dist/<channel>/data.unity3d` and `channel.json` |
-| `package --channel` | Write `dist/<channel>/FreedomArrow-<version>.bamod` for BAModLauncher |
+| `package --channel` | Write `dist/<channel>/FreedomArrow-<version>.bamod`, including `Mods/FreedomArrow.dll` |
 | `rebase --channel` | Three-way merge of the previous snapshot, the new snapshot, and the constants |
 | `update --channel` | Decrypt, rebase, apply, and inject |
 | `hangar` | Install the stable bundle, launch, and restore on exit |

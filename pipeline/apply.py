@@ -11,6 +11,7 @@ from pipeline.database import DatabaseBlob, parse_database, rebuild
 from pipeline.errors import PipelineError
 from pipeline.snapshot import load_table
 from pipeline.tables import FIELD_ORDER, FIELD_TO_FILE
+from pipeline.validate import validate_tables
 
 
 def apply_overrides(rows, overrides: dict[str, dict], table_name: str):
@@ -54,26 +55,42 @@ def dumps_table(value) -> bytes:
     return json.dumps(value, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
 
 
+def validate_applied(vanilla: Path, overrides: Overrides) -> dict[str, list]:
+    """Merge every table, check links, and return the merged rows. No ciphertext is written."""
+    merged, _original = _merge(vanilla, overrides)
+    return merged
+
+
 def build_object(vanilla: Path, overrides: Overrides) -> tuple[bytes, list[str]]:
     """Rebuild the MonoBehaviour. Untouched fields keep their original ciphertext."""
     raw_path = vanilla / "object.bin"
     if not raw_path.is_file():
         raise PipelineError(f"missing {raw_path}. Run decrypt first.")
     blob = parse_database(raw_path.read_bytes())
+    merged, dirty_rows = _merge(vanilla, overrides)
     fields = dict(blob.fields)
     dirty: list[str] = []
-
-    for field in FIELD_ORDER:
-        table_overrides = overrides.get(field) or {}
-        if not table_overrides:
-            continue
-        rows, changed = apply_overrides(load_table(vanilla, field), table_overrides, FIELD_TO_FILE[field])
-        if not changed:
-            continue
+    for field, rows in dirty_rows.items():
         fields[field] = aes_encrypt(dumps_table(rows))
         dirty.append(field)
-
     return rebuild(blob, fields), dirty
+
+
+def _merge(vanilla: Path, overrides: Overrides) -> tuple[dict[str, list], dict[str, list]]:
+    merged: dict[str, list] = {}
+    original: dict[str, list] = {}
+    dirty_rows: dict[str, list] = {}
+    for field in FIELD_ORDER:
+        rows = load_table(vanilla, field)
+        original[FIELD_TO_FILE[field]] = rows
+        table_overrides = overrides.get(field) or {}
+        if table_overrides:
+            rows, changed = apply_overrides(rows, table_overrides, FIELD_TO_FILE[field])
+            if changed:
+                dirty_rows[field] = rows
+        merged[FIELD_TO_FILE[field]] = rows
+    validate_tables(merged, original)
+    return merged, dirty_rows
 
 
 def original_blob(vanilla: Path) -> DatabaseBlob:

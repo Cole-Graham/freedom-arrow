@@ -4,7 +4,7 @@ Read this before editing freedom-arrow. Human setup, command list, and the gamep
 
 ## What this repo is
 
-A Python 3.11+ pipeline plus the gameplay constants it applies. The game database is the `DataBaseCompiled` MonoBehaviour in `BrokenArrow_Data/data.unity3d`: 24 AES-encrypted JSON tables. Stable edits are `mod/constants/*.json`. Testing edits are `mod/testing/constants/*.json`. Empty `{}` means no change.
+A Python 3.11+ pipeline, a MelonLoader plugin in `runtime/FreedomArrow/`, and the gameplay constants it applies. The game database is the `DataBaseCompiled` MonoBehaviour in `BrokenArrow_Data/data.unity3d`: 24 AES-encrypted JSON tables. Stable table edits are `mod/constants/*.json`. Testing table edits are `mod/testing/constants/*.json`. Empty `{}` means no change. Injected formulas are `mod/formulas/` and `mod/testing/formulas/`.
 
 Run Python from the repo root so `import pipeline` works.
 
@@ -25,23 +25,42 @@ Unit tests use temp directories and stub executables. They do not need the 7 GB 
 
 | Task | Edit |
 | --- | --- |
-| A gameplay value | `mod/constants/<table>.json` or `mod/testing/constants/<table>.json` |
-| Extract, encrypt, inject, rebase, package | `pipeline/` |
+| A table value the game already stores | `mod/constants/<table>.json` or `mod/testing/constants/<table>.json` |
+| A ScriptableObject field named in `dump.cs` | `mod/configs/<ClassName>.json` or `mod/testing/configs/<ClassName>.json` |
+| Code run at a game method | `mod/formulas/<Class>/<Method>.json` or `mod/testing/formulas/<Class>/<Method>.json` |
+| Extract, encrypt, inject, rebase, package, the plugin | `pipeline/` and `runtime/FreedomArrow/` |
 | Modpack id, version, GitHub repos | `mod/modpack.json` |
 | Player install and Play vanilla | Do not reimplement. Use `thirdparty-tools/BAModManager-main` |
 | Developer paths | `config.template.YAML` only. Never commit `config.YAML` |
 
-A constant is an object keyed by row `Id`, values are the game's PascalCase fields:
+A constant file and the code that reads it name the place the change is actually applied. Do not add a key the game or the hook does not have. Do not turn this file into a list of mechanics. The JSON below is an example of the shape.
+
+A table file modifies existing rows. It is keyed by `Id`. Values are the game's PascalCase fields. Example: `{ "1": { "Cost": 40 } }`.
+
+A config file modifies an existing ScriptableObject field. The filename is the class. The keys are field names from `dump.cs`. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
+
+A formula file is code at a method. `change` is `after`, `before`, `inside`, or `instead`. A number is a new literal. A string names an existing source. Only `after` is implemented. `package` rejects the others. Conditions such as `requires` or `terrain` belong in the file only when that hook checks them.
+
+`mod/formulas/BattleSystemHelpers/CalculateHitDamage.json` is the worked `after` example. Copy the pattern, not the combat keys, when the next change is a different method:
 
 ```json
-{ "1": { "Cost": 40 } }
+{
+  "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+  "change": "after",
+  "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
+  "terrain": "TerrainType.Forest",
+  "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
+  "reduction": 0.30,
+  "damage": "return",
+  "IgnoreCover": "Ammunitions.IgnoreCover"
+}
 ```
 
-Do not invent a second schema. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
+Field order is `pipeline/tables.py`. It must stay aligned with `thirdparty-tools/BodkinToolkit/extractor/crypto.py` `FIELD_ORDER`. Unity 6 may insert an empty string or `MainBuildDatabase` before those 24 fields; `pipeline/database.py` keeps those bytes in the object prefix so an empty patch returns the original bytes.
 
-Field order is `pipeline/tables.py`. It must stay aligned with `thirdparty-tools/BodkinToolkit/extractor/crypto.py` `FIELD_ORDER`. Unity 6 inserts one empty string before those 24 fields; `pipeline/database.py` keeps that string in the object prefix so an empty patch returns the original bytes.
+Lookup is by `m_Name == "DataBaseCompiled"`. Prefer `MainBuildDatabase` with level 2. If no object has that flag, use the candidate with the most unit rows and print every candidate path id and unit count. Do not hardcode PathID `15803` or `52739`.
 
-Lookup is by `m_Name == "DataBaseCompiled"`, then the candidate with the most unit rows. Do not hardcode PathID `15803`.
+Day-to-day and release are `package`, then BAModManager or BAModLauncher PLAY. `decrypt`, `apply`, and `rebase` are offline checks. `inject` and `hangar` are diagnostics. `hangar` still requires `write_game_bundle`. Build `runtime/FreedomArrow/FreedomArrow.csproj` in Release before `package`. The `.bamod` contains `Mods/FreedomArrow.dll`.
 
 ## Commands you may run
 
