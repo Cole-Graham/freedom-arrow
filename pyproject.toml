@@ -1,0 +1,17 @@
+[project]
+name = "freedom-arrow"
+version = "0.1.0"
+description = "Extract, patch, and re-inject a Broken Arrow gameplay mod."
+requires-python = ">=3.11"
+dependencies = [
+    "UnityPy>=1.25",
+    "pycryptodome>=3.18",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+freedom-pipeline = "pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pipeline*"]
+exclude = ["pipeline.tests*"]

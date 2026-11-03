@@ -1,0 +1,2956 @@
+- id: 1
+  name: MainTurret M10Booker 105
+  is_default: true
+- id: 2
+  name: MainTurret BTR82A
+  is_default: false
+- id: 3
+  name: MainTurret MSTA M1
+  is_default: true
+- id: 4
+  name: MainTurret HMMWV TOW M220
+  is_default: true
+- id: 5
+  name: MainTurret StrykerMC Loadout1
+  is_default: true
+- id: 6
+  name: MainTurret BMP3 Base
+  is_default: false
+- id: 7
+  name: MainTurret Longbow AH64 M230
+  is_default: true
+- id: 8
+  name: 'MainTurret T72B '
+  is_default: true
+- id: 9
+  name: MainTurret HIMARS HE
+  is_default: true
+- id: 11
+  name: MainTurret T14 Armata SokolV
+  is_default: true
+- id: 12
+  name: MainTurret M60A1
+  is_default: true
+- id: 15
+  name: MainTurret Bradley M2A2 M3A2
+  is_default: true
+- id: 17
+  name: MainTurret Stryker SHORAD Hellfire
+  is_default: true
+- id: 18
+  name: MainTurret StrykerRV M2
+  is_default: false
+- id: 19
+  name: MainTurret Stryker M2
+  is_default: true
+- id: 20
+  name: MainTurret HMMWV Avenger
+  is_default: true
+- id: 21
+  name: MainTurret BMP3K Base
+  is_default: true
+- id: 22
+  name: MainTurret BTR80AM
+  is_default: false
+- id: 25
+  name: MainTurret  Stryker Mk19
+  is_default: false
+- id: 26
+  name: MainTurret Naparnik 2A42
+  is_default: false
+- id: 27
+  name: MainTurret  Stryker M2 Javellin
+  is_default: false
+- id: 28
+  name: MainTurret  Stryker Mk19 Javellin
+  is_default: false
+- id: 29
+  name: MainTurret  Stryker Dragoon
+  is_default: false
+- id: 30
+  name: MainTurret Stryker MGS M2
+  is_default: true
+- id: 31
+  name: MainTurret Stryker ATGM
+  is_default: true
+- id: 32
+  name: MainTurret Bradley M2A3 BEV
+  is_default: true
+- id: 33
+  name: MainTurret Linebacker M6 Old
+  is_default: true
+- id: 34
+  name: MainTurret  BFIST M7 ERA
+  is_default: true
+- id: 35
+  name: MainTurret LAV25A1
+  is_default: true
+- id: 36
+  name: MainTurret Linebacker M6 New
+  is_default: false
+- id: 38
+  name: MainTurret LAVAT
+  is_default: true
+- id: 39
+  name: MainTurret LAVATM
+  is_default: false
+- id: 40
+  name: MainTurret Tor M1
+  is_default: true
+- id: 41
+  name: MainTurret Tor M2
+  is_default: false
+- id: 43
+  name: MainTurret LAVAD
+  is_default: true
+- id: 44
+  name: MainTurret Guardian M1117 M2
+  is_default: true
+- id: 45
+  name: MainTurret Guardian M1117 Mk19
+  is_default: false
+- id: 46
+  name: MainTurret Guardian M1117 M2 Mk19
+  is_default: false
+- id: 47
+  name: MainTurret Guardian M1200 M2
+  is_default: false
+- id: 48
+  name: MainTurret Stryker ESV M2
+  is_default: true
+- id: 49
+  name: MainTurret Stryker ESV Mk19
+  is_default: false
+- id: 50
+  name: MainTurret Stryker ESV M2 Javellin
+  is_default: false
+- id: 51
+  name: 'MainTurret Stryker ESV Mk19 Javellin '
+  is_default: false
+- id: 52
+  name: MainTurret Bradley M2A3 IronFist
+  is_default: false
+- id: 53
+  name: MainTurret Bradley M2A3
+  is_default: true
+- id: 54
+  name: MainTurret Bradley M2A3 BEV IronFist
+  is_default: false
+- id: 55
+  name: MainTurret StrykerRV Mk19
+  is_default: false
+- id: 56
+  name: MainTurret Bradley M3A3
+  is_default: true
+- id: 58
+  name: MainTurret AMPV MC Loadout1
+  is_default: true
+- id: 59
+  name: MainTurret AMPV M2
+  is_default: true
+- id: 60
+  name: MainTurret AMPV Mk19
+  is_default: false
+- id: 61
+  name: MainTurret AMPV R800
+  is_default: false
+- id: 62
+  name: MainTurret AMPV R800 Javellin
+  is_default: false
+- id: 64
+  name: PylonTurret Vikhr x6
+  is_default: false
+- id: 65
+  name: MainTurret Ka52
+  is_default: true
+- id: 67
+  name: MainTurret Avenger TwinStinger
+  is_default: false
+- id: 68
+  name: MainTurret HMMWV GMV M240
+  is_default: false
+- id: 69
+  name: MainTurret HMMWV GMV M2
+  is_default: false
+- id: 70
+  name: MainTurret HMMWV GMV Mk19
+  is_default: false
+- id: 71
+  name: MainTurret GMV M1288 M2
+  is_default: true
+- id: 72
+  name: MainTurret GMV M1288 Mk47
+  is_default: false
+- id: 73
+  name: MainTurret GMV M1288 M230
+  is_default: false
+- id: 74
+  name: MainTurret HMMWV Hawkeye Loadout1
+  is_default: true
+- id: 75
+  name: MainTurret HMMWV M2
+  is_default: false
+- id: 76
+  name: MainTurret HMMWV M240
+  is_default: true
+- id: 77
+  name: MainTurret HMMWV Mk19
+  is_default: false
+- id: 78
+  name: MainTurret HMMWV RV M240
+  is_default: false
+- id: 80
+  name: MainTurret HMMWV TOW M41
+  is_default: false
+- id: 81
+  name: MainTurret HIMARS CLUS
+  is_default: false
+- id: 82
+  name: MainTurret HIMARS ATACMS
+  is_default: false
+- id: 83
+  name: CupolaTurret HIMARS M240
+  is_default: false
+- id: 84
+  name: CupolaTurret HIMARS M2
+  is_default: false
+- id: 85
+  name: CupolaTurret HIMARS Mk19
+  is_default: false
+- id: 86
+  name: MainTurret LMTV M240
+  is_default: true
+- id: 87
+  name: MainTurret LMTV Mk19
+  is_default: false
+- id: 88
+  name: MainTurret LMTV M2
+  is_default: false
+- id: 89
+  name: MainTurret M1A1FEP
+  is_default: true
+- id: 90
+  name: CupolaTurret M1A1FEP HMG
+  parent_turret_id: 89
+  is_default: false
+- id: 91
+  name: CupolaTurret M1A1FEP MMG
+  parent_turret_id: 89
+  is_default: false
+- id: 92
+  name: PylonTurret Hellfire Longbow
+  is_default: false
+- id: 93
+  name: LeftPylonTurret Hydra x19
+  is_default: false
+- id: 96
+  name: 'MainTurret AAVP7A1 '
+  is_default: true
+- id: 97
+  name: RampTurret Osprey GAU21
+  is_default: false
+- id: 98
+  name: BellyTurret Osprey GAU17
+  is_default: false
+- id: 99
+  name: 'LeftPylonTurret Hydra APKWS '
+  is_default: false
+- id: 100
+  name: LeftTurret UH60M M2
+  is_default: false
+- id: 102
+  name: MainTurret AC130 1 GAU12
+  is_default: false
+- id: 103
+  name: 'MainTurret AC130 2 Bofors '
+  is_default: false
+- id: 104
+  name: MainTurret AC130 3 M102
+  is_default: false
+- id: 105
+  name: MainTurret MTVR M240
+  is_default: false
+- id: 106
+  name: MainTurret MTVR M2
+  is_default: false
+- id: 107
+  name: MainTurret MTVR Mk19
+  is_default: false
+- id: 108
+  name: SwivelTurret MGS M2
+  parent_turret_id: 30
+  is_default: false
+- id: 109
+  name: CupolaTurret LAV25 M240
+  parent_turret_id: 35
+  is_default: false
+- id: 110
+  name: CupolaTurret M60A1
+  parent_turret_id: 12
+  is_default: false
+- id: 111
+  name: MainTurret M1A1HC
+  is_default: true
+- id: 112
+  name: CupolaTurret M1A1HC HMG
+  parent_turret_id: 111
+  is_default: false
+- id: 113
+  name: CupolaTurret M1A1HC MMG
+  parent_turret_id: 111
+  is_default: false
+- id: 116
+  name: MainTurret AH1Z
+  is_default: true
+- id: 118
+  name: PylonTurret Hellfire
+  is_default: false
+- id: 122
+  name: PylonTurret AH1Z AIM9
+  is_default: false
+- id: 123
+  name: MainTurret AH1W
+  is_default: true
+- id: 125
+  name: PylonTurret AH1W Hellfire
+  is_default: false
+- id: 129
+  name: PylonTurret AH1W AIM9
+  is_default: false
+- id: 130
+  name: MainTurret BMD4M
+  is_default: true
+- id: 131
+  name: MainTurret BMD2
+  is_default: true
+- id: 132
+  name: MainTurret M61 Vulcan
+  is_default: true
+- id: 133
+  name: PylonTurret MK82 x2
+  is_default: false
+- id: 135
+  name: HullTurret BMD2
+  is_default: true
+- id: 136
+  name: MainTurret BMD2M
+  is_default: false
+- id: 137
+  name: MainTurret Bereg A222 Howitzer
+  is_default: true
+- id: 138
+  name: MainTurret Bereg A222 AntiAir
+  is_default: false
+- id: 139
+  name: MainTurret Smerch 9K58 HE
+  is_default: true
+- id: 140
+  name: MainTurret Grad BM21
+  is_default: true
+- id: 141
+  name: MainTurret OsaAKM
+  is_default: true
+- id: 145
+  name: MainTurret Tulpan 2S4
+  is_default: true
+- id: 146
+  name: MainTurret IFAV HMG
+  is_default: true
+- id: 147
+  name: MainTurret IFAV AGL
+  is_default: false
+- id: 148
+  name: MainTurret IFAV TOW
+  is_default: false
+- id: 149
+  name: CupolaTurret T72B HMG
+  parent_turret_id: 8
+  is_default: false
+- id: 150
+  name: MainTurret HMMWV M2 RWS
+  is_default: false
+- id: 151
+  name: MainTurret HMMWV Mk19 RWS
+  is_default: false
+- id: 152
+  name: MainTurret MI24P GSh30
+  is_default: true
+- id: 153
+  name: MainTurret MI24 YakB
+  is_default: true
+- id: 154
+  name: MainTurret MI24 GSh23L
+  is_default: true
+- id: 155
+  name: LeftPylonTurret S8 Heli
+  is_default: false
+- id: 156
+  name: PylonTurret MI24 Kokon x2
+  is_default: false
+- id: 157
+  name: PylonTurret Hellfire x2
+  is_default: false
+- id: 158
+  name: LeftPylonTurret Hydra DAGR x8
+  is_default: false
+- id: 160
+  name: Turret Empty
+  is_default: false
+- id: 161
+  name: PylonTurret GAU17 AH6
+  is_default: false
+- id: 162
+  name: LeftPylonTurret Hydra x7
+  is_default: false
+- id: 163
+  name: PylonTurret GAU19B AH6
+  is_default: false
+- id: 164
+  name: 'MainTurret MI24K YakB '
+  is_default: true
+- id: 165
+  name: 'PylonTurret GSh23L '
+  is_default: false
+- id: 166
+  name: PylonTurret AIM9 x1
+  is_default: false
+- id: 167
+  name: LeftPylonTurret S13 Heli
+  is_default: false
+- id: 168
+  name: HullTurret AMPV MC M240
+  is_default: false
+- id: 169
+  name: HullTurret AMPV MC M2
+  is_default: false
+- id: 170
+  name: HullTurret AMPV MC Mk19
+  is_default: false
+- id: 171
+  name: MainTurret HMMWV GMV M134
+  is_default: false
+- id: 172
+  name: PylonTurret AIM9 x2
+  is_default: false
+- id: 173
+  name: PylonTurret AMRAAM x1
+  is_default: false
+- id: 174
+  name: MainTurret SU57
+  is_default: true
+- id: 175
+  name: 'PylonTurret S13 Plane '
+  is_default: false
+- id: 177
+  name: 'CupolaTurret MSTA HMG '
+  parent_turret_id: 3
+  is_default: false
+- id: 178
+  name: HullTurret BTRD PKT Left
+  is_default: true
+- id: 179
+  name: MainTurret BTRD AGS NSV NoModel
+  is_default: false
+- id: 180
+  name: MainTurret BTRD AGS NSV
+  is_default: false
+- id: 181
+  name: HullTurret BTRMDM
+  is_default: true
+- id: 182
+  name: MainTurret BTRMDM
+  is_default: true
+- id: 183
+  name: HullTurret BTRD PKT  Right NoModel
+  is_default: true
+- id: 184
+  name: PylonTurret Kokon x4
+  is_default: false
+- id: 185
+  name: 'PylonTurret Ataka x4 '
+  is_default: false
+- id: 186
+  name: PylonTurret IglaS Strelets2
+  is_default: false
+- id: 187
+  name: MainTurret SprutSD
+  is_default: true
+- id: 188
+  name: MainTurret SprutSDM
+  is_default: false
+- id: 189
+  name: CupolaTurret SprutSDM RWS
+  parent_turret_id: 188
+  is_default: false
+- id: 190
+  name: MainTurret Naparnik HMG
+  is_default: true
+- id: 191
+  name: RightTurret UH60M M2 NoModel
+  is_default: false
+- id: 192
+  name: LeftTurret UH60M M134
+  is_default: false
+- id: 193
+  name: RightTurret UH60M M134 NoModel
+  is_default: false
+- id: 194
+  name: MainTurret KornetD1 KornetM x4
+  is_default: false
+- id: 195
+  name: MainTurret KornetD1 x4-2
+  is_default: false
+- id: 196
+  name: MainTurret KornetD1 x4-2 NoModel
+  is_default: false
+- id: 197
+  name: MainTurret Sarmat2 HMG
+  is_default: true
+- id: 198
+  name: MainTurret Sarmat2 AGS
+  is_default: false
+- id: 199
+  name: MainTurret LAVM M252 81
+  is_default: true
+- id: 200
+  name: SwivelTurret LAVM M240
+  is_default: true
+- id: 201
+  name: MainTurret Drok Loadout1
+  is_default: true
+- id: 202
+  name: MainTurret Drok RWS PKT
+  is_default: true
+- id: 203
+  name: MainTurret S300
+  is_default: false
+- id: 204
+  name: MainTurret T72B3 obr16
+  is_default: true
+- id: 205
+  name: CupolaTurret T72B3 obr16
+  parent_turret_id: 204
+  is_default: false
+- id: 206
+  name: MainTurret T80BVM
+  is_default: false
+- id: 207
+  name: CupolaTurret T80BVM HMG
+  parent_turret_id: 206
+  is_default: false
+- id: 208
+  name: 'CupolaTurret T14 Armata '
+  parent_turret_id: 11
+  is_default: false
+- id: 209
+  name: LeftTurret UH1Y M240
+  is_default: true
+- id: 210
+  name: RightTurret UH1Y M240 NoModel
+  is_default: true
+- id: 211
+  name: LeftTurret UH1Y M134
+  is_default: false
+- id: 212
+  name: RightTurret UH1Y M134 NoModel
+  is_default: false
+- id: 213
+  name: LeftPylonTurret Hydra APKWS x7
+  is_default: false
+- id: 214
+  name: PylonTurret Zuni x3
+  is_default: false
+- id: 215
+  name: MainTurret AV8B Empty
+  is_default: false
+- id: 216
+  name: MainTurret AV8B GAU12
+  is_default: false
+- id: 218
+  name: LeftTurret UH60M M240
+  is_default: true
+- id: 219
+  name: RightTurret UH60M M240 NoModel
+  is_default: true
+- id: 223
+  name: PylonTurret AMRAAM x2
+  is_default: false
+- id: 224
+  name: 'SwivelTurret StrykerMC M240 '
+  is_default: true
+- id: 225
+  name: MainTurret M109A7 HMG
+  is_default: true
+- id: 226
+  name: CupolaTurret M109A7 RWS M2
+  parent_turret_id: 225
+  is_default: false
+- id: 229
+  name: MainTurret M109 IronThunder
+  is_default: false
+- id: 230
+  name: 'CupolaTurret M109 IronThunder RWS M2 '
+  parent_turret_id: 229
+  is_default: false
+- id: 231
+  name: MainTurret Patriot x4 (PAC2)
+  is_default: false
+- id: 232
+  name: MainTurret LVSR M2
+  is_default: false
+- id: 233
+  name: MainTurret LVSR MK19
+  is_default: false
+- id: 234
+  name: MainTurret LVSR M240
+  is_default: false
+- id: 235
+  name: PylonTurret AGM65 x1
+  is_default: false
+- id: 236
+  name: PylonTurret MK82 x1
+  is_default: false
+- id: 237
+  name: MainTurret Patriot x2 (PAC2)
+  is_default: true
+- id: 241
+  name: MainTurret Planes GSh301
+  is_default: true
+- id: 242
+  name: PylonTurret R77 x1
+  is_default: false
+- id: 243
+  name: PylonTurret R73 x1
+  is_default: false
+- id: 246
+  name: PylonTurret FAB250 x2 Long
+  is_default: false
+- id: 247
+  name: PylonTurret Kornet x1
+  is_default: false
+- id: 248
+  name: MainTurret BMD2K Marchenko
+  is_default: true
+- id: 249
+  name: HullTurret BTRD Kornet
+  is_default: true
+- id: 250
+  name: MainTurret BRDM KPVT
+  is_default: true
+- id: 251
+  name: MainTurret Grad BM21 Smoke
+  is_default: false
+- id: 252
+  name: MainTurret BRDM Kord AGS
+  is_default: false
+- id: 253
+  name: MainTurret BRDM KPVB AGS
+  is_default: false
+- id: 254
+  name: PylonTurret R60 x2 Mi24
+  is_default: false
+- id: 260
+  name: BellyTurret Osprey Empty
+  is_default: false
+- id: 261
+  name: HullTurret Patriot M2
+  is_default: false
+- id: 262
+  name: HullTurret Patriot M240
+  is_default: false
+- id: 263
+  name: HullTurret Patriot MK19
+  is_default: false
+- id: 268
+  name: MainTurret ACV RWS M2
+  is_default: false
+- id: 269
+  name: MainTurret ACV RWS MK19
+  is_default: false
+- id: 270
+  name: MainTurret ACV RT20
+  is_default: false
+- id: 271
+  name: 'MainTurret M551A1 Sheridan '
+  is_default: true
+- id: 272
+  name: CupolaTurret M551A1 Sheridan M2
+  parent_turret_id: 271
+  is_default: false
+- id: 273
+  name: MainTurret M8 AGS 105
+  is_default: false
+- id: 274
+  name: MainTurret M8 AGS 120
+  is_default: false
+- id: 275
+  name: CupolaTurret M8 AGS M2 1
+  parent_turret_id: 273
+  is_default: false
+- id: 276
+  name: CupolaTurret M8 AGS M2 2
+  parent_turret_id: 274
+  is_default: false
+- id: 277
+  name: MainTurret RSOV M2
+  is_default: false
+- id: 278
+  name: MainTurret RSOV MK47
+  is_default: false
+- id: 279
+  name: MainTurret M113A3 M2
+  is_default: true
+- id: 280
+  name: MainTurret M113A3 MK19
+  is_default: false
+- id: 281
+  name: MainTurret M981 M240
+  is_default: true
+- id: 282
+  name: MainTurret M901A3
+  is_default: true
+- id: 283
+  name: CupolaTurret M901A3 M240
+  parent_turret_id: 282
+  is_default: false
+- id: 284
+  name: MainTurret M163 PIVADS
+  is_default: true
+- id: 285
+  name: MainTurret M1064A3 Loadout1
+  is_default: true
+- id: 286
+  name: HullTurret M1064A3 M2
+  is_default: false
+- id: 287
+  name: HullTurret M1064A3 M240
+  is_default: false
+- id: 288
+  name: HullTurret M1064A3 MK19
+  is_default: false
+- id: 289
+  name: 'MainTurret M270A2 HE '
+  is_default: false
+- id: 290
+  name: MainTurret M270A2 CLUS
+  is_default: false
+- id: 291
+  name: MainTurret M270 ATACMS
+  is_default: false
+- id: 292
+  name: MainTurret M1A2C Base
+  is_default: true
+- id: 293
+  name: MainTurret M1A2C TUSK
+  is_default: false
+- id: 294
+  name: CupolaTurret M1A2C M2
+  parent_turret_id: 292
+  is_default: false
+- id: 295
+  name: CupolaTurret M1A2C M240 TUSK
+  parent_turret_id: 293
+  is_default: false
+- id: 296
+  name: CupolaTurret M1A2C M240
+  parent_turret_id: 292
+  is_default: false
+- id: 297
+  name: CupolaTurret M1A2C M2 TUSK
+  parent_turret_id: 293
+  is_default: false
+- id: 298
+  name: HelperTurret Ural5323
+  is_default: true
+- id: 300
+  name: PylonTurret AIM9 Wingtip
+  is_default: false
+- id: 313
+  name: MainTurret TOS1
+  is_default: false
+- id: 314
+  name: MainTurret TOS1A
+  is_default: false
+- id: 315
+  name: MainTurret MTLB 2A72
+  is_default: false
+- id: 316
+  name: MainTurret MTLB KPVT
+  is_default: false
+- id: 317
+  name: MainTurret MTLB 2A42 AG17
+  is_default: false
+- id: 318
+  name: MainTurret MTLB Kord
+  is_default: false
+- id: 319
+  name: MainTurret MTLB ZU-23
+  is_default: false
+- id: 320
+  name: HullTurret MTLB PKT
+  is_default: false
+- id: 321
+  name: MainTurret MTLB GSh30K
+  is_default: false
+- id: 322
+  name: 'HullTurret SturmS '
+  is_default: false
+- id: 323
+  name: HullTurret SturmSM
+  is_default: false
+- id: 324
+  name: HullTurret MTLB Strela PKP
+  is_default: true
+- id: 325
+  name: MainTurret MTLB Strela10MN
+  is_default: false
+- id: 326
+  name: MainTurret MTLB Luchnik
+  is_default: false
+- id: 327
+  name: MainTurret MTLB Sosna
+  is_default: false
+- id: 328
+  name: MainTurret MTLB Dilemma
+  is_default: false
+- id: 329
+  name: MainTurret MTLB Vasilyok
+  is_default: false
+- id: 330
+  name: MainTurret MTLB Deva
+  is_default: false
+- id: 331
+  name: 'MainTurret BTO '
+  is_default: true
+- id: 332
+  name: MainTurret Gvozdika M1
+  is_default: false
+- id: 333
+  name: MainTurret Gvozdika Hosta
+  is_default: false
+- id: 334
+  name: CupolaTurret Ghosta PKT
+  parent_turret_id: 333
+  is_default: false
+- id: 335
+  name: MainTurret BTR-ZD ZU23
+  is_default: true
+- id: 336
+  name: MainTurret BTR-ZD ZU23M
+  is_default: false
+- id: 337
+  name: MainTurret BTR-ZD ZU23M Igla
+  is_default: false
+- id: 338
+  name: MainTurret NonaS
+  is_default: false
+- id: 339
+  name: MainTurret NonaSM
+  is_default: false
+- id: 340
+  name: MainTurret BMP3 Sodema Shtora
+  is_default: false
+- id: 341
+  name: HullTurret BMP3 PKT Left
+  is_default: true
+- id: 342
+  name: HullTurret BMP3 PKT Right
+  is_default: true
+- id: 343
+  name: MainTurret BMP3 Epokha
+  is_default: false
+- id: 344
+  name: MainTurret BMP3F Base
+  is_default: false
+- id: 345
+  name: MainTurret BMP3F Sodema
+  is_default: false
+- id: 346
+  name: MainTurret BRM3
+  is_default: false
+- id: 347
+  name: MainTurret BRM3 PRP5
+  is_default: false
+- id: 348
+  name: MainTurret BRM3 57
+  is_default: false
+- id: 349
+  name: MainTurret Vena Magnolia Loadout1
+  is_default: true
+- id: 350
+  name: MainTurret Derivatsiya 57
+  is_default: false
+- id: 351
+  name: MainTurret Derivatsiya Sosna
+  is_default: false
+- id: 352
+  name: MainTurret BT3F PKT
+  is_default: false
+- id: 353
+  name: MainTurret BT3F KORD
+  is_default: false
+- id: 354
+  name: MainTurret BT3F AP23
+  is_default: false
+- id: 355
+  name: MainTurret Kornet-T
+  is_default: false
+- id: 356
+  name: MainTurret Khrizantema
+  is_default: false
+- id: 357
+  name: MainTurret BMP2 Base
+  is_default: false
+- id: 358
+  name: MainTurret BMP2 AGS
+  is_default: false
+- id: 359
+  name: MainTurret BMP2 Berezhok
+  is_default: false
+- id: 360
+  name: 'MainTurret PRP4A '
+  is_default: false
+- id: 361
+  name: MainTurret BMO1
+  is_default: true
+- id: 362
+  name: MainTurret BTR80
+  is_default: false
+- id: 363
+  name: MainTurret BTR80A
+  is_default: false
+- id: 364
+  name: MainTurret BTR82AT
+  is_default: false
+- id: 365
+  name: MainTurret NonaSVK Loadout1
+  is_default: true
+- id: 366
+  name: CupolaTurret NonaSVK Loadout1
+  parent_turret_id: 365
+  is_default: false
+- id: 367
+  name: MainTurret BRDM3 PRP
+  is_default: false
+- id: 372
+  name: MainTurret S300 Big
+  is_default: false
+- id: 373
+  name: MainTurret Shilka NoRad
+  is_default: false
+- id: 374
+  name: MainTurret Shilka Radar
+  is_default: false
+- id: 375
+  name: MainTurret Shilka M4
+  is_default: false
+- id: 376
+  name: MainTurret URAL4320 ZU23
+  is_default: true
+- id: 377
+  name: MainTurret URAL4320 ZU23M Igla
+  is_default: false
+- id: 381
+  name: MainTurret S350 9M96
+  is_default: true
+- id: 382
+  name: MainTurret Iskander M
+  is_default: false
+- id: 383
+  name: MainTurret Iskander K
+  is_default: false
+- id: 384
+  name: MainTurret Iskander Klub
+  is_default: false
+- id: 387
+  name: MainTurret PTS4 Kord
+  is_default: true
+- id: 388
+  name: MainTurret PT76B
+  is_default: false
+- id: 389
+  name: MainTurret PT76B 2A42 AGS
+  is_default: false
+- id: 390
+  name: MainTurret PT76B BM57
+  is_default: false
+- id: 391
+  name: MainTurret BUK M2
+  is_default: true
+- id: 392
+  name: MainTurret BUK M3
+  is_default: true
+- id: 393
+  name: MainTurret KoalitsiyaSV Base
+  is_default: false
+- id: 394
+  name: MainTurret KoalitsiyaSV Radar
+  is_default: false
+- id: 395
+  name: CupolaTurret Koalitsiya Kord RWS 1
+  parent_turret_id: 393
+  is_default: false
+- id: 396
+  name: CupolaTurret Koalitsiya Kord RWS 2
+  parent_turret_id: 394
+  is_default: false
+- id: 397
+  name: MainTurret TunguskaM
+  is_default: false
+- id: 398
+  name: MainTurret TunguskaM1
+  is_default: false
+- id: 399
+  name: MainTurret TunguskaM PantsirSV
+  is_default: false
+- id: 400
+  name: MainTurret Akatsiya M1
+  is_default: false
+- id: 401
+  name: MainTurret Akatsiya M2
+  is_default: false
+- id: 402
+  name: CupolaTurret Akatsiya PKT 1
+  parent_turret_id: 400
+  is_default: false
+- id: 403
+  name: CupolaTurret Akatsiya PKT 2
+  parent_turret_id: 401
+  is_default: false
+- id: 404
+  name: MainTurret BMOT Kord
+  is_default: true
+- id: 405
+  name: 'MainTurret T90A '
+  is_default: false
+- id: 406
+  name: MainTurret T90
+  is_default: false
+- id: 407
+  name: CupolaTurret T90 Kord 1
+  parent_turret_id: 405
+  is_default: false
+- id: 408
+  name: CupolaTurret T90 Kord 2
+  parent_turret_id: 406
+  is_default: false
+- id: 409
+  name: MainTurret T90M Razvedchik PKT
+  is_default: false
+- id: 410
+  name: MainTurret T90M Razvedchik Kord
+  is_default: false
+- id: 411
+  name: 'CupolaTurret T90M Razvedchik Kord '
+  parent_turret_id: 410
+  is_default: false
+- id: 412
+  name: CupolaTurret T90M Razvedchik PKT
+  parent_turret_id: 409
+  is_default: false
+- id: 413
+  name: 'CupolaTurret T90M Kord '
+  parent_turret_id: 416
+  is_default: false
+- id: 414
+  name: CupolaTurret T90M PKT
+  parent_turret_id: 415
+  is_default: false
+- id: 415
+  name: MainTurret T90M PKT
+  is_default: false
+- id: 416
+  name: MainTurret T90M Kord
+  is_default: false
+- id: 417
+  name: MainTurret T80BV
+  is_default: true
+- id: 418
+  name: CupolaTurret T80BV HMG
+  parent_turret_id: 417
+  is_default: false
+- id: 419
+  name: MainTurret T80U
+  is_default: false
+- id: 420
+  name: MainTurret T80UM
+  is_default: false
+- id: 421
+  name: MainTurret T80UA
+  is_default: false
+- id: 422
+  name: 'MainTurret T80UM-2 '
+  is_default: false
+- id: 423
+  name: CupolaTurret T80U
+  parent_turret_id: 419
+  is_default: false
+- id: 424
+  name: CupolaTurret T80U  1
+  parent_turret_id: 420
+  is_default: false
+- id: 425
+  name: CupolaTurret T80U 2
+  parent_turret_id: 421
+  is_default: false
+- id: 426
+  name: CupolaTurret T80U 3
+  parent_turret_id: 422
+  is_default: false
+- id: 427
+  name: MainTurret BMPT Old
+  is_default: false
+- id: 428
+  name: HullTurret BMPT Left
+  is_default: false
+- id: 429
+  name: HullTurret BMPT Right
+  is_default: false
+- id: 430
+  name: MainTurret PLS MK19
+  is_default: false
+- id: 431
+  name: MainTurret PLS M240
+  is_default: false
+- id: 432
+  name: MainTurret PLS M2
+  is_default: false
+- id: 433
+  name: MainTurret HEMMT M240
+  is_default: false
+- id: 434
+  name: MainTurret HEMMT M2
+  is_default: false
+- id: 435
+  name: MainTurret HEMMT MK19
+  is_default: false
+- id: 436
+  name: MainTurret M1A2SEP2
+  is_default: true
+- id: 437
+  name: MainTurret M1A2SEP2 TUSK
+  is_default: false
+- id: 438
+  name: CupolaTurret M1A2SEP2 TUSK M2
+  parent_turret_id: 437
+  is_default: false
+- id: 439
+  name: CupolaTurret M1A2SEP2 TUSK M240
+  parent_turret_id: 437
+  is_default: false
+- id: 440
+  name: CupolaTurret M1A2SEP2 M2
+  parent_turret_id: 436
+  is_default: false
+- id: 441
+  name: CupolaTurret M1A2SEP2 M240
+  parent_turret_id: 436
+  is_default: false
+- id: 442
+  name: MainTurret M1A2SEP
+  is_default: true
+- id: 443
+  name: MainTurret M1A2SEP TUSK
+  is_default: false
+- id: 444
+  name: CupolaTurret M1A2SEP M2
+  parent_turret_id: 442
+  is_default: false
+- id: 445
+  name: CupolaTurret M1A2SEP M240
+  parent_turret_id: 442
+  is_default: false
+- id: 446
+  name: CupolaTurret M1A2SEP TUSK M2
+  parent_turret_id: 443
+  is_default: false
+- id: 447
+  name: CupolaTurret M1A2SEP TUSK M240
+  parent_turret_id: 443
+  is_default: false
+- id: 448
+  name: MainTurret M1A2
+  is_default: true
+- id: 449
+  name: MainTurret M1A2 TUSK
+  is_default: false
+- id: 450
+  name: CupolaTurret M1A2 M2
+  parent_turret_id: 448
+  is_default: false
+- id: 451
+  name: CupolaTurret M1A2 M240
+  parent_turret_id: 448
+  is_default: false
+- id: 452
+  name: CupolaTurret M1A2 TUSK M2
+  parent_turret_id: 449
+  is_default: false
+- id: 453
+  name: CupolaTurret M1A2 TUSK M240
+  parent_turret_id: 449
+  is_default: false
+- id: 454
+  name: MainTurret M548A3 M240
+  is_default: false
+- id: 455
+  name: MainTurret M548A3 M2
+  is_default: false
+- id: 456
+  name: MainTurret M548A3 MK19
+  is_default: false
+- id: 457
+  name: MainTurret M109A6 Loadout1
+  is_default: true
+- id: 458
+  name: CupolaTurret M109A6 M2
+  parent_turret_id: 457
+  is_default: false
+- id: 459
+  name: MainTurret Centurion Phalanx
+  is_default: true
+- id: 460
+  name: MainTurret Patriot x12 PAC3 MSE
+  is_default: false
+- id: 461
+  name: MainTurret Patriot x16 (PAC3)
+  is_default: false
+- id: 462
+  name: MainTurret BRDM Konkurs
+  is_default: false
+- id: 463
+  name: MainTurret BRDM Kornet
+  is_default: false
+- id: 464
+  name: MainTurret T72BA
+  is_default: false
+- id: 465
+  name: CupolaTurret T72BA HMG
+  parent_turret_id: 464
+  is_default: false
+- id: 466
+  name: MainTurret Bumerang Kord
+  is_default: false
+- id: 467
+  name: MainTurret Bumerang 2A42
+  is_default: false
+- id: 468
+  name: MainTurret Kurganets Kord
+  is_default: false
+- id: 469
+  name: MainTurret Kurganets 2A42
+  is_default: false
+- id: 470
+  name: MainTurret Kurganets 57
+  is_default: false
+- id: 471
+  name: MainTurret Barbaris 2A42
+  is_default: false
+- id: 472
+  name: MainTurret Barbaris 57
+  is_default: false
+- id: 473
+  name: MainTurret Mi28N
+  is_default: true
+- id: 474
+  name: PylonTurret Ataka x8
+  is_default: false
+- id: 475
+  name: PylonTurret IglaS Strelets4
+  is_default: false
+- id: 476
+  name: LeftTurret MH60M M240
+  is_default: false
+- id: 477
+  name: LeftTurret MH60M GAU21
+  is_default: false
+- id: 478
+  name: 'LeftTurret MH60M M134 '
+  is_default: false
+- id: 479
+  name: RightTurret MH60M M240 NoModel
+  is_default: false
+- id: 480
+  name: RightTurret MH60M M134 NoModle
+  is_default: false
+- id: 481
+  name: RightTurret MH60M GAU21 NoModel
+  is_default: false
+- id: 482
+  name: MainTurret MI35 GSh23L
+  is_default: true
+- id: 483
+  name: PylonTurret Kokon x8
+  is_default: false
+- id: 484
+  name: MainTurret MI8MTV2 HMG
+  is_default: true
+- id: 485
+  name: PylonTurret Kiowa HMG
+  is_default: false
+- id: 486
+  name: PylonTurret Stinger ATAS
+  is_default: false
+- id: 487
+  name: MainTurret MI24PN GSh30
+  is_default: true
+- id: 488
+  name: LeftPylonTurret DAGR x16
+  is_default: false
+- id: 489
+  name: Helper AH64E ECM LAIRCM
+  is_default: false
+- id: 490
+  name: PylonTurret Kh31 Helicopter
+  is_default: false
+- id: 491
+  name: PylonTurret Ataka x6
+  is_default: false
+- id: 492
+  name: PylonTurret HermesA
+  is_default: false
+- id: 493
+  name: PylonTurret M230
+  is_default: false
+- id: 494
+  name: MainTurret Ka29 GShG
+  is_default: true
+- id: 495
+  name: HullTurret Ka29 2A42
+  is_default: false
+- id: 496
+  name: HullTurret Ka29 Empty
+  is_default: false
+- id: 497
+  name: LeftTurret CH47 M240
+  is_default: false
+- id: 498
+  name: LeftTurret CH47 M134
+  is_default: false
+- id: 499
+  name: LeftTurret  CH47 GAU21
+  is_default: false
+- id: 500
+  name: 'LeftTurret MH47G Front M134 '
+  is_default: false
+- id: 501
+  name: 'LeftTurret MH47G Front M240 '
+  is_default: false
+- id: 502
+  name: 'LeftTurret MH47G Front GAU21 '
+  is_default: false
+- id: 503
+  name: 'RightTurret MH47G Front  GAU21 '
+  is_default: false
+- id: 504
+  name: RightTurret MH47G Front  M240
+  is_default: false
+- id: 505
+  name: RightTurret MH47G Front  M134
+  is_default: false
+- id: 506
+  name: LeftTurret MH47G Rear M240
+  is_default: false
+- id: 507
+  name: LeftTurret MH47G Rear M134
+  is_default: false
+- id: 508
+  name: LeftTurret MH47G Rear GAU21
+  is_default: false
+- id: 509
+  name: RightTurret MH47G Rear GAU21
+  is_default: false
+- id: 510
+  name: RightTurret MH47G Rear M240
+  is_default: false
+- id: 511
+  name: RightTurret MH47G Rear M134
+  is_default: false
+- id: 512
+  name: LeftTurret CH53E M240
+  is_default: true
+- id: 513
+  name: LeftTurret CH53E M134
+  is_default: false
+- id: 514
+  name: LeftTurret CH53E GAU21
+  is_default: false
+- id: 515
+  name: MainTurret Patriot x8 (PAC3)
+  is_default: false
+- id: 516
+  name: MainTurret HMMWV RV M2
+  is_default: false
+- id: 517
+  name: MainTurret HMMWV RV MK19
+  is_default: false
+- id: 518
+  name: MainTurret GMV M1288 GAU19
+  is_default: false
+- id: 519
+  name: MainTurret M1297 GMV M240
+  is_default: false
+- id: 520
+  name: MainTurret M1297 GMV Mk19
+  is_default: false
+- id: 521
+  name: MainTurret M1297 GMV M2
+  is_default: false
+- id: 522
+  name: MainTurret StrykerRV M240
+  is_default: false
+- id: 526
+  name: PylonTurret AIM7M x1
+  is_default: false
+- id: 528
+  name: Helper US FuelTank
+  is_default: false
+- id: 529
+  name: 'PylonTurret MK84 x1 '
+  is_default: false
+- id: 531
+  name: PylonTurret GBU54 x1
+  is_default: false
+- id: 532
+  name: 'PylonTurret GBU55 x1 '
+  is_default: false
+- id: 533
+  name: PylonTurret GBU56 x1
+  is_default: false
+- id: 534
+  name: PylonTurret GBU54 x2
+  is_default: false
+- id: 535
+  name: 'TailTurret IL76MD '
+  is_default: true
+- id: 536
+  name: MainTurret BRDM3 80A
+  is_default: false
+- id: 537
+  name: MainTurret BRDM3 82
+  is_default: false
+- id: 538
+  name: MainTurret A10C
+  is_default: true
+- id: 539
+  name: Helper ECM ALQ131
+  is_default: false
+- id: 540
+  name: Helper TargetingPod SniperXR
+  is_default: false
+- id: 541
+  name: PylonTurret AGM65 x2
+  is_default: false
+- id: 542
+  name: PylonTurret AGM65 x3
+  is_default: false
+- id: 543
+  name: PylonTurret MK82 x3
+  is_default: false
+- id: 544
+  name: PylonTurret MK82 SE x3
+  is_default: false
+- id: 545
+  name: PylonTurret MK82 SE x1
+  is_default: false
+- id: 546
+  name: PylonTurret Hydra x7-3 Plane
+  is_default: false
+- id: 547
+  name: MainTurret F15
+  is_default: true
+- id: 548
+  name: 'PylonTurret AMRAAM Wingtip x1 '
+  is_default: false
+- id: 549
+  name: MainTurret F16
+  is_default: true
+- id: 550
+  name: PylonTurret GBU53 SDBII
+  is_default: false
+- id: 551
+  name: PylonTurret JSOW
+  is_default: false
+- id: 552
+  name: PylonTurret CBU78 x2 Vertical
+  is_default: false
+- id: 553
+  name: PylonTurret CBU78 x3
+  is_default: false
+- id: 554
+  name: 'PylonTurret HARM '
+  is_default: false
+- id: 555
+  name: PylonTurret Mk82 x4
+  is_default: false
+- id: 556
+  name: 'PylonTurret CBU87 x4 '
+  is_default: false
+- id: 557
+  name: PylonTurret CBU87 x1
+  is_default: false
+- id: 558
+  name: PylonTurret Mk82 x6
+  is_default: false
+- id: 559
+  name: PylonTurret CBU87 x6
+  is_default: false
+- id: 560
+  name: PylonTurret CBU78 x1
+  is_default: false
+- id: 561
+  name: PylonTurret MK82 SE x2
+  is_default: false
+- id: 562
+  name: PylonTurret Mk83 x1
+  is_default: false
+- id: 563
+  name: PylonTurret Mk77 x1
+  is_default: false
+- id: 564
+  name: PylonTurret Hydra x7-2 Plane
+  is_default: false
+- id: 565
+  name: PylonTurret Zuni x1
+  is_default: false
+- id: 566
+  name: 'Helper ECM ALQ164 '
+  is_default: false
+- id: 567
+  name: PylonTurret AGM122 Sidearm
+  is_default: false
+- id: 568
+  name: PylonTurret JASSM
+  is_default: false
+- id: 569
+  name: PylonTurret Zuni x2 Horizontal
+  is_default: false
+- id: 570
+  name: PylonTurret MK82 SE x2 Alt
+  is_default: false
+- id: 571
+  name: PylonTurret Mk77 x2
+  is_default: false
+- id: 572
+  name: PylonTurret CBU78 x2 Horizontal
+  is_default: false
+- id: 573
+  name: PylonTurret AMRAAM x2 Alt
+  is_default: false
+- id: 574
+  name: PylonTurret Mk83 x2
+  is_default: false
+- id: 575
+  name: MainTurret B1B Mk82SE
+  is_default: false
+- id: 576
+  name: MainTurret B1B CBU87
+  is_default: false
+- id: 577
+  name: MainTurret B1B Mk84
+  is_default: false
+- id: 578
+  name: MainTurret B1B JSOW
+  is_default: false
+- id: 579
+  name: MainTurret B1B JASSM
+  is_default: false
+- id: 580
+  name: MainTurret B1B AGM86
+  is_default: false
+- id: 581
+  name: MainTurret B1B Nuke
+  is_default: false
+- id: 582
+  name: MainTurret F35A
+  is_default: true
+- id: 583
+  name: MainTurret B2 Mk82 x80
+  is_default: false
+- id: 584
+  name: MainTurret B2 CBU87
+  is_default: false
+- id: 585
+  name: MainTurret B2 GBU56
+  is_default: false
+- id: 586
+  name: MainTurret B2 JSOW
+  is_default: false
+- id: 587
+  name: MainTurret B2 JASSM
+  is_default: false
+- id: 588
+  name: MainTurret B52 AGM86 x8
+  is_default: false
+- id: 589
+  name: MainTurret B52 MK82
+  is_default: false
+- id: 590
+  name: PylonTurret AGM86 x6
+  is_default: false
+- id: 591
+  name: PylonTurret Mk84 x9
+  is_default: false
+- id: 592
+  name: PylonTurret GBU56 x9
+  is_default: false
+- id: 593
+  name: PylonTurret CBU87 x9
+  is_default: false
+- id: 594
+  name: PylonTurret JSOW x6
+  is_default: false
+- id: 595
+  name: PylonTurret JASSM x6
+  is_default: false
+- id: 597
+  name: MainTurret AC130 Bushmaster2
+  is_default: false
+- id: 598
+  name: MainTurret AC130 Griffin
+  is_default: false
+- id: 599
+  name: PylonTurret AC130 SDB2 1
+  is_default: false
+- id: 600
+  name: PylonTurret AC130 SDB2 2
+  is_default: false
+- id: 601
+  name: MainTurret KC130 Griffin 1
+  is_default: false
+- id: 602
+  name: MainTurret KC130 Griffin 2 NoModel
+  is_default: false
+- id: 603
+  name: PylonTurret R77 x2
+  is_default: false
+- id: 604
+  name: PylonTurret R60 x1 Plane
+  is_default: false
+- id: 605
+  name: PylonTurret R60 x2 Plane
+  is_default: false
+- id: 606
+  name: PylonTurret R37 x1
+  is_default: false
+- id: 607
+  name: PylonTurret R27T x1
+  is_default: false
+- id: 608
+  name: PylonTurret R27ER x1
+  is_default: false
+- id: 609
+  name: 'PylonTurret R27ET x1 '
+  is_default: false
+- id: 610
+  name: PylonTurret S8 Plane
+  is_default: false
+- id: 611
+  name: PylonTurret S8 x2
+  is_default: false
+- id: 612
+  name: 'PylonTurret S13 x2 '
+  is_default: false
+- id: 613
+  name: 'PylonTurret S25 '
+  is_default: false
+- id: 614
+  name: PylonTurret S25 x2
+  is_default: false
+- id: 615
+  name: PylonTurret Kh25ML
+  is_default: false
+- id: 616
+  name: PylonTurret Kh38ML
+  is_default: false
+- id: 617
+  name: 'PylonTurret Kh29ML '
+  is_default: false
+- id: 618
+  name: PylonTurret Kh58UShK
+  is_default: false
+- id: 619
+  name: PylonTurret Kh31P
+  is_default: false
+- id: 620
+  name: PylonTurret KH59MK
+  is_default: false
+- id: 621
+  name: PylonTurret FAB100 x1
+  is_default: false
+- id: 622
+  name: PylonTurret FAB100 x6
+  is_default: false
+- id: 623
+  name: PylonTurret FAB100 x4
+  is_default: false
+- id: 624
+  name: PylonTurret FAB100 x4 Su24
+  is_default: false
+- id: 625
+  name: PylonTurret FAB100 x5 Su24
+  is_default: false
+- id: 626
+  name: PylonTurret KAB500
+  is_default: false
+- id: 627
+  name: PylonTurret KAB1500
+  is_default: false
+- id: 628
+  name: 'PylonTurret FAB250 x3 '
+  is_default: false
+- id: 629
+  name: PylonTurret FAB250 x6
+  is_default: false
+- id: 630
+  name: PylonTurret FAB250 x9 Tu22
+  is_default: false
+- id: 631
+  name: PylonTurret RBK250 x1
+  is_default: false
+- id: 632
+  name: PylonTurret RBK250 x9 Tu22
+  is_default: false
+- id: 636
+  name: PylonTurret FAB250ShL x2 Long
+  is_default: false
+- id: 637
+  name: PylonTurret FAB250ShL x3 Long
+  is_default: false
+- id: 638
+  name: 'PylonTurret FAB500ShL x2 '
+  is_default: false
+- id: 639
+  name: PylonTurret FAB500ShL x1
+  is_default: false
+- id: 641
+  name: PylonTurret RBK500 x1
+  is_default: false
+- id: 642
+  name: PylonTurret RBK500 x2
+  is_default: false
+- id: 643
+  name: PylonTurret PBK500U x1
+  is_default: false
+- id: 644
+  name: PylonTurret FAB500 x1
+  is_default: false
+- id: 645
+  name: PylonTurret FAB500 x2
+  is_default: false
+- id: 646
+  name: PylonTurret ZB500 x2 SU
+  is_default: false
+- id: 648
+  name: PylonTurret ZB500 x1
+  is_default: false
+- id: 649
+  name: 'PylonTurret ODAB500 x1 '
+  is_default: false
+- id: 650
+  name: PylonTurret ODAB500 x2 SU
+  is_default: false
+- id: 651
+  name: Helper ECM Hibiny Left
+  is_default: false
+- id: 652
+  name: Helper RU FuelTank
+  is_default: false
+- id: 653
+  name: PylonTurret R73 Wingtip
+  is_default: false
+- id: 654
+  name: Helper ECM Hibiny Right
+  is_default: false
+- id: 655
+  name: MainTurret Planes GSh6_23
+  is_default: true
+- id: 656
+  name: PylonTurret FAB1500
+  is_default: false
+- id: 657
+  name: MainTurret Su25
+  is_default: true
+- id: 658
+  name: Helper ECM Vitebsk Su25
+  is_default: false
+- id: 660
+  name: PylonTurret ZB500 x1 NoRack
+  is_default: false
+- id: 661
+  name: PylonTurret RBK500 x1 NoRack
+  is_default: false
+- id: 662
+  name: PylonTurret KAB500 NoRack
+  is_default: false
+- id: 663
+  name: PylonTurret S8 Plane NoRack
+  is_default: false
+- id: 664
+  name: PylonTurret S13 Plane  NoRack
+  is_default: false
+- id: 665
+  name: PylonTurret S25  NoRack
+  is_default: false
+- id: 666
+  name: PylonTurret FAB250ShL x1 NoRack
+  is_default: false
+- id: 667
+  name: PylonTurret RBK250 x1 NoRack
+  is_default: false
+- id: 668
+  name: PylonTurret FAB500ShL x1 NoRack
+  is_default: false
+- id: 669
+  name: MainTurret GSh23L  Planes
+  is_default: true
+- id: 670
+  name: PylonTurret GSh23L Planes
+  is_default: false
+- id: 671
+  name: PylonTurret ODAB500 x1 NoRack
+  is_default: false
+- id: 672
+  name: PylonTurret Kh32
+  is_default: false
+- id: 673
+  name: BayTurret Tu22 FAB250
+  is_default: false
+- id: 674
+  name: BayTurret Tu22 RBK250
+  is_default: false
+- id: 675
+  name: BayTurret Tu22 FAB500
+  is_default: false
+- id: 676
+  name: BayTurret Tu22 FAB1500
+  is_default: false
+- id: 677
+  name: BayTurret Tu22 FAB3000
+  is_default: false
+- id: 678
+  name: BayTurret Tu160 FAB9000
+  is_default: false
+- id: 679
+  name: BayTurret Tu22 KAB1500
+  is_default: false
+- id: 680
+  name: TailTurret Tu22M3
+  is_default: true
+- id: 681
+  name: BayTurret Tu160 12xKh101
+  is_default: false
+- id: 682
+  name: BayTurret Tu160 12xKh555
+  is_default: false
+- id: 683
+  name: BayTurret Tu160 14xKAB1500
+  is_default: false
+- id: 684
+  name: BayTurret Tu160 44xODAB500
+  is_default: false
+- id: 685
+  name: BayTurret Tu160 44xRBK500
+  is_default: false
+- id: 686
+  name: BayTurret Tu160 14xFAB1500
+  is_default: false
+- id: 688
+  name: MainTurret BMD2 NoKonkurs
+  is_default: false
+- id: 689
+  name: MainTurret ArleighBurke CIWS Front
+  is_default: true
+- id: 690
+  name: MainTurret ArleighBurke Tomahawk
+  is_default: true
+- id: 691
+  name: MainTurret BTRMDM ZU23
+  is_default: false
+- id: 692
+  name: MainTurret BTRMDM ZU23M
+  is_default: false
+- id: 693
+  name: MainTurret BTRMDM ZU23M Igla
+  is_default: false
+- id: 694
+  name: MainTurret 2S4 PKT
+  is_default: true
+- id: 695
+  name: CupolaTurret MSTA HMG  2
+  parent_turret_id: 696
+  is_default: false
+- id: 696
+  name: MainTurret MSTA M2
+  is_default: false
+- id: 699
+  name: PylonTurret Vikhr x1
+  is_default: false
+- id: 700
+  name: PylonTurret KAB50
+  is_default: false
+- id: 701
+  name: PylonTurret Konkurs x1
+  is_default: false
+- id: 702
+  name: PylonTurret Ataka x1
+  is_default: false
+- id: 703
+  name: MainTurret T72B HEAT
+  is_default: false
+- id: 704
+  name: CupolaTurret T72B HMG 2
+  parent_turret_id: 703
+  is_default: false
+- id: 705
+  name: 'LeftTurret MH60M IDAP '
+  is_default: false
+- id: 706
+  name: RightTurret MH60M IDAP
+  is_default: false
+- id: 711
+  name: 'RightTurret CH47 NoModel M240 '
+  is_default: false
+- id: 712
+  name: RightTurret CH47 NoModel M134
+  is_default: false
+- id: 713
+  name: RightTurret CH47 NoModel GAU21
+  is_default: false
+- id: 714
+  name: HullTurret MTLB Kord RWS
+  is_default: false
+- id: 715
+  name: CupolaTurret T80UM  2
+  parent_turret_id: 420
+  is_default: false
+- id: 716
+  name: MainTurret Stryker ATGM TOW2B
+  is_default: false
+- id: 717
+  name: PylonTurret AGM122 Sidearm Wingtip
+  is_default: false
+- id: 718
+  name: PylonTurret AGM122 Sidearm Heli
+  is_default: false
+- id: 719
+  name: CupolaTurret Vena Magnolia Loadout1
+  parent_turret_id: 349
+  is_default: false
+- id: 720
+  name: RightPylonTurret Hydra x19
+  is_default: false
+- id: 721
+  name: 'RightPylonTurret Hydra APKWS '
+  is_default: false
+- id: 722
+  name: RightPylonTurret Hydra APKWS x7
+  is_default: false
+- id: 723
+  name: RightPylonTurret Hydra x7
+  is_default: false
+- id: 724
+  name: RightPylonTurret S13 Heli
+  is_default: false
+- id: 725
+  name: RightPylonTurret S8 Heli
+  is_default: false
+- id: 726
+  name: RightPylonTurret Hydra DAGR x16
+  is_default: false
+- id: 727
+  name: RightPylonTurret Hydra DAGR x8
+  is_default: false
+- id: 728
+  name: PylonTurret Hydra Plane
+  is_default: false
+- id: 729
+  name: Turret Empty M1064A3
+  is_default: false
+- id: 730
+  name: MainTurret KC130 Griffin Empty
+  is_default: false
+- id: 731
+  name: MainTurret MC130 Griffin 1
+  is_default: false
+- id: 732
+  name: MainTurret MC130 Griffin Empty
+  is_default: false
+- id: 733
+  name: MainTurret MC130 Griffin 2 NoModel
+  is_default: false
+- id: 735
+  name: MainTurret M1A1FEP TUSK
+  is_default: false
+- id: 736
+  name: CupolaTurret M1A1FEP HMG TUSK
+  parent_turret_id: 735
+  is_default: false
+- id: 737
+  name: CupolaTurret M1A1FEP MMG TUSK
+  parent_turret_id: 735
+  is_default: false
+- id: 738
+  name: MainTurret M1A1HC TUSK
+  is_default: false
+- id: 739
+  name: CupolaTurret M1A1HC HMG TUSK
+  parent_turret_id: 738
+  is_default: false
+- id: 740
+  name: CupolaTurret M1A1HC MMG TUSK
+  parent_turret_id: 738
+  is_default: false
+- id: 741
+  name: RightTurret CH53K M240
+  is_default: false
+- id: 742
+  name: RightTurret CH53K M134
+  is_default: false
+- id: 743
+  name: RightTurret CH53K GAU21
+  is_default: false
+- id: 744
+  name: LeftTurret CH53K GAU21
+  is_default: false
+- id: 745
+  name: LeftTurret CH53K M134
+  is_default: false
+- id: 746
+  name: LeftTurret CH53K M240
+  is_default: true
+- id: 747
+  name: PylonTurret Hellfire x1
+  is_default: false
+- id: 748
+  name: PylonTurret Griffin x2
+  is_default: false
+- id: 749
+  name: MainTurret BMPT New
+  is_default: false
+- id: 750
+  name: MainTurret NonaSVK Loadout2
+  is_default: false
+- id: 751
+  name: CupolaTurret NonaSVK Loadout2
+  parent_turret_id: 750
+  is_default: false
+- id: 752
+  name: MainTurret Bereg A222 Mixed
+  is_default: false
+- id: 753
+  name: MainTurret KoalitsiyaSV Base2
+  is_default: false
+- id: 754
+  name: CupolaTurret Koalitsiya Kord RWS 3
+  parent_turret_id: 753
+  is_default: false
+- id: 755
+  name: MainTurret Vena Magnolia Loadout2
+  is_default: false
+- id: 756
+  name: CupolaTurret Vena Magnolia Loadout2
+  parent_turret_id: 755
+  is_default: false
+- id: 757
+  name: MainTurret Drok Loadout2
+  is_default: false
+- id: 758
+  name: LeftPylonTurret DAGR x4
+  is_default: false
+- id: 759
+  name: RightPylonTurret Hydra DAGR x4
+  is_default: false
+- id: 760
+  name: MainTurret RAH66
+  is_default: true
+- id: 761
+  name: PylonTurret Stinger ATAS RAH66
+  is_default: false
+- id: 762
+  name: MainTurret HMMWV Hawkeye Loadout2
+  is_default: false
+- id: 763
+  name: MainTurret HMMWV Hawkeye Loadout3
+  is_default: false
+- id: 764
+  name: MainTurret StrykerMC Loadout2
+  is_default: false
+- id: 765
+  name: MainTurret StrykerMC Loadout3
+  is_default: false
+- id: 766
+  name: MainTurret StrykerMC Loadout4
+  is_default: false
+- id: 767
+  name: MainTurret StrykerMC Loadout5
+  is_default: false
+- id: 768
+  name: MainTurret LAVM Dragonfire
+  is_default: false
+- id: 769
+  name: MainTurret AMPV MC Loadout2
+  is_default: false
+- id: 770
+  name: MainTurret AMPV MC Loadout3
+  is_default: false
+- id: 771
+  name: MainTurret AMPV MC Loadout4
+  is_default: false
+- id: 772
+  name: MainTurret AMPV MC Loadout5
+  is_default: false
+- id: 773
+  name: MainTurret M1064A3 Loadout2
+  is_default: false
+- id: 774
+  name: MainTurret M1064A3 Loadout3
+  is_default: false
+- id: 775
+  name: MainTurret M1064A3 Loadout4
+  is_default: false
+- id: 776
+  name: MainTurret M1064A3 Loadout5
+  is_default: false
+- id: 777
+  name: MainTurret M109A6 Loadout2
+  is_default: false
+- id: 778
+  name: CupolaTurret M109A6 M2 2
+  parent_turret_id: 777
+  is_default: false
+- id: 779
+  name: MainTurret HIMARS PrSM
+  is_default: false
+- id: 780
+  name: MainTurret M270 PrSM
+  is_default: false
+- id: 781
+  name: MainTurret Grad BM21 Cluster
+  is_default: false
+- id: 782
+  name: MainTurret Smerch 9K58 Cluster
+  is_default: false
+- id: 783
+  name: MainTurret Grad BM21 Incendiary
+  is_default: false
+- id: 785
+  name: MainTurret BMP1 Base
+  is_default: true
+- id: 786
+  name: MainTurret BMP1P
+  is_default: false
+- id: 787
+  name: MainTurret BMP1PG
+  is_default: false
+- id: 788
+  name: MainTurret BMP1AM
+  is_default: false
+- id: 789
+  name: MainTurret M551A1 Sheridan NoGLAT
+  is_default: false
+- id: 790
+  name: CupolaTurret M551A1 Sheridan M2 2
+  parent_turret_id: 789
+  is_default: false
+- id: 792
+  name: MainTurret B2 Mk84
+  is_default: false
+- id: 793
+  name: MainTurret TochkaU HE
+  is_default: true
+- id: 794
+  name: MainTurret TochkaU CLUS
+  is_default: false
+- id: 795
+  name: HullTurret BTRD KornetM
+  is_default: false
+- id: 796
+  name: MainTurret Sarmat2 GShG
+  is_default: false
+- id: 797
+  name: MainTurret Sarmat2 MetisM1
+  is_default: false
+- id: 798
+  name: PylonTurret Vikhr x8
+  is_default: false
+- id: 799
+  name: MainTurret LAVL M240
+  is_default: false
+- id: 800
+  name: MainTurret LAVL M2
+  is_default: false
+- id: 801
+  name: MainTurret LAVL MK19
+  is_default: false
+- id: 802
+  name: 'MainTurret M270A1 HE '
+  is_default: true
+- id: 803
+  name: MainTurret M270A1 CLUS
+  is_default: false
+- id: 804
+  name: Helper ECM ALQ99
+  is_default: false
+- id: 808
+  name: PylonTurret MK82 SE x6
+  is_default: false
+- id: 814
+  name: TailTurret Tu95 Tu142
+  is_default: true
+- id: 815
+  name: MainTurret ArleighBurke CIWS Back
+  is_default: true
+- id: 816
+  name: MainTurret ArleighBurke Gun
+  is_default: true
+- id: 817
+  name: MainTurret ArleighBurke SM6
+  is_default: true
+- id: 818
+  name: MainTurret BRM3 57 Ataka
+  is_default: false
+- id: 819
+  name: MainTurret BRM1K Old
+  is_default: true
+- id: 820
+  name: MainTurret BRM1K New
+  is_default: false
+- id: 821
+  name: BayTurret Tu142 FAB250
+  is_default: false
+- id: 822
+  name: BayTurret Tu142 RBK250
+  is_default: false
+- id: 823
+  name: BayTurret Tu142 FAB1500
+  is_default: false
+- id: 824
+  name: BayTurret Tu142 FAB3000
+  is_default: false
+- id: 825
+  name: BayTurret Tu142 Kh35
+  is_default: false
+- id: 826
+  name: PylonTurret LMUR x2
+  is_default: false
+- id: 827
+  name: MainTurret BTR90 Base
+  is_default: true
+- id: 828
+  name: MainTurret BTR90 AGS
+  is_default: false
+- id: 829
+  name: MainTurret BTR90 Berezhok
+  is_default: false
+- id: 830
+  name: MainTurret BTR90 Bakhcha
+  is_default: false
+- id: 831
+  name: MainTurret OsaAKM1
+  is_default: false
+- id: 832
+  name: SwivelTurret LAVAT M240
+  is_default: true
+- id: 833
+  name: BayTurret Tu160 1xKh102
+  is_default: false
+- id: 834
+  name: PylonTurret TOW x2
+  is_default: false
+- id: 835
+  name: PylonTurret TOW x4
+  is_default: false
+- id: 837
+  name: PylonTurret Hellfire JAGM
+  is_default: false
+- id: 838
+  name: PylonTurret Kokon x2 Igla Model
+  is_default: false
+- id: 839
+  name: PylonTurret Igla x1 NoModel
+  is_default: false
+- id: 840
+  name: MainTurret Bradley M2A2 ESV
+  is_default: true
+- id: 841
+  name: MainTurret Bradley M3A3 APS
+  is_default: false
+- id: 842
+  name: MainTurret  BFIST M7 APS
+  is_default: false
+- id: 843
+  name: PylonTurret Kh35U
+  is_default: false
+- id: 844
+  name: PylonTurret Kh35U Helicopter
+  is_default: false
+- id: 845
+  name: MainTurret Linebacker M6 Hellfire
+  is_default: false
+- id: 846
+  name: MainTurret Brutus Loadout1
+  is_default: true
+- id: 847
+  name: MainTurret SLAMRAAM 4
+  is_default: true
+- id: 848
+  name: MainTurret SLAMRAAM AIM9
+  is_default: false
+- id: 849
+  name: MainTurret SLAMRAAM 6
+  is_default: false
+- id: 850
+  name: MainTurret MTV M2
+  is_default: false
+- id: 851
+  name: MainTurret MTV M240
+  is_default: false
+- id: 852
+  name: MainTurret MTV MK19
+  is_default: false
+- id: 853
+  name: MainTurret MTV Empty
+  is_default: false
+- id: 854
+  name: MainTurret AAVP CATFAE
+  is_default: false
+- id: 855
+  name: MainTurret AAVP MICLIC
+  is_default: true
+- id: 856
+  name: 'SwivelTurret LMTV Warpig M240 '
+  is_default: true
+- id: 857
+  name: MainTurret LMTVWarpig M2
+  is_default: false
+- id: 858
+  name: MainTurret LMTVWarpig M240
+  is_default: false
+- id: 859
+  name: MainTurret LMTVWarpig MK47
+  is_default: false
+- id: 860
+  name: MainTurret LMTVWarpig TOW
+  is_default: false
+- id: 861
+  name: MainTurret LMTVWarpig Fletcher
+  is_default: false
+- id: 862
+  name: MainTurret MML AIM9
+  is_default: false
+- id: 863
+  name: MainTurret MML Hellfire
+  is_default: false
+- id: 864
+  name: MainTurret MML Stinger
+  is_default: false
+- id: 865
+  name: MainTurret DT30AA Tor
+  is_default: false
+- id: 866
+  name: MainTurret DT30AA Pantsir
+  is_default: false
+- id: 867
+  name: MainTurret XA180
+  is_default: true
+- id: 868
+  name: PylonTurret KH59MK2
+  is_default: false
+- id: 869
+  name: PylonTurret AGM84 SLAMER x1
+  is_default: false
+- id: 870
+  name: MainTurret M985 Battleship Front M240
+  is_default: false
+- id: 871
+  name: MainTurret M985 Battleship Front M2
+  is_default: false
+- id: 872
+  name: MainTurret M985 Battleship Front MK19
+  is_default: false
+- id: 873
+  name: MainTurret M985 Battleship Middle M240
+  is_default: false
+- id: 874
+  name: MainTurret M985 Battleship Middle M2
+  is_default: false
+- id: 875
+  name: MainTurret M985 Battleship Middle MK19
+  is_default: false
+- id: 876
+  name: MainTurret M985 Battleship Middle TOW
+  is_default: false
+- id: 877
+  name: MainTurret M985 Battleship Rear M240
+  is_default: false
+- id: 878
+  name: MainTurret M985 Battleship Rear M2
+  is_default: false
+- id: 879
+  name: MainTurret M985 Battleship Rear MK19
+  is_default: false
+- id: 880
+  name: MainTurret M985 Battleship Rear TOW
+  is_default: false
+- id: 881
+  name: MainTurret Malka
+  is_default: true
+- id: 883
+  name: MainTurret PzH2000
+  is_default: true
+- id: 884
+  name: MainTurret HMMWV Balt  ATGM
+  is_default: false
+- id: 885
+  name: MainTurret GWagen M2
+  is_default: false
+- id: 886
+  name: MainTurret GWagen Mk19
+  is_default: false
+- id: 887
+  name: MainTurret GWagen RBS56
+  is_default: false
+- id: 888
+  name: MainTurret CV9035
+  is_default: true
+- id: 889
+  name: MainTurret Vilkas
+  is_default: true
+- id: 890
+  name: MainTurret Scorpion
+  is_default: true
+- id: 891
+  name: MainTurret Giatsint
+  is_default: true
+- id: 892
+  name: MainTurret StrykerRV Bushmaster2
+  is_default: false
+- id: 893
+  name: 'MainTurret StrykerRV Bushmaster2 Jav '
+  is_default: false
+- id: 894
+  name: MainTurret URAL4320 S60
+  is_default: false
+- id: 895
+  name: MainTurret M60 CEV
+  is_default: false
+- id: 896
+  name: CupolaTurret M60A1 CEV
+  parent_turret_id: 895
+  is_default: false
+- id: 897
+  name: MainTurret Patriot x8 PAC3 MSE
+  is_default: false
+- id: 898
+  name: MainTurret Patriot x4 PAC3 MSE
+  is_default: false
+- id: 899
+  name: MainTurret Toros 2A42
+  is_default: false
+- id: 900
+  name: MainTurret Toros 2A72
+  is_default: false
+- id: 901
+  name: MainTurret Toros Rapira
+  is_default: false
+- id: 902
+  name: MainTurret Toros S60
+  is_default: false
+- id: 903
+  name: MainTurret Stryker MGS MK19
+  is_default: false
+- id: 904
+  name: SwivelTurret MGS MK19
+  parent_turret_id: 903
+  is_default: false
+- id: 905
+  name: MainTurret Stryker SHORAD M2
+  is_default: false
+- id: 906
+  name: MainTurret Stryker SHORAD Stinger
+  is_default: false
+- id: 907
+  name: MainTurret Stryker SHORAD Hydra
+  is_default: false
+- id: 908
+  name: 'SwivelTurret StrykerATGM M240 '
+  is_default: true
+- id: 909
+  name: MainTurret B2 Nuke
+  is_default: false
+- id: 910
+  name: Helper RU Kopye25
+  is_default: false
+- id: 911
+  name: PylonTurret JSM
+  is_default: false
+- id: 912
+  name: MainTurret StrykerSPH Loadout1
+  is_default: true
+- id: 913
+  name: CupolaTurret M10Booker M2
+  parent_turret_id: 1
+  is_default: false
+- id: 914
+  name: MainTurret M10Booker 50
+  is_default: false
+- id: 915
+  name: MainTurret LMTV Empty
+  is_default: false
+- id: 916
+  name: PylonTurret MI8 Kokon x2
+  is_default: false
+- id: 917
+  name: MainTurret UAZ KPVT
+  is_default: true
+- id: 918
+  name: MainTurret UAZ SPG
+  is_default: false
+- id: 919
+  name: MainTurret UAZ ATGM
+  is_default: false
+- id: 920
+  name: SwivelTurret UAZ PKP
+  is_default: true
+- id: 921
+  name: MainTurret M1ABV MK19
+  is_default: false
+- id: 922
+  name: CupolaTurret M1ABV Mk19
+  parent_turret_id: 921
+  is_default: false
+- id: 923
+  name: MainTurret M1ABV M2
+  is_default: true
+- id: 924
+  name: CupolaTurret M1ABV M2
+  parent_turret_id: 923
+  is_default: false
+- id: 925
+  name: MainTurret T14 Armata Sprinter
+  is_default: false
+- id: 926
+  name: CupolaTurret T14 Armata Double
+  parent_turret_id: 925
+  is_default: false
+- id: 927
+  name: MainTurret MachinaS 1V14
+  is_default: false
+- id: 928
+  name: MainTurret MachinaS MRU
+  is_default: false
+- id: 929
+  name: MainTurret HMMWV Empty
+  is_default: false
+- id: 930
+  name: MainTurret HMMWV M134 RWS
+  is_default: false
+- id: 931
+  name: PylonTurret AIM260 x2
+  is_default: false
+- id: 932
+  name: MainTurret Smerch 9K58 HE Guid
+  is_default: false
+- id: 933
+  name: MainTurret Smerch 9K58 Clus Guid
+  is_default: false
+- id: 934
+  name: PylonTurret AMRAAM x2 HornetC
+  is_default: false
+- id: 935
+  name: PylonTurret AIM174 x1
+  is_default: false
+- id: 936
+  name: PylonTurret FAB3000
+  is_default: false
+- id: 937
+  name: Turret HEMTT Empty
+  is_default: false
+- id: 938
+  name: 'Helper Turret HEMTT '
+  is_default: false
+- id: 939
+  name: Turret LVSR Empty
+  is_default: false
+- id: 940
+  name: HullTurret Patriot Empty
+  is_default: false
+- id: 941
+  name: MainTurret PLS Empty
+  is_default: false
+- id: 942
+  name: MainTurret ZUBR AK630 Left
+  is_default: true
+- id: 943
+  name: MainTurret ZUBR AK630 Right
+  is_default: true
+- id: 944
+  name: MainTurret ZUBR A22 Left
+  is_default: true
+- id: 945
+  name: MainTurret ZUBR A22 Right
+  is_default: true
+- id: 946
+  name: MainTurret Brutus Loadout2
+  is_default: false
+- id: 947
+  name: PylonTurret KhBPLA x1
+  is_default: false
+- id: 948
+  name: Helper RU FuelTank Su35
+  is_default: false
+- id: 949
+  name: MainTurret S350 9M96M
+  is_default: false
+- id: 950
+  name: PylonTurret FAB100 BDZ x1
+  is_default: false
+- id: 951
+  name: MainTurret LAVAD Hydra
+  is_default: false
+- id: 952
+  name: PylonTurret AIM7M NoAdapter x1
+  is_default: false
+- id: 953
+  name: 'PylonTurret AMRAAM NoAdapter x1 '
+  is_default: false
+- id: 954
+  name: HullTurret BTRD PKT Left NoDmoel
+  is_default: true
+- id: 955
+  name: MainTurret S300PM
+  is_default: false
+- id: 956
+  name: MainTurret S300PM2
+  is_default: false
+- id: 957
+  name: MainTurret MATV M2
+  is_default: false
+- id: 958
+  name: MainTurret MATV M2 Jav
+  is_default: false
+- id: 959
+  name: MainTurret MATV MK19
+  is_default: false
+- id: 960
+  name: MainTurret MATV MK19 Jav
+  is_default: false
+- id: 961
+  name: MainTurret MATV Sniper
+  is_default: false
+- id: 962
+  name: MainTurret Brutus Loadout3
+  is_default: false
+- id: 963
+  name: MainTurret Brutus Loadout4
+  is_default: false
+- id: 964
+  name: PylonTurret Mk82 SE x4
+  is_default: false
+- id: 965
+  name: MainTurret UR77
+  is_default: true
+- id: 966
+  name: MainTurret LHA RIM162 Front
+  is_default: true
+- id: 967
+  name: MainTurret LHA RIM162 Back
+  is_default: true
+- id: 968
+  name: MainTurret LHA RIM116 Front
+  is_default: true
+- id: 969
+  name: MainTurret LHA RIM116 Back
+  is_default: true
+- id: 970
+  name: Turret AC130 Ramp Empty
+  is_default: false
+- id: 971
+  name: MainTurret T90AK
+  is_default: true
+- id: 972
+  name: CupolaTurret T90AK Kord
+  parent_turret_id: 971
+  is_default: false
+- id: 973
+  name: MainTurret GWagen RBS
+  is_default: false
+- id: 974
+  name: MainTurret Leo2A7
+  is_default: true
+- id: 975
+  name: CupolaTurret Leo2A7
+  parent_turret_id: 974
+  is_default: true
+- id: 976
+  name: MainTurret B2 GBU57
+  is_default: false
+- id: 977
+  name: MainTurret Malka Loadout 2
+  is_default: false
+- id: 978
+  name: MainTurret Iskander M Clus
+  is_default: false
+- id: 979
+  name: Turret AMPV MC Empty
+  is_default: false
+- id: 980
+  name: MainTurret Guardian M1200 MK19
+  is_default: false
+- id: 981
+  name: MainTurret GWagen MAPATS
+  is_default: false
+- id: 982
+  name: LeftTurret UH60 FNMAG
+  is_default: true
+- id: 983
+  name: RightTurret UH60 FNMAG NoModel
+  is_default: true
+- id: 984
+  name: MainTurret HMMWV M2 BALT
+  is_default: false
+- id: 985
+  name: Helper RU FuelTank BDZ
+  is_default: false
+- id: 986
+  name: HullTurret Patriot M2 PAC2
+  is_default: false
+- id: 987
+  name: HullTurret Patriot Empty PAC2
+  is_default: false
+- id: 988
+  name: HullTurret Patriot M240 PAC2
+  is_default: false
+- id: 989
+  name: HullTurret Patriot MK19 PAC2
+  is_default: false
+- id: 990
+  name: Helper US FuelTank AH64D
+  is_default: false
+- id: 991
+  name: 'PylonTurret Zuni Helicopter '
+  is_default: false
+- id: 992
+  name: MainTurret StrykerSPH Loadout2
+  is_default: false
+- id: 993
+  name: MainTurret BMP2 NoATGM
+  is_default: false
+- id: 994
+  name: MainTurret HMMWV Hawkeye Loadout4
+  is_default: false
+- id: 995
+  name: LeftTurret UH1Y GAU21
+  is_default: false
+- id: 996
+  name: RightTurret UH1Y GAU21
+  is_default: false
+- id: 997
+  name: PylonTurret HARM F15EX
+  is_default: false
+- id: 998
+  name: MainTurret Centurion SeaRAM
+  is_default: false
+- id: 999
+  name: HullTurret PatriotMSE M240
+  is_default: false
+- id: 1000
+  name: HullTurret PatriotMSE M2
+  is_default: false
+- id: 1001
+  name: HullTurret PatriotMSE Empty
+  is_default: false
+- id: 1002
+  name: HullTurret PatriotMSE MK19
+  is_default: false
+- id: 1003
+  name: MainTurret Leo2A8 Base
+  is_default: true
+- id: 1004
+  name: MainTurret Leo2A8 HMG
+  is_default: false
+- id: 1005
+  name: CupolaTurret Leopard2A8 HMG
+  parent_turret_id: 1004
+  is_default: false
+- id: 1006
+  name: MainTurret LandRover M2
+  is_default: true
+- id: 1007
+  name: MainTurret NASAMS AMRAAM
+  is_default: true
+- id: 1008
+  name: MainTurret TGB1111 Pvpj1110
+  is_default: true
+- id: 1009
+  name: MainTurret GSh23L L39
+  is_default: false
+- id: 1010
+  name: MainTurret DLC2XA180 GMG
+  is_default: false
+- id: 1011
+  name: MainTurret DLC2XA180 HMG
+  is_default: false
+- id: 1012
+  name: MainTurret DLC2Scimitar
+  is_default: true
+- id: 1013
+  name: MainTurret DLC2Scimitar MMG
+  is_default: false
+- id: 1014
+  name: MainTurret DLC2Scimitar M2
+  is_default: false
+- id: 1015
+  name: MainTurret DLC2Scimitar M2 Spike
+  is_default: false
+- id: 1016
+  name: 'MainTurret DLC2Scimitar GMG Spike '
+  is_default: false
+- id: 1017
+  name: MainTurret DLC2Scimitar GMG
+  is_default: false
+- id: 1018
+  name: 'MainTurret DLC2HMMWV M2 '
+  is_default: false
+- id: 1019
+  name: MainTurret DLC2HMMWV GMG
+  is_default: false
+- id: 1020
+  name: MainTurret Unimog ZU23
+  is_default: true
+- id: 1021
+  name: MainTurret Unimog Mistral
+  is_default: false
+- id: 1022
+  name: MainTurret M113PzM Loadout1
+  is_default: true
+- id: 1023
+  name: MainTurret DLC2GWagen MAPATS
+  is_default: false
+- id: 1024
+  name: MainTurret DLC2GWagen MilanER
+  is_default: false
+- id: 1025
+  name: MainTurret DLC2GWagen SpikeLR
+  is_default: false
+- id: 1026
+  name: MainTurret  TypeX RCV Cockerill
+  is_default: false
+- id: 1027
+  name: MainTurret  TypeX RCV Kongsberg
+  is_default: false
+- id: 1028
+  name: MainTurret  TypeX RCV Protector
+  is_default: false
+- id: 1029
+  name: MainTurret DLC2M113A3 M2
+  is_default: true
+- id: 1030
+  name: MainTurret DLC2M113A3 GMG
+  is_default: false
+- id: 1031
+  name: HullTurret M113PzM Empty
+  is_default: true
+- id: 1032
+  name: HullTurret M113PzM Mg3
+  is_default: false
+- id: 1033
+  name: HullTurret M113PzM M2
+  is_default: false
+- id: 1034
+  name: HullTurret M113PzM GMG
+  is_default: false
+- id: 1035
+  name: MainTurret M113PzM Loadout2
+  is_default: false
+- id: 1036
+  name: MainTurret NASAMS AIM9
+  is_default: false
+- id: 1037
+  name: MainTurret NASAMS AMRAAM ER
+  is_default: false
+- id: 1038
+  name: SwivelTurret LandRover FNMAG
+  is_default: true
+- id: 1039
+  name: MainTurret LandRover GMG
+  is_default: false
+- id: 1040
+  name: MainTurret DLC2CV9035 Mk3
+  is_default: true
+- id: 1041
+  name: MainTurret DLC2CV9035 Mk4
+  is_default: false
+- id: 1042
+  name: HullTurret E13TP FNMAG
+  is_default: true
+- id: 1043
+  name: 'LeftTurret DLC2UH60 FNMAG '
+  is_default: true
+- id: 1044
+  name: RightTurret DLC2UH60 FNMAG NoModel
+  is_default: true
+- id: 1045
+  name: LeftTurret DLC2UH60 GMG
+  is_default: false
+- id: 1046
+  name: RightTurret DLC2UH60 GMG
+  is_default: false
+- id: 1047
+  name: PylonTurret NC621
+  is_default: false
+- id: 1048
+  name: MainTurret M109A5O Loadout1
+  is_default: false
+- id: 1049
+  name: MainTurret M109A5O Loadout2
+  is_default: false
+- id: 1050
+  name: CupolaTurret M109A5O
+  parent_turret_id: 1048
+  is_default: false
+- id: 1051
+  name: CupolaTurret M109A5O Double
+  parent_turret_id: 1049
+  is_default: false
+- id: 1052
+  name: MainTurret DLC2 PzH2000 Loadout1
+  is_default: false
+- id: 1053
+  name: MainTurret DLC2 PzH2000 Loadout2
+  is_default: false
+- id: 1054
+  name: 'CupolaTurret DLC2PZH2000 '
+  parent_turret_id: 1052
+  is_default: false
+- id: 1055
+  name: CupolaTurret DLC2PZH2000  Double
+  parent_turret_id: 1053
+  is_default: false
+- id: 1056
+  name: MainTurret TGB1111 RBS56
+  is_default: false
+- id: 1057
+  name: SwivelTurret TGB1111 FNMAG
+  is_default: false
+- id: 1058
+  name: MainTurret DLC2 K9EST Loadout1
+  is_default: false
+- id: 1059
+  name: MainTurret DLC2 K9EST Loadout2
+  is_default: false
+- id: 1060
+  name: 'CupolaTurret K9EST '
+  parent_turret_id: 1058
+  is_default: false
+- id: 1061
+  name: CupolaTurret K9EST Double
+  parent_turret_id: 1059
+  is_default: false
+- id: 1062
+  name: MainTurret IRIST 4
+  is_default: true
+- id: 1063
+  name: MainTurret IRIST 8
+  is_default: false

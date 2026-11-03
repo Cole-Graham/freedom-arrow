@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------------
+# Broken Arrow modding pipeline — git ignore rules.
+#
+# Anything regenerable from the game install or our pipeline is ignored.
+# Anything user-edited or research data is tracked.
+# ---------------------------------------------------------------------------
+
+# Backups — both tiers can pile up to many GB.
+backups/
+
+# Working directory — UnityPy extracts large .assets files here.
+_workdir/
+
+# Decoded game JSONs — regenerable from the bundle via unpack_decode.
+json/
+
+# Generated HTML reports — regenerable from yaml.
+reports/
+
+# Misplaced game bundles (the real one lives in BrokenArrow_Data/, not here).
+# These are 5+ GB each, never commit them by accident.
+data.unity3d
+*.unity3d
+
+# In-place backup siblings created by db_crypt apply (size: 400+ MB each).
+# The new backup mechanics suppress these, but ignore them just in case
+# something writes one in the future.
+*.bak.*
+
+# Python cache and compiled files.
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / OS noise.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Local config that shouldn't be shared.
+game_root.txt

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <!-- A single (host) RID makes the build copy the native DiaSymReader.Native assets the
+         Windows PDB tests need; the explicit RID list makes packages.lock.json carry every RID
+         (host-independent), so the lock does not drift between Linux and Windows restores. -->
+    <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+    <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;osx-arm64</RuntimeIdentifiers>
+
+    <IsPackable>false</IsPackable>
+
+    <GenerateTestingPlatformEntryPoint>true</GenerateTestingPlatformEntryPoint>
+    <StartupObject>ICSharpCode.Decompiler.Tests.MicrosoftTestingPlatformEntryPoint</StartupObject>
+    <OutputType>Exe</OutputType>
+
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+
+    <!-- The suite runs dozens of allocation-heavy decompiles concurrently (one NUnit worker per
+         logical CPU, each roundtrip adding WholeProjectDecompiler's own Parallel.ForEach). Workstation
+         GC stops the whole process for every gen0/gen1 collection any worker triggers; measured on a
+         24-thread machine that was ~300 s of pause in a ~550 s run. Server GC gives each core its own
+         heap and collects in parallel. -->
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <!-- NU1902/1903 are "Package 'X' has a known security vulnerability". In our tests, we don't care. -->
+    <!-- CA1416 fires because the TFM dropped its -windows suffix: Windows-only helpers (SdkUtility,
+         Tester.SignAssembly/FindMSBuild/RunWithTestRunner) and Windows-only test inputs (Console.CapsLock
+         in Async/Switch fixtures) are reachable from non-Windows in principle, but gated by
+         OperatingSystem.IsWindows() + Assert.Ignore at runtime. The analyzer can't see that. -->
+    <NoWarn>$(NoWarn);1701;1702;1705,67,169,1058,728,1720,649,168,251,660,661,675;1998;162;8632;626;8618;8714;8602;8981;NU1902;NU1903;CA1416</NoWarn>
+    <DefineConstants>ROSLYN;ROSLYN2;ROSLYN3;ROSLYN4;NET60;CS60;CS70;CS71;CS72;CS73;CS80;CS90;CS100;CS110;CS120;CS130</DefineConstants>
+
+    <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
+    <!-- Compile items come from the SDK default **/*.cs glob; the ItemGroup near the end excludes
+         only the test-case sources that still do not compile under the current toolchain. Default
+         None globbing stays off so the non-C# inputs (.il/.vb/.fs) and Content stay explicit. -->
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ICSharpCode.Decompiler\ICSharpCode.Decompiler.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DiffLib" />
+    <PackageReference Include="CliWrap" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="NuGet.Protocol" />
+    <PackageReference Include="System.Collections.Immutable" />
+    <PackageReference Include="System.Reflection.Metadata" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" />
+    <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="coverlet.MTP" />
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" />
+    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" />
+    <PackageReference Include="System.Memory" />
+    <PackageReference Include="Mono.Cecil" />
+    <PackageReference Include="Microsoft.NETCore.ILAsm" />
+    <PackageReference Include="Microsoft.NETCore.ILDAsm" />
+    <PackageReference Include="System.Resources.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- A .resources container holding two stream entries, so this assembly itself is the module
+         WholeProjectDecompiler's per-entry resource path can be exercised against. -->
+    <EmbeddedResource Include="Helpers\TwoStreamEntries.resources" LogicalName="TwoStreamEntries.g.resources" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ICSharpCode.ILSpyX\ICSharpCode.ILSpyX.csproj" />
+    <ProjectReference Include="..\ICSharpCode.Decompiler\ICSharpCode.Decompiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestCases\Correctness\Jmp.il" />
+    <None Include="TestCases\Correctness\StackTests.il" />
+    <None Include="TestCases\Correctness\StackTypes.il" />
+    <None Include="TestCases\Correctness\Uninit.vb" />
+    <None Include="TestCases\Correctness\VBOnErrorCorrectness.vb" />
+    <None Include="TestCases\Disassembler\Pretty\GenericConstraints.il" />
+    <None Include="TestCases\Disassembler\Pretty\NegativeConstants.il" />
+    <None Include="TestCases\Disassembler\Pretty\InterfaceImplAttributes.il" />
+    <None Include="TestCases\Disassembler\Pretty\SortMembers.expected.il" />
+    <None Include="TestCases\Disassembler\Pretty\SortMembers.il" />
+    <None Include="TestCases\IsolatedDecompilation\AccessorDelegateReference.il" />
+    <None Include="TestCases\IsolatedDecompilation\IsolatedStaticCtor.il" />
+    <None Include="TestCases\ILPretty\ExtensionEncodingV2.il" />
+    <None Include="testcases\ilpretty\ExtensionEncodingV1.il" />
+    <None Include="TestCases\ILPretty\GuessAccessors.il" />
+    <None Include="TestCases\ILPretty\InaccessibleParameterTypes.il" />
+    <None Include="TestCases\ILPretty\Issue2260SwitchString.il" />
+    <None Include="TestCases\ILPretty\Issue3442.il" />
+    <None Include="TestCases\ILPretty\Issue3344CkFinite.il" />
+    <None Include="testcases\ilpretty\Issue3465.il" />
+    <None Include="TestCases\ILPretty\Issue3466.il" />
+    <None Include="testcases\ilpretty\Issue3504.il" />
+    <None Include="testcases\ilpretty\Issue3524.il" />
+    <None Include="testcases\ilpretty\Issue3552.il" />
+    <None Include="TestCases\ILPretty\MonoFixed.il" />
+    <None Include="TestCases\Correctness\NonGenericConstrainedCallVirt.il" />
+    <None Include="TestCases\ILPretty\UnknownTypes.il" />
+    <None Include="TestCases\ILPretty\EvalOrder.il" />
+    <None Include="TestCases\ILPretty\CallIndirect.il" />
+    <None Include="TestCases\ILPretty\Issue1454.il" />
+    <None Include="TestCases\ILPretty\Issue1681.il" />
+    <None Include="TestCases\ILPretty\Issue1922.il" />
+    <None Include="TestCases\ILPretty\Issue1918.il" />
+    <None Include="TestCases\ILPretty\Issue2104.il" />
+    <None Include="TestCases\ILPretty\Issue3421.il" />
+    <None Include="TestCases\ILPretty\WeirdEnums.il" />
+    <None Include="TestCases\ILPretty\EnumArithmeticOutOfRange.il" />
+    <None Include="TestCases\ILPretty\ConstantBlobs.il" />
+    <None Include="TestCases\ILPretty\CS1xSwitch_Debug.il" />
+    <None Include="TestCases\ILPretty\CS1xSwitch_Release.il" />
+    <None Include="TestCases\ILPretty\Issue1157.il" />
+    <None Include="TestCases\ILPretty\Issue684.il" />
+    <None Include="TestCases\ILPretty\FSharpLoops.fs" />
+    <None Include="TestCases\ILPretty\FSharpLoops_Debug.il" />
+    <None Include="TestCases\ILPretty\FSharpLoops_Release.il" />
+    <None Include="TestCases\ILPretty\FSharpUsing.fs" />
+    <None Include="TestCases\ILPretty\FSharpUsing_Debug.il" />
+    <None Include="TestCases\ILPretty\DirectCallToExplicitInterfaceImpl.il" />
+    <None Include="TestCases\ILPretty\TruncatedAccessorBody.il" />
+    <None Include="TestCases\ILPretty\FSharpUsing_Release.il" />
+    <None Include="TestCases\Correctness\BitNot.il" />
+    <None Include="TestCases\Correctness\Readme.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestCases\VBPretty\VBAutomaticEvents.vb" />
+    <None Include="TestCases\VBPretty\VBNonGenericForEach.vb" />
+    <None Include="TestCases\VBPretty\YieldReturn.vb" />
+    <None Include="TestCases\VBPretty\VBTryCatchFinally.vb" />
+    <None Include="TestCases\VBPretty\VBOnError.vb" />
+    <None Include="TestCases\VBPretty\Issue1906.vb" />
+    <None Include="TestCases\VBPretty\Issue2192.vb" />
+    <None Include="TestCases\VBPretty\Select.vb" />
+    <None Include="TestCases\VBPretty\VBAnonymousTypes.vb" />
+    <None Include="TestCases\VBPretty\ParameterizedProperties.vb" />
+    <None Include="TestCases\ILPretty\Unsafe.il" />
+    <None Include="TestCases\ILPretty\Issue1389.il" />
+    <None Include="TestCases\ILPretty\SequenceOfNestedIfs.il" />
+    <None Include="TestCases\ILPretty\Issue1256.il" />
+    <None Include="TestCases\ILPretty\Issue1323.il" />
+    <None Include="TestCases\ILPretty\Issue1325.il" />
+    <None Include="TestCases\Disassembler\Pretty\SecurityDeclarations.il" />
+    <None Include="TestCases\ILPretty\Issue1038.il" />
+    <None Include="TestCases\ILPretty\Issue1145.il" />
+    <None Include="TestCases\ILPretty\NoAccessorProperties.il" />
+    <None Include="TestCases\ILPretty\Issue1047.il" />
+    <None Include="TestCases\ILPretty\Issue959.il" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestCases\PdbGen\*.cs" />
+    <None Include="TestCases\PdbGen\PinnedRegionWarning.il" />
+    <None Include="TestCases\PdbGen\PinnedLocalSlot.il" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TestCases\ILPretty\Issue646.il" />
+    <None Include="TestCases\ILPretty\Issue379.il" />
+    <None Include="TestCases\ILPretty\Issue982.il" />
+    <None Include="TestCases\Pretty\Readme.txt" />
+    <None Include="TestCases\VBPretty\VBCompoundAssign.vb" />
+    <None Include="TestCases\VBPretty\Async.vb" />
+    <None Include="TestCases\VBPretty\VBPropertiesTest.vb" />
+  </ItemGroup>
+
+  <ItemGroup Label="ExcludedTestInputs">
+    <!-- Test-case sources that cannot be compiled into the test assembly: decompiler inputs that
+         are not valid standalone C#, expected-output fixtures that reuse type names, and
+         MetadataAttributes.cs (applies assembly/module attributes that break NUnit discovery).
+         The harness compiles these from disk at test time; kept as None for IDE visibility. -->
+    <Compile Remove="TestCases\PdbGen\*.cs" />
+    <Compile Remove="TestCases\Correctness\ComInterop.cs" />
+    <None Include="TestCases\Correctness\ComInterop.cs" />
+    <Compile Remove="TestCases\ILPretty\CS1xSwitch_Debug.cs" />
+    <None Include="TestCases\ILPretty\CS1xSwitch_Debug.cs" />
+    <Compile Remove="TestCases\ILPretty\CS1xSwitch_Release.cs" />
+    <None Include="TestCases\ILPretty\CS1xSwitch_Release.cs" />
+    <Compile Remove="TestCases\ILPretty\CallIndirect.cs" />
+    <None Include="TestCases\ILPretty\CallIndirect.cs" />
+    <Compile Remove="TestCases\ILPretty\InstanceOperatorCall.cs" />
+    <None Include="TestCases\ILPretty\InstanceOperatorCall.cs" />
+    <None Include="TestCases\ILPretty\InstanceOperatorCall.il" />
+    <Compile Remove="TestCases\ILPretty\EnumArithmeticOutOfRange.cs" />
+    <None Include="TestCases\ILPretty\EnumArithmeticOutOfRange.cs" />
+    <Compile Remove="TestCases\ILPretty\EmptyBodies.cs" />
+    <None Include="TestCases\ILPretty\EmptyBodies.cs" />
+    <Compile Remove="TestCases\ILPretty\TruncatedAccessorBody.cs" />
+    <None Include="TestCases\ILPretty\TruncatedAccessorBody.cs" />
+    <Compile Remove="TestCases\ILPretty\SealedRecordProtectedCopyCtor.cs" />
+    <None Include="TestCases\ILPretty\SealedRecordProtectedCopyCtor.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue3729.cs" />
+    <None Include="TestCases\ILPretty\Issue3729.cs" />
+    <None Include="TestCases\ILPretty\Issue3729.il" />
+    <Compile Remove="TestCases\VBPretty\Issue3659.cs" />
+    <None Include="TestCases\VBPretty\Issue3659.cs" />
+    <Compile Remove="TestCases\ILPretty\ParameterizedPropertyInitializer.cs" />
+    <None Include="TestCases\ILPretty\ParameterizedPropertyInitializer.cs" />
+    <None Include="TestCases\ILPretty\ParameterizedPropertyInitializer.il" />
+    <Compile Remove="TestCases\ILPretty\ParamsPropertySetter.cs" />
+    <None Include="TestCases\ILPretty\ParamsPropertySetter.cs" />
+    <None Include="TestCases\ILPretty\ParamsPropertySetter.il" />
+    <Compile Remove="TestCases\ILPretty\IndexerAccessorParameterNames.cs" />
+    <None Include="TestCases\ILPretty\IndexerAccessorParameterNames.cs" />
+    <None Include="TestCases\ILPretty\IndexerAccessorParameterNames.il" />
+    <Compile Remove="TestCases\ILPretty\ParameterizedPropertySetterCall.cs" />
+    <None Include="TestCases\ILPretty\ParameterizedPropertySetterCall.cs" />
+    <None Include="TestCases\ILPretty\ParameterizedPropertySetterCall.il" />
+    <Compile Remove="TestCases\ILPretty\SpanConversionOperatorMismatch.cs" />
+    <None Include="TestCases\ILPretty\SpanConversionOperatorMismatch.cs" />
+    <Compile Remove="TestCases\ILPretty\FSharpLoops_Debug.cs" />
+    <None Include="TestCases\ILPretty\FSharpLoops_Debug.cs" />
+    <Compile Remove="TestCases\ILPretty\FSharpLoops_Release.cs" />
+    <None Include="TestCases\ILPretty\FSharpLoops_Release.cs" />
+    <Compile Remove="TestCases\ILPretty\FSharpUsing_Release.cs" />
+    <None Include="TestCases\ILPretty\FSharpUsing_Release.cs" />
+    <Compile Remove="TestCases\ILPretty\GuessAccessors.cs" />
+    <None Include="TestCases\ILPretty\GuessAccessors.cs" />
+    <Compile Remove="TestCases\ILPretty\InaccessibleParameterTypes.cs" />
+    <None Include="TestCases\ILPretty\InaccessibleParameterTypes.cs" />
+    <Compile Remove="TestCases\ILPretty\NoAccessorProperties.cs" />
+    <None Include="TestCases\ILPretty\NoAccessorProperties.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue1145.cs" />
+    <None Include="TestCases\ILPretty\Issue1145.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue1325.cs" />
+    <None Include="TestCases\ILPretty\Issue1325.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue1918.cs" />
+    <None Include="TestCases\ILPretty\Issue1918.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue2260SwitchString.cs" />
+    <None Include="TestCases\ILPretty\Issue2260SwitchString.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue2443.cs" />
+    <None Include="TestCases\ILPretty\Issue2443.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue3504.cs" />
+    <None Include="TestCases\ILPretty\Issue3504.cs" />
+    <Compile Remove="TestCases\ILPretty\Issue646.cs" />
+    <None Include="TestCases\ILPretty\Issue646.cs" />
+    <Compile Remove="TestCases\ILPretty\UnknownTypes.cs" />
+    <None Include="TestCases\ILPretty\UnknownTypes.cs" />
+    <Compile Remove="TestCases\ILPretty\Unsafe.cs" />
+    <None Include="TestCases\ILPretty\Unsafe.cs" />
+    <Compile Remove="TestCases\ILPretty\WeirdEnums.cs" />
+    <None Include="TestCases\ILPretty\WeirdEnums.cs" />
+    <Compile Remove="TestCases\Pretty\FieldKeyword.cs" />
+    <None Include="TestCases\Pretty\FieldKeyword.cs" />
+    <Compile Remove="TestCases\Pretty\IndexRangeTest.cs" />
+    <None Include="TestCases\Pretty\IndexRangeTest.cs" />
+    <Compile Remove="TestCases\Pretty\MetadataAttributes.cs" />
+    <None Include="TestCases\Pretty\MetadataAttributes.cs" />
+    <Compile Remove="TestCases\Pretty\NullableRefTypes.cs" />
+    <None Include="TestCases\Pretty\NullableRefTypes.cs" />
+    <Compile Remove="TestCases\Ugly\AggressiveScalarReplacementOfAggregates.Expected.cs" />
+    <None Include="TestCases\Ugly\AggressiveScalarReplacementOfAggregates.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\QualifiedMethodGroup.Expected.cs" />
+    <None Include="TestCases\Ugly\QualifiedMethodGroup.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\BaseQualifier.Expected.cs" />
+    <None Include="TestCases\Ugly\BaseQualifier.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoArrayInitializers.Expected.cs" />
+    <None Include="TestCases\Ugly\NoArrayInitializers.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoAutomaticProperties.Expected.cs" />
+    <None Include="TestCases\Ugly\NoAutomaticProperties.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoDecimalConstants.Expected.cs" />
+    <None Include="TestCases\Ugly\NoDecimalConstants.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoExtensionMethods.Expected.cs" />
+    <None Include="TestCases\Ugly\NoExtensionMethods.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoFieldKeyword.Expected.cs" />
+    <None Include="TestCases\Ugly\NoFieldKeyword.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoForEachStatement.Expected.cs" />
+    <None Include="TestCases\Ugly\NoForEachStatement.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoGetterOnlyAutomaticProperties.Expected.cs" />
+    <None Include="TestCases\Ugly\NoGetterOnlyAutomaticProperties.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoInitAccessors.Expected.cs" />
+    <None Include="TestCases\Ugly\NoInitAccessors.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoLocalFunctions.Expected.cs" />
+    <None Include="TestCases\Ugly\NoLocalFunctions.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoNewOfT.Expected.cs" />
+    <None Include="TestCases\Ugly\NoNewOfT.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoPropertiesAndEvents.Expected.cs" />
+    <None Include="TestCases\Ugly\NoPropertiesAndEvents.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\NoUnsignedRightShift.Expected.cs" />
+    <None Include="TestCases\Ugly\NoUnsignedRightShift.Expected.cs" />
+    <!-- top-level statements: neither the input nor the expected output can be compiled
+         into the test assembly, which is a library and has its own entry point rules -->
+    <Compile Remove="TestCases\Ugly\TopLevelProgram.cs" />
+    <None Include="TestCases\Ugly\TopLevelProgram.cs" />
+    <Compile Remove="TestCases\Ugly\TopLevelProgram.Expected.cs" />
+    <None Include="TestCases\Ugly\TopLevelProgram.Expected.cs" />
+    <Compile Remove="TestCases\Ugly\TopLevelProgramAsync.cs" />
+    <None Include="TestCases\Ugly\TopLevelProgramAsync.cs" />
+    <Compile Remove="TestCases\Ugly\TopLevelProgramAsync.Expected.cs" />
+    <None Include="TestCases\Ugly\TopLevelProgramAsync.Expected.cs" />
+    <Compile Remove="TestCases\VBPretty\VBCompoundAssign.cs" />
+    <None Include="TestCases\VBPretty\VBCompoundAssign.cs" />
+    <Compile Remove="TestCases\VBPretty\VBOnError.cs" />
+    <None Include="TestCases\VBPretty\VBOnError.cs" />
+  </ItemGroup>
+
+</Project>

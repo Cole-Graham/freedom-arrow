@@ -1,0 +1,550 @@
+id,hud_name,name,category,source,cur_GR,cur_LA,cur_HA,new_GR,new_LA,new_HA
+1,M829A4 APFSDS,Round 120 M256 AP M1A2C T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+2,M830A1 HEAT,Round 120 M256 HEAT M1A2C T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+3,30x165mm AP,Round 30 2A72 T2 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+4,155mm HE-RAP,Shell 155 M284 M109A7 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+5,TOW-2A,Missile AT TOW2A,atgm_infantry,research,1875.0,0.0,0.0,1875.0,0.0,0.0
+6,120mm HE,Obus 120 M121 HE,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+7,100mm 3UOF19,Round 100 2A70 T1 HE,tank_guns,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+8,Arkan 9M117,Missile GLAT Arkan,tank_atgm,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+9,7.62x54mm,Bullet 7.62x54 MG Vehicles,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+10,30×113mm HEDP,Round 30 M230 HEDP Heli T3,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+11,125mm AP Mango,Round 125 2A46M AP T72B T1,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+12,M900A1 APFSDS ,Round 105 M68 XM35 AP T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+13,AGM-114L Hellfire,Missile AT Hellfire Longbow,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+15,227mm HE,MLRS 227 HE Guided,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+16,5.56x45mm,InfBullet 5.56x45 T1,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+17,70mm Hydra,Rocket 70 Hydra Pod,rocket_pods,research,3055.6,0.0,0.0,3055.6,0.0,0.0
+18,FIM-92K Stinger,Missile AA Stinger Vehicles,manpads,research,0.0,2400.0,1900.0,0.0,2400.0,1900.0
+19,12.7x99mm,Bullet 12.7x99,machine_guns,research,900.0,0.0,0.0,900.0,0.0,0.0
+20,57Eh6E,Missile AA 57Eh6E Pantsir,sam_short,research,0.0,6250.0,6822.0,0.0,6250.0,6822.0
+21,40×102mm,InfGrenade 40x102 GP30,autocannons,research,75.0,0.0,0.0,75.0,0.0,0.0
+22,30x173mm API,Round 30 Bushmaster2 AP T3,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+23,M900A1 APFSDS,Round 105 M68 AP T1,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+24,M393A1 HESH,Round 105 M68 HESH T1,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+25,25x137mm APDS-T,Round 25 Bushmaster T2 AP ,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+26,25x137mm HEIT,Round 25 Bushmaster T2 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+27,7.62x51mm,Bullet 7.62x51 MG ,machine_guns,research,600.0,0.0,0.0,600.0,0.0,0.0
+28,9M331,Missile AA TorM1,sam_short,research,0.0,4140.6,4733.1,0.0,4140.6,4733.1
+29,40×46mm,InfGrenade 40x46 (M203 M320),grenade_launchers,research,175.0,0.0,0.0,175.0,0.0,0.0
+30,5.45x39mm,InfBullet 5.45x39 T1,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+31,105mm HEAT,InfRocket 105 RPG7 HEAT PG7VR,tank_guns,default,1000.0,75.0,-1.0,1000.0,75.0,-1.0
+32,25x137mm,Round 25 GAU12 AAG HE,autocannons,research,750.0,650.0,500.0,750.0,650.0,500.0
+33,84mm HEAT,InfRocket 84 CGM3 HEAT,law_rpg,research,350.0,75.0,-1.0,350.0,75.0,-1.0
+34,ATACMS,Missile Ballistic 560 ATACMS Cluster,tactical_missiles,default,7916.7,0.0,0.0,7916.7,0.0,0.0
+35,Tomahawk,Missile Cruise TOMAHAWK,cruise_strategic,research,9925.6,0.0,0.0,9925.6,0.0,0.0
+36,30x113mm HEDP,Round 30 M230LF HEDP,autocannons,research,750.0,500.0,0.0,750.0,500.0,0.0
+37,105mm HE,Shell 105 M20 HE,howitzers,research,5065.8,0.0,0.0,5065.8,0.0,0.0
+38,227mm Cluster,MLRS 227 Cluster Guided,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+39,5.56x45mm,InfBullet 5.56x45 DMR T2,small_arms,research,350.0,0.0,0.0,350.0,0.0,0.0
+40,7.62x51mm,InfBullet 7.62x51 DMR T1,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+41,84mm Thermobaric,InfRocket 84 SMAW NE,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+42,84mm anti-tank,InfRocket 84 SMAW HEAA,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+43,12ga SLUG,InfBullet 12Gauge SLUG T1,small_arms,research,25.0,0.0,0.0,25.0,0.0,0.0
+44,Javelin,Missile AT Javelin,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+45,APKWS,Rocket 70 Hydra APKWS Pod,rocket_pods,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+47,AGM-114M Hellfire,Missile AT Hellfire UAV,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+48,125mm AP Vakuum,Round 125 2A82 AP T3,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+49,125mm HE Telnik,Round 125 2A82 HE T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+50,40×53 mm,Grenade 40x53 NATO (Mk19),grenade_launchers,research,750.0,0.0,0.0,750.0,0.0,0.0
+51,5.56x45mm,InfBullet 5.56x45 Autorifle T1,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+52,TOW-2B,Missile AT TOW2B,atgm_infantry,research,1875.0,0.0,0.0,1875.0,0.0,0.0
+53,30x173mm HEI-T,Round 30 Bushmaster2 HE T3,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+54,125mm HE,Round 125 2A46M HE T72B T1,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+55,40x311mm HEDP,Round 40 Bofors HEDP (AC-130),autocannons,research,1000.0,800.0,0.0,1000.0,800.0,0.0
+56,25x137mm,Round 25 GAU12 (AC-130),autocannons,research,750.0,800.0,0.0,750.0,800.0,0.0
+57,105mm HE,Round 105 M102 (AC-130),tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+58,20x102mm,Round 20 M197 Mixed T2,autocannons,research,1000.0,500.0,0.0,1000.0,500.0,0.0
+59,AIM-9,Missile A2A AIM9 Plane,air_to_air,research,0.0,4642.9,3617.0,0.0,4642.9,3617.0
+60,30x165mm,Round 30 2A38 Pantsir AAG HE T3,autocannons,default,750.0,750.0,500.0,750.0,750.0,500.0
+61,Mk82 500lb,Bomb 225kg Mk82,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+62,20x102mm,Round 20 M61 AAG HE,autocannons,research,1000.0,650.0,500.0,1000.0,650.0,500.0
+63,9M133,Missile AT Kornet,atgm_heavy,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+64,130mm HE,Shell 130 AK130 HE,naval_guns,research,5639.5,0.0,0.0,5639.5,0.0,0.0
+65,130mm AA,Shell 130 AK130 AAG,naval_guns,research,5639.5,1200.0,675.0,5639.5,1200.0,675.0
+66,122mm HE,MLRS 122 Grad HE ,mlrs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+67,300mm HE,MLRS 300 HE,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+68,152mm smoke,Shell 152 2A64 M1 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+69,9M33M3,Missile AA OsaAKM,sam_short,research,0.0,5833.3,6428.6,0.0,5833.3,6428.6
+70,12.7x108mm,Bullet 12.7x108RU,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+71,240mm HE,Obus 240 HE,mortars,research,3686.9,0.0,0.0,3686.9,0.0,0.0
+72,Invar 9M119,Missile GLAT Invar,tank_atgm,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+73,122mm SMOKE,MLRS 122 Grad SMK,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+74,30x173mm HEI-T,Round 30 Bushmaster2  AC130 HE,autocannons,default,750.0,800.0,0.0,750.0,800.0,0.0
+75,7.62x54mm,InfBullet 7.62x54 MG T1,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+76,7.62x51mm,InfBullet 7.62x51 MG T2,machine_guns,research,600.0,0.0,0.0,600.0,0.0,0.0
+77,9M338,Missile AA TorM2,sam_short,research,0.0,4140.6,4733.1,0.0,4140.6,4733.1
+78,30x165mm ,Round 30 GSh30K Mixed,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+79,23x115mm,Round 23x115 GSh23L Mixed,autocannons,research,1000.0,450.0,0.0,1000.0,450.0,0.0
+80,9M114M,Missile AT Kokon,atgm_heavy,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+81,80mm S-8,Rocket 80 S8 Pod,rocket_pods,research,2250.0,0.0,0.0,2250.0,0.0,0.0
+82,30x165mm AP,Round 30 2A42 T1 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+83,Vikhr,Missile AT Vikhr,atgm_heavy,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+85,130mm S-13,Rocket 122 S13 Pod,rocket_pods,research,2788.5,0.0,0.0,2788.5,0.0,0.0
+86,84mm HEAT,InfRocket 84 AT4 HEAT,law_rpg,research,150.0,75.0,-1.0,150.0,75.0,-1.0
+87,120mm smoke,Obus 120 M121 SMK,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+89,AMRAAM,Missile A2A AMRAAM Plane,air_to_air,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+90,30x165mm ,Round 30 GSh301 Mixed,autocannons,default,750.0,700.0,500.0,750.0,700.0,500.0
+91,Kh-29ML,Missile AGM Kh29ML Plane,air_to_ground,research,4642.9,0.0,0.0,4642.9,0.0,0.0
+92,152mm HEAT,Round 152 2A33 Akatsiya HEAT T1,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+93,5.45x39mm,InfBullet 5.45x39 Autorifle T1,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+94,7.62x39mm,InfBullet 7.62x39 T1,machine_guns,research,200.0,0.0,0.0,200.0,0.0,0.0
+95,9M113,Missile AT Konkurs,atgm_infantry,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+96,9M113M,Missile AT KonkursM,atgm_infantry,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+97,Verba,Missile AA Verba,manpads,research,0.0,2897.7,1750.0,0.0,2897.7,1750.0
+98,9M131M,Missile AT MetisM1,atgm_infantry,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+99,30×29mm,Grenade 30x29 AGS17/30,grenade_launchers,research,850.0,0.0,0.0,850.0,0.0,0.0
+100,7.62x54mm,InfBullet 7.62x54 DMR T1,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+101,.338 LM,InfBullet 8.6x70 Lapua Sniper RU T2,small_arms,research,750.0,0.0,0.0,750.0,0.0,0.0
+102,9M115,Missile AT Metis,atgm_infantry,research,500.0,0.0,0.0,500.0,0.0,0.0
+103,62mm Thermobaric,InfRocket 62 Bur Thermobaric,law_rpg,research,125.0,75.0,-1.0,125.0,75.0,-1.0
+104,PG-7VL,InfRocket 93 RPG7 HEAT PG7VL,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+105,PG-9V,InfRocket 73 SPG9 HEAT,law_rpg,research,400.0,0.0,0.0,400.0,0.0,0.0
+106,Igla-N,Missile AA IglaN,manpads,research,0.0,2559.5,1750.0,0.0,2559.5,1750.0
+107,TBG-7V Thermobaric,InfRocket 105 RPG7 Thermobaric TBG7V,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+108,Thermobaric rocket,InfRocket 93 RPO Thermobaric,law_rpg,research,100.0,75.0,-1.0,100.0,75.0,-1.0
+109,73mm HEAT,InfRocket 73 RPG26 HEAT,law_rpg,research,125.0,75.0,-1.0,125.0,75.0,-1.0
+110,105mm HEAT,InfRocket 105 RPG30 HEAT,tank_guns,default,1000.0,75.0,-1.0,1000.0,75.0,-1.0
+111,105mm HEAT,InfRocket 105 RPG27 HEAT,tank_guns,default,1000.0,75.0,-1.0,1000.0,75.0,-1.0
+112,105mm HEAT,InfRocket 105 RPG29 HEAT,tank_guns,default,1000.0,75.0,-1.0,1000.0,75.0,-1.0
+114,Fagot 9M111-2,Missile AT Fagot,atgm_infantry,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+115,125mm HEAT,InfRocket 125 RPG28 HEAT,tank_guns,default,1000.0,75.0,-1.0,1000.0,75.0,-1.0
+117,45mm,InfGrenade 45 FG45 ,grenade_launchers,research,200.0,0.0,0.0,200.0,0.0,0.0
+118,40mm grenades,Grenade 40 AGS40,grenade_launchers,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+123,9M120M,Missile AT AtakaM,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+124,125mm AP Mango-M,Round 125 2A75 AP T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+125,Invar-M 9M119M,Missile GLAT InvarM,tank_atgm,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+126,125mm HE,Round 125 2A75 HE T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+127,Igla-S,Missile AA IglaS,manpads,research,0.0,2788.5,2500.0,0.0,2788.5,2500.0
+128,84mm HE,InfRocket 84 M141 BDM HEDP ,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+129,6.8x51mm,InfBullet 6.8x51 T2,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+130,66mm HE,InfRocket 66 M72 HE,law_rpg,research,100.0,75.0,-1.0,100.0,75.0,-1.0
+131,9M133M-2,Missile AT KornetM,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+132,81mm smoke,Obus 81 M252 SMK,mortars,research,2704.3,0.0,0.0,2704.3,0.0,0.0
+133,81mm HE,Obus 81 M252 HE,mortars,research,2704.3,0.0,0.0,2704.3,0.0,0.0
+134,82mm HE,Obus 82 HE,mortars,research,2150.0,0.0,0.0,2150.0,0.0,0.0
+135,82mm HEAT,Round 82 HEAT,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+136,82mm smoke,Obus 82 SMK,mortars,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+138,9M83M,Missile AA S300V Small,sam_long,research,0.0,8026.3,8404.3,0.0,8026.3,8404.3
+139,125mm AP Svinets-2,Round 125 AP T72B3 obr16 T2.5,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+140,125mm HE,Round 125 HE T72B3 obr16 T2.5,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+141,125mm AP Svinets-2,Round 125 AP T80BVM T2.5,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+142,125mm HE,Round 125 HE T80BVM T2.5,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+143,5.56x45mm,InfBullet 5.56x45 T2 CQC,small_arms,research,150.0,0.0,0.0,150.0,0.0,0.0
+144,Sokol-V,Missile GLAT SokolV,sam_medium,HARD_SKIP,800.0,0.0,0.0,800.0,0.0,0.0
+145,127mm Zuni,Rocket 127 Zuni Pod Plane,rocket_pods,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+146,25x137mm,Round 25 GAU12 AV8B,autocannons,default,750.0,700.0,500.0,750.0,700.0,500.0
+147,AGM-65H,Missile AGM AGM65H Plane,air_to_ground,research,5833.3,0.0,0.0,5833.3,0.0,0.0
+148,130mm S-13,Rocket 122 S13 Pod Plane,rocket_pods,research,2788.5,0.0,0.0,2788.5,0.0,0.0
+149,155mm smoke,Shell 155 M284 M109A6 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+150,120mm Cluster,Obus 120 2A51 Cluster,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+152,155mm smoke,Shell 155 M284 M109A7 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+153,7.62x51mm,InfBullet 7.62x51 MG T1,machine_guns,research,600.0,0.0,0.0,600.0,0.0,0.0
+154,MIM-104E GEM+,Missile AA Patriot PAC2,sam_long,research,0.0,7656.2,8086.7,0.0,7656.2,8086.7
+155,7.62x51mm,Bullet 7.62x51 Minigun,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+156,7.62x54mm,Bullet 7.62x54 Minigun,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+157,FAB-500,Bomb 500kg FAB500,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+158,R-73,Missile A2A R73 Plane,air_to_air,research,0.0,3750.0,2857.1,0.0,3750.0,2857.1
+159,R-77-1,Missile A2A R77 Plane,air_to_air,research,0.0,8125.0,8487.9,0.0,8125.0,8487.9
+160,FAB-250 250kg,Bomb 250kg FAB250,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+161,23x115mm,Round 23x115 KPVB Mixed,autocannons,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+162,23x152mm,Round 23x152 ZU23 AAG HE,autocannons,research,1000.0,600.0,500.0,1000.0,600.0,500.0
+163,14.5x114mm,Bullet 14.5 ,machine_guns,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+164,AGM-114K Hellfire,Missile AT Hellfire,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+165,R-60,Missile A2A R60 Plane,air_to_air,research,0.0,3750.0,2857.1,0.0,3750.0,2857.1
+166,AGM-114M Hellfire,Missile AA Hellfire SHORAD,atgm_heavy,research,3303.6,1000.0,0.0,3303.6,1000.0,0.0
+168,MGM-51C,Missile GLAT Shillelagh,tank_atgm,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+169,152mm HE,Round 152 M81E1 HE T1,howitzers,research,5312.5,0.0,0.0,5312.5,0.0,0.0
+170,152mm HEAT,Round 152 M81E1 HEAT T1,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+171,M393A1 HESH,Round 105 M68 XM35 HESH T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+172,M829A4 APFSDS,Round 120 XM291 AP T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+173,M830A1 HEAT,Round 120 XM291 HEAT T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+174,122mm HE,Shell 122 2A31 HE ,howitzers,research,5065.8,0.0,0.0,5065.8,0.0,0.0
+176,23x115mm,Round 23x115 AP23 Mixed,autocannons,research,1000.0,450.0,0.0,1000.0,450.0,0.0
+177,30x165mm HE,Round 30 2A72 T2 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+178,220mm Thermobaric,MLRS 220 TOS1 Thermobaric,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+179,220mm Thermobaric,MLRS 220 TOS1A Thermobaric,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+181,9M333,Missile AA Strela10,sam_short,research,0.0,2500.0,1562.5,0.0,2500.0,1562.5
+182,9M340,Missile AA Sosna,sam_short,research,0.0,3750.0,4318.2,0.0,3750.0,4318.2
+183,120mm HE,Obus 120 Dilemma HE,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+187,120mm HEAT,Round 120 2A80 Vena HEAT,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+189,23x152mm,Round 23x152 ZU23M AAG HE,autocannons,research,1000.0,650.0,500.0,1000.0,650.0,500.0
+190,120mm HE,Obus 120 2A51 HE,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+191,120mm HE-RAP,Obus 120 2A51M HE-RAP,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+192,120mm smoke,Obus 120 2A51 SMK,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+193,120mm smoke,Obus 120 2A51M SMK ,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+194,100mm Vishnya,Round 100 2A70 T2 HE,naval_guns,research,4791.7,0.0,0.0,4791.7,0.0,0.0
+195,30x165mm AP,Round 30 2A72 T3 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+196,30x165mm HE,Round 30 2A72 T3 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+197,Arkan-M 9M117M1,Missile GLAT ArkanM,tank_atgm,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+198,57mm APFSDS,Round 57 LShO57 AP,autocannons,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+199,57mm HE,Round 57 LShO57 HE,autocannons,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+201,57x348mm HE,Round 57 2A91 Derivatsiya AAG HE T3,autocannons,research,2000.0,950.0,500.0,2000.0,950.0,500.0
+202,9M133FM-2,Missile AT KornetM Thermobaric,atgm_heavy,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+203,9M123,Missile AT Khrizantema,atgm_heavy,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+204,30x165mm HE,Round 30 2A42 T1 HE,autocannons,research,2000.0,500.0,0.0,2000.0,500.0,0.0
+205,30x165mm HE,Round 30 2A42 T2 HE,autocannons,research,2000.0,500.0,0.0,2000.0,500.0,0.0
+206,30x165mm AP,Round 30 2A42 T2 AP,autocannons,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+207,30x165mm HE,Round 30 2A72 T1 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+208,30x165mm AP,Round 30 2A72 T1 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+209,30x165mm AP,Round 30 2A42 T3 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+210,30x165mm HE,Round 30 2A42 T3 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+211,9M82MD,Missile AA S300V Big,sam_long,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+212,23x152mm,Round 23 AZP23 NoRad HE,autocannons,research,1000.0,650.0,650.0,1000.0,650.0,650.0
+213,23x152mm,Round 23 AZP23 Rad AAG HE,autocannons,research,1000.0,650.0,500.0,1000.0,650.0,500.0
+216,9M96,Missile AA S350 9M96,sam_long,research,0.0,8125.0,8487.9,0.0,8125.0,8487.9
+217,9M96M,Missile AA S350 S400 9M96M,sam_long,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+218,9M723-1F,Missile Ballistic 500 IskanderM HE,tactical_missiles,research,9639.4,0.0,0.0,9639.4,0.0,0.0
+219,9M728,Missile Cruise IskanderK HE Guided,tactical_missiles,default,7916.7,0.0,0.0,7916.7,0.0,0.0
+221,57x348mm,Round 57 AU220 AP T2.5,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+222,57x348mm,Round 57 AU220 HE T2.5,autocannons,default,750.0,550.0,0.0,750.0,550.0,0.0
+223,76mm HEAT,Round 76 D56TS HEAT T1,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+224,76mm HE,Round 76 D56TS HE T1,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+225,9M317,Missile AA BUK M2,sam_medium,research,0.0,6875.0,7395.8,0.0,6875.0,7395.8
+226,9M317M,Missile AA BUK M3,sam_medium,research,0.0,7321.4,7794.1,0.0,7321.4,7794.1
+228,152mm HE,Shell 152 2A88 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+229,152mm HE-RAP,Shell 152 2A88 Rad HE-RAP,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+231,30x165mm,Round 30 2A38 Tunguska AAG HE,autocannons,research,750.0,750.0,500.0,750.0,750.0,500.0
+232,9M311,Missile AA 9M311 TunguskaM,sam_short,research,0.0,3750.0,2857.1,0.0,3750.0,2857.1
+233,9M311-1M,Missile AA 9M3111M TunguskaM1,sam_short,research,0.0,3750.0,2857.1,0.0,3750.0,2857.1
+234,57Eh6E,Missile AA 57Eh6E PantsirSV,sam_short,research,0.0,6250.0,6822.0,0.0,6250.0,6822.0
+236,152mm HE,Shell 152 2A33 T2 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+237,152mm smoke,Shell 152 2A33 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+238,125mm AP Mango,Round 125 2A46M1 T90 AP T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+239,125mm AP Svinets,Round 125 2A46M5 T90A T80UA AP T2.5,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+240,125mm HE,Round 125 2A46M1 T90 HE T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+241,125mm HE Telnik,Round 125 2A46M5 T90A T80UA HE  T2.5,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+242,125mm AP Svinets-1,Round 125 2A46M501 T90M AP T3,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+243,125mm HE Telnik,Round 125 2A46M501 T90M HE T3,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+244,125mm HEAT,Round 125 HEAT T3,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+245,Invar-M1 9M119M1,Missile GLAT InvarM1 T90M,tank_atgm,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+246,125mm AP Mango,Round 125 AP T80BV T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+247,125mm HE,Round 125 HE T80BV T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+248,125mm AP Vant,Round 125 AP T80U T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+249,125mm HE,Round 125 HE T80U T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+250,Invar-M1 9M119M1,Missile GLAT InvarM1,tank_atgm,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+251,M830A1 HEAT,Round 120 M256 HEAT M1A2SEP2 T3,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+252,M830A1 HEAT,Round 120 M256 HEAT M1A2SEP T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+253,M830 HEAT,Round 120 M256 HEAT M1A2 T2.5,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+254,M829A3 APFSDS,Round 120 M256 AP M1A2SEP2 T3,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+255,M829A2 APFSDS,Round 120 M256 AP M1A2SEP T3,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+256,M829A1 APFSDS,Round 120 M256 AP M1A2 T2.5,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+257,M829A1 APFSDS,Round 120 M256 AP M1A1HC T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+258,M829A3 APFSDS,Round 120 M256 AP M1A1FEP T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+259,Mk324 HE,Round 120 M256 HE M1A1FEP T2.5,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+260,M830 HEAT,Round 120 M256 HEAT M1A1HC T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+261,155mm HE,Shell 155 M284 M109A6 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+262,20x102mm,Round 20 M61 AAG CIWS HE,autocannons,research,1000.0,700.0,500.0,1000.0,700.0,500.0
+263,MIM-104F,Missile AA Patriot PAC3,sam_long,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+264,125mm AP Mango-M,Round 125 2A46M AP T72BA T2,tank_guns,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+265,125mm HE,Round 125 2A46M HE T72BA T2,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+266,57x348mm,Round 57 2A91 Barbaris AP T3,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+267,57x348mm,Round 57 2A91 Barbaris HE T3,autocannons,default,750.0,550.0,0.0,750.0,550.0,0.0
+268,,Special SmokeScreen,specials,special_preserve,0.0,0.0,0.0,0.0,0.0,0.0
+269,DAGR,Rocket 70 DAGR Pod,rocket_pods,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+270,Hermes-A,Missile AT HermesA,atgm_heavy,research,4642.9,0.0,0.0,4642.9,0.0,0.0
+271,Kh-31P,Missile ARM Kh31 Plane,air_to_ground,research,6875.0,0.0,0.0,6875.0,0.0,0.0
+273,25×40mm,InfGrenade 25x40 XM25,grenade_launchers,research,300.0,300.0,0.0,300.0,300.0,0.0
+274,7.62x51mm,InfBullet 7.62x51 T1,machine_guns,research,300.0,0.0,0.0,300.0,0.0,0.0
+275,12.7x99mm,InfBullet 12.7x99 Sniper T1,machine_guns,research,900.0,0.0,0.0,900.0,0.0,0.0
+276,,Special SmokeScreen Infantry,specials,special_preserve,0.0,0.0,0.0,0.0,0.0,0.0
+277,25x137mm HEIT,Round 25 Bushmaster T3 HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+278,25x137mm APDS-T,Round 25 Bushmaster T3 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+279,40×53mm airburst,Grenade 40x53 NATO Mk47,grenade_launchers,research,750.0,400.0,0.0,750.0,400.0,0.0
+280,12.7x99mm,Bullet 12.7x99 Minigun,machine_guns,research,900.0,0.0,0.0,900.0,0.0,0.0
+281,Excalibur ,Shell 155 M284 M109A7 HE Guided,unclassified,default,2400.0,0.0,0.0,2400.0,0.0,0.0
+283,Mk83 1000lb,Bomb 454kg Mk83,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+284,Mk82 500lb,Bomb 225kg Mk82 SE,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+285,AIM-7M,Missile A2A AIM7M Plane,air_to_air,research,0.0,6590.9,7137.4,0.0,6590.9,7137.4
+287,Mk84 2000lb,Bomb 907kg Mk84,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+288,GBU-54 500lb,Bomb 225kg GBU54,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+289,CBU-78 500lb,Bomb 225kg CBU78 Cluster,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+290,GBU-55 1000lb,Bomb 454kg GBU55,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+291,GBU-56 2000lb,Bomb 907kg GBU56,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+292,23x115mm,Round 23x115 GSh23L Tailgun,autocannons,research,0.0,500.0,500.0,0.0,500.0,500.0
+293,30x173mm,Round 30 GAU8 A10C Mixed,autocannons,default,750.0,700.0,500.0,750.0,700.0,500.0
+294,70mm Hydra,Rocket 70 Hydra Pod Plane,rocket_pods,research,3055.6,0.0,0.0,3055.6,0.0,0.0
+295,20x102mm,Round 20 M61 HE Planes,autocannons,research,1000.0,700.0,500.0,1000.0,700.0,500.0
+296,JSOW 1000lb,Bomb 454kg JSOW Smart Cluster,air_to_ground,research,5833.3,0.0,0.0,5833.3,0.0,0.0
+297,GBU-53 Stormbreaker,Bomb 93kg GBU53 SDBII,bombs,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+298,AGM-88 HARM,Missile ARM AGM88 HARM Plane,air_to_ground,research,6590.9,0.0,0.0,6590.9,0.0,0.0
+299,CBU-87,Bomb 454kg CBU87 Cluster,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+300,Mk77 750lb,Bomb 340kg Mk77 Napalm,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+301,AGM-122 Sidearm,Missile ARM AGM122 Plane,air_to_ground,research,5312.5,0.0,0.0,5312.5,0.0,0.0
+302,JASSM,Missile Cruise JASSM,cruise_strategic,research,9519.2,0.0,0.0,9519.2,0.0,0.0
+303,AGM-86D,Missile Cruise AGM86,cruise_strategic,research,9922.5,0.0,0.0,9922.5,0.0,0.0
+304,B61-12 Nuke,Bomb B61 Nuke,cruise_strategic,research,5312.5,0.0,0.0,5312.5,0.0,0.0
+305,25x137mm,Round 25 GAU22 F35,autocannons,default,750.0,700.0,500.0,750.0,700.0,500.0
+306,GBU-53 Stormbreaker,Bomb 93kg GBU53 SDBII AC130,bombs,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+307,30x173mm API,Round 30 Bushmaster2  AC130 AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+308,AGM-176 Griffin,Missile AT Griffin HE,air_to_ground,research,4140.6,0.0,0.0,4140.6,0.0,0.0
+309,R-27T,Missile A2A R27T Plane ,air_to_air,research,0.0,5833.3,4736.8,0.0,5833.3,4736.8
+310,R-27ET,Missile A2A R27ET Plane,air_to_air,research,0.0,6250.0,5161.3,0.0,6250.0,5161.3
+311,R-27ER,Missile A2A R27ER Plane,air_to_air,research,0.0,6875.0,7395.8,0.0,6875.0,7395.8
+312,R-37,Missile A2A R37 Plane,air_to_air,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+313,80mm S-8,Rocket 80 S8 Pod Plane,rocket_pods,research,2250.0,0.0,0.0,2250.0,0.0,0.0
+314,340mm S-25,Rocket 340 S25 Plane,rocket_pods,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+315,Kh-58UShK,Missile ARM Kh58UShK Plane,air_to_ground,research,6590.9,0.0,0.0,6590.9,0.0,0.0
+316,Kh-59MK,Missile Cruise Kh59MK Cluster,air_to_ground,research,8958.3,0.0,0.0,8958.3,0.0,0.0
+317,Kh-25ML,Missile AGM Kh25ML Plane,air_to_ground,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+318,Kh-38M,Missile AGM Kh38ML Plane,air_to_ground,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+319,RBK-250 250kg,Bomb 250kg RBK250 Cluster,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+320,RBK-500,Bomb 500kg RBK500 Cluster,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+321,RBK-500,Bomb 500kg PBK500U Smart Cluster ,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+322,ZB-500,Bomb 500kg ZB500 Napalm,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+323,ODAB-500,Bomb 500kg ODAB500 Thermobaric,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+324,OFAB-100 100kg,Bomb 100kg OFAB100,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+325,KAB-500 500kg,Bomb 500kg KAB500,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+326,KAB-1500 1500kg,Bomb 1500kg KAB1500,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+327,APKWS,Rocket 70 Fletcher Inf,rocket_pods,research,1500.0,400.0,0.0,1500.0,400.0,0.0
+328,FAB-250 250kg,Bomb 250kg FAB250ShL,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+329,FAB-500,Bomb 500kg FAB500ShL,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+330,23x115mm,Round 23x115 GSh6_23 Mixed,autocannons,research,1000.0,700.0,500.0,1000.0,700.0,500.0
+331,FAB-1500 1500kg,Bomb 1500kg FAB1500,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+332,30x165mm ,Round 30 GSh2_30 Su25 Mixed,autocannons,default,750.0,700.0,500.0,750.0,700.0,500.0
+333,23x115mm,Round 23x115 GSh23L Planes Mixed,autocannons,research,1000.0,700.0,500.0,1000.0,700.0,500.0
+334,Kh-32,Missile Cruise Kh32,air_to_ground,research,8958.3,0.0,0.0,8958.3,0.0,0.0
+335,FAB-3000 3000kg,Bomb 3000kg FAB3000,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+336,FAB-9000 9000kg,Bomb 9000kg FAB9000,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+337,Kh-101,Missile Cruise Kh101,cruise_strategic,research,9937.9,0.0,0.0,9937.9,0.0,0.0
+338,Kh-555,Missile Cruise Kh555 cluster,cruise_strategic,research,9925.6,0.0,0.0,9925.6,0.0,0.0
+341,9x19mm,InfBullet 9x19 T3,small_arms,research,50.0,0.0,0.0,50.0,0.0,0.0
+342,9.3x64mm,InfBullet 9.3x64 DMR T3,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+343,7.62x51mm,InfBullet 7.62x51 Sniper T1,small_arms,research,500.0,0.0,0.0,500.0,0.0,0.0
+344,84mm Tandem,InfRocket 84 CGM4 HEAT Tandem,law_rpg,research,350.0,75.0,-1.0,350.0,75.0,-1.0
+345,Dragon III,Missile AT Dragon3,atgm_infantry,research,500.0,0.0,0.0,500.0,0.0,0.0
+346,9M134 Bulat,Missile AT Bulat,atgm_infantry,research,1750.0,0.0,0.0,1750.0,0.0,0.0
+347,152mm HE,Shell 152 2A64 M2 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+348,Krasnopol-M,Shell 152 2A64 M2 HE Guided,unclassified,default,2150.0,0.0,0.0,2150.0,0.0,0.0
+349,152mm smoke,Shell 152 2A64 M2 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+350,30x165mm ,Round 30 GSh30K AAG HE,autocannons,default,750.0,750.0,500.0,750.0,750.0,500.0
+351,KAB-50,Bomb 50kg KAB50,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+352,9M133,Missile AT Kornet UAV,atgm_heavy,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+353,Vikhr,Missile AT Vikhr UAV,atgm_heavy,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+354,Ataka-M 9M120M,Missile AT AtakaM UAV,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+356,125mm HEAT,Round 125 HEAT T1,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+357,5.56x45mm,InfBullet 5.56x45 T2,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+358,5.56x45mm,InfBullet 5.56x45 T3,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+359,12ga SLUG,InfBullet 12Gauge SLUG T2,small_arms,research,25.0,0.0,0.0,25.0,0.0,0.0
+360,5.56x45mm,InfBullet 5.56x45 Autorifle T2,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+361,5.45x39mm,InfBullet 5.45x39 T2,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+362,7.62x54mm,InfBullet 7.62x54 MG T2,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+363,12ga SLUG,InfBullet 12Gauge SLUG Saiga T2 ,small_arms,research,25.0,0.0,0.0,25.0,0.0,0.0
+364,5.45x39mm,InfBullet 5.45x39 T0,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+365,7.62x54mm,InfBullet 7.62x54 MG T0,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+366,5.45x39mm,InfBullet 5.45x39 T3,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+368,5.56x45mm,InfBullet 5.56x45 Autorifle T3,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+369,7.62x51mm,InfBullet 7.62x51 Sniper T2,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+370,7.62x51mm,InfBullet 7.62x51 DMR T2,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+371,5.56x45mm,InfBullet 5.56x45 DMR T3,small_arms,research,350.0,0.0,0.0,350.0,0.0,0.0
+372,7.62x54mm,InfBullet 7.62x54 DMR T2,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+375,9x39mm,InfBullet 9x39 DMR T3 ,small_arms,research,200.0,0.0,0.0,200.0,0.0,0.0
+376,7.62x51mm,InfBullet 7.62x51 T3,machine_guns,research,300.0,0.0,0.0,300.0,0.0,0.0
+378,30x165mm HE,Round 30 2A42 T1 HE Ka29,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+379,30x165mm AP,Round 30 2A42 T1 AP Ka29,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+380,12.7x108mm,Bullet 12.7x108RU Minigun,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+381,7.62x39mm,InfBullet 7.62x39 T2,machine_guns,research,200.0,0.0,0.0,200.0,0.0,0.0
+382,7.62x39mm,InfBullet 7.62x39 T3,machine_guns,research,200.0,0.0,0.0,200.0,0.0,0.0
+383,.308WIN,InfBullet 7.62x51 (308W) Sniper T3,small_arms,research,500.0,0.0,0.0,500.0,0.0,0.0
+384,12.7x108mm,InfBullet 12.7x108 Sniper T1,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+386,7.62x54mm,InfBullet 7.62x54 MG T3,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+387,12.7x99mm,InfBullet 12.7x99 Sniper T3,machine_guns,research,900.0,0.0,0.0,900.0,0.0,0.0
+388,.300WM,InfBullet 7.62x67 Sniper T2 ,small_arms,research,600.0,0.0,0.0,600.0,0.0,0.0
+389,.338 LM,InfBullet 8.6x70 Lapua Sniper US T2,small_arms,research,500.0,0.0,0.0,500.0,0.0,0.0
+390,7.62x51mm,InfBullet 7.62x51 MG T3,machine_guns,research,500.0,0.0,0.0,500.0,0.0,0.0
+391,7.62x51mm,InfBullet 7.62x51 DMR T3,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+392,140mm blast-frag,InfRocket 140 SRAW HE,law_rpg,research,300.0,75.0,-1.0,300.0,75.0,-1.0
+393,7.62x54mm,InfBullet 7.62x54 Sniper T2,small_arms,research,500.0,0.0,0.0,500.0,0.0,0.0
+394,7.62x54mm,InfBullet 7.62x54 DMR T3 CQC,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+395,Fagot 9M111M,Missile AT FagotM,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+396,Thermobaric rocket,InfRocket 93 RPOM Thermobaric,law_rpg,research,150.0,75.0,-1.0,150.0,75.0,-1.0
+397,AGM-122 Sidearm,Missile ARM AGM122 Heli,air_to_ground,research,5312.5,0.0,0.0,5312.5,0.0,0.0
+398,AIM-9,Missile AA AIM9 Heli,air_to_air,research,0.0,4642.9,3617.0,0.0,4642.9,3617.0
+399,R-60,Missile AA R60 Heli,air_to_air,research,0.0,3750.0,2857.1,0.0,3750.0,2857.1
+400,Kh-31P,Missile ARM Kh31 Heli,air_to_ground,research,6875.0,0.0,0.0,6875.0,0.0,0.0
+402,AGM-176 Griffin,Missile AT Griffin UAV,air_to_ground,research,4140.6,0.0,0.0,4140.6,0.0,0.0
+403,AIM-92 Stinger,Missile A2A Stinger UAV,manpads,research,0.0,2400.0,1900.0,0.0,2400.0,1900.0
+404,120mm HE-RAP,Obus 120 2A51 HE-RAP,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+405,120mm Kitolov-2,Obus 120 2A51 HE Guided,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+406,120mm HEAT,Round 120 2A51 HEAT T1,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+408,122mm HEAT,Round 122 2A31 Gvozdika HEAT T1,howitzers,research,5065.8,0.0,0.0,5065.8,0.0,0.0
+409,240mm Smelchak-M,Obus 240 HE Guided,mortars,research,3686.9,0.0,0.0,3686.9,0.0,0.0
+410,82mm HE,Obus 82 Vasilyok HE,mortars,research,2150.0,0.0,0.0,2150.0,0.0,0.0
+412,152mm Krasnopol-D,Shell 152 2A88 Rad HE Guided,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+413,152mm Cluster,Shell 152 2A64 M1 Cluster,howitzers,research,5312.5,0.0,0.0,5312.5,0.0,0.0
+414,120mm smoke,Obus 120 2A80 Vena SMK,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+415,120mm Kitolov-2,Obus 120 2A80 Vena HE Guided,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+416,120mm HE-RAP,Obus 120 2A80 Vena HE-RAP,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+417,120mm HE,Obus 120 2A80 Vena HE,mortars,research,3106.6,0.0,0.0,3106.6,0.0,0.0
+418,120mm Kitolov-2,Obus 120 2A51M HE Guided,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+419,105mm Cluster,Shell 105 M20 CLUS,howitzers,research,5065.8,0.0,0.0,5065.8,0.0,0.0
+420,105mm smoke,Shell 105 M20 SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+421,105mm HE-RAP,Shell 105 M20 HE-RAP,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+422,120mm PGMM,Obus 120 M121 HE Guided,mortars,default,2788.5,0.0,0.0,2788.5,0.0,0.0
+423,155mm XM1155,Shell 155 M907 IronThunder HE Guided,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+424,155mm Excalibur ,Shell 155 M284 M109A6 HE Guided,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+425,155mm Cluster,Shell 155 M284 M109A6 Cluster,howitzers,research,5535.7,0.0,0.0,5535.7,0.0,0.0
+426,M712 Copperhead,Shell 155 M284 M109A6 HEAT Guided,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+427,400mm HE PrSM,Missile Ballistic 400 PrSM HE Guided,tactical_missiles,research,9639.4,0.0,0.0,9639.4,0.0,0.0
+428,300mm Cluster,MLRS 300 Cluster,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+429,300mm Cluster,MLRS 300 Cluster Guided,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+430,300mm HE,MLRS 300 HE Guided,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+431,122mm Cluster,MLRS 122 Grad Cluster,mlrs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+432,122mm Incendiary,MLRS 122 Grad Incendiary,mlrs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+434,5.45x39mm,InfBullet 5.45x39 Autorifle T2,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+435,73mm HEAT,Round 73 2A28 HEAT T1,law_rpg,research,200.0,0.0,0.0,200.0,0.0,0.0
+436,73mm HE,Round 73 2A28 HE T1,law_rpg,research,200.0,0.0,0.0,200.0,0.0,0.0
+437,23x115mm,Round 23x115 GSh23L Mixed Heli Pod,autocannons,research,1000.0,450.0,0.0,1000.0,450.0,0.0
+439,9M79-1F,Missile Ballistic 500 TochkaU HE,tactical_missiles,default,7916.7,0.0,0.0,7916.7,0.0,0.0
+440,9M79-1K,Missile Ballistic 500 TochkaU Cluster,tactical_missiles,default,7916.7,0.0,0.0,7916.7,0.0,0.0
+441,Vikhr,Missile AGM Vikhr Plane,atgm_heavy,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+442,Flashbang,Special Flashbang,specials,special_preserve,1.0,0.0,0.0,1.0,0.0,0.0
+443,227mm HE,MLRS 227 HE,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+444,227mm Cluster,MLRS 227 Cluster,mlrs,default,6875.0,0.0,0.0,6875.0,0.0,0.0
+446,127mm HE,Shell 127 Mark45 HE,naval_guns,research,5639.5,0.0,0.0,5639.5,0.0,0.0
+447,SM-6,Missile AA SM6,sam_long,research,0.0,9278.8,9435.2,0.0,9278.8,9435.2
+448,127mm AA,Shell 127 Mark45 AA,naval_guns,research,5639.5,1000.0,1000.0,5639.5,1000.0,1000.0
+449,LMUR,Missile AT LMUR HE,atgm_heavy,research,4565.2,0.0,0.0,4565.2,0.0,0.0
+450,120mm Cluster,Obus 120 Magnolia Cluster,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+451,Thermobaric rocket,Rocket 93 RPO Thermobaric Vehicle,law_rpg,research,150.0,0.0,0.0,150.0,0.0,0.0
+452,9M33M3,Missile AA OsaAKM1,sam_short,research,0.0,5833.3,6428.6,0.0,5833.3,6428.6
+453,Kh-102 Nuke,Missile Cruise Kh102 Nuke,cruise_strategic,research,9937.9,0.0,0.0,9937.9,0.0,0.0
+454,30x113mm HEDP,Round 30 M230LF HEDP AAG,autocannons,research,750.0,600.0,500.0,750.0,600.0,500.0
+456,JAGM ,Missile AT Hellfire JAGM,atgm_heavy,research,3750.0,0.0,0.0,3750.0,0.0,0.0
+457,20x102mm,Round 20 XM301 Mixed T2,autocannons,research,1000.0,500.0,0.0,1000.0,500.0,0.0
+458,TOW-BB,Missile AT TOW BunkerBuster HE,atgm_infantry,research,1875.0,0.0,0.0,1875.0,0.0,0.0
+459,,Supply Explosion Reference,specials,special_preserve,1.0,0.0,0.0,1.0,0.0,0.0
+460,Kh-35U,Missile Cruise Kh35U,air_to_ground,research,8958.3,0.0,0.0,8958.3,0.0,0.0
+461,Kh-35U,Missile Cruise Kh35U Helicopter,air_to_ground,research,8958.3,0.0,0.0,8958.3,0.0,0.0
+462,FIM-92F Stinger,Missile AA StingerF MANPAD,manpads,research,0.0,2400.0,1900.0,0.0,2400.0,1900.0
+464,AMRAAM,Missile AA AMRAAM Ground,air_to_air,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+465,AIM-9,Missile AA AIM9 Ground,air_to_air,research,0.0,4642.9,3617.0,0.0,4642.9,3617.0
+466,CATFAE,MLRS 345 CATFAE Thermobaric,law_rpg,research,500.0,0.0,0.0,500.0,0.0,0.0
+467,MICLIC,Obus Unkown MICLIC,specials,special_preserve,400.0,0.0,0.0,400.0,0.0,0.0
+469,5.56x45mm,InfBullet 5.56x45 T3 CQC,small_arms,research,200.0,0.0,0.0,200.0,0.0,0.0
+470,40×46mm,InfGrenade 40x46 M32 150m,grenade_launchers,research,75.0,0.0,0.0,75.0,0.0,0.0
+471,5.56x45mm,InfBullet 5.56x45 Autorifle T3 CQC,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+472,6.8x51mm,InfBullet 6.8x51 MG T2,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+473,8.6x70mm,InfBullet 8.6x70 MG T3,small_arms,research,750.0,0.0,0.0,750.0,0.0,0.0
+474,FIM-92J Stinger,Missile AA StingerJ MANPAD,manpads,research,0.0,2400.0,1900.0,0.0,2400.0,1900.0
+475,84mm Tandem,InfRocket 84 AT4 Tandem,law_rpg,research,150.0,75.0,-1.0,150.0,75.0,-1.0
+476,OG-7V 40mm HE,InfRocket 40 RPG7 HE OG7V,law_rpg,research,250.0,75.0,-1.0,250.0,75.0,-1.0
+477,Kh-59MK2,Missile Cruise Kh59MK2 Cluster,air_to_ground,research,8958.3,0.0,0.0,8958.3,0.0,0.0
+478,AGM-84,Missile Cruise AGM84 SLAMER,air_to_ground,research,8897.1,0.0,0.0,8897.1,0.0,0.0
+479,12.7x99mm,Bullet 12.7x99 Gunpod,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+480,7.62x54mm,InfBullet 7.62x54 MG T3 CQC,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+481,203mm HE,Shell 203 2A44 Malka HE,howitzers,research,5833.3,0.0,0.0,5833.3,0.0,0.0
+485,Spike-SR,Missile AT SpikeSR,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+486,40×102mm,InfGrenade 40x102 GP25 150m,autocannons,research,75.0,0.0,0.0,75.0,0.0,0.0
+489,152mm HE-RAP,Shell 152 2A37 M1 HE ,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+490,57x348mm,Round 57 S60 AP T1,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+491,57x348mm,Round 57 S60 HE T1,autocannons,default,750.0,700.0,0.0,750.0,700.0,0.0
+493,165mm HESH,Round 165 M81E1 HESH T1,tank_guns,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+494,9M123F,Missile AT Khrizantema Thermobaric,atgm_heavy,research,2788.5,0.0,0.0,2788.5,0.0,0.0
+497,MIM-104F MSE,Missile AA Patriot PAC3MSE,sam_long,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+498,3BM34 AP Valschik,Round 100 MT12 AP T1,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+499,3BK16M HEAT,Round 100 MT12 HEAT T1,tank_guns,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+500,100mm HE,Round 100 MT12 HE T1,tank_guns,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+501,APKWS,Missile AA 70 Hydra Fletcher,rocket_pods,research,1500.0,650.0,0.0,1500.0,650.0,0.0
+502,JSM,Missile Cruise JSM,air_to_ground,research,8437.5,0.0,0.0,8437.5,0.0,0.0
+503,105mm HE,Shell 105 LEO HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+504,M393A1 HESH,Round 105 XM35 HESH T3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+505,105mm APFSDS M900A1,Round 105 XM35 AP T3,tank_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+506,50x228mm,Round 50 BushmasterV AP T3,autocannons,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+507,50x228mm,Round 50 BushmasterV HE T3,autocannons,research,1000.0,550.0,0.0,1000.0,550.0,0.0
+508,Javelin,Missile AT JavelinLWCLU,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+509,PG-16,InfRocket 58 RPG16 HEAT ,law_rpg,research,400.0,75.0,-1.0,400.0,75.0,-1.0
+510,5.45x39mm,InfBullet 5.45x39 Autorifle T2 CQC,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+511,5.45x39mm,InfBullet 5.45x39 Autorifle T3 CQC,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+513,12.7x99mm,Bullet 12.7x99 Minigun Heli,machine_guns,research,750.0,0.0,0.0,750.0,0.0,0.0
+514,Sprinter 9M119M3,Missile GLAT Sprinter,tank_atgm,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+515,9M133F,Missile AT Kornet Thermobaric,atgm_heavy,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+516,Mk84 2000lb,Bomb 907kg Mk84 VFX,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+517,Mk82 500lb,Bomb 225kg Mk82 SE VFX,bombs,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+518,Mk82 500lb,Bomb 225kg Mk82 VFX,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+519,FAB-250 250kg,Bomb 250kg FAB250 VFX,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+520,FAB-500,Bomb 500kg FAB500 VFX,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+521,ODAB-500,Bomb 500kg ODAB500 Thermobaric VFX,bombs,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+522,73mm Incendiary,InfRocket 73 MROZ Incendiary,law_rpg,research,225.0,0.0,0.0,225.0,0.0,0.0
+523,9M131,Missile AT MetisM,atgm_infantry,research,750.0,0.0,0.0,750.0,0.0,0.0
+524,RShG-1 Thermobaric,InfRocket 105 RShG1 Thermobaric ,law_rpg,research,75.0,75.0,-1.0,75.0,75.0,-1.0
+525,OG-9V,InfRocket 73 SPG9 HE,law_rpg,research,400.0,0.0,0.0,400.0,0.0,0.0
+526,6.5x48mm,InfBullet 6.5x48 DMR T3,small_arms,research,350.0,0.0,0.0,350.0,0.0,0.0
+527,6.5x48mm,InfBullet 6.5x48 T3,small_arms,research,350.0,0.0,0.0,350.0,0.0,0.0
+528,6.5x48mm,InfBullet 6.5x48 MG T3,small_arms,research,400.0,0.0,0.0,400.0,0.0,0.0
+529,40×46mm,InfGrenade 40x46 225m,grenade_launchers,research,175.0,0.0,0.0,175.0,0.0,0.0
+531,AIM-260,Missile A2A AIM260 Plane,air_to_air,research,0.0,8660.7,8934.7,0.0,8660.7,8934.7
+532,125mm HEAT,Round 125 HEAT T2 T2.5,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+533,AIM-174,Missile A2A AIM174 Plane,air_to_air,research,0.0,6875.0,7395.8,0.0,6875.0,7395.8
+534,30x165mm HE,Round 30 AK630M HE,autocannons,default,750.0,600.0,600.0,750.0,600.0,600.0
+535,140mm HE,MLRS 140 A22 Ogon HE ,law_rpg,research,200.0,0.0,0.0,200.0,0.0,0.0
+537,155mm Cluster,Shell 155 M777 Brutus Cluster,howitzers,research,5535.7,0.0,0.0,5535.7,0.0,0.0
+538,Kh-BPLA,Missile AT KhBPLA UAV,air_to_ground,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+539,Kh-29TD,Missile Cruise Kh29TD,air_to_ground,research,4642.9,0.0,0.0,4642.9,0.0,0.0
+540,M1147 HE,Round 120 M256 HE SEP3,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+541,125mm HEAT,Round 125 HEAT T2 T80BV,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+545,70mm Hydra,Rocket 70 Hydra LAVAD,rocket_pods,research,3055.6,0.0,0.0,3055.6,0.0,0.0
+546,30x165mm HE,Round 30 2A42 T3 HE BMPT,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+547,48N6,Missile AA S300PM Base,sam_long,research,0.0,8026.3,8404.3,0.0,8026.3,8404.3
+548,48N6P-01,Missile AA S300PM Long,sam_long,research,0.0,8437.5,8750.0,0.0,8437.5,8750.0
+549,Spike LR,Missile AT Spike LR,atgm_infantry,research,2000.0,0.0,0.0,2000.0,0.0,0.0
+550,66mm Incendiary,InfRocket 66 M202Flash Incendiary,law_rpg,research,150.0,0.0,0.0,150.0,0.0,0.0
+551,9M133,Missile AT Kornet TracReload,atgm_heavy,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+552,9M133F,Missile AT Kornet Thermobaric TracReload,atgm_heavy,research,2647.1,0.0,0.0,2647.1,0.0,0.0
+553,9M114M,Missile AT Kokon TracReload,atgm_heavy,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+554,9M114F,Missile AT Kokon Thermobaric TracReload,atgm_heavy,research,2500.0,0.0,0.0,2500.0,0.0,0.0
+555,Ataka-M 9M120M,Missile AT AtakaM TracReload,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+556,Ataka-M 9M120F,Missile AT AtakaM Thermobaric TracReload,atgm_heavy,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+557,9M113F,Missile AT KonkursM Thermobaric,atgm_infantry,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+558,UR-77,Obus Unkown UR77,specials,special_preserve,400.0,0.0,0.0,400.0,0.0,0.0
+559,RIM-162,Missile AA RIM162 ESSM,sam_medium,research,0.0,7321.4,7794.1,0.0,7321.4,7794.1
+560,RIM-116,Missile AA RIM116 SeaRAM,sam_short,research,0.0,3534.5,4085.2,0.0,3534.5,4085.2
+561,20x102mm APFSDS,Round 20 M61 AAG CIWS Ship,autocannons,research,1000.0,650.0,500.0,1000.0,650.0,500.0
+562,GBU-57 MOP,Bomb 13600kg GBU57,bombs,research,6250.0,0.0,0.0,6250.0,0.0,0.0
+563,30x165mm HE,Round 30 2A42 T3 HE Heli,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+564,30x165mm AP,Round 30 2A42 T3 AP Heli,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+565,203mm HE-RAP,Shell 203 2A44 Malka HE-RAP,howitzers,research,5833.3,0.0,0.0,5833.3,0.0,0.0
+566,9M723-1K5,Missile Ballistic 500 IskanderM Cluster,tactical_missiles,research,9639.4,0.0,0.0,9639.4,0.0,0.0
+567,30x170mm HEI-T,Round 30 Rarden HE,autocannons,default,750.0,500.0,0.0,750.0,500.0,0.0
+568,5.45x39mm,InfBullet 5.45x39 AN94  AEK T3,small_arms,research,250.0,0.0,0.0,250.0,0.0,0.0
+569,35x228mm API,Round 35 Bushmaster3 AP T3,autocannons,research,1000.0,0.0,0.0,1000.0,0.0,0.0
+570,35x228mm HEI-T,Round 35 Bushmaster3 HE T3,autocannons,research,1000.0,500.0,0.0,1000.0,500.0,0.0
+571,30x170mm AP,Round 30 Rarden AP,autocannons,default,750.0,0.0,0.0,750.0,0.0,0.0
+572,RBS 56,Missile AT RBS56,atgm_infantry,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+573,RBS 70 Bolid,Missile AA RBS70 Bolid Vehicles,sam_short,research,0.0,3303.6,2500.0,0.0,3303.6,2500.0
+574,MAPATS,Missile AT MAPATS,atgm_infantry,research,1500.0,0.0,0.0,1500.0,0.0,0.0
+575,DM63A1 APFSDS,Round 120 Leo2A7 AP,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+576,DM11,Round 120 Leo2A8 HE,tank_guns,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+577,DM12A1,Round 120 Leo2A8 HEAT,tank_guns,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+578,9M113F,Missile AT KonkursM UAV,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+579,7.62x51mm,InfBullet 7.62x51 DMR T2 250m,small_arms,research,300.0,0.0,0.0,300.0,0.0,0.0
+580,127mm Zuni,Rocket 127 Zuni Pod,rocket_pods,research,3303.6,0.0,0.0,3303.6,0.0,0.0
+581,105mm Cluster,Shell 105 LEO Clus,howitzers,research,5065.8,0.0,0.0,5065.8,0.0,0.0
+582,Teeth,Zombie Melee Walkers,specials,special_preserve,15.0,0.0,0.0,15.0,0.0,0.0
+583,Spit,Zombie Spit,specials,special_preserve,300.0,0.0,0.0,300.0,0.0,0.0
+584,Gas explosion,Zombie SMK Suicide,specials,special_preserve,10.0,0.0,0.0,10.0,0.0,0.0
+585,,Special SmokeScreen Zombie,specials,special_preserve,0.0,0.0,0.0,0.0,0.0,0.0
+586,Explosion,Zombie Boomer Suicide,specials,special_preserve,10.0,0.0,0.0,10.0,0.0,0.0
+587,Car,Zombie ThrowableCar,specials,special_preserve,750.0,0.0,0.0,750.0,0.0,0.0
+588,Hands,Special NoAmmo ,specials,special_preserve,0.0,0.0,0.0,0.0,0.0,0.0
+589,Spit,Zombie Spit Antihelo,specials,special_preserve,300.0,0.0,0.0,300.0,0.0,0.0
+590,Gas explosion,Zombie FIRE Suicide,specials,special_preserve,10.0,0.0,0.0,10.0,0.0,0.0
+591,90mm HEAT m/84,InfRocket 90 PVPJ1110 HEAT,tank_guns,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+592,66mm HEAT,InfRocket 66 M72 HEAT,law_rpg,research,200.0,75.0,-1.0,200.0,75.0,-1.0
+593,90mm dual purpose,InfRocket 90 C90CRBK ,tank_guns,research,1250.0,75.0,-1.0,1250.0,75.0,-1.0
+594,84mm HEAT,InfRocket 84 CGM2 HEAT,law_rpg,research,200.0,75.0,-1.0,200.0,75.0,-1.0
+595,82mm high-explosive,InfRocket 82 B300 HE,mortars,research,1250.0,75.0,-1.0,1250.0,75.0,-1.0
+596,Milan ER,Missile AT MilanER,atgm_infantry,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+597,Piorun,Missile AA Piorun,manpads,research,0.0,1250.0,781.2,0.0,1250.0,781.2
+598,Grom,Missile AA Grom,manpads,research,0.0,1250.0,781.2,0.0,1250.0,781.2
+599,RBS 70 Bolid,Missile AA RBS70 Bolid Infantry,sam_short,research,0.0,3303.6,2500.0,0.0,3303.6,2500.0
+601,Mistral-3,Missile AA Mistral3 Vehicles,manpads,research,0.0,1250.0,781.2,0.0,1250.0,781.2
+602,DM53 APFSDS,Round 120 Leo2A8 DM53 AP,tank_guns,research,1250.0,0.0,0.0,1250.0,0.0,0.0
+603,AMRAAM-ER,Missile AA AMRAAM ER Ground,air_to_air,research,0.0,8660.7,8934.7,0.0,8660.7,8934.7
+604,20x102mm,Round 20x102 NC621 Mixed Heli Pod,autocannons,research,1000.0,500.0,0.0,1000.0,500.0,0.0
+605,155mm HE,Shell 155 M284 M109A5O HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+606,155mm smoke,Shell 155 M284 M109A5O SMK,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+607,155mm HE,Shell 152 PZH2000 HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+609,90mm HE,InfRocket 90 PVPJ1110 HE,tank_guns,default,1000.0,0.0,0.0,1000.0,0.0,0.0
+610,155mm HE,Shell 152 K9EST HE,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0
+611,155mm Vulcano,Shell 155 K9EST HE Guided,howitzers,default,5312.5,0.0,0.0,5312.5,0.0,0.0

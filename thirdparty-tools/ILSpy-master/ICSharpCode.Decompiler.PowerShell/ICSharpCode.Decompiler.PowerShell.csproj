@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RootNamespace>ICSharpCode.Decompiler.PowerShell</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library" />
+    <PackageReference Include="Mono.Cecil" />
+    <!-- Unify System.Memory with the version ICSharpCode.Decompiler binds to;
+         without this, PowerShellStandard.Library's transitive 4.5.5 wins as
+         "primary" and conflicts with Decompiler.dll's 4.6.x binding (MSB3277). -->
+    <PackageReference Include="System.Memory" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ICSharpCode.Decompiler\ICSharpCode.Decompiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ICSharpCode.ILSpyX\PdbProvider\MonoCecilDebugInfoProvider.cs" Link="%(Filename)%(Extension)" />
+    <Compile Include="..\ICSharpCode.ILSpyX\PdbProvider\PortableDebugInfoProvider.cs" Link="%(Filename)%(Extension)" />
+    <Compile Include="..\ICSharpCode.ILSpyX\PdbProvider\DebugInfoUtils.cs" Link="%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="powershell -Command &quot;Copy-Item '$(ProjectDir)manifest.psd1' '$(TargetDir)$(TargetName).psd1'&quot;" />
+	<Exec Condition=" '$(OS)' != 'Windows_NT' " Command="pwsh -Command &quot;Copy-Item '$(ProjectDir)manifest.psd1' '$(TargetDir)$(TargetName).psd1'&quot;" />
+  </Target>
+</Project>

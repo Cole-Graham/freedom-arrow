@@ -1,0 +1,27 @@
+ILSpy Command Line Arguments
+
+Usage:  <Assemblies> [options]
+        @ResponseFile.rsp
+
+Arguments:
+  Assemblies                          Assemblies to load
+
+Options:
+  --newinstance                       Start a new instance of ILSpy even if the user configuration is set to single-instance
+  -n|--navigateto <TYPENAME>          Navigates to the member specified by the given ID string.
+                                      The member is searched for only in the assemblies specified on the command line.
+                                      Example: 'ILSpy ILSpy.exe --navigateTo:T:ICSharpCode.ILSpy.CommandLineArguments'
+  -s|--search <SEARCHTERM>            Search for t:TypeName, m:Member or c:Constant; use exact match (=term),
+                                      'should not contain' (-term) or 'must contain' (+term); use
+                                      /reg(ular)?Ex(pressions)?/ or both - t:/Type(Name)?/...
+  -l|--language <LANGUAGEIDENTIFIER>  Selects the specified language.
+                                      Example: 'ILSpy --language:C#' or 'ILSpy --language:IL'
+  -c|--config <CONFIGFILENAME>        Provide a specific configuration file.
+                                      Example: 'ILSpy --config:myconfig.xml'
+  --noactivate                        Do not activate the existing ILSpy instance. 
+                                      This option has no effect if a new ILSpy instance is being started.
+
+Note on @ResponseFile.rsp: 
+
+* The response file should contain the arguments, one argument per line (not space-separated!).
+* Use it when the list of assemblies is too long to fit on the command line.

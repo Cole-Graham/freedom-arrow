@@ -1,0 +1,60 @@
+name: Build XPlat Frontends
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: [ master, release/** ]
+
+permissions:
+  contents: read
+
+jobs:
+  # Skip push builds for branches whose open PR already builds them; see pr-build-gate.yml.
+  gate:
+    permissions:
+      pull-requests: read
+    uses: ./.github/workflows/pr-build-gate.yml
+
+  build:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7.0.1
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+        
+    - uses: actions/setup-dotnet@v6.0.0
+      with:
+        dotnet-version: '11.0.x'
+        dotnet-quality: 'preview'
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
+
+    - name: Install dependencies
+      run: dotnet restore ILSpy.XPlat.slnf -p:RestoreEnablePackagePruning=false
+
+    - name: Build Debug
+      run: dotnet msbuild -mt ILSpy.XPlat.slnf -p:Configuration=Debug -bl:Debug.binlog
+
+    - name: Build Release
+      run: dotnet msbuild -mt ILSpy.XPlat.slnf -p:Configuration=Release -bl:Release.binlog
+
+    - name: list files
+      if: always()
+      run: ls -la
+
+    - name: print VERSION
+      if: always()
+      run: cat VERSION
+
+    - name: Upload binlog
+      if: always()
+      uses: actions/upload-artifact@v7.0.2
+      with:
+        name: binlog
+        path: '**/*.binlog'
+        if-no-files-found: error

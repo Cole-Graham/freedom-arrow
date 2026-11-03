@@ -1,0 +1,37 @@
+# Copy this file to config.YAML. config.YAML is gitignored.
+# The pipeline reads config.YAML only. If it is missing, every command stops.
+
+# Broken Arrow install. Directory that contains BrokenArrow.exe
+# and BrokenArrow_Data/data.unity3d.
+#
+# Quote the path. Forward slashes work on both Windows and Linux.
+# Windows: "D:/SteamLibrary/steamapps/common/Broken Arrow"
+#          "C:/Program Files (x86)/Steam/steamapps/common/Broken Arrow"
+# Linux:   "/home/me/.steam/steam/steamapps/common/Broken Arrow"
+#          "/home/me/.local/share/Steam/steamapps/common/Broken Arrow"
+# A backslash in a double-quoted Windows path must be doubled:
+#          "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Broken Arrow"
+game_root: ""
+
+# Vanilla snapshots. Relative paths are from the repo root.
+cache_dir: cache
+
+# Patched bundle copies. Inject writes here.
+dist_dir: dist
+
+# Authored modifications and the rebase manifest.
+constants_dir: mod/constants
+manifest_path: mod/manifest.json
+
+# false: never modify files inside game_root.
+# true: the hangar check may replace BrokenArrow_Data/data.unity3d, and only
+# after copying the current file into backup_dir. It restores that backup
+# when the launch finishes. discover, decrypt, apply, and inject never write
+# inside game_root.
+write_game_bundle: false
+backup_dir: cache/backups
+
+# Hangar check. Empty game_exe means {game_root}/BrokenArrow.exe.
+# launch_args are for an offline launch. Do not pass anti-cheat.
+game_exe: ""
+launch_args: []

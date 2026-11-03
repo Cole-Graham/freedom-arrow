@@ -1,0 +1,500 @@
+// Copyright (c) 2018 Siegfried Pammer
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this
+// software and associated documentation files (the "Software"), to deal in the Software
+// without restriction, including without limitation the rights to use, copy, modify, merge,
+// publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+// to whom the Software is furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all copies or
+// substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace ICSharpCode.Decompiler.Tests.TestCases.Pretty
+{
+	internal class OptionalArguments : List<int>
+	{
+		public delegate int D(int p = 10);
+
+		public enum MyEnum
+		{
+			A,
+			B
+		}
+
+		internal class OptionalArgumentTest
+		{
+			private static void Test()
+			{
+				Test2();
+				Test3();
+				Test4();
+			}
+
+			private static void Test2(int a = 0)
+			{
+			}
+
+			private static void Test3(int a = 0, int? b = null)
+			{
+			}
+
+			private static void Test4(int? b = null, int a = 0)
+			{
+			}
+		}
+
+		internal class Indexer
+		{
+			public int this[int x, int y = 10] {
+				get {
+					return x + y;
+				}
+				set {
+				}
+			}
+		}
+
+		internal class IndexerWithOverload
+		{
+			public int this[int x] {
+				get {
+					return x;
+				}
+				set {
+				}
+			}
+
+			public int this[int x, int y = 10] {
+				get {
+					return x + y;
+				}
+				set {
+				}
+			}
+		}
+
+		internal class AllOptionalIndexer
+		{
+			public int this[int x = 10, int y = 20] {
+				get {
+					return x + y;
+				}
+				set {
+				}
+			}
+		}
+
+		internal class BaseDefaultValue
+		{
+			public virtual int this[int x, int y = 10] {
+				get {
+					return x + y;
+				}
+				set {
+				}
+			}
+
+			public virtual int Method(int x, int y = 10)
+			{
+				return x + y;
+			}
+		}
+
+		internal class DerivedDefaultValue : BaseDefaultValue
+		{
+			public override int this[int x, int y = 20] {
+				get {
+					return x + y + 1;
+				}
+				set {
+				}
+			}
+
+			public override int Method(int x, int y = 20)
+			{
+				return x + y + 1;
+			}
+		}
+
+		internal class BaseIndexer
+		{
+			public virtual int this[bool flag] {
+				get {
+					return 1;
+				}
+				set {
+				}
+			}
+		}
+
+		internal class DerivedIndexer : BaseIndexer
+		{
+			public override int this[bool f] {
+				get {
+					return 2;
+				}
+				set {
+				}
+			}
+		}
+
+		[StructLayout(LayoutKind.Sequential, Size = 1)]
+		internal struct StructIndexer
+		{
+			public int this[int x, int y = 10] {
+				get {
+					return x + y;
+				}
+				set {
+				}
+			}
+		}
+
+		private static StructIndexer structIndexer;
+
+		public OptionalArguments(string name, int a = 5)
+		{
+
+		}
+		public OptionalArguments(int num, bool flag = true)
+		{
+
+		}
+
+		public void Add(string name, int a = 5)
+		{
+
+		}
+
+		private void SimpleTests()
+		{
+			Test();
+			Test(5);
+			Test(10, "Hello World!");
+
+			Decimal();
+			Decimal(5m);
+
+#if CS72
+			NamedArgument(flag: true);
+			NamedArgument(flag: false);
+#endif
+		}
+
+		private void Conflicts()
+		{
+			OnlyDifferenceIsLastArgument(5, 3, "Hello");
+			OnlyDifferenceIsLastArgument(5, 3, 3.141);
+			OnlyDifferenceIsLastArgument(5, 3, null);
+			OnlyDifferenceIsLastArgument(5, 3, double.NegativeInfinity);
+
+			OnlyDifferenceIsLastArgumentCastNecessary(10, "World", (string)null);
+			OnlyDifferenceIsLastArgumentCastNecessary(10, "Hello", (OptionalArguments)null);
+
+			DifferenceInArgumentCount();
+			DifferenceInArgumentCount("Hello");
+			DifferenceInArgumentCount("World");
+		}
+
+		private void ParamsTests()
+		{
+			ParamsMethod(5, 10, 9, 8);
+			ParamsMethod(null);
+			ParamsMethod(5);
+			ParamsMethod(10);
+			ParamsMethod(null, 1, 2, 3);
+		}
+
+		private void CallerInfo()
+		{
+			CallerMemberName("CallerInfo");
+			CallerMemberName(null);
+			CallerLineNumber(60);
+			CallerLineNumber(0);
+		}
+
+		private void Constructor(out OptionalArguments a, out OptionalArguments b, out OptionalArguments c)
+		{
+			a = new OptionalArguments("Hallo");
+			b = new OptionalArguments(10);
+			c = new OptionalArguments(10) {
+				{ "Test", 10 },
+				"Test2"
+			};
+		}
+
+		private static string GetStr(int unused)
+		{
+			return " ";
+		}
+
+		public static string Issue1567(string str1, string str2)
+		{
+			return string.Concat(str1.Replace('"', '\''), str2: str2.Replace('"', '\''), str1: GetStr(42));
+		}
+
+		private void CallerMemberName([CallerMemberName] string memberName = null)
+		{
+
+		}
+
+		private void CallerFilePath([CallerFilePath] string filePath = null)
+		{
+
+		}
+
+		private void CallerLineNumber([CallerLineNumber] int lineNumber = 0)
+		{
+
+		}
+
+		private void ParamsMethod(int a = 5, params int[] values)
+		{
+		}
+
+		private void ParamsMethod(string a = null, params int[] values)
+		{
+		}
+
+		private void DifferenceInArgumentCount()
+		{
+		}
+
+		private void DifferenceInArgumentCount(string a = "Hello")
+		{
+		}
+
+		private void Test(int a = 10, string b = "Test")
+		{
+		}
+
+		private void Decimal(decimal d = 10m)
+		{
+		}
+
+		private void OnlyDifferenceIsLastArgument(int a, int b, string c = null)
+		{
+		}
+
+		private void OnlyDifferenceIsLastArgument(int a, int b, double d = double.NegativeInfinity)
+		{
+		}
+
+		private void OnlyDifferenceIsLastArgumentCastNecessary(int a, string b, string c = null)
+		{
+		}
+
+		private void OnlyDifferenceIsLastArgumentCastNecessary(int a, string b, OptionalArguments args = null)
+		{
+		}
+
+		private void NamedArgument(bool flag)
+		{
+		}
+
+		private string Get(out int a)
+		{
+			throw null;
+		}
+
+		public static void Definition_Enum(MyEnum p = MyEnum.A)
+		{
+
+		}
+
+		public static void Definition_Enum_OutOfRangeDefault(MyEnum p = (MyEnum)(-1))
+		{
+
+		}
+
+		public static void Definition_NullableEnum(MyEnum? p = MyEnum.A)
+		{
+
+		}
+
+		public static void Definition_NullableEnum_OutOfRangeDefault(MyEnum? p = (MyEnum)(-1))
+		{
+
+		}
+
+		public static void Definition_Int(int p = 0)
+		{
+
+		}
+
+		public static void Definition_NullableInt(int? p = 0)
+		{
+
+		}
+
+		public static void Definition_Int100(int p = 100)
+		{
+
+		}
+
+		public static void Definition_NullableInt100(int? p = 100)
+		{
+
+		}
+
+#if CS90
+		public static void Definition_NInt(nint p = 100)
+		{
+
+		}
+
+		public static void Definition_NullableNInt(nint? p = 100)
+		{
+
+		}
+#endif
+
+		public static void Issue2920a(int x)
+		{
+		}
+		public static void Issue2920b([DefaultParameterValue(3)] int x)
+		{
+		}
+		public static void Issue2920c(ref int x)
+		{
+		}
+		public static void Issue2920d([DefaultParameterValue(3)] ref int x)
+		{
+		}
+		public static void Issue2920e(out int x)
+		{
+			x = 0;
+		}
+		public static void Issue2920f([DefaultParameterValue(3)] out int x)
+		{
+			x = 0;
+		}
+#if CS70
+		public static void Issue2920g(in int x)
+		{
+		}
+		public static void Issue2920h([DefaultParameterValue(3)] in int x)
+		{
+		}
+#endif
+		public static void Issue2920i([Optional] int x)
+		{
+		}
+		public static void Issue2920j(int x = 3)
+		{
+		}
+		public static void Issue2920k([Optional] ref int x)
+		{
+		}
+		public static void Issue2920l([Optional][DefaultParameterValue(3)] ref int x)
+		{
+		}
+		public static void Issue2920m([Optional] out int x)
+		{
+			x = 0;
+		}
+		public static void Issue2920n([Optional][DefaultParameterValue(3)] out int x)
+		{
+			x = 0;
+		}
+#if CS70
+		public static void Issue2920o([Optional] in int x)
+		{
+		}
+		public static void Issue2920p(in int x = 3)
+		{
+		}
+#endif
+		public static void Issue3469a([Optional][DefaultParameterValue(0)] int i, [Optional] DateTime d)
+		{
+		}
+#if CS120
+		public static Action<int, DateTime> Issue3469b()
+		{
+#pragma warning disable CS9099 // Parameter 1 has default value 'default(int)' in lambda but '<missing>' in the target delegate type
+			return ([Optional][DefaultParameterValue(0)] int i, [Optional] DateTime d) => {
+			};
+#pragma warning restore CS9099
+		}
+		public static D LambdaWithOptionalParameter()
+		{
+			return (int x = 10) => x;
+		}
+
+		public static void Use(D d)
+		{
+			d();
+			d(42);
+		}
+#endif
+
+		private void RedeclaredDefaultValues(DerivedDefaultValue derived)
+		{
+			// The calls go to the base declarations, whose defaults the override redeclares:
+			// leaving the argument out would pass the override's value instead.
+			Console.WriteLine(derived[1, 10]);
+			derived[1, 10] = 5;
+			Console.WriteLine(derived.Method(1, 10));
+		}
+
+		private void Indexers(Indexer indexer, IndexerWithOverload overloaded)
+		{
+			Console.WriteLine(indexer[1]);
+			Console.WriteLine(indexer[1, 20]);
+			indexer[1] = 5;
+			indexer[1] += 5;
+			indexer[1]++;
+			Console.WriteLine(structIndexer[1]);
+			structIndexer[1] = 5;
+			// Leaving the argument out would bind to the single-parameter indexer.
+			Console.WriteLine(overloaded[1, 10]);
+			Console.WriteLine(overloaded[1]);
+		}
+
+		private void AllOptionalIndexers(AllOptionalIndexer allOptional, BaseIndexer boolIndexer, DerivedIndexer derived)
+		{
+			// An indexer access keeps an argument even when every one of them is optional.
+			Console.WriteLine(allOptional[10]);
+			allOptional[10] = 5;
+			// Primitive values are not named in an access, unlike in a call. The second one binds
+			// to an override that names the parameter differently.
+			Console.WriteLine(boolIndexer[true]);
+			Console.WriteLine(derived[true]);
+		}
+
+		// Only the index initializers below need C# 6.
+#if CS60
+		private Indexer IndexerInitializer()
+		{
+			return new Indexer {
+				[1] = 5,
+				[2, 20] = 6
+			};
+		}
+
+		private BaseIndexer BoolIndexerInitializer()
+		{
+			// An index initializer does not name its arguments either.
+			return new BaseIndexer { [true] = 5 };
+		}
+
+		private DerivedIndexer DerivedIndexerInitializer()
+		{
+			// The call goes to the base indexer, which names the parameter differently.
+			return new DerivedIndexer { [true] = 7 };
+		}
+#endif
+	}
+}

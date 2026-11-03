@@ -1,0 +1,309 @@
+using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace ICSharpCode.Decompiler.Tests.TestCases.Pretty
+{
+	public class FunctionPointerAddressOf
+	{
+		public static void Overloaded()
+		{
+		}
+		public static void Overloaded(int a)
+		{
+		}
+
+		public unsafe delegate*<void> GetAddress()
+		{
+			return &Overloaded;
+		}
+
+#if !(CS110 && NET70)
+		public unsafe IntPtr GetAddressAsIntPtr()
+		{
+			return (IntPtr)(delegate*<void>)(&Overloaded);
+		}
+#endif
+
+		public unsafe nint GetAddressAsNInt()
+		{
+			return (nint)(delegate*<void>)(&Overloaded);
+		}
+
+		public unsafe void* GetAddressAsVoidPtr()
+		{
+			return (delegate*<int, void>)(&Overloaded);
+		}
+
+		public static string VarianceTest(object o)
+		{
+			return null;
+		}
+
+		public unsafe delegate*<StringBuilder, object> Variance()
+		{
+			return (delegate*<object, string>)(&VarianceTest);
+		}
+
+		public unsafe delegate*<void> AddressOfLocalFunction_Managed()
+		{
+			return &LocalFunction;
+
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged<void> AddressOfLocalFunction_Unmanaged()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Cdecl]<void> AddressOfLocalFunction_CDecl()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvCdecl) })]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Fastcall]<void> AddressOfLocalFunction_Fastcall()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvFastcall) })]
+			static void LocalFunction()
+			{
+			}
+		}
+
+#if NET60
+		public unsafe delegate* unmanaged[MemberFunction]<void> AddressOfLocalFunction_MemberFunction()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvMemberFunction) })]
+			static void LocalFunction()
+			{
+			}
+		}
+#endif
+
+		public unsafe delegate* unmanaged[Stdcall]<void> AddressOfLocalFunction_Stdcall()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvStdcall) })]
+			static void LocalFunction()
+			{
+			}
+		}
+
+#if NET60
+		public unsafe delegate* unmanaged[SuppressGCTransition]<void> AddressOfLocalFunction_SuppressGCTransition()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvSuppressGCTransition) })]
+			static void LocalFunction()
+			{
+			}
+		}
+#endif
+
+		public unsafe delegate* unmanaged[Thiscall]<void> AddressOfLocalFunction_Thiscall()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvThiscall) })]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Cdecl, Fastcall]<void> AddressOfLocalFunction_CDeclAndFastcall()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvCdecl),
+				typeof(CallConvFastcall)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Fastcall, Cdecl]<void> AddressOfLocalFunction_FastcallAndCDecl()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvFastcall),
+				typeof(CallConvCdecl)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+
+#if NET60
+		public unsafe delegate* unmanaged[Cdecl, SuppressGCTransition]<void> AddressOfLocalFunction_CDeclAndSuppressGCTransition()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvCdecl),
+				typeof(CallConvSuppressGCTransition)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Fastcall, SuppressGCTransition]<void> AddressOfLocalFunction_FastcallAndSuppressGCTransition()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvFastcall),
+				typeof(CallConvSuppressGCTransition)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Stdcall, SuppressGCTransition]<void> AddressOfLocalFunction_StdcallAndSuppressGCTransition()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvStdcall),
+				typeof(CallConvSuppressGCTransition)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+
+		public unsafe delegate* unmanaged[Thiscall, SuppressGCTransition]<void> AddressOfLocalFunction_ThiscallAndSuppressGCTransition()
+		{
+			return &LocalFunction;
+
+			[UnmanagedCallersOnly(CallConvs = new Type[] {
+				typeof(CallConvThiscall),
+				typeof(CallConvSuppressGCTransition)
+			})]
+			static void LocalFunction()
+			{
+			}
+		}
+#endif
+	}
+
+	internal class FunctionPointersWithCallingConvention
+	{
+		public unsafe delegate*<void> fn_default;
+		// Unmanaged without explicit callconv is only supported with .NET 5,
+		// and emits metadata that cannot be parsed by older SRM versions.
+		//public delegate* unmanaged<void> fn_unmanaged;
+		public unsafe delegate* unmanaged[Cdecl]<void> fn_cdecl;
+		public unsafe delegate* unmanaged[Fastcall]<void> fn_fastcall;
+		public unsafe delegate* unmanaged[Stdcall]<void> fn_stdcall;
+		public unsafe delegate* unmanaged[Thiscall]<void> fn_thiscall;
+	}
+
+	internal class FunctionPointersWithDynamicTypes
+	{
+		public class D<T, U>
+		{
+		}
+		public class A<T>
+		{
+			public class B<U>
+			{
+			}
+		}
+
+		public unsafe delegate*<dynamic, dynamic, dynamic> F1;
+		public unsafe delegate*<object, object, dynamic> F2;
+		public unsafe delegate*<dynamic, object, object> F3;
+		public unsafe delegate*<object, dynamic, object> F4;
+		public unsafe delegate*<object, object, object> F5;
+		public unsafe delegate*<object, object, ref dynamic> F6;
+		public unsafe delegate*<ref dynamic, object, object> F7;
+		public unsafe delegate*<object, ref dynamic, object> F8;
+		public unsafe delegate*<ref object, ref object, dynamic> F9;
+		public unsafe delegate*<dynamic, ref object, ref object> F10;
+		public unsafe delegate*<ref object, dynamic, ref object> F11;
+		public unsafe delegate*<object, ref readonly dynamic> F12;
+		public unsafe delegate*<in dynamic, object> F13;
+		public unsafe delegate*<out dynamic, object> F14;
+#if CS120
+		public unsafe delegate*<ref readonly dynamic, object> F15;
+#endif
+		public unsafe D<delegate*<dynamic>[], dynamic> F16;
+		public unsafe delegate*<A<object>.B<dynamic>> F17;
+	}
+
+	internal class FunctionPointersWithNativeIntegerTypes
+	{
+		public unsafe delegate*<nint, nint, nint> F1;
+#if !(CS110 && NET70)
+		public unsafe delegate*<IntPtr, IntPtr, nint> F2;
+		public unsafe delegate*<nint, IntPtr, IntPtr> F3;
+		public unsafe delegate*<IntPtr, nint, IntPtr> F4;
+		public unsafe delegate*<delegate*<IntPtr, IntPtr, IntPtr>, nint> F5;
+		public unsafe delegate*<nint, delegate*<IntPtr, IntPtr, IntPtr>> F6;
+		public unsafe delegate*<delegate*<IntPtr, IntPtr, nint>, IntPtr> F7;
+		public unsafe delegate*<IntPtr, delegate*<IntPtr, nint, IntPtr>> F8;
+		public unsafe delegate*<IntPtr, delegate*<IntPtr, IntPtr, IntPtr>> F9;
+#endif
+	}
+
+	internal class FunctionPointersWithRefParams
+	{
+		public unsafe delegate*<in byte, ref char, out float, ref readonly int> F1;
+		public unsafe delegate*<ref char, out float, ref int> F2;
+
+		public unsafe int CallF1(byte b, char c, out float f)
+		{
+			return F1(in b, ref c, out f);
+		}
+
+		public unsafe void CallF2(byte b, char c, out float f)
+		{
+			F2(ref c, out f) = b;
+		}
+	}
+
+	internal class FunctionPointerTypeInference
+	{
+		private static char Test(int i)
+		{
+			return (char)i;
+		}
+
+		public unsafe R GenericMethod<T, R>(delegate*<T, R> f, T arg)
+		{
+			return f(arg);
+		}
+
+		public unsafe void Call()
+		{
+			delegate*<int, char> f = &Test;
+			GenericMethod(f, 0);
+			GenericMethod((delegate*<int, char>)(&Test), 1);
+			GenericMethod<int, char>(null, 2);
+		}
+	}
+}

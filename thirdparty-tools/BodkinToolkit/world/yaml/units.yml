@@ -1,0 +1,3832 @@
+- id: 1
+  name: BTR-82
+  hud_name: BTR-82
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 2
+  name: M1A2 SEP v2 TUA
+  hud_name: M1A2 SEP v2 TUA
+  cost: 300
+  stealth: 0.8
+  type: 4
+  role: 11
+  category: 0
+- id: 3
+  name: BMP-3
+  hud_name: BMP-3
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 4
+  name: 2S19M1 Msta-S
+  hud_name: 2S19M1 Msta-S
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 5
+  name: Stryker MC
+  hud_name: Stryker MC
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 6
+  name: Humvee TOW-2
+  hud_name: Humvee TOW-2
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 7
+  name: Mi-8MTV-5 Zeleniy
+  hud_name: Mi-8MTV-5 Zeleniy
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 8
+  name: AH-64D Longbow
+  hud_name: AH-64D Longbow
+  cost: 110
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 9
+  name: T-72B
+  hud_name: T-72B
+  cost: 130
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 10
+  name: AN/TWQ-1 Avenger
+  hud_name: AN/TWQ-1 Avenger
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 11
+  name: M142 HIMARS
+  hud_name: M142 HIMARS
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 13
+  name: T-14 Armata
+  hud_name: T-14 Armata
+  cost: 390
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 14
+  name: M60A1
+  hud_name: M60A1
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 15
+  name: M2A2 Bradley
+  hud_name: M2A2 Bradley
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 16
+  name: M2A3 Bradley
+  hud_name: M2A3 Bradley
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 17
+  name: CH-47 Chinook
+  hud_name: CH-47 Chinook
+  cost: 110
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 19
+  name: AH-64D Apache
+  hud_name: AH-64D Apache
+  cost: 90
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 20
+  name: Stryker M-SHORAD
+  hud_name: Stryker M-SHORAD
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 21
+  name: Stryker RV
+  hud_name: Stryker RV
+  cost: 70
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 22
+  name: Stryker ICV
+  hud_name: Stryker ICV
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 23
+  name: Typhoon VDV
+  hud_name: Typhoon VDV
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 0
+- id: 24
+  name: Stryker MGS
+  hud_name: Stryker MGS
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 25
+  name: Stryker ATGM
+  hud_name: Stryker ATGM
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 26
+  name: M2A3 Bradley ESV
+  hud_name: M2A3 Bradley ESV
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 27
+  name: 'M6 Linebacker '
+  hud_name: 'M6 Linebacker '
+  cost: 110
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 28
+  name: M7 BFIST
+  hud_name: M7 BFIST
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 0
+- id: 29
+  name: LAV-25
+  hud_name: LAV-25
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 0
+- id: 30
+  name: LAV-AT
+  hud_name: LAV-AT
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 31
+  name: Tor
+  hud_name: Tor
+  cost: 150
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 33
+  name: Stryker ESV
+  hud_name: Stryker ESV
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 34
+  name: LAV-AD
+  hud_name: LAV-AD
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 35
+  name: M1117 Guardian
+  hud_name: M1117 Guardian
+  cost: 45
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 37
+  name: M3A3 CFV
+  hud_name: M3A3 CFV
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 0
+- id: 40
+  name: M1287 MCV
+  hud_name: M1287 MCV
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 41
+  name: M1283 AMPV
+  hud_name: M1283 AMPV
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 44
+  name: Su-57
+  hud_name: Su-57
+  cost: 235
+  stealth: 0.8
+  type: 16
+  role: 164
+  category: 6
+- id: 46
+  name: Ka-52 Alligator
+  hud_name: Ka-52 Alligator
+  cost: 135
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 47
+  name: Humvee
+  hud_name: Humvee
+  cost: 25
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 48
+  name: Humvee GMV
+  hud_name: Humvee GMV
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 0
+- id: 49
+  name: Flyer GMV
+  hud_name: Flyer GMV
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 0
+- id: 50
+  name: Hawkeye MWS
+  hud_name: Hawkeye MWS
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 51
+  name: Humvee LRAS3
+  hud_name: Humvee LRAS3
+  cost: 55
+  stealth: 0.666
+  type: 4
+  role: 13
+  category: 0
+- id: 52
+  name: LMTV
+  hud_name: LMTV
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 53
+  name: M1A1 HC
+  hud_name: M1A1 HC
+  cost: 205
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 54
+  name: M1A1 FEP
+  hud_name: M1A1 FEP
+  cost: 260
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 57
+  name: Mech. Riflemen
+  hud_name: Mech. Riflemen
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 59
+  name: Marines
+  hud_name: Marines
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 60
+  name: Motopekhota
+  hud_name: Motopekhota
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 61
+  name: Force Recon
+  hud_name: Force Recon
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 62
+  name: Troopers AT
+  hud_name: Troopers
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 63
+  name: Assaultmen SMAW
+  hud_name: Assaultmen SMAW
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 64
+  name: Airborne 2
+  hud_name: Airborne
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 65
+  name: Cavalry Scouts
+  hud_name: Cavalry Scouts
+  cost: 85
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 66
+  name: Weapons Squad
+  hud_name: Weapons Squad
+  cost: 125
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 68
+  name: Scout Snipers
+  hud_name: Scout Snipers
+  cost: 75
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 69
+  name: Stinger team
+  hud_name: Stinger team
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 70
+  name: Marine Raiders CQC
+  hud_name: Marine Raiders
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 72
+  name: Rangers
+  hud_name: Rangers
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 73
+  name: Rangers Stinger
+  hud_name: Rangers Stinger
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 74
+  name: Rangers RAWS
+  hud_name: Rangers RAWS
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 75
+  name: Rangers Mk47 AGL
+  hud_name: Rangers Mk47 AGL
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 76
+  name: Rangers Snipers
+  hud_name: Rangers Snipers
+  cost: 90
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 77
+  name: Rangers RRC
+  hud_name: Rangers RRC
+  cost: 80
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 78
+  name: AAVP-7A1
+  hud_name: AAVP-7A1
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 79
+  name: MH-6 Little Bird
+  hud_name: MH-6 Little Bird
+  cost: 30
+  stealth: 0.571
+  type: 8
+  role: 72
+  category: 5
+- id: 80
+  name: MV-22B Osprey
+  hud_name: MV-22B Osprey
+  cost: 100
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 81
+  name: UH-60M Blackhawk
+  hud_name: UH-60M Blackhawk
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 82
+  name: M1301 ISV
+  hud_name: M1301 ISV
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 84
+  name: MTVR
+  hud_name: MTVR
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 86
+  name: AH-1Z Viper
+  hud_name: AH-1Z Viper
+  cost: 100
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 87
+  name: AH-1W Supercobra
+  hud_name: AH-1W Supercobra
+  cost: 65
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 89
+  name: BMD-4M
+  hud_name: BMD-4M
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 90
+  name: BMD-2
+  hud_name: BMD-2
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 91
+  name: A222 Bereg
+  hud_name: A222 Bereg
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 92
+  name: 9K51 Grad
+  hud_name: 9K51 Grad
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 93
+  name: 9K58 Smerch
+  hud_name: 9K58 Smerch
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 94
+  name: Osa-AKM
+  hud_name: Osa-AKM
+  cost: 110
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 98
+  name: 2S4 Tulpan
+  hud_name: 2S4 Tulpan
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 99
+  name: IFAV
+  hud_name: IFAV
+  cost: 45
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 100
+  name: Mi-24P Fantom
+  hud_name: Mi-24P Fantom
+  cost: 95
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 102
+  name: Mi-24VP Krokodil
+  hud_name: Mi-24VP Krokodil
+  cost: 85
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 103
+  name: MQ-9 Reaper
+  hud_name: MQ-9 Reaper
+  cost: 100
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 106
+  name: AH-6 Killer Egg
+  hud_name: AH-6 Killer Egg
+  cost: 25
+  stealth: 0.571
+  type: 8
+  role: 73
+  category: 5
+- id: 107
+  name: Mi-24K
+  hud_name: Mi-24K
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 70
+  category: 5
+- id: 108
+  name: VDV DSh
+  hud_name: VDV DSh
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 109
+  name: VDV Igla
+  hud_name: VDV Igla
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 110
+  name: VDV Kornet
+  hud_name: VDV Kornet
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 111
+  name: Desantniki
+  hud_name: Desantniki
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 112
+  name: VDV AGS-30
+  hud_name: VDV AGS-30
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 113
+  name: Chernye Berety RShG
+  hud_name: Chernye Berety
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 114
+  name: VDV Razvedka
+  hud_name: VDV Razvedka
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 115
+  name: VDV Snaipery
+  hud_name: VDV Snaipery
+  cost: 85
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 116
+  name: VDV Spetsnaz
+  hud_name: VDV Spetsnaz
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 117
+  name: Ingenery-Shturmoviki
+  hud_name: Ingenery-Shturmoviki
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 118
+  name: Reservisty
+  hud_name: Reservisty
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 119
+  name: SPG-9 Sapog
+  hud_name: SPG-9 Sapog
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 120
+  name: PZRK Igla
+  hud_name: PZRK Igla
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 121
+  name: PTRK Konkurs
+  hud_name: PTRK Konkurs
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 122
+  name: Ognemetchiki
+  hud_name: Ognemetchiki
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 123
+  name: Razvedka
+  hud_name: Razvedka
+  cost: 50
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 124
+  name: Snaipery
+  hud_name: Snaipery
+  cost: 75
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 125
+  name: Spetsnaz GRU Mix
+  hud_name: Spetsnaz GRU Mix
+  cost: 110
+  stealth: 0.4
+  type: 2
+  role: 36
+  category: 0
+- id: 126
+  name: 'Morskaya pekhota '
+  hud_name: 'Morskaya pekhota '
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 127
+  name: RPG-29 Vampyr
+  hud_name: RPG-29 Vampyr
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 128
+  name: PTRK Fagot
+  hud_name: PTRK Fagot
+  cost: 45
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 130
+  name: SSO
+  hud_name: SSO
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 132
+  name: VDV Metis-M
+  hud_name: VDV Metis-M
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 133
+  name: Gvardii Motostrelki
+  hud_name: Gvardii Motostrelki
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 134
+  name: PZRK Verba
+  hud_name: PZRK Verba
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 138
+  name: PDSS
+  hud_name: PDSS
+  cost: 65
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 139
+  name: Zubr
+  hud_name: Zubr
+  cost: 100
+  stealth: 1.0
+  type: 32
+  role: 0
+  category: 4
+- id: 140
+  name: LCAC
+  hud_name: LCAC
+  cost: 50
+  stealth: 1.0
+  type: 32
+  role: 201
+  category: 4
+- id: 141
+  name: BTR-D
+  hud_name: BTR-D
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 142
+  name: 'BTR-MDM '
+  hud_name: 'BTR-MDM '
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 144
+  name: Sprut-SD
+  hud_name: Sprut-SD
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 145
+  name: Mi-8AMTSh
+  hud_name: Mi-8AMTSh
+  cost: 90
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 146
+  name: Mech. Engineers
+  hud_name: Mech. Engineers
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 147
+  name: CAAT TOW-2A
+  hud_name: CAAT TOW-2A
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 148
+  name: M2 HMG team
+  hud_name: M2 HMG team
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 149
+  name: 'Mk19 AGL team '
+  hud_name: 'Mk19 AGL team '
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 150
+  name: Delta Force
+  hud_name: Delta Force
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 151
+  name: Kornet-D1
+  hud_name: Kornet-D1
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 152
+  name: Sarmat-2
+  hud_name: Sarmat-2
+  cost: 40
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 153
+  name: CH-53E Super Stallion
+  hud_name: CH-53E Super Stallion
+  cost: 105
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 154
+  name: LAV-M
+  hud_name: LAV-M
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 155
+  name: 2S41 Drok
+  hud_name: 2S41 Drok
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 156
+  name: S-300V4 Antey
+  hud_name: S-300V4 Antey
+  cost: 150
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 157
+  name: T-72B3
+  hud_name: T-72B3
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 158
+  name: T-80BV
+  hud_name: T-80BV
+  cost: 155
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 159
+  name: UH-1Y Venom
+  hud_name: UH-1Y Venom
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 160
+  name: AV-8B Night attack
+  hud_name: AV-8B Night attack
+  cost: 60
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 162
+  name: M109A7 Paladin
+  hud_name: M109A7 Paladin
+  cost: 270
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 163
+  name: Patriot PAC-2
+  hud_name: Patriot PAC-2
+  cost: 120
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 164
+  name: LVSR
+  hud_name: LVSR
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 166
+  name: KamAZ VDV
+  hud_name: KamAZ VDV
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 168
+  name: Su-34
+  hud_name: Su-34
+  cost: 145
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 169
+  name: Su-35S
+  hud_name: Su-35S
+  cost: 155
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 170
+  name: Orion
+  hud_name: Orion
+  cost: 75
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 171
+  name: TESTING DUMMY
+  hud_name: TESTING DUMMY
+  cost: 9
+  stealth: 1.0
+  type: 4
+  role: 0
+  category: 4
+- id: 172
+  name: BTR-RD Robot
+  hud_name: BTR-RD Robot
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 173
+  name: BRDM-2M
+  hud_name: BRDM-2M
+  cost: 50
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 176
+  name: Fire team
+  hud_name: Fire team
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 177
+  name: Green Berets
+  hud_name: Green Berets
+  cost: 65
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 180
+  name: ACV
+  hud_name: ACV
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 182
+  name: M551A1 Sheridan
+  hud_name: M551A1 Sheridan
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 183
+  name: M8 AGS
+  hud_name: M8 AGS
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 184
+  name: RSOV
+  hud_name: RSOV
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 0
+- id: 185
+  name: M113A3
+  hud_name: M113A3
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 186
+  name: M981 FISTV
+  hud_name: M981 FISTV
+  cost: 60
+  stealth: 0.666
+  type: 4
+  role: 13
+  category: 0
+- id: 187
+  name: M901A3
+  hud_name: M901A3
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 188
+  name: M163 PIVADS
+  hud_name: M163 PIVADS
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 189
+  name: M1064A3
+  hud_name: M1064A3
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 190
+  name: M270A2 GMLRS
+  hud_name: M270A2 GMLRS
+  cost: 275
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 191
+  name: M1A2 SEP v3
+  hud_name: M1A2 SEP v3
+  cost: 280
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 192
+  name: Buk M3
+  hud_name: Buk M3
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 198
+  name: TOS-1
+  hud_name: TOS-1
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 199
+  name: MT-LB
+  hud_name: MT-LB
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 200
+  name: MT-LB SPAAG
+  hud_name: MT-LB
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 201
+  name: Shturm-S
+  hud_name: Shturm-S
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 202
+  name: MT-LB Strela
+  hud_name: MT-LB
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 203
+  name: MT-LB Mortar
+  hud_name: MT-LB
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 204
+  name: BTO
+  hud_name: BTO
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 205
+  name: '2S1 Gvozdika '
+  hud_name: '2S1 Gvozdika '
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 206
+  name: BTR-ZD Skrezhet
+  hud_name: BTR-ZD Skrezhet
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 207
+  name: 2S9 Nona-S
+  hud_name: 2S9 Nona-S
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 208
+  name: BMP-3F
+  hud_name: BMP-3F
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 209
+  name: BRM-3K
+  hud_name: BRM-3K
+  cost: 70
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 210
+  name: 2S31 Vena
+  hud_name: 2S31 Vena
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 211
+  name: Derivatsiya
+  hud_name: Derivatsiya
+  cost: 130
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 212
+  name: BT-3F
+  hud_name: BT-3F
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 213
+  name: Kornet-T
+  hud_name: Kornet-T
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 214
+  name: BMP-2
+  hud_name: BMP-2
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 215
+  name: BRM-1K
+  hud_name: BRM-1K
+  cost: 60
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 216
+  name: BMO-1
+  hud_name: BMO-1
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 217
+  name: BRDM-3
+  hud_name: BRDM-3
+  cost: 65
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 218
+  name: 2S23 Nona-SVK
+  hud_name: 2S23 Nona-SVK
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 221
+  name: ZSU-23-4 Shilka
+  hud_name: ZSU-23-4 Shilka
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 222
+  name: Ural-4320 ZU-23
+  hud_name: Ural-4320 ZU-23
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 225
+  name: S-350 Vityaz
+  hud_name: S-350 Vityaz
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 226
+  name: 9K720 Iskander
+  hud_name: 9K720 Iskander
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 132
+  category: 3
+- id: 228
+  name: Ural-5323
+  hud_name: Ural-5323
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 229
+  name: PTS-4 Duplo
+  hud_name: PTS-4 Duplo
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 230
+  name: PT-76
+  hud_name: PT-76
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 231
+  name: Buk M2
+  hud_name: Buk M2
+  cost: 150
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 232
+  name: 2S35 Koalitsiya-SV
+  hud_name: 2S35 Koalitsiya-SV
+  cost: 260
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 233
+  name: 2K22M Tunguska-M
+  hud_name: 2K22M Tunguska-M
+  cost: 175
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 234
+  name: 2S3M1 Akatsia
+  hud_name: 2S3M1 Akatsia
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 235
+  name: BMO-T
+  hud_name: BMO-T
+  cost: 60
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 236
+  name: T-90
+  hud_name: T-90
+  cost: 170
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 237
+  name: T-90M Razvedchik
+  hud_name: T-90M Razvedchik
+  cost: 290
+  stealth: 0.8
+  type: 4
+  role: 11
+  category: 0
+- id: 238
+  name: T-90M
+  hud_name: T-90M
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 239
+  name: T-80U
+  hud_name: T-80U
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 240
+  name: BMPT Terminator
+  hud_name: BMPT Terminator
+  cost: 160
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 241
+  name: M1075A1 PLS
+  hud_name: M1075A1 PLS
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 242
+  name: HEMTT
+  hud_name: HEMTT
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 243
+  name: M1A2 SEP v2
+  hud_name: M1A2 SEP v2
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 244
+  name: M1A2 SEP
+  hud_name: M1A2 SEP
+  cost: 240
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 245
+  name: M1A2 Abrams
+  hud_name: M1A2 Abrams
+  cost: 215
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 246
+  name: 'M548A3 '
+  hud_name: 'M548A3 '
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 247
+  name: M109A6 Paladin
+  hud_name: M109A6 Paladin
+  cost: 130
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 249
+  name: Humvee RWS
+  hud_name: Humvee RWS
+  cost: 40
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 250
+  name: Centurion C-RAM
+  hud_name: Centurion C-RAM
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 251
+  name: Patriot PAC-3
+  hud_name: Patriot PAC-3
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 252
+  name: BRDM ATGM
+  hud_name: BRDM ATGM
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 253
+  name: K16 Bumerang
+  hud_name: K16 Bumerang
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 254
+  name: B10 Kurganets
+  hud_name: B10 Kurganets
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 255
+  name: T-15 Barbaris
+  hud_name: T-15 Barbaris
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 256
+  name: Mi-28N Ohotnik
+  hud_name: Mi-28N Ohotnik
+  cost: 85
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 259
+  name: CV-22B Osprey
+  hud_name: CV-22B Osprey
+  cost: 100
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 260
+  name: MH-60X Silent Hawk
+  hud_name: MH-60X Silent Hawk
+  cost: 100
+  stealth: 0.4
+  type: 8
+  role: 72
+  category: 5
+- id: 261
+  name: Mi-26 Korova
+  hud_name: Mi-26 Korova
+  cost: 110
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 262
+  name: MH-60M SOAR
+  hud_name: MH-60M SOAR
+  cost: 95
+  stealth: 0.8
+  type: 8
+  role: 72
+  category: 5
+- id: 263
+  name: Mi-35M
+  hud_name: Mi-35M
+  cost: 75
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 264
+  name: RQ-4 Global Hawk
+  hud_name: RQ-4 Global Hawk
+  cost: 150
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 266
+  name: Mi-8MTV-2 Pchela
+  hud_name: Mi-8MTV-2 Pchela
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 267
+  name: OH-58D Kiowa Warrior
+  hud_name: OH-58D Kiowa Warrior
+  cost: 55
+  stealth: 0.571
+  type: 8
+  role: 70
+  category: 5
+- id: 268
+  name: Mi-38T
+  hud_name: Mi-38T
+  cost: 90
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 269
+  name: Mi-24PN
+  hud_name: Mi-24PN
+  cost: 85
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 270
+  name: AH-64E Guardian
+  hud_name: AH-64E Guardian
+  cost: 115
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 271
+  name: Ka-52K Katran
+  hud_name: Ka-52K Katran
+  cost: 135
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 272
+  name: MH-60M DAP
+  hud_name: MH-60M DAP
+  cost: 105
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 273
+  name: Ka-29
+  hud_name: Ka-29
+  cost: 80
+  stealth: 0.8
+  type: 8
+  role: 72
+  category: 5
+- id: 274
+  name: MH-47G SOAR
+  hud_name: MH-47G SOAR
+  cost: 120
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 275
+  name: CH-53K King Stallion
+  hud_name: CH-53K King Stallion
+  cost: 120
+  stealth: 1.0
+  type: 8
+  role: 72
+  category: 5
+- id: 276
+  name: Pararescue
+  hud_name: Pararescue
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 277
+  name: Scouts
+  hud_name: Scouts
+  cost: 60
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 278
+  name: Airborne Snipers
+  hud_name: Airborne Snipers
+  cost: 85
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 280
+  name: Tu-22M3
+  hud_name: Tu-22M3
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 162
+  category: 6
+- id: 281
+  name: IL-76MD
+  hud_name: IL-76MD
+  cost: 140
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 282
+  name: A-10C Thunderbolt II
+  hud_name: A-10C Thunderbolt II
+  cost: 95
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 283
+  name: F-15C Eagle
+  hud_name: F-15C Eagle
+  cost: 145
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 284
+  name: F-16V Viper
+  hud_name: F-16V Viper
+  cost: 135
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 285
+  name: F-16C Fighting Falcon
+  hud_name: F-16C Fighting Falcon
+  cost: 110
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 286
+  name: F-16CJ
+  hud_name: F-16CJ
+  cost: 205
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 287
+  name: F-15E Strike Eagle
+  hud_name: F-15E Strike Eagle
+  cost: 160
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 288
+  name: AV-8B Harrier II Plus
+  hud_name: AV-8B Harrier II Plus
+  cost: 60
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 289
+  name: F-15EX Eagle II
+  hud_name: F-15EX Eagle II
+  cost: 170
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 291
+  name: F/A-18C Hornet
+  hud_name: F/A-18C Hornet
+  cost: 185
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 292
+  name: 'F/A-18D Hornet '
+  hud_name: 'F/A-18D Hornet '
+  cost: 175
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 293
+  name: B-1B Lancer
+  hud_name: B-1B Lancer
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 162
+  category: 6
+- id: 294
+  name: F-35A
+  hud_name: F-35A
+  cost: 240
+  stealth: 0.571
+  type: 16
+  role: 164
+  category: 6
+- id: 295
+  name: F-35B
+  hud_name: F-35B
+  cost: 240
+  stealth: 0.571
+  type: 16
+  role: 164
+  category: 6
+- id: 297
+  name: F-22 Raptor
+  hud_name: F-22 Raptor
+  cost: 285
+  stealth: 0.571
+  type: 16
+  role: 164
+  category: 6
+- id: 298
+  name: F-117 Nighthawk
+  hud_name: F-117 Nighthawk
+  cost: 140
+  stealth: 0.571
+  type: 16
+  role: 161
+  category: 6
+- id: 299
+  name: B-2 Spirit
+  hud_name: B-2 Spirit
+  cost: 100
+  stealth: 0.571
+  type: 16
+  role: 162
+  category: 6
+- id: 300
+  name: B-52H Stratofortress
+  hud_name: B-52H Stratofortress
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 162
+  category: 6
+- id: 301
+  name: AC-130
+  hud_name: AC-130
+  cost: 150
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 302
+  name: C-130J-30 Hercules
+  hud_name: C-130J-30 Hercules
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 303
+  name: KC-130J Harvest Hawk
+  hud_name: KC-130J Harvest Hawk
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 304
+  name: 'MC-130H '
+  hud_name: 'MC-130H '
+  cost: 140
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 305
+  name: C-17 Globemaster
+  hud_name: C-17 Globemaster
+  cost: 150
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 306
+  name: Su-24M2
+  hud_name: Su-24M2
+  cost: 150
+  stealth: 1.0
+  type: 16
+  role: 161
+  category: 6
+- id: 307
+  name: Su-25SM
+  hud_name: Su-25SM
+  cost: 75
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 308
+  name: Su-24MP
+  hud_name: Su-24MP
+  cost: 185
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 309
+  name: MiG-35
+  hud_name: MiG-35
+  cost: 165
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 310
+  name: MiG-29SMT
+  hud_name: MiG-29SMT
+  cost: 150
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 311
+  name: MiG-29K
+  hud_name: MiG-29K
+  cost: 150
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 312
+  name: Su-33
+  hud_name: Su-33
+  cost: 130
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 313
+  name: YaK-38M
+  hud_name: YaK-38M
+  cost: 60
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 317
+  name: Tu-160
+  hud_name: Tu-160
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 162
+  category: 6
+- id: 319
+  name: Su-30SM
+  hud_name: Su-30SM
+  cost: 130
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 320
+  name: CAAT Dragon
+  hud_name: CAAT Dragon
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 321
+  name: Arleigh Burke
+  hud_name: Arleigh Burke
+  cost: 9
+  stealth: 1.33
+  type: 32
+  role: 0
+  category: 4
+- id: 322
+  name: 'US Pilot '
+  hud_name: Pilot
+  cost: 150
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 323
+  name: US Crew
+  hud_name: Pilots
+  cost: 150
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 324
+  name: 'US Bomber Crew '
+  hud_name: Pilots
+  cost: 200
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 325
+  name: RU Pilot
+  hud_name: Pilot
+  cost: 150
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 326
+  name: RU Crew
+  hud_name: Pilots
+  cost: 150
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 327
+  name: RU Bomber Crew
+  hud_name: Pilots
+  cost: 200
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 328
+  name: Forpost
+  hud_name: Forpost
+  cost: 50
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 329
+  name: Korsar
+  hud_name: Korsar
+  cost: 50
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 330
+  name: LHA-6
+  hud_name: LHA-6
+  cost: 9
+  stealth: 1.33
+  type: 32
+  role: 0
+  category: 4
+- id: 332
+  name: Assaultmen SRAW
+  hud_name: Assaultmen SRAW
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 333
+  name: Scout Snipers M107
+  hud_name: Scout Snipers M107
+  cost: 90
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 336
+  name: Force Recon CQC
+  hud_name: Force Recon CQC
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 338
+  name: Rangers RRC 2
+  hud_name: 'Rangers RRC '
+  cost: 80
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 339
+  name: Rangers Snipers AT
+  hud_name: Rangers Snipers AT
+  cost: 100
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 340
+  name: Airborne Snipers 2
+  hud_name: 'Airborne Snipers '
+  cost: 100
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 341
+  name: Green Berets Snipers
+  hud_name: 'Green Berets '
+  cost: 120
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 342
+  name: STT
+  hud_name: STT
+  cost: 100
+  stealth: 0.4
+  type: 2
+  role: 36
+  category: 0
+- id: 343
+  name: CAAT TOW-2B Saber
+  hud_name: CAAT TOW-2B Saber
+  cost: 120
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 346
+  name: Spetsnaz GRU AT
+  hud_name: Spetsnaz GRU AT
+  cost: 120
+  stealth: 0.4
+  type: 2
+  role: 36
+  category: 0
+- id: 347
+  name: Snaipery 2
+  hud_name: 'Snaipery '
+  cost: 90
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 348
+  name: VDV Snaipery 2
+  hud_name: 'VDV Snaipery '
+  cost: 85
+  stealth: 0.4
+  type: 2
+  role: 33
+  category: 0
+- id: 349
+  name: VDV Spetsnaz 2
+  hud_name: 'VDV Spetsnaz '
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 351
+  name: Airborne
+  hud_name: Airborne NGWS
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 352
+  name: VDV Kornet-M
+  hud_name: VDV Kornet-M
+  cost: 120
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 353
+  name: AGS-40 Balkan
+  hud_name: AGS-40 Balkan
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 355
+  name: PTRK Faktoriya
+  hud_name: PTRK Faktoriya
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 356
+  name: PZRK Igla-S
+  hud_name: PZRK Igla-S
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 357
+  name: PTRK Konkurs-M
+  hud_name: PTRK Konkurs-M
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 358
+  name: Ognemetchiki 2
+  hud_name: 'Ognemetchiki '
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 359
+  name: Marine Raiders AT
+  hud_name: Marine Raiders
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 360
+  name: Su-24M2 (landed)
+  hud_name: Su-24M2 (landed)
+  cost: 9
+  stealth: 1.0
+  type: 4
+  role: 0
+  category: 4
+- id: 361
+  name: IL-76MD (landed)
+  hud_name: IL-76MD
+  cost: 9
+  stealth: 2.0
+  type: 4
+  role: 0
+  category: 4
+- id: 362
+  name: MQ-1 Predator
+  hud_name: MQ-1 Predator
+  cost: 75
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 363
+  name: MQ-1C Gray Eagle
+  hud_name: MQ-1C Gray Eagle
+  cost: 90
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 364
+  name: RAH-66 Comanche
+  hud_name: RAH-66 Comanche
+  cost: 140
+  stealth: 0.4
+  type: 8
+  role: 73
+  category: 5
+- id: 365
+  name: BMP-1
+  hud_name: BMP-1
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 366
+  name: Morskaya razvedka
+  hud_name: Morskaya razvedka
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 367
+  name: Spetsnaz VMF
+  hud_name: Spetsnaz VMF
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 368
+  name: Spetsnaz VMF 2
+  hud_name: 'Spetsnaz VMF '
+  cost: 120
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 369
+  name: AGS-17 Plamya
+  hud_name: AGS-17 Plamya
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 370
+  name: Mech. Riflemen MMG
+  hud_name: Mech. Riflemen MMG
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 371
+  name: Mech. Riflemen AA
+  hud_name: Mech. Riflemen AA
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 372
+  name: Chernye Berety
+  hud_name: Chernye Berety
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 373
+  name: Tochka-U
+  hud_name: Tochka-U
+  cost: 150
+  stealth: 1.0
+  type: 4
+  role: 132
+  category: 3
+- id: 374
+  name: Su-25T
+  hud_name: Su-25T
+  cost: 65
+  stealth: 1.0
+  type: 16
+  role: 160
+  category: 6
+- id: 375
+  name: LAV-L
+  hud_name: LAV-L
+  cost: 25
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 376
+  name: M270 MLRS
+  hud_name: M270A1 MLRS
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 130
+  category: 3
+- id: 377
+  name: EA-6B Prowler
+  hud_name: EA-6B Prowler
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 379
+  name: Tu-142
+  hud_name: Tu-142
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 162
+  category: 6
+- id: 380
+  name: Mi-28NM Mikhalych
+  hud_name: Mi-28NM Mikhalych
+  cost: 115
+  stealth: 0.8
+  type: 8
+  role: 73
+  category: 5
+- id: 381
+  name: DT-30PM Vityaz
+  hud_name: DT-30PM Vityaz
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 382
+  name: 2S39 Magnolia
+  hud_name: 2S39 Magnolia
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 383
+  name: BTR-90
+  hud_name: BTR-90
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 0
+- id: 384
+  name: 1V119 Reostat
+  hud_name: 1V119 Reostat
+  cost: 45
+  stealth: 0.666
+  type: 4
+  role: 13
+  category: 0
+- id: 385
+  name: PDSS 2
+  hud_name: 'PDSS '
+  cost: 65
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 386
+  name: M2A2 Bradley ESV
+  hud_name: M2A2 Bradley ESV
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 387
+  name: M3A2 CFV
+  hud_name: M3A2 CFV
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 0
+- id: 388
+  name: Brutus
+  hud_name: Brutus
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 389
+  name: SLAMRAAM
+  hud_name: SLAMRAAM
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 390
+  name: MTV
+  hud_name: MTV
+  cost: 55
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 391
+  name: AAVP MICLIC
+  hud_name: AAVP MICLIC
+  cost: 125
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 392
+  name: LMTV War Pig
+  hud_name: LMTV War Pig
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 393
+  name: MML
+  hud_name: MML
+  cost: 110
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 394
+  name: DT-30AA
+  hud_name: DT-30AA
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 395
+  name: RQ-170 Sentinel
+  hud_name: RQ-170 Sentinel
+  cost: 200
+  stealth: 0.571
+  type: 16
+  role: 100
+  category: 0
+- id: 396
+  name: BALT XA-180
+  hud_name: XA-180
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 397
+  name: AN-72P
+  hud_name: AN-72P
+  cost: 100
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 398
+  name: Motostrelki
+  hud_name: Motostrelki
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 399
+  name: Pulemetchiki PKP
+  hud_name: Pulemetchiki PKP
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 400
+  name: Pulemetchiki Kord
+  hud_name: Pulemetchiki Kord
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 401
+  name: Shturmoviki
+  hud_name: Shturmoviki
+  cost: 55
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 402
+  name: PTO Metis
+  hud_name: PTO Metis
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 403
+  name: 'Diversanty '
+  hud_name: Diversanty
+  cost: 80
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 404
+  name: Motostrelki Igla
+  hud_name: Motostrelki Igla
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 405
+  name: Ingenery Shturmoviki 2
+  hud_name: Ingenery-Shturmoviki
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 406
+  name: SSO 2
+  hud_name: SSO
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 407
+  name: Reserve Marines
+  hud_name: Reserve Marines
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 408
+  name: CAAT Javelin
+  hud_name: CAAT Javelin
+  cost: 115
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 409
+  name: Rangers CQC
+  hud_name: Rangers CQC
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 410
+  name: Rangers RAWS+
+  hud_name: Rangers MAAWS
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 411
+  name: Delta Force 2
+  hud_name: 'Delta Force '
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 413
+  name: Troopers AA
+  hud_name: Troopers AA
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 414
+  name: TOW-2A
+  hud_name: TOW-2A
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 415
+  name: TOW-2B
+  hud_name: TOW-2B
+  cost: 85
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 416
+  name: Rangers Javelin
+  hud_name: Rangers Javelin
+  cost: 110
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 417
+  name: Spetsnaz GRU AA
+  hud_name: Spetsnaz GRU AA
+  cost: 110
+  stealth: 0.4
+  type: 2
+  role: 36
+  category: 0
+- id: 418
+  name: Diversanty RPG
+  hud_name: Diversanty RPG
+  cost: 80
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 419
+  name: 'Gornostrelki '
+  hud_name: Gornostrelki
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 420
+  name: 'C-17 Globemaster '
+  hud_name: C-17 Globemaster (takeoff)
+  cost: 9
+  stealth: 1.0
+  type: 4
+  role: 0
+  category: 4
+- id: 421
+  name: M985 Battleship
+  hud_name: M985 Battleship
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 422
+  name: 2S7M Malka
+  hud_name: 2S7M Malka
+  cost: 220
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 423
+  name: Ural-4320
+  hud_name: Ural-4320
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 425
+  name: BTR-80
+  hud_name: BTR-80
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 426
+  name: BALT PzH-2000
+  hud_name: PzH-2000
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 427
+  name: BALT Unimog U5000
+  hud_name: Unimog U5000
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 428
+  name: BALT UH-60M
+  hud_name: UH-60M
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 429
+  name: 'BALT M109A5Ö '
+  hud_name: 'M109A5Ö '
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 430
+  name: BALT M113
+  hud_name: M113
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 431
+  name: BALT M1064 Mortar
+  hud_name: M1064 Mortar
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 432
+  name: 'BALT Humvee '
+  hud_name: Humvee
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 433
+  name: BALT G-Wagen
+  hud_name: G-Wagen
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 434
+  name: BALT Geležinis Vilkas (Mech)
+  hud_name: Geležinis Vilkas
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 435
+  name: BALT Mehanizētie Kājinieki
+  hud_name: Mehanizetie Kajinieki
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 436
+  name: BALT Eesti Kaitseliit (reservists)
+  hud_name: Eesti Kaitseliit
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 437
+  name: BALT Jegeris
+  hud_name: Jegeris
+  cost: 60
+  stealth: 0.4
+  type: 2
+  role: 36
+  category: 0
+- id: 438
+  name: BALT Spike LR team
+  hud_name: Spike LR
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 439
+  name: BALT Snipers
+  hud_name: Snipers
+  cost: 75
+  stealth: 0.333
+  type: 2
+  role: 33
+  category: 1
+- id: 440
+  name: BALT Stinger team
+  hud_name: Stinger team
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 441
+  name: BALT M2 HMG team
+  hud_name: HMG team
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 442
+  name: BALT Javelin team
+  hud_name: Javelin team
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 443
+  name: BALT CV-9035
+  hud_name: CV-9035
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 444
+  name: BALT Vilkas
+  hud_name: Vilkas
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 445
+  name: BALT Scimitar
+  hud_name: Scimitar
+  cost: 70
+  stealth: 1.25
+  type: 4
+  role: 11
+  category: 2
+- id: 446
+  name: 2S5 Giatsint
+  hud_name: 2S5 Giatsint
+  cost: 190
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 447
+  name: RQ-7 Shadow
+  hud_name: RQ-7 Shadow
+  cost: 50
+  stealth: 0.8
+  type: 16
+  role: 100
+  category: 0
+- id: 448
+  name: Patriot PAC-3 MSE
+  hud_name: Patriot PAC-3 MSE
+  cost: 175
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 449
+  name: Combat Engineers
+  hud_name: Combat Engineers
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 31
+  category: 1
+- id: 450
+  name: BMOP Toros
+  hud_name: BMOP Toros
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 451
+  name: Su-57 (landed)
+  hud_name: Su-57 (landed)
+  cost: 9
+  stealth: 1.0
+  type: 4
+  role: 0
+  category: 4
+- id: 452
+  name: Stryker SPH
+  hud_name: Stryker SPH
+  cost: 110
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 453
+  name: M10 Booker
+  hud_name: M10 Booker
+  cost: 145
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 454
+  name: VDV Metis-M1
+  hud_name: VDV Metis-M1
+  cost: 75
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 455
+  name: UAZ Kozlik
+  hud_name: UAZ Kozlik
+  cost: 45
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 456
+  name: F-15EX Eagle II (landed)
+  hud_name: F-15EX Eagle II
+  cost: 9
+  stealth: 1.0
+  type: 4
+  role: 0
+  category: 4
+- id: 457
+  name: M1150 Assault Breacher
+  hud_name: M1150 Assault Breacher
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 458
+  name: 1V14 Mashina-S
+  hud_name: 1V14 Mashina-S
+  cost: 50
+  stealth: 0.666
+  type: 4
+  role: 13
+  category: 0
+- id: 459
+  name: PTRK Kornet
+  hud_name: PTRK Kornet
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 460
+  name: PTRK Kornet-M
+  hud_name: PTRK Kornet-M
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 461
+  name: Armata training Target
+  hud_name: Armatank training Target
+  cost: 5
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 4
+- id: 462
+  name: Miller
+  hud_name: Miller
+  cost: 200
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 463
+  name: Su-24M2 (takeoff)
+  hud_name: Su-24M2 (takeoff)
+  cost: 125
+  stealth: 1.0
+  type: 4
+  role: 161
+  category: 4
+- id: 465
+  name: Su-27SM
+  hud_name: Su-27SM
+  cost: 130
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 466
+  name: S-300PM Favorit
+  hud_name: S-300PM Favorit
+  cost: 200
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 467
+  name: M-ATV
+  hud_name: M-ATV
+  cost: 50
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 468
+  name: BALT Eesti Scouts
+  hud_name: Eesti Scouts
+  cost: 80
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 469
+  name: BALT Jagu
+  hud_name: Jalaväe Jagu
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 470
+  name: Green Berets Flash
+  hud_name: 'Green Berets '
+  cost: 90
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 471
+  name: UR-77 Meteorit
+  hud_name: UR-77 Meteorit
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 2
+- id: 472
+  name: Partisan
+  hud_name: Partisan
+  cost: 200
+  stealth: 0.0
+  type: 2
+  role: 0
+  category: 4
+- id: 473
+  name: Green Light Team
+  hud_name: Green Light Team
+  cost: 100
+  stealth: 0.333
+  type: 2
+  role: 36
+  category: 1
+- id: 474
+  name: BTR training target
+  hud_name: BTR training target
+  cost: 5
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 475
+  name: Helicopter training target
+  hud_name: Mi-24 training target
+  cost: 5
+  stealth: 0.571
+  type: 8
+  role: 70
+  category: 5
+- id: 476
+  name: MT-SM
+  hud_name: MT-SM
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 477
+  name: BMD-4MK Demidov
+  hud_name: BMD-4MK Demidov
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 4
+- id: 478
+  name: BMD-2K Batalin
+  hud_name: BMD-2K Batalin
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 4
+- id: 479
+  name: T-90AK Batalin
+  hud_name: T-90AK Batalin
+  cost: 170
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 4
+- id: 480
+  name: BMP-3K Demidov
+  hud_name: BMP-3K Demidov
+  cost: 75
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 4
+- id: 481
+  name: BALT Leopard 2A7
+  hud_name: Leopard 2A7
+  cost: 210
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 482
+  name: BALT LATVIAN RESERVE
+  hud_name: Zemessardze
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 483
+  name: BALT LITHUANIAN RESERVE
+  hud_name: Savanoriai
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 484
+  name: Balloon training target
+  hud_name: Meteorological balloon
+  cost: 5
+  stealth: 1.0
+  type: 16
+  role: 100
+  category: 4
+- id: 485
+  name: NPC SUV
+  hud_name: SUV
+  cost: 45
+  stealth: 0.8
+  type: 4
+  role: 14
+  category: 4
+- id: 486
+  name: RU Officer
+  hud_name: Officer
+  cost: 200
+  stealth: 0.8
+  type: 2
+  role: 0
+  category: 4
+- id: 487
+  name: Vehicle crew
+  hud_name: Vehicle crew
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 488
+  name: BALT Leopard 2A7 Train
+  hud_name: Train cart
+  cost: 210
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 4
+- id: 489
+  name: LHA-6 Damaged
+  hud_name: LHA-6
+  cost: 9
+  stealth: 1.33
+  type: 32
+  role: 0
+  category: 4
+- id: 490
+  name: ZOM Walkers
+  hud_name: Walkers
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 491
+  name: ZOM Runners
+  hud_name: Runners
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 492
+  name: ZOM Spitters
+  hud_name: Spitters
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 493
+  name: ZOM Smokers
+  hud_name: Smokers
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 494
+  name: ZOM Boomer
+  hud_name: Boomer
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 495
+  name: ZOM Thrower
+  hud_name: Thrower
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 4
+- id: 496
+  name: ZOM Police
+  hud_name: Police
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 497
+  name: ZOM Civilians
+  hud_name: Civilians
+  cost: 40
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 498
+  name: DLC2 CV-9035
+  hud_name: CV-9035
+  cost: 70
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 499
+  name: DLC2 Spartan
+  hud_name: Spartan
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 0
+- id: 500
+  name: DLC2 Vilkas
+  hud_name: Vilkas
+  cost: 100
+  stealth: 1.0
+  type: 4
+  role: 10
+  category: 2
+- id: 501
+  name: DLC2 XA-180
+  hud_name: XA-180
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 502
+  name: DLC2 M113
+  hud_name: M113
+  cost: 35
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 503
+  name: DLC2 Leopard 2A8
+  hud_name: Leopard 2A8
+  cost: 245
+  stealth: 1.0
+  type: 4
+  role: 11
+  category: 2
+- id: 504
+  name: DLC2 E13TP
+  hud_name: E13TP
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 505
+  name: DLC2 Rover Defender
+  hud_name: Wolf WMIK
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 0
+- id: 506
+  name: DLC2 Gelezinis Vilkas
+  hud_name: Gelezinis Vilkas
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 507
+  name: DLC2 KASP
+  hud_name: KASP
+  cost: 30
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 508
+  name: DLC2 NASAMS
+  hud_name: NASAMS
+  cost: 110
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 509
+  name: DLC2 TGB-1111
+  hud_name: TGB-1111
+  cost: 45
+  stealth: 0.8
+  type: 4
+  role: 13
+  category: 0
+- id: 510
+  name: DLC2 M113 Panzermorser
+  hud_name: M113 Panzermörser
+  cost: 80
+  stealth: 1.0
+  type: 4
+  role: 131
+  category: 3
+- id: 511
+  name: DLC2 M109A5O
+  hud_name: 'M109A5Ö '
+  cost: 90
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 512
+  name: DLC2 L-39 Albatros
+  hud_name: L-39 Albatros
+  cost: 60
+  stealth: 1.0
+  type: 16
+  role: 164
+  category: 6
+- id: 513
+  name: DLC2 Jalavae Jagu
+  hud_name: Jalaväe Jagu
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 514
+  name: DLC2 Mehanizetie Kajinieki
+  hud_name: Mehanizetie Kajinieki
+  cost: 65
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 515
+  name: DLC2 Eesti Kaitseliit
+  hud_name: Kaitseliit
+  cost: 30
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 516
+  name: DLC2 Zemessardze
+  hud_name: Zemessardze
+  cost: 45
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 517
+  name: DLC2 ESTSOF
+  hud_name: ESTSOF
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 518
+  name: DLC2 Zaliukai
+  hud_name: Zaliukai
+  cost: 90
+  stealth: 0.571
+  type: 2
+  role: 36
+  category: 1
+- id: 519
+  name: DLC2 Milan
+  hud_name: Milan
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 520
+  name: DLC2 Javelin
+  hud_name: Javelin
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 521
+  name: DLC2 Spike-LR
+  hud_name: Spike
+  cost: 100
+  stealth: 0.571
+  type: 2
+  role: 35
+  category: 1
+- id: 522
+  name: DLC2 Piorun
+  hud_name: Piorun
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 523
+  name: DLC2 Grom
+  hud_name: Grom
+  cost: 80
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 524
+  name: DLC2 RBS 70
+  hud_name: RBS 70
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 34
+  category: 1
+- id: 525
+  name: DLC2 Eesti Scouts
+  hud_name: Eesti Scouts
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 526
+  name: DLC2 Jegeris
+  hud_name: Jegeris
+  cost: 85
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 527
+  name: DLC2 SUV
+  hud_name: SUV
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 528
+  name: DLC2 KNT
+  hud_name: KNT
+  cost: 75
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 529
+  name: DLC2 Snaiperu komanda
+  hud_name: Snaiperu komanda
+  cost: 100
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 530
+  name: DLC2 Snaiprid
+  hud_name: Snaiprid
+  cost: 90
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 531
+  name: DLC2 UH-60M
+  hud_name: UH-60M
+  cost: 70
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 532
+  name: DLC2 AS-365 Dauphin
+  hud_name: AS-365 Dauphin
+  cost: 55
+  stealth: 0.8
+  type: 8
+  role: 71
+  category: 5
+- id: 533
+  name: DLC2 M2 HMG
+  hud_name: M2 HMG
+  cost: 50
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 534
+  name: DLC2 GMG
+  hud_name: GMG
+  cost: 60
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 535
+  name: DLC2 HMMWV
+  hud_name: HMMWV
+  cost: 40
+  stealth: 1.0
+  type: 4
+  role: 12
+  category: 2
+- id: 536
+  name: DLC2 C-27J Spartan
+  hud_name: C-27J Spartan
+  cost: 80
+  stealth: 1.0
+  type: 16
+  role: 163
+  category: 6
+- id: 537
+  name: DLC2 Unimog
+  hud_name: Unimog
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 14
+  category: 3
+- id: 538
+  name: DLC2 Unimog AA
+  hud_name: Unimog
+  cost: 45
+  stealth: 1.0
+  type: 4
+  role: 16
+  category: 3
+- id: 539
+  name: 'DLC2 K9EST '
+  hud_name: K9 Kõu
+  cost: 230
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 540
+  name: DLC2 PzH-2000
+  hud_name: PzH-2000
+  cost: 250
+  stealth: 1.0
+  type: 4
+  role: 133
+  category: 3
+- id: 541
+  name: DLC2 G-Wagen
+  hud_name: G-Wagen
+  cost: 30
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 542
+  name: DLC2 TypeX RCV
+  hud_name: Type-X RCV
+  cost: 50
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 2
+- id: 543
+  name: DLC2 Scimitar
+  hud_name: Scimitar
+  cost: 65
+  stealth: 1.0
+  type: 4
+  role: 13
+  category: 0
+- id: 544
+  name: DLC2 HMG GMG
+  hud_name: HMG & GMG
+  cost: 55
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 545
+  name: DLC2 IRIS-T SLM
+  hud_name: IRIS-T SLM
+  cost: 140
+  stealth: 1.0
+  type: 4
+  role: 15
+  category: 3
+- id: 630
+  name: Airborne Recce
+  hud_name: Airborne Recce
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 631
+  name: Airborne Recce2
+  hud_name: Airborne Recce
+  cost: 70
+  stealth: 0.4
+  type: 2
+  role: 32
+  category: 0
+- id: 638
+  name: Mech. Riflemen Dragon
+  hud_name: Mech. Riflemen Dragon
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1
+- id: 639
+  name: Motopekhota AGS
+  hud_name: Motopekhota AGS
+  cost: 70
+  stealth: 0.571
+  type: 2
+  role: 30
+  category: 1

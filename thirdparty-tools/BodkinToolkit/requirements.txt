@@ -1,0 +1,10 @@
+# v3 toolkit third-party runtime dependencies.
+# To keep the project self-contained, install them INTO the project:
+#     pip install -r requirements.txt -t vendor
+# The entry scripts prepend ./vendor to sys.path, so a populated vendor/
+# folder makes /v3/ runnable with no dependency on packages outside the project.
+PyYAML>=6.0
+pycryptodome>=3.18
+UnityPy>=1.10
+attrs>=21.2          # required by UnityPy
+questionary>=2.0    # optional: arrow-key menus in editor (falls back to numbered)

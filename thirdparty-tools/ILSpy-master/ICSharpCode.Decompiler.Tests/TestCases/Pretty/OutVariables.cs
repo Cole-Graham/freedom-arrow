@@ -1,0 +1,134 @@
+// Copyright (c) AlphaSierraPapa for the SharpDevelop Team
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this
+// software and associated documentation files (the "Software"), to deal in the Software
+// without restriction, including without limitation the rights to use, copy, modify, merge,
+// publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+// to whom the Software is furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all copies or
+// substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+
+using System;
+using System.Collections.Generic;
+
+namespace ICSharpCode.Decompiler.Tests.TestCases.Pretty
+{
+	public class OutVariables
+	{
+		public static void OutVarInShortCircuit(Dictionary<int, string> d)
+		{
+			if (d.Count > 2 && d.TryGetValue(42, out var value))
+			{
+				Console.WriteLine(value);
+			}
+		}
+
+		public static Action CapturedOutVarInShortCircuit(Dictionary<int, string> d)
+		{
+			// Note: needs reasoning about "definitely assigned if true"
+			// to ensure that the value is initialized when the delegate is declared.
+			if (d.Count > 2 && d.TryGetValue(42, out var value))
+			{
+				return () => {
+					Console.WriteLine(value);
+				};
+			}
+			return null;
+		}
+
+		private bool TryGet<T>(out T result)
+		{
+			result = default;
+			return true;
+		}
+
+		public void M3()
+		{
+			TryGet<Dictionary<int, (int, string)>>(out Dictionary<int, (int A, string B)> data);
+
+			Test();
+
+			int Test()
+			{
+				return data[0].A;
+			}
+		}
+
+		public void GetObject(out object obj)
+		{
+			obj = null;
+		}
+
+		public void M4()
+		{
+			GetObject(out dynamic obj);
+			obj.Method();
+		}
+
+		public void M5()
+		{
+			Func<bool> func = () => TryGet<object>(out var result) && result != null;
+			Func<bool> func2 = () => TryGet<object>(out var result) && result != null;
+
+			func();
+			func2();
+		}
+
+		public static void CapturedBoolResult(Dictionary<int, int> d, int key)
+		{
+			// The boolean result of the out-returning call is captured into a local, yet the out
+			// parameter is still promoted to an inline 'out var' rather than a separate declaration.
+			bool value = d.TryGetValue(key, out var value2);
+			Console.WriteLine(value);
+			Console.WriteLine(value);
+			Console.WriteLine(value2);
+			Console.WriteLine(value2);
+		}
+
+		private static void GetTwo(out int a, out int b)
+		{
+			a = 1;
+			b = 2;
+		}
+
+		public static void SameVariableUsedForTwoOutParameters()
+		{
+			// The declaration must use the explicit type: referencing an implicitly-typed
+			// out variable in another argument of the declaring call is an error (CS8196).
+			GetTwo(out int a, out a);
+		}
+
+		public static int SameVariableUsedForTwoOutParametersAndRead()
+		{
+			GetTwo(out int a, out a);
+			return a;
+		}
+
+		private static void OutAndValue(out int a, int b)
+		{
+			a = b;
+		}
+
+		private static int UseAndReturn(out int a)
+		{
+			a = 1;
+			return a;
+		}
+
+		public static void SameVariableUsedInNestedCallArgument()
+		{
+			// CS8196 also applies when the second reference is nested within
+			// another argument of the declaring call.
+			OutAndValue(out int a, UseAndReturn(out a));
+			Console.WriteLine(a);
+		}
+	}
+}

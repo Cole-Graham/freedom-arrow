@@ -1,0 +1,5 @@
+/*.dll
+/*.pdb
+/*.residual.txt.generated
+/*.expected.cs
+/*.generated.cs

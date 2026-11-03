@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Carry every distribution RID in the lock file so a RID-specific `dotnet publish -r <rid>` of a
+         consuming app (ILSpy) restores in locked mode (RestoreLockedMode below) on any host OS, with no
+         per-publish restore escape hatch. Must contain ILSpy.csproj's RuntimeIdentifiers; "any" covers the
+         framework-dependent ilspycmd RID package (dotnet pack -r any). -->
+    <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;osx-arm64;any</RuntimeIdentifiers>
+
+    <PackageId>ICSharpCode.Decompiler</PackageId>
+    <PackageVersion>8.0.0.0-noversion</PackageVersion>
+    <Title>ILSpy Decompiler Engine</Title>
+    <Authors>ILSpy Contributors</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/icsharpcode/ILSpy/</PackageProjectUrl>
+    <Description>ICSharpCode.Decompiler is the decompiler engine used in ILSpy.</Description>
+    <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
+    <Company>ic#code</Company>
+    <Product>ILSpy</Product>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/icsharpcode/ILSpy.git</RepositoryUrl>
+    <PackageIcon>DecompilerNuGetPackageIcon.png</PackageIcon>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2011-$([System.DateTime]::Now.Year) AlphaSierraPapa</Copyright>
+    <PackageTags>C# Decompiler ILSpy</PackageTags>
+
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
+
+    <!-- Compile items come from the SDK default **/*.cs glob; the ItemGroup below removes the few
+         files that must not be compiled. Default None globbing stays off so the explicit None
+         entries (templates, .tt, packaging assets) remain the authoritative list. -->
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <LangVersion>14</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>ICSharpCode.Decompiler.snk</AssemblyOriginatorKeyFile>
+    <NoWarn>$(NoWarn);1701;1702;1591;1573</NoWarn>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="PackageReadme.md" Pack="true" PackagePath="\" />
+    <None Include="DecompilerNuGetPackageIcon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Read by ILLink, ILC and the SDK's reference-compatibility analyzers. The SDK writes these from
+       the IsTrimmable/IsAotCompatible properties for .NETCoreApp targets only; on netstandard2.0 the
+       properties produce NETSDK1212/NETSDK1210 and nothing else, so the attributes are declared here.
+       ICSharpCode.Decompiler.AotTest keeps them honest: it publishes the assembly through ILC with
+       every trim/AOT warning as an error. -->
+  <ItemGroup>
+    <AssemblyMetadata Include="IsTrimmable" Value="True" />
+    <AssemblyMetadata Include="IsAotCompatible" Value="True" />
+  </ItemGroup>
+  
+  <!-- https://devblogs.microsoft.com/nuget/enable-repeatable-package-restores-using-a-lock-file/ -->
+  <PropertyGroup>
+	<RestoreLockedMode>true</RestoreLockedMode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>$(DefineConstants);STEP</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	<GenerateSBOM>true</GenerateSBOM>
+  </PropertyGroup>
+
+  <!-- Inject ILSpyUpdateAssemblyInfo as dependency of the GetPackageVersion
+    target so Pack uses the generated version when evaluating project references. -->
+  <PropertyGroup>
+    <GetPackageVersionDependsOn>
+      ILSpyUpdateAssemblyInfo;
+      $(GetPackageVersionDependsOn)
+    </GetPackageVersionDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Sbom.Targets" Version="4.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
+    <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.403">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.403">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
+
+    <!-- Specifies the version of Microsoft.NETCore.App.Ref to obtain nullability information from. -->
+    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[8.0.0]" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ICSharpCode.Decompiler.Generators\ICSharpCode.Decompiler.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\DecompilerVersionInfo.template.cs" />
+    <None Include="ICSharpCode.Decompiler.snk" />
+    <None Include="Metadata\ILOpCodes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ILOpCodes.cs</LastGenOutput>
+    </None>
+    <None Include="IL\Instructions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Instructions.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\doc\Pattern Matching.html">
+      <Link>CSharp\Syntax\PatternMatching\Pattern Matching.html</Link>
+    </None>
+    <None Include="Humanizer\LICENSE" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpdateAssemblyInfoStamp Include="obj\update-assemblyinfo-last-commit-hash.txt" />
+  </ItemGroup>
+
+  <Target Name="ILSpyUpdateAssemblyInfo" BeforeTargets="BeforeBuild">
+    <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+      <UpdateAssemblyInfo>powershell -NoProfile -ExecutionPolicy Bypass -File BuildTools/update-assemblyinfo.ps1 $(Configuration)</UpdateAssemblyInfo>
+      <GitRevParse>git rev-parse HEAD^^{commit}</GitRevParse>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(OS)' != 'Windows_NT' ">
+      <UpdateAssemblyInfo>pwsh -NoProfile -ExecutionPolicy Bypass -File BuildTools/update-assemblyinfo.ps1 $(Configuration)</UpdateAssemblyInfo>
+      <GitRevParse>git rev-parse HEAD^{commit}</GitRevParse>
+    </PropertyGroup>
+    <ReadLinesFromFile ContinueOnError="true" File="@(UpdateAssemblyInfoStamp)">
+      <Output TaskParameter="Lines" PropertyName="LastCommitHash" />
+    </ReadLinesFromFile>
+    <Exec ContinueOnError="true" WorkingDirectory=".." Command="$(GitRevParse)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="CommitHash" />
+    </Exec>
+    <Exec WorkingDirectory=".." Command="$(UpdateAssemblyInfo)" Timeout="60000" Condition="'$(CommitHash)'!='$(LastCommitHash)'" LogStandardErrorAsError="true" ContinueOnError="false" />
+    <WriteLinesToFile Lines="$(CommitHash)" File="@(UpdateAssemblyInfoStamp)" Overwrite="true" Condition="'$(CommitHash)'!='$(LastCommitHash)'" />
+    <ReadLinesFromFile ContinueOnError="true" File="..\VERSION">
+      <Output TaskParameter="Lines" PropertyName="PackageVersion" />
+      <Output TaskParameter="Lines" PropertyName="SbomGenerationPackageVersion" />
+    </ReadLinesFromFile>
+  </Target>
+
+  <Target Name="CleanUpdateAssemblyInfo" BeforeTargets="BeforeClean">
+    <Delete Files="@(UpdateAssemblyInfoStamp);..\VERSION" />
+  </Target>
+
+  <ItemGroup>
+    <!-- Generated before build by BuildTools/update-assemblyinfo.ps1; it does not exist when the
+         default Compile glob is evaluated on a clean checkout, so include it explicitly. The Remove
+         drops the duplicate the glob would add once the file has been generated by a prior build. -->
+    <Compile Remove="Properties\DecompilerVersionInfo.cs" />
+    <Compile Include="Properties\DecompilerVersionInfo.cs" />
+    <!-- A template with placeholder tokens, transformed into DecompilerVersionInfo.cs; never compiled. -->
+    <Compile Remove="Properties\DecompilerVersionInfo.template.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="IL\Instructions.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Instructions.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

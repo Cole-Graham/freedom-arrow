@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.fake
+
+# Developers ignore
+lat/
+ai_working_dir/
+config.YAML
+
+# Pipeline output. Vanilla snapshots and patched bundles stay on the machine.
+cache/
+dist/
+
+# Mod stuff
+BrokenArrow_Data/

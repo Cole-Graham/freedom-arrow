@@ -1,0 +1,2848 @@
+- id: 1
+  name: Rifle M27 T2 Marines
+  hud_name: M27 IAR
+  type: 1
+- id: 2
+  name: Autocannon 30 2A72 T1
+  hud_name: 2А72 30mm
+  type: 114
+- id: 3
+  name: Howitzer 152 2A64 T1 MSTA-S
+  hud_name: 2A64 152mm
+  type: 111
+- id: 4
+  name: ATGM TOW2A x1
+  hud_name: TOW M220
+  type: 80
+- id: 5
+  name: 'Mortar 120 M121 Loadout1 '
+  hud_name: M121
+  type: 112
+- id: 6
+  name: MainGun 100 2A70 T1
+  hud_name: 2А70 100 mm
+  type: 110
+- id: 7
+  name: MMG 7.62 PKT (vehicles)
+  hud_name: PKT
+  type: 27
+- id: 8
+  name: Autocannon 30 M230 Apache
+  hud_name: M230 30mm
+  type: 114
+- id: 9
+  name: MainGun 125 T72B 2A46M
+  hud_name: 2A46M 125mm
+  type: 110
+- id: 10
+  name: MLRS 227 HIMARS
+  hud_name: HIMARS
+  type: 113
+- id: 11
+  name: MainGun 105 M60A3 M68
+  hud_name: M68E1 105mm
+  type: 110
+- id: 12
+  name: ATGM Hellfire x4
+  hud_name: Hellfire
+  type: 80
+- id: 13
+  name: Autocannon 25 Bushmaster M242 T3
+  hud_name: Bushmaster
+  type: 114
+- id: 14
+  name: Autorifle RPK74M T1
+  hud_name: RPK-74M
+  type: 30
+- id: 15
+  name: RocketPod 70 Hydra x19
+  hud_name: Hydra
+  type: 140
+- id: 16
+  name: SAM Stinger x8
+  hud_name: FIM-92 Stinger
+  type: 86
+- id: 17
+  name: ATGM Hellfire x2 SHORAD
+  hud_name: Hellfire
+  type: 81
+- id: 18
+  name: HMG M2 Browning 12.7 (vehicles)
+  hud_name: M2 Browning
+  type: 28
+- id: 19
+  name: AAG 30 2A38M Pantsir
+  hud_name: 2x 2А38М
+  type: 115
+- id: 20
+  name: SAM 57E6E x12 Pantsir
+  hud_name: 2x6 57E6E
+  type: 86
+- id: 21
+  name: AGL 40  Mk19 (vehicles)
+  hud_name: Mk19 AGL
+  type: 61
+- id: 23
+  name: Autocannon 30 Bushmaster2
+  hud_name: Bushmaster II
+  type: 114
+- id: 24
+  name: MainGun 105 StrykerMGS M68
+  hud_name: M68A2 105mm
+  type: 110
+- id: 25
+  name: ATGM TOW2 x2
+  hud_name: TOW-2
+  type: 80
+- id: 26
+  name: SAM Stinger x4
+  hud_name: FIM-92 Stinger
+  type: 86
+- id: 27
+  name: MMG 7.62 M240 (Vehicles)
+  hud_name: M240
+  type: 27
+- id: 28
+  name: SAM x8 Tor-M1
+  hud_name: Tor M1
+  type: 86
+- id: 29
+  name: Rifle AK74M T1
+  hud_name: AK-74M
+  type: 1
+- id: 30
+  name: MMG 7.62 PKP T1
+  hud_name: PKP
+  type: 26
+- id: 31
+  name: UGL 40 GP34 (AK-74M)
+  hud_name: GP-34
+  type: 60
+- id: 32
+  name: RocketLauncher RPG7V (PG7-L)
+  hud_name: RPG-7V
+  type: 62
+- id: 34
+  name: AAG 25 GAU12 LAVAD
+  hud_name: GAU-12 25mm
+  type: 115
+- id: 36
+  name: RocketLauncher CarlGustavM3
+  hud_name: Carl Gustaf M3
+  type: 62
+- id: 37
+  name: Ballistic ATACMS
+  hud_name: ATACMS
+  type: 83
+- id: 38
+  name: Autocannon 30 2A42 Ka50 52
+  hud_name: 2А42-30mm
+  type: 114
+- id: 39
+  name: HMG 50cal ANM3 (Avenger)
+  hud_name: M3P Browning
+  type: 28
+- id: 40
+  name: AAG 30 M230LF
+  hud_name: M230LF 30mm
+  type: 115
+- id: 41
+  name: Howitzer 105 M20 Hawkeye
+  hud_name: M20 105mm
+  type: 111
+- id: 42
+  name: MainGun 120 M1A1HC M256
+  hud_name: M256 120mm
+  type: 110
+- id: 43
+  name: MainGun 120 M1A1FEP M256
+  hud_name: M256 120mm
+  type: 110
+- id: 45
+  name: Shotgun M1014 T2
+  hud_name: M1014
+  type: 40
+- id: 50
+  name: Rifle M4A1 T1
+  hud_name: M4A1
+  type: 1
+- id: 51
+  name: Rifle M27 T2 SmallSquads
+  hud_name: M27 IAR
+  type: 1
+- id: 53
+  name: Autorifle M249 Para T2
+  hud_name: M249 Para
+  type: 30
+- id: 54
+  name: DMR 7.62 M110 T1
+  hud_name: M110
+  type: 2
+- id: 55
+  name: DMR 5.56 Mk12 Silenced T3
+  hud_name: Mk12 DMR
+  type: 2
+- id: 56
+  name: Sniper 12.7 M107 T1
+  hud_name: M107
+  type: 3
+- id: 57
+  name: DMR 5.56 M38 Silenced T2
+  hud_name: M38 DMR
+  type: 2
+- id: 58
+  name: UGL 40 M203 (M4A1)
+  hud_name: M203
+  type: 60
+- id: 59
+  name: RocketLauncher AT4 Disposable
+  hud_name: AT4CS-RS
+  type: 63
+- id: 60
+  name: Autorifle M249E3 T1
+  hud_name: M249E3
+  type: 30
+- id: 61
+  name: RocketLauncher SMAW
+  hud_name: SMAW
+  type: 62
+- id: 62
+  name: ATGM Javelin Infantry
+  hud_name: Javelin
+  type: 80
+- id: 63
+  name: MMG 7.62 M240L Infantry
+  hud_name: M240L
+  type: 26
+- id: 64
+  name: Sniper 7.62 M40A5 T2
+  hud_name: M40A5
+  type: 3
+- id: 65
+  name: AAM Stinger F Infantry
+  hud_name: FIM-92F Stinger
+  type: 85
+- id: 66
+  name: RocketPod 70 Hydra x19 APKWS
+  hud_name: APKWS
+  type: 140
+- id: 67
+  name: Rifle MK18 CQBR T2
+  hud_name: Mk18 CQBR
+  type: 5
+- id: 68
+  name: MGL 40 M32
+  hud_name: M32 MGL
+  type: 60
+- id: 70
+  name: Rifle M4A1 Mod. II T2
+  hud_name: M4A1 Mod. II
+  type: 1
+- id: 71
+  name: Rifle SCARH T3
+  hud_name: SCAR-H
+  type: 6
+- id: 73
+  name: Sniper 7.62 M2010 Silenced T2
+  hud_name: M2010
+  type: 3
+- id: 74
+  name: Invisible weapon
+  hud_name: No weapon
+  type: 60
+- id: 75
+  name: AGL 40  Mk19 Infantry
+  hud_name: Mk19 AGL
+  type: 61
+- id: 76
+  name: ATGM Javelin x1
+  hud_name: Javelin
+  type: 80
+- id: 77
+  name: Minigun 7.62 GAU17 Osprey
+  hud_name: GAU-17
+  type: 29
+- id: 78
+  name: MainGun 125 T14 2A82
+  hud_name: 2A82 125mm
+  type: 110
+- id: 80
+  name: PlaneGun 40 Bofors AC130
+  hud_name: Bofors 40mm
+  type: 114
+- id: 81
+  name: Howitzer 105 M102 AC130
+  hud_name: M102 105mm
+  type: 110
+- id: 82
+  name: PlaneGun 25 GAU12 AC130
+  hud_name: GAU-12 Equalizer
+  type: 115
+- id: 83
+  name: HMG 12.7 M85
+  hud_name: M2 Browning
+  type: 28
+- id: 84
+  name: Autocannon 20 M197 AH1
+  hud_name: M197 20mm
+  type: 114
+- id: 85
+  name: AAM AIM9 x1 Helicopter
+  hud_name: Sidewinder
+  type: 88
+- id: 86
+  name: Autocannon 30 2A42 T1
+  hud_name: 2А42-30mm
+  type: 114
+- id: 87
+  name: Bomb Mk82 x2
+  hud_name: Mk82 500lb
+  type: 160
+- id: 88
+  name: PlaneGun 20 M61 Vulcan
+  hud_name: M61 20mm
+  type: 116
+- id: 89
+  name: ATGM KornetM x2
+  hud_name: Kornet-M
+  type: 80
+- id: 90
+  name: 'Howitzer 130 AK130 '
+  hud_name: AK130
+  type: 111
+- id: 91
+  name: AAG 130 AK130
+  hud_name: AK130
+  type: 115
+- id: 92
+  name: MLRS 122 Grad HE
+  hud_name: Grad
+  type: 113
+- id: 93
+  name: MLRS 300 Smerch
+  hud_name: Smerch
+  type: 113
+- id: 94
+  name: SAM 9M33 x6 OsaAKM
+  hud_name: 9M33
+  type: 86
+- id: 97
+  name: HMG Kord
+  hud_name: Kord HMG
+  type: 28
+- id: 98
+  name: Mortar 240 2B8 Tyulpan
+  hud_name: 2B8 240mm
+  type: 112
+- id: 99
+  name: SAM x16 Tor-M2
+  hud_name: Tor M2
+  type: 86
+- id: 100
+  name: Autocannon 30 GSh30K MI24
+  hud_name: GSh-30K
+  type: 114
+- id: 101
+  name: Minigun 12.7 YakB Mi24
+  hud_name: YakB
+  type: 29
+- id: 102
+  name: Autocannon 23 GSh23L MI24
+  hud_name: GSh-23L
+  type: 114
+- id: 103
+  name: RocketPod 80 S8 x20
+  hud_name: S-8
+  type: 140
+- id: 104
+  name: 'ATGM Kokon x2 '
+  hud_name: Kokon
+  type: 80
+- id: 105
+  name: RocketPod 70 DAGR x8
+  hud_name: DAGR
+  type: 140
+- id: 106
+  name: ATGM Hellfire x2 Heli
+  hud_name: Hellfire
+  type: 80
+- id: 107
+  name: ATGM Vikhr x6
+  hud_name: Vikhr
+  type: 80
+- id: 109
+  name: RocketPod 70 Hydra x7
+  hud_name: Hydra
+  type: 140
+- id: 110
+  name: Minigun 7.62 GAU17 AH6
+  hud_name: GAU-17
+  type: 29
+- id: 111
+  name: Minigun 12.7 GAU19B AH6
+  hud_name: GAU-19B
+  type: 29
+- id: 112
+  name: Autocannon 23 GSh23L Pylon Helicopter
+  hud_name: GSh-23L
+  type: 141
+- id: 113
+  name: AAM AIM9 x1 Plane
+  hud_name: Sidewinder
+  type: 88
+- id: 114
+  name: RocketPod 122 S13 x5
+  hud_name: S-13
+  type: 140
+- id: 115
+  name: Minigun 7.62 M134
+  hud_name: M134
+  type: 29
+- id: 116
+  name: UGL 40 Mk13 (SCAR-H)
+  hud_name: Mk13
+  type: 60
+- id: 117
+  name: UGL 40 M320 (M4 mod2)
+  hud_name: M320
+  type: 60
+- id: 118
+  name: AAM AMRAAM x1 Plane
+  hud_name: AMRAAM
+  type: 87
+- id: 120
+  name: PlaneGun 30 GSh301 SU57
+  hud_name: GSh-30-1
+  type: 116
+- id: 122
+  name: Rifle AK74RMO T2
+  hud_name: AK-74RMO
+  type: 1
+- id: 123
+  name: Rifle AK12 T1
+  hud_name: AK-12
+  type: 1
+- id: 124
+  name: Rifle AK74 SSO  T3
+  hud_name: AK-74 SSO
+  type: 1
+- id: 125
+  name: MMG 7.62 PKPM T2
+  hud_name: PKP-M
+  type: 26
+- id: 126
+  name: 'MMG 7.62 PKP PBS '
+  hud_name: PKP PBS
+  type: 26
+- id: 127
+  name: MMG 7.62 PKP Bullpup T3
+  hud_name: PKP Bullpup
+  type: 26
+- id: 129
+  name: Autorifle RPK74M Kashtan T2
+  hud_name: RPK-74M Kashtan
+  type: 30
+- id: 130
+  name: Autorifle RPK74M PBS T2
+  hud_name: RPK-74M PBS
+  type: 30
+- id: 132
+  name: Autorifle RPK16 PBS T3
+  hud_name: RPK-16 PBS
+  type: 30
+- id: 133
+  name: Rifle AKM Silenced T1
+  hud_name: AKM PBS
+  type: 5
+- id: 134
+  name: Rifle AK103 Silenced T2
+  hud_name: AK-103
+  type: 5
+- id: 135
+  name: Rifle AK15 Silenced T3
+  hud_name: AK-15
+  type: 5
+- id: 136
+  name: Sniper 7.62 SV98 T2
+  hud_name: SV-98
+  type: 3
+- id: 137
+  name: UGL 40 GP34 AK74RMO
+  hud_name: GP-34
+  type: 60
+- id: 138
+  name: UGL 40 GP25 (AKM)
+  hud_name: GP-25
+  type: 60
+- id: 140
+  name: Rifle A545 T3
+  hud_name: Kord 6P67
+  type: 1
+- id: 141
+  name: ATGM Konkurs x1 (Infantry)
+  hud_name: Konkurs
+  type: 80
+- id: 142
+  name: ATGM KonkursM x1 Infantry
+  hud_name: Konkurs-M
+  type: 80
+- id: 143
+  name: RocketLauncher RPG7D PG7VR
+  hud_name: RPG-7D3
+  type: 62
+- id: 144
+  name: 'ATGM Kornet x1 (Infantry) '
+  hud_name: Kornet
+  type: 80
+- id: 145
+  name: HMG Kord (Infantry)
+  hud_name: Kord HMG
+  type: 28
+- id: 146
+  name: AAM Verba (Infantry)
+  hud_name: Verba
+  type: 85
+- id: 147
+  name: ATGM MetisM1 x1 (Infantry)
+  hud_name: Metis-M1
+  type: 80
+- id: 148
+  name: AGL 30  AGS30 Infantry
+  hud_name: 'AGS-30 '
+  type: 61
+- id: 149
+  name: 'ATGM Kornet x1 Team2 (Infantry) '
+  hud_name: Kornet
+  type: 80
+- id: 150
+  name: ATGM KornetM x1 Team2 (Infantry)
+  hud_name: Kornet-M
+  type: 80
+- id: 151
+  name: DMR SVDS T2
+  hud_name: SVD-S
+  type: 2
+- id: 152
+  name: Sniper 8.6 Lapua T5000 T2
+  hud_name: T-5000
+  type: 3
+- id: 154
+  name: ATGM Metis x1 (Infantry) Team1
+  hud_name: Metis
+  type: 80
+- id: 155
+  name: RocketLauncher Bur
+  hud_name: Bur
+  type: 62
+- id: 156
+  name: Rifle AK74 T0
+  hud_name: AK-74
+  type: 1
+- id: 157
+  name: 'UGL 40 GP25 (AK74) '
+  hud_name: GP-25
+  type: 60
+- id: 158
+  name: MMG 7.62 PKM T0
+  hud_name: PKM
+  type: 26
+- id: 159
+  name: RocketLauncher SPG9
+  hud_name: SPG-9M
+  type: 62
+- id: 160
+  name: 'AAM IglaN Infantry '
+  hud_name: Igla-N
+  type: 85
+- id: 161
+  name: Shotgun Saiga12
+  hud_name: KS-K
+  type: 40
+- id: 162
+  name: RocketLauncher RPG7V (PG-7TB)
+  hud_name: RPG-7V2
+  type: 62
+- id: 163
+  name: RocketLauncher RPOA x4 Disposable
+  hud_name: RPO-A
+  type: 63
+- id: 167
+  name: DMR SVD T1
+  hud_name: SVD
+  type: 2
+- id: 168
+  name: RocketLauncher 73 RPG26  Disposable
+  hud_name: RPG-26
+  type: 63
+- id: 169
+  name: RocketLauncher 105 RPG30 Disposable
+  hud_name: RPG-30
+  type: 63
+- id: 170
+  name: AAM IglaN Infantry  Team2
+  hud_name: Igla-N
+  type: 85
+- id: 171
+  name: RocketLauncher RPG27 Disposable
+  hud_name: RPG-27
+  type: 63
+- id: 172
+  name: 'RocketLauncher RPG29 '
+  hud_name: RPG-29
+  type: 62
+- id: 174
+  name: HMG Kord (Infantry) Team 2
+  hud_name: Kord HMG
+  type: 28
+- id: 175
+  name: ATGM Fagot x1 (Infantry)
+  hud_name: Fagot
+  type: 80
+- id: 176
+  name: ATGM Fagot x1 (Infantry) Team2
+  hud_name: Fagot
+  type: 80
+- id: 177
+  name: ATGM MetisM x1 Infantry
+  hud_name: Metis-M
+  type: 80
+- id: 179
+  name: RocketLauncher RPG28 Disposable
+  hud_name: RPG-28
+  type: 63
+- id: 182
+  name: Rifle ADS T3
+  hud_name: ADS
+  type: 1
+- id: 183
+  name: UGL 40 ADS
+  hud_name: 40mm UGL
+  type: 60
+- id: 184
+  name: MGL 45 DP64
+  hud_name: DP-64
+  type: 60
+- id: 185
+  name: 'AGL 40  AGS40 Infantry '
+  hud_name: 'AGS-40 '
+  type: 61
+- id: 188
+  name: DMR VSS Silenced T3
+  hud_name: VSS
+  type: 2
+- id: 190
+  name: SMG Saiga9 9x19 Silenced T3
+  hud_name: PPK-20
+  type: 25
+- id: 192
+  name: 'UGL 40 GP34 (AK-12) '
+  hud_name: GP-34
+  type: 60
+- id: 193
+  name: AAM Verba Infantry Team2
+  hud_name: Verba
+  type: 85
+- id: 194
+  name: AGL 30  AGS17
+  hud_name: AG-17
+  type: 61
+- id: 195
+  name: ATGM Kokon x4
+  hud_name: Kokon
+  type: 80
+- id: 196
+  name: ATGM Ataka x4
+  hud_name: Ataka
+  type: 80
+- id: 197
+  name: MainGun 125 Sprut 2A75
+  hud_name: 2A75 125mm
+  type: 110
+- id: 198
+  name: SAM IglaS x2 ZU23
+  hud_name: Igla-S
+  type: 86
+- id: 199
+  name: Shotgun M590A1 Mossberg T1
+  hud_name: M590A1
+  type: 40
+- id: 200
+  name: RocketLauncher M141 BDM Disposable
+  hud_name: SMAW-D
+  type: 63
+- id: 201
+  name: AAM Stinger F Infantry Team2
+  hud_name: FIM-92 Stinger
+  type: 85
+- id: 202
+  name: RocketLauncher RAWS
+  hud_name: RAWS
+  type: 62
+- id: 203
+  name: AGL 40  Mk47 Infantry
+  hud_name: Mk 47 ALGL
+  type: 61
+- id: 205
+  name: ATGM TOW2A x1 (Infantry)
+  hud_name: TOW-2A
+  type: 80
+- id: 206
+  name: HMG M2 Browning 12.7 Infantry
+  hud_name: M2 Browning
+  type: 28
+- id: 207
+  name: HMG M2 Browning 12.7 Infantry Team2
+  hud_name: M2 Browning
+  type: 28
+- id: 208
+  name: Rifle XM7 T2
+  hud_name: M7 Spear
+  type: 6
+- id: 209
+  name: Autorifle XM250 T2
+  hud_name: M250 LMG
+  type: 30
+- id: 210
+  name: Rifle HK416 T3 Silenced
+  hud_name: HK 416 D10RS
+  type: 5
+- id: 211
+  name: Autorifle Mk46 Silenced T3
+  hud_name: Mk.46 sup.
+  type: 30
+- id: 212
+  name: RocketLauncher M72A10 LAW Disposable
+  hud_name: M72A10 LAW
+  type: 63
+- id: 213
+  name: Minigun 7.62 M134 Helicopter
+  hud_name: GAU-17
+  type: 29
+- id: 214
+  name: ATGM Kornet x4
+  hud_name: Kornet
+  type: 80
+- id: 215
+  name: ATGM KornetM x4
+  hud_name: Kornet-M
+  type: 80
+- id: 216
+  name: AGL 30  AGS30 [AG]
+  hud_name: 'AG-30 '
+  type: 61
+- id: 217
+  name: Mortar 81 M252
+  hud_name: M252 81mm
+  type: 112
+- id: 218
+  name: Mortar 82 2B27 Drok
+  hud_name: 2B27 Drok
+  type: 112
+- id: 220
+  name: SAM x4 S300V
+  hud_name: S-300V4
+  type: 86
+- id: 221
+  name: MainGun 125 T72B3 obr16
+  hud_name: 2A46M-5-01
+  type: 110
+- id: 222
+  name: 'MainGun 125 T80BVM 2A46M4 '
+  hud_name: 2A46M-4
+  type: 110
+- id: 223
+  name: RocketPod 70 Hydra x7 APKWS
+  hud_name: Hydra APKWS
+  type: 140
+- id: 224
+  name: RocketPod 127 Zuni x4 Plane
+  hud_name: Zuni
+  type: 140
+- id: 225
+  name: PlaneGun 25 GAU12 AV8B Harrier
+  hud_name: GAU-12 Equalizer
+  type: 116
+- id: 226
+  name: RocketPod 127 Zuni x8 Plane
+  hud_name: Zuni
+  type: 140
+- id: 227
+  name: HMG 12.7 GAU21 Helicopter
+  hud_name: GAU-21
+  type: 28
+- id: 228
+  name: MMG 7.62 M240 Helicopter
+  hud_name: M240
+  type: 27
+- id: 230
+  name: 'ATGM AGM65 x1 '
+  hud_name: Maverick
+  type: 89
+- id: 231
+  name: AAM AMRAAM x2 Plane
+  hud_name: AMRAAM
+  type: 87
+- id: 232
+  name: RocketPod 122 S13 x5 Plane
+  hud_name: S-13
+  type: 140
+- id: 233
+  name: Howitzer 155 M284 M109A7
+  hud_name: M284
+  type: 111
+- id: 235
+  name: Howitzer 155 M907 IronThunder M1299
+  hud_name: M907 155mm
+  type: 111
+- id: 236
+  name: SAM x4 Patriot
+  hud_name: PAC-2
+  type: 86
+- id: 238
+  name: 'SAM x2 Patriot '
+  hud_name: PAC-2
+  type: 86
+- id: 239
+  name: Minigun 7.62 GShG
+  hud_name: GShG
+  type: 29
+- id: 240
+  name: MMG 7.62 PKP vehicles
+  hud_name: PKP
+  type: 27
+- id: 241
+  name: PlaneGun 30 GSh301
+  hud_name: GSh-30-1
+  type: 116
+- id: 243
+  name: AAM R73 x1 Plane
+  hud_name: R-73
+  type: 88
+- id: 244
+  name: AAM R77 x1 Plane
+  hud_name: R-77-1
+  type: 87
+- id: 246
+  name: Bomb FAB250 x2
+  hud_name: FAB-250
+  type: 160
+- id: 247
+  name: ATGM Kornet x1 UAV
+  hud_name: Kornet
+  type: 80
+- id: 248
+  name: ATGM KonkursM x1
+  hud_name: Konkurs-M
+  type: 80
+- id: 249
+  name: HMG KPVT
+  hud_name: KPVT
+  type: 28
+- id: 250
+  name: 'Autocannon KPVB '
+  hud_name: KPVB
+  type: 114
+- id: 251
+  name: MMG 7.62 M240 Heli
+  hud_name: M240
+  type: 27
+- id: 252
+  name: AAM R60 x2 Helicopter
+  hud_name: R-60
+  type: 88
+- id: 254
+  name: MLRS 227 HIMARS CLU
+  hud_name: HIMARS
+  type: 113
+- id: 256
+  name: ATGM TOW2B x1
+  hud_name: TOW M41
+  type: 80
+- id: 257
+  name: MainGun 152 M551A1 M81E1
+  hud_name: M81E1 152mm
+  type: 110
+- id: 258
+  name: MainGun 105 M8AGS XM35
+  hud_name: M35
+  type: 110
+- id: 259
+  name: MainGun 120 M8AGS XM291
+  hud_name: M291 120mm
+  type: 110
+- id: 260
+  name: AGL 40  Mk47
+  hud_name: Mk 47 ALGL
+  type: 61
+- id: 261
+  name: AAG 20 M61 PIVADS
+  hud_name: M61 20mm
+  type: 115
+- id: 262
+  name: Mortar 120 Dragonfire
+  hud_name: Dragonfire
+  type: 112
+- id: 263
+  name: MLRS 227 M270 HE
+  hud_name: M269 227mm
+  type: 113
+- id: 264
+  name: MLRS 227 M270 CLUS
+  hud_name: M269 227mm
+  type: 113
+- id: 265
+  name: Ballistic ATACMS x2
+  hud_name: ATACMS
+  type: 83
+- id: 266
+  name: MainGun 120 M1A2C M1A2SEP2 M256
+  hud_name: M256 120mm
+  type: 110
+- id: 267
+  name: ARM Kh31 x1 Heli
+  hud_name: Kh-31
+  type: 84
+- id: 268
+  name: HMG Kord RWS
+  hud_name: Kord HMG
+  type: 28
+- id: 269
+  name: Autocannon AP23
+  hud_name: AP-23
+  type: 114
+- id: 270
+  name: Autocannon 30 2A72 T3
+  hud_name: 2А72 30mm
+  type: 114
+- id: 272
+  name: AAM IglaS Strelets x4 Helicopter
+  hud_name: Igla-S
+  type: 88
+- id: 274
+  name: MLRS 220 TOS1
+  hud_name: TOS-1
+  type: 113
+- id: 275
+  name: MLRS 220 TOS1A
+  hud_name: TOS-1
+  type: 113
+- id: 276
+  name: Autocannon 23 ZU23 Base
+  hud_name: ZU-23-2
+  type: 115
+- id: 277
+  name: AAG 30 GSh30K SPAAG
+  hud_name: GSh-30K
+  type: 115
+- id: 278
+  name: SAM IglaN x2 MTLB
+  hud_name: Igla-N
+  type: 86
+- id: 279
+  name: ATGM Kokon x1 Sturm
+  hud_name: Kokon
+  type: 80
+- id: 280
+  name: ATGM Ataka x1 Sturm
+  hud_name: Ataka
+  type: 80
+- id: 281
+  name: SAM Strela10MN x4
+  hud_name: Strela-10MN
+  type: 86
+- id: 282
+  name: SAM IglaS x8
+  hud_name: Igla-S
+  type: 86
+- id: 283
+  name: 'SAM Sosna x12 '
+  hud_name: Sosna
+  type: 86
+- id: 284
+  name: Mortar 82 Deva
+  hud_name: 2B14 82mm
+  type: 112
+- id: 285
+  name: Mortar 82 Vasilek
+  hud_name: 2B9 82mm
+  type: 112
+- id: 286
+  name: Mortar 120 Dilemma
+  hud_name: 2B12 120mm
+  type: 112
+- id: 287
+  name: RocketLauncher RPOA x4 Vehicle
+  hud_name: RPO-A
+  type: 62
+- id: 288
+  name: Howitzer 122 2A31 GvozdikaM1
+  hud_name: 2A31 122mm
+  type: 111
+- id: 289
+  name: Howitzer 120 2A80 Hosta
+  hud_name: 2A80-1 120mm
+  type: 112
+- id: 290
+  name: Mortar 120 2A80 Vena
+  hud_name: 2A80 120mm
+  type: 112
+- id: 291
+  name: Autocannon 23 ZU23M
+  hud_name: ZU-23-2M
+  type: 115
+- id: 292
+  name: Mortar 120 2A51 NonaS NonaSVK
+  hud_name: 2A51 120mm
+  type: 112
+- id: 293
+  name: Mortar 120 2A51M NonaSM [more rof, fcs+]
+  hud_name: 2A51M 120mm
+  type: 112
+- id: 294
+  name: Autocannon 30 2A72 T2
+  hud_name: 2А72 30mm
+  type: 114
+- id: 295
+  name: Autocannon 57 2A90 BRM
+  hud_name: 2А90 57mm
+  type: 114
+- id: 296
+  name: MainGun 100 2A70 T2
+  hud_name: 2А70 100 mm
+  type: 110
+- id: 298
+  name: Autocannon 57 LShO57
+  hud_name: 2A94 57mm
+  type: 114
+- id: 299
+  name: ATGM Kornet x4 IFV
+  hud_name: Kornet
+  type: 80
+- id: 300
+  name: 'ATGM Bulat x8 '
+  hud_name: Bulat
+  type: 80
+- id: 301
+  name: MMG 7.62 PKT Double
+  hud_name: PKT
+  type: 27
+- id: 302
+  name: Autocannon 57 2A91 T15 Derivatsia
+  hud_name: 2А91 57mm
+  type: 114
+- id: 303
+  name: 'ATGM KornetT x2 '
+  hud_name: Kornet-T
+  type: 80
+- id: 304
+  name: ATGM Khrizantema x2
+  hud_name: Khrizantema
+  type: 80
+- id: 305
+  name: Autocannon 30 2A42 T2
+  hud_name: 2А42-30mm
+  type: 114
+- id: 306
+  name: Autocannon 30 2A42 T3
+  hud_name: 2А42-30mm
+  type: 114
+- id: 307
+  name: SAM x2 S300V
+  hud_name: S-300V4
+  type: 86
+- id: 308
+  name: Autocannon 23 AZP23 NoRad
+  hud_name: 'AZP-23 '
+  type: 115
+- id: 309
+  name: 'AAG 23 AZP23 Rad '
+  hud_name: 'AZP-23 '
+  type: 115
+- id: 310
+  name: SAM IglaS x4 Shilka
+  hud_name: Igla-S
+  type: 86
+- id: 311
+  name: SAM IglaN x2 ZU23
+  hud_name: Igla-N
+  type: 86
+- id: 315
+  name: SAM x12 S350
+  hud_name: S-350
+  type: 86
+- id: 316
+  name: Ballistic IskanderM HE
+  hud_name: Iskander-M
+  type: 83
+- id: 317
+  name: Cruise IskanderK x2
+  hud_name: Iskander-K
+  type: 82
+- id: 318
+  name: Cruise IskanderK x4
+  hud_name: Iskander-K
+  type: 82
+- id: 321
+  name: MainGun 76 PT76 D56TS
+  hud_name: D-56TS 76mm
+  type: 110
+- id: 322
+  name: Autocannon 57 AU220M PT76
+  hud_name: AU-220M 57mm
+  type: 114
+- id: 323
+  name: SAM x4 BUK
+  hud_name: BUK-M2
+  type: 86
+- id: 324
+  name: SAM x6 BUK
+  hud_name: BUK-M3
+  type: 86
+- id: 325
+  name: Howitzer 152 2A88 Koalitsiya NoRad
+  hud_name: 2A88 152mm
+  type: 111
+- id: 326
+  name: Howitzer 152 2A88 Koalitsiya Rad
+  hud_name: 2A88 152mm
+  type: 111
+- id: 327
+  name: AAG 30 2A38M TunguskaM
+  hud_name: 2x 2А38М
+  type: 115
+- id: 328
+  name: SAM 9M311 x8 Tunguska
+  hud_name: 2x4 9M311
+  type: 86
+- id: 329
+  name: SAM 9M3111M x8 TunguskaM1
+  hud_name: 2x4 9M311-1M
+  type: 86
+- id: 330
+  name: Howitzer 152 2A33 AkatsiyaM1
+  hud_name: 2A33 152mm
+  type: 111
+- id: 331
+  name: Howitzer 152 2A33 AkatsiyaM2
+  hud_name: 2A33 152mm
+  type: 111
+- id: 332
+  name: 'MainGun 125 T90 2A46M2 '
+  hud_name: 2A46M-2
+  type: 110
+- id: 333
+  name: MainGun 125 T90M 2A46M501
+  hud_name: 2A46M-5-01
+  type: 110
+- id: 334
+  name: MainGun 125 T80BV 2A46M1
+  hud_name: 2A46M-1
+  type: 110
+- id: 335
+  name: MainGun 125 T80U 2A46M1
+  hud_name: 2A46M-1
+  type: 110
+- id: 336
+  name: MainGun 125 T80UM 2A46M1
+  hud_name: 2A46M-1
+  type: 110
+- id: 337
+  name: MainGun 125 T80UA 2A46M4
+  hud_name: 2A46M-4
+  type: 110
+- id: 338
+  name: Autocannon 30 2A42 T3 Terminator
+  hud_name: Twin 2А42
+  type: 114
+- id: 339
+  name: ATGM Ataka x4 BMPT
+  hud_name: Ataka-T
+  type: 80
+- id: 340
+  name: ATGM Ataka x2 Barbaris
+  hud_name: Ataka
+  type: 80
+- id: 341
+  name: 'MainGun 120 M1A2SEP M256 '
+  hud_name: M256 120mm
+  type: 110
+- id: 342
+  name: 'MainGun 120 M1A2 M256 '
+  hud_name: M256 120mm
+  type: 110
+- id: 344
+  name: Howitzer 155 M284 M109A6
+  hud_name: M284
+  type: 111
+- id: 345
+  name: AAG 20 M61 CIWS
+  hud_name: M61 CIWS
+  type: 115
+- id: 346
+  name: SAM x12 Patriot MSE
+  hud_name: PAC-3 MSE
+  type: 86
+- id: 347
+  name: SAM x16 Patriot
+  hud_name: PAC-3
+  type: 86
+- id: 348
+  name: ATGM KonkursM x5
+  hud_name: Konkurs-M
+  type: 80
+- id: 349
+  name: MainGun 125 T72BA 2A46M
+  hud_name: 2A46M 125mm
+  type: 110
+- id: 350
+  name: Autocannon 30 2A42 Mi28
+  hud_name: 2А42-30mm
+  type: 114
+- id: 351
+  name: ATGM Ataka x8
+  hud_name: Ataka
+  type: 80
+- id: 352
+  name: ATGM Kokon x8
+  hud_name: Kokon
+  type: 80
+- id: 353
+  name: HMG A12.7 Helicopter
+  hud_name: A-12.7
+  type: 28
+- id: 354
+  name: AAM Stinger x2 Helicopter
+  hud_name: AIM-92 Stinger
+  type: 88
+- id: 355
+  name: RocketPod 70 DAGR x16
+  hud_name: DAGR
+  type: 140
+- id: 356
+  name: ATGM HermesA x4
+  hud_name: Hermes-A
+  type: 80
+- id: 357
+  name: ATGM Ataka x6
+  hud_name: Ataka
+  type: 80
+- id: 358
+  name: 'ARM Kh31 x1 '
+  hud_name: Kh-31
+  type: 84
+- id: 359
+  name: Autocannon 30 M230 Pylon
+  hud_name: M230 30mm
+  type: 141
+- id: 360
+  name: Minigun 7.62 GShG Helicopter
+  hud_name: GShG
+  type: 29
+- id: 361
+  name: Autocannon 30 2A42 Ka29
+  hud_name: 2А42-30mm
+  type: 114
+- id: 362
+  name: Rifle M16A4 T1
+  hud_name: M16A4
+  type: 1
+- id: 363
+  name: 'UGL 40 M203 M16 '
+  hud_name: M203
+  type: 60
+- id: 364
+  name: Autorifle M249 T1
+  hud_name: M249
+  type: 30
+- id: 365
+  name: MGL 25 XM25
+  hud_name: XM25 Punisher
+  type: 60
+- id: 366
+  name: SAM x8 Patriot
+  hud_name: PAC-3
+  type: 86
+- id: 367
+  name: Autocannon 25 Bushmaster M242 T2
+  hud_name: Bushmaster
+  type: 114
+- id: 368
+  name: Minigun 12.7 GAU19B
+  hud_name: GAU-19B
+  type: 29
+- id: 371
+  name: AAM AIM7M  x1 Plane
+  hud_name: Sparrow
+  type: 87
+- id: 373
+  name: Bomb Mk84 x1
+  hud_name: Mk84 2000lb
+  type: 160
+- id: 375
+  name: Bomb GBU54 x1
+  hud_name: GBU-54 LJDAM
+  type: 162
+- id: 376
+  name: Bomb GBU55 x1
+  hud_name: GBU-55 LJDAM
+  type: 162
+- id: 377
+  name: Bomb GBU56 x1
+  hud_name: GBU-56 LJDAM
+  type: 162
+- id: 378
+  name: AAM AIM9 x2 Plane
+  hud_name: Sidewinder
+  type: 88
+- id: 379
+  name: Bomb GBU54 x2
+  hud_name: GBU-54 LJDAM
+  type: 162
+- id: 380
+  name: PlaneGun 23 GSh23L Tailgun
+  hud_name: GSh-23L
+  type: 116
+- id: 381
+  name: Autocannon 30 2A72 T1 Thermalx1
+  hud_name: 2А72 30mm
+  type: 114
+- id: 382
+  name: Autocannon 30 2A72 T1 Thermalx2
+  hud_name: 2А72 30mm
+  type: 114
+- id: 383
+  name: PlaneGun 30 GAU8 A10C
+  hud_name: GAU-8 Avenger
+  type: 116
+- id: 384
+  name: Bomb Mk82 x1
+  hud_name: Mk82 500lb
+  type: 160
+- id: 385
+  name: Bomb Mk82 x3
+  hud_name: Mk82 500lb
+  type: 160
+- id: 386
+  name: ATGM AGM65 x2
+  hud_name: Maverick
+  type: 89
+- id: 387
+  name: ATGM AGM65 x3
+  hud_name: Maverick
+  type: 89
+- id: 388
+  name: Bomb Mk82 SE x1
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 389
+  name: Bomb Mk82 SE x3
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 390
+  name: RocketPod 70 Hydra x7-3 Plane
+  hud_name: Hydra
+  type: 140
+- id: 391
+  name: Bomb JSOW x1
+  hud_name: JSOW
+  type: 162
+- id: 392
+  name: Bomb GBU53 SDBII x4
+  hud_name: Stormbreaker
+  type: 162
+- id: 393
+  name: Bomb CBU100 x2
+  hud_name: CBU-78 Rockeye
+  type: 161
+- id: 394
+  name: Bomb CBU100 x3
+  hud_name: CBU-78 Rockeye
+  type: 161
+- id: 395
+  name: ARM HARM x1
+  hud_name: AGM-88 HARM
+  type: 84
+- id: 396
+  name: Bomb Mk82 x4
+  hud_name: Mk82 500lb
+  type: 160
+- id: 397
+  name: Bomb Mk82 x6
+  hud_name: Mk82 500lb
+  type: 160
+- id: 398
+  name: Bomb CBU87 x4
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 399
+  name: Bomb CBU87 x6
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 400
+  name: Bomb CBU87 x1
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 401
+  name: Bomb CBU100 x1
+  hud_name: CBU-78 Rockeye
+  type: 161
+- id: 402
+  name: Bomb Mk82 SE x2
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 403
+  name: Bomb Mk83 x1
+  hud_name: Mk83 1000lb
+  type: 160
+- id: 404
+  name: 'Bomb Mk77 x1 '
+  hud_name: Mk77 Firebomb
+  type: 161
+- id: 405
+  name: RocketPod 70 Hydra x7-2 Plane
+  hud_name: Hydra
+  type: 140
+- id: 406
+  name: RocketPod 127 Zuni x12 Plane
+  hud_name: Zuni
+  type: 140
+- id: 407
+  name: ARM Sidearm x1 Plane
+  hud_name: Sidearm
+  type: 84
+- id: 408
+  name: Cruise JASSM x1
+  hud_name: JASSM
+  type: 82
+- id: 409
+  name: Bomb Mk77 x2
+  hud_name: Mk77 Firebomb
+  type: 161
+- id: 410
+  name: Bomb Mk83 x2
+  hud_name: Mk83 1000lb
+  type: 160
+- id: 411
+  name: Bomb Mk82 SE x84
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 412
+  name: Bomb CBU87 x30
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 413
+  name: Bomb Mk84 x24
+  hud_name: Mk84 2000lb
+  type: 160
+- id: 414
+  name: Bomb JSOW x12
+  hud_name: JSOW
+  type: 162
+- id: 415
+  name: Cruise JASSM x24
+  hud_name: JASSM
+  type: 82
+- id: 416
+  name: Cruise AGM86 x8
+  hud_name: AGM-86 ALCM
+  type: 82
+- id: 417
+  name: Bomb B61 Nuke x1
+  hud_name: B61 Nuke
+  type: 160
+- id: 418
+  name: PlaneGun 25 GAU22 F35A
+  hud_name: GAU-22
+  type: 116
+- id: 419
+  name: Bomb Mk82 x80
+  hud_name: Mk82 500lb
+  type: 160
+- id: 420
+  name: Bomb CBU87 x34
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 421
+  name: Bomb GBU56 x16
+  hud_name: GBU-56 LJDAM
+  type: 162
+- id: 422
+  name: Bomb JSOW x16
+  hud_name: JSOW
+  type: 162
+- id: 423
+  name: Cruise JASSM x16
+  hud_name: JASSM
+  type: 82
+- id: 424
+  name: Bomb Mk82 x45
+  hud_name: Mk82 500lb
+  type: 160
+- id: 425
+  name: Bomb Mk84 x9
+  hud_name: Mk84 2000lb
+  type: 160
+- id: 426
+  name: Bomb GBU56 x9
+  hud_name: GBU-56 LJDAM
+  type: 162
+- id: 427
+  name: Bomb CBU87 x9
+  hud_name: CBU-87 Rockeye
+  type: 161
+- id: 428
+  name: Bomb JSOW x6
+  hud_name: JSOW
+  type: 162
+- id: 429
+  name: 'Cruise JASSM x6 '
+  hud_name: JASSM
+  type: 82
+- id: 430
+  name: Cruise AGM86 x6
+  hud_name: AGM-86 ALCM
+  type: 82
+- id: 431
+  name: Autocannon 30 Bushmaster2 AC130
+  hud_name: Bushmaster II
+  type: 114
+- id: 432
+  name: ATGM Griffin x10 C-130
+  hud_name: AGM-176 Griffin
+  type: 162
+- id: 433
+  name: ATGM Griffin x1
+  hud_name: AGM-176 Griffin
+  type: 81
+- id: 434
+  name: AAM R77 x2 Plane
+  hud_name: R-77-1
+  type: 87
+- id: 435
+  name: AAM R60 x1 Plane
+  hud_name: R-60
+  type: 88
+- id: 436
+  name: AAM R60 x2 Plane
+  hud_name: R-60
+  type: 88
+- id: 437
+  name: AAM R37 x1 Plane
+  hud_name: R-37
+  type: 87
+- id: 438
+  name: AAM R27T x1 Plane
+  hud_name: R-27T
+  type: 88
+- id: 439
+  name: AAM R27ET x1 Plane
+  hud_name: R-27ET
+  type: 88
+- id: 440
+  name: AAM R27ER x1 Plane
+  hud_name: R-27ER
+  type: 87
+- id: 441
+  name: RocketPod 80 S8 x20  Plane
+  hud_name: S-8
+  type: 140
+- id: 442
+  name: RocketPod 80 S8 x40 Plane
+  hud_name: S-8
+  type: 140
+- id: 443
+  name: RocketPod 122 S13 x10 Plane
+  hud_name: S-13
+  type: 140
+- id: 444
+  name: RocketPod 340 S25 x1 Plane
+  hud_name: S-25
+  type: 140
+- id: 445
+  name: RocketPod 340 S25 x2 Plane
+  hud_name: S-25
+  type: 140
+- id: 446
+  name: 'Cruise Kh29TD x1  '
+  hud_name: Kh-29TD
+  type: 82
+- id: 447
+  name: ATGM Kh25ML x1
+  hud_name: Kh-25ML
+  type: 89
+- id: 448
+  name: ATGM Kh38ML x1
+  hud_name: Kh-38M
+  type: 89
+- id: 449
+  name: ARM Kh58U x1
+  hud_name: Kh-58UShK
+  type: 84
+- id: 450
+  name: 'Cruise Kh59MK x1 '
+  hud_name: Kh-59MK
+  type: 82
+- id: 451
+  name: Bomb FAB100 x1
+  hud_name: OFAB-100
+  type: 160
+- id: 453
+  name: Bomb FAB100 x4
+  hud_name: OFAB-100
+  type: 160
+- id: 454
+  name: Bomb FAB100 x5
+  hud_name: OFAB-100
+  type: 160
+- id: 455
+  name: Bomb FAB100 x6
+  hud_name: OFAB-100
+  type: 160
+- id: 456
+  name: 'Bomb KAB500 x1 '
+  hud_name: KAB-500
+  type: 162
+- id: 457
+  name: 'Bomb KAB1500 x1 '
+  hud_name: KAB-1500
+  type: 162
+- id: 458
+  name: Bomb FAB250 x3
+  hud_name: FAB-250
+  type: 160
+- id: 459
+  name: Bomb FAB250 x6
+  hud_name: FAB-250
+  type: 160
+- id: 460
+  name: Bomb FAB250 x9
+  hud_name: FAB-250
+  type: 160
+- id: 461
+  name: Bomb RBK250 x1
+  hud_name: RBK-250
+  type: 161
+- id: 464
+  name: Bomb RBK250 x9
+  hud_name: RBK-250
+  type: 161
+- id: 465
+  name: Bomb FAB250ShL x2
+  hud_name: FAB-250ShL
+  type: 161
+- id: 466
+  name: Bomb FAB250ShL x3
+  hud_name: FAB-250ShL
+  type: 161
+- id: 467
+  name: Bomb FAB250ShL x1
+  hud_name: FAB-250ShL
+  type: 161
+- id: 468
+  name: 'Bomb FAB500ShL x1 '
+  hud_name: FAB-500ShL
+  type: 161
+- id: 469
+  name: Bomb FAB500ShL x2
+  hud_name: FAB-500ShL
+  type: 161
+- id: 471
+  name: Bomb RBK500 x1
+  hud_name: RBK-500
+  type: 161
+- id: 472
+  name: 'Bomb PBK500U x1 '
+  hud_name: PBK-500U
+  type: 162
+- id: 473
+  name: Bomb RBK500 x2
+  hud_name: RBK-500
+  type: 161
+- id: 474
+  name: Bomb FAB500 x1
+  hud_name: FAB-500
+  type: 160
+- id: 475
+  name: Bomb FAB500 x2
+  hud_name: FAB-500
+  type: 160
+- id: 476
+  name: 'Bomb ZB500 x1 '
+  hud_name: ZB-500
+  type: 161
+- id: 477
+  name: Bomb ZB500 x2
+  hud_name: ZB-500
+  type: 161
+- id: 478
+  name: Bomb ODAB500 x2
+  hud_name: ODAB-500
+  type: 160
+- id: 479
+  name: Bomb ODAB500 x1
+  hud_name: ODAB-500
+  type: 160
+- id: 480
+  name: PlaneGun 23 GSh6_23
+  hud_name: GSh-6-23M
+  type: 116
+- id: 481
+  name: 'Bomb FAB1500 x1  '
+  hud_name: FAB-1500
+  type: 160
+- id: 482
+  name: PlaneGun 30 GSh30_2 Su25
+  hud_name: GSh-2-30
+  type: 116
+- id: 483
+  name: PlaneGun 23 GSh23L
+  hud_name: GSh-23L
+  type: 116
+- id: 484
+  name: PlaneGun 23 GSh23L Pylon
+  hud_name: GSh-23L
+  type: 116
+- id: 485
+  name: Cruise Kh32
+  hud_name: Kh-32
+  type: 82
+- id: 486
+  name: PlaneGun 23 GSh23L Tu22M3
+  hud_name: GSh-23L
+  type: 116
+- id: 487
+  name: Bomb FAB250 x33
+  hud_name: FAB-250
+  type: 160
+- id: 488
+  name: Bomb RBK250 x33
+  hud_name: RBK-250
+  type: 161
+- id: 489
+  name: Bomb FAB500 x24
+  hud_name: FAB-500
+  type: 160
+- id: 490
+  name: Bomb FAB1500 x8
+  hud_name: FAB-1500
+  type: 160
+- id: 491
+  name: Bomb FAB3000 x2
+  hud_name: FAB-3000
+  type: 160
+- id: 492
+  name: 'Bomb KAB1500 x8 '
+  hud_name: KAB-1500
+  type: 162
+- id: 493
+  name: Cruise Kh101 x12
+  hud_name: Kh-101
+  type: 82
+- id: 494
+  name: Cruise Kh555 x12
+  hud_name: Kh-555
+  type: 82
+- id: 495
+  name: Bomb FAB9000 x2
+  hud_name: FAB-9000
+  type: 160
+- id: 496
+  name: Bomb KAB1500 x14
+  hud_name: KAB-1500
+  type: 162
+- id: 497
+  name: Bomb FAB1500 x14
+  hud_name: FAB-1500
+  type: 160
+- id: 498
+  name: Bomb ODAB500 x44
+  hud_name: ODAB-500
+  type: 160
+- id: 499
+  name: Bomb RBK500 x44
+  hud_name: RBK-500
+  type: 161
+- id: 502
+  name: DMR 9.3x64 SVDK T3
+  hud_name: SVDK
+  type: 2
+- id: 503
+  name: UGL 40 GP34 AK74SSO
+  hud_name: GP-34
+  type: 60
+- id: 504
+  name: DMR 7.62 Mk110 Silenced T2
+  hud_name: M110
+  type: 2
+- id: 505
+  name: RocketLauncher MAAWS
+  hud_name: M3E1 MAAWS
+  type: 62
+- id: 506
+  name: ATGM M47 Dragon3 (Infantry) Team1
+  hud_name: M47 Dragon III
+  type: 80
+- id: 507
+  name: Cruise Tomahawk Ship
+  hud_name: Tomahawk
+  type: 82
+- id: 508
+  name: SMG MP5 T3
+  hud_name: MP5SD6
+  type: 25
+- id: 509
+  name: Autocannon 23 ZU23 Base Ural
+  hud_name: ZU-23-2
+  type: 114
+- id: 510
+  name: Autocannon 23 ZU23M Ural
+  hud_name: ZU-23-2M
+  type: 114
+- id: 511
+  name: Howitzer 152 2A64 T2 MSTA-S
+  hud_name: 2A64 152mm
+  type: 111
+- id: 512
+  name: ATGM Vikhr x1 UAV
+  hud_name: Vikhr
+  type: 80
+- id: 513
+  name: Bomb KAB50 x1
+  hud_name: KAB-50
+  type: 162
+- id: 514
+  name: ATGM Konkurs x1 UAV
+  hud_name: Konkurs
+  type: 80
+- id: 515
+  name: ATGM Ataka x1 UAV
+  hud_name: Ataka
+  type: 80
+- id: 516
+  name: MainGun 125 T72B 2A46M HEAT
+  hud_name: 2A46M 125mm
+  type: 110
+- id: 518
+  name: ATGM Konkurs x2 External BTR82
+  hud_name: Konkurs-M
+  type: 80
+- id: 520
+  name: DMR SVUAS Silenced T3
+  hud_name: SVU-AS
+  type: 2
+- id: 521
+  name: Sniper 7.62 (308WIN) DVL10 Silenced T3
+  hud_name: DVL-10
+  type: 3
+- id: 522
+  name: Rifle A762 Silenced T3
+  hud_name: Kord 6P68
+  type: 5
+- id: 523
+  name: Sniper 12.7 ASVK T1
+  hud_name: ASVK
+  type: 4
+- id: 524
+  name: UGL 40 GP34 AK103
+  hud_name: GP-34
+  type: 60
+- id: 525
+  name: UGL 40 GP34 AK15
+  hud_name: GP-34
+  type: 60
+- id: 527
+  name: 'Rifle AN94 T3 '
+  hud_name: AN-94
+  type: 1
+- id: 528
+  name: UGL 40 GP34 AN94
+  hud_name: GP-34
+  type: 60
+- id: 531
+  name: MMG Mk48 T3
+  hud_name: Mk.48
+  type: 26
+- id: 532
+  name: DMR 7.62 SCAR Mk20 T3
+  hud_name: SCAR Mk.20
+  type: 2
+- id: 533
+  name: UGL 40 M320 Standalone
+  hud_name: M320
+  type: 60
+- id: 534
+  name: RocketLauncher 140 SRAW Disposable
+  hud_name: SRAW MPV
+  type: 63
+- id: 536
+  name: RocketPod 70 Hydra x4 Fletcher Infantry
+  hud_name: Fletcher
+  type: 140
+- id: 537
+  name: AAM IglaS Infantry
+  hud_name: Igla-S
+  type: 85
+- id: 538
+  name: AAM IglaS Infantry Team2
+  hud_name: Igla-S
+  type: 85
+- id: 539
+  name: RocketLauncher RPOM x4 Disposable
+  hud_name: RPO-M
+  type: 63
+- id: 540
+  name: DMR 7.62 M110 Silenced T2
+  hud_name: M110
+  type: 2
+- id: 541
+  name: ATGM TOW2 x2 Double
+  hud_name: TOW-2
+  type: 80
+- id: 542
+  name: ARM Sidearm x1 Heli
+  hud_name: Sidearm
+  type: 84
+- id: 543
+  name: RocketPod 80 S8 x20 Double
+  hud_name: S-8
+  type: 140
+- id: 544
+  name: RocketPod 122 S13 x5 Double
+  hud_name: S-13
+  type: 140
+- id: 545
+  name: RocketPod 70 Hydra x19 Double
+  hud_name: Hydra
+  type: 140
+- id: 546
+  name: RocketPod 70 Hydra x19 APKWS Double
+  hud_name: APKWS
+  type: 140
+- id: 547
+  name: RocketPod 70 Hydra x7 Double
+  hud_name: Hydra
+  type: 140
+- id: 548
+  name: RocketPod 70 Hydra x7 APKWS Double
+  hud_name: Hydra APKWS
+  type: 140
+- id: 549
+  name: RocketPod 70 DAGR x8 Double
+  hud_name: DAGR
+  type: 140
+- id: 550
+  name: RocketPod 70 DAGR x16 Double
+  hud_name: DAGR
+  type: 140
+- id: 551
+  name: Cruise RGM184 x2
+  hud_name: RGM-184A
+  type: 82
+- id: 552
+  name: 'ATGM Hellfire x1 '
+  hud_name: Hellfire
+  type: 80
+- id: 553
+  name: ATGM Griffin x2 UAV
+  hud_name: AGM-176 Griffin
+  type: 81
+- id: 554
+  name: RocketPod 70 DAGR x4
+  hud_name: DAGR
+  type: 140
+- id: 555
+  name: Mortar 120 2A51 Sviristelka NonaSVK Double
+  hud_name: 2A51 120mm
+  type: 112
+- id: 556
+  name: Howitzer 130 AK130 Double
+  hud_name: AK130
+  type: 111
+- id: 557
+  name: Howitzer 152 2A88 Koalitsiya NoRad Double
+  hud_name: 2A88 152mm
+  type: 111
+- id: 558
+  name: Mortar 120 2A80 Vena Double
+  hud_name: 2A80 120mm
+  type: 112
+- id: 559
+  name: Mortar 82 Drok Doube
+  hud_name: 2B27 Drok
+  type: 112
+- id: 560
+  name: RocketPod 70 DAGR x4 Double
+  hud_name: DAGR
+  type: 140
+- id: 561
+  name: Autocannon 20 XM301 RAH66
+  hud_name: XM301 20mm
+  type: 114
+- id: 562
+  name: Howitzer 105 M20 Hawkeye Loadout2
+  hud_name: M20 105mm
+  type: 111
+- id: 563
+  name: Howitzer 105 M20 Hawkeye Loadout3
+  hud_name: M20 105mm
+  type: 111
+- id: 564
+  name: Mortar 120 M121 Loadout2
+  hud_name: M121
+  type: 112
+- id: 565
+  name: Mortar 120 M121 Loadout3
+  hud_name: M121
+  type: 112
+- id: 566
+  name: Mortar 120 M121 Loadout4
+  hud_name: M121
+  type: 112
+- id: 567
+  name: Mortar 120 M121 Loadout5
+  hud_name: M121
+  type: 112
+- id: 568
+  name: Howitzer 155 M284 M109A6 Double
+  hud_name: M284
+  type: 111
+- id: 569
+  name: Ballistic PrSM x2
+  hud_name: HIMARS
+  type: 83
+- id: 570
+  name: Ballistic PrSM x4
+  hud_name: M269 227mm
+  type: 83
+- id: 571
+  name: MLRS 122 Grad Cluster
+  hud_name: Grad
+  type: 113
+- id: 572
+  name: MLRS 300 Smerch Cluster
+  hud_name: Smerch
+  type: 113
+- id: 573
+  name: MLRS 122 Grad Incendiary
+  hud_name: Grad
+  type: 113
+- id: 575
+  name: MainGun 73 Grom 2A28 T1
+  hud_name: 2A28 Grom
+  type: 110
+- id: 576
+  name: ATGM Fagot x1
+  hud_name: Fagot
+  type: 80
+- id: 577
+  name: ATGM FagotM x1
+  hud_name: Fagot-M
+  type: 80
+- id: 578
+  name: AGL 30  AGS17 Infantry
+  hud_name: AGS-17
+  type: 61
+- id: 579
+  name: MainGun 152 M551A1 M81E1 Double
+  hud_name: M81E1 152mm
+  type: 110
+- id: 581
+  name: Ballistic TochkaU
+  hud_name: Tochka-U
+  type: 83
+- id: 582
+  name: Ballistic TochkaU Double
+  hud_name: Tochka-U
+  type: 83
+- id: 583
+  name: AAM IglaD Infantry
+  hud_name: Igla-D
+  type: 85
+- id: 584
+  name: 'ATGM Kornet x1 '
+  hud_name: Kornet
+  type: 80
+- id: 585
+  name: 'ATGM KornetM x1 '
+  hud_name: Kornet-M
+  type: 80
+- id: 586
+  name: MainGun 125 Sprut 2A75M
+  hud_name: 2A75-1 125mm
+  type: 110
+- id: 587
+  name: ATGM MetisM1 x1
+  hud_name: Metys-M1
+  type: 80
+- id: 588
+  name: ATGM Vikhr x8 Plane
+  hud_name: Vikhr
+  type: 80
+- id: 589
+  name: AAM IglaS Strelets x2 Helicopter
+  hud_name: Igla-S
+  type: 88
+- id: 590
+  name: Special Flashbang
+  hud_name: Flashbang
+  type: 64
+- id: 591
+  name: AGL 30  AGS30 [AGS]
+  hud_name: 'AGS-30 '
+  type: 61
+- id: 594
+  name: Bomb Mk82 SE x6
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 598
+  name: Howitzer 127 MK45
+  hud_name: Mark 45
+  type: 111
+- id: 599
+  name: SAM x64 SM6
+  hud_name: SM-6
+  type: 86
+- id: 600
+  name: Bomb FAB250 x32
+  hud_name: FAB-250
+  type: 160
+- id: 601
+  name: 'Bomb RBK250 x32 '
+  hud_name: RBK-250
+  type: 161
+- id: 602
+  name: 'Cruise Kh35U x8 '
+  hud_name: Kh-35U
+  type: 82
+- id: 603
+  name: ATGM LMUR x2
+  hud_name: LMUR
+  type: 81
+- id: 604
+  name: RocketPod 70 Hydra x19 Plane
+  hud_name: Hydra
+  type: 140
+- id: 605
+  name: SAM 9M33 x6 OsaAKM1
+  hud_name: 9M33
+  type: 86
+- id: 606
+  name: Cruise Kh102 x1
+  hud_name: Kh-102 Nuke
+  type: 82
+- id: 607
+  name: ATGM TOW2B x1 (Infantry)
+  hud_name: TOW-2B
+  type: 80
+- id: 608
+  name: ATGM TOW Heli x2
+  hud_name: TOW-2
+  type: 80
+- id: 609
+  name: ATGM TOW Heli x4
+  hud_name: TOW-2
+  type: 80
+- id: 611
+  name: ATGM Hellfire JAGM x4
+  hud_name: JAGM
+  type: 80
+- id: 612
+  name: AAM IglaN  x1 Helicopter
+  hud_name: Igla-N
+  type: 88
+- id: 613
+  name: ATGM TOW BB x2
+  hud_name: BLAAM
+  type: 81
+- id: 614
+  name: Cruise Kh35U x1
+  hud_name: Kh-35U
+  type: 82
+- id: 615
+  name: Cruise Kh35U Helicopter x1
+  hud_name: Kh-35U
+  type: 82
+- id: 616
+  name: ATGM Hellfire x2 Linebacker
+  hud_name: Hellfire
+  type: 81
+- id: 617
+  name: ATGM M47 Dragon3 (Infantry) Team2
+  hud_name: M47 Dragon III
+  type: 80
+- id: 618
+  name: Howitzer 155 M777 Brutus HE
+  hud_name: M777
+  type: 111
+- id: 619
+  name: SAM x4 SLAMRAAM
+  hud_name: AMRAAM
+  type: 86
+- id: 620
+  name: SAM x6 SLAMRAAM
+  hud_name: AMRAAM
+  type: 86
+- id: 621
+  name: 'SAM AIM9 x2 SLAMRAAM '
+  hud_name: AIM-9
+  type: 86
+- id: 622
+  name: MLRS 345 CATFAE
+  hud_name: CATFAE
+  type: 113
+- id: 623
+  name: Mortar Unkown MICLIC x3
+  hud_name: MICLIC
+  type: 112
+- id: 624
+  name: 'RocketPod 70 Hydra x4 Fletcher '
+  hud_name: Fletcher
+  type: 140
+- id: 625
+  name: SAM AIM9 x15 MML
+  hud_name: AIM-9
+  type: 86
+- id: 626
+  name: SAM STINGER x15 MML
+  hud_name: FIM-92 Stinger
+  type: 86
+- id: 627
+  name: ATGM Hellfire x15 MML
+  hud_name: Hellfire
+  type: 81
+- id: 628
+  name: SAM 57E6E x18 Pantsir
+  hud_name: 2x9 57E6E
+  type: 86
+- id: 629
+  name: MMG 8.6 Norma SIG338 Infantry
+  hud_name: MG 338
+  type: 26
+- id: 630
+  name: AAM Stinger J Infantry
+  hud_name: FIM-92J Stinger
+  type: 85
+- id: 631
+  name: RocketLauncher AT4 HP Disposable
+  hud_name: AT4CS HP
+  type: 63
+- id: 632
+  name: RocketLauncher RPG7V OG7V
+  hud_name: RPG-7V
+  type: 62
+- id: 633
+  name: 'Cruise Kh59MK2 x1 '
+  hud_name: Kh-59MK2
+  type: 82
+- id: 634
+  name: Cruise AGM84 SLAMER x1
+  hud_name: SLAM-ER
+  type: 82
+- id: 635
+  name: ATGM Metis x1 (Infantry) Team2
+  hud_name: Metis
+  type: 80
+- id: 636
+  name: Howitzer 203 2A44 Malka Loadout1
+  hud_name: 2A44
+  type: 111
+- id: 638
+  name: Rifle G36K T1
+  hud_name: G36K
+  type: 1
+- id: 639
+  name: UGL 40 AG36 G36K
+  hud_name: AG36
+  type: 60
+- id: 640
+  name: Sniper 7.62 Balt AW T2
+  hud_name: AXMC
+  type: 3
+- id: 641
+  name: Rifle G3 T0
+  hud_name: G3
+  type: 6
+- id: 642
+  name: MMG 7.62 MG3 T1
+  hud_name: MG3
+  type: 26
+- id: 643
+  name: MMG 7.62 FNMAG Infantry
+  hud_name: Ksp 58B
+  type: 26
+- id: 644
+  name: ATGM SpikeSR Disposable
+  hud_name: Spike SR
+  type: 80
+- id: 645
+  name: Howitzer 152 2A37 T1 Giatsint
+  hud_name: 2A37 152mm
+  type: 111
+- id: 646
+  name: Howitzer 155 PZH2000
+  hud_name: L52
+  type: 111
+- id: 647
+  name: ATGM Hellfire F&F x4
+  hud_name: Hellfire
+  type: 80
+- id: 648
+  name: Autocannon 57 S60 Ural
+  hud_name: S-60 57mm
+  type: 114
+- id: 649
+  name: MainGun 165 M60CEV M135
+  hud_name: M135 165mm
+  type: 110
+- id: 650
+  name: SAM x4 Patriot MSE
+  hud_name: PAC-3 MSE
+  type: 86
+- id: 651
+  name: SAM x8 Patriot MSE
+  hud_name: PAC-3 MSE
+  type: 86
+- id: 652
+  name: MainGun 100 MT12 Rapira
+  hud_name: 2A29 Rapira 100mm
+  type: 110
+- id: 653
+  name: SAM Stinger 2x2 Stryker
+  hud_name: FIM-92 Stinger
+  type: 86
+- id: 654
+  name: 'SAM Hydra x12 Fletcher '
+  hud_name: Fletcher
+  type: 86
+- id: 655
+  name: Cruise JSM x1
+  hud_name: JSM
+  type: 82
+- id: 656
+  name: Howitzer 105 LEO Stryker Loadout1
+  hud_name: LEO 105mm
+  type: 111
+- id: 657
+  name: MainGun 105 M10Booker XM35
+  hud_name: M35
+  type: 110
+- id: 658
+  name: Autocannon 50 M913 BushmasterV
+  hud_name: XM913
+  type: 114
+- id: 659
+  name: ATGM Javelin LWCLU Infantry
+  hud_name: Javelin LWCLU
+  type: 80
+- id: 660
+  name: RocketLauncher RPG16
+  hud_name: RPG-16
+  type: 62
+- id: 661
+  name: HMG 12.7 GAU21 Helicopter Pod
+  hud_name: GAU-21
+  type: 28
+- id: 662
+  name: HMG KPVT UAZ
+  hud_name: KPVT
+  type: 28
+- id: 663
+  name: RocketLauncher SPG9 UAZ
+  hud_name: SPG-9M
+  type: 62
+- id: 664
+  name: Mortar Unkown MICLIC x2
+  hud_name: MICLIC
+  type: 112
+- id: 665
+  name: 'ATGM KornetM x1 (Infantry) '
+  hud_name: Kornet-M
+  type: 80
+- id: 666
+  name: ATGM KornetM x4 IFV
+  hud_name: Kornet-M
+  type: 80
+- id: 667
+  name: MainGun 125 T14 2A82 Double
+  hud_name: 2A82 125mm
+  type: 110
+- id: 668
+  name: RocketLauncher 73 MROZ x4 Disposable
+  hud_name: MRO-Z
+  type: 63
+- id: 669
+  name: RocketLauncher RShG1 Disposable
+  hud_name: RShG-1
+  type: 63
+- id: 670
+  name: Rifle 6.5 MRGGA
+  hud_name: MRGG-A
+  type: 6
+- id: 671
+  name: MMG 6.5 KACAMG T3
+  hud_name: KAC AMG
+  type: 26
+- id: 672
+  name: DMR 6.5 MRGGS T3
+  hud_name: MRGG-S
+  type: 2
+- id: 674
+  name: Sniper 8.6 Lapua MRAD T3
+  hud_name: MK 22 ASR
+  type: 3
+- id: 675
+  name: AAM AIM260 x2 Plane
+  hud_name: JATM
+  type: 87
+- id: 676
+  name: HMG 50cal ANM3 (Avenger+)
+  hud_name: M3P Browning
+  type: 28
+- id: 677
+  name: MLRS 300 Smerch Tornado
+  hud_name: Tornado-S
+  type: 113
+- id: 678
+  name: MLRS 300 Smerch Tornado Cluster
+  hud_name: Tornado-S
+  type: 113
+- id: 679
+  name: AAM AIM174 x1 Plane
+  hud_name: AIM-174
+  type: 87
+- id: 680
+  name: Bomb FAB3000 x1
+  hud_name: FAB-3000
+  type: 160
+- id: 681
+  name: AAG 30 AK630M
+  hud_name: AK-630M
+  type: 115
+- id: 682
+  name: MLRS 140 A22 HE
+  hud_name: A-22 Ogon
+  type: 113
+- id: 683
+  name: Howitzer 155 M777 Brutus CLUS
+  hud_name: M777
+  type: 111
+- id: 684
+  name: ATGM KhBPLA x1 UAV
+  hud_name: Kh-BPLA
+  type: 81
+- id: 685
+  name: SAM x12 S350 Double
+  hud_name: S-350
+  type: 86
+- id: 686
+  name: ATGM Kornet x4 BRDM
+  hud_name: Kornet
+  type: 80
+- id: 687
+  name: RocketPod 70 Hydra x19 LAVAD
+  hud_name: Hydra
+  type: 140
+- id: 689
+  name: Autocannon 30 M230LF
+  hud_name: M230LF 30mm
+  type: 114
+- id: 690
+  name: SAM x4 S300PM
+  hud_name: S-300PM
+  type: 86
+- id: 691
+  name: SAM x4 S300PM2
+  hud_name: S-300PM
+  type: 86
+- id: 692
+  name: Sniper 12.7 M107 Vehicle
+  hud_name: M107
+  type: 3
+- id: 693
+  name: Rifle R20 Rahe T2
+  hud_name: R-20 Rahe
+  type: 1
+- id: 694
+  name: Autorifle 5.56 Negev T1
+  hud_name: Negev NG5
+  type: 30
+- id: 695
+  name: MMG 7.62 Negev T2 Infantry
+  hud_name: Negev NG7
+  type: 26
+- id: 696
+  name: DMR 7.62 R20L T2
+  hud_name: R-20L
+  type: 2
+- id: 697
+  name: ATGM Spike LR Infantry
+  hud_name: Spike LR
+  type: 80
+- id: 698
+  name: RocketLauncher 66 M202 Flash
+  hud_name: M202 Flash
+  type: 62
+- id: 699
+  name: Howitzer 155 M777 Brutus SMK
+  hud_name: M777
+  type: 111
+- id: 700
+  name: Howitzer 155 M777 Brutus GUID
+  hud_name: M777
+  type: 111
+- id: 701
+  name: Bomb Mk82 SE x4
+  hud_name: Mk82 Snakeye
+  type: 161
+- id: 702
+  name: Autocannon 35 Bushmaster3
+  hud_name: Bushmaster III
+  type: 114
+- id: 703
+  name: Mortar Unkown UR77 x2
+  hud_name: UR-77
+  type: 112
+- id: 704
+  name: SAM x8 RIM162 ESSM
+  hud_name: RIM-162 ESSM
+  type: 86
+- id: 705
+  name: 'SAM RIM116 x21 '
+  hud_name: RIM-116
+  type: 86
+- id: 706
+  name: AAG 20 M61 CIWS Ship
+  hud_name: M61 CIWS
+  type: 115
+- id: 707
+  name: SAM RBS70 x2
+  hud_name: RBS 70
+  type: 86
+- id: 708
+  name: MMG 7.62 MG3 Vehicles
+  hud_name: MG3
+  type: 27
+- id: 709
+  name: Bomb GBU57 x2
+  hud_name: GBU-57 MOP
+  type: 162
+- id: 710
+  name: Howitzer 203 2A44 Malka Loadout2
+  hud_name: 2A44
+  type: 111
+- id: 711
+  name: Ballistic IskanderM Clus
+  hud_name: Iskander-M
+  type: 83
+- id: 712
+  name: MLRS 122 Grad Smoke
+  hud_name: Grad
+  type: 113
+- id: 713
+  name: MMG 7.62 FNMAG (Vehicles)
+  hud_name: Ksp 58B
+  type: 27
+- id: 714
+  name: ATGM Spike LR x2
+  hud_name: Spike LR
+  type: 80
+- id: 715
+  name: Autocannon 30 Rarden
+  hud_name: L21A1 Rarden
+  type: 114
+- id: 716
+  name: ATGM Spike LR x1
+  hud_name: Spike LR
+  type: 80
+- id: 717
+  name: ATGM RBS56 x1
+  hud_name: RBS 56
+  type: 80
+- id: 718
+  name: ATGM MAPATS x1
+  hud_name: MAPATS
+  type: 80
+- id: 719
+  name: MainGun 120 Leo2A8
+  hud_name: L/55A1 120mm
+  type: 110
+- id: 720
+  name: MMG 7.62 FNMAG Heli
+  hud_name: Ksp 58B
+  type: 27
+- id: 721
+  name: DMR SCARH T2
+  hud_name: SCAR-H DMR
+  type: 2
+- id: 722
+  name: Rifle M4 URGI T3
+  hud_name: M4A1 URG-I
+  type: 1
+- id: 723
+  name: RocketPod 127 Zuni x4 Heli
+  hud_name: Zuni
+  type: 140
+- id: 724
+  name: Howitzer 105 LEO Stryker Loadout2
+  hud_name: LEO 105mm
+  type: 111
+- id: 725
+  name: Howitzer 105 M20 Hawkeye Loadout4
+  hud_name: M20 105mm
+  type: 111
+- id: 726
+  name: 'Zombie Melee '
+  hud_name: Bite
+  type: 0
+- id: 727
+  name: Zombie Spit
+  hud_name: Spit
+  type: 0
+- id: 728
+  name: Zombie Throw
+  hud_name: Throw
+  type: 0
+- id: 729
+  name: Zombie Spit Antihelo
+  hud_name: Spit
+  type: 0
+- id: 730
+  name: Zombie Melee Explosion
+  hud_name: Explosion
+  type: 0
+- id: 731
+  name: Zombie Melee Explosion double
+  hud_name: Explosion
+  type: 0
+- id: 732
+  name: SAM RIM116 x11
+  hud_name: RIM-116
+  type: 86
+- id: 733
+  name: 'RocketLauncher 90 Pvpj1110 '
+  hud_name: Pv-1110
+  type: 62
+- id: 734
+  name: AGL 40  GMG
+  hud_name: GMG
+  type: 61
+- id: 735
+  name: 'Rifle G36KA4 T1 '
+  hud_name: G36KA4
+  type: 1
+- id: 736
+  name: Rifle G36KV3 T1
+  hud_name: G36KV3
+  type: 1
+- id: 737
+  name: UGL 40 AG36 G36KA4
+  hud_name: AG36
+  type: 60
+- id: 738
+  name: UGL 40 AG36 G36KV3
+  hud_name: AG36
+  type: 60
+- id: 739
+  name: 'Autorifle Minimi T1 '
+  hud_name: Minimi
+  type: 30
+- id: 740
+  name: Rifle Galil T1
+  hud_name: Galil
+  type: 1
+- id: 741
+  name: UGL 40 M203 R20
+  hud_name: M203
+  type: 60
+- id: 742
+  name: RocketLauncher B300
+  hud_name: B-300
+  type: 62
+- id: 743
+  name: RocketLauncher M72A2 LAW Disposable
+  hud_name: M72A2 LAW
+  type: 63
+- id: 744
+  name: UGL 40 HK79 G3
+  hud_name: HK 79N
+  type: 60
+- id: 745
+  name: RocketLauncher CarlGustavM2
+  hud_name: Carl Gustaf M2
+  type: 62
+- id: 746
+  name: ATGM MilanER x1 Infantry
+  hud_name: Milan ER
+  type: 80
+- id: 747
+  name: AAM Piorun Infantry
+  hud_name: Piorun
+  type: 85
+- id: 748
+  name: AAM Grom Infantry
+  hud_name: Grom
+  type: 85
+- id: 749
+  name: AAM RBS70 Infantry
+  hud_name: RBS 70
+  type: 85
+- id: 750
+  name: AGL 40  GMG Infantry
+  hud_name: GMG
+  type: 61
+- id: 751
+  name: Rifle R20S T3
+  hud_name: R-20S
+  type: 1
+- id: 752
+  name: UGL 40 M203 R20S
+  hud_name: M203
+  type: 60
+- id: 753
+  name: Autorifle MG4 T3
+  hud_name: MG4
+  type: 30
+- id: 754
+  name: Rifle HK416A5 T3 Silenced
+  hud_name: HK 416A5
+  type: 5
+- id: 755
+  name: Autorifle Minimi Para Silenced T3
+  hud_name: Minimi Para
+  type: 30
+- id: 756
+  name: Shotgun BenelliM4 T2
+  hud_name: Benelli M4
+  type: 40
+- id: 757
+  name: RocketLauncher C90CRBK Disposable
+  hud_name: C90-CR-BK
+  type: 63
+- id: 758
+  name: DMR SCARH TPR T3 DLC2
+  hud_name: SCAR-H TPR
+  type: 2
+- id: 759
+  name: ATGM MilanER x1 Infantry Team2
+  hud_name: Milan ER
+  type: 80
+- id: 760
+  name: MMG Minimi Mk3 T3
+  hud_name: Minimi Mk. 3
+  type: 26
+- id: 761
+  name: Rifle G36K Silenced T3
+  hud_name: G36K
+  type: 1
+- id: 762
+  name: MGL 40 RBG6
+  hud_name: RBG-6
+  type: 60
+- id: 763
+  name: Sniper 7.62 AWP T2
+  hud_name: AW
+  type: 3
+- id: 764
+  name: Sniper 8.6 Lapua AXMC T2
+  hud_name: AXMC
+  type: 3
+- id: 765
+  name: Sniper 12.7 Hecate T1
+  hud_name: Hécate
+  type: 4
+- id: 766
+  name: RocketLauncher CarlGustavM4 [CG M4]
+  hud_name: Carl Gustaf M4
+  type: 62
+- id: 767
+  name: Rifle HK416A5 T3
+  hud_name: HK 416A5
+  type: 5
+- id: 768
+  name: SAM Mistral x1
+  hud_name: Mistral
+  type: 86
+- id: 769
+  name: 'Mortar 120 Tampella Loadout1 '
+  hud_name: Tampella
+  type: 112
+- id: 770
+  name: ATGM MilanER x1
+  hud_name: Milan ER
+  type: 80
+- id: 771
+  name: Mortar 120 Tampella Loadout2
+  hud_name: Tampella
+  type: 112
+- id: 772
+  name: SAM x6 NASAMS AMRAAM
+  hud_name: AMRAAM
+  type: 86
+- id: 773
+  name: SAM x6 NASAMS AIM9
+  hud_name: AIM-9
+  type: 86
+- id: 774
+  name: SAM x6 NASAMS AMRAAM ER
+  hud_name: AMRAAM-ER
+  type: 86
+- id: 775
+  name: AGL 40  GMG Heli
+  hud_name: GMG
+  type: 61
+- id: 776
+  name: Autocannon 20 NC621 Pylon Heli
+  hud_name: NC621 20mm
+  type: 141
+- id: 777
+  name: Howitzer 155 M284 M109A5O
+  hud_name: M284
+  type: 111
+- id: 778
+  name: Howitzer 155 M284 M109A5O Double
+  hud_name: M284
+  type: 111
+- id: 779
+  name: Howitzer 155 PZH2000 Double
+  hud_name: L52
+  type: 111
+- id: 780
+  name: Howitzer 155 K9 Loadout1
+  hud_name: CN98
+  type: 111
+- id: 781
+  name: Howitzer 155 K9 Loadout2
+  hud_name: CN98
+  type: 111
+- id: 782
+  name: ATGM Spike LR x1 Static
+  hud_name: Spike LR
+  type: 80
+- id: 783
+  name: SAM x4 IRIST
+  hud_name: IRIS-T SLM
+  type: 86
+- id: 784
+  name: SAM x8 IRIST
+  hud_name: IRIS-T SLM
+  type: 86
+- id: 785
+  name: DMR 7.62 Galil Sniper T1
+  hud_name: Galatz
+  type: 2
+- id: 786
+  name: DMR SCARH PR T1 DLC2
+  hud_name: SCAR-H PR
+  type: 2
+- id: 787
+  name: RocketLauncher RAWS FST
+  hud_name: RAWS
+  type: 62
+- id: 788
+  name: RocketLauncher MAAWS FST
+  hud_name: M3E1 MAAWS
+  type: 62
+- id: 789
+  name: RocketLauncher RPG7V (PG7-L) FST
+  hud_name: RPG-7V
+  type: 62

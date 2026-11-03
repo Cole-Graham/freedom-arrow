@@ -1,0 +1,113 @@
+version: v1
+note: "initial v3 schema; mirrors the v2 YAML shape"
+introduced: 2026-05-29
+
+tables:
+  units:
+    id:         { type: int,  required: true, primary: true }
+    name:       { type: str,  required: true }
+    hud_name:   { type: str }
+    tags:       { type: list }
+    type:       { type: int }
+    role:       { type: int }
+    category:   { type: int }
+    link_info:  { type: map }
+
+  weapons:
+    id:        { type: int,  required: true, primary: true }
+    name:      { type: str,  required: true }
+    hud_name:  { type: str }
+    type:      { type: int }
+    tags:      { type: list }
+    link_info: { type: map }
+
+  ammunition:
+    id:              { type: int,  required: true, primary: true }
+    name:            { type: str,  required: true }
+    hud_name:        { type: str }
+    target_type:     { type: int }
+    armor_targeted:  { type: int }
+    trajectory:      { type: int }
+    tags:            { type: list }
+    vanilla:         { type: map }
+    current:         { type: map }
+    real_world:      { type: map }
+    min_range:       { type: map }
+    link_info:       { type: map }
+
+  turrets:
+    id:                { type: int,  required: true, primary: true }
+    name:              { type: str,  required: true }
+    parent_turret_id:  { type: int }
+    is_default:        { type: bool }
+    cloned_from:       { type: int }
+    link_info:         { type: map }
+
+  modifications:
+    id:        { type: int, required: true, primary: true }
+    unit_id:   { type: int, required: true }
+    ui_name:   { type: str }
+    type:      { type: int }
+    order:     { type: int }
+    thumbnail: { type: str }
+    link_info: { type: map }
+
+  options:
+    id:                          { type: int, required: true, primary: true }
+    modification_id:             { type: int, required: true }
+    ui_name:                     { type: str }
+    order:                       { type: int }
+    is_default:                  { type: bool }
+    cost:                        { type: int }
+    option_picture:              { type: str }
+    turret_overrides:            { type: map }
+    ability_overrides:           { type: map }
+    armor_id:                    { type: int }
+    mobility_id:                 { type: int }
+    main_sensor_id:              { type: int }
+    extra_sensor_id:             { type: int }
+    stealth_override:            { type: float }
+    replace_unit_id:             { type: int }
+    concatenate_with_unit_name:  { type: str }
+    replace_unit_name:           { type: str }
+    thumbnail_override:          { type: str }
+    portrait_override:           { type: str }
+    audio_preset_override:       { type: str }
+    time_modifier_refund:        { type: float }
+    time_modifier_resurrect:     { type: float }
+    link_info:                   { type: map }
+
+  # bridge tables (no link_info)
+  turret_units:
+    id:        { type: int, required: true, primary: true }
+    unit_id:   { type: int, required: true }
+    turret_id: { type: int, required: true }
+    order:     { type: int }
+
+  turret_weapons:
+    id:        { type: int, required: true, primary: true }
+    weapon_id: { type: int, required: true }
+    turret_id: { type: int, required: true }
+    order:     { type: int }
+    channel:   { type: int }
+    priority:  { type: int }
+
+  squad_members:
+    id:                { type: int, required: true, primary: true }
+    unit_id:           { type: int, required: true }
+    primary_weapon_id: { type: int }
+    special_weapon_id: { type: int }
+    model:             { type: str }
+
+  squad_weapons:
+    id:        { type: int, required: true, primary: true }
+    unit_id:   { type: int, required: true }
+    weapon_id: { type: int, required: true }
+
+  weapon_ammunitions:
+    id:            { type: int, required: true, primary: true }
+    unit_id:       { type: int, required: true }
+    weapon_id:     { type: int, required: true }
+    ammunition_id: { type: int, required: true }
+    order:         { type: int }
+    quantity:      { type: int }

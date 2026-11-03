@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Platform-agnostic BAML decompiler tests: they need no WPF, so they build and run on every
+         CI leg (including Linux/macOS). The WPF round-trip cases live in the Windows-only companion
+         project ILSpy.BamlDecompiler.Tests.Windows. -->
+    <TargetFramework>net11.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
+
+    <EnableDefaultItems>false</EnableDefaultItems>
+
+    <!-- Strong-named with the shared snk so ICSharpCode.BamlDecompiler can grant InternalsVisibleTo
+         for the resilience tests, mirroring ICSharpCode.Decompiler.Tests. -->
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ICSharpCode.Decompiler\ICSharpCode.Decompiler.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" />
+    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" />
+    <PackageReference Include="coverlet.MTP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ICSharpCode.BamlDecompiler\ICSharpCode.BamlDecompiler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="FacadeAssemblyTests.cs" />
+    <Compile Include="InvalidXmlCharacterTests.cs" />
+    <Compile Include="MissingReferencesTests.cs" />
+    <Compile Include="TransitiveReferenceTests.cs" />
+    <Compile Include="MarkupExtensionQuotingTests.cs" />
+    <Compile Include="RuntimeNamePropertyTests.cs" />
+    <Compile Include="StartupUriTests.cs" />
+    <Compile Include="UnresolvedPropertyTests.cs" />
+    <Compile Include="XmlNamespaceResolutionTests.cs" />
+    <Compile Include="XmlnsDeclarationPlacementTests.cs" />
+  </ItemGroup>
+
+</Project>
