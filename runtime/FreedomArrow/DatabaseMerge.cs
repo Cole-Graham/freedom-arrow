@@ -9,7 +9,7 @@ using MelonLoader;
 
 namespace FreedomArrow;
 
-static class DatabaseMerge
+public static class DatabaseMerge
 {
     static readonly JsonSerializerOptions WriteOpts = new()
     {
@@ -85,7 +85,7 @@ static class DatabaseMerge
         }
         catch (Exception ex)
         {
-            _log.Error("constant merge aborted with no writes: " + ex.Message);
+            _log.Error("constant merge failed: " + ex.Message);
         }
     }
 
@@ -97,10 +97,25 @@ static class DatabaseMerge
             : Array.Empty<string>();
         LogBuild(files);
         var overrides = ReadOverrides(files);
+        var source = Tables.All.ToDictionary(item => item.Property, item => GetString(database, item.Property));
+        var pending = PrepareTables(source, overrides, out var counts);
+        _log.Msg(counts.Count == 0
+            ? "constants changed no rows"
+            : "patched rows: " + string.Join(", ", counts));
+        return pending;
+    }
+
+    // Keep the wire-format preparation independent of Unity and logging so the
+    // same path can be checked without starting the game. No properties are set here.
+    internal static List<(string Property, string Json)> PrepareTables(
+        IReadOnlyDictionary<string, string> source,
+        Dictionary<string, Dictionary<string, JsonObject>> overrides,
+        out List<string> counts)
+    {
         var decrypted = new Dictionary<string, JsonArray>();
         foreach (var (property, file) in Tables.All)
         {
-            var wire = GetString(database, property);
+            var wire = source[property];
             JsonNode? node;
             try
             {
@@ -115,30 +130,27 @@ static class DatabaseMerge
             decrypted[file] = rows;
         }
         var merged = new Dictionary<string, JsonArray>();
-        var counts = new List<string>();
+        counts = new List<string>();
+        var changedFiles = new HashSet<string>();
         foreach (var (property, file) in Tables.All)
         {
             overrides.TryGetValue(file, out var patch);
             var (rows, changed) = MergeTable(file, decrypted[file], patch);
             merged[file] = rows;
             if (changed > 0)
+            {
                 counts.Add($"{file} {changed}");
+                changedFiles.Add(file);
+            }
         }
         CheckLinks(merged);
         var pending = new List<(string, string)>();
         foreach (var (property, file) in Tables.All)
         {
-            overrides.TryGetValue(file, out var patch);
-            if (patch == null || patch.Count == 0)
+            if (!changedFiles.Contains(file))
                 continue;
-            var (_, changed) = MergeTable(file, decrypted[file], patch);
-            if (changed == 0)
-                continue;
-            pending.Add((property, merged[file].ToJsonString(WriteOpts)));
+            pending.Add((property, Crypto.Encrypt(merged[file].ToJsonString(WriteOpts))));
         }
-        _log.Msg(counts.Count == 0
-            ? "constants changed no rows"
-            : "patched rows: " + string.Join(", ", counts));
         return pending;
     }
 

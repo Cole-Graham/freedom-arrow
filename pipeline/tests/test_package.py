@@ -118,3 +118,23 @@ class PackageTests(unittest.TestCase):
             (root / "mod" / "modpack.json").write_text("{}\n", encoding="utf-8")
             with self.assertRaises(PipelineError):
                 package(_cfg(root), "stable")
+
+    def test_unsupported_config_edits_are_rejected_in_their_channel(self):
+        from pipeline.package import _check_channel
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "mod" / "configs" / "nested" / "FOWToolConfig.JSON"
+            config.parent.mkdir(parents=True)
+            config.write_text('{"FontSize": 18}', encoding="utf-8")
+            _check_channel(_cfg(root), "testing")
+            with self.assertRaisesRegex(PipelineError, "config edits are not implemented"):
+                _check_channel(_cfg(root), "stable")
+            config.unlink()
+            _check_channel(_cfg(root), "stable")
+            testing = root / "mod" / "testing" / "configs" / "FOWToolConfig.json"
+            testing.parent.mkdir(parents=True)
+            testing.write_text("{}", encoding="utf-8")
+            _check_channel(_cfg(root), "stable")
+            with self.assertRaisesRegex(PipelineError, "config edits are not implemented"):
+                _check_channel(_cfg(root), "testing")

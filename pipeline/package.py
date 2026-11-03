@@ -130,6 +130,14 @@ def _plugin_bytes(repo: Path) -> bytes:
 
 
 def _check_channel(cfg: Config, channel: str) -> None:
+    mod = cfg.repo_root / "mod"
+    configs = (mod if channel == "stable" else mod / "testing") / "configs"
+    unsupported = sorted(path for path in configs.rglob("*") if path.is_file() and path.suffix.lower() == ".json")
+    if unsupported:
+        raise PipelineError(
+            f"ScriptableObject config edits are not implemented: {unsupported[0]}. "
+            "These files cannot be packaged or applied yet."
+        )
     for path in formulas_in(formulas_dir(cfg, channel)):
         validate_formula(path)
     bundle = cfg.bundle_path

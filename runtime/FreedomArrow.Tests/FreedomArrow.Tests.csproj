@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <MelonLibs>$(MSBuildThisFileDirectory)..\..\thirdparty-tools\MelonLoader\MelonLoader\net6</MelonLibs>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreedomArrow\FreedomArrow.csproj" />
+    <Reference Include="MelonLoader"><HintPath>$(MelonLibs)\MelonLoader.dll</HintPath></Reference>
+    <Reference Include="0Harmony"><HintPath>$(MelonLibs)\0Harmony.dll</HintPath></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(MelonLibs)\Il2CppInterop.Runtime.dll</HintPath></Reference>
+    <Reference Include="Il2CppInterop.Common"><HintPath>$(MelonLibs)\Il2CppInterop.Common.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

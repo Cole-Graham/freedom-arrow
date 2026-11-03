@@ -11,6 +11,7 @@ Run Python from the repo root so `import pipeline` works.
 ```text
 python -m pip install -r pipeline/requirements.txt
 python -m unittest pipeline.tests.test_pipeline pipeline.tests.test_package
+dotnet run --project runtime/FreedomArrow.Tests/FreedomArrow.Tests.csproj -c Release
 ```
 
 Unit tests use temp directories and stub executables. They do not need the 7 GB bundle. Prefer them for any code change under `pipeline/`.
@@ -26,7 +27,7 @@ Unit tests use temp directories and stub executables. They do not need the 7 GB 
 | Task | Edit |
 | --- | --- |
 | A table value the game already stores | `mod/constants/<table>.json` or `mod/testing/constants/<table>.json` |
-| A ScriptableObject field named in `dump.cs` | `mod/configs/<ClassName>.json` or `mod/testing/configs/<ClassName>.json` |
+| Inspect a ScriptableObject field | Use `dump.cs` / decoded configs; applying config edits is not implemented |
 | Code run at a game method | `mod/formulas/<Class>/<Method>.json` or `mod/testing/formulas/<Class>/<Method>.json` |
 | Extract, encrypt, inject, rebase, package, the plugin | `pipeline/` and `runtime/FreedomArrow/` |
 | Modpack id, version, GitHub repos | `mod/modpack.json` |
@@ -37,7 +38,7 @@ A constant file and the code that reads it name the place the change is actually
 
 A table file modifies existing rows. It is keyed by `Id`. Values are the game's PascalCase fields. Example: `{ "1": { "Cost": 40 } }`.
 
-A config file modifies an existing ScriptableObject field. The filename is the class. The keys are field names from `dump.cs`. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
+ScriptableObject config edits are not implemented. The proposed `mod/configs/` and `mod/testing/configs/` trees are rejected by `package`; installed config JSON also stops plugin startup before hooks are installed. Implement and verify a config application path before authoring those files. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
 
 A formula file is code at a method. `change` is `after`, `before`, `inside`, or `instead`. A number is a new literal. A string names an existing source. Only `after` is implemented. `package` rejects the others. Conditions such as `requires` or `terrain` belong in the file only when that hook checks them.
 
@@ -107,6 +108,7 @@ Do not commit decrypted tables, `data.unity3d`, bundle hashes of a local install
 ## Checks before you finish
 
 - `python -m unittest pipeline.tests.test_pipeline pipeline.tests.test_package` passes.
+- `dotnet run --project runtime/FreedomArrow.Tests/FreedomArrow.Tests.csproj -c Release` passes after runtime changes. These console checks execute the real DLL without starting the game; native hooks still need in-game verification.
 - A change to constants or inject paths still round-trips an empty constants directory to the original MonoBehaviour bytes. That test is `IdentityTests` and `ApplyTests.test_empty_constants_round_trip_on_disk`.
 - A change to packaging still produces a zip whose `mod.json` has `"type": "modpack"` and whose changed constants live under `UserData/FreedomArrow/constants/`. That test is `pipeline/tests/test_package.py`.
 - You did not leave a one-off cost or probe script in `mod/constants/` or `mod/testing/constants/`. Those trees are the mod.

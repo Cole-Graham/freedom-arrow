@@ -47,7 +47,10 @@ Build the plugin before packaging:
 
 ```text
 dotnet build runtime/FreedomArrow/FreedomArrow.csproj -c Release
+dotnet run --project runtime/FreedomArrow.Tests/FreedomArrow.Tests.csproj -c Release
 ```
+
+The console checks load the real plugin and exercise registration, generated hook calls, and encrypted table preparation. They do not start Unity or prove native hooks or combat behavior. The plugin and console checks target .NET 6, matching the bundled MelonLoader host.
 
 Run commands from the repo root so Python can import `pipeline`:
 
@@ -78,7 +81,7 @@ A constant file names the place the game or the plugin actually applies the chan
 
 A list of rows with an `Id` field is also accepted. The pipeline rejects an unknown file, a missing `Id`, a type change, and a foreign key that does not point at a row. Rows you do not mention stay as the original ciphertext, so an empty constants directory round-trips to the original object bytes.
 
-**Existing serialized fields.** `mod/configs/<ClassName>.json` is the same kind of edit for a field on a ScriptableObject. The class and the field names come from `dump.cs`. There is no config file in the repo yet.
+**Serialized config edits are not implemented.** `mod/configs/<ClassName>.json` and `mod/testing/configs/<ClassName>.json` are reserved for a future ScriptableObject application path. Packaging rejects JSON files there. If JSON files are already installed under `UserData/FreedomArrow/configs`, plugin startup reports the unsupported input and leaves gameplay hooks uninstalled. Reading fields from `dump.cs` or decoding a config asset does not apply edits to that asset.
 
 **Code at a method.** `mod/formulas/<Class>/<Method>.json` is a calculation the plugin runs at that method. `change` says how it sits on the game's own calculation: `after` the method returns, `before` it runs, `inside` it at the inner method named by `at`, or `instead` of it. Only `after` is accepted today. The other three are rejected until a hook implements them.
 

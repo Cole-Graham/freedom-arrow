@@ -567,7 +567,12 @@ def _note_odin_collections(values: dict) -> dict:
             matched = [node for node in nodes if isinstance(node, dict) and node.get("Name") == name]
             noted[name] = {"undecoded": True, "nodes": matched}
         elif fmt == 0:
-            noted[name] = {"undecoded": True, "in_payload": name.encode("utf-8") in payload}
+            noted[name] = {
+                "undecoded": True,
+                # Accept both one-byte ASCII names and the UTF-16LE names
+                # present in the game's Binary payload. This is not decoding.
+                "in_payload": name.encode("utf-8") in payload or name.encode("utf-16-le") in payload,
+            }
     return noted
 
 

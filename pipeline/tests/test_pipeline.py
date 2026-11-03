@@ -722,6 +722,21 @@ class Il2CppTests(unittest.TestCase):
             {"undecoded": True, "nodes": [{"Name": "LowHighAltRangeWeapons", "Entry": 3, "Data": "kept"}]},
         )
 
+    def test_odin_binary_names_may_be_utf16(self):
+        from pipeline.il2cpp import _note_odin_collections
+
+        names = ("ShowWeaponRangesByRelation", "LowHighAltRangeWeapons")
+        for encoding in ("utf-8", "utf-16-le"):
+            with self.subTest(encoding=encoding):
+                payload = b"\x01" + b"\x00".join(name.encode(encoding) for name in names)
+                values = {"serializationData": {"SerializedFormat": 0, "SerializedBytes": list(payload)}}
+                values.update({name: {"undecoded": True} for name in names})
+                noted = _note_odin_collections(values)
+                for name in names:
+                    self.assertEqual(noted[name], {"undecoded": True, "in_payload": True})
+        values["serializationData"]["SerializedBytes"] = []
+        self.assertFalse(_note_odin_collections(values)[names[0]]["in_payload"])
+
 
 class CliTests(unittest.TestCase):
     def test_help(self):

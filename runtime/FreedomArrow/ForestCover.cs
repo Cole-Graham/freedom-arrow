@@ -7,7 +7,7 @@ using MelonLoader;
 
 namespace FreedomArrow;
 
-static class ForestCover
+public static class ForestCover
 {
     static readonly string[] Requires = { "InfantryUnitComponent", "TerrainTypeComponent" };
     const string Formula = "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))";
