@@ -102,8 +102,8 @@ _PRIMITIVE = {
 
 
 def assembly_path(cfg: Config) -> Path:
-    """GameAssembly.dll lives beside the metadata, under BrokenArrow_Data."""
-    return cfg.game_root / "BrokenArrow_Data" / "GameAssembly.dll"
+    """GameAssembly.dll sits next to BrokenArrow.exe, in game_root."""
+    return cfg.game_root / "GameAssembly.dll"
 
 
 def metadata_path(cfg: Config) -> Path:
@@ -260,7 +260,7 @@ def write_il2cpp(cfg: Config) -> Path:
     metadata = metadata_path(cfg)
     if not binary.is_file():
         raise PipelineError(
-            f"missing {binary}. Place GameAssembly.dll in BrokenArrow_Data next to the metadata."
+            f"missing {binary}. GameAssembly.dll belongs in game_root, next to BrokenArrow.exe."
         )
     if not metadata.is_file():
         raise PipelineError(f"missing {metadata}")

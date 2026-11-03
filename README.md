@@ -130,7 +130,7 @@ python -m pipeline rebase --channel stable --accept
 | `discover` | Find `DataBaseCompiled` by name and record path id, script, and build id |
 | `decrypt` | Write the 24 JSON tables and their original ciphertext |
 | `survey` | Catalog cover, forest, stealth, and suppression values into `cache/survey/<build-id>/report.json`. Reads the bundle only |
-| `il2cpp` | Dump `BrokenArrow_Data/GameAssembly.dll` and write cover-config fields and values to `cache/il2cpp/<build-id>/configs.json` |
+| `il2cpp` | Dump `GameAssembly.dll` from `game_root` and write cover-config fields and values to `cache/il2cpp/<build-id>/configs.json` |
 | `apply --channel` | Merge that channel's constants onto the vanilla snapshot |
 | `inject --channel` | Repack `dist/<channel>/data.unity3d` and `channel.json` |
 | `package --channel` | Write `dist/<channel>/FreedomArrow-<version>.bamod` for BAModLauncher |
