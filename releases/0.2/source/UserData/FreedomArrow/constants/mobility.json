@@ -1,0 +1,25 @@
+{
+  "2000222": {
+    "FlyPreset": null,
+    "Name": "Tracks Sprut Armored",
+    "ModelFileName": null,
+    "IsDefault": true,
+    "IsAmphibious": true,
+    "IsAirDroppable": false,
+    "Weight": 0,
+    "HeavyLiftWeight": 0,
+    "TurnRate": 60.0,
+    "Acceleration": 10.0,
+    "MaxCrossCountrySpeed": 55.0,
+    "MaxSpeedRoad": 60.0,
+    "MaxSpeedReverse": 35.0,
+    "MaxSpeedWater": 20.0,
+    "Agility": 0.0,
+    "ClimbRate": 0.0,
+    "IsChangeAltitude": false,
+    "LoiteringTime": 0.0,
+    "IsAfterburner": false,
+    "AfterBurningLoiteringTime": 0.0,
+    "FlyPresetId": 0
+  }
+}
