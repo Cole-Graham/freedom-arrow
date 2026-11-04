@@ -18,10 +18,10 @@ def main():
  for f in ['Mods/BALocalSkirmish.dll','UserData/FAConquestPrototype/settings.json']:data[f]=sha(payload/f)
  pins.write_text(json.dumps(data,indent=2)+'\n')
  hashes={f.relative_to(payload).as_posix():sha(f) for f in sorted(payload.rglob('*')) if f.is_file() and f.name!='payload-manifest.json'}
- (payload/'UserData/FreedomArrow/payload-manifest.json').write_text(json.dumps({'version':'0.1.0','sha256':hashes},indent=2)+'\n')
- out=R/'out';out.mkdir(exist_ok=True);archive=out/'FreedomArrow-0.1.0.bamod'
+ (payload/'UserData/FreedomArrow/payload-manifest.json').write_text(json.dumps({'version':'0.1.1','sha256':hashes},indent=2)+'\n')
+ out=R/'out';out.mkdir(exist_ok=True);archive=out/'FreedomArrow-0.1.1.bamod'
  # Copy metadata from the reviewed artifact rather than infer a new release scope.
- with zipfile.ZipFile(R/'FreedomArrow-0.1.0.bamod') as original:
+ with zipfile.ZipFile(R/'FreedomArrow-0.1.1.bamod') as original:
   with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
    for f in sorted(payload.rglob('*')):
     if f.is_file():z.write(f,f.relative_to(payload).as_posix())

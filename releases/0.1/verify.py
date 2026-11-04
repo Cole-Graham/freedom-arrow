@@ -1,7 +1,7 @@
 """Verify this actual .bamod archive, without game data or a game launch."""
 from pathlib import Path
 import hashlib,json,sys,zipfile
-p=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).with_name('FreedomArrow-0.1.0.bamod')
+p=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).with_name('FreedomArrow-0.1.1.bamod')
 with zipfile.ZipFile(p) as z:
  names=z.namelist();assert len(set(names))==len(names)
  assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)

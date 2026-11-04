@@ -16,7 +16,7 @@ points and destruction conversion remain deferred. Developer score/weight
 fixtures, custom information box, debug panel and read-only probe are omitted.
 
 This candidate includes guarded Local AI Skirmish setup (F8 in the menu) with AI
-spawning restored. The revised AI-enabled package has not had a live launch.
+spawning restored. The scoring compatibility build completed a 30-minute guarded Local AI Skirmish with normal AI captures and native Victory. The final T-90M base/ERA correction is checked separately in the armory; full combat and loadout acceptance remains incomplete.
 Custom scoring remains guarded to offline Local AI Skirmish. Multiplayer
 compatibility and cross-client scoring are unverified; this is not an online
 release acceptance result.
@@ -40,3 +40,10 @@ Install and rollback
    data.unity3d. Do not manually overwrite those files from a QA copy.
 
 This file is an accurate scope/readiness note, not proof of live installation.
+
+
+## 0.1.1 corrections
+
+Generated interop wrappers get a random 16-byte module ID. The conquest compatibility check now ignores only that ID when hashing those wrappers. All other wrapper bytes and the native game binary remain pinned.
+
+Sam's T-90M correction: base and base+Arena side HEAT are 200 mm; Additional ERA (2017) and ERA+Arena stay at 400 mm. Nakidka/Razvedchik uses the same base armor profile and is 200 mm. KE armor, front armor, HP, costs and scoring settings are unchanged.

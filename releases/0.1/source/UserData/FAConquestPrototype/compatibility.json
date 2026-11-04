@@ -1,7 +1,7 @@
 {
   "GameAssembly.dll": "12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf",
-  "MelonLoader/Il2CppAssemblies/Il2CppBrokenArrow.dll": "b28c96b509ca29d0aa6ee569f4cc3760e0ff60a200106ee2bb42e8b8acac058e",
-  "MelonLoader/Il2CppAssemblies/Il2CppNetworkCommon.dll": "1e1165ffdb9d9b366ab5e39a7f39b6fb60f916c4c85212c3a6a2c04b7a1e2979",
+  "MelonLoader/Il2CppAssemblies/Il2CppBrokenArrow.dll": "sha256-mvid-v1:09f46011c7cc67f9e2eed680be7bcac7a2c3aa088f8bef58d9cb50f4b55e56c6",
+  "MelonLoader/Il2CppAssemblies/Il2CppNetworkCommon.dll": "sha256-mvid-v1:107d71c0cbea9a8d39ba229fe668ea633d8a0f8d71a3a846f6219801b420adc4",
   "Mods/BALocalSkirmish.dll": "308edab0b1e93d230109218c13df0db975e998100d01306fc2ea0cee954af531",
   "UserData/FAConquestPrototype/settings.json": "ecf6c49baf8d676f6135338da0acc396b9d5829030f74a3d2c5ccb21d1ce788a"
 }

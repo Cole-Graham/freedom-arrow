@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest Batch Test", "0.1.0", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.1.1", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -108,10 +108,7 @@ public sealed partial class Prototype : MelonMod
             string path = Path.Combine(MelonEnvironment.GameRootDirectory, pin.Key.Replace('/', Path.DirectorySeparatorChar));
             // Both standard and extracted-game layouts are supported, without guessing a different DLL.
             if (pin.Key == "GameAssembly.dll" && !File.Exists(path)) path = Path.Combine(MelonEnvironment.GameRootDirectory, "BrokenArrow_Data", pin.Key);
-            using var stream = File.OpenRead(path);
-            using var hasher = SHA256.Create();
-            string actual = Convert.ToHexString(hasher.ComputeHash(stream)).ToLowerInvariant();
-            if (actual != pin.Value) throw new InvalidDataException("Build mismatch: " + pin.Key);
+            BuildFingerprint.Verify(pin.Key, File.ReadAllBytes(path), pin.Value);
         }
         Log("compatibility_verified", pins);
     }

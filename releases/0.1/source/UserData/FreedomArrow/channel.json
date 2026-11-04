@@ -1,6 +1,6 @@
 {
   "channel": "stable",
-  "package_version": "0.1.0",
+  "package_version": "0.1.1",
   "spotting": "vanilla",
-  "deployment_status": "prepared; revised package not live verified"
+  "deployment_status": "startup, selected data/armor and local AI scoring verified; full balance acceptance incomplete"
 }

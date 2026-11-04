@@ -1,1 +1,1 @@
-68f3b42ae70fba61165710f4cc7bfb84b0cd25eec06033d29fc1860aaa308f30  FreedomArrow-0.1.0.bamod
+edb0b97b8fac1c1693333a899ca7b749a210bb2f3491a2f85d60b6cabf23f3bb  FreedomArrow-0.1.1.bamod
