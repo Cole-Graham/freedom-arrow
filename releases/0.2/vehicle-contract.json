@@ -1,0 +1,66 @@
+{
+  "version": "0.2.0-dev.2",
+  "base_costs": {
+    "90": 30,
+    "89": 60,
+    "141": 20,
+    "142": 20,
+    "206": 30,
+    "151": 80,
+    "240": 140,
+    "13": 360,
+    "255": 200,
+    "239": 160,
+    "236": 150,
+    "238": 200,
+    "1": 35,
+    "253": 30,
+    "450": 30,
+    "3": 60,
+    "212": 25,
+    "425": 30,
+    "230": 25,
+    "158": 100,
+    "219": 20,
+    "627": 30,
+    "602": 70,
+    "615": 75,
+    "197": 80,
+    "216": 30,
+    "365": 25,
+    "214": 35,
+    "200": 30,
+    "201": 60,
+    "9": 70,
+    "157": 100
+  },
+  "option_costs": {
+    "245": 15,
+    "499": 5,
+    "625": 30,
+    "564": 90,
+    "565": 100,
+    "566": 130,
+    "3033": 5,
+    "491": 20,
+    "492": 25,
+    "493": 40
+  },
+  "provisional_units": [
+    13,
+    255,
+    253
+  ],
+  "held_prices": [
+    144,
+    252,
+    628,
+    703
+  ],
+  "held_structural": [
+    "T-80BV/BVM separate cards; obr2018 removal",
+    "Object787 independent card",
+    "earlier infantry/card splits and obsolete APS choices"
+  ],
+  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran70 meaning awaiting reply; no price change."
+}

@@ -182,5 +182,45 @@
       "TurretsJson",
       true
     ]
+  },
+  "UnitArmorsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "ArmorId": [
+      "ArmorsJson",
+      false
+    ]
+  },
+  "UnitPropulsionsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "MobilityId": [
+      "MobilityJson",
+      false
+    ]
+  },
+  "UnitAbilitiesJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "AbilityId": [
+      "AbilitiesJson",
+      false
+    ]
+  },
+  "SensorUnitsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "SensorId": [
+      "SensorsJson",
+      false
+    ]
   }
 }

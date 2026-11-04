@@ -1,6 +1,6 @@
 """Generate the narrow dev.1 vehicle overlay on frozen 0.1.1 constants.
 
-Only requested BMO-T, Kornet-D1, Sprut cage and AMPV APS changes are included.
+Includes dev.1 plus the requested Russian vehicle price/HP/armor batch.
 Troopers, squad resizing, option retirement and Booker remain outside this build.
 """
 from pathlib import Path
@@ -79,25 +79,47 @@ def main():
             aid=option[field]
             if not aid or (option['Id']==279 and aid==4):continue
             assert (mods[option['ModificationId']],aid) in unit_abilities,('option ability missing from unit',option['Id'],aid)
-    # Existing cloned profiles are immutable. No original global data row is changed.
+    contract=json.loads((R/'vehicle-contract.json').read_text())
+    for key,cost in contract['base_costs'].items():
+        put('Units',int(key),{'Cost':cost},'Requested base cost; inspect configured surcharges separately')
+    for key,cost in contract['option_costs'].items():
+        put('OptionsJson',int(key),{'Cost':cost},'Requested surcharge or documented held-split/Reserve fallback')
+    for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
+        for oid in oids:armor(uid,oid,{'MaxHealthPoints':10},'BTR82A/BTR80 all armor choices10 HP; shared BRDM3 unchanged')
+    # B15 is a turret option with no selected armor. Add only its own association.
+    old=effective['UnitArmorsJson'][415]['ArmorId']
+    assert effective['OptionsJson'][643]['ArmorId']==0
+    new=clone('ArmorsJson',old,{'HeatArmorFront':400,'HeatArmorSides':400,'IsDefault':False},'B15 only400/400 HEAT; B10/B11 retain120/100')
+    link=next_id;next_id+=1
+    put('UnitArmorsJson',link,{'UnitId':254,'ArmorId':new},'B15 new armor association')
+    put('OptionsJson',643,{'ArmorId':new},'B15 selected armor without changing B10/B11 default')
+    for oid in [3067,3070,3071,3072]:armor(628,oid,{'MaxHealthPoints':8},'Uran9 all four top-slot profiles8 HP; price held')
+    for oid in [564,565]:armor(158,oid,{'HeatArmorSides':200},'T80BVM2017/held2018 side HEAT200;2018+ stays400')
+    # Existing cloned profiles are immutable. Unit costs are a narrow allow-list.
     for table,rows in frozen.items():
         for rid,row in rows.items():
             if rid>=2_000_000:assert effective[table][rid]==row,(table,rid)
-    assert effective['Units']==frozen['Units']
+    for uid,row in frozen['Units'].items():
+        want=copy.deepcopy(row)
+        if str(uid) in contract['base_costs']:want['Cost']=contract['base_costs'][str(uid)]
+        assert effective['Units'][uid]==want,('unexpected unit change',uid)
+    assert set(effective['Units'])==set(frozen['Units'])
+    assert effective['ModificationsJson']==frozen['ModificationsJson']
+    assert effective['AmmunitionsJson']==frozen['AmmunitionsJson']
     assert effective['SquadMembersJson']==frozen['SquadMembersJson']
     for table in ['WeaponsJson','SquadWeaponsJson','TurretWeaponsJson','SpecializationAvailabilitiesJson']:
         assert effective[table]==frozen[table]
     # Validate every changed foreign key against the complete effective graph.
-    schema=json.loads((base/'reference-schema.json').read_text())
+    schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
         for field,(target,nullable) in schema.get(a['table'],{}).items():
             v=a['after'][field]
             assert (v==0 and nullable) or v in effective[target],(a['table'],a['id'],field,v)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
-    record={'version':'0.2.0-dev.1','source_build':pins['source_build_id'],
+    record={'version':contract['version'],'source_build':pins['source_build_id'],
             'baseline_commit':'72783a51acfd0fac53fc1f40ea881f0f009fe6e0',
-            'affected_units':[41,144,151,235],'new_profile_ids':list(range(2000218,next_id)),
+            'affected_units':sorted(set([41,144,151,235,254,628]+[int(i) for i in contract['base_costs']])),'new_profile_ids':list(range(2000218,next_id)),
             'baseline_clone_ids_preserved':218,'source_table_pins_matched':24,
             'rows':{k:len(v) for k,v in patches.items()},'changes':audit,
             'scope':'data generation only; no runtime, armory or behavior result'}

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.1 — development candidate
+# Freedom Arrow 0.2.0-dev.2 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -8,6 +8,12 @@ Infantry/card changes, availability/pricing changes, option retirement and Booke
 
 No live credit, HUD, AI, armor, movement, APS interception, FPS or stability result is claimed. T12 must inspect Base/BRAT without APS as well as the selected AMPV APS option, and prove upkeep-active control before comparison.
 
+## Russian vehicle batch
+
+32 base-price changes plus BTR82A/BTR80 10HP, Uran9 8HP and B15-only400/400 HEAT. T80 and Object787 remain loadouts with temporary requested price totals; splits, availability and obr2018 removal are held. BMP2 Reserve35 preserves the other turret totals55/60/75. Armata360/T15 200/K16 30 provisional. No sabot damage change. Uran70, Konkurs target and T72B3A request unresolved.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
+
+- 2026-11-04 15:54:11 PST (America/Los_Angeles) — Added dev.2 batch and held structural scope.

@@ -1,0 +1,20 @@
+using System.Text.Json.Nodes;
+using FreedomArrow;
+if(args.Length!=2)throw new ArgumentException("pinned vanilla JSON directory and package payload root required");
+string vanilla=args[0],root=args[1];int checks=0,writes=0;var merged=new Dictionary<string,JsonArray>();
+void Check(bool yes,string why){if(!yes)throw new Exception(why);checks++;}
+var compatibility=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"compatibility.json"))).AsObject();
+var files=JsonNode.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"table-files.json"))).AsObject();
+foreach(var entry in files){string t=entry.Key,f=entry.Value.GetValue<string>();var source=JsonNode.Parse(File.ReadAllText(Path.Combine(vanilla,t+".json"))).AsArray();var original=source.ToJsonString();var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",f))).AsObject();
+merged[t]=RowPlanner.Apply(source,patches,true,(id,field,before,after,added)=>writes++);Check(source.ToJsonString()==original,t+" source mutation");Check(merged[t].Count==source.Count+patches.Count(p=>!source.Any(row=>row["Id"].ToJsonString()==p.Key)),t+" row count");}
+JsonNode Row(string t,int id)=>merged[t].Single(r=>r["Id"].GetValue<int>()==id);
+foreach(var rule in JsonNode.Parse(File.ReadAllText(Path.Combine(root,"reference-schema.json"))).AsObject()){
+var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",files[rule.Key].GetValue<string>()))).AsObject();
+foreach(var patch in patches)foreach(var link in rule.Value.AsObject())if(patch.Value.AsObject().ContainsKey(link.Key)){
+int id=patch.Value[link.Key].GetValue<int>();bool nullable=link.Value[1].GetValue<bool>();Check(id==0&&nullable||merged[link.Value[0].GetValue<string>()].Any(r=>r["Id"].GetValue<int>()==id),rule.Key+" dangling "+link.Key);}}
+Check(merged["Units"].Count==545,"structural split leaked");Check(Row("Units",628)["Cost"].GetValue<int>()==50,"Uran ambiguous price held");Check(Row("Units",703)["Cost"].GetValue<int>()==240,"unfinished B3A held");Check(Row("Units",252)["Cost"].GetValue<int>()==55,"ambiguous Konkurs held");
+foreach(var pair in new[]{(158,564,190),(158,565,200),(158,566,230),(615,3033,80),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(9,625,100)})Check(Row("Units",pair.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",pair.Item2)["Cost"].GetValue<int>()==pair.Item3,"configured cost "+pair);
+Check(Row("ArmorsJson",2000000)["MaxHealthPoints"].GetValue<int>()==8,"shared BRDM3 base changed");Check(Row("ArmorsJson",2000096)["MaxHealthPoints"].GetValue<int>()==12,"Vilkas shared armor changed");Check(Row("ArmorsJson",2000100)["HeatArmorSides"].GetValue<int>()==100,"B10/B11 buff leak");
+int[] expectHpOptions={504,505,1881,1882,3067,3070,3071,3072};foreach(int id in expectHpOptions){int armor=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",armor)["MaxHealthPoints"].GetValue<int>()==(id<3000?10:8),"HP "+id);}
+Check(Row("OptionsJson",2082)["Ability2Id"].GetValue<int>()==82&&Row("UnitAbilitiesJson",1029)["AbilityId"].GetValue<int>()==82,"AMPV invariant");
+Console.WriteLine($"PASS: {checks} real RowPlanner/data-graph checks; {writes} planned field writes across24 tables; native database/models/armory untested.");

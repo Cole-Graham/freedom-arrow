@@ -1,6 +1,6 @@
-# Freedom Arrow 0.2.0-dev.1 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.2 — isolated development candidate
 
-**Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus four requested vehicle updates. It has not been installed, launched or accepted in game.**
+**Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian vehicle price/HP/armor batch. It has not been installed, launched or accepted in game.**
 
 ## Included
 
@@ -10,6 +10,12 @@
 - Kornet-D1 base 14→10HP; armored 10HP retained, front/side HEAT180/140→400/400.
 - Sprut cage 14→10HP, HEAT200/140→400/400, road70→60km/h; cross-country 55 retained.
 - M1283 AMPV BRAT APS is restored using its original two-charge ability; other vehicles sharing the disabled ability clone remain unchanged.
+
+## Vehicle batch and held work
+
+32 base costs are edited. Armata360, T15 200 and K16 30 remain provisional. BTR82A/BTR80 base and armored are10HP; Uran9 four profiles8HP; B15 alone400/400 HEAT.
+
+T80 separate cards and obr2018 retirement are NOT implemented: temporary totals BV100, BVM2017 190, retained2018 200,2018+230. Object787 remains a T72A option at80 total, not a separate card. BMP2 Reserve35; other turret totals55/60/75 are preserved by offsetting surcharges. T72B1+K5=100; T72B75/T72BA90 before other upgrades. Uran70, Konkurs identity, unfinishedT72B3A and new-card availability remain unresolved.
 
 ## Held from this candidate
 
@@ -22,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.1.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.2.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -43,3 +49,5 @@ The pin overrides scenario income bonuses. Test 200 credit over 60 simulation se
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
+
+- 2026-11-04 15:54:11 PST (America/Los_Angeles) — Added the dev.2 price/HP/armor batch and documented held splits, fallback totals and provisional prices. No live result.
