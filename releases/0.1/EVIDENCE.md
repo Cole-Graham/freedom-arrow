@@ -6,7 +6,7 @@
 
 ## Current evidence
 
-- Startup repaired with the native version.dll override and Windows .NET 6.0.36 runtime. Direct Proton launch of the installed game reached the armory. Steam launch text and anti-cheat-disabled selection were saved; a complete normal Steam launch remains unverified because Steam reported stale running state.
+- Startup repaired with the native version.dll override and Windows .NET 6.0.36 runtime. Direct Proton launch of the installed game reached the armory. Steam launch text and anti-cheat-disabled selection were saved. After clearing stale running state with Steam Stop and task-owned game cleanup, normal Steam Play also loaded all three mods and applied 8,624 writes without restarting Steam.
 - Fresh generated wrappers differed in exactly the 16-byte MVID. Only that GUID is excluded from generated-wrapper hashes. Native GameAssembly.dll and every other wrapper byte remain pinned. 14 actual-wrapper checks and 10 standalone metadata regression checks passed.
 - All 34 installed payload hashes matched; runtime receipt matched all 8,624 expected writes across seven tables, with zero mismatches. The receipt is application evidence, not an independent readback of every ECS property.
 - A 30-minute guarded Local AI Skirmish with ordinary AI captures completed at native Victory 48–22. All 55 ticks followed leader-only net-zone scoring; no tick awarded both sides. Five ticks included contested zones, excluded from holdings. All 1,800 native scoreboard readbacks matched. No synthetic ownership, AI suppression or custom black HUD.
