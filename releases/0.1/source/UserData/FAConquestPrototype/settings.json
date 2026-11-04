@@ -1,0 +1,16 @@
+{
+  "Enabled": true,
+  "TickSeconds": 30,
+  "OpeningDelaySeconds": 180,
+  "DefaultZoneWeight": 1,
+  "Scoring": "advantage",
+  "Contested": "exclude",
+  "Ending": "time_limit",
+  "MaximumSampleLatenessSeconds": 2,
+  "ShowOverlay": false,
+  "MapZoneWeights": {},
+  "TestDurationSeconds": 0,
+  "PhasePolicy": "continuous",
+  "ScoreLimit": 0,
+  "EnableDeveloperFixtures": false
+}

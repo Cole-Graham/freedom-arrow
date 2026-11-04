@@ -1,0 +1,31 @@
+{
+  "game_assembly_sha256": "12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf",
+  "source_plaintext_sha256": {
+    "Units": "cbaa1ff4929827f03fe11b65769fd8e95cdf834f802cdfd25620a0a412d479e4",
+    "AbilitiesJson": "89f841d235d86037519474e12766b4660ddf9c953a55d7393dd59708f6bc67d3",
+    "UnitAbilitiesJson": "21e9a5a80796379205705e239ae563f08b964ed4f2eca8e0adb8b1770c04a6a5",
+    "AmmunitionsJson": "c9063e731ef00b8ceb68676c7dcad09829b7914c5dcad683d04cf3b7766c4fe9",
+    "ArmorsJson": "f8a11137f6f1af497993bc17b8df66f41ce375578b1eb5ba60c3ef369757b7af",
+    "MobilityJson": "bf108dd8283ba8aedce9c35aa1cc79b4c5ea8f10006289e2948e7cc03da310f2",
+    "FlyPresetsJson": "6b531ba659fa9d657d84a12a095ecd34cce2a48952c3da7adb18aebd063db718",
+    "UnitPropulsionsJson": "0c1360fe3ae4693d08fab0e58af311fd5dcde49513ec696809c5017ca53662f6",
+    "CountriesJson": "426a671747403e405c08f1477ac8ef56ebca562c07f8a2511ec1e7c27edada6c",
+    "TurretsJson": "a635a9dd7c06f1c2ed3eafb73452768e0ff6e34d57cce27a330ea6783c357e82",
+    "TurretUnitsJson": "f2fbb01ac51d1c2b584fd67c750f9037efadceb22e4a0f6f109ca601662ce913",
+    "WeaponsJson": "6758231c7190561aa270b6750f0c593d80207e54bc20795185a77b544e7def8f",
+    "TurretWeaponsJson": "f6a889867c844167f0f1c3af8b7025e3f9a993820be4d1690791daeaf5c9f82d",
+    "WeaponAmmunitionsJson": "db2a54e9b4146bbc0ad4dc32cf9c820284d1a41c6e3835d8d6167e7e6a2ec107",
+    "SensorUnitsJson": "cf1d8cc81032d35dff856c23fdf3900e1911f45474f8d84828cd5785386b9320",
+    "SensorsJson": "2120ba311575386b79215232e55fc7d289424ff192f437a58924eb1242322f22",
+    "SquadMembersJson": "f71086b0c9b38169c44e067a7009a98dbf9c874648f33289891294328eba00fc",
+    "SquadWeaponsJson": "011c0a95970dedba097037b65101fec017a87051d235bef3581028ffd7b20561",
+    "ModificationsJson": "c5cd6fbab65d335c1275a0fa0e1181d802169c6ed9f9edb42c46283c668e707d",
+    "OptionsJson": "0ad21c8731bf3e6707ba0d102f0481225a28d1f4a375dfd11c6db12a1ea13704",
+    "UnitArmorsJson": "3e624fde26020a724671b5cfb196b3f33de9a25861a90907699d09a666dbc493",
+    "SpecializationAvailabilitiesJson": "f087364acd9c72c33548b157ef9de5ab851ccc7a83430eea5fd8fbc6b342cc45",
+    "SpecializationsJson": "c77998c29b899040581c44fd36ca77ba9d08746b6b062b18486ea18481e87df3",
+    "TransportAvailabilitiesJson": "d090c5d42c4fcf36627f5724e665ac536a8387b3a914bb90cd13ad0279a76c62"
+  },
+  "allow_new_rows": true,
+  "source_build_id": "6000.3.24f1-7e593b8df225febf"
+}
