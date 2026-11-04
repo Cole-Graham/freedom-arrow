@@ -114,7 +114,7 @@ def _constant_files(directory: Path) -> list[tuple[str, bytes]]:
 def _formula_files(directory: Path) -> list[tuple[str, bytes]]:
     packed: list[tuple[str, bytes]] = []
     for path in formulas_in(directory):
-        validate_formula(path)
+        validate_formula(path, directory)
         relative = path.relative_to(directory).as_posix()
         packed.append((f"{USERDATA_ROOT}/formulas/{relative}", path.read_bytes()))
     return packed
@@ -138,8 +138,9 @@ def _check_channel(cfg: Config, channel: str) -> None:
             f"ScriptableObject config edits are not implemented: {unsupported[0]}. "
             "These files cannot be packaged or applied yet."
         )
-    for path in formulas_in(formulas_dir(cfg, channel)):
-        validate_formula(path)
+    formulas = formulas_dir(cfg, channel)
+    for path in formulas_in(formulas):
+        validate_formula(path, formulas)
     bundle = cfg.bundle_path
     if not bundle.is_file():
         return

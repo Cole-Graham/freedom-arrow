@@ -83,24 +83,21 @@ A list of rows with an `Id` field is also accepted. The pipeline rejects an unkn
 
 **Serialized config edits are not implemented.** `mod/configs/<ClassName>.json` and `mod/testing/configs/<ClassName>.json` are reserved for a future ScriptableObject application path. Packaging rejects JSON files there. If JSON files are already installed under `UserData/FreedomArrow/configs`, plugin startup reports the unsupported input and leaves gameplay hooks uninstalled. Reading fields from `dump.cs` or decoding a config asset does not apply edits to that asset.
 
-**Code at a method.** `mod/formulas/<Class>/<Method>.json` is a calculation the plugin runs at that method. `change` says how it sits on the game's own calculation: `after` the method returns, `before` it runs, `inside` it at the inner method named by `at`, or `instead` of it. Only `after` is accepted today. The other three are rejected until a hook implements them.
+**Code at a method.** `mod/formulas/<Class>/<Method>.json` names a game method and the parameters its hook reads. The file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is accepted today. The other three are rejected until a hook implements them.
 
-This file is one `after` example. Its keys describe that one hook. Another change uses whatever conditions that hook actually checks.
+This file is one `after` example.
 
 ```json
 {
   "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
   "change": "after",
-  "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
-  "terrain": "TerrainType.Forest",
-  "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
-  "reduction": 0.30,
-  "damage": "return",
-  "IgnoreCover": "Ammunitions.IgnoreCover"
+  "parameters": {
+    "reduction": 0.30
+  }
 }
 ```
 
-`change` `after` means the named method still runs and `damage` is its return value. `requires` and `terrain` are the conditions for this hook. `reduction` is the new number. `IgnoreCover` is an existing field the formula reads.
+`parameters` are the values for that hook. `reduction` is the forest-cover number, and the hook in `runtime/FreedomArrow/` applies it. A new method is a new file plus a hook. `package` checks the envelope only.
 
 Day-to-day and release are `package`, then BAModManager or BAModLauncher PLAY. The plugin applies whatever constants and formulas are in the package. **Play vanilla** stays the manager's button.
 

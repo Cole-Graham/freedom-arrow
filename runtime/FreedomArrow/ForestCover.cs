@@ -9,45 +9,23 @@ namespace FreedomArrow;
 
 public static class ForestCover
 {
-    static readonly string[] Requires = { "InfantryUnitComponent", "TerrainTypeComponent" };
-    const string Formula = "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))";
+    public const string Method = "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage";
 
     static float _reduction;
     static int _terrainOffset = int.MinValue;
     static bool _logged;
 
-    public static void Install(string root, MelonLogger.Instance log)
+    public static void Install(JsonElement parameters, MelonLogger.Instance log)
     {
-        var path = Path.Combine(root, "formulas", "BattleSystemHelpers", "CalculateHitDamage.json");
-        if (!File.Exists(path))
-        {
-            log.Msg("no CalculateHitDamage formula; damage postfix not installed");
-            return;
-        }
-        try
-        {
-            _reduction = Read(path);
-        }
-        catch (Exception ex)
-        {
-            log.Error("formula startup aborted; CalculateHitDamage left unpatched: " + ex.Message);
-            return;
-        }
-        try
-        {
-            var helpers = AccessTools.TypeByName("Il2CppBrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers")
-                ?? AccessTools.TypeByName("BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers");
-            var method = AccessTools.Method(helpers, "CalculateHitDamage");
-            if (method == null)
-                throw new MissingMethodException("BattleSystemHelpers.CalculateHitDamage");
-            var postfix = HookBinder.Postfix(method, typeof(ForestCover).GetMethod(nameof(Apply), BindingFlags.Public | BindingFlags.Static)!);
-            new HarmonyLib.Harmony("freedomarrow.gameplay.forest").Patch(method, postfix: new HarmonyMethod(postfix));
-            log.Msg("HOOK OK BattleSystemHelpers.CalculateHitDamage");
-        }
-        catch (Exception ex)
-        {
-            log.Error("formula startup aborted; CalculateHitDamage left unpatched: " + ex.Message);
-        }
+        _reduction = FormulaHost.ReadNumber(parameters, "reduction", 0, 1);
+        var helpers = AccessTools.TypeByName("Il2CppBrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers")
+            ?? AccessTools.TypeByName("BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers");
+        var method = AccessTools.Method(helpers, "CalculateHitDamage");
+        if (method == null)
+            throw new MissingMethodException("BattleSystemHelpers.CalculateHitDamage");
+        var postfix = HookBinder.Postfix(method, typeof(ForestCover).GetMethod(nameof(Apply), BindingFlags.Public | BindingFlags.Static)!);
+        new HarmonyLib.Harmony("freedomarrow.gameplay.forest").Patch(method, postfix: new HarmonyMethod(postfix));
+        log.Msg("HOOK OK BattleSystemHelpers.CalculateHitDamage");
     }
 
     public static void Apply(object? target, object? ammo, ref float result)
@@ -93,33 +71,6 @@ public static class ForestCover
             _logged = true;
             Melon<FreedomArrowMod>.Logger.Msg($"forest hit {before} -> {result}");
         }
-    }
-
-    static float Read(string path)
-    {
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root = document.RootElement;
-        var keys = root.EnumerateObject().Select(property => property.Name).ToHashSet();
-        string[] expected = { "method", "change", "requires", "terrain", "formula", "reduction", "damage", "IgnoreCover" };
-        if (!keys.SetEquals(expected))
-            throw new InvalidDataException("formula keys are not the forest cover postfix");
-        if (root.GetProperty("method").GetString() != "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage")
-            throw new InvalidDataException("formula method is not CalculateHitDamage");
-        if (root.GetProperty("change").GetString() != "after")
-            throw new InvalidDataException("formula change is not after");
-        var requires = root.GetProperty("requires").EnumerateArray().Select(item => item.GetString() ?? "").ToArray();
-        if (!requires.SequenceEqual(Requires))
-            throw new InvalidDataException("formula requires InfantryUnitComponent and TerrainTypeComponent");
-        if (root.GetProperty("terrain").GetString() != "TerrainType.Forest")
-            throw new InvalidDataException("formula terrain is not TerrainType.Forest");
-        if (root.GetProperty("formula").GetString() != Formula)
-            throw new InvalidDataException("formula text is not the forest cover postfix");
-        if (root.GetProperty("damage").GetString() != "return" || root.GetProperty("IgnoreCover").GetString() != "Ammunitions.IgnoreCover")
-            throw new InvalidDataException("formula inputs are not the return value and Ammunitions.IgnoreCover");
-        var reduction = root.GetProperty("reduction").GetDouble();
-        if (reduction < 0 || reduction > 1)
-            throw new InvalidDataException("reduction must be a number from 0 to 1");
-        return (float)reduction;
     }
 
     static bool Has(object entity, Type component)

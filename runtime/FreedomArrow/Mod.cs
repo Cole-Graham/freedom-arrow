@@ -2,6 +2,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 
 [assembly: MelonInfo(typeof(FreedomArrow.FreedomArrowMod), "Freedom Arrow", "0.1.0", "Freedom Arrow contributors")]
+[assembly: MelonGame("SteelBalalaikaStudio", "BrokenArrow")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("FreedomArrow.Tests")]
 
 namespace FreedomArrow;
@@ -22,7 +23,12 @@ public class FreedomArrowMod : MelonMod
             return;
         }
         DatabaseMerge.Install(root, LoggerInstance);
-        ForestCover.Install(root, LoggerInstance);
+        FormulaHost.Install(root, LoggerInstance);
+    }
+
+    public override void OnUpdate()
+    {
+        GroundSpotting.AdvanceFrame();
     }
 
     internal static void CheckSupportedInputs(string root)

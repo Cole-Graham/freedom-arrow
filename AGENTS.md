@@ -40,20 +40,17 @@ A table file modifies existing rows. It is keyed by `Id`. Values are the game's 
 
 ScriptableObject config edits are not implemented. The proposed `mod/configs/` and `mod/testing/configs/` trees are rejected by `package`; installed config JSON also stops plugin startup before hooks are installed. Implement and verify a config application path before authoring those files. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
 
-A formula file is code at a method. `change` is `after`, `before`, `inside`, or `instead`. A number is a new literal. A string names an existing source. Only `after` is implemented. `package` rejects the others. Conditions such as `requires` or `terrain` belong in the file only when that hook checks them.
+A formula file names the game method a hook runs at. Every file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is implemented. `package` rejects the others. `parameters` holds the numbers and strings that hook reads.
 
-`mod/formulas/BattleSystemHelpers/CalculateHitDamage.json` is the worked `after` example. Copy the pattern, not the combat keys, when the next change is a different method:
+`mod/formulas/BattleSystemHelpers/CalculateHitDamage.json` is the worked `after` example. Another engine change adds `mod/formulas/<Class>/<Method>.json`, and a testing file only when that channel differs, and registers a hook class with `FormulaHost`. Do not add that hook's keys to `pipeline/formulas.py`. The damage math for this example stays in `ForestCover.Apply`.
 
 ```json
 {
   "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
   "change": "after",
-  "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
-  "terrain": "TerrainType.Forest",
-  "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
-  "reduction": 0.30,
-  "damage": "return",
-  "IgnoreCover": "Ammunitions.IgnoreCover"
+  "parameters": {
+    "reduction": 0.30
+  }
 }
 ```
 

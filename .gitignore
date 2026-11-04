@@ -237,3 +237,9 @@ GameAssembly.dll
 # Plugin build output
 runtime/**/bin/
 runtime/**/obj/
+
+# BAModManager build output
+thirdparty-tools/BAModManager-main/bin/
+thirdparty-tools/BAModManager-main/obj/
+thirdparty-tools/BAModManager-main/publish/
+thirdparty-tools/BAModManager-main/release/

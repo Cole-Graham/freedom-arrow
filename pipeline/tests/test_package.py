@@ -61,12 +61,7 @@ class PackageTests(unittest.TestCase):
             formula = {
                 "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
                 "change": "after",
-                "requires": ["InfantryUnitComponent", "TerrainTypeComponent"],
-                "terrain": "TerrainType.Forest",
-                "formula": "damage * (1 - reduction * (1 - clamp(IgnoreCover, 0, 1)))",
-                "reduction": 0.30,
-                "damage": "return",
-                "IgnoreCover": "Ammunitions.IgnoreCover",
+                "parameters": {"reduction": 0.30},
             }
             formula_path = root / "mod" / "formulas" / "BattleSystemHelpers" / "CalculateHitDamage.json"
             formula_path.parent.mkdir(parents=True)
