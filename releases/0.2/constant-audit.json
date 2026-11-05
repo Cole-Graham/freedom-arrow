@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.11",
+  "version": "0.2.0-dev.12",
   "source_build": "6000.3.24f1-7e593b8df225febf",
   "baseline_commit": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
   "affected_units": [
@@ -5319,7 +5319,7 @@
         "PortraitFileName": "RU\\TYPHOON_VDV\\TYPHOON_VDV",
         "ThumbnailFileName": "RU_NAPARNIK-Label",
         "AudioPreset": "UNIT_SOUND_PRESET_RU_Taifoon_VDV",
-        "Cost": 20,
+        "Cost": 25,
         "UpkeepMultiplier": 1.0,
         "TimeModifierRefund": 0.0,
         "TimeModifierResurrect": -180.0,
