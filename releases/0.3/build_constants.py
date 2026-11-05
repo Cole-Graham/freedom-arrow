@@ -192,6 +192,16 @@ def main():
     armor(78,1834,{'HeatArmorFront':400,'HeatArmorSides':400},'AAVP SU kit 400 HEAT')
     armor(240,574,{'HeatArmorSides':200},'BMPT baseline side HEAT 200')
     armor(9,624,{'HeatArmorSides':200},'T-72B1 side HEAT 200')
+    # Abrams, T-72, T-80, T-90 and T-14: 100 HEAT top on every armor choice.
+    why='Top HEAT 100 for the Javelin breakpoint'
+    for uid in [2,53,54,191,243,244,245,9,157,615,703,717,158,239,716,236,237,238,13]:
+        for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
+            old=link['ArmorId']
+            if effective['ArmorsJson'][old]['HeatArmorTop']==100:continue
+            new=clone('ArmorsJson',old,{'HeatArmorTop':100},why)
+            put('UnitArmorsJson',link['Id'],{'ArmorId':new},why)
+            for opt in options(uid):
+                if opt['ArmorId']==old:put('OptionsJson',opt['Id'],{'ArmorId':new},why)
     template=next(iter(effective['TransportAvailabilitiesJson']))
     for p in st['new_pools']:
         for t in p['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pools[p['unit']],'UnitId':t},'Separate card transport')
