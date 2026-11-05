@@ -6,6 +6,8 @@ Card splits, squad resizing and option retirement are listed in structural-contr
 from pathlib import Path
 import argparse, copy, hashlib, json, sys
 R=Path(__file__).resolve().parent
+# Saved decks hold this option ID. A failure here means a clone moved above it.
+XM913_APS_OPTION=2000379
 sys.path.insert(0,str(R.parents[1]))
 from pipeline.crypto import aes_decrypt
 from pipeline.tables import FIELD_TO_FILE
@@ -183,6 +185,12 @@ def main():
     for p in st['new_pools']:pools[p['unit']]=clone('SpecializationAvailabilitiesJson',p['like'],{'UnitId':p['unit'],'MaxAvailabilityXp0':p['xp0']},'Separate card availability')
     for key,n in st['set_pools'].items():put('SpecializationAvailabilitiesJson',int(key),{'MaxAvailabilityXp0':n},'Requested availability')
     # Saved decks store option IDs. Clone new rows only below this line, so existing IDs stay stable.
+    template=next(iter(effective['TransportAvailabilitiesJson']))
+    for p in st['new_pools']:
+        for t in p['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pools[p['unit']],'UnitId':t},'Separate card transport')
+    xm913_mod=next(r['Id'] for r in effective['ModificationsJson'].values() if r['UnitId']==720 and r['Name']==effective['ModificationsJson'][549]['Name'])
+    xm913_aps=clone('OptionsJson',1951,{'ModificationId':xm913_mod},'M10 Booker XM913 APS option')
+    assert xm913_aps==XM913_APS_OPTION,xm913_aps
     # All Stryker SRAT packages are 700 front and side.
     for uid,oid in [(21,50),(25,44),(20,70),(20,1934),(5,1943),(5,1944),(452,1946),(452,1947)]:
         armor(uid,oid,{'HeatArmorFront':700,'HeatArmorSides':700},'All Stryker SRAT 700 HEAT front and side')
@@ -205,11 +213,6 @@ def main():
             put('UnitArmorsJson',link['Id'],{'ArmorId':new},why)
             for opt in options(uid):
                 if opt['ArmorId']==old:put('OptionsJson',opt['Id'],{'ArmorId':new},why)
-    template=next(iter(effective['TransportAvailabilitiesJson']))
-    for p in st['new_pools']:
-        for t in p['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pools[p['unit']],'UnitId':t},'Separate card transport')
-    xm913_mod=next(r['Id'] for r in effective['ModificationsJson'].values() if r['UnitId']==720 and r['Name']==effective['ModificationsJson'][549]['Name'])
-    clone('OptionsJson',1951,{'ModificationId':xm913_mod},'M10 Booker XM913 APS option')
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):

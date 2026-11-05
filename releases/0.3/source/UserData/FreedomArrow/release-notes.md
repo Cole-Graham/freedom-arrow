@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.10 — development candidate
+# Freedom Arrow 0.3.0-dev.11 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.10: see README. Offline checks only.
+0.3.0-dev.11: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -132,5 +132,8 @@ Dev.9 (Osama): HEAT top 80 on T-15 and BMPT, which joins the T-72 chassis group.
 
 Dev.10 (Osama): HEAT top 80 on BMO-T, which joins the T-72 chassis group. TOS-1 stays at 40.
 
+Dev.11: stable IDs for the M10 Booker XM913 APS option and the added transports. Later armor changes cannot move them. No stat change.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
+- 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
