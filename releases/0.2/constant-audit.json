@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.7",
+  "version": "0.2.0-dev.8",
   "source_build": "6000.3.24f1-7e593b8df225febf",
   "baseline_commit": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
   "affected_units": [
@@ -77,7 +77,6 @@
     157,
     158,
     167,
-    173,
     176,
     180,
     182,
@@ -107,7 +106,6 @@
     243,
     244,
     245,
-    249,
     253,
     254,
     255,
@@ -301,7 +299,7 @@
   },
   "source_table_pins_matched": 24,
   "rows": {
-    "Units": 200,
+    "Units": 198,
     "AbilitiesJson": 23,
     "UnitAbilitiesJson": 168,
     "AmmunitionsJson": 72,
@@ -12321,7 +12319,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12392,7 +12390,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12463,7 +12461,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12527,14 +12525,14 @@
         "Width": 2.2,
         "Height": 2.3,
         "Weight": 4000,
-        "Stealth": 1.0,
+        "Stealth": 0.8,
         "InfantrySlots": 4,
         "MaxStress": 1000.0,
         "WaterDiveOffset": 0.0,
         "ContentMembership": -1,
-        "CurrentStealth": 1.0
+        "CurrentStealth": 0.8
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12605,7 +12603,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12676,7 +12674,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12747,7 +12745,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12818,7 +12816,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12889,7 +12887,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -12960,7 +12958,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13031,7 +13029,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13102,7 +13100,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13173,7 +13171,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13244,7 +13242,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13315,7 +13313,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13386,7 +13384,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13457,7 +13455,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13528,7 +13526,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13599,7 +13597,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13670,7 +13668,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13741,7 +13739,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13812,7 +13810,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13883,7 +13881,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -13954,7 +13952,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14025,7 +14023,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14096,7 +14094,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14167,7 +14165,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14238,7 +14236,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14309,7 +14307,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14380,7 +14378,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14451,7 +14449,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14522,7 +14520,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14593,7 +14591,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14664,7 +14662,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14735,7 +14733,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14806,7 +14804,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14877,7 +14875,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -14948,7 +14946,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15019,7 +15017,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15090,7 +15088,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15161,7 +15159,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15232,7 +15230,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15303,7 +15301,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15374,7 +15372,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15445,7 +15443,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15516,78 +15514,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
-    },
-    {
-      "table": "Units",
-      "id": 173,
-      "before": {
-        "OriginalName": null,
-        "OwnerInfantryID": 0,
-        "OriginalCost": 0,
-        "Id": 173,
-        "DisplayInArmory": true,
-        "IsUnitModification": false,
-        "HUDName": "BRDM-2M",
-        "Name": "BRDM-2M",
-        "CountryId": 1,
-        "Description": null,
-        "ModelFileName": "RU_BRDM",
-        "PortraitFileName": "RU\\BRDM2M\\BRDM2M",
-        "ThumbnailFileName": "RU_BRDM2-Label",
-        "AudioPreset": "UNIT_SOUND_PRESET_RU_BRDM-2",
-        "Cost": 45,
-        "UpkeepMultiplier": 1.0,
-        "TimeModifierRefund": 0.0,
-        "TimeModifierResurrect": -120.0,
-        "Type": 4,
-        "CategoryType": 0,
-        "Role": 13,
-        "Length": 5.7,
-        "Width": 2.3,
-        "Height": 2.4,
-        "Weight": 7000,
-        "Stealth": 0.8,
-        "InfantrySlots": 4,
-        "MaxStress": 1000.0,
-        "WaterDiveOffset": 1.4,
-        "ContentMembership": -1,
-        "CurrentStealth": 0.8
-      },
-      "after": {
-        "OriginalName": null,
-        "OwnerInfantryID": 0,
-        "OriginalCost": 0,
-        "Id": 173,
-        "DisplayInArmory": true,
-        "IsUnitModification": false,
-        "HUDName": "BRDM-2M",
-        "Name": "BRDM-2M",
-        "CountryId": 1,
-        "Description": null,
-        "ModelFileName": "RU_BRDM",
-        "PortraitFileName": "RU\\BRDM2M\\BRDM2M",
-        "ThumbnailFileName": "RU_BRDM2-Label",
-        "AudioPreset": "UNIT_SOUND_PRESET_RU_BRDM-2",
-        "Cost": 45,
-        "UpkeepMultiplier": 1.0,
-        "TimeModifierRefund": 0.0,
-        "TimeModifierResurrect": -120.0,
-        "Type": 4,
-        "CategoryType": 0,
-        "Role": 13,
-        "Length": 5.7,
-        "Width": 2.3,
-        "Height": 2.4,
-        "Weight": 7000,
-        "Stealth": 1.0,
-        "InfantrySlots": 4,
-        "MaxStress": 1000.0,
-        "WaterDiveOffset": 1.4,
-        "ContentMembership": -1,
-        "CurrentStealth": 1.0
-      },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15658,7 +15585,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15729,7 +15656,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15800,7 +15727,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15871,7 +15798,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -15942,7 +15869,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16013,78 +15940,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
-    },
-    {
-      "table": "Units",
-      "id": 249,
-      "before": {
-        "OriginalName": null,
-        "OwnerInfantryID": 0,
-        "OriginalCost": 0,
-        "Id": 249,
-        "DisplayInArmory": true,
-        "IsUnitModification": false,
-        "HUDName": "Humvee RWS",
-        "Name": "Humvee RWS",
-        "CountryId": 2,
-        "Description": null,
-        "ModelFileName": "US_HMMWV_BASE",
-        "PortraitFileName": "US\\HUMVEE_RWS\\HUMVEE_RWS",
-        "ThumbnailFileName": "US_HUMVEE_PATROL-Label",
-        "AudioPreset": "UNIT_SOUND_PRESET_HUMVEE_RWS",
-        "Cost": 40,
-        "UpkeepMultiplier": 1.0,
-        "TimeModifierRefund": 0.0,
-        "TimeModifierResurrect": -120.0,
-        "Type": 4,
-        "CategoryType": 0,
-        "Role": 13,
-        "Length": 4.9,
-        "Width": 2.2,
-        "Height": 2.3,
-        "Weight": 4000,
-        "Stealth": 0.8,
-        "InfantrySlots": 4,
-        "MaxStress": 1000.0,
-        "WaterDiveOffset": 0.0,
-        "ContentMembership": -1,
-        "CurrentStealth": 0.8
-      },
-      "after": {
-        "OriginalName": null,
-        "OwnerInfantryID": 0,
-        "OriginalCost": 0,
-        "Id": 249,
-        "DisplayInArmory": true,
-        "IsUnitModification": false,
-        "HUDName": "Humvee RWS",
-        "Name": "Humvee RWS",
-        "CountryId": 2,
-        "Description": null,
-        "ModelFileName": "US_HMMWV_BASE",
-        "PortraitFileName": "US\\HUMVEE_RWS\\HUMVEE_RWS",
-        "ThumbnailFileName": "US_HUMVEE_PATROL-Label",
-        "AudioPreset": "UNIT_SOUND_PRESET_HUMVEE_RWS",
-        "Cost": 40,
-        "UpkeepMultiplier": 1.0,
-        "TimeModifierRefund": 0.0,
-        "TimeModifierResurrect": -120.0,
-        "Type": 4,
-        "CategoryType": 0,
-        "Role": 13,
-        "Length": 4.9,
-        "Width": 2.2,
-        "Height": 2.3,
-        "Weight": 4000,
-        "Stealth": 1.0,
-        "InfantrySlots": 4,
-        "MaxStress": 1000.0,
-        "WaterDiveOffset": 0.0,
-        "ContentMembership": -1,
-        "CurrentStealth": 1.0
-      },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16155,7 +16011,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16226,7 +16082,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16297,7 +16153,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16368,7 +16224,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16439,7 +16295,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16510,7 +16366,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16581,7 +16437,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16652,7 +16508,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16723,7 +16579,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16794,7 +16650,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16865,7 +16721,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -16936,7 +16792,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17007,7 +16863,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17078,7 +16934,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17149,7 +17005,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17220,7 +17076,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17291,7 +17147,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17362,7 +17218,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17433,7 +17289,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17504,7 +17360,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17575,7 +17431,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17646,7 +17502,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17717,7 +17573,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17788,7 +17644,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17859,7 +17715,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -17930,7 +17786,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18001,7 +17857,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18072,7 +17928,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18143,7 +17999,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18214,7 +18070,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18285,7 +18141,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18356,7 +18212,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18427,7 +18283,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18498,7 +18354,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18569,7 +18425,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18640,7 +18496,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18711,7 +18567,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18782,7 +18638,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18853,7 +18709,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18924,7 +18780,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -18995,7 +18851,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19066,7 +18922,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19137,7 +18993,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19208,7 +19064,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19279,7 +19135,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19343,14 +19199,14 @@
         "Width": 2.8,
         "Height": 2.25,
         "Weight": 12000,
-        "Stealth": 1.0,
+        "Stealth": 0.8,
         "InfantrySlots": 6,
         "MaxStress": 1000.0,
         "WaterDiveOffset": 0.95,
         "ContentMembership": -1,
-        "CurrentStealth": 1.0
+        "CurrentStealth": 0.8
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19421,7 +19277,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19492,7 +19348,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19563,7 +19419,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19634,7 +19490,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19705,7 +19561,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19776,7 +19632,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19847,7 +19703,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19918,7 +19774,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -19989,7 +19845,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20060,7 +19916,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20131,7 +19987,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 1.0
       },
-      "reason": "Stealth class vehicle"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20202,7 +20058,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20273,7 +20129,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20344,7 +20200,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20415,7 +20271,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20486,7 +20342,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20557,7 +20413,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20628,7 +20484,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20699,7 +20555,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20770,7 +20626,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20841,7 +20697,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20912,7 +20768,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -20983,7 +20839,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21054,7 +20910,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21125,7 +20981,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21196,7 +21052,7 @@
         "ContentMembership": 2,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21267,7 +21123,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21338,7 +21194,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21409,7 +21265,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21480,7 +21336,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21551,7 +21407,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21622,7 +21478,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21693,7 +21549,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21764,7 +21620,7 @@
         "ContentMembership": 3,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21835,7 +21691,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21906,7 +21762,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -21977,7 +21833,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22048,7 +21904,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22119,7 +21975,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22190,7 +22046,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22261,7 +22117,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22332,7 +22188,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22403,7 +22259,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "Units",
@@ -22474,7 +22330,7 @@
         "ContentMembership": -1,
         "CurrentStealth": 0.5
       },
-      "reason": "Stealth class infantry"
+      "reason": "Detection proposal stealth"
     },
     {
       "table": "OptionsJson",

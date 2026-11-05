@@ -120,14 +120,17 @@ def main():
         if u['Stealth']==det['stealth']['sniper']:return 'sniper'  # Any unit at 3 in vanilla stays at 3.
         if u['CategoryType']==0:return 'recon_infantry'
         return 'infantry'
+    def stealth_value(u):
+        if str(u['Id']) in det['stealth_unit_values']:return det['stealth_unit_values'][str(u['Id'])]
+        cls=stealth_class(u)
+        return det['stealth'][cls] if cls else None
     for uid,row in list(effective['Units'].items()):
-        cls=stealth_class(row)
-        if cls and row['Stealth']!=det['stealth'][cls]:
-            v=det['stealth'][cls];put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Stealth class '+cls)
+        v=stealth_value(row)
+        if v is not None and row['Stealth']!=v:put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Detection proposal stealth')
     for key,v in det['stealth_override_options'].items():put('OptionsJson',int(key),{'StealthOverride':v},'Vehicle stealth override would defeat class 1.0')
     for o in effective['OptionsJson'].values():
         unit=effective['Units'][mods[o['ModificationId']]]
-        assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or o['StealthOverride']==1.0,('vehicle override',o['Id'])
+        assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or (o['StealthOverride']==1.0 and str(unit['Id']) not in det['stealth_unit_values']),('vehicle override',o['Id'])
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):
@@ -148,8 +151,8 @@ def main():
     for uid,row in frozen['Units'].items():
         want=copy.deepcopy(row)
         if str(uid) in contract['base_costs']:want['Cost']=contract['base_costs'][str(uid)]
-        cls=stealth_class(row)
-        if cls:want['Stealth']=want['CurrentStealth']=det['stealth'][cls]
+        v=stealth_value(row)
+        if v is not None:want['Stealth']=want['CurrentStealth']=v
         assert effective['Units'][uid]==want,('unexpected unit change',uid)
     assert set(effective['Units'])==set(frozen['Units'])
     assert effective['ModificationsJson']==frozen['ModificationsJson']

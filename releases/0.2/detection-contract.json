@@ -41,5 +41,12 @@
   "drone_rule": "Lateralus: proportional. Vanilla x 2800/1200, nearest 50.",
   "stealth_held_units": [
     445
-  ]
+  ],
+  "stealth_unit_values": {
+    "51": 0.8,
+    "173": 0.8,
+    "249": 0.8,
+    "458": 0.8
+  },
+  "stealth_unit_values_note": "Lateralus: UI 1.25 is raw 0.8 for Humvee LRAS3, BRDM-2M, Humvee RWS and 1V14 Mashina-S."
 }

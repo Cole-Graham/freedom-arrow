@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.7 — development candidate
+# Freedom Arrow 0.2.0-dev.8 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -28,6 +28,8 @@ Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 14
 
 Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; the Scimitar keeps vanilla raw stealth 1.25; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
 
+Dev.8 (Lateralus): Humvee LRAS3, Humvee RWS, BRDM-2M and 1V14 Mashina-S are UI stealth 1.25 (raw 0.8). No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -43,3 +45,5 @@ Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; the Scimitar kee
 - 2026-11-04 18:01:47 PST (America/Los_Angeles) — dev.6: Medium Plus ground optics 1450, interpolated from vanilla and rounded to the nearest 50, at Lateralus’s instruction. No live result.
 
 - 2026-11-04 18:07:58 PST (America/Los_Angeles) — dev.7: kept vanilla 3.0 infantry and the Scimitar, and scaled drone ground optics. No live result.
+
+- 2026-11-04 18:11:00 PST (America/Los_Angeles) — dev.8: set four recon vehicles to UI stealth 1.25. No live result.
