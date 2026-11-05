@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.18 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.19 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.18.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.19.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -130,6 +130,8 @@ Dev.17 (Osama): RPG-28 penetration 1050 -> 950 on ammo 2000137, the row every un
 
 Dev.18 (Osama): RPG-28 penetration 950 -> 900 on ammo 2000137.
 
+Dev.19: the runtime copies `[FA] Central Village` to `Mods/Scenarios`, because online lobbies leave out the local `Scenarios` folder. It removes the old local copy.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -200,3 +202,4 @@ Dev.18 (Osama): RPG-28 penetration 950 -> 900 on ammo 2000137.
 - 2026-11-04 23:44:21 PST (America/Los_Angeles) — dev.16: fixed the dev.15 compile error. No live result.
 - 2026-11-04 23:52:25 PST (America/Los_Angeles) — dev.17: RPG-28 penetration 950. No live result.
 - 2026-11-04 23:59:39 PST (America/Los_Angeles) — dev.18: RPG-28 penetration 900. No live result.
+- 2026-11-05 00:06:46 PST (America/Los_Angeles) — dev.19: scenario install folder. Listing not yet confirmed live.

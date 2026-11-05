@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.18", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.19", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -71,7 +71,10 @@ public class Runtime : MelonMod
         {
             foreach(string folder in Directory.GetDirectories(source))
             {
-                string target=Path.Combine(MelonEnvironment.GameRootDirectory,"Scenarios",Path.GetFileName(folder));
+                // Online lobbies leave out the game's local Scenarios folder. They list Mods/Scenarios as manually downloaded.
+                string target=Path.Combine(MelonEnvironment.GameRootDirectory,"Mods","Scenarios",Path.GetFileName(folder));
+                string old=Path.Combine(MelonEnvironment.GameRootDirectory,"Scenarios",Path.GetFileName(folder));
+                if(Directory.Exists(old))Directory.Delete(old,true);
                 Directory.CreateDirectory(target);
                 foreach(string file in Directory.GetFiles(folder))
                 {
