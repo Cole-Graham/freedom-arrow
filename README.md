@@ -1,5 +1,7 @@
 # freedom-arrow
 
+**Unreleased 0.4 development:** [build instructions and changes](releases/0.4/README.md) on `codex/0.4-development`. 0.3 stays on `codex/0.3-development`.
+
 **Unreleased 0.3 development:** [build instructions and changes](releases/0.3/README.md). 0.2 stays on `codex/0.2-development`.
 
 **0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.38 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
@@ -203,3 +205,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — Updated the development pointer to dev.14.
 - 2026-11-04 19:37:31 PST (America/Los_Angeles) — Updated the development pointer to dev.16.
 - 2026-11-04 19:42:51 PST (America/Los_Angeles) — Updated the development pointer to dev.17.
+- 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.

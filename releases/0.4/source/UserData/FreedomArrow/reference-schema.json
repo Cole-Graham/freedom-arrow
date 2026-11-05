@@ -1,0 +1,226 @@
+{
+  "WeaponAmmunitionsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "WeaponId": [
+      "WeaponsJson",
+      false
+    ],
+    "AmmunitionId": [
+      "AmmunitionsJson",
+      false
+    ]
+  },
+  "SquadWeaponsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "WeaponId": [
+      "WeaponsJson",
+      false
+    ]
+  },
+  "SquadMembersJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "PrimaryWeaponId": [
+      "WeaponsJson",
+      true
+    ],
+    "SpecialWeaponId": [
+      "WeaponsJson",
+      true
+    ]
+  },
+  "TurretUnitsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "TurretId": [
+      "TurretsJson",
+      false
+    ]
+  },
+  "TurretWeaponsJson": {
+    "TurretId": [
+      "TurretsJson",
+      false
+    ],
+    "WeaponId": [
+      "WeaponsJson",
+      false
+    ]
+  },
+  "SpecializationAvailabilitiesJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "SpecializationId": [
+      "SpecializationsJson",
+      false
+    ]
+  },
+  "ModificationsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ]
+  },
+  "OptionsJson": {
+    "ModificationId": [
+      "ModificationsJson",
+      false
+    ],
+    "ReplaceUnitId": [
+      "Units",
+      true
+    ],
+    "ArmorId": [
+      "ArmorsJson",
+      true
+    ],
+    "MobilityId": [
+      "MobilityJson",
+      true
+    ],
+    "MainSensorId": [
+      "SensorsJson",
+      true
+    ],
+    "ExtraSensorId": [
+      "SensorsJson",
+      true
+    ],
+    "Turret0Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret1Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret2Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret3Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret4Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret5Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret6Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret7Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret8Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret9Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret10Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret11Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret12Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret13Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret14Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret15Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret16Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret17Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret18Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret19Id": [
+      "TurretsJson",
+      true
+    ],
+    "Turret20Id": [
+      "TurretsJson",
+      true
+    ]
+  },
+  "UnitArmorsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "ArmorId": [
+      "ArmorsJson",
+      false
+    ]
+  },
+  "UnitPropulsionsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "MobilityId": [
+      "MobilityJson",
+      false
+    ]
+  },
+  "UnitAbilitiesJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "AbilityId": [
+      "AbilitiesJson",
+      false
+    ]
+  },
+  "SensorUnitsJson": {
+    "UnitId": [
+      "Units",
+      false
+    ],
+    "SensorId": [
+      "SensorsJson",
+      false
+    ]
+  }
+}

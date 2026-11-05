@@ -1,0 +1,28 @@
+{
+  "Enabled": true,
+  "TickSeconds": 30,
+  "StateLog": true,
+  "Crits": true,
+  "CritDamage": 9.3,
+  "RearCritMinPenetration": 250,
+  "FrontArcDegrees": 60,
+  "SetupSeconds": 180,
+  "OnlineDeploySeconds": 60,
+  "OpeningDelaySeconds": 300,
+  "DefaultZoneWeight": 1,
+  "Scoring": "advantage",
+  "Contested": "exclude",
+  "Ending": "score_or_time",
+  "MaximumSampleLatenessSeconds": 5,
+  "ShowOverlay": true,
+  "MapZoneWeights": {
+    "[FA] Central Village": {"53":4,"54":4,"55":3,"56":3,"57":2,"58":2,"59":4,"60":4,"61":4,"62":4},
+    "[FA] Central Village Skirmish": {"31":4,"32":4,"33":3,"35":3,"36":2,"37":2,"50":4,"159":4,"178":4,"179":4},
+    "[FA] Dead Center 0.1": {"38":2,"39":2,"40":2,"41":3,"42":3}
+  },
+  "TestDurationSeconds": 0,
+  "PhasePolicy": "continuous",
+  "ScoreLimit": 300,
+  "EnableDeveloperFixtures": false,
+  "FixedIncomePerMinute": 200
+}

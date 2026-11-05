@@ -1,0 +1,31 @@
+{
+  "note": "0.4: tank-gun KE rows of 100mm and larger. PenetrationAtMinRange is set to PenetrationAtGroundRange, so penetration does not change with range (Osama, 5 November 2026). Non-MBT users of these rows: M8 AGS, M8 Thunderbolt, Stryker MGS, Sprut-SD, M10 Booker, BMOP Toros.",
+  "pinned_ammo": [
+    1,
+    11,
+    12,
+    23,
+    48,
+    124,
+    139,
+    141,
+    172,
+    238,
+    239,
+    242,
+    246,
+    248,
+    254,
+    255,
+    256,
+    257,
+    258,
+    264,
+    498,
+    505,
+    575,
+    602,
+    701,
+    713
+  ]
+}

@@ -1,0 +1,129 @@
+using System.Collections.Concurrent;
+using MelonLoader;
+using UnityEngine;
+using Il2CppDefaultEcs;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
+using Il2CppBrokenArrow.Client.Ecs.GNetwork.Services;
+using Il2CppBrokenArrow.Client.Ecs.UI.HUD.Service;
+using Il2CppBrokenArrow.Client.Ecs.UI.HUD.Utils;
+using Il2CppBrokenArrow.DataBase.Models;
+using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppBrokenArrow.Shared.Ecs.Helpers;
+using Il2CppBrokenArrow.Shared.Ecs.Services;
+
+namespace FreedomArrow.Conquest;
+// 0.4 crit rules and the wider front arc. The rules are in CritRule (Scoring.cs).
+// The AI also calls CalculateHitDamage to score shots. Only a real hit calls GetPenetrationForShell first,
+// so that call marks the next calculation as real. Hooks only queue; game state changes are on the main thread,
+// with the same steps as the native crit system: set the level, refresh the unit's stats, send to the other players.
+public sealed partial class Prototype
+{
+    const int MaxCombatLog=40;
+    static readonly CriticalEffectTypes[] RandomYellows={CriticalEffectTypes.Optics,CriticalEffectTypes.Targeting,CriticalEffectTypes.Loading};
+    [ThreadStatic] static bool realHit;
+    [ThreadStatic] static Vector3 impact;
+    static volatile bool combatActive;
+    static bool combatOff;
+    static int combatLogged,arcWidened;
+    static readonly ConcurrentDictionary<int,(bool rear,bool tankGun)> ammoKinds=new();
+    static readonly ConcurrentQueue<(Entity target,int kind,ArmorSides side,float damage,string ammo)> critHits=new();
+    static readonly ConcurrentQueue<(float angle,int count)> arcHits=new();
+    static readonly System.Random critRandom=new();
+    static void InstallCombatHooks()
+    {
+        if(config.Crits)
+        {
+            Patch(typeof(BattleSystemHelpers),"GetPenetrationForShell",null,nameof(MarkRealHit));
+            Patch(typeof(BattleSystemHelpers),"CalculateHitDamage",null,nameof(QueueCrit));
+        }
+        if(config.FrontArcDegrees>45)Patch(typeof(BattleSystemHelpers),"GetArmorSideFromShotVector",nameof(ArcBefore),nameof(ArcAfter));
+        MelonLogger.Msg($"FREEDOM_ARROW_COMBAT installed crits {config.Crits} damage {config.CritDamage} rear penetration {config.RearCritMinPenetration} front arc {config.FrontArcDegrees}");
+    }
+    public static void MarkRealHit() { realHit=true; }
+    public static void QueueCrit(Entity __0,Ammunitions __2,ArmorSides __5,float __result)
+    {
+        bool real=realHit;realHit=false;
+        if(!real||!combatActive||__2==null)return;
+        try
+        {
+            var k=ammoKinds.GetOrAdd(__2.Id,_=>(CritRule.RearAntiTank((int)__2.TrajectoryType,(long)__2.TargetType,__2.PenetrationAtMinRange,config.RearCritMinPenetration),
+                CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name)));
+            int kind=CritRule.Kind((int)__5,__result,config.CritDamage,k.rear,k.tankGun);
+            if(kind!=0)critHits.Enqueue((__0,kind,__5,__result,__2.Name));
+        }
+        catch(Exception e) { StopCombat(e); }
+    }
+    public static void ArcBefore(Vector3 __2) { impact=__2; }
+    public static void ArcAfter(in Entity __1,ref ArmorSides __result)
+    {
+        if(__result!=ArmorSides.Sides||!combatActive)return;
+        try
+        {
+            // The game turns the impact vector around before it measures the angle; this is the same measurement.
+            var target=__1;
+            var local=TransformationHelper.ToLocalDirection(-impact,ref target);
+            BattleSystemHelpers.LocalDirectionToLocalAngles(local,out float horizontal,out _);
+            if(!CritRule.WidenFront((int)__result,horizontal,config.FrontArcDegrees))return;
+            __result=ArmorSides.Front;
+            int n=Interlocked.Increment(ref arcWidened);
+            if(n<=MaxCombatLog)arcHits.Enqueue((horizontal,n));
+        }
+        catch(Exception e) { StopCombat(e); }
+    }
+    static void CombatFrame()
+    {
+        if(combatOff)return;
+        combatActive=view!=null&&Guarded(view.Service);
+        while(arcHits.TryDequeue(out var arc))
+        {
+            MelonLogger.Msg($"FREEDOM_ARROW_FRONT_ARC side hit at {arc.angle:0.#} degrees counted as front ({arc.count})");
+            if(stateFile!=null)StateLine("front_arc",new{angle=arc.angle,count=arc.count});
+        }
+        while(critHits.TryDequeue(out var hit))
+        {
+            if(!combatActive)continue;
+            try { ApplyCrit(hit.target,hit.kind,hit.side,hit.damage,hit.ammo); }
+            catch(Exception e) { StopCombat(e);return; }
+        }
+    }
+    static void ApplyCrit(Entity target,int kind,ArmorSides side,float damage,string ammo)
+    {
+        if(!target.IsAlive||!target.Has<UnitComponent>()||!target.Has<CriticalEffectComponent>())return;
+        var unit=NativeEcs.Read<UnitComponent>(target).UnitData;
+        if(unit==null||!CritRule.Target((int)unit.Role))return;
+        // The snapshot shares the live status dictionary with the game.
+        var status=NativeEcs.Read<CriticalEffectComponent>(target).CriticalEffectStatus;
+        var raised=new List<string>();
+        void Raise(CriticalEffectTypes type,int level)
+        {
+            if(status[type]>=level)return;
+            status[type]=level;raised.Add($"{type} {level}");
+        }
+        if(kind==1)Raise(CriticalEffectTypes.Mobility,CritRule.Red);
+        else
+        {
+            Raise(CriticalEffectTypes.Mobility,CritRule.Yellow);
+            var open=RandomYellows.Where(t=>status[t]==0).ToArray();
+            if(open.Length>0)Raise(open[critRandom.Next(open.Length)],CritRule.Yellow);
+        }
+        if(raised.Count==0)return;
+        target.Enable<BuffUpdateComponent>();
+        Session.TryGetService<NetworkUnitService>(out var network,false);
+        network?.SendUnitGetCriticalEffect(ref target);
+        if(Session.TryGetService<HUDService>(out var hud,false))
+        {
+            hud._updateTypes.Add(HUDUpdateType.ByUnitState);
+            hud._updateEntities.Add(target);
+        }
+        string rule=kind==1?"rear_red":"yellow_plus_one";
+        if(++combatLogged<=MaxCombatLog)
+            MelonLogger.Msg($"FREEDOM_ARROW_CRIT {rule} {unit.Name} {side} {damage:0.##} by {ammo}: {string.Join(", ",raised)}; sent {network!=null}");
+        if(stateFile!=null)StateLine("crit",new{e=target.GetHashCode(),unit.Id,unit.Name,rule,side=side.ToString(),damage,ammo,raised,sent=network!=null});
+    }
+    static void StopCombat(Exception e)
+    {
+        combatOff=true;combatActive=false;
+        MelonLogger.Error("FREEDOM_ARROW_COMBAT_FAILED: crit and front arc hooks off for this session. "+e.Message);
+    }
+}
