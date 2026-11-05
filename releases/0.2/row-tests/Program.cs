@@ -17,4 +17,13 @@ foreach(var pair in new[]{(158,564,190),(158,565,200),(158,566,230),(615,3033,80
 Check(Row("ArmorsJson",2000000)["MaxHealthPoints"].GetValue<int>()==8,"shared BRDM3 base changed");Check(Row("ArmorsJson",2000096)["MaxHealthPoints"].GetValue<int>()==12,"Vilkas shared armor changed");Check(Row("ArmorsJson",2000100)["HeatArmorSides"].GetValue<int>()==100,"B10/B11 buff leak");
 int[] expectHpOptions={504,505,1881,1882,3067,3070,3071,3072};foreach(int id in expectHpOptions){int armor=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",armor)["MaxHealthPoints"].GetValue<int>()==(id<3000?10:8),"HP "+id);}
 Check(Row("OptionsJson",2082)["Ability2Id"].GetValue<int>()==82&&Row("UnitAbilitiesJson",1029)["AbilityId"].GetValue<int>()==82,"AMPV invariant");
-Console.WriteLine($"PASS: {checks} real RowPlanner/data-graph checks; {writes} planned field writes across24 tables; native database/models/armory untested.");
+foreach(int id in new[]{12,23,505,701,713})Check(Row("AmmunitionsJson",id)["Damage"].GetValue<double>()==10,"tank sabot "+id);
+foreach(int id in new[]{44,508,2000149,2000174})Check(Row("AmmunitionsJson",id)["Damage"].GetValue<double>()==10.5,"Javelin "+id);
+Check(Row("AmmunitionsJson",506)["Damage"].GetValue<double>()==2.5,"XM913 excluded");Check(Row("AmmunitionsJson",498)["Damage"].GetValue<double>()==8.5,"MT12 pending");
+foreach(int id in new[]{2000013,2000014,2000015})Check(Row("ArmorsJson",id)["MaxHealthPoints"].GetValue<int>()==12,"core Bradley HP "+id);
+Check(Row("ArmorsJson",2000052)["MaxHealthPoints"].GetValue<int>()==12&&Row("ArmorsJson",2000052)["HeatArmorRear"].GetValue<int>()==400&&Row("ArmorsJson",2000052)["HeatArmorSides"].GetValue<int>()==60,"ACV literal rear");
+foreach(int id in new[]{8,1894,25,1931,42,1895}){int aid=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",aid)["HeatArmorFront"].GetValue<int>()==700&&Row("ArmorsJson",aid)["HeatArmorSides"].GetValue<int>()==700&&Row("ArmorsJson",aid)["MaxHealthPoints"].GetValue<int>()==12,"selected SRAT "+id);}
+Check(Row("ArmorsJson",2000017)["MaxHealthPoints"].GetValue<int>()==14,"RV/ATGM SRAT untouched");
+foreach(var triple in new[]{(14,1904,90),(14,1905,80),(180,1958,40),(183,381,85),(453,1949,110),(185,388,30),(41,60,40),(41,2082,70)})Check(Row("Units",triple.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",triple.Item2)["Cost"].GetValue<int>()==triple.Item3,"US configured "+triple);
+Check(Row("Units",421)["Cost"].GetValue<int>()+new[]{1866,1871,1875}.Sum(i=>Row("OptionsJson",i)["Cost"].GetValue<int>())==50,"Battleship defaults provisional50");
+Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");

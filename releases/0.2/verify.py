@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,json,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.2.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.3.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.2.0-dev.2'
+    assert manifest['version']=='0.2.0-dev.3'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.2 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.3 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -22,7 +22,7 @@ with zipfile.ZipFile(p) as z:
     contract=json.loads((R/'vehicle-contract.json').read_text())
     assert table('units')=={k:{'Cost':v} for k,v in contract['base_costs'].items()}
     for oid,cost in contract['option_costs'].items():assert table('options')[oid]['Cost']==cost,(oid,cost)
-    # Exact frozen dev1 output plus the audited dev2 changes, never extra archive rows.
+    # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
     for row in table('options').values():assert not {'StealthOverride','MainSensorId','ExtraSensorId'} & set(row)
@@ -33,10 +33,12 @@ with zipfile.ZipFile(p) as z:
     a=mob[str(opt['1986']['MobilityId'])];assert (a['MaxSpeedRoad'],a['MaxCrossCountrySpeed'])==(60,55)
     assert opt['2082']['Ability2Id']==82
     assert table('unit_abilities')['1029']['AbilityId']==82
-    # Retain every old cloned row exactly. The AMPV uses original pinned ability82.
+    # Retain old rows except the explicit US/Baltic field changes.
+    us=json.loads((R/'us-baltic-contract.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
-        for k,row in before.items():assert table(f)[k]==row,(f,k)
+        for k,row in before.items():
+            want=dict(row);want.update((us['ammo_fields'] if f=='ammunitions' else us['armor_fields'] if f=='armors' else {}).get(k,{}));assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
         for oid in oids:assert arm[str(opt[str(oid)]['ArmorId'])]['MaxHealthPoints']==10
     b15=arm[str(opt['643']['ArmorId'])];assert (b15['HeatArmorFront'],b15['HeatArmorSides'])==(400,400)
@@ -51,6 +53,32 @@ with zipfile.ZipFile(p) as z:
     for uid,oid,cost in [(158,563,100),(158,564,190),(158,565,200),(158,566,230),(615,3033,80),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(141,245,35),(216,499,35),(9,625,100)]:
         base=units[str(uid)]['Cost'];surcharge=opt.get(str(oid),{}).get('Cost',0)
         assert base+surcharge==cost,(uid,oid,cost)
+    files=json.loads((R/'row-tests/table-files.json').read_text())
+    locks=json.loads((R/'clone-locks.json').read_text())
+    for t,rows in locks['tables'].items():
+        patch=table(files[t].removesuffix('.json'))
+        allowed=us['armor_fields'] if t=='ArmorsJson' else us['ammo_fields'] if t=='AmmunitionsJson' else {}
+        for key,lock in rows.items():
+            row={'Id':int(key),**patch[key]}
+            for field,want in allowed.get(key,{}).items():
+                assert row[field]==want,(t,key,field);row[field]=lock['permitted_before'][field]
+            assert hashlib.sha256(json.dumps(row,sort_keys=True,separators=(',',':')).encode()).hexdigest()==lock['sha256'],(t,key)
+    for aid,fields in us['ammo_fields'].items():
+        assert table('ammunitions')[aid]['Damage']==fields['Damage']
+    for aid,fields in us['armor_fields'].items():
+        for field,want in fields.items():assert arm[aid][field]==want,(aid,field)
+    for uid,oids in [(22,[8,1894]),(24,[25,1931]),(33,[42,1895])]:
+        for oid in oids:
+            row=arm[str(opt[str(oid)]['ArmorId'])];assert (row['MaxHealthPoints'],row['HeatArmorFront'],row['HeatArmorSides'])==(12,700,700)
+            assert opt[str(oid)]['Cost']==(40 if oid==1894 else 25)
+    assert arm['2000017']['MaxHealthPoints']==14 and arm['2000017']['HeatArmorFront']==250
+    assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
+    for uid,oid,total in [(14,1904,90),(14,1905,80),(180,1958,40),(183,381,85),(453,1949,110),(185,388,30),(41,60,40),(41,2082,70)]:
+        base=units[str(uid)]['Cost'] if str(uid) in units else 80
+        assert base+opt.get(str(oid),{}).get('Cost',0)==total,(uid,oid,total)
+    assert units['421']['Cost']+30==50
+    # Check all archive constants against generated source; golden locks are separate.
+    for f in files.values():assert table(f.removesuffix('.json'))==json.loads((R/'source/UserData/FreedomArrow/constants'/f).read_text()),f
     settings=json.loads(z.read('UserData/FAConquestPrototype/settings.json'))
     assert settings['FixedIncomePerMinute']==200 and not settings['ShowOverlay'] and not settings['EnableDeveloperFixtures']
     assert settings['TestDurationSeconds']==0 and settings['ScoreLimit']==0 and settings['Ending']=='time_limit'

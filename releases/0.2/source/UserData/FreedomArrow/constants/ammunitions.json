@@ -1441,7 +1441,7 @@
     "Airburst": false,
     "SupplyCost": 150.0,
     "ResupplyTime": 5.0,
-    "Damage": 12.0,
+    "Damage": 10.5,
     "StressDamage": 260.0,
     "DamageOverTimeDuration": 0.0,
     "IgnoreCover": 0.0,
@@ -3141,7 +3141,7 @@
     "Airburst": false,
     "SupplyCost": 150.0,
     "ResupplyTime": 5.0,
-    "Damage": 12.0,
+    "Damage": 10.5,
     "StressDamage": 260.0,
     "DamageOverTimeDuration": 0.0,
     "IgnoreCover": 0.0,
@@ -4554,5 +4554,20 @@
     "PreventReloadWhileTracked": false,
     "StripingIgnore": false,
     "IsTopArmorArmorAttack": false
+  },
+  "12": {
+    "Damage": 10.0
+  },
+  "23": {
+    "Damage": 10.0
+  },
+  "505": {
+    "Damage": 10.0
+  },
+  "701": {
+    "Damage": 10.0
+  },
+  "713": {
+    "Damage": 10.0
   }
 }

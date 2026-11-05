@@ -1,7 +1,7 @@
-"""Generate the narrow dev.1 vehicle overlay on frozen 0.1.1 constants.
+"""Generate the versioned 0.2 overlay on frozen 0.1.1 constants.
 
-Includes dev.1 plus the requested Russian vehicle price/HP/armor batch.
-Troopers, squad resizing, option retirement and Booker remain outside this build.
+Includes reviewed dev.1/dev.2 and the US/Baltic data batch.
+Structural card splits, squad resizing and option retirement remain held.
 """
 from pathlib import Path
 import argparse, copy, hashlib, json, sys
@@ -95,17 +95,42 @@ def main():
     put('OptionsJson',643,{'ArmorId':new},'B15 selected armor without changing B10/B11 default')
     for oid in [3067,3070,3071,3072]:armor(628,oid,{'MaxHealthPoints':8},'Uran9 all four top-slot profiles8 HP; price held')
     for oid in [564,565]:armor(158,oid,{'HeatArmorSides':200},'T80BVM2017/held2018 side HEAT200;2018+ stays400')
-    # Existing cloned profiles are immutable. Unit costs are a narrow allow-list.
+    us=json.loads((R/'us-baltic-contract.json').read_text())
+    for key,fields in us['armor_fields'].items():put('ArmorsJson',int(key),fields,'Explicit US/Baltic armor/HP target; shared consumers audited')
+    for key,fields in us['ammo_fields'].items():put('AmmunitionsJson',int(key),fields,'Tank-gun sabot10 or all live Javelin10.5')
+    for uid in us['stryker_scope']:
+        for old in [2000017,2000018]:
+            oid=next(o['Id'] for o in options(uid) if o['ArmorId']==old)
+            armor(uid,oid,{'MaxHealthPoints':12,'HeatArmorFront':700,'HeatArmorSides':700},'Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS')
+    # TypeX has no armor slot; repoint its unit association, preserving the original row.
+    old=effective['UnitArmorsJson'][983]['ArmorId'];assert old==341
+    new=clone('ArmorsJson',old,{'MaxHealthPoints':8},'Playable Baltic TypeX8 HP')
+    put('UnitArmorsJson',983,{'ArmorId':new},'TypeX unit-specific armor')
+    # Freeze every pre-dev3 added row except explicitly permitted fields/values.
+    locks=json.loads((R/'clone-locks.json').read_text())
+    def permitted(table,rid):
+        return (us['armor_fields'] if table=='ArmorsJson' else us['ammo_fields'] if table=='AmmunitionsJson' else {}).get(str(rid),{})
+    for table,rows in locks['tables'].items():
+        for key,lock in rows.items():
+            row=copy.deepcopy(effective[table][int(key)])
+            for field,value in permitted(table,int(key)).items():
+                assert row[field]==value,(table,key,field)
+                row[field]=lock['permitted_before'][field]
+            assert hashlib.sha256(json.dumps(row,sort_keys=True,separators=(',',':')).encode()).hexdigest()==lock['sha256'],('locked clone drift',table,key)
+    # Unit costs and old profile mutations are explicit field allow-lists.
+
     for table,rows in frozen.items():
         for rid,row in rows.items():
-            if rid>=2_000_000:assert effective[table][rid]==row,(table,rid)
+            if rid>=2_000_000:
+                want=copy.deepcopy(row);want.update(permitted(table,rid));assert effective[table][rid]==want,(table,rid)
     for uid,row in frozen['Units'].items():
         want=copy.deepcopy(row)
         if str(uid) in contract['base_costs']:want['Cost']=contract['base_costs'][str(uid)]
         assert effective['Units'][uid]==want,('unexpected unit change',uid)
     assert set(effective['Units'])==set(frozen['Units'])
     assert effective['ModificationsJson']==frozen['ModificationsJson']
-    assert effective['AmmunitionsJson']==frozen['AmmunitionsJson']
+    for aid,row in frozen['AmmunitionsJson'].items():
+        want=copy.deepcopy(row);want.update(us['ammo_fields'].get(str(aid),{}));assert effective['AmmunitionsJson'][aid]==want,('unexpected ammo change',aid)
     assert effective['SquadMembersJson']==frozen['SquadMembersJson']
     for table in ['WeaponsJson','SquadWeaponsJson','TurretWeaponsJson','SpecializationAvailabilitiesJson']:
         assert effective[table]==frozen[table]
@@ -117,12 +142,22 @@ def main():
             assert (v==0 and nullable) or v in effective[target],(a['table'],a['id'],field,v)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
+    # Resolve consumers from the final effective graph, including shared Javelin rounds.
+    affected=set()
+    for change in audit:
+        table=change['table'];rid=change['id'];row=change['after']
+        if table=='Units':affected.add(rid)
+        if 'UnitId' in row:affected.add(row['UnitId'])
+        if table=='OptionsJson':affected.add(effective['ModificationsJson'][row['ModificationId']]['UnitId'])
+        if table=='AmmunitionsJson':affected.update(x['UnitId'] for x in effective['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==rid)
+        if table=='ArmorsJson':affected.update(x['UnitId'] for x in effective['UnitArmorsJson'].values() if x['ArmorId']==rid)
+        if table=='MobilityJson':affected.update(x['UnitId'] for x in effective['UnitPropulsionsJson'].values() if x['MobilityId']==rid)
     record={'version':contract['version'],'source_build':pins['source_build_id'],
             'baseline_commit':'72783a51acfd0fac53fc1f40ea881f0f009fe6e0',
-            'affected_units':sorted(set([41,144,151,235,254,628]+[int(i) for i in contract['base_costs']])),'new_profile_ids':list(range(2000218,next_id)),
-            'baseline_clone_ids_preserved':218,'source_table_pins_matched':24,
+            'affected_units':sorted(affected),'new_profile_ids':list(range(2000218,next_id)),
+            'baseline_rows_locked':locks['counts'],'allowed_clone_fields':{t:{k:list(permitted(t,int(k))) for k in rows if permitted(t,int(k))} for t,rows in locks['tables'].items()},'source_table_pins_matched':24,
             'rows':{k:len(v) for k,v in patches.items()},'changes':audit,
             'scope':'data generation only; no runtime, armory or behavior result'}
     (R/'constant-audit.json').write_text(json.dumps(record,indent=2)+'\n')
-    print(json.dumps({k:record[k] for k in ['affected_units','new_profile_ids','baseline_clone_ids_preserved','source_table_pins_matched']}))
+    print(json.dumps({k:record[k] for k in ['affected_units','new_profile_ids','baseline_rows_locked','source_table_pins_matched']}))
 if __name__=='__main__':main()

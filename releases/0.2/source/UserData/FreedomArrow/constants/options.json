@@ -4,8 +4,9 @@
     "Ability1Id": 2000195
   },
   "8": {
-    "ArmorId": 2000017,
-    "Ability1Id": 2000195
+    "ArmorId": 2000235,
+    "Ability1Id": 2000195,
+    "Cost": 25
   },
   "18": {
     "ArmorId": 2000020
@@ -25,7 +26,8 @@
     "ArmorId": 2000016
   },
   "25": {
-    "ArmorId": 2000017
+    "ArmorId": 2000237,
+    "Cost": 25
   },
   "35": {
     "ArmorId": 2000013
@@ -37,15 +39,17 @@
     "ArmorId": 2000013
   },
   "40": {
-    "ArmorId": 2000014
+    "ArmorId": 2000014,
+    "Cost": 15
   },
   "41": {
     "ArmorId": 2000016,
     "Ability1Id": 2000195
   },
   "42": {
-    "ArmorId": 2000017,
-    "Ability1Id": 2000195
+    "ArmorId": 2000239,
+    "Ability1Id": 2000195,
+    "Cost": 25
   },
   "43": {
     "ArmorId": 2000016
@@ -85,7 +89,8 @@
   },
   "60": {
     "ArmorId": 2000026,
-    "Ability1Id": 2000195
+    "Ability1Id": 2000195,
+    "Cost": 15
   },
   "89": {
     "ArmorId": 2000005
@@ -442,7 +447,8 @@
     "ArmorId": 2000104
   },
   "1753": {
-    "ArmorId": 2000015
+    "ArmorId": 2000015,
+    "Cost": 25
   },
   "1759": {
     "ArmorId": 2000015
@@ -451,7 +457,8 @@
     "ArmorId": 2000013
   },
   "1761": {
-    "ArmorId": 2000014
+    "ArmorId": 2000014,
+    "Cost": 15
   },
   "1764": {
     "ArmorId": 2000015
@@ -475,13 +482,15 @@
     "ArmorId": 2000226
   },
   "1894": {
-    "ArmorId": 2000018,
-    "Ability1Id": 2000195
+    "ArmorId": 2000236,
+    "Ability1Id": 2000195,
+    "Cost": 40
   },
   "1895": {
-    "ArmorId": 2000018,
+    "ArmorId": 2000240,
     "Ability1Id": 2000195,
-    "Ability2Id": 2000203
+    "Ability2Id": 2000203,
+    "Cost": 25
   },
   "1898": {
     "ArmorId": 2000018,
@@ -489,7 +498,8 @@
     "Ability2Id": 2000203
   },
   "1904": {
-    "ArmorId": 2000011
+    "ArmorId": 2000011,
+    "Cost": 10
   },
   "1905": {
     "ArmorId": 2000012
@@ -501,8 +511,9 @@
     "ArmorId": 2000107
   },
   "1931": {
-    "ArmorId": 2000018,
-    "Ability1Id": 2000203
+    "ArmorId": 2000238,
+    "Ability1Id": 2000203,
+    "Cost": 25
   },
   "1939": {
     "ArmorId": 2000018,
@@ -512,7 +523,8 @@
     "ArmorId": 2000051
   },
   "1958": {
-    "ArmorId": 2000052
+    "ArmorId": 2000052,
+    "Cost": 5
   },
   "1964": {
     "ArmorId": 2000109
@@ -539,7 +551,8 @@
   "2082": {
     "ArmorId": 2000027,
     "Ability1Id": 2000195,
-    "Ability2Id": 82
+    "Ability2Id": 82,
+    "Cost": 45
   },
   "2090": {
     "ArmorId": 2000220
@@ -834,6 +847,15 @@
   },
   "493": {
     "Cost": 40
+  },
+  "388": {
+    "Cost": 5
+  },
+  "381": {
+    "Cost": 15
+  },
+  "1949": {
+    "Cost": 10
   },
   "3067": {
     "ArmorId": 2000229

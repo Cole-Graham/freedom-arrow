@@ -1,19 +1,27 @@
-# Freedom Arrow 0.2.0-dev.2 — development candidate
+# Freedom Arrow 0.2.0-dev.3 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
 Included: guarded Local AI Skirmish flat200 economy prototype; BMO-T base14 HP; Kornet-D1 base10 HP and armored400/400 HEAT; Sprut cage10 HP,400/400 HEAT and60 km/h road limit; M1283 AMPV APS option and unit inventory both reference original two-charge ability82. Other shared disabled-APS profiles remain disabled.
 
-Infantry/card changes, availability/pricing changes, option retirement and Booker clarification are not included. Optics and stealth remain vanilla. No normal-Skirmish or online economy override. The rate is200/minute, converted to200/60 per simulation second; it is conditional on the initialized offline guard and null economy network service. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
+Infantry/card changes, infantry availability/pricing changes, option retirement and the remaining Booker APS decision are held. Optics and stealth remain vanilla. No normal-Skirmish or online economy override. The rate is200/minute, converted to200/60 per simulation second; it is conditional on the initialized offline guard and null economy network service. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
 
 No live credit, HUD, AI, armor, movement, APS interception, FPS or stability result is claimed. T12 must inspect Base/BRAT without APS as well as the selected AMPV APS option, and prove upkeep-active control before comparison.
 
-## Russian vehicle batch
+## Historical dev.2 Russian vehicle batch
 
-32 base-price changes plus BTR82A/BTR80 10HP, Uran9 8HP and B15-only400/400 HEAT. T80 and Object787 remain loadouts with temporary requested price totals; splits, availability and obr2018 removal are held. BMP2 Reserve35 preserves the other turret totals55/60/75. Armata360/T15 200/K16 30 provisional. No sabot damage change. Uran70, Konkurs target and T72B3A request unresolved.
+32 base-price changes plus BTR82A/BTR80 10HP, Uran9 8HP and B15-only400/400 HEAT. T80 and Object787 remain loadouts with temporary requested price totals; splits, availability and obr2018 removal are held. BMP2 Reserve35 preserves the other turret totals55/60/75. Armata360/T15 200/K16 30 provisional. Dev.2 did not change sabot; dev.3 normalizes the five specified tank-gun rows. Uran70, Konkurs target and T72B3A request unresolved.
+
+## US/Baltic dev.3 data batch
+
+24 additional base-price edits, Abrams160/190/200/240; literal ACV front/rear400 and12HP; Bradley core BUSK400/700 front and12HP; AMPV BRAT700 front with APS retained; named Stryker ESV/ICV/MGS SRAT700/700,12HP,+25; CV9035 armored500/500 and12HP; TypeX8HP. Five tank-gun sabot rows10, all Javelin10.5 (the active0.1 clones12→10.5).
+
+No card split is complete. M60A1/CEV remain90/80; M8AGS/Thunderbolt70/85; Booker105/50mm100/110. XM91350mm stays2.5; BMOPMT12 stays8.5 pending scope. ACV40 armored-total and Battleship50 default-total are provisional interpretations. Recon remains incomplete. Linebacker/MCV/AMPV HP expansion, BUSK price harmonization and SRAT beyond the three named units await decisions. ICV retains active APS option+40 (two charges); inactive ESV/MGS APS duplicates remain selectable at+25 pending removal; AMPV's real APS option remains+45. No install or live acceptance. Lateralus main cleanup123dd7b is merged; no new optics/stealth/noise proposal is included.
 
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
 
 - 2026-11-04 15:54:11 PST (America/Los_Angeles) — Added dev.2 batch and held structural scope.
+
+- 2026-11-04 16:41:49 PST (America/Los_Angeles) — Added dev.3 scope, corrected held-price wording and documented provisional totals/unfinished recon/card work.

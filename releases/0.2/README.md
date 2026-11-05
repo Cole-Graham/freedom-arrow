@@ -1,6 +1,6 @@
-# Freedom Arrow 0.2.0-dev.2 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.3 — isolated development candidate
 
-**Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian vehicle price/HP/armor batch. It has not been installed, launched or accepted in game.**
+**Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian and US/Baltic vehicle data batches. It has not been installed, launched or accepted in game.**
 
 ## Included
 
@@ -19,7 +19,7 @@ T80 separate cards and obr2018 retirement are NOT implemented: temporary totals 
 
 ## Held from this candidate
 
-Troopers/card splits, squad resizing, price/availability edits, obsolete-option retirement and Booker AP/APS clarification. These remain in the ongoing 0.2 changelog:
+Troopers/card splits, squad resizing, infantry price/availability edits, obsolete-option retirement and Booker AP/APS clarification. These remain in the ongoing 0.2 changelog:
 https://docs.google.com/document/d/1zt3iMn8IcSJSLRl4PBCugvVbTkp1HEA_TM6GPADWwOo/edit
 
 ## Build and inspect
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.2.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.3.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -46,8 +46,16 @@ Normal Skirmish, unguarded/scenario/network lobbies and multiplayer do not recei
 
 The pin overrides scenario income bonuses. Test 200 credit over 60 simulation seconds below the reserve cap, with purchases/refunds/losses, AI, pause/speed, restart, forced faults and exit to unguarded play. The control must show positive battlefield value and reduced income; otherwise upkeep has not been exercised. This is not an online-compatible release or a stability/FPS result.
 
+## US/Baltic dev.3 data batch
+
+24 additional base-price edits, Abrams160/190/200/240; literal ACV front/rear400 and12HP; Bradley core BUSK400/700 front and12HP; AMPV BRAT700 front with APS retained; named Stryker ESV/ICV/MGS SRAT700/700,12HP,+25; CV9035 armored500/500 and12HP; TypeX8HP. Five tank-gun sabot rows10, all Javelin10.5 (the active0.1 clones12→10.5).
+
+No card split is complete. M60A1/CEV remain90/80; M8AGS/Thunderbolt70/85; Booker105/50mm100/110. XM91350mm stays2.5; BMOPMT12 stays8.5 pending scope. ACV40 armored-total and Battleship50 default-total are provisional interpretations. Recon remains incomplete. Linebacker/MCV/AMPV HP expansion, BUSK price harmonization and SRAT beyond the three named units await decisions. ICV retains active APS option+40 (two charges); inactive ESV/MGS APS duplicates remain selectable at+25 pending removal; AMPV's real APS option remains+45. No install or live acceptance. Lateralus main cleanup123dd7b is merged; no new optics/stealth/noise proposal is included.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
 
 - 2026-11-04 15:54:11 PST (America/Los_Angeles) — Added the dev.2 price/HP/armor batch and documented held splits, fallback totals and provisional prices. No live result.
+
+- 2026-11-04 16:41:49 PST (America/Los_Angeles) — Added dev.3 scope, corrected held-price wording and documented provisional totals/unfinished recon/card work.
