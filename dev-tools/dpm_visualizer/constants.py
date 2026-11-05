@@ -1,0 +1,105 @@
+"""Broken Arrow DPM visualizer constants."""
+
+from __future__ import annotations
+
+# InfocardConfig.EffectiveRangeMultiplier. Card / targeting UI metres = world * 2.
+CARD_RANGE_MULTIPLIER = 2.0
+RANGE_STEP_CARD_M = 25.0
+
+ARMOR_KINETIC = 1
+ARMOR_HEAT = 2
+ARMOR_IGNORE = 0
+
+UNIT_TYPE_INFANTRY = 2
+
+# WeaponType: RPGReloadable, RPGDisposable, ATGM, ATGMHE. Units-tab infantry DPM skips these.
+INFANTRY_AT_WEAPON_TYPES = frozenset({62, 63, 80, 81})
+
+FACES = ("Front", "Sides", "Rear", "Top")
+FACE_FIELDS = {
+    "Front": ("KinArmorFront", "HeatArmorFront"),
+    "Sides": ("KinArmorSides", "HeatArmorSides"),
+    "Rear": ("KinArmorRear", "HeatArmorRear"),
+    "Top": ("KinArmorTop", "HeatArmorTop"),
+}
+
+TABLE_FILES: tuple[tuple[str, str], ...] = (
+    ("Units", "units.json"),
+    ("AbilitiesJson", "abilities.json"),
+    ("UnitAbilitiesJson", "unit_abilities.json"),
+    ("AmmunitionsJson", "ammunitions.json"),
+    ("ArmorsJson", "armors.json"),
+    ("MobilityJson", "mobility.json"),
+    ("FlyPresetsJson", "fly_presets.json"),
+    ("UnitPropulsionsJson", "unit_propulsions.json"),
+    ("CountriesJson", "countries.json"),
+    ("TurretsJson", "turrets.json"),
+    ("TurretUnitsJson", "turret_units.json"),
+    ("WeaponsJson", "weapons.json"),
+    ("TurretWeaponsJson", "turret_weapons.json"),
+    ("WeaponAmmunitionsJson", "weapon_ammunitions.json"),
+    ("SensorUnitsJson", "sensor_units.json"),
+    ("SensorsJson", "sensors.json"),
+    ("SquadMembersJson", "squad_members.json"),
+    ("SquadWeaponsJson", "squad_weapons.json"),
+    ("ModificationsJson", "modifications.json"),
+    ("OptionsJson", "options.json"),
+    ("UnitArmorsJson", "unit_armors.json"),
+    ("SpecializationAvailabilitiesJson", "specialization_availabilities.json"),
+    ("SpecializationsJson", "specializations.json"),
+    ("TransportAvailabilitiesJson", "transport_availabilities.json"),
+)
+
+FIELD_TO_FILE = dict(TABLE_FILES)
+FILE_TO_FIELD = {filename: field for field, filename in TABLE_FILES}
+NEEDED_FIELDS = (
+    "Units",
+    "AmmunitionsJson",
+    "ArmorsJson",
+    "WeaponsJson",
+    "WeaponAmmunitionsJson",
+    "TurretsJson",
+    "TurretUnitsJson",
+    "TurretWeaponsJson",
+    "SquadMembersJson",
+    "SquadWeaponsJson",
+    "ModificationsJson",
+    "OptionsJson",
+    "UnitArmorsJson",
+    "CountriesJson",
+)
+
+LINE_COLORS = (
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf",
+)
+
+FACE_LINE_STYLES = {
+    "Front": "-",
+    "Sides": "--",
+    "Rear": "-.",
+    "Top": ":",
+}
+
+
+def format_dpm_y_axis_tick(value: float, _pos: int) -> str:
+    """Format DPM axis ticks as plain numbers (no scientific notation)."""
+    if value <= 0:
+        return ""
+    rounded = round(value)
+    if abs(value - rounded) < max(1e-9, abs(value) * 1e-9):
+        return str(int(rounded))
+    if value >= 1:
+        return str(int(round(value)))
+    formatted = f"{value:.4g}"
+    if "e" in formatted or "E" in formatted:
+        formatted = f"{value:.4f}".rstrip("0").rstrip(".")
+    return formatted or "0"

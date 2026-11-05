@@ -1,0 +1,70 @@
+"""Join smoke tests against the decrypted vanilla snapshot when present."""
+
+from __future__ import annotations
+
+import unittest
+from pathlib import Path
+
+from dpm_visualizer.joins import Catalog
+from dpm_visualizer.tables import default_vanilla_dir, load_vanilla
+
+
+def _vanilla() -> Path | None:
+    return default_vanilla_dir(Path(__file__).resolve().parents[3])
+
+
+@unittest.skipUnless(_vanilla() is not None, "cache/vanilla snapshot is missing; run python -m pipeline decrypt")
+class T72BJoinTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        vanilla = _vanilla()
+        assert vanilla is not None
+        cls.catalog = Catalog(load_vanilla(vanilla))
+
+    def test_unit_9_is_t72b(self) -> None:
+        self.assertIn("T-72B", self.catalog.unit_label(9))
+
+    def test_default_main_gun_and_ammo(self) -> None:
+        mounted = {row.weapon_id: row for row in self.catalog.mounted_weapons(9)}
+        self.assertIn(9, mounted)
+        ammo_ids = {choice.ammunition_id for choice in mounted[9].ammos}
+        self.assertTrue({11, 54, 72, 356}.issubset(ammo_ids))
+
+    def test_default_armor(self) -> None:
+        self.assertEqual(self.catalog.default_armor[9], 9)
+        options = self.catalog.armor_options(9)
+        self.assertTrue(options[0].is_default)
+        self.assertEqual(options[0].armor_id, 9)
+
+    def test_kinetic_preference_picks_ap(self) -> None:
+        gun = next(row for row in self.catalog.mounted_weapons(9) if row.weapon_id == 9)
+        choice = self.catalog.pick_ammo(gun, "Kinetic")
+        assert choice is not None
+        ammo = self.catalog.ammos[choice.ammunition_id]
+        self.assertEqual(int(ammo["ArmorTargeted"]), 1)
+
+    def test_infantry_dpm_omits_rpg(self) -> None:
+        self.assertTrue(self.catalog.is_infantry(398))
+        all_ids = {row.weapon_id for row in self.catalog.mounted_weapons(398)}
+        dpm_ids = {row.weapon_id for row in self.catalog.dpm_weapons(398)}
+        self.assertIn(168, all_ids)
+        self.assertNotIn(168, dpm_ids)
+        self.assertIn(29, dpm_ids)
+
+    def test_vehicle_dpm_keeps_atgm(self) -> None:
+        self.assertFalse(self.catalog.is_infantry(9))
+        self.assertEqual(
+            {row.weapon_id for row in self.catalog.mounted_weapons(9)},
+            {row.weapon_id for row in self.catalog.dpm_weapons(9)},
+        )
+
+    def test_t72b_silhouette_is_min_length_width(self) -> None:
+        self.assertEqual(self.catalog.silhouette(9), (3.4, 2.1))
+        size = self.catalog.silhouette_for_armor(self.catalog.default_armor[9])
+        self.assertIsNotNone(size)
+        self.assertGreater(size[0], 0)
+        self.assertGreater(size[1], 0)
+
+
+if __name__ == "__main__":
+    unittest.main()
