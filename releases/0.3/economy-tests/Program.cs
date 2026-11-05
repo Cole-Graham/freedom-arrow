@@ -45,6 +45,7 @@ Throws(()=>FreedomArrow.CoverDamagePolicy.Factor(0,0),"zero taken refused");
 var fa=JsonSerializer.Deserialize<Settings>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"../../../../source/UserData/FAConquestPrototype/settings.json")),new JsonSerializerOptions{PropertyNameCaseInsensitive=true})!;fa.Validate();
 const string cv="[FA] Central Village";var cvIds=Enumerable.Range(53,10).ToArray();
 Check(cvIds.Select(i=>fa.Weight(cv,i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4})&&fa.Weight("other map",53)==1,"Central Village zone values");
+Check(fa.ZoneLabel(cv,53)=="+4"&&fa.ZoneLabel(cv,55)=="+3"&&fa.ZoneLabel(cv,57)=="+2"&&fa.ZoneLabel("other map",53)=="+1","zone labels");
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","Central Village map resolution");
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
 Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"Central Village weighted advantage");

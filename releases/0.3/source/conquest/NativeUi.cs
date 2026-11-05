@@ -7,6 +7,10 @@ public sealed partial class Prototype
 {
     static bool updatingHud;
     static bool uiEnabled;
+    static View labelView;
+    static string labelMap;
+    static GUIStyle labelStyle;
+    static bool labelsOff,labelsLogged;
     static bool uiFault;
     static UiSnapshot uiSnapshot;
     sealed class UiSnapshot
@@ -47,6 +51,37 @@ public sealed partial class Prototype
     {
         if(view==null||!Guarded(view.Service))throw new InvalidOperationException("No guarded local battle");
         config.ShowOverlay=enabled;Log("scoring_overlay_mode",new{enabled});
+    }
+    // Timer ticks also run during deployment, so the labels can show before combat starts.
+    static void NoteLabelMode(View candidate)
+    {
+        if(labelView!=null&&labelView.Pointer==candidate.Pointer)return;
+        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;
+    }
+    static void ClearLabelMode(){labelView=null;labelMap=null;}
+    public override void OnGUI()
+    {
+        if(labelsOff||labelView==null||!config.ShowOverlay||Event.current.type!=EventType.Repaint)return;
+        try
+        {
+            if(!Guarded(labelView.Service))return;
+            if(labelMap==null)
+            {
+                if(labelView.ZoneIds().Count==0)return;
+                labelMap=MapName(labelView);
+            }
+            int size=Math.Max(14,Screen.height/40);
+            if(labelStyle==null||labelStyle.fontSize!=size)labelStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+            var color=GUI.contentColor;
+            int drawn=labelView.DrawWeights(labelMap,config,labelStyle);
+            GUI.contentColor=color;
+            if(!labelsLogged){labelsLogged=true;Log("zone_labels",new{map=labelMap,drawn,camera=drawn>=0});}
+        }
+        catch(Exception e)
+        {
+            // A label fault must not stop scoring.
+            labelsOff=true;MelonLogger.Error("FREEDOM_ARROW_ZONE_LABELS_FAILED: off for this match. "+e.Message);
+        }
     }
     public override void OnUpdate()
     {

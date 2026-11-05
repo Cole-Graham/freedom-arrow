@@ -57,6 +57,7 @@ public sealed class Settings
         return maps.Count == 1 ? maps[0] : name;
     }
     public const string OnlineUnknownMap = "online scenario";
+    public string ZoneLabel(string map, int uid) => "+" + Weight(map, uid).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
         && zones.TryGetValue(uid.ToString(System.Globalization.CultureInfo.InvariantCulture), out int value) ? value : DefaultZoneWeight;
 }

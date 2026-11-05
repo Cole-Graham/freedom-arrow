@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.14", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.15", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -157,6 +157,7 @@ public sealed partial class Prototype : MelonMod
         }
         catch (Exception e) { Fail(e); }
     }
+    static string MapName(View candidate)=>config.ResolveMap(ScenariosService.ActiveScenario?.Name ?? (candidate.Service._isOnline ? Settings.OnlineUnknownMap : throw new InvalidOperationException("No active local scenario")),candidate.ZoneIds());
     static bool Prepare(View candidate)
     {
         if(dispatching||candidate.Pointer==retiredModePointer||candidate.Pointer==endingModePointer)return false;
@@ -171,7 +172,7 @@ public sealed partial class Prototype : MelonMod
             DiscardModeFixture("new ledger");pendingEnding=null;terminalStarted=false;ledgerEpoch++;
             fixtureUsedThisMatch=false;nativePhaseCalls=0;continuousTimerCalls=0;lastModeSample=-1;lastTelemetry=-10;lastUiSecond=-1;
             uiEnabled=false;RestoreNativeUi();uiFault=false;
-            var activeName = config.ResolveMap(ScenariosService.ActiveScenario?.Name ?? (candidate.Service._isOnline ? Settings.OnlineUnknownMap : throw new InvalidOperationException("No active local scenario")),candidate.ReadZones().Select(z=>z.Uid));
+            var activeName = MapName(candidate);
             view = candidate;
             modeServicePointer=candidate.Service.Pointer;
             ledger = new Ledger(config, activeName, candidate.Duration);
@@ -214,9 +215,10 @@ public sealed partial class Prototype : MelonMod
         var panel=view.Panel;if(panel!=null)panel.SetVictoryPoints(points);
     }
     public static void WarTimerBefore(WarGoalsMode __instance, TimerType type, float timer)
-    { try { if (type == TimerType.GameMode) Observe(new View(__instance), timer); } catch (Exception e) { Fail(e); } }
+    { try { if(__instance.Pointer!=retiredModePointer)NoteLabelMode(new View(__instance)); if (type == TimerType.GameMode) Observe(new View(__instance), timer); } catch (Exception e) { Fail(e); } }
     public static bool ConquestTimerBefore(ConquestMode __instance, TimerType type, float timer)
     {
+        if(__instance.Pointer!=retiredModePointer)NoteLabelMode(new View(__instance));
         if(type==TimerType.GameMode&&__instance.Pointer==retiredModePointer)return false;
         if(type==TimerType.GameMode&&continuousModePointer==__instance.Pointer&&(faulted||terminalStarted))
         {UpdateInvalidMatchClock(timer);return false;}
@@ -280,6 +282,7 @@ public sealed partial class Prototype : MelonMod
     public static bool ConquestWinner(ConquestMode __instance, bool timeEnd, ref TeamSide __result) => Winner(new View(__instance), timeEnd, ref __result);
     public static void Stopped(GameModeService __instance)
     {
+        ClearLabelMode();
         if(view==null||modeServicePointer!=__instance.Pointer)return;
         retiredModePointer=view.Pointer;
         try{Log("match_stopped",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed,invalid=faulted,
@@ -342,17 +345,33 @@ public sealed partial class Prototype : MelonMod
             }
             return result;
         }
-        public void DrawWeights(string map,Settings config)
+        public List<int> ZoneIds()
         {
-            var camera=Camera.main;if(camera==null||Zones==null)return;
+            var result=new List<int>();
+            if(Zones!=null)foreach(var zone in Zones)if(zone?.Data!=null)result.Add(zone.Data.UID);
+            return result;
+        }
+        // Draws each zone's value on the zone. Returns the number drawn, or -1 with no camera.
+        public int DrawWeights(string map,Settings config,GUIStyle style)
+        {
+            var camera=Camera.main;if(camera==null)return -1;
+            if(Zones==null)return 0;
+            int drawn=0;
+            float h=style.fontSize*1.6f,w=h*3;
             foreach(var zone in Zones)
             {
+                if(zone?.Data==null)continue;
                 var screen=camera.WorldToScreenPoint(zone.transform.position);
                 if(screen.z<=0)continue;
-                float x=screen.x*1920f/Screen.width,y=(Screen.height-screen.y)*1080f/Screen.height;
-                if(x<0||x>1920||y<0||y>1080)continue;
-                GUI.Label(new Rect(x-25,y-25,80,25),config.Weight(map,zone.Data.UID)+"/tick");
+                float x=screen.x,y=Screen.height-screen.y;
+                if(x<0||x>Screen.width||y<0||y>Screen.height)continue;
+                string label=config.ZoneLabel(map,zone.Data.UID);
+                // Sit above the zone icon, with a shadow so it reads on any terrain.
+                GUI.contentColor=Color.black;GUI.Label(new Rect(x-w/2+2,y-h*2+2,w,h),label,style);
+                GUI.contentColor=Color.white;GUI.Label(new Rect(x-w/2,y-h*2,w,h),label,style);
+                drawn++;
             }
+            return drawn;
         }
         public List<Zone> ReadZones()
         {
