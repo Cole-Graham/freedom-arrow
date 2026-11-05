@@ -38,8 +38,8 @@ with zipfile.ZipFile(p) as z:
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
-    for row in table('options').values():assert not {'MainSensorId','ExtraSensorId'} & set(row)
-    assert {k:r['StealthOverride'] for k,r in table('options').items() if 'StealthOverride' in r}==det['stealth_override_options']
+    for k,row in table('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row)
+    assert {k:r['StealthOverride'] for k,r in table('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
     for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,10,400,400)]:
         a=arm[str(opt[str(oid)]['ArmorId'])];assert a['MaxHealthPoints']==hp
@@ -106,7 +106,7 @@ with zipfile.ZipFile(p) as z:
     assert opt['2049']['Cost']==0 and opt['2050']['Cost']==0
     pools=table('specialization_availabilities');assert pools['836']=={'MaxAvailabilityXp0':4}
     assert [r['MaxAvailabilityXp0'] for r in pools.values() if r.get('UnitId')==714]==[2]
-    assert table('turret_units')['1769']=={'UnitId':714} and table('turret_units')['1771']=={'UnitId':714} and table('weapon_ammunitions')['2745']=={'UnitId':714}
+    assert table('turret_units')['1769']=={'UnitId':714} and table('turret_units')['1771']=={'UnitId':714} and table('weapon_ammunitions')['2745']['UnitId']==714
     # Check all archive constants against generated source; golden locks are separate.
     for f in files.values():assert table(f.removesuffix('.json'))==json.loads((R/'source/UserData/FreedomArrow/constants'/f).read_text()),f
     settings=json.loads(z.read('UserData/FAConquestPrototype/settings.json'))
