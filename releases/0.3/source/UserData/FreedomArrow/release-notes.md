@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.34 — development candidate
+# Freedom Arrow 0.3.0-dev.35 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,6 +96,10 @@ Quitting a match set a fault that turned the mod off until the game restarted, s
 
 The native network script caps money at 1500, and FA starts at 1500, so income stopped until a player spent. [FA] Central Village and [FA] Dead Center 0.1 now use a cap of 100000. F8 Skirmish already has no cap. Online deployment stays vanilla. No live result.
 
+## dev.35 online deployment
+
+[FA] Central Village and [FA] Dead Center 0.1 pause for 60 seconds at match start with no UI, then start the mode. The scenario script does this with the pauseGame and delay nodes that workshop [Flat 200] scenarios use online. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -140,7 +144,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.34: see README. Offline checks only.
+0.3.0-dev.35: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -233,3 +237,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 01:40:45 PST (America/Los_Angeles) — dev.32: PT-76 10 HP on both armor choices. Not yet run live.
 - 2026-11-05 01:48:48 PST (America/Los_Angeles) — dev.33: quitting a match no longer stops the mode for later matches. Not yet run live.
 - 2026-11-05 01:57:57 PST (America/Los_Angeles) — dev.34: online money cap raised so income pays from 1500. Not yet run live.
+- 2026-11-05 02:07:06 PST (America/Los_Angeles) — dev.35: 60 second scripted deployment on online FA maps. Not yet run live.

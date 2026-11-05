@@ -12,8 +12,10 @@ GAME_VERSION='1.2.2'
 MATCH_MINUTES=45
 # Network scripts cap money at 1500. With 1500 starting points, income would stop until a player spends. Skirmish missions have no cap.
 MONEY_CAP=100000
+DEPLOY_SECONDS=60
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 # Lateralus's map, from maps/. A script added there later needs this step checked again.
+DEAD_CENTER_MODE=136
 DEAD_CENTER='[FA] Dead Center 0.1';DEAD_CENTER_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005'
 DEAD_CENTER_VALUES=dict(A=('Alpha',2),B=('Bravo',2),C=('Charlie',2),D=('Delta',3),E=('Echo',3))
 DEAD_CENTER_DESC=DESC.replace('A B G H I J are worth 4, C D are worth 3, E F are worth 2.','A B C are worth 2, D E are worth 3.')
@@ -40,6 +42,18 @@ def slider_defaults(objects,meta,want_money):
     for o in timers:
         o['defV']=MATCH_MINUTES
         if 'tstV' in o:o['tstV']=MATCH_MINUTES
+# Network deployment: pause at start, wait, unpause, then start the mode. Workshop [Flat 200] scenarios use these nodes online.
+def add_deployment(nodes,start,target):
+    wire={'a':target,'b':start,'c':'in','d':'flow','e':start}
+    if target==DEAD_CENTER_MODE:wire['c']='in2'
+    assert wire in nodes['c'],wire
+    nodes['c'].remove(wire)
+    assert not {n['nnKey'] for n in nodes['b']}&{'pauseGame'}
+    first=max(n['id'] for n in nodes['b'])+1
+    on,wait,off=first,first+1,first+2
+    def node(i,key,props,x):return dict(v=0,nnKey=key,px=x,py=-900.0,id=i,rtpt=True,props_v2=[dict(k=k,v=v,t=1) for k,v in props])
+    nodes['b']+=[node(on,'pauseGame',[('val','True')],-800.0),node(wait,'delay',[('Time',str(DEPLOY_SECONDS)),('igGmSp','True')],-500.0),node(off,'pauseGame',[('val','False')],-200.0)]
+    nodes['c']+=[dict(a=on,b=start,c='in',d='flow',e=start),dict(a=wait,b=start,c='in2',d='flow',e=start),dict(a=off,b=wait,c='in',d='out2',e=wait),dict(a=target,b=off,c=wire['c'],d='out',e=off)]
 def write(out,name,head,objects,nodes,meta):
     target=out/name;target.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(target/(name+'.bascr'),'w',zipfile.ZIP_DEFLATED) as w:
@@ -83,6 +97,8 @@ def build(game,out,name,guid,mission,kind,desc,public):
         next(p for p in byid[calc]['props_v2'] if p['k']=='B')['v']='1'
         next(p for p in byid[source[0]]['props_v2'] if p['k']=='Value')['v']=str(START_POINTS)
     slider_defaults(objects,meta,2 if kind==2 else 0)
+    # 159 starts the mode selection in the network mission. F8 has its own freeze in the mod.
+    if kind==2:add_deployment(nodes,163,159)
     # The game picks a database from the scenario's game version. The native 1.2.0 values do not load our tables.
     meta.update(guid=guid,scenario=name,author='Freedom Arrow',desc=desc,public=public,type=kind,gameVersion=GAME_VERSION)
     write(out,name,head,objects,nodes,meta)
@@ -118,6 +134,7 @@ def build_dead_center(game,out):
     # The shipped Test_map_network uses this start to ConquestMode wire.
     wires.append(dict(a=136,b=163,c='in2',d='flow',e=163))
     nodes.update(b=script,c=wires)
+    add_deployment(nodes,163,DEAD_CENTER_MODE)
     head.update(guid=DEAD_CENTER_GUID,desc=DEAD_CENTER_DESC)
     meta.update(guid=DEAD_CENTER_GUID,desc=DEAD_CENTER_DESC)
     write(out,DEAD_CENTER,head,objects,nodes,meta)
