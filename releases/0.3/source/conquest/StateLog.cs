@@ -11,7 +11,7 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles.Components;
 using Il2CppBrokenArrow.Client.Ecs.Infantry.Components;
 
 namespace FreedomArrow.Conquest;
-// A read-only game state log for F8 matches. It has no combat hooks. Once a second it reads units and
+// A read-only game state log for F8 and private online matches. It has no combat hooks. Once a second it reads units and
 // weapons from the main thread and writes only what changed, so the last line shows the state before a crash.
 public sealed partial class Prototype
 {
@@ -41,7 +41,7 @@ public sealed partial class Prototype
         if(stateOff||!config.StateLog)return;
         try
         {
-            if(view==null||!Guarded(view.Service)||view.Service._isOnline){if(stateFile!=null)CloseStateLog();return;}
+            if(view==null||!Guarded(view.Service)){if(stateFile!=null)CloseStateLog();return;}
             stateFrames++;stateWorst=Math.Max(stateWorst,Time.unscaledDeltaTime);
             if(Time.unscaledTime<stateNext)return;
             stateNext=Time.unscaledTime+StateSeconds;

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.36 — development candidate
+# Freedom Arrow 0.3.0-dev.37 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -104,6 +104,10 @@ The native network script caps money at 1500, and FA starts at 1500, so income s
 
 After the online pause, the native clock reads 44:00 and holds for 60 seconds. The HUD clock and round bar now count from 45:00 during that hold. Scoring still uses the native clock, so its times do not change. A large DEPLOYMENT countdown shows during the online pause. Zone labels and team bars still appear when the mode starts. No live result.
 
+## dev.37 online state log
+
+The read-only game state log now also runs in private online matches, so HP loss, soldiers lost, shots and frame rate can be measured there. It has no combat hooks and still turns itself off if samples are slow. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -148,7 +152,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.36: see README. Offline checks only.
+0.3.0-dev.37: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -243,3 +247,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 01:57:57 PST (America/Los_Angeles) — dev.34: online money cap raised so income pays from 1500. Not yet run live.
 - 2026-11-05 02:07:06 PST (America/Los_Angeles) — dev.35: 60 second scripted deployment on online FA maps. Not yet run live.
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
+- 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
