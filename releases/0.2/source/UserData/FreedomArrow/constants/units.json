@@ -171,10 +171,6 @@
     "Stealth": 1.0,
     "CurrentStealth": 1.0
   },
-  "21": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
-  },
   "51": {
     "Stealth": 0.8,
     "CurrentStealth": 0.8
@@ -550,10 +546,6 @@
   "460": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "467": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
   },
   "469": {
     "Stealth": 0.5,
