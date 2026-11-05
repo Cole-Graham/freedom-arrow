@@ -323,10 +323,6 @@
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
-  "138": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
-  },
   "146": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
@@ -362,10 +358,6 @@
   "176": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "177": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
   },
   "186": {
     "Stealth": 1.0,
@@ -459,10 +451,6 @@
     "Stealth": 1.0,
     "CurrentStealth": 1.0
   },
-  "385": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
-  },
   "398": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
@@ -482,10 +470,6 @@
   "402": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "403": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
   },
   "404": {
     "Stealth": 0.5,
@@ -567,10 +551,6 @@
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
-  "445": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
-  },
   "449": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
@@ -602,14 +582,6 @@
   "469": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "470": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
-  },
-  "473": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
   },
   "482": {
     "Stealth": 0.5,
@@ -686,10 +658,6 @@
   "524": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "528": {
-    "Stealth": 0.4,
-    "CurrentStealth": 0.4
   },
   "533": {
     "Stealth": 0.5,

@@ -18,6 +18,8 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 
 Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config, written only in a guarded offline battle: flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
 
+Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; the Scimitar keeps vanilla raw stealth 1.25; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Started0.2 development evidence record without inheriting0.1 acceptance claims.
@@ -29,3 +31,5 @@ Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 14
 - 2026-11-04 17:54:19 PST (America/Los_Angeles) — Added dev.5 constants-only detection proposal. No live result.
 
 - 2026-11-04 18:01:47 PST (America/Los_Angeles) — dev.6: Medium Plus ground optics 1450, interpolated from vanilla and rounded to the nearest 50, at Lateralus’s instruction. No live result.
+
+- 2026-11-04 18:07:58 PST (America/Los_Angeles) — dev.7: kept vanilla 3.0 infantry and the Scimitar, and scaled drone ground optics. No live result.

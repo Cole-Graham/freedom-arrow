@@ -109,14 +109,16 @@ def main():
     # Lateralus's detection proposal: table part. Config part is in detection-config.json.
     det=json.loads((R/'detection-contract.json').read_text())
     held=set(det['optics_held_sensors'])
+    def new_optics(sid,row):return det['optics_ground_drones'].get(str(sid)) or det['optics_ground_tiers'][str(int(row['OpticsGround']))]
     for sid,row in list(effective['SensorsJson'].items()):
         if sid not in held:
-            put('SensorsJson',sid,{'OpticsGround':det['optics_ground_tiers'][str(int(row['OpticsGround']))]},'Ground optics tier; shared with any unit on this sensor')
+            put('SensorsJson',sid,{'OpticsGround':new_optics(sid,row)},'Ground optics tier; shared with any unit on this sensor')
     def stealth_class(u):
+        if u['Id'] in det['stealth_held_units']:return None
         if u['Type']==4 and u['CategoryType'] in (0,2,3):return 'vehicle'
         if u['Type']!=2 or u['CategoryType']==4:return None
-        if u['Role']==33 or u['Id'] in det['sniper_units_outside_role33']:return 'sniper'
-        if u['CategoryType']==0 or u['Id'] in det['recon_units_outside_recon_category']:return 'recon_infantry'
+        if u['Stealth']==det['stealth']['sniper']:return 'sniper'  # Any unit at 3 in vanilla stays at 3.
+        if u['CategoryType']==0:return 'recon_infantry'
         return 'infantry'
     for uid,row in list(effective['Units'].items()):
         cls=stealth_class(row)
@@ -156,7 +158,7 @@ def main():
     assert effective['SquadMembersJson']==frozen['SquadMembersJson']
     for sid,row in frozen['SensorsJson'].items():
         want=copy.deepcopy(row)
-        if sid not in held:want['OpticsGround']=det['optics_ground_tiers'][str(int(row['OpticsGround']))]
+        if sid not in held:want['OpticsGround']=new_optics(sid,row)
         assert effective['SensorsJson'][sid]==want,('unexpected sensor change',sid)
     for table in ['WeaponsJson','SquadWeaponsJson','TurretWeaponsJson','SpecializationAvailabilitiesJson']:
         assert effective[table]==frozen[table]

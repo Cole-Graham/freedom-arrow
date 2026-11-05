@@ -33,12 +33,12 @@ foreach(var triple in new[]{(14,1904,90),(14,1905,80),(180,1958,40),(183,381,85)
 Check(Row("Units",421)["Cost"].GetValue<int>()+new[]{1866,1871,1875}.Sum(i=>Row("OptionsJson",i)["Cost"].GetValue<int>())==50,"Battleship defaults provisional50");
 // Detection proposal. Expected values are written here again on purpose, independent of the generator contract.
 var tiers=new Dictionary<double,double>{[500]=900,[600]=1300,[700]=1450,[875]=1650,[1000]=2300,[1200]=2800};
-int[] heldSensors={6,9,10,24,25,32,33,34,35};int[] snipers={341,529,530};
+int[] heldSensors={6,9,10,24,25,35};var drones=new Dictionary<int,double>{[32]=6400,[33]=5250,[34]=4650};
 JsonArray Vanilla(string t)=>JsonNode.Parse(File.ReadAllText(Path.Combine(vanilla,t+".json"))).AsArray();
 foreach(var s in Vanilla("SensorsJson")){int id=s["Id"].GetValue<int>();var m=Row("SensorsJson",id);double g=s["OpticsGround"].GetValue<double>();
-Check(m["OpticsGround"].GetValue<double>()==(heldSensors.Contains(id)?g:tiers[g]),"optics "+id);Check(m["OpticsLowAltitude"].GetValue<double>()==s["OpticsLowAltitude"].GetValue<double>()&&m["OpticsHighAltitude"].GetValue<double>()==s["OpticsHighAltitude"].GetValue<double>(),"air optics "+id);}
+Check(m["OpticsGround"].GetValue<double>()==(heldSensors.Contains(id)?g:drones.TryGetValue(id,out var drone)?drone:tiers[g]),"optics "+id);Check(m["OpticsLowAltitude"].GetValue<double>()==s["OpticsLowAltitude"].GetValue<double>()&&m["OpticsHighAltitude"].GetValue<double>()==s["OpticsHighAltitude"].GetValue<double>(),"air optics "+id);}
 foreach(var u in Vanilla("Units")){int id=u["Id"].GetValue<int>(),type=u["Type"].GetValue<int>(),cat=u["CategoryType"].GetValue<int>(),role=u["Role"].GetValue<int>();var m=Row("Units",id);double s=u["Stealth"].GetValue<double>();
-double want=type==4&&cat!=4?1.0:type!=2||cat==4?s:role==33||snipers.Contains(id)?0.333:cat==0||id==473?0.4:0.5;
+double want=id==445?s:type==4&&cat!=4?1.0:type!=2||cat==4?s:s==0.333?s:cat==0?0.4:0.5;
 Check(m["Stealth"].GetValue<double>()==want&&m["CurrentStealth"].GetValue<double>()==want,"stealth "+id);}
 foreach(int id in new[]{51,52,425,480,512,757,1713,2085,2086})Check(Row("OptionsJson",id)["StealthOverride"].GetValue<double>()==1,"vehicle override "+id);
 Check(Row("OptionsJson",1486)["StealthOverride"].GetValue<double>()==0.4&&Row("OptionsJson",3074)["StealthOverride"].GetValue<double>()==0.5,"held overrides");
