@@ -1,0 +1,280 @@
+{
+  "status": "complete selected sample: 22 models / 27 configurations",
+  "package": "0.1.1",
+  "observations": [
+    {
+      "name": "T-90M",
+      "loadout": "Default",
+      "hp": 14,
+      "side_heat": 200,
+      "cost": 250,
+      "source": "32-t90m-base.png"
+    },
+    {
+      "name": "T-90M obr. 17",
+      "loadout": "Additional ERA",
+      "hp": 14,
+      "side_heat": 400,
+      "cost": 265,
+      "source": "34-t90m-era.png"
+    },
+    {
+      "name": "T-90M Arena",
+      "loadout": "Arena APS",
+      "hp": 14,
+      "side_heat": 200,
+      "aps": 2,
+      "cost": 320,
+      "source": "35-t90m-arena.png"
+    },
+    {
+      "name": "T-90M Arena",
+      "loadout": "Arena APS + ERA",
+      "hp": 14,
+      "side_heat": 400,
+      "aps": 2,
+      "cost": 335,
+      "source": "36-t90m-era-arena.png"
+    },
+    {
+      "name": "BMP-2",
+      "loadout": "Default armor; Konkurs-M ATGM +5",
+      "hp": 10,
+      "front_heat": 80,
+      "side_heat": 40,
+      "cost": 55,
+      "atgm_damage": 12,
+      "atgm_quantity": 4,
+      "smoke": 1,
+      "source": "unit-bmp2.png"
+    },
+    {
+      "name": "BMP-3F",
+      "loadout": "Default; empty protection",
+      "hp": 12,
+      "front_heat": 100,
+      "side_heat": 60,
+      "cost": 65,
+      "atgm_damage": 12,
+      "atgm_quantity": 8,
+      "smoke": 1,
+      "source": "unit-bmp3.png"
+    },
+    {
+      "name": "M2A3 Bradley",
+      "loadout": "Default; no protection; stock engine",
+      "hp": 12,
+      "front_heat": 100,
+      "side_heat": 80,
+      "cost": 70,
+      "atgm_damage": 12,
+      "atgm_quantity": 7,
+      "smoke": 1,
+      "source": "unit-bradley.png"
+    },
+    {
+      "name": "BMP-1",
+      "loadout": "BMP-1 weapon; default armor",
+      "hp": 10,
+      "front_heat": 80,
+      "side_heat": 40,
+      "cost": 35,
+      "source": "unit-bmp1.png"
+    },
+    {
+      "name": "BTR-80",
+      "loadout": "KPVT; default armor",
+      "hp": 8,
+      "front_heat": 30,
+      "side_heat": 20,
+      "cost": 45,
+      "smoke": 1,
+      "source": "unit-btr80.png"
+    },
+    {
+      "name": "Tigr",
+      "loadout": "PKP + AG-30; default armor; stock engine",
+      "hp": 8,
+      "front_heat": 15,
+      "side_heat": 15,
+      "cost": 35,
+      "source": "unit-tigr.png"
+    },
+    {
+      "name": "T-72B1",
+      "loadout": "Base K1; no missile",
+      "source": "unit-t72b.png",
+      "hp": 14,
+      "front_heat": 600,
+      "side_heat": 400,
+      "cost": 130,
+      "smoke": 1
+    },
+    {
+      "name": "T-72B3",
+      "loadout": "Default",
+      "source": "unit-t72b3.png",
+      "hp": 14,
+      "front_heat": 650,
+      "side_heat": 200,
+      "cost": 180,
+      "smoke": 1
+    },
+    {
+      "name": "T-72B3A",
+      "loadout": "Default",
+      "source": "unit-t72b3a.png",
+      "hp": 14,
+      "front_heat": 650,
+      "side_heat": 200,
+      "cost": 240,
+      "smoke": 1
+    },
+    {
+      "name": "M1A2 SEP v3",
+      "loadout": "Default armor",
+      "source": "unit-abrams.png",
+      "hp": 14,
+      "front_heat": 1400,
+      "side_heat": 200,
+      "cost": 280,
+      "smoke": 1
+    },
+    {
+      "name": "Humvee GMV",
+      "loadout": "Default",
+      "source": "unit-humvee.png",
+      "hp": 8,
+      "front_heat": 15,
+      "side_heat": 10,
+      "cost": 40,
+      "smoke": 1,
+      "vehicle_mg_rounds": 2000
+    },
+    {
+      "name": "Marines",
+      "loadout": "Standard +10",
+      "source": "unit-marines.png",
+      "hp": 65,
+      "members": 13,
+      "cost": 90,
+      "selected_rifle_rounds": 7800,
+      "sprint_icon": true,
+      "smoke": 1
+    },
+    {
+      "name": "Mech. Riflemen",
+      "loadout": "Standard",
+      "source": "unit-riflemen.png",
+      "hp": 30,
+      "members": 6,
+      "cost": 50,
+      "selected_rifle_rounds": 1920,
+      "sprint_icon": true,
+      "smoke": 1
+    },
+    {
+      "name": "VDV Metis-M",
+      "loadout": "Metis-M ATGM",
+      "source": "unit-metis-weapon.png",
+      "hp": 25,
+      "members": 5,
+      "cost": 60,
+      "atgm_damage": 12,
+      "atgm_quantity": 5,
+      "sprint_icon": false
+    },
+    {
+      "name": "Weapons Squad",
+      "loadout": "2x Javelin; M240L 6.8",
+      "source": "unit-weapons.png",
+      "hp": 45,
+      "members": 9,
+      "cost": 125,
+      "selected_rifle_rounds": 3360,
+      "sprint_icon": false
+    },
+    {
+      "name": "Scout Snipers",
+      "loadout": "M40 sniper rifle",
+      "source": "unit-snipers.png",
+      "hp": 10,
+      "members": 2,
+      "cost": 75,
+      "selected_marksman_rounds": 120,
+      "sprint_icon": true,
+      "smoke": 1
+    },
+    {
+      "name": "MT-LBVM",
+      "loadout": "Kord HMG; Default armor",
+      "source": "unit-mtlb.png",
+      "hp": 14,
+      "front_heat": 20,
+      "side_heat": 15,
+      "cost": 40,
+      "scope": "Support unchanged; conflicts with earlier 10 HP request"
+    },
+    {
+      "name": "M109A7 Paladin",
+      "loadout": "Default armor; M109A7 weapon",
+      "source": "unit-paladin.png",
+      "hp": 14,
+      "front_heat": 30,
+      "side_heat": 20,
+      "cost": 270,
+      "scope": "Support unchanged"
+    },
+    {
+      "name": "UH-60M Blackhawk",
+      "loadout": "M240 Machinegun",
+      "source": "unit-blackhawk.png",
+      "hp": 15,
+      "cost": 80,
+      "scope": "Helicopters unchanged"
+    },
+    {
+      "name": "F-16C Fighting Falcon",
+      "loadout": "6x Rockeye; 6x Mk82; 2x AMRAAM; default ECM",
+      "source": "unit-f16.png",
+      "hp": 20,
+      "cost": 285,
+      "scope": "Air unchanged"
+    },
+    {
+      "name": "Kornet-D1",
+      "loadout": "Default armor; 1x Kornet-M + Optics",
+      "source": "unit-kornet.png",
+      "hp": 14,
+      "front_heat": 80,
+      "side_heat": 30,
+      "cost": 100,
+      "smoke": 1
+    },
+    {
+      "name": "Kornet-D1",
+      "loadout": "Up-Armored +15; Kornet-M + Optics",
+      "source": "unit-kornet-armored.png",
+      "hp": 10,
+      "cost": 115,
+      "front_heat": 180,
+      "side_heat": 140,
+      "smoke": 1,
+      "issue": "Paid armor option reduces HP from 14 to 10; team decision pending"
+    },
+    {
+      "name": "M2A3 Bradley",
+      "loadout": "BUSK +10; Iron Fist +25; stock engine",
+      "source": "unit-bradley-busk-ironfist.png",
+      "hp": 14,
+      "cost": 105,
+      "front_heat": 250,
+      "side_heat": 250,
+      "aps": 2,
+      "smoke": 1
+    }
+  ],
+  "limits": "Visual data/selected-loadout checks; no controlled hit/interception/sprint or resupply claim.",
+  "configuration_count": 27,
+  "base_model_count": 22
+}

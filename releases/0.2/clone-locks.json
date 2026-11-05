@@ -621,7 +621,7 @@
         "permitted_before": {
           "MaxHealthPoints": 14,
           "HeatArmorFront": 60,
-          "HeatArmorSides": 60
+          "HeatArmorRear": 30
         }
       },
       "2000053": {

@@ -134,10 +134,6 @@ def main():
     for o in effective['OptionsJson'].values():
         unit=effective['Units'][mods[o['ModificationId']]]
         assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or o['StealthOverride'] in (1.0,0.8),('vehicle override',o['Id'])
-    # Booker keeps its vanilla ready APS on both cards. The split copies these rows to the XM913.
-    assert effective['AbilitiesJson'][88]['IsAPS'] and effective['AbilitiesJson'][88]['APSQuantity']==2
-    put('OptionsJson',1951,{'Ability2Id':88},'M10 Booker APS option restored')
-    put('UnitAbilitiesJson',868,{'AbilityId':88},'M10 Booker APS inventory matches option 1951')
     # Structural changes: added cards, deleted rows and squad edits.
     st=json.loads((R/'structural-contract.json').read_text())
     def links(table,uid):return [r['Id'] for r in effective[table].values() if r['UnitId']==uid]
@@ -179,19 +175,8 @@ def main():
     for key,f in st['member_fields'].items():put('SquadMembersJson',int(key),f,why)
     for key,aid in st['armor_links'].items():put('UnitArmorsJson',int(key),{'ArmorId':aid},'Five-man team health')
     for key,f in st['unit_fields'].items():put('Units',int(key),f,'Separate card')
-    pools={}
-    for p in st['new_pools']:pools[p['unit']]=clone('SpecializationAvailabilitiesJson',p['like'],{'UnitId':p['unit'],'MaxAvailabilityXp0':p['xp0']},'Separate card availability')
+    for p in st['new_pools']:clone('SpecializationAvailabilitiesJson',p['like'],{'UnitId':p['unit'],'MaxAvailabilityXp0':p['xp0']},'Separate card availability')
     for key,n in st['set_pools'].items():put('SpecializationAvailabilitiesJson',int(key),{'MaxAvailabilityXp0':n},'Requested availability')
-    # Saved decks store option IDs. Clone new rows only below this line, so existing IDs stay stable.
-    armor(21,50,{'HeatArmorFront':600,'HeatArmorSides':600},'Stryker RV SRAT II matches other Stryker SRAT')
-    armor(78,1834,{'HeatArmorFront':400,'HeatArmorSides':400},'AAVP SU kit 400 HEAT')
-    armor(240,574,{'HeatArmorSides':200},'BMPT baseline side HEAT 200')
-    armor(9,624,{'HeatArmorSides':200},'T-72B1 side HEAT 200')
-    template=next(iter(effective['TransportAvailabilitiesJson']))
-    for p in st['new_pools']:
-        for t in p['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pools[p['unit']],'UnitId':t},'Separate card transport')
-    xm913_mod=next(r['Id'] for r in effective['ModificationsJson'].values() if r['UnitId']==720 and r['Name']==effective['ModificationsJson'][549]['Name'])
-    clone('OptionsJson',1951,{'ModificationId':xm913_mod},'M10 Booker XM913 APS option')
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):

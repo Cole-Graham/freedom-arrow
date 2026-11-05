@@ -1,0 +1,7 @@
+{
+  "MaxFlashValue": 2.2,
+  "SpottedPenalty": 1.5,
+  "SpottedPenaltyBuildings": 1.5,
+  "ForestCover": 3.0,
+  "BuildingCover": 4.0
+}

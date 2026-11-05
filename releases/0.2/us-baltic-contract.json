@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.22",
+  "version": "0.2.0-dev.21",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -20,7 +20,7 @@
     "2000052": {
       "MaxHealthPoints": 12,
       "HeatArmorFront": 400,
-      "HeatArmorSides": 400
+      "HeatArmorRear": 400
     },
     "2000114": {
       "MaxHealthPoints": 12,
