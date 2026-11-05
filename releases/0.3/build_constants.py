@@ -195,13 +195,13 @@ def main():
     # Every active APS ability uses the longer cooldown.
     assert {i for i,a in effective['AbilitiesJson'].items() if a['IsAPS']}==set(map(int,us['ability_fields'])),'APS list changed'
     for key,fields in us['ability_fields'].items():put('AbilitiesJson',int(key),fields,'APS cooldown 30 seconds')
-    # Abrams, T-72, T-80, T-90 and T-14: 100 HEAT top on every armor choice.
-    why='Top HEAT 100 for the Javelin breakpoint'
-    for uid in [2,53,54,191,243,244,245,9,157,615,703,717,158,239,716,236,237,238,13,240]:
+    # Javelin breakpoints. Top 100 is a 3-hit kill with a sliver left; the T-72 family at top 80 is a 2-hit kill.
+    why='Top HEAT for the Javelin breakpoint'
+    for uid,top in [(u,100) for u in [2,53,54,191,243,244,245,158,239,716,236,237,238,13,240]]+[(u,80) for u in [9,157,615,703,717]]:
         for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
             old=link['ArmorId']
-            if effective['ArmorsJson'][old]['HeatArmorTop']==100:continue
-            new=clone('ArmorsJson',old,{'HeatArmorTop':100},why)
+            if effective['ArmorsJson'][old]['HeatArmorTop']==top:continue
+            new=clone('ArmorsJson',old,{'HeatArmorTop':top},why)
             put('UnitArmorsJson',link['Id'],{'ArmorId':new},why)
             for opt in options(uid):
                 if opt['ArmorId']==old:put('OptionsJson',opt['Id'],{'ArmorId':new},why)
