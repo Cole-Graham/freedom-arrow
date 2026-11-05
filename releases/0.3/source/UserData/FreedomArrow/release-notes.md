@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.28 — development candidate
+# Freedom Arrow 0.3.0-dev.29 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -70,6 +70,10 @@ This replaces the dev.25 setup phase. In F8 the game pauses for 3 minutes with t
 
 The round text is smaller and has no timer, so it fits above the bar. The three empty native phase boxes are hidden, and the orange fill stays. A green number under each team bar shows the points that team gets on the next tick. No live result.
 
+## dev.29 Dead Center game mode
+
+`[FA] Dead Center 0.1` (Lateralus's map) now ships in the mod and runs the FA game mode: 45 minute match, 1500 starting points, flat 200 income, 5 minute Round 1, 30 second ticks and first to 300. Zones A, B, C are worth 2 and D, E are worth 3, so holding all five scores 12 per tick and the fastest win is at 17:00. The map had no script, so `make_scenario.py` adds a `setConquestMode` script and three lobby sliders from the native mission, gives zones the native names, and limits capture to the two sides. Zones, spawns and the playable zone do not move. The packaged copy has its own GUID. The installer now removes an old local copy only when its GUID matches, so a map author's own copy stays. F8 has no Dead Center: it lists Skirmish scenarios only, and the Skirmish AI script needs its own port. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -114,7 +118,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.28: see README. Offline checks only.
+0.3.0-dev.29: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -201,3 +205,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 00:56:41 PST (America/Los_Angeles) — dev.26: T-80BV top HEAT 80. Not yet run live.
 - 2026-11-05 01:04:48 PST (America/Los_Angeles) — dev.27: F8 setup phase pauses the game. Scoring starts at 5:00 again. Not yet run live.
 - 2026-11-05 01:08:31 PST (America/Los_Angeles) — dev.28: round text fits, phase boxes hidden, green next-tick number. Not yet run live.
+- 2026-11-05 01:10:43 PST (America/Los_Angeles) — dev.29: [FA] Dead Center 0.1 runs the FA game mode. A B C are 2, D E are 3. Not yet run live.

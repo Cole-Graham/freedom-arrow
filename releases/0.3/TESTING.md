@@ -102,8 +102,8 @@ Actual Arrow uses the same route: scenario lobbies, because the game's servers d
 
 1. Every player installs the same `.bamod`. Compare the SHA-256. The mod does not detect a mismatch.
 2. Launch through Steam with **Play Anti-Cheat Disabled**.
-3. The host opens **Scenarios** on the play tab, picks `[FA] Central Village` and creates a private lobby.
-4. The host invites the others. They join from the invite. The mod installs `[FA] Central Village` for each player. If a joiner cannot get in, publish it to the Workshop from the host game; that step needs approval.
+3. The host opens **Scenarios** on the play tab, picks `[FA] Central Village` or `[FA] Dead Center 0.1` and creates a private lobby.
+4. The host invites the others. They join from the invite. The mod installs both scenarios for each player. If a joiner cannot get in, publish it to the Workshop from the host game; that step needs approval.
 5. After the match, every player keeps `Latest.log`. Compare these lines:
 
 ```text

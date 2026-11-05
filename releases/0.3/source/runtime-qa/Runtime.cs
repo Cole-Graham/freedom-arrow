@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.28", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.29", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -77,7 +77,8 @@ public class Runtime : MelonMod
                 // Online lobbies leave out the game's local Scenarios folder. They list Mods/Scenarios as manually downloaded.
                 string target=Path.Combine(MelonEnvironment.GameRootDirectory,"Mods","Scenarios",Path.GetFileName(folder));
                 string old=Path.Combine(MelonEnvironment.GameRootDirectory,"Scenarios",Path.GetFileName(folder));
-                if(Directory.Exists(old))Directory.Delete(old,true);
+                // Remove only our own old copy. A map author's copy under the same name has another GUID and stays.
+                if(Directory.Exists(old)&&SameGuid(old,folder))Directory.Delete(old,true);
                 Directory.CreateDirectory(target);
                 foreach(string file in Directory.GetFiles(folder))
                 {
@@ -88,6 +89,16 @@ public class Runtime : MelonMod
             }
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_SCENARIO_FAILED: "+e.Message);}
+    }
+    static bool SameGuid(string a,string b)
+    {
+        string Read(string folder)
+        {
+            string meta=Path.Combine(folder,"meta.json");
+            return File.Exists(meta)?JsonNode.Parse(File.ReadAllText(meta))?["guid"]?.GetValue<string>():null;
+        }
+        string guid=Read(a);
+        return guid!=null&&guid==Read(b);
     }
     static byte[] Decrypt(string input)
     {

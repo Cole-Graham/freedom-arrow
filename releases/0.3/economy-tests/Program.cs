@@ -47,6 +47,13 @@ const string cv="[FA] Central Village";var cvIds=Enumerable.Range(53,10).ToArray
 Check(cvIds.Select(i=>fa.Weight(cv,i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4})&&fa.Weight("other map",53)==1,"Central Village zone values");
 Check(fa.ZoneLabel(cv,53)=="+4"&&fa.ZoneLabel(cv,55)=="+3"&&fa.ZoneLabel(cv,57)=="+2"&&fa.ZoneLabel("other map",53)=="+1","zone labels");
 Check(new[]{31,32,33,35,36,37,50,159,178,179}.Select(i=>fa.Weight("[FA] Central Village Skirmish",i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4}),"Central Village Skirmish zone values");
+// [FA] Dead Center 0.1 zone values. A B C are 2. D E are 3.
+const string dc="[FA] Dead Center 0.1";var dcIds=Enumerable.Range(38,5).ToArray();
+Check(dcIds.Select(i=>fa.Weight(dc,i)).SequenceEqual(new[]{2,2,2,3,3})&&fa.ZoneLabel(dc,38)=="+2"&&fa.ZoneLabel(dc,42)=="+3","Dead Center zone values");
+Check(fa.ResolveMap(Settings.OnlineUnknownMap,dcIds)==dc,"Dead Center map resolution");
+var dcWin=new Ledger(fa,dc,2700);var dcAll=dcIds.Select(i=>new Zone(i,0,false)).ToList();
+for(int t=300;t<=990;t+=30)dcWin.Advance(t,dcAll);Check(dcWin.Alpha==288&&!dcWin.ReachedScoreLimit,"288 of 300 does not end a Dead Center match");
+dcWin.Advance(1020,dcAll);Check(dcWin.Alpha==300&&dcWin.ScoreLimitWinner==0,"Dead Center ends at 17:00 at the fastest");
 Check(fa.SetupSeconds==180&&fa.OpeningDelaySeconds==300,"3 minute setup and 5 minute Round 1");
 Check(Settings.SetupBanner(180)=="DEPLOYMENT  3:00"&&Settings.SetupBanner(0.5)=="DEPLOYMENT  0:01","setup banner");
 Check(fa.RoundAnnouncement(0)=="ROUND 1: NO SCORING"&&fa.RoundAnnouncement(8)==null&&fa.RoundAnnouncement(300)=="ROUND 2: ZONES SCORE"&&fa.RoundAnnouncement(308)==null,"round announcements");
