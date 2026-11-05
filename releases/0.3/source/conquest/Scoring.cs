@@ -9,6 +9,7 @@ public sealed class Settings
     public int TestDurationSeconds { get; set; } = 0;
     public int TickSeconds { get; set; } = 30;
     public int SetupSeconds { get; set; } = 0;
+    public int OnlineDeploySeconds { get; set; } = 0;
     public int OpeningDelaySeconds { get; set; } = 180;
     public int DefaultZoneWeight { get; set; } = 1;
     public string Scoring { get; set; } = "advantage";
@@ -66,6 +67,10 @@ public sealed class Settings
         int left = (int)Math.Ceiling(seconds);
         return $"{left / 60}:{left % 60:00}";
     }
+    // Online, the native clock reads one deployment short when the mode starts, then holds until it is correct.
+    // Show the true time for that hold. Scoring keeps the native clock.
+    public static double ShownElapsed(double elapsed, double startOffset, double secondsSinceStart) =>
+        secondsSinceStart < startOffset ? secondsSinceStart : elapsed;
     // The setup phase pauses the game, so it uses wall-clock seconds and not the match clock.
     public static string SetupBanner(double remaining) => $"DEPLOYMENT  {Clock(remaining)}";
     // Round 1 has no scoring. Zones can still be captured.

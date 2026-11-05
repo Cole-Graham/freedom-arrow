@@ -5,7 +5,7 @@
 ## Rules
 
 - Setup, F8: the game pauses for 3 minutes while players place units. The clock, income and combat stop.
-- Setup, online: the scenario script pauses the game for 60 seconds with no UI, then starts the mode. This is the same node pattern as the workshop [Flat 200] scenarios.
+- Setup, online: the scenario script pauses the game for `OnlineDeploySeconds` in `settings.json`, then starts the mode, with a large DEPLOYMENT countdown. This is the same node pattern as the workshop [Flat 200] scenarios.
 - Round 1: the first 5 minutes of the match clock. Zones can be captured but do not score.
 - Round 2: from 5:00 to the end. Each 30 seconds, the side with the higher held zone value scores the difference. Contested zones do not count.
 - End: the first side to 300 wins, or the higher score when the 45 minute clock ends.
@@ -40,3 +40,4 @@
 - 2026-11-05 01:38:44 PST (America/Los_Angeles) — Recorded the locked design and the steps to add a map.
 - 2026-11-05 01:57:57 PST (America/Los_Angeles) — Online setup follows vanilla. Added the money cap rule.
 - 2026-11-05 02:07:06 PST (America/Los_Angeles) — Online setup uses the scenario pause. Added network map steps.
+- 2026-11-05 02:20:07 PST (America/Los_Angeles) — Online setup shows a countdown. Its length is in settings.

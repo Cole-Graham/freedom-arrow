@@ -113,20 +113,42 @@ public sealed partial class Prototype
         labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;
     }
     static void ClearLabelMode(){labelView=null;labelMap=null;}
-    static void DrawRoundBanner()
+    static double clockOffset=-1;
+    static float clockStart;
+    static double ShownElapsed()=>Settings.ShownElapsed(ledger.Elapsed,clockOffset,Time.unscaledTime-clockStart);
+    // Online, the scenario script pauses the game before the mode exists. There is no match clock or panel yet.
+    static float onlineSetupStart=-1;
+    static void DrawBanner(string text,int size)
     {
-        if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
-        string setup=setupEnds>=0?Settings.SetupBanner(setupEnds-Time.unscaledTime):null;
-        string text=setup??config.RoundAnnouncement(ledger.Elapsed);
-        if(text==null)return;
-        int size=Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64));
         if(bannerStyle==null||bannerStyle.fontSize!=size)bannerStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
         float y=Screen.height*0.13f,h=size*1.8f;
         GUI.contentColor=Color.black;GUI.Label(new Rect(2,y+2,Screen.width,h),text,bannerStyle);
         GUI.contentColor=Color.white;GUI.Label(new Rect(0,y,Screen.width,h),text,bannerStyle);
     }
+    static void DrawOnlineSetup()
+    {
+        if(view!=null||economyOnlineGuard?.Invoke()!=true||GameController.Instance?.GameSession?.IsPaused!=true
+            ||!config.MapZoneWeights.ContainsKey(Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name??"")){onlineSetupStart=-1;return;}
+        if(onlineSetupStart<0)onlineSetupStart=Time.unscaledTime;
+        double left=config.OnlineDeploySeconds-(Time.unscaledTime-onlineSetupStart);
+        if(left>0)DrawBanner(Settings.SetupBanner(left),Math.Max(16,Screen.height/38));
+    }
+    static void DrawRoundBanner()
+    {
+        if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
+        string setup=setupEnds>=0?Settings.SetupBanner(setupEnds-Time.unscaledTime):null;
+        string text=setup??config.RoundAnnouncement(ShownElapsed());
+        if(text==null)return;
+        DrawBanner(text,Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64)));
+    }
     public override void OnGUI()
     {
+        if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)
+        {
+            // A banner fault must not stop the match.
+            try{DrawOnlineSetup();}catch(Exception e){labelsOff=true;MelonLogger.Error("FREEDOM_ARROW_ONLINE_SETUP_FAILED: off for this session. "+e.Message);}
+            return;
+        }
         if(labelsOff||labelView==null||!config.ShowOverlay||Event.current.type!=EventType.Repaint)return;
         try
         {
@@ -266,7 +288,8 @@ public sealed partial class Prototype
                 HidePhaseBoxes(__instance);
                 __instance._phaseText.fontSize=uiSnapshot.PhaseSize*PhaseTextScale;
             }
-            int remaining=(int)Math.Ceiling(Math.Max(0,ledger.Duration-ledger.Elapsed));
+            double shown=ShownElapsed();
+            int remaining=(int)Math.Ceiling(Math.Max(0,ledger.Duration-shown));
             __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
             __instance._timeText.color=Color.cyan;
             // The native phase bar shows the rounds. It stays hidden during the setup phase, which has the large banner.
@@ -276,7 +299,7 @@ public sealed partial class Prototype
             __instance._phasePeriodProgressImage.gameObject.SetActive(showRound);
             if(showRound)
             {
-                var round=config.RoundBar(ledger.Elapsed,ledger.Duration);
+                var round=config.RoundBar(shown,ledger.Duration);
                 __instance._phaseText.text=round.Text;
                 __instance._phasePeriodProgressImage.fillAmount=round.Progress;
             }

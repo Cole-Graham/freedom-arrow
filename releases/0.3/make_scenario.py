@@ -12,7 +12,6 @@ GAME_VERSION='1.2.2'
 MATCH_MINUTES=45
 # Network scripts cap money at 1500. With 1500 starting points, income would stop until a player spends. Skirmish missions have no cap.
 MONEY_CAP=100000
-DEPLOY_SECONDS=60
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 # Lateralus's map, from maps/. A script added there later needs this step checked again.
 DEAD_CENTER_MODE=136
@@ -29,6 +28,7 @@ def enc(p):
 def load(b):return json.loads(b.decode('utf-8-sig'))
 def dump(o):return json.dumps(o,indent=2,ensure_ascii=False).encode('utf-8')
 def weights(name):return json.loads((R/'source/UserData/FAConquestPrototype/settings.json').read_text())['MapZoneWeights'][name]
+def deploy_seconds():return json.loads((R/'source/UserData/FAConquestPrototype/settings.json').read_text())['OnlineDeploySeconds']
 def slider_defaults(objects,meta,want_money):
     # The lobby slider runs 500 to 1500. Default it to the top. Skirmish missions have no slider.
     money=[o for o in objects if o.get('desc')=='ui_lobby_StartMoney_desc']+[o for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']
@@ -52,7 +52,7 @@ def add_deployment(nodes,start,target):
     first=max(n['id'] for n in nodes['b'])+1
     on,wait,off=first,first+1,first+2
     def node(i,key,props,x):return dict(v=0,nnKey=key,px=x,py=-900.0,id=i,rtpt=True,props_v2=[dict(k=k,v=v,t=1) for k,v in props])
-    nodes['b']+=[node(on,'pauseGame',[('val','True')],-800.0),node(wait,'delay',[('Time',str(DEPLOY_SECONDS)),('igGmSp','True')],-500.0),node(off,'pauseGame',[('val','False')],-200.0)]
+    nodes['b']+=[node(on,'pauseGame',[('val','True')],-800.0),node(wait,'delay',[('Time',str(deploy_seconds())),('igGmSp','True')],-500.0),node(off,'pauseGame',[('val','False')],-200.0)]
     nodes['c']+=[dict(a=on,b=start,c='in',d='flow',e=start),dict(a=wait,b=start,c='in2',d='flow',e=start),dict(a=off,b=wait,c='in',d='out2',e=wait),dict(a=target,b=off,c=wire['c'],d='out',e=off)]
 def write(out,name,head,objects,nodes,meta):
     target=out/name;target.mkdir(parents=True,exist_ok=True)

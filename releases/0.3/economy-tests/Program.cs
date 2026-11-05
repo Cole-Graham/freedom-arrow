@@ -61,6 +61,8 @@ Check(fa.RoundBar(0,2700)==("ROUND 1: NO SCORING",0f)&&fa.RoundBar(150,2700)==("
 Check(fa.RoundBar(300,2700)==("ROUND 2: SCORING",0f)&&fa.RoundBar(1500,2700)==("ROUND 2: SCORING",0.5f)&&fa.RoundBar(2700,2700)==("ROUND 2: SCORING",1f),"Round 2 bar fills over the rest of the match");
 var faLedger=new Ledger(fa,cv,2700);var faHeld=new List<Zone>{new(53,0,false)};Check(faLedger.Advance(299,faHeld).Count==0&&faLedger.Advance(300,faHeld).Count==1&&faLedger.Alpha==4,"no score before 5:00, first tick at 5:00");
 Check(fa.Ending=="score_or_time"&&fa.ScoreLimit==300,"first to 300");
+Check(Settings.ShownElapsed(60,60,0)==0&&Settings.ShownElapsed(60,60,30)==30&&Settings.ShownElapsed(61,60,61)==61&&Settings.ShownElapsed(5,0,5)==5,"online clock shows true time during the native hold");
+Check(fa.OnlineDeploySeconds==60,"online deployment");
 Check(Settings.NextTickLabel(2)=="+2"&&Settings.NextTickLabel(0)=="","next tick label");
 var faWin=new Ledger(fa,cv,2700);var faAll=cvIds.Select(i=>new Zone(i,1,false)).ToList();
 for(int t=300;t<=510;t+=30)faWin.Advance(t,faAll);Check(faWin.Bravo==272&&!faWin.ReachedScoreLimit,"272 of 300 does not end the match");

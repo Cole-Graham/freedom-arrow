@@ -3,6 +3,7 @@
   "TickSeconds": 30,
   "StateLog": true,
   "SetupSeconds": 180,
+  "OnlineDeploySeconds": 60,
   "OpeningDelaySeconds": 300,
   "DefaultZoneWeight": 1,
   "Scoring": "advantage",
