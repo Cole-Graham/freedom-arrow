@@ -29,8 +29,12 @@ using Il2CppBrokenArrow.Shared.Ecs.MissionEditor;
 using Il2CppBrokenArrow.MissionEditor.Inspector;
 using Il2CppBrokenArrow.Shared.Ecs;
 using Il2CppNetworkCommon.Enums.Common;
+using Il2CppBrokenArrow.ScriptEngine.Network;                             // NetworkScenarioStorage
+using Il2CppBrokenArrow.BrokenArrow.Client.Ecs.GNetwork.Services;         // EosAntiCheatService
+using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Network.Lobby;                 // LobbyList
+using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Network;                       // QuickSearchButton
 
-[assembly: MelonInfo(typeof(BALocalSkirmish.Core), "BA Local Skirmish", "2.6.3", "BovineOverlord")]
+[assembly: MelonInfo(typeof(BALocalSkirmish.Core), "BA Local Skirmish", "2.7.0", "BovineOverlord")]
 [assembly: MelonGame(null, null)]
 // Hooks are installed explicitly below so failures can block launching. Without this
 // opt-out, MelonLoader installs them again and the second load prefix clears the plan.
@@ -63,6 +67,10 @@ namespace BALocalSkirmish
     public class Core : MelonMod
     {
         public static Core Instance;
+        // Scenario lobbies are the one mode the game's servers leave outside anti-cheat, and the game
+        // runs a host/follower model for them. Everything else stays blocked by the patches below.
+        public static bool IsOnlineScenarioBattle => Instance != null && Instance._onlineGuardReady
+            && NetworkScenarioStorage.IsNetwork && NetworkScenarioStorage.ScenarioMode;
         public static bool IsGuardedLocalBattle => Instance != null && Instance._offlineLobbyGuardReady
             && (Instance._aiLoadPending || Instance._deckOverridesActive) && Instance.MatchesBattleScenario();
         static readonly System.Random _rng = new System.Random();
@@ -113,14 +121,16 @@ namespace BALocalSkirmish
         static readonly Color CStart = new Color(0.20f, 0.50f, 0.30f, 1f);
         static readonly Color CCancel = new Color(0.48f, 0.24f, 0.26f, 1f);
 
-        bool _offlineLobbyGuardReady;
+        bool _offlineLobbyGuardReady, _onlineGuardReady;
 
         public override void OnInitializeMelon()
         {
             Instance = this;
-            LoggerInstance.Msg("BA Local Skirmish v2.6.3 initializing (manual patch registration only)...");
+            LoggerInstance.Msg("BA Local Skirmish v2.7.0 initializing (manual patch registration only)...");
             _offlineLobbyGuardReady = Patch(typeof(CreateLobbyPatch));
-            LoggerInstance.Msg("OFFLINE_ONLY: F8 opens local AI setup only when the native-lobby guard is ready.");
+            _onlineGuardReady = _offlineLobbyGuardReady & Patch(typeof(JoinFromListPatch))
+                & Patch(typeof(JoinByInvitePatch)) & Patch(typeof(QuickSearchPatch));
+            LoggerInstance.Msg($"F8 and Skirmish open local AI setup. Online: private scenario lobbies only, guard ready={_onlineGuardReady}.");
             _aiDeckPatchReady = Patch(typeof(AiPlayerDeckPatch))
                 & Patch(typeof(DeckAssignmentPatch)) & Patch(typeof(EndBattleDeckPatch))
                 & Patch(typeof(AiSpawnPatch));
@@ -836,7 +846,7 @@ namespace BALocalSkirmish
             try
             {
                 if (!_offlineLobbyGuardReady || !IsSkirmishMap())
-                { if (_statusLabel != null) _statusLabel.text = "Only guarded LOCAL Skirmish is allowed."; return; }
+                { if (_statusLabel != null) _statusLabel.text = "Local setup is not ready. Check the mod log."; return; }
                 if (_mapIdx < 0 || _mapIdx >= _maps.Count) { if (_statusLabel != null) _statusLabel.text = "Pick a map."; return; }
                 if (_deckIdx < 0 || _deckIdx >= _decks.Count) { if (_statusLabel != null) _statusLabel.text = "This map has no valid deck for you."; return; }
                 var scenario = _maps[_mapIdx];
@@ -916,10 +926,37 @@ namespace BALocalSkirmish
         { __instance.UnitInfo = __state; }
     }
 
+    static class OnlineRules
+    {
+        // Same rule as the game's servers report: a lobby type on this list needs anti-cheat.
+        public static bool ScenarioAllowed()
+        {
+            try
+            {
+                var types = EosAntiCheatService.ProtectedLobbyTypes;
+                if (types == null) return false;
+                int count = types.Cast<Il2CppSystem.Collections.Generic.IReadOnlyCollection<LobbyType>>().Count;
+                for (int i = 0; i < count; i++)
+                    if (types[i] == LobbyType.Scenario) return false;
+                return true;
+            }
+            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] protected lobby types unreadable: " + e.Message); return false; }
+        }
+        public static bool Refuse(string what)
+        {
+            MelonLogger.Warning("[LocalSkirmish] ONLINE_RULE: blocked " + what + ". Modded play uses private scenario lobbies.");
+            return false;
+        }
+        public static bool ScenarioOnly(LobbyType type, string what)
+        {
+            if (type != LobbyType.Scenario) return Refuse(what + " of type " + type);
+            return ScenarioAllowed() || Refuse(what + ": the game's servers require anti-cheat for scenario lobbies");
+        }
+    }
+
     [HarmonyPatch(typeof(NetworkLobbyService), nameof(NetworkLobbyService.CreateLobby))]
     static class CreateLobbyPatch
     {
-        // Disposable BA test build: native network lobby creation is always skipped.
         [HarmonyPriority(Priority.First)]
         static bool Prefix(LobbyType lobbyType, ScenarioSource initScenario, bool isPrivateLobby)
         {
@@ -927,14 +964,72 @@ namespace BALocalSkirmish
             {
                 if (lobbyType == LobbyType.Skirmish)
                 {
-                    MelonLogger.Msg("[LocalSkirmish] OFFLINE_ONLY: Skirmish clicked -> local setup; native lobby blocked.");
+                    MelonLogger.Msg("[LocalSkirmish] Skirmish clicked -> local setup; native Skirmish lobby blocked.");
                     Core.Instance?.OpenSetup();
+                    return false;
                 }
-                else
-                    MelonLogger.Warning("[LocalSkirmish] OFFLINE_ONLY: native lobby request blocked.");
+                if (!OnlineRules.ScenarioOnly(lobbyType, "lobby")) return false;
+                MelonLogger.Msg($"[LocalSkirmish] ONLINE_RULE: scenario lobby allowed, private={isPrivateLobby}.");
+                return true;
             }
-            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] OFFLINE_ONLY: setup failed; native lobby remains blocked. " + e); }
-            return false;
+            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] lobby rule failed; lobby blocked. " + e); return false; }
+        }
+    }
+
+    [HarmonyPatch(typeof(LobbyList), "JoinLobby")]
+    static class JoinFromListPatch
+    {
+        [HarmonyPriority(Priority.First)]
+        static bool Prefix(LobbyList __instance, int lobbyId)
+        {
+            try
+            {
+                var selected = __instance._selectedItemModel?.ModelLobbyInfo;
+                if (selected != null && selected.LobbyId == lobbyId)
+                    return OnlineRules.ScenarioOnly((LobbyType)selected.LobbyType, "listed lobby");
+                var items = __instance._itemModels;
+                for (int i = 0; items != null && i < items.Count; i++)
+                {
+                    var info = items[i]?.ModelLobbyInfo;
+                    if (info != null && info.LobbyId == lobbyId)
+                        return OnlineRules.ScenarioOnly((LobbyType)info.LobbyType, "listed lobby");
+                }
+                return OnlineRules.Refuse("listed lobby of unknown type");
+            }
+            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] join rule failed; join blocked. " + e); return false; }
+        }
+    }
+
+    [HarmonyPatch(typeof(NetworkLobbyService), "JoinLobbyByInviteInternal")]
+    static class JoinByInvitePatch
+    {
+        [HarmonyPriority(Priority.First)]
+        static bool Prefix(LobbyInviteMessage lobbyInviteMessage)
+        {
+            try
+            {
+                return lobbyInviteMessage != null
+                    ? OnlineRules.ScenarioOnly(lobbyInviteMessage.LobbyType, "invite")
+                    : OnlineRules.Refuse("empty invite");
+            }
+            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] invite rule failed; join blocked. " + e); return false; }
+        }
+    }
+
+    [HarmonyPatch(typeof(QuickSearchButton), "OnClick")]
+    static class QuickSearchPatch
+    {
+        [HarmonyPriority(Priority.First)]
+        static bool Prefix(QuickSearchButton __instance)
+        {
+            try
+            {
+                // The same button cancels a search that is already running.
+                var search = __instance._networkQuickSearchService;
+                if (search != null && search.IsQuickSearchActive) return true;
+            }
+            catch (Exception e) { MelonLogger.Error("[LocalSkirmish] quick search check failed. " + e); }
+            return OnlineRules.Refuse("quick search");
         }
     }
 }

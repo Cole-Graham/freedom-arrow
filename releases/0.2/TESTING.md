@@ -93,13 +93,37 @@ range = 2 x optics x min(1.5, raw stealth / max(1, cover))
 
 Example: 1450 optics, UI 2.0 infantry, forest cover 3 gives 483 m.
 
+## Play with other people (dev.18, not yet run live)
+
+Actual Arrow uses the same route: scenario lobbies, because the game's servers do not list them as anti-cheat protected. The mod checks that list and blocks hosting and joining if `Scenario` is added to it.
+
+1. Every player installs the same `.bamod`. Compare the SHA-256. The mod does not detect a mismatch.
+2. Launch through Steam with **Play Anti-Cheat Disabled**.
+3. The host opens **Scenarios** on the play tab, picks a scenario and creates a private lobby.
+4. The host invites the others. They join from the invite. A published Workshop scenario is the safe choice, because every player must have the map.
+5. After the match, every player keeps `Latest.log`. Compare these lines:
+
+```text
+[LocalSkirmish] ONLINE_RULE: scenario lobby allowed
+"match_started" with "online":true
+"conquest_tick" lines: same scores on every machine
+"economy_scope_prepared": perMinute 200
+```
+
+Stop and send the logs if a player disconnects or desyncs, the scores differ, or the server rejects anything.
+
+- **Conquest scoring** needs a scenario that uses ConquestMode. On WarGoals scenarios it logs a fault and leaves native scoring running.
+- **Unknown until a live match:** table sync between players, how the game's economy and deck-point reports treat our values, and who decides the final result.
+
 ## Rules
 
 - Commit to `codex/0.2-development` and push when you commit. Fast-forward only; never force-push. Do not push to `main`.
-- Never take a modded client online. The tables and config apply in every battle mode.
+- Online, use private scenario lobbies only. The mod blocks native Skirmish, ranked search and other lobby types, but do not try to get around that block.
+- The tables and config apply in every battle mode, so all players need the same `.bamod`.
 - Say which version and commit a test used, and attach `Latest.log`.
 
 ## Document change log
 
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — Created the test-version guide for dev.14.
 - 2026-11-04 19:29:55 PST (America/Los_Angeles) — Added the stale-snapshot recovery after a first Windows setup stopped on the pins.
+- 2026-11-04 19:55:51 PST (America/Los_Angeles) — Added the dev.18 steps for play with other people in private scenario lobbies.

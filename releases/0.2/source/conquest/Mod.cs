@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.2.0-dev.17", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.2.0-dev.18", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -28,7 +28,7 @@ public sealed partial class Prototype : MelonMod
     static readonly string WeightOverridesFile = Path.Combine(Root, "weights-overrides.json");
     static Settings config = new();
     static Prototype instance;
-    static PropertyInfo localGuard;
+    static PropertyInfo localGuard, onlineGuard;
     static View view;
     static Ledger ledger;
     static List<Zone> zones = new();
@@ -115,15 +115,17 @@ public sealed partial class Prototype : MelonMod
     }
     static bool Guarded(GameModeService service)
     {
-        if (!ready || faulted || !config.Enabled || service == null || service._isOnline) return false;
+        if (!ready || faulted || !config.Enabled || service == null) return false;
         var runtime=AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a=>a.GetName().Name=="FreedomArrow.Runtime");
         if(runtime?.GetType("FreedomArrow.Runtime")?.GetProperty("IsApplied")?.GetValue(null) is not true)return false;
         if (localGuard == null)
         {
             var type = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "BALocalSkirmish")?.GetType("BALocalSkirmish.Core");
             localGuard = type?.GetProperty("IsGuardedLocalBattle", BindingFlags.Public | BindingFlags.Static);
+            onlineGuard = type?.GetProperty("IsOnlineScenarioBattle", BindingFlags.Public | BindingFlags.Static);
         }
-        return localGuard?.PropertyType == typeof(bool) && localGuard.GetValue(null) is true;
+        var guard = service._isOnline ? onlineGuard : localGuard;
+        return guard?.PropertyType == typeof(bool) && guard.GetValue(null) is true;
     }
     public static void SetWar(GameModeService __instance, WarGoalsModeData data)
     {
@@ -169,12 +171,12 @@ public sealed partial class Prototype : MelonMod
             DiscardModeFixture("new ledger");pendingEnding=null;terminalStarted=false;ledgerEpoch++;
             fixtureUsedThisMatch=false;nativePhaseCalls=0;continuousTimerCalls=0;lastModeSample=-1;lastTelemetry=-10;lastUiSecond=-1;
             uiEnabled=false;RestoreNativeUi();uiFault=false;
-            var active = ScenariosService.ActiveScenario ?? throw new InvalidOperationException("No active local scenario");
+            var activeName = ScenariosService.ActiveScenario?.Name ?? (candidate.Service._isOnline ? "online scenario" : throw new InvalidOperationException("No active local scenario"));
             view = candidate;
             modeServicePointer=candidate.Service.Pointer;
-            ledger = new Ledger(config, active.Name, candidate.Duration);
+            ledger = new Ledger(config, activeName, candidate.Duration);
             if(config.PhasePolicy == "continuous")uiEnabled=true;
-            Log("match_started", new { mode = candidate.Name, map = active.Name, duration = candidate.Duration, config });
+            Log("match_started", new { mode = candidate.Name, map = activeName, online = candidate.Service._isOnline, duration = candidate.Duration, config });
             try{Log("zone_geometry",candidate.Geometry());}catch(Exception e){Log("zone_geometry_unavailable",new{message=e.Message});}
         }
         return true;

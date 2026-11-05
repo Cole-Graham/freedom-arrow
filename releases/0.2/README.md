@@ -1,11 +1,11 @@
-# Freedom Arrow 0.2.0-dev.17 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.18 — isolated development candidate
 
-**Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian and US/Baltic vehicle data batches. It has not been installed, launched or accepted in game.**
+**Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
 ## Included
 
 - Existing 0.1.1 gameplay and scoring, with the dev.5 detection proposal replacing vanilla optics and stealth.
-- Economy: 200/minute, converted to 200/60 internally; both linear upkeep and the income curve are bypassed only inside guarded native economy-update calls. Existing opening cash and native reserve cap are not changed. Per-call global and player income values are restored afterward.
+- Economy: 200/minute, converted to 200/60 internally; both linear upkeep and the income curve are bypassed only inside allowed native economy-update calls. Existing opening cash and native reserve cap are not changed. Per-call global and player income values are restored afterward.
 - BMO-T base 12→14HP; ERA 14 retained.
 - Kornet-D1 base 14→10HP; armored 10HP retained, front/side HEAT180/140→400/400.
 - Sprut cage 14→10HP, HEAT200/140→400/400, road70→60km/h; cross-country 55 retained.
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.17.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.18.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -42,7 +42,7 @@ These commands write only this checkout's output/build files. They do not instal
 
 ## Limits and future acceptance
 
-Normal Skirmish, unguarded/scenario/network lobbies and multiplayer do not receive this economy override. It fails closed if the offline guard, current-session identity, payload, observed Unity thread or null network-service check fails. A known second economy writer (FreedomArrow.Engine or FlatIncomeMod) disables the override. AI funds and this hook's new guards are unverified.
+From dev.18 the override runs in local setup battles and in private scenario lobbies. Native Skirmish, ranked and other network lobbies are blocked, so they never receive it. Online, the rate is divided by the lobby income multiplier, because native online income is `PlayerIncome` x that multiplier. It fails closed if the offline or online guard, current-session identity, payload or observed Unity thread check fails. A known second economy writer (FreedomArrow.Engine or FlatIncomeMod) disables the override. AI funds and this hook's new guards are unverified.
 
 The pin overrides scenario income bonuses. Test 200 credit over 60 simulation seconds below the reserve cap, with purchases/refunds/losses, AI, pause/speed, restart, forced faults and exit to unguarded play. The control must show positive battlefield value and reduced income; otherwise upkeep has not been exercised. This is not an online-compatible release or a stability/FPS result.
 
@@ -109,3 +109,5 @@ Dev.17 (Osama: apply everything in the log): seven new cards and all held squad 
 - 2026-11-04 19:37:31 PST (America/Los_Angeles) — dev.16: LAV-AT 10 HP, M3A3 80, Sprut 14 HP on both armor choices. No live result.
 
 - 2026-11-04 19:42:51 PST (America/Los_Angeles) — dev.17: applied all held card splits, squad changes and option retirement from the 0.2 log. No live result.
+
+- 2026-11-04 19:55:51 PST (America/Los_Angeles) — dev.18: opened private scenario lobbies for play with other people. Conquest scoring and flat 200 income now run there. No online result.

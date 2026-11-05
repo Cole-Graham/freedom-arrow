@@ -1,10 +1,10 @@
-# Freedom Arrow 0.2.0-dev.17 — development candidate
+# Freedom Arrow 0.2.0-dev.18 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
-Included: guarded Local AI Skirmish flat200 economy prototype; BMO-T base14 HP; Kornet-D1 base10 HP and armored400/400 HEAT; Sprut cage10 HP,400/400 HEAT and60 km/h road limit; M1283 AMPV APS option and unit inventory both reference original two-charge ability82. Other shared disabled-APS profiles remain disabled.
+Included: flat200 economy prototype; BMO-T base14 HP; Kornet-D1 base10 HP and armored400/400 HEAT; Sprut cage10 HP,400/400 HEAT and60 km/h road limit; M1283 AMPV APS option and unit inventory both reference original two-charge ability82. Other shared disabled-APS profiles remain disabled.
 
-Infantry/card changes, infantry availability/pricing changes, option retirement and the remaining Booker APS decision are held. No normal-Skirmish or online economy override. The rate is200/minute, converted to200/60 per simulation second; it is conditional on the initialized offline guard and null economy network service. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
+The rate is200/minute, converted to200/60 per simulation second; it needs the local setup guard offline, or the private scenario lobby guard online, where it is divided by the lobby income multiplier. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
 
 No live credit, HUD, AI, armor, movement, APS interception, FPS or stability result is claimed. T12 must inspect Base/BRAT without APS as well as the selected AMPV APS option, and prove upkeep-active control before comparison.
 
@@ -75,3 +75,7 @@ Dev.17 (Osama: apply everything in the log): seven new cards and all held squad 
 - 2026-11-04 19:37:31 PST (America/Los_Angeles) — dev.16: LAV-AT 10 HP, M3A3 80, Sprut 14 HP on both armor choices. No live result.
 
 - 2026-11-04 19:42:51 PST (America/Los_Angeles) — dev.17: applied all held card splits, squad changes and option retirement from the 0.2 log. No live result.
+
+Dev.18: private scenario lobbies are open for play with other people, following Actual Arrow. Native Skirmish, ranked search and other lobby types stay blocked, and hosting or joining stops if the servers protect scenario lobbies. Conquest scoring and flat 200 income run in those lobbies on each machine. Offline checks only: no online match has been run.
+
+- 2026-11-04 19:55:51 PST (America/Los_Angeles) — dev.18: private scenario lobbies opened; scoring and flat income run there. No online result.

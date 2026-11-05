@@ -8,7 +8,7 @@ public sealed partial class Prototype
 {
     static readonly EconomyWindow economyWindow = new();
     static readonly List<(PlayerInfo player, float rate)> economyRates = new();
-    static Func<bool> economyGuard, economyRuntime;
+    static Func<bool> economyGuard, economyOnlineGuard, economyRuntime;
     static int economyThread;
     static int economyDepth;
     static IntPtr economySession;
@@ -30,14 +30,17 @@ public sealed partial class Prototype
         Patch(typeof(PlayerEconomyService), "Update", nameof(EconomyBefore), nameof(EconomyAfter));
         Log("economy_registered", new { perMinute = config.FixedIncomePerMinute,
             perSimulationSecond = EconomyWindow.PerSecond(config.FixedIncomePerMinute),
-            scope = "guarded offline Local AI Skirmish only; native execution unverified" });
+            scope = "local setup battles and private scenario lobbies; online execution unverified" });
     }
     static void BindEconomyGuards()
     {
         foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
         {
             if (economyGuard == null && a.GetName().Name == "BALocalSkirmish")
+            {
                 economyGuard = BindBool(a, "BALocalSkirmish.Core", "IsGuardedLocalBattle");
+                economyOnlineGuard = BindBool(a, "BALocalSkirmish.Core", "IsOnlineScenarioBattle");
+            }
             if (economyRuntime == null && a.GetName().Name == "FreedomArrow.Runtime")
                 economyRuntime = BindBool(a, "FreedomArrow.Runtime", "IsApplied");
         }
@@ -111,9 +114,10 @@ public sealed partial class Prototype
         else if (economyThread == 0 || Environment.CurrentManagedThreadId != economyThread) reason = "not the observed Unity update thread";
         else if (economyConflict) reason = "another known economy writer is loaded";
         else if (economyRuntime?.Invoke() is not true) reason = "gameplay payload not applied";
-        else if (economyGuard?.Invoke() is not true) reason = "Local Skirmish guard not initialized";
         else if (service == null || service._session == null) reason = "no economy session";
-        else if (service._netRoomService != null) reason = "network service present; exact offline rate not established";
+        else if (service._netRoomService == null && economyGuard?.Invoke() is not true) reason = "Local Skirmish guard not initialized";
+        else if (service._netRoomService != null && economyOnlineGuard?.Invoke() is not true) reason = "network session is not a private-rule scenario lobby";
+        else if (service._netRoomService != null && !(service._netRoomService.NetUserRoomStateHandler?.IncomeMultiplayer > 0)) reason = "network income multiplier unavailable";
         else if (CurrentEconomySession() != service._session.Pointer) reason = "economy session is not the current game";
         return reason.Length == 0;
     }
@@ -149,6 +153,8 @@ public sealed partial class Prototype
             economyDepth = 1;
             economyWindow.Begin(ReadEconomy, WriteEconomy);
             float rate = EconomyWindow.PerSecond(config.FixedIncomePerMinute);
+            // Native online income is PlayerIncome x this lobby multiplier (Update at 0x6D8820).
+            if (__instance._netRoomService != null) rate /= __instance._netRoomService.NetUserRoomStateHandler.IncomeMultiplayer;
             foreach (var entry in economyRates)
                 if (entry.player.PlayerIncome.Value != rate) entry.player.PlayerIncome = rate;
             int bucket = (int)UnityEngine.Time.unscaledTime / 10;

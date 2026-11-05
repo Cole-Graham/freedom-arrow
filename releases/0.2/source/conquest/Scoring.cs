@@ -120,7 +120,7 @@ public sealed class Ledger
         if (!double.IsFinite(elapsed) || elapsed < -0.01 || elapsed > Duration + 5) throw new ArgumentException("Invalid combat elapsed time");
         elapsed = Math.Clamp(elapsed, 0, Duration);
         if (observed && elapsed + 0.01 < Elapsed) throw new InvalidOperationException("Clock moved backwards; a new match must start a new ledger");
-        if (!observed && elapsed > 2) throw new InvalidOperationException("Refusing to attach after combat has already started");
+        if (!observed && elapsed > Config.MaximumSampleLatenessSeconds) throw new InvalidOperationException("Refusing to attach after combat has already started");
         if (zones.Select(z => z.Uid).Distinct().Count() != zones.Count) throw new ArgumentException("Duplicate zone UID");
         if (zones.Any(z => z.Owner is not (0 or 1 or 101))) throw new ArgumentException("Unknown zone owner");
         var awards = new List<Award>();
