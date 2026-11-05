@@ -148,7 +148,10 @@
       },
       "2000137": {
         "sha256": "79457cd9d829c66b36b192df279770c33f7eafcacb35da9c2d9bd539ec402516",
-        "permitted_before": {}
+        "permitted_before": {
+          "PenetrationAtMinRange": 1050.0,
+          "PenetrationAtGroundRange": 1050.0
+        }
       },
       "2000138": {
         "sha256": "8c0dab02df36214f29bae1699e66e3d3e638f5534181d1c19ca5853ca0974b26",

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.16 — development candidate
+# Freedom Arrow 0.3.0-dev.17 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.16: see README. Offline checks only.
+0.3.0-dev.17: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -147,6 +147,8 @@ Dev.15 (Osama): each zone shows its value on the map, as +1, +2, +3 or +4, on al
 
 Dev.16: first build with the dev.15 labels. Commit cde1722 (dev.15) did not compile and has no package.
 
+Dev.17 (Osama): RPG-28 penetration 1050 -> 950 on ammo 2000137, the row every unit uses.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
@@ -155,3 +157,4 @@ Dev.16: first build with the dev.15 labels. Commit cde1722 (dev.15) did not comp
 - 2026-11-04 23:38:33 PST (America/Los_Angeles) — dev.14: Central Village zone values. No live result.
 - 2026-11-04 23:43:37 PST (America/Los_Angeles) — dev.15: zone value labels. No live result.
 - 2026-11-04 23:44:21 PST (America/Los_Angeles) — dev.16: fixed the dev.15 compile error. No live result.
+- 2026-11-04 23:52:25 PST (America/Los_Angeles) — dev.17: RPG-28 penetration 950. No live result.

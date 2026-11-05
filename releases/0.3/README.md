@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.16 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.17 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.16.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.17.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -126,6 +126,8 @@ Dev.15 (Osama): each zone shows its value on the map, as +1, +2, +3 or +4, on al
 
 Dev.16: first build with the dev.15 labels. Commit cde1722 (dev.15) did not compile and has no package.
 
+Dev.17 (Osama): RPG-28 penetration 1050 -> 950 on ammo 2000137, the row every unit uses.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -194,3 +196,4 @@ Dev.16: first build with the dev.15 labels. Commit cde1722 (dev.15) did not comp
 - 2026-11-04 23:38:33 PST (America/Los_Angeles) — dev.14: Central Village zone values. No live result.
 - 2026-11-04 23:43:37 PST (America/Los_Angeles) — dev.15: zone value labels. No live result.
 - 2026-11-04 23:44:21 PST (America/Los_Angeles) — dev.16: fixed the dev.15 compile error. No live result.
+- 2026-11-04 23:52:25 PST (America/Los_Angeles) — dev.17: RPG-28 penetration 950. No live result.
