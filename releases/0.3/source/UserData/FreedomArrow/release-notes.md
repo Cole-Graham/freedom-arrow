@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.12 — development candidate
+# Freedom Arrow 0.3.0-dev.13 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.12: see README. Offline checks only.
+0.3.0-dev.13: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -139,7 +139,10 @@ Unguided HE up to damage 12: 30. Damage 15: 25. Damage 17 and above: 20. Unguide
 Laser-guided rows are halfway from today's value to the unguided value: 155mm 75 to 52.5, 203mm 100 to 62.5, 227mm 100 to 60, 300mm 125 to 72.5, 240mm 120 to 70, 120mm 60 to 45, guided cluster 200 to 125, M109A6 guided HEAT 600 to 315.
 TOS, CATFAE and Grad incendiary stay at 15. Adds a FREEDOM_ARROW_HIT log line for real artillery hits.
 
+Dev.13 (Osama): all cluster rounds, guided and unguided, return to original penetration (200, Grad 150). Cluster is the dedicated anti-armor round.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
 - 2026-11-04 23:30:42 PST (America/Los_Angeles) — dev.12: artillery penetration and hit log. No live result.
+- 2026-11-04 23:33:42 PST (America/Los_Angeles) — dev.13: cluster penetration restored. No live result.

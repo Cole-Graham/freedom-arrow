@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.12",
+  "version": "0.3.0-dev.13",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -209,10 +209,6 @@
       "PenetrationAtMinRange": 30.0,
       "PenetrationAtGroundRange": 30.0
     },
-    "38": {
-      "PenetrationAtMinRange": 125.0,
-      "PenetrationAtGroundRange": 125.0
-    },
     "64": {
       "PenetrationAtMinRange": 30.0,
       "PenetrationAtGroundRange": 30.0
@@ -236,10 +232,6 @@
     "134": {
       "PenetrationAtMinRange": 30.0,
       "PenetrationAtGroundRange": 30.0
-    },
-    "150": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
     },
     "174": {
       "PenetrationAtMinRange": 30.0,
@@ -309,10 +301,6 @@
       "PenetrationAtMinRange": 52.5,
       "PenetrationAtGroundRange": 52.5
     },
-    "413": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
     "415": {
       "PenetrationAtMinRange": 45.0,
       "PenetrationAtGroundRange": 45.0
@@ -328,10 +316,6 @@
     "418": {
       "PenetrationAtMinRange": 45.0,
       "PenetrationAtGroundRange": 45.0
-    },
-    "419": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
     },
     "421": {
       "PenetrationAtMinRange": 30.0,
@@ -349,45 +333,21 @@
       "PenetrationAtMinRange": 52.5,
       "PenetrationAtGroundRange": 52.5
     },
-    "425": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
     "426": {
       "PenetrationAtMinRange": 315.0,
       "PenetrationAtGroundRange": 315.0
-    },
-    "428": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
-    "429": {
-      "PenetrationAtMinRange": 125.0,
-      "PenetrationAtGroundRange": 125.0
     },
     "430": {
       "PenetrationAtMinRange": 72.5,
       "PenetrationAtGroundRange": 72.5
     },
-    "431": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
     "443": {
       "PenetrationAtMinRange": 20.0,
       "PenetrationAtGroundRange": 20.0
     },
-    "444": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
     "446": {
       "PenetrationAtMinRange": 30.0,
       "PenetrationAtGroundRange": 30.0
-    },
-    "450": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
     },
     "467": {
       "PenetrationAtMinRange": 20.0,
@@ -416,10 +376,6 @@
     "565": {
       "PenetrationAtMinRange": 62.5,
       "PenetrationAtGroundRange": 62.5
-    },
-    "581": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
     },
     "605": {
       "PenetrationAtMinRange": 30.0,
@@ -465,33 +421,17 @@
       "PenetrationAtMinRange": 60.0,
       "PenetrationAtGroundRange": 60.0
     },
-    "929": {
-      "PenetrationAtMinRange": 125.0,
-      "PenetrationAtGroundRange": 125.0
-    },
     "930": {
       "PenetrationAtMinRange": 20.0,
       "PenetrationAtGroundRange": 20.0
-    },
-    "931": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
     },
     "932": {
       "PenetrationAtMinRange": 20.0,
       "PenetrationAtGroundRange": 20.0
     },
-    "933": {
-      "PenetrationAtMinRange": 50.0,
-      "PenetrationAtGroundRange": 50.0
-    },
     "934": {
       "PenetrationAtMinRange": 72.5,
       "PenetrationAtGroundRange": 72.5
-    },
-    "935": {
-      "PenetrationAtMinRange": 125.0,
-      "PenetrationAtGroundRange": 125.0
     }
   },
   "javelin_ids": [
