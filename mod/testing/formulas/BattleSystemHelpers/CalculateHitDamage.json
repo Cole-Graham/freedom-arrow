@@ -1,7 +1,0 @@
-{
-  "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
-  "change": "after",
-  "parameters": {
-    "reduction": 0.30
-  }
-}

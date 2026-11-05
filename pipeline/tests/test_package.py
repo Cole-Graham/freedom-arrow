@@ -59,11 +59,11 @@ class PackageTests(unittest.TestCase):
                 encoding="utf-8",
             )
             formula = {
-                "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+                "method": "Game.OtherClass.OtherMethod",
                 "change": "after",
-                "parameters": {"reduction": 0.30},
+                "parameters": {"scale": 1},
             }
-            formula_path = root / "mod" / "formulas" / "BattleSystemHelpers" / "CalculateHitDamage.json"
+            formula_path = root / "mod" / "formulas" / "OtherClass" / "OtherMethod.json"
             formula_path.parent.mkdir(parents=True)
             formula_path.write_text(json.dumps(formula), encoding="utf-8")
             _plant_plugin(root)
@@ -84,7 +84,7 @@ class PackageTests(unittest.TestCase):
                 self.assertNotIn("UserData/FreedomArrow/constants/weapons.json", names)
                 self.assertIn("Mods/FreedomArrow.dll", names)
                 self.assertIn(
-                    "UserData/FreedomArrow/formulas/BattleSystemHelpers/CalculateHitDamage.json",
+                    "UserData/FreedomArrow/formulas/OtherClass/OtherMethod.json",
                     names,
                 )
                 self.assertEqual(archive.read("Mods/FreedomArrow.dll"), b"MZ-freedom-arrow")

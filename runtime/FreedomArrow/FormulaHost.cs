@@ -9,8 +9,6 @@ static class FormulaHost
 
     static readonly Dictionary<string, Action<JsonElement, MelonLogger.Instance>> Hooks = new(StringComparer.Ordinal)
     {
-        [ForestCover.Method] = ForestCover.Install,
-        [GroundSpotting.Method] = GroundSpotting.Install,
     };
 
     public static void Install(string root, MelonLogger.Instance log)
