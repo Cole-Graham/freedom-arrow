@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.22 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.23 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.22.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.23.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -138,6 +138,8 @@ Dev.21 (Osama): every Central Village zone stays on the map at any lobby size. T
 
 Dev.22 (Osama, live test): both FA scenarios declare game version 1.2.2, because the game picks a database from the scenario's version. The 1.2.0.2 value inherited from the native mission is the likely cause of `Not found unit in DB by ID:714`, no call-in and no income. A `FREEDOM_ARROW_DB_SOURCE` line logs the database. Zone labels are smaller and sit right of the zone icon.
 
+Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still be captured. A banner counts it down and announces Round 2. First tick at 5:00. F8 Skirmish now defaults to 45 minutes and sets every player to 1500 starting points, the same as the multiplayer scenario. Dev.22 was run live online: database patched, 10 zones, weighted ticks, no unit error.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -212,3 +214,4 @@ Dev.22 (Osama, live test): both FA scenarios declare game version 1.2.2, because
 - 2026-11-05 00:11:24 PST (America/Los_Angeles) — dev.20: Skirmish version of Central Village for F8. No live result.
 - 2026-11-05 00:13:57 PST (America/Los_Angeles) — dev.21: all zones stay visible; label position. dev.19 labels and 6-zone match seen live; dev.21 has no live result.
 - 2026-11-05 00:18:10 PST (America/Los_Angeles) — dev.22: scenario game version, database log, label size and position. Not yet run live.
+- 2026-11-05 00:34:56 PST (America/Los_Angeles) — dev.23: Round 1 banner, 5 minute opening, F8 time and points. Not yet run live.

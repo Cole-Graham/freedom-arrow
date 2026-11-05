@@ -57,6 +57,18 @@ public sealed class Settings
         return maps.Count == 1 ? maps[0] : name;
     }
     public const string OnlineUnknownMap = "online scenario";
+    const int RoundTwoBannerSeconds = 8;
+    // Round 1 has no scoring. Zones can still be captured.
+    public string RoundBanner(double elapsed)
+    {
+        if (OpeningDelaySeconds <= 0) return null;
+        if (elapsed < OpeningDelaySeconds)
+        {
+            int left = (int)Math.Ceiling(OpeningDelaySeconds - elapsed);
+            return $"ROUND 1: NO SCORING  {left / 60}:{left % 60:00}";
+        }
+        return elapsed < OpeningDelaySeconds + RoundTwoBannerSeconds ? "ROUND 2: ZONES SCORE" : null;
+    }
     public string ZoneLabel(string map, int uid) => "+" + Weight(map, uid).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
         && zones.TryGetValue(uid.ToString(System.Globalization.CultureInfo.InvariantCulture), out int value) ? value : DefaultZoneWeight;

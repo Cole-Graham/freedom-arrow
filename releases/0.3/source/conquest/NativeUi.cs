@@ -10,7 +10,7 @@ public sealed partial class Prototype
     static bool uiEnabled;
     static View labelView;
     static string labelMap;
-    static GUIStyle labelStyle;
+    static GUIStyle labelStyle,bannerStyle;
     static bool labelsOff,labelsLogged;
     static bool uiFault;
     static UiSnapshot uiSnapshot;
@@ -60,6 +60,17 @@ public sealed partial class Prototype
         labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;
     }
     static void ClearLabelMode(){labelView=null;labelMap=null;}
+    static void DrawRoundBanner()
+    {
+        if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
+        string text=config.RoundBanner(ledger.Elapsed);
+        if(text==null)return;
+        int size=Math.Max(16,Screen.height/38);
+        if(bannerStyle==null||bannerStyle.fontSize!=size)bannerStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+        float y=Screen.height*0.13f,h=size*1.8f;
+        GUI.contentColor=Color.black;GUI.Label(new Rect(2,y+2,Screen.width,h),text,bannerStyle);
+        GUI.contentColor=Color.white;GUI.Label(new Rect(0,y,Screen.width,h),text,bannerStyle);
+    }
     public override void OnGUI()
     {
         if(labelsOff||labelView==null||!config.ShowOverlay||Event.current.type!=EventType.Repaint)return;
@@ -74,6 +85,7 @@ public sealed partial class Prototype
             int size=Math.Max(12,Screen.height/56);
             if(labelStyle==null||labelStyle.fontSize!=size)labelStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleLeft};
             var color=GUI.contentColor;
+            DrawRoundBanner();
             int drawn=labelView.DrawWeights(labelMap,config,labelStyle);
             GUI.contentColor=color;
             if(!labelsLogged){labelsLogged=true;Log("zone_labels",new{map=labelMap,drawn,camera=drawn>=0});}

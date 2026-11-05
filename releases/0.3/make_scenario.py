@@ -5,10 +5,11 @@ from Crypto.Cipher import AES
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R.parents[1]))
 from pipeline.crypto import AES_KEY
 MARKER=b'fhk3s0g3';NAME='[FA] Central Village';START_POINTS=1500;GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003'
-DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 3 minute opening, '
+DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute opening with no scoring, '
       'the side with the higher zone value scores the difference. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
 SKIRMISH_NAME='[FA] Central Village Skirmish';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004'
 GAME_VERSION='1.2.2'
+MATCH_MINUTES=45
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 def dec(raw):
     assert raw[:8]==MARKER
@@ -41,6 +42,16 @@ def build(game,out,name,guid,mission,kind,desc,public):
     assert hits>=1,'scenario must use ConquestMode'
     assert shown==(4 if kind==2 else 5),shown
     meta=load((src/'meta.json').read_bytes());meta.pop('devid',None)
+    # Skirmish scripts set starting money to 1000 times a team balance ratio, after the game default. Every player gets the FA value.
+    calcs={c['b'] for c in nodes['c'] if c['d']=='Multiply' and c['c']=='amount' and any(b['id']==c['a'] and b.get('nnKey')=='setMoney2' for b in nodes['b'])}
+    assert len(calcs)==(2 if kind==3 else 0),calcs
+    byid={b['id']:b for b in nodes['b']}
+    for calc in calcs:
+        source=[c['b'] for c in nodes['c'] if c['a']==calc and c['c']=='a'];assert len(source)==1
+        assert not [c for c in nodes['c'] if c['a']==source[0] and c['c']=='Value'],'money variable has an input'
+        nodes['c']=[c for c in nodes['c'] if not (c['a']==calc and c['c']=='B')]
+        next(p for p in byid[calc]['props_v2'] if p['k']=='B')['v']='1'
+        next(p for p in byid[source[0]]['props_v2'] if p['k']=='Value')['v']=str(START_POINTS)
     # The lobby slider runs 500 to 1500. Default it to the top. Skirmish missions have no slider.
     money=[o for o in objects if o.get('desc')=='ui_lobby_StartMoney_desc']+[o for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']
     assert len(money)==(2 if kind==2 else 0)
@@ -48,6 +59,12 @@ def build(game,out,name,guid,mission,kind,desc,public):
         o['defV']=START_POINTS
         if 'tstV' in o:o['tstV']=START_POINTS
     # The game picks a database from the scenario's game version. The native 1.2.0 values do not load our tables.
+    # Both versions default to the same 45 minute match. Skirmish missions default to 30.
+    timers=[o for o in objects if o.get('desc')=='ui_lobby_Timer_desc']+[o for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']
+    assert len(timers)==2
+    for o in timers:
+        o['defV']=MATCH_MINUTES
+        if 'tstV' in o:o['tstV']=MATCH_MINUTES
     meta.update(guid=guid,scenario=name,author='Freedom Arrow',desc=desc,public=public,type=kind,gameVersion=GAME_VERSION)
     target=out/name;target.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(target/(name+'.bascr'),'w',zipfile.ZIP_DEFLATED) as w:
