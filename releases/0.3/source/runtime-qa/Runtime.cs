@@ -65,6 +65,8 @@ public class Runtime : MelonMod
         try { CoverDamage.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_COVER_DAMAGE_FAILED: not installed. "+e.Message); }
     }
+    // Previous packaged names. Remove leftover copies so the lobby does not list both.
+    static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
     // The mod manager only installs Mods and UserData. Copy packaged scenarios to the game's scenario folder.
     static void InstallScenarios()
     {
@@ -84,6 +86,15 @@ public class Runtime : MelonMod
                 {
                     string copy=Path.Combine(target,Path.GetFileName(file));
                     if(!File.Exists(copy)||Sha(File.ReadAllBytes(copy))!=Sha(File.ReadAllBytes(file)))File.Copy(file,copy,true);
+                }
+                foreach(string retired in RetiredScenarioFolders)
+                {
+                    if(retired==Path.GetFileName(folder))continue;
+                    foreach(string root in new[]{Path.Combine(MelonEnvironment.GameRootDirectory,"Scenarios"),Path.Combine(MelonEnvironment.GameRootDirectory,"Mods","Scenarios")})
+                    {
+                        string leftover=Path.Combine(root,retired);
+                        if(Directory.Exists(leftover)&&SameGuid(leftover,folder))Directory.Delete(leftover,true);
+                    }
                 }
                 MelonLogger.Msg("FREEDOM_ARROW_SCENARIO: installed "+Path.GetFileName(folder));
             }

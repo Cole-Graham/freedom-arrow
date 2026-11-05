@@ -23,7 +23,7 @@ python -m unittest discover -s dev-tools/dpm_visualizer/tests
 
 ## Tabs
 
-- **Units:** overlay several units against one armor face. Physical or stress. Cost-normalized DPM. Infantry RPG/ATGM weapons are omitted. Clone a unit’s armor and cost. Spread uses the target unit’s size, or a unit that wears the selected armor.
+- **Units:** overlay several units against one armor face. Physical or stress. Cost-normalized DPM. Infantry RPG/ATGM weapons are omitted. Clone a unit’s armor and cost. Spread uses the target unit’s size, or a unit that wears the selected armor. With exactly two visible units, **Each vs the other's armor** plots each line against the other unit’s selected plates; the checkbox is greyed out when more than two comparison rows are active.
 - **Weapons:** overlay ammo/weapon pairs. Sweep all four faces as extra lines. Clone and edit a weapon.
 
 Click the chart to pin a range. The panel lists DPM, time-to-kill, card-metre range, penetration, and RoF. Selected rows, target armor, filters, profile customs, window size, and the active tab are saved to `user_data.json` and restored on the next launch.

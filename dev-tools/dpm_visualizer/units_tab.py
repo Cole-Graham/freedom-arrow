@@ -47,6 +47,14 @@ class UnitsTab:
         btns.pack(fill=tk.X, pady=4)
         ttk.Button(btns, text="Add unit", command=self._add_row_clicked).pack(side=tk.LEFT)
         ttk.Button(btns, text="Remove last", command=self._remove_row_clicked).pack(side=tk.LEFT, padx=4)
+        self.duel_var = tk.BooleanVar(value=False)
+        self.duel_check = ttk.Checkbutton(
+            left,
+            text="Each vs the other's armor",
+            variable=self.duel_var,
+            command=self._touch,
+        )
+        self.duel_check.pack(anchor=tk.W, pady=(0, 2))
         self.rows_frame = ttk.Frame(left)
         self.rows_frame.pack(fill=tk.BOTH, expand=True)
 
@@ -116,6 +124,7 @@ class UnitsTab:
         ttk.Button(row, text="Create", command=self.create_custom_unit).pack(side=tk.LEFT, padx=6)
 
         self.add_row()
+        self._update_duel_enabled()
         self.face_var.trace_add("write", lambda *_: self._touch())
         self.damage_type.trace_add("write", lambda *_: self._touch())
         self.ammo_pref.trace_add("write", lambda *_: self._touch())
@@ -158,7 +167,7 @@ class UnitsTab:
         frame = ttk.Frame(self.rows_frame)
         frame.pack(fill=tk.X, pady=2)
         visible = tk.BooleanVar(value=True)
-        ttk.Checkbutton(frame, variable=visible, command=self._touch).pack(side=tk.LEFT)
+        ttk.Checkbutton(frame, variable=visible, command=self._on_row_changed).pack(side=tk.LEFT)
         unit = SearchableCombobox(frame, values=self.unit_names, width=26, on_select=lambda _v: self._sync_row(frame))
         unit.pack(side=tk.LEFT, fill=tk.X, expand=True)
         armor = SearchableCombobox(frame, width=22, on_select=lambda _v: self._touch())
@@ -169,6 +178,21 @@ class UnitsTab:
         unit.entry.bind("<FocusOut>", lambda _e, r=row: self._on_unit_changed(r))
         cost.trace_add("write", lambda *_: self._touch())
         self.rows.append(row)
+        if not self._is_loading_state:
+            self._update_duel_enabled()
+
+    def _on_row_changed(self) -> None:
+        self._update_duel_enabled()
+        self._touch()
+
+    def _visible_compare_rows(self) -> list[dict[str, Any]]:
+        return [row for row in self.rows if row["visible"].get() and row["unit"].get().strip()]
+
+    def _update_duel_enabled(self) -> None:
+        can_duel = len(self._visible_compare_rows()) == 2
+        self.duel_check.configure(state=tk.NORMAL if can_duel else tk.DISABLED)
+        if not can_duel and self.duel_var.get():
+            self.duel_var.set(False)
 
     def _sync_row(self, frame: ttk.Frame) -> None:
         for row in self.rows:
@@ -180,6 +204,8 @@ class UnitsTab:
             return
         row = self.rows.pop()
         row["frame"].destroy()
+        if not self._is_loading_state:
+            self._update_duel_enabled()
 
     def _on_unit_changed(self, row: dict[str, Any], restore: bool = False) -> None:
         catalog = self.app.catalog
@@ -193,10 +219,12 @@ class UnitsTab:
             if not restore:
                 row["cost"].set(int(custom.get("cost") or 1))
                 row["armor"].set(armor_label)
+            self._update_duel_enabled()
             self._touch()
             return
         unit_id = _id_from_label(label)
         if unit_id is None or unit_id not in catalog.units:
+            self._update_duel_enabled()
             return
         options = catalog.armor_options(unit_id)
         labels = [opt.label for opt in options] or ["Default"]
@@ -205,6 +233,7 @@ class UnitsTab:
             row["cost"].set(int(catalog.units[unit_id].get("Cost") or 0))
             if labels:
                 row["armor"].set(labels[0])
+        self._update_duel_enabled()
         self._touch()
 
     def _resolve_armor(self):
@@ -220,6 +249,42 @@ class UnitsTab:
         if armor_id and armor_id in catalog.armors:
             return catalog.armors[armor_id]
         raise ValueError("Pick a target armor or unit.")
+
+    def _row_armor(self, row: dict[str, Any]) -> dict[str, Any]:
+        catalog = self.app.catalog
+        assert catalog is not None
+        label = row["unit"].get().strip()
+        if label in self.app.custom_units:
+            return self.app.custom_units[label]["armor"]
+        armor_id = _id_from_label(row["armor"].get())
+        if armor_id and armor_id in catalog.armors:
+            return catalog.armors[armor_id]
+        unit_id = _id_from_label(label)
+        if unit_id and unit_id in catalog.default_armor:
+            return catalog.armors[catalog.default_armor[unit_id]]
+        raise ValueError(f"Pick armor for {label or 'this unit'}.")
+
+    def _row_silhouette(self, row: dict[str, Any]) -> tuple[float, float] | None:
+        catalog = self.app.catalog
+        assert catalog is not None
+        label = row["unit"].get().strip()
+        if label in self.app.custom_units:
+            return catalog.silhouette(self.app.custom_units[label]["source_unit_id"])
+        unit_id = _id_from_label(label)
+        if unit_id:
+            return catalog.silhouette(unit_id)
+        return None
+
+    def _row_display_name(self, row: dict[str, Any]) -> str:
+        catalog = self.app.catalog
+        assert catalog is not None
+        label = row["unit"].get().strip()
+        if label in self.app.custom_units:
+            return label
+        unit_id = _id_from_label(label)
+        if unit_id:
+            return catalog.unit_label(unit_id)
+        return label
 
     def _resolve_silhouette(self) -> tuple[float, float] | None:
         catalog = self.app.catalog
@@ -303,40 +368,74 @@ class UnitsTab:
             "hp": float(armor.get("MaxHealthPoints") or 0),
             "weapons": weapons_meta,
             "source_id": source_id,
+            "silhouette": silhouette,
+            "versus": None,
         }
 
     def generate(self) -> None:
         if self.app.catalog is None:
             messagebox.showinfo("DPM", "Load a vanilla snapshot first.")
             return
-        try:
-            armor = self._resolve_armor()
-        except ValueError as exc:
-            messagebox.showerror("DPM", str(exc))
-            return
+        self._update_duel_enabled()
         face = self.face_var.get()
         damage_type = self.damage_type.get()
         apply_accuracy = not self.assume_hits.get()
-        silhouette = self._resolve_silhouette() if apply_accuracy else None
+        active = self._visible_compare_rows()
+        duel = bool(self.duel_var.get()) and len(active) == 2
         plotted = []
         self._series_meta = []
-        self._silhouette = silhouette
         self._apply_accuracy = apply_accuracy
-        for row in self.rows:
-            if not row["visible"].get() or not row["unit"].get():
-                continue
-            meta = self._row_series(row, armor, face, damage_type, silhouette, apply_accuracy)
-            if not meta:
-                continue
-            plotted.append((meta["label"], meta["series"], "-"))
-            self._series_meta.append(meta)
+        try:
+            if duel:
+                left, right = active
+                pairs = (
+                    (left, right),
+                    (right, left),
+                )
+                for shooter, target in pairs:
+                    armor = self._row_armor(target)
+                    silhouette = self._row_silhouette(target) if apply_accuracy else None
+                    meta = self._row_series(
+                        shooter,
+                        armor,
+                        face,
+                        damage_type,
+                        silhouette,
+                        apply_accuracy,
+                    )
+                    if not meta:
+                        continue
+                    meta["versus"] = self._row_display_name(target)
+                    plotted.append((meta["label"], meta["series"], "-"))
+                    self._series_meta.append(meta)
+                self._silhouette = None
+            else:
+                armor = self._resolve_armor()
+                silhouette = self._resolve_silhouette() if apply_accuracy else None
+                self._silhouette = silhouette
+                for row in active:
+                    meta = self._row_series(
+                        row,
+                        armor,
+                        face,
+                        damage_type,
+                        silhouette,
+                        apply_accuracy,
+                    )
+                    if not meta:
+                        continue
+                    plotted.append((meta["label"], meta["series"], "-"))
+                    self._series_meta.append(meta)
+        except ValueError as exc:
+            messagebox.showerror("DPM", str(exc))
+            return
         if self.normalize.get():
             ylabel = "DPM / cost"
         elif apply_accuracy:
             ylabel = "Expected DPM"
         else:
             ylabel = "DPM if hits"
-        title = f"Unit DPM vs {face} ({damage_type})"
+        title = f"Unit DPM duel vs {face} ({damage_type})" if duel else f"Unit DPM vs {face} ({damage_type})"
         self.chart.draw(plotted, self.log_scale.get(), ylabel, title)
         if self.chart.selected_range is not None:
             self._on_pin(self.chart.selected_range)
@@ -360,12 +459,13 @@ class UnitsTab:
         for dpm, meta in ranked:
             ttk_s = time_to_kill_s(meta["hp"], dpm if not self.normalize.get() else dpm * meta["cost"])
             ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
-            lines.append(f"\n{meta['label']}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}")
+            versus = f"  vs {meta['versus']}" if meta.get("versus") else ""
+            lines.append(f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}")
             for weapon_meta in meta["weapons"]:
                 wdpm = interpolate_dpm(weapon_meta["series"], card)
                 ammo = weapon_meta["ammo"]
                 weapon = weapon_meta["weapon"]
-                chance = hit_chance(ammo, world, self._silhouette)
+                chance = hit_chance(ammo, world, meta.get("silhouette") or self._silhouette)
                 hit_txt = f"  hit {chance:.0%}" if self._apply_accuracy else ""
                 range_txt = card_range_text(ammo)
                 range_part = f"  {range_txt}" if range_txt else ""
@@ -448,6 +548,7 @@ class UnitsTab:
             "include_upgrade": bool(self.include_upgrade.get()),
             "normalize": bool(self.normalize.get()),
             "assume_hits": bool(self.assume_hits.get()),
+            "duel": bool(self.duel_var.get()),
             "log_scale": bool(self.log_scale.get()),
             "pinned_range": self.chart.selected_range,
         }
@@ -469,6 +570,8 @@ class UnitsTab:
                 self.normalize.set(bool(state["normalize"]))
             if "assume_hits" in state:
                 self.assume_hits.set(bool(state["assume_hits"]))
+            if "duel" in state:
+                self.duel_var.set(bool(state["duel"]))
             if "log_scale" in state:
                 self.log_scale.set(bool(state["log_scale"]))
             if state.get("target_armor"):
@@ -495,6 +598,7 @@ class UnitsTab:
                     except (tk.TclError, ValueError):
                         pass
             self.chart.selected_range = state.get("pinned_range")
+            self._update_duel_enabled()
             if self.app.catalog and any(row["unit"].get() for row in self.rows):
                 self.generate()
         finally:
