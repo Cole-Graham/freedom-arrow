@@ -2,29 +2,32 @@
 from pathlib import Path
 import hashlib,json,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.16.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.17.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.2.0-dev.16'
+    assert manifest['version']=='0.2.0-dev.17'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.16 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.17 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
-    for n in ['weapons','sensor_units','squad_members','squad_weapons','modifications','specialization_availabilities','turret_weapons']:
+    for n in ['weapons','turret_weapons']:
         assert table(n)=={},'Held table must remain empty: '+n
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
     allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values()}
+    st=json.loads((R/'structural-contract.json').read_text())
+    added={str(x['unit']) for x in st['splits']}|{str(st['retired_unit'])}
     for k,row in table('units').items():
-        assert set(row)<={'Cost','Stealth','CurrentStealth'},k
+        if k in added:continue
+        assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName'},k
         assert ('Cost' in row)==(k in contract['base_costs']),k
         if 'Stealth' in row:assert row['Stealth']==row['CurrentStealth'] and row['Stealth'] in allowed_stealth,k
     for k,row in table('sensors').items():
@@ -36,8 +39,8 @@ with zipfile.ZipFile(p) as z:
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
-    for row in table('options').values():assert not {'MainSensorId','ExtraSensorId'} & set(row)
-    assert {k:r['StealthOverride'] for k,r in table('options').items() if 'StealthOverride' in r}==det['stealth_override_options']
+    for k,row in table('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row)
+    assert {k:r['StealthOverride'] for k,r in table('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
     for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,14,400,400)]:
         a=arm[str(opt[str(oid)]['ArmorId'])];assert a['MaxHealthPoints']==hp
@@ -62,7 +65,7 @@ with zipfile.ZipFile(p) as z:
         assert table(f)==json.loads((R/'source/UserData/FreedomArrow/constants'/(f+'.json')).read_text()),f
     # Explicit configured totals for held splits and the Reserve-only reduction.
     units=table('units')
-    for uid,oid,cost in [(158,563,100),(158,564,190),(158,565,200),(158,566,230),(615,3033,80),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(141,245,35),(216,499,35),(9,625,100),(209,480,35),(209,478,50),(209,479,90),(209,1708,105),(467,2047,30),(467,2048,30),(467,2049,90),(467,2050,90),(455,1959,25),(455,1960,30),(455,1961,35),(21,50,60)]:
+    for uid,oid,cost in [(158,563,100),(716,564,190),(716,566,230),(717,3033,80),(718,1905,80),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(141,245,35),(216,499,35),(9,625,100),(209,478,50),(209,479,90),(209,1708,105),(467,2047,30),(467,2048,30),(455,1959,25),(455,1960,30),(455,1961,35),(21,50,60)]:
         base=units[str(uid)]['Cost'];surcharge=opt.get(str(oid),{}).get('Cost',0)
         assert base+surcharge==cost,(uid,oid,cost)
     files=json.loads((R/'row-tests/table-files.json').read_text())
@@ -94,10 +97,20 @@ with zipfile.ZipFile(p) as z:
     assert 'Cost' not in opt['1759'],'M2A3 ESV BUSK3 option 1759 stays at its vanilla +20'
     amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==12.0
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
-    for uid,oid,total in [(14,1904,90),(14,1905,80),(180,1958,40),(183,381,85),(453,1949,110),(185,388,30),(41,60,40),(41,2082,70)]:
+    for uid,oid,total in [(14,1904,90),(180,1958,40),(185,388,30),(41,60,40),(41,2082,70)]:
         base=units.get(str(uid),{}).get('Cost',80)
         assert base+opt.get(str(oid),{}).get('Cost',0)==total,(uid,oid,total)
     assert units['421']['Cost']+30==50
+    # Structural changes.
+    assert units[str(st['retired_unit'])]['DisplayInArmory'] is False
+    pools=table('specialization_availabilities')
+    for x in st['splits']:
+        assert units[str(x['unit'])]['Cost']==x['cost'] and [r['MaxAvailabilityXp0'] for r in pools.values() if r.get('UnitId')==x['unit']]==[x['pool']['new']],x['name']
+    assert not [r for r in pools.values() if r.get('UnitId')==st['retired_unit']]
+    for oid in st['retire_options']:assert table('modifications')[str(opt[str(oid)]['ModificationId'])]['UnitId']==st['retired_unit'],oid
+    for mid in st['retire_mods']:assert table('modifications')[str(mid)]['UnitId']==st['retired_unit'],mid
+    for rid in st['retire_members']:assert table('squad_members')[str(rid)]['UnitId']==st['retired_unit'],rid
+    assert units['701']['IsUnitModification'] is False and units['408']['IsUnitModification'] is False
     # Check all archive constants against generated source; golden locks are separate.
     for f in files.values():assert table(f.removesuffix('.json'))==json.loads((R/'source/UserData/FreedomArrow/constants'/f).read_text()),f
     settings=json.loads(z.read('UserData/FAConquestPrototype/settings.json'))

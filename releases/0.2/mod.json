@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow \u2014 0.2 development candidate",
-  "version": "0.2.0-dev.16",
+  "version": "0.2.0-dev.17",
   "type": "modpack",
   "description": "Guarded offline Local AI Skirmish flat200/no-upkeep prototype plus the vehicle data batches and the constants-only detection proposal. Not live-verified; infantry/card changes held."
 }

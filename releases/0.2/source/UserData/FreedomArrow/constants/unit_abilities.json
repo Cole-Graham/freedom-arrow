@@ -502,5 +502,53 @@
   },
   "1835": {
     "AbilityId": 2000217
+  },
+  "2000270": {
+    "UnitId": 715,
+    "AbilityId": 2000195
+  },
+  "2000271": {
+    "UnitId": 715,
+    "AbilityId": 8
+  },
+  "2000272": {
+    "UnitId": 715,
+    "AbilityId": 4
+  },
+  "2000295": {
+    "UnitId": 716,
+    "AbilityId": 2000199
+  },
+  "2000313": {
+    "UnitId": 717,
+    "AbilityId": 2000199
+  },
+  "2000329": {
+    "UnitId": 718,
+    "AbilityId": 2000199
+  },
+  "2000350": {
+    "UnitId": 719,
+    "AbilityId": 4
+  },
+  "2000351": {
+    "UnitId": 719,
+    "AbilityId": 2000203
+  },
+  "2000352": {
+    "UnitId": 719,
+    "AbilityId": 2000199
+  },
+  "2000369": {
+    "UnitId": 720,
+    "AbilityId": 2000200
+  },
+  "2000370": {
+    "UnitId": 720,
+    "AbilityId": 4
+  },
+  "2000371": {
+    "UnitId": 720,
+    "AbilityId": 2000206
   }
 }

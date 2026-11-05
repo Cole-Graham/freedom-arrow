@@ -1,1 +1,120 @@
-{}
+{
+  "2000243": {
+    "UnitId": 721,
+    "Name": "FA Retired",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000252": {
+    "UnitId": 714,
+    "Name": "Weapons MATV",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000253": {
+    "UnitId": 714,
+    "Name": "Armor MATV",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000273": {
+    "UnitId": 715,
+    "Name": "Weapons BRM3K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000274": {
+    "UnitId": 715,
+    "Name": "Armory BRM3K",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000296": {
+    "UnitId": 716,
+    "Name": "UnitVariant T80BV",
+    "Type": 1,
+    "UIName": "Custom_Slot_Modernization",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000314": {
+    "UnitId": 717,
+    "Name": "Weapons T72A ",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000315": {
+    "UnitId": 717,
+    "Name": "Armory T72A",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000330": {
+    "UnitId": 718,
+    "Name": "UnitVariant M60",
+    "Type": 1,
+    "UIName": "Custom_Slot_Unit_variant",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000331": {
+    "UnitId": 718,
+    "Name": "Engine M60A1",
+    "Type": 2,
+    "UIName": "Custom_Slot_Engine",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000353": {
+    "UnitId": 719,
+    "Name": "Weapons M8 AGS",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000354": {
+    "UnitId": 719,
+    "Name": "Armory M8 AGS",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000372": {
+    "UnitId": 720,
+    "Name": "Weapons M10Booker",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000373": {
+    "UnitId": 720,
+    "Name": "Ability M10Booker",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "515": {
+    "UnitId": 721
+  },
+  "804": {
+    "UnitId": 721
+  }
+}

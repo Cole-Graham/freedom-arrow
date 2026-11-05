@@ -57,7 +57,8 @@
     "Cost": 25
   },
   "158": {
-    "Cost": 100
+    "Cost": 100,
+    "HUDName": "T-80BV"
   },
   "219": {
     "Cost": 20
@@ -141,7 +142,8 @@
     "Cost": 70
   },
   "453": {
-    "Cost": 100
+    "Cost": 100,
+    "HUDName": "M10 Booker M35"
   },
   "421": {
     "Cost": 20
@@ -174,7 +176,7 @@
     "Cost": 25
   },
   "209": {
-    "Cost": 35,
+    "Cost": 50,
     "Stealth": 1.0,
     "CurrentStealth": 1.0
   },
@@ -270,6 +272,43 @@
   "505": {
     "Cost": 35
   },
+  "110": {
+    "Cost": 65,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "352": {
+    "Cost": 95,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "320": {
+    "Cost": 90,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "408": {
+    "Cost": 105,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5,
+    "IsUnitModification": false
+  },
+  "147": {
+    "Cost": 80,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "343": {
+    "Cost": 100,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "62": {
+    "Cost": 110,
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5,
+    "HUDName": "Troopers AT"
+  },
   "57": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
@@ -279,10 +318,6 @@
     "CurrentStealth": 0.5
   },
   "60": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
-  "62": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
@@ -327,10 +362,6 @@
     "CurrentStealth": 0.5
   },
   "109": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
-  "110": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
@@ -410,10 +441,6 @@
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
-  "147": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
   "148": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
@@ -434,23 +461,11 @@
     "Stealth": 1.0,
     "CurrentStealth": 1.0
   },
-  "320": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
   "332": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
-  "343": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
   "351": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
-  "352": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
@@ -535,10 +550,6 @@
     "CurrentStealth": 0.5
   },
   "407": {
-    "Stealth": 0.5,
-    "CurrentStealth": 0.5
-  },
-  "408": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
   },
@@ -760,7 +771,8 @@
   },
   "701": {
     "Stealth": 0.5,
-    "CurrentStealth": 0.5
+    "CurrentStealth": 0.5,
+    "IsUnitModification": false
   },
   "704": {
     "Stealth": 0.5,
@@ -781,5 +793,261 @@
   "708": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
+  },
+  "721": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": false,
+    "IsUnitModification": false,
+    "HUDName": "FA Retired",
+    "Name": "FA Retired",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_Rangers",
+    "PortraitFileName": "US\\FIRE_TEAM\\FIRE_TEAM",
+    "ThumbnailFileName": "US_FIRE_TEAM-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_US_INFANTRY",
+    "Cost": 0,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": 0.0,
+    "Type": 2,
+    "CategoryType": 1,
+    "Role": 30,
+    "Length": 2.0,
+    "Width": 2.0,
+    "Height": 2.0,
+    "Weight": 1,
+    "Stealth": 0.5,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 0.5
+  },
+  "714": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "M-ATV Javelin",
+    "Name": "M-ATV Javelin",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_MATV",
+    "PortraitFileName": "US\\MATV_IsAGoodJob\\MATV_IsAGoodJob",
+    "ThumbnailFileName": "US_MATV-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_JLTV",
+    "Cost": 90,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -120.0,
+    "Type": 4,
+    "CategoryType": 0,
+    "Role": 13,
+    "Length": 6.0,
+    "Width": 2.5,
+    "Height": 2.6,
+    "Weight": 15000,
+    "Stealth": 0.8,
+    "InfantrySlots": 4,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 0.8
+  },
+  "715": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "PRP-5G",
+    "Name": "PRP-5G",
+    "CountryId": 1,
+    "Description": null,
+    "ModelFileName": "RU_BRM3K",
+    "PortraitFileName": "RU\\BRM3K\\BRM3K",
+    "ThumbnailFileName": "RU_BRM_3K-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_RU_BRM-3K",
+    "Cost": 35,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -90.0,
+    "Type": 4,
+    "CategoryType": 0,
+    "Role": 13,
+    "Length": 6.6,
+    "Width": 2.97,
+    "Height": 2.3,
+    "Weight": 19000,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 1.23,
+    "ContentMembership": -1,
+    "CurrentStealth": 1.0
+  },
+  "716": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "T-80BVM",
+    "Name": "T-80BVM",
+    "CountryId": 1,
+    "Description": null,
+    "ModelFileName": "RU_T80",
+    "PortraitFileName": "RU\\T80BV\\T80BV",
+    "ThumbnailFileName": "RU_T80_BVM-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_T-80",
+    "Cost": 190,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -120.0,
+    "Type": 4,
+    "CategoryType": 2,
+    "Role": 11,
+    "Length": 6.3,
+    "Width": 3.4,
+    "Height": 2.1,
+    "Weight": 45700,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 1.0
+  },
+  "717": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "Object 787 Gadyuka",
+    "Name": "Object 787 Gadyuka",
+    "CountryId": 1,
+    "Description": null,
+    "ModelFileName": "DLC3_T72A",
+    "PortraitFileName": "DLC3/T72A/T72A",
+    "ThumbnailFileName": "DLC3_T72A-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_DLC3_RU_TANK_T-72A_Obj787",
+    "Cost": 80,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -120.0,
+    "Type": 4,
+    "CategoryType": 2,
+    "Role": 11,
+    "Length": 6.3,
+    "Width": 3.4,
+    "Height": 2.1,
+    "Weight": 45000,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": 3,
+    "CurrentStealth": 1.0
+  },
+  "718": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "M728 CEV",
+    "Name": "M728 CEV",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_M60",
+    "PortraitFileName": "US\\M60\\M60",
+    "ThumbnailFileName": "US_M60-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_M60",
+    "Cost": 80,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -120.0,
+    "Type": 4,
+    "CategoryType": 2,
+    "Role": 11,
+    "Length": 5.65,
+    "Width": 3.6,
+    "Height": 2.7,
+    "Weight": 52000,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 1.0
+  },
+  "719": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "M8 Thunderbolt",
+    "Name": "M8 Thunderbolt",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_M8Thunderbolt",
+    "PortraitFileName": "US\\M8_AGS\\M8_AGS",
+    "ThumbnailFileName": "US_M8AGS-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_M60",
+    "Cost": 85,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -90.0,
+    "Type": 4,
+    "CategoryType": 2,
+    "Role": 11,
+    "Length": 6.6,
+    "Width": 2.6,
+    "Height": 2.4,
+    "Weight": 18000,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 1.0
+  },
+  "720": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "M10 Booker XM913",
+    "Name": "M10 Booker XM913",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_M10",
+    "PortraitFileName": "US\\M10_BOOKER\\M10_BOOKER",
+    "ThumbnailFileName": "US_BOOKER-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_M60",
+    "Cost": 110,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -60.0,
+    "Type": 4,
+    "CategoryType": 2,
+    "Role": 11,
+    "Length": 6.5,
+    "Width": 2.7,
+    "Height": 2.4,
+    "Weight": 40000,
+    "Stealth": 1.0,
+    "InfantrySlots": 0,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 1.0
   }
 }

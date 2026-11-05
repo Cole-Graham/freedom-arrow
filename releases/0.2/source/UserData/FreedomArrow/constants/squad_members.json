@@ -1,1 +1,62 @@
-{}
+{
+  "98": {
+    "UnitId": 721
+  },
+  "99": {
+    "UnitId": 721
+  },
+  "100": {
+    "UnitId": 721
+  },
+  "1017": {
+    "UnitId": 721
+  },
+  "407": {
+    "UnitId": 721
+  },
+  "802": {
+    "UnitId": 721
+  },
+  "804": {
+    "UnitId": 721
+  },
+  "525": {
+    "UnitId": 721
+  },
+  "798": {
+    "UnitId": 721
+  },
+  "800": {
+    "UnitId": 721
+  },
+  "791": {
+    "UnitId": 721
+  },
+  "794": {
+    "UnitId": 721
+  },
+  "796": {
+    "UnitId": 721
+  },
+  "211": {
+    "PrimaryWeaponId": 122
+  },
+  "573": {
+    "PrimaryWeaponId": 122
+  },
+  "732": {
+    "SpecialWeaponId": 0
+  },
+  "326": {
+    "PrimaryWeaponId": 156
+  },
+  "600": {
+    "PrimaryWeaponId": 29
+  },
+  "694": {
+    "SpecialWeaponId": 0
+  },
+  "1616": {
+    "SpecialWeaponId": 59
+  }
+}

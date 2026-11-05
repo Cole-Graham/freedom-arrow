@@ -1,7 +1,7 @@
 """Generate the versioned 0.2 overlay on frozen 0.1.1 constants.
 
 Includes reviewed dev.1/dev.2 and the US/Baltic data batch.
-Structural card splits, squad resizing and option retirement remain held.
+Card splits, squad resizing and option retirement are listed in structural-contract.json.
 """
 from pathlib import Path
 import argparse, copy, hashlib, json, sys
@@ -134,6 +134,48 @@ def main():
     for o in effective['OptionsJson'].values():
         unit=effective['Units'][mods[o['ModificationId']]]
         assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or o['StealthOverride'] in (1.0,0.8),('vehicle override',o['Id'])
+    # Structural changes: added cards, retired rows and squad edits. The loader cannot delete rows,
+    # so retired rows move to one hidden unit that has no availability row.
+    st=json.loads((R/'structural-contract.json').read_text())
+    def links(table,uid):return [r['Id'] for r in effective[table].values() if r['UnitId']==uid]
+    def add_unit(uid,template,fields,why):
+        row=copy.deepcopy(effective['Units'][template]);row.pop('Id');row.update(fields);put('Units',uid,row,why)
+    retired=st['retired_unit'];why='Retired row: moved to the hidden unit'
+    add_unit(retired,st['template_unit'],dict(HUDName='FA Retired',Name='FA Retired',DisplayInArmory=False,IsUnitModification=False,Cost=0),why)
+    clone('UnitArmorsJson',links('UnitArmorsJson',st['template_unit'])[0],{'UnitId':retired},why)
+    retired_mod=clone('ModificationsJson',141,{'UnitId':retired,'Name':'FA Retired'},why)
+    for s in st['splits']:
+        why='Card split '+s['name']
+        add_unit(s['unit'],s['parent'],dict(HUDName=s['name'],Name=s['name'],Cost=s['cost']),why)
+        for rid in s['move_turrets']:put('TurretUnitsJson',rid,{'UnitId':s['unit']},why)
+        for rid in s['clone_turrets']:clone('TurretUnitsJson',rid,{'UnitId':s['unit']},why)
+        for rid in s['move_ammo']:put('WeaponAmmunitionsJson',rid,{'UnitId':s['unit']},why)
+        for table in ['WeaponAmmunitionsJson','SensorUnitsJson','UnitPropulsionsJson','UnitArmorsJson','UnitAbilitiesJson']:
+            for rid in links(table,s['parent']):clone(table,rid,{'UnitId':s['unit']},why)
+        new_mods={}
+        for key in sorted({*map(int,s['copied']),*s['moved'].values()}):
+            new_mods[key]=clone('ModificationsJson',key,{'UnitId':s['unit']},why)
+        for key,ids in s['copied'].items():
+            for oid in ids:clone('OptionsJson',oid,{'ModificationId':new_mods[int(key)]},why)
+        for order,(key,old) in enumerate(s['moved'].items()):
+            f={'ModificationId':new_mods[old],'Order':order,'Cost':s.get('keep_cost',{}).get(key,0)}
+            if s.get('concat',{}).get(key) is not None or effective['OptionsJson'][int(key)]['ConcatenateWithUnitName']==' Javelin':f['ConcatenateWithUnitName']=s.get('concat',{}).get(key,'')
+            put('OptionsJson',int(key),f,why)
+        row=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==s['parent'])
+        clone('SpecializationAvailabilitiesJson',row['Id'],{'UnitId':s['unit'],'MaxAvailabilityXp0':s['pool']['new']},why)
+        put('SpecializationAvailabilitiesJson',row['Id'],{'MaxAvailabilityXp0':s['pool']['parent']},why)
+    why='Retired row: moved to the hidden unit'
+    for oid in st['retire_options']:put('OptionsJson',oid,{'ModificationId':retired_mod},why)
+    for mid in st['retire_mods']:put('ModificationsJson',mid,{'UnitId':retired},why)
+    for rid in st['retire_members']:put('SquadMembersJson',rid,{'UnitId':retired},why)
+    for rid in st['retire_squad_weapons']:put('SquadWeaponsJson',rid,{'UnitId':retired},why)
+    for rid in st['retire_ammo']:put('WeaponAmmunitionsJson',rid,{'UnitId':retired},why)
+    why='One-launcher and team-size policy'
+    for key,f in st['member_fields'].items():put('SquadMembersJson',int(key),f,why)
+    for key,aid in st['armor_links'].items():put('UnitArmorsJson',int(key),{'ArmorId':aid},'Five-man team health')
+    for key,f in st['unit_fields'].items():put('Units',int(key),f,'Separate card')
+    for p in st['new_pools']:clone('SpecializationAvailabilitiesJson',p['like'],{'UnitId':p['unit'],'MaxAvailabilityXp0':p['xp0']},'Separate card availability')
+    for key,n in st['set_pools'].items():put('SpecializationAvailabilitiesJson',int(key),{'MaxAvailabilityXp0':n},'Requested availability')
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):
@@ -154,19 +196,26 @@ def main():
     for uid,row in frozen['Units'].items():
         want=copy.deepcopy(row)
         if str(uid) in contract['base_costs']:want['Cost']=contract['base_costs'][str(uid)]
+        want.update(st['unit_fields'].get(str(uid),{}))
         v=stealth_value(row)
         if v is not None:want['Stealth']=want['CurrentStealth']=v
         assert effective['Units'][uid]==want,('unexpected unit change',uid)
-    assert set(effective['Units'])==set(frozen['Units'])
-    assert effective['ModificationsJson']==frozen['ModificationsJson']
+    assert set(effective['Units'])==set(frozen['Units'])|{s['unit'] for s in st['splits']}|{retired}
+    for mid,row in frozen['ModificationsJson'].items():
+        want=copy.deepcopy(row)
+        if mid in st['retire_mods']:want['UnitId']=retired
+        assert effective['ModificationsJson'][mid]==want,('unexpected modification change',mid)
     for aid,row in frozen['AmmunitionsJson'].items():
         want=copy.deepcopy(row);want.update(us['ammo_fields'].get(str(aid),{}));assert effective['AmmunitionsJson'][aid]==want,('unexpected ammo change',aid)
-    assert effective['SquadMembersJson']==frozen['SquadMembersJson']
+    for rid,row in frozen['SquadMembersJson'].items():
+        want=copy.deepcopy(row);want.update(st['member_fields'].get(str(rid),{}))
+        if rid in st['retire_members']:want['UnitId']=retired
+        assert effective['SquadMembersJson'][rid]==want,('unexpected squad change',rid)
     for sid,row in frozen['SensorsJson'].items():
         want=copy.deepcopy(row)
         if sid not in held:want['OpticsGround']=new_optics(sid,row)
         assert effective['SensorsJson'][sid]==want,('unexpected sensor change',sid)
-    for table in ['WeaponsJson','SquadWeaponsJson','TurretWeaponsJson','SpecializationAvailabilitiesJson']:
+    for table in ['WeaponsJson','TurretWeaponsJson']:
         assert effective[table]==frozen[table]
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())

@@ -1,1 +1,98 @@
-{}
+{
+  "2000256": {
+    "SpecializationId": 13,
+    "UnitId": 714,
+    "MaxAvailabilityXp0": 2,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "836": {
+    "MaxAvailabilityXp0": 4
+  },
+  "2000277": {
+    "SpecializationId": 8,
+    "UnitId": 715,
+    "MaxAvailabilityXp0": 2,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "858": {
+    "MaxAvailabilityXp0": 2
+  },
+  "2000297": {
+    "SpecializationId": 10,
+    "UnitId": 716,
+    "MaxAvailabilityXp0": 3,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "232": {
+    "MaxAvailabilityXp0": 3
+  },
+  "2000318": {
+    "SpecializationId": 12,
+    "UnitId": 717,
+    "MaxAvailabilityXp0": 3,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "1009": {
+    "MaxAvailabilityXp0": 3
+  },
+  "2000334": {
+    "SpecializationId": 3,
+    "UnitId": 718,
+    "MaxAvailabilityXp0": 3,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "9": {
+    "MaxAvailabilityXp0": 3
+  },
+  "2000358": {
+    "SpecializationId": 5,
+    "UnitId": 719,
+    "MaxAvailabilityXp0": 2,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "388": {
+    "MaxAvailabilityXp0": 2
+  },
+  "2000375": {
+    "SpecializationId": 6,
+    "UnitId": 720,
+    "MaxAvailabilityXp0": 3,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "805": {
+    "MaxAvailabilityXp0": 3
+  },
+  "2000376": {
+    "SpecializationId": 6,
+    "UnitId": 701,
+    "MaxAvailabilityXp0": 8,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "2000377": {
+    "SpecializationId": 3,
+    "UnitId": 408,
+    "MaxAvailabilityXp0": 4,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "774": {
+    "MaxAvailabilityXp0": 4
+  }
+}

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.16 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.17 — isolated development candidate
 
 **Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian and US/Baltic vehicle data batches. It has not been installed, launched or accepted in game.**
 
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.16.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.17.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -76,6 +76,8 @@ Dev.14 (Lateralus): the config now applies wherever the tables apply, in any bat
 
 Dev.16 (Osama): LAV-AT 10 HP on both armor choices; M3A3 CFV 80 points; Sprut 14 HP on default and cage, and the cage keeps 400/400 HEAT and 60 km/h road. The uparmor HP rule now has no exceptions, and logistics units stay in it for now. Version 15 is left for Lateralus's local build. No live result.
 
+Dev.17 (Osama: apply everything in the log): seven new cards and all held squad and option work. New cards: M-ATV Javelin 90, PRP-5G 35 (BRM-3K 50), T-80BVM 190 with 2018+ at +40, Object 787 80, M728 CEV 80, M8 Thunderbolt 85, M10 Booker XM913 110 (parent renamed M10 Booker M35). Troopers 70 with availability 8 and six AT-4 carriers; Troopers AT 110 with availability 4. CAAT Dragon 90 and CAAT Javelin 105 are separate cards. One launcher on Weapons Squad, CAAT Dragon, VDV Kornet and Kornet-M, PTO Metis, PTRK Fagot and Faktoriya; Baltic Milan keeps two. Five men and 25 HP on Weapons Squad, CAAT TOW-2A, TOW-2B and Javelin. VDV Kornet 65, Kornet-M 95, CAAT TOW-2A 80, TOW-2B 100. Options 565, 1462, 1775, 1792, 1895, 1898, 1931, 1939, 2117 and 1951 are retired. The loader cannot delete rows, so retired rows move to hidden unit 721. BTRs keep their prices (Osama). Availability other than M-ATV and Troopers is provisional. No added card or retired row has run live. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -105,3 +107,5 @@ Dev.16 (Osama): LAV-AT 10 HP on both armor choices; M3A3 CFV 80 points; Sprut 14
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — dev.14: config applies wherever the tables apply. Added TESTING.md and bump_version.py. No live result.
 
 - 2026-11-04 19:37:31 PST (America/Los_Angeles) — dev.16: LAV-AT 10 HP, M3A3 80, Sprut 14 HP on both armor choices. No live result.
+
+- 2026-11-04 19:42:51 PST (America/Los_Angeles) — dev.17: applied all held card splits, squad changes and option retirement from the 0.2 log. No live result.

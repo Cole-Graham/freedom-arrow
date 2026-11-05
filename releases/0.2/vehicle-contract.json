@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.16",
+  "version": "0.2.0-dev.17",
   "base_costs": {
     "90": 30,
     "89": 60,
@@ -59,7 +59,7 @@
     "501": 30,
     "152": 20,
     "23": 25,
-    "209": 35,
+    "209": 50,
     "217": 45,
     "455": 25,
     "458": 40,
@@ -85,16 +85,23 @@
     "184": 35,
     "543": 45,
     "499": 35,
-    "505": 35
+    "505": 35,
+    "110": 65,
+    "352": 95,
+    "320": 90,
+    "408": 105,
+    "147": 80,
+    "343": 100,
+    "62": 110
   },
   "option_costs": {
     "245": 15,
     "499": 5,
     "625": 30,
-    "564": 90,
+    "564": 0,
     "565": 100,
-    "566": 130,
-    "3033": 5,
+    "566": 40,
+    "3033": 0,
     "491": 20,
     "492": 25,
     "493": 40,
@@ -104,7 +111,7 @@
     "40": 15,
     "1761": 15,
     "1753": 25,
-    "381": 15,
+    "381": 0,
     "8": 25,
     "42": 25,
     "25": 25,
@@ -112,25 +119,25 @@
     "1895": 25,
     "1931": 25,
     "1958": 5,
-    "1949": 10,
+    "1949": 0,
     "2082": 45,
     "1960": 5,
     "1961": 10,
-    "478": 15,
-    "479": 55,
-    "1708": 70,
+    "478": 0,
+    "479": 40,
+    "1708": 55,
     "50": 20,
-    "2049": 60,
-    "2050": 60
+    "2049": 0,
+    "2050": 0,
+    "480": 0,
+    "1905": 0
   },
   "provisional_units": [
     13,
     255,
     253,
     180,
-    421,
-    209,
-    467
+    421
   ],
   "held_prices": [
     144,
@@ -138,15 +145,6 @@
     628,
     703
   ],
-  "held_structural": [
-    "T-80BV/BVM separate cards; obr2018 removal",
-    "Object787 independent card",
-    "earlier infantry/card splits and obsolete APS choices",
-    "CEV/M60 separate card",
-    "M8AGS/Thunderbolt separate cards",
-    "BookerM35/XM913 separate cards",
-    "BRM-3K/PRP-5G separate cards",
-    "M-ATV/M-ATV Javelin separate cards"
-  ],
+  "held_structural": [],
   "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran70 meaning awaiting reply; no price change."
 }
