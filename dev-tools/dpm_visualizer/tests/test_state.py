@@ -49,6 +49,7 @@ class TabStateTests(unittest.TestCase):
         tab.include_upgrade.set(True)
         tab.normalize.set(True)
         tab.assume_hits.set(True)
+        tab.duel_var.set(True)
         tab.log_scale.set(True)
         tab.target_armor.set("Armor T72B [9]")
         tab.chart.selected_range = 400.0
@@ -67,9 +68,44 @@ class TabStateTests(unittest.TestCase):
         self.assertTrue(restored["include_upgrade"])
         self.assertTrue(restored["normalize"])
         self.assertTrue(restored["assume_hits"])
+        self.assertFalse(restored["duel"])
         self.assertTrue(restored["log_scale"])
         self.assertEqual(restored["target_armor"], "Armor T72B [9]")
         self.assertEqual(restored["pinned_range"], 400.0)
+
+    def test_duel_checkbox_requires_two_visible_units(self) -> None:
+        tab = UnitsTab(ttk.Frame(self.root), _App())
+        tab.add_row()
+        tab.rows[0]["unit"].set("Motostrelki [398]")
+        tab.rows[1]["unit"].set("T-72B [9]")
+        tab._update_duel_enabled()
+        self.assertTrue(tab.duel_check.instate(["!disabled"]))
+        tab.duel_var.set(True)
+        tab.add_row()
+        tab.rows[2]["unit"].set("M2A3 Bradley [16]")
+        tab._update_duel_enabled()
+        self.assertTrue(tab.duel_check.instate(["disabled"]))
+        self.assertFalse(tab.duel_var.get())
+        tab.rows[2]["visible"].set(False)
+        tab._update_duel_enabled()
+        self.assertTrue(tab.duel_check.instate(["!disabled"]))
+
+    def test_duel_roundtrip_with_two_visible_units(self) -> None:
+        names = ["Motostrelki [398]", "T-72B [9]"]
+        tab = UnitsTab(ttk.Frame(self.root), _App())
+        tab.unit_names = list(names)
+        tab.add_row()
+        tab.rows[0]["unit"].set(names[0])
+        tab.rows[1]["unit"].set(names[1])
+        tab._update_duel_enabled()
+        tab.duel_var.set(True)
+        saved = tab.save_tab_state()
+        other = UnitsTab(ttk.Frame(self.root), _App())
+        other.unit_names = list(names)
+        other.load_tab_state(saved)
+        restored = other.save_tab_state()
+        self.assertTrue(restored["duel"])
+        self.assertTrue(other.duel_check.instate(["!disabled"]))
 
     def test_weapons_tab_roundtrip(self) -> None:
         tab = WeaponsTab(ttk.Frame(self.root), _App())

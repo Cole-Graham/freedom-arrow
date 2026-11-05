@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.2 — development candidate
+# Freedom Arrow 0.4.0-dev.3 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -162,7 +162,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.4.0-dev.2: see README. Offline checks only.
+0.4.0-dev.3: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -259,3 +259,11 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
 - 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
 - 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
+- 2026-11-05 15:46:00 PST (America/Los_Angeles) — Scenario names: [FA] [2v2] Dead Center 0.1, [FA] [2v2] Dead Center Skirmish 0.1, [FA] [1v1] Dead Center 0.1. Not yet run live.
+- 2026-11-05 16:02:00 PST (America/Los_Angeles) — 2v2 playable zone: 9000 m spawn axis, 1200 m past the outer capture edges. Not yet run live.
+- 2026-11-05 16:06:00 PST (America/Los_Angeles) — 2v2 Skirmish playable box copied from the network 2v2. Not yet run live.
+- 2026-11-05 16:10:00 PST (America/Los_Angeles) — 2v2 Skirmish physical layout (zones, spawns, playable, cameras, teams) comes from the network mission. Not yet run live.
+- 2026-11-05 16:25:00 PST (America/Los_Angeles) — One scenario build for 1v1 and 2v2. [FA] [1v1] Dead Center Skirmish 0.1 ships for F8. Not yet run live.
+- 2026-11-05 16:31:00 PST (America/Los_Angeles) — Scenario modules under scenarios/. 1v1 layout unchanged; start cameras added; extra editor teams removed. Not yet run live.
+- 2026-11-05 16:42:00 PST (America/Los_Angeles) — Each map package stores layout.bascr and meta.json. Repo-root maps/ removed. Not yet run live.
+- 2026-11-05 15:54:00 PST (America/Los_Angeles) — 0.4.0-dev.3: ported the 0.3 scenario build into 0.4. Four Dead Center scenarios (1v1 and 2v2, each with a Skirmish version for F8). 0.4 gameplay unchanged. Not yet run live.

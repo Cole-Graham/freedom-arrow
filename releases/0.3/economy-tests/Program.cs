@@ -41,15 +41,16 @@ var hitch=new Ledger(lateSettings,"map",2700);hitch.Advance(0,noZones);Check(hit
 Check(Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.7f,0)-0.7f)<1e-6,"forest total");
 Check(FreedomArrow.CoverDamagePolicy.Factor(0.7f,1)==1&&Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.7f,0.5f)-0.85f)<1e-6,"IgnoreCover removes protection in proportion");
 Throws(()=>FreedomArrow.CoverDamagePolicy.Factor(0,0),"zero taken refused");
-// [FA] Central Village zone values, from the packaged settings.
+// [FA] [2v2] Dead Center 0.1 zone values, from the packaged settings.
 var fa=JsonSerializer.Deserialize<Settings>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"../../../../source/UserData/FAConquestPrototype/settings.json")),new JsonSerializerOptions{PropertyNameCaseInsensitive=true})!;fa.Validate();
-const string cv="[FA] Central Village";var cvIds=Enumerable.Range(53,10).ToArray();
-Check(cvIds.Select(i=>fa.Weight(cv,i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4})&&fa.Weight("other map",53)==1,"Central Village zone values");
+const string cv="[FA] [2v2] Dead Center 0.1";var cvIds=Enumerable.Range(53,10).ToArray();
+Check(cvIds.Select(i=>fa.Weight(cv,i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4})&&fa.Weight("other map",53)==1,"2v2 Dead Center zone values");
 Check(fa.ZoneLabel(cv,53)=="+4"&&fa.ZoneLabel(cv,55)=="+3"&&fa.ZoneLabel(cv,57)=="+2"&&fa.ZoneLabel("other map",53)=="+1","zone labels");
-Check(new[]{31,32,33,35,36,37,50,159,178,179}.Select(i=>fa.Weight("[FA] Central Village Skirmish",i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4}),"Central Village Skirmish zone values");
-// [FA] Dead Center 0.1 zone values. A B C are 2. D E are 3.
-const string dc="[FA] Dead Center 0.1";var dcIds=Enumerable.Range(38,5).ToArray();
+Check(new[]{31,32,33,35,36,37,50,159,178,179}.Select(i=>fa.Weight("[FA] [2v2] Dead Center Skirmish 0.1",i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4}),"2v2 Dead Center Skirmish zone values");
+// [FA] [1v1] Dead Center 0.1 zone values. A B C are 2. D E are 3.
+const string dc="[FA] [1v1] Dead Center 0.1";const string dcsk="[FA] [1v1] Dead Center Skirmish 0.1";var dcIds=Enumerable.Range(38,5).ToArray();
 Check(dcIds.Select(i=>fa.Weight(dc,i)).SequenceEqual(new[]{2,2,2,3,3})&&fa.ZoneLabel(dc,38)=="+2"&&fa.ZoneLabel(dc,42)=="+3","Dead Center zone values");
+Check(dcIds.Select(i=>fa.Weight(dcsk,i)).SequenceEqual(new[]{2,2,2,3,3}),"1v1 Dead Center Skirmish zone values");
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,dcIds)==dc,"Dead Center map resolution");
 var dcWin=new Ledger(fa,dc,2700);var dcAll=dcIds.Select(i=>new Zone(i,0,false)).ToList();
 for(int t=300;t<=990;t+=30)dcWin.Advance(t,dcAll);Check(dcWin.Alpha==288&&!dcWin.ReachedScoreLimit,"288 of 300 does not end a Dead Center match");
@@ -67,7 +68,7 @@ Check(Settings.NextTickLabel(2)=="+2"&&Settings.NextTickLabel(0)=="","next tick 
 var faWin=new Ledger(fa,cv,2700);var faAll=cvIds.Select(i=>new Zone(i,1,false)).ToList();
 for(int t=300;t<=510;t+=30)faWin.Advance(t,faAll);Check(faWin.Bravo==272&&!faWin.ReachedScoreLimit,"272 of 300 does not end the match");
 faWin.Advance(540,faAll);Check(faWin.Bravo==306&&faWin.ReachedScoreLimit&&faWin.ScoreLimitWinner==1&&faWin.Finished,"300 ends the match at 9:00 at the fastest");
-Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","Central Village map resolution");
+Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","2v2 Dead Center map resolution");
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
-Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"Central Village weighted advantage");
+Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"2v2 Dead Center weighted advantage");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");

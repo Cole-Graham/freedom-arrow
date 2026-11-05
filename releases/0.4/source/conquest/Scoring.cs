@@ -88,7 +88,10 @@ public sealed class Settings
         if (name != OnlineUnknownMap) return name;
         var ids = uids.Select(i => i.ToString(System.Globalization.CultureInfo.InvariantCulture)).ToHashSet();
         var maps = MapZoneWeights.Where(m => m.Value.Keys.ToHashSet().SetEquals(ids)).Select(m => m.Key).ToList();
-        return maps.Count == 1 ? maps[0] : name;
+        if (maps.Count == 1) return maps[0];
+        // Network and Skirmish flavors of the same authored map share zone IDs. Online joiners get the network name.
+        var network = maps.Where(m => m.IndexOf("Skirmish", StringComparison.Ordinal) < 0).ToList();
+        return network.Count == 1 ? network[0] : name;
     }
     public const string OnlineUnknownMap = "online scenario";
     const int RoundAnnouncementSeconds = 8;

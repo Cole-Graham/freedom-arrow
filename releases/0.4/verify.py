@@ -1,19 +1,19 @@
 """Verify exactly the development candidate we intend to ship to a later test."""
 from pathlib import Path
-import hashlib,json,sys,zipfile
-R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.2.bamod'
+import hashlib,io,json,sys,zipfile
+R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.3.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.4.0-dev.2'
+    assert manifest['version']=='0.4.0-dev.3'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.2 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.3 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -130,17 +130,50 @@ with zipfile.ZipFile(p) as z:
     for n in ['Mods/BALocalSkirmish.dll','UserData/FAConquestPrototype/settings.json']:
         assert hashlib.sha256(z.read(n)).hexdigest()==pins[n]
     assert not any(k in n.lower() for n in names for k in ['probe.dll','armory-suite','behavior-tests','engine.json'])
-    assert 'UserData/FreedomArrow/scenarios/[FA] Central Village/[FA] Central Village.bascr' in names and 'UserData/FreedomArrow/scenarios/[FA] Central Village/meta.json' in names
-    assert 'UserData/FreedomArrow/scenarios/[FA] Central Village Skirmish/[FA] Central Village Skirmish.bascr' in names and json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] Central Village Skirmish/meta.json'))['type']==3
-    for name in ['[FA] Central Village','[FA] Central Village Skirmish']:assert json.loads(z.read(f'UserData/FreedomArrow/scenarios/{name}/meta.json'))['gameVersion']=='1.2.2',name
-    for name in ['[FA] Central Village','[FA] Central Village Skirmish']:assert [o['defV'] for o in json.loads(z.read(f'UserData/FreedomArrow/scenarios/{name}/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']==[45],name
-    dc=json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] Dead Center 0.1/meta.json'))
-    assert dc['gameVersion']=='1.2.2' and dc['type']==2 and settings['MapZoneWeights'][dc['scenario']]=={'38':2,'39':2,'40':2,'41':3,'42':3}
+    def scenario_meta(name):return json.loads(z.read(f'UserData/FreedomArrow/scenarios/{name}/meta.json'))
+    def scenario_part(name,part):
+        raw=zipfile.ZipFile(io.BytesIO(z.read(f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'))).read(part)
+        return ms.load(ms.dec(raw))
+    def scenario_objects(name):return scenario_part(name,'objects.bam')
+    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1',True),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',False)]
+    for net_name,sk_name,crop in pairs:
+        for name,kind in [(net_name,2),(sk_name,3)]:
+            assert f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr' in names
+            meta=scenario_meta(name);assert meta['gameVersion']=='1.2.2' and meta['type']==kind,name
+            assert [o['defV'] for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']==[45],name
+        net,sk=scenario_objects(net_name),scenario_objects(sk_name)
+        nl,sl=ms.extract_layout(net),ms.extract_layout(sk)
+        assert set(nl)==set(sl),net_name
+        for r,src in nl.items():
+            skip=ms.PLAYER_KEEP if r[0]=='player' else ms.KEEP
+            for k,v in src.items():
+                if k not in skip:assert sl[r][k]==v,(net_name,r,k)
+        for o in [o for o in sk if o.get('_type')==7]:
+            src=nl[('playable',)]
+            for k,v in src.items():
+                if k not in ms.KEEP:assert o[k]==v,(net_name,k)
+        fight={o['_uid'] for o in sk if o.get('_type')==3 and o['_dname'] in ('Alpha team','Bravo team')}
+        assert any(o.get('isBot') for o in sk if o.get('_type')==13 and o.get('ownTeam',{}).get('id') in fight),sk_name
+        assert {o.get('teamSide') for o in net if o.get('_type')==3}=={0,1},net_name
+        cams=[o for o in net if o.get('_type')==18]
+        assert len(cams)==2 and all(o.get('actOnStart') for o in cams) and {o['team']['id'] for o in cams}==fight,net_name
+        assert any(n.get('nnKey')=='pauseGame' for n in scenario_part(net_name,'nodes.bam')['b']),net_name
+        assert not any(n.get('nnKey')=='pauseGame' for n in scenario_part(sk_name,'nodes.bam')['b']),sk_name
+        if crop:
+            west=min(o['pos']['X']-ms.world_x_half(o) for o in net if o.get('_type')==15);east=max(o['pos']['X']+ms.world_x_half(o) for o in net if o.get('_type')==15);box=nl[('playable',)]
+            assert abs(box['scale']['Z']-dc2.MAP_LENGTH)<1e-3 and abs(box['pos']['Z']-dc2.MAP_LENGTH/2)<1e-3
+            assert abs((box['pos']['X']-box['scale']['X']/2)-(west-dc2.FLANK_MARGIN))<1e-2 and abs((box['pos']['X']+box['scale']['X']/2)-(east+dc2.FLANK_MARGIN))<1e-2
+        else:
+            box=nl[('playable',)];assert abs(box['scale']['X']-4250)<1e-3 and abs(box['scale']['Z']-9000)<1e-3
+    dc=scenario_meta('[FA] [1v1] Dead Center 0.1');dcsk=scenario_meta('[FA] [1v1] Dead Center Skirmish 0.1')
+    dc_zones={'38':2,'39':2,'40':2,'41':3,'42':3}
+    assert dc['type']==2 and dcsk['type']==3 and settings['MapZoneWeights'][dc['scenario']]==dc_zones==settings['MapZoneWeights'][dcsk['scenario']]
+    assert {t['teamSide'] for t in dc['teams']}=={0,1}=={t['teamSide'] for t in dcsk['teams']}
     assert {o['desc']:o['defV'] for o in dc['pblOpt']}=={'ui_lobby_StartMoney_desc':1500,'ui_lobby_Income_desc':300,'ui_lobby_Timer_desc':45}
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.13,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}
-    assert [o['defV'] for o in json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] Central Village/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']==[1500]
+    assert [o['defV'] for o in json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] [2v2] Dead Center 0.1/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']==[1500]
     for aid,fields in us['ability_fields'].items():assert table('abilities')[aid]['APSCooldown']==fields['APSCooldown'],aid
     print(f'PASS: {len(manifest["sha256"])} payload hashes; metadata and held tables; requested vehicle and detection data; 200-income setting. No native/runtime result.')
     print(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name)

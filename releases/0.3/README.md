@@ -234,3 +234,10 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
 - 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
 - 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
+- 2026-11-05 15:46:00 PST (America/Los_Angeles) — Scenario names: [FA] [2v2] Dead Center 0.1, [FA] [2v2] Dead Center Skirmish 0.1, [FA] [1v1] Dead Center 0.1. Not yet run live.
+- 2026-11-05 16:02:00 PST (America/Los_Angeles) — 2v2 playable zone: 9000 m spawn axis, 1200 m past the outer capture edges. Not yet run live.
+- 2026-11-05 16:06:00 PST (America/Los_Angeles) — 2v2 Skirmish playable box copied from the network 2v2. Not yet run live.
+- 2026-11-05 16:10:00 PST (America/Los_Angeles) — 2v2 Skirmish physical layout (zones, spawns, playable, cameras, teams) comes from the network mission. Not yet run live.
+- 2026-11-05 16:25:00 PST (America/Los_Angeles) — One scenario build for 1v1 and 2v2. [FA] [1v1] Dead Center Skirmish 0.1 ships for F8. Not yet run live.
+- 2026-11-05 16:31:00 PST (America/Los_Angeles) — Scenario modules under scenarios/. 1v1 layout unchanged; start cameras added; extra editor teams removed. Not yet run live.
+- 2026-11-05 16:42:00 PST (America/Los_Angeles) — Each map package stores layout.bascr and meta.json. Repo-root maps/ removed. Not yet run live.

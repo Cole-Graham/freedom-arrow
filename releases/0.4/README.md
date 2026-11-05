@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.2 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.3 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -11,6 +11,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - Crits, for tanks and IFVs (`source/conquest/CombatHooks.cs`): a rear hit by a direct anti-tank weapon is red mobility. A front or side hit by a tank-gun sabot or HEAT round doing 9.3 or more is yellow mobility plus one random yellow. ATGMs do not give the front or side crit.
 - Yellow mobility is 40% speed (was 75%). Turning stays 50%. Global setting in `game-config.json`.
 - Front arc 60 degrees each side of the hull (vanilla 45). `FrontArcDegrees` in the conquest settings.
+- Scenarios (dev.3, from Lateralus's 0.3 commit 223a6fe): `[FA] [1v1] Dead Center 0.1` and `[FA] [2v2] Dead Center 0.1` for lobbies, with `Skirmish` versions of each for F8. Each map's layout is in `scenarios/<map>/layout.bascr`; `scenarios/make_scenario.py` builds them. Old `[FA] Central Village` and `[FA] Dead Center 0.1` copies are removed on install when the GUID matches.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 
 ## Included
@@ -40,7 +41,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.2.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.3.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -247,3 +248,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
 - 2026-11-05 14:52:17 PST (America/Los_Angeles) — 0.4.0-dev.2: started 0.4 from 0.3 dev.38 with MBT and kit prices, pinned sabot, crit rules, 40% yellow mobility and the 60 degree front arc. Not yet run live.
 - 2026-11-05 15:23:56 PST (America/Los_Angeles) — 0.4.0-dev.2: sabot +50 at point blank; MBT prices refit with M1A1 HC at 160; T-72B3 obr. 16 +25, T-90A +35. Not yet run live.
+- 2026-11-05 15:54:00 PST (America/Los_Angeles) — 0.4.0-dev.3: ported Lateralus's 0.3 scenario build (223a6fe). Scenarios are [FA] [1v1] Dead Center 0.1, [FA] [1v1] Dead Center Skirmish 0.1, [FA] [2v2] Dead Center 0.1 and [FA] [2v2] Dead Center Skirmish 0.1, built by scenarios/make_scenario.py. 0.4 gameplay unchanged. Not yet run live.
