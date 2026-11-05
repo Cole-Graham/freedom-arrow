@@ -1,5 +1,7 @@
 # freedom-arrow
 
+**Unreleased 0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.3 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
+
 **Prepared 0.1 candidate:** [download, scope and source](releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
 
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
@@ -183,3 +185,7 @@ MelonLoader, Il2CppDumper, and ILSpy are vendored beside BAModManager. The manag
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
+
+## Document change log
+
+- 2026-11-04 16:54:02 PST (America/Los_Angeles) — Added an unreleased0.2 development/build pointer and explicit recon/card/runtime limits; preserved the0.1 candidate and upstream cleanup.
