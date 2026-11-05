@@ -1,10 +1,10 @@
-# Freedom Arrow 0.2.0-dev.4 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.5 — isolated development candidate
 
 **Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian and US/Baltic vehicle data batches. It has not been installed, launched or accepted in game.**
 
 ## Included
 
-- Existing 0.1.1 gameplay and scoring, with vanilla optics/stealth retained.
+- Existing 0.1.1 gameplay and scoring, with the dev.5 detection proposal replacing vanilla optics and stealth.
 - Economy: 200/minute, converted to 200/60 internally; both linear upkeep and the income curve are bypassed only inside guarded native economy-update calls. Existing opening cash and native reserve cap are not changed. Per-call global and player income values are restored afterward.
 - BMO-T base 12→14HP; ERA 14 retained.
 - Kornet-D1 base 14→10HP; armored 10HP retained, front/side HEAT180/140→400/400.
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.4.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.5.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -56,6 +56,10 @@ No card split is complete. M60A1/CEV remain90/80; M8AGS/Thunderbolt70/85; Booker
 
 Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK front HEAT 250→400 and BUSK3 400→700; Linebacker HP stays 14/16/17, and that question is open. Named Stryker ESV/ICV/MGS SRAT front and side HEAT 700→600, provisional, replacing the 700 in the dev.3 section above; RV and ATGM are unchanged. M2A3 ESV BUSK3 option 1759 stays +20 and that question is open. No live result.
 
+## dev.5 detection proposal (Lateralus)
+
+Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1300 provisional. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config, written only in a guarded offline battle: flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -65,3 +69,5 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 - 2026-11-04 16:41:49 PST (America/Los_Angeles) — Added dev.3 scope, corrected held-price wording and documented provisional totals/unfinished recon/card work.
 
 - 2026-11-04 17:30:00 PST (America/Los_Angeles) — Added dev.4 Spike LR, Linebacker and provisional SRAT 600 corrections. No live result.
+
+- 2026-11-04 18:05:00 PST (America/Los_Angeles) — Added dev.5 constants-only detection proposal. No live result.

@@ -106,6 +106,26 @@ def main():
     old=effective['UnitArmorsJson'][983]['ArmorId'];assert old==341
     new=clone('ArmorsJson',old,{'MaxHealthPoints':8},'Playable Baltic TypeX8 HP')
     put('UnitArmorsJson',983,{'ArmorId':new},'TypeX unit-specific armor')
+    # Lateralus's detection proposal: table part. Config part is in detection-config.json.
+    det=json.loads((R/'detection-contract.json').read_text())
+    held=set(det['optics_held_sensors'])
+    for sid,row in list(effective['SensorsJson'].items()):
+        if sid not in held:
+            put('SensorsJson',sid,{'OpticsGround':det['optics_ground_tiers'][str(int(row['OpticsGround']))]},'Ground optics tier; shared with any unit on this sensor')
+    def stealth_class(u):
+        if u['Type']==4 and u['CategoryType'] in (0,2,3):return 'vehicle'
+        if u['Type']!=2 or u['CategoryType']==4:return None
+        if u['Role']==33 or u['Id'] in det['sniper_units_outside_role33']:return 'sniper'
+        if u['CategoryType']==0 or u['Id'] in det['recon_units_outside_recon_category']:return 'recon_infantry'
+        return 'infantry'
+    for uid,row in list(effective['Units'].items()):
+        cls=stealth_class(row)
+        if cls and row['Stealth']!=det['stealth'][cls]:
+            v=det['stealth'][cls];put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Stealth class '+cls)
+    for key,v in det['stealth_override_options'].items():put('OptionsJson',int(key),{'StealthOverride':v},'Vehicle stealth override would defeat class 1.0')
+    for o in effective['OptionsJson'].values():
+        unit=effective['Units'][mods[o['ModificationId']]]
+        assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or o['StealthOverride']==1.0,('vehicle override',o['Id'])
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):
@@ -126,12 +146,18 @@ def main():
     for uid,row in frozen['Units'].items():
         want=copy.deepcopy(row)
         if str(uid) in contract['base_costs']:want['Cost']=contract['base_costs'][str(uid)]
+        cls=stealth_class(row)
+        if cls:want['Stealth']=want['CurrentStealth']=det['stealth'][cls]
         assert effective['Units'][uid]==want,('unexpected unit change',uid)
     assert set(effective['Units'])==set(frozen['Units'])
     assert effective['ModificationsJson']==frozen['ModificationsJson']
     for aid,row in frozen['AmmunitionsJson'].items():
         want=copy.deepcopy(row);want.update(us['ammo_fields'].get(str(aid),{}));assert effective['AmmunitionsJson'][aid]==want,('unexpected ammo change',aid)
     assert effective['SquadMembersJson']==frozen['SquadMembersJson']
+    for sid,row in frozen['SensorsJson'].items():
+        want=copy.deepcopy(row)
+        if sid not in held:want['OpticsGround']=det['optics_ground_tiers'][str(int(row['OpticsGround']))]
+        assert effective['SensorsJson'][sid]==want,('unexpected sensor change',sid)
     for table in ['WeaponsJson','SquadWeaponsJson','TurretWeaponsJson','SpecializationAvailabilitiesJson']:
         assert effective[table]==frozen[table]
     # Validate every changed foreign key against the complete effective graph.

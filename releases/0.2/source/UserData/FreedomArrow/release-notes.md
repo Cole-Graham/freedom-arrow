@@ -1,10 +1,10 @@
-# Freedom Arrow 0.2.0-dev.4 — development candidate
+# Freedom Arrow 0.2.0-dev.5 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
 Included: guarded Local AI Skirmish flat200 economy prototype; BMO-T base14 HP; Kornet-D1 base10 HP and armored400/400 HEAT; Sprut cage10 HP,400/400 HEAT and60 km/h road limit; M1283 AMPV APS option and unit inventory both reference original two-charge ability82. Other shared disabled-APS profiles remain disabled.
 
-Infantry/card changes, infantry availability/pricing changes, option retirement and the remaining Booker APS decision are held. Optics and stealth remain vanilla. No normal-Skirmish or online economy override. The rate is200/minute, converted to200/60 per simulation second; it is conditional on the initialized offline guard and null economy network service. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
+Infantry/card changes, infantry availability/pricing changes, option retirement and the remaining Booker APS decision are held. No normal-Skirmish or online economy override. The rate is200/minute, converted to200/60 per simulation second; it is conditional on the initialized offline guard and null economy network service. A fault can disable the economy override while scoring continues; any economy_failed or combat-time economy_inactive result invalidates economy acceptance.
 
 No live credit, HUD, AI, armor, movement, APS interception, FPS or stability result is claimed. T12 must inspect Base/BRAT without APS as well as the selected AMPV APS option, and prove upkeep-active control before comparison.
 
@@ -22,6 +22,10 @@ No card split is complete. M60A1/CEV remain90/80; M8AGS/Thunderbolt70/85; Booker
 
 Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK front HEAT 250→400 and BUSK3 400→700; Linebacker HP stays 14/16/17, and that question is open. Named Stryker ESV/ICV/MGS SRAT front and side HEAT 700→600, provisional, replacing the 700 in the dev.3 section above; RV and ATGM are unchanged. M2A3 ESV BUSK3 option 1759 stays +20 and that question is open. No live result.
 
+## dev.5 detection proposal (Lateralus)
+
+Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1300 provisional. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config, written only in a guarded offline battle: flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -31,3 +35,5 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 - 2026-11-04 16:41:49 PST (America/Los_Angeles) — Added dev.3 scope, corrected held-price wording and documented provisional totals/unfinished recon/card work.
 
 - 2026-11-04 17:30:00 PST (America/Los_Angeles) — Added dev.4 Spike LR, Linebacker and provisional SRAT 600 corrections. No live result.
+
+- 2026-11-04 18:05:00 PST (America/Los_Angeles) — Added dev.5 constants-only detection proposal. No live result.

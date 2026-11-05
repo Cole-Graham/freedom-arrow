@@ -689,7 +689,8 @@
     "Ability1Id": 2000195
   },
   "480": {
-    "Ability1Id": 2000195
+    "Ability1Id": 2000195,
+    "StealthOverride": 1.0
   },
   "535": {
     "Ability1Id": 2000195
@@ -750,7 +751,8 @@
     "Ability1Id": 2000195
   },
   "1713": {
-    "Ability1Id": 2000195
+    "Ability1Id": 2000195,
+    "StealthOverride": 1.0
   },
   "1751": {
     "Ability1Id": 2000195
@@ -868,5 +870,26 @@
   },
   "3072": {
     "ArmorId": 2000232
+  },
+  "51": {
+    "StealthOverride": 1.0
+  },
+  "52": {
+    "StealthOverride": 1.0
+  },
+  "425": {
+    "StealthOverride": 1.0
+  },
+  "512": {
+    "StealthOverride": 1.0
+  },
+  "757": {
+    "StealthOverride": 1.0
+  },
+  "2085": {
+    "StealthOverride": 1.0
+  },
+  "2086": {
+    "StealthOverride": 1.0
   }
 }

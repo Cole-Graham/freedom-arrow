@@ -1,1 +1,83 @@
-{}
+{
+  "1": {
+    "OpticsGround": 1650.0
+  },
+  "2": {
+    "OpticsGround": 1300.0
+  },
+  "3": {
+    "OpticsGround": 2300.0
+  },
+  "4": {
+    "OpticsGround": 900.0
+  },
+  "5": {
+    "OpticsGround": 2800.0
+  },
+  "7": {
+    "OpticsGround": 900.0
+  },
+  "8": {
+    "OpticsGround": 900.0
+  },
+  "12": {
+    "OpticsGround": 1650.0
+  },
+  "13": {
+    "OpticsGround": 1650.0
+  },
+  "14": {
+    "OpticsGround": 2300.0
+  },
+  "15": {
+    "OpticsGround": 2800.0
+  },
+  "17": {
+    "OpticsGround": 1300.0
+  },
+  "18": {
+    "OpticsGround": 1300.0
+  },
+  "19": {
+    "OpticsGround": 900.0
+  },
+  "20": {
+    "OpticsGround": 2800.0
+  },
+  "22": {
+    "OpticsGround": 2800.0
+  },
+  "23": {
+    "OpticsGround": 1300.0
+  },
+  "26": {
+    "OpticsGround": 2300.0
+  },
+  "27": {
+    "OpticsGround": 1300.0
+  },
+  "28": {
+    "OpticsGround": 1300.0
+  },
+  "29": {
+    "OpticsGround": 1300.0
+  },
+  "30": {
+    "OpticsGround": 1300.0
+  },
+  "31": {
+    "OpticsGround": 1300.0
+  },
+  "36": {
+    "OpticsGround": 900.0
+  },
+  "41": {
+    "OpticsGround": 1300.0
+  },
+  "42": {
+    "OpticsGround": 1300.0
+  },
+  "43": {
+    "OpticsGround": 1650.0
+  }
+}

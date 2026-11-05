@@ -166,5 +166,613 @@
   },
   "501": {
     "Cost": 30
+  },
+  "2": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "21": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "35": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "51": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "57": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "59": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "60": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "62": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "63": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "64": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "66": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "69": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "70": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "72": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "73": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "74": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "75": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "99": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "108": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "109": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "110": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "111": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "112": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "113": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "117": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "118": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "119": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "120": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "121": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "122": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "126": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "127": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "128": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "129": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "130": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "131": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "132": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "133": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "134": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "138": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "146": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "147": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "148": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "149": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "150": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "152": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "167": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "173": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "176": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "177": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "186": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "209": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "215": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "217": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "237": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "249": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "320": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "332": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "343": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "351": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "352": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "353": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "354": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "355": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "356": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "357": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "358": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "359": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "369": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "370": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "371": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "372": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "384": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "385": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "398": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "399": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "400": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "401": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "402": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "403": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "404": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "405": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "406": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "407": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "408": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "409": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "410": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "411": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "413": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "414": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "415": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "416": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "419": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "434": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "435": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "436": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "438": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "440": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "441": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "442": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "445": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "449": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "454": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "455": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "458": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "459": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "460": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "467": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "469": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "470": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "473": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "482": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "483": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "496": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "497": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "506": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "507": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "509": {
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "513": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "514": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "515": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "516": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "517": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "518": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "519": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "520": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "521": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "522": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "523": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "524": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "528": {
+    "Stealth": 0.4,
+    "CurrentStealth": 0.4
+  },
+  "533": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "534": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "544": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "604": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "610": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "612": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "613": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "616": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "624": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "625": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "629": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "638": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "639": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "640": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "645": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "701": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "704": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "705": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "706": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "707": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
+  },
+  "708": {
+    "Stealth": 0.5,
+    "CurrentStealth": 0.5
   }
 }
