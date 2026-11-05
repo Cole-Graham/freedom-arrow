@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,json,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.14.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.16.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.2.0-dev.14'
+    assert manifest['version']=='0.2.0-dev.16'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.14 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.16 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -39,7 +39,7 @@ with zipfile.ZipFile(p) as z:
     for row in table('options').values():assert not {'MainSensorId','ExtraSensorId'} & set(row)
     assert {k:r['StealthOverride'] for k,r in table('options').items() if 'StealthOverride' in r}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
-    for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,10,400,400)]:
+    for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,14,400,400)]:
         a=arm[str(opt[str(oid)]['ArmorId'])];assert a['MaxHealthPoints']==hp
         if front is not None:assert (a['HeatArmorFront'],a['HeatArmorSides'])==(front,side)
     a=mob[str(opt['1986']['MobilityId'])];assert (a['MaxSpeedRoad'],a['MaxCrossCountrySpeed'])==(60,55)
@@ -90,6 +90,7 @@ with zipfile.ZipFile(p) as z:
     assert '15' not in arm and '120' not in arm,'Linebacker and Sprut default armor unchanged'
     assert arm['2000104']['MaxHealthPoints']==12 and arm['326']['MaxHealthPoints']==12 and arm['336']['MaxHealthPoints']==12
     assert arm['2000020']['MaxHealthPoints']==10 and arm['2000021']['MaxHealthPoints']==10
+    assert arm['2000022']['MaxHealthPoints']==10 and arm['2000023']['MaxHealthPoints']==10
     assert 'Cost' not in opt['1759'],'M2A3 ESV BUSK3 option 1759 stays at its vanilla +20'
     amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==12.0
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8

@@ -57,7 +57,7 @@ def main():
     armor(235,551,{'MaxHealthPoints':14},'BMO-T base 12 to14 HP; ERA already14 retained')
     armor(151,2089,{'MaxHealthPoints':10},'Kornet-D1 base14 to10 HP; base protection retained')
     armor(151,2090,{'HeatArmorFront':400,'HeatArmorSides':400},'Kornet-D1 armored10 HP, front/side HEAT400')
-    armor(144,1986,{'MaxHealthPoints':10,'HeatArmorFront':400,'HeatArmorSides':400},'Sprut cage10 HP, front/side HEAT400')
+    armor(144,1986,{'MaxHealthPoints':14,'HeatArmorFront':400,'HeatArmorSides':400},'Sprut cage14 HP, front/side HEAT400')
     old=effective['OptionsJson'][1986]['MobilityId']
     new=clone('MobilityJson',old,{'MaxSpeedRoad':60.0},'Sprut cage road70 to60 km/h; other mobility retained')
     for link in list(effective['UnitPropulsionsJson'].values()):

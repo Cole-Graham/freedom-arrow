@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.14",
+  "version": "0.2.0-dev.16",
   "source_build": "6000.3.24f1-7e593b8df225febf",
   "baseline_commit": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
   "affected_units": [
@@ -24,6 +24,7 @@
     27,
     28,
     29,
+    30,
     33,
     34,
     35,
@@ -342,6 +343,12 @@
       "2000021": [
         "MaxHealthPoints"
       ],
+      "2000022": [
+        "MaxHealthPoints"
+      ],
+      "2000023": [
+        "MaxHealthPoints"
+      ],
       "2000026": [
         "HeatArmorFront",
         "MaxHealthPoints"
@@ -374,6 +381,9 @@
         "MaxHealthPoints",
         "HeatArmorFront",
         "HeatArmorSides"
+      ],
+      "2000221": [
+        "MaxHealthPoints"
       ]
     },
     "MobilityJson": {},
@@ -831,7 +841,7 @@
         "Name": "Armor Sprut Armored",
         "ModelFileName": "Armored",
         "ArmorValue": 0,
-        "MaxHealthPoints": 10,
+        "MaxHealthPoints": 14,
         "HeatArmorFront": 400,
         "HeatArmorRear": 30,
         "HeatArmorSides": 400,
@@ -841,7 +851,7 @@
         "KinArmorSides": 40,
         "KinArmorTop": 30
       },
-      "reason": "Sprut cage10 HP, front/side HEAT400"
+      "reason": "Sprut cage14 HP, front/side HEAT400"
     },
     {
       "table": "UnitArmorsJson",
@@ -856,7 +866,7 @@
         "UnitId": 144,
         "ArmorId": 2000221
       },
-      "reason": "Sprut cage10 HP, front/side HEAT400"
+      "reason": "Sprut cage14 HP, front/side HEAT400"
     },
     {
       "table": "OptionsJson",
@@ -957,7 +967,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Sprut cage10 HP, front/side HEAT400"
+      "reason": "Sprut cage14 HP, front/side HEAT400"
     },
     {
       "table": "MobilityJson",
@@ -6313,7 +6323,7 @@
         "PortraitFileName": "US\\M3A3_CFV\\M3A3_CFV",
         "ThumbnailFileName": "US_M3A3_CFV-Label",
         "AudioPreset": "UNIT_SOUND_PRESET_BRADLEY_M3A3",
-        "Cost": 75,
+        "Cost": 80,
         "UpkeepMultiplier": 1.0,
         "TimeModifierRefund": 0.0,
         "TimeModifierResurrect": -120.0,
@@ -13866,6 +13876,117 @@
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 30
+      },
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
+    },
+    {
+      "table": "ArmorsJson",
+      "id": 2000221,
+      "before": {
+        "Id": 2000221,
+        "IsDefault": false,
+        "Name": "Armor Sprut Armored",
+        "ModelFileName": "Armored",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 14,
+        "HeatArmorFront": 400,
+        "HeatArmorRear": 30,
+        "HeatArmorSides": 400,
+        "HeatArmorTop": 30,
+        "KinArmorFront": 100,
+        "KinArmorRear": 30,
+        "KinArmorSides": 40,
+        "KinArmorTop": 30
+      },
+      "after": {
+        "Id": 2000221,
+        "IsDefault": false,
+        "Name": "Armor Sprut Armored",
+        "ModelFileName": "Armored",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 14,
+        "HeatArmorFront": 400,
+        "HeatArmorRear": 30,
+        "HeatArmorSides": 400,
+        "HeatArmorTop": 30,
+        "KinArmorFront": 100,
+        "KinArmorRear": 30,
+        "KinArmorSides": 40,
+        "KinArmorTop": 30
+      },
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
+    },
+    {
+      "table": "ArmorsJson",
+      "id": 2000022,
+      "before": {
+        "Id": 2000022,
+        "IsDefault": true,
+        "Name": "Armor LAVAT",
+        "ModelFileName": null,
+        "ArmorValue": 0,
+        "MaxHealthPoints": 8,
+        "HeatArmorFront": 30,
+        "HeatArmorRear": 20,
+        "HeatArmorSides": 20,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 30,
+        "KinArmorRear": 20,
+        "KinArmorSides": 20,
+        "KinArmorTop": 20
+      },
+      "after": {
+        "Id": 2000022,
+        "IsDefault": true,
+        "Name": "Armor LAVAT",
+        "ModelFileName": null,
+        "ArmorValue": 0,
+        "MaxHealthPoints": 10,
+        "HeatArmorFront": 30,
+        "HeatArmorRear": 20,
+        "HeatArmorSides": 20,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 30,
+        "KinArmorRear": 20,
+        "KinArmorSides": 20,
+        "KinArmorTop": 20
+      },
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
+    },
+    {
+      "table": "ArmorsJson",
+      "id": 2000023,
+      "before": {
+        "Id": 2000023,
+        "IsDefault": false,
+        "Name": "Armor LAVATM",
+        "ModelFileName": "Armored",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 8,
+        "HeatArmorFront": 60,
+        "HeatArmorRear": 30,
+        "HeatArmorSides": 40,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 60,
+        "KinArmorRear": 30,
+        "KinArmorSides": 40,
+        "KinArmorTop": 20
+      },
+      "after": {
+        "Id": 2000023,
+        "IsDefault": false,
+        "Name": "Armor LAVATM",
+        "ModelFileName": "Armored",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 10,
+        "HeatArmorFront": 60,
+        "HeatArmorRear": 30,
+        "HeatArmorSides": 40,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 60,
+        "KinArmorRear": 30,
+        "KinArmorSides": 40,
+        "KinArmorTop": 20
       },
       "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },

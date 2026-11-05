@@ -32,6 +32,8 @@ Dev.12 (Osama): Typhoon VDV is 25 points, replacing the dev.11 value of 20. No l
 
 Dev.14 (Lateralus): the config now applies wherever the tables apply, in any battle mode, not only F8 Local AI. Do not take a modded client online. No live result for the write.
 
+Dev.16 (Osama): LAV-AT 10 HP on both armor choices; M3A3 CFV 80 points; Sprut 14 HP on default and cage, and the cage keeps 400/400 HEAT and 60 km/h road. The uparmor HP rule now has no exceptions, and logistics units stay in it for now. Version 15 is left for Lateralus's local build. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Started0.2 development evidence record without inheriting0.1 acceptance claims.
@@ -57,3 +59,5 @@ Dev.14 (Lateralus): the config now applies wherever the tables apply, in any bat
 - 2026-11-04 19:11:24 PST (America/Los_Angeles) — dev.12: set Typhoon VDV to 25. No live result.
 
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — dev.14: config applies wherever the tables apply. Added TESTING.md and bump_version.py. No live result.
+
+- 2026-11-04 19:37:31 PST (America/Los_Angeles) — dev.16: LAV-AT 10 HP, M3A3 80, Sprut 14 HP on both armor choices. No live result.
