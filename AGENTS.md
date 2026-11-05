@@ -111,3 +111,9 @@ Do not commit decrypted tables, `data.unity3d`, bundle hashes of a local install
 ## Offline play
 
 Day-to-day play goes through BAModManager or BAModLauncher. PLAY starts the game with Anti-Cheat disabled. **Play vanilla with no mods** is that program's button. It removes `version.dll`. Do not add a second implementation of that button. `hangar` remains only for trying `dist/stable/data.unity3d` locally.
+
+To make a 0.2 test version, follow `releases/0.2/TESTING.md`.
+
+## Document change log
+
+- 2026-11-04 19:24:57 PST (America/Los_Angeles) — Added the pointer to the 0.2 test-version guide.

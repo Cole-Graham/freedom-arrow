@@ -1,4 +1,3 @@
-using System.Reflection;
 using System.Text.Json;
 using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
@@ -7,12 +6,11 @@ using Il2CppBrokenArrow.Client.Ecs.Controllers;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar.Systems;
 using MelonLoader;
 namespace FreedomArrow;
-// Writes FogOfWarConfig values before the battle systems copy them. Guarded offline battles only.
+// Writes FogOfWarConfig values before the battle systems copy them, whenever the tables applied.
 static class DetectionConfig
 {
     const int Forest=2,Buildings=3;
     static DetectionSettings target,vanilla;
-    static Func<bool> guard;
     static void Log(string stage,object data)=>MelonLogger.Msg("FREEDOM_ARROW_DETECTION "+stage+" "+JsonSerializer.Serialize(data));
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
@@ -20,16 +18,6 @@ static class DetectionConfig
         harmony.Patch(AccessTools.Method(typeof(EcsLoader),"InitBattleSequentialSystem"),
             prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(Before)),postfix:new HarmonyMethod(typeof(DetectionConfig),nameof(After)));
         Log("installed",new{target,status="invocation unproved until a before line appears"});
-    }
-    static bool Guarded()
-    {
-        if(guard==null)foreach(var a in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            if(a.GetName().Name!="BALocalSkirmish")continue;
-            var p=a.GetType("BALocalSkirmish.Core")?.GetProperty("IsGuardedLocalBattle",BindingFlags.Public|BindingFlags.Static);
-            if(p?.PropertyType==typeof(bool)&&p.GetMethod!=null)guard=(Func<bool>)p.GetMethod.CreateDelegate(typeof(Func<bool>));
-        }
-        return guard?.Invoke()==true;
     }
     static VisibleTerrainType Terrain(FogOfWarConfig cfg,int type)
     {
@@ -51,7 +39,7 @@ static class DetectionConfig
         {
             cfg=GameConfig.Instance?.FogOfWarConfig??throw new InvalidDataException("Fog config missing");
             vanilla??=Read(cfg);
-            bool apply=Guarded()&&Runtime.IsApplied;
+            bool apply=Runtime.IsApplied;
             var before=Read(cfg);
             var want=apply?target:vanilla;
             Write(cfg,want);
