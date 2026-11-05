@@ -1,8 +1,8 @@
-# Freedom Arrow 0.4.0-dev.1 — development candidate
+# Freedom Arrow 0.4.0-dev.2 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
-New in 0.4: MBT and kit prices from equal-point fights; 26 tank-gun sabot rows pinned to their long-range penetration; crit rules for tanks and IFVs (rear direct anti-tank hit gives red mobility; front or side tank-gun sabot or HEAT hit of 9.3 or more gives yellow mobility plus one random yellow); yellow mobility 40% speed; 60 degree front arc. The state log records crit changes and front arc changes.
+New in 0.4: MBT and kit prices from equal-point fights; 26 tank-gun sabot rows at long-range penetration + 50 at point blank, falling to the long-range value at max range; crit rules for tanks and IFVs (rear direct anti-tank hit gives red mobility; front or side tank-gun sabot or HEAT hit of 9.3 or more gives yellow mobility plus one random yellow); yellow mobility 40% speed; 60 degree front arc. The state log records crit changes and front arc changes.
 
 ## Earlier notes
 
@@ -162,7 +162,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.4.0-dev.1: see README. Offline checks only.
+0.4.0-dev.2: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 

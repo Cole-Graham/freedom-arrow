@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.1 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.2 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -6,8 +6,8 @@
 
 Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game run yet.
 
-- MBT prices from equal-point fights, 80 point floor (Osama, 5 November 2026). Kit prices so the same armor costs the same. See `vehicle-contract.json`.
-- Sabot pinned: 26 tank-gun KE rows of 100mm and larger use their long-range penetration at every range. See `sabot-pin-contract.json`.
+- MBT prices from equal-point fights, 80 point floor, refit in dev.2 for the +50 sabot with M1A1 HC at 160 (Osama, 5 November 2026). Kit prices so the same armor costs the same. See `vehicle-contract.json`.
+- Sabot: 26 tank-gun KE rows of 100mm and larger. Point-blank penetration is the long-range value + 50 (dev.1: + 0), falling in a straight line to the long-range value at max range. See `sabot-pin-contract.json`.
 - Crits, for tanks and IFVs (`source/conquest/CombatHooks.cs`): a rear hit by a direct anti-tank weapon is red mobility. A front or side hit by a tank-gun sabot or HEAT round doing 9.3 or more is yellow mobility plus one random yellow. ATGMs do not give the front or side crit.
 - Yellow mobility is 40% speed (was 75%). Turning stays 50%. Global setting in `game-config.json`.
 - Front arc 60 degrees each side of the hull (vanilla 45). `FrontArcDegrees` in the conquest settings.
@@ -40,7 +40,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.1.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.2.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -245,4 +245,5 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
 - 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
 - 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
-- 2026-11-05 14:52:17 PST (America/Los_Angeles) — 0.4.0-dev.1: started 0.4 from 0.3 dev.38 with MBT and kit prices, pinned sabot, crit rules, 40% yellow mobility and the 60 degree front arc. Not yet run live.
+- 2026-11-05 14:52:17 PST (America/Los_Angeles) — 0.4.0-dev.2: started 0.4 from 0.3 dev.38 with MBT and kit prices, pinned sabot, crit rules, 40% yellow mobility and the 60 degree front arc. Not yet run live.
+- 2026-11-05 15:23:56 PST (America/Los_Angeles) — 0.4.0-dev.2: sabot +50 at point blank; MBT prices refit with M1A1 HC at 160; T-72B3 obr. 16 +25, T-90A +35. Not yet run live.

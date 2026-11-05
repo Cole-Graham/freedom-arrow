@@ -100,11 +100,12 @@ def main():
     us=json.loads((R/'us-baltic-contract.json').read_text())
     for key,fields in us['armor_fields'].items():put('ArmorsJson',int(key),fields,'Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited')
     for key,fields in us['ammo_fields'].items():put('AmmunitionsJson',int(key),fields,'Tank-gun sabot10 or all live Javelin and Spike LR10.5')
-    # 0.4: tank-gun sabot penetration does not fall with range. Close range uses the long-range value.
-    pin={i:effective['AmmunitionsJson'][i]['PenetrationAtGroundRange'] for i in json.loads((R/'sabot-pin-contract.json').read_text())['pinned_ammo']}
+    # 0.4: tank-gun sabot close range is the long-range value plus a fixed bonus.
+    sabot=json.loads((R/'sabot-pin-contract.json').read_text())
+    pin={i:effective['AmmunitionsJson'][i]['PenetrationAtGroundRange']+sabot['close_range_bonus'] for i in sabot['pinned_ammo']}
     for aid,pen in pin.items():
         assert effective['AmmunitionsJson'][aid]['ArmorTargeted']==1,('pin needs a KE row',aid)
-        put('AmmunitionsJson',aid,{'PenetrationAtMinRange':pen},'Sabot pinned to its long-range penetration')
+        put('AmmunitionsJson',aid,{'PenetrationAtMinRange':pen},'Sabot close range = long-range penetration + bonus')
     # Cluster is the dedicated anti-armor round and keeps vanilla penetration. Other unguided artillery is capped. Laser-guided HE sits halfway from vanilla to the unguided value.
     for aid,row in effective['AmmunitionsJson'].items():
         if row['TrajectoryType'] in (20,30,40) and not row['LaserGuided'] and not row['GenerateSmoke'] and row['Damage']>1 and not row['TopArmorAttack']:
