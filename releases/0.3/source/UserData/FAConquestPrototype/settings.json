@@ -8,7 +8,9 @@
   "Ending": "time_limit",
   "MaximumSampleLatenessSeconds": 5,
   "ShowOverlay": false,
-  "MapZoneWeights": {},
+  "MapZoneWeights": {
+    "[FA] Central Village": {"53":4,"54":4,"55":3,"56":3,"57":2,"58":2,"59":4,"60":4,"61":4,"62":4}
+  },
   "TestDurationSeconds": 0,
   "PhasePolicy": "continuous",
   "ScoreLimit": 0,

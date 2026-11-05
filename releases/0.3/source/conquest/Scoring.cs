@@ -48,6 +48,15 @@ public sealed class Settings
                     throw new ArgumentException("Zone keys must be integer UIDs; weights must be 0..100");
         }
     }
+    // A joining client may have no local scenario name. The exact zone IDs then identify a configured map.
+    public string ResolveMap(string name, IEnumerable<int> uids)
+    {
+        if (name != OnlineUnknownMap) return name;
+        var ids = uids.Select(i => i.ToString(System.Globalization.CultureInfo.InvariantCulture)).ToHashSet();
+        var maps = MapZoneWeights.Where(m => m.Value.Keys.ToHashSet().SetEquals(ids)).Select(m => m.Key).ToList();
+        return maps.Count == 1 ? maps[0] : name;
+    }
+    public const string OnlineUnknownMap = "online scenario";
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
         && zones.TryGetValue(uid.ToString(System.Globalization.CultureInfo.InvariantCulture), out int value) ? value : DefaultZoneWeight;
 }

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.13 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.14 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.13.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.14.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -120,6 +120,8 @@ TOS, CATFAE and Grad incendiary stay at 15. Adds a FREEDOM_ARROW_HIT log line fo
 
 Dev.13 (Osama): all cluster rounds, guided and unguided, return to original penetration (200, Grad 150). Cluster is the dedicated anti-armor round.
 
+Dev.14 (Osama): [FA] Central Village is the first developed map. Zone values per tick: A, B, G, H, I, J are 4; C, D are 3; E, F are 2. The side with the higher held value scores the difference. Zone IDs 53 to 62 are checked against the scenario at build. A joiner without a scenario name is matched by exact zone IDs.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -185,3 +187,4 @@ Dev.13 (Osama): all cluster rounds, guided and unguided, return to original pene
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
 - 2026-11-04 23:30:42 PST (America/Los_Angeles) — dev.12: artillery penetration and hit log. No live result.
 - 2026-11-04 23:33:42 PST (America/Los_Angeles) — dev.13: cluster penetration restored. No live result.
+- 2026-11-04 23:38:33 PST (America/Los_Angeles) — dev.14: Central Village zone values. No live result.

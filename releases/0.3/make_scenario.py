@@ -6,7 +6,8 @@ R=Path(__file__).resolve().parent;sys.path.insert(0,str(R.parents[1]))
 from pipeline.crypto import AES_KEY
 MARKER=b'fhk3s0g3';NAME='[FA] Central Village';START_POINTS=1500;GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003'
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 3 minute opening, '
-      'the side holding more zones scores the difference. Flat 200 income, no upkeep.')
+      'the side with the higher zone value scores the difference. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
+ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 def dec(raw):
     assert raw[:8]==MARKER
     p=AES.new(AES_KEY,AES.MODE_CBC,raw[8:24]).decrypt(raw[24:]);return p[:-p[-1]]
@@ -21,6 +22,9 @@ def main():
     src=a.game_dir/'BrokenArrow_Data/StreamingAssets/SharedMissions/Central Village_network'
     z=zipfile.ZipFile(src/'Central Village_network.bascr');head=load(dec(z.read('head.bam')));nodes=load(dec(z.read('nodes.bam')));objects=load(dec(z.read('objects.bam')))
     assert head['GameMode']==2 and head['map']=='Central Village'
+    # Scoring reads zone values by ID. Fail the build if the letters and IDs ever disagree.
+    want={str(o['_uid']):ZONE_VALUES[o['hudText']] for o in objects if o.get('_type')==15}
+    assert len(want)==len(ZONE_VALUES) and want==json.loads((R/'source/UserData/FAConquestPrototype/settings.json').read_text())['MapZoneWeights'][NAME],want
     head.update(guid=GUID,name=NAME,author='Freedom Arrow',desc=DESC,IsDevVersion=False,devId=0,public=True)
     hits=0
     for n in nodes['b']:
