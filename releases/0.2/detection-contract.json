@@ -1,9 +1,9 @@
 {
-  "optics_ground_tiers": {"500": 900.0, "600": 1300.0, "700": 1300.0, "875": 1650.0, "1000": 2300.0, "1200": 2800.0},
+  "optics_ground_tiers": {"500": 900.0, "600": 1300.0, "700": 1450.0, "875": 1650.0, "1000": 2300.0, "1200": 2800.0},
   "optics_held_sensors": [6, 9, 10, 24, 25, 32, 33, 34, 35],
   "stealth": {"vehicle": 1.0, "infantry": 0.5, "recon_infantry": 0.4, "sniper": 0.333},
   "sniper_units_outside_role33": [341, 529, 530],
   "recon_units_outside_recon_category": [473],
   "stealth_override_options": {"51": 1.0, "52": 1.0, "425": 1.0, "480": 1.0, "512": 1.0, "757": 1.0, "1713": 1.0, "2085": 1.0, "2086": 1.0},
-  "provisional": "Medium Plus 700 has no value in the proposal; 1300 is provisional."
+  "medium_plus_rule": "Lateralus: interpolate from vanilla, nearest 50. 1300 + 350 x 100/275 = 1427, rounded to 1450."
 }

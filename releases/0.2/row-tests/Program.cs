@@ -32,7 +32,7 @@ Check(Row("AmmunitionsJson",2000177)["Damage"].GetValue<double>()==10.5,"Spike L
 foreach(var triple in new[]{(14,1904,90),(14,1905,80),(180,1958,40),(183,381,85),(453,1949,110),(185,388,30),(41,60,40),(41,2082,70)})Check(Row("Units",triple.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",triple.Item2)["Cost"].GetValue<int>()==triple.Item3,"US configured "+triple);
 Check(Row("Units",421)["Cost"].GetValue<int>()+new[]{1866,1871,1875}.Sum(i=>Row("OptionsJson",i)["Cost"].GetValue<int>())==50,"Battleship defaults provisional50");
 // Detection proposal. Expected values are written here again on purpose, independent of the generator contract.
-var tiers=new Dictionary<double,double>{[500]=900,[600]=1300,[700]=1300,[875]=1650,[1000]=2300,[1200]=2800};
+var tiers=new Dictionary<double,double>{[500]=900,[600]=1300,[700]=1450,[875]=1650,[1000]=2300,[1200]=2800};
 int[] heldSensors={6,9,10,24,25,32,33,34,35};int[] snipers={341,529,530};
 JsonArray Vanilla(string t)=>JsonNode.Parse(File.ReadAllText(Path.Combine(vanilla,t+".json"))).AsArray();
 foreach(var s in Vanilla("SensorsJson")){int id=s["Id"].GetValue<int>();var m=Row("SensorsJson",id);double g=s["OpticsGround"].GetValue<double>();

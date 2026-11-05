@@ -53,8 +53,11 @@ static class DetectionConfig
             vanilla??=Read(cfg);
             bool apply=Guarded()&&Runtime.IsApplied;
             var before=Read(cfg);
-            Write(cfg,apply?target:vanilla);
-            Log("before",new{apply,before,after=Read(cfg)});
+            var want=apply?target:vanilla;
+            Write(cfg,want);
+            var after=Read(cfg);
+            if(!after.Same(want))throw new InvalidDataException("Read-back mismatch");
+            Log("before",new{apply,before,after});
         }
         catch(Exception e)
         {

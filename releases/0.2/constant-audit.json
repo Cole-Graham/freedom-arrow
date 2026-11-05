@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.5",
+  "version": "0.2.0-dev.6",
   "source_build": "6000.3.24f1-7e593b8df225febf",
   "baseline_commit": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
   "affected_units": [
@@ -11954,7 +11954,7 @@
         "Id": 23,
         "Name": "Medium Plus Optics",
         "IsDefault": true,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 900.0,
         "ModelFileName": null
@@ -12023,7 +12023,7 @@
         "Id": 28,
         "Name": "Medium Plus Optics NonDefault",
         "IsDefault": false,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 900.0,
         "ModelFileName": null
@@ -12046,7 +12046,7 @@
         "Id": 29,
         "Name": "Medium Plus Optics Model",
         "IsDefault": true,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 900.0,
         "ModelFileName": "Optics"
@@ -12092,7 +12092,7 @@
         "Id": 31,
         "Name": "Medium Plus Optics SprutHelper",
         "IsDefault": true,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 900.0,
         "ModelFileName": "SprutSDM"
@@ -12138,7 +12138,7 @@
         "Id": 41,
         "Name": "Medium Plus Optics Manpad",
         "IsDefault": true,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 1250.0,
         "ModelFileName": null
@@ -12161,7 +12161,7 @@
         "Id": 42,
         "Name": "Medium Plus Optics Manpad",
         "IsDefault": true,
-        "OpticsGround": 1300.0,
+        "OpticsGround": 1450.0,
         "OpticsHighAltitude": 1000.0,
         "OpticsLowAltitude": 1250.0,
         "ModelFileName": null

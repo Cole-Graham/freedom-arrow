@@ -11,6 +11,7 @@ public sealed class DetectionSettings
     {
         MaxFlashValue=flash;SpottedPenalty=spotted;SpottedPenaltyBuildings=spottedBuildings;ForestCover=forest;BuildingCover=building;
     }
+    public bool Same(DetectionSettings o)=>MaxFlashValue==o.MaxFlashValue&&SpottedPenalty==o.SpottedPenalty&&SpottedPenaltyBuildings==o.SpottedPenaltyBuildings&&ForestCover==o.ForestCover&&BuildingCover==o.BuildingCover;
     public static DetectionSettings Parse(string json)
     {
         var o=JsonNode.Parse(json).AsObject();
