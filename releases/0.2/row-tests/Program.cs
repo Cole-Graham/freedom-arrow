@@ -23,9 +23,9 @@ Check(Row("AmmunitionsJson",506)["Damage"].GetValue<double>()==2.5,"XM913 exclud
 foreach(int id in new[]{2000013,2000014,2000015})Check(Row("ArmorsJson",id)["MaxHealthPoints"].GetValue<int>()==12,"core Bradley HP "+id);
 Check(Row("ArmorsJson",2000052)["MaxHealthPoints"].GetValue<int>()==12&&Row("ArmorsJson",2000052)["HeatArmorRear"].GetValue<int>()==400&&Row("ArmorsJson",2000052)["HeatArmorSides"].GetValue<int>()==60,"ACV literal rear");
 foreach(int id in new[]{8,1894,25,1931,42,1895}){int aid=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",aid)["HeatArmorFront"].GetValue<int>()==600&&Row("ArmorsJson",aid)["HeatArmorSides"].GetValue<int>()==600&&Row("ArmorsJson",aid)["MaxHealthPoints"].GetValue<int>()==12,"selected SRAT "+id);}
-Check(Row("ArmorsJson",2000017)["MaxHealthPoints"].GetValue<int>()==14,"RV/ATGM SRAT untouched");
+Check(Row("ArmorsJson",2000017)["MaxHealthPoints"].GetValue<int>()==12&&Row("ArmorsJson",2000018)["MaxHealthPoints"].GetValue<int>()==12,"RV/ATGM SRAT uparmor HP");
 foreach(int id in new[]{2000017,2000018})Check(Row("ArmorsJson",id)["HeatArmorFront"].GetValue<int>()==250&&Row("ArmorsJson",id)["HeatArmorSides"].GetValue<int>()==200,"RV/ATGM SRAT armor "+id);
-foreach(var (option,armor,front,side,hp) in new[]{(56,47,400,250,16),(1781,288,700,400,17)}){var row=Row("ArmorsJson",armor);Check(Row("OptionsJson",option)["ArmorId"].GetValue<int>()==armor&&row["HeatArmorFront"].GetValue<int>()==front&&row["HeatArmorSides"].GetValue<int>()==side&&row["MaxHealthPoints"].GetValue<int>()==hp,"M6 Linebacker option "+option);}
+foreach(var (option,armor,front,side,hp) in new[]{(56,47,400,250,14),(1781,288,700,400,14)}){var row=Row("ArmorsJson",armor);Check(Row("OptionsJson",option)["ArmorId"].GetValue<int>()==armor&&row["HeatArmorFront"].GetValue<int>()==front&&row["HeatArmorSides"].GetValue<int>()==side&&row["MaxHealthPoints"].GetValue<int>()==hp,"M6 Linebacker option "+option);}
 Check(Row("ArmorsJson",15)["MaxHealthPoints"].GetValue<int>()==14,"M6 Linebacker base HP");
 Check(Row("OptionsJson",1759)["Cost"].GetValue<int>()==20,"M2A3 ESV BUSK3 price open");
 Check(Row("AmmunitionsJson",2000177)["Damage"].GetValue<double>()==10.5,"Spike LR");Check(Row("AmmunitionsJson",2000173)["Damage"].GetValue<double>()==12,"Spike-SR held");
@@ -38,7 +38,7 @@ JsonArray Vanilla(string t)=>JsonNode.Parse(File.ReadAllText(Path.Combine(vanill
 foreach(var s in Vanilla("SensorsJson")){int id=s["Id"].GetValue<int>();var m=Row("SensorsJson",id);double g=s["OpticsGround"].GetValue<double>();
 Check(m["OpticsGround"].GetValue<double>()==(heldSensors.Contains(id)?g:drones.TryGetValue(id,out var drone)?drone:tiers[g]),"optics "+id);Check(m["OpticsLowAltitude"].GetValue<double>()==s["OpticsLowAltitude"].GetValue<double>()&&m["OpticsHighAltitude"].GetValue<double>()==s["OpticsHighAltitude"].GetValue<double>(),"air optics "+id);}
 foreach(var u in Vanilla("Units")){int id=u["Id"].GetValue<int>(),type=u["Type"].GetValue<int>(),cat=u["CategoryType"].GetValue<int>(),role=u["Role"].GetValue<int>();var m=Row("Units",id);double s=u["Stealth"].GetValue<double>();
-double want=new[]{21,35,51,99,152,167,173,186,249,384,445,455,458,467,509}.Contains(id)?0.8:type==4&&cat!=4?1.0:type!=2||cat==4?s:s==0.333?s:cat==0?0.4:0.5;
+double want=new[]{21,35,51,99,152,167,173,186,249,384,445,455,458,467,509,543}.Contains(id)?0.8:type==4&&cat!=4?1.0:type!=2||cat==4?s:s==0.333?s:cat==0?0.4:0.5;
 Check(m["Stealth"].GetValue<double>()==want&&m["CurrentStealth"].GetValue<double>()==want,"stealth "+id);}
 foreach(int id in new[]{51,52,425,480,512,757,1713,2085,2086})Check(Row("OptionsJson",id)["StealthOverride"].GetValue<double>()==0.8,"recon override "+id);
 foreach(int id in new[]{478,479,506,507,1708,1711,1712,1896,1897})Check(Row("OptionsJson",id)["StealthOverride"].GetValue<double>()==1,"recon option at 1.0 "+id);
@@ -47,4 +47,9 @@ var detection=DetectionSettings.Parse(File.ReadAllText(Path.Combine(root,"detect
 Check(detection.MaxFlashValue==2.2f&&detection.SpottedPenalty==1.5f&&detection.SpottedPenaltyBuildings==1.5f&&detection.ForestCover==3f&&detection.BuildingCover==4f,"detection config values");
 foreach(string bad in new[]{"{}","{\"MaxFlashValue\":0.5,\"SpottedPenalty\":1.5,\"SpottedPenaltyBuildings\":1.5,\"ForestCover\":3,\"BuildingCover\":4}","{\"MaxFlashValue\":2.2,\"SpottedPenalty\":1.5,\"SpottedPenaltyBuildings\":1.5,\"ForestCover\":3}"})
 {bool refused=false;try{DetectionSettings.Parse(bad);}catch(InvalidDataException){refused=true;}Check(refused,"bad detection config accepted");}
+// dev.11 recon prices and the uparmor HP rule. Written here again on purpose, independent of the generator contract.
+foreach(var (id,cost) in new[]{(152,20),(23,20),(209,35),(238,230),(217,45),(455,25),(458,40),(173,25),(383,50),(167,25),(215,40),(48,30),(99,25),(29,40),(2,240),(387,60),(37,75),(16,65),(26,55),(186,50),(51,40),(249,35),(35,25),(21,40),(49,35),(467,30),(184,35),(543,45),(499,35),(505,35),(425,30),(1,35)})Check(Row("Units",id)["Cost"].GetValue<int>()==cost,"dev.11 price "+id);
+foreach(var (id,cost) in new[]{(1960,5),(1961,10),(478,15),(479,55),(1708,70),(50,20),(2049,60),(2050,60),(480,0),(2047,0),(2048,0),(1710,20)})Check(Row("OptionsJson",id)["Cost"].GetValue<int>()==cost,"dev.11 option "+id);
+foreach(var (id,hp) in new[]{(2000103,12),(2000104,12),(326,12),(336,12),(2000020,10),(2000021,10),(2000003,12),(2000004,12),(120,14)})Check(Row("ArmorsJson",id)["MaxHealthPoints"].GetValue<int>()==hp,"dev.11 HP "+id);
+foreach(var u in Vanilla("Units")){int id=u["Id"].GetValue<int>();if(u["Type"].GetValue<int>()!=4||id==144)continue;Check(merged["UnitArmorsJson"].Where(l=>l["UnitId"].GetValue<int>()==id).Select(l=>Row("ArmorsJson",l["ArmorId"].GetValue<int>())["MaxHealthPoints"].GetValue<int>()).Distinct().Count()<=1,"uparmor changes HP "+id);}
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");

@@ -33,7 +33,7 @@
     "Cost": 150
   },
   "238": {
-    "Cost": 200
+    "Cost": 230
   },
   "1": {
     "Cost": 35
@@ -167,13 +167,108 @@
   "501": {
     "Cost": 30
   },
-  "2": {
+  "152": {
+    "Cost": 20
+  },
+  "23": {
+    "Cost": 20
+  },
+  "209": {
+    "Cost": 35,
     "Stealth": 1.0,
     "CurrentStealth": 1.0
   },
-  "51": {
+  "217": {
+    "Cost": 45,
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "455": {
+    "Cost": 25
+  },
+  "458": {
+    "Cost": 40,
     "Stealth": 0.8,
     "CurrentStealth": 0.8
+  },
+  "173": {
+    "Cost": 25
+  },
+  "383": {
+    "Cost": 50
+  },
+  "167": {
+    "Cost": 25
+  },
+  "215": {
+    "Cost": 40,
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "48": {
+    "Cost": 30
+  },
+  "99": {
+    "Cost": 25
+  },
+  "29": {
+    "Cost": 40
+  },
+  "2": {
+    "Cost": 240,
+    "Stealth": 1.0,
+    "CurrentStealth": 1.0
+  },
+  "387": {
+    "Cost": 60
+  },
+  "37": {
+    "Cost": 75
+  },
+  "16": {
+    "Cost": 65
+  },
+  "26": {
+    "Cost": 55
+  },
+  "186": {
+    "Cost": 50,
+    "Stealth": 0.8,
+    "CurrentStealth": 0.8
+  },
+  "51": {
+    "Cost": 40,
+    "Stealth": 0.8,
+    "CurrentStealth": 0.8
+  },
+  "249": {
+    "Cost": 35
+  },
+  "35": {
+    "Cost": 25
+  },
+  "21": {
+    "Cost": 40
+  },
+  "49": {
+    "Cost": 35
+  },
+  "467": {
+    "Cost": 30
+  },
+  "184": {
+    "Cost": 35
+  },
+  "543": {
+    "Cost": 45,
+    "Stealth": 0.8,
+    "CurrentStealth": 0.8
+  },
+  "499": {
+    "Cost": 35
+  },
+  "505": {
+    "Cost": 35
   },
   "57": {
     "Stealth": 0.5,
@@ -334,22 +429,6 @@
   "176": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "186": {
-    "Stealth": 0.8,
-    "CurrentStealth": 0.8
-  },
-  "209": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
-  },
-  "215": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
-  },
-  "217": {
-    "Stealth": 1.0,
-    "CurrentStealth": 1.0
   },
   "237": {
     "Stealth": 1.0,
@@ -534,10 +613,6 @@
   "454": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
-  },
-  "458": {
-    "Stealth": 0.8,
-    "CurrentStealth": 0.8
   },
   "459": {
     "Stealth": 0.5,

@@ -106,6 +106,10 @@ def main():
     old=effective['UnitArmorsJson'][983]['ArmorId'];assert old==341
     new=clone('ArmorsJson',old,{'MaxHealthPoints':8},'Playable Baltic TypeX8 HP')
     put('UnitArmorsJson',983,{'ArmorId':new},'TypeX unit-specific armor')
+    # Uparmor never changes HP. Only the listed exceptions may differ.
+    for uid,row in effective['Units'].items():
+        hp={effective['ArmorsJson'][l['ArmorId']]['MaxHealthPoints'] for l in effective['UnitArmorsJson'].values() if l['UnitId']==uid}
+        assert row['Type']!=4 or len(hp)<2 or uid in us['uparmor_hp_exceptions'],('uparmor changes HP',uid,hp)
     # Lateralus's detection proposal: table part. Config part is in detection-config.json.
     det=json.loads((R/'detection-contract.json').read_text())
     held=set(det['optics_held_sensors'])

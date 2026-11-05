@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.10",
+  "version": "0.2.0-dev.11",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -10,10 +10,12 @@
       "HeatArmorFront": 700
     },
     "2000026": {
-      "HeatArmorFront": 700
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 12
     },
     "2000027": {
-      "HeatArmorFront": 700
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 12
     },
     "2000052": {
       "MaxHealthPoints": 12,
@@ -26,10 +28,123 @@
       "HeatArmorSides": 500
     },
     "47": {
-      "HeatArmorFront": 400
+      "HeatArmorFront": 400,
+      "MaxHealthPoints": 14
     },
     "288": {
-      "HeatArmorFront": 700
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 14
+    },
+    "32": {
+      "MaxHealthPoints": 14
+    },
+    "60": {
+      "MaxHealthPoints": 14
+    },
+    "69": {
+      "MaxHealthPoints": 10
+    },
+    "71": {
+      "MaxHealthPoints": 14
+    },
+    "74": {
+      "MaxHealthPoints": 10
+    },
+    "76": {
+      "MaxHealthPoints": 10
+    },
+    "94": {
+      "MaxHealthPoints": 14
+    },
+    "99": {
+      "MaxHealthPoints": 10
+    },
+    "110": {
+      "MaxHealthPoints": 10
+    },
+    "131": {
+      "MaxHealthPoints": 14
+    },
+    "133": {
+      "MaxHealthPoints": 10
+    },
+    "149": {
+      "MaxHealthPoints": 14
+    },
+    "159": {
+      "MaxHealthPoints": 10
+    },
+    "161": {
+      "MaxHealthPoints": 16
+    },
+    "163": {
+      "MaxHealthPoints": 14
+    },
+    "167": {
+      "MaxHealthPoints": 14
+    },
+    "171": {
+      "MaxHealthPoints": 10
+    },
+    "176": {
+      "MaxHealthPoints": 10
+    },
+    "292": {
+      "MaxHealthPoints": 10
+    },
+    "294": {
+      "MaxHealthPoints": 14
+    },
+    "300": {
+      "MaxHealthPoints": 10
+    },
+    "301": {
+      "MaxHealthPoints": 14
+    },
+    "315": {
+      "MaxHealthPoints": 14
+    },
+    "322": {
+      "MaxHealthPoints": 14
+    },
+    "326": {
+      "MaxHealthPoints": 12
+    },
+    "336": {
+      "MaxHealthPoints": 12
+    },
+    "418": {
+      "MaxHealthPoints": 10
+    },
+    "2000004": {
+      "MaxHealthPoints": 12
+    },
+    "2000017": {
+      "MaxHealthPoints": 12
+    },
+    "2000018": {
+      "MaxHealthPoints": 12
+    },
+    "2000020": {
+      "MaxHealthPoints": 10
+    },
+    "2000021": {
+      "MaxHealthPoints": 10
+    },
+    "2000034": {
+      "MaxHealthPoints": 12
+    },
+    "2000035": {
+      "MaxHealthPoints": 12
+    },
+    "2000097": {
+      "MaxHealthPoints": 12
+    },
+    "2000098": {
+      "MaxHealthPoints": 12
+    },
+    "2000104": {
+      "MaxHealthPoints": 12
     }
   },
   "ammo_fields": {
@@ -96,15 +211,16 @@
     386,
     387
   ],
-  "hp_scope_pending": [
-    27,
-    40,
-    41
-  ],
+  "hp_scope_pending": [],
   "provisional_costs": {
     "180": "35 base+5 armored=40; target interpretation pending",
-    "421": "20 base+30 defaults=50; target interpretation pending"
+    "421": "20 base+30 defaults=50; target interpretation pending",
+    "37": "M3A3 CFV listed at both 80 and 75; 75 (the later value) until confirmed"
   },
   "aps_legacy_policy": "ICV1894 retains active ability82 twocharges and+40; ordinary SRAT8 is+25. ESV1895/MGS1931 inactive APS duplicates become+25 pending removal. AMPV2082 keeps active ability82 and+45.",
-  "stryker_srat_provisional": "600 front and side is provisional (Sam, 2026-11-04 17:11)."
+  "stryker_srat_provisional": "600 front and side is provisional (Sam, 2026-11-04 17:11).",
+  "uparmor_hp_exceptions": [
+    144
+  ],
+  "uparmor_hp_rule": "Osama, 2026-11-04: uparmor never changes HP. Every armor choice on a vehicle matches its default HP. Sprut is held: its cage is 10 HP and its default 14 by an earlier explicit request."
 }

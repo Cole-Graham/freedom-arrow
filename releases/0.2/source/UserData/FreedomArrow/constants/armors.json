@@ -64,7 +64,7 @@
     "Name": "Armor BMP3 Armored",
     "ModelFileName": "Armored",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 400,
     "HeatArmorRear": 40,
     "HeatArmorSides": 400,
@@ -259,7 +259,7 @@
     "Name": "Armor Stryker SRAT",
     "ModelFileName": "SRAT",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 250,
     "HeatArmorRear": 130,
     "HeatArmorSides": 200,
@@ -274,7 +274,7 @@
     "Name": "Armor Stryker SRAT Trophy",
     "ModelFileName": "SRAT_Trophy",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 250,
     "HeatArmorRear": 130,
     "HeatArmorSides": 200,
@@ -304,7 +304,7 @@
     "Name": "Armor LAV25A1",
     "ModelFileName": null,
     "ArmorValue": 0,
-    "MaxHealthPoints": 8,
+    "MaxHealthPoints": 10,
     "HeatArmorFront": 30,
     "HeatArmorRear": 20,
     "HeatArmorSides": 20,
@@ -319,7 +319,7 @@
     "Name": "Armor LAV25A2",
     "ModelFileName": "Armored",
     "ArmorValue": 0,
-    "MaxHealthPoints": 8,
+    "MaxHealthPoints": 10,
     "HeatArmorFront": 60,
     "HeatArmorRear": 30,
     "HeatArmorSides": 40,
@@ -394,7 +394,7 @@
     "Name": "Armor AMPV BUSK",
     "ModelFileName": "Armored",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 700,
     "HeatArmorRear": 60,
     "HeatArmorSides": 400,
@@ -409,7 +409,7 @@
     "Name": "Armor AMPV ArmoredAPS",
     "ModelFileName": "ArmoredAPS",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 700,
     "HeatArmorRear": 60,
     "HeatArmorSides": 400,
@@ -514,7 +514,7 @@
     "Name": "Armor AAVP7A1 EAAK",
     "ModelFileName": "EAAK",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 40,
     "HeatArmorRear": 30,
     "HeatArmorSides": 40,
@@ -529,7 +529,7 @@
     "Name": "Armor AAVP7A1 SU",
     "ModelFileName": "SU",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 100,
     "HeatArmorRear": 30,
     "HeatArmorSides": 100,
@@ -1459,7 +1459,7 @@
     "Name": "Armor Bumerang K16 Armored",
     "ModelFileName": "Armored",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 100,
     "HeatArmorRear": 40,
     "HeatArmorSides": 60,
@@ -1474,7 +1474,7 @@
     "Name": "Armor Bumerang K16 Armored APS",
     "ModelFileName": "ArmoredAPS",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 100,
     "HeatArmorRear": 40,
     "HeatArmorSides": 60,
@@ -1564,7 +1564,7 @@
     "Name": "Armor BTR90 Armored",
     "ModelFileName": "Armored",
     "ArmorValue": 0,
-    "MaxHealthPoints": 14,
+    "MaxHealthPoints": 12,
     "HeatArmorFront": 180,
     "HeatArmorRear": 130,
     "HeatArmorSides": 160,
@@ -2145,10 +2145,93 @@
     "KinArmorTop": 80
   },
   "47": {
-    "HeatArmorFront": 400
+    "HeatArmorFront": 400,
+    "MaxHealthPoints": 14
   },
   "288": {
-    "HeatArmorFront": 700
+    "HeatArmorFront": 700,
+    "MaxHealthPoints": 14
+  },
+  "32": {
+    "MaxHealthPoints": 14
+  },
+  "60": {
+    "MaxHealthPoints": 14
+  },
+  "69": {
+    "MaxHealthPoints": 10
+  },
+  "71": {
+    "MaxHealthPoints": 14
+  },
+  "74": {
+    "MaxHealthPoints": 10
+  },
+  "76": {
+    "MaxHealthPoints": 10
+  },
+  "94": {
+    "MaxHealthPoints": 14
+  },
+  "99": {
+    "MaxHealthPoints": 10
+  },
+  "110": {
+    "MaxHealthPoints": 10
+  },
+  "131": {
+    "MaxHealthPoints": 14
+  },
+  "133": {
+    "MaxHealthPoints": 10
+  },
+  "149": {
+    "MaxHealthPoints": 14
+  },
+  "159": {
+    "MaxHealthPoints": 10
+  },
+  "161": {
+    "MaxHealthPoints": 16
+  },
+  "163": {
+    "MaxHealthPoints": 14
+  },
+  "167": {
+    "MaxHealthPoints": 14
+  },
+  "171": {
+    "MaxHealthPoints": 10
+  },
+  "176": {
+    "MaxHealthPoints": 10
+  },
+  "292": {
+    "MaxHealthPoints": 10
+  },
+  "294": {
+    "MaxHealthPoints": 14
+  },
+  "300": {
+    "MaxHealthPoints": 10
+  },
+  "301": {
+    "MaxHealthPoints": 14
+  },
+  "315": {
+    "MaxHealthPoints": 14
+  },
+  "322": {
+    "MaxHealthPoints": 14
+  },
+  "326": {
+    "MaxHealthPoints": 12
+  },
+  "336": {
+    "MaxHealthPoints": 12
+  },
+  "418": {
+    "MaxHealthPoints": 10
   },
   "2000235": {
     "IsDefault": false,

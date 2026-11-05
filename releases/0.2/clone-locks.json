@@ -396,7 +396,9 @@
       },
       "2000004": {
         "sha256": "61b10fdc6526621452a93d85c98787dd9dcb757b3aab0eae06d214abb7a9efb3",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000005": {
         "sha256": "3175464eeddee5be8e7a0187fa8f239379390e7816d4ab7b6a810504ca6b6dad",
@@ -454,11 +456,15 @@
       },
       "2000017": {
         "sha256": "faade6d89b4b8a0ec71da805ac95eb3f43a8bbc11b9666b638297911c8007663",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000018": {
         "sha256": "06d0c5007f18e1dcd3910e70ee03c65ec5be41a1f59f1658c2e882932ad939d1",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000019": {
         "sha256": "6c927a9f2b5c9643e254359af4b0422765402219386e7387352ecf50332ba72e",
@@ -466,11 +472,15 @@
       },
       "2000020": {
         "sha256": "3dcaca39ce2e7e3196be180974dd91bd10b36fe6336399ee5be02a7138a5b9e9",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 8
+        }
       },
       "2000021": {
         "sha256": "51827d786df556ea68c936fee91ba9389ac7a9c9345b73cf55580284f327f237",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 8
+        }
       },
       "2000022": {
         "sha256": "19c17a80b5ad1c41f42cd0eca8b02d2e03dffe3c27de879ffc93ea5d4995a5f5",
@@ -491,13 +501,15 @@
       "2000026": {
         "sha256": "eea4bd571d18985e10baa6a3914ccb0493bfd2a00c50238c48e3c3b506ede12e",
         "permitted_before": {
-          "HeatArmorFront": 400
+          "HeatArmorFront": 400,
+          "MaxHealthPoints": 14
         }
       },
       "2000027": {
         "sha256": "22a974f29f7b2a1b2f41d2ab44d36991a7d5e606e998e8702079b459659585a1",
         "permitted_before": {
-          "HeatArmorFront": 400
+          "HeatArmorFront": 400,
+          "MaxHealthPoints": 14
         }
       },
       "2000028": {
@@ -526,11 +538,15 @@
       },
       "2000034": {
         "sha256": "4214bd896d4e5e842956e0f268486b8035c8ea4f86ff7c46477d78a70c686a8b",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000035": {
         "sha256": "1a3a9e01d6c4d6d62a94df1cb321f1fd802e604ad6e5c07c72b89d4cc962d166",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000036": {
         "sha256": "b3c90adef9e81b7287c1d7b97cea57c7e637b4f3d55d52420f5edeaae8015829",
@@ -782,11 +798,15 @@
       },
       "2000097": {
         "sha256": "55877611eaad9dddb8038c0e64da9e43ea7b18ff0e076014dfe6a5483b9d4ae3",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000098": {
         "sha256": "a2d87b5a9fc275143753ecc89dd77169c351e8193cce6f13d03bfb36c144489b",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000099": {
         "sha256": "b6b46f2b906966387ca354a2c8be63992445caea509ae4a1514a053f45d59bf9",
@@ -810,7 +830,9 @@
       },
       "2000104": {
         "sha256": "6bde128078398c58474d66356016fd2653b75457229c3ea9fc4b610e0ef7d4c4",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000105": {
         "sha256": "4310ac9f009d5b64b309a974f001b902b052ba67a9987c6095a1c2358f5ae776",
