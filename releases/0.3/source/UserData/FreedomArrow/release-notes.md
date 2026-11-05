@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.8 — development candidate
+# Freedom Arrow 0.3.0-dev.9 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.8: see README. Offline checks only.
+0.3.0-dev.9: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -127,3 +127,7 @@ Dev.7 (Osama): APSCooldown 6 -> 30 seconds on all 14 APS abilities. BMPT HEAT to
 Dev.8 (Osama): T-72 family HEAT top 80 (T-72A, T-72B, T-72B3, T-72B3A, Object 787), so Javelin 140 does 7.92 per hit and kills 14 HP in 2 hits.
 
 - 2026-11-04 22:34:56 PST (America/Los_Angeles) — dev.8: T-72 family top 80. No live result.
+
+Dev.9 (Osama): HEAT top 80 on T-15 and BMPT, which joins the T-72 chassis group. TOS-1 (40) and BMO-T (60) stay thinner.
+
+- 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.

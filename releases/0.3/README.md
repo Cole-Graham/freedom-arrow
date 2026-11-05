@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.8 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.9 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.8.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.9.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -107,6 +107,8 @@ Dev.7 (Osama): APSCooldown 6 -> 30 seconds on all 14 APS abilities. BMPT HEAT to
 
 Dev.8 (Osama): T-72 family HEAT top 80 (T-72A, T-72B, T-72B3, T-72B3A, Object 787), so Javelin 140 does 7.92 per hit and kills 14 HP in 2 hits.
 
+Dev.9 (Osama): HEAT top 80 on T-15 and BMPT, which joins the T-72 chassis group. TOS-1 (40) and BMO-T (60) stay thinner.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -166,3 +168,5 @@ Dev.8 (Osama): T-72 family HEAT top 80 (T-72A, T-72B, T-72B3, T-72B3A, Object 78
 - 2026-11-04 22:33:53 PST (America/Los_Angeles) — dev.7: APS cooldown 30 seconds, BMPT top 100. No live result.
 
 - 2026-11-04 22:34:56 PST (America/Los_Angeles) — dev.8: T-72 family top 80. No live result.
+
+- 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
