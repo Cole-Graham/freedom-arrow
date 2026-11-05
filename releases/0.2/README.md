@@ -100,4 +100,4 @@ Dev.13 (Osama, test branch): M-ATV and M-ATV Javelin are separate cards. M-ATV i
 
 - 2026-11-04 19:11:24 PST (America/Los_Angeles) — dev.12: set Typhoon VDV to 25. No live result.
 
-- 2026-11-05 03:14:37 America (America/Los_Angeles) — dev.13: split M-ATV and M-ATV Javelin into separate cards on the test branch. No live result.
+- 2026-11-04 19:15:00 PST (America/Los_Angeles) — dev.13: split M-ATV and M-ATV Javelin into separate cards on the test branch. No live result.
