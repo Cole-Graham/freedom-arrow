@@ -1,18 +1,18 @@
 using System.Text.Json.Nodes;
 using FreedomArrow;
 if(args.Length!=2)throw new ArgumentException("pinned vanilla JSON directory and package payload root required");
-string vanilla=args[0],root=args[1];int checks=0,writes=0;var merged=new Dictionary<string,JsonArray>();
+string vanilla=args[0],root=args[1];int checks=0,writes=0;var merged=new Dictionary<string,JsonArray>();var allPatches=new Dictionary<string,JsonObject>();
 void Check(bool yes,string why){if(!yes)throw new Exception(why);checks++;}
 var compatibility=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"compatibility.json"))).AsObject();
 var files=JsonNode.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"table-files.json"))).AsObject();
 foreach(var entry in files){string t=entry.Key,f=entry.Value.GetValue<string>();var source=JsonNode.Parse(File.ReadAllText(Path.Combine(vanilla,t+".json"))).AsArray();var original=source.ToJsonString();var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",f))).AsObject();
-merged[t]=RowPlanner.Apply(source,patches,true,(id,field,before,after,added)=>writes++);Check(source.ToJsonString()==original,t+" source mutation");Check(merged[t].Count==source.Count+patches.Count(p=>!source.Any(row=>row["Id"].ToJsonString()==p.Key)),t+" row count");}
+allPatches[t]=patches;merged[t]=RowPlanner.Apply(source,patches,true,(id,field,before,after,added)=>writes++);Check(source.ToJsonString()==original,t+" source mutation");Check(merged[t].Count==source.Count+patches.Count(p=>p.Value!=null&&!source.Any(row=>row["Id"].ToJsonString()==p.Key))-patches.Count(p=>p.Value==null),t+" row count");}
 JsonNode Row(string t,int id)=>merged[t].Single(r=>r["Id"].GetValue<int>()==id);
 foreach(var rule in JsonNode.Parse(File.ReadAllText(Path.Combine(root,"reference-schema.json"))).AsObject()){
 var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",files[rule.Key].GetValue<string>()))).AsObject();
-foreach(var patch in patches)foreach(var link in rule.Value.AsObject())if(patch.Value.AsObject().ContainsKey(link.Key)){
+foreach(var patch in patches)foreach(var link in rule.Value.AsObject())if(patch.Value!=null&&patch.Value.AsObject().ContainsKey(link.Key)){
 int id=patch.Value[link.Key].GetValue<int>();bool nullable=link.Value[1].GetValue<bool>();Check(id==0&&nullable||merged[link.Value[0].GetValue<string>()].Any(r=>r["Id"].GetValue<int>()==id),rule.Key+" dangling "+link.Key);}}
-Check(merged["Units"].Count==553,"only the seven card splits and the hidden unit may add a unit");Check(Row("Units",628)["Cost"].GetValue<int>()==25,"Uran default loadout totals 70");Check(Row("Units",703)["Cost"].GetValue<int>()==105,"T-72B3A 105");Check(Row("Units",252)["Cost"].GetValue<int>()==50,"BRDM Konkurs 50");
+Check(merged["Units"].Count==552,"only the seven card splits may add a unit");Check(Row("Units",628)["Cost"].GetValue<int>()==25,"Uran default loadout totals 70");Check(Row("Units",703)["Cost"].GetValue<int>()==105,"T-72B3A 105");Check(Row("Units",252)["Cost"].GetValue<int>()==50,"BRDM Konkurs 50");
 foreach(var pair in new[]{(716,564,190),(716,566,230),(717,3033,80),(718,1905,80),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(9,625,100)})Check(Row("Units",pair.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",pair.Item2)["Cost"].GetValue<int>()==pair.Item3,"configured cost "+pair);
 Check(Row("ArmorsJson",2000000)["MaxHealthPoints"].GetValue<int>()==8,"shared BRDM3 base changed");Check(Row("ArmorsJson",2000096)["MaxHealthPoints"].GetValue<int>()==12,"Vilkas shared armor changed");Check(Row("ArmorsJson",2000100)["HeatArmorSides"].GetValue<int>()==100,"B10/B11 buff leak");
 int[] expectHpOptions={504,505,1881,1882,3067,3070,3071,3072};foreach(int id in expectHpOptions){int armor=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",armor)["MaxHealthPoints"].GetValue<int>()==(id<3000?10:8),"HP "+id);}
@@ -22,7 +22,7 @@ foreach(int id in new[]{44,508,2000149,2000174})Check(Row("AmmunitionsJson",id)[
 Check(Row("AmmunitionsJson",506)["Damage"].GetValue<double>()==2.5,"XM913 excluded");Check(Row("AmmunitionsJson",498)["Damage"].GetValue<double>()==8.5,"MT12 pending");
 foreach(int id in new[]{2000013,2000014,2000015})Check(Row("ArmorsJson",id)["MaxHealthPoints"].GetValue<int>()==12,"core Bradley HP "+id);
 Check(Row("ArmorsJson",2000052)["MaxHealthPoints"].GetValue<int>()==12&&Row("ArmorsJson",2000052)["HeatArmorRear"].GetValue<int>()==400&&Row("ArmorsJson",2000052)["HeatArmorSides"].GetValue<int>()==60,"ACV literal rear");
-foreach(int id in new[]{8,1894,25,1931,42,1895}){int aid=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",aid)["HeatArmorFront"].GetValue<int>()==600&&Row("ArmorsJson",aid)["HeatArmorSides"].GetValue<int>()==600&&Row("ArmorsJson",aid)["MaxHealthPoints"].GetValue<int>()==12,"selected SRAT "+id);}
+foreach(int id in new[]{8,1894,25,42}){int aid=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",aid)["HeatArmorFront"].GetValue<int>()==600&&Row("ArmorsJson",aid)["HeatArmorSides"].GetValue<int>()==600&&Row("ArmorsJson",aid)["MaxHealthPoints"].GetValue<int>()==12,"selected SRAT "+id);}
 Check(Row("ArmorsJson",2000017)["MaxHealthPoints"].GetValue<int>()==12&&Row("ArmorsJson",2000018)["MaxHealthPoints"].GetValue<int>()==12,"RV/ATGM SRAT uparmor HP");
 foreach(int id in new[]{2000017,2000018})Check(Row("ArmorsJson",id)["HeatArmorFront"].GetValue<int>()==250&&Row("ArmorsJson",id)["HeatArmorSides"].GetValue<int>()==200,"RV/ATGM SRAT armor "+id);
 foreach(var (option,armor,front,side,hp) in new[]{(56,47,400,250,14),(1781,288,700,400,14)}){var row=Row("ArmorsJson",armor);Check(Row("OptionsJson",option)["ArmorId"].GetValue<int>()==armor&&row["HeatArmorFront"].GetValue<int>()==front&&row["HeatArmorSides"].GetValue<int>()==side&&row["MaxHealthPoints"].GetValue<int>()==hp,"M6 Linebacker option "+option);}
@@ -65,9 +65,11 @@ Check(Carry(519,"ATGM")==2,"Baltic Milan keeps two for now");Check(Carry(701,"AT
 foreach(int u in new[]{66,147,343,408})Check(Linked("UnitArmorsJson","ArmorId",u).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==25),"five-man health "+u);
 int PoolOf(int u)=>merged["SpecializationAvailabilitiesJson"].Single(r=>r["UnitId"].GetValue<int>()==u)["MaxAvailabilityXp0"].GetValue<int>();
 foreach(var (u,n) in new[]{(467,4),(714,2),(209,2),(715,2),(158,3),(716,3),(615,3),(717,3),(14,3),(718,3),(183,2),(719,2),(453,3),(720,3),(701,8),(62,4),(320,4),(408,4)})Check(PoolOf(u)==n,"availability "+u);
-Check(merged["SpecializationAvailabilitiesJson"].All(r=>r["UnitId"].GetValue<int>()!=721)&&!Row("Units",721)["DisplayInArmory"].GetValue<bool>(),"retired unit hidden");
-foreach(int o in new[]{565,1462,1775,1792,1895,1898,1931,1939,2117,1951})Check(Row("ModificationsJson",Row("OptionsJson",o)["ModificationId"].GetValue<int>())["UnitId"].GetValue<int>()==721,"retired option "+o);
-foreach(int m in new[]{515,804})Check(Row("ModificationsJson",m)["UnitId"].GetValue<int>()==721,"retired menu "+m);
+foreach(int o in new[]{565,1462,1775,1792,1895,1898,1931,1939,2117,1951,1843,1844,3316,3317})Check(merged["OptionsJson"].All(r=>r["Id"].GetValue<int>()!=o),"deleted option "+o);
+foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"].GetValue<int>()!=m),"deleted menu "+m);
+foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
+foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
 foreach(var (u,cost) in new[]{(110,65),(352,95),(320,90),(408,105),(147,80),(343,100),(62,110),(701,70)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
+WeaponCoverage.Validate(merged,allPatches);checks++;
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");

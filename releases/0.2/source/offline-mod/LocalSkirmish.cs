@@ -33,6 +33,7 @@ using Il2CppBrokenArrow.ScriptEngine.Network;                             // Net
 using Il2CppBrokenArrow.BrokenArrow.Client.Ecs.GNetwork.Services;         // EosAntiCheatService
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Network.Lobby;                 // LobbyList
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Network;                       // QuickSearchButton
+using MelonLoader.Utils;                                                 // MelonEnvironment
 
 [assembly: MelonInfo(typeof(BALocalSkirmish.Core), "BA Local Skirmish", "2.7.0", "BovineOverlord")]
 [assembly: MelonGame(null, null)]
@@ -131,6 +132,7 @@ namespace BALocalSkirmish
             _onlineGuardReady = _offlineLobbyGuardReady & Patch(typeof(JoinFromListPatch))
                 & Patch(typeof(JoinByInvitePatch)) & Patch(typeof(QuickSearchPatch));
             LoggerInstance.Msg($"F8 and Skirmish open local AI setup. Online: private scenario lobbies only, guard ready={_onlineGuardReady}.");
+            Patch(typeof(DeckGuardPatch));
             _aiDeckPatchReady = Patch(typeof(AiPlayerDeckPatch))
                 & Patch(typeof(DeckAssignmentPatch)) & Patch(typeof(EndBattleDeckPatch))
                 & Patch(typeof(AiSpawnPatch));
@@ -1030,6 +1032,56 @@ namespace BALocalSkirmish
             }
             catch (Exception e) { MelonLogger.Error("[LocalSkirmish] quick search check failed. " + e); }
             return OnlineRules.Refuse("quick search");
+        }
+    }
+
+    // Saved decks can hold options this mod deleted or moved to a new card. Drop those options
+    // before the game builds the slot. Selections that remain on the unit keep working.
+    [HarmonyPatch(typeof(DeckService), "PostLoad")]
+    static class DeckGuardPatch
+    {
+        static Dictionary<int, int> _moved;
+        static Dictionary<int, int> Moved()
+        {
+            if (_moved != null) return _moved;
+            _moved = new Dictionary<int, int>();
+            string path = Path.Combine(MelonEnvironment.UserDataDirectory, "FreedomArrow", "deck-migration.json");
+            foreach (var pair in System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, int>>(File.ReadAllText(path)))
+                _moved[int.Parse(pair.Key)] = pair.Value;
+            return _moved;
+        }
+        static void Clean(DataBaseService db, Il2CppSystem.Collections.Generic.List<DeckModData> mods, int unit, string deck)
+        {
+            for (int i = (mods?.Count ?? 0) - 1; i >= 0; i--)
+            {
+                int option = mods[i]?.OptionID ?? 0;
+                if (option == 0) continue;
+                bool moved = Moved().TryGetValue(option, out int parent) && parent == unit;
+                if (!moved && db.GetOptionById(option) != null) continue;
+                MelonLogger.Msg($"[DeckGuard] deck '{deck}': option {option} removed from unit {unit}.");
+                mods.RemoveAt(i);
+            }
+        }
+        static void Prefix(DeckService __instance, DeckDataModel deckModel)
+        {
+            try
+            {
+                var db = __instance?._dbService;
+                var slots = deckModel?._slots;
+                if (db == null || slots == null || !db.IsLoaded) return;
+                foreach (UnitCategoryType category in Enum.GetValues(typeof(UnitCategoryType)))
+                {
+                    if (!slots.TryGetValue(category, out var row) || row == null) continue;
+                    for (int i = 0; i < row.Length; i++)
+                    {
+                        var slot = row[i];
+                        if (slot == null || slot.UnitID == 0) continue;
+                        Clean(db, slot.ModList, slot.UnitID, deckModel.Name);
+                        if (slot.TransportID != 0) Clean(db, slot.TransportModList, slot.TransportID, deckModel.Name);
+                    }
+                }
+            }
+            catch (Exception e) { MelonLogger.Error("[DeckGuard] deck check failed: " + e); }
         }
     }
 }

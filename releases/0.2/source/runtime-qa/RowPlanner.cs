@@ -17,6 +17,14 @@ public static class RowPlanner
         {
             if(!int.TryParse(patch.Key,out int id)||id<=0||id.ToString()!=patch.Key)
                 throw new InvalidDataException("Invalid canonical Int32 row "+patch.Key);
+            if(patch.Value==null)
+            {
+                // A null patch deletes the row. Row references are checked when the package is built.
+                if(!index.Remove(patch.Key,out var gone))throw new InvalidDataException("Missing row to delete "+patch.Key);
+                rows.Remove(gone);
+                receipt(patch.Key,"(row)",null,null,false);
+                continue;
+            }
             var fields=patch.Value.AsObject();
             bool added=!index.TryGetValue(patch.Key,out var row);
             if(added)

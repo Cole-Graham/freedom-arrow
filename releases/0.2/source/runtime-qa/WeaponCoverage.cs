@@ -6,7 +6,7 @@ public static class WeaponCoverage
     public static readonly string[] Tables={"WeaponAmmunitionsJson","TurretUnitsJson","ModificationsJson","OptionsJson","TurretWeaponsJson","SquadWeaponsJson"};
     public static void Validate(Dictionary<string,JsonArray> tables,Dictionary<string,JsonObject> patches)
     {
-        HashSet<int> Changed(string table)=>patches.TryGetValue(table,out var p)?p.Where(x=>x.Value.AsObject().ContainsKey("WeaponId")).Select(x=>int.Parse(x.Key)).ToHashSet():new();
+        HashSet<int> Changed(string table)=>patches.TryGetValue(table,out var p)?p.Where(x=>x.Value!=null&&x.Value.AsObject().ContainsKey("WeaponId")).Select(x=>int.Parse(x.Key)).ToHashSet():new();
         var touched=Changed("TurretWeaponsJson");var squad=Changed("SquadWeaponsJson");
         if(touched.Count+squad.Count==0)return;
         int I(JsonNode r,string k)=>r[k].GetValue<int>();

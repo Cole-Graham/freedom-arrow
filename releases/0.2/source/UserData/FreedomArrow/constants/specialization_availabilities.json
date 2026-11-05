@@ -1,5 +1,5 @@
 {
-  "2000256": {
+  "2000254": {
     "SpecializationId": 13,
     "UnitId": 714,
     "MaxAvailabilityXp0": 2,
@@ -10,7 +10,7 @@
   "836": {
     "MaxAvailabilityXp0": 4
   },
-  "2000277": {
+  "2000275": {
     "SpecializationId": 8,
     "UnitId": 715,
     "MaxAvailabilityXp0": 2,
@@ -21,7 +21,7 @@
   "858": {
     "MaxAvailabilityXp0": 2
   },
-  "2000297": {
+  "2000295": {
     "SpecializationId": 10,
     "UnitId": 716,
     "MaxAvailabilityXp0": 3,
@@ -32,7 +32,7 @@
   "232": {
     "MaxAvailabilityXp0": 3
   },
-  "2000318": {
+  "2000316": {
     "SpecializationId": 12,
     "UnitId": 717,
     "MaxAvailabilityXp0": 3,
@@ -43,7 +43,7 @@
   "1009": {
     "MaxAvailabilityXp0": 3
   },
-  "2000334": {
+  "2000332": {
     "SpecializationId": 3,
     "UnitId": 718,
     "MaxAvailabilityXp0": 3,
@@ -54,7 +54,7 @@
   "9": {
     "MaxAvailabilityXp0": 3
   },
-  "2000358": {
+  "2000356": {
     "SpecializationId": 5,
     "UnitId": 719,
     "MaxAvailabilityXp0": 2,
@@ -65,7 +65,7 @@
   "388": {
     "MaxAvailabilityXp0": 2
   },
-  "2000375": {
+  "2000373": {
     "SpecializationId": 6,
     "UnitId": 720,
     "MaxAvailabilityXp0": 3,
@@ -76,7 +76,7 @@
   "805": {
     "MaxAvailabilityXp0": 3
   },
-  "2000376": {
+  "2000374": {
     "SpecializationId": 6,
     "UnitId": 701,
     "MaxAvailabilityXp0": 8,
@@ -84,7 +84,7 @@
     "MaxAvailabilityXp2": 0,
     "MaxAvailabilityXp3": 0
   },
-  "2000377": {
+  "2000375": {
     "SpecializationId": 3,
     "UnitId": 408,
     "MaxAvailabilityXp0": 4,

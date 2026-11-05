@@ -298,19 +298,15 @@
   "564": {
     "ArmorId": 2000233,
     "Cost": 0,
-    "ModificationId": 2000296,
+    "ModificationId": 2000294,
     "Order": 0,
     "ConcatenateWithUnitName": ""
   },
-  "565": {
-    "ArmorId": 2000234,
-    "Cost": 100,
-    "ModificationId": 2000243
-  },
+  "565": null,
   "566": {
     "ArmorId": 2000048,
     "Cost": 40,
-    "ModificationId": 2000296,
+    "ModificationId": 2000294,
     "Order": 1,
     "ConcatenateWithUnitName": " obr. 18"
   },
@@ -424,11 +420,7 @@
   "1461": {
     "ArmorId": 2000054
   },
-  "1462": {
-    "ArmorId": 2000055,
-    "Ability2Id": 2000203,
-    "ModificationId": 2000243
-  },
+  "1462": null,
   "1616": {
     "ArmorId": 2000101
   },
@@ -496,19 +488,8 @@
     "Ability1Id": 2000195,
     "Cost": 40
   },
-  "1895": {
-    "ArmorId": 2000240,
-    "Ability1Id": 2000195,
-    "Ability2Id": 2000203,
-    "Cost": 25,
-    "ModificationId": 2000243
-  },
-  "1898": {
-    "ArmorId": 2000018,
-    "Ability1Id": 2000211,
-    "Ability2Id": 2000203,
-    "ModificationId": 2000243
-  },
+  "1895": null,
+  "1898": null,
   "1904": {
     "ArmorId": 2000011,
     "Cost": 10
@@ -516,7 +497,7 @@
   "1905": {
     "ArmorId": 2000012,
     "Cost": 0,
-    "ModificationId": 2000330,
+    "ModificationId": 2000328,
     "Order": 0
   },
   "1918": {
@@ -525,17 +506,8 @@
   "1919": {
     "ArmorId": 2000107
   },
-  "1931": {
-    "ArmorId": 2000238,
-    "Ability1Id": 2000203,
-    "Cost": 25,
-    "ModificationId": 2000243
-  },
-  "1939": {
-    "ArmorId": 2000018,
-    "Ability1Id": 2000203,
-    "ModificationId": 2000243
-  },
+  "1931": null,
+  "1939": null,
   "1957": {
     "ArmorId": 2000051
   },
@@ -588,12 +560,7 @@
     "ArmorId": 2000120,
     "Ability1Id": 2000199
   },
-  "2117": {
-    "ArmorId": 2000121,
-    "Ability1Id": 2000199,
-    "Ability2Id": 2000207,
-    "ModificationId": 2000243
-  },
+  "2117": null,
   "2120": {
     "ArmorId": 2000056
   },
@@ -712,7 +679,7 @@
     "Ability1Id": 2000195,
     "Cost": 0,
     "StealthOverride": 0.8,
-    "ModificationId": 2000273,
+    "ModificationId": 2000271,
     "Order": 0
   },
   "535": {
@@ -805,16 +772,8 @@
   "1774": {
     "Ability1Id": 2000195
   },
-  "1775": {
-    "Ability1Id": 2000195,
-    "Ability3Id": 2000206,
-    "ModificationId": 2000243
-  },
-  "1792": {
-    "Ability1Id": 2000200,
-    "Ability2Id": 2000207,
-    "ModificationId": 2000243
-  },
+  "1775": null,
+  "1792": null,
   "1915": {
     "Ability1Id": 2000195
   },
@@ -824,11 +783,7 @@
   "1950": {
     "Ability1Id": 2000200
   },
-  "1951": {
-    "Ability1Id": 2000200,
-    "Ability2Id": 2000206,
-    "ModificationId": 2000243
-  },
+  "1951": null,
   "1973": {
     "Ability1Id": 2000209
   },
@@ -867,7 +822,7 @@
   },
   "3033": {
     "Cost": 0,
-    "ModificationId": 2000314,
+    "ModificationId": 2000312,
     "Order": 0
   },
   "491": {
@@ -884,12 +839,12 @@
   },
   "381": {
     "Cost": 0,
-    "ModificationId": 2000353,
+    "ModificationId": 2000351,
     "Order": 0
   },
   "1949": {
     "Cost": 0,
-    "ModificationId": 2000372,
+    "ModificationId": 2000370,
     "Order": 0
   },
   "1960": {
@@ -900,13 +855,13 @@
   },
   "2049": {
     "Cost": 0,
-    "ModificationId": 2000252,
+    "ModificationId": 2000250,
     "Order": 0,
     "ConcatenateWithUnitName": ""
   },
   "2050": {
     "Cost": 0,
-    "ModificationId": 2000252,
+    "ModificationId": 2000250,
     "Order": 1,
     "ConcatenateWithUnitName": ""
   },
@@ -943,9 +898,9 @@
   "2086": {
     "StealthOverride": 0.8
   },
-  "2000254": {
+  "2000252": {
     "IsDefault": false,
-    "ModificationId": 2000253,
+    "ModificationId": 2000251,
     "Name": "Armor MATV Base",
     "Order": 0,
     "UIName": "Custom_Option_Default",
@@ -990,9 +945,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000255": {
+  "2000253": {
     "IsDefault": false,
-    "ModificationId": 2000253,
+    "ModificationId": 2000251,
     "Name": "Armor MATV Armor",
     "Order": 0,
     "UIName": "Custom_Option_Uparmored",
@@ -1037,9 +992,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000275": {
+  "2000273": {
     "IsDefault": false,
-    "ModificationId": 2000274,
+    "ModificationId": 2000272,
     "Name": "Armor BRM3K Base",
     "Order": 0,
     "UIName": "Custom_Option_Default",
@@ -1084,9 +1039,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000276": {
+  "2000274": {
     "IsDefault": false,
-    "ModificationId": 2000274,
+    "ModificationId": 2000272,
     "Name": "Armor BRM3K Kaktus",
     "Order": 1,
     "UIName": "Custom_Option_Reactive_armor",
@@ -1131,9 +1086,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000316": {
+  "2000314": {
     "IsDefault": false,
-    "ModificationId": 2000315,
+    "ModificationId": 2000313,
     "Name": "Armor T72A Base",
     "Order": 0,
     "UIName": "Custom_Option_Default",
@@ -1178,9 +1133,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000317": {
+  "2000315": {
     "IsDefault": false,
-    "ModificationId": 2000315,
+    "ModificationId": 2000313,
     "Name": "Armor T72A K1",
     "Order": 1,
     "UIName": "Custom_Option_K1_ERA",
@@ -1225,9 +1180,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000332": {
+  "2000330": {
     "IsDefault": false,
-    "ModificationId": 2000331,
+    "ModificationId": 2000329,
     "Name": "Engine M60 Base",
     "Order": 0,
     "UIName": "Custom_Option_Default_Engine",
@@ -1272,9 +1227,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000333": {
+  "2000331": {
     "IsDefault": false,
-    "ModificationId": 2000331,
+    "ModificationId": 2000329,
     "Name": "Engine M60 Upgraded",
     "Order": 1,
     "UIName": "Custom_Option_Upgraded_engine",
@@ -1319,9 +1274,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000355": {
+  "2000353": {
     "IsDefault": false,
-    "ModificationId": 2000354,
+    "ModificationId": 2000352,
     "Name": "Armor M8 AGS Base",
     "Order": 0,
     "UIName": "Custom_Option_Default",
@@ -1366,9 +1321,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000356": {
+  "2000354": {
     "IsDefault": false,
-    "ModificationId": 2000354,
+    "ModificationId": 2000352,
     "Name": "Armor M8 AGS ERA",
     "Order": 2,
     "UIName": "Custom_Option_Reactive_armor",
@@ -1413,9 +1368,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000357": {
+  "2000355": {
     "IsDefault": false,
-    "ModificationId": 2000354,
+    "ModificationId": 2000352,
     "Name": "Armor M8 AGS Applique",
     "Order": 1,
     "UIName": "Custom_Option_Addon_armor",
@@ -1460,9 +1415,9 @@
     "Turret19Id": 0,
     "Turret20Id": 0
   },
-  "2000374": {
+  "2000372": {
     "IsDefault": false,
-    "ModificationId": 2000373,
+    "ModificationId": 2000371,
     "Name": "Ability M10Booker Base",
     "Order": 0,
     "UIName": "Custom_Option_None",
@@ -1506,5 +1461,9 @@
     "Turret18Id": 0,
     "Turret19Id": 0,
     "Turret20Id": 0
-  }
+  },
+  "1843": null,
+  "1844": null,
+  "3316": null,
+  "3317": null
 }

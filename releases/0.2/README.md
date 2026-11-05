@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.20 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.21 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.20.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.21.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -82,6 +82,8 @@ Dev.19 (change log audit): Uran-9 default loadout 70 (base 25 + Ataka 20 + Igla 
 
 Dev.20 (Osama): T-72B3A 240 -> 105 for now.
 
+Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidden FA Retired unit, so the armory and decks are empty. The hidden unit is gone. A null row in a constants file now deletes that row, and retired options, squad members, squad weapons and ammo links are deleted. The generator and row tests enforce the game's squad rules. A deck guard removes deleted and moved options from saved decks when they load.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -119,3 +121,5 @@ Dev.20 (Osama): T-72B3A 240 -> 105 for now.
 - 2026-11-04 20:01:19 PST (America/Los_Angeles) — dev.19: applied the Uran-9, BRDM Konkurs and M2A3 ESV BUSK3 prices found by the change log audit. No live result.
 
 - 2026-11-04 20:04:05 PST (America/Los_Angeles) — dev.20: T-72B3A 105 for now. No live result.
+
+- 2026-11-04 20:12:56 PST (America/Los_Angeles) — dev.21: fixed the empty armory by deleting retired rows instead of using a hidden unit. No live result yet.

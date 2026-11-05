@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.20 — development candidate
+# Freedom Arrow 0.2.0-dev.21 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -48,6 +48,8 @@ Dev.19 (change log audit): Uran-9 default loadout 70 (base 25 + Ataka 20 + Igla 
 
 Dev.20 (Osama): T-72B3A 240 -> 105 for now.
 
+Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidden FA Retired unit, so the armory and decks are empty. The hidden unit is gone. A null row in a constants file now deletes that row, and retired options, squad members, squad weapons and ammo links are deleted. The generator and row tests enforce the game's squad rules. A deck guard removes deleted and moved options from saved decks when they load.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -87,3 +89,5 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 - 2026-11-04 20:01:19 PST (America/Los_Angeles) — dev.19: applied the Uran-9, BRDM Konkurs and M2A3 ESV BUSK3 prices found by the change log audit. No live result.
 
 - 2026-11-04 20:04:05 PST (America/Los_Angeles) — dev.20: T-72B3A 105 for now. No live result.
+
+- 2026-11-04 20:12:56 PST (America/Los_Angeles) — dev.21: fixed the empty armory by deleting retired rows instead of using a hidden unit. No live result yet.

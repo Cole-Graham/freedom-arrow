@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.2.0-dev.20", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.2.0-dev.21", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -117,8 +117,8 @@ public class Runtime : MelonMod
                 foreach (var patch in table.Value)
                 foreach (var link in linksNode.AsObject())
                 {
-                    var fields=patch.Value.AsObject();
-                    if (!fields.ContainsKey(link.Key)) continue;
+                    var fields=patch.Value?.AsObject();
+                    if (fields==null || !fields.ContainsKey(link.Key)) continue;
                     if (!int.TryParse(fields[link.Key]?.ToJsonString(),out int value) || value<0)
                         throw new InvalidDataException("Invalid Int32 reference "+table.Key+"."+link.Key);
                     var rule=link.Value.AsArray();string target=rule[0].GetValue<string>();
