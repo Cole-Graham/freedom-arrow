@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.17 — development candidate
+# Freedom Arrow 0.3.0-dev.18 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.17: see README. Offline checks only.
+0.3.0-dev.18: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -149,6 +149,8 @@ Dev.16: first build with the dev.15 labels. Commit cde1722 (dev.15) did not comp
 
 Dev.17 (Osama): RPG-28 penetration 1050 -> 950 on ammo 2000137, the row every unit uses.
 
+Dev.18 (Osama): RPG-28 penetration 950 -> 900 on ammo 2000137.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
@@ -158,3 +160,4 @@ Dev.17 (Osama): RPG-28 penetration 1050 -> 950 on ammo 2000137, the row every un
 - 2026-11-04 23:43:37 PST (America/Los_Angeles) — dev.15: zone value labels. No live result.
 - 2026-11-04 23:44:21 PST (America/Los_Angeles) — dev.16: fixed the dev.15 compile error. No live result.
 - 2026-11-04 23:52:25 PST (America/Los_Angeles) — dev.17: RPG-28 penetration 950. No live result.
+- 2026-11-04 23:59:39 PST (America/Los_Angeles) — dev.18: RPG-28 penetration 900. No live result.
