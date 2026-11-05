@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.21", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.22", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -351,7 +351,8 @@ public sealed partial class Prototype : MelonMod
             if(Zones!=null)foreach(var zone in Zones)if(zone?.Data!=null)result.Add(zone.Data.UID);
             return result;
         }
-        // Draws each zone's value on the zone. Returns the number drawn, or -1 with no camera.
+        const float IconHeight=75,IconClearance=0.9f;
+        // Draws each zone's value beside its icon. Returns the number drawn, or -1 with no camera.
         public int DrawWeights(string map,Settings config,GUIStyle style)
         {
             var camera=Camera.main;if(camera==null)return -1;
@@ -361,14 +362,16 @@ public sealed partial class Prototype : MelonMod
             foreach(var zone in Zones)
             {
                 if(zone?.Data==null)continue;
-                var screen=camera.WorldToScreenPoint(zone.transform.position);
+                // The zone icon floats above the zone centre on a stick. Sit to its right.
+                var screen=camera.WorldToScreenPoint(zone.transform.position+Vector3.up*IconHeight);
                 if(screen.z<=0)continue;
                 float x=screen.x,y=Screen.height-screen.y;
                 if(x<0||x>Screen.width||y<0||y>Screen.height)continue;
                 string label=config.ZoneLabel(map,zone.Data.UID);
-                // Sit on the zone centre, clear of the raised icon, with a shadow so it reads on any terrain.
-                GUI.contentColor=Color.black;GUI.Label(new Rect(x-w/2+2,y-h/2+2,w,h),label,style);
-                GUI.contentColor=Color.white;GUI.Label(new Rect(x-w/2,y-h/2,w,h),label,style);
+                // A shadow keeps it readable on any terrain.
+                float left=x+h*IconClearance;
+                GUI.contentColor=Color.black;GUI.Label(new Rect(left+1,y-h/2+1,w,h),label,style);
+                GUI.contentColor=Color.white;GUI.Label(new Rect(left,y-h/2,w,h),label,style);
                 drawn++;
             }
             return drawn;

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.21 — development candidate
+# Freedom Arrow 0.3.0-dev.22 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.21: see README. Offline checks only.
+0.3.0-dev.22: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -157,6 +157,8 @@ Dev.20 (Osama): adds `[FA] Central Village Skirmish` for F8 Local AI, which list
 
 Dev.21 (Osama): every Central Village zone stays on the map at any lobby size. The native small map hid A, B, C and D, and H on Skirmish, and Auto picks small under 8 players. Zone labels move to the zone centre, clear of the icons.
 
+Dev.22 (Osama, live test): both FA scenarios declare game version 1.2.2, because the game picks a database from the scenario's version. The 1.2.0.2 value inherited from the native mission is the likely cause of `Not found unit in DB by ID:714`, no call-in and no income. A `FREEDOM_ARROW_DB_SOURCE` line logs the database. Zone labels are smaller and sit right of the zone icon.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
@@ -170,3 +172,4 @@ Dev.21 (Osama): every Central Village zone stays on the map at any lobby size. T
 - 2026-11-05 00:06:46 PST (America/Los_Angeles) — dev.19: scenario install folder. Listing not yet confirmed live.
 - 2026-11-05 00:11:24 PST (America/Los_Angeles) — dev.20: Skirmish version of Central Village for F8. No live result.
 - 2026-11-05 00:13:57 PST (America/Los_Angeles) — dev.21: all zones stay visible; label position. dev.19 labels and 6-zone match seen live; dev.21 has no live result.
+- 2026-11-05 00:18:10 PST (America/Los_Angeles) — dev.22: scenario game version, database log, label size and position. Not yet run live.

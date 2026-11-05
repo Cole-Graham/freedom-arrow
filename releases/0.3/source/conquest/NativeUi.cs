@@ -71,8 +71,8 @@ public sealed partial class Prototype
                 if(labelView.ZoneIds().Count==0)return;
                 labelMap=MapName(labelView);
             }
-            int size=Math.Max(14,Screen.height/40);
-            if(labelStyle==null||labelStyle.fontSize!=size)labelStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+            int size=Math.Max(12,Screen.height/56);
+            if(labelStyle==null||labelStyle.fontSize!=size)labelStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleLeft};
             var color=GUI.contentColor;
             int drawn=labelView.DrawWeights(labelMap,config,labelStyle);
             GUI.contentColor=color;

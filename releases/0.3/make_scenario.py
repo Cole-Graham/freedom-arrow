@@ -8,6 +8,7 @@ MARKER=b'fhk3s0g3';NAME='[FA] Central Village';START_POINTS=1500;GUID='6fa0c3d4-
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 3 minute opening, '
       'the side with the higher zone value scores the difference. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
 SKIRMISH_NAME='[FA] Central Village Skirmish';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004'
+GAME_VERSION='1.2.2'
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 def dec(raw):
     assert raw[:8]==MARKER
@@ -46,7 +47,8 @@ def build(game,out,name,guid,mission,kind,desc,public):
     for o in money:
         o['defV']=START_POINTS
         if 'tstV' in o:o['tstV']=START_POINTS
-    meta.update(guid=guid,scenario=name,author='Freedom Arrow',desc=desc,public=public,type=kind)
+    # The game picks a database from the scenario's game version. The native 1.2.0 values do not load our tables.
+    meta.update(guid=guid,scenario=name,author='Freedom Arrow',desc=desc,public=public,type=kind,gameVersion=GAME_VERSION)
     target=out/name;target.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(target/(name+'.bascr'),'w',zipfile.ZIP_DEFLATED) as w:
         for part,data in [('head.bam',dump(head)),('objects.bam',dump(objects)),('nodes.bam',dump(nodes))]:

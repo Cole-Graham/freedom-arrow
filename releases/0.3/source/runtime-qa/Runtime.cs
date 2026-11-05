@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.21", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.22", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -54,6 +54,9 @@ public class Runtime : MelonMod
             failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
             LoggerInstance.Error("FREEDOM_ARROW_FAILED: payload refused before database hook: "+e.Message);return;
         }
+        // Scenarios can route to another database. This line shows which one a battle uses.
+        try { HarmonyInstance.Patch(AccessTools.Method(typeof(DataBaseService), "LoadCompiled"),prefix: new HarmonyMethod(typeof(Runtime), nameof(LogDatabase))); }
+        catch(Exception e) { LoggerInstance.Error("FREEDOM_ARROW_DB_SOURCE_FAILED: "+e.Message); }
         HarmonyInstance.Patch(AccessTools.Method(typeof(DataBaseCompiled), "LoadSource"),
             prefix: new HarmonyMethod(typeof(Runtime), nameof(Apply)) { priority=HarmonyLib.Priority.First });
         LoggerInstance.Msg($"Freedom Arrow {PackageVersion} package initialized. Main database constants hook installed.");
@@ -101,6 +104,11 @@ public class Runtime : MelonMod
     }
     static JsonNode Clone(JsonNode node) => node==null ? null : JsonNode.Parse(node.ToJsonString());
     static JsonValueKind Kind(JsonNode node) => JsonTypes.Kind(node);
+    static void LogDatabase(DataBaseCompiled dataBase,string sourceId)
+    {
+        try { MelonLogger.Msg($"FREEDOM_ARROW_DB_SOURCE {dataBase?.name} main={dataBase?.MainBuildDatabase} source={sourceId} patched={applied}"); }
+        catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_DB_SOURCE_FAILED: "+e.Message); }
+    }
     static void Apply(DataBaseCompiled __instance)
     {
         if (applied || failed) return;
