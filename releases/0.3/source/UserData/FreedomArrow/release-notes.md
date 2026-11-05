@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.6 — development candidate
+# Freedom Arrow 0.3.0-dev.7 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.6: see README. Offline checks only.
+0.3.0-dev.7: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -116,6 +116,10 @@ Dev.5 (Osama): all Javelin rows penetration 750 -> 140. By the HEAT formula, 14 
 
 - 2026-11-04 22:29:10 PST (America/Los_Angeles) — dev.5: Javelin penetration 140. No live result.
 
-Dev.6 (Osama): HEAT top armor 100 on every armor choice of the Abrams, T-72, T-80, T-90 and T-14 cards, so Javelin 140 leaves about 0.10 HP after 2 hits on all of them. T-15, M1150 and BMPT are not changed. Kinetic top armor is not changed. No live result.
+Dev.6 (Osama): HEAT top armor 100 on every armor choice of the Abrams, T-72, T-80, T-90 and T-14 cards, so Javelin 140 leaves about 0.10 HP after 2 hits on all of them. T-15 and M1150 are not changed. Kinetic top armor is not changed. No live result.
 
 - 2026-11-04 22:32:30 PST (America/Los_Angeles) — dev.6: tank top HEAT 100. No live result.
+
+Dev.7 (Osama): APSCooldown 6 -> 30 seconds on all 14 APS abilities. BMPT HEAT top 100. No live result.
+
+- 2026-11-04 22:33:53 PST (America/Los_Angeles) — dev.7: APS cooldown 30 seconds, BMPT top 100. No live result.

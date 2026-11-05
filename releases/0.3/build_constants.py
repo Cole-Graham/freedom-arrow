@@ -192,9 +192,12 @@ def main():
     armor(78,1834,{'HeatArmorFront':400,'HeatArmorSides':400},'AAVP SU kit 400 HEAT')
     armor(240,574,{'HeatArmorSides':200},'BMPT baseline side HEAT 200')
     armor(9,624,{'HeatArmorSides':200},'T-72B1 side HEAT 200')
+    # Every active APS ability uses the longer cooldown.
+    assert {i for i,a in effective['AbilitiesJson'].items() if a['IsAPS']}==set(map(int,us['ability_fields'])),'APS list changed'
+    for key,fields in us['ability_fields'].items():put('AbilitiesJson',int(key),fields,'APS cooldown 30 seconds')
     # Abrams, T-72, T-80, T-90 and T-14: 100 HEAT top on every armor choice.
     why='Top HEAT 100 for the Javelin breakpoint'
-    for uid in [2,53,54,191,243,244,245,9,157,615,703,717,158,239,716,236,237,238,13]:
+    for uid in [2,53,54,191,243,244,245,9,157,615,703,717,158,239,716,236,237,238,13,240]:
         for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
             old=link['ArmorId']
             if effective['ArmorsJson'][old]['HeatArmorTop']==100:continue
@@ -210,7 +213,7 @@ def main():
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):
-        return (us['armor_fields'] if table=='ArmorsJson' else us['ammo_fields'] if table=='AmmunitionsJson' else {}).get(str(rid),{})
+        return (us['armor_fields'] if table=='ArmorsJson' else us['ammo_fields'] if table=='AmmunitionsJson' else us['ability_fields'] if table=='AbilitiesJson' else {}).get(str(rid),{})
     for table,rows in locks['tables'].items():
         for key,lock in rows.items():
             row=copy.deepcopy(effective[table][int(key)])

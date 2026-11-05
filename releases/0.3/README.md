@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.6 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.7 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.6.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.7.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -101,7 +101,9 @@ Dev.4 (Osama): woods 30% and buildings 50% as a start. Forest: a `CalculateHitDa
 
 Dev.5 (Osama): all Javelin rows penetration 750 -> 140. By the HEAT formula, 14 HP tanks with top 100 take 6.95 per hit and keep about 0.10 HP after 2 hits. T-14 and T-15 at top 120 also become 3 hits. A scan of 353 playable unit and armor combinations found no other hit count change. No live result.
 
-Dev.6 (Osama): HEAT top armor 100 on every armor choice of the Abrams, T-72, T-80, T-90 and T-14 cards, so Javelin 140 leaves about 0.10 HP after 2 hits on all of them. T-15, M1150 and BMPT are not changed. Kinetic top armor is not changed. No live result.
+Dev.6 (Osama): HEAT top armor 100 on every armor choice of the Abrams, T-72, T-80, T-90 and T-14 cards, so Javelin 140 leaves about 0.10 HP after 2 hits on all of them. T-15 and M1150 are not changed. Kinetic top armor is not changed. No live result.
+
+Dev.7 (Osama): APSCooldown 6 -> 30 seconds on all 14 APS abilities. BMPT HEAT top 100. No live result.
 
 ## Document change log
 
@@ -158,3 +160,5 @@ Dev.6 (Osama): HEAT top armor 100 on every armor choice of the Abrams, T-72, T-8
 - 2026-11-04 22:29:10 PST (America/Los_Angeles) — dev.5: Javelin penetration 140. No live result.
 
 - 2026-11-04 22:32:30 PST (America/Los_Angeles) — dev.6: tank top HEAT 100. No live result.
+
+- 2026-11-04 22:33:53 PST (America/Los_Angeles) — dev.7: APS cooldown 30 seconds, BMPT top 100. No live result.

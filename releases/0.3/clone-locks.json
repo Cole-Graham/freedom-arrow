@@ -14,7 +14,9 @@
       },
       "2000196": {
         "sha256": "d57fc32b6ba842011208912c961e634ee612ca9516bf6e39a3f16eb9a3ad64cf",
-        "permitted_before": {}
+        "permitted_before": {
+          "APSCooldown": 6.0
+        }
       },
       "2000197": {
         "sha256": "75ce888964f02d094b9d81b49308b99b76835b21d16b51a49662b3947b775921",
@@ -38,7 +40,9 @@
       },
       "2000202": {
         "sha256": "1a73c33254a99deae69703f83e725256cb0acda88dd30b52ef975eb4a6535a64",
-        "permitted_before": {}
+        "permitted_before": {
+          "APSCooldown": 6.0
+        }
       },
       "2000203": {
         "sha256": "70eb4b2c3e5dc34f037e971a0394009590fb829142b8e430341f2b693e7d5254",
@@ -50,7 +54,9 @@
       },
       "2000205": {
         "sha256": "7b5fd8e442c40876f001a3bd764e8a8865a5ba7bb15048f130413d425832ae9c",
-        "permitted_before": {}
+        "permitted_before": {
+          "APSCooldown": 6.0
+        }
       },
       "2000206": {
         "sha256": "d88fcab0095bdef6ffb9a762c473ac4a4de269a0230beea3f9ede17b5b0b7885",
@@ -90,7 +96,9 @@
       },
       "2000215": {
         "sha256": "5e0df673cd4b1ddd35df57c71234549685d8e4977d1a38210a2b38051c179b27",
-        "permitted_before": {}
+        "permitted_before": {
+          "APSCooldown": 6.0
+        }
       },
       "2000216": {
         "sha256": "6541060a5c6b4bb4bcbb98483e765230bf2eb0d101be060bcd7966030c18e501",
