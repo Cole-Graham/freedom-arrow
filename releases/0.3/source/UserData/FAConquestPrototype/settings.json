@@ -9,7 +9,8 @@
   "MaximumSampleLatenessSeconds": 5,
   "ShowOverlay": true,
   "MapZoneWeights": {
-    "[FA] Central Village": {"53":4,"54":4,"55":3,"56":3,"57":2,"58":2,"59":4,"60":4,"61":4,"62":4}
+    "[FA] Central Village": {"53":4,"54":4,"55":3,"56":3,"57":2,"58":2,"59":4,"60":4,"61":4,"62":4},
+    "[FA] Central Village Skirmish": {"31":4,"32":4,"33":3,"35":3,"36":2,"37":2,"50":4,"159":4,"178":4,"179":4}
   },
   "TestDurationSeconds": 0,
   "PhasePolicy": "continuous",

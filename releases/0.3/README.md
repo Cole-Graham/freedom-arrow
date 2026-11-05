@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.19 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.20 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.19.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.20.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -132,6 +132,8 @@ Dev.18 (Osama): RPG-28 penetration 950 -> 900 on ammo 2000137.
 
 Dev.19: the runtime copies `[FA] Central Village` to `Mods/Scenarios`, because online lobbies leave out the local `Scenarios` folder. It removes the old local copy.
 
+Dev.20 (Osama): adds `[FA] Central Village Skirmish` for F8 Local AI, which lists Skirmish scenarios only. It is built from the game's `Central_Village_Skirmish` mission with the same zone values on zone IDs 31, 32, 33, 35, 36, 37, 50, 159, 178 and 179.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -203,3 +205,4 @@ Dev.19: the runtime copies `[FA] Central Village` to `Mods/Scenarios`, because o
 - 2026-11-04 23:52:25 PST (America/Los_Angeles) — dev.17: RPG-28 penetration 950. No live result.
 - 2026-11-04 23:59:39 PST (America/Los_Angeles) — dev.18: RPG-28 penetration 900. No live result.
 - 2026-11-05 00:06:46 PST (America/Los_Angeles) — dev.19: scenario install folder. Listing not yet confirmed live.
+- 2026-11-05 00:11:24 PST (America/Los_Angeles) — dev.20: Skirmish version of Central Village for F8. No live result.
