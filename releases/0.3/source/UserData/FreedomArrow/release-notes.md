@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.3 — development candidate
+# Freedom Arrow 0.3.0-dev.4 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.3: see README. Offline checks only.
+0.3.0-dev.4: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -107,3 +107,7 @@ Dev.2: starting points 1500. `game-config.json` sets the game's default before p
 Dev.3: infantry cover damage. A postfix on `CalculateHitDamage` multiplies infantry damage by 0.60 in forest and 0.30 in buildings, scaled down by ammunition `IgnoreCover`. Values are in `game-config.json`. Not proven live: whether infantry in buildings report the Buildings terrain, and how this meets any vanilla building protection.
 
 - 2026-11-04 21:51:15 PST (America/Los_Angeles) — dev.3: infantry cover damage. No live result.
+
+Dev.4 (Osama): woods 30% and buildings 50% as a start. Forest: a `CalculateHitDamage` postfix multiplies infantry damage by 0.70, scaled by `IgnoreCover`. Buildings: the mod writes `DamageModifierFloor` 0.50 and `DamageModifierPerSoldier` 0, with no hook. This replaces the dev.3 values, which stacked in buildings.
+
+- 2026-11-04 22:10:01 PST (America/Los_Angeles) — dev.4: woods 30%, buildings 50%. No live result.

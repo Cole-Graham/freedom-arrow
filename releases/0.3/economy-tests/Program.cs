@@ -37,7 +37,7 @@ var noZones=new List<Zone>();var lateSettings=new Settings{OpeningDelaySeconds=1
 var late=new Ledger(lateSettings,"map",2700);Check(late.Advance(80,noZones).Count==0&&late.NextTick==lateSettings.OpeningDelaySeconds,"late attach before the opening delay keeps the first tick");
 var later=new Ledger(lateSettings,"map",2700);later.Advance(lateSettings.OpeningDelaySeconds+95,noZones);Check(later.NextTick==300&&later.MissedTicks==0,"late attach joins the shared schedule");
 var hitch=new Ledger(lateSettings,"map",2700);hitch.Advance(0,noZones);Check(hitch.Advance(lateSettings.OpeningDelaySeconds+65,noZones).Count==0&&hitch.MissedTicks==3&&hitch.NextTick==lateSettings.OpeningDelaySeconds+90,"a long stall skips ticks and does not fault");Check(hitch.Advance(lateSettings.OpeningDelaySeconds+90,noZones).Count==1,"scoring continues after a stall");
-Check(Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.6f,0)-0.6f)<1e-6&&Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.3f,0)-0.3f)<1e-6,"cover totals");
-Check(FreedomArrow.CoverDamagePolicy.Factor(0.3f,1)==1&&Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.6f,0.5f)-0.8f)<1e-6,"IgnoreCover removes protection in proportion");
+Check(Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.7f,0)-0.7f)<1e-6,"forest total");
+Check(FreedomArrow.CoverDamagePolicy.Factor(0.7f,1)==1&&Math.Abs(FreedomArrow.CoverDamagePolicy.Factor(0.7f,0.5f)-0.85f)<1e-6,"IgnoreCover removes protection in proportion");
 Throws(()=>FreedomArrow.CoverDamagePolicy.Factor(0,0),"zero taken refused");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");

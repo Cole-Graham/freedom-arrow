@@ -14,14 +14,26 @@ static class DetectionConfig
     static DetectionSettings target,vanilla;
     static float startingPoints;
     static float? originalPoints;
+    static float buildingFloor,buildingPerSoldier;
+    static (float floor,float perSoldier)? originalBuilding;
+    static void WriteBuildings()
+    {
+        var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
+        originalBuilding??=(b.DamageModifierFloor,b.DamageModifierPerSoldier);
+        (b.DamageModifierFloor,b.DamageModifierPerSoldier)=Runtime.IsApplied?(buildingFloor,buildingPerSoldier):originalBuilding.Value;
+        MelonLogger.Msg($"FREEDOM_ARROW_BUILDING_DAMAGE floor {b.DamageModifierFloor} perSoldier {b.DamageModifierPerSoldier}");
+    }
     static void Log(string stage,object data)=>MelonLogger.Msg("FREEDOM_ARROW_DETECTION "+stage+" "+JsonSerializer.Serialize(data));
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
         target=DetectionSettings.Parse(File.ReadAllText(Path.Combine(root,"detection-config.json")));
         harmony.Patch(AccessTools.Method(typeof(EcsLoader),"InitBattleSequentialSystem"),
             prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(Before)),postfix:new HarmonyMethod(typeof(DetectionConfig),nameof(After)));
-        startingPoints=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"game-config.json")))["DefaultPlayerMoney"].GetValue<float>();
+        var game=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"game-config.json")));
+        startingPoints=game["DefaultPlayerMoney"].GetValue<float>();
         if(!(startingPoints>=0&&startingPoints<=5000))throw new InvalidDataException("DefaultPlayerMoney out of range");
+        buildingFloor=game["BuildingDamageFloor"].GetValue<float>();buildingPerSoldier=game["BuildingDamagePerSoldier"].GetValue<float>();
+        if(!(buildingFloor>=0&&buildingFloor<=1&&buildingPerSoldier>=0&&buildingPerSoldier<=0.1f))throw new InvalidDataException("Building damage settings out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }
@@ -47,6 +59,7 @@ static class DetectionConfig
             originalPoints??=game.DefaultPlayerMoney;
             game.DefaultPlayerMoney=Runtime.IsApplied?startingPoints:originalPoints.Value;
             MelonLogger.Msg($"FREEDOM_ARROW_START_POINTS {game.DefaultPlayerMoney}");
+            WriteBuildings();
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_START_POINTS_FAILED: "+e.Message);}
     }
@@ -64,6 +77,7 @@ static class DetectionConfig
             var after=Read(cfg);
             if(!after.Same(want))throw new InvalidDataException("Read-back mismatch");
             Log("before",new{apply,before,after});
+            WriteBuildings();
         }
         catch(Exception e)
         {

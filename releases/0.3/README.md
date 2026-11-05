@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.3 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.4 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.3.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.4.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -97,6 +97,8 @@ Dev.2: starting points 1500. `game-config.json` sets the game's default before p
 
 Dev.3: infantry cover damage. A postfix on `CalculateHitDamage` multiplies infantry damage by 0.60 in forest and 0.30 in buildings, scaled down by ammunition `IgnoreCover`. Values are in `game-config.json`. Not proven live: whether infantry in buildings report the Buildings terrain, and how this meets any vanilla building protection.
 
+Dev.4 (Osama): woods 30% and buildings 50% as a start. Forest: a `CalculateHitDamage` postfix multiplies infantry damage by 0.70, scaled by `IgnoreCover`. Buildings: the mod writes `DamageModifierFloor` 0.50 and `DamageModifierPerSoldier` 0, with no hook. This replaces the dev.3 values, which stacked in buildings.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -146,3 +148,5 @@ Dev.3: infantry cover damage. A postfix on `CalculateHitDamage` multiplies infan
 - 2026-11-04 21:30:57 PST (America/Los_Angeles) — dev.2: starting points 1500. No live result.
 
 - 2026-11-04 21:51:15 PST (America/Los_Angeles) — dev.3: infantry cover damage. No live result.
+
+- 2026-11-04 22:10:01 PST (America/Los_Angeles) — dev.4: woods 30%, buildings 50%. No live result.

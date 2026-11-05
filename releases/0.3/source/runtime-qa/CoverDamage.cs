@@ -11,11 +11,11 @@ using Il2CppDefaultEcs;
 using Il2CppInterop.Runtime;
 using MelonLoader;
 namespace FreedomArrow;
-// Infantry damage in woods and buildings. Vanilla has no terrain factor in CalculateHitDamage.
+// Infantry damage in woods. Vanilla has no terrain factor in CalculateHitDamage. Buildings use BuildingsConfig (DetectionConfig).
 static class CoverDamage
 {
     const int MaxLog=15;
-    static float forest,buildings;
+    static float forest;
     static int logged,probed;
     static bool broken;
     static IntPtr hasInfantry,hasTerrain,getTerrain,getTerrainCode;
@@ -29,15 +29,15 @@ static class CoverDamage
     public static unsafe void Install(HarmonyLib.Harmony harmony,string root)
     {
         var config=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"game-config.json")));
-        forest=config["ForestDamageTaken"].GetValue<float>();buildings=config["BuildingDamageTaken"].GetValue<float>();
-        CoverDamagePolicy.Factor(forest,0);CoverDamagePolicy.Factor(buildings,0);
+        forest=config["ForestDamageTaken"].GetValue<float>();
+        CoverDamagePolicy.Factor(forest,0);
         hasInfantry=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(InfantryUnitComponent));
         hasTerrain=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(TerrainTypeComponent));
         getTerrain=Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(TerrainTypeComponent));
         getTerrainCode=*(IntPtr*)getTerrain;
         if(getTerrainCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<TerrainTypeComponent> has no code");
         harmony.Patch(AccessTools.Method(typeof(BattleSystemHelpers),"CalculateHitDamage"),postfix:new HarmonyMethod(typeof(CoverDamage),nameof(After)));
-        MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE installed forest {forest} buildings {buildings}");
+        MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE installed forest {forest}");
     }
     static unsafe bool Has(IntPtr method,Entity e)
     {
@@ -54,10 +54,9 @@ static class CoverDamage
             if(!Has(hasInfantry,__0)||!Has(hasTerrain,__0))return;
             var terrain=*(TerrainType*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getTerrainCode)(&__0,getTerrain);
             if(Interlocked.Increment(ref probed)<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE infantry hit on {terrain}");
-            float taken=terrain==TerrainType.Forest?forest:terrain==TerrainType.Buildings?buildings:1;
-            if(taken>=1)return;
+            if(terrain!=TerrainType.Forest)return;
             float before=__result;
-            __result=before*CoverDamagePolicy.Factor(taken,__2?.IgnoreCover??0);
+            __result=before*CoverDamagePolicy.Factor(forest,__2?.IgnoreCover??0);
             if(Interlocked.Increment(ref logged)<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE {terrain} {__2?.Name}: {before:0.##} -> {__result:0.##}");
         }
         catch(Exception e)
