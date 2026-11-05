@@ -27,7 +27,19 @@ Copy-Item config.template.YAML config.YAML   # then set game_root in config.YAML
 .venv\Scripts\python -m pipeline decrypt
 ```
 
-`decrypt` writes `cache/vanilla/<build-id>/`. The generator stops if any table differs from the 24 pins in `releases/0.1/source/UserData/FreedomArrow/compatibility.json`. If it stops, the game build changed or its data is modified: do not bypass the check.
+`decrypt` writes `cache/vanilla/<build-id>/`. If a complete snapshot already exists for that build, `decrypt` keeps it and does not read the game again. A snapshot from an older pipeline can hold the wrong database copy.
+
+The generator stops if any table differs from the 24 pins in `releases/0.1/source/UserData/FreedomArrow/compatibility.json`. If it stops:
+
+1. Delete the snapshot and decrypt again. The cache is git-ignored and is rebuilt from the game.
+
+   ```powershell
+   Remove-Item -Recurse -Force cache/vanilla/<build-id>
+   .venv\Scripts\python -m pipeline decrypt
+   ```
+
+2. A correct snapshot has 545 rows in `Units.json`. A stale one has 540, matches 6 of 24 pins, and has `Units` plaintext SHA-256 `47b65c72…`.
+3. If a fresh snapshot still fails, the game build changed or its data is modified. Stop and report it. Do not bypass the check.
 
 ## Build a test version
 
@@ -90,3 +102,4 @@ Example: 1450 optics, UI 2.0 infantry, forest cover 3 gives 483 m.
 ## Document change log
 
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — Created the test-version guide for dev.14.
+- 2026-11-04 19:29:55 PST (America/Los_Angeles) — Added the stale-snapshot recovery after a first Windows setup stopped on the pins.

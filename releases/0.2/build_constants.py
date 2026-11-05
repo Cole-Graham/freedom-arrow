@@ -20,7 +20,7 @@ def main():
     original, effective, patches, frozen = {}, {}, {}, {}
     for table,digest in pins['source_plaintext_sha256'].items():
         raw=aes_decrypt((args.vanilla_dir/(table+'.b64')).read_text())
-        assert hashlib.sha256(raw).hexdigest()==digest,table
+        assert hashlib.sha256(raw).hexdigest()==digest,f'{table} does not match its pin. Delete this snapshot and run pipeline decrypt again; see TESTING.md.'
         original[table]={r['Id']:r for r in json.loads(raw)}
         patches[table]=json.loads((base/'constants'/FIELD_TO_FILE[table]).read_text())
         effective[table]=copy.deepcopy(original[table])
