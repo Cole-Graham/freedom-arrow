@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.27 — development candidate
+# Freedom Arrow 0.3.0-dev.28 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -66,6 +66,10 @@ The plain T-80BV has top HEAT 80, the same as vanilla. The T-80BVM variants stay
 
 This replaces the dev.25 setup phase. In F8 the game pauses for 3 minutes with the DEPLOYMENT timer, using the same session pause as the vanilla deployment phase. The match clock, income and combat stop. Round 1 then starts at the full clock, and scoring starts at 5:00. Online, the room server controls the deployment phase, so it stays at its vanilla length. No live result.
 
+## dev.28 round bar and next tick
+
+The round text is smaller and has no timer, so it fits above the bar. The three empty native phase boxes are hidden, and the orange fill stays. A green number under each team bar shows the points that team gets on the next tick. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -110,7 +114,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.27: see README. Offline checks only.
+0.3.0-dev.28: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -196,3 +200,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 00:54:48 PST (America/Los_Angeles) — dev.25: 3 minute setup, native round bar, damage hook off. Not yet run live.
 - 2026-11-05 00:56:41 PST (America/Los_Angeles) — dev.26: T-80BV top HEAT 80. Not yet run live.
 - 2026-11-05 01:04:48 PST (America/Los_Angeles) — dev.27: F8 setup phase pauses the game. Scoring starts at 5:00 again. Not yet run live.
+- 2026-11-05 01:08:31 PST (America/Los_Angeles) — dev.28: round text fits, phase boxes hidden, green next-tick number. Not yet run live.

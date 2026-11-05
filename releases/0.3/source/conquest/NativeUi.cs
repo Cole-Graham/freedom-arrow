@@ -1,5 +1,7 @@
 using MelonLoader;
 using UnityEngine;
+using UnityEngine.UI;
+using Il2CppTMPro;
 using Il2CppBrokenArrow.Client.Ecs.UI.HUD.GameModes.WarGoals;
 using Il2CppBrokenArrow.Client.Ecs.Controllers;
 
@@ -22,6 +24,7 @@ public sealed partial class Prototype
         public Color TimerColor;
         public bool AlphaBar,BravoBar,AlphaConquest,BravoConquest,PhaseActive,ProgressActive,MessageActive;
         public readonly List<(GameObject widget,bool active)> HiddenRoots=new();
+        public readonly List<Image> PhaseBoxes=new();
     }
     static void HidePhaseRoot(WarGoalsPanel panel,Transform phasePart)
     {
@@ -38,6 +41,56 @@ public sealed partial class Prototype
         if(!uiSnapshot.HiddenRoots.Any(x=>x.widget.Pointer==chosen.gameObject.Pointer))
             uiSnapshot.HiddenRoots.Add((chosen.gameObject,chosen.gameObject.activeSelf));
         chosen.gameObject.SetActive(false);
+    }
+    // The boxes mark the three native phases. Only the fill bar stays. Turn off the Image and not the
+    // object, because the fill bar can be a child of a box.
+    const float PhaseTextScale=0.75f;
+    static void HidePhaseBoxes(WarGoalsPanel panel)
+    {
+        var fill=panel._phasePeriodProgressImage;
+        foreach(var root in uiSnapshot.HiddenRoots)
+        {
+            if(root.widget==null)continue;
+            foreach(var image in root.widget.GetComponentsInChildren<Image>(true))
+            {
+                bool keep=image.Pointer==fill.Pointer;
+                Log("phase_image",new{name=image.name,keep,width=image.rectTransform.rect.width});
+                if(keep||!image.enabled)continue;
+                image.enabled=false;
+                uiSnapshot.PhaseBoxes.Add(image);
+            }
+        }
+    }
+    // The green number under each team bar: the points that team gets on the next tick.
+    static TextMeshProUGUI alphaNextTick,bravoNextTick;
+    static bool nextTickOff;
+    static TextMeshProUGUI NextTickText(GoalsBar bar,TextMeshProUGUI label)
+    {
+        if(label!=null)return label;
+        var source=bar._progressText;
+        var clone=UnityEngine.Object.Instantiate(source.gameObject,source.transform.parent);
+        clone.name="FA_NextTick";
+        var text=clone.GetComponent<TextMeshProUGUI>();
+        var rect=text.rectTransform;
+        rect.anchoredPosition=rect.anchoredPosition-new Vector2(0,rect.rect.height);
+        text.color=Color.green;
+        return text;
+    }
+    static void ShowNextTick(WarGoalsPanel panel)
+    {
+        if(nextTickOff||zones==null)return;
+        try
+        {
+            var next=ledger.Forecast(zones);
+            alphaNextTick=NextTickText(panel._alphaConquestBar,alphaNextTick);
+            bravoNextTick=NextTickText(panel._bravoConquestBar,bravoNextTick);
+            alphaNextTick.text=Settings.NextTickLabel(next.Alpha);
+            bravoNextTick.text=Settings.NextTickLabel(next.Bravo);
+        }
+        catch(Exception e)
+        {
+            nextTickOff=true;MelonLogger.Error("FREEDOM_ARROW_NEXT_TICK_FAILED: off for this session. "+e.Message);
+        }
     }
     public static void SetNativeUi(bool enabled)
     {
@@ -201,6 +254,8 @@ public sealed partial class Prototype
                 Log("native_ui_before",new{uiSnapshot.Phase,uiSnapshot.Time,uiSnapshot.PhaseSize,uiSnapshot.AlphaBar,uiSnapshot.BravoBar});
                 HidePhaseRoot(__instance,__instance._phasePeriodProgressImage.transform);
                 HidePhaseRoot(__instance,__instance._phaseText.transform);
+                HidePhaseBoxes(__instance);
+                __instance._phaseText.fontSize=uiSnapshot.PhaseSize*PhaseTextScale;
             }
             int remaining=(int)Math.Ceiling(Math.Max(0,ledger.Duration-ledger.Elapsed));
             __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
@@ -217,7 +272,8 @@ public sealed partial class Prototype
                 __instance._phasePeriodProgressImage.fillAmount=round.Progress;
             }
             __instance._message.gameObject.SetActive(false);
-            if(!ShowScoreBars(__instance))
+            if(ShowScoreBars(__instance))ShowNextTick(__instance);
+            else
             {
                 __instance._alphaConquestBar.gameObject.SetActive(false);
                 __instance._bravoConquestBar.gameObject.SetActive(false);
@@ -267,6 +323,8 @@ public sealed partial class Prototype
             if(s.Panel==null)return;
             // Do not replay stale phase/time strings after the native phase or clock changed.
             RestoreUiPart(()=>s.Panel._phaseText.fontSize=s.PhaseSize,"phase font");
+            foreach(var image in s.PhaseBoxes)if(image!=null)RestoreUiPart(()=>image.enabled=true,"phase box");
+            RestoreUiPart(()=>{if(alphaNextTick!=null)UnityEngine.Object.Destroy(alphaNextTick.gameObject);if(bravoNextTick!=null)UnityEngine.Object.Destroy(bravoNextTick.gameObject);},"next tick");
             RestoreUiPart(()=>s.Panel._timeText.color=s.TimerColor,"timer color");
             RestoreUiPart(()=>s.Panel._phaseText.gameObject.SetActive(s.PhaseActive),"phase label");
             RestoreUiPart(()=>s.Panel._phasePeriodProgressImage.gameObject.SetActive(s.ProgressActive),"phase progress");

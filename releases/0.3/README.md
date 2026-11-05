@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.27 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.28 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.27.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.28.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -221,3 +221,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 00:54:48 PST (America/Los_Angeles) — dev.25: 3 minute setup, native round bar, damage hook off. Not yet run live.
 - 2026-11-05 00:56:41 PST (America/Los_Angeles) — dev.26: T-80BV top HEAT 80. Not yet run live.
 - 2026-11-05 01:04:48 PST (America/Los_Angeles) — dev.27: F8 setup phase pauses the game. Scoring starts at 5:00 again. Not yet run live.
+- 2026-11-05 01:08:31 PST (America/Los_Angeles) — dev.28: round text fits, phase boxes hidden, green next-tick number. Not yet run live.

@@ -76,10 +76,11 @@ public sealed class Settings
     // The native phase bar: Round 1 fills over the opening, Round 2 over the rest of the match.
     public (string Text, float Progress) RoundBar(double elapsed, double duration)
     {
-        if (elapsed < OpeningDelaySeconds) return ($"ROUND 1: NO SCORING  {Clock(OpeningDelaySeconds - elapsed)}", (float)(elapsed / OpeningDelaySeconds));
+        if (elapsed < OpeningDelaySeconds) return ("ROUND 1: NO SCORING", (float)(elapsed / OpeningDelaySeconds));
         double scoring = Math.Max(1, duration - OpeningDelaySeconds);
         return ("ROUND 2: SCORING", (float)Math.Clamp((elapsed - OpeningDelaySeconds) / scoring, 0, 1));
     }
+    public static string NextTickLabel(int points) => points > 0 ? "+" + points.ToString(System.Globalization.CultureInfo.InvariantCulture) : "";
     public string ZoneLabel(string map, int uid) => "+" + Weight(map, uid).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
         && zones.TryGetValue(uid.ToString(System.Globalization.CultureInfo.InvariantCulture), out int value) ? value : DefaultZoneWeight;
