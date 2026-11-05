@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.4 — development candidate
+# Freedom Arrow 0.3.0-dev.5 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.4: see README. Offline checks only.
+0.3.0-dev.5: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -111,3 +111,7 @@ Dev.3: infantry cover damage. A postfix on `CalculateHitDamage` multiplies infan
 Dev.4 (Osama): woods 30% and buildings 50% as a start. Forest: a `CalculateHitDamage` postfix multiplies infantry damage by 0.70, scaled by `IgnoreCover`. Buildings: the mod writes `DamageModifierFloor` 0.50 and `DamageModifierPerSoldier` 0, with no hook. This replaces the dev.3 values, which stacked in buildings.
 
 - 2026-11-04 22:10:01 PST (America/Los_Angeles) — dev.4: woods 30%, buildings 50%. No live result.
+
+Dev.5 (Osama): all Javelin rows penetration 750 -> 140. By the HEAT formula, 14 HP tanks with top 100 take 6.95 per hit and keep about 0.10 HP after 2 hits. T-14 and T-15 at top 120 also become 3 hits. A scan of 353 playable unit and armor combinations found no other hit count change. No live result.
+
+- 2026-11-04 22:29:10 PST (America/Los_Angeles) — dev.5: Javelin penetration 140. No live result.

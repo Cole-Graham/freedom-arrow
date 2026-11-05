@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.4",
+  "version": "0.3.0-dev.5",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -173,13 +173,25 @@
       "Damage": 10.0
     },
     "2000149": {
-      "Damage": 10.5
+      "Damage": 10.5,
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
     },
     "2000174": {
-      "Damage": 10.5
+      "Damage": 10.5,
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
     },
     "2000177": {
       "Damage": 10.5
+    },
+    "44": {
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
+    },
+    "508": {
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
     }
   },
   "javelin_ids": [
