@@ -96,12 +96,12 @@ def main():
     for oid in [3067,3070,3071,3072]:armor(628,oid,{'MaxHealthPoints':8},'Uran9 all four top-slot profiles8 HP; price held')
     for oid in [564,565]:armor(158,oid,{'HeatArmorSides':200},'T80BVM2017/held2018 side HEAT200;2018+ stays400')
     us=json.loads((R/'us-baltic-contract.json').read_text())
-    for key,fields in us['armor_fields'].items():put('ArmorsJson',int(key),fields,'Explicit US/Baltic armor/HP target; shared consumers audited')
-    for key,fields in us['ammo_fields'].items():put('AmmunitionsJson',int(key),fields,'Tank-gun sabot10 or all live Javelin10.5')
+    for key,fields in us['armor_fields'].items():put('ArmorsJson',int(key),fields,'Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited')
+    for key,fields in us['ammo_fields'].items():put('AmmunitionsJson',int(key),fields,'Tank-gun sabot10 or all live Javelin and Spike LR10.5')
     for uid in us['stryker_scope']:
         for old in [2000017,2000018]:
             oid=next(o['Id'] for o in options(uid) if o['ArmorId']==old)
-            armor(uid,oid,{'MaxHealthPoints':12,'HeatArmorFront':700,'HeatArmorSides':700},'Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS')
+            armor(uid,oid,{'MaxHealthPoints':12,'HeatArmorFront':600,'HeatArmorSides':600},'Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS')
     # TypeX has no armor slot; repoint its unit association, preserving the original row.
     old=effective['UnitArmorsJson'][983]['ArmorId'];assert old==341
     new=clone('ArmorsJson',old,{'MaxHealthPoints':8},'Playable Baltic TypeX8 HP')

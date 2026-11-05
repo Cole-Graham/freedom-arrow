@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.3",
+  "version": "0.2.0-dev.4",
   "source_build": "6000.3.24f1-7e593b8df225febf",
   "baseline_commit": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
   "affected_units": [
@@ -14,6 +14,7 @@
     22,
     24,
     26,
+    27,
     28,
     33,
     37,
@@ -65,18 +66,24 @@
     416,
     421,
     425,
+    432,
+    438,
     442,
+    444,
     450,
     453,
     457,
     467,
     498,
+    499,
     500,
     501,
     502,
     503,
     520,
+    521,
     535,
+    541,
     542,
     602,
     615,
@@ -123,6 +130,9 @@
       ],
       "2000174": [
         "Damage"
+      ],
+      "2000177": [
+        "Damage"
       ]
     },
     "ArmorsJson": {
@@ -160,7 +170,7 @@
     "AbilitiesJson": 23,
     "UnitAbilitiesJson": 168,
     "AmmunitionsJson": 72,
-    "ArmorsJson": 150,
+    "ArmorsJson": 152,
     "MobilityJson": 1,
     "FlyPresetsJson": 0,
     "UnitPropulsionsJson": 1,
@@ -9147,7 +9157,7 @@
         "KinArmorSides": 80,
         "KinArmorTop": 40
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "ArmorsJson",
@@ -9184,7 +9194,7 @@
         "KinArmorSides": 100,
         "KinArmorTop": 40
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "ArmorsJson",
@@ -9221,7 +9231,7 @@
         "KinArmorSides": 100,
         "KinArmorTop": 40
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "ArmorsJson",
@@ -9258,7 +9268,7 @@
         "KinArmorSides": 100,
         "KinArmorTop": 40
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "ArmorsJson",
@@ -9295,7 +9305,7 @@
         "KinArmorSides": 60,
         "KinArmorTop": 30
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "ArmorsJson",
@@ -9332,7 +9342,81 @@
         "KinArmorSides": 120,
         "KinArmorTop": 60
       },
-      "reason": "Explicit US/Baltic armor/HP target; shared consumers audited"
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
+    },
+    {
+      "table": "ArmorsJson",
+      "id": 47,
+      "before": {
+        "Id": 47,
+        "IsDefault": false,
+        "Name": "Armor Bradley BUSK",
+        "ModelFileName": "Brat",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 16,
+        "HeatArmorFront": 250,
+        "HeatArmorRear": 60,
+        "HeatArmorSides": 250,
+        "HeatArmorTop": 40,
+        "KinArmorFront": 100,
+        "KinArmorRear": 60,
+        "KinArmorSides": 80,
+        "KinArmorTop": 40
+      },
+      "after": {
+        "Id": 47,
+        "IsDefault": false,
+        "Name": "Armor Bradley BUSK",
+        "ModelFileName": "Brat",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 16,
+        "HeatArmorFront": 400,
+        "HeatArmorRear": 60,
+        "HeatArmorSides": 250,
+        "HeatArmorTop": 40,
+        "KinArmorFront": 100,
+        "KinArmorRear": 60,
+        "KinArmorSides": 80,
+        "KinArmorTop": 40
+      },
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
+    },
+    {
+      "table": "ArmorsJson",
+      "id": 288,
+      "before": {
+        "Id": 288,
+        "IsDefault": false,
+        "Name": "Armor Bradley BUSK3",
+        "ModelFileName": "Brat2",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 17,
+        "HeatArmorFront": 400,
+        "HeatArmorRear": 60,
+        "HeatArmorSides": 400,
+        "HeatArmorTop": 40,
+        "KinArmorFront": 120,
+        "KinArmorRear": 60,
+        "KinArmorSides": 100,
+        "KinArmorTop": 40
+      },
+      "after": {
+        "Id": 288,
+        "IsDefault": false,
+        "Name": "Armor Bradley BUSK3",
+        "ModelFileName": "Brat2",
+        "ArmorValue": 0,
+        "MaxHealthPoints": 17,
+        "HeatArmorFront": 700,
+        "HeatArmorRear": 60,
+        "HeatArmorSides": 400,
+        "HeatArmorTop": 40,
+        "KinArmorFront": 120,
+        "KinArmorRear": 60,
+        "KinArmorSides": 100,
+        "KinArmorTop": 40
+      },
+      "reason": "Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited"
     },
     {
       "table": "AmmunitionsJson",
@@ -9475,7 +9559,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": false
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -9618,7 +9702,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": false
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -9761,7 +9845,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": false
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -9904,7 +9988,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": false
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -10047,7 +10131,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": false
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -10190,7 +10274,7 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": true
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "AmmunitionsJson",
@@ -10333,7 +10417,150 @@
         "StripingIgnore": false,
         "IsTopArmorArmorAttack": true
       },
-      "reason": "Tank-gun sabot10 or all live Javelin10.5"
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
+    },
+    {
+      "table": "AmmunitionsJson",
+      "id": 2000177,
+      "before": {
+        "Id": 2000177,
+        "Name": "Missile AT Spike LR",
+        "HUDName": "Spike LR",
+        "HUDIcon": "AMMO_JAVELIN",
+        "HUDMultiplier": 1,
+        "UiOptions": 0,
+        "ModelFileName": "Ammo\\BGM-71F TOW2",
+        "AudioPreset": "AmmunitionSoundsPreset_SFX_MISSILE-AT_Medium",
+        "FXPreset": "AMMUNITION_VFX_PRESET_AT_MISSLE_SLOW_HE",
+        "VfxCountPerShot": 1,
+        "VfxCountPerShotMax": 1,
+        "Airburst": false,
+        "SupplyCost": 150.0,
+        "ResupplyTime": 5.0,
+        "Damage": 12.0,
+        "StressDamage": 260.0,
+        "DamageOverTimeDuration": 0.0,
+        "IgnoreCover": 0.0,
+        "TargetType": 36,
+        "ArmorTargeted": 2,
+        "PenetrationAtMinRange": 700.0,
+        "PenetrationAtGroundRange": 700.0,
+        "NoDamageFalloff": false,
+        "TopArmorAttack": false,
+        "HealthAOERadius": 0.0,
+        "StressAOERadius": 0.0,
+        "OverpressureRadius": 0.0,
+        "RadioFuseDistance": 0.0,
+        "CriticMultiplier": 1.0,
+        "CanBeIntercepted": true,
+        "CanBeTargeted": false,
+        "TrajectoryType": 110,
+        "MinimalRange": 100.0,
+        "GroundRange": 800.0,
+        "LowAltRange": 0.0,
+        "HighAltRange": 0.0,
+        "NonSeadProjectileRangeOverride": 0.0,
+        "SeadProjectileRangeOverride": 0.0,
+        "OverflyHeight": 0,
+        "MuzzleVelocity": 5.0,
+        "MaxSpeed": 190.0,
+        "Acceleration": 53.0,
+        "DispersionHorizontalRadius": 1.0,
+        "DispersionVerticalRadius": 0.0,
+        "DispersionMinimal": 0.0,
+        "LaunchMarginAngle": 30.0,
+        "LoftAngle": 36,
+        "LoftHeight": 0,
+        "AimTimeMinOverride": 0.0,
+        "AimTimeMaxOverride": 0.0,
+        "GenerateSmoke": false,
+        "SmokeRadius": 0.0,
+        "SmokeDuration": 0.0,
+        "SmokeFadeDuration": 0.0,
+        "Seeker": 50,
+        "LaserGuided": false,
+        "SeekerAngle": 45.0,
+        "MaxSeekerDistance": 250.0,
+        "CanReaquire": true,
+        "AimStartDelay": 0.0,
+        "MainEngineIgnitionDelay": 0.0,
+        "RotationSpeed": 120.0,
+        "BurnTime": 4.0,
+        "PreEgnitionRotationSpeed": 0.0,
+        "PreventReloadWhileTracked": false,
+        "StripingIgnore": false,
+        "IsTopArmorArmorAttack": true
+      },
+      "after": {
+        "Id": 2000177,
+        "Name": "Missile AT Spike LR",
+        "HUDName": "Spike LR",
+        "HUDIcon": "AMMO_JAVELIN",
+        "HUDMultiplier": 1,
+        "UiOptions": 0,
+        "ModelFileName": "Ammo\\BGM-71F TOW2",
+        "AudioPreset": "AmmunitionSoundsPreset_SFX_MISSILE-AT_Medium",
+        "FXPreset": "AMMUNITION_VFX_PRESET_AT_MISSLE_SLOW_HE",
+        "VfxCountPerShot": 1,
+        "VfxCountPerShotMax": 1,
+        "Airburst": false,
+        "SupplyCost": 150.0,
+        "ResupplyTime": 5.0,
+        "Damage": 10.5,
+        "StressDamage": 260.0,
+        "DamageOverTimeDuration": 0.0,
+        "IgnoreCover": 0.0,
+        "TargetType": 36,
+        "ArmorTargeted": 2,
+        "PenetrationAtMinRange": 700.0,
+        "PenetrationAtGroundRange": 700.0,
+        "NoDamageFalloff": false,
+        "TopArmorAttack": false,
+        "HealthAOERadius": 0.0,
+        "StressAOERadius": 0.0,
+        "OverpressureRadius": 0.0,
+        "RadioFuseDistance": 0.0,
+        "CriticMultiplier": 1.0,
+        "CanBeIntercepted": true,
+        "CanBeTargeted": false,
+        "TrajectoryType": 110,
+        "MinimalRange": 100.0,
+        "GroundRange": 800.0,
+        "LowAltRange": 0.0,
+        "HighAltRange": 0.0,
+        "NonSeadProjectileRangeOverride": 0.0,
+        "SeadProjectileRangeOverride": 0.0,
+        "OverflyHeight": 0,
+        "MuzzleVelocity": 5.0,
+        "MaxSpeed": 190.0,
+        "Acceleration": 53.0,
+        "DispersionHorizontalRadius": 1.0,
+        "DispersionVerticalRadius": 0.0,
+        "DispersionMinimal": 0.0,
+        "LaunchMarginAngle": 30.0,
+        "LoftAngle": 36,
+        "LoftHeight": 0,
+        "AimTimeMinOverride": 0.0,
+        "AimTimeMaxOverride": 0.0,
+        "GenerateSmoke": false,
+        "SmokeRadius": 0.0,
+        "SmokeDuration": 0.0,
+        "SmokeFadeDuration": 0.0,
+        "Seeker": 50,
+        "LaserGuided": false,
+        "SeekerAngle": 45.0,
+        "MaxSeekerDistance": 250.0,
+        "CanReaquire": true,
+        "AimStartDelay": 0.0,
+        "MainEngineIgnitionDelay": 0.0,
+        "RotationSpeed": 120.0,
+        "BurnTime": 4.0,
+        "PreEgnitionRotationSpeed": 0.0,
+        "PreventReloadWhileTracked": false,
+        "StripingIgnore": false,
+        "IsTopArmorArmorAttack": true
+      },
+      "reason": "Tank-gun sabot10 or all live Javelin and Spike LR10.5"
     },
     {
       "table": "ArmorsJson",
@@ -10346,16 +10573,16 @@
         "ModelFileName": "SRAT",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -10370,7 +10597,7 @@
         "UnitId": 22,
         "ArmorId": 2000235
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -10471,7 +10698,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",
@@ -10484,16 +10711,16 @@
         "ModelFileName": "SRAT_Trophy",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -10508,7 +10735,7 @@
         "UnitId": 22,
         "ArmorId": 2000236
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -10609,7 +10836,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",
@@ -10622,16 +10849,16 @@
         "ModelFileName": "SRAT",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -10646,7 +10873,7 @@
         "UnitId": 24,
         "ArmorId": 2000237
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -10747,7 +10974,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",
@@ -10760,16 +10987,16 @@
         "ModelFileName": "SRAT_Trophy",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -10784,7 +11011,7 @@
         "UnitId": 24,
         "ArmorId": 2000238
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -10885,7 +11112,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",
@@ -10898,16 +11125,16 @@
         "ModelFileName": "SRAT",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -10922,7 +11149,7 @@
         "UnitId": 33,
         "ArmorId": 2000239
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -11023,7 +11250,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",
@@ -11036,16 +11263,16 @@
         "ModelFileName": "SRAT_Trophy",
         "ArmorValue": 0,
         "MaxHealthPoints": 12,
-        "HeatArmorFront": 700,
+        "HeatArmorFront": 600,
         "HeatArmorRear": 130,
-        "HeatArmorSides": 700,
+        "HeatArmorSides": 600,
         "HeatArmorTop": 20,
         "KinArmorFront": 80,
         "KinArmorRear": 30,
         "KinArmorSides": 60,
         "KinArmorTop": 20
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "UnitArmorsJson",
@@ -11060,7 +11287,7 @@
         "UnitId": 33,
         "ArmorId": 2000240
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "OptionsJson",
@@ -11161,7 +11388,7 @@
         "Turret19Id": 0,
         "Turret20Id": 0
       },
-      "reason": "Named Stryker SRAT scope only; RV/ATGM unchanged; legacy APS option has no APS"
+      "reason": "Named Stryker SRAT scope only, 600 provisional; RV/ATGM unchanged; legacy APS option has no APS"
     },
     {
       "table": "ArmorsJson",

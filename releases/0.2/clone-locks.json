@@ -304,7 +304,9 @@
       },
       "2000177": {
         "sha256": "20a8cd59592640d76f57a80e00ec860a8f941ce8e3cb3b1af5cf9781b033283e",
-        "permitted_before": {}
+        "permitted_before": {
+          "Damage": 12.0
+        }
       },
       "2000178": {
         "sha256": "2155e81fad49448cba64fbd4a5d5bba49adcbd1ebe1ae64bd483b77a9202ada5",
