@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.31",
+  "version": "0.3.0-dev.32",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -153,6 +153,12 @@
       "MaxHealthPoints": 10
     },
     "2000023": {
+      "MaxHealthPoints": 10
+    },
+    "178": {
+      "MaxHealthPoints": 10
+    },
+    "2000071": {
       "MaxHealthPoints": 10
     }
   },

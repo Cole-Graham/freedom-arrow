@@ -713,7 +713,9 @@
       },
       "2000071": {
         "sha256": "ddfc4e9bfa7c50faf3dab4eec515ded449ec2f76e2828999c17f50a61f014a64",
-        "permitted_before": {}
+        "permitted_before": {
+          "MaxHealthPoints": 14
+        }
       },
       "2000072": {
         "sha256": "11839a96553cb8e6788366a351aa222f9c6e41e476db59ad808d15aa6c528042",
