@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.20 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.21 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.20.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.21.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -134,6 +134,8 @@ Dev.19: the runtime copies `[FA] Central Village` to `Mods/Scenarios`, because o
 
 Dev.20 (Osama): adds `[FA] Central Village Skirmish` for F8 Local AI, which lists Skirmish scenarios only. It is built from the game's `Central_Village_Skirmish` mission with the same zone values on zone IDs 31, 32, 33, 35, 36, 37, 50, 159, 178 and 179.
 
+Dev.21 (Osama): every Central Village zone stays on the map at any lobby size. The native small map hid A, B, C and D, and H on Skirmish, and Auto picks small under 8 players. Zone labels move to the zone centre, clear of the icons.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -206,3 +208,4 @@ Dev.20 (Osama): adds `[FA] Central Village Skirmish` for F8 Local AI, which list
 - 2026-11-04 23:59:39 PST (America/Los_Angeles) — dev.18: RPG-28 penetration 900. No live result.
 - 2026-11-05 00:06:46 PST (America/Los_Angeles) — dev.19: scenario install folder. Listing not yet confirmed live.
 - 2026-11-05 00:11:24 PST (America/Los_Angeles) — dev.20: Skirmish version of Central Village for F8. No live result.
+- 2026-11-05 00:13:57 PST (America/Los_Angeles) — dev.21: all zones stay visible; label position. dev.19 labels and 6-zone match seen live; dev.21 has no live result.

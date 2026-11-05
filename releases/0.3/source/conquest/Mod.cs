@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.20", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.21", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -366,9 +366,9 @@ public sealed partial class Prototype : MelonMod
                 float x=screen.x,y=Screen.height-screen.y;
                 if(x<0||x>Screen.width||y<0||y>Screen.height)continue;
                 string label=config.ZoneLabel(map,zone.Data.UID);
-                // Sit above the zone icon, with a shadow so it reads on any terrain.
-                GUI.contentColor=Color.black;GUI.Label(new Rect(x-w/2+2,y-h*2+2,w,h),label,style);
-                GUI.contentColor=Color.white;GUI.Label(new Rect(x-w/2,y-h*2,w,h),label,style);
+                // Sit on the zone centre, clear of the raised icon, with a shadow so it reads on any terrain.
+                GUI.contentColor=Color.black;GUI.Label(new Rect(x-w/2+2,y-h/2+2,w,h),label,style);
+                GUI.contentColor=Color.white;GUI.Label(new Rect(x-w/2,y-h/2,w,h),label,style);
                 drawn++;
             }
             return drawn;

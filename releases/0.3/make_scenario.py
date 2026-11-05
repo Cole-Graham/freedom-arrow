@@ -26,13 +26,19 @@ def build(game,out,name,guid,mission,kind,desc,public):
     want={str(o['_uid']):ZONE_VALUES[o['hudText']] for o in objects if o.get('_type')==15}
     assert len(want)==len(ZONE_VALUES) and want==json.loads((R/'source/UserData/FAConquestPrototype/settings.json').read_text())['MapZoneWeights'][name],want
     head.update(guid=guid,name=name,author='Freedom Arrow',desc=desc,IsDevVersion=False,devId=0,public=public)
-    hits=0
+    hits=shown=0
+    zones={f"c{o['_uid']}" for o in objects if o.get('_type')==15}
     for n in nodes['b']:
         if n.get('nnKey')=='setConquestMode':hits+=1
+        # The small map size hides outer zones, and Auto picks small under 8 players. Every zone stays in FA.
+        if n.get('nnKey')=='objVisible2':
+            props={p['k']:p for p in n['props_v2']}
+            if props['oz2']['v'] in zones and props['isv']['v']=='False':props['isv']['v']='True';shown+=1
         if n.get('nnKey')=='setIncomeCurveState':
             for p in n['props_v2']:
                 if p['k']=='state':p['v']='False'
     assert hits>=1,'scenario must use ConquestMode'
+    assert shown==(4 if kind==2 else 5),shown
     meta=load((src/'meta.json').read_bytes());meta.pop('devid',None)
     # The lobby slider runs 500 to 1500. Default it to the top. Skirmish missions have no slider.
     money=[o for o in objects if o.get('desc')=='ui_lobby_StartMoney_desc']+[o for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']
