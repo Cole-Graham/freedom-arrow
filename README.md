@@ -1,6 +1,6 @@
 # freedom-arrow
 
-**Unreleased 0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.21 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
+**Unreleased 0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.22 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
 
 **Prepared 0.1 candidate:** [download, scope and source](releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
 

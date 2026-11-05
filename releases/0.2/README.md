@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.21 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.22 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.2/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.21.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.22.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -81,6 +81,8 @@ Dev.20 (Osama): T-72B3A 240 -> 105 for now.
 
 Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidden FA Retired unit, so the armory and decks are empty. The hidden unit is gone. A null row in a constants file now deletes that row, and retired options, squad members, squad weapons and ammo links are deleted. The generator and row tests enforce the game's squad rules. A deck guard removes deleted and moved options from saved decks when they load.
 
+Dev.22 (Osama, prep branch codex/0.2-dev22-prep, not installed): Stryker RV SRAT II 600/600 HEAT. AAVP SU 400/400 HEAT, +15. ACV armored 400/400 HEAT, rear back to 30. IFAV TOW +20. Kornet-T 100. BMPT base side 200. T-72B side 200, K-5 +15 (85 total). T-72B3 105. T-72B3A: T-72B3AM option removed, obr. 16 +30. CAAT Javelin gets ACV and AAVP transports. Troopers gets Stryker ICV. Both M10 Bookers get the APS option at +50 with the vanilla two-charge APS.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -122,3 +124,5 @@ Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidd
 - 2026-11-04 20:12:56 PST (America/Los_Angeles) — dev.21: fixed the empty armory by deleting retired rows instead of using a hidden unit. No live result yet.
 
 - 2026-11-04 20:21:00 PST (America/Los_Angeles) — Generated data removed from Git; the build steps now start with the generator.
+
+- 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
