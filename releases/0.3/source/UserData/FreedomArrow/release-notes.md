@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.23 — development candidate
+# Freedom Arrow 0.3.0-dev.24 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,7 +96,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.23: see README. Offline checks only.
+0.3.0-dev.24: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -161,6 +161,8 @@ Dev.22 (Osama, live test): both FA scenarios declare game version 1.2.2, because
 
 Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still be captured. A banner counts it down and announces Round 2. First tick at 5:00. F8 Skirmish now defaults to 45 minutes and sets every player to 1500 starting points, the same as the multiplayer scenario. Dev.22 was run live online: database patched, 10 zones, weighted ticks, no unit error.
 
+Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs out. The native team bars return and show points out of 300, without the three goal stars.
+
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
@@ -176,3 +178,4 @@ Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still 
 - 2026-11-05 00:13:57 PST (America/Los_Angeles) — dev.21: all zones stay visible; label position. dev.19 labels and 6-zone match seen live; dev.21 has no live result.
 - 2026-11-05 00:18:10 PST (America/Los_Angeles) — dev.22: scenario game version, database log, label size and position. Not yet run live.
 - 2026-11-05 00:34:56 PST (America/Los_Angeles) — dev.23: Round 1 banner, 5 minute opening, F8 time and points. Not yet run live.
+- 2026-11-05 00:37:56 PST (America/Los_Angeles) — dev.24: score limit 300 and team bars. Not yet run live.

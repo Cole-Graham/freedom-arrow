@@ -5,7 +5,7 @@
   "DefaultZoneWeight": 1,
   "Scoring": "advantage",
   "Contested": "exclude",
-  "Ending": "time_limit",
+  "Ending": "score_or_time",
   "MaximumSampleLatenessSeconds": 5,
   "ShowOverlay": true,
   "MapZoneWeights": {
@@ -14,7 +14,7 @@
   },
   "TestDurationSeconds": 0,
   "PhasePolicy": "continuous",
-  "ScoreLimit": 0,
+  "ScoreLimit": 300,
   "EnableDeveloperFixtures": false,
   "FixedIncomePerMinute": 200
 }

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.23 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.24 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.23.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.24.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -140,6 +140,8 @@ Dev.22 (Osama, live test): both FA scenarios declare game version 1.2.2, because
 
 Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still be captured. A banner counts it down and announces Round 2. First tick at 5:00. F8 Skirmish now defaults to 45 minutes and sets every player to 1500 starting points, the same as the multiplayer scenario. Dev.22 was run live online: database patched, 10 zones, weighted ticks, no unit error.
 
+Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs out. The native team bars return and show points out of 300, without the three goal stars.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -215,3 +217,4 @@ Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still 
 - 2026-11-05 00:13:57 PST (America/Los_Angeles) — dev.21: all zones stay visible; label position. dev.19 labels and 6-zone match seen live; dev.21 has no live result.
 - 2026-11-05 00:18:10 PST (America/Los_Angeles) — dev.22: scenario game version, database log, label size and position. Not yet run live.
 - 2026-11-05 00:34:56 PST (America/Los_Angeles) — dev.23: Round 1 banner, 5 minute opening, F8 time and points. Not yet run live.
+- 2026-11-05 00:37:56 PST (America/Los_Angeles) — dev.24: score limit 300 and team bars. Not yet run live.

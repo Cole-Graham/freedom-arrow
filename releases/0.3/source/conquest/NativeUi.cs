@@ -11,7 +11,7 @@ public sealed partial class Prototype
     static View labelView;
     static string labelMap;
     static GUIStyle labelStyle,bannerStyle;
-    static bool labelsOff,labelsLogged;
+    static bool labelsOff,labelsLogged,barsOff,barsLogged;
     static bool uiFault;
     static UiSnapshot uiSnapshot;
     sealed class UiSnapshot
@@ -57,7 +57,7 @@ public sealed partial class Prototype
     static void NoteLabelMode(View candidate)
     {
         if(labelView!=null&&labelView.Pointer==candidate.Pointer)return;
-        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;
+        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;
     }
     static void ClearLabelMode(){labelView=null;labelMap=null;}
     static void DrawRoundBanner()
@@ -110,6 +110,36 @@ public sealed partial class Prototype
         }
         if(config.EnableDeveloperFixtures&&view!=null&&Guarded(view.Service)&&Input.GetKeyDown(KeyCode.F11))SetScoringOverlay(!config.ShowOverlay);
     }
+    // Native conquest bars show points out of the score limit. A bar fault turns off the bars, not the scoring.
+    static bool ShowScoreBars(WarGoalsPanel panel)
+    {
+        if(barsOff||config.ScoreLimit<=0)return false;
+        try
+        {
+            ShowScoreBar(panel._alphaConquestBar,ledger.Alpha);
+            ShowScoreBar(panel._bravoConquestBar,ledger.Bravo);
+            if(!barsLogged)
+            {
+                barsLogged=true;
+                Log("score_bars",new{limit=config.ScoreLimit,alphaVisible=panel._alphaConquestBar.gameObject.activeInHierarchy,bravoVisible=panel._bravoConquestBar.gameObject.activeInHierarchy});
+            }
+            return true;
+        }
+        catch(Exception e)
+        {
+            barsOff=true;MelonLogger.Error("FREEDOM_ARROW_SCORE_BARS_FAILED: off for this session. "+e.Message);
+            return false;
+        }
+    }
+    static void ShowScoreBar(GoalsBar bar,int points)
+    {
+        bar.gameObject.SetActive(true);
+        bar._progress.fillAmount=Mathf.Clamp01(points/(float)config.ScoreLimit);
+        bar._progressText.text=$"{points}/{config.ScoreLimit}";
+        // The stars and markers belong to the native three-goal mode.
+        foreach(var marker in new Component[]{bar._goalPointA,bar._goalPointB,bar._goalPointC,bar._goalIconA,bar._goalIconB,bar._goalIconC,bar._progressLineMain,bar._limiterParent})
+            if(marker!=null&&marker.gameObject.activeSelf)marker.gameObject.SetActive(false);
+    }
     public static void UpdateNativeUi(WarGoalsPanel __instance)
     {
         if(updatingHud||!uiEnabled||uiFault||ledger==null||view==null||!Guarded(view.Service))return;
@@ -140,8 +170,11 @@ public sealed partial class Prototype
             __instance._phaseText.gameObject.SetActive(false);
             __instance._phasePeriodProgressImage.gameObject.SetActive(false);
             __instance._message.gameObject.SetActive(false);
-            __instance._alphaConquestBar.gameObject.SetActive(false);
-            __instance._bravoConquestBar.gameObject.SetActive(false);
+            if(!ShowScoreBars(__instance))
+            {
+                __instance._alphaConquestBar.gameObject.SetActive(false);
+                __instance._bravoConquestBar.gameObject.SetActive(false);
+            }
             __instance._alphaDestructionBar.gameObject.SetActive(false);
             __instance._bravoDestructionBar.gameObject.SetActive(false);
             int second=(int)ledger.Elapsed;

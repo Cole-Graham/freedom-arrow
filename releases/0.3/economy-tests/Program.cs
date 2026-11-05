@@ -49,6 +49,10 @@ Check(fa.ZoneLabel(cv,53)=="+4"&&fa.ZoneLabel(cv,55)=="+3"&&fa.ZoneLabel(cv,57)=
 Check(new[]{31,32,33,35,36,37,50,159,178,179}.Select(i=>fa.Weight("[FA] Central Village Skirmish",i)).SequenceEqual(new[]{4,4,3,3,2,2,4,4,4,4}),"Central Village Skirmish zone values");
 Check(fa.OpeningDelaySeconds==300&&fa.RoundBanner(0)=="ROUND 1: NO SCORING  5:00"&&fa.RoundBanner(299.5)=="ROUND 1: NO SCORING  0:01"&&fa.RoundBanner(300)=="ROUND 2: ZONES SCORE"&&fa.RoundBanner(308)==null,"round banner");
 var faLedger=new Ledger(fa,cv,2700);var faHeld=new List<Zone>{new(53,0,false)};Check(faLedger.Advance(299,faHeld).Count==0&&faLedger.Advance(300,faHeld).Count==1&&faLedger.Alpha==4,"no score before 5:00, first tick at 5:00");
+Check(fa.Ending=="score_or_time"&&fa.ScoreLimit==300,"first to 300");
+var faWin=new Ledger(fa,cv,2700);var faAll=cvIds.Select(i=>new Zone(i,1,false)).ToList();
+for(int t=300;t<=510;t+=30)faWin.Advance(t,faAll);Check(faWin.Bravo==272&&!faWin.ReachedScoreLimit,"272 of 300 does not end the match");
+faWin.Advance(540,faAll);Check(faWin.Bravo==306&&faWin.ReachedScoreLimit&&faWin.ScoreLimitWinner==1&&faWin.Finished,"300 ends the match at 9:00 at the fastest");
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","Central Village map resolution");
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
 Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"Central Village weighted advantage");
