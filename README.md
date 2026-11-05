@@ -69,7 +69,7 @@ python -m unittest pipeline.tests.test_pipeline pipeline.tests.test_package
 
 ## How constants are written
 
-This section is the authoring shape. The cost object and the hit-damage file are examples of that shape. They are not a catalogue of mechanics.
+This section is the authoring shape. The cost object is an example of that shape. It is not a catalogue of mechanics.
 
 A constant file names the place the game or the plugin actually applies the change. A number is a new literal. A string names something that already exists: a field, a return value, a component, or an enum. Do not add a key the game or the hook does not have.
 
@@ -87,19 +87,19 @@ A list of rows with an `Id` field is also accepted. The pipeline rejects an unkn
 
 **Code at a method.** `mod/formulas/<Class>/<Method>.json` names a game method and the parameters its hook reads. The file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is accepted today. The other three are rejected until a hook implements them.
 
-This file is one `after` example.
+This file shape is one `after` hook. No hook is registered until a class is added to `FormulaHost`.
 
 ```json
 {
-  "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+  "method": "Game.OtherClass.OtherMethod",
   "change": "after",
   "parameters": {
-    "reduction": 0.30
+    "scale": 1
   }
 }
 ```
 
-`parameters` are the values for that hook. `reduction` is the forest-cover number, and the hook in `runtime/FreedomArrow/` applies it. A new method is a new file plus a hook. `package` checks the envelope only.
+`parameters` are the values for that hook. A new method is a new file plus a hook. `package` checks the envelope only.
 
 Day-to-day and release are `package`, then BAModManager or BAModLauncher PLAY. The plugin applies whatever constants and formulas are in the package. **Play vanilla** stays the manager's button.
 

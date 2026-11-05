@@ -26,11 +26,6 @@ public class FreedomArrowMod : MelonMod
         FormulaHost.Install(root, LoggerInstance);
     }
 
-    public override void OnUpdate()
-    {
-        GroundSpotting.AdvanceFrame();
-    }
-
     internal static void CheckSupportedInputs(string root)
     {
         var directory = Path.Combine(root, "configs");

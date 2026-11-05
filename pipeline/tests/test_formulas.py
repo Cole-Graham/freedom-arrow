@@ -42,16 +42,13 @@ class FormulaTests(unittest.TestCase):
             )
             self.assertEqual(validate_formula(empty, root)["parameters"], {})
 
-    def test_committed_forest_files_match_the_envelope(self):
+    def test_committed_formula_directories_exist(self):
         repo = Path(__file__).resolve().parents[2]
         for relative in (
             Path("mod") / "formulas",
             Path("mod") / "testing" / "formulas",
         ):
-            directory = repo / relative
-            path = directory / "BattleSystemHelpers" / "CalculateHitDamage.json"
-            loaded = validate_formula(path, directory)
-            self.assertEqual(loaded["parameters"]["reduction"], 0.30)
+            self.assertTrue((repo / relative).is_dir())
 
     def test_rejects_unimplemented_change(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -70,8 +67,8 @@ class FormulaTests(unittest.TestCase):
             root = Path(tmp)
             path = _write(
                 root,
-                "BattleSystemHelpers/CalculateHitDamage.json",
-                {"method": "Game.Other.Method", "change": "after", "parameters": {"reduction": 0.30}},
+                "OtherClass/OtherMethod.json",
+                {"method": "Game.Other.Method", "change": "after", "parameters": {"scale": 1}},
             )
             with self.assertRaises(PipelineError) as caught:
                 validate_formula(path, root)
@@ -87,7 +84,7 @@ class FormulaTests(unittest.TestCase):
                     "method": "Game.OtherClass.OtherMethod",
                     "change": "after",
                     "parameters": {},
-                    "reduction": 0.30,
+                    "extra": 1,
                 },
             )
             with self.assertRaises(PipelineError) as caught:

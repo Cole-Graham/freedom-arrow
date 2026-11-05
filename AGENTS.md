@@ -40,16 +40,14 @@ A table file modifies existing rows. It is keyed by `Id`. Values are the game's 
 
 ScriptableObject config edits are not implemented. The proposed `mod/configs/` and `mod/testing/configs/` trees are rejected by `package`; installed config JSON also stops plugin startup before hooks are installed. Implement and verify a config application path before authoring those files. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
 
-A formula file names the game method a hook runs at. Every file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is implemented. `package` rejects the others. `parameters` holds the numbers and strings that hook reads.
-
-`mod/formulas/BattleSystemHelpers/CalculateHitDamage.json` is the worked `after` example. Another engine change adds `mod/formulas/<Class>/<Method>.json`, and a testing file only when that channel differs, and registers a hook class with `FormulaHost`. Do not add that hook's keys to `pipeline/formulas.py`. The damage math for this example stays in `ForestCover.Apply`.
+A formula file names the game method a hook runs at. Every file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is implemented. `package` rejects the others. `parameters` holds the numbers and strings that hook reads. Register the hook class with `FormulaHost`. Do not add that hook's keys to `pipeline/formulas.py`.
 
 ```json
 {
-  "method": "BrokenArrow.Client.Ecs.BattleSystem.BattleSystemHelpers.CalculateHitDamage",
+  "method": "Game.OtherClass.OtherMethod",
   "change": "after",
   "parameters": {
-    "reduction": 0.30
+    "scale": 1
   }
 }
 ```

@@ -39,7 +39,7 @@ public static class Program
         Check(info != null, "MelonInfo registration missing");
         Check(info!.SystemType == typeof(FreedomArrowMod), "wrong mod entry point");
         Check(info.SystemType.IsSubclassOf(typeof(MelonMod)), "entry point must be a MelonMod");
-        Check(typeof(DatabaseMerge).IsVisible && typeof(ForestCover).IsVisible, "emitted hooks need visible bridge types");
+        Check(typeof(DatabaseMerge).IsVisible, "database merge must stay visible to generated hooks");
     }
 
     static void GeneratedHooks()
@@ -49,10 +49,10 @@ public static class Program
         Check(prefix.GetParameters()[0].Name == "__0", "prefix binding changed");
 
         var target = typeof(Program).GetMethod(nameof(Hit))!;
-        var postfix = HookBinder.Postfix(target, typeof(ForestCover).GetMethod(nameof(ForestCover.Apply))!);
+        var postfix = HookBinder.Postfix(target, typeof(Program).GetMethod(nameof(KeepHit))!);
         object?[] args = { null, 10f, null, 23f };
         postfix.Invoke(null, args);
-        Check((float)args[3]! == 23f, "null-target forest hook must preserve damage");
+        Check((float)args[3]! == 23f, "postfix must leave the result unchanged when it does not write it");
 
         var typed = HookBinder.Postfix(typeof(Program).GetMethod(nameof(TypedHit))!, typeof(Program).GetMethod(nameof(RecordHit))!);
         var ammo = new Ammo { Value = 3f };
@@ -65,6 +65,7 @@ public static class Program
     public struct Entity { public int Value; }
     public sealed class Ammo { public float Value; }
     public static float Hit(object? target, float baseDamage, object? ammoInfo) => baseDamage;
+    public static void KeepHit(object? target, object? ammo, ref float result) { }
     public static float TypedHit(Ammo ammoInfo, Entity target, float baseDamage) => baseDamage;
     public static void RecordHit(object? target, object? ammo, ref float result)
         => result += ((Entity)target!).Value + ((Ammo)ammo!).Value;
