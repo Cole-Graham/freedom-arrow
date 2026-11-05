@@ -63,7 +63,7 @@ public sealed partial class Prototype
     static void DrawRoundBanner()
     {
         if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
-        string setup=config.SetupBanner(ledger.Elapsed);
+        string setup=setupEnds>=0?Settings.SetupBanner(setupEnds-Time.unscaledTime):null;
         string text=setup??config.RoundAnnouncement(ledger.Elapsed);
         if(text==null)return;
         int size=Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64));
@@ -97,8 +97,47 @@ public sealed partial class Prototype
             labelsOff=true;MelonLogger.Error("FREEDOM_ARROW_ZONE_LABELS_FAILED: off for this match. "+e.Message);
         }
     }
+    // F8 only. Vanilla pauses the session for its deployment phase; online, the room server controls that phase.
+    static float setupEnds=-1;
+    static IntPtr setupSession;
+    static void StartSetup(View candidate)
+    {
+        if(candidate.Service._isOnline||config.SetupSeconds<=0)return;
+        // A setup fault must not stop scoring.
+        try
+        {
+            var session=GameController.Instance.GameSession;
+            session.IsPaused=true;
+            setupSession=session.Pointer;
+            setupEnds=Time.unscaledTime+config.SetupSeconds;
+            Log("setup_started",new{config.SetupSeconds});
+        }
+        catch(Exception e){setupEnds=-1;MelonLogger.Error("FREEDOM_ARROW_SETUP_FAILED: setup phase off. "+e.Message);}
+    }
+    static void EndSetup(string reason)
+    {
+        if(setupEnds<0)return;
+        setupEnds=-1;
+        var session=GameController.Instance?.GameSession;
+        if(session!=null&&session.Pointer==setupSession)session.IsPaused=false;
+        Log("setup_ended",new{reason});
+    }
+    static void SetupFrame()
+    {
+        if(setupEnds<0)return;
+        try
+        {
+            var session=GameController.Instance?.GameSession;
+            if(session==null||session.Pointer!=setupSession||view==null){EndSetup("session closed");return;}
+            if(Time.unscaledTime>=setupEnds){EndSetup("time");return;}
+            // The pause button must not end the setup phase early.
+            if(!session.IsPaused)session.IsPaused=true;
+        }
+        catch(Exception e){setupEnds=-1;MelonLogger.Error("FREEDOM_ARROW_SETUP_FAILED: setup phase off. "+e.Message);}
+    }
     public override void OnUpdate()
     {
+        SetupFrame();
         EconomyFrame();
         DispatchPendingEnding();
         if(uiSnapshot!=null&&uiSnapshot.Panel==null){uiEnabled=false;RestoreNativeUi();}
@@ -167,14 +206,15 @@ public sealed partial class Prototype
             __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
             __instance._timeText.color=Color.cyan;
             // The native phase bar shows the rounds. It stays hidden during the setup phase, which has the large banner.
-            var round=config.RoundBar(ledger.Elapsed,ledger.Duration);
-            foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf!=round.HasValue)root.widget.SetActive(round.HasValue);
-            __instance._phaseText.gameObject.SetActive(round.HasValue);
-            __instance._phasePeriodProgressImage.gameObject.SetActive(round.HasValue);
-            if(round.HasValue)
+            bool showRound=setupEnds<0;
+            foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf!=showRound)root.widget.SetActive(showRound);
+            __instance._phaseText.gameObject.SetActive(showRound);
+            __instance._phasePeriodProgressImage.gameObject.SetActive(showRound);
+            if(showRound)
             {
-                __instance._phaseText.text=round.Value.Text;
-                __instance._phasePeriodProgressImage.fillAmount=round.Value.Progress;
+                var round=config.RoundBar(ledger.Elapsed,ledger.Duration);
+                __instance._phaseText.text=round.Text;
+                __instance._phasePeriodProgressImage.fillAmount=round.Progress;
             }
             __instance._message.gameObject.SetActive(false);
             if(!ShowScoreBars(__instance))

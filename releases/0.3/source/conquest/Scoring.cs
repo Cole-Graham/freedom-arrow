@@ -60,26 +60,25 @@ public sealed class Settings
     }
     public const string OnlineUnknownMap = "online scenario";
     const int RoundAnnouncementSeconds = 8;
-    public int ScoringStart => SetupSeconds + OpeningDelaySeconds;
     static string Clock(double seconds)
     {
         int left = (int)Math.Ceiling(seconds);
         return $"{left / 60}:{left % 60:00}";
     }
-    // The setup phase and Round 1 have no scoring. Zones can still be captured.
-    public string SetupBanner(double elapsed) => elapsed < SetupSeconds ? $"DEPLOYMENT  {Clock(SetupSeconds - elapsed)}" : null;
+    // The setup phase pauses the game, so it uses wall-clock seconds and not the match clock.
+    public static string SetupBanner(double remaining) => $"DEPLOYMENT  {Clock(remaining)}";
+    // Round 1 has no scoring. Zones can still be captured.
     public string RoundAnnouncement(double elapsed)
     {
-        if (OpeningDelaySeconds > 0 && elapsed >= SetupSeconds && elapsed < SetupSeconds + RoundAnnouncementSeconds) return "ROUND 1: NO SCORING";
-        return OpeningDelaySeconds > 0 && elapsed >= ScoringStart && elapsed < ScoringStart + RoundAnnouncementSeconds ? "ROUND 2: ZONES SCORE" : null;
+        if (OpeningDelaySeconds > 0 && elapsed < RoundAnnouncementSeconds) return "ROUND 1: NO SCORING";
+        return OpeningDelaySeconds > 0 && elapsed >= OpeningDelaySeconds && elapsed < OpeningDelaySeconds + RoundAnnouncementSeconds ? "ROUND 2: ZONES SCORE" : null;
     }
     // The native phase bar: Round 1 fills over the opening, Round 2 over the rest of the match.
-    public (string Text, float Progress)? RoundBar(double elapsed, double duration)
+    public (string Text, float Progress) RoundBar(double elapsed, double duration)
     {
-        if (elapsed < SetupSeconds) return null;
-        if (elapsed < ScoringStart) return ($"ROUND 1: NO SCORING  {Clock(ScoringStart - elapsed)}", (float)((elapsed - SetupSeconds) / OpeningDelaySeconds));
-        double scoring = Math.Max(1, duration - ScoringStart);
-        return ("ROUND 2: SCORING", (float)Math.Clamp((elapsed - ScoringStart) / scoring, 0, 1));
+        if (elapsed < OpeningDelaySeconds) return ($"ROUND 1: NO SCORING  {Clock(OpeningDelaySeconds - elapsed)}", (float)(elapsed / OpeningDelaySeconds));
+        double scoring = Math.Max(1, duration - OpeningDelaySeconds);
+        return ("ROUND 2: SCORING", (float)Math.Clamp((elapsed - OpeningDelaySeconds) / scoring, 0, 1));
     }
     public string ZoneLabel(string map, int uid) => "+" + Weight(map, uid).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
@@ -136,7 +135,7 @@ public sealed class Ledger
         if (string.IsNullOrWhiteSpace(map)) throw new ArgumentException("Missing native map name");
         if (!double.IsFinite(duration) || duration <= 0 || duration > 86400) throw new ArgumentException("Invalid native match duration");
         Config = config; Map = map; Duration = duration;
-        NextTick = config.ScoringStart == 0 ? config.TickSeconds : config.ScoringStart;
+        NextTick = config.OpeningDelaySeconds == 0 ? config.TickSeconds : config.OpeningDelaySeconds;
     }
     public TickForecast Forecast(IReadOnlyList<Zone> zones)
     {

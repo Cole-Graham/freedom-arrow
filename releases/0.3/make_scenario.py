@@ -5,7 +5,7 @@ from Crypto.Cipher import AES
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R.parents[1]))
 from pipeline.crypto import AES_KEY
 MARKER=b'fhk3s0g3';NAME='[FA] Central Village';START_POINTS=1500;GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003'
-DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 3 minute deployment and a 5 minute Round 1 with no scoring, '
+DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
       'the side with the higher zone value scores the difference. First to 300 wins. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
 SKIRMISH_NAME='[FA] Central Village Skirmish';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004'
 GAME_VERSION='1.2.2'
