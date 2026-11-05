@@ -53,6 +53,8 @@ $VANILLA = (Get-ChildItem cache/vanilla -Directory | Select-Object -First 1).Ful
 .venv\Scripts\python releases/0.2/verify.py
 ```
 
+`build_constants.py` writes `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`. Git ignores them, so run it after every pull and every edit. `build.py` stops if the data is missing or for another version. A version bump still edits tracked files: commit it, or run `git restore releases/0.2 README.md` before you pull.
+
 The archive is `releases/0.2/out/FreedomArrow-<version>.bamod`. It is git-ignored. Import it with the mod manager as usual, and do not copy it into `Mods`.
 
 Use the next unused number, and check every remote branch first, because other branches also use numbers:
@@ -127,3 +129,4 @@ Stop and send the logs if a player disconnects or desyncs, the scores differ, or
 - 2026-11-04 19:24:04 PST (America/Los_Angeles) — Created the test-version guide for dev.14.
 - 2026-11-04 19:29:55 PST (America/Los_Angeles) — Added the stale-snapshot recovery after a first Windows setup stopped on the pins.
 - 2026-11-04 19:55:51 PST (America/Los_Angeles) — Added the dev.18 steps for play with other people in private scenario lobbies.
+- 2026-11-04 20:21:00 PST (America/Los_Angeles) — Generated data is no longer in Git, so the guide now requires the generator after every pull and edit.

@@ -1,6 +1,6 @@
 #0.2 development evidence
 
-**Not live tested.** The authoritative audit is constant-audit.json; build logs and host-check results are retained in the task directory. Archive verification checks the actual payload, metadata, held tables and requested vehicle data. Source checks do not prove native credits, APS interception, armor behavior, speed or gameplay stability.
+**Not live tested.** The authoritative audit is constant-audit.json, which build_constants.py generates and Git ignores; build logs and host-check results are retained in the task directory. Archive verification checks the actual payload, metadata, held tables and requested vehicle data. Source checks do not prove native credits, APS interception, armor behavior, speed or gameplay stability.
 
 The next review must inspect source and actual archive before an isolated future test. No game installation or launch by this task.
 
@@ -65,3 +65,5 @@ Dev.17 (Osama: apply everything in the log): seven new cards and all held squad 
 - 2026-11-04 19:37:31 PST (America/Los_Angeles) — dev.16: LAV-AT 10 HP, M3A3 80, Sprut 14 HP on both armor choices. No live result.
 
 - 2026-11-04 19:42:51 PST (America/Los_Angeles) — dev.17: applied all held card splits, squad changes and option retirement from the 0.2 log. No live result.
+
+- 2026-11-04 20:21:00 PST (America/Los_Angeles) — constant-audit.json is now generated locally and not in Git.

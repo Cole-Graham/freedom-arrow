@@ -27,16 +27,13 @@ https://docs.google.com/document/d/1zt3iMn8IcSJSLRl4PBCugvVbTkp1HEA_TM6GPADWwOo/
 From this checkout:
 
 ```bash
+python3 releases/0.2/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
 python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.21.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
-To regenerate the included data, first supply the vanilla cache matching every 0.1.1 compatibility pin:
-
-```bash
-python3 releases/0.2/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
-```
+The vanilla cache must match every 0.1.1 compatibility pin. The generated data is not in Git: `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`.
 
 These commands write only this checkout's output/build files. They do not install or launch the game. The isolated branch starts at 72783a5; it deliberately does not copy another task's uncommitted 0.1 guide edit.
 
@@ -123,3 +120,5 @@ Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidd
 - 2026-11-04 20:04:05 PST (America/Los_Angeles) — dev.20: T-72B3A 105 for now. No live result.
 
 - 2026-11-04 20:12:56 PST (America/Los_Angeles) — dev.21: fixed the empty armory by deleting retired rows instead of using a hidden unit. No live result yet.
+
+- 2026-11-04 20:21:00 PST (America/Los_Angeles) — Generated data removed from Git; the build steps now start with the generator.

@@ -8,6 +8,8 @@ def main():
  game=a.game_dir.resolve()
  if not (game/'MelonLoader/Il2CppAssemblies/Il2CppBrokenArrow.dll').is_file():p.error('Generated MelonLoader assemblies are required')
  metadata=json.loads((R/'mod.json').read_text());version=metadata['version']
+ audit=R/'constant-audit.json'
+ if not audit.is_file() or json.loads(audit.read_text())['version']!=version:p.error(f'Generated data is missing or not for {version}. Run build_constants.py first.')
  payload=R/'build/payload'
  if payload.exists():shutil.rmtree(payload)
  shutil.copytree(R/'source/UserData',payload/'UserData');(payload/'Mods').mkdir()
