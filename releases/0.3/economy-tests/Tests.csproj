@@ -3,5 +3,6 @@
   <ItemGroup>
     <Compile Include="../source/conquest/EconomyWindow.cs" Link="EconomyWindow.cs" />
     <Compile Include="../source/conquest/Scoring.cs" Link="Scoring.cs" />
+    <Compile Include="../source/runtime-qa/CoverDamagePolicy.cs" Link="CoverDamagePolicy.cs" />
   </ItemGroup>
 </Project>

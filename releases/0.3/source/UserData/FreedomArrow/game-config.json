@@ -1,3 +1,5 @@
 {
-  "DefaultPlayerMoney": 1500
+  "DefaultPlayerMoney": 1500,
+  "ForestDamageTaken": 0.6,
+  "BuildingDamageTaken": 0.3
 }
