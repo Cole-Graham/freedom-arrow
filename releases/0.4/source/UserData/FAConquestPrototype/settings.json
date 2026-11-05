@@ -7,7 +7,7 @@
   "RearCritMinPenetration": 250,
   "FrontArcDegrees": 60,
   "SetupSeconds": 180,
-  "OnlineDeploySeconds": 60,
+  "OnlineDeploySeconds": 180,
   "OpeningDelaySeconds": 300,
   "DefaultZoneWeight": 1,
   "Scoring": "advantage",

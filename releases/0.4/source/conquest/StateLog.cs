@@ -17,7 +17,7 @@ public sealed partial class Prototype
 {
     const float StateSeconds=1,SlowSampleMs=30,StressStep=25;
     const int SlowSamplesForWeaponsOff=3,SlowSamplesForLogOff=6,MaxStateLines=300000;
-    sealed class SeenUnit { public int Id;public string Name,Team,Crits;public float Hp,Stress;public int Soldiers; }
+    sealed class SeenUnit { public int Id;public string Name,Team,Crits;public float Hp,Stress;public int Soldiers;public bool Infantry,HasPos;public Vector3 Pos;public int Mask=-2; }
     static readonly Dictionary<int,SeenUnit> seenUnits=new();
     static readonly Dictionary<int,(int shots,int magazine)> seenShots=new();
     static readonly HashSet<int> liveUnits=new();
@@ -107,7 +107,7 @@ public sealed partial class Prototype
         if(!seenUnits.TryGetValue(key,out var seen))
         {
             var data=NativeEcs.Read<UnitComponent>(entity);
-            seen=new SeenUnit{Crits=StateCrits(entity),Id=data.UnitData?.Id??0,Name=data.UnitData?.Name,Team=data.Owner.TeamSide.ToString(),Hp=hp,Stress=stress,Soldiers=soldiers};
+            seen=new SeenUnit{Infantry=entity.Has<InfantryUnitComponent>(),Crits=StateCrits(entity),Id=data.UnitData?.Id??0,Name=data.UnitData?.Name,Team=data.Owner.TeamSide.ToString(),Hp=hp,Stress=stress,Soldiers=soldiers};
             seenUnits[key]=seen;
             StateLine("unit",new{e=key,seen.Id,seen.Name,seen.Team,hp,max=NativeEcs.Field<HealthComponent,float>(entity,"MaxHealth"),soldiers,infantry=entity.Has<InfantryUnitComponent>()});
             return seen;
@@ -115,6 +115,7 @@ public sealed partial class Prototype
         // Crit levels from any source, native or ours: optics, mobility, targeting, loading. 0 none, 1 yellow, 2 red.
         string crits=StateCrits(entity);
         if(crits!=seen.Crits){StateLine("crits",new{e=key,seen.Id,seen.Team,before=seen.Crits,crits});seen.Crits=crits;}
+        if(!seen.Infantry)StateMove(entity,key,seen);
         bool hit=hp!=seen.Hp||soldiers!=seen.Soldiers;
         if(hit)
         {
@@ -145,5 +146,16 @@ public sealed partial class Prototype
         if(status==null)return null;
         int Level(Il2CppBrokenArrow.Client.Ecs.BattleSystem.CriticalEffectTypes t)=>status.ContainsKey(t)?status[t]:0;
         return $"O{Level(Il2CppBrokenArrow.Client.Ecs.BattleSystem.CriticalEffectTypes.Optics)} M{Level(Il2CppBrokenArrow.Client.Ecs.BattleSystem.CriticalEffectTypes.Mobility)} T{Level(Il2CppBrokenArrow.Client.Ecs.BattleSystem.CriticalEffectTypes.Targeting)} L{Level(Il2CppBrokenArrow.Client.Ecs.BattleSystem.CriticalEffectTypes.Loading)}";
+    }
+    // Vehicle movement, once a second: speed in game units per second and the path mask.
+    // Mask bits are NavMeshAreas: 1 walkable, 8 road, 16 forest, 1024 buildings. -1 means every area. No path means no move order.
+    static void StateMove(Entity entity,int key,SeenUnit seen)
+    {
+        var pos=NativeEcs.Property<TransformComponent,Vector3>(entity,"Position");
+        int mask=entity.Has<Il2CppBrokenArrow.Client.Ecs.Navigation.Components.PathComponent>()?NativeEcs.Field<Il2CppBrokenArrow.Client.Ecs.Navigation.Components.PathComponent,int>(entity,"Mask"):-2;
+        float speed=seen.HasPos?Vector3.Distance(pos,seen.Pos)/StateSeconds:0;
+        bool moving=speed>0.5f;
+        if(moving||mask!=seen.Mask)StateLine("move",new{e=key,seen.Id,seen.Team,speed,mask,x=pos.x,z=pos.z,crits=seen.Crits});
+        seen.Pos=pos;seen.HasPos=true;seen.Mask=mask;
     }
 }

@@ -28,7 +28,11 @@ public sealed partial class Prototype
     static int combatLogged,arcWidened;
     static readonly ConcurrentDictionary<int,(bool rear,bool tankGun)> ammoKinds=new();
     static readonly ConcurrentQueue<(Entity target,int kind,ArmorSides side,float damage,string ammo)> critHits=new();
-    static readonly ConcurrentQueue<(float angle,int count)> arcHits=new();
+    // A widened side result, kept until the same thread's next real hit uses it. The AI also asks for armor sides when it aims.
+    [ThreadStatic] static bool arcPending;
+    [ThreadStatic] static float arcAngle;
+    static int arcLogged;
+    static readonly ConcurrentQueue<(Entity target,float angle,float damage,string ammo,int calls)> arcHits=new();
     static readonly System.Random critRandom=new();
     static void InstallCombatHooks()
     {
@@ -44,9 +48,11 @@ public sealed partial class Prototype
     public static void QueueCrit(Entity __0,Ammunitions __2,ArmorSides __5,float __result)
     {
         bool real=realHit;realHit=false;
+        bool arc=arcPending;arcPending=false;
         if(!real||!combatActive||__2==null)return;
         try
         {
+            if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));
             var k=ammoKinds.GetOrAdd(__2.Id,_=>(CritRule.RearAntiTank((int)__2.TrajectoryType,(long)__2.TargetType,__2.PenetrationAtMinRange,config.RearCritMinPenetration),
                 CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name)));
             int kind=CritRule.Kind((int)__5,__result,config.CritDamage,k.rear,k.tankGun);
@@ -57,6 +63,7 @@ public sealed partial class Prototype
     public static void ArcBefore(Vector3 __2) { impact=__2; }
     public static void ArcAfter(in Entity __1,ref ArmorSides __result)
     {
+        arcPending=false;
         if(__result!=ArmorSides.Sides||!combatActive)return;
         try
         {
@@ -66,8 +73,8 @@ public sealed partial class Prototype
             BattleSystemHelpers.LocalDirectionToLocalAngles(local,out float horizontal,out _);
             if(!CritRule.WidenFront((int)__result,horizontal,config.FrontArcDegrees))return;
             __result=ArmorSides.Front;
-            int n=Interlocked.Increment(ref arcWidened);
-            if(n<=MaxCombatLog)arcHits.Enqueue((horizontal,n));
+            Interlocked.Increment(ref arcWidened);
+            arcPending=true;arcAngle=horizontal;
         }
         catch(Exception e) { StopCombat(e); }
     }
@@ -77,8 +84,9 @@ public sealed partial class Prototype
         combatActive=view!=null&&Guarded(view.Service);
         while(arcHits.TryDequeue(out var arc))
         {
-            MelonLogger.Msg($"FREEDOM_ARROW_FRONT_ARC side hit at {arc.angle:0.#} degrees counted as front ({arc.count})");
-            if(stateFile!=null)StateLine("front_arc",new{angle=arc.angle,count=arc.count});
+            string name=arc.target.IsAlive&&arc.target.Has<UnitComponent>()?NativeEcs.Read<UnitComponent>(arc.target).UnitData?.Name:null;
+            if(++arcLogged<=MaxCombatLog)MelonLogger.Msg($"FREEDOM_ARROW_FRONT_ARC real hit on {name} at {arc.angle:0.#} degrees counted as front, {arc.damage:0.##} by {arc.ammo}; widened side calls so far {arc.calls}");
+            if(stateFile!=null)StateLine("front_arc",new{e=arc.target.GetHashCode(),name,angle=arc.angle,damage=arc.damage,ammo=arc.ammo,calls=arc.calls});
         }
         while(critHits.TryDequeue(out var hit))
         {
