@@ -190,4 +190,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 
 - 2026-11-04 16:54:02 PST (America/Los_Angeles) — Added an unreleased0.2 development/build pointer and explicit recon/card/runtime limits; preserved the0.1 candidate and upstream cleanup.
 - 2026-11-04 17:30:00 PST (America/Los_Angeles) — Updated the development pointer to dev.4.
-- 2026-11-04 18:05:00 PST (America/Los_Angeles) — Updated the development pointer to dev.5.
+- 2026-11-04 17:54:19 PST (America/Los_Angeles) — Updated the development pointer to dev.5.

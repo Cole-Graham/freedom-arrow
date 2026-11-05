@@ -26,4 +26,4 @@ Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 13
 
 - 2026-11-04 17:30:00 PST (America/Los_Angeles) — Added dev.4 Spike LR, Linebacker and provisional SRAT 600 corrections. No live result.
 
-- 2026-11-04 18:05:00 PST (America/Los_Angeles) — Added dev.5 constants-only detection proposal. No live result.
+- 2026-11-04 17:54:19 PST (America/Los_Angeles) — Added dev.5 constants-only detection proposal. No live result.
