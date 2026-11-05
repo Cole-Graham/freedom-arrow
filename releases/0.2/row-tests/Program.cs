@@ -38,9 +38,9 @@ JsonArray Vanilla(string t)=>JsonNode.Parse(File.ReadAllText(Path.Combine(vanill
 foreach(var s in Vanilla("SensorsJson")){int id=s["Id"].GetValue<int>();var m=Row("SensorsJson",id);double g=s["OpticsGround"].GetValue<double>();
 Check(m["OpticsGround"].GetValue<double>()==(heldSensors.Contains(id)?g:drones.TryGetValue(id,out var drone)?drone:tiers[g]),"optics "+id);Check(m["OpticsLowAltitude"].GetValue<double>()==s["OpticsLowAltitude"].GetValue<double>()&&m["OpticsHighAltitude"].GetValue<double>()==s["OpticsHighAltitude"].GetValue<double>(),"air optics "+id);}
 foreach(var u in Vanilla("Units")){int id=u["Id"].GetValue<int>(),type=u["Type"].GetValue<int>(),cat=u["CategoryType"].GetValue<int>(),role=u["Role"].GetValue<int>();var m=Row("Units",id);double s=u["Stealth"].GetValue<double>();
-double want=id==445?s:id==51||id==173||id==249||id==458?0.8:type==4&&cat!=4?1.0:type!=2||cat==4?s:s==0.333?s:cat==0?0.4:0.5;
+double want=new[]{35,51,99,152,167,173,186,249,384,445,455,458,509}.Contains(id)?0.8:type==4&&cat!=4?1.0:type!=2||cat==4?s:s==0.333?s:cat==0?0.4:0.5;
 Check(m["Stealth"].GetValue<double>()==want&&m["CurrentStealth"].GetValue<double>()==want,"stealth "+id);}
-foreach(int id in new[]{51,52,425,480,512,757,1713,2085,2086})Check(Row("OptionsJson",id)["StealthOverride"].GetValue<double>()==1,"vehicle override "+id);
+foreach(int id in new[]{51,52,425,480,512,757,1713,2085,2086})Check(Row("OptionsJson",id)["StealthOverride"].GetValue<double>()==0.8,"recon override "+id);
 Check(Row("OptionsJson",1486)["StealthOverride"].GetValue<double>()==0.4&&Row("OptionsJson",3074)["StealthOverride"].GetValue<double>()==0.5,"held overrides");
 var detection=DetectionSettings.Parse(File.ReadAllText(Path.Combine(root,"detection-config.json")));
 Check(detection.MaxFlashValue==2.2f&&detection.SpottedPenalty==1.5f&&detection.SpottedPenaltyBuildings==1.5f&&detection.ForestCover==3f&&detection.BuildingCover==4f,"detection config values");

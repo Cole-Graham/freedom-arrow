@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.8 — isolated development candidate
+# Freedom Arrow 0.2.0-dev.9 — isolated development candidate
 
 **Build-only candidate: flat 200 points per simulation minute with no force-size income penalty in guarded offline Local AI Skirmish, plus the Russian and US/Baltic vehicle data batches. It has not been installed, launched or accepted in game.**
 
@@ -28,7 +28,7 @@ From this checkout:
 
 ```bash
 python3 releases/0.2/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.8.bamod
+python3 releases/0.2/verify.py releases/0.2/out/FreedomArrow-0.2.0-dev.9.bamod
 dotnet run --project releases/0.2/economy-tests/Tests.csproj -c Release
 ```
 
@@ -60,9 +60,11 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 
 Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config, written only in a guarded offline battle: flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
 
-Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; the Scimitar keeps vanilla raw stealth 1.25; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
+Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
 
 Dev.8 (Lateralus): Humvee LRAS3, Humvee RWS, BRDM-2M and 1V14 Mashina-S are UI stealth 1.25 (raw 0.8). No live result.
+
+Dev.9 (Lateralus): UI stealth 1.25 (raw 0.8) for Scimitar, M981 FISTV, 1V119 Reostat, M1117 Guardian, IFAV, Sarmat-2, Chaborz M-6, UAZ Kozlik and TGB-1111; the nine recon turret options at UI 1.5 in vanilla also go to UI 1.25. No live result.
 
 ## Document change log
 
@@ -81,3 +83,5 @@ Dev.8 (Lateralus): Humvee LRAS3, Humvee RWS, BRDM-2M and 1V14 Mashina-S are UI s
 - 2026-11-04 18:07:58 PST (America/Los_Angeles) — dev.7: kept vanilla 3.0 infantry and the Scimitar, and scaled drone ground optics. No live result.
 
 - 2026-11-04 18:11:00 PST (America/Los_Angeles) — dev.8: set four recon vehicles to UI stealth 1.25. No live result.
+
+- 2026-11-04 18:26:32 PST (America/Los_Angeles) — dev.9: applied the UI stealth 1.25 recon list and option overrides. No live result.

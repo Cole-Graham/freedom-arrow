@@ -114,7 +114,6 @@ def main():
         if sid not in held:
             put('SensorsJson',sid,{'OpticsGround':new_optics(sid,row)},'Ground optics tier; shared with any unit on this sensor')
     def stealth_class(u):
-        if u['Id'] in det['stealth_held_units']:return None
         if u['Type']==4 and u['CategoryType'] in (0,2,3):return 'vehicle'
         if u['Type']!=2 or u['CategoryType']==4:return None
         if u['Stealth']==det['stealth']['sniper']:return 'sniper'  # Any unit at 3 in vanilla stays at 3.
@@ -127,10 +126,10 @@ def main():
     for uid,row in list(effective['Units'].items()):
         v=stealth_value(row)
         if v is not None and row['Stealth']!=v:put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Detection proposal stealth')
-    for key,v in det['stealth_override_options'].items():put('OptionsJson',int(key),{'StealthOverride':v},'Vehicle stealth override would defeat class 1.0')
+    for key,v in det['stealth_override_options'].items():put('OptionsJson',int(key),{'StealthOverride':v},'Recon option at UI 1.5 in vanilla goes to UI 1.25')
     for o in effective['OptionsJson'].values():
         unit=effective['Units'][mods[o['ModificationId']]]
-        assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or (o['StealthOverride']==1.0 and str(unit['Id']) not in det['stealth_unit_values']),('vehicle override',o['Id'])
+        assert not o['StealthOverride'] or stealth_class(unit)!='vehicle' or o['StealthOverride'] in (1.0,0.8),('vehicle override',o['Id'])
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):

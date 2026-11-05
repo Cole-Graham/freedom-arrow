@@ -22,15 +22,15 @@
     "sniper": 0.333
   },
   "stealth_override_options": {
-    "51": 1.0,
-    "52": 1.0,
-    "425": 1.0,
-    "480": 1.0,
-    "512": 1.0,
-    "757": 1.0,
-    "1713": 1.0,
-    "2085": 1.0,
-    "2086": 1.0
+    "51": 0.8,
+    "52": 0.8,
+    "425": 0.8,
+    "480": 0.8,
+    "512": 0.8,
+    "757": 0.8,
+    "1713": 0.8,
+    "2085": 0.8,
+    "2086": 0.8
   },
   "medium_plus_rule": "Lateralus: interpolate from vanilla, nearest 50. 1300 + 350 x 100/275 = 1427, rounded to 1450.",
   "optics_ground_drones": {
@@ -39,14 +39,20 @@
     "34": 4650.0
   },
   "drone_rule": "Lateralus: proportional. Vanilla x 2800/1200, nearest 50.",
-  "stealth_held_units": [
-    445
-  ],
   "stealth_unit_values": {
+    "35": 0.8,
     "51": 0.8,
+    "99": 0.8,
+    "152": 0.8,
+    "167": 0.8,
     "173": 0.8,
+    "186": 0.8,
     "249": 0.8,
-    "458": 0.8
+    "384": 0.8,
+    "445": 0.8,
+    "455": 0.8,
+    "458": 0.8,
+    "509": 0.8
   },
-  "stealth_unit_values_note": "Lateralus: UI 1.25 is raw 0.8 for Humvee LRAS3, BRDM-2M, Humvee RWS and 1V14 Mashina-S."
+  "stealth_unit_values_note": "Lateralus: stealth numbers are UI values. UI 1.25 is raw 0.8. Recon vehicles at UI 1.5 in vanilla go to UI 1.25; the listed units keep or take UI 1.25."
 }
