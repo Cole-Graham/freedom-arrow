@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Configs;
@@ -11,13 +12,18 @@ static class DetectionConfig
 {
     const int Forest=2,Buildings=3;
     static DetectionSettings target,vanilla;
+    static float startingPoints;
+    static float? originalPoints;
     static void Log(string stage,object data)=>MelonLogger.Msg("FREEDOM_ARROW_DETECTION "+stage+" "+JsonSerializer.Serialize(data));
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
         target=DetectionSettings.Parse(File.ReadAllText(Path.Combine(root,"detection-config.json")));
         harmony.Patch(AccessTools.Method(typeof(EcsLoader),"InitBattleSequentialSystem"),
             prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(Before)),postfix:new HarmonyMethod(typeof(DetectionConfig),nameof(After)));
-        Log("installed",new{target,status="invocation unproved until a before line appears"});
+        startingPoints=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"game-config.json")))["DefaultPlayerMoney"].GetValue<float>();
+        if(!(startingPoints>=0&&startingPoints<=5000))throw new InvalidDataException("DefaultPlayerMoney out of range");
+        harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
+        Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }
     static VisibleTerrainType Terrain(FogOfWarConfig cfg,int type)
     {
@@ -31,6 +37,18 @@ static class DetectionConfig
         var forest=Terrain(c,Forest);var buildings=Terrain(c,Buildings);
         c.MaxFlashValue=s.MaxFlashValue;c.SpottedPenalty=s.SpottedPenalty;c.SpottedPenaltyBuildings=s.SpottedPenaltyBuildings;
         forest.Cover=s.ForestCover;buildings.Cover=s.BuildingCover;
+    }
+    // Scenario lobby options can still set their own starting points after this.
+    static void BeforePlayers()
+    {
+        try
+        {
+            var game=GameConfig.Instance??throw new InvalidDataException("Game config missing");
+            originalPoints??=game.DefaultPlayerMoney;
+            game.DefaultPlayerMoney=Runtime.IsApplied?startingPoints:originalPoints.Value;
+            MelonLogger.Msg($"FREEDOM_ARROW_START_POINTS {game.DefaultPlayerMoney}");
+        }
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_START_POINTS_FAILED: "+e.Message);}
     }
     static void Before()
     {

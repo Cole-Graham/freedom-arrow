@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.1 — development candidate
+# Freedom Arrow 0.3.0-dev.2 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -96,6 +96,10 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.1: see README. Offline checks only.
+0.3.0-dev.2: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
+
+Dev.2: starting points 1500. `game-config.json` sets the game's default before players load, and `[FA] Central Village` defaults its lobby slider to 1500. The scenario reserve cap is also 1500.
+
+- 2026-11-04 21:30:57 PST (America/Los_Angeles) — dev.2: starting points 1500. No live result.

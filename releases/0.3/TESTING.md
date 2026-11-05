@@ -10,6 +10,7 @@
   - `stealth`: raw value per class. Raw is 1 / UI value, so UI 2.0 is 0.5.
   - `stealth_unit_values`: per-unit raw values that replace the class value.
   - `stealth_override_options`: per-option raw values.
+- `releases/0.3/source/UserData/FreedomArrow/game-config.json`: starting points, 0 to 5000. Log line: `FREEDOM_ARROW_START_POINTS`.
 - `releases/0.3/source/UserData/FreedomArrow/detection-config.json`: config values, written when a battle loads. Each must be 1 to 10.
 - `releases/0.3/vehicle-contract.json`: prices.
 
@@ -131,3 +132,4 @@ Stop and send the logs if a player disconnects or desyncs, the scores differ, or
 - 2026-11-04 19:55:51 PST (America/Los_Angeles) — Added the dev.18 steps for play with other people in private scenario lobbies.
 - 2026-11-04 20:21:00 PST (America/Los_Angeles) — Generated data is no longer in Git, so the guide now requires the generator after every pull and edit.
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Copied the guide for 0.3 and named the FA scenario.
+- 2026-11-04 21:30:57 PST (America/Los_Angeles) — Added game-config.json.

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.1 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.2 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.1.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.2.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -93,6 +93,8 @@ Dev.1 scoring: the mode now attaches when the native clock is already running, o
 
 Dev.1 scenario: `make_scenario.py` builds `[FA] Central Village` from the game's own `Central Village_network` mission. The runtime plugin copies it to the game's `Scenarios` folder.
 
+Dev.2: starting points 1500. `game-config.json` sets the game's default before players load, and `[FA] Central Village` defaults its lobby slider to 1500. The scenario reserve cap is also 1500.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -138,3 +140,5 @@ Dev.1 scenario: `make_scenario.py` builds `[FA] Central Village` from the game's
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3 from the dev.22 prep: scoring attach fix, SRAT, TUSK and [FA] Central Village. No live result.
+
+- 2026-11-04 21:30:57 PST (America/Los_Angeles) — dev.2: starting points 1500. No live result.
