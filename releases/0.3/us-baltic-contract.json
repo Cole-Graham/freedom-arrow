@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-dev.11",
+  "version": "0.3.0-dev.12",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -192,6 +192,306 @@
     "508": {
       "PenetrationAtMinRange": 140.0,
       "PenetrationAtGroundRange": 140.0
+    },
+    "4": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "6": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "15": {
+      "PenetrationAtMinRange": 60.0,
+      "PenetrationAtGroundRange": 60.0
+    },
+    "37": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "38": {
+      "PenetrationAtMinRange": 125.0,
+      "PenetrationAtGroundRange": 125.0
+    },
+    "64": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "66": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "67": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "71": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "133": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "134": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "150": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "174": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "183": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "190": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "191": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "214": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "228": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "229": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "236": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "261": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "281": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "347": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "348": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "404": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "405": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "409": {
+      "PenetrationAtMinRange": 70.0,
+      "PenetrationAtGroundRange": 70.0
+    },
+    "410": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "412": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "413": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "415": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "416": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "417": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "418": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "419": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "421": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "422": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "423": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "424": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "425": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "426": {
+      "PenetrationAtMinRange": 315.0,
+      "PenetrationAtGroundRange": 315.0
+    },
+    "428": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "429": {
+      "PenetrationAtMinRange": 125.0,
+      "PenetrationAtGroundRange": 125.0
+    },
+    "430": {
+      "PenetrationAtMinRange": 72.5,
+      "PenetrationAtGroundRange": 72.5
+    },
+    "431": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "443": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "444": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "446": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "450": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "467": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "481": {
+      "PenetrationAtMinRange": 25.0,
+      "PenetrationAtGroundRange": 25.0
+    },
+    "489": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "503": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "535": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "558": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "565": {
+      "PenetrationAtMinRange": 62.5,
+      "PenetrationAtGroundRange": 62.5
+    },
+    "581": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "605": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "607": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "610": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "611": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "613": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "623": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "624": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "625": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "718": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "910": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "928": {
+      "PenetrationAtMinRange": 60.0,
+      "PenetrationAtGroundRange": 60.0
+    },
+    "929": {
+      "PenetrationAtMinRange": 125.0,
+      "PenetrationAtGroundRange": 125.0
+    },
+    "930": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "931": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "932": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "933": {
+      "PenetrationAtMinRange": 50.0,
+      "PenetrationAtGroundRange": 50.0
+    },
+    "934": {
+      "PenetrationAtMinRange": 72.5,
+      "PenetrationAtGroundRange": 72.5
+    },
+    "935": {
+      "PenetrationAtMinRange": 125.0,
+      "PenetrationAtGroundRange": 125.0
     }
   },
   "javelin_ids": [

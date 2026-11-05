@@ -100,6 +100,10 @@ def main():
     us=json.loads((R/'us-baltic-contract.json').read_text())
     for key,fields in us['armor_fields'].items():put('ArmorsJson',int(key),fields,'Explicit US/Baltic armor/HP target or M6 Linebacker front HEAT; shared consumers audited')
     for key,fields in us['ammo_fields'].items():put('AmmunitionsJson',int(key),fields,'Tank-gun sabot10 or all live Javelin and Spike LR10.5')
+    # Unguided artillery cannot exceed the cluster cap. Laser-guided rows sit halfway from vanilla to the unguided value.
+    for aid,row in effective['AmmunitionsJson'].items():
+        if row['TrajectoryType'] in (20,30,40) and not row['LaserGuided'] and not row['GenerateSmoke'] and row['Damage']>1:
+            assert row['PenetrationAtGroundRange']<=50 and row['PenetrationAtMinRange']==row['PenetrationAtGroundRange'],('artillery penetration',aid)
     for uid in us['stryker_scope']:
         for old in [2000017,2000018]:
             oid=next(o['Id'] for o in options(uid) if o['ArmorId']==old)

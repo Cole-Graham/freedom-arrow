@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.11 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.12 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.11.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.12.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -113,6 +113,11 @@ Dev.10 (Osama): HEAT top 80 on BMO-T, which joins the T-72 chassis group. TOS-1 
 
 Dev.11: stable IDs for the M10 Booker XM913 APS option and the added transports. Later armor changes cannot move them. No stat change.
 
+Dev.12 (Osama): lower artillery penetration, so tanks survive shelling. Infantry lose little.
+Unguided HE up to damage 12: 30. Damage 15: 25. Damage 17 and above: 20. Unguided cluster: 50.
+Laser-guided rows are halfway from today's value to the unguided value: 155mm 75 to 52.5, 203mm 100 to 62.5, 227mm 100 to 60, 300mm 125 to 72.5, 240mm 120 to 70, 120mm 60 to 45, guided cluster 200 to 125, M109A6 guided HEAT 600 to 315.
+TOS, CATFAE and Grad incendiary stay at 15. Adds a FREEDOM_ARROW_HIT log line for real artillery hits.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -176,3 +181,4 @@ Dev.11: stable IDs for the M10 Booker XM913 APS option and the added transports.
 - 2026-11-04 22:37:29 PST (America/Los_Angeles) — dev.9: T-15 and BMPT top 80. No live result.
 - 2026-11-04 22:48:56 PST (America/Los_Angeles) — dev.10: BMO-T top 80. No live result.
 - 2026-11-04 22:50:15 PST (America/Los_Angeles) — dev.11: stable saved-deck IDs. No stat change. No live result.
+- 2026-11-04 23:30:42 PST (America/Los_Angeles) — dev.12: artillery penetration and hit log. No live result.
