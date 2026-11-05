@@ -1,4 +1,4 @@
-# Freedom Arrow 0.2.0-dev.18 — development candidate
+# Freedom Arrow 0.2.0-dev.19 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -44,6 +44,8 @@ Dev.16 (Osama): LAV-AT 10 HP on both armor choices; M3A3 CFV 80 points; Sprut 14
 
 Dev.17 (Osama: apply everything in the log): seven new cards and all held squad and option work. New cards: M-ATV Javelin 90, PRP-5G 35 (BRM-3K 50), T-80BVM 190 with 2018+ at +40, Object 787 80, M728 CEV 80, M8 Thunderbolt 85, M10 Booker XM913 110 (parent renamed M10 Booker M35). Troopers 70 with availability 8 and six AT-4 carriers; Troopers AT 110 with availability 4. CAAT Dragon 90 and CAAT Javelin 105 are separate cards. One launcher on Weapons Squad, CAAT Dragon, VDV Kornet and Kornet-M, PTO Metis, PTRK Fagot and Faktoriya; Baltic Milan keeps two. Five men and 25 HP on Weapons Squad, CAAT TOW-2A, TOW-2B and Javelin. VDV Kornet 65, Kornet-M 95, CAAT TOW-2A 80, TOW-2B 100. Options 565, 1462, 1775, 1792, 1895, 1898, 1931, 1939, 2117 and 1951 are retired. The loader cannot delete rows, so retired rows move to hidden unit 721. BTRs keep their prices (Osama). Availability other than M-ATV and Troopers is provisional. No added card or retired row has run live. No live result.
 
+Dev.19 (change log audit): Uran-9 default loadout 70 (base 25 + Ataka 20 + Igla 25), BRDM ATGM with Konkurs-M 50, M2A3 ESV BUSK3 +25. T-72B3A stays 240: its request was cut off with no number. Sprut stays 80: price still open.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -79,3 +81,5 @@ Dev.17 (Osama: apply everything in the log): seven new cards and all held squad 
 Dev.18: private scenario lobbies are open for play with other people, following Actual Arrow. Native Skirmish, ranked search and other lobby types stay blocked, and hosting or joining stops if the servers protect scenario lobbies. Conquest scoring and flat 200 income run in those lobbies on each machine. Offline checks only: no online match has been run.
 
 - 2026-11-04 19:55:51 PST (America/Los_Angeles) — dev.18: private scenario lobbies opened; scoring and flat income run there. No online result.
+
+- 2026-11-04 20:01:19 PST (America/Los_Angeles) — dev.19: applied the Uran-9, BRDM Konkurs and M2A3 ESV BUSK3 prices found by the change log audit. No live result.

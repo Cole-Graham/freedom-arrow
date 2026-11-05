@@ -309,6 +309,12 @@
     "CurrentStealth": 0.5,
     "HUDName": "Troopers AT"
   },
+  "628": {
+    "Cost": 25
+  },
+  "252": {
+    "Cost": 50
+  },
   "57": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5

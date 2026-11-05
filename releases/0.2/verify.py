@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,json,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.18.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.2.0-dev.19.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.2.0-dev.18'
+    assert manifest['version']=='0.2.0-dev.19'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.18 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.2.0-dev.19 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -94,7 +94,7 @@ with zipfile.ZipFile(p) as z:
     assert arm['2000104']['MaxHealthPoints']==12 and arm['326']['MaxHealthPoints']==12 and arm['336']['MaxHealthPoints']==12
     assert arm['2000020']['MaxHealthPoints']==10 and arm['2000021']['MaxHealthPoints']==10
     assert arm['2000022']['MaxHealthPoints']==10 and arm['2000023']['MaxHealthPoints']==10
-    assert 'Cost' not in opt['1759'],'M2A3 ESV BUSK3 option 1759 stays at its vanilla +20'
+    assert opt['1759']['Cost']==25,'M2A3 ESV BUSK3 option 1759 is +25'
     amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==12.0
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
     for uid,oid,total in [(14,1904,90),(180,1958,40),(185,388,30),(41,60,40),(41,2082,70)]:
