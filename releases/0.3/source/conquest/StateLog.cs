@@ -19,7 +19,7 @@ public sealed partial class Prototype
     const int SlowSamplesForWeaponsOff=3,SlowSamplesForLogOff=6,MaxStateLines=300000;
     sealed class SeenUnit { public int Id;public string Name,Team;public float Hp,Stress;public int Soldiers; }
     static readonly Dictionary<int,SeenUnit> seenUnits=new();
-    static readonly Dictionary<int,int> seenShots=new();
+    static readonly Dictionary<int,(int shots,int magazine)> seenShots=new();
     static readonly HashSet<int> liveUnits=new();
     static StreamWriter stateFile;
     static IntPtr stateMode;
@@ -127,10 +127,12 @@ public sealed partial class Prototype
     static void StateWeapon(Entity entity)
     {
         var weapon=NativeEcs.Read<WeaponComponent>(entity);
-        int key=entity.GetHashCode(),shots=(int)weapon.ShotsMade.Value;
-        if(seenShots.TryGetValue(key,out int last)&&last==shots)return;
-        seenShots[key]=shots;
+        // ShotsMade did not change in a live online match, so a magazine change also counts as a shot.
+        int key=entity.GetHashCode(),shots=(int)weapon.ShotsMade.Value,magazine=(int)weapon.AmmoInMagazine.Value;
+        bool known=seenShots.TryGetValue(key,out var last);
+        if(known&&last==(shots,magazine))return;
+        seenShots[key]=(shots,magazine);
         int? owner=entity.Has<ParentComponent>()?NativeEcs.Field<ParentComponent,Entity>(entity,"Root").GetHashCode():null;
-        StateLine("shots",new{e=key,owner,weapon=weapon.WeaponInfo?.Id,ammo=weapon.SelectedAmmunitionId,shots,fired=shots-last,magazine=weapon.AmmoInMagazine.Value});
+        StateLine("shots",new{e=key,owner,weapon=weapon.WeaponInfo?.Id,ammo=weapon.SelectedAmmunitionId,shots,fired=shots-last.shots,magazine,used=known?last.magazine-magazine:0});
     }
 }

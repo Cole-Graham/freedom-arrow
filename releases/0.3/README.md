@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.37 — isolated development candidate
+# Freedom Arrow 0.3.0-dev.38 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -29,7 +29,7 @@ From this checkout:
 ```bash
 python3 releases/0.3/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.3/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.37.bamod
+python3 releases/0.3/verify.py releases/0.3/out/FreedomArrow-0.3.0-dev.38.bamod
 dotnet run --project releases/0.3/economy-tests/Tests.csproj -c Release
 ```
 
@@ -233,3 +233,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 02:07:06 PST (America/Los_Angeles) — dev.35: 60 second scripted deployment on online FA maps. Not yet run live.
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
 - 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
+- 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.

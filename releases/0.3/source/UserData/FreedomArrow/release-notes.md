@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.37 — development candidate
+# Freedom Arrow 0.3.0-dev.38 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -108,6 +108,10 @@ After the online pause, the native clock reads 44:00 and holds for 60 seconds. T
 
 The read-only game state log now also runs in private online matches, so HP loss, soldiers lost, shots and frame rate can be measured there. It has no combat hooks and still turns itself off if samples are slow. No live result.
 
+## dev.38 building damage
+
+Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Building hits have no distance falloff, so a 152mm shell goes from 6.44 to about 2.92 and a Mk82 bomb from about 12.65 to about 3.29, by the game formula. The state log also records magazine changes. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -152,7 +156,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.37: see README. Offline checks only.
+0.3.0-dev.38: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -248,3 +252,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 02:07:06 PST (America/Los_Angeles) — dev.35: 60 second scripted deployment on online FA maps. Not yet run live.
 - 2026-11-05 02:20:07 PST (America/Los_Angeles) — dev.36: online clock and round bar show true time after deployment; online DEPLOYMENT countdown. Not yet run live.
 - 2026-11-05 02:28:32 PST (America/Los_Angeles) — dev.37: game state log runs in private online matches. Not yet run live.
+- 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
