@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.32", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.3.0-dev.33", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -231,7 +231,8 @@ public sealed partial class Prototype : MelonMod
             bool observed=Observe(candidate,timer);
             if(!observed)
             {
-                if(continuousModePointer==__instance.Pointer)throw new InvalidOperationException("Continuous mode lost its guard; native phases remain blocked for this invalid match");
+                // Quitting a match ends the guard before the mode stops. Native phases stay blocked for this mode, and the next match starts clean.
+                if(continuousModePointer==__instance.Pointer){retiredModePointer=__instance.Pointer;Log("match_left",new{timer});return false;}
                 return true;
             }
             if(config.PhasePolicy!="continuous")return true;

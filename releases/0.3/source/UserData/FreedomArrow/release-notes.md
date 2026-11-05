@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.32 — development candidate
+# Freedom Arrow 0.3.0-dev.33 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -88,6 +88,10 @@ F8 matches now write UserData/FAConquestPrototype/state-*.jsonl. It has no comba
 
 PT-76 HP 14 to 10 on the base and uparmored choices. Price does not change. No live result.
 
+## dev.33 session fault fix
+
+Quitting a match set a fault that turned the mod off until the game restarted, so the next match had no FA mode, score, labels or banner. Quitting now retires only that match, and any later fault ends one match and not the session. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -132,7 +136,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.32: see README. Offline checks only.
+0.3.0-dev.33: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -223,3 +227,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 01:11:10 PST (America/Los_Angeles) — dev.30: team score text shrinks to fit its box. Not yet run live.
 - 2026-11-05 01:34:32 PST (America/Los_Angeles) — dev.31: woods reduction on with one hook; read-only F8 game state log. Not yet run live.
 - 2026-11-05 01:40:45 PST (America/Los_Angeles) — dev.32: PT-76 10 HP on both armor choices. Not yet run live.
+- 2026-11-05 01:48:48 PST (America/Los_Angeles) — dev.33: quitting a match no longer stops the mode for later matches. Not yet run live.

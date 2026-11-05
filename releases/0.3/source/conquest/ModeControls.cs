@@ -58,6 +58,8 @@ public sealed partial class Prototype
     }
     static void BeginModeLifetime()
     {
+        // A fault ends one match, not the game session.
+        if(faulted&&initialized){faulted=false;ready=true;Log("fault_cleared",new{status});}
         retiredModePointer=IntPtr.Zero;endingModePointer=IntPtr.Zero;continuousModePointer=IntPtr.Zero;
         modeServicePointer=IntPtr.Zero;dispatching=false;nativeResultStarted=false;winnerEvaluations=0;winnerFoundCalls=0;stoppedCalls=0;
     }
