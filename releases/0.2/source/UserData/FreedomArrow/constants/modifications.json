@@ -1,1 +1,18 @@
-{}
+{
+  "2000250": {
+    "UnitId": 714,
+    "Name": "Weapons MATV",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000251": {
+    "UnitId": 714,
+    "Name": "Armor MATV",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  }
+}

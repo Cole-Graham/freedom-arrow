@@ -781,5 +781,37 @@
   "708": {
     "Stealth": 0.5,
     "CurrentStealth": 0.5
+  },
+  "714": {
+    "OriginalName": null,
+    "OwnerInfantryID": 0,
+    "OriginalCost": 0,
+    "DisplayInArmory": true,
+    "IsUnitModification": false,
+    "HUDName": "M-ATV Javelin",
+    "Name": "M-ATV Javelin",
+    "CountryId": 2,
+    "Description": null,
+    "ModelFileName": "US_MATV",
+    "PortraitFileName": "US\\MATV_IsAGoodJob\\MATV_IsAGoodJob",
+    "ThumbnailFileName": "US_MATV-Label",
+    "AudioPreset": "UNIT_SOUND_PRESET_JLTV",
+    "Cost": 90,
+    "UpkeepMultiplier": 1.0,
+    "TimeModifierRefund": 0.0,
+    "TimeModifierResurrect": -120.0,
+    "Type": 4,
+    "CategoryType": 0,
+    "Role": 13,
+    "Length": 6.0,
+    "Width": 2.5,
+    "Height": 2.6,
+    "Weight": 15000,
+    "Stealth": 0.8,
+    "InfantrySlots": 4,
+    "MaxStress": 1000.0,
+    "WaterDiveOffset": 0.0,
+    "ContentMembership": -1,
+    "CurrentStealth": 0.8
   }
 }

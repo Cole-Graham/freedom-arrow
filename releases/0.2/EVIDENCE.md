@@ -30,6 +30,8 @@ Dev.11 (Osama, recon list): 30 base prices, for example Stryker RV 40, T-90M 230
 
 Dev.12 (Osama): Typhoon VDV is 25 points, replacing the dev.11 value of 20. No live result.
 
+Dev.13 (Osama, test branch): M-ATV and M-ATV Javelin are separate cards. M-ATV is 30 points with availability 4. M-ATV Javelin is unit 714, 90 points with availability 2. Each has its M2 and Mk19 loadouts, and uparmor +10. This is the first added unit row; no live result.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Started0.2 development evidence record without inheriting0.1 acceptance claims.
@@ -53,3 +55,5 @@ Dev.12 (Osama): Typhoon VDV is 25 points, replacing the dev.11 value of 20. No l
 - 2026-11-04 19:05:03 PST (America/Los_Angeles) — dev.11: applied the recon price list and the uparmor HP rule, and corrected the Scimitar stealth unit. No live result.
 
 - 2026-11-04 19:11:24 PST (America/Los_Angeles) — dev.12: set Typhoon VDV to 25. No live result.
+
+- 2026-11-05 03:14:37 America (America/Los_Angeles) — dev.13: split M-ATV and M-ATV Javelin into separate cards on the test branch. No live result.

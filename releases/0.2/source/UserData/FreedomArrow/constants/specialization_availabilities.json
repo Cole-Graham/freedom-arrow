@@ -1,1 +1,13 @@
-{}
+{
+  "2000254": {
+    "SpecializationId": 13,
+    "UnitId": 714,
+    "MaxAvailabilityXp0": 2,
+    "MaxAvailabilityXp1": 0,
+    "MaxAvailabilityXp2": 0,
+    "MaxAvailabilityXp3": 0
+  },
+  "836": {
+    "MaxAvailabilityXp0": 4
+  }
+}

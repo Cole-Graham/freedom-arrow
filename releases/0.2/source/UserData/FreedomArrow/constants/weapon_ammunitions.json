@@ -348,7 +348,8 @@
     "AmmunitionId": 2000158
   },
   "2745": {
-    "AmmunitionId": 2000174
+    "AmmunitionId": 2000174,
+    "UnitId": 714
   },
   "2752": {
     "AmmunitionId": 2000173
@@ -2107,5 +2108,26 @@
   },
   "3115": {
     "Quantity": 48
+  },
+  "2000243": {
+    "UnitId": 714,
+    "WeaponId": 18,
+    "AmmunitionId": 19,
+    "Order": 0,
+    "Quantity": 200
+  },
+  "2000244": {
+    "UnitId": 714,
+    "WeaponId": 21,
+    "AmmunitionId": 50,
+    "Order": 0,
+    "Quantity": 480
+  },
+  "2000245": {
+    "UnitId": 714,
+    "WeaponId": 692,
+    "AmmunitionId": 275,
+    "Order": 0,
+    "Quantity": 50
   }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.12",
+  "version": "0.2.0-dev.13",
   "base_costs": {
     "90": 30,
     "89": 60,
@@ -119,9 +119,7 @@
     "478": 15,
     "479": 55,
     "1708": 70,
-    "50": 20,
-    "2049": 60,
-    "2050": 60
+    "50": 20
   },
   "provisional_units": [
     13,
@@ -130,8 +128,7 @@
     180,
     421,
     37,
-    209,
-    467
+    209
   ],
   "held_prices": [
     144,
@@ -146,8 +143,60 @@
     "CEV/M60 separate card",
     "M8AGS/Thunderbolt separate cards",
     "BookerM35/XM913 separate cards",
-    "BRM-3K/PRP-5G separate cards",
-    "M-ATV/M-ATV Javelin separate cards"
+    "BRM-3K/PRP-5G separate cards"
   ],
-  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran70 meaning awaiting reply; no price change."
+  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran70 meaning awaiting reply; no price change.",
+  "card_splits": [
+    {
+      "unit": 714,
+      "parent": 467,
+      "name": "M-ATV Javelin",
+      "cost": 90,
+      "move_links": {
+        "TurretUnitsJson": [
+          1769,
+          1771
+        ],
+        "WeaponAmmunitionsJson": [
+          2745
+        ]
+      },
+      "clone_links": {
+        "TurretUnitsJson": [
+          1772
+        ],
+        "WeaponAmmunitionsJson": [
+          2743,
+          2744,
+          2746
+        ],
+        "SensorUnitsJson": [
+          935
+        ],
+        "UnitPropulsionsJson": [
+          873
+        ],
+        "UnitArmorsJson": [
+          856,
+          857
+        ]
+      },
+      "modifications": {
+        "578": [],
+        "579": [
+          2051,
+          2052
+        ]
+      },
+      "move_options": {
+        "2049": 578,
+        "2050": 578
+      },
+      "availability": {
+        "row": 836,
+        "parent": 4,
+        "new": 2
+      }
+    }
+  ]
 }
