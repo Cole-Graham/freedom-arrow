@@ -213,7 +213,8 @@ def main():
         for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
             old=link['ArmorId']
             if effective['ArmorsJson'][old]['HeatArmorTop']==top:continue
-            new=clone('ArmorsJson',old,{'HeatArmorTop':top},why)
+            # The plain T-80BV hull stays at top 80. The clone keeps the later row IDs stable.
+            new=clone('ArmorsJson',old,{'HeatArmorTop':80 if effective['ArmorsJson'][old]['Name']=='Armor T80BV' else top},why)
             put('UnitArmorsJson',link['Id'],{'ArmorId':new},why)
             for opt in options(uid):
                 if opt['ArmorId']==old:put('OptionsJson',opt['Id'],{'ArmorId':new},why)

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.25 — development candidate
+# Freedom Arrow 0.3.0-dev.26 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -58,6 +58,10 @@ The first 3 minutes of the match clock are the setup phase, with a large DEPLOYM
 
 The woods damage hook is off because it is the main suspect for the game exiting when units take damage. Infantry in woods take full damage until a safe hook exists. No live result.
 
+## dev.26 T-80BV top armor
+
+The plain T-80BV has top HEAT 80, the same as vanilla. The T-80BVM variants stay at 100. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -102,7 +106,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.25: see README. Offline checks only.
+0.3.0-dev.26: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -186,3 +190,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 00:34:56 PST (America/Los_Angeles) — dev.23: Round 1 banner, 5 minute opening, F8 time and points. Not yet run live.
 - 2026-11-05 00:37:56 PST (America/Los_Angeles) — dev.24: score limit 300 and team bars. Not yet run live.
 - 2026-11-05 00:54:48 PST (America/Los_Angeles) — dev.25: 3 minute setup, native round bar, damage hook off. Not yet run live.
+- 2026-11-05 00:56:41 PST (America/Los_Angeles) — dev.26: T-80BV top HEAT 80. Not yet run live.
