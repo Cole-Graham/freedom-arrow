@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.30 — development candidate
+# Freedom Arrow 0.3.0-dev.31 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -78,6 +78,12 @@ The round text is smaller and has no timer, so it fits above the bar. The three 
 
 The X/300 text under each team shrinks automatically so that it fits its box. No live result.
 
+## dev.31 woods test and game state log
+
+The woods reduction is on again for a crash test. It uses only the CalculateHitDamage hook. The DealUnitDamage hook and the artillery hit log are gone, because that hook is the new main suspect for the crash. The hook follows the Actual Arrow design, so its license needs a decision before release.
+
+F8 matches now write UserData/FAConquestPrototype/state-*.jsonl. It has no combat hooks. Once a second it reads the frame rate, score, zone forecast, HP changes, soldier counts, stress changes, shots and missile count from the main thread. Slow samples turn off weapon reads and then the log. Set StateLog to false in settings.json to turn it off. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -122,7 +128,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.30: see README. Offline checks only.
+0.3.0-dev.31: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -211,3 +217,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 01:08:31 PST (America/Los_Angeles) — dev.28: round text fits, phase boxes hidden, green next-tick number. Not yet run live.
 - 2026-11-05 01:10:43 PST (America/Los_Angeles) — dev.29: [FA] Dead Center 0.1 runs the FA game mode. A B C are 2, D E are 3. Not yet run live.
 - 2026-11-05 01:11:10 PST (America/Los_Angeles) — dev.30: team score text shrinks to fit its box. Not yet run live.
+- 2026-11-05 01:34:32 PST (America/Los_Angeles) — dev.31: woods reduction on with one hook; read-only F8 game state log. Not yet run live.

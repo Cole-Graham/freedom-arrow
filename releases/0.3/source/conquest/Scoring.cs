@@ -22,6 +22,7 @@ public sealed class Settings
     internal readonly Dictionary<int,int> FixtureWeights = new();
     public double MaximumSampleLatenessSeconds { get; set; } = 2;
     public bool ShowOverlay { get; set; } = true;
+    public bool StateLog { get; set; } = false;
     public Dictionary<string, Dictionary<string, int>> MapZoneWeights { get; set; } = new();
     public static readonly JsonSerializerOptions Json = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
 

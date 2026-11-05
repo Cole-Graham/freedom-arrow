@@ -191,6 +191,7 @@ public sealed partial class Prototype
     public override void OnUpdate()
     {
         SetupFrame();
+        StateFrame();
         EconomyFrame();
         DispatchPendingEnding();
         if(uiSnapshot!=null&&uiSnapshot.Panel==null){uiEnabled=false;RestoreNativeUi();}

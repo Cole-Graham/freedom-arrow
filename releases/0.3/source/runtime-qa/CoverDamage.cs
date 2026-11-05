@@ -15,9 +15,8 @@ namespace FreedomArrow;
 // Infantry damage in woods. Vanilla has no terrain factor in CalculateHitDamage. Buildings use BuildingsConfig (DetectionConfig).
 static class CoverDamage
 {
-    const int MaxLog=15,MaxHitLog=300;
-    [ThreadStatic] static bool inRealHit;
-    static int hitsLogged;
+    const int MaxLog=15;
+    static int calls;
     static float forest;
     static int logged,probed;
     static bool broken;
@@ -40,10 +39,6 @@ static class CoverDamage
         getTerrainCode=*(IntPtr*)getTerrain;
         if(getTerrainCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<TerrainTypeComponent> has no code");
         harmony.Patch(AccessTools.Method(typeof(BattleSystemHelpers),"CalculateHitDamage"),postfix:new HarmonyMethod(typeof(CoverDamage),nameof(After)));
-        // Shell selection and overkill scoring also call CalculateHitDamage. Only hits inside DealUnitDamage are real.
-        // The hit log is evidence only. Its failure must not stop cover damage.
-        try{harmony.Patch(AccessTools.Method(typeof(ShellHitSystem),"DealUnitDamage"),prefix:new HarmonyMethod(typeof(CoverDamage),nameof(EnterHit)),postfix:new HarmonyMethod(typeof(CoverDamage),nameof(LeaveHit)));}
-        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HIT_FAILED: no hit log this session. "+e.Message);}
         MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE installed forest {forest}");
     }
     static unsafe bool Has(IntPtr method,Entity e)
@@ -53,14 +48,13 @@ static class CoverDamage
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(error);
         return result!=IntPtr.Zero&&*(bool*)IL2CPP.il2cpp_object_unbox(result);
     }
-    static void EnterHit()=>inRealHit=true;
-    static void LeaveHit()=>inRealHit=false;
     static unsafe void After(Entity __0,float __1,Ammunitions __2,float __3,bool __4,ArmorSides __5,ref float __result)
     {
         if(broken||__result<=0||!Runtime.IsApplied)return;
         try
         {
-            if(inRealHit&&__2!=null&&(int)__2.TrajectoryType is 20 or 30 or 40&&Interlocked.Increment(ref hitsLogged)<=MaxHitLog)MelonLogger.Msg($"FREEDOM_ARROW_HIT {__2.Name} base {__1:0.##} pen {__3:0.##} side {__5} top {__4} damage {__result:0.##}");
+            // This line is written before the first native read, so a crash log shows how far the hook got.
+            if(Interlocked.Increment(ref calls)==1)MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE first call thread {Environment.CurrentManagedThreadId}");
             if(!Has(hasInfantry,__0)||!Has(hasTerrain,__0))return;
             var terrain=*(TerrainType*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getTerrainCode)(&__0,getTerrain);
             if(Interlocked.Increment(ref probed)<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE infantry hit on {terrain}");

@@ -1,6 +1,7 @@
 {
   "Enabled": true,
   "TickSeconds": 30,
+  "StateLog": true,
   "SetupSeconds": 180,
   "OpeningDelaySeconds": 300,
   "DefaultZoneWeight": 1,

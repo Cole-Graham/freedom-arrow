@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable>
-    <AssemblyName>FreedomArrow.ConquestBatch</AssemblyName><Version>0.3.0-dev.30</Version>
+    <AssemblyName>FreedomArrow.ConquestBatch</AssemblyName><Version>0.3.0-dev.31</Version>
 
     <ML>$(GameDir)/MelonLoader/net6</ML><IL2>$(GameDir)/MelonLoader/Il2CppAssemblies</IL2>
-  </PropertyGroup>
+  <AllowUnsafeBlocks>true</AllowUnsafeBlocks></PropertyGroup>
   <ItemGroup>
     <Reference Include="MelonLoader"><HintPath>$(ML)/MelonLoader.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="0Harmony"><HintPath>$(ML)/0Harmony.dll</HintPath><Private>false</Private></Reference>
