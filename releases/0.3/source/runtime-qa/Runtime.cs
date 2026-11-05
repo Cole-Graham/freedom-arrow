@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.24", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.3.0-dev.25", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -62,8 +62,8 @@ public class Runtime : MelonMod
         LoggerInstance.Msg($"Freedom Arrow {PackageVersion} package initialized. Main database constants hook installed.");
         try { DetectionConfig.Install(HarmonyInstance,Root); }
         catch(Exception e) { LoggerInstance.Error("FREEDOM_ARROW_DETECTION_FAILED: config hook not installed. "+e.Message); }
-        try { CoverDamage.Install(HarmonyInstance,Root); }
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_COVER_DAMAGE_FAILED: not installed. "+e.Message); }
+        // Off from dev.25: the game exits at damage events with this hook on. Woods damage reduction needs a safe hook.
+        MelonLogger.Msg("FREEDOM_ARROW_COVER_DAMAGE off");
     }
     // The mod manager only installs Mods and UserData. Copy packaged scenarios to the game's scenario folder.
     static void InstallScenarios()

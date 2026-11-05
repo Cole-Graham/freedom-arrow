@@ -1,4 +1,4 @@
-# Freedom Arrow 0.3.0-dev.24 — development candidate
+# Freedom Arrow 0.3.0-dev.25 — development candidate
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -52,6 +52,12 @@ Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidd
 
 Dev.22 (Osama, prep branch codex/0.2-dev22-prep, not installed): Stryker RV SRAT II 600/600 HEAT. AAVP SU 400/400 HEAT, +15. ACV armored 400/400 HEAT, rear back to 30. IFAV TOW +20. Kornet-T 100. BMPT base side 200. T-72B side 200, K-5 +15 (85 total). T-72B3 105. T-72B3A: T-72B3AM option removed, obr. 16 +30. CAAT Javelin gets ACV and AAVP transports. Troopers gets Stryker ICV. Both M10 Bookers get the APS option at +50 with the vanilla two-charge APS.
 
+## dev.25 setup phase and crash test
+
+The first 3 minutes of the match clock are the setup phase, with a large DEPLOYMENT timer. Round 1 (no scoring) then runs for 5 minutes, and scoring starts at 8:00. The native phase bar shows the rounds in small text. Round 1 fills over 5 minutes and Round 2 fills over the rest of the match. The setup phase is run by the mod. It does not stop units from moving or fighting. The native online setup timer still runs before the match clock.
+
+The woods damage hook is off because it is the main suspect for the game exiting when units take damage. Infantry in woods take full damage until a safe hook exists. No live result.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -96,7 +102,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.3.0-dev.24: see README. Offline checks only.
+0.3.0-dev.25: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 
@@ -179,3 +185,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-05 00:18:10 PST (America/Los_Angeles) — dev.22: scenario game version, database log, label size and position. Not yet run live.
 - 2026-11-05 00:34:56 PST (America/Los_Angeles) — dev.23: Round 1 banner, 5 minute opening, F8 time and points. Not yet run live.
 - 2026-11-05 00:37:56 PST (America/Los_Angeles) — dev.24: score limit 300 and team bars. Not yet run live.
+- 2026-11-05 00:54:48 PST (America/Los_Angeles) — dev.25: 3 minute setup, native round bar, damage hook off. Not yet run live.

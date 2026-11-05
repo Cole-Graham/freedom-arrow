@@ -8,6 +8,7 @@ public sealed class Settings
     public float FixedIncomePerMinute { get; set; } = 0;
     public int TestDurationSeconds { get; set; } = 0;
     public int TickSeconds { get; set; } = 30;
+    public int SetupSeconds { get; set; } = 0;
     public int OpeningDelaySeconds { get; set; } = 180;
     public int DefaultZoneWeight { get; set; } = 1;
     public string Scoring { get; set; } = "advantage";
@@ -29,6 +30,7 @@ public sealed class Settings
         if (FixedIncomePerMinute != 0) EconomyWindow.PerSecond(FixedIncomePerMinute);
         if(TestDurationSeconds!=0 && (TestDurationSeconds<240||TestDurationSeconds>3600))throw new ArgumentException("TestDurationSeconds must be zero or 240..3600");
         if (TickSeconds < 1 || TickSeconds > 3600) throw new ArgumentException("TickSeconds must be 1..3600");
+        if (SetupSeconds < 0 || SetupSeconds > 3600) throw new ArgumentException("SetupSeconds must be 0..3600");
         if (OpeningDelaySeconds < 0 || OpeningDelaySeconds > 86400) throw new ArgumentException("OpeningDelaySeconds must be 0..86400");
         if (DefaultZoneWeight < 0 || DefaultZoneWeight > 100) throw new ArgumentException("DefaultZoneWeight must be 0..100");
         if (Scoring is not ("per_team" or "advantage")) throw new ArgumentException("Scoring must be per_team or advantage");
@@ -57,17 +59,27 @@ public sealed class Settings
         return maps.Count == 1 ? maps[0] : name;
     }
     public const string OnlineUnknownMap = "online scenario";
-    const int RoundTwoBannerSeconds = 8;
-    // Round 1 has no scoring. Zones can still be captured.
-    public string RoundBanner(double elapsed)
+    const int RoundAnnouncementSeconds = 8;
+    public int ScoringStart => SetupSeconds + OpeningDelaySeconds;
+    static string Clock(double seconds)
     {
-        if (OpeningDelaySeconds <= 0) return null;
-        if (elapsed < OpeningDelaySeconds)
-        {
-            int left = (int)Math.Ceiling(OpeningDelaySeconds - elapsed);
-            return $"ROUND 1: NO SCORING  {left / 60}:{left % 60:00}";
-        }
-        return elapsed < OpeningDelaySeconds + RoundTwoBannerSeconds ? "ROUND 2: ZONES SCORE" : null;
+        int left = (int)Math.Ceiling(seconds);
+        return $"{left / 60}:{left % 60:00}";
+    }
+    // The setup phase and Round 1 have no scoring. Zones can still be captured.
+    public string SetupBanner(double elapsed) => elapsed < SetupSeconds ? $"DEPLOYMENT  {Clock(SetupSeconds - elapsed)}" : null;
+    public string RoundAnnouncement(double elapsed)
+    {
+        if (OpeningDelaySeconds > 0 && elapsed >= SetupSeconds && elapsed < SetupSeconds + RoundAnnouncementSeconds) return "ROUND 1: NO SCORING";
+        return OpeningDelaySeconds > 0 && elapsed >= ScoringStart && elapsed < ScoringStart + RoundAnnouncementSeconds ? "ROUND 2: ZONES SCORE" : null;
+    }
+    // The native phase bar: Round 1 fills over the opening, Round 2 over the rest of the match.
+    public (string Text, float Progress)? RoundBar(double elapsed, double duration)
+    {
+        if (elapsed < SetupSeconds) return null;
+        if (elapsed < ScoringStart) return ($"ROUND 1: NO SCORING  {Clock(ScoringStart - elapsed)}", (float)((elapsed - SetupSeconds) / OpeningDelaySeconds));
+        double scoring = Math.Max(1, duration - ScoringStart);
+        return ("ROUND 2: SCORING", (float)Math.Clamp((elapsed - ScoringStart) / scoring, 0, 1));
     }
     public string ZoneLabel(string map, int uid) => "+" + Weight(map, uid).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public int Weight(string map, int uid) => FixtureMap == map && FixtureWeights.TryGetValue(uid,out int fixture) ? fixture : MapZoneWeights.TryGetValue(map, out var zones)
@@ -124,7 +136,7 @@ public sealed class Ledger
         if (string.IsNullOrWhiteSpace(map)) throw new ArgumentException("Missing native map name");
         if (!double.IsFinite(duration) || duration <= 0 || duration > 86400) throw new ArgumentException("Invalid native match duration");
         Config = config; Map = map; Duration = duration;
-        NextTick = config.OpeningDelaySeconds == 0 ? config.TickSeconds : config.OpeningDelaySeconds;
+        NextTick = config.ScoringStart == 0 ? config.TickSeconds : config.ScoringStart;
     }
     public TickForecast Forecast(IReadOnlyList<Zone> zones)
     {

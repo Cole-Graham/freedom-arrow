@@ -63,9 +63,10 @@ public sealed partial class Prototype
     static void DrawRoundBanner()
     {
         if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
-        string text=config.RoundBanner(ledger.Elapsed);
+        string setup=config.SetupBanner(ledger.Elapsed);
+        string text=setup??config.RoundAnnouncement(ledger.Elapsed);
         if(text==null)return;
-        int size=Math.Max(16,Screen.height/38);
+        int size=Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64));
         if(bannerStyle==null||bannerStyle.fontSize!=size)bannerStyle=new GUIStyle(GUI.skin.label){fontSize=size,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
         float y=Screen.height*0.13f,h=size*1.8f;
         GUI.contentColor=Color.black;GUI.Label(new Rect(2,y+2,Screen.width,h),text,bannerStyle);
@@ -165,10 +166,16 @@ public sealed partial class Prototype
             int remaining=(int)Math.Ceiling(Math.Max(0,ledger.Duration-ledger.Elapsed));
             __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
             __instance._timeText.color=Color.cyan;
-            foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf)root.widget.SetActive(false);
-            // Hide only mode widgets, preserving timer, VP stars, portraits and zone ownership.
-            __instance._phaseText.gameObject.SetActive(false);
-            __instance._phasePeriodProgressImage.gameObject.SetActive(false);
+            // The native phase bar shows the rounds. It stays hidden during the setup phase, which has the large banner.
+            var round=config.RoundBar(ledger.Elapsed,ledger.Duration);
+            foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf!=round.HasValue)root.widget.SetActive(round.HasValue);
+            __instance._phaseText.gameObject.SetActive(round.HasValue);
+            __instance._phasePeriodProgressImage.gameObject.SetActive(round.HasValue);
+            if(round.HasValue)
+            {
+                __instance._phaseText.text=round.Value.Text;
+                __instance._phasePeriodProgressImage.fillAmount=round.Value.Progress;
+            }
             __instance._message.gameObject.SetActive(false);
             if(!ShowScoreBars(__instance))
             {
@@ -184,6 +191,7 @@ public sealed partial class Prototype
                 Log("native_ui_readback",new{phase=__instance._phaseText.text,time=__instance._timeText.text,
                     phaseFontSize=__instance._phaseText.fontSize,
                     phaseVisible=__instance._phaseText.gameObject.activeSelf,phaseProgressVisible=__instance._phasePeriodProgressImage.gameObject.activeSelf,
+                    phaseProgress=__instance._phasePeriodProgressImage.fillAmount,
                     modeBannerVisible=__instance._message.gameObject.activeSelf,alphaConquestVisible=__instance._alphaConquestBar.gameObject.activeSelf,
                     hiddenPhaseRoots=uiSnapshot.HiddenRoots.Select(x=>new{name=x.widget.name,visible=x.widget.activeSelf}).ToArray(),
                     timerVisible=__instance._timeText.gameObject.activeInHierarchy,
