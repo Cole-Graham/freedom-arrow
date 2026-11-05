@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0-dev.19",
+  "version": "0.2.0-dev.20",
   "base_costs": {
     "90": 30,
     "89": 60,
@@ -94,7 +94,8 @@
     "343": 100,
     "62": 110,
     "628": 25,
-    "252": 50
+    "252": 50,
+    "703": 105
   },
   "option_costs": {
     "245": 15,
@@ -143,8 +144,7 @@
     421
   ],
   "held_prices": [
-    144,
-    703
+    144
   ],
   "held_structural": [],
   "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran 70 is the default loadout total: base 25 + Ataka 20 + Igla 25."
