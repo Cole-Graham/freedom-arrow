@@ -228,7 +228,15 @@ public sealed partial class Prototype
     {
         bar.gameObject.SetActive(true);
         bar._progress.fillAmount=Mathf.Clamp01(points/(float)config.ScoreLimit);
-        bar._progressText.text=$"{points}/{config.ScoreLimit}";
+        // Auto-size so that three digit scores stay in the box and are not cut off.
+        var text=bar._progressText;
+        if(!text.enableAutoSizing)
+        {
+            text.fontSizeMax=text.fontSize;
+            text.fontSizeMin=text.fontSize*0.4f;
+            text.enableAutoSizing=true;
+        }
+        text.text=$"{points}/{config.ScoreLimit}";
         // The stars and markers belong to the native three-goal mode.
         foreach(var marker in new Component[]{bar._goalPointA,bar._goalPointB,bar._goalPointC,bar._goalIconA,bar._goalIconB,bar._goalIconC,bar._progressLineMain,bar._limiterParent})
             if(marker!=null&&marker.gameObject.activeSelf)marker.gameObject.SetActive(false);
