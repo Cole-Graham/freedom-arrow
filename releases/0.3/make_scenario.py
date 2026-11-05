@@ -10,6 +10,8 @@ DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. E
 SKIRMISH_NAME='[FA] Central Village Skirmish';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004'
 GAME_VERSION='1.2.2'
 MATCH_MINUTES=45
+# Network scripts cap money at 1500. With 1500 starting points, income would stop until a player spends. Skirmish missions have no cap.
+MONEY_CAP=100000
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 # Lateralus's map, from maps/. A script added there later needs this step checked again.
 DEAD_CENTER='[FA] Dead Center 0.1';DEAD_CENTER_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005'
@@ -53,7 +55,7 @@ def build(game,out,name,guid,mission,kind,desc,public):
     want={str(o['_uid']):ZONE_VALUES[o['hudText']] for o in objects if o.get('_type')==15}
     assert len(want)==len(ZONE_VALUES) and want==weights(name),want
     head.update(guid=guid,name=name,author='Freedom Arrow',desc=desc,IsDevVersion=False,devId=0,public=public)
-    hits=shown=0
+    hits=shown=caps=0
     zones={f"c{o['_uid']}" for o in objects if o.get('_type')==15}
     for n in nodes['b']:
         if n.get('nnKey')=='setConquestMode':hits+=1
@@ -64,7 +66,10 @@ def build(game,out,name,guid,mission,kind,desc,public):
         if n.get('nnKey')=='setIncomeCurveState':
             for p in n['props_v2']:
                 if p['k']=='state':p['v']='False'
+        if n.get('nnKey')=='setMaxMoney':
+            next(p for p in n['props_v2'] if p['k']=='moneyValue')['v']=str(MONEY_CAP);caps+=1
     assert hits>=1,'scenario must use ConquestMode'
+    assert caps==(1 if kind==2 else 0),caps
     assert shown==(4 if kind==2 else 5),shown
     meta=load((src/'meta.json').read_bytes());meta.pop('devid',None)
     # Skirmish scripts set starting money to 1000 times a team balance ratio, after the game default. Every player gets the FA value.
@@ -108,6 +113,7 @@ def build_dead_center(game,out):
     script=[copy.deepcopy(b) for b in nn['b'] if b['id'] in keys];assert {b['id']:b['nnKey'] for b in script}==keys
     for b in script:
         if b['id']==162:next(p for p in b['props_v2'] if p['k']=='state')['v']='False'
+        if b['id']==161:next(p for p in b['props_v2'] if p['k']=='moneyValue')['v']=str(MONEY_CAP)
     wires=[c for c in nn['c'] if (c['a'],c['b']) in {(136,22),(161,163),(162,163)}];assert len(wires)==3
     # The shipped Test_map_network uses this start to ConquestMode wire.
     wires.append(dict(a=136,b=163,c='in2',d='flow',e=163))

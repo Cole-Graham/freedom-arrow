@@ -5,11 +5,11 @@
 ## Rules
 
 - Setup, F8: the game pauses for 3 minutes while players place units. The clock, income and combat stop.
-- Setup, online: the native deployment phase runs, because the room server controls it.
+- Setup, online: whatever vanilla does. The mod adds nothing. Osama decided this on 5 November 2026.
 - Round 1: the first 5 minutes of the match clock. Zones can be captured but do not score.
 - Round 2: from 5:00 to the end. Each 30 seconds, the side with the higher held zone value scores the difference. Contested zones do not count.
 - End: the first side to 300 wins, or the higher score when the 45 minute clock ends.
-- Economy: 1500 starting points, flat 200 income per minute, no upkeep.
+- Economy: 1500 starting points, flat 200 income per minute, no upkeep, and no practical money cap.
 
 ## Display
 
@@ -38,3 +38,4 @@
 ## Document change log
 
 - 2026-11-05 01:38:44 PST (America/Los_Angeles) — Recorded the locked design and the steps to add a map.
+- 2026-11-05 01:57:57 PST (America/Los_Angeles) — Online setup follows vanilla. Added the money cap rule.
