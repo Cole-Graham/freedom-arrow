@@ -67,7 +67,7 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 
 ## dev.5 detection proposal (Lateralus)
 
-Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config (from dev.14, everywhere the tables apply): flash cap 2.2, both spotted penalties 1.5 (2.0 again from 0.4.0-dev.10), forest cover 3, building cover 4 (3.5 from 0.4.0-dev.10). MaxAntiVisible stays 1.5. No live result.
+Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config (from dev.14, everywhere the tables apply): flash cap 2.2, both spotted penalties 1.5 (2.0 again from 0.4.0-dev.9), forest cover 3, building cover 4 (3.5 from 0.4.0-dev.10). MaxAntiVisible stays 1.5. No live result.
 
 Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
 
