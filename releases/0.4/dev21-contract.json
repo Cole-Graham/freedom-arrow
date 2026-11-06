@@ -1,0 +1,41 @@
+{
+  "note": "0.4 dev.21 (Osama, 6 November 2026). Chernye Berety RShG leaves the Chernye Berety card; both are cards with availability 2. BARS Igla (the BARS AA loadout) is its own card at 60 points.",
+  "cards": [
+    {
+      "unit": 113,
+      "like_pool": 842,
+      "xp0": 2,
+      "transports": [
+        212
+      ],
+      "retire_parent_options": [
+        1623
+      ],
+      "parent": 372,
+      "fields": {
+        "HUDName": "Chernye Berety RShG"
+      },
+      "parent_default_option": 1622,
+      "parent_fields": {
+        "HUDName": "Chernye Berety RPG"
+      }
+    },
+    {
+      "unit": 613,
+      "like_pool": 1008,
+      "xp0": 4,
+      "transports": [
+        219,
+        627
+      ],
+      "retire_parent_options": [
+        3030
+      ],
+      "parent": 612,
+      "fields": {
+        "HUDName": "BARS Igla",
+        "Cost": 60
+      }
+    }
+  ]
+}

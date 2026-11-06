@@ -114,6 +114,8 @@ Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==127)==5&&
 Check(UC(74)==35&&OC(1848)==10&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==45&&UC(214)+OC(492)==50&&UC(214)+OC(493)==65&&UC(214)+OC(2101)==35&&UC(416)==90&&UC(520)==65,"dev.14 prices");
 Check(OC(15)==10&&OC(379)==10,"dev.16 Stryker Dragoon and ACV RT20 Bushmaster II +10");
 Check(OC(1896)==15&&OC(1897)==45,"dev.17 Stryker RV Bushmaster II -10");
+foreach(var (u,n) in new[]{(372,2),(113,2),(613,4),(612,4)})Check(!Row("Units",u)["IsUnitModification"].GetValue<bool>()&&merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["MaxAvailabilityXp0"].GetValue<int>()).SequenceEqual(new[]{n}),"dev.21 card "+u);
+Check(!merged["OptionsJson"].Any(r=>r["Id"].GetValue<int>() is 1623 or 3030)&&UC(613)==60&&Row("Units",613)["HUDName"].GetValue<string>()=="BARS Igla","dev.21 BARS Igla 60, options retired");
 foreach(int u in new[]{14,182,183,615,717,718,158,719,602,9})Check(merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).All(r=>r["MaxAvailabilityXp0"].GetValue<int>()>=6),"dev.18 cheap tank availability 6 "+u);
 foreach(int u in new[]{416,520})Check(!Row("Units",u)["IsUnitModification"].GetValue<bool>()&&merged["SpecializationAvailabilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==u),"separate card "+u);
 Check(Row("ModificationsJson",Row("OptionsJson",2149)["ModificationId"].GetValue<int>())["UnitId"].GetValue<int>()==520&&Row("ModificationsJson",Row("OptionsJson",2148)["ModificationId"].GetValue<int>())["UnitId"].GetValue<int>()==520,"Baltic Javelin card holds Javelin and Spike options");

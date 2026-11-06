@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.20 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.21 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -19,6 +19,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - dev.16 (Osama, 5 November 2026): Stryker ICV Dragoon (Bushmaster II) +10 (was +20); ACV RT20 (Bushmaster II) +10 (was +20).
 - dev.17 (Osama, 5 November 2026): Stryker RV Bushmaster II +15 (was +25), with Javelin +45 (was +55).
 - dev.18 (Osama, 5 November 2026): availability 6 for cheap fire-support tanks: M60A1, M551A1 Sheridan, M8 AGS, M8 Thunderbolt, M728 CEV, T-72A, Object 787, T-80BV (T-62M and T-72B already 6).
+- dev.21 (Osama, 6 November 2026): Chernye Berety RPG and Chernye Berety RShG are separate cards, availability 2 each. BARS Igla is its own card at 60 points, availability 4; BARS keeps RPG and Fire support.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 - Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
@@ -49,7 +50,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.20.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.21.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -279,3 +280,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 22:13:06 PST (America/Los_Angeles) — 0.4.0-dev.18: availability 6 for cheap fire-support tanks (Osama). Not yet run live.
 - 2026-11-05 23:58:00 PST (America/Los_Angeles) — 0.4.0-dev.19: spotting cap and optics names (Lateralus). An observer never sees a ground target beyond the vanilla ground optics of its sensor tier (for example Very Good 2,000 m, Exceptional 2,400 m, MQ-9 4,500 m, RQ-4 5,500 m); ranges under the cap are unchanged. Unit cards show optics as coloured tier names (Bad, Medium-, Medium, Medium+, Good, Very Good, Exceptional, Superior, Strategic) for ground, low and high altitude. Hooks: FogOfWarUnit.CreateFilterTaskForTarget prefix and UnitInfoCard.SetUnitStatistic postfix. Not yet run live.
 - 2026-11-06 00:05:00 PST (America/Los_Angeles) — 0.4.0-dev.20: ground optics names Exceptional I-IV (2800, 4650, 5250, 6400); high-altitude 1000 is Bad+; Arleigh Burke, AC-130 and carrier ground optics 1200 → 1300 (Medium), with the Medium cap of 1,200 m (Lateralus). Not yet run live.
+- 2026-11-06 00:12:20 PST (America/Los_Angeles) — 0.4.0-dev.21: Chernye Berety RPG and RShG separate cards at availability 2; BARS Igla card at 60 (Osama). Not yet run live.

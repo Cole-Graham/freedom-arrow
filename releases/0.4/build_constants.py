@@ -379,6 +379,21 @@ def main():
         assert rows and effective['Units'][uid]['Role']==11,('availability',uid)
         for r in rows:
             if r['MaxAvailabilityXp0']<d18['min_availability']:put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':d18['min_availability']},'Cheap fire-support tank availability 6')
+    # 0.4 dev.21: Chernye Berety RShG and BARS Igla become separate cards.
+    d21=json.loads((R/'dev21-contract.json').read_text());moved21={}
+    for c in d21['cards']:
+        why=f"Separate card {c['fields']['HUDName']}"
+        assert effective['Units'][c['unit']]['IsUnitModification'],c['unit']
+        put('Units',c['unit'],{'IsUnitModification':False,**c['fields']},why)
+        if c.get('parent_fields'):put('Units',c['parent'],c['parent_fields'],why)
+        pool=clone('SpecializationAvailabilitiesJson',c['like_pool'],{'UnitId':c['unit'],'MaxAvailabilityXp0':c['xp0']},why)
+        for t in c['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pool,'UnitId':t},why)
+        for oid in c['retire_parent_options']:
+            assert effective['OptionsJson'][oid]['ReplaceUnitId']==c['unit'],oid
+            drop('OptionsJson',oid);moved21[str(oid)]=c['parent']
+        if c.get('parent_default_option'):put('OptionsJson',c['parent_default_option'],{'IsDefault':True},why)
+    mig=R/'source/UserData/FreedomArrow/deck-migration.json'
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),**moved21},indent=2,sort_keys=True)+'\n')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
