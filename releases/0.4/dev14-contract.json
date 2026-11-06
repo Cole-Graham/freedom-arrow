@@ -1,5 +1,5 @@
 {
-  "note": "0.4 dev.14 (Osama, 5 November 2026). Ammo, one AT launcher per squad, launcher reload 6-7 s (disposable 7 s), RPG-29 Vampyr 5 men, Rangers Javelin and Baltic Javelin/Spike as separate cards. WeaponAmmunitions Quantity is set as the stock of the one remaining launcher. Prices are in vehicle-contract.json.",
+  "note": "0.4 dev.14 (Osama, 5 November 2026). Ammo, one AT launcher per squad, launcher reload 6-7 s (disposable 7 s), RPG-29 Vampyr 5 men, Rangers Javelin and Baltic Javelin/Spike as separate cards. WeaponAmmunitions Quantity is set as the stock of the one remaining launcher. Prices are in vehicle-contract.json. dev.15: Vampyr uses the plain 5-man armor row (81, armor 6).",
   "ammo_quantity": {
     "474": 6,
     "536": 6,
@@ -65,7 +65,7 @@
     3018
   ],
   "armor_links": {
-    "832": 280
+    "832": 81
   },
   "cards": [
     {
