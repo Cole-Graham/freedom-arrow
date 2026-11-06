@@ -45,6 +45,8 @@ python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.10.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
+`build_constants.py` picks the dev version: it changes only when the current one is in `builds.json` and its inputs have changed since. See TESTING.md.
+
 The vanilla cache must match every 0.1.1 compatibility pin. The generated data is not in Git: `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`.
 
 These commands write only this checkout's output/build files. They do not install or launch the game. The isolated branch starts at 72783a5; it deliberately does not copy another task's uncommitted 0.1 guide edit.
@@ -258,3 +260,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 18:24:37 PST (America/Los_Angeles) — 0.4.0-dev.8: APS cooldown 30 → 10 seconds on all 14 APS abilities; Rangers, Rangers RAWS and Rangers Snipers AT Carl Gustaf M3 HEAT penetration 450 → 650 (own copy of the round) (Osama). Not yet run live.
 - 2026-11-05 19:16:00 PST (America/Los_Angeles) — 0.4.0-dev.9: SpottedPenalty and SpottedPenaltyBuildings 1.5 → 2.0 (vanilla), globally; ATGM flash unchanged (Lateralus). Not yet run live.
 - 2026-11-05 19:34:00 PST (America/Los_Angeles) — 0.4.0-dev.10: building cover 4.0 → 3.5, so Very Good optics see infantry firing an ATGM from a building at about 1,314 m (calculated) (Lateralus). Not yet run live.
+- 2026-11-05 19:46:48 PST (America/Los_Angeles) — Automatic dev version: `dev_version.py` and `builds.json`; 0.4.0-dev.10 recorded. bump_version.py no longer rewrites old version numbers in the change history.

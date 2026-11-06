@@ -11,11 +11,13 @@ XM913_APS_OPTION=2000379
 sys.path.insert(0,str(R.parents[1]))
 from pipeline.crypto import aes_decrypt
 from pipeline.tables import FIELD_TO_FILE
+import dev_version
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--vanilla-dir',required=True,type=Path)
     args=ap.parse_args()
+    dev_version.ensure()
     base=R.parent/'0.1/source/UserData/FreedomArrow'
     out=R/'source/UserData/FreedomArrow/constants'
     pins=json.loads((base/'compatibility.json').read_text())

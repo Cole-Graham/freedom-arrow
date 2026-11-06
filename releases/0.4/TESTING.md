@@ -48,22 +48,29 @@ The generator stops if any table differs from the 24 pins in `releases/0.1/sourc
 $env:PYTHONUTF8 = "1"
 $GAME = "C:/Program Files (x86)/Steam/steamapps/common/broken_arrow"
 $VANILLA = (Get-ChildItem cache/vanilla -Directory | Select-Object -First 1).FullName
-.venv\Scripts\python releases/0.4/bump_version.py 0.2.0-dev.NN
 .venv\Scripts\python releases/0.4/build_constants.py --vanilla-dir $VANILLA
 .venv\Scripts\python releases/0.4/build.py --game-dir $GAME --dotnet dotnet
 .venv\Scripts\python releases/0.4/verify.py
 ```
 
-`build_constants.py` writes `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`. Git ignores them, so run it after every pull and every edit. `build.py` stops if the data is missing or for another version. A version bump still edits tracked files: commit it, or run `git restore releases/0.3 README.md` before you pull.
+`build_constants.py` writes `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`. Git ignores them, so run it after every pull and every edit. `build.py` stops if the data is missing or for another version.
 
 The archive is `releases/0.4/out/FreedomArrow-<version>.bamod`. It is git-ignored. Import it with the mod manager as usual, and do not copy it into `Mods`.
 
-Use the next unused number, and check every remote branch first, because other branches also use numbers:
+### The version is set for you
 
-```powershell
-git fetch origin
-git grep -h '"version"' origin/codex/0.2-development origin/codex/0.2-split-test -- releases/0.4/mod.json
-```
+Do not set the dev version by hand. `build_constants.py` decides it first, with `dev_version.py`:
+
+- **Not built yet:** the current version stays, however many edits you make.
+- **Built, nothing changed since:** the current version stays. A rebuild gives the same version.
+- **Built, then changed:** the next dev number. The script prints the old and new version and updates every file that states it.
+
+`build.py` adds each new version to `releases/0.4/builds.json` with a hash of its inputs and the `.bamod` SHA-256. Commit `builds.json` with the version, so the other build machines know it was built. To see the decision without building, run `python releases/0.4/dev_version.py`. Run it before you write the change notes, so the notes name the right version.
+
+- **What counts as a change:** every tracked or new file under `releases/0.4`, `releases/0.1/source` and `pipeline` that the build reads, or that goes into the package. That includes `README.md`.
+- **Not a change:** tests, evidence, `TESTING.md`, `EVIDENCE.md`, `GAME-MODE.md`, `verify.py`, Windows line endings, and the version number itself.
+- **Two machines, one number:** if two people each build a new dev.N from different edits, Git reports a conflict in `builds.json` and `mod.json` when they merge. Keep one and rebuild the other; it then gets the next number.
+- `bump_version.py VERSION` still sets a version by hand. Use it only to correct a mistake.
 
 ## Run the tests
 
@@ -135,3 +142,4 @@ Stop and send the logs if a player disconnects or desyncs, the scores differ, or
 - 2026-11-04 21:30:57 PST (America/Los_Angeles) — Added game-config.json.
 - 2026-11-04 21:51:43 PST (America/Los_Angeles) — Added cover damage settings.
 - 2026-11-04 22:10:01 PST (America/Los_Angeles) — Updated the cover damage settings.
+- 2026-11-05 19:46:48 PST (America/Los_Angeles) — The build sets the dev version: a new number only after that version was built and its inputs changed (`dev_version.py`, `builds.json`).

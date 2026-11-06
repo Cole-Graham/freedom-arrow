@@ -114,6 +114,9 @@ Day-to-day play goes through BAModManager or BAModLauncher. PLAY starts the game
 
 To make a 0.3 test version, follow `releases/0.3/TESTING.md`. 0.2 stays on `codex/0.2-development`.
 
+To make a 0.4 test version, follow `releases/0.4/TESTING.md`. Do not set the 0.4 dev version yourself. `build_constants.py` keeps it until that version has been built and its inputs changed, then moves to the next number. Commit `releases/0.4/builds.json` with the version.
+
 ## Document change log
 
 - 2026-11-04 19:24:57 PST (America/Los_Angeles) — Added the pointer to the 0.2 test-version guide.
+- 2026-11-05 19:46:48 PST (America/Los_Angeles) — Added the 0.4 guide pointer and the automatic dev version rule.

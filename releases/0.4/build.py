@@ -4,13 +4,14 @@ After the build, if config.YAML at the repo root sets game_root, the built scena
 {game_root}/Mods/Scenarios, the folder online lobbies read. Use --no-scenario-copy to skip this."""
 from pathlib import Path
 import argparse, hashlib, json, shutil, subprocess, sys, zipfile
+import dev_version
 R=Path(__file__).resolve().parent
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--game-dir',required=True,type=Path);p.add_argument('--dotnet',default='dotnet');p.add_argument('--no-scenario-copy',action='store_true');a=p.parse_args()
  game=a.game_dir.resolve()
  if not (game/'MelonLoader/Il2CppAssemblies/Il2CppBrokenArrow.dll').is_file():p.error('Generated MelonLoader assemblies are required')
- metadata=json.loads((R/'mod.json').read_text());version=metadata['version']
+ version,_=dev_version.check()
  audit=R/'constant-audit.json'
  if not audit.is_file() or json.loads(audit.read_text())['version']!=version:p.error(f'Generated data is missing or not for {version}. Run build_constants.py first.')
  payload=R/'build/payload'
@@ -33,6 +34,7 @@ def main():
    if f.is_file():z.write(f,f.relative_to(payload).as_posix())
   z.write(R/'mod.json','mod.json');z.write(R/'README.md','README.md')
  (out/'SHA256SUMS.txt').write_text(sha(archive)+'  '+archive.name+'\n');print(archive)
+ dev_version.record(archive)
  if not a.no_scenario_copy:copy_scenarios(payload,version)
 # Every player in a lobby needs byte-identical scenario files, so copy this build's maps to the install named in config.YAML.
 # The mod also copies its packaged maps to Mods/Scenarios at each launch. An older installed package would put its own maps back.
