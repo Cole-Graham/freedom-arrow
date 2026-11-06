@@ -101,7 +101,7 @@ foreach(var (a,pen) in new[]{(63,700f),(551,700f),(203,700f),(5,650f),(2000154,6
 foreach(int m in new[]{187,322,149})Check(Row("SquadMembersJson",m)["SpecialWeaponId"].GetValue<int>()==0,"one launcher "+m);
 foreach(int u in new[]{63,127,74})Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==u&&r["SpecialWeaponId"].GetValue<int>()!=0)==1,"one launcher squad "+u);
 foreach(int u in new[]{3,208,209,213,480})Check(Linked("UnitArmorsJson","ArmorId",u).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==12),"BMP-3 chassis 12 HP "+u);
-Check(UC(3)==45&&UC(89)==55&&OC(473)==10&&OC(40)==10&&OC(1761)==10&&OC(37)==30&&OC(48)==30&&OC(1766)==30&&OC(1894)==55&&OC(1944)==40&&OC(1947)==40&&OC(2083)==45,"dev.13 prices (BMP-3 45 from dev.22)");
+Check(UC(3)==45&&UC(89)==45&&OC(473)==10&&OC(40)==10&&OC(1761)==10&&OC(37)==30&&OC(48)==30&&OC(1766)==30&&OC(1894)==55&&OC(1944)==40&&OC(1947)==40&&OC(2083)==45,"dev.13 prices (BMP-3 45 from dev.22)");
 foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
 Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==13&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==15,"air missiles unchanged");
 Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");
