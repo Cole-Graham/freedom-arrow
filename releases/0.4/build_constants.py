@@ -487,6 +487,17 @@ def main():
         assert (row['UnitId'],row['SpecializationId'])==(p['unit'],p['from']),key
         assert not any(r['UnitId']==p['unit'] and r['SpecializationId']==p['to'] for r in effective['SpecializationAvailabilitiesJson'].values()),key
         put('SpecializationAvailabilitiesJson',int(key),{'SpecializationId':p['to']},'Card moves specialization')
+    # 0.4 dev.40: Spetsnaz Alpha CQC 12 men; standoff loses one AEK-999, one RG-6 and two RPG-30.
+    d40=json.loads((R/'dev40-contract.json').read_text())
+    for rid in d40['retire_members']:
+        assert effective['SquadMembersJson'][rid]['UnitId']==131 and not effective['SquadMembersJson'][rid]['SpecialWeaponId'],rid
+        drop('SquadMembersJson',rid)
+    for key,aid in d40['armor_links'].items():put('UnitArmorsJson',int(key),{'ArmorId':aid},'Spetsnaz Alpha CQC 12 men, 60 HP')
+    for key,f in d40['member_fields'].items():
+        assert effective['SquadMembersJson'][int(key)]['UnitId']==354,key
+        put('SquadMembersJson',int(key),f,d40['member_why'][key])
+    alpha=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==131]
+    assert len(alpha)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][222]['ArmorId']]['MaxHealthPoints']==60
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
