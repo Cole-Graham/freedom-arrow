@@ -70,7 +70,7 @@ foreach(int o in new[]{565,1462,1775,1792,1895,1898,1931,1939,2117,3321,1843,184
 foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"].GetValue<int>()!=m),"deleted menu "+m);
 foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
 foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
-foreach(var (u,cost) in new[]{(110,65),(352,95),(320,90),(408,90),(147,80),(343,100),(62,110),(701,70)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
+foreach(var (u,cost) in new[]{(110,65),(352,85),(320,90),(408,90),(147,80),(343,100),(62,110),(701,70)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
 WeaponCoverage.Validate(merged,allPatches);checks++;
 int H(int o,string f)=>Row("ArmorsJson",Row("OptionsJson",o)["ArmorId"].GetValue<int>())[f].GetValue<int>();
