@@ -1,0 +1,78 @@
+{
+  "note": "0.4 dev.44 (Osama, 6 November 2026). Guided infantry ATGMs reload 3 s longer, to approximate Wargame's reload-after-impact: Broken Arrow starts the reload at launch and these missiles fly 3.5-4.5 s at max range (range / MaxSpeed). Fire-and-forget Javelin and Spike LR, and all vehicle launchers, are unchanged. Not deployed.",
+  "add_seconds": 3,
+  "weapon_fields": {
+    "141": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "142": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "144": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "147": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 8.0
+    },
+    "149": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "150": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "154": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 8.0
+    },
+    "175": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "176": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "177": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "205": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "506": {
+      "MagazineReloadTimeMin": 9.0,
+      "MagazineReloadTimeMax": 11.0
+    },
+    "607": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "617": {
+      "MagazineReloadTimeMin": 9.0,
+      "MagazineReloadTimeMax": 11.0
+    },
+    "635": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 8.0
+    },
+    "665": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "746": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    },
+    "759": {
+      "MagazineReloadTimeMin": 8.0,
+      "MagazineReloadTimeMax": 9.0
+    }
+  }
+}
