@@ -1,8 +1,8 @@
-# Freedom Arrow 0.4.0-dev.9 — development candidate
+# Freedom Arrow 0.4.0-dev.10 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
-New in 0.4: MBT and kit prices from equal-point fights; 26 tank-gun sabot rows at long-range penetration + 50 at point blank, falling to the long-range value at max range; crit rules for tanks and IFVs (rear direct anti-tank hit gives red mobility; front or side tank-gun sabot or HEAT hit of 9.3 or more gives yellow mobility plus one random yellow); yellow mobility 40% speed; 60 degree front arc. The state log records crit changes, real hits the wider front arc turned into front hits, and vehicle movement (speed and path mask) once a second. dev.4: online deployment is 3 minutes. dev.5: smoke only on tanks at 100 points and up and IFVs above 30 points; BMP-3 family 10 HP; PT-76 8 HP; Bumerang uparmor 400 HEAT; BTR-80 autocannon +5 and autocannon with GL +10; VDV Kornet M +20; PTRK Kornet 65; PTRK Fagot 40; CAAT Javelin 90; Weapons Squad 80. dev.6: BMD-4MK Demidov 10 HP. dev.7: VDV Kornet-M and PTRK Kornet-M cards 85. dev.8: APS cooldown 10 seconds; Rangers Carl Gustaf M3 HEAT 650 penetration. dev.9: spotted penalty back to 2.0, in the open and in buildings.
+New in 0.4: MBT and kit prices from equal-point fights; 26 tank-gun sabot rows at long-range penetration + 50 at point blank, falling to the long-range value at max range; crit rules for tanks and IFVs (rear direct anti-tank hit gives red mobility; front or side tank-gun sabot or HEAT hit of 9.3 or more gives yellow mobility plus one random yellow); yellow mobility 40% speed; 60 degree front arc. The state log records crit changes, real hits the wider front arc turned into front hits, and vehicle movement (speed and path mask) once a second. dev.4: online deployment is 3 minutes. dev.5: smoke only on tanks at 100 points and up and IFVs above 30 points; BMP-3 family 10 HP; PT-76 8 HP; Bumerang uparmor 400 HEAT; BTR-80 autocannon +5 and autocannon with GL +10; VDV Kornet M +20; PTRK Kornet 65; PTRK Fagot 40; CAAT Javelin 90; Weapons Squad 80. dev.6: BMD-4MK Demidov 10 HP. dev.7: VDV Kornet-M and PTRK Kornet-M cards 85. dev.8: APS cooldown 10 seconds; Rangers Carl Gustaf M3 HEAT 650 penetration. dev.9: spotted penalty back to 2.0, in the open and in buildings. dev.10: building cover 3.5.
 
 ## Earlier notes
 
@@ -162,7 +162,7 @@ Dev.18: private scenario lobbies are open for play with other people, following 
 
 - 2026-11-04 20:54:37 PST (America/Los_Angeles) — dev.22: prepared Osama's in-game corrections on a separate branch. No live result.
 
-0.4.0-dev.9: see README. Offline checks only.
+0.4.0-dev.10: see README. Offline checks only.
 
 - 2026-11-04 21:28:04 PST (America/Los_Angeles) — Started 0.3. No live result.
 

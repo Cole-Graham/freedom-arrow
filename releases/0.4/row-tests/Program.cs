@@ -49,7 +49,7 @@ foreach(int id in new[]{478,479,506,507,1708,1711,1712,1896,1897})Check(Row("Opt
 Check(Row("OptionsJson",1486)["StealthOverride"].GetValue<double>()==0.4&&Row("OptionsJson",3074)["StealthOverride"].GetValue<double>()==0.5,"held overrides");
 var detection=DetectionSettings.Parse(File.ReadAllText(Path.Combine(root,"detection-config.json")));
 Check(detection.ForestCover>=1&&detection.BuildingCover>=1,"detection config values");
-Check(detection.SpottedPenalty==2f&&detection.SpottedPenaltyBuildings==2f&&detection.MaxFlashValue==2.2f,"spotted penalty 2.0, flash cap 2.2");
+Check(detection.SpottedPenalty==2f&&detection.SpottedPenaltyBuildings==2f&&detection.MaxFlashValue==2.2f&&detection.BuildingCover==3.5f&&detection.ForestCover==3f,"spotted penalty 2.0, flash cap 2.2, cover 3/3.5");
 foreach(string bad in new[]{"{}","{\"MaxFlashValue\":0.5,\"SpottedPenalty\":1.5,\"SpottedPenaltyBuildings\":1.5,\"ForestCover\":3,\"BuildingCover\":4}","{\"MaxFlashValue\":2.2,\"SpottedPenalty\":1.5,\"SpottedPenaltyBuildings\":1.5,\"ForestCover\":3}"})
 {bool refused=false;try{DetectionSettings.Parse(bad);}catch(InvalidDataException){refused=true;}Check(refused,"bad detection config accepted");}
 // dev.11 recon prices and the uparmor HP rule. Written here again on purpose, independent of the generator contract.
