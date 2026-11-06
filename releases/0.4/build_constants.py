@@ -380,8 +380,9 @@ def main():
         for r in rows:
             if r['MaxAvailabilityXp0']<d18['min_availability']:put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':d18['min_availability']},'Cheap fire-support tank availability 6')
     # 0.4 dev.21: Chernye Berety RShG and BARS Igla become separate cards.
-    d21=json.loads((R/'dev21-contract.json').read_text());moved21={}
-    for c in d21['cards']:
+    # dev.22 adds PTRK Konkurs-M with the same mechanism.
+    moved21={}
+    for c in [c for f in ('dev21-contract.json','dev22-contract.json') for c in json.loads((R/f).read_text())['cards']]:
         why=f"Separate card {c['fields']['HUDName']}"
         assert effective['Units'][c['unit']]['IsUnitModification'],c['unit']
         put('Units',c['unit'],{'IsUnitModification':False,**c['fields']},why)

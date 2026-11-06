@@ -1,5 +1,5 @@
 {
-  "note": "0.4 dev.13 (Osama, 5 November 2026). ATGM penetration ladder 450-700 with Kornet-M alone at 950; top-attack rows unchanged. One AT launcher per infantry squad with a reusable launcher; ammo rows unchanged. BMP-3 chassis HP is in dev5-contract.json, prices in vehicle-contract.json.",
+  "note": "0.4 dev.13 (Osama, 5 November 2026). ATGM penetration ladder 450-700 with Kornet-M alone at 950; top-attack rows unchanged. One AT launcher per infantry squad with a reusable launcher; ammo rows unchanged. BMP-3 chassis HP is in dev5-contract.json, prices in vehicle-contract.json. dev.22: base Konkurs 500.",
   "atgm_penetration": {
     "2000157": 450.0,
     "2000156": 500.0,
@@ -7,7 +7,7 @@
     "2000147": 500.0,
     "2000163": 500.0,
     "8": 500.0,
-    "2000153": 550.0,
+    "2000153": 500.0,
     "2000173": 550.0,
     "96": 600.0,
     "2000154": 600.0,
