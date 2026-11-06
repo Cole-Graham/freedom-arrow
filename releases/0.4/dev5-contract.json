@@ -1,5 +1,5 @@
 {
-  "note": "0.4 dev.5 (Osama, 5 November 2026). Smoke: tanks below 100 points base and IFVs at 30 points base or less lose their smoke ability. HP and HEAT edits are per unit; shared armor rows are cloned, not edited.",
+  "note": "0.4 dev.5 (Osama, 5 November 2026). Smoke: tanks below 100 points base and IFVs at 30 points base or less lose their smoke ability. HP and HEAT edits are per unit; shared armor rows are cloned, not edited. dev.13: BMP-3 chassis (BMP-3, BMP-3F, BMP-3K, BRM-3K, Kornet-T) 12 HP.",
   "smoke": {
     "tank_role": 11,
     "tank_min_cost": 100,
@@ -7,12 +7,12 @@
     "ifv_max_cost_without_smoke": 30
   },
   "unit_hp": {
-    "3": 10,
+    "3": 12,
     "477": 10,
-    "208": 10,
-    "209": 10,
-    "213": 10,
-    "480": 10,
+    "208": 12,
+    "209": 12,
+    "213": 12,
+    "480": 12,
     "230": 8
   },
   "option_armor": {

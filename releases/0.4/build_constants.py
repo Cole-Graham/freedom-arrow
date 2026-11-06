@@ -331,6 +331,15 @@ def main():
             if opt['ArmorId'] in made:put('OptionsJson',opt['Id'],{'ArmorId':made[opt['ArmorId']]},why)
         fronts={int(effective['ArmorsJson'][r['ArmorId']]['HeatArmorFront']) for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid}
         assert {int(v) for v in spread.values()}<=fronts and not {int(k) for k in spread}&fronts-{int(v) for v in spread.values()},('front spread incomplete',uid,fronts)
+    # 0.4 dev.13: ATGM penetration ladder and one reusable AT launcher per squad. Ammo rows keep their quantity.
+    d13=json.loads((R/'dev13-contract.json').read_text())
+    for key,pen in d13['atgm_penetration'].items():
+        row=effective['AmmunitionsJson'][int(key)]
+        assert row['Name'].startswith(('Missile AT ','Missile GLAT ')) and not row['TopArmorAttack'],('ladder row',key)
+        put('AmmunitionsJson',int(key),{'PenetrationAtMinRange':pen,'PenetrationAtGroundRange':pen},'ATGM ladder 450-700, Kornet-M 950')
+    for key,f in d13['member_fields'].items():
+        assert effective['SquadMembersJson'][int(key)]['SpecialWeaponId'],('member has no launcher',key)
+        put('SquadMembersJson',int(key),f,'One AT launcher per squad: '+d13['member_why'][key])
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

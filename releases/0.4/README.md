@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.12 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.13 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -12,7 +12,8 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - Yellow mobility is 40% speed (was 75%). Turning stays 50%. Global setting in `game-config.json`.
 - Front arc 60 degrees each side of the hull (vanilla 45). `FrontArcDegrees` in the conquest settings.
 - Scenarios (dev.3, from Lateralus's 0.3 commit 223a6fe): `[FA] [1v1] Dead Center 0.1` and `[FA] [2v2] Dead Center 0.1` for lobbies, with `Skirmish` versions of each for F8. Each map's layout is in `scenarios/<map>/layout.bascr`; `scenarios/make_scenario.py` builds them. Old `[FA] Central Village` and `[FA] Dead Center 0.1` copies are removed on install when the GUID matches.
-- dev.12 (Osama, 5 November 2026): ground ATGMs do 10.5 damage; base Kornet 650 penetration (was 1000), Kornet-M 950 (was 1200). Air missiles keep their values. Mid-tank front HEAT spread from 600 to 950; tanks at 195 points and up are unchanged. See `dev12-contract.json`. Calculated, not yet run in a game.
+- dev.12 (Osama, 5 November 2026): ground ATGMs do 10.5 damage; base Kornet 650 penetration (was 1000; 700 from dev.13), Kornet-M 950 (was 1200). Air missiles keep their values. Mid-tank front HEAT spread from 600 to 950; tanks at 195 points and up are unchanged. See `dev12-contract.json`. Calculated, not yet run in a game.
+- dev.13 (Osama, 5 November 2026): ATGM penetration ladder: Fagot 450; Metis, Fagot-M, Arkan, Shillelagh 500; Konkurs, Spike-SR 550; Konkurs-M, Invar, Invar-M, Arkan-M, Dragon 3, Kokon, Metis-M, MAPATS 600; Invar-M1, Sprinter, TOW-2A, Metis-M1, Ataka-M, Milan ER 650; base Kornet and Khrizantema 700; Kornet-M 950; top-attack missiles unchanged; ATGM card prices unchanged. BMP-3 chassis (BMP-3, BMP-3F, BMP-3K, BRM-3K, Kornet-T) 12 HP. BMP-3 65, BMD-4M 55. 400 HEAT IFV kits +10 (BMP-3 Kaktus, M2A2 and M2A2 ESV BUSK). APS +30 over its armor kit: M2A3, M2A3 ESV and M3A3 Iron Fist +30; Stryker ICV SRAT + Trophy +55, Stryker MC and SPH +40, M1287 MCV +45. One AT launcher on Assaultmen SMAW, RPG-29 Vampyr and Rangers RAWS; their ammo rows are unchanged. See `dev13-contract.json`. Calculated, not yet run in a game.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 - Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
@@ -43,7 +44,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.12.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.13.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -265,3 +266,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 19:46:48 PST (America/Los_Angeles) — Automatic dev version: `dev_version.py` and `builds.json`; 0.4.0-dev.10 recorded. bump_version.py no longer rewrites old version numbers in the change history.
 - 2026-11-05 20:55:00 PST (America/Los_Angeles) — dev.11: infantry prices × 0.8333 to the nearest 5 plus two Stage 2 overrides, at Lateralus’s instruction. No live result.
 - 2026-11-05 20:47:08 PST (America/Los_Angeles) — 0.4.0-dev.12: ground ATGM damage 10.5, base Kornet 650 and Kornet-M 950, ATGM crits at 8.9 except top attack, mid-tank front HEAT spread 600–950 (Osama). Not yet run live.
+- 2026-11-05 21:17:13 PST (America/Los_Angeles) — 0.4.0-dev.13: ATGM ladder 450–700 (Kornet 700, Kornet-M 950), BMP-3 chassis 12 HP, BMP-3 65 and BMD-4M 55, IFV kits +10, APS +30, one AT launcher per squad (Osama). Not yet run live.

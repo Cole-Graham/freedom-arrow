@@ -97,7 +97,11 @@ foreach(var (j,p) in new[]{(261,30f),(4,30f),(67,20f),(481,25f),(425,200f),(431,
 Check(Math.Abs(10.5*140*140/(140.0*140+100*100)-6.95)<0.01,"top 100 sliver");
 foreach(var ab in merged["AbilitiesJson"].Where(r=>r["IsAPS"].GetValue<bool>()))Check(ab["APSCooldown"].GetValue<float>()==10,"APS cooldown 10 s "+ab["Id"]);
 // 0.4 dev.12: ground ATGMs 10.5, base Kornet 650, Kornet-M 950, AH-1W keeps TOW-2A at 12, mid-tank front HEAT spread.
-foreach(var (a,pen) in new[]{(63,650f),(551,650f),(2000160,950f)}){var r=Row("AmmunitionsJson",a);Check(r["Damage"].GetValue<double>()==10.5&&r["PenetrationAtMinRange"].GetValue<float>()==pen&&r["PenetrationAtGroundRange"].GetValue<float>()==pen,"Kornet "+a);}
+foreach(var (a,pen) in new[]{(63,700f),(551,700f),(203,700f),(5,650f),(2000154,600f),(2000157,450f),(8,500f),(2000160,950f)}){var r=Row("AmmunitionsJson",a);Check((r["Damage"].GetValue<double>()==10.5||a==8)&&r["PenetrationAtMinRange"].GetValue<float>()==pen&&r["PenetrationAtGroundRange"].GetValue<float>()==pen,"ATGM ladder "+a);}
+foreach(int m in new[]{187,322,149})Check(Row("SquadMembersJson",m)["SpecialWeaponId"].GetValue<int>()==0,"one launcher "+m);
+foreach(int u in new[]{63,127,74})Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==u&&r["SpecialWeaponId"].GetValue<int>()!=0)==1,"one launcher squad "+u);
+foreach(int u in new[]{3,208,209,213,480})Check(Linked("UnitArmorsJson","ArmorId",u).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==12),"BMP-3 chassis 12 HP "+u);
+Check(UC(3)==65&&UC(89)==55&&OC(473)==10&&OC(40)==10&&OC(1761)==10&&OC(37)==30&&OC(48)==30&&OC(1766)==30&&OC(1894)==55&&OC(1944)==40&&OC(1947)==40&&OC(2083)==45,"dev.13 prices");
 foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
 Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==13&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==15,"air missiles unchanged");
 Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");

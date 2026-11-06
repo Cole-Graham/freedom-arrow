@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.12.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.13.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.4.0-dev.12'
+    assert manifest['version']=='0.4.0-dev.13'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.12 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.13 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -55,6 +55,7 @@ with zipfile.ZipFile(p) as z:
     # 0.4 dev.12: ground ATGM damage and Kornet penetration.
     d11=json.loads((R/'dev12-contract.json').read_text())
     atgm={str(a):{'Damage':d11['atgm_damage'],**({'PenetrationAtMinRange':d11['atgm_penetration'][str(a)],'PenetrationAtGroundRange':d11['atgm_penetration'][str(a)]} if str(a) in d11['atgm_penetration'] else {})} for a in d11['atgm_rows']}
+    for aid,pen in json.loads((R/'dev13-contract.json').read_text())['atgm_penetration'].items():atgm.setdefault(aid,{}).update(PenetrationAtMinRange=pen,PenetrationAtGroundRange=pen)
     ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
@@ -100,7 +101,7 @@ with zipfile.ZipFile(p) as z:
     for uid,oids in [(22,[8,1894]),(24,[25]),(33,[42])]:
         for oid in oids:
             row=arm[str(opt[str(oid)]['ArmorId'])];assert (row['MaxHealthPoints'],row['HeatArmorFront'],row['HeatArmorSides'])==(12,700,700)
-            assert opt[str(oid)]['Cost']==(40 if oid==1894 else 25)
+            assert opt[str(oid)]['Cost']==(55 if oid==1894 else 25)
     for aid in ['2000017','2000018']:assert (arm[aid]['MaxHealthPoints'],arm[aid]['HeatArmorFront'],arm[aid]['HeatArmorSides'])==(12,250,200)
     # M6 Linebacker edits are front HEAT and uparmor HP. Its base stays 14.
     assert arm['47']=={'HeatArmorFront':400,'MaxHealthPoints':14} and arm['288']=={'HeatArmorFront':700,'MaxHealthPoints':14}
@@ -113,7 +114,10 @@ with zipfile.ZipFile(p) as z:
     amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==10.5
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
     for aid,fields in atgm.items():assert all(amm[aid][f]==x for f,x in fields.items()),aid
-    assert amm['63']['PenetrationAtGroundRange']==650 and amm['2000160']['PenetrationAtGroundRange']==950
+    d13=json.loads((R/'dev13-contract.json').read_text())
+    for aid,pen in d13['atgm_penetration'].items():assert amm[aid]['PenetrationAtGroundRange']==pen==amm[aid]['PenetrationAtMinRange'],aid
+    assert amm['63']['PenetrationAtGroundRange']==700 and amm['2000160']['PenetrationAtGroundRange']==950
+    for k,f in d13['member_fields'].items():assert table('squad_members')[k]['SpecialWeaponId']==0,k
     # The AH-1W keeps a copy of TOW-2A at 12. Front HEAT spread values are checked against vanilla in the row tests.
     tow=[k for k,r in amm.items() if r and r.get('Name')=='Missile AT TOW2A' and int(k)>=2_000_000]
     assert len(tow)==1 and amm[tow[0]]['Damage']==12.0 and [r for r in live('weapon_ammunitions').values() if r.get('AmmunitionId')==int(tow[0])]

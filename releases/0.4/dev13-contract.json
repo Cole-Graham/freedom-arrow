@@ -1,0 +1,52 @@
+{
+  "note": "0.4 dev.13 (Osama, 5 November 2026). ATGM penetration ladder 450-700 with Kornet-M alone at 950; top-attack rows unchanged. One AT launcher per infantry squad with a reusable launcher; ammo rows unchanged. BMP-3 chassis HP is in dev5-contract.json, prices in vehicle-contract.json.",
+  "atgm_penetration": {
+    "2000157": 450.0,
+    "2000156": 500.0,
+    "2000170": 500.0,
+    "2000147": 500.0,
+    "2000163": 500.0,
+    "8": 500.0,
+    "2000153": 550.0,
+    "2000173": 550.0,
+    "96": 600.0,
+    "2000154": 600.0,
+    "2000150": 600.0,
+    "125": 600.0,
+    "2000159": 600.0,
+    "2000164": 600.0,
+    "197": 600.0,
+    "345": 600.0,
+    "2000178": 600.0,
+    "2000176": 600.0,
+    "2000180": 600.0,
+    "2000165": 650.0,
+    "2000166": 650.0,
+    "2000175": 650.0,
+    "5": 650.0,
+    "2000155": 650.0,
+    "2000158": 650.0,
+    "2000179": 650.0,
+    "2000181": 650.0,
+    "63": 700.0,
+    "551": 700.0,
+    "203": 700.0,
+    "2000160": 950.0
+  },
+  "member_fields": {
+    "187": {
+      "SpecialWeaponId": 0
+    },
+    "322": {
+      "SpecialWeaponId": 0
+    },
+    "149": {
+      "SpecialWeaponId": 0
+    }
+  },
+  "member_why": {
+    "187": "Assaultmen SMAW second SMAW",
+    "322": "RPG-29 Vampyr second RPG-29",
+    "149": "Rangers RAWS second Carl Gustaf"
+  }
+}
