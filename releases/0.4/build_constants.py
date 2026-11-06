@@ -425,6 +425,9 @@ def main():
     for w in mw:
         if any(r['WeaponId']==w for r in effective['WeaponAmmunitionsJson'].values()):
             assert any(effective['AmmunitionsJson'][r['AmmunitionId']]['GenerateSmoke'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w),('mortar without smoke',w)
+    # 0.4 dev.34: M8 Thunderbolt ERA 700 and Applique 400 HEAT all around.
+    d34=json.loads((R/'dev34-contract.json').read_text())
+    for key,f in d34['option_armor'].items():armor(d34['unit'],int(key),f,'M8 Thunderbolt kit HEAT all around')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
