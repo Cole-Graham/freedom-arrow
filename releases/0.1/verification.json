@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0",
+  "sha256": "68f3b42ae70fba61165710f4cc7bfb84b0cd25eec06033d29fc1860aaa308f30",
+  "archive_files": 37,
+  "payload_hashes_checked": 34,
+  "mods": [
+    "Mods/BALocalSkirmish.dll",
+    "Mods/FreedomArrow.ConquestBatch.dll",
+    "Mods/FreedomArrow.Runtime.dll"
+  ],
+  "spotting_tables_vanilla": true,
+  "option_stealth_sensors_vanilla": true,
+  "qa_probes_and_engine_absent": true,
+  "custom_debug_panel_absent": true,
+  "ai_suppression_override_absent": true,
+  "temporary_six_minute_six_point_settings_absent": true,
+  "support_air_scope_preserved_by_builder_assertions": true,
+  "live_launch": false,
+  "multiplayer_tested": false
+}
