@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0-dev.35",
+  "version": "0.4.0-dev.36",
   "base_costs": {
     "90": 30,
     "89": 45,
@@ -255,7 +255,8 @@
     "208": 45,
     "155": 65,
     "194": 30,
-    "5": 90
+    "5": 90,
+    "154": 80
   },
   "option_costs": {
     "245": 15,
@@ -360,7 +361,9 @@
     "275": 0,
     "276": 0,
     "421": 0,
-    "422": 5
+    "422": 5,
+    "63": 10,
+    "64": 40
   },
   "provisional_units": [
     13,
@@ -373,5 +376,5 @@
     144
   ],
   "held_structural": [],
-  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran 70 is the default loadout total: base 25 + Ataka 20 + Igla 25. 0.4: MBT and kit prices from the approved equal-point fights (Osama, 5 November 2026). M60A1 base 70 plus its default +10 variant is 80 total. 0.4 dev.2: prices refit with sabot +50 at point blank, M1A1 HC anchored at 160 (Osama, 5 November 2026). 0.4 infantry: every buyable infantry, weapons-team and recon-infantry card scaled x0.8333 to the nearest 5 (ceiling 120 -> 100), with Stage 2 adjustments HMG & GMG 40 and Morskaya pekhota 65 (Lateralus, 5 November 2026). Base cost = scaled base; option surcharge = loadout total - base; variant unit Cost = loadout total."
+  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran 70 is the default loadout total: base 25 + Ataka 20 + Igla 25. 0.4: MBT and kit prices from the approved equal-point fights (Osama, 5 November 2026). M60A1 base 70 plus its default +10 variant is 80 total. 0.4 dev.2: prices refit with sabot +50 at point blank, M1A1 HC anchored at 160 (Osama, 5 November 2026). 0.4 infantry: every buyable infantry, weapons-team and recon-infantry card scaled x0.8333 to the nearest 5 (ceiling 120 -> 100), with Stage 2 adjustments HMG & GMG 40 and Morskaya pekhota 65 (Lateralus, 5 November 2026). Base cost = scaled base; option surcharge = loadout total - base; variant unit Cost = loadout total. 0.4 dev.36: LAV-M 80; AMPV Bushmaster II +10 and Bushmaster II + Javelin +40, matching the Stryker RV cut (Osama, 6 November 2026)."
 }
