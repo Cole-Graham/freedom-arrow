@@ -405,6 +405,26 @@ def main():
         m=effective['SquadMembersJson'][int(key)];assert not m['SpecialWeaponId'],key
         assert f['SpecialWeaponId'] in {r['WeaponId'] for r in effective['SquadWeaponsJson'].values() if r['UnitId']==m['UnitId']},key
         put('SquadMembersJson',int(key),f,d30['member_why'][key])
+    # 0.4 dev.31: mortar range +50% and smoke on every mortar loadout.
+    d31=json.loads((R/'dev31-contract.json').read_text());mw=set(d31['mortar_weapons'])
+    for w in mw:assert w in effective['WeaponsJson'],w
+    mammo={r['AmmunitionId'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId'] in mw and effective['AmmunitionsJson'][r['AmmunitionId']]['TrajectoryType'] in (20,30)}
+    for aid in mammo:
+        assert all(r['WeaponId'] in mw for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid),('mortar round shared',aid)
+        put('AmmunitionsJson',aid,{'GroundRange':effective['AmmunitionsJson'][aid]['GroundRange']*d31['range_factor']},'Mortar range +50%')
+    cl=d31['clone240'];smoke240=clone('AmmunitionsJson',cl['from'],{'Name':cl['name'],'GroundRange':effective['AmmunitionsJson'][cl['range_like']]['GroundRange']},'240 mm mortar smoke round')
+    for key,sa in d31['smoke_add'].items():
+        w=int(key);sa=smoke240 if sa=='clone240' else sa
+        assert effective['AmmunitionsJson'][sa]['GenerateSmoke'],sa
+        links=[r for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w]
+        assert links and not any(effective['AmmunitionsJson'][r['AmmunitionId']]['GenerateSmoke'] for r in links),('weapon already has smoke',w)
+        for uid in sorted({r['UnitId'] for r in links}):
+            mine=[r for r in links if r['UnitId']==uid]
+            q=max(5,int(5*round(sum(r['Quantity'] for r in mine)*0.25/5)))
+            clone('WeaponAmmunitionsJson',mine[0]['Id'],{'AmmunitionId':sa,'Quantity':q,'Order':max(r['Order'] for r in mine)+1},'Mortar smoke rounds')
+    for w in mw:
+        if any(r['WeaponId']==w for r in effective['WeaponAmmunitionsJson'].values()):
+            assert any(effective['AmmunitionsJson'][r['AmmunitionId']]['GenerateSmoke'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w),('mortar without smoke',w)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

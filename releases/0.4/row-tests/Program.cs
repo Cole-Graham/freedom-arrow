@@ -120,6 +120,10 @@ Check(UC(151)==90&&OC(275)==0&&OC(276)==0,"dev.28 Kornet-D1 90, both weapon load
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==214&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()),"dev.29 BMP-2 no smoke");
 foreach(int w in new[]{62,659,76})Check(Row("WeaponsJson",w)["AimTimeMin"].GetValue<float>()==4&&Row("WeaponsJson",w)["AimTimeMax"].GetValue<float>()==5,"dev.30 Javelin aim 4-5 "+w);
 Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)==100&&UC(65)==90&&Carry(62,"AT4")==4,"dev.30 Javelin team prices, Troopers AT four AT-4");
+foreach(var (a,r) in new[]{(6,1500f),(87,1500f),(71,1650f),(134,1350f),(37,2775f),(421,3000f),(417,1575f),(410,1125f)})Check(Row("AmmunitionsJson",a)["GroundRange"].GetValue<float>()==r,"dev.31 mortar range +50% "+a);
+Check(Row("AmmunitionsJson",135)["GroundRange"].GetValue<float>()==600,"dev.31 direct-fire HEAT unchanged");
+foreach(int w in new[]{41,562,563,98,218,262,285,286,555,558,1027})Check(merged["WeaponAmmunitionsJson"].Where(r=>r["WeaponId"].GetValue<int>()==w).Any(r=>Row("AmmunitionsJson",r["AmmunitionId"].GetValue<int>())["GenerateSmoke"].GetValue<bool>()),"dev.31 mortar smoke "+w);
+Check(UC(155)==65,"dev.31 Drok 65");
 foreach(var (u,n) in new[]{(372,2),(113,2),(613,4),(612,4)})Check(!Row("Units",u)["IsUnitModification"].GetValue<bool>()&&merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["MaxAvailabilityXp0"].GetValue<int>()).SequenceEqual(new[]{n}),"dev.21 card "+u);
 Check(!merged["OptionsJson"].Any(r=>r["Id"].GetValue<int>() is 1623 or 3030)&&UC(613)==60&&Row("Units",613)["HUDName"].GetValue<string>()=="BARS Igla","dev.21 BARS Igla 60, options retired");
 Check(UC(121)==30&&UC(357)==50&&UC(3)==45&&UC(208)==45&&!Row("Units",357)["IsUnitModification"].GetValue<bool>()&&!merged["OptionsJson"].Any(r=>r["Id"].GetValue<int>()==1517)&&Row("AmmunitionsJson",2000153)["PenetrationAtGroundRange"].GetValue<float>()==500,"dev.22 Konkurs cards, BMP-3 and BMP-3F 45");
