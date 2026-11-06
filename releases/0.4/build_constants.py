@@ -340,6 +340,38 @@ def main():
     for key,f in d13['member_fields'].items():
         assert effective['SquadMembersJson'][int(key)]['SpecialWeaponId'],('member has no launcher',key)
         put('SquadMembersJson',int(key),f,'One AT launcher per squad: '+d13['member_why'][key])
+    # 0.4 dev.14: ammo, one AT launcher per squad, launcher reload, RPG-29 Vampyr 5 men and two card splits.
+    d14=json.loads((R/'dev14-contract.json').read_text())
+    for key,q in d14['ammo_quantity'].items():put('WeaponAmmunitionsJson',int(key),{'Quantity':q},d14['ammo_why'][key])
+    for key,f in d14['member_fields'].items():put('SquadMembersJson',int(key),f,'One AT launcher per squad: '+d14['member_why'][key])
+    for rid in d14['retire_members']:drop('SquadMembersJson',rid)
+    for rid in d14['retire_squad_weapons']:drop('SquadWeaponsJson',rid)
+    for rid in d14['retire_ammo']:drop('WeaponAmmunitionsJson',rid)
+    for key,aid in d14['armor_links'].items():put('UnitArmorsJson',int(key),{'ArmorId':aid},'RPG-29 Vampyr 5 men, 25 HP')
+    moved14={}
+    for c in d14['cards']:
+        why=f"Separate card {effective['Units'][c['unit']]['Name']}"
+        put('Units',c['unit'],{'IsUnitModification':False},why)
+        pool=clone('SpecializationAvailabilitiesJson',c['like_pool'],{'UnitId':c['unit'],'MaxAvailabilityXp0':c['xp0']},why)
+        for t in c['transports']:clone('TransportAvailabilitiesJson',template,{'SpecializationAvailabilityId':pool,'UnitId':t},why)
+        for oid in c.get('retire_parent_options',[]):drop('OptionsJson',oid);moved14[str(oid)]=c['parent']
+        if c.get('move_options'):
+            mod=clone('ModificationsJson',c['modification_like'],{'UnitId':c['unit']},why)
+            for key,order in c['move_options'].items():
+                put('OptionsJson',int(key),{'ModificationId':mod,'Order':order},why);moved14[key]=c['parent']
+    mig=R/'source/UserData/FreedomArrow/deck-migration.json'
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),**moved14},indent=2,sort_keys=True)+'\n')
+    rl=d14['reload'];sm_users={}
+    for m in effective['SquadMembersJson'].values():
+        for f in ('PrimaryWeaponId','SpecialWeaponId'):
+            if m[f]:sm_users.setdefault(m[f],set()).add(effective['Units'][m['UnitId']]['Type'])
+    turret={r['WeaponId'] for r in effective['TurretWeaponsJson'].values()}
+    for wid,w in list(effective['WeaponsJson'].items()):
+        if not w['Name'].startswith('RocketLauncher') or wid in rl['skip_weapons']:continue
+        assert wid not in turret and sm_users.get(wid,{2})=={2},('launcher not infantry-only',wid)
+        lo,hi=rl['disposable'] if 'Disposable' in w['Name'] else rl['reusable']
+        if (w['MagazineReloadTimeMin'],w['MagazineReloadTimeMax'])!=(lo,hi):
+            put('WeaponsJson',wid,{'MagazineReloadTimeMin':lo,'MagazineReloadTimeMax':hi},'Infantry launcher reload 6-7 s, disposable 7 s')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

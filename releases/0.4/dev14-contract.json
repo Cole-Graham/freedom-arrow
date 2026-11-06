@@ -1,0 +1,121 @@
+{
+  "note": "0.4 dev.14 (Osama, 5 November 2026). Ammo, one AT launcher per squad, launcher reload 6-7 s (disposable 7 s), RPG-29 Vampyr 5 men, Rangers Javelin and Baltic Javelin/Spike as separate cards. WeaponAmmunitions Quantity is set as the stock of the one remaining launcher. Prices are in vehicle-contract.json.",
+  "ammo_quantity": {
+    "474": 6,
+    "536": 6,
+    "2500": 10,
+    "598": 10,
+    "3173": 10,
+    "2274": 12,
+    "3174": 12,
+    "2596": 6,
+    "2701": 6,
+    "3551": 8,
+    "3017": 6,
+    "230": 4,
+    "2260": 4,
+    "3015": 4,
+    "3020": 4
+  },
+  "ammo_why": {
+    "474": "VDV Kornet 6",
+    "536": "PTRK Fagot 6",
+    "2500": "RPG-29 Vampyr 10",
+    "598": "Rangers RAWS 10 (two launchers' worth on one)",
+    "3173": "Rangers RAWS FST matches",
+    "2274": "Rangers RAWS M4 12",
+    "3174": "Rangers RAWS M4 FST matches",
+    "2596": "Assaultmen SMAW NE 3+3 on one launcher",
+    "2701": "Assaultmen SMAW HEAA 3+3 on one launcher",
+    "3551": "VDV DSh 3 RPG-7 4+4 on one launcher",
+    "3017": "Baltic Milan 3+3 on one post",
+    "230": "Weapons Squad Javelin 4",
+    "2260": "CAAT Javelin 4",
+    "3015": "Baltic Javelin team 4",
+    "3020": "Baltic Spike LR 4"
+  },
+  "member_fields": {
+    "816": {
+      "SpecialWeaponId": 0
+    },
+    "818": {
+      "SpecialWeaponId": 0
+    },
+    "1445": {
+      "SpecialWeaponId": 0
+    },
+    "1124": {
+      "PrimaryWeaponId": 693
+    }
+  },
+  "member_why": {
+    "816": "Rangers RAWS M4 second launcher",
+    "818": "Rangers RAWS M4 third launcher",
+    "1445": "VDV DSh 3 second RPG-7",
+    "1124": "Baltic Milan second post becomes a rifleman"
+  },
+  "retire_members": [
+    952,
+    953
+  ],
+  "retire_squad_weapons": [
+    843
+  ],
+  "retire_ammo": [
+    3018
+  ],
+  "armor_links": {
+    "832": 280
+  },
+  "cards": [
+    {
+      "unit": 416,
+      "like_pool": 823,
+      "xp0": 4,
+      "transports": [
+        184,
+        392,
+        79
+      ],
+      "retire_parent_options": [
+        1856
+      ],
+      "parent": 73
+    },
+    {
+      "unit": 520,
+      "like_pool": 891,
+      "xp0": 4,
+      "transports": [
+        535,
+        502,
+        501,
+        498,
+        500
+      ],
+      "move_options": {
+        "2148": 0,
+        "2149": 1
+      },
+      "parent": 519,
+      "modification_like": 605
+    }
+  ],
+  "reload": {
+    "disposable": [
+      7.0,
+      7.0
+    ],
+    "reusable": [
+      6.0,
+      7.0
+    ],
+    "skip_weapons": [
+      287,
+      663,
+      733,
+      934,
+      935
+    ]
+  }
+}
