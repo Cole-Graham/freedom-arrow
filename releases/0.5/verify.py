@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.3.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.4.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.3'
+    assert manifest['version']=='0.5.0-dev.4'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.3 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.4 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -33,7 +33,7 @@ with zipfile.ZipFile(p) as z:
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
     allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values()}
     st=json.loads((R/'structural-contract.json').read_text())
-    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}
+    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}
     for k,row in live('units').items():
         if k in added:continue
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
@@ -58,7 +58,7 @@ with zipfile.ZipFile(p) as z:
     for k,row in live('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row)
     assert {k:r['StealthOverride'] for k,r in live('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
-    for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,14,400,400)]:
+    for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,12,400,400)]:
         a=arm[str(opt[str(oid)]['ArmorId'])];assert a['MaxHealthPoints']==hp
         if front is not None:assert (a['HeatArmorFront'],a['HeatArmorSides'])==(front,side)
     a=mob[str(opt['1986']['MobilityId'])];assert (a['MaxSpeedRoad'],a['MaxCrossCountrySpeed'])==(60,55)

@@ -529,6 +529,28 @@ def main():
         o=effective['OptionsJson'][int(key)];a=effective['AbilitiesJson'][ab]
         assert a['IsSmoke'] and not a['IsAPS'] and not any(o[k] for k in ('Ability1Id','Ability2Id','Ability3Id')),key
         put('OptionsJson',int(key),{'Ability1Id':ab},'Smoke with this package')
+    # 0.5 dev.4: Sprut-SDM is its own card; Sprut-SD 60, Sprut-SDM 75, both 12 HP with smoke.
+    sp=json.loads((R/'sprut-contract.json').read_text());why='Sprut-SDM card split';par,new=sp['parent'],sp['unit']
+    assert new not in effective['Units'] and effective['OptionsJson'][sp['move_option']]['ModificationId']==sp['variant_mod']
+    made={}
+    for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==par]:
+        made.setdefault(link['ArmorId'],clone('ArmorsJson',link['ArmorId'],{'MaxHealthPoints':sp['hp']},'Sprut 12 HP'))
+        put('UnitArmorsJson',link['Id'],{'ArmorId':made[link['ArmorId']]},'Sprut 12 HP')
+    for opt in options(par):
+        if opt['ArmorId'] in made:put('OptionsJson',opt['Id'],{'ArmorId':made[opt['ArmorId']]},'Sprut 12 HP')
+    add_unit(new,par,sp['fields'],why)
+    for table in ['TurretUnitsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
+        for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==par]:clone(table,rid,{'UnitId':new},why)
+    vm=clone('ModificationsJson',sp['variant_mod'],{'UnitId':new},why)
+    put('OptionsJson',sp['move_option'],{'ModificationId':vm,'Order':0,'Cost':0,'ConcatenateWithUnitName':''},why)
+    am=clone('ModificationsJson',sp['armor_mod'],{'UnitId':new},why)
+    for oid in sp['armor_options']:
+        clone('OptionsJson',oid,{'ModificationId':am},why)
+    clone('SpecializationAvailabilitiesJson',sp['pool'],{'UnitId':new},why)
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),str(sp['move_option']):par},indent=2,sort_keys=True)+'\n')
+    for uid in (par,new):
+        arm={effective['ArmorsJson'][r['ArmorId']]['MaxHealthPoints'] for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid}
+        assert arm=={12} and any(effective['AbilitiesJson'][r['AbilityId']]['IsSmoke'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid),(uid,arm)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
