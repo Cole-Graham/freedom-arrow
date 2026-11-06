@@ -72,7 +72,7 @@ foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"]
 foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
 foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
 // dev.11 infantry scale x0.8333 to the nearest 5, plus Stage 2 (Lateralus). Written here again on purpose, independent of the generator contract.
-foreach(var (u,cost) in new[]{(110,55),(352,70),(320,75),(408,75),(147,65),(343,85),(62,90),(701,60),(72,75),(409,80),(126,65),(533,35),(125,85),(131,95)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
+foreach(var (u,cost) in new[]{(110,55),(352,70),(320,75),(408,110),(147,65),(343,85),(62,100),(701,60),(72,75),(409,80),(126,65),(533,35),(125,85),(131,95)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
 foreach(var (u,o,total) in new[]{(533,2216,40),(533,2169,40),(72,1846,80),(459,1976,70),(110,1509,70),(125,1496,90),(125,1497,100),(131,1511,115),(177,1487,100)})Check(Row("Units",u)["Cost"].GetValue<int>()+Row("OptionsJson",o)["Cost"].GetValue<int>()==total,"infantry loadout total "+o);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
 WeaponCoverage.Validate(merged,allPatches);checks++;
@@ -111,13 +111,15 @@ Check(Linked("UnitArmorsJson","ArmorId",u).Select(a=>Row("ArmorsJson",a)["HeatAr
 foreach(var (wa,q) in new[]{(474,6),(536,6),(2500,10),(598,10),(2274,12),(2596,6),(2701,6),(3551,8),(3017,6),(230,4),(2260,4),(3015,4),(3020,4)})Check(Row("WeaponAmmunitionsJson",wa)["Quantity"].GetValue<int>()==q,"dev.14 ammo "+wa);
 foreach(int u in new[]{410,640,519})Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==u&&(r["SpecialWeaponId"].GetValue<int>() is 505 or 789||r["PrimaryWeaponId"].GetValue<int>() is 746 or 759))==1,"dev.14 one launcher "+u);
 Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==127)==5&&Linked("UnitArmorsJson","ArmorId",127).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==25&&Row("ArmorsJson",a)["ArmorValue"].GetValue<int>()==6),"Vampyr 5 men 25 HP armor 6");
-Check(UC(74)==35&&OC(1848)==10&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==40&&UC(214)+OC(492)==45&&UC(214)+OC(493)==60&&UC(214)+OC(2101)==30&&UC(416)==90&&UC(520)==65,"dev.14 prices");
+Check(UC(74)==35&&OC(1848)==10&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==40&&UC(214)+OC(492)==45&&UC(214)+OC(493)==60&&UC(214)+OC(2101)==30&&UC(416)==110&&UC(520)==90,"dev.14 prices (Javelin cards repriced in dev.30)");
 Check(OC(15)==10&&OC(379)==10,"dev.16 Stryker Dragoon and ACV RT20 Bushmaster II +10");
 Check(OC(1896)==15&&OC(1897)==45,"dev.17 Stryker RV Bushmaster II -10");
 Check(OC(1615)==10,"dev.24 BMP-1AM +10");
 Check(OC(748)==10&&OC(184)==20,"dev.27 BMD-2 Konkurs-M +10, BMD-2M +20");
 Check(UC(151)==90&&OC(275)==0&&OC(276)==0,"dev.28 Kornet-D1 90, both weapon loadouts +0");
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==214&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()),"dev.29 BMP-2 no smoke");
+foreach(int w in new[]{62,659,76})Check(Row("WeaponsJson",w)["AimTimeMin"].GetValue<float>()==4&&Row("WeaponsJson",w)["AimTimeMax"].GetValue<float>()==5,"dev.30 Javelin aim 4-5 "+w);
+Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)==100&&UC(65)==90&&Carry(62,"AT4")==4,"dev.30 Javelin team prices, Troopers AT four AT-4");
 foreach(var (u,n) in new[]{(372,2),(113,2),(613,4),(612,4)})Check(!Row("Units",u)["IsUnitModification"].GetValue<bool>()&&merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["MaxAvailabilityXp0"].GetValue<int>()).SequenceEqual(new[]{n}),"dev.21 card "+u);
 Check(!merged["OptionsJson"].Any(r=>r["Id"].GetValue<int>() is 1623 or 3030)&&UC(613)==60&&Row("Units",613)["HUDName"].GetValue<string>()=="BARS Igla","dev.21 BARS Igla 60, options retired");
 Check(UC(121)==30&&UC(357)==50&&UC(3)==45&&UC(208)==45&&!Row("Units",357)["IsUnitModification"].GetValue<bool>()&&!merged["OptionsJson"].Any(r=>r["Id"].GetValue<int>()==1517)&&Row("AmmunitionsJson",2000153)["PenetrationAtGroundRange"].GetValue<float>()==500,"dev.22 Konkurs cards, BMP-3 and BMP-3F 45");

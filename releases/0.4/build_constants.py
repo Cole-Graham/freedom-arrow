@@ -396,6 +396,15 @@ def main():
         if c.get('parent_default_option'):put('OptionsJson',c['parent_default_option'],{'IsDefault':True},why)
     mig=R/'source/UserData/FreedomArrow/deck-migration.json'
     mig.write_text(json.dumps({**json.loads(mig.read_text()),**moved21},indent=2,sort_keys=True)+'\n')
+    # 0.4 dev.30: Javelin aim time and a fourth AT-4 on Troopers AT.
+    d30=json.loads((R/'dev30-contract.json').read_text())
+    for key,f in d30['weapon_fields'].items():
+        assert 'Javelin' in effective['WeaponsJson'][int(key)]['Name'],key
+        put('WeaponsJson',int(key),f,'Javelin aim 4-5 s')
+    for key,f in d30['member_fields'].items():
+        m=effective['SquadMembersJson'][int(key)];assert not m['SpecialWeaponId'],key
+        assert f['SpecialWeaponId'] in {r['WeaponId'] for r in effective['SquadWeaponsJson'].values() if r['UnitId']==m['UnitId']},key
+        put('SquadMembersJson',int(key),f,d30['member_why'][key])
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

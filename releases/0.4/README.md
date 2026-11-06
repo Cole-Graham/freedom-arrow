@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.29 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.30 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -28,6 +28,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - dev.27 (Osama, 6 November 2026): BMD-2 Konkurs-M +10 (was +5), BMD-2M +20 (was +10).
 - dev.28 (Osama, 6 November 2026): Kornet-D1 90 with both weapon loadouts at +0 (1x Kornet-M + optics, 2x4 Kornet; the 2x4 was +20).
 - dev.29 (Osama, 6 November 2026): BMP-2 loses smoke (base 30, the IFV smoke rule).
+- dev.30 (Osama, 6 November 2026): Javelin aim 4-5 s (was 2-3) on infantry, Rangers LWCLU and vehicle Javelins. CAAT Javelin 110, Weapons Squad 95, Rangers Javelin 110, Baltic Javelin 90 (Spike LR 110), Troopers AT 100 with a fourth AT-4, Cavalry Scouts 90.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 - Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
@@ -58,7 +59,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.29.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.30.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -297,3 +298,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-06 00:37:10 PST (America/Los_Angeles) — 0.4.0-dev.27: BMD-2 Konkurs-M +10, BMD-2M +20 (Osama). Not yet run live.
 - 2026-11-06 00:39:11 PST (America/Los_Angeles) — 0.4.0-dev.28: Kornet-D1 90, both weapon loadouts +0 (Osama). Not yet run live.
 - 2026-11-06 00:40:46 PST (America/Los_Angeles) — 0.4.0-dev.29: BMP-2 smoke removed (Osama). Not yet run live.
+- 2026-11-06 01:15:40 PST (America/Los_Angeles) — 0.4.0-dev.30: Javelin aim 4-5 s, Javelin team prices, Troopers AT 100 with four AT-4 (Osama). Not yet run live.

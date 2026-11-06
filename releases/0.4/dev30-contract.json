@@ -1,0 +1,25 @@
+{
+  "note": "0.4 dev.30 (Osama, 6 November 2026). Javelin aim 4-5 s on all three Javelin weapons (infantry, LWCLU infantry, vehicle x1). Troopers AT gets a fourth AT-4. Prices are in vehicle-contract.json.",
+  "weapon_fields": {
+    "62": {
+      "AimTimeMin": 4.0,
+      "AimTimeMax": 5.0
+    },
+    "659": {
+      "AimTimeMin": 4.0,
+      "AimTimeMax": 5.0
+    },
+    "76": {
+      "AimTimeMin": 4.0,
+      "AimTimeMax": 5.0
+    }
+  },
+  "member_fields": {
+    "65": {
+      "SpecialWeaponId": 59
+    }
+  },
+  "member_why": {
+    "65": "Troopers AT fourth AT-4"
+  }
+}
