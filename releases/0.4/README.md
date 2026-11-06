@@ -253,3 +253,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 16:48:47 PST (America/Los_Angeles) — 0.4.0-dev.7: no smoke on tanks under 100 or IFVs at 30 and below; BMP-3 family 10 HP; PT-76 8 HP; Bumerang uparmor HEAT 400; BTR-80 turrets +5/+10; VDV Kornet M +20; PTRK Kornet 65; PTRK Fagot 40; CAAT Javelin 90; Weapons Squad 80. Not yet run live.
 - 2026-11-05 16:51:31 PST (America/Los_Angeles) — 0.4.0-dev.7: BMD-4MK Demidov 10 HP, the same as the BMP-3 family; BMD-4M already 10. Not yet run live.
 - 2026-11-05 16:52:54 PST (America/Los_Angeles) — 0.4.0-dev.7: VDV Kornet-M and PTRK Kornet-M cards 85, the same as the base Kornet cards with the Kornet M loadout. Not yet run live.
+- 2026-11-05 17:10:52 PST (America/Los_Angeles) — build.py copies the built scenarios to {game_root}/Mods/Scenarios from config.YAML, and warns when the installed package is a different version (Lateralus). Package contents unchanged.
