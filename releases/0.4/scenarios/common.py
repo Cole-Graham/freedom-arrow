@@ -1,6 +1,6 @@
 """Shared scenario build: IO, layout overlay, lobby sliders, FA script graft, flavors."""
 from pathlib import Path
-import copy, hashlib, json, sys, zipfile
+import copy, hashlib, json, shutil, sys, zipfile
 from Crypto.Cipher import AES
 ROOT=Path(__file__).resolve().parent.parent;REPO=ROOT.parent.parent
 sys.path.insert(0,str(REPO))
@@ -91,16 +91,27 @@ def apply_layout(objects,layout):
         overlay(dest[r],src,PLAYER_KEEP if r[0]=='player' else KEEP)
 def write(out,name,head,objects,nodes,meta):
     target=out/name;target.mkdir(parents=True,exist_ok=True)
+    # The lobby compares a hash of the .bascr, so every machine must write the same bytes.
+    # Python sets create_system to 0 on Windows and 3 elsewhere; fix it and the file mode.
     with zipfile.ZipFile(target/(name+'.bascr'),'w',zipfile.ZIP_DEFLATED) as w:
         for part,data in [('head.bam',dump(head)),('objects.bam',dump(objects)),('nodes.bam',dump(nodes))]:
-            w.writestr(zipfile.ZipInfo(part,(2026,11,4,0,0,0)),enc(data),zipfile.ZIP_DEFLATED)
+            info=zipfile.ZipInfo(part,(2026,11,4,0,0,0));info.create_system=3;info.external_attr=0o600<<16
+            w.writestr(info,enc(data),zipfile.ZIP_DEFLATED,compresslevel=6)
     (target/'meta.json').write_bytes(dump(meta))
     print(target)
 def read_bascr(folder,name):
     z=zipfile.ZipFile(folder/(name+'.bascr'))
     return load(dec(z.read('head.bam'))),load(dec(z.read('nodes.bam'))),load(dec(z.read('objects.bam'))),load((folder/'meta.json').read_bytes())
+# The build reads these native missions from the local game. A different game version would give different maps.
+NATIVE_PINS=json.loads((Path(__file__).resolve().parent/'native-pins.json').read_text())
 def read_native(game,mission):
-    return read_bascr(game/'BrokenArrow_Data/StreamingAssets/SharedMissions'/mission,mission)
+    folder=game/'BrokenArrow_Data/StreamingAssets/SharedMissions'/mission
+    for f in (folder/(mission+'.bascr'),folder/'meta.json'):
+        want=NATIVE_PINS.get(f'{mission}/{f.name}')
+        assert want,f'{mission}/{f.name} has no pin in native-pins.json'
+        got=hashlib.sha256(f.read_bytes()).hexdigest()
+        assert got==want,f'{f} does not match the pinned game version ({got[:16]} != {want[:16]}). Every player must build from the same game version, or install one shared .bamod.'
+    return read_bascr(folder,mission)
 def read_layout(mod_file):
     return read_bascr(Path(mod_file).resolve().parent,LAYOUT)
 def stamp(head,meta,name,guid,desc,author,kind,public):
@@ -148,8 +159,16 @@ def build_template_flavor(game,out,spec,flavor,template):
     if flavor['kind']==2:add_deployment(nodes,163,flavor['deploy_target'],flavor.get('deploy_pin','in'))
     else:set_bots(objects,meta)
     write_flavor(out,spec,flavor,head,objects,nodes,meta)
+# Files beside layout.bascr, such as .png previews, go into every built flavor folder.
+SOURCE_ONLY={'__init__.py',LAYOUT+'.bascr','meta.json'}
+def copy_assets(out,spec):
+    src=Path(sys.modules[spec['prepare'].__module__].__file__).resolve().parent
+    for f in sorted(src.iterdir()):
+        if f.is_file() and f.name not in SOURCE_ONLY and f.suffix!='.pyc':
+            for flavor in spec['flavors']:shutil.copyfile(f,out/flavor['name']/f.name);print(f"{flavor['name']}: copied {f.name}")
 def build_pair(game,out,spec):
     layout,template=spec['prepare'](game,spec)
     for flavor in spec['flavors']:
         if flavor.get('host'):build_host_flavor(game,out,spec,flavor,layout)
         else:build_template_flavor(game,out,spec,flavor,template)
+    copy_assets(out,spec)

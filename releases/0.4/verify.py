@@ -139,6 +139,8 @@ with zipfile.ZipFile(p) as z:
     for net_name,sk_name,crop in pairs:
         for name,kind in [(net_name,2),(sk_name,3)]:
             assert f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr' in names
+            # Every machine must write identical .bascr bytes: the lobby compares their hash.
+            assert all(i.create_system==3 and i.external_attr==0o600<<16 for i in zipfile.ZipFile(io.BytesIO(z.read(f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'))).infolist()),name
             meta=scenario_meta(name);assert meta['gameVersion']=='1.2.2' and meta['type']==kind,name
             assert [o['defV'] for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']==[45],name
         net,sk=scenario_objects(net_name),scenario_objects(sk_name)
