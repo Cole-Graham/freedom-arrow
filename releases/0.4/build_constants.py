@@ -504,6 +504,10 @@ def main():
     for oid in d42['t72a']['options']:
         a=effective['ArmorsJson'][effective['OptionsJson'][oid]['ArmorId']];n=d42['t72a']['front_add']
         armor(d42['t72a']['unit'],oid,{'KinArmorFront':a['KinArmorFront']+n,'HeatArmorFront':a['HeatArmorFront']+n},'T-72A front armor +100')
+    # 0.4 dev.43: Troopers AT carry the AT4 CS HP.
+    d43=json.loads((R/'dev43-contract.json').read_text());why='Troopers AT AT4 CS HP'
+    swap(d43['unit'],*d43['swap'],d43['ammo'])
+    assert not any(m['UnitId']==d43['unit'] and d43['swap'][0] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values())
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
