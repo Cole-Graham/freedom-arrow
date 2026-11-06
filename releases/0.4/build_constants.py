@@ -481,6 +481,12 @@ def main():
         put('SquadMembersJson',int(key),{'SpecialWeaponId':w},why)
     mig.write_text(json.dumps({**json.loads(mig.read_text()),**moved21},indent=2,sort_keys=True)+'\n')
     audit[:]=[a for a in audit if a['id'] in effective[a['table']]]
+    # 0.4 dev.39: S-300PM, S-400, S-350, Uragan-1M and TOS-2 change specialization.
+    for key,p in json.loads((R/'dev39-contract.json').read_text())['pools'].items():
+        row=effective['SpecializationAvailabilitiesJson'][int(key)]
+        assert (row['UnitId'],row['SpecializationId'])==(p['unit'],p['from']),key
+        assert not any(r['UnitId']==p['unit'] and r['SpecializationId']==p['to'] for r in effective['SpecializationAvailabilitiesJson'].values()),key
+        put('SpecializationAvailabilitiesJson',int(key),{'SpecializationId':p['to']},'Card moves specialization')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
