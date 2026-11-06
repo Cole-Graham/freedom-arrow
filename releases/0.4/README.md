@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.18 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.19 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -49,7 +49,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.18.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.19.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -277,3 +277,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 22:04:09 PST (America/Los_Angeles) — 0.4.0-dev.16: Stryker ICV Dragoon and ACV RT20 Bushmaster II +10 (Osama). Not yet run live.
 - 2026-11-05 22:07:23 PST (America/Los_Angeles) — 0.4.0-dev.17: Stryker RV Bushmaster II +15, with Javelin +45 (Osama). Not yet run live.
 - 2026-11-05 22:13:06 PST (America/Los_Angeles) — 0.4.0-dev.18: availability 6 for cheap fire-support tanks (Osama). Not yet run live.
+- 2026-11-05 23:58:00 PST (America/Los_Angeles) — 0.4.0-dev.19: spotting cap and optics names (Lateralus). An observer never sees a ground target beyond the vanilla ground optics of its sensor tier (for example Very Good 2,000 m, Exceptional 2,400 m, MQ-9 4,500 m, RQ-4 5,500 m); ranges under the cap are unchanged. Unit cards show optics as coloured tier names (Bad, Medium-, Medium, Medium+, Good, Very Good, Exceptional, Superior, Strategic) for ground, low and high altitude. Hooks: FogOfWarUnit.CreateFilterTaskForTarget prefix and UnitInfoCard.SetUnitStatistic postfix. Not yet run live.

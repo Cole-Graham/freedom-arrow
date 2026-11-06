@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.18.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.19.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.4.0-dev.18'
+    assert manifest['version']=='0.4.0-dev.19'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.18 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.19 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -37,6 +37,13 @@ with zipfile.ZipFile(p) as z:
     assert len(table('sensors'))==36-len(det['optics_held_sensors'])
     for k,v in det['optics_ground_drones'].items():assert table('sensors')[k]['OpticsGround']==v,k
     assert json.loads(z.read('UserData/FreedomArrow/detection-config.json'))==json.loads((R/'source/UserData/FreedomArrow/detection-config.json').read_text())
+    # Spotting cap: one vanilla cap for every modded ground optics value; names cover each optics channel from 0 upward.
+    caps=json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps']
+    for k,row in live('sensors').items():assert f"{row['OpticsGround']:g}" in caps,k
+    assert caps['2300']==1000 and caps['6400']==2750 and all(float(k)>=v for k,v in caps.items())
+    on=json.loads(z.read('UserData/FreedomArrow/optics-names.json'))
+    for ch in ['Ground','LowAltitude','HighAltitude']:
+        t=on[ch];assert t[0][0]==0 and all(a[0]<b[0] for a,b in zip(t,t[1:])) and all(x[2] in on['Colors'] for x in t),ch
     for oid,cost in contract['option_costs'].items():assert table('options')[oid]['Cost']==cost,(oid,cost)
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())

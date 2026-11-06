@@ -6,3 +6,4 @@ build/
 constant-audit.json
 source/UserData/FreedomArrow/constants/
 source/UserData/FreedomArrow/deck-migration.json
+source/UserData/FreedomArrow/spotting-caps.json

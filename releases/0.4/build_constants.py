@@ -398,6 +398,12 @@ def main():
         assert len(weapons)==len(set(weapons)),('duplicate squad weapon',uid)
         for m in effective['SquadMembersJson'].values():
             if m['UnitId']==uid:assert {m['PrimaryWeaponId'],m['SpecialWeaponId']}-{0}<=set(weapons),('member weapon not listed',uid,m['Id'])
+    # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
+    caps={}
+    for sid,row in effective['SensorsJson'].items():
+        mod,van=row['OpticsGround'],original['SensorsJson'][sid]['OpticsGround']
+        assert caps.setdefault(mod,van)==van,('one modded optics value maps to two vanilla values',sid,mod)
+    (R/'source/UserData/FreedomArrow/spotting-caps.json').write_text(json.dumps({'OpticsGroundCaps':{f'{k:g}':v for k,v in sorted(caps.items())}},indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

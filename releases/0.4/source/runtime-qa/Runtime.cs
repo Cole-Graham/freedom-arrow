@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.4.0-dev.18", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.4.0-dev.19", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -64,6 +64,8 @@ public class Runtime : MelonMod
         catch(Exception e) { LoggerInstance.Error("FREEDOM_ARROW_DETECTION_FAILED: config hook not installed. "+e.Message); }
         try { CoverDamage.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_COVER_DAMAGE_FAILED: not installed. "+e.Message); }
+        try { SpottingCap.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
     }
     // Previous packaged names. Remove leftover copies so the lobby does not list both.
     static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
