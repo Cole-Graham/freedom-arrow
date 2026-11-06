@@ -1,0 +1,8 @@
+{
+  "0.5.0-dev.1": {
+    "inputs": "f13df7595b121b901f614939b449c0c4711188e9d8bb98b8f72ce537a3468af4",
+    "bamod_sha256": "c7eb94e74adb5bb9674a2e26a17ccb14389966b7dbc0eed0cf04c5620670dfd2",
+    "parent_commit": "4a9084b",
+    "built_utc": "2026-11-06T22:17:00Z"
+  }
+}

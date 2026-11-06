@@ -1,0 +1,14 @@
+{
+  "note": "0.4 dev.18 (Osama, 5 November 2026). Cheap fire-support tanks (tank role, total under 100 points) have availability of at least 6 at XP 0. Keyed by unit; every pool of that unit is raised.",
+  "min_availability": 6,
+  "units": [
+    14,
+    182,
+    183,
+    615,
+    717,
+    718,
+    158,
+    719
+  ]
+}

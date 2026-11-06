@@ -1,0 +1,50 @@
+{
+  "note": "0.4 dev.31 (Osama, 6 November 2026). Mortars: +50% ground range on every indirect-fire round of these weapons (trajectory 20/30; direct-fire HEAT rounds unchanged). Hawkeye MWS counts as a mortar. Not mortars: MICLIC and UR-77 line charges, the 2S1's 122 mm howitzer. Every mortar loadout without smoke gets smoke: 25% of that loadout's rounds, at least 5. The 240 mm Tulpan gets a cloned 240 smoke round.",
+  "range_factor": 1.5,
+  "mortar_weapons": [
+    5,
+    41,
+    98,
+    217,
+    218,
+    262,
+    284,
+    285,
+    286,
+    289,
+    290,
+    292,
+    293,
+    555,
+    558,
+    559,
+    562,
+    563,
+    564,
+    565,
+    566,
+    725,
+    769,
+    771,
+    1009,
+    1027
+  ],
+  "smoke_add": {
+    "41": 420,
+    "562": 420,
+    "563": 420,
+    "98": "clone240",
+    "218": 136,
+    "262": 87,
+    "285": 136,
+    "286": 87,
+    "555": 192,
+    "558": 414,
+    "1027": 414
+  },
+  "clone240": {
+    "from": 87,
+    "name": "Obus 240 SMK",
+    "range_like": 71
+  }
+}

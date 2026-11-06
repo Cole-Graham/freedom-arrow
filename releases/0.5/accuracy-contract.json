@@ -1,0 +1,933 @@
+{
+  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed.",
+  "factor": 2.0,
+  "weapon_types": [
+    110,
+    62,
+    63
+  ],
+  "ammo_fields": {
+    "1": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "2": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "7": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "11": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "12": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "23": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "24": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "41": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "48": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "49": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "54": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "57": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "103": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "105": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "107": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "108": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "121": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "124": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "126": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "128": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "130": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "139": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "140": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "141": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "142": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "169": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "170": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "171": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "172": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "173": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "194": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "223": {
+      "DispersionHorizontalRadius": 4.6,
+      "DispersionVerticalRadius": 3.8
+    },
+    "224": {
+      "DispersionHorizontalRadius": 4.6,
+      "DispersionVerticalRadius": 3.8
+    },
+    "238": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "239": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "240": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "241": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "242": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "243": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "244": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "246": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "247": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "248": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "249": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "251": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "252": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "253": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "254": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "255": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "256": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "257": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "258": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "259": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "260": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "264": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "265": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "356": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "377": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "392": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "396": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "435": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "436": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "451": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "476": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "492": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "493": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "498": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "499": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "500": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "504": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "505": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "522": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "524": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "525": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "532": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "540": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "541": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "550": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "575": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "576": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "577": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "591": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "593": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "595": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "602": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "609": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 5.0
+    },
+    "701": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "713": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "714": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "715": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "716": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "717": {
+      "DispersionHorizontalRadius": 3.6,
+      "DispersionVerticalRadius": 3.0
+    },
+    "737": {
+      "DispersionHorizontalRadius": 6.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "906": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "937": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000128": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000129": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000130": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000131": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000132": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000133": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000134": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000135": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000136": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000137": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000138": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000139": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000140": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000141": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000142": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000143": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000144": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000145": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000146": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    },
+    "2000453": {
+      "DispersionHorizontalRadius": 4.0,
+      "DispersionVerticalRadius": 4.0
+    }
+  },
+  "was": {
+    "7": [
+      3.0,
+      2.5
+    ],
+    "11": [
+      1.8,
+      1.5
+    ],
+    "24": [
+      1.8,
+      1.5
+    ],
+    "48": [
+      1.8,
+      1.5
+    ],
+    "54": [
+      1.8,
+      1.5
+    ],
+    "2000139": [
+      2.0,
+      2.0
+    ],
+    "2000128": [
+      2.0,
+      2.0
+    ],
+    "103": [
+      2.0,
+      2.0
+    ],
+    "2000132": [
+      2.0,
+      2.0
+    ],
+    "105": [
+      3.0,
+      2.5
+    ],
+    "2000133": [
+      2.0,
+      2.0
+    ],
+    "2000135": [
+      2.0,
+      2.0
+    ],
+    "2000137": [
+      2.0,
+      2.0
+    ],
+    "124": [
+      1.8,
+      1.5
+    ],
+    "126": [
+      1.8,
+      1.5
+    ],
+    "2000453": [
+      2.0,
+      2.0
+    ],
+    "128": [
+      2.0,
+      2.0
+    ],
+    "140": [
+      1.8,
+      1.5
+    ],
+    "141": [
+      1.8,
+      1.5
+    ],
+    "142": [
+      1.8,
+      1.5
+    ],
+    "49": [
+      1.8,
+      1.5
+    ],
+    "169": [
+      3.0,
+      2.5
+    ],
+    "170": [
+      3.0,
+      2.5
+    ],
+    "12": [
+      1.8,
+      1.5
+    ],
+    "171": [
+      1.8,
+      1.5
+    ],
+    "172": [
+      1.8,
+      1.5
+    ],
+    "173": [
+      1.8,
+      1.5
+    ],
+    "1": [
+      1.8,
+      1.5
+    ],
+    "2": [
+      1.8,
+      1.5
+    ],
+    "194": [
+      1.8,
+      1.5
+    ],
+    "223": [
+      2.3,
+      1.9
+    ],
+    "224": [
+      2.3,
+      1.9
+    ],
+    "238": [
+      1.8,
+      1.5
+    ],
+    "240": [
+      1.8,
+      1.5
+    ],
+    "239": [
+      1.8,
+      1.5
+    ],
+    "241": [
+      1.8,
+      1.5
+    ],
+    "242": [
+      1.8,
+      1.5
+    ],
+    "243": [
+      1.8,
+      1.5
+    ],
+    "244": [
+      1.8,
+      1.5
+    ],
+    "246": [
+      1.8,
+      1.5
+    ],
+    "247": [
+      1.8,
+      1.5
+    ],
+    "248": [
+      1.8,
+      1.5
+    ],
+    "249": [
+      1.8,
+      1.5
+    ],
+    "254": [
+      1.8,
+      1.5
+    ],
+    "251": [
+      1.8,
+      1.5
+    ],
+    "255": [
+      1.8,
+      1.5
+    ],
+    "252": [
+      1.8,
+      1.5
+    ],
+    "256": [
+      1.8,
+      1.5
+    ],
+    "253": [
+      1.8,
+      1.5
+    ],
+    "259": [
+      1.8,
+      1.5
+    ],
+    "257": [
+      1.8,
+      1.5
+    ],
+    "260": [
+      1.8,
+      1.5
+    ],
+    "264": [
+      1.8,
+      1.5
+    ],
+    "265": [
+      1.8,
+      1.5
+    ],
+    "2000131": [
+      2.0,
+      2.0
+    ],
+    "57": [
+      2.0,
+      2.0
+    ],
+    "356": [
+      1.8,
+      1.5
+    ],
+    "392": [
+      2.0,
+      2.0
+    ],
+    "130": [
+      2.0,
+      2.0
+    ],
+    "396": [
+      2.0,
+      2.0
+    ],
+    "23": [
+      1.8,
+      1.5
+    ],
+    "435": [
+      3.0,
+      2.5
+    ],
+    "436": [
+      3.0,
+      2.5
+    ],
+    "451": [
+      3.0,
+      2.0
+    ],
+    "258": [
+      1.8,
+      1.5
+    ],
+    "2000138": [
+      2.0,
+      2.0
+    ],
+    "2000129": [
+      2.0,
+      2.0
+    ],
+    "493": [
+      3.0,
+      2.5
+    ],
+    "498": [
+      1.8,
+      1.5
+    ],
+    "499": [
+      1.8,
+      1.5
+    ],
+    "500": [
+      1.8,
+      1.5
+    ],
+    "2000136": [
+      2.0,
+      2.0
+    ],
+    "505": [
+      1.8,
+      1.5
+    ],
+    "504": [
+      1.8,
+      1.5
+    ],
+    "2000140": [
+      2.0,
+      2.0
+    ],
+    "522": [
+      2.0,
+      2.0
+    ],
+    "524": [
+      2.0,
+      2.0
+    ],
+    "41": [
+      2.0,
+      2.0
+    ],
+    "532": [
+      1.8,
+      1.5
+    ],
+    "525": [
+      3.0,
+      2.5
+    ],
+    "2000130": [
+      2.0,
+      2.0
+    ],
+    "540": [
+      1.8,
+      1.5
+    ],
+    "107": [
+      2.0,
+      2.0
+    ],
+    "541": [
+      1.8,
+      1.5
+    ],
+    "550": [
+      2.0,
+      2.0
+    ],
+    "2000134": [
+      2.0,
+      2.0
+    ],
+    "476": [
+      2.0,
+      2.0
+    ],
+    "575": [
+      1.8,
+      1.5
+    ],
+    "577": [
+      1.8,
+      1.5
+    ],
+    "576": [
+      1.8,
+      1.5
+    ],
+    "591": [
+      3.0,
+      2.5
+    ],
+    "595": [
+      2.0,
+      2.0
+    ],
+    "2000142": [
+      2.0,
+      2.0
+    ],
+    "2000141": [
+      2.0,
+      2.0
+    ],
+    "593": [
+      2.0,
+      2.0
+    ],
+    "602": [
+      1.8,
+      1.5
+    ],
+    "609": [
+      3.0,
+      2.5
+    ],
+    "701": [
+      1.8,
+      1.5
+    ],
+    "108": [
+      2.0,
+      2.0
+    ],
+    "713": [
+      1.8,
+      1.5
+    ],
+    "714": [
+      1.8,
+      1.5
+    ],
+    "716": [
+      1.8,
+      1.5
+    ],
+    "715": [
+      1.8,
+      1.5
+    ],
+    "717": [
+      1.8,
+      1.5
+    ],
+    "2000144": [
+      2.0,
+      2.0
+    ],
+    "2000145": [
+      2.0,
+      2.0
+    ],
+    "492": [
+      2.0,
+      2.0
+    ],
+    "737": [
+      3.0,
+      2.0
+    ],
+    "2000146": [
+      2.0,
+      2.0
+    ],
+    "121": [
+      2.0,
+      2.0
+    ],
+    "377": [
+      2.0,
+      2.0
+    ],
+    "2000143": [
+      2.0,
+      2.0
+    ],
+    "906": [
+      2.0,
+      2.0
+    ],
+    "139": [
+      1.8,
+      1.5
+    ],
+    "937": [
+      2.0,
+      2.0
+    ]
+  }
+}
