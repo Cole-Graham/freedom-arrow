@@ -231,6 +231,7 @@ def main():
     sm=d5['smoke']
     smoke={i for i,a in effective['AbilitiesJson'].items() if a['IsSmoke']}
     def no_smoke(u):
+        if u['Id'] in sm.get('keep_units',[]):return False
         return (u.get('Role')==sm['tank_role'] and u['Cost']<sm['tank_min_cost']) or (u.get('Role')==sm['ifv_role'] and u['Cost']<=sm['ifv_max_cost_without_smoke'])
     why='Smoke only on tanks at 100 points and up and IFVs above 30 points'
     for uid,u in list(effective['Units'].items()):
