@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.8 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.9 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -41,7 +41,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.8.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.9.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -67,7 +67,7 @@ Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK f
 
 ## dev.5 detection proposal (Lateralus)
 
-Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config (from dev.14, everywhere the tables apply): flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
+Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config (from dev.14, everywhere the tables apply): flash cap 2.2, both spotted penalties 1.5 (2.0 again from 0.4.0-dev.9), forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
 
 Dev.7 (Lateralus): any infantry at 3.0 in vanilla stays at 3.0; drone ground optics rows scale by 2800/1200 to 6400, 5250 and 4650, rounded to 50. No live result.
 
@@ -256,3 +256,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 17:10:52 PST (America/Los_Angeles) — build.py copies the built scenarios to {game_root}/Mods/Scenarios from config.YAML, and warns when the installed package is a different version (Lateralus). Package contents unchanged.
 - 2026-11-05 17:23:36 PST (America/Los_Angeles) — Scenario build gives the same .bascr bytes on Windows and Linux (fixed zip header), checks the native Central Village missions against native-pins.json, and copies extra files such as .png into every built map folder. Linux output is unchanged; the lobby compares the .bascr hash.
 - 2026-11-05 18:24:37 PST (America/Los_Angeles) — 0.4.0-dev.8: APS cooldown 30 → 10 seconds on all 14 APS abilities; Rangers, Rangers RAWS and Rangers Snipers AT Carl Gustaf M3 HEAT penetration 450 → 650 (own copy of the round) (Osama). Not yet run live.
+- 2026-11-05 19:16:00 PST (America/Los_Angeles) — 0.4.0-dev.9: SpottedPenalty and SpottedPenaltyBuildings 1.5 → 2.0 (vanilla), globally; ATGM flash unchanged (Lateralus). Not yet run live.
