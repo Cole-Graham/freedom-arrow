@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.4.0-dev.15", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.4.0-dev.16", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
