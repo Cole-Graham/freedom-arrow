@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.31 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.32 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -30,6 +30,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - dev.29 (Osama, 6 November 2026): BMP-2 loses smoke (base 30, the IFV smoke rule).
 - dev.30 (Osama, 6 November 2026): Javelin aim 4-5 s (was 2-3) on infantry, Rangers LWCLU and vehicle Javelins. CAAT Javelin 110, Weapons Squad 95, Rangers Javelin 110, Baltic Javelin 90 (Spike LR 110), Troopers AT 100 with a fourth AT-4, Cavalry Scouts 90.
 - dev.31 (Osama, 6 November 2026): mortars +50% range (all indirect rounds of 26 mortar weapons; Hawkeye MWS counts as a mortar; MICLIC, UR-77 and the 2S1's 122 mm howitzer excluded). Every mortar loadout has smoke: added on Hawkeye HE/Cluster/HE-RAP, 2S4 Tulpan (new 240 mm smoke round), Drok HE loadout, LAV-M 120, MT-LB Vasilek and Dilemma, Nona-SVK double, Vena/Magnolia double, Floks double. 2S41 Drok 65 (was 40). See `dev31-contract.json`.
+- dev.32 (Osama, 6 November 2026): Tigr (transport) 30 (was 35), RWS Kord +0 (was +5), RWS AP-23 +5 (was +10); PKP/AGS +0 unchanged.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 - Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
@@ -60,7 +61,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.31.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.32.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -301,3 +302,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-06 00:40:46 PST (America/Los_Angeles) — 0.4.0-dev.29: BMP-2 smoke removed (Osama). Not yet run live.
 - 2026-11-06 01:15:40 PST (America/Los_Angeles) — 0.4.0-dev.30: Javelin aim 4-5 s, Javelin team prices, Troopers AT 100 with four AT-4 (Osama). Not yet run live.
 - 2026-11-06 01:24:37 PST (America/Los_Angeles) — 0.4.0-dev.31: mortar range +50%, smoke on every mortar loadout, Drok 65 (Osama). Not yet run live.
+- 2026-11-06 01:35:30 PST (America/Los_Angeles) — 0.4.0-dev.32: Tigr 30, Kord +0, AP-23 +5 (Osama). Not yet run live.
