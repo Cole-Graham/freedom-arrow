@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.1 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.2 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -7,6 +7,7 @@
 Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is accuracy.
 
 - dev.1: unguided tank-gun and rocket-launcher rounds scatter twice as far (dispersion ×2 on 115 rounds); guided missiles unchanged. The runtime logs shots, real hits, hit rate and time between shots per round every 60 s (FREEDOM_ARROW_FIRE_STATS). First test value; not run in a game yet.
+- dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63, 45 rows) use dispersion 2.14/2.14 with `DispersionMinimal` 0.88 in place of ×2. The game keeps 88% of the max-range spread at point blank (read from `WeaponForceFire`), so a launcher hits a tank front about 80% point blank, 72% at half range and 65% at max range: crew error. Tank-gun rounds keep dev.1's ×2. Calculated, not yet run in a game.
 
 ## New in 0.4
 
@@ -70,7 +71,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.1.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.2.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

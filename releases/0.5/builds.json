@@ -4,5 +4,11 @@
     "bamod_sha256": "c7eb94e74adb5bb9674a2e26a17ccb14389966b7dbc0eed0cf04c5620670dfd2",
     "parent_commit": "4a9084b",
     "built_utc": "2026-11-06T22:17:00Z"
+  },
+  "0.5.0-dev.2": {
+    "inputs": "30fba62b07de039c7cba0bf7fa8b0a16a9d07efca57f473ed0e12658e300eef0",
+    "bamod_sha256": "e17d43c492ccc3ad62cffc31788efcaa7332ff65ace342200e0383d51b5f829b",
+    "parent_commit": "8d20884",
+    "built_utc": "2026-11-06T22:41:51Z"
   }
 }

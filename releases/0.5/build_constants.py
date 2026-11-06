@@ -520,7 +520,9 @@ def main():
         a=effective['AmmunitionsJson'][int(key)];old=acc['was'][key]
         assert [a['DispersionHorizontalRadius'],a['DispersionVerticalRadius']]==old and not a['Name'].startswith('Missile'),key
         assert {effective['WeaponsJson'][r['WeaponId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==int(key)}<=set(acc['weapon_types']),key
-        put('AmmunitionsJson',int(key),f,'0.5 accuracy: dispersion x'+str(acc['factor']))
+        launcher=key in acc['launcher_dev2']
+        assert launcher==('DispersionMinimal' in f) and (not launcher or effective['AmmunitionsJson'][int(key)]['DispersionMinimal']==0),key
+        put('AmmunitionsJson',int(key),f,'0.5 dev.2 accuracy: launcher 2.14 with 80% close cap' if launcher else '0.5 accuracy: dispersion x'+str(acc['factor']))
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
