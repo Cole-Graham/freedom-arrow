@@ -442,6 +442,45 @@ def main():
         put('WeaponsJson',int(key),f,'One missile per target, no ripple fire')
     left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
     assert not left,('missile weapon still ripples',left)
+    # 0.4 dev.38: BARS, BARS FS and BARS Kornet are separate cards.
+    d38=json.loads((R/'dev38-contract.json').read_text());why='BARS card split'
+    def gone(table,rid):
+        if rid in original[table]:drop(table,rid)
+        else:del effective[table][rid];patches[table].pop(str(rid),None)
+    def swap(uid,old,new,ammo=None):
+        for m in [r for r in effective['SquadMembersJson'].values() if r['UnitId']==uid]:
+            for f in ('PrimaryWeaponId','SpecialWeaponId'):
+                if m[f]==old:put('SquadMembersJson',m['Id'],{f:new},why)
+        have={r['WeaponId'] for r in effective['SquadWeaponsJson'].values() if r['UnitId']==uid}
+        for r in [r for r in effective['SquadWeaponsJson'].values() if r['UnitId']==uid and r['WeaponId']==old]:
+            if new in have:gone('SquadWeaponsJson',r['Id'])
+            else:put('SquadWeaponsJson',r['Id'],{'WeaponId':new},why)
+        rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==uid and r['WeaponId']==old]
+        assert rows and (ammo is None)==any(r['WeaponId']==new for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==uid),(uid,old,new)
+        for r in rows[1 if ammo else 0:]:gone('WeaponAmmunitionsJson',r['Id'])
+        if ammo:put('WeaponAmmunitionsJson',rows[0]['Id'],{'WeaponId':new,'AmmunitionId':ammo['id'],'Quantity':ammo['qty']},why)
+    def card(uid):
+        pool=clone('SpecializationAvailabilitiesJson',d38['pool_like'],{'UnitId':uid,'MaxAvailabilityXp0':d38['xp0']},why)
+        for t in [r for r in effective['TransportAvailabilitiesJson'].values() if r['SpecializationAvailabilityId']==d38['pool_like']]:
+            clone('TransportAvailabilitiesJson',t['Id'],{'SpecializationAvailabilityId':pool},why)
+    fs,rpg,kor=d38['fs'],d38['rpg'],d38['kornet']
+    assert effective['Units'][rpg['unit']]['IsUnitModification'] and kor['unit'] not in effective['Units']
+    for oid in d38['retire_options']:
+        assert effective['OptionsJson'][oid]['ModificationId']==d38['retire_mod'],oid
+        drop('OptionsJson',oid);moved21[str(oid)]=fs['unit']
+    assert not options(fs['unit']);drop('ModificationsJson',d38['retire_mod'])
+    # BARS Kornet copies the fire-support squad before its Kornet becomes an AGS-40.
+    add_unit(kor['unit'],fs['unit'],kor['fields'],why)
+    for table in ['SquadMembersJson','SquadWeaponsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
+        for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==fs['unit']]:clone(table,rid,{'UnitId':kor['unit']},why)
+    swap(kor['unit'],*kor['swap'],kor['ammo']);card(kor['unit'])
+    put('Units',fs['unit'],fs['fields'],why);swap(fs['unit'],*fs['swap'],fs['ammo'])
+    put('Units',rpg['unit'],rpg['fields'],why);swap(rpg['unit'],*rpg['swap']);card(rpg['unit'])
+    for key,w in rpg['add_special'].items():
+        assert not effective['SquadMembersJson'][int(key)]['SpecialWeaponId'] and effective['SquadMembersJson'][int(key)]['UnitId']==rpg['unit'],key
+        put('SquadMembersJson',int(key),{'SpecialWeaponId':w},why)
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),**moved21},indent=2,sort_keys=True)+'\n')
+    audit[:]=[a for a in audit if a['id'] in effective[a['table']]]
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
