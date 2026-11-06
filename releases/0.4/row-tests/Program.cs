@@ -118,7 +118,7 @@ Check(OC(1615)==10,"dev.24 BMP-1AM +10");
 Check(OC(748)==10&&OC(184)==20,"dev.27 BMD-2 Konkurs-M +10, BMD-2M +20");
 Check(UC(151)==90&&OC(275)==0&&OC(276)==0,"dev.28 Kornet-D1 90, both weapon loadouts +0");
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==214&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()),"dev.29 BMP-2 no smoke");
-foreach(int w in new[]{62,659,76})Check(Row("WeaponsJson",w)["AimTimeMin"].GetValue<float>()==4&&Row("WeaponsJson",w)["AimTimeMax"].GetValue<float>()==5,"dev.30 Javelin aim 4-5 "+w);
+foreach(int w in new[]{62,659,76})Check(Row("WeaponsJson",w)["AimTimeMin"].GetValue<float>()==3&&Row("WeaponsJson",w)["AimTimeMax"].GetValue<float>()==4,"dev.37 Javelin aim 3-4 "+w);
 Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)==100&&UC(65)==90&&Carry(62,"AT4")==4,"dev.30 Javelin team prices, Troopers AT four AT-4");
 foreach(var (a,r) in new[]{(6,1500f),(87,1500f),(71,1650f),(134,1350f),(37,2775f),(421,3000f),(417,1575f),(410,1125f)})Check(Row("AmmunitionsJson",a)["GroundRange"].GetValue<float>()==r,"dev.31 mortar range +50% "+a);
 Check(Row("AmmunitionsJson",135)["GroundRange"].GetValue<float>()==600,"dev.31 direct-fire HEAT unchanged");

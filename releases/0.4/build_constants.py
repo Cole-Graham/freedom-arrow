@@ -400,7 +400,7 @@ def main():
     d30=json.loads((R/'dev30-contract.json').read_text())
     for key,f in d30['weapon_fields'].items():
         assert 'Javelin' in effective['WeaponsJson'][int(key)]['Name'],key
-        put('WeaponsJson',int(key),f,'Javelin aim 4-5 s')
+        put('WeaponsJson',int(key),f,'Javelin aim 3-4 s')
     for key,f in d30['member_fields'].items():
         m=effective['SquadMembersJson'][int(key)];assert not m['SpecialWeaponId'],key
         assert f['SpecialWeaponId'] in {r['WeaponId'] for r in effective['SquadWeaponsJson'].values() if r['UnitId']==m['UnitId']},key
@@ -435,6 +435,13 @@ def main():
         assert all(jav[k]==v for k,v in f.items()),('not the Javelin values',f)
         put('AmmunitionsJson',int(key),f,'TOW-2B equals Javelin penetration and damage')
     assert not [i for i,a in effective['AmmunitionsJson'].items() if 'TOW2B' in a['Name'] and str(i) not in d35['ammo_fields'] and any(r['AmmunitionId']==i for r in effective['WeaponAmmunitionsJson'].values())],'another TOW-2B row in use'
+    # 0.4 dev.37: no missile ripple fire, 1 missile per target.
+    d37=json.loads((R/'dev37-contract.json').read_text())
+    for key,f in d37['weapon_fields'].items():
+        assert effective['WeaponsJson'][int(key)]['Type'] in d37['types'],key
+        put('WeaponsJson',int(key),f,'One missile per target, no ripple fire')
+    left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
+    assert not left,('missile weapon still ripples',left)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
