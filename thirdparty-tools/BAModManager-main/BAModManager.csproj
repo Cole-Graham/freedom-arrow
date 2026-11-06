@@ -42,11 +42,14 @@
   <PropertyGroup>
     <DefaultModPack Condition="'$(DefaultModPack)' == ''"></DefaultModPack>
     <TestingModPack Condition="'$(TestingModPack)' == ''"></TestingModPack>
+    <!-- optional AI install helper relay (https://...). Empty = no "Ask the AI helper" button. -->
+    <HelperUrl Condition="'$(HelperUrl)' == ''"></HelperUrl>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyMetadata Include="DefaultModPack" Value="$(DefaultModPack)" />
     <!-- optional second channel players can switch to: build_launcher.bat owner/repo owner/repo-testing -->
     <AssemblyMetadata Include="TestingModPack" Value="$(TestingModPack)" />
+    <AssemblyMetadata Include="HelperUrl" Value="$(HelperUrl)" />
   </ItemGroup>
 
   <ItemGroup>
