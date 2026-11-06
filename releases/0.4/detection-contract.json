@@ -10,10 +10,7 @@
   "optics_held_sensors": [
     6,
     9,
-    10,
-    24,
-    25,
-    35
+    25
   ],
   "stealth": {
     "vehicle": 1.0,
@@ -58,5 +55,11 @@
     "543": 0.8,
     "714": 0.8
   },
-  "stealth_unit_values_note": "Lateralus: stealth numbers are UI values. UI 1.25 is raw 0.8. Recon vehicles at UI 1.5 in vanilla go to UI 1.25; the listed units keep or take UI 1.25."
+  "stealth_unit_values_note": "Lateralus: stealth numbers are UI values. UI 1.25 is raw 0.8. Recon vehicles at UI 1.5 in vanilla go to UI 1.25; the listed units keep or take UI 1.25.",
+  "optics_ground_overrides": {
+    "10": 1300.0,
+    "24": 1300.0,
+    "35": 1300.0
+  },
+  "optics_ground_overrides_rule": "Lateralus, 5 Nov: the 1200 ground rows (Arleigh Burke, AC-130/drone, carrier) use Medium 1300 and take the Medium cap."
 }

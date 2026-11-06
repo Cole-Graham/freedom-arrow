@@ -127,7 +127,7 @@ def main():
     # Lateralus's detection proposal: table part. Config part is in detection-config.json.
     det=json.loads((R/'detection-contract.json').read_text())
     held=set(det['optics_held_sensors'])
-    def new_optics(sid,row):return det['optics_ground_drones'].get(str(sid)) or det['optics_ground_tiers'][str(int(row['OpticsGround']))]
+    def new_optics(sid,row):return det['optics_ground_overrides'].get(str(sid)) or det['optics_ground_drones'].get(str(sid)) or det['optics_ground_tiers'][str(int(row['OpticsGround']))]
     for sid,row in list(effective['SensorsJson'].items()):
         if sid not in held:
             put('SensorsJson',sid,{'OpticsGround':new_optics(sid,row)},'Ground optics tier; shared with any unit on this sensor')
@@ -401,6 +401,7 @@ def main():
     # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
     caps={}
     for sid,row in effective['SensorsJson'].items():
+        if str(sid) in det['optics_ground_overrides']:continue  # moved to a tier: takes that tier's cap
         mod,van=row['OpticsGround'],original['SensorsJson'][sid]['OpticsGround']
         assert caps.setdefault(mod,van)==van,('one modded optics value maps to two vanilla values',sid,mod)
     (R/'source/UserData/FreedomArrow/spotting-caps.json').write_text(json.dumps({'OpticsGroundCaps':{f'{k:g}':v for k,v in sorted(caps.items())}},indent=2)+'\n')

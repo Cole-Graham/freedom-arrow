@@ -1,6 +1,145 @@
 {
-  "Colors": {"red": "#FF1744", "orange": "#FF9100", "green": "#39FF14", "blue": "#00B0FF", "grey": "#9E9E9E"},
-  "Ground": [[0, "None", "grey"], [50, "Blind", "red"], [900, "Bad", "red"], [1200, "Medium-", "orange"], [1300, "Medium", "orange"], [1450, "Medium+", "orange"], [1650, "Good", "green"], [2300, "Very Good", "green"], [2800, "Exceptional", "blue"], [4650, "Superior", "blue"], [5250, "Superior+", "blue"], [6400, "Strategic", "blue"]],
-  "LowAltitude": [[0, "None", "grey"], [50, "Blind", "red"], [700, "Bad", "red"], [800, "Medium", "orange"], [900, "Medium+", "orange"], [1100, "Good", "green"], [1250, "Very Good", "green"], [1600, "Exceptional", "blue"], [2000, "Superior", "blue"]],
-  "HighAltitude": [[0, "None", "grey"], [1000, "Medium", "orange"], [2000, "Good", "green"], [2500, "Good+", "green"], [3000, "Very Good", "green"], [6000, "Exceptional", "blue"]]
+  "Colors": {
+    "red": "#FF1744",
+    "orange": "#FF9100",
+    "green": "#39FF14",
+    "blue": "#00B0FF",
+    "grey": "#9E9E9E"
+  },
+  "Ground": [
+    [
+      0,
+      "None",
+      "grey"
+    ],
+    [
+      50,
+      "Blind",
+      "red"
+    ],
+    [
+      900,
+      "Bad",
+      "red"
+    ],
+    [
+      1300,
+      "Medium",
+      "orange"
+    ],
+    [
+      1450,
+      "Medium+",
+      "orange"
+    ],
+    [
+      1650,
+      "Good",
+      "green"
+    ],
+    [
+      2300,
+      "Very Good",
+      "green"
+    ],
+    [
+      2800,
+      "Exceptional I",
+      "blue"
+    ],
+    [
+      4650,
+      "Exceptional II",
+      "blue"
+    ],
+    [
+      5250,
+      "Exceptional III",
+      "blue"
+    ],
+    [
+      6400,
+      "Exceptional IV",
+      "blue"
+    ]
+  ],
+  "LowAltitude": [
+    [
+      0,
+      "None",
+      "grey"
+    ],
+    [
+      50,
+      "Blind",
+      "red"
+    ],
+    [
+      700,
+      "Bad",
+      "red"
+    ],
+    [
+      800,
+      "Medium",
+      "orange"
+    ],
+    [
+      900,
+      "Medium+",
+      "orange"
+    ],
+    [
+      1100,
+      "Good",
+      "green"
+    ],
+    [
+      1250,
+      "Very Good",
+      "green"
+    ],
+    [
+      1600,
+      "Exceptional",
+      "blue"
+    ],
+    [
+      2000,
+      "Superior",
+      "blue"
+    ]
+  ],
+  "HighAltitude": [
+    [
+      0,
+      "None",
+      "grey"
+    ],
+    [
+      1000,
+      "Bad+",
+      "red"
+    ],
+    [
+      2000,
+      "Good",
+      "green"
+    ],
+    [
+      2500,
+      "Good+",
+      "green"
+    ],
+    [
+      3000,
+      "Very Good",
+      "green"
+    ],
+    [
+      6000,
+      "Exceptional",
+      "blue"
+    ]
+  ]
 }
