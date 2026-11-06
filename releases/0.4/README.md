@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.16 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.17 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -17,6 +17,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - dev.14 (Osama, 5 November 2026): ammo with one launcher: VDV Kornet 6, PTRK Fagot 6, RPG-29 Vampyr 10, Rangers RAWS 10, RAWS M4 12, Assaultmen SMAW 6 NE + 6 HEAA, VDV DSh 3 RPG-7 8, Baltic Milan 6; Javelin 4 on Weapons Squad, CAAT Javelin and the Baltic Javelin team, Spike LR upgrade 4. One AT launcher on RAWS M4, VDV DSh 3 and Baltic Milan. RPG-29 Vampyr 45 points, 5 men, 25 HP. Rangers RAWS 40, M4 loadout +15. Rangers Javelin is its own card (90, availability 4) and leaves the Rangers Stinger card. Baltic Milan is its own card at 55; the Baltic Javelin team (65) is a new card with the Spike LR upgrade (+20), availability 4. Infantry launcher reload 6-7 s, disposable 7 s (44 weapons; vehicle launchers unchanged). See `dev14-contract.json`. Not yet run in a game.
 - dev.15 (Osama and Lateralus, 5 November 2026): Lateralus's scale on Osama's dev.14 prices: Rangers RAWS 35, RAWS M4 45 (+10), RPG-29 Vampyr 35, Baltic Milan 45. BMP-2 Obr. 86 45, BMP-2G 50, BMP-2M 65 (each ATGM loadout −10), Reserve 35. Vampyr uses the plain 5-man armor row (armor 6). Not yet run in a game.
 - dev.16 (Osama, 5 November 2026): Stryker ICV Dragoon (Bushmaster II) +10 (was +20); ACV RT20 (Bushmaster II) +10 (was +20).
+- dev.17 (Osama, 5 November 2026): Stryker RV Bushmaster II +15 (was +25), with Javelin +45 (was +55).
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
 - Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
@@ -47,7 +48,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.16.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.17.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -273,3 +274,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 21:35:54 PST (America/Los_Angeles) — 0.4.0-dev.14: launcher ammo, one AT launcher per squad, Vampyr 5 men 45, RAWS 40 and M4 +15, Rangers Javelin and Baltic Javelin cards, Milan 55, launcher reload 6–7 s (Osama). Not yet run live.
 - 2026-11-05 21:45:12 PST (America/Los_Angeles) — 0.4.0-dev.15: infantry prices on Lateralus's scale, BMP-2 45/50/65 with Reserve 35, Vampyr armor 6. Not yet run live.
 - 2026-11-05 22:04:09 PST (America/Los_Angeles) — 0.4.0-dev.16: Stryker ICV Dragoon and ACV RT20 Bushmaster II +10 (Osama). Not yet run live.
+- 2026-11-05 22:07:23 PST (America/Los_Angeles) — 0.4.0-dev.17: Stryker RV Bushmaster II +15, with Javelin +45 (Osama). Not yet run live.
