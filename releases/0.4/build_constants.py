@@ -224,6 +224,34 @@ def main():
             put('UnitArmorsJson',link['Id'],{'ArmorId':new},why)
             for opt in options(uid):
                 if opt['ArmorId']==old:put('OptionsJson',opt['Id'],{'ArmorId':new},why)
+    # 0.4 dev.5: smoke by price, unit HP and Bumerang uparmor HEAT. New rows are cloned here, below the saved-deck rows.
+    d5=json.loads((R/'dev5-contract.json').read_text())
+    sm=d5['smoke']
+    smoke={i for i,a in effective['AbilitiesJson'].items() if a['IsSmoke']}
+    def no_smoke(u):
+        return (u.get('Role')==sm['tank_role'] and u['Cost']<sm['tank_min_cost']) or (u.get('Role')==sm['ifv_role'] and u['Cost']<=sm['ifv_max_cost_without_smoke'])
+    why='Smoke only on tanks at 100 points and up and IFVs above 30 points'
+    for uid,u in list(effective['Units'].items()):
+        if not no_smoke(u):continue
+        for link in [r for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid and r['AbilityId'] in smoke]:
+            assert not effective['AbilitiesJson'][link['AbilityId']]['IsAPS'],('smoke row also carries APS',uid)
+            # A row the mod added has no vanilla row to delete: remove it from the patch instead.
+            if link['Id'] in original['UnitAbilitiesJson']:drop('UnitAbilitiesJson',link['Id'])
+            else:
+                del effective['UnitAbilitiesJson'][link['Id']];patches['UnitAbilitiesJson'].pop(str(link['Id']),None)
+        for opt in options(uid):
+            f={k:0 for k in ('Ability1Id','Ability2Id','Ability3Id') if opt[k] in smoke}
+            if f:put('OptionsJson',opt['Id'],f,why)
+    for key,hp in d5['unit_hp'].items():
+        uid=int(key);made={};why=f'Unit HP {hp}'
+        for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
+            old=link['ArmorId']
+            if old not in made:made[old]=clone('ArmorsJson',old,{'MaxHealthPoints':hp},why)
+            put('UnitArmorsJson',link['Id'],{'ArmorId':made[old]},why)
+        for opt in options(uid):
+            if opt['ArmorId'] in made:put('OptionsJson',opt['Id'],{'ArmorId':made[opt['ArmorId']]},why)
+        assert made,('unit has no armor',uid)
+    for key,fields in d5['option_armor'].items():armor(253,int(key),fields,'K16 Bumerang uparmor HEAT 400')
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):

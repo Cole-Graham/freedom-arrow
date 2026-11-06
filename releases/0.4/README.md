@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.4 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.5 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -41,7 +41,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.4.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.5.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -248,5 +248,6 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 02:46:42 PST (America/Los_Angeles) — dev.38: building floor 0.13; state log tracks magazine changes. Not yet run live.
 - 2026-11-05 14:52:17 PST (America/Los_Angeles) — 0.4.0-dev.2: started 0.4 from 0.3 dev.38 with MBT and kit prices, pinned sabot, crit rules, 40% yellow mobility and the 60 degree front arc. Not yet run live.
 - 2026-11-05 15:23:56 PST (America/Los_Angeles) — 0.4.0-dev.2: sabot +50 at point blank; MBT prices refit with M1A1 HC at 160; T-72B3 obr. 16 +25, T-90A +35. Not yet run live.
-- 2026-11-05 15:54:00 PST (America/Los_Angeles) — 0.4.0-dev.4: ported Lateralus's 0.3 scenario build (223a6fe). Scenarios are [FA] [1v1] Dead Center 0.1, [FA] [1v1] Dead Center Skirmish 0.1, [FA] [2v2] Dead Center 0.1 and [FA] [2v2] Dead Center Skirmish 0.1, built by scenarios/make_scenario.py. 0.4 gameplay unchanged. Not yet run live.
-- 2026-11-05 15:56:26 PST (America/Los_Angeles) — 0.4.0-dev.4: online deployment 3 minutes; state log records vehicle movement and front-arc real hits. Not yet run live.
+- 2026-11-05 15:54:00 PST (America/Los_Angeles) — 0.4.0-dev.5: ported Lateralus's 0.3 scenario build (223a6fe). Scenarios are [FA] [1v1] Dead Center 0.1, [FA] [1v1] Dead Center Skirmish 0.1, [FA] [2v2] Dead Center 0.1 and [FA] [2v2] Dead Center Skirmish 0.1, built by scenarios/make_scenario.py. 0.4 gameplay unchanged. Not yet run live.
+- 2026-11-05 15:56:26 PST (America/Los_Angeles) — 0.4.0-dev.5: online deployment 3 minutes; state log records vehicle movement and front-arc real hits. Not yet run live.
+- 2026-11-05 16:48:47 PST (America/Los_Angeles) — 0.4.0-dev.5: no smoke on tanks under 100 or IFVs at 30 and below; BMP-3 family 10 HP; PT-76 8 HP; Bumerang uparmor HEAT 400; BTR-80 turrets +5/+10; VDV Kornet M +20; PTRK Kornet 65; PTRK Fagot 40; CAAT Javelin 90; Weapons Squad 80. Not yet run live.

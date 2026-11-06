@@ -16,7 +16,7 @@ Check(merged["Units"].Count==552,"only the seven card splits may add a unit");Ch
 foreach(var pair in new[]{(716,564,175),(716,566,185),(717,3033,80),(718,1905,80),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,35),(214,491,55),(214,492,60),(214,493,75),(9,625,125)})Check(Row("Units",pair.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",pair.Item2)["Cost"].GetValue<int>()==pair.Item3,"configured cost "+pair);
 Check(Row("ArmorsJson",2000000)["MaxHealthPoints"].GetValue<int>()==8,"shared BRDM3 base changed");Check(Row("ArmorsJson",2000096)["MaxHealthPoints"].GetValue<int>()==12,"Vilkas shared armor changed");Check(Row("ArmorsJson",2000100)["HeatArmorSides"].GetValue<int>()==100,"B10/B11 buff leak");
 int[] expectHpOptions={504,505,1881,1882,3067,3070,3071,3072};foreach(int id in expectHpOptions){int armor=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",armor)["MaxHealthPoints"].GetValue<int>()==(id<3000?10:8),"HP "+id);}
-foreach(int option in new[]{537,538})Check(Row("ArmorsJson",Row("OptionsJson",option)["ArmorId"].GetValue<int>())["MaxHealthPoints"].GetValue<int>()==10,"PT-76 10 HP");
+foreach(int option in new[]{537,538})Check(Row("ArmorsJson",Row("OptionsJson",option)["ArmorId"].GetValue<int>())["MaxHealthPoints"].GetValue<int>()==8,"PT-76 8 HP (0.4 dev.5)");
 Check(Row("OptionsJson",2082)["Ability2Id"].GetValue<int>()==82&&Row("UnitAbilitiesJson",1029)["AbilityId"].GetValue<int>()==82,"AMPV invariant");
 foreach(int id in new[]{12,23,505,701,713})Check(Row("AmmunitionsJson",id)["Damage"].GetValue<double>()==10,"tank sabot "+id);
 foreach(int id in new[]{44,508,2000149,2000174})Check(Row("AmmunitionsJson",id)["Damage"].GetValue<double>()==10.5,"Javelin "+id);
@@ -70,7 +70,7 @@ foreach(int o in new[]{565,1462,1775,1792,1895,1898,1931,1939,2117,3321,1843,184
 foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"].GetValue<int>()!=m),"deleted menu "+m);
 foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
 foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
-foreach(var (u,cost) in new[]{(110,65),(352,95),(320,90),(408,105),(147,80),(343,100),(62,110),(701,70)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
+foreach(var (u,cost) in new[]{(110,65),(352,95),(320,90),(408,90),(147,80),(343,100),(62,110),(701,70)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
 WeaponCoverage.Validate(merged,allPatches);checks++;
 int H(int o,string f)=>Row("ArmorsJson",Row("OptionsJson",o)["ArmorId"].GetValue<int>())[f].GetValue<int>();
