@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0-dev.7",
+  "version": "0.4.0-dev.8",
   "armor_fields": {
     "2000014": {
       "MaxHealthPoints": 12,
@@ -493,46 +493,46 @@
   "uparmor_hp_rule": "Osama, 2026-11-04: uparmor never changes HP. Every armor choice on a vehicle matches its default HP, with no exceptions. Logistics units stay in the rule for now.",
   "ability_fields": {
     "2": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "13": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "14": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "15": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "17": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "64": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "82": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "88": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "93": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "117": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "2000196": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "2000202": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "2000205": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     },
     "2000215": {
-      "APSCooldown": 30.0
+      "APSCooldown": 10.0
     }
   }
 }

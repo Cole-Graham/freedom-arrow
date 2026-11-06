@@ -1,6 +1,43 @@
 {
   "note": "0.4 dev.5 (Osama, 5 November 2026). Smoke: tanks below 100 points base and IFVs at 30 points base or less lose their smoke ability. HP and HEAT edits are per unit; shared armor rows are cloned, not edited.",
-  "smoke": {"tank_role": 11, "tank_min_cost": 100, "ifv_role": 10, "ifv_max_cost_without_smoke": 30},
-  "unit_hp": {"3": 10, "477": 10, "208": 10, "209": 10, "213": 10, "480": 10, "230": 8},
-  "option_armor": {"640": {"HeatArmorFront": 400, "HeatArmorSides": 400}, "638": {"HeatArmorFront": 400, "HeatArmorSides": 400}}
+  "smoke": {
+    "tank_role": 11,
+    "tank_min_cost": 100,
+    "ifv_role": 10,
+    "ifv_max_cost_without_smoke": 30
+  },
+  "unit_hp": {
+    "3": 10,
+    "477": 10,
+    "208": 10,
+    "209": 10,
+    "213": 10,
+    "480": 10,
+    "230": 8
+  },
+  "option_armor": {
+    "640": {
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    },
+    "638": {
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    }
+  },
+  "unit_ammo": [
+    {
+      "units": [
+        72,
+        74,
+        339
+      ],
+      "ammo": 2000129,
+      "fields": {
+        "PenetrationAtMinRange": 650.0,
+        "PenetrationAtGroundRange": 650.0
+      },
+      "why": "Rangers Carl Gustaf M3 HEAT 450 to 650 (Osama, 5 November 2026); other users of the round keep 450"
+    }
+  ]
 }

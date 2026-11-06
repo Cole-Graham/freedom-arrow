@@ -212,7 +212,7 @@ def main():
     armor(9,624,{'HeatArmorSides':200},'T-72B1 side HEAT 200')
     # Every active APS ability uses the longer cooldown.
     assert {i for i,a in effective['AbilitiesJson'].items() if a['IsAPS']}==set(map(int,us['ability_fields'])),'APS list changed'
-    for key,fields in us['ability_fields'].items():put('AbilitiesJson',int(key),fields,'APS cooldown 30 seconds')
+    for key,fields in us['ability_fields'].items():put('AbilitiesJson',int(key),fields,'APS cooldown 10 seconds')
     # Javelin breakpoints. Top 100 is a 3-hit kill with a sliver left; the T-72 family at top 80 is a 2-hit kill.
     why='Top HEAT for the Javelin breakpoint'
     for uid,top in [(u,100) for u in [2,53,54,191,243,244,245,158,239,716,236,237,238,13]]+[(u,80) for u in [9,157,615,703,717,240,255,235]]:
@@ -252,6 +252,12 @@ def main():
             if opt['ArmorId'] in made:put('OptionsJson',opt['Id'],{'ArmorId':made[opt['ArmorId']]},why)
         assert made,('unit has no armor',uid)
     for key,fields in d5['option_armor'].items():armor(253,int(key),fields,'K16 Bumerang uparmor HEAT 400')
+    # A per-unit copy of a shared round: only the listed units get the new values.
+    for edit in d5.get('unit_ammo',[]):
+        new=clone('AmmunitionsJson',edit['ammo'],edit['fields'],edit['why'])
+        links=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId'] in edit['units'] and r['AmmunitionId']==edit['ammo']]
+        assert {r['UnitId'] for r in links}==set(edit['units']),('unit without that round',edit['units'])
+        for r in links:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':new},edit['why'])
     # Freeze every pre-dev3 added row except explicitly permitted fields/values.
     locks=json.loads((R/'clone-locks.json').read_text())
     def permitted(table,rid):
