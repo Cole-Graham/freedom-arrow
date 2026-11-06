@@ -508,6 +508,12 @@ def main():
     d43=json.loads((R/'dev43-contract.json').read_text());why='Troopers AT AT4 CS HP'
     swap(d43['unit'],*d43['swap'],d43['ammo'])
     assert not any(m['UnitId']==d43['unit'] and d43['swap'][0] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values())
+    # 0.4 dev.49: ground-vehicle ATGM launchers wait 5 s between missiles.
+    d49=json.loads((R/'dev49-contract.json').read_text())
+    for key,f in d49['weapon_fields'].items():
+        w=effective['WeaponsJson'][int(key)]
+        assert w['Type']==80 and w['MagazineSize']>1 and not any(x in w['Name'] for x in ('Heli','UAV','Plane','Infantry')),key
+        put('WeaponsJson',int(key),f,'Vehicle ATGM 5 s between missiles')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
