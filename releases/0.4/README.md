@@ -1,4 +1,4 @@
-# Freedom Arrow 0.4.0-dev.10 — isolated development candidate
+# Freedom Arrow 0.4.0-dev.11 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -13,6 +13,7 @@ Built from 0.3.0-dev.38 (8870d15). Calculated and checked offline; no 0.4 game r
 - Front arc 60 degrees each side of the hull (vanilla 45). `FrontArcDegrees` in the conquest settings.
 - Scenarios (dev.3, from Lateralus's 0.3 commit 223a6fe): `[FA] [1v1] Dead Center 0.1` and `[FA] [2v2] Dead Center 0.1` for lobbies, with `Skirmish` versions of each for F8. Each map's layout is in `scenarios/<map>/layout.bascr`; `scenarios/make_scenario.py` builds them. Old `[FA] Central Village` and `[FA] Dead Center 0.1` copies are removed on install when the GUID matches.
 - The state log records crit level changes for every unit, the crits the mod applies, and each side hit the wider arc turns into a front hit.
+- Infantry prices (dev.11, Lateralus): every buyable infantry, weapons-team and recon-infantry loadout is its 0.4.0-dev.10 price × 0.8333, rounded to the nearest 5, so the 120 ceiling becomes 100. Stage 2 overrides: HMG & GMG 40, Morskaya pekhota 65. Base card cost is the scaled base, the loadout surcharge is the total minus the base, and a variant card's own cost is its loadout total. 17 hidden infantry rows that no specialization offers keep their price. See `vehicle-contract.json` and the [price sheet](https://docs.google.com/spreadsheets/d/1TeAzbAlL6Q0G6OzlTXMCvqqDjYah4rFCZ8Umr0hhZTQ/edit). No live result.
 
 ## Included
 
@@ -41,7 +42,7 @@ From this checkout:
 ```bash
 python3 releases/0.4/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.4/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.10.bamod
+python3 releases/0.4/verify.py releases/0.4/out/FreedomArrow-0.4.0-dev.11.bamod
 dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
 ```
 
@@ -261,3 +262,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-05 19:16:00 PST (America/Los_Angeles) — 0.4.0-dev.9: SpottedPenalty and SpottedPenaltyBuildings 1.5 → 2.0 (vanilla), globally; ATGM flash unchanged (Lateralus). Not yet run live.
 - 2026-11-05 19:34:00 PST (America/Los_Angeles) — 0.4.0-dev.10: building cover 4.0 → 3.5, so Very Good optics see infantry firing an ATGM from a building at about 1,314 m (calculated) (Lateralus). Not yet run live.
 - 2026-11-05 19:46:48 PST (America/Los_Angeles) — Automatic dev version: `dev_version.py` and `builds.json`; 0.4.0-dev.10 recorded. bump_version.py no longer rewrites old version numbers in the change history.
+- 2026-11-05 20:55:00 PST (America/Los_Angeles) — dev.11: infantry prices × 0.8333 to the nearest 5 plus two Stage 2 overrides, at Lateralus’s instruction. No live result.
