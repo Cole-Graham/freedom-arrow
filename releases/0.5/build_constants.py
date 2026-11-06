@@ -523,6 +523,12 @@ def main():
         launcher=key in acc['launcher_dev2']
         assert launcher==('DispersionMinimal' in f) and (not launcher or effective['AmmunitionsJson'][int(key)]['DispersionMinimal']==0),key
         put('AmmunitionsJson',int(key),f,'0.5 dev.2 accuracy: launcher 2.14 with 80% close cap' if launcher else '0.5 accuracy: dispersion x'+str(acc['factor']))
+    # 0.5 dev.3: smoke with the BMP-2G, BMP-2M and T-72B1 packages.
+    smc=json.loads((R/'smoke-contract.json').read_text())
+    for key,ab in smc['option_ability'].items():
+        o=effective['OptionsJson'][int(key)];a=effective['AbilitiesJson'][ab]
+        assert a['IsSmoke'] and not a['IsAPS'] and not any(o[k] for k in ('Ability1Id','Ability2Id','Ability3Id')),key
+        put('OptionsJson',int(key),{'Ability1Id':ab},'Smoke with this package')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

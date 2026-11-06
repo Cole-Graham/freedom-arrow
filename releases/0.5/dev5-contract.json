@@ -5,7 +5,12 @@
     "tank_min_cost": 100,
     "ifv_role": 10,
     "ifv_max_cost_without_smoke": 30,
-    "keep_units": []
+    "keep_units": [
+      144,
+      158,
+      615
+    ],
+    "keep_note": "0.5 dev.3 (Osama, 6 November 2026): Sprut-SD, T-80BV and T-72A keep their vanilla smoke under the price rule."
   },
   "unit_hp": {
     "3": 12,
