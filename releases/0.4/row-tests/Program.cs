@@ -66,7 +66,7 @@ foreach(var (u,size) in new[]{(66,5),(147,5),(343,5),(408,5),(320,8),(110,5),(35
 Check(Carry(519,"ATGM")==1,"Baltic Milan one post (0.4 dev.14)");Check(Carry(701,"AT4")==6&&Members(701).Length==9,"Troopers six AT-4 carriers");Check(Carry(62,"ATGM")==1,"Troopers AT one Javelin");
 foreach(int u in new[]{66,147,343,408})Check(Linked("UnitArmorsJson","ArmorId",u).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==25),"five-man health "+u);
 int PoolOf(int u)=>merged["SpecializationAvailabilitiesJson"].Single(r=>r["UnitId"].GetValue<int>()==u)["MaxAvailabilityXp0"].GetValue<int>();
-foreach(var (u,n) in new[]{(467,4),(714,2),(209,2),(715,2),(158,3),(716,3),(615,3),(717,3),(14,3),(718,3),(183,2),(719,2),(453,3),(720,3),(701,8),(62,4),(320,4),(408,4)})Check(PoolOf(u)==n,"availability "+u);
+foreach(var (u,n) in new[]{(467,4),(714,2),(209,2),(715,2),(158,6),(716,3),(615,6),(717,6),(14,6),(718,6),(183,6),(719,6),(453,3),(720,3),(701,8),(62,4),(320,4),(408,4)})Check(PoolOf(u)==n,"availability "+u);
 foreach(int o in new[]{565,1462,1775,1792,1895,1898,1931,1939,2117,3321,1843,1844,3316,3317})Check(merged["OptionsJson"].All(r=>r["Id"].GetValue<int>()!=o),"deleted option "+o);
 foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"].GetValue<int>()!=m),"deleted menu "+m);
 foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
@@ -114,6 +114,7 @@ Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==127)==5&&
 Check(UC(74)==35&&OC(1848)==10&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==45&&UC(214)+OC(492)==50&&UC(214)+OC(493)==65&&UC(214)+OC(2101)==35&&UC(416)==90&&UC(520)==65,"dev.14 prices");
 Check(OC(15)==10&&OC(379)==10,"dev.16 Stryker Dragoon and ACV RT20 Bushmaster II +10");
 Check(OC(1896)==15&&OC(1897)==45,"dev.17 Stryker RV Bushmaster II -10");
+foreach(int u in new[]{14,182,183,615,717,718,158,719,602,9})Check(merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).All(r=>r["MaxAvailabilityXp0"].GetValue<int>()>=6),"dev.18 cheap tank availability 6 "+u);
 foreach(int u in new[]{416,520})Check(!Row("Units",u)["IsUnitModification"].GetValue<bool>()&&merged["SpecializationAvailabilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==u),"separate card "+u);
 Check(Row("ModificationsJson",Row("OptionsJson",2149)["ModificationId"].GetValue<int>())["UnitId"].GetValue<int>()==520&&Row("ModificationsJson",Row("OptionsJson",2148)["ModificationId"].GetValue<int>())["UnitId"].GetValue<int>()==520,"Baltic Javelin card holds Javelin and Spike options");
 foreach(var w in merged["WeaponsJson"].Where(r=>r["Name"].GetValue<string>().StartsWith("RocketLauncher")&&!new[]{287,663,733,934,935}.Contains(r["Id"].GetValue<int>())))Check(w["MagazineReloadTimeMax"].GetValue<float>()==7&&w["MagazineReloadTimeMin"].GetValue<float>()==(w["Name"].GetValue<string>().Contains("Disposable")?7:6),"launcher reload "+w["Id"]);

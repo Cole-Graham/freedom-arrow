@@ -103,8 +103,8 @@
         ]
       },
       "pool": {
-        "parent": 3,
-        "new": 3
+        "parent": 6,
+        "new": 6
       }
     },
     {
@@ -128,8 +128,8 @@
         ]
       },
       "pool": {
-        "parent": 3,
-        "new": 3
+        "parent": 6,
+        "new": 6
       }
     },
     {
@@ -156,8 +156,8 @@
         ]
       },
       "pool": {
-        "parent": 2,
-        "new": 2
+        "parent": 6,
+        "new": 6
       }
     },
     {

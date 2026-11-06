@@ -372,6 +372,13 @@ def main():
         lo,hi=rl['disposable'] if 'Disposable' in w['Name'] else rl['reusable']
         if (w['MagazineReloadTimeMin'],w['MagazineReloadTimeMax'])!=(lo,hi):
             put('WeaponsJson',wid,{'MagazineReloadTimeMin':lo,'MagazineReloadTimeMax':hi},'Infantry launcher reload 6-7 s, disposable 7 s')
+    # 0.4 dev.18: cheap fire-support tanks have availability of at least 6.
+    d18=json.loads((R/'dev18-contract.json').read_text())
+    for uid in d18['units']:
+        rows=[r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid]
+        assert rows and effective['Units'][uid]['Role']==11,('availability',uid)
+        for r in rows:
+            if r['MaxAvailabilityXp0']<d18['min_availability']:put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':d18['min_availability']},'Cheap fire-support tank availability 6')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
