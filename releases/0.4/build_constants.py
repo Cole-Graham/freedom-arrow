@@ -428,6 +428,13 @@ def main():
     # 0.4 dev.34: M8 Thunderbolt ERA 700 and Applique 400 HEAT all around.
     d34=json.loads((R/'dev34-contract.json').read_text())
     for key,f in d34['option_armor'].items():armor(d34['unit'],int(key),f,'M8 Thunderbolt kit HEAT all around')
+    # 0.4 dev.35: TOW-2B penetration and damage equal the Javelin.
+    d35=json.loads((R/'dev35-contract.json').read_text());jav=effective['AmmunitionsJson'][int(d35['match'])]
+    for key,f in d35['ammo_fields'].items():
+        row=effective['AmmunitionsJson'][int(key)];assert 'TOW2B' in row['Name'] and row['TopArmorAttack'],key
+        assert all(jav[k]==v for k,v in f.items()),('not the Javelin values',f)
+        put('AmmunitionsJson',int(key),f,'TOW-2B equals Javelin penetration and damage')
+    assert not [i for i,a in effective['AmmunitionsJson'].items() if 'TOW2B' in a['Name'] and str(i) not in d35['ammo_fields'] and any(r['AmmunitionId']==i for r in effective['WeaponAmmunitionsJson'].values())],'another TOW-2B row in use'
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
