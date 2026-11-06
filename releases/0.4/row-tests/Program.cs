@@ -29,7 +29,7 @@ foreach(int id in new[]{2000017,2000018})Check(Row("ArmorsJson",id)["HeatArmorFr
 foreach(var (option,armor,front,side,hp) in new[]{(56,47,400,250,14),(1781,288,700,400,14)}){var row=Row("ArmorsJson",armor);Check(Row("OptionsJson",option)["ArmorId"].GetValue<int>()==armor&&row["HeatArmorFront"].GetValue<int>()==front&&row["HeatArmorSides"].GetValue<int>()==side&&row["MaxHealthPoints"].GetValue<int>()==hp,"M6 Linebacker option "+option);}
 Check(Row("ArmorsJson",15)["MaxHealthPoints"].GetValue<int>()==14,"M6 Linebacker base HP");
 Check(Row("OptionsJson",1759)["Cost"].GetValue<int>()==25,"M2A3 ESV BUSK3 +25");
-Check(Row("AmmunitionsJson",2000177)["Damage"].GetValue<double>()==10.5,"Spike LR");Check(Row("AmmunitionsJson",2000173)["Damage"].GetValue<double>()==12,"Spike-SR held");
+Check(Row("AmmunitionsJson",2000177)["Damage"].GetValue<double>()==10.5,"Spike LR");Check(Row("AmmunitionsJson",2000173)["Damage"].GetValue<double>()==10.5,"Spike-SR 10.5 (0.4 dev.12)");
 foreach(var triple in new[]{(14,1904,80),(180,1958,40),(185,388,30),(41,60,40),(41,2082,70)})Check(Row("Units",triple.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",triple.Item2)["Cost"].GetValue<int>()==triple.Item3,"US configured "+triple);
 Check(Row("Units",421)["Cost"].GetValue<int>()+new[]{1866,1871,1875}.Sum(i=>Row("OptionsJson",i)["Cost"].GetValue<int>())==50,"Battleship defaults provisional50");
 // Detection proposal. Expected values are written here again on purpose, independent of the generator contract.
@@ -96,4 +96,11 @@ foreach(var (u,top) in new[]{2,53,54,191,243,244,245,158,239,716,236,237,238,13}
 foreach(var (j,p) in new[]{(261,30f),(4,30f),(67,20f),(481,25f),(425,200f),(431,150f),(444,200f),(178,15f),(423,52.5f),(281,52.5f),(430,72.5f),(15,60f),(409,70f),(565,62.5f),(38,200f),(426,315f),(2000137,900f)})Check(Row("AmmunitionsJson",j)["PenetrationAtGroundRange"].GetValue<float>()==p&&Row("AmmunitionsJson",j)["PenetrationAtMinRange"].GetValue<float>()==p,"artillery penetration "+j);
 Check(Math.Abs(10.5*140*140/(140.0*140+100*100)-6.95)<0.01,"top 100 sliver");
 foreach(var ab in merged["AbilitiesJson"].Where(r=>r["IsAPS"].GetValue<bool>()))Check(ab["APSCooldown"].GetValue<float>()==10,"APS cooldown 10 s "+ab["Id"]);
+// 0.4 dev.12: ground ATGMs 10.5, base Kornet 650, Kornet-M 950, AH-1W keeps TOW-2A at 12, mid-tank front HEAT spread.
+foreach(var (a,pen) in new[]{(63,650f),(551,650f),(2000160,950f)}){var r=Row("AmmunitionsJson",a);Check(r["Damage"].GetValue<double>()==10.5&&r["PenetrationAtMinRange"].GetValue<float>()==pen&&r["PenetrationAtGroundRange"].GetValue<float>()==pen,"Kornet "+a);}
+foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
+Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==13&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==15,"air missiles unchanged");
+Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");
+foreach(var (u,fronts) in new[]{(14,new[]{300,600}),(602,new[]{600,650}),(615,new[]{600,650}),(717,new[]{600,650}),(9,new[]{650,750}),(703,new[]{750,900}),(157,new[]{750,900}),(236,new[]{750,900}),(239,new[]{800,900}),(53,new[]{900}),(245,new[]{900}),(479,new[]{950}),(158,new[]{600,950}),(716,new[]{600,950}),(238,new[]{1300}),(244,new[]{1300}),(503,new[]{1400}),(191,new[]{1400}),(13,new[]{1300,1400})})
+Check(Linked("UnitArmorsJson","ArmorId",u).Select(a=>Row("ArmorsJson",a)["HeatArmorFront"].GetValue<int>()).Distinct().OrderBy(x=>x).SequenceEqual(fronts),"front HEAT "+u);
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");

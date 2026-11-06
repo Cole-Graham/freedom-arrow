@@ -5,6 +5,7 @@ namespace FreedomArrow.Conquest;
 // 0.4 crit rules (Osama, 5 November 2026). Targets are tanks and IFVs.
 // Rear hit by a direct anti-tank weapon: red mobility.
 // Front or side hit by a tank-gun sabot or HEAT round (100mm and up) doing at least CritDamage: yellow mobility plus one random yellow.
+// dev.12: the same for a front or side hit by an ATGM doing at least AtgmCritDamage. Top-attack missiles are excluded.
 public static class CritRule
 {
     public const int Yellow = 1, Red = 2;
@@ -19,9 +20,13 @@ public static class CritRule
         var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         return words.Length > 2 && words[0] == "Round" && int.TryParse(words[1], out int caliber) && caliber >= 100 && (words.Contains("AP") || words.Contains("HEAT"));
     }
+    // ATGM names start with "Missile AT" or "Missile GLAT" (gun-launched).
+    public static bool Atgm(int trajectory, int armorTargeted, bool topAttack, string name) =>
+        trajectory is >= 100 and <= 120 && armorTargeted == Heat && !topAttack && name != null && (name.StartsWith("Missile AT ") || name.StartsWith("Missile GLAT "));
     // 0 none, 1 rear red, 2 yellow mobility plus one random yellow.
-    public static int Kind(int side, float damage, float minimumDamage, bool rearAntiTank, bool tankGun) =>
-        damage <= 0 ? 0 : side == Back ? (rearAntiTank ? 1 : 0) : side is Front or Sides && tankGun && damage >= minimumDamage ? 2 : 0;
+    public static int Kind(int side, float damage, float minimumDamage, bool rearAntiTank, bool tankGun, bool atgm = false, float atgmMinimumDamage = 0) =>
+        damage <= 0 ? 0 : side == Back ? (rearAntiTank ? 1 : 0) :
+        side is Front or Sides && ((tankGun && damage >= minimumDamage) || (atgm && damage >= atgmMinimumDamage)) ? 2 : 0;
     // The game reports Front below 45 degrees. A wider front arc turns a side hit inside the arc into a front hit.
     public static bool WidenFront(int side, float horizontalAngle, float frontArc) => side == Sides && Math.Abs(horizontalAngle) < frontArc;
 }
@@ -49,6 +54,7 @@ public sealed class Settings
     public bool StateLog { get; set; } = false;
     public bool Crits { get; set; } = false;
     public float CritDamage { get; set; } = 9.3f;
+    public float AtgmCritDamage { get; set; } = 8.9f;
     public float RearCritMinPenetration { get; set; } = 250;
     public float FrontArcDegrees { get; set; } = 45;
     public Dictionary<string, Dictionary<string, int>> MapZoneWeights { get; set; } = new();
@@ -61,6 +67,7 @@ public sealed class Settings
         if (TickSeconds < 1 || TickSeconds > 3600) throw new ArgumentException("TickSeconds must be 1..3600");
         if (SetupSeconds < 0 || SetupSeconds > 3600) throw new ArgumentException("SetupSeconds must be 0..3600");
         if (!(CritDamage > 0 && CritDamage <= 100)) throw new ArgumentException("CritDamage must be above 0 and at most 100");
+        if (!(AtgmCritDamage > 0 && AtgmCritDamage <= 100)) throw new ArgumentException("AtgmCritDamage must be above 0 and at most 100");
         if (!(RearCritMinPenetration > 0)) throw new ArgumentException("RearCritMinPenetration must be above 0");
         if (!(FrontArcDegrees >= 45 && FrontArcDegrees <= 90)) throw new ArgumentException("FrontArcDegrees must be 45..90");
         if (OpeningDelaySeconds < 0 || OpeningDelaySeconds > 86400) throw new ArgumentException("OpeningDelaySeconds must be 0..86400");

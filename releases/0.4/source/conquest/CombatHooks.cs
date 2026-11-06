@@ -26,7 +26,7 @@ public sealed partial class Prototype
     static volatile bool combatActive;
     static bool combatOff;
     static int combatLogged,arcWidened;
-    static readonly ConcurrentDictionary<int,(bool rear,bool tankGun)> ammoKinds=new();
+    static readonly ConcurrentDictionary<int,(bool rear,bool tankGun,bool atgm)> ammoKinds=new();
     static readonly ConcurrentQueue<(Entity target,int kind,ArmorSides side,float damage,string ammo)> critHits=new();
     // A widened side result, kept until the same thread's next real hit uses it. The AI also asks for armor sides when it aims.
     [ThreadStatic] static bool arcPending;
@@ -42,7 +42,7 @@ public sealed partial class Prototype
             Patch(typeof(BattleSystemHelpers),"CalculateHitDamage",null,nameof(QueueCrit));
         }
         if(config.FrontArcDegrees>45)Patch(typeof(BattleSystemHelpers),"GetArmorSideFromShotVector",nameof(ArcBefore),nameof(ArcAfter));
-        MelonLogger.Msg($"FREEDOM_ARROW_COMBAT installed crits {config.Crits} damage {config.CritDamage} rear penetration {config.RearCritMinPenetration} front arc {config.FrontArcDegrees}");
+        MelonLogger.Msg($"FREEDOM_ARROW_COMBAT installed crits {config.Crits} damage {config.CritDamage} ATGM damage {config.AtgmCritDamage} rear penetration {config.RearCritMinPenetration} front arc {config.FrontArcDegrees}");
     }
     public static void MarkRealHit() { realHit=true; }
     public static void QueueCrit(Entity __0,Ammunitions __2,ArmorSides __5,float __result)
@@ -54,8 +54,9 @@ public sealed partial class Prototype
         {
             if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));
             var k=ammoKinds.GetOrAdd(__2.Id,_=>(CritRule.RearAntiTank((int)__2.TrajectoryType,(long)__2.TargetType,__2.PenetrationAtMinRange,config.RearCritMinPenetration),
-                CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name)));
-            int kind=CritRule.Kind((int)__5,__result,config.CritDamage,k.rear,k.tankGun);
+                CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name),
+                CritRule.Atgm((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.IsTopArmorArmorAttack,__2.Name)));
+            int kind=CritRule.Kind((int)__5,__result,config.CritDamage,k.rear,k.tankGun,k.atgm,config.AtgmCritDamage);
             if(kind!=0)critHits.Enqueue((__0,kind,__5,__result,__2.Name));
         }
         catch(Exception e) { StopCombat(e); }

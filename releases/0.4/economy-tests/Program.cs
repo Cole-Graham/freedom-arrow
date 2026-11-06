@@ -52,6 +52,11 @@ Check(!Gun("Round 125 2A46M HE T72B T72A T1",2)&&!Gun("Missile GLAT Invar",2)&&!
 int Kind(int side,float dmg,bool rear,bool gun)=>FreedomArrow.Conquest.CritRule.Kind(side,dmg,9.3f,rear,gun);
 Check(Kind(2,1,true,false)==1&&Kind(2,10,false,true)==0,"rear hit by anti-tank weapon is red; other rear hits are not");
 Check(Kind(1,10,true,true)==2&&Kind(0,9.3f,true,true)==2&&Kind(0,9.2f,true,true)==0&&Kind(1,12,true,false)==0&&Kind(3,12,true,true)==0&&Kind(1,0,true,true)==0,"front and side tank-gun hits at 9.3 or more give yellow");
+bool Atgm(string name,bool top=false,int traj=missile,int armor=2)=>FreedomArrow.Conquest.CritRule.Atgm(traj,armor,top,name);
+Check(Atgm("Missile AT Kornet")&&Atgm("Missile GLAT InvarM")&&Atgm("Missile AT TOW2A"),"ATGMs and gun-launched missiles count");
+Check(!Atgm("Missile AT Javelin",true)&&!Atgm("Missile AT TOW2B",true)&&!Atgm("Missile AGM AGM65H Plane")&&!Atgm("Missile AT Kornet Thermobaric",false,missile,0)&&!Atgm("Round 125 HEAT T1",false,direct),"top attack, AGMs, thermobaric and gun rounds excluded");
+int KindA(int side,float dmg)=>FreedomArrow.Conquest.CritRule.Kind(side,dmg,9.3f,true,false,true,8.9f);
+Check(KindA(1,8.9f)==2&&KindA(0,10.5f)==2&&KindA(1,8.8f)==0&&KindA(3,10.5f)==0&&KindA(2,1)==1&&Kind(1,9,true,false)==0,"ATGM front and side hits at 8.9 or more give yellow; rear is red");
 Check(FreedomArrow.Conquest.CritRule.Target(10)&&FreedomArrow.Conquest.CritRule.Target(11)&&!FreedomArrow.Conquest.CritRule.Target(12),"tanks and IFVs only");
 Check(FreedomArrow.Conquest.CritRule.WidenFront(1,55,60)&&FreedomArrow.Conquest.CritRule.WidenFront(1,-59.9f,60)&&!FreedomArrow.Conquest.CritRule.WidenFront(1,61,60)&&!FreedomArrow.Conquest.CritRule.WidenFront(2,10,60),"front arc 60: side hits inside 60 degrees become front");
 // [FA] [2v2] Dead Center 0.1 zone values, from the packaged settings.

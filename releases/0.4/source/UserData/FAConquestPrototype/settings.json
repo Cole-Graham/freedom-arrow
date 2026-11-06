@@ -4,6 +4,7 @@
   "StateLog": true,
   "Crits": true,
   "CritDamage": 9.3,
+  "AtgmCritDamage": 8.9,
   "RearCritMinPenetration": 250,
   "FrontArcDegrees": 60,
   "SetupSeconds": 180,

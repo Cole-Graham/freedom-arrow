@@ -303,6 +303,34 @@ def main():
         assert effective['SensorsJson'][sid]==want,('unexpected sensor change',sid)
     for table in ['WeaponsJson','TurretWeaponsJson']:
         assert effective[table]==frozen[table]
+    # 0.4 dev.12: ATGM damage and Kornet penetration, and the mid-tank front HEAT spread. After the freeze checks above.
+    d11=json.loads((R/'dev12-contract.json').read_text())
+    air={uid for uid,u in effective['Units'].items() if u['Type'] not in (2,4)}
+    rows={aid for aid,a in effective['AmmunitionsJson'].items() if a['Name'].startswith(('Missile AT ','Missile GLAT ')) and a['ArmorTargeted']==2
+          and a['Damage']>d11['atgm_damage'] and any(r['AmmunitionId']==aid and r['UnitId'] not in air for r in effective['WeaponAmmunitionsJson'].values())}
+    assert rows==set(d11['atgm_rows']),('ground ATGM rows changed',sorted(rows^set(d11['atgm_rows'])))
+    for aid in sorted(rows):
+        why='Air units keep the vanilla missile; ground ATGMs change'
+        links=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in air]
+        if links:
+            keep=clone('AmmunitionsJson',aid,{},why)
+            for r in links:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':keep},why)
+        f={'Damage':d11['atgm_damage']}
+        pen=d11['atgm_penetration'].get(str(aid))
+        if pen:f.update(PenetrationAtMinRange=pen,PenetrationAtGroundRange=pen)
+        put('AmmunitionsJson',aid,f,'Ground ATGM damage 10.5; base Kornet 650, Kornet-M 950')
+    assert all(str(a) in map(str,rows) for a in d11['atgm_penetration'])
+    for key,spread in d11['front_heat'].items():
+        uid=int(key);made={};why='Mid-tank front HEAT spread'
+        for link in [r for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid]:
+            old=link['ArmorId'];front=effective['ArmorsJson'][old]['HeatArmorFront']
+            if str(int(front)) not in spread:continue
+            if old not in made:made[old]=clone('ArmorsJson',old,{'HeatArmorFront':spread[str(int(front))]},why)
+            put('UnitArmorsJson',link['Id'],{'ArmorId':made[old]},why)
+        for opt in options(uid):
+            if opt['ArmorId'] in made:put('OptionsJson',opt['Id'],{'ArmorId':made[opt['ArmorId']]},why)
+        fronts={int(effective['ArmorsJson'][r['ArmorId']]['HeatArmorFront']) for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid}
+        assert {int(v) for v in spread.values()}<=fronts and not {int(k) for k in spread}&fronts-{int(v) for v in spread.values()},('front spread incomplete',uid,fronts)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

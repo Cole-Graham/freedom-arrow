@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.11.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.4.0-dev.12.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.4.0-dev.11'
+    assert manifest['version']=='0.4.0-dev.12'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.11 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.4.0-dev.12 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -52,10 +52,15 @@ with zipfile.ZipFile(p) as z:
     # Retain old rows except the explicit US/Baltic field changes.
     us=json.loads((R/'us-baltic-contract.json').read_text())
     pinned=set(json.loads((R/'sabot-pin-contract.json').read_text())['pinned_ammo'])
+    # 0.4 dev.12: ground ATGM damage and Kornet penetration.
+    d11=json.loads((R/'dev12-contract.json').read_text())
+    atgm={str(a):{'Damage':d11['atgm_damage'],**({'PenetrationAtMinRange':d11['atgm_penetration'][str(a)],'PenetrationAtGroundRange':d11['atgm_penetration'][str(a)]} if str(a) in d11['atgm_penetration'] else {})} for a in d11['atgm_rows']}
+    ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
         for k,row in before.items():
             want=dict(row);want.update((us['ammo_fields'] if f=='ammunitions' else us['armor_fields'] if f=='armors' else us['ability_fields'] if f=='abilities' else {}).get(k,{}))
+            if f=='ammunitions':want.update(atgm.get(k,{}))
             if f=='ammunitions' and int(k) in pinned:want['PenetrationAtMinRange']=table(f)[k]['PenetrationAtMinRange']
             assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
@@ -81,6 +86,9 @@ with zipfile.ZipFile(p) as z:
             row={'Id':int(key),**patch[key]}
             for field,want in allowed.get(key,{}).items():
                 assert row[field]==want,(t,key,field);row[field]=lock['permitted_before'][field]
+            if t=='AmmunitionsJson':
+                for field,want in atgm.get(key,{}).items():
+                    assert row[field]==want,(t,key,field);row[field]=ammo01[key][field]
             assert hashlib.sha256(json.dumps(row,sort_keys=True,separators=(',',':')).encode()).hexdigest()==lock['sha256'],(t,key)
     # 0.4: sabot close range is the long-range value plus the contract bonus. The row tests check the value against vanilla.
     for aid in pinned:
@@ -102,8 +110,13 @@ with zipfile.ZipFile(p) as z:
     assert arm['2000020']['MaxHealthPoints']==10 and arm['2000021']['MaxHealthPoints']==10
     assert arm['2000022']['MaxHealthPoints']==10 and arm['2000023']['MaxHealthPoints']==10
     assert opt['1759']['Cost']==25,'M2A3 ESV BUSK3 option 1759 is +25'
-    amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==12.0
+    amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==10.5
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
+    for aid,fields in atgm.items():assert all(amm[aid][f]==x for f,x in fields.items()),aid
+    assert amm['63']['PenetrationAtGroundRange']==650 and amm['2000160']['PenetrationAtGroundRange']==950
+    # The AH-1W keeps a copy of TOW-2A at 12. Front HEAT spread values are checked against vanilla in the row tests.
+    tow=[k for k,r in amm.items() if r and r.get('Name')=='Missile AT TOW2A' and int(k)>=2_000_000]
+    assert len(tow)==1 and amm[tow[0]]['Damage']==12.0 and [r for r in live('weapon_ammunitions').values() if r.get('AmmunitionId')==int(tow[0])]
     for uid,oid,total in [(14,1904,80),(180,1958,40),(185,388,30),(41,60,40),(41,2082,70)]:
         base=units.get(str(uid),{}).get('Cost',80)
         assert base+opt.get(str(oid),{}).get('Cost',0)==total,(uid,oid,total)
@@ -173,7 +186,7 @@ with zipfile.ZipFile(p) as z:
     assert {t['teamSide'] for t in dc['teams']}=={0,1}=={t['teamSide'] for t in dcsk['teams']}
     assert {o['desc']:o['defV'] for o in dc['pblOpt']}=={'ui_lobby_StartMoney_desc':1500,'ui_lobby_Income_desc':300,'ui_lobby_Timer_desc':45}
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
-    assert settings['Crits'] and settings['CritDamage']==9.3 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
+    assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.13,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}
     assert [o['defV'] for o in json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] [2v2] Dead Center 0.1/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']==[1500]
     for aid,fields in us['ability_fields'].items():assert table('abilities')[aid]['APSCooldown']==fields['APSCooldown'],aid
