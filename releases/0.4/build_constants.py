@@ -498,6 +498,12 @@ def main():
         put('SquadMembersJson',int(key),f,d40['member_why'][key])
     alpha=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==131]
     assert len(alpha)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][222]['ArmorId']]['MaxHealthPoints']==60
+    # 0.4 dev.42: T-62M 12 HP; T-72A front armor +100.
+    d42=json.loads((R/'dev42-contract.json').read_text())
+    for oid in d42['t62']['options']:armor(d42['t62']['unit'],oid,{'MaxHealthPoints':d42['t62']['hp']},'T-62M 12 HP')
+    for oid in d42['t72a']['options']:
+        a=effective['ArmorsJson'][effective['OptionsJson'][oid]['ArmorId']];n=d42['t72a']['front_add']
+        armor(d42['t72a']['unit'],oid,{'KinArmorFront':a['KinArmorFront']+n,'HeatArmorFront':a['HeatArmorFront']+n},'T-72A front armor +100')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

@@ -111,7 +111,7 @@
       "unit": 718,
       "parent": 14,
       "name": "M728 CEV",
-      "cost": 80,
+      "cost": 70,
       "move_turrets": [
         1677,
         1678
