@@ -1,11 +1,11 @@
 {
-  "note": "0.5 dev.4 (Osama, 6 November 2026): Sprut-SDM is its own card. Sprut-SD 60 (was 80), Sprut-SDM 75 (was Sprut-SD +40 = 120). Both 12 HP, both keep smoke, SLAT kit +10 (was +15) on both. Availability 6 on the new card, the same as Sprut-SD. Not yet run in a game. Sprut-SD 60 and the SLAT +10 live in vehicle-contract.json.",
+  "note": "0.5 dev.4 (Osama, 6 November 2026): Sprut-SDM is its own card. Sprut-SD 60 (was 80), Sprut-SDM 75 (was Sprut-SD +40 = 120). Both 12 HP, both keep smoke, SLAT kit +10 (was +15) on both. Availability 6 on the new card, the same as Sprut-SD. Not yet run in a game. Sprut-SD 60 and the SLAT +10 live in vehicle-contract.json. dev.5 (Osama, 6 November 2026): Sprut-SD 55, Sprut-SDM 70.",
   "parent": 144,
   "unit": 722,
   "fields": {
     "Name": "Sprut-SDM",
     "HUDName": "Sprut-SDM",
-    "Cost": 75,
+    "Cost": 70,
     "ThumbnailFileName": "RU_SPRUT_SDM-Label"
   },
   "variant_mod": 94,
