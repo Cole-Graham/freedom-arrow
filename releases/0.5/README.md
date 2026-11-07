@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.21 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.22 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -27,6 +27,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.19 (Osama, 6 November 2026): the Tigr Kornet 2x4 Kornet upgrade is its own card, Tigr Kornet 2x4, at 120 in the Motorized Infantry specialization only (availability 4). Its two Kornet x4 launchers ripple fire: 2 missiles per burst, 2 guided at once (a copy of the Kornet x4 weapon; other Kornet launchers keep 1 missile per target). Tigr Kornet keeps the Kornet-M loadout at 80 in Defense Forces. Saved decks with the old 2x4 option fall back to Tigr Kornet. See `tigr-contract.json`. Not yet run in a game.
 - dev.20 (Osama, 6 November 2026): BMP-3, BMP-3F and BMD-4M base cost 50 (was 45). T-72B3AM obr. 16 is the T-72B3A card's base: the old no-ERA base option is retired, the card costs 165 (115 + the old obr. 16 +50), and obr. 16 + Arena is +70. The card is named T-72B3AM obr. 16. Saved decks with the old base option fall back to the card. See `t72b3a-contract.json`. Not yet run in a game.
 - dev.21 (Osama, 6 November 2026, from a friend's note): artillery uses more supply to refill, copying ActualArrow 1.1.20 values on 77 rounds. Howitzers 122 mm and up x2 (105 mm unchanged), 240 mm mortar x2 (other mortars unchanged), rocket artillery x4 (Grad smoke and Ogon x12, as ActualArrow), ballistic missiles 4000, Iskander-K 2000. Rocket rows newer than ActualArrow 1.1.20 (HIMARS guided, Uragan-S, Kama, Sarma) use the x4 rule. Air munitions unchanged. See `supply-contract.json`. Not yet run in a game.
+- dev.22 (Osama, 6 November 2026, stop-gap): helicopter anti-tank missiles do 12 damage, except LMUR (20): Hellfire K and L (Longbow), JAGM, JAGM-MR, Vikhr, Kokon, Ataka, Kornet-M, Hermes-A and the helicopter TOW-2A. The Ataka round shared with ground units gets a helicopter copy, so ground values stay. ARM, anti-ship and Kh-25ML missiles are unchanged. See `heli-missile-contract.json`. Not yet run in a game.
 
 ## New in 0.4
 
@@ -90,7 +91,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.21.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.22.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

@@ -642,6 +642,17 @@ def main():
         assert a['Name'].strip()==f['name'] and a['SupplyCost']==f['was'] and f['SupplyCost']>f['was'],key
         assert a['Name'].startswith(('Shell','Obus','MLRS','Missile Ballistic','Missile Cruise IskanderK','Round 152 2A33','Round 122 2A31')),key
         put('AmmunitionsJson',int(key),{'SupplyCost':f['SupplyCost']},'Artillery supply cost (ActualArrow values)')
+    # 0.5 dev.22: helicopter anti-tank missiles do 12 damage, except LMUR; ground copies of shared rounds stay.
+    hm=json.loads((R/'heli-missile-contract.json').read_text());why='Helicopter ATGM 12 damage'
+    heli={u for u,r in effective['Units'].items() if r['Type']==8}
+    found={r['AmmunitionId'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId'] in heli and effective['AmmunitionsJson'][r['AmmunitionId']]['Name'].startswith('Missile AT')}
+    assert found==set(hm['ammo'])|{int(k) for k in hm['excluded']},sorted(found^(set(hm['ammo'])|{int(k) for k in hm['excluded']}))
+    for aid in hm['ammo']:
+        rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid]
+        if all(r['UnitId'] in heli for r in rows):put('AmmunitionsJson',aid,{'Damage':hm['damage']},why);continue
+        new=clone('AmmunitionsJson',aid,{'Damage':hm['damage']},why+' (helicopter copy)')
+        for r in rows:
+            if r['UnitId'] in heli:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':new},why)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
