@@ -140,6 +140,19 @@ public sealed partial class Prototype
             terminalStarted=true;endingModePointer=end.View.Pointer;dispatching=true;Publish();
             Log("score_limit_dispatch",new{winner=end.Winner.ToString(),end.Alpha,end.Bravo,end.Elapsed,synthetic=end.Synthetic,
                 route="native GameModeService.OnWinnerFound after timer callback unwinds"});
+            // Online, OnWinnerFound only stops the mode on this PC; the server keeps the match running.
+            // Send the result the way a scenario End Mission node does: NetworkRoomService.SendEndGame.
+            // The game sends it only from the scenario host, and the server then ends the match for everyone.
+            if(service._isOnline)
+            {
+                var room=service._networkRoomService;
+                Log("score_limit_online_end",new{winner=end.Winner.ToString(),end.Alpha,end.Bravo,
+                    host=Il2CppBrokenArrow.ScriptEngine.Network.NetworkScenarioStorage.IsScenarioHost,
+                    slave=Il2CppBrokenArrow.ScriptEngine.Network.NetworkScenarioStorage.IsScenarioSlave,room=room!=null});
+                if(room==null)throw new InvalidOperationException("NetworkRoomService missing");
+                room.SendEndGame(end.Winner);
+                return;
+            }
             // Native code stops/releases the mode and emits the ordinary result delegate.
             // The stop hook may clear our global view/ledger; retain only the local snapshot.
             service.OnWinnerFound(end.Winner);
