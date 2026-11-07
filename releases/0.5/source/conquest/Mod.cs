@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.14", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.15", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -272,6 +272,11 @@ public sealed partial class Prototype : MelonMod
     // ConquestMode can otherwise finish by a native threshold; this prototype uses time-limit ending.
     static bool Winner(View candidate, bool timeEnd, ref TeamSide result)
     {
+        // Option 1 (Lateralus, 6 November): score limit and native sudden death both end the match, whichever comes first.
+        // Online, a score-limit ending waits for the server and keeps the mode running, so sudden death stays a fallback.
+        if(!dispatching&&candidate.Pointer!=retiredModePointer&&candidate.Pointer==endingModePointer&&candidate.Service._isOnline&&
+            !timeEnd&&candidate.Conquest!=null&&candidate.Conquest.SuddenDeathActive)
+        {if(!suddenDeathLogged){suddenDeathLogged=true;Log("native_sudden_death_evaluation",new{after="score_limit_sent"});}return true;}
         if(dispatching||candidate.Pointer==retiredModePointer||candidate.Pointer==endingModePointer)
         {result=TeamSide.NotDefined;Log("winner_evaluation_suppressed",new{timeEnd,dispatching,reason="terminal or retired mode"});return false;}
         try

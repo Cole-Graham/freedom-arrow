@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.14 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.15 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -20,6 +20,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.12 (Osama, 6 November 2026): back to vanilla accuracy: launchers and ground ATGMs use their vanilla dispersion and missile accuracy again (tank guns since dev.9). Fire statistics stay in the log. Conquest score bars and next-tick numbers now follow the local player's side: the native panel shows your own team on the top bar, and Bravo players saw the two teams swapped. Not yet run in a game.
 - dev.13 (Lateralus and Osama, 6 November 2026): online score-limit ending. Two players' logs from the same 2v2 match showed identical scores on every tick (no scoring desync), but the score-limit ending only stopped the mode on each PC, so the server never ended the match. Online, the mod now sends the result with `NetworkRoomService.SendEndGame`, the call a scenario End Mission node uses; the game sends it only from the scenario host. The mode and score bars stay up until the server's end message (logged as `server_end_game`). Offline is unchanged. Not yet tested online.
 - dev.14 (Lateralus, 6 November 2026): native sudden death works again. In the 2v2 log, Bravo took all 10 zones on the same tick that reached 304, so vanilla sudden death began just as our score limit stopped the mode. The mod also blocked every native mid-match winner check (`GetWinner` without time end), which blocks sudden death. It now lets the game evaluate the winner while `ConquestMode.SuddenDeathActive` is true (logged once as `native_sudden_death_evaluation`). Not yet tested in a game.
+- dev.15 (Lateralus, 6 November 2026): the 300 score limit and native sudden death both end the match, whichever comes first. Online, after a score-limit result is sent, native sudden death can still decide the match as a fallback. Not yet tested in a game.
 
 ## New in 0.4
 
@@ -83,7 +84,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.14.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.15.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
