@@ -12,6 +12,11 @@ ARMOR_IGNORE = 0
 
 UNIT_TYPE_INFANTRY = 2
 
+# Infantry hit box (InfantryConfig asset; InitInfantry / KillSquadSolders): a square of
+# BaseSquadSize + 0.5 m per living soldier, Units.Height tall. Shells hit the box, not soldiers.
+INFANTRY_BASE_SQUAD_SIZE = 1.0
+INFANTRY_SIZE_PER_SOLDIER = 0.5
+
 # WeaponType: RPGReloadable, RPGDisposable, ATGM, ATGMHE. Units-tab infantry DPM skips these.
 INFANTRY_AT_WEAPON_TYPES = frozenset({62, 63, 80, 81})
 

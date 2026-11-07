@@ -1,6 +1,6 @@
 # Broken Arrow DPM visualizer
 
-Compare damage per minute vs range for Broken Arrow units and weapons. Expected DPM multiplies post-armor damage by `GetTargetAccuracy` (spread vs the target box). Check **Assume hits** to restore 100% hits. The range axis is **card metres** (world table range × 2), matching the targeting UI.
+Compare damage per minute vs range for Broken Arrow units and weapons. Expected DPM multiplies post-armor damage by the share of rounds that land in the target box (see Math). Check **Assume hits** to restore 100% hits. The range axis is **card metres** (world table range × 2), matching the targeting UI.
 
 It only reads decrypted tables. It does not write the game, set `write_game_bundle`, or call `hangar` / `inject`.
 
@@ -35,6 +35,8 @@ Click the chart to pin a range. The panel lists DPM, time-to-kill, card-metre ra
 - Infantry / helicopters / value-armor rows always use the HEAT curve
 - Penetration falls linearly from point-blank to `GroundRange`
 - RoF uses magazine, burst, inter-shot, inter-burst, and reload midpoints
-- Unguided hit chance: scale H×V spread from `DispersionMinimal` at 0 to full at `GroundRange`, then `min(rx, width) × min(ry, height) / (rx × ry)` with `width = min(Length, Width)`
+- Unguided hit chance: scale H×V spread from `DispersionMinimal` at 0 to full at `GroundRange`. The game (`ShootingSystem.AddBallisticDeviation`) draws `u` evenly in [-1, 1], then `v` evenly in [-(1 − |u|), 1 − |u|], and offsets the round by `(u × rx, v × ry)`. The hit chance is the share of those rounds inside a `width × height` box centred on the aim point. This is not the game's AI estimate `GetTargetAccuracy`, which overstates hits
+- Target box (`HitDetectionSystem.GetUnitBox`): infantry are one square box of `1 + 0.5 × soldiers` metres (`InfantryConfig.BaseSquadSize` = 1), `Height` tall, for the full squad. In game, the box shrinks 0.5 m for each dead soldier, and soldiers die from the squad's health pool, not from hits on bodies. Vehicles use `min(Length, Width) × Height`
+- Aim point at the box centre is assumed. Garrisoned infantry are not modelled: in game, shells hit the building section instead
 - Seekers (`Seeker != 0`) use `DispersionHorizontalRadius` as accuracy (usually 1.0). ECM, decoys, stress, and moving-fire stabilizer are not applied
 - Blast overlap after a miss is not modeled; a scattered HE round still counts as a miss here

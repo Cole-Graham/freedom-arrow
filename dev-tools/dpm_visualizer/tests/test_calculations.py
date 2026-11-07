@@ -8,6 +8,7 @@ from dpm_visualizer.calculations import (
     card_range_text,
     damage_formula_heat,
     damage_formula_kinetic,
+    diamond_in_box,
     dispersion_reference_range,
     dpm_at_world,
     face_armor,
@@ -219,7 +220,7 @@ class HitChanceTests(unittest.TestCase):
             "DispersionMinimal": 0.0,
             "GroundRange": 200,
         }
-        self.assertAlmostEqual(hit_chance(ammo, 75, (3.0, 2.0)), 0.8)
+        self.assertAlmostEqual(hit_chance(ammo, 75, (3.0, 2.0)), 0.4)
 
     def test_rifle_at_max_range_vs_infantry(self) -> None:
         ammo = {
@@ -229,7 +230,31 @@ class HitChanceTests(unittest.TestCase):
             "DispersionMinimal": 0.0,
             "GroundRange": 250,
         }
-        self.assertAlmostEqual(hit_chance(ammo, 250, (3.0, 2.0)), 3.0 / 4.5)
+        self.assertAlmostEqual(hit_chance(ammo, 250, (3.0, 2.0)), 1.0 / 3.0)
+
+    def test_diamond_inside_box_is_a_hit(self) -> None:
+        self.assertAlmostEqual(diamond_in_box(1.0, 1.0, 2.0, 2.0), 1.0)
+
+    def test_autocannon_vs_seven_man_squad_at_max_range(self) -> None:
+        # 2.6 × 2.15 spread vs the 4.5 × 2.0 box of a 7-man squad. Monte Carlo of the game's draw, 10^6 rounds: 0.6872.
+        self.assertAlmostEqual(diamond_in_box(2.6, 2.15, 4.5, 2.0), 0.6864, places=3)
+
+    def test_one_axis_spread_is_linear(self) -> None:
+        self.assertAlmostEqual(diamond_in_box(4.0, 0.0, 2.0, 2.0), 0.25)
+        self.assertAlmostEqual(diamond_in_box(0.0, 4.0, 2.0, 2.0), 0.25)
+
+    def test_matches_monte_carlo_of_game_draw(self) -> None:
+        import random
+
+        rng = random.Random(7)
+        cases = [(2.6, 2.15, 3.0, 2.0), (2.6, 2.15, 8.0, 2.0), (6.0, 1.0, 1.5, 2.0), (1.0, 3.0, 5.0, 1.0)]
+        for rx, ry, w, h in cases:
+            hits = 0
+            for _ in range(200000):
+                u = rng.uniform(-1, 1)
+                v = rng.uniform(-(1 - abs(u)), 1 - abs(u))
+                hits += abs(u * rx) <= w / 2 and abs(v * ry) <= h / 2
+            self.assertAlmostEqual(diamond_in_box(rx, ry, w, h), hits / 200000, delta=0.005)
 
     def test_dpm_scales_by_hit_chance(self) -> None:
         weapon = {
@@ -265,7 +290,7 @@ class HitChanceTests(unittest.TestCase):
             silhouette=(3.0, 2.0),
             apply_accuracy=True,
         )
-        self.assertAlmostEqual(expected, full * 0.8)
+        self.assertAlmostEqual(expected, full * 0.4)
 
 
 class CardRangeTextTests(unittest.TestCase):

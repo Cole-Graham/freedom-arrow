@@ -87,6 +87,16 @@ class T72BJoinTests(unittest.TestCase):
         self.assertGreater(size[0], 0)
         self.assertGreater(size[1], 0)
 
+    def test_infantry_box_is_one_plus_half_per_soldier(self) -> None:
+        unit_id = next(uid for uid in self.catalog.playable_units() if self.catalog.squad_size.get(uid) == 7)
+        width, height = self.catalog.silhouette(unit_id)
+        self.assertAlmostEqual(width, 4.5)
+        self.assertGreater(height, 0)
+
+    def test_vehicle_box_is_min_length_width(self) -> None:
+        self.assertNotIn(9, self.catalog.squad_size)
+        self.assertEqual(self.catalog.silhouette(9), (3.4, 2.1))
+
     def test_kit_armor_uses_wearer_silhouette(self) -> None:
         busk = self.catalog.silhouette_for_armor(47)
         self.assertIsNotNone(busk)

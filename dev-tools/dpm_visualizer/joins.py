@@ -11,6 +11,8 @@ from .constants import (
     FACE_FIELDS,
     FACES,
     INFANTRY_AT_WEAPON_TYPES,
+    INFANTRY_BASE_SQUAD_SIZE,
+    INFANTRY_SIZE_PER_SOLDIER,
     LOADOUT_SLOT_UINAMES,
     MAX_LOADOUT_COMBINATIONS,
     UNIT_TYPE_INFANTRY,
@@ -76,8 +78,10 @@ class Catalog:
             self.squad_weapons[int(row["UnitId"])].append(int(row["WeaponId"]))
 
         self.member_weapon_counts: dict[int, dict[int, int]] = defaultdict(lambda: defaultdict(int))
+        self.squad_size: dict[int, int] = defaultdict(int)
         for row in self.tables["SquadMembersJson"].values():
             unit_id = int(row["UnitId"])
+            self.squad_size[unit_id] += 1
             for key in ("PrimaryWeaponId", "SpecialWeaponId"):
                 weapon_id = int(row.get(key) or 0)
                 if weapon_id:
@@ -502,13 +506,21 @@ class Catalog:
         return labels
 
     def silhouette(self, unit_id: int) -> tuple[float, float] | None:
-        """GetTargetAccuracy target box: min(Length, Width) × Height, world metres."""
+        """Target box the shell must pass through: (width, height), world metres.
+
+        Infantry: HitDetectionSystem.GetUnitBox uses InfantryUnitComponent.CurrentSquadSize,
+        which is 1 + 0.5 per soldier (full squad here). Vehicles: min(Length, Width) × Height.
+        """
         unit = self.units.get(unit_id)
         if not unit:
             return None
+        height = float(unit.get("Height") or 0)
+        soldiers = self.squad_size.get(unit_id, 0)
+        if soldiers:
+            return (INFANTRY_BASE_SQUAD_SIZE + INFANTRY_SIZE_PER_SOLDIER * soldiers, height)
         return (
             min(float(unit.get("Length") or 0), float(unit.get("Width") or 0)),
-            float(unit.get("Height") or 0),
+            height,
         )
 
     def silhouette_for_armor(self, armor_id: int) -> tuple[float, float] | None:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Any, Iterable
 
 from .constants import (
@@ -186,11 +187,12 @@ def hit_chance(
     world_m: float,
     silhouette: tuple[float, float] | None = None,
 ) -> float:
-    """BattleSystemHelpers.GetTargetAccuracy.
+    """Share of unguided rounds that pass through the target box.
 
     Seekers return DispersionHorizontalRadius (missile accuracy). Unguided rounds
-    scale H×V spread by range, then take the target box over that ellipse:
-    min(rx, width) * min(ry, height) / (rx * ry). Width is min(Length, Width).
+    scale H×V spread by range. ShootingSystem.AddBallisticDeviation spreads rounds
+    over a diamond |x|/rx + |y|/ry <= 1 (see diamond_in_box); the round hits if it
+    lands inside the width × height box, centred on the aim point.
     """
     if int(ammo.get("Seeker") or 0) != 0:
         return float(ammo.get("DispersionHorizontalRadius") or 0)
@@ -201,13 +203,31 @@ def hit_chance(
     scale = _clamp01(spread_min + (1.0 - spread_min) * spread_t)
     radius_x = scale * float(ammo.get("DispersionHorizontalRadius") or 0)
     radius_y = scale * float(ammo.get("DispersionVerticalRadius") or 0)
-    area = radius_x * radius_y
-    if area <= 0:
-        return 1.0
     if silhouette is None:
         return 1.0
     width, height = silhouette
-    return _clamp01(min(radius_x, width) * min(radius_y, height) / area)
+    return diamond_in_box(radius_x, radius_y, width, height)
+
+
+def diamond_in_box(radius_x: float, radius_y: float, width: float, height: float) -> float:
+    """Share of rounds inside a width × height box centred on the aim point.
+
+    AddBallisticDeviation draws u evenly in [-1, 1], then v evenly in [-(1 - |u|), 1 - |u|],
+    and offsets the round by (u × radius_x, v × radius_y). The spread is diamond-shaped,
+    with more rounds near the left and right tips than an even fill.
+    """
+    if width <= 0 or height <= 0:
+        return 0.0
+    p = 1.0 if radius_x <= 0 else min(1.0, width / (2.0 * radius_x))
+    q = 1.0 if radius_y <= 0 else min(1.0, height / (2.0 * radius_y))
+    if radius_x <= 0:
+        # u is always 0, so v is even over [-1, 1].
+        return q
+    # Hit share = integral over |u| in [0, p] of min(1, q / (1 - |u|)).
+    knee = 1.0 - q
+    if p <= knee:
+        return _clamp01(-q * math.log(1.0 - p))
+    return _clamp01(-q * math.log(q) + (p - knee))
 
 
 def dpm_at_world(
