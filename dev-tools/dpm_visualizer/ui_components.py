@@ -231,9 +231,9 @@ class ArmorPicker:
         self.combo.pack(side=tk.LEFT, fill=tk.X, expand=True)
         ttk.Label(self.frame, text="Men").pack(side=tk.LEFT, padx=(4, 0))
         self.men = tk.IntVar(value=8)
-        self.men_box = ttk.Spinbox(self.frame, from_=1, to=30, textvariable=self.men, width=4, command=self._changed)
+        self.men_box = ttk.Spinbox(self.frame, from_=1, to=30, textvariable=self.men, width=4)
         self.men_box.pack(side=tk.LEFT, padx=2)
-        self.men_box.bind("<FocusOut>", lambda _e: self._changed())
+        self.men.trace_add("write", lambda *_: self._changed())
         if side:
             self.frame.pack(side=side, padx=4)
         else:

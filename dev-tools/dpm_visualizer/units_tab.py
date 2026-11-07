@@ -32,6 +32,7 @@ class UnitsTab:
         self._silhouette: tuple[float, float] | None = None
         self._apply_accuracy = False
         self._is_loading_state = False
+        self._redraw_job = None
         self._build(parent)
 
     def _build(self, parent: ttk.Frame) -> None:
@@ -265,8 +266,20 @@ class UnitsTab:
         return self.cover_ctl.cover()
 
     def _touch(self) -> None:
-        if not self._is_loading_state:
-            self.app.auto_save_state()
+        """A setting changed: save it, then redraw the chart shortly (several quick changes give one redraw)."""
+        if self._is_loading_state:
+            return
+        self.app.auto_save_state()
+        if self.app.catalog is None:
+            return
+        if self._redraw_job is not None:
+            self.rows_frame.after_cancel(self._redraw_job)
+        self._redraw_job = self.rows_frame.after(150, self._auto_generate)
+
+    def _auto_generate(self) -> None:
+        self._redraw_job = None
+        if self._visible_compare_rows():
+            self.generate(quiet=True)
 
     def _add_row_clicked(self) -> None:
         self.add_row()
@@ -278,7 +291,7 @@ class UnitsTab:
 
     def _generate_clicked(self) -> None:
         self.generate()
-        self._touch()
+        self.app.auto_save_state()
 
     def refresh_lists(self) -> None:
         catalog = self.app.catalog
@@ -579,9 +592,11 @@ class UnitsTab:
             "versus": None,
         }
 
-    def generate(self) -> None:
+    def generate(self, quiet: bool = False) -> None:
+        """quiet: automatic redraw after a change; problems go to the info box instead of a pop-up."""
         if self.app.catalog is None:
-            messagebox.showinfo("DPM", "Load a vanilla snapshot first.")
+            if not quiet:
+                messagebox.showinfo("DPM", "Load a vanilla snapshot first.")
             return
         self._update_duel_enabled()
         face = self.face_var.get()
@@ -634,7 +649,11 @@ class UnitsTab:
                     plotted.append((meta["label"], meta["series"], "-"))
                     self._series_meta.append(meta)
         except ValueError as exc:
-            messagebox.showerror("DPM", str(exc))
+            if quiet:
+                self.info.delete("1.0", tk.END)
+                self.info.insert(tk.END, f"Chart not updated: {exc}")
+            else:
+                messagebox.showerror("DPM", str(exc))
             return
         if self.normalize.get():
             ylabel = "DPM / cost"
@@ -651,7 +670,8 @@ class UnitsTab:
 
     def _on_pin_and_save(self, card: float | None) -> None:
         self._on_pin(card)
-        self._touch()
+        if not self._is_loading_state:
+            self.app.auto_save_state()
 
     def _on_pin(self, card: float | None) -> None:
         self.info.delete("1.0", tk.END)
@@ -759,7 +779,8 @@ class UnitsTab:
         for row in self.rows:
             if row["unit"].get().strip() == key:
                 row["cost"].set(cost)
-        messagebox.showinfo("DPM", f"Saved {key}. Add it as a compared unit, then Generate chart.")
+        self._touch()
+        messagebox.showinfo("DPM", f"Saved {key}. Add it as a compared unit to chart it.")
 
     def save_tab_state(self) -> dict[str, Any]:
         return {
