@@ -51,6 +51,7 @@ public sealed partial class Prototype
         bool arc=arcPending;arcPending=false;
         if(!real||!combatActive||__2==null)return;
         CountHit(__2.Name);
+        try{LogHit(__0,__2.Name,__2.Id,__5.ToString(),__result);}catch{}
         try
         {
             if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));
@@ -83,7 +84,8 @@ public sealed partial class Prototype
     static void CombatFrame()
     {
         if(combatOff)return;
-        combatActive=view!=null&&Guarded(view.Service);
+        combatActive=(view!=null&&Guarded(view.Service))||EditorTest();
+        ShotFrame(combatActive);
         FireStatsFrame();
         while(arcHits.TryDequeue(out var arc))
         {

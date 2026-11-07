@@ -44,6 +44,7 @@ public sealed partial class Prototype
                 }
             }
             lastShot[weapon.GetHashCode()]=now;
+            LogShot(weapon,w,ammo.Name);
         }
         catch(Exception e) { fireOff=true;MelonLogger.Error("FREEDOM_ARROW_FIRE_STATS_FAILED: counting off for this session. "+e.Message); }
     }

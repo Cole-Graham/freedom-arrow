@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.31 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.32 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -36,6 +36,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.29 (Osama, 6 November 2026): BRM-3K 57 mm turret +15 (was +40) and 57 mm + Ataka turret +30 (was +55). Prices in vehicle-contract.json. Not yet run in a game.
 - dev.30 (Osama, 6 November 2026): helicopter ATGM pylon options that carried the same launcher twice now carry it once, so each pylon fires one missile at a time (32 options; Comanche 2x Hellfire and Sapsan 2x LMUR, whose launchers hold one missile, are unchanged). AH-64E Guardian, RAH-66 Comanche, Mi-28N and Mi-28NM can laser-designate (1500 m, as the Mi-24K). See `dev30-heli-contract.json`. Not yet run in a game.
 - dev.31 (Osama, 6 November 2026): AH-64D Apache, AH-64D Longbow, AH-1Z Viper, UH-1Y Venom, Ka-50 Akula, MH-60M SOAR and Ka-52 Alligator can laser-designate too (1500 m). Ka-52K Katran, MH-60M DAP and Silent Hawk are not included. See `dev30-heli-contract.json`. Not yet run in a game.
+- dev.32 (Lateralus, 7 November 2026): scenario editor tests. A scenario started with the editor Play button (offline, `ISceneLoadManager.ScenarioLaunchedFromEditor` and not in edit mode, with FA data applied) now runs our combat rules (crits, 60-degree front arc) and fire statistics, like a guarded match. While combat rules are active, every shot and every real hit is logged to `UserData/FAConquestPrototype/shots-<utc>.jsonl` (shooter, weapon, ammo, magazine; target, side, damage). Logging only. Online play is unchanged. Not yet run in a game.
 - dev.25 (Lateralus, 6 November 2026): Chkalovsk Airbase: Bravo's north-east spawn (Spawn point 5, ground and heli) faced north (no rotation in the export). It now faces the zone centre, about 118 degrees from north toward the south-west, like the other spawns. `verify.py` checks that every Chkalovsk spawn faces within 60 degrees of the zone centre. Not yet run in a game.
 
 ## New in 0.4
@@ -100,7 +101,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.31.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.32.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
