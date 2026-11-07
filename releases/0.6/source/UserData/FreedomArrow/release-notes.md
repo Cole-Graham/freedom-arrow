@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.10 — development candidate
+# Freedom Arrow 0.6.0-dev.11 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,7 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.11: Spetsnaz Alpha close-quarters 10 men, 50 HP, 6 AK-15SK, 85 points; Spetsnaz Alpha stand-off 10 AK-107, 2 AEK-999, 2 RG-6 MGL (still 95); Delta Force stand-off can laser-designate (1200 m).
 
 ## Earlier notes
 

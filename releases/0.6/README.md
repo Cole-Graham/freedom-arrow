@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.10 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.11 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -16,6 +16,7 @@ Started from 0.5.0-dev.46 (0717b16), 7 November 2026. 0.5 stays on `codex/0.5-de
 - dev.8 (Osama, 7 November 2026): no pilots in the early game. Until either team has captured a zone, a downed plane ejects nobody; after that the dev.7 rule applies. Zone owners come from the native conquest or war-goals mode (`_capturedZones`); with no such mode the dev.7 rule applies alone (`PilotRescue.cs`). Not yet run in a game.
 - dev.9 (Osama, 7 November 2026): FlatIncomeMod is now the build shipped in ActualArrow 1.1.21 (same 0.9.16 label, sha256 9b71a1eb…), copied unchanged. Read from its code: passengers of a destroyed transport are killed through the game's own health setter (`HealthComponent.set_CurrentHealth`) instead of a raw write to the health field, and the log shows the health before and after ("(game setter)"). Its guided-MLRS arc reshape is gone. Forest cover stays off (`ThirdPartyGuard.cs`). Passenger death not yet run in a game.
 - dev.10 (Osama, 7 November 2026): ArrowQueue 0.10.31 from ActualArrow, unchanged: the Mod game tab (who is online, mod lobbies, Find a game, create your own lobby, groups) and the Search settings page. It runs against our own matchmaking hub on Sam's deck (`https://cyberdeck.tailf7ad82.ts.net/hubs/game`), not ActualArrow's server; its match statistics go to the deck too. Freedom Arrow sets ArrowQueue's Server, StatsServer and BlockUnsafeModes settings at startup and puts the old values back when the game closes, so ActualArrow keeps its own server (`ThirdPartyGuard.cs`). ArrowQueue's ban guard is off because it blocks the Skirmish button that opens Local AI Skirmish; BALocalSkirmish's own scenario-only lobby rules stay. Hub: written from the decompiled client protocol; 17 protocol checks pass against it locally and through the public address (two fake players: hello, online list, directory, find a game, host invite relay, start, groups, errors). Not yet run in the game.
+- dev.11 (Lateralus, 7 November 2026): Spetsnaz Alpha close-quarters 85 points (was 95), 10 men and 50 HP (was 12 and 60), AK-15SK 6 (was 8). The game has no 10-man Elite armor row, so a copy of 'Armor Infantry Elite 12Men' at 50 HP is used (row 283 stays for Delta Force and others). The stand-off loadout stays 95 in total (+10 on the new base). Spetsnaz Alpha stand-off: AK-107 10 (was 12), AEK-999 2 (was 1), RG-6 MGL 2 (was 1), the vanilla mix again; still 14 men, 70 HP, 4 RPG-30. Delta Force stand-off can laser-designate (1200 m, 'Sprint Smoke Laser'); close-quarters unchanged. See `alpha-delta-contract.json`. Not yet run in a game.
 
 ## New in 0.5 — accuracy
 
@@ -130,7 +131,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.10.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.11.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -384,3 +385,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 03:59:45 PST (America/Los_Angeles) — 0.5.0-dev.44: BARS 7 men 35 HP, 3 PKM, 4 AK-74M, 55 points (Lateralus). No live result.
 - 2026-11-07 04:08:00 PST (America/Los_Angeles) — 0.5.0-dev.45: version label at the bottom middle (Osama). No live result.
 - 2026-11-07 04:18:50 PST (America/Los_Angeles) — 0.5.0-dev.46: BARS 5 RPG-26 and 2 GP-25 (Lateralus). No live result.
+- 2026-11-07 15:25:18 PST (America/Los_Angeles) — 0.6.0-dev.11: Spetsnaz Alpha close-quarters 10 men at 85, stand-off 2 AEK-999 and 2 RG-6, Delta Force stand-off laser (Lateralus). No live result.

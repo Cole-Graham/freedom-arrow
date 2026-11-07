@@ -744,6 +744,30 @@ def main():
     assert len(men)==bars['men'] and sum(m['PrimaryWeaponId']==bars['pkm'] for m in men)==bars['pkm_men'] and sum(m['PrimaryWeaponId']==bars['ak'] for m in men)==bars['ak_men']
     assert len(men)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][1309]['ArmorId']]['MaxHealthPoints']
     assert sum(m['SpecialWeaponId']==bars['rpg26'] for m in men)==bars['rpg26_men'] and sum(m['SpecialWeaponId']==bars['gp25'] for m in men)==bars['gp25_men']
+    # 0.6: Spetsnaz Alpha close-quarters 10 men at 85, stand-off back to 2 AEK-999 and 2 RG-6, Delta Force stand-off laser (alpha-delta-contract.json).
+    ad=json.loads((R/'alpha-delta-contract.json').read_text())
+    cq=ad['alpha_cqc'];why='Spetsnaz Alpha close-quarters 10 men'
+    for rid in cq['retire_members']:
+        m=effective['SquadMembersJson'][rid]
+        assert m['UnitId']==cq['unit'] and m['PrimaryWeaponId']==cq['rifle'] and not m['SpecialWeaponId'],rid
+        drop('SquadMembersJson',rid)
+    link=effective['UnitArmorsJson'][cq['armor_link']];assert (link['UnitId'],link['ArmorId'])==(cq['unit'],cq['armor_like'])
+    like=effective['ArmorsJson'][cq['armor_like']];assert like['Name'].strip()=='Armor Infantry Elite 12Men' and like['MaxHealthPoints']==60
+    put('UnitArmorsJson',cq['armor_link'],{'ArmorId':clone('ArmorsJson',cq['armor_like'],{'Name':'Armor Infantry Elite 10Men','MaxHealthPoints':5*cq['men']},why)},why)
+    men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==cq['unit']]
+    assert len(men)==cq['men'] and sum(m['PrimaryWeaponId']==cq['rifle'] for m in men)==cq['rifle_men']
+    assert len(men)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][cq['armor_link']]['ArmorId']]['MaxHealthPoints']
+    so=ad['alpha_standoff'];why='Spetsnaz Alpha stand-off 2 AEK-999 and 2 RG-6'
+    for key,f in so['member_fields'].items():
+        assert effective['SquadMembersJson'][int(key)]['UnitId']==so['unit'],key
+        put('SquadMembersJson',int(key),f,why)
+    men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==so['unit']]
+    assert len(men)==so['men'] and all(sum(m['PrimaryWeaponId']==int(w) for m in men)==n for w,n in so['counts'].items()),so
+    dl=ad['delta_laser'];link=effective['UnitAbilitiesJson'][dl['link']]
+    assert (link['UnitId'],link['AbilityId'])==(dl['unit'],dl['from']) and effective['AbilitiesJson'][dl['to']]['IsLaserDesignator']
+    a,b={k:v for k,v in effective['AbilitiesJson'][dl['from']].items() if k not in ('Id','Name')},{k:v for k,v in effective['AbilitiesJson'][dl['to']].items() if k not in ('Id','Name')}
+    assert {k for k in a if a[k]!=b.get(k)}=={'IsLaserDesignator','LaserMaxRange'},'the laser ability must be the same ability plus the laser'
+    put('UnitAbilitiesJson',dl['link'],{'AbilityId':dl['to']},'Delta Force stand-off laser designator')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
