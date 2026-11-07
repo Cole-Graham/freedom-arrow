@@ -1,5 +1,5 @@
 {
-  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed. 0.5 dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63) use radius 2.14/2.14 with DispersionMinimal 0.88 in place of x2: calculated 80% to hit a tank front point blank, 72% at half range, 65% at max range (crew error). Tank-gun rounds keep dev.1's x2.",
+  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed. 0.5 dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63) use radius 2.14/2.14 with DispersionMinimal 0.88 in place of x2: calculated 80% to hit a tank front point blank, 72% at half range, 65% at max range (crew error). Tank-gun rounds keep dev.1's x2. 0.5 dev.9 (Osama, 6 November 2026): tank-gun rounds are back to vanilla dispersion; dev.1's x2 on them is removed (70 rounds). Only launcher rounds keep a dispersion change.",
   "factor": 2.0,
   "weapon_types": [
     110,
@@ -7,54 +7,10 @@
     63
   ],
   "ammo_fields": {
-    "1": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "2": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "7": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
-    "11": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "12": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "23": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "24": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
     "41": {
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
-    },
-    "48": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "49": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "54": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "57": {
-      "DispersionHorizontalRadius": 4.0,
-      "DispersionVerticalRadius": 4.0
     },
     "103": {
       "DispersionHorizontalRadius": 2.14,
@@ -81,14 +37,6 @@
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
     },
-    "124": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "126": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
     "128": {
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
@@ -98,150 +46,6 @@
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
-    },
-    "139": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "140": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "141": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "142": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "169": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
-    "170": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
-    "171": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "172": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "173": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "194": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "223": {
-      "DispersionHorizontalRadius": 4.6,
-      "DispersionVerticalRadius": 3.8
-    },
-    "224": {
-      "DispersionHorizontalRadius": 4.6,
-      "DispersionVerticalRadius": 3.8
-    },
-    "238": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "239": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "240": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "241": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "242": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "243": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "244": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "246": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "247": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "248": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "249": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "251": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "252": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "253": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "254": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "255": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "256": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "257": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "258": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "259": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "260": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "264": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "265": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "356": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
     },
     "377": {
       "DispersionHorizontalRadius": 2.14,
@@ -258,14 +62,6 @@
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
     },
-    "435": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
-    "436": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
     "451": {
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
@@ -280,30 +76,6 @@
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
-    },
-    "493": {
-      "DispersionHorizontalRadius": 6.0,
-      "DispersionVerticalRadius": 5.0
-    },
-    "498": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "499": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "500": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "504": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "505": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
     },
     "522": {
       "DispersionHorizontalRadius": 2.14,
@@ -320,34 +92,10 @@
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
     },
-    "532": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "540": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "541": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
     "550": {
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
-    },
-    "575": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "576": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "577": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
     },
     "591": {
       "DispersionHorizontalRadius": 2.14,
@@ -364,38 +112,10 @@
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
     },
-    "602": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
     "609": {
       "DispersionHorizontalRadius": 2.14,
       "DispersionVerticalRadius": 2.14,
       "DispersionMinimal": 0.88
-    },
-    "701": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "713": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "714": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "715": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "716": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
-    },
-    "717": {
-      "DispersionHorizontalRadius": 3.6,
-      "DispersionVerticalRadius": 3.0
     },
     "737": {
       "DispersionHorizontalRadius": 2.14,
