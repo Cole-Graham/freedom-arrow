@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.41 — development candidate
+# Freedom Arrow 0.5.0-dev.42 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -7,6 +7,7 @@ New in 0.5 dev.16: sniper and anti-materiel rifles with 1000 m or more range fir
 New in 0.5 dev.18: those sniper rifles fire 8 rounds per minute (anti-materiel rifles stay at 6). The unit card now shows rate of fire under 100 to the nearest 1, not the nearest 5.
 New in 0.5 dev.23: new map [FA] [2v2] Chkalovsk Airbase 0.1 (and a Skirmish version for F8). Zones A B C are worth 2, D E 3, F G 4. Start cameras face the map centre. 1v1 Dead Center start cameras face the right way.
 New in 0.5 dev.25: on Chkalovsk Airbase, Bravo's north-east spawn faces the map centre (it faced north).
+New in 0.5 dev.42: Spetsnaz Alpha stand-off loadout +0 (was +20); both loadouts cost 95.
 
 ## Earlier notes
 

@@ -73,7 +73,7 @@ foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merg
 foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
 // dev.11 infantry scale x0.8333 to the nearest 5, plus Stage 2 (Lateralus). Written here again on purpose, independent of the generator contract.
 foreach(var (u,cost) in new[]{(110,55),(352,70),(320,75),(408,110),(147,65),(343,85),(62,100),(701,60),(72,75),(409,80),(126,65),(533,35),(125,85),(131,95)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
-foreach(var (u,o,total) in new[]{(533,2216,40),(533,2169,40),(72,1846,80),(459,1976,70),(110,1509,70),(125,1496,90),(125,1497,100),(131,1511,115),(177,1487,100)})Check(Row("Units",u)["Cost"].GetValue<int>()+Row("OptionsJson",o)["Cost"].GetValue<int>()==total,"infantry loadout total "+o);
+foreach(var (u,o,total) in new[]{(533,2216,40),(533,2169,40),(72,1846,80),(459,1976,70),(110,1509,70),(125,1496,90),(125,1497,100),(131,1511,95),(177,1487,100)})Check(Row("Units",u)["Cost"].GetValue<int>()+Row("OptionsJson",o)["Cost"].GetValue<int>()==total,"infantry loadout total "+o);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
 WeaponCoverage.Validate(merged,allPatches);checks++;
 int H(int o,string f)=>Row("ArmorsJson",Row("OptionsJson",o)["ArmorId"].GetValue<int>())[f].GetValue<int>();
