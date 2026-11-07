@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.6.0-dev.9", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.6.0-dev.10", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -73,6 +73,13 @@ public class Runtime : MelonMod
     {
         try { ThirdPartyGuard.Ensure(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
+        try { ThirdPartyGuard.PointArrowQueue(); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: "+e.Message); }
+    }
+    public override void OnApplicationQuit()
+    {
+        try { ThirdPartyGuard.RestoreArrowQueue(); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: restore "+e.Message); }
     }
     // Previous packaged names. Remove leftover copies so the lobby does not list both.
     static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
