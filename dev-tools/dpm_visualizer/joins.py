@@ -512,11 +512,20 @@ class Catalog:
         )
 
     def silhouette_for_armor(self, armor_id: int) -> tuple[float, float] | None:
+        """Target box for a plate set. Default wearers first, then any unit that can mount the kit."""
+        candidates: list[tuple[int, int]] = []
         for unit_id, default_id in self.default_armor.items():
             if default_id == armor_id:
-                size = self.silhouette(unit_id)
-                if size is not None:
-                    return size
+                candidates.append((0, unit_id))
+        for unit_id, armor_ids in self.unit_armor_ids.items():
+            if armor_id in armor_ids:
+                candidates.append((1, unit_id))
+        playable = set(self.playable_units())
+        candidates.sort(key=lambda item: (item[0], 0 if item[1] in playable else 1, item[1]))
+        for _rank, unit_id in candidates:
+            size = self.silhouette(unit_id)
+            if size is not None and size[0] > 0 and size[1] > 0:
+                return size
         return None
 
     def dummy_armor(self, face_values: dict[str, tuple[float, float]] | None = None, armor_value: float = 0, hp: float = 14) -> dict[str, Any]:

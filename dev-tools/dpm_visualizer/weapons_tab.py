@@ -28,6 +28,7 @@ class WeaponsTab:
         self.rows: list[dict[str, Any]] = []
         self.weapon_names: list[str] = []
         self.armor_names: list[str] = []
+        self.unit_names: list[str] = []
         self._pair_index: dict[str, tuple[int, int]] = {}
         self._series_meta: list[dict[str, Any]] = []
         self._silhouette: tuple[float, float] | None = None
@@ -52,10 +53,14 @@ class WeaponsTab:
         self.rows_frame = ttk.Frame(left)
         self.rows_frame.pack(fill=tk.BOTH, expand=True)
 
-        cfg = ttk.LabelFrame(left, text="Target armor", padding=6)
+        cfg = ttk.LabelFrame(left, text="Target", padding=6)
         cfg.pack(fill=tk.X, pady=6)
+        ttk.Label(cfg, text="Armor").pack(anchor=tk.W)
         self.target_armor = SearchableCombobox(cfg, width=32)
         self.target_armor.pack(fill=tk.X)
+        ttk.Label(cfg, text="Or unit (uses its size and default armor)").pack(anchor=tk.W, pady=(6, 0))
+        self.target_unit = SearchableCombobox(cfg, width=32, on_select=lambda _v: self._touch())
+        self.target_unit.pack(fill=tk.X)
         ttk.Label(cfg, text="Face").pack(anchor=tk.W, pady=(6, 0))
         self.face_var = tk.StringVar(value="Front")
         ttk.Combobox(cfg, textvariable=self.face_var, values=list(FACES), state="readonly", width=12).pack(anchor=tk.W)
@@ -156,9 +161,12 @@ class WeaponsTab:
         self.weapon_names = [label for label, _, _ in pairs]
         self.weapon_names.extend(sorted(self.app.custom_weapons))
         self.armor_names = [label for label, _ in catalog.armor_labels()]
+        self.unit_names = [catalog.unit_label(uid) for uid in catalog.playable_units()]
+        self.unit_names.extend(sorted(self.app.custom_units))
         for row in self.rows:
             row["weapon"].set_values(self.weapon_names)
         self.target_armor.set_values(self.armor_names)
+        self.target_unit.set_values(self.unit_names)
         self.load_existing.set_values([label for label, _, _ in pairs])
         if self.weapon_names and not self.rows[0]["weapon"].get():
             self.rows[0]["weapon"].set(self.weapon_names[0])
@@ -198,14 +206,26 @@ class WeaponsTab:
     def _resolve_armor(self) -> dict[str, Any]:
         catalog = self.app.catalog
         assert catalog is not None
+        unit_label = self.target_unit.get().strip()
+        if unit_label in self.app.custom_units:
+            return self.app.custom_units[unit_label]["armor"]
+        unit_id = _id_from_label(unit_label)
+        if unit_id and unit_id in catalog.default_armor:
+            return catalog.armors[catalog.default_armor[unit_id]]
         armor_id = _id_from_label(self.target_armor.get())
         if armor_id is None or armor_id not in catalog.armors:
-            raise ValueError("Pick a target armor.")
+            raise ValueError("Pick a target armor or unit.")
         return catalog.armors[armor_id]
 
     def _resolve_silhouette(self) -> tuple[float, float] | None:
         catalog = self.app.catalog
         assert catalog is not None
+        unit_label = self.target_unit.get().strip()
+        if unit_label in self.app.custom_units:
+            return catalog.silhouette(self.app.custom_units[unit_label]["source_unit_id"])
+        unit_id = _id_from_label(unit_label)
+        if unit_id:
+            return catalog.silhouette(unit_id)
         armor_id = _id_from_label(self.target_armor.get())
         if armor_id is None:
             return None
@@ -261,7 +281,8 @@ class WeaponsTab:
                     }
                 )
         ylabel = "Expected DPM" if apply_accuracy else "DPM if hits"
-        title = f"Weapon DPM vs {self.target_armor.get()}"
+        target_name = self.target_unit.get().strip() or self.target_armor.get()
+        title = f"Weapon DPM vs {target_name}"
         self.chart.draw(plotted, self.log_scale.get(), ylabel, title)
         if self.chart.selected_range is not None:
             self._on_pin(self.chart.selected_range)
@@ -445,6 +466,7 @@ class WeaponsTab:
                 for row in self.rows
             ],
             "target_armor": self.target_armor.get(),
+            "target_unit": self.target_unit.get(),
             "face": self.face_var.get(),
             "sweep_faces": bool(self.sweep_faces.get()),
             "damage_type": self.damage_type.get(),
@@ -470,6 +492,8 @@ class WeaponsTab:
                 self.log_scale.set(bool(state["log_scale"]))
             if state.get("target_armor"):
                 self.target_armor.set(state["target_armor"])
+            if "target_unit" in state:
+                self.target_unit.set(state.get("target_unit") or "")
             rows = state.get("rows") or []
             while len(self.rows) < len(rows):
                 self.add_row()

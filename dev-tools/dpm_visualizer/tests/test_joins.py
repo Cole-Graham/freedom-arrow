@@ -87,6 +87,12 @@ class T72BJoinTests(unittest.TestCase):
         self.assertGreater(size[0], 0)
         self.assertGreater(size[1], 0)
 
+    def test_kit_armor_uses_wearer_silhouette(self) -> None:
+        busk = self.catalog.silhouette_for_armor(47)
+        self.assertIsNotNone(busk)
+        self.assertGreater(busk[0], 0)
+        self.assertGreater(busk[1], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

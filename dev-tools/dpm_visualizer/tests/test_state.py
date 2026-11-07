@@ -123,6 +123,7 @@ class TabStateTests(unittest.TestCase):
         tab.assume_hits.set(True)
         tab.log_scale.set(True)
         tab.target_armor.set("Armor T72B [9]")
+        tab.target_unit.set("T-72B [9]")
         saved = tab.save_tab_state()
         other = WeaponsTab(ttk.Frame(self.root), _App())
         other.weapon_names = list(tab.weapon_names)
@@ -135,6 +136,7 @@ class TabStateTests(unittest.TestCase):
         self.assertTrue(restored["sweep_faces"])
         self.assertTrue(restored["assume_hits"])
         self.assertEqual(restored["target_armor"], "Armor T72B [9]")
+        self.assertEqual(restored["target_unit"], "T-72B [9]")
 
 
 if __name__ == "__main__":
