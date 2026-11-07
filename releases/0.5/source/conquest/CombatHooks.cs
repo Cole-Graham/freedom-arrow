@@ -51,7 +51,7 @@ public sealed partial class Prototype
         bool arc=arcPending;arcPending=false;
         if(!real||!combatActive||__2==null)return;
         CountHit(__2.Name);
-        try{LogHit(__0,__2.Name,__2.Id,__5.ToString(),__result);}catch{}
+        try{LogHit(__0,__2.Name,__2.Id,__5.ToString(),__result,__2.ArmorTargeted.ToString(),__2.Damage);}catch{}
         try
         {
             if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));

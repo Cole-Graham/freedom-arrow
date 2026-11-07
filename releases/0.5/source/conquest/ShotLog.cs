@@ -5,6 +5,8 @@ using UnityEngine;
 using Il2CppDefaultEcs;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppBrokenArrow.Client.Ecs.Infantry.Components;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 
 namespace FreedomArrow.Conquest;
 // 0.5 dev.32 (Lateralus): scenario editor tests. A scenario started with the editor Play button runs our combat
@@ -68,18 +70,48 @@ public sealed partial class Prototype
     {
         if(!unit.IsAlive||!unit.Has<UnitComponent>())return null;
         var u=NativeEcs.Read<UnitComponent>(unit);
-        return new{e=unit.GetHashCode(),id=u.UnitData?.Id??0,name=u.UnitData?.Name,team=u.Owner?.TeamSide.ToString()};
+        return new{e=unit.GetHashCode(),id=u.UnitData?.Id??0,name=u.UnitData?.Name,team=u.Owner?.TeamSide.ToString(),unitType=(int)(u.UnitData?.Type??0),infantry=unit.Has<InfantryUnitComponent>()};
+    }
+    // Carriers of this weapon in an infantry squad (current, max); null for vehicles and aircraft.
+    static object Carriers(Entity unit,int weaponId)
+    {
+        if(!unit.IsAlive||!unit.Has<InfantryUnitComponent>())return null;
+        var inf=NativeEcs.Read<InfantryUnitComponent>(unit);
+        if(!InfantryUnitComponent.TryGetWeaponCount(inf.SquadWeapons,weaponId,out var count))return null;
+        return new{current=count.Item1,max=count.Item2};
+    }
+    static object Timing(WeaponComponent w)
+    {
+        try{return new{reload=Math.Round(w.GetMagazineReloadTime(),3),betweenBursts=Math.Round(w.GetTimeBetweenBursts(),3),inBurst=w.TimeBetweenShotsInBurst,shotsPerBurst=w.ShotsPerBurst.Value,inBurstLeft=w.ShotsRemainingInBurst,aim=Math.Round(w.GetAimTime(),3),magazineSize=w.WeaponInfo?.MagazineSize??0};}
+        catch{return null;}
     }
     static void LogShot(Entity weapon,WeaponComponent w,string ammo)
     {
         if(shotFile==null)return;
-        object shooter=null;
-        try{shooter=UnitInfo(w.GetUnitEntity());}catch{}
-        ShotLine("shot",new{weapon=weapon.GetHashCode(),weaponId=w.WeaponInfo?.Id??0,weaponName=w.WeaponInfo?.Name,ammo,ammoId=w.SelectedAmmunition?.Id??0,shooter,magazine=w.AmmoInMagazine.Value});
+        object shooter=null,carriers=null;Entity unit=default;
+        try{unit=w.GetUnitEntity();shooter=UnitInfo(unit);carriers=Carriers(unit,w.WeaponInfo?.Id??0);}catch{}
+        ShotLine("shot",new{weapon=weapon.GetHashCode(),weaponId=w.WeaponInfo?.Id??0,weaponName=w.WeaponInfo?.Name,weaponType=(int)(w.WeaponInfo?.Type??0),ammo,ammoId=w.SelectedAmmunition?.Id??0,shooter,carriers,magazineAfter=w.AmmoInMagazine.Value,shotsMade=w.ShotsMade.Value,timing=Timing(w)});
     }
-    static void LogHit(Entity target,string ammo,int ammoId,string side,float damage)
+    // Every reload roll the game makes while the log is open: which weapon, and the value it picked.
+    public static void ReloadRolled(WeaponComponent __instance)
     {
         if(shotFile==null)return;
-        ShotLine("hit",new{ammo,ammoId,side,damage=Math.Round(damage,3),target=UnitInfo(target)});
+        try
+        {
+            var w=__instance;Entity unit=w.GetUnitEntity();
+            ShotLine("reload_roll",new{weaponId=w.WeaponInfo?.Id??0,weaponName=w.WeaponInfo?.Name,weaponType=(int)(w.WeaponInfo?.Type??0),reload=Math.Round(w.GetMagazineReloadTime(),3),shooter=UnitInfo(unit),carriers=Carriers(unit,w.WeaponInfo?.Id??0)});
+        }
+        catch{}
+    }
+    static void InstallShotLog()
+    {
+        Patch(typeof(WeaponComponent),"GenerateRandomMagazineReloadTime",null,nameof(ReloadRolled));
+        MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG installed: shots, hits and reload rolls in guarded matches and editor tests");
+    }
+    static void LogHit(Entity target,string ammo,int ammoId,string side,float damage,string armorTargeted,float baseDamage)
+    {
+        if(shotFile==null)return;
+        float hp=0;try{if(target.IsAlive&&target.Has<HealthComponent>())hp=NativeEcs.Field<HealthComponent,float>(target,"_health");}catch{}
+        ShotLine("hit",new{ammo,ammoId,armorTargeted,baseDamage,side,damage=Math.Round(damage,3),targetHpBefore=Math.Round(hp,3),target=UnitInfo(target)});
     }
 }
