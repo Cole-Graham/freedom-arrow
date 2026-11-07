@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import json
+import re
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +24,40 @@ def default_vanilla_dir(root: Path | None = None) -> Path | None:
     if not dirs:
         return None
     return max(dirs, key=lambda p: p.stat().st_mtime)
+
+
+def latest_release(root: Path | None = None) -> Path | None:
+    """Newest releases/<major.minor> folder that has a build_constants.py."""
+    releases = [
+        p for p in ((root or repo_root()) / "releases").glob("*")
+        if re.fullmatch(r"\d+\.\d+", p.name) and (p / "build_constants.py").is_file()
+    ]
+    return max(releases, key=lambda p: tuple(int(n) for n in p.name.split("."))) if releases else None
+
+
+# Run build_constants.py without dev_version.ensure(): making data to look at must never change a version.
+_GENERATE = (
+    "import runpy, sys; rel, root, vanilla = sys.argv[1:4]; sys.path[:0] = [rel, root]; "
+    "import dev_version; dev_version.ensure = lambda: None; "
+    "sys.argv = ['build_constants.py', '--vanilla-dir', vanilla]; "
+    "runpy.run_path(rel + '/build_constants.py', run_name='__main__')"
+)
+
+
+def build_latest_mod(vanilla_dir: Path, root: Path | None = None) -> tuple[Path, str]:
+    """Generate the newest release's constants overlay and return (overlay dir, version)."""
+    root = root or repo_root()
+    release = latest_release(root)
+    if release is None:
+        raise FileNotFoundError(f"no releases/<version>/build_constants.py under {root}")
+    done = subprocess.run(
+        [sys.executable, "-c", _GENERATE, str(release), str(root), str(vanilla_dir)],
+        cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace",
+    )
+    if done.returncode:
+        raise RuntimeError(f"{release.name}/build_constants.py failed:\n{(done.stderr or done.stdout)[-1500:]}")
+    version = json.loads((release / "mod.json").read_text(encoding="utf-8")).get("version") or release.name
+    return release / "source" / "UserData" / "FreedomArrow" / "constants", version
 
 
 def _index_rows(rows: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
@@ -69,6 +106,9 @@ def apply_overlay(
         dest = merged[field]
         for key, fields in patch.items():
             row_id = int(key)
+            if fields is None:  # a null row deletes it (retired options, removed squad members)
+                dest.pop(row_id, None)
+                continue
             if not isinstance(fields, dict):
                 continue
             if row_id in dest:

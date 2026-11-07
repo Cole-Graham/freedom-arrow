@@ -5,10 +5,10 @@ from __future__ import annotations
 import json
 import tkinter as tk
 from pathlib import Path
-from tkinter import filedialog, messagebox, simpledialog, ttk
+from tkinter import messagebox, simpledialog, ttk
 
 from .joins import Catalog
-from .tables import default_vanilla_dir, load_dataset, repo_root
+from .tables import build_latest_mod, default_vanilla_dir, load_dataset, repo_root
 from .ui_components import SearchableCombobox
 from .units_tab import UnitsTab
 from .weapons_tab import WeaponsTab
@@ -38,15 +38,11 @@ class DPMVisualizerApp:
     def _build(self) -> None:
         chrome = ttk.Frame(self.root, padding=8)
         chrome.pack(fill=tk.X)
-        ttk.Label(chrome, text="Vanilla tables").grid(row=0, column=0, sticky=tk.W)
-        self.vanilla_var = tk.StringVar()
-        ttk.Entry(chrome, textvariable=self.vanilla_var, width=70).grid(row=0, column=1, sticky=tk.EW, padx=4)
-        ttk.Button(chrome, text="Browse", command=self._browse_vanilla).grid(row=0, column=2)
-        ttk.Label(chrome, text="Constants overlay").grid(row=1, column=0, sticky=tk.W, pady=(4, 0))
-        self.overlay_var = tk.StringVar()
-        ttk.Entry(chrome, textvariable=self.overlay_var, width=70).grid(row=1, column=1, sticky=tk.EW, padx=4, pady=(4, 0))
-        ttk.Button(chrome, text="Browse", command=self._browse_overlay).grid(row=1, column=2, pady=(4, 0))
-        ttk.Button(chrome, text="Load data", command=self.load_data).grid(row=0, column=3, rowspan=2, padx=8)
+        ttk.Button(chrome, text="Load vanilla", command=lambda: self.load_data("vanilla")).pack(side=tk.LEFT)
+        ttk.Button(chrome, text="Load Freedom Arrow (latest)", command=lambda: self.load_data("mod")).pack(side=tk.LEFT, padx=4)
+        self.source = "vanilla"
+        self.status_var = tk.StringVar(value="Nothing loaded")
+        ttk.Label(chrome, textvariable=self.status_var).pack(side=tk.LEFT, padx=8)
 
         profile = ttk.Frame(self.root, padding=(8, 0, 8, 4))
         profile.pack(fill=tk.X)
@@ -70,53 +66,31 @@ class DPMVisualizerApp:
             "<<NotebookTabChanged>>",
             lambda _e: (SearchableCombobox.close_all_dropdowns(), self.auto_save_state()),
         )
-        chrome.columnconfigure(1, weight=1)
-
-    def _browse_vanilla(self) -> None:
-        path = filedialog.askdirectory(title="Vanilla snapshot (cache/vanilla/<build-id>)")
-        if path:
-            self.vanilla_var.set(path)
-
-    def _browse_overlay(self) -> None:
-        path = filedialog.askdirectory(title="Constants overlay directory")
-        if path:
-            self.overlay_var.set(path)
 
     def _try_autoload(self) -> None:
-        if self.vanilla_var.get().strip():
-            try:
-                self.load_data()
-                return
-            except Exception:
-                pass
-        vanilla = default_vanilla_dir(repo_root())
-        if vanilla:
-            self.vanilla_var.set(str(vanilla))
-            try:
-                self.load_data()
-            except Exception as exc:
-                messagebox.showwarning("DPM", f"Could not autoload {vanilla}: {exc}")
+        self.load_data(self.source)
 
-    def load_data(self) -> None:
-        vanilla = Path(self.vanilla_var.get().strip())
-        if not vanilla.is_dir():
-            messagebox.showerror(
-                "DPM",
-                "Set vanilla tables to cache/vanilla/<build-id>. Run python -m pipeline decrypt first.",
-            )
+    def load_data(self, source: str) -> None:
+        """source "vanilla": the game tables only. "mod": the newest releases/<version>, generated now."""
+        vanilla = default_vanilla_dir(repo_root())
+        if vanilla is None:
+            messagebox.showerror("DPM", "No vanilla tables in cache/vanilla. Run python -m pipeline decrypt first.")
             return
-        overlay_raw = self.overlay_var.get().strip()
-        overlay = Path(overlay_raw) if overlay_raw else None
         try:
-            tables = load_dataset(vanilla, overlay)
-            self.catalog = Catalog(tables)
+            overlay, label = None, f"Vanilla ({vanilla.name})"
+            if source == "mod":
+                overlay, version = build_latest_mod(vanilla)
+                label = f"Freedom Arrow {version}"
+            self.catalog = Catalog(load_dataset(vanilla, overlay))
         except Exception as exc:
             messagebox.showerror("DPM", str(exc))
             return
+        self.source = source
         self.units_tab.refresh_lists()
         self.weapons_tab.refresh_lists()
         count = len(self.catalog.playable_units())
-        self.root.title(f"Broken Arrow DPM Visualizer — {count} units")
+        self.status_var.set(f"Loaded: {label}")
+        self.root.title(f"Broken Arrow DPM Visualizer — {label} — {count} units")
 
     def _apply_profile(self, name: str) -> None:
         self.current_profile = name
@@ -168,8 +142,7 @@ class DPMVisualizerApp:
             self.profile_combo["values"] = ["default"]
             return
         data = json.loads(USER_DATA.read_text(encoding="utf-8"))
-        self.vanilla_var.set(data.get("vanilla_dir") or "")
-        self.overlay_var.set(data.get("overlay_dir") or "")
+        self.source = data.get("source") if data.get("source") in ("vanilla", "mod") else "vanilla"
         self.profiles = data.get("profiles") or {"default": {"custom_units": {}, "custom_weapons": {}}}
         self.current_profile = data.get("current_profile") or "default"
         if self.current_profile not in self.profiles:
@@ -230,8 +203,7 @@ class DPMVisualizerApp:
             "weapons_tab": self.weapons_tab.save_tab_state(),
         }
         payload = {
-            "vanilla_dir": self.vanilla_var.get(),
-            "overlay_dir": self.overlay_var.get(),
+            "source": self.source,
             "current_profile": self.current_profile,
             "profiles": self.profiles,
             "geometry": ui_state["window_geometry"],

@@ -14,7 +14,12 @@ python -m pip install -r dev-tools/dpm_visualizer/requirements.txt
 python run_dpm_visualizer.py
 ```
 
-`decrypt` writes `cache/vanilla/<build-id>/`. The visualizer autoloads that folder. Optional overlay: `mod/constants`, `mod/testing/constants`, or `releases/0.2/source/UserData/FreedomArrow/constants`.
+`decrypt` writes `cache/vanilla/<build-id>/`. Two buttons pick the data:
+
+- **Load vanilla:** the newest `cache/vanilla/<build-id>/`.
+- **Load Freedom Arrow (latest):** the newest `releases/<version>/` in your checkout. The button runs that release's `build_constants.py` first (about 1 s), so the data matches the files you have. It does not change the dev version. It needs the same Python packages as the build (`pycryptodome`). Pull the release branch first to get the newest build.
+
+The last choice loads again at the next start. Rows that a release deletes (null in the overlay), such as removed squad members or retired options, are removed.
 
 ```text
 $env:PYTHONPATH = "dev-tools"

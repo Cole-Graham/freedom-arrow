@@ -29,3 +29,13 @@ class OverlayTests(unittest.TestCase):
         self.assertEqual(merged["Units"][9]["Cost"], 1)
         self.assertEqual(merged["Units"][9]["HUDName"], hud)
         self.assertEqual(tables["Units"][9]["Cost"], original["Cost"])
+
+
+class NullRowTests(unittest.TestCase):
+    def test_null_overlay_row_deletes_the_row(self) -> None:
+        tables = {"SquadMembersJson": {1: {"Id": 1, "UnitId": 9}, 2: {"Id": 2, "UnitId": 9}}}
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "squad_members.json").write_text(json.dumps({"2": None}), encoding="utf-8")
+            merged = apply_overlay(tables, Path(tmp))
+        self.assertEqual(sorted(merged["SquadMembersJson"]), [1])
+        self.assertEqual(sorted(tables["SquadMembersJson"]), [1, 2])
