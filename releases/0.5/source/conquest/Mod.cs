@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.13", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.14", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -280,6 +280,13 @@ public sealed partial class Prototype : MelonMod
             if (!candidate.Service.Timers.TryGetValue(TimerType.GameMode, out float remaining))
                 throw new InvalidOperationException("GameMode timer missing at winner evaluation");
             Observe(candidate, remaining);
+            // Native sudden death (one team holds every zone for the scenario's sudden-death time) is the
+            // vanilla early ending. Let the game evaluate it; only other mid-match native checks stay off.
+            if (!timeEnd && candidate.Conquest != null && candidate.Conquest.SuddenDeathActive)
+            {
+                if(!suddenDeathLogged){suddenDeathLogged=true;Log("native_sudden_death_evaluation",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,remaining});}
+                return true;
+            }
             if (!timeEnd || remaining > 0) { result = TeamSide.NotDefined; return false; }
             terminalStarted=true;pendingEnding=null;endingModePointer=candidate.Pointer;nativeResultStarted=true;
             Publish(); Log("native_final_evaluation", new { alpha = ledger!.Alpha, bravo = ledger.Bravo, remaining, synthetic=fixtureUsedThisMatch });
@@ -302,8 +309,9 @@ public sealed partial class Prototype : MelonMod
         catch(Exception e){Fail(e);}
         finally{try{Reset("match stopped");}catch(Exception e){Fail(e);}}
     }
+    static bool suddenDeathLogged;
     static void Reset(string reason)
-    { DiscardModeFixture(reason);pendingEnding=null;terminalStarted=false;fixtureUsedThisMatch=false;nativePhaseCalls=0;continuousTimerCalls=0;lastModeSample=-1;uiEnabled=false;RestoreNativeUi();uiFault=false;view = null;ledger = null;zones.Clear();lastTelemetry = -10;match++;status = "Waiting for combat timer";Log("reset",new{reason}); }
+    { suddenDeathLogged=false;DiscardModeFixture(reason);pendingEnding=null;terminalStarted=false;fixtureUsedThisMatch=false;nativePhaseCalls=0;continuousTimerCalls=0;lastModeSample=-1;uiEnabled=false;RestoreNativeUi();uiFault=false;view = null;ledger = null;zones.Clear();lastTelemetry = -10;match++;status = "Waiting for combat timer";Log("reset",new{reason}); }
     static void Fail(Exception e)
     {
         if (faulted) return;
