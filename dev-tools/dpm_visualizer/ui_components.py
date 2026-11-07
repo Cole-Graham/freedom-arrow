@@ -165,3 +165,56 @@ class SearchableCombobox(ttk.Frame):
             self.after(50, lambda: setattr(self, "_just_selected", False))
 
         self.after(10, apply)
+
+
+class CoverControls:
+    """Cover picker for infantry targets: Open, Woods or Building, with the loaded data set's values."""
+
+    def __init__(self, parent, app, on_change: Callable):
+        self.app = app
+        row = ttk.Frame(parent)
+        row.pack(anchor=tk.W, pady=(6, 0))
+        ttk.Label(row, text="Cover (infantry targets)").pack(side=tk.LEFT)
+        self.kind = tk.StringVar(value="Open")
+        ttk.Combobox(row, textvariable=self.kind, values=["Open", "Woods", "Building"], state="readonly", width=9).pack(side=tk.LEFT, padx=4)
+        ttk.Label(row, text="Soldiers in building").pack(side=tk.LEFT)
+        self.soldiers = tk.IntVar(value=6)
+        ttk.Spinbox(row, from_=1, to=60, textvariable=self.soldiers, width=4).pack(side=tk.LEFT, padx=4)
+        self.info = tk.StringVar()
+        ttk.Label(parent, textvariable=self.info, foreground="#555", wraplength=380, justify=tk.LEFT).pack(anchor=tk.W)
+        self.kind.trace_add("write", lambda *_: (self.update_info(), on_change()))
+        self.soldiers.trace_add("write", lambda *_: (self.update_info(), on_change()))
+
+    def cover(self):
+        from .calculations import Cover
+
+        rules = self.app.cover_rules
+        try:
+            soldiers = max(1, int(self.soldiers.get()))
+        except (tk.TclError, ValueError):
+            soldiers = 1
+        return Cover(self.kind.get(), rules["forest_taken"], rules["building_floor"], rules["building_per_soldier"], soldiers)
+
+    def update_info(self) -> None:
+        cover = self.cover()
+        if cover.kind == "Woods":
+            if cover.forest_taken >= 1:
+                text = "Woods: no reduction in this data set (vanilla has none)."
+            else:
+                text = f"Woods: infantry take {cover.forest_taken:.0%}, plus ignore cover × the rest."
+        elif cover.kind == "Building":
+            share = min(1.0, cover.building_floor + cover.building_per_soldier * cover.soldiers)
+            text = (f"Building: take {share:.0%} (floor {cover.building_floor:g} + {cover.building_per_soldier:g} × "
+                    f"{cover.soldiers} soldiers), plus ignore cover × the rest. Shells hit the building: no misses.")
+        else:
+            text = ""
+        self.info.set(text)
+
+    def save(self) -> dict:
+        return {"cover": self.kind.get(), "cover_soldiers": self.cover().soldiers}
+
+    def load(self, state: dict) -> None:
+        if state.get("cover") in ("Open", "Woods", "Building"):
+            self.kind.set(state["cover"])
+        if state.get("cover_soldiers"):
+            self.soldiers.set(int(state["cover_soldiers"]))

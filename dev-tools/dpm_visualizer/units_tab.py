@@ -10,7 +10,7 @@ from typing import Any
 from .calculations import Cover, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES
-from .ui_components import SearchableCombobox
+from .ui_components import CoverControls, SearchableCombobox
 
 
 def _id_from_label(label: str) -> int | None:
@@ -82,16 +82,7 @@ class UnitsTab:
             state="readonly",
             width=12,
         ).pack(anchor=tk.W)
-        cover_row = ttk.Frame(target)
-        cover_row.pack(anchor=tk.W, pady=(6, 0))
-        ttk.Label(cover_row, text="Cover (infantry targets)").pack(side=tk.LEFT)
-        self.cover_var = tk.StringVar(value="Open")
-        ttk.Combobox(cover_row, textvariable=self.cover_var, values=["Open", "Woods", "Building"], state="readonly", width=9).pack(side=tk.LEFT, padx=4)
-        ttk.Label(cover_row, text="Soldiers in building").pack(side=tk.LEFT)
-        self.cover_soldiers = tk.IntVar(value=6)
-        ttk.Spinbox(cover_row, from_=1, to=60, textvariable=self.cover_soldiers, width=4).pack(side=tk.LEFT, padx=4)
-        self.cover_info = tk.StringVar()
-        ttk.Label(target, textvariable=self.cover_info, foreground="#555", wraplength=380, justify=tk.LEFT).pack(anchor=tk.W)
+        self.cover_ctl = CoverControls(target, self.app, self._touch)
         self.include_upgrade = tk.BooleanVar(value=False)
         ttk.Checkbutton(target, text="Include non-default weapons", variable=self.include_upgrade, command=self._touch).pack(anchor=tk.W)
         self.normalize = tk.BooleanVar(value=False)
@@ -123,8 +114,6 @@ class UnitsTab:
         self.face_var.trace_add("write", lambda *_: self._touch())
         self.damage_type.trace_add("write", lambda *_: self._touch())
         self.ammo_pref.trace_add("write", lambda *_: self._touch())
-        self.cover_var.trace_add("write", lambda *_: (self._update_cover_info(), self._touch()))
-        self.cover_soldiers.trace_add("write", lambda *_: (self._update_cover_info(), self._touch()))
 
     def _build_custom(self, parent: ttk.Frame) -> None:
         """Custom unit: start from a unit and loadout, then change cost, HP, armor and weapons."""
@@ -271,27 +260,7 @@ class UnitsTab:
                 self._add_custom_weapon(self._pair_label(weapon["weapon_id"], weapon["ammo_id"]), int(weapon["count"]))
 
     def _cover(self) -> Cover:
-        rules = self.app.cover_rules
-        try:
-            soldiers = max(1, int(self.cover_soldiers.get()))
-        except (tk.TclError, ValueError):
-            soldiers = 1
-        return Cover(self.cover_var.get(), rules["forest_taken"], rules["building_floor"], rules["building_per_soldier"], soldiers)
-
-    def _update_cover_info(self) -> None:
-        cover = self._cover()
-        if cover.kind == "Woods":
-            if cover.forest_taken >= 1:
-                text = "Woods: no reduction in this data set (vanilla has none)."
-            else:
-                text = f"Woods: infantry take {cover.forest_taken:.0%}, plus ignore cover × the rest."
-        elif cover.kind == "Building":
-            share = min(1.0, cover.building_floor + cover.building_per_soldier * cover.soldiers)
-            text = (f"Building: take {share:.0%} (floor {cover.building_floor:g} + {cover.building_per_soldier:g} × "
-                    f"{cover.soldiers} soldiers), plus ignore cover × the rest. Shells hit the building: no misses.")
-        else:
-            text = ""
-        self.cover_info.set(text)
+        return self.cover_ctl.cover()
 
     def _touch(self) -> None:
         if not self._is_loading_state:
@@ -325,7 +294,7 @@ class UnitsTab:
         self.clone_armor.set_values(self.armor_names)
         for item in self.clone_weapons:
             item["pair"].set_values(sorted(self._pair_index))
-        self._update_cover_info()
+        self.cover_ctl.update_info()
         if self.unit_names and not self.rows[0]["unit"].get():
             self.rows[0]["unit"].set(self.unit_names[0])
             self._on_unit_changed(self.rows[0])
@@ -675,8 +644,8 @@ class UnitsTab:
         else:
             ylabel = "DPM if hits"
         title = f"Unit DPM duel vs {face} ({damage_type})" if duel else f"Unit DPM vs {face} ({damage_type})"
-        if self.cover_var.get() != "Open":
-            title += f", {self.cover_var.get().lower()}"
+        if self.cover_ctl.kind.get() != "Open":
+            title += f", {self.cover_ctl.kind.get().lower()}"
         self.chart.draw(plotted, self.log_scale.get(), ylabel, title)
         if self.chart.selected_range is not None:
             self._on_pin(self.chart.selected_range)
@@ -707,9 +676,9 @@ class UnitsTab:
                 ammo = weapon_meta["ammo"]
                 weapon = weapon_meta["weapon"]
                 chance = hit_chance(ammo, world, meta.get("silhouette") or self._silhouette)
-                in_building = self.cover_var.get() == "Building" and weapon_meta["cover"] != 1.0
+                in_building = self.cover_ctl.kind.get() == "Building" and weapon_meta["cover"] != 1.0
                 hit_txt = f"  hit {1.0 if in_building else chance:.0%}" if self._apply_accuracy else ""
-                if self.cover_var.get() != "Open":
+                if self.cover_ctl.kind.get() != "Open":
                     hit_txt += f"  through cover {weapon_meta['cover']:.0%}"
                 range_txt = card_range_text(ammo)
                 range_part = f"  {range_txt}" if range_txt else ""
@@ -812,8 +781,7 @@ class UnitsTab:
             "assume_hits": bool(self.assume_hits.get()),
             "duel": bool(self.duel_var.get()),
             "log_scale": bool(self.log_scale.get()),
-            "cover": self.cover_var.get(),
-            "cover_soldiers": self._cover().soldiers,
+            **self.cover_ctl.save(),
             "pinned_range": self.chart.selected_range,
         }
 
@@ -838,10 +806,7 @@ class UnitsTab:
                 self.duel_var.set(bool(state["duel"]))
             if "log_scale" in state:
                 self.log_scale.set(bool(state["log_scale"]))
-            if state.get("cover") in ("Open", "Woods", "Building"):
-                self.cover_var.set(state["cover"])
-            if state.get("cover_soldiers"):
-                self.cover_soldiers.set(int(state["cover_soldiers"]))
+            self.cover_ctl.load(state)
             if state.get("target_armor"):
                 self.target_armor.set(state["target_armor"])
             if "target_unit" in state:
