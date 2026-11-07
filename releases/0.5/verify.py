@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.15.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.16.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.15'
+    assert manifest['version']=='0.5.0-dev.16'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.15 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.16 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -26,8 +26,10 @@ with zipfile.ZipFile(p) as z:
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in rip.items()),'dev.37 one missile per target'
     gap49=json.loads((R/'dev49-contract.json').read_text())['weapon_fields']
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in gap49.items()),'dev.49 vehicle ATGM gap'
+    srof=json.loads((R/'sniper-rof-contract.json').read_text())['weapon_fields']
+    assert all(table('weapons')[k]==f for k,f in srof.items()),'dev.16 sniper rate of fire'
     assert all(set(table('weapons')[k])<=set(rip.get(k,{}))|set(gap49.get(k,{})) for k in set(rip)|set(gap49)),'dev.37/49 weapon fields only'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,7.0),(7.0,7.0)] for k,r in table('weapons').items() if k not in jav and k not in rip and k not in gap49),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,7.0),(7.0,7.0)] for k,r in table('weapons').items() if k not in jav and k not in rip and k not in gap49 and k not in srof),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k

@@ -1,0 +1,75 @@
+{
+  "note": "0.5 dev.16 (Lateralus, 6 November 2026). Sniper rifles (type 3) and anti-materiel rifles (type 4) with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card, from 12.5 (snipers) and 10 (anti-materiel). The card uses WeaponHelper.RateOfFire(weapon, 1) = 60 x magazine / average cycle, where a cycle is (magazine - 1) x time between bursts + reload, averaged over the min and max values. Magazine 5 and reload 4 s are unchanged, so time between bursts goes to an average of 11.5 s; the min-max spread is kept (snipers 4-6 -> 10.5-12.5, anti-materiel 6-7 -> 11-12). VSSK (500 m) is unchanged.",
+  "rate_of_fire_per_minute": 6.0,
+  "min_range_m": 1000,
+  "types": [
+    3,
+    4
+  ],
+  "weapon_fields": {
+    "763": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "640": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "764": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "521": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "526": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "73": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "64": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "674": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "136": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "1015": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "152": {
+      "TimeBetweenBurstsMin": 10.5,
+      "TimeBetweenBurstsMax": 12.5
+    },
+    "523": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    },
+    "765": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    },
+    "56": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    },
+    "692": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    },
+    "927": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    }
+  }
+}

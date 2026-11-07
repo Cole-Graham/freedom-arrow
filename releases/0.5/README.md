@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.15 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.16 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -21,6 +21,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.13 (Lateralus and Osama, 6 November 2026): online score-limit ending. Two players' logs from the same 2v2 match showed identical scores on every tick (no scoring desync), but the score-limit ending only stopped the mode on each PC, so the server never ended the match. Online, the mod now sends the result with `NetworkRoomService.SendEndGame`, the call a scenario End Mission node uses; the game sends it only from the scenario host. The mode and score bars stay up until the server's end message (logged as `server_end_game`). Offline is unchanged. Not yet tested online.
 - dev.14 (Lateralus, 6 November 2026): native sudden death works again. In the 2v2 log, Bravo took all 10 zones on the same tick that reached 304, so vanilla sudden death began just as our score limit stopped the mode. The mod also blocked every native mid-match winner check (`GetWinner` without time end), which blocks sudden death. It now lets the game evaluate the winner while `ConquestMode.SuddenDeathActive` is true (logged once as `native_sudden_death_evaluation`). Not yet tested in a game.
 - dev.15 (Lateralus, 6 November 2026): the 300 score limit and native sudden death both end the match, whichever comes first. Online, after a score-limit result is sent, native sudden death can still decide the match as a fallback. Not yet tested in a game.
+- dev.16 (Lateralus, 6 November 2026): sniper rifles and anti-materiel rifles with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card (was 12.5 for snipers, 10 for anti-materiel): time between shots 10.5-12.5 s for snipers (was 4-6) and 11-12 s for anti-materiel (was 6-7); magazine 5 and reload 4 s unchanged. 16 weapon rows, including the M-ATV's M107; VSSK (500 m) unchanged. The card value is WeaponHelper.RateOfFire, read from the game code. See `sniper-rof-contract.json`. Not yet run in a game.
 
 ## New in 0.4
 
@@ -84,7 +85,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.15.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.16.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -329,3 +330,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-06 01:38:34 PST (America/Los_Angeles) — 0.4.0-dev.33: ACV Armored +10 (Osama). Not yet run live.
 - 2026-11-06 01:57:20 PST (America/Los_Angeles) — 0.4.0-dev.34: M8 Thunderbolt ERA 700, Applique 400 HEAT all around (Osama). Next patch, not deployed.
 - 2026-11-06 01:59:58 PST (America/Los_Angeles) — 0.4.0-dev.35: TOW-2B 140 penetration and 10.5 damage like the Javelin, Thunderbolt rear armor unchanged, Stryker MC 90 (Osama). Not deployed.
+- 2026-11-06 20:23:11 PST (America/Los_Angeles) — dev.16: long-range sniper and anti-materiel rifles 6 rounds per minute, at Lateralus's instruction. No live result.

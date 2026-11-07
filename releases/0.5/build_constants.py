@@ -514,6 +514,19 @@ def main():
         w=effective['WeaponsJson'][int(key)]
         assert w['Type']==80 and w['MagazineSize']>1 and not any(x in w['Name'] for x in ('Heli','UAV','Plane','Infantry')),key
         put('WeaponsJson',int(key),f,'Vehicle ATGM 5 s between missiles')
+    # 0.5 dev.16: long-range sniper and anti-materiel rifles fire 6 rounds per minute on the unit card.
+    srof=json.loads((R/'sniper-rof-contract.json').read_text())
+    def card_rof(w):  # WeaponHelper.RateOfFire(weapon, 1), read from the game code
+        m=w['MagazineSize'];lo=(m/w['ShotsPerBurstMax']-1)*w['TimeBetweenBurstsMin']+(m-m/w['ShotsPerBurstMax'])*w['TimeBetweenShotsInBurst']+w['MagazineReloadTimeMin']
+        hi=(m/w['ShotsPerBurstMin']-1)*w['TimeBetweenBurstsMax']+(m-m/w['ShotsPerBurstMin'])*w['TimeBetweenShotsInBurst']+w['MagazineReloadTimeMax']
+        return 60*m/abs((lo+hi)/2)
+    def long_range(wid):
+        return max([effective['AmmunitionsJson'][r['AmmunitionId']]['GroundRange']*2 for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==wid] or [0])>=srof['min_range_m']
+    scope={str(i) for i,w in effective['WeaponsJson'].items() if w['Type'] in srof['types'] and long_range(i)}
+    assert scope==set(srof['weapon_fields']),('sniper RoF scope',sorted(scope^set(srof['weapon_fields'])))
+    for key,f in srof['weapon_fields'].items():
+        put('WeaponsJson',int(key),f,'Long-range sniper and anti-materiel rifles 6 rounds per minute')
+        assert abs(card_rof(effective['WeaponsJson'][int(key)])-srof['rate_of_fire_per_minute'])<1e-6,key
     # 0.5 dev.1: accuracy. Unguided tank-gun and rocket rounds scatter twice as far; guided missiles unchanged.
     acc=json.loads((R/'accuracy-contract.json').read_text())
     for key,f in acc['ammo_fields'].items():
