@@ -728,6 +728,25 @@ def main():
         assert len(weapons)==len(set(weapons)),('duplicate squad weapon',uid)
         for m in effective['SquadMembersJson'].values():
             if m['UnitId']==uid:assert {m['PrimaryWeaponId'],m['SpecialWeaponId']}-{0}<=set(weapons),('member weapon not listed',uid,m['Id'])
+    # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
+    sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 12.5 per minute'
+    def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
+    two=set()
+    for r in effective['SquadWeaponsJson'].values():
+        w=effective['WeaponsJson'][r['WeaponId']]
+        if w['Type']==62 and w['MagazineSize']==1 and carriers(r['UnitId'],r['WeaponId'])>=2:two.add(r['WeaponId'])
+    assert two==set(sr['two_launcher_rows']),sorted(two)
+    for wid in sr['two_launcher_rows']:
+        assert all(carriers(r['UnitId'],wid) in (0,2) for r in effective['SquadWeaponsJson'].values() if r['WeaponId']==wid),wid
+        put('WeaponsJson',wid,{'MagazineReloadTimeMin':sr['two_launcher_reload'],'MagazineReloadTimeMax':sr['two_launcher_reload']},why)
+    table={}
+    for r in sorted(effective['SquadWeaponsJson'].values(),key=lambda r:r['Id']):
+        w=effective['WeaponsJson'][r['WeaponId']]
+        if w['Type']!=sr['disposable_type'] or w['MagazineSize']!=1:continue
+        n=carriers(r['UnitId'],r['WeaponId'])
+        if n<1:continue
+        rate=sr['k']*n**sr['exponent'];table[f"{r['UnitId']}:{r['WeaponId']}"]={'carriers':n,'rate':round(rate,3),'reload':round(60*n/rate,3)}
+    (R/'source/UserData/FreedomArrow/squad-reload.json').write_text(json.dumps({'k':sr['k'],'exponent':sr['exponent'],'disposableType':sr['disposable_type'],'squads':table},indent=1,sort_keys=True)+'\n')
     # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
     caps={}
     for sid,row in effective['SensorsJson'].items():

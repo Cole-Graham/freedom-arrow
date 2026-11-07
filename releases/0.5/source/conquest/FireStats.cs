@@ -45,6 +45,7 @@ public sealed partial class Prototype
             }
             lastShot[weapon.GetHashCode()]=now;
             LogShot(weapon,w,ammo.Name);
+            try{SquadReloadShot(w);}catch(Exception e){if(++squadReloadLogged<=5)MelonLogger.Warning("FREEDOM_ARROW_SQUAD_RELOAD failed: "+e.Message);}
         }
         catch(Exception e) { fireOff=true;MelonLogger.Error("FREEDOM_ARROW_FIRE_STATS_FAILED: counting off for this session. "+e.Message); }
     }

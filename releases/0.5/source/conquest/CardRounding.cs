@@ -12,9 +12,11 @@ public sealed partial class Prototype
         Patch(typeof(UtilsClass),"RoundToNearestMultiple",nameof(CardRoundingBefore),null);
         MelonLogger.Msg("FREEDOM_ARROW_CARD_ROF installed: card rate of fire under 100 rounds to 1 (was 5)");
     }
-    public static bool CardRoundingBefore(float __0,float __1,ref float __result)
+    public static bool CardRoundingBefore(ref float __0,float __1,ref float __result)
     {
-        if(__1!=5f||__0>=100f)return true;
+        if(__1!=5f)return true;
+        __0=SquadCardValue(__0);
+        if(__0>=100f)return true;
         __result=MathF.Round(__0,MidpointRounding.ToEven);
         return false;
     }
