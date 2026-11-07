@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.22.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.23.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.22'
+    assert manifest['version']=='0.5.0-dev.23'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.22 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.23 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -186,7 +186,7 @@ with zipfile.ZipFile(p) as z:
         raw=zipfile.ZipFile(io.BytesIO(z.read(f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'))).read(part)
         return ms.load(ms.dec(raw))
     def scenario_objects(name):return scenario_part(name,'objects.bam')
-    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1',True),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',False)]
+    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1','crop'),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',(4250,9000)),('[FA] [2v2] Chkalovsk Airbase 0.1','[FA] [2v2] Chkalovsk Airbase Skirmish 0.1',(9000,5000))]
     for net_name,sk_name,crop in pairs:
         for name,kind in [(net_name,2),(sk_name,3)]:
             assert f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr' in names
@@ -210,19 +210,29 @@ with zipfile.ZipFile(p) as z:
         assert {o.get('teamSide') for o in net if o.get('_type')==3}=={0,1},net_name
         cams=[o for o in net if o.get('_type')==18]
         assert len(cams)==2 and all(o.get('actOnStart') for o in cams) and {o['team']['id'] for o in cams}==fight,net_name
+        # Each camera looks at a tag on its own side, toward the zone centre.
+        tags={o['_uid']:o['pos'] for o in net if o.get('_type')==6};zc=[o['pos'] for o in net if o.get('_type')==15]
+        centre={k:sum(p[k] for p in zc)/len(zc) for k in 'XZ'}
+        for cam in cams:
+            look=tags[cam['aimTag']['id']];d=lambda p:((p['X']-centre['X'])**2+(p['Z']-centre['Z'])**2)**0.5
+            assert d(look)<d(cam['pos']) and (look['X']-cam['pos']['X'])*(centre['X']-cam['pos']['X'])+(look['Z']-cam['pos']['Z'])*(centre['Z']-cam['pos']['Z'])>0,(net_name,cam['_dname'])
         assert any(n.get('nnKey')=='pauseGame' for n in scenario_part(net_name,'nodes.bam')['b']),net_name
         assert not any(n.get('nnKey')=='pauseGame' for n in scenario_part(sk_name,'nodes.bam')['b']),sk_name
-        if crop:
+        if crop=='crop':
             west=min(o['pos']['X']-ms.world_x_half(o) for o in net if o.get('_type')==15);east=max(o['pos']['X']+ms.world_x_half(o) for o in net if o.get('_type')==15);box=nl[('playable',)]
             assert abs(box['scale']['Z']-dc2.MAP_LENGTH)<1e-3 and abs(box['pos']['Z']-dc2.MAP_LENGTH/2)<1e-3
             assert abs((box['pos']['X']-box['scale']['X']/2)-(west-dc2.FLANK_MARGIN))<1e-2 and abs((box['pos']['X']+box['scale']['X']/2)-(east+dc2.FLANK_MARGIN))<1e-2
         else:
-            box=nl[('playable',)];assert abs(box['scale']['X']-4250)<1e-3 and abs(box['scale']['Z']-9000)<1e-3
+            box=nl[('playable',)];assert abs(box['scale']['X']-crop[0])<1e-3 and abs(box['scale']['Z']-crop[1])<1e-3,net_name
     dc=scenario_meta('[FA] [1v1] Dead Center 0.1');dcsk=scenario_meta('[FA] [1v1] Dead Center Skirmish 0.1')
     dc_zones={'38':2,'39':2,'40':2,'41':3,'42':3}
     assert dc['type']==2 and dcsk['type']==3 and settings['MapZoneWeights'][dc['scenario']]==dc_zones==settings['MapZoneWeights'][dcsk['scenario']]
     assert {t['teamSide'] for t in dc['teams']}=={0,1}=={t['teamSide'] for t in dcsk['teams']}
     assert {o['desc']:o['defV'] for o in dc['pblOpt']}=={'ui_lobby_StartMoney_desc':1500,'ui_lobby_Income_desc':300,'ui_lobby_Timer_desc':45}
+    ck=scenario_meta('[FA] [2v2] Chkalovsk Airbase 0.1');cksk=scenario_meta('[FA] [2v2] Chkalovsk Airbase Skirmish 0.1')
+    ck_zones={'31':2,'32':2,'33':2,'34':3,'35':3,'36':4,'37':4}
+    assert ck['type']==2 and cksk['type']==3 and ck['sceneName']=='Airbase' and settings['MapZoneWeights'][ck['scenario']]==ck_zones==settings['MapZoneWeights'][cksk['scenario']]
+    assert {o['_uid']:o['hudText'] for o in scenario_objects(ck['scenario']) if o.get('_type')==15}=={31:'Charlie',32:'Alpha',33:'Bravo',34:'Delta',35:'Echo',36:'Golf',37:'Foxtrot'}
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}

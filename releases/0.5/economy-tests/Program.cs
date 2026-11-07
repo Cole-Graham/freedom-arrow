@@ -70,6 +70,10 @@ const string dc="[FA] [1v1] Dead Center 0.1";const string dcsk="[FA] [1v1] Dead 
 Check(dcIds.Select(i=>fa.Weight(dc,i)).SequenceEqual(new[]{2,2,2,3,3})&&fa.ZoneLabel(dc,38)=="+2"&&fa.ZoneLabel(dc,42)=="+3","Dead Center zone values");
 Check(dcIds.Select(i=>fa.Weight(dcsk,i)).SequenceEqual(new[]{2,2,2,3,3}),"1v1 Dead Center Skirmish zone values");
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,dcIds)==dc,"Dead Center map resolution");
+// [FA] [2v2] Chkalovsk Airbase 0.1 zone values. A B C are 2. D E are 3. F G are 4. UIDs 31-37.
+const string ck="[FA] [2v2] Chkalovsk Airbase 0.1";var ckIds=Enumerable.Range(31,7).ToArray();
+Check(ckIds.Select(i=>fa.Weight(ck,i)).SequenceEqual(new[]{2,2,2,3,3,4,4})&&ckIds.Select(i=>fa.Weight("[FA] [2v2] Chkalovsk Airbase Skirmish 0.1",i)).SequenceEqual(new[]{2,2,2,3,3,4,4}),"Chkalovsk zone values");
+Check(fa.ResolveMap(Settings.OnlineUnknownMap,ckIds)==ck,"Chkalovsk map resolution");
 var dcWin=new Ledger(fa,dc,2700);var dcAll=dcIds.Select(i=>new Zone(i,0,false)).ToList();
 for(int t=300;t<=990;t+=30)dcWin.Advance(t,dcAll);Check(dcWin.Alpha==288&&!dcWin.ReachedScoreLimit,"288 of 300 does not end a Dead Center match");
 dcWin.Advance(1020,dcAll);Check(dcWin.Alpha==300&&dcWin.ScoreLimitWinner==0,"Dead Center ends at 17:00 at the fastest");

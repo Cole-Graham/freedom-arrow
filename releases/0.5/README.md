@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.22 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.23 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -28,6 +28,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.20 (Osama, 6 November 2026): BMP-3, BMP-3F and BMD-4M base cost 50 (was 45). T-72B3AM obr. 16 is the T-72B3A card's base: the old no-ERA base option is retired, the card costs 165 (115 + the old obr. 16 +50), and obr. 16 + Arena is +70. The card is named T-72B3AM obr. 16. Saved decks with the old base option fall back to the card. See `t72b3a-contract.json`. Not yet run in a game.
 - dev.21 (Osama, 6 November 2026, from a friend's note): artillery uses more supply to refill, copying ActualArrow 1.1.20 values on 77 rounds. Howitzers 122 mm and up x2 (105 mm unchanged), 240 mm mortar x2 (other mortars unchanged), rocket artillery x4 (Grad smoke and Ogon x12, as ActualArrow), ballistic missiles 4000, Iskander-K 2000. Rocket rows newer than ActualArrow 1.1.20 (HIMARS guided, Uragan-S, Kama, Sarma) use the x4 rule. Air munitions unchanged. See `supply-contract.json`. Not yet run in a game.
 - dev.22 (Osama, 6 November 2026, stop-gap): helicopter anti-tank missiles do 12 damage, except LMUR (20): Hellfire K and L (Longbow), JAGM, JAGM-MR, Vikhr, Kokon, Ataka, Kornet-M, Hermes-A and the helicopter TOW-2A. Helicopters already fire their own rows in FA, so ground missiles (10.5) do not change. ARM, anti-ship and Kh-25ML missiles are unchanged. See `heli-missile-contract.json`. Not yet run in a game.
+- dev.23 (Lateralus, 6 November 2026): new map `[FA] [2v2] Chkalovsk Airbase 0.1` for lobbies and `[FA] [2v2] Chkalovsk Airbase Skirmish 0.1` for F8, from Lateralus's editor layout on the Airbase scene (`scenarios/chkalovsk_2v2/`). Seven zones: A B C are worth 2, D E 3, F G 4; the authored Hotel is shown as Foxtrot. Same FA conquest script, deployment pause, 1500 start, 45 minute timer and money cap as Dead Center. Start cameras: Alpha (west) and Bravo (east) each stand 2300 m from the zone centre on their own side and look toward it, from a tag 1100 m out, at height 700 (vanilla Airbase distances). The 1v1 Dead Center cameras now keep vanilla Central Village's look-at tags (from dev.3 they had none). The Skirmish flavor has bot slots but no AI script, like 1v1 Dead Center. Not yet run in a game.
 
 ## New in 0.4
 
@@ -91,7 +92,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.22.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.23.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -338,3 +339,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-06 01:59:58 PST (America/Los_Angeles) — 0.4.0-dev.35: TOW-2B 140 penetration and 10.5 damage like the Javelin, Thunderbolt rear armor unchanged, Stryker MC 90 (Osama). Not deployed.
 - 2026-11-06 20:23:11 PST (America/Los_Angeles) — dev.16: long-range sniper and anti-materiel rifles 6 rounds per minute, at Lateralus's instruction. No live result.
 - 2026-11-06 21:05:15 PST (America/Los_Angeles) — dev.18: long-range sniper rifles 8 rounds per minute, anti-materiel rifles stay 6, card rate of fire under 100 rounds to 1, at Lateralus's instruction. No live result.
+- 2026-11-06 22:10:32 PST (America/Los_Angeles) — 0.5.0-dev.23: Chkalovsk Airbase 2v2 map and Skirmish flavor; start cameras with look-at tags; 1v1 Dead Center cameras face the battle.

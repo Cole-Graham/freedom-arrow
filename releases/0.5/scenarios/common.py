@@ -128,6 +128,41 @@ def set_bots(objects,meta):
     for t in meta.get('teams',[]):
         if t.get('teamName') in ('Alpha team','Bravo team'):
             for s in t.get('slots',[]):s['bot']=True
+# Editor defaults. Vanilla Central Village_network has only Alpha (0) and Bravo (1).
+# 101 is uncaptured/neutral in scoring, not a lobby team. 100 is not the 2.0 Observer waiting-list slot.
+EDITOR_SIDES={100,101}
+def strip_editor_teams(objects,meta):
+    extra={o['_uid'] for o in objects if o.get('_type')==3 and o.get('teamSide') in EDITOR_SIDES}
+    drop=extra|{o['_uid'] for o in objects if o.get('_type')==13 and o.get('ownTeam',{}).get('id') in extra}
+    objects[:]=[o for o in objects if o['_uid'] not in drop]
+    meta['teams']=[t for t in meta.get('teams',[]) if t.get('teamSide') not in EDITOR_SIDES]
+    alpha=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Alpha team')
+    bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
+    for o in objects:
+        if o.get('_type')==3 and o['_dname']=='Alpha team':o['teamRelation']={'key':[{'id':bravo,'type':3}],'val':[0]}
+        if o.get('_type')==3 and o['_dname']=='Bravo team':o['teamRelation']={'key':[{'id':alpha,'type':3}],'val':[0]}
+    assert {o.get('teamSide') for o in objects if o.get('_type')==3}=={0,1}
+def vec(p):
+    v={k:float(p[k]) for k in 'XYZ'};mag(v);return v
+def new_uid(objects):return max(o['_uid'] for o in objects)+1
+def add_camera(objects,team,name,pos,look,height=700.0):
+    """Start camera for one team. The camera faces its look-at tag (type 6), as on native maps."""
+    tid=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']==team)
+    one={'X':1.0,'Y':1.0,'Z':1.0,'SqrMagnitude':3.0};still={'X':0.0,'Y':0.0,'Z':0.0,'W':1.0}
+    tag=dict(info='',noArrow=False,color=0,pos=vec(look),rotate=dict(still),scale=dict(one),v=1,_uid=new_uid(objects),_type=6,_dname=name+' look at')
+    objects.append(tag)
+    objects.append(dict(actOnStart=True,aimTag={'id':tag['_uid'],'type':6},aimUnit=None,team={'id':tid,'type':3},player=None,Preview={},
+                        pos=vec(pos),height=float(height),rotate=dict(still),scale=dict(one),v=1,_uid=new_uid(objects),_type=18,_dname=name))
+def letter_zones(objects,letters,names):
+    """letters: authored zone name -> (shown name, value). Renames zones, sets hudText, and keeps only Alpha and Bravo as capturers."""
+    zones=[o for o in objects if o.get('_type')==15]
+    assert {o['_dname'] for o in zones}==set(letters),sorted(o['_dname'] for o in zones)
+    want={str(o['_uid']):letters[o['_dname']][1] for o in zones}
+    for name in names:assert want==weights(name),(name,want)
+    teams={o['_dname']:o['_uid'] for o in objects if o.get('_type')==3}
+    for o in zones:
+        o['_dname']=o['hudText']=letters[o['_dname']][0]
+        o['capturableBy']=[c for c in o['capturableBy'] if c['id'] in (teams['Alpha team'],teams['Bravo team'])];assert len(o['capturableBy'])==2
 def graft_conquest(game,objects,nodes,meta):
     nn,no,nm=read_native(game,NETWORK_HOST)[1:]
     want={69:'ui_lobby_StartMoney_desc',70:'ui_lobby_Income_desc',72:'ui_lobby_Timer_desc'}
