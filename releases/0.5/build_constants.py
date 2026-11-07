@@ -243,6 +243,7 @@ def main():
             else:
                 del effective['UnitAbilitiesJson'][link['Id']];patches['UnitAbilitiesJson'].pop(str(link['Id']),None)
         for opt in options(uid):
+            if opt['Id'] in sm.get('keep_options',[]):continue
             f={k:0 for k in ('Ability1Id','Ability2Id','Ability3Id') if opt[k] in smoke}
             if f:put('OptionsJson',opt['Id'],f,why)
     for key,hp in d5['unit_hp'].items():

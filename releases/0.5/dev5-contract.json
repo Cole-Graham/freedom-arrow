@@ -11,7 +11,10 @@
       615,
       253
     ],
-    "keep_note": "0.5 dev.3 (Osama, 6 November 2026): Sprut-SD, T-80BV and T-72A keep their vanilla smoke under the price rule. 0.5 dev.28 (Osama, 6 November 2026): K16 Bumerang keeps its vanilla smoke too."
+    "keep_note": "0.5 dev.3 (Osama, 6 November 2026): Sprut-SD, T-80BV and T-72A keep their vanilla smoke under the price rule. 0.5 dev.28 (Osama, 6 November 2026): K16 Bumerang keeps its vanilla smoke too. 0.5 dev.41 (Osama, 7 November 2026): the BMD-2 smoke option (2044, +10) keeps its smoke; the rule had emptied it, so it cost 10 for nothing.",
+    "keep_options": [
+      2044
+    ]
   },
   "unit_hp": {
     "3": 12,

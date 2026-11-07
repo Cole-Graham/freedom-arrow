@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.40 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.41 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -39,6 +39,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.32 (Lateralus, 7 November 2026): scenario editor tests. A scenario started with the editor Play button (offline, `ISceneLoadManager.ScenarioLaunchedFromEditor` and not in edit mode, with FA data applied) now runs our combat rules (crits, 60-degree front arc) and fire statistics, like a guarded match. While combat rules are active, every shot and every real hit is logged to `UserData/FAConquestPrototype/shots-<utc>.jsonl` (shooter, weapon, ammo, magazine; target, side, damage). Logging only. Online play is unchanged. Not yet run in a game.
 - dev.33 (Lateralus, 7 November 2026): fuller shot log. Shot lines add weapon type, shooter unit type and infantry flag, carriers of that weapon in the squad (current and max), the weapon's rolled reload, time between bursts, shots per burst, aim time and shots made. Hit lines add the target HP before the hit, base damage and armor type. New reload_roll lines record every reload the game rolls (WeaponComponent.GenerateRandomMagazineReloadTime), for any weapon including aircraft, while the log is open. Logging only. Not yet run in a game.
 - dev.34 (7 November 2026): dev.33 crashed in Lateralus's editor Play test about 1.5 s after the shot log opened, before any shot. Removed the two new native calls: the reload_roll hook on WeaponComponent.GenerateRandomMagazineReloadTime and the carrier lookup (InfantryUnitComponent.TryGetWeaponCount). Shot lines keep weapon type, unit type, burst and reload timing; hit lines keep target HP. Carriers are worked out from the data instead. Not yet run in a game.
+- dev.41 (Osama, 7 November 2026): the BMD-2 smoke option (+10) works again. The cheap-IFV smoke rule (IFVs at 30 points and below have no smoke) had also emptied this paid option, so it cost 10 and gave nothing. It now keeps its vanilla smoke ability; the BMD-2 without the option still has none. See `dev5-contract.json` keep_options. Not yet run in a game.
 - dev.40 (Lateralus, 7 November 2026): launcher card fix. dev.39 showed one launcher's rate (Shturmoviki 8, Mech. Riflemen MMG AT4 12) and the header "Grenade launcher". The card now takes the launcher count from the weapon button (disposables: squad formula; reusable: one launcher's rate x launchers) and puts the real type name back in the header. dev.39 editor test (measured): Shturmoviki 2 x RPG-7V every 4.01–4.02 s (15 per minute), Mech. Riflemen MMG 2 x AT4 one gap of 3.93 s. Not yet seen in a game.
 - dev.39 (Lateralus, 7 November 2026): squads with 2 reusable launchers fire 15 per minute (was 12.5): Bur, RPG-7V PG-7TB and RPG-7V OG-7V (rows 155, 162, 632, used only by Shturmoviki, Ingenery-Shturmoviki, SSO and VDV Spetsnaz) reload 8 s (was 9.6 s). Reusable launcher cards already show "Rate of fire" since dev.38. Not yet run in a game.
 - dev.38 (Lateralus, 7 November 2026): infantry launcher cards (disposable and reusable, magazine 1) show "Rate of fire" like rifles instead of "Reload time", rounded to the nearest whole shot per minute (halves round up). Disposables show the squad formula rate. The native card picks the rate line only for weapon type 60 or a magazine over 1, so while it draws one of these launchers the type reads 60 and is put back right after. Display only. Not yet seen in a game.
@@ -109,7 +110,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.40.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.41.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
