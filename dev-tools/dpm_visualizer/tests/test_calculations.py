@@ -322,3 +322,27 @@ class CardRangeTextTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CoverTests(unittest.TestCase):
+    def test_building_and_woods_use_ignore_cover(self) -> None:
+        from dpm_visualizer.calculations import Cover, cover_multiplier, dpm_at_world
+
+        infantry = {"ArmorValue": 6, "MaxHealthPoints": 35}
+        tank = {"ArmorValue": 0, "KinArmorFront": 500}
+        ammo = {"IgnoreCover": 0.125}
+        fa_building = Cover("Building", 0.7, 0.18, 0.0, 6)
+        self.assertAlmostEqual(cover_multiplier(ammo, infantry, fa_building), 0.18 + 0.82 * 0.125)
+        vanilla_building = Cover("Building", 1.0, 0.18, 0.02, 12)
+        self.assertAlmostEqual(cover_multiplier({}, infantry, vanilla_building), 0.42)
+        self.assertAlmostEqual(cover_multiplier(ammo, infantry, Cover("Woods", 0.7)), 1 - 0.3 * 0.875)
+        self.assertEqual(cover_multiplier({}, infantry, Cover("Woods", 1.0)), 1.0)
+        self.assertEqual(cover_multiplier(ammo, tank, fa_building), 1.0)
+        self.assertEqual(cover_multiplier(ammo, infantry, Cover("Open")), 1.0)
+        weapon = {"MagazineSize": 1, "MagazineReloadTimeMin": 6, "MagazineReloadTimeMax": 6}
+        shell = {"Damage": 10, "ArmorTargeted": 0, "GroundRange": 1000, "IgnoreCover": 0.25,
+                 "DispersionHorizontalRadius": 50, "DispersionVerticalRadius": 50}
+        open_dpm = dpm_at_world(weapon, shell, infantry, 900, "Front", silhouette=(4, 2), apply_accuracy=True)
+        built = dpm_at_world(weapon, shell, infantry, 900, "Front", silhouette=(4, 2), apply_accuracy=True, cover=fa_building)
+        self.assertAlmostEqual(built, 10 * 10 * (0.18 + 0.82 * 0.25))  # building: no misses
+        self.assertLess(open_dpm, 100)

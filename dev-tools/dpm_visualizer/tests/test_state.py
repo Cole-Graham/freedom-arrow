@@ -15,6 +15,7 @@ class _App:
     catalog = None
     custom_units: dict = {}
     custom_weapons: dict = {}
+    cover_rules = {"forest_taken": 1.0, "building_floor": 0.18, "building_per_soldier": 0.02}
 
     def auto_save_state(self) -> None:
         pass

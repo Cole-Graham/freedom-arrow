@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from .constants import FIELD_TO_FILE, FILE_TO_FIELD, NEEDED_FIELDS
+from .constants import FIELD_TO_FILE, FILE_TO_FIELD, NEEDED_FIELDS, VANILLA_COVER
 
 
 def repo_root() -> Path:
@@ -58,6 +58,16 @@ def build_latest_mod(vanilla_dir: Path, root: Path | None = None) -> tuple[Path,
         raise RuntimeError(f"{release.name}/build_constants.py failed:\n{(done.stderr or done.stdout)[-1500:]}")
     version = json.loads((release / "mod.json").read_text(encoding="utf-8")).get("version") or release.name
     return release / "source" / "UserData" / "FreedomArrow" / "constants", version
+
+
+def mod_cover(overlay_dir: Path) -> dict[str, float]:
+    """Cover values of the mod: game-config.json next to its constants folder."""
+    config = _read_json(overlay_dir.parent / "game-config.json")
+    return {
+        "forest_taken": float(config.get("ForestDamageTaken", VANILLA_COVER["forest_taken"])),
+        "building_floor": float(config.get("BuildingDamageFloor", VANILLA_COVER["building_floor"])),
+        "building_per_soldier": float(config.get("BuildingDamagePerSoldier", VANILLA_COVER["building_per_soldier"])),
+    }
 
 
 def _index_rows(rows: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
