@@ -7,10 +7,10 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import card_range_text, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
+from .calculations import Cover, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_LINE_STYLES, FACES
-from .ui_components import SearchableCombobox
+from .ui_components import CoverControls, SearchableCombobox
 
 
 def _id_from_label(label: str) -> int | None:
@@ -31,6 +31,7 @@ class WeaponsTab:
         self.unit_names: list[str] = []
         self._pair_index: dict[str, tuple[int, int]] = {}
         self._series_meta: list[dict[str, Any]] = []
+        self._cover = Cover()
         self._silhouette: tuple[float, float] | None = None
         self._apply_accuracy = False
         self._ammo_extras: dict[str, Any] = {}
@@ -69,6 +70,7 @@ class WeaponsTab:
         self.damage_type = tk.StringVar(value="Physical")
         ttk.Radiobutton(cfg, text="Physical", variable=self.damage_type, value="Physical").pack(anchor=tk.W)
         ttk.Radiobutton(cfg, text="Stress", variable=self.damage_type, value="Stress").pack(anchor=tk.W)
+        self.cover_ctl = CoverControls(cfg, self.app, self._touch)
         self.assume_hits = tk.BooleanVar(value=False)
         ttk.Checkbutton(
             cfg,
@@ -168,6 +170,7 @@ class WeaponsTab:
         self.target_armor.set_values(self.armor_names)
         self.target_unit.set_values(self.unit_names)
         self.load_existing.set_values([label for label, _, _ in pairs])
+        self.cover_ctl.update_info()
         if self.weapon_names and not self.rows[0]["weapon"].get():
             self.rows[0]["weapon"].set(self.weapon_names[0])
         if self.armor_names and not self.target_armor.get():
@@ -244,6 +247,8 @@ class WeaponsTab:
         damage_type = self.damage_type.get()
         apply_accuracy = not self.assume_hits.get()
         silhouette = self._resolve_silhouette() if apply_accuracy else None
+        cover = self.cover_ctl.cover()
+        self._cover = cover
         plotted = []
         self._series_meta = []
         self._silhouette = silhouette
@@ -266,6 +271,7 @@ class WeaponsTab:
                     damage_type,
                     silhouette=silhouette,
                     apply_accuracy=apply_accuracy,
+                    cover=cover,
                 )
                 name = label if len(faces) == 1 else f"{label} / {face}"
                 plotted.append((name, series, FACE_LINE_STYLES.get(face, "-")))
@@ -278,11 +284,14 @@ class WeaponsTab:
                         "qty": qty,
                         "face": face,
                         "hp": float(armor.get("MaxHealthPoints") or 0),
+                        "cover": cover_multiplier(ammo, armor, cover) if damage_type == "Physical" else 1.0,
                     }
                 )
         ylabel = "Expected DPM" if apply_accuracy else "DPM if hits"
         target_name = self.target_unit.get().strip() or self.target_armor.get()
         title = f"Weapon DPM vs {target_name}"
+        if cover.kind != "Open":
+            title += f", {cover.kind.lower()}"
         self.chart.draw(plotted, self.log_scale.get(), ylabel, title)
         if self.chart.selected_range is not None:
             self._on_pin(self.chart.selected_range)
@@ -308,7 +317,12 @@ class WeaponsTab:
             weapon = meta["weapon"]
             spm = shots_per_minute(weapon, meta["qty"])
             chance = hit_chance(ammo, world, self._silhouette)
+            covered = self._cover.kind != "Open" and meta["cover"] != 1.0
+            if covered and self._cover.kind == "Building":
+                chance = 1.0
             hit_txt = f"  hit {chance:.0%}" if self._apply_accuracy else ""
+            if self._cover.kind != "Open":
+                hit_txt += f"  through cover {meta['cover']:.0%}"
             range_txt = card_range_text(ammo)
             range_line = f"  {range_txt}\n" if range_txt else ""
             lines.append(
@@ -432,6 +446,7 @@ class WeaponsTab:
                     self.damage_type.get(),
                     silhouette=self._resolve_silhouette() if self.app.catalog and not self.assume_hits.get() else None,
                     apply_accuracy=not self.assume_hits.get(),
+                    cover=self.cover_ctl.cover(),
                 )
             spm = shots_per_minute(weapon, 1)
             self.preview.config(text=f"Live preview at max range: DPM {dpm:.1f}  shots/min {spm:.1f}")
@@ -472,6 +487,7 @@ class WeaponsTab:
             "damage_type": self.damage_type.get(),
             "assume_hits": bool(self.assume_hits.get()),
             "log_scale": bool(self.log_scale.get()),
+            **self.cover_ctl.save(),
             "pinned_range": self.chart.selected_range,
         }
 
@@ -490,6 +506,7 @@ class WeaponsTab:
                 self.assume_hits.set(bool(state["assume_hits"]))
             if "log_scale" in state:
                 self.log_scale.set(bool(state["log_scale"]))
+            self.cover_ctl.load(state)
             if state.get("target_armor"):
                 self.target_armor.set(state["target_armor"])
             if "target_unit" in state:
