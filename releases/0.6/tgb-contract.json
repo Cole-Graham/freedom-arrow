@@ -1,0 +1,13 @@
+{
+  "note": "0.5 dev.27 (Osama, 6 November 2026). TGB-1111 loadouts are separate cards: TGB-1111 with the Pvpj 1110 recoilless rifle at 30 (unit 509; price in vehicle-contract.json), and the new card TGB-1111 RBS with the RBS-56 ATGM option (2208) at 50. Availability 6 on the new card, copied from TGB-1111 (specialization 16). Saved decks with the RBS option fall back to TGB-1111. Not yet run in a game.",
+  "parent": 509,
+  "unit": 724,
+  "fields": {
+    "Name": "DLC2 TGB-1111 RBS",
+    "HUDName": "TGB-1111",
+    "Cost": 50
+  },
+  "variant_mod": 627,
+  "move_option": 2208,
+  "pool": 884
+}

@@ -1,6 +1,6 @@
 # freedom-arrow
 
-**Unreleased 0.5 development — accuracy:** [build instructions and changes](releases/0.5/README.md) on `codex/0.5-development`. 0.4 stays on `codex/0.4-development`.
+**Unreleased 0.6 development — ActualArrow features:** [build instructions and changes](releases/0.6/README.md) on `codex/0.6-development`. 0.5 stays on `codex/0.5-development` (accuracy, [changes](releases/0.5/README.md)); 0.4 stays on `codex/0.4-development`.
 
 **Unreleased 0.4 development:** [build instructions and changes](releases/0.4/README.md) on `codex/0.4-development`. 0.3 stays on `codex/0.3-development`.
 
@@ -209,3 +209,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-04 19:42:51 PST (America/Los_Angeles) — Updated the development pointer to dev.17.
 - 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.
 - 2026-11-06 14:40 PST (America/Los_Angeles) — Added the 0.5 development pointer (accuracy); 0.4 stays on its branch.
+- 2026-11-07 12:43 PST (America/Los_Angeles) — Added the 0.6 development pointer (ActualArrow features); 0.5 stays on its branch.

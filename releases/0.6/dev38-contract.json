@@ -1,0 +1,56 @@
+{
+  "note": "0.4 dev.38 (Osama, 6 November 2026). BARS is split into three cards. BARS (the RPG squad, unit 616) is its own card at 60: its RPG-7V gunner carries an RPG-26 instead, and the PKM gunner also carries one, so the squad has 6 RPG-26 and no RPG-7V. BARS FS (unit 612, the old fire-support loadout) is its own card at 60 (85 in dev.38; 60 from dev.41): its Kornet is replaced by an AGS-40. BARS Kornet (new unit 721) is a copy of the old fire-support squad with a KPVT in place of the SPG-9, at 100. Availability 4 on each new card is provisional, the same as BARS Igla. Not deployed. dev.48: BARS FS uses the SPG-9 Sapog card icon (RU_SPG9-Label) instead of the Kornet icon (Osama, 6 November 2026).",
+  "pool_like": 1008,
+  "xp0": 4,
+  "retire_options": [
+    3037,
+    3029
+  ],
+  "retire_mod": 714,
+  "rpg": {
+    "unit": 616,
+    "fields": {
+      "IsUnitModification": false,
+      "HUDName": "BARS"
+    },
+    "swap": [
+      924,
+      168
+    ],
+    "add_special": {
+      "1375": 168
+    }
+  },
+  "fs": {
+    "unit": 612,
+    "fields": {
+      "HUDName": "BARS FS",
+      "ThumbnailFileName": "RU_SPG9-Label"
+    },
+    "swap": [
+      144,
+      185
+    ],
+    "ammo": {
+      "id": 118,
+      "qty": 200
+    }
+  },
+  "kornet": {
+    "unit": 721,
+    "fields": {
+      "Name": "DLC3 BARS Kornet",
+      "HUDName": "BARS Kornet",
+      "Cost": 100,
+      "IsUnitModification": false
+    },
+    "swap": [
+      159,
+      959
+    ],
+    "ammo": {
+      "id": 163,
+      "qty": 400
+    }
+  }
+}
