@@ -1,0 +1,53 @@
+{
+  "note": "0.5 dev.30 (Osama, 6 November 2026). Helicopter ATGM pylon options that carry the same anti-tank missile launcher twice (left and right) now carry it once, so each pylon option fires one missile at a time: 32 options, for example AH-64D/E, Longbow, AH-1W/Z, MH-60M DAP, Ka-50/52, Mi-24, Mi-8, Ka-29 and Mi-28NM (Mi-28N was done in dev.28). Pylons whose launcher holds a single missile (RAH-66 Comanche 2x Hellfire, Mi-8AMTSh-VN 2x LMUR) are left unchanged, because removing one would remove a missile, not a ripple. AH-64E Guardian, RAH-66 Comanche, Mi-28N and Mi-28NM can laser-designate (1500 m, usable on the move, the values of the Mi-24K 'ECM Heli 05 +Laser'): their ECM abilities, including those on AH-64E wingtip options, get copies with the laser. Not yet run in a game.",
+  "pod_options": [
+    139,
+    143,
+    166,
+    180,
+    204,
+    210,
+    224,
+    225,
+    254,
+    255,
+    267,
+    268,
+    346,
+    347,
+    356,
+    359,
+    701,
+    705,
+    717,
+    719,
+    723,
+    733,
+    734,
+    1665,
+    1721,
+    1727,
+    1728,
+    1743,
+    1744,
+    1745,
+    1750,
+    2093
+  ],
+  "skip_single_round_turrets": [
+    747,
+    1411
+  ],
+  "laser_units": [
+    270,
+    364,
+    256,
+    380
+  ],
+  "laser_like": 84,
+  "laser_fields": [
+    "IsLaserDesignator",
+    "LaserMaxRange",
+    "LaserUsableInMove"
+  ]
+}

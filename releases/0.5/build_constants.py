@@ -684,6 +684,31 @@ def main():
     d28=json.loads((R/'dev28-contract.json').read_text());o=effective['OptionsJson'][d28['option']]
     assert o[d28['clear']]==d28['turret'] and o[d28['keep']]==d28['turret']
     put('OptionsJson',d28['option'],{d28['clear']:0},'Mi-28N one Ataka launcher on the outer pylon')
+    # 0.5 dev.30: helicopter ATGM pylons carry one launcher; AH-64E, Comanche, Mi-28N and Mi-28NM can laser-designate.
+    h30=json.loads((R/'dev30-heli-contract.json').read_text());why='Helicopter ATGM pylon: one launcher'
+    atw={w for w in effective['WeaponsJson'] if any(effective['AmmunitionsJson'][r['AmmunitionId']]['Name'].startswith('Missile AT') for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w)}
+    tur_at={r['TurretId'] for r in effective['TurretWeaponsJson'].values() if r['WeaponId'] in atw}
+    slot=lambda k:int(k[6:-2])
+    found={}
+    for o in effective['OptionsJson'].values():
+        m=effective['ModificationsJson'].get(o['ModificationId'])
+        if not m or effective['Units'][m['UnitId']]['Type']!=8:continue
+        keys=sorted([k for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]],key=slot)
+        for t in {o[k] for k in keys}:
+            dup=[k for k in keys if o[k]==t]
+            if t in tur_at and len(dup)>1 and t not in h30['skip_single_round_turrets']:found.setdefault(o['Id'],[]).extend(dup[1:])
+    assert sorted(found)==sorted(h30['pod_options']),sorted(set(found)^set(h30['pod_options']))
+    for oid,keys in found.items():put('OptionsJson',oid,{k:0 for k in keys},why)
+    like=effective['AbilitiesJson'][h30['laser_like']];why='Helicopter laser designator';made={}
+    def lased(aid):
+        a=effective['AbilitiesJson'][aid];assert a['Name'].startswith('ECM Heli') and not a['IsLaserDesignator'],aid
+        if aid not in made:made[aid]=clone('AbilitiesJson',aid,{**{f:like[f] for f in h30['laser_fields']},'Name':a['Name']+' + Laser'},why)
+        return made[aid]
+    for u in h30['laser_units']:
+        for r in [r for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==u]:put('UnitAbilitiesJson',r['Id'],{'AbilityId':lased(r['AbilityId'])},why)
+        for o in options(u):
+            for i in (1,2,3):
+                if o.get(f'Ability{i}Id'):put('OptionsJson',o['Id'],{f'Ability{i}Id':lased(o[f'Ability{i}Id'])},why)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
