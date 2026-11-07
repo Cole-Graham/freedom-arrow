@@ -18,7 +18,8 @@ public sealed partial class Prototype
     static int economyLogBucket = -1;
     static string economyLastReason = "";
 
-    static bool IsEconomyWriter(Assembly a) => a.GetName().Name is "FreedomArrow.Engine" or "FlatIncomeMod";
+    // 0.6 dev.3: FlatIncomeMod 0.9.16 has no income code (read from its decompiled source), so only the engine counts.
+    static bool IsEconomyWriter(Assembly a) => a.GetName().Name is "FreedomArrow.Engine";
     static void EconomyAssemblyLoaded(object sender, AssemblyLoadEventArgs e)
     { if (IsEconomyWriter(e.LoadedAssembly)) economyConflict = true; }
     static void InitializeEconomy()

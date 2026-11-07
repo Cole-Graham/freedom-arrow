@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.2 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.3 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -8,6 +8,7 @@ Started from 0.5.0-dev.46 (0717b16), 7 November 2026. 0.5 stays on `codex/0.5-de
 
 - dev.1 (Osama, 7 November 2026): the package ships three unchanged ActualArrow 1.1.20 mods: HudQuick 1.4.2 and TeamVoice 0.9.13 by Aurka, and FlatIncomeMod 0.9.16 by Speer (end-of-match stats, team voice chat and the in-game mod settings page, passengers dying with their transport, camera zoom-out, aircraft and missile warnings, map notes, air-defence target switches, HUD editor). FlatIncomeMod's forest cover is switched off at startup, because Freedom Arrow applies the same 30% forest rule and both would cut damage twice (`ThirdPartyGuard.cs`). FlatIncomeMod 0.9.16 has no income code. Permission as reported by Osama; see `source/third-party/README.md`. Not yet run in a game.
 - dev.2 (Osama, 7 November 2026): zooming in no longer locks the camera onto a unit. Read from the game code: the mouse-wheel system (`CameraScrollSystem.Update`) picks the unit under the cursor while zooming in and calls `CameraService.AttachToUnit`, which starts the follow camera. While that system runs, the attach is skipped (`CameraZoomLock.cs`); double-click follow and other callers are unchanged. Not yet run in a game.
+- dev.3 (7 November 2026): fix found in the first Vengeance test of dev.2. The conquest module refused to start when FlatIncomeMod was loaded ("Disable FlatIncomeMod for this scoring experiment", a guard from when FlatIncomeMod changed income), so dev.1 and dev.2 ran without scoring, crits, squad launcher rates or the launcher cards. FlatIncomeMod 0.9.16 has no income or scoring code, so it no longer blocks. Menus are now logged too (Osama): the loaded mods with versions once the game starts, and every scene load, in Latest.log (`FREEDOM_ARROW_MENU`) and events-<utc>.jsonl. Not yet run in a game.
 
 ## New in 0.5 — accuracy
 
@@ -122,7 +123,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.2.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.3.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

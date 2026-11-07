@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.6.0-dev.2", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.6.0-dev.3", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -62,8 +62,7 @@ public sealed partial class Prototype : MelonMod
             // Do not compete with the other task's scoring/economy experiment or ActualArrow hooks.
             foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (a.GetName().Name is "FlatIncomeMod")
-                    throw new InvalidOperationException("Disable FlatIncomeMod for this scoring experiment");
+                // 0.6 dev.3: FlatIncomeMod 0.9.16 ships with FA. It has no income or scoring code, so it no longer blocks.
                 if(a.GetName().Name=="FreedomArrow.Engine" && a.GetType("FreedomArrow.Engine")?.GetProperty("UsesConquestBatch")?.GetValue(null) is not true)
                     throw new InvalidOperationException("Engine has not delegated its mode/timer/phase hooks to ConquestBatch");
             }
