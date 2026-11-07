@@ -729,6 +729,20 @@ def main():
         assert len(weapons)==len(set(weapons)),('duplicate squad weapon',uid)
         for m in effective['SquadMembersJson'].values():
             if m['UnitId']==uid:assert {m['PrimaryWeaponId'],m['SpecialWeaponId']}-{0}<=set(weapons),('member weapon not listed',uid,m['Id'])
+    # 0.5 dev.44: BARS 7 men 35 HP, 3 PKM and 4 AK-74M (bars-contract.json). Before dev.35, which counts launcher carriers.
+    bars=json.loads((R/'bars-contract.json').read_text());why='BARS 7 men, 3 PKM'
+    for rid in bars['retire_members']:
+        assert effective['SquadMembersJson'][rid]['UnitId']==bars['unit'],rid
+        drop('SquadMembersJson',rid)
+    for key,aid in bars['armor_links'].items():
+        assert effective['UnitArmorsJson'][int(key)]['UnitId']==bars['unit'],key
+        put('UnitArmorsJson',int(key),{'ArmorId':aid},'BARS 7 men, 35 HP')
+    for key,f in bars['member_fields'].items():
+        assert effective['SquadMembersJson'][int(key)]['UnitId']==bars['unit'] and effective['SquadMembersJson'][int(key)]['PrimaryWeaponId']==bars['ak'],key
+        put('SquadMembersJson',int(key),f,why)
+    men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==bars['unit']]
+    assert len(men)==bars['men'] and sum(m['PrimaryWeaponId']==bars['pkm'] for m in men)==bars['pkm_men'] and sum(m['PrimaryWeaponId']==bars['ak'] for m in men)==bars['ak_men']
+    assert len(men)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][1309]['ArmorId']]['MaxHealthPoints']
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

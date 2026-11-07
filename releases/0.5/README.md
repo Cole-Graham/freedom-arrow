@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.43 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.44 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -40,6 +40,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.33 (Lateralus, 7 November 2026): fuller shot log. Shot lines add weapon type, shooter unit type and infantry flag, carriers of that weapon in the squad (current and max), the weapon's rolled reload, time between bursts, shots per burst, aim time and shots made. Hit lines add the target HP before the hit, base damage and armor type. New reload_roll lines record every reload the game rolls (WeaponComponent.GenerateRandomMagazineReloadTime), for any weapon including aircraft, while the log is open. Logging only. Not yet run in a game.
 - dev.34 (7 November 2026): dev.33 crashed in Lateralus's editor Play test about 1.5 s after the shot log opened, before any shot. Removed the two new native calls: the reload_roll hook on WeaponComponent.GenerateRandomMagazineReloadTime and the carrier lookup (InfantryUnitComponent.TryGetWeaponCount). Shot lines keep weapon type, unit type, burst and reload timing; hit lines keep target HP. Carriers are worked out from the data instead. Not yet run in a game.
 - dev.42 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off loadout +0 (was +20), so both loadouts cost 95. Option 1511 cost 0; the stand-off unit row (354) is 95 like the close-quarters base (131). Not yet run in a game.
+- dev.44 (Lateralus, 7 November 2026): BARS 7 men and 35 HP (was 8 and 40; vanilla 7-man armor row 83, armor 6), 3 PKM (was 1) and 4 AK-74M (was 7), 55 points (was 60). One GP-25 rifleman is removed and two RPG-26 riflemen become PKM gunners; they keep their RPG-26, so the squad keeps 6 RPG-26 and has 1 GP-25 (was 2). Ammunition is per carrier and unchanged (PKM 300 each). See `bars-contract.json`. Not yet run in a game.
 - dev.43 (Osama, 7 November 2026): the main menu shows "Freedom Arrow <version>" at the bottom right. The conquest DLL tracks the game's music type (MusicService.PlayByType postfix) and draws the label only on menu screens (Intro, Hangar, Campaign, MiniGames). Display only. Not yet run in a game.
 - dev.41 (Osama, 7 November 2026): the BMD-2 smoke option (+10) works again. The cheap-IFV smoke rule (IFVs at 30 points and below have no smoke) had also emptied this paid option, so it cost 10 and gave nothing. It now keeps its vanilla smoke ability; the BMD-2 without the option still has none. See `dev5-contract.json` keep_options. Not yet run in a game.
 - dev.40 (Lateralus, 7 November 2026): launcher card fix. dev.39 showed one launcher's rate (Shturmoviki 8, Mech. Riflemen MMG AT4 12) and the header "Grenade launcher". The card now takes the launcher count from the weapon button (disposables: squad formula; reusable: one launcher's rate x launchers) and puts the real type name back in the header. dev.39 editor test (measured): Shturmoviki 2 x RPG-7V every 4.01–4.02 s (15 per minute), Mech. Riflemen MMG 2 x AT4 one gap of 3.93 s. Not yet seen in a game.
@@ -112,7 +113,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.43.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.44.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -363,3 +364,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-06 22:30:17 PST (America/Los_Angeles) — 0.5.0-dev.25: Chkalovsk Bravo spawn 5 faces the zone centre.
 - 2026-11-07 03:46:20 PST (America/Los_Angeles) — 0.5.0-dev.42: Spetsnaz Alpha stand-off loadout +0, both loadouts 95 (Lateralus). No live result.
 - 2026-11-07 03:58:00 PST (America/Los_Angeles) — 0.5.0-dev.43: version label on the main menu (Osama). No live result.
+- 2026-11-07 03:59:45 PST (America/Los_Angeles) — 0.5.0-dev.44: BARS 7 men 35 HP, 3 PKM, 4 AK-74M, 55 points (Lateralus). No live result.
