@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from itertools import product
@@ -499,6 +500,49 @@ class Catalog:
                 labels.append((label, weapon_id, choice.ammunition_id))
         labels.sort(key=lambda item: item[0].lower())
         return labels
+
+    # Infantry armor rows are named "<class> <N>Men" (for example "Armor Infantry Elite 7Men").
+    # Every row of a class has the same armor; health is 5 per soldier.
+    _INFANTRY_ROW = re.compile(r"^(Armor Infantry.*?)\s*(\d+)\s*Men$")
+    HP_PER_SOLDIER = 5
+
+    def infantry_armor_classes(self) -> dict[str, dict[int, int]]:
+        """{class name: {men: armor id}} for the infantry armor rows."""
+        classes: dict[str, dict[int, int]] = defaultdict(dict)
+        for armor_id, armor in self.armors.items():
+            match = self._INFANTRY_ROW.match((armor.get("Name") or "").strip())
+            if match:
+                classes[match.group(1).strip()][int(match.group(2))] = armor_id
+        return dict(classes)
+
+    def armor_menu_labels(self) -> list[str]:
+        """Armor rows for the menus: one entry per infantry class (men picked separately), then every other row."""
+        classes = self.infantry_armor_classes()
+        grouped = {armor_id for rows in classes.values() for armor_id in rows.values()}
+        others = [label for label, armor_id in self.armor_labels() if armor_id not in grouped]
+        return sorted(classes) + others
+
+    def infantry_armor(self, class_name: str, men: int) -> tuple[dict[str, Any], tuple[float, float] | None]:
+        """Armor and hit box for any number of men of an infantry class, even a count with no row in the game.
+
+        Armor values come from the class's nearest row; health is 5 per soldier; the box is the game's squad box.
+        """
+        rows = self.infantry_armor_classes()[class_name]
+        nearest = min(rows, key=lambda count: (abs(count - men), count))
+        armor = dict(self.armors[rows[nearest]])
+        armor["MaxHealthPoints"] = float(self.HP_PER_SOLDIER * men)
+        armor["Name"] = f"{class_name} {men}Men"
+        if men not in rows:
+            armor["Id"] = 0
+        size = self.silhouette_for_armor(rows[nearest])
+        box = (INFANTRY_BASE_SQUAD_SIZE + INFANTRY_SIZE_PER_SOLDIER * men, size[1]) if size else None
+        return armor, box
+
+    def split_infantry_label(self, label: str) -> tuple[str, int] | None:
+        """Turn an old saved row label such as "Armor Infantry 8Men [84]" into (class, men)."""
+        name = label.rsplit(" [", 1)[0].strip()
+        match = self._INFANTRY_ROW.match(name)
+        return (match.group(1).strip(), int(match.group(2))) if match else None
 
     def armor_labels(self) -> list[tuple[str, int]]:
         labels = [(self.armor_label(armor_id), armor_id) for armor_id in self.armors]

@@ -106,3 +106,20 @@ class T72BJoinTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(_vanilla() is not None, "cache/vanilla snapshot is missing")
+class InfantryArmorTests(unittest.TestCase):
+    def test_any_men_count_for_a_class(self) -> None:
+        catalog = Catalog(load_vanilla(_vanilla()))
+        classes = catalog.infantry_armor_classes()
+        self.assertIn("Armor Infantry Elite", classes)
+        self.assertNotIn(10, classes["Armor Infantry Elite"])
+        armor, box = catalog.infantry_armor("Armor Infantry Elite", 10)
+        self.assertEqual(armor["ArmorValue"], 10)
+        self.assertEqual(armor["MaxHealthPoints"], 50)
+        self.assertEqual(box[0], 6.0)
+        self.assertEqual(catalog.split_infantry_label("Armor Infantry 8Men [84]"), ("Armor Infantry", 8))
+        labels = catalog.armor_menu_labels()
+        self.assertIn("Armor Infantry Shock", labels)
+        self.assertFalse(any(label.startswith("Armor Infantry 8Men") for label in labels))

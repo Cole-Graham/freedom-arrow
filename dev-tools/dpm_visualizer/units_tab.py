@@ -10,7 +10,7 @@ from typing import Any
 from .calculations import Cover, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES
-from .ui_components import CoverControls, SearchableCombobox
+from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
 
 
 def _id_from_label(label: str) -> int | None:
@@ -62,8 +62,7 @@ class UnitsTab:
         target = ttk.LabelFrame(left, text="Target", padding=6)
         target.pack(fill=tk.X, pady=6)
         ttk.Label(target, text="Armor").pack(anchor=tk.W)
-        self.target_armor = SearchableCombobox(target, width=32, on_select=lambda _v: self._touch())
-        self.target_armor.pack(fill=tk.X)
+        self.target_armor = ArmorPicker(target, self.app, width=32, on_select=lambda _v: self._touch())
         ttk.Label(target, text="Or unit (uses its default loadout armor)").pack(anchor=tk.W, pady=(6, 0))
         self.target_unit = SearchableCombobox(target, width=32, on_select=lambda _v: self._touch())
         self.target_unit.pack(fill=tk.X)
@@ -141,8 +140,7 @@ class UnitsTab:
         armor = ttk.Frame(custom)
         armor.pack(fill=tk.X, pady=(4, 0))
         ttk.Label(armor, text="Armor row").pack(side=tk.LEFT)
-        self.clone_armor = SearchableCombobox(armor, width=30, on_select=lambda _v: self._custom_armor_picked())
-        self.clone_armor.pack(side=tk.LEFT, padx=4)
+        self.clone_armor = ArmorPicker(armor, self.app, width=30, on_select=lambda _v: self._custom_armor_picked(), side=tk.LEFT)
         self.clone_armor_vars: dict[str, tk.StringVar] = {}
         fields = [("Infantry armor", "ArmorValue")]
         for face in FACES:
@@ -194,9 +192,8 @@ class UnitsTab:
             var.set(f"{float(armor.get(field) or 0):g}")
 
     def _custom_armor_picked(self) -> None:
-        armor_id = _id_from_label(self.clone_armor.get())
-        if self.app.catalog and armor_id in self.app.catalog.armors:
-            armor = self.app.catalog.armors[armor_id]
+        armor, _box = self.clone_armor.armor()
+        if armor is not None:
             self._set_custom_armor(armor)
             self.clone_hp.set(f"{float(armor.get('MaxHealthPoints') or 0):g}")
 
@@ -251,13 +248,18 @@ class UnitsTab:
         self.clone_name.insert(0, key.removeprefix("[custom] "))
         self.clone_cost.set(int(custom.get("cost") or 1))
         armor = custom["armor"]
-        self.clone_armor.set(custom.get("armor_row") or "")
+        self.clone_armor.set(custom.get("armor_row") or "", custom.get("armor_men"))
         self._set_custom_armor(armor)
         self.clone_hp.set(f"{float(armor.get('MaxHealthPoints') or 0):g}")
         self._clear_custom_weapons()
         for weapon in custom.get("weapons") or []:
             if weapon["weapon_id"] in catalog.weapons and weapon["ammo_id"] in catalog.ammos:
                 self._add_custom_weapon(self._pair_label(weapon["weapon_id"], weapon["ammo_id"]), int(weapon["count"]))
+
+    def _custom_silhouette(self, key: str) -> tuple[float, float] | None:
+        custom = self.app.custom_units[key]
+        box = custom.get("silhouette")
+        return tuple(box) if box else self.app.catalog.silhouette(custom["source_unit_id"])
 
     def _cover(self) -> Cover:
         return self.cover_ctl.cover()
@@ -284,7 +286,7 @@ class UnitsTab:
             return
         self.unit_names = [catalog.unit_label(uid) for uid in catalog.playable_units()]
         self.unit_names.extend(sorted(self.app.custom_units))
-        self.armor_names = [label for label, _ in catalog.armor_labels()]
+        self.armor_names = catalog.armor_menu_labels()
         for row in self.rows:
             row["unit"].set_values(self.unit_names)
         self.target_unit.set_values(self.unit_names)
@@ -419,9 +421,9 @@ class UnitsTab:
         unit_id = _id_from_label(unit_label)
         if unit_id and unit_id in catalog.default_armor:
             return catalog.armors[catalog.default_armor[unit_id]]
-        armor_id = _id_from_label(self.target_armor.get())
-        if armor_id and armor_id in catalog.armors:
-            return catalog.armors[armor_id]
+        armor, _box = self.target_armor.armor()
+        if armor is not None:
+            return armor
         raise ValueError("Pick a target armor or unit.")
 
     def _row_armor(self, row: dict[str, Any]) -> dict[str, Any]:
@@ -444,7 +446,7 @@ class UnitsTab:
         assert catalog is not None
         label = row["unit"].get().strip()
         if label in self.app.custom_units:
-            return catalog.silhouette(self.app.custom_units[label]["source_unit_id"])
+            return self._custom_silhouette(label)
         loadout = self._row_loadout(row)
         if loadout and loadout.replace_unit_id:
             return catalog.silhouette(loadout.replace_unit_id)
@@ -476,14 +478,11 @@ class UnitsTab:
         assert catalog is not None
         unit_label = self.target_unit.get().strip()
         if unit_label in self.app.custom_units:
-            return catalog.silhouette(self.app.custom_units[unit_label]["source_unit_id"])
+            return self._custom_silhouette(unit_label)
         unit_id = _id_from_label(unit_label)
         if unit_id:
             return catalog.silhouette(unit_id)
-        armor_id = _id_from_label(self.target_armor.get())
-        if armor_id:
-            return catalog.silhouette_for_armor(armor_id)
-        return None
+        return self.target_armor.armor()[1]
 
     def _row_series(
         self,
@@ -723,8 +722,8 @@ class UnitsTab:
             messagebox.showerror("DPM", "Name the custom unit.")
             return
         loadout = catalog.loadout_by_label(unit_id, self.clone_loadout.get()) or catalog.default_loadout(unit_id)
-        armor_id = _id_from_label(self.clone_armor.get())
-        armor = dict(catalog.armors[armor_id]) if armor_id in catalog.armors else catalog.dummy_armor()
+        picked, box = self.clone_armor.armor()
+        armor = dict(picked) if picked is not None else catalog.dummy_armor()
         weapons = []
         try:
             for field, var in self.clone_armor_vars.items():
@@ -750,6 +749,8 @@ class UnitsTab:
             "cost": cost,
             "armor": armor,
             "armor_row": self.clone_armor.get(),
+            "armor_men": self.clone_armor.men_count() if self.clone_armor.is_infantry() else None,
+            "silhouette": list(box) if box and self.clone_armor.is_infantry() else None,
             "armor_label": f"{name} armor",
             "weapons": weapons,
         }
@@ -772,6 +773,7 @@ class UnitsTab:
                 for row in self.rows
             ],
             "target_armor": self.target_armor.get(),
+            "target_armor_men": self.target_armor.men_count(),
             "target_unit": self.target_unit.get(),
             "face": self.face_var.get(),
             "damage_type": self.damage_type.get(),
@@ -808,7 +810,7 @@ class UnitsTab:
                 self.log_scale.set(bool(state["log_scale"]))
             self.cover_ctl.load(state)
             if state.get("target_armor"):
-                self.target_armor.set(state["target_armor"])
+                self.target_armor.set(state["target_armor"], state.get("target_armor_men"))
             if "target_unit" in state:
                 self.target_unit.set(state.get("target_unit") or "")
             rows = state.get("rows") or []
