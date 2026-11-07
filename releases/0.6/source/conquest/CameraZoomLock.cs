@@ -14,7 +14,9 @@ public sealed partial class Prototype
     static int zoomLocksBlocked;
     static void InstallCameraZoomLock()
     {
-        Patch(typeof(CameraScrollSystem),"Update",nameof(CameraScrollBefore),nameof(CameraScrollAfter));
+        // Update(float, in Entity) is the per-camera override; the base class also has Update(float).
+        var update=AccessTools.GetDeclaredMethods(typeof(CameraScrollSystem)).Single(m=>m.Name=="Update"&&m.GetParameters().Length==2);
+        instance!.HarmonyInstance.Patch(update,prefix:new HarmonyMethod(typeof(Prototype),nameof(CameraScrollBefore)),postfix:new HarmonyMethod(typeof(Prototype),nameof(CameraScrollAfter)));
         var attach=AccessTools.GetDeclaredMethods(typeof(CameraService)).Single(m=>m.Name=="AttachToUnit"&&m.IsStatic&&m.GetParameters().Length==2);
         instance!.HarmonyInstance.Patch(attach,prefix:new HarmonyMethod(typeof(Prototype),nameof(CameraAttachBefore)));
         MelonLogger.Msg("FREEDOM_ARROW_CAMERA_ZOOM_LOCK installed: zooming in does not follow a unit");
