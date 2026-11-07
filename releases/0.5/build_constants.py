@@ -624,6 +624,17 @@ def main():
         if r['UnitId'] in (par,new) and r['WeaponId']==tg['weapon']:put('WeaponAmmunitionsJson',r['Id'],{'WeaponId':rip2},why)
     turrets={effective['TurretWeaponsJson'][rid]['TurretId'] for rid in tg['turret_weapons']}
     assert all(o['ModificationId']==vm for o in effective['OptionsJson'].values() if any(o.get(f'Turret{i}Id') in turrets for i in range(21)))
+    # 0.5 dev.20: T-72B3AM obr. 16 is the T-72B3A base; the no-ERA base option is retired; obr. 16 + Arena is +70.
+    tb=json.loads((R/'t72b3a-contract.json').read_text());why='T-72B3AM obr. 16 is the base';u=tb['unit']
+    base=effective['OptionsJson'][tb['base_option']];mod=base['ModificationId']
+    assert effective['OptionsJson'][tb['retire_option']]['ModificationId']==mod and base['Cost']==0 and base['ArmorId']==tb['new_armor']
+    drop('OptionsJson',tb['retire_option']);mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tb['retire_option']):u},indent=2,sort_keys=True)+'\n')
+    rest=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod),key=lambda o:(o['Id']!=tb['base_option'],o['Order']))
+    for order,o in enumerate(rest):put('OptionsJson',o['Id'],{'Order':order},why)
+    assert [o['Cost'] for o in rest]==[0,70],[(o['Id'],o['Cost']) for o in rest]
+    hits=[r['Id'] for r in effective['UnitArmorsJson'].values() if r['UnitId']==u and r['ArmorId']==tb['old_armor']];assert hits
+    for rid in hits:put('UnitArmorsJson',rid,{'ArmorId':tb['new_armor']},why)
+    put('Units',u,{'HUDName':tb['hud']},why);assert effective['Units'][u]['Cost']==165
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
