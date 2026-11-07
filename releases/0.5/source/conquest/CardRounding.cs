@@ -5,6 +5,7 @@ namespace FreedomArrow.Conquest;
 // 0.5 dev.18: the detailed unit card rounds rate of fire to the nearest 5 (UnitInfoCard.OnWeaponButtonSelected
 // calls UtilsClass.RoundToNearestMultiple(value, 5)). Every other caller uses 0.05. Under 100 rounds per minute
 // a step of 5 hides real values (12.5 shows as 10), so values under 100 round to 1 instead. Display only.
+// 0.5 dev.38: halves round up (12.5 shows as 13; Lateralus: round to the nearest integer).
 public sealed partial class Prototype
 {
     static void InstallCardRounding()
@@ -17,7 +18,7 @@ public sealed partial class Prototype
         if(__1!=5f)return true;
         __0=SquadCardValue(__0);
         if(__0>=100f)return true;
-        __result=MathF.Round(__0,MidpointRounding.ToEven);
+        __result=MathF.Round(__0,MidpointRounding.AwayFromZero);
         return false;
     }
 }
