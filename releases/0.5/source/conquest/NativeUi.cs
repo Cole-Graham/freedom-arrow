@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Il2CppTMPro;
 using Il2CppBrokenArrow.Client.Ecs.UI.HUD.GameModes.WarGoals;
 using Il2CppBrokenArrow.Client.Ecs.Controllers;
+using Il2CppNetworkCommon.Enums;
 
 namespace FreedomArrow.Conquest;
 public sealed partial class Prototype
@@ -84,8 +85,9 @@ public sealed partial class Prototype
             var next=ledger.Forecast(zones);
             alphaNextTick=NextTickText(panel._alphaConquestBar,alphaNextTick);
             bravoNextTick=NextTickText(panel._bravoConquestBar,bravoNextTick);
-            alphaNextTick.text=Settings.NextTickLabel(next.Alpha);
-            bravoNextTick.text=Settings.NextTickLabel(next.Bravo);
+            bool bravo=LocalIsBravo(panel);
+            alphaNextTick.text=Settings.NextTickLabel(bravo?next.Bravo:next.Alpha);
+            bravoNextTick.text=Settings.NextTickLabel(bravo?next.Alpha:next.Bravo);
         }
         catch(Exception e)
         {
@@ -227,14 +229,18 @@ public sealed partial class Prototype
         }
         if(config.EnableDeveloperFixtures&&view!=null&&Guarded(view.Service)&&Input.GetKeyDown(KeyCode.F11))SetScoringOverlay(!config.ShowOverlay);
     }
+    // The panel's "alpha" widgets show the local player's own team, as the native UpdateConquestPoints does
+    // (it reads _session.CurrentPlayer.TeamSide). A Bravo player sees Bravo on the "alpha" bar.
+    static bool LocalIsBravo(WarGoalsPanel panel)=>panel._session?.CurrentPlayer?.TeamSide==TeamSide.Bravo;
     // Native conquest bars show points out of the score limit. A bar fault turns off the bars, not the scoring.
     static bool ShowScoreBars(WarGoalsPanel panel)
     {
         if(barsOff||config.ScoreLimit<=0)return false;
         try
         {
-            ShowScoreBar(panel._alphaConquestBar,ledger.Alpha);
-            ShowScoreBar(panel._bravoConquestBar,ledger.Bravo);
+            bool bravo=LocalIsBravo(panel);
+            ShowScoreBar(panel._alphaConquestBar,bravo?ledger.Bravo:ledger.Alpha);
+            ShowScoreBar(panel._bravoConquestBar,bravo?ledger.Alpha:ledger.Bravo);
             if(!barsLogged)
             {
                 barsLogged=true;
