@@ -668,6 +668,18 @@ def main():
         if r['AbilityId'] not in made:made[r['AbilityId']]=clone('AbilitiesJson',r['AbilityId'],{**{f:like[f] for f in lz['fields']},'Name':a['Name']+' Laser'},'Recon infantry laser designator')
         put('UnitAbilitiesJson',r['Id'],{'AbilityId':made[r['AbilityId']]},'Recon infantry laser designator')
     assert all(has(u) for u in sf)
+    # 0.5 dev.27: TGB-1111 RBS is its own card at 50; TGB-1111 with the Pvpj 1110 is 30.
+    tgb=json.loads((R/'tgb-contract.json').read_text());why='TGB-1111 RBS card split';par,new=tgb['parent'],tgb['unit']
+    assert new not in effective['Units'] and effective['OptionsJson'][tgb['move_option']]['ModificationId']==tgb['variant_mod']
+    assert {m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==par}=={tgb['variant_mod']}
+    add_unit(new,par,tgb['fields'],why)
+    for table in ['TurretUnitsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
+        for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==par]:clone(table,rid,{'UnitId':new},why)
+    vm=clone('ModificationsJson',tgb['variant_mod'],{'UnitId':new},why)
+    put('OptionsJson',tgb['move_option'],{'ModificationId':vm,'Order':0,'Cost':0},why)
+    clone('SpecializationAvailabilitiesJson',tgb['pool'],{'UnitId':new},why)
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tgb['move_option']):par},indent=2,sort_keys=True)+'\n')
+    assert effective['Units'][par]['Cost']==30 and [o['Id'] for o in options(par)]==[2207]
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
