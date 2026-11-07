@@ -521,7 +521,7 @@ def main():
         assert [a['DispersionHorizontalRadius'],a['DispersionVerticalRadius']]==old and not a['Name'].startswith('Missile'),key
         assert {effective['WeaponsJson'][r['WeaponId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==int(key)}<=set(acc['weapon_types']),key
         assert key in acc['launcher_dev2'] and 'DispersionMinimal' not in f,key
-        put('AmmunitionsJson',int(key),f,'0.5 accuracy: launcher radius 2.14')
+        put('AmmunitionsJson',int(key),f,'0.5 accuracy: launcher radius 1.96')
     # 0.5 dev.3: smoke with the BMP-2G, BMP-2M and T-72B1 packages.
     smc=json.loads((R/'smoke-contract.json').read_text())
     for key,ab in smc['option_ability'].items():

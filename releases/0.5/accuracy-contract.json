@@ -1,5 +1,5 @@
 {
-  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed. 0.5 dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63) use radius 2.14/2.14 with DispersionMinimal 0.88 in place of x2: calculated 80% to hit a tank front point blank, 72% at half range, 65% at max range (crew error). Tank-gun rounds keep dev.1's x2. 0.5 dev.9 (Osama, 6 November 2026): tank-gun rounds are back to vanilla dispersion; dev.1's x2 on them is removed (70 rounds). Only launcher rounds keep a dispersion change. 0.5 dev.10 (Osama, 6 November 2026): the launcher close-range floor is removed (DispersionMinimal back to vanilla 0); launchers keep radius 2.14, so they hit 100% close in and about 65% at max range.",
+  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed. 0.5 dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63) use radius 2.14/2.14 with DispersionMinimal 0.88 in place of x2: calculated 80% to hit a tank front point blank, 72% at half range, 65% at max range (crew error). Tank-gun rounds keep dev.1's x2. 0.5 dev.9 (Osama, 6 November 2026): tank-gun rounds are back to vanilla dispersion; dev.1's x2 on them is removed (70 rounds). Only launcher rounds keep a dispersion change. 0.5 dev.10 (Osama, 6 November 2026): the launcher close-range floor is removed (DispersionMinimal back to vanilla 0); launchers keep radius 2.14, so they hit 100% close in and about 65% at max range. 0.5 dev.11 (Osama, 6 November 2026): launchers radius 1.96 / 1.96, about 75% to hit a tank front at max range (was 2.14, 65%).",
   "factor": 2.0,
   "weapon_types": [
     110,
@@ -8,184 +8,184 @@
   ],
   "ammo_fields": {
     "41": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "103": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "105": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "107": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "108": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "121": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "128": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "130": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "377": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "392": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "396": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "451": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "476": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "492": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "522": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "524": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "525": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "550": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "591": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "593": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "595": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "609": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "737": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "906": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "937": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000128": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000129": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000130": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000131": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000132": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000133": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000134": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000135": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000136": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000137": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000138": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000139": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000140": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000141": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000142": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000143": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000144": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000145": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000146": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     },
     "2000453": {
-      "DispersionHorizontalRadius": 2.14,
-      "DispersionVerticalRadius": 2.14
+      "DispersionHorizontalRadius": 1.96,
+      "DispersionVerticalRadius": 1.96
     }
   },
   "was": {
