@@ -11,7 +11,7 @@ using Il2CppNetworkCommon.Enums;
 
 namespace FreedomArrow.Conquest;
 // 0.6 dev.7 (Osama, 7 November 2026): pilot rescue. A plane shot down nearer an enemy spawn always ejects its pilot;
-// a plane that comes down nearer its own team's spawn, or runs out of fuel, ejects nobody. The pilot pays out through
+// a plane that comes down nearer its own team's spawn, or runs out of fuel, ejects nobody (dev.8: nor before any zone is captured). The pilot pays out through
 // the game's own back-to-base refund; pilot prices are 100 (fighter pilot and crew) and 120 (bomber crew) in the tables.
 // Read from the game code (GameAssembly 6000.3.24f1): UnitDeathSystem.TrySpawnPilot (RVA 0x7B1C80) spawns the pilot for
 // planes inside the map when Random x 100 <= PlanesConfig.DeathChance; fuel-out deaths use FuelOutChance instead.
@@ -42,6 +42,8 @@ public sealed partial class Prototype
             var side=owner.TeamSide;
             string name=unit.UnitData?.Name;
             if(__2){PilotLine("fuel_out_no_pilot",name,side,pos,null,null);return false;}
+            int captured=CapturedZoneCount();
+            if(captured==0){PilotLine("no_zones_captured_no_pilot",name,side,pos,null,null);return false;}
             var (own,enemy)=SpawnDistances(pos,side);
             if(own==null||enemy==null){PilotLine("no_spawns_vanilla",name,side,pos,own,enemy);return true;}
             if(own<=enemy){PilotLine("own_half_no_pilot",name,side,pos,own,enemy);return false;}
@@ -56,6 +58,16 @@ public sealed partial class Prototype
             MelonLogger.Error("FREEDOM_ARROW_PILOT_RESCUE_FAILED: vanilla pilots for this session. "+e.Message);
             return true;
         }
+    }
+    // dev.8 (Osama): early game, before either team has captured a zone, nobody ejects. -1 without a conquest/war-goals mode.
+    static int CapturedZoneCount()
+    {
+        var owners=view?.CapturedOwners;
+        if(owners==null)return -1;
+        int n=0;
+        foreach(var team in new[]{TeamSide.Alpha,TeamSide.Bravo})
+            if(owners.TryGetValue(team,out var ids)&&ids!=null)n+=ids.Count;
+        return n;
     }
     // Nearest spawn point of the plane's own team and of any other playing team, measured on the ground plane.
     static (float? own,float? enemy) SpawnDistances(Vector3 pos,TeamSide side)
