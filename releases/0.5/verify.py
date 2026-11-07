@@ -1,19 +1,19 @@
 """Verify exactly the development candidate we intend to ship to a later test."""
 from pathlib import Path
-import hashlib,io,json,sys,zipfile
+import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.24.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.25.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.24'
+    assert manifest['version']=='0.5.0-dev.25'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.24 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.25 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -237,6 +237,11 @@ with zipfile.ZipFile(p) as z:
     ck_zones={'31':2,'32':2,'33':2,'34':3,'35':3,'36':4,'37':4}
     assert ck['type']==2 and cksk['type']==3 and ck['sceneName']=='Airbase' and settings['MapZoneWeights'][ck['scenario']]==ck_zones==settings['MapZoneWeights'][cksk['scenario']]
     assert {o['_uid']:o['hudText'] for o in scenario_objects(ck['scenario']) if o.get('_type')==15}=={31:'Charlie',32:'Alpha',33:'Bravo',34:'Delta',35:'Echo',36:'Golf',37:'Foxtrot'}
+    # Every Chkalovsk spawn faces within 60 degrees of the zone centre (dev.24 turned Bravo's Spawn point 5 from north).
+    ckobj=scenario_objects(ck['scenario']);zc=[o['pos'] for o in ckobj if o.get('_type')==15];cx=sum(p['X'] for p in zc)/len(zc);cz=sum(p['Z'] for p in zc)/len(zc)
+    for o in [o for o in ckobj if o.get('_type')==10]:
+        yaw=math.degrees(2*math.atan2(o['rotate']['Y'],o['rotate']['W']));to=math.degrees(math.atan2(cx-o['pos']['X'],cz-o['pos']['Z']))
+        assert abs((yaw-to+180)%360-180)<60,(o['_dname'],yaw,to)
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}

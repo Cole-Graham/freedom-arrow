@@ -1,4 +1,5 @@
 """[FA] [2v2] Chkalovsk Airbase: Lateralus's authored layout on the Airbase scene, FA script grafted. Zones, spawns and playable stay put."""
+import math
 import common as C
 NAME='[FA] [2v2] Chkalovsk Airbase 0.1';GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c007'
 SKIRMISH_NAME='[FA] [2v2] Chkalovsk Airbase Skirmish 0.1';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c008'
@@ -18,6 +19,15 @@ def add_start_cameras(objects):
     for team,name,side in (('Alpha team','Camera alpha',-1),('Bravo team','Camera bravo',1)):
         assert all((x-cx)*side>0 for t,x in spawns.items() if t==teams[team]),(team,'spawns on the other side')
         C.add_camera(objects,team,name,dict(X=cx+side*CAMERA_BACK,Y=GROUND_Y,Z=cz),dict(X=cx+side*LOOK_BACK,Y=GROUND_Y,Z=cz),HEIGHT)
+# Lateralus 2026-11-07: Bravo's north-east spawn (Spawn point 5) was exported facing north. Turn it toward the zone centre,
+# like the other spawns. The build stops if a new export already sets its facing.
+def face_spawn(objects,name):
+    zones=[o['pos'] for o in objects if o.get('_type')==15]
+    cx=sum(p['X'] for p in zones)/len(zones);cz=sum(p['Z'] for p in zones)/len(zones)
+    o=next(o for o in objects if o.get('_type')==10 and o['_dname']==name)
+    assert C.identity(o['rotate']),(name,'already has a facing. Remove face_spawn.')
+    half=math.atan2(cx-o['pos']['X'],cz-o['pos']['Z'])/2
+    o['rotate'].update(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half))
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
     assert head['map']=='Airbase' and meta['gameVersion']==C.GAME_VERSION
@@ -25,6 +35,7 @@ def prepare(game,spec):
     assert not [o for o in objects if o.get('_type')==18],'authored map has cameras now. Check this merge.'
     C.strip_editor_teams(objects,meta)
     C.letter_zones(objects,LETTERS,[fl['name'] for fl in spec['flavors']])
+    face_spawn(objects,'Spawn point 5')
     add_start_cameras(objects)
     return C.extract_layout(objects),(head,nodes,objects,meta)
 SPEC=dict(

@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.24 — development candidate
+# Freedom Arrow 0.5.0-dev.25 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -6,6 +6,7 @@ New in 0.4: MBT and kit prices from equal-point fights; 26 tank-gun sabot rows a
 New in 0.5 dev.16: sniper and anti-materiel rifles with 1000 m or more range fire 6 rounds per minute (snipers were 12.5, anti-materiel 10).
 New in 0.5 dev.18: those sniper rifles fire 8 rounds per minute (anti-materiel rifles stay at 6). The unit card now shows rate of fire under 100 to the nearest 1, not the nearest 5.
 New in 0.5 dev.23: new map [FA] [2v2] Chkalovsk Airbase 0.1 (and a Skirmish version for F8). Zones A B C are worth 2, D E 3, F G 4. Start cameras face the map centre. 1v1 Dead Center start cameras face the right way.
+New in 0.5 dev.25: on Chkalovsk Airbase, Bravo's north-east spawn faces the map centre (it faced north).
 
 ## Earlier notes
 
@@ -293,3 +294,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-06 01:57:20 PST (America/Los_Angeles) — 0.4.0-dev.34: M8 Thunderbolt ERA 700 and Applique 400 HEAT all around (Osama). Next patch, not deployed.
 - 2026-11-06 01:59:58 PST (America/Los_Angeles) — 0.4.0-dev.35: TOW-2B = Javelin, Thunderbolt rear armor unchanged, Stryker MC 90 (Osama). Not deployed.
 - 2026-11-06 22:10:32 PST (America/Los_Angeles) — 0.5.0-dev.23: Chkalovsk Airbase map; start cameras face the battle.
+- 2026-11-06 22:30:17 PST (America/Los_Angeles) — 0.5.0-dev.25: Chkalovsk Bravo spawn faces the map centre.
