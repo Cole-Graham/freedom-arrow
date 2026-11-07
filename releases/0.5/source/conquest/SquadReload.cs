@@ -37,7 +37,10 @@ public sealed partial class Prototype
     // Called from CountShot after a real shot, when the weapon and its unit are fully set up.
     static void SquadReloadShot(WeaponComponent w)
     {
-        if(squadReload==null||w.WeaponInfo==null||(int)w.WeaponInfo.Type!=rofType||reloadByWeapon.ContainsKey(w.Pointer))return;
+        if(squadReload==null||w.WeaponInfo==null||(int)w.WeaponInfo.Type!=rofType)return;
+        // dev.37: the game puts the data reload back after each reload by a path neither hook below sees
+        // (dev.36 editor test: first gap 2.89 s, then 1.41 s again), so a registered weapon is rewritten on every shot.
+        if(reloadByWeapon.TryGetValue(w.Pointer,out float known)){w._magazineReloadTime=new GFloat(known);return;}
         var unit=w.GetUnitEntity();
         if(!unit.IsAlive||!unit.Has<UnitComponent>())return;
         int uid=NativeEcs.Read<UnitComponent>(unit).UnitData?.Id??0;
