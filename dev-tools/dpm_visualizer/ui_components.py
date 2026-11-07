@@ -218,3 +218,85 @@ class CoverControls:
             self.kind.set(state["cover"])
         if state.get("cover_soldiers"):
             self.soldiers.set(int(state["cover_soldiers"]))
+
+
+class ArmorPicker:
+    """Armor menu with a separate Men box for infantry classes, so any squad size can be picked."""
+
+    def __init__(self, parent, app, width: int = 32, on_select: Callable | None = None, side: str | None = None):
+        self.app = app
+        self.on_select = on_select
+        self.frame = ttk.Frame(parent)
+        self.combo = SearchableCombobox(self.frame, width=width, on_select=lambda _v: self._picked())
+        self.combo.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        ttk.Label(self.frame, text="Men").pack(side=tk.LEFT, padx=(4, 0))
+        self.men = tk.IntVar(value=8)
+        self.men_box = ttk.Spinbox(self.frame, from_=1, to=30, textvariable=self.men, width=4, command=self._changed)
+        self.men_box.pack(side=tk.LEFT, padx=2)
+        self.men_box.bind("<FocusOut>", lambda _e: self._changed())
+        if side:
+            self.frame.pack(side=side, padx=4)
+        else:
+            self.frame.pack(fill=tk.X)
+        self._update_state()
+
+    def _classes(self) -> dict:
+        return self.app.catalog.infantry_armor_classes() if self.app.catalog else {}
+
+    def is_infantry(self) -> bool:
+        return self.combo.get().strip() in self._classes()
+
+    def _update_state(self) -> None:
+        self.men_box.configure(state=tk.NORMAL if self.is_infantry() else tk.DISABLED)
+
+    def _picked(self) -> None:
+        self._update_state()
+        self._changed()
+
+    def _changed(self) -> None:
+        if self.on_select:
+            self.on_select(self.combo.get())
+
+    def set_values(self, values) -> None:
+        self.combo.set_values(values)
+        self._update_state()
+
+    def get(self) -> str:
+        return self.combo.get()
+
+    def men_count(self) -> int:
+        try:
+            return max(1, int(self.men.get()))
+        except (tk.TclError, ValueError):
+            return 1
+
+    def set(self, label: str, men: int | None = None) -> None:
+        """Accepts a menu label, or an old infantry row label ("Armor Infantry 8Men [84]")."""
+        split = self.app.catalog.split_infantry_label(label) if self.app.catalog and label else None
+        if split:
+            label, men = split
+        self.combo.set(label)
+        if men:
+            self.men.set(int(men))
+        self._update_state()
+
+    def armor(self):
+        """(armor row, hit box) for the choice, or (None, None) when nothing valid is picked."""
+        catalog = self.app.catalog
+        label = self.combo.get().strip()
+        if catalog is None or not label:
+            return None, None
+        if label in self._classes():
+            return catalog.infantry_armor(label, self.men_count())
+        armor_id = None
+        if "[" in label and label.endswith("]"):
+            try:
+                armor_id = int(label[label.rfind("[") + 1 : -1])
+            except ValueError:
+                armor_id = None
+        if armor_id not in catalog.armors:
+            return None, None
+        return catalog.armors[armor_id], catalog.silhouette_for_armor(armor_id)
+
+    def label_text(self) -> str:
+        return f"{self.combo.get()} {self.men_count()} men" if self.is_infantry() else self.combo.get()
