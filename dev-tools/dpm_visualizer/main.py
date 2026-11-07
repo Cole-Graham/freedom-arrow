@@ -8,7 +8,8 @@ from pathlib import Path
 from tkinter import messagebox, simpledialog, ttk
 
 from .joins import Catalog
-from .tables import build_latest_mod, default_vanilla_dir, load_dataset, repo_root
+from .constants import VANILLA_COVER
+from .tables import build_latest_mod, default_vanilla_dir, load_dataset, mod_cover, repo_root
 from .ui_components import SearchableCombobox
 from .units_tab import UnitsTab
 from .weapons_tab import WeaponsTab
@@ -22,6 +23,7 @@ class DPMVisualizerApp:
         self.root.title("Broken Arrow DPM Visualizer")
         self.root.geometry("1600x1200")
         self.catalog: Catalog | None = None
+        self.cover_rules: dict[str, float] = dict(VANILLA_COVER)
         self.custom_weapons: dict = {}
         self.custom_units: dict = {}
         self.current_profile = "default"
@@ -77,11 +79,12 @@ class DPMVisualizerApp:
             messagebox.showerror("DPM", "No vanilla tables in cache/vanilla. Run python -m pipeline decrypt first.")
             return
         try:
-            overlay, label = None, f"Vanilla ({vanilla.name})"
+            overlay, label, cover = None, f"Vanilla ({vanilla.name})", dict(VANILLA_COVER)
             if source == "mod":
                 overlay, version = build_latest_mod(vanilla)
-                label = f"Freedom Arrow {version}"
+                label, cover = f"Freedom Arrow {version}", mod_cover(overlay)
             self.catalog = Catalog(load_dataset(vanilla, overlay))
+            self.cover_rules = cover
         except Exception as exc:
             messagebox.showerror("DPM", str(exc))
             return

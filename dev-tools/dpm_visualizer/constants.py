@@ -128,3 +128,8 @@ def format_dpm_y_axis_tick(value: float, _pos: int) -> str:
     if "e" in formatted or "E" in formatted:
         formatted = f"{value:.4f}".rstrip("0").rstrip(".")
     return formatted or "0"
+
+# Cover on infantry in vanilla: ShellHitSystem building damage floor 0.18 plus 0.02 per soldier inside
+# (game config, logged by the FA runtime as FREEDOM_ARROW_BUILDING_DAMAGE before it applies its values).
+# Vanilla has no woods damage reduction. The mod's values are in releases/<version>/.../game-config.json.
+VANILLA_COVER = {"forest_taken": 1.0, "building_floor": 0.18, "building_per_soldier": 0.02}

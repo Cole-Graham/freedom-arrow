@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from dataclasses import dataclass
 from typing import Any, Iterable
 
 from .constants import (
@@ -13,6 +14,35 @@ from .constants import (
     FACE_FIELDS,
     RANGE_STEP_CARD_M,
 )
+
+
+@dataclass(frozen=True)
+class Cover:
+    """Cover on an infantry target. Values come from the loaded data set (vanilla or the mod).
+
+    Building (ShellHitSystem.DamageBuilding): M = clamp(floor + per_soldier x soldiers),
+    damage x (M + (1 - M) x IgnoreCover); the shell hits the building, so it always lands.
+    Woods (FA CoverDamage hook; vanilla has none): damage x (1 - (1 - forest_taken) x (1 - IgnoreCover)).
+    """
+
+    kind: str = "Open"  # Open, Woods or Building
+    forest_taken: float = 1.0
+    building_floor: float = 0.18
+    building_per_soldier: float = 0.02
+    soldiers: int = 6
+
+
+def cover_multiplier(ammo: dict[str, Any], armor: dict[str, Any], cover: Cover | None) -> float:
+    """Share of physical damage that gets through cover. Only infantry (value armor) use cover."""
+    if cover is None or cover.kind == "Open" or not uses_value_armor(armor):
+        return 1.0
+    ignore = _clamp01(float(ammo.get("IgnoreCover") or 0))
+    if cover.kind == "Woods":
+        return 1.0 - (1.0 - cover.forest_taken) * (1.0 - ignore)
+    if cover.kind == "Building":
+        share = _clamp01(cover.building_floor + cover.building_per_soldier * cover.soldiers)
+        return share + (1.0 - share) * ignore
+    raise ValueError(f"unknown cover {cover.kind}")
 
 
 def _mid(lo: float, hi: float) -> float:
@@ -240,11 +270,16 @@ def dpm_at_world(
     damage_type: str = "Physical",
     silhouette: tuple[float, float] | None = None,
     apply_accuracy: bool = False,
+    cover: Cover | None = None,
 ) -> float:
     if not in_range(ammo, world_m):
         return 0.0
     damage = hit_damage(ammo, armor, world_m, face, damage_type)
-    chance = hit_chance(ammo, world_m, silhouette) if apply_accuracy else 1.0
+    covered = cover is not None and cover.kind != "Open" and uses_value_armor(armor)
+    if covered and damage_type == "Physical":
+        damage *= cover_multiplier(ammo, armor, cover)
+    in_building = covered and cover.kind == "Building"
+    chance = hit_chance(ammo, world_m, silhouette) if apply_accuracy and not in_building else 1.0
     return damage * chance * shots_per_minute(weapon, gun_count)
 
 
@@ -258,6 +293,7 @@ def sample_dpm(
     range_step_card: float = RANGE_STEP_CARD_M,
     silhouette: tuple[float, float] | None = None,
     apply_accuracy: bool = False,
+    cover: Cover | None = None,
 ) -> list[tuple[float, float]]:
     """(card_metres, DPM) from 0 to max card range. DPM is 0 outside the fire gate."""
     ground = float(ammo.get("GroundRange") or 0)
@@ -281,6 +317,7 @@ def sample_dpm(
                     damage_type,
                     silhouette,
                     apply_accuracy,
+                    cover,
                 ),
             )
         )
@@ -301,6 +338,7 @@ def sample_dpm(
                     damage_type,
                     silhouette,
                     apply_accuracy,
+                    cover,
                 ),
             )
         )
