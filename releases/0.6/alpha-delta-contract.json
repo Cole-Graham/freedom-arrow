@@ -1,6 +1,44 @@
 {
-  "note": "0.6 dev.11 (Lateralus, 7 November 2026). Spetsnaz Alpha close-quarters (unit 131): 85 points (was 95), 10 men (was 12), 50 HP (was 60): two plain AK-15SK riflemen (members 351, 353) are removed, so AK-15SK 8 -> 6; the 10-man row is a copy of 'Armor Infantry Elite 12Men' (283, armor 10) at 50 HP, because the game has no 10-man Elite row and row 283 is shared with Delta Force and another card. The stand-off loadout keeps its 95 total: option 1511 goes to +10 on the new 85 base. Spetsnaz Alpha stand-off (unit 354): AK-107 12 -> 10, AEK-999 1 -> 2, RG-6 MGL 1 -> 2 (members 588 and 591 back to their vanilla AEK-999 and RG-6 MGL, which dev.40 had turned into AK-107 riflemen); still 14 men, 70 HP and 4 RPG-30. Delta Force stand-off (unit 411): its 'Sprint Smoke' ability (11) becomes 'Sprint Smoke Laser' (28), the same ability plus a 1200 m laser designator; the close-quarters loadout is unchanged.",
-  "alpha_cqc": {"unit": 131, "retire_members": [351, 353], "armor_link": 222, "armor_like": 283, "men": 10, "rifle": 1011, "rifle_men": 6},
-  "alpha_standoff": {"unit": 354, "member_fields": {"588": {"PrimaryWeaponId": 912, "ModelFileName": "DLC3_SpetsnazAlpha_MG"}, "591": {"PrimaryWeaponId": 181, "ModelFileName": "DLC3_SpetsnazAlpha_rifle3"}}, "counts": {"911": 10, "912": 2, "181": 2}, "men": 14},
-  "delta_laser": {"unit": 411, "link": 738, "from": 11, "to": 28}
+  "note": "0.6 dev.11 (Lateralus, 7 November 2026). Spetsnaz Alpha close-quarters (unit 131): 85 points (was 95), 10 men (was 12), 50 HP (was 60): two plain AK-15SK riflemen (members 351, 353) are removed, so AK-15SK 8 -> 6; the 10-man row is a copy of 'Armor Infantry Elite 12Men' (283, armor 10) at 50 HP, because the game has no 10-man Elite row and row 283 is shared with Delta Force and another card. The stand-off loadout keeps its 95 total: option 1511 goes to +10 on the new 85 base. Spetsnaz Alpha stand-off (unit 354): AK-107 12 -> 10, AEK-999 1 -> 2, RG-6 MGL 1 -> 2 (members 588 and 591 back to their vanilla AEK-999 and RG-6 MGL, which dev.40 had turned into AK-107 riflemen); still 14 men, 70 HP and 4 RPG-30. Delta Force stand-off (unit 411): its 'Sprint Smoke' ability (11) becomes 'Sprint Smoke Laser' (28), the same ability plus a 1200 m laser designator; the close-quarters loadout is unchanged. dev.15 (Lateralus, 7 November 2026): stand-off AEK-999 3 (was 2) and AK-107 9 (was 10): plain AK-107 rifleman 590 becomes an AEK-999 gunner (MG model); stand-off total 90 (was 95), option 1511 +5 on the 85 base.",
+  "alpha_cqc": {
+    "unit": 131,
+    "retire_members": [
+      351,
+      353
+    ],
+    "armor_link": 222,
+    "armor_like": 283,
+    "men": 10,
+    "rifle": 1011,
+    "rifle_men": 6
+  },
+  "alpha_standoff": {
+    "unit": 354,
+    "member_fields": {
+      "588": {
+        "PrimaryWeaponId": 912,
+        "ModelFileName": "DLC3_SpetsnazAlpha_MG"
+      },
+      "591": {
+        "PrimaryWeaponId": 181,
+        "ModelFileName": "DLC3_SpetsnazAlpha_rifle3"
+      },
+      "590": {
+        "PrimaryWeaponId": 912,
+        "ModelFileName": "DLC3_SpetsnazAlpha_MG"
+      }
+    },
+    "counts": {
+      "911": 9,
+      "912": 3,
+      "181": 2
+    },
+    "men": 14
+  },
+  "delta_laser": {
+    "unit": 411,
+    "link": 738,
+    "from": 11,
+    "to": 28
+  }
 }

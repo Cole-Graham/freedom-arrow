@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.14 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.15 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -58,6 +58,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.34 (7 November 2026): dev.33 crashed in Lateralus's editor Play test about 1.5 s after the shot log opened, before any shot. Removed the two new native calls: the reload_roll hook on WeaponComponent.GenerateRandomMagazineReloadTime and the carrier lookup (InfantryUnitComponent.TryGetWeaponCount). Shot lines keep weapon type, unit type, burst and reload timing; hit lines keep target HP. Carriers are worked out from the data instead. Not yet run in a game.
 - dev.42 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off loadout +0 (was +20), so both loadouts cost 95. Option 1511 cost 0; the stand-off unit row (354) is 95 like the close-quarters base (131). Not yet run in a game.
 - dev.44 (Lateralus, 7 November 2026): BARS 7 men and 35 HP (was 8 and 40; vanilla 7-man armor row 83, armor 6), 3 PKM (was 1) and 4 AK-74M (was 7), 55 points (was 60). One GP-25 rifleman is removed and two RPG-26 riflemen become PKM gunners; they keep their RPG-26, so the squad keeps 6 RPG-26 and has 1 GP-25 (was 2). Ammunition is per carrier and unchanged (PKM 300 each). See `bars-contract.json`. Not yet run in a game.
+- dev.15 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off AEK-999 3 (was 2) and AK-107 9 (was 10): one plain AK-107 rifleman becomes an AEK-999 gunner. Still 14 men, 70 HP, 2 RG-6 MGL, 4 RPG-30. Stand-off total 90 (was 95): +5 on the 85 close-quarters base. See `alpha-delta-contract.json`. Not yet run in a game.
 - dev.46 (Lateralus, 7 November 2026): BARS gets its second GP-25 back and loses one RPG-26: the GP-25 rifleman removed in dev.44 returns and an RPG-26 rifleman is removed instead. Still 7 men, 35 HP, 3 PKM, 4 AK-74M and 55 points; now 5 RPG-26 (was 6) and 2 GP-25 (was 1). See `bars-contract.json`. Not yet run in a game.
 - dev.45 (Osama, 7 November 2026): the main-menu version label moves to the bottom middle; the game shows its own build number at the bottom right. Display only. Not yet run in a game.
 - dev.43 (Osama, 7 November 2026): the main menu shows "Freedom Arrow <version>" at the bottom right. The conquest DLL tracks the game's music type (MusicService.PlayByType postfix) and draws the label only on menu screens (Intro, Hangar, Campaign, MiniGames). Display only. Not yet run in a game.
@@ -132,7 +133,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.14.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.15.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -387,3 +388,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 04:08:00 PST (America/Los_Angeles) — 0.5.0-dev.45: version label at the bottom middle (Osama). No live result.
 - 2026-11-07 04:18:50 PST (America/Los_Angeles) — 0.5.0-dev.46: BARS 5 RPG-26 and 2 GP-25 (Lateralus). No live result.
 - 2026-11-07 15:25:18 PST (America/Los_Angeles) — 0.6.0-dev.11: Spetsnaz Alpha close-quarters 10 men at 85, stand-off 2 AEK-999 and 2 RG-6, Delta Force stand-off laser (Lateralus). No live result.
+- 2026-11-07 15:54:41 PST (America/Los_Angeles) — 0.6.0-dev.15: Spetsnaz Alpha stand-off 3 AEK-999, 9 AK-107, 90 points (Lateralus). No live result.
