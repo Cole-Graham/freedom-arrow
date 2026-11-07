@@ -61,6 +61,7 @@ public sealed partial class Prototype
     public static void SquadCardRate(Weapons weapon,int countOfWeapon,ref float __result)
     {
         cardPerLauncher=0;
+        if(cardWeapon!=null&&weapon!=null&&weapon.Pointer==cardWeapon.Pointer){if(countOfWeapon==1)cardPerLauncher=__result;return;}
         if(rofType<0||weapon==null||CardType(weapon)!=rofType||weapon.MagazineSize!=1||countOfWeapon<1)return;
         if(countOfWeapon>1){__result=rofK*MathF.Pow(countOfWeapon,rofExp);return;}
         cardPerLauncher=__result;
@@ -68,6 +69,7 @@ public sealed partial class Prototype
     static float SquadCardValue(float shown)
     {
         float per=cardPerLauncher;cardPerLauncher=0;
+        if(CardLauncherRate(per,out float launcherRate))return launcherRate;
         if(per<=0)return shown;
         int n=(int)MathF.Round(shown/per);
         return n>=1&&MathF.Abs(shown-per*n)<0.01f*shown?rofK*MathF.Pow(n,rofExp):shown;
