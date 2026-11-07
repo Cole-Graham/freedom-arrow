@@ -14,7 +14,7 @@ namespace FreedomArrow.Conquest;
 // Soldiers carrying the same launcher share one weapon and each reloads on his own (squad rate = 60 x carriers / reload),
 // so each squad's weapon gets reload = 60 x carriers / rate. The per-squad values come from squad-reload.json (build time).
 // On the first shot of a squad's launcher the reload is written and the weapon is remembered; each later reload roll of
-// that weapon is overwritten with the same value. The unit card's rate of fire uses the same formula.
+// that weapon is overwritten with the same value (GenerateRandomMagazineReloadTime and SetRandomParams). The unit card's rate of fire uses the same formula.
 public sealed partial class Prototype
 {
     static Dictionary<string,float> squadReload;
@@ -29,6 +29,8 @@ public sealed partial class Prototype
         squadReload=new();
         foreach(var p in root.GetProperty("squads").EnumerateObject())squadReload[p.Name]=p.Value.GetProperty("reload").GetSingle();
         Patch(typeof(WeaponComponent),"GenerateRandomMagazineReloadTime",null,nameof(SquadReloadRolled));
+        // dev.36: SetRandomParams rolls aim, burst and reload itself (inlined) and writes the reload field directly.
+        Patch(typeof(WeaponComponent),"SetRandomParams",null,nameof(SquadReloadRolled));
         Patch(typeof(WeaponHelper),"RateOfFire",null,nameof(SquadCardRate));
         MelonLogger.Msg($"FREEDOM_ARROW_SQUAD_RELOAD installed: {squadReload.Count} squad launchers, rate {rofK} x carriers^{rofExp:0.###}");
     }
