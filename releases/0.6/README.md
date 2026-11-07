@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.1 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.2 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -7,6 +7,7 @@
 Started from 0.5.0-dev.46 (0717b16), 7 November 2026. 0.5 stays on `codex/0.5-development`.
 
 - dev.1 (Osama, 7 November 2026): the package ships three unchanged ActualArrow 1.1.20 mods: HudQuick 1.4.2 and TeamVoice 0.9.13 by Aurka, and FlatIncomeMod 0.9.16 by Speer (end-of-match stats, team voice chat and the in-game mod settings page, passengers dying with their transport, camera zoom-out, aircraft and missile warnings, map notes, air-defence target switches, HUD editor). FlatIncomeMod's forest cover is switched off at startup, because Freedom Arrow applies the same 30% forest rule and both would cut damage twice (`ThirdPartyGuard.cs`). FlatIncomeMod 0.9.16 has no income code. Permission as reported by Osama; see `source/third-party/README.md`. Not yet run in a game.
+- dev.2 (Osama, 7 November 2026): zooming in no longer locks the camera onto a unit. Read from the game code: the mouse-wheel system (`CameraScrollSystem.Update`) picks the unit under the cursor while zooming in and calls `CameraService.AttachToUnit`, which starts the follow camera. While that system runs, the attach is skipped (`CameraZoomLock.cs`); double-click follow and other callers are unchanged. Not yet run in a game.
 
 ## New in 0.5 — accuracy
 
@@ -121,7 +122,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.1.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.2.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
