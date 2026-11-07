@@ -1,15 +1,29 @@
 {
-  "note": "0.5 dev.44 (Lateralus, 7 November 2026). BARS (unit 616): 8 men 40 HP -> 7 men 35 HP (vanilla row 83 Armor Infantry 7Men, armor 6, the same as the 8-man row 84 apart from health). PKM 1 -> 3 and AK-74M 7 -> 4: one GP-25 rifleman (member 1370) is removed, and two RPG-26 riflemen (1372, 1373) become PKM gunners and keep their RPG-26. The squad keeps 6 RPG-26; GP-25 goes from 2 to 1. Ammunition rows are per carrier and are unchanged. Price 60 -> 55 (vehicle-contract.json).",
+  "note": "0.5 dev.44 (Lateralus, 7 November 2026). BARS (unit 616): 8 men 40 HP -> 7 men 35 HP (vanilla row 83 Armor Infantry 7Men, armor 6, the same as the 8-man row 84 apart from health). PKM 1 -> 3 and AK-74M 7 -> 4: one GP-25 rifleman (member 1370) is removed, and two RPG-26 riflemen (1372, 1373) become PKM gunners and keep their RPG-26. The squad keeps 6 RPG-26; GP-25 goes from 2 to 1. Ammunition rows are per carrier and are unchanged. Price 60 -> 55 (vehicle-contract.json). dev.46 (Lateralus, 7 November 2026): the GP-25 rifleman (1370) is back and one RPG-26 rifleman (1371) is removed instead, so the squad has 5 RPG-26 and 2 GP-25; still 7 men, 3 PKM and 4 AK-74M.",
   "unit": 616,
-  "retire_members": [1370],
-  "armor_links": {"1309": 83},
+  "retire_members": [
+    1371
+  ],
+  "armor_links": {
+    "1309": 83
+  },
   "member_fields": {
-    "1372": {"PrimaryWeaponId": 158, "ModelFileName": "DLC3_BARS_MG"},
-    "1373": {"PrimaryWeaponId": 158, "ModelFileName": "DLC3_BARS_MG"}
+    "1372": {
+      "PrimaryWeaponId": 158,
+      "ModelFileName": "DLC3_BARS_MG"
+    },
+    "1373": {
+      "PrimaryWeaponId": 158,
+      "ModelFileName": "DLC3_BARS_MG"
+    }
   },
   "men": 7,
   "pkm": 158,
   "pkm_men": 3,
   "ak": 29,
-  "ak_men": 4
+  "ak_men": 4,
+  "rpg26": 168,
+  "rpg26_men": 5,
+  "gp25": 1012,
+  "gp25_men": 2
 }

@@ -743,6 +743,7 @@ def main():
     men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==bars['unit']]
     assert len(men)==bars['men'] and sum(m['PrimaryWeaponId']==bars['pkm'] for m in men)==bars['pkm_men'] and sum(m['PrimaryWeaponId']==bars['ak'] for m in men)==bars['ak_men']
     assert len(men)*5==effective['ArmorsJson'][effective['UnitArmorsJson'][1309]['ArmorId']]['MaxHealthPoints']
+    assert sum(m['SpecialWeaponId']==bars['rpg26'] for m in men)==bars['rpg26_men'] and sum(m['SpecialWeaponId']==bars['gp25'] for m in men)==bars['gp25_men']
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

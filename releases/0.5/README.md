@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.45 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.46 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -41,6 +41,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.34 (7 November 2026): dev.33 crashed in Lateralus's editor Play test about 1.5 s after the shot log opened, before any shot. Removed the two new native calls: the reload_roll hook on WeaponComponent.GenerateRandomMagazineReloadTime and the carrier lookup (InfantryUnitComponent.TryGetWeaponCount). Shot lines keep weapon type, unit type, burst and reload timing; hit lines keep target HP. Carriers are worked out from the data instead. Not yet run in a game.
 - dev.42 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off loadout +0 (was +20), so both loadouts cost 95. Option 1511 cost 0; the stand-off unit row (354) is 95 like the close-quarters base (131). Not yet run in a game.
 - dev.44 (Lateralus, 7 November 2026): BARS 7 men and 35 HP (was 8 and 40; vanilla 7-man armor row 83, armor 6), 3 PKM (was 1) and 4 AK-74M (was 7), 55 points (was 60). One GP-25 rifleman is removed and two RPG-26 riflemen become PKM gunners; they keep their RPG-26, so the squad keeps 6 RPG-26 and has 1 GP-25 (was 2). Ammunition is per carrier and unchanged (PKM 300 each). See `bars-contract.json`. Not yet run in a game.
+- dev.46 (Lateralus, 7 November 2026): BARS gets its second GP-25 back and loses one RPG-26: the GP-25 rifleman removed in dev.44 returns and an RPG-26 rifleman is removed instead. Still 7 men, 35 HP, 3 PKM, 4 AK-74M and 55 points; now 5 RPG-26 (was 6) and 2 GP-25 (was 1). See `bars-contract.json`. Not yet run in a game.
 - dev.45 (Osama, 7 November 2026): the main-menu version label moves to the bottom middle; the game shows its own build number at the bottom right. Display only. Not yet run in a game.
 - dev.43 (Osama, 7 November 2026): the main menu shows "Freedom Arrow <version>" at the bottom right. The conquest DLL tracks the game's music type (MusicService.PlayByType postfix) and draws the label only on menu screens (Intro, Hangar, Campaign, MiniGames). Display only. Not yet run in a game.
 - dev.41 (Osama, 7 November 2026): the BMD-2 smoke option (+10) works again. The cheap-IFV smoke rule (IFVs at 30 points and below have no smoke) had also emptied this paid option, so it cost 10 and gave nothing. It now keeps its vanilla smoke ability; the BMD-2 without the option still has none. See `dev5-contract.json` keep_options. Not yet run in a game.
@@ -114,7 +115,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.45.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.46.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -367,3 +368,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 03:58:00 PST (America/Los_Angeles) — 0.5.0-dev.43: version label on the main menu (Osama). No live result.
 - 2026-11-07 03:59:45 PST (America/Los_Angeles) — 0.5.0-dev.44: BARS 7 men 35 HP, 3 PKM, 4 AK-74M, 55 points (Lateralus). No live result.
 - 2026-11-07 04:08:00 PST (America/Los_Angeles) — 0.5.0-dev.45: version label at the bottom middle (Osama). No live result.
+- 2026-11-07 04:18:50 PST (America/Los_Angeles) — 0.5.0-dev.46: BARS 5 RPG-26 and 2 GP-25 (Lateralus). No live result.
