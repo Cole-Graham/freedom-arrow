@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.27 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.28 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -32,6 +32,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.24 (Osama, 6 November 2026): M-ATV and M-ATV Javelin 10 HP on both armor choices (was 8). MH-60X Silent Hawk 90 (was 110). M10 Booker and M10 Booker XM913 availability 4 (was 3). Mech. Riflemen availability 8 (was 6). Every recon-tab infantry card except Pogranichniki can laser-designate (24 cards gain it, 21 already had it): their sprint/smoke ability gets a copy with a 1200 m laser, smoke and sprint unchanged. See `dev24-contract.json` and `structural-contract.json`. Not yet run in a game.
 - dev.26 (Osama, 6 November 2026): Wolf WMIK 25 (was 35); both gun options stay +0, so the card costs 25 with either gun. Price in vehicle-contract.json. Not yet run in a game.
 - dev.27 (Osama, 6 November 2026): TGB-1111 loadouts are separate cards: TGB-1111 Pvpj (Pvpj 1110 recoilless rifle) at 30, and the new card TGB-1111 RBS (RBS-56 ATGM) at 50, availability 6 each. Scimitar (DLC2) 40 (was 45). See `tgb-contract.json`; prices in vehicle-contract.json. Not yet run in a game.
+- dev.28 (Osama, 6 November 2026): Mi-28N Ohotnik outer pylon Ataka x8 carries one launcher (was two), so it fires one missile at a time. 2S41 Drok 80 (was 65), 2S23 Nona-SVK 80 (was 65). K16 Bumerang keeps its smoke (it was removed by the cheap-IFV smoke rule). See `dev28-contract.json`. Not yet run in a game.
 - dev.25 (Lateralus, 6 November 2026): Chkalovsk Airbase: Bravo's north-east spawn (Spawn point 5, ground and heli) faced north (no rotation in the export). It now faces the zone centre, about 118 degrees from north toward the south-west, like the other spawns. `verify.py` checks that every Chkalovsk spawn faces within 60 degrees of the zone centre. Not yet run in a game.
 
 ## New in 0.4
@@ -96,7 +97,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.27.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.28.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

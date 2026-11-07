@@ -123,7 +123,7 @@ Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)=
 foreach(var (a,r) in new[]{(6,1500f),(87,1500f),(71,1650f),(134,1350f),(37,2775f),(421,3000f),(417,1575f),(410,1125f)})Check(Row("AmmunitionsJson",a)["GroundRange"].GetValue<float>()==r,"dev.31 mortar range +50% "+a);
 Check(Row("AmmunitionsJson",135)["GroundRange"].GetValue<float>()==600,"dev.31 direct-fire HEAT unchanged");
 foreach(int w in new[]{41,562,563,98,218,262,285,286,555,558,1027})Check(merged["WeaponAmmunitionsJson"].Where(r=>r["WeaponId"].GetValue<int>()==w).Any(r=>Row("AmmunitionsJson",r["AmmunitionId"].GetValue<int>())["GenerateSmoke"].GetValue<bool>()),"dev.31 mortar smoke "+w);
-Check(UC(155)==65,"dev.31 Drok 65");
+Check(UC(155)==80,"dev.31 Drok 65");
 Check(UC(194)==30&&OC(421)==0&&OC(422)==5&&OC(418)==0,"dev.32 Tigr 30, Kord +0, AP-23 +5");
 foreach(int o in new[]{1958,473,40,36,46,58,640,1761,1770})Check(OC(o)==10,"dev.33 IFV 400 HEAT kit +10 "+o);
 foreach(var (o,v) in new[]{(2000354,700),(2000355,400)})Check(H(o,"HeatArmorFront")==v&&H(o,"HeatArmorSides")==v&&H(o,"HeatArmorRear")==40,"dev.34 M8 Thunderbolt kit, rear unchanged "+o);

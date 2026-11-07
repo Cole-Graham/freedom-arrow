@@ -8,9 +8,10 @@
     "keep_units": [
       144,
       158,
-      615
+      615,
+      253
     ],
-    "keep_note": "0.5 dev.3 (Osama, 6 November 2026): Sprut-SD, T-80BV and T-72A keep their vanilla smoke under the price rule."
+    "keep_note": "0.5 dev.3 (Osama, 6 November 2026): Sprut-SD, T-80BV and T-72A keep their vanilla smoke under the price rule. 0.5 dev.28 (Osama, 6 November 2026): K16 Bumerang keeps its vanilla smoke too."
   },
   "unit_hp": {
     "3": 12,

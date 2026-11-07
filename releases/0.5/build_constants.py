@@ -680,6 +680,10 @@ def main():
     clone('SpecializationAvailabilitiesJson',tgb['pool'],{'UnitId':new},why)
     mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tgb['move_option']):par},indent=2,sort_keys=True)+'\n')
     assert effective['Units'][par]['Cost']==30 and [o['Id'] for o in options(par)]==[2207]
+    # 0.5 dev.28: Mi-28N outer Ataka pylon has one launcher, so it fires one missile at a time.
+    d28=json.loads((R/'dev28-contract.json').read_text());o=effective['OptionsJson'][d28['option']]
+    assert o[d28['clear']]==d28['turret'] and o[d28['keep']]==d28['turret']
+    put('OptionsJson',d28['option'],{d28['clear']:0},'Mi-28N one Ataka launcher on the outer pylon')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
