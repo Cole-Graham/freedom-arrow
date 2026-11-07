@@ -19,7 +19,7 @@ FAQUEUE_URL=http://127.0.0.1:8651 dotnet app/FAQueue.dll
 dotnet run --project protocol-test -c Release -- ws://127.0.0.1:8651/hubs/game
 ```
 
-Expect `ALL PASS` (17 checks).
+Expect `ALL PASS` (18 checks).
 
 ## Undo on the deck
 

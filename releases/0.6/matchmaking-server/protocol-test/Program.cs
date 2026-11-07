@@ -5,9 +5,10 @@ int fails = 0; void Check(bool ok, string what) { Console.WriteLine((ok ? "PASS 
 var a = await C.Open(url, "76561190000000001", "Alpha"); var b = await C.Open(url, "76561190000000002", "Bravo");
 const string build = "fa-0.6-test";
 var ha = await a.Invoke("HelloKeyed", a.Id, a.Name, build, "0.10.31", "", "k"); Check(ha.GetProperty("ok").GetBoolean(), "HelloKeyed ok");
-await b.Invoke("HelloUnverified", b.Id, b.Name, build, "0.10.31", "");
+await b.Invoke("HelloUnverified", b.Id, b.Name, build, "0.10.31", "FA 0.6.0-dev.11");
 var snap = await a.Invoke("SubscribeDirectory", build); Check(snap.GetProperty("players").GetArrayLength() == 2, "directory snapshot has 2 players");
-var online = await b.Invoke("GetOnlinePlayers"); Check(online.GetArrayLength() == 2 && online[0].GetProperty("player").GetProperty("name").GetString() != null, "GetOnlinePlayers 2 with names");
+var online = await b.Invoke("GetOnlinePlayers");
+var fb = online.EnumerateArray().First(x => x.GetProperty("player").GetProperty("steamId").GetString() == b.Id).GetProperty("player"); Check(fb.GetProperty("version").GetString() == "0.6.0-dev.11" && fb.GetProperty("pack").GetString() == "", "FA player shows FA version, no pack label"); Check(online.GetArrayLength() == 2 && online[0].GetProperty("player").GetProperty("name").GetString() != null, "GetOnlinePlayers 2 with names");
 await a.Invoke("FindMatch", "1v1");
 var mfa = await a.Wait("MatchFound"); var lobby = mfa.GetProperty("lobbyId").GetString()!; Check(lobby.Length > 0, "A MatchFound " + lobby);
 var ra = await a.Invoke("JoinLobby", lobby); Check(ra[0].GetProperty("isHost").GetBoolean(), "A is host in roster");

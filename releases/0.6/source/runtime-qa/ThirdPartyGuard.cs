@@ -1,4 +1,5 @@
 using System.Reflection;
+using HarmonyLib;
 using MelonLoader;
 namespace FreedomArrow;
 // 0.6 dev.1 (Osama, 7 November 2026): FlatIncomeMod (Speer) ships with Freedom Arrow, but its forest cover stays off.
@@ -46,6 +47,28 @@ static class ThirdPartyGuard
         }
         MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue uses {Hub}; its ban guard is off (Freedom Arrow's lobby rules apply)");
     }
+    // 0.6 dev.11 (Osama, 7 November 2026): ArrowQueue names itself and ActualArrow in the menu ("Mod server · ArrowQueue",
+    // "MODS ARE ON · ARROWQUEUE", "no ActualArrow" under each online player). Its Game.Product, ProductVersion and
+    // PackLabel now read Freedom Arrow and our version. PackLabel is also what ArrowQueue sends to the hub, which shows
+    // "FA <version>" as each player's version (FAQueue).
+    static string faLabel="",faVersion="";
+    public static void NameArrowQueue(HarmonyLib.Harmony h,string version)
+    {
+        var game=AccessTools.TypeByName("ArrowQueue.Game");
+        if(game==null){MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue.Game not found; menu keeps ArrowQueue's names");return;}
+        faVersion=version;faLabel="FA "+version;
+        foreach(var (prop,post) in new[]{("Product",nameof(ProductName)),("ProductVersion",nameof(ProductVer)),("PackLabel",nameof(PackName))})
+        {
+            var getter=AccessTools.PropertyGetter(game,prop);
+            if(getter==null){MelonLogger.Error($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue Game.{prop} not found");continue;}
+            h.Patch(getter,postfix:new HarmonyMethod(typeof(ThirdPartyGuard),post));
+        }
+        MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue menu names Freedom Arrow {version}");
+    }
+    static void ProductName(ref string __result)=>__result="Freedom Arrow";
+    static void ProductVer(ref string __result)=>__result=faVersion;
+    static void PackName(ref string __result)=>__result=faLabel;
+
     public static void RestoreArrowQueue()
     {
         foreach(var (e,old) in changed)e.Value=old;

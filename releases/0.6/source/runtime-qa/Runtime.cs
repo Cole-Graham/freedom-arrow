@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.6.0-dev.11", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.6.0-dev.12", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -75,6 +75,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
         try { ThirdPartyGuard.PointArrowQueue(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: "+e.Message); }
+        try { ThirdPartyGuard.NameArrowQueue(HarmonyInstance,PackageVersion); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: names "+e.Message); }
     }
     public override void OnApplicationQuit()
     {

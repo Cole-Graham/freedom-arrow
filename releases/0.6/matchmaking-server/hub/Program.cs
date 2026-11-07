@@ -32,7 +32,11 @@ sealed class Player
     public string? LobbyId, SearchMode, PartyId;
     public bool Dir;                     // subscribed to directory updates
     public DateTime Since = DateTime.UtcNow;
-    public object Identity() => new { steamId = SteamId, name = Name, buildHash = Build, version = Version, pack = Pack };
+    // Freedom Arrow sends "FA <version>" as its pack label; the menu shows "v<version> · <pack> · <build code>",
+    // so FA players show "vFA-version · build code" instead of ArrowQueue's own version and "no ActualArrow".
+    public object Identity() => Pack.StartsWith("FA ")
+        ? new { steamId = SteamId, name = Name, buildHash = Build, version = Pack[3..], pack = "" }
+        : new { steamId = SteamId, name = Name, buildHash = Build, version = Version, pack = Pack };
     public object Online() => new { player = Identity(), status = Status };
 }
 
