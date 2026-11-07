@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.5 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.6 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -11,6 +11,7 @@ Started from 0.5.0-dev.46 (0717b16), 7 November 2026. 0.5 stays on `codex/0.5-de
 - dev.3 (7 November 2026): fix found in the first Vengeance test of dev.2. The conquest module refused to start when FlatIncomeMod was loaded ("Disable FlatIncomeMod for this scoring experiment", a guard from when FlatIncomeMod changed income), so dev.1 and dev.2 ran without scoring, crits, squad launcher rates or the launcher cards. FlatIncomeMod 0.9.16 has no income or scoring code, so it no longer blocks. Menus are now logged too (Osama): the loaded mods with versions once the game starts, and every scene load, in Latest.log (`FREEDOM_ARROW_MENU`) and events-<utc>.jsonl. Not yet run in a game.
 - dev.4 (7 November 2026): the dev.2 camera fix did not install in the Vengeance test of dev.3 ("Ambiguous match ... CameraScrollSystem:Update": the class has two Update methods). The hook now picks Update(float, in Entity). dev.3 test (measured on Vengeance): the conquest module, crits, squad launcher rates and cards install with HudQuick 1.4.2, TeamVoice 0.9.13 and FlatIncomeMod 0.9.16 loaded; FlatIncomeMod forest cover off; menu log lists the loaded mods. Not yet run in a game.
 - dev.5 (Osama, 7 November 2026): HudQuick's economy bar (the spent / left bar beside points and income) is off. Freedom Arrow sets HudQuick's EconomyBar setting to off at startup (`ThirdPartyGuard.cs`). Not yet run in a game.
+- dev.6 (Osama, 7 November 2026): zooming in over a unit zooms normally (dev.4 and dev.5 blocked the camera lock but also the zoom; reported by Osama on Vengeance). The mouse-wheel zoom first calls a unit-under-cursor check that attaches the follow camera and skips the zoom; that call (GameAssembly RVA 0x7B3B19) now reads false, after a byte check, so the normal zoom runs (`CameraZoomLock.cs`). The dev.5 economy-bar change is undone (Osama: the HudQuick bar is fine). Not yet run in a game.
 
 ## New in 0.5 — accuracy
 
@@ -125,7 +126,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.5.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.6.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

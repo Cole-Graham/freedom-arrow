@@ -4,18 +4,11 @@ namespace FreedomArrow;
 // 0.6 dev.1 (Osama, 7 November 2026): FlatIncomeMod (Speer) ships with Freedom Arrow, but its forest cover stays off.
 // Its ForestCover.Post cuts infantry damage in woods by 30%, the same rule as our CoverDamage, so both would cut it twice.
 // Post returns at once while its private _broken flag is set (FlatIncomeMod sets it only after an error).
-// 0.6 dev.5 (Osama, 7 November 2026): HudQuick's economy bar (spent / left under the points) is not wanted. Its
-// EconomyBar setting is read every frame, so it is set off once HudQuick has created it.
 static class ThirdPartyGuard
 {
-    static bool done,econDone;
+    static bool done;
     public static void Ensure()
     {
-        if(!econDone)
-        {
-            var econ=MelonPreferences.GetEntry<bool>("HudQuick","EconomyBar");
-            if(econ!=null){econDone=true;econ.Value=false;MelonLogger.Msg("FREEDOM_ARROW_THIRD_PARTY: HudQuick economy bar off");}
-        }
         if(done)return;
         var asm=AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a=>a.GetName().Name=="FlatIncomeMod");
         if(asm==null)return;
