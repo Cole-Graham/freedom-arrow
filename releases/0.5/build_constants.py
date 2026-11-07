@@ -602,6 +602,28 @@ def main():
         assert found.get(k,set())==set(cov[k]['ids']),(k,sorted(found.get(k,set())^set(cov[k]['ids'])))
         for aid in cov[k]['ids']:
             put('AmmunitionsJson',aid,{'IgnoreCover':cov[k]['ignore_cover']},'0.5 cover: '+k.replace('_',' ')+' ignore cover')
+    # 0.5 dev.19: Tigr Kornet 2x4 is its own card at 120 in Motorized Infantry; its launchers ripple fire 2 missiles.
+    tg=json.loads((R/'tigr-contract.json').read_text());why='Tigr Kornet 2x4 card split';par,new=tg['parent'],tg['unit']
+    assert new not in effective['Units'] and effective['OptionsJson'][tg['move_option']]['ModificationId']==tg['variant_mod']
+    add_unit(new,par,tg['fields'],why)
+    for table in ['TurretUnitsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
+        for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==par]:clone(table,rid,{'UnitId':new},why)
+    vm=clone('ModificationsJson',tg['variant_mod'],{'UnitId':new},why)
+    put('OptionsJson',tg['move_option'],{'ModificationId':vm,'Order':0,'Cost':0},why)
+    for mod,oids in tg['copy_mods'].items():
+        m=clone('ModificationsJson',int(mod),{'UnitId':new},why)
+        assert {o['Id'] for o in effective['OptionsJson'].values() if o['ModificationId']==int(mod)}==set(oids),mod
+        for oid in oids:clone('OptionsJson',oid,{'ModificationId':m},why)
+    assert [r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par]==[effective['SpecializationAvailabilitiesJson'][tg['pool']]['SpecializationId']]
+    clone('SpecializationAvailabilitiesJson',tg['pool'],{'UnitId':new,'SpecializationId':tg['specialization']},why)
+    mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tg['move_option']):par},indent=2,sort_keys=True)+'\n')
+    rip2=clone('WeaponsJson',tg['weapon'],tg['weapon_fields'],'Tigr Kornet 2x4 ripple fire: 2 missiles per target')
+    for rid in tg['turret_weapons']:
+        assert effective['TurretWeaponsJson'][rid]['WeaponId']==tg['weapon'];put('TurretWeaponsJson',rid,{'WeaponId':rip2},why)
+    for r in list(effective['WeaponAmmunitionsJson'].values()):
+        if r['UnitId'] in (par,new) and r['WeaponId']==tg['weapon']:put('WeaponAmmunitionsJson',r['Id'],{'WeaponId':rip2},why)
+    turrets={effective['TurretWeaponsJson'][rid]['TurretId'] for rid in tg['turret_weapons']}
+    assert all(o['ModificationId']==vm for o in effective['OptionsJson'].values() if any(o.get(f'Turret{i}Id') in turrets for i in range(21)))
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

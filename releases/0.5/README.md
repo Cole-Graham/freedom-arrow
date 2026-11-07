@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.18 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.19 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -24,6 +24,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.16 (Lateralus, 6 November 2026): sniper rifles and anti-materiel rifles with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card (was 12.5 for snipers, 10 for anti-materiel): time between shots 10.5-12.5 s for snipers (was 4-6) and 11-12 s for anti-materiel (was 6-7); magazine 5 and reload 4 s unchanged. 16 weapon rows, including the M-ATV's M107; VSSK (500 m) unchanged. The card value is WeaponHelper.RateOfFire, read from the game code. See `sniper-rof-contract.json`. Not yet run in a game.
 - dev.17 (Osama, 6 November 2026): cover. Infantry in buildings take 18% of incoming damage (floor 0.13 -> 0.18, still 0 per soldier). 120 mm and 125 mm tank HE ignore cover 0.3 -> 0.25 (14 rows), so one shell kills about 1 man in a building. Ground-vehicle autocannon HE (20-57 mm, 20 rows) ignore cover 0 -> 0.125. Damage through = Damage x (floor + (1 - floor) x IgnoreCover), read from ShellHitSystem.DamageBuilding. See `cover-contract.json`. Not yet run in a game.
 - dev.18 (Lateralus, 6 November 2026): long-range sniper rifles fire 8 rounds per minute on the unit card (dev.16: 6): time between shots 7.375-9.375 s (11 weapon rows). Anti-materiel rifles stay at 6 (5 rows). New card hook (`source/conquest/CardRounding.cs`): the detailed unit card rounded rate of fire to the nearest 5 (UnitInfoCard calls UtilsClass.RoundToNearestMultiple(value, 5); read from the game code), so 12.5 showed as 10 and 6 as 5. Under 100 rounds per minute it now rounds to 1 (half to even, like the game); 100 and up still rounds to 5. The compact card uses 0.05 and is unchanged. See `sniper-rof-contract.json`. Not yet run in a game.
+- dev.19 (Osama, 6 November 2026): the Tigr Kornet 2x4 Kornet upgrade is its own card, Tigr Kornet 2x4, at 120 in the Motorized Infantry specialization only (availability 4). Its two Kornet x4 launchers ripple fire: 2 missiles per burst, 2 guided at once (a copy of the Kornet x4 weapon; other Kornet launchers keep 1 missile per target). Tigr Kornet keeps the Kornet-M loadout at 80 in Defense Forces. Saved decks with the old 2x4 option fall back to Tigr Kornet. See `tigr-contract.json`. Not yet run in a game.
 
 ## New in 0.4
 
@@ -87,7 +88,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.18.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.19.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

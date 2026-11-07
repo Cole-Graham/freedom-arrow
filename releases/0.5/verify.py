@@ -2,23 +2,24 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.18.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.19.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.18'
+    assert manifest['version']=='0.5.0-dev.19'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.18 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.19 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
-    assert table('turret_weapons')=={},'Held table must remain empty: turret_weapons'
+    tgc=json.loads((R/'tigr-contract.json').read_text())
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']},'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
@@ -29,13 +30,15 @@ with zipfile.ZipFile(p) as z:
     srof=json.loads((R/'sniper-rof-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in srof.items()),'dev.16 sniper rate of fire'
     assert all(set(table('weapons')[k])<=set(rip.get(k,{}))|set(gap49.get(k,{})) for k in set(rip)|set(gap49)),'dev.37/49 weapon fields only'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,7.0),(7.0,7.0)] for k,r in table('weapons').items() if k not in jav and k not in rip and k not in gap49 and k not in srof),'weapons: launcher reload only'
+    rip2=str(table('turret_weapons')['505']['WeaponId']);assert all(table('turret_weapons')[str(x)]['WeaponId']==int(rip2) for x in tgc['turret_weapons'])
+    w2=table('weapons')[rip2];assert w2['Name']=='ATGM Kornet x4' and all(w2[k]==v for k,v in tgc['weapon_fields'].items()) and w2['TimeBetweenBurstsMin']==5.0,'dev.19 Tigr ripple weapon'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,7.0),(7.0,7.0)] for k,r in table('weapons').items() if k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
     allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values()}
     st=json.loads((R/'structural-contract.json').read_text())
-    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}
+    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}
     for k,row in live('units').items():
         if k in added:continue
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
