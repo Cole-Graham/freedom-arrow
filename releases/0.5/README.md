@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.7 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.8 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -13,6 +13,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.5 (Osama, 6 November 2026): Sprut-SD 55, Sprut-SDM 70. Not yet run in a game.
 - dev.6 (Osama, 6 November 2026): UAZ Kozlik SPG-9 package +0 (was +5). Not yet run in a game.
 - dev.7 (Osama, 6 November 2026): ground ATGMs hit 75%: missile accuracy 0.75 (was 1.0) on the 46 anti-tank missile rounds fired by infantry and ground vehicles, gun-launched missiles included. Helicopter, plane and drone missiles unchanged. See `accuracy-contract.json` atgm_fields. Calculated from game code; not yet run in a game.
+- dev.8 (Osama, 6 November 2026): APS. New M1A1 FEP TUSK + Trophy option +80 and T-72B3AM obr. 16 + Arena option +120 (tank APS = kit +70). IFV and non-tank APS = kit +40: M2A3, M2A3 ESV, M3A3, Bumerang, Kurganets and Vilkas +40; Bumerang armored APS +50; Stryker ICV +65, M-SHORAD +55, MC and SPH +50; M1283 AMPV and M1287 MCV +55. See `aps-contract.json` and `vehicle-contract.json`. Not yet run in a game.
 
 ## New in 0.4
 
@@ -76,7 +77,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.7.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.8.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

@@ -558,6 +558,15 @@ def main():
         kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==int(key) and r['UnitId'] in effective['Units']}
         assert a['Name'].startswith(('Missile AT','Missile GLAT')) and a['DispersionHorizontalRadius']==1.0 and kinds and kinds<=ground,(key,kinds)
         put('AmmunitionsJson',int(key),f,'0.5 accuracy: ground ATGM hit chance 75%')
+    # 0.5 dev.8: APS options. Tanks pay +70 over the armor kit; the FEP and T-72B3AM get a kit + APS option.
+    apsc=json.loads((R/'aps-contract.json').read_text());why='APS option at kit +70'
+    for n in apsc['new_options']:
+        like=effective['OptionsJson'][n['like']];ab=effective['AbilitiesJson'][n['ability']]
+        assert ab['IsAPS'] and ab['APSQuantity']>0 and like['ModificationId'] in {m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==n['unit']}
+        assert not any(like[k] for k in ('Ability1Id','Ability2Id','Ability3Id')) and n['fields']['Cost']==like['Cost']+70,n
+        clone('OptionsJson',n['like'],{**n['fields'],'Ability1Id':n['ability']},why)
+        assert effective['UnitAbilitiesJson'][n['ua_like']]['UnitId']==n['unit']
+        clone('UnitAbilitiesJson',n['ua_like'],{'AbilityId':n['ability']},'APS inventory matches the new option')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:

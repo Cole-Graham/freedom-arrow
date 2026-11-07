@@ -30,7 +30,7 @@ foreach(var (option,armor,front,side,hp) in new[]{(56,47,400,250,14),(1781,288,7
 Check(Row("ArmorsJson",15)["MaxHealthPoints"].GetValue<int>()==14,"M6 Linebacker base HP");
 Check(Row("OptionsJson",1759)["Cost"].GetValue<int>()==25,"M2A3 ESV BUSK3 +25");
 Check(Row("AmmunitionsJson",2000177)["Damage"].GetValue<double>()==10.5,"Spike LR");Check(Row("AmmunitionsJson",2000173)["Damage"].GetValue<double>()==10.5,"Spike-SR 10.5 (0.4 dev.12)");
-foreach(var triple in new[]{(14,1904,70),(180,1958,45),(185,388,30),(41,60,40),(41,2082,70)})Check(Row("Units",triple.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",triple.Item2)["Cost"].GetValue<int>()==triple.Item3,"US configured "+triple);
+foreach(var triple in new[]{(14,1904,70),(180,1958,45),(185,388,30),(41,60,40),(41,2082,80)})Check(Row("Units",triple.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",triple.Item2)["Cost"].GetValue<int>()==triple.Item3,"US configured "+triple);
 Check(Row("Units",421)["Cost"].GetValue<int>()+new[]{1866,1871,1875}.Sum(i=>Row("OptionsJson",i)["Cost"].GetValue<int>())==50,"Battleship defaults provisional50");
 // Detection proposal. Expected values are written here again on purpose, independent of the generator contract.
 // Values come from the contract, so tuning needs no test edit. The class rules are written out here on purpose.
@@ -101,7 +101,7 @@ foreach(var (a,pen) in new[]{(63,700f),(551,700f),(203,700f),(5,650f),(2000154,6
 foreach(int m in new[]{187,322,149})Check(Row("SquadMembersJson",m)["SpecialWeaponId"].GetValue<int>()==0,"one launcher "+m);
 foreach(int u in new[]{63,127,74})Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==u&&r["SpecialWeaponId"].GetValue<int>()!=0)==1,"one launcher squad "+u);
 foreach(int u in new[]{3,208,209,213,480})Check(Linked("UnitArmorsJson","ArmorId",u).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==12),"BMP-3 chassis 12 HP "+u);
-Check(UC(3)==45&&UC(89)==45&&OC(473)==10&&OC(40)==10&&OC(1761)==10&&OC(37)==30&&OC(48)==30&&OC(1766)==30&&OC(1894)==55&&OC(1944)==40&&OC(1947)==40&&OC(2083)==45,"dev.13 prices (BMP-3 45 from dev.22)");
+Check(UC(3)==45&&UC(89)==45&&OC(473)==10&&OC(40)==10&&OC(1761)==10&&OC(37)==40&&OC(48)==40&&OC(1766)==40&&OC(1894)==65&&OC(1944)==50&&OC(1947)==50&&OC(2083)==55&&OC(2082)==55&&OC(637)==40&&OC(638)==50&&OC(645)==40&&OC(1934)==55&&OC(2133)==40,"dev.13 prices with 0.5 dev.8 APS kit +40 (BMP-3 45 from dev.22)");
 foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
 Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==13&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==15,"air missiles unchanged");
 Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");
