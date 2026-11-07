@@ -15,6 +15,26 @@ UNIT_TYPE_INFANTRY = 2
 # WeaponType: RPGReloadable, RPGDisposable, ATGM, ATGMHE. Units-tab infantry DPM skips these.
 INFANTRY_AT_WEAPON_TYPES = frozenset({62, 63, 80, 81})
 
+# Armory slots that change weapons or armor. Pylons are omitted: their combinations explode.
+LOADOUT_SLOT_UINAMES = frozenset(
+    {
+        "Custom_Slot_Weapon_package",
+        "Custom_Slot_Squad_loadout",
+        "Custom_Slot_Armor",
+        "Custom_Slot_Ammunition",
+        "Custom_Slot_Unit_variant",
+        "Custom_Slot_Modernization",
+        "Custom_Slot_Selfdefence_weapon",
+        "Custom_Slot_Front_weapon",
+        "Custom_Slot_Front_weapons",
+        "Custom_Slot_Rear_weapon",
+        "Custom_Slot_Rear_weapons",
+        "Custom_Slot_Central_weapon",
+        "Custom_Slot_Door_guns",
+    }
+)
+MAX_LOADOUT_COMBINATIONS = 64
+
 FACES = ("Front", "Sides", "Rear", "Top")
 FACE_FIELDS = {
     "Front": ("KinArmorFront", "HeatArmorFront"),

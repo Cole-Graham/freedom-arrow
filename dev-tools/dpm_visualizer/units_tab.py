@@ -50,7 +50,7 @@ class UnitsTab:
         self.duel_var = tk.BooleanVar(value=False)
         self.duel_check = ttk.Checkbutton(
             left,
-            text="Each vs the other's armor",
+            text="Each vs the other's loadout",
             variable=self.duel_var,
             command=self._touch,
         )
@@ -63,7 +63,7 @@ class UnitsTab:
         ttk.Label(target, text="Armor").pack(anchor=tk.W)
         self.target_armor = SearchableCombobox(target, width=32, on_select=lambda _v: self._touch())
         self.target_armor.pack(fill=tk.X)
-        ttk.Label(target, text="Or unit (uses its default armor)").pack(anchor=tk.W, pady=(6, 0))
+        ttk.Label(target, text="Or unit (uses its default loadout armor)").pack(anchor=tk.W, pady=(6, 0))
         self.target_unit = SearchableCombobox(target, width=32, on_select=lambda _v: self._touch())
         self.target_unit.pack(fill=tk.X)
         ttk.Label(target, text="Face").pack(anchor=tk.W, pady=(6, 0))
@@ -170,11 +170,11 @@ class UnitsTab:
         ttk.Checkbutton(frame, variable=visible, command=self._on_row_changed).pack(side=tk.LEFT)
         unit = SearchableCombobox(frame, values=self.unit_names, width=26, on_select=lambda _v: self._sync_row(frame))
         unit.pack(side=tk.LEFT, fill=tk.X, expand=True)
-        armor = SearchableCombobox(frame, width=22, on_select=lambda _v: self._touch())
-        armor.pack(side=tk.LEFT, padx=4)
+        loadout = SearchableCombobox(frame, width=24, on_select=lambda _v: self._sync_loadout(frame))
+        loadout.pack(side=tk.LEFT, padx=4)
         cost = tk.IntVar(value=100)
         ttk.Spinbox(frame, from_=1, to=2000, increment=5, textvariable=cost, width=6).pack(side=tk.LEFT)
-        row = {"frame": frame, "visible": visible, "unit": unit, "armor": armor, "cost": cost}
+        row = {"frame": frame, "visible": visible, "unit": unit, "loadout": loadout, "cost": cost}
         unit.entry.bind("<FocusOut>", lambda _e, r=row: self._on_unit_changed(r))
         cost.trace_add("write", lambda *_: self._touch())
         self.rows.append(row)
@@ -199,6 +199,11 @@ class UnitsTab:
             if row["frame"] is frame:
                 self._on_unit_changed(row)
 
+    def _sync_loadout(self, frame: ttk.Frame) -> None:
+        for row in self.rows:
+            if row["frame"] is frame:
+                self._on_loadout_changed(row)
+
     def remove_row(self) -> None:
         if len(self.rows) <= 1:
             return
@@ -214,11 +219,10 @@ class UnitsTab:
             return
         if label in self.app.custom_units:
             custom = self.app.custom_units[label]
-            armor_label = custom.get("armor_label") or "Custom armor"
-            row["armor"].set_values([armor_label])
+            row["loadout"].set_values(["Default"])
             if not restore:
                 row["cost"].set(int(custom.get("cost") or 1))
-                row["armor"].set(armor_label)
+                row["loadout"].set("Default")
             self._update_duel_enabled()
             self._touch()
             return
@@ -226,15 +230,47 @@ class UnitsTab:
         if unit_id is None or unit_id not in catalog.units:
             self._update_duel_enabled()
             return
-        options = catalog.armor_options(unit_id)
-        labels = [opt.label for opt in options] or ["Default"]
-        row["armor"].set_values(labels)
+        labels = catalog.loadout_labels(unit_id) or ["Default"]
+        row["loadout"].set_values(labels)
         if not restore:
-            row["cost"].set(int(catalog.units[unit_id].get("Cost") or 0))
-            if labels:
-                row["armor"].set(labels[0])
+            default = catalog.default_loadout(unit_id)
+            row["loadout"].set(default.label)
+            self._on_loadout_changed(row)
+            return
         self._update_duel_enabled()
         self._touch()
+
+    def _on_loadout_changed(self, row: dict[str, Any], restore: bool = False) -> None:
+        catalog = self.app.catalog
+        if catalog is None:
+            self._touch()
+            return
+        label = row["unit"].get().strip()
+        if label in self.app.custom_units:
+            if not restore:
+                row["cost"].set(int(self.app.custom_units[label].get("cost") or 1))
+            self._update_duel_enabled()
+            self._touch()
+            return
+        loadout = self._row_loadout(row)
+        if loadout is not None and not restore:
+            unit_id = _id_from_label(label)
+            base = int(catalog.units.get(unit_id, {}).get("Cost") or 0) if unit_id else 0
+            row["cost"].set(base + int(loadout.extra_cost))
+        self._update_duel_enabled()
+        self._touch()
+
+    def _row_loadout(self, row: dict[str, Any]):
+        catalog = self.app.catalog
+        if catalog is None:
+            return None
+        label = row["unit"].get().strip()
+        if label in self.app.custom_units:
+            return None
+        unit_id = _id_from_label(label)
+        if unit_id is None or unit_id not in catalog.units:
+            return None
+        return catalog.loadout_by_label(unit_id, row["loadout"].get()) or catalog.default_loadout(unit_id)
 
     def _resolve_armor(self):
         catalog = self.app.catalog
@@ -256,13 +292,14 @@ class UnitsTab:
         label = row["unit"].get().strip()
         if label in self.app.custom_units:
             return self.app.custom_units[label]["armor"]
-        armor_id = _id_from_label(row["armor"].get())
+        loadout = self._row_loadout(row)
+        armor_id = loadout.armor_id if loadout else None
         if armor_id and armor_id in catalog.armors:
             return catalog.armors[armor_id]
         unit_id = _id_from_label(label)
         if unit_id and unit_id in catalog.default_armor:
             return catalog.armors[catalog.default_armor[unit_id]]
-        raise ValueError(f"Pick armor for {label or 'this unit'}.")
+        raise ValueError(f"Pick a loadout for {label or 'this unit'}.")
 
     def _row_silhouette(self, row: dict[str, Any]) -> tuple[float, float] | None:
         catalog = self.app.catalog
@@ -270,6 +307,9 @@ class UnitsTab:
         label = row["unit"].get().strip()
         if label in self.app.custom_units:
             return catalog.silhouette(self.app.custom_units[label]["source_unit_id"])
+        loadout = self._row_loadout(row)
+        if loadout and loadout.replace_unit_id:
+            return catalog.silhouette(loadout.replace_unit_id)
         unit_id = _id_from_label(label)
         if unit_id:
             return catalog.silhouette(unit_id)
@@ -282,9 +322,16 @@ class UnitsTab:
         if label in self.app.custom_units:
             return label
         unit_id = _id_from_label(label)
-        if unit_id:
-            return catalog.unit_label(unit_id)
-        return label
+        if not unit_id:
+            return label
+        name = catalog.unit_label(unit_id)
+        loadout = self._row_loadout(row)
+        if loadout and not loadout.is_default:
+            suffix = loadout.label
+            if " — " in suffix:
+                suffix = suffix.split(" — ", 1)[1]
+            return f"{name} — {suffix}"
+        return name
 
     def _resolve_silhouette(self) -> tuple[float, float] | None:
         catalog = self.app.catalog
@@ -324,9 +371,14 @@ class UnitsTab:
             unit_id = _id_from_label(label)
             if unit_id is None:
                 return None
-            mounted = catalog.dpm_weapons(unit_id, include_upgrade=self.include_upgrade.get())
-            display = catalog.unit_label(unit_id)
-            source_id = unit_id
+            loadout = self._row_loadout(row)
+            mounted = catalog.dpm_weapons(
+                unit_id,
+                include_upgrade=self.include_upgrade.get(),
+                loadout=loadout,
+            )
+            display = self._row_display_name(row)
+            source_id = loadout.replace_unit_id if loadout and loadout.replace_unit_id else unit_id
         for item in mounted:
             if not item.default and not self.include_upgrade.get():
                 continue
@@ -534,7 +586,7 @@ class UnitsTab:
             "rows": [
                 {
                     "unit": row["unit"].get(),
-                    "armor": row["armor"].get(),
+                    "loadout": row["loadout"].get(),
                     "visible": bool(row["visible"].get()),
                     "cost": int(row["cost"].get()),
                 }
@@ -589,8 +641,10 @@ class UnitsTab:
                 if unit and unit in known_units:
                     row["unit"].set(unit)
                     self._on_unit_changed(row, restore=True)
-                if saved.get("armor"):
-                    row["armor"].set(saved["armor"])
+                saved_loadout = saved.get("loadout")
+                if saved_loadout:
+                    row["loadout"].set(saved_loadout)
+                self._on_loadout_changed(row, restore=True)
                 row["visible"].set(bool(saved.get("visible", True)))
                 if saved.get("cost") is not None:
                     try:

@@ -4,9 +4,17 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass, field
+from itertools import product
 from typing import Any
 
-from .constants import FACE_FIELDS, FACES, INFANTRY_AT_WEAPON_TYPES, UNIT_TYPE_INFANTRY
+from .constants import (
+    FACE_FIELDS,
+    FACES,
+    INFANTRY_AT_WEAPON_TYPES,
+    LOADOUT_SLOT_UINAMES,
+    MAX_LOADOUT_COMBINATIONS,
+    UNIT_TYPE_INFANTRY,
+)
 
 
 @dataclass
@@ -31,6 +39,17 @@ class ArmorOption:
     is_default: bool
     option_id: int | None = None
     extra_cost: int = 0
+
+
+@dataclass
+class Loadout:
+    label: str
+    option_ids: tuple[int, ...]
+    armor_id: int | None
+    extra_cost: int
+    turret_ids: tuple[int, ...]
+    replace_unit_id: int | None
+    is_default: bool
 
 
 class Catalog:
@@ -99,6 +118,14 @@ class Catalog:
         for row in self.tables["OptionsJson"].values():
             self.options_by_mod[int(row["ModificationId"])].append(row)
 
+        self.children_by_turret: dict[int, list[int]] = defaultdict(list)
+        for turret_id, row in self.tables.get("TurretsJson", {}).items():
+            parent = int(row.get("ParentTurretId") or 0)
+            if parent:
+                self.children_by_turret[parent].append(int(turret_id))
+
+        self._loadouts: dict[int, list[Loadout]] = {}
+
     def unit_label(self, unit_id: int) -> str:
         unit = self.units[unit_id]
         name = unit.get("HUDName") or unit.get("Name") or f"Unit {unit_id}"
@@ -128,18 +155,7 @@ class Catalog:
         return sorted(ids, key=lambda uid: (self.unit_label(uid).lower(), uid))
 
     def default_weapon_ids(self, unit_id: int) -> list[int]:
-        counts: dict[int, int] = defaultdict(int)
-        for turret_id in self.turrets_by_unit.get(unit_id, []):
-            for weapon_id in self.weapons_by_turret.get(turret_id, []):
-                counts[weapon_id] += 1
-        member_counts = self.member_weapon_counts.get(unit_id)
-        if member_counts:
-            for weapon_id, count in member_counts.items():
-                counts[weapon_id] = max(counts.get(weapon_id, 0), count)
-        elif unit_id in self.squad_weapons:
-            for weapon_id in self.squad_weapons[unit_id]:
-                counts[weapon_id] = max(counts.get(weapon_id, 0), 1)
-        return sorted(counts, key=lambda weapon_id: (self.weapon_label(weapon_id).lower(), weapon_id))
+        return self._weapon_ids_for_loadout(unit_id, self.default_loadout(unit_id))
 
     def is_infantry(self, unit_id: int) -> bool:
         unit = self.units.get(unit_id)
@@ -149,21 +165,29 @@ class Catalog:
         weapon = self.weapons.get(weapon_id)
         return bool(weapon) and int(weapon.get("Type") or 0) in INFANTRY_AT_WEAPON_TYPES
 
-    def gun_count(self, unit_id: int, weapon_id: int) -> int:
+    def gun_count(self, unit_id: int, weapon_id: int, loadout: Loadout | None = None) -> int:
+        effective_id, turret_ids = self._loadout_source(unit_id, loadout)
         turret_count = 0
-        for turret_id in self.turrets_by_unit.get(unit_id, []):
+        for turret_id in turret_ids:
             turret_count += self.weapons_by_turret.get(turret_id, []).count(weapon_id)
-        member_count = self.member_weapon_counts.get(unit_id, {}).get(weapon_id, 0)
+        member_count = self.member_weapon_counts.get(effective_id, {}).get(weapon_id, 0)
         return max(turret_count, member_count, 1)
 
-    def mounted_weapons(self, unit_id: int, include_upgrade: bool = False) -> list[MountedWeapon]:
-        default_ids = set(self.default_weapon_ids(unit_id))
+    def mounted_weapons(
+        self,
+        unit_id: int,
+        include_upgrade: bool = False,
+        loadout: Loadout | None = None,
+    ) -> list[MountedWeapon]:
+        loadout = loadout or self.default_loadout(unit_id)
+        effective_id, _turret_ids = self._loadout_source(unit_id, loadout)
+        default_ids = set(self._weapon_ids_for_loadout(unit_id, loadout))
         weapon_ids = list(default_ids)
         if include_upgrade:
             extra = {
                 weapon_id
                 for (uid, weapon_id) in self.ammo_by_unit_weapon
-                if uid == unit_id and weapon_id not in default_ids and weapon_id in self.weapons
+                if uid == effective_id and weapon_id not in default_ids and weapon_id in self.weapons
             }
             weapon_ids.extend(sorted(extra))
         mounted: list[MountedWeapon] = []
@@ -173,17 +197,24 @@ class Catalog:
             mounted.append(
                 MountedWeapon(
                     weapon_id=weapon_id,
-                    gun_count=self.gun_count(unit_id, weapon_id) if weapon_id in default_ids else 1,
-                    ammos=list(self.ammo_by_unit_weapon.get((unit_id, weapon_id), [])),
+                    gun_count=self.gun_count(unit_id, weapon_id, loadout) if weapon_id in default_ids else 1,
+                    ammos=list(self.ammo_by_unit_weapon.get((effective_id, weapon_id), [])),
                     default=weapon_id in default_ids,
                 )
             )
         return mounted
 
-    def dpm_weapons(self, unit_id: int, include_upgrade: bool = False) -> list[MountedWeapon]:
-        """Default loadout for the Units tab. Infantry RPG/ATGM rows are omitted."""
-        mounted = self.mounted_weapons(unit_id, include_upgrade=include_upgrade)
-        if not self.is_infantry(unit_id):
+    def dpm_weapons(
+        self,
+        unit_id: int,
+        include_upgrade: bool = False,
+        loadout: Loadout | None = None,
+    ) -> list[MountedWeapon]:
+        """Weapons for a loadout. Infantry RPG/ATGM rows are omitted."""
+        loadout = loadout or self.default_loadout(unit_id)
+        mounted = self.mounted_weapons(unit_id, include_upgrade=include_upgrade, loadout=loadout)
+        effective_id, _ = self._loadout_source(unit_id, loadout)
+        if not self.is_infantry(effective_id):
             return mounted
         return [item for item in mounted if not self.is_anti_tank_weapon(item.weapon_id)]
 
@@ -201,6 +232,222 @@ class Catalog:
                 if int(ammo.get("ArmorTargeted") or 0) == 2:
                     return choice
         return mounted.ammos[0]
+
+    def loadouts(self, unit_id: int) -> list[Loadout]:
+        cached = self._loadouts.get(unit_id)
+        if cached is not None:
+            return cached
+        mods = self._loadout_mods(unit_id)
+        if not mods:
+            result = [self._stock_loadout(unit_id)]
+            self._loadouts[unit_id] = result
+            return result
+        slots = [self._slot_options(mod) for mod in mods]
+        default_opts = tuple(self._default_option(opts) for opts in slots)
+        combos = self._loadout_combinations(slots, default_opts)
+        result: list[Loadout] = []
+        used_labels: set[str] = set()
+        for options in combos:
+            loadout = self._loadout_from_options(unit_id, options, options == default_opts)
+            label = loadout.label
+            if label in used_labels:
+                label = f"{label} [{','.join(str(oid) for oid in loadout.option_ids)}]"
+                loadout = Loadout(
+                    label=label,
+                    option_ids=loadout.option_ids,
+                    armor_id=loadout.armor_id,
+                    extra_cost=loadout.extra_cost,
+                    turret_ids=loadout.turret_ids,
+                    replace_unit_id=loadout.replace_unit_id,
+                    is_default=loadout.is_default,
+                )
+            used_labels.add(loadout.label)
+            result.append(loadout)
+        result.sort(key=lambda item: (not item.is_default, item.label.lower()))
+        self._loadouts[unit_id] = result
+        return result
+
+    def default_loadout(self, unit_id: int) -> Loadout:
+        for loadout in self.loadouts(unit_id):
+            if loadout.is_default:
+                return loadout
+        loadouts = self.loadouts(unit_id)
+        return loadouts[0] if loadouts else self._stock_loadout(unit_id)
+
+    def loadout_by_label(self, unit_id: int, label: str) -> Loadout | None:
+        wanted = (label or "").strip()
+        if not wanted:
+            return None
+        for loadout in self.loadouts(unit_id):
+            if loadout.label == wanted:
+                return loadout
+        return None
+
+    def loadout_labels(self, unit_id: int) -> list[str]:
+        return [loadout.label for loadout in self.loadouts(unit_id)]
+
+    def _loadout_mods(self, unit_id: int) -> list[dict[str, Any]]:
+        mods = [
+            mod
+            for mod in self.mods_by_unit.get(unit_id, [])
+            if (mod.get("UIName") or "") in LOADOUT_SLOT_UINAMES and self._slot_options(mod)
+        ]
+        mods.sort(key=lambda mod: (int(mod.get("Order") or 0), int(mod["Id"])))
+        return mods
+
+    def _slot_options(self, mod: dict[str, Any]) -> list[dict[str, Any]]:
+        options = list(self.options_by_mod.get(int(mod["Id"]), []))
+        options.sort(key=lambda option: (int(option.get("Order") or 0), int(option["Id"])))
+        return options
+
+    def _default_option(self, options: list[dict[str, Any]]) -> dict[str, Any]:
+        for option in options:
+            if option.get("IsDefault"):
+                return option
+        return options[0]
+
+    def _loadout_combinations(
+        self,
+        slots: list[list[dict[str, Any]]],
+        default_opts: tuple[dict[str, Any], ...],
+    ) -> list[tuple[dict[str, Any], ...]]:
+        total = 1
+        for slot in slots:
+            total *= max(1, len(slot))
+        if total <= MAX_LOADOUT_COMBINATIONS:
+            return [tuple(combo) for combo in product(*slots)]
+        combos = [default_opts]
+        seen = {tuple(int(option["Id"]) for option in default_opts)}
+        for index, slot in enumerate(slots):
+            for option in slot:
+                row = list(default_opts)
+                row[index] = option
+                key = tuple(int(item["Id"]) for item in row)
+                if key not in seen:
+                    seen.add(key)
+                    combos.append(tuple(row))
+        return combos
+
+    def _option_short_name(self, option: dict[str, Any]) -> str:
+        ui = str(option.get("UIName") or "")
+        name = str(option.get("Name") or "")
+        if ui and not ui.startswith("Custom_Option") and not ui.startswith("dlc_"):
+            return ui
+        for prefix in ("Custom_Option_", "dlc_3_Custom_Option_"):
+            if ui.startswith(prefix):
+                return ui[len(prefix) :].replace("_", " ").strip() or name or ui
+        return name or ui or f"Option {option.get('Id')}"
+
+    def _combo_label(self, options: list[dict[str, Any]], is_default: bool) -> str:
+        parts = []
+        for option in options:
+            short = self._option_short_name(option)
+            if short.lower() == "default" and len(options) > 1:
+                continue
+            parts.append(short)
+        text = " / ".join(parts) if parts else "Default"
+        if is_default and not text.lower().startswith("default"):
+            return f"Default — {text}"
+        return text
+
+    def _turrets_from_option(self, option: dict[str, Any]) -> list[int]:
+        turrets: list[int] = []
+        for index in range(21):
+            turret_id = int(option.get(f"Turret{index}Id") or 0)
+            if turret_id:
+                turrets.append(turret_id)
+        return turrets
+
+    def _expand_turrets(self, turret_ids: list[int]) -> tuple[int, ...]:
+        out: list[int] = []
+        seen: set[int] = set()
+        for turret_id in turret_ids:
+            for item in (turret_id, *self.children_by_turret.get(turret_id, [])):
+                if item not in seen:
+                    seen.add(item)
+                    out.append(item)
+        return tuple(out)
+
+    def _stock_turret_ids(self, unit_id: int) -> tuple[int, ...]:
+        declared = [
+            turret_id
+            for turret_id in self.turrets_by_unit.get(unit_id, [])
+            if self.tables.get("TurretsJson", {}).get(turret_id, {}).get("IsDefault")
+        ]
+        if not declared:
+            for mod in self._loadout_mods(unit_id):
+                option = self._default_option(self._slot_options(mod))
+                declared.extend(self._turrets_from_option(option))
+        if not declared:
+            declared = list(self.turrets_by_unit.get(unit_id, []))
+        return self._expand_turrets(declared)
+
+    def _stock_loadout(self, unit_id: int) -> Loadout:
+        return Loadout(
+            label="Default",
+            option_ids=(),
+            armor_id=self.default_armor.get(unit_id),
+            extra_cost=0,
+            turret_ids=self._stock_turret_ids(unit_id),
+            replace_unit_id=None,
+            is_default=True,
+        )
+
+    def _loadout_from_options(
+        self,
+        unit_id: int,
+        options: tuple[dict[str, Any], ...],
+        is_default: bool,
+    ) -> Loadout:
+        extra = 0
+        armor_id: int | None = None
+        replace_id: int | None = None
+        turrets: list[int] = []
+        for option in options:
+            extra += int(option.get("Cost") or 0)
+            option_armor = int(option.get("ArmorId") or 0)
+            if option_armor:
+                armor_id = option_armor
+            replaced = int(option.get("ReplaceUnitId") or 0)
+            if replaced:
+                replace_id = replaced
+            turrets.extend(self._turrets_from_option(option))
+        source_id = replace_id if replace_id and replace_id in self.units else unit_id
+        if not armor_id:
+            armor_id = self.default_armor.get(source_id)
+        turret_ids = self._expand_turrets(turrets)
+        if not turret_ids:
+            turret_ids = self._stock_turret_ids(source_id)
+        return Loadout(
+            label=self._combo_label(list(options), is_default),
+            option_ids=tuple(int(option["Id"]) for option in options),
+            armor_id=armor_id,
+            extra_cost=extra,
+            turret_ids=turret_ids,
+            replace_unit_id=replace_id if replace_id and replace_id != unit_id else None,
+            is_default=is_default,
+        )
+
+    def _loadout_source(self, unit_id: int, loadout: Loadout | None) -> tuple[int, tuple[int, ...]]:
+        loadout = loadout or self.default_loadout(unit_id)
+        effective_id = loadout.replace_unit_id or unit_id
+        turret_ids = loadout.turret_ids or self._stock_turret_ids(effective_id)
+        return effective_id, turret_ids
+
+    def _weapon_ids_for_loadout(self, unit_id: int, loadout: Loadout) -> list[int]:
+        effective_id, turret_ids = self._loadout_source(unit_id, loadout)
+        counts: dict[int, int] = defaultdict(int)
+        for turret_id in turret_ids:
+            for weapon_id in self.weapons_by_turret.get(turret_id, []):
+                counts[weapon_id] += 1
+        member_counts = self.member_weapon_counts.get(effective_id)
+        if member_counts:
+            for weapon_id, count in member_counts.items():
+                counts[weapon_id] = max(counts.get(weapon_id, 0), count)
+        elif effective_id in self.squad_weapons and not counts:
+            for weapon_id in self.squad_weapons[effective_id]:
+                counts[weapon_id] = max(counts.get(weapon_id, 0), 1)
+        return sorted(counts, key=lambda weapon_id: (self.weapon_label(weapon_id).lower(), weapon_id))
 
     def armor_options(self, unit_id: int) -> list[ArmorOption]:
         options: list[ArmorOption] = []

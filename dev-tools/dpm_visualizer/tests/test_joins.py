@@ -26,9 +26,11 @@ class T72BJoinTests(unittest.TestCase):
 
     def test_default_main_gun_and_ammo(self) -> None:
         mounted = {row.weapon_id: row for row in self.catalog.mounted_weapons(9)}
-        self.assertIn(9, mounted)
-        ammo_ids = {choice.ammunition_id for choice in mounted[9].ammos}
-        self.assertTrue({11, 54, 72, 356}.issubset(ammo_ids))
+        self.assertIn(516, mounted)
+        self.assertNotIn(9, mounted)
+        self.assertNotIn(349, mounted)
+        ammo_ids = {choice.ammunition_id for choice in mounted[516].ammos}
+        self.assertTrue(ammo_ids)
 
     def test_default_armor(self) -> None:
         self.assertEqual(self.catalog.default_armor[9], 9)
@@ -36,8 +38,28 @@ class T72BJoinTests(unittest.TestCase):
         self.assertTrue(options[0].is_default)
         self.assertEqual(options[0].armor_id, 9)
 
+    def test_loadout_dropdown_follows_armor_and_weapons(self) -> None:
+        default = self.catalog.default_loadout(9)
+        self.assertTrue(default.is_default)
+        self.assertEqual(default.armor_id, 9)
+        labels = self.catalog.loadout_labels(9)
+        self.assertTrue(any("T-72BA / K5 ERA" == label for label in labels))
+        kit = self.catalog.loadout_by_label(9, "T-72BA / K5 ERA")
+        assert kit is not None
+        self.assertEqual(kit.armor_id, 204)
+        weapons = {row.weapon_id for row in self.catalog.mounted_weapons(9, loadout=kit)}
+        self.assertIn(349, weapons)
+        self.assertNotIn(516, weapons)
+        self.assertNotIn(9, weapons)
+
+    def test_squad_loadout_changes_armor(self) -> None:
+        standoff = self.catalog.loadout_by_label(150, "Standoff")
+        assert standoff is not None
+        self.assertEqual(standoff.replace_unit_id, 411)
+        self.assertEqual(standoff.armor_id, 314)
+
     def test_kinetic_preference_picks_ap(self) -> None:
-        gun = next(row for row in self.catalog.mounted_weapons(9) if row.weapon_id == 9)
+        gun = next(row for row in self.catalog.mounted_weapons(9) if row.weapon_id == 516)
         choice = self.catalog.pick_ammo(gun, "Kinetic")
         assert choice is not None
         ammo = self.catalog.ammos[choice.ammunition_id]
