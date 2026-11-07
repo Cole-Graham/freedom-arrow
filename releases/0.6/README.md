@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.8 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.9 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -14,6 +14,7 @@ Started from 0.5.0-dev.46 (0717b16), 7 November 2026. 0.5 stays on `codex/0.5-de
 - dev.6 (Osama, 7 November 2026): zooming in over a unit zooms normally (dev.4 and dev.5 blocked the camera lock but also the zoom; reported by Osama on Vengeance). The mouse-wheel zoom first calls a unit-under-cursor check that attaches the follow camera and skips the zoom; that call (GameAssembly RVA 0x7B3B19) now reads false, after a byte check, so the normal zoom runs (`CameraZoomLock.cs`). The dev.5 economy-bar change is undone (Osama: the HudQuick bar is fine). Not yet run in a game.
 - dev.7 (Osama, 7 November 2026): pilot rescue. A plane shot down nearer an enemy spawn point always ejects its pilot; a plane that comes down nearer its own team's spawn, or runs out of fuel, ejects nobody. Halves come from each map's spawn points, so no map needs setup. Bring the pilot back to base for the game's back-to-base refund: pilots and crews cost 100 (vanilla 150) and bomber crews 120 (vanilla 200), and the refund starts from that cost. Read from the game code: `UnitDeathSystem.TrySpawnPilot` (RVA 0x7B1C80) and `RefundSystem.RefundUnit` (RVA 0x6DBEC0). The log shows `FREEDOM_ARROW_PILOT_RESCUE` for every downed plane and every pilot refund (`PilotRescue.cs`; setting `PilotRescue` in settings.json). Not yet run in a game.
 - dev.8 (Osama, 7 November 2026): no pilots in the early game. Until either team has captured a zone, a downed plane ejects nobody; after that the dev.7 rule applies. Zone owners come from the native conquest or war-goals mode (`_capturedZones`); with no such mode the dev.7 rule applies alone (`PilotRescue.cs`). Not yet run in a game.
+- dev.9 (Osama, 7 November 2026): FlatIncomeMod is now the build shipped in ActualArrow 1.1.21 (same 0.9.16 label, sha256 9b71a1eb…), copied unchanged. Read from its code: passengers of a destroyed transport are killed through the game's own health setter (`HealthComponent.set_CurrentHealth`) instead of a raw write to the health field, and the log shows the health before and after ("(game setter)"). Its guided-MLRS arc reshape is gone. Forest cover stays off (`ThirdPartyGuard.cs`). Passenger death not yet run in a game.
 
 ## New in 0.5 — accuracy
 
@@ -128,7 +129,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.8.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.9.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
