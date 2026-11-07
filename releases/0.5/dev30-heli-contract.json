@@ -1,5 +1,5 @@
 {
-  "note": "0.5 dev.30 (Osama, 6 November 2026). Helicopter ATGM pylon options that carry the same anti-tank missile launcher twice (left and right) now carry it once, so each pylon option fires one missile at a time: 32 options, for example AH-64D/E, Longbow, AH-1W/Z, MH-60M DAP, Ka-50/52, Mi-24, Mi-8, Ka-29 and Mi-28NM (Mi-28N was done in dev.28). Pylons whose launcher holds a single missile (RAH-66 Comanche 2x Hellfire, Mi-8AMTSh-VN 2x LMUR) are left unchanged, because removing one would remove a missile, not a ripple. AH-64E Guardian, RAH-66 Comanche, Mi-28N and Mi-28NM can laser-designate (1500 m, usable on the move, the values of the Mi-24K 'ECM Heli 05 +Laser'): their ECM abilities, including those on AH-64E wingtip options, get copies with the laser. Not yet run in a game.",
+  "note": "0.5 dev.30 (Osama, 6 November 2026). Helicopter ATGM pylon options that carry the same anti-tank missile launcher twice (left and right) now carry it once, so each pylon option fires one missile at a time: 32 options, for example AH-64D/E, Longbow, AH-1W/Z, MH-60M DAP, Ka-50/52, Mi-24, Mi-8, Ka-29 and Mi-28NM (Mi-28N was done in dev.28). Pylons whose launcher holds a single missile (RAH-66 Comanche 2x Hellfire, Mi-8AMTSh-VN 2x LMUR) are left unchanged, because removing one would remove a missile, not a ripple. AH-64E Guardian, RAH-66 Comanche, Mi-28N and Mi-28NM can laser-designate (1500 m, usable on the move, the values of the Mi-24K 'ECM Heli 05 +Laser'): their ECM abilities, including those on AH-64E wingtip options, get copies with the laser. Not yet run in a game. dev.31 (Osama, 6 November 2026): AH-64D Apache, AH-64D Longbow, AH-1Z Viper, UH-1Y Venom, Ka-50 Akula (including its ECM options), MH-60M SOAR and Ka-52 Alligator can laser-designate too. Ka-52K Katran, MH-60M DAP and Silent Hawk are not included.",
   "pod_options": [
     139,
     143,
@@ -42,7 +42,14 @@
     270,
     364,
     256,
-    380
+    380,
+    19,
+    8,
+    86,
+    159,
+    105,
+    262,
+    46
   ],
   "laser_like": 84,
   "laser_fields": [

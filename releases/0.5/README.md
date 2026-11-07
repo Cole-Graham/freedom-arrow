@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.30 — isolated development candidate
+# Freedom Arrow 0.5.0-dev.31 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -35,6 +35,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.28 (Osama, 6 November 2026): Mi-28N Ohotnik outer pylon Ataka x8 carries one launcher (was two), so it fires one missile at a time. 2S41 Drok 80 (was 65), 2S23 Nona-SVK 80 (was 65). K16 Bumerang keeps its smoke (it was removed by the cheap-IFV smoke rule). See `dev28-contract.json`. Not yet run in a game.
 - dev.29 (Osama, 6 November 2026): BRM-3K 57 mm turret +15 (was +40) and 57 mm + Ataka turret +30 (was +55). Prices in vehicle-contract.json. Not yet run in a game.
 - dev.30 (Osama, 6 November 2026): helicopter ATGM pylon options that carried the same launcher twice now carry it once, so each pylon fires one missile at a time (32 options; Comanche 2x Hellfire and Sapsan 2x LMUR, whose launchers hold one missile, are unchanged). AH-64E Guardian, RAH-66 Comanche, Mi-28N and Mi-28NM can laser-designate (1500 m, as the Mi-24K). See `dev30-heli-contract.json`. Not yet run in a game.
+- dev.31 (Osama, 6 November 2026): AH-64D Apache, AH-64D Longbow, AH-1Z Viper, UH-1Y Venom, Ka-50 Akula, MH-60M SOAR and Ka-52 Alligator can laser-designate too (1500 m). Ka-52K Katran, MH-60M DAP and Silent Hawk are not included. See `dev30-heli-contract.json`. Not yet run in a game.
 - dev.25 (Lateralus, 6 November 2026): Chkalovsk Airbase: Bravo's north-east spawn (Spawn point 5, ground and heli) faced north (no rotation in the export). It now faces the zone centre, about 118 degrees from north toward the south-west, like the other spawns. `verify.py` checks that every Chkalovsk spawn faces within 60 degrees of the zone centre. Not yet run in a game.
 
 ## New in 0.4
@@ -99,7 +100,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.30.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.5.0-dev.31.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
