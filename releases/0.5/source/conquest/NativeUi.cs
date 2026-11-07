@@ -145,6 +145,7 @@ public sealed partial class Prototype
     }
     public override void OnGUI()
     {
+        DrawVersionLabel();
         if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)
         {
             // A banner fault must not stop the match.

@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.42", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.5.0-dev.43", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -92,6 +92,7 @@ public sealed partial class Prototype : MelonMod
             catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_SQUAD_RELOAD_FAILED: " + e.Message); }
             try { InstallShotLog(); }
             catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_SHOT_LOG_FAILED: " + e.Message); }
+            try { InstallVersionLabel(); } catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_VERSION_LABEL_FAILED: " + e.Message); }
             try { InstallCardRounding(); }
             catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CARD_ROF_FAILED: " + e.Message); }
             try { InstallCardLauncherRof(); }
