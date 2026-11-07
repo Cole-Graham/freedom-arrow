@@ -217,10 +217,26 @@ def describe(values):
     parts=[f"{' '.join(sorted(by[v]))} {'is' if len(by[v])==1 else 'are'} worth {v}" for v in sorted(by,reverse=True)]
     return ('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
             'the side with the higher zone value scores the difference. First to 300 wins. '+', '.join(parts)+'. Flat 200 income, no upkeep.')
+def drop_zones(objects,nodes,gone):
+    """Osama 2026-11-07: the Skirmish map is the master. Remove network-only zones. A size-logic node that shows or hides
+    such a zone is spliced out, its flow passed straight on; any other reference stops the build."""
+    import json as _j
+    for z in gone:
+        ref=f"c{z['_uid']}";objects.remove(z)
+        assert not [o for o in objects if f'"id": {z["_uid"]},' in _j.dumps(o)],z['_dname']
+        for n in [n for n in nodes['b'] if any(p.get('v')==ref for p in n.get('props_v2',[]))]:
+            assert n['nnKey']=='objVisible2',(z['_dname'],n['nnKey'])
+            ins=[c for c in nodes['c'] if c['a']==n['id']];outs=[c for c in nodes['c'] if c['b']==n['id']]
+            assert all(c['c']=='in2' for c in ins) and all(c['d']=='out2' for c in outs),(ins,outs)
+            nodes['c']=[c for c in nodes['c'] if n['id'] not in (c['a'],c['b'])]
+            nodes['c']+=[dict(a=o['a'],b=i['b'],c=o['c'],d=i['d'],e=i['e']) for i in ins for o in outs]
+            nodes['b'].remove(n)
+        print(f"zone {z['_dname']} removed: not on the Skirmish map")
 def patch_vanilla(head,nodes,objects,meta,flavor,scene,values):
     """values: zone _dname -> value. Sets hudText to the _dname, because some native zones show another zone's name."""
     kind=flavor['kind']
     assert head['GameMode']==kind and head['map']==scene,(head['GameMode'],head['map'])
+    drop_zones(objects,nodes,[o for o in objects if o.get('_type')==15 and o['_dname'] not in values])
     zones=[o for o in objects if o.get('_type')==15]
     assert sorted(o['_dname'] for o in zones)==sorted(values),sorted(o['_dname'] for o in zones)
     for o in zones:o['hudText']=o['_dname']
@@ -249,7 +265,10 @@ def patch_vanilla(head,nodes,objects,meta,flavor,scene,values):
 def vanilla_spec(scene,network,skirmish,name,guid,values):
     """One vanilla map: network flavor from `network`, Skirmish flavor from `skirmish`. guid gets 'a' (network) and 'b' (Skirmish)."""
     def patch(head,nodes,objects,meta,flavor):patch_vanilla(head,nodes,objects,meta,flavor,scene,values)
-    def prepare(game,spec):return None,None
+    def prepare(game,spec):
+        sk=sorted(o['_dname'] for o in read_native(game,skirmish)[2] if o.get('_type')==15)
+        assert sk==sorted(values),('values must name exactly the Skirmish zones',sk)
+        return None,None
     def deploy_target(game):
         nodes=read_native(game,network)[1];byid={b['id']:b for b in nodes['b']}
         start=[b['id'] for b in nodes['b'] if b.get('nnKey')=='start'];assert len(start)==1,start
