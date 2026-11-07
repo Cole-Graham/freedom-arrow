@@ -31,6 +31,8 @@
 7. Set the scenario game version to 1.2.2, so the match loads the Freedom Arrow database. Network maps also need `add_deployment` and the raised money cap.
 8. Build, then test one online lobby and one F8 match.
 
+**Vanilla maps** skip steps 1 and 3 to 6: add one line to `MAPS` in `scenarios/vanilla.py` (zone name to value), the zone IDs to `MapZoneWeights`, and the four native files to `scenarios/native-pins.json`. The native network and Skirmish missions stay as they are; only values, zone visibility, money and the online deployment pause change. Build with the project's Python 3.11 venv: Python 3.12 and later sum floats differently and change the Chkalovsk bytes, and every player needs identical scenario bytes.
+
 ## Live status
 
 - Seen in F8 on dev.30: the 3 minute pause ran for 180 seconds, zones scored, and a match ended at 305 to 0 with a native win.
@@ -48,3 +50,4 @@
 - 2026-11-05 16:31:00 PST (America/Los_Angeles) — Scenario-specific build data lives under scenarios/. 1v1 keeps its own zones; start cameras added; Neutral/Spectators editor teams removed.
 - 2026-11-05 16:42:00 PST (America/Los_Angeles) — Each map package stores layout.bascr and meta.json. Repo-root maps/ removed.
 - 2026-11-06 22:10:32 PST (America/Los_Angeles) — Added Chkalovsk Airbase as an example; authored maps need start cameras with look-at tags.
+- 2026-11-07 16:20:00 PST (America/Los_Angeles) — Vanilla maps through scenarios/vanilla.py; first map Airport. Build Python note.

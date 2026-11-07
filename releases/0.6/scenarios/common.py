@@ -185,8 +185,10 @@ def write_flavor(out,spec,flavor,head,objects,nodes,meta):
 def build_host_flavor(game,out,spec,flavor,layout):
     head,nodes,objects,meta=read_native(game,flavor['host'])
     spec['patch_host'](head,nodes,objects,meta,flavor)
-    apply_layout(objects,layout);print(f"{flavor['name']} physical layout copied from package {LAYOUT}")
-    if flavor['kind']==2:add_deployment(nodes,163,flavor.get('deploy_target',159),flavor.get('deploy_pin','in'))
+    if layout is not None:apply_layout(objects,layout);print(f"{flavor['name']} physical layout copied from package {LAYOUT}")
+    if flavor['kind']==2:
+        start,target=spec['deploy_target'](game) if 'deploy_target' in spec else (163,flavor.get('deploy_target',159))
+        add_deployment(nodes,start,target,flavor.get('deploy_pin','in'))
     write_flavor(out,spec,flavor,head,objects,nodes,meta)
 def build_template_flavor(game,out,spec,flavor,template):
     head,nodes,objects,meta=copy.deepcopy(template)
@@ -206,4 +208,53 @@ def build_pair(game,out,spec):
     for flavor in spec['flavors']:
         if flavor.get('host'):build_host_flavor(game,out,spec,flavor,layout)
         else:build_template_flavor(game,out,spec,flavor,template)
-    copy_assets(out,spec)
+    if spec.get('assets',True):copy_assets(out,spec)
+# Vanilla maps: the native network and Skirmish missions stay as they are (zones, spawns, cameras, play areas, AI).
+# Only the score values, zone visibility, income, money and the online deployment pause change.
+def describe(values):
+    by={}
+    for name,v in values.items():by.setdefault(v,[]).append(name[0])
+    parts=[f"{' '.join(sorted(by[v]))} {'is' if len(by[v])==1 else 'are'} worth {v}" for v in sorted(by,reverse=True)]
+    return ('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
+            'the side with the higher zone value scores the difference. First to 300 wins. '+', '.join(parts)+'. Flat 200 income, no upkeep.')
+def patch_vanilla(head,nodes,objects,meta,flavor,scene,values):
+    """values: zone _dname -> value. Sets hudText to the _dname, because some native zones show another zone's name."""
+    kind=flavor['kind']
+    assert head['GameMode']==kind and head['map']==scene,(head['GameMode'],head['map'])
+    zones=[o for o in objects if o.get('_type')==15]
+    assert sorted(o['_dname'] for o in zones)==sorted(values),sorted(o['_dname'] for o in zones)
+    for o in zones:o['hudText']=o['_dname']
+    want={str(o['_uid']):values[o['_dname']] for o in zones}
+    assert want==weights(flavor['name']),(flavor['name'],want)
+    ids={f"c{o['_uid']}" for o in zones};conquest=shown=caps=0
+    for n in nodes['b']:
+        props={p['k']:p for p in n.get('props_v2',[])}
+        if n.get('nnKey')=='setConquestMode':conquest+=1
+        # The native size logic hides outer zones on small lobbies. Every valued zone stays on the map.
+        if n.get('nnKey')=='objVisible2' and props['oz2'].get('v') in ids and props['isv']['v']=='False':props['isv']['v']='True';shown+=1
+        if n.get('nnKey')=='setIncomeCurveState':props['state']['v']='False'
+        if n.get('nnKey')=='setMaxMoney':props['moneyValue']['v']=str(MONEY_CAP);caps+=1
+    assert conquest>=1 and caps==(1 if kind==2 else 0),(conquest,caps)
+    byid={b['id']:b for b in nodes['b']}
+    calcs={c['b'] for c in nodes['c'] if c['d']=='Multiply' and c['c']=='amount' and byid.get(c['a'],{}).get('nnKey')=='setMoney2'}
+    assert len(calcs)==(2 if kind==3 else 0),calcs
+    for calc in calcs:
+        source=[c['b'] for c in nodes['c'] if c['a']==calc and c['c']=='a'];assert len(source)==1
+        assert not [c for c in nodes['c'] if c['a']==source[0] and c['c']=='Value'],'money variable has an input'
+        nodes['c']=[c for c in nodes['c'] if not (c['a']==calc and c['c']=='B')]
+        next(p for p in byid[calc]['props_v2'] if p['k']=='B')['v']='1'
+        next(p for p in byid[source[0]]['props_v2'] if p['k']=='Value')['v']=str(START_POINTS)
+    slider_defaults(objects,meta,2 if kind==2 else 0)
+    print(f"{flavor['name']}: {len(zones)} zones valued, {shown} hidden-zone nodes now show the zone")
+def vanilla_spec(scene,network,skirmish,name,guid,values):
+    """One vanilla map: network flavor from `network`, Skirmish flavor from `skirmish`. guid gets 'a' (network) and 'b' (Skirmish)."""
+    def patch(head,nodes,objects,meta,flavor):patch_vanilla(head,nodes,objects,meta,flavor,scene,values)
+    def prepare(game,spec):return None,None
+    def deploy_target(game):
+        nodes=read_native(game,network)[1];byid={b['id']:b for b in nodes['b']}
+        start=[b['id'] for b in nodes['b'] if b.get('nnKey')=='start'];assert len(start)==1,start
+        nxt=[c['a'] for c in nodes['c'] if c['b']==start[0] and byid[c['a']]['nnKey']=='testCond2'];assert len(nxt)==1,nxt
+        return start[0],nxt[0]
+    return dict(author='Freedom Arrow',desc=describe(values),prepare=prepare,assets=False,patch_host=patch,deploy_target=deploy_target,
+                flavors=[dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,host=network),
+                         dict(name=f'[FA] {name} Skirmish 0.1',guid=guid+'b',kind=3,public=False,host=skirmish)])

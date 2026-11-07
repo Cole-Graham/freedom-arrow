@@ -1,19 +1,19 @@
 """Verify exactly the development candidate we intend to ship to a later test."""
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
-R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.12.bamod'
+R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.13.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.12'
+    assert manifest['version']=='0.6.0-dev.13'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.12 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.13 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -244,6 +244,18 @@ with zipfile.ZipFile(p) as z:
     for o in [o for o in ckobj if o.get('_type')==10]:
         yaw=math.degrees(2*math.atan2(o['rotate']['Y'],o['rotate']['W']));to=math.degrees(math.atan2(cx-o['pos']['X'],cz-o['pos']['Z']))
         assert abs((yaw-to+180)%360-180)<60,(o['_dname'],yaw,to)
+    # Vanilla maps keep the native mission; each zone shows its own name and value, none stays hidden, and only network pauses for deployment.
+    for mname,(scene,_,_,_,values) in van.MAPS.items():
+        for name,kind in ((f'[FA] {mname} 0.1',2),(f'[FA] {mname} Skirmish 0.1',3)):
+            meta=scenario_meta(name);assert meta['gameVersion']=='1.2.2' and meta['type']==kind and meta['sceneName']==scene,name
+            assert [o['defV'] for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']==[45],name
+            objs=scenario_objects(name);nodes=scenario_part(name,'nodes.bam')['b']
+            zones={str(o['_uid']):o for o in objs if o.get('_type')==15}
+            assert all(o['hudText']==o['_dname'] for o in zones.values()) and {u:values[o['hudText']] for u,o in zones.items()}==settings['MapZoneWeights'][name],name
+            props=[{p['k']:p.get('v') for p in n['props_v2']} for n in nodes if n.get('nnKey')=='objVisible2']
+            assert not [q for q in props if q['oz2'] in {f'c{u}' for u in zones} and q['isv']=='False'],name
+            assert any(n.get('nnKey')=='pauseGame' for n in nodes)==(kind==2),name
+            if kind==3:assert any(o.get('isBot') for o in objs if o.get('_type')==13),name
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}
