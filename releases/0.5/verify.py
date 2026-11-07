@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.23.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.5.0-dev.24.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.5.0-dev.23'
+    assert manifest['version']=='0.5.0-dev.24'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.23 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.5.0-dev.24 — development candidate'
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll'}
     for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
@@ -83,12 +83,14 @@ with zipfile.ZipFile(p) as z:
     for k in ('tank_he','autocannon_he'):
         for aid in cov[k]['ids']:atgm.setdefault(str(aid),{})['IgnoreCover']=cov[k]['ignore_cover']
     for aid,f in json.loads((R/'supply-contract.json').read_text())['ammo'].items():atgm.setdefault(aid,{})['SupplyCost']=f['SupplyCost']
+    d24=json.loads((R/'dev24-contract.json').read_text())
     ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
         for k,row in before.items():
             want=dict(row);want.update((us['ammo_fields'] if f=='ammunitions' else us['armor_fields'] if f=='armors' else us['ability_fields'] if f=='abilities' else {}).get(k,{}))
             if f=='ammunitions':want.update(atgm.get(k,{}))
+            if f=='armors' and int(k) in d24['hp']['armors']:want['MaxHealthPoints']=d24['hp']['value']
             if f=='ammunitions' and int(k) in pinned:want['PenetrationAtMinRange']=table(f)[k]['PenetrationAtMinRange']
             assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
@@ -114,6 +116,8 @@ with zipfile.ZipFile(p) as z:
             row={'Id':int(key),**patch[key]}
             for field,want in allowed.get(key,{}).items():
                 assert row[field]==want,(t,key,field);row[field]=lock['permitted_before'][field]
+            if t=='ArmorsJson' and int(key) in d24['hp']['armors']:
+                assert row['MaxHealthPoints']==d24['hp']['value'],key;row['MaxHealthPoints']=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/armors.json').read_text())[key]['MaxHealthPoints']
             if t=='AmmunitionsJson':
                 for field,want in atgm.get(key,{}).items():
                     assert row[field]==want,(t,key,field);row[field]=ammo01[key][field]

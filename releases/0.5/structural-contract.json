@@ -181,8 +181,8 @@
         ]
       },
       "pool": {
-        "parent": 3,
-        "new": 3
+        "parent": 4,
+        "new": 4
       }
     }
   ],
@@ -308,7 +308,8 @@
     }
   ],
   "set_pools": {
-    "774": 4
+    "774": 4,
+    "608": 8
   },
   "note": "Availability: M-ATV 4/2 approved by Osama. Other split pools are halved so the total stays the same, and are provisional. Troopers 8 and Troopers AT 4 were requested. CAAT Dragon 4 and Javelin 4 are provisional. 0.4 dev.37: T-80UM-2 Drozd variant (option 571) retired (Osama, 6 November 2026)."
 }

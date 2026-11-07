@@ -653,6 +653,21 @@ def main():
         new=clone('AmmunitionsJson',aid,{'Damage':hm['damage']},why+' (helicopter copy)')
         for r in rows:
             if r['UnitId'] in heli:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':new},why)
+    # 0.5 dev.24: M-ATV 10 HP, Silent Hawk 90, Booker and Mech. Riflemen availability, recon infantry laser designators.
+    d24=json.loads((R/'dev24-contract.json').read_text());why='0.5 dev.24'
+    hp=d24['hp'];assert {r['UnitId'] for r in effective['UnitArmorsJson'].values() if r['ArmorId'] in hp['armors']}==set(hp['units'])
+    assert all(effective['ModificationsJson'][o['ModificationId']]['UnitId'] in hp['units'] for o in effective['OptionsJson'].values() if o.get('ArmorId') in hp['armors'])
+    for aid in hp['armors']:put('ArmorsJson',aid,{'MaxHealthPoints':hp['value']},'M-ATV 10 HP')
+    lz=d24['laser'];like=effective['AbilitiesJson'][lz['like']];assert like['IsLaserDesignator']
+    sf=[u for u,r in effective['Units'].items() if r['Type']==2 and r['DisplayInArmory'] and r['CategoryType']==lz['category'] and not any(x in r['HUDName'] for x in lz['exclude_names'])]
+    has=lambda u:any(effective['AbilitiesJson'][r['AbilityId']]['IsLaserDesignator'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==u)
+    assert sorted(u for u in sf if not has(u))==sorted(lz['units']) and sorted(u for u in sf if has(u))==sorted(lz['already']),sf
+    made={}
+    for r in [r for r in effective['UnitAbilitiesJson'].values() if r['UnitId'] in lz['units']]:
+        a=effective['AbilitiesJson'][r['AbilityId']];assert a['IsInfantrySprint'] or a['IsSmoke'],r
+        if r['AbilityId'] not in made:made[r['AbilityId']]=clone('AbilitiesJson',r['AbilityId'],{**{f:like[f] for f in lz['fields']},'Name':a['Name']+' Laser'},'Recon infantry laser designator')
+        put('UnitAbilitiesJson',r['Id'],{'AbilityId':made[r['AbilityId']]},'Recon infantry laser designator')
+    assert all(has(u) for u in sf)
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
