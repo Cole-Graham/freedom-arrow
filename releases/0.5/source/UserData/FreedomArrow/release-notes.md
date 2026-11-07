@@ -1,4 +1,4 @@
-# Freedom Arrow 0.5.0-dev.44 — development candidate
+# Freedom Arrow 0.5.0-dev.45 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -10,6 +10,7 @@ New in 0.5 dev.25: on Chkalovsk Airbase, Bravo's north-east spawn faces the map 
 New in 0.5 dev.42: Spetsnaz Alpha stand-off loadout +0 (was +20); both loadouts cost 95.
 New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom right.
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
+New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 
 ## Earlier notes
 
