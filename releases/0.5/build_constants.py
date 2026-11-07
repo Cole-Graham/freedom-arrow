@@ -551,6 +551,13 @@ def main():
     for uid in (par,new):
         arm={effective['ArmorsJson'][r['ArmorId']]['MaxHealthPoints'] for r in effective['UnitArmorsJson'].values() if r['UnitId']==uid}
         assert arm=={12} and any(effective['AbilitiesJson'][r['AbilityId']]['IsSmoke'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid),(uid,arm)
+    # 0.5 dev.7: ground ATGMs hit 75% (missile accuracy 0.75); air missiles unchanged.
+    ground={2,4}
+    for key,f in acc['atgm_fields'].items():
+        a=effective['AmmunitionsJson'][int(key)]
+        kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==int(key) and r['UnitId'] in effective['Units']}
+        assert a['Name'].startswith(('Missile AT','Missile GLAT')) and a['DispersionHorizontalRadius']==1.0 and kinds and kinds<=ground,(key,kinds)
+        put('AmmunitionsJson',int(key),f,'0.5 accuracy: ground ATGM hit chance 75%')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
