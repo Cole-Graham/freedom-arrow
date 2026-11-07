@@ -4,7 +4,7 @@ Includes reviewed dev.1/dev.2 and the US/Baltic data batch.
 Card splits, squad resizing and option retirement are listed in structural-contract.json.
 """
 from pathlib import Path
-import argparse, copy, hashlib, json, sys
+import argparse, copy, hashlib, json, re, sys
 R=Path(__file__).resolve().parent
 # Saved decks hold this option ID. A failure here means a clone moved above it.
 XM913_APS_OPTION=2000379
@@ -579,6 +579,28 @@ def main():
         clone('OptionsJson',n['like'],{**n['fields'],'Ability1Id':n['ability']},why)
         assert effective['UnitAbilitiesJson'][n['ua_like']]['UnitId']==n['unit']
         clone('UnitAbilitiesJson',n['ua_like'],{'AbilityId':n['ability']},'APS inventory matches the new option')
+    # 0.5 dev.17: cover. 120/125 mm tank HE ignores 25% of cover; ground-vehicle autocannon HE ignores 12.5%.
+    cov=json.loads((R/'cover-contract.json').read_text())
+    def users(aid):
+        ws={r['WeaponId'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid}
+        ts={r['TurretId'] for r in effective['TurretWeaponsJson'].values() if r['WeaponId'] in ws}
+        us={r['UnitId'] for r in effective['TurretUnitsJson'].values() if r['TurretId'] in ts}
+        return ws,{effective['Units'][u]['Type'] for u in us if u in effective['Units']}
+    tank=re.compile(r'Round 12[05] .*HE');auto=re.compile(r'Round (\d+) ')
+    def scope(row):
+        a=row;m=auto.match(a['Name'])
+        if not m or a['Damage']<=0:return None
+        if tank.match(a['Name']) and 'HEAT' not in a['Name'] and a['IgnoreCover']==cov['tank_he']['was']:return 'tank_he'
+        ws,kinds=users(a['Id'])
+        if 20<=int(m.group(1))<=57 and re.search('HE',a['Name']) and a['IgnoreCover']==0 and ws and kinds=={4} and all(effective['WeaponsJson'][w]['Name'].startswith('Autocannon') for w in ws):return 'autocannon_he'
+    found={}
+    for a in effective['AmmunitionsJson'].values():
+        k=scope(a)
+        if k:found.setdefault(k,set()).add(a['Id'])
+    for k in ('tank_he','autocannon_he'):
+        assert found.get(k,set())==set(cov[k]['ids']),(k,sorted(found.get(k,set())^set(cov[k]['ids'])))
+        for aid in cov[k]['ids']:
+            put('AmmunitionsJson',aid,{'IgnoreCover':cov[k]['ignore_cover']},'0.5 cover: '+k.replace('_',' ')+' ignore cover')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
