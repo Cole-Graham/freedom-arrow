@@ -729,7 +729,7 @@ def main():
         for m in effective['SquadMembersJson'].values():
             if m['UnitId']==uid:assert {m['PrimaryWeaponId'],m['SpecialWeaponId']}-{0}<=set(weapons),('member weapon not listed',uid,m['Id'])
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
-    sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 12.5 per minute'
+    sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
     two=set()
     for r in effective['SquadWeaponsJson'].values():
