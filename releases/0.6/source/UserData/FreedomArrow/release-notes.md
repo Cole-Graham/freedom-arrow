@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.6 — development candidate
+# Freedom Arrow 0.6.0-dev.7 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 

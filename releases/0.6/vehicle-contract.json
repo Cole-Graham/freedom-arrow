@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0-dev.6",
+  "version": "0.6.0-dev.7",
   "base_costs": {
     "90": 30,
     "89": 50,
@@ -260,7 +260,13 @@
     "144": 55,
     "260": 90,
     "509": 30,
-    "218": 80
+    "218": 80,
+    "322": 100,
+    "323": 100,
+    "325": 100,
+    "326": 100,
+    "324": 120,
+    "327": 120
   },
   "option_costs": {
     "245": 15,
@@ -386,5 +392,5 @@
     144
   ],
   "held_structural": [],
-  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran 70 is the default loadout total: base 25 + Ataka 20 + Igla 25. 0.4: MBT and kit prices from the approved equal-point fights (Osama, 5 November 2026). M60A1 base 70 plus its default +10 variant is 80 total. 0.4 dev.2: prices refit with sabot +50 at point blank, M1A1 HC anchored at 160 (Osama, 5 November 2026). 0.4 infantry: every buyable infantry, weapons-team and recon-infantry card scaled x0.8333 to the nearest 5 (ceiling 120 -> 100), with Stage 2 adjustments HMG & GMG 40 and Morskaya pekhota 65 (Lateralus, 5 November 2026). Base cost = scaled base; option surcharge = loadout total - base; variant unit Cost = loadout total. 0.4 dev.36: LAV-M 80; AMPV Bushmaster II +10 and Bushmaster II + Javelin +40, matching the Stryker RV cut (Osama, 6 November 2026). 0.4 dev.38: BARS FS (612) 85, the old fire-support loadout total; dev.41: BARS FS 60 (Osama, 6 November 2026); BARS (616) 60; BARS Kornet (721) 100 is set in dev38-contract.json because the unit is new. 0.4 dev.42 (Osama, 6 November 2026): cheap-tank floor 60. T-62M 60, M60A1 base 60 (70 with the A1 variant), T-72A 70, T-72B 80, M728 CEV 70 (structural split cost); Kontakt-1 +10 on T-72A and Gadyuka. T-80BV held at 85."
+  "note": "Base costs unless stated; BMP2 option increases preserve other variant totals. Retained T80obr2018 is a known defect at200 points. Uran 70 is the default loadout total: base 25 + Ataka 20 + Igla 25. 0.4: MBT and kit prices from the approved equal-point fights (Osama, 5 November 2026). M60A1 base 70 plus its default +10 variant is 80 total. 0.4 dev.2: prices refit with sabot +50 at point blank, M1A1 HC anchored at 160 (Osama, 5 November 2026). 0.4 infantry: every buyable infantry, weapons-team and recon-infantry card scaled x0.8333 to the nearest 5 (ceiling 120 -> 100), with Stage 2 adjustments HMG & GMG 40 and Morskaya pekhota 65 (Lateralus, 5 November 2026). Base cost = scaled base; option surcharge = loadout total - base; variant unit Cost = loadout total. 0.4 dev.36: LAV-M 80; AMPV Bushmaster II +10 and Bushmaster II + Javelin +40, matching the Stryker RV cut (Osama, 6 November 2026). 0.4 dev.38: BARS FS (612) 85, the old fire-support loadout total; dev.41: BARS FS 60 (Osama, 6 November 2026); BARS (616) 60; BARS Kornet (721) 100 is set in dev38-contract.json because the unit is new. 0.4 dev.42 (Osama, 6 November 2026): cheap-tank floor 60. T-62M 60, M60A1 base 60 (70 with the A1 variant), T-72A 70, T-72B 80, M728 CEV 70 (structural split cost); Kontakt-1 +10 on T-72A and Gadyuka. T-80BV held at 85. 0.6 dev.7 (Osama, 7 November 2026): ejected pilots 322/325 and crews 323/326 cost 100 (vanilla 150), bomber crews 324/327 cost 120 (vanilla 200); the back-to-base refund starts from this cost (pilot rescue, source/conquest/PilotRescue.cs)."
 }

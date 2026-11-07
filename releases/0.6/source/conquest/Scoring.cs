@@ -57,6 +57,7 @@ public sealed class Settings
     public float AtgmCritDamage { get; set; } = 8.9f;
     public float RearCritMinPenetration { get; set; } = 250;
     public float FrontArcDegrees { get; set; } = 45;
+    public bool PilotRescue { get; set; } = true;
     public Dictionary<string, Dictionary<string, int>> MapZoneWeights { get; set; } = new();
     public static readonly JsonSerializerOptions Json = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
 
