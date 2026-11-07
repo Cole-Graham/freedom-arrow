@@ -1,6 +1,9 @@
 {
-  "note": "0.5 dev.16 (Lateralus, 6 November 2026). Sniper rifles (type 3) and anti-materiel rifles (type 4) with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card, from 12.5 (snipers) and 10 (anti-materiel). The card uses WeaponHelper.RateOfFire(weapon, 1) = 60 x magazine / average cycle, where a cycle is (magazine - 1) x time between bursts + reload, averaged over the min and max values. Magazine 5 and reload 4 s are unchanged, so time between bursts goes to an average of 11.5 s; the min-max spread is kept (snipers 4-6 -> 10.5-12.5, anti-materiel 6-7 -> 11-12). VSSK (500 m) is unchanged.",
-  "rate_of_fire_per_minute": 6.0,
+  "note": "0.5 dev.16 (Lateralus, 6 November 2026). Sniper rifles (type 3) and anti-materiel rifles (type 4) with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card, from 12.5 (snipers) and 10 (anti-materiel). The card uses WeaponHelper.RateOfFire(weapon, 1) = 60 x magazine / average cycle, where a cycle is (magazine - 1) x time between bursts + reload, averaged over the min and max values. Magazine 5 and reload 4 s are unchanged, so time between bursts goes to an average of 11.5 s; the min-max spread is kept (snipers 4-6 -> 10.5-12.5, anti-materiel 6-7 -> 11-12). VSSK (500 m) is unchanged. 0.5 dev.18 (Lateralus, 6 November 2026): sniper rifles go to 8 rounds per minute (time between bursts 7.375-9.375 s, average 8.375 s); anti-materiel rifles stay at 6. A card hook (CardRounding.cs) rounds card rate of fire under 100 to 1 instead of 5, so the card shows 8 and 6 exactly.",
+  "rate_of_fire_per_minute_by_type": {
+    "3": 8.0,
+    "4": 6.0
+  },
   "min_range_m": 1000,
   "types": [
     3,
@@ -8,48 +11,48 @@
   ],
   "weapon_fields": {
     "763": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "640": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "764": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "521": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "526": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "73": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "64": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "674": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "136": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "1015": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "152": {
-      "TimeBetweenBurstsMin": 10.5,
-      "TimeBetweenBurstsMax": 12.5
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
     },
     "523": {
       "TimeBetweenBurstsMin": 11.0,

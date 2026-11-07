@@ -139,9 +139,10 @@ foreach(var (w,lo,hi) in new[]{(144,5f,6f),(205,5f,6f),(154,5f,5f),(506,6f,8f),(
 Check(Row("Units",372)["HUDName"].GetValue<string>()=="Chernye Berety"&&Row("OptionsJson",1622)["ConcatenateWithUnitName"].GetValue<string>()==" RPG","dev.47 Chernye Berety RPG named once");
 Check(Row("Units",612)["ThumbnailFileName"].GetValue<string>()=="RU_SPG9-Label"&&Row("Units",721)["ThumbnailFileName"].GetValue<string>()=="DLC3_BARS_KORNET-Label","dev.48 BARS FS uses the SPG-9 icon");
 foreach(int w in new[]{25,214,299,666,348,541,714,300})Check(Row("WeaponsJson",w)["TimeBetweenBurstsMin"].GetValue<float>()==5&&Row("WeaponsJson",w)["TimeBetweenBurstsMax"].GetValue<float>()==5,"dev.49 vehicle ATGM 5 s gap "+w);
-// dev.16 long-range sniper and anti-materiel rifles 6 rounds per minute on the card (WeaponHelper.RateOfFire). Written here again on purpose, independent of the generator contract.
+// dev.16/dev.18 long-range sniper rifles 8 and anti-materiel rifles 6 rounds per minute on the card (WeaponHelper.RateOfFire). Written here again on purpose, independent of the generator contract.
 float Rof(int w){var r=Row("WeaponsJson",w);float m=r["MagazineSize"].GetValue<int>(),lo=(m/r["ShotsPerBurstMax"].GetValue<int>()-1)*r["TimeBetweenBurstsMin"].GetValue<float>()+r["MagazineReloadTimeMin"].GetValue<float>(),hi=(m/r["ShotsPerBurstMin"].GetValue<int>()-1)*r["TimeBetweenBurstsMax"].GetValue<float>()+r["MagazineReloadTimeMax"].GetValue<float>();return 60*m/((lo+hi)/2);}
-foreach(int w in new[]{763,640,764,521,526,73,64,674,136,1015,152,523,765,56,692,927})Check(Math.Abs(Rof(w)-6)<0.001,"dev.16 sniper RoF 6 "+w);
+foreach(int w in new[]{763,640,764,521,526,73,64,674,136,1015,152})Check(Math.Abs(Rof(w)-8)<0.001,"dev.18 sniper RoF 8 "+w);
+foreach(int w in new[]{523,765,56,692,927})Check(Math.Abs(Rof(w)-6)<0.001,"dev.16 anti-materiel RoF 6 "+w);
 Check(Math.Abs(Rof(189)-12.5)<0.001,"dev.16 VSSK (500 m) unchanged");
 Check(Row("WeaponsJson",12)["TimeBetweenBurstsMin"].GetValue<float>()==24&&Row("WeaponsJson",214)["ShotsPerBurstMax"].GetValue<int>()==1,"dev.49 helicopters and dev.37 kept");
 Check(Row("AmmunitionsJson",2000131)["DispersionHorizontalRadius"].GetValue<double>()==2&&Row("AmmunitionsJson",2000131)["DispersionVerticalRadius"].GetValue<double>()==2&&Row("AmmunitionsJson",11)["DispersionHorizontalRadius"].GetValue<double>()==1.8&&Row("AmmunitionsJson",63)["DispersionHorizontalRadius"].GetValue<double>()==1,"0.5 dev.12: vanilla accuracy on launchers, tank guns and ATGMs");
