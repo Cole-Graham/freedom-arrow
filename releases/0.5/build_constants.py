@@ -635,6 +635,13 @@ def main():
     hits=[r['Id'] for r in effective['UnitArmorsJson'].values() if r['UnitId']==u and r['ArmorId']==tb['old_armor']];assert hits
     for rid in hits:put('UnitArmorsJson',rid,{'ArmorId':tb['new_armor']},why)
     put('Units',u,{'HUDName':tb['hud']},why);assert effective['Units'][u]['Cost']==165
+    # 0.5 dev.21: artillery uses more supply to refill (ActualArrow 1.1.20 values).
+    sup=json.loads((R/'supply-contract.json').read_text())
+    for key,f in sup['ammo'].items():
+        a=effective['AmmunitionsJson'][int(key)]
+        assert a['Name'].strip()==f['name'] and a['SupplyCost']==f['was'] and f['SupplyCost']>f['was'],key
+        assert a['Name'].startswith(('Shell','Obus','MLRS','Missile Ballistic','Missile Cruise IskanderK','Round 152 2A33','Round 122 2A31')),key
+        put('AmmunitionsJson',int(key),{'SupplyCost':f['SupplyCost']},'Artillery supply cost (ActualArrow values)')
     # Validate every changed foreign key against the complete effective graph.
     schema=json.loads((R/'source/UserData/FreedomArrow/reference-schema.json').read_text())
     for a in audit:
