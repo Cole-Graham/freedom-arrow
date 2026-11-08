@@ -28,7 +28,7 @@ static class SpottingCap
     static bool capBroken,cardBroken;
     static long calls,capped,airSkipped;
     static int unknownLogged,cardLogged;
-    static IntPtr Store(string name,Type component)
+    internal static IntPtr Store(string name,Type component)
     {
         var type=typeof(Entity).GetNestedType(name,BindingFlags.NonPublic|BindingFlags.Public)?.MakeGenericType(component)??throw new MissingMemberException("Entity."+name);
         RuntimeHelpers.RunClassConstructor(type.TypeHandle);
@@ -60,7 +60,7 @@ static class SpottingCap
         catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_OPTICS_NAMES_FAILED: card names not installed. "+e.Message); }
         MelonLogger.Msg("FREEDOM_ARROW_SPOTTING_CAP installed "+string.Join(", ",capTable.OrderBy(p=>p.Key).Select(p=>$"{p.Key:g}->{p.Value:g}"))+" (raw; displayed m = raw x 2)");
     }
-    static unsafe bool Has(IntPtr store,Entity entity)
+    internal static unsafe bool Has(IntPtr store,Entity entity)
     {
         IntPtr error=IntPtr.Zero;
         IntPtr has=Il2CppInterop.Runtime.IL2CPP.il2cpp_runtime_invoke(store,(IntPtr)(&entity),null,ref error);
