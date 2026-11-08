@@ -1,0 +1,43 @@
+{
+  "note": "0.6 dev.52 (Osama, 8 November 2026). Air-to-air missile ranges: AMRAAM, R-77-1 and the similar medium missiles (AIM-7M, R-27ER, R-27ET, R-27T) +1000 m; R-37, AIM-260 and AIM-174 11000 m (was 4500). R-37 accuracy 0.9 (DispersionHorizontalRadius, the missile accuracy in CalculateMissileHitChance). Plane rows only. F-35A, F-35B and F-35C: a wingtip slot (test) with Empty or 2x AIM-9 Sidewinder (+20) on mounts 5 and 6, the existing wingtip AIM-9 pylon (turret 300) and weapon 113; whether the F-35 model has wingtip mount points is not known, so the missiles may show in the wrong place or not at all. Not yet run in a game.",
+  "plus_1km": [
+    89,
+    159,
+    920,
+    285,
+    311,
+    310,
+    309
+  ],
+  "plus": 1000.0,
+  "long": [
+    312,
+    921,
+    531,
+    533
+  ],
+  "long_range": 11000.0,
+  "accuracy": {
+    "312": 0.9,
+    "921": 0.9
+  },
+  "wingtips": {
+    "units": [
+      294,
+      295,
+      741
+    ],
+    "mod_like": 59,
+    "empty_like": 170,
+    "aim9_like": 171,
+    "turret": 300,
+    "weapon": 113,
+    "ammo": 59,
+    "cost": 20,
+    "mounts": [
+      5,
+      6
+    ],
+    "like_turret_link_unit": 285
+  }
+}

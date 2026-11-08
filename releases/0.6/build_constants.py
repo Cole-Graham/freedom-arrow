@@ -1053,6 +1053,30 @@ def main():
         assert row['Name'].startswith('Missile AA') and tpl['Name'].startswith('Missile AA S') and 'S400' in tpl['Name'],key
         f={k:v for k,v in tpl.items() if k not in smc['keep'] and row.get(k)!=v}
         if f:put('AmmunitionsJson',int(key),f,'Long-range SAM missile as the S-400, own range')
+    # 0.6 dev.52: air-to-air missile ranges, R-37 accuracy, F-35 wingtip AIM-9 test slot (air-range-contract.json).
+    ar=json.loads((R/'air-range-contract.json').read_text());planes={u for u,r in effective['Units'].items() if r['Type']==16}
+    def plane_only(aid):return {r['UnitId'] in planes for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid}=={True}
+    for aid in ar['plus_1km']:
+        a=effective['AmmunitionsJson'][aid];assert plane_only(aid) and a['TargetType']&24 and 1000<a['HighAltRange']<=3500,aid
+        put('AmmunitionsJson',aid,{'LowAltRange':a['LowAltRange']+ar['plus'],'HighAltRange':a['HighAltRange']+ar['plus']},'Medium air-to-air missile +1 km')
+    for aid in ar['long']:
+        a=effective['AmmunitionsJson'][aid];assert plane_only(aid) and a['HighAltRange']==4500,aid
+        put('AmmunitionsJson',aid,{'LowAltRange':ar['long_range'],'HighAltRange':ar['long_range']},'Long-range air-to-air missile 11 km')
+    for key,acc in ar['accuracy'].items():
+        a=effective['AmmunitionsJson'][int(key)];assert a['HUDName']=='R-37' and a['DispersionHorizontalRadius']==1.0,key
+        put('AmmunitionsJson',int(key),{'DispersionHorizontalRadius':acc},'R-37 accuracy 0.9')
+    wt=ar['wingtips'];why='F-35 wingtip AIM-9 test slot'
+    (tl,)=[r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==wt['like_turret_link_unit'] and r['TurretId']==wt['turret']]
+    (wl,)=[r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==wt['like_turret_link_unit'] and r['WeaponId']==wt['weapon'] and r['AmmunitionId']==wt['ammo']]
+    for uid in wt['units']:
+        mods=[m for m in effective['ModificationsJson'].values() if m['UnitId']==uid]
+        assert not any(o[f'Turret{i}Id'] for o in options(uid) for i in wt['mounts']),uid
+        m=clone('ModificationsJson',wt['mod_like'],{'UnitId':uid,'Name':effective['Units'][uid]['Name']+' Wingtips','Order':1+max(x['Order'] for x in mods)},why)
+        mounts=lambda t:{f'Turret{i}Id':t for i in wt['mounts']}
+        clone('OptionsJson',wt['empty_like'],{'ModificationId':m,'Name':'Wingtips F35 Empty','IsDefault':True,'Order':0,'Cost':0,**mounts(0)},why)
+        clone('OptionsJson',wt['aim9_like'],{'ModificationId':m,'Name':'Wingtips F35 2xAIM9','IsDefault':False,'Order':1,'Cost':wt['cost'],**mounts(wt['turret'])},why)
+        if not any(r['UnitId']==uid and r['TurretId']==wt['turret'] for r in effective['TurretUnitsJson'].values()):clone('TurretUnitsJson',tl,{'UnitId':uid},why)
+        if not any(r['UnitId']==uid and r['WeaponId']==wt['weapon'] for r in effective['WeaponAmmunitionsJson'].values()):clone('WeaponAmmunitionsJson',wl,{'UnitId':uid},why)
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
