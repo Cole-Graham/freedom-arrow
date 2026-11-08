@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.59 — development candidate
+# Freedom Arrow 0.6.0-dev.60 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -60,6 +60,7 @@ New in 0.6 dev.56: SAMs, MANPADS and ships see planes at their full air optics a
 New in 0.6 dev.57: an unguided bomb that lands on a tank can hit its roof; one that lands next to it hits the side facing the blast. The hit log records the impact angle.
 New in 0.6 dev.58: fighters see high planes at 16 km, Patriot-class radars at 10.6 km, Tor/Pantsir-class radars at 6 km; stealth planes and drones are 0.25 stealthier.
 New in 0.6 dev.59: the B-52H can fire all 4 ARRWs without waiting for a reload.
+New in 0.6 dev.60: the B-52H ARRW can be laser guided and has a 140 m blast radius.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

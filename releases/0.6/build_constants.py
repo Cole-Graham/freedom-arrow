@@ -900,7 +900,7 @@ def main():
     # 0.6: B-52H AGM-183A ARRW, 2x in the bomb bay and 2x on the wings, +200 each; a renamed copy of the Kinzhal HE on the Kinzhal model (arrw-contract.json).
     aw=json.loads((R/'arrw-contract.json').read_text());why='AGM-183A ARRW on the B-52H'
     assert effective['AmmunitionsJson'][aw['ammo']]['HUDName']=='Kh-47M2 Kinzhal' and effective['WeaponsJson'][aw['weapon']]['Name']=='Cruise Kh47M2 HE'
-    am=clone('AmmunitionsJson',aw['ammo'],{'HUDName':aw['name'],'Name':'Missile Cruise AGM183A ARRW'},why)
+    am=clone('AmmunitionsJson',aw['ammo'],{'HUDName':aw['name'],'Name':'Missile Cruise AGM183A ARRW',**aw.get('ammo_fields',{})},why)
     (tw,)=[r['Id'] for r in effective['TurretWeaponsJson'].values() if r['TurretId']==aw['turret'] and r['WeaponId']==aw['weapon']]
     b52mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==aw['unit']}
     assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and effective['WeaponAmmunitionsJson'][aw['like_ammo_link']]['UnitId']==aw['unit']
