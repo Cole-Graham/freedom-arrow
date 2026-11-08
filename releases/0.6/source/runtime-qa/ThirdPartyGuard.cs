@@ -64,6 +64,48 @@ static class ThirdPartyGuard
             h.Patch(getter,postfix:new HarmonyMethod(typeof(ThirdPartyGuard),post));
         }
         MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue menu names Freedom Arrow {version}");
+        SameBuildCode(game);
+        OnlyFaMaps(h,game);
+    }
+
+    // 0.6 dev.16 (Osama, 7 November 2026): players on the same FA build saw different build codes. ArrowQueue hashes every
+    // loaded mod DLL except its Cosmetic list, so the music pack (FAMusic.dll, private, its own version) and the menu logger
+    // (FAUiLog.dll, only on test PCs) changed the code. Neither changes the game, so both join the Cosmetic list.
+    static void SameBuildCode(Type game)
+    {
+        if(AccessTools.Field(game,"Cosmetic")?.GetValue(null) is not HashSet<string> cosmetic)
+        {MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue Game.Cosmetic not found; the music pack changes the build code");return;}
+        cosmetic.Add("FAMusic.dll");cosmetic.Add("FAUiLog.dll");
+        AccessTools.Field(game,"_packHash")?.SetValue(null,null);   // in case ArrowQueue already made the code
+        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll and FAUiLog.dll");
+    }
+
+    // 0.6 dev.16 (Osama, 7 November 2026): Create a lobby offers only our online maps. ArrowQueue offers Steam Workshop
+    // maps only; the [FA] scenarios come in the Freedom Arrow package, so every player has them. The Skirmish copies
+    // are for Local AI Skirmish and stay out.
+    static MethodInfo allScenarios;
+    static void OnlyFaMaps(HarmonyLib.Harmony h,Type game)
+    {
+        var supported=AccessTools.Method(game,"SupportedScenarios");
+        allScenarios=AccessTools.Method(game,"AllScenarios");
+        if(supported==null||allScenarios==null){MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue map list not found; Create a lobby keeps Workshop maps");return;}
+        h.Patch(supported,postfix:new HarmonyMethod(typeof(ThirdPartyGuard),nameof(FaMaps)));
+        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: Create a lobby offers [FA] maps only");
+    }
+    static bool mapsSaid;
+    static void FaMaps(object __result)
+    {
+        if(__result is not System.Collections.IList found)return;
+        var all=allScenarios.Invoke(null,null) as System.Collections.IList;
+        found.Clear();
+        var names=new SortedDictionary<string,object>(StringComparer.OrdinalIgnoreCase);
+        foreach(var s in all??new object[0])
+        {
+            var name=s?.GetType().GetProperty("Name")?.GetValue(s) as string;
+            if(name!=null&&name.StartsWith("[FA]")&&!name.Contains("Skirmish"))names.TryAdd(name,s);
+        }
+        foreach(var s in names.Values)found.Add(s);
+        if(!mapsSaid){mapsSaid=true;MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: lobby maps: {string.Join(", ",names.Keys)}");}
     }
     static void ProductName(ref string __result)=>__result="Freedom Arrow";
     static void ProductVer(ref string __result)=>__result=faVersion;

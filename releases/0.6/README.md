@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.15 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.16 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -38,6 +38,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.13 (Lateralus and Osama, 6 November 2026): online score-limit ending. Two players' logs from the same 2v2 match showed identical scores on every tick (no scoring desync), but the score-limit ending only stopped the mode on each PC, so the server never ended the match. Online, the mod now sends the result with `NetworkRoomService.SendEndGame`, the call a scenario End Mission node uses; the game sends it only from the scenario host. The mode and score bars stay up until the server's end message (logged as `server_end_game`). Offline is unchanged. Not yet tested online.
 - dev.14 (Lateralus, 6 November 2026): native sudden death works again. In the 2v2 log, Bravo took all 10 zones on the same tick that reached 304, so vanilla sudden death began just as our score limit stopped the mode. The mod also blocked every native mid-match winner check (`GetWinner` without time end), which blocks sudden death. It now lets the game evaluate the winner while `ConquestMode.SuddenDeathActive` is true (logged once as `native_sudden_death_evaluation`). Not yet tested in a game.
 - dev.15 (Lateralus, 6 November 2026): the 300 score limit and native sudden death both end the match, whichever comes first. Online, after a score-limit result is sent, native sudden death can still decide the match as a fallback. Not yet tested in a game.
+- dev.16 (Osama, 7 November 2026): players on the same build saw different build codes in Who is online ("another mod version"). ArrowQueue's code hashes every loaded mod DLL except its Cosmetic list; Osama's Vengeance log showed `FAMusic.dll` and `FAUiLog.dll` counted. Both now join that list, so the music pack and the menu logger no longer change the code. Create a lobby lists only the online [FA] maps (names starting `[FA]`, Skirmish copies left out); ArrowQueue offered only Steam Workshop maps before (`ThirdPartyGuard.cs`). Not yet run in the game.
 - dev.16 (Lateralus, 6 November 2026): sniper rifles and anti-materiel rifles with a displayed range of 1000 m or more fire 6 rounds per minute on the unit card (was 12.5 for snipers, 10 for anti-materiel): time between shots 10.5-12.5 s for snipers (was 4-6) and 11-12 s for anti-materiel (was 6-7); magazine 5 and reload 4 s unchanged. 16 weapon rows, including the M-ATV's M107; VSSK (500 m) unchanged. The card value is WeaponHelper.RateOfFire, read from the game code. See `sniper-rof-contract.json`. Not yet run in a game.
 - dev.17 (Osama, 6 November 2026): cover. Infantry in buildings take 18% of incoming damage (floor 0.13 -> 0.18, still 0 per soldier). 120 mm and 125 mm tank HE ignore cover 0.3 -> 0.25 (14 rows), so one shell kills about 1 man in a building. Ground-vehicle autocannon HE (20-57 mm, 20 rows) ignore cover 0 -> 0.125. Damage through = Damage x (floor + (1 - floor) x IgnoreCover), read from ShellHitSystem.DamageBuilding. See `cover-contract.json`. Not yet run in a game.
 - dev.18 (Lateralus, 6 November 2026): long-range sniper rifles fire 8 rounds per minute on the unit card (dev.16: 6): time between shots 7.375-9.375 s (11 weapon rows). Anti-materiel rifles stay at 6 (5 rows). New card hook (`source/conquest/CardRounding.cs`): the detailed unit card rounded rate of fire to the nearest 5 (UnitInfoCard calls UtilsClass.RoundToNearestMultiple(value, 5); read from the game code), so 12.5 showed as 10 and 6 as 5. Under 100 rounds per minute it now rounds to 1 (half to even, like the game); 100 and up still rounds to 5. The compact card uses 0.05 and is unchanged. See `sniper-rof-contract.json`. Not yet run in a game.
@@ -133,7 +134,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.15.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.16.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -389,3 +390,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 04:18:50 PST (America/Los_Angeles) — 0.5.0-dev.46: BARS 5 RPG-26 and 2 GP-25 (Lateralus). No live result.
 - 2026-11-07 15:25:18 PST (America/Los_Angeles) — 0.6.0-dev.11: Spetsnaz Alpha close-quarters 10 men at 85, stand-off 2 AEK-999 and 2 RG-6, Delta Force stand-off laser (Lateralus). No live result.
 - 2026-11-07 15:54:41 PST (America/Los_Angeles) — 0.6.0-dev.15: Spetsnaz Alpha stand-off 3 AEK-999, 9 AK-107, 90 points (Lateralus). No live result.
+- 2026-11-07 16:58:00 PST (America/Los_Angeles) — 0.6.0-dev.16: same build code with any music pack or menu logger; Create a lobby lists [FA] maps only (Osama). No live result.
