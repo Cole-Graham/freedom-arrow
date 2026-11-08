@@ -1008,6 +1008,44 @@ def main():
     assert fp['Name']==mg['name'] and all(fp[k]==v for k,v in mg['was'].items()),('MiG-31 preset changed upstream',mg['preset'])
     assert {m['Name'] for m in effective['MobilityJson'].values() if m.get('FlyPresetId')==mg['preset']}=={'Plane MIG31'},'MiG-31 preset is shared'
     put('FlyPresetsJson',mg['preset'],mg['fields'],'MiG-31 turn 14/30/30, pitch 45, roll 75')
+    # 0.6 dev.50: air combat by generation: ECM per jet, flares x0.9, instant air-to-air aim, F-22/Su-57 agility (air-gen-contract.json).
+    ag=json.loads((R/'air-gen-contract.json').read_text());why='Air combat by generation'
+    ecm_ab={i for i,a in effective['AbilitiesJson'].items() if a['IsDecoy'] and a['ECMAccuracyMultiplier']>0}
+    made={}
+    for key,tier in ag['tiers'].items():
+        uid=int(key);assert effective['Units'][uid]['Type']==16,uid
+        links=[r for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid and r['AbilityId'] in ecm_ab]
+        olds=sorted({r['AbilityId'] for r in links},key=lambda a:-effective['AbilitiesJson'][a]['ECMAccuracyMultiplier'])
+        vals=sorted({effective['AbilitiesJson'][a]['ECMAccuracyMultiplier'] for a in olds},reverse=True)
+        assert olds and all(effective['AbilitiesJson'][a]['DecoyAccuracyMultiplier']==ag['flare_was'] for a in olds),(uid,olds)
+        swap={}
+        for a in olds:
+            new=round(max(ag['ecm_floor'],tier-ag['pod_step']*vals.index(effective['AbilitiesJson'][a]['ECMAccuracyMultiplier'])),2)
+            if (a,new) not in made:made[(a,new)]=clone('AbilitiesJson',a,{'Name':effective['AbilitiesJson'][a]['Name']+f' FA {new:g}','ECMAccuracyMultiplier':new,'DecoyAccuracyMultiplier':ag['flare']},why)
+            swap[a]=made[(a,new)]
+        for r in links:put('UnitAbilitiesJson',r['Id'],{'AbilityId':swap[r['AbilityId']]},why)
+        for o in options(uid):
+            f={k:swap[o[k]] for k in ('Ability1Id','Ability2Id','Ability3Id') if o[k] in swap}
+            if f:put('OptionsJson',o['Id'],f,why)
+        left={r['AbilityId'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid}|{o[k] for o in options(uid) for k in ('Ability1Id','Ability2Id','Ability3Id')}
+        assert not left&set(olds),(uid,left&set(olds))
+    for key,f in ag['unit_fields'].items():put('Units',int(key),f,'Super Hornet name')
+    planes={u for u,r in effective['Units'].items() if r['Type']==16}
+    aam=set()
+    for r in effective['WeaponAmmunitionsJson'].values():
+        a=effective['AmmunitionsJson'].get(r['AmmunitionId'])
+        if r['UnitId'] in planes and a and a['TargetType']&24 and a['HighAltRange']>0 and a['Seeker']:aam.add(r['WeaponId'])
+    shared={r['WeaponId'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId'] in aam and r['UnitId'] not in planes}
+    for wid in sorted(aam-shared):put('WeaponsJson',wid,ag['aim'],'Air-to-air missile aims instantly')
+    for wid in ag['big_sam']['weapons']:
+        w=effective['WeaponsJson'][wid];assert w['Name'].startswith('SAM ') and w['AimTimeMin']==1.0 and wid not in aam,wid
+        put('WeaponsJson',wid,ag['big_sam']['aim'],'Long-range SAM aims in 0.2 s')
+    agl=ag['agile'];base=effective['FlyPresetsJson'][agl['preset']];assert base['Name']=='Fighter-Top' and base['CornerSpeedYaw']==50.8
+    fp=clone('FlyPresetsJson',agl['preset'],{'Name':'FA Fighter-Supermaneuver',**{k:round(base[k]*agl['factor'],2) for k in agl['fields']}},'F-22 and Su-57 supermaneuverability')
+    for uid in agl['units']:
+        (link,)=[p for p in effective['UnitPropulsionsJson'].values() if p['UnitId']==uid]
+        mob=link['MobilityId'];assert sum(p['MobilityId']==mob for p in effective['UnitPropulsionsJson'].values())==1 and effective['MobilityJson'][mob]['FlyPresetId']==agl['preset'],uid
+        put('MobilityJson',mob,{'FlyPresetId':fp},'F-22 and Su-57 supermaneuverability')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
