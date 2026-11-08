@@ -907,7 +907,8 @@ def main():
     for ld in aw['loads']:
         # Each load has its own weapon and pylon rows, because the round count is per weapon per mount.
         wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW '+ld['slot']},why)
-        tu=clone('TurretsJson',aw['turret'],{'Name':'PylonTurret B52H AGM183A ARRW '+ld['slot']},why)
+        model={'ModelFileName':effective['TurretsJson'][ld['model_like']]['ModelFileName']} if 'model_like' in ld else {}
+        tu=clone('TurretsJson',aw['turret'],{'Name':'PylonTurret B52H AGM183A ARRW '+ld['slot'],**model},why)
         ch=effective['TurretWeaponsJson'][aw['channel_like']];assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and ch['WeaponId']==430
         clone('TurretWeaponsJson',tw,{'TurretId':tu,'WeaponId':wp,'WeaponChannel':ch['WeaponChannel'],'WeaponPriority':ch['WeaponPriority']},why)
         like=effective['OptionsJson'][ld['like_option']];assert like['ModificationId'] in b52mods
