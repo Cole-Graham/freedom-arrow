@@ -423,7 +423,7 @@ def main():
             mine=[r for r in links if r['UnitId']==uid]
             q=max(5,int(5*round(sum(r['Quantity'] for r in mine)*0.25/5)))
             clone('WeaponAmmunitionsJson',mine[0]['Id'],{'AmmunitionId':sa,'Quantity':q,'Order':max(r['Order'] for r in mine)+1},'Mortar smoke rounds')
-    for w in mw:
+    for w in mw|set(d31['hawkeye_smoke_only']):
         if any(r['WeaponId']==w for r in effective['WeaponAmmunitionsJson'].values()):
             assert any(effective['AmmunitionsJson'][r['AmmunitionId']]['GenerateSmoke'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w),('mortar without smoke',w)
     # 0.4 dev.34: M8 Thunderbolt ERA 700 and Applique 400 HEAT all around.
@@ -862,6 +862,23 @@ def main():
     sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
     assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
     put('AmmunitionsJson',sl['ammo'],sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8')
+    # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
+    sm=json.loads((R/'smoke15-contract.json').read_text());why='Mortar loadout 15 smoke rounds'
+    for r in sm['smoke']:
+        a=effective['AmmunitionsJson'][r['ammo']];assert a['GenerateSmoke'],r
+        rows=[w for w in effective['WeaponAmmunitionsJson'].values() if (w['UnitId'],w['WeaponId'],w['AmmunitionId'])==(r['unit'],r['weapon'],r['ammo'])]
+        if rows:
+            (w,)=rows;assert 'like' not in r and w['Quantity']<r['quantity'],r
+            put('WeaponAmmunitionsJson',w['Id'],{'Quantity':r['quantity']},why)
+        else:
+            like=effective['WeaponAmmunitionsJson'][r['like']];assert like['UnitId']==r['unit'],r
+            assert any(t['WeaponId']==r['weapon'] for t in effective['TurretWeaponsJson'].values()),r
+            clone('WeaponAmmunitionsJson',r['like'],{'WeaponId':r['weapon'],'AmmunitionId':r['ammo'],'Quantity':r['quantity'],'Order':1+max(w['Order'] for w in effective['WeaponAmmunitionsJson'].values() if (w['UnitId'],w['WeaponId'])==(r['unit'],r['weapon']))},why)
+    for p in sm['pools']:
+        assert effective['SpecializationAvailabilitiesJson'][p['like']]['UnitId']==p['unit']
+        for s in p['specs']:
+            assert not any(r['UnitId']==p['unit'] and r['SpecializationId']==s for r in effective['SpecializationAvailabilitiesJson'].values())
+            clone('SpecializationAvailabilitiesJson',p['like'],{'SpecializationId':s},'Hawkeye MWS in Special Operations')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
