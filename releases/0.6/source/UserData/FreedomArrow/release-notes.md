@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.62 — development candidate
+# Freedom Arrow 0.6.0-dev.63 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -63,6 +63,7 @@ New in 0.6 dev.59: the B-52H can fire all 4 ARRWs without waiting for a reload.
 New in 0.6 dev.61: helicopter ATGM pylons show both pods again, still firing one missile at a time.
 New in 0.6 dev.60: the B-52H ARRW can be laser guided and has a 140 m blast radius.
 New in 0.6 dev.62: B-2 MOP loadout +250 (was +400); the MOP ignores building cover fully.
+New in 0.6 dev.63: BRM-3K has Very Good optics on every turret; its Kaktus reactive armor is 700 HEAT front and side. B-2 Spirit stealth 2.25.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

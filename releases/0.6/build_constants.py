@@ -982,6 +982,16 @@ def main():
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])
     put('OptionsJson',mop['option'],{'Cost':mop['option_cost']},'B-2 2x GBU-57 MOP loadout +250')
+    # 0.6 dev.63: BRM-3K Very Good optics on every turret, Kaktus ERA HEAT front and side 700 (brm3k-contract.json).
+    bk=json.loads((R/'brm3k-contract.json').read_text());why='BRM-3K Very Good optics, Kaktus HEAT 700'
+    assert any(r['UnitId']==bk['unit'] and r['SensorId']==bk['sensor'] for r in effective['SensorUnitsJson'].values())
+    for oid in bk['options']:
+        o=effective['OptionsJson'][oid];assert effective['ModificationsJson'][o['ModificationId']]['UnitId']==bk['unit'] and o['MainSensorId']==bk['sensor_was'],oid
+        put('OptionsJson',oid,{'MainSensorId':bk['sensor']},why)
+    ar=effective['ArmorsJson'][bk['armor']];assert ar['HeatArmorFront']==ar['HeatArmorSides']==bk['heat_was'],ar
+    assert [o['Id'] for o in effective['OptionsJson'].values() if o['ArmorId']==bk['armor']]==[bk['armor_option']]
+    assert {r['UnitId'] for r in effective['UnitArmorsJson'].values() if r['ArmorId']==bk['armor']}=={bk['unit']}
+    put('ArmorsJson',bk['armor'],{'HeatArmorFront':bk['heat'],'HeatArmorSides':bk['heat']},why)
     left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover']) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK',a['Name'])}
     assert not left,('bomb or MLRS row not in contract',sorted(left))
     # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
@@ -1090,6 +1100,9 @@ def main():
     for uid,u in list(effective['Units'].items()):
         if u['Type']==16 and f"{u['Stealth']:g}" in ad['plane_stealth']:
             v=ad['plane_stealth'][f"{u['Stealth']:g}"];put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Plane stealth +0.25 UI')
+    for uid,v in ad.get('unit_stealth',{}).items():
+        u=effective['Units'][int(uid)];assert u['Type']==16,uid
+        put('Units',int(uid),{'Stealth':v,'CurrentStealth':v},'Unit stealth (air-detect-contract.json unit_stealth)')
     sh=ad['shorad'];why='SHORAD high-altitude optics 1500 (6 km with radar on)';copies={}
     for uid in sh['units']:
         links=[r for r in effective['SensorUnitsJson'].values() if r['UnitId']==uid];assert links,uid

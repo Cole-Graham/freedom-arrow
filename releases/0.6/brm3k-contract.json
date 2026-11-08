@@ -1,0 +1,14 @@
+{
+  "note": "0.6 dev.63 (Osama, 8 November 2026). BRM-3K (unit 209): recon optics Very Good on every turret option (the 57 mm turret options 479 and 1708 had Good, sensor 1; the base 2A72 turret already had Very Good, sensor 14). Kaktus reactive armor (option 1710, armor row 2000445, used only by the BRM-3K) HEAT front and side 400 -> 700. KE, rear, top, HP and price unchanged. Not yet run in a game.",
+  "unit": 209,
+  "sensor": 14,
+  "sensor_was": 1,
+  "options": [
+    479,
+    1708
+  ],
+  "armor": 2000445,
+  "armor_option": 1710,
+  "heat": 700,
+  "heat_was": 400
+}
