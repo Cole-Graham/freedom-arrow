@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.38 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.39 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -75,6 +75,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.36 (Osama, 7 November 2026): long-range SAM cards availability 3 (was 2, vanilla): Patriot PAC-2, PAC-3, PAC-3 MSE, S-350 Vityaz, S-300PM Favorit, S-300V4 Antey. S-400 Triumph stays at 2. See `sam-avail-contract.json`. Not yet run in a game.
 - dev.37 (Osama, 7 November 2026): B-52H Stratofortress wing pylons can carry **2x AGM-183A ARRW** (+300). The ARRW is a renamed copy of the MiG-31K's Kh-47M2 Kinzhal HE (damage 70, penetration 250, range 5000, speed 1000), with its own round, weapon and pylon rows, so the MiG-31K's Kinzhal is unchanged. It uses the Kinzhal model (the game has no ARRW model). One missile per wing pylon. See `arrw-contract.json`. Not yet run in a game.
 - dev.38 (Osama, 7 November 2026): the B-52H ARRW choice is **4x AGM-183A ARRW (+400)**, two per wing pylon (dev.37: 2x, +300), on a copy of the AGM-86C ALCM wing pylon (turret 590, the same mounts as the 12x AGM-86C option), so the pylon shows the ALCM rack. Stats unchanged (Kinzhal HE copy). See `arrw-contract.json`. Not yet run in a game.
+- dev.39 (Osama, 7 November 2026): the B-52H ARRW is two choices of +200 each: **2x AGM-183A ARRW in the bomb bay** (on the bay mount of the 8x AGM-86C) and **2x on the wing pylons** (one per pylon), so 4 with both. Both use the Kinzhal model; dev.38's 4x on the AGM-86C wing pylon (+400) looked exactly like the ALCM and is gone. Stats unchanged (Kinzhal HE copy). See `arrw-contract.json`. Not yet run in a game.
 - dev.23 (Osama, 7 November 2026): supply trucks and artillery supply. Ural-4320 40 (was 45) and also in Coastal Troops, Defense Forces, Mechanized Infantry and Guard Tank Brigade (availability 4). MTV 40 (was 55), MTVR 45 (was 65), HEMTT 50 (was 75); HEMTT (4) and M1075A1 PLS (2) also in Armored Brigade. Every artillery round costs twice the supply to refill (103 rows: indirect-fire rounds and ground ballistic/cruise missiles; plane and ship rounds unchanged), for example 155 mm HE 100 → 200, Grad HE 240 → 480, 81 mm mortar HE 15 → 30. KamAZ-6560 50 (was 85); new card KamAZ-6560 Cargo (unit 739, no seats, 50) in Mechanized Infantry, Coastal Troops, Motorized Infantry and Guard Tank Brigade (availability 4). Ural-5323 45 (was 65). The LMTV 4000 cargo is not done: cargo capacity is not in the unit tables. See `logistics-contract.json`. Not yet run in a game.
 - dev.24 (Lateralus, 7 November 2026): 12ga SLUG T2 (M1014 and Benelli M4) damage 7.0 (was 4.8), penetration at max range 8 (was 7); 15 at close range unchanged. One shared round, so Delta Force, Marine Raiders, Pararescue, Force Recon CQC, Green Berets, SUV and Zaliukai all get it. About +15% Delta Force close-quarters squad DPM inside 200 m, 0% beyond (calculated). The T1, Saiga and KS-23 slugs are unchanged. See `slug-contract.json`. Not yet run in a game.
 - dev.22 (Osama, 7 November 2026): US recon helicopters, own cards in the recon tab, availability 4, not transports; the original cards are unchanged. USMC: UH-1Y Venom Recon (732) Very Good optics, 4 seats, door guns and rockets, 65. Airborne: OH-58D Recon Optronic (733) mast sight built in (+0), GAU-21 and Hydra pylons only, 70; OH-58D Recon (734) Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon (735) Very Good, 4 seats, door guns, 60; MH-6 Little Bird Recon (736) Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon (737) recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon (738) Very Good, 4 seats, guns and rockets, 60. The RECON tab has 2 more slots in every deck (`SupportSlots.cs`, same patch as SUP). Venom and Dauphin seats and the Little Bird price are guesses. See `recon-heli-us-contract.json`. Not yet run in a game.
@@ -155,7 +156,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.38.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.39.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -431,3 +432,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 20:46:29 PST (America/Los_Angeles) — 0.6.0-dev.36: Patriot, S-350 and S-300 availability 3; S-400 stays 2 (Osama). No live result.
 - 2026-11-07 20:52:39 PST (America/Los_Angeles) — 0.6.0-dev.37: B-52H 2x AGM-183A ARRW +300 (Osama). No live result.
 - 2026-11-07 21:01:26 PST (America/Los_Angeles) — 0.6.0-dev.38: B-52H 4x ARRW +400 on the AGM-86C pylon (Osama). No live result.
+- 2026-11-07 21:10:21 PST (America/Los_Angeles) — 0.6.0-dev.39: B-52H ARRW 2x bomb bay and 2x wings, +200 each (Osama). No live result.

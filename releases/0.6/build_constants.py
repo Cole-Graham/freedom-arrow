@@ -869,21 +869,24 @@ def main():
     for sid,x in sc['specs'].items():
         row=effective['SpecializationsJson'][int(sid)];assert all(row[k]==v for k,v in x['was'].items()),('spec changed upstream',sid)
         put('SpecializationsJson',int(sid),x['fields'],'Specialization shown name')
-    # 0.6: B-52H wing pylons can carry 4x AGM-183A ARRW (+400), on the AGM-86C pylon, a renamed copy of the Kinzhal HE (arrw-contract.json).
+    # 0.6: B-52H AGM-183A ARRW, 2x in the bomb bay and 2x on the wings, +200 each; a renamed copy of the Kinzhal HE on the Kinzhal model (arrw-contract.json).
     aw=json.loads((R/'arrw-contract.json').read_text());why='AGM-183A ARRW on the B-52H'
     assert effective['AmmunitionsJson'][aw['ammo']]['HUDName']=='Kh-47M2 Kinzhal' and effective['WeaponsJson'][aw['weapon']]['Name']=='Cruise Kh47M2 HE'
     am=clone('AmmunitionsJson',aw['ammo'],{'HUDName':aw['name'],'Name':'Missile Cruise AGM183A ARRW'},why)
-    wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW'},why)
-    assert effective['TurretUnitsJson'][aw['like_turret_link']]['TurretId']==aw['mount_turret']
-    tu=clone('TurretsJson',aw['mount_turret'],{'Name':'PylonTurret B52H AGM183A ARRW'},why)
     (tw,)=[r['Id'] for r in effective['TurretWeaponsJson'].values() if r['TurretId']==aw['turret'] and r['WeaponId']==aw['weapon']]
-    clone('TurretWeaponsJson',tw,{'TurretId':tu,'WeaponId':wp},why)
-    like=effective['OptionsJson'][aw['like_option']];assert like['ModificationId'] in {m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==aw['unit']}
-    mounts={k:tu for k in like if k.startswith('Turret') and k.endswith('Id') and like[k]}
-    clone('OptionsJson',aw['like_option'],{'Name':'Pylons B52H 4xARRW','UIName':'4x '+aw['name'],'Cost':aw['cost'],'IsDefault':False,'OptionPicture':'MOD_KINZHAL_HE','Order':1+max(o['Order'] for o in effective['OptionsJson'].values() if o['ModificationId']==like['ModificationId']),**mounts},why)
+    b52mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==aw['unit']}
     assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and effective['WeaponAmmunitionsJson'][aw['like_ammo_link']]['UnitId']==aw['unit']
-    clone('TurretUnitsJson',aw['like_turret_link'],{'TurretId':tu},why)
-    clone('WeaponAmmunitionsJson',aw['like_ammo_link'],{'WeaponId':wp,'AmmunitionId':am,'Quantity':aw['per_pylon']},why)
+    for ld in aw['loads']:
+        # Each load has its own weapon and pylon rows, because the round count is per weapon per mount.
+        wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW '+ld['slot']},why)
+        tu=clone('TurretsJson',aw['turret'],{'Name':'PylonTurret B52H AGM183A ARRW '+ld['slot']},why)
+        clone('TurretWeaponsJson',tw,{'TurretId':tu,'WeaponId':wp},why)
+        like=effective['OptionsJson'][ld['like_option']];assert like['ModificationId'] in b52mods
+        mounts={k:tu for k in like if k.startswith('Turret') and k.endswith('Id') and like[k]}
+        assert len(mounts)*ld['per_mount']==2,ld
+        clone('OptionsJson',ld['like_option'],{'Name':ld['option_name'],'UIName':'2x '+aw['name'],'Cost':ld['cost'],'IsDefault':False,'OptionPicture':'MOD_KINZHAL_HE','Order':1+max(o['Order'] for o in effective['OptionsJson'].values() if o['ModificationId']==like['ModificationId']),**mounts},why)
+        clone('TurretUnitsJson',aw['like_turret_link'],{'TurretId':tu},why)
+        clone('WeaponAmmunitionsJson',aw['like_ammo_link'],{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['per_mount']},why)
     # 0.6: supply trucks in more decks; artillery uses twice the supply (logistics-contract.json). Truck prices are in vehicle-contract.json.
     lg=json.loads((R/'logistics-contract.json').read_text());why='Supply truck card in another deck'
     for p in lg['pools']:

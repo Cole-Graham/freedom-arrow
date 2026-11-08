@@ -1,14 +1,14 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). B-52H Stratofortress: new wing pylon choice 4x AGM-183A ARRW (+400; dev.37 had 2x for +300), the US hypersonic missile tested on the B-52H. The ARRW is a copy of the MiG-31K's Kh-47M2 Kinzhal HE (round 455: damage 70, penetration 250, range 5000, speed 1000; weapon 610; on a copy of the AGM-86C ALCM wing pylon, turret 590, dev.38) under its own name, so the MiG-31K's Kinzhal is unchanged. Two missiles per wing pylon on the same mounts as the 12x AGM-86C option (1094, mounts 1 and 2). Guess: Kinzhal HE stats, since the game has no ARRW data. Not yet run in a game.",
+  "note": "0.6 (Osama, 7 November 2026). B-52H Stratofortress: AGM-183A ARRW, the US hypersonic missile tested on the B-52H, as two choices of +200 each (dev.39; dev.37 had 2x on the wings for +300, dev.38 4x on the AGM-86C wing pylon for +400, which looked exactly like the ALCM). Bomb bay: 2x AGM-183A ARRW (+200), on the bay mount the 8x AGM-86C uses. Wing pylons: 2x AGM-183A ARRW (+200), one per wing pylon, on the mounts the wing options use. Both use the Kinzhal model (the game has no ARRW model and no pylon-only ALCM model), so 4 ARRWs with both choices. The ARRW is a renamed copy of the MiG-31K Kh-47M2 Kinzhal HE (round 455: damage 70, penetration 250, range 5000; weapon 610; pylon 836); the MiG-31K Kinzhal is unchanged. Not yet run in a game.",
   "unit": 300,
-  "like_option": 1094,
-  "like_turret_link": 998,
-  "like_ammo_link": 3321,
   "ammo": 455,
   "weapon": 610,
   "turret": 836,
   "name": "AGM-183A ARRW",
-  "cost": 400,
-  "per_pylon": 2,
-  "mount_turret": 590
+  "like_ammo_link": 3321,
+  "like_turret_link": 1001,
+  "loads": [
+    {"slot": "bay", "like_option": 1087, "per_mount": 2, "cost": 200, "option_name": "Bay B52H 2xARRW"},
+    {"slot": "wings", "like_option": 1089, "per_mount": 1, "cost": 200, "option_name": "Pylons B52H 2xARRW"}
+  ]
 }
