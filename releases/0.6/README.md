@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.34 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.35 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -71,6 +71,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.32 (Osama, 7 November 2026): fixed slot counts for every spec pair. Every open tab has 7 slots, and RECON and SUP have 9 (vanilla, dev.21 to dev.31: the two specs' slots added and capped at 7, then +2 on RECON and SUP). A tab with no slots in either spec stays closed. Point caps are unchanged. Old decks grow to the new counts when opened (dev.30). `SupportSlots.cs`. Not yet run in a game.
 - dev.33 (Lateralus, 7 November 2026): the M72A3 LAW (Scouts, Reserve Marines) is shown as M72A7 LAW. Display name only; stats and internal name unchanged. See `rename-contract.json`. Not yet run in a game.
 - dev.34 (Osama, 7 November 2026): the US Airborne infantry specialization shows as **Air Naval**, since it gets the naval planes and naval units are planned. Only the shown name changes (UIName `ui_spec_airborne_name` → plain text, which the game shows as written, as for option names); internal name, description, icon, slots, points and units unchanged. See `spec-contract.json`. The Airborne TOW-2A team is also in Stryker (availability 4, riding a Stryker ICV; `tow-stryker-contract.json`). Not yet seen in the game.
+- dev.35 (Osama, 7 November 2026): artillery penetration +50%. Every tube, mortar and rocket artillery round (trajectory 20, 30, 40) that FA had lowered below vanilla gets its FA value x1.5, never above vanilla: 60 rows, for example 155 mm HE 30 → 45 (vanilla 75), 122 mm HE 30 → 45 (60), 300 mm Smerch HE 20 → 30 (125), 81/82 mm HE 30 → 40 (= vanilla), laser-guided 155 mm 52.5 → 75 (= vanilla), Copperhead 315 → 472.5 (600). Ballistic missiles (ATACMS, PrSM, Iskander, Tochka) already had vanilla penetration and are unchanged. See `arty-pen-contract.json`. Not yet run in a game.
 - dev.23 (Osama, 7 November 2026): supply trucks and artillery supply. Ural-4320 40 (was 45) and also in Coastal Troops, Defense Forces, Mechanized Infantry and Guard Tank Brigade (availability 4). MTV 40 (was 55), MTVR 45 (was 65), HEMTT 50 (was 75); HEMTT (4) and M1075A1 PLS (2) also in Armored Brigade. Every artillery round costs twice the supply to refill (103 rows: indirect-fire rounds and ground ballistic/cruise missiles; plane and ship rounds unchanged), for example 155 mm HE 100 → 200, Grad HE 240 → 480, 81 mm mortar HE 15 → 30. KamAZ-6560 50 (was 85); new card KamAZ-6560 Cargo (unit 739, no seats, 50) in Mechanized Infantry, Coastal Troops, Motorized Infantry and Guard Tank Brigade (availability 4). Ural-5323 45 (was 65). The LMTV 4000 cargo is not done: cargo capacity is not in the unit tables. See `logistics-contract.json`. Not yet run in a game.
 - dev.24 (Lateralus, 7 November 2026): 12ga SLUG T2 (M1014 and Benelli M4) damage 7.0 (was 4.8), penetration at max range 8 (was 7); 15 at close range unchanged. One shared round, so Delta Force, Marine Raiders, Pararescue, Force Recon CQC, Green Berets, SUV and Zaliukai all get it. About +15% Delta Force close-quarters squad DPM inside 200 m, 0% beyond (calculated). The T1, Saiga and KS-23 slugs are unchanged. See `slug-contract.json`. Not yet run in a game.
 - dev.22 (Osama, 7 November 2026): US recon helicopters, own cards in the recon tab, availability 4, not transports; the original cards are unchanged. USMC: UH-1Y Venom Recon (732) Very Good optics, 4 seats, door guns and rockets, 65. Airborne: OH-58D Recon Optronic (733) mast sight built in (+0), GAU-21 and Hydra pylons only, 70; OH-58D Recon (734) Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon (735) Very Good, 4 seats, door guns, 60; MH-6 Little Bird Recon (736) Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon (737) recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon (738) Very Good, 4 seats, guns and rockets, 60. The RECON tab has 2 more slots in every deck (`SupportSlots.cs`, same patch as SUP). Venom and Dauphin seats and the Little Bird price are guesses. See `recon-heli-us-contract.json`. Not yet run in a game.
@@ -151,7 +152,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.34.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.35.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -423,3 +424,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 20:24:38 PST (America/Los_Angeles) — 0.6.0-dev.32: every open tab 7 slots, RECON and SUP 9 (Osama). No live result.
 - 2026-11-07 20:27:18 PST (America/Los_Angeles) — 0.6.0-dev.33: M72A3 LAW shown as M72A7 LAW (Lateralus). No live result.
 - 2026-11-07 20:33:22 PST (America/Los_Angeles) — 0.6.0-dev.34: Airborne infantry shows as Air Naval; TOW-2A team in Stryker (Osama). No live result.
+- 2026-11-07 20:38:00 PST (America/Los_Angeles) — 0.6.0-dev.35: artillery penetration x1.5, not above vanilla (Osama). No live result.

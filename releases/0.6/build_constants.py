@@ -887,6 +887,17 @@ def main():
         kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in effective['Units']}
         if kinds-{4}:continue  # plane and ship rounds
         put('AmmunitionsJson',aid,{'SupplyCost':a['SupplyCost']*lg['supply_factor']},'Artillery uses twice the supply')
+    # 0.6 (Osama): artillery penetration FA lowered (0.1 caps above) x1.5, never above vanilla (arty-pen-contract.json).
+    arty=json.loads((R/'arty-pen-contract.json').read_text());n=0
+    for aid,row in list(effective['AmmunitionsJson'].items()):
+        van=original['AmmunitionsJson'].get(aid)
+        if row['TrajectoryType'] not in arty['trajectories'] or van is None:continue
+        cur=(row['PenetrationAtMinRange'],row['PenetrationAtGroundRange'])
+        if cur==(van['PenetrationAtMinRange'],van['PenetrationAtGroundRange']):continue
+        assert all(c<v for c,v in zip(cur,(van['PenetrationAtMinRange'],van['PenetrationAtGroundRange']))),('artillery above vanilla',aid)
+        assert aid in arty['ammo'],('artillery row not in contract',aid)
+        put('AmmunitionsJson',aid,{'PenetrationAtMinRange':min(cur[0]*arty['factor'],van['PenetrationAtMinRange']),'PenetrationAtGroundRange':min(cur[1]*arty['factor'],van['PenetrationAtGroundRange'])},'Artillery penetration x1.5, not above vanilla');n+=1
+    assert n==len(arty['ammo']),('artillery rows',n)
     # 0.6: 12ga SLUG T2 (M1014, Benelli M4) damage 7.0, penetration at max range 8 (slug-contract.json).
     sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
     assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})

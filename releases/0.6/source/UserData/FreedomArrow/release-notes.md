@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.34 — development candidate
+# Freedom Arrow 0.6.0-dev.35 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -34,6 +34,7 @@ New in 0.6 dev.31: Ka-29 and Mi-8AMTSh Razvedchik can fly with no rockets and op
 New in 0.6 dev.32: every deck has 7 slots on each open tab and 9 on RECON and SUP, whatever the two specializations.
 New in 0.6 dev.33: the M72A3 LAW is now called M72A7 LAW (same stats).
 New in 0.6 dev.34: the US Airborne specialization is named Air Naval; the TOW-2A team is also in the Stryker deck.
+New in 0.6 dev.35: artillery shells and rockets penetrate 50% more (never more than vanilla).
 
 ## Earlier notes
 
