@@ -26,7 +26,7 @@ public sealed partial class Prototype
     {
         if(Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<NullableEntity>()!=12)throw new InvalidOperationException($"Entity layout changed (Entity {Unsafe.SizeOf<Entity>()} bytes, Nullable {Unsafe.SizeOf<NullableEntity>()} bytes; expected 8 and 12)");
         Patch(typeof(SeekerSystem),"DropCurrentTarget",nameof(HarmDropBefore),nameof(HarmDropAfter));
-        MelonLogger.Msg("FREEDOM_ARROW_HARM installed: a SEAD missile that loses a live target flies to its last position");
+        MelonLogger.Msg("FREEDOM_ARROW_HARM installed: a SEAD missile that loses a live target flies straight on, with no turning");
     }
     public static void HarmDropBefore(in Entity __0)
     {
@@ -53,13 +53,17 @@ public sealed partial class Prototype
         {
             var missile=__0;
             if(!missile.IsAlive||!missile.Has<SeekerComponent>())return;
+            // dev.42 (Osama): no turning after losing lock. The aim point is straight ahead on the missile's current heading,
+            // as far away as the radar, so the guidance has nothing to turn towards and the missile keeps its line.
             var miss=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
-            NativeEcs.WriteField<SeekerComponent,Vector3>(missile,"LastTargetPosition",point);
+            var tf=NativeEcs.Read<ViewComponent>(missile).transform;
+            var at=tf.position;float dist=Mathf.Max(Vector3.Distance(at,point),1f);
+            var ahead=at+tf.forward*dist;
+            NativeEcs.WriteField<SeekerComponent,Vector3>(missile,"LastTargetPosition",ahead);
             var back=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
-            var at=NativeEcs.Read<ViewComponent>(missile).transform.position;
             if(++harmLogged<=MaxHarmLog)
-                MelonLogger.Msg($"FREEDOM_ARROW_HARM target_lost flies to ({back.x:0},{back.y:0},{back.z:0}) instead of miss point ({miss.x:0},{miss.y:0},{miss.z:0}); {Vector3.Distance(at,point):0} world units to go");
-            if(stateFile!=null)StateLine("harm_last_position",new{x=point.x,y=point.y,z=point.z,miss_x=miss.x,miss_z=miss.z,distance=Vector3.Distance(at,point)});
+                MelonLogger.Msg($"FREEDOM_ARROW_HARM target_lost flies straight to ({back.x:0},{back.y:0},{back.z:0}); radar was at ({point.x:0},{point.y:0},{point.z:0}), vanilla miss point ({miss.x:0},{miss.y:0},{miss.z:0}); {dist:0} world units to the radar, {Vector3.Angle(tf.forward,point-at):0} degrees off the nose");
+            if(stateFile!=null)StateLine("harm_lock_lost",new{x=back.x,y=back.y,z=back.z,radar_x=point.x,radar_z=point.z,miss_x=miss.x,miss_z=miss.z,distance=dist,off_nose=Vector3.Angle(tf.forward,point-at)});
         }
         catch(Exception e){harmOff=true;MelonLogger.Error("FREEDOM_ARROW_HARM_FAILED: vanilla behaviour for this session. "+e.Message);}
     }

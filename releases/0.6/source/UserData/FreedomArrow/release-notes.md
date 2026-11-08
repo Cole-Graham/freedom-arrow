@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.41 — development candidate
+# Freedom Arrow 0.6.0-dev.42 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -41,6 +41,7 @@ New in 0.6 dev.38: the B-52H ARRW choice carries 4 missiles, two per wing pylon 
 New in 0.6 dev.39: B-52H ARRW is 2 in the bomb bay and 2 on the wings, +200 each.
 New in 0.6 dev.40: the MiG-31 turns slower: 30°/s at top speed (was 45), pitch 45, roll 75.
 New in 0.6 dev.41: HARM, Kh-58, Kh-31P and Sidearm fly faster and turn harder, as in ActualArrow; the B-52H ARRW can be fired (same weapon channel as the AGM-86C).
+New in 0.6 dev.42: a HARM that loses lock flies straight on without turning; anti-radiation missile speed is vanilla again.
 
 ## Earlier notes
 

@@ -1,19 +1,49 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). Anti-radiation (SEAD) missiles move as in ActualArrow 1.1.20: ActualArrow has no code that makes them remember a radar (none of its mods touch the missile seeker); its SEAD missiles are faster and turn harder, so they reach the radar before it hides. Copied from ActualArrow's Ammunitions table: MaxSpeed, Acceleration and RotationSpeed only, on the 6 rounds it changed. Damage (ActualArrow 12.5), resupply time and supply cost are not copied. FA's dev.29 hook (the missile flies to the radar's true position after losing it) stays. Not yet run in a game.",
+  "note": "0.6 (Osama, 7 November 2026). Anti-radiation (SEAD) missiles move as in ActualArrow 1.1.20: ActualArrow has no code that makes them remember a radar (none of its mods touch the missile seeker); its SEAD missiles are faster and turn harder, so they reach the radar before it hides. Copied from ActualArrow's Ammunitions table: MaxSpeed, Acceleration and RotationSpeed only, on the 6 rounds it changed. Damage (ActualArrow 12.5), resupply time and supply cost are not copied. FA's dev.29 hook (the missile flies to the radar's true position after losing it) stays. Not yet run in a game. dev.42 (Osama: don't touch speed): MaxSpeed and Acceleration back to vanilla; only ActualArrow's turn rate 120 (was 90) while locked stays, on HARM, Kh-58UShK, Kh-31P (271) and Sidearm (301).",
   "was": {
-    "271": {"MaxSpeed": 650.0, "Acceleration": 250.0, "RotationSpeed": 90.0},
-    "298": {"MaxSpeed": 700.0, "Acceleration": 300.0, "RotationSpeed": 90.0},
-    "301": {"MaxSpeed": 600.0, "Acceleration": 250.0, "RotationSpeed": 90.0},
-    "315": {"MaxSpeed": 700.0, "Acceleration": 300.0, "RotationSpeed": 90.0},
-    "397": {"MaxSpeed": 600.0, "Acceleration": 300.0, "RotationSpeed": 90.0},
-    "400": {"MaxSpeed": 600.0, "Acceleration": 300.0, "RotationSpeed": 90.0}
+    "271": {
+      "MaxSpeed": 650.0,
+      "Acceleration": 250.0,
+      "RotationSpeed": 90.0
+    },
+    "298": {
+      "MaxSpeed": 700.0,
+      "Acceleration": 300.0,
+      "RotationSpeed": 90.0
+    },
+    "301": {
+      "MaxSpeed": 600.0,
+      "Acceleration": 250.0,
+      "RotationSpeed": 90.0
+    },
+    "315": {
+      "MaxSpeed": 700.0,
+      "Acceleration": 300.0,
+      "RotationSpeed": 90.0
+    },
+    "397": {
+      "MaxSpeed": 600.0,
+      "Acceleration": 300.0,
+      "RotationSpeed": 90.0
+    },
+    "400": {
+      "MaxSpeed": 600.0,
+      "Acceleration": 300.0,
+      "RotationSpeed": 90.0
+    }
   },
   "fields": {
-    "271": {"MaxSpeed": 900, "Acceleration": 300, "RotationSpeed": 120},
-    "298": {"MaxSpeed": 1000, "RotationSpeed": 120},
-    "301": {"MaxSpeed": 800, "Acceleration": 300, "RotationSpeed": 120},
-    "315": {"MaxSpeed": 1000, "RotationSpeed": 120},
-    "397": {"Acceleration": 250},
-    "400": {"MaxSpeed": 700, "Acceleration": 250}
+    "271": {
+      "RotationSpeed": 120
+    },
+    "298": {
+      "RotationSpeed": 120
+    },
+    "301": {
+      "RotationSpeed": 120
+    },
+    "315": {
+      "RotationSpeed": 120
+    }
   }
 }
