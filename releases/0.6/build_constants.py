@@ -906,7 +906,7 @@ def main():
     assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and effective['WeaponAmmunitionsJson'][aw['like_ammo_link']]['UnitId']==aw['unit']
     for ld in aw['loads']:
         # Each load has its own weapon and pylon rows, because the round count is per weapon per mount.
-        wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW '+ld['slot']},why)
+        wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW '+ld['slot'],'MagazineSize':ld['per_mount']},why)
         model={'ModelFileName':effective['TurretsJson'][ld['model_like']]['ModelFileName']} if 'model_like' in ld else {}
         tu=clone('TurretsJson',aw['turret'],{'Name':'PylonTurret B52H AGM183A ARRW '+ld['slot'],**model},why)
         ch=effective['TurretWeaponsJson'][aw['channel_like']];assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and ch['WeaponId']==430
