@@ -364,6 +364,8 @@ def interpolate_dpm(series: list[tuple[float, float]], card_m: float) -> float:
         return 0.0
     if card_m <= series[0][0]:
         return series[0][1]
+    if card_m > series[-1][0] + 1e-6:
+        return 0.0  # past the weapon's max range: it cannot fire
     if card_m >= series[-1][0]:
         return series[-1][1]
     for i in range(1, len(series)):

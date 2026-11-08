@@ -346,3 +346,13 @@ class CoverTests(unittest.TestCase):
         built = dpm_at_world(weapon, shell, infantry, 900, "Front", silhouette=(4, 2), apply_accuracy=True, cover=fa_building)
         self.assertAlmostEqual(built, 10 * 10 * (0.18 + 0.82 * 0.25))  # building: no misses
         self.assertLess(open_dpm, 100)
+
+
+class InterpolateTests(unittest.TestCase):
+    def test_zero_past_max_range(self) -> None:
+        from dpm_visualizer.calculations import interpolate_dpm
+
+        series = [(0.0, 10.0), (100.0, 8.0), (200.0, 6.0)]
+        self.assertEqual(interpolate_dpm(series, 200.0), 6.0)
+        self.assertEqual(interpolate_dpm(series, 225.0), 0.0)
+        self.assertEqual(interpolate_dpm(series, 150.0), 7.0)
