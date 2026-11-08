@@ -1007,7 +1007,7 @@ def main():
         (r,)=[r for r in effective['SpecializationAvailabilitiesJson'].values() if (r['UnitId'],r['SpecializationId'])==(uid,spec)];u=effective['Units'][uid]
         assert r['MaxAvailabilityXp0']==mb['truck_was'] and u['Role']==14 and u['Type']==4,(uid,u['HUDName'])
         put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':mb['truck_availability']},'Cargo truck availability 4')
-    left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover'],1.0) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK',a['Name'])}
+    left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover'],1.0) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK|CATFAE',a['Name'])}
     assert not left,('bomb or MLRS row not in contract',sorted(left))
     # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
     sm=json.loads((R/'smoke15-contract.json').read_text());why='Mortar loadout 15 smoke rounds'

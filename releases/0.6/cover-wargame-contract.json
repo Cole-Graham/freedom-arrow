@@ -12,7 +12,6 @@
     178,
     179,
     215,
-    466,
     928,
     930,
     932,
@@ -92,10 +91,10 @@
     "67": 27.5,
     "157": 38.0,
     "160": 28.0,
-    "178": 57.5,
-    "179": 179.5,
+    "178": 30.0,
+    "179": 30.0,
     "214": 42.0,
-    "215": 179.5,
+    "215": 30.0,
     "283": 36.0,
     "284": 26.0,
     "287": 56.0,
@@ -116,7 +115,6 @@
     "351": 15.0,
     "430": 16.0,
     "443": 35.5,
-    "466": 29.0,
     "516": 56.0,
     "517": 26.0,
     "518": 26.0,
@@ -147,10 +145,10 @@
     "67": 19.0,
     "157": 59.0,
     "160": 50.0,
-    "178": 13.0,
-    "179": 7.0,
+    "178": 15.0,
+    "179": 15.0,
     "214": 15.0,
-    "215": 7.0,
+    "215": 15.0,
     "283": 62.0,
     "284": 48.0,
     "287": 46.0,
@@ -171,7 +169,6 @@
     "351": 30.0,
     "430": 26.0,
     "443": 17.0,
-    "466": 15.0,
     "516": 46.0,
     "517": 48.0,
     "518": 48.0,
@@ -268,21 +265,17 @@
       "Pen": 26.0
     },
     "178": {
-      "Damage": 57.5,
-      "Pen": 13.0
+      "Damage": 30.0,
+      "Pen": 15.0
     },
     "179": {
-      "Damage": 179.5,
-      "Pen": 7.0
+      "Damage": 30.0,
+      "Pen": 15.0
     },
     "215": {
-      "Damage": 179.5,
-      "Pen": 7.0
-    },
-    "466": {
-      "Damage": 29.0,
+      "Damage": 30.0,
       "Pen": 15.0
     }
   },
-  "mlrs_note": "0.6 dev.73 (Osama, 8 November 2026): MLRS at about 90% of Wargame per rocket, counting misses. Expected damage per rocket on a point target = peak damage x (blast radius / scatter)^2 x 1/3 (linear falloff) in both games; Wargame scatter is the mean of its min and max dispersion. Wargame stand-ins (WRD Toolbox): Grad M-21OF, Ogon M-14-OF (Shmel), Uragan 9M27F HE, GMLRS/HIMARS M26 HE, 300 mm Uragan-class scatter with HE 15 (Wargame has no Smerch), TOS and CATFAE TOS-1 Buratino. Damage set so BA = 0.9 x Wargame in the open with penetration lowered so a direct roof hit on an MBT (armor 80) does at most about 1.5 HP; ignore cover 0.15 so a building lets 30% through, Wargame's town factor, for every MLRS row (replaces dev.49's 1.0)."
+  "mlrs_note": "0.6 dev.73 (Osama, 8 November 2026): MLRS at about 90% of Wargame per rocket, counting misses. Expected damage per rocket on a point target = peak damage x (blast radius / scatter)^2 x 1/3 (linear falloff) in both games; Wargame scatter is the mean of its min and max dispersion. Wargame stand-ins (WRD Toolbox): Grad M-21OF, Ogon M-14-OF (Shmel), Uragan 9M27F HE, GMLRS/HIMARS M26 HE, 300 mm Uragan-class scatter with HE 15 (Wargame has no Smerch), TOS and CATFAE TOS-1 Buratino. Damage set so BA = 0.9 x Wargame in the open with penetration lowered so a direct roof hit on an MBT (armor 80) does at most about 1.5 HP; ignore cover 0.15 so a building lets 30% through, Wargame's town factor, for every MLRS row (replaces dev.49's 1.0). dev.76 (Osama): TOS-1, TOS-1A and TOS-2 back to vanilla damage 30 and penetration 15 (they don't scatter as much as the model assumed and are already strong), ignore cover 0.15 like the other MLRS. CATFAE is not artillery: removed from the MLRS changes, fully vanilla (damage 30, penetration 15, ignore cover 0)."
 }
