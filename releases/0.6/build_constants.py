@@ -1039,13 +1039,20 @@ def main():
     for wid in sorted(aam-shared):put('WeaponsJson',wid,ag['aim'],'Air-to-air missile aims instantly')
     for wid in ag['big_sam']['weapons']:
         w=effective['WeaponsJson'][wid];assert w['Name'].startswith('SAM ') and w['AimTimeMin']==1.0 and wid not in aam,wid
-        put('WeaponsJson',wid,ag['big_sam']['aim'],'Long-range SAM aims in 0.2 s')
+        put('WeaponsJson',wid,ag['big_sam']['aim'],'Long-range SAM aims in 0.5 s')
     agl=ag['agile'];base=effective['FlyPresetsJson'][agl['preset']];assert base['Name']=='Fighter-Top' and base['CornerSpeedYaw']==50.8
     fp=clone('FlyPresetsJson',agl['preset'],{'Name':'FA Fighter-Supermaneuver',**{k:round(base[k]*agl['factor'],2) for k in agl['fields']}},'F-22 and Su-57 supermaneuverability')
     for uid in agl['units']:
         (link,)=[p for p in effective['UnitPropulsionsJson'].values() if p['UnitId']==uid]
         mob=link['MobilityId'];assert sum(p['MobilityId']==mob for p in effective['UnitPropulsionsJson'].values())==1 and effective['MobilityJson'][mob]['FlyPresetId']==agl['preset'],uid
         put('MobilityJson',mob,{'FlyPresetId':fp},'F-22 and Su-57 supermaneuverability')
+    # 0.6 dev.51: S-300V4, S-300PM and PAC-2 missiles take the S-400 missile stats except range (sam-match-contract.json).
+    smc=json.loads((R/'sam-match-contract.json').read_text())
+    for key,src in smc['copies'].items():
+        row=effective['AmmunitionsJson'][int(key)];tpl=effective['AmmunitionsJson'][src]
+        assert row['Name'].startswith('Missile AA') and tpl['Name'].startswith('Missile AA S') and 'S400' in tpl['Name'],key
+        f={k:v for k,v in tpl.items() if k not in smc['keep'] and row.get(k)!=v}
+        if f:put('AmmunitionsJson',int(key),f,'Long-range SAM missile as the S-400, own range')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

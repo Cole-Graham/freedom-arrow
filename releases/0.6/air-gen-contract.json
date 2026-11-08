@@ -1,5 +1,5 @@
 {
-  "note": "0.6 dev.50 (Osama, 8 November 2026). Air combat by generation. Base ECM per jet: 5th gen F-22 0.5, F-35A/B/C and Su-57 0.55; 4.5 gen 0.7 (F/A-18E/F Super Hornet, renamed from the F/A-18C/D, F-15EX, F-16V, Su-35S, MiG-35, Su-30SM, Su-34); 4th gen and older attack jets 0.85; SEAD/EW 0.1 better than their generation (EA-18G 0.6, F-16CJ 0.75, Su-24MP 0.75). Each better ECM choice a jet already has (pods) is 0.1 better than the one before it, floor 0.5. Flares on these jets x0.9 per active flare (was 0.85; at most 3 active: 3 s duration, 1 s cooldown). Hit chance = missile accuracy (1.0) x ECM x flare factor per active flare x stress (CalculateMissileHitChance, GameAssembly RVA 0x7D4130). Air-to-air missiles on planes aim instantly (AimTimeMin/Max 0; was 1.0); MANPADS, SAMs and helicopter missiles keep theirs. F-22 and Su-57: their own flight preset, a copy of 'Fighter-Top' with yaw and pitch x1.5 (corner yaw 50.8 -> 76.2, afterburner 55 -> 82.5). Prices: point change = price x 0.3 x survivability change (average hit chance without and with 3 flares), rounded to 5; those live in vehicle-contract.json base_costs and the Growler card. Calculated from the game code, not yet run in a game. Long-range SAMs (S-300V4, S-300PM, S-350, S-400, Patriot PAC-2, PAC-3, PAC-3 MSE) aim in 0.2 s (was 1.0; Osama, 8 November 2026).",
+  "note": "0.6 dev.50 (Osama, 8 November 2026). Air combat by generation. Base ECM per jet: 5th gen F-22 0.5, F-35A/B/C and Su-57 0.55; 4.5 gen 0.7 (F/A-18E/F Super Hornet, renamed from the F/A-18C/D, F-15EX, F-16V, Su-35S, MiG-35, Su-30SM, Su-34); 4th gen and older attack jets 0.85; SEAD/EW 0.1 better than their generation (EA-18G 0.6, F-16CJ 0.75, Su-24MP 0.75). Each better ECM choice a jet already has (pods) is 0.1 better than the one before it, floor 0.5. Flares on these jets x0.9 per active flare (was 0.85; at most 3 active: 3 s duration, 1 s cooldown). Hit chance = missile accuracy (1.0) x ECM x flare factor per active flare x stress (CalculateMissileHitChance, GameAssembly RVA 0x7D4130). Air-to-air missiles on planes aim instantly (AimTimeMin/Max 0; was 1.0); MANPADS, SAMs and helicopter missiles keep theirs. F-22 and Su-57: their own flight preset, a copy of 'Fighter-Top' with yaw and pitch x1.5 (corner yaw 50.8 -> 76.2, afterburner 55 -> 82.5). Prices: point change = price x 0.3 x survivability change (average hit chance without and with 3 flares), rounded to 5; those live in vehicle-contract.json base_costs and the Growler card. Calculated from the game code, not yet run in a game. Long-range SAMs (S-300V4, S-300PM, S-350, S-400, Patriot PAC-2, PAC-3, PAC-3 MSE) aim in 0.2 s (was 1.0; Osama, 8 November 2026); dev.51: 0.5 s (Osama).",
   "tiers": {
     "297": 0.5,
     "294": 0.55,
@@ -90,8 +90,8 @@
       651
     ],
     "aim": {
-      "AimTimeMin": 0.2,
-      "AimTimeMax": 0.2
+      "AimTimeMin": 0.5,
+      "AimTimeMax": 0.5
     }
   }
 }

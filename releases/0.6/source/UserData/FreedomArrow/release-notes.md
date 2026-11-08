@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.50 — development candidate
+# Freedom Arrow 0.6.0-dev.51 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -49,9 +49,10 @@ New in 0.6 dev.46: Apache Hellfire pylons show two racks with no stray Hydra pod
 New in 0.6 dev.47: the plane-spotted alert and the FlatIncomeMod missile alarm play at half volume.
 New in 0.6 dev.48: test for the B-52H ARRW fire order — the bomb-bay ARRW uses the B-52 bay model; the wing ARRW keeps the Kinzhal model.
 New in 0.6 dev.49: MLRS rockets ignore building cover; bombs ignore half of it; unguided bombs no longer force roof hits, and bomb/MLRS penetration is capped so one hit cannot kill a main battle tank.
-New in 0.6 dev.50: ECM by aircraft generation (F-22 0.5 to older jets 0.85), weaker flares, instant air-to-air missile aim, big SAMs aim in 0.2 s, F-22/Su-57 turn 50% faster, Super Hornet names and new jet prices.
+New in 0.6 dev.50: ECM by aircraft generation (F-22 0.5 to older jets 0.85), weaker flares, instant air-to-air missile aim, big SAMs aim faster, F-22/Su-57 turn 50% faster, Super Hornet names and new jet prices.
 
-## Earlier notes
+#New in 0.6 dev.51: big SAMs aim in 0.5 s; S-300V4, S-300PM and Patriot PAC-2 missiles use the S-400 missile stats with their own ranges.
+# Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
 
