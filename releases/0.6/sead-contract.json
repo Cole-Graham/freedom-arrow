@@ -1,5 +1,5 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). Anti-radiation (SEAD) missiles move as in ActualArrow 1.1.20: ActualArrow has no code that makes them remember a radar (none of its mods touch the missile seeker); its SEAD missiles are faster and turn harder, so they reach the radar before it hides. Copied from ActualArrow's Ammunitions table: MaxSpeed, Acceleration and RotationSpeed only, on the 6 rounds it changed. Damage (ActualArrow 12.5), resupply time and supply cost are not copied. FA's dev.29 hook (the missile flies to the radar's true position after losing it) stays. Not yet run in a game. dev.42 (Osama: don't touch speed): MaxSpeed and Acceleration back to vanilla; only ActualArrow's turn rate 120 (was 90) while locked stays, on HARM, Kh-58UShK, Kh-31P (271) and Sidearm (301).",
+  "note": "0.6 (Osama, 7 November 2026). Anti-radiation (SEAD) missiles move as in ActualArrow 1.1.20: ActualArrow has no code that makes them remember a radar (none of its mods touch the missile seeker); its SEAD missiles are faster and turn harder, so they reach the radar before it hides. Copied from ActualArrow's Ammunitions table: MaxSpeed, Acceleration and RotationSpeed only, on the 6 rounds it changed. Damage (ActualArrow 12.5), resupply time and supply cost are not copied. FA's dev.29 hook (the missile flies to the radar's true position after losing it) stays. Not yet run in a game. dev.42 (Osama: don't touch speed): MaxSpeed and Acceleration back to vanilla; only ActualArrow's turn rate 120 (was 90) while locked stays, on HARM, Kh-58UShK, Kh-31P (271) and Sidearm (301). dev.43 (Osama: buff agility, then 0% turn once it loses radar): turn rate 150 (vanilla 90) on all 6 SEAD rounds while locked; speed and acceleration stay vanilla; the dev.42 hook keeps the turn at 0 after lock is lost. 150 is a guess (Osama gave no number).",
   "was": {
     "271": {
       "MaxSpeed": 650.0,
@@ -34,16 +34,22 @@
   },
   "fields": {
     "271": {
-      "RotationSpeed": 120
+      "RotationSpeed": 150
     },
     "298": {
-      "RotationSpeed": 120
+      "RotationSpeed": 150
     },
     "301": {
-      "RotationSpeed": 120
+      "RotationSpeed": 150
     },
     "315": {
-      "RotationSpeed": 120
+      "RotationSpeed": 150
+    },
+    "397": {
+      "RotationSpeed": 150
+    },
+    "400": {
+      "RotationSpeed": 150
     }
   }
 }
