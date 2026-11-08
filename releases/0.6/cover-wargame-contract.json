@@ -208,5 +208,18 @@
     "ignore_cover": 1.0,
     "penetration": 150.0,
     "note": "0.6 dev.66 (Osama, 8 November 2026): FAB-9000 ignores cover 1.0 and has penetration 150 (was 0.5 and 24 from dev.49); still no overpressure. Damage 175 unchanged. Above the dev.49 one-hit cap: a direct hit kills any MBT."
+  },
+  "ballistic": {
+    "ammo": [
+      427,
+      903,
+      566,
+      218,
+      440,
+      439,
+      34
+    ],
+    "ignore_cover": 1.0,
+    "note": "0.6 dev.70 (Osama, 8 November 2026): every ballistic missile round (Missile Ballistic: PrSM, Iskander-M HE and cluster, Tochka-U HE and cluster, ATACMS cluster) ignores cover 1.0. Damage and penetration unchanged."
   }
 }
