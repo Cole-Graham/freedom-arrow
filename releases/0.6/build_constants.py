@@ -959,10 +959,12 @@ def main():
     for aid,fields in sd['fields'].items():
         row=effective['AmmunitionsJson'][int(aid)];assert row['Seeker']==200 and all(row[k]==v for k,v in sd['was'][aid].items()),('SEAD row changed upstream',aid)
         put('AmmunitionsJson',int(aid),fields,'SEAD missile movement as ActualArrow 1.1.20')
-    # 0.6: 12ga SLUG T2 (M1014, Benelli M4) damage 7.0, penetration at max range 8 (slug-contract.json).
-    sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
-    assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
-    put('AmmunitionsJson',sl['ammo'],sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8')
+    # 0.6: 12ga SLUG T2 (M1014, Benelli M4, KS-K) damage 7.0, penetration at max range 8 (slug-contract.json).
+    sl=json.loads((R/'slug-contract.json').read_text())
+    for aid in sl['ammo']:
+        row=effective['AmmunitionsJson'][aid]
+        assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',aid,{k:row[k] for k in sl['was']})
+        put('AmmunitionsJson',aid,sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8 (M1014, Benelli M4, KS-K)')
     # 0.6: infantry in buildings at Wargame level; unguided bombs lose overpressure; penetration cap (cover-wargame-contract.json).
     cw=json.loads((R/'cover-wargame-contract.json').read_text());cap=lambda d,a:math.floor(a*math.sqrt(cw['max_hit']/(d-cw['max_hit']))) if d>cw['max_hit'] else math.inf
     for aid in cw['mlrs']:
