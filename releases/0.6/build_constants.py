@@ -857,6 +857,13 @@ def main():
     ride=effective['TransportAvailabilitiesJson'][tw['transport_like']];assert effective['SpecializationAvailabilitiesJson'][ride['SpecializationAvailabilityId']]['SpecializationId']==tw['spec']
     new=clone('SpecializationAvailabilitiesJson',tw['like'],{'SpecializationId':tw['spec']},why)
     clone('TransportAvailabilitiesJson',tw['transport_like'],{'SpecializationAvailabilityId':new},why)
+    # 0.6: long-range SAM cards availability 3; S-400 stays 2 (sam-avail-contract.json).
+    sa=json.loads((R/'sam-avail-contract.json').read_text())
+    for pid,uid in sa['pools'].items():
+        r=effective['SpecializationAvailabilitiesJson'][int(pid)];assert r['UnitId']==uid and r['MaxAvailabilityXp0']==sa['was'],(pid,r)
+        put('SpecializationAvailabilitiesJson',int(pid),{'MaxAvailabilityXp0':sa['availability']},'Long-range SAM availability 3')
+    for pid,uid in sa['held'].items():
+        r=effective['SpecializationAvailabilitiesJson'][int(pid)];assert r['UnitId']==uid and r['MaxAvailabilityXp0']==sa['was'],(pid,r)
     # 0.6: Airborne infantry shows as Air Naval (spec-contract.json). Only the shown name.
     sc=json.loads((R/'spec-contract.json').read_text())
     for sid,x in sc['specs'].items():
