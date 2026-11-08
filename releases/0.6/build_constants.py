@@ -983,6 +983,9 @@ def main():
     bl=cw['ballistic']
     assert {a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith('Missile Ballistic')}==set(bl['ammo']),'ballistic rows changed'
     for aid in bl['ammo']:put('AmmunitionsJson',aid,{'IgnoreCover':bl['ignore_cover']},'Ballistic missiles ignore cover 1.0')
+    for aid,(h,v) in cw['tos']['ammo'].items():
+        row=effective['AmmunitionsJson'][int(aid)];assert [row['DispersionHorizontalRadius'],row['DispersionVerticalRadius']]==cw['tos']['was'][aid] and row['Damage']==30 and row['IgnoreCover']==0,aid
+        put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v},'TOS vanilla, scatter 50 m wider and longer')
     mop=cw['mop'];row=effective['AmmunitionsJson'][mop['ammo']];assert row['Name']=='Bomb 13600kg GBU57' and row['IgnoreCover']==0,row['Name']
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])
@@ -1007,7 +1010,7 @@ def main():
         (r,)=[r for r in effective['SpecializationAvailabilitiesJson'].values() if (r['UnitId'],r['SpecializationId'])==(uid,spec)];u=effective['Units'][uid]
         assert r['MaxAvailabilityXp0']==mb['truck_was'] and u['Role']==14 and u['Type']==4,(uid,u['HUDName'])
         put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':mb['truck_availability']},'Cargo truck availability 4')
-    left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover'],1.0) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK|CATFAE',a['Name'])}
+    left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover'],1.0) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK|CATFAE|TOS',a['Name'])}
     assert not left,('bomb or MLRS row not in contract',sorted(left))
     # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
     sm=json.loads((R/'smoke15-contract.json').read_text());why='Mortar loadout 15 smoke rounds'
