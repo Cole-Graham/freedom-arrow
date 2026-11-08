@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.18 — development candidate
+# Freedom Arrow 0.6.0-dev.19 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -18,6 +18,7 @@ New in 0.6 dev.14: new map [FA] Baltiisk 0.1 (and Skirmish), the vanilla Baltiis
 New in 0.6 dev.16: same build code whatever music pack you have; Create a lobby lists only the [FA] maps.
 New in 0.6 dev.15: Spetsnaz Alpha stand-off 3 AEK-999 and 9 AK-107, 90 points.
 New in 0.6 dev.18: new map [FA] Dam 0.1 (and Skirmish), the vanilla Skirmish Dam for both: C D H I J are worth 4, A F G L 3, B E K 2. The vanilla online Dam has 10 different zones, so the online map is built from the Skirmish map.
+New in 0.6 dev.19: new 3-man recon card in every deck, 30 points, 8 per deck: Razvedka (3 AK-74M, 3 RPG-18) for Russia and Scouts (3 M16A4, 3 M72A3 LAW) for the US and Baltic. The old cards are now Razvedka Mech and Scouts Stryker.
 
 ## Earlier notes
 

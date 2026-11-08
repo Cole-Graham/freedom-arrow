@@ -768,6 +768,35 @@ def main():
     a,b={k:v for k,v in effective['AbilitiesJson'][dl['from']].items() if k not in ('Id','Name')},{k:v for k,v in effective['AbilitiesJson'][dl['to']].items() if k not in ('Id','Name')}
     assert {k for k in a if a[k]!=b.get(k)}=={'IsLaserDesignator','LaserMaxRange'},'the laser ability must be the same ability plus the laser'
     put('UnitAbilitiesJson',dl['link'],{'AbilityId':dl['to']},'Delta Force stand-off laser designator')
+    # 0.6: 30-point 3-man recon card in every deck, 8 per deck; old Razvedka and Scouts renamed (scouts-contract.json).
+    def rows_of(table,uid):return [r['Id'] for r in effective[table].values() if r['UnitId']==uid]
+    sc=json.loads((R/'scouts-contract.json').read_text())
+    for key,f in sc['rename'].items():put('Units',int(key),f,'Recon card renamed for the new 3-man card')
+    for c in sc['cards']:
+        why='3-man recon card '+c['fields']['HUDName'];par,new=c['parent'],c['unit']
+        assert new not in effective['Units'] and effective['Units'][par]['CountryId']==c['country']
+        add_unit(new,par,c['fields'],why)
+        for table in ['UnitAbilitiesJson','SensorUnitsJson','UnitPropulsionsJson']:
+            for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
+        arm=effective['ArmorsJson'][c['armor']];assert re.search(r'\b3Men\b',arm['Name']) and arm['MaxHealthPoints']==15,arm['Name']
+        (link,)=rows_of('UnitArmorsJson',par);clone('UnitArmorsJson',link,{'UnitId':new,'ArmorId':c['armor']},why)
+        for like,prio in c['members']:
+            assert effective['SquadMembersJson'][like]['UnitId']==par,like
+            clone('SquadMembersJson',like,{'UnitId':new,'PrimaryWeaponId':c['rifle'],'SpecialWeaponId':c['launcher'],'DeathPriority':prio},why)
+        sw=rows_of('SquadWeaponsJson',par)[0];wa=rows_of('WeaponAmmunitionsJson',par)[0]
+        for order,(wid,(aid,qty)) in enumerate(c['ammo'].items()):
+            assert any(r['WeaponId']==int(wid) and r['AmmunitionId']==aid for r in effective['WeaponAmmunitionsJson'].values()),wid
+            clone('SquadWeaponsJson',sw,{'UnitId':new,'WeaponId':int(wid),'Order':order},why)
+            clone('WeaponAmmunitionsJson',wa,{'UnitId':new,'WeaponId':int(wid),'AmmunitionId':aid,'Order':0,'Quantity':qty},why)
+        decks={s for s,r in effective['SpecializationsJson'].items() if r['ShowInHangar'] and r['CountryId']==c['country']}
+        assert decks=={int(s) for s in c['transports_from']},(c['unit'],sorted(decks))
+        for s,like in c['transports_from'].items():
+            assert effective['Units'][effective['SpecializationAvailabilitiesJson'][like]['UnitId']]['CountryId']==c['country'] and effective['SpecializationAvailabilitiesJson'][like]['SpecializationId']==int(s),like
+            pool=clone('SpecializationAvailabilitiesJson',like,{'UnitId':new,'SpecializationId':int(s),'MaxAvailabilityXp0':sc['availability']},why)
+            for t in [r for r in effective['TransportAvailabilitiesJson'].values() if r['SpecializationAvailabilityId']==like]:
+                clone('TransportAvailabilitiesJson',t['Id'],{'SpecializationAvailabilityId':pool},why)
+        men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==new]
+        assert len(men)==3 and all((m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['rifle'],c['launcher']) for m in men)
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
