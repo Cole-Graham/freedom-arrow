@@ -850,6 +850,18 @@ def main():
         assert all(slots(o)<=mine for o in options(new)),(new,'option turret missing')
         armed={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in mine}
         assert armed<={r['WeaponId'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==new},(new,'weapon without rounds')
+    # 0.6: the Airborne TOW-2A team also in Stryker, riding a Stryker ICV (tow-stryker-contract.json).
+    tw=json.loads((R/'tow-stryker-contract.json').read_text());why='TOW-2A team in Stryker'
+    pool=effective['SpecializationAvailabilitiesJson'][tw['like']];assert pool['UnitId']==tw['unit'],tw
+    assert not any(r['UnitId']==tw['unit'] and r['SpecializationId']==tw['spec'] for r in effective['SpecializationAvailabilitiesJson'].values())
+    ride=effective['TransportAvailabilitiesJson'][tw['transport_like']];assert effective['SpecializationAvailabilitiesJson'][ride['SpecializationAvailabilityId']]['SpecializationId']==tw['spec']
+    new=clone('SpecializationAvailabilitiesJson',tw['like'],{'SpecializationId':tw['spec']},why)
+    clone('TransportAvailabilitiesJson',tw['transport_like'],{'SpecializationAvailabilityId':new},why)
+    # 0.6: Airborne infantry shows as Air Naval (spec-contract.json). Only the shown name.
+    sc=json.loads((R/'spec-contract.json').read_text())
+    for sid,x in sc['specs'].items():
+        row=effective['SpecializationsJson'][int(sid)];assert all(row[k]==v for k,v in x['was'].items()),('spec changed upstream',sid)
+        put('SpecializationsJson',int(sid),x['fields'],'Specialization shown name')
     # 0.6: supply trucks in more decks; artillery uses twice the supply (logistics-contract.json). Truck prices are in vehicle-contract.json.
     lg=json.loads((R/'logistics-contract.json').read_text());why='Supply truck card in another deck'
     for p in lg['pools']:

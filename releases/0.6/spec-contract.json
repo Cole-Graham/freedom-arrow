@@ -1,0 +1,6 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). The US Airborne infantry specialization shows as Air Naval, because it gets the naval planes (F-35C, EA-18G Growler) and naval units are planned. Only the shown name changes: UIName was the text key ui_spec_airborne_name; plain text shows as written, as it does for option names such as 2x AIM-120 AMRAAM. The internal Name, description, icon, slots, points and units are unchanged. Not yet seen in the game.",
+  "specs": {
+    "5": {"was": {"UIName": "ui_spec_airborne_name"}, "fields": {"UIName": "Air Naval"}}
+  }
+}
