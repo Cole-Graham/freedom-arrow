@@ -1,0 +1,20 @@
+{
+  "note": "0.6 (Osama, 8 November 2026): helicopter and plane unguided rocket pods match Wargame against infantry in the open and in buildings. Wargame HE kills HE men per hit in the open; a BA man is 5 HP, so Damage = Wargame HE x 5 (WRD Toolbox: Hydra/FFAR 2, S-8OFP 2, S-13 4, Zuni 4, S-24B 11; S-25 has no Wargame entry and scales from S-24 by the BA damage ratio 17/12). In a town Wargame does 30%, so IgnoreCover 0.15 (through = 0.18 + 0.82 x 0.15 = 0.30). Infantry have HEAT armor 0, so penetration does not change infantry damage. Penetration is set so damage against HEAT armor 20 (BTR-82, M113, M109) stays as it was: P = 20 x sqrt(h / (Damage - h)), with h the old hit at armor 20 and hit = Damage x P^2 / (P^2 + A^2). Softer targets (armor 10: trucks, Patriot, radars) take about twice as much, armor 30 and up takes less, MBTs almost nothing. Blast radius (already within 2 m of Wargame), suppression and every other field unchanged. Only air units use these 13 rounds. Not included: S-8L and Gadyuka (anti-armor), Hydra Fletcher and LAVAD (anti-air), infantry rockets. Calculated, not yet run in a game.",
+  "match_armor": 20,
+  "ignore_cover": 0.15,
+  "rounds": {
+    "17":  {"family": "Hydra 70", "Damage": 10.0, "Penetration": 14.0},
+    "294": {"family": "Hydra 70", "Damage": 10.0, "Penetration": 14.0},
+    "45":  {"family": "Hydra 70 APKWS", "Damage": 10.0, "Penetration": 14.0},
+    "269": {"family": "Hydra 70 DAGR", "Damage": 10.0, "Penetration": 14.0},
+    "81":  {"family": "S-8", "Damage": 10.0, "Penetration": 16.0},
+    "313": {"family": "S-8", "Damage": 10.0, "Penetration": 16.0},
+    "85":  {"family": "S-13", "Damage": 20.0, "Penetration": 14.0},
+    "148": {"family": "S-13", "Damage": 20.0, "Penetration": 14.0},
+    "580": {"family": "Zuni", "Damage": 20.0, "Penetration": 14.0},
+    "145": {"family": "Zuni", "Damage": 20.0, "Penetration": 14.0},
+    "918": {"family": "S-24", "Damage": 55.0, "Penetration": 10.5},
+    "917": {"family": "S-24", "Damage": 55.0, "Penetration": 10.5},
+    "314": {"family": "S-25", "Damage": 80.0, "Penetration": 10.5}
+  }
+}
