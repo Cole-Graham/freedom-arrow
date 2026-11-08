@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.57.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.58.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.57'
+    assert manifest['version']=='0.6.0-dev.58'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.57 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.58 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -54,7 +54,8 @@ with zipfile.ZipFile(p) as z:
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
-    allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values()}
+    ad=json.loads((R/'air-detect-contract.json').read_text())
+    allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values(),*ad['plane_stealth'].values()}
     st=json.loads((R/'structural-contract.json').read_text())
     added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}
     for k,row in live('units').items():
@@ -62,14 +63,20 @@ with zipfile.ZipFile(p) as z:
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
         assert ('Cost' in row)==(k in contract['base_costs']),k
         if 'Stealth' in row:assert row['Stealth']==row['CurrentStealth'] and row['Stealth'] in allowed_stealth,k
+    # 0.6 dev.58 (air-detect-contract.json): high-altitude optics on four rows; one copy per SHORAD sensor (ids from 2,000,000).
+    copies={k:r for k,r in live('sensors').items() if int(k)>=2_000_000}
+    assert len(copies)==len(ad['shorad']['sensors']) and all(r['OpticsHighAltitude']==ad['shorad']['high_optics'] for r in copies.values())
     for k,row in live('sensors').items():
+        if k in copies:continue
+        if k in ad['high_optics']:assert row['OpticsHighAltitude']==ad['high_optics'][k],k;row={n:v for n,v in row.items() if n!='OpticsHighAltitude'}
+        if not row:assert int(k) in det['optics_held_sensors'],k;continue
         assert set(row)=={'OpticsGround'} and row['OpticsGround'] in [*det['optics_ground_tiers'].values(),*det['optics_ground_drones'].values()] and int(k) not in det['optics_held_sensors'],k
-    assert len(table('sensors'))==36-len(det['optics_held_sensors'])
+    assert len(table('sensors'))==36-len(det['optics_held_sensors'])+sum(int(k) in det['optics_held_sensors'] for k in ad['high_optics'])+len(copies)
     for k,v in det['optics_ground_drones'].items():assert table('sensors')[k]['OpticsGround']==v,k
     assert json.loads(z.read('UserData/FreedomArrow/detection-config.json'))==json.loads((R/'source/UserData/FreedomArrow/detection-config.json').read_text())
     # Spotting cap: one vanilla cap for every modded ground optics value; names cover each optics channel from 0 upward.
     caps=json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps']
-    for k,row in live('sensors').items():assert f"{row['OpticsGround']:g}" in caps,k
+    for k,row in live('sensors').items():assert 'OpticsGround' not in row or f"{row['OpticsGround']:g}" in caps,k
     assert caps['2300']==1000 and caps['6400']==2750 and all(float(k)>=v for k,v in caps.items())
     on=json.loads(z.read('UserData/FreedomArrow/optics-names.json'))
     for ch in ['Ground','LowAltitude','HighAltitude']:
@@ -78,7 +85,7 @@ with zipfile.ZipFile(p) as z:
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
-    for k,row in live('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row)
+    for k,row in live('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row) or (set(row)=={'MainSensorId'} and str(row['MainSensorId']) in copies),k
     assert {k:r['StealthOverride'] for k,r in live('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
     for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,12,400,400)]:

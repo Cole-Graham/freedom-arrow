@@ -1077,6 +1077,25 @@ def main():
         clone('OptionsJson',wt['aim9_like'],{'ModificationId':m,'Name':'Wingtips F35 2xAIM9','IsDefault':False,'Order':1,'Cost':wt['cost'],**mounts(wt['turret'])},why)
         if not any(r['UnitId']==uid and r['TurretId']==wt['turret'] for r in effective['TurretUnitsJson'].values()):clone('TurretUnitsJson',tl,{'UnitId':uid},why)
         if not any(r['UnitId']==uid and r['WeaponId']==wt['weapon'] for r in effective['WeaponAmmunitionsJson'].values()):clone('WeaponAmmunitionsJson',wl,{'UnitId':uid},why)
+    # 0.6 dev.58 (Lateralus): air detection. Fighter and Patriot-tier high-altitude optics, plane stealth +0.25 UI,
+    # six SHORADs on their own sensor copy (air-detect-contract.json). Displayed m = 2 x optics x radar x stealth.
+    ad=json.loads((R/'air-detect-contract.json').read_text())
+    for key,v in ad['high_optics'].items():
+        assert effective['SensorsJson'][int(key)]['OpticsHighAltitude'] in (2000.0,6000.0),key
+        put('SensorsJson',int(key),{'OpticsHighAltitude':v},'High-altitude optics (air detection)')
+    for uid,u in list(effective['Units'].items()):
+        if u['Type']==16 and f"{u['Stealth']:g}" in ad['plane_stealth']:
+            v=ad['plane_stealth'][f"{u['Stealth']:g}"];put('Units',uid,{'Stealth':v,'CurrentStealth':v},'Plane stealth +0.25 UI')
+    sh=ad['shorad'];why='SHORAD high-altitude optics 1500 (6 km with radar on)';copies={}
+    for uid in sh['units']:
+        links=[r for r in effective['SensorUnitsJson'].values() if r['UnitId']==uid];assert links,uid
+        for r in links:
+            sid=r['SensorId'];assert sid in sh['sensors'],(uid,sid)
+            if sid not in copies:copies[sid]=clone('SensorsJson',sid,{'OpticsHighAltitude':sh['high_optics']},why)
+            put('SensorUnitsJson',r['Id'],{'SensorId':copies[sid]},why)
+        for o in options(uid):
+            if o['MainSensorId'] in copies:put('OptionsJson',o['Id'],{'MainSensorId':copies[o['MainSensorId']]},why)
+            assert o['MainSensorId'] in (0,*copies.values()) and not o['ExtraSensorId'],(uid,o['Id'])
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
@@ -1100,6 +1119,7 @@ def main():
     caps={}
     for sid,row in effective['SensorsJson'].items():
         if str(sid) in det['optics_ground_overrides']:continue  # moved to a tier: takes that tier's cap
+        if sid not in original['SensorsJson']:continue  # a copy keeps its source's ground optics and cap
         mod,van=row['OpticsGround'],original['SensorsJson'][sid]['OpticsGround']
         assert caps.setdefault(mod,van)==van,('one modded optics value maps to two vanilla values',sid,mod)
     (R/'source/UserData/FreedomArrow/spotting-caps.json').write_text(json.dumps({'OpticsGroundCaps':{f'{k:g}':v for k,v in sorted(caps.items())}},indent=2)+'\n')
