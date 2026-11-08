@@ -42,6 +42,7 @@ public sealed partial class Prototype
             Patch(typeof(BattleSystemHelpers),"CalculateHitDamage",null,nameof(QueueCrit));
         }
         if(config.FrontArcDegrees>45)Patch(typeof(BattleSystemHelpers),"GetArmorSideFromShotVector",nameof(ArcBefore),nameof(ArcAfter));
+        InstallBombRoof();
         MelonLogger.Msg($"FREEDOM_ARROW_COMBAT installed crits {config.Crits} damage {config.CritDamage} ATGM damage {config.AtgmCritDamage} rear penetration {config.RearCritMinPenetration} front arc {config.FrontArcDegrees}");
     }
     public static void MarkRealHit() { realHit=true; }
