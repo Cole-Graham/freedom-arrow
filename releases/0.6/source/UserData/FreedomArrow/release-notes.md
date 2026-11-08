@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.1 — development candidate
+# Freedom Arrow 0.6.0-dev.82 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,12 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.82: rocket pods back to about half of vanilla against infantry in buildings (APKWS and DAGR 80%); open ground unchanged.
+New in 0.6 dev.80: rocket pods hit infantry in buildings a little less than vanilla (APKWS and DAGR about vanilla); open ground unchanged.
+New in 0.6 dev.77: rocket pods back to vanilla damage against infantry, less against armor; APKWS and DAGR hit buildings harder; S-24 and S-25 kill tanks in about 4 hits; SLAMRAAM in Special Operations.
+New in 0.6 dev.74: M1299 Iron Thunder is its own Armored card; M109A6 Paladin in USMC (2).
+New in 0.6 dev.73: Russian Mechanized Malka availability 6 and 4 Msta-S; rocket pods a little weaker (Wargame accuracy x HE x 5).
+New in 0.6 dev.71: rocket pods weaker per rocket to count Wargame's misses; the S-24 kills tanks in about 4 hits; Russian Mechanized Tulpan and Malka 4 each.
 New in 0.6 dev.11: Spetsnaz Alpha close-quarters 10 men, 50 HP, 6 AK-15SK, 85 points; Spetsnaz Alpha stand-off 10 AK-107, 2 AEK-999, 2 RG-6 MGL (still 95); Delta Force stand-off can laser-designate (1200 m).
 New in 0.6 dev.13: new map [FA] Airport 0.1 (and [FA] Airport Skirmish 0.1 for F8), the vanilla Airport with the FA game mode. A D are worth 4, F G H I 3, B C E 2. Every zone shows at every lobby size. The zone vanilla labels Golf twice now shows India.
 New in 0.6 dev.14: new map [FA] Baltiisk 0.1 (and Skirmish), the vanilla Baltiisk on its Skirmish layout: D E are worth 4, F G 3, A B C 2. The network map's extra Hotel zone is removed. Vanilla maps use the Skirmish map's zones.
@@ -60,7 +66,23 @@ New in 0.6 dev.56: SAMs, MANPADS and ships see planes at their full air optics a
 New in 0.6 dev.57: an unguided bomb that lands on a tank can hit its roof; one that lands next to it hits the side facing the blast. The hit log records the impact angle.
 New in 0.6 dev.58: fighters see high planes at 16 km, Patriot-class radars at 10.6 km, Tor/Pantsir-class radars at 6 km; stealth planes and drones are 0.25 stealthier.
 New in 0.6 dev.59: the B-52H can fire all 4 ARRWs without waiting for a reload.
+New in 0.6 dev.61: helicopter ATGM pylons show both pods again, still firing one missile at a time.
 New in 0.6 dev.60: the B-52H ARRW can be laser guided and has a 140 m blast radius.
+New in 0.6 dev.62: B-2 MOP loadout +250 (was +400); the MOP ignores building cover fully.
+New in 0.6 dev.63: BRM-3K has Very Good optics on every turret; its Kaktus reactive armor is 700 HEAT front and side. B-2 Spirit stealth 2.25.
+New in 0.6 dev.64: MiG-31BSM card (Defense Forces) carries the MiG-31's ground-strike loadouts; the MiG-31BM is air-to-air only. Every wheeled cargo truck has at least 4 availability.
+New in 0.6 dev.65: MiG-29S in Motorized Infantry, a copy of the MiG-29K with the same loadouts and stats.
+New in 0.6 dev.67: helicopter and plane rocket pods hit infantry like in Wargame, in the open and in buildings; less against armor.
+New in 0.6 dev.66: FAB-9000 ignores building cover and has penetration 150.
+New in 0.6 dev.68: AH-1Z Viper Recon (USMC recon tab, 130): the Viper with rocket or empty pylons only.
+New in 0.6 dev.69: AH-64D Longbow Recon (Airborne recon tab, 90 empty): the Longbow with rocket or empty pylons only. Mi-28NM Razvedchik (VDV recon tab, 90 empty): the Mi-28NM with rocket or empty pylons only.
+New in 0.6 dev.70: Ka-52K Razvedchik (Coastal recon tab, 100 empty): rockets, gun pods or empty. Ballistic missiles ignore building cover.
+New in 0.6 dev.72: AH-1Z Viper Recon costs 130 with its default rockets.
+New in 0.6 dev.75: every MLRS rocket is tuned to about 90% of Wargame's damage per rocket, misses included, with low penetration so tanks take little.
+New in 0.6 dev.76: TOS rockets back to vanilla damage and penetration; CATFAE vanilla.
+New in 0.6 dev.78: Grad and Ogon at vanilla damage; guided GMLRS/HIMARS match the GMLRS; 300 mm rockets 49 damage; TOS vanilla with 50 m wider scatter.
+New in 0.6 dev.79: MLRS rockets do vanilla damage to infantry in the open and 60% of vanilla in buildings, with low penetration against tanks.
+New in 0.6 dev.80: MLRS rockets do 50% of vanilla damage to infantry in buildings (vanilla in the open).
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

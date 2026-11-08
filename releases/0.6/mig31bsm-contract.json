@@ -1,0 +1,100 @@
+{
+  "note": "0.6 dev.64 (Osama, 8 November 2026). MiG-31BSM: a new Defense Forces card, a copy of the MiG-31BM with all its air-to-air missiles and all its ground-strike loadouts (Kh-59MK, KAB-500, KAB-1500, PBK-500U), same model, cost 220 and defaults, availability 2. The MiG-31BM keeps only the air-to-air loadouts (its ground-strike options are retired) and stays at availability 2. Wheeled cargo trucks have at least 4 availability: LVSR (USMC) 2 -> 4, M1075A1 PLS (Stryker Cavalry, Armored Brigade) 2 -> 4, E13TP (Baltic) 2 -> 4. Tracked supply carriers (DT-30PM Vityaz 3, MT-SM 3) unchanged. Not yet run in a game. dev.65 (Osama, 8 November 2026): MiG-29S, a new Motorized Infantry card (unit 744): a copy of the Coastal Troops MiG-29K with all its loadouts, its stats, model and cost 150, availability 2.",
+  "country": 1,
+  "type": 16,
+  "availability": 2,
+  "category": 6,
+  "cards": [
+    {
+      "unit": 743,
+      "parent": 315,
+      "fields": {
+        "Name": "FA MiG-31BSM",
+        "HUDName": "MiG-31BSM"
+      },
+      "keep_options": [
+        1366,
+        1367,
+        1368,
+        1369,
+        1370,
+        1371,
+        1372,
+        1373,
+        1374,
+        1375,
+        1376,
+        1377,
+        1378,
+        1379,
+        1380,
+        1381,
+        1382,
+        3088,
+        3089
+      ],
+      "option_costs": {},
+      "decks": [
+        12
+      ]
+    },
+    {
+      "unit": 744,
+      "parent": 311,
+      "fields": {
+        "Name": "FA MiG-29S",
+        "HUDName": "MiG-29S"
+      },
+      "keep_options": [
+        1285,
+        1286,
+        1287,
+        1288,
+        1289,
+        1290,
+        1291,
+        1294,
+        3132,
+        1295,
+        1296,
+        1297,
+        1298,
+        1301,
+        3131
+      ],
+      "option_costs": {},
+      "decks": [
+        9
+      ]
+    }
+  ],
+  "retire_parent_options": [
+    1374,
+    1375,
+    1376,
+    1377,
+    1380,
+    1381,
+    1382
+  ],
+  "truck_availability": 4,
+  "truck_pools_unit_spec": [
+    [
+      164,
+      3
+    ],
+    [
+      241,
+      6
+    ],
+    [
+      241,
+      4
+    ],
+    [
+      504,
+      16
+    ]
+  ],
+  "truck_was": 2
+}

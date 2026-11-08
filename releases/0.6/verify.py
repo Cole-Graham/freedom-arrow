@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.1.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.82.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-pla.1'
+    assert manifest['version']=='0.6.0-dev.82'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.1 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.82 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -31,7 +31,12 @@ with zipfile.ZipFile(p) as z:
     assert racks_w and all(int(k)>=2000000 for k in racks_w)
     racks_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in racks_w}
     assert len(racks_tw)==len(racks_w)
-    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|racks_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads and the dev.46 both-racks launchers'
+    # 0.6 dev.61: each rack (model only) turret holds a launcher copy '... rack (no rounds)' with no WeaponAmmunitions row.
+    model_w={k for k,r in table('weapons').items() if str(r.get('Name','')).endswith(' rack (no rounds)')}
+    assert len(model_w)==len(racks_w) and all(int(k)>=2000000 for k in model_w)
+    assert not any(r and str(r.get('WeaponId')) in model_w for r in table('weapon_ammunitions').values())
+    model_tw={k for k,r in table('turret_weapons').items() if r and str(r.get('WeaponId')) in model_w};assert len(model_tw)==len(model_w)
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|racks_tw|model_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads, the dev.46 both-racks launchers and the dev.61 rack weapons'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
@@ -50,15 +55,16 @@ with zipfile.ZipFile(p) as z:
     # 0.6 dev.50 (air-gen-contract.json): plane air-to-air missiles aim in 0 s, long-range SAMs in 0.5 s (0.2 in dev.50); aim time is the only field.
     agc=json.loads((R/'air-gen-contract.json').read_text());aimw={k for k,r in table('weapons').items() if set(r)=={'AimTimeMin','AimTimeMax'} and r['AimTimeMin'] in (0.0,0.5)}
     assert {k for k in aimw if table('weapons')[k]['AimTimeMin']==0.5}=={str(w) for w in agc['big_sam']['weapons']} and all(table('weapons')[k]['AimTimeMax']==table('weapons')[k]['AimTimeMin'] in (0.0,0.5) for k in aimw) and len(aimw)==31,'0.6 dev.50 aim times'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w and k not in model_w),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
     ad=json.loads((R/'air-detect-contract.json').read_text())
-    allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values(),*ad['plane_stealth'].values()}
+    allowed_stealth={*det['stealth'].values(),*det['stealth_unit_values'].values(),*ad['plane_stealth'].values(),*ad.get('unit_stealth',{}).values()}
+    assert all(table('units')[k]['Stealth']==v for k,v in ad.get('unit_stealth',{}).items()),'unit stealth'
     st=json.loads((R/'structural-contract.json').read_text())
-    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}
-    added|={str(c['unit']) for c in json.loads((R/'pla-test-contract.json').read_text())['cards']}  # PLA test division
+    added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'mig31bsm-contract.json').read_text())['cards']}
+    added|={str(c['unit']) for c in json.loads((R/'paladin-split-contract.json').read_text())['cards']}  # 0.6 dev.74 M1299 Iron Thunder
     for k,row in live('units').items():
         if k in added:continue
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
@@ -86,7 +92,8 @@ with zipfile.ZipFile(p) as z:
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
-    for k,row in live('options').items():assert int(k)>=2_000_000 or not {'MainSensorId','ExtraSensorId'} & set(row) or (set(row)=={'MainSensorId'} and str(row['MainSensorId']) in copies),k
+    brm_opts={str(o) for o in json.loads((R/'brm3k-contract.json').read_text())['options']}
+    for k,row in live('options').items():assert int(k)>=2_000_000 or k in brm_opts or not {'MainSensorId','ExtraSensorId'} & set(row) or (set(row)=={'MainSensorId'} and str(row['MainSensorId']) in copies),k
     assert {k:r['StealthOverride'] for k,r in live('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
     for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,12,400,400)]:
@@ -153,19 +160,28 @@ with zipfile.ZipFile(p) as z:
     for aid in pinned:
         row=table('ammunitions').get(str(aid),{});assert row.get('PenetrationAtMinRange') is not None,aid
     # 0.6 cover-wargame-contract.json: MLRS ignore cover 1.0, bombs 0.5, unguided bombs no overpressure, penetration under one MBT kill.
+    rp=json.loads((R/'rocketpod-contract.json').read_text())
+    assert all(table('ammunitions')[k]['Damage']==v['Damage'] and table('ammunitions')[k]['PenetrationAtMinRange']==table('ammunitions')[k]['PenetrationAtGroundRange']==v['Penetration'] and table('ammunitions')[k]['IgnoreCover']==v['IgnoreCover'] for k,v in rp['rounds'].items()),'0.6 dev.77 rocket pods'
     cw=json.loads((R/'cover-wargame-contract.json').read_text());am=table('ammunitions')
     def hitcap(aid,armor):
         r=am[str(aid)];d=r.get('Damage',cw['damage_unchanged'][str(aid)]);assert d==cw['damage_unchanged'][str(aid)],aid;p=r.get('PenetrationAtMinRange',cw['penetration_final'][str(aid)]);assert p==cw['penetration_final'][str(aid)],aid;return d*p*p/(p*p+armor*armor)<=cw['max_hit']+1e-6
-    for aid in cw['mlrs']:assert am[str(aid)]['IgnoreCover']==cw['mlrs_ignore_cover'] and hitcap(aid,cw['mlrs_armor']),aid
+    for aid in cw['mlrs']:assert am[str(aid)]['IgnoreCover']==cw['mlrs_fields'][str(aid)]['IC'] and hitcap(aid,cw['mlrs_armor']),aid
     for aid in cw['bombs']:assert am[str(aid)]['IgnoreCover']==cw['bomb_ignore_cover'],aid
+    fb=am[str(cw['fab9000']['ammo'])];assert fb['IgnoreCover']==1.0 and fb['OverpressureRadius']==0 and fb['PenetrationAtMinRange']==fb['PenetrationAtGroundRange']==cw['fab9000']['penetration'],'FAB-9000'
+    assert all(am[str(x)]['IgnoreCover']==1.0 for x in cw['ballistic']['ammo']),'ballistic cover'
+    assert all([am[k]['DispersionHorizontalRadius'],am[k]['DispersionVerticalRadius']]==v and am[k]['IgnoreCover']==cw['tos']['ignore_cover'] and 'Damage' not in am[k] for k,v in cw['tos']['ammo'].items()),'TOS'
+    assert am[str(cw['mop']['ammo'])]['IgnoreCover']==cw['mop']['ignore_cover'] and opt[str(cw['mop']['option'])]['Cost']==cw['mop']['option_cost'],'B-2 MOP'
+    bk=json.loads((R/'brm3k-contract.json').read_text())
+    assert all(opt[str(o)]['MainSensorId']==bk['sensor'] for o in bk['options']) and arm[str(bk['armor'])]['HeatArmorFront']==arm[str(bk['armor'])]['HeatArmorSides']==bk['heat'],'BRM-3K'
     for aid in cw['no_overpressure']:assert am[str(aid)]['OverpressureRadius']==0 and hitcap(aid,cw['bomb_armor']),aid
     # 0.6 arty-pen-contract.json: artillery penetration the 0.1 caps lowered is x1.5, not above vanilla.
     ap=json.loads((R/'arty-pen-contract.json').read_text())
     def arty_pen(aid,f,x):
         v=table('ammunitions')[aid][f]
         return f.startswith('Penetration') and int(aid) in ap['ammo'] and x<v<=x*ap['factor']
+    mlrs_owned=set(json.loads((R/'cover-wargame-contract.json').read_text())['mlrs_fields'])
     for aid,fields in us['ammo_fields'].items():
-        assert all(table('ammunitions')[aid][f]==x or arty_pen(aid,f,x) for f,x in fields.items()),aid
+        assert all(table('ammunitions')[aid][f]==x or arty_pen(aid,f,x) or (aid in mlrs_owned and f in ('Damage','PenetrationAtMinRange','PenetrationAtGroundRange')) for f,x in fields.items()),aid
     for aid,fields in us['armor_fields'].items():
         for field,want in fields.items():assert arm[aid][field]==want,(aid,field)
     for uid,oids in [(22,[8,1894]),(24,[25]),(33,[42])]:

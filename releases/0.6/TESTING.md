@@ -143,3 +143,7 @@ Stop and send the logs if a player disconnects or desyncs, the scores differ, or
 - 2026-11-04 21:51:43 PST (America/Los_Angeles) — Added cover damage settings.
 - 2026-11-04 22:10:01 PST (America/Los_Angeles) — Updated the cover damage settings.
 - 2026-11-05 19:46:48 PST (America/Los_Angeles) — The build sets the dev version: a new number only after that version was built and its inputs changed (`dev_version.py`, `builds.json`).
+
+## Pinned to test and analyze (Osama, 8 November 2026)
+
+- dev.77 S-13 and Zuni penetration 50: about 1.3 HP per hit on an MBT's top or rear (calculated). Check their anti-tank value in a Local AI Skirmish with the shot log, and whether 50 is right.
