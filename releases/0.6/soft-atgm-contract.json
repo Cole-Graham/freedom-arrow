@@ -1,0 +1,9 @@
+{
+  "note": "Lateralus, 8 November 2026. Soft-target ATGMs (thermobaric or HE, low penetration) are an exception to the ATGM damage cut: damage back to the vanilla value of the row each copy was made from. The 0.1 base set these ground-only copies to 9.0. Key: FA copy id; source: the vanilla row it was copied from; damage: that row's vanilla damage.",
+  "rows": {
+    "2000184": {
+      "source": 202,
+      "damage": 15.0
+    }
+  }
+}

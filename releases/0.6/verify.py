@@ -143,6 +143,7 @@ with zipfile.ZipFile(p) as z:
         assert base+surcharge==cost,(uid,oid,cost)
     files=json.loads((R/'row-tests/table-files.json').read_text())
     locks=json.loads((R/'clone-locks.json').read_text())
+    soft=json.loads((R/'soft-atgm-contract.json').read_text())['rows']
     for t,rows in locks['tables'].items():
         patch=table(files[t].removesuffix('.json'))
         allowed=us['armor_fields'] if t=='ArmorsJson' else us['ammo_fields'] if t=='AmmunitionsJson' else us['ability_fields'] if t=='AbilitiesJson' else {}
@@ -155,6 +156,7 @@ with zipfile.ZipFile(p) as z:
             if t=='AmmunitionsJson':
                 for field,want in atgm.get(key,{}).items():
                     assert row[field]==want,(t,key,field);row[field]=ammo01[key][field]
+                if key in soft:assert row['Damage']==soft[key]['damage'],(t,key);row['Damage']=ammo01[key]['Damage']  # soft-atgm-contract.json
             assert hashlib.sha256(json.dumps(row,sort_keys=True,separators=(',',':')).encode()).hexdigest()==lock['sha256'],(t,key)
     # 0.4: sabot close range is the long-range value plus the contract bonus. The row tests check the value against vanilla.
     for aid in pinned:

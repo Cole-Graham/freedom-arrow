@@ -1177,6 +1177,13 @@ def main():
         assert effective['SpecializationAvailabilitiesJson'][ad['like_pool']]['UnitId']==ad['unit']
         assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
         clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},ad['why'])
+    # Lateralus batch: soft-target ATGMs keep their vanilla damage (soft-atgm-contract.json).
+    sa=json.loads((R/'soft-atgm-contract.json').read_text());why='Soft-target ATGM: vanilla damage'
+    for key,c in sa['rows'].items():
+        aid=int(key);a=effective['AmmunitionsJson'][aid];v=original['AmmunitionsJson'][c['source']]
+        assert a['Name']==v['Name'] and a['PenetrationAtGroundRange']==v['PenetrationAtGroundRange']<=100 and v['Damage']==c['damage'],(aid,c)
+        assert all(effective['Units'][r['UnitId']]['Type'] in (2,4) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid),aid
+        put('AmmunitionsJson',aid,{'Damage':v['Damage']},why)
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
