@@ -1,0 +1,13 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). B-52H Stratofortress: new wing pylon choice 2x AGM-183A ARRW (+300), the US hypersonic missile tested on the B-52H. The ARRW is a copy of the MiG-31K's Kh-47M2 Kinzhal HE (round 455: damage 70, penetration 250, range 5000, speed 1000; weapon 610; pylon 836, which keeps the Kinzhal model) under its own name, so the MiG-31K's Kinzhal is unchanged. One missile per wing pylon (the B-52 wing slot uses mounts 1 and 2). Guess: Kinzhal HE stats and the Kinzhal model, since the game has no ARRW model. Not yet run in a game.",
+  "unit": 300,
+  "like_option": 1089,
+  "like_turret_link": 1001,
+  "like_ammo_link": 3321,
+  "ammo": 455,
+  "weapon": 610,
+  "turret": 836,
+  "name": "AGM-183A ARRW",
+  "cost": 300,
+  "per_pylon": 1
+}
