@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.21 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.22 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -61,6 +61,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.42 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off loadout +0 (was +20), so both loadouts cost 95. Option 1511 cost 0; the stand-off unit row (354) is 95 like the close-quarters base (131). Not yet run in a game.
 - dev.44 (Lateralus, 7 November 2026): BARS 7 men and 35 HP (was 8 and 40; vanilla 7-man armor row 83, armor 6), 3 PKM (was 1) and 4 AK-74M (was 7), 55 points (was 60). One GP-25 rifleman is removed and two RPG-26 riflemen become PKM gunners; they keep their RPG-26, so the squad keeps 6 RPG-26 and has 1 GP-25 (was 2). Ammunition is per carrier and unchanged (PKM 300 each). See `bars-contract.json`. Not yet run in a game.
 - dev.21 (Osama, 7 November 2026): the SUP tab has 2 more slots (9 where vanilla allows 7). The game adds the slots of a deck's two specializations and clamps the total to 7 in `Deck.GetMaxCategoryPointsOrSlots` (RVA 0x6F31F0, `cmovg` at 0x6F339B). The deck builder, deck preview, deck creation popup, `ValidateDeck` and `TryFixDeck` all read this method, so a postfix adds 2 to the SUP slot count there (`SupportSlots.cs`). A tab with no SUP slots stays closed; point caps are unchanged. Without Freedom Arrow the game trims saved decks back to 7 SUP cards. Not yet run in a game.
+- dev.22 (Osama, 7 November 2026): US recon helicopters, own cards in the recon tab, availability 4, not transports; the original cards are unchanged. USMC: UH-1Y Venom Recon (732) Very Good optics, 4 seats, door guns and rockets, 65. Airborne: OH-58D Recon Optronic (733) mast sight built in (+0), GAU-21 and Hydra pylons only, 70; OH-58D Recon (734) Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon (735) Very Good, 4 seats, door guns, 60; MH-6 Little Bird Recon (736) Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon (737) recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon (738) Very Good, 4 seats, guns and rockets, 60. The RECON tab has 2 more slots in every deck (`SupportSlots.cs`, same patch as SUP). Venom and Dauphin seats and the Little Bird price are guesses. See `recon-heli-us-contract.json`. Not yet run in a game.
 - dev.20 (Osama, 7 November 2026): recon helicopters, own cards in the recon tab, availability 4, not transports; copies of the helicopter card (model, portrait, icon, armor, ECM). Defense Forces: Ka-60 Razvedchik (727) unarmed, 4 seats, no cargo, Very Good optics, 60; Ka-226T Razvedchik (728) Good optics, 4 seats, no cargo variant, 45. Coastal Troops: Ka-29 Razvedchik (729) 4 seats, Very Good optics, 60, guns and S-8 but no Kokon or Ataka. Motorized Infantry: Mi-24K Razvedchik (730) S-8 pods +10 each (was +30), 70. VDV Brigade and Guard Tank Brigade: Mi-8AMTSh Razvedchik (731) Very Good optics, 60, 4 seats, S-8, S-13 and GSh-23 only (no Kokon, Igla-S or Verba). The original helicopter cards are unchanged. Mi-24K price and Mi-8AMTSh seats are guesses. See `recon-heli-contract.json`. Not yet run in a game.
 - dev.19 (Osama, 7 November 2026): new 30-point, 3-man recon card in every deck, 8 per deck. Russia: Razvedka (unit 725), 3 AK-74M and 3 RPG-18. US and Baltic: Scouts (unit 726), 3 M16A4 and 3 M72A3 LAW. Both 15 HP, Sprint Smoke Laser, stealth and optics of the old card; each deck lends the transports of one of its own recon or infantry cards. The old cards are renamed Razvedka Mech (123) and Scouts Stryker (277). AK-74M is a guess. See `scouts-contract.json`. Not yet run in a game.
 - dev.15 (Lateralus, 7 November 2026): Spetsnaz Alpha stand-off AEK-999 3 (was 2) and AK-107 9 (was 10): one plain AK-107 rifleman becomes an AEK-999 gunner. Still 14 men, 70 HP, 2 RG-6 MGL, 4 RPG-30. Stand-off total 90 (was 95): +5 on the 85 close-quarters base. See `alpha-delta-contract.json`. Not yet run in a game.
@@ -138,7 +139,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.21.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.22.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -397,3 +398,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-07 16:58:00 PST (America/Los_Angeles) — 0.6.0-dev.16: same build code with any music pack or menu logger; Create a lobby lists [FA] maps only (Osama). No live result.
 - 2026-11-07 18:13:39 PST (America/Los_Angeles) — 0.6.0-dev.19: 3-man 30-point Razvedka and Scouts in every deck; old cards renamed Razvedka Mech and Scouts Stryker (Osama). No live result.
 - 2026-11-07 18:38:25 PST (America/Los_Angeles) — 0.6.0-dev.20: recon helicopters Ka-60, Ka-226T, Ka-29, Mi-24K and Mi-8AMTSh Razvedchik (Osama). No live result.
+- 2026-11-07 18:55:26 PST (America/Los_Angeles) — 0.6.0-dev.22: US recon helicopters; RECON tab +2 slots (Osama). No live result.

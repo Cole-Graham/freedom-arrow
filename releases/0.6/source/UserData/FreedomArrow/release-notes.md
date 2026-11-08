@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.21 — development candidate
+# Freedom Arrow 0.6.0-dev.22 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -21,6 +21,7 @@ New in 0.6 dev.18: new map [FA] Dam 0.1 (and Skirmish), the vanilla Skirmish Dam
 New in 0.6 dev.19: new 3-man recon card in every deck, 30 points, 8 per deck: Razvedka (3 AK-74M, 3 RPG-18) for Russia and Scouts (3 M16A4, 3 M72A3 LAW) for the US and Baltic. The old cards are now Razvedka Mech and Scouts Stryker.
 New in 0.6 dev.20: recon helicopters in the recon tab, 4 per deck: Ka-60 Razvedchik (unarmed, 60) and Ka-226T Razvedchik (45) for Defense Forces, Ka-29 Razvedchik (60, no ATGM) for Coastal Troops, Mi-24K Razvedchik (70, S-8 +10) for Motorized Infantry, Mi-8AMTSh Razvedchik (60, guns and rockets only) for VDV and Guard Tank Brigade.
 New in 0.6 dev.21: the SUP tab has 2 more slots, 9 where the game allowed 7. Point caps are unchanged.
+New in 0.6 dev.22: US recon helicopters in the recon tab, 4 per deck: UH-1Y Venom Recon (65) for USMC, OH-58D Recon Optronic (70) and OH-58D Recon (55, unarmed) for Airborne, MH-60M SOAR Recon (60), MH-6 Little Bird Recon (35) and RAH-66 Comanche Recon (180) for Special Operations, AS-365 Dauphin Recon (60) for Baltic. The RECON tab has 2 more slots in every deck.
 
 ## Earlier notes
 
