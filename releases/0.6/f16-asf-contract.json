@@ -1,0 +1,27 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). F-16C Block 50 ASF: an air-superiority copy of the F-16C Fighting Falcon card in the Stryker Cavalry regiment, with the loadout from Osama's screenshot built in: inner pylons 2x fuel tanks (+20), middle pylons 2x AIM-120 AMRAAM (+35), outer pylons 2x AIM-9 and 2x AIM-120 (+45), ECM pod (+30). Card total 240 (110 base). Same model, armor, speed, gun, sensors and availability (2) as the F-16C; the F-16C card is unchanged. Name: Block 50 (with the APG-83 radar upgrade) is the most modern F-16 the US Air Force flies; Block 70/72 is export only. Name only, no stat change. Not yet run in a game.",
+  "country": 2,
+  "type": 16,
+  "availability": 2,
+  "category": 6,
+  "cards": [
+    {
+      "unit": 740,
+      "parent": 285,
+      "fields": {
+        "Name": "FA F-16C Block 50 ASF",
+        "HUDName": "F-16C Block 50 ASF"
+      },
+      "keep_options": [
+        867,
+        860,
+        858,
+        873
+      ],
+      "option_costs": {},
+      "decks": [
+        6
+      ]
+    }
+  ]
+}

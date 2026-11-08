@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.25 — development candidate
+# Freedom Arrow 0.6.0-dev.26 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -25,6 +25,7 @@ New in 0.6 dev.22: US recon helicopters in the recon tab, 4 per deck: UH-1Y Veno
 New in 0.6 dev.23: Ural-4320 40 and in Coastal, Defense Forces, Mechanized and Guard Tank decks; MTV 40, MTVR 45, HEMTT 50; HEMTT and M1075A1 PLS in Armored Brigade. KamAZ-6560 50 and a KamAZ-6560 Cargo card (50) in Mechanized, Coastal, Motorized and Guard Tank decks; Ural-5323 45. Artillery costs twice the supply to refill.
 New in 0.6 dev.24: 12ga SLUG (M1014, Benelli M4) damage 7.0 (was 4.8), penetration 15 → 8 (was 15 → 7).
 New in 0.6 dev.25: 15 smoke rounds on both Nona-S loadouts, both Nona-SVK loadouts, the Magnolia HE loadout and the LAV-M Dragon Fire; Hawkeye MWS in Special Operations and back to its vanilla range (not a mortar); LMTV 30.
+New in 0.6 dev.26: F-16C Block 50 ASF in the Stryker Cavalry regiment, an F-16C with 4 AMRAAM, 2 Sidewinder, fuel tanks and ECM pod built in, 240.
 
 ## Earlier notes
 

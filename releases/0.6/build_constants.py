@@ -798,11 +798,12 @@ def main():
         men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==new]
         assert len(men)==3 and all((m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['rifle'],c['launcher']) for m in men)
     # 0.6: recon helicopters, own cards in the recon tab, availability 4 (recon-heli-contract.json).
+    # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
     def slots(o):return {o[k] for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]}
-    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
-        why='Recon helicopter '+c['fields']['HUDName'];par,new=c['parent'],c['unit']
+    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
+        why=('Recon helicopter ' if rh.get('type',8)==8 else 'Card copy ')+c['fields']['HUDName'];par,new=c['parent'],c['unit']
         country=rh.get('country',1)
-        assert new not in effective['Units'] and effective['Units'][par]['Type']==8 and effective['Units'][par]['CountryId']==country
+        assert new not in effective['Units'] and effective['Units'][par]['Type']==rh.get('type',8) and effective['Units'][par]['CountryId']==country
         add_unit(new,par,{**c['fields'],'CategoryType':rh['category']},why)
         popts=options(par);keep=set(c['keep_options'])
         assert keep<={o['Id'] for o in popts},(new,keep-{o['Id'] for o in popts})
