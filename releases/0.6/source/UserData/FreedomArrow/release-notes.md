@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.74 — development candidate
+# Freedom Arrow 0.6.0-dev.75 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -75,6 +75,7 @@ New in 0.6 dev.68: AH-1Z Viper Recon (USMC recon tab, 130): the Viper with rocke
 New in 0.6 dev.69: AH-64D Longbow Recon (Airborne recon tab, 90 empty): the Longbow with rocket or empty pylons only. Mi-28NM Razvedchik (VDV recon tab, 90 empty): the Mi-28NM with rocket or empty pylons only.
 New in 0.6 dev.70: Ka-52K Razvedchik (Coastal recon tab, 100 empty): rockets, gun pods or empty. Ballistic missiles ignore building cover.
 New in 0.6 dev.72: AH-1Z Viper Recon costs 130 with its default rockets.
+New in 0.6 dev.75: every MLRS rocket is tuned to about 90% of Wargame's damage per rocket, misses included, with low penetration so tanks take little.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
