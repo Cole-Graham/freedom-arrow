@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.55 — development candidate
+# Freedom Arrow 0.6.0-dev.56 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -56,6 +56,7 @@ New in 0.6 dev.52: AMRAAM/R-77 class missiles +1 km; R-37, AIM-260 and AIM-174 r
 New in 0.6 dev.53: missile ranges as shown on the card: AMRAAM/R-77-1 8 km (was 7), R-37/AIM-260/AIM-174 11 km (was 9); dev.52 had doubled them by mistake.
 New in 0.6 dev.54: unguided bombs never hit tank roofs (only guided bombs do); every bomb and MLRS hit is logged with its overpressure and top-attack state.
 New in 0.6 dev.55: PAC-2 and S-300 missiles keep their semi-active seekers; the S-300V4 small missile is vanilla again.
+New in 0.6 dev.56: SAMs, MANPADS and ships see planes at their full air optics again; the ground spotting cap now applies only to ground units and helicopters.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

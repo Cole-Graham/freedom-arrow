@@ -4,15 +4,19 @@ using System.Runtime.CompilerServices;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using HarmonyLib;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar.Components;
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Arsenal.InfoCard;
 using Il2CppBrokenArrow.DataBase.Models;
+using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppDefaultEcs;
 using MelonLoader;
 namespace FreedomArrow;
 // Spotting cap: an observer never sees a ground target beyond the vanilla ground optics of its sensor tier.
 // Both native vision paths pass their range result to CreateFilterTaskForTarget as maxDistance, so the cap is set there.
+// The native air path (planes and missiles: aircraft or fuse, not helicopter) also ends there; Lateralus, 8 November 2026:
+// those targets are not capped, so planes are seen at native low/high-altitude optics. Helicopters keep the cap.
 // Unit cards show optics as tier names, so the card does not have to show capped or formula ranges.
 static class SpottingCap
 {
@@ -20,9 +24,9 @@ static class SpottingCap
     static readonly Dictionary<float,float> capTable=new();
     static readonly ConcurrentDictionary<(IntPtr,int),float> observerCaps=new();
     static readonly Dictionary<string,(float min,string name,string color)[]> names=new();
-    static IntPtr hasFog,getFog,getFogCode;
+    static IntPtr hasFog,getFog,getFogCode,hasAircraft,hasHeli,hasFuse;
     static bool capBroken,cardBroken;
-    static long calls,capped;
+    static long calls,capped,airSkipped;
     static int unknownLogged,cardLogged;
     static IntPtr Store(string name,Type component)
     {
@@ -47,24 +51,33 @@ static class SpottingCap
         hasFog=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(FogOfWarComponent));
         getFog=Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(FogOfWarComponent));
         getFogCode=*(IntPtr*)getFog;
+        hasAircraft=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(UnitAircraftComponent));
+        hasHeli=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(UnitHelicopterFlag));
+        hasFuse=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(FuseComponent));
         if(getFogCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<FogOfWarComponent> has no code");
         harmony.Patch(AccessTools.Method(typeof(FogOfWarUnit),"CreateFilterTaskForTarget"),prefix:new HarmonyMethod(typeof(SpottingCap),nameof(CapBefore)));
         try { harmony.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),postfix:new HarmonyMethod(typeof(SpottingCap),nameof(CardAfter))); }
         catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_OPTICS_NAMES_FAILED: card names not installed. "+e.Message); }
         MelonLogger.Msg("FREEDOM_ARROW_SPOTTING_CAP installed "+string.Join(", ",capTable.OrderBy(p=>p.Key).Select(p=>$"{p.Key:g}->{p.Value:g}"))+" (raw; displayed m = raw x 2)");
     }
-    static unsafe float ObserverCap(Entity observer)
+    static unsafe bool Has(IntPtr store,Entity entity)
     {
         IntPtr error=IntPtr.Zero;
-        IntPtr has=Il2CppInterop.Runtime.IL2CPP.il2cpp_runtime_invoke(hasFog,(IntPtr)(&observer),null,ref error);
+        IntPtr has=Il2CppInterop.Runtime.IL2CPP.il2cpp_runtime_invoke(store,(IntPtr)(&entity),null,ref error);
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(error);
-        if(has==IntPtr.Zero||!*(bool*)Il2CppInterop.Runtime.IL2CPP.il2cpp_object_unbox(has))return 0;
+        return has!=IntPtr.Zero&&*(bool*)Il2CppInterop.Runtime.IL2CPP.il2cpp_object_unbox(has);
+    }
+    // Same test as the native air branch (FogOfWarUnit.CalculateVisionRangeForTarget): a helicopter is checked first.
+    static bool IsPlaneOrMissile(Entity target)=>!Has(hasHeli,target)&&(Has(hasAircraft,target)||Has(hasFuse,target));
+    static unsafe float ObserverCap(Entity observer)
+    {
+        if(!Has(hasFog,observer))return 0;
         float ground=*(float*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getFogCode)(&observer,getFog);
         if(capTable.TryGetValue(ground,out float cap))return cap;
         if(Interlocked.Increment(ref unknownLogged)<=MaxLog)MelonLogger.Warning($"FREEDOM_ARROW_SPOTTING_CAP no cap for ground optics {ground:g}; this observer is not capped");
         return 0;
     }
-    public static void CapBefore(FogOfWarUnit __instance,ref float __3)
+    public static void CapBefore(FogOfWarUnit __instance,Entity __0,ref float __3)
     {
         if(capBroken||!Runtime.IsApplied)return;
         try
@@ -74,6 +87,12 @@ static class SpottingCap
             var observer=__instance.UnitEntity;
             float cap=observerCaps.GetOrAdd((__instance.Pointer,observer.GetHashCode()),_=>ObserverCap(observer));
             if(cap<=0||__3<=cap)return;
+            if(IsPlaneOrMissile(__0))
+            {
+                long a=Interlocked.Increment(ref airSkipped);
+                if(a<=MaxLog||IsPowerOfTen(a))MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP air target not capped: {__3:0.#} raw kept (cap {cap:0.#}); {a} air skips");
+                return;
+            }
             long c=Interlocked.Increment(ref capped);
             // Log the first few, then each power of ten, so the log proves the cap without flooding it.
             if(c<=MaxLog||IsPowerOfTen(c))MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP capped {__3:0.#} -> {cap:0.#} raw; capped {c} of {n} checks");
