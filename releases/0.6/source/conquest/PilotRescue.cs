@@ -4,6 +4,7 @@ using Il2CppDefaultEcs;
 using Il2CppBrokenArrow.Client.Ecs.Cleanups;
 using Il2CppBrokenArrow.Client.Ecs.Economy.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Render.Components;
+using Il2CppBrokenArrow.MissionEditor.Data.Meta;
 using Il2CppBrokenArrow.MissionEditor.Data.SpawnPoint;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppBrokenArrow.Shared.Ecs.Other;
@@ -70,12 +71,30 @@ public sealed partial class Prototype
         return n;
     }
     // Nearest spawn point of the plane's own team and of any other playing team, measured on the ground plane.
+    // dev.27: hidden spawn points count too (FindObjectsOfType skipped them; Osama's 2v2 Chkalovsk log of dev.15 found none
+    // for 19 planes), and the team comes from the spawn point's map data when the script field is empty.
+    static bool spawnsLogged;
+    static TeamSide SpawnTeam(SpawnPointScript s)
+    {
+        var team=s._spawnPointTeamSide;
+        if(team==TeamSide.Alpha||team==TeamSide.Bravo)return team;
+        var data=(s._gameplayData??s._editorData)?.Team?.LinkedData?.TryCast<TeamData>();
+        return data!=null?data.TeamSide:team;
+    }
     static (float? own,float? enemy) SpawnDistances(Vector3 pos,TeamSide side)
     {
         float? own=null,enemy=null;
-        foreach(var s in UnityEngine.Object.FindObjectsOfType<SpawnPointScript>())
+        var all=UnityEngine.Object.FindObjectsOfType<SpawnPointScript>(true);
+        if(!spawnsLogged)
         {
-            var team=s._spawnPointTeamSide;
+            spawnsLogged=true;
+            int active=0,alpha=0,bravo=0,other=0;
+            foreach(var s in all){if(s.gameObject.activeInHierarchy)active++;var t=SpawnTeam(s);if(t==TeamSide.Alpha)alpha++;else if(t==TeamSide.Bravo)bravo++;else other++;}
+            MelonLogger.Msg($"FREEDOM_ARROW_PILOT_RESCUE spawn points {all.Length} ({active} active): Alpha {alpha}, Bravo {bravo}, other {other}");
+        }
+        foreach(var s in all)
+        {
+            var team=SpawnTeam(s);
             if(team!=TeamSide.Alpha&&team!=TeamSide.Bravo)continue;
             var p=s.transform.position;
             float d=new Vector2(p.x-pos.x,p.z-pos.z).magnitude;

@@ -799,8 +799,9 @@ def main():
         assert len(men)==3 and all((m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['rifle'],c['launcher']) for m in men)
     # 0.6: recon helicopters, own cards in the recon tab, availability 4 (recon-heli-contract.json).
     # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
+    # 0.6: F-35C and EA-18G Growler, with option edits, an ECM ability swap and extra pylon rows (navy-air-contract.json).
     def slots(o):return {o[k] for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]}
-    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
+    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json','navy-air-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
         why=('Recon helicopter ' if rh.get('type',8)==8 else 'Card copy ')+c['fields']['HUDName'];par,new=c['parent'],c['unit']
         country=rh.get('country',1)
         assert new not in effective['Units'] and effective['Units'][par]['Type']==rh.get('type',8) and effective['Units'][par]['CountryId']==country
@@ -809,14 +810,19 @@ def main():
         assert keep<={o['Id'] for o in popts},(new,keep-{o['Id'] for o in popts})
         used=set().union(*map(slots,popts)) if popts else set()
         turrets={r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==par}
-        kept_t=({t for t in turrets if t not in used}|set().union(*(slots(o) for o in popts if o['Id'] in keep)))-set(c.get('drop_turrets',[]))
+        kept_t=({t for t in turrets if t not in used}|set().union(*(slots(o) for o in popts if o['Id'] in keep))|set(c.get('keep_turrets',[])))-set(c.get('drop_turrets',[]))
+        assert set(c.get('keep_turrets',[]))<=turrets
         weapons={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in kept_t}
         for r in [r for r in list(effective['TurretUnitsJson'].values()) if r['UnitId']==par and r['TurretId'] in kept_t]:clone('TurretUnitsJson',r['Id'],{'UnitId':new},why)
         for r in [r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==par and r['WeaponId'] in weapons]:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':new},why)
         for table in ['UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson']:
             for rid in rows_of(table,par):
                 if table=='UnitAbilitiesJson' and effective[table][rid]['AbilityId'] in c.get('drop_abilities',[]):continue
-                clone(table,rid,{'UnitId':new},why)
+                sw=c.get('ability_swap',{}).get(str(effective[table][rid].get('AbilityId')))
+                clone(table,rid,{'UnitId':new,**({'AbilityId':sw} if table=='UnitAbilitiesJson' and sw else {})},why)
+        for table,rids in c.get('add_rows',{}).items():
+            for rid in rids:
+                assert rid not in rows_of(table,par);clone(table,rid,{'UnitId':new},why)
         if 'optics' in c:
             # One optics row for the card; no kept option may pick another sensor.
             sl=rows_of('SensorUnitsJson',par)[0];clone('SensorUnitsJson',sl,{'UnitId':new,'SensorId':rh['sensors'][c['optics']]},why)
@@ -828,12 +834,17 @@ def main():
             mine=sorted((o for o in popts if o['ModificationId']==mod and o['Id'] in keep),key=lambda o:(o['Order'],o['Id']))
             default=any(o['IsDefault'] for o in mine) or not any(o['IsDefault'] for o in popts if o['ModificationId']==mod)
             for order,o in enumerate(mine):
-                clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'Cost':c['option_costs'].get(str(o['Id']),o['Cost']),'IsDefault':o['IsDefault'] or (not default and order==0)},why)
+                clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'Cost':c['option_costs'].get(str(o['Id']),o['Cost']),'IsDefault':o['IsDefault'] or (not default and order==0),**c.get('option_fields',{}).get(str(o['Id']),{})},why)
         like=next((r['Id'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par),c.get('pool_like'))
         for s in c['decks']:
             assert effective['SpecializationsJson'][s]['CountryId']==country
             clone('SpecializationAvailabilitiesJson',like,{'UnitId':new,'SpecializationId':s,'MaxAvailabilityXp0':rh['availability']},why)
         assert not any(r['UnitId']==new for r in effective['TransportAvailabilitiesJson'].values())
+        # Every pylon an option names is on the card, and every weapon on the card has its rounds.
+        mine={r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==new}
+        assert all(slots(o)<=mine for o in options(new)),(new,'option turret missing')
+        armed={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in mine}
+        assert armed<={r['WeaponId'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==new},(new,'weapon without rounds')
     # 0.6: supply trucks in more decks; artillery uses twice the supply (logistics-contract.json). Truck prices are in vehicle-contract.json.
     lg=json.loads((R/'logistics-contract.json').read_text());why='Supply truck card in another deck'
     for p in lg['pools']:

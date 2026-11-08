@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.26 — development candidate
+# Freedom Arrow 0.6.0-dev.27 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -26,6 +26,7 @@ New in 0.6 dev.23: Ural-4320 40 and in Coastal, Defense Forces, Mechanized and G
 New in 0.6 dev.24: 12ga SLUG (M1014, Benelli M4) damage 7.0 (was 4.8), penetration 15 → 8 (was 15 → 7).
 New in 0.6 dev.25: 15 smoke rounds on both Nona-S loadouts, both Nona-SVK loadouts, the Magnolia HE loadout and the LAV-M Dragon Fire; Hawkeye MWS in Special Operations and back to its vanilla range (not a mortar); LMTV 30.
 New in 0.6 dev.26: F-16C Block 50 ASF in the Stryker Cavalry regiment, an F-16C with 4 AMRAAM, 2 Sidewinder, fuel tanks and ECM pod built in, 240.
+New in 0.6 dev.27: F-35C in Airborne (GBU-55 1000lb at +50 in place of the 2000lb); EA-18G Growler in USMC, 330, HARM and ECM jammer pods, ECM 20%; pilot rescue now finds the map's spawn points.
 
 ## Earlier notes
 
