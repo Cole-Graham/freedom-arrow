@@ -1,77 +1,90 @@
 {
-  "note": "0.6 (Osama, 8 November 2026): helicopter and plane unguided rocket pods match Wargame against infantry per salvo, open and in buildings. dev.67 matched per hit (Damage = Wargame HE x 5 HP per man), but BA rockets barely miss (helicopter spread 6x4 data units inside a 14-49 blast radius) while Wargame rockets hit 20-40% (WRD Toolbox accuracy: Hydra/FFAR and S-8 20%, S-13 and Zuni 30%, S-24 40% on the Mi-25 helicopter, 30% on planes), so dev.67 was 3-5x Wargame per salvo. dev.73 (Osama: 'rather a bit weak than strong'): Damage = Wargame accuracy x HE x 5, with no allowance for BA blast falloff, so BA errs weak: Hydra/APKWS/DAGR and S-8 2.0, S-13 and Zuni 6.0, S-24 22 (helicopter) and 16.5 (plane), S-25 32 (no Wargame entry; S-24 x 17/12 BA ratio). IgnoreCover 0.15 (30% in a building, Wargame's town factor). Penetration low so tanks take chip damage only (hit = Damage x P^2/(P^2+A^2); MBT top/rear armor 100: at most 1.0), except the S-24, which Osama wants as the tank killer: penetration 44 (plane 53), about 3.6 per hit on armor 100, 4 hits for a 14 HP MBT. Blast radius, suppression and other fields unchanged. Only air units use these 13 rounds. Not included: S-8L and Gadyuka (anti-armor), Hydra Fletcher and LAVAD (anti-air), infantry rockets. Calculated, not yet run in a game.",
-  "ignore_cover": 0.15,
+  "note": "0.6 (Osama, 8 November 2026): helicopter and plane rocket pods. dev.67-73 tried Wargame-level infantry damage (per hit, then per salvo counting Wargame's 10-40% accuracy); Osama prefers vanilla's damage per second (dev.77). dev.77: Hydra and S-8 vanilla damage (3.5, 4.0) and vanilla ignore cover 0 (vanilla in a building, 18%, already about Wargame's per-salvo town level), penetration 30 (was 70-80) so armor takes less. APKWS and DAGR (guided Hydra): vanilla damage 3.5, more ignore cover than the class (0.15, 30% in a building) and slightly more penetration (40). S-13 and Zuni: vanilla damage 6.5, ignore cover 0, penetration 50 (was 130): about 1.3 per hit on an MBT's top or rear (armor 100). TO TEST AND ANALYZE (Osama's pin): S-13/Zuni anti-tank value at penetration 50. S-24 (the tank killer): 22 helicopter / 16.5 plane, penetration 44 / 53, ignore cover 0.15, about 3.6 per hit on an MBT's top or rear (4 hits). S-25: vanilla damage 17, penetration 52 (was 340, a one-shot on an MBT), ignore cover 0.15, about 3.6 per MBT hit. hit = Damage x P^2 / (P^2 + A^2). Infantry have HEAT armor 0, so penetration does not change infantry damage. Blast radius unchanged. Only air units use these 13 rounds. Not included: S-8L, Gadyuka, Hydra Fletcher, LAVAD. Calculated, not yet run in a game.",
   "rounds": {
     "17": {
       "family": "Hydra 70",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 3.5,
+      "Penetration": 30.0,
+      "IgnoreCover": 0.0
     },
     "294": {
       "family": "Hydra 70",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 3.5,
+      "Penetration": 30.0,
+      "IgnoreCover": 0.0
     },
     "45": {
       "family": "Hydra 70 APKWS",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 3.5,
+      "Penetration": 40.0,
+      "IgnoreCover": 0.15
     },
     "269": {
       "family": "Hydra 70 DAGR",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 3.5,
+      "Penetration": 40.0,
+      "IgnoreCover": 0.15
     },
     "81": {
       "family": "S-8",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 4.0,
+      "Penetration": 30.0,
+      "IgnoreCover": 0.0
     },
     "313": {
       "family": "S-8",
-      "Damage": 2.0,
-      "Penetration": 30.0
+      "Damage": 4.0,
+      "Penetration": 30.0,
+      "IgnoreCover": 0.0
     },
     "85": {
       "family": "S-13",
-      "Damage": 6.0,
-      "Penetration": 30.0
+      "Damage": 6.5,
+      "Penetration": 50.0,
+      "IgnoreCover": 0.0
     },
     "148": {
       "family": "S-13",
-      "Damage": 6.0,
-      "Penetration": 30.0
+      "Damage": 6.5,
+      "Penetration": 50.0,
+      "IgnoreCover": 0.0
     },
     "580": {
       "family": "Zuni",
-      "Damage": 6.0,
-      "Penetration": 30.0
+      "Damage": 6.5,
+      "Penetration": 50.0,
+      "IgnoreCover": 0.0
     },
     "145": {
       "family": "Zuni",
-      "Damage": 6.0,
-      "Penetration": 30.0
+      "Damage": 6.5,
+      "Penetration": 50.0,
+      "IgnoreCover": 0.0
     },
     "918": {
       "family": "S-24",
       "Damage": 22.0,
-      "Penetration": 44.0
+      "Penetration": 44.0,
+      "IgnoreCover": 0.15
     },
     "917": {
       "family": "S-24",
       "Damage": 16.5,
-      "Penetration": 53.0
+      "Penetration": 53.0,
+      "IgnoreCover": 0.15
     },
     "314": {
       "family": "S-25",
-      "Damage": 32.0,
-      "Penetration": 16.0
+      "Damage": 17.0,
+      "Penetration": 52.0,
+      "IgnoreCover": 0.15
     }
   },
   "mbt_armor": 100,
-  "mbt_max_hit": 1.0,
+  "mbt_max_hit": 1.5,
   "tank_killer": [
     "918",
-    "917"
+    "917",
+    "314"
   ]
 }

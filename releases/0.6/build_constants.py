@@ -1140,14 +1140,14 @@ def main():
             w=r['WeaponId'];wr=clone('WeaponsJson',w,{'Name':effective['WeaponsJson'][w]['Name']+' rack (no rounds)'},why61)
             clone('TurretWeaponsJson',r['Id'],{'TurretId':rack[t],'WeaponId':wr},why61)
             assert not any(a['WeaponId']==wr for a in effective['WeaponAmmunitionsJson'].values())
-    # 0.6 (Osama): rocket pods at Wargame infantry damage per salvo (Wargame misses counted), open and in buildings; S-24 the tank killer (rocketpod-contract.json).
+    # 0.6 (Osama): rocket pods at vanilla infantry damage, low penetration; APKWS/DAGR more cover ignore; S-24/S-25 tank killers (rocketpod-contract.json).
     rp=json.loads((R/'rocketpod-contract.json').read_text());why='Rocket pod: Wargame infantry damage, open and in buildings'
     hit=lambda d,p,a:d*p*p/(p*p+a*a)
     for key,v in rp['rounds'].items():
         a=effective['AmmunitionsJson'][int(key)];assert a['Name'].startswith('Rocket ') and a['IgnoreCover']==0.0 and a['PenetrationAtMinRange']==a['PenetrationAtGroundRange'],key
         assert all(effective['Units'][r['UnitId']]['Type'] in (8,16) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==int(key)),key
         assert key in rp['tank_killer'] or hit(v['Damage'],v['Penetration'],rp['mbt_armor'])<=rp['mbt_max_hit']+1e-9,key
-        put('AmmunitionsJson',int(key),{'Damage':v['Damage'],'PenetrationAtMinRange':v['Penetration'],'PenetrationAtGroundRange':v['Penetration'],'IgnoreCover':rp['ignore_cover']},why)
+        put('AmmunitionsJson',int(key),{'Damage':v['Damage'],'PenetrationAtMinRange':v['Penetration'],'PenetrationAtGroundRange':v['Penetration'],'IgnoreCover':v['IgnoreCover']},why)
     # 0.6 dev.71/73 (Osama): Russian Mechanized Tulpan availability 4, Malka 6 (mech-arty-avail-contract.json).
     ma=json.loads((R/'mech-arty-avail-contract.json').read_text())
     for pool,uid in ma['pools'].items():
@@ -1167,6 +1167,11 @@ def main():
     ad=pz['add_pool'];like=effective['SpecializationAvailabilitiesJson'][ad['like_pool']];assert like['UnitId']==ad['unit']
     assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
     clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},'M109A6 Paladin in USMC, availability 2')
+    # 0.6 dev.77 (Osama): SLAMRAAM in US Special Operations, availability 4 (paladin-split-contract.json 'more_pools').
+    for ad in pz['more_pools']:
+        assert effective['SpecializationAvailabilitiesJson'][ad['like_pool']]['UnitId']==ad['unit']
+        assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
+        clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},ad['why'])
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
