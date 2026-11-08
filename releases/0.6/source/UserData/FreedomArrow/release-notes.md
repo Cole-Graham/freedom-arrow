@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.80 — development candidate
+# Freedom Arrow 0.6.0-dev.81 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -81,6 +81,7 @@ New in 0.6 dev.75: every MLRS rocket is tuned to about 90% of Wargame's damage p
 New in 0.6 dev.76: TOS rockets back to vanilla damage and penetration; CATFAE vanilla.
 New in 0.6 dev.78: Grad and Ogon at vanilla damage; guided GMLRS/HIMARS match the GMLRS; 300 mm rockets 49 damage; TOS vanilla with 50 m wider scatter.
 New in 0.6 dev.79: MLRS rockets do vanilla damage to infantry in the open and 60% of vanilla in buildings, with low penetration against tanks.
+New in 0.6 dev.80: MLRS rockets do 50% of vanilla damage to infantry in buildings (vanilla in the open).
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
