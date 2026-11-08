@@ -880,7 +880,8 @@ def main():
         # Each load has its own weapon and pylon rows, because the round count is per weapon per mount.
         wp=clone('WeaponsJson',aw['weapon'],{'HUDName':aw['name'],'Name':'Cruise AGM183A ARRW '+ld['slot']},why)
         tu=clone('TurretsJson',aw['turret'],{'Name':'PylonTurret B52H AGM183A ARRW '+ld['slot']},why)
-        clone('TurretWeaponsJson',tw,{'TurretId':tu,'WeaponId':wp},why)
+        ch=effective['TurretWeaponsJson'][aw['channel_like']];assert effective['TurretUnitsJson'][aw['like_turret_link']]['UnitId']==aw['unit'] and ch['WeaponId']==430
+        clone('TurretWeaponsJson',tw,{'TurretId':tu,'WeaponId':wp,'WeaponChannel':ch['WeaponChannel'],'WeaponPriority':ch['WeaponPriority']},why)
         like=effective['OptionsJson'][ld['like_option']];assert like['ModificationId'] in b52mods
         mounts={k:tu for k in like if k.startswith('Turret') and k.endswith('Id') and like[k]}
         assert len(mounts)*ld['per_mount']==2,ld
@@ -923,6 +924,11 @@ def main():
         assert aid in arty['ammo'],('artillery row not in contract',aid)
         put('AmmunitionsJson',aid,{'PenetrationAtMinRange':min(cur[0]*arty['factor'],van['PenetrationAtMinRange']),'PenetrationAtGroundRange':min(cur[1]*arty['factor'],van['PenetrationAtGroundRange'])},'Artillery penetration x1.5, not above vanilla');n+=1
     assert n==len(arty['ammo']),('artillery rows',n)
+    # 0.6: SEAD missiles move as in ActualArrow 1.1.20: speed, acceleration, turn rate (sead-contract.json).
+    sd=json.loads((R/'sead-contract.json').read_text())
+    for aid,fields in sd['fields'].items():
+        row=effective['AmmunitionsJson'][int(aid)];assert row['Seeker']==200 and all(row[k]==v for k,v in sd['was'][aid].items()),('SEAD row changed upstream',aid)
+        put('AmmunitionsJson',int(aid),fields,'SEAD missile movement as ActualArrow 1.1.20')
     # 0.6: 12ga SLUG T2 (M1014, Benelli M4) damage 7.0, penetration at max range 8 (slug-contract.json).
     sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
     assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
