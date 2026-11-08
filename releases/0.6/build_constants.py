@@ -858,6 +858,10 @@ def main():
         kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in effective['Units']}
         if kinds-{4}:continue  # plane and ship rounds
         put('AmmunitionsJson',aid,{'SupplyCost':a['SupplyCost']*lg['supply_factor']},'Artillery uses twice the supply')
+    # 0.6: 12ga SLUG T2 (M1014, Benelli M4) damage 7.0, penetration at max range 8 (slug-contract.json).
+    sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
+    assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
+    put('AmmunitionsJson',sl['ammo'],sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

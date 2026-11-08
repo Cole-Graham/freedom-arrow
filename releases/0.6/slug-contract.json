@@ -1,0 +1,6 @@
+{
+  "note": "0.6 (Lateralus, 7 November 2026). 12ga SLUG T2 (ammunition 359), fired by the M1014 and the Benelli M4: damage 4.8 -> 7.0, penetration at max range 7 -> 8 (15 at close range unchanged). It is one shared row, so every squad that carries it gets the same round: Delta Force, Marine Raiders, Pararescue, Force Recon CQC, Green Berets, SUV, Zaliukai. Goal: about +15% Delta Force close-quarters squad DPM inside 200 m (calculated). The T1 slug (43), the Saiga slug (363) and the KS-23 slug (914) are unchanged.",
+  "ammo": 359,
+  "was": {"Damage": 4.8, "PenetrationAtGroundRange": 7.0},
+  "fields": {"Damage": 7.0, "PenetrationAtGroundRange": 8.0}
+}
