@@ -88,6 +88,19 @@ internal static unsafe class NativeEcs
         if(offset+sizeof(TValue)>IL2CPP.il2cpp_class_value_size(c,ref align))throw new InvalidOperationException("Field exceeds native component");
         return Unsafe.ReadUnaligned<TValue>((byte*)Data<TComponent>(entity)+offset);
     }
+    // Live write into the component storage that Entity.Get<T> returns (not a snapshot). Same size checks as Field.
+    public static void WriteField<TComponent,TValue>(Entity entity,string name,TValue value) where TValue:unmanaged
+    {
+        var c=Class<TComponent>();
+        if(!IL2CPP.il2cpp_class_is_valuetype(c))throw new InvalidOperationException("Field writer expects a value component");
+        var field=IL2CPP.il2cpp_class_get_field_from_name(c,name);
+        if(field==IntPtr.Zero)throw new MissingFieldException(typeof(TComponent).Name,name);
+        uint align=0;var fieldClass=IL2CPP.il2cpp_class_from_type(IL2CPP.il2cpp_field_get_type(field));
+        if(IL2CPP.il2cpp_class_value_size(fieldClass,ref align)!=sizeof(TValue))throw new InvalidOperationException("Native field size mismatch: "+name);
+        int offset=Offset<TComponent>(name);align=0;
+        if(offset+sizeof(TValue)>IL2CPP.il2cpp_class_value_size(c,ref align))throw new InvalidOperationException("Field exceeds native component");
+        Unsafe.WriteUnaligned((byte*)Data<TComponent>(entity)+offset,value);
+    }
     public static float EncodedField<TComponent>(Entity entity,string name)
     {
         var field=IL2CPP.il2cpp_class_get_field_from_name(Class<TComponent>(),name);
