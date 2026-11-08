@@ -896,6 +896,12 @@ def main():
         for s in p['specs']:
             assert not any(r['UnitId']==p['unit'] and r['SpecializationId']==s for r in effective['SpecializationAvailabilitiesJson'].values())
             clone('SpecializationAvailabilitiesJson',p['like'],{'SpecializationId':s},'Hawkeye MWS in Special Operations')
+    # 0.6: display-name changes only (rename-contract.json).
+    rn=json.loads((R/'rename-contract.json').read_text())
+    for table in ('WeaponsJson',):
+        for key,f in rn[table].items():
+            assert effective[table][int(key)]['HUDName']==f['was'],(table,key)
+            put(table,int(key),{'HUDName':f['HUDName']},'Display name '+f['HUDName'])
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

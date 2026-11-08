@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.32 — development candidate
+# Freedom Arrow 0.6.0-dev.33 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -32,6 +32,7 @@ New in 0.6 dev.29: a HARM whose target turns its radar off flies on to where the
 New in 0.6 dev.30: decks saved before the slot change get the new RECON and SUP slots when opened; the HARM change now switches on; F-16C Block 50 ASF inner pylons can take 2x AMRAAM (+35).
 New in 0.6 dev.31: Ka-29 and Mi-8AMTSh Razvedchik can fly with no rockets and open at 60.
 New in 0.6 dev.32: every deck has 7 slots on each open tab and 9 on RECON and SUP, whatever the two specializations.
+New in 0.6 dev.33: the M72A3 LAW is now called M72A7 LAW (same stats).
 
 ## Earlier notes
 
