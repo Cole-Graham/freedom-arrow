@@ -80,6 +80,7 @@ public sealed partial class Prototype
         if(nativeResultStarted){Log("native_winner_found_suppressed",new{winner=__0.ToString(),dispatching});return false;}
         nativeResultStarted=true;
         if(view!=null)endingModePointer=view.Pointer;
+        HideLabels("winner found");
         Log("native_winner_found_call",new{winner=__0.ToString(),calls=++winnerFoundCalls,dispatching});
         return true;
     }

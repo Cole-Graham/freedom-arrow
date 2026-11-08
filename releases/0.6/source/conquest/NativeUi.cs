@@ -14,7 +14,7 @@ public sealed partial class Prototype
     static View labelView;
     static string labelMap;
     static GUIStyle labelStyle,bannerStyle;
-    static bool labelsOff,labelsLogged,barsOff,barsLogged;
+    static bool labelsOff,labelsLogged,barsOff,barsLogged,matchEnded;
     static bool uiFault;
     static UiSnapshot uiSnapshot;
     sealed class UiSnapshot
@@ -112,8 +112,10 @@ public sealed partial class Prototype
     static void NoteLabelMode(View candidate)
     {
         if(labelView!=null&&labelView.Pointer==candidate.Pointer)return;
-        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;
+        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;matchEnded=false;
     }
+    // Osama, 7 November: the zone point labels and round banner go away when the match ends, not when the player leaves.
+    static void HideLabels(string reason){if(matchEnded||labelView==null)return;matchEnded=true;Log("zone_labels_hidden",new{reason});}
     static void ClearLabelMode(){labelView=null;labelMap=null;}
     static double clockOffset=-1;
     static float clockStart;
@@ -152,7 +154,7 @@ public sealed partial class Prototype
             try{DrawOnlineSetup();}catch(Exception e){labelsOff=true;MelonLogger.Error("FREEDOM_ARROW_ONLINE_SETUP_FAILED: off for this session. "+e.Message);}
             return;
         }
-        if(labelsOff||labelView==null||!config.ShowOverlay||Event.current.type!=EventType.Repaint)return;
+        if(labelsOff||matchEnded||labelView==null||!config.ShowOverlay||Event.current.type!=EventType.Repaint)return;
         try
         {
             if(!Guarded(labelView.Service))return;

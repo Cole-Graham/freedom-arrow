@@ -15,7 +15,7 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.6.0-dev.16", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.6.0-dev.17", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
@@ -305,7 +305,7 @@ public sealed partial class Prototype : MelonMod
                 return true;
             }
             if (!timeEnd || remaining > 0) { result = TeamSide.NotDefined; return false; }
-            terminalStarted=true;pendingEnding=null;endingModePointer=candidate.Pointer;nativeResultStarted=true;
+            terminalStarted=true;pendingEnding=null;endingModePointer=candidate.Pointer;nativeResultStarted=true;HideLabels("time limit");
             Publish(); Log("native_final_evaluation", new { alpha = ledger!.Alpha, bravo = ledger.Bravo, remaining, synthetic=fixtureUsedThisMatch });
             return true;
         }
@@ -313,7 +313,7 @@ public sealed partial class Prototype : MelonMod
     }
     public static bool WarWinner(WarGoalsMode __instance, bool timeEnd, ref TeamSide __result) => Winner(new View(__instance), timeEnd, ref __result);
     public static bool ConquestWinner(ConquestMode __instance, bool timeEnd, ref TeamSide __result) => Winner(new View(__instance), timeEnd, ref __result);
-    public static void ServerEndGame() { try{Log("server_end_game",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed});}catch(Exception e){Fail(e);} }
+    public static void ServerEndGame() { try{HideLabels("server end game");Log("server_end_game",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed});}catch(Exception e){Fail(e);} }
     public static void Stopped(GameModeService __instance)
     {
         ClearLabelMode();
