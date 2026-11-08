@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.44 — development candidate
+# Freedom Arrow 0.6.0-dev.45 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -44,6 +44,7 @@ New in 0.6 dev.41: HARM, Kh-58, Kh-31P and Sidearm fly faster and turn harder, a
 New in 0.6 dev.42: a HARM that loses lock flies straight on without turning; anti-radiation missile speed is vanilla again.
 New in 0.6 dev.43: HARM, Kh-58, Kh-31P and Sidearm turn harder while locked (150); after losing lock they fly straight.
 New in 0.6 dev.44: HARMs and other anti-radiation missiles keep homing on a radar after it turns off.
+New in 0.6 dev.45: a HARM hits where the radar was when it switched off; a radar that drives away escapes.
 
 ## Earlier notes
 
