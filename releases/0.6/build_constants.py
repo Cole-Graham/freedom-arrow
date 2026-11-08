@@ -1058,10 +1058,10 @@ def main():
     def plane_only(aid):return {r['UnitId'] in planes for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid}=={True}
     for aid in ar['plus_1km']:
         a=effective['AmmunitionsJson'][aid];assert plane_only(aid) and a['TargetType']&24 and 1000<a['HighAltRange']<=3500,aid
-        put('AmmunitionsJson',aid,{'LowAltRange':a['LowAltRange']+ar['plus'],'HighAltRange':a['HighAltRange']+ar['plus']},'Medium air-to-air missile +1 km')
+        put('AmmunitionsJson',aid,{'LowAltRange':a['LowAltRange']+ar['plus'],'HighAltRange':a['HighAltRange']+ar['plus']},'Medium air-to-air missile +1 km on the card (+500 data)')
     for aid in ar['long']:
         a=effective['AmmunitionsJson'][aid];assert plane_only(aid) and a['HighAltRange']==4500,aid
-        put('AmmunitionsJson',aid,{'LowAltRange':ar['long_range'],'HighAltRange':ar['long_range']},'Long-range air-to-air missile 11 km')
+        put('AmmunitionsJson',aid,{'LowAltRange':ar['long_range'],'HighAltRange':ar['long_range']},'Long-range air-to-air missile 11 km on the card (5500 data)')
     for key,acc in ar['accuracy'].items():
         a=effective['AmmunitionsJson'][int(key)];assert a['HUDName']=='R-37' and a['DispersionHorizontalRadius']==1.0,key
         put('AmmunitionsJson',int(key),{'DispersionHorizontalRadius':acc},'R-37 accuracy 0.9')

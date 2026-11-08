@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.52 — development candidate
+# Freedom Arrow 0.6.0-dev.53 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -53,6 +53,7 @@ New in 0.6 dev.50: ECM by aircraft generation (F-22 0.5 to older jets 0.85), wea
 
 #New in 0.6 dev.51: big SAMs aim in 0.5 s; S-300V4, S-300PM and Patriot PAC-2 missiles use the S-400 missile stats with their own ranges.
 New in 0.6 dev.52: AMRAAM/R-77 class missiles +1 km; R-37, AIM-260 and AIM-174 reach 11 km; R-37 accuracy 90%; test wingtip AIM-9 slot on the F-35A/B/C.
+New in 0.6 dev.53: missile ranges as shown on the card: AMRAAM/R-77-1 8 km (was 7), R-37/AIM-260/AIM-174 11 km (was 9); dev.52 had doubled them by mistake.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
