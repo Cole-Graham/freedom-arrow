@@ -17,7 +17,7 @@ static class SupportSlots
     {
         h.Patch(AccessTools.Method(typeof(Deck),nameof(Deck.GetMaxCategoryPointsOrSlots)),postfix:new HarmonyMethod(typeof(SupportSlots),nameof(After)));
         h.Patch(AccessTools.Constructor(typeof(Deck),new[]{typeof(DeckDataModel)}),postfix:new HarmonyMethod(typeof(SupportSlots),nameof(Grow)));
-        MelonLogger.Msg($"FREEDOM_ARROW_SUPPORT_SLOTS: SUP and RECON tabs +{Extra} slots (vanilla limit 7)");
+        MelonLogger.Msg($"FREEDOM_ARROW_SUPPORT_SLOTS: every open tab 7 slots, SUP and RECON {7+Extra} (vanilla: spec sum capped at 7)");
     }
     // dev.30 (Osama, 7 November 2026): a saved deck keeps the slot arrays in its file (DeckDataModel "set2"), so decks
     // saved before dev.21 still showed 7 RECON and SUP slots. When a deck opens, a tab with fewer slots than the current
@@ -43,14 +43,16 @@ static class SupportSlots
         }
         catch(System.Exception e){MelonLogger.Error("FREEDOM_ARROW_SUPPORT_SLOTS deck grow failed: "+e.Message);}
     }
+    // dev.32 (Osama, 7 November 2026): every open tab has a fixed slot count for every spec pair: 9 for RECON and SUP, 7 for
+    // the others (vanilla: the two specs' slots added, capped at 7). A tab with no slots in either spec stays closed.
     static void After(UnitCategoryType categoryType,bool slots,ref int __result)
     {
-        // A tab with no slots in either specialization stays closed.
-        if(!slots||(categoryType!=UnitCategoryType.Support&&categoryType!=UnitCategoryType.Recon)||__result<=0)return;
-        __result+=Extra;
-        bool recon=categoryType==UnitCategoryType.Recon;
-        if(recon?saidRecon:said)return;
+        if(!slots||__result<=0)return;
+        bool recon=categoryType==UnitCategoryType.Recon,sup=categoryType==UnitCategoryType.Support;
+        int was=__result;
+        __result=recon||sup?7+Extra:7;
+        if(!(recon||sup)||(recon?saidRecon:said))return;
         if(recon)saidRecon=true;else said=true;
-        MelonLogger.Msg($"FREEDOM_ARROW_SUPPORT_SLOTS: first {(recon?"RECON":"SUP")} tab read {__result-Extra} -> {__result}");
+        MelonLogger.Msg($"FREEDOM_ARROW_SUPPORT_SLOTS: first {(recon?"RECON":"SUP")} tab read {was} -> {__result}");
     }
 }
