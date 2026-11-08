@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.46.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.47.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.46'
+    assert manifest['version']=='0.6.0-dev.47'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.46 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.47 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'

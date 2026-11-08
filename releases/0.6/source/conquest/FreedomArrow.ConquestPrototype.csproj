@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable>
-    <AssemblyName>FreedomArrow.ConquestBatch</AssemblyName><Version>0.6.0-dev.46</Version>
+    <AssemblyName>FreedomArrow.ConquestBatch</AssemblyName><Version>0.6.0-dev.47</Version>
 
     <ML>$(GameDir)/MelonLoader/net6</ML><IL2>$(GameDir)/MelonLoader/Il2CppAssemblies</IL2>
   <AllowUnsafeBlocks>true</AllowUnsafeBlocks></PropertyGroup>
@@ -22,6 +22,7 @@
     <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(IL2)/UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Unity.TextMeshPro"><HintPath>$(IL2)/Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.UI"><HintPath>$(IL2)/UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(IL2)/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.UIModule"><HintPath>$(IL2)/UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(IL2)/UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
