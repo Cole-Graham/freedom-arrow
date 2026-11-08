@@ -11,6 +11,9 @@ public static class WeaponCoverage
         if(touched.Count+squad.Count==0)return;
         int I(JsonNode r,string k)=>r[k].GetValue<int>();
         var ammo=tables["WeaponAmmunitionsJson"].Select(r=>(I(r,"UnitId"),I(r,"WeaponId"))).ToHashSet();
+        // 0.6 dev.61: a helicopter rack turret holds a launcher copy with no rounds, so the game draws the second pod but
+        // never fires it. Only our own new weapons named '... rack (no rounds)' may have no ammunition row.
+        var modelOnly=patches.TryGetValue("WeaponsJson",out var wp)?wp.Where(x=>x.Value!=null&&int.Parse(x.Key)>=2000000&&(x.Value["Name"]?.GetValue<string>()??"").EndsWith(" rack (no rounds)")).Select(x=>int.Parse(x.Key)).ToHashSet():new();
         var consumers=new Dictionary<int,HashSet<int>>();
         void Add(int turret,int unit){if(!consumers.TryGetValue(turret,out var units))consumers[turret]=units=new();units.Add(unit);}
         foreach(var r in tables["TurretUnitsJson"])Add(I(r,"TurretId"),I(r,"UnitId"));
@@ -24,7 +27,7 @@ public static class WeaponCoverage
         foreach(var r in tables["TurretWeaponsJson"])
             if(touched.Contains(I(r,"Id"))&&consumers.TryGetValue(I(r,"TurretId"),out var units))
                 foreach(int unit in units)
-                    if(!ammo.Contains((unit,I(r,"WeaponId"))))throw new InvalidDataException($"Weapon transfer lacks ammo: unit {unit}, weapon {I(r,"WeaponId")}, turret {I(r,"TurretId")}");
+                    if(!ammo.Contains((unit,I(r,"WeaponId")))&&!modelOnly.Contains(I(r,"WeaponId")))throw new InvalidDataException($"Weapon transfer lacks ammo: unit {unit}, weapon {I(r,"WeaponId")}, turret {I(r,"TurretId")}");
         foreach(var r in tables["SquadWeaponsJson"])
             if(squad.Contains(I(r,"Id"))&&!ammo.Contains((I(r,"UnitId"),I(r,"WeaponId"))))throw new InvalidDataException("Squad weapon transfer lacks ammo");
     }

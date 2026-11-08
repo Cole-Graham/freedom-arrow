@@ -1096,6 +1096,18 @@ def main():
         for o in options(uid):
             if o['MainSensorId'] in copies:put('OptionsJson',o['Id'],{'MainSensorId':copies[o['MainSensorId']]},why)
             assert o['MainSensorId'] in (0,*copies.values()) and not o['ExtraSensorId'],(uid,o['Id'])
+    # 0.6 dev.61 (Osama, in-game report): the dev.46 rack turret had no weapon, and the game builds a pylon model from its
+    # weapons, so the second pod was not drawn. Each rack now holds a copy of the launcher weapon with no rounds on any
+    # unit (no WeaponAmmunitions row, as vanilla does for unused loadout weapons): drawn, never fired. The both-racks
+    # weapon's magazine now holds both racks' rounds, so it does not stop to reload halfway (the dev.59 ARRW fault).
+    why61='Helicopter ATGM pylon: second rack drawn (weapon with no rounds); both-racks magazine holds all rounds'
+    for t,(t2,wmap) in sorted(load2.items()):
+        for w,w2 in wmap.items():put('WeaponsJson',w2,{'MagazineSize':effective['WeaponsJson'][w]['MagazineSize']*2},why61)
+        assert not any(r['TurretId']==rack[t] for r in effective['TurretWeaponsJson'].values()),t
+        for r in [r for r in effective['TurretWeaponsJson'].values() if r['TurretId']==t]:
+            w=r['WeaponId'];wr=clone('WeaponsJson',w,{'Name':effective['WeaponsJson'][w]['Name']+' rack (no rounds)'},why61)
+            clone('TurretWeaponsJson',r['Id'],{'TurretId':rack[t],'WeaponId':wr},why61)
+            assert not any(a['WeaponId']==wr for a in effective['WeaponAmmunitionsJson'].values())
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
