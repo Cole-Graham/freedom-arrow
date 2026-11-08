@@ -950,6 +950,11 @@ def main():
         for key,f in rn[table].items():
             assert effective[table][int(key)]['HUDName']==f['was'],(table,key)
             put(table,int(key),{'HUDName':f['HUDName']},'Display name '+f['HUDName'])
+    # 0.6: MiG-31 agility, moderate nerf (mig31-contract.json). Only the MiG-31 mobility row uses this preset.
+    mg=json.loads((R/'mig31-contract.json').read_text());fp=effective['FlyPresetsJson'][mg['preset']]
+    assert fp['Name']==mg['name'] and all(fp[k]==v for k,v in mg['was'].items()),('MiG-31 preset changed upstream',mg['preset'])
+    assert {m['Name'] for m in effective['MobilityJson'].values() if m.get('FlyPresetId')==mg['preset']}=={'Plane MIG31'},'MiG-31 preset is shared'
+    put('FlyPresetsJson',mg['preset'],mg['fields'],'MiG-31 turn 14/30/30, pitch 45, roll 75')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

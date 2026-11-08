@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.39 — development candidate
+# Freedom Arrow 0.6.0-dev.40 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -39,6 +39,7 @@ New in 0.6 dev.36: Patriot PAC-2/PAC-3/PAC-3 MSE, S-350 and S-300PM/V4 availabil
 New in 0.6 dev.37: the B-52H can carry 2 AGM-183A ARRW hypersonic missiles on its wing pylons (+300).
 New in 0.6 dev.38: the B-52H ARRW choice carries 4 missiles, two per wing pylon on the ALCM mount (+400).
 New in 0.6 dev.39: B-52H ARRW is 2 in the bomb bay and 2 on the wings, +200 each.
+New in 0.6 dev.40: the MiG-31 turns slower: 30°/s at top speed (was 45), pitch 45, roll 75.
 
 ## Earlier notes
 
