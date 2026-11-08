@@ -978,6 +978,8 @@ def main():
             f['OverpressureRadius']=0.0
             if row['PenetrationAtMinRange']>cap(row['Damage'],cw['bomb_armor']):f.update(PenetrationAtMinRange=float(cap(row['Damage'],cw['bomb_armor'])),PenetrationAtGroundRange=float(cap(row['Damage'],cw['bomb_armor'])))
         put('AmmunitionsJson',aid,f,'Bomb ignore cover 0.5; unguided: no overpressure, penetration under one MBT kill')
+    fb=cw['fab9000'];row=effective['AmmunitionsJson'][fb['ammo']];assert row['Name']=='Bomb 9000kg FAB9000' and row['IgnoreCover']==0 and row['OverpressureRadius']>0,row['Name']
+    put('AmmunitionsJson',fb['ammo'],{'IgnoreCover':fb['ignore_cover'],'OverpressureRadius':0.0,'PenetrationAtMinRange':fb['penetration'],'PenetrationAtGroundRange':fb['penetration']},'FAB-9000 ignores cover 1.0, penetration 150, no overpressure')
     mop=cw['mop'];row=effective['AmmunitionsJson'][mop['ammo']];assert row['Name']=='Bomb 13600kg GBU57' and row['IgnoreCover']==0,row['Name']
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])

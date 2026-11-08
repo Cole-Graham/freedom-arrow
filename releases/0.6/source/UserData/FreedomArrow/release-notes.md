@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.65 — development candidate
+# Freedom Arrow 0.6.0-dev.66 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -66,6 +66,7 @@ New in 0.6 dev.62: B-2 MOP loadout +250 (was +400); the MOP ignores building cov
 New in 0.6 dev.63: BRM-3K has Very Good optics on every turret; its Kaktus reactive armor is 700 HEAT front and side. B-2 Spirit stealth 2.25.
 New in 0.6 dev.64: MiG-31BSM card (Defense Forces) carries the MiG-31's ground-strike loadouts; the MiG-31BM is air-to-air only. Every wheeled cargo truck has at least 4 availability.
 New in 0.6 dev.65: MiG-29S in Motorized Infantry, a copy of the MiG-29K with the same loadouts and stats.
+New in 0.6 dev.66: FAB-9000 ignores building cover and has penetration 150.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
