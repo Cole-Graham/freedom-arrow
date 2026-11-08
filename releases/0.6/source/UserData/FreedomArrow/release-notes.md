@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.72 — development candidate
+# Freedom Arrow 0.6.0-dev.73 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,7 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.73: Russian Mechanized Malka availability 6 and 4 Msta-S; rocket pods a little weaker (Wargame accuracy x HE x 5).
 New in 0.6 dev.71: rocket pods weaker per rocket to count Wargame's misses; the S-24 kills tanks in about 4 hits; Russian Mechanized Tulpan and Malka 4 each.
 New in 0.6 dev.11: Spetsnaz Alpha close-quarters 10 men, 50 HP, 6 AK-15SK, 85 points; Spetsnaz Alpha stand-off 10 AK-107, 2 AEK-999, 2 RG-6 MGL (still 95); Delta Force stand-off can laser-designate (1200 m).
 New in 0.6 dev.13: new map [FA] Airport 0.1 (and [FA] Airport Skirmish 0.1 for F8), the vanilla Airport with the FA game mode. A D are worth 4, F G H I 3, B C E 2. Every zone shows at every lobby size. The zone vanilla labels Golf twice now shows India.

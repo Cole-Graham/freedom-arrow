@@ -1,70 +1,70 @@
 {
-  "note": "0.6 (Osama, 8 November 2026): helicopter and plane unguided rocket pods match Wargame against infantry per salvo, open and in buildings. dev.67 matched per hit (Damage = Wargame HE x 5 HP per man), but BA rockets barely miss (helicopter spread 6x4 data units inside a 14-49 blast radius) while Wargame rockets hit 20-40% (WRD Toolbox accuracy: Hydra/FFAR and S-8 20%, S-13 and Zuni 30%, S-24 40% on the Mi-25 helicopter, 30% on planes), so dev.67 was 3-5x Wargame per salvo. dev.71: Damage = Wargame accuracy x HE x 5 / 0.8 (0.8 = estimated BA blast falloff, not measured): Hydra/APKWS/DAGR and S-8 2.5, S-13 and Zuni 7.5, S-24 27.5 (helicopter) and 20.5 (plane), S-25 40 (no Wargame entry; S-24 x 17/12 BA ratio). IgnoreCover 0.15 (30% in a building, Wargame's town factor). Penetration low so tanks take chip damage only (hit = Damage x P^2/(P^2+A^2); MBT top/rear armor 100: at most 1.0), except the S-24, which Osama wants as the tank killer: penetration 39 (plane 46), about 3.6 per hit on armor 100, 4 hits for a 14 HP MBT. Blast radius, suppression and other fields unchanged. Only air units use these 13 rounds. Not included: S-8L and Gadyuka (anti-armor), Hydra Fletcher and LAVAD (anti-air), infantry rockets. Calculated, not yet run in a game.",
+  "note": "0.6 (Osama, 8 November 2026): helicopter and plane unguided rocket pods match Wargame against infantry per salvo, open and in buildings. dev.67 matched per hit (Damage = Wargame HE x 5 HP per man), but BA rockets barely miss (helicopter spread 6x4 data units inside a 14-49 blast radius) while Wargame rockets hit 20-40% (WRD Toolbox accuracy: Hydra/FFAR and S-8 20%, S-13 and Zuni 30%, S-24 40% on the Mi-25 helicopter, 30% on planes), so dev.67 was 3-5x Wargame per salvo. dev.73 (Osama: 'rather a bit weak than strong'): Damage = Wargame accuracy x HE x 5, with no allowance for BA blast falloff, so BA errs weak: Hydra/APKWS/DAGR and S-8 2.0, S-13 and Zuni 6.0, S-24 22 (helicopter) and 16.5 (plane), S-25 32 (no Wargame entry; S-24 x 17/12 BA ratio). IgnoreCover 0.15 (30% in a building, Wargame's town factor). Penetration low so tanks take chip damage only (hit = Damage x P^2/(P^2+A^2); MBT top/rear armor 100: at most 1.0), except the S-24, which Osama wants as the tank killer: penetration 44 (plane 53), about 3.6 per hit on armor 100, 4 hits for a 14 HP MBT. Blast radius, suppression and other fields unchanged. Only air units use these 13 rounds. Not included: S-8L and Gadyuka (anti-armor), Hydra Fletcher and LAVAD (anti-air), infantry rockets. Calculated, not yet run in a game.",
   "ignore_cover": 0.15,
   "rounds": {
     "17": {
       "family": "Hydra 70",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "294": {
       "family": "Hydra 70",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "45": {
       "family": "Hydra 70 APKWS",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "269": {
       "family": "Hydra 70 DAGR",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "81": {
       "family": "S-8",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "313": {
       "family": "S-8",
-      "Damage": 2.5,
+      "Damage": 2.0,
       "Penetration": 30.0
     },
     "85": {
       "family": "S-13",
-      "Damage": 7.5,
+      "Damage": 6.0,
       "Penetration": 30.0
     },
     "148": {
       "family": "S-13",
-      "Damage": 7.5,
+      "Damage": 6.0,
       "Penetration": 30.0
     },
     "580": {
       "family": "Zuni",
-      "Damage": 7.5,
+      "Damage": 6.0,
       "Penetration": 30.0
     },
     "145": {
       "family": "Zuni",
-      "Damage": 7.5,
+      "Damage": 6.0,
       "Penetration": 30.0
     },
     "918": {
       "family": "S-24",
-      "Damage": 27.5,
-      "Penetration": 39.0
+      "Damage": 22.0,
+      "Penetration": 44.0
     },
     "917": {
       "family": "S-24",
-      "Damage": 20.5,
-      "Penetration": 46.0
+      "Damage": 16.5,
+      "Penetration": 53.0
     },
     "314": {
       "family": "S-25",
-      "Damage": 40.0,
+      "Damage": 32.0,
       "Penetration": 16.0
     }
   },
