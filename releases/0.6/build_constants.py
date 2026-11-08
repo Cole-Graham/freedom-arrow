@@ -1217,7 +1217,7 @@ def main():
             mine=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod['Id'] and not o.get('ReplaceUnitId')),key=lambda o:(o['Order'],o['Id']))
             if not mine:continue
             m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why);default=any(o['IsDefault'] for o in mine)
-            for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':o['IsDefault'] or (not default and order==0)},why)
+            for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':o['IsDefault'] or (not default and order==0),**({'ReplaceUnitName':c['name']} if o.get('ReplaceUnitName') else {})},why)
         if c.get('transport_only'):continue
         like=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par)
         pool=clone('SpecializationAvailabilitiesJson',like['Id'],{'UnitId':new,'SpecializationId':sp['id']},why)
