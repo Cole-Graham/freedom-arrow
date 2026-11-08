@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using MelonLoader;
 using UnityEngine;
 using Il2CppDefaultEcs;
@@ -7,7 +8,7 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Render.Components;
 
 namespace FreedomArrow.Conquest;
-// 0.6 dev.29 (Osama, 7 November 2026): an anti-radiation missile (seeker type SEAD) that loses its target, for example when
+// 0.6 dev.29 (Osama, 7 November 2026; dev.30 fixes the Nullable<Entity> layout, which made dev.29 switch the hook off): an anti-radiation missile (seeker type SEAD) that loses its target, for example when
 // the radar turns off, flies on to the target's position at that moment. Read from the game code (GameAssembly 6000.3.24f1):
 // SeekerSystem.DropCurrentTarget (RVA 0x8279D0) already sends a dropped missile on to SeekerComponent.LastTargetPosition,
 // but it sets that point to the target position plus a random miss vector (GenerateMissVector, RVA 0x828170). This hook
@@ -19,10 +20,11 @@ public sealed partial class Prototype
     static bool harmOff;
     static int harmLogged;
     [ThreadStatic] static Vector3? harmPoint;
-    struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public long Value;}
+    // Nullable<Entity> as IL2CPP lays it out: bool at 0, Entity (short, short, int) at 4, 12 bytes (SeekerComponent.Target 0x44, HasLOSOnCurrentTarget 0x50).
+    [StructLayout(LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
     static void InstallHarmSeeker()
     {
-        if(Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<NullableEntity>()!=12)throw new InvalidOperationException("Entity layout changed");
+        if(Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<NullableEntity>()!=12)throw new InvalidOperationException($"Entity layout changed (Entity {Unsafe.SizeOf<Entity>()} bytes, Nullable {Unsafe.SizeOf<NullableEntity>()} bytes; expected 8 and 12)");
         Patch(typeof(SeekerSystem),"DropCurrentTarget",nameof(HarmDropBefore),nameof(HarmDropAfter));
         MelonLogger.Msg("FREEDOM_ARROW_HARM installed: a SEAD missile that loses a live target flies to its last position");
     }
@@ -37,7 +39,7 @@ public sealed partial class Prototype
             if(NativeEcs.Field<SeekerComponent,int>(missile,"Type")!=SeadSeeker)return;
             var t=NativeEcs.Field<SeekerComponent,NullableEntity>(missile,"Target");
             if(t.HasValue==0)return;
-            var raw=t.Value;var target=Unsafe.As<long,Entity>(ref raw);
+            long raw=(uint)t.Lo|((long)t.Hi<<32);var target=Unsafe.As<long,Entity>(ref raw);
             if(!target.IsAlive||!target.Has<ViewComponent>())return;
             harmPoint=NativeEcs.Read<ViewComponent>(target).transform.position;
         }

@@ -829,12 +829,17 @@ def main():
             assert all(not o['MainSensorId'] and not o['ExtraSensorId'] for o in popts if o['Id'] in keep)
         else:
             for rid in rows_of('SensorUnitsJson',par):clone('SensorUnitsJson',rid,{'UnitId':new},why)
+        newmod={}
         for mod in sorted({o['ModificationId'] for o in popts if o['Id'] in keep}):
-            m=clone('ModificationsJson',mod,{'UnitId':new},why)
+            m=newmod[mod]=clone('ModificationsJson',mod,{'UnitId':new},why)
             mine=sorted((o for o in popts if o['ModificationId']==mod and o['Id'] in keep),key=lambda o:(o['Order'],o['Id']))
             default=any(o['IsDefault'] for o in mine) or not any(o['IsDefault'] for o in popts if o['ModificationId']==mod)
             for order,o in enumerate(mine):
                 clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'Cost':c['option_costs'].get(str(o['Id']),o['Cost']),'IsDefault':o['IsDefault'] or (not default and order==0),**c.get('option_fields',{}).get(str(o['Id']),{})},why)
+        # A new choice in an existing slot: a copy of a kept option, placed last in the same slot.
+        for x in c.get('extra_options',[]):
+            assert x['like'] in keep;m=newmod[effective['OptionsJson'][x['like']]['ModificationId']]
+            clone('OptionsJson',x['like'],{'ModificationId':m,'Order':1+max(o['Order'] for o in effective['OptionsJson'].values() if o['ModificationId']==m),**x['fields']},why)
         like=next((r['Id'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par),c.get('pool_like'))
         for s in c['decks']:
             assert effective['SpecializationsJson'][s]['CountryId']==country

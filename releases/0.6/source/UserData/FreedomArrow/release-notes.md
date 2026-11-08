@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.29 — development candidate
+# Freedom Arrow 0.6.0-dev.30 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -29,6 +29,7 @@ New in 0.6 dev.26: F-16C Block 50 ASF in the Stryker Cavalry regiment, an F-16C 
 New in 0.6 dev.27: F-35C in Airborne (GBU-55 1000lb at +50 in place of the 2000lb); EA-18G Growler in USMC, 330, HARM and ECM jammer pods, ECM 20%; pilot rescue now finds the map's spawn points.
 New in 0.6 dev.28: EA-18G Growler is in Airborne (not USMC).
 New in 0.6 dev.29: a HARM whose target turns its radar off flies on to where the radar was, not to a random miss point.
+New in 0.6 dev.30: decks saved before the slot change get the new RECON and SUP slots when opened; the HARM change now switches on; F-16C Block 50 ASF inner pylons can take 2x AMRAAM (+35).
 
 ## Earlier notes
 
