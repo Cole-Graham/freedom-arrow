@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.81 — development candidate
+# Freedom Arrow 0.6.0-dev.82 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,7 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.82: rocket pods back to about half of vanilla against infantry in buildings (APKWS and DAGR 80%); open ground unchanged.
 New in 0.6 dev.80: rocket pods hit infantry in buildings a little less than vanilla (APKWS and DAGR about vanilla); open ground unchanged.
 New in 0.6 dev.77: rocket pods back to vanilla damage against infantry, less against armor; APKWS and DAGR hit buildings harder; S-24 and S-25 kill tanks in about 4 hits; SLAMRAAM in Special Operations.
 New in 0.6 dev.74: M1299 Iron Thunder is its own Armored card; M109A6 Paladin in USMC (2).
