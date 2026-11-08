@@ -828,7 +828,7 @@ def main():
     # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
     # 0.6: F-35C and EA-18G Growler, with option edits, an ECM ability swap and extra pylon rows (navy-air-contract.json).
     def slots(o):return {o[k] for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]}
-    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json','navy-air-contract.json','mig31bsm-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
+    def copy_card(rh,c):
         why=('Recon helicopter ' if rh.get('type',8)==8 else 'Card copy ')+c['fields']['HUDName'];par,new=c['parent'],c['unit']
         country=rh.get('country',1)
         assert new not in effective['Units'] and effective['Units'][par]['Type']==rh.get('type',8) and effective['Units'][par]['CountryId']==country
@@ -878,6 +878,7 @@ def main():
         assert all(slots(o)<=mine for o in options(new)),(new,'option turret missing')
         armed={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in mine}
         assert armed<={r['WeaponId'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==new},(new,'weapon without rounds')
+    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json','navy-air-contract.json','mig31bsm-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:copy_card(rh,c)
     # 0.6: the Airborne TOW-2A team also in Stryker, riding a Stryker ICV (tow-stryker-contract.json).
     tw=json.loads((R/'tow-stryker-contract.json').read_text());why='TOW-2A team in Stryker'
     pool=effective['SpecializationAvailabilitiesJson'][tw['like']];assert pool['UnitId']==tw['unit'],tw
@@ -1156,6 +1157,17 @@ def main():
     ad=ma['add'];like=effective['SpecializationAvailabilitiesJson'][ad['like_pool']];assert like['UnitId']==ad['unit']
     assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
     clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},'Msta-S in Mechanized Infantry, availability 4')
+    # 0.6 dev.74 (Osama): M1299 Iron Thunder its own Armored Brigade card, M109A7 Paladin keeps only its own turret;
+    # M109A6 Paladin in USMC (paladin-split-contract.json). Added last so no earlier clone ID moves.
+    pz=json.loads((R/'paladin-split-contract.json').read_text())
+    for c in pz['cards']:copy_card(pz,c)
+    for c in pz['cards']:
+        for oid in c['retire_parent_options']:
+            o=effective['OptionsJson'][oid];assert effective['ModificationsJson'][o['ModificationId']]['UnitId']==c['parent'] and not o['IsDefault'],oid
+            drop('OptionsJson',oid)
+    ad=pz['add_pool'];like=effective['SpecializationAvailabilitiesJson'][ad['like_pool']];assert like['UnitId']==ad['unit']
+    assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
+    clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},'M109A6 Paladin in USMC, availability 2')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
