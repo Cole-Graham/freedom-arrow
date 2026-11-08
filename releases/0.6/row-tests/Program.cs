@@ -99,6 +99,7 @@ Check(Math.Abs(10.5*140*140/(140.0*140+100*100)-6.95)<0.01,"top 100 sliver");
 // 0.6 cover-wargame: MLRS ignore cover 1.0, HE bombs 0.5, unguided bombs no overpressure and at most 10 HP on rear armor 100.
 foreach(int j in new[]{66,535,214,443,15,67,430,178,179,215,466,928,930,932,934})Check(Row("AmmunitionsJson",j)["IgnoreCover"].GetValue<float>()==1f,"MLRS ignore cover 1 "+j);
 foreach(var (j,p) in new[]{(283,62f),(157,59f),(287,46f),(331,37f),(335,31f),(336,24f),(61,48f)})Check(Row("AmmunitionsJson",j)["IgnoreCover"].GetValue<float>()==0.5f&&Row("AmmunitionsJson",j)["OverpressureRadius"].GetValue<float>()==0f&&Row("AmmunitionsJson",j)["PenetrationAtMinRange"].GetValue<float>()==p,"unguided bomb cover 0.5, no overpressure, pen "+j);
+Check(Row("AmmunitionsJson",562)["IgnoreCover"].GetValue<float>()==1f&&Row("OptionsJson",2077)["Cost"].GetValue<int>()==250,"B-2 MOP ignore cover 1, loadout +250");
 foreach(var (j,p) in new[]{(290,65f),(291,85f),(326,100f),(325,70f)})Check(Row("AmmunitionsJson",j)["IgnoreCover"].GetValue<float>()==0.5f&&Row("AmmunitionsJson",j)["OverpressureRadius"].GetValue<float>()>0f&&Row("AmmunitionsJson",j)["PenetrationAtMinRange"].GetValue<float>()==p,"guided bomb cover 0.5, keeps overpressure "+j);
 foreach(var ab in merged["AbilitiesJson"].Where(r=>r["IsAPS"].GetValue<bool>()))Check(ab["APSCooldown"].GetValue<float>()==10,"APS cooldown 10 s "+ab["Id"]);
 // 0.4 dev.12: ground ATGMs 10.5, base Kornet 650, Kornet-M 950, AH-1W keeps TOW-2A at 12, mid-tank front HEAT spread.

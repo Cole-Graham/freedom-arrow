@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.61 — development candidate
+# Freedom Arrow 0.6.0-dev.62 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -62,6 +62,7 @@ New in 0.6 dev.58: fighters see high planes at 16 km, Patriot-class radars at 10
 New in 0.6 dev.59: the B-52H can fire all 4 ARRWs without waiting for a reload.
 New in 0.6 dev.61: helicopter ATGM pylons show both pods again, still firing one missile at a time.
 New in 0.6 dev.60: the B-52H ARRW can be laser guided and has a 140 m blast radius.
+New in 0.6 dev.62: B-2 MOP loadout +250 (was +400); the MOP ignores building cover fully.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

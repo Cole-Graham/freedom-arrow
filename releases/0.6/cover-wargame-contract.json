@@ -21,7 +21,6 @@
   "bomb_ignore_cover": 0.5,
   "bombs": [
     324,
-    562,
     331,
     756,
     711,
@@ -197,5 +196,13 @@
     "930": 30.0,
     "932": 30.0,
     "934": 73.0
+  },
+  "mop": {
+    "ammo": 562,
+    "ignore_cover": 1.0,
+    "option": 2077,
+    "option_cost": 250,
+    "option_cost_was": 400,
+    "note": "0.6 dev.62 (Osama, 8 November 2026): B-2 Spirit 2x GBU-57 MOP loadout +250 (was +400) and the GBU-57 ignores cover 1.0 (was 0.5 from dev.49). Damage, penetration and overpressure unchanged (guided bomb)."
   }
 }
