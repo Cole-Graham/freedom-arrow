@@ -1,0 +1,60 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). Supply trucks and artillery supply. Ural-4320 40 (was 45) and in four more decks: Coastal Troops, Defense Forces, Mechanized Infantry and Guard Tank Brigade, availability 4 like Motorized Infantry. MTV 40 (was 55), MTVR 45 (was 65), HEMTT 50 (was 75). HEMTT and M1075A1 PLS also in Armored Brigade, with their Stryker availability (4 and 2). Every artillery round uses twice the supply to refill: indirect-fire rounds (trajectory 20, 30, 40) and ground ballistic and cruise missiles (200, 300) that only ground vehicles carry; plane and ship missiles and shells are not changed. KamAZ-6560 50 (was 85). New card KamAZ-6560 Cargo (unit 739), 50, a copy of the KamAZ-6560 with no seats (cargo only), both armor options kept, in Mechanized Infantry, Coastal Troops, Motorized Infantry and Guard Tank Brigade, availability 4. Ural-5323 45 (was 65). The LMTV 4000 cargo is not in the tables and is not done. Not yet run in a game.",
+  "pools": [
+    {
+      "unit": 423,
+      "like": 759,
+      "specs": [
+        10,
+        12,
+        15,
+        8
+      ]
+    },
+    {
+      "unit": 242,
+      "like": 749,
+      "specs": [
+        4
+      ]
+    },
+    {
+      "unit": 241,
+      "like": 398,
+      "specs": [
+        4
+      ]
+    }
+  ],
+  "artillery_trajectories": [
+    20,
+    30,
+    40,
+    200,
+    300
+  ],
+  "supply_factor": 2,
+  "copies": [
+    {
+      "unit": 739,
+      "parent": 95,
+      "fields": {
+        "Name": "FA KamAZ-6560 Cargo",
+        "HUDName": "KamAZ-6560 Cargo",
+        "Cost": 50,
+        "InfantrySlots": 0
+      },
+      "keep_options": [
+        188,
+        189
+      ],
+      "like": 834,
+      "specs": [
+        15,
+        10,
+        9,
+        8
+      ]
+    }
+  ]
+}

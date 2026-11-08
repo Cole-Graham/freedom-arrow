@@ -833,6 +833,31 @@ def main():
             assert effective['SpecializationsJson'][s]['CountryId']==country
             clone('SpecializationAvailabilitiesJson',like,{'UnitId':new,'SpecializationId':s,'MaxAvailabilityXp0':rh['availability']},why)
         assert not any(r['UnitId']==new for r in effective['TransportAvailabilitiesJson'].values())
+    # 0.6: supply trucks in more decks; artillery uses twice the supply (logistics-contract.json). Truck prices are in vehicle-contract.json.
+    lg=json.loads((R/'logistics-contract.json').read_text());why='Supply truck card in another deck'
+    for p in lg['pools']:
+        like=effective['SpecializationAvailabilitiesJson'][p['like']];assert like['UnitId']==p['unit'],p
+        for s in p['specs']:
+            assert effective['SpecializationsJson'][s]['CountryId']==effective['Units'][p['unit']]['CountryId']
+            assert not any(r['UnitId']==p['unit'] and r['SpecializationId']==s for r in effective['SpecializationAvailabilitiesJson'].values()),p
+            clone('SpecializationAvailabilitiesJson',p['like'],{'SpecializationId':s},why)
+    for c in lg['copies']:
+        why='Truck card copy '+c['fields']['HUDName'];par,new=c['parent'],c['unit']
+        assert new not in effective['Units'] and effective['SpecializationAvailabilitiesJson'][c['like']]['UnitId']==par
+        add_unit(new,par,c['fields'],why)
+        for table in ['TurretUnitsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
+            for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
+        keep=[o for o in options(par) if o['Id'] in c['keep_options']];assert len(keep)==len(c['keep_options'])
+        assert all(not any(o.get(f'Turret{i}Id') for i in range(21)) for o in options(par))
+        for mod in sorted({o['ModificationId'] for o in keep}):
+            m=clone('ModificationsJson',mod,{'UnitId':new},why)
+            for order,o in enumerate(sorted((o for o in keep if o['ModificationId']==mod),key=lambda o:o['Order'])):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order},why)
+        for s in c['specs']:clone('SpecializationAvailabilitiesJson',c['like'],{'UnitId':new,'SpecializationId':s},why)
+    for aid,a in effective['AmmunitionsJson'].items():
+        if a['TrajectoryType'] not in lg['artillery_trajectories'] or a['SupplyCost']<=0:continue
+        kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in effective['Units']}
+        if kinds-{4}:continue  # plane and ship rounds
+        put('AmmunitionsJson',aid,{'SupplyCost':a['SupplyCost']*lg['supply_factor']},'Artillery uses twice the supply')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
