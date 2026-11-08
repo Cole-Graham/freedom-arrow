@@ -1,5 +1,5 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). US recon helicopters: own cards in the recon tab, availability 4, not transports, copies of the helicopter card (model, portrait, icon, armor, ECM); the original cards are unchanged. USMC: UH-1Y Venom Recon, Very Good optics, 65, door guns and rockets. Airborne: OH-58D Recon Optronic, the mast sight (Exceptional optics and laser) built in, GAU-21 and Hydra pylons, 70; OH-58D Recon, Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon, Very Good optics, 4 seats, door guns, 60; MH-6 Little Bird Recon, its Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon, recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon, Very Good optics, 60, guns and rockets. Guesses: Venom and Dauphin 4 seats, Little Bird price 35 (MH-6 30 + its 5-point sight). Not yet run in a game.",
+  "note": "0.6 (Osama, 7 November 2026). US recon helicopters: own cards in the recon tab, availability 4, not transports, copies of the helicopter card (model, portrait, icon, armor, ECM); the original cards are unchanged. USMC: UH-1Y Venom Recon, Very Good optics, 65, door guns and rockets. Airborne: OH-58D Recon Optronic, the mast sight (Exceptional optics and laser) built in, GAU-21 and Hydra pylons, 70; OH-58D Recon, Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon, Very Good optics, 4 seats, door guns, 60; MH-6 Little Bird Recon, its Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon, recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon, Very Good optics, 60, guns and rockets. Guesses: Venom and Dauphin 4 seats, Little Bird price 35 (MH-6 30 + its 5-point sight). Not yet run in a game. dev.46 (Osama): RAH-66 Comanche Recon availability 2 (was 4).",
   "country": 2,
   "availability": 4,
   "category": 0,
@@ -133,7 +133,8 @@
       },
       "decks": [
         13
-      ]
+      ],
+      "availability": 2
     },
     {
       "unit": 738,

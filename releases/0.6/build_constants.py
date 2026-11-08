@@ -699,7 +699,34 @@ def main():
             dup=[k for k in keys if o[k]==t]
             if t in tur_at and len(dup)>1 and t not in h30['skip_single_round_turrets']:found.setdefault(o['Id'],[]).extend(dup[1:])
     assert sorted(found)==sorted(h30['pod_options']),sorted(set(found)^set(h30['pod_options']))
-    for oid,keys in found.items():put('OptionsJson',oid,{k:0 for k in keys},why)
+    # 0.6 dev.46 (Osama): an empty mount shows the unit's default turret (the Hydra pod on the Longbow and AH-64E). The freed
+    # mount now carries a copy of the launcher turret with no weapon (the rack model only), and the one launcher left carries
+    # both racks' rounds, so a pylon still holds its vanilla count and fires one missile at a time.
+    rack={};load2={};units_of=lambda oid:effective['ModificationsJson'][effective['OptionsJson'][oid]['ModificationId']]['UnitId']
+    why46='Helicopter ATGM pylon: one launcher with both racks, second rack is the model only'
+    def unit_turret(u,t,new):
+        if not any(r['UnitId']==u and r['TurretId']==new for r in effective['TurretUnitsJson'].values()):
+            (tul,)=[r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u and r['TurretId']==t]
+            clone('TurretUnitsJson',tul,{'TurretId':new},why46)
+    for oid,keys in sorted(found.items()):
+        u=units_of(oid);o=effective['OptionsJson'][oid]
+        (dup,)=keys;t=o[dup]
+        (first,)=[k for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]==t and k!=dup]
+        if t not in rack:
+            rack[t]=clone('TurretsJson',t,{'Name':effective['TurretsJson'][t]['Name']+' rack (no weapon)'},why46)
+            # A copy of the launcher whose weapon(s) are copies too, so its round count is its own (other options keep t).
+            t2=clone('TurretsJson',t,{'Name':effective['TurretsJson'][t]['Name']+' both racks'},why46);wmap={}
+            for r in [r for r in effective['TurretWeaponsJson'].values() if r['TurretId']==t]:
+                w=r['WeaponId'];wmap[w]=clone('WeaponsJson',w,{'Name':effective['WeaponsJson'][w]['Name']+' both racks'},why46)
+                clone('TurretWeaponsJson',r['Id'],{'TurretId':t2,'WeaponId':wmap[w]},why46)
+            load2[t]=(t2,wmap)
+        t2,wmap=load2[t]
+        unit_turret(u,t,rack[t]);unit_turret(u,t,t2)
+        for w,w2 in wmap.items():
+            if not any(r['UnitId']==u and r['WeaponId']==w2 for r in effective['WeaponAmmunitionsJson'].values()):
+                for r in [r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==u and r['WeaponId']==w]:
+                    clone('WeaponAmmunitionsJson',r['Id'],{'WeaponId':w2,'Quantity':r['Quantity']*2},why46)
+        put('OptionsJson',oid,{first:t2,dup:rack[t]},why46)
     like=effective['AbilitiesJson'][h30['laser_like']];why='Helicopter laser designator';made={}
     def lased(aid):
         a=effective['AbilitiesJson'][aid];assert a['Name'].startswith('ECM Heli') and not a['IsLaserDesignator'],aid
@@ -809,6 +836,7 @@ def main():
         popts=options(par);keep=set(c['keep_options'])
         assert keep<={o['Id'] for o in popts},(new,keep-{o['Id'] for o in popts})
         used=set().union(*map(slots,popts)) if popts else set()
+        used|={t for t,(t2,_) in load2.items() if t2 in used}  # dev.46: a launcher replaced by its both-racks copy is still an option turret
         turrets={r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==par}
         kept_t=({t for t in turrets if t not in used}|set().union(*(slots(o) for o in popts if o['Id'] in keep))|set(c.get('keep_turrets',[])))-set(c.get('drop_turrets',[]))
         assert set(c.get('keep_turrets',[]))<=turrets
@@ -843,7 +871,7 @@ def main():
         like=next((r['Id'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par),c.get('pool_like'))
         for s in c['decks']:
             assert effective['SpecializationsJson'][s]['CountryId']==country
-            clone('SpecializationAvailabilitiesJson',like,{'UnitId':new,'SpecializationId':s,'MaxAvailabilityXp0':rh['availability']},why)
+            clone('SpecializationAvailabilitiesJson',like,{'UnitId':new,'SpecializationId':s,'MaxAvailabilityXp0':c.get('availability',rh['availability'])},why)
         assert not any(r['UnitId']==new for r in effective['TransportAvailabilitiesJson'].values())
         # Every pylon an option names is on the card, and every weapon on the card has its rounds.
         mine={r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==new}

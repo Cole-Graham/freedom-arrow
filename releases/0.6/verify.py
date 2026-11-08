@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.45.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.46.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.45'
+    assert manifest['version']=='0.6.0-dev.46'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.45 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.46 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -26,7 +26,12 @@ with zipfile.ZipFile(p) as z:
     arrw_ws={k for k,r in table('weapons').items() if str(r.get('Name','')).startswith('Cruise AGM183A ARRW')}
     assert len(arrw_ws)==len(arrw['loads']) and all(table('weapons')[k]['HUDName']==arrw['name'] and int(k)>=2000000 for k in arrw_ws)
     arrw_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in arrw_ws};assert len(arrw_tw)==len(arrw['loads'])
-    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers and the ARRW loads'
+    # 0.6 dev.46 (dev30-heli-contract.json): each doubled helicopter ATGM pylon has a launcher copy named '... both racks'.
+    racks_w={k for k,r in table('weapons').items() if str(r.get('Name','')).endswith(' both racks')}
+    assert racks_w and all(int(k)>=2000000 for k in racks_w)
+    racks_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in racks_w}
+    assert len(racks_tw)==len(racks_w)
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|racks_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads and the dev.46 both-racks launchers'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
@@ -42,7 +47,7 @@ with zipfile.ZipFile(p) as z:
     # 0.6: display renames (rename-contract.json) add only HUDName to a weapon row.
     ren=json.loads((R/'rename-contract.json').read_text())['WeaponsJson']
     assert all(table('weapons')[k]['HUDName']==f['HUDName'] for k,f in ren.items()),'0.6 weapon display names'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
