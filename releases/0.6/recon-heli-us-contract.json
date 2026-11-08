@@ -1,5 +1,5 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). US recon helicopters: own cards in the recon tab, availability 4, not transports, copies of the helicopter card (model, portrait, icon, armor, ECM); the original cards are unchanged. USMC: UH-1Y Venom Recon, Very Good optics, 65, door guns and rockets. Airborne: OH-58D Recon Optronic, the mast sight (Exceptional optics and laser) built in, GAU-21 and Hydra pylons, 70; OH-58D Recon, Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon, Very Good optics, 4 seats, door guns, 60; MH-6 Little Bird Recon, its Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon, recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon, Very Good optics, 60, guns and rockets. Guesses: Venom and Dauphin 4 seats, Little Bird price 35 (MH-6 30 + its 5-point sight). Not yet run in a game. dev.46 (Osama): RAH-66 Comanche Recon availability 2 (was 4). dev.68 (Osama, 8 November 2026): USMC AH-1Z Viper Recon (unit 745), a copy of the AH-1Z Viper with only empty or rocket loadouts (inner 38x Hydra or 14x APKWS; outer empty, 38x Hydra or 14x APKWS; wingtips empty), gun kept, Very Good optics as the Viper, 130.",
+  "note": "0.6 (Osama, 7 November 2026). US recon helicopters: own cards in the recon tab, availability 4, not transports, copies of the helicopter card (model, portrait, icon, armor, ECM); the original cards are unchanged. USMC: UH-1Y Venom Recon, Very Good optics, 65, door guns and rockets. Airborne: OH-58D Recon Optronic, the mast sight (Exceptional optics and laser) built in, GAU-21 and Hydra pylons, 70; OH-58D Recon, Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon, Very Good optics, 4 seats, door guns, 60; MH-6 Little Bird Recon, its Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon, recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon, Very Good optics, 60, guns and rockets. Guesses: Venom and Dauphin 4 seats, Little Bird price 35 (MH-6 30 + its 5-point sight). Not yet run in a game. dev.46 (Osama): RAH-66 Comanche Recon availability 2 (was 4). dev.68 (Osama, 8 November 2026): USMC AH-1Z Viper Recon (unit 745), a copy of the AH-1Z Viper with only empty or rocket loadouts (inner 38x Hydra or 14x APKWS; outer empty, 38x Hydra or 14x APKWS; wingtips empty), gun kept, Very Good optics as the Viper, 130. dev.69 (Osama, 8 November 2026): Airborne AH-64D Longbow Recon (unit 746), a copy of the AH-64D Longbow with only empty or rocket pylons (inner and outer: empty, 38x Hydra or 14x APKWS; empty is new on this card, as the Apache's empty pylon, turret 160), no Hellfire, gun kept, Exceptional optics as the Longbow, 90 with empty pylons by default.",
   "country": 2,
   "availability": 4,
   "category": 0,
@@ -177,6 +177,70 @@
       "option_costs": {},
       "decks": [
         3
+      ]
+    },
+    {
+      "unit": 746,
+      "parent": 8,
+      "fields": {
+        "Name": "FA AH-64D Longbow Recon",
+        "HUDName": "AH-64D Longbow Recon",
+        "Cost": 90
+      },
+      "keep_options": [
+        348,
+        349,
+        350,
+        351
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "348": {
+          "IsDefault": false
+        },
+        "349": {
+          "IsDefault": false
+        },
+        "350": {
+          "IsDefault": false
+        },
+        "351": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 348,
+          "fields": {
+            "Name": "Option InnerPylons Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret1Id": 160,
+            "Turret2Id": 160,
+            "IsDefault": true
+          }
+        },
+        {
+          "like": 350,
+          "fields": {
+            "Name": "Option OuterPylons Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret3Id": 160,
+            "Turret4Id": 160,
+            "IsDefault": true
+          }
+        }
+      ],
+      "add_rows": {
+        "TurretUnitsJson": [
+          279
+        ]
+      },
+      "decks": [
+        5
       ]
     }
   ]

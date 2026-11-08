@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.68 — development candidate
+# Freedom Arrow 0.6.0-dev.69 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -69,6 +69,7 @@ New in 0.6 dev.65: MiG-29S in Motorized Infantry, a copy of the MiG-29K with the
 New in 0.6 dev.67: helicopter and plane rocket pods hit infantry like in Wargame, in the open and in buildings; less against armor.
 New in 0.6 dev.66: FAB-9000 ignores building cover and has penetration 150.
 New in 0.6 dev.68: AH-1Z Viper Recon (USMC recon tab, 130): the Viper with rocket or empty pylons only.
+New in 0.6 dev.69: AH-64D Longbow Recon (Airborne recon tab, 90 empty): the Longbow with rocket or empty pylons only. Mi-28NM Razvedchik (VDV recon tab, 90 empty): the Mi-28NM with rocket or empty pylons only.
 # Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**

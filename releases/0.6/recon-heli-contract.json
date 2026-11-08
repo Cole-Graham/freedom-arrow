@@ -1,5 +1,5 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). Recon helicopters: separate cards in the recon tab, availability 4, not transports. Each is a copy of the helicopter card (model, portrait, icon, armor, ECM) with the listed options only. Names use Razvedchik (scout), as in T-90M Razvedchik. Defense Forces: Ka-60 Razvedchik, unarmed, 4 seats, no cargo, Very Good optics, 60; Ka-226T Razvedchik, Good optics, 4 seats, 45. Coastal Troops: Ka-29 Razvedchik, 4 seats, Very Good optics, 60, guns and rockets but no ATGM. Motorized Infantry: Mi-24K Razvedchik, S-8 pods +10 each (was +30), 70 like the Mi-24K. VDV Brigade and Guard Tank Brigade: Mi-8AMTSh Razvedchik, Very Good optics, 60, gun and rocket options only. Mi-24K price and the Mi-8AMTSh 4 seats are guesses. Not yet run in a game. The Mi-8AMTSh copy also leaves out the Igla-S and Verba x4 pylons, which no vanilla option uses. dev.31 (Osama): the Ka-29 Razvedchik inner pylons and the Mi-8AMTSh Razvedchik middle pylons get an Empty choice (+0, the empty pylon turret 160 on the same mounts), as the default; vanilla had no empty choice there, so the S-8 (+30) was forced and both cards opened at 90.",
+  "note": "0.6 (Osama, 7 November 2026). Recon helicopters: separate cards in the recon tab, availability 4, not transports. Each is a copy of the helicopter card (model, portrait, icon, armor, ECM) with the listed options only. Names use Razvedchik (scout), as in T-90M Razvedchik. Defense Forces: Ka-60 Razvedchik, unarmed, 4 seats, no cargo, Very Good optics, 60; Ka-226T Razvedchik, Good optics, 4 seats, 45. Coastal Troops: Ka-29 Razvedchik, 4 seats, Very Good optics, 60, guns and rockets but no ATGM. Motorized Infantry: Mi-24K Razvedchik, S-8 pods +10 each (was +30), 70 like the Mi-24K. VDV Brigade and Guard Tank Brigade: Mi-8AMTSh Razvedchik, Very Good optics, 60, gun and rocket options only. Mi-24K price and the Mi-8AMTSh 4 seats are guesses. Not yet run in a game. The Mi-8AMTSh copy also leaves out the Igla-S and Verba x4 pylons, which no vanilla option uses. dev.31 (Osama): the Ka-29 Razvedchik inner pylons and the Mi-8AMTSh Razvedchik middle pylons get an Empty choice (+0, the empty pylon turret 160 on the same mounts), as the default; vanilla had no empty choice there, so the S-8 (+30) was forced and both cards opened at 90. dev.69 (Osama, 8 November 2026): VDV Brigade Mi-28NM Razvedchik (unit 747), a copy of the Mi-28NM Mikhalych with only empty or rocket pylons (inner: empty, new on this card, S-8 or S-13; outer: empty, S-8 or S-13; no LMUR, Vikhr or Igla), gun kept, Exceptional optics as the Mi-28NM, 90 with empty pylons by default.",
   "availability": 4,
   "category": 0,
   "sensors": {
@@ -155,6 +155,57 @@
             "Turret3Id": 160
           }
         }
+      ]
+    },
+    {
+      "unit": 747,
+      "parent": 380,
+      "fields": {
+        "Name": "FA Mi-28NM Razvedchik",
+        "HUDName": "Mi-28NM Razvedchik",
+        "Cost": 90
+      },
+      "keep_options": [
+        1719,
+        1720,
+        1722,
+        1723,
+        1724
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "1719": {
+          "IsDefault": false
+        },
+        "1720": {
+          "IsDefault": false
+        },
+        "1722": {
+          "IsDefault": true
+        },
+        "1723": {
+          "IsDefault": false
+        },
+        "1724": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 1719,
+          "fields": {
+            "Name": "InnerPylon Mi28NM Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret1Id": 160,
+            "Turret2Id": 160,
+            "IsDefault": true
+          }
+        }
+      ],
+      "decks": [
+        7
       ]
     }
   ]
