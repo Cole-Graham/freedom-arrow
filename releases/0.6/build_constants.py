@@ -828,7 +828,7 @@ def main():
     # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
     # 0.6: F-35C and EA-18G Growler, with option edits, an ECM ability swap and extra pylon rows (navy-air-contract.json).
     def slots(o):return {o[k] for k in o if k.startswith('Turret') and k.endswith('Id') and o[k]}
-    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json','navy-air-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
+    for rh,c in [(rh,c) for f in ('recon-heli-contract.json','recon-heli-us-contract.json','f16-asf-contract.json','navy-air-contract.json','mig31bsm-contract.json') for rh in [json.loads((R/f).read_text())] for c in rh['cards']]:
         why=('Recon helicopter ' if rh.get('type',8)==8 else 'Card copy ')+c['fields']['HUDName'];par,new=c['parent'],c['unit']
         country=rh.get('country',1)
         assert new not in effective['Units'] and effective['Units'][par]['Type']==rh.get('type',8) and effective['Units'][par]['CountryId']==country
@@ -992,6 +992,16 @@ def main():
     assert [o['Id'] for o in effective['OptionsJson'].values() if o['ArmorId']==bk['armor']]==[bk['armor_option']]
     assert {r['UnitId'] for r in effective['UnitArmorsJson'].values() if r['ArmorId']==bk['armor']}=={bk['unit']}
     put('ArmorsJson',bk['armor'],{'HeatArmorFront':bk['heat'],'HeatArmorSides':bk['heat']},why)
+    # 0.6 dev.64: MiG-31BM air-to-air only (ground-strike options go to the MiG-31BSM card); wheeled cargo trucks availability 4 (mig31bsm-contract.json).
+    mb=json.loads((R/'mig31bsm-contract.json').read_text());par=mb['cards'][0]['parent']
+    for oid in mb['retire_parent_options']:
+        o=effective['OptionsJson'][oid];assert effective['ModificationsJson'][o['ModificationId']]['UnitId']==par and not o['IsDefault'],oid
+        assert any(x['Name'].split()[-1]==o['Name'].split()[-1] for x in options(mb['cards'][0]['unit'])),oid
+        drop('OptionsJson',oid)
+    for uid,spec in mb['truck_pools_unit_spec']:
+        (r,)=[r for r in effective['SpecializationAvailabilitiesJson'].values() if (r['UnitId'],r['SpecializationId'])==(uid,spec)];u=effective['Units'][uid]
+        assert r['MaxAvailabilityXp0']==mb['truck_was'] and u['Role']==14 and u['Type']==4,(uid,u['HUDName'])
+        put('SpecializationAvailabilitiesJson',r['Id'],{'MaxAvailabilityXp0':mb['truck_availability']},'Cargo truck availability 4')
     left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover']) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK',a['Name'])}
     assert not left,('bomb or MLRS row not in contract',sorted(left))
     # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
