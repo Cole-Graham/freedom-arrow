@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.17 — development candidate
+# Freedom Arrow 0.6.0-dev.18 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -17,6 +17,7 @@ New in 0.6 dev.13: new map [FA] Airport 0.1 (and [FA] Airport Skirmish 0.1 for F
 New in 0.6 dev.14: new map [FA] Baltiisk 0.1 (and Skirmish), the vanilla Baltiisk on its Skirmish layout: D E are worth 4, F G 3, A B C 2. The network map's extra Hotel zone is removed. Vanilla maps use the Skirmish map's zones.
 New in 0.6 dev.16: same build code whatever music pack you have; Create a lobby lists only the [FA] maps.
 New in 0.6 dev.15: Spetsnaz Alpha stand-off 3 AEK-999 and 9 AK-107, 90 points.
+New in 0.6 dev.18: new map [FA] Dam 0.1 (and Skirmish), the vanilla Skirmish Dam for both: C D H I J are worth 4, A F G L 3, B E K 2. The vanilla online Dam has 10 different zones, so the online map is built from the Skirmish map.
 
 ## Earlier notes
 

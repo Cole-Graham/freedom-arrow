@@ -262,18 +262,36 @@ def patch_vanilla(head,nodes,objects,meta,flavor,scene,values):
         next(p for p in byid[source[0]]['props_v2'] if p['k']=='Value')['v']=str(START_POINTS)
     slider_defaults(objects,meta,2 if kind==2 else 0)
     print(f"{flavor['name']}: {len(zones)} zones valued, {shown} hidden-zone nodes now show the zone")
-def vanilla_spec(scene,network,skirmish,name,guid,values):
-    """One vanilla map: network flavor from `network`, Skirmish flavor from `skirmish`. guid gets 'a' (network) and 'b' (Skirmish)."""
+# Lobby option objects (sliders 101, dropdowns 102) of a native Skirmish mission; graft_conquest adds its own.
+LOBBY_TYPES={101,102}
+def skirmish_template(game,skirmish,scene,values):
+    """Online flavor from the native Skirmish mission, for maps whose network zones differ (Osama 2026-11-07: use the Skirmish map).
+    The Skirmish AI script and lobby options go; graft_conquest then adds the FA script. Zones, spawns, cameras and play area stay."""
+    head,nodes,objects,meta=read_native(game,skirmish)
+    assert head['map']==scene and len([o for o in objects if o.get('_type')==7])==1,'one play area expected'
+    objects[:]=[o for o in objects if o.get('_type') not in LOBBY_TYPES]
+    meta['pblOpt']=[];nodes.update(b=[],c=[])
+    for o in objects:
+        if o.get('_type')==13:o['isBot']=False
+        if o.get('_type')==15:o['hudText']=o['_dname']
+    for t in meta['teams']:
+        for sl in t['slots']:sl['bot']=False
+    assert {o.get('teamSide') for o in objects if o.get('_type')==3}=={0,1}
+    return head,nodes,objects,meta
+def vanilla_spec(scene,network,skirmish,name,guid,values,online_from_skirmish=False):
+    """One vanilla map: network flavor from `network` (or from the Skirmish mission), Skirmish flavor from `skirmish`.
+    guid gets 'a' (network) and 'b' (Skirmish)."""
     def patch(head,nodes,objects,meta,flavor):patch_vanilla(head,nodes,objects,meta,flavor,scene,values)
     def prepare(game,spec):
         sk=sorted(o['_dname'] for o in read_native(game,skirmish)[2] if o.get('_type')==15)
         assert sk==sorted(values),('values must name exactly the Skirmish zones',sk)
-        return None,None
+        return None,(skirmish_template(game,skirmish,scene,values) if online_from_skirmish else None)
     def deploy_target(game):
         nodes=read_native(game,network)[1];byid={b['id']:b for b in nodes['b']}
         start=[b['id'] for b in nodes['b'] if b.get('nnKey')=='start'];assert len(start)==1,start
         nxt=[c['a'] for c in nodes['c'] if c['b']==start[0] and byid[c['a']]['nnKey']=='testCond2'];assert len(nxt)==1,nxt
         return start[0],nxt[0]
     return dict(author='Freedom Arrow',desc=describe(values),prepare=prepare,assets=False,patch_host=patch,deploy_target=deploy_target,
-                flavors=[dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,host=network),
+                flavors=[dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,deploy_target=136,deploy_pin='in2') if online_from_skirmish else
+                         dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,host=network),
                          dict(name=f'[FA] {name} Skirmish 0.1',guid=guid+'b',kind=3,public=False,host=skirmish)])
