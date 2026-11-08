@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.37 — development candidate
+# Freedom Arrow 0.6.0-dev.38 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -37,6 +37,7 @@ New in 0.6 dev.34: the US Airborne specialization is named Air Naval; the TOW-2A
 New in 0.6 dev.35: artillery shells and rockets penetrate 50% more (never more than vanilla).
 New in 0.6 dev.36: Patriot PAC-2/PAC-3/PAC-3 MSE, S-350 and S-300PM/V4 availability 3 (S-400 stays 2).
 New in 0.6 dev.37: the B-52H can carry 2 AGM-183A ARRW hypersonic missiles on its wing pylons (+300).
+New in 0.6 dev.38: the B-52H ARRW choice carries 4 missiles, two per wing pylon on the ALCM mount (+400).
 
 ## Earlier notes
 
