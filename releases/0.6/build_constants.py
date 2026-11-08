@@ -4,7 +4,7 @@ Includes reviewed dev.1/dev.2 and the US/Baltic data batch.
 Card splits, squad resizing and option retirement are listed in structural-contract.json.
 """
 from pathlib import Path
-import argparse, copy, hashlib, json, re, sys
+import argparse, copy, hashlib, json, math, re, sys
 R=Path(__file__).resolve().parent
 # Saved decks hold this option ID. A failure here means a clone moved above it.
 XM913_APS_OPTION=2000379
@@ -962,6 +962,24 @@ def main():
     sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
     assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
     put('AmmunitionsJson',sl['ammo'],sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8')
+    # 0.6: infantry in buildings at Wargame level; unguided bombs lose overpressure; penetration cap (cover-wargame-contract.json).
+    cw=json.loads((R/'cover-wargame-contract.json').read_text());cap=lambda d,a:math.floor(a*math.sqrt(cw['max_hit']/(d-cw['max_hit']))) if d>cw['max_hit'] else math.inf
+    for aid in cw['mlrs']:
+        row=effective['AmmunitionsJson'][aid];assert row['Name'].startswith('MLRS') and row['Damage']>=10 and not row['GenerateSmoke'],aid
+        f={'IgnoreCover':cw['mlrs_ignore_cover']}
+        if not row['TopArmorAttack'] and row['PenetrationAtMinRange']>cap(row['Damage'],cw['mlrs_armor']):f.update(PenetrationAtMinRange=float(cap(row['Damage'],cw['mlrs_armor'])),PenetrationAtGroundRange=float(cap(row['Damage'],cw['mlrs_armor'])))
+        put('AmmunitionsJson',aid,f,'MLRS ignore cover 1.0, penetration under one MBT kill')
+    for aid in cw['bombs']:
+        row=effective['AmmunitionsJson'][aid];assert row['Name'].startswith('Bomb') and row['Damage']>=15 and row['IgnoreCover']==0,aid
+        assert not re.search('Cluster|Napalm|Nuke',row['Name']),aid
+        f={'IgnoreCover':cw['bomb_ignore_cover']}
+        if aid in cw['no_overpressure']:
+            assert not re.search('GBU|KAB',row['Name']) and row['OverpressureRadius']>0,aid
+            f['OverpressureRadius']=0.0
+            if row['PenetrationAtMinRange']>cap(row['Damage'],cw['bomb_armor']):f.update(PenetrationAtMinRange=float(cap(row['Damage'],cw['bomb_armor'])),PenetrationAtGroundRange=float(cap(row['Damage'],cw['bomb_armor'])))
+        put('AmmunitionsJson',aid,f,'Bomb ignore cover 0.5; unguided: no overpressure, penetration under one MBT kill')
+    left={a['Id'] for a in effective['AmmunitionsJson'].values() if a['Name'].startswith(('Bomb','MLRS')) and a['Damage']>=10 and a['IgnoreCover'] not in (cw['bomb_ignore_cover'],cw['mlrs_ignore_cover']) and not re.search('Cluster|Napalm|Nuke|Incendiary|SMK',a['Name'])}
+    assert not left,('bomb or MLRS row not in contract',sorted(left))
     # 0.6: 15 smoke rounds on Nona-S, Nona-SVK, Magnolia and LAV-M loadouts; Hawkeye MWS in Special Operations (smoke15-contract.json).
     sm=json.loads((R/'smoke15-contract.json').read_text());why='Mortar loadout 15 smoke rounds'
     for r in sm['smoke']:

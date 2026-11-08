@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.48 — development candidate
+# Freedom Arrow 0.6.0-dev.49 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -48,6 +48,7 @@ New in 0.6 dev.45: a HARM hits where the radar was when it switched off; a radar
 New in 0.6 dev.46: Apache Hellfire pylons show two racks with no stray Hydra pod and carry their full 8 missiles, fired one at a time; Comanche Recon availability 2.
 New in 0.6 dev.47: the plane-spotted alert and the FlatIncomeMod missile alarm play at half volume.
 New in 0.6 dev.48: test for the B-52H ARRW fire order — the bomb-bay ARRW uses the B-52 bay model; the wing ARRW keeps the Kinzhal model.
+New in 0.6 dev.49: MLRS rockets ignore building cover; bombs ignore half of it; unguided bombs no longer force roof hits, and bomb/MLRS penetration is capped so one hit cannot kill a main battle tank.
 
 ## Earlier notes
 
