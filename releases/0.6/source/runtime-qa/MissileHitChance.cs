@@ -14,10 +14,10 @@ namespace FreedomArrow;
 // seekers never reach the roll (vanilla). Calls from outside CalculateMissileDivertion (the AI overkill score) get the flat chance.
 static class MissileHitChance
 {
-    const int MaxLog=60,Prune=4096;
+    const int MaxLog=300,Prune=4096;
     [ThreadStatic] static bool inDivertion;
     [ThreadStatic] static ulong current;
-    static readonly Dictionary<ulong,(float lowest,float time)> missiles=new();
+    static readonly Dictionary<ulong,(float lowest,float time,float launch)> missiles=new();
     static bool broken;
     static int logged;
     public static void Install(HarmonyLib.Harmony harmony)
@@ -43,24 +43,24 @@ static class MissileHitChance
             float accuracy=ammoInfo.DispersionHorizontalRadius,resist=ammoInfo.DispersionVerticalRadius;
             float perFlare=1-(1-resist)*targetDecoyEffect;
             float flat=accuracy*Math.Clamp(1-(1-targetECM)-targetActiveDecoys*perFlare,0f,1f)*stressMultiplier;
-            float result=flat;string kind="ai";
+            float result=flat,flight=0;string kind="ai";
             if(inDivertion)
             {
                 float now=UnityEngine.Time.time;
                 if(missiles.TryGetValue(current,out var seen))
                 {
                     result=seen.lowest<=0?0:Math.Min(1f,flat/seen.lowest);
-                    missiles[current]=(Math.Min(seen.lowest,flat),now);kind="reroll";
+                    missiles[current]=(Math.Min(seen.lowest,flat),now,seen.launch);kind="reroll";flight=now-seen.launch;
                 }
                 else
                 {
                     if(missiles.Count>=Prune)foreach(var k in missiles.Where(p=>now-p.Value.time>30).Select(p=>p.Key).ToList())missiles.Remove(k);
-                    missiles[current]=(flat,now);kind="first";
+                    missiles[current]=(flat,now,now);kind="first";
                 }
             }
             __result=result;
             if(kind!="ai"&&++logged<=MaxLog)
-                MelonLogger.Msg($"FREEDOM_ARROW_MISSILE_CHANCE {kind} ammo {ammoInfo.Id} ecm {targetECM:0.###} flares {targetActiveDecoys} x {targetDecoyEffect:0.###} stress {stressMultiplier:0.###} flat {flat:0.###} roll {result:0.###}");
+                MelonLogger.Msg($"FREEDOM_ARROW_MISSILE_CHANCE {kind} t+{flight:0.00}s ammo {ammoInfo.Id} ecm {targetECM:0.###} flares {targetActiveDecoys} x {targetDecoyEffect:0.###} stress {stressMultiplier:0.###} flat {flat:0.###} roll {result:0.###}");
             return false;
         }
         catch(Exception x)
