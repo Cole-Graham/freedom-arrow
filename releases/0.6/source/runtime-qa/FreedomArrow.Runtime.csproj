@@ -12,6 +12,8 @@
   <ItemGroup>
     <!-- Batch (Lateralus, 8 November 2026): the conquest mode is built into this DLL. -->
     <Compile Include="../conquest/*.cs" Link="conquest/%(Filename)%(Extension)" />
+    <!-- Batch (Lateralus, 8 November 2026): card icons FA puts in the game's icon cache (CardIcons.cs). -->
+    <EmbeddedResource Include="icons/*.png" LogicalName="FreedomArrow.icons.%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MelonLoader"><HintPath>$(ML)/MelonLoader.dll</HintPath><Private>false</Private></Reference>
@@ -33,6 +35,7 @@
     <Reference Include="Il2CppSystem.Core"><HintPath>$(IL2)/Il2CppSystem.Core.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Il2CppFMODUnity"><HintPath>$(IL2)/Il2CppFMODUnity.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(IL2)/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(IL2)/UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(IL2)/UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>
