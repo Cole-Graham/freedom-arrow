@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.108 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.109 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.108.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.109.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -341,6 +341,9 @@ XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,
 
 
 XM30 unit card now uses the M2A3 Bradley portrait and thumbnail. Unit statistics unchanged.
+
+
+XM30 PKT weapon and ammunition links removed from both missile packages. Existing package IDs retained.
 
 ## Document change log
 
@@ -564,3 +567,5 @@ XM30 unit card now uses the M2A3 Bradley portrait and thumbnail. Unit statistics
 - 2026-11-09 15:00:55 PST (America/Los_Angeles) — Final XM30 specification: Booker armor,700 front/side HEAT,220 points,eight seats.
 
 - 2026-11-09 15:24:22 PST (America/Los_Angeles) — Use M2A3 Bradley artwork for the XM30 card.
+
+- 2026-11-09 15:39:05 PST (America/Los_Angeles) — Remove XM30 PKT as requested; retain XM913 and missile choices.
