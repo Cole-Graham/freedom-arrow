@@ -826,6 +826,8 @@ def main():
                 clone('TransportAvailabilitiesJson',t['Id'],{'SpecializationAvailabilityId':pool},why)
         men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==new]
         assert len(men)==3 and all((m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['rifle'],c['launcher']) for m in men)
+    # Batch (Lateralus): after the copies, so only the old cards change icon. FA draws these at runtime (CardIcons.cs).
+    for key,t in sc['thumbnails'].items():put('Units',int(key),{'ThumbnailFileName':t},'Own card icon, apart from the 3-man card')
     # 0.6: recon helicopters, own cards in the recon tab, availability 4 (recon-heli-contract.json).
     # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
     # 0.6: F-35C and EA-18G Growler, with option edits, an ECM ability swap and extra pylon rows (navy-air-contract.json).
