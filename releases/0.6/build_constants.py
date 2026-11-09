@@ -1310,7 +1310,11 @@ def main():
         if c.get('transport_only'):continue
         if c.get('russia') or c.get('us'):
             # A new Russian card (Osama): same specializations and slots as its parent, not the PLA test spec.
-            for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+            mine=[r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]
+            if c.get('specs'):  # a named spec list (Osama: B-21 in Airborne) replaces the parent's specs; slots copy the parent's first row
+                for s in c['specs']:clone('SpecializationAvailabilitiesJson',mine[0]['Id'],{'UnitId':new,'SpecializationId':s},why)
+            else:
+                for r in mine:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
             continue
         like=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par)
         pool=clone('SpecializationAvailabilitiesJson',like['Id'],{'UnitId':new,'SpecializationId':sp['id']},why)

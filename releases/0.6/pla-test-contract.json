@@ -363,6 +363,15 @@
       "parent": 191,
       "name": "Abrams X",
       "us": true
+    },
+    {
+      "unit": 965,
+      "parent": 299,
+      "name": "B-21 Raider",
+      "us": true,
+      "specs": [
+        5
+      ]
     }
   ]
 }
