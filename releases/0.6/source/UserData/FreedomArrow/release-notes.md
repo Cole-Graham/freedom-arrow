@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.36 — development candidate
+# Freedom Arrow 0.6.0-pla.37 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -218,6 +218,10 @@ The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats
 
 Adds a separate PLA J-16D card (977), temporarily using the same Su-27SM-derived stats and loadouts as the existing J-15D card. Its private CGTrader model has landing gear down in the armory, EW pods retained, source missiles removed, and a lighter battle copy with gear removed. Stats are a placeholder, not a measured representation of the real aircraft. No in-game check yet.
 
+## TOS impact correction — pla.37
+
+Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDuration back to 0. The dev.91 claim that 3 seconds of damage over time adds fire while leaving the impact unchanged was incorrect: native code branches into the damage-over-time path and skips normal impact handling. Damage stays 9.1, ignore cover stays 100%, and dispersion stays unchanged. Separate visible ground fire is not implemented. This correction follows static native code, not a verified game run.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -395,3 +399,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 04:22:18 PST (America/Los_Angeles) — pla.35: copied the RQ-170 icon and portrait to the X-47B; no live display verification.
 
 - 2026-11-09 04:29:08 PST (America/Los_Angeles) — pla.36: added J-16D card and documented temporary donor stats and private model conversion.
+
+- 2026-11-09 04:37:27 PST (America/Los_Angeles) — pla.37: corrected dev.91 fire claim and restored TOS normal impact path; separate visible fire remains pending.
