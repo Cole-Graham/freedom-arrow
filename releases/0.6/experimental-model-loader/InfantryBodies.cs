@@ -6,7 +6,9 @@ using Il2CppBrokenArrow.Client.Ecs.Spawn;
 namespace FAModels;
 public partial class Mod
 {
-    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); }
+    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; }
+    class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
+    static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
     class BodyView { public UnitModelInfo model; public int unitId; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; }
     class BodyMesh { public Mesh mesh; public Material[] materials; public BodyMesh(Mesh m,Material[] a){mesh=m;materials=a;} }
     static List<BodyRule> bodyRules=new();
@@ -20,6 +22,7 @@ public partial class Mod
             var rules=JsonSerializer.Deserialize<List<BodyRule>>(File.ReadAllText(file))??new();
             foreach(var r in rules) {
                 if(r.unitId!=901 || r.lods.Length!=3)throw new InvalidDataException("Body prototype is restricted to unit 901 and three LODs");
+                if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
                 foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
             }
             bodyRules=rules;MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
@@ -29,6 +32,35 @@ public partial class Mod
     {
         if(model==null || !bodyRules.Any(r=>r.unitId==unitId) || bodyViews.Any(v=>v.model==model))return;
         bodyViews.Add(new BodyView{model=model,unitId=unitId});
+    }
+    static Il2CppReferenceArray<Transform> OffsetBodyBones(SkinnedMeshRenderer renderer,BodyRule rule)
+    {
+        var offset=new Vector3(rule.offset[0],rule.offset[1],rule.offset[2]);
+        var bones=renderer.bones;if(offset.sqrMagnitude==0)return bones;
+        var result=new Transform[bones.Length];
+        for(int i=0;i<bones.Length;i++) {
+            var bone=bones[i];if(bone==null)continue;
+            int key=bone.GetInstanceID();
+            if(!bodyOffsets.TryGetValue(key,out var item)) {
+                // A child used only by the body renderer follows the native bone exactly.
+                // Weapons retain the original bone and all original transforms.
+                var child=new GameObject("FAM_BODY_OFFSET_"+bone.name).transform;child.SetParent(bone,false);
+                item=new BodyOffset{source=bone,visual=child,offset=offset};bodyOffsets.Add(key,item);
+            }
+            if((item.offset-offset).sqrMagnitude>.000001f)throw new InvalidDataException("Conflicting body-only offsets");
+            item.visual.localPosition=bone.InverseTransformVector(offset);result[i]=item.visual;
+        }
+        return new Il2CppReferenceArray<Transform>(result);
+    }
+    public override void OnLateUpdate()
+    {
+        foreach(var key in bodyOffsets.Keys.ToArray()) {
+            var item=bodyOffsets[key];
+            if(item.source==null || item.visual==null){bodyOffsets.Remove(key);continue;}
+            // Convert a fixed world displacement each frame. Translating bind vertices
+            // would rotate offsets independently at finger joints and distort the glove.
+            item.visual.localPosition=item.source.InverseTransformVector(item.offset);
+        }
     }
     static BodyMesh ReadBody(string file,SkinnedMeshRenderer native)
     {
@@ -103,15 +135,16 @@ public partial class Mod
                 }
                 if(level<0) {string n=renderer.name.ToLowerInvariant();if(n.Contains("lod_0")||n.Contains("lod0"))level=0;else if(n.Contains("lod_1")||n.Contains("lod1"))level=1;else if(n.Contains("lod_2")||n.Contains("lod2"))level=2;}
                 if(level<0){view.failed.Add(id);MelonLogger.Warning($"FAMODELS body skipped unknown LOD {renderer.name}; native mesh retained");continue;}
-                var oldMesh=renderer.sharedMesh;var oldMats=renderer.sharedMaterials;var oldBounds=renderer.localBounds;
+                var oldMesh=renderer.sharedMesh;var oldMats=renderer.sharedMaterials;var oldBounds=renderer.localBounds;var oldBones=renderer.bones;
                 try {
                     var body=ReadBody(rule.lods[level],renderer);
                     renderer.sharedMaterials=new Il2CppReferenceArray<Material>(body.materials);renderer.sharedMesh=body.mesh;
+                    renderer.bones=OffsetBodyBones(renderer,rule);
                     // Conservative local bounds for first deformation test; native LOD and visibility logic stays in place.
                     renderer.localBounds=new Bounds(new Vector3(0,.95f,0),new Vector3(3f,3f,3f));
-                    view.applied.Add(id);MelonLogger.Msg($"FAMODELS body applied unit={view.unitId} soldier={candidate.soldier} renderer={renderer.name} lod={level} bones={renderer.bones.Length} vertices={body.mesh.vertexCount} file={rule.lods[level]}");
+                    view.applied.Add(id);MelonLogger.Msg($"FAMODELS body applied unit={view.unitId} soldier={candidate.soldier} renderer={renderer.name} lod={level} bones={renderer.bones.Length} vertices={body.mesh.vertexCount} file={rule.lods[level]} bodyOffset={string.Join(",",rule.offset)}");
                 } catch(Exception e) {
-                    renderer.sharedMesh=oldMesh;renderer.sharedMaterials=oldMats;renderer.localBounds=oldBounds;view.failed.Add(id);MelonLogger.Error($"FAMODELS body failed {renderer.name}: {e.Message}; native mesh retained");
+                    renderer.sharedMesh=oldMesh;renderer.sharedMaterials=oldMats;renderer.localBounds=oldBounds;renderer.bones=oldBones;view.failed.Add(id);MelonLogger.Error($"FAMODELS body failed {renderer.name}: {e.Message}; native mesh retained");
                 }
             }
         }

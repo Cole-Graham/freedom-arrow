@@ -1,6 +1,6 @@
 # Optional PLA infantry visual prototype
 
-**FAModels 0.3.1 replaces body and weapon visuals for unit 901. It is installed separately; the core package does not include this optional DLL or source model files.**
+**FAModels 0.3.2 replaces body and weapon visuals for unit 901. It is installed separately; the core package does not include this optional DLL or source model files.**
 
 ## Details and evidence
 
@@ -12,6 +12,15 @@ Runtime logs confirmed seven body replacements across all three LODs in the init
 
 Build with the .NET SDK and -p:GameDir pointing to the existing generated MelonLoader assemblies. Keep paid/user-supplied models outside Git.
 
+## Body placement correction — 9 November
+
+**Version 0.3.2 adds a body-only world offset for the PLA test. Native weapon transforms remain fixed. The hand-centroid mesh pass was rejected after Sam showed distorted fingers and continued low rifle alignment. Restore the earlier body meshes, then test offset [0, -0.05, 0] metres. This new runtime path is compiled, not yet verified in game.**
+
+Body rules accept a three-component finite offset, capped at 0.15 metres per axis and restricted to unit 901. Each body renderer uses visual-only child transforms of the original bones. LateUpdate converts the world offset into each native bone's local coordinates. All child rotations/scales remain identity. The native animation bones and weapon attachments remain in place; translating every visual bone equally translates the skinned body without separating palms and finger joints. Visual children are shared across LODs using the same native bone and are destroyed with their parent. No per-frame mesh copying is required.
+
+Zero-offset rules retain the original bones. Old configurations without offset default to zero. This is an experimental fit control; root motion, animation timing, clipping, foot placement, scene cleanup and battle performance still need runtime checks. Lowering the whole body 5 cm also lowers boot soles by 5 cm, so slight ground clipping is an explicit test tradeoff. Do not call the posture or grip fixed based on compilation or matrix calculations.
+
 ## Document change log
 
 - 2026-11-09 14:23:06 PST (America/Los_Angeles) — Added optional skinned-body/weapon loader source, actual hook evidence and revised-fit limits.
+- 2026-11-09 15:32:11 PST (America/Los_Angeles) — Added body-only visual-bone translation, finger regression rollback and explicit runtime limits.
