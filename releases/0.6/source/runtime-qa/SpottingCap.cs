@@ -15,10 +15,9 @@ using MelonLoader;
 namespace FreedomArrow;
 // Spotting cap: an observer never sees a ground target beyond the vanilla ground optics of its sensor tier.
 // Both native vision paths pass their range result to CreateFilterTaskForTarget as maxDistance, so the cap is set there.
-// The native air path (planes and missiles: aircraft or fuse, not helicopter) also ends there; Lateralus, 8 November 2026:
-// those targets are not capped, so planes are seen at native low/high-altitude optics. Helicopters keep the cap.
-// Unit cards show optics in metres (Lateralus, 8 November 2026), with the cap applied where it applies: ground always,
-// low altitude against helicopters (low-flying planes are not capped), high altitude never.
+// The native air path (planes, helicopters and missiles) also ends there; Lateralus, 8 November 2026: planes and missiles
+// are not capped; 9 November 2026: helicopters are not capped either, so every air target is seen at native
+// low/high-altitude optics. Unit cards show optics in metres, capped only on the ground value; low and high never.
 static class SpottingCap
 {
     const int MaxLog=15;
@@ -59,8 +58,8 @@ static class SpottingCap
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(error);
         return has!=IntPtr.Zero&&*(bool*)Il2CppInterop.Runtime.IL2CPP.il2cpp_object_unbox(has);
     }
-    // Same test as the native air branch (FogOfWarUnit.CalculateVisionRangeForTarget): a helicopter is checked first.
-    static bool IsPlaneOrMissile(Entity target)=>!Has(hasHeli,target)&&(Has(hasAircraft,target)||Has(hasFuse,target));
+    // Air targets as the native air branch sees them (FogOfWarUnit.CalculateVisionRangeForTarget): helicopter, aircraft or fuse.
+    static bool IsAir(Entity target)=>Has(hasHeli,target)||Has(hasAircraft,target)||Has(hasFuse,target);
     static unsafe float ObserverCap(Entity observer)
     {
         if(!Has(hasFog,observer))return 0;
@@ -79,7 +78,7 @@ static class SpottingCap
             var observer=__instance.UnitEntity;
             float cap=observerCaps.GetOrAdd((__instance.Pointer,observer.GetHashCode()),_=>ObserverCap(observer));
             if(cap<=0||__3<=cap)return;
-            if(IsPlaneOrMissile(__0))
+            if(IsAir(__0))
             {
                 long a=Interlocked.Increment(ref airSkipped);
                 if(a<=MaxLog||IsPowerOfTen(a))MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP air target not capped: {__3:0.#} raw kept (cap {cap:0.#}); {a} air skips");
@@ -124,7 +123,7 @@ static class SpottingCap
             if(sprite==null)return;
             // Same cap the hook uses: the vanilla ground optics of this unit's tier; unknown or zero tiers are not capped.
             float cap=capTable.TryGetValue(ground,out float c)&&c>0?c:float.MaxValue;
-            float groundShown=Math.Min(ground,cap),heliShown=Math.Min(low,cap);
+            float groundShown=Math.Min(ground,cap);
             // The native card shows low-altitude optics for helicopters and ground optics for every other unit.
             bool heli=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Helicopters;
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))
@@ -132,9 +131,8 @@ static class SpottingCap
                 var icon=item.Icon;
                 if(icon==null||icon.sprite==null||icon.sprite.Pointer!=sprite.Pointer)continue;
                 float scale=CardScale(item.Text.text,heli?low:ground);
-                string lowText=heliShown<low?$"{M(heliShown,scale)} vs helicopters, {M(low,scale)} vs planes":M(low,scale);
-                string main=heli?M(heliShown,scale):M(groundShown,scale);
-                string[] lines={M(groundShown,scale),lowText,M(high,scale)};
+                string main=heli?M(low,scale):M(groundShown,scale);
+                string[] lines={M(groundShown,scale),M(low,scale),M(high,scale)};
                 item.Text.text=main;
                 var tooltip=item.Tooltip;
                 if(tooltip!=null)
@@ -154,7 +152,7 @@ static class SpottingCap
                         tooltip.Data=data;
                     }
                 }
-                if(++cardLogged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_OPTICS_CARD {__0.Name}: ground {ground:g} (shown {groundShown:g}) low {low:g} (helicopters {heliShown:g}) high {high:g} raw; x{scale:0.##} -> {main}");
+                if(++cardLogged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_OPTICS_CARD {__0.Name}: ground {ground:g} (shown {groundShown:g}) low {low:g} high {high:g} raw; x{scale:0.##} -> {main}");
             }
         }
         catch(Exception e)
