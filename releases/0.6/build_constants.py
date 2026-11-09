@@ -989,7 +989,7 @@ def main():
     for aid in bl['ammo']:put('AmmunitionsJson',aid,{'IgnoreCover':bl['ignore_cover']},'Ballistic missiles ignore cover 1.0')
     for aid,(h,v) in cw['tos']['ammo'].items():
         row=effective['AmmunitionsJson'][int(aid)];assert [row['DispersionHorizontalRadius'],row['DispersionVerticalRadius']]==cw['tos']['was'][aid] and row['Damage']==30 and row['IgnoreCover']==0,aid
-        put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v,'IgnoreCover':cw['tos']['ignore_cover'],**({'Damage':cw['tos']['damage']} if 'damage' in cw['tos'] else {})},'TOS damage and cover, scatter 50 m wider and longer, 60% of vanilla in buildings')
+        put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v,'IgnoreCover':cw['tos']['ignore_cover'],**({'Damage':cw['tos']['damage']} if 'damage' in cw['tos'] else {}),**({'DamageOverTimeDuration':cw['tos']['fire_seconds']} if 'fire_seconds' in cw['tos'] else {})},'TOS damage, cover and short fire, scatter 50 m wider and longer, 60% of vanilla in buildings')
     # 0.6 dev.85 (Osama): tube artillery and mortar HE back to vanilla infantry damage in buildings, ignore cover only (arty-cover-contract.json).
     ac=json.loads((R/'arty-cover-contract.json').read_text())
     for key,v in ac['ammo'].items():
