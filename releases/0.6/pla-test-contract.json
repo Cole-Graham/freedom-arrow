@@ -265,6 +265,11 @@
    "unit": 946,
    "parent": 170,
    "name": "Wing Loong"
+  },
+  {
+   "unit": 947,
+   "parent": 144,
+   "name": "PTZ-89"
   }
  ]
 }
