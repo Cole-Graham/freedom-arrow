@@ -1290,6 +1290,87 @@ def main():
         mod,van=row['OpticsGround'],original['SensorsJson'][sid]['OpticsGround']
         assert caps.setdefault(mod,van)==van,('one modded optics value maps to two vanilla values',sid,mod)
     (R/'source/UserData/FreedomArrow/spotting-caps.json').write_text(json.dumps({'OpticsGroundCaps':{f'{k:g}':v for k,v in sorted(caps.items())}},indent=2)+'\n')
+    # 0.6 new US cards (Osama, 9 Nov 2026: "push the Abrams X and B-21 to live"): full copies of an existing unit, same country,
+    # in the parent's specializations or the listed ones (new-cards-contract.json). First made on the PLA test branch (pla.20-26).
+    nc=json.loads((R/'new-cards-contract.json').read_text())
+    unit_tables=['UnitAbilitiesJson','UnitPropulsionsJson','TurretUnitsJson','WeaponAmmunitionsJson','SensorUnitsJson','SquadMembersJson','SquadWeaponsJson','UnitArmorsJson']
+    for c in nc['cards']:
+        why='New card '+c['name'];par,new=c['parent'],c['unit'];p=effective['Units'][par]
+        assert new not in effective['Units'],(new,par)
+        add_unit(new,par,{'Name':c['name'],'HUDName':c['name'],'DisplayInArmory':True},why)
+        for table in unit_tables:
+            for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
+        for mod in [m for m in list(effective['ModificationsJson'].values()) if m['UnitId']==par]:
+            mine=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod['Id'] and not o.get('ReplaceUnitId')),key=lambda o:(o['Order'],o['Id']))
+            if not mine:continue
+            m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why);default=any(o['IsDefault'] for o in mine)
+            for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':o['IsDefault'] or (not default and order==0),**({'ReplaceUnitName':c['name']} if o.get('ReplaceUnitName') else {})},why)
+        avail=[r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par];assert avail,par
+        if c.get('specs'):
+            for s in c['specs']:clone('SpecializationAvailabilitiesJson',avail[0]['Id'],{'UnitId':new,'SpecializationId':s},why)
+        else:
+            for r in avail:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+    # Abrams X (abramsx-contract.json): one configuration on the SEP v3 copy; 30 mm Bushmaster in place of the commander's M2.
+    ax=json.loads((R/'abramsx-contract.json').read_text());why='Abrams X';u=ax['unit']
+    put('Units',u,{'Cost':ax['cost']},why)
+    mob=clone('MobilityJson',ax['mobility_like'],ax['mobility_fields'],why)
+    clone('UnitPropulsionsJson',next(r['Id'] for r in effective['UnitPropulsionsJson'].values() if r['UnitId']==u),{'MobilityId':mob},why)
+    (su,)=[r['Id'] for r in effective['SensorUnitsJson'].values() if r['UnitId']==u];put('SensorUnitsJson',su,{'SensorId':ax['sensor']},why)
+    # Turret copies keep their source's Name and link Order: in battle the game finds a child turret in the tank's prefab
+    # from them (pla.24 renamed them and battle loading failed in UnitBuilder.AddChildTurrets, Osama 9 Nov).
+    main=clone('TurretsJson',ax['turret_like'],{},why)
+    def link(src):return next(r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u and r['TurretId']==src)
+    def copy_weapons(src,dst,weapon=None):
+        for r in [r for r in list(effective['TurretWeaponsJson'].values()) if r['TurretId']==src]:clone('TurretWeaponsJson',r['Id'],{'TurretId':dst,**({'WeaponId':weapon} if weapon else {})},why)
+    copy_weapons(ax['turret_like'],main);clone('TurretUnitsJson',link(ax['turret_like']),{'TurretId':main},why)
+    for cu in ax['cupolas']:
+        assert effective['TurretsJson'][cu['like']]['ParentTurretId']==ax['turret_like']
+        t=clone('TurretsJson',cu['like'],{'ParentTurretId':main},why);copy_weapons(cu['like'],t,cu.get('weapon'));clone('TurretUnitsJson',link(cu['like']),{'TurretId':t},why)
+        if cu.get('weapon'):
+            src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==cu['ammo_from_unit'] and r['WeaponId']==cu['weapon']];assert src
+            for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':u},why)
+    # The SEP v3 turret links copied with the card would add a second default main turret (Osama's dev card showed M256 x2, M240 x4):
+    # take every turret link that is not one of the Abrams X turrets out of the patch (they are this build's own copies).
+    ours={main}|{r['Id'] for r in effective['TurretsJson'].values() if r.get('ParentTurretId')==main}
+    for r in [r for r in list(effective['TurretUnitsJson'].values()) if r['UnitId']==u and r['TurretId'] not in ours]:
+        assert r['Id'] not in original['TurretUnitsJson'];del effective['TurretUnitsJson'][r['Id']];patches['TurretUnitsJson'].pop(str(r['Id']))
+    mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==u}
+    mine=[o for o in list(effective['OptionsJson'].values()) if o['ModificationId'] in mods];(keep,)=[o for o in mine if o['Name']==ax['keep_option']]
+    put('OptionsJson',keep['Id'],{**ax['option_fields'],'MobilityId':mob,'Turret0Id':main},why)
+    for o in mine:
+        # These options are this build's own copies, so they are taken out of the patch (a delete needs a vanilla row).
+        if o is not keep:assert o['Id'] not in original['OptionsJson'];del effective['OptionsJson'][o['Id']];patches['OptionsJson'].pop(str(o['Id']))
+    # B-21 Raider loadouts (b21-loadout-contract.json): 24x JATM and 2x ARRW in the B-2 bay mount.
+    bl=json.loads((R/'b21-loadout-contract.json').read_text());why='B-21 Raider loadout';u=bl['unit']
+    (like,)=[o for o in effective['OptionsJson'].values() if o['Name']==bl['option_like'] and effective['ModificationsJson'][o['ModificationId']]['UnitId']==u]
+    order=1+max(o['Order'] for o in effective['OptionsJson'].values() if o['ModificationId']==like['ModificationId'])
+    (tlink,)=[r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u and r['TurretId']==bl['turret_like']]
+    alink=next(r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==u)
+    for i,ld in enumerate(bl['loads']):
+        if 'ammo' in ld:
+            am=clone('AmmunitionsJson',ld['ammo'],ld['ammo_fields'],why);wp=clone('WeaponsJson',ld['weapon'],ld['weapon_fields'],why)
+        else:
+            (wp,)=[w['Id'] for w in effective['WeaponsJson'].values() if w['Name']==ld['weapon_name']]
+            (am,)={r['AmmunitionId'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==wp}
+        assert effective['WeaponsJson'][wp]['MagazineSize']==ld['racks'],ld
+        tu=clone('TurretsJson',bl['turret_like'],{},why)  # same Name as the B-2 bay turret (see the Abrams X note)
+        for k in range(ld['launchers']):clone('TurretWeaponsJson',ld['turret_weapon_like'],{'TurretId':tu,'WeaponId':wp,'Order':k},why)
+        clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
+        clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
+        clone('OptionsJson',like['Id'],{'Name':ld['option_name'],'UIName':ld['ui'],'OptionPicture':ld['picture'],'Cost':ld['cost'],'IsDefault':False,'Order':order+i,'Turret0Id':tu},why)
+    # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
+    # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
+    def tree(uid):
+        T=effective['TurretsJson'];out=set();mains=0
+        for r in effective['TurretUnitsJson'].values():
+            if r['UnitId']!=uid:continue
+            t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
+            out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
+        return out,mains
+    for c in nc['cards']:
+        mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
+        assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)
+        assert mine<=theirs,('turret links differ from the parent (Name, Order, parent turret)',c['unit'],sorted(mine-theirs))
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

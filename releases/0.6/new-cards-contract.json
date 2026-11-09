@@ -1,0 +1,7 @@
+{
+  "note": "0.6 dev.96 (Osama, 9 November 2026: 'push the Abrams X and B-21 to live'). Two new US cards, first built on the PLA test branch (pla.20 to pla.26). Abrams X (964): a copy of the M1A2 SEP v3 (191) in its specializations; its stats are in abramsx-contract.json. B-21 Raider (965): a copy of the B-2 Spirit (299) in Airborne (5) only, with the B-2's slots; its extra loadouts are in b21-loadout-contract.json. Without the private FAModels mod they look like the SEP v3 and the B-2. Not yet run in a game.",
+  "cards": [
+    {"unit": 964, "parent": 191, "name": "Abrams X"},
+    {"unit": 965, "parent": 299, "name": "B-21 Raider", "specs": [5]}
+  ]
+}
