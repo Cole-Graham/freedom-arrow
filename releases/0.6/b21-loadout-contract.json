@@ -1,0 +1,14 @@
+{
+  "note": "0.6.0-pla.23 (Osama, 9 November 2026): two more B-21 Raider loadouts. 24x JATM (+400): a renamed copy of the F-15EX's AIM-120 AMRAAM round and twin-rack weapon (same damage, range, speed and fire rate), 12 twin racks in the bomb bay, so it fires like an F-15EX full of AIM-120s (that plane has 14 launchers for 20 missiles). 2x AGM-183A ARRW (+200): the B-52H bay ARRW weapon and round. Both use the B-2 JASSM bay mount (hidden in flight) and the B-2's fire channel. Not yet run in a game.",
+  "unit": 965,
+  "option_like": "Loadout B2 16xJASSM",
+  "turret_like": 587,
+  "loads": [
+    {"key": "jatm", "option_name": "Loadout B21 24xJATM", "ui": "24x AIM-260 JATM", "picture": "AMRAAM_MISSILE", "cost": 400,
+     "ammo": 89, "ammo_fields": {"HUDName": "AIM-260 JATM", "Name": "Missile A2A JATM Plane"},
+     "weapon": 231, "weapon_fields": {"HUDName": "JATM", "Name": "AAM JATM x2 B21 bay"},
+     "turret_weapon_like": 379, "racks": 2, "launchers": 12, "turret_name": "MainTurret B21 JATM x24"},
+    {"key": "arrw", "option_name": "Loadout B21 2xARRW", "ui": "2x AGM-183A ARRW", "picture": "MOD_KINZHAL_HE", "cost": 200,
+     "weapon_name": "Cruise AGM183A ARRW bay", "turret_weapon_like": 894, "racks": 2, "launchers": 1, "turret_name": "MainTurret B21 ARRW x2"}
+  ]
+}

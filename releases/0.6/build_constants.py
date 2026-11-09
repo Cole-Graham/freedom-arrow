@@ -1324,6 +1324,24 @@ def main():
     pla={c['unit'] for c in pl['cards']}
     assert {r['UnitId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['SpecializationId']==sp['id']}=={c['unit'] for c in pl['cards'] if not c.get('transport_only') and not c.get('russia') and not c.get('us')}
     assert all(any(r['UnitId']==u for r in effective['UnitArmorsJson'].values()) for u in pla),'PLA card without armor'
+    # B-21 Raider loadouts (b21-loadout-contract.json): 24x JATM and 2x ARRW in the B-2 bay mount.
+    bl=json.loads((R/'b21-loadout-contract.json').read_text());why='B-21 Raider loadout';u=bl['unit']
+    (like,)=[o for o in effective['OptionsJson'].values() if o['Name']==bl['option_like'] and effective['ModificationsJson'][o['ModificationId']]['UnitId']==u]
+    order=1+max(o['Order'] for o in effective['OptionsJson'].values() if o['ModificationId']==like['ModificationId'])
+    (tlink,)=[r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u and r['TurretId']==bl['turret_like']]
+    alink=next(r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==u)
+    for i,ld in enumerate(bl['loads']):
+        if 'ammo' in ld:
+            am=clone('AmmunitionsJson',ld['ammo'],ld['ammo_fields'],why);wp=clone('WeaponsJson',ld['weapon'],ld['weapon_fields'],why)
+        else:
+            (wp,)=[w['Id'] for w in effective['WeaponsJson'].values() if w['Name']==ld['weapon_name']]
+            (am,)={r['AmmunitionId'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==wp}
+        assert effective['WeaponsJson'][wp]['MagazineSize']==ld['racks'],ld
+        tu=clone('TurretsJson',bl['turret_like'],{'Name':ld['turret_name']},why)
+        for k in range(ld['launchers']):clone('TurretWeaponsJson',ld['turret_weapon_like'],{'TurretId':tu,'WeaponId':wp,'Order':k},why)
+        clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
+        clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
+        clone('OptionsJson',like['Id'],{'Name':ld['option_name'],'UIName':ld['ui'],'OptionPicture':ld['picture'],'Cost':ld['cost'],'IsDefault':False,'Order':order+i,'Turret0Id':tu},why)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
