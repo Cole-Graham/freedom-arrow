@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.23.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.24.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-pla.23'
+    assert manifest['version']=='0.6.0-pla.24'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.23 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.24 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -29,6 +29,11 @@ with zipfile.ZipFile(p) as z:
     assert len(arrw_ws)==len(arrw['loads']) and all(table('weapons')[k]['HUDName']==arrw['name'] and int(k)>=2000000 for k in arrw_ws)
     arrw_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in arrw_ws and table('turrets')[str(r['TurretId'])]['Name'].startswith('PylonTurret B52H')};assert len(arrw_tw)==len(arrw['loads'])
     # b21-loadout-contract.json: the B-21 options, each on its own bay turret with the stated launchers and price.
+    # abramsx-contract.json: the Abrams X turret rows (main turret and two cupolas) and its one option.
+    ax=json.loads((R/'abramsx-contract.json').read_text())
+    ax_t={k for k,r in table('turrets').items() if r and str(r.get('Name','')).endswith(('Turret Abrams X','Abrams X 30mm','Abrams X M240'))};assert len(ax_t)==1+len(ax['cupolas'])
+    ax_tw={k for k,r in table('turret_weapons').items() if r and str(r.get('TurretId')) in ax_t}
+    assert table('units')[str(ax['unit'])]['Cost']==ax['cost']
     b21=json.loads((R/'b21-loadout-contract.json').read_text());b21_tw=set()
     b21_w={k for k,r in table('weapons').items() if r and str(r.get('Name','')).endswith('B21 bay')};b21_a={k for k,r in table('ammunitions').items() if r and r.get('Name')=='Missile A2A JATM Plane'}
     assert len(b21_w)==len(b21_a)==sum('ammo' in ld for ld in b21['loads'])
@@ -41,7 +46,7 @@ with zipfile.ZipFile(p) as z:
     assert not any(str(r.get('Name','')).endswith((' both racks',' rack (no rounds)',' rack (no weapon)')) for t in ('weapons','turrets') for r in table(t).values() if r)
     heli=json.loads((R/'dev30-heli-contract.json').read_text())
     assert not set(table('options'))&{str(x) for x in heli['pod_options']+[653]}
-    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|b21_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads and the B-21 loadouts'
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|b21_tw|ax_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads, the B-21 loadouts and the Abrams X'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'

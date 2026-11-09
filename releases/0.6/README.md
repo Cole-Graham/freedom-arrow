@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.23 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.24 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -210,7 +210,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.23.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.24.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 

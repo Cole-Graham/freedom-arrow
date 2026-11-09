@@ -1324,6 +1324,29 @@ def main():
     pla={c['unit'] for c in pl['cards']}
     assert {r['UnitId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['SpecializationId']==sp['id']}=={c['unit'] for c in pl['cards'] if not c.get('transport_only') and not c.get('russia') and not c.get('us')}
     assert all(any(r['UnitId']==u for r in effective['UnitArmorsJson'].values()) for u in pla),'PLA card without armor'
+    # Abrams X (abramsx-contract.json): one configuration on the SEP v3 copy; 30 mm Bushmaster in place of the commander's M2.
+    ax=json.loads((R/'abramsx-contract.json').read_text());why='Abrams X';u=ax['unit']
+    put('Units',u,{'Cost':ax['cost']},why)
+    mob=clone('MobilityJson',ax['mobility_like'],ax['mobility_fields'],why)
+    clone('UnitPropulsionsJson',next(r['Id'] for r in effective['UnitPropulsionsJson'].values() if r['UnitId']==u),{'MobilityId':mob},why)
+    (su,)=[r['Id'] for r in effective['SensorUnitsJson'].values() if r['UnitId']==u];put('SensorUnitsJson',su,{'SensorId':ax['sensor']},why)
+    main=clone('TurretsJson',ax['turret_like'],{'Name':ax['turret_name']},why)
+    tlink=next(r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u)
+    def copy_weapons(src,dst,weapon=None):
+        for r in [r for r in list(effective['TurretWeaponsJson'].values()) if r['TurretId']==src]:clone('TurretWeaponsJson',r['Id'],{'TurretId':dst,**({'WeaponId':weapon} if weapon else {})},why)
+    copy_weapons(ax['turret_like'],main);clone('TurretUnitsJson',tlink,{'TurretId':main},why)
+    for cu in ax['cupolas']:
+        assert effective['TurretsJson'][cu['like']]['ParentTurretId']==ax['turret_like']
+        t=clone('TurretsJson',cu['like'],{'Name':cu['name'],'ParentTurretId':main},why);copy_weapons(cu['like'],t,cu.get('weapon'));clone('TurretUnitsJson',tlink,{'TurretId':t},why)
+        if cu.get('weapon'):
+            src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==cu['ammo_from_unit'] and r['WeaponId']==cu['weapon']];assert src
+            for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':u},why)
+    mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==u}
+    mine=[o for o in list(effective['OptionsJson'].values()) if o['ModificationId'] in mods];(keep,)=[o for o in mine if o['Name']==ax['keep_option']]
+    put('OptionsJson',keep['Id'],{**ax['option_fields'],'MobilityId':mob,'Turret0Id':main},why)
+    for o in mine:
+        # These options are this build's own copies, so they are taken out of the patch (a delete needs a vanilla row).
+        if o is not keep:assert o['Id'] not in original['OptionsJson'];del effective['OptionsJson'][o['Id']];patches['OptionsJson'].pop(str(o['Id']))
     # B-21 Raider loadouts (b21-loadout-contract.json): 24x JATM and 2x ARRW in the B-2 bay mount.
     bl=json.loads((R/'b21-loadout-contract.json').read_text());why='B-21 Raider loadout';u=bl['unit']
     (like,)=[o for o in effective['OptionsJson'].values() if o['Name']==bl['option_like'] and effective['ModificationsJson'][o['ModificationId']]['UnitId']==u]
