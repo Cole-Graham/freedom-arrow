@@ -640,7 +640,7 @@ def main():
     put('Units',u,{'HUDName':tb['hud']},why);assert effective['Units'][u]['Cost']==165
     # 0.5 dev.21: artillery uses more supply to refill (ActualArrow 1.1.20 values).
     sup=json.loads((R/'supply-contract.json').read_text())
-    for key,f in sup['ammo'].items():
+    for key,f in ({} if sup.get('retired') else sup['ammo']).items():
         a=effective['AmmunitionsJson'][int(key)]
         assert a['Name'].strip()==f['name'] and a['SupplyCost']==f['was'] and f['SupplyCost']>f['was'],key
         assert a['Name'].startswith(('Shell','Obus','MLRS','Missile Ballistic','Missile Cruise IskanderK','Round 152 2A33','Round 122 2A31')),key
@@ -941,7 +941,7 @@ def main():
             for order,o in enumerate(sorted((o for o in keep if o['ModificationId']==mod),key=lambda o:o['Order'])):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order},why)
         for s in c['specs']:clone('SpecializationAvailabilitiesJson',c['like'],{'UnitId':new,'SpecializationId':s},why)
     for aid,a in effective['AmmunitionsJson'].items():
-        if a['TrajectoryType'] not in lg['artillery_trajectories'] or a['SupplyCost']<=0:continue
+        if lg['supply_factor']==1 or a['TrajectoryType'] not in lg['artillery_trajectories'] or a['SupplyCost']<=0:continue
         kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in effective['Units']}
         if kinds-{4}:continue  # plane and ship rounds
         put('AmmunitionsJson',aid,{'SupplyCost':a['SupplyCost']*lg['supply_factor']},'Artillery uses twice the supply')
