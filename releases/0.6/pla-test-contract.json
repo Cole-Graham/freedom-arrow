@@ -1,5 +1,5 @@
 {
-  "note": "PLA test division (Osama, 8 November 2026). Armory preview only: a new Russia-side specialization 'PLA (Test)' with 0 points in every tab. Each card is a full copy of a Russian unit, renamed, on the Russian model until real PLA models exist. ZBD-04A and ZBL-08 ride as transports of the PLA rifle squad. Not a balance proposal; costs and stats are the stand-in's. pla.20 (Osama, 9 November 2026): Abrams X, unit 964, a US card copied from the M1A2 SEP v3 (191), in Armored Brigade like its parent ('we might add this to armored'); contract field \"us\": true keeps the name without 'PLA ' and the parent's specializations. Stats are the SEP v3's; the model loads through FAModels. pla.29 (Osama, 9 November 2026): ZTZ-100 (Type 100), a copy of the T-14 Armata (13): unmanned turret and crew in the hull, like the real vehicle; T-14 stats for now. Model: CGTrader ShuyangXi ZTZ100. pla.32 (Osama, 9 Nov 2026): Abrams X (964) and B-21 (965) now come from the main build (new-cards-contract.json, dev.96-101), so they leave this list. New PLA J-31 card (971, same parent as the J-35) keeps the earlier J-31 model. pla.33 (Osama, 9 Nov 2026): WZ-8 recon drone (972, a Forpost copy) and FH-97A loyal wingman (973, an S-70 Okhotnik copy), for the CGTrader ShuyangXi models.",
+  "note": "PLA test division (Osama, 8 November 2026). Armory preview only: a new Russia-side specialization 'PLA (Test)' with 0 points in every tab. Each card is a full copy of a Russian unit, renamed, on the Russian model until real PLA models exist. ZBD-04A and ZBL-08 ride as transports of the PLA rifle squad. Not a balance proposal; costs and stats are the stand-in's. pla.20 (Osama, 9 November 2026): Abrams X, unit 964, a US card copied from the M1A2 SEP v3 (191), in Armored Brigade like its parent ('we might add this to armored'); contract field \"us\": true keeps the name without 'PLA ' and the parent's specializations. Stats are the SEP v3's; the model loads through FAModels. pla.29 (Osama, 9 November 2026): ZTZ-100 (Type 100), a copy of the T-14 Armata (13): unmanned turret and crew in the hull, like the real vehicle; T-14 stats for now. Model: CGTrader ShuyangXi ZTZ100. pla.32 (Osama, 9 Nov 2026): Abrams X (964) and B-21 (965) now come from the main build (new-cards-contract.json, dev.96-101), so they leave this list. New PLA J-31 card (971, same parent as the J-35) keeps the earlier J-31 model. pla.33 (Osama, 9 Nov 2026): WZ-8 recon drone (972, a Forpost copy) and FH-97A loyal wingman (973, an S-70 Okhotnik copy), for the CGTrader ShuyangXi models. pla.34 (Osama, 9 Nov 2026): J-15D (974, Su-27SM copy like the J-15), J-8 (975, MiG-29SMT copy) and MD-22 high-speed drone (976, S-70 copy), for CGTrader ShuyangXi models.",
   "spec": {
     "id": 17,
     "like": 12,
@@ -387,6 +387,21 @@
       "unit": 973,
       "parent": 633,
       "name": "FH-97A"
+    },
+    {
+      "unit": 974,
+      "parent": 465,
+      "name": "J-15D"
+    },
+    {
+      "unit": 975,
+      "parent": 310,
+      "name": "J-8"
+    },
+    {
+      "unit": 976,
+      "parent": 633,
+      "name": "MD-22"
     }
   ]
 }
