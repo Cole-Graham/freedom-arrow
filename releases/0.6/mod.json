@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.4 development candidate",
-  "version": "0.6.0-dev.98",
+  "version": "0.6.0-dev.99",
   "type": "modpack",
   "description": "Vehicle and infantry data, detection values, conquest scoring and flat 200 income. Plays offline through local setup and online in private scenario lobbies. Online play has not been run live."
 }
