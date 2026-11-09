@@ -6,7 +6,6 @@ import argparse, json, re
 R=Path(__file__).resolve().parent
 FILES=['verify.py','mod.json','vehicle-contract.json','us-baltic-contract.json','README.md',
  'source/runtime-qa/Runtime.cs','source/runtime-qa/FreedomArrow.Runtime.csproj',
- 'source/conquest/FreedomArrow.ConquestPrototype.csproj','source/conquest/Mod.cs',
  'source/UserData/FreedomArrow/channel.json','source/UserData/FreedomArrow/release-notes.md']
 # These files also name old versions in their history. Change only the title and the verify command there.
 CURRENT_LINES={'README.md':lambda l:l.startswith('# ') or 'verify.py' in l,

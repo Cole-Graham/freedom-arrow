@@ -10,6 +10,10 @@
     <IL2>$(GameDir)/MelonLoader/Il2CppAssemblies</IL2>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Batch (Lateralus, 8 November 2026): the conquest mode is built into this DLL. -->
+    <Compile Include="../conquest/*.cs" Link="conquest/%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="MelonLoader"><HintPath>$(ML)/MelonLoader.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="0Harmony"><HintPath>$(ML)/0Harmony.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Il2CppInterop.Runtime"><HintPath>$(ML)/Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
@@ -26,5 +30,9 @@
     <Reference Include="Unity.TextMeshPro"><HintPath>$(IL2)/Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.UI"><HintPath>$(IL2)/UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.UIModule"><HintPath>$(IL2)/UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSystem.Core"><HintPath>$(IL2)/Il2CppSystem.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppFMODUnity"><HintPath>$(IL2)/Il2CppFMODUnity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(IL2)/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(IL2)/UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>

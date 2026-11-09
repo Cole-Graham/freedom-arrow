@@ -36,8 +36,29 @@ public class Runtime : MelonMod
         ["SpecializationsJson"]="specializations.json", ["TransportAvailabilitiesJson"]="transport_availabilities.json"
     };
     static string Sha(byte[] bytes) => Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant();
+    // Batch (Lateralus, 8 November 2026): the conquest mode (formerly FreedomArrow.ConquestBatch.dll) is compiled into this
+    // DLL. It starts first, as it did when MelonLoader loaded its DLL before this one, and fails on its own.
+    static Conquest.Prototype conquest;
+    const string RetiredConquestDll="FreedomArrow.ConquestBatch";
+    void StartConquest()
+    {
+        if(AppDomain.CurrentDomain.GetAssemblies().Any(a=>a.GetName().Name==RetiredConquestDll))
+        {
+            LoggerInstance.Error($"FREEDOM_ARROW_CONQUEST_FAILED: old Mods/{RetiredConquestDll}.dll is loaded; the built-in conquest stays off. Delete that file and restart.");
+            return;
+        }
+        try { File.Delete(Path.Combine(MelonEnvironment.GameRootDirectory,"Mods",RetiredConquestDll+".dll")); } catch { }
+        conquest=new Conquest.Prototype(Info);
+        try { conquest.OnInitializeMelon(); }
+        catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
+    }
+    public override void OnUpdate() => conquest?.OnUpdate();
+    public override void OnGUI() => conquest?.OnGUI();
+    public override void OnSceneWasLoaded(int buildIndex,string sceneName) => conquest?.OnSceneWasLoaded(buildIndex,sceneName);
+    public override void OnDeinitializeMelon() => conquest?.OnDeinitializeMelon();
     public override void OnInitializeMelon()
     {
+        StartConquest();
         Directory.CreateDirectory(Root);
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
         File.Delete(Path.Combine(Root,"runtime-receipt.json"));
@@ -75,6 +96,8 @@ public class Runtime : MelonMod
     }
     public override void OnLateInitializeMelon()
     {
+        try { conquest?.OnLateInitializeMelon(); }
+        catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
         try { ThirdPartyGuard.PointArrowQueue(); }

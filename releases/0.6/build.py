@@ -18,7 +18,7 @@ def main():
  if payload.exists():shutil.rmtree(payload)
  shutil.copytree(R/'source/UserData',payload/'UserData');(payload/'Mods').mkdir()
  subprocess.run([sys.executable,str(R/'scenarios'/'make_scenario.py'),'--game-dir',str(game),'--out',str(payload/'UserData/FreedomArrow/scenarios')],check=True)
- for folder,project,dll,tf in [('runtime-qa','FreedomArrow.Runtime.csproj','FreedomArrow.Runtime.dll','net6.0/'),('conquest','FreedomArrow.ConquestPrototype.csproj','FreedomArrow.ConquestBatch.dll','net6.0/'),('offline-mod','BALocalSkirmish.csproj','BALocalSkirmish.dll','')]:
+ for folder,project,dll,tf in [('runtime-qa','FreedomArrow.Runtime.csproj','FreedomArrow.Runtime.dll','net6.0/'),('offline-mod','BALocalSkirmish.csproj','BALocalSkirmish.dll','')]:
   s=R/'source'/folder
   subprocess.run([a.dotnet,'build',str(s/project),'-c','Release',f'-p:GameDir={game}','--nologo'],check=True)
   shutil.copy2(s/f'bin/Release/{tf}{dll}',payload/'Mods'/dll)

@@ -15,9 +15,11 @@ with zipfile.ZipFile(p) as z:
     assert channel['deployment_status']=='built_offline_execution_held'
     assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.83 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
-    assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
+    assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
-    for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
+    assert mod['version'].encode() in z.read('Mods/FreedomArrow.Runtime.dll')
+    # Batch (Lateralus, 8 November 2026): the conquest mode is built into FreedomArrow.Runtime.dll.
+    assert 'Freedom Arrow Conquest'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'),'conquest mode built into Runtime'
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
     tgc=json.loads((R/'tigr-contract.json').read_text())
