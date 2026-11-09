@@ -55,9 +55,13 @@ with zipfile.ZipFile(p) as z:
     ren=json.loads((R/'rename-contract.json').read_text())['WeaponsJson']
     assert all(table('weapons')[k]['HUDName']==f['HUDName'] for k,f in ren.items()),'0.6 weapon display names'
     # 0.6 dev.50 (air-gen-contract.json): plane air-to-air missiles aim in 0 s, long-range SAMs in 0.5 s (0.2 in dev.50); aim time is the only field.
+    # Lateralus batch (infantry-rl-contract.json): the RPG-22 is a full copy of the RPG-18 weapon row.
+    rlc=json.loads((R/'infantry-rl-contract.json').read_text())
+    rpg22w={k for k,r in table('weapons').items() if r and r.get('HUDName')==rlc['rpg22']['weapon_fields']['HUDName']}
+    assert len(rpg22w)==1 and int(next(iter(rpg22w)))>=2_000_000 and all(table('weapons')[k][f]==v for k in rpg22w for f,v in rlc['rpg22']['weapon_fields'].items()) and all(table('weapons')[k]['Type']==63 and table('weapons')[k]['MagazineSize']==1 for k in rpg22w),'RPG-22 weapon'
     agc=json.loads((R/'air-gen-contract.json').read_text());aimw={k for k,r in table('weapons').items() if set(r)=={'AimTimeMin','AimTimeMax'} and r['AimTimeMin'] in (0.0,0.5)}
     assert {k for k in aimw if table('weapons')[k]['AimTimeMin']==0.5}=={str(w) for w in agc['big_sam']['weapons']} and all(table('weapons')[k]['AimTimeMax']==table('weapons')[k]['AimTimeMin'] in (0.0,0.5) for k in aimw) and len(aimw)==31,'0.6 dev.50 aim times'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w and k not in model_w),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w and k not in model_w and k not in rpg22w),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
@@ -119,6 +123,7 @@ with zipfile.ZipFile(p) as z:
     supply21={aid:f['SupplyCost'] for aid,f in json.loads((R/'supply-contract.json').read_text())['ammo'].items()}
     d24=json.loads((R/'dev24-contract.json').read_text())
     ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
+    soft01=json.loads((R/'soft-atgm-contract.json').read_text())['rows']
     topc=json.loads((R/'top-armor-contract.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
@@ -128,6 +133,7 @@ with zipfile.ZipFile(p) as z:
             if f=='armors' and int(k) in d24['hp']['armors']:want['MaxHealthPoints']=d24['hp']['value']
             if f=='armors' and k in topc['armors']:want.update(HeatArmorTop=topc['top'],KinArmorTop=topc['top'])  # top-armor-contract.json
             if f=='ammunitions' and int(k) in pinned:want['PenetrationAtMinRange']=table(f)[k]['PenetrationAtMinRange']
+            if f=='ammunitions' and k in soft01:want['Damage']=soft01[k]['damage']  # soft-atgm-contract.json (Lateralus batch)
             assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
         for oid in oids:assert arm[str(opt[str(oid)]['ArmorId'])]['MaxHealthPoints']==10

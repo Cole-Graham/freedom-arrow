@@ -1194,6 +1194,30 @@ def main():
         a=effective['ArmorsJson'][int(key)];assert a['HeatArmorTop']<tc['top'] and a['KinArmorTop']<tc['top'],key
         assert {U['HUDName'].strip().split()[0] for l in effective['UnitArmorsJson'].values() if l['ArmorId']==int(key) for U in [effective['Units'][l['UnitId']]]}<={'M-ATV','Typhoon','BPM-97'},key
         put('ArmorsJson',int(key),{'HeatArmorTop':tc['top'],'KinArmorTop':tc['top']},'Top armour 20 (M-ATV, Typhoon, BPM-97)')
+    # Lateralus batch: infantry rocket launchers by purpose, M72A7 split, RPG-22 (infantry-rl-contract.json).
+    rl=json.loads((R/'infantry-rl-contract.json').read_text())
+    def ammo_users(aid):return {r['UnitId'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid}
+    for key,c in rl['ammo'].items():
+        aid=int(key);assert ammo_users(aid)==set(c['users']),(aid,sorted(ammo_users(aid)))
+        put('AmmunitionsJson',aid,c['fields'],'Infantry launcher '+c['group']+': '+c['name'])
+    m7=rl['m72a7'];why='M72A7 own round: multipurpose EFP'
+    rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'] and r['WeaponId']==m7['weapon']]
+    assert {r['UnitId'] for r in rows}==set(m7['users']),rows
+    assert all(r['WeaponId'] in (m7['weapon'],m7['keep_weapon']) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'])
+    a7=clone('AmmunitionsJson',m7['from'],m7['fields'],why)
+    for r in rows:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':a7},why)
+    g=rl['rpg22'];why='RPG-22 replaces the RPG-18'
+    w22=clone('WeaponsJson',g['weapon_from'],g['weapon_fields'],why);a22=clone('AmmunitionsJson',g['ammo_from'],g['ammo_fields'],why)
+    for uid in g['units']:
+        men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId'])]
+        assert men,uid
+        for m in men:put('SquadMembersJson',m['Id'],{f:w22 for f in ('PrimaryWeaponId','SpecialWeaponId') if m[f]==g['weapon_from']},why)
+        sw=[r for r in effective['SquadWeaponsJson'].values() if r['UnitId']==uid and r['WeaponId']==g['weapon_from']];assert len(sw)==1,uid
+        put('SquadWeaponsJson',sw[0]['Id'],{'WeaponId':w22},why)
+        wa=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==uid and r['WeaponId']==g['weapon_from']]
+        assert len(wa)==1 and wa[0]['AmmunitionId']==g['ammo_from'],(uid,wa)
+        put('WeaponAmmunitionsJson',wa[0]['Id'],{'WeaponId':w22,'AmmunitionId':a22},why)
+    assert not ammo_users(g['ammo_from']) and not any(g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values()),'RPG-18 still carried'
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
