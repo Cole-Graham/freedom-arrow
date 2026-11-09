@@ -1345,6 +1345,8 @@ def main():
         else:
             for r in avail:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
         if c.get('country'):put('Units',new,{'CountryId':c['country']},why)
+        if c.get('icon_from'):
+            put('Units',new,{k:effective['Units'][c['icon_from']][k] for k in ('ThumbnailFileName','PortraitFileName')},why+' icon')
         if c.get('swap_turrets'):
             # Other-country copy (X-47B from the S-70): each bay mount becomes the matching mount of a donor plane, with the donor's
             # weapon and ammunition rows and its option name and picture. Links copy the old mount's link (same Order).

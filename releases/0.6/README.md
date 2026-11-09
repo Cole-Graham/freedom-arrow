@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.34 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.35 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.34.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.35.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -328,6 +328,10 @@ Dev.23 (Osama): Round 1 is the first 5 minutes with no scoring; zones can still 
 Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs out. The native team bars return and show points out of 300, without the three goal stars.
 
 Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `maps/` by `make_scenario.py`. Zone IDs 38, 39, 40 (A, B, C) are worth 2 and 41, 42 (D, E) are worth 3. The map had no script: the build adds `setConquestMode`, the money cap, the income curve switch and the money, income and timer sliders from the native mission. Fastest win is 17:00. The installer removes an old local copy only when its GUID matches. No F8 version. No live result.
+
+## X-47B icon — pla.35
+
+The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats and loadouts are unchanged. This is a data change; the display has not yet been checked in the game.
 
 ## Document change log
 
@@ -539,3 +543,5 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-09 02:14:23 PST (America/Los_Angeles) — 0.6.0-dev.93: Lateralus batch 4 (shot log repeat filter, missile log limit 3000) on top of dev.92. No live result.
 - 2026-11-09 02:45:21 PST (America/Los_Angeles) — 0.6.0-dev.94: Lateralus batch 5 (missile end log, target flares on roll lines) on top of dev.93. No live result.
 - 2026-11-09 02:54:18 PST (America/Los_Angeles) — 0.6.0-dev.95: Lateralus batch 6 (dev.94 crash fix) on top of dev.94. No live result.
+
+- 2026-11-09 04:22:18 PST (America/Los_Angeles) — pla.35: copied the RQ-170 icon and portrait to the X-47B; no live display verification.
