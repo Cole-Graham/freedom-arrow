@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.104 — development candidate
+# Freedom Arrow 0.6.0-dev.105 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -215,6 +215,9 @@ Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Buil
 
 **Guard transport and Checkmate update:** ZIL Karatel Punisher (973) is an unarmed, 10-seat Guard transport using provisional Typhoon-K stats and its base price. Available to Guard infantry with Tigr/Typhoon-K wheeled transport choices. Su-75 now defaults to 2x R-73 at no surcharge, for 280 total; other rear-bay options retain their prices. New model installed separately. Game checks pending.
 
+
+Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -392,3 +395,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 13:59:23 PST (America/Los_Angeles) — Promoted Su-75 into the normal build and documented existing Su-57D; retained previous card IDs.
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
+
+- 2026-11-09 14:39:50 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.

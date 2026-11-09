@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.104 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.105 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.104.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.105.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -332,6 +332,9 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 **Live-branch card update:** Su-75 Checkmate (950) added to Russian Guard (12), base280 and rear bay only; fixed cannon retained. Su-57D (970) remains a stat-identical Su-57 copy from dev.101. Both use separately installed private models on the development PC. Generated-data checks passed; game validation pending.
 
 **Guard transport and Checkmate update:** ZIL Karatel Punisher (973) is an unarmed, 10-seat Guard transport using provisional Typhoon-K stats and its base price. Available to Guard infantry with Tigr/Typhoon-K wheeled transport choices. Su-75 now defaults to 2x R-73 at no surcharge, for 280 total; other rear-bay options retain their prices. New model installed separately. Game checks pending.
+
+
+Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
 
 ## Document change log
 
@@ -547,3 +550,5 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-09 13:59:23 PST (America/Los_Angeles) — Promoted Su-75 into the normal build and documented existing Su-57D; retained previous card IDs.
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
+
+- 2026-11-09 14:39:50 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.
