@@ -992,6 +992,14 @@ def main():
     for aid,(h,v) in cw['tos']['ammo'].items():
         row=effective['AmmunitionsJson'][int(aid)];assert [row['DispersionHorizontalRadius'],row['DispersionVerticalRadius']]==cw['tos']['was'][aid] and row['Damage']==30 and row['IgnoreCover']==0,aid
         put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v,'IgnoreCover':cw['tos']['ignore_cover']},'TOS vanilla damage, scatter 50 m wider and longer, 60% of vanilla in buildings')
+    # 0.6 dev.85 (Osama): tube artillery and mortar HE back to vanilla infantry damage in buildings, ignore cover only (arty-cover-contract.json).
+    ac=json.loads((R/'arty-cover-contract.json').read_text())
+    for key,v in ac['ammo'].items():
+        row=effective['AmmunitionsJson'][int(key)];van=original['AmmunitionsJson'][int(key)]
+        assert row['Name'].strip()==v['name'] and row['IgnoreCover']==van['IgnoreCover'] and row['Damage']==van['Damage'],key
+        want=(van['Damage']*(0.38+0.62*van['IgnoreCover'])/row['Damage']-0.18)/0.82
+        assert abs(v['IgnoreCover']-want)<0.001,(key,want)
+        put('AmmunitionsJson',int(key),{'IgnoreCover':v['IgnoreCover']},'Artillery HE: vanilla infantry damage in buildings (ignore cover only)')
     mop=cw['mop'];row=effective['AmmunitionsJson'][mop['ammo']];assert row['Name']=='Bomb 13600kg GBU57' and row['IgnoreCover']==0,row['Name']
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])
