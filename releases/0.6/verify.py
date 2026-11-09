@@ -33,10 +33,12 @@ with zipfile.ZipFile(p) as z:
     assert racks_w and all(int(k)>=2000000 for k in racks_w)
     racks_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in racks_w}
     assert len(racks_tw)==len(racks_w)
-    # 0.6 dev.61: each rack (model only) turret holds a launcher copy '... rack (no rounds)' with no WeaponAmmunitions row.
+    # 0.6 dev.61: each rack (model only) turret holds a launcher copy '... rack (no rounds)'. Its ammo rows hold 0 rounds:
+    # a mounted weapon with no ammo row for its unit hides the unit in the armory (Lateralus, 8 Nov).
     model_w={k for k,r in table('weapons').items() if str(r.get('Name','')).endswith(' rack (no rounds)')}
     assert len(model_w)==len(racks_w) and all(int(k)>=2000000 for k in model_w)
-    assert not any(r and str(r.get('WeaponId')) in model_w for r in table('weapon_ammunitions').values())
+    model_wa=[r for r in table('weapon_ammunitions').values() if r and str(r.get('WeaponId')) in model_w]
+    assert {str(r['WeaponId']) for r in model_wa}==model_w and all(r['Quantity']==0 for r in model_wa)
     model_tw={k for k,r in table('turret_weapons').items() if r and str(r.get('WeaponId')) in model_w};assert len(model_tw)==len(model_w)
     assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|racks_tw|model_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads, the dev.46 both-racks launchers and the dev.61 rack weapons'
     # dev.14: weapons hold only infantry launcher reload times.

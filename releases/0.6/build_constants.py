@@ -1245,6 +1245,19 @@ def main():
         if n<1:continue
         rate=sr['k']*n**sr['exponent'];table[f"{r['UnitId']}:{r['WeaponId']}"]={'carriers':n,'rate':round(rate,3),'reload':round(60*n/rate,3)}
     (R/'source/UserData/FreedomArrow/squad-reload.json').write_text(json.dumps({'k':sr['k'],'exponent':sr['exponent'],'disposableType':sr['disposable_type'],'squads':table},indent=1,sort_keys=True)+'\n')
+    # 0.6 (Lateralus, armory report, 8 Nov): a weapon mounted on a unit with no WeaponAmmunitions row for that unit hides
+    # the unit's model and card in the armory (AH-64D/E, AH-1W/Z, MH-60M DAP, Mi-28NM, Ka-52, Mi-24, ...). Seen live on
+    # pla.8 and fixed live by a 0-round row. Each dev.61 rack weapon gets a 0-round copy of its unit's both-racks ammo row:
+    # the pod is still drawn and never fires. Cloned here, at the end, so no earlier ID moves.
+    why0='Helicopter ATGM pylon: rack weapon has a 0-round ammo row, so the armory shows the unit'
+    for t,(t2,wmap) in sorted(load2.items()):
+        names={effective['WeaponsJson'][w]['Name']+' rack (no rounds)':w2 for w,w2 in wmap.items()}
+        users=sorted({r['UnitId'] for r in effective['TurretUnitsJson'].values() if r['TurretId']==rack[t]})
+        for wr in sorted({r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId']==rack[t]}):
+            w2=names[effective['WeaponsJson'][wr]['Name']]
+            for u in users:
+                src=[r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==u and r['WeaponId']==w2];assert src,(u,w2)
+                for rid in src:clone('WeaponAmmunitionsJson',rid,{'WeaponId':wr,'Quantity':0},why0)
     # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
     caps={}
     for sid,row in effective['SensorsJson'].items():
