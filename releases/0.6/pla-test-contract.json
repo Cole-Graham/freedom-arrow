@@ -213,7 +213,7 @@
   {
    "unit": 936,
    "parent": 151,
-   "name": "AFT-10"
+   "name": "HJ-10"
   },
   {
    "unit": 937,
@@ -286,6 +286,16 @@
    "parent": 44,
    "name": "Su-75 Checkmate",
    "russia": true
+  },
+  {
+   "unit": 951,
+   "parent": 213,
+   "name": "HJ-8"
+  },
+  {
+   "unit": 952,
+   "parent": 233,
+   "name": "JRVG-1"
   }
  ]
 }
