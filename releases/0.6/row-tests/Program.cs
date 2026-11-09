@@ -139,7 +139,7 @@ Check(Linked("UnitArmorsJson","ArmorId",u).Select(a=>Row("ArmorsJson",a)["HeatAr
 foreach(var (wa,q) in new[]{(474,6),(536,6),(2500,10),(598,10),(2274,12),(2596,6),(2701,6),(3551,8),(3017,6),(230,4),(2260,4),(3015,4),(3020,4)})Check(Row("WeaponAmmunitionsJson",wa)["Quantity"].GetValue<int>()==q,"dev.14 ammo "+wa);
 foreach(int u in new[]{410,640,519})Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==u&&(r["SpecialWeaponId"].GetValue<int>() is 505 or 789||r["PrimaryWeaponId"].GetValue<int>() is 746 or 759))==1,"dev.14 one launcher "+u);
 Check(merged["SquadMembersJson"].Count(r=>r["UnitId"].GetValue<int>()==127)==5&&Linked("UnitArmorsJson","ArmorId",127).All(a=>Row("ArmorsJson",a)["MaxHealthPoints"].GetValue<int>()==25&&Row("ArmorsJson",a)["ArmorValue"].GetValue<int>()==6),"Vampyr 5 men 25 HP armor 6");
-Check(UC(74)==35&&OC(1848)==10&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==40&&UC(214)+OC(492)==45&&UC(214)+OC(493)==60&&UC(214)+OC(2101)==30&&UC(416)==110&&UC(520)==90,"dev.14 prices (Javelin cards repriced in dev.30)");
+Check(UC(74)==40&&OC(1848)==5&&UC(410)==45&&UC(127)==35&&UC(519)==45&&UC(214)+OC(491)==40&&UC(214)+OC(492)==45&&UC(214)+OC(493)==60&&UC(214)+OC(2101)==30&&UC(416)==110&&UC(520)==90,"dev.14 prices (Javelin cards repriced in dev.30)");
 Check(OC(15)==10&&OC(379)==10,"dev.16 Stryker Dragoon and ACV RT20 Bushmaster II +10");
 Check(OC(1896)==15&&OC(1897)==45,"dev.17 Stryker RV Bushmaster II -10");
 Check(OC(1615)==10,"dev.24 BMP-1AM +10");
