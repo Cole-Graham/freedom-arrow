@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "Freedom Arrow — 0.4 development candidate",
-  "version": "0.6.0-dev.104",
+  "name": "Freedom Arrow \u2014 0.4 development candidate",
+  "version": "0.6.0-pla.infantry.3",
   "type": "modpack",
-  "description": "Vehicle and infantry data, detection values, conquest scoring and flat 200 income. Plays offline through local setup and online in private scenario lobbies. Online play has not been run live."
+  "description": "Private PLA infantry firing test on dev.104: QLU-11, QTS-11 rifle/grenade, QBZ-191 and QBU-191. Native donor behavior; runtime tests pending."
 }

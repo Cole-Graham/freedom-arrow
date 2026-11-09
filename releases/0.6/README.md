@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.104 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.infantry.3 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.104.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.infantry.3.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -332,6 +332,17 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 **Live-branch card update:** Su-75 Checkmate (950) added to Russian Guard (12), base280 and rear bay only; fixed cannon retained. Su-57D (970) remains a stat-identical Su-57 copy from dev.101. Both use separately installed private models on the development PC. Generated-data checks passed; game validation pending.
 
 **Guard transport and Checkmate update:** ZIL Karatel Punisher (973) is an unarmed, 10-seat Guard transport using provisional Typhoon-K stats and its base price. Available to Guard infantry with Tigr/Typhoon-K wheeled transport choices. Su-75 now defaults to 2x R-73 at no surcharge, for 280 total; other rear-bay options retain their prices. New model installed separately. Game checks pending.
+
+
+## PLA infantry functional test on dev.104
+
+This private test retains all dev.104 effective rows, including Karatel, Su-75 and missile-test dummies, and appends the PLA test roster. PLA Rifle Squad (901) has two QBZ-191 rifles, one QBU-191 marksman rifle, one QLU-11 grenade launcher, one QTS-11 rifle with a separate grenade launcher, and the two existing RPKs. The previous RPG slots are removed from this prototype squad. Other squads and native weapon rows stay unchanged.
+
+Behavior uses native AK74M, SVD, M32 and M4A1/M203 donors with separate cloned weapon/ammo rows. These are functional test stand-ins, not final PLA balance. QLU11 uses the native M32 model until its model file is supplied. Optional local body/rifle/QTS models are separate from the core package. Actual shooting, ammo use, damage, effects and alignment still require an offline game test.
+
+The private J-31/WZ-8/FH-97A test cards move from 971/972/973 to 980/981/982 to preserve the live target-dummy and Karatel identities. Rebuild saved PLA aircraft selections that used those three old IDs. Rifle Squad remains 901.
+
+The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and seven carrier assignments for model mapping and checks.
 
 ## Document change log
 
@@ -547,3 +558,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-09 13:59:23 PST (America/Los_Angeles) — Promoted Su-75 into the normal build and documented existing Su-57D; retained previous card IDs.
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
+- 2026-11-09 14:23:06 PST (America/Los_Angeles) — Appended private PLA infantry test to dev.104 without altering existing effective rows; recorded donor behavior and three PLA card-ID migrations.

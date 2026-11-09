@@ -1,0 +1,61 @@
+{
+  "unit": 901,
+  "status": "Functional prototype using existing native behavior, not final PLA weapon balance. QLU11 copies M32; QTS11 copies M4A1/M203; QBU191 copies SVD; QBZ191 copies AK74M.",
+  "weapons": {
+    "QBZ191": {
+      "weaponId": 2003971,
+      "ammoId": 2003972,
+      "donor": 29
+    },
+    "QBU191": {
+      "weaponId": 2003973,
+      "ammoId": 2003974,
+      "donor": 167
+    },
+    "QLU11": {
+      "weaponId": 2003975,
+      "ammoId": 2003976,
+      "donor": 68
+    },
+    "QTS11": {
+      "weaponId": 2003977,
+      "ammoId": 2003978,
+      "donor": 50
+    },
+    "QTS11_GL": {
+      "weaponId": 2003979,
+      "ammoId": 2003980,
+      "donor": 58
+    }
+  },
+  "members": [
+    {
+      "primary": 2003977,
+      "special": 2003979
+    },
+    {
+      "primary": 14,
+      "special": 168
+    },
+    {
+      "primary": 2003971,
+      "special": 168
+    },
+    {
+      "primary": 2003975,
+      "special": 0
+    },
+    {
+      "primary": 2003973,
+      "special": 168
+    },
+    {
+      "primary": 14,
+      "special": 168
+    },
+    {
+      "primary": 2003971,
+      "special": 168
+    }
+  ]
+}

@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.104.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.infantry.3.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.104'
+    assert manifest['version']=='0.6.0-pla.infantry.3'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.104 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.infantry.3 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -22,6 +22,23 @@ with zipfile.ZipFile(p) as z:
     assert 'Freedom Arrow Conquest'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'),'conquest mode built into Runtime'
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
+    prototype=json.loads(z.read('UserData/FreedomArrow/pla-infantry-prototype.json'))
+    cfg=json.loads((R/'pla-infantry-contract.json').read_text());uid=prototype['unit'];assert uid==cfg['unit']==901
+    prototype_w={str(v['weaponId']) for v in prototype['weapons'].values()}
+    members=[r for k,r in sorted(live('squad_members').items(),key=lambda pair:int(pair[0])) if r.get('UnitId')==uid]
+    assert len(members)==7
+    for member,expected in zip(members,prototype['members']):
+        assert member['PrimaryWeaponId']==expected['primary'] and member['SpecialWeaponId']==expected['special']
+    carried={member[key] for member in members for key in ['PrimaryWeaponId','SpecialWeaponId'] if member[key]}
+    assert carried=={r['WeaponId'] for r in live('squad_weapons').values() if r.get('UnitId')==uid}
+    assert carried=={r['WeaponId'] for r in live('weapon_ammunitions').values() if r.get('UnitId')==uid}
+    for key,binding in prototype['weapons'].items():
+        weapon=live('weapons')[str(binding['weaponId'])];ammo=live('ammunitions')[str(binding['ammoId'])]
+        assert weapon['HUDName']==cfg['weapons'][key]['hud'] and ammo['Damage']>0
+        consumers=[r for r in live('weapon_ammunitions').values() if r.get('WeaponId')==binding['weaponId']]
+        assert len(consumers)==1 and consumers[0]['UnitId']==uid and consumers[0]['Quantity']>0 and consumers[0]['AmmunitionId']==binding['ammoId']
+    assert live('weapons')[str(prototype['weapons']['QTS11_GL']['weaponId'])]['IsUnderbarrel']
+    assert not live('weapons')[str(prototype['weapons']['QLU11']['weaponId'])]['IsUnderbarrel']
     tgc=json.loads((R/'tigr-contract.json').read_text())
     # 0.6 arrw-contract.json: the AGM-183A ARRW is one new weapon row and one new turret-weapon row (a copy of the Kinzhal HE).
     arrw=json.loads((R/'arrw-contract.json').read_text())
@@ -71,7 +88,7 @@ with zipfile.ZipFile(p) as z:
     assert len(rpg22w)==1 and int(next(iter(rpg22w)))>=2_000_000 and all(table('weapons')[k][f]==v for k in rpg22w for f,v in rlc['rpg22']['weapon_fields'].items()) and all(table('weapons')[k]['Type']==63 and table('weapons')[k]['MagazineSize']==1 for k in rpg22w),'RPG-22 weapon'
     agc=json.loads((R/'air-gen-contract.json').read_text());aimw={k for k,r in table('weapons').items() if set(r)=={'AimTimeMin','AimTimeMax'} and r['AimTimeMin'] in (0.0,0.5)}
     assert {k for k in aimw if table('weapons')[k]['AimTimeMin']==0.5}=={str(w) for w in agc['big_sam']['weapons']} and all(table('weapons')[k]['AimTimeMax']==table('weapons')[k]['AimTimeMin'] in (0.0,0.5) for k in aimw) and len(aimw)==31,'0.6 dev.50 aim times'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in rpg22w and k not in b21_w),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in rpg22w and k not in b21_w and k not in prototype_w),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
@@ -81,6 +98,7 @@ with zipfile.ZipFile(p) as z:
     st=json.loads((R/'structural-contract.json').read_text())
     added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'mig31bsm-contract.json').read_text())['cards']}
     added|={str(c['unit']) for c in json.loads((R/'paladin-split-contract.json').read_text())['cards']}  # 0.6 dev.74 M1299 Iron Thunder
+    added|={str(c['unit']) for c in json.loads((R/'pla-test-contract.json').read_text())['cards']}
     added|={str(c['unit']) for c in json.loads((R/'new-cards-contract.json').read_text())['cards']}  # new US cards (Abrams X, B-21)
     added|={str(c['unit']) for c in json.loads((R/'target-dummy-contract.json').read_text())['cards']}  # Lateralus test targets (F-22, MiG-29K dummies)
     added.add(str(json.loads((R/'su75-contract.json').read_text())['unit']))

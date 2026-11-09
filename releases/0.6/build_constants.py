@@ -1446,6 +1446,14 @@ def main():
     for rid in users.values():clone('TransportAvailabilitiesJson',rid,{'UnitId':ku},why)
     assert not rows_of('WeaponAmmunitionsJson',ku)
     assert {effective['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId'] for r in effective['TransportAvailabilitiesJson'].values() if r['UnitId']==ku}=={12}
+    def discard_generated(table,rid):
+        assert rid not in original[table],(table,rid)
+        del effective[table][rid];patches[table].pop(str(rid),None)
+        audit[:]=[a for a in audit if (a['table'],a['id'])!=(table,rid)]
+    from pla_test import apply as apply_pla_test
+    pl=apply_pla_test(R,effective,put,clone,add_unit,rows_of,discard_generated)
+    from pla_infantry import apply as apply_pla_infantry
+    apply_pla_infantry(R,effective,put,clone,discard_generated)
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):
@@ -1455,7 +1463,7 @@ def main():
             t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
             out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
         return out,mains
-    for c in nc['cards']+[cm,kc]:
+    for c in nc['cards']+[cm,kc]+pl['cards']:
         mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
         swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)

@@ -1,0 +1,426 @@
+{
+  "note": "PLA test division (Osama, 8 November 2026). Armory preview only: a new Russia-side specialization 'PLA (Test)' with 0 points in every tab. Each card is a full copy of a Russian unit, renamed, on the Russian model until real PLA models exist. ZBD-04A and ZBL-08 ride as transports of the PLA rifle squad. Not a balance proposal; costs and stats are the stand-in's. pla.20 (Osama, 9 November 2026): Abrams X, unit 964, a US card copied from the M1A2 SEP v3 (191), in Armored Brigade like its parent ('we might add this to armored'); contract field \"us\": true keeps the name without 'PLA ' and the parent's specializations. Stats are the SEP v3's; the model loads through FAModels. pla.29 (Osama, 9 November 2026): ZTZ-100 (Type 100), a copy of the T-14 Armata (13): unmanned turret and crew in the hull, like the real vehicle; T-14 stats for now. Model: CGTrader ShuyangXi ZTZ100. pla.32 (Osama, 9 Nov 2026): Abrams X (964) and B-21 (965) now come from the main build (new-cards-contract.json, dev.96-101), so they leave this list. New PLA J-31 card (971, same parent as the J-35) keeps the earlier J-31 model. pla.33 (Osama, 9 Nov 2026): WZ-8 recon drone (972, a Forpost copy) and FH-97A loyal wingman (973, an S-70 Okhotnik copy), for the CGTrader ShuyangXi models. pla.34 (Osama, 9 Nov 2026): J-15D (974, Su-27SM copy like the J-15), J-8 (975, MiG-29SMT copy) and MD-22 high-speed drone (976, S-70 copy), for CGTrader ShuyangXi models. pla.39 (Osama, 9 Nov 2026): former Z-10 card 913 renamed Z-10K, with its existing model retained. Separate Z-10 card 978 copies Mi-28NM; ZBL-191 card 979 copies K16 Bumerang and is available as a PLA rifle squad transport. Donor stats/loadouts remain placeholders. Four existing ground models replaced locally with supplied CGTrader assets; uniform grey hull material, private model files not in Git. Infantry prototype on dev.104: Su-75 comes from live code; J-31/WZ-8/FH-97A move to 980/981/982 to preserve target dummies and Karatel IDs.",
+  "spec": {
+    "id": 17,
+    "like": 12,
+    "fields": {
+      "Name": "PLA Test",
+      "UIName": "PLA (Test)",
+      "UIDescription": "PLA (Test)",
+      "ContentMembership": -1,
+      "LogisticsSlots": 3,
+      "MaxSlots": 34,
+      "ReconPoints": 0,
+      "InfantryPoints": 0,
+      "CombatPoints": 0,
+      "SupportPoints": 0,
+      "LogisticsPoints": 0,
+      "HelicoptersPoints": 0,
+      "AirPoints": 0
+    }
+  },
+  "cards": [
+    {
+      "unit": 900,
+      "parent": 195,
+      "name": "CSK-131 Mengshi"
+    },
+    {
+      "unit": 901,
+      "parent": 398,
+      "name": "PLA Rifle Squad",
+      "transports": {
+        "902": 3,
+        "903": 1,
+        "945": 3,
+        "959": 3,
+        "960": 3,
+        "962": 1,
+        "979": 253
+      }
+    },
+    {
+      "unit": 902,
+      "parent": 3,
+      "name": "ZBD-04A",
+      "transport_only": true
+    },
+    {
+      "unit": 903,
+      "parent": 1,
+      "name": "ZBL-08",
+      "transport_only": true
+    },
+    {
+      "unit": 904,
+      "parent": 238,
+      "name": "ZTZ-99A"
+    },
+    {
+      "unit": 905,
+      "parent": 157,
+      "name": "ZTZ-96B"
+    },
+    {
+      "unit": 906,
+      "parent": 144,
+      "name": "ZTQ-15"
+    },
+    {
+      "unit": 907,
+      "parent": 4,
+      "name": "PLZ-05"
+    },
+    {
+      "unit": 908,
+      "parent": 93,
+      "name": "PHL-03"
+    },
+    {
+      "unit": 909,
+      "parent": 233,
+      "name": "PGZ-09"
+    },
+    {
+      "unit": 910,
+      "parent": 31,
+      "name": "HQ-17"
+    },
+    {
+      "unit": 911,
+      "parent": 466,
+      "name": "HQ-9"
+    },
+    {
+      "unit": 912,
+      "parent": 423,
+      "name": "Shaanxi SX2190"
+    },
+    {
+      "unit": 913,
+      "parent": 380,
+      "name": "Z-10K",
+      "default_options": [
+        "OuterPylon MI28NM Empty"
+      ]
+    },
+    {
+      "unit": 914,
+      "parent": 257,
+      "name": "Z-20"
+    },
+    {
+      "unit": 915,
+      "parent": 44,
+      "name": "J-20"
+    },
+    {
+      "unit": 916,
+      "parent": 319,
+      "name": "J-16"
+    },
+    {
+      "unit": 917,
+      "parent": 310,
+      "name": "J-10C"
+    },
+    {
+      "unit": 918,
+      "parent": 168,
+      "name": "JH-7A"
+    },
+    {
+      "unit": 919,
+      "parent": 280,
+      "name": "H-6K"
+    },
+    {
+      "unit": 920,
+      "parent": 12,
+      "name": "PGL-625"
+    },
+    {
+      "unit": 921,
+      "parent": 44,
+      "name": "J-35"
+    },
+    {
+      "unit": 922,
+      "parent": 92,
+      "name": "PHL-11"
+    },
+    {
+      "unit": 923,
+      "parent": 465,
+      "name": "J-11B"
+    },
+    {
+      "unit": 924,
+      "parent": 319,
+      "name": "Su-30MKK"
+    },
+    {
+      "unit": 925,
+      "parent": 94,
+      "name": "HQ-7B"
+    },
+    {
+      "unit": 926,
+      "parent": 218,
+      "name": "PLL-05"
+    },
+    {
+      "unit": 927,
+      "parent": 238,
+      "name": "ZTZ-20"
+    },
+    {
+      "unit": 928,
+      "parent": 316,
+      "name": "Y-20"
+    },
+    {
+      "unit": 929,
+      "parent": 44,
+      "name": "J-36"
+    },
+    {
+      "unit": 930,
+      "parent": 722,
+      "name": "ZTD-05"
+    },
+    {
+      "unit": 931,
+      "parent": 205,
+      "name": "PLZ-07B"
+    },
+    {
+      "unit": 932,
+      "parent": 233,
+      "name": "PGZ-04A"
+    },
+    {
+      "unit": 933,
+      "parent": 636,
+      "name": "SH-16"
+    },
+    {
+      "unit": 934,
+      "parent": 97,
+      "name": "SR-5"
+    },
+    {
+      "unit": 935,
+      "parent": 12,
+      "name": "FK-2000"
+    },
+    {
+      "unit": 936,
+      "parent": 151,
+      "name": "HJ-10"
+    },
+    {
+      "unit": 937,
+      "parent": 240,
+      "name": "QN-506"
+    },
+    {
+      "unit": 938,
+      "parent": 722,
+      "name": "ZTL-11"
+    },
+    {
+      "unit": 939,
+      "parent": 238,
+      "name": "ZTZ-99A2"
+    },
+    {
+      "unit": 940,
+      "parent": 46,
+      "name": "Z-19E"
+    },
+    {
+      "unit": 941,
+      "parent": 257,
+      "name": "Z-9WA"
+    },
+    {
+      "unit": 942,
+      "parent": 727,
+      "name": "Z-11WB"
+    },
+    {
+      "unit": 943,
+      "parent": 465,
+      "name": "J-15"
+    },
+    {
+      "unit": 944,
+      "parent": 44,
+      "name": "J-50"
+    },
+    {
+      "unit": 945,
+      "parent": 3,
+      "name": "ZBD-20",
+      "transport_only": true
+    },
+    {
+      "unit": 946,
+      "parent": 170,
+      "name": "Wing Loong"
+    },
+    {
+      "unit": 947,
+      "parent": 144,
+      "name": "PTZ-89"
+    },
+    {
+      "unit": 948,
+      "parent": 238,
+      "name": "ZTZ-99G"
+    },
+    {
+      "unit": 949,
+      "parent": 157,
+      "name": "ZTZ-96"
+    },
+    {
+      "unit": 951,
+      "parent": 213,
+      "name": "HJ-8"
+    },
+    {
+      "unit": 952,
+      "parent": 233,
+      "name": "JRVG-1"
+    },
+    {
+      "unit": 953,
+      "parent": 144,
+      "name": "VT-5"
+    },
+    {
+      "unit": 954,
+      "parent": 195,
+      "name": "ZFB-05"
+    },
+    {
+      "unit": 955,
+      "parent": 310,
+      "name": "J-10S"
+    },
+    {
+      "unit": 956,
+      "parent": 9,
+      "name": "ZTZ-85-III"
+    },
+    {
+      "unit": 957,
+      "parent": 458,
+      "name": "WZ-701"
+    },
+    {
+      "unit": 958,
+      "parent": 230,
+      "name": "ZTQ-62-I"
+    },
+    {
+      "unit": 959,
+      "parent": 141,
+      "name": "ZSD-90",
+      "transport_only": true
+    },
+    {
+      "unit": 960,
+      "parent": 141,
+      "name": "ZSD-63C",
+      "transport_only": true
+    },
+    {
+      "unit": 961,
+      "parent": 94,
+      "name": "HQ-7"
+    },
+    {
+      "unit": 962,
+      "parent": 1,
+      "name": "WZ-551",
+      "transport_only": true
+    },
+    {
+      "unit": 963,
+      "parent": 92,
+      "name": "PHL-81"
+    },
+    {
+      "unit": 966,
+      "parent": 44,
+      "name": "J-20S"
+    },
+    {
+      "unit": 967,
+      "parent": 633,
+      "name": "GJ-11"
+    },
+    {
+      "unit": 968,
+      "parent": 13,
+      "name": "ZTZ-100"
+    },
+    {
+      "unit": 980,
+      "parent": 44,
+      "name": "J-31"
+    },
+    {
+      "unit": 981,
+      "parent": 328,
+      "name": "WZ-8"
+    },
+    {
+      "unit": 982,
+      "parent": 633,
+      "name": "FH-97A"
+    },
+    {
+      "unit": 974,
+      "parent": 465,
+      "name": "J-15D"
+    },
+    {
+      "unit": 975,
+      "parent": 310,
+      "name": "J-8"
+    },
+    {
+      "unit": 976,
+      "parent": 633,
+      "name": "MD-22"
+    },
+    {
+      "unit": 977,
+      "parent": 465,
+      "name": "J-16D"
+    },
+    {
+      "unit": 978,
+      "parent": 380,
+      "name": "Z-10",
+      "default_options": [
+        "OuterPylon MI28NM Empty"
+      ]
+    },
+    {
+      "unit": 979,
+      "parent": 253,
+      "name": "ZBL-191",
+      "transport_only": true
+    }
+  ],
+  "unit_id_migration": {
+    "971": 980,
+    "972": 981,
+    "973": 982
+  }
+}

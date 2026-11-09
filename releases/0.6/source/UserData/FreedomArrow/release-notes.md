@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.104 — development candidate
+# Freedom Arrow 0.6.0-pla.infantry.3 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -215,6 +215,17 @@ Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Buil
 
 **Guard transport and Checkmate update:** ZIL Karatel Punisher (973) is an unarmed, 10-seat Guard transport using provisional Typhoon-K stats and its base price. Available to Guard infantry with Tigr/Typhoon-K wheeled transport choices. Su-75 now defaults to 2x R-73 at no surcharge, for 280 total; other rear-bay options retain their prices. New model installed separately. Game checks pending.
 
+
+## PLA infantry functional test on dev.104
+
+This private test retains all dev.104 effective rows, including Karatel, Su-75 and missile-test dummies, and appends the PLA test roster. PLA Rifle Squad (901) has two QBZ-191 rifles, one QBU-191 marksman rifle, one QLU-11 grenade launcher, one QTS-11 rifle with a separate grenade launcher, and the two existing RPKs. The previous RPG slots are removed from this prototype squad. Other squads and native weapon rows stay unchanged.
+
+Behavior uses native AK74M, SVD, M32 and M4A1/M203 donors with separate cloned weapon/ammo rows. These are functional test stand-ins, not final PLA balance. QLU11 uses the native M32 model until its model file is supplied. Optional local body/rifle/QTS models are separate from the core package. Actual shooting, ammo use, damage, effects and alignment still require an offline game test.
+
+The private J-31/WZ-8/FH-97A test cards move from 971/972/973 to 980/981/982 to preserve the live target-dummy and Karatel identities. Rebuild saved PLA aircraft selections that used those three old IDs. Rifle Squad remains 901.
+
+The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and seven carrier assignments for model mapping and checks.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -392,3 +403,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 13:59:23 PST (America/Los_Angeles) — Promoted Su-75 into the normal build and documented existing Su-57D; retained previous card IDs.
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
+- 2026-11-09 14:23:06 PST (America/Los_Angeles) — Appended private PLA infantry test to dev.104 without altering existing effective rows; recorded donor behavior and three PLA card-ID migrations.
