@@ -1376,6 +1376,31 @@ def main():
         clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
         clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
         clone('OptionsJson',like['Id'],{'Name':ld['option_name'],'UIName':ld['ui'],'OptionPicture':ld['picture'],'Cost':ld['cost'],'IsDefault':False,'Order':order+i,'Turret0Id':tu},why)
+    # Target dummies (target-dummy-contract.json, Lateralus): full plane copies with their own armor (HP), flare ability (count)
+    # and a stationary mobility: speed fields of a copied fly preset set to the contract speed, no afterburner, long loiter.
+    td=json.loads((R/'target-dummy-contract.json').read_text())
+    for c in td['cards']:
+        why='Target dummy '+c['name'];par,new=c['parent'],c['unit']
+        assert new not in effective['Units'] and effective['Units'][par]['Type']==16,(new,par)
+        add_unit(new,par,{'Name':c['name'],'HUDName':c['name'],'DisplayInArmory':True},why)
+        (pmob,)={effective['MobilityJson'][r['MobilityId']]['FlyPresetId'] for r in effective['UnitPropulsionsJson'].values() if r['UnitId']==par}
+        fly=clone('FlyPresetsJson',pmob,{k:td['speed'] for k in ('MinSpeed','CornerSpeed','MaxSpeed','AfterburnSpeed','AfterburnCornerSpeed','NoseLiftStartSpeed')},why)
+        (prop,)=[r['Id'] for r in effective['UnitPropulsionsJson'].values() if r['UnitId']==par and effective['MobilityJson'][r['MobilityId']]['IsDefault']]
+        mob=clone('MobilityJson',effective['UnitPropulsionsJson'][prop]['MobilityId'],{'MaxSpeedRoad':0.0,'IsAfterburner':False,'LoiteringTime':float(td['loiter']),'AfterBurningLoiteringTime':0.0,'FlyPresetId':fly},why)
+        clone('UnitPropulsionsJson',prop,{'UnitId':new,'MobilityId':mob},why)
+        (arm,)=rows_of('UnitArmorsJson',par);clone('UnitArmorsJson',arm,{'UnitId':new,'ArmorId':clone('ArmorsJson',effective['UnitArmorsJson'][arm]['ArmorId'],{'MaxHealthPoints':c['hp']},why)},why)
+        for rid in rows_of('UnitAbilitiesJson',par):
+            ab=effective['UnitAbilitiesJson'][rid]['AbilityId']
+            clone('UnitAbilitiesJson',rid,{'UnitId':new,**({'AbilityId':clone('AbilitiesJson',ab,{'DecoyQuantity':c['flares']},why)} if effective['AbilitiesJson'][ab].get('IsDecoy') else {})},why)
+        for table in ['TurretUnitsJson','WeaponAmmunitionsJson','SensorUnitsJson']:
+            for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
+        for mod in [m for m in list(effective['ModificationsJson'].values()) if m['UnitId']==par]:
+            mine=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod['Id']),key=lambda o:(o['Order'],o['Id']))
+            if not mine:continue
+            m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why)
+            # An option with its own mobility (fuel tanks) would give the dummy back its speed: it takes the dummy mobility.
+            for o in mine:clone('OptionsJson',o['Id'],{'ModificationId':m,**({'MobilityId':mob} if o.get('MobilityId') else {})},why)
+        for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):

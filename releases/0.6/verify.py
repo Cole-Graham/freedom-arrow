@@ -82,6 +82,7 @@ with zipfile.ZipFile(p) as z:
     added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'mig31bsm-contract.json').read_text())['cards']}
     added|={str(c['unit']) for c in json.loads((R/'paladin-split-contract.json').read_text())['cards']}  # 0.6 dev.74 M1299 Iron Thunder
     added|={str(c['unit']) for c in json.loads((R/'new-cards-contract.json').read_text())['cards']}  # new US cards (Abrams X, B-21)
+    added|={str(c['unit']) for c in json.loads((R/'target-dummy-contract.json').read_text())['cards']}  # Lateralus test targets (F-22, MiG-29K dummies)
     for k,row in live('units').items():
         if k in added:continue
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
