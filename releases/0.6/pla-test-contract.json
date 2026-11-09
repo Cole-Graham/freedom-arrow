@@ -270,6 +270,16 @@
    "unit": 947,
    "parent": 144,
    "name": "PTZ-89"
+  },
+  {
+   "unit": 948,
+   "parent": 238,
+   "name": "ZTZ-99G"
+  },
+  {
+   "unit": 949,
+   "parent": 157,
+   "name": "ZTZ-96"
   }
  ]
 }
