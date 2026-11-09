@@ -85,9 +85,7 @@ with zipfile.ZipFile(p) as z:
     caps=json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps']
     for k,row in live('sensors').items():assert 'OpticsGround' not in row or f"{row['OpticsGround']:g}" in caps,k
     assert caps['2300']==1000 and caps['6400']==2750 and all(float(k)>=v for k,v in caps.items())
-    on=json.loads(z.read('UserData/FreedomArrow/optics-names.json'))
-    for ch in ['Ground','LowAltitude','HighAltitude']:
-        t=on[ch];assert t[0][0]==0 and all(a[0]<b[0] for a,b in zip(t,t[1:])) and all(x[2] in on['Colors'] for x in t),ch
+    assert 'UserData/FreedomArrow/optics-names.json' not in z.namelist()  # card shows metres again (Lateralus batch)
     for oid,cost in contract['option_costs'].items():assert table('options')[oid]['Cost']==cost,(oid,cost)
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
