@@ -22,6 +22,10 @@ static class DetectionConfig
     // Suppression move speed (Lateralus batch, 8 November 2026): Buff Config StressModifiers[Shocked/Panicked].MovementSpeedMultiplier, vanilla 0.6 / 0.2.
     static float shockedSpeed,panickedSpeed;
     static (float shocked,float panicked)? originalStressSpeed;
+    // Flare re-roll cap (Lateralus batch, 9 November 2026): BattleSystemSettings.MAX_FLARES_COUNT_MISSILE_REROLL, vanilla 1.
+    // A missile re-rolls at each new flare; this is how many burning flares that re-roll counts (MissileHitChance.cs).
+    static int flareRerollCap;
+    static int? originalFlareRerollCap;
     static void WriteBuildings()
     {
         var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
@@ -37,6 +41,10 @@ static class DetectionConfig
         originalStressSpeed??=(shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier);
         (shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier)=Runtime.IsApplied?(shockedSpeed,panickedSpeed):originalStressSpeed.Value;
         MelonLogger.Msg($"FREEDOM_ARROW_STRESS_SPEED shocked {shocked.MovementSpeedMultiplier} panicked {panicked.MovementSpeedMultiplier}");
+        var battle=GameConfig.Instance.BattleSystemSettings??throw new InvalidDataException("Battle system settings missing");
+        originalFlareRerollCap??=battle.MAX_FLARES_COUNT_MISSILE_REROLL;
+        battle.MAX_FLARES_COUNT_MISSILE_REROLL=Runtime.IsApplied?flareRerollCap:originalFlareRerollCap.Value;
+        MelonLogger.Msg($"FREEDOM_ARROW_FLARE_REROLL_CAP {battle.MAX_FLARES_COUNT_MISSILE_REROLL} (initial roll {battle.MAX_FLARES_COUNT_MISSILE_INITIAL})");
     }
     static void Log(string stage,object data)=>MelonLogger.Msg("FREEDOM_ARROW_DETECTION "+stage+" "+JsonSerializer.Serialize(data));
     public static void Install(HarmonyLib.Harmony harmony,string root)
@@ -53,6 +61,8 @@ static class DetectionConfig
         if(!(minorMobility>0&&minorMobility<=1))throw new InvalidDataException("MinorMobilityMultiplier out of range");
         shockedSpeed=game["ShockedMoveSpeed"].GetValue<float>();panickedSpeed=game["PanickedMoveSpeed"].GetValue<float>();
         if(!(shockedSpeed>0&&shockedSpeed<=1&&panickedSpeed>0&&panickedSpeed<=1))throw new InvalidDataException("Stress move speed out of range");
+        flareRerollCap=game["FlareRerollCap"].GetValue<int>();
+        if(!(flareRerollCap>=1&&flareRerollCap<=100))throw new InvalidDataException("FlareRerollCap out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }

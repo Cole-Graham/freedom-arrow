@@ -47,7 +47,7 @@ public sealed partial class Prototype
             try
             {
                 Directory.CreateDirectory(Root);shotLines=0;
-                shotFile=new StreamWriter(Path.Combine(Root,$"shots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.jsonl"));
+                shotRepeat.Clear();shotFile=new StreamWriter(Path.Combine(Root,$"shots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.jsonl"));
                 ShotLine("start",new{editor=EditorTest(),version=typeof(Prototype).Assembly.GetName().Version?.ToString()});
                 MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG started");
             }
@@ -77,9 +77,15 @@ public sealed partial class Prototype
         try{return new{reload=Math.Round(w.GetMagazineReloadTime(),3),betweenBursts=Math.Round(w.GetTimeBetweenBursts(),3),inBurst=w.TimeBetweenShotsInBurst,shotsPerBurst=w.ShotsPerBurst.Value,inBurstLeft=w.ShotsRemainingInBurst,aim=Math.Round(w.GetAimTime(),3),magazineSize=w.WeaponInfo?.MagazineSize??0};}
         catch{return null;}
     }
+    static readonly Dictionary<int,(int mag,float t)> shotRepeat=new();
     static void LogShot(Entity weapon,WeaponComponent w,string ammo)
     {
         if(shotFile==null)return;
+        // Lateralus batch, 9 November 2026: the Patriot repeats the shot callback every frame with an unchanged magazine
+        // (185 lines in 6 s, shotsMade 0). Skip a repeat of the same weapon and magazine count within 0.25 s.
+        int key=weapon.GetHashCode(),mag=w.AmmoInMagazine.Value;float now=Time.time;
+        if(shotRepeat.TryGetValue(key,out var last)&&last.mag==mag&&now-last.t<0.25f){shotRepeat[key]=(mag,now);return;}
+        shotRepeat[key]=(mag,now);
         object shooter=null;Entity unit=default;
         try{unit=w.GetUnitEntity();shooter=UnitInfo(unit);}catch{}
         ShotLine("shot",new{weapon=weapon.GetHashCode(),weaponId=w.WeaponInfo?.Id??0,weaponName=w.WeaponInfo?.Name,weaponType=(int)(w.WeaponInfo?.Type??0),ammo,ammoId=w.SelectedAmmunition?.Id??0,shooter,magazineAfter=w.AmmoInMagazine.Value,shotsMade=w.ShotsMade.Value,timing=Timing(w)});
