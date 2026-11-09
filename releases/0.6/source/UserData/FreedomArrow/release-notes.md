@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.35 — development candidate
+# Freedom Arrow 0.6.0-pla.36 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -214,6 +214,10 @@ Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Buil
 
 The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats and loadouts are unchanged. This is a data change; the display has not yet been checked in the game.
 
+## J-16D — pla.36
+
+Adds a separate PLA J-16D card (977), temporarily using the same Su-27SM-derived stats and loadouts as the existing J-15D card. Its private CGTrader model has landing gear down in the armory, EW pods retained, source missiles removed, and a lighter battle copy with gear removed. Stats are a placeholder, not a measured representation of the real aircraft. No in-game check yet.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -389,3 +393,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-06 22:30:17 PST (America/Los_Angeles) — 0.5.0-dev.25: Chkalovsk Bravo spawn faces the map centre.
 
 - 2026-11-09 04:22:18 PST (America/Los_Angeles) — pla.35: copied the RQ-170 icon and portrait to the X-47B; no live display verification.
+
+- 2026-11-09 04:29:08 PST (America/Los_Angeles) — pla.36: added J-16D card and documented temporary donor stats and private model conversion.

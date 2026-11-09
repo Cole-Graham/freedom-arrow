@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.35 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.36 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.35.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.36.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -332,6 +332,10 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 ## X-47B icon — pla.35
 
 The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats and loadouts are unchanged. This is a data change; the display has not yet been checked in the game.
+
+## J-16D — pla.36
+
+Adds a separate PLA J-16D card (977), temporarily using the same Su-27SM-derived stats and loadouts as the existing J-15D card. Its private CGTrader model has landing gear down in the armory, EW pods retained, source missiles removed, and a lighter battle copy with gear removed. Stats are a placeholder, not a measured representation of the real aircraft. No in-game check yet.
 
 ## Document change log
 
@@ -545,3 +549,5 @@ The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats
 - 2026-11-09 02:54:18 PST (America/Los_Angeles) — 0.6.0-dev.95: Lateralus batch 6 (dev.94 crash fix) on top of dev.94. No live result.
 
 - 2026-11-09 04:22:18 PST (America/Los_Angeles) — pla.35: copied the RQ-170 icon and portrait to the X-47B; no live display verification.
+
+- 2026-11-09 04:29:08 PST (America/Los_Angeles) — pla.36: added J-16D card and documented temporary donor stats and private model conversion.
