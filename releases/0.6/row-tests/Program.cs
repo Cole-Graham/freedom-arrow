@@ -290,3 +290,14 @@ var kt=merged["TransportAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>(
 foreach(var t in kt)Check(Row("SpecializationAvailabilitiesJson",t["SpecializationAvailabilityId"].GetValue<int>())["SpecializationId"].GetValue<int>()==12,"Karatel only Guard");
 Check(!merged["WeaponAmmunitionsJson"].Any(r=>r["UnitId"].GetValue<int>()==973),"Karatel unarmed");
 Console.WriteLine("PASS: Karatel Guard transport and Su75 baseline R73 checks");
+
+Check(Row("Units",973)["Cost"].GetValue<int>()==35,"Karatel35 points");
+foreach(var field in new[]{"Weight","Width","Height","Stealth","MaxStress"})Check(Row("Units",973)[field].ToJsonString()==Row("Units",194)[field].ToJsonString(),"Karatel Tigr "+field);
+foreach(var pair in new[]{("UnitPropulsionsJson","MobilityId"),("SensorUnitsJson","SensorId"),("UnitArmorsJson","ArmorId")}){
+ var a=merged[pair.Item1].Where(r=>r["UnitId"].GetValue<int>()==973).Select(r=>r[pair.Item2].GetValue<int>()).Order().ToArray();
+ var b=merged[pair.Item1].Where(r=>r["UnitId"].GetValue<int>()==194).Select(r=>r[pair.Item2].GetValue<int>()).Order().ToArray();Check(a.SequenceEqual(b),"Karatel Tigr profile "+pair.Item1);
+}
+var ka=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==973).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
+Check(ka.Any(a=>a["IsDefault"].GetValue<bool>()&&a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==1),"Karatel default smoke");
+Check(ka.Any(a=>a["IsDefault"].GetValue<bool>()&&a["IsResupplyAbility"].GetValue<bool>()&&a["ResupplyPoints"].GetValue<int>()==250),"Karatel250 supplies");
+Console.WriteLine("PASS: Karatel Tigr profiles,35 points,default smoke,250 supplies");

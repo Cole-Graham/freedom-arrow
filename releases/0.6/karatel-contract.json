@@ -8,5 +8,9 @@
     96,
     194
   ],
-  "length": 6.33
+  "length": 6.33,
+  "stats_parent": 194,
+  "cost": 35,
+  "supply_points": 250,
+  "smoke": true
 }

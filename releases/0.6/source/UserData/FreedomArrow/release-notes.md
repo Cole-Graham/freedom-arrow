@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.infantry.3 — development candidate
+# Freedom Arrow 0.6.0-pla.infantry.4 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -226,6 +226,9 @@ The private J-31/WZ-8/FH-97A test cards move from 971/972/973 to 980/981/982 to 
 
 The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and seven carrier assignments for model mapping and checks.
 
+
+Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -404,3 +407,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
 - 2026-11-09 14:23:06 PST (America/Los_Angeles) — Appended private PLA infantry test to dev.104 without altering existing effective rows; recorded donor behavior and three PLA card-ID migrations.
+
+- 2026-11-09 14:40:00 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.

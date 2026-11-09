@@ -628,5 +628,11 @@
     "bamod_sha256": "62966dad4f641252fc9a6e68cf3ddb9743ffbb2b20121dad00fa17e8b426d189",
     "parent_commit": "97404d2",
     "built_utc": "2026-11-09T22:23:15Z"
+  },
+  "0.6.0-pla.infantry.4": {
+    "inputs": "351e2a3ad4e80431126814a1d95ce56394f61f01b7dc0476f70f94a7b3e8461e",
+    "bamod_sha256": "10e64bc38b83758a3b4bb7aacca3af8946509b9a9711bc709d1ef7bdc46cdb0d",
+    "parent_commit": "3998692",
+    "built_utc": "2026-11-09T22:40:29Z"
   }
 }

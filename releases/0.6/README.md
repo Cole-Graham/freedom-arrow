@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.infantry.3 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.infantry.4 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.infantry.3.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.infantry.4.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -343,6 +343,9 @@ Behavior uses native AK74M, SVD, M32 and M4A1/M203 donors with separate cloned w
 The private J-31/WZ-8/FH-97A test cards move from 971/972/973 to 980/981/982 to preserve the live target-dummy and Karatel identities. Rebuild saved PLA aircraft selections that used those three old IDs. Rifle Squad remains 901.
 
 The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and seven carrier assignments for model mapping and checks.
+
+
+Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
 
 ## Document change log
 
@@ -559,3 +562,5 @@ The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and
 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
 - 2026-11-09 14:23:06 PST (America/Los_Angeles) — Appended private PLA infantry test to dev.104 without altering existing effective rows; recorded donor behavior and three PLA card-ID migrations.
+
+- 2026-11-09 14:40:00 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.

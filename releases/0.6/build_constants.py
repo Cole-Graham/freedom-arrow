@@ -1468,6 +1468,24 @@ def main():
         swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)
         assert mine<=theirs,('turret links differ from the parent (Name, Order, parent turret)',c['unit'],sorted(mine-theirs))
+    # Karatel revision: preserve earlier clone IDs, then replace its donor profiles.
+    why='Karatel Tigr stats, ten seats, smoke and 250 supplies at35 points'
+    donor=copy.deepcopy(effective['Units'][194]);donor.pop('Id')
+    donor.update(Name=kc['name'],HUDName=kc['name'],InfantrySlots=10,Cost=35,Length=kc['length'])
+    put('Units',ku,donor,why)
+    for table in ['UnitAbilitiesJson','UnitPropulsionsJson','SensorUnitsJson','UnitArmorsJson']:
+        for rid in list(rows_of(table,ku)):
+            assert rid not in original[table]
+            del effective[table][rid];patches[table].pop(str(rid),None)
+            audit[:]=[a for a in audit if not(a['table']==table and a['id']==rid)]
+        for rid in list(rows_of(table,194)):
+            if table=='UnitAbilitiesJson':continue
+            clone(table,rid,{'UnitId':ku},why)
+    # Tigr abilities are option-selected. This unarmed transport has no weapon options.
+    for ability in [1,109]:
+        aid=clone('AbilitiesJson',ability,{'Name':'Karatel '+effective['AbilitiesJson'][ability]['Name'],'IsDefault':True},why)
+        link=next(r for r in original['UnitAbilitiesJson'].values() if r['UnitId']==194 and r['AbilityId']==ability)
+        clone('UnitAbilitiesJson',link['Id'],{'UnitId':ku,'AbilityId':aid},why)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
