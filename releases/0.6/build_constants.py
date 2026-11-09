@@ -1401,6 +1401,29 @@ def main():
             # An option with its own mobility (fuel tanks) would give the dummy back its speed: it takes the dummy mobility.
             for o in mine:clone('OptionsJson',o['Id'],{'ModificationId':m,**({'MobilityId':mob} if o.get('MobilityId') else {})},why)
         for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+    # Su-75 promoted from the PLA test branch (Osama). Allocate last to preserve
+    # every existing live-card and target-dummy clone ID.
+    cm=json.loads((R/'su75-contract.json').read_text());uid,par=cm['unit'],cm['parent'];why='Su-75 live rear bay only'
+    assert uid not in effective['Units']
+    add_unit(uid,par,{'Name':cm['name'],'HUDName':cm['name'],'DisplayInArmory':True,'Cost':cm['cost']},why)
+    rear=effective['ModificationsJson'][cm['rear_mod']];assert rear['UnitId']==par and rear['UIName']=='Custom_Slot_Rear_bay'
+    opts=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==rear['Id']),key=lambda o:(o['Order'],o['Id']))
+    assert len(opts)==7
+    assert all(not v or k in ['Turret4Id','Turret5Id','Turret6Id'] for o in opts for k,v in o.items() if re.fullmatch(r'Turret\d+Id',k))
+    keep={v for o in opts for k,v in o.items() if re.fullmatch(r'Turret\d+Id',k) and v}
+    keep.update(r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==par and effective['TurretsJson'][r['TurretId']]['IsDefault'])
+    weapons={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in keep}
+    for table in unit_tables:
+        for rid in list(rows_of(table,par)):
+            row=effective[table][rid]
+            if table=='TurretUnitsJson' and row['TurretId'] not in keep:continue
+            if table=='WeaponAmmunitionsJson' and row['WeaponId'] not in weapons:continue
+            clone(table,rid,{'UnitId':uid},why)
+    mid=clone('ModificationsJson',rear['Id'],{'UnitId':uid},why);has_default=any(o['IsDefault'] for o in opts)
+    for order,o in enumerate(opts):clone('OptionsJson',o['Id'],{'ModificationId':mid,'Order':order,'IsDefault':o['IsDefault'] or (not has_default and order==0),**({'ReplaceUnitName':cm['name']} if o.get('ReplaceUnitName') else {})},why)
+    avail=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par)
+    clone('SpecializationAvailabilitiesJson',avail['Id'],{'UnitId':uid,'SpecializationId':cm['spec']},why)
+    assert {r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid}=={12}
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):
@@ -1410,7 +1433,7 @@ def main():
             t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
             out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
         return out,mains
-    for c in nc['cards']:
+    for c in nc['cards']+[cm]:
         mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
         swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)

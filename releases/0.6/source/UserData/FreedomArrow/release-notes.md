@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.102 — development candidate
+# Freedom Arrow 0.6.0-dev.103 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -211,6 +211,8 @@ The read-only game state log now also runs in private online matches, so HP loss
 
 Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Building hits have no distance falloff, so a 152mm shell goes from 6.44 to about 2.92 and a Mk82 bomb from about 12.65 to about 3.29, by the game formula. The state log also records magazine changes. No live result.
 
+**Live-branch card update:** Su-75 Checkmate (950) added to Russian Guard (12), base280 and rear bay only; fixed cannon retained. Su-57D (970) remains a stat-identical Su-57 copy from dev.101. Both use separately installed private models on the development PC. Generated-data checks passed; game validation pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -384,3 +386,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-06 01:59:58 PST (America/Los_Angeles) — 0.4.0-dev.35: TOW-2B = Javelin, Thunderbolt rear armor unchanged, Stryker MC 90 (Osama). Not deployed.
 - 2026-11-06 22:10:32 PST (America/Los_Angeles) — 0.5.0-dev.23: Chkalovsk Airbase map; start cameras face the battle.
 - 2026-11-06 22:30:17 PST (America/Los_Angeles) — 0.5.0-dev.25: Chkalovsk Bravo spawn faces the map centre.
+
+- 2026-11-09 13:59:23 PST (America/Los_Angeles) — Promoted Su-75 into the normal build and documented existing Su-57D; retained previous card IDs.
