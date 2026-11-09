@@ -14,7 +14,7 @@ namespace FreedomArrow;
 // seekers never reach the roll (vanilla). Calls from outside CalculateMissileDivertion (the AI overkill score) get the flat chance.
 static class MissileHitChance
 {
-    const int MaxLog=300,Prune=4096;
+    const int MaxLog=3000,Prune=4096;
     [ThreadStatic] static bool inDivertion;
     [ThreadStatic] static ulong current;
     static readonly Dictionary<ulong,(float lowest,float time,float launch)> missiles=new();
