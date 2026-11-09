@@ -526,5 +526,11 @@
     "bamod_sha256": "32953125628253bc88cf01ad6ae20f819876fde3ecebf4c49de73148dbb0fcf0",
     "parent_commit": "f09d89d",
     "built_utc": "2026-11-09T04:24:20Z"
+  },
+  "0.6.0-pla.8": {
+    "inputs": "3c82192b7512d5e5adfed123630b6ce004319c7c0388d7bfa274782f28e0b43a",
+    "bamod_sha256": "546a0df9525797837cab2ac6c47bdec37aab36caaa8203005ef577898ecaefd3",
+    "parent_commit": "c91323f",
+    "built_utc": "2026-11-09T04:58:21Z"
   }
 }
