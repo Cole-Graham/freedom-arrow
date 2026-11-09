@@ -1224,12 +1224,13 @@ def main():
         assert len(wa)==1 and wa[0]['AmmunitionId']==g['ammo_from'],(uid,wa)
         put('WeaponAmmunitionsJson',wa[0]['Id'],{'WeaponId':w22,'AmmunitionId':a22},why)
     assert not ammo_users(g['ammo_from']) and not any(g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values()),'RPG-18 still carried'
-    # Lateralus batch: every flare ability takes 5 points per burning flare under the flat missile chance (missile-chance-contract.json).
+    # Lateralus batch: flare abilities take 10 points (helicopters) or 5 points (planes) per burning flare under the flat missile chance (missile-chance-contract.json).
     mc=json.loads((R/'missile-chance-contract.json').read_text())
     for a in [a for a in effective['AbilitiesJson'].values() if a.get('IsDecoy')]:
         users={effective['Units'][l['UnitId']]['Type'] for l in effective['UnitAbilitiesJson'].values() if l['AbilityId']==a['Id'] and l['UnitId'] in effective['Units']}
-        assert users<=set(mc['unit_types']),(a['Id'],users)
-        put('AbilitiesJson',a['Id'],{'DecoyAccuracyMultiplier':mc['decoy_accuracy']},'Flares 5 points each (flat missile chance)')
+        if not users:continue  # 9 flare rows no unit uses: left vanilla
+        assert len(users)==1 and str(next(iter(users))) in mc['decoy_accuracy'],(a['Id'],users)
+        put('AbilitiesJson',a['Id'],{'DecoyAccuracyMultiplier':mc['decoy_accuracy'][str(next(iter(users)))]},'Flares: helicopters 10 points, planes 5 points each (flat missile chance)')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

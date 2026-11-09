@@ -1,5 +1,7 @@
 {
- "note": "Lateralus batch (8 November 2026): flat missile hit chance. Runtime (source/runtime-qa/MissileHitChance.cs): chance = accuracy x (1 - (1 - ECM) - burning flares x (1 - (1 - flare resistance) x flare strength)) x stress; re-rolls pass with min(1, chance / lowest chance so far), so they do not compound. Data: every flare (decoy) ability, all on planes and helicopters, gets flare strength 0.95, so each burning flare takes 5 points off the chance. Missile speeds, flare counts, burn times and cooldowns stay vanilla.",
- "decoy_accuracy": 0.95,
- "unit_types": [8, 16]
+ "note": "Lateralus batch (8 November 2026): flat missile hit chance. Runtime (source/runtime-qa/MissileHitChance.cs): chance = accuracy x (1 - (1 - ECM) - burning flares x (1 - (1 - flare resistance) x flare strength)) x stress; re-rolls pass with min(1, chance / lowest chance so far), so they do not compound. Data: flare (decoy) abilities by unit type: helicopters (8) 0.9, so each burning flare takes 10 points off; planes (16) 0.95, 5 points (Lateralus, 9 November 2026). Missile speeds, flare counts, burn times and cooldowns stay vanilla.",
+ "decoy_accuracy": {
+  "8": 0.9,
+  "16": 0.95
+ }
 }
