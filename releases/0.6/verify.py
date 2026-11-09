@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.88.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.89.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-dev.88'
+    assert manifest['version']=='0.6.0-dev.89'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.88 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.89 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -181,6 +181,7 @@ with zipfile.ZipFile(p) as z:
     assert all(am[str(x)]['IgnoreCover']==1.0 for x in cw['ballistic']['ammo']),'ballistic cover'
     assert all([am[k]['DispersionHorizontalRadius'],am[k]['DispersionVerticalRadius']]==v and am[k]['IgnoreCover']==cw['tos']['ignore_cover'] and 'Damage' not in am[k] for k,v in cw['tos']['ammo'].items()),'TOS'
     ac=json.loads((R/'arty-cover-contract.json').read_text());assert all(am[k]['IgnoreCover']==v['IgnoreCover'] for k,v in ac['ammo'].items()),'0.6 dev.85 artillery cover'
+    mk=json.loads((R/'malka-contract.json').read_text());assert all(am[k]['Damage']==f['Damage'] for k,f in mk['ammo'].items()),'0.6 dev.89 Malka damage'
     assert am[str(cw['mop']['ammo'])]['IgnoreCover']==cw['mop']['ignore_cover'] and opt[str(cw['mop']['option'])]['Cost']==cw['mop']['option_cost'],'B-2 MOP'
     bk=json.loads((R/'brm3k-contract.json').read_text())
     assert all(opt[str(o)]['MainSensorId']==bk['sensor'] for o in bk['options']) and arm[str(bk['armor'])]['HeatArmorFront']==arm[str(bk['armor'])]['HeatArmorSides']==bk['heat'],'BRM-3K'

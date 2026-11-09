@@ -998,6 +998,11 @@ def main():
         want=(van['Damage']*(0.38+0.62*van['IgnoreCover'])/row['Damage']-0.18)/0.82
         assert abs(v['IgnoreCover']-want)<0.001,(key,want)
         put('AmmunitionsJson',int(key),{'IgnoreCover':v['IgnoreCover']},'Artillery HE: vanilla infantry damage in buildings (ignore cover only)')
+    # 0.6 dev.89 (Osama): Malka 203 mm HE damage 22 (malka-contract.json). After the artillery cover block, which checks vanilla damage.
+    mk=json.loads((R/'malka-contract.json').read_text())
+    for key,f in mk['ammo'].items():
+        row=effective['AmmunitionsJson'][int(key)];assert row['Name'].strip()==f['name'] and row['Damage']==f['was'],key
+        put('AmmunitionsJson',int(key),{'Damage':f['Damage']},'Malka 203 mm HE damage 22')
     mop=cw['mop'];row=effective['AmmunitionsJson'][mop['ammo']];assert row['Name']=='Bomb 13600kg GBU57' and row['IgnoreCover']==0,row['Name']
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])

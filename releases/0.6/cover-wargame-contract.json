@@ -295,7 +295,7 @@
         200.0
       ]
     },
-    "note": "0.6 dev.78 (Osama, 8 November 2026): TOS-1, TOS-1A and TOS-2 fully vanilla (damage 30, penetration 15, ignore cover 0) except scatter 50 m wider and longer on the unit card (+25 raw on DispersionHorizontalRadius and DispersionVerticalRadius; card metres = raw x 2). dev.85: ignore cover 0.012 -> 0.244, vanilla infantry damage in buildings (10-man squad). dev.88: ignore cover 0.244 -> 0.151 (80% of dev.85 in buildings).",
-    "ignore_cover": 0.151
+    "note": "0.6 dev.78 (Osama, 8 November 2026): TOS-1, TOS-1A and TOS-2 fully vanilla (damage 30, penetration 15, ignore cover 0) except scatter 50 m wider and longer on the unit card (+25 raw on DispersionHorizontalRadius and DispersionVerticalRadius; card metres = raw x 2). dev.85: ignore cover 0.012 -> 0.244, vanilla infantry damage in buildings (10-man squad). dev.88: ignore cover 0.244 -> 0.151 (80% of dev.85 in buildings). dev.89 (Osama, 9 November 2026: 'crank up the ignore cover to 100%'): ignore cover 0.151 -> 1.0, so infantry in the open, in forest and in buildings take the same damage (30). Damage and penetration unchanged.",
+    "ignore_cover": 1.0
   }
 }
