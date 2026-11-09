@@ -1,5 +1,5 @@
 """XM30 requested data graph; T-15 stand-in until an FBX/Blend source is supplied."""
-def apply(effective,original,clone,add_unit,rows_of):
+def apply(effective,original,clone,add_unit,rows_of,patches,audit):
     uid=983;why='XM30 US Armor tank:220 points,2 availability,Booker XM913,2 APS'
     assert uid not in effective['Units']
     add_unit(uid,255,dict(Name='XM30',HUDName='XM30',CountryId=2,Role=11,Cost=220,ContentMembership=-1,PortraitFileName=effective['Units'][16]['PortraitFileName'],ThumbnailFileName=effective['Units'][16]['ThumbnailFileName']),why)
@@ -27,3 +27,12 @@ def apply(effective,original,clone,add_unit,rows_of):
         for rid in list(rows_of('WeaponAmmunitionsJson',donor)):
             if effective['WeaponAmmunitionsJson'][rid]['WeaponId']==wid:clone('WeaponAmmunitionsJson',rid,{'UnitId':uid},why)
     clone('SpecializationAvailabilitiesJson',865,dict(UnitId=uid,SpecializationId=4,MaxAvailabilityXp0=2,MaxAvailabilityXp1=0,MaxAvailabilityXp2=0,MaxAvailabilityXp3=0),why)
+
+    # Preserve all IDs already allocated for saved XM30 packages, then remove the PKT links.
+    own_turrets={r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==uid}
+    for table in ['TurretWeaponsJson','WeaponAmmunitionsJson']:
+        ids={r['Id'] for r in effective[table].values() if r['WeaponId']==7 and (r.get('UnitId')==uid if table=='WeaponAmmunitionsJson' else r['TurretId'] in own_turrets)}
+        for rid in ids:
+            assert rid not in original[table]
+            del effective[table][rid];patches[table].pop(str(rid),None)
+        audit[:]=[a for a in audit if not(a['table']==table and a['id'] in ids)]

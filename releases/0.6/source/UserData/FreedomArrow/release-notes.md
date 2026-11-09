@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.infantry.6 — development candidate
+# Freedom Arrow 0.6.0-pla.infantry.7 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -235,6 +235,9 @@ XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,
 
 XM30 unit card now uses the M2A3 Bradley portrait and thumbnail. Unit statistics unchanged.
 
+
+XM30 PKT weapon and ammunition links removed from both missile packages. Existing package IDs retained.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -421,3 +424,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 15:00:55 PST (America/Los_Angeles) — Final XM30 specification: Booker armor,700 front/side HEAT,220 points,eight seats.
 
 - 2026-11-09 15:24:22 PST (America/Los_Angeles) — Use M2A3 Bradley artwork for the XM30 card.
+
+- 2026-11-09 15:39:05 PST (America/Los_Angeles) — Remove XM30 PKT as requested; retain XM913 and missile choices.
