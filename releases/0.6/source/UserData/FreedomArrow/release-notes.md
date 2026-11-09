@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.96 — development candidate
+# Freedom Arrow 0.6.0-dev.97 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,7 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.97 (Osama): fix for a battle with the B-21 Raider that stuck on the start camera. The 24x JATM load is now one bay weapon holding all 24 missiles, firing one about every second (it was 12 twin-rack weapons on one bay mount). Not yet run in a game.
 New in 0.6 dev.96 (Osama): two new US cards. Abrams X (Armored Brigade, 450): a SEP v3 copy with 90 km/h road / 50 reverse, a 30% jammer, SEP v2 armour, Trophy APS and smoke, the SEP v3 gun, a 30 mm Bushmaster II for the commander's M2 and Very Good (2,000 m) optics; one configuration. B-21 Raider (Airborne, 200): a B-2 Spirit copy with the B-2 loadouts plus 24x AIM-260 JATM (+400, the F-15EX AIM-120 stats, 12 twin racks) and 2x AGM-183A ARRW (+200). Not yet run in a game; they look like the SEP v3 and the B-2 without the private model mod.
 New in 0.6 dev.95 (Lateralus batch 6, crash fix): dev.94 crashed when a missile reached its target; the missile end log that caused it is removed. Missile roll lines still name the target and its flares left.
 New in 0.6 dev.94 (Lateralus batch 5, logging only): missile hit-chance lines name the target and its flares left, and a new missile end line says why each missile stopped guiding (hit, lost energy, lost target) with its flight time and distance to the target.
