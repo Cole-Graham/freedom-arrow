@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.44 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.46 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.44.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.46.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -358,6 +358,10 @@ Osama clarified that he wants the author's supplied flat green skin, not a custo
 All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at both range endpoints. Raises 15 rows, including low-penetration HE rockets, TOS, Grad incendiary, Tulpan and Malka. Smoke, aircraft rocket pods and engineering mine-clearing charges are excluded. Raw damage, ignore cover, blast radius and dispersion are unchanged; TOS stays at raw damage 11. The floor supersedes the old MLRS vehicle-hit cap and can exceed vanilla penetration (TOS). Vanilla-damage recalculation is a separate proposal, not installed in this version. Static checks only; no gameplay test.
 
 **PLA test update:** Y-20 now copies the IL-76MD unit stats and transport components, with no weapon mounts or ammunition. Generated-data checks pass; in-game validation remains pending. Local model changes are separate from this package.
+
+**Su-75 test update:** base plane price set to 280 at Osama’s request. No game confirmation yet.
+
+**Su-75 loadout and deck update:** one rear bay only, fixed cannon retained, forward-bay and wingtip mounts removed. Available in Russian Guard (specialization 12), excluded from Guard Tank (8). Base 280; rear-bay loadouts add their existing prices. Data checks only; game test pending.
 
 ## Document change log
 
@@ -585,3 +589,7 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 - 2026-11-09 05:27:09 PST (America/Los_Angeles) — pla.41: applied final 40 artillery penetration floor after historical tuning; retained damage/cover pending recalculation.
 
 - 2026-11-09 13:09:16 PST (America/Los_Angeles) — pla.43: documented unarmed IL-76MD-based Y-20 and pending game checks. pla.42 was an unpublished intermediate package.
+
+- 2026-11-09 13:37:30 PST (America/Los_Angeles) — Set Su-75 base cost to 280; runtime price check pending.
+
+- 2026-11-09 13:38:47 PST (America/Los_Angeles) — Restricted Su-75 to rear bay and Russian Guard; retained base cost 280.

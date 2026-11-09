@@ -1298,7 +1298,7 @@ def main():
     for c in pl['cards']:
         par,new=c['parent'],c['unit'];p=effective['Units'][par]
         assert new not in effective['Units'] and p['CountryId']==(2 if c.get('us') else 1),(new,par)
-        add_unit(new,par,{'Name':(c['name'] if c.get('russia') or c.get('us') else 'PLA '+c['name']),'HUDName':c['name'],'DisplayInArmory':True},why)
+        add_unit(new,par,{'Name':(c['name'] if c.get('russia') or c.get('us') else 'PLA '+c['name']),'HUDName':c['name'],'DisplayInArmory':True,**({'Cost':c['cost']} if 'cost' in c else {})},why)
         for table in unit_tables:
             for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
         for mod in [m for m in list(effective['ModificationsJson'].values()) if m['UnitId']==par]:
@@ -1428,6 +1428,31 @@ def main():
         for rid in list(rows_of(table,yp)):clone(table,rid,{'UnitId':yu},'Y-20 IL-76MD stat clone, unarmed')
     for table in ['TurretUnitsJson','WeaponAmmunitionsJson']:assert not rows_of(table,yu)
     assert all(effective['Units'][yu][k]==v for k,v in effective['Units'][yp].items() if k not in ['Id',*identity])
+    # Su-75: keep only the donor's rear bay and the fixed cannon. Remove generated rows
+    # from the patch rather than emitting deletes for rows absent in the vanilla database.
+    def discard_generated(table,rid):
+        assert rid not in original[table],(table,rid)
+        del effective[table][rid];patches[table].pop(str(rid),None)
+        audit[:]=[a for a in audit if (a['table'],a['id'])!=(table,rid)]
+    for c in [c for c in pl['cards'] if c.get('rear_bay_only')]:
+        uid=c['unit'];mods=[m for m in effective['ModificationsJson'].values() if m['UnitId']==uid]
+        rear=[m for m in mods if m['UIName']=='Custom_Slot_Rear_bay'];assert len(rear)==1
+        for m in mods:
+            if m['Id']==rear[0]['Id']:continue
+            for o in list(effective['OptionsJson'].values()):
+                if o['ModificationId']==m['Id']:discard_generated('OptionsJson',o['Id'])
+            discard_generated('ModificationsJson',m['Id'])
+        opts=[o for o in effective['OptionsJson'].values() if o['ModificationId']==rear[0]['Id']]
+        assert len(opts)==7 and sum(bool(o['IsDefault']) for o in opts)==1
+        assert all(not v or k in ['Turret4Id','Turret5Id','Turret6Id'] for o in opts for k,v in o.items() if re.fullmatch(r'Turret\d+Id',k))
+        keep={v for o in opts for k,v in o.items() if re.fullmatch(r'Turret\d+Id',k) and v}
+        keep.update(r['TurretId'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==uid and effective['TurretsJson'][r['TurretId']]['IsDefault'])
+        for rid in list(rows_of('TurretUnitsJson',uid)):
+            if effective['TurretUnitsJson'][rid]['TurretId'] not in keep:discard_generated('TurretUnitsJson',rid)
+        weapons={r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in keep}
+        for rid in list(rows_of('WeaponAmmunitionsJson',uid)):
+            if effective['WeaponAmmunitionsJson'][rid]['WeaponId'] not in weapons:discard_generated('WeaponAmmunitionsJson',rid)
+        assert {r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid}=={12}
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):

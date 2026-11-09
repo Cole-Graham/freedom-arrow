@@ -289,7 +289,12 @@
       "unit": 950,
       "parent": 44,
       "name": "Su-75 Checkmate",
-      "russia": true
+      "russia": true,
+      "cost": 280,
+      "specs": [
+        12
+      ],
+      "rear_bay_only": true
     },
     {
       "unit": 951,

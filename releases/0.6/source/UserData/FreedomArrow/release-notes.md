@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.44 — development candidate
+# Freedom Arrow 0.6.0-pla.46 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -240,6 +240,10 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 **PLA test update:** Y-20 now copies the IL-76MD unit stats and transport components, with no weapon mounts or ammunition. Generated-data checks pass; in-game validation remains pending. Local model changes are separate from this package.
 
+**Su-75 test update:** base plane price set to 280 at Osama’s request. No game confirmation yet.
+
+**Su-75 loadout and deck update:** one rear bay only, fixed cannon retained, forward-bay and wingtip mounts removed. Available in Russian Guard (specialization 12), excluded from Guard Tank (8). Base 280; rear-bay loadouts add their existing prices. Data checks only; game test pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -429,3 +433,7 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 05:27:09 PST (America/Los_Angeles) — pla.41: applied final 40 artillery penetration floor after historical tuning; retained damage/cover pending recalculation.
 
 - 2026-11-09 13:09:16 PST (America/Los_Angeles) — pla.43: documented unarmed IL-76MD-based Y-20 and pending game checks. pla.42 was an unpublished intermediate package.
+
+- 2026-11-09 13:37:30 PST (America/Los_Angeles) — Set Su-75 base cost to 280; runtime price check pending.
+
+- 2026-11-09 13:38:47 PST (America/Los_Angeles) — Restricted Su-75 to rear bay and Russian Guard; retained base cost 280.
