@@ -1424,6 +1424,28 @@ def main():
     avail=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par)
     clone('SpecializationAvailabilitiesJson',avail['Id'],{'UnitId':uid,'SpecializationId':cm['spec']},why)
     assert {r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid}=={12}
+    # Baseline Checkmate rear bay: two R-73, no loadout surcharge (Osama).
+    for o in list(effective['OptionsJson'].values()):
+        if o['ModificationId']==mid:put('OptionsJson',o['Id'],{'IsDefault':False,'Order':o['Order']+1},'Su-75 baseline R73')
+    clone('OptionsJson',opts[0]['Id'],{'ModificationId':mid,'Name':'RearBay Su75 2xR73','UIName':'Custom_Option_2xR73','OptionPicture':'R73_MISSILE','Cost':0,'Order':0,'IsDefault':True,'Turret4Id':653,'Turret5Id':653,'Turret6Id':160},'Su-75 baseline R73')
+    for rid in list(rows_of('TurretUnitsJson',par)):
+        if effective['TurretUnitsJson'][rid]['TurretId']==653:clone('TurretUnitsJson',rid,{'UnitId':uid},'Su-75 baseline R73')
+    for rid in list(rows_of('WeaponAmmunitionsJson',par)):
+        if effective['WeaponAmmunitionsJson'][rid]['WeaponId']==243:clone('WeaponAmmunitionsJson',rid,{'UnitId':uid},'Su-75 baseline R73')
+    # Unarmed ZIL Karatel: Typhoon-K stat donor, 10 passenger slots. Allocate last.
+    kc=json.loads((R/'karatel-contract.json').read_text());ku,kp=kc['unit'],kc['parent'];why='ZIL Karatel Guard transport'
+    assert ku not in effective['Units']
+    add_unit(ku,kp,{'Name':kc['name'],'HUDName':kc['name'],'DisplayInArmory':True,'InfantrySlots':kc['seats'],'Length':kc['length']},why)
+    for table in ['UnitAbilitiesJson','UnitPropulsionsJson','SensorUnitsJson','UnitArmorsJson']:
+        for rid in list(rows_of(table,kp)):clone(table,rid,{'UnitId':ku},why)
+    # Native unarmed mount; no ammunition and no weapon upgrades.
+    empty=next(r for r in effective['TurretUnitsJson'].values() if r['UnitId']==kp and r['TurretId']==160)
+    clone('TurretUnitsJson',empty['Id'],{'UnitId':ku},why)
+    users={r['SpecializationAvailabilityId']:r['Id'] for r in effective['TransportAvailabilitiesJson'].values() if r['UnitId'] in kc['transport_donors'] and effective['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId']==kc['spec']}
+    assert users
+    for rid in users.values():clone('TransportAvailabilitiesJson',rid,{'UnitId':ku},why)
+    assert not rows_of('WeaponAmmunitionsJson',ku)
+    assert {effective['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId'] for r in effective['TransportAvailabilitiesJson'].values() if r['UnitId']==ku}=={12}
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):
@@ -1433,7 +1455,7 @@ def main():
             t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
             out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
         return out,mains
-    for c in nc['cards']+[cm]:
+    for c in nc['cards']+[cm,kc]:
         mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
         swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)

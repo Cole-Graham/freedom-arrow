@@ -1,0 +1,12 @@
+{
+  "unit": 973,
+  "parent": 96,
+  "name": "ZIL Karatel Punisher",
+  "seats": 10,
+  "spec": 12,
+  "transport_donors": [
+    96,
+    194
+  ],
+  "length": 6.33
+}
