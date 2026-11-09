@@ -78,6 +78,22 @@ static class ThirdPartyGuard
         cosmetic.Add("FAMusic.dll");cosmetic.Add("FAUiLog.dll");
         AccessTools.Field(game,"_packHash")?.SetValue(null,null);   // in case ArrowQueue already made the code
         MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll and FAUiLog.dll");
+        SameDatabaseCode(game);
+    }
+
+    // Batch (Lateralus, 8 November 2026): players on the same FA build still saw different codes. ArrowQueue's database part
+    // hashes UserData/MLDatabaseMod: "nodb" with no folder, "0f-..." with only the disabled ActualArrow files left over.
+    // Freedom Arrow never reads that folder. The part is now the hash of our payload manifest, which lists every packaged
+    // file's SHA-256, so the code tracks FA's own data and no longer depends on ActualArrow leftovers.
+    static void SameDatabaseCode(Type game)
+    {
+        var field=AccessTools.Field(game,"_dbHash");
+        if(field==null){MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue Game._dbHash not found; leftover MLDatabaseMod folders change the build code");return;}
+        var manifest=Path.Combine(MelonLoader.Utils.MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","payload-manifest.json");
+        var code="fa-"+Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(File.ReadAllBytes(manifest)))[..12].ToLowerInvariant();
+        field.SetValue(null,code);
+        AccessTools.Field(game,"_packHash")?.SetValue(null,null);
+        MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: build code database part {code} (payload manifest; MLDatabaseMod not read)");
     }
 
     // 0.6 dev.16 (Osama, 7 November 2026): Create a lobby offers only our online maps. ArrowQueue offers Steam Workshop
