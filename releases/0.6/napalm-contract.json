@@ -1,5 +1,0 @@
-{
-  "note": "Lateralus, 8 November 2026. Fire (napalm and incendiary) burns rear armour instead of the roof. TopArmorAttack and IsTopArmorArmorAttack cleared so the unit card stops showing top attack; FireRear.cs forces rear armour on every tick of these rounds (the Grad incendiary had no flag and gets the rear too). Damage and penetration unchanged here.",
-  "top_flag_off": [300, 322, 522, 550],
-  "rear_ammo": [300, 322, 432, 522, 550]
-}

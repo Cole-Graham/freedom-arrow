@@ -1184,12 +1184,6 @@ def main():
         assert a['Name']==v['Name'] and a['PenetrationAtGroundRange']==v['PenetrationAtGroundRange']<=100 and v['Damage']==c['damage'],(aid,c)
         assert all(effective['Units'][r['UnitId']]['Type'] in (2,4) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid),aid
         put('AmmunitionsJson',aid,{'Damage':v['Damage']},why)
-    # Lateralus batch: napalm and incendiary fire burns rear armour (napalm-contract.json; hook FireRear.cs).
-    nc=json.loads((R/'napalm-contract.json').read_text())
-    for aid in nc['top_flag_off']:
-        a=effective['AmmunitionsJson'][aid];assert a['DamageOverTimeDuration']>0 and a['IgnoreCover']==1 and a['TopArmorAttack'],aid
-        put('AmmunitionsJson',aid,{'TopArmorAttack':False,'IsTopArmorArmorAttack':False},'Fire burns rear armour: top-attack flag off')
-    assert all(effective['AmmunitionsJson'][a]['DamageOverTimeDuration']>0 and effective['AmmunitionsJson'][a]['IgnoreCover']==1 for a in nc['rear_ammo'])
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
