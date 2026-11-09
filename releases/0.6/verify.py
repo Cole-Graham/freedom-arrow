@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.25.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.26.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-pla.25'
+    assert manifest['version']=='0.6.0-pla.26'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.25 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.26 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -31,7 +31,7 @@ with zipfile.ZipFile(p) as z:
     # b21-loadout-contract.json: the B-21 options, each on its own bay turret with the stated launchers and price.
     # abramsx-contract.json: the Abrams X turret rows (main turret and two cupolas) and its one option.
     ax=json.loads((R/'abramsx-contract.json').read_text())
-    ax_t={k for k,r in table('turrets').items() if r and str(r.get('Name','')).endswith(('Turret Abrams X','Abrams X 30mm','Abrams X M240'))};assert len(ax_t)==1+len(ax['cupolas'])
+    ax_t={str(r['TurretId']) for r in table('turret_units').values() if r and r.get('UnitId')==ax['unit'] and int(r['TurretId'])>=2000000};assert len(ax_t)==1+len(ax['cupolas'])
     ax_tw={k for k,r in table('turret_weapons').items() if r and str(r.get('TurretId')) in ax_t}
     assert table('units')[str(ax['unit'])]['Cost']==ax['cost']
     b21=json.loads((R/'b21-loadout-contract.json').read_text());b21_tw=set()

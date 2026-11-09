@@ -1330,14 +1330,16 @@ def main():
     mob=clone('MobilityJson',ax['mobility_like'],ax['mobility_fields'],why)
     clone('UnitPropulsionsJson',next(r['Id'] for r in effective['UnitPropulsionsJson'].values() if r['UnitId']==u),{'MobilityId':mob},why)
     (su,)=[r['Id'] for r in effective['SensorUnitsJson'].values() if r['UnitId']==u];put('SensorUnitsJson',su,{'SensorId':ax['sensor']},why)
-    main=clone('TurretsJson',ax['turret_like'],{'Name':ax['turret_name']},why)
-    tlink=next(r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u)
+    # Turret copies keep their source's Name and link Order: in battle the game finds a child turret in the tank's prefab
+    # from them (pla.24 renamed them and battle loading failed in UnitBuilder.AddChildTurrets, Osama 9 Nov).
+    main=clone('TurretsJson',ax['turret_like'],{},why)
+    def link(src):return next(r['Id'] for r in effective['TurretUnitsJson'].values() if r['UnitId']==u and r['TurretId']==src)
     def copy_weapons(src,dst,weapon=None):
         for r in [r for r in list(effective['TurretWeaponsJson'].values()) if r['TurretId']==src]:clone('TurretWeaponsJson',r['Id'],{'TurretId':dst,**({'WeaponId':weapon} if weapon else {})},why)
-    copy_weapons(ax['turret_like'],main);clone('TurretUnitsJson',tlink,{'TurretId':main},why)
+    copy_weapons(ax['turret_like'],main);clone('TurretUnitsJson',link(ax['turret_like']),{'TurretId':main},why)
     for cu in ax['cupolas']:
         assert effective['TurretsJson'][cu['like']]['ParentTurretId']==ax['turret_like']
-        t=clone('TurretsJson',cu['like'],{'Name':cu['name'],'ParentTurretId':main},why);copy_weapons(cu['like'],t,cu.get('weapon'));clone('TurretUnitsJson',tlink,{'TurretId':t},why)
+        t=clone('TurretsJson',cu['like'],{'ParentTurretId':main},why);copy_weapons(cu['like'],t,cu.get('weapon'));clone('TurretUnitsJson',link(cu['like']),{'TurretId':t},why)
         if cu.get('weapon'):
             src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==cu['ammo_from_unit'] and r['WeaponId']==cu['weapon']];assert src
             for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':u},why)
@@ -1365,7 +1367,7 @@ def main():
             (wp,)=[w['Id'] for w in effective['WeaponsJson'].values() if w['Name']==ld['weapon_name']]
             (am,)={r['AmmunitionId'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==wp}
         assert effective['WeaponsJson'][wp]['MagazineSize']==ld['racks'],ld
-        tu=clone('TurretsJson',bl['turret_like'],{'Name':ld['turret_name']},why)
+        tu=clone('TurretsJson',bl['turret_like'],{},why)  # same Name as the B-2 bay turret (see the Abrams X note)
         for k in range(ld['launchers']):clone('TurretWeaponsJson',ld['turret_weapon_like'],{'TurretId':tu,'WeaponId':wp,'Order':k},why)
         clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
         clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
