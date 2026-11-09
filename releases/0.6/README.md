@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.107 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.108 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.107.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.108.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -338,6 +338,9 @@ Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 
 
 
 XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,Booker base armor with700/700 front/side HEAT,two APS charges,two ready TOW-2B or Javelin rounds. T-15 mobility/optics/eight seats retained. Download contains MAX scenes only; custom rig/model not imported. Game checks pending.
+
+
+XM30 unit card now uses the M2A3 Bradley portrait and thumbnail. Unit statistics unchanged.
 
 ## Document change log
 
@@ -559,3 +562,5 @@ XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,
 - 2026-11-09 14:54:25 PST (America/Los_Angeles) — Added requested XM30 stand-in and recorded model format blocker.
 
 - 2026-11-09 15:00:55 PST (America/Los_Angeles) — Final XM30 specification: Booker armor,700 front/side HEAT,220 points,eight seats.
+
+- 2026-11-09 15:24:22 PST (America/Los_Angeles) — Use M2A3 Bradley artwork for the XM30 card.

@@ -2,7 +2,7 @@
 def apply(effective,original,clone,add_unit,rows_of):
     uid=983;why='XM30 US Armor tank:220 points,2 availability,Booker XM913,2 APS'
     assert uid not in effective['Units']
-    add_unit(uid,255,dict(Name='XM30',HUDName='XM30',CountryId=2,Role=11,Cost=220,ContentMembership=-1),why)
+    add_unit(uid,255,dict(Name='XM30',HUDName='XM30',CountryId=2,Role=11,Cost=220,ContentMembership=-1,PortraitFileName=effective['Units'][16]['PortraitFileName'],ThumbnailFileName=effective['Units'][16]['ThumbnailFileName']),why)
     for table in ['UnitPropulsionsJson','SensorUnitsJson']:
         for rid in list(rows_of(table,255)):clone(table,rid,{'UnitId':uid},why)
     aid=clone('ArmorsJson',306,dict(Name='Armor XM30 Booker base',ModelFileName=None,HeatArmorFront=700,HeatArmorSides=700),why)
