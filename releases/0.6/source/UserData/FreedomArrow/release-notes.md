@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.101 — development candidate
+# Freedom Arrow 0.6.0-dev.102 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,7 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.102 (Lateralus, test targets): F-22 Target Dummy and MiG-29K Target Dummy cards for missile tests, each with 1000 HP and 1000 flares, almost no speed (it hangs in the air) and an hour of loiter time. Same decks, ECM, flares and weapons as the F-22 and MiG-29K.
 New in 0.6 dev.101 (Osama): B-21 Raider with 24x JATM costs 700 in all (+500). New US card X-47B (Air Naval deck): the S-70 Okhotnik made American, same costs and bays with AIM-120, GBU-56, JSOW and JASSM. New Russian card Su-57D: Su-57 stats. Not yet run in a game.
 New in 0.6 dev.100 (Osama): Abrams X 450 points (was 500).
 New in 0.6 dev.99 (Osama): the B-21 Raider's 24x JATM loadout costs +700 (was +400).
