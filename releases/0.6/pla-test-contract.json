@@ -372,6 +372,16 @@
       "specs": [
         5
       ]
+    },
+    {
+      "unit": 966,
+      "parent": 44,
+      "name": "J-20S"
+    },
+    {
+      "unit": 967,
+      "parent": 633,
+      "name": "GJ-11"
     }
   ]
 }
