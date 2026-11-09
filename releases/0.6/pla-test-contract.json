@@ -31,7 +31,8 @@
    "name": "PLA Rifle Squad",
    "transports": {
     "902": 3,
-    "903": 1
+    "903": 1,
+    "945": 3
    }
   },
   {
@@ -253,6 +254,17 @@
    "unit": 944,
    "parent": 44,
    "name": "J-50"
+  },
+  {
+   "unit": 945,
+   "parent": 3,
+   "name": "ZBD-20",
+   "transport_only": true
+  },
+  {
+   "unit": 946,
+   "parent": 170,
+   "name": "Wing Loong"
   }
  ]
 }
