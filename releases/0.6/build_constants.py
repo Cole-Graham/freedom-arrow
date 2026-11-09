@@ -1486,6 +1486,8 @@ def main():
         aid=clone('AbilitiesJson',ability,{'Name':'Karatel '+effective['AbilitiesJson'][ability]['Name'],'IsDefault':True},why)
         link=next(r for r in original['UnitAbilitiesJson'].values() if r['UnitId']==194 and r['AbilityId']==ability)
         clone('UnitAbilitiesJson',link['Id'],{'UnitId':ku,'AbilityId':aid},why)
+    from xm30 import apply as apply_xm30
+    apply_xm30(effective,original,clone,add_unit,rows_of)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

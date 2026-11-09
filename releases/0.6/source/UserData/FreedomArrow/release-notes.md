@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.infantry.4 — development candidate
+# Freedom Arrow 0.6.0-pla.infantry.5 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -229,6 +229,9 @@ The generated pla-infantry-prototype.json records the custom weapon/ammo IDs and
 
 Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
 
+
+XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,Booker base armor with700/700 front/side HEAT,two APS charges,two ready TOW-2B or Javelin rounds. T-15 mobility/optics/eight seats retained. Download contains MAX scenes only; custom rig/model not imported. Game checks pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -409,3 +412,7 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 14:23:06 PST (America/Los_Angeles) — Appended private PLA infantry test to dev.104 without altering existing effective rows; recorded donor behavior and three PLA card-ID migrations.
 
 - 2026-11-09 14:40:00 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.
+
+- 2026-11-09 14:54:44 PST (America/Los_Angeles) — Added requested XM30 stand-in and recorded model format blocker.
+
+- 2026-11-09 15:00:55 PST (America/Los_Angeles) — Final XM30 specification: Booker armor,700 front/side HEAT,220 points,eight seats.

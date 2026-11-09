@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow \u2014 0.4 development candidate",
-  "version": "0.6.0-pla.infantry.4",
+  "version": "0.6.0-pla.infantry.5",
   "type": "modpack",
   "description": "Private PLA infantry firing test on dev.104: QLU-11, QTS-11 rifle/grenade, QBZ-191 and QBU-191. Native donor behavior; runtime tests pending."
 }
