@@ -113,6 +113,19 @@ internal static unsafe class NativeEcs
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(exception);
         return Unbox<float>(result);
     }
+    // Same as EncodedField for a protected int (GAInt/GInt): calls the field's get_Value and unboxes an int.
+    public static int EncodedInt<TComponent>(Entity entity,string name)
+    {
+        var field=IL2CPP.il2cpp_class_get_field_from_name(Class<TComponent>(),name);
+        if(field==IntPtr.Zero)throw new MissingFieldException(typeof(TComponent).Name,name);
+        var fieldClass=IL2CPP.il2cpp_class_from_type(IL2CPP.il2cpp_field_get_type(field));
+        var method=IL2CPP.il2cpp_class_get_method_from_name(fieldClass,"get_Value",0);
+        if(method==IntPtr.Zero)throw new MissingMemberException(name,"Value");
+        IntPtr exception=IntPtr.Zero;
+        var result=IL2CPP.il2cpp_runtime_invoke(method,(IntPtr)((byte*)Data<TComponent>(entity)+Offset<TComponent>(name)),null,ref exception);
+        Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(exception);
+        return Unbox<int>(result);
+    }
     public static T ReadValue<T>(Entity entity) where T:unmanaged
     {
         var c=Class<T>();uint align=0;

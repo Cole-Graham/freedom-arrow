@@ -1324,6 +1324,44 @@ def main():
     pla={c['unit'] for c in pl['cards']}
     assert {r['UnitId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['SpecializationId']==sp['id']}=={c['unit'] for c in pl['cards'] if not c.get('transport_only') and not c.get('russia') and not c.get('us')}
     assert all(any(r['UnitId']==u for r in effective['UnitArmorsJson'].values()) for u in pla),'PLA card without armor'
+    # 0.6 new US cards (Osama, 9 Nov 2026: "push the Abrams X and B-21 to live"): full copies of an existing unit, same country,
+    # in the parent's specializations or the listed ones (new-cards-contract.json). First made on the PLA test branch (pla.20-26).
+    nc=json.loads((R/'new-cards-contract.json').read_text())
+    unit_tables=['UnitAbilitiesJson','UnitPropulsionsJson','TurretUnitsJson','WeaponAmmunitionsJson','SensorUnitsJson','SquadMembersJson','SquadWeaponsJson','UnitArmorsJson']
+    for c in nc['cards']:
+        why='New card '+c['name'];par,new=c['parent'],c['unit'];p=effective['Units'][par]
+        assert new not in effective['Units'],(new,par)
+        add_unit(new,par,{'Name':c['name'],'HUDName':c['name'],'DisplayInArmory':True},why)
+        for table in unit_tables:
+            for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
+        for mod in [m for m in list(effective['ModificationsJson'].values()) if m['UnitId']==par]:
+            mine=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod['Id'] and not o.get('ReplaceUnitId')),key=lambda o:(o['Order'],o['Id']))
+            if not mine:continue
+            m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why);default=any(o['IsDefault'] for o in mine)
+            for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':o['IsDefault'] or (not default and order==0),**({'ReplaceUnitName':c['name']} if o.get('ReplaceUnitName') else {})},why)
+        avail=[r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par];assert avail,par
+        if c.get('specs'):
+            for s in c['specs']:clone('SpecializationAvailabilitiesJson',avail[0]['Id'],{'UnitId':new,'SpecializationId':s},why)
+        else:
+            for r in avail:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+        if c.get('country'):put('Units',new,{'CountryId':c['country']},why)
+        if c.get('swap_turrets'):
+            # Other-country copy (X-47B from the S-70): each bay mount becomes the matching mount of a donor plane, with the donor's
+            # weapon and ammunition rows and its option name and picture. Links copy the old mount's link (same Order).
+            sw={int(k):v for k,v in c['swap_turrets'].items()};donor=c['weapons_from']
+            for o in [o for o in list(effective['OptionsJson'].values()) if effective['ModificationsJson'][o['ModificationId']]['UnitId']==new]:
+                f={k:sw[v] for k,v in o.items() if k.startswith('Turret') and k.endswith('Id') and v in sw}
+                if not f:continue
+                (t,)=set(f.values());like=next(x for x in effective['OptionsJson'].values() if t in [x.get(f'Turret{i}Id') for i in range(21)] and effective['ModificationsJson'][x['ModificationId']]['UnitId']==donor)
+                ui=c.get('swap_ui',{}).get(str(t));nm=o['Name'].replace(c['name_from'],c['name_to']).strip()
+                put('OptionsJson',o['Id'],{**f,'Name':(nm.rsplit(' ',1)[0]+' '+ui[0]) if ui else nm,'UIName':ui[1] if ui else like['UIName'],'OptionPicture':like['OptionPicture']},why)
+            for r in [r for r in list(effective['TurretUnitsJson'].values()) if r['UnitId']==new and r['TurretId'] in sw]:
+                clone('TurretUnitsJson',r['Id'],{'TurretId':sw[r['TurretId']]},why);del effective['TurretUnitsJson'][r['Id']];patches['TurretUnitsJson'].pop(str(r['Id']))
+            for r in [r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==new]:
+                del effective['WeaponAmmunitionsJson'][r['Id']];patches['WeaponAmmunitionsJson'].pop(str(r['Id']))
+            ws={x['WeaponId'] for x in effective['TurretWeaponsJson'].values() if x['TurretId'] in sw.values()}
+            src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==donor and r['WeaponId'] in ws];assert {r['WeaponId'] for r in src}==ws,(ws,src)
+            for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':new},why)
     # Abrams X (abramsx-contract.json): one configuration on the SEP v3 copy; 30 mm Bushmaster in place of the commander's M2.
     ax=json.loads((R/'abramsx-contract.json').read_text());why='Abrams X';u=ax['unit']
     put('Units',u,{'Cost':ax['cost']},why)
@@ -1381,8 +1419,9 @@ def main():
             t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
             out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
         return out,mains
-    for c in pl['cards']:
+    for c in nc['cards']+pl['cards']:
         mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
+        swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)
         assert mine<=theirs,('turret links differ from the parent (Name, Order, parent turret)',c['unit'],sorted(mine-theirs))
     out.mkdir(parents=True,exist_ok=True)
