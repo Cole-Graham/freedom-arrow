@@ -1,5 +1,5 @@
 {
-  "note": "0.6.0-pla.23 (Osama, 9 November 2026): two more B-21 Raider loadouts. 24x JATM (+400): a renamed copy of the F-15EX's AIM-120 AMRAAM round and twin-rack weapon (same damage, range, speed and fire rate), 12 twin racks in the bomb bay, so it fires like an F-15EX full of AIM-120s (that plane has 14 launchers for 20 missiles). 2x AGM-183A ARRW (+200): the B-52H bay ARRW weapon and round. Both use the B-2 JASSM bay mount (hidden in flight) and the B-2's fire channel. Not yet run in a game. dev.96 (Osama, 9 Nov 2026): moved from the PLA test branch to the main build; turret copies keep the source Name and link Order (pla.26). pla.27/dev.97 (Osama, 9 Nov 2026: a battle with the B-21 stuck on the start camera): the JATM load is one weapon with all 24 rounds on the bay mount (MagazineSize 24, one shot every 1.0-1.1 s) instead of 12 twin-rack weapons on one mount; no vanilla bay mount carries more than one weapon. dev.99/pla.30 (Osama, 9 Nov 2026): the 24x JATM loadout costs +700 (was +400).",
+  "note": "0.6.0-pla.23 (Osama, 9 November 2026): two more B-21 Raider loadouts. 24x JATM (+400): a renamed copy of the F-15EX's AIM-120 AMRAAM round and twin-rack weapon (same damage, range, speed and fire rate), 12 twin racks in the bomb bay, so it fires like an F-15EX full of AIM-120s (that plane has 14 launchers for 20 missiles). 2x AGM-183A ARRW (+200): the B-52H bay ARRW weapon and round. Both use the B-2 JASSM bay mount (hidden in flight) and the B-2's fire channel. Not yet run in a game. dev.96 (Osama, 9 Nov 2026): moved from the PLA test branch to the main build; turret copies keep the source Name and link Order (pla.26). pla.27/dev.97 (Osama, 9 Nov 2026: a battle with the B-21 stuck on the start camera): the JATM load is one weapon with all 24 rounds on the bay mount (MagazineSize 24, one shot every 1.0-1.1 s) instead of 12 twin-rack weapons on one mount; no vanilla bay mount carries more than one weapon. dev.99/pla.30 (Osama, 9 Nov 2026): the 24x JATM loadout costs +700 (was +400). dev.101 (Osama: 'B-21 JATM loadout should make the plane 700 total'): the JATM option is +500 on the B-21's 200, 700 in all.",
   "unit": 965,
   "option_like": "Loadout B2 16xJASSM",
   "turret_like": 587,
@@ -9,7 +9,7 @@
       "option_name": "Loadout B21 24xJATM",
       "ui": "24x AIM-260 JATM",
       "picture": "AMRAAM_MISSILE",
-      "cost": 700,
+      "cost": 500,
       "ammo": 89,
       "ammo_fields": {
         "HUDName": "AIM-260 JATM",
