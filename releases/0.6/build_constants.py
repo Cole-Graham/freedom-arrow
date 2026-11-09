@@ -683,10 +683,7 @@ def main():
     clone('SpecializationAvailabilitiesJson',tgb['pool'],{'UnitId':new},why)
     mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tgb['move_option']):par},indent=2,sort_keys=True)+'\n')
     assert effective['Units'][par]['Cost']==30 and [o['Id'] for o in options(par)]==[2207]
-    # 0.5 dev.28: Mi-28N outer Ataka pylon has one launcher, so it fires one missile at a time.
-    d28=json.loads((R/'dev28-contract.json').read_text());o=effective['OptionsJson'][d28['option']]
-    assert o[d28['clear']]==d28['turret'] and o[d28['keep']]==d28['turret']
-    put('OptionsJson',d28['option'],{d28['clear']:0},'Mi-28N one Ataka launcher on the outer pylon')
+    # 0.5 dev.28 (Mi-28N outer Ataka pylon with one launcher) is undone: vanilla pylons (Lateralus, 8 Nov).
     # 0.5 dev.30: helicopter ATGM pylons carry one launcher; AH-64E, Comanche, Mi-28N and Mi-28NM can laser-designate.
     h30=json.loads((R/'dev30-heli-contract.json').read_text());why='Helicopter ATGM pylon: one launcher'
     atw={w for w in effective['WeaponsJson'] if any(effective['AmmunitionsJson'][r['AmmunitionId']]['Name'].startswith('Missile AT') for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w)}
@@ -700,6 +697,7 @@ def main():
         for t in {o[k] for k in keys}:
             dup=[k for k in keys if o[k]==t]
             if t in tur_at and len(dup)>1 and t not in h30['skip_single_round_turrets']:found.setdefault(o['Id'],[]).extend(dup[1:])
+    found.pop(653,None)  # Mi-28N outer Ataka x8: dev.28 is undone, and it gets no dev.46 clones, so later IDs stay
     assert sorted(found)==sorted(h30['pod_options']),sorted(set(found)^set(h30['pod_options']))
     # 0.6 dev.46 (Osama): an empty mount shows the unit's default turret (the Hydra pod on the Longbow and AH-64E). The freed
     # mount now carries a copy of the launcher turret with no weapon (the rack model only), and the one launcher left carries
@@ -1245,19 +1243,33 @@ def main():
         if n<1:continue
         rate=sr['k']*n**sr['exponent'];table[f"{r['UnitId']}:{r['WeaponId']}"]={'carriers':n,'rate':round(rate,3),'reload':round(60*n/rate,3)}
     (R/'source/UserData/FreedomArrow/squad-reload.json').write_text(json.dumps({'k':sr['k'],'exponent':sr['exponent'],'disposableType':sr['disposable_type'],'squads':table},indent=1,sort_keys=True)+'\n')
-    # 0.6 (Lateralus, armory report, 8 Nov): a weapon mounted on a unit with no WeaponAmmunitions row for that unit hides
-    # the unit's model and card in the armory (AH-64D/E, AH-1W/Z, MH-60M DAP, Mi-28NM, Ka-52, Mi-24, ...). Seen live on
-    # pla.8 and fixed live by a 0-round row. Each dev.61 rack weapon gets a 0-round copy of its unit's both-racks ammo row:
-    # the pod is still drawn and never fires. Cloned here, at the end, so no earlier ID moves.
-    why0='Helicopter ATGM pylon: rack weapon has a 0-round ammo row, so the armory shows the unit'
-    for t,(t2,wmap) in sorted(load2.items()):
-        names={effective['WeaponsJson'][w]['Name']+' rack (no rounds)':w2 for w,w2 in wmap.items()}
-        users=sorted({r['UnitId'] for r in effective['TurretUnitsJson'].values() if r['TurretId']==rack[t]})
-        for wr in sorted({r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId']==rack[t]}):
-            w2=names[effective['WeaponsJson'][wr]['Name']]
-            for u in users:
-                src=[r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==u and r['WeaponId']==w2];assert src,(u,w2)
-                for rid in src:clone('WeaponAmmunitionsJson',rid,{'WeaponId':wr,'Quantity':0},why0)
+    # 0.6 (Lateralus, 8 Nov): helicopter ATGM pylons back to vanilla. Each pylon option again mounts its launcher twice,
+    # each with its own rounds, and fires as vanilla does. Undoes 0.5 dev.30 (one launcher), 0.6 dev.46 (both-racks
+    # launcher) and dev.61 (rack weapon); dev.61's rack weapon without rounds hid 15 helicopters in the armory. The
+    # dev.46/61 rows are still cloned above and dropped here, so no later ID moves (saved decks).
+    why='Helicopter ATGM pylons back to vanilla'
+    gone={'TurretsJson':set(rack.values())|{t2 for t2,_ in load2.values()}}
+    gone['WeaponsJson']={w2 for _,wm in load2.values() for w2 in wm.values()}|{r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in rack.values()}
+    gone['TurretWeaponsJson']={r['Id'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in gone['TurretsJson']}
+    gone['TurretUnitsJson']={r['Id'] for r in effective['TurretUnitsJson'].values() if r['TurretId'] in gone['TurretsJson']}
+    gone['WeaponAmmunitionsJson']={r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId'] in gone['WeaponsJson']}
+    for table,ids in gone.items():
+        for rid in ids:
+            assert rid>=2_000_000 and rid not in original[table] and rid not in frozen[table],(table,rid)
+            del effective[table][rid];del patches[table][str(rid)]
+    audit[:]=[a for a in audit if a['id'] not in gone.get(a['table'],())]
+    for oid in sorted(found):
+        keys=[k for k in original['OptionsJson'][oid] if k.startswith('Turret') and k.endswith('Id')]
+        put('OptionsJson',oid,{k:original['OptionsJson'][oid][k] for k in keys},why)
+        for k in keys:
+            if frozen['OptionsJson'][oid].get(k)==original['OptionsJson'][oid][k]:patches['OptionsJson'][str(oid)].pop(k,None)
+        if not patches['OptionsJson'][str(oid)]:del patches['OptionsJson'][str(oid)]
+    o=effective['OptionsJson'];assert o[653]['Turret3Id']==o[653]['Turret4Id']==474  # Mi-28N outer Ataka x8, as vanilla
+    for table,rows in effective.items():
+        for r in rows.values():
+            for k,v in r.items():
+                assert not ((k=='TurretId' or (k.startswith('Turret') and k.endswith('Id'))) and v in gone['TurretsJson']),(table,r['Id'],k)
+                assert not (k=='WeaponId' and v in gone['WeaponsJson']),(table,r['Id'],k)
     # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
     caps={}
     for sid,row in effective['SensorsJson'].items():
