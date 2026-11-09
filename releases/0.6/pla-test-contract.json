@@ -143,6 +143,31 @@
    "unit": 922,
    "parent": 92,
    "name": "PHL-11"
+  },
+  {
+   "unit": 923,
+   "parent": 465,
+   "name": "J-11B"
+  },
+  {
+   "unit": 924,
+   "parent": 319,
+   "name": "Su-30MKK"
+  },
+  {
+   "unit": 925,
+   "parent": 94,
+   "name": "HQ-7B"
+  },
+  {
+   "unit": 926,
+   "parent": 218,
+   "name": "PLL-05"
+  },
+  {
+   "unit": 927,
+   "parent": 238,
+   "name": "ZTZ-20"
   }
  ]
 }
