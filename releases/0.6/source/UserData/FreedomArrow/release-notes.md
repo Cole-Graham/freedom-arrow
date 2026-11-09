@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.39 — development candidate
+# Freedom Arrow 0.6.0-pla.40 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -226,9 +226,13 @@ Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDura
 
 TOS-1, TOS-1A and TOS-2 now have 11 raw damage (was 9.1), as requested by Osama. Ignore cover stays 100%, penetration stays 15, and blast radius/dispersion are unchanged. The normal impact correction from pla.37 remains; separate visible ground fire is not implemented. Raw damage is not a guarantee of 11 HP per hit: armor, blast falloff and building allocation still apply. No new gameplay measurement.
 
-## Grey PLA model batch — pla.39
+## Grey PLA model batch — pla.39 (superseded by flat green in pla.40)
 
 Renames the old Z-10 card/model to Z-10K and adds a separate Z-10 (978, Mi-28NM donor). Adds ZBL-191 (979, K16 Bumerang donor) as a transport for the PLA Rifle Squad. Existing ZTZ-96B, ZTZ-99A, ZTQ-15 and ZBD-04A get the supplied private CGTrader models. The ZBD-04 download internally calls its hull ZBD04A, so it replaces that existing card. Grey hull finish, original surface maps, lighter battle models. New cards retain donor stats and loadouts as placeholders. Includes pla.38 TOS raw damage 11. Private model files are outside this source repository. No gameplay verification yet.
+
+## Author flat green skin — pla.40
+
+Osama clarified that he wants the author's supplied flat green skin, not a custom grey material. The six local CGTrader replacements now use their unvaried Hull_BaseColor textures, with the supplied metallic, roughness and normal maps. Camo, dust and yellow variants are unused. No gameplay constants change from pla.39. pla.39 was pushed but not installed; pla.40 is the intended install.
 
 ## Document change log
 
@@ -413,3 +417,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 04:51:29 PST (America/Los_Angeles) — pla.38: all three TOS rounds set to 11 raw damage; other damage controls unchanged.
 
 - 2026-11-09 04:56:29 PST (America/Los_Angeles) — pla.39: added Z-10 and ZBL-191 cards, retained Z-10K identity, and documented the six-model grey batch and evidence limits.
+
+- 2026-11-09 05:02:38 PST (America/Los_Angeles) — pla.40: corrected the model-skin selection to the author's flat green variation; pla.39 grey proposal superseded before installation.
