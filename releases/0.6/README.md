@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.92 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.93 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -125,6 +125,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.90 (Osama, 9 November 2026): corrects dev.89's TOS. TOS-1, TOS-1A and TOS-2 damage 30 -> 9.1 with ignore cover 1.0, so infantry in buildings keep dev.88's 9.1 per hit and the open and forest take the same 9.1 (were 30 and 22.4). Damage to vehicles drops by the same 70%; penetration unchanged. Malka 22 from dev.89 stays. Calculated, not yet run in a game.
 - dev.91 (Osama, 9 November 2026): TOS-1, TOS-1A and TOS-2 leave a short 3 s fire (DamageOverTimeDuration 0 -> 3), on top of the impact damage, which is unchanged from dev.90. Read from the game code: the fire re-runs the blast every 0.5 s with damage x (0.5 / 3), so a unit that stays for all 3 s takes about one more hit (9.1) spread over the fire. Not yet run in a game: whether the fire starts and shows flames without NoDamageFalloff (left off so the impact damage does not change) still needs a test.
 - dev.92 (Lateralus batch 3, 9 November 2026; Lateralus 0.6 Changelog sheet row 22): flare re-roll cap 1 -> 4 (BattleSystemSettings.MAX_FLARES_COUNT_MISSILE_REROLL set by DetectionConfig from game-config FlareRerollCap; vanilla value restored when FA is off); plane flares 5 -> 10 points each (all used flare abilities 0.9); FREEDOM_ARROW_MISSILE_CHANCE lines show t+ seconds since launch (limit 300 lines). Read from the game code and calculated; not tested in a game.
+- dev.93 (Lateralus batch 4, 9 November 2026; Lateralus 0.6 Changelog sheet row 23): logging only. The shot log skips a repeat of the same weapon with an unchanged magazine count within 0.25 s (the Patriot repeated its shot callback every frame: 511 and 185 false lines in Lateralus's dev.92 tests); FREEDOM_ARROW_MISSILE_CHANCE keeps up to 3000 lines (was 300; his third test hit the limit after 35 missiles). No gameplay change.
 - dev.80 (Osama, 8 November 2026): rocket pods slightly below vanilla in buildings instead of about half. Vanilla lets 18% + 2% per soldier through (38% for 10 men); FA lets 0.18 + 0.82 x ignore cover through. Hydra, S-8, S-13 and Zuni ignore cover 0 -> 0.15 (80% of vanilla for a 10-man squad); APKWS and DAGR 0.15 -> 0.25 (about vanilla). Open-field damage stays vanilla; S-24, S-25, penetration unchanged. See `rocketpod-contract.json`. Not yet run in a game.
 - dev.59 (Osama, 8 November 2026): the B-52H could fire only 3 of its 4 ARRWs, then waited for a long reload. The bomb-bay ARRW weapon had a magazine of 1 (copied from the MiG-31K Kinzhal) holding 2 missiles, so the second bay missile waited for the 30-35 s magazine reload. The bay weapon now has a magazine of 2, so both bay missiles and both wing missiles can be fired in one pass. See `arrw-contract.json`. Not yet run in a game.
 - dev.58 (Lateralus, 8 November 2026): air detection. Displayed m = 2 x optics x radar x stealth. Fighter sensor (row 6, 24 planes) OpticsHighAltitude 6000 -> 8000: 16 km on a high stealth-1.0 plane (12 km before); a fighter flying high uses this against low planes too. Patriot-tier sensors (rows 8, 27, 36: Patriot PAC-2/PAC-3/PAC-3 MSE, S-300V4, S-300PM, S-350, S-400, Buk M2, IRIS-T SLM, Buk M3, NASAMS) OpticsHighAltitude 2000 -> 2650: 10.6 km with radar on (x2.0, was 8 km), 5.3 km with radar off. Tor, M163, Osa, Pantsir, Tor-M2KM and M-SHORAD move to their own copies of their sensors (rows 7, 18, 30) with OpticsHighAltitude 1500: 6 km with radar on (was 4 km); other units on those rows are unchanged; the Osa's two optics options point at the copies. Plane stealth +0.25 UI: 1.75 -> 2.0 (raw 0.571 -> 0.5: F-35A/B and copies, F-22, F-117, B-2, RQ-170, S-70) and 1.25 -> 1.5 (raw 0.8 -> 0.666: Su-57 and the drones MQ-9, MQ-1, MQ-1C, Orion, RQ-4, Forpost, Korsar, RQ-7). Low-altitude optics unchanged. See `air-detect-contract.json`. Calculated; not yet run in a game.
@@ -209,7 +210,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.92.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.93.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -533,3 +534,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-08 21:30:14 PST (America/Los_Angeles) — 0.6.0-dev.84: Lateralus batch (16 changes, see the Lateralus 0.6 Changelog). No live result.
 - 2026-11-09 00:29:32 PST (America/Los_Angeles) — 0.6.0-dev.86: Lateralus batch 2 (helicopter fixes, flat missile hit chance, helicopter spotting) on top of dev.85. No live result.
 - 2026-11-09 01:32:34 PST (America/Los_Angeles) — 0.6.0-dev.92: Lateralus batch 3 (flare re-roll cap 4, plane flares 10 points, missile log flight time) on top of dev.91. No live result.
+- 2026-11-09 02:14:23 PST (America/Los_Angeles) — 0.6.0-dev.93: Lateralus batch 4 (shot log repeat filter, missile log limit 3000) on top of dev.92. No live result.
