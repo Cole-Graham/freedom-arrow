@@ -1,0 +1,179 @@
+{
+  "body_rules": [
+    {
+      "unitId": 901,
+      "lods": [
+        "PLA_lod_0.fas",
+        "PLA_lod_1.fas",
+        "PLA_lod_2.fas"
+      ],
+      "offset": [
+        0,
+        -0.05,
+        0
+      ]
+    }
+  ],
+  "weapon_rules": [
+    {
+      "unitId": 901,
+      "soldierIndex": 4,
+      "slot": "primary",
+      "weaponId": 29,
+      "file": "w_qbu191.fam",
+      "battle": "w_qbu191_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.17,
+        0.12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "primary",
+      "weaponId": 29,
+      "file": "w_qbz191.fam",
+      "battle": "w_qbz191_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.22,
+        0.196
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "primary",
+      "weaponId": 2003971,
+      "file": "w_qbz191.fam",
+      "battle": "w_qbz191_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.22,
+        0.196
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "primary",
+      "weaponId": 2003973,
+      "file": "w_qbu191.fam",
+      "battle": "w_qbu191_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.17,
+        0.12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "primary",
+      "weaponId": 2003977,
+      "file": "w_qts11.fam",
+      "battle": "w_qts11_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.17,
+        0.196
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "special",
+      "weaponId": 2003979,
+      "file": "w_qts11.fam",
+      "battle": "w_qts11_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.17,
+        0.196
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "unitId": 901,
+      "soldierIndex": -1,
+      "slot": "primary",
+      "weaponId": 2003975,
+      "file": "w_qlu11.fam",
+      "battle": "w_qlu11_lo.fam",
+      "scale": 1,
+      "offset": [
+        0,
+        -0.17,
+        0.22
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "file_hashes": {
+    "infantry-bodies.json": "9d10a9b6fe0844eb9c313c0f67416a9344960a937f5407fd20ca11cb0ce79bc2",
+    "infantry-weapons.json": "13510dfdb6f393a6781e6e6915ff503f380f280713f48b7b55833e7254121f2d",
+    "PLA_lod_0.fas": "76fb9efd08d1d0494b57876d46e01ba7bbca48b43eea6dce048ef8e6d4a4e71f",
+    "PLA_lod_1.fas": "762add5f16939d0e335b13e7a16d86e3d61d097145d4a9d4389612fa2d1f0d70",
+    "PLA_lod_2.fas": "ddb0764d6cf6246adc7819dde66a0d81155c96b3dd437c0fc760aaaec5b66b93"
+  },
+  "loader_sha256": "9aa72e69150e258b280a51c5feb00f3de708c052398e4aff4b0bf934b6a881b4",
+  "core_version": "0.6.0-pla.infantry.7",
+  "status": "approved visual baseline",
+  "approved_by": "Osama Bin Liftin",
+  "approval_quote": "looks good, lock in the positions",
+  "approval_recorded_at": "2026-11-09 15:45:50 PST (America/Los_Angeles)",
+  "approval_thread": "https://discord.com/channels/1566969627743879208/1569295613588144188",
+  "basis": "Sam reports that the in-game appearance looks good; configuration and asset hashes independently read back from installed files. Firing, resupply and full animation coverage are not approved by this statement.",
+  "rule": "Preserve native weapon positions. Fit the custom infantry body first; tune only custom weapon visuals afterward. Current body/weapon positions require explicit approval to change.",
+  "weapon_mesh_hashes": {
+    "w_qbu191.fam": "a865a719c66341d3a54a827f286dd7e514981cde88e45f9a6cbe8a9cedb497b7",
+    "w_qbu191_lo.fam": "402cf366c1adeb90b29da564bd7c0609d0616de66bdb3d2479cfcbce54f22842",
+    "w_qbz191.fam": "e10bd671f64987e951254b8199c6500f341fd945128c5cb5315521fcfda34320",
+    "w_qbz191_lo.fam": "0232c7fad7baef7a3294a9795c72b000bc0c3d22d95dee3471c53c98788e7ea7",
+    "w_qlu11.fam": "3b59eca9d0fce42090e4a8fd743bd6fd10077e8aa569f580a47834195570cf11",
+    "w_qlu11_lo.fam": "afb1006f99448242402fdefa0bac7421e901cd457aaea4469f95d88520a51f22",
+    "w_qts11.fam": "79d101e5e047bd5b1367b1f5119f65d41855486de11d04351c03f1a6ccb8483e",
+    "w_qts11_lo.fam": "f1ffd0306d759c93ae81d678aacbd6554a1b34a39274e3d69af189888828f278"
+  },
+  "optional_loader_version": "0.3.2"
+}

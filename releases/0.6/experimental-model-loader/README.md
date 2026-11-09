@@ -20,7 +20,16 @@ Body rules accept a three-component finite offset, capped at 0.15 metres per axi
 
 Zero-offset rules retain the original bones. Old configurations without offset default to zero. This is an experimental fit control; root motion, animation timing, clipping, foot placement, scene cleanup and battle performance still need runtime checks. Lowering the whole body 5 cm also lowers boot soles by 5 cm, so slight ground clipping is an explicit test tradeoff. Do not call the posture or grip fixed based on compilation or matrix calculations.
 
+## Approved positions — 9 November
+
+**Sam approved the installed appearance: “looks good, lock in the positions.” Preserve this body/weapon fit as the baseline.**
+
+The body-only offset is [0, -0.05, 0] m, with the earlier pre-regression body meshes and loader 0.3.2. Native weapon positions remain fixed. Custom offsets, scales, rotations, exact body/weapon files and loader hashes are pinned in approved-infantry-fit.json. The observed core version at approval was pla.infantry.7; the fit check does not require that core version, so unrelated gameplay updates may proceed.
+
+Run `python3 check_approved_fit.py /path/to/broken_arrow` before/after future model installations. It is read-only and fails on changed rule files, body/weapon geometry or loader. A loader-only update can legitimately fail the hash check and must be reviewed before refreshing the baseline; do not overwrite this approval automatically. This is a recorded user visual approval, not independent verification of firing, resupply, movement or every animation.
+
 ## Document change log
 
 - 2026-11-09 14:23:06 PST (America/Los_Angeles) — Added optional skinned-body/weapon loader source, actual hook evidence and revised-fit limits.
 - 2026-11-09 15:32:11 PST (America/Los_Angeles) — Added body-only visual-bone translation, finger regression rollback and explicit runtime limits.
+- 2026-11-09 15:47:15 PST (America/Los_Angeles) — Recorded Sam’s visual approval, pinned installed fit and added a read-only drift check.
