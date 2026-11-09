@@ -1184,6 +1184,12 @@ def main():
         assert a['Name']==v['Name'] and a['PenetrationAtGroundRange']==v['PenetrationAtGroundRange']<=100 and v['Damage']==c['damage'],(aid,c)
         assert all(effective['Units'][r['UnitId']]['Type'] in (2,4) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid),aid
         put('AmmunitionsJson',aid,{'Damage':v['Damage']},why)
+    # Lateralus batch: top armour 20 on the M-ATV, Typhoon and BPM-97 armour rows (top-armor-contract.json).
+    tc=json.loads((R/'top-armor-contract.json').read_text())
+    for key in tc['armors']:
+        a=effective['ArmorsJson'][int(key)];assert a['HeatArmorTop']<tc['top'] and a['KinArmorTop']<tc['top'],key
+        assert {U['HUDName'].strip().split()[0] for l in effective['UnitArmorsJson'].values() if l['ArmorId']==int(key) for U in [effective['Units'][l['UnitId']]]}<={'M-ATV','Typhoon','BPM-97'},key
+        put('ArmorsJson',int(key),{'HeatArmorTop':tc['top'],'KinArmorTop':tc['top']},'Top armour 20 (M-ATV, Typhoon, BPM-97)')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))

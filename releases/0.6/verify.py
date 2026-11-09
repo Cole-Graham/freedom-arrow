@@ -119,12 +119,14 @@ with zipfile.ZipFile(p) as z:
     supply21={aid:f['SupplyCost'] for aid,f in json.loads((R/'supply-contract.json').read_text())['ammo'].items()}
     d24=json.loads((R/'dev24-contract.json').read_text())
     ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
+    topc=json.loads((R/'top-armor-contract.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
         for k,row in before.items():
             want=dict(row);want.update((us['ammo_fields'] if f=='ammunitions' else us['armor_fields'] if f=='armors' else us['ability_fields'] if f=='abilities' else {}).get(k,{}))
             if f=='ammunitions':want.update(atgm.get(k,{}))
             if f=='armors' and int(k) in d24['hp']['armors']:want['MaxHealthPoints']=d24['hp']['value']
+            if f=='armors' and k in topc['armors']:want.update(HeatArmorTop=topc['top'],KinArmorTop=topc['top'])  # top-armor-contract.json
             if f=='ammunitions' and int(k) in pinned:want['PenetrationAtMinRange']=table(f)[k]['PenetrationAtMinRange']
             assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
@@ -153,6 +155,9 @@ with zipfile.ZipFile(p) as z:
                 assert row[field]==want,(t,key,field);row[field]=lock['permitted_before'][field]
             if t=='ArmorsJson' and int(key) in d24['hp']['armors']:
                 assert row['MaxHealthPoints']==d24['hp']['value'],key;row['MaxHealthPoints']=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/armors.json').read_text())[key]['MaxHealthPoints']
+            if t=='ArmorsJson' and key in topc['armors']:
+                a01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/armors.json').read_text())[key]
+                for field in ('HeatArmorTop','KinArmorTop'):assert row[field]==topc['top'],(t,key,field);row[field]=a01[field]
             if t=='AmmunitionsJson':
                 for field,want in atgm.get(key,{}).items():
                     assert row[field]==want,(t,key,field);row[field]=ammo01[key][field]
