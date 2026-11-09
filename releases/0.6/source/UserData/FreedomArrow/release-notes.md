@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.30 — development candidate
+# Freedom Arrow 0.6.0-pla.31 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
