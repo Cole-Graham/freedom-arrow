@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using HarmonyLib;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Configs;
 using Il2CppBrokenArrow.Client.Ecs.Controllers;
@@ -18,6 +19,9 @@ static class DetectionConfig
     static (float floor,float perSoldier)? originalBuilding;
     static float minorMobility;
     static float? originalMinorMobility;
+    // Suppression move speed (Lateralus batch, 8 November 2026): Buff Config StressModifiers[Shocked/Panicked].MovementSpeedMultiplier, vanilla 0.6 / 0.2.
+    static float shockedSpeed,panickedSpeed;
+    static (float shocked,float panicked)? originalStressSpeed;
     static void WriteBuildings()
     {
         var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
@@ -29,6 +33,10 @@ static class DetectionConfig
         originalMinorMobility??=buff.MinorMobilityMultiplier;
         buff.MinorMobilityMultiplier=Runtime.IsApplied?minorMobility:originalMinorMobility.Value;
         MelonLogger.Msg($"FREEDOM_ARROW_YELLOW_MOBILITY speed {buff.MinorMobilityMultiplier} turn {buff.MinorMobilityMultiplierRotation}");
+        var shocked=buff.StressModifiers[StressLevel.Shocked];var panicked=buff.StressModifiers[StressLevel.Panicked];
+        originalStressSpeed??=(shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier);
+        (shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier)=Runtime.IsApplied?(shockedSpeed,panickedSpeed):originalStressSpeed.Value;
+        MelonLogger.Msg($"FREEDOM_ARROW_STRESS_SPEED shocked {shocked.MovementSpeedMultiplier} panicked {panicked.MovementSpeedMultiplier}");
     }
     static void Log(string stage,object data)=>MelonLogger.Msg("FREEDOM_ARROW_DETECTION "+stage+" "+JsonSerializer.Serialize(data));
     public static void Install(HarmonyLib.Harmony harmony,string root)
@@ -43,6 +51,8 @@ static class DetectionConfig
         if(!(buildingFloor>=0&&buildingFloor<=1&&buildingPerSoldier>=0&&buildingPerSoldier<=0.1f))throw new InvalidDataException("Building damage settings out of range");
         minorMobility=game["MinorMobilityMultiplier"].GetValue<float>();
         if(!(minorMobility>0&&minorMobility<=1))throw new InvalidDataException("MinorMobilityMultiplier out of range");
+        shockedSpeed=game["ShockedMoveSpeed"].GetValue<float>();panickedSpeed=game["PanickedMoveSpeed"].GetValue<float>();
+        if(!(shockedSpeed>0&&shockedSpeed<=1&&panickedSpeed>0&&panickedSpeed<=1))throw new InvalidDataException("Stress move speed out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }
