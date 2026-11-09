@@ -1341,6 +1341,11 @@ def main():
         if cu.get('weapon'):
             src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==cu['ammo_from_unit'] and r['WeaponId']==cu['weapon']];assert src
             for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':u},why)
+    # The SEP v3 turret links copied with the card would add a second default main turret (Osama's dev card showed M256 x2, M240 x4):
+    # take every turret link that is not one of the Abrams X turrets out of the patch (they are this build's own copies).
+    ours={main}|{r['Id'] for r in effective['TurretsJson'].values() if r.get('ParentTurretId')==main}
+    for r in [r for r in list(effective['TurretUnitsJson'].values()) if r['UnitId']==u and r['TurretId'] not in ours]:
+        assert r['Id'] not in original['TurretUnitsJson'];del effective['TurretUnitsJson'][r['Id']];patches['TurretUnitsJson'].pop(str(r['Id']))
     mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==u}
     mine=[o for o in list(effective['OptionsJson'].values()) if o['ModificationId'] in mods];(keep,)=[o for o in mine if o['Name']==ax['keep_option']]
     put('OptionsJson',keep['Id'],{**ax['option_fields'],'MobilityId':mob,'Turret0Id':main},why)
