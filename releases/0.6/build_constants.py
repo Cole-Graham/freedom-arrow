@@ -1372,6 +1372,19 @@ def main():
         clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
         clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
         clone('OptionsJson',like['Id'],{'Name':ld['option_name'],'UIName':ld['ui'],'OptionPicture':ld['picture'],'Cost':ld['cost'],'IsDefault':False,'Order':order+i,'Turret0Id':tu},why)
+    # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
+    # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
+    def tree(uid):
+        T=effective['TurretsJson'];out=set();mains=0
+        for r in effective['TurretUnitsJson'].values():
+            if r['UnitId']!=uid:continue
+            t=T[r['TurretId']];par=T[t['ParentTurretId']]['Name'] if t.get('ParentTurretId') else None
+            out.add((t['Name'],r['Order'],par));mains+=bool(t.get('IsDefault') and not t.get('ParentTurretId'))
+        return out,mains
+    for c in pl['cards']:
+        mine,mains=tree(c['unit']);theirs,pmains=tree(c['parent'])
+        assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)
+        assert mine<=theirs,('turret links differ from the parent (Name, Order, parent turret)',c['unit'],sorted(mine-theirs))
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
