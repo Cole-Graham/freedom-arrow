@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.41 — development candidate
+# Freedom Arrow 0.6.0-pla.44 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -238,6 +238,8 @@ Osama clarified that he wants the author's supplied flat green skin, not a custo
 
 All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at both range endpoints. Raises 15 rows, including low-penetration HE rockets, TOS, Grad incendiary, Tulpan and Malka. Smoke, aircraft rocket pods and engineering mine-clearing charges are excluded. Raw damage, ignore cover, blast radius and dispersion are unchanged; TOS stays at raw damage 11. The floor supersedes the old MLRS vehicle-hit cap and can exceed vanilla penetration (TOS). Vanilla-damage recalculation is a separate proposal, not installed in this version. Static checks only; no gameplay test.
 
+**PLA test update:** Y-20 now copies the IL-76MD unit stats and transport components, with no weapon mounts or ammunition. Generated-data checks pass; in-game validation remains pending. Local model changes are separate from this package.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -425,3 +427,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 05:02:38 PST (America/Los_Angeles) — pla.40: corrected the model-skin selection to the author's flat green variation; pla.39 grey proposal superseded before installation.
 
 - 2026-11-09 05:27:09 PST (America/Los_Angeles) — pla.41: applied final 40 artillery penetration floor after historical tuning; retained damage/cover pending recalculation.
+
+- 2026-11-09 13:09:16 PST (America/Los_Angeles) — pla.43: documented unarmed IL-76MD-based Y-20 and pending game checks. pla.42 was an unpublished intermediate package.

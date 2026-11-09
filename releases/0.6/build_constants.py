@@ -1412,6 +1412,22 @@ def main():
         clone('TurretUnitsJson',tlink,{'TurretId':tu},why)
         clone('WeaponAmmunitionsJson',alink,{'WeaponId':wp,'AmmunitionId':am,'Quantity':ld['racks']},why)
         clone('OptionsJson',like['Id'],{'Name':ld['option_name'],'UIName':ld['ui'],'OptionPicture':ld['picture'],'Cost':ld['cost'],'IsDefault':False,'Order':order+i,'Turret0Id':tu},why)
+    # Osama, 9 Nov: Y-20 uses IL-76MD transport stats, with no weapon mounts or ammunition.
+    # Apply after all existing clone allocations so saved loadout IDs do not move.
+    yc=json.loads((R/'y20-transport-contract.json').read_text());yu,yp=yc['unit'],yc['donor']
+    assert not any(m['UnitId']==yp for m in effective['ModificationsJson'].values()),'Y-20 donor options need explicit handling'
+    identity={k:effective['Units'][yu][k] for k in ['Name','HUDName','DisplayInArmory']}
+    row=copy.deepcopy(effective['Units'][yp]);row.pop('Id');row.update(identity)
+    put('Units',yu,row,'Y-20 IL-76MD stat clone, unarmed')
+    for table in unit_tables:
+        for rid in list(rows_of(table,yu)):
+            if rid in original[table]:drop(table,rid)
+            else:
+                del effective[table][rid];patches[table].pop(str(rid),None)
+        if table in ['TurretUnitsJson','WeaponAmmunitionsJson','SquadMembersJson','SquadWeaponsJson']:continue
+        for rid in list(rows_of(table,yp)):clone(table,rid,{'UnitId':yu},'Y-20 IL-76MD stat clone, unarmed')
+    for table in ['TurretUnitsJson','WeaponAmmunitionsJson']:assert not rows_of(table,yu)
+    assert all(effective['Units'][yu][k]==v for k,v in effective['Units'][yp].items() if k not in ['Id',*identity])
     # Turret-tree guard for every new card (pla.24 lessons): its turret links must have the same shape as its parent's.
     # Every (turret Name, link Order, parent turret Name) must also exist on the parent, and no more default main turrets than the parent has. A renamed turret or a wrong Order loads in the armory but fails in battle (AddChildTurrets).
     def tree(uid):
