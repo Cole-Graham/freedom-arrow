@@ -217,55 +217,55 @@
     "66": {
       "Damage": 10.3,
       "Pen": 45.0,
-      "IC": 0.058
+      "IC": 0.21
     },
     "214": {
       "Damage": 24.5,
       "Pen": 15.0,
-      "IC": 0.095
+      "IC": 0.13
     },
     "443": {
       "Damage": 24.0,
       "Pen": 17.0,
-      "IC": 0.099
+      "IC": 0.162
     },
     "15": {
       "Damage": 24.0,
       "Pen": 17.0,
-      "IC": 0.099
+      "IC": 0.162
     },
     "928": {
       "Damage": 24.0,
       "Pen": 17.0,
-      "IC": 0.099
+      "IC": 0.162
     },
     "67": {
       "Damage": 33.0,
       "Pen": 14.0,
-      "IC": 0.126
+      "IC": 0.149
     },
     "930": {
       "Damage": 33.0,
       "Pen": 14.0,
-      "IC": 0.126
+      "IC": 0.149
     },
     "932": {
       "Damage": 33.0,
       "Pen": 14.0,
-      "IC": 0.126
+      "IC": 0.149
     },
     "430": {
       "Damage": 33.0,
       "Pen": 14.0,
-      "IC": 0.126
+      "IC": 0.149
     },
     "934": {
       "Damage": 33.0,
       "Pen": 14.0,
-      "IC": 0.126
+      "IC": 0.149
     }
   },
-  "mlrs_note": "0.6 dev.73 (Osama, 8 November 2026): MLRS at about 90% of Wargame per rocket, counting misses. Expected damage per rocket on a point target = peak damage x (blast radius / scatter)^2 x 1/3 (linear falloff) in both games; Wargame scatter is the mean of its min and max dispersion. Wargame stand-ins (WRD Toolbox): Grad M-21OF, Ogon M-14-OF (Shmel), Uragan 9M27F HE, GMLRS/HIMARS M26 HE, 300 mm Uragan-class scatter with HE 15 (Wargame has no Smerch), TOS and CATFAE TOS-1 Buratino. Damage set so BA = 0.9 x Wargame in the open with penetration lowered so a direct roof hit on an MBT (armor 80) does at most about 1.5 HP; ignore cover 0.15 so a building lets 30% through, Wargame's town factor, for every MLRS row (replaces dev.49's 1.0). dev.76 (Osama): TOS-1, TOS-1A and TOS-2 back to vanilla damage 30 and penetration 15 (they don't scatter as much as the model assumed and are already strong), ignore cover 0.15 like the other MLRS. CATFAE is not artillery: removed from the MLRS changes, fully vanilla (damage 30, penetration 15, ignore cover 0). dev.78 (Osama): Grad and Ogon back to vanilla damage (10, 11.5) with FA penetration 45; Uragan and GMLRS kept; GMLRS and HIMARS guided match the unguided GMLRS (35.5 / 17); 300 mm (Smerch, Uragan-S, Kama, Smerch guided, Sarma) scaled from the Uragan and GMLRS factors (x2.47 and x1.97, mean x2.22): 22 -> 49, penetration 14 (MBT roof hit about 1.4 HP). TOS out of the MLRS list (see tos). dev.79 (Osama): each MLRS rocket matches vanilla per hit in the open (damage = vanilla open hit / its low-penetration factor) and does 60% of vanilla in a building (per-row ignore cover; vanilla building rule counted for a 10-man squad). TOS keeps vanilla damage and penetration and the dev.78 scatter, ignore cover 0.059 for 60%. The Ogon (ammo 535, Zubr hovercraft) is out of these changes (Osama: don't touch it). dev.80 (Osama): buildings 50% of vanilla, not 60%: ignore cover recomputed per row.",
+  "mlrs_note": "0.6 dev.73 (Osama, 8 November 2026): MLRS at about 90% of Wargame per rocket, counting misses. Expected damage per rocket on a point target = peak damage x (blast radius / scatter)^2 x 1/3 (linear falloff) in both games; Wargame scatter is the mean of its min and max dispersion. Wargame stand-ins (WRD Toolbox): Grad M-21OF, Ogon M-14-OF (Shmel), Uragan 9M27F HE, GMLRS/HIMARS M26 HE, 300 mm Uragan-class scatter with HE 15 (Wargame has no Smerch), TOS and CATFAE TOS-1 Buratino. Damage set so BA = 0.9 x Wargame in the open with penetration lowered so a direct roof hit on an MBT (armor 80) does at most about 1.5 HP; ignore cover 0.15 so a building lets 30% through, Wargame's town factor, for every MLRS row (replaces dev.49's 1.0). dev.76 (Osama): TOS-1, TOS-1A and TOS-2 back to vanilla damage 30 and penetration 15 (they don't scatter as much as the model assumed and are already strong), ignore cover 0.15 like the other MLRS. CATFAE is not artillery: removed from the MLRS changes, fully vanilla (damage 30, penetration 15, ignore cover 0). dev.78 (Osama): Grad and Ogon back to vanilla damage (10, 11.5) with FA penetration 45; Uragan and GMLRS kept; GMLRS and HIMARS guided match the unguided GMLRS (35.5 / 17); 300 mm (Smerch, Uragan-S, Kama, Smerch guided, Sarma) scaled from the Uragan and GMLRS factors (x2.47 and x1.97, mean x2.22): 22 -> 49, penetration 14 (MBT roof hit about 1.4 HP). TOS out of the MLRS list (see tos). dev.79 (Osama): each MLRS rocket matches vanilla per hit in the open (damage = vanilla open hit / its low-penetration factor) and does 60% of vanilla in a building (per-row ignore cover; vanilla building rule counted for a 10-man squad). TOS keeps vanilla damage and penetration and the dev.78 scatter, ignore cover 0.059 for 60%. The Ogon (ammo 535, Zubr hovercraft) is out of these changes (Osama: don't touch it). dev.80 (Osama): buildings 50% of vanilla, not 60%: ignore cover recomputed per row. dev.85 (Osama, 9 November 2026: rockets and artillery back to vanilla infantry damage in buildings, ignore cover only): each MLRS row's ignore cover is set so damage x (0.18 + 0.82 x IC) equals vanilla's damage x (0.38 + 0.62 x vanilla IC) for a 10-man squad (FA has no per-soldier term). Damage and penetration unchanged. dev.88 (Osama, 9 November 2026, after his dev.85 editor test: MLRS 'only a hair strong'; 'ONLY touch the ignore cover'): MLRS damage to infantry in buildings x0.8, ignore cover only. New IC = (0.8 x (0.18 + 0.82 x IC) - 0.18) / 0.82. Damage, penetration and open-ground damage unchanged.",
   "tos": {
     "ammo": {
       "178": [
@@ -295,7 +295,9 @@
         200.0
       ]
     },
-    "note": "0.6 dev.78 (Osama, 8 November 2026): TOS-1, TOS-1A and TOS-2 fully vanilla (damage 30, penetration 15, ignore cover 0) except scatter 50 m wider and longer on the unit card (+25 raw on DispersionHorizontalRadius and DispersionVerticalRadius; card metres = raw x 2).",
-    "ignore_cover": 0.012
+    "note": "0.6 dev.78 (Osama, 8 November 2026): TOS-1, TOS-1A and TOS-2 fully vanilla (damage 30, penetration 15, ignore cover 0) except scatter 50 m wider and longer on the unit card (+25 raw on DispersionHorizontalRadius and DispersionVerticalRadius; card metres = raw x 2). dev.85: ignore cover 0.012 -> 0.244, vanilla infantry damage in buildings (10-man squad). dev.88: ignore cover 0.244 -> 0.151 (80% of dev.85 in buildings). dev.89 (Osama, 9 November 2026: 'crank up the ignore cover to 100%'): ignore cover 0.151 -> 1.0, so infantry in the open, in forest and in buildings take the same damage (30). Damage and penetration unchanged. dev.90 (Osama: 'NOT touch TOS damage to infantry in buildings ... lower the raw damage ... but increase the ignore cover to 100%'): damage 30 -> 9.1 with ignore cover 1.0, so infantry in buildings keep dev.88's 9.1 per hit (30 x (0.18 + 0.82 x 0.151) = 9.11) and the open and forest match it. Damage to vehicles drops the same 70%. Penetration unchanged. dev.91 (Osama, 9 November 2026: 'short fires', '3s is good', fire damage independent of the impact damage): DamageOverTimeDuration 0 -> 3. The impact stays as dev.90; the fire is on top. Read from the game code: each 0.5 s tick re-runs the blast with DoTModifier = tick / duration, so a unit that stays in the fire for all 3 s takes about one more hit (9.1) spread over the 3 s. Not yet run in a game; Ammunitions.IsNapalm also needs NoDamageFalloff, left off so the impact is unchanged.",
+    "ignore_cover": 1.0,
+    "damage": 9.1,
+    "fire_seconds": 3.0
   }
 }

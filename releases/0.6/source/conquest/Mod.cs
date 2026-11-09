@@ -15,14 +15,18 @@ using NativeScores = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCo
 using NativeZones = Il2CppSystem.Collections.Generic.List<Il2CppBrokenArrow.MissionEditor.Data.ObjectiveZone.ObjectiveZoneScript>;
 using NativeOwners = Il2CppSystem.Collections.Generic.Dictionary<Il2CppNetworkCommon.Enums.TeamSide, Il2CppSystem.Collections.Generic.HashSet<int>>;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Conquest.Prototype), "Freedom Arrow Conquest", "0.6.0-pla.19", "Freedom Arrow development")]
-[assembly: MelonGame(null, null)]
-[assembly: HarmonyDontPatchAll]
 namespace FreedomArrow.Conquest;
 
-public sealed partial class Prototype : MelonMod
+// Batch (Lateralus, 8 November 2026): this code is now inside FreedomArrow.Runtime.dll, not its own DLL. Runtime is the only
+// MelonLoader mod and passes it the MelonLoader events. It keeps its own Harmony ID and log name, so UnpatchSelf after a
+// conquest failure removes only conquest hooks, never the data hooks.
+public sealed partial class Prototype
 {
     public const string HarmonyId = "freedomarrow.conquestbatch";
+    public readonly HarmonyLib.Harmony HarmonyInstance = new(HarmonyId);
+    public readonly MelonLogger.Instance LoggerInstance = new("Freedom Arrow Conquest");
+    public MelonInfoAttribute Info { get; }
+    public Prototype(MelonInfoAttribute info) => Info = info;
     static readonly string Root = Path.Combine(MelonEnvironment.GameRootDirectory, "UserData", "FAConquestPrototype");
     static readonly string ConfigFile = Path.Combine(Root, "settings.json");
     static readonly string WeightOverridesFile = Path.Combine(Root, "weights-overrides.json");
@@ -40,7 +44,7 @@ public sealed partial class Prototype : MelonMod
     static double lastTelemetry = -10;
 
     // Public hooks prevent private generated-wrapper access problems when Harmony emits a trampoline.
-    public override void OnInitializeMelon()
+    public void OnInitializeMelon()
     {
         instance = this;
         Directory.CreateDirectory(Root);

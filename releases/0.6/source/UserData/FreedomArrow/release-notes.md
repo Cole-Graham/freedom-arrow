@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.19 — development candidate
+# Freedom Arrow 0.6.0-dev.91 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -12,6 +12,9 @@ New in 0.5 dev.43: the main menu shows the Freedom Arrow version at the bottom r
 New in 0.5 dev.44: BARS 7 men, 35 HP, 3 PKM and 4 AK-74M (6 RPG-26 kept), 55 points (was 8 men, 40 HP, 1 PKM, 7 AK-74M, 60).
 New in 0.5 dev.45: the version label is at the bottom middle of the main menu.
 New in 0.5 dev.46: BARS has 5 RPG-26 and 2 GP-25 (dev.44: 6 and 1).
+New in 0.6 dev.86 (Lateralus batch 2): helicopters with ATGM racks show in the armory again, helicopter missiles back to vanilla pylons and bursts; missile hit chance no longer compounds ECM and flares (flares 10 points each on helicopters, 5 on planes); helicopters no longer capped by the spotting cap.
+New in 0.6 dev.84 (Lateralus batch): infantry rocket launchers by role (thermobaric ignores cover with less damage, anti-structure and HE rounds hit buildings harder, M72A7 multipurpose, RPG-22 replaces the RPG-18); suppressed units move faster; supply caches harder to see; cheaper BARS Kornet with 6 missiles; Rangers RAWS 40; new card icons; optics in metres; one FA DLL for conquest.
+New in 0.6 dev.83: the S-24 kills a tank in 3 hits.
 New in 0.6 dev.82: rocket pods back to about half of vanilla against infantry in buildings (APKWS and DAGR 80%); open ground unchanged.
 New in 0.6 dev.80: rocket pods hit infantry in buildings a little less than vanilla (APKWS and DAGR about vanilla); open ground unchanged.
 New in 0.6 dev.77: rocket pods back to vanilla damage against infantry, less against armor; APKWS and DAGR hit buildings harder; S-24 and S-25 kill tanks in about 4 hits; SLAMRAAM in Special Operations.

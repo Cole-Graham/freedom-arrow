@@ -183,7 +183,7 @@ public sealed partial class Prototype
         try { CloseEconomy(__instance?._session?.Pointer ?? IntPtr.Zero, "normal postfix"); }
         catch (Exception e) { EconomyFault(e); }
     }
-    public override void OnDeinitializeMelon()
+    public void OnDeinitializeMelon()
     {
         try { if (economyWindow.Active || economyRates.Count != 0) CloseEconomy(CurrentEconomySession(), "plugin unload"); }
         catch (Exception e) { EconomyFault(e); }

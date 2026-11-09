@@ -2,22 +2,24 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-pla.19.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.6.0-dev.91.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.6.0-pla.19'
+    assert manifest['version']=='0.6.0-dev.91'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-pla.19 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.6.0-dev.91 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
-    assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll','Mods/FreedomArrow.ConquestBatch.dll',*('Mods/'+n for n in third)}
+    assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
-    for dll in ['FreedomArrow.Runtime.dll','FreedomArrow.ConquestBatch.dll']:assert mod['version'].encode() in z.read('Mods/'+dll)
+    assert mod['version'].encode() in z.read('Mods/FreedomArrow.Runtime.dll')
+    # Batch (Lateralus, 8 November 2026): the conquest mode is built into FreedomArrow.Runtime.dll.
+    assert 'Freedom Arrow Conquest'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'),'conquest mode built into Runtime'
     def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
     tgc=json.loads((R/'tigr-contract.json').read_text())
@@ -26,22 +28,19 @@ with zipfile.ZipFile(p) as z:
     arrw_ws={k for k,r in table('weapons').items() if str(r.get('Name','')).startswith('Cruise AGM183A ARRW')}
     assert len(arrw_ws)==len(arrw['loads']) and all(table('weapons')[k]['HUDName']==arrw['name'] and int(k)>=2000000 for k in arrw_ws)
     arrw_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in arrw_ws};assert len(arrw_tw)==len(arrw['loads'])
-    # 0.6 dev.46 (dev30-heli-contract.json): each doubled helicopter ATGM pylon has a launcher copy named '... both racks'.
-    racks_w={k for k,r in table('weapons').items() if str(r.get('Name','')).endswith(' both racks')}
-    assert racks_w and all(int(k)>=2000000 for k in racks_w)
-    racks_tw={k for k,r in table('turret_weapons').items() if str(r.get('WeaponId')) in racks_w}
-    assert len(racks_tw)==len(racks_w)
-    # 0.6 dev.61: each rack (model only) turret holds a launcher copy '... rack (no rounds)' with no WeaponAmmunitions row.
-    model_w={k for k,r in table('weapons').items() if str(r.get('Name','')).endswith(' rack (no rounds)')}
-    assert len(model_w)==len(racks_w) and all(int(k)>=2000000 for k in model_w)
-    assert not any(r and str(r.get('WeaponId')) in model_w for r in table('weapon_ammunitions').values())
-    model_tw={k for k,r in table('turret_weapons').items() if r and str(r.get('WeaponId')) in model_w};assert len(model_tw)==len(model_w)
-    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|racks_tw|model_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads, the dev.46 both-racks launchers and the dev.61 rack weapons'
+    # 0.6 (Lateralus, 8 Nov): helicopter ATGM pylons are vanilla. No dev.46 'both racks' or dev.61 'rack' rows remain,
+    # and no pylon option of dev30-heli-contract.json (or the Mi-28N Ataka option 653) is patched.
+    assert not any(str(r.get('Name','')).endswith((' both racks',' rack (no rounds)',' rack (no weapon)')) for t in ('weapons','turrets') for r in table(t).values() if r)
+    heli=json.loads((R/'dev30-heli-contract.json').read_text())
+    assert not set(table('options'))&{str(x) for x in heli['pod_options']+[653]}
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers and the ARRW loads'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
     rip=json.loads((R/'dev37-contract.json').read_text())['weapon_fields']
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in rip.items()),'dev.37 one missile per target'
+    h37=json.loads((R/'dev37-contract.json').read_text())['helicopter_vanilla']  # helicopter ATGMs keep vanilla bursts
+    assert not any({'ShotsPerBurstMin','ShotsPerBurstMax','SimultaneousTracking'}&set(table('weapons').get(str(w)) or {}) for w in h37)
     gap49=json.loads((R/'dev49-contract.json').read_text())['weapon_fields']
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in gap49.items()),'dev.49 vehicle ATGM gap'
     srof=json.loads((R/'sniper-rof-contract.json').read_text())['weapon_fields']
@@ -53,9 +52,13 @@ with zipfile.ZipFile(p) as z:
     ren=json.loads((R/'rename-contract.json').read_text())['WeaponsJson']
     assert all(table('weapons')[k]['HUDName']==f['HUDName'] for k,f in ren.items()),'0.6 weapon display names'
     # 0.6 dev.50 (air-gen-contract.json): plane air-to-air missiles aim in 0 s, long-range SAMs in 0.5 s (0.2 in dev.50); aim time is the only field.
+    # Lateralus batch (infantry-rl-contract.json): the RPG-22 is a full copy of the RPG-18 weapon row.
+    rlc=json.loads((R/'infantry-rl-contract.json').read_text())
+    rpg22w={k for k,r in table('weapons').items() if r and r.get('HUDName')==rlc['rpg22']['weapon_fields']['HUDName']}
+    assert len(rpg22w)==1 and int(next(iter(rpg22w)))>=2_000_000 and all(table('weapons')[k][f]==v for k in rpg22w for f,v in rlc['rpg22']['weapon_fields'].items()) and all(table('weapons')[k]['Type']==63 and table('weapons')[k]['MagazineSize']==1 for k in rpg22w),'RPG-22 weapon'
     agc=json.loads((R/'air-gen-contract.json').read_text());aimw={k for k,r in table('weapons').items() if set(r)=={'AimTimeMin','AimTimeMax'} and r['AimTimeMin'] in (0.0,0.5)}
     assert {k for k in aimw if table('weapons')[k]['AimTimeMin']==0.5}=={str(w) for w in agc['big_sam']['weapons']} and all(table('weapons')[k]['AimTimeMax']==table('weapons')[k]['AimTimeMin'] in (0.0,0.5) for k in aimw) and len(aimw)==31,'0.6 dev.50 aim times'
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in racks_w and k not in model_w),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in rpg22w),'weapons: launcher reload only'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
@@ -64,8 +67,8 @@ with zipfile.ZipFile(p) as z:
     assert all(table('units')[k]['Stealth']==v for k,v in ad.get('unit_stealth',{}).items()),'unit stealth'
     st=json.loads((R/'structural-contract.json').read_text())
     added={str(x['unit']) for x in st['splits']}|{str(json.loads((R/'dev38-contract.json').read_text())['kornet']['unit'])}|{str(json.loads((R/'sprut-contract.json').read_text())['unit'])}|{str(tgc['unit'])}|{str(json.loads((R/'tgb-contract.json').read_text())['unit'])}|{str(c['unit']) for c in json.loads((R/'scouts-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'recon-heli-us-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'logistics-contract.json').read_text())['copies']}|{str(c['unit']) for c in json.loads((R/'f16-asf-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'navy-air-contract.json').read_text())['cards']}|{str(c['unit']) for c in json.loads((R/'mig31bsm-contract.json').read_text())['cards']}
-    added|={str(c['unit']) for c in json.loads((R/'pla-test-contract.json').read_text())['cards']}  # PLA test division
     added|={str(c['unit']) for c in json.loads((R/'paladin-split-contract.json').read_text())['cards']}  # 0.6 dev.74 M1299 Iron Thunder
+    added|={str(c['unit']) for c in json.loads((R/'pla-test-contract.json').read_text())['cards']}  # PLA test division
     for k,row in live('units').items():
         if k in added:continue
         assert set(row)<={'Cost','Stealth','CurrentStealth','IsUnitModification','HUDName','ThumbnailFileName'},k
@@ -86,9 +89,7 @@ with zipfile.ZipFile(p) as z:
     caps=json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps']
     for k,row in live('sensors').items():assert 'OpticsGround' not in row or f"{row['OpticsGround']:g}" in caps,k
     assert caps['2300']==1000 and caps['6400']==2750 and all(float(k)>=v for k,v in caps.items())
-    on=json.loads(z.read('UserData/FreedomArrow/optics-names.json'))
-    for ch in ['Ground','LowAltitude','HighAltitude']:
-        t=on[ch];assert t[0][0]==0 and all(a[0]<b[0] for a,b in zip(t,t[1:])) and all(x[2] in on['Colors'] for x in t),ch
+    assert 'UserData/FreedomArrow/optics-names.json' not in z.namelist()  # card shows metres again (Lateralus batch)
     for oid,cost in contract['option_costs'].items():assert table('options')[oid]['Cost']==cost,(oid,cost)
     # Versioned audit and positive operator targets; source equality alone is not an independent full policy proof.
     audit=json.loads((R/'constant-audit.json').read_text())
@@ -120,13 +121,17 @@ with zipfile.ZipFile(p) as z:
     supply21={aid:f['SupplyCost'] for aid,f in json.loads((R/'supply-contract.json').read_text())['ammo'].items()}
     d24=json.loads((R/'dev24-contract.json').read_text())
     ammo01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/ammunitions.json').read_text())
+    soft01=json.loads((R/'soft-atgm-contract.json').read_text())['rows']
+    topc=json.loads((R/'top-armor-contract.json').read_text())
     for f in ['abilities','ammunitions','armors']:
         before=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants'/(f+'.json')).read_text())
         for k,row in before.items():
             want=dict(row);want.update((us['ammo_fields'] if f=='ammunitions' else us['armor_fields'] if f=='armors' else us['ability_fields'] if f=='abilities' else {}).get(k,{}))
             if f=='ammunitions':want.update(atgm.get(k,{}))
             if f=='armors' and int(k) in d24['hp']['armors']:want['MaxHealthPoints']=d24['hp']['value']
+            if f=='armors' and k in topc['armors']:want.update(HeatArmorTop=topc['top'],KinArmorTop=topc['top'])  # top-armor-contract.json
             if f=='ammunitions' and int(k) in pinned:want['PenetrationAtMinRange']=table(f)[k]['PenetrationAtMinRange']
+            if f=='ammunitions' and k in soft01:want['Damage']=soft01[k]['damage']  # soft-atgm-contract.json (Lateralus batch)
             assert table(f)[k]==want,(f,k)
     for uid,oids in [(1,[504,505]),(425,[1881,1882])]:
         for oid in oids:assert arm[str(opt[str(oid)]['ArmorId'])]['MaxHealthPoints']==10
@@ -144,6 +149,7 @@ with zipfile.ZipFile(p) as z:
         assert base+surcharge==cost,(uid,oid,cost)
     files=json.loads((R/'row-tests/table-files.json').read_text())
     locks=json.loads((R/'clone-locks.json').read_text())
+    soft=json.loads((R/'soft-atgm-contract.json').read_text())['rows']
     for t,rows in locks['tables'].items():
         patch=table(files[t].removesuffix('.json'))
         allowed=us['armor_fields'] if t=='ArmorsJson' else us['ammo_fields'] if t=='AmmunitionsJson' else us['ability_fields'] if t=='AbilitiesJson' else {}
@@ -153,9 +159,13 @@ with zipfile.ZipFile(p) as z:
                 assert row[field]==want,(t,key,field);row[field]=lock['permitted_before'][field]
             if t=='ArmorsJson' and int(key) in d24['hp']['armors']:
                 assert row['MaxHealthPoints']==d24['hp']['value'],key;row['MaxHealthPoints']=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/armors.json').read_text())[key]['MaxHealthPoints']
+            if t=='ArmorsJson' and key in topc['armors']:
+                a01=json.loads((R.parent/'0.1/source/UserData/FreedomArrow/constants/armors.json').read_text())[key]
+                for field in ('HeatArmorTop','KinArmorTop'):assert row[field]==topc['top'],(t,key,field);row[field]=a01[field]
             if t=='AmmunitionsJson':
                 for field,want in atgm.get(key,{}).items():
                     assert row[field]==want,(t,key,field);row[field]=ammo01[key][field]
+                if key in soft:assert row['Damage']==soft[key]['damage'],(t,key);row['Damage']=ammo01[key]['Damage']  # soft-atgm-contract.json
             assert hashlib.sha256(json.dumps(row,sort_keys=True,separators=(',',':')).encode()).hexdigest()==lock['sha256'],(t,key)
     # 0.4: sabot close range is the long-range value plus the contract bonus. The row tests check the value against vanilla.
     for aid in pinned:
@@ -170,7 +180,9 @@ with zipfile.ZipFile(p) as z:
     for aid in cw['bombs']:assert am[str(aid)]['IgnoreCover']==cw['bomb_ignore_cover'],aid
     fb=am[str(cw['fab9000']['ammo'])];assert fb['IgnoreCover']==1.0 and fb['OverpressureRadius']==0 and fb['PenetrationAtMinRange']==fb['PenetrationAtGroundRange']==cw['fab9000']['penetration'],'FAB-9000'
     assert all(am[str(x)]['IgnoreCover']==1.0 for x in cw['ballistic']['ammo']),'ballistic cover'
-    assert all([am[k]['DispersionHorizontalRadius'],am[k]['DispersionVerticalRadius']]==v and am[k]['IgnoreCover']==cw['tos']['ignore_cover'] and 'Damage' not in am[k] for k,v in cw['tos']['ammo'].items()),'TOS'
+    assert all([am[k]['DispersionHorizontalRadius'],am[k]['DispersionVerticalRadius']]==v and am[k]['IgnoreCover']==cw['tos']['ignore_cover'] and am[k].get('Damage',30)==cw['tos'].get('damage',30) and am[k].get('DamageOverTimeDuration',0)==cw['tos'].get('fire_seconds',0) for k,v in cw['tos']['ammo'].items()),'TOS'
+    ac=json.loads((R/'arty-cover-contract.json').read_text());assert all(am[k]['IgnoreCover']==v['IgnoreCover'] for k,v in ac['ammo'].items()),'0.6 dev.85 artillery cover'
+    mk=json.loads((R/'malka-contract.json').read_text());assert all(am[k]['Damage']==f['Damage'] for k,f in mk['ammo'].items()),'0.6 dev.89 Malka damage'
     assert am[str(cw['mop']['ammo'])]['IgnoreCover']==cw['mop']['ignore_cover'] and opt[str(cw['mop']['option'])]['Cost']==cw['mop']['option_cost'],'B-2 MOP'
     bk=json.loads((R/'brm3k-contract.json').read_text())
     assert all(opt[str(o)]['MainSensorId']==bk['sensor'] for o in bk['options']) and arm[str(bk['armor'])]['HeatArmorFront']==arm[str(bk['armor'])]['HeatArmorSides']==bk['heat'],'BRM-3K'
@@ -201,7 +213,11 @@ with zipfile.ZipFile(p) as z:
     amm=table('ammunitions');assert amm['2000177']['Damage']==10.5 and amm['2000173']['Damage']==10.5
     assert arm[str(table('unit_armors')['983']['ArmorId'])]['MaxHealthPoints']==8
     for aid,fields in atgm.items():assert all(amm[aid][f]==x for f,x in fields.items()),aid
-    for aid,x in supply21.items():assert amm[aid]['SupplyCost'] in (x,x*json.loads((R/'logistics-contract.json').read_text())['supply_factor']),aid
+    if json.loads((R/'supply-contract.json').read_text()).get('retired'):
+        sc=json.loads((R/'supply-contract.json').read_text())['ammo']  # FA-made rows (2000xxx) carry every field: back to their value before dev.21
+        assert all(amm[aid]['SupplyCost']==sc[aid]['was'] if int(aid)>=2000000 else 'SupplyCost' not in amm.get(aid,{}) for aid in supply21),'0.6 dev.87 artillery supply cost vanilla'
+    else:
+        for aid,x in supply21.items():assert amm[aid]['SupplyCost'] in (x,x*json.loads((R/'logistics-contract.json').read_text())['supply_factor']),aid
     d13=json.loads((R/'dev13-contract.json').read_text())
     for aid,pen in d13['atgm_penetration'].items():assert amm[aid]['PenetrationAtGroundRange']==pen==amm[aid]['PenetrationAtMinRange'],aid
     assert amm['63']['PenetrationAtGroundRange']==700 and amm['2000160']['PenetrationAtGroundRange']==950
@@ -314,7 +330,7 @@ with zipfile.ZipFile(p) as z:
             if kind==3:assert any(o.get('isBot') for o in objs if o.get('_type')==13),name
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
-    assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4}
+    assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4,'ShockedMoveSpeed':0.7,'PanickedMoveSpeed':0.4}
     assert [o['defV'] for o in json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] [2v2] Dead Center 0.1/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']==[1500]
     for aid,fields in us['ability_fields'].items():assert table('abilities')[aid]['APSCooldown']==fields['APSCooldown'],aid
     print(f'PASS: {len(manifest["sha256"])} payload hashes; metadata and held tables; requested vehicle and detection data; 200-income setting. No native/runtime result.')

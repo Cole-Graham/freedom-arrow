@@ -1,0 +1,37 @@
+{
+  "note": "Lateralus, 8 November 2026: the SSO Kornet first, then every other ground soft-target ATGM copy at 9.0. Soft-target ATGMs (thermobaric or HE, low penetration) are an exception to the ATGM damage cut: damage back to the vanilla value of the row each copy was made from. The 0.1 base set these ground-only copies to 9.0. Key: FA copy id; source: the vanilla row it was copied from; damage: that row's vanilla damage.",
+  "rows": {
+    "2000184": {
+      "source": 202,
+      "damage": 15.0
+    },
+    "2000185": {
+      "source": 458,
+      "damage": 15.0
+    },
+    "2000186": {
+      "source": 494,
+      "damage": 15.0
+    },
+    "2000187": {
+      "source": 515,
+      "damage": 15.0
+    },
+    "2000189": {
+      "source": 552,
+      "damage": 15.0
+    },
+    "2000190": {
+      "source": 554,
+      "damage": 13.0
+    },
+    "2000191": {
+      "source": 556,
+      "damage": 13.0
+    },
+    "2000192": {
+      "source": 557,
+      "damage": 13.5
+    }
+  }
+}

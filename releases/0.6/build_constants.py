@@ -441,7 +441,7 @@ def main():
     for key,f in d37['weapon_fields'].items():
         assert effective['WeaponsJson'][int(key)]['Type'] in d37['types'],key
         put('WeaponsJson',int(key),f,'One missile per target, no ripple fire')
-    left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
+    left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and i not in d37['helicopter_vanilla'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
     assert not left,('missile weapon still ripples',left)
     # 0.4 dev.38: BARS, BARS FS and BARS Kornet are separate cards.
     d38=json.loads((R/'dev38-contract.json').read_text());why='BARS card split'
@@ -475,6 +475,8 @@ def main():
     for table in ['SquadMembersJson','SquadWeaponsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
         for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==fs['unit']]:clone(table,rid,{'UnitId':kor['unit']},why)
     swap(kor['unit'],*kor['swap'],kor['ammo']);card(kor['unit'])
+    kw=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==kor['unit'] and r['WeaponId']==fs['swap'][0]]
+    assert len(kw)==1,kw;put('WeaponAmmunitionsJson',kw[0]['Id'],{'Quantity':kor['missiles']},why)
     put('Units',fs['unit'],fs['fields'],why);swap(fs['unit'],*fs['swap'],fs['ammo'])
     put('Units',rpg['unit'],rpg['fields'],why);swap(rpg['unit'],*rpg['swap']);card(rpg['unit'])
     for key,w in rpg['add_special'].items():
@@ -638,7 +640,7 @@ def main():
     put('Units',u,{'HUDName':tb['hud']},why);assert effective['Units'][u]['Cost']==165
     # 0.5 dev.21: artillery uses more supply to refill (ActualArrow 1.1.20 values).
     sup=json.loads((R/'supply-contract.json').read_text())
-    for key,f in sup['ammo'].items():
+    for key,f in ({} if sup.get('retired') else sup['ammo']).items():
         a=effective['AmmunitionsJson'][int(key)]
         assert a['Name'].strip()==f['name'] and a['SupplyCost']==f['was'] and f['SupplyCost']>f['was'],key
         assert a['Name'].startswith(('Shell','Obus','MLRS','Missile Ballistic','Missile Cruise IskanderK','Round 152 2A33','Round 122 2A31')),key
@@ -681,10 +683,7 @@ def main():
     clone('SpecializationAvailabilitiesJson',tgb['pool'],{'UnitId':new},why)
     mig.write_text(json.dumps({**json.loads(mig.read_text()),str(tgb['move_option']):par},indent=2,sort_keys=True)+'\n')
     assert effective['Units'][par]['Cost']==30 and [o['Id'] for o in options(par)]==[2207]
-    # 0.5 dev.28: Mi-28N outer Ataka pylon has one launcher, so it fires one missile at a time.
-    d28=json.loads((R/'dev28-contract.json').read_text());o=effective['OptionsJson'][d28['option']]
-    assert o[d28['clear']]==d28['turret'] and o[d28['keep']]==d28['turret']
-    put('OptionsJson',d28['option'],{d28['clear']:0},'Mi-28N one Ataka launcher on the outer pylon')
+    # 0.5 dev.28 (Mi-28N outer Ataka pylon with one launcher) is undone: vanilla pylons (Lateralus, 8 Nov).
     # 0.5 dev.30: helicopter ATGM pylons carry one launcher; AH-64E, Comanche, Mi-28N and Mi-28NM can laser-designate.
     h30=json.loads((R/'dev30-heli-contract.json').read_text());why='Helicopter ATGM pylon: one launcher'
     atw={w for w in effective['WeaponsJson'] if any(effective['AmmunitionsJson'][r['AmmunitionId']]['Name'].startswith('Missile AT') for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId']==w)}
@@ -698,6 +697,7 @@ def main():
         for t in {o[k] for k in keys}:
             dup=[k for k in keys if o[k]==t]
             if t in tur_at and len(dup)>1 and t not in h30['skip_single_round_turrets']:found.setdefault(o['Id'],[]).extend(dup[1:])
+    found.pop(653,None)  # Mi-28N outer Ataka x8: dev.28 is undone, and it gets no dev.46 clones, so later IDs stay
     assert sorted(found)==sorted(h30['pod_options']),sorted(set(found)^set(h30['pod_options']))
     # 0.6 dev.46 (Osama): an empty mount shows the unit's default turret (the Hydra pod on the Longbow and AH-64E). The freed
     # mount now carries a copy of the launcher turret with no weapon (the rack model only), and the one launcher left carries
@@ -824,6 +824,8 @@ def main():
                 clone('TransportAvailabilitiesJson',t['Id'],{'SpecializationAvailabilityId':pool},why)
         men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==new]
         assert len(men)==3 and all((m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['rifle'],c['launcher']) for m in men)
+    # Batch (Lateralus): after the copies, so only the old cards change icon. FA draws these at runtime (CardIcons.cs).
+    for key,t in sc['thumbnails'].items():put('Units',int(key),{'ThumbnailFileName':t},'Own card icon, apart from the 3-man card')
     # 0.6: recon helicopters, own cards in the recon tab, availability 4 (recon-heli-contract.json).
     # 0.6: F-16C Block 50 ASF, an F-16C copy with its air-to-air loadout built in (f16-asf-contract.json).
     # 0.6: F-35C and EA-18G Growler, with option edits, an ECM ability swap and extra pylon rows (navy-air-contract.json).
@@ -939,7 +941,7 @@ def main():
             for order,o in enumerate(sorted((o for o in keep if o['ModificationId']==mod),key=lambda o:o['Order'])):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order},why)
         for s in c['specs']:clone('SpecializationAvailabilitiesJson',c['like'],{'UnitId':new,'SpecializationId':s},why)
     for aid,a in effective['AmmunitionsJson'].items():
-        if a['TrajectoryType'] not in lg['artillery_trajectories'] or a['SupplyCost']<=0:continue
+        if lg['supply_factor']==1 or a['TrajectoryType'] not in lg['artillery_trajectories'] or a['SupplyCost']<=0:continue
         kinds={effective['Units'][r['UnitId']]['Type'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid and r['UnitId'] in effective['Units']}
         if kinds-{4}:continue  # plane and ship rounds
         put('AmmunitionsJson',aid,{'SupplyCost':a['SupplyCost']*lg['supply_factor']},'Artillery uses twice the supply')
@@ -959,10 +961,12 @@ def main():
     for aid,fields in sd['fields'].items():
         row=effective['AmmunitionsJson'][int(aid)];assert row['Seeker']==200 and all(row[k]==v for k,v in sd['was'][aid].items()),('SEAD row changed upstream',aid)
         put('AmmunitionsJson',int(aid),fields,'SEAD missile movement as ActualArrow 1.1.20')
-    # 0.6: 12ga SLUG T2 (M1014, Benelli M4) damage 7.0, penetration at max range 8 (slug-contract.json).
-    sl=json.loads((R/'slug-contract.json').read_text());row=effective['AmmunitionsJson'][sl['ammo']]
-    assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',{k:row[k] for k in sl['was']})
-    put('AmmunitionsJson',sl['ammo'],sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8')
+    # 0.6: 12ga SLUG T2 (M1014, Benelli M4, KS-K) damage 7.0, penetration at max range 8 (slug-contract.json).
+    sl=json.loads((R/'slug-contract.json').read_text())
+    for aid in sl['ammo']:
+        row=effective['AmmunitionsJson'][aid]
+        assert all(row[k]==v for k,v in sl['was'].items()),('slug changed upstream',aid,{k:row[k] for k in sl['was']})
+        put('AmmunitionsJson',aid,sl['fields'],'12ga SLUG T2 damage 7.0, max-range penetration 8 (M1014, Benelli M4, KS-K)')
     # 0.6: infantry in buildings at Wargame level; unguided bombs lose overpressure; penetration cap (cover-wargame-contract.json).
     cw=json.loads((R/'cover-wargame-contract.json').read_text());cap=lambda d,a:math.floor(a*math.sqrt(cw['max_hit']/(d-cw['max_hit']))) if d>cw['max_hit'] else math.inf
     for aid in cw['mlrs']:
@@ -985,7 +989,20 @@ def main():
     for aid in bl['ammo']:put('AmmunitionsJson',aid,{'IgnoreCover':bl['ignore_cover']},'Ballistic missiles ignore cover 1.0')
     for aid,(h,v) in cw['tos']['ammo'].items():
         row=effective['AmmunitionsJson'][int(aid)];assert [row['DispersionHorizontalRadius'],row['DispersionVerticalRadius']]==cw['tos']['was'][aid] and row['Damage']==30 and row['IgnoreCover']==0,aid
-        put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v,'IgnoreCover':cw['tos']['ignore_cover']},'TOS vanilla damage, scatter 50 m wider and longer, 60% of vanilla in buildings')
+        put('AmmunitionsJson',int(aid),{'DispersionHorizontalRadius':h,'DispersionVerticalRadius':v,'IgnoreCover':cw['tos']['ignore_cover'],**({'Damage':cw['tos']['damage']} if 'damage' in cw['tos'] else {}),**({'DamageOverTimeDuration':cw['tos']['fire_seconds']} if 'fire_seconds' in cw['tos'] else {})},'TOS damage, cover and short fire, scatter 50 m wider and longer, 60% of vanilla in buildings')
+    # 0.6 dev.85 (Osama): tube artillery and mortar HE back to vanilla infantry damage in buildings, ignore cover only (arty-cover-contract.json).
+    ac=json.loads((R/'arty-cover-contract.json').read_text())
+    for key,v in ac['ammo'].items():
+        row=effective['AmmunitionsJson'][int(key)];van=original['AmmunitionsJson'][int(key)]
+        assert row['Name'].strip()==v['name'] and row['IgnoreCover']==van['IgnoreCover'] and row['Damage']==van['Damage'],key
+        want=(van['Damage']*(0.38+0.62*van['IgnoreCover'])/row['Damage']-0.18)/0.82
+        assert abs(v['IgnoreCover']-want)<0.001,(key,want)
+        put('AmmunitionsJson',int(key),{'IgnoreCover':v['IgnoreCover']},'Artillery HE: vanilla infantry damage in buildings (ignore cover only)')
+    # 0.6 dev.89 (Osama): Malka 203 mm HE damage 22 (malka-contract.json). After the artillery cover block, which checks vanilla damage.
+    mk=json.loads((R/'malka-contract.json').read_text())
+    for key,f in mk['ammo'].items():
+        row=effective['AmmunitionsJson'][int(key)];assert row['Name'].strip()==f['name'] and row['Damage']==f['was'],key
+        put('AmmunitionsJson',int(key),{'Damage':f['Damage']},'Malka 203 mm HE damage 22')
     mop=cw['mop'];row=effective['AmmunitionsJson'][mop['ammo']];assert row['Name']=='Bomb 13600kg GBU57' and row['IgnoreCover']==0,row['Name']
     put('AmmunitionsJson',mop['ammo'],{'IgnoreCover':mop['ignore_cover']},'B-2 GBU-57 MOP ignores cover 1.0')
     o=effective['OptionsJson'][mop['option']];assert o['Name']=='Loadout B2 2xGBU57' and o['Cost']==mop['option_cost_was'],(o['Name'],o['Cost'])
@@ -1175,6 +1192,50 @@ def main():
         assert effective['SpecializationAvailabilitiesJson'][ad['like_pool']]['UnitId']==ad['unit']
         assert not any(r['UnitId']==ad['unit'] and r['SpecializationId']==ad['specialization'] for r in effective['SpecializationAvailabilitiesJson'].values())
         clone('SpecializationAvailabilitiesJson',ad['like_pool'],{'SpecializationId':ad['specialization'],'MaxAvailabilityXp0':ad['availability']},ad['why'])
+    # Lateralus batch: soft-target ATGMs keep their vanilla damage (soft-atgm-contract.json).
+    sa=json.loads((R/'soft-atgm-contract.json').read_text());why='Soft-target ATGM: vanilla damage'
+    for key,c in sa['rows'].items():
+        aid=int(key);a=effective['AmmunitionsJson'][aid];v=original['AmmunitionsJson'][c['source']]
+        assert a['Name']==v['Name'] and a['PenetrationAtGroundRange']==v['PenetrationAtGroundRange']<=100 and v['Damage']==c['damage'],(aid,c)
+        assert all(effective['Units'][r['UnitId']]['Type'] in (2,4) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid),aid
+        put('AmmunitionsJson',aid,{'Damage':v['Damage']},why)
+    # Lateralus batch: top armour 20 on the M-ATV, Typhoon and BPM-97 armour rows (top-armor-contract.json).
+    tc=json.loads((R/'top-armor-contract.json').read_text())
+    for key in tc['armors']:
+        a=effective['ArmorsJson'][int(key)];assert a['HeatArmorTop']<tc['top'] and a['KinArmorTop']<tc['top'],key
+        assert {U['HUDName'].strip().split()[0] for l in effective['UnitArmorsJson'].values() if l['ArmorId']==int(key) for U in [effective['Units'][l['UnitId']]]}<={'M-ATV','Typhoon','BPM-97'},key
+        put('ArmorsJson',int(key),{'HeatArmorTop':tc['top'],'KinArmorTop':tc['top']},'Top armour 20 (M-ATV, Typhoon, BPM-97)')
+    # Lateralus batch: infantry rocket launchers by purpose, M72A7 split, RPG-22 (infantry-rl-contract.json).
+    rl=json.loads((R/'infantry-rl-contract.json').read_text())
+    def ammo_users(aid):return {r['UnitId'] for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==aid}
+    for key,c in rl['ammo'].items():
+        aid=int(key);assert ammo_users(aid)==set(c['users']),(aid,sorted(ammo_users(aid)))
+        put('AmmunitionsJson',aid,c['fields'],'Infantry launcher '+c['group']+': '+c['name'])
+    m7=rl['m72a7'];why='M72A7 own round: multipurpose EFP'
+    rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'] and r['WeaponId']==m7['weapon']]
+    assert {r['UnitId'] for r in rows}==set(m7['users']),rows
+    assert all(r['WeaponId'] in (m7['weapon'],m7['keep_weapon']) for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'])
+    a7=clone('AmmunitionsJson',m7['from'],m7['fields'],why)
+    for r in rows:put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':a7},why)
+    g=rl['rpg22'];why='RPG-22 replaces the RPG-18'
+    w22=clone('WeaponsJson',g['weapon_from'],g['weapon_fields'],why);a22=clone('AmmunitionsJson',g['ammo_from'],g['ammo_fields'],why)
+    for uid in g['units']:
+        men=[m for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId'])]
+        assert men,uid
+        for m in men:put('SquadMembersJson',m['Id'],{f:w22 for f in ('PrimaryWeaponId','SpecialWeaponId') if m[f]==g['weapon_from']},why)
+        sw=[r for r in effective['SquadWeaponsJson'].values() if r['UnitId']==uid and r['WeaponId']==g['weapon_from']];assert len(sw)==1,uid
+        put('SquadWeaponsJson',sw[0]['Id'],{'WeaponId':w22},why)
+        wa=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==uid and r['WeaponId']==g['weapon_from']]
+        assert len(wa)==1 and wa[0]['AmmunitionId']==g['ammo_from'],(uid,wa)
+        put('WeaponAmmunitionsJson',wa[0]['Id'],{'WeaponId':w22,'AmmunitionId':a22},why)
+    assert not ammo_users(g['ammo_from']) and not any(g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values()),'RPG-18 still carried'
+    # Lateralus batch: flare abilities take 10 points (helicopters) or 5 points (planes) per burning flare under the flat missile chance (missile-chance-contract.json).
+    mc=json.loads((R/'missile-chance-contract.json').read_text())
+    for a in [a for a in effective['AbilitiesJson'].values() if a.get('IsDecoy')]:
+        users={effective['Units'][l['UnitId']]['Type'] for l in effective['UnitAbilitiesJson'].values() if l['AbilityId']==a['Id'] and l['UnitId'] in effective['Units']}
+        if not users:continue  # 9 flare rows no unit uses: left vanilla
+        assert len(users)==1 and str(next(iter(users))) in mc['decoy_accuracy'],(a['Id'],users)
+        put('AbilitiesJson',a['Id'],{'DecoyAccuracyMultiplier':mc['decoy_accuracy'][str(next(iter(users)))]},'Flares: helicopters 10 points, planes 5 points each (flat missile chance)')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
@@ -1194,6 +1255,33 @@ def main():
         if n<1:continue
         rate=sr['k']*n**sr['exponent'];table[f"{r['UnitId']}:{r['WeaponId']}"]={'carriers':n,'rate':round(rate,3),'reload':round(60*n/rate,3)}
     (R/'source/UserData/FreedomArrow/squad-reload.json').write_text(json.dumps({'k':sr['k'],'exponent':sr['exponent'],'disposableType':sr['disposable_type'],'squads':table},indent=1,sort_keys=True)+'\n')
+    # 0.6 (Lateralus, 8 Nov): helicopter ATGM pylons back to vanilla. Each pylon option again mounts its launcher twice,
+    # each with its own rounds, and fires as vanilla does. Undoes 0.5 dev.30 (one launcher), 0.6 dev.46 (both-racks
+    # launcher) and dev.61 (rack weapon); dev.61's rack weapon without rounds hid 15 helicopters in the armory. The
+    # dev.46/61 rows are still cloned above and dropped here, so no later ID moves (saved decks).
+    why='Helicopter ATGM pylons back to vanilla'
+    gone={'TurretsJson':set(rack.values())|{t2 for t2,_ in load2.values()}}
+    gone['WeaponsJson']={w2 for _,wm in load2.values() for w2 in wm.values()}|{r['WeaponId'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in rack.values()}
+    gone['TurretWeaponsJson']={r['Id'] for r in effective['TurretWeaponsJson'].values() if r['TurretId'] in gone['TurretsJson']}
+    gone['TurretUnitsJson']={r['Id'] for r in effective['TurretUnitsJson'].values() if r['TurretId'] in gone['TurretsJson']}
+    gone['WeaponAmmunitionsJson']={r['Id'] for r in effective['WeaponAmmunitionsJson'].values() if r['WeaponId'] in gone['WeaponsJson']}
+    for table,ids in gone.items():
+        for rid in ids:
+            assert rid>=2_000_000 and rid not in original[table] and rid not in frozen[table],(table,rid)
+            del effective[table][rid];del patches[table][str(rid)]
+    audit[:]=[a for a in audit if a['id'] not in gone.get(a['table'],())]
+    for oid in sorted(found):
+        keys=[k for k in original['OptionsJson'][oid] if k.startswith('Turret') and k.endswith('Id')]
+        put('OptionsJson',oid,{k:original['OptionsJson'][oid][k] for k in keys},why)
+        for k in keys:
+            if frozen['OptionsJson'][oid].get(k)==original['OptionsJson'][oid][k]:patches['OptionsJson'][str(oid)].pop(k,None)
+        if not patches['OptionsJson'][str(oid)]:del patches['OptionsJson'][str(oid)]
+    o=effective['OptionsJson'];assert o[653]['Turret3Id']==o[653]['Turret4Id']==474  # Mi-28N outer Ataka x8, as vanilla
+    for table,rows in effective.items():
+        for r in rows.values():
+            for k,v in r.items():
+                assert not ((k=='TurretId' or (k.startswith('Turret') and k.endswith('Id'))) and v in gone['TurretsJson']),(table,r['Id'],k)
+                assert not (k=='WeaponId' and v in gone['WeaponsJson']),(table,r['Id'],k)
     # Spotting cap (SpottingCap.cs): each observer's ground range stops at the vanilla value of its sensor tier.
     caps={}
     for sid,row in effective['SensorsJson'].items():

@@ -15,20 +15,19 @@ using MelonLoader;
 namespace FreedomArrow;
 // Spotting cap: an observer never sees a ground target beyond the vanilla ground optics of its sensor tier.
 // Both native vision paths pass their range result to CreateFilterTaskForTarget as maxDistance, so the cap is set there.
-// The native air path (planes and missiles: aircraft or fuse, not helicopter) also ends there; Lateralus, 8 November 2026:
-// those targets are not capped, so planes are seen at native low/high-altitude optics. Helicopters keep the cap.
-// Unit cards show optics as tier names, so the card does not have to show capped or formula ranges.
+// The native air path (planes, helicopters and missiles) also ends there; Lateralus, 8 November 2026: planes and missiles
+// are not capped; 9 November 2026: helicopters are not capped either, so every air target is seen at native
+// low/high-altitude optics. Unit cards show optics in metres, capped only on the ground value; low and high never.
 static class SpottingCap
 {
     const int MaxLog=15;
     static readonly Dictionary<float,float> capTable=new();
     static readonly ConcurrentDictionary<(IntPtr,int),float> observerCaps=new();
-    static readonly Dictionary<string,(float min,string name,string color)[]> names=new();
     static IntPtr hasFog,getFog,getFogCode,hasAircraft,hasHeli,hasFuse;
     static bool capBroken,cardBroken;
     static long calls,capped,airSkipped;
     static int unknownLogged,cardLogged;
-    static IntPtr Store(string name,Type component)
+    internal static IntPtr Store(string name,Type component)
     {
         var type=typeof(Entity).GetNestedType(name,BindingFlags.NonPublic|BindingFlags.Public)?.MakeGenericType(component)??throw new MissingMemberException("Entity."+name);
         RuntimeHelpers.RunClassConstructor(type.TypeHandle);
@@ -40,14 +39,6 @@ static class SpottingCap
         var caps=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"spotting-caps.json")))["OpticsGroundCaps"].AsObject();
         foreach(var (k,v) in caps)capTable[float.Parse(k,System.Globalization.CultureInfo.InvariantCulture)]=v.GetValue<float>();
         if(capTable.Count==0)throw new InvalidDataException("spotting-caps.json is empty");
-        var cfg=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"optics-names.json")));
-        var colors=cfg["Colors"].AsObject();
-        foreach(string channel in new[]{"Ground","LowAltitude","HighAltitude"})
-        {
-            var tiers=cfg[channel].AsArray().Select(t=>(t[0].GetValue<float>(),t[1].GetValue<string>(),colors[t[2].GetValue<string>()].GetValue<string>())).ToArray();
-            if(tiers.Length==0||tiers[0].Item1!=0||tiers.Zip(tiers.Skip(1)).Any(p=>p.Second.Item1<=p.First.Item1))throw new InvalidDataException("optics-names.json: "+channel+" must start at 0 and rise");
-            names[channel]=tiers;
-        }
         hasFog=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(FogOfWarComponent));
         getFog=Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(FogOfWarComponent));
         getFogCode=*(IntPtr*)getFog;
@@ -57,18 +48,18 @@ static class SpottingCap
         if(getFogCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<FogOfWarComponent> has no code");
         harmony.Patch(AccessTools.Method(typeof(FogOfWarUnit),"CreateFilterTaskForTarget"),prefix:new HarmonyMethod(typeof(SpottingCap),nameof(CapBefore)));
         try { harmony.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),postfix:new HarmonyMethod(typeof(SpottingCap),nameof(CardAfter))); }
-        catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_OPTICS_NAMES_FAILED: card names not installed. "+e.Message); }
+        catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_OPTICS_CARD_FAILED: card optics hook not installed. "+e.Message); }
         MelonLogger.Msg("FREEDOM_ARROW_SPOTTING_CAP installed "+string.Join(", ",capTable.OrderBy(p=>p.Key).Select(p=>$"{p.Key:g}->{p.Value:g}"))+" (raw; displayed m = raw x 2)");
     }
-    static unsafe bool Has(IntPtr store,Entity entity)
+    internal static unsafe bool Has(IntPtr store,Entity entity)
     {
         IntPtr error=IntPtr.Zero;
         IntPtr has=Il2CppInterop.Runtime.IL2CPP.il2cpp_runtime_invoke(store,(IntPtr)(&entity),null,ref error);
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(error);
         return has!=IntPtr.Zero&&*(bool*)Il2CppInterop.Runtime.IL2CPP.il2cpp_object_unbox(has);
     }
-    // Same test as the native air branch (FogOfWarUnit.CalculateVisionRangeForTarget): a helicopter is checked first.
-    static bool IsPlaneOrMissile(Entity target)=>!Has(hasHeli,target)&&(Has(hasAircraft,target)||Has(hasFuse,target));
+    // Air targets as the native air branch sees them (FogOfWarUnit.CalculateVisionRangeForTarget): helicopter, aircraft or fuse.
+    static bool IsAir(Entity target)=>Has(hasHeli,target)||Has(hasAircraft,target)||Has(hasFuse,target);
     static unsafe float ObserverCap(Entity observer)
     {
         if(!Has(hasFog,observer))return 0;
@@ -87,7 +78,7 @@ static class SpottingCap
             var observer=__instance.UnitEntity;
             float cap=observerCaps.GetOrAdd((__instance.Pointer,observer.GetHashCode()),_=>ObserverCap(observer));
             if(cap<=0||__3<=cap)return;
-            if(IsPlaneOrMissile(__0))
+            if(IsAir(__0))
             {
                 long a=Interlocked.Increment(ref airSkipped);
                 if(a<=MaxLog||IsPowerOfTen(a))MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP air target not capped: {__3:0.#} raw kept (cap {cap:0.#}); {a} air skips");
@@ -105,12 +96,16 @@ static class SpottingCap
         }
     }
     static bool IsPowerOfTen(long v){while(v>=10&&v%10==0)v/=10;return v==1;}
-    static string Label(string channel,float value)
-    {
-        var tier=names[channel].Last(t=>value>=t.min);
-        return $"<color={tier.color}>{tier.name}</color>";
-    }
     static readonly Regex Metres=new(@"\d[\d\s.,]*\s*m\b");
+    // Display metres per raw optics unit, read from the native card text (EffectiveRangeMultiplier, 2 in vanilla).
+    static float CardScale(string text,float raw)
+    {
+        var m=Metres.Match(text??"");
+        if(!m.Success||raw<=0)return 2f;
+        string digits=new string(m.Value.Where(char.IsDigit).ToArray());
+        return float.TryParse(digits,out float shown)&&shown>0?shown/raw:2f;
+    }
+    static string M(float raw,float scale)=>$"{MathF.Round(raw*scale):0} m";
     public static void CardAfter(UnitInfoCard __instance,Units __0)
     {
         if(cardBroken||__0==null)return;
@@ -126,14 +121,18 @@ static class SpottingCap
             }
             var sprite=__instance._infocardConfig?.Optics;
             if(sprite==null)return;
+            // Same cap the hook uses: the vanilla ground optics of this unit's tier; unknown or zero tiers are not capped.
+            float cap=capTable.TryGetValue(ground,out float c)&&c>0?c:float.MaxValue;
+            float groundShown=Math.Min(ground,cap);
             // The native card shows low-altitude optics for helicopters and ground optics for every other unit.
             bool heli=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Helicopters;
-            string main=heli?Label("LowAltitude",low):Label("Ground",ground);
-            string[] lines={Label("Ground",ground),Label("LowAltitude",low),Label("HighAltitude",high)};
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))
             {
                 var icon=item.Icon;
                 if(icon==null||icon.sprite==null||icon.sprite.Pointer!=sprite.Pointer)continue;
+                float scale=CardScale(item.Text.text,heli?low:ground);
+                string main=heli?M(low,scale):M(groundShown,scale);
+                string[] lines={M(groundShown,scale),M(low,scale),M(high,scale)};
                 item.Text.text=main;
                 var tooltip=item.Tooltip;
                 if(tooltip!=null)
@@ -153,13 +152,13 @@ static class SpottingCap
                         tooltip.Data=data;
                     }
                 }
-                if(++cardLogged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_OPTICS_NAMES {__0.Name}: ground {ground:g} low {low:g} high {high:g} -> {main}");
+                if(++cardLogged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_OPTICS_CARD {__0.Name}: ground {ground:g} (shown {groundShown:g}) low {low:g} high {high:g} raw; x{scale:0.##} -> {main}");
             }
         }
         catch(Exception e)
         {
             cardBroken=true;
-            MelonLogger.Error("FREEDOM_ARROW_OPTICS_NAMES_FAILED: off for this session. "+e.Message);
+            MelonLogger.Error("FREEDOM_ARROW_OPTICS_CARD_FAILED: off for this session; the card shows native optics. "+e.Message);
         }
     }
 }

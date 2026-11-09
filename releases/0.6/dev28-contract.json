@@ -1,7 +1,0 @@
-{
-  "note": "0.5 dev.28 (Osama, 6 November 2026). Mi-28N Ohotnik outer pylon Ataka x8 option (653) carries one Ataka launcher instead of two, so it fires one missile at a time; the second launcher slot (Turret4Id, also turret 474) is cleared. 2S41 Drok 80 and 2S23 Nona-SVK 80 (prices in vehicle-contract.json). K16 Bumerang keeps its smoke (dev5-contract.json keep_units). Not yet run in a game.",
-  "option": 653,
-  "clear": "Turret4Id",
-  "turret": 474,
-  "keep": "Turret3Id"
-}

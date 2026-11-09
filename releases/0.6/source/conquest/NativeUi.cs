@@ -145,7 +145,7 @@ public sealed partial class Prototype
         if(text==null)return;
         DrawBanner(text,Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64)));
     }
-    public override void OnGUI()
+    public void OnGUI()
     {
         DrawVersionLabel();
         if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)
@@ -215,7 +215,7 @@ public sealed partial class Prototype
         }
         catch(Exception e){setupEnds=-1;MelonLogger.Error("FREEDOM_ARROW_SETUP_FAILED: setup phase off. "+e.Message);}
     }
-    public override void OnUpdate()
+    public void OnUpdate()
     {
         SetupFrame();
         StateFrame();

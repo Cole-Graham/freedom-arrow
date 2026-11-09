@@ -1,19 +1,108 @@
 {
-  "note": "0.6 (Osama, 7 November 2026). A 30-point, 3-man recon card in every deck, 8 per deck. Russia: Razvedka, 3 AK-74M and 3 RPG-18; the old Razvedka card is renamed Razvedka Mech. US (Baltic too): Scouts, 3 M16A4 and 3 M72A3 LAW; the old Scouts card is renamed Scouts Stryker. Each new card is a copy of the old card (portrait, sensor, movement, Sprint Smoke Laser) with 3 men on the 3-man armor row of the same family. AK-74M for Razvedka is a guess (Osama named only the RPG-18). Each deck lends its transports from the pool named in transports_from. Not yet run in a game.",
-  "rename": {"123": {"HUDName": "Razvedka Mech"}, "277": {"HUDName": "Scouts Stryker"}},
-  "availability": 8,
-  "cards": [
-    {"unit": 725, "parent": 123, "country": 1,
-     "fields": {"Name": "FA Razvedka", "HUDName": "Razvedka", "Cost": 30},
-     "armor": 79, "rifle": 29, "launcher": 931,
-     "ammo": {"29": [30, 160], "931": [2000144, 1]},
-     "members": [[290, 1], [292, 2], [294, 3]],
-     "transports_from": {"7": 164, "8": 362, "9": 557, "10": 668, "12": 576, "15": 693}},
-    {"unit": 726, "parent": 277, "country": 2,
-     "fields": {"Name": "FA Scouts", "HUDName": "Scouts", "Cost": 30},
-     "armor": 279, "rifle": 362, "launcher": 1019,
-     "ammo": {"362": [16, 160], "1019": [2000141, 1]},
-     "members": [[455, 1], [454, 2], [458, 3]],
-     "transports_from": {"3": 104, "4": 247, "5": 1032, "6": 773, "13": 613, "16": 893}}
-  ]
+ "note": "0.6 (Osama, 7 November 2026). A 30-point, 3-man recon card in every deck, 8 per deck. Russia: Razvedka, 3 AK-74M and 3 RPG-18; the old Razvedka card is renamed Razvedka Mech. US (Baltic too): Scouts, 3 M16A4 and 3 M72A3 LAW; the old Scouts card is renamed Scouts Stryker. Each new card is a copy of the old card (portrait, sensor, movement, Sprint Smoke Laser) with 3 men on the 3-man armor row of the same family. AK-74M for Razvedka is a guess (Osama named only the RPG-18). Each deck lends its transports from the pool named in transports_from. Not yet run in a game. Lateralus batch (8 November 2026): the old cards get their own card icons, set after the copies so the new 3-man cards keep the vanilla icons. Razvedka Mech: AK, Mechanized Infantry badge, binoculars. Scouts Stryker: the Troopers icon with binoculars in place of the second rifle. The images are FA runtime sprites (source/runtime-qa/CardIcons.cs).",
+ "rename": {
+  "123": {
+   "HUDName": "Razvedka Mech"
+  },
+  "277": {
+   "HUDName": "Scouts Stryker"
+  }
+ },
+ "availability": 8,
+ "cards": [
+  {
+   "unit": 725,
+   "parent": 123,
+   "country": 1,
+   "fields": {
+    "Name": "FA Razvedka",
+    "HUDName": "Razvedka",
+    "Cost": 30
+   },
+   "armor": 79,
+   "rifle": 29,
+   "launcher": 931,
+   "ammo": {
+    "29": [
+     30,
+     160
+    ],
+    "931": [
+     2000144,
+     1
+    ]
+   },
+   "members": [
+    [
+     290,
+     1
+    ],
+    [
+     292,
+     2
+    ],
+    [
+     294,
+     3
+    ]
+   ],
+   "transports_from": {
+    "7": 164,
+    "8": 362,
+    "9": 557,
+    "10": 668,
+    "12": 576,
+    "15": 693
+   }
+  },
+  {
+   "unit": 726,
+   "parent": 277,
+   "country": 2,
+   "fields": {
+    "Name": "FA Scouts",
+    "HUDName": "Scouts",
+    "Cost": 30
+   },
+   "armor": 279,
+   "rifle": 362,
+   "launcher": 1019,
+   "ammo": {
+    "362": [
+     16,
+     160
+    ],
+    "1019": [
+     2000141,
+     1
+    ]
+   },
+   "members": [
+    [
+     455,
+     1
+    ],
+    [
+     454,
+     2
+    ],
+    [
+     458,
+     3
+    ]
+   ],
+   "transports_from": {
+    "3": 104,
+    "4": 247,
+    "5": 1032,
+    "6": 773,
+    "13": 613,
+    "16": 893
+   }
+  }
+ ],
+ "thumbnails": {
+  "123": "FA_RU_RAZVEDKA_MECH-Label",
+  "277": "FA_US_SCOUTS_STRYKER-Label"
+ }
 }

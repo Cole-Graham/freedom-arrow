@@ -5,7 +5,7 @@ namespace FreedomArrow.Conquest;
 // get the list of loaded mods with versions once the game has started, and a line for every scene the game loads.
 public sealed partial class Prototype
 {
-    public override void OnLateInitializeMelon()
+    public void OnLateInitializeMelon()
     {
         try
         {
@@ -15,7 +15,7 @@ public sealed partial class Prototype
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_MENU mods: "+e.Message);}
     }
-    public override void OnSceneWasLoaded(int buildIndex,string sceneName)
+    public void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         Log("scene_loaded",new{buildIndex,sceneName});
         MelonLogger.Msg($"FREEDOM_ARROW_MENU scene {buildIndex} '{sceneName}'");
