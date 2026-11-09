@@ -39,6 +39,8 @@ with zipfile.ZipFile(p) as z:
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
     rip=json.loads((R/'dev37-contract.json').read_text())['weapon_fields']
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in rip.items()),'dev.37 one missile per target'
+    h37=json.loads((R/'dev37-contract.json').read_text())['helicopter_vanilla']  # helicopter ATGMs keep vanilla bursts
+    assert not any({'ShotsPerBurstMin','ShotsPerBurstMax','SimultaneousTracking'}&set(table('weapons').get(str(w)) or {}) for w in h37)
     gap49=json.loads((R/'dev49-contract.json').read_text())['weapon_fields']
     assert all(all(table('weapons')[k][n]==x for n,x in f.items()) for k,f in gap49.items()),'dev.49 vehicle ATGM gap'
     srof=json.loads((R/'sniper-rof-contract.json').read_text())['weapon_fields']

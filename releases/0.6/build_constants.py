@@ -441,7 +441,7 @@ def main():
     for key,f in d37['weapon_fields'].items():
         assert effective['WeaponsJson'][int(key)]['Type'] in d37['types'],key
         put('WeaponsJson',int(key),f,'One missile per target, no ripple fire')
-    left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
+    left=[i for i,w in effective['WeaponsJson'].items() if w['Type'] in d37['types'] and i not in d37['helicopter_vanilla'] and (w['ShotsPerBurstMax']>1 or w['SimultaneousTracking']>w['MultiTargetTracking'])]
     assert not left,('missile weapon still ripples',left)
     # 0.4 dev.38: BARS, BARS FS and BARS Kornet are separate cards.
     d38=json.loads((R/'dev38-contract.json').read_text());why='BARS card split'
