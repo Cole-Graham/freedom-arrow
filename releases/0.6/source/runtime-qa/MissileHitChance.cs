@@ -5,8 +5,6 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
-using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles;
-using Il2CppBrokenArrow.Client.Ecs.Render.Components;
 using Il2CppBrokenArrow.DataBase.Models;
 using Il2CppDefaultEcs;
 using MelonLoader;
@@ -19,16 +17,15 @@ namespace FreedomArrow;
 // A re-roll inside CalculateMissileDivertion passes with min(1, chance / lowest chance so far), so the chance that the missile
 // is still on target equals the flat chance at the worst moment of its flight, however many re-rolls happen. Laser and SEAD
 // seekers never reach the roll (vanilla). Calls from outside CalculateMissileDivertion (the AI overkill score) get the flat chance.
-// Logging (Lateralus batch, 9 November 2026): roll lines name the target and its flares left; MissilesHelper.SetMissileDead
-// (a missile stops guiding: hit, lost energy, lost target, launcher lost it...) writes one FREEDOM_ARROW_MISSILE_END line per
-// rolled missile with the reason, flight time, distance to the target and the seeker's lock state. Logging only.
+// Logging (Lateralus batch, 9 November 2026): roll lines name the missile, the target and its flares left. The dev.94 missile end
+// hook (MissilesHelper.SetMissileDead) crashed the game and is removed in dev.95. Logging only.
 static class MissileHitChance
 {
     const int MaxLog=3000,Prune=4096;
     [ThreadStatic] static bool inDivertion;
     [ThreadStatic] static Entity current;
-    static readonly Dictionary<ulong,(float lowest,float time,float launch,int ammo,int maxFlares,bool ended)> missiles=new();
-    static bool broken,endBroken;
+    static readonly Dictionary<ulong,(float lowest,float time,float launch)> missiles=new();
+    static bool broken;
     static int logged;
     // Nullable<Entity> as IL2CPP lays it out: bool at 0, Entity at 4, 12 bytes (as HarmSeeker.cs).
     [StructLayout(LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
@@ -42,13 +39,9 @@ static class MissileHitChance
         harmony.Patch(chance,prefix:new HarmonyMethod(typeof(MissileHitChance),nameof(Chance)));
         harmony.Patch(divertion,prefix:new HarmonyMethod(typeof(MissileHitChance),nameof(DivertionBefore)),finalizer:new HarmonyMethod(typeof(MissileHitChance),nameof(DivertionAfter)));
         MelonLogger.Msg("FREEDOM_ARROW_MISSILE_CHANCE installed: flat ECM + flares, re-rolls do not compound");
-        try
-        {
-            var dead=AccessTools.Method(typeof(MissilesHelper),nameof(MissilesHelper.SetMissileDead))??throw new InvalidOperationException("MissilesHelper.SetMissileDead not found");
-            harmony.Patch(dead,prefix:new HarmonyMethod(typeof(MissileHitChance),nameof(DeadBefore)));
-            MelonLogger.Msg("FREEDOM_ARROW_MISSILE_END installed: one line per rolled missile when it stops guiding");
-        }
-        catch(Exception x){endBroken=true;MelonLogger.Error("FREEDOM_ARROW_MISSILE_END_FAILED: no missile end lines. "+x.Message);}
+        // dev.94's FREEDOM_ARROW_MISSILE_END hook on MissilesHelper.SetMissileDead crashed the game natively when the first
+        // missile ended (Lateralus, 9 November 2026). Its ref SeekerComponent argument is a non-blittable struct, and the
+        // patch is not installed again.
     }
     public static void DivertionBefore(ref Entity __0){inDivertion=true;current=__0;}
     public static Exception DivertionAfter(Exception __exception){inDivertion=false;return __exception;}
@@ -84,12 +77,12 @@ static class MissileHitChance
                 if(missiles.TryGetValue(key,out var seen))
                 {
                     result=seen.lowest<=0?0:Math.Min(1f,flat/seen.lowest);
-                    missiles[key]=(Math.Min(seen.lowest,flat),now,seen.launch,seen.ammo,Math.Max(seen.maxFlares,targetActiveDecoys),seen.ended);kind="reroll";flight=now-seen.launch;
+                    missiles[key]=(Math.Min(seen.lowest,flat),now,seen.launch);kind="reroll";flight=now-seen.launch;
                 }
                 else
                 {
                     if(missiles.Count>=Prune)foreach(var k in missiles.Where(p=>now-p.Value.time>30).Select(p=>p.Key).ToList())missiles.Remove(k);
-                    missiles[key]=(flat,now,now,ammoInfo.Id,targetActiveDecoys,false);kind="first";
+                    missiles[key]=(flat,now,now);kind="first";
                 }
             }
             __result=result;
@@ -107,32 +100,5 @@ static class MissileHitChance
             MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: off for this session; vanilla missile hit chance. "+x.Message);
             return true;
         }
-    }
-    // MissilesHelper.SetMissileDead(in Entity missile, ref SeekerComponent, bool isDestroyed, bool pitbullTerminalGuidance,
-    // MissileDeadReqestType): read the seeker before the game clears it. Only missiles that rolled above are logged, once each.
-    public static void DeadBefore(in Entity __0,bool __2,MissileDeadReqestType __4)
-    {
-        if(endBroken||!Runtime.IsApplied)return;
-        try
-        {
-            var missile=__0;ulong key=Key(missile);
-            if(!missiles.TryGetValue(key,out var m)||m.ended)return;
-            missiles[key]=(m.lowest,m.time,m.launch,m.ammo,m.maxFlares,true);
-            if(++logged>MaxLog)return;
-            string where="target none";
-            if(Target(missile,out var target))
-            {
-                string dist="?";
-                if(missile.Has<ViewComponent>()&&target.Has<ViewComponent>())
-                    dist=Vector3.Distance(NativeEcs.Read<ViewComponent>(missile).transform.position,NativeEcs.Read<ViewComponent>(target).transform.position).ToString("0");
-                where=$"target {Id(target)} distance {dist} {Flares(target)}";
-            }
-            bool los=NativeEcs.Field<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget"),vision=NativeEcs.Field<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget");
-            int miss=NativeEcs.Field<SeekerComponent,int>(missile,"MissType"),seeker=NativeEcs.Field<SeekerComponent,int>(missile,"Type");
-            float lost=NativeEcs.EncodedField<SeekerComponent>(missile,"TimeWithoutTarget");
-            string missName=miss switch{1=>"on target",2=>"diverted (ECM/miss roll)",3=>"diverted (flare)",_=>"not rolled"};
-            MelonLogger.Msg($"FREEDOM_ARROW_MISSILE_END t+{Time.time-m.launch:0.00}s missile {Id(missile)} ammo {m.ammo} reason {__4} destroyed {__2} seeker {seeker} {where} los {los} vision {vision} roll {missName} lowest {m.lowest:0.###} max_flares {m.maxFlares} no_target_s {lost:0.00}");
-        }
-        catch(Exception x){endBroken=true;MelonLogger.Error("FREEDOM_ARROW_MISSILE_END_FAILED: no more missile end lines this session. "+x.Message);}
     }
 }
