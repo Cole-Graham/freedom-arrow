@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.40 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.41 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.40.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.41.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -352,6 +352,10 @@ Renames the old Z-10 card/model to Z-10K and adds a separate Z-10 (978, Mi-28NM 
 ## Author flat green skin — pla.40
 
 Osama clarified that he wants the author's supplied flat green skin, not a custom grey material. The six local CGTrader replacements now use their unvaried Hull_BaseColor textures, with the supplied metallic, roughness and normal maps. Camo, dust and yellow variants are unused. No gameplay constants change from pla.39. pla.39 was pushed but not installed; pla.40 is the intended install.
+
+## Artillery penetration floor — pla.41
+
+All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at both range endpoints. Raises 15 rows, including low-penetration HE rockets, TOS, Grad incendiary, Tulpan and Malka. Smoke, aircraft rocket pods and engineering mine-clearing charges are excluded. Raw damage, ignore cover, blast radius and dispersion are unchanged; TOS stays at raw damage 11. The floor supersedes the old MLRS vehicle-hit cap and can exceed vanilla penetration (TOS). Vanilla-damage recalculation is a separate proposal, not installed in this version. Static checks only; no gameplay test.
 
 ## Document change log
 
@@ -575,3 +579,5 @@ Osama clarified that he wants the author's supplied flat green skin, not a custo
 - 2026-11-09 04:56:29 PST (America/Los_Angeles) — pla.39: added Z-10 and ZBL-191 cards, retained Z-10K identity, and documented the six-model grey batch and evidence limits.
 
 - 2026-11-09 05:02:38 PST (America/Los_Angeles) — pla.40: corrected the model-skin selection to the author's flat green variation; pla.39 grey proposal superseded before installation.
+
+- 2026-11-09 05:27:09 PST (America/Los_Angeles) — pla.41: applied final 40 artillery penetration floor after historical tuning; retained damage/cover pending recalculation.

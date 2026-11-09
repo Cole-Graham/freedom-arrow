@@ -1426,6 +1426,17 @@ def main():
         swapped={effective['TurretsJson'][t]['Name'] for t in c.get('swap_turrets',{}).values()};mine={x for x in mine if x[0] not in swapped}
         assert mains<=pmains,('more default main turrets than the parent',c['unit'],mains,pmains)
         assert mine<=theirs,('turret links differ from the parent (Name, Order, parent turret)',c['unit'],sorted(mine-theirs))
+    # Osama, 9 Nov: final artillery penetration floor, after every older override and clone.
+    floor=json.loads((R/'arty-floor-contract.json').read_text());changed={}
+    def floor_scope(a):return a['TrajectoryType'] in floor['trajectories'] and a['Damage']>0 and not a['GenerateSmoke'] and a['Id'] not in floor['engineering_excluded']
+    for aid,a in list(effective['AmmunitionsJson'].items()):
+        if not floor_scope(a):continue
+        before=[a['PenetrationAtMinRange'],a['PenetrationAtGroundRange']]
+        if min(before)>=floor['minimum']:continue
+        changed[str(aid)]=before
+        put('AmmunitionsJson',aid,{f:max(a[f],floor['minimum']) for f in ('PenetrationAtMinRange','PenetrationAtGroundRange')},'Artillery penetration floor 40 (Osama)')
+    assert changed==floor['changed_before'],('artillery floor scope changed',changed)
+    assert all(min(a['PenetrationAtMinRange'],a['PenetrationAtGroundRange'])>=floor['minimum'] for a in effective['AmmunitionsJson'].values() if floor_scope(a))
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
