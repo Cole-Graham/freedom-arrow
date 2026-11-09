@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.82 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.83 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -115,6 +115,7 @@ Started from 0.4.0-dev.49 (4a9084b), 6 November 2026. 0.5's defining feature is 
 - dev.79 (Osama, 8 November 2026): MLRS goal 100% of vanilla per hit against infantry in the open and 60% in buildings (vanilla building rule counted for a 10-man squad), with low penetration so an MBT roof hit is 1–2.5 HP. Damage / penetration / ignore cover: Grad 10.3 / 45 / 0.113; Uragan 24.5 / 15 / 0.158; GMLRS, GMLRS guided, HIMARS guided 24 / 17 / 0.163; Smerch, Uragan-S, Kama, Smerch guided, Sarma 33 / 14 / 0.195; TOS-1/1A/2 vanilla 30 / 15 with the dev.78 scatter, ignore cover 0.059. The Ogon (ammo 535, Zubr hovercraft) is out of these changes. See `cover-wargame-contract.json`. Calculated, not yet run in a game.
 - dev.80 (Osama, 8 November 2026): MLRS buildings 50% of vanilla (not 60%); open field still 100%. Ignore cover: Grad 0.058, Uragan 0.095, GMLRS and both guided 0.099, 300 mm group 0.126, TOS 0.012. Damage and penetration as dev.79. Not yet run in a game.
 - dev.82 (Osama, 8 November 2026): rocket pods back to dev.77's building values; Osama had approved 47%, not dev.80's 80%. Hydra, S-8, S-13 and Zuni ignore cover 0 (47% of vanilla in a building, 10-man squad); APKWS and DAGR 0.15 (80%). Open field still vanilla; S-24, S-25, damage and penetration unchanged. Not yet run in a game.
+- dev.83 (Osama, 8 November 2026): the S-24 3-shots an MBT (a helicopter usually carries 4). Penetration 44 -> 53 (helicopter, damage 22) and 53 -> 64 (plane, damage 16.5): about 4.8 per hit on an MBT's top or rear (armor 100). Damage, ignore cover and the other rockets unchanged. Calculated; not yet run in a game.
 - dev.80 (Osama, 8 November 2026): rocket pods slightly below vanilla in buildings instead of about half. Vanilla lets 18% + 2% per soldier through (38% for 10 men); FA lets 0.18 + 0.82 x ignore cover through. Hydra, S-8, S-13 and Zuni ignore cover 0 -> 0.15 (80% of vanilla for a 10-man squad); APKWS and DAGR 0.15 -> 0.25 (about vanilla). Open-field damage stays vanilla; S-24, S-25, penetration unchanged. See `rocketpod-contract.json`. Not yet run in a game.
 - dev.59 (Osama, 8 November 2026): the B-52H could fire only 3 of its 4 ARRWs, then waited for a long reload. The bomb-bay ARRW weapon had a magazine of 1 (copied from the MiG-31K Kinzhal) holding 2 missiles, so the second bay missile waited for the 30-35 s magazine reload. The bay weapon now has a magazine of 2, so both bay missiles and both wing missiles can be fired in one pass. See `arrw-contract.json`. Not yet run in a game.
 - dev.58 (Lateralus, 8 November 2026): air detection. Displayed m = 2 x optics x radar x stealth. Fighter sensor (row 6, 24 planes) OpticsHighAltitude 6000 -> 8000: 16 km on a high stealth-1.0 plane (12 km before); a fighter flying high uses this against low planes too. Patriot-tier sensors (rows 8, 27, 36: Patriot PAC-2/PAC-3/PAC-3 MSE, S-300V4, S-300PM, S-350, S-400, Buk M2, IRIS-T SLM, Buk M3, NASAMS) OpticsHighAltitude 2000 -> 2650: 10.6 km with radar on (x2.0, was 8 km), 5.3 km with radar off. Tor, M163, Osa, Pantsir, Tor-M2KM and M-SHORAD move to their own copies of their sensors (rows 7, 18, 30) with OpticsHighAltitude 1500: 6 km with radar on (was 4 km); other units on those rows are unchanged; the Osa's two optics options point at the copies. Plane stealth +0.25 UI: 1.75 -> 2.0 (raw 0.571 -> 0.5: F-35A/B and copies, F-22, F-117, B-2, RQ-170, S-70) and 1.25 -> 1.5 (raw 0.8 -> 0.666: Su-57 and the drones MQ-9, MQ-1, MQ-1C, Orion, RQ-4, Forpost, Korsar, RQ-7). Low-altitude optics unchanged. See `air-detect-contract.json`. Calculated; not yet run in a game.
@@ -199,7 +200,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.82.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.83.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -519,3 +520,4 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 - 2026-11-08 04:09:00 PST (America/Los_Angeles) — 0.6.0-dev.80: rocket pods 80% of vanilla in buildings (APKWS/DAGR about 100%), open field unchanged (Osama). No live result.
 - 2026-11-08 04:24:00 PST (America/Los_Angeles) — 0.6.0-dev.80: MLRS 50% of vanilla in buildings (Osama). No live result.
 - 2026-11-08 04:14:00 PST (America/Los_Angeles) — 0.6.0-dev.82: rocket pods back to 47% of vanilla in buildings (APKWS/DAGR 80%), reverting dev.80 (Osama). No live result.
+- 2026-11-08 16:14:00 PST (America/Los_Angeles) — 0.6.0-dev.83: S-24 3-shots an MBT (penetration 53 helicopter, 64 plane) (Osama). No live result.
