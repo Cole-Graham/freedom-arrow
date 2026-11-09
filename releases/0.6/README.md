@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.38 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.39 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.38.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.39.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -344,6 +344,10 @@ Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDura
 ## TOS damage 11 — pla.38
 
 TOS-1, TOS-1A and TOS-2 now have 11 raw damage (was 9.1), as requested by Osama. Ignore cover stays 100%, penetration stays 15, and blast radius/dispersion are unchanged. The normal impact correction from pla.37 remains; separate visible ground fire is not implemented. Raw damage is not a guarantee of 11 HP per hit: armor, blast falloff and building allocation still apply. No new gameplay measurement.
+
+## Grey PLA model batch — pla.39
+
+Renames the old Z-10 card/model to Z-10K and adds a separate Z-10 (978, Mi-28NM donor). Adds ZBL-191 (979, K16 Bumerang donor) as a transport for the PLA Rifle Squad. Existing ZTZ-96B, ZTZ-99A, ZTQ-15 and ZBD-04A get the supplied private CGTrader models. The ZBD-04 download internally calls its hull ZBD04A, so it replaces that existing card. Grey hull finish, original surface maps, lighter battle models. New cards retain donor stats and loadouts as placeholders. Includes pla.38 TOS raw damage 11. Private model files are outside this source repository. No gameplay verification yet.
 
 ## Document change log
 
@@ -563,3 +567,5 @@ TOS-1, TOS-1A and TOS-2 now have 11 raw damage (was 9.1), as requested by Osama.
 - 2026-11-09 04:37:27 PST (America/Los_Angeles) — pla.37: corrected dev.91 fire claim and restored TOS normal impact path; separate visible fire remains pending.
 
 - 2026-11-09 04:51:29 PST (America/Los_Angeles) — pla.38: all three TOS rounds set to 11 raw damage; other damage controls unchanged.
+
+- 2026-11-09 04:56:29 PST (America/Los_Angeles) — pla.39: added Z-10 and ZBL-191 cards, retained Z-10K identity, and documented the six-model grey batch and evidence limits.
