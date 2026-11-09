@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.37 — isolated development candidate
+# Freedom Arrow 0.6.0-pla.38 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.37.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-pla.38.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -340,6 +340,10 @@ Adds a separate PLA J-16D card (977), temporarily using the same Su-27SM-derived
 ## TOS impact correction — pla.37
 
 Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDuration back to 0. The dev.91 claim that 3 seconds of damage over time adds fire while leaving the impact unchanged was incorrect: native code branches into the damage-over-time path and skips normal impact handling. Damage stays 9.1, ignore cover stays 100%, and dispersion stays unchanged. Separate visible ground fire is not implemented. This correction follows static native code, not a verified game run.
+
+## TOS damage 11 — pla.38
+
+TOS-1, TOS-1A and TOS-2 now have 11 raw damage (was 9.1), as requested by Osama. Ignore cover stays 100%, penetration stays 15, and blast radius/dispersion are unchanged. The normal impact correction from pla.37 remains; separate visible ground fire is not implemented. Raw damage is not a guarantee of 11 HP per hit: armor, blast falloff and building allocation still apply. No new gameplay measurement.
 
 ## Document change log
 
@@ -557,3 +561,5 @@ Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDura
 - 2026-11-09 04:29:08 PST (America/Los_Angeles) — pla.36: added J-16D card and documented temporary donor stats and private model conversion.
 
 - 2026-11-09 04:37:27 PST (America/Los_Angeles) — pla.37: corrected dev.91 fire claim and restored TOS normal impact path; separate visible fire remains pending.
+
+- 2026-11-09 04:51:29 PST (America/Los_Angeles) — pla.38: all three TOS rounds set to 11 raw damage; other damage controls unchanged.
