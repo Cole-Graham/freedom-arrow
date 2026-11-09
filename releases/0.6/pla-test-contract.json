@@ -1,5 +1,5 @@
 {
-  "note": "PLA test division (Osama, 8 November 2026). Armory preview only: a new Russia-side specialization 'PLA (Test)' with 0 points in every tab. Each card is a full copy of a Russian unit, renamed, on the Russian model until real PLA models exist. ZBD-04A and ZBL-08 ride as transports of the PLA rifle squad. Not a balance proposal; costs and stats are the stand-in's.",
+  "note": "PLA test division (Osama, 8 November 2026). Armory preview only: a new Russia-side specialization 'PLA (Test)' with 0 points in every tab. Each card is a full copy of a Russian unit, renamed, on the Russian model until real PLA models exist. ZBD-04A and ZBL-08 ride as transports of the PLA rifle squad. Not a balance proposal; costs and stats are the stand-in's. pla.20 (Osama, 9 November 2026): Abrams X, unit 964, a US card copied from the M1A2 SEP v3 (191), in Armored Brigade like its parent ('we might add this to armored'); contract field \"us\": true keeps the name without 'PLA ' and the parent's specializations. Stats are the SEP v3's; the model loads through FAModels.",
   "spec": {
     "id": 17,
     "like": 12,
@@ -357,6 +357,12 @@
       "unit": 963,
       "parent": 92,
       "name": "PHL-81"
+    },
+    {
+      "unit": 964,
+      "parent": 191,
+      "name": "Abrams X",
+      "us": true
     }
   ]
 }

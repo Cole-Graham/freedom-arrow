@@ -1297,8 +1297,8 @@ def main():
     unit_tables=['UnitAbilitiesJson','UnitPropulsionsJson','TurretUnitsJson','WeaponAmmunitionsJson','SensorUnitsJson','SquadMembersJson','SquadWeaponsJson','UnitArmorsJson']
     for c in pl['cards']:
         par,new=c['parent'],c['unit'];p=effective['Units'][par]
-        assert new not in effective['Units'] and p['CountryId']==1,(new,par)
-        add_unit(new,par,{'Name':(c['name'] if c.get('russia') else 'PLA '+c['name']),'HUDName':c['name'],'DisplayInArmory':True},why)
+        assert new not in effective['Units'] and p['CountryId']==(2 if c.get('us') else 1),(new,par)
+        add_unit(new,par,{'Name':(c['name'] if c.get('russia') or c.get('us') else 'PLA '+c['name']),'HUDName':c['name'],'DisplayInArmory':True},why)
         for table in unit_tables:
             for rid in rows_of(table,par):clone(table,rid,{'UnitId':new},why)
         for mod in [m for m in list(effective['ModificationsJson'].values()) if m['UnitId']==par]:
@@ -1308,7 +1308,7 @@ def main():
             want=c.get('default_options',[]);hit=[o for o in mine if o['Name'].strip() in want]
             for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':(o in hit) if hit else (o['IsDefault'] or (not default and order==0)),**({'ReplaceUnitName':c['name']} if o.get('ReplaceUnitName') else {})},why)
         if c.get('transport_only'):continue
-        if c.get('russia'):
+        if c.get('russia') or c.get('us'):
             # A new Russian card (Osama): same specializations and slots as its parent, not the PLA test spec.
             for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
             continue
@@ -1318,7 +1318,7 @@ def main():
             src=next(r for r in effective['TransportAvailabilitiesJson'].values() if r['UnitId']==tp)
             clone('TransportAvailabilitiesJson',src['Id'],{'SpecializationAvailabilityId':pool,'UnitId':int(t)},why)
     pla={c['unit'] for c in pl['cards']}
-    assert {r['UnitId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['SpecializationId']==sp['id']}=={c['unit'] for c in pl['cards'] if not c.get('transport_only') and not c.get('russia')}
+    assert {r['UnitId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['SpecializationId']==sp['id']}=={c['unit'] for c in pl['cards'] if not c.get('transport_only') and not c.get('russia') and not c.get('us')}
     assert all(any(r['UnitId']==u for r in effective['UnitArmorsJson'].values()) for u in pla),'PLA card without armor'
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
