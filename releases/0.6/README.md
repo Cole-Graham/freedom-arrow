@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-dev.105 — isolated development candidate
+# Freedom Arrow 0.6.0-dev.107 — isolated development candidate
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
 
@@ -212,7 +212,7 @@ From this checkout:
 ```bash
 python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
 python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.105.bamod
+python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-0.6.0-dev.107.bamod
 dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
@@ -335,6 +335,9 @@ Dev.29 (Lateralus): `[FA] Dead Center 0.1` runs the FA game mode, built from `ma
 
 
 Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 250 supply points (0.25 t); 35 points. Guard transport access retained. Data checks only; gameplay pending.
+
+
+XM30: US Armor tank tab,220 points,availability2,T-15 stand-in,Booker XM91350mm,Booker base armor with700/700 front/side HEAT,two APS charges,two ready TOW-2B or Javelin rounds. T-15 mobility/optics/eight seats retained. Download contains MAX scenes only; custom rig/model not imported. Game checks pending.
 
 ## Document change log
 
@@ -552,3 +555,7 @@ Karatel revision: Tigr armor, mobility and optics; ten seats; default smoke and 
 - 2026-11-09 14:08:10 PST (America/Los_Angeles) — Added Karatel transport and corrected Su-75 baseline to two R-73.
 
 - 2026-11-09 14:39:50 PST (America/Los_Angeles) — Match Karatel to Tigr with requested seats, smoke, supplies and price.
+
+- 2026-11-09 14:54:25 PST (America/Los_Angeles) — Added requested XM30 stand-in and recorded model format blocker.
+
+- 2026-11-09 15:00:55 PST (America/Los_Angeles) — Final XM30 specification: Booker armor,700 front/side HEAT,220 points,eight seats.
