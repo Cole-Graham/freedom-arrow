@@ -475,6 +475,8 @@ def main():
     for table in ['SquadMembersJson','SquadWeaponsJson','WeaponAmmunitionsJson','UnitAbilitiesJson','UnitArmorsJson','UnitPropulsionsJson','SensorUnitsJson']:
         for rid in [r['Id'] for r in list(effective[table].values()) if r['UnitId']==fs['unit']]:clone(table,rid,{'UnitId':kor['unit']},why)
     swap(kor['unit'],*kor['swap'],kor['ammo']);card(kor['unit'])
+    kw=[r for r in effective['WeaponAmmunitionsJson'].values() if r['UnitId']==kor['unit'] and r['WeaponId']==fs['swap'][0]]
+    assert len(kw)==1,kw;put('WeaponAmmunitionsJson',kw[0]['Id'],{'Quantity':kor['missiles']},why)
     put('Units',fs['unit'],fs['fields'],why);swap(fs['unit'],*fs['swap'],fs['ammo'])
     put('Units',rpg['unit'],rpg['fields'],why);swap(rpg['unit'],*rpg['swap']);card(rpg['unit'])
     for key,w in rpg['add_special'].items():
