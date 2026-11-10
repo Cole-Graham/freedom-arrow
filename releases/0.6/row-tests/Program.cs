@@ -311,3 +311,5 @@ Check(axAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuan
 Check(axAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"Abrams X 30 percent jammer");
 foreach(var a in merged["AmmunitionsJson"].Where(a=>a["HUDName"].GetValue<string>()=="AIM-260 JATM"))Check(a["LowAltRange"].GetValue<double>()==5500&&a["HighAltRange"].GetValue<double>()==5500,"JATM 11 km card range");
 Console.WriteLine("PASS: intrinsic Abrams X defenses and JATM 11 km");
+
+Check(Row("Units",964)["Cost"].GetValue<int>()==400,"Abrams X fixed price400");
