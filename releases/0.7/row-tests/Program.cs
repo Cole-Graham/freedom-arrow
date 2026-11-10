@@ -7,7 +7,12 @@ var compatibility=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"compatibili
 var files=JsonNode.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"table-files.json"))).AsObject();
 foreach(var entry in files){string t=entry.Key,f=entry.Value.GetValue<string>();var source=JsonNode.Parse(File.ReadAllText(Path.Combine(vanilla,t+".json"))).AsArray();var original=source.ToJsonString();var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",f))).AsObject();
 allPatches[t]=patches;merged[t]=RowPlanner.Apply(source,patches,true,(id,field,before,after,added)=>writes++);Check(source.ToJsonString()==original,t+" source mutation");Check(merged[t].Count==source.Count+patches.Count(p=>p.Value!=null&&!source.Any(row=>row["Id"].ToJsonString()==p.Key))-patches.Count(p=>p.Value==null),t+" row count");}
-JsonNode Row(string t,int id)=>merged[t].Single(r=>r["Id"].GetValue<int>()==id);
+// Historical generator contracts name legacy IDs; actual generated rows must use wire-safe IDs.
+var optionMigration=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"option-id-migration.json"))).AsObject();
+int WireOption(int id)=>optionMigration.TryGetPropertyValue(id.ToString(),out var mapped)?mapped.GetValue<int>():id;
+JsonNode Row(string t,int id)=>merged[t].Single(r=>r["Id"].GetValue<int>()==(t=="OptionsJson"?WireOption(id):id));
+foreach(var option in merged["OptionsJson"]){int id=option["Id"].GetValue<int>();Check(id>0&&id<=short.MaxValue&&unchecked((short)id)==id,"option survives native short serialization "+id);}
+
 foreach(var rule in JsonNode.Parse(File.ReadAllText(Path.Combine(root,"reference-schema.json"))).AsObject()){
 var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",files[rule.Key].GetValue<string>()))).AsObject();
 foreach(var patch in patches)foreach(var link in rule.Value.AsObject())if(patch.Value!=null&&patch.Value.AsObject().ContainsKey(link.Key)){

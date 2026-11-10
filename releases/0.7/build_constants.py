@@ -1529,6 +1529,11 @@ def main():
                 retired={'IsDefault':False}
                 if unit==983:retired['ECMAccuracyMultiplier']=0.0
                 put('AbilitiesJson',profile['Id'],retired,'0.7 only one default profile; XM30 has no ECM')
+    # NetworkUnitSpawner sends Options.Id as short; high clone IDs lose their identity.
+    # Apply last so every existing generator contract and non-option clone ID stays stable.
+    from option_network_ids import apply as fix_option_network_ids
+    option_migration=fix_option_network_ids(effective,patches,json.loads((R/'option-network-ids.json').read_text()))
+    (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

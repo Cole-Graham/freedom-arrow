@@ -2,25 +2,33 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.3.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.4.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-dev.3'
+    assert manifest['version']=='0.7.0-dev.4'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.3 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.4 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
     assert mod['version'].encode() in z.read('Mods/FreedomArrow.Runtime.dll')
     # Batch (Lateralus, 8 November 2026): the conquest mode is built into FreedomArrow.Runtime.dll.
     assert 'Freedom Arrow Conquest'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'),'conquest mode built into Runtime'
-    def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
+    option_map=json.loads(z.read('UserData/FreedomArrow/option-id-migration.json'))
+    wire_option_ids=set(option_map.values())
+    class OptionRows(dict):
+        def __getitem__(self,key):return super().__getitem__(str(option_map.get(str(key),key)))
+    def table(n):
+        rows=json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
+        return OptionRows(rows) if n=='options' else rows
+    assert all(0<int(k)<=32767 for k,v in table('options').items() if v is not None)
+
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
     tgc=json.loads((R/'tigr-contract.json').read_text())
     # 0.6 arrw-contract.json: the AGM-183A ARRW is one new weapon row and one new turret-weapon row (a copy of the Kinzhal HE).
@@ -116,8 +124,8 @@ with zipfile.ZipFile(p) as z:
     audit=json.loads((R/'constant-audit.json').read_text())
     assert audit['version']==manifest['version'] and audit['source_table_pins_matched']==24
     brm_opts={str(o) for o in json.loads((R/'brm3k-contract.json').read_text())['options']}
-    for k,row in live('options').items():assert int(k)>=2_000_000 or k in brm_opts or not {'MainSensorId','ExtraSensorId'} & set(row) or (set(row)=={'MainSensorId'} and str(row['MainSensorId']) in copies),k
-    assert {k:r['StealthOverride'] for k,r in live('options').items() if 'StealthOverride' in r and int(k)<2_000_000}==det['stealth_override_options']
+    for k,row in live('options').items():assert int(k) in wire_option_ids or int(k)>=2_000_000 or k in brm_opts or not {'MainSensorId','ExtraSensorId'} & set(row) or (set(row)=={'MainSensorId'} and str(row['MainSensorId']) in copies),k
+    assert {k:r['StealthOverride'] for k,r in live('options').items() if 'StealthOverride' in r and int(k)<2_000_000 and int(k) not in wire_option_ids}==det['stealth_override_options']
     opt=table('options');arm=table('armors');mob=table('mobility')
     for oid,hp,front,side in [(551,14,None,None),(2089,10,80,30),(2090,10,400,400),(1986,12,400,400)]:
         a=arm[str(opt[str(oid)]['ArmorId'])];assert a['MaxHealthPoints']==hp
