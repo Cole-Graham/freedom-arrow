@@ -1060,6 +1060,7 @@ namespace BALocalSkirmish
         }
         static void Clean(DataBaseService db, Il2CppSystem.Collections.Generic.List<DeckModData> mods, int unit, string deck)
         {
+            var f21Slots = new HashSet<int>();
             for (int i = (mods?.Count ?? 0) - 1; i >= 0; i--)
             {
                 int option = mods[i]?.OptionID ?? 0;
@@ -1073,7 +1074,8 @@ namespace BALocalSkirmish
                     option = replacement;
                 }
                 bool moved = Moved().TryGetValue(option, out int parent) && parent == unit;
-                if (!moved && db.GetOptionById(option) != null) continue;
+                var resolved = db.GetOptionById(option);
+                if (!moved && resolved != null && (unit != 981 || f21Slots.Add(resolved.ModificationId))) continue;
                 MelonLogger.Msg($"[DeckGuard] deck '{deck}': option {option} removed from unit {unit}.");
                 mods.RemoveAt(i);
             }

@@ -1610,6 +1610,9 @@ def main():
     option_migration=fix_option_network_ids(effective,patches,json.loads((R/'option-network-ids.json').read_text()))
     from su47 import apply as apply_su47
     apply_su47(effective,patches,clone,put,option_migration,json.loads((R/'su47-contract.json').read_text()))
+    from f21 import apply as apply_f21
+    apply_f21(effective,patches,clone,put,option_migration,json.loads((R/'f21-contract.json').read_text()))
+    put('SpecializationAvailabilitiesJson',632,{'SpecializationId':6},'Osama: F35A moved to Stryker')
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
@@ -1619,7 +1622,7 @@ def main():
         table=change['table'];rid=change['id'];row=change['after']
         if table=='Units':affected.add(rid)
         if 'UnitId' in row:affected.add(row['UnitId'])
-        if table=='OptionsJson':affected.add(effective['ModificationsJson'][row['ModificationId']]['UnitId'])
+        if table=='OptionsJson' and row['ModificationId'] in effective['ModificationsJson']:affected.add(effective['ModificationsJson'][row['ModificationId']]['UnitId'])
         if table=='AmmunitionsJson':affected.update(x['UnitId'] for x in effective['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==rid)
         if table=='ArmorsJson':affected.update(x['UnitId'] for x in effective['UnitArmorsJson'].values() if x['ArmorId']==rid)
         if table=='MobilityJson':affected.update(x['UnitId'] for x in effective['UnitPropulsionsJson'].values() if x['MobilityId']==rid)

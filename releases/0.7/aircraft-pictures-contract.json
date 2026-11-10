@@ -28,5 +28,23 @@
     "source": "f14-card-reference.png",
     "thumbnail": "FA_F14-Label",
     "mirror_thumbnail": true
+  },
+  "973": {
+    "portrait": "FA_KARATEL-Portrait",
+    "source": "karatel-diagonal-reference.png",
+    "thumbnail": "FA_KARATEL-Label",
+    "mirror_thumbnail": false
+  },
+  "983": {
+    "portrait": "FA_XM30-Portrait",
+    "source": "xm30-card-reference.png",
+    "thumbnail": "FA_XM30-Label",
+    "mirror_thumbnail": false
+  },
+  "964": {
+    "portrait": "FA_ABRAMSX-Portrait",
+    "source": "abramsx-card-reference.png",
+    "thumbnail": "FA_ABRAMSX-Label",
+    "mirror_thumbnail": false
   }
 }

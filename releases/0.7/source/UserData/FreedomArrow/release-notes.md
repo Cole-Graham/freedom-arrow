@@ -1,8 +1,10 @@
-# Freedom Arrow 0.7.0-dev.16 — development candidate
+# Freedom Arrow 0.7.0-dev.17 — development candidate
 
-**Su-47 now uses Su-57 agility in normal and fuel-tank configurations. Airframe price165→205 (+10 agility,+30 intrinsic ECM). Base ECM is40% (engine multiplier0.6), with existing25 flares unchanged. Eight requested fuselage/outer-pylon choices are removed. New defaults are4× R-77 fuselage and2× R-73 outer pylons; inner-pylon choices remain unchanged.** Uses the current Models and Music0.1.7 pack. All five cutout icons are approved and included, rendered facing right.
+**F-21 Super Tomcat replaces the F-14 card using the current F/A-18E baseline:215-point airframe,950 speed and40% intrinsic ECM. Seven loadouts match Osama’s list; the explicitly requested2× SLAM-ER is the only ground-attack choice. F-35A moves to Stryker. Eight right-facing cutouts and eight original full-colour portraits are included.** Companion Models and Music0.1.8 adds the F-21 name mapping to the existing F-14 model.
 
-The intrinsic ECM uses one Su-47-only default ability, so it does not depend on a pod option. Own mobility rows preserve donor aircraft and retain agility after selecting a fuel-tank option. Removed saved option IDs redirect to the replacement default in the same slot. These are data/code changes; match behavior remains unverified.
+Outer pylons:2× Sidewinder+25 (retained donor price). Inner pylons:4× Sidewinder+50 or2× AIM-174+60. Fuselage:6× AIM-120+80,4× AIM-174+100,2× AIM-174+60 or2× SLAM-ER+90. First choice in each slot is default:370 total. Own multi-round carriers retain native model paths; firing and visible missile placement still need a game check. Saved F-14 choices migrate to legal defaults, with duplicate same-slot selections removed.
+
+Su-47 retains dev.16:Su-57 agility on base/fuel mobility,205 airframe,40% intrinsic ECM, unchanged25 flares and the eight requested loadout removals. Card pictures:Su-75,Su-47,Su-57D,YF-23,F-21,Karatel,XM30,Abrams X. Original screenshots are embedded verbatim; approved aircraft icons are mirrored at render time, and the three new vehicle cutouts face right already. Appearance awaits user inspection.
 
 ## Defense correction from0.7 dev.1
 
@@ -25,7 +27,7 @@ All other dev.115 data/settings are intended to remain unchanged, including40 mm
 
 ## Install
 
-Close the game. In BAModManager > Mods > + Add mods, import the gameplay0.7 candidate and the combined Models and Music0.1.6 pack, confirming replacement. Keep both enabled and ActualArrow disabled. Windows: manager PLAY. Linux: close manager and launch through Steam. A full restart is required. Do not import assets as the main gameplay modpack.
+Close the game. In BAModManager > Mods > + Add mods, import the gameplay0.7 candidate and the combined Models and Music0.1.8 pack, confirming replacement. Keep both enabled and ActualArrow disabled. Windows: manager PLAY. Linux: close manager and launch through Steam. A full restart is required. Do not import assets as the main gameplay modpack.
 
 
 ## Network option-ID correction candidate
@@ -116,3 +118,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 23:19:12 PST (America/Los_Angeles) — Refreshed the leading release summary and install instructions for current portraits, pools and asset pack0.1.6; dev.14 was an unpublished validation build.
 - 2026-11-09 23:54:31 PST (America/Los_Angeles) — Added Su-47 agility, intrinsic40% ECM,+40 airframe price, eight loadout removals and saved-option fallbacks.
 - 2026-11-09 23:57:20 PST (America/Los_Angeles) — Included the five approved cutout icons with right-facing rendering; original image pixels retained.
+- 2026-11-10 00:20:29 PST (America/Los_Angeles) — F-21 requested baseline/loadouts, F-35A Stryker and three vehicle icons/portraits; retained Su-47 and five approved aircraft icons.
