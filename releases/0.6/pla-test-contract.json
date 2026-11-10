@@ -439,6 +439,12 @@
       "parent": 283,
       "name": "F-14 Tomcat",
       "us": true
+    },
+    {
+      "unit": 982,
+      "parent": 297,
+      "name": "YF-23 Black Widow II",
+      "us": true
     }
   ]
 }
