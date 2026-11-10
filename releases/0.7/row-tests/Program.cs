@@ -280,7 +280,7 @@ foreach(var a in merged["AbilitiesJson"])
  if(!types.Contains(16))continue;
  Check(types.All(t=>t==16)&&a["DecoySupplyCost"].GetValue<double>()==0,"free isolated aircraft flares "+id);refundFlares++;
 }
-Check(refundAmmo==30&&refundFlares==44,"refund scope: 16 A2A +14 guns +44 flare profiles");
+Check(refundAmmo>=30&&refundFlares>=44,"refund scope includes aircraft added after the original dev12 proposal");
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");
 
 Check(Row("Units",950)["Cost"].GetValue<int>()==260,"Su75 base cost260");

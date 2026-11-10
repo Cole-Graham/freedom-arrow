@@ -1,4 +1,11 @@
-# Freedom Arrow 0.7.0-dev.15 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.1 — development candidate
+
+**Lateralus Dev-Test 1 — standalone test package, based on dev.15.**
+
+Select this gameplay package instead of the public Freedom Arrow build. Keep the existing model/music add-on. No PLA gameplay patch is required.
+
+Includes the full implemented batch: helicopter flare count15 at10 points each; editor-only target dummies; aircraft refund rework (free A2A/guns/flares, health coefficient2/9, cap90%); ground-AA targeting and overkill diagnostics. Separate helicopter ranges and SPAAG range/aim changes remain proposals and are not included.
+
 
 **Adds full-colour detailed-card portraits from Osama's five supplied aircraft pictures. Su-75 moves to Russian Motorized; Su-47 moves to Russian Guard. Su-47, F-14 and YF-23 remain live from dev.13. Use combined Models and Music0.1.6 for the models, clear canopy preset, approved B-21 and current music/voices.** No PLA test data is included. Cutout icon drafts remain outside this build pending edge cleanup.
 

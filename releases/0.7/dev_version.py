@@ -33,7 +33,14 @@ def ensure():
     v=current();built=ledger().get(v)
     if built is None:print(f'{v}: not built yet, so this build keeps {v}.');return v
     if built['inputs']==inputs_sha256(v):print(f'{v}: inputs unchanged since its build, so this build keeps {v}.');return v
-    new=f'0.7.0-dev.{max(map(dev_number,[v,*ledger()]))+1}'
+    test=re.fullmatch(r'(0\.7\.0-devtest\.lat\.)(\d+)',v)
+    if test:
+        prefix=test.group(1)
+        used=[int(x[len(prefix):]) for x in [v,*ledger()] if x.startswith(prefix) and x[len(prefix):].isdigit()]
+        new=prefix+str(max(used)+1)
+    else:
+        used=[x for x in [v,*ledger()] if re.fullmatch(r'0\.7\.0-dev\.\d+',x)]
+        new=f'0.7.0-dev.{max(map(dev_number,used))+1}'
     print(f'{v}: already built and the inputs changed, so this build is {new}.');bump(new);return new
 def check():
     """Called by build.py before it builds: stop if this version was already built from other inputs."""

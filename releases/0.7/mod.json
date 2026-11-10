@@ -1,7 +1,7 @@
 {
-  "id": "freedomarrow.gameplay",
-  "name": "Freedom Arrow \u2014 0.7 development candidate",
-  "version": "0.7.0-dev.15",
+  "id": "freedomarrow.lateralus.devtest",
+  "name": "Freedom Arrow \u2014 Lateralus Dev-Test 1 (dev.15 base)",
+  "version": "0.7.0-devtest.lat.1",
   "type": "modpack",
-  "description": "Vehicle and infantry data, detection values, conquest scoring and flat 200 income. Plays offline through local setup and online in private scenario lobbies. Online play has not been run live."
+  "description": "Separate full gameplay test package for Lateralus. Based on dev.15 plus his queued batch. Select instead of public Freedom Arrow; keep the existing model/music add-on. Unmerged experimental build."
 }
