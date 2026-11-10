@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.2", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.3", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -56,6 +56,7 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
+        GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
     }
@@ -63,6 +64,7 @@ public class Runtime : MelonMod
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
+        GroundAaLog.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -108,7 +110,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { PlaneRefund.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_REFUND_FAILED: not installed; original health tax. "+e.Message); }
-        try { GroundAaLog.Install(HarmonyInstance,Root); }
+        try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
         try { SupplyStealth.Install(); }
         catch (Exception e)

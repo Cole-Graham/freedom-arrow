@@ -1,12 +1,14 @@
-# Freedom Arrow 0.7.0-devtest.lat.2 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.3 — development candidate
 
-**Lateralus Dev-Test 2 — AA hook isolation, same dev.15 base.**
+**Lateralus Dev-Test 3 — passive AA diagnostics, same dev.15 gameplay base.**
 
-The previous test recorded 564 rejected candidates and no ground-AA shots. This package removes only the new AA native hooks to test whether they caused the failure; recovery has not been measured. No AA range, aim, overkill or target-mask balance change.
+Select this gameplay package instead of lat.2 or public Freedom Arrow. Keep the existing model/music add-on. No PLA gameplay patch is required.
 
-Select this gameplay package instead of the public Freedom Arrow build. Keep the existing model/music add-on. No PLA gameplay patch is required.
+All 17 AA native diagnostic detours are removed from the observer. It samples its own ECS queries after updates, with bounded work, queue/file limits and performance metrics. Shot callbacks only enqueue an entity; ECS reads occur later. Selected-target overkill flags/scores, ammunition, aim/reload/radar/readiness and nearby sampled air/projectile observations go to UserData/FreedomArrow/diagnostics/aa-targeting-*.jsonl.
 
-Includes the full implemented batch: helicopter flare count15 at10 points each; editor-only target dummies; aircraft refund rework (free A2A/guns/flares, health coefficient2/9, cap90%); ground-AA shot snapshots. All 17 new native targeting/overkill/shooting diagnostic hooks are disabled in this A/B candidate. Separate helicopter ranges and SPAAG range/aim changes remain proposals and are not included.
+These are observations, not exact native rejection reasons. Nearby entities do not prove visibility or target eligibility; brief states may be missed. Native sampling and performance remain untested. The safe fallback lat.2 already demonstrated AA firing with native hooks disabled. If this observer fails, it stops logging and records aa_log_failed.
+
+Gameplay and refund tables are unchanged from lat.2: helicopter flare count15 at10 points each; editor-only target dummies; aircraft free A2A/gun/flares refund costs, health coefficient2/9, cap90%. Helicopter-specific missile ranges and SPAAG range/aim tuning remain proposals.
 
 
 **Adds full-colour detailed-card portraits from Osama's five supplied aircraft pictures. Su-75 moves to Russian Motorized; Su-47 moves to Russian Guard. Su-47, F-14 and YF-23 remain live from dev.13. Use combined Models and Music0.1.6 for the models, clear canopy preset, approved B-21 and current music/voices.** No PLA test data is included. Cutout icon drafts remain outside this build pending edge cleanup.

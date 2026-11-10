@@ -20,6 +20,7 @@ public sealed partial class Prototype
     static bool shotOff,editorBound;
     static PropertyInfo editorInstance,editorLaunched,editorMode;
     // Editor Play, offline: ISceneLoadManager says the scenario came from the editor and the editor is not open.
+    internal static bool DiagnosticSceneActive=>combatActive;
     static bool EditorTest()
     {
         if(!ready||faulted||!config.Enabled)return false;

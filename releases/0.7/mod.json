@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.lateralus.devtest",
-  "name": "Freedom Arrow \u2014 Lateralus Dev-Test 2 (AA hook isolation)",
-  "version": "0.7.0-devtest.lat.2",
+  "name": "Freedom Arrow \u2014 Lateralus Dev-Test 3 (passive AA diagnostics)",
+  "version": "0.7.0-devtest.lat.3",
   "type": "modpack",
-  "description": "A/B diagnostic build on the same dev.15 base: all 17 new AA native diagnostic hooks disabled; all lat.1 gameplay tables and refund changes retained. Select instead of public gameplay; keep model/music add-on."
+  "description": "Same dev.15 gameplay base and lat.2 batch tables. Passive post-update AA weapon/target/overkill state observer; zero AA native detours, no searches/scoring calls. Select instead of public gameplay; keep assets. Native sampling/performance needs testing."
 }
