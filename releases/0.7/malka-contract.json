@@ -1,0 +1,15 @@
+{
+  "note": "0.6 dev.89 (Osama, 9 November 2026: 'Malka at 22 damage seems good'): 2S7M Malka 203 mm HE damage 15 -> 22, unguided and guided. Ignore cover stays 0.395 (dev.85), penetration unchanged. Per hit at the impact point on infantry: open 22 (was 15), forest 18.0 (was 12.3), buildings 11.1 (was 7.6). Calculated, not yet run in a game.",
+  "ammo": {
+    "481": {
+      "name": "Shell 203 2A44 Malka HE",
+      "was": 15.0,
+      "Damage": 22.0
+    },
+    "565": {
+      "name": "Shell 203 2A44 Malka HE Guided",
+      "was": 15.0,
+      "Damage": 22.0
+    }
+  }
+}

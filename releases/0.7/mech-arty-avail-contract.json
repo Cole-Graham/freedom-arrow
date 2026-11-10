@@ -1,0 +1,17 @@
+{
+  "note": "0.6 (Osama, 8 November 2026): Russian Mechanized Infantry 2S4 Tulpan availability 4 (was 3; dev.71) and 2S7M Malka availability 6 (was 2; 4 in dev.71, 6 in dev.73). Not yet run in a game. dev.73: 2S19M1 Msta-S added to Mechanized Infantry, availability 4 (a copy of its Guard Tank Brigade pool 761, which stays 3).",
+  "pools": {
+    "703": 98,
+    "758": 422
+  },
+  "availability": {
+    "703": 4,
+    "758": 6
+  },
+  "add": {
+    "like_pool": 761,
+    "unit": 4,
+    "specialization": 15,
+    "availability": 4
+  }
+}

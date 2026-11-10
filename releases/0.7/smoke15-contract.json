@@ -1,0 +1,52 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). Mortar smoke: every listed loadout carries 15 smoke rounds. 2S9 Nona-S: S loadout gets 15 smoke (had none), SM 15 (was 5). 2S23 Nona-SVK: Short 15 (was 9), Long range 15 (was 10). 2S39 Magnolia: HE loadout (HE-RAP and guided, the extended-range one) gets 15 smoke (had none; Cluster keeps 25). LAV-M Dragon Fire 120 mm loadout 15 (was 10). Hawkeye MWS also in Special Operations Forces, availability 4 like Airborne. LMTV 30 (was 40; price in vehicle-contract.json); Osama dropped the 4000 cargo request. Not yet run in a game.",
+  "smoke": [
+    {
+      "unit": 207,
+      "weapon": 292,
+      "ammo": 192,
+      "quantity": 15,
+      "like": 841
+    },
+    {
+      "unit": 207,
+      "weapon": 293,
+      "ammo": 193,
+      "quantity": 15
+    },
+    {
+      "unit": 218,
+      "weapon": 292,
+      "ammo": 192,
+      "quantity": 15
+    },
+    {
+      "unit": 218,
+      "weapon": 555,
+      "ammo": 192,
+      "quantity": 15
+    },
+    {
+      "unit": 382,
+      "weapon": 290,
+      "ammo": 414,
+      "quantity": 15,
+      "like": 2104
+    },
+    {
+      "unit": 154,
+      "weapon": 262,
+      "ammo": 87,
+      "quantity": 15
+    }
+  ],
+  "pools": [
+    {
+      "unit": 50,
+      "like": 37,
+      "specs": [
+        13
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "note": "0.5 dev.17 (Osama, 6 November 2026). Infantry in buildings take 18% (floor 0.13 -> 0.18, still 0 per soldier). 120 mm and 125 mm tank HE ignore cover 0.3 -> 0.25, so one shell kills about 1 man in a building. Ground-vehicle autocannon HE ignore cover 0 -> 0.125. Damage that gets through = Damage x (floor + (1 - floor) x IgnoreCover), read from ShellHitSystem.DamageBuilding.",
+  "building_floor": 0.18,
+  "tank_he": {"ignore_cover": 0.25, "was": 0.3, "ids": [49, 54, 126, 140, 142, 240, 241, 243, 247, 249, 259, 265, 540, 576]},
+  "autocannon_he": {"ignore_cover": 0.125, "was": 0.0, "ids": [26, 36, 53, 177, 196, 199, 201, 204, 205, 207, 210, 212, 222, 267, 277, 491, 507, 546, 567, 570]}
+}

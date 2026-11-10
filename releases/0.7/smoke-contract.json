@@ -1,0 +1,8 @@
+{
+  "note": "0.5 dev.3 (Osama, 6 November 2026): smoke comes with the BMP-2G and BMP-2M turret packages and the T-72B1 package (option 1449, card name T-72B1). Uses the mod's existing smoke abilities: x1 for the BMP-2, x2 for the tank, as on other option-granted smoke.",
+  "option_ability": {
+    "492": 2000195,
+    "493": 2000195,
+    "1449": 2000200
+  }
+}

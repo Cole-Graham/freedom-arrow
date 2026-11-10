@@ -1,0 +1,538 @@
+{
+  "version": "0.7.0-dev.1",
+  "armor_fields": {
+    "2000014": {
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 400
+    },
+    "2000015": {
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 700
+    },
+    "2000026": {
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 12
+    },
+    "2000027": {
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 12
+    },
+    "2000052": {
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    },
+    "2000114": {
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 500,
+      "HeatArmorSides": 500
+    },
+    "47": {
+      "HeatArmorFront": 400,
+      "MaxHealthPoints": 14
+    },
+    "288": {
+      "HeatArmorFront": 700,
+      "MaxHealthPoints": 14
+    },
+    "32": {
+      "MaxHealthPoints": 14
+    },
+    "60": {
+      "MaxHealthPoints": 14
+    },
+    "69": {
+      "MaxHealthPoints": 10
+    },
+    "71": {
+      "MaxHealthPoints": 14
+    },
+    "74": {
+      "MaxHealthPoints": 10
+    },
+    "76": {
+      "MaxHealthPoints": 10
+    },
+    "94": {
+      "MaxHealthPoints": 14
+    },
+    "99": {
+      "MaxHealthPoints": 10
+    },
+    "110": {
+      "MaxHealthPoints": 10
+    },
+    "131": {
+      "MaxHealthPoints": 14
+    },
+    "133": {
+      "MaxHealthPoints": 10
+    },
+    "149": {
+      "MaxHealthPoints": 14
+    },
+    "159": {
+      "MaxHealthPoints": 10
+    },
+    "161": {
+      "MaxHealthPoints": 16
+    },
+    "163": {
+      "MaxHealthPoints": 14
+    },
+    "167": {
+      "MaxHealthPoints": 14
+    },
+    "171": {
+      "MaxHealthPoints": 10
+    },
+    "176": {
+      "MaxHealthPoints": 10
+    },
+    "292": {
+      "MaxHealthPoints": 10
+    },
+    "294": {
+      "MaxHealthPoints": 14
+    },
+    "300": {
+      "MaxHealthPoints": 10
+    },
+    "301": {
+      "MaxHealthPoints": 14
+    },
+    "315": {
+      "MaxHealthPoints": 14
+    },
+    "322": {
+      "MaxHealthPoints": 14
+    },
+    "326": {
+      "MaxHealthPoints": 12
+    },
+    "336": {
+      "MaxHealthPoints": 12
+    },
+    "418": {
+      "MaxHealthPoints": 10
+    },
+    "2000004": {
+      "MaxHealthPoints": 12
+    },
+    "2000017": {
+      "MaxHealthPoints": 12
+    },
+    "2000018": {
+      "MaxHealthPoints": 12
+    },
+    "2000020": {
+      "MaxHealthPoints": 10
+    },
+    "2000021": {
+      "MaxHealthPoints": 10
+    },
+    "2000034": {
+      "MaxHealthPoints": 12
+    },
+    "2000035": {
+      "MaxHealthPoints": 12
+    },
+    "2000097": {
+      "MaxHealthPoints": 12
+    },
+    "2000098": {
+      "MaxHealthPoints": 12
+    },
+    "2000104": {
+      "MaxHealthPoints": 12
+    },
+    "2000221": {
+      "MaxHealthPoints": 14
+    },
+    "2000022": {
+      "MaxHealthPoints": 10
+    },
+    "2000023": {
+      "MaxHealthPoints": 10
+    },
+    "178": {
+      "MaxHealthPoints": 10
+    },
+    "2000071": {
+      "MaxHealthPoints": 10
+    }
+  },
+  "ammo_fields": {
+    "12": {
+      "Damage": 10.0
+    },
+    "23": {
+      "Damage": 10.0
+    },
+    "505": {
+      "Damage": 10.0
+    },
+    "701": {
+      "Damage": 10.0
+    },
+    "713": {
+      "Damage": 10.0
+    },
+    "2000149": {
+      "Damage": 10.5,
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
+    },
+    "2000174": {
+      "Damage": 10.5,
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
+    },
+    "2000177": {
+      "Damage": 10.5
+    },
+    "44": {
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
+    },
+    "508": {
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0
+    },
+    "4": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "6": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "15": {
+      "PenetrationAtMinRange": 60.0,
+      "PenetrationAtGroundRange": 60.0
+    },
+    "37": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "64": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "66": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "67": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "71": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "133": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "134": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "174": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "183": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "190": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "191": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "214": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "228": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "229": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "236": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "261": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "281": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "347": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "348": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "404": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "405": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "409": {
+      "PenetrationAtMinRange": 70.0,
+      "PenetrationAtGroundRange": 70.0
+    },
+    "410": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "412": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "415": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "416": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "417": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "418": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "421": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "422": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "423": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "424": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "426": {
+      "PenetrationAtMinRange": 315.0,
+      "PenetrationAtGroundRange": 315.0
+    },
+    "430": {
+      "PenetrationAtMinRange": 72.5,
+      "PenetrationAtGroundRange": 72.5
+    },
+    "443": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "446": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "467": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "481": {
+      "PenetrationAtMinRange": 25.0,
+      "PenetrationAtGroundRange": 25.0
+    },
+    "489": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "503": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "535": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "558": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "565": {
+      "PenetrationAtMinRange": 62.5,
+      "PenetrationAtGroundRange": 62.5
+    },
+    "605": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "607": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "610": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "611": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "613": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "623": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "624": {
+      "PenetrationAtMinRange": 45.0,
+      "PenetrationAtGroundRange": 45.0
+    },
+    "625": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "718": {
+      "PenetrationAtMinRange": 52.5,
+      "PenetrationAtGroundRange": 52.5
+    },
+    "910": {
+      "PenetrationAtMinRange": 30.0,
+      "PenetrationAtGroundRange": 30.0
+    },
+    "928": {
+      "PenetrationAtMinRange": 60.0,
+      "PenetrationAtGroundRange": 60.0
+    },
+    "930": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "932": {
+      "PenetrationAtMinRange": 20.0,
+      "PenetrationAtGroundRange": 20.0
+    },
+    "934": {
+      "PenetrationAtMinRange": 72.5,
+      "PenetrationAtGroundRange": 72.5
+    },
+    "2000137": {
+      "PenetrationAtMinRange": 900.0,
+      "PenetrationAtGroundRange": 900.0
+    }
+  },
+  "javelin_ids": [
+    44,
+    508,
+    2000149,
+    2000174
+  ],
+  "sabot_changed_ids": [
+    12,
+    23,
+    505,
+    701,
+    713
+  ],
+  "held_sabot": [
+    498,
+    506
+  ],
+  "stryker_scope": [
+    22,
+    24,
+    33
+  ],
+  "stryker_scope_pending": [
+    21,
+    25,
+    5,
+    452,
+    20
+  ],
+  "bradley_hp_core": [
+    15,
+    16,
+    26,
+    28,
+    37,
+    386,
+    387
+  ],
+  "hp_scope_pending": [],
+  "provisional_costs": {
+    "180": "35 base+5 armored=40; target interpretation pending",
+    "421": "20 base+30 defaults=50; target interpretation pending"
+  },
+  "aps_legacy_policy": "ICV1894 retains active ability82 twocharges and+40; ordinary SRAT8 is+25. ESV1895/MGS1931 inactive APS duplicates become+25 pending removal. AMPV2082 keeps active ability82 and+45.",
+  "stryker_srat_provisional": "All Stryker SRAT is 700 front and side (Osama, 2026-11-04).",
+  "uparmor_hp_exceptions": [],
+  "uparmor_hp_rule": "Osama, 2026-11-04: uparmor never changes HP. Every armor choice on a vehicle matches its default HP, with no exceptions. Logistics units stay in the rule for now.",
+  "ability_fields": {
+    "2": {
+      "APSCooldown": 10.0
+    },
+    "13": {
+      "APSCooldown": 10.0
+    },
+    "14": {
+      "APSCooldown": 10.0
+    },
+    "15": {
+      "APSCooldown": 10.0
+    },
+    "17": {
+      "APSCooldown": 10.0
+    },
+    "64": {
+      "APSCooldown": 10.0
+    },
+    "82": {
+      "APSCooldown": 10.0
+    },
+    "88": {
+      "APSCooldown": 10.0
+    },
+    "93": {
+      "APSCooldown": 10.0
+    },
+    "117": {
+      "APSCooldown": 10.0
+    },
+    "2000196": {
+      "APSCooldown": 10.0
+    },
+    "2000202": {
+      "APSCooldown": 10.0
+    },
+    "2000205": {
+      "APSCooldown": 10.0
+    },
+    "2000215": {
+      "APSCooldown": 10.0
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "note": "0.6 dev.51 (Osama, 8 November 2026): the S-300V4, S-300PM and Patriot PAC-2 missiles take every S-400 Triumph missile stat except range: damage, penetration, blast and fuse radius, speed, acceleration, burn time, seeker, launch angle, delays, supply cost and resupply time. Each keeps its own range, name, icon and model. Long missiles copy the S-400 40N6 (ammo 220): 9M82MD, 48N6, 48N6P-01 and MIM-104E GEM+. The S-300V4 small missile 9M83M copies the S-400 small missile 9M96M (ammo 217). Launcher weapons are unchanged (the Patriot keeps its aimed launcher). Not yet run in a game. dev.55 (Osama, 8 November 2026): each missile keeps its own seeker (semi-active, as before dev.51), and the S-300V4 small missile 9M83M is back to vanilla.",
+  "copies": {
+    "211": 220,
+    "547": 220,
+    "548": 220,
+    "154": 220
+  },
+  "keep": [
+    "Id",
+    "Name",
+    "HUDName",
+    "HUDIcon",
+    "ModelFileName",
+    "AudioPreset",
+    "FXPreset",
+    "LowAltRange",
+    "HighAltRange",
+    "GroundRange",
+    "MinimalRange",
+    "NonSeadProjectileRangeOverride",
+    "SeadProjectileRangeOverride",
+    "Seeker"
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "note": "0.5 dev.1 (Osama, 6 November 2026). 0.5's defining feature is accuracy. Unguided anti-tank fire scatters twice as far: every tank and main-gun round (weapon type 110) and every rocket-launcher round (types 62 and 63) has its horizontal and vertical dispersion radius doubled. Guided missiles, including gun-launched ones, are unchanged. Factor 2.0 is a first test value; FREEDOM_ARROW_FIRE_STATS in the log measures the hit rate. Not deployed. 0.5 dev.2 (Osama, 6 November 2026): launcher rounds (weapon types 62 and 63) use radius 2.14/2.14 with DispersionMinimal 0.88 in place of x2: calculated 80% to hit a tank front point blank, 72% at half range, 65% at max range (crew error). Tank-gun rounds keep dev.1's x2. 0.5 dev.9 (Osama, 6 November 2026): tank-gun rounds are back to vanilla dispersion; dev.1's x2 on them is removed (70 rounds). Only launcher rounds keep a dispersion change. 0.5 dev.10 (Osama, 6 November 2026): the launcher close-range floor is removed (DispersionMinimal back to vanilla 0); launchers keep radius 2.14, so they hit 100% close in and about 65% at max range. 0.5 dev.11 (Osama, 6 November 2026): launchers radius 1.96 / 1.96, about 75% to hit a tank front at max range (was 2.14, 65%). 0.5 dev.12 (Osama, 6 November 2026): back to vanilla accuracy. Launcher radius and the ground ATGM 75% are removed; every round uses its vanilla dispersion and missile accuracy. The fire statistics in the log stay.",
+  "factor": 2.0,
+  "weapon_types": [
+    110,
+    62,
+    63
+  ],
+  "ammo_fields": {},
+  "was": {
+    "7": [
+      3.0,
+      2.5
+    ],
+    "11": [
+      1.8,
+      1.5
+    ],
+    "24": [
+      1.8,
+      1.5
+    ],
+    "48": [
+      1.8,
+      1.5
+    ],
+    "54": [
+      1.8,
+      1.5
+    ],
+    "2000139": [
+      2.0,
+      2.0
+    ],
+    "2000128": [
+      2.0,
+      2.0
+    ],
+    "103": [
+      2.0,
+      2.0
+    ],
+    "2000132": [
+      2.0,
+      2.0
+    ],
+    "105": [
+      3.0,
+      2.5
+    ],
+    "2000133": [
+      2.0,
+      2.0
+    ],
+    "2000135": [
+      2.0,
+      2.0
+    ],
+    "2000137": [
+      2.0,
+      2.0
+    ],
+    "124": [
+      1.8,
+      1.5
+    ],
+    "126": [
+      1.8,
+      1.5
+    ],
+    "2000453": [
+      2.0,
+      2.0
+    ],
+    "128": [
+      2.0,
+      2.0
+    ],
+    "140": [
+      1.8,
+      1.5
+    ],
+    "141": [
+      1.8,
+      1.5
+    ],
+    "142": [
+      1.8,
+      1.5
+    ],
+    "49": [
+      1.8,
+      1.5
+    ],
+    "169": [
+      3.0,
+      2.5
+    ],
+    "170": [
+      3.0,
+      2.5
+    ],
+    "12": [
+      1.8,
+      1.5
+    ],
+    "171": [
+      1.8,
+      1.5
+    ],
+    "172": [
+      1.8,
+      1.5
+    ],
+    "173": [
+      1.8,
+      1.5
+    ],
+    "1": [
+      1.8,
+      1.5
+    ],
+    "2": [
+      1.8,
+      1.5
+    ],
+    "194": [
+      1.8,
+      1.5
+    ],
+    "223": [
+      2.3,
+      1.9
+    ],
+    "224": [
+      2.3,
+      1.9
+    ],
+    "238": [
+      1.8,
+      1.5
+    ],
+    "240": [
+      1.8,
+      1.5
+    ],
+    "239": [
+      1.8,
+      1.5
+    ],
+    "241": [
+      1.8,
+      1.5
+    ],
+    "242": [
+      1.8,
+      1.5
+    ],
+    "243": [
+      1.8,
+      1.5
+    ],
+    "244": [
+      1.8,
+      1.5
+    ],
+    "246": [
+      1.8,
+      1.5
+    ],
+    "247": [
+      1.8,
+      1.5
+    ],
+    "248": [
+      1.8,
+      1.5
+    ],
+    "249": [
+      1.8,
+      1.5
+    ],
+    "254": [
+      1.8,
+      1.5
+    ],
+    "251": [
+      1.8,
+      1.5
+    ],
+    "255": [
+      1.8,
+      1.5
+    ],
+    "252": [
+      1.8,
+      1.5
+    ],
+    "256": [
+      1.8,
+      1.5
+    ],
+    "253": [
+      1.8,
+      1.5
+    ],
+    "259": [
+      1.8,
+      1.5
+    ],
+    "257": [
+      1.8,
+      1.5
+    ],
+    "260": [
+      1.8,
+      1.5
+    ],
+    "264": [
+      1.8,
+      1.5
+    ],
+    "265": [
+      1.8,
+      1.5
+    ],
+    "2000131": [
+      2.0,
+      2.0
+    ],
+    "57": [
+      2.0,
+      2.0
+    ],
+    "356": [
+      1.8,
+      1.5
+    ],
+    "392": [
+      2.0,
+      2.0
+    ],
+    "130": [
+      2.0,
+      2.0
+    ],
+    "396": [
+      2.0,
+      2.0
+    ],
+    "23": [
+      1.8,
+      1.5
+    ],
+    "435": [
+      3.0,
+      2.5
+    ],
+    "436": [
+      3.0,
+      2.5
+    ],
+    "451": [
+      3.0,
+      2.0
+    ],
+    "258": [
+      1.8,
+      1.5
+    ],
+    "2000138": [
+      2.0,
+      2.0
+    ],
+    "2000129": [
+      2.0,
+      2.0
+    ],
+    "493": [
+      3.0,
+      2.5
+    ],
+    "498": [
+      1.8,
+      1.5
+    ],
+    "499": [
+      1.8,
+      1.5
+    ],
+    "500": [
+      1.8,
+      1.5
+    ],
+    "2000136": [
+      2.0,
+      2.0
+    ],
+    "505": [
+      1.8,
+      1.5
+    ],
+    "504": [
+      1.8,
+      1.5
+    ],
+    "2000140": [
+      2.0,
+      2.0
+    ],
+    "522": [
+      2.0,
+      2.0
+    ],
+    "524": [
+      2.0,
+      2.0
+    ],
+    "41": [
+      2.0,
+      2.0
+    ],
+    "532": [
+      1.8,
+      1.5
+    ],
+    "525": [
+      3.0,
+      2.5
+    ],
+    "2000130": [
+      2.0,
+      2.0
+    ],
+    "540": [
+      1.8,
+      1.5
+    ],
+    "107": [
+      2.0,
+      2.0
+    ],
+    "541": [
+      1.8,
+      1.5
+    ],
+    "550": [
+      2.0,
+      2.0
+    ],
+    "2000134": [
+      2.0,
+      2.0
+    ],
+    "476": [
+      2.0,
+      2.0
+    ],
+    "575": [
+      1.8,
+      1.5
+    ],
+    "577": [
+      1.8,
+      1.5
+    ],
+    "576": [
+      1.8,
+      1.5
+    ],
+    "591": [
+      3.0,
+      2.5
+    ],
+    "595": [
+      2.0,
+      2.0
+    ],
+    "2000142": [
+      2.0,
+      2.0
+    ],
+    "2000141": [
+      2.0,
+      2.0
+    ],
+    "593": [
+      2.0,
+      2.0
+    ],
+    "602": [
+      1.8,
+      1.5
+    ],
+    "609": [
+      3.0,
+      2.5
+    ],
+    "701": [
+      1.8,
+      1.5
+    ],
+    "108": [
+      2.0,
+      2.0
+    ],
+    "713": [
+      1.8,
+      1.5
+    ],
+    "714": [
+      1.8,
+      1.5
+    ],
+    "716": [
+      1.8,
+      1.5
+    ],
+    "715": [
+      1.8,
+      1.5
+    ],
+    "717": [
+      1.8,
+      1.5
+    ],
+    "2000144": [
+      2.0,
+      2.0
+    ],
+    "2000145": [
+      2.0,
+      2.0
+    ],
+    "492": [
+      2.0,
+      2.0
+    ],
+    "737": [
+      3.0,
+      2.0
+    ],
+    "2000146": [
+      2.0,
+      2.0
+    ],
+    "121": [
+      2.0,
+      2.0
+    ],
+    "377": [
+      2.0,
+      2.0
+    ],
+    "2000143": [
+      2.0,
+      2.0
+    ],
+    "906": [
+      2.0,
+      2.0
+    ],
+    "139": [
+      1.8,
+      1.5
+    ],
+    "937": [
+      2.0,
+      2.0
+    ]
+  },
+  "launcher_dev2": [
+    "41",
+    "103",
+    "105",
+    "107",
+    "108",
+    "121",
+    "128",
+    "130",
+    "377",
+    "392",
+    "396",
+    "451",
+    "476",
+    "492",
+    "522",
+    "524",
+    "525",
+    "550",
+    "591",
+    "593",
+    "595",
+    "609",
+    "737",
+    "906",
+    "937",
+    "2000128",
+    "2000129",
+    "2000130",
+    "2000131",
+    "2000132",
+    "2000133",
+    "2000134",
+    "2000135",
+    "2000136",
+    "2000137",
+    "2000138",
+    "2000139",
+    "2000140",
+    "2000141",
+    "2000142",
+    "2000143",
+    "2000144",
+    "2000145",
+    "2000146",
+    "2000453"
+  ],
+  "atgm_note": "0.5 dev.7 (Osama, 6 November 2026): ground ATGMs hit 75% of the time. DispersionHorizontalRadius on a guided missile is its missileAccuracy in CalculateMissileHitChance (accuracy x ECM x decoy x stress, no distance term), vanilla 1.0. Set to 0.75 on the 46 anti-tank missile rounds (Missile AT and gun-launched Missile GLAT, thermobaric versions included) fired only by infantry and ground vehicles. Helicopter, plane and drone missiles keep 1.0; no round is shared between air and ground.",
+  "atgm_fields": {}
+}
