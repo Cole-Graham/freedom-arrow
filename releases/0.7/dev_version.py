@@ -16,7 +16,7 @@ LEDGER=R/'builds.json'
 # Everything build_constants.py and build.py read from the repository.
 INPUTS=['releases/0.7','releases/0.1/source','pipeline']
 # Tracked, but not read by the build and not packaged.
-SKIP=re.compile(r'^releases/0\.7/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests)/)|^pipeline/tests/')
+SKIP=re.compile(r'^releases/0\.7/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests|supply-stealth-tests|diagnostic-tests)/)|^pipeline/tests/')
 def ledger():return json.loads(LEDGER.read_text(encoding='utf-8')) if LEDGER.is_file() else {}
 def inputs_sha256(version):
     """Hash of the build inputs, with the version itself written as {VERSION} and Windows line ends as Unix ones."""

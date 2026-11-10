@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.6", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.8", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -53,15 +53,28 @@ public class Runtime : MelonMod
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
     public override void OnUpdate() => conquest?.OnUpdate();
-    public override void OnLateUpdate() => SupplyStealth.LateUpdate();
+    public override void OnLateUpdate()
+    {
+        DiagnosticLog.Heartbeat();
+        SupplyStealth.LateUpdate();
+    }
     public override void OnGUI() => conquest?.OnGUI();
-    public override void OnSceneWasLoaded(int buildIndex,string sceneName) => conquest?.OnSceneWasLoaded(buildIndex,sceneName);
-    public override void OnDeinitializeMelon() => conquest?.OnDeinitializeMelon();
+    public override void OnSceneWasLoaded(int buildIndex,string sceneName)
+    {
+        DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
+        conquest?.OnSceneWasLoaded(buildIndex,sceneName);
+    }
+    public override void OnDeinitializeMelon()
+    {
+        try { conquest?.OnDeinitializeMelon(); }
+        finally { DiagnosticLog.Close("deinitialize"); }
+    }
     public override void OnInitializeMelon()
     {
         StartConquest();
         Directory.CreateDirectory(Root);
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
+        DiagnosticLog.Start(Root,PackageVersion);
         File.Delete(Path.Combine(Root,"runtime-receipt.json"));
         File.Delete(Path.Combine(Root,"runtime-failure.txt"));
         try
@@ -70,9 +83,11 @@ public class Runtime : MelonMod
             int files=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,manifest["sha256"].AsObject());
             InstallScenarios();
             LoggerInstance.Msg($"FREEDOM_ARROW_PAYLOAD_VERIFIED: {files} files");
+            DiagnosticLog.Write("payload_verified",new{files,version=PackageVersion});
         }
         catch(Exception e)
         {
+            DiagnosticLog.Write("payload_failed",new{error=e.ToString()});
             failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
             LoggerInstance.Error("FREEDOM_ARROW_FAILED: payload refused before database hook: "+e.Message);return;
         }
@@ -91,7 +106,11 @@ public class Runtime : MelonMod
         try { MissileHitChance.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { SupplyStealth.Install(); }
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: not installed; caches keep stealth 1.0. "+e.Message); }
+        catch (Exception e)
+        {
+            DiagnosticLog.Write("supply_bind_failed",new{error=e.ToString()});
+            MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: not installed; caches keep stealth 1.0. "+e);
+        }
         try { CardIcons.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_ICONS_FAILED: not installed; vanilla card icons. "+e.Message); }
         try { SupportSlots.Install(HarmonyInstance); }
@@ -112,6 +131,7 @@ public class Runtime : MelonMod
     }
     public override void OnApplicationQuit()
     {
+        DiagnosticLog.Write("application_quit",new{});
         try { ThirdPartyGuard.RestoreArrowQueue(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: restore "+e.Message); }
     }

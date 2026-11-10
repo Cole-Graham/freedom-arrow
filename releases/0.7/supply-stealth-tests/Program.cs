@@ -28,6 +28,11 @@ namespace MelonLoader
 namespace FreedomArrow
 {
     public static class Runtime { public static bool IsApplied; }
+    public static class DiagnosticLog
+    {
+        public static readonly List<(string kind,object data)> Events=new();
+        public static void Write(string kind,object data)=>Events.Add((kind,data));
+    }
     public static unsafe class SpottingCap
     {
         public static readonly Dictionary<int,IntPtr> Fields=new();
@@ -76,6 +81,9 @@ static unsafe class Program
         Check(a[3]==1,"No mutation before database application");
         Runtime.IsApplied=true;SupplyStealth.LateUpdate();
         Check(a[3]==0.4f,"Live cache gets requested stealth");
+        Check(DiagnosticLog.Events.Count(x=>x.kind=="supply_first_scan")==1,"Invocation evidence is recorded");
+        Check(DiagnosticLog.Events.Count(x=>x.kind=="supply_write_begin")==1&&DiagnosticLog.Events.Count(x=>x.kind=="supply_write_verified")==1,
+              "Mutation has before and verified-after evidence");
         Check(a[0]==91&&a[1]==92&&a[2]==93,"Adjacent fog fields remain intact");
         Check(c[3]==1,"Dead entity is ignored");
         var b=Fog(2,1);SupplyStealth.LateUpdate();
@@ -85,6 +93,7 @@ static unsafe class Program
         Check(a[3]==1,"Removed cache is no longer touched");
         SpottingCap.Throw=true;SupplyStealth.LateUpdate();
         Check(MelonLoader.MelonLogger.Errors.Count==1,"Read failure is reported once");
+        Check(DiagnosticLog.Events.Count(x=>x.kind=="supply_failed")==1,"Failure has a diagnostic event");
         SpottingCap.Throw=false;b[3]=1;SupplyStealth.LateUpdate();
         Check(b[3]==1,"Read failure disables later writes for this session");
         Check(typeof(SupplyStealth).GetMethod("SpawnBefore")==null&&typeof(SupplyStealth).GetMethod("SpawnAfter")==null,
