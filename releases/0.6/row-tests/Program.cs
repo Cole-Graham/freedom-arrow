@@ -306,7 +306,7 @@ var xm=Row("Units",983);Check(xm["Cost"].GetValue<int>()==220&&xm["CountryId"].G
 var xma=merged["UnitArmorsJson"].Single(r=>r["UnitId"].GetValue<int>()==983);var xmar=Row("ArmorsJson",xma["ArmorId"].GetValue<int>());
 Check(xmar["HeatArmorFront"].GetValue<int>()==700&&xmar["HeatArmorSides"].GetValue<int>()==700,"XM30 HEAT armor");
 foreach(var f in new[]{"MaxHealthPoints","KinArmorFront","KinArmorSides","KinArmorRear","KinArmorTop","HeatArmorRear","HeatArmorTop"})Check(xmar[f].ToJsonString()==Row("ArmorsJson",306)[f].ToJsonString(),"XM30 Booker armor "+f);
-var xmab=Row("AbilitiesJson",merged["UnitAbilitiesJson"].Single(r=>r["UnitId"].GetValue<int>()==983)["AbilityId"].GetValue<int>());Check(xmab["APSQuantity"].GetValue<int>()==2&&xmab["IsDefault"].GetValue<bool>(),"XM30 APS2");
+var xmab=Row("AbilitiesJson",merged["UnitAbilitiesJson"].Single(r=>r["UnitId"].GetValue<int>()==983&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsAPS"].GetValue<bool>())["AbilityId"].GetValue<int>());Check(xmab["APSQuantity"].GetValue<int>()==2&&xmab["IsDefault"].GetValue<bool>(),"XM30 APS2");
 var xmp=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).ToArray();Check(xmp.Length==1&&xmp[0]["SpecializationId"].GetValue<int>()==4&&xmp[0]["MaxAvailabilityXp0"].GetValue<int>()==2,"XM30 US Armor pool2");
 var xmm=merged["ModificationsJson"].Single(r=>r["UnitId"].GetValue<int>()==983)["Id"].GetValue<int>();var xmo=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==xmm).ToArray();Check(xmo.Length==2&&xmo.Count(r=>r["IsDefault"].GetValue<bool>())==1,"XM30 two choices one default");
 foreach(var o in xmo){var t=o["Turret0Id"].GetValue<int>();var tw=merged["TurretWeaponsJson"].Where(r=>r["TurretId"].GetValue<int>()==t).ToArray();Check(tw.Length==2&&tw.Any(r=>r["WeaponId"].GetValue<int>()==658),"XM30 native Booker XM913");var missile=tw.Single(r=>r["WeaponId"].GetValue<int>()!=658&&r["WeaponId"].GetValue<int>()!=7)["WeaponId"].GetValue<int>();Check(Row("WeaponsJson",missile)["MagazineSize"].GetValue<int>()==2,"XM30 two ready missiles");Check(merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==983&&r["WeaponId"].GetValue<int>()==missile)["Quantity"].GetValue<int>()==2,"XM30 two missile rounds");}
@@ -326,3 +326,11 @@ foreach(var a in merged["AmmunitionsJson"].Where(a=>a["HUDName"].GetValue<string
 Console.WriteLine("PASS: intrinsic Abrams X defenses and JATM 11 km");
 
 Check(Row("Units",964)["Cost"].GetValue<int>()==400,"Abrams X fixed price400");
+
+var xmAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
+Check(xmAbilities.Length==2&&xmAbilities.All(a=>a["IsDefault"].GetValue<bool>()),"XM30 all abilities standard without an option");
+Check(xmAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"XM30 native APS x2");
+Check(xmAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==2)==1,"XM30 native smoke x2");
+Check(xmAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"XM30 standard30 percent jammer");
+Check(xmAbilities.Count(a=>a["IsResupplyAbility"].GetValue<bool>()&&a["ResupplyPoints"].GetValue<int>()==250)==1,"XM30 supply250 retained");
+Console.WriteLine("PASS: XM30 intrinsic APS2, smoke2, jammer30 percent, supply250");

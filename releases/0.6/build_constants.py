@@ -1499,6 +1499,11 @@ def main():
     mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==uid}
     for o in list(effective['OptionsJson'].values()):
         if o['ModificationId'] in mods:put('OptionsJson',o['Id'],dict(Ability1Id=0,Ability2Id=0,Ability3Id=0),why)
+    # XM30: its native T-15 smoke/APS ability is already default. Add its own default
+    # 30 percent jammer last, leaving all existing unit/options/profile IDs unchanged.
+    jammer=clone('AbilitiesJson',6,dict(Name='XM30 jammer30 percent',IsDefault=True,ModelFileName=None), 'XM30 standard jammer')
+    assert effective['AbilitiesJson'][jammer]['ECMAccuracyMultiplier']==0.7
+    clone('UnitAbilitiesJson',next(iter(original['UnitAbilitiesJson'])),dict(UnitId=983,AbilityId=jammer),'XM30 standard jammer')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
