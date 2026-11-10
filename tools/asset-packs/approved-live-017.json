@@ -1,0 +1,36 @@
+{
+  "version": "0.1.7",
+  "bytes": 1103391303,
+  "sha256": "66a0957dabeab286bd3a226163a0b44620e4e71b776277d642e2f27956a43e86",
+  "changed_paths": [
+    "UserData/FAModels/m_yf23.mat.json",
+    "UserData/FAModels/m_yf23_lo.mat.json",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_files": 5998,
+  "loader_version": "0.3.4",
+  "runtime_rendering_verified": false,
+  "base_source_commit": "ecdeebc",
+  "material_validation": [
+    {
+      "file": "m_yf23.mat.json",
+      "glass_draws": 1,
+      "material_keys_match_mesh": true,
+      "opaque_materials_unchanged": true,
+      "mesh_sha256": "0b647ad22bb0bb224ac722f75cb98f1fc4ad0c62f372f90a957e6df5f8ef14ab",
+      "before_sha256": "053da7c971ede7da56128b58e8e477f8632c9c1e006acb77229df5ecc9504c9d",
+      "after_sha256": "8b79dfabec703e99ddf4379a5ba17686a3a728d1ef30bf6f6c343ec08ff781f1"
+    },
+    {
+      "file": "m_yf23_lo.mat.json",
+      "glass_draws": 1,
+      "material_keys_match_mesh": true,
+      "opaque_materials_unchanged": true,
+      "mesh_sha256": "dd597585571ca576f82eeb0c2cf29171ff6a9a24dbe6f4681a80aa271775451e",
+      "before_sha256": "c958d0bc76a6e08a3300d9debf8fc74524cf0c8d9493e5c185a778b4e45c6119",
+      "after_sha256": "0004bf79d1eaf6e535b6a92896c58aba391777494fa2290a9a7e51199761e6e5"
+    }
+  ]
+}
