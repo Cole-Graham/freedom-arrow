@@ -1,0 +1,9 @@
+{
+  "health_multiplier": 0.2222222222222222,
+  "maximum_refund_percent": 90,
+  "minimum_refund_percent": 20,
+  "free_air_to_air": true,
+  "free_gun_ammo": [55, 56, 57, 74, 90, 146, 292, 293, 295, 305, 307, 330, 332, 333],
+  "free_plane_flares": true,
+  "note": "Lateralus batch: supply prices change refunds, not aircraft rearm times. Shared UAV A2A ammunition also becomes free; its general-unit return delay can shorten. Fuel already has no refund term. No change to ResupplyTime or return/death settings."
+}

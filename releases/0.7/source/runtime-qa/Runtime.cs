@@ -56,6 +56,7 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
+        GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
     }
     public override void OnGUI() => conquest?.OnGUI();
@@ -67,7 +68,7 @@ public class Runtime : MelonMod
     public override void OnDeinitializeMelon()
     {
         try { conquest?.OnDeinitializeMelon(); }
-        finally { DiagnosticLog.Close("deinitialize"); }
+        finally { GroundAaLog.Close();DiagnosticLog.Close("deinitialize"); }
     }
     public override void OnInitializeMelon()
     {
@@ -105,6 +106,10 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
         try { MissileHitChance.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
+        try { PlaneRefund.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_REFUND_FAILED: not installed; original health tax. "+e.Message); }
+        try { GroundAaLog.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
         try { SupplyStealth.Install(); }
         catch (Exception e)
         {

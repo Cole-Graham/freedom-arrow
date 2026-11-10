@@ -1608,6 +1608,9 @@ def main():
     from option_network_ids import apply as fix_option_network_ids
     option_migration=fix_option_network_ids(effective,patches,json.loads((R/'option-network-ids.json').read_text()))
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
+    # Refund policy changes no IDs or inventory quantities. Apply to the final graph.
+    from plane_refund import apply as apply_plane_refund
+    apply_plane_refund(effective,json.loads((R/'plane-refund-contract.json').read_text()),put)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

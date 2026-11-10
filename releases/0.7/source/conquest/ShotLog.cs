@@ -80,6 +80,7 @@ public sealed partial class Prototype
     static readonly Dictionary<int,(int mag,float t)> shotRepeat=new();
     static void LogShot(Entity weapon,WeaponComponent w,string ammo)
     {
+        GroundAaLog.Fired(weapon);
         if(shotFile==null)return;
         // Lateralus batch, 9 November 2026: the Patriot repeats the shot callback every frame with an unchanged magazine
         // (185 lines in 6 s, shotsMade 0). Skip a repeat of the same weapon and magazine count within 0.25 s.
