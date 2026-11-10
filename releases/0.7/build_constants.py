@@ -1522,11 +1522,13 @@ def main():
         base=next(a for a in profiles if a['IsAPS'])
         smoke=next(a for a in profiles if a['IsSmoke'])
         fields={k:smoke[k] for k in ('IsSmoke','SmokeAmmunitionId','SmokeAmmunitionQuantity','SmokeCooldown')}
-        fields.update(IsDefault=True,ECMAccuracyMultiplier=0.7)
+        fields.update(IsDefault=True,SmokeAmmunitionQuantity=1,ECMAccuracyMultiplier=0.7 if unit==964 else 0.0)
         put('AbilitiesJson',base['Id'],fields,'0.7 first-default native loader: combined smoke APS and ECM')
         for profile in profiles:
             if profile['Id']!=base['Id']:
-                put('AbilitiesJson',profile['Id'],{'IsDefault':False},'0.7 only one default ability profile')
+                retired={'IsDefault':False}
+                if unit==983:retired['ECMAccuracyMultiplier']=0.0
+                put('AbilitiesJson',profile['Id'],retired,'0.7 only one default profile; XM30 has no ECM')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

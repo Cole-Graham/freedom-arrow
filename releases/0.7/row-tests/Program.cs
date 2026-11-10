@@ -308,7 +308,7 @@ var axAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()
 Check(axAbilities.Length==3&&axAbilities.Count(a=>a["IsDefault"].GetValue<bool>())==1,"Abrams X one intrinsic default profile; native first-default loader");
 axAbilities=axAbilities.Where(a=>a["IsDefault"].GetValue<bool>()).ToArray();
 Check(axAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"Abrams X Trophy APS x2");
-Check(axAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()>0)==1,"Abrams X smoke");
+Check(axAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==1)==1,"Abrams X smoke x1");
 Check(axAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"Abrams X 30 percent jammer");
 foreach(var a in merged["AmmunitionsJson"].Where(a=>a["HUDName"].GetValue<string>()=="AIM-260 JATM"))Check(a["LowAltRange"].GetValue<double>()==5500&&a["HighAltRange"].GetValue<double>()==5500,"JATM 11 km card range");
 Console.WriteLine("PASS: intrinsic Abrams X defenses and JATM 11 km");
@@ -317,12 +317,13 @@ Check(Row("Units",964)["Cost"].GetValue<int>()==400,"Abrams X fixed price400");
 
 var xmAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
 Check(xmAbilities.Length==2&&xmAbilities.Count(a=>a["IsDefault"].GetValue<bool>())==1,"XM30 one default combined profile; native first-default loader");
+Check(xmAbilities.All(a=>a["ECMAccuracyMultiplier"].GetValue<double>()==0),"XM30 no ECM in any linked profile");
 xmAbilities=xmAbilities.Where(a=>a["IsDefault"].GetValue<bool>()).ToArray();
 Check(xmAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"XM30 native APS x2");
-Check(xmAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==2)==1,"XM30 native smoke x2");
-Check(xmAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"XM30 standard30 percent jammer");
+Check(xmAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==1)==1,"XM30 smoke x1");
+Check(xmAbilities.Single()["ECMAccuracyMultiplier"].GetValue<double>()==0,"XM30 active profile no ECM");
 Check(xmAbilities.Count(a=>a["IsResupplyAbility"].GetValue<bool>()&&a["ResupplyPoints"].GetValue<int>()==250)==1,"XM30 supply250 retained");
-Console.WriteLine("PASS: XM30 intrinsic APS2, smoke2, jammer30 percent, supply250");
+Console.WriteLine("PASS: XM30 intrinsic APS2, smoke1, no ECM, supply250");
 
 foreach(var a in merged["AmmunitionsJson"].Where(a=>new[]{20,30,40}.Contains(a["TrajectoryType"].GetValue<int>())&&a["Damage"].GetValue<double>()>0&&!a["GenerateSmoke"].GetValue<bool>()&&!new[]{466,467,558}.Contains(a["Id"].GetValue<int>())))Check(a["PenetrationAtMinRange"].GetValue<double>()>=40&&a["PenetrationAtGroundRange"].GetValue<double>()>=40,"live artillery40 mm floor "+a["Id"]);
 Check(merged["Units"].All(u=>u["Id"].GetValue<int>()!=901),"Live build excludes PLA infantry test card");
