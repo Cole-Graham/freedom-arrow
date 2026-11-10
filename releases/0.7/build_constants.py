@@ -1409,7 +1409,11 @@ def main():
             m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why)
             # An option with its own mobility (fuel tanks) would give the dummy back its speed: it takes the dummy mobility.
             for o in mine:clone('OptionsJson',o['Id'],{'ModificationId':m,**({'MobilityId':mob} if o.get('MobilityId') else {})},why)
-        for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+        # No deck entries (Lateralus, 9 November 2026): the dummies are placed only in the scenario editor. The rows are still
+        # cloned so next_id, and with it every later row and option ID (the pinned 16-bit-safe option mapping), stays the same;
+        # then they are taken out of the patch.
+        for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:
+            sa=clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why);del effective['SpecializationAvailabilitiesJson'][sa];patches['SpecializationAvailabilitiesJson'].pop(str(sa))
     # Su-75 promoted from the PLA test branch (Osama). Allocate last to preserve
     # every existing live-card and target-dummy clone ID.
     cm=json.loads((R/'su75-contract.json').read_text());uid,par=cm['unit'],cm['parent'];why='Su-75 live rear bay only'
