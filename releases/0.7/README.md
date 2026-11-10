@@ -42,7 +42,7 @@ This is source and configuration preparation only. No 0.7 archive, game launch, 
 
 The optional player now recognizes `Packs/<pack>/Menu/First/` as a designated opening queue. Packs without that folder retain their prior behavior, including USA selection. The marked track plays once on entry, then the regular menu queue; it starts first again after leaving/re-entering the menu or switching packs. China track 11 remains in the battle playlist too, since no battle removal was requested. Stage a byte-identical copy at the destination in `music/china-menu-track.json` before the next asset build. No audio binary is committed.
 
-The candidate music DLL compiled with zero warnings/errors against the local game assemblies. Six host-side ordering scenarios passed: opener first, complete regular queue, no opener at refill, menu re-entry, opener-only playlist, and pack reset. Those checks do not prove audible FMOD playback in game. No current PC files or public downloads were changed.
+The candidate music DLL compiled with zero warnings/errors against the local game assemblies. Six host-side ordering scenarios passed: opener first, complete regular queue, no opener at refill, menu re-entry, opener-only playlist, and pack reset. Those checks do not prove audible FMOD playback in game. These initial staging checks did not change current files. Music0.1.2 was subsequently installed and published separately from gameplay; see music/RELEASE-0.1.2.md.
 
 ## Document change log
 
@@ -52,3 +52,4 @@ The candidate music DLL compiled with zero warnings/errors against the local gam
 - 2026-11-09 17:07:33 PST (America/Los_Angeles) — Staged Bradley voices for XM30 and retained the existing Abrams voice assignment for Abrams X; no running-install changes.
 - 2026-11-09 17:20:16 PST (America/Los_Angeles) — Staged China track 011 as menu opener and compiled/tested the optional first-track ordering component; no installation.
 - 2026-11-09 17:21:20 PST (America/Los_Angeles) — Staged Mother Of All Weapons for China battle music; source hash and MP3 metadata checked; audible in-game playback remains untested.
+- 2026-11-09 17:28:20 PST (America/Los_Angeles) — Published the combined music/model pack0.1.2; current gameplay stays dev.115.
