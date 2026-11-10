@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.lateralus.devtest",
-  "name": "Freedom Arrow \u2014 Lateralus Dev-Test 1 (dev.15 base)",
-  "version": "0.7.0-devtest.lat.1",
+  "name": "Freedom Arrow \u2014 Lateralus Dev-Test 2 (AA hook isolation)",
+  "version": "0.7.0-devtest.lat.2",
   "type": "modpack",
-  "description": "Separate full gameplay test package for Lateralus. Based on dev.15 plus his queued batch. Select instead of public Freedom Arrow; keep the existing model/music add-on. Unmerged experimental build."
+  "description": "A/B diagnostic build on the same dev.15 base: all 17 new AA native diagnostic hooks disabled; all lat.1 gameplay tables and refund changes retained. Select instead of public gameplay; keep model/music add-on."
 }

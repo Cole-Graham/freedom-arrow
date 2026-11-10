@@ -42,7 +42,10 @@ static class GroundAaLog
         if(__state!=null){contextWeapon=__state.Weapon;contextTarget=__state.Target;}
         return __exception;
     }
-    public static void Install(HarmonyLib.Harmony h,string root)
+    // A/B isolation after devtest.lat.1 rejected all 564 observed candidates.
+    // No native targeting/overkill/shooting detours are installed by default.
+    // Keep the pre-existing shot callback observer for evidence of restored fire.
+    public static void Install(HarmonyLib.Harmony h,string root,bool enableNativeHooks=false)
     {
         string dir=Path.Combine(root,"diagnostics");Directory.CreateDirectory(dir);
         foreach(var f in new DirectoryInfo(dir).GetFiles("aa-targeting-*.jsonl").OrderByDescending(x=>x.LastWriteTimeUtc).Skip(7))f.Delete();
@@ -51,6 +54,11 @@ static class GroundAaLog
         var coverage=new List<object>();
         void Bind(Type type,string method,string before=null,string after=null,Type[] args=null,string finalizer=null)
         {
+            if(!enableNativeHooks)
+            {
+                coverage.Add(new{method=type.Name+"."+method,installed=false,reason="Disabled for devtest.lat.2 A/B isolation"});
+                return;
+            }
             try
             {
                 var m=AccessTools.Method(type,method,args)??throw new MissingMethodException(type.Name,method);
@@ -78,9 +86,9 @@ static class GroundAaLog
         Bind(typeof(BattleSystemHelpers),"GetAmmoShootingDistance",after:nameof(Range));
         Bind(typeof(BattleSystemHelpers),"IsValidToTarget",after:nameof(Valid));
         Bind(typeof(BattleSystemHelpers),"CanAmmoTargetUnitType",after:nameof(Mask));
-        Emit("coverage",default,default,new{path,hooks=coverage,observationOnly=true,limitBytes=MaxBytes,limitLines=MaxLines,
-            caveat="Not an exhaustive trace before spatial/FOW candidate enumeration. No hook on ref UnitComponent kinematics; candidate CanKinematicallyHit is observed instead. Native debug-report callsites can be compiled out and are not used."},true);
-        Flush();MelonLogger.Msg("FREEDOM_ARROW_AA_LOG "+path+"; hook invocation unproved until events arrive");
+        Emit("coverage",default,default,new{path,hooks=coverage,nativeHooksEnabled=enableNativeHooks,observationOnly=true,limitBytes=MaxBytes,limitLines=MaxLines,
+            caveat=enableNativeHooks?"Not an exhaustive trace before spatial/FOW candidate enumeration. Native invocation unproved.":"A/B build: all 17 native diagnostic hooks disabled. Existing shot callback snapshots only; no target-decision trace."},true);
+        Flush();MelonLogger.Msg("FREEDOM_ARROW_AA_LOG "+path+(enableNativeHooks?"; hook invocation unproved until events arrive":"; all 17 native diagnostic hooks DISABLED for A/B isolation; shot snapshots only"));
     }
     static bool GroundAA(Entity e,out WeaponComponent w,out Entity unit)
     {
