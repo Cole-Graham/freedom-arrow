@@ -10,7 +10,9 @@
 - Shared UAV air-to-air ammo also becomes free. Those drones use the general-unit return formula, so their return delay can shorten indirectly. Helicopters and ground units retain existing values.
 - The health hook handles previews and actual sales, saves the exact original coefficient, serializes refund calls and restores the original in a finalizer. It does not rewrite the whole native payout routine. Native invocation still requires a game check.
 
-## Ground-AA diagnostic log
+## Ground-AA diagnostic log — historical branch implementation
+
+**Do not ship these original17native detours:later isolated tests implicated them in refusal to fire. The separate devtest.lat.4 branch uses passive LateUpdate diagnostics and was exercised in Lateralus's supplied run. This branch documentation update does not port that runtime correction.**
 
 `UserData/FreedomArrow/diagnostics/aa-targeting-*.jsonl` records ground-AA candidate admission, search result, evaluated target flags/scores, native overkill result and its filter flags, native damage/hit scores, aim/flight times, target-mask eligibility, range, angles, channel availability, ammo availability, exact target-removal reasons, radar status, disabled/reload/burst/aim/cycle state, shot callbacks and observed hit types including missile interception100.
 
@@ -41,13 +43,9 @@ Assume a fresh acquisition, stationary gun, straight self-targeting HARM already
 
 Radar/altitude can change during a dive; slowing missiles, crossfire, pre-aimed guns and a different defended target change this picture. Do not report the conditional0% as the universal in-game interception rate.
 
-## Proposal — not implemented
+## Current SPAAG proposal — not implemented
 
-1. Use the new logs first to establish candidate visibility, range, overkill rejection, time-to-aim, actual shots and missile-interception hits. Test one SEAD at a time, then two and four.
-2. Give only these gun ammo rows an explicit SEAD range: PIVADS1000world units (nominal2000displayed metres), C-RAM1250 (2500displayed). SeadProjectileRangeOverride>=100 is an absolute world range; native radar scaling still applies. Plane/helicopter ranges stay unchanged. The target search radius must also cover the new range: audit GetSearchParameters and expand its candidate radius for these guns if necessary.
-3. Cap aim time at0.35s **only when the target is a SEAD projectile**, via the scalar GetAimingTimeOnTarget hook; preserve ordinary plane/helicopter aim time and rotation. At700speed and radar off the nominal windows become1.429s/1.786s, leaving roughly1.08s/1.44s after aim: about6/8 shot opportunities at0.2s cadence before other delays. These are opportunities, not promised hits.
-4. Leave damage, accuracy, rate of fire and global overkill thresholds unchanged for the first test. Only adjust overkill for these projectile targets if the logs prove stale/overoptimistic scores stop useful fire. An overkill bypass alone cannot make a late shot reach a missile.
-5. Compare cold and pre-aimed interceptors, high and low approaches, radar on/off, own-target vs defending a nearby SAM, then volleys. Target healthy gameplay interception rates through measurements; no promised kill percentage yet.
+Supersedes the earlier SEAD-only range 1000/1250 and 0.35-second aim proposal. See [SPAAG-PROPOSAL.md](SPAAG-PROPOSAL.md) for half of Actual Arrow 1.1.20's low/high range and damage increases across six ground-AA gun ammo profiles. SEAD missile speeds remain unchanged. Lateralus's first-of-two SEAD observation is tracked separately; one lat.4 Patriot sequence shows the first missile selected during a 4.974-second burst cooldown,not an overkill rejection. No SPAAG gameplay edits or new build.
 
 ## Evidence and limits
 
@@ -62,3 +60,5 @@ Radar/altitude can change during a dive; slowing missiles, crossfire, pre-aimed 
 ## Document change log
 
 - 2026-11-09 23:48:25 PST (America/Los_Angeles) — Queued aircraft refund policy and ground-AA diagnostic logging; recorded conditional SEAD interception ceilings and a separate, unimplemented improvement proposal. No game measurements.
+
+- 2026-11-10 02:45:08 PST (America/Los_Angeles) — Replaced the earlier SPAAG range/aim idea with the current half-ActualArrow proposal;linked exact fields andpaired-SEAD evidence; flagged historical native diagnostics as unsuitable for shipping. Documentation only.
