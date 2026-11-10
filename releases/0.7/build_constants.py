@@ -1633,6 +1633,8 @@ def main():
     apply_fighter_turn(effective,clone,put,json.loads((R/'fighter-turn-contract.json').read_text()))
     from losat import apply as apply_losat
     apply_losat(effective,clone,add_unit,rows_of,json.loads((R/'losat-contract.json').read_text()))
+    from m25 import apply as apply_m25
+    apply_m25(effective,clone,put,json.loads((R/'m25-contract.json').read_text()))
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)

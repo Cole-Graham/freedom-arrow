@@ -80,7 +80,7 @@ foreach(int m in new[]{515,804})Check(merged["ModificationsJson"].All(r=>r["Id"]
 foreach(var u in merged["Units"].Select(r=>r["Id"].GetValue<int>())){var sw=merged["SquadWeaponsJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["WeaponId"].GetValue<int>()).ToArray();Check(sw.Distinct().Count()==sw.Length,"squad weapons unique "+u);foreach(var m in merged["SquadMembersJson"].Where(r=>r["UnitId"].GetValue<int>()==u))foreach(var f in new[]{"PrimaryWeaponId","SpecialWeaponId"}){int w=m[f].GetValue<int>();Check(w==0||sw.Contains(w),"member weapon listed "+u+" "+w);}}
 foreach(var o in merged["OptionsJson"])Check(merged["ModificationsJson"].Any(r=>r["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()),"option menu exists "+o["Id"]);
 // dev.11 infantry scale x0.8333 to the nearest 5, plus Stage 2 (Lateralus). Written here again on purpose, independent of the generator contract.
-foreach(var (u,cost) in new[]{(110,55),(352,70),(320,75),(408,110),(147,65),(343,85),(62,100),(701,60),(72,75),(409,80),(126,65),(533,35),(125,85),(131,85)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
+foreach(var (u,cost) in new[]{(110,55),(352,70),(320,75),(408,110),(147,65),(343,85),(62,105),(701,60),(72,75),(409,80),(126,65),(533,35),(125,85),(131,85)})Check(Row("Units",u)["Cost"].GetValue<int>()==cost,"infantry price "+u);
 foreach(var (u,o,total) in new[]{(533,2216,40),(533,2169,40),(72,1846,80),(459,1976,70),(110,1509,70),(125,1496,90),(125,1497,100),(131,1511,90),(177,1487,100)})Check(Row("Units",u)["Cost"].GetValue<int>()+Row("OptionsJson",o)["Cost"].GetValue<int>()==total,"infantry loadout total "+o);
 foreach(var (u,turrets) in new[]{(158,new[]{417,418}),(716,new[]{206,207}),(14,new[]{12,110}),(718,new[]{895,896}),(209,new[]{346,348,818}),(715,new[]{347}),(467,new[]{957,959,961}),(714,new[]{958,960,961})})Check(Linked("TurretUnitsJson","TurretId",u).SequenceEqual(turrets.OrderBy(x=>x)),"split turrets "+u);
 WeaponCoverage.Validate(merged,allPatches);checks++;
@@ -158,7 +158,7 @@ Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==214&&Row(
 Check(Row("AbilitiesJson",Row("OptionsJson",2044)["Ability1Id"].GetValue<int>())["IsSmoke"].GetValue<bool>(),"dev.41 BMD-2 smoke option keeps smoke");
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==90&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsDefault"].GetValue<bool>()),"dev.41 BMD-2 base no default smoke (smoke only from its smoke option)");
 foreach(int w in new[]{62,659,76})Check(Row("WeaponsJson",w)["AimTimeMin"].GetValue<float>()==3&&Row("WeaponsJson",w)["AimTimeMax"].GetValue<float>()==4,"dev.37 Javelin aim 3-4 "+w);
-Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)==100&&UC(65)==90&&Carry(62,"AT4")==4,"dev.30 Javelin team prices, Troopers AT four AT-4");
+Check(UC(408)==110&&UC(66)==95&&UC(416)==110&&UC(520)==90&&UC(521)==110&&UC(62)==105&&UC(65)==90&&Carry(62,"AT4")==4,"dev.30 Javelin team prices, Troopers AT four AT-4");
 foreach(var (a,r) in new[]{(6,1500f),(87,1500f),(71,1650f),(134,1350f),(37,1850f),(421,2000f),(417,1575f),(410,1125f)})Check(Row("AmmunitionsJson",a)["GroundRange"].GetValue<float>()==r,"dev.31 mortar range +50% "+a);
 Check(Row("AmmunitionsJson",135)["GroundRange"].GetValue<float>()==600,"dev.31 direct-fire HEAT unchanged");
 foreach(int w in new[]{41,562,563,98,218,262,285,286,555,558,1027})Check(merged["WeaponAmmunitionsJson"].Where(r=>r["WeaponId"].GetValue<int>()==w).Any(r=>Row("AmmunitionsJson",r["AmmunitionId"].GetValue<int>())["GenerateSmoke"].GetValue<bool>()),"dev.31 mortar smoke "+w);
@@ -482,3 +482,25 @@ Check(Row("AmmunitionsJson",63)["MaxSpeed"].GetValue<double>()==200&&Row("Ammuni
 }
 
 Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression checks, KE600,12 rounds,motion flags and unchanged Kornet. Native behavior untested.");
+
+// M-25 CDTE: one secondary carrier per Stryker team; all references agree.
+var m25Weapon=merged["WeaponsJson"].Single(r=>r["Name"].GetValue<string>()=="MGL 25 M-25 CDTE");
+int m25Wid=m25Weapon["Id"].GetValue<int>();
+var m25Ammo=merged["AmmunitionsJson"].Single(r=>r["Name"].GetValue<string>()=="InfGrenade 25x40 M-25 CDTE");
+int m25Aid=m25Ammo["Id"].GetValue<int>();
+Check(m25Wid!=365&&m25Aid!=273,"independent M25 weapon and ammunition");
+Check(m25Ammo["Damage"].GetValue<double>()==0.75&&m25Ammo["IgnoreCover"].GetValue<double>()==0.75,"M25 damage and cover bypass");
+foreach(var pair in Row("WeaponsJson",365).AsObject().Where(p=>p.Key is not ("Id" or "Name" or "HUDName")))Check(JsonNode.DeepEquals(m25Weapon[pair.Key],pair.Value),"M25 retains normal donor firing/model fields "+pair.Key);
+foreach(var pair in Row("AmmunitionsJson",273).AsObject().Where(p=>p.Key is not ("Id" or "Name" or "Damage" or "IgnoreCover")))Check(JsonNode.DeepEquals(m25Ammo[pair.Key],pair.Value),"M25 retains remaining donor ammo fields "+pair.Key);
+foreach(var (uid,first,second,cost) in new[]{(62,59,60,105),(413,840,841,65)}){
+Check(UC(uid)==cost,"M25 team price +5 "+uid);
+Check(Row("SquadMembersJson",first)["PrimaryWeaponId"].GetValue<int>()==50&&Row("SquadMembersJson",first)["SpecialWeaponId"].GetValue<int>()==m25Wid,"M25 special weapon and retained rifle "+uid);
+Check(Row("SquadMembersJson",second)["PrimaryWeaponId"].GetValue<int>()==50&&Row("SquadMembersJson",second)["SpecialWeaponId"].GetValue<int>()==0,"second rifleman retains rifle without M203 "+uid);
+Check(Carry(uid,"M-25 CDTE")==1&&Carry(uid,"M203")==0,"one M25 replaces two M203s "+uid);
+var load=merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==uid&&r["WeaponId"].GetValue<int>()==m25Wid);
+Check(load["AmmunitionId"].GetValue<int>()==m25Aid&&load["Quantity"].GetValue<int>()==48,"M25 native ammo association and retained pool "+uid);
+Check(merged["SquadWeaponsJson"].Count(r=>r["UnitId"].GetValue<int>()==uid&&r["WeaponId"].GetValue<int>()==m25Wid)==1,"M25 squad association "+uid);
+}
+Check(Row("AmmunitionsJson",273)["Damage"].GetValue<double>()==2.5&&Row("AmmunitionsJson",273)["IgnoreCover"].GetValue<double>()==0.25&&Carry(177,"XM25")==1,"Green Berets original XM25 retained");
+Check(Carry(150,"M32")==3,"Delta M32 unchanged");
+Console.WriteLine($"M25 complete: {checks} checks, {writes} planned writes");

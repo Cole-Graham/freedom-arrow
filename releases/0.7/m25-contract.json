@@ -1,0 +1,12 @@
+{
+  "weapon_donor": 365,
+  "ammo_donor": 273,
+  "name": "M-25 CDTE",
+  "damage": 0.75,
+  "ignore_cover": 0.75,
+  "cost_increase": 5,
+  "teams": [
+    {"unit": 62, "name": "Troopers AT", "carriers": [59, 60]},
+    {"unit": 413, "name": "Troopers AA", "carriers": [840, 841]}
+  ]
+}

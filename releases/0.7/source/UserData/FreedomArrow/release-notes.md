@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.28 — development candidate
+# Freedom Arrow 0.7.0-dev.29 — development candidate
+
+M-25 CDTE: Stryker Troopers AT and Troopers AA each replace two M203s with one special-weapon XM25 copy (0.75 damage, 75% cover bypass). The original five-round magazine and firing/reload timings are retained. Both riflemen remain, with a shared 48-round grenade pool. Troopers AT costs100 →105 and Troopers AA60 →65. Green Berets, Delta Force and other M203 users retain their weapons. Data and package checks do not establish native firing, visual weapon switching or multiplayer behavior.
 
 **LOSAT is added as its own US vehicle with a kinetic missile: 600 mm KE penetration, 10.5 damage, 12 rounds, twice the base Kornet speed and interception disabled.** Uses the supplied MGM-166 tracked model in companion assets 0.1.13, with separate armory/battle meshes, a source-rendered portrait and right-facing white silhouette. Existing live dev.24 changes are retained.
 
@@ -164,3 +166,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 03:12:59 PST (America/Los_Angeles) — Added LOSAT dedicated KE missile,tank-shell crit classification,base Bradley protection,source-rendered card art and companion model pack requirement; native tests pending.
 - 2026-11-10 03:31:13 PST (America/Los_Angeles) — Corrected LOSAT to approved150 points,Stryker-only specialization and600 mm KE penetration; prepared installation replacing PLA TEST.
 - 2026-11-10 03:33:44 PST (America/Los_Angeles) — Applied Osama’s final LOSAT values:180 points,availability2,Stryker only,600 mm KE.
+
+- 2026-11-10 03:45:53 PST (America/Los_Angeles) — Added M-25 CDTE replacement for Stryker Troopers AT/AA and the requested +5-point prices; native behavior untested.
