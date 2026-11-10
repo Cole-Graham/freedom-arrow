@@ -89,12 +89,12 @@ int OC(int o)=>Row("OptionsJson",o)["Cost"].GetValue<int>();int UC(int u)=>Row("
 foreach(int o in new[]{8,1894,25,42,50,44,70,1934,1943,1944,1946,1947})Check(H(o,"HeatArmorFront")==700&&H(o,"HeatArmorSides")==700,"SRAT 700 "+o);
 foreach(int o in new[]{415,416,590,593,596,599})Check(H(o,"HeatArmorSides")==700,"TUSK2 side "+o);
 foreach(int o in new[]{117,119,412,414,589,592,595,598})Check(H(o,"HeatArmorSides")==400,"TUSK side "+o);
-foreach(int o in new[]{117,119,412,589,595,598})Check(OC(o)==10,"0.4 TUSK +10 "+o);Check(OC(414)==80&&OC(592)==80,"0.4 TUSK Trophy +80");
+foreach(int o in new[]{117,119,412,589,595,598})Check(OC(o)==20,"0.7 TUSK1 +20 "+o);Check(OC(414)==90&&OC(592)==90,"0.7 TUSK1 Trophy +90");
 Check(H(1834,"HeatArmorFront")==400&&H(1834,"HeatArmorSides")==400&&OC(1834)==15,"AAVP SU");Check(H(574,"HeatArmorSides")==200&&H(575,"HeatArmorSides")==400,"BMPT sides");Check(H(624,"HeatArmorSides")==200&&H(625,"HeatArmorSides")==400&&UC(9)+OC(625)==115,"T-72B1, 0.4 dev.42 total");
 Check(OC(194)==20&&UC(213)==100&&UC(157)==125&&UC(703)==165&&OC(3323)==0,"dev.22 prices, 0.4 values; dev.20 T-72B3A base is obr. 16");
 // 0.4 dev.2 MBT prices, kit prices and sabot +50 at point blank.
 foreach(var (u,cost) in new[]{(615,70),(14,60),(602,60),(9,80),(158,85),(703,165),(157,125),(236,125),(239,135),(53,160),(245,160),(244,205),(243,215),(238,195),(54,220),(503,235),(191,250),(13,360),(716,175)})Check(UC(u)==cost,"0.4 MBT price "+u);
-foreach(var (o,cost) in new[]{(3035,10),(3005,10),(625,35),(623,30),(622,10),(569,30),(3323,0),(554,35),(629,25),(117,10),(119,10),(598,10),(599,20),(595,10),(596,20),(589,10),(590,20),(592,80),(593,90),(412,10),(416,20),(414,80),(415,90),(562,10),(1635,80),(2116,5),(566,10)})Check(OC(o)==cost,"0.4 kit price "+o);
+foreach(var (o,cost) in new[]{(3035,10),(3005,10),(625,35),(623,30),(622,10),(569,30),(3323,0),(554,35),(629,25),(117,20),(119,20),(598,20),(599,20),(595,20),(596,20),(589,20),(590,20),(592,90),(593,90),(412,20),(416,20),(414,90),(415,90),(562,10),(1635,80),(2116,5),(566,10)})Check(OC(o)==cost,"0.4 kit price "+o);
 foreach(var a in new[]{1,11,12,23,48,124,139,141,172,238,239,242,246,248,254,255,256,257,258,264,498,505,575,602,701,713}){var r=Row("AmmunitionsJson",a);Check(r["PenetrationAtMinRange"].GetValue<float>()==r["PenetrationAtGroundRange"].GetValue<float>()+50,"0.4 sabot close range = long range + 50 "+a);}
 int[] Trans(int u){var pools=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["Id"].GetValue<int>()).ToHashSet();return merged["TransportAvailabilitiesJson"].Where(r=>pools.Contains(r["SpecializationAvailabilityId"].GetValue<int>())).Select(r=>r["UnitId"].GetValue<int>()).OrderBy(x=>x).ToArray();}
 Check(Trans(408).SequenceEqual(new[]{78,180})&&Trans(320).SequenceEqual(new[]{78,180}),"CAAT transports");Check(Trans(701).SequenceEqual(new[]{22})&&Trans(62).SequenceEqual(new[]{22}),"Troopers transports");
