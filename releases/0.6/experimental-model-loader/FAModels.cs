@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.2.0", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.5", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -29,6 +29,7 @@ public partial class Mod : MelonMod
         var cfg = Path.Combine(dir, "models.json");
         if (File.Exists(cfg)) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
         LoadWeaponRules();
+        LoadBodyRules();
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
         HarmonyInstance.Patch(m, postfix: new HarmonyMethod(typeof(Mod), nameof(After)));
         var infantryView = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitInfantryView" && x.GetParameters().Length == 4);
@@ -41,6 +42,7 @@ public partial class Mod : MelonMod
         try
         {
             if (unitData == null || unitModel?.PrefabRootScript == null) return;
+            QueueBodies(unitModel, unitData.Id);
             QueueWeapons(unitModel, unitData.Id, scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
             if (!map.TryGetValue(unitData.Name, out var e)) return;
             // In a battle, use the entry's low-res copy (smaller textures and mesh; aircraft with the gear up) when it has one.
@@ -140,6 +142,8 @@ public partial class Mod : MelonMod
 
     public override void OnUpdate()
     {
+        try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
+        try { TickInfantryBodies(); } catch (Exception ex) { MelonLogger.Error("FAMODELS body poll: " + ex.Message); }
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
         if (Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
@@ -261,11 +265,14 @@ public partial class Mod : MelonMod
 
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } }
+    public class MatP { public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
-        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}");
+        // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.
+        bool clearGlass = p?.clearGlass == true;
+        if (clearGlass) { tex = ""; col = new Color(1f, 1f, 1f, Mathf.Clamp01(p.opacity)); }
+        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}");
         if (mats.TryGetValue(key, out var m) && m != null) return m;
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
@@ -282,11 +289,24 @@ public partial class Mod : MelonMod
         p ??= new MatP();
         m.SetFloat("_Metallic", p.metallic); m.SetFloat("_Smoothness", p.smoothness);
         if (p.alpha == "MASK") { m.SetFloat("_AlphaCutoffEnable", 1f); m.SetFloat("_AlphaCutoff", p.cutoff); m.EnableKeyword("_ALPHATEST_ON"); }
-        if (p.alpha == "BLEND" || col.a < 0.99f) { m.SetFloat("_SurfaceType", 1f); m.SetFloat("_BlendMode", 0f); }
+        if (p.alpha == "BLEND" || col.a < 0.99f)
+        {
+            m.SetFloat("_SurfaceType", 1f); m.SetFloat("_BlendMode", 0f);
+            // Osama 9 Nov (F-14 canopy): HDRP keeps full-strength reflections on transparent surfaces by default
+            // ("preserve specular lighting"), so clear glass looked milky white. Let reflections fade with alpha.
+            m.SetFloat("_EnableBlendModePreserveSpecularLighting", 0f); m.DisableKeyword("_BLENDMODE_PRESERVE_SPECULAR_LIGHTING");
+        }
         if (p.emissive != null && p.emissive.Length == 3 && p.emissive.Max() > 0) m.SetColor("_EmissiveColor", new Color(p.emissive[0], p.emissive[1], p.emissive[2]) * 1000f);
         // The source materials are double-sided (thin panels, mirrored halves); single-sided rendering left see-through gaps.
-        m.SetFloat("_DoubleSidedEnable", 1f); m.SetFloat("_DoubleSidedNormalMode", 0f); m.SetFloat("_CullMode", 0f); m.SetFloat("_CullModeForward", 0f);
-        m.EnableKeyword("_DOUBLESIDED_ON"); m.doubleSidedGI = true;
+        m.SetFloat("_DoubleSidedEnable", clearGlass ? 0f : 1f); m.SetFloat("_DoubleSidedNormalMode", 0f); m.SetFloat("_CullMode", clearGlass ? 2f : 0f); m.SetFloat("_CullModeForward", clearGlass ? 2f : 0f);
+        if (clearGlass) m.DisableKeyword("_DOUBLESIDED_ON"); else m.EnableKeyword("_DOUBLESIDED_ON");
+        m.doubleSidedGI = !clearGlass;
+        if (clearGlass)
+        {
+            // Avoid another haze layer or a second rendered face on thin canopy glass.
+            m.SetFloat("_EnableFogOnTransparent", 0f); m.DisableKeyword("_ENABLE_FOG_ON_TRANSPARENT");
+            m.SetFloat("_TransparentBackfaceEnable", 0f);
+        }
         // PBR maps from the source model, written by famconv.py beside the base texture: X_n.png (normal) and X_mask.png
         // (HDRP mask map: R metallic, G occlusion, B detail mask, A smoothness). Both are linear data, not colour.
         string stem = tex.EndsWith(".png") ? tex[..^4] : tex;
@@ -308,7 +328,7 @@ public partial class Mod : MelonMod
         // Without it, TAA smears the model with the background and it looks see-through. Run HDRP's own validation.
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
-        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
+        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }
 }

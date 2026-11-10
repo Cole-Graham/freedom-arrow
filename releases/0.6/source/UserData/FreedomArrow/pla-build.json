@@ -1,6 +1,6 @@
 {
-  "build": 1,
-  "label": "PLA TEST Build 1",
+  "build": 2,
+  "label": "PLA TEST Build 2",
   "roster_contract": "pla-test-contract.json",
   "infantry": {
     "unit": 901,
@@ -71,5 +71,345 @@
     "PLA.48",
     "PLA.infantry.11"
   ],
-  "runtime_verified": false
+  "runtime_verified": false,
+  "appearance_comparison": [
+    {
+      "key": "regular_woodland",
+      "label": "Type21 woodland",
+      "kind": "regular",
+      "camo": "woodland",
+      "unit": 985,
+      "body_offset": [
+        0,
+        0.00311,
+        0
+      ]
+    },
+    {
+      "key": "sf_carrier_woodland",
+      "label": "SF carrier woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "unit": 986,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_condor_woodland",
+      "label": "SF condor woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "condor",
+      "unit": 987,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_light_woodland",
+      "label": "SF light woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "light",
+      "unit": 988,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_heavy_woodland",
+      "label": "SF heavy woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "heavy",
+      "unit": 989,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "regular_desert",
+      "label": "Type21 desert",
+      "kind": "regular",
+      "camo": "desert",
+      "unit": 990,
+      "body_offset": [
+        0,
+        0.00311,
+        0
+      ]
+    },
+    {
+      "key": "sf_carrier_desert",
+      "label": "SF carrier desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "unit": 991,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_condor_desert",
+      "label": "SF condor desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "condor",
+      "unit": 992,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_light_desert",
+      "label": "SF light desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "light",
+      "unit": 993,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_heavy_desert",
+      "label": "SF heavy desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "heavy",
+      "unit": 994,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_assault_woodland",
+      "label": "SF assault woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "assault",
+      "unit": 995,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_assault_desert",
+      "label": "SF assault desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "assault",
+      "unit": 996,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_night_up_woodland",
+      "label": "SF night up woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "night_up",
+      "unit": 997,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_night_up_desert",
+      "label": "SF night up desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "night_up",
+      "unit": 998,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_night_down_woodland",
+      "label": "SF night down woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "night_down",
+      "unit": 999,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_night_down_desert",
+      "label": "SF night down desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "night_down",
+      "unit": 1000,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_goggles_up_woodland",
+      "label": "SF goggles up woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "goggles_up",
+      "unit": 1001,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_goggles_up_desert",
+      "label": "SF goggles up desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "goggles_up",
+      "unit": 1002,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_goggles_down_woodland",
+      "label": "SF goggles down woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "goggles_down",
+      "unit": 1003,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_goggles_down_desert",
+      "label": "SF goggles down desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "goggles_down",
+      "unit": 1004,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_condor_pouches_woodland",
+      "label": "SF condor pouches woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "condor",
+      "gear": "condor_pouches",
+      "unit": 1005,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_condor_pouches_desert",
+      "label": "SF condor pouches desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "condor",
+      "gear": "condor_pouches",
+      "unit": 1006,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_grenadier_woodland",
+      "label": "SF grenadier woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "carrier",
+      "gear": "grenadier",
+      "unit": 1007,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_grenadier_desert",
+      "label": "SF grenadier desert",
+      "kind": "special",
+      "camo": "desert",
+      "vest": "carrier",
+      "gear": "grenadier",
+      "unit": 1008,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    },
+    {
+      "key": "sf_condor_pouches_b_woodland",
+      "label": "SF condor pouches B woodland",
+      "kind": "special",
+      "camo": "woodland",
+      "vest": "condor",
+      "gear": "condor_pouches_b",
+      "unit": 1009,
+      "body_offset": [
+        0,
+        0.01558,
+        0
+      ]
+    }
+  ]
 }

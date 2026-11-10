@@ -894,5 +894,21 @@
     "built_utc": "2026-11-10T10:37:40Z",
     "complete_package": "PLA-TEST-Build-1.bamod",
     "label": "PLA TEST Build 1"
+  },
+  "2": {
+    "inputs": "19bd9ea006ea2d7e122f95b9d7ea276d890921d41b8767fe58a2c749b4b8bea8",
+    "bamod_sha256": "904e2f51da19d95448327644813c1711ac1f45cfda0f39306befea5827acd3de",
+    "parent_commit": "fe75303",
+    "built_utc": "2026-11-10T20:18:59.187638+00:00",
+    "complete_package": "PLA-TEST-Build-2.bamod",
+    "label": "PLA TEST Build 2",
+    "recipe": "tools/pla-infantry/build_from_pack.py",
+    "native_armory_review": {
+      "cards": 25,
+      "soldiers": 175,
+      "body_applications": 525,
+      "failures": 0,
+      "combat_tested": false
+    }
   }
 }

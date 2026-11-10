@@ -59,6 +59,7 @@ public partial class Mod
 
     static void AfterInfantryWeapons(UnitModelInfo unitModel, Il2CppBrokenArrow.DataBase.Models.Units unitData, Il2CppBrokenArrow.Shared.Ecs.MemoryController.IUnitLoadScope scope)
     {
+        if (unitModel != null && unitData != null) QueueBodies(unitModel, unitData.Id);
         if (unitModel != null && unitData != null)
             QueueWeapons(unitModel, unitData.Id, scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
     }
