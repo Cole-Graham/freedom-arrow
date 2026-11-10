@@ -1,0 +1,19 @@
+{
+  "version": "0.1.8",
+  "bytes": 1103391417,
+  "sha256": "dd969d2b1c5d5ba48030feb31bc87655a8d0a86a4d4c2145875385ad366affe7",
+  "changed_paths": [
+    "UserData/FAModels/models.json",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_files": 5998,
+  "loader_version": "0.3.4",
+  "runtime_rendering_verified": false,
+  "base_source_commit": "aae20d3",
+  "core_version": "0.7.0-dev.17",
+  "model_alias": {
+    "F-21 Super Tomcat": "F-14 Tomcat"
+  }
+}

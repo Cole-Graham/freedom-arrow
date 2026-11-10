@@ -39,6 +39,10 @@ The approved live selection now includes Su-47, F-14 and YF-23 alongside the sev
 
 Adds the omitted YF-23 clear-canopy preset to its armory and battle material sidecars. All other payload bytes match0.1.6. Loader0.3.4, geometry, cockpit textures, B-21, Music1.4.1 and all current voices are unchanged. Both material keys match their actual meshes; opaque entries are unchanged. Runtime appearance awaits a new model construction or game restart.
 
+## Combined pack0.1.8
+
+Adds F-21 Super Tomcat as an alias of the existing F-14 armory/battle model for gameplay dev.17. The F-14 name remains supported. All meshes, textures, loader, music and voices are byte-identical to0.1.7. Run `python tools/asset-packs/build_018_from_017.py /path/to/folder` with the verified0.1.7 archive in that folder to reproduce the pack. Actual model appearance awaits the next launch.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
@@ -46,3 +50,4 @@ Adds the omitted YF-23 clear-canopy preset to its armory and battle material sid
 - 2026-11-09 16:45:58 PST (America/Los_Angeles) — Corrected asset type to a normal add-on in0.1.1; verified15 install/update checks against unchanged manager Core source using full real archives.
 - 2026-11-09 23:12:57 PST (America/Los_Angeles) — Recorded pack0.1.6: ten live models, approved B-21, clean canopy loader and preserved1.4.1 audio/voices.
 - 2026-11-09 23:41:30 PST (America/Los_Angeles) — Added YF-23 canopy correction to both copies; recorded unchanged payload and runtime limits.
+- 2026-11-10 00:22:37 PST (America/Los_Angeles) — Added F-21 alias, pinned pack0.1.8 and recorded reproducible upgrade.
