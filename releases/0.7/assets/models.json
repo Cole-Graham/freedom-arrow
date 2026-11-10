@@ -1,0 +1,36 @@
+{
+  "Abrams X": {
+    "file": "m_abramsx_cg.fam",
+    "battle": "m_abramsx_lo.fam"
+  },
+  "B-21 Raider": {
+    "file": "m_b21.fam",
+    "battle": "m_b21_lo.fam"
+  },
+  "X-47B": {
+    "file": "m_x47b.fam",
+    "battle": "m_x47b_lo.fam",
+    "align": false
+  },
+  "Su-57D": {
+    "file": "m_su57d_cg.fam",
+    "battle": "m_su57d_lo.fam",
+    "align": false
+  },
+  "Su-75 Checkmate": {
+    "file": "m_su75_t75.fam",
+    "battle": "m_su75_t75_lo.fam",
+    "align": false
+  },
+  "ZIL Karatel Punisher": {
+    "file": "m_karatel.fam",
+    "battle": "m_karatel_lo.fam",
+    "align": false
+  },
+  "XM30": {
+    "file": "m_xm30.fam",
+    "battle": "m_xm30_lo.fam",
+    "align": false,
+    "scale": 0.77
+  }
+}

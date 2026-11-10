@@ -75,9 +75,9 @@ static class ThirdPartyGuard
     {
         if(AccessTools.Field(game,"Cosmetic")?.GetValue(null) is not HashSet<string> cosmetic)
         {MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue Game.Cosmetic not found; the music pack changes the build code");return;}
-        cosmetic.Add("FAMusic.dll");cosmetic.Add("FAUiLog.dll");
+        cosmetic.Add("FAMusic.dll");cosmetic.Add("FAUiLog.dll");cosmetic.Add("FAModels.dll");
         AccessTools.Field(game,"_packHash")?.SetValue(null,null);   // in case ArrowQueue already made the code
-        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll and FAUiLog.dll");
+        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll, FAUiLog.dll and FAModels.dll");
         SameDatabaseCode(game);
     }
 
