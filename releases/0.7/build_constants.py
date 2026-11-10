@@ -1628,6 +1628,9 @@ def main():
         option_migration[str(old)]=new
     put('OptionsJson',1101,{'IsDefault':True},'Su57 single-seat air-to-air-only forward default')
     put('SpecializationAvailabilitiesJson',632,{'SpecializationId':6},'Osama: F35A moved to Stryker')
+    # Apply after Su47 copies the earlier agility, isolating only the three requested cards.
+    from fighter_turn import apply as apply_fighter_turn
+    apply_fighter_turn(effective,clone,put,json.loads((R/'fighter-turn-contract.json').read_text()))
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')

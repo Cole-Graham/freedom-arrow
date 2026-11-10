@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.23 — development candidate
+# Freedom Arrow 0.7.0-dev.24 — development candidate
+
+**F-22, single-seat Su-57 and Su-75 turn-radius correction:** only these three cards use an isolated horizontal-turn preset calculated to display800 in the native card. At250 m/s, MaxSpeedYaw59°/s gives800.43 before UI rounding, versus the earlier565 displayed radius. Horizontal yaw curves scale together; pitch, roll, speed, prices, weapons and all other units are retained. Su-47 keeps its previous maneuverability, including fuel options. Native card/flight verification is pending.
 
 **Wheel zoom over unit icons:** bypass both native follow-target checks so scrolling reaches the normal zoom path. The earlier fix bypassed only the check inside ScrollForward; Update had a second label/follow check that could still consume the wheel. Both call sites and their branch bytes are validated before writing; old one-site installs can upgrade, readback is checked and failed writes attempt rollback. Native UI gates remain. Compiled policy and pinned-code checks pass; actual camera behavior awaits a game test.
 
@@ -150,3 +152,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 00:59:18 PST (America/Los_Angeles) — Added UI-only alpha preparation and mipmapped icon filtering; source pictures and gameplay retained.
 - 2026-11-10 01:02:15 PST (America/Los_Angeles) — Replaced X47 single-AMRAAM bay choices with2× native AIM260 JATM,+60 each; included icon alpha/filtering fix.
 - 2026-11-10 01:17:30 PST (America/Los_Angeles) — Corrected the second wheel follow-target check; retained native UI guards and added pair validation/readback/rollback. Runtime wheel behavior pending.
+- 2026-11-10 01:47:19 PST (America/Los_Angeles) — Isolated F22/Su57/Su75 at calculated800 UI radius; preserved Su47 and other consumers, pitch/roll/speeds.

@@ -1,4 +1,8 @@
-# Freedom Arrow 0.7.0-dev.23 — development candidate
+# Freedom Arrow 0.7.0-dev.24 — development candidate
+
+**F-22, single-seat Su-57 and Su-75 turn-radius correction:** only these three cards use an isolated horizontal-turn preset calculated to display800 in the native card. At250 m/s, MaxSpeedYaw59°/s gives800.43 before UI rounding, versus the earlier565 displayed radius. Horizontal yaw curves scale together; pitch, roll, speed, prices, weapons and all other units are retained. Su-47 keeps its previous maneuverability, including fuel options. Native card/flight verification is pending.
+
+**Wheel zoom over unit icons:** bypass both native follow-target checks so scrolling reaches the normal zoom path. The earlier fix bypassed only the check inside ScrollForward; Update had a second label/follow check that could still consume the wheel. Both call sites and their branch bytes are validated before writing; old one-site installs can upgrade, readback is checked and failed writes attempt rollback. Native UI gates remain. Compiled policy and pinned-code checks pass; actual camera behavior awaits a game test.
 
 **X-47B bay update:** the former single-AMRAAM choice in each bay is now2× AIM-260 JATM for+60. Both selected bays carry four missiles. Existing2× AIM-120 defaults and other loadouts remain. Includes the UI-only cutout alpha/mipmap correction, preserving every solid shape pixel and all source PNGs. Native appearance and firing need review.
 
@@ -103,6 +107,14 @@ dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams
 
 All changes are data only. Built and checked offline; not yet tested in a match.
 
+## Aircraft pictures and specialization correction
+
+Su-75 Checkmate is available in Russian Motorized Infantry (9); Su-47 Berkut is in Russian Guard (12). Each has one specialization pool. These changes preserve loadouts, ammunition, costs and network-safe option IDs.
+
+Su-75, Su-47, Su-57D, YF-23 and F-14 have custom full-colour portrait addresses. Approved cutout PNGs are included unchanged and mirrored horizontally when their UI texture is created, so all five face right. Colour portraits use Osama's supplied screenshots, embedded verbatim in the gameplay DLL. Names, prices, armour and statistics remain native. Portrait aliases share one texture per image. Visual placement still needs a game check.
+
+The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Gameplay does not contain the paid model files.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -129,6 +141,7 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 21:44:59 PST (America/Los_Angeles) — Built 0.7.0-dev.11: option ability links (single-player vs multiplayer check).
 - 2026-11-09 21:50:52 PST (America/Los_Angeles) — Built 0.7.0-dev.12: Karatel single default profile; ability and equipment build guards.
 - 2026-11-09 22:21:46 PST (America/Los_Angeles) — Built 0.7.0-dev.13: Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II.
+- 2026-11-09 23:07:21 PST (America/Los_Angeles) — Added five aircraft portraits; cutout drafts excluded pending cleanup, Su-75 Motorized and Su-47 Russian Guard assignments; runtime appearance pending.
 - 2026-11-09 23:19:12 PST (America/Los_Angeles) — Refreshed the leading release summary and install instructions for current portraits, pools and asset pack0.1.6; dev.14 was an unpublished validation build.
 - 2026-11-09 23:54:31 PST (America/Los_Angeles) — Added Su-47 agility, intrinsic40% ECM,+40 airframe price, eight loadout removals and saved-option fallbacks.
 - 2026-11-09 23:57:20 PST (America/Los_Angeles) — Included the five approved cutout icons with right-facing rendering; original image pixels retained.
@@ -138,3 +151,5 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-10 00:50:12 PST (America/Los_Angeles) — Corrected F21 flight speed/mount continuity, all Su47 R37 removals, Su57 AA-only choices and six gear-up icon revisions; human visual review pending.
 - 2026-11-10 00:59:18 PST (America/Los_Angeles) — Added UI-only alpha preparation and mipmapped icon filtering; source pictures and gameplay retained.
 - 2026-11-10 01:02:15 PST (America/Los_Angeles) — Replaced X47 single-AMRAAM bay choices with2× native AIM260 JATM,+60 each; included icon alpha/filtering fix.
+- 2026-11-10 01:17:30 PST (America/Los_Angeles) — Corrected the second wheel follow-target check; retained native UI guards and added pair validation/readback/rollback. Runtime wheel behavior pending.
+- 2026-11-10 01:47:19 PST (America/Los_Angeles) — Isolated F22/Su57/Su75 at calculated800 UI radius; preserved Su47 and other consumers, pitch/roll/speeds.
