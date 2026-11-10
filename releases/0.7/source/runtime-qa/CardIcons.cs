@@ -110,15 +110,23 @@ static class CardIcons
     }
     static Sprite Make(string address)
     {
-        var tex=new Texture2D(2,2,TextureFormat.RGBA32,false){name=address,wrapMode=TextureWrapMode.Clamp};
+        bool cutout=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png" or "FA_X47-Label.png" or "FA_KARATEL-Label.png" or "FA_XM30-Label.png" or "FA_ABRAMSX-Label.png";
+        var tex=new Texture2D(2,2,TextureFormat.RGBA32,cutout){name=address,wrapMode=TextureWrapMode.Clamp,filterMode=cutout?FilterMode.Trilinear:FilterMode.Bilinear};
         // Preserve the approved source PNGs exactly. Mirror only these aircraft label textures for native right-facing UI.
         bool mirror=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png";
-        if(!ImageConversion.LoadImage(tex,(Il2CppStructArray<byte>)png[address],!mirror))throw new InvalidOperationException("icon did not decode: "+address);
-        if(mirror)
+        if(!ImageConversion.LoadImage(tex,(Il2CppStructArray<byte>)png[address],!cutout))throw new InvalidOperationException("icon did not decode: "+address);
+        if(cutout)
         {
             var source=tex.GetPixels32();var flipped=new Il2CppStructArray<Color32>(source.Length);int w=tex.width,h=tex.height;
-            for(int y=0;y<h;y++)for(int x=0;x<w;x++)flipped[y*w+x]=source[y*w+(w-1-x)];
-            tex.SetPixels32(flipped);tex.Apply(false,true);
+            var alpha=new byte[source.Length];for(int i=0;i<alpha.Length;i++)alpha[i]=source[i].a;
+            var clean=CutoutMask.Clean(alpha,w,h);
+            for(int y=0;y<h;y++)for(int x=0;x<w;x++)
+            {
+                int from=y*w+(mirror?w-1-x:x);var pixel=source[from];
+                // White hidden RGB avoids a dark fringe when mip levels average transparent pixels.
+                flipped[y*w+x]=clean[from]==0?new Color32(255,255,255,0):new Color32(pixel.r,pixel.g,pixel.b,255);
+            }
+            tex.SetPixels32(flipped);tex.Apply(true,true);
         }
         tex.hideFlags=HideFlags.HideAndDontSave;
         var sprite=Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f),100f);

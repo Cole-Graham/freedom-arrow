@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.20 — development candidate
+# Freedom Arrow 0.7.0-dev.21 — development candidate
+
+**UI icon edge correction:** the nine custom cutout textures discard faint background alpha, keep every solid pixel, and use trilinear mipmapped sampling. This removes the generated X-47B haze without replacing source PNGs or colour portraits. All gameplay data from dev.20 is retained. Native visual review is pending.
 
 **Aircraft correction batch: F-21 has its own950 km/h flight preset and explicit empty mount positions5/6 so fuselage weapons replace correctly; Su-47 has no R-37 choices in any slot; single-seat Su-57 offers only AA loads.** X-47B now has a white icon with inlet detail and its supplied colour portrait. Six custom aircraft icons are revised without landing gear, with merged white bodies and clearer canopy openings. Osama requested shipment for human visual review; final appearance is not approved or measured. Uses Models and Music0.1.8.
 
@@ -141,3 +143,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 00:26:46 PST (America/Los_Angeles) — Replaced three shaded vehicle thumbnails with white silhouettes following Osama’s native-icon example; dev.17 remained uninstalled.
 - 2026-11-10 00:36:34 PST (America/Los_Angeles) — Added X-47B silhouette thumbnail and original colour portrait; gameplay stats unchanged.
 - 2026-11-10 00:50:12 PST (America/Los_Angeles) — Corrected F21 flight speed/mount continuity, all Su47 R37 removals, Su57 AA-only choices and six gear-up icon revisions; human visual review pending.
+- 2026-11-10 00:59:18 PST (America/Los_Angeles) — Added UI-only alpha preparation and mipmapped icon filtering; source pictures and gameplay retained.
