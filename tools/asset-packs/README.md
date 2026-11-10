@@ -2,7 +2,7 @@
 
 **Players install two independent BAModLauncher packages: Freedom Arrow gameplay, and Freedom Arrow Models and Music. Gameplay updates do not contain or replace the asset files.** The initial combined asset package contains only the seven promoted live-unit models, the music library and the existing voice assets. PLA preview models and infantry test data are excluded.
 
-Close the game, import/apply each `.bamod` in BAModLauncher, then launch through Steam on Linux. After the first asset installation, update only gameplay until an asset update is announced. Do not disable/uninstall the asset package as part of a gameplay update. Current prototype PCs already have the files and do not need to download them again.
+Close the game, use **BAModManager → Mods → + Add mods** for each `.bamod`, then launch through Steam on Linux. The assets have type `mod`, so they coexist with the main gameplay `modpack`; do not select assets as the primary launcher modpack. After the first asset installation, update only gameplay until an asset update is announced. Do not disable/uninstall the asset package as part of a gameplay update. Current prototype PCs already have the files and do not need to download them again.
 
 The music loader defaults to USA if no saved playlist exists. The pack omits `pack.txt` and playback history, so later asset updates retain a player's selection. No geometry reduction, texture resizing or audio re-encoding happens during packaging; ZIP storage is lossless.
 
@@ -32,3 +32,5 @@ The full combined package uses the ordinary launcher process. The delta updater 
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
+
+- 2026-11-09 16:45:58 PST (America/Los_Angeles) — Corrected asset type to a normal add-on in0.1.1; verified15 install/update checks against unchanged manager Core source using full real archives.

@@ -16,6 +16,7 @@ with tempfile.TemporaryDirectory() as t:
     full=r/'assets.bamod';result=build(game,full,'0.1.0',cfg)
     install=r/'installed';install.mkdir()
     with zipfile.ZipFile(full) as z:
+        assert json.loads(z.read('mod.json'))['type']=='mod'
         assert not any('PLA' in n or '/constants/' in n or n.endswith(('pack.txt','music-history.txt')) for n in z.namelist())
         assert all('UserData/FAModels/'+f in z.namelist() for f in ['a.fam','a_lo.fam','a_n.png','a_mask.png','a.mat.json'])
         for n in z.namelist():
