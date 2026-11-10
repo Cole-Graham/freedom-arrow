@@ -262,6 +262,25 @@ Check(Row("Units",749)["HUDName"].GetValue<string>()=="M1299 Iron Thunder"&&Row(
 Check(pal.Count==3&&!pal.Any(o=>o["Name"].GetValue<string>().Contains("IronThunder"))&&Row("Units",162)["Cost"].GetValue<int>()==270,"0.6 dev.74 M109A7 Paladin keeps only its own turret");
 var a6=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==247).ToList();Check(a6.Count==2&&a6.Any(r=>r["SpecializationId"].GetValue<int>()==3&&r["MaxAvailabilityXp0"].GetValue<int>()==2)&&a6.Any(r=>r["SpecializationId"].GetValue<int>()==4&&r["MaxAvailabilityXp0"].GetValue<int>()==3),"0.6 dev.74 M109A6 Paladin USMC 2, Armored 3");}
 Check(Row("AmmunitionsJson",725)["Damage"].GetValue<float>()==4f&&Row("AmmunitionsJson",726)["Damage"].GetValue<float>()==8f&&Row("AmmunitionsJson",501)["IgnoreCover"].GetValue<float>()==0f,"0.6 dev.67 S-8 Gadyuka, S-8L and Hydra Fletcher unchanged");
+// Plane refund batch: no rearm/quantity/strength changes; all free ammunition stays aircraft-only.
+int refundAmmo=0,refundFlares=0;
+int[] freeGuns={55,56,57,74,90,146,292,293,295,305,307,330,332,333};
+foreach(var a in merged["AmmunitionsJson"])
+{
+ int id=a["Id"].GetValue<int>();var users=merged["WeaponAmmunitionsJson"].Where(w=>w["AmmunitionId"].GetValue<int>()==id).Select(w=>Row("Units",w["UnitId"].GetValue<int>())["Type"].GetValue<int>()).Distinct().ToArray();
+ bool free=users.Contains(16)&&(freeGuns.Contains(id)||a["Name"].GetValue<string>().Trim().StartsWith("Missile A2A "));
+ if(!free)continue;
+ Check(users.All(t=>t==16),"free aircraft ammo isolated from ground/helicopters "+id);
+ Check(a["SupplyCost"].GetValue<double>()==0,"free aircraft ammo supply price "+id);refundAmmo++;
+}
+foreach(var a in merged["AbilitiesJson"])
+{
+ int id=a["Id"].GetValue<int>();if(!a["IsDecoy"].GetValue<bool>())continue;
+ var types=merged["UnitAbilitiesJson"].Where(l=>l["AbilityId"].GetValue<int>()==id).Select(l=>Row("Units",l["UnitId"].GetValue<int>())["Type"].GetValue<int>()).Distinct().ToArray();
+ if(!types.Contains(16))continue;
+ Check(types.All(t=>t==16)&&a["DecoySupplyCost"].GetValue<double>()==0,"free isolated aircraft flares "+id);refundFlares++;
+}
+Check(refundAmmo==30&&refundFlares==44,"refund scope: 16 A2A +14 guns +44 flare profiles");
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");
 
 Check(Row("Units",950)["Cost"].GetValue<int>()==260,"Su75 base cost260");
