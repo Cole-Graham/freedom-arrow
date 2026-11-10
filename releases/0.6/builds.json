@@ -652,5 +652,17 @@
     "bamod_sha256": "e2fdd859155ee584edf4e333bba1fda99487384e38d06b09151e446747604df1",
     "parent_commit": "f3e4f3a",
     "built_utc": "2026-11-09T23:40:02Z"
+  },
+  "0.6.0-dev.110": {
+    "inputs": "6826fbcab0dc7de476a5eb3cf4a4bbc10e1c7afd4bb1c4fe22464f555ec5767b",
+    "bamod_sha256": "c260df2f5414ee07a3ab8d3768e7f111eb518085da4635380f2d731a9c323431",
+    "parent_commit": "6bfe08e",
+    "built_utc": "2026-11-09T23:58:20Z"
+  },
+  "0.6.0-dev.111": {
+    "inputs": "de083f51134de7a19f81567e9e9fd40ea2fa3284a3cd819370c4f6547bb94792",
+    "bamod_sha256": "6ba56c2fc27ab15dcb46063821217ba3d5999b59b25291732706968457ee81c8",
+    "parent_commit": "6bfe08e",
+    "built_utc": "2026-11-10T00:00:02Z"
   }
 }
