@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.22 — development candidate
+# Freedom Arrow 0.7.0-dev.23 — development candidate
 
 **X-47B bay update:** the former single-AMRAAM choice in each bay is now2× AIM-260 JATM for+60. Both selected bays carry four missiles. Existing2× AIM-120 defaults and other loadouts remain. Includes the UI-only cutout alpha/mipmap correction, preserving every solid shape pixel and all source PNGs. Native appearance and firing need review.
 

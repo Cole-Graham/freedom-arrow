@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.22 — development candidate
+# Freedom Arrow 0.7.0-dev.23 — development candidate
+
+**Wheel zoom over unit icons:** bypass both native follow-target checks so scrolling reaches the normal zoom path. The earlier fix bypassed only the check inside ScrollForward; Update had a second label/follow check that could still consume the wheel. Both call sites and their branch bytes are validated before writing; old one-site installs can upgrade, readback is checked and failed writes attempt rollback. Native UI gates remain. Compiled policy and pinned-code checks pass; actual camera behavior awaits a game test.
 
 **X-47B bay update:** the former single-AMRAAM choice in each bay is now2× AIM-260 JATM for+60. Both selected bays carry four missiles. Existing2× AIM-120 defaults and other loadouts remain. Includes the UI-only cutout alpha/mipmap correction, preserving every solid shape pixel and all source PNGs. Native appearance and firing need review.
 
@@ -147,3 +149,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 00:50:12 PST (America/Los_Angeles) — Corrected F21 flight speed/mount continuity, all Su47 R37 removals, Su57 AA-only choices and six gear-up icon revisions; human visual review pending.
 - 2026-11-10 00:59:18 PST (America/Los_Angeles) — Added UI-only alpha preparation and mipmapped icon filtering; source pictures and gameplay retained.
 - 2026-11-10 01:02:15 PST (America/Los_Angeles) — Replaced X47 single-AMRAAM bay choices with2× native AIM260 JATM,+60 each; included icon alpha/filtering fix.
+- 2026-11-10 01:17:30 PST (America/Los_Angeles) — Corrected the second wheel follow-target check; retained native UI guards and added pair validation/readback/rollback. Runtime wheel behavior pending.
