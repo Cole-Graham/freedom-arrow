@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.34 — development candidate
+# Freedom Arrow 0.7.0-dev.35 — development candidate
 
 **Lateralus selected promotion: changelog items 3, 5 and 7–12.** Target dummies are editor-only; passive AA diagnostics from lat.4 are included with zero targeting/scoring detours. RMG4 damage/100% Ignore Cover; standard SMAW-D25%; Mech. Engineers CQC55; Mech. Riflemen MMG4 AT4CS-RS; HIT ammo shown as84mm Thermobaric with6.5 damage/100% Ignore Cover; Combat Engineers75. Latest LOSAT and M25 changes below are retained.
 
@@ -13,7 +13,7 @@ M-25 CDTE: Stryker Troopers AT and Troopers AA each replace two M203s with one s
 
 **Projectile setting:** MuzzleVelocity=1300,MaxSpeed=1300,Acceleration=0, so the requested speed applies immediately rather than being hidden behind a slow acceleration ramp. Damage=10,KE penetration=550 at both range endpoints. Existing range, guidance, target masks and critical-effect thresholds remain. These are data/code checks; native flight,damage,interception and crit behavior require a game test.
 
-Firing gap:10 seconds between missiles, up from5. Empty-launcher reload remains15–20 seconds. Native firing cadence remains untested.
+Firing gap:6 seconds between missiles, as requested by Osama; reduced from10. Empty-launcher reload remains15–20 seconds. Native firing cadence remains untested.
 
 ## Superseded development history
 
@@ -194,3 +194,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 04:20:03 PST (America/Los_Angeles) — Selected550 KE and the suggested10-second firing gap for LOSAT; retained10 damage and1300 speed.
 
 - 2026-11-10 04:23:12 PST (America/Los_Angeles) — Promoted Lateralus items3,5,7–12 only; passive lat.4 observer and editor-only dummies; six infantry changes; other batch items held.
+
+- 2026-11-10 11:24:11 PST (America/Los_Angeles) — Corrected LOSAT firing gap to6 seconds; retained dev.34 balance changes,1300 missile speed,10 damage and550 mm KE.
