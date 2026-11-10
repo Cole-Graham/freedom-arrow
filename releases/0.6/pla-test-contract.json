@@ -427,6 +427,18 @@
       "parent": 253,
       "name": "ZBL-191",
       "transport_only": true
+    },
+    {
+      "unit": 980,
+      "parent": 169,
+      "name": "Su-47 Berkut",
+      "russia": true
+    },
+    {
+      "unit": 981,
+      "parent": 283,
+      "name": "F-14 Tomcat",
+      "us": true
     }
   ]
 }
