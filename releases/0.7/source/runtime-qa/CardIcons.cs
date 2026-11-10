@@ -115,7 +115,7 @@ static class CardIcons
     }
     static Sprite Make(string address)
     {
-        bool cutout=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png" or "FA_X47-Label.png" or "FA_KARATEL-Label.png" or "FA_XM30-Label.png" or "FA_ABRAMSX-Label.png";
+        bool cutout=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png" or "FA_X47-Label.png" or "FA_KARATEL-Label.png" or "FA_XM30-Label.png" or "FA_ABRAMSX-Label.png" or "FA_LOSAT-Label.png";
         var tex=new Texture2D(2,2,TextureFormat.RGBA32,cutout){name=address,wrapMode=TextureWrapMode.Clamp,filterMode=cutout?FilterMode.Trilinear:FilterMode.Bilinear};
         // Preserve the approved source PNGs exactly. Mirror only these aircraft label textures for native right-facing UI.
         bool mirror=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png";

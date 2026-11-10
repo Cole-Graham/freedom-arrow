@@ -2,16 +2,16 @@
   "unit": 984,
   "name": "MGM-166 LOSAT",
   "parent": 15,
-  "cost": 180,
+  "cost": 200,
   "specs": [
     6
   ],
   "availability": 2,
   "vehicle_hp": 12,
-  "damage": 10.5,
-  "penetration": 600,
+  "damage": 12,
+  "penetration": 700,
   "kornet_ammo": 63,
   "kornet_weapon": 214,
-  "speed_multiplier": 2,
-  "notes": "Osama 10 Nov 2026: LOSAT in LIVE, Stryker only at180 points with2 availability, KE600 penetration. Retains12 missiles,10.5 damage,2x base Kornet speed,no interception,tank-shell crits,unupgraded Bradley armor with12 hull HP(integer field)."
+  "notes": "Osama 10 Nov2026 final updates:LIVE LOSAT200 points,Stryker only,availability2,KE700,12damage,12missiles,speed1800 fromlaunch,no interception,tank-shell crits. Static model only: no turret attachment. Hull retainsunupgraded Bradley armor and12HP.",
+  "projectile_speed": 1800
 }

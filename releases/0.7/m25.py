@@ -27,6 +27,7 @@ def apply(effective, clone, put, contract):
             fields = dict(WeaponId=weapon)
             if table == 'WeaponAmmunitionsJson':
                 assert links[0]['AmmunitionId'] == 29 and links[0]['Quantity'] == 48
-                fields['AmmunitionId'] = ammo  # Retain the team's existing 48-round pool.
+                fields['AmmunitionId'] = ammo
+                fields['Quantity'] = c['ammo_quantity']
             put(table, links[0]['Id'], fields, why)
         put('Units', uid, dict(Cost=effective['Units'][uid]['Cost'] + c['cost_increase']), why)
