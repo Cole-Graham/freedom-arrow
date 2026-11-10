@@ -46,5 +46,11 @@
     "source": "abramsx-card-reference.png",
     "thumbnail": "FA_ABRAMSX-Label",
     "mirror_thumbnail": false
+  },
+  "969": {
+    "portrait": "FA_X47-Portrait",
+    "source": "x47-reference-b.png",
+    "thumbnail": "FA_X47-Label",
+    "mirror_thumbnail": false
   }
 }

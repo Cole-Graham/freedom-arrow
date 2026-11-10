@@ -372,7 +372,7 @@ Console.WriteLine("PASS: YF-23 AIM-120/AIM-260 bays only");
 {var rows=merged["SpecializationAvailabilitiesJson"].Where(x=>x["UnitId"].GetValue<int>()==980).ToArray();Check(rows.Length==1&&rows[0]["SpecializationId"].GetValue<int>()==12,"Su47 Russian Guard only; not Guard Tank Brigade");}
 
 // Full-colour portraits and approved cutouts have independent unique addresses.
-foreach(var (uid,tag) in new[]{(950,"SU75"),(980,"SU47"),(970,"SU57D"),(982,"YF23"),(981,"F14"),(973,"KARATEL"),(983,"XM30"),(964,"ABRAMSX")})
+foreach(var (uid,tag) in new[]{(950,"SU75"),(980,"SU47"),(970,"SU57D"),(982,"YF23"),(981,"F14"),(973,"KARATEL"),(983,"XM30"),(964,"ABRAMSX"),(969,"X47")})
 {
     var u=Row("Units",uid);string portrait="FA_"+tag+"-Portrait",thumb="FA_"+tag+"-Label";
     Check(u["PortraitFileName"].GetValue<string>()==portrait,"aircraft portrait "+uid);

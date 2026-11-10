@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.18 — development candidate
+# Freedom Arrow 0.7.0-dev.19 — development candidate
+
+**X-47B now has its own right-facing white silhouette icon and a full-colour card portrait from Osama’s supplied second screenshot.** Uses Models and Music0.1.8. All dev.18 gameplay, models and existing pictures are retained; only the X-47B image addresses/resources are added. In-game appearance awaits user inspection.
 
 **F-21 Super Tomcat replaces the F-14 card using the current F/A-18E baseline:215-point airframe,950 speed and40% intrinsic ECM. Seven loadouts match Osama’s list; the explicitly requested2× SLAM-ER is the only ground-attack choice. F-35A moves to Stryker. Eight right-facing cutouts and eight original full-colour portraits are included.** Companion Models and Music0.1.8 adds the F-21 name mapping to the existing F-14 model.
 
@@ -124,3 +126,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 23:57:20 PST (America/Los_Angeles) — Included the five approved cutout icons with right-facing rendering; original image pixels retained.
 - 2026-11-10 00:20:29 PST (America/Los_Angeles) — F-21 requested baseline/loadouts, F-35A Stryker and three vehicle icons/portraits; retained Su-47 and five approved aircraft icons.
 - 2026-11-10 00:26:46 PST (America/Los_Angeles) — Replaced three shaded vehicle thumbnails with white silhouettes following Osama’s native-icon example; dev.17 remained uninstalled.
+- 2026-11-10 00:36:34 PST (America/Los_Angeles) — Added X-47B silhouette thumbnail and original colour portrait; gameplay stats unchanged.
