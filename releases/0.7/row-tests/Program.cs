@@ -336,3 +336,17 @@ Console.WriteLine("PASS: live artillery floor and TOS restored; no PLA infantry 
 
 Check(Row("Units",983)["AudioPreset"].ToJsonString()==Row("Units",16)["AudioPreset"].ToJsonString(),"0.7 XM30 Bradley voice preset");
 Check(Row("Units",964)["AudioPreset"].ToJsonString()==Row("Units",191)["AudioPreset"].ToJsonString(),"0.7 Abrams X Abrams voice preset");
+
+{
+var axTurretIds=merged["TurretUnitsJson"].Where(x=>x["UnitId"].GetValue<int>()==964).Select(x=>x["TurretId"].GetValue<int>()).ToHashSet();
+var main=merged["TurretsJson"].Single(t=>axTurretIds.Contains(t["Id"].GetValue<int>())&&t["ParentTurretId"]==null);
+Check(main["IsDefault"].GetValue<bool>(),"Abrams X cannon turret is intrinsic, independent of network option selection");
+var gunLink=merged["TurretWeaponsJson"].Single(w=>w["TurretId"].GetValue<int>()==main["Id"].GetValue<int>()&&w["Order"].GetValue<int>()==0);
+int gunId=gunLink["WeaponId"].GetValue<int>();var gun=Row("WeaponsJson",gunId);var donor=Row("WeaponsJson",266);
+Check(gunId!=266&&gun["AutoLoaded"].GetValue<bool>()&&gun["MagazineReloadTimeMin"].GetValue<double>()==5&&gun["MagazineReloadTimeMax"].GetValue<double>()==6,"Abrams X own autoloader5–6 seconds");
+Check(!donor["AutoLoaded"].GetValue<bool>()&&donor["MagazineReloadTimeMin"].GetValue<double>()==6&&donor["MagazineReloadTimeMax"].GetValue<double>()==7,"shared M256 donor unchanged");
+foreach(var field in donor.AsObject())if(field.Key is not ("Id" or "Name" or "AutoLoaded" or "MagazineReloadTimeMin" or "MagazineReloadTimeMax"))Check(gun[field.Key]?.ToJsonString()==field.Value?.ToJsonString(),"Abrams X gun donor field retained "+field.Key);
+Check(merged["WeaponAmmunitionsJson"].Count(a=>a["UnitId"].GetValue<int>()==964&&a["WeaponId"].GetValue<int>()==gunId)==3,"Abrams X three native main-gun ammunition types retained");
+Check(!merged["WeaponAmmunitionsJson"].Any(a=>a["UnitId"].GetValue<int>()!=964&&a["WeaponId"].GetValue<int>()==gunId),"own autoloader ammunition only on Abrams X");
+Console.WriteLine("PASS: Abrams X intrinsic autoloader5–6 seconds; other M256 donor users unchanged");
+}

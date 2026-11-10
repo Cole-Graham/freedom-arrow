@@ -1529,6 +1529,19 @@ def main():
                 retired={'IsDefault':False}
                 if unit==983:retired['ECMAccuracyMultiplier']=0.0
                 put('AbilitiesJson',profile['Id'],retired,'0.7 only one default profile; XM30 has no ECM')
+    # Allocate the gun last to preserve existing option/turret/weapon clone IDs.
+    # Intrinsic main turret covers the empty-loadout path as well as selected options.
+    ax=json.loads((R/'abramsx-contract.json').read_text())
+    own_main=clone('WeaponsJson',ax['main_weapon_like'],ax['main_weapon_fields'],'Abrams X intrinsic autoloader 5–6 seconds')
+    own_turrets={effective['TurretUnitsJson'][rid]['TurretId'] for rid in rows_of('TurretUnitsJson',ax['unit'])}
+    mains={tid for tid in own_turrets if effective['TurretsJson'][tid]['ParentTurretId'] is None}
+    assert len(mains)==1 and effective['TurretsJson'][next(iter(mains))]['IsDefault']
+    gun_links=[w for w in effective['TurretWeaponsJson'].values() if w['TurretId'] in mains and w['WeaponId']==ax['main_weapon_like']]
+    assert len(gun_links)==1
+    put('TurretWeaponsJson',gun_links[0]['Id'],{'WeaponId':own_main},'Abrams X own main gun; default and option loadouts')
+    gun_ammo=[a for a in effective['WeaponAmmunitionsJson'].values() if a['UnitId']==ax['unit'] and a['WeaponId']==ax['main_weapon_like']]
+    assert gun_ammo
+    for a in gun_ammo:put('WeaponAmmunitionsJson',a['Id'],{'WeaponId':own_main},'Abrams X retain own main gun ammunition')
     # NetworkUnitSpawner sends Options.Id as short; high clone IDs lose their identity.
     # Apply last so every existing generator contract and non-option clone ID stays stable.
     from option_network_ids import apply as fix_option_network_ids

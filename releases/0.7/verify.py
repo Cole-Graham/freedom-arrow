@@ -30,6 +30,14 @@ with zipfile.ZipFile(p) as z:
     assert all(0<int(k)<=32767 for k,v in table('options').items() if v is not None)
 
     def live(n):return {k:v for k,v in table(n).items() if v is not None}
+    ax_t={x['TurretId'] for x in live('turret_units').values() if x.get('UnitId')==964}
+    ax_main=[(k,t) for k,t in live('turrets').items() if int(k) in ax_t and t.get('ParentTurretId') is None]
+    assert len(ax_main)==1 and ax_main[0][1]['IsDefault']
+    ax_gun_links=[w for w in live('turret_weapons').values() if w.get('TurretId')==int(ax_main[0][0]) and w.get('Order')==0]
+    assert len(ax_gun_links)==1
+    ax_gun=table('weapons')[str(ax_gun_links[0]['WeaponId'])]
+    assert ax_gun['AutoLoaded'] and ax_gun['MagazineReloadTimeMin']==5 and ax_gun['MagazineReloadTimeMax']==6
+
     tgc=json.loads((R/'tigr-contract.json').read_text())
     # 0.6 arrw-contract.json: the AGM-183A ARRW is one new weapon row and one new turret-weapon row (a copy of the Kinzhal HE).
     arrw=json.loads((R/'arrw-contract.json').read_text())
@@ -83,7 +91,7 @@ with zipfile.ZipFile(p) as z:
     assert {k for k in aimw if table('weapons')[k]['AimTimeMin']==0.5}=={str(w) for w in agc['big_sam']['weapons']} and all(table('weapons')[k]['AimTimeMax']==table('weapons')[k]['AimTimeMin'] in (0.0,0.5) for k in aimw) and len(aimw)==31,'0.6 dev.50 aim times'
     xm_w={k for k,r in live('weapons').items() if r.get('Name') in ['XM30 2x TOW-2B','XM30 2x Javelin']}
     assert len(xm_w)==2 and all(live('weapons')[k]['MagazineSize']==2 for k in xm_w)
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in rpg22w and k not in b21_w and k not in xm_w),'weapons: launcher reload only'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in rpg22w and k not in b21_w and k not in xm_w and k!=str(ax_gun_links[0]['WeaponId'])),'weapons: launcher reload only outside the verified Abrams X gun'
     contract=json.loads((R/'vehicle-contract.json').read_text())
     det=json.loads((R/'detection-contract.json').read_text())
     for k,v in contract['base_costs'].items():assert table('units')[k]['Cost']==v,k
