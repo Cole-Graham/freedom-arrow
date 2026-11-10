@@ -1311,6 +1311,7 @@ def main():
         else:
             for r in avail:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
         if c.get('country'):put('Units',new,{'CountryId':c['country']},why)
+        if c.get('icon_from'):put('Units',new,{k:effective['Units'][c['icon_from']][k] for k in ('ThumbnailFileName','PortraitFileName')},why+' icon')
         if c.get('swap_turrets'):
             # Other-country copy (X-47B from the S-70): each bay mount becomes the matching mount of a donor plane, with the donor's
             # weapon and ammunition rows and its option name and picture. Links copy the old mount's link (same Order).
@@ -1496,6 +1497,17 @@ def main():
     jammer=clone('AbilitiesJson',6,dict(Name='XM30 jammer30 percent',IsDefault=True,ModelFileName=None), 'XM30 standard jammer')
     assert effective['AbilitiesJson'][jammer]['ECMAccuracyMultiplier']==0.7
     clone('UnitAbilitiesJson',next(iter(original['UnitAbilitiesJson'])),dict(UnitId=983,AbilityId=jammer),'XM30 standard jammer')
+    # Osama, 9 Nov: final artillery penetration floor, after every older override and clone.
+    floor=json.loads((R/'arty-floor-contract.json').read_text());changed={}
+    def floor_scope(a):return a['TrajectoryType'] in floor['trajectories'] and a['Damage']>0 and not a['GenerateSmoke'] and a['Id'] not in floor['engineering_excluded']
+    for aid,a in list(effective['AmmunitionsJson'].items()):
+        if not floor_scope(a):continue
+        before=[a['PenetrationAtMinRange'],a['PenetrationAtGroundRange']]
+        if min(before)>=floor['minimum']:continue
+        changed[str(aid)]=before
+        put('AmmunitionsJson',aid,{f:max(a[f],floor['minimum']) for f in ('PenetrationAtMinRange','PenetrationAtGroundRange')},'Artillery penetration floor 40 (Osama)')
+    assert changed==floor['changed_before'],('artillery floor scope changed',changed)
+    assert all(min(a['PenetrationAtMinRange'],a['PenetrationAtGroundRange'])>=floor['minimum'] for a in effective['AmmunitionsJson'].values() if floor_scope(a))
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
