@@ -264,7 +264,7 @@ var a6=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<
 Check(Row("AmmunitionsJson",725)["Damage"].GetValue<float>()==4f&&Row("AmmunitionsJson",726)["Damage"].GetValue<float>()==8f&&Row("AmmunitionsJson",501)["IgnoreCover"].GetValue<float>()==0f,"0.6 dev.67 S-8 Gadyuka, S-8L and Hydra Fletcher unchanged");
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");
 
-Check(Row("Units",950)["Cost"].GetValue<int>()==280,"Su75 base cost280");
+Check(Row("Units",950)["Cost"].GetValue<int>()==260,"Su75 base cost260");
 var cmMods=merged["ModificationsJson"].Where(r=>r["UnitId"].GetValue<int>()==950).ToArray();
 Check(cmMods.Length==1&&cmMods[0]["UIName"].GetValue<string>()=="Custom_Slot_Rear_bay","Su75 rear bay only");
 var cmOpts=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==cmMods[0]["Id"].GetValue<int>()).ToArray();
