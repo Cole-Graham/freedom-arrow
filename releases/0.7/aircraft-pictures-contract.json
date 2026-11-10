@@ -1,0 +1,22 @@
+{
+  "950": {
+    "portrait": "FA_SU75-Portrait",
+    "source": "su75-card-reference.png"
+  },
+  "980": {
+    "portrait": "FA_SU47-Portrait",
+    "source": "su47-card-reference.png"
+  },
+  "970": {
+    "portrait": "FA_SU57D-Portrait",
+    "source": "su57d-card-reference.png"
+  },
+  "982": {
+    "portrait": "FA_YF23-Portrait",
+    "source": "yf23-card-reference.png"
+  },
+  "981": {
+    "portrait": "FA_F14-Portrait",
+    "source": "f14-card-reference.png"
+  }
+}

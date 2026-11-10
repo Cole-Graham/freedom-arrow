@@ -1431,7 +1431,7 @@ def main():
     for order,o in enumerate(opts):clone('OptionsJson',o['Id'],{'ModificationId':mid,'Order':order,'IsDefault':o['IsDefault'] or (not has_default and order==0),**({'ReplaceUnitName':cm['name']} if o.get('ReplaceUnitName') else {})},why)
     avail=next(r for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==par)
     clone('SpecializationAvailabilitiesJson',avail['Id'],{'UnitId':uid,'SpecializationId':cm['spec']},why)
-    assert {r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid}=={12}
+    assert {r['SpecializationId'] for r in effective['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid}=={cm['spec']}
     # Baseline Checkmate rear bay: two R-73, no loadout surcharge (Osama).
     for o in list(effective['OptionsJson'].values()):
         if o['ModificationId']==mid:put('OptionsJson',o['Id'],{'IsDefault':False,'Order':o['Order']+1},'Su-75 baseline R73')
@@ -1588,6 +1588,9 @@ def main():
     # Cards moved from the PLA test lane (Osama 9 Nov: "push Su-47, F-14 and the YF-23"). Built last, so every earlier clone ID,
     # and with it every saved option ID, stays unchanged; their options get new network IDs in option-network-ids.json.
     for c in nc.get('late_cards',[]):make_card(c)
+    # Pictures are assigned after all copies so donor units and descendants keep their own images.
+    for uid, picture in json.loads((R/'aircraft-pictures-contract.json').read_text()).items():
+        put('Units',int(uid),{'PortraitFileName':picture['portrait']},'Osama full-colour aircraft card portrait')
     # Osama 9 Nov (single-player vs multiplayer differences): every ability an option grants needs the unit's
     # UnitAbilities link, as in vanilla. The check near the top runs before later contracts add option abilities
     # (BMP-2G/M and T-72B1 smoke, BMD-2 smoke kept after the dev.5 smoke pass), so close the gap here and re-check.

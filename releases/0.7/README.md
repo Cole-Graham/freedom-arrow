@@ -1,6 +1,8 @@
-# Freedom Arrow 0.7.0-dev.13 — development candidate
+# Freedom Arrow 0.7.0-dev.15 — development candidate
 
-**This candidate carries forward dev.115 and changes XM30 to190 points with Bradley voice assignment. Install the companion combined asset pack0.1.3 for XM30 scale0.77 (10% larger than0.70) and the China music update.** No PLA test data is included.
+**Adds full-colour detailed-card portraits from Osama's five supplied aircraft pictures. Su-75 moves to Russian Motorized; Su-47 moves to Russian Guard. Su-47, F-14 and YF-23 remain live from dev.13. Use combined Models and Music0.1.6 for the models, clear canopy preset, approved B-21 and current music/voices.** No PLA test data is included. Cutout icon drafts remain outside this build pending edge cleanup.
+
+The five portrait resources are embedded verbatim; the game still draws the name, price and statistics. Only seven table fields differ from dev.13: five portrait filenames and two specialization links. Weapons, loadouts, prices, ammunition and network-safe option IDs are unchanged. Package, row-planner and installer checks are offline; final portrait framing and canopy clarity still need a game check.
 
 ## Defense correction from0.7 dev.1
 
@@ -23,7 +25,7 @@ All other dev.115 data/settings are intended to remain unchanged, including40 mm
 
 ## Install
 
-Close the game. In BAModManager > Mods > + Add mods, import the gameplay0.7 candidate and the combined Models and Music0.1.3 pack, confirming replacement. Keep both enabled and ActualArrow disabled. Windows: manager PLAY. Linux: close manager and launch through Steam. A full restart is required. Do not import assets as the main gameplay modpack.
+Close the game. In BAModManager > Mods > + Add mods, import the gameplay0.7 candidate and the combined Models and Music0.1.6 pack, confirming replacement. Keep both enabled and ActualArrow disabled. Windows: manager PLAY. Linux: close manager and launch through Steam. A full restart is required. Do not import assets as the main gameplay modpack.
 
 
 ## Network option-ID correction candidate
@@ -85,6 +87,14 @@ dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams
 
 All changes are data only. Built and checked offline; not yet tested in a match.
 
+## Aircraft pictures and specialization correction
+
+Su-75 Checkmate is available in Russian Motorized Infantry (9); Su-47 Berkut is in Russian Guard (12). Each has one specialization pool. These changes preserve loadouts, ammunition, costs and network-safe option IDs.
+
+Su-75, Su-47, Su-57D, YF-23 and F-14 have custom full-colour portrait addresses. Small cutout icon drafts are pending edge cleanup and retain their previous donor images in this build. Colour portraits use Osama's supplied screenshots, embedded verbatim in the gameplay DLL. Names, prices, armour and statistics remain native. Portrait aliases share one texture per image. Visual placement still needs a game check.
+
+The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Gameplay does not contain the paid model files.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -111,3 +121,5 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 21:44:59 PST (America/Los_Angeles) — Built 0.7.0-dev.11: option ability links (single-player vs multiplayer check).
 - 2026-11-09 21:50:52 PST (America/Los_Angeles) — Built 0.7.0-dev.12: Karatel single default profile; ability and equipment build guards.
 - 2026-11-09 22:21:46 PST (America/Los_Angeles) — Built 0.7.0-dev.13: Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II.
+- 2026-11-09 23:07:21 PST (America/Los_Angeles) — Added five aircraft portraits; cutout drafts excluded pending cleanup, Su-75 Motorized and Su-47 Russian Guard assignments; runtime appearance pending.
+- 2026-11-09 23:19:12 PST (America/Los_Angeles) — Refreshed the leading release summary and install instructions for current portraits, pools and asset pack0.1.6; dev.14 was an unpublished validation build.

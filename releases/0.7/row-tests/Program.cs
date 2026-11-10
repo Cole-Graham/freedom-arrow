@@ -271,9 +271,9 @@ var cmOpts=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==c
 Check(cmOpts.Length==8&&cmOpts.Count(o=>o["IsDefault"].GetValue<bool>())==1,"Su75 eight rear loadouts with one default");
 foreach(var o in cmOpts)for(int i=0;i<=20;i++)if(i<4||i>6)Check(o["Turret"+i+"Id"].GetValue<int>()==0,"Su75 no front or wingtip mount");
 var cmSpecs=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==950).ToArray();
-Check(cmSpecs.Length==1&&cmSpecs[0]["SpecializationId"].GetValue<int>()==12,"Su75 Guard only, not Tank Guard");
-foreach(var field in Row("Units",44).AsObject())if(!new[]{"Id","Name","HUDName","DisplayInArmory"}.Contains(field.Key))Check(JsonNode.DeepEquals(field.Value,Row("Units",970)[field.Key]),"Su57D stat clone "+field.Key);
-Console.WriteLine("PASS: live Su75 rear/Guard/price and Su57D stat-clone checks");
+Check(cmSpecs.Length==1&&cmSpecs[0]["SpecializationId"].GetValue<int>()==9,"Su75 Motorized Infantry only");
+foreach(var field in Row("Units",44).AsObject())if(!new[]{"Id","Name","HUDName","DisplayInArmory","PortraitFileName","CurrentPortrait","ThumbnailFileName","CurrentThumbnail"}.Contains(field.Key))Check(JsonNode.DeepEquals(field.Value,Row("Units",970)[field.Key]),"Su57D stat clone "+field.Key);
+Console.WriteLine("PASS: live Su75 rear/Motorized/price and Su57D stat-clone checks");
 
 var cmDefault=cmOpts.Single(o=>o["IsDefault"].GetValue<bool>());
 Check(cmDefault["Turret4Id"].GetValue<int>()==653&&cmDefault["Turret5Id"].GetValue<int>()==653&&cmDefault["Cost"].GetValue<int>()==0,"Su75 baseline two R73 at base cost");
@@ -368,3 +368,15 @@ var yfMods=merged["ModificationsJson"].Where(m=>m["UnitId"].GetValue<int>()==982
 var yfOpts=merged["OptionsJson"].Where(o=>yfMods.Contains(o["ModificationId"].GetValue<int>())).ToArray();
 Check(yfOpts.Length==4&&yfOpts.All(o=>o["Name"].GetValue<string>().Contains("2xAIM120")||o["Name"].GetValue<string>().Contains("2xAIM260")),"YF-23 bays: AIM-120 or AIM-260 only");
 Console.WriteLine("PASS: YF-23 AIM-120/AIM-260 bays only");
+
+{var rows=merged["SpecializationAvailabilitiesJson"].Where(x=>x["UnitId"].GetValue<int>()==980).ToArray();Check(rows.Length==1&&rows[0]["SpecializationId"].GetValue<int>()==12,"Su47 Russian Guard only; not Guard Tank Brigade");}
+
+// Full-colour portraits have unique addresses; cutout drafts remain outside the build.
+foreach(var (uid,tag) in new[]{(950,"SU75"),(980,"SU47"),(970,"SU57D"),(982,"YF23"),(981,"F14")})
+{
+    var u=Row("Units",uid);string portrait="FA_"+tag+"-Portrait",thumb="FA_"+tag+"-Label";
+    Check(u["PortraitFileName"].GetValue<string>()==portrait,"aircraft portrait "+uid);
+    Check(merged["Units"].Count(x=>x["PortraitFileName"].GetValue<string>()==portrait)==1,"portrait address ownership "+uid);
+}
+
+Console.WriteLine($"PASS final total: {checks} checks, including aircraft portraits and Russian specialization ownership; runtime untested.");
