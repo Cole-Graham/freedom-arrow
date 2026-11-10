@@ -6,7 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.Spawn;
 namespace FAModels;
 public partial class Mod
 {
-    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; }
+    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} }
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
     class BodyView { public UnitModelInfo model; public int unitId; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; }
@@ -35,11 +35,18 @@ public partial class Mod
     }
     static Il2CppReferenceArray<Transform> OffsetBodyBones(SkinnedMeshRenderer renderer,BodyRule rule)
     {
-        var offset=new Vector3(rule.offset[0],rule.offset[1],rule.offset[2]);
-        var bones=renderer.bones;if(offset.sqrMagnitude==0)return bones;
+        var baseOffset=new Vector3(rule.offset[0],rule.offset[1],rule.offset[2]);
+        var bones=renderer.bones;if(baseOffset.sqrMagnitude==0)return bones;
         var result=new Transform[bones.Length];
         for(int i=0;i<bones.Length;i++) {
             var bone=bones[i];if(bone==null)continue;
+            float factor=1;
+            if(rule.anchorHands) {
+                if(bone.name.Contains("Hand"))factor=0;
+                else if(bone.name.Contains("ForeArm"))factor=.35f;
+                else if(bone.name.EndsWith("Arm"))factor=.75f;
+            }
+            var offset=baseOffset*factor;
             int key=bone.GetInstanceID();
             if(!bodyOffsets.TryGetValue(key,out var item)) {
                 // A child used only by the body renderer follows the native bone exactly.

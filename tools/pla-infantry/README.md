@@ -1,6 +1,6 @@
 # PLA infantry configuration test build
 
-**PLA TEST Build2 adds25 comparison squads and fits the supplied Type21/special-forces meshes to the native Ranger skeleton. Keep the approved squad901 and its offsets.** All25 cards have now been checked in the native armory:7 soldiers,21 body applications and0 failures per card. This verifies appearance and idle poses; battle movement, firing, reloads and frame time remain untested.
+**Build 3 replaces the first-pass 14-degree arm rotation with a shoulder, elbow, wrist and finger landmark cage, anchors hand/finger body offsets at zero, and lowers woodland helmets and attached head gear 1 cm. All 25 configurations are retained. Build 2 had a native render pass; this new fit still requires native review.**
 
 ## Reproduce
 
@@ -12,7 +12,7 @@ Use Blender5.2.3, the original extracted Ranger GLB, the supplied archive with S
 4. Run verify_rigs.py with the rig and FAModels output directories. Run build_from_pack.py with --base, --vanilla, --rigs and --out. This recipe reads the pinned published Build1 data and asserts every existing row is unchanged. It appends only the comparison cards and their links. Do not replay the older balance history to assemble this package.
 5. Install in an isolated game copy. Native startup must confirm the data applied and26 body rules loaded. Inspect every card and retain the body application/failure logs and screenshots.
 
-The rig uses nearest-surface native weight transfer, maximum4 influences, normalized weights, a provisional14-degree shoulder fit and three decimated LODs. Heads, helmets and carriers use rigid head/torso weights. Equipment fit and weapon grips need human visual review. This is not a measured performance or combat-balance result.
+The rig uses a landmark cage followed by nearest-surface native weight transfer, maximum 4 influences, normalized weights and three decimated LODs. The source SF sheet has no skeleton, so its initial cage comes from the regular source skeleton. Hands/fingers have zero body offset; forearms use 35% and upper arms 75% of the body offset. Heads, helmets and carriers use rigid head/torso weights. Equipment fit and weapon grips need human visual review. This is not a measured performance or combat-balance result.
 
 ## Test-copy review helper
 
@@ -23,3 +23,7 @@ No new user interface is added. A test-copy-only `UserData/FAModels/pla-review-u
 - 2026-11-10 12:12:15 PST (America/Los_Angeles) — Recorded the25 configurations, pinned Build1 migration recipe, UV correction, rig method and isolated armory evidence requirements.
 
 - 2026-11-10 12:29:01 PST (America/Los_Angeles) — Recorded the complete25-card native armory pass and user-requested ground correction: new regular bodies+0.00311m, SF+0.01558m; approved card901 remains−0.05m.
+
+- 2026-11-10 14:45:24 PST (America/Los_Angeles) — Prepared the Build 3 fit revision and native hand anchors; retained the approved card 901 and weapon offsets. Native review pending.
+
+- 2026-11-10 15:46:45 PST (America/Los_Angeles) — Prepared requested Build 3 installation with refined hands, all 13 woodland helmet configurations lowered 1 cm, and pinned FA Music 1.4.2 compilations retained. Native fit remains unverified.

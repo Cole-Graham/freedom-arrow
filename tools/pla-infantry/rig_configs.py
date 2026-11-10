@@ -5,11 +5,23 @@ Run in Blender. Source files remain external; no source weights are assumed.
 import argparse, json, math, struct, sys
 from pathlib import Path
 import bpy
+import numpy as np
 from mathutils import Vector
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from arm_fit import ArmFit
 
-ap=argparse.ArgumentParser();ap.add_argument('--source',type=Path,required=True);ap.add_argument('--donor',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--resume',action='store_true');ap.add_argument('--no-previews',action='store_true')
+ap=argparse.ArgumentParser();ap.add_argument('--source',type=Path,required=True);ap.add_argument('--donor',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--resume',action='store_true');ap.add_argument('--no-previews',action='store_true');ap.add_argument('--only',nargs='*')
 a=ap.parse_args(sys.argv[sys.argv.index('--')+1:]);a.source=a.source.resolve();a.out=a.out.resolve();a.out.mkdir(parents=True,exist_ok=True)
 configs=json.loads((Path(__file__).resolve().parents[2]/'releases/0.6/pla-configurations-contract.json').read_text())
+if a.only:configs=[c for c in configs if c['key'] in a.only]
+bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.ops.import_scene.fbx(filepath=str(a.source/'regular/PLA_21_CongLin.fbx'))
+source_arm=next(o for o in bpy.data.objects if o.type=='ARMATURE')
+source_joints={b.name:list(source_arm.matrix_world@b.head_local) for b in source_arm.data.bones}
+bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.ops.import_scene.gltf(filepath=str(a.donor.resolve()),bone_heuristic='TEMPERANCE')
+native_arm=next(o for o in bpy.data.objects if o.type=='ARMATURE')
+native_joints={b.name:list(native_arm.matrix_world@b.head_local) for b in native_arm.data.bones}
 
 def ws(f,s):
  b=s.encode();f.write(struct.pack('<i',len(b))+b)
@@ -41,6 +53,7 @@ for ci,c in enumerate(configs):
   if gear=='condor_pouches_b':names+=['CondorModularOperatorGen2_Pouches_D']
   if gear=='grenadier':names+=['SM_GPouchV005','SM_GPouchV006','SM_GPouchV007','SM_GPouchV008','SM_ANPRC156'] if desert else ['SM_GPouchV1','SM_GPouchV1.001','SM_GPouchV002','SM_GPouchV004','SM_ANPRC152.001','SM_PMC_Trousers_CryePrecisionG3_01_D']
  selected_names=list(names);source=[objects[n] for n in names]
+ fit=ArmFit(source_joints,native_joints,c['body_offset'][1])
  for o in list(bpy.data.objects):
   if o not in source:bpy.data.objects.remove(o,do_unlink=True)
  textures={};missing=[]
@@ -56,13 +69,14 @@ for ci,c in enumerate(configs):
   if abs(center)>.7:world.translation.x-=center
   o.parent=None;o.matrix_world=world
   bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o;bpy.ops.object.transform_apply(location=True,rotation=True,scale=True)
-  # Match the donor A-pose around the shoulders; body-only offset stays in the loader.
+  # Match the joints instead of rotating the whole arm through one guessed angle.
   soft=(c['kind']=='regular' and o.name in ['SM_CC_Arm','SM_UniformPla21']) or (c['kind']=='special' and ('FrogShirt' in o.name or 'Gloves' in o.name))
-  for v in o.data.vertices:
-   p=v.co.copy()
-   if soft and p.z>.86 and abs(p.x)>.20:
-    sign=1 if p.x>0 else -1;t=math.radians(14)*min(1,max(0,(abs(p.x)-.2)/.10));x=abs(p.x)-.245;z=p.z-1.46;p.x=sign*(.245+x*math.cos(t)-z*math.sin(t));p.z=1.46+x*math.sin(t)+z*math.cos(t)
-   v.co=p
+  if soft:
+   coords=np.empty(len(o.data.vertices)*3);o.data.vertices.foreach_get('co',coords)
+   coords=fit.deform(coords.reshape(-1,3));o.data.vertices.foreach_set('co',coords.ravel())
+  helmet_gear=any(t in o.name.lower() for t in ['helmet','bnvd','goggles'])
+  if c['camo']=='woodland' and helmet_gear:
+   for v in o.data.vertices:v.co.z-=.01
   for mat in o.data.materials:
    if not mat:continue
    images=[n.image for n in mat.node_tree.nodes if n.type=='TEX_IMAGE' and n.image] if mat.use_nodes else []
@@ -122,6 +136,6 @@ for ci,c in enumerate(configs):
  s=bpy.context.scene;s.render.engine='BLENDER_WORKBENCH';s.display.shading.color_type='TEXTURE';s.display.shading.light='STUDIO';s.render.resolution_x=700;s.render.resolution_y=900;s.render.resolution_percentage=100
  cam=bpy.data.objects.new('Audit camera',bpy.data.cameras.new('Audit camera'));bpy.context.collection.objects.link(cam);s.camera=cam;cam.data.type='ORTHO';cam.data.ortho_scale=2.2;cam.location=(2.2,-5,1.2);cam.rotation_euler=(Vector((0,0,.95))-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(folder/'rest.png')
  if not a.no_previews or ci<2:bpy.ops.render.render(write_still=True)
- audit={**c,'unit':985+ci,'selected_objects':selected_names,'textures':textures,'lods':budget,'native_tested':False}
+ audit={**c,'selected_objects':selected_names,'textures':textures,'lods':budget,'arm_fit':fit.audit,'woodland_helmet_drop_m':.01 if c['camo']=='woodland' else 0,'native_tested':False}
  (folder/'audit.json').write_text(json.dumps(audit,indent=2)+'\n');audits.append(audit)
  (a.out/'configurations.json').write_text(json.dumps(audits,indent=2)+'\n');print('CONFIG COMPLETE',c['key'],flush=True)

@@ -1,8 +1,8 @@
-# PLA TEST Build 2
+# PLA TEST Build 3
 
-**Build2 adds 25 appearance comparison squads: regular Type21 woodland/desert and special-forces carrier, pouch, helmet, night-vision, goggles and pack configurations. The new bodies use their own sole-height alignment: regular+0.00311 m and special-forces+0.01558 m, raised5.311 cm and6.558 cm from the first test. Existing squad901 and its approved offsets are retained. Native visual verification is in progress in an isolated copy.**
+**Build 3 refines the arms and hands of all 25 appearance squads against native shoulder, elbow, wrist and finger landmarks. Hand and finger bones retain zero body displacement so the foot-height correction does not move grips away from native weapons. Woodland helmets and attached goggles/night vision are lowered 1 cm. Native visual testing of this revision is pending.**
 
-**One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Native game verification remains pending.
+**One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Build 2 rendered all 25 cards in the native armory; this revision still needs its own native fit check.
 
 
 **Build-only candidate for play offline through local setup and online in private scenario lobbies: flat 200 points per simulation minute with no force-size income penalty, conquest scoring, and the vehicle, infantry and detection data. No online match has been run.**
@@ -604,3 +604,7 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 - 2026-11-10 11:52:06 PST (America/Los_Angeles) — Added Build2 infantry configurations; package is rebuilt from pinned Build1 without replaying historical balance generators.
 
 - 2026-11-10 12:17:49 PST (America/Los_Angeles) — Raised new comparison bodies after Osama observed sunken feet; neutral soles aligned to ground, pending native readback.
+
+- 2026-11-10 14:45:24 PST (America/Los_Angeles) — Prepared Build 3 arm/hand landmark fit and a 1 cm woodland helmet correction; native review pending.
+
+- 2026-11-10 15:46:45 PST (America/Los_Angeles) — Prepared requested Build 3 installation with refined hands, all 13 woodland helmet configurations lowered 1 cm, and pinned FA Music 1.4.2 compilations retained. Native fit remains unverified.

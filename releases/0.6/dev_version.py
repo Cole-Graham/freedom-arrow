@@ -14,7 +14,7 @@ R=Path(__file__).resolve().parent
 ROOT=R.parents[1]
 LEDGER=R/'builds.json'
 # Everything build_constants.py and build.py read from the repository.
-INPUTS=['releases/0.6','releases/0.1/source','pipeline']
+INPUTS=['releases/0.6','releases/0.1/source','pipeline','tools/pla-infantry']
 # Tracked, but not read by the build and not packaged.
 SKIP=re.compile(r'^releases/0\.6/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|pla-build-\d+-package\.json|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests)/)|^pipeline/tests/')
 def ledger():return json.loads(LEDGER.read_text(encoding='utf-8')) if LEDGER.is_file() else {}

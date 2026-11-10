@@ -1,8 +1,8 @@
-# PLA TEST Build 2
+# PLA TEST Build 3
 
-**Build2 adds 25 appearance comparison squads: regular Type21 woodland/desert and special-forces carrier, pouch, helmet, night-vision, goggles and pack configurations. The new bodies use their own sole-height alignment: regular+0.00311 m and special-forces+0.01558 m, raised5.311 cm and6.558 cm from the first test. Existing squad901 and its approved offsets are retained. Native visual verification is in progress in an isolated copy.**
+**Build 3 refines the arms and hands of all 25 appearance squads against native shoulder, elbow, wrist and finger landmarks. Hand and finger bones retain zero body displacement so the foot-height correction does not move grips away from native weapons. Woodland helmets and attached goggles/night vision are lowered 1 cm. Native visual testing of this revision is pending.**
 
-**One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Native game verification remains pending.
+**One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Build 2 rendered all 25 cards in the native armory; this revision still needs its own native fit check.
 
 
 **0.4: built and checked offline; no installed-game result.**
@@ -249,6 +249,10 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 **Su-75 loadout and deck update:** one rear bay only, fixed cannon retained, forward-bay and wingtip mounts removed. Available in Russian Guard (specialization 12), excluded from Guard Tank (8). Base 280; rear-bay loadouts add their existing prices. Data checks only; game test pending.
 
+## Music retained in Build 3
+
+The two China and two Black Hawk Down menu compilations from FA Music 1.4.2 are included, with embedded 120-second gaps and equal selection chances. BHD theme09 stays removed. The saved pack choice and voice recordings are preserved.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -448,3 +452,7 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-10 11:52:06 PST (America/Los_Angeles) — Added Build2 infantry configurations; package is rebuilt from pinned Build1 without replaying historical balance generators.
 
 - 2026-11-10 12:17:49 PST (America/Los_Angeles) — Raised new comparison bodies after Osama observed sunken feet; neutral soles aligned to ground, pending native readback.
+
+- 2026-11-10 14:45:24 PST (America/Los_Angeles) — Prepared Build 3 arm/hand landmark fit and a 1 cm woodland helmet correction; native review pending.
+
+- 2026-11-10 15:46:45 PST (America/Los_Angeles) — Added the existing music update to the complete Build 3 pack for installation.

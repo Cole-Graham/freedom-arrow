@@ -23,7 +23,8 @@ public partial class Mod
             MelonLogger.Msg($"PLA_REVIEW native armory card selected: unit={uid}");
         }
         var views=bodyViews.Where(v=>v.unitId==uid&&v.model?.PrefabRootScript!=null).ToArray();
-        File.WriteAllText(Path.Combine(dir,"pla-review-state.json"),JsonSerializer.Serialize(new {requested=uid,displayed=preview.DisplayedUnit?.Id,soldiers=views.Select(v=>v.model.SquadSolders?.Length??0).ToArray(),applied=views.Sum(v=>v.applied.Count),failed=views.Sum(v=>v.failed.Count),time=Time.realtimeSinceStartup}));
+        var handOffsets=bodyOffsets.Values.Where(b=>b.source!=null&&b.visual!=null&&b.source.name.Contains("Hand")).Select(b=>(b.visual.position-b.source.position).magnitude).ToArray();
+        File.WriteAllText(Path.Combine(dir,"pla-review-state.json"),JsonSerializer.Serialize(new {requested=uid,displayed=preview.DisplayedUnit?.Id,soldiers=views.Select(v=>v.model.SquadSolders?.Length??0).ToArray(),applied=views.Sum(v=>v.applied.Count),failed=views.Sum(v=>v.failed.Count),handBones=handOffsets.Length,maxHandOffset=handOffsets.Length==0?0:handOffsets.Max(),time=Time.realtimeSinceStartup}));
     }
     static void ReviewCamera()
     {
@@ -34,6 +35,13 @@ public partial class Mod
         if(view==null||Camera.main==null||view.model.SquadSolders==null)return;
         var roots=view.model.SquadSolders.Where(s=>s?.ViewObject!=null).Select(s=>s.ViewObject.transform).ToArray();
         if(roots.Length==0)return;var center=Vector3.zero;foreach(var root in roots)center+=root.position;center/=roots.Length;center+=Vector3.up*.9f;
-        var camera=Camera.main.transform;camera.position=center+roots[0].forward*7+roots[0].right*3+Vector3.up*2;camera.LookAt(center);
+        var camera=Camera.main.transform;
+        string detailFile=Path.Combine(dir,"pla-review-detail.txt");
+        string detail=File.Exists(detailFile)?File.ReadAllText(detailFile).Trim():"";
+        if(detail=="hands"||detail=="helmet") {
+            var root=roots[0];center=root.position+Vector3.up*(detail=="helmet"?1.72f:1.25f);
+            camera.position=center+root.forward*(detail=="helmet"?.75f:1.25f)+root.right*.4f+Vector3.up*.12f;
+        } else camera.position=center+roots[0].forward*7+roots[0].right*3+Vector3.up*2;
+        camera.LookAt(center);
     }
 }

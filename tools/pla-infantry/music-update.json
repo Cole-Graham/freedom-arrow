@@ -1,0 +1,13 @@
+{
+  "version": "1.4.2",
+  "expected_old_player_sha256": "f890d39153d686af9d39e93c12fd24b8e74baae9eac40077283f22b01a5a1ec7",
+  "files": {
+    "Mods/FAMusic.dll": "6f7d03261d2e6dfbc1e18bcecf8b54a561853de053fba61d57abf8ceef2f4ca5",
+    "UserData/FAMusic/Packs/Black Hawk Down/Menu/Menu - Black Hawk Down Compilation 1.mp3": "bd3897a158ba8e738cceb91b95bae0f71b38030558a00b01201aa41535ca9714",
+    "UserData/FAMusic/Packs/Black Hawk Down/Menu/Menu - Black Hawk Down Compilation 2.mp3": "8a41415fbbd857e9c2fe176eafda907992886544fc28aeb86936a7b0c118b060",
+    "UserData/FAMusic/Packs/China/Menu/Menu - China Compilation 1.mp3": "ebe51da1e1bfb8d4b050756ebdb5df8ef743e9b338fbd04e4140620cfa9f1370",
+    "UserData/FAMusic/Packs/China/Menu/Menu - China Compilation 2.mp3": "23b8b2c21f989f59452664ac9ed880d4a38a82378b61197288c2229f9ca1081f"
+  },
+  "source_commit": "ae4b9126894f1acd6728cb3b97ad97dd62936efb",
+  "zip_sha256": "84f18ee530b6d0c1730c2b1cce3522a17f3671cd944ef1f2f51024bdb1dd87ec"
+}

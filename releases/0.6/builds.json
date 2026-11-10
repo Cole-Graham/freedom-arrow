@@ -910,5 +910,16 @@
       "failures": 0,
       "combat_tested": false
     }
+  },
+  "3": {
+    "inputs": "d383d2aacb85bf709b87c2c4c5e167004fd05dceea555cd1199d7816d5059bb6",
+    "bamod_sha256": "b8d0752be4b9a3242adb8685627c75dcaac4e8d55fb99df27bfed941772dbdd3",
+    "parent_commit": "922aeb3",
+    "built_utc": "2026-11-10T23:49:35.529432+00:00",
+    "complete_package": "PLA-TEST-Build-3.bamod",
+    "label": "PLA TEST Build 3",
+    "recipe": "tools/pla-infantry/build_from_pack.py",
+    "music_source": "codex/music-1.4.2@ae4b912",
+    "native_fit_verified": false
   }
 }
