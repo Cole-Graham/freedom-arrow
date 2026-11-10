@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.9 — development candidate
+# Freedom Arrow 0.7.0-dev.10 — development candidate
 
 **This candidate carries forward dev.115 and changes XM30 to190 points with Bradley voice assignment. Install the companion combined asset pack0.1.3 for XM30 scale0.77 (10% larger than0.70) and the China music update.** No PLA test data is included.
 
@@ -57,17 +57,16 @@ Su-75 Checkmate base price280 →260 points, per Osama. Availability remains2 an
 
 dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams X 5–6 second autoloader and the Su-75 Checkmate base price 260. Osama lifted the hold on 9 November 2026; this build is published to #build-install and installed on his PC. Live gameplay, supply unloading and firing intervals remain untested.
 
-## Queued for the next build
+## Changes in dev.10 (Osama, 9 November 2026)
 
-XM30 2x TOW-2B option: missile changed from TOW bunker buster (ammo 458, HE, 15 damage) to TOW-2B top attack (ammo 52, 12 damage, top-armor attack), per Osama. dev.9 used the wrong donor ammunition row (2462 instead of 728). Quantity stays 2. Not built or installed.
+- XM30 2x TOW-2B option: missile is now TOW-2B top attack (ammo 52, 12 damage, top-armor attack), not the TOW bunker buster (ammo 458, HE, 15 damage). dev.9 used the wrong donor ammunition row. Quantity stays 2.
+- M1A1 FEP: Trophy is a Protection system option again, as in vanilla: None, AN/VLQ6 jammer +20, Trophy +70, each with 1 smoke. The armor slot is Default and TUSK. Since 0.5 dev.8 Trophy was a "TUSK + Trophy" armor option, which stacked APS with the protection slot. The option keeps its row id (20015), so saved decks stay valid.
+- Abrams TUSK1 +10 → +20 on every Abrams (M1A1 HC, M1A1 FEP, M1A2, M1A2 SEP, SEP v2, SEP v3).
+- Abrams TUSK2 +20 → +30 on the M1A2 and M1A2 SEP, +35 on the SEP v2 and SEP v3.
+- Abrams Trophy combos follow the kit + 70: TUSK1 + Trophy +80 → +90, TUSK2 + Trophy +90 → +105 (SEP v2, SEP v3).
+- Russian side-only armor kits match TUSK1: T-90M ERA +10 → +20, T-90M ERA + APS +80 → +90, T-80BVM obr. 2018+ +10 → +20.
 
-M1A1 FEP: Trophy is a Protection system option again, as in vanilla: None, AN/VLQ6 jammer +20, Trophy +70, each with 1 smoke. The armor slot is Default and TUSK +10. Since 0.5 dev.8 Trophy was a "TUSK + Trophy" armor option (+80), which stacked APS with the protection slot. The option keeps its row id (20015), so saved decks stay valid. Per Osama. Not built or installed.
-
-Abrams TUSK1 +10 → +20 on every Abrams (M1A1 HC, M1A1 FEP, M1A2, M1A2 SEP, SEP v2, SEP v3); TUSK1 + Trophy +80 → +90 (SEP v2, SEP v3), keeping Trophy at +70 over the kit. TUSK2 stays +20 for now. Per Osama. Not built or installed.
-
-Abrams TUSK2 +20 → +30 on the M1A2 and M1A2 SEP, +35 on the SEP v2 and SEP v3; TUSK2 + Trophy +90 → +105 (SEP v2, SEP v3), keeping Trophy at +70 over the kit. Per Osama. Not built or installed.
-
-Russian side-armor kits match TUSK1: T-90M ERA +10 → +20, T-90M ERA + APS +80 → +90, T-80BVM obr. 2018+ +10 → +20. Per Osama. Not built or installed.
+All changes are data only. Built and checked offline; not yet tested in a match.
 
 ## Document change log
 
@@ -91,3 +90,4 @@ Russian side-armor kits match TUSK1: T-90M ERA +10 → +20, T-90M ERA + APS +80 
 - 2026-11-09 21:01:01 PST (America/Los_Angeles) — Queued Abrams TUSK1 +20 and TUSK1 + Trophy +90 for the next build.
 - 2026-11-09 21:19:23 PST (America/Los_Angeles) — Queued Abrams TUSK2 +30 (M1A2, SEP) and +35 (SEP v2, v3); TUSK2 + Trophy +105.
 - 2026-11-09 21:34:24 PST (America/Los_Angeles) — Queued T-90M ERA +20, ERA + APS +90 and T-80BVM obr. 2018+ +20.
+- 2026-11-09 21:36:33 PST (America/Los_Angeles) — Built 0.7.0-dev.10 from the queued changes.
