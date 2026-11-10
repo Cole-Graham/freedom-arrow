@@ -1,0 +1,311 @@
+{
+  "version": "0.1.11",
+  "bytes": 1177218801,
+  "sha256": "9db8af05b17e14326a93f80a221b77f634d6187520751ffe666f194ed0f6d582",
+  "changed_paths": [
+    "UserData/FAModels/m_f14_cg_tex3.png",
+    "UserData/FAModels/m_f14_cg_tex3_n.png",
+    "UserData/FAModels/m_f14_cg_tex3_mask.png",
+    "UserData/FAModels/m_f14_cg_tex4.png",
+    "UserData/FAModels/m_f14_cg_tex4_n.png",
+    "UserData/FAModels/m_f14_cg_tex4_mask.png",
+    "UserData/FAModels/m_f14_cg_tex5.png",
+    "UserData/FAModels/m_f14_cg_tex5_n.png",
+    "UserData/FAModels/m_f14_cg_tex5_mask.png",
+    "UserData/FAModels/m_f14_cg_tex7.png",
+    "UserData/FAModels/m_f14_cg_tex7_n.png",
+    "UserData/FAModels/m_f14_cg_tex7_mask.png",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_files": 5998,
+  "loader_version": "0.3.4",
+  "runtime_rendering_verified": false,
+  "texture_changes": [
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex3.png",
+      "material": "body02",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "ec70fc522f4284b42898c8ce3eac8d49de6ae691a2ce25c1fc2496881a0b32b4",
+      "sha256": "67283b507588c276202f8d7276c103951a08f662cbf6e3a2f4d682586f33a160"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex3_n.png",
+      "material": "body02",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "1afeb7041cb8f2ae3e38f6f38facb7f1e76afb2ab4121b9a0205d47d2e5c9f1d",
+      "sha256": "4544f7751033c274177dba53d99c5e2046b269c7264044b173a36d7f4391ad14"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex3_mask.png",
+      "material": "body02",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "428bf8bd245e642bdd60e606ce9b5f7bf6809e517bdb8cf5cb7f3a4824aca184",
+      "sha256": "d21ba3fd9d528ade542e79e2c027d7e0c4c7731d40a3f2d14986d45ad3a1cae4"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex4.png",
+      "material": "body01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "16af7c5487dc6e9cfe7112b8409743c3052a12692e1eccc948cb40dc8ea4dd5f",
+      "sha256": "95e9fda841404cab33df267d870a2d9d2322b57f0a387e157c5434d5d2ccf621"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex4_n.png",
+      "material": "body01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "8a1468b84d687a3462f7ddcb9f7a405f9c693fe828bf920c481a3b8ab6bb2af6",
+      "sha256": "1f503bff7c195a1cf9a06f9bf512e2ab188e54eccb9d8c01f90828c044af11b1"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex4_mask.png",
+      "material": "body01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "1d234f938728e7b8971e785d3121abcc45925013a095da5cd7c13cf802ac055c",
+      "sha256": "256666127cbe0ed7a2feb1018a4f69bfe5c9ac2351a52b28908fd1c69b3a67ef"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex5.png",
+      "material": "body03",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "2a7184e74e0fbf90ddbdd659206c99f5a519392910048ca2341bc5dd25e253bd",
+      "sha256": "007d67eb75d29eaa9bdd762ae683e8ce529f1785558d87bba11af33123ad6014"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex5_n.png",
+      "material": "body03",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "7b570c7fc574953f814fb5e86a3b99099c142b3b99d96b6b0fa2cfc5cb3d5600",
+      "sha256": "a66cfc77de86575c5cd7825b4f042ed854a9674a108b45ec1dcae3aed4cdb6a8"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex5_mask.png",
+      "material": "body03",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "530fa21f3ce3380aee257c962163fe65536b6fc2c6e13b98b50449d0fc54f177",
+      "sha256": "a2d9fc1c274685468e03b69cc72bc6e9b4fbd3708dd06a7b40c0f60b402f8676"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex7.png",
+      "material": "canopy01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "16d9d9edf4876c2e8b8f71c99f3e22b0c148d900e5fea5d817b8efc4e86bbf63",
+      "sha256": "210e8b65c0833860a238786810491e8957cee97161bb8e2bcbab1e3575c707bd"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex7_n.png",
+      "material": "canopy01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "374c7b29c9a1ee7c94e10d4368453a0e4892c5debbc12903424808a48ad0dcf3",
+      "sha256": "e553859afc4cf1e7f1f8fa69412e935f8231724098054168e4b60ab4831169e2"
+    },
+    {
+      "path": "UserData/FAModels/m_f14_cg_tex7_mask.png",
+      "material": "canopy01",
+      "old_size": [
+        2048,
+        2048
+      ],
+      "new_size": [
+        4096,
+        4096
+      ],
+      "old_sha256": "6c9ec012dc1d8b31b74c530be6ce563eb21d65f1e2be706cad537b09a30a689e",
+      "sha256": "6c1cec49c77f24cb253a7b4c66427eba9b20ecb5ddb084d8b5a59683837460a6"
+    }
+  ],
+  "base_source_commit": "718978b",
+  "core_version": "0.7.0-dev.24",
+  "source_validation": {
+    "source_glb_sha256": "e4317f8efc6e4c931f296bd23569a3c154027ca0ae2d6cb17643460cbbf558f5",
+    "texture_files": [
+      {
+        "file": "m_f14_cg_tex3.png",
+        "material": "body02",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex3_n.png",
+        "material": "body02",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex3_mask.png",
+        "material": "body02",
+        "size": [
+          4096,
+          4096
+        ],
+        "hdrp_channel_samples_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex4.png",
+        "material": "body01",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex4_n.png",
+        "material": "body01",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex4_mask.png",
+        "material": "body01",
+        "size": [
+          4096,
+          4096
+        ],
+        "hdrp_channel_samples_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex5.png",
+        "material": "body03",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex5_n.png",
+        "material": "body03",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex5_mask.png",
+        "material": "body03",
+        "size": [
+          4096,
+          4096
+        ],
+        "hdrp_channel_samples_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex7.png",
+        "material": "canopy01",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex7_n.png",
+        "material": "canopy01",
+        "size": [
+          4096,
+          4096
+        ],
+        "rgb_pixels_match_original": true
+      },
+      {
+        "file": "m_f14_cg_tex7_mask.png",
+        "material": "canopy01",
+        "size": [
+          4096,
+          4096
+        ],
+        "hdrp_channel_samples_match_original": true
+      }
+    ],
+    "basis": "Original source RGB pixels retained; original metallic/roughness channels repacked to HDRP using existing converter. No image synthesis or upscaling."
+  }
+}

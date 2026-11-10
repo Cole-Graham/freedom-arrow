@@ -1,0 +1,8 @@
+{
+  "source_glb_sha256": "e4317f8efc6e4c931f296bd23569a3c154027ca0ae2d6cb17643460cbbf558f5",
+  "material_indices": {"3": "body02", "4": "body01", "5": "body03", "7": "canopy01"},
+  "resolution": 4096,
+  "previous_resolution": 2048,
+  "armory_mesh_sha256": "f0d3e5ed35b95e7ad160ff92dcf2a7f70ddbfa4b392951e44176e9e54bd79a4c",
+  "note": "Osama, 10 November 2026: higher-resolution F14/F21 armory textures. Restore native4K colour/normal/mask maps for the main body and cockpit materials. Original pixels, existing UVs and clear-glass sidecars retained. Other armory textures stay2K, battle stays1K. This is recovery from supplied source assets, not generated or upscaled artwork."
+}

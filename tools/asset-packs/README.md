@@ -53,6 +53,12 @@ Uses the supplied F14 wing bones to bake a swept-back armory pose, keeping landi
 
 `tools/model-loader/pose_f14_armory.py` takes the pinned prior FAM export, original static GLB, original famconv.py and `f14-wing-pivots.json`, and writes the swept armory mesh. The proprietary inputs are not committed. `build_010_from_019.py PACK_FOLDER SWEPT_MESH` packages it. Blender preview only; native review pending.
 
+## Combined pack0.1.11
+
+Restores original4K colour, normal and HDRP mask maps for F14/F21 armory body01/body02/body03 and canopy01. The original import was capped at2K. Twelve maps change, each with four times as many pixels. Other armory textures remain2K; battle remains1K. Swept wings, landing gear, mesh/UVs, clear-glass sidecars, B21, other models and music/voices are retained. No artwork is generated or upscaled.
+
+Run the existing famconv.py against the pinned F14 GLB with `--maps-only --tex-max 4096`, then `build_011_from_010.py PACK_FOLDER TEXTURE_DIR`. The builder selects only the twelve maps in f14-armory-4k.json. Supplied source images/GLB are proprietary and are not committed. Native appearance still needs human review.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
@@ -63,3 +69,4 @@ Uses the supplied F14 wing bones to bake a swept-back armory pose, keeping landi
 - 2026-11-10 00:22:37 PST (America/Los_Angeles) — Added F-21 alias, pinned pack0.1.8 and recorded reproducible upgrade.
 - 2026-11-10 01:17:30 PST (America/Los_Angeles) — Added the Abrams X battle-normal correction recipe; unchanged geometry/UVs, all textures and other content verified. Runtime appearance pending.
 - 2026-11-10 01:29:35 PST (America/Los_Angeles) — Added existing-rig F14/F21 swept armory pose and preservation evidence; no new rigging.
+- 2026-11-10 02:00:53 PST (America/Los_Angeles) — Restored native4K F14/F21 armory body/cockpit texture maps; preserved geometry, glass and battle assets.
