@@ -1,5 +1,5 @@
 {
-  "note": "0.6.0-pla.24 (Osama, 9 November 2026): Abrams X card (964, a copy of the M1A2 SEP v3). One configuration only: 90 km/h road and 50 km/h reverse (cross-country 70, the SEP v3's 55 scaled by 90/70), 30% jammer (the T-90's Shtora ECM ability, ECMAccuracyMultiplier 0.7), M1A2 SEP v2 armour (the SEP v2 Trophy armour row, same values as its base row), Trophy APS (FA, 2 charges) and smoke, the SEP v3 gun and ammunition, the commander's M2 Browning replaced by the AMPV's 30 mm Bushmaster II (weapon and both ammunition rows), Very Good optics (card 2,000 m: FA raw 2300, capped at 1000 raw), 450 points. Not yet run in a game. dev.96 (Osama, 9 Nov 2026): moved from the PLA test branch to the main build; turret copies keep the source Name and link Order (pla.26). dev.98/pla.28 (Osama, 9 Nov 2026): 80 km/h road (cross-country 63, the SEP v3's 55 scaled by 80/70; reverse stays 50) and 500 points (Osama first said 460, then 500). dev.100/pla.31 (Osama, 9 Nov 2026): 450 points again (was 500). 9 Nov 2026: standard APS, smoke and jammer are own default ability rows; armor option does not select abilities. User reported missing APS and smoke; game behavior of this correction requires a restart and check. 9 Nov 2026: Osama sets the fixed Abrams X price to400 points.",
+  "note": "0.6.0-pla.24 (Osama, 9 November 2026): Abrams X card (964, a copy of the M1A2 SEP v3). One configuration only: 90 km/h road and 50 km/h reverse (cross-country 70, the SEP v3's 55 scaled by 90/70), 30% jammer (the T-90's Shtora ECM ability, ECMAccuracyMultiplier 0.7), M1A2 SEP v2 armour (the SEP v2 Trophy armour row, same values as its base row), Trophy APS (FA, 2 charges) and smoke, the SEP v3 gun and ammunition, the commander's M2 Browning replaced by the AMPV's 30 mm Bushmaster II (weapon and both ammunition rows), Very Good optics (card 2,000 m: FA raw 2300, capped at 1000 raw), 450 points. Not yet run in a game. dev.96 (Osama, 9 Nov 2026): moved from the PLA test branch to the main build; turret copies keep the source Name and link Order (pla.26). dev.98/pla.28 (Osama, 9 Nov 2026): 80 km/h road (cross-country 63, the SEP v3's 55 scaled by 80/70; reverse stays 50) and 500 points (Osama first said 460, then 500). dev.100/pla.31 (Osama, 9 Nov 2026): 450 points again (was 500). 9 Nov 2026: standard APS, smoke and jammer are own default ability rows; armor option does not select abilities. User reported missing APS and smoke; game behavior of this correction requires a restart and check. 9 Nov 2026: Osama sets the fixed Abrams X price to400 points. 9 Nov 2026: own main gun with AutoLoaded=true and5\u20136 second magazine reload; intrinsic default turret, preserving donor Abrams gun and other weapon fields. Multiplayer transport checks are offline until measured in a game.",
   "unit": 964,
   "cost": 400,
   "mobility_like": 1,
@@ -30,5 +30,12 @@
     {
       "like": 296
     }
-  ]
+  ],
+  "main_weapon_like": 266,
+  "main_weapon_fields": {
+    "Name": "MainGun 120 Abrams X M256 autoloader",
+    "AutoLoaded": true,
+    "MagazineReloadTimeMin": 5.0,
+    "MagazineReloadTimeMax": 6.0
+  }
 }
