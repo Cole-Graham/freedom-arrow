@@ -11,7 +11,7 @@ def apply(t,p,clone,put,migration,c):
     mods={r['Id'] for r in t['ModificationsJson'].values() if r['UnitId']==uid}
     options=[r for r in t['OptionsJson'].values() if r['ModificationId'] in mods]
     remove=[o for o in options if o['Name'] in c['remove_options']]
-    assert len(remove)==len(c['remove_options'])==8
+    assert len(remove)==len(c['remove_options'])==11
     defaults={}
     for name in c['defaults']:
         selected=[o for o in options if o['Name']==name];assert len(selected)==1

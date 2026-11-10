@@ -12,10 +12,14 @@
     "OuterPylons Su35S ECMPod",
     "OuterPylons Su35S 2xR73 ECM",
     "OuterPylons Su35S 2xR77 ECM",
-    "OuterPylons Su35S 2xR73 2xR77"
+    "OuterPylons Su35S 2xR73 2xR77",
+    "InnerPylons Su35S 2xR37 2xR73",
+    "InnerPylons Su35S 2xR37 2xR27ET",
+    "InnerPylons Su35S 2xR37 2xR77"
   ],
   "defaults": [
     "Fuselage Su35S 4xR77",
-    "OuterPylons Su35S 2xR73"
+    "OuterPylons Su35S 2xR73",
+    "InnerPylons Su35S 2xR27ET 2xR77"
   ]
 }

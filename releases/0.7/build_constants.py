@@ -1612,6 +1612,13 @@ def main():
     apply_su47(effective,patches,clone,put,option_migration,json.loads((R/'su47-contract.json').read_text()))
     from f21 import apply as apply_f21
     apply_f21(effective,patches,clone,put,option_migration,json.loads((R/'f21-contract.json').read_text()))
+    # Single-seat Su57 only; Su57D cloned its own options earlier and keeps its loadouts.
+    su57_ground={1103:1101,1104:1101,1105:1101,1106:1101,1108:1101,1111:1110,1112:1110,1113:1110,1114:1110,1116:1110}
+    for old,new in su57_ground.items():
+        assert effective['ModificationsJson'][effective['OptionsJson'][old]['ModificationId']]['UnitId']==44
+        del effective['OptionsJson'][old];patches['OptionsJson'][str(old)]=None
+        option_migration[str(old)]=new
+    put('OptionsJson',1101,{'IsDefault':True},'Su57 single-seat air-to-air-only forward default')
     put('SpecializationAvailabilitiesJson',632,{'SpecializationId':6},'Osama: F35A moved to Stryker')
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)

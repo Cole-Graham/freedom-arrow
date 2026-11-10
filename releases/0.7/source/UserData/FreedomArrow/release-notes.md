@@ -1,4 +1,8 @@
-# Freedom Arrow 0.7.0-dev.19 — development candidate
+# Freedom Arrow 0.7.0-dev.20 — development candidate
+
+**Aircraft correction batch: F-21 has its own950 km/h flight preset and explicit empty mount positions5/6 so fuselage weapons replace correctly; Su-47 has no R-37 choices in any slot; single-seat Su-57 offers only AA loads.** X-47B now has a white icon with inlet detail and its supplied colour portrait. Six custom aircraft icons are revised without landing gear, with merged white bodies and clearer canopy openings. Osama requested shipment for human visual review; final appearance is not approved or measured. Uses Models and Music0.1.8.
+
+F-21 retains215 base,40% ECM and the seven requested payload choices. A fresh configuration and every pair of repeated swaps now match under the native indexed replacement/append rule; selected option IDs resolve identically after signed16 serialization. This is a source-derived host check, not a multiplayer firing result. Su-47 inner R-37 choices now migrate to the existing2× R-27ET+2× R-77 inner default. Single-seat Su-57 loses ten ground-weapon choices and retains two AA options per bay; Su-57D keeps its separate choices.
 
 **X-47B now has its own right-facing white silhouette icon and a full-colour card portrait from Osama’s supplied second screenshot.** Uses Models and Music0.1.8. All dev.18 gameplay, models and existing pictures are retained; only the X-47B image addresses/resources are added. In-game appearance awaits user inspection.
 
@@ -127,3 +131,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-10 00:20:29 PST (America/Los_Angeles) — F-21 requested baseline/loadouts, F-35A Stryker and three vehicle icons/portraits; retained Su-47 and five approved aircraft icons.
 - 2026-11-10 00:26:46 PST (America/Los_Angeles) — Replaced three shaded vehicle thumbnails with white silhouettes following Osama’s native-icon example; dev.17 remained uninstalled.
 - 2026-11-10 00:36:34 PST (America/Los_Angeles) — Added X-47B silhouette thumbnail and original colour portrait; gameplay stats unchanged.
+- 2026-11-10 00:50:12 PST (America/Los_Angeles) — Corrected F21 flight speed/mount continuity, all Su47 R37 removals, Su57 AA-only choices and six gear-up icon revisions; human visual review pending.

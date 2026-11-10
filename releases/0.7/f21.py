@@ -14,7 +14,8 @@ def apply(t,p,clone,put,migration,c):
     for table in ['UnitPropulsionsJson','UnitAbilitiesJson','TurretUnitsJson','WeaponAmmunitionsJson','UnitArmorsJson','SensorUnitsJson']:
         for row in own(table):erase(table,row['Id'])
     base=[r for r in t['UnitPropulsionsJson'].values() if r['UnitId']==donor and t['MobilityJson'][r['MobilityId']]['IsDefault']];assert len(base)==1
-    mob=clone('MobilityJson',base[0]['MobilityId'],{'Name':'Plane F21 Super Tomcat','MaxSpeedRoad':c['speed']},why);clone('UnitPropulsionsJson',base[0]['Id'],{'UnitId':uid,'MobilityId':mob},why)
+    flight=clone('FlyPresetsJson',t['MobilityJson'][base[0]['MobilityId']]['FlyPresetId'],{'Name':'F21 Fighter Bomber 950 kph','MaxSpeed':c['flight_speed_mps']},why)
+    mob=clone('MobilityJson',base[0]['MobilityId'],{'Name':'Plane F21 Super Tomcat','MaxSpeedRoad':c['speed'],'FlyPresetId':flight},why);clone('UnitPropulsionsJson',base[0]['Id'],{'UnitId':uid,'MobilityId':mob},why)
     defense=[r for r in t['UnitAbilitiesJson'].values() if r['UnitId']==donor and t['AbilitiesJson'][r['AbilityId']]['IsDefault']];assert len(defense)==1
     aid=clone('AbilitiesJson',defense[0]['AbilityId'],{'Name':'F21 intrinsic ECM 40 percent','ECMAccuracyMultiplier':c['ecm_multiplier'],'IsDefault':True},why);clone('UnitAbilitiesJson',defense[0]['Id'],{'UnitId':uid,'AbilityId':aid},why)
     for table in ['UnitArmorsJson','SensorUnitsJson']:

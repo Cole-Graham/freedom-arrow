@@ -384,11 +384,11 @@ foreach(var (uid,tag) in new[]{(950,"SU75"),(980,"SU47"),(970,"SU57D"),(982,"YF2
 Check(Row("Units",980)["Cost"].GetValue<int>()==205,"Su47 base165+10 agility+30 ECM");
 var su47Mods=merged["ModificationsJson"].Where(m=>m["UnitId"].GetValue<int>()==980).ToDictionary(m=>m["Id"].GetValue<int>(),m=>m["Name"].GetValue<string>());
 var su47Options=merged["OptionsJson"].Where(o=>su47Mods.ContainsKey(o["ModificationId"].GetValue<int>())).ToArray();
-Check(su47Options.Length==12,"Su47 eight removed options, twelve remain");
+Check(su47Options.Length==9,"Su47 eleven removed options, nine remain");
 foreach(var group in su47Options.GroupBy(o=>o["ModificationId"].GetValue<int>()))Check(group.Count(o=>o["IsDefault"].GetValue<bool>())==1,"Su47 one default per slot");
 Check(!su47Options.Any(o=>o["Name"].GetValue<string>().Contains("Fuselage")&&(o["Name"].GetValue<string>().Contains("R37")||o["Name"].GetValue<string>().Contains("6xR77"))),"Su47 no removed fuselage weapons");
 Check(!su47Options.Any(o=>o["Name"].GetValue<string>().Contains("OuterPylons")&&(o["Name"].GetValue<string>().Contains("ECM")||o["Name"].GetValue<string>().Contains("2xR73 2xR77"))),"Su47 no ECM or mixed outer choice");
-Check(su47Options.Count(o=>o["Name"].GetValue<string>().StartsWith("InnerPylons"))==6,"Su47 six inner choices retained");
+Check(su47Options.Count(o=>o["Name"].GetValue<string>().StartsWith("InnerPylons"))==3,"Su47 three inner choices retained without R37");
 foreach(int id in new[]{20242,20243,20244,20247,20257,20258,20259,20260})Check(optionMigration.ContainsKey(id.ToString())&&su47Options.Any(o=>o["Id"].GetValue<int>()==optionMigration[id.ToString()].GetValue<int>()),"removed safe option resolves to legal same-slot default "+id);
 var su47Abilities=merged["UnitAbilitiesJson"].Where(a=>a["UnitId"].GetValue<int>()==980).ToArray();Check(su47Abilities.Length==1,"Su47 one intrinsic defense profile");
 var su47Def=Row("AbilitiesJson",su47Abilities[0]["AbilityId"].GetValue<int>());Check(su47Def["IsDefault"].GetValue<bool>()&&su47Def["ECMAccuracyMultiplier"].GetValue<double>()==.6&&su47Def["DecoyQuantity"].GetValue<int>()==25&&su47Def["DecoyAccuracyMultiplier"].GetValue<double>()==.9,"Su47 intrinsic40percent ECM and unchanged flares");
@@ -421,3 +421,24 @@ Console.WriteLine("PASS F21 donor stats, seven armament counts/prices, default37
 }
 
 Console.WriteLine($"PASS complete dev17: {checks} row/reference and regression checks; game rendering and firing untested.");
+
+// Native sequential mount application appends when an index does not yet exist.
+// Every F21 configuration must fill0..8 so a later swap replaces all previous payload mounts.
+{
+int I(JsonNode n,string f)=>n[f]!.GetValue<int>();
+var fmods=merged["ModificationsJson"].Where(m=>I(m,"UnitId")==981).Select(m=>I(m,"Id")).ToHashSet();var fo=merged["OptionsJson"].Where(o=>fmods.Contains(I(o,"ModificationId"))).ToArray();
+var outer=fo.Where(o=>o["Name"]!.GetValue<string>().StartsWith("OuterPylons")).ToArray();var inner=fo.Where(o=>o["Name"]!.GetValue<string>().StartsWith("InnerPylons")).ToArray();var fus=fo.Where(o=>o["Name"]!.GetValue<string>().StartsWith("Fuselage")).ToArray();
+var cannon=merged["TurretUnitsJson"].Where(t=>I(t,"UnitId")==981).Select(t=>Row("TurretsJson",I(t,"TurretId"))).Where(t=>t["IsDefault"]!.GetValue<bool>()).ToArray();Check(cannon.Length==1&&I(cannon[0],"Id")==132,"F21 only intrinsic weapon is M61 cannon");
+var configs=(from a in outer from b in inner from c in fus select new[]{a,b,c}).ToArray();Check(configs.Length==8,"F21 eight legal combinations");
+List<int> Apply(List<int> input,JsonNode[] options){var result=new List<int>(input);for(int n=0;n<=20;n++){var choices=options.Select(o=>I(o,"Turret"+n+"Id")).Where(t=>t!=0).ToArray();Check(choices.Length<=1,"F21 unique mount owner "+n);if(choices.Length==0)continue;if(n<result.Count)result[n]=choices[0];else result.Add(choices[0]);}return result;}
+foreach(var src in configs)foreach(var dest in configs){var fresh=Apply(new(){132},dest);var swapped=Apply(Apply(new(){132},src),dest);Check(fresh.SequenceEqual(swapped)&&swapped.Count==9,"F21 repeated swaps equal fresh configuration");foreach(var opt in dest){short wire=checked((short)I(opt,"Id"));Check(Row("OptionsJson",(int)wire).ToJsonString()==opt.ToJsonString(),"F21 wire options resolve same payload");}}
+var mob=Row("MobilityJson",I(merged["UnitPropulsionsJson"].Single(m=>I(m,"UnitId")==981),"MobilityId"));var fly=Row("FlyPresetsJson",I(mob,"FlyPresetId"));Check(I(mob,"FlyPresetId")!=17&&Math.Abs(fly["MaxSpeed"]!.GetValue<double>()*3.6-950)<.001,"F21 own flight speed950 kph");Check(Row("FlyPresetsJson",17)["MaxSpeed"]!.GetValue<double>()==225,"Hornet flight preset unchanged");Check(!su47Options.Any(o=>o["Name"]!.GetValue<string>().Contains("R37")),"Su47 no R37 in any slot");foreach(int id in new[]{20251,20252,20253})Check(su47Options.Any(o=>I(o,"Id")==optionMigration[id.ToString()]!.GetValue<int>()),"Su47 removed inner R37 migrates to legal default");
+Console.WriteLine($"PASS complete aircraft correction: {checks} checks;64 F21 swap pairs and wire parity; flight950; no Su47 R37. Native game test still required.");
+}
+
+{
+int I(JsonNode n,string f)=>n[f]!.GetValue<int>();
+var mods=merged["ModificationsJson"].Where(m=>I(m,"UnitId")==44).Select(m=>I(m,"Id")).ToHashSet();var opts=merged["OptionsJson"].Where(o=>mods.Contains(I(o,"ModificationId"))).ToArray();Check(opts.Length==4&&opts.All(o=>o["Name"]!.GetValue<string>().Contains("R77")||o["Name"]!.GetValue<string>().Contains("R37")),"single-seat Su57 only four AA choices");foreach(var group in opts.GroupBy(o=>I(o,"ModificationId")))Check(group.Count(o=>o["IsDefault"]!.GetValue<bool>())==1,"Su57 unique AA defaults");
+foreach(int old in new[]{1103,1104,1105,1106,1108,1111,1112,1113,1114,1116})Check(!merged["OptionsJson"].Any(o=>I(o,"Id")==old)&&opts.Any(o=>I(o,"Id")==optionMigration[old.ToString()]!.GetValue<int>()),"Su57 old ground choice migrates to AA "+old);
+var dmods=merged["ModificationsJson"].Where(m=>I(m,"UnitId")==970).Select(m=>I(m,"Id")).ToHashSet();Check(merged["OptionsJson"].Any(o=>dmods.Contains(I(o,"ModificationId"))&&o["Name"]!.GetValue<string>().Contains("Kh")),"Su57D ground loadouts retained");Console.WriteLine($"PASS current total: {checks} checks including Su57 single-seat AA only and Su57D isolation.");
+}
