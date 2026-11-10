@@ -1,19 +1,20 @@
 {
-  "note": "0.5 dev.8 (Osama, 6 November 2026): APS prices. Tanks: APS is +70 over its armor kit (as on the M1A2 SEP v2/v3 and T-90M). New option M1A1 FEP TUSK + Trophy at +80 (TUSK +10, Trophy +70). New option T-72B3AM obr. 16 + Arena at +120 (obr. 16 ERA +50, Arena +70). Each new option also gets the matching unit APS link, as vanilla does. IFVs and other non-tanks: APS is +40 over its armor kit (prices in vehicle-contract.json). Not yet run in a game. dev.20 (Osama, 6 November 2026): obr. 16 is the T-72B3A base, so obr. 16 + Arena is +70.",
+  "note": "0.5 dev.8 (Osama, 6 November 2026): APS prices. Tanks: APS is +70 over its armor kit (as on the M1A2 SEP v2/v3 and T-90M). New option M1A1 FEP TUSK + Trophy at +80 (TUSK +10, Trophy +70). New option T-72B3AM obr. 16 + Arena at +120 (obr. 16 ERA +50, Arena +70). Each new option also gets the matching unit APS link, as vanilla does. IFVs and other non-tanks: APS is +40 over its armor kit (prices in vehicle-contract.json). Not yet run in a game. dev.20 (Osama, 6 November 2026): obr. 16 is the T-72B3A base, so obr. 16 + Arena is +70. 0.7 (Osama, 9 November 2026): Trophy on the M1A1 FEP is a Protection system option again, as in vanilla (None / AN/VLQ6 jammer / Trophy +70, each with the tank's 1 smoke); the armor slot is Default / TUSK. The option keeps its row, so saved decks and network ids stay valid.",
   "new_options": [
     {
-      "like": 119,
+      "like": 1468,
       "unit": 54,
       "ability": 93,
       "ua_like": 719,
       "fields": {
-        "Name": "Option Armor M1A1FEP TUSK Trophy",
+        "Name": "APS M1A1FEP Trophy",
         "UIName": "Custom_Option_Trophy_APS",
         "ConcatenateWithUnitName": " Trophy",
         "OptionPicture": "APS",
         "Order": 2,
-        "Cost": 80
-      }
+        "Cost": 70
+      },
+      "slot": "protection"
     },
     {
       "like": 3323,

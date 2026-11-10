@@ -354,3 +354,7 @@ Console.WriteLine("PASS: Abrams X intrinsic autoloader5–6 seconds; other M256 
 var xmTow=merged["WeaponAmmunitionsJson"].Where(r=>r["UnitId"].GetValue<int>()==983&&Row("WeaponsJson",r["WeaponId"].GetValue<int>())["Name"].GetValue<string>()=="XM30 2x TOW-2B").ToArray();
 Check(xmTow.Length==1&&xmTow[0]["AmmunitionId"].GetValue<int>()==52&&xmTow[0]["Quantity"].GetValue<int>()==2,"XM30 TOW option uses TOW-2B top attack ammo 52, not bunker buster 458");
 Console.WriteLine("PASS: XM30 TOW-2B top-attack missile");
+var fepTrophy=Row("OptionsJson",20015);
+Check(fepTrophy["ModificationId"].GetValue<int>()==397&&fepTrophy["Cost"].GetValue<int>()==70&&fepTrophy["Ability2Id"].GetValue<int>()==93&&fepTrophy["ArmorId"].GetValue<int>()==0&&Row("AbilitiesJson",fepTrophy["Ability1Id"].GetValue<int>())["SmokeAmmunitionQuantity"].GetValue<int>()==1,"M1A1 FEP Trophy is a +70 Protection system option with 1 smoke");
+Check(merged["OptionsJson"].Count(r=>r["ModificationId"].GetValue<int>()==47)==2,"M1A1 FEP armor slot is Default and TUSK only");
+Console.WriteLine("PASS: M1A1 FEP Trophy in the Protection system slot");

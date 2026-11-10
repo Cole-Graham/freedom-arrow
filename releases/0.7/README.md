@@ -61,6 +61,8 @@ dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams
 
 XM30 2x TOW-2B option: missile changed from TOW bunker buster (ammo 458, HE, 15 damage) to TOW-2B top attack (ammo 52, 12 damage, top-armor attack), per Osama. dev.9 used the wrong donor ammunition row (2462 instead of 728). Quantity stays 2. Not built or installed.
 
+M1A1 FEP: Trophy is a Protection system option again, as in vanilla: None, AN/VLQ6 jammer +20, Trophy +70, each with 1 smoke. The armor slot is Default and TUSK +10. Since 0.5 dev.8 Trophy was a "TUSK + Trophy" armor option (+80), which stacked APS with the protection slot. The option keeps its row id (20015), so saved decks stay valid. Per Osama. Not built or installed.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -79,3 +81,4 @@ XM30 2x TOW-2B option: missile changed from TOW bunker buster (ammo 458, HE, 15 
 - 2026-11-09 19:30:18 PST (America/Los_Angeles) — Combined dev.8 crash fix and diagnostics with Abrams X autoloader and Su-75 price 260 as dev.9; hold lifted for publication.
 
 - 2026-11-09 19:42:04 PST (America/Los_Angeles) — Queued XM30 TOW-2B top-attack ammunition correction for the next build.
+- 2026-11-09 20:46:26 PST (America/Los_Angeles) — Queued M1A1 FEP Trophy back to the Protection system slot for the next build.

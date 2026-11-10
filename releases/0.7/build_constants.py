@@ -579,8 +579,13 @@ def main():
     for n in apsc['new_options']:
         like=effective['OptionsJson'][n['like']];ab=effective['AbilitiesJson'][n['ability']]
         assert ab['IsAPS'] and ab['APSQuantity']>0 and like['ModificationId'] in {m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==n['unit']}
-        assert not any(like[k] for k in ('Ability1Id','Ability2Id','Ability3Id')) and n['fields']['Cost']==like['Cost']+70,n
-        clone('OptionsJson',n['like'],{**n['fields'],'Ability1Id':n['ability']},why)
+        if n.get('slot')=='protection':
+            # Osama 9 Nov: APS in the Protection system slot, as vanilla; it keeps the 'None' option's smoke (Ability1).
+            assert effective['ModificationsJson'][like['ModificationId']]['UIName']=='Custom_Slot_Protection_system' and effective['AbilitiesJson'][like['Ability1Id']]['IsSmoke'] and n['fields']['Cost']==like['Cost']+70,n
+            clone('OptionsJson',n['like'],{**n['fields'],'Ability2Id':n['ability']},why)
+        else:
+            assert not any(like[k] for k in ('Ability1Id','Ability2Id','Ability3Id')) and n['fields']['Cost']==like['Cost']+70,n
+            clone('OptionsJson',n['like'],{**n['fields'],'Ability1Id':n['ability']},why)
         assert effective['UnitAbilitiesJson'][n['ua_like']]['UnitId']==n['unit']
         clone('UnitAbilitiesJson',n['ua_like'],{'AbilityId':n['ability']},'APS inventory matches the new option')
     # 0.5 dev.17: cover. 120/125 mm tank HE ignores 25% of cover; ground-vehicle autocannon HE ignores 12.5%.
