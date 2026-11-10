@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.10 — development candidate
+# Freedom Arrow 0.7.0-dev.11 — development candidate
 
 **This candidate carries forward dev.115 and changes XM30 to190 points with Bradley voice assignment. Install the companion combined asset pack0.1.3 for XM30 scale0.77 (10% larger than0.70) and the China music update.** No PLA test data is included.
 
@@ -57,6 +57,11 @@ Su-75 Checkmate base price280 →260 points, per Osama. Availability remains2 an
 
 dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams X 5–6 second autoloader and the Su-75 Checkmate base price 260. Osama lifted the hold on 9 November 2026; this build is published to #build-install and installed on his PC. Live gameplay, supply unloading and firing intervals remain untested.
 
+## Changes in dev.11 (Osama, 9 November 2026: single-player vs multiplayer check)
+
+- Four option abilities had no matching unit ability link, which vanilla always has: BMP-2 with the BMP-2G and BMP-2M turret packages (1 smoke), T-72B with the T-72B1 package (2 smoke), and BMD-2 with its smoke option. Their links are added, so these options are built the same way as vanilla options. A build check and a row-test now catch any option ability without its link.
+- Checked and unchanged: all 2,262 option IDs fit the network's 16-bit range (highest 20,240); the duplicate option orders all copy their vanilla parent's layout.
+
 ## Changes in dev.10 (Osama, 9 November 2026)
 
 - XM30 2x TOW-2B option: missile is now TOW-2B top attack (ammo 52, 12 damage, top-armor attack), not the TOW bunker buster (ammo 458, HE, 15 damage). dev.9 used the wrong donor ammunition row. Quantity stays 2.
@@ -91,3 +96,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 21:19:23 PST (America/Los_Angeles) — Queued Abrams TUSK2 +30 (M1A2, SEP) and +35 (SEP v2, v3); TUSK2 + Trophy +105.
 - 2026-11-09 21:34:24 PST (America/Los_Angeles) — Queued T-90M ERA +20, ERA + APS +90 and T-80BVM obr. 2018+ +20.
 - 2026-11-09 21:36:33 PST (America/Los_Angeles) — Built 0.7.0-dev.10 from the queued changes.
+- 2026-11-09 21:44:59 PST (America/Los_Angeles) — Built 0.7.0-dev.11: option ability links (single-player vs multiplayer check).

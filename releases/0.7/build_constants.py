@@ -1547,6 +1547,19 @@ def main():
     gun_ammo=[a for a in effective['WeaponAmmunitionsJson'].values() if a['UnitId']==ax['unit'] and a['WeaponId']==ax['main_weapon_like']]
     assert gun_ammo
     for a in gun_ammo:put('WeaponAmmunitionsJson',a['Id'],{'WeaponId':own_main},'Abrams X retain own main gun ammunition')
+    # Osama 9 Nov (single-player vs multiplayer differences): every ability an option grants needs the unit's
+    # UnitAbilities link, as in vanilla. The check near the top runs before later contracts add option abilities
+    # (BMP-2G/M and T-72B1 smoke, BMD-2 smoke kept after the dev.5 smoke pass), so close the gap here and re-check.
+    unit_abilities={(r['UnitId'],r['AbilityId']) for r in effective['UnitAbilitiesJson'].values()}
+    mods={r['Id']:r['UnitId'] for r in effective['ModificationsJson'].values()}
+    for option in sorted(effective['OptionsJson'].values(),key=lambda o:o['Id']):
+        uid=mods.get(option['ModificationId'])
+        for field in ['Ability1Id','Ability2Id','Ability3Id']:
+            aid=option[field]
+            if not aid or uid is None or (uid,aid) in unit_abilities or effective['AbilitiesJson'][aid]['Name']=='Empty ability':continue
+            like=next((r['Id'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid),next(iter(effective['UnitAbilitiesJson'])))  # the dev.5 smoke pass left some units with no ability rows
+            clone('UnitAbilitiesJson',like,{'UnitId':uid,'AbilityId':aid},'Option ability inventory link (vanilla pattern)');unit_abilities.add((uid,aid))
+    assert all(not o[f] or (mods.get(o['ModificationId']),o[f]) in unit_abilities or effective['AbilitiesJson'][o[f]]['Name']=='Empty ability' for o in effective['OptionsJson'].values() for f in ['Ability1Id','Ability2Id','Ability3Id'] if o['ModificationId'] in mods),'option ability without unit link'
     # NetworkUnitSpawner sends Options.Id as short; high clone IDs lose their identity.
     # Apply last so every existing generator contract and non-option clone ID stays stable.
     from option_network_ids import apply as fix_option_network_ids
