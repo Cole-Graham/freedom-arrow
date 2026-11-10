@@ -47,6 +47,10 @@ Radar/altitude can change during a dive; slowing missiles, crossfire, pre-aimed 
 
 Supersedes the earlier SEAD-only range 1000/1250 and 0.35-second aim proposal. See [SPAAG-PROPOSAL.md](SPAAG-PROPOSAL.md) for half of Actual Arrow 1.1.20's low/high range and damage increases across six ground-AA gun ammo profiles. SEAD missile speeds remain unchanged. Lateralus's first-of-two SEAD observation is tracked separately; one lat.4 Patriot sequence shows the first missile selected during a 4.974-second burst cooldown,not an overkill rejection. No SPAAG gameplay edits or new build.
 
+## Cooldown-aware coordination proposal
+
+See [AA-COOLDOWN-PROPOSAL.md](AA-COOLDOWN-PROPOSAL.md). The proposed medium-risk rule excludes a future defensive reservation only when the weapon cannot intercept before impact, while retaining interceptors already in flight. This is a separate optional experiment; the range/damage comparison keeps native overkill unchanged. It does not bypass a launcher's cooldown. A separate SEAD-priority experiment is described, with no firing-rate value selected.
+
 ## Evidence and limits
 
 - GameAssembly SHA256 `12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf`.
@@ -62,3 +66,5 @@ Supersedes the earlier SEAD-only range 1000/1250 and 0.35-second aim proposal. S
 - 2026-11-09 23:48:25 PST (America/Los_Angeles) — Queued aircraft refund policy and ground-AA diagnostic logging; recorded conditional SEAD interception ceilings and a separate, unimplemented improvement proposal. No game measurements.
 
 - 2026-11-10 02:45:08 PST (America/Los_Angeles) — Replaced the earlier SPAAG range/aim idea with the current half-ActualArrow proposal;linked exact fields andpaired-SEAD evidence; flagged historical native diagnostics as unsuitable for shipping. Documentation only.
+
+- 2026-11-10 02:52:46 PST (America/Los_Angeles) — Added a linked cooldown-aware SEAD coordination proposal with a medium-risk assessment; no runtime or balance changes.

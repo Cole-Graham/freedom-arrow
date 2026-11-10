@@ -47,6 +47,10 @@ Patriot weapon 238 has MultiTargetTracking=2, SimultaneousTracking=1 and a 4–5
 3. Separate acquisition failure, cooldown, alignment failure and target switching. Complete missile-end/interception logging before deriving kill rates. The SelfDestroy/MissileInterceptionHit route used by HudQuick needs separate boundary and runtime validation.
 4. Compare this range/damage proposal with unchanged lat.4 data only after implementation is requested. No overkill bypass, tracking change or new native hook is part of this proposal.
 
+## Cooldown-aware coordination proposal
+
+See [AA-COOLDOWN-PROPOSAL.md](AA-COOLDOWN-PROPOSAL.md). The proposed medium-risk rule excludes a future defensive reservation only when the weapon cannot intercept before impact, while retaining interceptors already in flight. This is a separate optional experiment; the range/damage comparison keeps native overkill unchanged. It does not bypass a launcher's cooldown. A separate SEAD-priority experiment is described, with no firing-rate value selected.
+
 ## Evidence and branch status
 
 - Actual Arrow 1.1.20 comparisons and hashes: `work/actualarrow-spaag-20261110/comparison.json` and `sources.json` in the BA workspace.
@@ -58,3 +62,5 @@ Patriot weapon 238 has MultiTargetTracking=2, SimultaneousTracking=1 and a 4–5
 ## Document change log
 
 - 2026-11-10 02:45:08 PST (America/Los_Angeles) — Recorded Lateralus's half-ActualArrow range/damage proposal,unchanged SEAD speeds,and paired-missile report;analyzed one selected-but-cooling-down Patriot sequence;no gameplay/build/install changes.
+
+- 2026-11-10 02:52:46 PST (America/Los_Angeles) — Linked the separate cooldown-aware coordination and SEAD-priority proposal; kept the half-delta tuning unchanged and unimplemented.
