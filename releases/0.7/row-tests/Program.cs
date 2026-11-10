@@ -442,3 +442,12 @@ var mods=merged["ModificationsJson"].Where(m=>I(m,"UnitId")==44).Select(m=>I(m,"
 foreach(int old in new[]{1103,1104,1105,1106,1108,1111,1112,1113,1114,1116})Check(!merged["OptionsJson"].Any(o=>I(o,"Id")==old)&&opts.Any(o=>I(o,"Id")==optionMigration[old.ToString()]!.GetValue<int>()),"Su57 old ground choice migrates to AA "+old);
 var dmods=merged["ModificationsJson"].Where(m=>I(m,"UnitId")==970).Select(m=>I(m,"Id")).ToHashSet();Check(merged["OptionsJson"].Any(o=>dmods.Contains(I(o,"ModificationId"))&&o["Name"]!.GetValue<string>().Contains("Kh")),"Su57D ground loadouts retained");Console.WriteLine($"PASS current total: {checks} checks including Su57 single-seat AA only and Su57D isolation.");
 }
+
+{
+int I(JsonNode n,string f)=>n[f]!.GetValue<int>();
+var carrier=Row("TurretsJson",931);Check(!carrier["IsDefault"]!.GetValue<bool>()&&merged["TurretUnitsJson"].Count(t=>I(t,"UnitId")==969&&I(t,"TurretId")==931)==1,"X47 JATM optional inventory link");
+var rounds=merged["WeaponAmmunitionsJson"].Single(a=>I(a,"UnitId")==969&&I(a,"WeaponId")==675);Check(I(rounds,"Quantity")==2&&I(rounds,"AmmunitionId")==531&&I(Row("WeaponsJson",675),"MagazineSize")==2,"X47 actual two ready JATM rounds");
+foreach(var (oid,mount) in new[]{(20179,0),(20184,1)}){var o=Row("OptionsJson",oid);Check(I(o,"Cost")==60&&o["UIName"]!.GetValue<string>()=="2x AIM-260 JATM"&&I(o,"Turret"+mount+"Id")==931&&!o["IsDefault"]!.GetValue<bool>(),"X47 replacement bay load "+oid);short wire=checked((short)oid);Check(I(Row("OptionsJson",wire),"Turret"+mount+"Id")==931,"X47 JATM wire choice resolves same carrier");}
+Check(I(Row("OptionsJson",20178),"Cost")==35&&I(Row("OptionsJson",20183),"Cost")==35,"X47 two-AMRAAM default choices retained");
+Console.WriteLine($"PASS current X47 JATM total: {checks} checks; two rounds each bay, four total, +60 each; native firing untested.");
+}

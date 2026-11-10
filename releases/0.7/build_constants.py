@@ -1612,6 +1612,14 @@ def main():
     apply_su47(effective,patches,clone,put,option_migration,json.loads((R/'su47-contract.json').read_text()))
     from f21 import apply as apply_f21
     apply_f21(effective,patches,clone,put,option_migration,json.loads((R/'f21-contract.json').read_text()))
+    # X47 single-missile bay choices become two native AIM260/JATM rounds at+60.
+    for oid,mount,side in [(20179,0,'LeftBay'),(20184,1,'RightBay')]:
+        put('OptionsJson',oid,{'Name':side+' X47B 2xAIM260','UIName':'2x AIM-260 JATM','Cost':60,'OptionPicture':effective['OptionsJson'][20276]['OptionPicture'],'Turret'+str(mount)+'Id':931},'X47 two JATM per bay at+60')
+    x47_t=next(x for x in effective['TurretUnitsJson'].values() if x['UnitId']==982 and x['TurretId']==931)
+    clone('TurretUnitsJson',x47_t['Id'],{'UnitId':969},'X47 selectable native JATM carrier link')
+    x47_a=next(x for x in effective['WeaponAmmunitionsJson'].values() if x['UnitId']==982 and x['WeaponId']==675)
+    assert x47_a['Quantity']==2 and x47_a['AmmunitionId']==531
+    clone('WeaponAmmunitionsJson',x47_a['Id'],{'UnitId':969},'X47 two native JATM rounds per selected carrier')
     # Single-seat Su57 only; Su57D cloned its own options earlier and keeps its loadouts.
     su57_ground={1103:1101,1104:1101,1105:1101,1106:1101,1108:1101,1111:1110,1112:1110,1113:1110,1114:1110,1116:1110}
     for old,new in su57_ground.items():

@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.21 — development candidate
+# Freedom Arrow 0.7.0-dev.22 — development candidate
+
+**X-47B bay update:** the former single-AMRAAM choice in each bay is now2× AIM-260 JATM for+60. Both selected bays carry four missiles. Existing2× AIM-120 defaults and other loadouts remain. Includes the UI-only cutout alpha/mipmap correction, preserving every solid shape pixel and all source PNGs. Native appearance and firing need review.
 
 **UI icon edge correction:** the nine custom cutout textures discard faint background alpha, keep every solid pixel, and use trilinear mipmapped sampling. This removes the generated X-47B haze without replacing source PNGs or colour portraits. All gameplay data from dev.20 is retained. Native visual review is pending.
 
@@ -135,3 +137,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-10 00:36:34 PST (America/Los_Angeles) — Added X-47B silhouette thumbnail and original colour portrait; gameplay stats unchanged.
 - 2026-11-10 00:50:12 PST (America/Los_Angeles) — Corrected F21 flight speed/mount continuity, all Su47 R37 removals, Su57 AA-only choices and six gear-up icon revisions; human visual review pending.
 - 2026-11-10 00:59:18 PST (America/Los_Angeles) — Added UI-only alpha preparation and mipmapped icon filtering; source pictures and gameplay retained.
+- 2026-11-10 01:02:15 PST (America/Los_Angeles) — Replaced X47 single-AMRAAM bay choices with2× native AIM260 JATM,+60 each; included icon alpha/filtering fix.
