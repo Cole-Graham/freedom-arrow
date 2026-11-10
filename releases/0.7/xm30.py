@@ -20,7 +20,7 @@ def apply(effective,original,clone,add_unit,rows_of,patches,audit):
             replacement={302:658,340:missile}.get(link['WeaponId'],link['WeaponId'])
             clone('TurretWeaponsJson',link['Id'],{'TurretId':turret,'WeaponId':replacement},why)
         # Only the requested missile's ammunition; two ready rounds, no extra reserve.
-        src=effective['WeaponAmmunitionsJson'][2462 if wid==256 else 2528]
+        src=effective['WeaponAmmunitionsJson'][728 if wid==256 else 2528]  # 728: TOW-2B top attack (ammo 52), not 2462 TOW bunker buster (458)
         clone('WeaponAmmunitionsJson',src['Id'],{'UnitId':uid,'WeaponId':missile,'Quantity':2},why)
         clone('OptionsJson',647,dict(ModificationId=mid,Name='XM30 '+label,UIName=label,Order=order,Cost=0,IsDefault=order==0,Turret0Id=turret,ConcatenateWithUnitName=None,ThumbnailOverride=None,OptionPicture=icon),why)
     for wid,donor in [(658,453),(7,255)]:

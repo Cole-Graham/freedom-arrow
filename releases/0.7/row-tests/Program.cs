@@ -350,3 +350,7 @@ Check(merged["WeaponAmmunitionsJson"].Count(a=>a["UnitId"].GetValue<int>()==964&
 Check(!merged["WeaponAmmunitionsJson"].Any(a=>a["UnitId"].GetValue<int>()!=964&&a["WeaponId"].GetValue<int>()==gunId),"own autoloader ammunition only on Abrams X");
 Console.WriteLine("PASS: Abrams X intrinsic autoloader5–6 seconds; other M256 donor users unchanged");
 }
+
+var xmTow=merged["WeaponAmmunitionsJson"].Where(r=>r["UnitId"].GetValue<int>()==983&&Row("WeaponsJson",r["WeaponId"].GetValue<int>())["Name"].GetValue<string>()=="XM30 2x TOW-2B").ToArray();
+Check(xmTow.Length==1&&xmTow[0]["AmmunitionId"].GetValue<int>()==52&&xmTow[0]["Quantity"].GetValue<int>()==2,"XM30 TOW option uses TOW-2B top attack ammo 52, not bunker buster 458");
+Console.WriteLine("PASS: XM30 TOW-2B top-attack missile");

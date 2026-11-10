@@ -57,6 +57,10 @@ Su-75 Checkmate base price280 →260 points, per Osama. Availability remains2 an
 
 dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams X 5–6 second autoloader and the Su-75 Checkmate base price 260. Osama lifted the hold on 9 November 2026; this build is published to #build-install and installed on his PC. Live gameplay, supply unloading and firing intervals remain untested.
 
+## Queued for the next build
+
+XM30 2x TOW-2B option: missile changed from TOW bunker buster (ammo 458, HE, 15 damage) to TOW-2B top attack (ammo 52, 12 damage, top-armor attack), per Osama. dev.9 used the wrong donor ammunition row (2462 instead of 728). Quantity stays 2. Not built or installed.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -73,3 +77,5 @@ dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams
 - 2026-11-09 18:11:26 PST (America/Los_Angeles) — Queued Su-75 base price260 for the next gameplay update.
 
 - 2026-11-09 19:30:18 PST (America/Los_Angeles) — Combined dev.8 crash fix and diagnostics with Abrams X autoloader and Su-75 price 260 as dev.9; hold lifted for publication.
+
+- 2026-11-09 19:42:04 PST (America/Los_Angeles) — Queued XM30 TOW-2B top-attack ammunition correction for the next build.
