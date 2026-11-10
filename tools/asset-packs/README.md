@@ -43,6 +43,10 @@ Adds the omitted YF-23 clear-canopy preset to its armory and battle material sid
 
 Adds F-21 Super Tomcat as an alias of the existing F-14 armory/battle model for gameplay dev.17. The F-14 name remains supported. All meshes, textures, loader, music and voices are byte-identical to0.1.7. Run `python tools/asset-packs/build_018_from_017.py /path/to/folder` with the verified0.1.7 archive in that folder to reproduce the pack. Actual model appearance awaits the next launch.
 
+## Combined pack0.1.9
+
+Corrects smoothed normals on the Abrams X battle mesh only. The same triangle surface, UVs, textures, parts, armory mesh, B-21, loader and audio are retained. Largest-face normal error falls from19.6° mean/87.9°95th percentile to1.8°/9.5°. This is a mesh calculation and neutral Blender preview, not an in-game result. Reproduce with `python tools/asset-packs/build_019_from_018.py /path/to/pack-folder` in an environment with NumPy; the folder must contain the verified0.1.8 archive.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
@@ -51,3 +55,4 @@ Adds F-21 Super Tomcat as an alias of the existing F-14 armory/battle model for 
 - 2026-11-09 23:12:57 PST (America/Los_Angeles) — Recorded pack0.1.6: ten live models, approved B-21, clean canopy loader and preserved1.4.1 audio/voices.
 - 2026-11-09 23:41:30 PST (America/Los_Angeles) — Added YF-23 canopy correction to both copies; recorded unchanged payload and runtime limits.
 - 2026-11-10 00:22:37 PST (America/Los_Angeles) — Added F-21 alias, pinned pack0.1.8 and recorded reproducible upgrade.
+- 2026-11-10 01:17:30 PST (America/Los_Angeles) — Added the Abrams X battle-normal correction recipe; unchanged geometry/UVs, all textures and other content verified. Runtime appearance pending.

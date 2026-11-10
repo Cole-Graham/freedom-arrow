@@ -1,0 +1,30 @@
+{
+  "version": "0.1.9",
+  "bytes": 1103909982,
+  "sha256": "e5a90f1af63cfe394013daa23bad882ef11b246052be6bf18d1fb9eaaffa3ca9",
+  "changed_paths": [
+    "UserData/FAModels/m_abramsx_lo.fam",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_files": 5998,
+  "loader_version": "0.3.4",
+  "runtime_rendering_verified": false,
+  "normal_validation": [
+    {
+      "model": "m_abramsx_lo",
+      "parts_preserved": 1,
+      "vertices_before": 49070,
+      "vertices_after": 75950,
+      "triangles": 38361,
+      "position_and_uv_per_corner_identical": true,
+      "large_face_normal_error_mean_before": 19.58418469436389,
+      "large_face_normal_error_mean_after": 1.8193756794705729,
+      "large_face_normal_error_p95_before": 87.86945419311523,
+      "large_face_normal_error_p95_after": 9.463242244720462
+    }
+  ],
+  "base_source_commit": "5d0a15c",
+  "core_version": "0.7.0-dev.23"
+}
