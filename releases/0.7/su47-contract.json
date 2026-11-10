@@ -1,0 +1,21 @@
+{
+  "unit": 980,
+  "agility_like": 44,
+  "agility_cost": 10,
+  "ecm_cost": 30,
+  "ecm_multiplier": 0.6,
+  "remove_options": [
+    "Fuselage Su35S 1xR37 2xR77",
+    "Fuselage Su35S 2xR37",
+    "Fuselage Su35S 2xR37 2xR77",
+    "Fuselage Su35S 6xR77",
+    "OuterPylons Su35S ECMPod",
+    "OuterPylons Su35S 2xR73 ECM",
+    "OuterPylons Su35S 2xR77 ECM",
+    "OuterPylons Su35S 2xR73 2xR77"
+  ],
+  "defaults": [
+    "Fuselage Su35S 4xR77",
+    "OuterPylons Su35S 2xR73"
+  ]
+}

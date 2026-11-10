@@ -38,6 +38,16 @@ static class CardIcons
         ("FA_F14-Portrait","FA_F14-Portrait.png"),
         ("FA_F14-Portrait_BASIC","FA_F14-Portrait.png"),
         ("FA_F14-Portrait_HOVER","FA_F14-Portrait.png"),
+        ("FA_SU75-Label","FA_SU75-Label.png"),
+        ("outline\\FA_SU75-Label","FA_SU75-Label.png"),
+        ("FA_SU47-Label","FA_SU47-Label.png"),
+        ("outline\\FA_SU47-Label","FA_SU47-Label.png"),
+        ("FA_SU57D-Label","FA_SU57D-Label.png"),
+        ("outline\\FA_SU57D-Label","FA_SU57D-Label.png"),
+        ("FA_YF23-Label","FA_YF23-Label.png"),
+        ("outline\\FA_YF23-Label","FA_YF23-Label.png"),
+        ("FA_F14-Label","FA_F14-Label.png"),
+        ("outline\\FA_F14-Label","FA_F14-Label.png"),
     };
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();
@@ -54,7 +64,7 @@ static class CardIcons
         var seed=new HarmonyMethod(typeof(CardIcons),nameof(Seed));
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSprite)),prefix:seed);
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSpriteAsync)),prefix:seed);
-        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 5 aircraft portraits, existing ground icons");
+        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 5 aircraft portraits, 5 right-facing cutouts, existing ground icons");
     }
     public static void Seed()
     {
@@ -70,7 +80,7 @@ static class CardIcons
                 if(cache.TryGetValue(address,out var have)&&have!=null&&have.Pointer==sprite.Pointer)continue;
                 cache[address]=sprite;
             }
-            if(!logged){logged=true;MelonLogger.Msg("FREEDOM_ARROW_CARD_ICONS cached: ground icons plus Su-75, Su-47, Su-57D, YF-23, F-14 portraits");}
+            if(!logged){logged=true;MelonLogger.Msg("FREEDOM_ARROW_CARD_ICONS cached: ground icons plus Su-75, Su-47, Su-57D, YF-23, F-14 portraits and right-facing cutouts");}
         }
         catch(Exception x)
         {
@@ -81,7 +91,15 @@ static class CardIcons
     static Sprite Make(string address)
     {
         var tex=new Texture2D(2,2,TextureFormat.RGBA32,false){name=address,wrapMode=TextureWrapMode.Clamp};
-        if(!ImageConversion.LoadImage(tex,(Il2CppStructArray<byte>)png[address],true))throw new InvalidOperationException("icon did not decode: "+address);
+        // Preserve the approved source PNGs exactly. Mirror only these aircraft label textures for native right-facing UI.
+        bool mirror=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png";
+        if(!ImageConversion.LoadImage(tex,(Il2CppStructArray<byte>)png[address],!mirror))throw new InvalidOperationException("icon did not decode: "+address);
+        if(mirror)
+        {
+            var source=tex.GetPixels32();var flipped=new Il2CppStructArray<Color32>(source.Length);int w=tex.width,h=tex.height;
+            for(int y=0;y<h;y++)for(int x=0;x<w;x++)flipped[y*w+x]=source[y*w+(w-1-x)];
+            tex.SetPixels32(flipped);tex.Apply(false,true);
+        }
         tex.hideFlags=HideFlags.HideAndDontSave;
         var sprite=Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f),100f);
         sprite.name=address.Substring(address.LastIndexOf('\\')+1);

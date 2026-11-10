@@ -1590,7 +1590,7 @@ def main():
     for c in nc.get('late_cards',[]):make_card(c)
     # Pictures are assigned after all copies so donor units and descendants keep their own images.
     for uid, picture in json.loads((R/'aircraft-pictures-contract.json').read_text()).items():
-        put('Units',int(uid),{'PortraitFileName':picture['portrait']},'Osama full-colour aircraft card portrait')
+        put('Units',int(uid),{'PortraitFileName':picture['portrait'],'ThumbnailFileName':picture['thumbnail']},'Osama full-colour aircraft card portrait')
     # Osama 9 Nov (single-player vs multiplayer differences): every ability an option grants needs the unit's
     # UnitAbilities link, as in vanilla. The check near the top runs before later contracts add option abilities
     # (BMP-2G/M and T-72B1 smoke, BMD-2 smoke kept after the dev.5 smoke pass), so close the gap here and re-check.
@@ -1608,6 +1608,8 @@ def main():
     # Apply last so every existing generator contract and non-option clone ID stays stable.
     from option_network_ids import apply as fix_option_network_ids
     option_migration=fix_option_network_ids(effective,patches,json.loads((R/'option-network-ids.json').read_text()))
+    from su47 import apply as apply_su47
+    apply_su47(effective,patches,clone,put,option_migration,json.loads((R/'su47-contract.json').read_text()))
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')

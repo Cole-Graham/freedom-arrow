@@ -1,8 +1,8 @@
-# Freedom Arrow 0.7.0-dev.15 — development candidate
+# Freedom Arrow 0.7.0-dev.16 — development candidate
 
-**Adds full-colour detailed-card portraits from Osama's five supplied aircraft pictures. Su-75 moves to Russian Motorized; Su-47 moves to Russian Guard. Su-47, F-14 and YF-23 remain live from dev.13. Use combined Models and Music0.1.6 for the models, clear canopy preset, approved B-21 and current music/voices.** No PLA test data is included. Cutout icon drafts remain outside this build pending edge cleanup.
+**Su-47 now uses Su-57 agility in normal and fuel-tank configurations. Airframe price165→205 (+10 agility,+30 intrinsic ECM). Base ECM is40% (engine multiplier0.6), with existing25 flares unchanged. Eight requested fuselage/outer-pylon choices are removed. New defaults are4× R-77 fuselage and2× R-73 outer pylons; inner-pylon choices remain unchanged.** Uses the current Models and Music0.1.7 pack. All five cutout icons are approved and included, rendered facing right.
 
-The five portrait resources are embedded verbatim; the game still draws the name, price and statistics. Only seven table fields differ from dev.13: five portrait filenames and two specialization links. Weapons, loadouts, prices, ammunition and network-safe option IDs are unchanged. Package, row-planner and installer checks are offline; final portrait framing and canopy clarity still need a game check.
+The intrinsic ECM uses one Su-47-only default ability, so it does not depend on a pod option. Own mobility rows preserve donor aircraft and retain agility after selecting a fuel-tank option. Removed saved option IDs redirect to the replacement default in the same slot. These are data/code changes; match behavior remains unverified.
 
 ## Defense correction from0.7 dev.1
 
@@ -91,7 +91,7 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 
 Su-75 Checkmate is available in Russian Motorized Infantry (9); Su-47 Berkut is in Russian Guard (12). Each has one specialization pool. These changes preserve loadouts, ammunition, costs and network-safe option IDs.
 
-Su-75, Su-47, Su-57D, YF-23 and F-14 have custom full-colour portrait addresses. Small cutout icon drafts are pending edge cleanup and retain their previous donor images in this build. Colour portraits use Osama's supplied screenshots, embedded verbatim in the gameplay DLL. Names, prices, armour and statistics remain native. Portrait aliases share one texture per image. Visual placement still needs a game check.
+Su-75, Su-47, Su-57D, YF-23 and F-14 have custom full-colour portrait addresses. Approved cutout PNGs are included unchanged and mirrored horizontally when their UI texture is created, so all five face right. Colour portraits use Osama's supplied screenshots, embedded verbatim in the gameplay DLL. Names, prices, armour and statistics remain native. Portrait aliases share one texture per image. Visual placement still needs a game check.
 
 The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Gameplay does not contain the paid model files.
 
@@ -123,3 +123,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-09 22:21:46 PST (America/Los_Angeles) — Built 0.7.0-dev.13: Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II.
 - 2026-11-09 23:07:21 PST (America/Los_Angeles) — Added five aircraft portraits; cutout drafts excluded pending cleanup, Su-75 Motorized and Su-47 Russian Guard assignments; runtime appearance pending.
 - 2026-11-09 23:19:12 PST (America/Los_Angeles) — Refreshed the leading release summary and install instructions for current portraits, pools and asset pack0.1.6; dev.14 was an unpublished validation build.
+- 2026-11-09 23:54:31 PST (America/Los_Angeles) — Added Su-47 agility, intrinsic40% ECM,+40 airframe price, eight loadout removals and saved-option fallbacks.
+- 2026-11-09 23:57:20 PST (America/Los_Angeles) — Included the five approved cutout icons with right-facing rendering; original image pixels retained.

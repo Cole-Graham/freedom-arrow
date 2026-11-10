@@ -1,22 +1,32 @@
 {
   "950": {
     "portrait": "FA_SU75-Portrait",
-    "source": "su75-card-reference.png"
+    "source": "su75-card-reference.png",
+    "thumbnail": "FA_SU75-Label",
+    "mirror_thumbnail": true
   },
   "980": {
     "portrait": "FA_SU47-Portrait",
-    "source": "su47-card-reference.png"
+    "source": "su47-card-reference.png",
+    "thumbnail": "FA_SU47-Label",
+    "mirror_thumbnail": true
   },
   "970": {
     "portrait": "FA_SU57D-Portrait",
-    "source": "su57d-card-reference.png"
+    "source": "su57d-card-reference.png",
+    "thumbnail": "FA_SU57D-Label",
+    "mirror_thumbnail": true
   },
   "982": {
     "portrait": "FA_YF23-Portrait",
-    "source": "yf23-card-reference.png"
+    "source": "yf23-card-reference.png",
+    "thumbnail": "FA_YF23-Label",
+    "mirror_thumbnail": true
   },
   "981": {
     "portrait": "FA_F14-Portrait",
-    "source": "f14-card-reference.png"
+    "source": "f14-card-reference.png",
+    "thumbnail": "FA_F14-Label",
+    "mirror_thumbnail": true
   }
 }

@@ -187,7 +187,7 @@ Check(Row("AmmunitionsJson",130)["PenetrationAtGroundRange"].GetValue<double>()=
 foreach(var a in new[]{595,593,492,476,525})Check(Row("AmmunitionsJson",a)["IgnoreCover"].GetValue<double>()==0.2,"batch HE "+a);
 Check(Row("AmmunitionsJson",2001500)["Damage"].GetValue<double>()==6.5&&Row("AmmunitionsJson",2001500)["IgnoreCover"].GetValue<double>()==0.35&&Row("AmmunitionsJson",2001500)["TargetType"].GetValue<int>()==47&&Row("AmmunitionsJson",2001500)["HealthAOERadius"].GetValue<double>()==3&&Row("AmmunitionsJson",2001500)["MuzzleVelocity"].GetValue<double>()==450&&Row("AmmunitionsJson",2001500)["PenetrationAtGroundRange"].GetValue<double>()==300&&merged["WeaponAmmunitionsJson"].Where(r=>r["WeaponId"].GetValue<int>()==1019).All(r=>r["AmmunitionId"].GetValue<int>()==2001500)&&merged["WeaponAmmunitionsJson"].Where(r=>r["AmmunitionId"].GetValue<int>()==2000141).All(r=>r["WeaponId"].GetValue<int>()==743)&&Row("AmmunitionsJson",2000141)["Damage"].GetValue<double>()==9,"batch M72A7 own round, M72A2 keeps 2000141");
 Check(Row("WeaponsJson",2001501)["HUDName"].GetValue<string>()=="RPG-22"&&Row("AmmunitionsJson",2001502)["PenetrationAtGroundRange"].GetValue<double>()==350&&Row("AmmunitionsJson",2001502)["Damage"].GetValue<double>()==9&&new[]{135,629,725}.All(u=>merged["SquadWeaponsJson"].Any(r=>r["UnitId"].GetValue<int>()==u&&r["WeaponId"].GetValue<int>()==2001501)&&merged["WeaponAmmunitionsJson"].Any(r=>r["UnitId"].GetValue<int>()==u&&r["WeaponId"].GetValue<int>()==2001501&&r["AmmunitionId"].GetValue<int>()==2001502))&&!merged["SquadMembersJson"].Any(r=>r["SpecialWeaponId"].GetValue<int>()==931||r["PrimaryWeaponId"].GetValue<int>()==931)&&merged["WeaponsJson"].Any(r=>r["Id"].GetValue<int>()==931),"batch RPG-22 replaces the RPG-18; RPG-18 kept");
-{int T(int a)=>merged["UnitAbilitiesJson"].Where(l=>l["AbilityId"].GetValue<int>()==a).Select(l=>Row("Units",l["UnitId"].GetValue<int>())["Type"].GetValue<int>()).FirstOrDefault();var dec=merged["AbilitiesJson"].Where(r=>r["IsDecoy"]?.GetValue<bool>()==true&&T(r["Id"].GetValue<int>())!=0).ToList();Check(dec.Count==59&&dec.All(r=>r["DecoyAccuracyMultiplier"].GetValue<double>()==0.9),"batch: flares 0.9 (10 points) on helicopters and planes (flat missile chance); 2 of the 59 are the target dummies' 1000-flare copies");}
+{int T(int a)=>merged["UnitAbilitiesJson"].Where(l=>l["AbilityId"].GetValue<int>()==a).Select(l=>Row("Units",l["UnitId"].GetValue<int>())["Type"].GetValue<int>()).FirstOrDefault();var dec=merged["AbilitiesJson"].Where(r=>r["IsDecoy"]?.GetValue<bool>()==true&&T(r["Id"].GetValue<int>())!=0).ToList();Check(dec.Count==60&&dec.All(r=>r["DecoyAccuracyMultiplier"].GetValue<double>()==0.9),"batch: flares 0.9 (10 points) on helicopters and planes (flat missile chance); includes the Su47 intrinsic profile and two target-dummy 1000-flare copies");}
 {bool Dummy(int u){int I(System.Text.Json.Nodes.JsonNode n,string f)=>n[f]!.GetValue<int>();var arm=Row("ArmorsJson",I(merged["UnitArmorsJson"].Single(r=>I(r,"UnitId")==u),"ArmorId"));var ab=merged["UnitAbilitiesJson"].Where(r=>I(r,"UnitId")==u).Select(r=>Row("AbilitiesJson",I(r,"AbilityId"))).Single(a=>a["IsDecoy"]?.GetValue<bool>()==true);var mob=Row("MobilityJson",I(merged["UnitPropulsionsJson"].Single(r=>I(r,"UnitId")==u),"MobilityId"));var fly=Row("FlyPresetsJson",I(mob,"FlyPresetId"));return I(arm,"MaxHealthPoints")==1000&&I(ab,"DecoyQuantity")==1000&&fly["MaxSpeed"]!.GetValue<double>()==1&&fly["AfterburnSpeed"]!.GetValue<double>()==1&&mob["LoiteringTime"]!.GetValue<double>()==3600;}Check(Dummy(971)&&Dummy(972),"target dummies: 1000 HP, 1000 flares, speed 1, loiter 3600 s (target-dummy-contract.json)");}
 Check(Row("Units",123)["HUDName"].GetValue<string>()=="Razvedka Mech"&&Row("Units",277)["HUDName"].GetValue<string>()=="Scouts Stryker"&&Row("Units",725)["HUDName"].GetValue<string>()=="Razvedka"&&Row("Units",726)["HUDName"].GetValue<string>()=="Scouts","0.6 recon card names");
 // 0.6 dev.20 recon helicopters (Osama): recon tab, availability 4, optics row, cost, seats and decks. Written here again on purpose, independent of the generator contract.
@@ -371,12 +371,31 @@ Console.WriteLine("PASS: YF-23 AIM-120/AIM-260 bays only");
 
 {var rows=merged["SpecializationAvailabilitiesJson"].Where(x=>x["UnitId"].GetValue<int>()==980).ToArray();Check(rows.Length==1&&rows[0]["SpecializationId"].GetValue<int>()==12,"Su47 Russian Guard only; not Guard Tank Brigade");}
 
-// Full-colour portraits have unique addresses; cutout drafts remain outside the build.
+// Full-colour portraits and approved cutouts have independent unique addresses.
 foreach(var (uid,tag) in new[]{(950,"SU75"),(980,"SU47"),(970,"SU57D"),(982,"YF23"),(981,"F14")})
 {
     var u=Row("Units",uid);string portrait="FA_"+tag+"-Portrait",thumb="FA_"+tag+"-Label";
     Check(u["PortraitFileName"].GetValue<string>()==portrait,"aircraft portrait "+uid);
+    Check(u["ThumbnailFileName"].GetValue<string>()==thumb,"approved aircraft cutout "+uid);
     Check(merged["Units"].Count(x=>x["PortraitFileName"].GetValue<string>()==portrait)==1,"portrait address ownership "+uid);
 }
+
+// Su-47 owns its agility/mobility and one intrinsic ECM profile in every legal configuration.
+Check(Row("Units",980)["Cost"].GetValue<int>()==205,"Su47 base165+10 agility+30 ECM");
+var su47Mods=merged["ModificationsJson"].Where(m=>m["UnitId"].GetValue<int>()==980).ToDictionary(m=>m["Id"].GetValue<int>(),m=>m["Name"].GetValue<string>());
+var su47Options=merged["OptionsJson"].Where(o=>su47Mods.ContainsKey(o["ModificationId"].GetValue<int>())).ToArray();
+Check(su47Options.Length==12,"Su47 eight removed options, twelve remain");
+foreach(var group in su47Options.GroupBy(o=>o["ModificationId"].GetValue<int>()))Check(group.Count(o=>o["IsDefault"].GetValue<bool>())==1,"Su47 one default per slot");
+Check(!su47Options.Any(o=>o["Name"].GetValue<string>().Contains("Fuselage")&&(o["Name"].GetValue<string>().Contains("R37")||o["Name"].GetValue<string>().Contains("6xR77"))),"Su47 no removed fuselage weapons");
+Check(!su47Options.Any(o=>o["Name"].GetValue<string>().Contains("OuterPylons")&&(o["Name"].GetValue<string>().Contains("ECM")||o["Name"].GetValue<string>().Contains("2xR73 2xR77"))),"Su47 no ECM or mixed outer choice");
+Check(su47Options.Count(o=>o["Name"].GetValue<string>().StartsWith("InnerPylons"))==6,"Su47 six inner choices retained");
+foreach(int id in new[]{20242,20243,20244,20247,20257,20258,20259,20260})Check(optionMigration.ContainsKey(id.ToString())&&su47Options.Any(o=>o["Id"].GetValue<int>()==optionMigration[id.ToString()].GetValue<int>()),"removed safe option resolves to legal same-slot default "+id);
+var su47Abilities=merged["UnitAbilitiesJson"].Where(a=>a["UnitId"].GetValue<int>()==980).ToArray();Check(su47Abilities.Length==1,"Su47 one intrinsic defense profile");
+var su47Def=Row("AbilitiesJson",su47Abilities[0]["AbilityId"].GetValue<int>());Check(su47Def["IsDefault"].GetValue<bool>()&&su47Def["ECMAccuracyMultiplier"].GetValue<double>()==.6&&su47Def["DecoyQuantity"].GetValue<int>()==25&&su47Def["DecoyAccuracyMultiplier"].GetValue<double>()==.9,"Su47 intrinsic40percent ECM and unchanged flares");
+var su57Mob=Row("MobilityJson",merged["UnitPropulsionsJson"].Single(l=>l["UnitId"].GetValue<int>()==44)["MobilityId"].GetValue<int>());int su57Preset=su57Mob["FlyPresetId"].GetValue<int>();
+var su47MobIds=merged["UnitPropulsionsJson"].Where(l=>l["UnitId"].GetValue<int>()==980).Select(l=>l["MobilityId"].GetValue<int>()).ToHashSet();Check(su47MobIds.Count==2&&su47MobIds.All(id=>Row("MobilityJson",id)["FlyPresetId"].GetValue<int>()==su57Preset),"Su47 base and tank use Su57 agility");
+Check(su47Options.All(o=>o["MobilityId"].GetValue<int>()==0||su47MobIds.Contains(o["MobilityId"].GetValue<int>())),"Su47 option mobility cannot restore old agility");
+Check(Row("MobilityJson",69)["FlyPresetId"].GetValue<int>()==19&&Row("MobilityJson",156)["FlyPresetId"].GetValue<int>()==19&&Row("Units",169)["Cost"].GetValue<int>()==165,"Su35 donor unchanged");
+Console.WriteLine("PASS Su47 intrinsic ECM, Su57 agility, all option states and saved-option fallbacks");
 
 Console.WriteLine($"PASS final total: {checks} checks, including aircraft portraits and Russian specialization ownership; runtime untested.");
