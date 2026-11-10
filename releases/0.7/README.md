@@ -1,13 +1,15 @@
-# Freedom Arrow 0.7.0-dev.31 — development candidate
+# Freedom Arrow 0.7.0-dev.33 — development candidate
 
 M-25 CDTE: Stryker Troopers AT and Troopers AA each replace two M203s with one special-weapon XM25 copy (0.75 damage, 75% cover bypass). The original five-round magazine and firing/reload timings are retained. Both riflemen remain, with a shared 120-round grenade pool (24 magazines; about 3 minutes at the nominal sustained firing rate). Troopers AT costs100 →105 and Troopers AA60 →65. Green Berets, Delta Force and other M203 users retain their weapons. Data and package checks do not establish native firing, visual weapon switching or multiplayer behavior.
-**LOSAT: 200 points, Stryker only, availability 2, 12 damage, 700 mm KE penetration and missile speed 1800 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
+**LOSAT: 200 points, Stryker only, availability 2, 10 damage, 550 mm KE penetration and missile speed 1300 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
 
 **Static model only:** companion assets0.1.14 remove the LOSAT turret-bone attachment and automatic alignment. Armory and battle versions each contain one root group; all mesh-segment positions,normals,UVs,indices,materials and textures are byte-identical to the prior export. No moving or separately parented LOSAT parts remain. Native placement still needs review.
 
 **Card art:** the colour portrait is Osama’s supplied screenshot, embedded verbatim. The thumbnail is a white strict side-profile render of that same supplied model, facing right. LOSAT now receives the existing mipmapped cutout handling.
 
-**Projectile setting:** MuzzleVelocity=1800,MaxSpeed=1800,Acceleration=0, so the requested speed applies immediately rather than being hidden behind a slow acceleration ramp. Damage=12,KE penetration=700 at both range endpoints. Existing range, guidance, target masks and critical-effect thresholds remain. These are data/code checks; native flight,damage,interception and crit behavior require a game test.
+**Projectile setting:** MuzzleVelocity=1300,MaxSpeed=1300,Acceleration=0, so the requested speed applies immediately rather than being hidden behind a slow acceleration ramp. Damage=10,KE penetration=550 at both range endpoints. Existing range, guidance, target masks and critical-effect thresholds remain. These are data/code checks; native flight,damage,interception and crit behavior require a game test.
+
+Firing gap:10 seconds between missiles, up from5. Empty-launcher reload remains15–20 seconds. Native firing cadence remains untested.
 
 ## Superseded development history
 
@@ -182,3 +184,7 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 03:46:45 PST (America/Los_Angeles) — Removed LOSAT bone attachment via static assets0.1.14; applied200 points,12 damage,KE700,speed1800; replaced card portrait with supplied screenshot and side-profile silhouette.
 
 - 2026-11-10 03:50:21 PST (America/Los_Angeles) — Increased M-25 ammunition to120 rounds per team; incorporated the current static LOSAT revision without changing it.
+
+- 2026-11-10 04:05:07 PST (America/Los_Angeles) — Set LOSAT to missile speed1300,damage10 and KE penetration500 at both endpoints; retained M25 teams and static models.
+
+- 2026-11-10 04:20:03 PST (America/Los_Angeles) — Selected550 KE and the suggested10-second firing gap for LOSAT; retained10 damage and1300 speed.
