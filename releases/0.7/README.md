@@ -1,4 +1,16 @@
-# Freedom Arrow 0.7.0-dev.28 — development candidate
+# Freedom Arrow 0.7.0-dev.29 — development candidate
+
+**LOSAT: 200 points, Stryker only, availability 2, 12 damage, 700 mm KE penetration and missile speed 1800 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
+
+**Static model only:** companion assets0.1.14 remove the LOSAT turret-bone attachment and automatic alignment. Armory and battle versions each contain one root group; all mesh-segment positions,normals,UVs,indices,materials and textures are byte-identical to the prior export. No moving or separately parented LOSAT parts remain. Native placement still needs review.
+
+**Card art:** the colour portrait is Osama’s supplied screenshot, embedded verbatim. The thumbnail is a white strict side-profile render of that same supplied model, facing right. LOSAT now receives the existing mipmapped cutout handling.
+
+**Projectile setting:** MuzzleVelocity=1800,MaxSpeed=1800,Acceleration=0, so the requested speed applies immediately rather than being hidden behind a slow acceleration ramp. Damage=12,KE penetration=700 at both range endpoints. Existing range, guidance, target masks and critical-effect thresholds remain. These are data/code checks; native flight,damage,interception and crit behavior require a game test.
+
+## Superseded development history
+
+The following earlier descriptions record previous development steps. Their LOSAT values, pictures and attachment setup are superseded by the current summary above.
 
 **LOSAT is added as its own US vehicle with a kinetic missile: 600 mm KE penetration, 10.5 damage, 12 rounds, twice the base Kornet speed and interception disabled.** Uses the supplied MGM-166 tracked model in companion assets 0.1.13, with separate armory/battle meshes, a source-rendered portrait and right-facing white silhouette. Existing live dev.24 changes are retained.
 
@@ -164,3 +176,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 03:12:59 PST (America/Los_Angeles) — Added LOSAT dedicated KE missile,tank-shell crit classification,base Bradley protection,source-rendered card art and companion model pack requirement; native tests pending.
 - 2026-11-10 03:31:13 PST (America/Los_Angeles) — Corrected LOSAT to approved150 points,Stryker-only specialization and600 mm KE penetration; prepared installation replacing PLA TEST.
 - 2026-11-10 03:33:44 PST (America/Los_Angeles) — Applied Osama’s final LOSAT values:180 points,availability2,Stryker only,600 mm KE.
+- 2026-11-10 03:46:45 PST (America/Los_Angeles) — Removed LOSAT bone attachment via static assets0.1.14; applied200 points,12 damage,KE700,speed1800; replaced card portrait with supplied screenshot and side-profile silhouette.

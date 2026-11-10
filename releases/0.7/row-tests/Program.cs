@@ -469,11 +469,11 @@ Console.WriteLine($"PASS current fighter radius total: {checks} checks; three ca
 
 // LOSAT graph: ready to load, exactly one isolated KE weapon, and existing parents untouched.
 {
-Check(Row("Units",984)["Cost"].GetValue<int>()==180,"LOSAT requested180-point base price");
+Check(Row("Units",984)["Cost"].GetValue<int>()==200,"LOSAT requested200-point base price");
 var pools=merged["SpecializationAvailabilitiesJson"].Where(x=>x["UnitId"].GetValue<int>()==984).ToArray();Check(pools.Length==1&&pools[0]["SpecializationId"].GetValue<int>()==6&&pools[0]["MaxAvailabilityXp0"].GetValue<int>()==2,"LOSAT Stryker only, no Armored pool");
 var wa=merged["WeaponAmmunitionsJson"].Where(x=>x["UnitId"].GetValue<int>()==984).ToArray();Check(wa.Length==1&&wa[0]["Quantity"].GetValue<int>()==12,"LOSAT exactly12 missiles, no donor ammo");
-var ammo=Row("AmmunitionsJson",wa[0]["AmmunitionId"].GetValue<int>());Check(ammo["ArmorTargeted"].GetValue<int>()==1&&ammo["Damage"].GetValue<double>()==10.5&&ammo["PenetrationAtMinRange"].GetValue<double>()==600&&ammo["PenetrationAtGroundRange"].GetValue<double>()==600&&!ammo["CanBeIntercepted"].GetValue<bool>()&&!ammo["CanBeTargeted"].GetValue<bool>(),"LOSAT KE600 and non-interceptable flags");
-Check(ammo["MuzzleVelocity"].GetValue<double>()==10&&ammo["MaxSpeed"].GetValue<double>()==400&&ammo["Acceleration"].GetValue<double>()==232&&ammo["BurnTime"].GetValue<double>()==2&&ammo["GroundRange"].GetValue<double>()==800,"LOSAT twice-speed motion, original Kornet range");
+var ammo=Row("AmmunitionsJson",wa[0]["AmmunitionId"].GetValue<int>());Check(ammo["ArmorTargeted"].GetValue<int>()==1&&ammo["Damage"].GetValue<double>()==12&&ammo["PenetrationAtMinRange"].GetValue<double>()==700&&ammo["PenetrationAtGroundRange"].GetValue<double>()==700&&!ammo["CanBeIntercepted"].GetValue<bool>()&&!ammo["CanBeTargeted"].GetValue<bool>(),"LOSAT KE700 and non-interceptable flags");
+Check(ammo["MuzzleVelocity"].GetValue<double>()==1800&&ammo["MaxSpeed"].GetValue<double>()==1800&&ammo["Acceleration"].GetValue<double>()==0&&ammo["BurnTime"].GetValue<double>()==2&&ammo["GroundRange"].GetValue<double>()==800,"LOSAT constant1800 speed, original Kornet range");
 var armor=Row("ArmorsJson",merged["UnitArmorsJson"].Single(x=>x["UnitId"].GetValue<int>()==984)["ArmorId"].GetValue<int>());Check(armor["MaxHealthPoints"].GetValue<int>()==12&&armor["IsDefault"].GetValue<bool>()&&armor["ModelFileName"]==null,"LOSAT default12 HP/no armor mesh upgrade");
 foreach(var prefix in new[]{"Kin","Heat"})foreach(var pair in new[]{("Front",100),("Sides",80),("Rear",60),("Top",40)})Check(armor[prefix+"Armor"+pair.Item1].GetValue<double>()==pair.Item2,"LOSAT base Bradley "+prefix+pair.Item1);
 Check(!merged["ModificationsJson"].Any(x=>x["UnitId"].GetValue<int>()==984)&&!merged["UnitAbilitiesJson"].Any(x=>x["UnitId"].GetValue<int>()==984)&&Row("Units",984)["InfantrySlots"].GetValue<int>()==0,"LOSAT no inherited choices/abilities/passengers");
@@ -481,4 +481,4 @@ var turret=Row("TurretsJson",merged["TurretUnitsJson"].Single(x=>x["UnitId"].Get
 Check(Row("AmmunitionsJson",63)["MaxSpeed"].GetValue<double>()==200&&Row("AmmunitionsJson",63)["CanBeIntercepted"].GetValue<bool>()&&Row("AmmunitionsJson",63)["ArmorTargeted"].GetValue<int>()==2,"Kornet unchanged");
 }
 
-Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression checks, KE600,12 rounds,motion flags and unchanged Kornet. Native behavior untested.");
+Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression checks, KE700,12 rounds,motion flags and unchanged Kornet. Native behavior untested.");
