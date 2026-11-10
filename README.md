@@ -10,6 +10,8 @@
 
 **Prepared 0.1 candidate:** [download, scope and source](releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
 
+**Assets0.1.12:** F14/F21 armory uses three3K body colour maps, supporting/cockpit maps2K and battle1K. This replaces the broad4K update; existing appearance, swept wings, gear and clear glass stay. Calculated RGBA32+mipmap increase is80MiB over2K; game memory/stability remain unmeasured. Package reconstruction: `tools/asset-packs/build_012_from_011.py`.
+
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
 The game is a Unity 6 IL2CPP title. The database is one `DataBaseCompiled` object inside `BrokenArrow_Data/data.unity3d`: 24 AES-256-CBC JSON tables. BAModLauncher is what players press. It installs MelonLoader and this modpack, starts the game with Anti-Cheat disabled, and **Play vanilla with no mods** removes MelonLoader's `version.dll`.
@@ -210,3 +212,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.
 - 2026-11-06 14:40 PST (America/Los_Angeles) — Added the 0.5 development pointer (accuracy); 0.4 stays on its branch.
 - 2026-11-07 12:43 PST (America/Los_Angeles) — Added the 0.6 development pointer (ActualArrow features); 0.5 stays on its branch.
+- 2026-11-10 02:17:33 PST (America/Los_Angeles) — Recorded bounded F14/F21 texture budget, source recipe and unmeasured runtime limits.
