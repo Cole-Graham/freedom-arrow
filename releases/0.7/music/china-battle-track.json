@@ -1,0 +1,15 @@
+{
+  "status": "staged for next asset update; not installed",
+  "name": "China - Mother Of All Weapons.mp3",
+  "source": "User Music/FA Music/Unused (not in the game)/C&C Generals (China and GLA)",
+  "destination": "UserData/FAMusic/Packs/China/Battle/China - Mother Of All Weapons.mp3",
+  "sha256": "c130afb567853a88da7de3756f05dcdcac465fd53a93772ad326fc0bd9a76b41",
+  "bytes": 6890354,
+  "duration_seconds": 200.96,
+  "audio_codec": "mp3",
+  "sample_rate": 48000,
+  "channels": 2,
+  "verified": "Local staged SHA256 matches remote source; absent from asset0.1.1; ffprobe reads MP3 metadata",
+  "processing": "Original bytes; no re-encoding",
+  "runtime_playback_verified": false
+}

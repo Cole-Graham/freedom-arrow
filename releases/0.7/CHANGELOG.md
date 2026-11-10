@@ -4,6 +4,8 @@
 
 ## New for 0.7
 
+- **China battle music:** add `China - Mother Of All Weapons.mp3` (3:21) to the battle playlist. Found in the user-supplied unused China/GLA music collection, absent from asset pack 0.1.1. The staged file matches the source SHA256 and retains its original MP3 bytes. This is separate from track 011, the menu opener. See `music/china-battle-track.json`.
+
 - **China menu music:** track 011 (existing `China theme 11.mp3`) plays first on entering the China menu playlist, then the remaining menu music. The old menu recording is `China theme 01 (menu).mp3`. Source for music component 1.3.10 is staged in `music/`; no new 0.7 package is built or installed.
 
 - **Voices:** XM30 switches from its T-15 donor audio preset to the M2A3 Bradley preset (`UNIT_SOUND_PRESET_BRADLEY_ALL`). The final Bradley instruction supersedes the earlier Paladin wording. Abrams X retains `UNIT_SOUND_PRESET_ABRAMS`, the same assignment as existing Abrams, for the requested Crusader Tank lines. This queues the unit-to-voice assignment; audible clip identity and playback are not verified in this preparation.
@@ -50,3 +52,4 @@ The candidate music DLL compiled with zero warnings/errors against the local gam
 - 2026-11-09 17:01:29 PST (America/Los_Angeles) — Recorded the current dev.115 Abrams X smoke/jammer defect and read-only runtime-version evidence; root cause and fix remain open.
 - 2026-11-09 17:07:33 PST (America/Los_Angeles) — Staged Bradley voices for XM30 and retained the existing Abrams voice assignment for Abrams X; no running-install changes.
 - 2026-11-09 17:20:16 PST (America/Los_Angeles) — Staged China track 011 as menu opener and compiled/tested the optional first-track ordering component; no installation.
+- 2026-11-09 17:21:20 PST (America/Los_Angeles) — Staged Mother Of All Weapons for China battle music; source hash and MP3 metadata checked; audible in-game playback remains untested.
