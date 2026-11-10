@@ -1,8 +1,8 @@
 {
-  "label": "PLA Build 1",
-  "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-build-1/releases/0.6/out/PLA-Build-1.bamod",
-  "bytes": 3055265592,
-  "sha256": "9d85d882d4efb48eb39fca50a43b60f77d346076c7b67b6f8f236f16d6c9923a",
+  "label": "PLA TEST Build 1",
+  "path": "work/pla-build-1/releases/0.6/out/PLA-TEST-Build-1.bamod",
+  "bytes": 3055255821,
+  "sha256": "ea2058ba5852df3b41a8dd9981ec9070d2bb4f223e10d39738631b03434a8364",
   "payload_files": 7706,
   "referenced_model_files": 175,
   "approved_asset_snapshot_files": 1910,
@@ -33,5 +33,6 @@
       "donor": 58
     }
   },
-  "runtime_verified": false
+  "runtime_verified": false,
+  "j50_armory_gear_deployed": true
 }

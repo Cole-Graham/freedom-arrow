@@ -20,7 +20,7 @@ def install(profile,g,h,check=False):
  info=json.loads(z.read('mod.json'));assert info['id']=='freedomarrow.gameplay' and info['version']==profile['version']
  core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']==profile['version']
  if profile['kind']=='pla':
-  whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='PLA Build 1' and whole['build']==profile['build'];pins=whole['sha256']
+  whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='PLA TEST Build 1' and whole['build']==profile['build'];pins=whole['sha256']
   cfg=json.loads(z.read('UserData/FreedomArrow/pla-build.json'));assert cfg['build']==profile['build']
   infantry=cfg['infantry'];assert {'QLU11','QTS11','QTS11_GL'}<=set(infantry['weapons'])
   rules=json.loads(z.read('UserData/FAModels/infantry-weapons.json'))

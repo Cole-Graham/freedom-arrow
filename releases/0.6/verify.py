@@ -2,13 +2,13 @@
 from pathlib import Path
 import hashlib,json,struct,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-Build-1.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-1.bamod'
 with zipfile.ZipFile(p) as z:
  names=set(z.namelist());assert len(names)==len(z.namelist())
  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n for n in names)
- mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA Build 1' and mod['version']=='1' and mod['type']=='modpack'
- assert z.read('README.md').startswith(b'# PLA Build 1\n')
- m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==1 and m['label']=='PLA Build 1'
+ mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 1' and mod['version']=='1' and mod['type']=='modpack'
+ assert z.read('README.md').startswith(b'# PLA TEST Build 1\n')
+ m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==1 and m['label']=='PLA TEST Build 1'
  assert names-{'mod.json','README.md','UserData/FreedomArrow/pla-package-manifest.json'}==set(m['sha256'])
  for n,h in m['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
  core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='1'
@@ -30,7 +30,7 @@ with zipfile.ZipFile(p) as z:
   for k in ['file','battle']:
    if rule.get(k):assert 'UserData/FAModels/'+rule[k] in names
  assert all('green' in modelmap[n]['file'] for n in ['PLA ZTZ-99A','PLA ZBD-04A','PLA ZTZ-96B']) and 'black' in modelmap['PLA Z-10']['file']
- for n,h in {'m_f14_cg.fam':'f0d3e5ed35b95e7ad160ff92dcf2a7f70ddbfa4b392951e44176e9e54bd79a4c','m_abramsx_lo.fam':'399f2fe9bb664e1ec911552a214ecc97624992cbd4b616a0175092f7eeff2ea4'}.items():assert hashlib.sha256(z.read('UserData/FAModels/'+n)).hexdigest()==h
+ for n,h in {'m_f14_cg.fam':'f0d3e5ed35b95e7ad160ff92dcf2a7f70ddbfa4b392951e44176e9e54bd79a4c','m_abramsx_lo.fam':'399f2fe9bb664e1ec911552a214ecc97624992cbd4b616a0175092f7eeff2ea4','m_j50_cg.fam':'b6b4707302d9911db2b78a63119abfc7a9714d68e6d394c654974c7405e6c158'}.items():assert hashlib.sha256(z.read('UserData/FAModels/'+n)).hexdigest()==h
  for i in (3,4,5,7):
   for suffix in ('.png','_n.png','_mask.png'):
    b=z.read(f'UserData/FAModels/m_f14_cg_tex{i}{suffix}');size=3072 if i in (3,4,5) and suffix=='.png' else 2048;assert struct.unpack('>2I',b[16:24])==(size,size)

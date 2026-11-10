@@ -1,4 +1,4 @@
-# PLA Build 1
+# PLA TEST Build 1
 
 **One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Native game verification remains pending.
 
@@ -597,3 +597,4 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 - 2026-11-09 13:38:47 PST (America/Los_Angeles) — Restricted Su-75 to rear bay and Russian Guard; retained base cost 280.
 - 2026-11-10 02:37:31 PST (America/Los_Angeles) — Consolidated the PLA vehicle/aircraft and infantry branches into one complete Build1; included referenced assets and network-safe option IDs.
+- 2026-11-10 02:55:25 PST (America/Los_Angeles) — Named package PLA TEST Build1; included deployed J50 armory gear and corrected ground clearance.

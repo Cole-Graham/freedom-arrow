@@ -33,7 +33,7 @@ def apply(R,effective,original,patches,audit,put,clone,add_unit,rows_of,discard)
     mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==u}
     for o in list(effective['OptionsJson'].values()):
         if o['ModificationId'] in mods:put('OptionsJson',o['Id'],dict(Ability1Id=0,Ability2Id=0,Ability3Id=0),'Abrams defaults are intrinsic')
-    cfg={'build':1,'label':'PLA Build 1','roster_contract':'pla-test-contract.json','infantry':binding,'additional_cards':{'XM30':983,'Karatel':984},'source_rosters':['PLA.48','PLA.infantry.11'],'runtime_verified':False}
+    cfg={'build':1,'label':'PLA TEST Build 1','roster_contract':'pla-test-contract.json','infantry':binding,'additional_cards':{'XM30':983,'Karatel':984},'source_rosters':['PLA.48','PLA.infantry.11'],'runtime_verified':False}
     (R/'source/UserData/FreedomArrow/pla-build.json').write_text(json.dumps(cfg,indent=2)+'\n')
     # Options are transmitted as signed shorts; reject future unmapped additions.
     from option_network_ids import apply as fix_options

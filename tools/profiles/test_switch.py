@@ -6,13 +6,13 @@ class Profiles(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.h=Path(self.tmp.name);self.g=self.h/'game';(self.h/'Downloads').mkdir();(self.g/'UserData/BAModManager').mkdir(parents=True);(self.g/'GameAssembly.dll').write_bytes(b'pinned-native');(self.g/'UserData/BAModManager/manifest.json').write_text(json.dumps({'packages':[{'name':'Freedom Arrow','info':{'id':'freedomarrow.gameplay','version':'old'},'files':[],'enabled':True}]}))
  def tearDown(self):self.tmp.cleanup()
  def package(self,kind,bad_offset=False):
-  version='1' if kind=='pla' else 'test-live';label='PLA Build 1' if kind=='pla' else 'Live';base='UserData/FreedomArrow/';files={base+'compatibility.json':json.dumps({'game_assembly_sha256':switch.sha(self.g/'GameAssembly.dll')}).encode(),base+'test-core.bin':kind.encode()}
+  version='1' if kind=='pla' else 'test-live';label='PLA TEST Build 1' if kind=='pla' else 'Live';base='UserData/FreedomArrow/';files={base+'compatibility.json':json.dumps({'game_assembly_sha256':switch.sha(self.g/'GameAssembly.dll')}).encode(),base+'test-core.bin':kind.encode()}
   if kind=='pla':
    inf={'weapons':{'QLU11':{'weaponId':11},'QTS11':{'weaponId':12},'QTS11_GL':{'weaponId':13}}};files[base+'pla-build.json']=json.dumps({'build':1,'infantry':inf}).encode();rules=[{'weaponId':11,'offset':[0,-.17,.22]},{'weaponId':12,'offset':[0,-.17,.196]},{'weaponId':13,'offset':[0,-.17,.196]}]
    if bad_offset:rules[0]['offset']=[0,0,0]
    files['UserData/FAModels/infantry-weapons.json']=json.dumps(rules).encode();files['UserData/FAModels/test-model.fam']=b'approved-model';files['Mods/FAModels.dll']=b'model-loader';files['Mods/FAMusic.dll']=b'music-loader';files['UserData/FAMusic/voice-presets.txt']=b'defaults'
   pins={n:hashlib.sha256(v).hexdigest() for n,v in files.items()};files[base+'payload-manifest.json']=json.dumps({'version':version,'sha256':{n:h for n,h in pins.items() if n.startswith(base)}}).encode()
-  if kind=='pla':files[base+'pla-package-manifest.json']=json.dumps({'label':'PLA Build 1','build':1,'sha256':{n:hashlib.sha256(v).hexdigest() for n,v in files.items()}}).encode()
+  if kind=='pla':files[base+'pla-package-manifest.json']=json.dumps({'label':'PLA TEST Build 1','build':1,'sha256':{n:hashlib.sha256(v).hexdigest() for n,v in files.items()}}).encode()
   path=self.h/'Downloads'/('pla.bamod' if kind=='pla' else 'live.bamod')
   with zipfile.ZipFile(path,'w') as z:
    for n,v in files.items():z.writestr(n,v)
