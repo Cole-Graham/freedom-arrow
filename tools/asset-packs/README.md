@@ -47,6 +47,12 @@ Adds F-21 Super Tomcat as an alias of the existing F-14 armory/battle model for 
 
 Corrects smoothed normals on the Abrams X battle mesh only. The same triangle surface, UVs, textures, parts, armory mesh, B-21, loader and audio are retained. Largest-face normal error falls from19.6° mean/87.9°95th percentile to1.8°/9.5°. This is a mesh calculation and neutral Blender preview, not an in-game result. Reproduce with `python tools/asset-packs/build_019_from_018.py /path/to/pack-folder` in an environment with NumPy; the folder must contain the verified0.1.8 archive.
 
+## Combined pack0.1.10
+
+Uses the supplied F14 wing bones to bake a swept-back armory pose, keeping landing gear down. No animation action or pre-saved sweep configuration was supplied. The source rig contains independent wing pivots, so no new rig is added. Eighteen wing draws rotate;90 other draws, all UVs/indices/materials and the battle mesh remain byte-identical. Body/gear and source alignment are checked. Both F14 and F21 names use this model.
+
+`tools/model-loader/pose_f14_armory.py` takes the pinned prior FAM export, original static GLB, original famconv.py and `f14-wing-pivots.json`, and writes the swept armory mesh. The proprietary inputs are not committed. `build_010_from_019.py PACK_FOLDER SWEPT_MESH` packages it. Blender preview only; native review pending.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
@@ -56,3 +62,4 @@ Corrects smoothed normals on the Abrams X battle mesh only. The same triangle su
 - 2026-11-09 23:41:30 PST (America/Los_Angeles) — Added YF-23 canopy correction to both copies; recorded unchanged payload and runtime limits.
 - 2026-11-10 00:22:37 PST (America/Los_Angeles) — Added F-21 alias, pinned pack0.1.8 and recorded reproducible upgrade.
 - 2026-11-10 01:17:30 PST (America/Los_Angeles) — Added the Abrams X battle-normal correction recipe; unchanged geometry/UVs, all textures and other content verified. Runtime appearance pending.
+- 2026-11-10 01:29:35 PST (America/Los_Angeles) — Added existing-rig F14/F21 swept armory pose and preservation evidence; no new rigging.

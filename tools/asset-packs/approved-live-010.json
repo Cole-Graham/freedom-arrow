@@ -1,0 +1,64 @@
+{
+  "version": "0.1.10",
+  "bytes": 1103910436,
+  "sha256": "9d8cfbaead5f60c69d86389daa597d251df4bb26f5164e6232697dd00349331a",
+  "changed_paths": [
+    "UserData/FAModels/m_f14_cg.fam",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_files": 5998,
+  "loader_version": "0.3.4",
+  "runtime_rendering_verified": false,
+  "base_source_commit": "0c055bb",
+  "core_version": "0.7.0-dev.23",
+  "pose_validation": {
+    "source_sha256": "5da8dde77a4c5f34c409c323eac836fb379a274a2b5573a9962fc3b2a8a49ab8",
+    "output_sha256": "f0d3e5ed35b95e7ad160ff92dcf2a7f70ddbfa4b392951e44176e9e54bd79a4c",
+    "source_alignment_max_error": 4.808881666207299e-07,
+    "wing_draws_changed": 18,
+    "wing_objects": [
+      "f14 wing",
+      "f14 wing.001",
+      "f14 wing.002",
+      "f14 wing.003",
+      "f14 wing.004",
+      "f14 wing.005",
+      "f14 wing.006",
+      "f14 wing.007",
+      "f14 wing.008",
+      "f14 wing.009",
+      "f14 wing.010",
+      "f14 wing.011",
+      "f14 wing.012",
+      "f14 wing.013",
+      "f14 wing.014",
+      "f14 wing.015",
+      "f14 wing.016",
+      "f14 wing.017"
+    ],
+    "other_draws_byte_identical": 90,
+    "source_bytes": 7581050,
+    "output_bytes": 7581050,
+    "uv_material_indices_byte_identical": true,
+    "landing_gear_and_body_byte_identical": true,
+    "source_rig_pivots": {
+      "Bone": [
+        0.5867448449134827,
+        0.09576011449098587,
+        0.47600293159484863
+      ],
+      "Bone.001": [
+        -0.5867448449134827,
+        0.09576011449098587,
+        0.47600293159484863
+      ]
+    },
+    "wing_rotation_degrees_from_source": [
+      52,
+      -52
+    ],
+    "native_render_verified": false
+  }
+}
