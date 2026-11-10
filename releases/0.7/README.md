@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-devtest.lat.4 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.5 — development candidate
 
 **Adds full-colour detailed-card portraits from Osama's five supplied aircraft pictures. Su-75 moves to Russian Motorized; Su-47 moves to Russian Guard. Su-47, F-14 and YF-23 remain live from dev.13. Use combined Models and Music0.1.6 for the models, clear canopy preset, approved B-21 and current music/voices.** No PLA test data is included. Cutout icon drafts remain outside this build pending edge cleanup.
 

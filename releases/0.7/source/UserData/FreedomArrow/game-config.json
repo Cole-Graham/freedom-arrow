@@ -7,5 +7,7 @@
   "ShockedMoveSpeed": 0.7,
   "PanickedMoveSpeed": 0.4,
   "FlareRerollCap": 4,
-  "PlaneRefundHealthMultiplier": 0.2222222222222222
+  "PlaneRefundHealthMultiplier": 0.2222222222222222,
+  "AaCooldownEnabled": true,
+  "AaCooldownShadowOnly": false
 }

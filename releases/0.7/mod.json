@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.lateralus.devtest",
   "name": "Freedom Arrow \u2014 Lateralus Dev-Test 4 (diagnostic number fix)",
-  "version": "0.7.0-devtest.lat.4",
+  "version": "0.7.0-devtest.lat.5",
   "type": "modpack",
   "description": "Same dev.15 gameplay and lat.3 passive AA observer, with non-finite numeric logging fixed and zero-time aiming labelled correctly. No AA native detours. Select instead of other gameplay;keep assets."
 }

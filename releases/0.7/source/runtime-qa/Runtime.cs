@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.4", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.5", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -58,6 +58,7 @@ public class Runtime : MelonMod
         DiagnosticLog.Heartbeat();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
+        AaCooldown.LateUpdate();
         SupplyStealth.LateUpdate();
     }
     public override void OnGUI() => conquest?.OnGUI();
@@ -65,6 +66,7 @@ public class Runtime : MelonMod
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         GroundAaLog.SceneChanged();
+        AaCooldown.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -112,6 +114,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_REFUND_FAILED: not installed; original health tax. "+e.Message); }
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
+        try { AaCooldown.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_COOLDOWN_FAILED: not installed; native reservations retained. "+e.Message); }
         try { SupplyStealth.Install(); }
         catch (Exception e)
         {

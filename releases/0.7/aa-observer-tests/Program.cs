@@ -11,6 +11,33 @@ static class Program
     static void Check(bool yes,string reason){if(!yes)throw new Exception(reason);checks++;}
     static void Main(string[] args)
     {
+        var late=new[]{new AaCooldownPolicy.Contributor(1,4,true,false)};
+        bool Release(AaCooldownPolicy.Contributor[] cs,bool native=true,bool ground=true,bool blocked=false,double age=.01,int incoming=0,ulong caller=2,float deadline=2)
+            =>AaCooldownPolicy.Release(native,ground,blocked,age,incoming,caller,deadline,cs);
+        Check(Release(late),"A clearly late future reservation is released");
+        Check(!Release(late,native:false),"Never turn native false into true");
+        Check(!Release(late,ground:false),"Non-ground-AA caller unchanged");
+        Check(!Release(late,blocked:true),"Explicit blocked-shooter inclusion respected");
+        Check(!Release(late,age:.076),"Stale snapshot retains native decision");
+        Check(!Release(late,age:-1),"Invalid clock retains native decision");
+        Check(!Release(late,incoming:1),"Airborne incoming interceptor preserved");
+        Check(!Release(late,incoming:-1),"Unknown incoming protection preserved");
+        Check(!Release(Array.Empty<AaCooldownPolicy.Contributor>()),"Empty list cannot vacuously release");
+        Check(!Release(late,caller:1),"Excluding the only contributor cannot release");
+        Check(!Release(new[]{new AaCooldownPolicy.Contributor(1,4,false,false)}),"Unknown readiness retains native");
+        Check(!Release(new[]{new AaCooldownPolicy.Contributor(1,4,true,true)}),"Already launched contribution preserved");
+        Check(!Release(new[]{new AaCooldownPolicy.Contributor(2,4,true,true)}),"Excluded launcher's airborne contribution preserved");
+        Check(!Release(late.Append(new AaCooldownPolicy.Contributor(3,.3f,true,false)).ToArray()),"Mixed timely/late reservations retain native");
+        Check(Release(late.Append(new AaCooldownPolicy.Contributor(2,0,true,false)).ToArray()),"Caller's own future shot excluded while others clearly late");
+        Check(!AaCooldownPolicy.ClearlyLate(3.1f,2),"Boundary tolerance does not aggressively exclude");
+        Check(AaCooldownPolicy.Remaining(2,4,3)==4,"Overlapping timers use max, not sum");
+        Check(AaCooldownPolicy.Remaining(-2,0,-1)==0,"Expired timers clamp to zero");
+        foreach(float f in new[]{float.NaN,float.PositiveInfinity,float.NegativeInfinity})
+        {
+            Check(!AaCooldownPolicy.ClearlyLate(f,2),"Nonfinite readiness falls back");
+            Check(!AaCooldownPolicy.ClearlyLate(4,f),"Nonfinite deadline falls back");
+            Check(float.IsNaN(AaCooldownPolicy.Remaining(f,0,0)),"Nonfinite timer is unknown");
+        }
         var ready=AaObservationPolicy.Describe(true,false,100,false,false,false,false,true,true,true);
         Check(ready.Length==0,"Ready selected target has no invented rejection reason");
         var missing=AaObservationPolicy.Describe(true,false,100,false,false,false,false,false,false,false);
@@ -63,10 +90,11 @@ static class Program
         {
             var t=md.GetTypeDefinition(h);return md.GetString(t.Name)=="GroundAaLog"||(!t.GetDeclaringType().IsNil&&Observer(t.GetDeclaringType()));
         }
-        var calls=new List<string>();var fired=new List<string>();int methods=0;
-        foreach(var th in md.TypeDefinitions.Where(Observer))foreach(var mh in md.GetTypeDefinition(th).GetMethods())
+        var calls=new List<string>();var fired=new List<string>();var callback=new List<string>();var controller=new List<string>();int methods=0,callbackMethods=0,patches=0;
+        foreach(var th in md.TypeDefinitions.Where(h=>Observer(h)||md.GetString(md.GetTypeDefinition(h).Name)=="AaCooldown"))foreach(var mh in md.GetTypeDefinition(th).GetMethods())
         {
-            var m=md.GetMethodDefinition(mh);if(m.RelativeVirtualAddress==0)continue;methods++;
+            bool obs=Observer(th);var m=md.GetMethodDefinition(mh);if(m.RelativeVirtualAddress==0)continue;if(obs)methods++;
+            bool cb=!obs&&md.GetString(m.Name) is "After" or "Key";if(cb)callbackMethods++;
             var il=pe.GetMethodBody(m.RelativeVirtualAddress).GetILBytes()!;int i=0;
             while(i<il.Length)
             {
@@ -75,8 +103,9 @@ static class Program
                 else n=op.OperandType switch{OperandType.InlineNone=>0,OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar=>1,OperandType.InlineVar=>2,OperandType.InlineI8 or OperandType.InlineR=>8,_=>4};
                 if(op.OperandType==OperandType.InlineMethod)
                 {
-                    string name=Method(MetadataTokens.EntityHandle(BitConverter.ToInt32(il,i)));calls.Add(name);
-                    if(md.GetString(m.Name)=="Fired")fired.Add(name);
+                    string name=Method(MetadataTokens.EntityHandle(BitConverter.ToInt32(il,i)));
+                    if(obs){calls.Add(name);if(md.GetString(m.Name)=="Fired")fired.Add(name);}
+                    else {controller.Add(name);if(cb)callback.Add(name);if(name.EndsWith("Harmony.Patch"))patches++;}
                 }
                 i+=n;
             }
@@ -87,6 +116,12 @@ static class Program
         Check(fired.Count>0,"Compiled existing shot callback inspected");
         foreach(var banned in new[]{"NativeEcs","Entity.","UnityEngine","Snapshot","World","UnitComponent","WeaponComponent"})
             Check(!fired.Any(x=>x.Contains(banned)),"Callback must enqueue only, without ECS/Unity reads: "+banned);
+        Check(callbackMethods==2&&callback.Count>0,"Actual compiled cooldown callback and key helper inspected");
+        foreach(var banned in new[]{"NativeEcs","UnityEngine","BattleSystemHelpers","TargetSearchHelper","DiagnosticLog","File.","StreamWriter","Reflection","Entity.get_","Entity.Has"})
+            Check(!callback.Any(x=>x.Contains(banned)),"Cooldown callback cannot read native state or do IO: "+banned);
+        foreach(var banned in new[]{"WriteField","SetWeaponState","SetAmmoState","TargetSearchHelper","GenerateRandom"})
+            Check(!controller.Any(x=>x.Contains(banned)),"Cooldown controller cannot mutate combat/search state: "+banned);
+        Check(patches==1,"Exactly one cooldown behavior hook; no diagnostic hook group");
         Console.WriteLine($"PASS: {checks} passive-observer policy and compiled-IL boundary checks; {methods} methods inspected. Native ECS invocation/performance untested.");
     }
 }

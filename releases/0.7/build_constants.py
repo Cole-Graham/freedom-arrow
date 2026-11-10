@@ -1619,6 +1619,8 @@ def main():
     # Refund policy changes no IDs or inventory quantities. Apply to the final graph.
     from plane_refund import apply as apply_plane_refund
     apply_plane_refund(effective,json.loads((R/'plane-refund-contract.json').read_text()),put)
+    from spaag import apply as apply_spaag
+    apply_spaag(effective,json.loads((R/'spaag-contract.json').read_text()),put)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

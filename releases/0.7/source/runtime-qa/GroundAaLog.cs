@@ -53,10 +53,11 @@ static class GroundAaLog
         string path=Path.Combine(dir,$"aa-targeting-{DateTime.UtcNow:yyyyMMdd-HHmmssfffffff}.jsonl");
         writer=new StreamWriter(new FileStream(path,FileMode.CreateNew,FileAccess.Write,FileShare.ReadWrite),new UTF8Encoding(false));
         Emit("coverage",default,default,new{path,mode="passive_late_update",nativeHooksEnabled=false,nativeHooksInstalled=0,
+            nativeHooksScope="Diagnostic observer only; the separate cooldown behavior hook is recorded in runtime logs",
             nonFiniteNumbers="NaN/Infinity/-Infinity are JSON strings; ordinary values stay numeric",
             intervalSeconds=Interval,weaponBatch=WeaponBatch,discoveryBatch=DiscoveryBatch,threatCap=ThreatCap,workBudgetMs=WorkBudgetMs,
             caveat="Observed state, not native rejection reasons. Nearby observations may be stale/incomplete and do not prove visibility or candidate eligibility. Brief states/interceptions can be missed. No kill attribution from disappearance."},true);
-        Flush();MelonLogger.Msg("FREEDOM_ARROW_AA_LOG "+path+"; PASSIVE LateUpdate observer, ZERO native AA hooks; invocation unproved until observer_bound/state records");
+        Flush();MelonLogger.Msg("FREEDOM_ARROW_AA_LOG "+path+"; PASSIVE LateUpdate observer, ZERO native AA diagnostic hooks; separate cooldown behavior in runtime log");
     }
     public static void SceneChanged()
     {

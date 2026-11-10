@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-devtest.lat.4 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.5 — development candidate
 
 **Lateralus Dev-Test 4 — diagnostic number handling, same dev.15 gameplay base.**
 

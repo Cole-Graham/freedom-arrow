@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.4.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.5.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-devtest.lat.4'
+    assert manifest['version']=='0.7.0-devtest.lat.5'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.4 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.5 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -379,7 +379,7 @@ with zipfile.ZipFile(p) as z:
             if kind==3:assert any(o.get('isBot') for o in objs if o.get('_type')==13),name
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
-    assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4,'ShockedMoveSpeed':0.7,'PanickedMoveSpeed':0.4,'FlareRerollCap':4,'PlaneRefundHealthMultiplier':2/9}
+    assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4,'ShockedMoveSpeed':0.7,'PanickedMoveSpeed':0.4,'FlareRerollCap':4,'PlaneRefundHealthMultiplier':2/9,'AaCooldownEnabled':True,'AaCooldownShadowOnly':False}
     assert [o['defV'] for o in json.loads(z.read('UserData/FreedomArrow/scenarios/[FA] [2v2] Dead Center 0.1/meta.json'))['pblOpt'] if o.get('desc')=='ui_lobby_StartMoney_desc']==[1500]
     for aid,fields in us['ability_fields'].items():assert table('abilities')[aid]['APSCooldown']==fields['APSCooldown'],aid
     print(f'PASS: {len(manifest["sha256"])} payload hashes; metadata and held tables; requested vehicle and detection data; 200-income setting. No native/runtime result.')

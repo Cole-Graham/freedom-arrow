@@ -1,6 +1,6 @@
 {
   "channel": "testing",
-  "package_version": "0.7.0-devtest.lat.4",
+  "package_version": "0.7.0-devtest.lat.5",
   "spotting": "vanilla",
   "deployment_status": "built_offline_execution_held",
   "verification": "Lat.3 logs demonstrated AA firing and passive sampling, then managed JSON serialization failure on a non-finite float. Lat.4 preserves NaN/Infinity as JSON strings and corrects zero-time aim labels. Native rerun pending.",
