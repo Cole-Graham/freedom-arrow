@@ -2,6 +2,12 @@ namespace FreedomArrow;
 // These are coexisting observations, never exclusive native rejection reasons.
 static class AaObservationPolicy
 {
+    public static bool? AimingInProgress(bool componentPresent,float? secondsRemaining)
+    {
+        if(!componentPresent)return false;
+        if(!secondsRemaining.HasValue||!float.IsFinite(secondsRemaining.Value))return null;
+        return secondsRemaining.Value>0;
+    }
     public static string[] Describe(bool enabled,bool hold,int ammo,bool reload,bool burst,bool cycle,bool aiming,bool selected,bool canAim,bool margin)
     {
         var notes=new List<string>();

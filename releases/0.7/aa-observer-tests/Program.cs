@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Reflection.Metadata;
@@ -19,6 +20,29 @@ static class Program
         foreach(var tag in new[]{"weapon_disabled","hold_fire_component_present","empty_magazine","magazine_reloading","burst_cooldown","weapon_cycle_active","aiming_in_progress","selected_target_can_aim_false","selected_target_outside_margin"})
             Check(busy.Contains(tag),"Missing observed constraint "+tag);
         Check(!busy.Concat(ready).Concat(missing).Any(s=>s.Contains("overkill")),"Overkill flag must not be treated as a hard no-fire rule: lat.2 PIVADS fired while flagged");
+        Check(AaObservationPolicy.AimingInProgress(true,0)==false,"Persistent zero-time aim component is not active aiming");
+        Check(AaObservationPolicy.AimingInProgress(true,-1)==false,"Expired timer is not active aiming");
+        Check(AaObservationPolicy.AimingInProgress(true,.5f)==true,"Positive timer reports aiming");
+        Check(AaObservationPolicy.AimingInProgress(false,.5f)==false,"Absent component cannot report active aiming");
+        foreach(float special in new[]{float.NaN,float.PositiveInfinity,float.NegativeInfinity})
+            Check(AaObservationPolicy.AimingInProgress(true,special)==null,"Non-finite timer is unknown, not a valid aiming duration");
+        Check(AaObservationPolicy.AimingInProgress(true,null)==null,"Missing timer is unknown");
+        bool strictRejected=false;try{JsonSerializer.Serialize(new{score=float.PositiveInfinity});}catch(ArgumentException){strictRejected=true;}
+        Check(strictRejected,"Fixture reproduces lat.3 serializer failure");
+        var specialPayload=new{score=float.PositiveInfinity,nested=new{negative=double.NegativeInfinity,timer=(float?)float.NaN},
+            values=new[]{1f,float.NaN,float.PositiveInfinity},normal=12.5};
+        using(var parsed=JsonDocument.Parse(AaLogJson.Serialize(specialPayload)))
+        {
+            var x=parsed.RootElement;
+            Check(x.GetProperty("score").GetString()=="Infinity","Infinity is preserved as a valid JSON string");
+            Check(x.GetProperty("nested").GetProperty("negative").GetString()=="-Infinity","Nested negative infinity preserved");
+            Check(x.GetProperty("nested").GetProperty("timer").GetString()=="NaN","Nullable NaN preserved");
+            Check(x.GetProperty("values")[1].GetString()=="NaN","Array NaN preserved");
+            Check(x.GetProperty("values")[0].GetSingle()==1,"Ordinary array values remain numeric");
+            Check(x.GetProperty("normal").GetDouble()==12.5,"Ordinary numeric values unchanged");
+        }
+        using(var parsed=JsonDocument.Parse(AaLogJson.Serialize(new{nextRecord=42})))
+            Check(parsed.RootElement.GetProperty("nextRecord").GetInt32()==42,"Following record remains writable after non-finite data");
         using var fs=File.OpenRead(args[0]);using var pe=new PEReader(fs);var md=pe.GetMetadataReader();
         var codes=typeof(OpCodes).GetFields(BindingFlags.Public|BindingFlags.Static).Where(f=>f.FieldType==typeof(OpCode))
             .Select(f=>(OpCode)f.GetValue(null)!).ToDictionary(o=>unchecked((ushort)o.Value));

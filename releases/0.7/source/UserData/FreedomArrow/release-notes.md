@@ -1,8 +1,10 @@
-# Freedom Arrow 0.7.0-devtest.lat.3 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.4 — development candidate
 
-**Lateralus Dev-Test 3 — passive AA diagnostics, same dev.15 gameplay base.**
+**Lateralus Dev-Test 4 — diagnostic number handling, same dev.15 gameplay base.**
 
-Select this gameplay package instead of lat.2 or public Freedom Arrow. Keep the existing model/music add-on. No PLA gameplay patch is required.
+Select this gameplay package instead of lat.3 or public Freedom Arrow. Keep the existing model/music add-on. No PLA gameplay patch is required.
+
+Lat.3 recorded continued AA firing and396 state snapshots, then its logger stopped because a sampled float was NaN or infinity. This version writes those values as valid JSON strings (NaN/Infinity/-Infinity); finite values stay numeric. It distinguishes an aiming component being present from positive remaining aiming time. Tests cover nested/nullable/array sentinels and following records; native rerun remains pending.
 
 All 17 AA native diagnostic detours are removed from the observer. It samples its own ECS queries after updates, with bounded work, queue/file limits and performance metrics. Shot callbacks only enqueue an entity; ECS reads occur later. Selected-target overkill flags/scores, ammunition, aim/reload/radar/readiness and nearby sampled air/projectile observations go to UserData/FreedomArrow/diagnostics/aa-targeting-*.jsonl.
 

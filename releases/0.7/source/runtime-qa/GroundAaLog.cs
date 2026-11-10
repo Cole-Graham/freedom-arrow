@@ -53,6 +53,7 @@ static class GroundAaLog
         string path=Path.Combine(dir,$"aa-targeting-{DateTime.UtcNow:yyyyMMdd-HHmmssfffffff}.jsonl");
         writer=new StreamWriter(new FileStream(path,FileMode.CreateNew,FileAccess.Write,FileShare.ReadWrite),new UTF8Encoding(false));
         Emit("coverage",default,default,new{path,mode="passive_late_update",nativeHooksEnabled=false,nativeHooksInstalled=0,
+            nonFiniteNumbers="NaN/Infinity/-Infinity are JSON strings; ordinary values stay numeric",
             intervalSeconds=Interval,weaponBatch=WeaponBatch,discoveryBatch=DiscoveryBatch,threatCap=ThreatCap,workBudgetMs=WorkBudgetMs,
             caveat="Observed state, not native rejection reasons. Nearby observations may be stale/incomplete and do not prove visibility or candidate eligibility. Brief states/interceptions can be missed. No kill attribution from disappearance."},true);
         Flush();MelonLogger.Msg("FREEDOM_ARROW_AA_LOG "+path+"; PASSIVE LateUpdate observer, ZERO native AA hooks; invocation unproved until observer_bound/state records");
@@ -152,6 +153,8 @@ static class GroundAaLog
             bool hold=unit.Has<HoldFireComponent>()||weapon.Has<HoldFireComponent>();
             bool reload=weapon.Has<MagazineReloadingComponent>(),burst=weapon.Has<BurstCooldownComponent>(),cycle=weapon.Has<WeaponCycleComponent>();
             bool aimed=weapon.Has<AimedComponent>(),aiming=weapon.Has<AimingComponent>();
+            float? aimRemaining=aiming?NativeEcs.Property<AimingComponent,float>(weapon,"TimeRemaining"):(float?)null;
+            bool? aimingInProgress=AaObservationPolicy.AimingInProgress(aiming,aimRemaining);
             object selectedData=selected?new{target=Unit(target),overkilled=overkill,canAim,withinMargin=margin,
                 markedForRemoval=NativeEcs.Field<TargetComponent,bool>(weapon,"MarkedForRemoval"),
                 mode=(int)NativeEcs.Field<TargetComponent,TargetFireMode>(weapon,"TargetingMode"),
@@ -176,14 +179,15 @@ static class GroundAaLog
             Emit(kind,weapon,target,new{shooter=Unit(unit),weaponId=w.WeaponInfo?.Id,weaponName=w.WeaponInfo?.Name,enabled=w.IsEnabled,
                 ammoId=a?.Id,ammoInMagazine=w.AmmoInMagazine.Value,shotsMade=w.ShotsMade.Value,
                 radarActive=RadarSystem.ActiveRadars?.Contains(unit)??false,radarDependent=w.WeaponInfo?.IsRadarDependent,
-                holdFire=hold,aimed,aiming,aimSecondsConfigured=w._aimingTime.Value,
-                aimSecondsRemaining=aiming?NativeEcs.Property<AimingComponent,float>(weapon,"TimeRemaining"):(float?)null,
+                holdFire=hold,aimed,aiming,aimingInProgress,aimSecondsConfigured=w._aimingTime.Value,
+                aimSecondsRemaining=aimRemaining,
                 magazineReload=reload,burstCooldown=burst,weaponCycle=cycle,targetSearchDelayed=weapon.Has<TargetSearchDelayComponent>(),
                 networkRemote=weapon.Has<NetworkWeaponRemoteComponent>(),guidingMissiles=weapon.Has<ActiveGuidanceComponent>(),
                 targetHorizontalAngle=w.TargetHorizontalAngle,targetVerticalAngle=w.TargetVerticalAngle,currentVerticalAngle=w.CurrentVerticalAngle,
                 lowRangeRaw=a?.LowAltRange,highRangeRaw=a?.HighAltRange,seadRangeOverrideRaw=a?.SeadProjectileRangeOverride,
                 position=hasPosition?Coords(pos):null,selected=selectedData,targetPriority,
-                observations=AaObservationPolicy.Describe(w.IsEnabled,hold,w.AmmoInMagazine.Value,reload,burst,cycle,aiming,selected,canAim,margin),
+                observations=AaObservationPolicy.Describe(w.IsEnabled,hold,w.AmmoInMagazine.Value,reload,burst,cycle,aimingInProgress==true,selected,canAim,margin)
+                    .Concat(aimingInProgress==null?new[]{"aim_time_nonfinite_or_unavailable"}:Array.Empty<string>()).ToArray(),
                 nearbyObserved=observed,explanation="LateUpdate sampled state, including deferred shot signals; NOT exact state at shot time or native rejection reasons."});
         }
         catch(Exception e){Fail(e);}
@@ -193,12 +197,12 @@ static class GroundAaLog
         if(off)return;
         try
         {
-            string state=JsonSerializer.Serialize(data);float now=Time.time;
+            string state=AaLogJson.Serialize(data);float now=Time.time;
             string key=kind+":"+Key(weapon)+":"+Key(target);
             if(!force&&Last.TryGetValue(key,out var old)&&old.state==state&&now-old.time<1)return;
             if(Last.Count>=MaxKeys)Last.Clear();Last[key]=(state,now);
             if(Pending.Count>=MaxPending){dropped++;return;}
-            Pending.Enqueue(JsonSerializer.Serialize(new{seq=++sequence,t=now,kind,weapon=weapon.GetHashCode(),target=target.GetHashCode(),data}));
+            Pending.Enqueue(AaLogJson.Serialize(new{seq=++sequence,t=now,kind,weapon=weapon.GetHashCode(),target=target.GetHashCode(),data}));
         }
         catch(Exception e){Fail(e);}
     }
@@ -218,7 +222,7 @@ static class GroundAaLog
             for(int i=0;i<256&&Pending.TryDequeue(out var s);i++)
             {
                 if(bytes+Encoding.UTF8.GetByteCount(s)+1>MaxBytes||lines>=MaxLines)
-                {writer.WriteLine(JsonSerializer.Serialize(new{kind="limit",bytes,lines,dropped}));writer.Dispose();writer=null;off=true;return;}
+                {writer.WriteLine(AaLogJson.Serialize(new{kind="limit",bytes,lines,dropped}));writer.Dispose();writer=null;off=true;return;}
                 writer.WriteLine(s);bytes+=Encoding.UTF8.GetByteCount(s)+1;lines++;
             }
             writer.Flush();

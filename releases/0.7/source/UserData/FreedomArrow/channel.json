@@ -1,9 +1,9 @@
 {
   "channel": "testing",
-  "package_version": "0.7.0-devtest.lat.3",
+  "package_version": "0.7.0-devtest.lat.4",
   "spotting": "vanilla",
   "deployment_status": "built_offline_execution_held",
-  "verification": "Passive LateUpdate AA observer, zero native AA detours. Gameplay tables identical to lat.2. Policy/compiled-code checks passed; native sampling and performance untested.",
+  "verification": "Lat.3 logs demonstrated AA firing and passive sampling, then managed JSON serialization failure on a non-finite float. Lat.4 preserves NaN/Infinity as JSON strings and corrects zero-time aim labels. Native rerun pending.",
   "test_lane": "lateralus-devtest-passive-aa",
   "base_version": "0.7.0-dev.15",
   "base_commit": "9d8076dd6a4e719feebc0f381920620fd08c973f",
