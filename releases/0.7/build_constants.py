@@ -1216,6 +1216,13 @@ def main():
     for key,c in rl['ammo'].items():
         aid=int(key);assert ammo_users(aid)==set(c['users']),(aid,sorted(ammo_users(aid)))
         put('AmmunitionsJson',aid,c['fields'],'Infantry launcher '+c['group']+': '+c['name'])
+    # Quantity is per carrier for infantry disposables: preserve the two AT4 carriers.
+    for key,c in rl.get('stocks',{}).items():
+        r=effective['WeaponAmmunitionsJson'][int(key)]
+        assert (r['UnitId'],r['WeaponId'],r['AmmunitionId'],r['Quantity'])==(c['unit'],c['weapon'],c['ammo'],c['before']),r
+        count=sum(c['weapon'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values() if m['UnitId']==c['unit'])
+        assert count==c['carriers'] and count*c['quantity']==c['total'],(key,count,c)
+        put('WeaponAmmunitionsJson',r['Id'],{'Quantity':c['quantity']},'Mech. Riflemen MMG: four AT4CS-RS, two per carrier')
     m7=rl['m72a7'];why='M72A7 own round: multipurpose EFP'
     rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'] and r['WeaponId']==m7['weapon']]
     assert {r['UnitId'] for r in rows}==set(m7['users']),rows
