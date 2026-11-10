@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.12 — development candidate
+# Freedom Arrow 0.7.0-dev.13 — development candidate
 
 **This candidate carries forward dev.115 and changes XM30 to190 points with Bradley voice assignment. Install the companion combined asset pack0.1.3 for XM30 scale0.77 (10% larger than0.70) and the China music update.** No PLA test data is included.
 
@@ -57,6 +57,12 @@ Su-75 Checkmate base price280 →260 points, per Osama. Availability remains2 an
 
 dev.9 combines the dev.8 supply-crash correction and diagnostics with the Abrams X 5–6 second autoloader and the Su-75 Checkmate base price 260. Osama lifted the hold on 9 November 2026; this build is published to #build-install and installed on his PC. Live gameplay, supply unloading and firing intervals remain untested.
 
+## Changes in dev.13 (Osama, 9 November 2026)
+
+- New cards moved from the PLA test lane, with stand-in stats copied from a parent: Su-47 Berkut (Russia, Su-35S stats and decks), F-14 Tomcat (US, F-15C stats and decks), YF-23 Black Widow II (US, F-22 stats and decks; each bay carries only 2x AIM-120 or 2x AIM-260).
+- They are built after every other card, so all existing option IDs and saved decks are unchanged. Their 36 options use new network IDs 20241-20276.
+- Their 3D models are private (paid CGTrader models) and load only where FAModels has them; other players see the parent's model.
+
 ## Changes in dev.12 (Osama, 9 November 2026: make sure it does not happen again)
 
 - ZIL Karatel: it had two default abilities (1 smoke and Supply Light, 250 supplies). The game loads only the first default ability row (the same bug that dropped Abrams X defenses), so one of them was lost. They are now one combined profile with 1 smoke and 250 supplies.
@@ -104,3 +110,4 @@ All changes are data only. Built and checked offline; not yet tested in a match.
 - 2026-11-09 21:36:33 PST (America/Los_Angeles) — Built 0.7.0-dev.10 from the queued changes.
 - 2026-11-09 21:44:59 PST (America/Los_Angeles) — Built 0.7.0-dev.11: option ability links (single-player vs multiplayer check).
 - 2026-11-09 21:50:52 PST (America/Los_Angeles) — Built 0.7.0-dev.12: Karatel single default profile; ability and equipment build guards.
+- 2026-11-09 22:21:46 PST (America/Los_Angeles) — Built 0.7.0-dev.13: Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II.

@@ -1299,7 +1299,7 @@ def main():
     # in the parent's specializations or the listed ones (new-cards-contract.json). First made on the PLA test branch (pla.20-26).
     nc=json.loads((R/'new-cards-contract.json').read_text())
     unit_tables=['UnitAbilitiesJson','UnitPropulsionsJson','TurretUnitsJson','WeaponAmmunitionsJson','SensorUnitsJson','SquadMembersJson','SquadWeaponsJson','UnitArmorsJson']
-    for c in nc['cards']:
+    def make_card(c):
         why='New card '+c['name'];par,new=c['parent'],c['unit'];p=effective['Units'][par]
         assert new not in effective['Units'],(new,par)
         add_unit(new,par,{'Name':c['name'],'HUDName':c['name'],'DisplayInArmory':True},why)
@@ -1309,6 +1309,7 @@ def main():
             mine=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==mod['Id'] and not o.get('ReplaceUnitId')),key=lambda o:(o['Order'],o['Id']))
             if not mine:continue
             m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why);default=any(o['IsDefault'] for o in mine)
+            if c.get('only_options'):mine=[o for o in mine if any(k in o['Name'] for k in c['only_options'])];assert mine,(c['name'],mod['Id'])  # Osama 9 Nov: YF-23 AIM-120/AIM-260 only
             for order,o in enumerate(mine):clone('OptionsJson',o['Id'],{'ModificationId':m,'Order':order,'IsDefault':o['IsDefault'] or (not default and order==0),**({'ReplaceUnitName':c['name']} if o.get('ReplaceUnitName') else {})},why)
         avail=[r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par];assert avail,par
         if c.get('specs'):
@@ -1334,6 +1335,7 @@ def main():
             ws={x['WeaponId'] for x in effective['TurretWeaponsJson'].values() if x['TurretId'] in sw.values()}
             src=[r for r in list(effective['WeaponAmmunitionsJson'].values()) if r['UnitId']==donor and r['WeaponId'] in ws];assert {r['WeaponId'] for r in src}==ws,(ws,src)
             for r in src:clone('WeaponAmmunitionsJson',r['Id'],{'UnitId':new},why)
+    for c in nc['cards']:make_card(c)
     # Abrams X (abramsx-contract.json): one configuration on the SEP v3 copy; 30 mm Bushmaster in place of the commander's M2.
     ax=json.loads((R/'abramsx-contract.json').read_text());why='Abrams X';u=ax['unit']
     put('Units',u,{'Cost':ax['cost']},why)
@@ -1583,6 +1585,9 @@ def main():
     gun_ammo=[a for a in effective['WeaponAmmunitionsJson'].values() if a['UnitId']==ax['unit'] and a['WeaponId']==ax['main_weapon_like']]
     assert gun_ammo
     for a in gun_ammo:put('WeaponAmmunitionsJson',a['Id'],{'WeaponId':own_main},'Abrams X retain own main gun ammunition')
+    # Cards moved from the PLA test lane (Osama 9 Nov: "push Su-47, F-14 and the YF-23"). Built last, so every earlier clone ID,
+    # and with it every saved option ID, stays unchanged; their options get new network IDs in option-network-ids.json.
+    for c in nc.get('late_cards',[]):make_card(c)
     # Osama 9 Nov (single-player vs multiplayer differences): every ability an option grants needs the unit's
     # UnitAbilities link, as in vanilla. The check near the top runs before later contracts add option abilities
     # (BMP-2G/M and T-72B1 smoke, BMD-2 smoke kept after the dev.5 smoke pass), so close the gap here and re-check.
