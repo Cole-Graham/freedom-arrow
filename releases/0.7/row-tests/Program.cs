@@ -290,8 +290,8 @@ foreach(var pair in new[]{("UnitPropulsionsJson","MobilityId"),("SensorUnitsJson
  var b=merged[pair.Item1].Where(r=>r["UnitId"].GetValue<int>()==194).Select(r=>r[pair.Item2].GetValue<int>()).Order().ToArray();Check(a.SequenceEqual(b),"Karatel Tigr profile "+pair.Item1);
 }
 var ka=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==973).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
-Check(ka.Any(a=>a["IsDefault"].GetValue<bool>()&&a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==1),"Karatel default smoke");
-Check(ka.Any(a=>a["IsDefault"].GetValue<bool>()&&a["IsResupplyAbility"].GetValue<bool>()&&a["ResupplyPoints"].GetValue<int>()==250),"Karatel250 supplies");
+Check(ka.Count(a=>a["IsDefault"].GetValue<bool>())==1&&ka.Any(a=>a["IsDefault"].GetValue<bool>()&&a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==1&&a["IsResupplyAbility"].GetValue<bool>()&&a["ResupplyPoints"].GetValue<int>()==250),"Karatel one default profile: 1 smoke and 250 supplies");
+
 Console.WriteLine("PASS: Karatel Tigr profiles,35 points,default smoke,250 supplies");
 
 var xm=Row("Units",983);Check(xm["Cost"].GetValue<int>()==190&&xm["CountryId"].GetValue<int>()==2&&xm["Role"].GetValue<int>()==11,"XM30 US tank190");
@@ -362,3 +362,5 @@ var uaLinks=merged["UnitAbilitiesJson"].Select(r=>(r["UnitId"].GetValue<int>(),r
 var modUnit=merged["ModificationsJson"].ToDictionary(r=>r["Id"].GetValue<int>(),r=>r["UnitId"].GetValue<int>());
 foreach(var o in merged["OptionsJson"])foreach(var f in new[]{"Ability1Id","Ability2Id","Ability3Id"}){int a=o[f]?.GetValue<int>()??0;int m=o["ModificationId"].GetValue<int>();if(a==0||!modUnit.ContainsKey(m)||Row("AbilitiesJson",a)["Name"].GetValue<string>()=="Empty ability")continue;Check(uaLinks.Contains((modUnit[m],a)),"option ability has its unit link "+o["Id"]+" "+a);}
 Console.WriteLine("PASS: every option ability has its unit link (vanilla pattern)");
+foreach(var g in merged["UnitAbilitiesJson"].GroupBy(r=>r["UnitId"].GetValue<int>()))Check(g.Count(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsDefault"].GetValue<bool>())<=1,"one default ability row per unit (LoadAbility keeps only the first) "+g.Key);
+Console.WriteLine("PASS: at most one default ability row per unit");

@@ -4,7 +4,7 @@ Includes reviewed dev.1/dev.2 and the US/Baltic data batch.
 Card splits, squad resizing and option retirement are listed in structural-contract.json.
 """
 from pathlib import Path
-import argparse, copy, hashlib, json, math, re, sys
+import argparse, collections, copy, hashlib, json, math, re, sys
 R=Path(__file__).resolve().parent
 # Saved decks hold this option ID. A failure here means a clone moved above it.
 XM913_APS_OPTION=2000379
@@ -1534,6 +1534,42 @@ def main():
                 retired={'IsDefault':False}
                 if unit==983:retired['ECMAccuracyMultiplier']=0.0
                 put('AbilitiesJson',profile['Id'],retired,'0.7 only one default profile; XM30 has no ECM')
+    # Karatel (Osama 9 Nov audit): its smoke and Supply Light were two default rows, so the loader kept only one.
+    # Combine smoke into the resupply profile; the smoke profile stays linked but not default.
+    kprof=[effective['AbilitiesJson'][effective['UnitAbilitiesJson'][rid]['AbilityId']] for rid in rows_of('UnitAbilitiesJson',973)]
+    ksup=next(a for a in kprof if a['IsResupplyAbility']);ksmoke=next(a for a in kprof if a['IsSmoke'] and not a['IsResupplyAbility'])
+    put('AbilitiesJson',ksup['Id'],{**{k:ksmoke[k] for k in ('IsSmoke','SmokeAmmunitionId','SmokeAmmunitionQuantity','SmokeCooldown')},'IsDefault':True},'0.7 first-default native loader: Karatel combined smoke and resupply')
+    put('AbilitiesJson',ksmoke['Id'],{'IsDefault':False},'0.7 only one default profile')
+    # Guard for every unit: the native loader keeps only the first default ability row.
+    multi=[u for u in effective['Units'] if sum(effective['AbilitiesJson'][r['AbilityId']]['IsDefault'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==u)>1]
+    assert not multi,('more than one default ability row; the game loads only the first',multi)
+    # Equipment guards (Osama 9 Nov: "make sure equipment doesn't have this issue too"). Each check fails the build
+    # instead of shipping a unit that the armory and a networked spawn could build differently. Vanilla's own
+    # exceptions are allowed; anything new must be fixed.
+    def equipment_faults(tables):
+        TU,T,TW,WA,M,O=(tables[k] for k in ('TurretUnitsJson','TurretsJson','TurretWeaponsJson','WeaponAmmunitionsJson','ModificationsJson','OptionsJson'))
+        linked=collections.defaultdict(set);ammo=collections.defaultdict(set);weps=collections.defaultdict(set);faults=set()
+        for r in TU.values():linked[r['UnitId']].add(r['TurretId'])
+        for r in WA.values():ammo[r['UnitId']].add(r['WeaponId'])
+        for r in TW.values():weps[r['TurretId']].add(r['WeaponId'])
+        unit_of={m['Id']:m['UnitId'] for m in M.values()}
+        chosen=collections.defaultdict(set)
+        for o in O.values():
+            for i in range(21):
+                t=o.get(f'Turret{i}Id')
+                if t and o['ModificationId'] in unit_of:chosen[unit_of[o['ModificationId']]].add(t)
+        for u,ts in linked.items():
+            for t in ts|chosen[u]:
+                if t not in T:faults.add(('missing turret',u,t));continue
+                selectable=T[t]['IsDefault'] or t in chosen[u]
+                p=T[t]['ParentTurretId']
+                if selectable and p is not None and p not in ts|chosen[u]:faults.add(('selectable child turret without its parent on the unit',u,t))
+                if selectable:
+                    for w in weps[t]:
+                        if w not in ammo[u]:faults.add(('selectable weapon without an ammunition row (armory hides the unit)',u,w))
+        return faults
+    new_faults=equipment_faults(effective)-equipment_faults(original)
+    assert not new_faults,sorted(new_faults)[:10]
     # Allocate the gun last to preserve existing option/turret/weapon clone IDs.
     # Intrinsic main turret covers the empty-loadout path as well as selected options.
     ax=json.loads((R/'abramsx-contract.json').read_text())
