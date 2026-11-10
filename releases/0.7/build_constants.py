@@ -1234,7 +1234,7 @@ def main():
         assert len(wa)==1 and wa[0]['AmmunitionId']==g['ammo_from'],(uid,wa)
         put('WeaponAmmunitionsJson',wa[0]['Id'],{'WeaponId':w22,'AmmunitionId':a22},why)
     assert not ammo_users(g['ammo_from']) and not any(g['weapon_from'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values()),'RPG-18 still carried'
-    # Lateralus batch: helicopter flares 15 points and quantity 15; plane flares 10 points (missile-chance-contract.json).
+    # Lateralus batch: helicopter and plane flares 10 points; helicopter flare quantity 15 (missile-chance-contract.json).
     mc=json.loads((R/'missile-chance-contract.json').read_text())
     for a in [a for a in effective['AbilitiesJson'].values() if a.get('IsDecoy')]:
         users={effective['Units'][l['UnitId']]['Type'] for l in effective['UnitAbilitiesJson'].values() if l['AbilityId']==a['Id'] and l['UnitId'] in effective['Units']}

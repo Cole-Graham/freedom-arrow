@@ -1,7 +1,7 @@
 {
- "note": "Lateralus batch (8 November 2026): flat missile hit chance. Runtime (source/runtime-qa/MissileHitChance.cs): chance = accuracy x (1 - (1 - ECM) - burning flares x (1 - (1 - flare resistance) x flare strength)) x stress; re-rolls pass with min(1, chance / lowest chance so far), so they do not compound. Data: flare (decoy) abilities by unit type: helicopters (8) 0.85 (15 percentage points per active flare), planes (16) 0.9 (10 points). Helicopter flare quantity is 15 (was 10), Lateralus 9 November 2026. Re-rolls count up to 4 burning flares: game-config.json FlareRerollCap writes BattleSystemSettings.MAX_FLARES_COUNT_MISSILE_REROLL (vanilla 1). Missile speeds, plane flare counts, burn times and cooldowns are unchanged.",
+ "note": "Lateralus batch (8 November 2026): flat missile hit chance. Runtime (source/runtime-qa/MissileHitChance.cs): chance = accuracy x (1 - (1 - ECM) - burning flares x (1 - (1 - flare resistance) x flare strength)) x stress; re-rolls pass with min(1, chance / lowest chance so far), so they do not compound. Data: flare (decoy) abilities by unit type: helicopters (8) and planes (16) 0.9 (10 percentage points per active flare). Helicopter flare quantity is 15 (was 10), Lateralus 9 November 2026; he set helicopters to 15 points and then back to 10 the same evening. Re-rolls count up to 4 burning flares: game-config.json FlareRerollCap writes BattleSystemSettings.MAX_FLARES_COUNT_MISSILE_REROLL (vanilla 1). Missile speeds, plane flare counts, burn times and cooldowns are unchanged.",
  "decoy_accuracy": {
-  "8": 0.85,
+  "8": 0.9,
   "16": 0.9
  },
  "decoy_quantity": {
