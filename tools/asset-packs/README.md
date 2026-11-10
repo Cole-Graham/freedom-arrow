@@ -29,8 +29,15 @@ The full combined package uses the ordinary launcher process. The delta updater 
 
 `python tools/asset-packs/test_pack.py` tests dependency closure, separation from PLA/gameplay data, exclusion of local playlist/history state, changed-file export, existing model mappings, saved playlist retention and rejection of an incorrect base. Actual model rendering, music playback and matchmaking still require game tests.
 
+## Combined pack0.1.6
+
+The approved live selection now includes Su-47, F-14 and YF-23 alongside the seven previous models. B-21 uses the approved gear-down4K armory and gear-up1K battle copies. FAModels0.3.4 supplies opt-in clean glass for F-14, Su-47 and Su-57D. Music1.4.1 and all5647 current voices match pack0.1.5 byte for byte. No PLA test models are added.
+
+`approved-live-016.json` records the archive hash and exact source commits. The package manifest verifies5998 files. A new game launch is still needed to check canopy appearance. Unit portraits and cutout icons belong to the gameplay DLL; this pack does not set gameplay prices, pools or weapons.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
 
 - 2026-11-09 16:45:58 PST (America/Los_Angeles) — Corrected asset type to a normal add-on in0.1.1; verified15 install/update checks against unchanged manager Core source using full real archives.
+- 2026-11-09 23:12:57 PST (America/Los_Angeles) — Recorded pack0.1.6: ten live models, approved B-21, clean canopy loader and preserved1.4.1 audio/voices.

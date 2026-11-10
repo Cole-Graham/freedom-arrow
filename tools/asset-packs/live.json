@@ -8,7 +8,10 @@
     "Su-57D",
     "Su-75 Checkmate",
     "ZIL Karatel Punisher",
-    "XM30"
+    "XM30",
+    "Su-47 Berkut",
+    "F-14 Tomcat",
+    "YF-23 Black Widow II"
   ],
   "notes": [
     "Optional live-unit models, music and existing voice assets. No gameplay constants or PLA test units.",
