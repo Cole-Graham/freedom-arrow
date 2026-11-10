@@ -1,0 +1,448 @@
+{
+  "version": "1.4.2",
+  "status": "installed_sample_verified",
+  "basis": "FFmpeg full decode and EBU R128 measurement; actual player methods tested with simulated FMOD/clock. Native audible playback untested.",
+  "reference": {
+    "source": "UserData/FAMusic/Packs/USA/Menu/Menu - CnC USA Mix.mp3",
+    "sha256": "69a06399c0c1540504a7a389229b82e7ad998d8b57535f81b6ec4992d80ec923",
+    "measurement": {
+      "input_i": "-11.37",
+      "input_tp": "2.28",
+      "input_lra": "9.80",
+      "input_thresh": "-21.65",
+      "output_i": "-16.15",
+      "output_tp": "-1.00",
+      "output_lra": "8.80",
+      "output_thresh": "-26.35",
+      "normalization_type": "dynamic",
+      "target_offset": "0.15"
+    }
+  },
+  "recipes": {
+    "version": "1.4.2",
+    "sample_rate": 48000,
+    "channels": 2,
+    "gap_seconds": 120,
+    "trailing_gap_seconds": 120,
+    "true_peak_limit_dbtp": -1.0,
+    "loudness_reference": "UserData/FAMusic/Packs/USA/Menu/Menu - CnC USA Mix.mp3",
+    "packs": {
+      "China": {
+        "theme_prefix": "China",
+        "playlists": [
+          [
+            11,
+            7,
+            8,
+            6,
+            5,
+            4,
+            3,
+            10,
+            9,
+            2,
+            1
+          ],
+          [
+            6,
+            11,
+            8,
+            10,
+            2,
+            9,
+            10,
+            3,
+            4,
+            5,
+            7,
+            1
+          ]
+        ]
+      },
+      "Black Hawk Down": {
+        "theme_prefix": "GLA",
+        "playlists": [
+          [
+            11,
+            10,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            10,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11,
+            2,
+            3,
+            1
+          ]
+        ],
+        "exclude_battle_themes": [
+          9
+        ]
+      }
+    }
+  },
+  "mixes": [
+    {
+      "pack": "China",
+      "playlist": 1,
+      "order": [
+        11,
+        7,
+        8,
+        6,
+        5,
+        4,
+        3,
+        10,
+        9,
+        2,
+        1
+      ],
+      "path": "UserData/FAMusic/Packs/China/Menu/Menu - China Compilation 1.mp3",
+      "sha256": "ebe51da1e1bfb8d4b050756ebdb5df8ef743e9b338fbd04e4140620cfa9f1370",
+      "bytes": 141261201,
+      "expected_samples": 169510287,
+      "duration_seconds": 3531.4643125,
+      "timeline": [
+        {
+          "theme": 11,
+          "start_sample": 0,
+          "end_sample": 11672173
+        },
+        {
+          "theme": 7,
+          "start_sample": 17432173,
+          "end_sample": 26919981
+        },
+        {
+          "theme": 8,
+          "start_sample": 32679981,
+          "end_sample": 42822081
+        },
+        {
+          "theme": 6,
+          "start_sample": 48582081,
+          "end_sample": 57867700
+        },
+        {
+          "theme": 5,
+          "start_sample": 63627700,
+          "end_sample": 72524290
+        },
+        {
+          "theme": 4,
+          "start_sample": 78284290,
+          "end_sample": 87009361
+        },
+        {
+          "theme": 3,
+          "start_sample": 92769361,
+          "end_sample": 102061986
+        },
+        {
+          "theme": 10,
+          "start_sample": 107821986,
+          "end_sample": 117258822
+        },
+        {
+          "theme": 9,
+          "start_sample": 123018822,
+          "end_sample": 134873382
+        },
+        {
+          "theme": 2,
+          "start_sample": 140633382,
+          "end_sample": 149358990
+        },
+        {
+          "theme": 1,
+          "start_sample": 155118990,
+          "end_sample": 163750287
+        }
+      ],
+      "decoded_samples": 169510287,
+      "all_expected_gap_interiors_are_digital_silence": true,
+      "gap_count": 11,
+      "gap_peak_pcm16": 0,
+      "integrated_lufs": -11.5,
+      "true_peak_dbtp": -0.7
+    },
+    {
+      "pack": "China",
+      "playlist": 2,
+      "order": [
+        6,
+        11,
+        8,
+        10,
+        2,
+        9,
+        10,
+        3,
+        4,
+        5,
+        7,
+        1
+      ],
+      "path": "UserData/FAMusic/Packs/China/Menu/Menu - China Compilation 2.mp3",
+      "sha256": "23b8b2c21f989f59452664ac9ed880d4a38a82378b61197288c2229f9ca1081f",
+      "bytes": 153925521,
+      "expected_samples": 184707123,
+      "duration_seconds": 3848.0650625,
+      "timeline": [
+        {
+          "theme": 6,
+          "start_sample": 0,
+          "end_sample": 9285619
+        },
+        {
+          "theme": 11,
+          "start_sample": 15045619,
+          "end_sample": 26717792
+        },
+        {
+          "theme": 8,
+          "start_sample": 32477792,
+          "end_sample": 42619892
+        },
+        {
+          "theme": 10,
+          "start_sample": 48379892,
+          "end_sample": 57816728
+        },
+        {
+          "theme": 2,
+          "start_sample": 63576728,
+          "end_sample": 72302336
+        },
+        {
+          "theme": 9,
+          "start_sample": 78062336,
+          "end_sample": 89916896
+        },
+        {
+          "theme": 10,
+          "start_sample": 95676896,
+          "end_sample": 105113732
+        },
+        {
+          "theme": 3,
+          "start_sample": 110873732,
+          "end_sample": 120166357
+        },
+        {
+          "theme": 4,
+          "start_sample": 125926357,
+          "end_sample": 134651428
+        },
+        {
+          "theme": 5,
+          "start_sample": 140411428,
+          "end_sample": 149308018
+        },
+        {
+          "theme": 7,
+          "start_sample": 155068018,
+          "end_sample": 164555826
+        },
+        {
+          "theme": 1,
+          "start_sample": 170315826,
+          "end_sample": 178947123
+        }
+      ],
+      "decoded_samples": 184707123,
+      "all_expected_gap_interiors_are_digital_silence": true,
+      "gap_count": 12,
+      "gap_peak_pcm16": 0,
+      "integrated_lufs": -11.5,
+      "true_peak_dbtp": -0.7
+    },
+    {
+      "pack": "Black Hawk Down",
+      "playlist": 1,
+      "order": [
+        11,
+        10,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "path": "UserData/FAMusic/Packs/Black Hawk Down/Menu/Menu - Black Hawk Down Compilation 1.mp3",
+      "sha256": "bd3897a158ba8e738cceb91b95bae0f71b38030558a00b01201aa41535ca9714",
+      "bytes": 127091611,
+      "expected_samples": 152506835,
+      "duration_seconds": 3177.2257291666665,
+      "timeline": [
+        {
+          "theme": 11,
+          "start_sample": 0,
+          "end_sample": 11017637
+        },
+        {
+          "theme": 10,
+          "start_sample": 16777637,
+          "end_sample": 27658845
+        },
+        {
+          "theme": 8,
+          "start_sample": 33418845,
+          "end_sample": 43648294
+        },
+        {
+          "theme": 7,
+          "start_sample": 49408294,
+          "end_sample": 58524982
+        },
+        {
+          "theme": 6,
+          "start_sample": 64284982,
+          "end_sample": 73537621
+        },
+        {
+          "theme": 5,
+          "start_sample": 79297621,
+          "end_sample": 87767158
+        },
+        {
+          "theme": 4,
+          "start_sample": 93527158,
+          "end_sample": 102392352
+        },
+        {
+          "theme": 3,
+          "start_sample": 108152352,
+          "end_sample": 116574035
+        },
+        {
+          "theme": 2,
+          "start_sample": 122334035,
+          "end_sample": 132201481
+        },
+        {
+          "theme": 1,
+          "start_sample": 137961481,
+          "end_sample": 146746835
+        }
+      ],
+      "decoded_samples": 152506835,
+      "all_expected_gap_interiors_are_digital_silence": true,
+      "gap_count": 10,
+      "gap_peak_pcm16": 0,
+      "integrated_lufs": -11.5,
+      "true_peak_dbtp": -0.7
+    },
+    {
+      "pack": "Black Hawk Down",
+      "playlist": 2,
+      "order": [
+        10,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        2,
+        3,
+        1
+      ],
+      "path": "UserData/FAMusic/Packs/Black Hawk Down/Menu/Menu - Black Hawk Down Compilation 2.mp3",
+      "sha256": "8a41415fbbd857e9c2fe176eafda907992886544fc28aeb86936a7b0c118b060",
+      "bytes": 127091611,
+      "expected_samples": 152506835,
+      "duration_seconds": 3177.2257291666665,
+      "timeline": [
+        {
+          "theme": 10,
+          "start_sample": 0,
+          "end_sample": 10881208
+        },
+        {
+          "theme": 4,
+          "start_sample": 16641208,
+          "end_sample": 25506402
+        },
+        {
+          "theme": 5,
+          "start_sample": 31266402,
+          "end_sample": 39735939
+        },
+        {
+          "theme": 6,
+          "start_sample": 45495939,
+          "end_sample": 54748578
+        },
+        {
+          "theme": 7,
+          "start_sample": 60508578,
+          "end_sample": 69625266
+        },
+        {
+          "theme": 8,
+          "start_sample": 75385266,
+          "end_sample": 85614715
+        },
+        {
+          "theme": 11,
+          "start_sample": 91374715,
+          "end_sample": 102392352
+        },
+        {
+          "theme": 2,
+          "start_sample": 108152352,
+          "end_sample": 118019798
+        },
+        {
+          "theme": 3,
+          "start_sample": 123779798,
+          "end_sample": 132201481
+        },
+        {
+          "theme": 1,
+          "start_sample": 137961481,
+          "end_sample": 146746835
+        }
+      ],
+      "decoded_samples": 152506835,
+      "all_expected_gap_interiors_are_digital_silence": true,
+      "gap_count": 10,
+      "gap_peak_pcm16": 0,
+      "integrated_lufs": -11.5,
+      "true_peak_dbtp": -0.8
+    }
+  ],
+  "player_sha256": "6f7d03261d2e6dfbc1e18bcecf8b54a561853de053fba61d57abf8ceef2f4ca5",
+  "player_checks": [
+    "PASS China: two choices, each forced RNG outcome, no extra gap, duplicate cue retained; 4000 draws: 1984, 2016",
+    "PASS Black Hawk Down: two choices, each forced RNG outcome, no extra gap, duplicate cue retained; 4000 draws: 1984, 2016",
+    "PASS legacy playback compatibility, new compiled menus, USA timing, battle120s/calm10s, victory once; simulated clock/FMOD only."
+  ],
+  "bhd_theme11_battle": false,
+  "source_archive": "FreedomArrow-Assets-0.1.14.bamod",
+  "source_archive_sha256": "1683bae9270a1d19e43cba662c93f92a5002635c1d61841191762701d25ac153",
+  "install": {
+    "time": "2026-11-10T15:18:12.005031-08:00",
+    "unchanged_files": 9144,
+    "current_pack": "China",
+    "game_running": false,
+    "native_playback_verified": false
+  }
+}

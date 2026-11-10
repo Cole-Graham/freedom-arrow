@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.4.1", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.4.2", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
@@ -374,7 +374,7 @@ public sealed class Player : MelonMod
             }
             if (playing == 0 && !playedOnce)
             {
-                if (channel != IntPtr.Zero && (Path.GetFileName(folder) == "Battle" || (Path.GetFileName(folder) == "Menu" && pack == "Black Hawk Down")))
+                if (channel != IntPtr.Zero && (Path.GetFileName(folder) == "Battle" || (Path.GetFileName(folder) == "Menu" && pack == "Black Hawk Down" && MenuSequence.CompilationFiles(pack, folder).Count == 0)))
                 {
                     StopTrack();
                     var gap = Path.GetFileName(folder) == "Menu" ? MenuSequence.MenuGapSeconds(pack) : Path.GetFileName(playingDir) == "Calm" ? CalmGap : BattleGap;
@@ -409,8 +409,9 @@ public sealed class Player : MelonMod
             queues[dir] = queue = Files(dir).OrderBy(_ => Rng.Next()).ToList();
         string file;
         var isMenu = Path.GetFileName(dir) == "Menu";
-        var orderedMenu = isMenu && MenuSequence.IsOrderedPack(pack);
-        var intro = isMenu ? Files(Path.Combine(dir, "First")) : new List<string>();
+        var compilations = isMenu ? MenuSequence.CompilationFiles(pack, dir) : new List<string>();
+        var orderedMenu = isMenu && compilations.Count == 0 && MenuSequence.IsOrderedPack(pack);
+        var intro = isMenu && compilations.Count == 0 ? Files(Path.Combine(dir, "First")) : new List<string>();
         if (orderedMenu && intro.Count == 0) intro = Files(dir);
         var regular = Files(dir);
         if (orderedMenu)
@@ -419,7 +420,12 @@ public sealed class Player : MelonMod
             if (battleTracks.Count > 0) regular = battleTracks;
             regular = regular.Where(f => !intro.Any(i => Path.GetFileName(i).Equals(Path.GetFileName(f), StringComparison.OrdinalIgnoreCase))).ToList();
         }
-        if (intro.Count > 0)
+        if (compilations.Count > 0)
+        {
+            // Each complete mix is an independent equal-probability choice. Its gaps are embedded.
+            file = compilations[Rng.Next(compilations.Count)];
+        }
+        else if (intro.Count > 0)
         {
             // Explicit menu opener once on entering this pack/menu; then the regular shuffled queue.
             file = menuSequence.Next(intro, regular, Rng);
