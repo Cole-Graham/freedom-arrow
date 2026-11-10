@@ -1,0 +1,25 @@
+{
+  "id": "freedomarrow.assets.live",
+  "name": "Freedom Arrow \u2014 Models and Music",
+  "units": [
+    "Abrams X",
+    "B-21 Raider",
+    "X-47B",
+    "Su-57D",
+    "Su-75 Checkmate",
+    "ZIL Karatel Punisher",
+    "XM30"
+  ],
+  "notes": [
+    "Optional live-unit models, music and existing voice assets. No gameplay constants or PLA test units.",
+    "USA is the default playlist on a new install; existing playlist choices are preserved.",
+    "Private prototype packaging; this manifest does not establish public redistribution rights."
+  ],
+  "music_roots": [
+    "UserData/FAMusic/Packs",
+    "UserData/FAMusic/Voice"
+  ],
+  "music_files": [
+    "UserData/FAMusic/voice-presets.txt"
+  ]
+}
