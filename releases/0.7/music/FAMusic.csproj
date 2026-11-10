@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable>
-    <AssemblyName>FAMusic</AssemblyName><Version>1.3.10</Version>
+    <AssemblyName>FAMusic</AssemblyName><Version>1.4.1</Version>
     <ML>$(GameDir)/MelonLoader/net6</ML><IL2>$(GameDir)/MelonLoader/Il2CppAssemblies</IL2>
   </PropertyGroup>
   <ItemGroup>

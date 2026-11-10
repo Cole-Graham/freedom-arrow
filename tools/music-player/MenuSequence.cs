@@ -7,6 +7,7 @@ internal sealed class MenuSequence
     public static float MenuGapSeconds(string pack) => pack == "Black Hawk Down" ? 120f : 0f;
     bool started;
     readonly Queue<string> remaining = new();
+    public int Remaining => remaining.Count;
     public void Reset() { started = false; remaining.Clear(); }
     public string Next(IReadOnlyList<string> intro, IReadOnlyList<string> regular, Random random)
     {
