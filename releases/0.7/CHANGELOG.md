@@ -4,6 +4,8 @@
 
 ## New for 0.7
 
+- **China menu music:** track 011 (existing `China theme 11.mp3`) plays first on entering the China menu playlist, then the remaining menu music. The old menu recording is `China theme 01 (menu).mp3`. Source for music component 1.3.10 is staged in `music/`; no new 0.7 package is built or installed.
+
 - **Voices:** XM30 switches from its T-15 donor audio preset to the M2A3 Bradley preset (`UNIT_SOUND_PRESET_BRADLEY_ALL`). The final Bradley instruction supersedes the earlier Paladin wording. Abrams X retains `UNIT_SOUND_PRESET_ABRAMS`, the same assignment as existing Abrams, for the requested Crusader Tank lines. This queues the unit-to-voice assignment; audible clip identity and playback are not verified in this preparation.
 
 - **XM30 price:** 220 → 190 points. Staged gameplay override for unit 983; not applied to the current play build.
@@ -35,9 +37,16 @@ The inherited 0.6 history remains in ../0.6/source/UserData/FreedomArrow/release
 - Separate visible 3-second TOS fire remains unimplemented. A per-map 100-point 1v1 score limit remains a future note.
 - No new proof of APS, smoke, jammer, scoring synchronization, music playback or model rendering is supplied by this preparation.
 
+## China music preparation evidence
+
+The optional player now recognizes `Packs/<pack>/Menu/First/` as a designated opening queue. Packs without that folder retain their prior behavior, including USA selection. The marked track plays once on entry, then the regular menu queue; it starts first again after leaving/re-entering the menu or switching packs. China track 11 remains in the battle playlist too, since no battle removal was requested. Stage a byte-identical copy at the destination in `music/china-menu-track.json` before the next asset build. No audio binary is committed.
+
+The candidate music DLL compiled with zero warnings/errors against the local game assemblies. Six host-side ordering scenarios passed: opener first, complete regular queue, no opener at refill, menu re-entry, opener-only playlist, and pack reset. Those checks do not prove audible FMOD playback in game. No current PC files or public downloads were changed.
+
 ## Document change log
 
 - 2026-11-09 16:59:06 PST (America/Los_Angeles) — Prepared the next-version branch, current play baseline, corrected naming decision and pending scale change.
 - 2026-11-09 16:59:47 PST (America/Los_Angeles) — Queued XM30 at 190 points for the next update; current play build remains unchanged.
 - 2026-11-09 17:01:29 PST (America/Los_Angeles) — Recorded the current dev.115 Abrams X smoke/jammer defect and read-only runtime-version evidence; root cause and fix remain open.
 - 2026-11-09 17:07:33 PST (America/Los_Angeles) — Staged Bradley voices for XM30 and retained the existing Abrams voice assignment for Abrams X; no running-install changes.
+- 2026-11-09 17:20:16 PST (America/Los_Angeles) — Staged China track 011 as menu opener and compiled/tested the optional first-track ordering component; no installation.
