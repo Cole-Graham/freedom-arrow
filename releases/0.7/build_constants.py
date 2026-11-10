@@ -1631,6 +1631,9 @@ def main():
     # Apply after Su47 copies the earlier agility, isolating only the three requested cards.
     from fighter_turn import apply as apply_fighter_turn
     apply_fighter_turn(effective,clone,put,json.loads((R/'fighter-turn-contract.json').read_text()))
+    from losat import apply as apply_losat
+    apply_losat(effective,clone,add_unit,rows_of,json.loads((R/'losat-contract.json').read_text()))
+    assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')

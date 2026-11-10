@@ -57,7 +57,7 @@ public sealed partial class Prototype
         {
             if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));
             var k=ammoKinds.GetOrAdd(__2.Id,_=>(CritRule.RearAntiTank((int)__2.TrajectoryType,(long)__2.TargetType,__2.PenetrationAtMinRange,config.RearCritMinPenetration),
-                CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name),
+                (CritRule.TankGun((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name) || CritRule.Losat((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.Name)),
                 CritRule.Atgm((int)__2.TrajectoryType,(int)__2.ArmorTargeted,__2.IsTopArmorArmorAttack,__2.Name)));
             int kind=CritRule.Kind((int)__5,__result,config.CritDamage,k.rear,k.tankGun,k.atgm,config.AtgmCritDamage);
             if(kind!=0)critHits.Enqueue((__0,kind,__5,__result,__2.Name));

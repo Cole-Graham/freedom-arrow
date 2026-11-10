@@ -68,6 +68,11 @@ static class CardIcons
         ("FA_X47-Portrait_HOVER","FA_X47-Portrait.png"),
         ("FA_X47-Label","FA_X47-Label.png"),
         ("outline\\FA_X47-Label","FA_X47-Label.png"),
+        ("FA_LOSAT-Portrait","FA_LOSAT-Portrait.png"),
+        ("FA_LOSAT-Portrait_BASIC","FA_LOSAT-Portrait.png"),
+        ("FA_LOSAT-Portrait_HOVER","FA_LOSAT-Portrait.png"),
+        ("FA_LOSAT-Label","FA_LOSAT-Label.png"),
+        ("outline\\FA_LOSAT-Label","FA_LOSAT-Label.png"),
     };
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();
@@ -84,7 +89,7 @@ static class CardIcons
         var seed=new HarmonyMethod(typeof(CardIcons),nameof(Seed));
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSprite)),prefix:seed);
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSpriteAsync)),prefix:seed);
-        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 9 portraits, 9 right-facing cutouts, existing ground icons");
+        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 10 portraits, 10 right-facing cutouts, existing ground icons");
     }
     public static void Seed()
     {

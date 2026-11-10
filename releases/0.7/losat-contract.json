@@ -1,0 +1,17 @@
+{
+  "unit": 984,
+  "name": "MGM-166 LOSAT",
+  "parent": 15,
+  "cost": 100,
+  "specs": [
+    4
+  ],
+  "availability": 4,
+  "vehicle_hp": 12,
+  "damage": 10.5,
+  "penetration": 550,
+  "kornet_ammo": 63,
+  "kornet_weapon": 214,
+  "speed_multiplier": 2,
+  "notes": "Osama 10 Nov 2026: live LOSAT, base Bradley protection without BUSK/TUSK,12 missiles,KE550,twice Kornet speed,no interception,tank-shell crits. Cost100/spec4/availability4 provisional. 10.5 is ammunition damage; integer vehicle HP12 follows Bradley. Clarification requested."
+}

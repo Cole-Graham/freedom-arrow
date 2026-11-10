@@ -94,3 +94,8 @@ Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
 Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"2v2 Dead Center weighted advantage");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");
+
+Check(FreedomArrow.Conquest.CritRule.Losat(110,1,"Missile AT LOSAT KE") && !FreedomArrow.Conquest.CritRule.Losat(110,2,"Missile AT LOSAT KE") && !FreedomArrow.Conquest.CritRule.Losat(110,1,"Missile AT Kornet"),"LOSAT isolated KE tank-shell crit classification");
+Check(FreedomArrow.Conquest.CritRule.Kind(0,9.29f,9.3f,true,true)==0 && FreedomArrow.Conquest.CritRule.Kind(0,9.3f,9.3f,true,true)==2 && FreedomArrow.Conquest.CritRule.Kind(2,1,9.3f,true,true)==1,"LOSAT tank-shell threshold and rear rule");
+
+Console.WriteLine($"PASS final LOSAT crit total: {checks} host policy/configuration checks; native crit application untested.");

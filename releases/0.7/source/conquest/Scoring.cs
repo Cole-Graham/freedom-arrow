@@ -20,6 +20,9 @@ public static class CritRule
         var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         return words.Length > 2 && words[0] == "Round" && int.TryParse(words[1], out int caliber) && caliber >= 100 && (words.Contains("AP") || words.Contains("HEAT"));
     }
+    // The dedicated LOSAT round follows tank-shell thresholds, without broadening other missiles.
+    public static bool Losat(int trajectory,int armorTargeted,string name) =>
+        trajectory is >= 100 and <= 120 && armorTargeted == Kinetic && name == "Missile AT LOSAT KE";
     // ATGM names start with "Missile AT" or "Missile GLAT" (gun-launched).
     public static bool Atgm(int trajectory, int armorTargeted, bool topAttack, string name) =>
         trajectory is >= 100 and <= 120 && armorTargeted == Heat && !topAttack && name != null && (name.StartsWith("Missile AT ") || name.StartsWith("Missile GLAT "));
