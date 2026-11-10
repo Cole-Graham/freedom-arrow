@@ -305,7 +305,8 @@ Check(!merged["WeaponAmmunitionsJson"].Any(r=>r["UnitId"].GetValue<int>()==983&&
 
 // Fixed Abrams X defenses must survive an absent or stale armor-option selection.
 var axAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==964).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
-Check(axAbilities.Length==3&&axAbilities.All(a=>a["IsDefault"].GetValue<bool>()),"Abrams X three intrinsic default abilities");
+Check(axAbilities.Length==3&&axAbilities.Count(a=>a["IsDefault"].GetValue<bool>())==1,"Abrams X one intrinsic default profile; native first-default loader");
+axAbilities=axAbilities.Where(a=>a["IsDefault"].GetValue<bool>()).ToArray();
 Check(axAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"Abrams X Trophy APS x2");
 Check(axAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()>0)==1,"Abrams X smoke");
 Check(axAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"Abrams X 30 percent jammer");
@@ -315,7 +316,8 @@ Console.WriteLine("PASS: intrinsic Abrams X defenses and JATM 11 km");
 Check(Row("Units",964)["Cost"].GetValue<int>()==400,"Abrams X fixed price400");
 
 var xmAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
-Check(xmAbilities.Length==2&&xmAbilities.All(a=>a["IsDefault"].GetValue<bool>()),"XM30 all abilities standard without an option");
+Check(xmAbilities.Length==2&&xmAbilities.Count(a=>a["IsDefault"].GetValue<bool>())==1,"XM30 one default combined profile; native first-default loader");
+xmAbilities=xmAbilities.Where(a=>a["IsDefault"].GetValue<bool>()).ToArray();
 Check(xmAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"XM30 native APS x2");
 Check(xmAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()==2)==1,"XM30 native smoke x2");
 Check(xmAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"XM30 standard30 percent jammer");

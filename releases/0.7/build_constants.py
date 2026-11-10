@@ -1513,6 +1513,20 @@ def main():
         for rid,fields in rows.items():
             assert int(rid) in effective[table]
             put(table,int(rid),fields,'0.7 XM30 price and Bradley voices; Abrams voice parity')
+    # Native LoadUnits.LoadAbility (RVA0x285E50) selects the first default row.
+    # Several default rows do not combine: the early exit at0x28627C keeps only one.
+    # Preserve allocated IDs, but combine intrinsic defenses in one default profile.
+    for unit in (964,983):
+        ability_ids=[effective['UnitAbilitiesJson'][rid]['AbilityId'] for rid in rows_of('UnitAbilitiesJson',unit)]
+        profiles=[effective['AbilitiesJson'][aid] for aid in ability_ids]
+        base=next(a for a in profiles if a['IsAPS'])
+        smoke=next(a for a in profiles if a['IsSmoke'])
+        fields={k:smoke[k] for k in ('IsSmoke','SmokeAmmunitionId','SmokeAmmunitionQuantity','SmokeCooldown')}
+        fields.update(IsDefault=True,ECMAccuracyMultiplier=0.7)
+        put('AbilitiesJson',base['Id'],fields,'0.7 first-default native loader: combined smoke APS and ECM')
+        for profile in profiles:
+            if profile['Id']!=base['Id']:
+                put('AbilitiesJson',profile['Id'],{'IsDefault':False},'0.7 only one default ability profile')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
