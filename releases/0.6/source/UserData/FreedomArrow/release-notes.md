@@ -1,4 +1,7 @@
-# Freedom Arrow 0.6.0-pla.48 — development candidate
+# PLA Build 1
+
+**One complete PLA package:** vehicle and aircraft roster from PLA.48, QLU-11 and QTS-11 infantry with approved model positions, all referenced PLA/live models and replacement skins, and current music/voices. The older split infantry package is superseded. Build numbers are integers. Native game verification remains pending.
+
 
 **0.4: built and checked offline; no installed-game result.**
 
@@ -437,3 +440,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-09 13:37:30 PST (America/Los_Angeles) — Set Su-75 base cost to 280; runtime price check pending.
 
 - 2026-11-09 13:38:47 PST (America/Los_Angeles) — Restricted Su-75 to rear bay and Russian Guard; retained base cost 280.
+- 2026-11-10 02:37:31 PST (America/Los_Angeles) — Consolidated the PLA vehicle/aircraft and infantry branches into one complete Build1; included referenced assets and network-safe option IDs.

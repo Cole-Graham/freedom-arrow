@@ -1050,12 +1050,24 @@ namespace BALocalSkirmish
                 _moved[int.Parse(pair.Key)] = pair.Value;
             return _moved;
         }
+        static Dictionary<string,int> _renumbered;
+        static Dictionary<string,int> Renumbered()
+        {
+            if (_renumbered != null) return _renumbered;
+            string path = Path.Combine(MelonEnvironment.UserDataDirectory,"FreedomArrow","option-id-migration.json");
+            return _renumbered = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,int>>(File.ReadAllText(path));
+        }
         static void Clean(DataBaseService db, Il2CppSystem.Collections.Generic.List<DeckModData> mods, int unit, string deck)
         {
             for (int i = (mods?.Count ?? 0) - 1; i >= 0; i--)
             {
                 int option = mods[i]?.OptionID ?? 0;
                 if (option == 0) continue;
+                if (Renumbered().TryGetValue(option.ToString(),out int replacement))
+                {
+                    if(db.GetOptionById(replacement)==null)throw new InvalidOperationException("Missing migrated option "+replacement);
+                    mods[i].OptionID=replacement;option=replacement;
+                }
                 bool moved = Moved().TryGetValue(option, out int parent) && parent == unit;
                 if (!moved && db.GetOptionById(option) != null) continue;
                 MelonLogger.Msg($"[DeckGuard] deck '{deck}': option {option} removed from unit {unit}.");

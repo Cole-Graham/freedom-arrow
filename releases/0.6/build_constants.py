@@ -1478,6 +1478,10 @@ def main():
         put('AmmunitionsJson',aid,{f:max(a[f],floor['minimum']) for f in ('PenetrationAtMinRange','PenetrationAtGroundRange')},'Artillery penetration floor 40 (Osama)')
     assert changed==floor['changed_before'],('artillery floor scope changed',changed)
     assert all(min(a['PenetrationAtMinRange'],a['PenetrationAtGroundRange'])>=floor['minimum'] for a in effective['AmmunitionsJson'].values() if floor_scope(a))
+    # Complete PLA Build1: append the approved infantry branch after the latest vehicle/air roster.
+    # Existing PLA allocations stay stable; model bindings are exported by semantic weapon name.
+    from pla_complete import apply as apply_complete
+    apply_complete(R,effective,original,patches,audit,put,clone,add_unit,rows_of,discard_generated)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.

@@ -1,0 +1,20 @@
+{
+  "unit": 901,
+  "status": "Functional prototype using existing native behavior, not final PLA weapon balance. QLU11 copies M32; QTS11 copies M4A1/M203; QBU191 copies SVD; QBZ191 copies AK74M.",
+  "weapons": {
+    "QBZ191": {"like": 29, "name": "PLA Test Rifle QBZ191", "hud": "QBZ-191", "ammo": 30, "quantity": 160},
+    "QBU191": {"like": 167, "name": "PLA Test DMR QBU191", "hud": "QBU-191", "ammo": 100, "quantity": 60},
+    "QLU11": {"like": 68, "name": "PLA Test Grenade Launcher QLU11", "hud": "QLU-11", "ammo": 470, "quantity": 120},
+    "QTS11": {"like": 50, "name": "PLA Test Rifle QTS11", "hud": "QTS-11", "ammo": 16, "quantity": 160},
+    "QTS11_GL": {"like": 58, "name": "PLA Test Underbarrel QTS11", "hud": "QTS-11 grenade launcher", "ammo": 29, "quantity": 48}
+  },
+  "members": [
+    {"primary": "QTS11", "special": "QTS11_GL"},
+    {"primary": 14, "special": 168},
+    {"primary": "QBZ191", "special": 168},
+    {"primary": "QLU11", "special": 0},
+    {"primary": "QBU191", "special": 168},
+    {"primary": 14, "special": 168},
+    {"primary": "QBZ191", "special": 168}
+  ]
+}

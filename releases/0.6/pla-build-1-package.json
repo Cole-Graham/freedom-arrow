@@ -1,0 +1,37 @@
+{
+  "label": "PLA Build 1",
+  "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-build-1/releases/0.6/out/PLA-Build-1.bamod",
+  "bytes": 3055265592,
+  "sha256": "9d85d882d4efb48eb39fca50a43b60f77d346076c7b67b6f8f236f16d6c9923a",
+  "payload_files": 7706,
+  "referenced_model_files": 175,
+  "approved_asset_snapshot_files": 1910,
+  "infantry_bindings": {
+    "QBZ191": {
+      "weaponId": 2003998,
+      "ammoId": 2003999,
+      "donor": 29
+    },
+    "QBU191": {
+      "weaponId": 2004000,
+      "ammoId": 2004001,
+      "donor": 167
+    },
+    "QLU11": {
+      "weaponId": 2004002,
+      "ammoId": 2004003,
+      "donor": 68
+    },
+    "QTS11": {
+      "weaponId": 2004004,
+      "ammoId": 2004005,
+      "donor": 50
+    },
+    "QTS11_GL": {
+      "weaponId": 2004006,
+      "ammoId": 2004007,
+      "donor": 58
+    }
+  },
+  "runtime_verified": false
+}
