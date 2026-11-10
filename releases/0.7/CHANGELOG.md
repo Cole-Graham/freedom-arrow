@@ -22,6 +22,10 @@ These are existing features, not new 0.7 changes:
 
 The inherited 0.6 history remains in ../0.6/source/UserData/FreedomArrow/release-notes.md. That historical document contains older and superseded entries; it is not a fresh net-change claim. The reconciliation and history audit reports identify final values and known limits.
 
+## Open Abrams X defect
+
+**Osama reports smoke and jammer absent during the current play session. This is unresolved, not fixed.** A read-only PC log check confirms dev.115 initialized at 16:50:24 and its whole-table application completed at 16:50:26. The packaged unit has intrinsic default smoke (1 charge), Trophy APS (2 charges) and ECM multiplier 0.7 (30% jammer). Those assignments do not prove that a spawned unit received usable abilities. The earlier data checks were insufficient proof of runtime behavior. Investigate initialization/selected options and model-component dependencies in an isolated run; do not blame an old PLA runtime or install a speculative change during play. See abramsx-defense-investigation.json.
+
 ## Not included or promised
 
 - Lateralus's queued batch, including helicopter 15% flare strength and 15 flares, remains separate. Do not silently merge it into this release.
@@ -33,3 +37,4 @@ The inherited 0.6 history remains in ../0.6/source/UserData/FreedomArrow/release
 
 - 2026-11-09 16:59:06 PST (America/Los_Angeles) — Prepared the next-version branch, current play baseline, corrected naming decision and pending scale change.
 - 2026-11-09 16:59:47 PST (America/Los_Angeles) — Queued XM30 at 190 points for the next update; current play build remains unchanged.
+- 2026-11-09 17:01:29 PST (America/Los_Angeles) — Recorded the current dev.115 Abrams X smoke/jammer defect and read-only runtime-version evidence; root cause and fix remain open.

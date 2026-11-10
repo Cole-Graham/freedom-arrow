@@ -1,0 +1,32 @@
+{
+  "status": "Open: user reports Abrams X smoke and jammer absent in current play build",
+  "unit": 964,
+  "reported_by": "Osama Bin Liftin",
+  "basis": {
+    "runtime_log": "Read-only SSH Latest.log: at16:50:24 dev.115 initialized;16:50:26 FREEDOM_ARROW_APPLIED 23 tables31925 fields",
+    "package_data": "dev.115 UnitAbilities links 2001843/2001844/2001845; all IsDefault true",
+    "smoke": {
+      "ability": 2001844,
+      "IsSmoke": true,
+      "SmokeAmmunitionQuantity": 1,
+      "SmokeAmmunitionId": 2000194
+    },
+    "jammer": {
+      "ability": 2001845,
+      "ECMAccuracyMultiplier": 0.7
+    },
+    "APS": {
+      "ability": 2001843,
+      "APSQuantity": 2
+    }
+  },
+  "root_cause": "Not established. Whole-table applied receipt is not a readback of spawned-unit ability state.",
+  "fix_verified": false,
+  "current_install_changed": false,
+  "next_checks": [
+    "Trace spawned-unit ability initialization and saved option selection in an isolated run.",
+    "Check smoke ammunition/emitter requirements and whether custom visual replacement affects required components.",
+    "Read actual ECM state; a passive jammer need not have an active command button.",
+    "Compare with donor SEP v3 and Shtora units; verify smoke deployment and jammer effect independently."
+  ]
+}

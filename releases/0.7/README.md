@@ -24,6 +24,10 @@
 9. Publish/install only when the group asks for the next update. Update the existing #build-install posts then; they continue to point at the current version now.
 10. Finalize the changelog and sync the requested sheet/Bible/reports at the release batch boundary. No new release date is set.
 
+## Open Abrams X defect
+
+**Osama reports smoke and jammer absent during the current play session. This is unresolved, not fixed.** A read-only PC log check confirms dev.115 initialized at 16:50:24 and its whole-table application completed at 16:50:26. The packaged unit has intrinsic default smoke (1 charge), Trophy APS (2 charges) and ECM multiplier 0.7 (30% jammer). Those assignments do not prove that a spawned unit received usable abilities. The earlier data checks were insufficient proof of runtime behavior. Investigate initialization/selected options and model-component dependencies in an isolated run; do not blame an old PLA runtime or install a speculative change during play. See abramsx-defense-investigation.json.
+
 ## Evidence limits
 
 This is source and configuration preparation only. No 0.7 archive, game launch, installation or gameplay test occurred. The existing 15 installer-engine tests apply to dev.114/dev.115 and asset 0.1.1, not to a future 0.7 package.
@@ -32,3 +36,4 @@ This is source and configuration preparation only. No 0.7 archive, game launch, 
 
 - 2026-11-09 16:59:06 PST (America/Los_Angeles) — Prepared the next-version branch, current play baseline, corrected naming decision and pending scale change.
 - 2026-11-09 16:59:47 PST (America/Los_Angeles) — Queued XM30 at 190 points for the next update; current play build remains unchanged.
+- 2026-11-09 17:01:29 PST (America/Los_Angeles) — Recorded the current dev.115 Abrams X smoke/jammer defect and read-only runtime-version evidence; root cause and fix remain open.
