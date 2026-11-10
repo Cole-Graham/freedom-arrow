@@ -1,4 +1,8 @@
-# Freedom Arrow 0.7.0-dev.33 — development candidate
+# Freedom Arrow 0.7.0-dev.34 — development candidate
+
+**Lateralus selected promotion: changelog items 3, 5 and 7–12.** Target dummies are editor-only; passive AA diagnostics from lat.4 are included with zero targeting/scoring detours. RMG4 damage/100% Ignore Cover; standard SMAW-D25%; Mech. Engineers CQC55; Mech. Riflemen MMG4 AT4CS-RS; HIT ammo shown as84mm Thermobaric with6.5 damage/100% Ignore Cover; Combat Engineers75. Latest LOSAT and M25 changes below are retained.
+
+Items1,2,4,6 remain separate: helicopter flare stock, helicopter-only missile ranges, aircraft refund rework, and SPAAG range/damage/cooldown experiments are not imported. No aircraft-refund or cooldown hook is added. The passive observer records sampled state, not exact rejection reasons or a complete interception count; large-scene performance remains unmeasured.
 
 M-25 CDTE: Stryker Troopers AT and Troopers AA each replace two M203s with one special-weapon XM25 copy (0.75 damage, 75% cover bypass). The original five-round magazine and firing/reload timings are retained. Both riflemen remain, with a shared 120-round grenade pool (24 magazines; about 3 minutes at the nominal sustained firing rate). Troopers AT costs100 →105 and Troopers AA60 →65. Green Berets, Delta Force and other M203 users retain their weapons. Data and package checks do not establish native firing, visual weapon switching or multiplayer behavior.
 **LOSAT: 200 points, Stryker only, availability 2, 10 damage, 550 mm KE penetration and missile speed 1300 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
@@ -188,3 +192,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 04:05:07 PST (America/Los_Angeles) — Set LOSAT to missile speed1300,damage10 and KE penetration500 at both endpoints; retained M25 teams and static models.
 
 - 2026-11-10 04:20:03 PST (America/Los_Angeles) — Selected550 KE and the suggested10-second firing gap for LOSAT; retained10 damage and1300 speed.
+
+- 2026-11-10 04:23:12 PST (America/Los_Angeles) — Promoted Lateralus items3,5,7–12 only; passive lat.4 observer and editor-only dummies; six infantry changes; other batch items held.

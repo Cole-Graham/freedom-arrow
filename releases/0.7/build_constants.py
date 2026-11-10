@@ -1216,6 +1216,13 @@ def main():
     for key,c in rl['ammo'].items():
         aid=int(key);assert ammo_users(aid)==set(c['users']),(aid,sorted(ammo_users(aid)))
         put('AmmunitionsJson',aid,c['fields'],'Infantry launcher '+c['group']+': '+c['name'])
+    # Quantity is per carrier for infantry disposables: preserve the two AT4 carriers.
+    for key,c in rl.get('stocks',{}).items():
+        r=effective['WeaponAmmunitionsJson'][int(key)]
+        assert (r['UnitId'],r['WeaponId'],r['AmmunitionId'],r['Quantity'])==(c['unit'],c['weapon'],c['ammo'],c['before']),r
+        count=sum(c['weapon'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values() if m['UnitId']==c['unit'])
+        assert count==c['carriers'] and count*c['quantity']==c['total'],(key,count,c)
+        put('WeaponAmmunitionsJson',r['Id'],{'Quantity':c['quantity']},'Mech. Riflemen MMG: four AT4CS-RS, two per carrier')
     m7=rl['m72a7'];why='M72A7 own round: multipurpose EFP'
     rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'] and r['WeaponId']==m7['weapon']]
     assert {r['UnitId'] for r in rows}==set(m7['users']),rows
@@ -1408,7 +1415,9 @@ def main():
             m=clone('ModificationsJson',mod['Id'],{'UnitId':new},why)
             # An option with its own mobility (fuel tanks) would give the dummy back its speed: it takes the dummy mobility.
             for o in mine:clone('OptionsJson',o['Id'],{'ModificationId':m,**({'MobilityId':mob} if o.get('MobilityId') else {})},why)
-        for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why)
+        # Allocate then remove dummy deck rows: preserve every later clone ID.
+        for r in [r for r in list(effective['SpecializationAvailabilitiesJson'].values()) if r['UnitId']==par]:
+            sa=clone('SpecializationAvailabilitiesJson',r['Id'],{'UnitId':new},why);del effective['SpecializationAvailabilitiesJson'][sa];patches['SpecializationAvailabilitiesJson'].pop(str(sa))
     # Su-75 promoted from the PLA test branch (Osama). Allocate last to preserve
     # every existing live-card and target-dummy clone ID.
     cm=json.loads((R/'su75-contract.json').read_text());uid,par=cm['unit'],cm['parent'];why='Su-75 live rear bay only'

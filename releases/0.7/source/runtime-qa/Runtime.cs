@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.33", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.34", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -56,18 +56,21 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
+        GroundAaLog.LateUpdate();
+        GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
     }
     public override void OnGUI() => conquest?.OnGUI();
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
+        GroundAaLog.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
     {
         try { conquest?.OnDeinitializeMelon(); }
-        finally { DiagnosticLog.Close("deinitialize"); }
+        finally { GroundAaLog.Close();DiagnosticLog.Close("deinitialize"); }
     }
     public override void OnInitializeMelon()
     {
@@ -105,6 +108,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
         try { MissileHitChance.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
+        try { GroundAaLog.Install(Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
         try { SupplyStealth.Install(); }
         catch (Exception e)
         {

@@ -1,9 +1,21 @@
 {
-  "note": "0.6 (Lateralus, 9 November 2026: 'add an F-22 Target Dummy to the game, with 0 speed, 1000 hitpoints, and 1000 flares ... also add a MiG-29K target dummy'). Test targets for missile tests: full copies of the F-22 Raptor (297) and MiG-29K (311) in the parent's decks, with 1000 HP, 1000 flares and no forward speed. Plane speed comes from the fly preset (F-22: min 175, max 250, afterburner 350); the dummies get their own preset with every speed at 1 (0 risks a divide by zero in the flight code), no afterburner, and 3600 s loiter time so they stay over the map. Card speed 0. ECM, flare strength and timing, weapons and costs are the parent's. Not yet run in a game.",
+  "note": "0.6 (Lateralus, 9 November 2026: 'add an F-22 Target Dummy to the game, with 0 speed, 1000 hitpoints, and 1000 flares ... also add a MiG-29K target dummy'). Test targets for missile tests: full copies of the F-22 Raptor (297) and MiG-29K (311), with 1000 HP, 1000 flares and no forward speed. Plane speed comes from the fly preset (F-22: min 175, max 250, afterburner 350); the dummies get their own preset with every speed at 1 (0 risks a divide by zero in the flight code), no afterburner, and 3600 s loiter time so they stay over the map. Card speed 0. ECM, flare strength and timing, weapons and costs are the parent's. Not yet run in a game. Not in any specialization (Lateralus, 9 November 2026: 'I will only load them in the editor when testing'), so they are not in the armory or deck builder.",
   "speed": 1,
   "loiter": 3600,
   "cards": [
-    {"unit": 971, "parent": 297, "name": "F-22 Target Dummy", "hp": 1000, "flares": 1000},
-    {"unit": 972, "parent": 311, "name": "MiG-29K Target Dummy", "hp": 1000, "flares": 1000}
+    {
+      "unit": 971,
+      "parent": 297,
+      "name": "F-22 Target Dummy",
+      "hp": 1000,
+      "flares": 1000
+    },
+    {
+      "unit": 972,
+      "parent": 311,
+      "name": "MiG-29K Target Dummy",
+      "hp": 1000,
+      "flares": 1000
+    }
   ]
 }

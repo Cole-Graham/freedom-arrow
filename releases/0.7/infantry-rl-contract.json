@@ -1,5 +1,5 @@
 {
- "note": "Lateralus batch (8 November 2026): infantry rocket launchers by purpose, from the Lateralus 0.6 Changelog sheet (Rocket launchers and RPG-22 tabs). Thermobaric (Option A): IgnoreCover 1.0 and the first proposal's damage; penetration unchanged (Lateralus 21:17). Anti-structure: IgnoreCover 0.5; M72A10 penetration 35 -> 100. HE / dual purpose: IgnoreCover 0.2 (building damage back to vanilla). M72A7 gets its own copy of the M72 HEAT round (the M72A2 keeps 2000141): damage 6.5, IgnoreCover 0.35, can target infantry (TargetType 47 like the HE round), 3 m blast, muzzle velocity 450. RPG-22: new weapon and round copied from the RPG-18 (931, 2000144), penetration 350, replaces the RPG-18 on Pogranichniki, Reservisty and Razvedka; the RPG-18 rows stay, carried by nobody. users: every unit that carries the round, checked before writing. Some users hold a round without a default carrier (loadout options or a vehicle mount: SSO RPO-M, VDV Shturm TBG-7L on its RPG-7V2 row, SSO RShG-1, Rosgvardia and Spetsnaz Alpha RShG-2, Mech. Engineers CQC SMAW-D, Rangers CQC M72A10, UAZ Kozlik SPG-9M); one round has one set of stats, so they change too.",
+ "note": "Lateralus batch (8 November 2026): infantry rocket launchers by purpose, from the Lateralus 0.6 Changelog sheet (Rocket launchers and RPG-22 tabs). Thermobaric (Option A): IgnoreCover 1.0 and the first proposal's damage; penetration unchanged (Lateralus 21:17). Anti-structure: IgnoreCover 0.5; M72A10 penetration 35 -> 100. HE / dual purpose: IgnoreCover 0.2 (building damage back to vanilla). M72A7 gets its own copy of the M72 HEAT round (the M72A2 keeps 2000141): damage 6.5, IgnoreCover 0.35, can target infantry (TargetType 47 like the HE round), 3 m blast, muzzle velocity 450. RPG-22: new weapon and round copied from the RPG-18 (931, 2000144), penetration 350, replaces the RPG-18 on Pogranichniki, Reservisty and Razvedka; the RPG-18 rows stay, carried by nobody. users: every unit that carries the round, checked before writing. Some users hold a round without a default carrier (loadout options or a vehicle mount: SSO RPO-M, VDV Shturm TBG-7L on its RPG-7V2 row, SSO RShG-1, Rosgvardia and Spetsnaz Alpha RShG-2, Mech. Engineers CQC SMAW-D, Rangers CQC M72A10, UAZ Kozlik SPG-9M); one round has one set of stats, so they change too. 10 November 2026: RMG damage 4 / IgnoreCover 1; standard SMAW-D IgnoreCover 0.25; Combat Engineers HIT round displayed as 84mm Thermobaric, damage 6.5 / IgnoreCover 1. Mech. Riflemen MMG carries 4 AT4CS-RS total (2 carriers x 2 rounds), with carrier count unchanged.",
  "ammo": {
   "103": {
    "group": "thermobaric",
@@ -91,17 +91,19 @@
     708
    ],
    "fields": {
-    "IgnoreCover": 0.5
+    "IgnoreCover": 0.25
    }
   },
   "937": {
-   "group": "anti-structure",
-   "name": "SMAW-D HIT",
+   "group": "thermobaric",
+   "name": "84mm Thermobaric (formerly SMAW-D HIT)",
    "users": [
     449
    ],
    "fields": {
-    "IgnoreCover": 0.5
+    "IgnoreCover": 1.0,
+    "HUDName": "84mm Thermobaric",
+    "Damage": 6.5
    }
   },
   "392": {
@@ -121,7 +123,8 @@
     622
    ],
    "fields": {
-    "IgnoreCover": 0.5
+    "IgnoreCover": 1.0,
+    "Damage": 4.0
    }
   },
   "130": {
@@ -226,6 +229,17 @@
    "HUDName": "72.5mm HEAT",
    "PenetrationAtMinRange": 350.0,
    "PenetrationAtGroundRange": 350.0
+  }
+ },
+ "stocks": {
+  "2906": {
+   "unit": 370,
+   "weapon": 59,
+   "ammo": 2000131,
+   "before": 1,
+   "quantity": 2,
+   "carriers": 2,
+   "total": 4
   }
  }
 }
