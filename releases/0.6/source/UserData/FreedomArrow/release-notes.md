@@ -1,4 +1,4 @@
-# Freedom Arrow 0.6.0-pla.infantry.9 — development candidate
+# Freedom Arrow 0.6.0-pla.infantry.10 — development candidate
 
 **0.4: built and checked offline; no installed-game result.**
 
