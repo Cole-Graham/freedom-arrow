@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.4", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.6", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -53,6 +53,7 @@ public class Runtime : MelonMod
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
     public override void OnUpdate() => conquest?.OnUpdate();
+    public override void OnLateUpdate() => SupplyStealth.LateUpdate();
     public override void OnGUI() => conquest?.OnGUI();
     public override void OnSceneWasLoaded(int buildIndex,string sceneName) => conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     public override void OnDeinitializeMelon() => conquest?.OnDeinitializeMelon();
@@ -89,7 +90,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
         try { MissileHitChance.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
-        try { SupplyStealth.Install(HarmonyInstance); }
+        try { SupplyStealth.Install(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: not installed; caches keep stealth 1.0. "+e.Message); }
         try { CardIcons.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_ICONS_FAILED: not installed; vanilla card icons. "+e.Message); }
