@@ -315,3 +315,12 @@ Console.WriteLine("PASS: XM30220 points,armor700/700,APS2,US Armor tank availabi
 Check(Row("Units",983)["PortraitFileName"].ToJsonString()==Row("Units",16)["PortraitFileName"].ToJsonString()&&Row("Units",983)["ThumbnailFileName"].ToJsonString()==Row("Units",16)["ThumbnailFileName"].ToJsonString(),"XM30 M2A3 Bradley unit card");
 
 Check(!merged["WeaponAmmunitionsJson"].Any(r=>r["UnitId"].GetValue<int>()==983&&r["WeaponId"].GetValue<int>()==7),"XM30 PKT ammunition removed");
+
+// Fixed Abrams X defenses must survive an absent or stale armor-option selection.
+var axAbilities=merged["UnitAbilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==964).Select(r=>Row("AbilitiesJson",r["AbilityId"].GetValue<int>())).ToArray();
+Check(axAbilities.Length==3&&axAbilities.All(a=>a["IsDefault"].GetValue<bool>()),"Abrams X three intrinsic default abilities");
+Check(axAbilities.Count(a=>a["IsAPS"].GetValue<bool>()&&a["APSQuantity"].GetValue<int>()==2)==1,"Abrams X Trophy APS x2");
+Check(axAbilities.Count(a=>a["IsSmoke"].GetValue<bool>()&&a["SmokeAmmunitionQuantity"].GetValue<int>()>0)==1,"Abrams X smoke");
+Check(axAbilities.Count(a=>Math.Abs(a["ECMAccuracyMultiplier"].GetValue<double>()-0.7)<0.0001)==1,"Abrams X 30 percent jammer");
+foreach(var a in merged["AmmunitionsJson"].Where(a=>a["HUDName"].GetValue<string>()=="AIM-260 JATM"))Check(a["LowAltRange"].GetValue<double>()==5500&&a["HighAltRange"].GetValue<double>()==5500,"JATM 11 km card range");
+Console.WriteLine("PASS: intrinsic Abrams X defenses and JATM 11 km");

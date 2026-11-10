@@ -1488,6 +1488,17 @@ def main():
         clone('UnitAbilitiesJson',link['Id'],{'UnitId':ku,'AbilityId':aid},why)
     from xm30 import apply as apply_xm30
     apply_xm30(effective,original,clone,add_unit,rows_of,patches,audit)
+    # Abrams X has one fixed configuration. Its defenses must be intrinsic defaults,
+    # rather than depending on a saved armor-option selection. Allocate last to keep prior IDs.
+    ax=json.loads((R/'abramsx-contract.json').read_text());uid=ax['unit'];why='Abrams X intrinsic smoke, Trophy APS and jammer'
+    for aid in [ax['option_fields'][f] for f in ('Ability1Id','Ability2Id','Ability3Id')]:
+        ability=clone('AbilitiesJson',aid,{'Name':'Abrams X '+effective['AbilitiesJson'][aid]['Name'],'IsDefault':True},why)
+        links=[r['Id'] for r in effective['UnitAbilitiesJson'].values() if r['UnitId']==uid and r['AbilityId']==aid]
+        if links:put('UnitAbilitiesJson',links[0],{'AbilityId':ability},why)
+        else:clone('UnitAbilitiesJson',next(iter(original['UnitAbilitiesJson'])),{'UnitId':uid,'AbilityId':ability},why)
+    mods={m['Id'] for m in effective['ModificationsJson'].values() if m['UnitId']==uid}
+    for o in list(effective['OptionsJson'].values()):
+        if o['ModificationId'] in mods:put('OptionsJson',o['Id'],dict(Ability1Id=0,Ability2Id=0,Ability3Id=0),why)
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')
     # Resolve consumers from the final effective graph, including shared Javelin rounds.
