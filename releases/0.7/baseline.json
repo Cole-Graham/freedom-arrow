@@ -22,11 +22,16 @@
       "factor": 1.1,
       "status": "staged mapping only; not built or installed",
       "old_cost": 220,
-      "next_cost": 190
+      "next_cost": 190,
+      "voice": "Same as M2A3 Bradley: UNIT_SOUND_PRESET_BRADLEY_ALL"
     },
     "Su-75": {
       "availability": 2,
       "status": "keep; request for one withdrawn"
+    },
+    "Abrams X": {
+      "voice": "Same as existing Abrams: UNIT_SOUND_PRESET_ABRAMS; requested Crusader Tank lines",
+      "status": "Preset already matches current Abrams; audible playback unverified"
     }
   },
   "next_release": "0.7; release date not set"

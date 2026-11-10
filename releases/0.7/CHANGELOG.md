@@ -4,6 +4,8 @@
 
 ## New for 0.7
 
+- **Voices:** XM30 switches from its T-15 donor audio preset to the M2A3 Bradley preset (`UNIT_SOUND_PRESET_BRADLEY_ALL`). The final Bradley instruction supersedes the earlier Paladin wording. Abrams X retains `UNIT_SOUND_PRESET_ABRAMS`, the same assignment as existing Abrams, for the requested Crusader Tank lines. This queues the unit-to-voice assignment; audible clip identity and playback are not verified in this preparation.
+
 - **XM30 price:** 220 → 190 points. Staged gameplay override for unit 983; not applied to the current play build.
 
 - **XM30 model:** increase armory and battle visual size by 10% compared with the current size. Mapping scale changes from 0.70 to 0.77. The unit remains named XM30; the proposed XM-50 rename was withdrawn.
@@ -38,3 +40,4 @@ The inherited 0.6 history remains in ../0.6/source/UserData/FreedomArrow/release
 - 2026-11-09 16:59:06 PST (America/Los_Angeles) — Prepared the next-version branch, current play baseline, corrected naming decision and pending scale change.
 - 2026-11-09 16:59:47 PST (America/Los_Angeles) — Queued XM30 at 190 points for the next update; current play build remains unchanged.
 - 2026-11-09 17:01:29 PST (America/Los_Angeles) — Recorded the current dev.115 Abrams X smoke/jammer defect and read-only runtime-version evidence; root cause and fix remain open.
+- 2026-11-09 17:07:33 PST (America/Los_Angeles) — Staged Bradley voices for XM30 and retained the existing Abrams voice assignment for Abrams X; no running-install changes.
