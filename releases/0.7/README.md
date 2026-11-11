@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.41 — development candidate
+# Freedom Arrow 0.7.0-dev.42 — development candidate
+
+**dev.42: XM30 base price is 200 points, up from 190. All other gameplay constants match dev.41, including LOSAT damage12 and missile card speed1500. The separate Abrams X silver-texture trial does not change geometry or gameplay. Native price/appearance verification pending.**
 
 **dev.41: LOSAT missile damage is 12, up from 10, and missile card speed is 1500, up from 1300 (raw speed 1500/3.6). All other gameplay constants match dev.40. Native damage and speed verification pending.**
 
@@ -215,3 +217,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 16:45:02 PST (America/Los_Angeles) — Changed only the F22 MAKO carried mesh to AMRAAM; all gameplay statistics retained.
 - 2026-11-10 16:53:54 PST (America/Los_Angeles) — Corrected LOSAT displayed missile speed and isolated50 road speed; recorded shared model-map repair.
 - 2026-11-10 17:19:42 PST (America/Los_Angeles) — Increased LOSAT missile damage from 10 to 12 and card speed from 1300 to 1500; other gameplay constants retained.
+- 2026-11-10 17:29:35 PST (America/Los_Angeles) — Raised XM30 base price from190 to200; retained dev.41 LOSAT values and recorded separate source-resolution silver texture trial.

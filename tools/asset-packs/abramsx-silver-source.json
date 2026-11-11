@@ -1,0 +1,21 @@
+{
+  "glb_sha256": "19a2a75bbfe6fba99cd92e8eab16dc93f62147853dd404e30080ad4a777eb4f2",
+  "converter_sha256": "8ec37620a7dfb58741dd4e537cb5ebb7202d372c2a442c6327723809befb3109",
+  "purchased_source_archives": {
+    "fbx.rar": "3e409122ee9b84377d25c9251ff2e299f0a6125efd6aab6b927f6f95c3adb6dc",
+    "max.rar": "8c4167291fce8f3a68639415efbff68df7dbf430086d498112791b77babd2cce"
+  },
+  "silver_basecolor": {
+    "file": "mat_AbramsX_Hull_BaseColor.png",
+    "sha256": "44b43c79a7a8e986318b0e21b0aeb447a6331f3f67ea226f785edf4371249e10",
+    "width": 4096,
+    "height": 4096
+  },
+  "material_order": [
+    "AbramsX_Hull",
+    "M1A2_Track"
+  ],
+  "notes": "Original purchased silver base colour resized to 2048 armory and1024 battle, matching current texture caps. Existing GLB normal and metallic/roughness textures converted with the same caps. Current meshes, UVs, normals and attachments are not rewritten.",
+  "armory_max": 2048,
+  "battle_max": 1024
+}

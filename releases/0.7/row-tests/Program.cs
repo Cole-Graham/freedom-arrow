@@ -300,7 +300,7 @@ Check(ka.Count(a=>a["IsDefault"].GetValue<bool>())==1&&ka.Any(a=>a["IsDefault"].
 
 Console.WriteLine("PASS: Karatel Tigr profiles,35 points,default smoke,250 supplies");
 
-var xm=Row("Units",983);Check(xm["Cost"].GetValue<int>()==190&&xm["CountryId"].GetValue<int>()==2&&xm["Role"].GetValue<int>()==11,"XM30 US tank190");
+var xm=Row("Units",983);Check(xm["Cost"].GetValue<int>()==200&&xm["CountryId"].GetValue<int>()==2&&xm["Role"].GetValue<int>()==11,"XM30 US tank200");
 var xma=merged["UnitArmorsJson"].Single(r=>r["UnitId"].GetValue<int>()==983);var xmar=Row("ArmorsJson",xma["ArmorId"].GetValue<int>());
 Check(xmar["HeatArmorFront"].GetValue<int>()==700&&xmar["HeatArmorSides"].GetValue<int>()==700,"XM30 HEAT armor");
 foreach(var f in new[]{"MaxHealthPoints","KinArmorFront","KinArmorSides","KinArmorRear","KinArmorTop","HeatArmorRear","HeatArmorTop"})Check(xmar[f].ToJsonString()==Row("ArmorsJson",306)[f].ToJsonString(),"XM30 Booker armor "+f);
@@ -308,7 +308,7 @@ var xmab=Row("AbilitiesJson",merged["UnitAbilitiesJson"].Single(r=>r["UnitId"].G
 var xmp=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).ToArray();Check(xmp.Length==1&&xmp[0]["SpecializationId"].GetValue<int>()==4&&xmp[0]["MaxAvailabilityXp0"].GetValue<int>()==2,"XM30 US Armor pool2");
 var xmm=merged["ModificationsJson"].Single(r=>r["UnitId"].GetValue<int>()==983)["Id"].GetValue<int>();var xmo=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==xmm).ToArray();Check(xmo.Length==2&&xmo.Count(r=>r["IsDefault"].GetValue<bool>())==1,"XM30 two choices one default");
 foreach(var o in xmo){var t=o["Turret0Id"].GetValue<int>();var tw=merged["TurretWeaponsJson"].Where(r=>r["TurretId"].GetValue<int>()==t).ToArray();Check(tw.Length==2&&tw.Any(r=>r["WeaponId"].GetValue<int>()==658),"XM30 native Booker XM913");var missile=tw.Single(r=>r["WeaponId"].GetValue<int>()!=658&&r["WeaponId"].GetValue<int>()!=7)["WeaponId"].GetValue<int>();Check(Row("WeaponsJson",missile)["MagazineSize"].GetValue<int>()==2,"XM30 two ready missiles");Check(merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==983&&r["WeaponId"].GetValue<int>()==missile)["Quantity"].GetValue<int>()==2,"XM30 two missile rounds");}
-Console.WriteLine("PASS: XM30190 points,armor700/700,APS2,US Armor tank availability2,Booker XM913,two missile choices");
+Console.WriteLine("PASS: XM30200 points,armor700/700,APS2,US Armor tank availability2,Booker XM913,two missile choices");
 
 Check(Row("Units",983)["PortraitFileName"].GetValue<string>()=="FA_XM30-Portrait"&&Row("Units",983)["ThumbnailFileName"].GetValue<string>()=="FA_XM30-Label","XM30 supplied card and generated side icon");
 
