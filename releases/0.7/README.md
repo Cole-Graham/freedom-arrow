@@ -1,4 +1,12 @@
-# Freedom Arrow 0.7.0-devtest.lat.8 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.9 — development candidate
+
+**Lat.9 increases C-RAM projectile muzzle velocity from805 to1610 on lat.8. This is a flight-time test intended to improve interception by shortening travel and reducing the prediction interval. Zero dispersion, doubled tracking and full SPAAG range/damage are retained. Native leading uses the projectile muzzle speed; its algorithm is unchanged. Actual interception improvement remains untested.**
+
+Only ammunition262 MuzzleVelocity changes against lat.8. Damage, range, firing cadence, ammunition capacity and PIVADS values remain equal to lat.8. No new logging or native hook is introduced. Existing automatic test-logs ZIP collection stays available. The known horizontal-yaw lookup remains unavailable.
+
+Import lat.9 through Mod Manager, disable the other gameplay test pack and confirm the menu version. Use the same setup as lat.8. For an isolated comparison, retain radar bait but stop other defenders from firing; start each short batch with ammunition available throughout. Close normally and send the automatic ZIP. Expected shorter flight time is theoretical until measured; changing speed does not prove the lead algorithm is correct. Public launcher remains locked to dev.45. This candidate has not been installed or run in-game by this task.
+
+## Prior lat.8 comparison
 
 **Lat.8 is a C-RAM zero-spread diagnostic on lat.7. Ammunition262 horizontal and vertical dispersion radii change from1.6 to0. All other gameplay values, including the faster tracking and full SPAAG range/damage, stay equal to lat.7. This is a test setting, not a final balance proposal.**
 
@@ -244,3 +252,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 
 - 2026-11-10 22:13:51 PST (America/Los_Angeles) — Prepared tracking-only lat.7 test with bounded passive diagnostics and single-session log collection.
 - 2026-11-10 22:45:23 PST (America/Los_Angeles) — Prepared C-RAM zero-dispersion comparison on lat.7; retained tracking, native leading and logging; runtime behavior remains untested.
+- 2026-11-10 23:21:34 PST (America/Los_Angeles) — Prepared lat.9 C-RAM muzzle-velocity1610 comparison on lat.8, retaining native leading and logging; runtime improvement untested.

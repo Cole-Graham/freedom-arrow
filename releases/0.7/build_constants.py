@@ -1669,6 +1669,9 @@ def main():
     assert [effective['AmmunitionsJson'][262][f] for f in spread_fields] == [1.6, 1.6]
     put('AmmunitionsJson',262,dict.fromkeys(spread_fields,0.0),
         'lat.8 diagnostic: C-RAM zero ballistic dispersion; native leading retained')
+    assert effective['AmmunitionsJson'][262]['MuzzleVelocity']==805.0
+    put('AmmunitionsJson',262,{'MuzzleVelocity':1610.0},
+        'lat.9 C-RAM flight-time test: double projectile muzzle velocity')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)
