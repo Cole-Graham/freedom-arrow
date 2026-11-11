@@ -328,5 +328,11 @@
     "bamod_sha256": "c3efbd4e35afc18e144b914d2dac5c5fe1055dc4f4b6848cb8e259f8ec8ab9a3",
     "parent_commit": "c100397",
     "built_utc": "2026-11-11T09:28:16Z"
+  },
+  "0.7.0-devtest.lat.16": {
+    "inputs": "db5b3f6afb1d507797e01d319351803a5d9920173542b234a309557d54170138",
+    "bamod_sha256": "703cb7c78943892d6ae263e26d4108818dc4bf1c2894a4ea674f026bec9f15ce",
+    "parent_commit": "36fac53",
+    "built_utc": "2026-11-11T09:50:10Z"
   }
 }

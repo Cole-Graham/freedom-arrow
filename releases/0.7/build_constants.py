@@ -1667,6 +1667,8 @@ def main():
     # dispersion and muzzle velocity instead of the lat.8/lat.9 diagnostics.
     assert [effective['AmmunitionsJson'][262][f] for f in
             ('DispersionHorizontalRadius','DispersionVerticalRadius','MuzzleVelocity')] == [1.6,1.6,805.0]
+    put('AmmunitionsJson',262,{'MuzzleVelocity':1610.0},
+        'Lateralus speed isolation: prediction plus double C-RAM muzzle speed; native dispersion')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)
