@@ -79,6 +79,9 @@ static class CardIcons
         ("FA_BLACK_EAGLE_STUDIO-Portrait","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE_STUDIO-Portrait_BASIC","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE_STUDIO-Portrait_HOVER","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE_USER-Portrait","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE_USER-Portrait_BASIC","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE_USER-Portrait_HOVER","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
         ("outline\\FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
         // A distinct address avoids a native UI item retaining the previous gray sprite.
@@ -149,7 +152,10 @@ static class CardIcons
         if(address=="FA_BLACK_EAGLE-Portrait.png")
             MelonLogger.Msg($"FREEDOM_ARROW_BLACK_EAGLE_PORTRAIT made: {tex.width}x{tex.height}; png_sha256={Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(png[address])).ToLowerInvariant()}");
         tex.hideFlags=HideFlags.HideAndDontSave;
-        var sprite=Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f),100f);
+        // Sam's supplied screenshot is embedded verbatim. Frame the full tank in the UI;
+        // these are source-image pixels (Unity's rectangle origin is bottom-left).
+        var rect=address=="FA_BLACK_EAGLE-Portrait.png" ? new Rect(220,269,1600,800) : new Rect(0,0,tex.width,tex.height);
+        var sprite=Sprite.Create(tex,rect,new Vector2(0.5f,0.5f),100f);
         sprite.name=address.Substring(address.LastIndexOf('\\')+1);
         sprite.hideFlags=HideFlags.HideAndDontSave;
         return sprite;

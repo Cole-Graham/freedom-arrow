@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.52 — development candidate
+# Freedom Arrow 0.7.0-dev.53 — development candidate
 
 **Black Eagle appearance iteration: white card icon on a2:1 canvas, lower baseline and icon-only shortened barrel. Separate body-mask trial adds moderate painted-metal sheen while preserving repaired normals, color textures and all gameplay constants from dev.49. Vanilla T80 material/export and Sam’s card screenshot guide the comparison; native appearance still needs review.**
 
