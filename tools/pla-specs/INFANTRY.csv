@@ -1,0 +1,19 @@
+unit,role,specs,men,cost,donor,body_from,weapons,limits
+1010,Modern Riflemen,"18,21",7,50,398,985,RPK-74M; RPG-26; QBZ-191,QBZ-191 line infantry; native RPK/light-AT models remain temporary.
+1011,Airborne Riflemen,17,10,65,111,985,RPG-7V; PKP-M; QBZ-191,Air-mobile riflemen; QBZ-191 is a temporary compact-rifle substitute.
+1012,SF Assault,"17,20",8,80,130,995,RPK-16 PBS; Bur; KS-K; Flashbang; QBZ-191,"Close assault team; native LMG,shotgun and assault-launcher stand-ins."
+1013,SF Recon,"17,20",5,60,116,988,RPK-16 PBS; Bur; QBZ-191,Small trained recon team with native recon behavior.
+1014,QTS-11 Digital Scouts,17,3,30,725,1007,QTS-11; QTS-11 grenade launcher,Three QTS-11 rifles and one underbarrel GL; native M4/M203-derived behavior.
+1015,Marine Riflemen,20,7,65,126,985,RPK-74M Kashtan; RPG-27; QBZ-191,Marine line squad; swimming is not implied by its outfit.
+1016,Reserve Riflemen,19,5,30,604,990,AK-74; GP-25; PKM; RPG-7V,Lower-tier rifle squad; native legacy rifle/LMG stand-ins.
+1017,Missile-site Security,19,3,30,725,985,QBZ-191,Three riflemen with ordinary line-infantry optics/stealth; no AT.
+1018,Assault Engineers,"18,19,20,21",4,40,122,995,QBZ-191; PF-97,Anti-cover launcher team; PF-97 uses the native MRO-Z behavior/model provisionally.
+1019,QLU-11 GL Team,"17,20,21",6,50,75,1007,QBZ-191; QLU-11,Four rifles and two QLU-11; existing native M32-derived QLU behavior.
+1020,QLZ-04 AGL Team,"18,19",5,40,112,985,QBZ-191; QLZ-04,Sustained AGL support; AGS-30 behavior/model is temporary.
+1021,HJ-8 ATGM Team,"19,21",4,30,121,985,QBZ-191; HJ-8,Budget ATGM role; native Konkurs behavior/model is temporary.
+1022,HJ-12 ATGM Team,"17,18,20",4,90,520,985,QBZ-191; HJ-12,Fire-and-forget AT role; Javelin behavior/model is temporary.
+1023,PF-98 AT Team,"18,19,20,21",5,35,127,985,QBZ-191; PF-98,Unguided heavy-AT role; RPG-29 behavior/model is temporary.
+1024,HN-6 MANPADS Team,"17,18,19,20,21",4,65,120,985,QBZ-191; HN-6,Dismounted AA; Igla-N behavior/model is temporary.
+1025,QJZ-171 HMG Team,"20,21",4,35,624,985,QBZ-191; QJZ-171; QJZ-171,Heavy suppressive team; Kord behavior/model is temporary.
+1026,QBU-10 Sniper Team,"17,20",2,60,124,988,QBU-191; QBU-10,Anti-materiel sniper and QBU-191 spotter; ASVK behavior/model is temporary.
+1027,Forward Observers,"17,18,19,21",3,30,725,988,QBZ-191; QBU-191,Three-man ground recon with QBZ-191/QBU-191; no new spotting mechanic.

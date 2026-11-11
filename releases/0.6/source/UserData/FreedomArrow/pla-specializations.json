@@ -1,0 +1,1247 @@
+{
+  "build": 9,
+  "pla_only": true,
+  "hidden_fixture_units": [],
+  "test_spec": 22,
+  "test_fixture_units": [
+    901,
+    985,
+    986,
+    987,
+    988,
+    989,
+    990,
+    991,
+    992,
+    993,
+    994,
+    995,
+    996,
+    997,
+    998,
+    999,
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009
+  ],
+  "new_units": [
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027
+  ],
+  "new_infantry": [
+    {
+      "unit": 1010,
+      "name": "Modern Riflemen",
+      "parent": 398,
+      "specs": [
+        18,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "QBZ-191 line infantry; native RPK/light-AT models remain temporary.",
+      "men": 7,
+      "cost": 50,
+      "weapons": [
+        {
+          "id": 14,
+          "name": "RPK-74M",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 168,
+          "name": "RPG-26",
+          "primary_carriers": 0,
+          "special_carriers": 5
+        },
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 5,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1011,
+      "name": "Airborne Riflemen",
+      "parent": 111,
+      "specs": [
+        17
+      ],
+      "body_from": 985,
+      "prototype_note": "Air-mobile riflemen; QBZ-191 is a temporary compact-rifle substitute.",
+      "men": 10,
+      "cost": 65,
+      "weapons": [
+        {
+          "id": 32,
+          "name": "RPG-7V",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        },
+        {
+          "id": 125,
+          "name": "PKP-M",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 8,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1012,
+      "name": "SF Assault",
+      "parent": 130,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 995,
+      "prototype_note": "Close assault team; native LMG,shotgun and assault-launcher stand-ins.",
+      "men": 8,
+      "cost": 80,
+      "weapons": [
+        {
+          "id": 132,
+          "name": "RPK-16 PBS",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 155,
+          "name": "Bur",
+          "primary_carriers": 0,
+          "special_carriers": 2
+        },
+        {
+          "id": 161,
+          "name": "KS-K",
+          "primary_carriers": 0,
+          "special_carriers": 2
+        },
+        {
+          "id": 590,
+          "name": "Flashbang",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        },
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 6,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1013,
+      "name": "SF Recon",
+      "parent": 116,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 988,
+      "prototype_note": "Small trained recon team with native recon behavior.",
+      "men": 5,
+      "cost": 60,
+      "weapons": [
+        {
+          "id": 132,
+          "name": "RPK-16 PBS",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 155,
+          "name": "Bur",
+          "primary_carriers": 0,
+          "special_carriers": 2
+        },
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 3,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1014,
+      "name": "QTS-11 Digital Scouts",
+      "parent": 725,
+      "specs": [
+        17
+      ],
+      "body_from": 1007,
+      "prototype_note": "Three QTS-11 rifles and one underbarrel GL; native M4/M203-derived behavior.",
+      "men": 3,
+      "cost": 30,
+      "weapons": [
+        {
+          "id": 2004004,
+          "name": "QTS-11",
+          "primary_carriers": 3,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004006,
+          "name": "QTS-11 grenade launcher",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        }
+      ]
+    },
+    {
+      "unit": 1015,
+      "name": "Marine Riflemen",
+      "parent": 126,
+      "specs": [
+        20
+      ],
+      "body_from": 985,
+      "prototype_note": "Marine line squad; swimming is not implied by its outfit.",
+      "men": 7,
+      "cost": 65,
+      "weapons": [
+        {
+          "id": 129,
+          "name": "RPK-74M Kashtan",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 171,
+          "name": "RPG-27",
+          "primary_carriers": 0,
+          "special_carriers": 5
+        },
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 5,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1016,
+      "name": "Reserve Riflemen",
+      "parent": 604,
+      "specs": [
+        19
+      ],
+      "body_from": 990,
+      "prototype_note": "Lower-tier rifle squad; native legacy rifle/LMG stand-ins.",
+      "men": 5,
+      "cost": 30,
+      "weapons": [
+        {
+          "id": 156,
+          "name": "AK-74",
+          "primary_carriers": 4,
+          "special_carriers": 0
+        },
+        {
+          "id": 157,
+          "name": "GP-25",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        },
+        {
+          "id": 158,
+          "name": "PKM",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        },
+        {
+          "id": 933,
+          "name": "RPG-7V",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        }
+      ]
+    },
+    {
+      "unit": 1017,
+      "name": "Missile-site Security",
+      "parent": 725,
+      "specs": [
+        19
+      ],
+      "body_from": 985,
+      "prototype_note": "Three riflemen with ordinary line-infantry optics/stealth; no AT.",
+      "men": 3,
+      "cost": 30,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 3,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1018,
+      "name": "Assault Engineers",
+      "parent": 122,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 995,
+      "prototype_note": "Anti-cover launcher team; PF-97 uses the native MRO-Z behavior/model provisionally.",
+      "men": 4,
+      "cost": 40,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 4,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004876,
+          "name": "PF-97",
+          "primary_carriers": 0,
+          "special_carriers": 2
+        }
+      ]
+    },
+    {
+      "unit": 1019,
+      "name": "QLU-11 GL Team",
+      "parent": 75,
+      "specs": [
+        17,
+        20,
+        21
+      ],
+      "body_from": 1007,
+      "prototype_note": "Four rifles and two QLU-11; existing native M32-derived QLU behavior.",
+      "men": 6,
+      "cost": 50,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 4,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004002,
+          "name": "QLU-11",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1020,
+      "name": "QLZ-04 AGL Team",
+      "parent": 112,
+      "specs": [
+        18,
+        19
+      ],
+      "body_from": 985,
+      "prototype_note": "Sustained AGL support; AGS-30 behavior/model is temporary.",
+      "men": 5,
+      "cost": 40,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 3,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004910,
+          "name": "QLZ-04",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1021,
+      "name": "HJ-8 ATGM Team",
+      "parent": 121,
+      "specs": [
+        19,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Budget ATGM role; native Konkurs behavior/model is temporary.",
+      "men": 4,
+      "cost": 30,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 3,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004928,
+          "name": "HJ-8",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1022,
+      "name": "HJ-12 ATGM Team",
+      "parent": 520,
+      "specs": [
+        17,
+        18,
+        20
+      ],
+      "body_from": 985,
+      "prototype_note": "Fire-and-forget AT role; Javelin behavior/model is temporary.",
+      "men": 4,
+      "cost": 90,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 4,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004945,
+          "name": "HJ-12",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        }
+      ]
+    },
+    {
+      "unit": 1023,
+      "name": "PF-98 AT Team",
+      "parent": 127,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Unguided heavy-AT role; RPG-29 behavior/model is temporary.",
+      "men": 5,
+      "cost": 35,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 5,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004962,
+          "name": "PF-98",
+          "primary_carriers": 0,
+          "special_carriers": 1
+        }
+      ]
+    },
+    {
+      "unit": 1024,
+      "name": "HN-6 MANPADS Team",
+      "parent": 120,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Dismounted AA; Igla-N behavior/model is temporary.",
+      "men": 4,
+      "cost": 65,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 4,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004980,
+          "name": "HN-6",
+          "primary_carriers": 0,
+          "special_carriers": 2
+        }
+      ]
+    },
+    {
+      "unit": 1025,
+      "name": "QJZ-171 HMG Team",
+      "parent": 624,
+      "specs": [
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Heavy suppressive team; Kord behavior/model is temporary.",
+      "men": 4,
+      "cost": 35,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004997,
+          "name": "QJZ-171",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004998,
+          "name": "QJZ-171",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1026,
+      "name": "QBU-10 Sniper Team",
+      "parent": 124,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 988,
+      "prototype_note": "Anti-materiel sniper and QBU-191 spotter; ASVK behavior/model is temporary.",
+      "men": 2,
+      "cost": 60,
+      "weapons": [
+        {
+          "id": 2004000,
+          "name": "QBU-191",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        },
+        {
+          "id": 2005018,
+          "name": "QBU-10",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        }
+      ]
+    },
+    {
+      "unit": 1027,
+      "name": "Forward Observers",
+      "parent": 725,
+      "specs": [
+        17,
+        18,
+        19,
+        21
+      ],
+      "body_from": 988,
+      "prototype_note": "Three-man ground recon with QBZ-191/QBU-191; no new spotting mechanic.",
+      "men": 3,
+      "cost": 30,
+      "weapons": [
+        {
+          "id": 2003998,
+          "name": "QBZ-191",
+          "primary_carriers": 2,
+          "special_carriers": 0
+        },
+        {
+          "id": 2004000,
+          "name": "QBU-191",
+          "primary_carriers": 1,
+          "special_carriers": 0
+        }
+      ]
+    }
+  ],
+  "pool_counts": {
+    "17": 20,
+    "18": 24,
+    "19": 28,
+    "20": 27,
+    "21": 23,
+    "22": 52
+  },
+  "existing_units": {
+    "900": {
+      "specs": [
+        17,
+        19,
+        21
+      ],
+      "category": "Recon vehicle",
+      "plan_role": "CSK131 scout",
+      "status": "planned"
+    },
+    "957": {
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "category": "Recon vehicle",
+      "plan_role": "WZ701",
+      "status": "planned"
+    },
+    "904": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ99A",
+      "status": "planned"
+    },
+    "905": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ96B",
+      "status": "planned"
+    },
+    "906": {
+      "specs": [
+        17,
+        20,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTQ15",
+      "status": "planned"
+    },
+    "949": {
+      "specs": [
+        19
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ96",
+      "status": "planned"
+    },
+    "947": {
+      "specs": [
+        19
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "PTZ89",
+      "status": "planned"
+    },
+    "951": {
+      "specs": [
+        19,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "HJ8 vehicle",
+      "status": "planned"
+    },
+    "936": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "HJ10",
+      "status": "planned"
+    },
+    "937": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "QN506",
+      "status": "planned"
+    },
+    "938": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTL11",
+      "status": "planned"
+    },
+    "930": {
+      "specs": [
+        20
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTD05",
+      "status": "planned"
+    },
+    "968": {
+      "specs": [
+        22
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ100",
+      "status": "existing additional prototype"
+    },
+    "953": {
+      "specs": [
+        22
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "VT5",
+      "status": "existing additional prototype"
+    },
+    "963": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PHL81",
+      "status": "planned"
+    },
+    "922": {
+      "specs": [
+        19,
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PHL11",
+      "status": "planned"
+    },
+    "908": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PHL03",
+      "status": "planned"
+    },
+    "934": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "SR5",
+      "status": "planned"
+    },
+    "907": {
+      "specs": [
+        18,
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PLZ05",
+      "status": "planned"
+    },
+    "926": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "PLL05",
+      "status": "planned"
+    },
+    "931": {
+      "specs": [
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PLZ07B",
+      "status": "planned"
+    },
+    "920": {
+      "specs": [
+        19,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "PGL625",
+      "status": "planned"
+    },
+    "909": {
+      "specs": [
+        18
+      ],
+      "category": "Support",
+      "plan_role": "PGZ09",
+      "status": "planned"
+    },
+    "932": {
+      "specs": [
+        18,
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PGZ04A",
+      "status": "planned"
+    },
+    "961": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "HQ7",
+      "status": "planned"
+    },
+    "925": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "HQ7B",
+      "status": "planned"
+    },
+    "911": {
+      "specs": [
+        18,
+        19
+      ],
+      "category": "Support",
+      "plan_role": "HQ9",
+      "status": "planned"
+    },
+    "910": {
+      "specs": [
+        18,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "HQ17",
+      "status": "planned"
+    },
+    "935": {
+      "specs": [
+        22
+      ],
+      "category": "Support",
+      "plan_role": "FK2000",
+      "status": "existing optional prototype"
+    },
+    "933": {
+      "specs": [
+        22
+      ],
+      "category": "Support",
+      "plan_role": "SH16",
+      "status": "existing optional prototype"
+    },
+    "912": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Logistics",
+      "plan_role": "Shaanxi supply truck",
+      "status": "planned"
+    },
+    "902": {
+      "specs": [
+        18
+      ],
+      "category": "Transport",
+      "plan_role": "ZBD04A IFV",
+      "status": "planned"
+    },
+    "903": {
+      "specs": [
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "ZBL08 IFV",
+      "status": "planned"
+    },
+    "979": {
+      "specs": [
+        18,
+        20,
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "ZBL191 IFV",
+      "status": "planned"
+    },
+    "959": {
+      "specs": [
+        19
+      ],
+      "category": "Transport",
+      "plan_role": "ZSD90 APC",
+      "status": "planned"
+    },
+    "960": {
+      "specs": [
+        22
+      ],
+      "category": "Transport",
+      "plan_role": "ZSD63C APC",
+      "status": "existing optional prototype"
+    },
+    "962": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "WZ551 APC",
+      "status": "planned"
+    },
+    "945": {
+      "specs": [
+        22
+      ],
+      "category": "Transport",
+      "plan_role": "ZBD20 stand-in",
+      "status": "existing optional prototype"
+    },
+    "914": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z20",
+      "status": "planned"
+    },
+    "913": {
+      "specs": [
+        17
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z10K",
+      "status": "planned"
+    },
+    "978": {
+      "specs": [
+        18,
+        20
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z10",
+      "status": "planned"
+    },
+    "941": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z9WA",
+      "status": "planned"
+    },
+    "942": {
+      "specs": [
+        17
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z11WB",
+      "status": "planned"
+    },
+    "915": {
+      "specs": [
+        17,
+        18
+      ],
+      "category": "Aircraft",
+      "plan_role": "J20",
+      "status": "planned"
+    },
+    "917": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "J10C",
+      "status": "planned"
+    },
+    "916": {
+      "specs": [
+        17,
+        18
+      ],
+      "category": "Aircraft",
+      "plan_role": "J16",
+      "status": "planned"
+    },
+    "918": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "JH7A",
+      "status": "planned"
+    },
+    "919": {
+      "specs": [
+        19
+      ],
+      "category": "Aircraft",
+      "plan_role": "H6K",
+      "status": "planned"
+    },
+    "946": {
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "Wing Loong",
+      "status": "planned"
+    },
+    "972": {
+      "specs": [
+        17
+      ],
+      "category": "Aircraft",
+      "plan_role": "WZ8",
+      "status": "planned"
+    },
+    "977": {
+      "specs": [
+        17
+      ],
+      "category": "Aircraft",
+      "plan_role": "J16D",
+      "status": "planned"
+    },
+    "921": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J35",
+      "status": "planned"
+    },
+    "943": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J15",
+      "status": "planned"
+    },
+    "974": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J15D",
+      "status": "planned"
+    },
+    "923": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "924": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "927": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "928": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "929": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "939": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "940": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "944": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "948": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "952": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "954": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "955": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "956": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "958": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "966": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "967": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "971": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "973": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "975": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "976": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    }
+  },
+  "transports": {
+    "17": [
+      900,
+      914
+    ],
+    "18": [
+      902,
+      979
+    ],
+    "19": [
+      959,
+      962
+    ],
+    "20": [
+      962,
+      979
+    ],
+    "21": [
+      903,
+      962,
+      979
+    ],
+    "22": [
+      900,
+      902,
+      903,
+      914,
+      945,
+      959,
+      960,
+      962,
+      979
+    ]
+  },
+  "existing_combat_stats_unchanged": true,
+  "native_verified": false,
+  "base_sha256": "5fa558c9e592505032ec1cb891fca8e8b7759840370621d6d6f7bf9ba440be97",
+  "approved_body_rules_preserved": 26,
+  "approved_weapon_rules_preserved": 130,
+  "visible_countries": [
+    4
+  ]
+}

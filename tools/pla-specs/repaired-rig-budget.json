@@ -1,0 +1,752 @@
+[
+  {
+    "unit": 985,
+    "key": "regular_woodland",
+    "lod": 0,
+    "triangles": 22460,
+    "gpu_vertices": 38442,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_regular_woodland_0.fas"
+  },
+  {
+    "unit": 985,
+    "key": "regular_woodland",
+    "lod": 1,
+    "triangles": 4491,
+    "gpu_vertices": 7648,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_regular_woodland_1.fas"
+  },
+  {
+    "unit": 985,
+    "key": "regular_woodland",
+    "lod": 2,
+    "triangles": 1684,
+    "gpu_vertices": 2905,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_regular_woodland_2.fas"
+  },
+  {
+    "unit": 986,
+    "key": "sf_carrier_woodland",
+    "lod": 0,
+    "triangles": 68159,
+    "gpu_vertices": 126206,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_carrier_woodland_0.fas"
+  },
+  {
+    "unit": 986,
+    "key": "sf_carrier_woodland",
+    "lod": 1,
+    "triangles": 13631,
+    "gpu_vertices": 29248,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_carrier_woodland_1.fas"
+  },
+  {
+    "unit": 986,
+    "key": "sf_carrier_woodland",
+    "lod": 2,
+    "triangles": 5111,
+    "gpu_vertices": 11137,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_carrier_woodland_2.fas"
+  },
+  {
+    "unit": 987,
+    "key": "sf_condor_woodland",
+    "lod": 0,
+    "triangles": 63672,
+    "gpu_vertices": 124466,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_condor_woodland_0.fas"
+  },
+  {
+    "unit": 987,
+    "key": "sf_condor_woodland",
+    "lod": 1,
+    "triangles": 12734,
+    "gpu_vertices": 28564,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_condor_woodland_1.fas"
+  },
+  {
+    "unit": 987,
+    "key": "sf_condor_woodland",
+    "lod": 2,
+    "triangles": 4774,
+    "gpu_vertices": 10712,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_condor_woodland_2.fas"
+  },
+  {
+    "unit": 988,
+    "key": "sf_light_woodland",
+    "lod": 0,
+    "triangles": 59486,
+    "gpu_vertices": 126336,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_light_woodland_0.fas"
+  },
+  {
+    "unit": 988,
+    "key": "sf_light_woodland",
+    "lod": 1,
+    "triangles": 11896,
+    "gpu_vertices": 29545,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_light_woodland_1.fas"
+  },
+  {
+    "unit": 988,
+    "key": "sf_light_woodland",
+    "lod": 2,
+    "triangles": 4461,
+    "gpu_vertices": 11258,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_light_woodland_2.fas"
+  },
+  {
+    "unit": 989,
+    "key": "sf_heavy_woodland",
+    "lod": 0,
+    "triangles": 69148,
+    "gpu_vertices": 129173,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_heavy_woodland_0.fas"
+  },
+  {
+    "unit": 989,
+    "key": "sf_heavy_woodland",
+    "lod": 1,
+    "triangles": 13829,
+    "gpu_vertices": 30157,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_heavy_woodland_1.fas"
+  },
+  {
+    "unit": 989,
+    "key": "sf_heavy_woodland",
+    "lod": 2,
+    "triangles": 5186,
+    "gpu_vertices": 11475,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_heavy_woodland_2.fas"
+  },
+  {
+    "unit": 990,
+    "key": "regular_desert",
+    "lod": 0,
+    "triangles": 22460,
+    "gpu_vertices": 38442,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_regular_desert_0.fas"
+  },
+  {
+    "unit": 990,
+    "key": "regular_desert",
+    "lod": 1,
+    "triangles": 4491,
+    "gpu_vertices": 7648,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_regular_desert_1.fas"
+  },
+  {
+    "unit": 990,
+    "key": "regular_desert",
+    "lod": 2,
+    "triangles": 1684,
+    "gpu_vertices": 2905,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_regular_desert_2.fas"
+  },
+  {
+    "unit": 991,
+    "key": "sf_carrier_desert",
+    "lod": 0,
+    "triangles": 56880,
+    "gpu_vertices": 85413,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_carrier_desert_0.fas"
+  },
+  {
+    "unit": 991,
+    "key": "sf_carrier_desert",
+    "lod": 1,
+    "triangles": 11375,
+    "gpu_vertices": 21859,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_carrier_desert_1.fas"
+  },
+  {
+    "unit": 991,
+    "key": "sf_carrier_desert",
+    "lod": 2,
+    "triangles": 4265,
+    "gpu_vertices": 8323,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_carrier_desert_2.fas"
+  },
+  {
+    "unit": 992,
+    "key": "sf_condor_desert",
+    "lod": 0,
+    "triangles": 52393,
+    "gpu_vertices": 83673,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_condor_desert_0.fas"
+  },
+  {
+    "unit": 992,
+    "key": "sf_condor_desert",
+    "lod": 1,
+    "triangles": 10477,
+    "gpu_vertices": 21002,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_condor_desert_1.fas"
+  },
+  {
+    "unit": 992,
+    "key": "sf_condor_desert",
+    "lod": 2,
+    "triangles": 3929,
+    "gpu_vertices": 7930,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_condor_desert_2.fas"
+  },
+  {
+    "unit": 993,
+    "key": "sf_light_desert",
+    "lod": 0,
+    "triangles": 48207,
+    "gpu_vertices": 85543,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_light_desert_0.fas"
+  },
+  {
+    "unit": 993,
+    "key": "sf_light_desert",
+    "lod": 1,
+    "triangles": 9640,
+    "gpu_vertices": 21732,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_light_desert_1.fas"
+  },
+  {
+    "unit": 993,
+    "key": "sf_light_desert",
+    "lod": 2,
+    "triangles": 3615,
+    "gpu_vertices": 8350,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_light_desert_2.fas"
+  },
+  {
+    "unit": 994,
+    "key": "sf_heavy_desert",
+    "lod": 0,
+    "triangles": 57869,
+    "gpu_vertices": 88380,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_heavy_desert_0.fas"
+  },
+  {
+    "unit": 994,
+    "key": "sf_heavy_desert",
+    "lod": 1,
+    "triangles": 11573,
+    "gpu_vertices": 22713,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_heavy_desert_1.fas"
+  },
+  {
+    "unit": 994,
+    "key": "sf_heavy_desert",
+    "lod": 2,
+    "triangles": 4340,
+    "gpu_vertices": 8653,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_heavy_desert_2.fas"
+  },
+  {
+    "unit": 995,
+    "key": "sf_assault_woodland",
+    "lod": 0,
+    "triangles": 78783,
+    "gpu_vertices": 149884,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_assault_woodland_0.fas"
+  },
+  {
+    "unit": 995,
+    "key": "sf_assault_woodland",
+    "lod": 1,
+    "triangles": 15755,
+    "gpu_vertices": 34935,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_assault_woodland_1.fas"
+  },
+  {
+    "unit": 995,
+    "key": "sf_assault_woodland",
+    "lod": 2,
+    "triangles": 5908,
+    "gpu_vertices": 13448,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_assault_woodland_2.fas"
+  },
+  {
+    "unit": 996,
+    "key": "sf_assault_desert",
+    "lod": 0,
+    "triangles": 67504,
+    "gpu_vertices": 109091,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_assault_desert_0.fas"
+  },
+  {
+    "unit": 996,
+    "key": "sf_assault_desert",
+    "lod": 1,
+    "triangles": 13500,
+    "gpu_vertices": 27468,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_assault_desert_1.fas"
+  },
+  {
+    "unit": 996,
+    "key": "sf_assault_desert",
+    "lod": 2,
+    "triangles": 5062,
+    "gpu_vertices": 10674,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_assault_desert_2.fas"
+  },
+  {
+    "unit": 997,
+    "key": "sf_night_up_woodland",
+    "lod": 0,
+    "triangles": 65798,
+    "gpu_vertices": 112167,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_night_up_woodland_0.fas"
+  },
+  {
+    "unit": 997,
+    "key": "sf_night_up_woodland",
+    "lod": 1,
+    "triangles": 13159,
+    "gpu_vertices": 26586,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_night_up_woodland_1.fas"
+  },
+  {
+    "unit": 997,
+    "key": "sf_night_up_woodland",
+    "lod": 2,
+    "triangles": 4933,
+    "gpu_vertices": 10088,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_night_up_woodland_2.fas"
+  },
+  {
+    "unit": 998,
+    "key": "sf_night_up_desert",
+    "lod": 0,
+    "triangles": 65798,
+    "gpu_vertices": 112167,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_night_up_desert_0.fas"
+  },
+  {
+    "unit": 998,
+    "key": "sf_night_up_desert",
+    "lod": 1,
+    "triangles": 13159,
+    "gpu_vertices": 26591,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_night_up_desert_1.fas"
+  },
+  {
+    "unit": 998,
+    "key": "sf_night_up_desert",
+    "lod": 2,
+    "triangles": 4933,
+    "gpu_vertices": 10072,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_night_up_desert_2.fas"
+  },
+  {
+    "unit": 999,
+    "key": "sf_night_down_woodland",
+    "lod": 0,
+    "triangles": 65798,
+    "gpu_vertices": 112167,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_night_down_woodland_0.fas"
+  },
+  {
+    "unit": 999,
+    "key": "sf_night_down_woodland",
+    "lod": 1,
+    "triangles": 13159,
+    "gpu_vertices": 26586,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_night_down_woodland_1.fas"
+  },
+  {
+    "unit": 999,
+    "key": "sf_night_down_woodland",
+    "lod": 2,
+    "triangles": 4933,
+    "gpu_vertices": 10088,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_night_down_woodland_2.fas"
+  },
+  {
+    "unit": 1000,
+    "key": "sf_night_down_desert",
+    "lod": 0,
+    "triangles": 65798,
+    "gpu_vertices": 112167,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_night_down_desert_0.fas"
+  },
+  {
+    "unit": 1000,
+    "key": "sf_night_down_desert",
+    "lod": 1,
+    "triangles": 13159,
+    "gpu_vertices": 26586,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_night_down_desert_1.fas"
+  },
+  {
+    "unit": 1000,
+    "key": "sf_night_down_desert",
+    "lod": 2,
+    "triangles": 4933,
+    "gpu_vertices": 10072,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_night_down_desert_2.fas"
+  },
+  {
+    "unit": 1001,
+    "key": "sf_goggles_up_woodland",
+    "lod": 0,
+    "triangles": 70373,
+    "gpu_vertices": 132848,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_goggles_up_woodland_0.fas"
+  },
+  {
+    "unit": 1001,
+    "key": "sf_goggles_up_woodland",
+    "lod": 1,
+    "triangles": 14074,
+    "gpu_vertices": 30707,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_goggles_up_woodland_1.fas"
+  },
+  {
+    "unit": 1001,
+    "key": "sf_goggles_up_woodland",
+    "lod": 2,
+    "triangles": 5277,
+    "gpu_vertices": 11655,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_goggles_up_woodland_2.fas"
+  },
+  {
+    "unit": 1002,
+    "key": "sf_goggles_up_desert",
+    "lod": 0,
+    "triangles": 59094,
+    "gpu_vertices": 92055,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_goggles_up_desert_0.fas"
+  },
+  {
+    "unit": 1002,
+    "key": "sf_goggles_up_desert",
+    "lod": 1,
+    "triangles": 11818,
+    "gpu_vertices": 23277,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_goggles_up_desert_1.fas"
+  },
+  {
+    "unit": 1002,
+    "key": "sf_goggles_up_desert",
+    "lod": 2,
+    "triangles": 4431,
+    "gpu_vertices": 8855,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_goggles_up_desert_2.fas"
+  },
+  {
+    "unit": 1003,
+    "key": "sf_goggles_down_woodland",
+    "lod": 0,
+    "triangles": 70373,
+    "gpu_vertices": 132848,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_goggles_down_woodland_0.fas"
+  },
+  {
+    "unit": 1003,
+    "key": "sf_goggles_down_woodland",
+    "lod": 1,
+    "triangles": 14074,
+    "gpu_vertices": 30703,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_goggles_down_woodland_1.fas"
+  },
+  {
+    "unit": 1003,
+    "key": "sf_goggles_down_woodland",
+    "lod": 2,
+    "triangles": 5276,
+    "gpu_vertices": 11652,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_goggles_down_woodland_2.fas"
+  },
+  {
+    "unit": 1004,
+    "key": "sf_goggles_down_desert",
+    "lod": 0,
+    "triangles": 59094,
+    "gpu_vertices": 92055,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_goggles_down_desert_0.fas"
+  },
+  {
+    "unit": 1004,
+    "key": "sf_goggles_down_desert",
+    "lod": 1,
+    "triangles": 11818,
+    "gpu_vertices": 23277,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_goggles_down_desert_1.fas"
+  },
+  {
+    "unit": 1004,
+    "key": "sf_goggles_down_desert",
+    "lod": 2,
+    "triangles": 4431,
+    "gpu_vertices": 8846,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_goggles_down_desert_2.fas"
+  },
+  {
+    "unit": 1005,
+    "key": "sf_condor_pouches_woodland",
+    "lod": 0,
+    "triangles": 74384,
+    "gpu_vertices": 156520,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_condor_pouches_woodland_0.fas"
+  },
+  {
+    "unit": 1005,
+    "key": "sf_condor_pouches_woodland",
+    "lod": 1,
+    "triangles": 14876,
+    "gpu_vertices": 34906,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_condor_pouches_woodland_1.fas"
+  },
+  {
+    "unit": 1005,
+    "key": "sf_condor_pouches_woodland",
+    "lod": 2,
+    "triangles": 5578,
+    "gpu_vertices": 13254,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_condor_pouches_woodland_2.fas"
+  },
+  {
+    "unit": 1006,
+    "key": "sf_condor_pouches_desert",
+    "lod": 0,
+    "triangles": 63105,
+    "gpu_vertices": 115727,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_condor_pouches_desert_0.fas"
+  },
+  {
+    "unit": 1006,
+    "key": "sf_condor_pouches_desert",
+    "lod": 1,
+    "triangles": 12621,
+    "gpu_vertices": 27259,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_condor_pouches_desert_1.fas"
+  },
+  {
+    "unit": 1006,
+    "key": "sf_condor_pouches_desert",
+    "lod": 2,
+    "triangles": 4732,
+    "gpu_vertices": 10386,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_condor_pouches_desert_2.fas"
+  },
+  {
+    "unit": 1007,
+    "key": "sf_grenadier_woodland",
+    "lod": 0,
+    "triangles": 75252,
+    "gpu_vertices": 145365,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_grenadier_woodland_0.fas"
+  },
+  {
+    "unit": 1007,
+    "key": "sf_grenadier_woodland",
+    "lod": 1,
+    "triangles": 15050,
+    "gpu_vertices": 33645,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_grenadier_woodland_1.fas"
+  },
+  {
+    "unit": 1007,
+    "key": "sf_grenadier_woodland",
+    "lod": 2,
+    "triangles": 5643,
+    "gpu_vertices": 12916,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_grenadier_woodland_2.fas"
+  },
+  {
+    "unit": 1008,
+    "key": "sf_grenadier_desert",
+    "lod": 0,
+    "triangles": 61318,
+    "gpu_vertices": 96607,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_grenadier_desert_0.fas"
+  },
+  {
+    "unit": 1008,
+    "key": "sf_grenadier_desert",
+    "lod": 1,
+    "triangles": 12263,
+    "gpu_vertices": 24342,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_grenadier_desert_1.fas"
+  },
+  {
+    "unit": 1008,
+    "key": "sf_grenadier_desert",
+    "lod": 2,
+    "triangles": 4597,
+    "gpu_vertices": 9373,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_grenadier_desert_2.fas"
+  },
+  {
+    "unit": 1009,
+    "key": "sf_condor_pouches_b_woodland",
+    "lod": 0,
+    "triangles": 72388,
+    "gpu_vertices": 150532,
+    "materials": 1,
+    "atlas_size": 2048,
+    "file": "pla2_sf_condor_pouches_b_woodland_0.fas"
+  },
+  {
+    "unit": 1009,
+    "key": "sf_condor_pouches_b_woodland",
+    "lod": 1,
+    "triangles": 14477,
+    "gpu_vertices": 33590,
+    "materials": 1,
+    "atlas_size": 1024,
+    "file": "pla2_sf_condor_pouches_b_woodland_1.fas"
+  },
+  {
+    "unit": 1009,
+    "key": "sf_condor_pouches_b_woodland",
+    "lod": 2,
+    "triangles": 5429,
+    "gpu_vertices": 12691,
+    "materials": 1,
+    "atlas_size": 512,
+    "file": "pla2_sf_condor_pouches_b_woodland_2.fas"
+  }
+]

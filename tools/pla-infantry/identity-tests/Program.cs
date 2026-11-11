@@ -8,3 +8,7 @@ foreach(var values in new[]{new[]{"1","4","4","PLA TEST Build 4"},new[]{"4","3",
 string root=Path.Combine(Path.GetTempPath(),"pla-identity-"+Guid.NewGuid());Directory.CreateDirectory(Path.Combine(root,"UserData"));
 try{string f=Path.Combine(root,"UserData","helmet.fas");File.WriteAllText(f,"new helmet");var hashes=new JsonObject{["UserData/helmet.fas"]=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(f))).ToLowerInvariant()};Check(PayloadVerifier.Verify(root,hashes)==1);File.WriteAllText(f,"old helmet");bool refused=false;try{PayloadVerifier.Verify(root,hashes);}catch(InvalidDataException){refused=true;}Check(refused);}finally{Directory.Delete(root,true);}
 Console.WriteLine($"PASS: {checks} checks; mixed build metadata and stale helmet files refused");
+
+foreach(int uid in new[]{901}.Concat(Enumerable.Range(985,43)))Check(FAModels.InfantryBodyIdentity.IsSupported(uid));
+foreach(int uid in new[]{-1,0,900,902,984,1028,32768})Check(!FAModels.InfantryBodyIdentity.IsSupported(uid));
+Console.WriteLine("PASS: all 44 intended body IDs accepted; adjacent IDs rejected");

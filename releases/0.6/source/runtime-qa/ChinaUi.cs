@@ -1,4 +1,6 @@
 using HarmonyLib;
+using System.Text.Json;
+using MelonLoader.Utils;
 using Il2CppBrokenArrow.Client.Ecs.Decks_v2.UI;
 using Il2CppBrokenArrow.Client.Ecs.UI;
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Arsenal.ArmyBuilder;
@@ -15,10 +17,12 @@ static class ChinaUi
     static readonly string[] Addresses={"FA_CHINA_FLAG","FA_CHINA_AIR_SF","FA_CHINA_ARMORED","FA_CHINA_ROCKET","FA_CHINA_NAVAL","FA_CHINA_MOTORIZED"};
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();
-    static bool failed;
+    static bool failed,plaOnly;
     static bool Ready=>!failed&&Runtime.IsApplied;
     public static void Install(HarmonyLib.Harmony harmony)
     {
+        var config=Path.Combine(MelonEnvironment.UserDataDirectory,"FreedomArrow","pla-specializations.json");
+        if(File.Exists(config))plaOnly=JsonDocument.Parse(File.ReadAllText(config)).RootElement.GetProperty("pla_only").GetBoolean();
         foreach(var address in Addresses)
         {
             using var s=typeof(ChinaUi).Assembly.GetManifestResourceStream("FreedomArrow.icons."+address+".png")??throw new InvalidDataException("Missing China UI sprite "+address);
@@ -59,7 +63,9 @@ static class ChinaUi
     }
     public static void CountryRow(CountryFilterButtonsGroup __instance,Countries country)
     {
-        if(!Ready||country.Id!=4)return;
+        if(!Ready)return;
+        if(plaOnly&&country.Id!=4){__instance.gameObject.SetActive(false);return;}
+        if(country.Id!=4)return;
         __instance.transform.SetAsFirstSibling();
         MelonLogger.Msg("PLA_CHINA_UI Arsenal China row initialized above other countries; next filter bit="+__instance.NextBitIndex);
     }
@@ -68,7 +74,13 @@ static class ChinaUi
         if(!Ready)return;
         var countries=__instance._countries;var buttons=__instance._countryButtons;
         if(countries==null||buttons==null)return;
+        int china=-1;
         for(int i=0;i<countries.Length&&i<buttons.Length;i++)
-            if(countries[i].Id==4){buttons[i].transform.SetAsFirstSibling();MelonLogger.Msg("PLA_CHINA_UI deck country China rendered; native button callback retained");return;}
+        {
+            if(plaOnly)buttons[i].gameObject.SetActive(countries[i].Id==4);
+            if(countries[i].Id==4){china=i;buttons[i].transform.SetAsFirstSibling();}
+        }
+        if(plaOnly&&china>=0&&__instance._selectedCountryIdx!=china)__instance.OnCountrySelected(buttons[china].gameObject);
+        MelonLogger.Msg($"PLA_CHINA_UI deck countries rendered; PLA-only={plaOnly}; China index={china}; native callbacks retained");
     }
 }

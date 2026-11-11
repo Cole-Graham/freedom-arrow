@@ -1,0 +1,1000 @@
+{
+  "build": 9,
+  "base_build": 8,
+  "base_sha256": "5fa558c9e592505032ec1cb891fca8e8b7759840370621d6d6f7bf9ba440be97",
+  "pla_only": true,
+  "hide_comparison_squads": false,
+  "specs": [
+    {
+      "id": 17,
+      "name": "Airforce / SF",
+      "fields": {
+        "ReconSlots": 6,
+        "InfantrySlots": 6,
+        "CombatSlots": 2,
+        "SupportSlots": 4,
+        "LogisticsSlots": 3,
+        "HelicoptersSlots": 6,
+        "AirSlots": 7,
+        "ReconPoints": 1000,
+        "InfantryPoints": 1000,
+        "CombatPoints": 500,
+        "SupportPoints": 500,
+        "LogisticsPoints": 0,
+        "HelicoptersPoints": 1000,
+        "AirPoints": 1000,
+        "MaxSlots": 34
+      }
+    },
+    {
+      "id": 18,
+      "name": "Ground Force / Armored",
+      "fields": {
+        "ReconSlots": 4,
+        "InfantrySlots": 6,
+        "CombatSlots": 6,
+        "SupportSlots": 7,
+        "LogisticsSlots": 3,
+        "HelicoptersSlots": 2,
+        "AirSlots": 3,
+        "ReconPoints": 750,
+        "InfantryPoints": 1000,
+        "CombatPoints": 1500,
+        "SupportPoints": 1000,
+        "LogisticsPoints": 0,
+        "HelicoptersPoints": 250,
+        "AirPoints": 500,
+        "MaxSlots": 31
+      }
+    },
+    {
+      "id": 19,
+      "name": "Rocket Force / Conscripts",
+      "fields": {
+        "ReconSlots": 5,
+        "InfantrySlots": 6,
+        "CombatSlots": 3,
+        "SupportSlots": 7,
+        "LogisticsSlots": 3,
+        "HelicoptersSlots": 2,
+        "AirSlots": 4,
+        "ReconPoints": 750,
+        "InfantryPoints": 1000,
+        "CombatPoints": 500,
+        "SupportPoints": 1750,
+        "LogisticsPoints": 0,
+        "HelicoptersPoints": 250,
+        "AirPoints": 750,
+        "MaxSlots": 30
+      }
+    },
+    {
+      "id": 20,
+      "name": "Naval / Marines",
+      "fields": {
+        "ReconSlots": 5,
+        "InfantrySlots": 6,
+        "CombatSlots": 4,
+        "SupportSlots": 5,
+        "LogisticsSlots": 3,
+        "HelicoptersSlots": 4,
+        "AirSlots": 6,
+        "ReconPoints": 750,
+        "InfantryPoints": 1250,
+        "CombatPoints": 750,
+        "SupportPoints": 750,
+        "LogisticsPoints": 0,
+        "HelicoptersPoints": 500,
+        "AirPoints": 1000,
+        "MaxSlots": 33
+      }
+    },
+    {
+      "id": 21,
+      "name": "Motorized",
+      "fields": {
+        "ReconSlots": 6,
+        "InfantrySlots": 7,
+        "CombatSlots": 4,
+        "SupportSlots": 6,
+        "LogisticsSlots": 3,
+        "HelicoptersSlots": 3,
+        "AirSlots": 4,
+        "ReconPoints": 1000,
+        "InfantryPoints": 1500,
+        "CombatPoints": 750,
+        "SupportPoints": 1000,
+        "LogisticsPoints": 0,
+        "HelicoptersPoints": 250,
+        "AirPoints": 500,
+        "MaxSlots": 33
+      }
+    },
+    {
+      "id": 22,
+      "name": "Test",
+      "fields": {
+        "ReconSlots": 64,
+        "ReconPoints": 100000,
+        "InfantrySlots": 64,
+        "InfantryPoints": 100000,
+        "CombatSlots": 64,
+        "CombatPoints": 100000,
+        "SupportSlots": 64,
+        "SupportPoints": 100000,
+        "LogisticsSlots": 64,
+        "LogisticsPoints": 100000,
+        "HelicoptersSlots": 64,
+        "HelicoptersPoints": 100000,
+        "AirSlots": 64,
+        "AirPoints": 100000,
+        "MaxSlots": 448
+      }
+    }
+  ],
+  "existing_units": {
+    "900": {
+      "specs": [
+        17,
+        19,
+        21
+      ],
+      "category": "Recon vehicle",
+      "plan_role": "CSK131 scout",
+      "status": "planned"
+    },
+    "957": {
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "category": "Recon vehicle",
+      "plan_role": "WZ701",
+      "status": "planned"
+    },
+    "904": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ99A",
+      "status": "planned"
+    },
+    "905": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ96B",
+      "status": "planned"
+    },
+    "906": {
+      "specs": [
+        17,
+        20,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTQ15",
+      "status": "planned"
+    },
+    "949": {
+      "specs": [
+        19
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ96",
+      "status": "planned"
+    },
+    "947": {
+      "specs": [
+        19
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "PTZ89",
+      "status": "planned"
+    },
+    "951": {
+      "specs": [
+        19,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "HJ8 vehicle",
+      "status": "planned"
+    },
+    "936": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "HJ10",
+      "status": "planned"
+    },
+    "937": {
+      "specs": [
+        18
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "QN506",
+      "status": "planned"
+    },
+    "938": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTL11",
+      "status": "planned"
+    },
+    "930": {
+      "specs": [
+        20
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTD05",
+      "status": "planned"
+    },
+    "968": {
+      "specs": [
+        22
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "ZTZ100",
+      "status": "existing additional prototype"
+    },
+    "953": {
+      "specs": [
+        22
+      ],
+      "category": "Combat vehicle",
+      "plan_role": "VT5",
+      "status": "existing additional prototype"
+    },
+    "963": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PHL81",
+      "status": "planned"
+    },
+    "922": {
+      "specs": [
+        19,
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PHL11",
+      "status": "planned"
+    },
+    "908": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PHL03",
+      "status": "planned"
+    },
+    "934": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "SR5",
+      "status": "planned"
+    },
+    "907": {
+      "specs": [
+        18,
+        19
+      ],
+      "category": "Support",
+      "plan_role": "PLZ05",
+      "status": "planned"
+    },
+    "926": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "PLL05",
+      "status": "planned"
+    },
+    "931": {
+      "specs": [
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PLZ07B",
+      "status": "planned"
+    },
+    "920": {
+      "specs": [
+        19,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "PGL625",
+      "status": "planned"
+    },
+    "909": {
+      "specs": [
+        18
+      ],
+      "category": "Support",
+      "plan_role": "PGZ09",
+      "status": "planned"
+    },
+    "932": {
+      "specs": [
+        18,
+        20
+      ],
+      "category": "Support",
+      "plan_role": "PGZ04A",
+      "status": "planned"
+    },
+    "961": {
+      "specs": [
+        19
+      ],
+      "category": "Support",
+      "plan_role": "HQ7",
+      "status": "planned"
+    },
+    "925": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "HQ7B",
+      "status": "planned"
+    },
+    "911": {
+      "specs": [
+        18,
+        19
+      ],
+      "category": "Support",
+      "plan_role": "HQ9",
+      "status": "planned"
+    },
+    "910": {
+      "specs": [
+        18,
+        21
+      ],
+      "category": "Support",
+      "plan_role": "HQ17",
+      "status": "planned"
+    },
+    "935": {
+      "specs": [
+        22
+      ],
+      "category": "Support",
+      "plan_role": "FK2000",
+      "status": "existing optional prototype"
+    },
+    "933": {
+      "specs": [
+        22
+      ],
+      "category": "Support",
+      "plan_role": "SH16",
+      "status": "existing optional prototype"
+    },
+    "912": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Logistics",
+      "plan_role": "Shaanxi supply truck",
+      "status": "planned"
+    },
+    "902": {
+      "specs": [
+        18
+      ],
+      "category": "Transport",
+      "plan_role": "ZBD04A IFV",
+      "status": "planned"
+    },
+    "903": {
+      "specs": [
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "ZBL08 IFV",
+      "status": "planned"
+    },
+    "979": {
+      "specs": [
+        18,
+        20,
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "ZBL191 IFV",
+      "status": "planned"
+    },
+    "959": {
+      "specs": [
+        19
+      ],
+      "category": "Transport",
+      "plan_role": "ZSD90 APC",
+      "status": "planned"
+    },
+    "960": {
+      "specs": [
+        22
+      ],
+      "category": "Transport",
+      "plan_role": "ZSD63C APC",
+      "status": "existing optional prototype"
+    },
+    "962": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Transport",
+      "plan_role": "WZ551 APC",
+      "status": "planned"
+    },
+    "945": {
+      "specs": [
+        22
+      ],
+      "category": "Transport",
+      "plan_role": "ZBD20 stand-in",
+      "status": "existing optional prototype"
+    },
+    "914": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z20",
+      "status": "planned"
+    },
+    "913": {
+      "specs": [
+        17
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z10K",
+      "status": "planned"
+    },
+    "978": {
+      "specs": [
+        18,
+        20
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z10",
+      "status": "planned"
+    },
+    "941": {
+      "specs": [
+        20,
+        21
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z9WA",
+      "status": "planned"
+    },
+    "942": {
+      "specs": [
+        17
+      ],
+      "category": "Helicopter",
+      "plan_role": "Z11WB",
+      "status": "planned"
+    },
+    "915": {
+      "specs": [
+        17,
+        18
+      ],
+      "category": "Aircraft",
+      "plan_role": "J20",
+      "status": "planned"
+    },
+    "917": {
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "J10C",
+      "status": "planned"
+    },
+    "916": {
+      "specs": [
+        17,
+        18
+      ],
+      "category": "Aircraft",
+      "plan_role": "J16",
+      "status": "planned"
+    },
+    "918": {
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "JH7A",
+      "status": "planned"
+    },
+    "919": {
+      "specs": [
+        19
+      ],
+      "category": "Aircraft",
+      "plan_role": "H6K",
+      "status": "planned"
+    },
+    "946": {
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "category": "Aircraft",
+      "plan_role": "Wing Loong",
+      "status": "planned"
+    },
+    "972": {
+      "specs": [
+        17
+      ],
+      "category": "Aircraft",
+      "plan_role": "WZ8",
+      "status": "planned"
+    },
+    "977": {
+      "specs": [
+        17
+      ],
+      "category": "Aircraft",
+      "plan_role": "J16D",
+      "status": "planned"
+    },
+    "921": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J35",
+      "status": "planned"
+    },
+    "943": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J15",
+      "status": "planned"
+    },
+    "974": {
+      "specs": [
+        20
+      ],
+      "category": "Aircraft",
+      "plan_role": "J15D",
+      "status": "planned"
+    },
+    "923": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "924": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "927": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "928": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "929": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "939": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "940": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "944": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "948": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "952": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "954": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "955": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "956": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "958": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "966": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "967": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "971": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "973": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "975": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    },
+    "976": {
+      "specs": [
+        22
+      ],
+      "status": "existing additional prototype"
+    }
+  },
+  "infantry": [
+    {
+      "unit": 1010,
+      "name": "Modern Riflemen",
+      "parent": 398,
+      "specs": [
+        18,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "QBZ-191 line infantry; native RPK/light-AT models remain temporary."
+    },
+    {
+      "unit": 1011,
+      "name": "Airborne Riflemen",
+      "parent": 111,
+      "specs": [
+        17
+      ],
+      "body_from": 985,
+      "prototype_note": "Air-mobile riflemen; QBZ-191 is a temporary compact-rifle substitute."
+    },
+    {
+      "unit": 1012,
+      "name": "SF Assault",
+      "parent": 130,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 995,
+      "prototype_note": "Close assault team; native LMG,shotgun and assault-launcher stand-ins."
+    },
+    {
+      "unit": 1013,
+      "name": "SF Recon",
+      "parent": 116,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 988,
+      "prototype_note": "Small trained recon team with native recon behavior."
+    },
+    {
+      "unit": 1014,
+      "name": "QTS-11 Digital Scouts",
+      "parent": 725,
+      "specs": [
+        17
+      ],
+      "body_from": 1007,
+      "prototype_note": "Three QTS-11 rifles and one underbarrel GL; native M4/M203-derived behavior."
+    },
+    {
+      "unit": 1015,
+      "name": "Marine Riflemen",
+      "parent": 126,
+      "specs": [
+        20
+      ],
+      "body_from": 985,
+      "prototype_note": "Marine line squad; swimming is not implied by its outfit."
+    },
+    {
+      "unit": 1016,
+      "name": "Reserve Riflemen",
+      "parent": 604,
+      "specs": [
+        19
+      ],
+      "body_from": 990,
+      "prototype_note": "Lower-tier rifle squad; native legacy rifle/LMG stand-ins."
+    },
+    {
+      "unit": 1017,
+      "name": "Missile-site Security",
+      "parent": 725,
+      "specs": [
+        19
+      ],
+      "body_from": 985,
+      "prototype_note": "Three riflemen with ordinary line-infantry optics/stealth; no AT."
+    },
+    {
+      "unit": 1018,
+      "name": "Assault Engineers",
+      "parent": 122,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 995,
+      "prototype_note": "Anti-cover launcher team; PF-97 uses the native MRO-Z behavior/model provisionally."
+    },
+    {
+      "unit": 1019,
+      "name": "QLU-11 GL Team",
+      "parent": 75,
+      "specs": [
+        17,
+        20,
+        21
+      ],
+      "body_from": 1007,
+      "prototype_note": "Four rifles and two QLU-11; existing native M32-derived QLU behavior."
+    },
+    {
+      "unit": 1020,
+      "name": "QLZ-04 AGL Team",
+      "parent": 112,
+      "specs": [
+        18,
+        19
+      ],
+      "body_from": 985,
+      "prototype_note": "Sustained AGL support; AGS-30 behavior/model is temporary."
+    },
+    {
+      "unit": 1021,
+      "name": "HJ-8 ATGM Team",
+      "parent": 121,
+      "specs": [
+        19,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Budget ATGM role; native Konkurs behavior/model is temporary."
+    },
+    {
+      "unit": 1022,
+      "name": "HJ-12 ATGM Team",
+      "parent": 520,
+      "specs": [
+        17,
+        18,
+        20
+      ],
+      "body_from": 985,
+      "prototype_note": "Fire-and-forget AT role; Javelin behavior/model is temporary."
+    },
+    {
+      "unit": 1023,
+      "name": "PF-98 AT Team",
+      "parent": 127,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Unguided heavy-AT role; RPG-29 behavior/model is temporary."
+    },
+    {
+      "unit": 1024,
+      "name": "HN-6 MANPADS Team",
+      "parent": 120,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Dismounted AA; Igla-N behavior/model is temporary."
+    },
+    {
+      "unit": 1025,
+      "name": "QJZ-171 HMG Team",
+      "parent": 624,
+      "specs": [
+        20,
+        21
+      ],
+      "body_from": 985,
+      "prototype_note": "Heavy suppressive team; Kord behavior/model is temporary."
+    },
+    {
+      "unit": 1026,
+      "name": "QBU-10 Sniper Team",
+      "parent": 124,
+      "specs": [
+        17,
+        20
+      ],
+      "body_from": 988,
+      "prototype_note": "Anti-materiel sniper and QBU-191 spotter; ASVK behavior/model is temporary."
+    },
+    {
+      "unit": 1027,
+      "name": "Forward Observers",
+      "parent": 725,
+      "specs": [
+        17,
+        18,
+        19,
+        21
+      ],
+      "body_from": 988,
+      "prototype_note": "Three-man ground recon with QBZ-191/QBU-191; no new spotting mechanic."
+    }
+  ],
+  "transports": {
+    "17": [
+      900,
+      914
+    ],
+    "18": [
+      902,
+      979
+    ],
+    "19": [
+      959,
+      962
+    ],
+    "20": [
+      962,
+      979
+    ],
+    "21": [
+      903,
+      962,
+      979
+    ],
+    "22": [
+      900,
+      902,
+      903,
+      914,
+      945,
+      959,
+      960,
+      962,
+      979
+    ]
+  },
+  "fixture_units": [
+    901,
+    985,
+    986,
+    987,
+    988,
+    989,
+    990,
+    991,
+    992,
+    993,
+    994,
+    995,
+    996,
+    997,
+    998,
+    999,
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009
+  ],
+  "note": "First functional branch draft. Existing vehicle combat stats and prices are retained; infantry costs/health/training come from the named native donor. New heavy-weapon behavior and models are explicitly temporary. All five category point budgets total5000,following native two-specialization deck structure; provisional,not approved final balance. RU/US selection is hidden only in this isolated PLA pack; source rows and old fit-test data remain for safe merging and QA.",
+  "test_spec": 22
+}

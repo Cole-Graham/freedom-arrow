@@ -1,6 +1,6 @@
 {
-  "build": 5,
-  "label": "PLA TEST Build 5",
+  "build": 9,
+  "label": "PLA TEST Build 9",
   "roster_contract": "pla-test-contract.json",
   "infantry": {
     "unit": 901,
@@ -412,5 +412,14 @@
       ]
     }
   ],
-  "china_ui": true
+  "china_ui": true,
+  "pla_only": true,
+  "specializations": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ]
 }

@@ -1,0 +1,119 @@
+unit,name,status,category,specs
+900,,planned,Recon vehicle,"17,19,21"
+957,,planned,Recon vehicle,"18,19,21"
+904,,planned,Combat vehicle,18
+905,,planned,Combat vehicle,18
+906,,planned,Combat vehicle,"17,20,21"
+949,,planned,Combat vehicle,19
+947,,planned,Combat vehicle,19
+951,,planned,Combat vehicle,"19,21"
+936,,planned,Combat vehicle,18
+937,,planned,Combat vehicle,18
+938,,planned,Combat vehicle,"20,21"
+930,,planned,Combat vehicle,20
+968,,existing additional prototype,Combat vehicle,22
+953,,existing additional prototype,Combat vehicle,22
+963,,planned,Support,19
+922,,planned,Support,"19,20"
+908,,planned,Support,19
+934,,planned,Support,19
+907,,planned,Support,"18,19"
+926,,planned,Support,"19,20,21"
+931,,planned,Support,20
+920,,planned,Support,"19,21"
+909,,planned,Support,18
+932,,planned,Support,"18,20"
+961,,planned,Support,19
+925,,planned,Support,"20,21"
+911,,planned,Support,"18,19"
+910,,planned,Support,"18,21"
+935,,existing optional prototype,Support,22
+933,,existing optional prototype,Support,22
+912,,planned,Logistics,"17,18,19,20,21"
+902,,planned,Transport,18
+903,,planned,Transport,21
+979,,planned,Transport,"18,20,21"
+959,,planned,Transport,19
+960,,existing optional prototype,Transport,22
+962,,planned,Transport,"19,20,21"
+945,,existing optional prototype,Transport,22
+914,,planned,Helicopter,"17,18,19,20,21"
+913,,planned,Helicopter,17
+978,,planned,Helicopter,"18,20"
+941,,planned,Helicopter,"20,21"
+942,,planned,Helicopter,17
+915,,planned,Aircraft,"17,18"
+917,,planned,Aircraft,"17,18,19,20,21"
+916,,planned,Aircraft,"17,18"
+918,,planned,Aircraft,"19,20,21"
+919,,planned,Aircraft,19
+946,,planned,Aircraft,"18,19,21"
+972,,planned,Aircraft,17
+977,,planned,Aircraft,17
+921,,planned,Aircraft,20
+943,,planned,Aircraft,20
+974,,planned,Aircraft,20
+923,,existing additional prototype,,22
+924,,existing additional prototype,,22
+927,,existing additional prototype,,22
+928,,existing additional prototype,,22
+929,,existing additional prototype,,22
+939,,existing additional prototype,,22
+940,,existing additional prototype,,22
+944,,existing additional prototype,,22
+948,,existing additional prototype,,22
+952,,existing additional prototype,,22
+954,,existing additional prototype,,22
+955,,existing additional prototype,,22
+956,,existing additional prototype,,22
+958,,existing additional prototype,,22
+966,,existing additional prototype,,22
+967,,existing additional prototype,,22
+971,,existing additional prototype,,22
+973,,existing additional prototype,,22
+975,,existing additional prototype,,22
+976,,existing additional prototype,,22
+1010,Modern Riflemen,infantry draft,Infantry,"18,21"
+1011,Airborne Riflemen,infantry draft,Infantry,17
+1012,SF Assault,infantry draft,Infantry,"17,20"
+1013,SF Recon,infantry draft,Infantry,"17,20"
+1014,QTS-11 Digital Scouts,infantry draft,Infantry,17
+1015,Marine Riflemen,infantry draft,Infantry,20
+1016,Reserve Riflemen,infantry draft,Infantry,19
+1017,Missile-site Security,infantry draft,Infantry,19
+1018,Assault Engineers,infantry draft,Infantry,"18,19,20,21"
+1019,QLU-11 GL Team,infantry draft,Infantry,"17,20,21"
+1020,QLZ-04 AGL Team,infantry draft,Infantry,"18,19"
+1021,HJ-8 ATGM Team,infantry draft,Infantry,"19,21"
+1022,HJ-12 ATGM Team,infantry draft,Infantry,"17,18,20"
+1023,PF-98 AT Team,infantry draft,Infantry,"18,19,20,21"
+1024,HN-6 MANPADS Team,infantry draft,Infantry,"17,18,19,20,21"
+1025,QJZ-171 HMG Team,infantry draft,Infantry,"20,21"
+1026,QBU-10 Sniper Team,infantry draft,Infantry,"17,20"
+1027,Forward Observers,infantry draft,Infantry,"17,18,19,21"
+901,Infantry model/weapon comparison,Test fixture,Infantry,22
+985,Infantry model/weapon comparison,Test fixture,Infantry,22
+986,Infantry model/weapon comparison,Test fixture,Infantry,22
+987,Infantry model/weapon comparison,Test fixture,Infantry,22
+988,Infantry model/weapon comparison,Test fixture,Infantry,22
+989,Infantry model/weapon comparison,Test fixture,Infantry,22
+990,Infantry model/weapon comparison,Test fixture,Infantry,22
+991,Infantry model/weapon comparison,Test fixture,Infantry,22
+992,Infantry model/weapon comparison,Test fixture,Infantry,22
+993,Infantry model/weapon comparison,Test fixture,Infantry,22
+994,Infantry model/weapon comparison,Test fixture,Infantry,22
+995,Infantry model/weapon comparison,Test fixture,Infantry,22
+996,Infantry model/weapon comparison,Test fixture,Infantry,22
+997,Infantry model/weapon comparison,Test fixture,Infantry,22
+998,Infantry model/weapon comparison,Test fixture,Infantry,22
+999,Infantry model/weapon comparison,Test fixture,Infantry,22
+1000,Infantry model/weapon comparison,Test fixture,Infantry,22
+1001,Infantry model/weapon comparison,Test fixture,Infantry,22
+1002,Infantry model/weapon comparison,Test fixture,Infantry,22
+1003,Infantry model/weapon comparison,Test fixture,Infantry,22
+1004,Infantry model/weapon comparison,Test fixture,Infantry,22
+1005,Infantry model/weapon comparison,Test fixture,Infantry,22
+1006,Infantry model/weapon comparison,Test fixture,Infantry,22
+1007,Infantry model/weapon comparison,Test fixture,Infantry,22
+1008,Infantry model/weapon comparison,Test fixture,Infantry,22
+1009,Infantry model/weapon comparison,Test fixture,Infantry,22

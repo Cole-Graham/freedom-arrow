@@ -1,4 +1,28 @@
-# freedom-arrow
+# PLA TEST Build 9
+
+**First PLA branch draft: five planned specializations, a Test pool, and 18 donor-based infantry roles in one complete pack. The arm fit is replaced to preserve forearm and hand thickness. Data and offline previews can be checked; native Arsenal, deck creation and combat remain unverified.**
+
+## Changes in this pack
+
+- China is the only selectable nation in the test pack. Russia and USA cards/specs are hidden, while their donor data remains internally.
+- Airforce / SF, Ground Force / Armored, Rocket Force / Conscripts, Naval / Marines and Motorized have separate primary/shared unit pools. Category budgets are provisional at 5,000 points per spec.
+- Test contains 52 cards: unused or additional vehicle variants, all 25 infantry appearance variants and the seven-man weapon demonstration squad. This is a developer pool, not a balanced combat spec.
+- Eighteen new infantry roles use the existing PLA bodies and QBZ-191, QBU-191, QTS-11 and QLU-11 where applicable. Heavy Chinese weapons use explicitly documented native stand-ins. Costs and behavior are provisional donor baselines.
+- All 25 appearance variants receive the replacement arm fit. Forearm cross-sections use rotation plus length fitting; hands use a rigid rotation. Approved body and weapon offsets and woodland helmet clearance remain unchanged.
+- Existing aircraft canopy repairs and reflections from pinned Build 8 are preserved. Existing vehicle combat statistics, textures, music and voices remain unchanged by this task.
+- New transports are limited to the correct branches and sufficient infantry capacity.
+
+## Testing and later integration
+
+Use the complete numbered PLA pack, not historical PLA.infantry or PLA.48 prototypes. This candidate is not installed. Native country 4, deck creation and in-game animation need testing. No multiplayer test was performed.
+
+Later, merge the source feature into LIVE with fresh IDs and without the PLA-only visibility rules. Four existing PLA unit IDs conflict with current LIVE definitions. Do not copy the PLA archive over LIVE or change the public dev.45 lock.
+
+## Preserved project guide and earlier release notes
+
+The following material is retained as historical context from the Build5 source. The current PLA-only candidate is described above.
+
+## freedom-arrow
 
 **Unreleased 0.6 development — ActualArrow features:** [build instructions and changes](releases/0.6/README.md) on `codex/0.6-development`. 0.5 stays on `codex/0.5-development` (accuracy, [changes](releases/0.5/README.md)); 0.4 stays on `codex/0.4-development`.
 
@@ -16,7 +40,7 @@ The game is a Unity 6 IL2CPP title. The database is one `DataBaseCompiled` objec
 
 Do not play ranked or quick match while MelonLoader is installed.
 
-## Layout
+### Layout
 
 | Path | What it is |
 | --- | --- |
@@ -36,7 +60,7 @@ Do not play ranked or quick match while MelonLoader is installed.
 | `cache/` | Vanilla snapshots and launcher backups. Gitignored |
 | `dist/` | Patched bundles. Gitignored |
 
-## Onboarding
+### Onboarding
 
 You need Python 3.11 or newer, and a Broken Arrow install that contains `BrokenArrow.exe` and `BrokenArrow_Data/data.unity3d`. A copy of `BrokenArrow_Data` in the repo root is valid when `game_root` is the repo root.
 
@@ -75,7 +99,7 @@ python -m unittest pipeline.tests.test_pipeline pipeline.tests.test_package
 
 `inject` repacks the whole archive into `dist/<channel>/data.unity3d`. On a current game that is several gigabytes and takes a few minutes. It also writes `dist/<channel>/channel.json` with the vanilla build id the bundle was built from.
 
-## How constants are written
+### How constants are written
 
 This section is the authoring shape. The cost object is an example of that shape. It is not a catalogue of mechanics.
 
@@ -118,7 +142,7 @@ python -m pipeline package --channel testing
 
 `decrypt`, `apply`, and `rebase` are the offline checks. `apply` merges constants and checks links without touching the game. `inject` and `hangar` are diagnostics. `hangar` still requires `write_game_bundle`: it installs `dist/stable/data.unity3d`, launches the game, and restores the previous file when the process exits.
 
-## BAModManager
+### BAModManager
 
 Source is in [thirdparty-tools/BAModManager-main](thirdparty-tools/BAModManager-main/README.md). It builds two programs. The Mod Manager is for development. BAModLauncher is what players get. Both already have **PLAY** and **Play vanilla with no mods**. Stable and Testing on the launcher are two GitHub repos, each publishing a `.bamod`.
 
@@ -148,7 +172,7 @@ Put that file next to `BAModLauncher.exe` if you are using the generic launcher 
 
 Drag the `.bamod` onto BAModManager to confirm it installs before you publish it. PLAY in either program starts the game with Anti-Cheat disabled. **Play vanilla with no mods** removes `version.dll` and starts the normal game.
 
-## After a game update
+### After a game update
 
 Steam replacing `data.unity3d` is expected. Keep the previous vanilla snapshot in `cache/` until the new one is reconciled.
 
@@ -165,7 +189,7 @@ python -m pipeline rebase --channel stable --accept
 
 `--accept` records the new build id and leaves the constants in place.
 
-## Commands
+### Commands
 
 | Command | What it does |
 | --- | --- |
@@ -182,13 +206,13 @@ python -m pipeline rebase --channel stable --accept
 
 `python -m pipeline <command> --help` prints the flags. `--config` selects a file other than `config.YAML`.
 
-## Third-party tools
+### Third-party tools
 
 `thirdparty-tools/BodkinToolkit` is an earlier editor whose write path hardcodes a PathID and drops JSON fields the schema does not name. Do not round-trip the game database through its YAML. The AES field order in `pipeline/tables.py` matches Bodkin's list; the lookup and the authoring format do not.
 
 MelonLoader, Il2CppDumper, and ILSpy are vendored beside BAModManager. The manager downloads MelonLoader when a player presses PLAY. Il2CppDumper and ILSpy are for later UI and behaviour work.
 
-## License
+### License
 
 Apache License 2.0. See [LICENSE](LICENSE).
 
@@ -210,3 +234,9 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.
 - 2026-11-06 14:40 PST (America/Los_Angeles) — Added the 0.5 development pointer (accuracy); 0.4 stays on its branch.
 - 2026-11-07 12:43 PST (America/Los_Angeles) — Added the 0.6 development pointer (ActualArrow features); 0.5 stays on its branch.
+
+- 2026-11-10 23:19:11 PST (America/Los_Angeles) — Created the PLA-only five-branch draft instructions,prototype limits and later merge boundary.
+
+- 2026-11-10 23:36:02 PST (America/Los_Angeles) — Preserved earlier guide content and every prior document-log entry under the current Build6 summary.
+
+- 2026-11-11 00:04:13 PST (America/Los_Angeles) — Prepared Build 9 with five branches plus Test, 18 infantry roles and replacement arm fit; preserved Build 8 cockpit work. Native checks remain pending.

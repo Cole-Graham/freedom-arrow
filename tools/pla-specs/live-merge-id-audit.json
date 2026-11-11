@@ -1,0 +1,47 @@
+{
+  "live_version": "0.7.0-dev.53",
+  "unit_id_name_conflicts": [
+    {
+      "id": 971,
+      "pla": "PLA J-31",
+      "live": "F-22 Target Dummy"
+    },
+    {
+      "id": 972,
+      "pla": "PLA WZ-8",
+      "live": "MiG-29K Target Dummy"
+    },
+    {
+      "id": 973,
+      "pla": "PLA FH-97A",
+      "live": "ZIL Karatel Punisher"
+    },
+    {
+      "id": 985,
+      "pla": "PLA test regular_woodland",
+      "live": "Object 640 Black Eagle"
+    }
+  ],
+  "new_role_unit_ids": [
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027
+  ],
+  "new_role_ids_free_in_current_live": true,
+  "limit": "Only explicit unit names compared; all added graph-row IDs still require fresh allocation and reference remapping during the future source merge. This does not establish native online country support."
+}

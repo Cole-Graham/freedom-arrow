@@ -1,4 +1,28 @@
-# PLA TEST Build 5
+# PLA TEST Build 9
+
+**First PLA branch draft: five planned specializations, a Test pool, and 18 donor-based infantry roles in one complete pack. The arm fit is replaced to preserve forearm and hand thickness. Data and offline previews can be checked; native Arsenal, deck creation and combat remain unverified.**
+
+## Changes in this pack
+
+- China is the only selectable nation in the test pack. Russia and USA cards/specs are hidden, while their donor data remains internally.
+- Airforce / SF, Ground Force / Armored, Rocket Force / Conscripts, Naval / Marines and Motorized have separate primary/shared unit pools. Category budgets are provisional at 5,000 points per spec.
+- Test contains 52 cards: unused or additional vehicle variants, all 25 infantry appearance variants and the seven-man weapon demonstration squad. This is a developer pool, not a balanced combat spec.
+- Eighteen new infantry roles use the existing PLA bodies and QBZ-191, QBU-191, QTS-11 and QLU-11 where applicable. Heavy Chinese weapons use explicitly documented native stand-ins. Costs and behavior are provisional donor baselines.
+- All 25 appearance variants receive the replacement arm fit. Forearm cross-sections use rotation plus length fitting; hands use a rigid rotation. Approved body and weapon offsets and woodland helmet clearance remain unchanged.
+- Existing aircraft canopy repairs and reflections from pinned Build 8 are preserved. Existing vehicle combat statistics, textures, music and voices remain unchanged by this task.
+- New transports are limited to the correct branches and sufficient infantry capacity.
+
+## Testing and later integration
+
+Use the complete numbered PLA pack, not historical PLA.infantry or PLA.48 prototypes. This candidate is not installed. Native country 4, deck creation and in-game animation need testing. No multiplayer test was performed.
+
+Later, merge the source feature into LIVE with fresh IDs and without the PLA-only visibility rules. Four existing PLA unit IDs conflict with current LIVE definitions. Do not copy the PLA archive over LIVE or change the public dev.45 lock.
+
+## Preserved project guide and earlier release notes
+
+The following material is retained as historical context from the Build5 source. The current PLA-only candidate is described above.
+
+## PLA TEST Build 5
 
 **China UI candidate: a separate China country, five planned specializations, and native Arsenal/deck-country buttons. Existing PLA unit statistics and approved infantry/model assets are retained. Spec grouping and code-drawn badges are provisional; native layout and online country support remain unverified. Live dev.45 is unchanged.**
 
@@ -79,7 +103,7 @@ New in 0.6 dev.48: test for the B-52H ARRW fire order — the bomb-bay ARRW uses
 New in 0.6 dev.49: MLRS rockets ignore building cover; bombs ignore half of it; unguided bombs no longer force roof hits, and bomb/MLRS penetration is capped so one hit cannot kill a main battle tank.
 New in 0.6 dev.50: ECM by aircraft generation (F-22 0.5 to older jets 0.85), weaker flares, instant air-to-air missile aim, big SAMs aim faster, F-22/Su-57 turn 50% faster, Super Hornet names and new jet prices.
 
-#New in 0.6 dev.51: big SAMs aim in 0.5 s; S-300V4, S-300PM and Patriot PAC-2 missiles use the S-400 missile stats with their own ranges.
+##New in 0.6 dev.51: big SAMs aim in 0.5 s; S-300V4, S-300PM and Patriot PAC-2 missiles use the S-400 missile stats with their own ranges.
 New in 0.6 dev.52: AMRAAM/R-77 class missiles +1 km; R-37, AIM-260 and AIM-174 reach 11 km; R-37 accuracy 90%; test wingtip AIM-9 slot on the F-35A/B/C.
 New in 0.6 dev.53: missile ranges as shown on the card: AMRAAM/R-77-1 8 km (was 7), R-37/AIM-260/AIM-174 11 km (was 9); dev.52 had doubled them by mistake.
 New in 0.6 dev.54: unguided bombs never hit tank roofs (only guided bombs do); every bomb and MLRS hit is logged with its overpressure and top-attack state.
@@ -105,7 +129,7 @@ New in 0.6 dev.76: TOS rockets back to vanilla damage and penetration; CATFAE va
 New in 0.6 dev.78: Grad and Ogon at vanilla damage; guided GMLRS/HIMARS match the GMLRS; 300 mm rockets 49 damage; TOS vanilla with 50 m wider scatter.
 New in 0.6 dev.79: MLRS rockets do vanilla damage to infantry in the open and 60% of vanilla in buildings, with low penetration against tanks.
 New in 0.6 dev.80: MLRS rockets do 50% of vanilla damage to infantry in buildings (vanilla in the open).
-# Earlier notes
+## Earlier notes
 
 **Built and checked offline; no installed-game acceptance.**
 
@@ -115,21 +139,21 @@ The rate is200/minute, converted to200/60 per simulation second; it needs the lo
 
 No live credit, HUD, AI, armor, movement, APS interception, FPS or stability result is claimed. T12 must inspect Base/BRAT without APS as well as the selected AMPV APS option, and prove upkeep-active control before comparison.
 
-## Historical dev.2 Russian vehicle batch
+### Historical dev.2 Russian vehicle batch
 
 32 base-price changes plus BTR82A/BTR80 10HP, Uran9 8HP and B15-only400/400 HEAT. T80 and Object787 remain loadouts with temporary requested price totals; splits, availability and obr2018 removal are held. BMP2 Reserve35 preserves the other turret totals55/60/75. Armata360/T15 200/K16 30 provisional. Dev.2 did not change sabot; dev.3 normalizes the five specified tank-gun rows. Uran70, Konkurs target and T72B3A request unresolved.
 
-## US/Baltic dev.3 data batch
+### US/Baltic dev.3 data batch
 
 24 additional base-price edits, Abrams160/190/200/240; literal ACV front/rear400 and12HP; Bradley core BUSK400/700 front and12HP; AMPV BRAT700 front with APS retained; named Stryker ESV/ICV/MGS SRAT700/700,12HP,+25; CV9035 armored500/500 and12HP; TypeX8HP. Five tank-gun sabot rows10, all Javelin10.5 (the active0.1 clones12→10.5).
 
 No card split is complete. M60A1/CEV remain90/80; M8AGS/Thunderbolt70/85; Booker105/50mm100/110. XM91350mm stays2.5; BMOPMT12 stays8.5 pending scope. ACV40 armored-total and Battleship50 default-total are provisional interpretations. Recon remains incomplete. Linebacker/MCV/AMPV HP expansion, BUSK price harmonization and SRAT beyond the three named units await decisions. ICV retains active APS option+40 (two charges); inactive ESV/MGS APS duplicates remain selectable at+25 pending removal; AMPV's real APS option remains+45. No install or live acceptance. Lateralus main cleanup123dd7b is merged; no new optics/stealth/noise proposal is included.
 
-## dev.4 balance corrections
+### dev.4 balance corrections
 
 Spike LR (row 2000177) 12→10.5 damage; Spike-SR stays 12. M6 Linebacker BUSK front HEAT 250→400 and BUSK3 400→700; Linebacker HP stays 14/16/17, and that question is open. Named Stryker ESV/ICV/MGS SRAT front and side HEAT 700→600, provisional, replacing the 700 in the dev.3 section above; RV and ATGM are unchanged. M2A3 ESV BUSK3 option 1759 stays +20 and that question is open. No live result.
 
-## dev.5 detection proposal (Lateralus)
+### dev.5 detection proposal (Lateralus)
 
 Ground optics 900/1300/1650/2300/2800 raw on sensor rows, with Medium Plus at 1450 from dev.6. Stealth: vehicles and recon vehicles 1.0, infantry 2.0, recon infantry 2.5, snipers 3.0 (UI values). Air, helicopter, naval and NPC stealth unchanged. Config (from dev.14, everywhere the tables apply): flash cap 2.2, both spotted penalties 1.5, forest cover 3, building cover 4. MaxAntiVisible stays 1.5. No live result.
 
@@ -159,91 +183,91 @@ Dev.21 (armory fix): dev.17 to dev.20 fail in the game's unit loader on the hidd
 
 Dev.22 (Osama, prep branch codex/0.2-dev22-prep, not installed): Stryker RV SRAT II 600/600 HEAT. AAVP SU 400/400 HEAT, +15. ACV armored 400/400 HEAT, rear back to 30. IFAV TOW +20. Kornet-T 100. BMPT base side 200. T-72B side 200, K-5 +15 (85 total). T-72B3 105. T-72B3A: T-72B3AM option removed, obr. 16 +30. CAAT Javelin gets ACV and AAVP transports. Troopers gets Stryker ICV. Both M10 Bookers get the APS option at +50 with the vanilla two-charge APS.
 
-## dev.25 setup phase and crash test
+### dev.25 setup phase and crash test
 
 The first 3 minutes of the match clock are the setup phase, with a large DEPLOYMENT timer. Round 1 (no scoring) then runs for 5 minutes, and scoring starts at 8:00. The native phase bar shows the rounds in small text. Round 1 fills over 5 minutes and Round 2 fills over the rest of the match. The setup phase is run by the mod. It does not stop units from moving or fighting. The native online setup timer still runs before the match clock.
 
 The woods damage hook is off because it is the main suspect for the game exiting when units take damage. Infantry in woods take full damage until a safe hook exists. No live result.
 
-## dev.26 T-80BV top armor
+### dev.26 T-80BV top armor
 
 The plain T-80BV has top HEAT 80, the same as vanilla. The T-80BVM variants stay at 100. No live result.
 
-## dev.27 F8 setup phase freeze
+### dev.27 F8 setup phase freeze
 
 This replaces the dev.25 setup phase. In F8 the game pauses for 3 minutes with the DEPLOYMENT timer, using the same session pause as the vanilla deployment phase. The match clock, income and combat stop. Round 1 then starts at the full clock, and scoring starts at 5:00. Online, the room server controls the deployment phase, so it stays at its vanilla length. No live result.
 
-## dev.28 round bar and next tick
+### dev.28 round bar and next tick
 
 The round text is smaller and has no timer, so it fits above the bar. The three empty native phase boxes are hidden, and the orange fill stays. A green number under each team bar shows the points that team gets on the next tick. No live result.
 
-## dev.29 Dead Center game mode
+### dev.29 Dead Center game mode
 
 `[FA] Dead Center 0.1` (Lateralus's map) now ships in the mod and runs the FA game mode: 45 minute match, 1500 starting points, flat 200 income, 5 minute Round 1, 30 second ticks and first to 300. Zones A, B, C are worth 2 and D, E are worth 3, so holding all five scores 12 per tick and the fastest win is at 17:00. The map had no script, so `make_scenario.py` adds a `setConquestMode` script and three lobby sliders from the native mission, gives zones the native names, and limits capture to the two sides. Zones, spawns and the playable zone do not move. The packaged copy has its own GUID. The installer now removes an old local copy only when its GUID matches, so a map author's own copy stays. F8 has no Dead Center: it lists Skirmish scenarios only, and the Skirmish AI script needs its own port. No live result.
 
-## dev.30 team score text
+### dev.30 team score text
 
 The X/300 text under each team shrinks automatically so that it fits its box. No live result.
 
-## dev.31 woods test and game state log
+### dev.31 woods test and game state log
 
 The woods reduction is on again for a crash test. It uses only the CalculateHitDamage hook. The DealUnitDamage hook and the artillery hit log are gone, because that hook is the new main suspect for the crash. The hook follows the Actual Arrow design, so its license needs a decision before release.
 
 F8 matches now write UserData/FAConquestPrototype/state-*.jsonl. It has no combat hooks. Once a second it reads the frame rate, score, zone forecast, HP changes, soldier counts, stress changes, shots and missile count from the main thread. Slow samples turn off weapon reads and then the log. Set StateLog to false in settings.json to turn it off. No live result.
 
-## dev.32 PT-76
+### dev.32 PT-76
 
 PT-76 HP 14 to 10 on the base and uparmored choices. Price does not change. No live result.
 
-## dev.33 session fault fix
+### dev.33 session fault fix
 
 Quitting a match set a fault that turned the mod off until the game restarted, so the next match had no FA mode, score, labels or banner. Quitting now retires only that match, and any later fault ends one match and not the session. No live result.
 
-## dev.34 online income
+### dev.34 online income
 
 The native network script caps money at 1500, and FA starts at 1500, so income stopped until a player spent. [FA] Central Village and [FA] Dead Center 0.1 now use a cap of 100000. F8 Skirmish already has no cap. Online deployment stays vanilla. No live result.
 
-## dev.35 online deployment
+### dev.35 online deployment
 
 [FA] Central Village and [FA] Dead Center 0.1 pause for 60 seconds at match start with no UI, then start the mode. The scenario script does this with the pauseGame and delay nodes that workshop [Flat 200] scenarios use online. No live result.
 
-## dev.36 online clock and deployment banner
+### dev.36 online clock and deployment banner
 
 After the online pause, the native clock reads 44:00 and holds for 60 seconds. The HUD clock and round bar now count from 45:00 during that hold. Scoring still uses the native clock, so its times do not change. A large DEPLOYMENT countdown shows during the online pause. Zone labels and team bars still appear when the mode starts. No live result.
 
-## dev.37 online state log
+### dev.37 online state log
 
 The read-only game state log now also runs in private online matches, so HP loss, soldiers lost, shots and frame rate can be measured there. It has no combat hooks and still turns itself off if samples are slow. No live result.
 
-## dev.38 building damage
+### dev.38 building damage
 
 Building DamageModifierFloor 0.50 to 0.13, with DamageModifierPerSoldier 0. Building hits have no distance falloff, so a 152mm shell goes from 6.44 to about 2.92 and a Mk82 bomb from about 12.65 to about 3.29, by the game formula. The state log also records magazine changes. No live result.
 
-## X-47B icon — pla.35
+### X-47B icon — pla.35
 
 The X-47B uses the RQ-170 Sentinel thumbnail and card portrait. The model, stats and loadouts are unchanged. This is a data change; the display has not yet been checked in the game.
 
-## J-16D — pla.36
+### J-16D — pla.36
 
 Adds a separate PLA J-16D card (977), temporarily using the same Su-27SM-derived stats and loadouts as the existing J-15D card. Its private CGTrader model has landing gear down in the armory, EW pods retained, source missiles removed, and a lighter battle copy with gear removed. Stats are a placeholder, not a measured representation of the real aircraft. No in-game check yet.
 
-## TOS impact correction — pla.37
+### TOS impact correction — pla.37
 
 Restores normal TOS-1/TOS-1A/TOS-2 impact handling by setting DamageOverTimeDuration back to 0. The dev.91 claim that 3 seconds of damage over time adds fire while leaving the impact unchanged was incorrect: native code branches into the damage-over-time path and skips normal impact handling. Damage stays 9.1, ignore cover stays 100%, and dispersion stays unchanged. Separate visible ground fire is not implemented. This correction follows static native code, not a verified game run.
 
-## TOS damage 11 — pla.38
+### TOS damage 11 — pla.38
 
 TOS-1, TOS-1A and TOS-2 now have 11 raw damage (was 9.1), as requested by Osama. Ignore cover stays 100%, penetration stays 15, and blast radius/dispersion are unchanged. The normal impact correction from pla.37 remains; separate visible ground fire is not implemented. Raw damage is not a guarantee of 11 HP per hit: armor, blast falloff and building allocation still apply. No new gameplay measurement.
 
-## Grey PLA model batch — pla.39 (superseded by flat green in pla.40)
+### Grey PLA model batch — pla.39 (superseded by flat green in pla.40)
 
 Renames the old Z-10 card/model to Z-10K and adds a separate Z-10 (978, Mi-28NM donor). Adds ZBL-191 (979, K16 Bumerang donor) as a transport for the PLA Rifle Squad. Existing ZTZ-96B, ZTZ-99A, ZTQ-15 and ZBD-04A get the supplied private CGTrader models. The ZBD-04 download internally calls its hull ZBD04A, so it replaces that existing card. Grey hull finish, original surface maps, lighter battle models. New cards retain donor stats and loadouts as placeholders. Includes pla.38 TOS raw damage 11. Private model files are outside this source repository. No gameplay verification yet.
 
-## Author flat green skin — pla.40
+### Author flat green skin — pla.40
 
 Osama clarified that he wants the author's supplied flat green skin, not a custom grey material. The six local CGTrader replacements now use their unvaried Hull_BaseColor textures, with the supplied metallic, roughness and normal maps. Camo, dust and yellow variants are unused. No gameplay constants change from pla.39. pla.39 was pushed but not installed; pla.40 is the intended install.
 
-## Artillery penetration floor — pla.41
+### Artillery penetration floor — pla.41
 
 All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at both range endpoints. Raises 15 rows, including low-penetration HE rockets, TOS, Grad incendiary, Tulpan and Malka. Smoke, aircraft rocket pods and engineering mine-clearing charges are excluded. Raw damage, ignore cover, blast radius and dispersion are unchanged; TOS stays at raw damage 11. The floor supersedes the old MLRS vehicle-hit cap and can exceed vanilla penetration (TOS). Vanilla-damage recalculation is a separate proposal, not installed in this version. Static checks only; no gameplay test.
 
@@ -253,7 +277,7 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 **Su-75 loadout and deck update:** one rear bay only, fixed cannon retained, forward-bay and wingtip mounts removed. Available in Russian Guard (specialization 12), excluded from Guard Tank (8). Base 280; rear-bay loadouts add their existing prices. Data checks only; game test pending.
 
-## Music retained in Build 3
+### Music retained in Build 3
 
 The two China and two Black Hawk Down menu compilations from FA Music 1.4.2 are included, with embedded 120-second gaps and equal selection chances. BHD theme09 stays removed. The saved pack choice and voice recordings are preserved.
 
@@ -463,3 +487,9 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
 
 - 2026-11-10 18:46:09 PST (America/Los_Angeles) — Added China country/spec UI candidate and native ordering hooks; preserved the live dev.45 hold.
+
+- 2026-11-10 23:19:11 PST (America/Los_Angeles) — Created the PLA-only five-branch draft instructions,prototype limits and later merge boundary.
+
+- 2026-11-10 23:36:02 PST (America/Los_Angeles) — Preserved earlier guide content and every prior document-log entry under the current Build6 summary.
+
+- 2026-11-11 00:04:13 PST (America/Los_Angeles) — Prepared Build 9 with five branches plus Test, 18 infantry roles and replacement arm fit; preserved Build 8 cockpit work. Native checks remain pending.

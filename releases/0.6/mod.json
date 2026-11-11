@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 5",
-  "version": "5",
+  "name": "PLA TEST Build 9",
+  "version": "9",
   "type": "modpack",
-  "description": "Complete PLA UI candidate: China Arsenal country, five provisional specializations and preserved Build4 assets. Native layout and network country support unverified.",
+  "description": "PLA-only five-specialization draft with organized shared pools and18 infantry roles. Donor-based prototype weapons and category budgets; native UI/combat validation pending.",
   "repo": "Cole-Graham/freedom-arrow"
 }

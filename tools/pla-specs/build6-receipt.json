@@ -1,0 +1,43 @@
+{
+  "label": "PLA TEST Build 6",
+  "sha256": "35379ecc0445f186db234716185d221c222adaa51a197336767bbbebeca4dd80",
+  "bytes": 3797134943,
+  "verified_payloads": 7935,
+  "verified_core_hashes": 73,
+  "unchanged_payloads": 7907,
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/infantry-bodies.json",
+    "UserData/FAModels/infantry-weapons.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/china-ui-checks.json",
+    "UserData/FreedomArrow/china-ui.json",
+    "UserData/FreedomArrow/constants/abilities.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/armors.json",
+    "UserData/FreedomArrow/constants/countries.json",
+    "UserData/FreedomArrow/constants/mobility.json",
+    "UserData/FreedomArrow/constants/sensor_units.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/specializations.json",
+    "UserData/FreedomArrow/constants/squad_members.json",
+    "UserData/FreedomArrow/constants/squad_weapons.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/unit_armors.json",
+    "UserData/FreedomArrow/constants/unit_propulsions.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/release-notes.md"
+  ],
+  "new_paths": [
+    "UserData/FreedomArrow/pla-specializations.json"
+  ],
+  "existing_geometry_textures_music_unchanged": true,
+  "installed": false,
+  "native_verified": false
+}

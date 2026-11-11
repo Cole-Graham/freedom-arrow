@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.6", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.10", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -49,7 +49,7 @@ public partial class Mod : MelonMod
             // The armory keeps the full-fidelity file.
             if (e.battle != "" && scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null)
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align };
-            Hide(unitModel.PrefabRootScript.gameObject);
+            // Keep the original visible until the complete replacement has loaded.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS hook: " + ex); }
@@ -155,7 +155,7 @@ public partial class Mod : MelonMod
             float wait = q.pass == 0 ? 0.5f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
             try { Apply(q.root, q.e, q.unit, q.pass == 0); }
-            catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: {ex}"); }
+            catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
     }
@@ -173,7 +173,7 @@ public partial class Mod : MelonMod
         return null;
     }
 
-    // Hide the stand-in's own meshes. Called in the InitView postfix too, so the stand-in never shows before our model is built.
+    // Hide the stand-in only after its replacement has loaded completely.
     static int Hide(GameObject root)
     {
         int hidden = 0;
@@ -187,16 +187,17 @@ public partial class Mod : MelonMod
 
     static void Apply(GameObject root, Entry e, string unit, bool build)
     {
-        int hidden = Hide(root);
-        if (build) live.Add((root, unit));
-        if (!build) { if (hidden > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {hidden} late renderer(s) on {root.name}"); return; }
+        if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return; }
         var holder = new GameObject("FAM_holder");
+        holder.SetActive(false);
+        var pending = new List<(GameObject, string)>();
+        try
+        {
         holder.transform.SetParent(root.transform, false);
         holder.transform.localPosition = new Vector3(e.offset[0], e.offset[1], e.offset[2]);
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
         int verts = 0, parts = 0;
-        var pending = new List<(GameObject, string)>();
         var mj = Path.Combine(dir, Path.ChangeExtension(e.file, null) + ".mat.json");
         var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
         using var f = new BinaryReader(File.OpenRead(Path.Combine(dir, e.file)));
@@ -226,7 +227,7 @@ public partial class Mod : MelonMod
                 go.AddComponent<MeshFilter>().sharedMesh = mesh;
                 mp.TryGetValue(MatKey(tex, col), out var matp);
                 var mat = Mat(tex, col, matp);
-                if (mat.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();  // HDRP normal maps need tangents; the .fam carries none
+                if (!string.IsNullOrEmpty(matp?.cockpitDonor) || mat.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();  // HDRP normal maps need tangents; the .fam carries none
                 go.AddComponent<MeshRenderer>().sharedMaterial = mat;
                 verts += nv;
             }
@@ -260,19 +261,36 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
+        int hidden = Hide(root);
+        holder.SetActive(true);
+        live.Add((root, unit));
         MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file}");
+        }
+        catch
+        {
+            // Parts may already have been reparented to native bones. Remove those too.
+            foreach (var (part, _) in pending) if (part != null) { part.SetActive(false); UnityEngine.Object.Destroy(part); }
+            holder.SetActive(false);
+            UnityEngine.Object.Destroy(holder);
+            if (origs.TryGetValue(root.GetInstanceID(), out var original))
+                foreach (var renderer in original) if (renderer != null) renderer.forceRenderingOff = false;
+            origs.Remove(root.GetInstanceID());
+            live.RemoveAll(t => t.root == root);
+            throw;
+        }
     }
 
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
+    public class MatP { public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
+        if (!string.IsNullOrEmpty(p?.cockpitDonor)) return CockpitMaterial(p.cockpitDonor);
         // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.
         bool clearGlass = p?.clearGlass == true;
         if (clearGlass) { tex = ""; col = new Color(1f, 1f, 1f, Mathf.Clamp01(p.opacity)); }
-        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}");
+        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}");
         if (mats.TryGetValue(key, out var m) && m != null) return m;
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
@@ -324,11 +342,12 @@ public partial class Mod : MelonMod
             m.SetFloat("_MetallicRemapMin", 0f); m.SetFloat("_MetallicRemapMax", 1f); m.SetFloat("_SmoothnessRemapMin", 0f); m.SetFloat("_SmoothnessRemapMax", 1f);
             m.SetFloat("_AORemapMin", 0f); m.SetFloat("_AORemapMax", 1f);
         }
+        ApplyCanopyFinish(m, p.sourceCanopy);
         // Runtime-made materials skip the editor's HDRP setup (render queue, depth/motion-vector passes, keywords).
         // Without it, TAA smears the model with the background and it looks see-through. Run HDRP's own validation.
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
-        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
+        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} sourceCanopy={p.sourceCanopy} preserveSpecular={m.GetFloat("_EnableBlendModePreserveSpecularLighting"):F0} effectiveMetallic={m.GetFloat("_Metallic"):F2} smoothRange={m.GetFloat("_SmoothnessRemapMin"):F2}..{m.GetFloat("_SmoothnessRemapMax"):F2} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }
 }
