@@ -1,4 +1,8 @@
-# PLA weapon HUD artwork
+# PLA unit and weapon HUD artwork
+
+**Build19 adds patch-derived monochrome unit icons to all90 designer squads and standardizes14 named-team labels from published sources. Generic squads retain their role names with parent-branch insignia; exact-patch and motif/fallback evidence are recorded separately. The eight custom weapon profiles now face right and use filled pale normal/outline sprites with a dark keyline, matching actual native infantry HUD captures. Build17 grouping, all28 rigging fixtures, portraits, ammo, stats, loadouts and model alignment are retained. Native appearance remains untested.**
+
+## Historical Build18 pass (superseded style)
 
 **Weapon HUD revision: replaces the rejected block sketches with detailed native stand-in art for 341 entries and eight custom Chinese profile families (16 normal/outline sprites) for ten entries. Four custom profiles come from the approved meshes; four bullpup profiles use photo references or marked family approximations. Build17 Arsenal grouping is retained. Unit artwork, ammo, weapon stats, loadouts, models and rigging are unchanged. Native HUD validation is pending.**
 
@@ -21,3 +25,5 @@ extract_baseline.py reconstructs all effective Build17 rows from the exact prede
 - 2026-11-11 10:52:55 PST (America/Los_Angeles) — Added weapon-only scope, source/approximation limits, model projection provenance and rebuild checks.
 
 - 2026-11-11 11:43:40 PST (America/Los_Angeles) — Build18: replaced rejected family sketches, recorded native-art reuse, separate outlines, actual capture comparison and evidence limits.
+
+- 2026-11-11 12:11:09 PST (America/Los_Angeles) — Build19 corrects facing to muzzle-right and uses filled outline sprites; adds patch-derived unit thumbnails and explicit name/patch provenance.

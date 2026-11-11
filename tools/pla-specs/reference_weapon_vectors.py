@@ -2,7 +2,7 @@
 from pathlib import Path
 import json
 out=Path(__file__).resolve().parent/'hud-reference-vectors';out.mkdir(exist_ok=True)
-# Coordinates follow the source side views, muzzle right; final vector transform faces left.
+# Coordinates follow the source side views, muzzle right; native HUD profiles face right.
 body='M4 22 Q3 18 7 18 L22 18 Q26 17 30 20 L76 20 L80 8 Q81 4 86 4 L128 5 Q133 5 135 10 L142 20 L165 20 L168 11 L170 11 L170 6 Q171 4 174 5 L176 7 L176 21 L179 25 L178 35 Q176 38 170 38 L145 38 L142 48 Q141 52 137 51 L130 48 L128 43 L112 43 L110 61 Q110 64 106 63 L97 61 Q95 60 97 56 L101 40 L83 42 L38 42 L28 44 L20 52 L7 52 Q4 52 4 48 Z'
 handle='M85 10 Q86 9 89 9 L126 10 Q128 10 130 13 L133 20 L86 20 Z'
 trigger='M113 39 L132 38 L130 44 Q128 47 124 45 L114 42 Z'
@@ -21,10 +21,10 @@ profiles={'QBZ95':(218,88,body+mag95+barrel+handle+trigger+vents,'QBZ95 photo co
 receipt=[]
 for name,(w,h,d,basis) in profiles.items():
  for outline in (False,True):
-  suffix='_OUTLINE' if outline else '';style='fill="#435047" stroke="#e7f7e4" stroke-width="0.85" stroke-linejoin="round"' if outline else 'fill="#e7f7e4"'
+  suffix='_OUTLINE' if outline else '';style='fill="#e7f7e4" stroke="#26332d" stroke-width="1.15" stroke-linejoin="round" paint-order="stroke fill"' if outline else 'fill="#e7f7e4"'
   # Scale the vector canvas only, preserving aspect; transparent edge margin included in paths.
   scale=232/w;height=round(h*scale,3)
-  svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="232" height="{height}" viewBox="0 0 {w} {h}"><g transform="translate({w} 0) scale(-1 1)"><path {style} fill-rule="evenodd" d="{d}"/></g></svg>\n'
+  svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="232" height="{height}" viewBox="0 0 {w} {h}"><g><path {style} fill-rule="evenodd" d="{d}"/></g></svg>\n'
   (out/('FA_PLA_WP_'+name+suffix+'.svg')).write_text(svg)
  receipt.append({'profile':name,'basis':basis,'source':'https://commons.wikimedia.org/wiki/File:Qbu-88-0.jpg' if name=='QBU88' else 'https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png','method':'Original editable contour vector; no photo pixels copied'})
 (out/'reference-contours.json').write_text(json.dumps(receipt,indent=2)+'\n')

@@ -11,6 +11,7 @@ from pla_assignments import apply as apply_assignments
 from pla_vehicle_weapons import apply as apply_vehicle_weapons
 from pla_designer_infantry import apply as apply_designer_infantry
 from pla_weapon_hud import apply as apply_weapon_hud
+from infantry_identity import apply as apply_infantry_identity
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
 c=json.loads((R/'pla-specializations-contract.json').read_text())
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==c['base_sha256']
@@ -37,6 +38,7 @@ with zipfile.ZipFile(a.base) as z:
  assignments=apply_assignments(R,effective,patches,models,native_ids)
  vehicles=apply_vehicle_weapons(R,effective,patches,native_ids,vanilla_tables,models)
  designer=apply_designer_infantry(R,effective,patches,native_ids,bodies,weapons,assignments)
+ identity=apply_infantry_identity(R,effective,patches)
  weapon_hud=apply_weapon_hud(R,effective,patches,vanilla_tables)
  for e in catalogue['entries']:
   e.update(specs=assignments['assignments'].get(str(e['unit']),[]),native_model=effective['Units'][e['unit']]['ModelFileName'],custom_model=models.get(effective['Units'][e['unit']]['Name']))

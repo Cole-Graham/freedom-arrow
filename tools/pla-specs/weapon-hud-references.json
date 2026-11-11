@@ -1,6 +1,6 @@
 {
-  "build": 18,
-  "style_basis": "Native weapon HUD sprites and actual unmodified-art HUD captures; left-facing, natural aspect, pale ivory silhouettes with contour detail and negative spaces. Offline texture exports showed artifacts and were not used as visual approval evidence.",
+  "build": 19,
+  "style_basis": "Actual native infantry/vehicle HUD captures: muzzle right, pale filled silhouettes with small contour cutouts, outline retains fill with a dark keyline. Build18 left-facing/hollow outline styling is superseded.",
   "native_art": "341 entries resolve original native game addresses. These remain stand-in weapon shapes, not exact Chinese artwork. MALVA is absent from the native bundle, so PLA uses 2A64_MSTA.",
   "native_bundle": "unitweaponicons_assets_all_59aec698ffecc40167652e2f74c4ac89.bundle",
   "custom_models": [
@@ -8,11 +8,11 @@
       "profile": "QBZ191",
       "source_file": "w_qbz191.fam",
       "source_sha256": "e10bd671f64987e951254b8199c6500f341fd945128c5cb5315521fcfda34320",
-      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "projection": "Unity +Z faces right; +Y up; union of all side-projected mesh triangles, holes retained",
       "triangles": 11085,
       "svg_sha256": {
-        "plain": "64e1781d557ee6e108669d56441a0d7d3f9fad24952d8e968f9afe8424770631",
-        "_OUTLINE": "1b8b6dedf014b2cfb7444681fd7dfcfe12b9430ef62fc1f90c51d61a6d297a34"
+        "plain": "951133b350189e84123ff4c15992aeef2ba951b96f078b75a5b5a439172f7d04",
+        "_OUTLINE": "28c54633193dee634df215df15b7b5ed0e3dced184a84f493d00db887b00577b"
       },
       "width": 232,
       "height": 93
@@ -21,11 +21,11 @@
       "profile": "QBU191",
       "source_file": "w_qbu191.fam",
       "source_sha256": "a865a719c66341d3a54a827f286dd7e514981cde88e45f9a6cbe8a9cedb497b7",
-      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "projection": "Unity +Z faces right; +Y up; union of all side-projected mesh triangles, holes retained",
       "triangles": 10719,
       "svg_sha256": {
-        "plain": "2d38b046f5f37669ec521f170767f2600737612299401507376ecc6cbcb85072",
-        "_OUTLINE": "a4b28491a621c8ecb77b2cc9897555a003ef0ab9be51b6a29ae13e5dbb20206a"
+        "plain": "ac371f53cedcd5da086c0eaaa1e1dcaac1230eb2707b3f9a39bb88f2038360cc",
+        "_OUTLINE": "205739755621992b1a9216ad8e497aa44c8dc9f0bb883e19ceffb75793c589fa"
       },
       "width": 232,
       "height": 76
@@ -34,11 +34,11 @@
       "profile": "QLU11",
       "source_file": "w_qlu11.fam",
       "source_sha256": "3b59eca9d0fce42090e4a8fd743bd6fd10077e8aa569f580a47834195570cf11",
-      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "projection": "Unity +Z faces right; +Y up; union of all side-projected mesh triangles, holes retained",
       "triangles": 10927,
       "svg_sha256": {
-        "plain": "dcec08a067bc307d320de5b7b98346b72137acfd8876ed46b91759b6ec67a19c",
-        "_OUTLINE": "8c4dc89b0d11d207ebdeeed2af573218a6e641fcdfce970acc95c0fe2a9cb3f7"
+        "plain": "ce6aee00a71d977c6c4f9189449532323d7bd9719a6ca4de1a013dff396d378b",
+        "_OUTLINE": "a87ea219b1c5d19b4d42e220afe6bd01812cdb2395888062d93fc97cbbc36531"
       },
       "width": 232,
       "height": 76
@@ -47,11 +47,11 @@
       "profile": "QTS11",
       "source_file": "w_qts11.fam",
       "source_sha256": "79d101e5e047bd5b1367b1f5119f65d41855486de11d04351c03f1a6ccb8483e",
-      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "projection": "Unity +Z faces right; +Y up; union of all side-projected mesh triangles, holes retained",
       "triangles": 10349,
       "svg_sha256": {
-        "plain": "c11c196761f938df460115affa607ebaafbec14e580ed6a2e08c88fbe25c956c",
-        "_OUTLINE": "2707f886ad0866402ca5006a7d061eba09fe00b947c9249f5a9f78372e982243"
+        "plain": "f7dfa1413c132ae4e04903829fe042511ec192e8113678a7c21d9925aa5470eb",
+        "_OUTLINE": "980b8d4de9a943c24ee805c7dae75bdd5d61d83b23ee94e6f2e9fe5bbe448b67"
       },
       "width": 232,
       "height": 100
@@ -159,5 +159,6 @@
     "other_profiles": "Original simplified family sketches. Exact variant appearance and native HUD readability remain unverified. Generic/prototype designations do not establish a distinct real weapon.",
     "art_license": "Original reference-based SVG drawings are provided under CC BY-SA 4.0; model projections retain the underlying model permissions. No reference photos are embedded or redistributed in the mod."
   },
-  "native_verified": false
+  "native_verified": false,
+  "native_style_reference": "work/vengeance-armory-20261102/10-desantniki-stats.png"
 }

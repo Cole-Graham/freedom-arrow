@@ -1,3 +1,9 @@
+# PLA TEST Build 19
+
+**Build19 adds patch-derived monochrome unit icons to all90 designer squads and standardizes14 named-team labels from published sources. Generic squads retain their role names with parent-branch insignia; exact-patch and motif/fallback evidence are recorded separately. The eight custom weapon profiles now face right and use filled pale normal/outline sprites with a dark keyline, matching actual native infantry HUD captures. Build17 grouping, all28 rigging fixtures, portraits, ammo, stats, loadouts and model alignment are retained. Native appearance remains untested.**
+
+## Historical Build18 weapon-art candidate
+
 # PLA TEST Build 18
 
 **Weapon HUD revision: replaces the rejected block sketches with detailed native stand-in art for 341 entries and eight custom Chinese profile families (16 normal/outline sprites) for ten entries. Four custom profiles come from the approved meshes; four bullpup profiles use photo references or marked family approximations. Build17 Arsenal grouping is retained. Unit artwork, ammo, weapon stats, loadouts, models and rigging are unchanged. Native HUD validation is pending.**
@@ -623,3 +629,5 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 - 2026-11-10 18:46:09 PST (America/Los_Angeles) — Added China country/spec UI candidate and native ordering hooks; preserved the live dev.45 hold.
 
 - 2026-11-11 11:43:40 PST (America/Los_Angeles) — Replaced rejected weapon sketches, added normal/outline contours, documented native stand-ins and retained the Build17 UI correction.
+
+- 2026-11-11 12:11:09 PST (America/Los_Angeles) — Added researched infantry identity/patch adaptations and corrected custom weapon facing and filled-outline style; preserved all gameplay and approved model bindings.

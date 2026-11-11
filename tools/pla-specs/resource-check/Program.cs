@@ -8,7 +8,8 @@ using var pe=new PEReader(input);var metadata=pe.GetMetadataReader();
 var resources=metadata.ManifestResources.Select(x=>metadata.GetManifestResource(x)).ToDictionary(x=>metadata.GetString(x.Name));
 var block=pe.GetSectionData(pe.PEHeaders.CorHeader!.ResourcesDirectory.RelativeVirtualAddress);
 using var receipt=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"../UserData/FreedomArrow/pla-weapon-hud.json")));
-var addresses=receipt.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!).Distinct().ToArray();
+using var identity=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"../UserData/FreedomArrow/pla-infantry-identity.json")));
+var addresses=receipt.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!).Concat(identity.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!)).Distinct().ToArray();
 foreach(var address in addresses)
 {
     var resource=resources["FreedomArrow.icons."+address+".png"];
@@ -16,4 +17,4 @@ foreach(var address in addresses)
     int size=reader.ReadInt32();var bytes=reader.ReadBytes(size);
     if(!SHA256.HashData(bytes).SequenceEqual(SHA256.HashData(File.ReadAllBytes(Path.Combine(root,"icons",address+".png")))))throw new Exception(address+" compiled PNG differs from approved source");
 }
-Console.WriteLine($"PASS: {addresses.Length} weapon-family PNGs embedded byte-identical in the compiled runtime; no game load claimed.");
+Console.WriteLine($"PASS: {addresses.Length} weapon/unit icon PNGs embedded byte-identical in the compiled runtime; no game load claimed.");

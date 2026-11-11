@@ -1,5 +1,5 @@
 {
-  "build": 18,
+  "build": 19,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -46,7 +46,10 @@
         1106,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Riflemen",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1137,
@@ -78,7 +81,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne HJ-12 Team",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1138,
@@ -124,7 +130,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Close-Assault Riflemen",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1139,
@@ -163,7 +172,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne PF-98 Fire Support",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1140,
@@ -202,7 +214,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne QLU-11 Precision Team",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1141,
@@ -238,7 +253,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne QJZ-171 Team",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1142,
@@ -281,12 +299,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Pathfinders",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1143,
       "row": 15,
-      "name": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
+      "name": "Leishen Commandos \u2014 Airborne Recon",
       "spec": 17,
       "men": 6,
       "recon": true,
@@ -327,7 +348,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
+      "identity": "PLAAF Airborne Corps Leishen (\u96f7\u795e)",
+      "unit_icon": "FA_PLA_INF_LEISHEN"
     },
     {
       "unit": 1144,
@@ -370,7 +394,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Snipers",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1145,
@@ -416,7 +443,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne HN-6 Patrol",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1146,
@@ -455,7 +485,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Air Assault Raiders",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1147,
@@ -494,7 +527,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Assault Engineers",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1148,
@@ -526,7 +562,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne QLZ-87 Team",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1149,
@@ -569,7 +608,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Target Observers",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1150,
@@ -608,7 +650,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Airborne Reserve Riflemen",
+      "identity": "PLAAF Airborne Corps",
+      "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1151,
@@ -656,7 +701,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized Riflemen",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1152,
@@ -690,7 +738,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized HJ-8E Team",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1153,
@@ -724,7 +775,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized QW-2 Team",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1154,
@@ -758,7 +812,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized QLZ-04 Team",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1155,
@@ -792,7 +849,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized PF-98 Tank Hunters",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1156,
@@ -839,7 +899,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized Combat Engineers",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1157,
@@ -873,7 +936,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized QJZ-89 Team",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1158,
@@ -914,7 +980,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized GPMG Riflemen",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1159,
@@ -962,7 +1031,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized Guided-AT Riflemen",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1160,
@@ -1010,7 +1082,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Armored Scouts",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1161,
@@ -1051,7 +1126,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Armored Sniper Pair",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1162,
@@ -1092,7 +1170,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized Thermobaric Breachers",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1163,
@@ -1140,7 +1221,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Mechanized Close-AT Riflemen",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1164,
@@ -1174,7 +1258,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Armored Forward Observers",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1165,
@@ -1215,7 +1302,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Recon HJ-8E Ambush Team",
+      "identity": "PLA Ground Force",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1166,
@@ -1244,7 +1334,10 @@
       "carriers": [
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Conscripts \u2014 No AT",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1167,
@@ -1293,7 +1386,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve Riflemen \u2014 HJ-73D",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1168,
@@ -1334,7 +1430,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve HJ-73D Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1169,
@@ -1375,7 +1474,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve HN-6 Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1170,
@@ -1416,7 +1518,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve QJZ-89 Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1171,
@@ -1457,7 +1562,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve QLZ-87 Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1172,
@@ -1496,7 +1604,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve PF-98 Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1173,
@@ -1549,12 +1660,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Malyutka Recon Ambush Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1174,
       "row": 46,
-      "name": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
+      "name": "Liren Reconnaissance \u2014 Missile-Site Recon",
       "spec": 19,
       "men": 4,
       "recon": true,
@@ -1604,7 +1718,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
+      "identity": "PLA Rocket Force Liren (\u5229\u5203)",
+      "unit_icon": "FA_PLA_INF_ROCKET_SOF"
     },
     {
       "unit": 1175,
@@ -1653,7 +1770,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Missile-Site Security \u2014 HJ-73D",
+      "identity": "PLA Rocket Force security/support role",
+      "unit_icon": "FA_PLA_INF_ROCKET"
     },
     {
       "unit": 1176,
@@ -1706,7 +1826,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Missile-Site Counter-Raid Team",
+      "identity": "PLA Rocket Force security/support role",
+      "unit_icon": "FA_PLA_INF_ROCKET"
     },
     {
       "unit": 1177,
@@ -1752,7 +1875,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve Thermobaric Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1178,
@@ -1798,7 +1924,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Reserve Heavy HJ-8E Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1179,
@@ -1844,7 +1973,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Rocket Convoy Escort \u2014 HJ-73D",
+      "identity": "PLA Rocket Force security/support role",
+      "unit_icon": "FA_PLA_INF_ROCKET"
     },
     {
       "unit": 1180,
@@ -1885,12 +2017,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "FHJ-02 Incendiary Team",
+      "identity": "PLA Ground Force reserve/infantry role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1181,
       "row": 53,
-      "name": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
+      "name": "Dongfang Shenjian \u2014 Digital Assault",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -1936,12 +2071,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
+      "identity": "Dongfang Shenjian (\u4e1c\u65b9\u795e\u5251)",
+      "unit_icon": "FA_PLA_INF_DONGFANG"
     },
     {
       "unit": 1182,
       "row": 54,
-      "name": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
+      "name": "Xiangjian Commandos \u2014 Breachers",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -1987,12 +2125,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
+      "identity": "Xiangjian (\u54cd\u7bad)",
+      "unit_icon": "FA_PLA_INF_XIANGJIAN"
     },
     {
       "unit": 1183,
       "row": 55,
-      "name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
+      "name": "Xuelang Commandos \u2014 Shock Team",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2038,12 +2179,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
+      "identity": "Xuelang (\u8840\u72fc)",
+      "unit_icon": "FA_PLA_INF_SOF"
     },
     {
       "unit": 1184,
       "row": 56,
-      "name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
+      "name": "Tianlang Commandos \u2014 QLU / Sniper Recon",
       "spec": 20,
       "men": 4,
       "recon": true,
@@ -2091,12 +2235,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
+      "identity": "Tianlang (\u5929\u72fc)",
+      "unit_icon": "FA_PLA_INF_TIANLANG"
     },
     {
       "unit": 1185,
       "row": 57,
-      "name": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
+      "name": "Nanguo Lijian \u2014 Fire Support",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2142,12 +2289,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
+      "identity": "Nanguo Lijian / Huanan Zhi Jian (\u5357\u56fd\u5229\u5251 / \u534e\u5357\u4e4b\u5251)",
+      "unit_icon": "FA_PLA_INF_SOF"
     },
     {
       "unit": 1186,
       "row": 58,
-      "name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
+      "name": "Gaoyuan Xuebao \u2014 Mountain Team",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2193,12 +2343,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
+      "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
+      "unit_icon": "FA_PLA_INF_SOF"
     },
     {
       "unit": 1187,
       "row": 59,
-      "name": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
+      "name": "Blue Sword \u2014 Beijing SWAT",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2237,12 +2390,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
+      "identity": "Beijing Public Security Blue Sword / Lanjian (\u84dd\u5251)",
+      "unit_icon": "FA_PLA_INF_POLICE"
     },
     {
       "unit": 1188,
       "row": 60,
-      "name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
+      "name": "Falcon Commandos \u2014 Counter-Terror Assault",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2288,12 +2444,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
+      "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
+      "unit_icon": "FA_PLA_INF_PAP"
     },
     {
       "unit": 1189,
       "row": 61,
-      "name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
+      "name": "Snow Leopard Commandos \u2014 Raid Team",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2339,12 +2498,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
+      "identity": "PAP Snow Leopard / Xuebao (\u96ea\u8c79)",
+      "unit_icon": "FA_PLA_INF_SNOW_LEOPARD"
     },
     {
       "unit": 1190,
       "row": 62,
-      "name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
+      "name": "Jiaolong Commandos \u2014 Marine Assault",
       "spec": 20,
       "men": 10,
       "recon": false,
@@ -2384,12 +2546,15 @@
         1106,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
+      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
+      "unit_icon": "FA_PLA_INF_JIAOLONG"
     },
     {
       "unit": 1191,
       "row": 63,
-      "name": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
+      "name": "Jiaolong Commandos \u2014 Maritime Recon",
       "spec": 20,
       "men": 6,
       "recon": true,
@@ -2435,7 +2600,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
+      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
+      "unit_icon": "FA_PLA_INF_JIAOLONG"
     },
     {
       "unit": 1192,
@@ -2479,7 +2647,10 @@
         1106,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Marine Riflemen",
+      "identity": "PLA Navy Marine Corps",
+      "unit_icon": "FA_PLA_INF_MARINE"
     },
     {
       "unit": 1193,
@@ -2523,7 +2694,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Marine HJ-12 Team",
+      "identity": "PLA Navy Marine Corps",
+      "unit_icon": "FA_PLA_INF_MARINE"
     },
     {
       "unit": 1194,
@@ -2567,7 +2741,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Marine HN-6 Team",
+      "identity": "PLA Navy Marine Corps",
+      "unit_icon": "FA_PLA_INF_MARINE"
     },
     {
       "unit": 1195,
@@ -2618,7 +2795,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Marine Thermobaric Engineers",
+      "identity": "PLA Navy Marine Corps",
+      "unit_icon": "FA_PLA_INF_MARINE"
     },
     {
       "unit": 1196,
@@ -2662,7 +2842,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Line Infantry",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1197,
@@ -2706,7 +2889,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Troopers \u2014 AA",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1198,
@@ -2750,7 +2936,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Troopers \u2014 HJ-12",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1199,
@@ -2801,7 +2990,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Weapons Squad",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1200,
@@ -2840,7 +3032,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized PF-98 Fire Support",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1201,
@@ -2891,7 +3086,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Recon Patrol",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1202,
@@ -2937,12 +3135,15 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Snipers",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1203,
       "row": 75,
-      "name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
+      "name": "Xiongying Commandos \u2014 Deep Recon",
       "spec": 21,
       "men": 6,
       "recon": true,
@@ -2988,7 +3189,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
+      "identity": "Xiongying (\u96c4\u9e70), historical Jinan-region SOF lineage",
+      "unit_icon": "FA_PLA_INF_SOF"
     },
     {
       "unit": 1204,
@@ -3032,7 +3236,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized CQC Engineers",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1205,
@@ -3076,7 +3283,10 @@
         914,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Light-AT Riflemen",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1206,
@@ -3127,7 +3337,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Air-Defense Scouts",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1207,
@@ -3171,7 +3384,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized PF-98 Tank Hunters",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1208,
@@ -3210,7 +3426,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized QLZ-04 Team",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1209,
@@ -3254,7 +3473,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized Thermobaric Assault",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1210,
@@ -3305,7 +3527,10 @@
         1107,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
+      "identity": "PLA Ground Force motorized role",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1211,
@@ -3347,7 +3572,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 Export Riflemen",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1212,
@@ -3389,7 +3617,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 SMG Assault",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1213,
@@ -3433,7 +3664,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 Suppressed Scouts",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1214,
@@ -3471,7 +3705,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 LG5 Precision Grenadiers",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1215,
@@ -3516,7 +3753,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 LG5s Mobile Grenadiers",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1216,
@@ -3560,7 +3800,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 LG6 CQC Grenadiers",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1217,
@@ -3604,7 +3847,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 LG4 Revolver Team",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1218,
@@ -3642,7 +3888,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 LG3 Heavy AGL",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1219,
@@ -3680,7 +3929,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 QN-202 Guided Support",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1220,
@@ -3718,7 +3970,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 TL-4 Team",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1221,
@@ -3756,7 +4011,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 GAM-102LR Team",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1222,
@@ -3794,7 +4052,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 HJ-12E Team",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1223,
@@ -3838,7 +4099,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 QW-2 Escort",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1224,
@@ -3883,7 +4147,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 QTS Recon Cell",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1225,
@@ -3921,7 +4188,10 @@
         979,
         912
       ],
-      "native_verified": false
+      "native_verified": false,
+      "source_design_name": "Test \u2014 FHJ-02 Smoke Team",
+      "identity": "PLA equipment/squad test concept",
+      "unit_icon": "FA_PLA_INF_GROUND"
     }
   ],
   "count": 90,

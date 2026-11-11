@@ -1,0 +1,835 @@
+{
+  "passed": true,
+  "unit_display_names_changed": 14,
+  "unit_thumbnail_addresses_changed": 90,
+  "all_other_effective_fields_identical": true,
+  "test_rigging_fixtures_unchanged": true,
+  "portraits_unchanged": true,
+  "weapon_names_ammo_stats_unchanged": true,
+  "normal_outline_sprites_verified": 44,
+  "infantry_icon_families": 14,
+  "weapon_profile_families": 8,
+  "png_sha256": {
+    "FA_PLA_WP_QBB95": "b741ad2cf484fe28a2904613086ff0f66cf9dfd9944e8d523a15dc70e415e035",
+    "FA_PLA_WP_QBB95_OUTLINE": "bf2ca81893ae2f2e11975af412f8d83807aa826385b0ec1cada92686b7442e19",
+    "FA_PLA_WP_QBU191": "f8685c1a471ffaa510e55ec0e54fea0f8f88334ef63d686236aa83f64a8bf4e1",
+    "FA_PLA_WP_QBU191_OUTLINE": "37a5be9ef7788e7bd6121de0da86396682c1b437651f5d807b4d2d22356fe82a",
+    "FA_PLA_WP_QBU88": "c794f0cd3ec6561c0248132fa143a7b5899e5f5567e1ebade68c6c19ac072dba",
+    "FA_PLA_WP_QBU88_OUTLINE": "ebd308b65f53317feb22c0f70cd021177f75d9c9d0e790eddc7f1d26abcac6b2",
+    "FA_PLA_WP_QBZ191": "64ab8e38f1e72fed875853932930c37d93fee85735b069bc6244496c5ee3c6ea",
+    "FA_PLA_WP_QBZ191_OUTLINE": "69a4f3b469f4bab8fb6e26f1658d6f1d975dccab79e704359affb61dca7fc505",
+    "FA_PLA_WP_QBZ95": "8b610087ad9bfac9863dcebb4a5bc72b5b63b8983c7ec553d3fb311af01030b0",
+    "FA_PLA_WP_QBZ95_OUTLINE": "37af7829ac4b7da1ce6254fc50fffbf14a774424c0d3bed7a6d1138958fabb90",
+    "FA_PLA_WP_QBZ97": "0d74ffd23a1229b50f719e9298a49eb3d656f7ab6a13d44c0886534bd2d7bbf5",
+    "FA_PLA_WP_QBZ97_OUTLINE": "bf301ab30a21a8824a945e90f300fa00cacefee8d04fdd8cae7796213c1c38f2",
+    "FA_PLA_WP_QLU11": "f2831f7848d123de2bfae5833c6c4d2368dfdfabb841d1380327043ce093d205",
+    "FA_PLA_WP_QLU11_OUTLINE": "8783649756936fb293793d9fe547743aba6ea7a70438244b96e585c11247a927",
+    "FA_PLA_WP_QTS11": "1df2b1d07903327ecae9371298656d9e977ce06599e3f34cb3be091d2adf6f9e",
+    "FA_PLA_WP_QTS11_OUTLINE": "7f07e5ed8f07933b0093a4a8d8bc8a13bb01c2af90fa3e7d254dfca818fd82a4",
+    "FA_PLA_INF_AIRBORNE": "a85b2de9dac4585115ccf255ce6c18107aa7b58c6e2535a31bab3ce8cfb24bd4",
+    "FA_PLA_INF_AIRBORNE_OUTLINE": "b88a3e690b1f0676cd38931fb726b0cfd483660a0ec947e0e112941d1f642dd7",
+    "FA_PLA_INF_DONGFANG": "d344f85664350bd9991da967dc40e804c6719baa12d47ac8e4ac9a0bacac5de1",
+    "FA_PLA_INF_DONGFANG_OUTLINE": "5c44d8cc41d9b17bd5cc706fc031a4f44ff7d8ee5dc433199ffa00761e7a6cc8",
+    "FA_PLA_INF_GROUND": "4c21bd614595af87c54f6c1a615a9b6b8467cb009aed011e63d3510b55fb7232",
+    "FA_PLA_INF_GROUND_OUTLINE": "6c53865cd2c18c0dfdf21a70acb6b3b756960ba9e0fbb321cf8549ffba1fc044",
+    "FA_PLA_INF_JIAOLONG": "40e8fd15d8d42ee2dc6d31afbc9c72d131299186f6978ee4552be6153367803f",
+    "FA_PLA_INF_JIAOLONG_OUTLINE": "261470ca790fae855dd3b81fdea9da244efaf7aed69a0dbf50c1e3a9622b5ced",
+    "FA_PLA_INF_LEISHEN": "05d10347e61ecba855a0b9fd9c9ddf5c7927994a4d3592fc2919050c0c057526",
+    "FA_PLA_INF_LEISHEN_OUTLINE": "1ab558f60b6261c5a6e620fabee3eb4c349f6e3ea2888cf3f6a58cb136c2d32f",
+    "FA_PLA_INF_MARINE": "7ed9319ecca2f2210416e257606ec2dc5ae80a0475aad32cc8eb62bf38fc3e1c",
+    "FA_PLA_INF_MARINE_OUTLINE": "3cdcd1317b310eed7ee75df14993dcf9051d95fcd3cf64008dcbc97945dee7b2",
+    "FA_PLA_INF_PAP": "1280a7a3bf9cf5e15688fe9a2d67688caf9d2f552b455c518244d29c7bbf0ab8",
+    "FA_PLA_INF_PAP_OUTLINE": "fa5ab01264cb0493dd80cef8aa556cda86ba992d6fe0f955ac021df1dee0eaef",
+    "FA_PLA_INF_POLICE": "cd55dc12ce38d1a9009bfee2761df96e656dbfdcc64cd35cc93bef3ac7526528",
+    "FA_PLA_INF_POLICE_OUTLINE": "b0f752b55319b31e1c82e21c73f00b0f1e67d96f9dcd93e8abd02c8ef9de5f66",
+    "FA_PLA_INF_ROCKET": "70fc39c020f96af5cb97544ab1465e2bffb449eff2a5afe2bf94f2da9d252467",
+    "FA_PLA_INF_ROCKET_OUTLINE": "5cbf63acc8483c420917304193fd1665d0453035124221a6b685a89c73ce3457",
+    "FA_PLA_INF_ROCKET_SOF": "49eaeac30f1089ed3091307f0cfcafda3f782f1fa991aef649391ac529a9cbac",
+    "FA_PLA_INF_ROCKET_SOF_OUTLINE": "908b507a628031ae1b3cda498178ee77236d0c8c21a6fcafca1d952b5b58bee8",
+    "FA_PLA_INF_SNOW_LEOPARD": "49e0457ebf8a847cad44aa072761b629be27e384f82bd53b2ded825b377eb407",
+    "FA_PLA_INF_SNOW_LEOPARD_OUTLINE": "0c6eea4a37df3a5d011b527f6fd26c0b00f42ce0f624a4b08972c9f4d1c1616c",
+    "FA_PLA_INF_SOF": "a452d05884430388d5c2efd5b22f45dd9637190a89d84852e7e0f61a3ef9b4e4",
+    "FA_PLA_INF_SOF_OUTLINE": "05c7b9c5ad4edd9edf6849e1670ff6ba4b4e7c365f289bc31342e1e368c9c7b9",
+    "FA_PLA_INF_TIANLANG": "770e15923a1ef7baeb2c4ad74335188876c523356e5080634805cab305ee390c",
+    "FA_PLA_INF_TIANLANG_OUTLINE": "c8cef5c0d4ddfda1e503299988a74b635bdc17630b6fd41596c00e1f8ca38372",
+    "FA_PLA_INF_XIANGJIAN": "247fcf9b73f7aa9b7ca22337d18a746993a7fd6c361aff23c52983c264dd9a4c",
+    "FA_PLA_INF_XIANGJIAN_OUTLINE": "757cfe83740517bb00fca4cb715190836cc1eb31603c9b6dc01ee55073bc4371"
+  },
+  "pale_fill_pixel_counts": {
+    "FA_PLA_WP_QBB95": 5946,
+    "FA_PLA_WP_QBB95_OUTLINE": 5915,
+    "FA_PLA_WP_QBU191": 4472,
+    "FA_PLA_WP_QBU191_OUTLINE": 4353,
+    "FA_PLA_WP_QBU88": 5280,
+    "FA_PLA_WP_QBU88_OUTLINE": 5132,
+    "FA_PLA_WP_QBZ191": 4797,
+    "FA_PLA_WP_QBZ191_OUTLINE": 4762,
+    "FA_PLA_WP_QBZ95": 6044,
+    "FA_PLA_WP_QBZ95_OUTLINE": 6023,
+    "FA_PLA_WP_QBZ97": 5838,
+    "FA_PLA_WP_QBZ97_OUTLINE": 5819,
+    "FA_PLA_WP_QLU11": 4769,
+    "FA_PLA_WP_QLU11_OUTLINE": 4639,
+    "FA_PLA_WP_QTS11": 7323,
+    "FA_PLA_WP_QTS11_OUTLINE": 7283,
+    "FA_PLA_INF_AIRBORNE": 3615,
+    "FA_PLA_INF_AIRBORNE_OUTLINE": 3344,
+    "FA_PLA_INF_DONGFANG": 3654,
+    "FA_PLA_INF_DONGFANG_OUTLINE": 4043,
+    "FA_PLA_INF_GROUND": 3121,
+    "FA_PLA_INF_GROUND_OUTLINE": 2943,
+    "FA_PLA_INF_JIAOLONG": 4622,
+    "FA_PLA_INF_JIAOLONG_OUTLINE": 4348,
+    "FA_PLA_INF_LEISHEN": 4593,
+    "FA_PLA_INF_LEISHEN_OUTLINE": 4240,
+    "FA_PLA_INF_MARINE": 3653,
+    "FA_PLA_INF_MARINE_OUTLINE": 3454,
+    "FA_PLA_INF_PAP": 3080,
+    "FA_PLA_INF_PAP_OUTLINE": 2936,
+    "FA_PLA_INF_POLICE": 4284,
+    "FA_PLA_INF_POLICE_OUTLINE": 3982,
+    "FA_PLA_INF_ROCKET": 2993,
+    "FA_PLA_INF_ROCKET_OUTLINE": 2740,
+    "FA_PLA_INF_ROCKET_SOF": 2623,
+    "FA_PLA_INF_ROCKET_SOF_OUTLINE": 2476,
+    "FA_PLA_INF_SNOW_LEOPARD": 5328,
+    "FA_PLA_INF_SNOW_LEOPARD_OUTLINE": 4894,
+    "FA_PLA_INF_SOF": 2057,
+    "FA_PLA_INF_SOF_OUTLINE": 1888,
+    "FA_PLA_INF_TIANLANG": 5192,
+    "FA_PLA_INF_TIANLANG_OUTLINE": 4857,
+    "FA_PLA_INF_XIANGJIAN": 3860,
+    "FA_PLA_INF_XIANGJIAN_OUTLINE": 3583
+  },
+  "changes": [
+    {
+      "table": "Units",
+      "id": 1136,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1137,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1138,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1139,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1140,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1141,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1142,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1143,
+      "field": "HUDName",
+      "before": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
+      "after": "Leishen Commandos \u2014 Airborne Recon"
+    },
+    {
+      "table": "Units",
+      "id": 1143,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_LEISHEN"
+    },
+    {
+      "table": "Units",
+      "id": 1144,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1145,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1146,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1147,
+      "field": "ThumbnailFileName",
+      "before": "RU_SAPERI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1148,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1149,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1150,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_AIRBORNE"
+    },
+    {
+      "table": "Units",
+      "id": 1151,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1152,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1153,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1154,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1155,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1156,
+      "field": "ThumbnailFileName",
+      "before": "RU_SAPERI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1157,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1158,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1159,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1160,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1161,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1162,
+      "field": "ThumbnailFileName",
+      "before": "RU_SAPERI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1163,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1164,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1165,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1166,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1167,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1168,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1169,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1170,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1171,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1172,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1173,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1174,
+      "field": "HUDName",
+      "before": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
+      "after": "Liren Reconnaissance \u2014 Missile-Site Recon"
+    },
+    {
+      "table": "Units",
+      "id": 1174,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_ROCKET_SOF"
+    },
+    {
+      "table": "Units",
+      "id": 1175,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_ROCKET"
+    },
+    {
+      "table": "Units",
+      "id": 1176,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_ROCKET"
+    },
+    {
+      "table": "Units",
+      "id": 1177,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1178,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1179,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_ROCKET"
+    },
+    {
+      "table": "Units",
+      "id": 1180,
+      "field": "ThumbnailFileName",
+      "before": "RU_RESERVIST-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1181,
+      "field": "HUDName",
+      "before": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
+      "after": "Dongfang Shenjian \u2014 Digital Assault"
+    },
+    {
+      "table": "Units",
+      "id": 1181,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_DONGFANG"
+    },
+    {
+      "table": "Units",
+      "id": 1182,
+      "field": "HUDName",
+      "before": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
+      "after": "Xiangjian Commandos \u2014 Breachers"
+    },
+    {
+      "table": "Units",
+      "id": 1182,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_XIANGJIAN"
+    },
+    {
+      "table": "Units",
+      "id": 1183,
+      "field": "HUDName",
+      "before": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
+      "after": "Xuelang Commandos \u2014 Shock Team"
+    },
+    {
+      "table": "Units",
+      "id": 1183,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_SOF"
+    },
+    {
+      "table": "Units",
+      "id": 1184,
+      "field": "HUDName",
+      "before": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
+      "after": "Tianlang Commandos \u2014 QLU / Sniper Recon"
+    },
+    {
+      "table": "Units",
+      "id": 1184,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_TIANLANG"
+    },
+    {
+      "table": "Units",
+      "id": 1185,
+      "field": "HUDName",
+      "before": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
+      "after": "Nanguo Lijian \u2014 Fire Support"
+    },
+    {
+      "table": "Units",
+      "id": 1185,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_SOF"
+    },
+    {
+      "table": "Units",
+      "id": 1186,
+      "field": "HUDName",
+      "before": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
+      "after": "Gaoyuan Xuebao \u2014 Mountain Team"
+    },
+    {
+      "table": "Units",
+      "id": 1186,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_SOF"
+    },
+    {
+      "table": "Units",
+      "id": 1187,
+      "field": "HUDName",
+      "before": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
+      "after": "Blue Sword \u2014 Beijing SWAT"
+    },
+    {
+      "table": "Units",
+      "id": 1187,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_POLICE"
+    },
+    {
+      "table": "Units",
+      "id": 1188,
+      "field": "HUDName",
+      "before": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
+      "after": "Falcon Commandos \u2014 Counter-Terror Assault"
+    },
+    {
+      "table": "Units",
+      "id": 1188,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_PAP"
+    },
+    {
+      "table": "Units",
+      "id": 1189,
+      "field": "HUDName",
+      "before": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
+      "after": "Snow Leopard Commandos \u2014 Raid Team"
+    },
+    {
+      "table": "Units",
+      "id": 1189,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_SNOW_LEOPARD"
+    },
+    {
+      "table": "Units",
+      "id": 1190,
+      "field": "HUDName",
+      "before": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
+      "after": "Jiaolong Commandos \u2014 Marine Assault"
+    },
+    {
+      "table": "Units",
+      "id": 1190,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_JIAOLONG"
+    },
+    {
+      "table": "Units",
+      "id": 1191,
+      "field": "HUDName",
+      "before": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
+      "after": "Jiaolong Commandos \u2014 Maritime Recon"
+    },
+    {
+      "table": "Units",
+      "id": 1191,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_JIAOLONG"
+    },
+    {
+      "table": "Units",
+      "id": 1192,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_MARINE"
+    },
+    {
+      "table": "Units",
+      "id": 1193,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_MARINE"
+    },
+    {
+      "table": "Units",
+      "id": 1194,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_MARINE"
+    },
+    {
+      "table": "Units",
+      "id": 1195,
+      "field": "ThumbnailFileName",
+      "before": "RU_SAPERI-Label",
+      "after": "FA_PLA_INF_MARINE"
+    },
+    {
+      "table": "Units",
+      "id": 1196,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1197,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1198,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1199,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1200,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1201,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1202,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1203,
+      "field": "HUDName",
+      "before": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
+      "after": "Xiongying Commandos \u2014 Deep Recon"
+    },
+    {
+      "table": "Units",
+      "id": 1203,
+      "field": "ThumbnailFileName",
+      "before": "RU_SSO_CQC-Label",
+      "after": "FA_PLA_INF_SOF"
+    },
+    {
+      "table": "Units",
+      "id": 1204,
+      "field": "ThumbnailFileName",
+      "before": "RU_SAPERI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1205,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1206,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1207,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1208,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1209,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1210,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1211,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1212,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1213,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1214,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1215,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1216,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1217,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1218,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1219,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1220,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1221,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1222,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1223,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1224,
+      "field": "ThumbnailFileName",
+      "before": "RU_VDV_RAZVEDKA-Label",
+      "after": "FA_PLA_INF_GROUND"
+    },
+    {
+      "table": "Units",
+      "id": 1225,
+      "field": "ThumbnailFileName",
+      "before": "RU_MOTOSTRELKI-Label",
+      "after": "FA_PLA_INF_GROUND"
+    }
+  ],
+  "native_verified": false
+}

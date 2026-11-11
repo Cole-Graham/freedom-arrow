@@ -2,16 +2,16 @@
 from pathlib import Path
 import hashlib,json,struct,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-18.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-19.bamod'
 with zipfile.ZipFile(p) as z:
  names=set(z.namelist());assert len(names)==len(z.namelist())
  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n for n in names)
- mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 18' and mod['version']=='18' and mod['type']=='modpack'
- assert z.read('README.md').startswith(b'# PLA TEST Build 18\n')
- m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==18 and m['label']=='PLA TEST Build 18'
+ mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 19' and mod['version']=='19' and mod['type']=='modpack'
+ assert z.read('README.md').startswith(b'# PLA TEST Build 19\n')
+ m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==19 and m['label']=='PLA TEST Build 19'
  assert names-{'mod.json','README.md','UserData/FreedomArrow/pla-package-manifest.json'}==set(m['sha256'])
  for n,h in m['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
- core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='18'
+ core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='19'
  for n,h in core['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
  def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
  units=table('units');roster=json.loads((R/'pla-test-contract.json').read_text())['cards'];assert len(roster)==79

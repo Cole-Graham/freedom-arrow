@@ -60,7 +60,7 @@ static class ChinaUi
                 foreach(var prefix in new[]{"","outline\\","small\\"})cache[prefix+address]=sprite;
             }
             // Weapon outlines are separate sprites, after all plain aliases have been seeded.
-            foreach(var address in Addresses.Where(a=>a.StartsWith("FA_PLA_WP_")&&a.EndsWith("_OUTLINE")))
+            foreach(var address in Addresses.Where(a=>a.StartsWith("FA_PLA_")&&a.EndsWith("_OUTLINE")))
                 cache["outline\\"+address.Substring(0,address.Length-8)]=made[address];
         }
         catch(Exception e){failed=true;MelonLogger.Error("PLA_CHINA_UI_FAILED: "+e);}
