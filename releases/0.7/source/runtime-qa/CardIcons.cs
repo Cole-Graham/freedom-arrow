@@ -78,6 +78,9 @@ static class CardIcons
         ("FA_BLACK_EAGLE-Portrait_HOVER","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
         ("outline\\FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
+        // A distinct address avoids a native UI item retaining the previous gray sprite.
+        ("FA_BLACK_EAGLE_WHITE-Label","FA_BLACK_EAGLE-Label.png"),
+        ("outline\\FA_BLACK_EAGLE_WHITE-Label","FA_BLACK_EAGLE-Label.png"),
     };
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();
@@ -120,7 +123,7 @@ static class CardIcons
     }
     static Sprite Make(string address)
     {
-        bool cutout=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png" or "FA_X47-Label.png" or "FA_KARATEL-Label.png" or "FA_XM30-Label.png" or "FA_ABRAMSX-Label.png" or "FA_LOSAT-Label.png";
+        bool cutout=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png" or "FA_X47-Label.png" or "FA_KARATEL-Label.png" or "FA_XM30-Label.png" or "FA_ABRAMSX-Label.png" or "FA_LOSAT-Label.png" or "FA_BLACK_EAGLE-Label.png";
         var tex=new Texture2D(2,2,TextureFormat.RGBA32,cutout){name=address,wrapMode=TextureWrapMode.Clamp,filterMode=cutout?FilterMode.Trilinear:FilterMode.Bilinear};
         // Preserve the approved source PNGs exactly. Mirror only these aircraft label textures for native right-facing UI.
         bool mirror=address is "FA_SU75-Label.png" or "FA_SU47-Label.png" or "FA_SU57D-Label.png" or "FA_YF23-Label.png" or "FA_F14-Label.png";
@@ -138,6 +141,8 @@ static class CardIcons
             }
             tex.SetPixels32(flipped);tex.Apply(true,true);
         }
+        if(address=="FA_BLACK_EAGLE-Label.png")
+            MelonLogger.Msg($"FREEDOM_ARROW_BLACK_EAGLE_CARD made: {tex.width}x{tex.height}; cutout={cutout}; png_sha256={Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(png[address])).ToLowerInvariant()}");
         tex.hideFlags=HideFlags.HideAndDontSave;
         var sprite=Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f),100f);
         sprite.name=address.Substring(address.LastIndexOf('\\')+1);
