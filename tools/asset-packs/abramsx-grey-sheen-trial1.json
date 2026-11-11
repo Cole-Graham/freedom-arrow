@@ -1,0 +1,57 @@
+{
+  "label": "Abrams X grey-panel sheen trial1",
+  "metallic_target": 0.55,
+  "smoothness_boost": 0.08,
+  "smoothness_cap": 0.76,
+  "files": {
+    "UserData/FAModels/m_abramsx_cg_tex0_mask.png": "9829377cdc6544968e8cbbae905126d2747047a6910d349775248d96e4a74168",
+    "UserData/FAModels/m_abramsx_lo_tex0_mask.png": "abcb0ad0d1e1faacfe450f7b3d04bed4307e76cda15f30820d6842b9c5165146"
+  },
+  "base_files": {
+    "UserData/FAModels/m_abramsx_cg_tex0_mask.png": "abfe4e4134ca185740e4a0eff234c708bb4224f4793d0ea0175b4fcf046df64f",
+    "UserData/FAModels/m_abramsx_lo_tex0_mask.png": "724c8138fc7837c7e7f1eb37f1428f6cc27e8ee4d331533f4e5786162a96641e"
+  },
+  "source_files": {
+    "work/xm30-200-abramsx-silver-20261110/silver/UserData/FAModels/m_abramsx_cg_tex0.png": "d3e9c83da6655341e1570e3a64761fbf502a007a4b0ed8fcf3698761adf42dbd",
+    "work/xm30-200-abramsx-silver-20261110/before/m_abramsx_cg_tex0.png": "259066908816fa627319fbb0883417c00126c9c88c1bc247628d01fd75801a4e",
+    "work/xm30-200-abramsx-silver-20261110/silver/UserData/FAModels/m_abramsx_lo_tex0.png": "33f7ebcd5a577590cf707b8dad5b9f4aaa28ca9cb2a7d35ce340ebc172b49a93",
+    "work/xm30-200-abramsx-silver-20261110/before/m_abramsx_lo_tex0.png": "752f32fad0dc164a01accb7a1b18335b2166009185a188720e7045639b2b331d"
+  },
+  "required_files": {
+    "UserData/FAModels/m_abramsx_cg_tex0.png": "d3e9c83da6655341e1570e3a64761fbf502a007a4b0ed8fcf3698761adf42dbd",
+    "UserData/FAModels/m_abramsx_lo_tex0.png": "33f7ebcd5a577590cf707b8dad5b9f4aaa28ca9cb2a7d35ce340ebc172b49a93"
+  },
+  "mesh_sha256": {
+    "m_abramsx_cg.fam": "4e6678c3c52c23aec66ac002af7cdd2a3869d69ddae8b68463aab7ec29b69cba",
+    "m_abramsx_lo.fam": "399f2fe9bb664e1ec911552a214ecc97624992cbd4b616a0175092f7eeff2ea4"
+  },
+  "pixel_checks": {
+    "m_abramsx_cg": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "changed_fraction": 0.6208996772766113,
+      "non_grey_pixels_identical": true,
+      "occlusion_and_detail_channels_identical": true,
+      "original_grey_metallic_median": 0.0,
+      "new_grey_metallic_median": 0.5490196078431373,
+      "original_grey_smoothness_median": 0.5803921818733215,
+      "new_grey_smoothness_median": 0.6549019607843137
+    },
+    "m_abramsx_lo": {
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "changed_fraction": 0.6392841339111328,
+      "non_grey_pixels_identical": true,
+      "occlusion_and_detail_channels_identical": true,
+      "original_grey_metallic_median": 0.003921568859368563,
+      "new_grey_metallic_median": 0.5490196078431373,
+      "original_grey_smoothness_median": 0.5803921818733215,
+      "new_grey_smoothness_median": 0.6509803921568628
+    }
+  },
+  "native_verified": false
+}
