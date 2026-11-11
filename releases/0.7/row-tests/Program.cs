@@ -274,6 +274,7 @@ Check(Row("AmmunitionsJson",725)["Damage"].GetValue<float>()==4f&&Row("Ammunitio
 Console.WriteLine($"PASS: {checks} real RowPlanner/harness-reference checks; {writes} planned field writes across24 tables; native database/models/armory untested.");
 
 Check(Row("Units",950)["Cost"].GetValue<int>()==260,"Su75 base cost260");
+Check(Row("Units",950)["Stealth"].GetValue<double>()==0.5&&Row("Units",950)["CurrentStealth"].GetValue<double>()==0.5,"Su75 UI stealth2; raw reciprocal0.5 in both fields");
 var cmMods=merged["ModificationsJson"].Where(r=>r["UnitId"].GetValue<int>()==950).ToArray();
 Check(cmMods.Length==1&&cmMods[0]["UIName"].GetValue<string>()=="Custom_Slot_Rear_bay","Su75 rear bay only");
 var cmOpts=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==cmMods[0]["Id"].GetValue<int>()).ToArray();

@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.44 — development candidate
+# Freedom Arrow 0.7.0-dev.45 — development candidate
+
+**dev.45: Su-75 Checkmate stealth is2 in UI terms (raw Stealth and CurrentStealth0.5), up from approximately1.5 (raw0.666). Includes the current dev.44 T72 armor-card correction. All other gameplay constants match dev.44. Native card/detection verification pending.**
 
 **T-72B3AM armor-card correction: its obr. 16 armor is now the linked default armor. Thickness, HP, price and loadouts remain as in dev.42. A build guard checks every unit with armor links. Package/data checks pass; native display verification is pending.**
 
@@ -221,3 +223,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 17:19:42 PST (America/Los_Angeles) — Increased LOSAT missile damage from 10 to 12 and card speed from 1300 to 1500; other gameplay constants retained.
 - 2026-11-10 17:29:35 PST (America/Los_Angeles) — Raised XM30 base price from190 to200; retained dev.41 LOSAT values and recorded separate source-resolution silver texture trial.
 - 2026-11-10 17:59:47 PST (America/Los_Angeles) — Added T-72B3AM default-armor correction, unchanged balance values and verification limits.
+- 2026-11-10 18:10:29 PST (America/Los_Angeles) — Increased Su75 UI stealth to2 on the current dev.44 base, preserving its T72 armor flags and all other gameplay data.

@@ -4,5 +4,6 @@
   "name": "Su-75 Checkmate",
   "cost": 260,
   "spec": 9,
-  "rear_mod": 341
+  "rear_mod": 341,
+  "stealth_ui": 2
 }
