@@ -1,3 +1,9 @@
+# PLA TEST Build 20
+
+**Build 20 uses weapon/equipment-led unit icons for 59 support and specialty squads. All 14 named SF cards retain their sourced or documented fallback central emblems, with wreaths removed and the emblems enlarged. The 17 other branch cards retain their existing icons. Names, portraits, ammo, stats, loadouts, models, rigging and the Build 17 grouping correction are unchanged. Native appearance is untested.**
+
+## Historical Build19 identity and initial badge pass
+
 # PLA TEST Build 19
 
 **Build19 adds patch-derived monochrome unit icons to all90 designer squads and standardizes14 named-team labels from published sources. Generic squads retain their role names with parent-branch insignia; exact-patch and motif/fallback evidence are recorded separately. The eight custom weapon profiles now face right and use filled pale normal/outline sprites with a dark keyline, matching actual native infantry HUD captures. Build17 grouping, all28 rigging fixtures, portraits, ammo, stats, loadouts and model alignment are retained. Native appearance remains untested.**
@@ -591,3 +597,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 11:43:40 PST (America/Los_Angeles) — Replaced rejected weapon sketches, added normal/outline contours, documented native stand-ins and retained the Build17 UI correction.
 
 - 2026-11-11 12:11:09 PST (America/Los_Angeles) — Added researched infantry identity/patch adaptations and corrected custom weapon facing and filled-outline style; preserved all gameplay and approved model bindings.
+
+- 2026-11-11 12:30:17 PST (America/Los_Angeles) — Replaced support/specialty branch badges with weapon/equipment icons and removed SF wreaths while enlarging central emblems; all other game data retained.

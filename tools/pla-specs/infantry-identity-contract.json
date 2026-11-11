@@ -14,6 +14,8 @@
     "SNOW_LEOPARD",
     "SOF",
     "TIANLANG",
+    "WPN_QLU11",
+    "WPN_QTS11",
     "XIANGJIAN"
   ],
   "units": {
@@ -26,18 +28,21 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1137": {
       "display_name": "Airborne HJ-12 Team",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1138": {
       "display_name": "Airborne Close-Assault Riflemen",
@@ -48,40 +53,47 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1139": {
       "display_name": "Airborne PF-98 Fire Support",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "US_SMAW_TEAM-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 63 Assaultmen SMAW",
+      "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 63
     },
     "1140": {
       "display_name": "Airborne QLU-11 Precision Team",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": "WPN_QLU11",
+      "address": "FA_PLA_INF_WPN_QLU11",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Approved installed QLU11 mesh contour",
+      "art_basis": "Owned QLU11 side contour for precision-grenade weapon team",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": null
     },
     "1141": {
       "display_name": "Airborne QJZ-171 Team",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "RU_HMG_KORD-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 400 Pulemetchiki Kord",
+      "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 400
     },
     "1142": {
       "display_name": "Airborne Pathfinders",
@@ -92,7 +104,8 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1143": {
       "display_name": "Leishen Commandos — Airborne Recon",
@@ -103,29 +116,34 @@
       "identity_source": "https://www.mod.gov.cn/gfbw/gfjy_index/xjdx/4834609.html",
       "art_source": "https://www.xinhuanet.com/mil/2015-12/28/c_128573417_4.htm",
       "art_basis": "Official Xinhua image explicitly identifies the patch; parachute/wings, sword, lightning and wreath adapted",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1144": {
       "display_name": "Airborne Snipers",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "US_SCOUT_SNIPERS_M107-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 333 Scout Snipers M107",
+      "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 333
     },
     "1145": {
       "display_name": "Airborne HN-6 Patrol",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1146": {
       "display_name": "Air Assault Raiders",
@@ -136,40 +154,47 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1147": {
       "display_name": "Airborne Assault Engineers",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "RU_SAPERI-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 117 Ingenery-Shturmoviki",
+      "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 117
     },
     "1148": {
       "display_name": "Airborne QLZ-87 Team",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1149": {
       "display_name": "Airborne Target Observers",
       "identity": "PLAAF Airborne Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "AIRBORNE",
-      "address": "FA_PLA_INF_AIRBORNE",
+      "profile": null,
+      "address": "US_CAVALRY_SCOUTS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 65 Cavalry Scouts",
+      "art_basis": "Native scout/observation equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 65
     },
     "1150": {
       "display_name": "Airborne Reserve Riflemen",
@@ -180,7 +205,8 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1151": {
       "display_name": "Mechanized Riflemen",
@@ -191,95 +217,112 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1152": {
       "display_name": "Mechanized HJ-8E Team",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_KONKURS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 121 PTRK Konkurs",
+      "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 121
     },
     "1153": {
       "display_name": "Mechanized QW-2 Team",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1154": {
       "display_name": "Mechanized QLZ-04 Team",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1155": {
       "display_name": "Mechanized PF-98 Tank Hunters",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SMAW_TEAM-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 63 Assaultmen SMAW",
+      "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 63
     },
     "1156": {
       "display_name": "Mechanized Combat Engineers",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_SAPERI-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 117 Ingenery-Shturmoviki",
+      "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 117
     },
     "1157": {
       "display_name": "Mechanized QJZ-89 Team",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_HMG_KORD-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 400 Pulemetchiki Kord",
+      "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 400
     },
     "1158": {
       "display_name": "Mechanized GPMG Riflemen",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_PKP-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 399 Pulemetchiki PKP",
+      "art_basis": "General-purpose machine-gun team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 399
     },
     "1159": {
       "display_name": "Mechanized Guided-AT Riflemen",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_KONKURS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 121 PTRK Konkurs",
+      "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 121
     },
     "1160": {
       "display_name": "Armored Scouts",
@@ -290,29 +333,34 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1161": {
       "display_name": "Armored Sniper Pair",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SCOUT_SNIPERS_M107-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 333 Scout Snipers M107",
+      "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 333
     },
     "1162": {
       "display_name": "Mechanized Thermobaric Breachers",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     },
     "1163": {
       "display_name": "Mechanized Close-AT Riflemen",
@@ -323,29 +371,34 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1164": {
       "display_name": "Armored Forward Observers",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_CAVALRY_SCOUTS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 65 Cavalry Scouts",
+      "art_basis": "Native scout/observation equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 65
     },
     "1165": {
       "display_name": "Recon HJ-8E Ambush Team",
       "identity": "PLA Ground Force",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_KONKURS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 121 PTRK Konkurs",
+      "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 121
     },
     "1166": {
       "display_name": "Conscripts — No AT",
@@ -356,84 +409,99 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1167": {
       "display_name": "Reserve Riflemen — HJ-73D",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FAGOT-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 128 PTRK Fagot",
+      "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 128
     },
     "1168": {
       "display_name": "Reserve HJ-73D Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FAGOT-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 128 PTRK Fagot",
+      "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 128
     },
     "1169": {
       "display_name": "Reserve HN-6 Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1170": {
       "display_name": "Reserve QJZ-89 Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_HMG_KORD-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 400 Pulemetchiki Kord",
+      "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 400
     },
     "1171": {
       "display_name": "Reserve QLZ-87 Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1172": {
       "display_name": "Reserve PF-98 Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SMAW_TEAM-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 63 Assaultmen SMAW",
+      "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 63
     },
     "1173": {
       "display_name": "Malyutka Recon Ambush Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FAGOT-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 128 PTRK Fagot",
+      "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 128
     },
     "1174": {
       "display_name": "Liren Reconnaissance — Missile-Site Recon",
@@ -444,18 +512,21 @@
       "identity_source": "https://www.airuniversity.af.edu/Portals/10/CASI/documents/Research/Infrastructure/2026-03-09%20PLARF%20Nuclear%20Warhead%20Management.pdf",
       "art_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
       "art_basis": "Parent Rocket Force badge fallback; exact Liren patch unverified",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1175": {
       "display_name": "Missile-Site Security — HJ-73D",
       "identity": "PLA Rocket Force security/support role",
       "identity_type": "role title with parent insignia",
-      "profile": "ROCKET",
-      "address": "FA_PLA_INF_ROCKET",
+      "profile": null,
+      "address": "RU_FAGOT-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 128 PTRK Fagot",
+      "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 128
     },
     "1176": {
       "display_name": "Missile-Site Counter-Raid Team",
@@ -466,51 +537,60 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1177": {
       "display_name": "Reserve Thermobaric Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     },
     "1178": {
       "display_name": "Reserve Heavy HJ-8E Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_KONKURS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 121 PTRK Konkurs",
+      "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 121
     },
     "1179": {
       "display_name": "Rocket Convoy Escort — HJ-73D",
       "identity": "PLA Rocket Force security/support role",
       "identity_type": "role title with parent insignia",
-      "profile": "ROCKET",
-      "address": "FA_PLA_INF_ROCKET",
+      "profile": null,
+      "address": "RU_FAGOT-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 128 PTRK Fagot",
+      "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 128
     },
     "1180": {
       "display_name": "FHJ-02 Incendiary Team",
       "identity": "PLA Ground Force reserve/infantry role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     },
     "1181": {
       "display_name": "Dongfang Shenjian — Digital Assault",
@@ -521,7 +601,8 @@
       "identity_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_2.htm",
       "art_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_2.htm",
       "art_basis": "Historical patch photo: China silhouette behind vertical sword; not a verified2026 issued patch",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1182": {
       "display_name": "Xiangjian Commandos — Breachers",
@@ -532,7 +613,8 @@
       "identity_source": "https://www.thepaper.cn/newsDetail_forward_18955339",
       "art_source": "https://finance.ifeng.com/a/20170625/15483459_0.shtml",
       "art_basis": "Published patch photograph: crossbow/arrow, helmet and laurel; exact2026 issue not established",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1183": {
       "display_name": "Xuelang Commandos — Shock Team",
@@ -543,7 +625,8 @@
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/lj/4838532.html",
       "art_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "art_basis": "Generic documented PLA SOF sword/lightning fallback; exact Xuelang patch unverified",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1184": {
       "display_name": "Tianlang Commandos — QLU / Sniper Recon",
@@ -554,7 +637,8 @@
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/jt_214059/16125944.html",
       "art_source": "https://www.mod.gov.cn/gfbw/wzll/jt_214059/16125944.html",
       "art_basis": "Official article describes a self-designed wolf-head chest/arm badge; simplified motif adaptation, not exact tracing",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1185": {
       "display_name": "Nanguo Lijian — Fire Support",
@@ -565,7 +649,8 @@
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/lj/4855091.html",
       "art_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "art_basis": "Published PLA Daily graphic uses generic SOF sword/lightning badge; not claimed as a unique issued team patch",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1186": {
       "display_name": "Gaoyuan Xuebao — Mountain Team",
@@ -576,7 +661,8 @@
       "identity_source": "https://military.people.com.cn/n1/2017/0730/c1011-29437331.html",
       "art_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "art_basis": "Generic documented PLA SOF badge fallback; do not use the unrelated PAP Snow Leopard emblem",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1187": {
       "display_name": "Blue Sword — Beijing SWAT",
@@ -587,7 +673,8 @@
       "identity_source": "https://gaj.beijing.gov.cn/xxfb/jwbd/201912/t20191220_1367050.html",
       "art_source": "https://commons.wikimedia.org/wiki/File:中华人民共和国人民警察警徽.svg",
       "art_basis": "Parent public-security badge motif fallback; exact Blue Sword patch unverified",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1188": {
       "display_name": "Falcon Commandos — Counter-Terror Assault",
@@ -598,7 +685,8 @@
       "identity_source": "https://english.www.gov.cn/news/202404/09/content_WS661519fec6d0868f4e8e5e2a.html",
       "art_source": "https://www.mod.gov.cn/gfbw/qwfb/4890497.html",
       "art_basis": "Parent PAP emblem motif fallback; exact Falcon patch unverified",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1189": {
       "display_name": "Snow Leopard Commandos — Raid Team",
@@ -609,7 +697,8 @@
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/yw_214068/16238145.html",
       "art_source": "https://www.mod.gov.cn/gfbw/wzll/yw_214068/16238145.html",
       "art_basis": "Official report explicitly describes leopard head surrounded by olive branches; simplified motif adaptation",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1190": {
       "display_name": "Jiaolong Commandos — Marine Assault",
@@ -620,7 +709,8 @@
       "identity_source": "https://eng.chinamil.com.cn/CHINA_209163/TopStories_209189/9478613.html",
       "art_source": "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png",
       "art_basis": "Dragon/anchor/wreath from published patch reference; Commons source is commercial, so issued-patch authenticity remains unverified",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1191": {
       "display_name": "Jiaolong Commandos — Maritime Recon",
@@ -631,7 +721,8 @@
       "identity_source": "https://eng.chinamil.com.cn/CHINA_209163/TopStories_209189/9478613.html",
       "art_source": "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png",
       "art_basis": "Same sourced dragon/anchor/wreath family as assault card; not claimed as a separate issued recon patch",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1192": {
       "display_name": "Marine Riflemen",
@@ -642,40 +733,47 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1193": {
       "display_name": "Marine HJ-12 Team",
       "identity": "PLA Navy Marine Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "MARINE",
-      "address": "FA_PLA_INF_MARINE",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1194": {
       "display_name": "Marine HN-6 Team",
       "identity": "PLA Navy Marine Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "MARINE",
-      "address": "FA_PLA_INF_MARINE",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1195": {
       "display_name": "Marine Thermobaric Engineers",
       "identity": "PLA Navy Marine Corps",
       "identity_type": "role title with parent insignia",
-      "profile": "MARINE",
-      "address": "FA_PLA_INF_MARINE",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     },
     "1196": {
       "display_name": "Motorized Line Infantry",
@@ -686,7 +784,8 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1197": {
       "display_name": "Motorized Troopers — AA",
@@ -697,18 +796,21 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1198": {
       "display_name": "Motorized Troopers — HJ-12",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1199": {
       "display_name": "Motorized Weapons Squad",
@@ -719,18 +821,21 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1200": {
       "display_name": "Motorized PF-98 Fire Support",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SMAW_TEAM-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 63 Assaultmen SMAW",
+      "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 63
     },
     "1201": {
       "display_name": "Motorized Recon Patrol",
@@ -741,18 +846,21 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1202": {
       "display_name": "Motorized Snipers",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SCOUT_SNIPERS_M107-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 333 Scout Snipers M107",
+      "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 333
     },
     "1203": {
       "display_name": "Xiongying Commandos — Deep Recon",
@@ -763,18 +871,21 @@
       "identity_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_6.htm",
       "art_source": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "art_basis": "Generic documented PLA SOF badge fallback; extra Taishan nickname not confirmed and removed",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "sf_emblem"
     },
     "1204": {
       "display_name": "Motorized CQC Engineers",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_SAPERI-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 117 Ingenery-Shturmoviki",
+      "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 117
     },
     "1205": {
       "display_name": "Motorized Light-AT Riflemen",
@@ -785,62 +896,73 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1206": {
       "display_name": "Motorized Air-Defense Scouts",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1207": {
       "display_name": "Motorized PF-98 Tank Hunters",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_SMAW_TEAM-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 63 Assaultmen SMAW",
+      "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 63
     },
     "1208": {
       "display_name": "Motorized QLZ-04 Team",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1209": {
       "display_name": "Motorized Thermobaric Assault",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     },
     "1210": {
       "display_name": "Motorized CAAT — HJ-8E / QLU-11",
       "identity": "PLA Ground Force motorized role",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": "WPN_QLU11",
+      "address": "FA_PLA_INF_WPN_QLU11",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Approved installed QLU11 mesh contour",
+      "art_basis": "Owned QLU11 side contour for precision-grenade weapon team",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": null
     },
     "1211": {
       "display_name": "Test — Export Riflemen",
@@ -851,161 +973,610 @@
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "branch_insignia"
     },
     "1212": {
       "display_name": "Test — SMG Assault",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_RANGERS_CQC-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 409 Rangers CQC",
+      "art_basis": "Native close-assault weapon icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 409
     },
     "1213": {
       "display_name": "Test — Suppressed Scouts",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_CAVALRY_SCOUTS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 65 Cavalry Scouts",
+      "art_basis": "Native scout weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 65
     },
     "1214": {
       "display_name": "Test — LG5 Precision Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1215": {
       "display_name": "Test — LG5s Mobile Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1216": {
       "display_name": "Test — LG6 CQC Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1217": {
       "display_name": "Test — LG4 Revolver Team",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1218": {
       "display_name": "Test — LG3 Heavy AGL",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_AGS_30-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 112 VDV AGS-30",
+      "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 112
     },
     "1219": {
       "display_name": "Test — QN-202 Guided Support",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_KONKURS-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 121 PTRK Konkurs",
+      "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 121
     },
     "1220": {
       "display_name": "Test — TL-4 Team",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1221": {
       "display_name": "Test — GAM-102LR Team",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1222": {
       "display_name": "Test — HJ-12E Team",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "US_JAVELIN-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 408 CAAT Javelin",
+      "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 408
     },
     "1223": {
       "display_name": "Test — QW-2 Escort",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_IGLA-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 120 PZRK Igla",
+      "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 120
     },
     "1224": {
       "display_name": "Test — QTS Recon Cell",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": "WPN_QTS11",
+      "address": "FA_PLA_INF_WPN_QTS11",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Approved installed QTS11 mesh contour",
+      "art_basis": "Owned QTS11 side contour for test specialty cell",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": null
     },
     "1225": {
       "display_name": "Test — FHJ-02 Smoke Team",
       "identity": "PLA equipment/squad test concept",
       "identity_type": "role title with parent insignia",
-      "profile": "GROUND",
-      "address": "FA_PLA_INF_GROUND",
+      "profile": null,
+      "address": "RU_FLAMETHROWER-Label",
       "identity_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
-      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim"
+      "art_source": "Vanilla Units row 122 Ognemetchiki",
+      "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
+      "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
+      "icon_kind": "weapon_team",
+      "native_donor_unit": 122
     }
+  },
+  "weapon_team_policy": {
+    "native_units_sha256": "cbaa1ff4929827f03fe11b65769fd8e95cdf834f802cdfd25620a0a412d479e4",
+    "named_sf_emblems_take_priority": true,
+    "named_sf_wreaths_removed": true,
+    "decisions": [
+      {
+        "unit": 1137,
+        "name": "Airborne HJ-12 Team",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1139,
+        "name": "Airborne PF-98 Fire Support",
+        "address": "US_SMAW_TEAM-Label",
+        "basis": "Recoilless/shoulder-launcher fire-support team icon",
+        "native_donor_unit": 63
+      },
+      {
+        "unit": 1140,
+        "name": "Airborne QLU-11 Precision Team",
+        "address": "FA_PLA_INF_WPN_QLU11",
+        "basis": "Owned QLU11 side contour for precision-grenade weapon team",
+        "native_donor_unit": null
+      },
+      {
+        "unit": 1141,
+        "name": "Airborne QJZ-171 Team",
+        "address": "RU_HMG_KORD-Label",
+        "basis": "Tripod heavy machine-gun team icon",
+        "native_donor_unit": 400
+      },
+      {
+        "unit": 1144,
+        "name": "Airborne Snipers",
+        "address": "US_SCOUT_SNIPERS_M107-Label",
+        "basis": "Sniper/anti-materiel rifle team icon",
+        "native_donor_unit": 333
+      },
+      {
+        "unit": 1145,
+        "name": "Airborne HN-6 Patrol",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1147,
+        "name": "Airborne Assault Engineers",
+        "address": "RU_SAPERI-Label",
+        "basis": "Native assault-engineer weapon/equipment icon",
+        "native_donor_unit": 117
+      },
+      {
+        "unit": 1148,
+        "name": "Airborne QLZ-87 Team",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1149,
+        "name": "Airborne Target Observers",
+        "address": "US_CAVALRY_SCOUTS-Label",
+        "basis": "Native scout/observation equipment icon",
+        "native_donor_unit": 65
+      },
+      {
+        "unit": 1152,
+        "name": "Mechanized HJ-8E Team",
+        "address": "RU_KONKURS-Label",
+        "basis": "Tripod ATGM weapon-team icon",
+        "native_donor_unit": 121
+      },
+      {
+        "unit": 1153,
+        "name": "Mechanized QW-2 Team",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1154,
+        "name": "Mechanized QLZ-04 Team",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1155,
+        "name": "Mechanized PF-98 Tank Hunters",
+        "address": "US_SMAW_TEAM-Label",
+        "basis": "Recoilless/shoulder-launcher fire-support team icon",
+        "native_donor_unit": 63
+      },
+      {
+        "unit": 1156,
+        "name": "Mechanized Combat Engineers",
+        "address": "RU_SAPERI-Label",
+        "basis": "Native assault-engineer weapon/equipment icon",
+        "native_donor_unit": 117
+      },
+      {
+        "unit": 1157,
+        "name": "Mechanized QJZ-89 Team",
+        "address": "RU_HMG_KORD-Label",
+        "basis": "Tripod heavy machine-gun team icon",
+        "native_donor_unit": 400
+      },
+      {
+        "unit": 1158,
+        "name": "Mechanized GPMG Riflemen",
+        "address": "RU_PKP-Label",
+        "basis": "General-purpose machine-gun team icon",
+        "native_donor_unit": 399
+      },
+      {
+        "unit": 1159,
+        "name": "Mechanized Guided-AT Riflemen",
+        "address": "RU_KONKURS-Label",
+        "basis": "Tripod ATGM weapon-team icon",
+        "native_donor_unit": 121
+      },
+      {
+        "unit": 1161,
+        "name": "Armored Sniper Pair",
+        "address": "US_SCOUT_SNIPERS_M107-Label",
+        "basis": "Sniper/anti-materiel rifle team icon",
+        "native_donor_unit": 333
+      },
+      {
+        "unit": 1162,
+        "name": "Mechanized Thermobaric Breachers",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      },
+      {
+        "unit": 1164,
+        "name": "Armored Forward Observers",
+        "address": "US_CAVALRY_SCOUTS-Label",
+        "basis": "Native scout/observation equipment icon",
+        "native_donor_unit": 65
+      },
+      {
+        "unit": 1165,
+        "name": "Recon HJ-8E Ambush Team",
+        "address": "RU_KONKURS-Label",
+        "basis": "Tripod ATGM weapon-team icon",
+        "native_donor_unit": 121
+      },
+      {
+        "unit": 1167,
+        "name": "Reserve Riflemen — HJ-73D",
+        "address": "RU_FAGOT-Label",
+        "basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in",
+        "native_donor_unit": 128
+      },
+      {
+        "unit": 1168,
+        "name": "Reserve HJ-73D Team",
+        "address": "RU_FAGOT-Label",
+        "basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in",
+        "native_donor_unit": 128
+      },
+      {
+        "unit": 1169,
+        "name": "Reserve HN-6 Team",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1170,
+        "name": "Reserve QJZ-89 Team",
+        "address": "RU_HMG_KORD-Label",
+        "basis": "Tripod heavy machine-gun team icon",
+        "native_donor_unit": 400
+      },
+      {
+        "unit": 1171,
+        "name": "Reserve QLZ-87 Team",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1172,
+        "name": "Reserve PF-98 Team",
+        "address": "US_SMAW_TEAM-Label",
+        "basis": "Recoilless/shoulder-launcher fire-support team icon",
+        "native_donor_unit": 63
+      },
+      {
+        "unit": 1173,
+        "name": "Malyutka Recon Ambush Team",
+        "address": "RU_FAGOT-Label",
+        "basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in",
+        "native_donor_unit": 128
+      },
+      {
+        "unit": 1175,
+        "name": "Missile-Site Security — HJ-73D",
+        "address": "RU_FAGOT-Label",
+        "basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in",
+        "native_donor_unit": 128
+      },
+      {
+        "unit": 1177,
+        "name": "Reserve Thermobaric Team",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      },
+      {
+        "unit": 1178,
+        "name": "Reserve Heavy HJ-8E Team",
+        "address": "RU_KONKURS-Label",
+        "basis": "Tripod ATGM weapon-team icon",
+        "native_donor_unit": 121
+      },
+      {
+        "unit": 1179,
+        "name": "Rocket Convoy Escort — HJ-73D",
+        "address": "RU_FAGOT-Label",
+        "basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in",
+        "native_donor_unit": 128
+      },
+      {
+        "unit": 1180,
+        "name": "FHJ-02 Incendiary Team",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      },
+      {
+        "unit": 1193,
+        "name": "Marine HJ-12 Team",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1194,
+        "name": "Marine HN-6 Team",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1195,
+        "name": "Marine Thermobaric Engineers",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      },
+      {
+        "unit": 1198,
+        "name": "Motorized Troopers — HJ-12",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1200,
+        "name": "Motorized PF-98 Fire Support",
+        "address": "US_SMAW_TEAM-Label",
+        "basis": "Recoilless/shoulder-launcher fire-support team icon",
+        "native_donor_unit": 63
+      },
+      {
+        "unit": 1202,
+        "name": "Motorized Snipers",
+        "address": "US_SCOUT_SNIPERS_M107-Label",
+        "basis": "Sniper/anti-materiel rifle team icon",
+        "native_donor_unit": 333
+      },
+      {
+        "unit": 1204,
+        "name": "Motorized CQC Engineers",
+        "address": "RU_SAPERI-Label",
+        "basis": "Native assault-engineer weapon/equipment icon",
+        "native_donor_unit": 117
+      },
+      {
+        "unit": 1206,
+        "name": "Motorized Air-Defense Scouts",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1207,
+        "name": "Motorized PF-98 Tank Hunters",
+        "address": "US_SMAW_TEAM-Label",
+        "basis": "Recoilless/shoulder-launcher fire-support team icon",
+        "native_donor_unit": 63
+      },
+      {
+        "unit": 1208,
+        "name": "Motorized QLZ-04 Team",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1209,
+        "name": "Motorized Thermobaric Assault",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      },
+      {
+        "unit": 1210,
+        "name": "Motorized CAAT — HJ-8E / QLU-11",
+        "address": "FA_PLA_INF_WPN_QLU11",
+        "basis": "Owned QLU11 side contour for precision-grenade weapon team",
+        "native_donor_unit": null
+      },
+      {
+        "unit": 1212,
+        "name": "Test — SMG Assault",
+        "address": "US_RANGERS_CQC-Label",
+        "basis": "Native close-assault weapon icon",
+        "native_donor_unit": 409
+      },
+      {
+        "unit": 1213,
+        "name": "Test — Suppressed Scouts",
+        "address": "US_CAVALRY_SCOUTS-Label",
+        "basis": "Native scout weapon/equipment icon",
+        "native_donor_unit": 65
+      },
+      {
+        "unit": 1214,
+        "name": "Test — LG5 Precision Grenadiers",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1215,
+        "name": "Test — LG5s Mobile Grenadiers",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1216,
+        "name": "Test — LG6 CQC Grenadiers",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1217,
+        "name": "Test — LG4 Revolver Team",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1218,
+        "name": "Test — LG3 Heavy AGL",
+        "address": "RU_AGS_30-Label",
+        "basis": "Closest native automatic-grenade weapon-team icon",
+        "native_donor_unit": 112
+      },
+      {
+        "unit": 1219,
+        "name": "Test — QN-202 Guided Support",
+        "address": "RU_KONKURS-Label",
+        "basis": "Tripod ATGM weapon-team icon",
+        "native_donor_unit": 121
+      },
+      {
+        "unit": 1220,
+        "name": "Test — TL-4 Team",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1221,
+        "name": "Test — GAM-102LR Team",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1222,
+        "name": "Test — HJ-12E Team",
+        "address": "US_JAVELIN-Label",
+        "basis": "Portable modern ATGM weapon-team icon",
+        "native_donor_unit": 408
+      },
+      {
+        "unit": 1223,
+        "name": "Test — QW-2 Escort",
+        "address": "RU_IGLA-Label",
+        "basis": "Shoulder-fired MANPADS weapon-team icon",
+        "native_donor_unit": 120
+      },
+      {
+        "unit": 1224,
+        "name": "Test — QTS Recon Cell",
+        "address": "FA_PLA_INF_WPN_QTS11",
+        "basis": "Owned QTS11 side contour for test specialty cell",
+        "native_donor_unit": null
+      },
+      {
+        "unit": 1225,
+        "name": "Test — FHJ-02 Smoke Team",
+        "address": "RU_FLAMETHROWER-Label",
+        "basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry",
+        "native_donor_unit": 122
+      }
+    ]
   }
 }

@@ -1,6 +1,7 @@
 """Create editable monochrome unit-card vectors from documented real patch motifs."""
 from pathlib import Path
-import argparse,json,math,subprocess,hashlib
+import argparse,json,math,subprocess,hashlib,tempfile
+from PIL import Image
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--renderer',required=True);a=p.parse_args();root=Path(__file__).resolve().parents[2];out=root/'tools/pla-specs/infantry-insignia-vectors';out.mkdir(exist_ok=True);icons=root/'releases/0.6/source/runtime-qa/icons';ivory='#e7f7e4';dark='#26332d'
 def path(d,fill=ivory,**attrs):return '<path d="'+d+'" fill="'+fill+'" '+ ' '.join(k.replace('_','-')+'="'+str(v)+'"' for k,v in attrs.items())+'/>'
 def star(cx,cy,r,inner=None):
@@ -35,7 +36,7 @@ central={
 'MARINE':anchor()+star(128,66,15),
 'ROCKET':path('M117 108 L117 66 Q121 42 128 32 Q135 42 139 66 L139 108 L147 124 L136 121 L132 130 L124 130 L120 121 L109 124Z')+path('M124 63 L132 63 L132 108 L124 108Z',dark)+star(128,20,10),
 'ROCKET_SOF':sword+lightning,
-'SOF':sword+path('M137 49 L114 72 L131 72 L116 94 L144 66 L128 66Z',dark),
+'SOF':sword+path('M144 44 L113 72 L130 72 L114 99 L149 65 L131 65Z'),
 'LEISHEN':sword+lightning+wings(50)+canopy(39)+star(128,72,12),
 'DONGFANG':path('M96 58 L108 60 L113 51 L126 49 L135 55 L142 44 L151 49 L156 43 L163 55 L153 65 L155 76 L144 84 L141 96 L127 98 L121 108 L112 100 L105 86 L94 83 L90 72Z')+f'<g stroke="{dark}" stroke-width="4">{sword}</g>',
 'XIANGJIAN':path('M102 87 Q101 62 128 60 Q155 62 154 87 L147 89 L147 98 L109 98 L109 89Z')+path('M89 62 Q128 38 167 62 L163 66 Q128 47 93 66Z')+path('M125 32 L128 20 L131 32 L130 127 L126 127Z')+f'<path d="M91 64 L128 118 L165 64" stroke="{ivory}" stroke-width="2.7" fill="none"/>',
@@ -45,12 +46,24 @@ central={
 'POLICE':path('M128 29 L163 43 L160 92 Q154 118 128 133 Q102 118 96 92 L93 43Z')+path('M128 37 L155 48 L153 91 Q147 111 128 123 Q109 111 103 91 L101 48Z',dark)+star(128,61,21)+path('M108 90 L113 90 L113 84 L119 84 L119 91 L125 91 L125 84 L131 84 L131 91 L137 91 L137 84 L143 84 L143 90 L148 90 L148 103 L108 103Z'),
 'PAP':star(128,55,27)+path('M104 103 L152 103 L152 111 L104 111Z M112 87 L119 87 L119 81 L125 81 L125 87 L131 87 L131 81 L137 81 L137 87 L144 87 L144 100 L112 100Z')}
 contract=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());receipt=[]
+sf_profiles={r['profile'] for r in contract['units'].values() if r.get('icon_kind')=='sf_emblem'}
 for name in contract['profiles']:
- d=wreath()+central[name];hashes={}
+ if name.startswith('WPN_'):
+  for suffix in ['', '_OUTLINE']:
+   key='FA_PLA_INF_'+name+suffix;source=root/'tools/pla-specs/hud-model-vectors'/('FA_PLA_WP_'+name[4:]+suffix+'.svg');target=out/(key+'.svg');target.write_text(source.read_text());subprocess.run([a.renderer,'-o',str(icons/(key+'.png')),str(target)],check=True)
+  receipt.append({'profile':name,'method':'Existing approved model-derived weapon contour reused as a unit-card sprite','wreath':False});continue
+ d=central[name] if name in sf_profiles else wreath()+central[name];hashes={}
+ if name in sf_profiles:
+  # Measure the vector render without editing bitmap pixels, then fit the vector emblem itself.
+  with tempfile.TemporaryDirectory() as tmp:
+   vector=Path(tmp)/'measure.svg';png=Path(tmp)/'measure.png';vector.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="256" height="160">'+d+'</svg>');subprocess.run([a.renderer,'-o',str(png),str(vector)],check=True)
+   with Image.open(png) as im:box=im.getchannel('A').getbbox()
+  scale=min(188/(box[2]-box[0]),140/(box[3]-box[1]));ox=128-scale*(box[0]+box[2])/2;oy=80-scale*(box[1]+box[3])/2;d=f'<g transform="translate({ox} {oy}) scale({scale})">{d}</g>'
+
  for outline in [False,True]:
   suffix='_OUTLINE' if outline else '';key='FA_PLA_INF_'+name+suffix
   # Filled pale glyph plus a dark keyline, rather than a hollow line-art replacement.
   body=f'<g stroke="{dark}" stroke-width="1.2" paint-order="stroke fill" stroke-linejoin="round">{d}</g>' if outline else d
   svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="256" height="160" viewBox="0 0 256 160">{body}</svg>\n';target=out/(key+'.svg');target.write_text(svg);subprocess.run([a.renderer,'-o',str(icons/(key+'.png')),str(target)],check=True);hashes[suffix or 'plain']=hashlib.sha256(svg.encode()).hexdigest()
- receipt.append({'profile':name,'method':'Original vector simplification of recorded patch motifs; no photograph pixels copied','source_rules':[u['art_source'] for u in contract['units'].values() if u['profile']==name],'svg_sha256':hashes})
+ receipt.append({'profile':name,'method':'Original vector simplification of recorded patch motifs; no photograph pixels copied','wreath':name not in sf_profiles,'source_rules':[u['art_source'] for u in contract['units'].values() if u['profile']==name],'svg_sha256':hashes})
 (out/'provenance.json').write_text(json.dumps(receipt,indent=2)+'\n');print('Rendered',len(receipt)*2,'unit-card sprites')

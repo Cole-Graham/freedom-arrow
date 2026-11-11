@@ -2,16 +2,8 @@
   {
     "profile": "AIRBORNE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
@@ -26,63 +18,20 @@
   {
     "profile": "DONGFANG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_2.htm"
     ],
     "svg_sha256": {
-      "plain": "446ac18df0be8f01d5a744ba4fe508fe5bb1021439e6545e24d8c6493b843d2d",
-      "_OUTLINE": "d85e45c8257c2c9ec4346839d03985542a91c253411966ddeef4c47cddc7b62b"
+      "plain": "2660e49e88581083d77a314afa43cfb3b33607db86e4729871cffd87c3be329f",
+      "_OUTLINE": "bb5ccb83929807d4a93ef0af721e4c9cfd29149a724b8f2910f55b2160b7a5c3"
     }
   },
   {
     "profile": "GROUND",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
@@ -102,33 +51,33 @@
   {
     "profile": "JIAOLONG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png",
       "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png"
     ],
     "svg_sha256": {
-      "plain": "590fcbc3a2116e81741873718b38118b839ec460792ac618b89bd977b2d292a0",
-      "_OUTLINE": "d577df9f8e030aa48905c386c68c0f684311b2eca944bc928fc3bee51909a5a6"
+      "plain": "9ece13bea03cb922a57085ca36cff8dea3246fe0ba0bc78891d32e09cb90734c",
+      "_OUTLINE": "1f44a8e9b75a9e1f1cd79fbe57835fad55d6f358b194bc0d6b1375fc4c9c65ec"
     }
   },
   {
     "profile": "LEISHEN",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://www.xinhuanet.com/mil/2015-12/28/c_128573417_4.htm"
     ],
     "svg_sha256": {
-      "plain": "4137284a16f17e267dc04e17c152bb9ca129df977a3c90315f631fbb33b2751b",
-      "_OUTLINE": "a6cda6eff09b45b51e6dfec97f23225a7f612a9df00d82d1329ee0398cc7aedf"
+      "plain": "0418053d761feded848c06a3f64c0916b0e70c5a117ff90f529f5e9eadc8f796",
+      "_OUTLINE": "582e9158531c2f3fa31fc90ad95efabb2015cd4d20a7178f1d4026e7268b82fa"
     }
   },
   {
     "profile": "MARINE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg"
     ],
     "svg_sha256": {
@@ -139,31 +88,32 @@
   {
     "profile": "PAP",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://www.mod.gov.cn/gfbw/qwfb/4890497.html"
     ],
     "svg_sha256": {
-      "plain": "c98f1068573b5a2610995388ab330d574adfcaa46c06200252060e5e30486170",
-      "_OUTLINE": "856cfc3ee74d702c77712dbbb21938bc6b68498d68aaf7030f5e64499df676f1"
+      "plain": "c725b96b062b8c72274b184460f27c89b7f3d705f658066c7acb5991158c861e",
+      "_OUTLINE": "b3e03bee3ec31a3c6a3f2d0ceda5fe246a43f1b9e5df1c51246f05e5c0c0fb81"
     }
   },
   {
     "profile": "POLICE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u534e\u4eba\u6c11\u5171\u548c\u56fd\u4eba\u6c11\u8b66\u5bdf\u8b66\u5fbd.svg"
     ],
     "svg_sha256": {
-      "plain": "186d4bfb242242d6196a58855cfe4922199e5b415115837d280cef74f3822535",
-      "_OUTLINE": "a083ab18175fcf9cc7a086c87ea112d8cc0e1e180d4bb78c17564e92c18aa0f8"
+      "plain": "9bd39eabbdd6397741d859202825f016758a46ed358c7f10432877fd0d08f6a3",
+      "_OUTLINE": "c67471613f2afe4a9f9feaf2830ceb480d45f75abaa44f18e07ceb9c462348bc"
     }
   },
   {
     "profile": "ROCKET",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg"
     ],
     "svg_sha256": {
@@ -174,28 +124,31 @@
   {
     "profile": "ROCKET_SOF",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg"
     ],
     "svg_sha256": {
-      "plain": "d126dec7cc6d959c366bbcef43fd34561ba4e81f04394fd74aa9aecd182e0f79",
-      "_OUTLINE": "577b21ccb764ae4a8212aebef555eb666638f08bca381637b0979f8ef3b55d91"
+      "plain": "dad125e5952b0fcb8eb4855c3760b2f3c1d08bb9705a5a63aef2a6f5d3f5f215",
+      "_OUTLINE": "079fd3656d5e300f310a7e6844496e2fe75bdbe31bf5470986a1b40ce8d2f992"
     }
   },
   {
     "profile": "SNOW_LEOPARD",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://www.mod.gov.cn/gfbw/wzll/yw_214068/16238145.html"
     ],
     "svg_sha256": {
-      "plain": "cfdce6a103dfeb0f8d2e843b7b45b35b024b89d408558f10f0d71f17c9ef4a9d",
-      "_OUTLINE": "071aea64d92812af019f97ff8f5dcf930aedfd68078a4efe49b5a30dde47e45c"
+      "plain": "6817397e07b2d5eec56b35be9909416591e70015e2d35873ecdcd1d45f6eee0e",
+      "_OUTLINE": "c6099f61f70f24c32ad85cd98ae6159650e6f144d392f7eb86bc1942ff968a61"
     }
   },
   {
     "profile": "SOF",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
@@ -203,30 +156,42 @@
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm"
     ],
     "svg_sha256": {
-      "plain": "33aa18e42b28e860b0fdc091b3193d917dd7bf50928f1623544f562b350b2113",
-      "_OUTLINE": "03055d4b414f8779d8f63e815e16e31b89cba9a01244667d723b9f56f0e41837"
+      "plain": "c4bfc6002e0af0098349469936b43cc43ddc96f7dd2da66507327a04af0d9e95",
+      "_OUTLINE": "4cdde427ac69d4baaa4fa8ca103739448eb8193c69a7ae34264b06332126042e"
     }
   },
   {
     "profile": "TIANLANG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://www.mod.gov.cn/gfbw/wzll/jt_214059/16125944.html"
     ],
     "svg_sha256": {
-      "plain": "3b158cdbb702df8d17d2ca4d0730fa7831afccab4975231c729128bb97fc50d2",
-      "_OUTLINE": "762e34324da8c7a4eb7eb7311f2294b26fdacb1b96065db98f9ed3f1ffdedbe0"
+      "plain": "afd35a797aaf5d1fe8bbf20d5c255d6c341b412db0da308e347fbc9e47d645de",
+      "_OUTLINE": "08b8667a0169fc8e3f23b16d2cfe93df33619ccefbb2a9c3cf520be6bb3314dd"
     }
+  },
+  {
+    "profile": "WPN_QLU11",
+    "method": "Existing approved model-derived weapon contour reused as a unit-card sprite",
+    "wreath": false
+  },
+  {
+    "profile": "WPN_QTS11",
+    "method": "Existing approved model-derived weapon contour reused as a unit-card sprite",
+    "wreath": false
   },
   {
     "profile": "XIANGJIAN",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
     "source_rules": [
       "https://finance.ifeng.com/a/20170625/15483459_0.shtml"
     ],
     "svg_sha256": {
-      "plain": "4c8380d4e8d84c633adbdf8e8457eedb031c1bf0a430e037b46de052b2703c37",
-      "_OUTLINE": "9fca499291c850d9a67463b20724db368cbe9984eb8d4192cffb6740e22f159e"
+      "plain": "7ae004ac33b622d96611d71a7eb236a537f0362c860548547e1481a83f0f9660",
+      "_OUTLINE": "14d913ecc07714bdd3cf3a1d23f11a88abf5994b9329da0e3a681c37b32b5d43"
     }
   }
 ]
