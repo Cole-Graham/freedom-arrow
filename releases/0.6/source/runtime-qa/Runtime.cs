@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "4", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "5", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -106,6 +106,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: not installed; caches keep stealth 1.0. "+e.Message); }
         try { CardIcons.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_ICONS_FAILED: not installed; vanilla card icons. "+e.Message); }
+        try { ChinaUi.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("PLA_CHINA_UI_FAILED: "+e.Message); }
         try { SupportSlots.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPORT_SLOTS_FAILED: SUP tab keeps 7 slots. "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }

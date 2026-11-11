@@ -1,7 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 4",
-  "version": "4",
+  "name": "PLA TEST Build 5",
+  "version": "5",
   "type": "modpack",
-  "description": "Internal complete PLA pack. Clear verified build label; Build 3 infantry fit and current music retained."
+  "description": "Complete PLA UI candidate: China Arsenal country, five provisional specializations and preserved Build4 assets. Native layout and network country support unverified.",
+  "repo": "Cole-Graham/freedom-arrow"
 }

@@ -1,4 +1,6 @@
-# PLA TEST Build 4
+# PLA TEST Build 5
+
+**China UI candidate: a separate China country, five planned specializations, and native Arsenal/deck-country buttons. Existing PLA unit statistics and approved infantry/model assets are retained. Spec grouping and code-drawn badges are provisional; native layout and online country support remain unverified. Live dev.45 is unchanged.**
 
 **Build 4 corrects the displayed identity. The menu shows PLA TEST Build 4 only after checking runtime/package agreement and the infantry files. All Build 3 meshes, textures, weapon rules, gameplay constants and music remain unchanged. Native helmet and hand fit still need visual review.**
 
@@ -459,3 +461,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Added the existing music update to the complete Build 3 pack for installation.
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
+
+- 2026-11-10 18:46:09 PST (America/Los_Angeles) — Added China country/spec UI candidate and native ordering hooks; preserved the live dev.45 hold.

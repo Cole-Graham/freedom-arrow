@@ -1,0 +1,14 @@
+{
+  "country": {"Id":4,"Name":"China","UIName":"China","FlagFileName":"FA_CHINA_FLAG","MaxPoints":10000,"Hidden":false,"ContentMembership":-1},
+  "specs": [
+    {"id":17,"name":"Airforce / SF","icon":"FA_CHINA_AIR_SF"},
+    {"id":18,"name":"Ground Force / Armored","icon":"FA_CHINA_ARMORED"},
+    {"id":19,"name":"Rocket Force / Conscripts","icon":"FA_CHINA_ROCKET"},
+    {"id":20,"name":"Naval / Marines","icon":"FA_CHINA_NAVAL"},
+    {"id":21,"name":"Motorized","icon":"FA_CHINA_MOTORIZED"}
+  ],
+  "naval_units":[921,930,931,943,974],
+  "armored_units":[902,904,905,906,927,937,939,945,947,948,949,953,956,958,968],
+  "rocket_units":[907,908,909,910,911,920,922,925,926,932,933,934,935,936,951,952,961,963],
+  "note":"UI prototype grouping only. Aircraft, helicopters, drones and SF uniform test squads go to Airforce/SF; explicit groups take precedence; other PLA units go to Motorized. Preserve each existing availability and transport association. No weapon, armor, cost, slot or balance redesign. Country4 is not a native NetworkCommon Country enum member; online compatibility is not established."
+}

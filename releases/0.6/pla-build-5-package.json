@@ -1,0 +1,24 @@
+{
+  "label": "PLA TEST Build 5",
+  "sha256": "ae5882c6aa2e7f555f89f9d53e642a022ad0df62dc7e8d26540391cebf22d144",
+  "bytes": 3797236279,
+  "payload_files": 7934,
+  "unchanged_payloads_verified": 7922,
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/china-ui-checks.json",
+    "UserData/FreedomArrow/china-ui.json",
+    "UserData/FreedomArrow/constants/countries.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/specializations.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/release-notes.md"
+  ],
+  "models_music_and_infantry_assets_byte_identical": true,
+  "native_verified": false,
+  "installed": false
+}

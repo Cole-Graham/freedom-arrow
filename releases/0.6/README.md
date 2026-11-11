@@ -1,4 +1,6 @@
-# PLA TEST Build 4
+# PLA TEST Build 5
+
+**China UI candidate: a separate China country, five planned specializations, and native Arsenal/deck-country buttons. Existing PLA unit statistics and approved infantry/model assets are retained. Spec grouping and code-drawn badges are provisional; native layout and online country support remain unverified. Live dev.45 is unchanged.**
 
 **Build 4 corrects the displayed identity. The menu shows PLA TEST Build 4 only after checking runtime/package agreement and the infantry files. All Build 3 meshes, textures, weapon rules, gameplay constants and music remain unchanged. Native helmet and hand fit still need visual review.**
 
@@ -611,3 +613,5 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Prepared requested Build 3 installation with refined hands, all 13 woodland helmet configurations lowered 1 cm, and pinned FA Music 1.4.2 compilations retained. Native fit remains unverified.
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
+
+- 2026-11-10 18:46:09 PST (America/Los_Angeles) — Added China country/spec UI candidate and native ordering hooks; preserved the live dev.45 hold.

@@ -2,21 +2,26 @@
 from pathlib import Path
 import hashlib,json,struct,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-1.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-5.bamod'
 with zipfile.ZipFile(p) as z:
  names=set(z.namelist());assert len(names)==len(z.namelist())
  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n for n in names)
- mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 1' and mod['version']=='1' and mod['type']=='modpack'
- assert z.read('README.md').startswith(b'# PLA TEST Build 1\n')
- m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==1 and m['label']=='PLA TEST Build 1'
+ mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 5' and mod['version']=='5' and mod['type']=='modpack'
+ assert z.read('README.md').startswith(b'# PLA TEST Build 5\n')
+ m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==5 and m['label']=='PLA TEST Build 5'
  assert names-{'mod.json','README.md','UserData/FreedomArrow/pla-package-manifest.json'}==set(m['sha256'])
  for n,h in m['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
- core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='1'
+ core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='5'
  for n,h in core['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
  def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
  units=table('units');roster=json.loads((R/'pla-test-contract.json').read_text())['cards'];assert len(roster)==79
  for c in roster:assert units[str(c['unit'])]['Name']==(c['name'] if c.get('russia') or c.get('us') else 'PLA '+c['name'])
  assert units['983']['Name']=='XM30' and units['984']['Name']=='ZIL Karatel Punisher'
+ assert mod['repo']=='Cole-Graham/freedom-arrow'
+ assert table('countries')['4']['Name']=='China' and not table('countries')['4']['Hidden']
+ specs=table('specializations');assert len([x for x in specs.values() if x and x.get('CountryId')==4])==5
+ assert all(r['CountryId']==4 for r in units.values() if r and r.get('Name','').startswith('PLA '))
+ assert sum(bool(r and r.get('UnitId') in range(985,1010)) for r in table('squad_members').values())==175
  binding=json.loads(z.read('UserData/FreedomArrow/pla-infantry-prototype.json'));assert binding['unit']==901
  members=[r for k,r in sorted(table('squad_members').items(),key=lambda x:int(x[0])) if r and r.get('UnitId')==901];assert len(members)==7
  for row,want in zip(members,binding['members']):assert row['PrimaryWeaponId']==want['primary'] and row['SpecialWeaponId']==want['special']
