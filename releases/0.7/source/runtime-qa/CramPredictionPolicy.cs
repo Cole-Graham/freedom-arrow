@@ -12,7 +12,24 @@ internal static class CramPredictionPolicy
     public readonly record struct Solution(Vector3 Aim,Vector3 Fire,float Time,float Tan,bool CanShoot);
     public readonly record struct Result(Solution Solution,Vector3 Acceleration,Vector3 Offset,int Iterations,bool Limited);
     public static bool Finite(Vector3 v)=>float.IsFinite(v.X)&&float.IsFinite(v.Y)&&float.IsFinite(v.Z);
-    public static bool Scope(int weapon,int ammo,int targetType,int seeker)=>weapon==345&&ammo==262&&targetType==256&&seeker==200;
+    // Native target masks remain authoritative: no new targeting capability.
+    // AntiAirGun includes radar-assisted guns whose IsRadarDependent flag is
+    // false (including C-RAM). Also allow a radar-dependent autocannon.
+    public static bool Gun(int weaponType,bool radarDependent,int trajectory,int seeker,long targetMask)
+        =>(weaponType==115||(weaponType==114&&radarDependent))&&trajectory==10&&seeker==0
+            &&(targetMask&(128|256|512|1024))!=0;
+    public static bool Scope(int weaponType,bool radarDependent,int trajectory,int seeker,long targetMask,int targetType)
+        =>Gun(weaponType,radarDependent,trajectory,seeker,targetMask)
+            &&targetType is 128 or 256 or 512 or 1024&&(targetMask&targetType)!=0;
+    // Scope validation must include long ship hulls. The full hull diagonal
+    // plus 15 units is conservative and capped at 512. Invalid dimensions
+    // retain 15 units. This does not change firing range.
+    public static float OriginRadius(float length,float width,float height)
+    {
+        var size=new Vector3(length,width,height);
+        if(!Finite(size)||length<0||width<0||height<0)return 15;
+        return Math.Clamp(size.Length()+15,15,512);
+    }
     public static Vector3 Limit(Vector3 value,float maximum,out bool limited)
     {
         float length=value.Length();limited=length>maximum;

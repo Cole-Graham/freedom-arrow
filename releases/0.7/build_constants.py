@@ -1656,19 +1656,18 @@ def main():
     apply_mako_bomber(effective,patches,clone,put,option_migration,json.loads((R/'f22-mako-mig31bsm-contract.json').read_text()))
     from losat import apply_vehicle_speed as apply_losat_vehicle_speed
     apply_losat_vehicle_speed(effective,clone,put,json.loads((R/'losat-contract.json').read_text()))
-    from spaag import apply as apply_spaag
-    apply_spaag(effective,json.loads((R/'spaag-contract.json').read_text()),put)
-    for tid in [284,459]:
-        assert effective['TurretsJson'][tid]['HorizontalRotationSpeed']==360
-        put('TurretsJson',tid,{'HorizontalRotationSpeed':720},'lat.7 tracking comparison: twice horizontal speed')
-    for wid,before in [(261,90),(345,115)]:
-        assert effective['WeaponsJson'][wid]['VerticalRotationSpeed']==before
-        put('WeaponsJson',wid,{'VerticalRotationSpeed':before*2},'lat.7 tracking comparison: twice vertical speed')
+    # Lateralus, 11 Nov: remove the lat.6 Actual Arrow range/damage
+    # import and lat.7 doubled traversal. Keep the native baseline here.
+    for aid,row in json.loads((R/'spaag-contract.json').read_text())['ammo'].items():
+        assert [effective['AmmunitionsJson'][int(aid)][f] for f in
+                ('LowAltRange','HighAltRange','Damage')] == row['before']
+    for tid in (284,459):assert effective['TurretsJson'][tid]['HorizontalRotationSpeed']==360
+    for wid,speed in ((261,90),(345,115)):assert effective['WeaponsJson'][wid]['VerticalRotationSpeed']==speed
     # Lateralus: isolate C-RAM ballistic spread on the lat.7 tracking baseline.
     spread_fields = ('DispersionHorizontalRadius', 'DispersionVerticalRadius')
     assert [effective['AmmunitionsJson'][262][f] for f in spread_fields] == [1.6, 1.6]
     put('AmmunitionsJson',262,dict.fromkeys(spread_fields,0.0),
-        'lat.8 diagnostic: C-RAM zero ballistic dispersion; native leading retained')
+        'lat.8 diagnostic: C-RAM zero ballistic dispersion retained with prediction')
     assert effective['AmmunitionsJson'][262]['MuzzleVelocity']==805.0
     put('AmmunitionsJson',262,{'MuzzleVelocity':1610.0},
         'lat.9 C-RAM flight-time test: double projectile muzzle velocity')

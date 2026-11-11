@@ -21,8 +21,8 @@ using NVector=System.Numerics.Vector3;
 namespace FreedomArrow;
 
 // Separate active experiment; GroundAaLog remains a passive observer.
-// A verified C-RAM muzzle query supplies a one-use, thread-local scope. Only the
-// immediately following matching SEAD lead solution can be changed.
+// A verified missile-defence gun muzzle query supplies a one-use scope. Only
+// its immediately following matching native projectile lead may change.
 internal static unsafe class CramPrediction
 {
     const string GameHash="12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf";
@@ -46,9 +46,10 @@ internal static unsafe class CramPrediction
     static string pendingError;
     static readonly Dictionary<ulong,CramMotionHistory> histories=new();
     static readonly Dictionary<string,long> fallbacks=new();
-    readonly record struct Scope(bool Valid,ulong Target,Entity Weapon,Vector3 Center,
+    static readonly Dictionary<string,long> appliedByWeaponAmmo=new();
+    readonly record struct Scope(bool Valid,ulong Target,Entity Weapon,int WeaponId,int AmmoId,int TargetType,Vector3 Center,float OriginRadius,
         NVector Velocity,NVector Acceleration,float HistoryInterval,float Time,float Speed,bool History);
-    readonly record struct Sample(float Time,ulong Target,float HistoryInterval,NVector Acceleration,
+    readonly record struct Sample(float Time,ulong Target,int WeaponId,int AmmoId,int TargetType,float HistoryInterval,NVector Acceleration,
         NVector Before,NVector After,NVector Fire,float BeforeTime,float AfterTime,int Iterations,bool Limited);
     [ThreadStatic] static Scope scope;
     static readonly Queue<Sample> samples=new();
@@ -118,10 +119,10 @@ internal static unsafe class CramPrediction
             if(leadHook?.IsHooked==true)leadHook.Detach();
             harmony.UnpatchSelf();throw;
         }
-        DiagnosticLog.Write("cram_prediction_installed",new{weapon=345,ammo=262,targetType=256,seeker=200,nativeHooks=2,
+        DiagnosticLog.Write("cram_prediction_installed",new{scope="direct unguided missile-defence AA guns and radar-dependent autocannons; existing ammo masks",targetTypes=new[]{128,256,512,1024},nativeHooks=2,
             horizon=CramPredictionPolicy.MaxHorizon,maxCorrection=CramPredictionPolicy.MaxCorrection,
             maxFraction=CramPredictionPolicy.MaxFraction,abi="x64 pointer lead detour;44-byte ballistic value",appliedCalls=0});
-        MelonLogger.Msg("FREEDOM_ARROW_CRAM_PREDICTION installed; invocation unproved until cram_prediction_applied; C-RAM/SEAD only");
+        MelonLogger.Msg("FREEDOM_ARROW_CRAM_PREDICTION installed; invocation unproved until cram_prediction_applied; missile-defence guns; existing target masks");
     }
     static object ProxyShape<T>()=>new{type=typeof(T).FullName,valueType=typeof(T).IsValueType,
         managedSize=Unsafe.SizeOf<T>(),references=RuntimeHelpers.IsReferenceOrContainsReferences<T>()};
@@ -132,17 +133,22 @@ internal static unsafe class CramPrediction
         if(!Active||__1==null)return;
         try
         {
-            if(__1.Id!=262)return;
+            if((int)__1.TrajectoryType!=10||(int)__1.Seeker!=0||((long)__1.TargetType&(128|256|512|1024))==0)return;
             var weapon=__0;
             if(!weapon.IsAlive||!weapon.Has<WeaponComponent>()||!weapon.Has<TargetComponent>())return;
             var w=NativeEcs.Read<WeaponComponent>(weapon);
-            if(w.WeaponInfo?.Id!=345||w.SelectedAmmunition?.Id!=262||w.SelectedAmmunition.Pointer!=__1.Pointer)return;
+            var info=w.WeaponInfo;
+            if(info==null||w.SelectedAmmunition==null||w.SelectedAmmunition.Pointer!=__1.Pointer
+                ||!CramPredictionPolicy.Gun((int)info.Type,info.IsRadarDependent,(int)__1.TrajectoryType,
+                    (int)__1.Seeker,(long)__1.TargetType))return;
             var target=NativeEcs.Field<TargetComponent,Entity>(weapon,"Target");
             if(!target.IsAlive||!target.Has<UnitComponent>()||!target.Has<WarheadComponent>()||!target.Has<SpeedComponent>()||!target.Has<TransformComponent>())return;
             int type=(int)(NativeEcs.Read<UnitComponent>(target).UnitData?.Type??0);
-            var ammo=NativeEcs.Read<WarheadComponent>(target).AmmunitionInfo;
-            if(!CramPredictionPolicy.Scope(345,262,type,(int)(ammo?.Seeker??0)))return;
-            var unit=w.GetUnitEntity();if(!unit.IsAlive||!unit.Has<TransformComponent>())return;
+            if(!CramPredictionPolicy.Scope((int)info.Type,info.IsRadarDependent,(int)__1.TrajectoryType,
+                (int)__1.Seeker,(long)__1.TargetType,type))return;
+            var unit=w.GetUnitEntity();if(!unit.IsAlive||!unit.Has<TransformComponent>()||!unit.Has<UnitComponent>())return;
+            var hull=NativeEcs.Read<UnitComponent>(unit).UnitData;if(hull==null)return;
+            float originRadius=CramPredictionPolicy.OriginRadius(hull.Length,hull.Width,hull.Height);
             var world=ShootingSystem._gameContext;if(world==null||world._isDisposed)return;
             if(worldPointer!=world.Pointer){histories.Clear();worldPointer=world.Pointer;}
             float now=Time.time;ulong key=Key(target);
@@ -156,7 +162,7 @@ internal static unsafe class CramPrediction
                 history=new CramMotionHistory();histories.Add(key,history);
             }
             bool ready=history.Observe(now,velocity,out var acceleration,out float interval);
-            scope=new(true,key,weapon,NativeEcs.Property<TransformComponent,Vector3>(unit,"CenterPosition"),
+            scope=new(true,key,weapon,info.Id,__1.Id,type,NativeEcs.Property<TransformComponent,Vector3>(unit,"CenterPosition"),originRadius,
                 velocity,acceleration,interval,now,__result,ready);
         }
         catch(Exception e){Disable(e);}
@@ -176,7 +182,8 @@ internal static unsafe class CramPrediction
             var origin=Unsafe.ReadUnaligned<Vector3>((void*)originPointer);
             var original=Unsafe.ReadUnaligned<CramBallisticValue>((void*)dataPointer);
             if(Key(target)!=call.Target||!target.IsAlive||!call.Weapon.IsAlive
-                ||Time.time-call.Time<0||Time.time-call.Time>.05f||(origin-call.Center).sqrMagnitude>225
+                ||Time.time-call.Time<0||Time.time-call.Time>.05f||!CramPredictionPolicy.Finite(N(origin))||!CramPredictionPolicy.Finite(N(call.Center))
+                ||(origin-call.Center).sqrMagnitude>call.OriginRadius*call.OriginRadius
                 ||Math.Abs(original.InitialProjectileSpeed-call.Speed)>.01f)
             {Fallback("scope_mismatch");return;}
             if(!call.History){Fallback("history_missing");return;}
@@ -201,8 +208,11 @@ internal static unsafe class CramPrediction
             // Commit only a complete validated value. No target position/velocity or
             // weapon tables are changed, and failed solves leave native bytes intact.
             Unsafe.WriteUnaligned((void*)dataPointer,corrected);applied++;
+            string pair=call.WeaponId+":"+call.AmmoId;
+            if(appliedByWeaponAmmo.ContainsKey(pair)||appliedByWeaponAmmo.Count<128)
+                appliedByWeaponAmmo[pair]=appliedByWeaponAmmo.GetValueOrDefault(pair)+1;
             if(logged+samples.Count<MaxSamples&&samples.Count<128)
-                samples.Enqueue(new(call.Time,call.Target,call.HistoryInterval,result.Acceleration,native.Aim,result.Solution.Aim,
+                samples.Enqueue(new(call.Time,call.Target,call.WeaponId,call.AmmoId,call.TargetType,call.HistoryInterval,result.Acceleration,native.Aim,result.Solution.Aim,
                     result.Solution.Fire,native.Time,result.Solution.Time,result.Iterations,result.Limited));
             else dropped++;
         }
@@ -221,7 +231,7 @@ internal static unsafe class CramPrediction
         }
         for(int i=0;i<8&&samples.TryDequeue(out var s);i++)
         {
-            logged++;DiagnosticLog.Write("cram_prediction_applied",new{t=s.Time,target=s.Target.ToString("X16"),weapon=345,ammo=262,
+            logged++;DiagnosticLog.Write("cram_prediction_applied",new{t=s.Time,target=s.Target.ToString("X16"),weapon=s.WeaponId,ammo=s.AmmoId,targetType=s.TargetType,
                 historySeconds=s.HistoryInterval,acceleration=V(s.Acceleration),nativeVector=V(s.Before),correctedVector=V(s.After),
                 fireVector=V(s.Fire),nativeTime=s.BeforeTime,correctedTime=s.AfterTime,iterations=s.Iterations,limited=s.Limited,
                 caveat="Native lead calculation; may be aiming or launch, not a shot counter"});
@@ -230,7 +240,7 @@ internal static unsafe class CramPrediction
         {
             nextSummary=Time.time+5;
             DiagnosticLog.Write("cram_prediction_summary",new{t=Time.time,eligible,applied,off,logged,dropped,
-                fallbackReasons=new Dictionary<string,long>(fallbacks)});
+                appliedByWeaponAmmo=new Dictionary<string,long>(appliedByWeaponAmmo),fallbackReasons=new Dictionary<string,long>(fallbacks)});
         }
         if(!Conquest.Prototype.DiagnosticSceneActive){scope=default;histories.Clear();}
     }
@@ -239,7 +249,7 @@ internal static unsafe class CramPrediction
         if(!installed)return;
         off=true;LateUpdate();
         for(int i=0;i<16&&samples.Count>0;i++)LateUpdate();
-        DiagnosticLog.Write("cram_prediction_final",new{shutdown=true,eligible,applied,logged,dropped,pending=samples.Count,fallbackReasons=new Dictionary<string,long>(fallbacks)});
+        DiagnosticLog.Write("cram_prediction_final",new{shutdown=true,eligible,applied,logged,dropped,pending=samples.Count,appliedByWeaponAmmo=new Dictionary<string,long>(appliedByWeaponAmmo),fallbackReasons=new Dictionary<string,long>(fallbacks)});
         installed=false;harmony?.UnpatchSelf();if(leadHook?.IsHooked==true)leadHook.Detach();SceneChanged();
     }
 }

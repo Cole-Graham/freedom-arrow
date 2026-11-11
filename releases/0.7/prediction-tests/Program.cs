@@ -30,7 +30,21 @@ float LinearIntercept(Vector3 r,Vector3 v,float speed)
     double disc=b*b-4*a*c;var roots=new[]{(-b+Math.Sqrt(disc))/(2*a),(-b-Math.Sqrt(disc))/(2*a)};
     return (float)roots.Where(t=>t>0).Min();
 }
-Check(P.Scope(345,262,256,200),"C-RAM SEAD scope");
+foreach(int target in new[]{128,256,512,1024})
+{
+    Check(P.Scope(115,false,10,0,1983,target),"Native AA gun projectile category: "+target);
+    Check(P.Scope(114,true,10,0,1983,target),"Radar-dependent autocannon category: "+target);
+    Check(!P.Scope(115,false,10,0,31,target),"Target mask still excludes projectile");
+}
+Check(P.Scope(115,false,10,0,1967,256),"M230LF native SEAD mask");
+foreach(var q in new[]{(86,false,100,10,1983,256),(114,false,10,0,1983,256),
+    (115,false,20,0,1983,256),(115,false,10,10,1983,256),(115,false,10,0,1983,16),
+    (115,false,10,0,1983,384)})
+    Check(!P.Scope(q.Item1,q.Item2,q.Item3,q.Item4,q.Item5,q.Item6),"Unrelated weapon/trajectory/seeker/target excluded");
+Check(P.OriginRadius(155,20,20)>155,"Ship muzzle scope includes full hull");
+Check(P.OriginRadius(6,3,3)>=15&&P.OriginRadius(6,3,3)<30,"Vehicle muzzle scope remains local");
+Check(P.OriginRadius(float.NaN,20,20)==15&&P.OriginRadius(-1,20,20)==15,"Invalid hull dimensions fall back");
+Check(P.OriginRadius(10000,10000,10000)==512,"Origin scope has a fixed upper bound");
 Check(Unsafe.SizeOf<CramBallisticValue>()==44&&!RuntimeHelpers.IsReferenceOrContainsReferences<CramBallisticValue>(),"Wire value is reference-free and 44 bytes");
 foreach(var (field,offset) in new[]{("VectorToTarget",0),("InitialProjectileSpeed",12),("FireVector",16),
     ("FireAngleTan",28),("TimeToImpact",32),("GravityMultiplyer",36),("CanShoot",40),("Initialized",41),("Padding",42)})
@@ -49,8 +63,6 @@ unsafe
     Check(read.TimeToImpact==.25f&&read.CanShoot==0&&read.Initialized==1&&read.Padding==0xABCD,"Native field updates preserve adjacent flags/padding");
     Check(new ReadOnlySpan<byte>(buffer+44,20).ToArray().All(b=>b==0xA5),"44-byte write preserves 48/64-byte trailing padding");
 }
-foreach(var s in new[]{(261,262,256,200),(345,62,256,200),(345,262,16,200),(345,262,256,1)})
-    Check(!P.Scope(s.Item1,s.Item2,s.Item3,s.Item4),"Unrelated weapon/ammo/type/seeker excluded");
 var history=new CramMotionHistory();
 Check(!history.Observe(1,new(0,-50,-700),out _,out _),"First sample falls back");
 for(int i=0;i<30;i++)Check(!history.Observe(1,new(0,-50,-700),out _,out _),"Duplicate frame does not invent history");
