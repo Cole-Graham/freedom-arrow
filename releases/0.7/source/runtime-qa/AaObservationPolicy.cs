@@ -2,6 +2,14 @@ namespace FreedomArrow;
 // These are coexisting observations, never exclusive native rejection reasons.
 static class AaObservationPolicy
 {
+    public static float? AngleError(float desired,float actual)
+    {
+        if(!float.IsFinite(desired)||!float.IsFinite(actual))return null;
+        float delta=(desired-actual)%360;
+        if(delta>180)delta-=360;
+        if(delta< -180)delta+=360;
+        return Math.Abs(delta);
+    }
     public static bool? AimingInProgress(bool componentPresent,float? secondsRemaining)
     {
         if(!componentPresent)return false;

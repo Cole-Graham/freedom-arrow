@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.6.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.7.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-devtest.lat.6'
+    assert manifest['version']=='0.7.0-devtest.lat.7'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.6 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.7 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -32,6 +32,9 @@ with zipfile.ZipFile(p) as z:
         return OptionRows(rows) if n=='options' else rows
     assert all(0<int(k)<=32767 for k,v in table('options').items() if v is not None)
 
+    assert table('turrets')['284']['HorizontalRotationSpeed']==720 and table('turrets')['459']['HorizontalRotationSpeed']==720
+    assert table('weapons')['261']['VerticalRotationSpeed']==180 and table('weapons')['345']['VerticalRotationSpeed']==230
+    assert set(table('weapons')['261'])==set(table('weapons')['345'])=={'VerticalRotationSpeed'}
     for aid, values in json.loads((R/'spaag-contract.json').read_text())['ammo'].items():
         for field, expected in zip(('LowAltRange','HighAltRange','Damage'), values['after']):
             assert table('ammunitions')[aid][field] == expected, ('full SPAAG endpoint', aid, field)
@@ -111,7 +114,7 @@ with zipfile.ZipFile(p) as z:
     xm_w={k for k,r in live('weapons').items() if r.get('Name') in ['XM30 2x TOW-2B','XM30 2x Javelin']}
     assert len(xm_w)==2 and all(live('weapons')[k]['MagazineSize']==2 for k in xm_w)
     m25_ws={k for k,r in live('weapons').items() if r.get('Name')=='MGL 25 M-25 CDTE'}
-    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in mako_ws and k not in rpg22w and k not in b21_w and k not in xm_w and k not in f21_ws and k not in losat_ws and k not in m25_ws and k!=str(ax_gun_links[0]['WeaponId'])),'weapons: launcher reload only outside the verified Abrams X gun'
+    assert table('weapons') and all(set(r)=={'MagazineReloadTimeMin','MagazineReloadTimeMax'} and (r['MagazineReloadTimeMin'],r['MagazineReloadTimeMax']) in [(6.0,6.0),(7.0,7.0),(8.0,8.0)] for k,r in ((k,{n:v for n,v in r.items() if not (k in ren and n=='HUDName')}) for k,r in table('weapons').items()) if k not in {'261','345'} and k not in aimw and k not in jav and k not in rip and k not in gap49 and k not in srof and k!=rip2 and k not in arrw_ws and k not in mako_ws and k not in rpg22w and k not in b21_w and k not in xm_w and k not in f21_ws and k not in losat_ws and k not in m25_ws and k!=str(ax_gun_links[0]['WeaponId'])),'weapons: launcher reload only outside the verified Abrams X gun'
     m25w=[k for k,r in live('weapons').items() if r.get('Name')=='MGL 25 M-25 CDTE'];assert len(m25w)==1
     m25a=[r for r in live('ammunitions').values() if r.get('Name')=='InfGrenade 25x40 M-25 CDTE'];assert len(m25a)==1 and m25a[0]['Damage']==0.75 and m25a[0]['IgnoreCover']==0.75
     contract=json.loads((R/'vehicle-contract.json').read_text())

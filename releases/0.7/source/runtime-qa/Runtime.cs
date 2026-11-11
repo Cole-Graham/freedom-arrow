@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.6", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.7", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -23,6 +23,8 @@ public class Runtime : MelonMod
     public static bool IsApplied => applied && !failed;
     static int count;
     static string PackageVersion="unknown";
+    internal static string DiagnosticPackageVersion=>PackageVersion;
+    static readonly DateTime DiagnosticSessionStart=DateTime.UtcNow;
     static readonly Dictionary<string, string> Files = new()
     {
         ["Units"]="units.json", ["AbilitiesJson"]="abilities.json", ["UnitAbilitiesJson"]="unit_abilities.json",
@@ -70,7 +72,16 @@ public class Runtime : MelonMod
     public override void OnDeinitializeMelon()
     {
         try { conquest?.OnDeinitializeMelon(); }
-        finally { GroundAaLog.Close();DiagnosticLog.Close("deinitialize"); }
+        finally
+        {
+            GroundAaLog.Close();DiagnosticLog.Close("deinitialize");
+            try
+            {
+                var bundle=TestLogBundle.Create(MelonEnvironment.GameRootDirectory,DiagnosticSessionStart,PackageVersion);
+                MelonLogger.Msg("FREEDOM_ARROW_TEST_LOG_BUNDLE "+bundle);
+            }
+            catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_TEST_LOG_BUNDLE_FAILED: "+e.Message);}
+        }
     }
     public override void OnInitializeMelon()
     {

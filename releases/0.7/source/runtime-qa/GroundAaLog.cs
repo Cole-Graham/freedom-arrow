@@ -9,6 +9,7 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppBrokenArrow.Shared.Ecs.Components.Movement;
 using Il2CppBrokenArrow.Shared.Ecs.Enums;
 using Il2CppBrokenArrow.Client.Ecs.GNetwork.Components.Ownership;
 using Il2CppDefaultEcs;
@@ -140,6 +141,43 @@ static class GroundAaLog
     static Vector3 Position(Entity e)=>NativeEcs.Property<TransformComponent,Vector3>(e,"CenterPosition");
     static object Coords(Vector3 p)=>new{x=Math.Round(p.x,1),y=Math.Round(p.y,1),z=Math.Round(p.z,1)};
     static Entity Target(Entity w)=>w.IsAlive&&w.Has<TargetComponent>()?NativeEcs.Field<TargetComponent,Entity>(w,"Target"):default;
+    static object Kinematics(Entity entity)
+    {
+        try
+        {
+        if(!entity.IsAlive||!entity.Has<TransformComponent>())return null;
+        object velocity=null;
+        if(entity.Has<SpeedComponent>())
+        {
+            var direction=NativeEcs.Field<SpeedComponent,Vector3>(entity,"Direction");
+            float speed=NativeEcs.Field<SpeedComponent,float>(entity,"Value");
+            velocity=new{direction=Coords(direction),speed,vector=Coords(direction*speed)};
+        }
+        return new{identity=Key(entity).ToString("X16"),position=Coords(Position(entity)),velocity};
+        }
+        catch(Exception e){return new{available=false,error=e.GetType().Name};}
+    }
+    static object Tracking(WeaponComponent weapon)
+    {
+        try
+        {
+        float? horizontal=null,error=null;int? turretId=null;
+        var turret=weapon.TurretParrent;
+        if(turret.IsAlive&&turret.Has<TurretComponent>())
+        {
+            horizontal=NativeEcs.Field<TurretComponent,float>(turret,"CurrentHorizontalAngle");
+            error=AaObservationPolicy.AngleError(weapon.TargetHorizontalAngle,horizontal.Value);
+            turretId=NativeEcs.Read<TurretComponent>(turret).TurretInfo?.Id;
+        }
+        var cached=weapon.CachedShotData;
+        return new{turretId,currentHorizontalAngle=horizontal,horizontalError=error,
+            verticalError=AaObservationPolicy.AngleError(weapon.TargetVerticalAngle,weapon.CurrentVerticalAngle),
+            cachedBallistics=new{vectorToTarget=Coords(cached.VectorToTarget),fireVector=Coords(cached.FireVector),
+                muzzleSpeed=cached.InitialProjectileSpeed,timeToImpact=cached.TimeToImpact,canShoot=cached.CanShoot},
+            caveat="Read-only cached calculation; may be stale. This is not an exact shot vector or collision outcome."};
+        }
+        catch(Exception e){return new{available=false,error=e.GetType().Name};}
+    }
     static void Snapshot(string kind,Entity weapon,bool nearby=false)
     {
         try
@@ -183,6 +221,7 @@ static class GroundAaLog
                 aimSecondsRemaining=aimRemaining,
                 magazineReload=reload,burstCooldown=burst,weaponCycle=cycle,targetSearchDelayed=weapon.Has<TargetSearchDelayComponent>(),
                 networkRemote=weapon.Has<NetworkWeaponRemoteComponent>(),guidingMissiles=weapon.Has<ActiveGuidanceComponent>(),
+                tracking=Tracking(w),targetKinematics=Kinematics(target),
                 targetHorizontalAngle=w.TargetHorizontalAngle,targetVerticalAngle=w.TargetVerticalAngle,currentVerticalAngle=w.CurrentVerticalAngle,
                 lowRangeRaw=a?.LowAltRange,highRangeRaw=a?.HighAltRange,seadRangeOverrideRaw=a?.SeadProjectileRangeOverride,
                 position=hasPosition?Coords(pos):null,selected=selectedData,targetPriority,

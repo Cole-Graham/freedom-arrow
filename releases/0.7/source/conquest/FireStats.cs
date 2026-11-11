@@ -20,6 +20,7 @@ public sealed partial class Prototype
     static void InstallFireStats()
     {
         Patch(typeof(ShootingSystem),"WeaponForceFire",null,nameof(CountShot));
+        MelonLogger.Msg("FREEDOM_ARROW_FIRE_STATS_NOTE: hits count the damage callback; gun interceptions are not fully covered. Zero hits does not mean zero interceptions.");
         MelonLogger.Msg("FREEDOM_ARROW_FIRE_STATS installed: shots, hits and time between shots per ammunition, logged every 60 s");
     }
     public static void CountShot(in Entity __0)

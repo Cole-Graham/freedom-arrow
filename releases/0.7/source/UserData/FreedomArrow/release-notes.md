@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-devtest.lat.6 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.7 — development candidate
 
 **dev.45: Su-75 Checkmate stealth is2 in UI terms (raw Stealth and CurrentStealth0.5), up from approximately1.5 (raw0.666). Includes the current dev.44 T72 armor-card correction. All other gameplay constants match dev.44. Native card/detection verification pending.**
 
@@ -163,6 +163,12 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 
 Full SPAAG test: based on locked dev.45. Only six AA gun ammo profiles gain Actual Arrow 1.1.20 LowAltRange, HighAltRange and Damage endpoints. No price, missile-speed, cooldown or refund changes. Use Mod Manager for this test; public launcher restores dev.45. Native game behavior untested.
 
+## Tracking comparison lat.7
+
+C-RAM and PIVADS horizontal and vertical tracking doubled. C-RAM720/230degrees per second;PIVADS720/180. All18full SPAAG range/damage fields fromlat.6 retained. No lead, aim, cadence, speed, overkill or other gameplay change. Passive log adds yaw,error,target velocity and cached ballistics,without combat helper calls or new native hooks. Shots stay in one session file across editor restarts. Normal game exit writes test-logs-*.zip under UserData/FreedomArrow/diagnostics; send that one ZIP. Collection tested offline;native logger invocation and gameplay still need this test. Public launcher remains locked todev.45.
+
+Compare the same saved editor setup aslat.6,with the same unit positions,starting orientation,readiness and incoming missiles. Judge first shot timing and whether SEAD is stopped;tracer tails are a visual clue,not an impact measurement.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -229,3 +235,5 @@ Full SPAAG test: based on locked dev.45. Only six AA gun ammo profiles gain Actu
 - 2026-11-10 18:10:29 PST (America/Los_Angeles) — Increased Su75 UI stealth to2 on the current dev.44 base, preserving its T72 armor flags and all other gameplay data.
 
 - 2026-11-10 21:32:36 PST (America/Los_Angeles) — Prepared isolated full Actual Arrow SPAAG range/damage test lat.6 on dev.45.
+
+- 2026-11-10 22:13:51 PST (America/Los_Angeles) — Prepared tracking-only lat.7 test with bounded passive diagnostics and single-session log collection.

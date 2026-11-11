@@ -187,6 +187,7 @@ public sealed partial class Prototype
     {
         try { if (economyWindow.Active || economyRates.Count != 0) CloseEconomy(CurrentEconomySession(), "plugin unload"); }
         catch (Exception e) { EconomyFault(e); }
+        CloseShotSession();
         AppDomain.CurrentDomain.AssemblyLoad -= EconomyAssemblyLoaded;
     }
 }

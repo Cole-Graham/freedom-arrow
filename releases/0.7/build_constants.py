@@ -1658,6 +1658,12 @@ def main():
     apply_losat_vehicle_speed(effective,clone,put,json.loads((R/'losat-contract.json').read_text()))
     from spaag import apply as apply_spaag
     apply_spaag(effective,json.loads((R/'spaag-contract.json').read_text()),put)
+    for tid in [284,459]:
+        assert effective['TurretsJson'][tid]['HorizontalRotationSpeed']==360
+        put('TurretsJson',tid,{'HorizontalRotationSpeed':720},'lat.7 tracking comparison: twice horizontal speed')
+    for wid,before in [(261,90),(345,115)]:
+        assert effective['WeaponsJson'][wid]['VerticalRotationSpeed']==before
+        put('WeaponsJson',wid,{'VerticalRotationSpeed':before*2},'lat.7 tracking comparison: twice vertical speed')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)
