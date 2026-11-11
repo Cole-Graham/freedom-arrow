@@ -1,30 +1,26 @@
 # Custom fighter cockpit policy
 
-**The Build 5 candidate assigns native canopy materials to all 20 current custom fighter entries, in both armory and battle model copies. It preserves the existing interiors and frames. Native appearance is not yet verified.**
+**Build 7 repairs a measured Build 5 failure: the unavailable F-22 donor stopped aircraft assembly halfway through. J-20, J-20S, J-31, J-35, J-36, J-50 and YF-23 now use their own source glass material, texture alpha and original UVs.** The F-16 and Su-57 donor assignments remain. Native repair appearance is pending.
 
-- F-22 donor (`US_F22_Glass`): J-20, J-20S, J-31, J-35, J-36, J-50 and YF-23.
-- F-16V/F-16 donor (`US_F16_Glass`): J-10C, J-10S, J-11B, J-15, J-15D, J-16, J-16D, Su-30MKK, Su-47, F-14 and F-21.
-- Su-57 donor (`!RU_SU-57glass`): Su-75 and Su-57D.
+Build 5's game log recorded `Cockpit donor unavailable: US_F22_Glass` for the affected PLA fighters. The old loader hid the stand-in first and stopped loading at the first failed material. It left only the pieces before that failure visible. This was not missing wheel/rudder texture data.
 
-This is Osama’s model appearance policy, not a claim about real aircraft generations. Older J-8 aircraft, bombers, helicopters and unmanned aircraft are outside the fighter request. Future custom fighters must be added to this explicit policy before packaging; do not silently infer donor choice from filename alone.
+`prepare.py` splits only the selected glass faces. For source glass, it copies each original base/normal/mask image byte for byte to a distinct material filename, retains source vertex colours and all UVs, and enables alpha blending only for the glass. The untextured YF-23 glass retains its source colour/alpha. Some imported atlas materials had been marked OPAQUE even though their base images contained low-alpha canopy pixels; the repair enables that existing alpha on glass without making the hull transparent. No source image pixels are edited. Every source-model triangle, normal and UV is compared with the pinned Build 4 pack. Other model assignments and opaque surfaces are preserved.
 
-`prepare.py` reads the complete SHA-pinned Build 4 archive. It identifies external canopy faces from their material, position and source alpha. This prevents a whole airframe atlas, canopy frame, HUD or navigation lamp from receiving the donor material. The J-20’s material named Cop_Glass is an internal pane: its exterior canopy is in the airframe atlas. Low-detail copies have separately verified material indices. The F-22 canopy uses the broad donor UV island; small sensor windows in its material are excluded. Geometry and non-canopy UV checks run against every prepared copy. No new skeleton or animation rig is created.
-
-`Cockpits.cs` clones the native game material, preserving its shader, texture references, HDRP settings and keywords. It first searches loaded materials; if needed, it loads a matching donor prefab as an asset from an already-loaded bundle, without instantiating it. Only three named donors are permitted. Missing donors produce an explicit error; no guessed substitute is called a success. Donor tangents are recalculated on the selected canopy mesh.
+The loader builds an inactive replacement before hiding the stand-in. On any failure it removes the incomplete replacement, restores originals and removes the queued re-hide passes. It logs a rejected replacement rather than presenting a partial aircraft as a success. Successful replacements still receive the original later-renderer visibility handling.
 
 ## Reproduction and verification
 
-Provide the retained local F-22 donor mesh JSON to `prepare.py --donor-mesh`; game assets and purchased models are not committed to this repository. The source donor is submesh 1 of the base F-22 body mesh from the installed units bundle. Retain the inspected donor dump with the task evidence.
+Use the retained native donor mesh JSON for the preparation command (the F-22 UV remapping path is no longer selected). Game assets and purchased models are not committed.
 
 ```text
 python tools/cockpits/prepare.py --base /path/PLA-TEST-Build-4.bamod --donor-mesh /path/donor-mesh.json --out /path/prepared
-python tools/cockpits/package.py --base /path/PLA-TEST-Build-4.bamod --prepared /path/prepared --out /path/PLA-TEST-Build-5.bamod --zip /path/to/zip
+python tools/cockpits/package.py --base /path/PLA-TEST-Build-4.bamod --prepared /path/prepared --out /path/PLA-TEST-Build-7.bamod --zip /path/to/zip
 ```
 
-Compile `releases/0.6/experimental-model-loader/FAModels.csproj` and `releases/0.6/source/runtime-qa/FreedomArrow.Runtime.csproj` against the pinned game assemblies before packaging. Run the pipeline and identity host checks. Packaging verifies every payload hash and rejects changes to gameplay constants, infantry files, weapons, audio or the existing model mappings.
-
-An armory check must confirm the native donor lookup, shader appearance, canopy coverage and retained frames for each model; the battle copies need their own visual check. The offline blue-surface diagram proves region selection only. Do not report this candidate installed or rendered successfully from compilation or package checks alone. The current published profile and playtest lock remain unchanged until validated publication.
+Compile FAModels 0.3.8 and PLA Runtime 7 against the pinned generated game assemblies before packaging. The complete pack verifies every payload hash and preserves gameplay, infantry offsets/skins, audio, weapons and model mappings. An armory check must still confirm complete aircraft, canopy opacity and the F-16/Su-57 donors. Battle copies require their own visual check. Public live lock and manifest remain unchanged. Build 6 belongs to separate specialization work.
 
 ## Document change log
 
 - 2026-11-10 23:16:39 PST (America/Los_Angeles) — Added the cockpit donor contract, reproducible preparation/package commands and native verification limits.
+
+- 2026-11-10 23:42:36 PST (America/Los_Angeles) — Replaced the failing F-22 donor policy with original source glass/UVs and documented complete-or-rejected model loading; retained Build 5 evidence as a measured regression.

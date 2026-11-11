@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.7", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.8", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -49,7 +49,7 @@ public partial class Mod : MelonMod
             // The armory keeps the full-fidelity file.
             if (e.battle != "" && scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null)
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align };
-            Hide(unitModel.PrefabRootScript.gameObject);
+            // Keep the original visible until the complete replacement has loaded.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS hook: " + ex); }
@@ -155,7 +155,7 @@ public partial class Mod : MelonMod
             float wait = q.pass == 0 ? 0.5f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
             try { Apply(q.root, q.e, q.unit, q.pass == 0); }
-            catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: {ex}"); }
+            catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
     }
@@ -173,7 +173,7 @@ public partial class Mod : MelonMod
         return null;
     }
 
-    // Hide the stand-in's own meshes. Called in the InitView postfix too, so the stand-in never shows before our model is built.
+    // Hide the stand-in only after its replacement has loaded completely.
     static int Hide(GameObject root)
     {
         int hidden = 0;
@@ -187,16 +187,17 @@ public partial class Mod : MelonMod
 
     static void Apply(GameObject root, Entry e, string unit, bool build)
     {
-        int hidden = Hide(root);
-        if (build) live.Add((root, unit));
-        if (!build) { if (hidden > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {hidden} late renderer(s) on {root.name}"); return; }
+        if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return; }
         var holder = new GameObject("FAM_holder");
+        holder.SetActive(false);
+        var pending = new List<(GameObject, string)>();
+        try
+        {
         holder.transform.SetParent(root.transform, false);
         holder.transform.localPosition = new Vector3(e.offset[0], e.offset[1], e.offset[2]);
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
         int verts = 0, parts = 0;
-        var pending = new List<(GameObject, string)>();
         var mj = Path.Combine(dir, Path.ChangeExtension(e.file, null) + ".mat.json");
         var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
         using var f = new BinaryReader(File.OpenRead(Path.Combine(dir, e.file)));
@@ -260,7 +261,23 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
+        int hidden = Hide(root);
+        holder.SetActive(true);
+        live.Add((root, unit));
         MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file}");
+        }
+        catch
+        {
+            // Parts may already have been reparented to native bones. Remove those too.
+            foreach (var (part, _) in pending) if (part != null) { part.SetActive(false); UnityEngine.Object.Destroy(part); }
+            holder.SetActive(false);
+            UnityEngine.Object.Destroy(holder);
+            if (origs.TryGetValue(root.GetInstanceID(), out var original))
+                foreach (var renderer in original) if (renderer != null) renderer.forceRenderingOff = false;
+            origs.Remove(root.GetInstanceID());
+            live.RemoveAll(t => t.root == root);
+            throw;
+        }
     }
 
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }

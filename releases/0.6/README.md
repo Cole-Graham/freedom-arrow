@@ -1,3 +1,5 @@
+**PLA TEST Build 7 repair:** Source canopy textures/alpha and original UVs replace the unavailable F-22 material. Complete-or-rejected model loading prevents partial aircraft. F-16/Su-57 assignments retained. Native repair appearance pending.
+
 # PLA TEST Build 5
 
 **Build 5 cockpit update:** F-22 donor for 5th-generation and newer custom fighters, F-16 donor for 4th/4.5 generation including Su-47, and Su-57 donor for Su-75/Su-57D. Covers 20 entries and 36 model copies. Outside canopy/glass only; native visual verification pending.
@@ -372,6 +374,10 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 **Su-75 loadout and deck update:** one rear bay only, fixed cannon retained, forward-bay and wingtip mounts removed. Available in Russian Guard (specialization 12), excluded from Guard Tank (8). Base 280; rear-bay loadouts add their existing prices. Data checks only; game test pending.
 
+## Build 7 cockpit repair
+
+Measured Build 5 log errors stopped assembly at the F-22 material. Build 7 restores source glass for J-20/J-20S/J-31/J-35/J-36/J-50/YF-23 and retains the other donors. No gameplay, infantry or audio changes. Build 6 is separate specialization work.
+
 ## Document change log
 
 - 2026-11-04 15:12:48 PST (America/Los_Angeles) — Created isolated 0.2 development source/build instructions and explicit included/held scope; no game installation or runtime acceptance claimed.
@@ -614,3 +620,5 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Prepared requested Build 3 installation with refined hands, all 13 woodland helmet configurations lowered 1 cm, and pinned FA Music 1.4.2 compilations retained. Native fit remains unverified.
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
 - 2026-11-10 23:08:10 PST (America/Los_Angeles) — Build 5: added scoped native cockpit donors; preserved infantry, constants and music; native appearance pending.
+
+- 2026-11-10 23:42:36 PST (America/Los_Angeles) — Added Build 7 source canopy and atomic loader repair; native visual check pending.

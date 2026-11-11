@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 5",
-  "version": "5",
+  "name": "PLA TEST Build 7",
+  "version": "7",
   "type": "modpack",
-  "description": "Complete PLA pack with native donor canopy materials across 20 custom fighter entries. Infantry fit, weapons, music and gameplay retained."
+  "description": "Complete PLA pack: source canopy materials for stealth fighters; atomic model loading prevents partial aircraft. Other Build 5 cockpit donors retained."
 }

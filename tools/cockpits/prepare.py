@@ -8,7 +8,7 @@ ap=argparse.ArgumentParser();ap.add_argument('--base',type=Path,required=True);a
 sha=lambda b:hashlib.sha256(b).hexdigest()
 z=zipfile.ZipFile(a.base);mapping=json.loads(z.read('UserData/FAModels/models.json'))
 policy={}
-for n in ['PLA J-20','PLA J-20S','PLA J-31','PLA J-35','PLA J-36','PLA J-50','YF-23 Black Widow II']:policy[n]='US_F22_Glass'
+for n in ['PLA J-20','PLA J-20S','PLA J-31','PLA J-35','PLA J-36','PLA J-50','YF-23 Black Widow II']:policy[n]='SOURCE'
 for n in ['PLA J-10C','PLA J-10S','PLA J-11B','PLA J-15','PLA J-15D','PLA J-16','PLA J-16D','PLA Su-30MKK','Su-47 Berkut','F-14 Tomcat','F-21 Super Tomcat']:policy[n]='US_F16_Glass'
 for n in ['Su-75 Checkmate','Su-57D']:policy[n]='!RU_SU-57glass'
 assert len(policy)==20
@@ -62,13 +62,23 @@ def trihashes(d,uv=True):
  return sorted(sha(np.concatenate([P[i].ravel(),N[i].ravel()]+([U[i].ravel()] if uv else [])).astype('<f4').tobytes()) for i in range(len(P)))
 report={'units':policy,'base_sha256':hashlib.file_digest(a.base.open('rb'),'sha256').hexdigest(),'files':{},'native_verified':False}
 for fn,info in files.items():
- raw=z.read('UserData/FAModels/'+fn);temp=a.out/('_input_'+fn);temp.write_bytes(raw);ds=read(temp);temp.unlink();sels=[mask(fn,d) for d in ds];count=sum(int(s.sum()) for s in sels);assert count>0,fn
+ raw=z.read('UserData/FAModels/'+fn);temp=a.out/('_input_'+fn);temp.write_bytes(raw);ds=read(temp);temp.unlink();sels=[mask(fn,d) for d in ds];source_mp=json.loads(z.read('UserData/FAModels/'+str(Path(fn).with_suffix('.mat.json')))) if 'UserData/FAModels/'+str(Path(fn).with_suffix('.mat.json')) in z.namelist() else {};overrides={};count=sum(int(s.sum()) for s in sels);assert count>0,fn
  selected=np.concatenate([d['pos'][np.unique(d['ind'][s])] for d,s in zip(ds,sels) if s.any()]);lo=selected.min(0);extent=np.maximum(np.ptp(selected,axis=0),1e-6);out=[];opaque_before=[];all_before=[]
  for d,s in zip(ds,sels):
   all_before+=trihashes(d,False)
   if (~s).any():q=compact(d,d['ind'][~s]);out.append(q);opaque_before+=trihashes(q)
   if s.any():
-   q=compact(d,d['ind'][s]);q['tex']='';q['col']=[1,1,1,.998]
+   q=compact(d,d['ind'][s])
+   if info['donor']=='SOURCE':
+    original_key=d['tex']+'|'+','.join(f'{v:.4f}' for v in d['col'])
+    settings=dict(source_mp.get(original_key,{}));settings.update(alpha='BLEND');settings.pop('clearGlass',None);settings.pop('opacity',None);settings.pop('cockpitDonor',None)
+    if d['tex']:
+     stem=Path(d['tex']).stem;alias=stem+'_source_canopy';q['tex']=alias+'.png'
+     for suffix in ['.png','_n.png','_mask.png']:
+      member='UserData/FAModels/'+stem+suffix
+      if member in z.namelist():(a.out/(alias+suffix)).write_bytes(z.read(member))
+    overrides[q['tex']+'|'+','.join(f'{v:.4f}' for v in q['col'])]=settings
+   else:q['tex']='';q['col']=[1,1,1,.998]
    if info['donor']=='US_F22_Glass':
     pp=(q['pos']-lo)/extent
     for start in range(0,len(pp),256):
@@ -76,9 +86,11 @@ for fn,info in files.items():
    out.append(q)
  b=encode(out);(a.out/fn).write_bytes(b);after=read(a.out/fn)
  assert sorted(all_before)==sorted(h for d in after for h in trihashes(d,False)),('geometry changed',fn)
- assert sorted(opaque_before)==sorted(h for d in after if not (abs(d['col'][3]-.998)<1e-5 and d['tex']=='') for h in trihashes(d)),('opaque UV changed',fn)
+ if info['donor']=='SOURCE':
+  assert sorted(h for d in ds for h in trihashes(d))==sorted(h for d in after for h in trihashes(d)),('source UV changed',fn)
+ else:assert sorted(opaque_before)==sorted(h for d in after if not (abs(d['col'][3]-.998)<1e-5 and d['tex']=='') for h in trihashes(d)),('opaque UV changed',fn)
  # Direct old alpha glass outside the canopy guard remains under its original material.
- matfn=str(Path(fn).with_suffix('.mat.json'));zn='UserData/FAModels/'+matfn;mp=json.loads(z.read(zn)) if zn in z.namelist() else {};mp['|1.0000,1.0000,1.0000,0.9980']={'cockpitDonor':info['donor']};(a.out/matfn).write_text(json.dumps(mp,indent=2)+'\n')
+ matfn=str(Path(fn).with_suffix('.mat.json'));zn='UserData/FAModels/'+matfn;mp=json.loads(z.read(zn)) if zn in z.namelist() else {};mp.update(overrides) if info['donor']=='SOURCE' else mp.update({'|1.0000,1.0000,1.0000,0.9980':{'cockpitDonor':info['donor']}});(a.out/matfn).write_text(json.dumps(mp,indent=2)+'\n')
  report['files'][fn]={**info,'before_sha256':sha(raw),'after_sha256':sha(b),'glass_faces':count,'glass_bounds':[lo.tolist(),(lo+extent).tolist()],'geometry_unchanged':True,'opaque_uv_unchanged':True}
  print(fn,count,flush=True)
 (a.out/'cockpit-policy.json').write_text(json.dumps(report,indent=2)+'\n');print('DONE',len(policy),'unit entries',len(files),'model copies',flush=True)
