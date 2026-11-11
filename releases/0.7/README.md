@@ -1,4 +1,19 @@
-# Freedom Arrow 0.7.0-dev.53 — development candidate
+# Freedom Arrow 0.7.0-dev.54 — development candidate
+
+## Current main development promotion — AA prediction, C-RAM speed, helicopter flares and cooldown-aware reservations
+
+**This build promotes lat.16's C-RAM muzzle velocity 1610 and bounded projectile prediction, adds helicopter flare stock 15, and enables the earlier conservative cooldown-aware SEAD overkill gate. It starts from main dev.53 and preserves the Black Eagle/LOSAT batch and card fixes.**
+
+C-RAM retains normal dispersion 1.6/1.6. SPAAG range/damage and PIVADS/C-RAM traversal remain native. Prediction code and limits match lat.16; coverage includes all native direct-fire projectile-defence gun pairs and preserves their target masks. The 0.75-second horizon and fallback remain. Lateralus reported good performance in Test 1; no new lat.16 raw log bundle was supplied with the promotion request.
+
+Helicopter flare stock changes 10 → 15. Strength remains 10 percentage points per active flare; plane quantities, flare burn duration and cooldown are unchanged. This increases endurance, not per-flare strength.
+
+The overkill gate lets another AA weapon engage a SEAD missile only when all other known future reservations are clearly too late and no airborne protection is recorded. It preserves native decisions for timely, mixed, unknown, stale or already-launched contributors; it does not reset cooldown or raise firing rate. One scalar bool hook consumes a managed snapshot; the passive AA observer remains separate. This is the previously implemented lat.5 gate, with unchanged policy. Its native action is not independently verified in the supplied lat.16 run.
+
+Prediction and overkill diagnostics plus the automatic normal-exit test ZIP are included. This combined build still needs a native run. No PC installation or PLA switching is performed. Public launcher remains on the existing dev.45 lock until that deployment lock is explicitly changed; this candidate is available through Mod Manager.
+
+## Previous main development changes
+
 
 **Black Eagle appearance iteration: white card icon on a2:1 canvas, lower baseline and icon-only shortened barrel. Separate body-mask trial adds moderate painted-metal sheen while preserving repaired normals, color textures and all gameplay constants from dev.49. Vanilla T80 material/export and Sam’s card screenshot guide the comparison; native appearance still needs review.**
 
@@ -239,3 +254,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 21:49:47 PST (America/Los_Angeles) — Removed stale T80BV fallback profiles from BVM and prepared Black Eagle material/normal conversion correction following dev.48 visual feedback.
 
 - 2026-11-10 22:04:40 PST (America/Los_Angeles) — Adjusted Black Eagle card placement/white and prepared moderate body sheen; gameplay definitions remain dev.49.
+- 2026-11-11 02:26:15 PST (America/Los_Angeles) — Promoted C-RAM speed and projectile prediction, helicopter flare stock 15, and the conservative cooldown-aware SEAD overkill gate onto main dev.53 while preserving other batch/model changes; native combined test pending.

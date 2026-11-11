@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><AllowUnsafeBlocks>true</AllowUnsafeBlocks></PropertyGroup>
+  <ItemGroup><Compile Include="../source/runtime-qa/CramPredictionPolicy.cs" Link="CramPredictionPolicy.cs" /><Compile Include="../source/runtime-qa/CramBallisticValue.cs" Link="CramBallisticValue.cs" /></ItemGroup>
+</Project>

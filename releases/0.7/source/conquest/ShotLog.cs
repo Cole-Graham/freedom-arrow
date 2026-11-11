@@ -17,7 +17,8 @@ public sealed partial class Prototype
     const int MaxShotLines=500000;
     static StreamWriter shotFile;
     static int shotLines;
-    static bool shotOff,editorBound;
+    static bool shotOff,editorBound,shotRunActive;
+    static int shotRun;
     static PropertyInfo editorInstance,editorLaunched,editorMode;
     // Editor Play, offline: ISceneLoadManager says the scenario came from the editor and the editor is not open.
     internal static bool DiagnosticSceneActive=>combatActive;
@@ -43,26 +44,44 @@ public sealed partial class Prototype
     }
     static void ShotFrame(bool active)
     {
-        if(active&&shotFile==null&&!shotOff)
+        if(active&&!shotRunActive&&!shotOff)
         {
             try
             {
-                Directory.CreateDirectory(Root);shotLines=0;
-                shotRepeat.Clear();shotFile=new StreamWriter(Path.Combine(Root,$"shots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.jsonl"));
-                ShotLine("start",new{editor=EditorTest(),version=typeof(Prototype).Assembly.GetName().Version?.ToString()});
-                MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG started");
+                if(shotFile==null)
+                {
+                    Directory.CreateDirectory(Root);shotLines=0;
+                    shotFile=new StreamWriter(Path.Combine(Root,$"shots-{DateTime.UtcNow:yyyyMMdd-HHmmssfffffff}-{Environment.ProcessId}.jsonl"));
+                }
+                shotRun++;shotRunActive=true;shotRepeat.Clear();
+                ShotLine("start",new{run=shotRun,editor=EditorTest(),packageVersion=Runtime.DiagnosticPackageVersion});
+                MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG started run "+shotRun+" (one session file)");
             }
             catch(Exception e){shotOff=true;MelonLogger.Error("FREEDOM_ARROW_SHOT_LOG_FAILED: "+e.Message);}
         }
-        else if(!active&&shotFile!=null){ShotLine("stop",new{lines=shotLines});shotFile.Dispose();shotFile=null;MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG closed");}
+        else if(!active&&shotRunActive)
+        {
+            ShotLine("stop",new{run=shotRun,lines=shotLines});shotRunActive=false;
+            shotFile?.Flush();MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG run stopped; session file retained");
+        }
         else shotFile?.Flush();
+    }
+    static void CloseShotSession()
+    {
+        try
+        {
+            if(shotRunActive)ShotLine("stop",new{run=shotRun,reason="shutdown",lines=shotLines});
+            shotFile?.Flush();shotFile?.Dispose();
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_SHOT_LOG close failed: "+e.Message);}
+        finally{shotFile=null;shotRunActive=false;}
     }
     static void ShotLine(string kind,object data)
     {
         if(shotFile==null||shotOff)return;
         try
         {
-            shotFile.WriteLine(JsonSerializer.Serialize(new{t=Math.Round(Time.time,2),kind,data}));
+            shotFile.WriteLine(JsonSerializer.Serialize(new{t=Math.Round(Time.time,2),run=shotRun,kind,data}));
             if(++shotLines>=MaxShotLines){shotOff=true;shotFile.Dispose();shotFile=null;MelonLogger.Warning("FREEDOM_ARROW_SHOT_LOG line limit reached");}
         }
         catch(Exception e){shotOff=true;MelonLogger.Error("FREEDOM_ARROW_SHOT_LOG_FAILED: "+e.Message);}
@@ -71,7 +90,7 @@ public sealed partial class Prototype
     {
         if(!unit.IsAlive||!unit.Has<UnitComponent>())return null;
         var u=NativeEcs.Read<UnitComponent>(unit);
-        return new{e=unit.GetHashCode(),id=u.UnitData?.Id??0,name=u.UnitData?.Name,team=u.Owner?.TeamSide.ToString(),unitType=(int)(u.UnitData?.Type??0),infantry=unit.Has<InfantryUnitComponent>()};
+        return new{e=unit.GetHashCode(),identity=System.Runtime.CompilerServices.Unsafe.As<Entity,ulong>(ref unit).ToString("X16"),id=u.UnitData?.Id??0,name=u.UnitData?.Name,team=u.Owner?.TeamSide.ToString(),unitType=(int)(u.UnitData?.Type??0),infantry=unit.Has<InfantryUnitComponent>()};
     }
     static object Timing(WeaponComponent w)
     {

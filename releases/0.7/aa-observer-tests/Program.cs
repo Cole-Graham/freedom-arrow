@@ -43,6 +43,33 @@ static class Program
         }
         using(var parsed=JsonDocument.Parse(AaLogJson.Serialize(new{nextRecord=42})))
             Check(parsed.RootElement.GetProperty("nextRecord").GetInt32()==42,"Following record remains writable after non-finite data");
+        Check(AaObservationPolicy.AngleError(179,-179)==2,"Yaw wrap-around takes the short path");
+        Check(AaObservationPolicy.AngleError(-179,179)==2,"Yaw wrap reverse");
+        Check(AaObservationPolicy.AngleError(360,0)==0,"Full turn matches zero");
+        Check(AaObservationPolicy.AngleError(float.NaN,0)==null,"Invalid yaw remains unknown");
+        string temp=Path.Combine(Path.GetTempPath(),"fa-test-bundle-"+Guid.NewGuid());
+        try
+        {
+            Directory.CreateDirectory(Path.Combine(temp,"UserData/FreedomArrow/diagnostics"));
+            Directory.CreateDirectory(Path.Combine(temp,"UserData/FAConquestPrototype"));
+            Directory.CreateDirectory(Path.Combine(temp,"MelonLoader"));
+            DateTime start=DateTime.UtcNow;
+            string[] included={"UserData/FreedomArrow/diagnostics/aa-targeting-current.jsonl","UserData/FreedomArrow/diagnostics/runtime-current.jsonl",
+                "UserData/FAConquestPrototype/shots-run1.jsonl","UserData/FAConquestPrototype/shots-run2.jsonl","UserData/FAConquestPrototype/events-current.jsonl","MelonLoader/Latest.log"};
+            foreach(string f in included)File.WriteAllText(Path.Combine(temp,f),"{\"test\":true}\n");
+            string old=Path.Combine(temp,"UserData/FAConquestPrototype/shots-old.jsonl");File.WriteAllText(old,"old");File.SetLastWriteTimeUtc(old,start.AddHours(-1));
+            File.WriteAllText(Path.Combine(temp,"private.txt"),"must not collect");
+            string archive=TestLogBundle.Create(temp,start,"test/../7");
+            Check(Path.GetDirectoryName(archive)==Path.Combine(temp,"UserData/FreedomArrow/diagnostics"),"Bundle path remains in diagnostics");
+            using var zip=System.IO.Compression.ZipFile.OpenRead(archive);
+            foreach(string f in included)Check(zip.GetEntry(f)!=null,"All current-session runs retained: "+f);
+            Check(zip.GetEntry("private.txt")==null&&zip.GetEntry("UserData/FAConquestPrototype/shots-old.jsonl")==null,"Unrelated and old files excluded");
+            Check(zip.Entries.Count==included.Length+1,"Only scoped logs and inventory included");
+            using var inventory=new StreamReader(zip.GetEntry("bundle.json")!.Open());
+            using var parsedInventory=JsonDocument.Parse(inventory.ReadToEnd());
+            Check(parsedInventory.RootElement.GetProperty("copied").GetArrayLength()==included.Length,"Inventory records copied logs");
+        }
+        finally{if(Directory.Exists(temp))Directory.Delete(temp,true);}
         using var fs=File.OpenRead(args[0]);using var pe=new PEReader(fs);var md=pe.GetMetadataReader();
         var codes=typeof(OpCodes).GetFields(BindingFlags.Public|BindingFlags.Static).Where(f=>f.FieldType==typeof(OpCode))
             .Select(f=>(OpCode)f.GetValue(null)!).ToDictionary(o=>unchecked((ushort)o.Value));

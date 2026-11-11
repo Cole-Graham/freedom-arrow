@@ -1251,7 +1251,10 @@ def main():
         users={effective['Units'][l['UnitId']]['Type'] for l in effective['UnitAbilitiesJson'].values() if l['AbilityId']==a['Id'] and l['UnitId'] in effective['Units']}
         if not users:continue  # 9 flare rows no unit uses: left vanilla
         assert len(users)==1 and str(next(iter(users))) in mc['decoy_accuracy'],(a['Id'],users)
-        put('AbilitiesJson',a['Id'],{'DecoyAccuracyMultiplier':mc['decoy_accuracy'][str(next(iter(users)))]},'Flares 10 points each (flat missile chance)')
+        unit_type=str(next(iter(users)))
+        fields={'DecoyAccuracyMultiplier':mc['decoy_accuracy'][unit_type]}
+        if unit_type in mc.get('decoy_quantity',{}):fields['DecoyQuantity']=mc['decoy_quantity'][unit_type]
+        put('AbilitiesJson',a['Id'],fields,'Flares 10 points each; helicopter stock 15 (Lateralus main promotion)')
     # 0.5 dev.35: infantry launcher rate of fire per squad (squad-rof-contract.json).
     sr=json.loads((R/'squad-rof-contract.json').read_text());why='Reusable launcher on 2-launcher squads 15 per minute'
     def carriers(uid,wid):return sum(1 for m in effective['SquadMembersJson'].values() if m['UnitId']==uid and wid in (m['PrimaryWeaponId'],m['SpecialWeaponId']))
@@ -1676,6 +1679,10 @@ def main():
     apply_black_eagle(effective,clone,add_unit,rows_of,json.loads((R/'black-eagle-contract.json').read_text()))
     from black_eagle import fix_t80_defaults
     fix_t80_defaults(effective,patches,clone,put,audit)
+    # Lateralus: promote speed-only lat.16, with native spread/range/damage/traverse.
+    assert effective['AmmunitionsJson'][262]['MuzzleVelocity']==805.0
+    assert [effective['AmmunitionsJson'][262][f] for f in ('DispersionHorizontalRadius','DispersionVerticalRadius')]==[1.6,1.6]
+    put('AmmunitionsJson',262,{'MuzzleVelocity':1610.0},'Lateralus: C-RAM speed-only lat.16 promotion')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)
