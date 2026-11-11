@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.10", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.11", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -125,7 +125,11 @@ public class Runtime : MelonMod
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
         try { CramPrediction.Install(); }
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: not installed; native leading. "+e); }
+        catch (Exception e)
+        {
+            DiagnosticLog.Write("cram_prediction_install_failed",new{error=e.ToString(),fallback="native leading"});
+            MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: not installed; native leading. "+e);
+        }
         try { SupplyStealth.Install(); }
         catch (Exception e)
         {

@@ -1,4 +1,14 @@
-# Freedom Arrow 0.7.0-devtest.lat.10 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.11 — development candidate
+
+**Lat.11 replaces the prediction bridge's dependency on the generated BallisticDataStruct layout with a private 44-byte value containing explicit byte flags. Lat.10 refused installation in Lateralus's supplied run, so that run used native leading. The prediction algorithm and all gameplay tables remain equal to lat.10/lat.9; this is a binding correction. Native activation remains untested for lat.11.**
+
+The bridge obtains the native value type from its metadata, verifies all occupied field offsets and the pinned engine fingerprint, and uses pointer-only calls for both lead and angle solving. It accepts native allocations of44 or48 bytes only with the verified field map, copies back only44 bytes, and preserves trailing padding. Angle re-solves use a64-byte scratch buffer. Generated proxy shape is diagnostic only. Exact managed/native sizes and install failures are now recorded in the runtime log.
+
+C-RAM/SEAD scope, recent-motion history,0.75second horizon,60unit/10% adjustment bounds and native fallback are retained. Speed1610, zero dispersion, doubled tracking, damage, range, cadence and ammunition settings remain equal to lat.10. The passive observer remains unchanged.
+
+Import lat.11 through Mod Manager and confirm the full menu version. Repeat the lat.10 scene, close normally and send the automatic ZIP. A usable prediction test requires both cram_prediction_installed and actual cram_prediction_applied records; installation alone is not proof of invocation. No PC install or game run was performed by this task. Public launcher remains locked to dev.45.
+
+## Prior lat.10 candidate — installation rejected in supplied run
 
 **Lat.10 adds a bounded prediction correction for C-RAM firing at SEAD missiles. It uses recent changes in missile velocity to anticipate the dive/turn and re-solves the native ballistic angle and flight time together. All gameplay tables remain equal to lat.9, including muzzle velocity1610, zero dispersion and doubled tracking. This active native-hook candidate has not been run in-game.**
 
@@ -264,3 +274,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 - 2026-11-10 22:45:23 PST (America/Los_Angeles) — Prepared C-RAM zero-dispersion comparison on lat.7; retained tracking, native leading and logging; runtime behavior remains untested.
 - 2026-11-10 23:21:34 PST (America/Los_Angeles) — Prepared lat.9 C-RAM muzzle-velocity1610 comparison on lat.8, retaining native leading and logging; runtime improvement untested.
 - 2026-11-11 00:04:45 PST (America/Los_Angeles) — Prepared lat.10 C-RAM/SEAD bounded changing-velocity prediction, native fallback, ABI checks and invocation diagnostics; native game test pending.
+- 2026-11-11 00:31:45 PST (America/Los_Angeles) — Reworked lat.11 ballistic binding after lat.10 installation rejection; added independent byte-layout transport, native pointer angle solve and explicit startup diagnostics; activation pending.

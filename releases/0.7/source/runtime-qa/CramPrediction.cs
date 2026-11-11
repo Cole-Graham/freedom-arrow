@@ -31,8 +31,12 @@ internal static unsafe class CramPrediction
     // in ref BallisticDataStruct. Native metadata/layout and engine hash gate it.
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     delegate void LeadNative(IntPtr target,IntPtr origin,IntPtr data,int cycles,IntPtr method);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    delegate void AngleNative(IntPtr data,IntPtr method);
     static readonly LeadNative LeadCallback=LeadThunk;
     static NativeHook<LeadNative> leadHook;
+    static AngleNative angleSolver;
+    static IntPtr angleMethod;
     static HarmonyLib.Harmony harmony;
     static bool installed,off;
     static int mainThread,logged;
@@ -50,7 +54,6 @@ internal static unsafe class CramPrediction
     static readonly Queue<Sample> samples=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
     static NVector N(Vector3 v)=>new(v.x,v.y,v.z);
-    static Vector3 U(NVector v)=>new(v.X,v.Y,v.Z);
     static object V(NVector v)=>new{x=v.X,y=v.Y,z=v.Z};
     static void Fallback(string reason)=>fallbacks[reason]=fallbacks.GetValueOrDefault(reason)+1;
     static bool Active=>installed&&!off&&Environment.CurrentManagedThreadId==mainThread
@@ -58,16 +61,38 @@ internal static unsafe class CramPrediction
 
     public static void Install()
     {
-        if(IntPtr.Size!=8||Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<Vector3>()!=12
-            ||Unsafe.SizeOf<BallisticDataStruct>()!=44||RuntimeHelpers.IsReferenceOrContainsReferences<BallisticDataStruct>())
-            throw new InvalidOperationException("Prediction ABI does not match the pinned x64 value layouts");
+        var layout=new{pointer=IntPtr.Size,entity=Unsafe.SizeOf<Entity>(),vector=Unsafe.SizeOf<Vector3>(),
+            wire=Unsafe.SizeOf<CramBallisticValue>(),wireReferences=RuntimeHelpers.IsReferenceOrContainsReferences<CramBallisticValue>()};
+        DiagnosticLog.Write("cram_prediction_managed_layout",layout);
+        if(layout.pointer!=8||layout.entity!=8||layout.vector!=12||layout.wire!=44||layout.wireReferences)
+            throw new InvalidOperationException("Prediction ABI: "+System.Text.Json.JsonSerializer.Serialize(layout));
         using(var file=File.OpenRead(Path.Combine(MelonEnvironment.GameRootDirectory,"GameAssembly.dll")))
         using(var sha=SHA256.Create())
             if(Convert.ToHexString(sha.ComputeHash(file)).ToLowerInvariant()!=GameHash)
                 throw new InvalidOperationException("Prediction engine fingerprint mismatch");
-        RuntimeHelpers.RunClassConstructor(typeof(BallisticDataStruct).TypeHandle);
-        var klass=Il2CppClassPointerStore<BallisticDataStruct>.NativeClassPtr;uint align=0;
-        if(IL2CPP.il2cpp_class_value_size(klass,ref align)!=44)throw new InvalidOperationException("Native ballistic size mismatch");
+        RuntimeHelpers.RunClassConstructor(typeof(BallisticsCalculationsHelper).TypeHandle);
+        try
+        {
+            var proxy=typeof(BallisticsCalculationsHelper).Assembly.GetType("Il2CppBrokenArrow.Client.Ecs.BattleSystem.Ballistics.BallisticDataStruct");
+            if(proxy!=null)DiagnosticLog.Write("cram_prediction_proxy_shape",typeof(CramPrediction)
+                .GetMethod(nameof(ProxyShape),BindingFlags.NonPublic|BindingFlags.Static).MakeGenericMethod(proxy).Invoke(null,null));
+        }
+        catch(Exception e){DiagnosticLog.Write("cram_prediction_proxy_shape_unavailable",new{error=e.GetType().Name});}
+        IntPtr Method(string name)=>(IntPtr)(typeof(BallisticsCalculationsHelper).GetFields(BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic)
+            .Single(f=>f.Name.StartsWith("NativeMethodInfoPtr_"+name+"_",StringComparison.Ordinal)).GetValue(null)
+            ??throw new MissingMethodException(name+" metadata"));
+        var method=Method("CalculateLeadShot");angleMethod=Method("CalculateBallisticsAngle");
+        if(method==IntPtr.Zero||angleMethod==IntPtr.Zero||Marshal.ReadIntPtr(method)==IntPtr.Zero||Marshal.ReadIntPtr(angleMethod)==IntPtr.Zero)
+            throw new MissingMethodException("Native ballistic methods");
+        var helper=IL2CPP.il2cpp_method_get_declaring_type(method);
+        var klass=IL2CPP.il2cpp_class_from_name(IL2CPP.il2cpp_class_get_image(helper),
+            "BrokenArrow.Client.Ecs.BattleSystem.Ballistics","BallisticDataStruct");
+        if(klass==IntPtr.Zero||!IL2CPP.il2cpp_class_is_valuetype(klass))throw new InvalidOperationException("Native ballistic value type missing");
+        uint align=0;int nativeSize=IL2CPP.il2cpp_class_value_size(klass,ref align);
+        DiagnosticLog.Write("cram_prediction_native_layout",new{nativeSize,align,wireSize=44});
+        // Accept only known trailing padding variants. All occupied field offsets
+        // still have to match, and only the first 44 bytes are ever copied back.
+        if(nativeSize!=44&&nativeSize!=48)throw new InvalidOperationException("Native ballistic size: "+nativeSize);
         foreach(var (name,offset) in new[]{("VectorToTarget",0),("InitialProjectileSpeed",12),("FireVector",16),
             ("FireAngleTan",28),("TimeToImpact",32),("GravityMultiplyer",36),("CanShoot",40),("<Initialized>k__BackingField",41)})
         {
@@ -75,11 +100,7 @@ internal static unsafe class CramPrediction
             if(field==IntPtr.Zero||IL2CPP.il2cpp_field_get_offset(field)-2*IntPtr.Size!=offset)
                 throw new InvalidOperationException("Native ballistic field mismatch: "+name);
         }
-        RuntimeHelpers.RunClassConstructor(typeof(BallisticsCalculationsHelper).TypeHandle);
-        var method=(IntPtr)(typeof(BallisticsCalculationsHelper).GetFields(BindingFlags.Static|BindingFlags.NonPublic)
-            .Single(f=>f.Name.StartsWith("NativeMethodInfoPtr_CalculateLeadShot_",StringComparison.Ordinal)).GetValue(null)
-            ??throw new MissingMethodException("CalculateLeadShot metadata"));
-        if(method==IntPtr.Zero||Marshal.ReadIntPtr(method)==IntPtr.Zero)throw new MissingMethodException("CalculateLeadShot");
+        angleSolver=Marshal.GetDelegateForFunctionPointer<AngleNative>(Marshal.ReadIntPtr(angleMethod));
         var muzzle=AccessTools.Method(typeof(BattleSystemHelpers),"GetShellMuzzleSpeed",new[]{typeof(Entity).MakeByRefType(),typeof(Ammunitions)})
             ??throw new MissingMethodException("GetShellMuzzleSpeed(in Entity,Ammunitions)");
         mainThread=Environment.CurrentManagedThreadId;
@@ -102,6 +123,8 @@ internal static unsafe class CramPrediction
             maxFraction=CramPredictionPolicy.MaxFraction,abi="x64 pointer lead detour;44-byte ballistic value",appliedCalls=0});
         MelonLogger.Msg("FREEDOM_ARROW_CRAM_PREDICTION installed; invocation unproved until cram_prediction_applied; C-RAM/SEAD only");
     }
+    static object ProxyShape<T>()=>new{type=typeof(T).FullName,valueType=typeof(T).IsValueType,
+        managedSize=Unsafe.SizeOf<T>(),references=RuntimeHelpers.IsReferenceOrContainsReferences<T>()};
 
     static void MuzzleAfter(ref Entity __0,Ammunitions __1,float __result)
     {
@@ -151,25 +174,30 @@ internal static unsafe class CramPrediction
             if(targetPointer==IntPtr.Zero||originPointer==IntPtr.Zero||dataPointer==IntPtr.Zero){Fallback("null_pointer");return;}
             var target=Unsafe.ReadUnaligned<Entity>((void*)targetPointer);
             var origin=Unsafe.ReadUnaligned<Vector3>((void*)originPointer);
-            var original=Unsafe.ReadUnaligned<BallisticDataStruct>((void*)dataPointer);
+            var original=Unsafe.ReadUnaligned<CramBallisticValue>((void*)dataPointer);
             if(Key(target)!=call.Target||!target.IsAlive||!call.Weapon.IsAlive
                 ||Time.time-call.Time<0||Time.time-call.Time>.05f||(origin-call.Center).sqrMagnitude>225
                 ||Math.Abs(original.InitialProjectileSpeed-call.Speed)>.01f)
             {Fallback("scope_mismatch");return;}
             if(!call.History){Fallback("history_missing");return;}
-            var native=new CramPredictionPolicy.Solution(N(original.VectorToTarget),N(original.FireVector),original.TimeToImpact,original.FireAngleTan,original.CanShoot);
+            var native=new CramPredictionPolicy.Solution(original.VectorToTarget,original.FireVector,original.TimeToImpact,original.FireAngleTan,original.CanShoot!=0);
             CramPredictionPolicy.Solution Solve(NVector aim)
             {
-                var candidate=original;candidate.VectorToTarget=U(aim);
-                BallisticsCalculationsHelper.CalculateBallisticsAngle(ref candidate);
-                return new(aim,N(candidate.FireVector),candidate.TimeToImpact,candidate.FireAngleTan,candidate.CanShoot);
+                // Overallocate known trailing padding so either validated native
+                // size can be solved without touching an undersized CLR proxy.
+                byte* buffer=stackalloc byte[64];new Span<byte>(buffer,64).Clear();
+                var candidate=original;candidate.VectorToTarget=aim;
+                Unsafe.WriteUnaligned(buffer,candidate);
+                angleSolver((IntPtr)buffer,angleMethod);
+                candidate=Unsafe.ReadUnaligned<CramBallisticValue>(buffer);
+                return new(aim,candidate.FireVector,candidate.TimeToImpact,candidate.FireAngleTan,candidate.CanShoot!=0);
             }
             if(!CramPredictionPolicy.TryCorrect(native,call.Velocity,call.Acceleration,Solve,out var result,out string reason))
             {
                 Fallback(reason);if(reason=="solver_exception")Disable(new InvalidOperationException("Native ballistic re-solve failed"));return;
             }
-            var corrected=original;corrected.VectorToTarget=U(result.Solution.Aim);corrected.FireVector=U(result.Solution.Fire);
-            corrected.TimeToImpact=result.Solution.Time;corrected.FireAngleTan=result.Solution.Tan;corrected.CanShoot=result.Solution.CanShoot;
+            var corrected=original;corrected.VectorToTarget=result.Solution.Aim;corrected.FireVector=result.Solution.Fire;
+            corrected.TimeToImpact=result.Solution.Time;corrected.FireAngleTan=result.Solution.Tan;corrected.CanShoot=(byte)(result.Solution.CanShoot?1:0);
             // Commit only a complete validated value. No target position/velocity or
             // weapon tables are changed, and failed solves leave native bytes intact.
             Unsafe.WriteUnaligned((void*)dataPointer,corrected);applied++;
