@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.4.2", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.0", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
@@ -65,6 +65,7 @@ public sealed class Player : MelonMod
 
     public override void OnInitializeMelon()
     {
+        MusicMenu.Install(HarmonyInstance);
         Directory.CreateDirectory(Root);
 
         Directory.CreateDirectory(PacksDir);
@@ -305,16 +306,10 @@ public sealed class Player : MelonMod
         ? Directory.GetDirectories(PacksDir).Select(Path.GetFileName).OrderBy(n => n).ToList()
         : new List<string>();
 
-    static bool InMenu => lastType is 2 or 20 or 30;
+    internal static string CurrentPack => pack;
 
-    // Cycles USA -> Russia -> ... -> Game music on the main menu.
-    public override void OnGUI()
+    internal static void CyclePack()
     {
-        if (!InMenu) return;
-        var w = 260f;
-        var x = UnityEngine.Screen.width - w - 20;
-        var r = new UnityEngine.Rect(x, 20, w, 34);
-        if (!UnityEngine.GUI.Button(r, $"Music: {pack}  (click to change)")) return;
         var options = Packs();
         options.Add(GameMusic);
         pack = options[(options.IndexOf(pack) + 1) % options.Count];
@@ -357,6 +352,7 @@ public sealed class Player : MelonMod
 
     public override void OnUpdate()
     {
+        MusicMenu.Update();
         if (system == IntPtr.Zero) return;
         if (folder != null)
         {

@@ -36,6 +36,7 @@ static class Fmod {
  public static int FMOD_System_CreateSound(IntPtr s,byte[] file,int mode,IntPtr extra,out IntPtr result) { Started.Add(Encoding.UTF8.GetString(file).TrimEnd('\0'));result=(IntPtr)2;return 0; }
  public static int FMOD_System_PlaySound(IntPtr s,IntPtr sound,IntPtr group,int paused,out IntPtr c) { Playing=true;c=(IntPtr)3;return 0; }
 }
+static class MusicMenu { public static void Update(){} }
 class Service { public Instance CurrentInstance = new(); }
 class Instance { public void SetVolume(float x){} }
 partial class Player : Base {
