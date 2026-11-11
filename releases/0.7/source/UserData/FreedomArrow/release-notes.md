@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.36 — development candidate
+# Freedom Arrow 0.7.0-dev.37 — development candidate
+
+**dev.37: YF-23 Black Widow II turn radius calculates to 700 in the native card UI (previously 565). Its own flight/mobility rows preserve every other aircraft. Speed, pitch, roll, weapons, cost and ECM stay unchanged. Includes dev.36 Copperhead 75 mm penetration. Not yet measured in-game.**
 
 **Copperhead:75 mm HEAT penetration at both range endpoints, reduced from472.5. Base damage remains11. Data change; not yet tested in game.**
 
@@ -200,3 +202,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 11:24:11 PST (America/Los_Angeles) — Corrected LOSAT firing gap to6 seconds; retained dev.34 balance changes,1300 missile speed,10 damage and550 mm KE.
 
 - 2026-11-10 16:10:37 PST (America/Los_Angeles) — Set M712 Copperhead ammunition426 to75 mm penetration at minimum and maximum range; retained base damage11 and all other ammunition settings.
+- 2026-11-10 16:20:01 PST (America/Los_Angeles) — Recorded isolated YF-23 turn-radius700 change and offline verification limits.

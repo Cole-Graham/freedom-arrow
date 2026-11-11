@@ -1,0 +1,6 @@
+{
+  "unit": 982,
+  "ui_turn_radius": 700,
+  "max_speed_yaw": 68.0,
+  "note": "Osama, 10 November 2026: Black Widow turn radius700 in game UI. Native formula at250 m/s and68 degrees yields702.013 before rounding down to700. Scale the horizontal yaw curve; retain speed, pitch, roll and all other aircraft. Code/data calculation, not yet measured in game."
+}

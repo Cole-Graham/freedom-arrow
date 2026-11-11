@@ -17,3 +17,19 @@ def apply(t,clone,put,c):
         if o['ModificationId'] not in mods or not o['MobilityId']:continue
         assert o['MobilityId'] in mapping,(o['Id'],o['MobilityId'])
         put('OptionsJson',o['Id'],{'MobilityId':mapping[o['MobilityId']]},why)
+
+
+def apply_black_widow(t,clone,put,c):
+    """Give YF-23 its own preset after all earlier clones, preserving their IDs."""
+    uid=c['unit'];assert uid==982
+    why='Osama: YF23 Black Widow II UI turn radius700'
+    links=[r for r in t['UnitPropulsionsJson'].values() if r['UnitId']==uid];assert len(links)==1
+    link=links[0];mob=t['MobilityJson'][link['MobilityId']];base=t['FlyPresetsJson'][mob['FlyPresetId']]
+    assert base['MaxSpeed']==250 and base['MaxSpeedYaw']==82.5
+    ratio=c['max_speed_yaw']/base['MaxSpeedYaw']
+    fields={k:round(base[k]*ratio,8) for k in ['MinSpeedYaw','MaxSpeedYaw','AfterburnYaw','CornerSpeedYaw','CornerAfterburnSpeedYaw']}
+    preset=clone('FlyPresetsJson',base['Id'],{'Name':'FA YF23 turn700',**fields},why)
+    mobility=clone('MobilityJson',mob['Id'],{'Name':'FA YF23 turn700','FlyPresetId':preset},why)
+    put('UnitPropulsionsJson',link['Id'],{'MobilityId':mobility},why)
+    mods={r['Id'] for r in t['ModificationsJson'].values() if r['UnitId']==uid}
+    assert not any(o['MobilityId'] for o in t['OptionsJson'].values() if o['ModificationId'] in mods),'Unrecognized YF23 mobility override'
