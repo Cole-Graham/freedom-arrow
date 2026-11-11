@@ -32,7 +32,7 @@ static class ChinaUi
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSprite)),prefix:seed);
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSpriteAsync)),prefix:seed);
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSpecIcon)),prefix:seed);
-        harmony.Patch(AccessTools.Method(typeof(HangarUnitFilter),"Initialize"),prefix:new HarmonyMethod(typeof(ChinaUi),nameof(Capacity)));
+        harmony.Patch(AccessTools.Method(typeof(HangarUnitFilter),"Initialize"),prefix:new HarmonyMethod(typeof(ChinaUi),nameof(Capacity)),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(FilterReady)));
         harmony.Patch(AccessTools.Method(typeof(CountryFilterButtonsGroup),"Initialize"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(CountryRow)));
         harmony.Patch(AccessTools.Method(typeof(DeckCreationPopup),"RenderCountries"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(DeckCountries)));
         MelonLogger.Msg("PLA_CHINA_UI hooks installed; native layout/click validation pending");
@@ -61,10 +61,13 @@ static class ChinaUi
     {
         if(Ready)__instance._maxCountryGroupsCount=Math.Max(3,__instance._maxCountryGroupsCount);
     }
+    public static void FilterReady(HangarUnitFilter __instance)
+    {
+        if(Ready)MelonLogger.Msg($"PLA_CHINA_UI_FILTER_READY initialized={__instance._isInitialized} countryGroups={__instance._countryFilterButtonsGroups?.Count} flags={__instance._filterFlagsMapping?.Count} buttons={__instance._flagToButtonMapping?.Count} reset={__instance._unitFilterResetFlag}");
+    }
     public static void CountryRow(CountryFilterButtonsGroup __instance,Countries country)
     {
         if(!Ready)return;
-        if(plaOnly&&country.Id!=4){__instance.gameObject.SetActive(false);return;}
         if(country.Id!=4)return;
         __instance.transform.SetAsFirstSibling();
         MelonLogger.Msg("PLA_CHINA_UI Arsenal China row initialized above other countries; next filter bit="+__instance.NextBitIndex);
@@ -77,10 +80,10 @@ static class ChinaUi
         int china=-1;
         for(int i=0;i<countries.Length&&i<buttons.Length;i++)
         {
-            if(plaOnly)buttons[i].gameObject.SetActive(countries[i].Id==4);
+            buttons[i].gameObject.SetActive(true);
             if(countries[i].Id==4){china=i;buttons[i].transform.SetAsFirstSibling();}
         }
         if(plaOnly&&china>=0&&__instance._selectedCountryIdx!=china)__instance.OnCountrySelected(buttons[china].gameObject);
-        MelonLogger.Msg($"PLA_CHINA_UI deck countries rendered; PLA-only={plaOnly}; China index={china}; native callbacks retained");
+        MelonLogger.Msg($"PLA_CHINA_UI deck countries rendered; PLA-units-only={plaOnly}; China index={china}; native callbacks retained");
     }
 }

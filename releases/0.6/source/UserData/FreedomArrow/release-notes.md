@@ -1,4 +1,18 @@
-# PLA TEST Build 11
+# PLA TEST Build 12
+
+**Named stand-ins cover all 157 Model links entries that identify a model or reuse choice. This adds 102 units, reuses existing cards where appropriate, moves SF into Marines / SF, and restores RU/US selectors and specs for UI testing with their unit cards hidden. It retains the combined Build 11 arm repair and aircraft loading/canopy changes. Native filtering still needs validation after the fix.**
+
+## Current changes
+
+- Airforce / Airborne keeps the airborne line squad. SF Assault, SF Recon and QTS-11 Digital Scouts are Marines / SF only. All outfit comparisons remain in Test.
+- Model availability and ownership are separate from card creation. Missing/pending model files use named donor stand-ins, with no claim of final Chinese weapons or statistics. New unassigned designs are parked in Test.
+- One actual platform can serve several specs or catalogue source rows. Alternate paint/seller packages do not automatically produce duplicate unit definitions. New role variants can be designed separately.
+- SR-5 now uses the approved native HIMARS visual. HQ-17 retains native TOR. Approved body/weapon offsets, infantry geometry, canopy finish and immediate stand-in hiding remain intact.
+- Russia and USA country/spec controls remain. Their unit DisplayInArmory flags are off. Keeping the native country groups avoids the single-country duplicate mask seen in Build 11; native behavior remains to be tested.
+- PLA equipment designs is the canonical editable equipment sheet. PLA equipment by spec links to it and groups entries by spec and class. It contains 174 current/draft equipment records and six planned recon gunships. Infantry uses the separate squad designer; infantry already in the game is retained. Recon plans do not add speculative game units or weapon statistics.
+- The public LIVE dev.45 launcher lock remains unchanged. No multiplayer test was performed.
+
+## Earlier Build 11 context
 
 **First PLA branch draft: five planned specializations, a Test pool, and 18 donor-based infantry roles in one complete pack. The arm fit is replaced to preserve forearm and hand thickness. Data and offline previews can be checked; native Arsenal, deck creation and combat remain unverified.**
 
@@ -498,3 +512,7 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 00:04:13 PST (America/Los_Angeles) — Prepared Build 9 with five branches plus Test, 18 infantry roles and replacement arm fit; preserved Build 8 cockpit work. Native checks remain pending.
 
 - 2026-11-11 00:21:03 PST (America/Los_Angeles) — Combined Build 9 specs and arm repair with Build 10 immediate hiding, retaining failure restoration and canopy assets. Native checks remain pending.
+
+- 2026-11-11 00:59:21 PST (America/Los_Angeles) — Added Build 12 catalogue stand-ins, Marines/SF assignment, RU/US UI controls and linked unit-design sheets. Native filter fix awaiting game validation.
+
+- 2026-11-11 01:12:58 PST (America/Los_Angeles) — Restricted the design tabs to equipment; retained existing infantry in the complete game pack.

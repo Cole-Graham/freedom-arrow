@@ -21,7 +21,7 @@ public partial class Mod
         try {
             var rules=JsonSerializer.Deserialize<List<BodyRule>>(File.ReadAllText(file))??new();
             foreach(var r in rules) {
-                if(!InfantryBodyIdentity.IsSupported(r.unitId) || r.lods.Length!=3)throw new InvalidDataException("Body prototype is restricted to unit901 or PLA configuration units985–1027 and three LODs");
+                if(!InfantryBodyIdentity.IsSupported(r.unitId) || r.lods.Length!=3)throw new InvalidDataException("Body rule must use an approved PLA infantry unit and three LODs");
                 if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
                 foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
             }

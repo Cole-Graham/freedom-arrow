@@ -1,0 +1,24 @@
+{
+  "spreadsheet_id": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
+  "equipment_designs": {
+    "sheet_id": 502,
+    "title": "PLA equipment designs",
+    "canonical_key": "Unit / plan ID",
+    "record_count": 180,
+    "game_equipment": 174,
+    "planned_recon": 6,
+    "editable_design_columns": "H:L",
+    "preserve_user_columns": "B:L",
+    "source_link_column": "M"
+  },
+  "equipment_by_spec": {
+    "sheet_id": 503,
+    "title": "PLA equipment by spec",
+    "membership_count": 219,
+    "shared_unit_policy": "One canonical record per ID, linked from all spec memberships"
+  },
+  "scope": "Equipment only; Type=2 infantry excluded from these tabs and retained in game. Infantry squad designer is separate.",
+  "future_sync": "Read current cells and join by stable unit/plan ID; preserve human design fields and match current source names/links. Never replace whole tabs.",
+  "snapshot_time": "2026-11-11 01:12:58 PST (America/Los_Angeles)",
+  "native_ui_verified": false
+}

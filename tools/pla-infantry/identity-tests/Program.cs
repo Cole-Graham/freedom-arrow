@@ -12,3 +12,6 @@ Console.WriteLine($"PASS: {checks} checks; mixed build metadata and stale helmet
 foreach(int uid in new[]{901}.Concat(Enumerable.Range(985,43)))Check(FAModels.InfantryBodyIdentity.IsSupported(uid));
 foreach(int uid in new[]{-1,0,900,902,984,1028,32768})Check(!FAModels.InfantryBodyIdentity.IsSupported(uid));
 Console.WriteLine("PASS: all 44 intended body IDs accepted; adjacent IDs rejected");
+
+foreach(int uid in new[]{1108,1109})Check(FAModels.InfantryBodyIdentity.IsSupported(uid));
+foreach(int uid in new[]{1107,1110})Check(!FAModels.InfantryBodyIdentity.IsSupported(uid));

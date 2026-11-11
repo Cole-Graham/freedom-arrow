@@ -1,0 +1,1415 @@
+[
+  {
+    "sheet_row": 3,
+    "category": "Artillery",
+    "name": "DF-17",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/df-17-missile-on-road-mobile-vehicle",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 4,
+    "category": "Artillery",
+    "name": "DF-15",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/pla-df-15b-missile-82ceec4b-90f9-43a6-ae6f-2b6420d13876",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 5,
+    "category": "Artillery",
+    "name": "DF-21",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 6,
+    "category": "Artillery",
+    "name": "DF-21D",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 7,
+    "category": "Artillery",
+    "name": "DF-31A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 8,
+    "category": "Artillery",
+    "name": "PCL-09",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 9,
+    "category": "Artillery",
+    "name": "PCL-181 / SH-15",
+    "model": "CGTrader",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "High poly; domestic/export fit needs checking."
+  },
+  {
+    "sheet_row": 10,
+    "category": "Artillery",
+    "name": "PHL-03",
+    "model": "https://www.cgtrader.com/3d-models/military/other/chinese-phl03-multiple-launch-rocket-system",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 12,
+    "category": "Artillery",
+    "name": "PHL-16",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/china-pcl-191-long-range-mlrs",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 13,
+    "category": "Artillery",
+    "name": "PHL-191 / AR3",
+    "model": "https://www.cgtrader.com/3d-models/military/gun/china-phl-191-rocket-artillery",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Full vehicle; high poly; materials need work."
+  },
+  {
+    "sheet_row": 14,
+    "category": "Artillery",
+    "name": "PHL-81",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/phl-81-china-mrls-type-81",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 15,
+    "category": "Artillery",
+    "name": "PLL-05",
+    "model": "Keep current model",
+    "model2": null,
+    "sheet_status": "Complete \u2014 keep current",
+    "note": "Osama approved the current PLL-05 model; replacement not needed."
+  },
+  {
+    "sheet_row": 16,
+    "category": "Artillery",
+    "name": "PLL-09",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 17,
+    "category": "Artillery",
+    "name": "PLZ-05",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 18,
+    "category": "Artillery",
+    "name": "PLZ-07",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 19,
+    "category": "Artillery",
+    "name": "PLZ-07B",
+    "model": "ShuyangXi \u2014 PLZ-07",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "Marine 07B fit is not established by this PLZ-07 listing."
+  },
+  {
+    "sheet_row": 20,
+    "category": "Artillery",
+    "name": "PLZ-45A4",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 21,
+    "category": "Artillery",
+    "name": "PLZ-70",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 22,
+    "category": "Artillery",
+    "name": "PLZ-83",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 23,
+    "category": "Artillery",
+    "name": "PLZ-85",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 24,
+    "category": "Artillery",
+    "name": "PLZ-89",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 26,
+    "category": "Artillery",
+    "name": "SR-5",
+    "model": "Use in game HIMARS",
+    "model2": null,
+    "sheet_status": "Complete \u2014 reuse HIMARS",
+    "note": "Osama chose in-game HIMARS as the SR-5 model; external search closed."
+  },
+  {
+    "sheet_row": 27,
+    "category": "Artillery",
+    "name": "SY-400",
+    "model": "CGTrader \u2014 missile only",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Missile only; complete launcher still missing."
+  },
+  {
+    "sheet_row": 34,
+    "category": "AA",
+    "name": "HQ-6A",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/hq-6a",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 35,
+    "category": "AA",
+    "name": "HQ-11",
+    "model": "CGTrader \u2014 brtgai",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "8-canister, 8\u00d78 radar/launcher; consistent with HQ-11. Not HQ-16."
+  },
+  {
+    "sheet_row": 36,
+    "category": "AA",
+    "name": "HQ-12 / KS-1",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 37,
+    "category": "AA",
+    "name": "HQ-16",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 38,
+    "category": "AA",
+    "name": "HQ-17",
+    "model": "Use vanilla in game TOR",
+    "model2": null,
+    "sheet_status": "Complete \u2014 reuse TOR",
+    "note": "Existing sheet choice: use vanilla TOR; no purchase needed."
+  },
+  {
+    "sheet_row": 39,
+    "category": "AA",
+    "name": "HQ-17A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 40,
+    "category": "AA",
+    "name": "HQ-7",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 41,
+    "category": "AA",
+    "name": "HQ-7B",
+    "model": "ShuyangXi \u2014 HQ-7",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "Base HQ-7 model; exact 7B carrier/configuration needs checking."
+  },
+  {
+    "sheet_row": 42,
+    "category": "AA",
+    "name": "HQ-9",
+    "model": "https://www.cgtrader.com/3d-models/military/armor/china-hq-9-long-range-missile-launch-vehicle",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 43,
+    "category": "AA",
+    "name": "JRVG-1",
+    "model": "Clean up current model",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 44,
+    "category": "AA",
+    "name": "PGL-625",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 45,
+    "category": "AA",
+    "name": "PGZ-04",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 46,
+    "category": "AA",
+    "name": "PGZ-04A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "ShuyangXi PGZ-04; exact 04A configuration needs checking."
+  },
+  {
+    "sheet_row": 47,
+    "category": "AA",
+    "name": "PGZ-09",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 48,
+    "category": "AA",
+    "name": "PGZ-88",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 49,
+    "category": "AA",
+    "name": "PGZ-95",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 54,
+    "category": "Vehicles",
+    "name": "AFT-09",
+    "model": "Cults3D",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Print-oriented; check existing HJ-8/AFT09 source first."
+  },
+  {
+    "sheet_row": 55,
+    "category": "Vehicles",
+    "name": "CTL-181 loitering munition launcher",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/dongfeng-uav-launcher-vehicle-ctl-181-with-drone-14549518-41e9-4b9f-a2db-03ca50da6627",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 56,
+    "category": "Vehicles",
+    "name": "AFT-10",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 57,
+    "category": "Vehicles",
+    "name": "ZBD-251",
+    "model": "CGTrader \u2014 editorial",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Designation unverified; high poly."
+  },
+  {
+    "sheet_row": 58,
+    "category": "Vehicles",
+    "name": "CS/VN3C MG",
+    "model": "use the russian vehicle from guard in recon tab",
+    "model2": null,
+    "sheet_status": "Download available",
+    "note": "CC BY badge; package/authorship need inspection."
+  },
+  {
+    "sheet_row": 59,
+    "category": "Vehicles",
+    "name": "CSK-131 Mengshi",
+    "model": "https://www.cgtrader.com/3d-models/military/military-vehicle/dongfeng-mengshi-csk-181-4x4-light-tactical-vehicle-with-qjc-88",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 60,
+    "category": "Vehicles",
+    "name": "CSK-181",
+    "model": "CGModel",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "UV/texture work and license tier unresolved."
+  },
+  {
+    "sheet_row": 62,
+    "category": "Vehicles",
+    "name": "HJ-10",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 63,
+    "category": "Vehicles",
+    "name": "HJ-8",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/wz550-4x4-with-hj-9",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 64,
+    "category": "Vehicles",
+    "name": "PTL-02",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 65,
+    "category": "Vehicles",
+    "name": "PTZ-89",
+    "model": "Maybe touch up current model, add metalic layer",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 66,
+    "category": "Vehicles",
+    "name": "QN-506",
+    "model": "https://www.cgtrader.com/3d-models/military/military-vehicle/qn-506-multi-weapon-tracked-armored-vehicle",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Existing file is not approval; purchase/quality must be established."
+  },
+  {
+    "sheet_row": 68,
+    "category": "Vehicles",
+    "name": "Type 59 \u2014 FlashPoint",
+    "model": "Sketchfab \u2014 download",
+    "model2": null,
+    "sheet_status": "Download available",
+    "note": "User-supplied. API confirms download + CC BY; files/quality untested."
+  },
+  {
+    "sheet_row": 69,
+    "category": "Vehicles",
+    "name": "Type 59D",
+    "model": "https://www.cgtrader.com/3d-models/military/military-vehicle/type-59d-tank",
+    "model2": null,
+    "sheet_status": "Needs source",
+    "note": "Viewer-only listing removed. Downloadable base Type 59 is a separate row."
+  },
+  {
+    "sheet_row": 70,
+    "category": "Vehicles",
+    "name": "Type 63 APC \u2014 older base",
+    "model": "CGTrader",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Outside post-80s focus; local 63C asset exists."
+  },
+  {
+    "sheet_row": 72,
+    "category": "Vehicles",
+    "name": "Type 86 \u2014 original turret",
+    "model": "TurboSquid \u2014 editorial",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Does not supply the 86A upgrade turret."
+  },
+  {
+    "sheet_row": 73,
+    "category": "Vehicles",
+    "name": "Type 89",
+    "model": "https://www.cgtrader.com/3d-models/military/military-vehicle/type-89-afv",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 74,
+    "category": "Vehicles",
+    "name": "Type 89A",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/zsd-89a-apc",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": null
+  },
+  {
+    "sheet_row": 75,
+    "category": "Vehicles",
+    "name": "VN17",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 76,
+    "category": "Vehicles",
+    "name": "VN20",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 77,
+    "category": "Vehicles",
+    "name": "VN20-B",
+    "model": "RenderHub",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Very high poly; distribution terms unreviewed."
+  },
+  {
+    "sheet_row": 78,
+    "category": "Vehicles",
+    "name": "VN22",
+    "model": "CGTrader",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Exact turret unverified; variants not all included."
+  },
+  {
+    "sheet_row": 79,
+    "category": "Vehicles",
+    "name": "VP4",
+    "model": "Sketchfab \u2014 free lead",
+    "model2": null,
+    "sheet_status": "Download available",
+    "note": "CC BY badge; package/authorship need inspection."
+  },
+  {
+    "sheet_row": 80,
+    "category": "Vehicles",
+    "name": "VT-1A / MBT-2000",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 81,
+    "category": "Vehicles",
+    "name": "VT-4 / Al-Hyder",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 82,
+    "category": "Vehicles",
+    "name": "VT-5",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 83,
+    "category": "Vehicles",
+    "name": "WZ-1224",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 85,
+    "category": "Vehicles",
+    "name": "WZ-551",
+    "model": "CGTrader \u2014 ZSL-92",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "Related-family replacement; verify exact turret/hull."
+  },
+  {
+    "sheet_row": 91,
+    "category": "Vehicles",
+    "name": "ZBD-03 / ZLC-2000",
+    "model": "TurboSquid \u2014 editorial",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Editorial restriction."
+  },
+  {
+    "sheet_row": 92,
+    "category": "Vehicles",
+    "name": "ZBD-04",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 93,
+    "category": "Vehicles",
+    "name": "ZBD-04A",
+    "model": "Owned ZBD-04 source",
+    "model2": null,
+    "sheet_status": "Owned source \u2014 variant check",
+    "note": "Purchased package is ZBD-04; ZBD-04A fit is unverified. Exact ZBD-04 has its own complete entry."
+  },
+  {
+    "sheet_row": 94,
+    "category": "Vehicles",
+    "name": "ZBD-05",
+    "model": "TurboSquid \u2014 editorial",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Check materials; distinct from ZTD-05."
+  },
+  {
+    "sheet_row": 98,
+    "category": "Vehicles",
+    "name": "ZBL-09",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 99,
+    "category": "Vehicles",
+    "name": "ZBL-191",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 100,
+    "category": "Vehicles",
+    "name": "ZBL19 \u2014 seller name",
+    "model": "TurboSquid \u2014 editorial",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "Buyable seller-labelled ZBL19; not the same as paid ZBL-191."
+  },
+  {
+    "sheet_row": 102,
+    "category": "Vehicles",
+    "name": "ZBD-86",
+    "model": "https://www.cgtrader.com/3d-models/vehicle/military-vehicle/chinese-pla-zbd-86-ifv-sand-camo",
+    "model2": null,
+    "sheet_status": null,
+    "note": null
+  },
+  {
+    "sheet_row": 104,
+    "category": "Vehicles",
+    "name": "ZSD-89 / Type 89 APC",
+    "model": "CGTrader",
+    "model2": "7-model pack",
+    "sheet_status": "Needs purchase",
+    "note": "Candidate purchase; current ZSD-90 file does not close this task."
+  },
+  {
+    "sheet_row": 106,
+    "category": "Vehicles",
+    "name": "ZSL-92 family",
+    "model": "CGTrader \u2014 jeandiz",
+    "model2": "Free3D \u2014 editorial",
+    "sheet_status": "Needs purchase",
+    "note": "Buyable; check HMG/autocannon turret. Not purchased/approved."
+  },
+  {
+    "sheet_row": 108,
+    "category": "Vehicles",
+    "name": "ZTL-11",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 109,
+    "category": "Vehicles",
+    "name": "ZTL-191",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 110,
+    "category": "Vehicles",
+    "name": "ZTQ-15",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 112,
+    "category": "Vehicles",
+    "name": "ZTZ-100",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 114,
+    "category": "Vehicles",
+    "name": "ZTZ-59 / Type 59",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 115,
+    "category": "Vehicles",
+    "name": "ZTZ-80 / Type 80",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 118,
+    "category": "Vehicles",
+    "name": "ZTZ-96A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 119,
+    "category": "Vehicles",
+    "name": "ZTZ-96B",
+    "model": "ShuyangXi \u2014 source",
+    "model2": null,
+    "sheet_status": "Complete \u2014 source on hand",
+    "note": "Previously supplied paid-source batch; absent from these screenshots."
+  },
+  {
+    "sheet_row": 120,
+    "category": "Vehicles",
+    "name": "ZTZ-99",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 121,
+    "category": "Vehicles",
+    "name": "ZTZ-99A",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 124,
+    "category": "Air",
+    "name": "AR-2000",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 125,
+    "category": "Air",
+    "name": "CR-500",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 126,
+    "category": "Air",
+    "name": "CR-500B",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 127,
+    "category": "Air",
+    "name": "FH-97A",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 128,
+    "category": "Air",
+    "name": "GJ-11",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 129,
+    "category": "Air",
+    "name": "H-6K",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 130,
+    "category": "Air",
+    "name": "J-10C",
+    "model": "Owned J-10CE source",
+    "model2": null,
+    "sheet_status": "Owned source \u2014 variant check",
+    "note": "Purchased package is J-10CE; confirm domestic J-10C fit before treating this variant as complete."
+  },
+  {
+    "sheet_row": 131,
+    "category": "Air",
+    "name": "J-10CE",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 132,
+    "category": "Air",
+    "name": "J-15",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 133,
+    "category": "Air",
+    "name": "J-15D",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 134,
+    "category": "Air",
+    "name": "J-16",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 135,
+    "category": "Air",
+    "name": "J-16D",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 136,
+    "category": "Air",
+    "name": "J-20",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 137,
+    "category": "Air",
+    "name": "J-20 \u2014 alternate seller package",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 138,
+    "category": "Air",
+    "name": "J-20B \u2014 seller package",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 139,
+    "category": "Air",
+    "name": "J-20S",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 140,
+    "category": "Air",
+    "name": "J-35",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 141,
+    "category": "Air",
+    "name": "J-35 \u2014 four paint package",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 142,
+    "category": "Air",
+    "name": "J-36",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 143,
+    "category": "Air",
+    "name": "J-5",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 144,
+    "category": "Air",
+    "name": "J-5 \u2014 two seat package",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 145,
+    "category": "Air",
+    "name": "J-50",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 146,
+    "category": "Air",
+    "name": "J-6",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 147,
+    "category": "Air",
+    "name": "J-7",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 148,
+    "category": "Air",
+    "name": "J-7E / J-7G",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 149,
+    "category": "Air",
+    "name": "J-8I / J-8A",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 150,
+    "category": "Air",
+    "name": "J-8II / J-8F",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 151,
+    "category": "Air",
+    "name": "JH-7A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 152,
+    "category": "Air",
+    "name": "Jiutian UAV",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 153,
+    "category": "Air",
+    "name": "KJ-500 / KJ-500H",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 154,
+    "category": "Air",
+    "name": "KQ-200",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 155,
+    "category": "Air",
+    "name": "MD-22",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 156,
+    "category": "Air",
+    "name": "MiG-15 \u2014 PLAAF markings",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue entry; era/concept fit is not roster approval."
+  },
+  {
+    "sheet_row": 157,
+    "category": "Air",
+    "name": "White Emperor \u2014 concept",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "Catalogue concept; inclusion is not roster approval."
+  },
+  {
+    "sheet_row": 159,
+    "category": "Air",
+    "name": "WZ-7",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 160,
+    "category": "Air",
+    "name": "WZ-8",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 161,
+    "category": "Air",
+    "name": "Y-20B",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 162,
+    "category": "Air",
+    "name": "Y-8 family \u2014 seller package",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 163,
+    "category": "Air",
+    "name": "Z-10",
+    "model": "ShuyangXi \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "ShuyangXi; ownership shown in Osama\u2019s screenshots (9 Nov purchase)."
+  },
+  {
+    "sheet_row": 164,
+    "category": "Air",
+    "name": "Z-10K",
+    "model": "Keep current Z-10ME model",
+    "model2": null,
+    "sheet_status": "Complete \u2014 keep current",
+    "note": "Osama approved existing Z-10ME mesh; currently mapped to Z-10K. No replacement purchase."
+  },
+  {
+    "sheet_row": 166,
+    "category": "Air",
+    "name": "Z-19",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 167,
+    "category": "Air",
+    "name": "Z-20",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 168,
+    "category": "Air",
+    "name": "Z-21",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 169,
+    "category": "Air",
+    "name": "Z-6B UAV",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 170,
+    "category": "Air",
+    "name": "Z-8L",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 171,
+    "category": "Air",
+    "name": "Z-9",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 172,
+    "category": "Air",
+    "name": "Z-9WA",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase \u2014 variant check",
+    "note": "ShuyangXi Z-9; exact WA configuration needs checking."
+  },
+  {
+    "sheet_row": 173,
+    "category": "Infantry / weapons",
+    "name": "Chinese Soldier Special Forces \u2014 tiger-studio",
+    "model": "CGTrader \u2014 owned",
+    "model2": null,
+    "sheet_status": "Complete \u2014 owned",
+    "note": "Ownership shown in Osama\u2019s screenshot; purchased 9 Nov 2026."
+  },
+  {
+    "sheet_row": 186,
+    "category": "Infantry / weapons",
+    "name": "PLAN flight deck crew",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 199,
+    "category": "Infantry / weapons",
+    "name": "QJY-201",
+    "model": "Not found",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "QJY-201 by kollegaboss25 pictured in Shawn\u2019s library. Source located; files and quality check pending."
+  },
+  {
+    "sheet_row": 210,
+    "category": "Naval",
+    "name": "AJX-002 UUV",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 211,
+    "category": "Naval",
+    "name": "Hangzhou DDG-136 \u2014 modified",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 212,
+    "category": "Naval",
+    "name": "Hangzhou DDG-136 \u2014 original",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 213,
+    "category": "Naval",
+    "name": "HSU-001 UUV",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 214,
+    "category": "Naval",
+    "name": "HSU-100 UUV",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 215,
+    "category": "Naval",
+    "name": "Type 001 Liaoning",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 216,
+    "category": "Naval",
+    "name": "Type 001A Shandong",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 217,
+    "category": "Naval",
+    "name": "Type 003 Fujian",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn candidate \u2014 check quality",
+    "note": "Shawn has Fujian low-poly by mojtaba-mirshafie, a different package from the preferred ShuyangXi link. Files/quality pending."
+  },
+  {
+    "sheet_row": 218,
+    "category": "Naval",
+    "name": "Type 039C",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 219,
+    "category": "Naval",
+    "name": "Type 051C",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 220,
+    "category": "Naval",
+    "name": "Type 052C",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 221,
+    "category": "Naval",
+    "name": "Type 052D",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn owns \u2014 files pending",
+    "note": "ShuyangXi listing pictured in Shawn\u2019s library. Osama says Shawn can help supply it; files not yet received."
+  },
+  {
+    "sheet_row": 222,
+    "category": "Naval",
+    "name": "Type 054B",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 223,
+    "category": "Naval",
+    "name": "Type 055",
+    "model": "Product link pending",
+    "model2": "Shawn \u2014 ownership evidence",
+    "sheet_status": "Shawn candidate \u2014 check quality",
+    "note": "Type 055 destroyer low-poly by bixoPB pictured in Shawn\u2019s library. Added as a candidate; files/quality pending."
+  },
+  {
+    "sheet_row": 224,
+    "category": "Naval",
+    "name": "Type 056A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 225,
+    "category": "Naval",
+    "name": "Type 093A",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 226,
+    "category": "Naval",
+    "name": "Type 726 LCAC",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 227,
+    "category": "Naval",
+    "name": "Type 901 replenishment ship",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 228,
+    "category": "Naval",
+    "name": "UUV-300CB",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  },
+  {
+    "sheet_row": 229,
+    "category": "Naval",
+    "name": "YJ-18 ship launcher",
+    "model": "ShuyangXi \u2014 buy",
+    "model2": null,
+    "sheet_status": "Needs purchase",
+    "note": "ShuyangXi catalogue; acquisition still needed."
+  }
+]

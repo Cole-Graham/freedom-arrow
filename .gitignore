@@ -250,3 +250,5 @@ thirdparty-tools/BAModManager-main/release/
 # Locally rebuilt PLA mesh/atlas payloads; large assets stay outside source Git.
 /releases/0.6/source/UserData/FAModels/*.fas
 /releases/0.6/source/UserData/FAModels/*.png
+
+/tools/pla-specs/effective-preview.json

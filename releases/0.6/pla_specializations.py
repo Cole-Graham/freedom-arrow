@@ -108,19 +108,19 @@ def apply(root,t,patches,body_rules,weapon_rules,native_ids):
  for spec in c['specs']:
   if spec['id'] not in t['SpecializationsJson']:
    template=copy.deepcopy(t['SpecializationsJson'][17]);template.pop('Id');template.update(CountryId=4,Name='PLA '+spec['name'],UIName=spec['name'],Icon='FA_CHINA_FLAG',Illustration='FA_CHINA_FLAG');put('SpecializationsJson',spec['id'],template)
-  put('SpecializationsJson',spec['id'],{**spec['fields'],'UIDescription':('Unused models and uniform/helmet comparisons. Developer testing pool; not balanced.' if spec['id']==c['test_spec'] else 'PLA '+spec['name']+'. First branch draft; donor-based weapons and provisional5000-point category budget.')})
+  put('SpecializationsJson',spec['id'],{**spec['fields'],'Name':'PLA '+spec['name'],'UIName':spec['name'],'UIDescription':('Unused models and uniform/helmet comparisons. Developer testing pool; not balanced.' if spec['id']==c['test_spec'] else 'PLA '+spec['name']+'. First branch draft; donor-based weapons and provisional5000-point category budget.')})
  if c['hide_comparison_squads']:
   for uid in c['fixture_units']:put('Units',uid,{'DisplayInArmory':False})
  if c['pla_only']:
   for uid,u in list(t['Units'].items()):
    if u['CountryId']!=4:put('Units',uid,{'DisplayInArmory':False})
-  for uid,country in list(t['CountriesJson'].items()):put('CountriesJson',uid,{'Hidden':uid!=4})
-  for uid,spec in list(t['SpecializationsJson'].items()):put('SpecializationsJson',uid,{'ShowInHangar':spec['CountryId']==4})
+  for uid,country in list(t['CountriesJson'].items()):put('CountriesJson',uid,{'Hidden':uid not in (1,2,4)})
+  for uid,spec in list(t['SpecializationsJson'].items()):put('SpecializationsJson',uid,{'ShowInHangar':spec['CountryId'] in (1,2,4)})
  # Only UI flags changed on any original unit; original stats/weapons/skins remain byte-equivalent.
  for table,original in before.items():
   for uid,old in original.items():
    if table in ['SpecializationAvailabilitiesJson','TransportAvailabilitiesJson']:continue
-   now=t[table][uid];allowed={'Units':{'DisplayInArmory'},'CountriesJson':{'Hidden'},'SpecializationsJson':{'UIDescription','ShowInHangar',*{k for sp in c['specs'] for k in sp['fields']}}}.get(table,set())
+   now=t[table][uid];allowed={'Units':{'DisplayInArmory'},'CountriesJson':{'Hidden'},'SpecializationsJson':{'Name','UIName','UIDescription','ShowInHangar',*{k for sp in c['specs'] for k in sp['fields']}}}.get(table,set())
    assert {k for k in old.keys()|now.keys() if old.get(k)!=now.get(k)}<=allowed,(table,uid)
  counts={sp['id']:sum(r['SpecializationId']==sp['id'] for r in t['SpecializationAvailabilitiesJson'].values()) for sp in c['specs']}
  return {'build':c['build'],'pla_only':c['pla_only'],'hidden_fixture_units':c['fixture_units'] if c['hide_comparison_squads'] else [],'test_spec':c['test_spec'],'test_fixture_units':c['fixture_units'],'new_units':[r['unit'] for r in summaries],'new_infantry':summaries,'pool_counts':counts,'existing_units':c['existing_units'],'transports':c['transports'],'existing_combat_stats_unchanged':True,'native_verified':False}

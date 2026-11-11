@@ -2,16 +2,16 @@
 from pathlib import Path
 import hashlib,json,struct,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-11.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-12.bamod'
 with zipfile.ZipFile(p) as z:
  names=set(z.namelist());assert len(names)==len(z.namelist())
  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n for n in names)
- mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 11' and mod['version']=='11' and mod['type']=='modpack'
- assert z.read('README.md').startswith(b'# PLA TEST Build 11\n')
- m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==11 and m['label']=='PLA TEST Build 11'
+ mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 12' and mod['version']=='12' and mod['type']=='modpack'
+ assert z.read('README.md').startswith(b'# PLA TEST Build 12\n')
+ m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==12 and m['label']=='PLA TEST Build 12'
  assert names-{'mod.json','README.md','UserData/FreedomArrow/pla-package-manifest.json'}==set(m['sha256'])
  for n,h in m['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
- core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='11'
+ core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='12'
  for n,h in core['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
  def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
  units=table('units');roster=json.loads((R/'pla-test-contract.json').read_text())['cards'];assert len(roster)==79
@@ -20,7 +20,7 @@ with zipfile.ZipFile(p) as z:
  assert mod['repo']=='Cole-Graham/freedom-arrow'
  assert table('countries')['4']['Name']=='China' and not table('countries')['4']['Hidden']
  specs=table('specializations');assert len([x for x in specs.values() if x and x.get('CountryId')==4])==6
- assert table('countries')['1']['Hidden'] and table('countries')['2']['Hidden']
+ assert not table('countries')['1']['Hidden'] and not table('countries')['2']['Hidden']
  assert all(not r['DisplayInArmory'] for r in units.values() if r and r.get('CountryId')!=4 and 'DisplayInArmory' in r)
  draft=json.loads(z.read('UserData/FreedomArrow/pla-specializations.json'));assert draft['pla_only'] and len(draft['new_units'])==18
  assert not draft['hidden_fixture_units'] and draft['test_spec']==22
@@ -42,8 +42,11 @@ with zipfile.ZipFile(p) as z:
  assert all('green' in modelmap[n]['file'] for n in ['PLA ZTZ-99A','PLA ZBD-04A','PLA ZTZ-96B']) and 'black' in modelmap['PLA Z-10']['file']
  repair=json.loads(z.read('UserData/FreedomArrow/infantry-arm-repair.json'));assert sum(n.endswith('.fas') for n in repair['sha256'])==75 and len(repair['repacked_atlases'])==8
  for n,h in repair['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h
- assert len(body_rules)==44 and len({r['unitId'] for r in body_rules})==44
- assert {r['unitId'] for r in body_rules}=={901,*range(985,1028)}
+ catalogue=json.loads(z.read('UserData/FreedomArrow/pla-model-catalogue.json'));assert catalogue['entry_count']==157 and len(catalogue['new_units'])==102
+ assert len(body_rules)==46 and len({r['unitId'] for r in body_rules})==46
+ assert {r['unitId'] for r in body_rules}=={901,*range(985,1028),*catalogue['new_body_units']}
+ for e in catalogue['entries']:assert units[str(e['unit'])]['CountryId']==4 and units[str(e['unit'])]['DisplayInArmory']
+ assert specs['17']['UIName']=='Airforce / Airborne' and specs['20']['UIName']=='Marines / SF'
  options=table('options');assert all(0<int(k)<=32767 and struct.unpack('<h',struct.pack('<h',int(k)))[0]==int(k) for k,v in options.items() if v)
  migration=json.loads(z.read('UserData/FreedomArrow/option-id-migration.json'));assert len(migration)>=837
  assert all(str(v) in options and options[str(v)] is not None for v in migration.values())

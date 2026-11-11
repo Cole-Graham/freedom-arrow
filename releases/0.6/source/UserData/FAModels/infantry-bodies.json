@@ -613,5 +613,33 @@
       0
     ],
     "anchorHands": true
+  },
+  {
+    "unitId": 1108,
+    "lods": [
+      "pla2_regular_woodland_0.fas",
+      "pla2_regular_woodland_1.fas",
+      "pla2_regular_woodland_2.fas"
+    ],
+    "offset": [
+      0,
+      0.00311,
+      0
+    ],
+    "anchorHands": true
+  },
+  {
+    "unitId": 1109,
+    "lods": [
+      "pla2_regular_woodland_0.fas",
+      "pla2_regular_woodland_1.fas",
+      "pla2_regular_woodland_2.fas"
+    ],
+    "offset": [
+      0,
+      0.00311,
+      0
+    ],
+    "anchorHands": true
   }
 ]

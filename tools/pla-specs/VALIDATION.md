@@ -1,3 +1,19 @@
+# PLA TEST Build 12: equipment catalogue and Arsenal country controls
+
+**Build 12 adds 102 named stand-ins from a pinned 157-entry model/description audit and retains the complete Build 11 content. Data and full-package checks pass. Native Arsenal filtering, deck creation and combat remain unverified after these changes.**
+
+- 61,220 RowPlanner/reference checks across 24 tables; 123,252 planned writes. No default armor, carried-weapon/ammo graph or signed-short option-ID failure was found.
+- Runtime 12 and FAModels 0.3.12 compile with zero warnings/errors. The identity helper accepts the 46 exact approved body IDs.
+- 7,976 payload hashes and 77 core hashes pass. The linked Mod Launcher core accepts a fresh local-file installation with 7,977 files. This does not prove the Windows launcher GUI, download or PLAY flow.
+- All Build 11 model geometry, textures, cockpit finish, music and approved alignment values are retained. The model map intentionally switches SR-5 to native HIMARS and reuses applicable bindings for new cards.
+- 220 visible PLA units; spec memberships are Airforce/Airborne 17, Armored 24, Rocket Force 28, Marines/SF 28, Motorized 23 and Test 157. A shared ID remains one actual unit.
+- Russia/USA country and spec controls remain visible, while all non-China unit DisplayInArmory flags are false. This addresses the single-country filter-mask collision diagnosed from Build 11 logs; native success has not yet been demonstrated.
+- The equipment-only editable sheet has 174 current/draft equipment records plus six planned recon gunship records, with 219 spec memberships. Existing infantry is retained in-game and uses its own squad designer.
+- A linked model or description permits a named donor stand-in; it does not establish ownership, local file availability, final weapons, final performance or distribution rights. No assets were purchased.
+- The source catalogue is a dated snapshot. Subsequent human sheet edits must be reconciled by unit ID/name, without overwriting design fields. No LIVE merge or multiplayer test was performed.
+
+## Historical Build 11 evidence
+
 # PLA TEST Build 11: combined Build 9 and Build 10
 
 **Build 11 retains all Build 9 branch/Test/infantry work and Build 10 immediate stand-in hiding. The complete archive and parent comparison pass. It is not installed and native behavior remains unverified.**
@@ -66,3 +82,5 @@ This candidate has not been installed. Use an isolated test copy or reconcile ne
 - 2026-11-11 00:10:03 PST (America/Los_Angeles) — Recorded combined Build 9 checks, Test pool, arm repair and exact canopy base preservation; kept candidate 6 results historical.
 
 - 2026-11-11 00:24:15 PST (America/Los_Angeles) — Added Build 11 exact parent-union checks and package validation; preserved Build 9/6 historical evidence.
+
+- 2026-11-11 01:12:58 PST (America/Los_Angeles) — Recorded Build 12 catalogue, reference/package checks, equipment-only sheet scope and native UI limits.

@@ -1,0 +1,13 @@
+{
+  "comparison": "Build 11 to Build 12",
+  "shared_assets_unchanged": 7893,
+  "allowed_metadata_changes": [
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/infantry-bodies.json",
+    "UserData/FAModels/infantry-weapons.json",
+    "UserData/FAModels/models.json"
+  ],
+  "body_rule_prefix_preserved": 44,
+  "all_previous_weapon_offsets_preserved": true,
+  "native_tested": false
+}

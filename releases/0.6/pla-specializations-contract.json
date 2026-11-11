@@ -1,5 +1,5 @@
 {
-  "build": 11,
+  "build": 12,
   "base_build": 10,
   "base_sha256": "42b9267b5d8328da75d68179f0e73fbb2c5862a8829ac8449148a48652305c69",
   "pla_only": true,
@@ -7,7 +7,7 @@
   "specs": [
     {
       "id": 17,
-      "name": "Airforce / SF",
+      "name": "Airforce / Airborne",
       "fields": {
         "ReconSlots": 6,
         "InfantrySlots": 6,
@@ -70,7 +70,7 @@
     },
     {
       "id": 20,
-      "name": "Naval / Marines",
+      "name": "Marines / SF",
       "fields": {
         "ReconSlots": 5,
         "InfantrySlots": 6,
@@ -754,7 +754,6 @@
       "name": "SF Assault",
       "parent": 130,
       "specs": [
-        17,
         20
       ],
       "body_from": 995,
@@ -765,7 +764,6 @@
       "name": "SF Recon",
       "parent": 116,
       "specs": [
-        17,
         20
       ],
       "body_from": 988,
@@ -776,7 +774,7 @@
       "name": "QTS-11 Digital Scouts",
       "parent": 725,
       "specs": [
-        17
+        20
       ],
       "body_from": 1007,
       "prototype_note": "Three QTS-11 rifles and one underbarrel GL; native M4/M203-derived behavior."

@@ -2848,5 +2848,43 @@
       0,
       0
     ]
+  },
+  {
+    "unitId": 1108,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1109,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
   }
 ]
