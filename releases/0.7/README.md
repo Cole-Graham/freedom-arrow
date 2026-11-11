@@ -1,6 +1,18 @@
-# Freedom Arrow 0.7.0-devtest.lat.14 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.15 — development candidate
 
-## Current test — missile-defence gun prediction with restored balance values
+## Current test — prediction with vanilla SPAAG ballistic values
+
+**C-RAM now uses vanilla horizontal/vertical dispersion 1.6/1.6 and muzzle velocity 805. The prediction correction and coverage are unchanged from lat.14. SPAAG range, damage and the added traversal speeds remain restored to vanilla.**
+
+Exactly three effective gameplay fields change versus lat.14: ammunition 262 DispersionHorizontalRadius 0 → 1.6, DispersionVerticalRadius 0 → 1.6 and MuzzleVelocity 1610 → 805. All other effective table values and non-version gameplay settings match lat.14. The rest of the Freedom Arrow mod remains present; this is prediction-only with respect to the SPAAG interception experiments, not an otherwise unmodified vanilla game.
+
+The same bounded correction covers the existing projectile-defence guns and preserves their native targeting masks. Prediction horizon remains 0.75 seconds, with native fallback beyond that limit. At vanilla speed some longer-flight shots may therefore retain native leading. Record applied and fallback totals when evaluating the result; the correction algorithm itself is unchanged.
+
+Import through Mod Manager, confirm the exact menu version above, repeat the same route and placement with ammunition available, then close normally and send the automatic ZIP. This candidate has not been installed or tested in-game. Public launcher remains locked to dev.45.
+
+## Historical lat.14 — restored range/damage/traversal, faster zero-spread C-RAM
+
+### Lat.14 gun coverage
 
 **This candidate removes the Actual Arrow SPAAG range/damage import and the doubled PIVADS/C-RAM traversal. The bounded prediction correction now applies to every existing direct, unguided missile-defence AA gun and radar-dependent autocannon, using each selected round's existing target mask.**
 
@@ -12,6 +24,8 @@ Lateralus's supplied lat.11 run verifies native activation: 1,093 corrected lead
 
 Use Mod Manager and the exact menu version above. Repeat the route with ammunition available, then send the automatic ZIP. The public launcher stays locked to dev.45. The 0.75-second horizon, 60-unit/10% correction limits and native fallback remain unchanged. At longer flight times the correction can still decline safely; scope inclusion does not mean every lead calculation is modified.
 
+
+## Historical lat.11 binding revision
 
 **Lat.11 replaces the prediction bridge's dependency on the generated BallisticDataStruct layout with a private 44-byte value containing explicit byte flags. Lat.10 refused installation in Lateralus's supplied run, so that run used native leading. The prediction algorithm and all gameplay tables remain equal to lat.10/lat.9; this is a binding correction. Native activation remains untested for lat.11.**
 
@@ -289,3 +303,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 - 2026-11-11 00:04:45 PST (America/Los_Angeles) — Prepared lat.10 C-RAM/SEAD bounded changing-velocity prediction, native fallback, ABI checks and invocation diagnostics; native game test pending.
 - 2026-11-11 00:31:45 PST (America/Los_Angeles) — Reworked lat.11 ballistic binding after lat.10 installation rejection; added independent byte-layout transport, native pointer angle solve and explicit startup diagnostics; activation pending.
 - 2026-11-11 00:58:38 PST (America/Los_Angeles) — Restored SPAAG range/damage and traversal, extended prediction to all existing projectile-defence gun pairs with native masks and ship origin bounds, and recorded supplied lat.11 activation evidence.
+- 2026-11-11 01:27:52 PST (America/Los_Angeles) — Restored C-RAM dispersion 1.6/1.6 and muzzle velocity 805 for the prediction-only comparison, retained lat.14 correction and prior stat rollbacks, and labelled older test notes as historical.
