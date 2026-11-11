@@ -1,3 +1,7 @@
+**Current: PLA TEST Build 8.** Source canopy glass now preserves specular reflections, uses metallic 0 and smoothness 0.95, with packed-map smoothness restricted to 0.90–0.98. Source textures/alpha, every mesh and other material settings remain as Build 7. These are chosen glass settings, not a claim to reconstruct the seller’s original shader. Native visual result is pending.
+
+Rebuild the local complete pack with `python tools/cockpits/reflections_package.py --base /path/PLA-TEST-Build-7.bamod --out /path/PLA-TEST-Build-8.bamod --zip /path/to/zip` after compiling FAModels 0.3.9 and Runtime 8. Run `dotnet run --project tools/cockpits/finish-tests/FinishTests.csproj -c Release` for the actual finish helper’s host checks. These do not run Unity rendering. Earlier Build 7 instructions below are historical.
+
 # Custom fighter cockpit policy
 
 **Build 7 repairs a measured Build 5 failure: the unavailable F-22 donor stopped aircraft assembly halfway through. J-20, J-20S, J-31, J-35, J-36, J-50 and YF-23 now use their own source glass material, texture alpha and original UVs.** The F-16 and Su-57 donor assignments remain. Native repair appearance is pending.
@@ -24,3 +28,5 @@ Compile FAModels 0.3.8 and PLA Runtime 7 against the pinned generated game assem
 - 2026-11-10 23:16:39 PST (America/Los_Angeles) — Added the cockpit donor contract, reproducible preparation/package commands and native verification limits.
 
 - 2026-11-10 23:42:36 PST (America/Los_Angeles) — Replaced the failing F-22 donor policy with original source glass/UVs and documented complete-or-rejected model loading; retained Build 5 evidence as a measured regression.
+
+- 2026-11-10 23:51:52 PST (America/Los_Angeles) — Added the opt-in Build 8 source canopy reflection finish and packed-map remaps; geometry/images unchanged and native appearance pending.

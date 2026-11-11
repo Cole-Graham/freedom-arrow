@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 7",
-  "version": "7",
+  "name": "PLA TEST Build 8",
+  "version": "8",
   "type": "modpack",
-  "description": "Complete PLA pack: source canopy materials for stealth fighters; atomic model loading prevents partial aircraft. Other Build 5 cockpit donors retained."
+  "description": "Complete PLA pack: reflective source canopy glass for stealth fighters; retains Build 7 geometry and alpha repair."
 }

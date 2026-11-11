@@ -71,7 +71,7 @@ for fn,info in files.items():
    q=compact(d,d['ind'][s])
    if info['donor']=='SOURCE':
     original_key=d['tex']+'|'+','.join(f'{v:.4f}' for v in d['col'])
-    settings=dict(source_mp.get(original_key,{}));settings.update(alpha='BLEND');settings.pop('clearGlass',None);settings.pop('opacity',None);settings.pop('cockpitDonor',None)
+    settings=dict(source_mp.get(original_key,{}));settings.update(alpha='BLEND',sourceCanopy=True);settings.pop('clearGlass',None);settings.pop('opacity',None);settings.pop('cockpitDonor',None)
     if d['tex']:
      stem=Path(d['tex']).stem;alias=stem+'_source_canopy';q['tex']=alias+'.png'
      for suffix in ['.png','_n.png','_mask.png']:

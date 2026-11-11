@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.8", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.9", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -282,7 +282,7 @@ public partial class Mod : MelonMod
 
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public string cockpitDonor { get; set; } = ""; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
+    public class MatP { public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
@@ -290,7 +290,7 @@ public partial class Mod : MelonMod
         // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.
         bool clearGlass = p?.clearGlass == true;
         if (clearGlass) { tex = ""; col = new Color(1f, 1f, 1f, Mathf.Clamp01(p.opacity)); }
-        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}");
+        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}");
         if (mats.TryGetValue(key, out var m) && m != null) return m;
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
@@ -342,11 +342,12 @@ public partial class Mod : MelonMod
             m.SetFloat("_MetallicRemapMin", 0f); m.SetFloat("_MetallicRemapMax", 1f); m.SetFloat("_SmoothnessRemapMin", 0f); m.SetFloat("_SmoothnessRemapMax", 1f);
             m.SetFloat("_AORemapMin", 0f); m.SetFloat("_AORemapMax", 1f);
         }
+        ApplyCanopyFinish(m, p.sourceCanopy);
         // Runtime-made materials skip the editor's HDRP setup (render queue, depth/motion-vector passes, keywords).
         // Without it, TAA smears the model with the background and it looks see-through. Run HDRP's own validation.
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
-        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
+        MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} sourceCanopy={p.sourceCanopy} preserveSpecular={m.GetFloat("_EnableBlendModePreserveSpecularLighting"):F0} effectiveMetallic={m.GetFloat("_Metallic"):F2} smoothRange={m.GetFloat("_SmoothnessRemapMin"):F2}..{m.GetFloat("_SmoothnessRemapMax"):F2} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }
 }

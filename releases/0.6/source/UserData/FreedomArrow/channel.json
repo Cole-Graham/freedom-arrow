@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "7",
+  "package_version": "8",
   "spotting": "vanilla",
-  "deployment_status": "repair_candidate",
-  "verification": "Build 5 F22 donor failure confirmed in game log. Source glass textures/UVs restored, alpha enabled only for glass. Native repair check pending."
+  "deployment_status": "canopy_reflection_candidate",
+  "verification": "Source canopy finish preserves specular and uses smooth dielectric settings. Build 7 geometry/textures retained. Native appearance pending."
 }
