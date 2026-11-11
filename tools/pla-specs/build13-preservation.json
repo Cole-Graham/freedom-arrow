@@ -1,0 +1,8 @@
+{
+  "base": "PLA TEST Build 12",
+  "compared_shared_assets": 7895,
+  "all_equal": true,
+  "body_bindings_exact": true,
+  "weapon_bindings_exact": true,
+  "native_verified": false
+}

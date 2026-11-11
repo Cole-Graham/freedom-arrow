@@ -1,11 +1,13 @@
 {
   "spreadsheet_id": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
-  "equipment_records": 180,
-  "game_equipment_records": 174,
-  "planned_recon_records": 6,
-  "spec_memberships": 219,
+  "equipment_records": 160,
+  "game_equipment_records": 160,
+  "planned_recon_records": 0,
+  "spec_memberships": 218,
   "formula_reference_errors": 0,
   "infantry_rows_removed": 46,
   "remaining_human_design_values_preserved": true,
-  "checked_at": "2026-11-11T09:13:37.090Z"
+  "checked_at": "2026-11-11 01:55:38 PST (America/Los_Angeles)",
+  "implemented_recon_records": 6,
+  "excluded_equipment_records": 20
 }

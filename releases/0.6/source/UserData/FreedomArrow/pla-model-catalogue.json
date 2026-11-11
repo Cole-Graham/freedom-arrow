@@ -15,7 +15,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -33,7 +33,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -51,7 +51,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -69,7 +69,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -87,7 +87,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -105,7 +105,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -123,7 +123,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -163,7 +163,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -181,7 +181,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -244,7 +244,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -285,7 +285,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -325,7 +325,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -343,7 +343,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -361,7 +361,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -379,7 +379,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -397,7 +397,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -411,11 +411,8 @@
       "unit": 934,
       "parent": 934,
       "new_card": false,
-      "native_model": "DLC3_Kama",
-      "custom_model": {
-        "file": "m_sr5.fam",
-        "battle": "m_sr5_lo.fam"
-      },
+      "native_model": "US_HIMARS",
+      "custom_model": null,
       "implementation": "Existing card",
       "specs": [
         19
@@ -436,7 +433,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -454,7 +451,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -472,7 +469,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -490,7 +487,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -508,7 +505,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -545,7 +542,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -635,7 +632,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -676,7 +673,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -739,7 +736,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -757,7 +754,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -775,7 +772,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -793,7 +790,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -811,7 +808,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -829,7 +826,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -847,7 +844,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -889,7 +886,10 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17,
+        19,
+        20,
+        21
       ]
     },
     {
@@ -952,7 +952,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -1014,7 +1014,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1032,7 +1032,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1050,7 +1050,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1068,7 +1068,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1086,7 +1086,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1104,7 +1104,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1122,7 +1122,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1140,7 +1140,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1158,7 +1158,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1176,7 +1176,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -1194,7 +1194,10 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17,
+        19,
+        20,
+        21
       ]
     },
     {
@@ -1212,7 +1215,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1230,7 +1233,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1252,7 +1255,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -1270,7 +1273,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1292,7 +1295,10 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        18,
+        19,
+        20,
+        21
       ]
     },
     {
@@ -1310,7 +1316,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1332,7 +1338,7 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1354,7 +1360,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1372,7 +1378,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        20
       ]
     },
     {
@@ -1390,7 +1396,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -1411,7 +1417,9 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        18,
+        20,
+        21
       ]
     },
     {
@@ -1429,7 +1437,8 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        20,
+        21
       ]
     },
     {
@@ -1447,7 +1456,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1465,7 +1474,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1483,7 +1492,9 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19,
+        20,
+        21
       ]
     },
     {
@@ -1524,7 +1535,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        21
       ]
     },
     {
@@ -1569,7 +1580,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1587,7 +1598,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1605,7 +1616,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -1623,7 +1634,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1662,7 +1673,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        18
       ]
     },
     {
@@ -1702,7 +1713,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1720,7 +1731,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1738,7 +1749,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1760,7 +1771,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1782,7 +1793,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -1852,7 +1863,7 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2005,7 +2016,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2027,7 +2038,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2093,7 +2104,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2111,7 +2122,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2129,7 +2140,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2151,7 +2162,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2169,7 +2180,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2187,7 +2198,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2205,7 +2216,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2227,7 +2238,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2245,7 +2256,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2287,7 +2298,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2305,7 +2316,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2323,7 +2334,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        20
       ]
     },
     {
@@ -2346,7 +2357,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2364,7 +2375,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     },
     {
@@ -2380,10 +2391,8 @@
       "new_card": true,
       "native_model": "RU_MIG29SMT",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 159,
@@ -2400,7 +2409,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2440,7 +2449,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2458,7 +2467,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2521,7 +2530,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2565,7 +2574,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2583,7 +2592,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17
       ]
     },
     {
@@ -2601,7 +2610,8 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17,
+        20
       ]
     },
     {
@@ -2619,7 +2629,10 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        17,
+        19,
+        20,
+        21
       ]
     },
     {
@@ -2712,10 +2725,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 211,
@@ -2730,10 +2741,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 212,
@@ -2748,10 +2757,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 213,
@@ -2766,10 +2773,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 214,
@@ -2784,10 +2789,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 215,
@@ -2802,10 +2805,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 216,
@@ -2820,10 +2821,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 217,
@@ -2838,10 +2837,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 218,
@@ -2856,10 +2853,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 219,
@@ -2874,10 +2869,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 220,
@@ -2892,10 +2885,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 221,
@@ -2910,10 +2901,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 222,
@@ -2928,10 +2917,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 223,
@@ -2946,10 +2933,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 224,
@@ -2964,10 +2949,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 225,
@@ -2982,10 +2965,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 226,
@@ -3000,10 +2981,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 227,
@@ -3018,10 +2997,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 228,
@@ -3036,10 +3013,8 @@
       "new_card": true,
       "native_model": "US_Arleigh_Burke",
       "custom_model": null,
-      "implementation": "Named stand-in",
-      "specs": [
-        22
-      ]
+      "implementation": "Excluded from playable roster by user",
+      "specs": []
     },
     {
       "sheet_row": 229,
@@ -3050,13 +3025,13 @@
       "sheet_status": "Needs purchase",
       "note": "ShuyangXi catalogue; acquisition still needed.",
       "unit": 1129,
-      "parent": 321,
+      "parent": 226,
       "new_card": true,
-      "native_model": "US_Arleigh_Burke",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        22
+        19
       ]
     }
   ],

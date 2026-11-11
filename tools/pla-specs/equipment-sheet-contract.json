@@ -4,21 +4,45 @@
     "sheet_id": 502,
     "title": "PLA equipment designs",
     "canonical_key": "Unit / plan ID",
-    "record_count": 180,
-    "game_equipment": 174,
-    "planned_recon": 6,
+    "record_count": 160,
+    "game_equipment": 160,
+    "planned_recon": 0,
     "editable_design_columns": "H:L",
     "preserve_user_columns": "B:L",
-    "source_link_column": "M"
+    "source_link_column": "M",
+    "implemented_recon": 6
   },
   "equipment_by_spec": {
     "sheet_id": 503,
     "title": "PLA equipment by spec",
-    "membership_count": 219,
+    "membership_count": 218,
     "shared_unit_policy": "One canonical record per ID, linked from all spec memberships"
   },
-  "scope": "Equipment only; Type=2 infantry excluded from these tabs and retained in game. Infantry squad designer is separate.",
+  "scope": "Equipment only; no playable naval units or White Emperor. YJ-18 is a ground cruise-launcher prototype. All 28 infantry rigging fixtures remain Test-only; infantry design tab is separate.",
   "future_sync": "Read current cells and join by stable unit/plan ID; preserve human design fields and match current source names/links. Never replace whole tabs.",
-  "snapshot_time": "2026-11-11 01:12:58 PST (America/Los_Angeles)",
-  "native_ui_verified": false
+  "snapshot_time": "2026-11-11 01:55:38 PST (America/Los_Angeles)",
+  "native_ui_verified": false,
+  "build": 13,
+  "excluded_units": [
+    1099,
+    1110,
+    1111,
+    1112,
+    1113,
+    1114,
+    1115,
+    1116,
+    1117,
+    1118,
+    1119,
+    1120,
+    1121,
+    1122,
+    1123,
+    1124,
+    1125,
+    1126,
+    1127,
+    1128
+  ]
 }

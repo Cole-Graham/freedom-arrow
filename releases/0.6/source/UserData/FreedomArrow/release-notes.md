@@ -1,3 +1,19 @@
+# PLA TEST Build 13
+
+**All equipment now belongs to the five main PLA specs. Test contains only the 28 infantry appearance/rigging fixtures. The six named gunships each have a separate recon card. Basic ground and helicopter transports are shared where appropriate. This is an editable draft; native Arsenal, deck creation and combat validation remain pending.**
+
+- Airforce / Airborne gets the air and airborne equipment; Armored gets heavy tracked systems; Rocket Force / Conscripts gets missile/rocket support and legacy/reserve equipment; Marines / SF gets amphibious ground equipment and SF; Motorized gets mobile wheeled systems. Existing deliberate support attachments are retained.
+- All six recon gunships inherit their parent's weapons, sensor baseline and provisional cost. Their CategoryType is Recon; they are real separate unit definitions, ready for later optic/loadout/price edits. The previous six planned rows are promoted to these IDs.
+- Z-20 utility lift serves all five specs. Z-8L serves Airforce and Marines; Z-9 basic lift serves the light/mobile branches. Basic APCs and IFVs are reused without creating duplicate unit definitions. Every infantry transport link is checked against its actual squad size.
+- Gunships are excluded from troop transport choices. The Z-9WA, Z-19 and Z-21 donor troop capacities are cleared; no weapon, armor, sensor or price buffs are added.
+- Infantry rigging fixtures remain Test-only, including all approved outfit comparisons and the two extra model-list infantry fixtures. The 18 branch infantry roles remain in their assigned specs.
+- Approved geometry, textures, canopies, loading behavior, body/weapon offsets, music and preferences are retained. Russia/USA selector/spec controls remain visible with their unit cards hidden. Public LIVE dev.45 stays locked.
+- The equipment design sheet remains the editing surface; human design fields must be preserved during roster synchronization.
+
+- No ships, submarines or UUVs are playable. White Emperor is excluded. YJ-18 is a ground cruise-launcher draft in Rocket Force, using native Iskander-K appearance and two cruise missiles until its final design is supplied.
+
+## Historical Build 12 context
+
 # PLA TEST Build 12
 
 **Named stand-ins cover all 157 Model links entries that identify a model or reuse choice. This adds 102 units, reuses existing cards where appropriate, moves SF into Marines / SF, and restores RU/US selectors and specs for UI testing with their unit cards hidden. It retains the combined Build 11 arm repair and aircraft loading/canopy changes. Native filtering still needs validation after the fix.**
@@ -516,3 +532,7 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 00:59:21 PST (America/Los_Angeles) — Added Build 12 catalogue stand-ins, Marines/SF assignment, RU/US UI controls and linked unit-design sheets. Native filter fix awaiting game validation.
 
 - 2026-11-11 01:12:58 PST (America/Los_Angeles) — Restricted the design tabs to equipment; retained existing infantry in the complete game pack.
+
+- 2026-11-11 01:46:18 PST (America/Los_Angeles) — Assigned equipment to the five specs, added separate recon gunships and shared lift, retained Test-only rigging fixtures.
+
+- 2026-11-11 01:50:37 PST (America/Los_Angeles) — Applied Osama’s no-naval/no-White-Emperor direction and the YJ-18 ground cruise-launcher role.

@@ -417,5 +417,25 @@
     "file": "m_j10c_cg.fam",
     "battle": "m_j10c_lo2.fam",
     "align": false
+  },
+  "PLA Recon Z-10K": {
+    "file": "m_z10me.fam",
+    "align": false,
+    "battle": "m_z10me_lo.fam"
+  },
+  "PLA Recon Z-10": {
+    "file": "m_z10_black.fam",
+    "battle": "m_z10_black_lo.fam",
+    "align": false
+  },
+  "PLA Recon Z-19E": {
+    "file": "m_z19e.fam",
+    "align": false,
+    "battle": "m_z19e_lo.fam"
+  },
+  "PLA Recon Z-9WA": {
+    "file": "m_z9wa.fam",
+    "align": false,
+    "battle": "m_z9wa_lo.fam"
   }
 }

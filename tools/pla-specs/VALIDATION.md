@@ -1,3 +1,17 @@
+# PLA TEST Build 13: assigned equipment, shared lift and recon gunships
+
+**The complete equipment draft is assigned to five main specs. No ships, submarines, UUVs or White Emperor are playable. YJ-18 is a ground cruise-launcher prototype. Test retains only the 28 infantry appearance/rigging fixtures. Data and package checks pass; native behavior remains unverified.**
+
+- 63,365 actual RowPlanner/reference checks; 127,234 planned writes across 24 tables. All equipment has a main-spec pool, all excluded cards have no pools, every rigging fixture remains Test-only, and transport capacities cover the linked squads.
+- 160 equipment design records and 218 memberships; the six previous recon gunship plans now point to six actual new unit IDs. User design fields were preserved, and dependent formula checks found no errors.
+- Main pool memberships: Airforce/Airborne 51, Armored 51, Rocket Force/Conscripts 69, Marines/SF 40, Motorized 47; Test 28. These are memberships, not unique model counts or final balance.
+- The six recon versions retain parent weapons, sensor baseline and provisional cost. No recon stat bonus is invented. Gunships are excluded from troop-carrier choices, and the three transport-donor gunship capacities are cleared.
+- YJ-18 uses native Iskander-K ground appearance, the two-cruise-missile weapon graph and donor statistics. Ballistic/ship weapon branches are absent from this unit. Final Chinese performance/art are not claimed.
+- 7,977 payload hashes and 78 core hashes pass. All 7,895 compared shared assets match Build 12, including exact body/weapon bindings, all geometry, textures, cockpit finishes and music.
+- Runtime 13 and FAModels 0.3.13 compile with zero warnings/errors. Russia/USA selector/spec controls and hidden unit cards are retained. No multiplayer test was performed; public LIVE dev.45 is unchanged.
+
+## Historical Build 12 checks
+
 # PLA TEST Build 12: equipment catalogue and Arsenal country controls
 
 **Build 12 adds 102 named stand-ins from a pinned 157-entry model/description audit and retains the complete Build 11 content. Data and full-package checks pass. Native Arsenal filtering, deck creation and combat remain unverified after these changes.**
@@ -84,3 +98,5 @@ This candidate has not been installed. Use an isolated test copy or reconcile ne
 - 2026-11-11 00:24:15 PST (America/Los_Angeles) — Added Build 11 exact parent-union checks and package validation; preserved Build 9/6 historical evidence.
 
 - 2026-11-11 01:12:58 PST (America/Los_Angeles) — Recorded Build 12 catalogue, reference/package checks, equipment-only sheet scope and native UI limits.
+
+- 2026-11-11 01:55:38 PST (America/Los_Angeles) — Added Build 13 assignment, exclusion, cruise-launcher, transport, recon and preservation evidence; native limits retained.

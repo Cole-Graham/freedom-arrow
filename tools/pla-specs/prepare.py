@@ -7,6 +7,7 @@ from pipeline.crypto import aes_decrypt
 from pla_specializations import apply
 from china_ui import apply as apply_china_ui
 from pla_catalogue import apply as apply_catalogue
+from pla_assignments import apply as apply_assignments
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
 c=json.loads((R/'pla-specializations-contract.json').read_text())
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==c['base_sha256']
@@ -30,6 +31,13 @@ with zipfile.ZipFile(a.base) as z:
   apply_china_ui(R,effective,ui_put)
  receipt=apply(R,effective,patches,bodies,weapons,native_ids)
  models=json.loads(z.read('UserData/FAModels/models.json'));catalogue=apply_catalogue(R,effective,patches,bodies,weapons,models)
+ assignments=apply_assignments(R,effective,patches,models,native_ids)
+ for e in catalogue['entries']:
+  e.update(specs=assignments['assignments'].get(str(e['unit']),[]),native_model=effective['Units'][e['unit']]['ModelFileName'],custom_model=models.get(effective['Units'][e['unit']]['Name']))
+  if e['unit']==1129:e['parent']=226
+  if e['unit'] in assignments['excluded_units']:e['implementation']='Excluded from playable roster by user'
+ (source/'pla-model-catalogue.json').write_text(json.dumps(catalogue,indent=2)+'\n')
+ receipt['equipment_assignments']=assignments['assignments'];receipt['recon_variants']=assignments['recon_variants'];receipt['transports']=assignments['carriers']
  (R/'source/UserData/FAModels/models.json').write_text(json.dumps(models,indent=2)+'\n')
  receipt['catalogue_new_units']=catalogue['new_units'];receipt['catalogue_entries']=catalogue['entry_count']
  receipt['pool_counts']={str(s['id']):sum(v['SpecializationId']==s['id'] for v in effective['SpecializationAvailabilitiesJson'].values()) for s in c['specs']}

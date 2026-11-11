@@ -6,6 +6,7 @@ for row in t['SpecializationAvailabilitiesJson'].values():
  if row['SpecializationId'] in specs:pool.setdefault(row['UnitId'],set()).add(row['SpecializationId'])
 for e in catalogue['entries']:source.setdefault(e['unit'],[]).append(e)
 classes={0:'Recon',1:'Infantry',2:'Vehicles',3:'Support',4:'Logistics',5:'Helicopters',6:'Aircraft'};order=['Recon','Infantry','Vehicles','Support','Logistics','Helicopters','Aircraft','Naval'];records=[]
+assignment_path=r/'releases/0.6/source/UserData/FreedomArrow/pla-spec-assignments.json';implemented_recon={x['parent'] for x in json.loads(assignment_path.read_text())['recon_variants']} if assignment_path.exists() else set()
 for uid,u in units.items():
  uid=int(uid)
  if u['CountryId']!=4 or not u['DisplayInArmory'] or u['Type']==2:continue
@@ -19,7 +20,7 @@ for uid,u in units.items():
  parent=units.get(str(donor),{});donor_text=(str(donor)+' — '+parent.get('HUDName','')+'; current cost '+str(u['Cost'])) if donor else 'Current cost '+str(u['Cost'])+'; see source contract'
  records.append({'key':uid,'spec_ids':ss,'class':class_name,'values':[uid,u['HUDName'],specs[ss[0]],' | '.join(specs[i] for i in ss[1:]),class_name,visual,status,role,ammo,'','',note,link,donor_text]})
  # Record likely recon variants as plans, without adding speculative game definitions.
- if u['Type']==8 and (u['Role']==73 or u['HUDName'] in ['Z-9WA','Z-19','Z-21']) and 'recon' not in u['HUDName'].lower():
+ if uid not in implemented_recon and u['Type']==8 and (u['Role']==73 or u['HUDName'] in ['Z-9WA','Z-19','Z-21']) and 'recon' not in u['HUDName'].lower():
   records.append({'key':'PLAN-'+str(uid)+'-RECON','spec_ids':ss,'class':'Recon','values':['PLAN-'+str(uid)+'-RECON',u['HUDName']+' Recon',specs[ss[0]],' | '.join(specs[i] for i in ss[1:]),'Recon',visual,'Planned','Recon gunship variant','','','','Planned role; not yet a game unit. Design optics, weapons and cost before implementation.',link,'Based on unit '+str(uid)]})
 records.sort(key=lambda x:(x['spec_ids'][0],order.index(x['class']),str(x['values'][1]),str(x['key'])));assert len({str(x['key']) for x in records})==len(records)
 headers=['Unit / plan ID','Unit name','Primary spec','Shared specs','Class','Current model / visual','Design status','Role / unit design','Munitions / loadouts','Desired cost','Stat changes','Design notes','Model list source','Current donor / baseline']
