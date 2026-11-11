@@ -7,7 +7,7 @@ All six requested edits are promoted into the main-build candidate at Lateralus�
 - RMG (ammo 121, Grenadiers unit 622): damage 10.5 → 4; IgnoreCover 0.5 → 1 (100%). Penetration, splash and every other field stay unchanged.
 - Standard SMAW-D HEDP (ammo 128): IgnoreCover 0.5 → 0.25 (25%). Shared by Mech. Engineers 146 and Mech. Engineers CQC 708; damage remains 8.5.
 - Mech. Engineers CQC (unit 708): cost 50 → 55. Its replacement option 3348 rises from +5 to +10 over Mech. Engineers at 45, so both direct and configured costs are 55.
-- Mech. Riflemen MMG (unit 370): 2 → 4 AT4CS-RS total. Stock row 2906 remains linked to weapon 59 / ammo 2000131. Quantity 1 → 2 per carrier; the two existing carriers are unchanged. This does not add launchers or change the firing cycle.
+- Mech. Riflemen MMG (unit 370): 2 → 4 AT4CS-RS total. Stock row 2906 remains linked to weapon59/ammo2000131. Correction10Nov: four M4 riflemen each carry ONE AT4; quantity1 per carrier. Members660/661 gain AT4s; existing664/665 retain them. All seven soldiers, rifles and three M240Ls stay. The earlier two-carriers/two-rounds implementation was wrong; see MMG-AT4-CORRECTION.md for pending source/deployment status.
 - Combat Engineers' SMAW-D HIT ammunition (ammo 937): shown ammo name 84mm HE → 84mm Thermobaric; damage 8.5 → 6.5; IgnoreCover 0.5 → 1 (100%). All other fields stay unchanged, including 45 penetration, 8 m health blast radius, ranges, projectile speed, effects and supply costs. The launcher name remains SMAW-D HIT; the requested ammo label changes.
 - Combat Engineers (unit 449): cost 65 → 75.
 
@@ -28,3 +28,5 @@ These source edits update `infantry-rl-contract.json`, `vehicle-contract.json`, 
 - 2026-11-10 04:07:24 PST (America/Los_Angeles) — Queued six infantry/ammo changes, traced shared ammo and configured pricing, and verified exactly 10 effective field changes without building a test package.
 
 - 2026-11-10 04:23:12 PST (America/Los_Angeles) — Promoted these six queued source edits into the separate main-build candidate; earlier no-build status is superseded.
+
+- 2026-11-10 18:40:06 PST (America/Los_Angeles) — Corrected the AT4 entry to four carriers with one round each; source checks pass, dev.45 deployment remains locked.
