@@ -1,4 +1,10 @@
-# Freedom Arrow 0.7.0-devtest.lat.7 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.8 — development candidate
+
+**Lat.8 is a C-RAM zero-spread diagnostic on lat.7. Ammunition262 horizontal and vertical dispersion radii change from1.6 to0. All other gameplay values, including the faster tracking and full SPAAG range/damage, stay equal to lat.7. This is a test setting, not a final balance proposal.**
+
+Compare C-RAM alone on lat.7 and lat.8 with the same saved positions, starting orientation, readiness, incoming SEAD route and launch spacing. Use the same number of attacks. Keep Patriot and other defenders out of both comparisons. Count visibly stopped and passed missiles, then close normally and send the automatic test-logs ZIP. Existing cached leading data is retained; native leading and projectile velocity are unchanged. Zero random dispersion does not guarantee a hit when prediction, timing or collision is wrong. PIVADS dispersion is unchanged.
+
+Lat.7's supplied run verified normal-exit ZIP collection and recorded two C-RAM lethal-damage contacts against1HP SEAD missiles. The horizontal-yaw lookup remained unavailable; lat.8 retains that known diagnostic limitation. No logger or native hook changes are bundled with this dispersion comparison. Import through Mod Manager, disable the other gameplay test pack, and confirm the lat.8 menu version. The public automatic launcher remains locked to dev.45. No PC installation or native test was performed for this candidate.
 
 **dev.45: Su-75 Checkmate stealth is2 in UI terms (raw Stealth and CurrentStealth0.5), up from approximately1.5 (raw0.666). Includes the current dev.44 T72 armor-card correction. All other gameplay constants match dev.44. Native card/detection verification pending.**
 
@@ -237,3 +243,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 - 2026-11-10 21:32:36 PST (America/Los_Angeles) — Prepared isolated full Actual Arrow SPAAG range/damage test lat.6 on dev.45.
 
 - 2026-11-10 22:13:51 PST (America/Los_Angeles) — Prepared tracking-only lat.7 test with bounded passive diagnostics and single-session log collection.
+- 2026-11-10 22:45:23 PST (America/Los_Angeles) — Prepared C-RAM zero-dispersion comparison on lat.7; retained tracking, native leading and logging; runtime behavior remains untested.

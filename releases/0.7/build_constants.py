@@ -1664,6 +1664,11 @@ def main():
     for wid,before in [(261,90),(345,115)]:
         assert effective['WeaponsJson'][wid]['VerticalRotationSpeed']==before
         put('WeaponsJson',wid,{'VerticalRotationSpeed':before*2},'lat.7 tracking comparison: twice vertical speed')
+    # Lateralus: isolate C-RAM ballistic spread on the lat.7 tracking baseline.
+    spread_fields = ('DispersionHorizontalRadius', 'DispersionVerticalRadius')
+    assert [effective['AmmunitionsJson'][262][f] for f in spread_fields] == [1.6, 1.6]
+    put('AmmunitionsJson',262,dict.fromkeys(spread_fields,0.0),
+        'lat.8 diagnostic: C-RAM zero ballistic dispersion; native leading retained')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)
