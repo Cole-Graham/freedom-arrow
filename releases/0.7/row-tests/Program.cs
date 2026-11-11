@@ -115,7 +115,7 @@ foreach(var (j,dm,pn) in new[]{(66,10.3f,45f),(214,24.5f,40f),(443,24f,40f),(932
 foreach(var (j,p) in new[]{(283,62f),(157,59f),(287,46f),(331,37f),(335,31f),(61,48f)})Check(Row("AmmunitionsJson",j)["IgnoreCover"].GetValue<float>()==0.5f&&Row("AmmunitionsJson",j)["OverpressureRadius"].GetValue<float>()==0f&&Row("AmmunitionsJson",j)["PenetrationAtMinRange"].GetValue<float>()==p,"unguided bomb cover 0.5, no overpressure, pen "+j);
 {var bmMods=merged["ModificationsJson"].Where(r=>r["UnitId"].GetValue<int>()==315).Select(r=>r["Id"].GetValue<int>()).ToHashSet();var bsmMods=merged["ModificationsJson"].Where(r=>r["UnitId"].GetValue<int>()==743).Select(r=>r["Id"].GetValue<int>()).ToHashSet();
 var bmOpts=merged["OptionsJson"].Where(r=>bmMods.Contains(r["ModificationId"].GetValue<int>())).Select(r=>r["Name"].GetValue<string>()).ToList();var bsmOpts=merged["OptionsJson"].Where(r=>bsmMods.Contains(r["ModificationId"].GetValue<int>())).Select(r=>r["Name"].GetValue<string>()).ToList();
-Check(bmOpts.Count==12&&!bmOpts.Any(n=>n.Contains("KAB")||n.Contains("Kh59")||n.Contains("PBK")),"MiG-31BM air-to-air only");Check(bsmOpts.Count==19&&bsmOpts.Count(n=>n.Contains("KAB")||n.Contains("Kh59")||n.Contains("PBK"))==7,"MiG-31BSM all loadouts");
+Check(bmOpts.Count==12&&!bmOpts.Any(n=>n.Contains("KAB")||n.Contains("Kh59")||n.Contains("PBK")),"MiG-31BM air-to-air only");Check(bsmOpts.Count==12&&bsmOpts.Count(n=>n.Contains("KAB")||n.Contains("Kh59")||n.Contains("PBK"))==7&&!bsmOpts.Any(n=>n.Contains("R37")||n.Contains("R77")||n.Contains("R73")||n.Contains("R27ET")),"MiG-31BSM bomber-only loadouts");
 Check(merged["SpecializationAvailabilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==743&&r["SpecializationId"].GetValue<int>()==12&&r["MaxAvailabilityXp0"].GetValue<int>()==2),"MiG-31BSM Defense Forces 2");
 foreach(var (u,sp) in new[]{(164,3),(241,6),(241,4),(504,16)})Check(merged["SpecializationAvailabilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==u&&r["SpecializationId"].GetValue<int>()==sp&&r["MaxAvailabilityXp0"].GetValue<int>()==4),"cargo truck availability 4 "+u+"/"+sp);}
 Check(merged["SpecializationAvailabilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==744&&r["SpecializationId"].GetValue<int>()==9&&r["MaxAvailabilityXp0"].GetValue<int>()==2)&&Row("Units",744)["Cost"].GetValue<int>()==Row("Units",311)["Cost"].GetValue<int>(),"MiG-29S Motorized Infantry 2, MiG-29K cost");
@@ -513,3 +513,34 @@ Check(Row("AmmunitionsJson",273)["Damage"].GetValue<double>()==2.5&&Row("Ammunit
 Check(Carry(150,"M32")==3,"Delta M32 unchanged");
 Console.WriteLine($"M25 complete: {checks} checks, {writes} planned writes");
 Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression checks, KE550,12 rounds,motion flags and unchanged Kornet. Native behavior untested.");
+
+// dev.38: MAKO is an exact one-round ARRW clone in each F22 side bay; MiG31BSM has no AA missile path.
+{
+    JsonObject Stats(JsonNode row){var copy=row.DeepClone().AsObject();foreach(var key in new[]{"Id","Name","HUDName"})copy.Remove(key);return copy;}
+    var w=merged["WeaponsJson"].Single(x=>x["Name"]?.ToString()=="Cruise MAKO");
+    var donor=merged["WeaponsJson"].Single(x=>x["Name"]?.ToString()=="Cruise AGM183A ARRW wings");
+    Check(JsonNode.DeepEquals(Stats(w),Stats(donor)),"MAKO preserves every ARRW weapon statistic");
+    var wa=merged["WeaponAmmunitionsJson"].Single(x=>x["UnitId"].GetValue<int>()==297&&x["WeaponId"].GetValue<int>()==w["Id"].GetValue<int>());
+    var ammo=Row("AmmunitionsJson",wa["AmmunitionId"].GetValue<int>());
+    var arrwAmmo=merged["AmmunitionsJson"].Single(x=>x["Name"]?.ToString()=="Missile Cruise AGM183A ARRW");
+    Check(JsonNode.DeepEquals(Stats(ammo),Stats(arrwAmmo))&&ammo["HUDName"].GetValue<string>()=="MAKO","MAKO preserves every ARRW ammunition statistic");
+    Check(wa["Quantity"].GetValue<int>()==1&&w["MagazineSize"].GetValue<int>()==1,"one MAKO round per bay mount");
+    int total=0;
+    foreach(var pair in new[]{(31000,332,1),(31001,333,2)}){
+        var o=Row("OptionsJson",pair.Item1);Check(o["ModificationId"].GetValue<int>()==pair.Item2&&o["Cost"].GetValue<int>()==80&&!o["IsDefault"].GetValue<bool>()&&o["UIName"].GetValue<string>()=="1x MAKO","MAKO side bay at +80");
+        int tid=o["Turret"+pair.Item3+"Id"].GetValue<int>();var tw=merged["TurretWeaponsJson"].Single(x=>x["TurretId"].GetValue<int>()==tid);
+        Check(tw["WeaponId"].GetValue<int>()==w["Id"].GetValue<int>()&&tw["WeaponChannel"].GetValue<int>()==Row("TurretWeaponsJson",855)["WeaponChannel"].GetValue<int>()&&merged["TurretUnitsJson"].Any(x=>x["UnitId"].GetValue<int>()==297&&x["TurretId"].GetValue<int>()==tid),"MAKO has an F22-linked native ground-weapon channel");total+=wa["Quantity"].GetValue<int>();
+    }
+    Check(total==2,"both bays carry two MAKO missiles for +160");
+    var aa=new HashSet<int>{243,439,244,437};
+    Check(!merged["WeaponAmmunitionsJson"].Any(x=>x["UnitId"].GetValue<int>()==743&&aa.Contains(x["WeaponId"].GetValue<int>())),"BSM AA missile ammo removed");
+    var aaMounts=merged["TurretWeaponsJson"].Where(x=>aa.Contains(x["WeaponId"].GetValue<int>())).Select(x=>x["TurretId"].GetValue<int>()).ToHashSet();
+    Check(!merged["TurretUnitsJson"].Any(x=>x["UnitId"].GetValue<int>()==743&&aaMounts.Contains(x["TurretId"].GetValue<int>())),"BSM AA turret links removed");
+    foreach(int old in new[]{20124,20125,20126,20127,20128,20129,20130,20135,20136}){
+        Check(!merged["OptionsJson"].Any(x=>x["Id"].GetValue<int>()==old),"retired BSM AA option absent");
+        int replacement=optionMigration[old.ToString()].GetValue<int>();Check(new[]{20123,31002,31003}.Contains(replacement)&&Row("OptionsJson",replacement)["Cost"].GetValue<int>()==0,"old BSM deck choice migrates to empty");
+    }
+    foreach(int id in new[]{20123,31002,31003})Check(Row("OptionsJson",id)["IsDefault"].GetValue<bool>(),"BSM empty default");
+    Check(merged["WeaponAmmunitionsJson"].Count(x=>x["UnitId"].GetValue<int>()==743)==5,"BSM retains cannon and four bomber ammunition types");
+    Console.WriteLine($"PASS MAKO/BSM total: {checks} checks; exact ARRW stats, one per bay +80, no BSM AA missiles, safe deck migration. Native firing untested.");
+}

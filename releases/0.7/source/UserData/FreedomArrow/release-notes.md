@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.37 — development candidate
+# Freedom Arrow 0.7.0-dev.38 — development candidate
+
+**dev.38: F-22 adds 1x MAKO at +80 in each side bay, using the current ARRW statistics. MiG-31BSM loses every R-37, R-77, R-73 and R-27ET option and missile link; its bomber loads and cannon remain. Retired AA deck choices migrate to free empty slots. Includes Black Widow turn700 and Copperhead75 mm. Native fit and firing remain untested.**
 
 **dev.37: YF-23 Black Widow II turn radius calculates to 700 in the native card UI (previously 565). Its own flight/mobility rows preserve every other aircraft. Speed, pitch, roll, weapons, cost and ECM stay unchanged. Includes dev.36 Copperhead 75 mm penetration. Not yet measured in-game.**
 
@@ -203,3 +205,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 
 - 2026-11-10 16:10:37 PST (America/Los_Angeles) — Set M712 Copperhead ammunition426 to75 mm penetration at minimum and maximum range; retained base damage11 and all other ammunition settings.
 - 2026-11-10 16:20:01 PST (America/Los_Angeles) — Recorded isolated YF-23 turn-radius700 change and offline verification limits.
+- 2026-11-10 16:31:54 PST (America/Los_Angeles) — Recorded F22 MAKO side bays and bomber-only MiG31BSM loadouts, preserving preceding changes.

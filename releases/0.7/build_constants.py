@@ -1648,6 +1648,8 @@ def main():
     put('AmmunitionsJson',426,{'PenetrationAtMinRange':75.0,'PenetrationAtGroundRange':75.0},'Osama: M712 Copperhead 75 mm HEAT penetration')
     from fighter_turn import apply_black_widow
     apply_black_widow(effective,clone,put,json.loads((R/'black-widow-turn-contract.json').read_text()))
+    from f22_mako_mig31bsm import apply as apply_mako_bomber
+    apply_mako_bomber(effective,patches,clone,put,option_migration,json.loads((R/'f22-mako-mig31bsm-contract.json').read_text()))
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
