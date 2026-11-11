@@ -260,7 +260,7 @@ internal sealed class LauncherForm : Form
         RefreshChannels();
 
         _modsState.ForeColor = on ? Theme.Good : Theme.TextMuted;
-        _modsState.Text = PinnedFreedomArrow.Enabled ? "PLAY uses locked dev.45" : on
+        _modsState.Text = PinnedFreedomArrow.Enabled ? "Models + music/voices included" : on
             ? "●  " + T("Mods are on")
             : "○  " + T("Mods are off - the game starts normally with Anti-Cheat");
     }
