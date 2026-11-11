@@ -1422,7 +1422,7 @@ def main():
     # every existing live-card and target-dummy clone ID.
     cm=json.loads((R/'su75-contract.json').read_text());uid,par=cm['unit'],cm['parent'];why='Su-75 live rear bay only'
     assert uid not in effective['Units']
-    add_unit(uid,par,{'Name':cm['name'],'HUDName':cm['name'],'DisplayInArmory':True,'Cost':cm['cost']},why)
+    add_unit(uid,par,{'Name':cm['name'],'HUDName':cm['name'],'DisplayInArmory':True,'Cost':cm['cost'],'Stealth':1/cm['stealth_ui'],'CurrentStealth':1/cm['stealth_ui']},why)
     rear=effective['ModificationsJson'][cm['rear_mod']];assert rear['UnitId']==par and rear['UIName']=='Custom_Slot_Rear_bay'
     opts=sorted((o for o in effective['OptionsJson'].values() if o['ModificationId']==rear['Id']),key=lambda o:(o['Order'],o['Id']))
     assert len(opts)==7
