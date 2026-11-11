@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.49 — development candidate
+# Freedom Arrow 0.7.0-dev.50 — development candidate
+
+**Black Eagle appearance iteration: white card icon on a2:1 canvas, lower baseline and icon-only shortened barrel. Separate body-mask trial adds moderate painted-metal sheen while preserving repaired normals, color textures and all gameplay constants from dev.49. Vanilla T80 material/export and Sam’s card screenshot guide the comparison; native appearance still needs review.**
 
 **Follow-up correction: T-80BVM now has its own default2017 armor/mobility/optics and main turret, with inherited unused BV fallbacks removed from this card. Selected2017/2018 values stay170/190points,700 KE front and950/1100 HEAT front. The scoped model update corrects Black Eagle source normals and gloss-map packing.**
 
@@ -235,3 +237,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 21:39:22 PST (America/Los_Angeles) — Prepared local playtest batch, Black Eagle and companion model update; public dev.45 lock retained.
 
 - 2026-11-10 21:49:47 PST (America/Los_Angeles) — Removed stale T80BV fallback profiles from BVM and prepared Black Eagle material/normal conversion correction following dev.48 visual feedback.
+
+- 2026-11-10 22:04:40 PST (America/Los_Angeles) — Adjusted Black Eagle card placement/white and prepared moderate body sheen; gameplay definitions remain dev.49.
