@@ -3,6 +3,9 @@ namespace FreedomArrow;
 // Pure conservative policy. Unknown or mixed readiness retains native behavior.
 static class AaCooldownPolicy
 {
+    public static bool ProjectileType(int type)=>type is 128 or 256 or 512 or 1024;
+    public static bool Defender(int unitType,bool nativeAntiAir,bool interceptionGun)
+        =>(unitType&(2|4|32))!=0&&(nativeAntiAir||interceptionGun);
     public readonly struct Contributor
     {
         public readonly ulong Weapon; public readonly float Remaining; public readonly bool Known,Airborne;

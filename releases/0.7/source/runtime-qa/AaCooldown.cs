@@ -54,7 +54,7 @@ static class AaCooldown
         if(Unsafe.SizeOf<Entity>()!=8)throw new InvalidOperationException("Entity layout changed");
         harmony.Patch(method,postfix:new HarmonyMethod(typeof(AaCooldown),nameof(After)));
         DiagnosticLog.Write("aa_cooldown_installed",new{shadow,nativeBehaviorHooks=1,
-            scope="Ground-AA caller, SEAD target, all other future reservations clearly late, no airborne protection. Native priority retained.",
+            scope="Land/naval-AA caller, native projectile target, all other future reservations clearly late, no airborne protection. Native priority retained.",
             caveat="Native invocation and safety unproven until this build is exercised. Mixed/unknown/stale cases retain native behavior."});
         MelonLogger.Msg("FREEDOM_ARROW_AA_COOLDOWN installed: one bool hook; managed cache only; shadow="+shadow);
     }
@@ -80,18 +80,21 @@ static class AaCooldown
         catch(Exception e){Fail(e);}
         finally{world=null;units=weapons=null;cursor=0;next=0;}
     }
-    static bool Ground(Entity e)
+    static bool Defender(Entity e)
     {
         if(!e.IsAlive||!e.Has<WeaponComponent>())return false;
-        var w=NativeEcs.Read<WeaponComponent>(e);if(w==null||!w.IsAntiAir)return false;
+        var w=NativeEcs.Read<WeaponComponent>(e);if(w==null)return false;
+        var info=w.WeaponInfo;var ammo=w.SelectedAmmunition;
+        bool gun=info!=null&&ammo!=null&&CramPredictionPolicy.Gun((int)info.Type,info.IsRadarDependent,
+            (int)ammo.TrajectoryType,(int)ammo.Seeker,(long)ammo.TargetType);
         var u=w.GetUnitEntity();
-        return u.IsAlive&&u.Has<UnitComponent>()&&((int)NativeEcs.Read<UnitComponent>(u).UnitData.Type&38)!=0;
+        return u.IsAlive&&u.Has<UnitComponent>()&&AaCooldownPolicy.Defender((int)NativeEcs.Read<UnitComponent>(u).UnitData.Type,w.IsAntiAir,gun);
     }
     static float Timer<T>(Entity e,string field)=>e.Has<T>()?NativeEcs.EncodedField<T>(e,field):0;
     static AaCooldownPolicy.Contributor Contributor(Entity e, bool launched)
     {
         ulong key=Key(e);
-        if(launched||!Ground(e))return new(key,0,false,launched);
+        if(launched||!Defender(e))return new(key,0,false,launched);
         float remaining=AaCooldownPolicy.Remaining(Timer<BurstCooldownComponent>(e,"CooldownTime"),
             Timer<MagazineReloadingComponent>(e,"MagazineReloadingTime"),Timer<WeaponCycleComponent>(e,"TimeCycling"));
         return new(key,remaining,float.IsFinite(remaining),false);
@@ -116,7 +119,7 @@ static class AaCooldown
             int wc=Math.Min(weapons.Count,wa?.Length??0);
             // Large scenes fall back to native instead of scanning unbounded collections.
             if(wc>128){Volatile.Write(ref frame,Empty);return;}
-            for(int i=0;i<wc;i++)if(Ground(wa[i]))ground.Add(Key(wa[i]));
+            for(int i=0;i<wc;i++)if(Defender(wa[i]))ground.Add(Key(wa[i]));
             var targets=new Dictionary<ulong,Target>();var ua=units._entities;
             int count=Math.Min(units.Count,ua?.Length??0),visited=0,observed=0,unknownDeadlines=0;
             while(visited<Math.Min(count,64)&&observed<8&&clock.Elapsed.TotalMilliseconds<3)
@@ -124,7 +127,7 @@ static class AaCooldown
                 if(cursor>=count)cursor=0;
                 var e=ua[cursor++];visited++;
                 if(!e.IsAlive||!e.Has<UnitComponent>()||!e.Has<ShootPriorityComponent>()||!e.Has<WarheadComponent>())continue;
-                if((int)NativeEcs.Read<UnitComponent>(e).UnitData.Type!=256)continue;
+                if(!AaCooldownPolicy.ProjectileType((int)NativeEcs.Read<UnitComponent>(e).UnitData.Type))continue;
                 observed++;
                 // Read-only native scalar estimator follows the projectile's own intended target.
                 float impact=BattleSystemHelpers.GetProjectileTimeToTarget(e);
@@ -157,7 +160,7 @@ static class AaCooldown
             if(now>=nextMetrics)
             {
                 nextMetrics=now+5;
-                DiagnosticLog.Write("aa_cooldown_metrics",new{t=now,shadow,targets=targets.Count,observedSead=observed,unknownDeadlines,groundWeapons=ground.Count,
+                DiagnosticLog.Write("aa_cooldown_metrics",new{t=now,shadow,targets=targets.Count,observedProjectiles=observed,unknownDeadlines,groundWeapons=ground.Count,
                     invocations=Volatile.Read(ref invocations),wouldCorrect=Volatile.Read(ref wouldCorrect),corrections=Volatile.Read(ref corrections),
                     workMs=clock.Elapsed.TotalMilliseconds,scope="Conservative all-late rule; mixed reservations and unknown estimates retain native behavior"});
             }

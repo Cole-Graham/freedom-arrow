@@ -11,6 +11,15 @@ static class Program
     static void Check(bool yes,string reason){if(!yes)throw new Exception(reason);checks++;}
     static void Main(string[] args)
     {
+        foreach(int t in new[]{128,256,512,1024})Check(AaCooldownPolicy.ProjectileType(t),"Native projectile category "+t);
+        foreach(int t in new[]{0,1,2,4,8,16,32,384})Check(!AaCooldownPolicy.ProjectileType(t),"Ordinary/composite target excluded "+t);
+        foreach(int t in new[]{2,4,32})
+        {
+            Check(AaCooldownPolicy.Defender(t,false,true),"Interception guns qualify on land/ships "+t);
+            Check(AaCooldownPolicy.Defender(t,true,false),"Existing AA still qualifies "+t);
+            Check(!AaCooldownPolicy.Defender(t,false,false),"Non-AA weapon excluded "+t);
+        }
+        Check(!AaCooldownPolicy.Defender(8,true,true)&&!AaCooldownPolicy.Defender(16,true,true),"Helicopter/aircraft guidance unchanged");
         var late=new[]{new AaCooldownPolicy.Contributor(1,4,true,false)};
         bool Release(AaCooldownPolicy.Contributor[] cs,bool native=true,bool ground=true,bool blocked=false,double age=.01,int incoming=0,ulong caller=2,float deadline=2)
             =>AaCooldownPolicy.Release(native,ground,blocked,age,incoming,caller,deadline,cs);

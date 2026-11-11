@@ -1,245 +1,251 @@
 {
- "note": "Lateralus batch (8 November 2026): infantry rocket launchers by purpose, from the Lateralus 0.6 Changelog sheet (Rocket launchers and RPG-22 tabs). Thermobaric (Option A): IgnoreCover 1.0 and the first proposal's damage; penetration unchanged (Lateralus 21:17). Anti-structure: IgnoreCover 0.5; M72A10 penetration 35 -> 100. HE / dual purpose: IgnoreCover 0.2 (building damage back to vanilla). M72A7 gets its own copy of the M72 HEAT round (the M72A2 keeps 2000141): damage 6.5, IgnoreCover 0.35, can target infantry (TargetType 47 like the HE round), 3 m blast, muzzle velocity 450. RPG-22: new weapon and round copied from the RPG-18 (931, 2000144), penetration 350, replaces the RPG-18 on Pogranichniki, Reservisty and Razvedka; the RPG-18 rows stay, carried by nobody. users: every unit that carries the round, checked before writing. Some users hold a round without a default carrier (loadout options or a vehicle mount: SSO RPO-M, VDV Shturm TBG-7L on its RPG-7V2 row, SSO RShG-1, Rosgvardia and Spetsnaz Alpha RShG-2, Mech. Engineers CQC SMAW-D, Rangers CQC M72A10, UAZ Kozlik SPG-9M); one round has one set of stats, so they change too. 10 November 2026: RMG damage 4 / IgnoreCover 1; standard SMAW-D IgnoreCover 0.25; Combat Engineers HIT round displayed as 84mm Thermobaric, damage 6.5 / IgnoreCover 1. Mech. Riflemen MMG carries 4 AT4CS-RS total (2 carriers x 2 rounds), with carrier count unchanged.",
- "ammo": {
-  "103": {
-   "group": "thermobaric",
-   "name": "Bur 62mm Thermobaric",
-   "users": [
-    116,
-    130
-   ],
-   "fields": {
-    "Damage": 2.5,
-    "IgnoreCover": 1.0
-   }
+  "note": "Lateralus batch (8 November 2026): infantry rocket launchers by purpose, from the Lateralus 0.6 Changelog sheet (Rocket launchers and RPG-22 tabs). Thermobaric (Option A): IgnoreCover 1.0 and the first proposal's damage; penetration unchanged (Lateralus 21:17). Anti-structure: IgnoreCover 0.5; M72A10 penetration 35 -> 100. HE / dual purpose: IgnoreCover 0.2 (building damage back to vanilla). M72A7 gets its own copy of the M72 HEAT round (the M72A2 keeps 2000141): damage 6.5, IgnoreCover 0.35, can target infantry (TargetType 47 like the HE round), 3 m blast, muzzle velocity 450. RPG-22: new weapon and round copied from the RPG-18 (931, 2000144), penetration 350, replaces the RPG-18 on Pogranichniki, Reservisty and Razvedka; the RPG-18 rows stay, carried by nobody. users: every unit that carries the round, checked before writing. Some users hold a round without a default carrier (loadout options or a vehicle mount: SSO RPO-M, VDV Shturm TBG-7L on its RPG-7V2 row, SSO RShG-1, Rosgvardia and Spetsnaz Alpha RShG-2, Mech. Engineers CQC SMAW-D, Rangers CQC M72A10, UAZ Kozlik SPG-9M); one round has one set of stats, so they change too. 10 November 2026: RMG damage 4 / IgnoreCover 1; standard SMAW-D IgnoreCover 0.25; Combat Engineers HIT round displayed as 84mm Thermobaric, damage 6.5 / IgnoreCover 1. Mech. Riflemen MMG carries 4 AT4CS-RS total (2 carriers x 2 rounds), with carrier count unchanged.",
+  "ammo": {
+    "103": {
+      "group": "thermobaric",
+      "name": "Bur 62mm Thermobaric",
+      "users": [
+        116,
+        130
+      ],
+      "fields": {
+        "Damage": 2.5,
+        "IgnoreCover": 1.0
+      }
+    },
+    "906": {
+      "group": "thermobaric",
+      "name": "RPG-7V TBG-7L",
+      "users": [
+        645
+      ],
+      "fields": {
+        "Damage": 4.0,
+        "IgnoreCover": 1.0
+      }
+    },
+    "107": {
+      "group": "thermobaric",
+      "name": "RPG-7V2 TBG-7V",
+      "users": [
+        405
+      ],
+      "fields": {
+        "Damage": 5.0,
+        "IgnoreCover": 1.0
+      }
+    },
+    "396": {
+      "group": "thermobaric",
+      "name": "RPO-M",
+      "users": [
+        130,
+        358
+      ],
+      "fields": {
+        "Damage": 4.5,
+        "IgnoreCover": 1.0
+      }
+    },
+    "524": {
+      "group": "thermobaric",
+      "name": "RShG-1",
+      "users": [
+        113,
+        406
+      ],
+      "fields": {
+        "Damage": 5.0,
+        "IgnoreCover": 1.0
+      }
+    },
+    "377": {
+      "group": "thermobaric",
+      "name": "RShG-2",
+      "users": [
+        123,
+        129,
+        354
+      ],
+      "fields": {
+        "Damage": 3.5,
+        "IgnoreCover": 1.0
+      }
+    },
+    "41": {
+      "group": "thermobaric",
+      "name": "SMAW 84mm Thermobaric",
+      "users": [
+        63
+      ],
+      "fields": {
+        "Damage": 4.0,
+        "IgnoreCover": 1.0
+      }
+    },
+    "128": {
+      "group": "anti-structure",
+      "name": "SMAW-D HEDP",
+      "users": [
+        146,
+        708
+      ],
+      "fields": {
+        "IgnoreCover": 0.25
+      }
+    },
+    "937": {
+      "group": "thermobaric",
+      "name": "84mm Thermobaric (formerly SMAW-D HIT)",
+      "users": [
+        449
+      ],
+      "fields": {
+        "IgnoreCover": 1.0,
+        "HUDName": "84mm Thermobaric",
+        "Damage": 6.5
+      }
+    },
+    "392": {
+      "group": "anti-structure",
+      "name": "SRAW MPV",
+      "users": [
+        332
+      ],
+      "fields": {
+        "IgnoreCover": 0.5
+      }
+    },
+    "121": {
+      "group": "anti-structure",
+      "name": "RMG",
+      "users": [
+        622
+      ],
+      "fields": {
+        "IgnoreCover": 1.0,
+        "Damage": 4.0
+      }
+    },
+    "130": {
+      "group": "anti-structure",
+      "name": "M72A10 66mm HE",
+      "users": [
+        70,
+        336,
+        409,
+        518,
+        708
+      ],
+      "fields": {
+        "IgnoreCover": 0.5,
+        "PenetrationAtMinRange": 100.0,
+        "PenetrationAtGroundRange": 100.0
+      }
+    },
+    "595": {
+      "group": "he",
+      "name": "B-300 HE",
+      "users": [
+        515
+      ],
+      "fields": {
+        "IgnoreCover": 0.2
+      }
+    },
+    "593": {
+      "group": "he",
+      "name": "C90-CR-AM",
+      "users": [
+        517
+      ],
+      "fields": {
+        "IgnoreCover": 0.2
+      }
+    },
+    "492": {
+      "group": "he",
+      "name": "M3E1 MAAWS HE",
+      "users": [
+        409
+      ],
+      "fields": {
+        "IgnoreCover": 0.2
+      }
+    },
+    "476": {
+      "group": "he",
+      "name": "RPG-7V OG-7V",
+      "users": [
+        401
+      ],
+      "fields": {
+        "IgnoreCover": 0.2
+      }
+    },
+    "525": {
+      "group": "he",
+      "name": "SPG-9M OG-9V",
+      "users": [
+        119,
+        455,
+        612
+      ],
+      "fields": {
+        "IgnoreCover": 0.2
+      }
+    }
   },
-  "906": {
-   "group": "thermobaric",
-   "name": "RPG-7V TBG-7L",
-   "users": [
-    645
-   ],
-   "fields": {
-    "Damage": 4.0,
-    "IgnoreCover": 1.0
-   }
+  "m72a7": {
+    "from": 2000141,
+    "weapon": 1019,
+    "keep_weapon": 743,
+    "users": [
+      407,
+      726
+    ],
+    "fields": {
+      "Damage": 6.5,
+      "IgnoreCover": 0.35,
+      "TargetType": 47,
+      "HealthAOERadius": 3.0,
+      "MuzzleVelocity": 450.0
+    }
   },
-  "107": {
-   "group": "thermobaric",
-   "name": "RPG-7V2 TBG-7V",
-   "users": [
-    405
-   ],
-   "fields": {
-    "Damage": 5.0,
-    "IgnoreCover": 1.0
-   }
+  "rpg22": {
+    "weapon_from": 931,
+    "ammo_from": 2000144,
+    "units": [
+      135,
+      629,
+      725
+    ],
+    "weapon_fields": {
+      "Name": "RocketLauncher  RPG22  Disposable ",
+      "HUDName": "RPG-22"
+    },
+    "ammo_fields": {
+      "Name": "InfRocket 72 RPG22 HEAT",
+      "HUDName": "72.5mm HEAT",
+      "PenetrationAtMinRange": 350.0,
+      "PenetrationAtGroundRange": 350.0
+    }
   },
-  "396": {
-   "group": "thermobaric",
-   "name": "RPO-M",
-   "users": [
-    130,
-    358
-   ],
-   "fields": {
-    "Damage": 4.5,
-    "IgnoreCover": 1.0
-   }
-  },
-  "524": {
-   "group": "thermobaric",
-   "name": "RShG-1",
-   "users": [
-    113,
-    406
-   ],
-   "fields": {
-    "Damage": 5.0,
-    "IgnoreCover": 1.0
-   }
-  },
-  "377": {
-   "group": "thermobaric",
-   "name": "RShG-2",
-   "users": [
-    123,
-    129,
-    354
-   ],
-   "fields": {
-    "Damage": 3.5,
-    "IgnoreCover": 1.0
-   }
-  },
-  "41": {
-   "group": "thermobaric",
-   "name": "SMAW 84mm Thermobaric",
-   "users": [
-    63
-   ],
-   "fields": {
-    "Damage": 4.0,
-    "IgnoreCover": 1.0
-   }
-  },
-  "128": {
-   "group": "anti-structure",
-   "name": "SMAW-D HEDP",
-   "users": [
-    146,
-    708
-   ],
-   "fields": {
-    "IgnoreCover": 0.25
-   }
-  },
-  "937": {
-   "group": "thermobaric",
-   "name": "84mm Thermobaric (formerly SMAW-D HIT)",
-   "users": [
-    449
-   ],
-   "fields": {
-    "IgnoreCover": 1.0,
-    "HUDName": "84mm Thermobaric",
-    "Damage": 6.5
-   }
-  },
-  "392": {
-   "group": "anti-structure",
-   "name": "SRAW MPV",
-   "users": [
-    332
-   ],
-   "fields": {
-    "IgnoreCover": 0.5
-   }
-  },
-  "121": {
-   "group": "anti-structure",
-   "name": "RMG",
-   "users": [
-    622
-   ],
-   "fields": {
-    "IgnoreCover": 1.0,
-    "Damage": 4.0
-   }
-  },
-  "130": {
-   "group": "anti-structure",
-   "name": "M72A10 66mm HE",
-   "users": [
-    70,
-    336,
-    409,
-    518,
-    708
-   ],
-   "fields": {
-    "IgnoreCover": 0.5,
-    "PenetrationAtMinRange": 100.0,
-    "PenetrationAtGroundRange": 100.0
-   }
-  },
-  "595": {
-   "group": "he",
-   "name": "B-300 HE",
-   "users": [
-    515
-   ],
-   "fields": {
-    "IgnoreCover": 0.2
-   }
-  },
-  "593": {
-   "group": "he",
-   "name": "C90-CR-AM",
-   "users": [
-    517
-   ],
-   "fields": {
-    "IgnoreCover": 0.2
-   }
-  },
-  "492": {
-   "group": "he",
-   "name": "M3E1 MAAWS HE",
-   "users": [
-    409
-   ],
-   "fields": {
-    "IgnoreCover": 0.2
-   }
-  },
-  "476": {
-   "group": "he",
-   "name": "RPG-7V OG-7V",
-   "users": [
-    401
-   ],
-   "fields": {
-    "IgnoreCover": 0.2
-   }
-  },
-  "525": {
-   "group": "he",
-   "name": "SPG-9M OG-9V",
-   "users": [
-    119,
-    455,
-    612
-   ],
-   "fields": {
-    "IgnoreCover": 0.2
-   }
+  "stocks": {
+    "2906": {
+      "unit": 370,
+      "weapon": 59,
+      "ammo": 2000131,
+      "before": 1,
+      "quantity": 1,
+      "carriers": 4,
+      "total": 4,
+      "before_carriers": 2,
+      "additional_carriers": [
+        660,
+        661
+      ],
+      "primary": 50
+    }
   }
- },
- "m72a7": {
-  "from": 2000141,
-  "weapon": 1019,
-  "keep_weapon": 743,
-  "users": [
-   407,
-   726
-  ],
-  "fields": {
-   "Damage": 6.5,
-   "IgnoreCover": 0.35,
-   "TargetType": 47,
-   "HealthAOERadius": 3.0,
-   "MuzzleVelocity": 450.0
-  }
- },
- "rpg22": {
-  "weapon_from": 931,
-  "ammo_from": 2000144,
-  "units": [
-   135,
-   629,
-   725
-  ],
-  "weapon_fields": {
-   "Name": "RocketLauncher  RPG22  Disposable ",
-   "HUDName": "RPG-22"
-  },
-  "ammo_fields": {
-   "Name": "InfRocket 72 RPG22 HEAT",
-   "HUDName": "72.5mm HEAT",
-   "PenetrationAtMinRange": 350.0,
-   "PenetrationAtGroundRange": 350.0
-  }
- },
- "stocks": {
-  "2906": {
-   "unit": 370,
-   "weapon": 59,
-   "ammo": 2000131,
-   "before": 1,
-   "quantity": 2,
-   "carriers": 2,
-   "total": 4
-  }
- }
 }

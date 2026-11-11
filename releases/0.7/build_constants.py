@@ -1220,13 +1220,18 @@ def main():
     for key,c in rl['ammo'].items():
         aid=int(key);assert ammo_users(aid)==set(c['users']),(aid,sorted(ammo_users(aid)))
         put('AmmunitionsJson',aid,c['fields'],'Infantry launcher '+c['group']+': '+c['name'])
-    # Quantity is per carrier for infantry disposables: preserve the two AT4 carriers.
+    # MMG correction: four riflemen carry one AT4 each; preserve all primary weapons.
     for key,c in rl.get('stocks',{}).items():
         r=effective['WeaponAmmunitionsJson'][int(key)]
         assert (r['UnitId'],r['WeaponId'],r['AmmunitionId'],r['Quantity'])==(c['unit'],c['weapon'],c['ammo'],c['before']),r
-        count=sum(c['weapon'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values() if m['UnitId']==c['unit'])
-        assert count==c['carriers'] and count*c['quantity']==c['total'],(key,count,c)
-        put('WeaponAmmunitionsJson',r['Id'],{'Quantity':c['quantity']},'Mech. Riflemen MMG: four AT4CS-RS, two per carrier')
+        count=lambda:sum(c['weapon'] in (m['PrimaryWeaponId'],m['SpecialWeaponId']) for m in effective['SquadMembersJson'].values() if m['UnitId']==c['unit'])
+        assert count()==c['before_carriers'],(key,count(),c)
+        for mid in c['additional_carriers']:
+            m=effective['SquadMembersJson'][mid]
+            assert (m['UnitId'],m['PrimaryWeaponId'],m['SpecialWeaponId'])==(c['unit'],c['primary'],0),m
+            put('SquadMembersJson',mid,{'SpecialWeaponId':c['weapon']},'MMG: fourth and third AT4 carriers; rifles retained')
+        assert count()==c['carriers'] and count()*c['quantity']==c['total'],(key,count(),c)
+        put('WeaponAmmunitionsJson',r['Id'],{'Quantity':c['quantity']},'MMG: four AT4 carriers, one round each')
     m7=rl['m72a7'];why='M72A7 own round: multipurpose EFP'
     rows=[r for r in effective['WeaponAmmunitionsJson'].values() if r['AmmunitionId']==m7['from'] and r['WeaponId']==m7['weapon']]
     assert {r['UnitId'] for r in rows}==set(m7['users']),rows
@@ -1679,10 +1684,15 @@ def main():
     apply_black_eagle(effective,clone,add_unit,rows_of,json.loads((R/'black-eagle-contract.json').read_text()))
     from black_eagle import fix_t80_defaults
     fix_t80_defaults(effective,patches,clone,put,audit)
-    # Lateralus: promote speed-only lat.16, with native spread/range/damage/traverse.
-    assert effective['AmmunitionsJson'][262]['MuzzleVelocity']==805.0
-    assert [effective['AmmunitionsJson'][262][f] for f in ('DispersionHorizontalRadius','DispersionVerticalRadius')]==[1.6,1.6]
-    put('AmmunitionsJson',262,{'MuzzleVelocity':1610.0},'Lateralus: C-RAM speed-only lat.16 promotion')
+    # Lateralus, 11 Nov: all native missile/projectile-defence gun rounds get
+    # the lat.16 2x speed increase. Preserve every native spread/range/damage.
+    gun_rounds=(60,62,213,231,262,454,534,561)
+    for aid in gun_rounds:
+        current=effective['AmmunitionsJson'][aid]
+        assert current['TrajectoryType']==10 and current['TargetType']&(128|256|512|1024)
+        assert current['MuzzleVelocity']==805.0
+        put('AmmunitionsJson',aid,{'MuzzleVelocity':current['MuzzleVelocity']*2},
+            'Lateralus: all SPAAG and naval projectile-defence guns 2x muzzle speed; native spread')
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)

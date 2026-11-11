@@ -1,6 +1,18 @@
-# Freedom Arrow 0.7.0-dev.54 — development candidate
+# Freedom Arrow 0.7.0-dev.55 — development candidate
 
-## Current main development promotion — AA prediction, C-RAM speed, helicopter flares and cooldown-aware reservations
+## Current main promotion — all missile-defence guns and four AT4 carriers
+
+**Every existing direct-fire projectile-defence gun now gets 2x muzzle velocity, the new prediction and cooldown-aware overkill handling: Pantsir, PIVADS, Shilka, Tunguska, C-RAM, M230LF, ship CIWS and AK-630M. All eight native round speeds are 805, so each becomes 1610. Normal dispersion and native range/damage/traversal remain. Helicopter flare stock 15 is retained.**
+
+The overkill gate now covers land/naval anti-air defenders and all native projectile target classes 128/256/512/1024. Each gun's native targeting permission still controls what it can engage; AK-630M remains ordinary-projectile-only. The conservative reservation rule is unchanged: all other future shots must be clearly late, with no airborne protection, using a fresh cache. Mixed, timely, unknown or stale cases preserve native decisions. It does not bypass reload or cooldown. This expanded scope needs a new native run.
+
+Changelog item #10 is included: Mech. Riflemen MMG has four riflemen each carrying one AT4CS-RS, plus three M240Ls. Members 660/661 gain a launcher, all primary weapons are retained and stock quantity is one per carrier. This fixes the older two-carriers/two-rounds setup without changing the total of four AT4 rounds.
+
+This candidate supersedes the earlier dev.54 package in this task. It preserves all main dev.53 Black Eagle/LOSAT/card changes and the current prediction algorithm. Use Mod Manager and the exact version above. Public dev.45 lock is unchanged; Sam's PLA installation is not switched by this task.
+
+## Historical dev.54 — initial narrow promotion
+
+### Dev.54 settings
 
 **This build promotes lat.16's C-RAM muzzle velocity 1610 and bounded projectile prediction, adds helicopter flare stock 15, and enables the earlier conservative cooldown-aware SEAD overkill gate. It starts from main dev.53 and preserves the Black Eagle/LOSAT batch and card fixes.**
 
@@ -255,3 +267,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 
 - 2026-11-10 22:04:40 PST (America/Los_Angeles) — Adjusted Black Eagle card placement/white and prepared moderate body sheen; gameplay definitions remain dev.49.
 - 2026-11-11 02:26:15 PST (America/Los_Angeles) — Promoted C-RAM speed and projectile prediction, helicopter flare stock 15, and the conservative cooldown-aware SEAD overkill gate onto main dev.53 while preserving other batch/model changes; native combined test pending.
+- 2026-11-11 02:36:39 PST (America/Los_Angeles) — Extended doubled speed and overkill scope to all existing land/naval projectile-defence guns and native projectile categories; included changelog #10 four AT4 carriers with one round each; prior main changes retained.
