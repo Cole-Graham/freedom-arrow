@@ -1,3 +1,9 @@
+# PLA TEST Build 17
+
+**Arsenal specialization presentation fix: shared PLA units follow a selected specialization heading instead of remaining under their first eligible heading. Native availability, search, category/type filters, normal/photo cards and callbacks stay in use. Build16 weapon-family HUD artwork and all existing gameplay, infantry sizes, models, offsets and music are retained. Native UI verification is pending.**
+
+## Historical Build16 weapon HUD update
+
 PLA TEST Build16: weapon HUD art on 307 equipment weapon definitions and 44 designer-infantry weapon definitions, using 108 physical-family PNGs. Four infantry profiles project the installed meshes. Related/prototype weapon appearances remain simplified. Unit art, ammo, performance and rigging are retained. Native visual validation pending.
 
 # PLA TEST Build 15
@@ -568,3 +574,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 
 - 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.
 - 2026-11-11 10:52:55 PST (America/Los_Angeles) — Build16 weapon HUD update only; unit art and gameplay retained.
+- 2026-11-11 10:58:01 PST (America/Los_Angeles) — Build17: selected-spec shared-card grouping and normal/photo reset support; retains Build16 weapon HUD art. Native UI verification pending.

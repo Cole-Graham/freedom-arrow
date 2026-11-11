@@ -39,6 +39,7 @@ static class ChinaUi
         harmony.Patch(AccessTools.Method(typeof(HangarUnitFilter),"Initialize"),prefix:new HarmonyMethod(typeof(ChinaUi),nameof(Capacity)),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(FilterReady)));
         harmony.Patch(AccessTools.Method(typeof(CountryFilterButtonsGroup),"Initialize"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(CountryRow)));
         harmony.Patch(AccessTools.Method(typeof(DeckCreationPopup),"RenderCountries"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(DeckCountries)));
+        ArsenalSpecGroups.Install(harmony,plaOnly);
         MelonLogger.Msg("PLA_CHINA_UI hooks installed; native layout/click validation pending");
     }
     public static void Seed()
@@ -68,6 +69,7 @@ static class ChinaUi
     public static void FilterReady(HangarUnitFilter __instance)
     {
         if(Ready)MelonLogger.Msg($"PLA_CHINA_UI_FILTER_READY initialized={__instance._isInitialized} countryGroups={__instance._countryFilterButtonsGroups?.Count} flags={__instance._filterFlagsMapping?.Count} buttons={__instance._flagToButtonMapping?.Count} reset={__instance._unitFilterResetFlag}");
+        ArsenalSpecGroups.Apply(__instance);
     }
     public static void CountryRow(CountryFilterButtonsGroup __instance,Countries country)
     {

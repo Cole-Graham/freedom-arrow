@@ -1,3 +1,9 @@
+# PLA TEST Build 17
+
+**Arsenal specialization presentation fix: shared PLA units follow a selected specialization heading instead of remaining under their first eligible heading. Native availability, search, category/type filters, normal/photo cards and callbacks stay in use. Build16 weapon-family HUD artwork and all existing gameplay, infantry sizes, models, offsets and music are retained. Native UI verification is pending.**
+
+## Historical Build16 weapon HUD update
+
 # PLA TEST Build 16
 
 **Weapon HUD artwork update: 307 vehicle weapon definitions and 44 designer-infantry weapon definitions use 108 physical-family silhouette assets. Related variants share art. Unit portraits, unit thumbnails, ammunition icons, stocks, loadouts, performance, models and saved rigging are unchanged from Build 15. These are simplified recognition drawings; prototype and unnamed weapon geometry remains provisional. Native HUD validation is pending.**
@@ -320,3 +326,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.
 
 - 2026-11-11 10:45:47 PST (America/Los_Angeles) — Build16: replaced weapon-class HUD symbols with physical-family weapon silhouettes on equipment and designer infantry. Unit art and gameplay retained. Native visual verification pending.
+- 2026-11-11 10:58:01 PST (America/Los_Angeles) — Build17: selected-spec shared-card grouping and normal/photo reset support; retains Build16 weapon HUD art. Native UI verification pending.
