@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "3",
+  "package_version": "4",
   "spotting": "vanilla",
   "deployment_status": "built_offline_execution_held",
-  "verification": "Build 3 infantry fit candidate. Offline rig checks complete; native grip and helmet review pending."
+  "verification": "Internal Build 4: verified build identity and Build 3 infantry files; native fit remains unverified."
 }

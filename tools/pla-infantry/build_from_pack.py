@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6';sys.path.insert(0
 from pipeline.tables import FIELD_TO_FILE
 from pipeline.crypto import aes_decrypt
 from pla_configs import apply
-ap=argparse.ArgumentParser();ap.add_argument('--base',type=Path,required=True);ap.add_argument('--vanilla',type=Path,required=True);ap.add_argument('--rigs',type=Path,required=True);ap.add_argument('--music-update',type=Path);ap.add_argument('--out',type=Path,required=True);a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('--base',type=Path,required=True);ap.add_argument('--runtime',type=Path,required=True);ap.add_argument('--vanilla',type=Path,required=True);ap.add_argument('--rigs',type=Path,required=True);ap.add_argument('--music-update',type=Path);ap.add_argument('--out',type=Path,required=True);a=ap.parse_args()
 sha=lambda b:hashlib.sha256(b).hexdigest();enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 version=json.loads((R/'mod.json').read_text())['version'];build=int(version);label='PLA TEST Build '+version
 assert sha(a.base.read_bytes())=='ea2058ba5852df3b41a8dd9981ec9070d2bb4f223e10d39738631b03434a8364'
@@ -47,6 +47,7 @@ for c in configs:
 override['UserData/FAModels/infantry-bodies.json']=enc(body);override['UserData/FAModels/infantry-weapons.json']=enc(weapons)
 for p in a.rigs.iterdir():
  if p.suffix in ['.png','.fas']:override['UserData/FAModels/'+p.name]=p.read_bytes()
+override['Mods/FreedomArrow.Runtime.dll']=a.runtime.read_bytes()
 override['Mods/FAModels.dll']=(R/'experimental-model-loader/bin/Release/net6.0/FAModels.dll').read_bytes()
 channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));channel['package_version']=version;override['UserData/FreedomArrow/channel.json']=enc(channel)
 override['UserData/FreedomArrow/release-notes.md']=(R/'source/UserData/FreedomArrow/release-notes.md').read_bytes()

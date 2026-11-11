@@ -14,7 +14,7 @@ public sealed partial class Prototype
     static void InstallVersionLabel()
     {
         Patch(typeof(Il2Cpp.MusicService),"PlayByType",null,nameof(MusicTypeAfter));
-        MelonLogger.Msg("FREEDOM_ARROW_VERSION_LABEL installed: "+instance.Info.Version);
+        MelonLogger.Msg("FREEDOM_ARROW_VERSION_LABEL installed; uses verified loaded package identity");
     }
     public static void MusicTypeAfter(MusicType musicType){menuMusicType=(int)musicType;}
     static void DrawVersionLabel()
@@ -24,7 +24,7 @@ public sealed partial class Prototype
         {
             int size=Math.Max(12,Screen.height/60);
             if(versionStyle==null||versionStyle.fontSize!=size)versionStyle=new GUIStyle(GUI.skin.label){fontSize=size,alignment=TextAnchor.LowerCenter};
-            GUI.Label(new Rect(0,0,Screen.width,Screen.height-10),"Freedom Arrow "+instance.Info.Version,versionStyle);
+            GUI.Label(new Rect(0,0,Screen.width,Screen.height-10),FreedomArrow.Runtime.DisplayLabel,versionStyle);
         }
         catch(Exception e){versionOff=true;MelonLogger.Error("FREEDOM_ARROW_VERSION_LABEL_FAILED: off for this session. "+e.Message);}
     }

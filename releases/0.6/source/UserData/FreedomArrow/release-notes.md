@@ -1,4 +1,6 @@
-# PLA TEST Build 3
+# PLA TEST Build 4
+
+**Build 4 corrects the displayed identity. The menu shows PLA TEST Build 4 only after checking runtime/package agreement and the infantry files. All Build 3 meshes, textures, weapon rules, gameplay constants and music remain unchanged. Native helmet and hand fit still need visual review.**
 
 **Build 3 refines the arms and hands of all 25 appearance squads against native shoulder, elbow, wrist and finger landmarks. Hand and finger bones retain zero body displacement so the foot-height correction does not move grips away from native weapons. Woodland helmets and attached goggles/night vision are lowered 1 cm. Native visual testing of this revision is pending.**
 
@@ -456,3 +458,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-10 14:45:24 PST (America/Los_Angeles) — Prepared Build 3 arm/hand landmark fit and a 1 cm woodland helmet correction; native review pending.
 
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Added the existing music update to the complete Build 3 pack for installation.
+- 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.

@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "1", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "4", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -23,6 +23,7 @@ public class Runtime : MelonMod
     public static bool IsApplied => applied && !failed;
     static int count;
     static string PackageVersion="unknown";
+    public static string DisplayLabel { get; private set; } = "PLA TEST (not verified)";
     static readonly Dictionary<string, string> Files = new()
     {
         ["Units"]="units.json", ["AbilitiesJson"]="abilities.json", ["UnitAbilitiesJson"]="unit_abilities.json",
@@ -67,12 +68,24 @@ public class Runtime : MelonMod
         {
             var manifest=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"payload-manifest.json"))).AsObject();
             int files=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,manifest["sha256"].AsObject());
+            var identity=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"pla-package-manifest.json"))).AsObject();
+            string label=BuildIdentity.ResolveLabel(Info.Version,PackageVersion,identity["build"].GetValue<int>(),identity["label"].GetValue<string>());
+            // Check the actual infantry files before claiming that this build is loaded.
+            var infantryHashes=new JsonObject();
+            foreach(var entry in identity["sha256"].AsObject())
+                if(entry.Key=="Mods/FAModels.dll" || entry.Key=="UserData/FAModels/infantry-bodies.json" || entry.Key.StartsWith("UserData/FAModels/pla2_",StringComparison.Ordinal))
+                    infantryHashes[entry.Key]=JsonValue.Create(entry.Value.GetValue<string>());
+            if(infantryHashes.Count!=227)throw new InvalidDataException("Expected 25 infantry configurations with 3 meshes with diffuse and normal textures each, plus loader and rules");
+            int infantryFiles=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,infantryHashes);
+            DisplayLabel=label;
+            File.WriteAllText(Path.Combine(Root,"loaded-build.json"),JsonSerializer.Serialize(new { label,version=PackageVersion,process_id=Environment.ProcessId,loaded_at_utc=DateTime.UtcNow,core_files=files,infantry_files=infantryFiles },new JsonSerializerOptions { WriteIndented=true }));
+            LoggerInstance.Msg($"PLA_BUILD_LOADED: {label}; core={files}; infantry={infantryFiles}; process={Environment.ProcessId}");
             InstallScenarios();
             LoggerInstance.Msg($"FREEDOM_ARROW_PAYLOAD_VERIFIED: {files} files");
         }
         catch(Exception e)
         {
-            failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
+            DisplayLabel="PLA TEST (verification failed)";failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
             LoggerInstance.Error("FREEDOM_ARROW_FAILED: payload refused before database hook: "+e.Message);return;
         }
         // Scenarios can route to another database. This line shows which one a battle uses.

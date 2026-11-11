@@ -1,0 +1,20 @@
+{
+  "label": "PLA TEST Build 4",
+  "sha256": "8eca43e9f4ecd6bfcbb0b4a9ffe666a38d9b5121c66825106669d35c3ca94656",
+  "bytes": 3797141282,
+  "verified_payloads": 7932,
+  "unchanged_payloads": 7926,
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/release-notes.md",
+    "mod.json"
+  ],
+  "models_music_constants_unchanged": true,
+  "native_verified": false
+}
