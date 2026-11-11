@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "channel": "live",
+  "current": "0.7.0-dev.45",
+  "locked_version": "0.7.0-dev.45",
+  "releases": [
+    {
+      "version": "0.7.0-dev.45",
+      "gameplay": {
+        "id": "freedomarrow.gameplay",
+        "version": "0.7.0-dev.45",
+        "filename": "FreedomArrow-0.7.0-dev.45.bamod",
+        "url": "https://drive.google.com/uc?export=download&id=1Ks7wj3aT5WPL0vA8RH9tg0PtApi8wuQK",
+        "size": 121358977,
+        "sha256": "33323fc1c760acabcc87cc1e237e99251d2d2495a14c858977791b0cf7d2ab5d"
+      },
+      "assets": {
+        "id": "freedomarrow.assets.live",
+        "version": "0.1.14",
+        "filename": "FreedomArrow-Assets-0.1.14.bamod",
+        "url": "https://drive.google.com/uc?export=download&id=1wTorxKwQLwPmAUFYVRw8sh4NFqLJunC_",
+        "size": 1219887422,
+        "sha256": "1683bae9270a1d19e43cba662c93f92a5002635c1d61841191762701d25ac153"
+      }
+    }
+  ]
+}

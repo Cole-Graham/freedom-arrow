@@ -285,7 +285,8 @@ public sealed class LauncherService
     {
         if (PinnedFreedomArrow.Enabled)
         {
-            progress.Report(new LaunchProgress("Checking included gameplay, models, music and voices…"));
+            await HostedDistribution.PrepareAsync(progress, ct);
+            progress.Report(new LaunchProgress("Verifying gameplay, models, music and voices…"));
             await Task.Run(() => {
                 PinnedFreedomArrow.VerifyArchive(PinnedFreedomArrow.ArchivePath);
                 PinnedFreedomArrow.VerifyAssetsArchive();

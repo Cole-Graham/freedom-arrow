@@ -1,0 +1,35 @@
+FREEDOM ARROW — AUTOMATIC LAUNCHER v3 (WINDOWS)
+
+Download this launcher once. PLAY downloads and installs gameplay, all custom
+models, music and voices. Large asset files are cached for later updates.
+The current live manifest is locked to gameplay 0.7.0-dev.45.
+
+1. Close Broken Arrow completely. Keep Steam open and signed in.
+2. Right-click FreedomArrow-Launcher-v3.zip and choose Extract All, then Extract.
+3. Open the extracted FreedomArrow-Launcher folder.
+4. Double-click BAModLauncher.exe.
+5. If the game is not found, open Settings and select the folder containing
+   BrokenArrow.exe. Return to the launcher.
+6. Press PLAY. Leave the launcher open while it downloads and verifies the mod.
+   First use downloads about1.34GB of mod packages, plus MelonLoader if needed.
+7. Wait for the game to start. Check Freedom Arrow says 0.7.0-dev.45 at the menu.
+
+No separate BAModManager import is needed. Subsequent PLAY checks the live
+version manifest and reuses matching cached packages. Partial package downloads
+can resume. A checksum failure blocks installation. Existing skins, model
+settings and voice preferences are preserved. Missing model bindings are added.
+
+The launcher uses the locked live release when the manifest has a lock. It does
+not choose a newer testing build by filename. Internet is needed on first use;
+verified cached content and its last verified manifest support later offline
+preparation, subject to Steam/game requirements.
+
+Models and music are hosted on Drive; source code is on GitHub. Keep the
+launcher folder. Its verified download cache is in its Windows AppData folder.
+Linux users should use the existing #build-install Linux instructions.
+
+Credits: BAModManager/BAModLauncher by Speer-BA, MIT license included.
+Inter font license included. Freedom Arrow manifest support by BA Codex.
+
+Document change log
+2026-11-10 19:32:34 PST (America/Los_Angeles) — Added manifest-based automatic gameplay/model/music/voice downloads, cache reuse and locked-version instructions.

@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily BA hosted artifact retention check
+
+[Timer]
+OnCalendar=*-*-* 20:00:00 America/Los_Angeles
+Persistent=true
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target

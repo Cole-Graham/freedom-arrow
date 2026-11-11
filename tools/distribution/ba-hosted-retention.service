@@ -1,0 +1,8 @@
+[Unit]
+Description=BA hosted artifacts retention (latest two and locked versions)
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/sam/tars/work/ba-dev/replicas/codex
+ExecStart=/home/sam/tars/work/ba-dev/replicas/codex/bin/ba-retention --drive --github --apply --max-github 6
+TimeoutStartSec=20min

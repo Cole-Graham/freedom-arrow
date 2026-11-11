@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><DefineConstants>FA_DEV45</DefineConstants><NoWarn>CA1416</NoWarn><Core>../../thirdparty-tools/BAModManager-main/Core</Core></PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(Core)/PinnedFreedomArrow.cs;$(Core)/LauncherService.cs;$(Core)/ModService.cs;$(Core)/ModInfo.cs;$(Core)/Manifest.cs;$(Core)/PathUtil.cs;$(Core)/MelonLoaderService.cs;$(Core)/ManagerConfig.cs;$(Core)/AppSettings.cs;$(Core)/DllMeta.cs;$(Core)/GameLocator.cs" Link="upstream/%(Filename)%(Extension)" />
+    <Compile Include="$(Core)/HostedDistribution.cs;$(Core)/PinnedFreedomArrow.cs;$(Core)/LauncherService.cs;$(Core)/ModService.cs;$(Core)/ModInfo.cs;$(Core)/Manifest.cs;$(Core)/PathUtil.cs;$(Core)/MelonLoaderService.cs;$(Core)/ManagerConfig.cs;$(Core)/AppSettings.cs;$(Core)/DllMeta.cs;$(Core)/GameLocator.cs" Link="upstream/%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>

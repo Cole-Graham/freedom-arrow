@@ -15,15 +15,15 @@ public static class PinnedFreedomArrow
 #endif
     public const string Repo = "Cole-Graham/freedom-arrow";
     public const string Id = "freedomarrow.gameplay";
-    public const string Version = "0.7.0-dev.45";
-    public const string FileName = "FreedomArrow-0.7.0-dev.45.bamod";
-    public const string Sha256 = "33323fc1c760acabcc87cc1e237e99251d2d2495a14c858977791b0cf7d2ab5d";
-    public static string ArchivePath => Path.Combine(AppContext.BaseDirectory, FileName);
+    public static string Version => HostedDistribution.Active.Gameplay.Version;
+    public static string FileName => HostedDistribution.Active.Gameplay.Filename;
+    public static string Sha256 => HostedDistribution.Active.Gameplay.Sha256;
+    public static string ArchivePath => HostedDistribution.ArchivePath(HostedDistribution.Active.Gameplay);
     public const string AssetsId = "freedomarrow.assets.live";
-    public const string AssetsVersion = "0.1.14";
-    public const string AssetsFileName = "FreedomArrow-Assets-0.1.14.bamod";
-    public const string AssetsSha256 = "1683bae9270a1d19e43cba662c93f92a5002635c1d61841191762701d25ac153";
-    public static string AssetsArchivePath => Path.Combine(AppContext.BaseDirectory, AssetsFileName);
+    public static string AssetsVersion => HostedDistribution.Active.Assets.Version;
+    public static string AssetsFileName => HostedDistribution.Active.Assets.Filename;
+    public static string AssetsSha256 => HostedDistribution.Active.Assets.Sha256;
+    public static string AssetsArchivePath => HostedDistribution.ArchivePath(HostedDistribution.Active.Assets);
 
     public static void VerifyAssetsArchive()
     {
@@ -132,7 +132,7 @@ public static class PinnedFreedomArrow
         using var metadata = JsonDocument.Parse(zip.GetEntry("mod.json")!.Open());
         if (metadata.RootElement.GetProperty("id").GetString() != Id ||
             metadata.RootElement.GetProperty("version").GetString() != Version)
-            throw new InvalidDataException("This launcher accepts only Freedom Arrow dev.45.");
+            throw new InvalidDataException("The gameplay package does not match the active manifest.");
     }
 
     // Called on the worker thread. Read-only checks cover all bundled payload files, including disabled copies.
@@ -163,7 +163,7 @@ public static class PinnedFreedomArrow
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
         {
             ct.ThrowIfCancellationRequested();
-            log("Installing the included Freedom Arrow dev.45 package.");
+            log("Installing Freedom Arrow " + Version + ".");
             if (!launcher.InstallPackFile(gameDir, ArchivePath, log))
                 throw new InvalidDataException("The included dev.45 package was not accepted.");
         }
@@ -173,6 +173,6 @@ public static class PinnedFreedomArrow
         manifest.Save(gameDir);
         if (pack.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
             throw new InvalidDataException("dev.45 payload verification failed. The game will not start.");
-        log("Verified Freedom Arrow 0.7.0-dev.45 with Models + Music/Voices. Gameplay updates are locked.");
+        log("Verified Freedom Arrow " + Version + " with Models + Music/Voices.");
     }
 }

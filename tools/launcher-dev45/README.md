@@ -1,5 +1,8 @@
 # Complete dedicated dev.45 launcher
 
+**Historical bundled launcher v2:** current builds use `tools/distribution/build_launcher.py` and the stable version manifest. Reproduce this bundled variant from commit c787e98.
+
+
 **This is BAModLauncher configured for the exact published 0.7.0-dev.45 playtest. It includes the unchanged gameplay archive and Models + Music/Voices0.1.14, verifies both SHA256 pins, and skips GitHub latest for gameplay.**
 
 ## Build and validation
@@ -27,3 +30,5 @@ Source base: `73f7c1b48291a780610b1b4a83d0475dee5b35f1`. Pending MMG and Trooper
 - 2026-11-10 19:00:16 PST (America/Los_Angeles) — Added dedicated locked-dev.45 launcher source, reproducible bundling and real installer checks; recorded Wine UI evidence and limits.
 
 - 2026-11-10 19:10:02 PST (America/Los_Angeles) — Complete launcher v2 bundles the full asset archive, installs it through PLAY and adds preservation, repair and missing/corrupt archive checks.
+
+- 2026-11-10 19:38:30 PST (America/Los_Angeles) — Marked bundled v2 as historical; current launcher uses the version manifest distribution workflow.

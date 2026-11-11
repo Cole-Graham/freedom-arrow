@@ -241,10 +241,10 @@ internal sealed class LauncherForm : Form
         }
         if (PinnedFreedomArrow.Enabled)
         {
-            _packName.Text = "Freedom Arrow dev.45";
+            _packName.Text = "Freedom Arrow";
             _packVersion.Text = pack?.Info?.Version == PinnedFreedomArrow.Version
-                ? "dev.45 installed · locked"
-                : "dev.45 included · locked";
+                ? PinnedFreedomArrow.Version + " installed"
+                : "Downloads all mod content on PLAY";
         }
         if (!PinnedFreedomArrow.Enabled && pack != null && LauncherService.InstalledFromOtherRepo())
             _packVersion.Text = T("{0}: installed on next PLAY", T(LauncherService.ActiveChannel));
@@ -260,7 +260,7 @@ internal sealed class LauncherForm : Form
         RefreshChannels();
 
         _modsState.ForeColor = on ? Theme.Good : Theme.TextMuted;
-        _modsState.Text = PinnedFreedomArrow.Enabled ? "Models + music/voices included" : on
+        _modsState.Text = PinnedFreedomArrow.Enabled ? "Models + music/voices automatic" : on
             ? "●  " + T("Mods are on")
             : "○  " + T("Mods are off - the game starts normally with Anti-Cheat");
     }
