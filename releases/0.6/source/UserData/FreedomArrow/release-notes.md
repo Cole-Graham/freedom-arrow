@@ -1,3 +1,5 @@
+**Current: PLA TEST Build 10.** Restore immediate stand-in hiding in the InitView postfix. Successful models still build completely before activation; on failure the partial model is removed, original renderers are restored and queued re-hide passes are cancelled. All Build 8 canopy materials, models, infantry, gameplay and audio are retained. Build 9 specialization work remains separate. Native transition verification is pending.
+
 **Current: PLA TEST Build 8.** Source canopy glass now preserves specular reflections, uses metallic 0 and smoothness 0.95, with packed-map smoothness restricted to 0.90–0.98. Source textures/alpha, every mesh and other material settings remain as Build 7. These are chosen glass settings, not a claim to reconstruct the seller’s original shader. Native visual result is pending.
 
 **PLA TEST Build 7 repair:** Source canopy textures/alpha and original UVs replace the unavailable F-22 material. Complete-or-rejected model loading prevents partial aircraft. F-16/Su-57 assignments retained. Native repair appearance pending.
@@ -474,3 +476,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-10 23:42:36 PST (America/Los_Angeles) — Added Build 7 source canopy and atomic loader repair; native visual check pending.
 
 - 2026-11-10 23:51:52 PST (America/Los_Angeles) — Added the opt-in Build 8 source canopy reflection finish and packed-map remaps; geometry/images unchanged and native appearance pending.
+
+- 2026-11-11 00:14:36 PST (America/Los_Angeles) — Restored immediate hiding at Osama’s request, retaining failure recovery and approved Build 8 glass.

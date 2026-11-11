@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.9", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.10", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -49,8 +49,9 @@ public partial class Mod : MelonMod
             // The armory keeps the full-fidelity file.
             if (e.battle != "" && scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null)
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align };
-            // Keep the original visible until the complete replacement has loaded.
+            // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
+            Hide(unitModel.PrefabRootScript.gameObject);
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS hook: " + ex); }
     }

@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "8",
+  "package_version": "10",
   "spotting": "vanilla",
-  "deployment_status": "canopy_reflection_candidate",
-  "verification": "Source canopy finish preserves specular and uses smooth dielectric settings. Build 7 geometry/textures retained. Native appearance pending."
+  "deployment_status": "immediate_hide_candidate",
+  "verification": "Native stand-ins hidden in InitView again. Atomic replacement and failure recovery retained. Build 8 materials retained. Native transition test pending."
 }

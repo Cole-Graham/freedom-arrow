@@ -1,7 +1,7 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 8",
-  "version": "8",
+  "name": "PLA TEST Build 10",
+  "version": "10",
   "type": "modpack",
-  "description": "Complete PLA pack: reflective source canopy glass for stealth fighters; retains Build 7 geometry and alpha repair."
+  "description": "Complete PLA pack: hide stand-ins immediately while retaining failure recovery and approved Build 8 canopy glass."
 }
