@@ -642,6 +642,10 @@ def main():
     assert [o['Cost'] for o in rest]==[0,70],[(o['Id'],o['Cost']) for o in rest]
     hits=[r['Id'] for r in effective['UnitArmorsJson'].values() if r['UnitId']==u and r['ArmorId']==tb['old_armor']];assert hits
     for rid in hits:put('UnitArmorsJson',rid,{'ArmorId':tb['new_armor']},why)
+    # The native info card compares CurrentArmor against a linked IsDefault armor.
+    # Moving the link alone left this unit with no default and an empty armor panel.
+    put('ArmorsJson',tb['old_armor'],{'IsDefault':False},'T-72B3AM retired base armor is no longer default')
+    put('ArmorsJson',tb['new_armor'],{'IsDefault':True},'T-72B3AM obr. 16 default armor restores card values')
     put('Units',u,{'HUDName':tb['hud']},why);assert effective['Units'][u]['Cost']==165
     # 0.5 dev.21: artillery uses more supply to refill (ActualArrow 1.1.20 values).
     sup=json.loads((R/'supply-contract.json').read_text())
@@ -1653,6 +1657,11 @@ def main():
     from losat import apply_vehicle_speed as apply_losat_vehicle_speed
     apply_losat_vehicle_speed(effective,clone,put,json.loads((R/'losat-contract.json').read_text()))
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
+    # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
+    armor_ids_by_unit=collections.defaultdict(set)
+    for link in effective['UnitArmorsJson'].values():armor_ids_by_unit[link['UnitId']].add(link['ArmorId'])
+    missing_defaults=[uid for uid,ids in armor_ids_by_unit.items() if not any(effective['ArmorsJson'][aid]['IsDefault'] for aid in ids)]
+    assert not missing_defaults,('units without linked default armor; armor card cannot populate',missing_defaults)
     (R/'source/UserData/FreedomArrow/option-id-migration.json').write_text(json.dumps(option_migration,indent=2)+'\n')
     out.mkdir(parents=True,exist_ok=True)
     for table,rows in patches.items():(out/FIELD_TO_FILE[table]).write_text(json.dumps(rows,indent=2)+'\n')

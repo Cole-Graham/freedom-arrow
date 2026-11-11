@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.42 — development candidate
+# Freedom Arrow 0.7.0-dev.44 — development candidate
+
+**T-72B3AM armor-card correction: its obr. 16 armor is now the linked default armor. Thickness, HP, price and loadouts remain as in dev.42. A build guard checks every unit with armor links. Package/data checks pass; native display verification is pending.**
 
 **dev.42: XM30 base price is 200 points, up from 190. All other gameplay constants match dev.41, including LOSAT damage12 and missile card speed1500. The separate Abrams X silver-texture trial does not change geometry or gameplay. Native price/appearance verification pending.**
 
@@ -218,3 +220,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 16:53:54 PST (America/Los_Angeles) — Corrected LOSAT displayed missile speed and isolated50 road speed; recorded shared model-map repair.
 - 2026-11-10 17:19:42 PST (America/Los_Angeles) — Increased LOSAT missile damage from 10 to 12 and card speed from 1300 to 1500; other gameplay constants retained.
 - 2026-11-10 17:29:35 PST (America/Los_Angeles) — Raised XM30 base price from190 to200; retained dev.41 LOSAT values and recorded separate source-resolution silver texture trial.
+- 2026-11-10 17:59:47 PST (America/Los_Angeles) — Added T-72B3AM default-armor correction, unchanged balance values and verification limits.

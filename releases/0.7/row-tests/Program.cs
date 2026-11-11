@@ -11,6 +11,9 @@ allPatches[t]=patches;merged[t]=RowPlanner.Apply(source,patches,true,(id,field,b
 var optionMigration=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"option-id-migration.json"))).AsObject();
 int WireOption(int id)=>optionMigration.TryGetPropertyValue(id.ToString(),out var mapped)?mapped.GetValue<int>():id;
 JsonNode Row(string t,int id)=>merged[t].Single(r=>r["Id"].GetValue<int>()==(t=="OptionsJson"?WireOption(id):id));
+foreach(var group in merged["UnitArmorsJson"].GroupBy(r=>r["UnitId"].GetValue<int>()))
+    Check(group.Any(link=>Row("ArmorsJson",link["ArmorId"].GetValue<int>())["IsDefault"].GetValue<bool>()),"unit has linked default armor for native card "+group.Key);
+Check(Row("ArmorsJson",2000467)["IsDefault"].GetValue<bool>()&&!Row("ArmorsJson",2000465)["IsDefault"].GetValue<bool>(),"T72B3AM obr16 replaces retired default armor");
 foreach(var option in merged["OptionsJson"]){int id=option["Id"].GetValue<int>();Check(id>0&&id<=short.MaxValue&&unchecked((short)id)==id,"option survives native short serialization "+id);}
 
 foreach(var rule in JsonNode.Parse(File.ReadAllText(Path.Combine(root,"reference-schema.json"))).AsObject()){
