@@ -1,4 +1,14 @@
-# Freedom Arrow 0.7.0-devtest.lat.9 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.10 — development candidate
+
+**Lat.10 adds a bounded prediction correction for C-RAM firing at SEAD missiles. It uses recent changes in missile velocity to anticipate the dive/turn and re-solves the native ballistic angle and flight time together. All gameplay tables remain equal to lat.9, including muzzle velocity1610, zero dispersion and doubled tracking. This active native-hook candidate has not been run in-game.**
+
+The correction needs0.075–0.25seconds of recent same-target history. Prediction horizon is at most0.75seconds. Acceleration is capped at1500game units/s²; final aim adjustment is at most60units and10% of target distance. At most8 ballistic iterations are allowed. Missing/stale history, mismatched weapon/target/origin, invalid values or failed convergence preserve native leading. A managed feature error disables the correction for the session. Only C-RAM weapon345/ammo262 against SEAD type256/seeker200 qualifies; PIVADS, aircraft and SAM prediction remain native.
+
+Two active helper hooks are added in this separate experiment. The lead detour uses explicit native pointers rather than automatic marshaling of a by-reference structure containing bool fields. Installation verifies the exact game fingerprint and the44-byte native ballistic layout. The existing AA observer remains passive. Runtime diagnostics record cram_prediction_installed, cram_prediction_applied, summaries/fallback reasons and failure state; applied records are lead calculations, not shot counters. Native binding, invocation and performance still require the test run.
+
+Import lat.10 through Mod Manager, disable the other gameplay package and confirm the menu version. Repeat the lat.9 scene and route with ammunition available throughout. Close normally and send the automatic ZIP; it contains the prediction diagnostics. The public launcher remains locked to dev.45. No PC installation or game run was performed by this task.
+
+## Prior lat.9 comparison
 
 **Lat.9 increases C-RAM projectile muzzle velocity from805 to1610 on lat.8. This is a flight-time test intended to improve interception by shortening travel and reducing the prediction interval. Zero dispersion, doubled tracking and full SPAAG range/damage are retained. Native leading uses the projectile muzzle speed; its algorithm is unchanged. Actual interception improvement remains untested.**
 
@@ -253,3 +263,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 - 2026-11-10 22:13:51 PST (America/Los_Angeles) — Prepared tracking-only lat.7 test with bounded passive diagnostics and single-session log collection.
 - 2026-11-10 22:45:23 PST (America/Los_Angeles) — Prepared C-RAM zero-dispersion comparison on lat.7; retained tracking, native leading and logging; runtime behavior remains untested.
 - 2026-11-10 23:21:34 PST (America/Los_Angeles) — Prepared lat.9 C-RAM muzzle-velocity1610 comparison on lat.8, retaining native leading and logging; runtime improvement untested.
+- 2026-11-11 00:04:45 PST (America/Los_Angeles) — Prepared lat.10 C-RAM/SEAD bounded changing-velocity prediction, native fallback, ABI checks and invocation diagnostics; native game test pending.

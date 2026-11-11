@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.9", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.10", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -58,6 +58,7 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
+        CramPrediction.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
@@ -67,6 +68,7 @@ public class Runtime : MelonMod
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         GroundAaLog.SceneChanged();
+        CramPrediction.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -74,6 +76,7 @@ public class Runtime : MelonMod
         try { conquest?.OnDeinitializeMelon(); }
         finally
         {
+            try { CramPrediction.Close(); } catch(Exception e) { MelonLogger.Warning("FREEDOM_ARROW_CRAM_PREDICTION_CLOSE_FAILED: "+e.Message); }
             GroundAaLog.Close();DiagnosticLog.Close("deinitialize");
             try
             {
@@ -121,6 +124,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
+        try { CramPrediction.Install(); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: not installed; native leading. "+e); }
         try { SupplyStealth.Install(); }
         catch (Exception e)
         {
