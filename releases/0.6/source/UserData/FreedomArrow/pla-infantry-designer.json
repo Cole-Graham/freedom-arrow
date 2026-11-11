@@ -1,5 +1,5 @@
 {
-  "build": 21,
+  "build": 22,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -2187,7 +2187,7 @@
     {
       "unit": 1184,
       "row": 56,
-      "name": "Sky Wolves",
+      "name": "Sky Hunters",
       "spec": 20,
       "men": 4,
       "recon": true,
@@ -2297,7 +2297,7 @@
     {
       "unit": 1186,
       "row": 58,
-      "name": "Plateau Snow Leopards",
+      "name": "Mountain Hunters",
       "spec": 20,
       "men": 6,
       "recon": false,

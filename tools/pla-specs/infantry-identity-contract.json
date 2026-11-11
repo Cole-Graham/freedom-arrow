@@ -684,7 +684,7 @@
       "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
     },
     "1184": {
-      "display_name": "Sky Wolves",
+      "display_name": "Sky Hunters",
       "identity": "Tianlang (天狼)",
       "identity_type": "named formation",
       "profile": "TIANLANG",
@@ -695,8 +695,9 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Tianlang Commandos — QLU / Sniper Recon",
-      "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "previous_build21_display_name": "Sky Wolves"
     },
     "1185": {
       "display_name": "Southern Swords",
@@ -714,7 +715,7 @@
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
     },
     "1186": {
-      "display_name": "Plateau Snow Leopards",
+      "display_name": "Mountain Hunters",
       "identity": "Gaoyuan Xuebao (高原雪豹), plateau special operations",
       "identity_type": "named formation",
       "profile": "PLATEAU_LEOPARD",
@@ -725,9 +726,10 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Gaoyuan Xuebao — Mountain Team",
-      "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
+      "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
+      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch",
+      "previous_build21_display_name": "Plateau Snow Leopards"
     },
     "1187": {
       "display_name": "Blue Sword",
@@ -1698,5 +1700,21 @@
     },
     "scope": "17 mixed generalist rifle/security cards; named SF retain their own emblems; dedicated weapons teams retain weapon thumbnails; all28 rigging fixtures unchanged",
     "brigade_evidence_limit": "Only the historic80th Motorized reference is brigade-specific. Airborne, Marine, Ground, Rocket and reserve icons use verified parent/corps motifs, not invented brigade claims."
+  },
+  "art_build22_feedback": {
+    "approved_unchanged": [
+      "LEISHEN",
+      "XIANGJIAN"
+    ],
+    "changes": [
+      "Fierce leopard snarl",
+      "Coiled dragon/anchor with clear cutout crossings",
+      "Solid thicker upper Godsword blade",
+      "Hooked falcon beak and malar marks",
+      "Curved layered eagle feathers and hooked beak",
+      "Airborne stars removed, parachute/flight wings enlarged",
+      "RocketSecurity star removed, rocket enlarged"
+    ],
+    "native_verified": false
   }
 }

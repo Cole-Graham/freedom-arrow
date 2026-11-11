@@ -1,6 +1,6 @@
-# PLA TEST Build 21
+# PLA TEST Build 22
 
-**Build21 refines SF emblems with smooth curves and transparent separation around overlapping objects, restores14 short English SF labels and assigns17 generalist rifle/security cards distinct patch icons. Dedicated weapons teams keep weapon art. Historic80th Motorized imagery is brigade-specific; other line art uses parent/corps motifs with explicit source limits. Loadouts, ammo, stats, portraits, models, rigging and Build17 grouping are preserved. Native appearance is untested.**
+**Build22 retains Build21 line patches and short English names, with Sky Hunters and Mountain Hunters as game labels. It refines the leopard snarl, coiled sea dragon, solid Godsword blade and hooked-beak/feather bird shapes. Airborne and Rocket Security lose their stars and gain larger central motifs. Thunder Gods and Whistling Arrows artwork is retained byte-for-byte. Weapons, ammo, stats, models, rigging and Build17 grouping are preserved. Native appearance remains untested.**
 
 ## Historical Build19 identity and initial badge pass
 
@@ -601,3 +601,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 12:30:17 PST (America/Los_Angeles) — Replaced support/specialty branch badges with weapon/equipment icons and removed SF wreaths while enlarging central emblems; all other game data retained.
 
 - 2026-11-11 12:55:47 PST (America/Los_Angeles) — Build21: refined SF contours and transparent overlap gaps, restored short English labels, and assigned17 mixed rifle/security cards patch art while retaining dedicated weapon-team icons and all gameplay data.
+
+- 2026-11-11 13:02:37 PST (America/Los_Angeles) — Build22 feedback: fierce leopard, coiled sea dragon, visible sword, detailed birds; larger star-free Airborne/Rocket patch motifs; Sky Hunters/Mountain Hunters labels; approved Thunder Gods/Whistling Arrows retained.

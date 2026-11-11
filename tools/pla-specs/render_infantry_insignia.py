@@ -47,6 +47,8 @@ central={
 'PAP':star(128,55,27)+path('M104 103 L152 103 L152 111 L104 111Z M112 87 L119 87 L119 81 L125 81 L125 87 L131 87 L131 81 L137 81 L137 87 L144 87 L144 100 L112 100Z')}
 from detailed_insignia import overrides
 central.update(overrides(central,anchor,wings,canopy))
+from refined_emblems import apply as refine
+central=refine(central,anchor,wings,canopy)
 contract=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());receipt=[]
 sf_profiles={r['profile'] for r in contract['units'].values() if r.get('icon_kind')=='sf_emblem'}
 for name in contract['profiles']:

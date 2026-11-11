@@ -1,5 +1,5 @@
 {
-  "build": 21,
+  "build": 22,
   "scope": "Short English SF names and refined central emblems;17 mixed line/security squads use patch motifs; dedicated support teams use weapon thumbnails. Portraits, internal IDs, loadouts, ammo, stats and28 rigging fixtures retained.",
   "units": [
     {
@@ -806,7 +806,7 @@
       "unit": 1184,
       "spec": 20,
       "source_design_name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
-      "display_name": "Sky Wolves",
+      "display_name": "Sky Hunters",
       "identity": "Tianlang (\u5929\u72fc)",
       "identity_type": "named formation",
       "profile": "TIANLANG",
@@ -817,8 +817,9 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Tianlang Commandos \u2014 QLU / Sniper Recon",
-      "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "previous_build21_display_name": "Sky Wolves"
     },
     {
       "unit": 1185,
@@ -842,7 +843,7 @@
       "unit": 1186,
       "spec": 20,
       "source_design_name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
-      "display_name": "Plateau Snow Leopards",
+      "display_name": "Mountain Hunters",
       "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
       "identity_type": "named formation",
       "profile": "PLATEAU_LEOPARD",
@@ -853,9 +854,10 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Gaoyuan Xuebao \u2014 Mountain Team",
-      "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
+      "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
+      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch",
+      "previous_build21_display_name": "Plateau Snow Leopards"
     },
     {
       "unit": 1187,

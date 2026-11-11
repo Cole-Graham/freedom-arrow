@@ -1,4 +1,4 @@
-"""Package the weapon HUD revision over pinned Build20; preserve every other gameplay/model payload."""
+"""Package the weapon HUD revision over pinned Build21; preserve every other gameplay/model payload."""
 import argparse,hashlib,json,subprocess,tempfile,zipfile
 from pathlib import Path
 root=Path(__file__).resolve().parents[2];rel=root/'releases/0.6';p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',default='zip');a=p.parse_args();c=json.loads((rel/'pla-specializations-contract.json').read_text());src=rel/'source'
@@ -6,10 +6,10 @@ def digest(path):
  with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def sha(data):return hashlib.sha256(data).hexdigest()
 def enc(value):return (json.dumps(value,indent=2)+'\n').encode()
-assert digest(a.base)==c['runtime_base_sha256'];assert c['runtime_base_build']==20
+assert digest(a.base)==c['runtime_base_sha256'];assert c['runtime_base_build']==21
 label='PLA TEST Build '+str(c['build']);version=str(c['build'])
 with zipfile.ZipFile(a.base) as z:
- identity=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));oldpins=identity['sha256'].copy();core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert identity['build']==20
+ identity=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));oldpins=identity['sha256'].copy();core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert identity['build']==21
  override={'Mods/FreedomArrow.Runtime.dll':(src/'runtime-qa/bin/Release/net6.0/FreedomArrow.Runtime.dll').read_bytes(),'mod.json':(rel/'mod.json').read_bytes(),'README.md':(root/'README.md').read_bytes(),'UserData/FreedomArrow/release-notes.md':(src/'UserData/FreedomArrow/release-notes.md').read_bytes()}
  for name in ['pla-build.json','pla-specializations.json','pla-spec-assignments.json','pla-infantry-designer.json','pla-vehicle-armament.json','pla-arsenal-ui.json']:
   key='UserData/FreedomArrow/'+name;d=json.loads(z.read(key));d['build']=c['build']
@@ -44,4 +44,4 @@ with zipfile.ZipFile(a.out) as z:
  changed=sorted(n for n in oldpins if identity['sha256'].get(n)!=oldpins[n])
  assert not any(n.startswith(('UserData/FAModels/','UserData/FAMusic/')) or n=='Mods/FAModels.dll' for n in changed)
  assert [n for n in changed if n.startswith('UserData/FreedomArrow/constants/')]==['UserData/FreedomArrow/constants/units.json']
-receipt={'label':label,'sha256':digest(a.out),'bytes':a.out.stat().st_size,'verified_payloads':len(identity['sha256']),'verified_core_hashes':len(core['sha256']),'base_build':20,'base_sha256':c['runtime_base_sha256'],'changed_paths':changed,'new_paths':sorted(set(identity['sha256'])-set(oldpins)),'models_music_loader_unchanged':True,'build17_arsenal_fix_retained':True,'native_verified':False,'installed':False};a.out.with_suffix('.json').write_bytes(enc(receipt));print(json.dumps(receipt,indent=2))
+receipt={'label':label,'sha256':digest(a.out),'bytes':a.out.stat().st_size,'verified_payloads':len(identity['sha256']),'verified_core_hashes':len(core['sha256']),'base_build':21,'base_sha256':c['runtime_base_sha256'],'changed_paths':changed,'new_paths':sorted(set(identity['sha256'])-set(oldpins)),'models_music_loader_unchanged':True,'build17_arsenal_fix_retained':True,'native_verified':False,'installed':False};a.out.with_suffix('.json').write_bytes(enc(receipt));print(json.dumps(receipt,indent=2))
