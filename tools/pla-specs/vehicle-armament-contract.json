@@ -1,0 +1,3606 @@
+{
+  "build": 14,
+  "scope": "All 160 equipment cards. Ground/rotorcraft use explicit fixed loadouts; aircraft retain native analog defaults with PLA labels/icons.",
+  "capacity_limits": "Physical loads are explicit drafts unless a source is quoted; total stocks include ready rounds.",
+  "units": {
+    "904": {
+      "parent": 238,
+      "weapons": [
+        {
+          "donor": 333,
+          "name": "ZPT-98 125 mm",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            242,
+            243,
+            244
+          ],
+          "ammo_source_unit": 238,
+          "ammo_names": [
+            "ZPT-98 125 mm APFSDS",
+            "ZPT-98 125 mm HE",
+            "ZPT-98 125 mm HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "939": {
+      "parent": 238,
+      "weapons": [
+        {
+          "donor": 333,
+          "name": "ZPT-98 125 mm",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            242,
+            243,
+            244
+          ],
+          "ammo_source_unit": 238,
+          "ammo_names": [
+            "ZPT-98 125 mm APFSDS",
+            "ZPT-98 125 mm HE",
+            "ZPT-98 125 mm HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 904
+    },
+    "948": {
+      "parent": 238,
+      "weapons": [
+        {
+          "donor": 333,
+          "name": "ZPT-98 125 mm",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            242,
+            243,
+            244
+          ],
+          "ammo_source_unit": 238,
+          "ammo_names": [
+            "ZPT-98 125 mm APFSDS",
+            "ZPT-98 125 mm HE",
+            "ZPT-98 125 mm HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 904
+    },
+    "1083": {
+      "parent": 238,
+      "weapons": [
+        {
+          "donor": 333,
+          "name": "ZPT-98 125 mm",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            242,
+            243,
+            244
+          ],
+          "ammo_source_unit": 238,
+          "ammo_names": [
+            "ZPT-98 125 mm APFSDS",
+            "ZPT-98 125 mm HE",
+            "ZPT-98 125 mm HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 904
+    },
+    "905": {
+      "parent": 157,
+      "weapons": [
+        {
+          "donor": 221,
+          "name": "125 mm tank gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "count_basis": "US Army WEG Type 96: 42 total rounds. 20 AP/20 HE/2 guided split is a provisional mod design. https://odin.t2com.army.mil/WEG/Asset/ZTZ-96_",
+          "ammo_ids": [
+            239,
+            140,
+            532
+          ],
+          "ammo_source_unit": 157,
+          "ammo_names": [
+            "125 mm tank gun APFSDS",
+            "125 mm tank gun HE",
+            "125 mm tank gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "949": {
+      "parent": 157,
+      "weapons": [
+        {
+          "donor": 221,
+          "name": "125 mm tank gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "count_basis": "US Army WEG Type 96: 42 total rounds. 20 AP/20 HE/2 guided split is a provisional mod design. https://odin.t2com.army.mil/WEG/Asset/ZTZ-96_",
+          "ammo_ids": [
+            239,
+            140,
+            532
+          ],
+          "ammo_source_unit": 157,
+          "ammo_names": [
+            "125 mm tank gun APFSDS",
+            "125 mm tank gun HE",
+            "125 mm tank gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 905
+    },
+    "1082": {
+      "parent": 157,
+      "weapons": [
+        {
+          "donor": 221,
+          "name": "125 mm tank gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "count_basis": "US Army WEG Type 96: 42 total rounds. 20 AP/20 HE/2 guided split is a provisional mod design. https://odin.t2com.army.mil/WEG/Asset/ZTZ-96_",
+          "ammo_ids": [
+            239,
+            140,
+            532
+          ],
+          "ammo_source_unit": 157,
+          "ammo_names": [
+            "125 mm tank gun APFSDS",
+            "125 mm tank gun HE",
+            "125 mm tank gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 905
+    },
+    "956": {
+      "parent": 9,
+      "weapons": [
+        {
+          "donor": 9,
+          "name": "125 mm tank gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            11,
+            54,
+            356
+          ],
+          "ammo_source_unit": 9,
+          "ammo_names": [
+            "125 mm tank gun APFSDS",
+            "125 mm tank gun HE",
+            "125 mm tank gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1071": {
+      "parent": 9,
+      "weapons": [
+        {
+          "donor": 9,
+          "name": "125 mm tank gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            11,
+            54,
+            356
+          ],
+          "ammo_source_unit": 9,
+          "ammo_names": [
+            "125 mm tank gun APFSDS",
+            "125 mm tank gun HE",
+            "125 mm tank gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1072": {
+      "parent": 238,
+      "weapons": [
+        {
+          "donor": 333,
+          "name": "VT-4 125 mm",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            242,
+            243,
+            244
+          ],
+          "ammo_source_unit": 238,
+          "ammo_names": [
+            "VT-4 125 mm APFSDS",
+            "VT-4 125 mm HE",
+            "VT-4 125 mm HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "927": {
+      "parent": 13,
+      "weapons": [
+        {
+          "donor": 78,
+          "name": "Prototype 125 mm gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            48,
+            49,
+            244
+          ],
+          "ammo_source_unit": 13,
+          "ammo_names": [
+            "Prototype 125 mm gun APFSDS",
+            "Prototype 125 mm gun HE",
+            "Prototype 125 mm gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "968": {
+      "parent": 13,
+      "weapons": [
+        {
+          "donor": 78,
+          "name": "Prototype 125 mm gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            48,
+            49,
+            244
+          ],
+          "ammo_source_unit": 13,
+          "ammo_names": [
+            "Prototype 125 mm gun APFSDS",
+            "Prototype 125 mm gun HE",
+            "Prototype 125 mm gun HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1060": {
+      "parent": 602,
+      "weapons": [
+        {
+          "donor": 652,
+          "name": "100 mm rifled tank gun",
+          "kind": "CANNON",
+          "counts": [
+            12,
+            8,
+            14
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1061": {
+      "parent": 602,
+      "weapons": [
+        {
+          "donor": 652,
+          "name": "100 mm rifled tank gun",
+          "kind": "CANNON",
+          "counts": [
+            12,
+            8,
+            14
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1081": {
+      "parent": 602,
+      "weapons": [
+        {
+          "donor": 652,
+          "name": "100 mm rifled tank gun",
+          "kind": "CANNON",
+          "counts": [
+            12,
+            8,
+            14
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1073": {
+      "parent": 157,
+      "weapons": [
+        {
+          "donor": 221,
+          "name": "Prototype 120 mm smoothbore",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            20,
+            6
+          ],
+          "mag": 1,
+          "ammo_ids": [
+            239,
+            140,
+            532
+          ],
+          "ammo_source_unit": 157,
+          "ammo_names": [
+            "Prototype 120 mm smoothbore APFSDS",
+            "Prototype 120 mm smoothbore HE",
+            "Prototype 120 mm smoothbore HEAT"
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "906": {
+      "parent": 453,
+      "weapons": [
+        {
+          "donor": 657,
+          "name": "105 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            18,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "953": {
+      "parent": 453,
+      "weapons": [
+        {
+          "donor": 657,
+          "name": "105 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            18,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 906
+    },
+    "930": {
+      "parent": 144,
+      "weapons": [
+        {
+          "donor": 657,
+          "name": "105 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            18,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "938": {
+      "parent": 24,
+      "weapons": [
+        {
+          "donor": 24,
+          "name": "105 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            18,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1080": {
+      "parent": 24,
+      "weapons": [
+        {
+          "donor": 24,
+          "name": "105 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            18,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "947": {
+      "parent": 144,
+      "weapons": [
+        {
+          "donor": 266,
+          "name": "120 mm smoothbore gun",
+          "kind": "CANNON",
+          "counts": [
+            16,
+            14
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "958": {
+      "parent": 230,
+      "weapons": [
+        {
+          "donor": 321,
+          "name": "85 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            20,
+            27
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1059": {
+      "parent": 24,
+      "weapons": [
+        {
+          "donor": 652,
+          "name": "100 mm rifled gun",
+          "kind": "CANNON",
+          "counts": [
+            12,
+            8,
+            10
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "902": {
+      "parent": 3,
+      "weapons": [
+        {
+          "donor": 6,
+          "name": "100 mm gun / HJ-9 launcher",
+          "kind": "CANNON",
+          "counts": [
+            22,
+            8
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 294,
+          "name": "ZPT-99 30 mm",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        }
+      ],
+      "slots": 7
+    },
+    "1075": {
+      "parent": 3,
+      "weapons": [
+        {
+          "donor": 6,
+          "name": "100 mm gun / HJ-9 launcher",
+          "kind": "CANNON",
+          "counts": [
+            22,
+            8
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 294,
+          "name": "ZPT-99 30 mm",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        }
+      ],
+      "slots": 7,
+      "model_from": 902
+    },
+    "945": {
+      "parent": 3,
+      "weapons": [
+        {
+          "donor": 6,
+          "name": "100 mm gun / HJ-9 launcher",
+          "kind": "CANNON",
+          "counts": [
+            22,
+            8
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 294,
+          "name": "ZPT-99 30 mm",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        }
+      ],
+      "slots": 7
+    },
+    "903": {
+      "parent": 1,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "role": 10
+    },
+    "1077": {
+      "parent": 1,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "model_from": 903,
+      "role": 10
+    },
+    "962": {
+      "parent": 1,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "role": 10
+    },
+    "1079": {
+      "parent": 1,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "model_from": 962,
+      "role": 10
+    },
+    "979": {
+      "parent": 253,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8
+    },
+    "1078": {
+      "parent": 253,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "model_from": 979,
+      "role": 10
+    },
+    "1056": {
+      "parent": 254,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 7
+    },
+    "1066": {
+      "parent": 254,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 7
+    },
+    "1067": {
+      "parent": 255,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8
+    },
+    "1068": {
+      "parent": 255,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8
+    },
+    "1069": {
+      "parent": 253,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8,
+      "role": 10
+    },
+    "1076": {
+      "parent": 208,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8
+    },
+    "1074": {
+      "parent": 90,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            150,
+            350
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 248,
+          "name": "HJ-73D",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 4
+    },
+    "1063": {
+      "parent": 90,
+      "weapons": [
+        {
+          "donor": 663,
+          "name": "73 mm low-pressure gun",
+          "kind": "CANNON",
+          "counts": [
+            20,
+            20
+          ],
+          "mag": 1
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 577,
+          "name": "HJ-73",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 8
+    },
+    "959": {
+      "parent": 185,
+      "weapons": [
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 10
+    },
+    "960": {
+      "parent": 185,
+      "weapons": [
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 10
+    },
+    "1062": {
+      "parent": 185,
+      "weapons": [
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 10
+    },
+    "1064": {
+      "parent": 185,
+      "weapons": [
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 10
+    },
+    "1065": {
+      "parent": 185,
+      "weapons": [
+        {
+          "donor": 97,
+          "name": "QJC-88 12.7 mm",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 10
+    },
+    "900": {
+      "parent": 194,
+      "weapons": [
+        {
+          "donor": 268,
+          "name": "QJZ-89 12.7 mm RWS",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 12
+    },
+    "954": {
+      "parent": 194,
+      "weapons": [
+        {
+          "donor": 268,
+          "name": "QJZ-89 12.7 mm RWS",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 12
+    },
+    "1057": {
+      "parent": 194,
+      "weapons": [
+        {
+          "donor": 268,
+          "name": "QJZ-89 12.7 mm RWS",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 12
+    },
+    "1058": {
+      "parent": 194,
+      "weapons": [
+        {
+          "donor": 268,
+          "name": "QJZ-89 12.7 mm RWS",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 12
+    },
+    "1070": {
+      "parent": 455,
+      "weapons": [
+        {
+          "donor": 240,
+          "name": "QJY-201 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            1000
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 12
+    },
+    "912": {
+      "parent": 95,
+      "weapons": [],
+      "slots": 16
+    },
+    "957": {
+      "parent": 173,
+      "weapons": [
+        {
+          "donor": 249,
+          "name": "14.5 mm HMG",
+          "kind": "MG",
+          "counts": [
+            500
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        }
+      ],
+      "slots": 6,
+      "role": 12
+    },
+    "936": {
+      "parent": 27,
+      "weapons": [
+        {
+          "donor": 616,
+          "name": "HJ-10",
+          "kind": "ATGM",
+          "pure_vanilla": true,
+          "ammo_ids": [
+            166
+          ],
+          "ammo_names": [
+            "HJ-10 guided missile"
+          ],
+          "count_basis": "Eight ready canisters; prototype has no fictional onboard reload. Pure vanilla M6 Linebacker M-SHORAD Hellfire trajectory and seeker.",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0,
+      "role": 13,
+      "category": 2
+    },
+    "1055": {
+      "parent": 27,
+      "weapons": [
+        {
+          "donor": 616,
+          "name": "HJ-10",
+          "kind": "ATGM",
+          "pure_vanilla": true,
+          "ammo_ids": [
+            166
+          ],
+          "ammo_names": [
+            "HJ-10 guided missile"
+          ],
+          "count_basis": "Eight ready canisters; prototype has no fictional onboard reload. Pure vanilla M6 Linebacker M-SHORAD Hellfire trajectory and seeker.",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0,
+      "role": 13,
+      "category": 2,
+      "model_from": 936
+    },
+    "951": {
+      "parent": 252,
+      "weapons": [
+        {
+          "donor": 248,
+          "name": "HJ-8E",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0
+    },
+    "1053": {
+      "parent": 252,
+      "weapons": [
+        {
+          "donor": 348,
+          "name": "HJ-9",
+          "kind": "ATGM",
+          "ammo_ids": [
+            96
+          ],
+          "counts": [
+            8
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0
+    },
+    "1054": {
+      "parent": 194,
+      "weapons": [
+        {
+          "donor": 616,
+          "name": "Vehicle-launched loitering munition (proxy)",
+          "kind": "ATGM",
+          "counts": [
+            12
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 13
+    },
+    "937": {
+      "parent": 240,
+      "weapons": [
+        {
+          "donor": 86,
+          "name": "30 mm autocannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200,
+            300
+          ]
+        },
+        {
+          "donor": 7,
+          "name": "Type 86 7.62 mm",
+          "kind": "MG",
+          "counts": [
+            2000
+          ]
+        },
+        {
+          "donor": 299,
+          "name": "QN-502 guided missile",
+          "kind": "ATGM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        },
+        {
+          "donor": 300,
+          "name": "QN-201 guided support missile",
+          "kind": "ATGM",
+          "counts": [
+            20
+          ],
+          "mag": 20
+        }
+      ],
+      "slots": 0
+    },
+    "907": {
+      "parent": 247,
+      "weapons": [
+        {
+          "donor": 344,
+          "name": "155 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            261
+          ],
+          "counts": [
+            30
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1039": {
+      "parent": 247,
+      "weapons": [
+        {
+          "donor": 344,
+          "name": "155 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            261
+          ],
+          "counts": [
+            30
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "933": {
+      "parent": 247,
+      "weapons": [
+        {
+          "donor": 344,
+          "name": "155 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            261
+          ],
+          "counts": [
+            30
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1034": {
+      "parent": 636,
+      "weapons": [
+        {
+          "donor": 344,
+          "name": "155 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            261
+          ],
+          "counts": [
+            27
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "931": {
+      "parent": 205,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1038": {
+      "parent": 205,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0,
+      "model_from": 931
+    },
+    "1040": {
+      "parent": 205,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1042": {
+      "parent": 205,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1043": {
+      "parent": 205,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1033": {
+      "parent": 636,
+      "weapons": [
+        {
+          "donor": 288,
+          "name": "122 mm truck howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            174
+          ],
+          "counts": [
+            40
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1041": {
+      "parent": 636,
+      "weapons": [
+        {
+          "donor": 950,
+          "name": "152 mm howitzer",
+          "kind": "HOWITZER",
+          "ammo_ids": [
+            910
+          ],
+          "counts": [
+            30
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "926": {
+      "parent": 218,
+      "weapons": [
+        {
+          "donor": 292,
+          "name": "120 mm gun-mortar",
+          "kind": "MORTAR",
+          "ammo_ids": [
+            190
+          ],
+          "counts": [
+            36
+          ],
+          "ammo_source_unit": 218
+        }
+      ],
+      "slots": 0
+    },
+    "1037": {
+      "parent": 218,
+      "weapons": [
+        {
+          "donor": 292,
+          "name": "120 mm gun-mortar",
+          "kind": "MORTAR",
+          "ammo_ids": [
+            190
+          ],
+          "counts": [
+            36
+          ],
+          "ammo_source_unit": 218
+        }
+      ],
+      "slots": 0
+    },
+    "908": {
+      "parent": 93,
+      "weapons": [
+        {
+          "donor": 93,
+          "name": "PHL-03 300 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            12
+          ],
+          "mag": 12
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "922": {
+      "parent": 92,
+      "weapons": [
+        {
+          "donor": 92,
+          "name": "PHL-11 122 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            40
+          ],
+          "mag": 40
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "963": {
+      "parent": 92,
+      "weapons": [
+        {
+          "donor": 92,
+          "name": "PHL-81 122 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            40
+          ],
+          "mag": 40
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "934": {
+      "parent": 11,
+      "weapons": [
+        {
+          "donor": 93,
+          "name": "SR-5 220 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            12
+          ],
+          "mag": 12
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "1035": {
+      "parent": 93,
+      "weapons": [
+        {
+          "donor": 93,
+          "name": "PHL-16 370 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "1036": {
+      "parent": 93,
+      "weapons": [
+        {
+          "donor": 93,
+          "name": "PHL-191 370 mm rockets",
+          "kind": "ROCKET",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "1044": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 317,
+          "name": "SY-400 guided rockets",
+          "kind": "MISSILE",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0,
+      "role": 130
+    },
+    "1129": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 317,
+          "name": "YJ-18 cruise missiles",
+          "kind": "MISSILE",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "1028": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 316,
+          "name": "DF-17 conventional test missile",
+          "kind": "MISSILE",
+          "counts": [
+            1
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "1029": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 316,
+          "name": "DF-15 conventional test missile",
+          "kind": "MISSILE",
+          "counts": [
+            1
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "1030": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 316,
+          "name": "DF-21 conventional test missile",
+          "kind": "MISSILE",
+          "counts": [
+            1
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "1031": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 316,
+          "name": "DF-21D conventional test missile",
+          "kind": "MISSILE",
+          "counts": [
+            1
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "1032": {
+      "parent": 226,
+      "weapons": [
+        {
+          "donor": 316,
+          "name": "DF-31A conventional test missile",
+          "kind": "MISSILE",
+          "counts": [
+            1
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 132
+    },
+    "910": {
+      "parent": 31,
+      "weapons": [
+        {
+          "donor": 99,
+          "name": "HQ-17",
+          "kind": "SAM",
+          "counts": [
+            16
+          ],
+          "mag": 16
+        }
+      ],
+      "slots": 0,
+      "model_from": 1049
+    },
+    "1049": {
+      "parent": 31,
+      "weapons": [
+        {
+          "donor": 99,
+          "name": "HQ-17",
+          "kind": "SAM",
+          "counts": [
+            16
+          ],
+          "mag": 16
+        }
+      ],
+      "slots": 0
+    },
+    "911": {
+      "parent": 466,
+      "weapons": [
+        {
+          "donor": 690,
+          "name": "HQ-9",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0
+    },
+    "925": {
+      "parent": 94,
+      "weapons": [
+        {
+          "donor": 94,
+          "name": "HQ-7",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0
+    },
+    "961": {
+      "parent": 94,
+      "weapons": [
+        {
+          "donor": 94,
+          "name": "HQ-7",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0
+    },
+    "1045": {
+      "parent": 231,
+      "weapons": [
+        {
+          "donor": 323,
+          "name": "HQ-6A",
+          "kind": "SAM",
+          "counts": [
+            6
+          ],
+          "mag": 6
+        }
+      ],
+      "slots": 0
+    },
+    "1046": {
+      "parent": 231,
+      "weapons": [
+        {
+          "donor": 323,
+          "name": "HQ-11",
+          "kind": "SAM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0
+    },
+    "1047": {
+      "parent": 231,
+      "weapons": [
+        {
+          "donor": 323,
+          "name": "HQ-12 / KS-1",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ],
+      "slots": 0,
+      "role": 15
+    },
+    "1048": {
+      "parent": 231,
+      "weapons": [
+        {
+          "donor": 323,
+          "name": "HQ-16",
+          "kind": "SAM",
+          "counts": [
+            6
+          ],
+          "mag": 6
+        }
+      ],
+      "slots": 0,
+      "role": 15
+    },
+    "909": {
+      "parent": 233,
+      "weapons": [
+        {
+          "donor": 327,
+          "name": "PG99 twin 35 mm guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1005
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "1051": {
+      "parent": 221,
+      "weapons": [
+        {
+          "donor": 309,
+          "name": "Twin 37 mm AA guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1000
+          ]
+        }
+      ],
+      "slots": 0
+    },
+    "932": {
+      "parent": 221,
+      "weapons": [
+        {
+          "donor": 309,
+          "name": "Four 25 mm AA guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1000
+          ]
+        },
+        {
+          "donor": 310,
+          "name": "QW-2",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0
+    },
+    "1050": {
+      "parent": 221,
+      "weapons": [
+        {
+          "donor": 309,
+          "name": "Four 25 mm AA guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1000
+          ]
+        },
+        {
+          "donor": 310,
+          "name": "QW-2",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "model_from": 932
+    },
+    "1052": {
+      "parent": 221,
+      "weapons": [
+        {
+          "donor": 309,
+          "name": "Four 25 mm AA guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1000
+          ]
+        },
+        {
+          "donor": 310,
+          "name": "QW-2",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "model_from": 932
+    },
+    "920": {
+      "parent": 34,
+      "weapons": [
+        {
+          "donor": 34,
+          "name": "625 six-barrel 25 mm gun",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1000
+          ]
+        },
+        {
+          "donor": 16,
+          "name": "FB-10",
+          "kind": "SAM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        }
+      ],
+      "slots": 0
+    },
+    "935": {
+      "parent": 12,
+      "weapons": [
+        {
+          "donor": 19,
+          "name": "Twin 30 mm AA guns",
+          "kind": "AUTOCANNON",
+          "counts": [
+            1050
+          ]
+        },
+        {
+          "donor": 20,
+          "name": "FK-2000 SAM",
+          "kind": "SAM",
+          "counts": [
+            12
+          ],
+          "mag": 12
+        }
+      ],
+      "slots": 0
+    },
+    "952": {
+      "parent": 211,
+      "weapons": [
+        {
+          "donor": 302,
+          "name": "76 mm radar-assisted AA gun",
+          "kind": "AUTOCANNON"
+        }
+      ],
+      "slots": 0
+    },
+    "913": {
+      "parent": 86,
+      "weapons": [
+        {
+          "donor": 84,
+          "name": "23 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 12,
+          "name": "HJ-10 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "978": {
+      "parent": 86,
+      "weapons": [
+        {
+          "donor": 84,
+          "name": "23 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 12,
+          "name": "HJ-10 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1130": {
+      "parent": 86,
+      "weapons": [
+        {
+          "donor": 84,
+          "name": "23 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 12,
+          "name": "HJ-10 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1131": {
+      "parent": 86,
+      "weapons": [
+        {
+          "donor": 84,
+          "name": "23 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 12,
+          "name": "HJ-10 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "940": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "941": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1103": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73,
+      "model_from": 940
+    },
+    "1132": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1133": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1134": {
+      "parent": 532,
+      "weapons": [
+        {
+          "donor": 12,
+          "name": "HJ-8 air-launched ATGM",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 109,
+          "name": "57 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            14
+          ],
+          "mag": 14
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73,
+      "model_from": 940
+    },
+    "1104": {
+      "parent": 8,
+      "weapons": [
+        {
+          "donor": 8,
+          "name": "30 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 647,
+          "name": "AKD-10 guided missile",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73,
+      "model_from": 913
+    },
+    "1135": {
+      "parent": 8,
+      "weapons": [
+        {
+          "donor": 8,
+          "name": "30 mm chin cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            600
+          ]
+        },
+        {
+          "donor": 647,
+          "name": "AKD-10 guided missile",
+          "kind": "ATGM",
+          "counts": [
+            8
+          ],
+          "mag": 8
+        },
+        {
+          "donor": 15,
+          "name": "90 mm unguided rockets",
+          "kind": "ROCKET",
+          "counts": [
+            38
+          ],
+          "mag": 38
+        },
+        {
+          "donor": 354,
+          "name": "TY-90",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ],
+      "slots": 0,
+      "role": 73,
+      "model_from": 913
+    },
+    "914": {
+      "parent": 81,
+      "weapons": [
+        {
+          "donor": 251,
+          "name": "QJY-201 door guns",
+          "kind": "MG",
+          "counts": [
+            1000
+          ]
+        }
+      ],
+      "slots": 11,
+      "role": 71
+    },
+    "1106": {
+      "parent": 153,
+      "weapons": [
+        {
+          "donor": 251,
+          "name": "QJY-201 door guns",
+          "kind": "MG",
+          "counts": [
+            1000
+          ]
+        }
+      ],
+      "slots": 27,
+      "role": 71
+    },
+    "1107": {
+      "parent": 532,
+      "weapons": [],
+      "slots": 8,
+      "role": 71,
+      "model_from": 941
+    },
+    "942": {
+      "parent": 258,
+      "weapons": [
+        {
+          "donor": 240,
+          "name": "7.62 mm cabin gun",
+          "kind": "MG",
+          "counts": [
+            1000
+          ]
+        }
+      ],
+      "slots": 4,
+      "role": 71
+    },
+    "1084": {
+      "parent": 632,
+      "weapons": [
+        {
+          "donor": 514,
+          "name": "UAV guided missile",
+          "kind": "ATGM",
+          "counts": [
+            2
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1085": {
+      "parent": 632,
+      "weapons": [
+        {
+          "donor": 514,
+          "name": "UAV guided missile",
+          "kind": "ATGM",
+          "counts": [
+            2
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1086": {
+      "parent": 632,
+      "weapons": [
+        {
+          "donor": 514,
+          "name": "UAV guided missile",
+          "kind": "ATGM",
+          "counts": [
+            2
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "1105": {
+      "parent": 632,
+      "weapons": [
+        {
+          "donor": 514,
+          "name": "UAV guided missile",
+          "kind": "ATGM",
+          "counts": [
+            2
+          ],
+          "mag": 1
+        }
+      ],
+      "slots": 0,
+      "role": 73
+    },
+    "928": {
+      "weapons": []
+    },
+    "972": {
+      "weapons": []
+    },
+    "1095": {
+      "weapons": [],
+      "slots": 0
+    },
+    "1096": {
+      "weapons": [],
+      "slots": 0
+    },
+    "1097": {
+      "weapons": [],
+      "slots": 0
+    },
+    "1100": {
+      "weapons": [],
+      "slots": 0
+    },
+    "1101": {
+      "weapons": []
+    },
+    "1102": {
+      "weapons": []
+    },
+    "1089": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ],
+          "mag": 100
+        }
+      ]
+    },
+    "1090": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ],
+          "mag": 100
+        }
+      ]
+    },
+    "1091": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ]
+        },
+        {
+          "donor": 435,
+          "pure_vanilla": true,
+          "name": "PL-2 short-range missile (analog)",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "1092": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ]
+        },
+        {
+          "donor": 435,
+          "pure_vanilla": true,
+          "name": "PL-2 short-range missile (analog)",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "1093": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ]
+        },
+        {
+          "donor": 435,
+          "pure_vanilla": true,
+          "name": "PL-2 short-range missile (analog)",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "1098": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ],
+          "mag": 100
+        }
+      ]
+    },
+    "975": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ],
+          "mag": 100
+        },
+        {
+          "donor": 435,
+          "pure_vanilla": true,
+          "name": "PL-2",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "1094": {
+      "weapons": [
+        {
+          "donor": 483,
+          "pure_vanilla": true,
+          "name": "Type 23 cannon",
+          "kind": "AUTOCANNON",
+          "counts": [
+            200
+          ]
+        },
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-8",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-12",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "946": {
+      "weapons": [
+        {
+          "donor": 514,
+          "pure_vanilla": true,
+          "name": "BA-7 UAV guided missile",
+          "kind": "ATGM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "915": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "921": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "966": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "971": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "1088": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "929": {
+      "weapons": [
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15 (prototype loadout)",
+          "kind": "SAM",
+          "counts": [
+            6
+          ],
+          "mag": 6
+        },
+        {
+          "donor": 437,
+          "pure_vanilla": true,
+          "name": "PL-17 (prototype loadout)",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "944": {
+      "weapons": [
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15 (prototype loadout)",
+          "kind": "SAM",
+          "counts": [
+            6
+          ],
+          "mag": 6
+        },
+        {
+          "donor": 437,
+          "pure_vanilla": true,
+          "name": "PL-17 (prototype loadout)",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "967": {
+      "weapons": [
+        {
+          "donor": 392,
+          "pure_vanilla": true,
+          "name": "LS-6 guided glide bomb",
+          "kind": "BOMB",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "973": {
+      "weapons": [
+        {
+          "donor": 392,
+          "pure_vanilla": true,
+          "name": "LS-6 guided glide bomb",
+          "kind": "BOMB",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "976": {
+      "weapons": [
+        {
+          "donor": 392,
+          "pure_vanilla": true,
+          "name": "LS-6 guided glide bomb",
+          "kind": "BOMB",
+          "counts": [
+            4
+          ],
+          "mag": 4
+        }
+      ]
+    },
+    "974": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 358,
+          "pure_vanilla": true,
+          "name": "YJ-91 anti-radiation missile",
+          "kind": "MISSILE",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    },
+    "977": {
+      "weapons": [
+        {
+          "donor": 243,
+          "pure_vanilla": true,
+          "name": "PL-10",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 244,
+          "pure_vanilla": true,
+          "name": "PL-15",
+          "kind": "SAM",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        },
+        {
+          "donor": 358,
+          "pure_vanilla": true,
+          "name": "YJ-91 anti-radiation missile",
+          "kind": "MISSILE",
+          "counts": [
+            2
+          ],
+          "mag": 2
+        }
+      ]
+    }
+  }
+}

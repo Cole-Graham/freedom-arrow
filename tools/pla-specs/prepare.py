@@ -8,16 +8,18 @@ from pla_specializations import apply
 from china_ui import apply as apply_china_ui
 from pla_catalogue import apply as apply_catalogue
 from pla_assignments import apply as apply_assignments
+from pla_vehicle_weapons import apply as apply_vehicle_weapons
+from pla_designer_infantry import apply as apply_designer_infantry
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
 c=json.loads((R/'pla-specializations-contract.json').read_text())
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==c['base_sha256']
-source=R/'source/UserData/FreedomArrow';(source/'constants').mkdir(parents=True,exist_ok=True);effective={};patches={};native_ids={}
+source=R/'source/UserData/FreedomArrow';(source/'constants').mkdir(parents=True,exist_ok=True);effective={};patches={};native_ids={};vanilla_tables={}
 with zipfile.ZipFile(a.base) as z:
  compatibility=json.loads(z.read('UserData/FreedomArrow/compatibility.json'))
  for name in ['compatibility.json','reference-schema.json','option-id-migration.json']:(source/name).write_bytes(z.read('UserData/FreedomArrow/'+name))
  for table,digest in compatibility['source_plaintext_sha256'].items():
   raw=aes_decrypt((a.vanilla/(table+'.b64')).read_text());assert hashlib.sha256(raw).hexdigest()==digest
-  rows={r['Id']:r for r in json.loads(raw)};native_ids[table]=set(rows);patches[table]=json.loads(z.read('UserData/FreedomArrow/constants/'+FIELD_TO_FILE[table]))
+  rows={r['Id']:r for r in json.loads(raw)};vanilla_tables[table]=copy.deepcopy(rows);native_ids[table]=set(rows);patches[table]=json.loads(z.read('UserData/FreedomArrow/constants/'+FIELD_TO_FILE[table]))
   for key,fields in patches[table].items():
    if fields is None:rows.pop(int(key),None)
    else:rows.setdefault(int(key),{'Id':int(key)}).update(fields)
@@ -32,6 +34,8 @@ with zipfile.ZipFile(a.base) as z:
  receipt=apply(R,effective,patches,bodies,weapons,native_ids)
  models=json.loads(z.read('UserData/FAModels/models.json'));catalogue=apply_catalogue(R,effective,patches,bodies,weapons,models)
  assignments=apply_assignments(R,effective,patches,models,native_ids)
+ vehicles=apply_vehicle_weapons(R,effective,patches,native_ids,vanilla_tables,models)
+ designer=apply_designer_infantry(R,effective,patches,native_ids,bodies,weapons,assignments)
  for e in catalogue['entries']:
   e.update(specs=assignments['assignments'].get(str(e['unit']),[]),native_model=effective['Units'][e['unit']]['ModelFileName'],custom_model=models.get(effective['Units'][e['unit']]['Name']))
   if e['unit']==1129:e['parent']=226
@@ -42,7 +46,7 @@ with zipfile.ZipFile(a.base) as z:
  receipt['catalogue_new_units']=catalogue['new_units'];receipt['catalogue_entries']=catalogue['entry_count']
  receipt['pool_counts']={str(s['id']):sum(v['SpecializationId']==s['id'] for v in effective['SpecializationAvailabilitiesJson'].values()) for s in c['specs']}
  (ROOT/'tools/pla-specs/effective-preview.json').write_text(json.dumps(effective))
- extra=' || '.join('unitId == '+str(i) for i in catalogue['new_body_units'])
+ extra=' || '.join('unitId == '+str(i) for i in catalogue['new_body_units']+[r['unit'] for r in designer['entries']])
  body_code='namespace FAModels;\ninternal static class InfantryBodyIdentity { internal static bool IsSupported(int unitId) => unitId == 901 || (unitId >= 985 && unitId <= 1027)'+(' || '+extra if extra else '')+'; }\n'
  (R/'experimental-model-loader/InfantryBodyIdentity.cs').write_text(body_code)
  assert bodies[:len(before_bodies)]==before_bodies and weapons[:len(before_weapons)]==before_weapons,'Approved offsets changed'

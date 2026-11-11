@@ -18,6 +18,8 @@ with zipfile.ZipFile(a.base) as base:
   override['UserData/FreedomArrow/merge-provenance.json']=enc({'build':c['build'],'parents':c['merged_from'],'scope':'All Build9 branch/Test/infantry work plus Build10 immediate stand-in hide; native validation pending'})
  if (src/'UserData/FreedomArrow/pla-model-catalogue.json').exists():override['UserData/FreedomArrow/pla-model-catalogue.json']=(src/'UserData/FreedomArrow/pla-model-catalogue.json').read_bytes()
  override['UserData/FreedomArrow/pla-spec-assignments.json']=(src/'UserData/FreedomArrow/pla-spec-assignments.json').read_bytes()
+ for name in ['pla-vehicle-armament.json','pla-infantry-designer.json']:
+  override['UserData/FreedomArrow/'+name]=(src/'UserData/FreedomArrow'/name).read_bytes()
  override['UserData/FreedomArrow/pla-specializations.json']=(src/'UserData/FreedomArrow/pla-specializations.json').read_bytes()
  repair=json.loads((src/'UserData/FreedomArrow/infantry-arm-repair.json').read_text())
  for n,h in repair['sha256'].items():

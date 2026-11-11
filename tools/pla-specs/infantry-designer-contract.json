@@ -1,0 +1,1717 @@
+{
+  "spreadsheet_id": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
+  "sheet_id": 6001,
+  "source_range": "A8:N97",
+  "rows": [
+    {
+      "row": 8,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Riflemen",
+        "No",
+        "Regular",
+        9,
+        "QBZ-191 (rifle)",
+        "PF-98 (AT)",
+        1,
+        "QJB-201 (LMG)",
+        2,
+        "QBU-191 (DMR)",
+        1,
+        "PF-98 HEAT + rifle/LMG ammunition",
+        "User-selected heavy rifle squad: rocket, LMGs and marksman. More demanding than a light airborne squad; no guided AT. Vanilla pattern: Airborne 2 / Desantniki."
+      ]
+    },
+    {
+      "row": 9,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne HJ-12 Team",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "HJ-12 (ATGM)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT only",
+        "Premium dedicated anti-tank team; escorts needed against infantry. Vanilla pattern: VDV Kornet."
+      ]
+    },
+    {
+      "row": 10,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Close-Assault Riflemen",
+        "No",
+        "Regular",
+        8,
+        "QBZ-191 (rifle)",
+        "PF-89 (AT)",
+        2,
+        "QJB-201 (LMG)",
+        2,
+        "QLG-10A (underbarrel GL)",
+        2,
+        "Light HEAT + 35 mm HE-frag",
+        "User-selected close-assault kit: light rockets, automatic rifles and underbarrel grenades; no long-range guided AT. Vanilla pattern: Airborne 2 / Desantniki."
+      ]
+    },
+    {
+      "row": 11,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne PF-98 Fire Support",
+        "No",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "PF-98A (AT)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "None",
+        "",
+        "Fixed mix: HEAT + DZT-98 thermobaric; round counts to balance",
+        "Heavy direct support for landing zones; mixed AT/blast kit, slower than riflemen. Vanilla pattern: Rangers RAWS."
+      ]
+    },
+    {
+      "row": 12,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne QLU-11 Precision Team",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "QLU-11 (precision GL)",
+        2,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "35 mm HE-frag; no borrowed LG5 ammunition",
+        "Standoff explosive support; precision grenades, weak against MBTs. Vanilla pattern: Rangers Mk47 AGL."
+      ]
+    },
+    {
+      "row": 13,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne QJZ-171 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QJZ-171 (HMG)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "12.7 mm ball/AP mix",
+        "Dedicated lightweight HMG firebase; needs a rifle screen and transport. Vanilla pattern: M2 HMG team."
+      ]
+    },
+    {
+      "row": 14,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Pathfinders",
+        "Yes",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QBU-191 (DMR)",
+        1,
+        "PF-89 (AT)",
+        1,
+        "None",
+        "",
+        "Light HEAT reserve",
+        "Small advance scout; spot first, avoid prolonged firefights. Vanilla pattern: Airborne Recce."
+      ]
+    },
+    {
+      "row": 15,
+      "cells": [
+        "Airforce / Airborne",
+        "Thunder Gods — Airborne Recon (雷神)",
+        "Yes",
+        "Special forces",
+        6,
+        "QBZ-191 (rifle)",
+        "QTS-11 (rifle / GL)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "DZJ-08 (assault launcher)",
+        1,
+        "Limited QTS 20 mm HE/airburst-design allocation; capability requires testing",
+        "Elite air-mobile reconnaissance/raids; two digital grenadiers, no heavy ATGM. Vanilla pattern: Rangers RRC. Research: S03 (cell note)."
+      ]
+    },
+    {
+      "row": 16,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Snipers",
+        "Yes",
+        "Special forces",
+        3,
+        "QBZ-191 (rifle)",
+        "QBU-10 (sniper)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "12.7 mm + 5.8 mm; no vehicle-kill guarantee",
+        "Heavy sniper, marksman and security rifle; precision, not assault manpower. Vanilla pattern: Army Snipers."
+      ]
+    },
+    {
+      "row": 17,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne HN-6 Patrol",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "HN-6 (MANPADS)",
+        1,
+        "QJS-161 (LMG)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "IR SAMs + 35 mm HE-frag",
+        "Infantry escort with one MANPADS; less ground firepower than riflemen. Vanilla pattern: VDV Igla."
+      ]
+    },
+    {
+      "row": 18,
+      "cells": [
+        "Airforce / Airborne",
+        "Air Assault Raiders",
+        "No",
+        "Elite",
+        5,
+        "QBZ-191 (rifle)",
+        "QJS-161 (LMG)",
+        2,
+        "PF-89 (AT)",
+        1,
+        "None",
+        "",
+        "Light HEAT",
+        "Compact shock infantry for helicopters; limited staying power. Vanilla pattern: VDV DSh 1."
+      ]
+    },
+    {
+      "row": 19,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Assault Engineers",
+        "No",
+        "Engineers",
+        6,
+        "QBZ-191 (rifle)",
+        "DZJ-08 (assault launcher)",
+        2,
+        "QBS-09 (shotgun)",
+        2,
+        "None",
+        "",
+        "Assault rounds + buckshot",
+        "Close-range breaching with useful rifle security; no automatic mine-clearing bonus. Vanilla pattern: Mech. Engineers."
+      ]
+    },
+    {
+      "row": 20,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne QLZ-87 Team",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "QLZ-87 (AGL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "35 mm HE-frag",
+        "Portable explosive-volume support; less precise than QLU-11 team. Vanilla pattern: VDV AGS-30."
+      ]
+    },
+    {
+      "row": 21,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Target Observers",
+        "Yes",
+        "Regular",
+        3,
+        "QBZ-191 (rifle)",
+        "QBU-191 (DMR)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "None",
+        "",
+        "35 mm HE-frag; designator equipment is a proposal",
+        "Small spotting/coordination team; proposed designator role needs explicit ability support. Vanilla pattern: Airborne Recce."
+      ]
+    },
+    {
+      "row": 22,
+      "cells": [
+        "Airforce / Airborne",
+        "Airborne Reserve Riflemen",
+        "No",
+        "Conscripts",
+        8,
+        "QBZ-95 (rifle)",
+        "QBB-95 (LMG)",
+        2,
+        "PF-89 (AT)",
+        2,
+        "None",
+        "",
+        "Light HEAT",
+        "Lower-tier air-mobile reserve; manpower and simple weapons, no SF optics. Vanilla pattern: Reserve Marines."
+      ]
+    },
+    {
+      "row": 23,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized Riflemen",
+        "No",
+        "Regular",
+        7,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "PF-98 (AT)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "PF-98 HEAT + 35 mm HE-frag",
+        "Compact mechanized dismounts; IFV supplies extra fire support. Vanilla pattern: Mech. Riflemen MAAWS."
+      ]
+    },
+    {
+      "row": 24,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized HJ-8E Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "HJ-8E (ATGM)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT",
+        "Affordable guided AT; requires exposure while guiding, unlike HJ-12. Vanilla pattern: PTRK Konkurs."
+      ]
+    },
+    {
+      "row": 25,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized QW-2 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QW-2 (MANPADS)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "IR SAMs",
+        "Dedicated air defense, little spare infantry firepower. Vanilla pattern: Stinger team."
+      ]
+    },
+    {
+      "row": 26,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized QLZ-04 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QLZ-04 (AGL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "35 mm HE-frag",
+        "Sustained AGL position defense; heavy gun crew, not assault infantry. Vanilla pattern: Mk19 AGL team."
+      ]
+    },
+    {
+      "row": 27,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized PF-98 Tank Hunters",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "PF-98 (AT)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "HEAT only",
+        "Shorter-range unguided AT concentration; distinct from mixed-ammo fire support. Vanilla pattern: Assaultmen SMAW."
+      ]
+    },
+    {
+      "row": 28,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized Combat Engineers",
+        "No",
+        "Engineers",
+        8,
+        "QBZ-191 (rifle)",
+        "QBS-09 (shotgun)",
+        2,
+        "DZJ-08 (assault launcher)",
+        2,
+        "QJB-201 (LMG)",
+        1,
+        "Buckshot + assault rounds",
+        "Clear defended positions with shotgun/assault launchers and rifle security. Vanilla pattern: Combat Engineers."
+      ]
+    },
+    {
+      "row": 29,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized QJZ-89 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QJZ-89 (HMG)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "12.7 mm ball/AP mix",
+        "Dedicated heavy suppression; no missile or grenade capability. Vanilla pattern: M2 HMG team."
+      ]
+    },
+    {
+      "row": 30,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized GPMG Riflemen",
+        "No",
+        "Regular",
+        7,
+        "QBZ-191 (rifle)",
+        "QJY-201 (GPMG)",
+        3,
+        "PF-89 (AT)",
+        2,
+        "None",
+        "",
+        "Light HEAT",
+        "Suppression-heavy fixed kit; weaker on the move than standard dismounts. Vanilla pattern: Mech. Riflemen MMG."
+      ]
+    },
+    {
+      "row": 31,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized Guided-AT Riflemen",
+        "No",
+        "Regular",
+        7,
+        "QBZ-191 (rifle)",
+        "HJ-8E (ATGM)",
+        1,
+        "QJB-201 (LMG)",
+        2,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "HJ-8E HEAT + 35 mm HE-frag",
+        "Rifle squad trades heavy rocket burst for one guided AT weapon. Vanilla pattern: Mech. Riflemen Dragon."
+      ]
+    },
+    {
+      "row": 32,
+      "cells": [
+        "Ground Force / Armored",
+        "Armored Scouts",
+        "Yes",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QBU-191 (DMR)",
+        1,
+        "QJB-201 (LMG)",
+        1,
+        "PF-89 (AT)",
+        1,
+        "Light HEAT",
+        "Small scouts screening armor; limited casualties can collapse firepower. Vanilla pattern: Cavalry Scouts."
+      ]
+    },
+    {
+      "row": 33,
+      "cells": [
+        "Ground Force / Armored",
+        "Armored Sniper Pair",
+        "Yes",
+        "Regular",
+        2,
+        "QBZ-191 (rifle)",
+        "QBU-10 (sniper)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "12.7 mm + 5.8 mm",
+        "Two-man precision team with almost no spare bodies. Vanilla pattern: Scout Snipers."
+      ]
+    },
+    {
+      "row": 34,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized Thermobaric Breachers",
+        "No",
+        "Engineers",
+        7,
+        "QBZ-191 (rifle)",
+        "QBS-09 (shotgun)",
+        3,
+        "PF-97 (thermobaric)",
+        2,
+        "None",
+        "",
+        "Buckshot + thermobaric",
+        "Hard CQC/anti-cover specialist, deliberately poor at long-range AT. Vanilla pattern: Mech. Engineers CQC."
+      ]
+    },
+    {
+      "row": 35,
+      "cells": [
+        "Ground Force / Armored",
+        "Mechanized Close-AT Riflemen",
+        "No",
+        "Regular",
+        7,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "PF-89 (AT)",
+        2,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "Light HEAT + 35 mm HE-frag",
+        "Cheaper fixed light-AT loadout; guided team remains the MBT counter. Vanilla pattern: Motostrelki."
+      ]
+    },
+    {
+      "row": 36,
+      "cells": [
+        "Ground Force / Armored",
+        "Armored Forward Observers",
+        "Yes",
+        "Regular",
+        3,
+        "QBZ-191 (rifle)",
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Designator/radio role is a proposal",
+        "Low-firepower observation unit for armor/artillery coordination. Vanilla pattern: Airborne Recce."
+      ]
+    },
+    {
+      "row": 37,
+      "cells": [
+        "Ground Force / Armored",
+        "Recon HJ-8E Ambush Team",
+        "Yes",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "HJ-8E (ATGM)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "Tandem HEAT",
+        "Hidden observation and one guided ambush weapon; avoid infantry duels. Vanilla pattern: Cavalry Scouts."
+      ]
+    },
+    {
+      "row": 38,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Conscripts — No AT",
+        "No",
+        "Conscripts",
+        12,
+        "QBZ-95 (rifle)",
+        "QBB-95 (LMG)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "Rifle/LMG ammunition only",
+        "Cheap mass and screening only; deliberately no launcher. Vanilla pattern: Reserve Marines."
+      ]
+    },
+    {
+      "row": 39,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve Riflemen — HJ-73D",
+        "No",
+        "Conscripts",
+        9,
+        "QBZ-95 (rifle)",
+        "QBB-95 (LMG)",
+        2,
+        "HJ-73D (ATGM)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "Tandem HEAT missile + 35 mm HE-frag",
+        "Reserve line squad with one upgraded-Malyutka launcher; affordable defensive AT is the design goal. Guidance exposure and launcher burden trade against mobile assault. Vanilla pattern: mixed rifle/AT squads. Research: S14 (cell note)."
+      ]
+    },
+    {
+      "row": 40,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve HJ-73D Team",
+        "No",
+        "Conscripts",
+        4,
+        "QBZ-95 (rifle)",
+        "HJ-73D (ATGM)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT missiles; reserve count TBD",
+        "Dedicated two-launcher reserve AT team; intended economy option below HJ-8E support. QBZ-95 security; poor infantry assault value. Continuous target tracking is the proposed guidance limitation. Research: S14 (cell note)."
+      ]
+    },
+    {
+      "row": 41,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve HN-6 Team",
+        "No",
+        "Conscripts",
+        4,
+        "QBZ-95 (rifle)",
+        "HN-6 (MANPADS)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "IR SAMs",
+        "Low-manpower air defense; needs a rifle screen. Vanilla pattern: PZRK Igla."
+      ]
+    },
+    {
+      "row": 42,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve QJZ-89 Team",
+        "No",
+        "Conscripts",
+        4,
+        "QBZ-95 (rifle)",
+        "QJZ-89 (HMG)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "12.7 mm ball/AP mix",
+        "Economy fixed HMG defense for launch sites and roads. Vanilla pattern: M2 HMG team."
+      ]
+    },
+    {
+      "row": 43,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve QLZ-87 Team",
+        "No",
+        "Conscripts",
+        4,
+        "QBZ-95 (rifle)",
+        "QLZ-87 (AGL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "35 mm HE-frag",
+        "Defensive grenade volume; little mobile assault value. Vanilla pattern: VDV AGS-30."
+      ]
+    },
+    {
+      "row": 44,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve PF-98 Team",
+        "No",
+        "Conscripts",
+        5,
+        "QBZ-95 (rifle)",
+        "PF-98 (AT)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "HEAT only",
+        "Dedicated unguided tank defense; support burden buys a lower-cost alternative to missiles. Vanilla pattern: Assaultmen SMAW."
+      ]
+    },
+    {
+      "row": 45,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Malyutka Recon Ambush Team",
+        "Yes",
+        "Conscripts",
+        6,
+        "QBZ-95 (rifle)",
+        "QBU-88 (DMR)",
+        1,
+        "QBB-95 (LMG)",
+        1,
+        "HJ-73D (ATGM)",
+        1,
+        "Tandem HEAT missiles; limited ambush reserve TBD",
+        "Six-man reserve recon/ambush team: observe a lane, take a prepared AT shot, then reposition. One HJ-73D plus DMR/LMG security. Recon Yes; Conscripts / QBZ-95. No automatic SF stealth, fire-and-forget or firing through blocked LOS. Research: S14 (cell note)."
+      ]
+    },
+    {
+      "row": 46,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Sharp Blades — Missile-Site Recon (利刃)",
+        "Yes",
+        "Special forces",
+        4,
+        "QBZ-191 (rifle)",
+        "QTS-11 (rifle / GL)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "PF-89 (AT)",
+        1,
+        "Limited QTS 20 mm grenades + light HEAT",
+        "Small high-value reconnaissance/security element; one digital grenadier, not a super-squad. Vanilla pattern: Green Berets. Research: S11 (cell note)."
+      ]
+    },
+    {
+      "row": 47,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Missile-Site Security — HJ-73D",
+        "No",
+        "Conscripts",
+        10,
+        "QBZ-95 (rifle)",
+        "QBB-95 (LMG)",
+        2,
+        "DZJ-08 (assault launcher)",
+        1,
+        "HJ-73D (ATGM)",
+        1,
+        "Tandem HEAT missiles + assault rounds",
+        "Large reserve security squad gains one upgraded Malyutka for defensive armor ambushes. Heavy mixed kit favors prepared positions over assault. Launcher and squad model readiness still need checking. Research: S14 (cell note)."
+      ]
+    },
+    {
+      "row": 48,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Missile-Site Counter-Raid Team",
+        "No",
+        "Regular",
+        8,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        1,
+        "QCQ-05 (SMG)",
+        2,
+        "QBS-09 (shotgun)",
+        1,
+        "Buckshot",
+        "Short-range security reserve; standard weapons, no special sensor bonus. Vanilla pattern: DLC3 Rosgvardia."
+      ]
+    },
+    {
+      "row": 49,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve Thermobaric Team",
+        "No",
+        "Conscripts",
+        6,
+        "QBZ-95 (rifle)",
+        "PF-97 (thermobaric)",
+        2,
+        "QBB-95 (LMG)",
+        1,
+        "None",
+        "",
+        "Thermobaric only",
+        "Positional anti-infantry blast team; cannot replace an ATGM. Vanilla pattern: Ognemetchiki."
+      ]
+    },
+    {
+      "row": 50,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Reserve Heavy HJ-8E Team",
+        "No",
+        "Conscripts",
+        7,
+        "QBZ-95 (rifle)",
+        "HJ-8E (ATGM)",
+        2,
+        "QJY-201 (GPMG)",
+        1,
+        "None",
+        "",
+        "Tandem HEAT",
+        "Larger dual-launcher AT position with security; higher cost than single-launcher team. Vanilla pattern: PTRK Fagot."
+      ]
+    },
+    {
+      "row": 51,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "Rocket Convoy Escort — HJ-73D",
+        "No",
+        "Regular",
+        8,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "HJ-73D (ATGM)",
+        1,
+        "None",
+        "",
+        "Tandem HEAT missiles; reserve count TBD",
+        "Ordinary escort infantry with one upgraded-Malyutka launcher for route-defense halts. Support-heavy fixed kit; intended low-cost AT coverage, no SF sensor bonus. Existing Regular / QBZ-191 baseline retained. Research: S14 (cell note)."
+      ]
+    },
+    {
+      "row": 52,
+      "cells": [
+        "Rocket Force / Conscripts",
+        "FHJ-02 Incendiary Team",
+        "No",
+        "Conscripts",
+        3,
+        "QBZ-95 (rifle)",
+        "FHJ-02 (rocket launcher)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Fixed incendiary rockets; seven-tube launcher, reload balance TBD",
+        "Small infantry rocket-support crew; setup and resupply burden, no MBT role. Vanilla pattern: Green Berets Flash. Research: S12 (cell note)."
+      ]
+    },
+    {
+      "row": 53,
+      "cells": [
+        "Marines / SF",
+        "Eastern Sword — Digital Assault (东方神剑)",
+        "No",
+        "Special forces",
+        8,
+        "QBZ-192 (rifle)",
+        "QTS-11 (rifle / GL)",
+        4,
+        "QLU-11 (precision GL)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "QTS 20 mm + QLU 35 mm HE; no automatic airburst/cover bonus",
+        "Signature high-tech explosive/precision squad; limited grenade reserves and no hard AT. Vanilla pattern: Delta Force. Research: S02 (cell note)."
+      ]
+    },
+    {
+      "row": 54,
+      "cells": [
+        "Marines / SF",
+        "Whistling Arrows — Breachers (响箭)",
+        "No",
+        "Special forces",
+        8,
+        "QBZ-192 (rifle)",
+        "QBS-09 (shotgun)",
+        2,
+        "DZJ-08 (assault launcher)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "Buckshot + assault rounds",
+        "Carbine/shotgun entry squad; hard CQC and breaching, little long-range punch. Vanilla pattern: SSO. Research: S02 (cell note)."
+      ]
+    },
+    {
+      "row": 55,
+      "cells": [
+        "Marines / SF",
+        "Blood Wolves — Shock Team (血狼)",
+        "No",
+        "Special forces",
+        8,
+        "QBZ-192 (rifle)",
+        "QJS-161 (LMG)",
+        2,
+        "PF-98A (AT)",
+        2,
+        "QBU-191 (DMR)",
+        1,
+        "HEAT only; cold-weather identity is flavor, not an automatic buff",
+        "Robust field assault with heavy unguided AT; not covert observation. Vanilla pattern: Spetsnaz GRU AT. Research: S05 (cell note)."
+      ]
+    },
+    {
+      "row": 56,
+      "cells": [
+        "Marines / SF",
+        "Sky Wolves — QLU / Sniper Recon (天狼)",
+        "Yes",
+        "Special forces",
+        4,
+        "QBZ-192 (rifle)",
+        "QLU-11 (precision GL)",
+        1,
+        "QBU-10 (sniper)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "QLU 35 mm HE + QBU-10 12.7 mm + 5.8 mm",
+        "SF standoff recon team: precision grenades and 12.7 mm sniper fire, with marksman/spotter and carbine security. Small team; no dedicated AT. User-requested fixed kit. Vanilla pattern: small mixed-weapon Green Berets / sniper teams. Research S06 supports the sniper theme, not this exact equipment mix."
+      ]
+    },
+    {
+      "row": 57,
+      "cells": [
+        "Marines / SF",
+        "Southern Sharp Swords — Fire Support (南国利剑)",
+        "No",
+        "Special forces",
+        8,
+        "QBZ-192 (rifle)",
+        "QLU-11 (precision GL)",
+        2,
+        "QJY-201 (GPMG)",
+        2,
+        "PF-89 (AT)",
+        1,
+        "35 mm HE + light HEAT",
+        "Standoff grenade/GPMG support; suppresses infantry but lacks premium guided AT. Vanilla pattern: Green Berets. Research: S07 (cell note)."
+      ]
+    },
+    {
+      "row": 58,
+      "cells": [
+        "Marines / SF",
+        "Plateau Snow Leopards — Mountain Team (高原雪豹)",
+        "No",
+        "Special forces",
+        6,
+        "QBZ-192 (rifle)",
+        "QBU-191 (DMR)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "PF-89 (AT)",
+        1,
+        "Light HEAT",
+        "Light mountain fighting with marksmen; no HMG, missile or free terrain bonus. Vanilla pattern: Gornostrelki. Research: S08 (cell note)."
+      ]
+    },
+    {
+      "row": 59,
+      "cells": [
+        "Marines / SF",
+        "Blue Sword — Beijing CQC (蓝剑)",
+        "No",
+        "Special forces",
+        6,
+        "QBZ-191 (rifle)",
+        "QCQ-05 (SMG)",
+        4,
+        "QBS-09 (shotgun)",
+        2,
+        "None",
+        "",
+        "SMG ammunition + buckshot; no explosive launcher",
+        "Police-themed room-clearing specialist; excellent CQC identity, no AT. Vanilla pattern: DLC3 Spetsnaz Vympel CQC. Research: S01 (cell note)."
+      ]
+    },
+    {
+      "row": 60,
+      "cells": [
+        "Marines / SF",
+        "Falcon — Counter-Terror Assault (猎鹰)",
+        "No",
+        "Special forces",
+        8,
+        "QBZ-191 (rifle)",
+        "QTS-11 (rifle / GL)",
+        2,
+        "QBS-09 (shotgun)",
+        2,
+        "DZJ-08 (assault launcher)",
+        2,
+        "Limited 20 mm HE + buckshot + assault rounds",
+        "PAP rapid-entry squad with small digital-grenade element; no heavy ATGM. Vanilla pattern: SSO. Research: S04 (cell note)."
+      ]
+    },
+    {
+      "row": 61,
+      "cells": [
+        "Marines / SF",
+        "PAP Snow Leopards — Raid Team (雪豹)",
+        "No",
+        "Special forces",
+        6,
+        "QBZ-191 (rifle)",
+        "QCW-05 (SMG)",
+        3,
+        "QLU-11 (precision GL)",
+        1,
+        "QBS-09 (shotgun)",
+        1,
+        "35 mm HE + buckshot; exact issued kit not asserted",
+        "Compact CT raid kit; suppressed weapon concept without free invisibility. Vanilla pattern: Force Recon CQC. Research: S09 (cell note)."
+      ]
+    },
+    {
+      "row": 62,
+      "cells": [
+        "Marines / SF",
+        "Jiaolong — Marine Assault (蛟龙)",
+        "No",
+        "Special forces",
+        10,
+        "QBZ-191 (rifle)",
+        "QJS-161 (LMG)",
+        2,
+        "PF-98A (AT)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        2,
+        "HEAT + 35 mm HE",
+        "Marine SOF assault manpower; heavy rocket support, less compact than scouts. Vanilla pattern: Marine Raiders AT. Research: S10 (cell note)."
+      ]
+    },
+    {
+      "row": 63,
+      "cells": [
+        "Marines / SF",
+        "Jiaolong — Maritime Recon (蛟龙)",
+        "Yes",
+        "Special forces",
+        6,
+        "QBZ-191 (rifle)",
+        "QCW-05 (SMG)",
+        2,
+        "QBU-191 (DMR)",
+        1,
+        "DZJ-08 (assault launcher)",
+        1,
+        "Assault rounds; no heavy anti-tank weapon",
+        "Maritime reconnaissance/raid team; no automatic swimming/diving ability implied. Vanilla pattern: Force Recon. Research: S10 (cell note)."
+      ]
+    },
+    {
+      "row": 64,
+      "cells": [
+        "Marines / SF",
+        "Marine Riflemen",
+        "No",
+        "Regular",
+        12,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "PF-89 (AT)",
+        3,
+        "QLG-10A (underbarrel GL)",
+        2,
+        "Light HEAT + 35 mm HE",
+        "Large sustained-assault squad; manpower rather than elite stealth. Vanilla pattern: Marines."
+      ]
+    },
+    {
+      "row": 65,
+      "cells": [
+        "Marines / SF",
+        "Marine HJ-12 Team",
+        "No",
+        "Support",
+        6,
+        "QBZ-191 (rifle)",
+        "HJ-12 (ATGM)",
+        2,
+        "QJY-201 (GPMG)",
+        1,
+        "None",
+        "",
+        "Tandem HEAT",
+        "Dedicated premium armor counter with a security gun. Vanilla pattern: CAAT Javelin."
+      ]
+    },
+    {
+      "row": 66,
+      "cells": [
+        "Marines / SF",
+        "Marine HN-6 Team",
+        "No",
+        "Support",
+        6,
+        "QBZ-191 (rifle)",
+        "HN-6 (MANPADS)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "None",
+        "",
+        "IR SAMs",
+        "Marine air-defense team with limited self-protection. Vanilla pattern: Rangers Stinger."
+      ]
+    },
+    {
+      "row": 67,
+      "cells": [
+        "Marines / SF",
+        "Marine Thermobaric Engineers",
+        "No",
+        "Engineers",
+        8,
+        "QBZ-191 (rifle)",
+        "QBS-09 (shotgun)",
+        2,
+        "PF-97 (thermobaric)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "Thermobaric + buckshot",
+        "Breach fortified infantry positions; weak versus heavy armor. Vanilla pattern: Combat Engineers."
+      ]
+    },
+    {
+      "row": 68,
+      "cells": [
+        "Motorized",
+        "Motorized Line Infantry",
+        "No",
+        "Regular",
+        9,
+        "QBZ-191 (rifle)",
+        "PF-98 (AT)",
+        1,
+        "QLU-11 (precision GL)",
+        1,
+        "QJB-201 (LMG)",
+        2,
+        "PF-98 HEAT + QLU 35 mm HE",
+        "User-selected mixed kit retained; versatile but expensive and less specialized than support teams. Vanilla pattern: Troopers."
+      ]
+    },
+    {
+      "row": 69,
+      "cells": [
+        "Motorized",
+        "Motorized Troopers — AA",
+        "No",
+        "Regular",
+        9,
+        "QBZ-191 (rifle)",
+        "QJY-201 (GPMG)",
+        2,
+        "HN-6 (MANPADS)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        2,
+        "IR SAMs + 35 mm HE",
+        "Troopers-style mixed AA squad; trades anti-tank slot for MANPADS. Vanilla pattern: Troopers AA."
+      ]
+    },
+    {
+      "row": 70,
+      "cells": [
+        "Motorized",
+        "Motorized Troopers — HJ-12",
+        "No",
+        "Regular",
+        9,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "HJ-12 (ATGM)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        2,
+        "Tandem HEAT + 35 mm HE",
+        "Separate guided-AT trooper unit, matched in size to AA troopers. Vanilla pattern: Troopers AT."
+      ]
+    },
+    {
+      "row": 71,
+      "cells": [
+        "Motorized",
+        "Motorized Weapons Squad",
+        "No",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "QLU-11 (precision GL)",
+        1,
+        "QJZ-171 (HMG)",
+        1,
+        "QBU-10 (sniper)",
+        1,
+        "35 mm HE + 12.7 mm",
+        "User-selected grenade/HMG/sniper firebase; broad standoff coverage, limited assault manpower. No guided anti-tank weapon. Vanilla pattern: DLC2 HMG GMG."
+      ]
+    },
+    {
+      "row": 72,
+      "cells": [
+        "Motorized",
+        "Motorized PF-98 Fire Support",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "PF-98A (AT)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "Also thermo | Draft: Fixed mix: HEAT + DZT-98 thermobaric; reserve count TBD",
+        "Small direct-fire team with the user-requested mixed AT/thermobaric kit. Vanilla pattern: Assaultmen SMAW."
+      ]
+    },
+    {
+      "row": 73,
+      "cells": [
+        "Motorized",
+        "Motorized Recon Patrol",
+        "Yes",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "QBU-191 (DMR)",
+        1,
+        "QJS-161 (LMG)",
+        1,
+        "PF-89 (AT)",
+        1,
+        "Light HEAT",
+        "Mobile forward screen with one marksman and light self-defense AT. Vanilla pattern: Scouts."
+      ]
+    },
+    {
+      "row": 74,
+      "cells": [
+        "Motorized",
+        "Motorized Snipers",
+        "Yes",
+        "Regular",
+        3,
+        "QBZ-191 (rifle)",
+        "QBU-10 (sniper)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "12.7 mm + 5.8 mm",
+        "Heavy rifle and marksman with security; cannot hold a line. Vanilla pattern: Army Snipers."
+      ]
+    },
+    {
+      "row": 75,
+      "cells": [
+        "Motorized",
+        "Taishan Eagles — Deep Recon (泰山雄鹰)",
+        "Yes",
+        "Special forces",
+        6,
+        "QBZ-191 (rifle)",
+        "QTS-11 (rifle / GL)",
+        1,
+        "QBU-191 (DMR)",
+        2,
+        "PF-89 (AT)",
+        1,
+        "Limited 20 mm HE + light HEAT; designator is a proposed role",
+        "Networked target-finding theme with limited digital grenades; spotting over brute assault. Vanilla pattern: Rangers RRC. Research: S13 (cell note)."
+      ]
+    },
+    {
+      "row": 76,
+      "cells": [
+        "Motorized",
+        "Motorized CQC Engineers",
+        "No",
+        "Engineers",
+        7,
+        "QBZ-191 (rifle)",
+        "QBS-09 (shotgun)",
+        3,
+        "DZJ-08 (assault launcher)",
+        2,
+        "None",
+        "",
+        "Buckshot + assault rounds",
+        "Close-range engineer kit; no long-range AT or heavy MG. Vanilla pattern: Mech. Engineers CQC."
+      ]
+    },
+    {
+      "row": 77,
+      "cells": [
+        "Motorized",
+        "Motorized Light-AT Riflemen",
+        "No",
+        "Regular",
+        9,
+        "QBZ-191 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "PF-89 (AT)",
+        3,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "Light HEAT + 35 mm HE",
+        "Cheaper fixed kit than the heavy mixed line squad. Vanilla pattern: Troopers."
+      ]
+    },
+    {
+      "row": 78,
+      "cells": [
+        "Motorized",
+        "Motorized Air-Defense Scouts",
+        "Yes",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "HN-6 (MANPADS)",
+        1,
+        "QBU-191 (DMR)",
+        1,
+        "QJS-161 (LMG)",
+        1,
+        "IR SAMs",
+        "Forward observer with a single defensive SAM; not a full AA battery. Vanilla pattern: VDV Igla."
+      ]
+    },
+    {
+      "row": 79,
+      "cells": [
+        "Motorized",
+        "Motorized PF-98 Tank Hunters",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "PF-98A (AT)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "None",
+        "",
+        "HEAT only",
+        "AT-only counterpart to the mixed-ammo fire-support team. Vanilla pattern: Rangers RAWS."
+      ]
+    },
+    {
+      "row": 80,
+      "cells": [
+        "Motorized",
+        "Motorized QLZ-04 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QLZ-04 (AGL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "35 mm HE",
+        "Sustained grenade firebase; needs transport and a front line. Vanilla pattern: Mk19 AGL team."
+      ]
+    },
+    {
+      "row": 81,
+      "cells": [
+        "Motorized",
+        "Motorized Thermobaric Assault",
+        "No",
+        "Regular",
+        8,
+        "QBZ-191 (rifle)",
+        "PF-97 (thermobaric)",
+        3,
+        "QBS-09 (shotgun)",
+        2,
+        "None",
+        "",
+        "Thermobaric + buckshot",
+        "Dedicated blast assault; gives up heavy AT and long-range suppression. Vanilla pattern: Ognemetchiki."
+      ]
+    },
+    {
+      "row": 82,
+      "cells": [
+        "Motorized",
+        "Motorized CAAT — HJ-8E / QLU-11",
+        "No",
+        "Support",
+        8,
+        "QBZ-191 (rifle)",
+        "HJ-8E (ATGM)",
+        1,
+        "QLU-11 (precision GL)",
+        1,
+        "QJY-201 (GPMG)",
+        1,
+        "HJ-8E tandem HEAT + QLU 35 mm HE + 7.62 mm GPMG",
+        "Mixed AT/infantry-support team: one guided launcher, one precision GL and one GPMG; remaining personnel provide rifle security and crew support. Eight-man CAAT-style fixed kit, less suited to mobile assault. Exact price and weapon stats TBD."
+      ]
+    },
+    {
+      "row": 83,
+      "cells": [
+        "Test",
+        "Test — Export Riflemen",
+        "No",
+        "Regular",
+        8,
+        "QBZ-97 (rifle)",
+        "QJB-201 (LMG)",
+        2,
+        "PF-89 (AT)",
+        2,
+        "None",
+        "",
+        "Light HEAT",
+        "TEST CONCEPT — Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki."
+      ]
+    },
+    {
+      "row": 84,
+      "cells": [
+        "Test",
+        "Test — SMG Assault",
+        "No",
+        "Regular",
+        8,
+        "QBZ-191 (rifle)",
+        "QCQ-05 (SMG)",
+        6,
+        "QBS-09 (shotgun)",
+        2,
+        "None",
+        "",
+        "SMG ammunition + buckshot",
+        "TEST CONCEPT — All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC."
+      ]
+    },
+    {
+      "row": 85,
+      "cells": [
+        "Test",
+        "Test — Suppressed Scouts",
+        "Yes",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "QCW-05 (SMG)",
+        4,
+        "QBU-88 (DMR)",
+        1,
+        "None",
+        "",
+        "No AT rockets",
+        "TEST CONCEPT — Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT."
+      ]
+    },
+    {
+      "row": 86,
+      "cells": [
+        "Test",
+        "Test — LG5 Precision Grenadiers",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "LG5 (precision GL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "40×53 mm HE; not QLU 35 mm",
+        "TEST CONCEPT — Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL."
+      ]
+    },
+    {
+      "row": 87,
+      "cells": [
+        "Test",
+        "Test — LG5s Mobile Grenadiers",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "LG5s (precision GL)",
+        1,
+        "QLG-10A (underbarrel GL)",
+        1,
+        "None",
+        "",
+        "LG5s configuration to verify; 35 mm carried separately",
+        "TEST CONCEPT — Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets."
+      ]
+    },
+    {
+      "row": 88,
+      "cells": [
+        "Test",
+        "Test — LG6 CQC Grenadiers",
+        "No",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "LG6 (40 mm combat version) (AGL)",
+        2,
+        "QBS-09 (shotgun)",
+        2,
+        "None",
+        "",
+        "40×46 mm HE + buckshot",
+        "TEST CONCEPT — Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC."
+      ]
+    },
+    {
+      "row": 89,
+      "cells": [
+        "Test",
+        "Test — LG4 Revolver Team",
+        "No",
+        "Regular",
+        6,
+        "QBZ-191 (rifle)",
+        "LG4 (MGL)",
+        2,
+        "QJS-161 (LMG)",
+        1,
+        "None",
+        "",
+        "40×46 mm HE; no airburst assumption",
+        "TEST CONCEPT — Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force."
+      ]
+    },
+    {
+      "row": 90,
+      "cells": [
+        "Test",
+        "Test — LG3 Heavy AGL",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "LG3 (AGL)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "40×53 mm HE",
+        "TEST CONCEPT — Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team."
+      ]
+    },
+    {
+      "row": 91,
+      "cells": [
+        "Test",
+        "Test — QN-202 Guided Support",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QN-202 (guided missile)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "HE-fragmentation; anti-MBT role excluded",
+        "TEST CONCEPT — Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets."
+      ]
+    },
+    {
+      "row": 92,
+      "cells": [
+        "Test",
+        "Test — TL-4 Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "TL-4 (ATGM)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT; guidance modes require validation",
+        "TEST CONCEPT — Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A."
+      ]
+    },
+    {
+      "row": 93,
+      "cells": [
+        "Test",
+        "Test — GAM-102LR Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "GAM-102LR (ATGM)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT; no native range imported from advertisements",
+        "TEST CONCEPT — Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A."
+      ]
+    },
+    {
+      "row": 94,
+      "cells": [
+        "Test",
+        "Test — HJ-12E Team",
+        "No",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "HJ-12E (ATGM)",
+        2,
+        "None",
+        "",
+        "None",
+        "",
+        "Tandem HEAT; domestic/export stats not assumed equal",
+        "TEST CONCEPT — Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet."
+      ]
+    },
+    {
+      "row": 95,
+      "cells": [
+        "Test",
+        "Test — QW-2 Escort",
+        "No",
+        "Regular",
+        5,
+        "QBZ-191 (rifle)",
+        "QW-2 (MANPADS)",
+        1,
+        "QJS-161 (LMG)",
+        1,
+        "None",
+        "",
+        "IR SAMs",
+        "TEST CONCEPT — Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla."
+      ]
+    },
+    {
+      "row": 96,
+      "cells": [
+        "Test",
+        "Test — QTS Recon Cell",
+        "Yes",
+        "Regular",
+        4,
+        "QBZ-191 (rifle)",
+        "QTS-11 (rifle / GL)",
+        2,
+        "QBU-191 (DMR)",
+        1,
+        "None",
+        "",
+        "Limited 20 mm grenades; no assumed sensor/airburst bonus",
+        "TEST CONCEPT — Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets."
+      ]
+    },
+    {
+      "row": 97,
+      "cells": [
+        "Test",
+        "Test — FHJ-02 Smoke Team",
+        "No",
+        "Regular",
+        3,
+        "QBZ-191 (rifle)",
+        "FHJ-02 (rocket launcher)",
+        1,
+        "None",
+        "",
+        "None",
+        "",
+        "Smoke rockets only; behavior and reload need implementation",
+        "TEST CONCEPT — Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note)."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3970 @@
+{
+  "build": 14,
+  "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
+  "source_range": "A8:N97",
+  "entries": [
+    {
+      "unit": 1136,
+      "row": 8,
+      "name": "Airborne Riflemen",
+      "spec": 17,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "PF-98 HEAT + rifle/LMG ammunition",
+      "notes": "User-selected heavy rifle squad: rocket, LMGs and marksman. More demanding than a light airborne squad; no guided AT. Vanilla pattern: Airborne 2 / Desantniki.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        914,
+        1106,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1137,
+      "row": 9,
+      "name": "Airborne HJ-12 Team",
+      "spec": 17,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ],
+      "munitions": "Tandem HEAT only",
+      "notes": "Premium dedicated anti-tank team; escorts needed against infantry. Vanilla pattern: VDV Kornet.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1138,
+      "row": 10,
+      "name": "Airborne Close-Assault Riflemen",
+      "spec": 17,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Light HEAT + 35 mm HE-frag",
+      "notes": "User-selected close-assault kit: light rockets, automatic rifles and underbarrel grenades; no long-range guided AT. Vanilla pattern: Airborne 2 / Desantniki.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1139,
+      "row": 11,
+      "name": "Airborne PF-98 Fire Support",
+      "spec": 17,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2011919,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "Fixed mix: HEAT + DZT-98 thermobaric; round counts to balance",
+      "notes": "Heavy direct support for landing zones; mixed AT/blast kit, slower than riflemen. Vanilla pattern: Rangers RAWS.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1140,
+      "row": 12,
+      "name": "Airborne QLU-11 Precision Team",
+      "spec": 17,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "35 mm HE-frag; no borrowed LG5 ammunition",
+      "notes": "Standoff explosive support; precision grenades, weak against MBTs. Vanilla pattern: Rangers Mk47 AGL.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1141,
+      "row": 13,
+      "name": "Airborne QJZ-171 Team",
+      "spec": 17,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJZ-171",
+          "weapon": 2011972,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ],
+      "munitions": "12.7 mm ball/AP mix",
+      "notes": "Dedicated lightweight HMG firebase; needs a rifle screen and transport. Vanilla pattern: M2 HMG team.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        1058,
+        1070,
+        1074,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1142,
+      "row": 14,
+      "name": "Airborne Pathfinders",
+      "spec": 17,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT reserve",
+      "notes": "Small advance scout; spot first, avoid prolonged firefights. Vanilla pattern: Airborne Recce.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        1058,
+        1070,
+        1074,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1143,
+      "row": 15,
+      "name": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
+      "spec": 17,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Limited QTS 20 mm HE/airburst-design allocation; capability requires testing",
+      "notes": "Elite air-mobile reconnaissance/raids; two digital grenadiers, no heavy ATGM. Vanilla pattern: Rangers RRC. Research: S03 (cell note).",
+      "body_from": 993,
+      "camo": "desert",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1144,
+      "row": 16,
+      "name": "Airborne Snipers",
+      "spec": 17,
+      "men": 3,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "12.7 mm + 5.8 mm; no vehicle-kill guarantee",
+      "notes": "Heavy sniper, marksman and security rifle; precision, not assault manpower. Vanilla pattern: Army Snipers.",
+      "body_from": 993,
+      "camo": "desert",
+      "armor": 10,
+      "health": 15,
+      "carriers": [
+        900,
+        1058,
+        1070,
+        1074,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1145,
+      "row": 17,
+      "name": "Airborne HN-6 Patrol",
+      "spec": 17,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "IR SAMs + 35 mm HE-frag",
+      "notes": "Infantry escort with one MANPADS; less ground firepower than riflemen. Vanilla pattern: VDV Igla.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1146,
+      "row": 18,
+      "name": "Air Assault Raiders",
+      "spec": 17,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Elite",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Compact shock infantry for helicopters; limited staying power. Vanilla pattern: VDV DSh 1.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 8,
+      "health": 25,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1147,
+      "row": 19,
+      "name": "Airborne Assault Engineers",
+      "spec": 17,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Engineers",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Assault rounds + buckshot",
+      "notes": "Close-range breaching with useful rifle security; no automatic mine-clearing bonus. Vanilla pattern: Mech. Engineers.",
+      "body_from": 994,
+      "camo": "desert",
+      "armor": 8,
+      "health": 30,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1148,
+      "row": 20,
+      "name": "Airborne QLZ-87 Team",
+      "spec": 17,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLZ-87",
+          "weapon": 2012157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ],
+      "munitions": "35 mm HE-frag",
+      "notes": "Portable explosive-volume support; less precise than QLU-11 team. Vanilla pattern: VDV AGS-30.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1149,
+      "row": 21,
+      "name": "Airborne Target Observers",
+      "spec": 17,
+      "men": 3,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "35 mm HE-frag; designator equipment is a proposal",
+      "notes": "Small spotting/coordination team; proposed designator role needs explicit ability support. Vanilla pattern: Airborne Recce.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 15,
+      "carriers": [
+        900,
+        1058,
+        1070,
+        1074,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1150,
+      "row": 22,
+      "name": "Airborne Reserve Riflemen",
+      "spec": 17,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Lower-tier air-mobile reserve; manpower and simple weapons, no SF optics. Vanilla pattern: Reserve Marines.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1151,
+      "row": 23,
+      "name": "Mechanized Riflemen",
+      "spec": 18,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "PF-98 HEAT + 35 mm HE-frag",
+      "notes": "Compact mechanized dismounts; IFV supplies extra fire support. Vanilla pattern: Mech. Riflemen MAAWS.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 35,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1152,
+      "row": 24,
+      "name": "Mechanized HJ-8E Team",
+      "spec": 18,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ],
+      "munitions": "Tandem HEAT",
+      "notes": "Affordable guided AT; requires exposure while guiding, unlike HJ-12. Vanilla pattern: PTRK Konkurs.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1153,
+      "row": 25,
+      "name": "Mechanized QW-2 Team",
+      "spec": 18,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 537
+        }
+      ],
+      "munitions": "IR SAMs",
+      "notes": "Dedicated air defense, little spare infantry firepower. Vanilla pattern: Stinger team.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1154,
+      "row": 26,
+      "name": "Mechanized QLZ-04 Team",
+      "spec": 18,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLZ-04",
+          "weapon": 2012312,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ],
+      "munitions": "35 mm HE-frag",
+      "notes": "Sustained AGL position defense; heavy gun crew, not assault infantry. Vanilla pattern: Mk19 AGL team.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1155,
+      "row": 27,
+      "name": "Mechanized PF-98 Tank Hunters",
+      "spec": 18,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "HEAT only",
+      "notes": "Shorter-range unguided AT concentration; distinct from mixed-ammo fire support. Vanilla pattern: Assaultmen SMAW.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1156,
+      "row": 28,
+      "name": "Mechanized Combat Engineers",
+      "spec": 18,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Engineers",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Buckshot + assault rounds",
+      "notes": "Clear defended positions with shotgun/assault launchers and rifle security. Vanilla pattern: Combat Engineers.",
+      "body_from": 989,
+      "camo": "green",
+      "armor": 8,
+      "health": 40,
+      "carriers": [
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1157,
+      "row": 29,
+      "name": "Mechanized QJZ-89 Team",
+      "spec": 18,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJZ-89",
+          "weapon": 2012387,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ],
+      "munitions": "12.7 mm ball/AP mix",
+      "notes": "Dedicated heavy suppression; no missile or grenade capability. Vanilla pattern: M2 HMG team.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1158,
+      "row": 30,
+      "name": "Mechanized GPMG Riflemen",
+      "spec": 18,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Suppression-heavy fixed kit; weaker on the move than standard dismounts. Vanilla pattern: Mech. Riflemen MMG.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 35,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1159,
+      "row": 31,
+      "name": "Mechanized Guided-AT Riflemen",
+      "spec": 18,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "HJ-8E HEAT + 35 mm HE-frag",
+      "notes": "Rifle squad trades heavy rocket burst for one guided AT weapon. Vanilla pattern: Mech. Riflemen Dragon.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 35,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1160,
+      "row": 32,
+      "name": "Armored Scouts",
+      "spec": 18,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Small scouts screening armor; limited casualties can collapse firepower. Vanilla pattern: Cavalry Scouts.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1161,
+      "row": 33,
+      "name": "Armored Sniper Pair",
+      "spec": 18,
+      "men": 2,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "12.7 mm + 5.8 mm",
+      "notes": "Two-man precision team with almost no spare bodies. Vanilla pattern: Scout Snipers.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 10,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1162,
+      "row": 34,
+      "name": "Mechanized Thermobaric Breachers",
+      "spec": 18,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Engineers",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ],
+      "munitions": "Buckshot + thermobaric",
+      "notes": "Hard CQC/anti-cover specialist, deliberately poor at long-range AT. Vanilla pattern: Mech. Engineers CQC.",
+      "body_from": 989,
+      "camo": "green",
+      "armor": 8,
+      "health": 35,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1163,
+      "row": 35,
+      "name": "Mechanized Close-AT Riflemen",
+      "spec": 18,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Light HEAT + 35 mm HE-frag",
+      "notes": "Cheaper fixed light-AT loadout; guided team remains the MBT counter. Vanilla pattern: Motostrelki.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 35,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1164,
+      "row": 36,
+      "name": "Armored Forward Observers",
+      "spec": 18,
+      "men": 3,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "Designator/radio role is a proposal",
+      "notes": "Low-firepower observation unit for armor/artillery coordination. Vanilla pattern: Airborne Recce.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 15,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1165,
+      "row": 37,
+      "name": "Recon HJ-8E Ambush Team",
+      "spec": 18,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ],
+      "munitions": "Tandem HEAT",
+      "notes": "Hidden observation and one guided ambush weapon; avoid infantry duels. Vanilla pattern: Cavalry Scouts.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        902,
+        979,
+        903,
+        962,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1166,
+      "row": 38,
+      "name": "Conscripts \u2014 No AT",
+      "spec": 19,
+      "men": 12,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        }
+      ],
+      "munitions": "Rifle/LMG ammunition only",
+      "notes": "Cheap mass and screening only; deliberately no launcher. Vanilla pattern: Reserve Marines.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 60,
+      "carriers": [
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1167,
+      "row": 39,
+      "name": "Reserve Riflemen \u2014 HJ-73D",
+      "spec": 19,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Tandem HEAT missile + 35 mm HE-frag",
+      "notes": "Reserve line squad with one upgraded-Malyutka launcher; affordable defensive AT is the design goal. Guidance exposure and launcher burden trade against mobile assault. Vanilla pattern: mixed rifle/AT squads. Research: S14 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        959,
+        960,
+        1062,
+        1064,
+        1065,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1168,
+      "row": 40,
+      "name": "Reserve HJ-73D Team",
+      "spec": 19,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ],
+      "munitions": "Tandem HEAT missiles; reserve count TBD",
+      "notes": "Dedicated two-launcher reserve AT team; intended economy option below HJ-8E support. QBZ-95 security; poor infantry assault value. Continuous target tracking is the proposed guidance limitation. Research: S14 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1169,
+      "row": 41,
+      "name": "Reserve HN-6 Team",
+      "spec": 19,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ],
+      "munitions": "IR SAMs",
+      "notes": "Low-manpower air defense; needs a rifle screen. Vanilla pattern: PZRK Igla.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1170,
+      "row": 42,
+      "name": "Reserve QJZ-89 Team",
+      "spec": 19,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QJZ-89",
+          "weapon": 2012387,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ],
+      "munitions": "12.7 mm ball/AP mix",
+      "notes": "Economy fixed HMG defense for launch sites and roads. Vanilla pattern: M2 HMG team.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1171,
+      "row": 43,
+      "name": "Reserve QLZ-87 Team",
+      "spec": 19,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QLZ-87",
+          "weapon": 2012157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ],
+      "munitions": "35 mm HE-frag",
+      "notes": "Defensive grenade volume; little mobile assault value. Vanilla pattern: VDV AGS-30.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1172,
+      "row": 44,
+      "name": "Reserve PF-98 Team",
+      "spec": 19,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "HEAT only",
+      "notes": "Dedicated unguided tank defense; support burden buys a lower-cost alternative to missiles. Vanilla pattern: Assaultmen SMAW.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1173,
+      "row": 45,
+      "name": "Malyutka Recon Ambush Team",
+      "spec": 19,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
+        },
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ],
+      "munitions": "Tandem HEAT missiles; limited ambush reserve TBD",
+      "notes": "Six-man reserve recon/ambush team: observe a lane, take a prepared AT shot, then reposition. One HJ-73D plus DMR/LMG security. Recon Yes; Conscripts / QBZ-95. No automatic SF stealth, fire-and-forget or firing through blocked LOS. Research: S14 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1174,
+      "row": 46,
+      "name": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
+      "spec": 19,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Limited QTS 20 mm grenades + light HEAT",
+      "notes": "Small high-value reconnaissance/security element; one digital grenadier, not a super-squad. Vanilla pattern: Green Berets. Research: S11 (cell note).",
+      "body_from": 993,
+      "camo": "desert",
+      "armor": 10,
+      "health": 20,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1175,
+      "row": 47,
+      "name": "Missile-Site Security \u2014 HJ-73D",
+      "spec": 19,
+      "men": 10,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 200
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ],
+      "munitions": "Tandem HEAT missiles + assault rounds",
+      "notes": "Large reserve security squad gains one upgraded Malyutka for defensive armor ambushes. Heavy mixed kit favors prepared positions over assault. Launcher and squad model readiness still need checking. Research: S14 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 50,
+      "carriers": [
+        959,
+        960,
+        1062,
+        1064,
+        1065,
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1176,
+      "row": 48,
+      "name": "Missile-Site Counter-Raid Team",
+      "spec": 19,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QCQ-05",
+          "weapon": 2012924,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ],
+      "munitions": "Buckshot",
+      "notes": "Short-range security reserve; standard weapons, no special sensor bonus. Vanilla pattern: DLC3 Rosgvardia.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1177,
+      "row": 49,
+      "name": "Reserve Thermobaric Team",
+      "spec": 19,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ],
+      "munitions": "Thermobaric only",
+      "notes": "Positional anti-infantry blast team; cannot replace an ATGM. Vanilla pattern: Ognemetchiki.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1178,
+      "row": 50,
+      "name": "Reserve Heavy HJ-8E Team",
+      "spec": 19,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ],
+      "munitions": "Tandem HEAT",
+      "notes": "Larger dual-launcher AT position with security; higher cost than single-launcher team. Vanilla pattern: PTRK Fagot.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 35,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1179,
+      "row": 51,
+      "name": "Rocket Convoy Escort \u2014 HJ-73D",
+      "spec": 19,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ],
+      "munitions": "Tandem HEAT missiles; reserve count TBD",
+      "notes": "Ordinary escort infantry with one upgraded-Malyutka launcher for route-defense halts. Support-heavy fixed kit; intended low-cost AT coverage, no SF sensor bonus. Existing Regular / QBZ-191 baseline retained. Research: S14 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1180,
+      "row": 52,
+      "name": "FHJ-02 Incendiary Team",
+      "spec": 19,
+      "men": 3,
+      "recon": false,
+      "troop_type": "Conscripts",
+      "base_rifle": "QBZ-95 (rifle)",
+      "weapons": [
+        {
+          "name": "FHJ-02",
+          "weapon": 2013057,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ],
+      "munitions": "Fixed incendiary rockets; seven-tube launcher, reload balance TBD",
+      "notes": "Small infantry rocket-support crew; setup and resupply burden, no MBT role. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 15,
+      "carriers": [
+        959,
+        960,
+        962,
+        1062,
+        1063,
+        1064,
+        1065,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1181,
+      "row": 53,
+      "name": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 4,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "QTS 20 mm + QLU 35 mm HE; no automatic airburst/cover bonus",
+      "notes": "Signature high-tech explosive/precision squad; limited grenade reserves and no hard AT. Vanilla pattern: Delta Force. Research: S02 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1182,
+      "row": 54,
+      "name": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Buckshot + assault rounds",
+      "notes": "Carbine/shotgun entry squad; hard CQC and breaching, little long-range punch. Vanilla pattern: SSO. Research: S02 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1183,
+      "row": 55,
+      "name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "HEAT only; cold-weather identity is flavor, not an automatic buff",
+      "notes": "Robust field assault with heavy unguided AT; not covert observation. Vanilla pattern: Spetsnaz GRU AT. Research: S05 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1184,
+      "row": 56,
+      "name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
+      "spec": 20,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "QLU 35 mm HE + QBU-10 12.7 mm + 5.8 mm",
+      "notes": "SF standoff recon team: precision grenades and 12.7 mm sniper fire, with marksman/spotter and carbine security. Small team; no dedicated AT. User-requested fixed kit. Vanilla pattern: small mixed-weapon Green Berets / sniper teams. Research S06 supports the sniper theme, not this exact equipment mix.",
+      "body_from": 988,
+      "camo": "green",
+      "armor": 10,
+      "health": 20,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        1058,
+        1070,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1185,
+      "row": 57,
+      "name": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "35 mm HE + light HEAT",
+      "notes": "Standoff grenade/GPMG support; suppresses infantry but lacks premium guided AT. Vanilla pattern: Green Berets. Research: S07 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1186,
+      "row": 58,
+      "name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
+      "spec": 20,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-192 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Light mountain fighting with marksmen; no HMG, missile or free terrain bonus. Vanilla pattern: Gornostrelki. Research: S08 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1187,
+      "row": 59,
+      "name": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
+      "spec": 20,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QCQ-05",
+          "weapon": 2012924,
+          "quantity": 4,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ],
+      "munitions": "SMG ammunition + buckshot; no explosive launcher",
+      "notes": "Police-themed room-clearing specialist; excellent CQC identity, no AT. Vanilla pattern: DLC3 Spetsnaz Vympel CQC. Research: S01 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1188,
+      "row": 60,
+      "name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Limited 20 mm HE + buckshot + assault rounds",
+      "notes": "PAP rapid-entry squad with small digital-grenade element; no heavy ATGM. Vanilla pattern: SSO. Research: S04 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1189,
+      "row": 61,
+      "name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
+      "spec": 20,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ],
+      "munitions": "35 mm HE + buckshot; exact issued kit not asserted",
+      "notes": "Compact CT raid kit; suppressed weapon concept without free invisibility. Vanilla pattern: Force Recon CQC. Research: S09 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1190,
+      "row": 62,
+      "name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
+      "spec": 20,
+      "men": 10,
+      "recon": false,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "HEAT + 35 mm HE",
+      "notes": "Marine SOF assault manpower; heavy rocket support, less compact than scouts. Vanilla pattern: Marine Raiders AT. Research: S10 (cell note).",
+      "body_from": 995,
+      "camo": "green",
+      "armor": 10,
+      "health": 50,
+      "carriers": [
+        914,
+        1106,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1191,
+      "row": 63,
+      "name": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
+      "spec": 20,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Assault rounds; no heavy anti-tank weapon",
+      "notes": "Maritime reconnaissance/raid team; no automatic swimming/diving ability implied. Vanilla pattern: Force Recon. Research: S10 (cell note).",
+      "body_from": 988,
+      "camo": "green",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1192,
+      "row": 64,
+      "name": "Marine Riflemen",
+      "spec": 20,
+      "men": 12,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Light HEAT + 35 mm HE",
+      "notes": "Large sustained-assault squad; manpower rather than elite stealth. Vanilla pattern: Marines.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 60,
+      "carriers": [
+        1106,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1193,
+      "row": 65,
+      "name": "Marine HJ-12 Team",
+      "spec": 20,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Support",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ],
+      "munitions": "Tandem HEAT",
+      "notes": "Dedicated premium armor counter with a security gun. Vanilla pattern: CAAT Javelin.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1194,
+      "row": 66,
+      "name": "Marine HN-6 Team",
+      "spec": 20,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Support",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ],
+      "munitions": "IR SAMs",
+      "notes": "Marine air-defense team with limited self-protection. Vanilla pattern: Rangers Stinger.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1195,
+      "row": 67,
+      "name": "Marine Thermobaric Engineers",
+      "spec": 20,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Engineers",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ],
+      "munitions": "Thermobaric + buckshot",
+      "notes": "Breach fortified infantry positions; weak versus heavy armor. Vanilla pattern: Combat Engineers.",
+      "body_from": 989,
+      "camo": "green",
+      "armor": 8,
+      "health": 40,
+      "carriers": [
+        1076,
+        962,
+        979,
+        1078,
+        1079,
+        914,
+        1106,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1196,
+      "row": 68,
+      "name": "Motorized Line Infantry",
+      "spec": 21,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "PF-98 HEAT + QLU 35 mm HE",
+      "notes": "User-selected mixed kit retained; versatile but expensive and less specialized than support teams. Vanilla pattern: Troopers.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1197,
+      "row": 69,
+      "name": "Motorized Troopers \u2014 AA",
+      "spec": 21,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "IR SAMs + 35 mm HE",
+      "notes": "Troopers-style mixed AA squad; trades anti-tank slot for MANPADS. Vanilla pattern: Troopers AA.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1198,
+      "row": 70,
+      "name": "Motorized Troopers \u2014 HJ-12",
+      "spec": 21,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 62
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Tandem HEAT + 35 mm HE",
+      "notes": "Separate guided-AT trooper unit, matched in size to AA troopers. Vanilla pattern: Troopers AT.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1199,
+      "row": 71,
+      "name": "Motorized Weapons Squad",
+      "spec": 21,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QJZ-171",
+          "weapon": 2011972,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ],
+      "munitions": "35 mm HE + 12.7 mm",
+      "notes": "User-selected grenade/HMG/sniper firebase; broad standoff coverage, limited assault manpower. No guided anti-tank weapon. Vanilla pattern: DLC2 HMG GMG.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1200,
+      "row": 72,
+      "name": "Motorized PF-98 Fire Support",
+      "spec": 21,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "PF-98A",
+          "weapon": 2011919,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "Also thermo | Draft: Fixed mix: HEAT + DZT-98 thermobaric; reserve count TBD",
+      "notes": "Small direct-fire team with the user-requested mixed AT/thermobaric kit. Vanilla pattern: Assaultmen SMAW.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1201,
+      "row": 73,
+      "name": "Motorized Recon Patrol",
+      "spec": 21,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "Mobile forward screen with one marksman and light self-defense AT. Vanilla pattern: Scouts.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1202,
+      "row": 74,
+      "name": "Motorized Snipers",
+      "spec": 21,
+      "men": 3,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "12.7 mm + 5.8 mm",
+      "notes": "Heavy rifle and marksman with security; cannot hold a line. Vanilla pattern: Army Snipers.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 15,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1203,
+      "row": 75,
+      "name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
+      "spec": 21,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Special forces",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Limited 20 mm HE + light HEAT; designator is a proposed role",
+      "notes": "Networked target-finding theme with limited digital grenades; spotting over brute assault. Vanilla pattern: Rangers RRC. Research: S13 (cell note).",
+      "body_from": 993,
+      "camo": "desert",
+      "armor": 10,
+      "health": 30,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1204,
+      "row": 76,
+      "name": "Motorized CQC Engineers",
+      "spec": 21,
+      "men": 7,
+      "recon": false,
+      "troop_type": "Engineers",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ],
+      "munitions": "Buckshot + assault rounds",
+      "notes": "Close-range engineer kit; no long-range AT or heavy MG. Vanilla pattern: Mech. Engineers CQC.",
+      "body_from": 994,
+      "camo": "desert",
+      "armor": 8,
+      "health": 35,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1205,
+      "row": 77,
+      "name": "Motorized Light-AT Riflemen",
+      "spec": 21,
+      "men": 9,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "Light HEAT + 35 mm HE",
+      "notes": "Cheaper fixed kit than the heavy mixed line squad. Vanilla pattern: Troopers.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 45,
+      "carriers": [
+        914,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1206,
+      "row": 78,
+      "name": "Motorized Air-Defense Scouts",
+      "spec": 21,
+      "men": 5,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ],
+      "munitions": "IR SAMs",
+      "notes": "Forward observer with a single defensive SAM; not a full AA battery. Vanilla pattern: VDV Igla.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1207,
+      "row": 79,
+      "name": "Motorized PF-98 Tank Hunters",
+      "spec": 21,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ],
+      "munitions": "HEAT only",
+      "notes": "AT-only counterpart to the mixed-ammo fire-support team. Vanilla pattern: Rangers RAWS.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1208,
+      "row": 80,
+      "name": "Motorized QLZ-04 Team",
+      "spec": 21,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLZ-04",
+          "weapon": 2012312,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ],
+      "munitions": "35 mm HE",
+      "notes": "Sustained grenade firebase; needs transport and a front line. Vanilla pattern: Mk19 AGL team.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        1058,
+        1070,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1209,
+      "row": 81,
+      "name": "Motorized Thermobaric Assault",
+      "spec": 21,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ],
+      "munitions": "Thermobaric + buckshot",
+      "notes": "Dedicated blast assault; gives up heavy AT and long-range suppression. Vanilla pattern: Ognemetchiki.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1210,
+      "row": 82,
+      "name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
+      "spec": 21,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Support",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ],
+      "munitions": "HJ-8E tandem HEAT + QLU 35 mm HE + 7.62 mm GPMG",
+      "notes": "Mixed AT/infantry-support team: one guided launcher, one precision GL and one GPMG; remaining personnel provide rifle security and crew support. Eight-man CAAT-style fixed kit, less suited to mobile assault. Exact price and weapon stats TBD.",
+      "body_from": 990,
+      "camo": "desert",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        903,
+        962,
+        979,
+        1077,
+        1078,
+        1079,
+        914,
+        1107,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1211,
+      "row": 83,
+      "name": "Test \u2014 Export Riflemen",
+      "spec": 22,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-97 (rifle)",
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ],
+      "munitions": "Light HEAT",
+      "notes": "TEST CONCEPT \u2014 Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        903,
+        914,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1212,
+      "row": 84,
+      "name": "Test \u2014 SMG Assault",
+      "spec": 22,
+      "men": 8,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QCQ-05",
+          "weapon": 2012924,
+          "quantity": 6,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ],
+      "munitions": "SMG ammunition + buckshot",
+      "notes": "TEST CONCEPT \u2014 All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 40,
+      "carriers": [
+        903,
+        914,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1213,
+      "row": 85,
+      "name": "Test \u2014 Suppressed Scouts",
+      "spec": 22,
+      "men": 6,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 4,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
+        }
+      ],
+      "munitions": "No AT rockets",
+      "notes": "TEST CONCEPT \u2014 Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1214,
+      "row": 86,
+      "name": "Test \u2014 LG5 Precision Grenadiers",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "LG5",
+          "weapon": 2014088,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 203
+        }
+      ],
+      "munitions": "40\u00d753 mm HE; not QLU 35 mm",
+      "notes": "TEST CONCEPT \u2014 Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1215,
+      "row": 87,
+      "name": "Test \u2014 LG5s Mobile Grenadiers",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "LG5s",
+          "weapon": 2014116,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 203
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ],
+      "munitions": "LG5s configuration to verify; 35 mm carried separately",
+      "notes": "TEST CONCEPT \u2014 Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1216,
+      "row": 88,
+      "name": "Test \u2014 LG6 CQC Grenadiers",
+      "spec": 22,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "LG6",
+          "weapon": 2014146,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ],
+      "munitions": "40\u00d746 mm HE + buckshot",
+      "notes": "TEST CONCEPT \u2014 Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1217,
+      "row": 89,
+      "name": "Test \u2014 LG4 Revolver Team",
+      "spec": 22,
+      "men": 6,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        }
+      ],
+      "munitions": "40\u00d746 mm HE; no airburst assumption",
+      "notes": "TEST CONCEPT \u2014 Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 30,
+      "carriers": [
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1218,
+      "row": 90,
+      "name": "Test \u2014 LG3 Heavy AGL",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "LG3",
+          "weapon": 2014208,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 75
+        }
+      ],
+      "munitions": "40\u00d753 mm HE",
+      "notes": "TEST CONCEPT \u2014 Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1219,
+      "row": 91,
+      "name": "Test \u2014 QN-202 Guided Support",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QN-202",
+          "weapon": 2014236,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ],
+      "munitions": "HE-fragmentation; anti-MBT role excluded",
+      "notes": "TEST CONCEPT \u2014 Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1220,
+      "row": 92,
+      "name": "Test \u2014 TL-4 Team",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "TL-4",
+          "weapon": 2014264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 205
+        }
+      ],
+      "munitions": "Tandem HEAT; guidance modes require validation",
+      "notes": "TEST CONCEPT \u2014 Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1221,
+      "row": 93,
+      "name": "Test \u2014 GAM-102LR Team",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "GAM-102LR",
+          "weapon": 2014292,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 205
+        }
+      ],
+      "munitions": "Tandem HEAT; no native range imported from advertisements",
+      "notes": "TEST CONCEPT \u2014 Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1222,
+      "row": 94,
+      "name": "Test \u2014 HJ-12E Team",
+      "spec": 22,
+      "men": 4,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "HJ-12E",
+          "weapon": 2014320,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ],
+      "munitions": "Tandem HEAT; domestic/export stats not assumed equal",
+      "notes": "TEST CONCEPT \u2014 Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1223,
+      "row": 95,
+      "name": "Test \u2014 QW-2 Escort",
+      "spec": 22,
+      "men": 5,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 537
+        }
+      ],
+      "munitions": "IR SAMs",
+      "notes": "TEST CONCEPT \u2014 Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 25,
+      "carriers": [
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1224,
+      "row": 96,
+      "name": "Test \u2014 QTS Recon Cell",
+      "spec": 22,
+      "men": 4,
+      "recon": true,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ],
+      "munitions": "Limited 20 mm grenades; no assumed sensor/airburst bonus",
+      "notes": "TEST CONCEPT \u2014 Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets.",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 20,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    },
+    {
+      "unit": 1225,
+      "row": 97,
+      "name": "Test \u2014 FHJ-02 Smoke Team",
+      "spec": 22,
+      "men": 3,
+      "recon": false,
+      "troop_type": "Regular",
+      "base_rifle": "QBZ-191 (rifle)",
+      "weapons": [
+        {
+          "name": "FHJ-02",
+          "weapon": 2014406,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ],
+      "munitions": "Smoke rockets only; behavior and reload need implementation",
+      "notes": "TEST CONCEPT \u2014 Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
+      "body_from": 985,
+      "camo": "green",
+      "armor": 6,
+      "health": 15,
+      "carriers": [
+        900,
+        902,
+        903,
+        914,
+        945,
+        959,
+        960,
+        962,
+        979,
+        912
+      ],
+      "native_verified": false
+    }
+  ],
+  "count": 90,
+  "retired_drafts": [
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027
+  ],
+  "icon_keys": [
+    "FA_PLA_AMMO_ATGM",
+    "FA_PLA_AMMO_GRENADE",
+    "FA_PLA_AMMO_MG",
+    "FA_PLA_AMMO_RIFLE",
+    "FA_PLA_AMMO_ROCKET",
+    "FA_PLA_AMMO_SAM",
+    "FA_PLA_AMMO_SHOTGUN",
+    "FA_PLA_AMMO_SMG",
+    "FA_PLA_AMMO_SNIPER",
+    "FA_PLA_WP_ATGM",
+    "FA_PLA_WP_GRENADE",
+    "FA_PLA_WP_MG",
+    "FA_PLA_WP_RIFLE",
+    "FA_PLA_WP_ROCKET",
+    "FA_PLA_WP_SAM",
+    "FA_PLA_WP_SHOTGUN",
+    "FA_PLA_WP_SMG",
+    "FA_PLA_WP_SNIPER"
+  ],
+  "native_verified": false,
+  "limits": "Names, sizes, selected weapons and quantities match the sheet. Weapon performance, ammo stocks, costs and armor tiers are native analog drafts. Custom meshes used where installed; remaining handhelds use native meshes."
+}

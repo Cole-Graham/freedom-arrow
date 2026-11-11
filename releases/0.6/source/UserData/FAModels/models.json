@@ -173,8 +173,8 @@
     "align": false
   },
   "PLA ZTZ-99A2": {
-    "file": "m_ztz99a2_static.fam",
-    "battle": "m_ztz99a2_lo_static.fam",
+    "file": "m_ztz99a_green_static.fam",
+    "battle": "m_ztz99a_green_lo_static.fam",
     "align": false
   },
   "PLA Z-19E": {
@@ -218,14 +218,13 @@
     "align": false
   },
   "PLA ZTZ-99G": {
-    "file": "m_ztz99g_static.fam",
-    "battle": "m_ztz99g_lo_static.fam",
+    "file": "m_ztz99a_green_static.fam",
+    "battle": "m_ztz99a_green_lo_static.fam",
     "align": false
   },
   "PLA ZTZ-96": {
-    "file": "m_ztz96_static.fam",
-    "battle": "m_ztz96_lo_static.fam",
-    "align": false
+    "file": "m_ztz96b_green.fam",
+    "battle": "m_ztz96b_green_lo.fam"
   },
   "Su-75 Checkmate": {
     "file": "m_su75_t75.fam",
@@ -248,8 +247,8 @@
     "align": false
   },
   "PLA VT-5": {
-    "file": "m_vt5_static.fam",
-    "battle": "m_vt5_lo_static.fam",
+    "file": "m_ztq15_green_static.fam",
+    "battle": "m_ztq15_green_lo_static.fam",
     "align": false
   },
   "PLA ZFB-05": {
@@ -437,5 +436,73 @@
     "file": "m_z9wa.fam",
     "align": false,
     "battle": "m_z9wa_lo.fam"
+  },
+  "PLA Catalogue PLZ-07": {
+    "file": "m_plz07b_static.fam",
+    "battle": "m_plz07b_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PGZ-04": {
+    "file": "m_pgz04a_static.fam",
+    "battle": "m_pgz04a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PGZ-95": {
+    "file": "m_pgz04a_static.fam",
+    "battle": "m_pgz04a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue AFT-10": {
+    "file": "m_aft10_static.fam",
+    "battle": "m_aft10_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBL-09": {
+    "file": "m_zbl08_static.fam",
+    "battle": "m_zbl08_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBL19 \u2014 seller name": {
+    "file": "m_zbl191_green.fam",
+    "battle": "m_zbl191_green_lo.fam"
+  },
+  "PLA Catalogue ZSL-92 family": {
+    "file": "m_wz551_static.fam",
+    "battle": "m_wz551_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZTZ-96A": {
+    "file": "m_ztz96b_green.fam",
+    "battle": "m_ztz96b_green_lo.fam"
+  },
+  "PLA Catalogue ZTZ-99": {
+    "file": "m_ztz99a_green_static.fam",
+    "battle": "m_ztz99a_green_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Z-19": {
+    "file": "m_z19e.fam",
+    "align": false,
+    "battle": "m_z19e_lo.fam"
+  },
+  "PLA Catalogue Z-21": {
+    "file": "m_z10me.fam",
+    "align": false,
+    "battle": "m_z10me_lo.fam"
+  },
+  "PLA Catalogue Z-9": {
+    "file": "m_z9wa.fam",
+    "align": false,
+    "battle": "m_z9wa_lo.fam"
+  },
+  "PLA Recon Z-19": {
+    "file": "m_z19e.fam",
+    "align": false,
+    "battle": "m_z19e_lo.fam"
+  },
+  "PLA Recon Z-21": {
+    "file": "m_z10me.fam",
+    "align": false,
+    "battle": "m_z10me_lo.fam"
   }
 }

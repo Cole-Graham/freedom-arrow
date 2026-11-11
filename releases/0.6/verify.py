@@ -2,16 +2,16 @@
 from pathlib import Path
 import hashlib,json,struct,sys,zipfile
 R=Path(__file__).resolve().parent
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-13.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/PLA-TEST-Build-14.bamod'
 with zipfile.ZipFile(p) as z:
  names=set(z.namelist());assert len(names)==len(z.namelist())
  assert all(not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n for n in names)
- mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 13' and mod['version']=='13' and mod['type']=='modpack'
- assert z.read('README.md').startswith(b'# PLA TEST Build 13\n')
- m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==13 and m['label']=='PLA TEST Build 13'
+ mod=json.loads(z.read('mod.json'));assert mod['name']=='PLA TEST Build 14' and mod['version']=='14' and mod['type']=='modpack'
+ assert z.read('README.md').startswith(b'# PLA TEST Build 14\n')
+ m=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert m['build']==14 and m['label']=='PLA TEST Build 14'
  assert names-{'mod.json','README.md','UserData/FreedomArrow/pla-package-manifest.json'}==set(m['sha256'])
  for n,h in m['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
- core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='13'
+ core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assert core['version']=='14'
  for n,h in core['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
  def table(n):return json.loads(z.read('UserData/FreedomArrow/constants/'+n+'.json'))
  units=table('units');roster=json.loads((R/'pla-test-contract.json').read_text())['cards'];assert len(roster)==79
@@ -43,16 +43,17 @@ with zipfile.ZipFile(p) as z:
  repair=json.loads(z.read('UserData/FreedomArrow/infantry-arm-repair.json'));assert sum(n.endswith('.fas') for n in repair['sha256'])==75 and len(repair['repacked_atlases'])==8
  for n,h in repair['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h
  catalogue=json.loads(z.read('UserData/FreedomArrow/pla-model-catalogue.json'));assert catalogue['entry_count']==157 and len(catalogue['new_units'])==102
- assert len(body_rules)==46 and len({r['unitId'] for r in body_rules})==46
- assert {r['unitId'] for r in body_rules}=={901,*range(985,1028),*catalogue['new_body_units']}
- excluded=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'))['excluded_units']
+ assert len(body_rules)==136 and len({r['unitId'] for r in body_rules})==136
+ assert {r['unitId'] for r in body_rules}=={901,*range(985,1028),*catalogue['new_body_units'],*range(1136,1226)}
+ excluded=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'))['excluded_units']+list(range(1010,1028))
  for e in catalogue['entries']:assert units[str(e['unit'])]['CountryId']==4 and units[str(e['unit'])]['DisplayInArmory']==(e['unit'] not in excluded)
  assert specs['17']['UIName']=='Airforce / Airborne' and specs['20']['UIName']=='Marines / SF'
  options=table('options');assert all(0<int(k)<=32767 and struct.unpack('<h',struct.pack('<h',int(k)))[0]==int(k) for k,v in options.items() if v)
  migration=json.loads(z.read('UserData/FreedomArrow/option-id-migration.json'));assert len(migration)>=837
- assert all(str(v) in options and options[str(v)] is not None for v in migration.values())
+ retired_options=set(json.loads(z.read('UserData/FreedomArrow/pla-vehicle-armament.json'))['retired_option_ids'])
+ assert all((str(v) in options and options[str(v)] is not None) or v in retired_options for v in migration.values())
  assert b'FAMODELS' in z.read('Mods/FAModels.dll') or 'FAMODELS'.encode('utf-16-le') in z.read('Mods/FAModels.dll')
  assignment=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'));assert len(assignment['recon_variants'])==6
  assert all(22 not in specs for uid,specs in assignment['assignments'].items() if units.get(uid,{}).get('Type')!=2)
- result={'label':mod['name'],'verified_payload_hashes':len(m['sha256']),'verified_core_hashes':len(core['sha256']),'roster_cards':len(roster),'mapped_models':len(modelmap),'functional_infantry':True,'approved_offsets_preserved':True,'native_option_ids_fit_signed_short':True,'new_infantry_roles':18,'pla_only':True,'runtime_verified':False}
+ result={'label':mod['name'],'verified_payload_hashes':len(m['sha256']),'verified_core_hashes':len(core['sha256']),'roster_cards':len(roster),'mapped_models':len(modelmap),'functional_infantry':True,'approved_offsets_preserved':True,'native_option_ids_fit_signed_short':True,'new_infantry_roles':90,'pla_only':True,'runtime_verified':False}
  print(json.dumps(result,indent=2))

@@ -11,7 +11,7 @@
       "unit": 1028,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -29,7 +29,7 @@
       "unit": 1029,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -47,7 +47,7 @@
       "unit": 1030,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -65,7 +65,7 @@
       "unit": 1031,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -83,7 +83,7 @@
       "unit": 1032,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -101,7 +101,7 @@
       "unit": 1033,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "DLC3_2S43_Malva",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -119,7 +119,7 @@
       "unit": 1034,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "DLC3_2S43_Malva",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -258,7 +258,7 @@
       "unit": 907,
       "parent": 907,
       "new_card": false,
-      "native_model": "RU_MSTA",
+      "native_model": "US_M109A6",
       "custom_model": {
         "file": "m_plz05_static.fam",
         "battle": "m_plz05_lo_static.fam",
@@ -281,8 +281,12 @@
       "unit": 1038,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
-      "custom_model": null,
+      "native_model": "RU_2S1",
+      "custom_model": {
+        "file": "m_plz07b_static.fam",
+        "battle": "m_plz07b_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -321,7 +325,7 @@
       "unit": 1039,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "US_M109A6",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -339,7 +343,7 @@
       "unit": 1040,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "RU_2S1",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -357,7 +361,7 @@
       "unit": 1041,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "DLC3_2S43_Malva",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -375,7 +379,7 @@
       "unit": 1042,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "RU_2S1",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -393,7 +397,7 @@
       "unit": 1043,
       "parent": 907,
       "new_card": true,
-      "native_model": "RU_MSTA",
+      "native_model": "RU_2S1",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -429,7 +433,7 @@
       "unit": 1044,
       "parent": 908,
       "new_card": true,
-      "native_model": "RU_9K58_Smerch",
+      "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -447,7 +451,7 @@
       "unit": 1045,
       "parent": 910,
       "new_card": true,
-      "native_model": "RU_TOR",
+      "native_model": "RU_BUKM2",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -465,7 +469,7 @@
       "unit": 1046,
       "parent": 910,
       "new_card": true,
-      "native_model": "RU_TOR",
+      "native_model": "RU_BUKM2",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -483,7 +487,7 @@
       "unit": 1047,
       "parent": 910,
       "new_card": true,
-      "native_model": "RU_TOR",
+      "native_model": "RU_BUKM2",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -501,7 +505,7 @@
       "unit": 1048,
       "parent": 910,
       "new_card": true,
-      "native_model": "RU_TOR",
+      "native_model": "RU_BUKM2",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -624,7 +628,7 @@
       "unit": 952,
       "parent": 952,
       "new_card": false,
-      "native_model": "RU_Tunguska",
+      "native_model": "RU_Derivatsiya",
       "custom_model": {
         "file": "m_jrvg1_static.fam",
         "battle": "m_jrvg1_lo_static.fam",
@@ -646,7 +650,7 @@
       "unit": 920,
       "parent": 920,
       "new_card": false,
-      "native_model": "DLC3_KamAZ_Pantsir",
+      "native_model": "US_LAV_AD",
       "custom_model": {
         "file": "m_type625e_static.fam",
         "battle": "m_type625e_lo_static.fam",
@@ -669,8 +673,12 @@
       "unit": 1050,
       "parent": 909,
       "new_card": true,
-      "native_model": "RU_Tunguska",
-      "custom_model": null,
+      "native_model": "RU_ZSU-2-4",
+      "custom_model": {
+        "file": "m_pgz04a_static.fam",
+        "battle": "m_pgz04a_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -687,7 +695,7 @@
       "unit": 932,
       "parent": 932,
       "new_card": false,
-      "native_model": "RU_Tunguska",
+      "native_model": "RU_ZSU-2-4",
       "custom_model": {
         "file": "m_pgz04a_static.fam",
         "battle": "m_pgz04a_lo_static.fam",
@@ -732,7 +740,7 @@
       "unit": 1051,
       "parent": 909,
       "new_card": true,
-      "native_model": "RU_Tunguska",
+      "native_model": "RU_ZSU-2-4",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -750,8 +758,12 @@
       "unit": 1052,
       "parent": 909,
       "new_card": true,
-      "native_model": "RU_Tunguska",
-      "custom_model": null,
+      "native_model": "RU_ZSU-2-4",
+      "custom_model": {
+        "file": "m_pgz04a_static.fam",
+        "battle": "m_pgz04a_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -768,7 +780,7 @@
       "unit": 1053,
       "parent": 936,
       "new_card": true,
-      "native_model": "RU_BMD_Kornet",
+      "native_model": "RU_BRDM_ATGM",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -786,7 +798,7 @@
       "unit": 1054,
       "parent": 936,
       "new_card": true,
-      "native_model": "RU_BMD_Kornet",
+      "native_model": "DLC3_Tigr",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -804,8 +816,12 @@
       "unit": 1055,
       "parent": 936,
       "new_card": true,
-      "native_model": "RU_BMD_Kornet",
-      "custom_model": null,
+      "native_model": "US_M6_Linebacker",
+      "custom_model": {
+        "file": "m_aft10_static.fam",
+        "battle": "m_aft10_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -822,7 +838,7 @@
       "unit": 1056,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_Kurganets",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -840,7 +856,7 @@
       "unit": 1057,
       "parent": 209,
       "new_card": true,
-      "native_model": "RU_BRM3K",
+      "native_model": "DLC3_Tigr",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -858,7 +874,7 @@
       "unit": 900,
       "parent": 900,
       "new_card": false,
-      "native_model": "DLC3_TIGR_BRShM",
+      "native_model": "DLC3_Tigr",
       "custom_model": {
         "file": "mengshi.fam",
         "align": false,
@@ -882,7 +898,7 @@
       "unit": 1058,
       "parent": 900,
       "new_card": true,
-      "native_model": "DLC3_TIGR_BRShM",
+      "native_model": "DLC3_Tigr",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -903,7 +919,7 @@
       "unit": 936,
       "parent": 936,
       "new_card": false,
-      "native_model": "RU_BMD_Kornet",
+      "native_model": "US_M6_Linebacker",
       "custom_model": {
         "file": "m_aft10_static.fam",
         "battle": "m_aft10_lo_static.fam",
@@ -925,7 +941,7 @@
       "unit": 951,
       "parent": 951,
       "new_card": false,
-      "native_model": "RU_BMP_ATGM",
+      "native_model": "RU_BRDM_ATGM",
       "custom_model": {
         "file": "m_hj8_static.fam",
         "battle": "m_hj8_lo_static.fam",
@@ -948,7 +964,7 @@
       "unit": 1059,
       "parent": 938,
       "new_card": true,
-      "native_model": "RU_SPRUT",
+      "native_model": "US_STRYKER_MGS",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1010,7 +1026,7 @@
       "unit": 1060,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
+      "native_model": "DLC3_T62M",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1028,7 +1044,7 @@
       "unit": 1061,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
+      "native_model": "DLC3_T62M",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1046,7 +1062,7 @@
       "unit": 1062,
       "parent": 962,
       "new_card": true,
-      "native_model": "RU_BTR82A",
+      "native_model": "US_M113A3",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1064,7 +1080,7 @@
       "unit": 1063,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_BMD-2\\RU_BMD_2_base",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1082,7 +1098,7 @@
       "unit": 1064,
       "parent": 962,
       "new_card": true,
-      "native_model": "RU_BTR82A",
+      "native_model": "US_M113A3",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1100,7 +1116,7 @@
       "unit": 1065,
       "parent": 962,
       "new_card": true,
-      "native_model": "RU_BTR82A",
+      "native_model": "US_M113A3",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1118,7 +1134,7 @@
       "unit": 1066,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_Kurganets",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1136,7 +1152,7 @@
       "unit": 1067,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_T15",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1154,7 +1170,7 @@
       "unit": 1068,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_T15",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1172,7 +1188,7 @@
       "unit": 1069,
       "parent": 962,
       "new_card": true,
-      "native_model": "RU_BTR82A",
+      "native_model": "RU_Bumerang",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1190,7 +1206,7 @@
       "unit": 1070,
       "parent": 900,
       "new_card": true,
-      "native_model": "DLC3_TIGR_BRShM",
+      "native_model": "RU_UAZ469",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1211,7 +1227,7 @@
       "unit": 1071,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
+      "native_model": "RU_T72B",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1229,7 +1245,7 @@
       "unit": 1072,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
+      "native_model": "RU_T90M",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1247,10 +1263,10 @@
       "unit": 953,
       "parent": 953,
       "new_card": false,
-      "native_model": "RU_SPRUT",
+      "native_model": "US_M10",
       "custom_model": {
-        "file": "m_vt5_static.fam",
-        "battle": "m_vt5_lo_static.fam",
+        "file": "m_ztq15_green_static.fam",
+        "battle": "m_ztq15_green_lo_static.fam",
         "align": false
       },
       "implementation": "Existing card",
@@ -1312,7 +1328,7 @@
       "unit": 1074,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_BMD-2\\RU_BMD_2_base",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1374,7 +1390,7 @@
       "unit": 1076,
       "parent": 902,
       "new_card": true,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_BMP3F",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1393,7 +1409,11 @@
       "parent": 962,
       "new_card": true,
       "native_model": "RU_BTR82A",
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_zbl08_static.fam",
+        "battle": "m_zbl08_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         21
@@ -1433,8 +1453,11 @@
       "unit": 1078,
       "parent": 962,
       "new_card": true,
-      "native_model": "RU_BTR82A",
-      "custom_model": null,
+      "native_model": "RU_Bumerang",
+      "custom_model": {
+        "file": "m_zbl191_green.fam",
+        "battle": "m_zbl191_green_lo.fam"
+      },
       "implementation": "Named stand-in",
       "specs": [
         20,
@@ -1452,7 +1475,7 @@
       "unit": 1063,
       "parent": 1063,
       "new_card": false,
-      "native_model": "RU_BMP3",
+      "native_model": "RU_BMD-2\\RU_BMD_2_base",
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
@@ -1470,7 +1493,7 @@
       "unit": 1064,
       "parent": 1064,
       "new_card": false,
-      "native_model": "RU_BTR82A",
+      "native_model": "US_M113A3",
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
@@ -1489,7 +1512,11 @@
       "parent": 962,
       "new_card": true,
       "native_model": "RU_BTR82A",
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_wz551_static.fam",
+        "battle": "m_wz551_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         19,
@@ -1508,7 +1535,7 @@
       "unit": 938,
       "parent": 938,
       "new_card": false,
-      "native_model": "RU_SPRUT",
+      "native_model": "US_STRYKER_MGS",
       "custom_model": {
         "file": "m_ztl11_static.fam",
         "battle": "m_ztl11_lo_static.fam",
@@ -1531,7 +1558,7 @@
       "unit": 1080,
       "parent": 938,
       "new_card": true,
-      "native_model": "RU_SPRUT",
+      "native_model": "US_STRYKER_MGS",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1549,7 +1576,7 @@
       "unit": 906,
       "parent": 906,
       "new_card": false,
-      "native_model": "RU_SPRUT",
+      "native_model": "US_M10",
       "custom_model": {
         "file": "m_ztq15_green_static.fam",
         "battle": "m_ztq15_green_lo_static.fam",
@@ -1594,7 +1621,7 @@
       "unit": 1060,
       "parent": 1060,
       "new_card": false,
-      "native_model": "RU_T72B3",
+      "native_model": "DLC3_T62M",
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
@@ -1612,7 +1639,7 @@
       "unit": 1081,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
+      "native_model": "DLC3_T62M",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1631,7 +1658,10 @@
       "parent": 905,
       "new_card": true,
       "native_model": "RU_T72B3",
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_ztz96b_green.fam",
+        "battle": "m_ztz96b_green_lo.fam"
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -1669,8 +1699,12 @@
       "unit": 1083,
       "parent": 905,
       "new_card": true,
-      "native_model": "RU_T72B3",
-      "custom_model": null,
+      "native_model": "RU_T90M",
+      "custom_model": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
       "implementation": "Named stand-in",
       "specs": [
         18
@@ -1709,7 +1743,7 @@
       "unit": 1084,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
+      "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1727,7 +1761,7 @@
       "unit": 1085,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
+      "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -1745,7 +1779,7 @@
       "unit": 1086,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
+      "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -2481,7 +2515,7 @@
       "unit": 978,
       "parent": 978,
       "new_card": false,
-      "native_model": "RU_MI28MN",
+      "native_model": "US_AH-1Z Viper",
       "custom_model": {
         "file": "m_z10_black.fam",
         "battle": "m_z10_black_lo.fam",
@@ -2504,7 +2538,7 @@
       "unit": 913,
       "parent": 913,
       "new_card": false,
-      "native_model": "RU_MI28MN",
+      "native_model": "US_AH-1Z Viper",
       "custom_model": {
         "file": "m_z10me.fam",
         "align": false,
@@ -2526,8 +2560,12 @@
       "unit": 1103,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
-      "custom_model": null,
+      "native_model": "DLC2_AS365_Dauphin",
+      "custom_model": {
+        "file": "m_z19e.fam",
+        "align": false,
+        "battle": "m_z19e_lo.fam"
+      },
       "implementation": "Named stand-in",
       "specs": [
         17
@@ -2544,7 +2582,7 @@
       "unit": 914,
       "parent": 914,
       "new_card": false,
-      "native_model": "DLC3_Ka60",
+      "native_model": "US_UH60M",
       "custom_model": {
         "file": "m_z20.fam",
         "align": false,
@@ -2570,8 +2608,12 @@
       "unit": 1104,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
-      "custom_model": null,
+      "native_model": "US_AH64L",
+      "custom_model": {
+        "file": "m_z10me.fam",
+        "align": false,
+        "battle": "m_z10me_lo.fam"
+      },
       "implementation": "Named stand-in",
       "specs": [
         17
@@ -2588,7 +2630,7 @@
       "unit": 1105,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
+      "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -2606,7 +2648,7 @@
       "unit": 1106,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
+      "native_model": "US_CH53",
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
@@ -2625,8 +2667,12 @@
       "unit": 1107,
       "parent": 914,
       "new_card": true,
-      "native_model": "DLC3_Ka60",
-      "custom_model": null,
+      "native_model": "DLC2_AS365_Dauphin",
+      "custom_model": {
+        "file": "m_z9wa.fam",
+        "align": false,
+        "battle": "m_z9wa_lo.fam"
+      },
       "implementation": "Named stand-in",
       "specs": [
         17,
@@ -2646,7 +2692,7 @@
       "unit": 941,
       "parent": 941,
       "new_card": false,
-      "native_model": "DLC3_Ka60",
+      "native_model": "DLC2_AS365_Dauphin",
       "custom_model": {
         "file": "m_z9wa.fam",
         "align": false,
@@ -2672,9 +2718,7 @@
       "native_model": "US_Rangers",
       "custom_model": null,
       "implementation": "Existing card",
-      "specs": [
-        20
-      ]
+      "specs": []
     },
     {
       "sheet_row": 186,

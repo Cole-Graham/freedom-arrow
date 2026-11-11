@@ -1,3 +1,22 @@
+# PLA TEST Build 14
+
+**This complete PLA draft imports all 90 named squad-designer rows and gives all 160 equipment cards isolated weapon/ammunition definitions with custom HUD artwork. Equipment remains assigned across the five PLA branches, each of the six named gunships retains a Recon card, and all 28 original infantry rigging fixtures stay in Test. Native Arsenal, deck and combat validation remains pending.**
+
+- Infantry names, sizes, Recon flags, selected rifles, extra weapon counts, fixed munitions and design notes follow the saved live sheet rows 8–97. The 18 earlier combat drafts are hidden and their data retained to avoid duplicate playable designs. The 15 named Test concepts remain in Test alongside the 28 rigging fixtures.
+- Use installed PLA bodies and saved arm/hand fit. Airborne, Motorized and conscripts use desert uniforms; Ground Force and Marines/SF use green. Armor uses the corresponding native regular/shock/elite tier with five HP per soldier. Missing handheld meshes keep their documented native analog; no missing model is described as installed.
+- Ground and rotorcraft get explicit fixed armament drafts. Aircraft have PLA labels and appropriate native analog kits; transports/surveillance platforms remain unarmed, legacy fighters do not inherit modern missile kits, and ground-attack drones carry guided bombs/missiles. This is a design baseline, not final Chinese performance or a full set of weapon upgrade options.
+- HJ-10/AFT-10 use the M6 Linebacker chassis and exact vanilla Hellfire ammunition behavior: 36-degree loft, terminal-guidance seeker, reacquisition, eight ready/eight total missiles and no unrelated Bradley cannon. The installed PLA AFT-10 mesh remains the visible model. Code/data support the guidance description; firing over buildings is not yet proven in a game.
+- Weapon and ammunition HUD icons are embedded transparent silhouettes. Stocks preserve the native logical-shot/HUD-multiplier relationship; any rounding is listed in the armament receipt. Type 96 total load is sourced at 42 rounds; ammunition mixes and unsourced capacities remain explicit drafts.
+- Utility transports are shared and capacity-checked against the exact squad sizes. The basic truck is available to oversized squads. Gunships and unmanned aircraft carry no infantry. No squad is shrunk to fit a transport.
+- Approved mesh/texture files, canopy finish, immediate stand-in hiding, rigging comparisons, weapon/body offsets, music and preferences are retained. Available PLA meshes are reused for related variants; pending assets use the closest native stand-in.
+- RU/US selectors and spec controls stay visible with their cards hidden. No naval unit or White Emperor is playable. YJ-18 remains a ground cruise-missile launcher. Public LIVE dev.45 remains locked.
+
+## Evidence and editable drafts
+
+The package includes `pla-vehicle-armament.json`, `pla-infantry-designer.json` and `pla-spec-assignments.json`, with source IDs, stocks, model bindings, camo, troop counts and limits. The Google Sheet remains editable. A table/package check does not prove animations, custom sprites, guidance, reload timing or combat behavior in the native game.
+
+## Historical Build 13 context
+
 # PLA TEST Build 13
 
 **All equipment now belongs to the five main PLA specs. Test contains only the 28 infantry appearance/rigging fixtures. The six named gunships each have a separate recon card. Basic ground and helicopter transports are shared where appropriate. This is an editable draft; native Arsenal, deck creation and combat validation remain pending.**
@@ -536,3 +555,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 01:46:18 PST (America/Los_Angeles) — Assigned equipment to the five specs, added separate recon gunships and shared lift, retained Test-only rigging fixtures.
 
 - 2026-11-11 01:50:37 PST (America/Los_Angeles) — Applied Osama’s no-naval/no-White-Emperor direction and the YJ-18 ground cruise-launcher role.
+
+- 2026-11-11 02:55:11 PST (America/Los_Angeles) — Added the Build 14 complete equipment/infantry draft and evidence limits.
