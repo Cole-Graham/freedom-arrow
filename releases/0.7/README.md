@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.38 — development candidate
+# Freedom Arrow 0.7.0-dev.39 — development candidate
+
+**dev.39: the F-22 MAKO carried mesh uses the native single AMRAAM model instead of the protruding Kinzhal model. Weapon statistics, quantity, +80 per bay, and all other gameplay data remain as dev.38. Native visual review pending.**
 
 **dev.38: F-22 adds 1x MAKO at +80 in each side bay, using the current ARRW statistics. MiG-31BSM loses every R-37, R-77, R-73 and R-27ET option and missile link; its bomber loads and cannon remain. Retired AA deck choices migrate to free empty slots. Includes Black Widow turn700 and Copperhead75 mm. Native fit and firing remain untested.**
 
@@ -206,3 +208,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 16:10:37 PST (America/Los_Angeles) — Set M712 Copperhead ammunition426 to75 mm penetration at minimum and maximum range; retained base damage11 and all other ammunition settings.
 - 2026-11-10 16:20:01 PST (America/Los_Angeles) — Recorded isolated YF-23 turn-radius700 change and offline verification limits.
 - 2026-11-10 16:31:54 PST (America/Los_Angeles) — Recorded F22 MAKO side bays and bomber-only MiG31BSM loadouts, preserving preceding changes.
+- 2026-11-10 16:45:02 PST (America/Los_Angeles) — Changed only the F22 MAKO carried mesh to AMRAAM; all gameplay statistics retained.

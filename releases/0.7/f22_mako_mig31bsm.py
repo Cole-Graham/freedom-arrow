@@ -12,9 +12,10 @@ def apply(t,p,clone,put,migration,c):
     assert source_weapon['MagazineSize']==1
     ammo=clone('AmmunitionsJson',source_ammo,{'Name':'Missile Cruise MAKO','HUDName':'MAKO'},why)
     weapon=clone('WeaponsJson',source_weapon['Id'],{'Name':'Cruise MAKO','HUDName':'MAKO'},why)
-    # Retain the F22 bay mount semantics; use the existing ARRW missile model.
-    (arrw_mount,)=[r['TurretId'] for r in t['TurretWeaponsJson'].values() if r['WeaponId']==source_weapon['Id']]
-    turret=clone('TurretsJson',551,{'ModelFileName':t['TurretsJson'][arrw_mount]['ModelFileName']},why)
+    # Retain the F22 bay mount semantics; use the requested native single AMRAAM carried model.
+    model=t['TurretsJson'][c['f22']['carried_model_like_turret']]['ModelFileName']
+    assert model=='Weapon/AIM120/AIM120_single'
+    turret=clone('TurretsJson',551,{'ModelFileName':model},why)
     clone('TurretWeaponsJson',855,{'TurretId':turret,'WeaponId':weapon},why)
     clone('TurretUnitsJson',984,{'TurretId':turret},why)
     clone('WeaponAmmunitionsJson',1353,{'WeaponId':weapon,'AmmunitionId':ammo,'Quantity':1},why)

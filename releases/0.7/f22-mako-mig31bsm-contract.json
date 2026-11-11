@@ -2,18 +2,54 @@
   "f22": {
     "unit": 297,
     "bays": [
-      {"option": 31000, "modification": 332, "like_option": 1064, "mount": 1, "name": "LeftBay F22 1xMAKO"},
-      {"option": 31001, "modification": 333, "like_option": 1069, "mount": 2, "name": "RightBay F22 1xMAKO"}
-    ]
+      {
+        "option": 31000,
+        "modification": 332,
+        "like_option": 1064,
+        "mount": 1,
+        "name": "LeftBay F22 1xMAKO"
+      },
+      {
+        "option": 31001,
+        "modification": 333,
+        "like_option": 1069,
+        "mount": 2,
+        "name": "RightBay F22 1xMAKO"
+      }
+    ],
+    "carried_model_like_turret": 173
   },
   "mig31bsm": {
     "unit": 743,
-    "aa_weapons": [243, 439, 244, 437],
+    "aa_weapons": [
+      243,
+      439,
+      244,
+      437
+    ],
     "outer_empty": 20123,
     "empty_bomber_slots": [
-      {"option": 31002, "modification": 2001300, "mounts": [1, 2], "name": "MiddlePylons MIG31BSM Empty"},
-      {"option": 31003, "modification": 2001309, "mounts": [5, 6, 7, 8], "name": "Fuselage MIG31BSM Empty"}
+      {
+        "option": 31002,
+        "modification": 2001300,
+        "mounts": [
+          1,
+          2
+        ],
+        "name": "MiddlePylons MIG31BSM Empty"
+      },
+      {
+        "option": 31003,
+        "modification": 2001309,
+        "mounts": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "name": "Fuselage MIG31BSM Empty"
+      }
     ]
   },
-  "note": "Osama, 10 November 2026: F22 one MAKO per side bay at +80 each, clone current ARRW statistics. MiG31BSM bomber-only missile choices, preserve bomber ordnance and cannon; empty defaults migrate retired AA options without changing ground-loadout prices. Native menu, firing and model fit still require testing."
+  "note": "Osama, 10 November 2026: F22 one MAKO per side bay at +80 each, clone current ARRW statistics. MiG31BSM bomber-only missile choices, preserve bomber ordnance and cannon; empty defaults migrate retired AA options without changing ground-loadout prices. Native menu, firing and model fit still require testing. Visual correction: use the single AMRAAM model for the carried MAKO so the Kinzhal mesh does not protrude. Weapon and ammunition statistics remain unchanged."
 }
