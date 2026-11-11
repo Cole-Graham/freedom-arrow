@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.39 — development candidate
+# Freedom Arrow 0.7.0-dev.40 — development candidate
+
+**dev.40: LOSAT road speed50 and missile card speed1300. Missile raw speed is1300/3.6, correcting the previous4680 card reading. Bradley mobility and all other balance data are retained. Includes the dev.39 MAKO AMRAAM carried-model correction. LOSAT shared model-map repair is installed separately without replacing other model settings. Native confirmation pending.**
 
 **dev.39: the F-22 MAKO carried mesh uses the native single AMRAAM model instead of the protruding Kinzhal model. Weapon statistics, quantity, +80 per bay, and all other gameplay data remain as dev.38. Native visual review pending.**
 
@@ -209,3 +211,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 16:20:01 PST (America/Los_Angeles) — Recorded isolated YF-23 turn-radius700 change and offline verification limits.
 - 2026-11-10 16:31:54 PST (America/Los_Angeles) — Recorded F22 MAKO side bays and bomber-only MiG31BSM loadouts, preserving preceding changes.
 - 2026-11-10 16:45:02 PST (America/Los_Angeles) — Changed only the F22 MAKO carried mesh to AMRAAM; all gameplay statistics retained.
+- 2026-11-10 16:53:54 PST (America/Los_Angeles) — Corrected LOSAT displayed missile speed and isolated50 road speed; recorded shared model-map repair.
