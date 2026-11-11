@@ -24,7 +24,7 @@ with zipfile.ZipFile(p) as z:
  assert not table('countries')['1']['Hidden'] and not table('countries')['2']['Hidden']
  assert all(not r['DisplayInArmory'] for r in units.values() if r and r.get('CountryId')!=4 and 'DisplayInArmory' in r)
  draft=json.loads(z.read('UserData/FreedomArrow/pla-specializations.json'));assert draft['pla_only'] and len(draft['new_units'])==18
- assert not draft['hidden_fixture_units'] and draft['test_spec']==23
+ assert not draft['hidden_fixture_units'] and draft['test_spec']==22
  assert all(units[str(uid)]['DisplayInArmory'] for uid in draft['test_fixture_units'])
  assert all(r['CountryId']==4 for r in units.values() if r and r.get('Name','').startswith('PLA '))
  assert sum(bool(r and r.get('UnitId') in range(985,1010)) for r in table('squad_members').values())==175
