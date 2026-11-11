@@ -5,7 +5,7 @@ def apply(effective,original,clone,add_unit,rows_of,patches,audit):
     add_unit(uid,255,dict(Name='XM30',HUDName='XM30',CountryId=2,Role=11,Cost=220,ContentMembership=-1,PortraitFileName=effective['Units'][16]['PortraitFileName'],ThumbnailFileName=effective['Units'][16]['ThumbnailFileName']),why)
     for table in ['UnitPropulsionsJson','SensorUnitsJson']:
         for rid in list(rows_of(table,255)):clone(table,rid,{'UnitId':uid},why)
-    aid=clone('ArmorsJson',306,dict(Name='Armor XM30 Booker base',ModelFileName=None,HeatArmorFront=700,HeatArmorSides=700),why)
+    aid=clone('ArmorsJson',306,dict(Name='Armor XM30 Booker base',ModelFileName=None,MaxHealthPoints=14,HeatArmorFront=700,HeatArmorSides=700),why)
     clone('UnitArmorsJson',416,{'UnitId':uid,'ArmorId':aid},why)
     ab=clone('AbilitiesJson',117,dict(Name='XM30 smoke and APS x2',APSQuantity=2,IsDefault=True,ModelFileName=None),why)
     clone('UnitAbilitiesJson',1111,{'UnitId':uid,'AbilityId':ab},why)

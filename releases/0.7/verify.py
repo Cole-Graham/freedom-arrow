@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.47.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.48.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-dev.47'
+    assert manifest['version']=='0.7.0-dev.48'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.47 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.48 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -75,12 +75,15 @@ with zipfile.ZipFile(p) as z:
     losat_t={str(r['TurretId']) for r in live('turret_units').values() if r.get('UnitId')==984}
     losat_tw={k for k,r in live('turret_weapons').items() if str(r.get('TurretId')) in losat_t}
     losat_ws={k for k,r in live('weapons').items() if r.get('Name')=='LOSAT KEM launcher'}
+    be_t={str(r['TurretId']) for r in live('turret_units').values() if r.get('UnitId')==985}
+    be_tw={k for k,r in live('turret_weapons').items() if str(r.get('TurretId')) in be_t}
+    assert len(be_t)==2 and len(be_tw)==3
     assert len(losat_t)==len(losat_tw)==len(losat_ws)==1
     f21_ws={k for k,r in live('weapons').items() if str(r.get('Name','')).endswith(' F21 pylon')}
     assert len(f21_ws)==3
     f21_tw={k for k,r in live('turret_weapons').items() if str(r.get('WeaponId')) in f21_ws}
     assert len(f21_tw)==3
-    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|b21_tw|ax_tw|xm_tw|f21_tw|losat_tw|mako_tw,'turret_weapons: only the dev.19 Tigr Kornet 2x4 launchers, the ARRW loads, the B-21 loadouts and the Abrams X'
+    assert set(table('turret_weapons'))=={str(x) for x in tgc['turret_weapons']}|arrw_tw|b21_tw|ax_tw|xm_tw|f21_tw|losat_tw|mako_tw|be_tw,'turret_weapons: approved custom unit graphs only'
     # dev.14: weapons hold only infantry launcher reload times.
     jav=json.loads((R/'dev30-contract.json').read_text())['weapon_fields']
     assert all(table('weapons')[k]==f for k,f in jav.items()),'dev.30 Javelin aim'
@@ -124,7 +127,7 @@ with zipfile.ZipFile(p) as z:
     added|={str(c['unit']) for c in json.loads((R/'target-dummy-contract.json').read_text())['cards']}  # Lateralus test targets (F-22, MiG-29K dummies)
     added.add(str(json.loads((R/'su75-contract.json').read_text())['unit']))
     added.add(str(json.loads((R/'karatel-contract.json').read_text())['unit']))
-    added.update({'983','984'})
+    added.update({'983','984','985'})
     added|={str(c['unit']) for c in json.loads((R/'new-cards-contract.json').read_text()).get('late_cards',[])}  # Su-47, F-14, YF-23 (dev.13)
     for k,row in live('units').items():
         if k in added:continue
@@ -201,7 +204,7 @@ with zipfile.ZipFile(p) as z:
         assert table(f)==json.loads((R/'source/UserData/FreedomArrow/constants'/(f+'.json')).read_text()),f
     # Explicit configured totals for held splits and the Reserve-only reduction.
     units=table('units')
-    for uid,oid,cost in [(158,563,85),(716,564,175),(716,566,195),(717,3033,80),(718,1905,70),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,30),(214,491,40),(214,492,45),(214,493,60),(141,245,35),(216,499,35),(9,625,115),(209,478,50),(209,479,65),(209,1708,80),(467,2047,30),(467,2048,30),(455,1959,25),(455,1960,25),(455,1961,35),(21,50,60)]:
+    for uid,oid,cost in [(158,563,85),(716,564,170),(716,566,190),(717,3033,80),(718,1905,70),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,30),(214,491,40),(214,492,45),(214,493,60),(141,245,35),(216,499,35),(9,625,115),(209,478,50),(209,479,65),(209,1708,80),(467,2047,30),(467,2048,30),(455,1959,25),(455,1960,25),(455,1961,35),(21,50,60)]:
         base=units[str(uid)]['Cost'];surcharge=opt.get(str(oid),{}).get('Cost',0)
         assert base+surcharge==cost,(uid,oid,cost)
     files=json.loads((R/'row-tests/table-files.json').read_text())

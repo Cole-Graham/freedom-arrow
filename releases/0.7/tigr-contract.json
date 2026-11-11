@@ -1,18 +1,34 @@
 {
-  "note": "0.5 dev.19 (Osama, 6 November 2026). The Tigr Kornet 2x4 Kornet upgrade (option 433) is its own card at 120, in the Motorized Infantry specialization (9) only. Its two Kornet x4 launchers ripple fire: 2 missiles per burst and 2 guided at once (a copy of weapon 214 with the vanilla values), so other Kornet launchers keep 1 missile per target. Tigr Kornet keeps the Kornet-M loadout at 80. Availability 4, copied from Tigr Kornet. Not yet run in a game.",
+  "note": "0.5 dev.19 (Osama, 6 November 2026). The Tigr Kornet 2x4 Kornet upgrade (option 433) is its own card at 120, in the Motorized Infantry specialization (9) only. Its two Kornet x4 launchers ripple fire: 2 missiles per burst and 2 guided at once (a copy of weapon 214 with the vanilla values), so other Kornet launchers keep 1 missile per target. Tigr Kornet keeps the Kornet-M loadout at 80. Availability 4, copied from Tigr Kornet. Not yet run in a game. 10 November 2026 playtest batch (Osama): reduce the 2x4 card from120 to100 points; standard Tigr Kornet remains80.",
   "parent": 197,
   "unit": 723,
   "fields": {
     "Name": "DLC3 Tigr Kornet 2x4",
     "HUDName": "Tigr Kornet 2x4",
-    "Cost": 120
+    "Cost": 100
   },
   "variant_mod": 161,
   "move_option": 433,
-  "copy_mods": {"162": [435, 436], "708": [3014, 3015]},
+  "copy_mods": {
+    "162": [
+      435,
+      436
+    ],
+    "708": [
+      3014,
+      3015
+    ]
+  },
   "pool": 586,
   "specialization": 9,
   "weapon": 214,
-  "weapon_fields": {"ShotsPerBurstMin": 2, "ShotsPerBurstMax": 2, "SimultaneousTracking": 2},
-  "turret_weapons": [505, 506]
+  "weapon_fields": {
+    "ShotsPerBurstMin": 2,
+    "ShotsPerBurstMax": 2,
+    "SimultaneousTracking": 2
+  },
+  "turret_weapons": [
+    505,
+    506
+  ]
 }

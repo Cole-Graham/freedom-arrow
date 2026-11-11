@@ -610,7 +610,7 @@ def main():
         assert found.get(k,set())==set(cov[k]['ids']),(k,sorted(found.get(k,set())^set(cov[k]['ids'])))
         for aid in cov[k]['ids']:
             put('AmmunitionsJson',aid,{'IgnoreCover':cov[k]['ignore_cover']},'0.5 cover: '+k.replace('_',' ')+' ignore cover')
-    # 0.5 dev.19: Tigr Kornet 2x4 is its own card at 120 in Motorized Infantry; its launchers ripple fire 2 missiles.
+    # 0.5 dev.19: Tigr Kornet 2x4 is its own card at 100 in Motorized Infantry (10 Nov playtest batch); its launchers ripple fire 2 missiles.
     tg=json.loads((R/'tigr-contract.json').read_text());why='Tigr Kornet 2x4 card split';par,new=tg['parent'],tg['unit']
     assert new not in effective['Units'] and effective['OptionsJson'][tg['move_option']]['ModificationId']==tg['variant_mod']
     add_unit(new,par,tg['fields'],why)
@@ -1453,6 +1453,16 @@ def main():
         if effective['TurretUnitsJson'][rid]['TurretId']==653:clone('TurretUnitsJson',rid,{'UnitId':uid},'Su-75 baseline R73')
     for rid in list(rows_of('WeaponAmmunitionsJson',par)):
         if effective['WeaponAmmunitionsJson'][rid]['WeaponId']==243:clone('WeaponAmmunitionsJson',rid,{'UnitId':uid},'Su-75 baseline R73')
+    # 10 Nov playtest: the baseline pair is intrinsic to every selected loadout.
+    # A missing front-bay menu does not clear inherited prefab mount defaults.
+    for option in list(effective['OptionsJson'].values()):
+        if option['ModificationId']!=mid:continue
+        fields={f'Turret{i}Id':cm['fixed_r73_turret'] for i in cm['fixed_r73_slots']}
+        fields.update({f'Turret{i}Id':cm['empty_turret'] for i in cm['empty_slots']})
+        if option['IsDefault']:
+            # Baseline option already says 2xR73: do not add a second rear pair.
+            fields.update({f'Turret{i}Id':cm['empty_turret'] for i in (4,5,6)})
+        put('OptionsJson',option['Id'],fields,'Su-75 fixed two R73 across all rear loadouts')
     # Unarmed ZIL Karatel: Typhoon-K stat donor, 10 passenger slots. Allocate last.
     kc=json.loads((R/'karatel-contract.json').read_text());ku,kp=kc['unit'],kc['parent'];why='ZIL Karatel Guard transport'
     assert ku not in effective['Units']
@@ -1656,6 +1666,14 @@ def main():
     apply_mako_bomber(effective,patches,clone,put,option_migration,json.loads((R/'f22-mako-mig31bsm-contract.json').read_text()))
     from losat import apply_vehicle_speed as apply_losat_vehicle_speed
     apply_losat_vehicle_speed(effective,clone,put,json.loads((R/'losat-contract.json').read_text()))
+    t80=json.loads((R/'t80bvm-playtest-contract.json').read_text())
+    for oid,fields in t80['options'].items():
+        option=effective['OptionsJson'][int(oid)];aid=option['ArmorId']
+        assert effective['ModificationsJson'][option['ModificationId']]['UnitId']==t80['unit']
+        assert {r['UnitId'] for r in effective['UnitArmorsJson'].values() if r['ArmorId']==aid}=={t80['unit']}
+        put('ArmorsJson',aid,fields,'Osama: T80BVM2017/2018 KE700 front;2018 HEAT1100 front')
+    from black_eagle import apply as apply_black_eagle
+    apply_black_eagle(effective,clone,add_unit,rows_of,json.loads((R/'black-eagle-contract.json').read_text()))
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)

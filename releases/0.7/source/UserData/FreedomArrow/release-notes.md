@@ -1,6 +1,10 @@
-# Freedom Arrow 0.7.0-dev.47 — development candidate
+# Freedom Arrow 0.7.0-dev.48 — development candidate
 
-**Regular Troopers now replace both M203s with one M-25 CDTE: 120 rounds, 0.75 damage and 75% Ignore Cover. Their 60-point price, rifles and six AT-4s remain unchanged. Troopers AT/AA and all other gameplay data match dev.45. Data checks pass; native firing remains untested.**
+**Playtest batch: adds Object640 Black Eagle in Coastal (220points,14HP,availability3,front800 KE/1300 HEAT,reverse40,one smoke). T-80BVM2017/2018 cost170/190 with front700 KE;2018 has1100 HEAT front. Tigr Kornet2x4 costs100; Kornet-D1 base70, Kornet-M/optics+20 and2x4+0. XM30 has14HP. Su75 carries two fixed R73 with every rear payload. Regular Troopers replace two M203s with one M25.**
+
+Companion local model update adds Black Eagle, makes F-21 models10% larger and LOSAT20% larger, and preserves installed Abrams X finishes, infantry alignment and music. It is installed alongside this gameplay package. Data/compile checks do not establish native Armory,SP orMP behavior. Public launcher remains locked todev.45 during this local test.
+
+**Regular Troopers now replace both M203s with one M-25 CDTE: 120 rounds, 0.75 damage and 75% Ignore Cover. Their 60-point price, rifles and six AT-4s remain unchanged. Troopers AT/AA retain their existing M25 profiles. Other changes in this candidate are listed above. Data checks pass; native firing remains untested.**
 
 **T-72B3AM obr. 16 armor values: restore the default flag on its linked base armor and clear it on the retired unlinked armor. The native card requires a linked default armor for comparison. Armor thickness, HP, cost and loadouts are unchanged from dev.42. The build now rejects units with armor links but no default armor. Native display verification pending.**
 
@@ -225,3 +229,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 17:58:14 PST (America/Los_Angeles) — Corrected T-72B3AM default armor flags and added all-unit linked-default validation; native card restoration awaits a game check.
 - 2026-11-10 18:10:29 PST (America/Los_Angeles) — Increased Su75 UI stealth to2 on the current dev.44 base, preserving its T72 armor flags and all other gameplay data.
 - 2026-11-10 18:32:06 PST (America/Los_Angeles) — Extended the existing M-25 CDTE replacement to regular Troopers, without changing their price, rifles or AT-4s.
+
+- 2026-11-10 21:39:22 PST (America/Los_Angeles) — Prepared local playtest batch, Black Eagle and companion model update; public dev.45 lock retained.

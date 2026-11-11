@@ -1,0 +1,22 @@
+{
+  "unit": 985,
+  "name": "Object 640 Black Eagle",
+  "model_source_sha256": "4d4b61593aaa73ae926aaaea32b7b1dd1fb40df9796325196beaac5ef50098bb",
+  "texture_limits": {
+    "arsenal": 2048,
+    "battle": 1024
+  },
+  "conversion": {
+    "source": "assembled OBJ; FBX part transforms displaced",
+    "source_scale": 0.0254,
+    "attach": "Turret|MainGun=turret_0",
+    "model_alignment": false
+  },
+  "installed": false,
+  "packaged": false,
+  "native_verified": false,
+  "model_scale_overrides": {
+    "F-21 Super Tomcat": 1.1,
+    "MGM-166 LOSAT": 1.2
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "unit": 985,
+  "name": "Object 640 Black Eagle",
+  "parent": 716,
+  "baseline_option": 566,
+  "specialization": 10,
+  "cost": 220,
+  "armor_fields": {"KinArmorFront": 800, "HeatArmorFront": 1300},
+  "mobility_fields": {"MaxSpeedReverse": 40.0},
+  "smoke_quantity": 1,
+  "portrait": "FA_BLACK_EAGLE-Portrait",
+  "thumbnail": "FA_BLACK_EAGLE-Label",
+  "source_archive_sha256": "4d4b61593aaa73ae926aaaea32b7b1dd1fb40df9796325196beaac5ef50098bb"
+}

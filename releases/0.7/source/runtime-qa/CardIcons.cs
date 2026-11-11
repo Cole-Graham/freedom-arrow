@@ -73,6 +73,11 @@ static class CardIcons
         ("FA_LOSAT-Portrait_HOVER","FA_LOSAT-Portrait.png"),
         ("FA_LOSAT-Label","FA_LOSAT-Label.png"),
         ("outline\\FA_LOSAT-Label","FA_LOSAT-Label.png"),
+        ("FA_BLACK_EAGLE-Portrait","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE-Portrait_BASIC","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE-Portrait_HOVER","FA_BLACK_EAGLE-Portrait.png"),
+        ("FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
+        ("outline\\FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
     };
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();

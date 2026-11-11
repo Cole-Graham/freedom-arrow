@@ -20,8 +20,8 @@ foreach(var rule in JsonNode.Parse(File.ReadAllText(Path.Combine(root,"reference
 var patches=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"constants",files[rule.Key].GetValue<string>()))).AsObject();
 foreach(var patch in patches)foreach(var link in rule.Value.AsObject())if(patch.Value!=null&&patch.Value.AsObject().ContainsKey(link.Key)){
 int id=patch.Value[link.Key].GetValue<int>();bool nullable=link.Value[1].GetValue<bool>();Check(id==0&&nullable||merged[link.Value[0].GetValue<string>()].Any(r=>r["Id"].GetValue<int>()==id),rule.Key+" dangling "+link.Key);}}
-Check(merged["Units"].Count==594,"Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II (late_cards, Osama 9 Nov); Su-75 Checkmate (su75-contract.json); F-22 and MiG-29K Target Dummy (target-dummy-contract.json); Abrams X, B-21 Raider, X-47B and Su-57D (new-cards-contract.json); only the seven card splits, BARS Kornet, Sprut-SDM, Tigr Kornet 2x4, TGB-1111 RBS, the two 3-man recon cards the twelve recon helicopters, KamAZ-6560 Cargo, F-16C Block 50 ASF, F-35C, EA-18G Growler, MiG-31BSM, MiG-29S, AH-1Z Viper Recon, AH-64D Longbow Recon, Mi-28NM Razvedchik and Ka-52K Razvedchik and M1299 Iron Thunder may add a unit");Check(Row("Units",509)["Cost"].GetValue<int>()==30&&Row("Units",724)["Cost"].GetValue<int>()==50&&Row("OptionsJson",2208)["Cost"].GetValue<int>()==0,"dev.27 TGB-1111 prices");Check(Row("Units",197)["Cost"].GetValue<int>()==80&&Row("Units",723)["Cost"].GetValue<int>()==120&&Row("OptionsJson",433)["Cost"].GetValue<int>()==0,"dev.19 Tigr Kornet prices");Check(Row("Units",144)["Cost"].GetValue<int>()==55&&Row("Units",722)["Cost"].GetValue<int>()==70&&Row("OptionsJson",1986)["Cost"].GetValue<int>()==10,"dev.5 Sprut prices");Check(Row("Units",721)["Cost"].GetValue<int>()==75&&merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==721&&r["WeaponId"].GetValue<int>()==144)["Quantity"].GetValue<int>()==6&&Row("Units",612)["Cost"].GetValue<int>()==60&&Row("Units",616)["Cost"].GetValue<int>()==55,"dev.38 BARS prices (BARS 55 from dev.44; BARS Kornet 75 with 6 missiles in the Lateralus batch)");Check(Row("Units",628)["Cost"].GetValue<int>()==25,"Uran default loadout totals 70");Check(Row("Units",703)["Cost"].GetValue<int>()==165,"T-72B3A 165 with obr. 16 as base");Check(Row("Units",252)["Cost"].GetValue<int>()==50,"BRDM Konkurs 50");
-foreach(var pair in new[]{(716,564,175),(716,566,195),(717,3033,80),(718,1905,70),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,30),(214,491,40),(214,492,45),(214,493,60),(9,625,115)})Check(Row("Units",pair.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",pair.Item2)["Cost"].GetValue<int>()==pair.Item3,"configured cost "+pair);
+Check(merged["Units"].Count==595,"Su-47 Berkut, F-14 Tomcat and YF-23 Black Widow II (late_cards, Osama 9 Nov); Su-75 Checkmate (su75-contract.json); F-22 and MiG-29K Target Dummy (target-dummy-contract.json); Abrams X, B-21 Raider, X-47B and Su-57D (new-cards-contract.json); only the seven card splits, BARS Kornet, Sprut-SDM, Tigr Kornet 2x4, TGB-1111 RBS, the two 3-man recon cards the twelve recon helicopters, KamAZ-6560 Cargo, F-16C Block 50 ASF, F-35C, EA-18G Growler, MiG-31BSM, MiG-29S, AH-1Z Viper Recon, AH-64D Longbow Recon, Mi-28NM Razvedchik and Ka-52K Razvedchik and M1299 Iron Thunder and the Coastal Black Eagle may add a unit");Check(Row("Units",509)["Cost"].GetValue<int>()==30&&Row("Units",724)["Cost"].GetValue<int>()==50&&Row("OptionsJson",2208)["Cost"].GetValue<int>()==0,"dev.27 TGB-1111 prices");Check(Row("Units",197)["Cost"].GetValue<int>()==80&&Row("Units",723)["Cost"].GetValue<int>()==100&&Row("OptionsJson",433)["Cost"].GetValue<int>()==0,"dev.19 Tigr Kornet prices");Check(Row("Units",144)["Cost"].GetValue<int>()==55&&Row("Units",722)["Cost"].GetValue<int>()==70&&Row("OptionsJson",1986)["Cost"].GetValue<int>()==10,"dev.5 Sprut prices");Check(Row("Units",721)["Cost"].GetValue<int>()==75&&merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==721&&r["WeaponId"].GetValue<int>()==144)["Quantity"].GetValue<int>()==6&&Row("Units",612)["Cost"].GetValue<int>()==60&&Row("Units",616)["Cost"].GetValue<int>()==55,"dev.38 BARS prices (BARS 55 from dev.44; BARS Kornet 75 with 6 missiles in the Lateralus batch)");Check(Row("Units",628)["Cost"].GetValue<int>()==25,"Uran default loadout totals 70");Check(Row("Units",703)["Cost"].GetValue<int>()==165,"T-72B3A 165 with obr. 16 as base");Check(Row("Units",252)["Cost"].GetValue<int>()==50,"BRDM Konkurs 50");
+foreach(var pair in new[]{(716,564,170),(716,566,190),(717,3033,80),(718,1905,70),(719,381,85),(720,1949,110),(714,2049,90),(714,2050,90),(715,480,35),(214,2101,30),(214,491,40),(214,492,45),(214,493,60),(9,625,115)})Check(Row("Units",pair.Item1)["Cost"].GetValue<int>()+Row("OptionsJson",pair.Item2)["Cost"].GetValue<int>()==pair.Item3,"configured cost "+pair);
 Check(Row("ArmorsJson",2000000)["MaxHealthPoints"].GetValue<int>()==8,"shared BRDM3 base changed");Check(Row("ArmorsJson",2000096)["MaxHealthPoints"].GetValue<int>()==12,"Vilkas shared armor changed");Check(Row("ArmorsJson",2000100)["HeatArmorSides"].GetValue<int>()==100,"B10/B11 buff leak");
 int[] expectHpOptions={504,505,1881,1882,3067,3070,3071,3072};foreach(int id in expectHpOptions){int armor=Row("OptionsJson",id)["ArmorId"].GetValue<int>();Check(Row("ArmorsJson",armor)["MaxHealthPoints"].GetValue<int>()==(id<3000?10:8),"HP "+id);}
 foreach(int option in new[]{537,538})Check(Row("ArmorsJson",Row("OptionsJson",option)["ArmorId"].GetValue<int>())["MaxHealthPoints"].GetValue<int>()==8,"PT-76 8 HP (0.4 dev.5)");
@@ -96,7 +96,7 @@ foreach(int o in new[]{117,119,412,589,595,598})Check(OC(o)==20,"0.7 TUSK1 +20 "
 Check(H(1834,"HeatArmorFront")==400&&H(1834,"HeatArmorSides")==400&&OC(1834)==15,"AAVP SU");Check(H(574,"HeatArmorSides")==200&&H(575,"HeatArmorSides")==400,"BMPT sides");Check(H(624,"HeatArmorSides")==200&&H(625,"HeatArmorSides")==400&&UC(9)+OC(625)==115,"T-72B1, 0.4 dev.42 total");
 Check(OC(194)==20&&UC(213)==100&&UC(157)==125&&UC(703)==165&&OC(3323)==0,"dev.22 prices, 0.4 values; dev.20 T-72B3A base is obr. 16");
 // 0.4 dev.2 MBT prices, kit prices and sabot +50 at point blank.
-foreach(var (u,cost) in new[]{(615,70),(14,60),(602,60),(9,80),(158,85),(703,165),(157,125),(236,125),(239,135),(53,160),(245,160),(244,205),(243,215),(238,195),(54,220),(503,235),(191,250),(13,360),(716,175)})Check(UC(u)==cost,"0.4 MBT price "+u);
+foreach(var (u,cost) in new[]{(615,70),(14,60),(602,60),(9,80),(158,85),(703,165),(157,125),(236,125),(239,135),(53,160),(245,160),(244,205),(243,215),(238,195),(54,220),(503,235),(191,250),(13,360),(716,170)})Check(UC(u)==cost,"0.4 MBT price "+u);
 foreach(var (o,cost) in new[]{(3035,10),(3005,10),(625,35),(623,30),(622,10),(569,30),(3323,0),(554,35),(629,25),(117,20),(119,20),(598,20),(599,30),(595,20),(596,30),(589,20),(590,35),(592,90),(593,105),(412,20),(416,35),(414,90),(415,105),(562,20),(1635,90),(2116,5),(566,20)})Check(OC(o)==cost,"0.4 kit price "+o);
 foreach(var a in new[]{1,11,12,23,48,124,139,141,172,238,239,242,246,248,254,255,256,257,258,264,498,505,575,602,701,713}){var r=Row("AmmunitionsJson",a);Check(r["PenetrationAtMinRange"].GetValue<float>()==r["PenetrationAtGroundRange"].GetValue<float>()+50,"0.4 sabot close range = long range + 50 "+a);}
 int[] Trans(int u){var pools=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==u).Select(r=>r["Id"].GetValue<int>()).ToHashSet();return merged["TransportAvailabilitiesJson"].Where(r=>pools.Contains(r["SpecializationAvailabilityId"].GetValue<int>())).Select(r=>r["UnitId"].GetValue<int>()).OrderBy(x=>x).ToArray();}
@@ -145,7 +145,7 @@ Check(UC(3)==50&&UC(89)==50&&UC(208)==50&&OC(473)==10&&OC(40)==10&&OC(1761)==10&
 foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
 Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==12&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==12,"dev.22 helicopter Kornet-M and Hellfire 12");
 Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");
-foreach(var (u,fronts) in new[]{(14,new[]{300,600}),(602,new[]{600,650}),(615,new[]{700,750}),(717,new[]{600,650}),(9,new[]{650,750}),(703,new[]{900}),(157,new[]{750,900}),(236,new[]{750,900}),(239,new[]{800,900}),(53,new[]{900}),(245,new[]{900}),(479,new[]{950}),(158,new[]{600,950}),(716,new[]{600,950}),(238,new[]{1300}),(244,new[]{1300}),(503,new[]{1400}),(191,new[]{1400}),(13,new[]{1300,1400})})
+foreach(var (u,fronts) in new[]{(14,new[]{300,600}),(602,new[]{600,650}),(615,new[]{700,750}),(717,new[]{600,650}),(9,new[]{650,750}),(703,new[]{900}),(157,new[]{750,900}),(236,new[]{750,900}),(239,new[]{800,900}),(53,new[]{900}),(245,new[]{900}),(479,new[]{950}),(158,new[]{600,950}),(716,new[]{600,950,1100}),(238,new[]{1300}),(244,new[]{1300}),(503,new[]{1400}),(191,new[]{1400}),(13,new[]{1300,1400})})
 Check(Linked("UnitArmorsJson","ArmorId",u).Select(a=>Row("ArmorsJson",a)["HeatArmorFront"].GetValue<int>()).Distinct().OrderBy(x=>x).SequenceEqual(fronts),"front HEAT "+u);
 // 0.4 dev.14: ammo, one launcher, Vampyr 5 men, split cards, launcher reload.
 foreach(var (wa,q) in new[]{(474,6),(536,6),(2500,10),(598,10),(2274,10),(3174,10),(2596,6),(2701,6),(3551,8),(3017,6),(230,4),(2260,4),(3015,4),(3020,4)})Check(Row("WeaponAmmunitionsJson",wa)["Quantity"].GetValue<int>()==q,"dev.14 ammo "+wa);
@@ -156,7 +156,7 @@ Check(OC(15)==10&&OC(379)==10,"dev.16 Stryker Dragoon and ACV RT20 Bushmaster II
 Check(OC(1896)==15&&OC(1897)==45,"dev.17 Stryker RV Bushmaster II -10");
 Check(OC(1615)==10,"dev.24 BMP-1AM +10");
 Check(OC(748)==10&&OC(184)==20,"dev.27 BMD-2 Konkurs-M +10, BMD-2M +20");
-Check(UC(151)==90&&OC(275)==0&&OC(276)==0,"dev.28 Kornet-D1 90, both weapon loadouts +0");
+Check(UC(151)==70&&OC(275)==20&&OC(276)==0,"playtest Kornet-D1 70, Kornet-M optics +20, 2x4 +0");
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==214&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsDefault"].GetValue<bool>()),"dev.29 BMP-2 no default smoke (LoadAbility picks the first default row; 0.5 dev.3 package smoke is option-granted)");Check(merged["OptionsJson"].Where(o=>merged["ModificationsJson"].Any(m=>m["Id"].GetValue<int>()==o["ModificationId"].GetValue<int>()&&m["UnitId"].GetValue<int>()==214)).All(o=>new[]{"Ability1Id","Ability2Id","Ability3Id"}.All(f=>{int a=o[f]?.GetValue<int>()??0;return a==0||!Row("AbilitiesJson",a)["IsSmoke"].GetValue<bool>()||o["Id"].GetValue<int>()==492||o["Id"].GetValue<int>()==493;})),"BMP-2 smoke only with the BMP-2G/BMP-2M packages");
 Check(Row("AbilitiesJson",Row("OptionsJson",2044)["Ability1Id"].GetValue<int>())["IsSmoke"].GetValue<bool>(),"dev.41 BMD-2 smoke option keeps smoke");
 Check(!merged["UnitAbilitiesJson"].Any(r=>r["UnitId"].GetValue<int>()==90&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsSmoke"].GetValue<bool>()&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsDefault"].GetValue<bool>()),"dev.41 BMD-2 base no default smoke (smoke only from its smoke option)");
@@ -279,14 +279,20 @@ var cmMods=merged["ModificationsJson"].Where(r=>r["UnitId"].GetValue<int>()==950
 Check(cmMods.Length==1&&cmMods[0]["UIName"].GetValue<string>()=="Custom_Slot_Rear_bay","Su75 rear bay only");
 var cmOpts=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==cmMods[0]["Id"].GetValue<int>()).ToArray();
 Check(cmOpts.Length==8&&cmOpts.Count(o=>o["IsDefault"].GetValue<bool>())==1,"Su75 eight rear loadouts with one default");
-foreach(var o in cmOpts)for(int i=0;i<=20;i++)if(i<4||i>6)Check(o["Turret"+i+"Id"].GetValue<int>()==0,"Su75 no front or wingtip mount");
+foreach(var o in cmOpts){
+Check(o["Turret1Id"].GetValue<int>()==653&&o["Turret2Id"].GetValue<int>()==653,"Su75 fixed R73 pair in every loadout");
+foreach(int i in new[]{3,7,8})Check(o["Turret"+i+"Id"].GetValue<int>()==160,"Su75 explicitly cleared unused mount");
+for(int i=0;i<=20;i++)if(i==0||i>8)Check(o["Turret"+i+"Id"].GetValue<int>()==0,"Su75 no extra mount");
+Check(Enumerable.Range(0,21).Count(i=>o["Turret"+i+"Id"].GetValue<int>()==653)==2,"Su75 exactly two R73 in each configuration");
+if(o["Name"].GetValue<string>().Contains("2xKh38ML"))Check(o["Turret4Id"].GetValue<int>()==616&&o["Turret5Id"].GetValue<int>()==616&&!Enumerable.Range(0,21).Any(i=>o["Turret"+i+"Id"].GetValue<int>()==606),"Su75 Kh38 loadout is R73 pair plus Kh38 pair without R37");
+}
 var cmSpecs=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==950).ToArray();
 Check(cmSpecs.Length==1&&cmSpecs[0]["SpecializationId"].GetValue<int>()==9,"Su75 Motorized Infantry only");
 foreach(var field in Row("Units",44).AsObject())if(!new[]{"Id","Name","HUDName","DisplayInArmory","PortraitFileName","CurrentPortrait","ThumbnailFileName","CurrentThumbnail"}.Contains(field.Key))Check(JsonNode.DeepEquals(field.Value,Row("Units",970)[field.Key]),"Su57D stat clone "+field.Key);
 Console.WriteLine("PASS: live Su75 rear/Motorized/price and Su57D stat-clone checks");
 
 var cmDefault=cmOpts.Single(o=>o["IsDefault"].GetValue<bool>());
-Check(cmDefault["Turret4Id"].GetValue<int>()==653&&cmDefault["Turret5Id"].GetValue<int>()==653&&cmDefault["Cost"].GetValue<int>()==0,"Su75 baseline two R73 at base cost");
+Check(new[]{4,5,6}.All(i=>cmDefault["Turret"+i+"Id"].GetValue<int>()==160)&&cmDefault["Cost"].GetValue<int>()==0,"Su75 baseline two fixed R73 with empty rear bay at base cost");
 Check(Row("Units",973)["InfantrySlots"].GetValue<int>()==10,"Karatel ten passengers");
 var kt=merged["TransportAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==973).ToArray();Check(kt.Length>0,"Karatel available as infantry transport");
 foreach(var t in kt)Check(Row("SpecializationAvailabilitiesJson",t["SpecializationAvailabilityId"].GetValue<int>())["SpecializationId"].GetValue<int>()==12,"Karatel only Guard");
@@ -307,10 +313,13 @@ Console.WriteLine("PASS: Karatel Tigr profiles,35 points,default smoke,250 suppl
 var xm=Row("Units",983);Check(xm["Cost"].GetValue<int>()==200&&xm["CountryId"].GetValue<int>()==2&&xm["Role"].GetValue<int>()==11,"XM30 US tank200");
 var xma=merged["UnitArmorsJson"].Single(r=>r["UnitId"].GetValue<int>()==983);var xmar=Row("ArmorsJson",xma["ArmorId"].GetValue<int>());
 Check(xmar["HeatArmorFront"].GetValue<int>()==700&&xmar["HeatArmorSides"].GetValue<int>()==700,"XM30 HEAT armor");
-foreach(var f in new[]{"MaxHealthPoints","KinArmorFront","KinArmorSides","KinArmorRear","KinArmorTop","HeatArmorRear","HeatArmorTop"})Check(xmar[f].ToJsonString()==Row("ArmorsJson",306)[f].ToJsonString(),"XM30 Booker armor "+f);
+Check(xmar["MaxHealthPoints"].GetValue<int>()==14&&xmar["IsDefault"].GetValue<bool>(),"XM30 default14 HP independent of Booker donor");
+Check(Row("ArmorsJson",306)["MaxHealthPoints"].GetValue<int>()==16,"Booker donor HP unchanged");
+foreach(var f in new[]{"KinArmorFront","KinArmorSides","KinArmorRear","KinArmorTop","HeatArmorRear","HeatArmorTop"})Check(xmar[f].ToJsonString()==Row("ArmorsJson",306)[f].ToJsonString(),"XM30 Booker armor "+f);
 var xmab=Row("AbilitiesJson",merged["UnitAbilitiesJson"].Single(r=>r["UnitId"].GetValue<int>()==983&&Row("AbilitiesJson",r["AbilityId"].GetValue<int>())["IsAPS"].GetValue<bool>())["AbilityId"].GetValue<int>());Check(xmab["APSQuantity"].GetValue<int>()==2&&xmab["IsDefault"].GetValue<bool>(),"XM30 APS2");
 var xmp=merged["SpecializationAvailabilitiesJson"].Where(r=>r["UnitId"].GetValue<int>()==983).ToArray();Check(xmp.Length==1&&xmp[0]["SpecializationId"].GetValue<int>()==4&&xmp[0]["MaxAvailabilityXp0"].GetValue<int>()==2,"XM30 US Armor pool2");
 var xmm=merged["ModificationsJson"].Single(r=>r["UnitId"].GetValue<int>()==983)["Id"].GetValue<int>();var xmo=merged["OptionsJson"].Where(r=>r["ModificationId"].GetValue<int>()==xmm).ToArray();Check(xmo.Length==2&&xmo.Count(r=>r["IsDefault"].GetValue<bool>())==1,"XM30 two choices one default");
+foreach(var o in xmo)Check(o["ArmorId"].GetValue<int>()==0||Row("ArmorsJson",o["ArmorId"].GetValue<int>())["MaxHealthPoints"].GetValue<int>()==14,"XM30 every loadout14 HP "+o["Id"]);
 foreach(var o in xmo){var t=o["Turret0Id"].GetValue<int>();var tw=merged["TurretWeaponsJson"].Where(r=>r["TurretId"].GetValue<int>()==t).ToArray();Check(tw.Length==2&&tw.Any(r=>r["WeaponId"].GetValue<int>()==658),"XM30 native Booker XM913");var missile=tw.Single(r=>r["WeaponId"].GetValue<int>()!=658&&r["WeaponId"].GetValue<int>()!=7)["WeaponId"].GetValue<int>();Check(Row("WeaponsJson",missile)["MagazineSize"].GetValue<int>()==2,"XM30 two ready missiles");Check(merged["WeaponAmmunitionsJson"].Single(r=>r["UnitId"].GetValue<int>()==983&&r["WeaponId"].GetValue<int>()==missile)["Quantity"].GetValue<int>()==2,"XM30 two missile rounds");}
 Console.WriteLine("PASS: XM30200 points,armor700/700,APS2,US Armor tank availability2,Booker XM913,two missile choices");
 
@@ -550,4 +559,35 @@ Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression ch
     foreach(int id in new[]{20123,31002,31003})Check(Row("OptionsJson",id)["IsDefault"].GetValue<bool>(),"BSM empty default");
     Check(merged["WeaponAmmunitionsJson"].Count(x=>x["UnitId"].GetValue<int>()==743)==5,"BSM retains cannon and four bomber ammunition types");
     Console.WriteLine($"PASS MAKO/BSM total: {checks} checks; exact ARRW stats, one per bay +80, no BSM AA missiles, safe deck migration. Native firing untested.");
+}
+
+// Black Eagle retains selected obr2018 fields except the explicit playtest overrides.
+{
+ int I(JsonNode n,string k)=>n[k]!.GetValue<int>();
+ var donor=Row("Units",716);var own=Row("Units",985);var option=Row("OptionsJson",566);
+ Check(I(own,"Cost")==220&&own["Name"]!.GetValue<string>()=="Object 640 Black Eagle", "Black Eagle correct designation and220 points");
+ foreach(var f in donor.AsObject())if(f.Key is not ("Id" or "Name" or "HUDName" or "Cost" or "PortraitFileName" or "ThumbnailFileName"))Check(own[f.Key]?.ToJsonString()==f.Value?.ToJsonString(),"Black Eagle donor unit field "+f.Key);
+ foreach(var (table,key,donorId,except) in new[]{("UnitArmorsJson","ArmorId",I(option,"ArmorId"),new[]{"Id","Name","IsDefault","ModelFileName","KinArmorFront","HeatArmorFront"}),("UnitPropulsionsJson","MobilityId",I(option,"MobilityId"),new[]{"Id","Name","IsDefault","ModelFileName","MaxSpeedReverse"})}){
+  var link=merged[table].Single(x=>I(x,"UnitId")==985);var row=Row(key=="ArmorId"?"ArmorsJson":"MobilityJson",I(link,key));var source=Row(key=="ArmorId"?"ArmorsJson":"MobilityJson",donorId);
+  Check(row["IsDefault"]!.GetValue<bool>(),"Black Eagle default "+key);
+  foreach(var f in source.AsObject())if(!except.Contains(f.Key))Check(row[f.Key]?.ToJsonString()==f.Value?.ToJsonString(),"Black Eagle selected profile "+f.Key);
+ }
+ var pools=merged["SpecializationAvailabilitiesJson"].Where(x=>I(x,"UnitId")==985).ToArray();Check(pools.Length==1&&I(pools[0],"SpecializationId")==10&&I(pools[0],"MaxAvailabilityXp0")==3,"Black Eagle Coastal only availability3");
+ Check(!merged["ModificationsJson"].Any(x=>I(x,"UnitId")==985),"Black Eagle intrinsic obr2018, no stale option selection");
+ var main=merged["TurretUnitsJson"].Where(x=>I(x,"UnitId")==985).Select(x=>Row("TurretsJson",I(x,"TurretId"))).Single(x=>x["ParentTurretId"]==null);
+ Check(main["IsDefault"]!.GetValue<bool>()&&main["Name"]!.GetValue<string>()==Row("TurretsJson",I(option,"Turret0Id"))["Name"]!.GetValue<string>(),"Black Eagle intrinsic main turret");
+ var weapons=merged["TurretUnitsJson"].Where(x=>I(x,"UnitId")==985).SelectMany(x=>merged["TurretWeaponsJson"].Where(w=>I(w,"TurretId")==I(x,"TurretId"))).Select(w=>I(w,"WeaponId")).ToHashSet();
+ Check(weapons.SetEquals(new[]{222,7,97}),"Black Eagle donor cannon, coax and cupola");
+ var ammo=merged["WeaponAmmunitionsJson"].Where(x=>I(x,"UnitId")==985).ToArray();var donorAmmo=merged["WeaponAmmunitionsJson"].Where(x=>I(x,"UnitId")==716&&weapons.Contains(I(x,"WeaponId"))).ToArray();
+ Check(ammo.Length==donorAmmo.Length,"Black Eagle donor ammunition count");
+ foreach(var a in donorAmmo)Check(ammo.Any(b=>new[]{"WeaponId","AmmunitionId","Order","Quantity"}.All(k=>I(a,k)==I(b,k))),"Black Eagle ammunition parity");
+ var sensor=merged["SensorUnitsJson"].Single(x=>I(x,"UnitId")==985);Check(I(sensor,"SensorId")==I(option,"MainSensorId"),"Black Eagle obr2018 optics");
+ var defense=Row("AbilitiesJson",I(merged["UnitAbilitiesJson"].Single(x=>I(x,"UnitId")==985),"AbilityId"));var donorDefense=Row("AbilitiesJson",I(merged["UnitAbilitiesJson"].Single(x=>I(x,"UnitId")==716),"AbilityId"));
+ Check(defense["IsSmoke"]!.GetValue<bool>()&&I(defense,"SmokeAmmunitionQuantity")==1,"Black Eagle one smoke charge");
+ foreach(var f in donorDefense.AsObject())if(f.Key is not ("Id" or "Name" or "SmokeAmmunitionQuantity"))Check(defense[f.Key]?.ToJsonString()==f.Value?.ToJsonString(),"Black Eagle donor defense "+f.Key);
+ var blackArmor=Row("ArmorsJson",I(merged["UnitArmorsJson"].Single(x=>I(x,"UnitId")==985),"ArmorId"));Check(I(blackArmor,"KinArmorFront")==800&&I(blackArmor,"HeatArmorFront")==1300&&I(blackArmor,"MaxHealthPoints")==14,"Black Eagle front800 KE1300 HEAT14HP");
+ var blackMob=Row("MobilityJson",I(merged["UnitPropulsionsJson"].Single(x=>I(x,"UnitId")==985),"MobilityId"));Check(blackMob["MaxSpeedReverse"]!.GetValue<double>()==40,"Black Eagle reverse40");
+ foreach(int oid in new[]{564,566})Check(I(Row("ArmorsJson",I(Row("OptionsJson",oid),"ArmorId")),"KinArmorFront")==700,"T80BVM front KE700 "+oid);
+ Check(I(Row("ArmorsJson",I(option,"ArmorId")),"HeatArmorFront")==1100,"T80BVM2018 HEAT1100");
+ Console.WriteLine($"PASS Black Eagle and T80BVM requested playtest overrides: {checks} total checks. Native Armory/SP/MP untested.");
 }

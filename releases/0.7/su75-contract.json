@@ -5,5 +5,16 @@
   "cost": 260,
   "spec": 9,
   "rear_mod": 341,
-  "stealth_ui": 2
+  "stealth_ui": 2,
+  "fixed_r73_turret": 653,
+  "empty_turret": 160,
+  "fixed_r73_slots": [
+    1,
+    2
+  ],
+  "empty_slots": [
+    3,
+    7,
+    8
+  ]
 }

@@ -1,0 +1,7 @@
+{
+  "unit": 716,
+  "options": {
+    "564": {"KinArmorFront": 700},
+    "566": {"KinArmorFront": 700, "HeatArmorFront": 1100}
+  }
+}
