@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.40 — development candidate
+# Freedom Arrow 0.7.0-dev.41 — development candidate
+
+**dev.41: LOSAT missile damage is 12, up from 10, and missile card speed is 1500, up from 1300 (raw speed 1500/3.6). All other gameplay constants match dev.40. Native damage and speed verification pending.**
 
 **dev.40: LOSAT road speed50 and missile card speed1300. Missile raw speed is1300/3.6, correcting the previous4680 card reading. Bradley mobility and all other balance data are retained. Includes the dev.39 MAKO AMRAAM carried-model correction. LOSAT shared model-map repair is installed separately without replacing other model settings. Native confirmation pending.**
 
@@ -15,7 +17,7 @@
 Items1,2,4,6 remain separate: helicopter flare stock, helicopter-only missile ranges, aircraft refund rework, and SPAAG range/damage/cooldown experiments are not imported. No aircraft-refund or cooldown hook is added. The passive observer records sampled state, not exact rejection reasons or a complete interception count; large-scene performance remains unmeasured.
 
 M-25 CDTE: Stryker Troopers AT and Troopers AA each replace two M203s with one special-weapon XM25 copy (0.75 damage, 75% cover bypass). The original five-round magazine and firing/reload timings are retained. Both riflemen remain, with a shared 120-round grenade pool (24 magazines; about 3 minutes at the nominal sustained firing rate). Troopers AT costs100 →105 and Troopers AA60 →65. Green Berets, Delta Force and other M203 users retain their weapons. Data and package checks do not establish native firing, visual weapon switching or multiplayer behavior.
-**LOSAT: 200 points, Stryker only, availability 2, 10 damage, 550 mm KE penetration and missile speed 1300 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
+**LOSAT: 200 points, Stryker only, availability 2, 12 damage, 550 mm KE penetration and missile card speed 1500 from launch.** Twelve missiles, interception disabled and tank-shell critical-effect rules are retained. Hull protection remains unupgraded M2A2 Bradley: KE/HEAT100/80/60/40 front/side/rear/top,12 hull HP.
 
 **Static model only:** companion assets0.1.14 remove the LOSAT turret-bone attachment and automatic alignment. Armory and battle versions each contain one root group; all mesh-segment positions,normals,UVs,indices,materials and textures are byte-identical to the prior export. No moving or separately parented LOSAT parts remain. Native placement still needs review.
 
@@ -212,3 +214,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 16:31:54 PST (America/Los_Angeles) — Recorded F22 MAKO side bays and bomber-only MiG31BSM loadouts, preserving preceding changes.
 - 2026-11-10 16:45:02 PST (America/Los_Angeles) — Changed only the F22 MAKO carried mesh to AMRAAM; all gameplay statistics retained.
 - 2026-11-10 16:53:54 PST (America/Los_Angeles) — Corrected LOSAT displayed missile speed and isolated50 road speed; recorded shared model-map repair.
+- 2026-11-10 17:19:42 PST (America/Los_Angeles) — Increased LOSAT missile damage from 10 to 12 and card speed from 1300 to 1500; other gameplay constants retained.
