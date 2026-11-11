@@ -16,7 +16,7 @@ LEDGER=R/'builds.json'
 # Everything build_constants.py and build.py read from the repository.
 INPUTS=['releases/0.7','releases/0.1/source','pipeline']
 # Tracked, but not read by the build and not packaged.
-SKIP=re.compile(r'^releases/0\.7/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests|supply-stealth-tests|diagnostic-tests)/)|^pipeline/tests/')
+SKIP=re.compile(r'^releases/0\.7/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests|supply-stealth-tests|diagnostic-tests|aa-observer-tests)/)|^pipeline/tests/')
 def ledger():return json.loads(LEDGER.read_text(encoding='utf-8')) if LEDGER.is_file() else {}
 def inputs_sha256(version):
     """Hash of the build inputs, with the version itself written as {VERSION} and Windows line ends as Unix ones."""
@@ -33,7 +33,14 @@ def ensure():
     v=current();built=ledger().get(v)
     if built is None:print(f'{v}: not built yet, so this build keeps {v}.');return v
     if built['inputs']==inputs_sha256(v):print(f'{v}: inputs unchanged since its build, so this build keeps {v}.');return v
-    new=f'0.7.0-dev.{max(map(dev_number,[v,*ledger()]))+1}'
+    test=re.fullmatch(r'(0\.7\.0-devtest\.lat\.)(\d+)',v)
+    if test:
+        prefix=test.group(1)
+        used=[int(x[len(prefix):]) for x in [v,*ledger()] if x.startswith(prefix) and x[len(prefix):].isdigit()]
+        new=prefix+str(max(used)+1)
+    else:
+        used=[x for x in [v,*ledger()] if re.fullmatch(r'0\.7\.0-dev\.\d+',x)]
+        new=f'0.7.0-dev.{max(map(dev_number,used))+1}'
     print(f'{v}: already built and the inputs changed, so this build is {new}.');bump(new);return new
 def check():
     """Called by build.py before it builds: stop if this version was already built from other inputs."""

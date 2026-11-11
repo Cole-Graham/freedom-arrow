@@ -1656,6 +1656,8 @@ def main():
     apply_mako_bomber(effective,patches,clone,put,option_migration,json.loads((R/'f22-mako-mig31bsm-contract.json').read_text()))
     from losat import apply_vehicle_speed as apply_losat_vehicle_speed
     apply_losat_vehicle_speed(effective,clone,put,json.loads((R/'losat-contract.json').read_text()))
+    from spaag import apply as apply_spaag
+    apply_spaag(effective,json.loads((R/'spaag-contract.json').read_text()),put)
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)

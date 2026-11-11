@@ -1,4 +1,4 @@
-# Freedom Arrow 0.7.0-dev.45 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.6 — development candidate
 
 **dev.45: Su-75 Checkmate stealth is2 in UI terms (raw Stealth and CurrentStealth0.5), up from approximately1.5 (raw0.666). Includes the current dev.44 T72 armor-card correction. All other gameplay constants match dev.44. Native card/detection verification pending.**
 
@@ -160,6 +160,9 @@ Su-75, Su-47, Su-57D, YF-23 and F-14 have custom full-colour portrait addresses.
 
 The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Gameplay does not contain the paid model files.
 
+
+Full SPAAG test: based on locked dev.45. Only six AA gun ammo profiles gain Actual Arrow 1.1.20 LowAltRange, HighAltRange and Damage endpoints. No price, missile-speed, cooldown or refund changes. Use Mod Manager for this test; public launcher restores dev.45. Native game behavior untested.
+
 ## Document change log
 
 - 2026-11-09 17:31:05 PST (America/Los_Angeles) — Prepared the authorized0.7 candidate; latest instruction supersedes the previous dev.115 play-session hold. Hold again after this update.
@@ -224,3 +227,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 17:29:35 PST (America/Los_Angeles) — Raised XM30 base price from190 to200; retained dev.41 LOSAT values and recorded separate source-resolution silver texture trial.
 - 2026-11-10 17:59:47 PST (America/Los_Angeles) — Added T-72B3AM default-armor correction, unchanged balance values and verification limits.
 - 2026-11-10 18:10:29 PST (America/Los_Angeles) — Increased Su75 UI stealth to2 on the current dev.44 base, preserving its T72 armor flags and all other gameplay data.
+
+- 2026-11-10 21:32:36 PST (America/Los_Angeles) — Prepared isolated full Actual Arrow SPAAG range/damage test lat.6 on dev.45.

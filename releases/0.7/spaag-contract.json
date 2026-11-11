@@ -1,0 +1,77 @@
+{
+  "basis": "Full Actual Arrow 1.1.20 LowAltRange, HighAltRange and Damage endpoints; isolated on locked dev.45; no cooldown or refund experiment",
+  "ammo": {
+    "60": {
+      "before": [
+        750,
+        500,
+        3
+      ],
+      "after": [
+        1000,
+        1500,
+        3.5
+      ]
+    },
+    "62": {
+      "before": [
+        650,
+        500,
+        2
+      ],
+      "after": [
+        900,
+        1500,
+        2.8
+      ]
+    },
+    "213": {
+      "before": [
+        650,
+        500,
+        2.3
+      ],
+      "after": [
+        900,
+        1500,
+        3
+      ]
+    },
+    "231": {
+      "before": [
+        750,
+        500,
+        3
+      ],
+      "after": [
+        900,
+        1500,
+        3.5
+      ]
+    },
+    "262": {
+      "before": [
+        700,
+        500,
+        2
+      ],
+      "after": [
+        900,
+        1500,
+        2.8
+      ]
+    },
+    "454": {
+      "before": [
+        600,
+        500,
+        3
+      ],
+      "after": [
+        900,
+        1500,
+        4.5
+      ]
+    }
+  }
+}
