@@ -1,6 +1,6 @@
 {
   "channel": "testing",
-  "package_version": "0.7.0-dev.51",
+  "package_version": "0.7.0-dev.52",
   "spotting": "vanilla",
   "deployment_status": "built_offline_execution_held",
   "verification": "Built and statically checked only; not installed or launched. Guarded offline economy and vehicle behavior require T12 acceptance."

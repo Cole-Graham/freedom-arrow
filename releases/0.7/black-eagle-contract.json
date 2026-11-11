@@ -13,7 +13,7 @@
     "MaxSpeedReverse": 40.0
   },
   "smoke_quantity": 1,
-  "portrait": "FA_BLACK_EAGLE-Portrait",
+  "portrait": "FA_BLACK_EAGLE_STUDIO-Portrait",
   "thumbnail": "FA_BLACK_EAGLE_WHITE-Label",
   "source_archive_sha256": "4d4b61593aaa73ae926aaaea32b7b1dd1fb40df9796325196beaac5ef50098bb"
 }
