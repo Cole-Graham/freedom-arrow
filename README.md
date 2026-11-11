@@ -1,6 +1,6 @@
-# PLA TEST Build 20
+# PLA TEST Build 21
 
-**Build 20 uses weapon/equipment-led unit icons for 59 support and specialty squads. All 14 named SF cards retain their sourced or documented fallback central emblems, with wreaths removed and the emblems enlarged. The 17 other branch cards retain their existing icons. Names, portraits, ammo, stats, loadouts, models, rigging and the Build 17 grouping correction are unchanged. Native appearance is untested.**
+**Build21 refines SF emblems with smooth curves and transparent separation around overlapping objects, restores14 short English SF labels and assigns17 generalist rifle/security cards distinct patch icons. Dedicated weapons teams keep weapon art. Historic80th Motorized imagery is brigade-specific; other line art uses parent/corps motifs with explicit source limits. Loadouts, ammo, stats, portraits, models, rigging and Build17 grouping are preserved. Native appearance is untested.**
 
 ## Historical Build19 identity and initial badge pass
 
@@ -351,3 +351,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 12:11:09 PST (America/Los_Angeles) — Added researched infantry identity/patch adaptations and corrected custom weapon facing and filled-outline style; preserved all gameplay and approved model bindings.
 
 - 2026-11-11 12:30:17 PST (America/Los_Angeles) — Replaced support/specialty branch badges with weapon/equipment icons and removed SF wreaths while enlarging central emblems; all other game data retained.
+
+- 2026-11-11 12:55:47 PST (America/Los_Angeles) — Build21: refined SF contours and transparent overlap gaps, restored short English labels, and assigned17 mixed rifle/security cards patch art while retaining dedicated weapon-team icons and all gameplay data.

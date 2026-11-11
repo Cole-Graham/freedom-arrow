@@ -1,0 +1,688 @@
+{
+  "passed": true,
+  "counts": {
+    "line_patch": 17,
+    "weapon_team": 54,
+    "branch_insignia": 5,
+    "sf_emblem": 14
+  },
+  "display_name_changes": 14,
+  "thumbnail_changes": 22,
+  "tables_checked": 24,
+  "all_other_effective_fields_identical": true,
+  "weapon_hud_sprites_byte_identical": true,
+  "custom_sprites": 64,
+  "real_alpha_cutout_masks": true,
+  "brigade_evidence_limit": "Only the historic80th Motorized reference is brigade-specific. Airborne, Marine, Ground, Rocket and reserve icons use verified parent/corps motifs, not invented brigade claims.",
+  "png_sha256": {
+    "FA_PLA_WP_QBB95": "b741ad2cf484fe28a2904613086ff0f66cf9dfd9944e8d523a15dc70e415e035",
+    "FA_PLA_WP_QBB95_OUTLINE": "bf2ca81893ae2f2e11975af412f8d83807aa826385b0ec1cada92686b7442e19",
+    "FA_PLA_WP_QBU191": "f8685c1a471ffaa510e55ec0e54fea0f8f88334ef63d686236aa83f64a8bf4e1",
+    "FA_PLA_WP_QBU191_OUTLINE": "37a5be9ef7788e7bd6121de0da86396682c1b437651f5d807b4d2d22356fe82a",
+    "FA_PLA_WP_QBU88": "c794f0cd3ec6561c0248132fa143a7b5899e5f5567e1ebade68c6c19ac072dba",
+    "FA_PLA_WP_QBU88_OUTLINE": "ebd308b65f53317feb22c0f70cd021177f75d9c9d0e790eddc7f1d26abcac6b2",
+    "FA_PLA_WP_QBZ191": "64ab8e38f1e72fed875853932930c37d93fee85735b069bc6244496c5ee3c6ea",
+    "FA_PLA_WP_QBZ191_OUTLINE": "69a4f3b469f4bab8fb6e26f1658d6f1d975dccab79e704359affb61dca7fc505",
+    "FA_PLA_WP_QBZ95": "8b610087ad9bfac9863dcebb4a5bc72b5b63b8983c7ec553d3fb311af01030b0",
+    "FA_PLA_WP_QBZ95_OUTLINE": "37af7829ac4b7da1ce6254fc50fffbf14a774424c0d3bed7a6d1138958fabb90",
+    "FA_PLA_WP_QBZ97": "0d74ffd23a1229b50f719e9298a49eb3d656f7ab6a13d44c0886534bd2d7bbf5",
+    "FA_PLA_WP_QBZ97_OUTLINE": "bf301ab30a21a8824a945e90f300fa00cacefee8d04fdd8cae7796213c1c38f2",
+    "FA_PLA_WP_QLU11": "f2831f7848d123de2bfae5833c6c4d2368dfdfabb841d1380327043ce093d205",
+    "FA_PLA_WP_QLU11_OUTLINE": "8783649756936fb293793d9fe547743aba6ea7a70438244b96e585c11247a927",
+    "FA_PLA_WP_QTS11": "1df2b1d07903327ecae9371298656d9e977ce06599e3f34cb3be091d2adf6f9e",
+    "FA_PLA_WP_QTS11_OUTLINE": "7f07e5ed8f07933b0093a4a8d8bc8a13bb01c2af90fa3e7d254dfca818fd82a4",
+    "FA_PLA_INF_AIRBORNE": "01df9dd885ed4f687a437fdcf43d95669ccbc85d67b2c7b778236eefb96345d6",
+    "FA_PLA_INF_AIRBORNE_OUTLINE": "9e1b88c0f0318b592d25dc6cff18ca38da5ce3affc592a1fbdafeabf6d935b3b",
+    "FA_PLA_INF_BLOOD_WOLF": "e9707bc8aeb371b6ec3f930dba8f6e23b3d5681318d6970bd1517dadf7e0796c",
+    "FA_PLA_INF_BLOOD_WOLF_OUTLINE": "e69a227f248a025259839bf83c743086630ff766723565ff5752dc3d2c209545",
+    "FA_PLA_INF_DONGFANG": "788626b7ce5f783c833721b544635967dcb12c8168c12e4e5e4accea1aa6d313",
+    "FA_PLA_INF_DONGFANG_OUTLINE": "dbf33a7fefee7d346b200964124d99a9b1c46729dbd504aa069ac4f7ccd9ed5d",
+    "FA_PLA_INF_EAGLE": "85170a272165b368720fca4efcfb4444db906a8e4b3569231a09845318e41ea0",
+    "FA_PLA_INF_EAGLE_OUTLINE": "b4611ab83a6b65bfd3b5b1263876810a991140d79a129702668b631577bb9190",
+    "FA_PLA_INF_FALCON": "7ccd991683c255ec5f6fc660bbd8f80d834999d8c6cb24d77b8c6c6320a1044b",
+    "FA_PLA_INF_FALCON_OUTLINE": "1732286245de7b66bc0c584781217b7533f630c77a4893d892fdc6cb82551bed",
+    "FA_PLA_INF_GROUND": "942387a78b9aeaa1ab9e65a8d1425896f8685d2d8cd50df619812823021fa8f7",
+    "FA_PLA_INF_GROUND_OUTLINE": "d57fcbfa1d007c271a5f155f8e4744643c844c2b11e2370fed5704d445156857",
+    "FA_PLA_INF_JIAOLONG": "8f7f333fbd0b56fafaa02dec2c98f82535106cadb67da8349a31db1155b18369",
+    "FA_PLA_INF_JIAOLONG_OUTLINE": "cad8932fe04231b43bef527b2bdf42b4191a98ad69c4c8060ef6b20f8188f492",
+    "FA_PLA_INF_LEISHEN": "82b828cb1f13071416194a80fd166a35511253b61618cc1d2101c752bf20bb61",
+    "FA_PLA_INF_LEISHEN_OUTLINE": "e4baee0c8ce15f763b9b5d4522c15e8aa36699397641f75a48f6087b0654523d",
+    "FA_PLA_INF_LINE_AIRBORNE": "f84859751403fc62f872fdc2ee626a85142a9c9dd69f707bb1a391e9ced9fa8a",
+    "FA_PLA_INF_LINE_AIRBORNE_OUTLINE": "a6a784357ce5323dc1c2e55226e7fd2164d1e5072ea287651d81f0a80c40758b",
+    "FA_PLA_INF_LINE_GROUND": "97a842bce0bfbaa6e38b6ecf869b22466c0ab9f08a9d9a85b33622930bdf0235",
+    "FA_PLA_INF_LINE_GROUND_OUTLINE": "f93bf10138f1f9892727e192d8a261376d8f4190dcbc2f1879d40cf747da348b",
+    "FA_PLA_INF_LINE_MARINE": "9c2ba03edc6e101e05402f05fb5bc63a1301f520fc2f2e2a5a890f364ed3d653",
+    "FA_PLA_INF_LINE_MARINE_OUTLINE": "b33da0c78d3a27836b23737eb53d27114cc9d8a3c7159f88d8e548109ef7d526",
+    "FA_PLA_INF_LINE_MOTOR80": "92a7101b75150dae078e459ce58bbf5fe76e2b5992c4cadeffb098451c9a24d0",
+    "FA_PLA_INF_LINE_MOTOR80_OUTLINE": "936f325c164a6b02b0c958197e1a46b44b7bffb5e539967ea1ef5453de9ec2f4",
+    "FA_PLA_INF_LINE_RESERVE": "8b3888189302828fe444995486cc8502935baa2dab74bf5f0fc9c443d7851150",
+    "FA_PLA_INF_LINE_RESERVE_OUTLINE": "5584b3502ef05532ac0c7d2afa1617ad244801ea00f6f915390874b390a4818d",
+    "FA_PLA_INF_LINE_ROCKET": "f749d830d55d1a4aa97f7d0897c69329f80e9c94822dcd3649bfad39ba2994b5",
+    "FA_PLA_INF_LINE_ROCKET_OUTLINE": "b2ca1a2d6706c0977bd3d500708990b638ec51a7619159888dd91e8cf38c7c45",
+    "FA_PLA_INF_PLATEAU_LEOPARD": "0b1389e6819b9032368c0eba4f1a2c1bd411deca2c638dba4d133d13c88b9ac3",
+    "FA_PLA_INF_PLATEAU_LEOPARD_OUTLINE": "11a0f19d2e3775f446ffbb3bc73e836226aa15c57513745ac47c0f4919298339",
+    "FA_PLA_INF_POLICE": "4360a058903ae9d26fdbde79c045f9781c99da0dba648c82c7cc8bc9a4e077ac",
+    "FA_PLA_INF_POLICE_OUTLINE": "d79135f7b99572e49037b41dc5261712c53b130d0e353d8cd1d7c9933596fa17",
+    "FA_PLA_INF_ROCKET": "94aa430505384cd4eb5dababc0e64868382a2a519777c32163ed38ee3161d1c6",
+    "FA_PLA_INF_ROCKET_OUTLINE": "3d6bfbb63f32e935503e842ee03560bf1ec8b53a4353b63b4148ff887eab2f35",
+    "FA_PLA_INF_ROCKET_SOF": "7dcccc9ba52ebc7d2e93e85a3bc28aff10e826caa2243f8de0f94c53e8b5cd08",
+    "FA_PLA_INF_ROCKET_SOF_OUTLINE": "8f734e64af8ce71be51927b1f6ea0ab6a5720f0b50e87c6f87bd3292abb2ada8",
+    "FA_PLA_INF_SNOW_LEOPARD": "2bdc725cc3385a66b46d3c046f617834bc75fde3486d3d32c9d2f36b6580d08b",
+    "FA_PLA_INF_SNOW_LEOPARD_OUTLINE": "491bf4fbb6b03d17c05027d63810a31172a94d3cb62413cd007fbc3325cf0b7e",
+    "FA_PLA_INF_SOF": "6c6d724a820deb2271180c9464089a022e6c61e1bb9d91d4d7401cba48021b53",
+    "FA_PLA_INF_SOF_OUTLINE": "a58cc5bd6a5c7d13618638773ce7fba42e42e0d125005923832b3caceb7ae48c",
+    "FA_PLA_INF_TIANLANG": "8262c30b362912851a7ec7ccf76b8a07c44c291b1ddde0f2cdfc380f72e312b4",
+    "FA_PLA_INF_TIANLANG_OUTLINE": "4ce83cf762ebc71b167f66afd134567cc8ec2cba023a9ed94da523058d7b5c6b",
+    "FA_PLA_INF_WPN_QLU11": "f2831f7848d123de2bfae5833c6c4d2368dfdfabb841d1380327043ce093d205",
+    "FA_PLA_INF_WPN_QLU11_OUTLINE": "8783649756936fb293793d9fe547743aba6ea7a70438244b96e585c11247a927",
+    "FA_PLA_INF_WPN_QTS11": "1df2b1d07903327ecae9371298656d9e977ce06599e3f34cb3be091d2adf6f9e",
+    "FA_PLA_INF_WPN_QTS11_OUTLINE": "7f07e5ed8f07933b0093a4a8d8bc8a13bb01c2af90fa3e7d254dfca818fd82a4",
+    "FA_PLA_INF_XIANGJIAN": "4aaa15450db69eda6b066a06ca46d2aba6e7b56d6ee58ac322c3b33743aaa20a",
+    "FA_PLA_INF_XIANGJIAN_OUTLINE": "e505f03ea3bdbdd6f036222cfbf87a5d472379c3a091c314c9a6b39b73726073"
+  },
+  "alpha_bounds": {
+    "FA_PLA_WP_QBB95": [
+      3,
+      3,
+      229,
+      79
+    ],
+    "FA_PLA_WP_QBB95_OUTLINE": [
+      3,
+      3,
+      229,
+      80
+    ],
+    "FA_PLA_WP_QBU191": [
+      2,
+      2,
+      230,
+      74
+    ],
+    "FA_PLA_WP_QBU191_OUTLINE": [
+      1,
+      1,
+      231,
+      75
+    ],
+    "FA_PLA_WP_QBU88": [
+      3,
+      3,
+      228,
+      71
+    ],
+    "FA_PLA_WP_QBU88_OUTLINE": [
+      2,
+      2,
+      229,
+      72
+    ],
+    "FA_PLA_WP_QBZ191": [
+      2,
+      2,
+      230,
+      91
+    ],
+    "FA_PLA_WP_QBZ191_OUTLINE": [
+      1,
+      1,
+      231,
+      91
+    ],
+    "FA_PLA_WP_QBZ95": [
+      4,
+      4,
+      228,
+      90
+    ],
+    "FA_PLA_WP_QBZ95_OUTLINE": [
+      3,
+      3,
+      229,
+      90
+    ],
+    "FA_PLA_WP_QBZ97": [
+      4,
+      4,
+      228,
+      77
+    ],
+    "FA_PLA_WP_QBZ97_OUTLINE": [
+      3,
+      3,
+      229,
+      78
+    ],
+    "FA_PLA_WP_QLU11": [
+      2,
+      2,
+      230,
+      74
+    ],
+    "FA_PLA_WP_QLU11_OUTLINE": [
+      1,
+      1,
+      231,
+      74
+    ],
+    "FA_PLA_WP_QTS11": [
+      2,
+      2,
+      230,
+      98
+    ],
+    "FA_PLA_WP_QTS11_OUTLINE": [
+      1,
+      1,
+      231,
+      99
+    ],
+    "FA_PLA_INF_AIRBORNE": [
+      56,
+      32,
+      200,
+      145
+    ],
+    "FA_PLA_INF_AIRBORNE_OUTLINE": [
+      56,
+      31,
+      200,
+      145
+    ],
+    "FA_PLA_INF_BLOOD_WOLF": [
+      76,
+      10,
+      180,
+      150
+    ],
+    "FA_PLA_INF_BLOOD_WOLF_OUTLINE": [
+      75,
+      9,
+      181,
+      151
+    ],
+    "FA_PLA_INF_DONGFANG": [
+      80,
+      10,
+      176,
+      150
+    ],
+    "FA_PLA_INF_DONGFANG_OUTLINE": [
+      80,
+      9,
+      176,
+      151
+    ],
+    "FA_PLA_INF_EAGLE": [
+      53,
+      10,
+      203,
+      150
+    ],
+    "FA_PLA_INF_EAGLE_OUTLINE": [
+      52,
+      9,
+      204,
+      151
+    ],
+    "FA_PLA_INF_FALCON": [
+      68,
+      10,
+      188,
+      150
+    ],
+    "FA_PLA_INF_FALCON_OUTLINE": [
+      67,
+      9,
+      189,
+      151
+    ],
+    "FA_PLA_INF_GROUND": [
+      56,
+      14,
+      200,
+      148
+    ],
+    "FA_PLA_INF_GROUND_OUTLINE": [
+      56,
+      14,
+      200,
+      148
+    ],
+    "FA_PLA_INF_JIAOLONG": [
+      64,
+      10,
+      191,
+      150
+    ],
+    "FA_PLA_INF_JIAOLONG_OUTLINE": [
+      63,
+      10,
+      191,
+      151
+    ],
+    "FA_PLA_INF_LEISHEN": [
+      66,
+      10,
+      190,
+      150
+    ],
+    "FA_PLA_INF_LEISHEN_OUTLINE": [
+      65,
+      9,
+      191,
+      151
+    ],
+    "FA_PLA_INF_LINE_AIRBORNE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_AIRBORNE_OUTLINE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_GROUND": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_GROUND_OUTLINE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_MARINE": [
+      58,
+      10,
+      198,
+      150
+    ],
+    "FA_PLA_INF_LINE_MARINE_OUTLINE": [
+      58,
+      10,
+      198,
+      150
+    ],
+    "FA_PLA_INF_LINE_MOTOR80": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_MOTOR80_OUTLINE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_RESERVE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_RESERVE_OUTLINE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_ROCKET": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_LINE_ROCKET_OUTLINE": [
+      72,
+      10,
+      184,
+      150
+    ],
+    "FA_PLA_INF_PLATEAU_LEOPARD": [
+      71,
+      11,
+      185,
+      150
+    ],
+    "FA_PLA_INF_PLATEAU_LEOPARD_OUTLINE": [
+      71,
+      10,
+      185,
+      150
+    ],
+    "FA_PLA_INF_POLICE": [
+      80,
+      10,
+      176,
+      150
+    ],
+    "FA_PLA_INF_POLICE_OUTLINE": [
+      80,
+      9,
+      176,
+      151
+    ],
+    "FA_PLA_INF_ROCKET": [
+      56,
+      14,
+      200,
+      148
+    ],
+    "FA_PLA_INF_ROCKET_OUTLINE": [
+      56,
+      14,
+      200,
+      148
+    ],
+    "FA_PLA_INF_ROCKET_SOF": [
+      82,
+      10,
+      174,
+      150
+    ],
+    "FA_PLA_INF_ROCKET_SOF_OUTLINE": [
+      81,
+      9,
+      175,
+      151
+    ],
+    "FA_PLA_INF_SNOW_LEOPARD": [
+      64,
+      11,
+      192,
+      150
+    ],
+    "FA_PLA_INF_SNOW_LEOPARD_OUTLINE": [
+      63,
+      10,
+      193,
+      151
+    ],
+    "FA_PLA_INF_SOF": [
+      101,
+      10,
+      156,
+      150
+    ],
+    "FA_PLA_INF_SOF_OUTLINE": [
+      100,
+      9,
+      157,
+      151
+    ],
+    "FA_PLA_INF_TIANLANG": [
+      71,
+      10,
+      185,
+      150
+    ],
+    "FA_PLA_INF_TIANLANG_OUTLINE": [
+      70,
+      9,
+      186,
+      151
+    ],
+    "FA_PLA_INF_WPN_QLU11": [
+      2,
+      2,
+      230,
+      74
+    ],
+    "FA_PLA_INF_WPN_QLU11_OUTLINE": [
+      1,
+      1,
+      231,
+      74
+    ],
+    "FA_PLA_INF_WPN_QTS11": [
+      2,
+      2,
+      230,
+      98
+    ],
+    "FA_PLA_INF_WPN_QTS11_OUTLINE": [
+      1,
+      1,
+      231,
+      99
+    ],
+    "FA_PLA_INF_XIANGJIAN": [
+      74,
+      10,
+      182,
+      150
+    ],
+    "FA_PLA_INF_XIANGJIAN_OUTLINE": [
+      74,
+      9,
+      182,
+      151
+    ]
+  },
+  "changes": [
+    {
+      "unit": 1136,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_AIRBORNE",
+      "after": "FA_PLA_INF_LINE_AIRBORNE"
+    },
+    {
+      "unit": 1138,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_AIRBORNE",
+      "after": "FA_PLA_INF_LINE_AIRBORNE"
+    },
+    {
+      "unit": 1143,
+      "field": "HUDName",
+      "before": "Leishen Commandos \u2014 Airborne Recon",
+      "after": "Thunder Gods"
+    },
+    {
+      "unit": 1146,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_AIRBORNE",
+      "after": "FA_PLA_INF_LINE_AIRBORNE"
+    },
+    {
+      "unit": 1150,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_AIRBORNE",
+      "after": "FA_PLA_INF_LINE_AIRBORNE"
+    },
+    {
+      "unit": 1151,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_GROUND"
+    },
+    {
+      "unit": 1158,
+      "field": "ThumbnailFileName",
+      "before": "RU_PKP-Label",
+      "after": "FA_PLA_INF_LINE_GROUND"
+    },
+    {
+      "unit": 1159,
+      "field": "ThumbnailFileName",
+      "before": "RU_KONKURS-Label",
+      "after": "FA_PLA_INF_LINE_GROUND"
+    },
+    {
+      "unit": 1163,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_GROUND"
+    },
+    {
+      "unit": 1166,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_RESERVE"
+    },
+    {
+      "unit": 1167,
+      "field": "ThumbnailFileName",
+      "before": "RU_FAGOT-Label",
+      "after": "FA_PLA_INF_LINE_RESERVE"
+    },
+    {
+      "unit": 1174,
+      "field": "HUDName",
+      "before": "Liren Reconnaissance \u2014 Missile-Site Recon",
+      "after": "Sharp Blades"
+    },
+    {
+      "unit": 1175,
+      "field": "ThumbnailFileName",
+      "before": "RU_FAGOT-Label",
+      "after": "FA_PLA_INF_LINE_ROCKET"
+    },
+    {
+      "unit": 1179,
+      "field": "ThumbnailFileName",
+      "before": "RU_FAGOT-Label",
+      "after": "FA_PLA_INF_LINE_ROCKET"
+    },
+    {
+      "unit": 1181,
+      "field": "HUDName",
+      "before": "Dongfang Shenjian \u2014 Digital Assault",
+      "after": "Godsword"
+    },
+    {
+      "unit": 1182,
+      "field": "HUDName",
+      "before": "Xiangjian Commandos \u2014 Breachers",
+      "after": "Whistling Arrows"
+    },
+    {
+      "unit": 1183,
+      "field": "HUDName",
+      "before": "Xuelang Commandos \u2014 Shock Team",
+      "after": "Blood Wolves"
+    },
+    {
+      "unit": 1183,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_SOF",
+      "after": "FA_PLA_INF_BLOOD_WOLF"
+    },
+    {
+      "unit": 1184,
+      "field": "HUDName",
+      "before": "Tianlang Commandos \u2014 QLU / Sniper Recon",
+      "after": "Sky Wolves"
+    },
+    {
+      "unit": 1185,
+      "field": "HUDName",
+      "before": "Nanguo Lijian \u2014 Fire Support",
+      "after": "Southern Swords"
+    },
+    {
+      "unit": 1186,
+      "field": "HUDName",
+      "before": "Gaoyuan Xuebao \u2014 Mountain Team",
+      "after": "Plateau Snow Leopards"
+    },
+    {
+      "unit": 1186,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_SOF",
+      "after": "FA_PLA_INF_PLATEAU_LEOPARD"
+    },
+    {
+      "unit": 1187,
+      "field": "HUDName",
+      "before": "Blue Sword \u2014 Beijing SWAT",
+      "after": "Blue Sword"
+    },
+    {
+      "unit": 1188,
+      "field": "HUDName",
+      "before": "Falcon Commandos \u2014 Counter-Terror Assault",
+      "after": "Falcon"
+    },
+    {
+      "unit": 1188,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_PAP",
+      "after": "FA_PLA_INF_FALCON"
+    },
+    {
+      "unit": 1189,
+      "field": "HUDName",
+      "before": "Snow Leopard Commandos \u2014 Raid Team",
+      "after": "PAP Snow Leopards"
+    },
+    {
+      "unit": 1190,
+      "field": "HUDName",
+      "before": "Jiaolong Commandos \u2014 Marine Assault",
+      "after": "Sea Dragons"
+    },
+    {
+      "unit": 1191,
+      "field": "HUDName",
+      "before": "Jiaolong Commandos \u2014 Maritime Recon",
+      "after": "Sea Dragons Recon"
+    },
+    {
+      "unit": 1192,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_MARINE",
+      "after": "FA_PLA_INF_LINE_MARINE"
+    },
+    {
+      "unit": 1196,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_MOTOR80"
+    },
+    {
+      "unit": 1197,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_MOTOR80"
+    },
+    {
+      "unit": 1198,
+      "field": "ThumbnailFileName",
+      "before": "US_JAVELIN-Label",
+      "after": "FA_PLA_INF_LINE_MOTOR80"
+    },
+    {
+      "unit": 1199,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_WPN_QLU11"
+    },
+    {
+      "unit": 1203,
+      "field": "HUDName",
+      "before": "Xiongying Commandos \u2014 Deep Recon",
+      "after": "Eagles Recon"
+    },
+    {
+      "unit": 1203,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_SOF",
+      "after": "FA_PLA_INF_EAGLE"
+    },
+    {
+      "unit": 1205,
+      "field": "ThumbnailFileName",
+      "before": "FA_PLA_INF_GROUND",
+      "after": "FA_PLA_INF_LINE_MOTOR80"
+    }
+  ],
+  "native_verified": false
+}

@@ -3,104 +3,216 @@
     "profile": "AIRBORNE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": true,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
-      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg"
     ],
     "svg_sha256": {
-      "plain": "b7223365ed1291201a76d2655b79e64da29c90eb79d312ed3a626b3459a463f0",
-      "_OUTLINE": "fce38bcf313c8ffaa4fcdfcc24ebdd8da0ca81acad1ff6e5339ec41bf11ba506"
+      "plain": "45a3d2907e70dee989ae6cbcc649f52c6405571ef9008bc6b36c2e761e277aa3",
+      "_OUTLINE": "412eb9fa144126b75f3ba26decc2497c52783bc5f4a4109ff6ad0669ca525d4b"
+    }
+  },
+  {
+    "profile": "BLOOD_WOLF",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://www.mod.gov.cn/gfbw/wzll/lj/4838532.html"
+    ],
+    "svg_sha256": {
+      "plain": "283945018d14a6893ea44a3218c3abdf067bfa172b39d0098af6a65b6fc7221b",
+      "_OUTLINE": "7d41e0d4755ee706a6c3de091437eb5c1a27fb575f9f702dd13538532f8ef60b"
     }
   },
   {
     "profile": "DONGFANG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_2.htm"
     ],
     "svg_sha256": {
-      "plain": "2660e49e88581083d77a314afa43cfb3b33607db86e4729871cffd87c3be329f",
-      "_OUTLINE": "bb5ccb83929807d4a93ef0af721e4c9cfd29149a724b8f2910f55b2160b7a5c3"
+      "plain": "577802a2054a2b65280dae6b05b5f1ae7e720a50d1d31d5f695fa210f5893618",
+      "_OUTLINE": "9693d905f7218db3153a546ee057f5e10c2d9ee436e6c5f720c66497433e3b0d"
+    }
+  },
+  {
+    "profile": "EAGLE",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://photo.81.cn/jrfc/2014-12/16/content_6270918_6.htm"
+    ],
+    "svg_sha256": {
+      "plain": "ec6dff0ceee50586028b818c009830d6c55d813db4da6e6d67c0d8266612d185",
+      "_OUTLINE": "eedf0901772fca2f7f3adb87ca75d1fa4e66368ad65d00d5b09a84668be2d240"
+    }
+  },
+  {
+    "profile": "FALCON",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://english.www.gov.cn/news/202404/09/content_WS661519fec6d0868f4e8e5e2a.html"
+    ],
+    "svg_sha256": {
+      "plain": "8b1c1e4f45a0154b84b9cab4eda32e6f71699df7f4b962a6cc0bc1f6bd48c8ec",
+      "_OUTLINE": "9e12e72665d24af891da284acc6dd706187eec5b98cf21c00cb95e791e066b3c"
     }
   },
   {
     "profile": "GROUND",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": true,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg"
     ],
     "svg_sha256": {
-      "plain": "06984a58c846e975c3528cb477d93d0b9a6982004bb0716d6f3c0907dfffbc38",
-      "_OUTLINE": "79c4dd130a56b3a52eefe1bc4366bfb5366ae45b94d29f0c6c71a82ee427f057"
+      "plain": "b8fa63c100e7904e2dc96117fe637fd1a13dec599f63041a473dc05a634d6840",
+      "_OUTLINE": "0deb0650ca666c724b744ddf1880e2ee59d9a48a69da60aa169b6478de2a8f16"
     }
   },
   {
     "profile": "JIAOLONG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png",
       "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png"
     ],
     "svg_sha256": {
-      "plain": "9ece13bea03cb922a57085ca36cff8dea3246fe0ba0bc78891d32e09cb90734c",
-      "_OUTLINE": "1f44a8e9b75a9e1f1cd79fbe57835fad55d6f358b194bc0d6b1375fc4c9c65ec"
+      "plain": "1c5705298e295a221871fae1134199087fea9d4b19a4295474008c58e8d40077",
+      "_OUTLINE": "36f1bf7e75204ee8d424a019bbff48039dd8e9941ffb8248ba38ab5369e481da"
     }
   },
   {
     "profile": "LEISHEN",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://www.xinhuanet.com/mil/2015-12/28/c_128573417_4.htm"
     ],
     "svg_sha256": {
-      "plain": "0418053d761feded848c06a3f64c0916b0e70c5a117ff90f529f5e9eadc8f796",
-      "_OUTLINE": "582e9158531c2f3fa31fc90ad95efabb2015cd4d20a7178f1d4026e7268b82fa"
+      "plain": "a7f73b046c8fbd38212fb5562aeaed39c5f19261cb6684fed0548d4f2d29d4fb",
+      "_OUTLINE": "9b6934e2a963649e643c31f993e1a05c030ef5238826386075ab1249e326243f"
     }
   },
   {
-    "profile": "MARINE",
-    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
-    "wreath": true,
-    "source_rules": [
-      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Navy_sleeve_badge.svg"
-    ],
-    "svg_sha256": {
-      "plain": "a580c420c8881931a7c3bdb03ac5a5be55ded7cc61c93853ceb19291c428ad77",
-      "_OUTLINE": "a2f6188e60b39ab85e9474bd1004e40e75461385039e6ebe043d604557fbc489"
-    }
-  },
-  {
-    "profile": "PAP",
+    "profile": "LINE_AIRBORNE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
-      "https://www.mod.gov.cn/gfbw/qwfb/4890497.html"
+      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
+      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
+      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
+      "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg"
     ],
     "svg_sha256": {
-      "plain": "c725b96b062b8c72274b184460f27c89b7f3d705f658066c7acb5991158c861e",
-      "_OUTLINE": "b3e03bee3ec31a3c6a3f2d0ceda5fe246a43f1b9e5df1c51246f05e5c0c0fb81"
+      "plain": "9c1931b490876c527b49d9428b7bb4a322db48dda1a68024929b89e99eec9775",
+      "_OUTLINE": "bd31161473b7eef60f0ea5e13e94c620df88346aee873cd94b21d7a604fb84f0"
+    }
+  },
+  {
+    "profile": "LINE_GROUND",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg"
+    ],
+    "svg_sha256": {
+      "plain": "eb5f4b935a19735d265cba7347bd15caa8515fff179f10efbe6a304cbca8186d",
+      "_OUTLINE": "8509eff03f48a33c9e10869a590eceb677e5265dc15e7e8582610be36f8a7905"
+    }
+  },
+  {
+    "profile": "LINE_MARINE",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://en.wikipedia.org/wiki/File:Patch_of_the_PLA_Marine_Corps.svg"
+    ],
+    "svg_sha256": {
+      "plain": "66634aef7507628f97403d6a37750b4b18e012e506dd8b9091a49a8a4323601e",
+      "_OUTLINE": "79b7ad7c7cea72d947b54d9caeeca75327d1c7930d50d93c5ace6162db02cf89"
+    }
+  },
+  {
+    "profile": "LINE_MOTOR80",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://commons.wikimedia.org/wiki/File:PLA80MHU.jpg",
+      "https://commons.wikimedia.org/wiki/File:PLA80MHU.jpg",
+      "https://commons.wikimedia.org/wiki/File:PLA80MHU.jpg",
+      "https://commons.wikimedia.org/wiki/File:PLA80MHU.jpg"
+    ],
+    "svg_sha256": {
+      "plain": "d55608e81ac80cf70f1b33d376a01c4b39b5ef8d190e6b9b8835d34181925b81",
+      "_OUTLINE": "25be0adecc41e69d2242c0987b2a4770f303ac1910c815acac842c4939efba41"
+    }
+  },
+  {
+    "profile": "LINE_RESERVE",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://www.81.mil.cn/zt/2023nzt/zhrmghgybyryf/jt_244498/16202767.html",
+      "https://www.81.mil.cn/zt/2023nzt/zhrmghgybyryf/jt_244498/16202767.html"
+    ],
+    "svg_sha256": {
+      "plain": "6d1b34d9483f1e325864eaf8eaf960d90c0523b5fda4d5d76c2d50183ea382db",
+      "_OUTLINE": "346df87c8734abc87ebd89d0cce80b691e2a4115932b26a9c4bc16c7acac6f1a"
+    }
+  },
+  {
+    "profile": "LINE_ROCKET",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Rocket_Force_sleeve_badge.svg",
+      "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Rocket_Force_sleeve_badge.svg"
+    ],
+    "svg_sha256": {
+      "plain": "a66be1416a0cef8424d8752e173f0d0fe5606eb464e213933b30c436352154c9",
+      "_OUTLINE": "2bc6d7f52053bec92662c4e64adc8880712496ad25339d89420d3e079949b352"
+    }
+  },
+  {
+    "profile": "PLATEAU_LEOPARD",
+    "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
+    "wreath": false,
+    "transparent_overlap_cutouts": true,
+    "source_rules": [
+      "https://military.people.com.cn/n1/2017/0730/c1011-29437331.html"
+    ],
+    "svg_sha256": {
+      "plain": "33466eb333290d5ff5e8488385ab3559166e0f147d5e86a099a4404f7d0e0c19",
+      "_OUTLINE": "833dc32a67ca0452eb61bd423925fcfe7bdf599dfb379ef459ebc0d70751992d"
     }
   },
   {
     "profile": "POLICE",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:\u4e2d\u534e\u4eba\u6c11\u5171\u548c\u56fd\u4eba\u6c11\u8b66\u5bdf\u8b66\u5fbd.svg"
     ],
@@ -113,63 +225,65 @@
     "profile": "ROCKET",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": true,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg"
     ],
     "svg_sha256": {
-      "plain": "0f416d33f3be02914e09480df42448489745d08e497437149f4acd3ec5a9e089",
-      "_OUTLINE": "8d802254cd65dd5688b20f54f912da5d5f3f456f350cbbb38a0af62c2a8e151d"
+      "plain": "e56b651bfa0f1cfbf5265cfc194fa085b9de2dcebcea456fe7b7908bc206b2f9",
+      "_OUTLINE": "791fc79b527270c23e52b8877ba48fdb0e3d702bb6417e56275d805ea3f46ab4"
     }
   },
   {
     "profile": "ROCKET_SOF",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg"
     ],
     "svg_sha256": {
-      "plain": "dad125e5952b0fcb8eb4855c3760b2f3c1d08bb9705a5a63aef2a6f5d3f5f215",
-      "_OUTLINE": "079fd3656d5e300f310a7e6844496e2fe75bdbe31bf5470986a1b40ce8d2f992"
+      "plain": "b39eba26806cb2b41bed36babbd477de47ec2d2e28325dec9a2e66cd530d9eda",
+      "_OUTLINE": "85d773f9ffe364b8128010154dbd7b9e08d608770dc1960d3d0582379f16670f"
     }
   },
   {
     "profile": "SNOW_LEOPARD",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://www.mod.gov.cn/gfbw/wzll/yw_214068/16238145.html"
     ],
     "svg_sha256": {
-      "plain": "6817397e07b2d5eec56b35be9909416591e70015e2d35873ecdcd1d45f6eee0e",
-      "_OUTLINE": "c6099f61f70f24c32ad85cd98ae6159650e6f144d392f7eb86bc1942ff968a61"
+      "plain": "6c8f30e3ce7a41654731e99cca59fdfa8c7dc60ea5d90987f323e841f944bd34",
+      "_OUTLINE": "982f1b9e28a2bd141b626f3f1d8952caa4be449f21530a75ffe57e73c8f25c94"
     }
   },
   {
     "profile": "SOF",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
-      "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
-      "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
-      "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
       "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm"
     ],
     "svg_sha256": {
-      "plain": "c4bfc6002e0af0098349469936b43cc43ddc96f7dd2da66507327a04af0d9e95",
-      "_OUTLINE": "4cdde427ac69d4baaa4fa8ca103739448eb8193c69a7ae34264b06332126042e"
+      "plain": "9969249a13cd8443b03d8780f55a4ac6ed06156a6612bb3957ba95ba2c8c7f47",
+      "_OUTLINE": "8526efe4c86a05585228764617b30dc1abd688d07be9584f6d2ed7aaca674f57"
     }
   },
   {
     "profile": "TIANLANG",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://www.mod.gov.cn/gfbw/wzll/jt_214059/16125944.html"
     ],
     "svg_sha256": {
-      "plain": "afd35a797aaf5d1fe8bbf20d5c255d6c341b412db0da308e347fbc9e47d645de",
-      "_OUTLINE": "08b8667a0169fc8e3f23b16d2cfe93df33619ccefbb2a9c3cf520be6bb3314dd"
+      "plain": "ecf163d88de3054f121d370b8c507e881a5e926e5eb502e361ab9cd6af4d5342",
+      "_OUTLINE": "c1e7f04401bbd33a4e1a19c2f425a9d0bbdc21d6ec7f75a946f9a133c09555b8"
     }
   },
   {
@@ -186,12 +300,13 @@
     "profile": "XIANGJIAN",
     "method": "Original vector simplification of recorded patch motifs; no photograph pixels copied",
     "wreath": false,
+    "transparent_overlap_cutouts": true,
     "source_rules": [
       "https://finance.ifeng.com/a/20170625/15483459_0.shtml"
     ],
     "svg_sha256": {
-      "plain": "7ae004ac33b622d96611d71a7eb236a537f0362c860548547e1481a83f0f9660",
-      "_OUTLINE": "14d913ecc07714bdd3cf3a1d23f11a88abf5994b9329da0e3a681c37b32b5d43"
+      "plain": "f817fc0483492d2cc62f3ff438ea5a27dbfea2f0d936fe9ae6c69a0647ebbdcb",
+      "_OUTLINE": "cedda8f07588f0341cb3f649bb1792e0dcf93804801c4a4183edbdb0df8e405d"
     }
   }
 ]

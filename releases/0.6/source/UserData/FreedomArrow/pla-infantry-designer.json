@@ -1,5 +1,5 @@
 {
-  "build": 20,
+  "build": 21,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -49,7 +49,7 @@
       "native_verified": false,
       "source_design_name": "Airborne Riflemen",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
     {
       "unit": 1137,
@@ -133,7 +133,7 @@
       "native_verified": false,
       "source_design_name": "Airborne Close-Assault Riflemen",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
     {
       "unit": 1139,
@@ -307,7 +307,7 @@
     {
       "unit": 1143,
       "row": 15,
-      "name": "Leishen Commandos \u2014 Airborne Recon",
+      "name": "Thunder Gods",
       "spec": 17,
       "men": 6,
       "recon": true,
@@ -488,7 +488,7 @@
       "native_verified": false,
       "source_design_name": "Air Assault Raiders",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
     {
       "unit": 1147,
@@ -653,7 +653,7 @@
       "native_verified": false,
       "source_design_name": "Airborne Reserve Riflemen",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
     {
       "unit": 1151,
@@ -704,7 +704,7 @@
       "native_verified": false,
       "source_design_name": "Mechanized Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND"
     },
     {
       "unit": 1152,
@@ -983,7 +983,7 @@
       "native_verified": false,
       "source_design_name": "Mechanized GPMG Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_PKP-Label"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND"
     },
     {
       "unit": 1159,
@@ -1034,7 +1034,7 @@
       "native_verified": false,
       "source_design_name": "Mechanized Guided-AT Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_KONKURS-Label"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND"
     },
     {
       "unit": 1160,
@@ -1224,7 +1224,7 @@
       "native_verified": false,
       "source_design_name": "Mechanized Close-AT Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND"
     },
     {
       "unit": 1164,
@@ -1337,7 +1337,7 @@
       "native_verified": false,
       "source_design_name": "Conscripts \u2014 No AT",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_RESERVE"
     },
     {
       "unit": 1167,
@@ -1389,7 +1389,7 @@
       "native_verified": false,
       "source_design_name": "Reserve Riflemen \u2014 HJ-73D",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_FAGOT-Label"
+      "unit_icon": "FA_PLA_INF_LINE_RESERVE"
     },
     {
       "unit": 1168,
@@ -1668,7 +1668,7 @@
     {
       "unit": 1174,
       "row": 46,
-      "name": "Liren Reconnaissance \u2014 Missile-Site Recon",
+      "name": "Sharp Blades",
       "spec": 19,
       "men": 4,
       "recon": true,
@@ -1773,7 +1773,7 @@
       "native_verified": false,
       "source_design_name": "Missile-Site Security \u2014 HJ-73D",
       "identity": "PLA Rocket Force security/support role",
-      "unit_icon": "RU_FAGOT-Label"
+      "unit_icon": "FA_PLA_INF_LINE_ROCKET"
     },
     {
       "unit": 1176,
@@ -1976,7 +1976,7 @@
       "native_verified": false,
       "source_design_name": "Rocket Convoy Escort \u2014 HJ-73D",
       "identity": "PLA Rocket Force security/support role",
-      "unit_icon": "RU_FAGOT-Label"
+      "unit_icon": "FA_PLA_INF_LINE_ROCKET"
     },
     {
       "unit": 1180,
@@ -2025,7 +2025,7 @@
     {
       "unit": 1181,
       "row": 53,
-      "name": "Dongfang Shenjian \u2014 Digital Assault",
+      "name": "Godsword",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2079,7 +2079,7 @@
     {
       "unit": 1182,
       "row": 54,
-      "name": "Xiangjian Commandos \u2014 Breachers",
+      "name": "Whistling Arrows",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2133,7 +2133,7 @@
     {
       "unit": 1183,
       "row": 55,
-      "name": "Xuelang Commandos \u2014 Shock Team",
+      "name": "Blood Wolves",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2182,12 +2182,12 @@
       "native_verified": false,
       "source_design_name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
       "identity": "Xuelang (\u8840\u72fc)",
-      "unit_icon": "FA_PLA_INF_SOF"
+      "unit_icon": "FA_PLA_INF_BLOOD_WOLF"
     },
     {
       "unit": 1184,
       "row": 56,
-      "name": "Tianlang Commandos \u2014 QLU / Sniper Recon",
+      "name": "Sky Wolves",
       "spec": 20,
       "men": 4,
       "recon": true,
@@ -2243,7 +2243,7 @@
     {
       "unit": 1185,
       "row": 57,
-      "name": "Nanguo Lijian \u2014 Fire Support",
+      "name": "Southern Swords",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2297,7 +2297,7 @@
     {
       "unit": 1186,
       "row": 58,
-      "name": "Gaoyuan Xuebao \u2014 Mountain Team",
+      "name": "Plateau Snow Leopards",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2346,12 +2346,12 @@
       "native_verified": false,
       "source_design_name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
       "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
-      "unit_icon": "FA_PLA_INF_SOF"
+      "unit_icon": "FA_PLA_INF_PLATEAU_LEOPARD"
     },
     {
       "unit": 1187,
       "row": 59,
-      "name": "Blue Sword \u2014 Beijing SWAT",
+      "name": "Blue Sword",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2398,7 +2398,7 @@
     {
       "unit": 1188,
       "row": 60,
-      "name": "Falcon Commandos \u2014 Counter-Terror Assault",
+      "name": "Falcon",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2447,12 +2447,12 @@
       "native_verified": false,
       "source_design_name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
       "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
-      "unit_icon": "FA_PLA_INF_PAP"
+      "unit_icon": "FA_PLA_INF_FALCON"
     },
     {
       "unit": 1189,
       "row": 61,
-      "name": "Snow Leopard Commandos \u2014 Raid Team",
+      "name": "PAP Snow Leopards",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2506,7 +2506,7 @@
     {
       "unit": 1190,
       "row": 62,
-      "name": "Jiaolong Commandos \u2014 Marine Assault",
+      "name": "Sea Dragons",
       "spec": 20,
       "men": 10,
       "recon": false,
@@ -2554,7 +2554,7 @@
     {
       "unit": 1191,
       "row": 63,
-      "name": "Jiaolong Commandos \u2014 Maritime Recon",
+      "name": "Sea Dragons Recon",
       "spec": 20,
       "men": 6,
       "recon": true,
@@ -2650,7 +2650,7 @@
       "native_verified": false,
       "source_design_name": "Marine Riflemen",
       "identity": "PLA Navy Marine Corps",
-      "unit_icon": "FA_PLA_INF_MARINE"
+      "unit_icon": "FA_PLA_INF_LINE_MARINE"
     },
     {
       "unit": 1193,
@@ -2845,7 +2845,7 @@
       "native_verified": false,
       "source_design_name": "Motorized Line Infantry",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
     },
     {
       "unit": 1197,
@@ -2892,7 +2892,7 @@
       "native_verified": false,
       "source_design_name": "Motorized Troopers \u2014 AA",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
     },
     {
       "unit": 1198,
@@ -2939,7 +2939,7 @@
       "native_verified": false,
       "source_design_name": "Motorized Troopers \u2014 HJ-12",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "US_JAVELIN-Label"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
     },
     {
       "unit": 1199,
@@ -2993,7 +2993,7 @@
       "native_verified": false,
       "source_design_name": "Motorized Weapons Squad",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_WPN_QLU11"
     },
     {
       "unit": 1200,
@@ -3143,7 +3143,7 @@
     {
       "unit": 1203,
       "row": 75,
-      "name": "Xiongying Commandos \u2014 Deep Recon",
+      "name": "Eagles Recon",
       "spec": 21,
       "men": 6,
       "recon": true,
@@ -3192,7 +3192,7 @@
       "native_verified": false,
       "source_design_name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
       "identity": "Xiongying (\u96c4\u9e70), historical Jinan-region SOF lineage",
-      "unit_icon": "FA_PLA_INF_SOF"
+      "unit_icon": "FA_PLA_INF_EAGLE"
     },
     {
       "unit": 1204,
@@ -3286,7 +3286,7 @@
       "native_verified": false,
       "source_design_name": "Motorized Light-AT Riflemen",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
     },
     {
       "unit": 1206,

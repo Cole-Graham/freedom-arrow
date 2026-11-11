@@ -45,6 +45,8 @@ central={
 'JIAOLONG':f'<g transform="translate(19 27) scale(.85)">{anchor()}</g>'+f'<path d="M144 54 C160 63 142 74 124 69 C95 60 95 96 119 101 C139 106 153 89 140 82 C131 77 121 84 127 91" fill="none" stroke="{ivory}" stroke-width="10" stroke-linecap="round"/>'+path('M136 53 L132 42 L139 44 L138 32 L146 40 L154 35 L151 45 L163 47 L157 52 L164 58 L154 60 L149 67 L142 61 L132 62Z')+path('M107 76 L98 67 L94 69 L101 79 L92 83 L94 87 L108 84Z M142 99 L150 105 L154 102 L148 96 L155 90 L152 87 L143 92Z')+f'<path d="M155 56 Q172 63 168 72 M150 60 Q160 72 154 77" fill="none" stroke="{ivory}" stroke-width="2"/>'+f'<path d="M147 49 L153 49 L150 52Z" fill="{dark}"/>',
 'POLICE':path('M128 29 L163 43 L160 92 Q154 118 128 133 Q102 118 96 92 L93 43Z')+path('M128 37 L155 48 L153 91 Q147 111 128 123 Q109 111 103 91 L101 48Z',dark)+star(128,61,21)+path('M108 90 L113 90 L113 84 L119 84 L119 91 L125 91 L125 84 L131 84 L131 91 L137 91 L137 84 L143 84 L143 90 L148 90 L148 103 L108 103Z'),
 'PAP':star(128,55,27)+path('M104 103 L152 103 L152 111 L104 111Z M112 87 L119 87 L119 81 L125 81 L125 87 L131 87 L131 81 L137 81 L137 87 L144 87 L144 100 L112 100Z')}
+from detailed_insignia import overrides
+central.update(overrides(central,anchor,wings,canopy))
 contract=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());receipt=[]
 sf_profiles={r['profile'] for r in contract['units'].values() if r.get('icon_kind')=='sf_emblem'}
 for name in contract['profiles']:
@@ -52,8 +54,8 @@ for name in contract['profiles']:
   for suffix in ['', '_OUTLINE']:
    key='FA_PLA_INF_'+name+suffix;source=root/'tools/pla-specs/hud-model-vectors'/('FA_PLA_WP_'+name[4:]+suffix+'.svg');target=out/(key+'.svg');target.write_text(source.read_text());subprocess.run([a.renderer,'-o',str(icons/(key+'.png')),str(target)],check=True)
   receipt.append({'profile':name,'method':'Existing approved model-derived weapon contour reused as a unit-card sprite','wreath':False});continue
- d=central[name] if name in sf_profiles else wreath()+central[name];hashes={}
- if name in sf_profiles:
+ d=central[name] if name in sf_profiles or name.startswith('LINE_') else wreath()+central[name];hashes={}
+ if name in sf_profiles or name.startswith('LINE_'):
   # Measure the vector render without editing bitmap pixels, then fit the vector emblem itself.
   with tempfile.TemporaryDirectory() as tmp:
    vector=Path(tmp)/'measure.svg';png=Path(tmp)/'measure.png';vector.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="256" height="160">'+d+'</svg>');subprocess.run([a.renderer,'-o',str(png),str(vector)],check=True)
@@ -65,5 +67,5 @@ for name in contract['profiles']:
   # Filled pale glyph plus a dark keyline, rather than a hollow line-art replacement.
   body=f'<g stroke="{dark}" stroke-width="1.2" paint-order="stroke fill" stroke-linejoin="round">{d}</g>' if outline else d
   svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="256" height="160" viewBox="0 0 256 160">{body}</svg>\n';target=out/(key+'.svg');target.write_text(svg);subprocess.run([a.renderer,'-o',str(icons/(key+'.png')),str(target)],check=True);hashes[suffix or 'plain']=hashlib.sha256(svg.encode()).hexdigest()
- receipt.append({'profile':name,'method':'Original vector simplification of recorded patch motifs; no photograph pixels copied','wreath':name not in sf_profiles,'source_rules':[u['art_source'] for u in contract['units'].values() if u['profile']==name],'svg_sha256':hashes})
+ receipt.append({'profile':name,'method':'Original vector simplification of recorded patch motifs; no photograph pixels copied','wreath':name not in sf_profiles and not name.startswith('LINE_'),'transparent_overlap_cutouts':True,'source_rules':[u['art_source'] for u in contract['units'].values() if u['profile']==name],'svg_sha256':hashes})
 (out/'provenance.json').write_text(json.dumps(receipt,indent=2)+'\n');print('Rendered',len(receipt)*2,'unit-card sprites')
