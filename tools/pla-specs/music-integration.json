@@ -1,0 +1,8 @@
+{
+  "version": "1.5.0",
+  "source_branch": "codex/music-menu-1.5.0",
+  "source_commit": "4712dba1a0674ba850f9e75ff271c382d3f320e3",
+  "sha256": "2e4befa630f3bd953aace65b06b4b5887742f69ca347be3f2a1cbc83e4acd90b",
+  "source_artifact": "../music-menu-ui-repo/tools/music-player/bin/Release/net6.0/FAMusic.dll",
+  "basis": "Same DLL SHA as the installed Build21 Home UI run reported and logged by the parallel music task; source imported from that commit; no new runtime test of combinedBuild23 claimed"
+}

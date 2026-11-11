@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tables_byte_values_equal_build22": 24,
+  "all_game_fields_equal_build22": true,
+  "all64_icon_resources_byte_identical_build22": true,
+  "approved_thunder_gods_whistling_arrows_retained": true,
+  "music_player_version": "1.5.0",
+  "music_player_sha256": "2e4befa630f3bd953aace65b06b4b5887742f69ca347be3f2a1cbc83e4acd90b",
+  "music_source_commit": "4712dba1a0674ba850f9e75ff271c382d3f320e3",
+  "music_previously_tested_on_build21": true,
+  "combined_native_verified": false
+}

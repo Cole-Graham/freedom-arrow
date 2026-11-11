@@ -1,6 +1,6 @@
-# PLA TEST Build 22
+# PLA TEST Build 23
 
-**Build22 retains Build21 line patches and short English names, with Sky Hunters and Mountain Hunters as game labels. It refines the leopard snarl, coiled sea dragon, solid Godsword blade and hooked-beak/feather bird shapes. Airborne and Rocket Security lose their stars and gain larger central motifs. Thunder Gods and Whistling Arrows artwork is retained byte-for-byte. Weapons, ammo, stats, models, rigging and Build17 grouping are preserved. Native appearance remains untested.**
+**Build23 combines the complete Build22 emblem/name refinement with the installed FA Music1.5.0 native Home selector. Every game-table field and all64 addressed icon PNGs match Build22; approved Thunder Gods and Whistling Arrows remain untouched. Audio, models, ammo, stats, rigging, preferences and Build17 grouping are retained. The music selector was tested separately on Build21; the combinedBuild23 pack remains untested in-game.**
 
 ## Historical Build19 identity and initial badge pass
 
@@ -603,3 +603,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 12:55:47 PST (America/Los_Angeles) — Build21: refined SF contours and transparent overlap gaps, restored short English labels, and assigned17 mixed rifle/security cards patch art while retaining dedicated weapon-team icons and all gameplay data.
 
 - 2026-11-11 13:02:37 PST (America/Los_Angeles) — Build22 feedback: fierce leopard, coiled sea dragon, visible sword, detailed birds; larger star-free Airborne/Rocket patch motifs; Sky Hunters/Mountain Hunters labels; approved Thunder Gods/Whistling Arrows retained.
+
+- 2026-11-11 13:09:29 PST (America/Los_Angeles) — Build23 merges the verified installed FA Music1.5.0 player with unchanged Build22 art/game data to prevent a full-package switch from reverting the native music selector.
