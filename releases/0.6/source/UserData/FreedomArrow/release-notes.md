@@ -1,3 +1,9 @@
+# PLA TEST Build 15
+
+**Final family-model reuse correction: J-20B uses the installed J-20 mesh, J-8II uses J-8 and Y-20B uses Y-20. VT-1A, VT-4, Type 80, Type 63 APC and Type 89/89A reuse the closest installed PLA tank/APC family meshes. This changes nine visual bindings, with Build14 weapons, ammunition, armor, squads, spec pools, camo and saved offsets unchanged. These are explicit related-family stand-ins, not newly acquired exact meshes. Native validation remains pending.**
+
+## Historical Build14 implementation
+
 # PLA TEST Build 14
 
 **This complete PLA draft imports all 90 named squad-designer rows and gives all 160 equipment cards isolated weapon/ammunition definitions with custom HUD artwork. Equipment remains assigned across the five PLA branches, each of the six named gunships retains a Recon card, and all 28 original infantry rigging fixtures stay in Test. Native Arsenal, deck and combat validation remains pending.**
@@ -557,3 +563,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 01:50:37 PST (America/Los_Angeles) — Applied Osama’s no-naval/no-White-Emperor direction and the YJ-18 ground cruise-launcher role.
 
 - 2026-11-11 02:55:11 PST (America/Los_Angeles) — Added the Build 14 complete equipment/infantry draft and evidence limits.
+
+- 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.

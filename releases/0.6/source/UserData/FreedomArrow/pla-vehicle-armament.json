@@ -1,5 +1,5 @@
 {
-  "build": 14,
+  "build": 15,
   "entries": [
     {
       "unit": 900,
@@ -6120,7 +6120,10 @@
         }
       ],
       "slots": 10,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_zsd63c.fam",
+        "battle": "m_zsd63c_lo.fam"
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -6237,7 +6240,11 @@
         }
       ],
       "slots": 10,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_zsd90_static.fam",
+        "battle": "m_zsd90_lo_static.fam",
+        "align": false
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -6270,7 +6277,11 @@
         }
       ],
       "slots": 10,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_zsd90_static.fam",
+        "battle": "m_zsd90_lo_static.fam",
+        "align": false
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -6732,7 +6743,11 @@
         }
       ],
       "slots": 0,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_ztz85iii_static.fam",
+        "battle": "m_ztz85iii_lo_static.fam",
+        "align": false
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -6825,7 +6840,11 @@
         }
       ],
       "slots": 0,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -7623,7 +7642,11 @@
         }
       ],
       "slots": 0,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_ztz85iii_static.fam",
+        "battle": "m_ztz85iii_lo_static.fam",
+        "align": false
+      },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false
     },
@@ -8048,7 +8071,11 @@
         }
       ],
       "slots": 0,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_j20_cg.fam",
+        "battle": "m_j20_lo.fam",
+        "align": false
+      },
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false
     },
@@ -8351,7 +8378,11 @@
         }
       ],
       "slots": 0,
-      "custom_model": null,
+      "custom_model": {
+        "file": "m_j8_cg.fam",
+        "battle": "m_j8_lo.fam",
+        "align": false
+      },
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false
     },
@@ -8439,7 +8470,11 @@
       "native_parent": 1101,
       "weapons": [],
       "slots": 125,
-      "custom_model": null,
+      "custom_model": {
+        "file": "y20.fam",
+        "align": false,
+        "battle": "y20_lo.fam"
+      },
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false
     },

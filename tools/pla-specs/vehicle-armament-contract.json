@@ -1,5 +1,5 @@
 {
-  "build": 14,
+  "build": 15,
   "scope": "All 160 equipment cards. Ground/rotorcraft use explicit fixed loadouts; aircraft retain native analog defaults with PLA labels/icons.",
   "capacity_limits": "Physical loads are explicit drafts unless a source is quoted; total stocks include ready rounds.",
   "units": {
@@ -405,7 +405,8 @@
           ]
         }
       ],
-      "slots": 0
+      "slots": 0,
+      "model_from": 956
     },
     "1072": {
       "parent": 238,
@@ -449,7 +450,8 @@
           ]
         }
       ],
-      "slots": 0
+      "slots": 0,
+      "model_from": 904
     },
     "927": {
       "parent": 13,
@@ -636,7 +638,8 @@
           ]
         }
       ],
-      "slots": 0
+      "slots": 0,
+      "model_from": 956
     },
     "1073": {
       "parent": 157,
@@ -1538,7 +1541,8 @@
           ]
         }
       ],
-      "slots": 10
+      "slots": 10,
+      "model_from": 960
     },
     "1064": {
       "parent": 185,
@@ -1552,7 +1556,8 @@
           ]
         }
       ],
-      "slots": 10
+      "slots": 10,
+      "model_from": 959
     },
     "1065": {
       "parent": 185,
@@ -1566,7 +1571,8 @@
           ]
         }
       ],
-      "slots": 10
+      "slots": 10,
+      "model_from": 959
     },
     "900": {
       "parent": 194,
@@ -3137,7 +3143,8 @@
       "slots": 0
     },
     "1101": {
-      "weapons": []
+      "weapons": [],
+      "model_from": 928
     },
     "1102": {
       "weapons": []
@@ -3308,7 +3315,8 @@
           ],
           "mag": 2
         }
-      ]
+      ],
+      "model_from": 975
     },
     "946": {
       "weapons": [
@@ -3442,7 +3450,8 @@
           ],
           "mag": 4
         }
-      ]
+      ],
+      "model_from": 915
     },
     "929": {
       "weapons": [

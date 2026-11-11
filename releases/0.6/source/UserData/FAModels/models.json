@@ -457,6 +457,30 @@
     "battle": "m_aft10_lo_static.fam",
     "align": false
   },
+  "PLA Catalogue Type 63 APC \u2014 older base": {
+    "file": "m_zsd63c.fam",
+    "battle": "m_zsd63c_lo.fam"
+  },
+  "PLA Catalogue Type 89": {
+    "file": "m_zsd90_static.fam",
+    "battle": "m_zsd90_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Type 89A": {
+    "file": "m_zsd90_static.fam",
+    "battle": "m_zsd90_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue VT-1A / MBT-2000": {
+    "file": "m_ztz85iii_static.fam",
+    "battle": "m_ztz85iii_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue VT-4 / Al-Hyder": {
+    "file": "m_ztz99a_green_static.fam",
+    "battle": "m_ztz99a_green_lo_static.fam",
+    "align": false
+  },
   "PLA Catalogue ZBL-09": {
     "file": "m_zbl08_static.fam",
     "battle": "m_zbl08_lo_static.fam",
@@ -471,6 +495,11 @@
     "battle": "m_wz551_lo_static.fam",
     "align": false
   },
+  "PLA Catalogue ZTZ-80 / Type 80": {
+    "file": "m_ztz85iii_static.fam",
+    "battle": "m_ztz85iii_lo_static.fam",
+    "align": false
+  },
   "PLA Catalogue ZTZ-96A": {
     "file": "m_ztz96b_green.fam",
     "battle": "m_ztz96b_green_lo.fam"
@@ -479,6 +508,21 @@
     "file": "m_ztz99a_green_static.fam",
     "battle": "m_ztz99a_green_lo_static.fam",
     "align": false
+  },
+  "PLA Catalogue J-20B \u2014 seller package": {
+    "file": "m_j20_cg.fam",
+    "battle": "m_j20_lo.fam",
+    "align": false
+  },
+  "PLA Catalogue J-8II / J-8F": {
+    "file": "m_j8_cg.fam",
+    "battle": "m_j8_lo.fam",
+    "align": false
+  },
+  "PLA Catalogue Y-20B": {
+    "file": "y20.fam",
+    "align": false,
+    "battle": "y20_lo.fam"
   },
   "PLA Catalogue Z-19": {
     "file": "m_z19e.fam",
