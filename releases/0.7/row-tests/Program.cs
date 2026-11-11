@@ -507,8 +507,8 @@ Check(m25Wid!=365&&m25Aid!=273,"independent M25 weapon and ammunition");
 Check(m25Ammo["Damage"].GetValue<double>()==0.75&&m25Ammo["IgnoreCover"].GetValue<double>()==0.75,"M25 damage and cover bypass");
 foreach(var pair in Row("WeaponsJson",365).AsObject().Where(p=>p.Key is not ("Id" or "Name" or "HUDName")))Check(JsonNode.DeepEquals(m25Weapon[pair.Key],pair.Value),"M25 retains normal donor firing/model fields "+pair.Key);
 foreach(var pair in Row("AmmunitionsJson",273).AsObject().Where(p=>p.Key is not ("Id" or "Name" or "Damage" or "IgnoreCover")))Check(JsonNode.DeepEquals(m25Ammo[pair.Key],pair.Value),"M25 retains remaining donor ammo fields "+pair.Key);
-foreach(var (uid,first,second,cost) in new[]{(62,59,60,105),(413,840,841,65)}){
-Check(UC(uid)==cost,"M25 team price +5 "+uid);
+foreach(var (uid,first,second,cost) in new[]{(62,59,60,105),(413,840,841,65),(701,1613,1614,60)}){
+Check(UC(uid)==cost,"M25 team agreed price "+uid);
 Check(Row("SquadMembersJson",first)["PrimaryWeaponId"].GetValue<int>()==50&&Row("SquadMembersJson",first)["SpecialWeaponId"].GetValue<int>()==m25Wid,"M25 special weapon and retained rifle "+uid);
 Check(Row("SquadMembersJson",second)["PrimaryWeaponId"].GetValue<int>()==50&&Row("SquadMembersJson",second)["SpecialWeaponId"].GetValue<int>()==0,"second rifleman retains rifle without M203 "+uid);
 Check(Carry(uid,"M-25 CDTE")==1&&Carry(uid,"M203")==0,"one M25 replaces two M203s "+uid);

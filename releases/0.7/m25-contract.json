@@ -21,6 +21,15 @@
         840,
         841
       ]
+    },
+    {
+      "unit": 701,
+      "name": "Troopers",
+      "carriers": [
+        1613,
+        1614
+      ],
+      "cost_increase": 0
     }
   ],
   "ammo_quantity": 120

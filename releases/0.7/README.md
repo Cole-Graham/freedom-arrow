@@ -1,6 +1,6 @@
-# Freedom Arrow 0.7.0-dev.45 — development candidate
+# Freedom Arrow 0.7.0-dev.47 — development candidate
 
-**dev.45: Su-75 Checkmate stealth is2 in UI terms (raw Stealth and CurrentStealth0.5), up from approximately1.5 (raw0.666). Includes the current dev.44 T72 armor-card correction. All other gameplay constants match dev.44. Native card/detection verification pending.**
+**Regular Troopers now replace both M203s with one M-25 CDTE: 120 rounds, 0.75 damage and 75% Ignore Cover. Their 60-point price, rifles and six AT-4s remain unchanged. Troopers AT/AA and all other gameplay data match dev.45. Data checks pass; native firing remains untested.**
 
 **T-72B3AM armor-card correction: its obr. 16 armor is now the linked default armor. Thickness, HP, price and loadouts remain as in dev.42. A build guard checks every unit with armor links. Package/data checks pass; native display verification is pending.**
 
@@ -224,3 +224,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 17:29:35 PST (America/Los_Angeles) — Raised XM30 base price from190 to200; retained dev.41 LOSAT values and recorded separate source-resolution silver texture trial.
 - 2026-11-10 17:59:47 PST (America/Los_Angeles) — Added T-72B3AM default-armor correction, unchanged balance values and verification limits.
 - 2026-11-10 18:10:29 PST (America/Los_Angeles) — Increased Su75 UI stealth to2 on the current dev.44 base, preserving its T72 armor flags and all other gameplay data.
+- 2026-11-10 18:32:06 PST (America/Los_Angeles) — Extended the existing M-25 CDTE replacement to regular Troopers, without changing their price, rifles or AT-4s.

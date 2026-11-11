@@ -1,7 +1,7 @@
 """One independent, normal-rate XM25 copy replaces two Stryker M203s."""
 def apply(effective, clone, put, contract):
     c = contract
-    why = 'Stryker teams: one M-25 CDTE special weapon replaces two M203s; +5 points'
+    why = 'Stryker teams: one M-25 CDTE replaces two M203s; regular Troopers keep their price'
     donor = effective['WeaponsJson'][c['weapon_donor']]
     assert donor['Name'] == 'MGL 25 XM25' and donor['MagazineSize'] == 5
     assert effective['AmmunitionsJson'][c['ammo_donor']]['Name'] == 'InfGrenade 25x40 XM25'
@@ -30,4 +30,4 @@ def apply(effective, clone, put, contract):
                 fields['AmmunitionId'] = ammo
                 fields['Quantity'] = c['ammo_quantity']
             put(table, links[0]['Id'], fields, why)
-        put('Units', uid, dict(Cost=effective['Units'][uid]['Cost'] + c['cost_increase']), why)
+        put('Units', uid, dict(Cost=effective['Units'][uid]['Cost'] + team.get('cost_increase', c['cost_increase'])), why)
