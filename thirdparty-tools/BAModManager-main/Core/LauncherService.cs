@@ -92,6 +92,7 @@ public sealed class LauncherService
     {
         get
         {
+            if (PinnedFreedomArrow.Enabled) return new[] { (Stable, PinnedFreedomArrow.Repo) };
             string? stable = null, testing = null;
             bool fromFile = false;
             try
@@ -192,6 +193,8 @@ public sealed class LauncherService
     /// <summary>The active modpack's entry in the install record, if it's installed.</summary>
     public InstalledPackage? FindPack(Manifest manifest)
     {
+        if (PinnedFreedomArrow.Enabled)
+            return manifest.Packages.FirstOrDefault(p => p.Info?.Id == PinnedFreedomArrow.Id);
         var repo = ActiveRepo();
         // the pack that came from this repo
         var byRepo = repo == null ? null : manifest.Packages.FirstOrDefault(p =>
@@ -219,11 +222,12 @@ public sealed class LauncherService
     /// </summary>
     public bool InstallPackFile(string gameDir, string path, Action<string> log)
     {
+        if (PinnedFreedomArrow.Enabled) PinnedFreedomArrow.VerifyArchive(path);
         var repo = ActiveRepo();
         using var plan = _mods.BuildPlan(path, _ => null) ?? throw new InvalidDataException(T("The mod pack download is empty."));
         var manifest = LoadManifest(gameDir);
         var current = FindPack(manifest);
-        bool matches = (repo != null && string.Equals(plan.Info?.Repo, repo, StringComparison.OrdinalIgnoreCase))
+        bool matches = PinnedFreedomArrow.Enabled || (repo != null && string.Equals(plan.Info?.Repo, repo, StringComparison.OrdinalIgnoreCase))
                        || (current?.Info?.Id != null && string.Equals(plan.Info?.Id, current.Info.Id, StringComparison.OrdinalIgnoreCase));
         if (!matches) return false;
         try
@@ -279,18 +283,24 @@ public sealed class LauncherService
     /// <summary>Installs or updates MelonLoader and the mod pack, switches mods on and hides MelonLoader's console.</summary>
     public async Task PrepareModsAsync(string gameDir, IProgress<LaunchProgress> progress, Action<string> log, CancellationToken ct)
     {
+        if (PinnedFreedomArrow.Enabled)
+        {
+            PinnedFreedomArrow.VerifyArchive(PinnedFreedomArrow.ArchivePath);
+            var loaderManifest = LoadManifest(gameDir);
+            try { await EnsureMelonLoaderAsync(gameDir, loaderManifest, progress, log, ct); }
+            finally { loaderManifest.Save(gameDir); }
+            await Task.Run(() => PinnedFreedomArrow.Ensure(this, gameDir, log, ct), ct);
+            HideConsole(gameDir, log);
+            return;
+        }
         var manifest = LoadManifest(gameDir);
         try
         {
             await EnsureMelonLoaderAsync(gameDir, manifest, progress, log, ct);
             if (ActiveRepo() != null) await EnsureModPackAsync(gameDir, manifest, progress, log, ct);
-            else EnforceOnePack(gameDir, manifest, FindPack(manifest), log);   // a pack from a file, or none
+            else EnforceOnePack(gameDir, manifest, FindPack(manifest), log);
         }
-        finally
-        {
-            manifest.Save(gameDir);
-        }
-
+        finally { manifest.Save(gameDir); }
         HideConsole(gameDir, log);
     }
 

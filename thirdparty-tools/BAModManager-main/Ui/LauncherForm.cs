@@ -239,11 +239,18 @@ internal sealed class LauncherForm : Form
             _packName.Text = repo.Split('/')[1];
             _packVersion.Text = T("Downloaded when you press PLAY");
         }
-        if (pack != null && LauncherService.InstalledFromOtherRepo())
+        if (PinnedFreedomArrow.Enabled)
+        {
+            _packName.Text = "Freedom Arrow dev.45";
+            _packVersion.Text = pack?.Info?.Version == PinnedFreedomArrow.Version
+                ? "dev.45 installed · locked"
+                : "dev.45 included · locked";
+        }
+        if (!PinnedFreedomArrow.Enabled && pack != null && LauncherService.InstalledFromOtherRepo())
             _packVersion.Text = T("{0}: installed on next PLAY", T(LauncherService.ActiveChannel));
         else if (pack != null && LauncherService.Channels.Count > 1)
             _packVersion.Text += "  ·  " + T(LauncherService.ActiveChannel);
-        else
+        else if (!PinnedFreedomArrow.Enabled && pack == null && LauncherService.ActiveRepo() == null)
         {
             _packName.Text = T("No modpack set up");
             _packVersion.Text = T("Only MelonLoader is installed");
@@ -253,7 +260,7 @@ internal sealed class LauncherForm : Form
         RefreshChannels();
 
         _modsState.ForeColor = on ? Theme.Good : Theme.TextMuted;
-        _modsState.Text = on
+        _modsState.Text = PinnedFreedomArrow.Enabled ? "PLAY uses locked dev.45" : on
             ? "●  " + T("Mods are on")
             : "○  " + T("Mods are off - the game starts normally with Anti-Cheat");
     }

@@ -38,6 +38,10 @@
     <Version>1.1.0</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(PinnedFreedomArrow)' == 'true'">
+    <DefineConstants>$(DefineConstants);FA_DEV45</DefineConstants>
+  </PropertyGroup>
+
   <!-- Mod Launcher only: the modpack it's built with (build_launcher.bat Speer-BA/ActualArrow). Empty = set up by the modder. -->
   <PropertyGroup>
     <DefaultModPack Condition="'$(DefaultModPack)' == ''"></DefaultModPack>

@@ -3,7 +3,11 @@ namespace BAModManager.Core;
 /// <summary>Which of the two programs this is (set at build time, see AppFlavor in BAModManager.csproj).</summary>
 public static class AppInfo
 {
-#if LAUNCHER
+#if FA_DEV45
+    public const bool IsLauncher = true;
+    public const string Id = "FreedomArrowLauncherDev45";
+    public const string ShortName = "Freedom Arrow dev.45";
+#elif LAUNCHER
     public const bool IsLauncher = true;
     /// <summary>Used for the settings folder, the single-instance lock and the .bamod file type.</summary>
     public const string Id = "BAModLauncher";
