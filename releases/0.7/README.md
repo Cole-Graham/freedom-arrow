@@ -1,6 +1,16 @@
-# Freedom Arrow 0.7.0-devtest.lat.16 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.17 — development candidate
 
-## Current test — prediction plus improved C-RAM muzzle velocity
+## Current test — prediction plus zero C-RAM dispersion
+
+**Dispersion-only test: C-RAM horizontal/vertical dispersion 0/0; vanilla muzzle velocity 805. Prediction, coverage and limits are unchanged from lat.15 and the speed-test companion lat.16.**
+
+Exactly two gameplay fields change from lat.15: ammo 262 DispersionHorizontalRadius and DispersionVerticalRadius 1.6 → 0. Muzzle velocity, range, damage and traversal stay at vanilla values. This restores only zero dispersion, not the speed boost. Other mod data and gameplay settings match lat.15.
+
+Use Mod Manager and the exact menu version above. Disable the other gameplay package; repeat the same scene, route, placement, firing permissions and ammunition supply used for lat.16. Close normally and send the automatic ZIP labelled for each test. Native performance is untested. The prediction horizon remains 0.75 seconds; slower shells can retain native leading beyond that limit. Compare applied/fallback totals alongside contacts and shots.
+
+## Historical lat.16 — speed-only companion
+
+### Lat.16 settings
 
 **Speed-only test: C-RAM muzzle velocity 1610; vanilla horizontal/vertical dispersion 1.6/1.6. Prediction, coverage and limits are unchanged from lat.15.**
 
@@ -315,3 +325,4 @@ Compare the same saved editor setup aslat.6,with the same unit positions,startin
 - 2026-11-11 00:58:38 PST (America/Los_Angeles) — Restored SPAAG range/damage and traversal, extended prediction to all existing projectile-defence gun pairs with native masks and ship origin bounds, and recorded supplied lat.11 activation evidence.
 - 2026-11-11 01:27:52 PST (America/Los_Angeles) — Restored C-RAM dispersion 1.6/1.6 and muzzle velocity 805 for the prediction-only comparison, retained lat.14 correction and prior stat rollbacks, and labelled older test notes as historical.
 - 2026-11-11 01:49:47 PST (America/Los_Angeles) — Prepared the speed-only isolation candidate: C-RAM muzzle velocity 1610 with native 1.6/1.6 dispersion and unchanged prediction.
+- 2026-11-11 01:50:54 PST (America/Los_Angeles) — Prepared the separate zero-dispersion isolation candidate with native muzzle speed 805 and unchanged prediction; retained lat.16 as the speed-only companion.
