@@ -1,2577 +1,3550 @@
 {
-  "build": 17,
-  "scope": "Weapon HUD icons only. Unit portraits/thumbnails, ammunition icons and all gameplay fields retained.",
+  "build": 18,
+  "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
       "weapon": 2003998,
       "name": "QBZ-191",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QBZ191",
-      "address": "FA_PLA_WP_QBZ191"
+      "address": "FA_PLA_WP_QBZ191",
+      "native_weapon": 2003998,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2004000,
       "name": "QBU-191",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QBU191",
-      "address": "FA_PLA_WP_QBU191"
+      "address": "FA_PLA_WP_QBU191",
+      "native_weapon": 2004000,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2004002,
       "name": "QLU-11",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QLU11",
-      "address": "FA_PLA_WP_QLU11"
+      "address": "FA_PLA_WP_QLU11",
+      "native_weapon": 2004002,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2004004,
       "name": "QTS-11",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QTS11",
-      "address": "FA_PLA_WP_QTS11"
+      "address": "FA_PLA_WP_QTS11",
+      "native_weapon": 2004004,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2004006,
       "name": "QTS-11 grenade launcher",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QTS11",
-      "address": "FA_PLA_WP_QTS11"
+      "address": "FA_PLA_WP_QTS11",
+      "native_weapon": null,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2009001,
       "name": "QJZ-89 12.7 mm RWS",
       "scope": "VEHICLE",
-      "profile": "QJZ89_MOUNT",
-      "address": "FA_PLA_WP_QJZ89_MOUNT"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 268,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009019,
       "name": "100 mm gun / HJ-9 launcher",
       "scope": "VEHICLE",
-      "profile": "GUN100_BMP",
-      "address": "FA_PLA_WP_GUN100_BMP"
+      "mode": "native",
+      "profile": null,
+      "address": "2A70",
+      "native_weapon": 6,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009027,
       "name": "ZPT-99 30 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A72",
+      "native_weapon": 294,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009033,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009045,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009053,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009059,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009071,
       "name": "ZPT-98 125 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 333,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009081,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009085,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009099,
       "name": "125 mm tank gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 221,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009109,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009113,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009127,
       "name": "105 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "TANK105",
-      "address": "FA_PLA_WP_TANK105"
+      "mode": "native",
+      "profile": null,
+      "address": "M35_M10",
+      "native_weapon": 657,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009135,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009141,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009153,
       "name": "155 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER155",
-      "address": "FA_PLA_WP_HOWITZER155"
+      "mode": "native",
+      "profile": null,
+      "address": "M284_PALADIN",
+      "native_weapon": 344,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009165,
       "name": "PHL-03 300 mm rockets",
       "scope": "VEHICLE",
-      "profile": "PHL300",
-      "address": "FA_PLA_WP_PHL300"
+      "mode": "native",
+      "profile": null,
+      "address": "SMERCH",
+      "native_weapon": 93,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009181,
       "name": "PG99 twin 35 mm guns",
       "scope": "VEHICLE",
-      "profile": "TWIN35",
-      "address": "FA_PLA_WP_TWIN35"
+      "mode": "native",
+      "profile": null,
+      "address": "PANCIR_AC",
+      "native_weapon": 327,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009195,
       "name": "HQ-17",
       "scope": "VEHICLE",
-      "profile": "HQ17",
-      "address": "FA_PLA_WP_HQ17"
+      "mode": "native",
+      "profile": null,
+      "address": "TOR_M2",
+      "native_weapon": 99,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009209,
       "name": "HQ-9",
       "scope": "VEHICLE",
-      "profile": "HQ9",
-      "address": "FA_PLA_WP_HQ9"
+      "mode": "native",
+      "profile": null,
+      "address": "S300_FAVORIT",
+      "native_weapon": 690,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009229,
       "name": "23 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN23",
-      "address": "FA_PLA_WP_CHIN23"
+      "mode": "native",
+      "profile": null,
+      "address": "M197",
+      "native_weapon": 84,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009235,
       "name": "HJ-10 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009241,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009247,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009261,
       "name": "QJY-201 door guns",
       "scope": "VEHICLE",
-      "profile": "QJY201",
-      "address": "FA_PLA_WP_QJY201"
+      "mode": "native",
+      "profile": null,
+      "address": "M240",
+      "native_weapon": 251,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009267,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009273,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009279,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009285,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009291,
       "name": "KD-88",
       "scope": "VEHICLE",
-      "profile": "KD88",
-      "address": "FA_PLA_WP_KD88"
+      "mode": "native",
+      "profile": null,
+      "address": "KH29_T_MISSILE",
+      "native_weapon": 446,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009297,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009303,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009309,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 440,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009315,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009321,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009327,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009333,
       "name": "YJ-91",
       "scope": "VEHICLE",
-      "profile": "YJ91",
-      "address": "FA_PLA_WP_YJ91"
+      "mode": "native",
+      "profile": null,
+      "address": "KH31P",
+      "native_weapon": 358,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009339,
       "name": "KD-88",
       "scope": "VEHICLE",
-      "profile": "KD88",
-      "address": "FA_PLA_WP_KD88"
+      "mode": "native",
+      "profile": null,
+      "address": "KH38ML",
+      "native_weapon": 448,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009345,
       "name": "KD-20",
       "scope": "VEHICLE",
-      "profile": "KD20",
-      "address": "FA_PLA_WP_KD20"
+      "mode": "native",
+      "profile": null,
+      "address": "TOMAHAWK_MISSILE",
+      "native_weapon": 485,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009351,
       "name": "23 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 486,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009365,
       "name": "625 six-barrel 25 mm gun",
       "scope": "VEHICLE",
-      "profile": "ROTARY25",
-      "address": "FA_PLA_WP_ROTARY25"
+      "mode": "native",
+      "profile": null,
+      "address": "GAU12U_EQUALIZER",
+      "native_weapon": 34,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009371,
       "name": "FB-10",
       "scope": "VEHICLE",
-      "profile": "FB10",
-      "address": "FA_PLA_WP_FB10"
+      "mode": "native",
+      "profile": null,
+      "address": "Stinger_x4",
+      "native_weapon": 16,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009375,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009381,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009393,
       "name": "PHL-11 122 mm rockets",
       "scope": "VEHICLE",
-      "profile": "PHL122",
-      "address": "FA_PLA_WP_PHL122"
+      "mode": "native",
+      "profile": null,
+      "address": "GRAD",
+      "native_weapon": 92,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009399,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009405,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009411,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 440,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009417,
       "name": "GSh-30-1",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009423,
       "name": "R-73",
       "scope": "VEHICLE",
-      "profile": "R73",
-      "address": "FA_PLA_WP_R73"
+      "mode": "native",
+      "profile": null,
+      "address": "R73_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009429,
       "name": "Kh-29TD",
       "scope": "VEHICLE",
-      "profile": "KH29",
-      "address": "FA_PLA_WP_KH29"
+      "mode": "native",
+      "profile": null,
+      "address": "KH29_T_MISSILE",
+      "native_weapon": 446,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009445,
       "name": "HQ-7",
       "scope": "VEHICLE",
-      "profile": "HQ7",
-      "address": "FA_PLA_WP_HQ7"
+      "mode": "native",
+      "profile": null,
+      "address": "OSA_AKM",
+      "native_weapon": 94,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009459,
       "name": "120 mm gun-mortar",
       "scope": "VEHICLE",
-      "profile": "GUN_MORTAR120",
-      "address": "FA_PLA_WP_GUN_MORTAR120"
+      "mode": "native",
+      "profile": null,
+      "address": "NONA",
+      "native_weapon": 292,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009473,
       "name": "Prototype 125 mm gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A82_ARMATA",
+      "native_weapon": 78,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009483,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009487,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009493,
       "name": "PL-15 (prototype loadout)",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009499,
       "name": "PL-17 (prototype loadout)",
       "scope": "VEHICLE",
-      "profile": "PL17",
-      "address": "FA_PLA_WP_PL17"
+      "mode": "native",
+      "profile": null,
+      "address": "R37",
+      "native_weapon": 437,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009513,
       "name": "105 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "TANK105",
-      "address": "FA_PLA_WP_TANK105"
+      "mode": "native",
+      "profile": null,
+      "address": "M35_M10",
+      "native_weapon": 657,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009521,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009527,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009541,
       "name": "122 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009555,
       "name": "Four 25 mm AA guns",
       "scope": "VEHICLE",
-      "profile": "QUAD25",
-      "address": "FA_PLA_WP_QUAD25"
+      "mode": "native",
+      "profile": null,
+      "address": "AZP23",
+      "native_weapon": 309,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009561,
       "name": "QW-2",
       "scope": "VEHICLE",
-      "profile": "QW2",
-      "address": "FA_PLA_WP_QW2"
+      "mode": "native",
+      "profile": null,
+      "address": "IGLA_N_ZRK",
+      "native_weapon": 310,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009573,
       "name": "155 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER155",
-      "address": "FA_PLA_WP_HOWITZER155"
+      "mode": "native",
+      "profile": null,
+      "address": "M284_PALADIN",
+      "native_weapon": 344,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009585,
       "name": "SR-5 220 mm rockets",
       "scope": "VEHICLE",
-      "profile": "SR5220",
-      "address": "FA_PLA_WP_SR5220"
+      "mode": "native",
+      "profile": null,
+      "address": "SMERCH",
+      "native_weapon": 93,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009599,
       "name": "Twin 30 mm AA guns",
       "scope": "VEHICLE",
-      "profile": "TWIN30",
-      "address": "FA_PLA_WP_TWIN30"
+      "mode": "native",
+      "profile": null,
+      "address": "PANCIR_AC",
+      "native_weapon": 19,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009605,
       "name": "FK-2000 SAM",
       "scope": "VEHICLE",
-      "profile": "FK2000",
-      "address": "FA_PLA_WP_FK2000"
+      "mode": "native",
+      "profile": null,
+      "address": "PANCIR_MISSILES",
+      "native_weapon": 20,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009619,
       "name": "HJ-10",
       "scope": "VEHICLE",
-      "profile": "HJ10",
-      "address": "FA_PLA_WP_HJ10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X2",
+      "native_weapon": 616,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009633,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009641,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009647,
       "name": "QN-502 guided missile",
       "scope": "VEHICLE",
-      "profile": "QN502",
-      "address": "FA_PLA_WP_QN502"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_x2",
+      "native_weapon": 299,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009653,
       "name": "QN-201 guided support missile",
       "scope": "VEHICLE",
-      "profile": "QN201",
-      "address": "FA_PLA_WP_QN201"
+      "mode": "native",
+      "profile": null,
+      "address": "BULAT",
+      "native_weapon": 300,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009665,
       "name": "105 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "TANK105",
-      "address": "FA_PLA_WP_TANK105"
+      "mode": "native",
+      "profile": null,
+      "address": "M68A1_MGS",
+      "native_weapon": 24,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009673,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009679,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009693,
       "name": "ZPT-98 125 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 333,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009703,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009707,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009721,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009727,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009733,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009747,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009753,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009759,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009771,
       "name": "7.62 mm cabin gun",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_PKP",
+      "native_weapon": 240,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009777,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009783,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009789,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 440,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009795,
       "name": "PL-15 (prototype loadout)",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009801,
       "name": "PL-17 (prototype loadout)",
       "scope": "VEHICLE",
-      "profile": "PL17",
-      "address": "FA_PLA_WP_PL17"
+      "mode": "native",
+      "profile": null,
+      "address": "R37",
+      "native_weapon": 437,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009819,
       "name": "100 mm gun / HJ-9 launcher",
       "scope": "VEHICLE",
-      "profile": "GUN100_BMP",
-      "address": "FA_PLA_WP_GUN100_BMP"
+      "mode": "native",
+      "profile": null,
+      "address": "2A70",
+      "native_weapon": 6,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009827,
       "name": "ZPT-99 30 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A72",
+      "native_weapon": 294,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009833,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009837,
       "name": "BA-7 UAV guided missile",
       "scope": "VEHICLE",
-      "profile": "BA7",
-      "address": "FA_PLA_WP_BA7"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_PYLON",
+      "native_weapon": 514,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009851,
       "name": "120 mm smoothbore gun",
       "scope": "VEHICLE",
-      "profile": "TANK120",
-      "address": "FA_PLA_WP_TANK120"
+      "mode": "native",
+      "profile": null,
+      "address": "M256_ABRAMS",
+      "native_weapon": 266,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009859,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009865,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009879,
       "name": "ZPT-98 125 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 333,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009889,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009893,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009907,
       "name": "125 mm tank gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 221,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009917,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009921,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009933,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009947,
       "name": "76 mm radar-assisted AA gun",
       "scope": "VEHICLE",
-      "profile": "NAVAL76",
-      "address": "FA_PLA_WP_NAVAL76"
+      "mode": "native",
+      "profile": null,
+      "address": "2A91_57MM",
+      "native_weapon": 302,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009963,
       "name": "105 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "TANK105",
-      "address": "FA_PLA_WP_TANK105"
+      "mode": "native",
+      "profile": null,
+      "address": "M35_M10",
+      "native_weapon": 657,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009971,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009977,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009991,
       "name": "QJZ-89 12.7 mm RWS",
       "scope": "VEHICLE",
-      "profile": "QJZ89_MOUNT",
-      "address": "FA_PLA_WP_QJZ89_MOUNT"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 268,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2009997,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010003,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010009,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 440,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010021,
       "name": "125 mm tank gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 9,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010031,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010035,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010049,
       "name": "14.5 mm HMG",
       "scope": "VEHICLE",
-      "profile": "KPVT",
-      "address": "FA_PLA_WP_KPVT"
+      "mode": "native",
+      "profile": null,
+      "address": "KPVT",
+      "native_weapon": 249,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010055,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010065,
       "name": "85 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "GUN85",
-      "address": "FA_PLA_WP_GUN85"
+      "mode": "native",
+      "profile": null,
+      "address": "D56TS",
+      "native_weapon": 321,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010073,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010077,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010091,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010105,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010121,
       "name": "HQ-7",
       "scope": "VEHICLE",
-      "profile": "HQ7",
-      "address": "FA_PLA_WP_HQ7"
+      "mode": "native",
+      "profile": null,
+      "address": "OSA_AKM",
+      "native_weapon": 94,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010135,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010143,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010149,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010159,
       "name": "PHL-81 122 mm rockets",
       "scope": "VEHICLE",
-      "profile": "PHL122",
-      "address": "FA_PLA_WP_PHL122"
+      "mode": "native",
+      "profile": null,
+      "address": "GRAD",
+      "native_weapon": 92,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010165,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010171,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010177,
       "name": "LS-6 guided glide bomb",
       "scope": "VEHICLE",
-      "profile": "LS6",
-      "address": "FA_PLA_WP_LS6"
+      "mode": "native",
+      "profile": null,
+      "address": "GBU53",
+      "native_weapon": 392,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010191,
       "name": "Prototype 125 mm gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A82_ARMATA",
+      "native_weapon": 78,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010201,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010205,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010211,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010217,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010223,
       "name": "LS-6 guided glide bomb",
       "scope": "VEHICLE",
-      "profile": "LS6",
-      "address": "FA_PLA_WP_LS6"
+      "mode": "native",
+      "profile": null,
+      "address": "GBU53",
+      "native_weapon": 392,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010229,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010235,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010241,
       "name": "YJ-91 anti-radiation missile",
       "scope": "VEHICLE",
-      "profile": "YJ91",
-      "address": "FA_PLA_WP_YJ91"
+      "mode": "native",
+      "profile": null,
+      "address": "KH31P",
+      "native_weapon": 358,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010247,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010253,
       "name": "PL-2",
       "scope": "VEHICLE",
-      "profile": "PL2",
-      "address": "FA_PLA_WP_PL2"
+      "mode": "native",
+      "profile": null,
+      "address": "R60",
+      "native_weapon": 435,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010259,
       "name": "LS-6 guided glide bomb",
       "scope": "VEHICLE",
-      "profile": "LS6",
-      "address": "FA_PLA_WP_LS6"
+      "mode": "native",
+      "profile": null,
+      "address": "GBU53",
+      "native_weapon": 392,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010265,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010271,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010277,
       "name": "YJ-91 anti-radiation missile",
       "scope": "VEHICLE",
-      "profile": "YJ91",
-      "address": "FA_PLA_WP_YJ91"
+      "mode": "native",
+      "profile": null,
+      "address": "KH31P",
+      "native_weapon": 358,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010291,
       "name": "23 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN23",
-      "address": "FA_PLA_WP_CHIN23"
+      "mode": "native",
+      "profile": null,
+      "address": "M197",
+      "native_weapon": 84,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010297,
       "name": "HJ-10 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010303,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010309,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010323,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010331,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010337,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010347,
       "name": "DF-17 conventional test missile",
       "scope": "VEHICLE",
-      "profile": "DF17",
-      "address": "FA_PLA_WP_DF17"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_1",
+      "native_weapon": 316,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010359,
       "name": "DF-15 conventional test missile",
       "scope": "VEHICLE",
-      "profile": "DF15",
-      "address": "FA_PLA_WP_DF15"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_1",
+      "native_weapon": 316,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010371,
       "name": "DF-21 conventional test missile",
       "scope": "VEHICLE",
-      "profile": "DF21",
-      "address": "FA_PLA_WP_DF21"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_1",
+      "native_weapon": 316,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010383,
       "name": "DF-21D conventional test missile",
       "scope": "VEHICLE",
-      "profile": "DF21",
-      "address": "FA_PLA_WP_DF21"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_1",
+      "native_weapon": 316,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010395,
       "name": "DF-31A conventional test missile",
       "scope": "VEHICLE",
-      "profile": "DF31",
-      "address": "FA_PLA_WP_DF31"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_1",
+      "native_weapon": 316,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010409,
       "name": "122 mm truck howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010423,
       "name": "155 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER155",
-      "address": "FA_PLA_WP_HOWITZER155"
+      "mode": "native",
+      "profile": null,
+      "address": "M284_PALADIN",
+      "native_weapon": 344,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010435,
       "name": "PHL-16 370 mm rockets",
       "scope": "VEHICLE",
-      "profile": "PHL370",
-      "address": "FA_PLA_WP_PHL370"
+      "mode": "native",
+      "profile": null,
+      "address": "SMERCH",
+      "native_weapon": 93,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010447,
       "name": "PHL-191 370 mm rockets",
       "scope": "VEHICLE",
-      "profile": "PHL370",
-      "address": "FA_PLA_WP_PHL370"
+      "mode": "native",
+      "profile": null,
+      "address": "SMERCH",
+      "native_weapon": 93,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010461,
       "name": "120 mm gun-mortar",
       "scope": "VEHICLE",
-      "profile": "GUN_MORTAR120",
-      "address": "FA_PLA_WP_GUN_MORTAR120"
+      "mode": "native",
+      "profile": null,
+      "address": "NONA",
+      "native_weapon": 292,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010475,
       "name": "122 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010487,
       "name": "155 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER155",
-      "address": "FA_PLA_WP_HOWITZER155"
+      "mode": "native",
+      "profile": null,
+      "address": "M284_PALADIN",
+      "native_weapon": 344,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010501,
       "name": "122 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010515,
       "name": "152 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER152",
-      "address": "FA_PLA_WP_HOWITZER152"
+      "mode": "native",
+      "profile": null,
+      "address": "2A64_MSTA",
+      "native_weapon": 950,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010529,
       "name": "122 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010543,
       "name": "122 mm howitzer",
       "scope": "VEHICLE",
-      "profile": "HOWITZER122",
-      "address": "FA_PLA_WP_HOWITZER122"
+      "mode": "native",
+      "profile": null,
+      "address": "GVOZDIKA",
+      "native_weapon": 288,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010555,
       "name": "SY-400 guided rockets",
       "scope": "VEHICLE",
-      "profile": "SY400",
-      "address": "FA_PLA_WP_SY400"
+      "mode": "native",
+      "profile": null,
+      "address": "ISKANDER_2",
+      "native_weapon": 317,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010569,
       "name": "HQ-6A",
       "scope": "VEHICLE",
-      "profile": "HQ6",
-      "address": "FA_PLA_WP_HQ6"
+      "mode": "native",
+      "profile": null,
+      "address": "BUK_M2",
+      "native_weapon": 323,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010583,
       "name": "HQ-11",
       "scope": "VEHICLE",
-      "profile": "HQ11",
-      "address": "FA_PLA_WP_HQ11"
+      "mode": "native",
+      "profile": null,
+      "address": "BUK_M2",
+      "native_weapon": 323,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010597,
       "name": "HQ-12 / KS-1",
       "scope": "VEHICLE",
-      "profile": "HQ12",
-      "address": "FA_PLA_WP_HQ12"
+      "mode": "native",
+      "profile": null,
+      "address": "BUK_M2",
+      "native_weapon": 323,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010611,
       "name": "HQ-16",
       "scope": "VEHICLE",
-      "profile": "HQ16",
-      "address": "FA_PLA_WP_HQ16"
+      "mode": "native",
+      "profile": null,
+      "address": "BUK_M2",
+      "native_weapon": 323,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010625,
       "name": "HQ-17",
       "scope": "VEHICLE",
-      "profile": "HQ17",
-      "address": "FA_PLA_WP_HQ17"
+      "mode": "native",
+      "profile": null,
+      "address": "TOR_M2",
+      "native_weapon": 99,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010639,
       "name": "Four 25 mm AA guns",
       "scope": "VEHICLE",
-      "profile": "QUAD25",
-      "address": "FA_PLA_WP_QUAD25"
+      "mode": "native",
+      "profile": null,
+      "address": "AZP23",
+      "native_weapon": 309,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010645,
       "name": "QW-2",
       "scope": "VEHICLE",
-      "profile": "QW2",
-      "address": "FA_PLA_WP_QW2"
+      "mode": "native",
+      "profile": null,
+      "address": "IGLA_N_ZRK",
+      "native_weapon": 310,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010659,
       "name": "Twin 37 mm AA guns",
       "scope": "VEHICLE",
-      "profile": "TWIN37",
-      "address": "FA_PLA_WP_TWIN37"
+      "mode": "native",
+      "profile": null,
+      "address": "AZP23",
+      "native_weapon": 309,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010673,
       "name": "Four 25 mm AA guns",
       "scope": "VEHICLE",
-      "profile": "QUAD25",
-      "address": "FA_PLA_WP_QUAD25"
+      "mode": "native",
+      "profile": null,
+      "address": "AZP23",
+      "native_weapon": 309,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010679,
       "name": "QW-2",
       "scope": "VEHICLE",
-      "profile": "QW2",
-      "address": "FA_PLA_WP_QW2"
+      "mode": "native",
+      "profile": null,
+      "address": "IGLA_N_ZRK",
+      "native_weapon": 310,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010691,
       "name": "HJ-9",
       "scope": "VEHICLE",
-      "profile": "HJ9",
-      "address": "FA_PLA_WP_HJ9"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_BRDM",
+      "native_weapon": 348,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010705,
       "name": "Vehicle-launched loitering munition (proxy)",
       "scope": "VEHICLE",
-      "profile": "LOITERING_PROXY",
-      "address": "FA_PLA_WP_LOITERING_PROXY"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X2",
+      "native_weapon": 616,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010721,
       "name": "HJ-10",
       "scope": "VEHICLE",
-      "profile": "HJ10",
-      "address": "FA_PLA_WP_HJ10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X2",
+      "native_weapon": 616,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010735,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010743,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010749,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010761,
       "name": "QJZ-89 12.7 mm RWS",
       "scope": "VEHICLE",
-      "profile": "QJZ89_MOUNT",
-      "address": "FA_PLA_WP_QJZ89_MOUNT"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 268,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010775,
       "name": "QJZ-89 12.7 mm RWS",
       "scope": "VEHICLE",
-      "profile": "QJZ89_MOUNT",
-      "address": "FA_PLA_WP_QJZ89_MOUNT"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 268,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010789,
       "name": "100 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "GUN100_RIFLED",
-      "address": "FA_PLA_WP_GUN100_RIFLED"
+      "mode": "native",
+      "profile": null,
+      "address": "MT12",
+      "native_weapon": 652,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010799,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010805,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010817,
       "name": "100 mm rifled tank gun",
       "scope": "VEHICLE",
-      "profile": "GUN100_RIFLED",
-      "address": "FA_PLA_WP_GUN100_RIFLED"
+      "mode": "native",
+      "profile": null,
+      "address": "MT12",
+      "native_weapon": 652,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010827,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010833,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010845,
       "name": "100 mm rifled tank gun",
       "scope": "VEHICLE",
-      "profile": "GUN100_RIFLED",
-      "address": "FA_PLA_WP_GUN100_RIFLED"
+      "mode": "native",
+      "profile": null,
+      "address": "MT12",
+      "native_weapon": 652,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010855,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010861,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010875,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010887,
       "name": "73 mm low-pressure gun",
       "scope": "VEHICLE",
-      "profile": "GUN73",
-      "address": "FA_PLA_WP_GUN73"
+      "mode": "native",
+      "profile": null,
+      "address": "2A28_GROM",
+      "native_weapon": 663,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010895,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010901,
       "name": "HJ-73",
       "scope": "VEHICLE",
-      "profile": "HJ73",
-      "address": "FA_PLA_WP_HJ73"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 577,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010915,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010929,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010943,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010951,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010957,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010969,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010977,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010983,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2010995,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011003,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011009,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011021,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011029,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011035,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011045,
       "name": "QJY-201 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "QJY201",
-      "address": "FA_PLA_WP_QJY201"
+      "mode": "native",
+      "profile": null,
+      "address": "M240",
+      "native_weapon": 240,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011057,
       "name": "125 mm tank gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 9,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011067,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011071,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011085,
       "name": "VT-4 125 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 333,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011095,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011099,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011113,
       "name": "Prototype 120 mm smoothbore",
       "scope": "VEHICLE",
-      "profile": "TANK120",
-      "address": "FA_PLA_WP_TANK120"
+      "mode": "native",
+      "profile": null,
+      "address": "M256_ABRAMS",
+      "native_weapon": 221,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011123,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011127,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011139,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011147,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011151,
       "name": "HJ-73D",
       "scope": "VEHICLE",
-      "profile": "HJ73",
-      "address": "FA_PLA_WP_HJ73"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011167,
       "name": "100 mm gun / HJ-9 launcher",
       "scope": "VEHICLE",
-      "profile": "GUN100_BMP",
-      "address": "FA_PLA_WP_GUN100_BMP"
+      "mode": "native",
+      "profile": null,
+      "address": "2A70",
+      "native_weapon": 6,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011175,
       "name": "ZPT-99 30 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A72",
+      "native_weapon": 294,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011181,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011193,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011201,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011207,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011219,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011227,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011233,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011245,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011253,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011259,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011271,
       "name": "30 mm autocannon",
       "scope": "VEHICLE",
-      "profile": "ZPT99",
-      "address": "FA_PLA_WP_ZPT99"
+      "mode": "native",
+      "profile": null,
+      "address": "2A42",
+      "native_weapon": 86,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011279,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011285,
       "name": "HJ-8E",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "KONKURS_VEHICAL",
+      "native_weapon": 248,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011297,
       "name": "105 mm rifled gun",
       "scope": "VEHICLE",
-      "profile": "TANK105",
-      "address": "FA_PLA_WP_TANK105"
+      "mode": "native",
+      "profile": null,
+      "address": "M68A1_MGS",
+      "native_weapon": 24,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011305,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011311,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011323,
       "name": "100 mm rifled tank gun",
       "scope": "VEHICLE",
-      "profile": "GUN100_RIFLED",
-      "address": "FA_PLA_WP_GUN100_RIFLED"
+      "mode": "native",
+      "profile": null,
+      "address": "MT12",
+      "native_weapon": 652,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011333,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011339,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011353,
       "name": "125 mm tank gun",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 221,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011363,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011367,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011381,
       "name": "ZPT-98 125 mm",
       "scope": "VEHICLE",
-      "profile": "ZPT98",
-      "address": "FA_PLA_WP_ZPT98"
+      "mode": "native",
+      "profile": null,
+      "address": "2A46M",
+      "native_weapon": 333,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011391,
       "name": "Type 86 7.62 mm",
       "scope": "VEHICLE",
-      "profile": "TYPE86",
-      "address": "FA_PLA_WP_TYPE86"
+      "mode": "native",
+      "profile": null,
+      "address": "PKT",
+      "native_weapon": 7,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011395,
       "name": "QJC-88 12.7 mm",
       "scope": "VEHICLE",
-      "profile": "QJC88",
-      "address": "FA_PLA_WP_QJC88"
+      "mode": "native",
+      "profile": null,
+      "address": "Kord",
+      "native_weapon": 97,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011409,
       "name": "UAV guided missile",
       "scope": "VEHICLE",
-      "profile": "UNSPECIFIED_UAV_ATGM",
-      "address": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_PYLON",
+      "native_weapon": 514,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011423,
       "name": "UAV guided missile",
       "scope": "VEHICLE",
-      "profile": "UNSPECIFIED_UAV_ATGM",
-      "address": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_PYLON",
+      "native_weapon": 514,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011437,
       "name": "UAV guided missile",
       "scope": "VEHICLE",
-      "profile": "UNSPECIFIED_UAV_ATGM",
-      "address": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_PYLON",
+      "native_weapon": 514,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011443,
       "name": "30 mm aircraft cannon",
       "scope": "VEHICLE",
-      "profile": "GSH301",
-      "address": "FA_PLA_WP_GSH301"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH30_1",
+      "native_weapon": 241,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011449,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011455,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 440,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011461,
       "name": "PL-10",
       "scope": "VEHICLE",
-      "profile": "PL10",
-      "address": "FA_PLA_WP_PL10"
+      "mode": "native",
+      "profile": null,
+      "address": "AIM_9X_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011467,
       "name": "PL-15",
       "scope": "VEHICLE",
-      "profile": "PL15",
-      "address": "FA_PLA_WP_PL15"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011473,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011479,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011485,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011491,
       "name": "PL-2 short-range missile (analog)",
       "scope": "VEHICLE",
-      "profile": "PL2",
-      "address": "FA_PLA_WP_PL2"
+      "mode": "native",
+      "profile": null,
+      "address": "R60",
+      "native_weapon": 435,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011497,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011503,
       "name": "PL-2 short-range missile (analog)",
       "scope": "VEHICLE",
-      "profile": "PL2",
-      "address": "FA_PLA_WP_PL2"
+      "mode": "native",
+      "profile": null,
+      "address": "R60",
+      "native_weapon": 435,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011509,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011515,
       "name": "PL-2 short-range missile (analog)",
       "scope": "VEHICLE",
-      "profile": "PL2",
-      "address": "FA_PLA_WP_PL2"
+      "mode": "native",
+      "profile": null,
+      "address": "R60",
+      "native_weapon": 435,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011521,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011527,
       "name": "PL-8",
       "scope": "VEHICLE",
-      "profile": "PL8",
-      "address": "FA_PLA_WP_PL8"
+      "mode": "native",
+      "profile": null,
+      "address": "R73_MISSILE",
+      "native_weapon": 243,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011533,
       "name": "PL-12",
       "scope": "VEHICLE",
-      "profile": "PL12",
-      "address": "FA_PLA_WP_PL12"
+      "mode": "native",
+      "profile": null,
+      "address": "AMRAAM_MISSILE",
+      "native_weapon": 244,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011539,
       "name": "Type 23 cannon",
       "scope": "VEHICLE",
-      "profile": "GSH23",
-      "address": "FA_PLA_WP_GSH23"
+      "mode": "native",
+      "profile": null,
+      "address": "GSH23",
+      "native_weapon": 483,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011553,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011559,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011565,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011579,
       "name": "30 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN30",
-      "address": "FA_PLA_WP_CHIN30"
+      "mode": "native",
+      "profile": null,
+      "address": "M230_HELI",
+      "native_weapon": 8,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011585,
       "name": "AKD-10 guided missile",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 647,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011591,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011597,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011611,
       "name": "UAV guided missile",
       "scope": "VEHICLE",
-      "profile": "UNSPECIFIED_UAV_ATGM",
-      "address": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM"
+      "mode": "native",
+      "profile": null,
+      "address": "KORNET_PYLON",
+      "native_weapon": 514,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011625,
       "name": "QJY-201 door guns",
       "scope": "VEHICLE",
-      "profile": "QJY201",
-      "address": "FA_PLA_WP_QJY201"
+      "mode": "native",
+      "profile": null,
+      "address": "M240",
+      "native_weapon": 251,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011645,
       "name": "YJ-18 cruise missiles",
       "scope": "VEHICLE",
-      "profile": "YJ18",
-      "address": "FA_PLA_WP_YJ18"
+      "mode": "native",
+      "profile": null,
+      "address": "TOMAHAWK_MISSILE",
+      "native_weapon": 317,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011659,
       "name": "23 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN23",
-      "address": "FA_PLA_WP_CHIN23"
+      "mode": "native",
+      "profile": null,
+      "address": "M197",
+      "native_weapon": 84,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011665,
       "name": "HJ-10 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011671,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011677,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011691,
       "name": "23 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN23",
-      "address": "FA_PLA_WP_CHIN23"
+      "mode": "native",
+      "profile": null,
+      "address": "M197",
+      "native_weapon": 84,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011697,
       "name": "HJ-10 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011703,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011709,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011723,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011729,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011735,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011749,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011755,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011761,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011775,
       "name": "HJ-8 air-launched ATGM",
       "scope": "VEHICLE",
-      "profile": "HJ8",
-      "address": "FA_PLA_WP_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 12,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011781,
       "name": "57 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD57",
-      "address": "FA_PLA_WP_POD57"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x7_PYLON",
+      "native_weapon": 109,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011787,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011801,
       "name": "30 mm chin cannon",
       "scope": "VEHICLE",
-      "profile": "CHIN30",
-      "address": "FA_PLA_WP_CHIN30"
+      "mode": "native",
+      "profile": null,
+      "address": "M230_HELI",
+      "native_weapon": 8,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011807,
       "name": "AKD-10 guided missile",
       "scope": "VEHICLE",
-      "profile": "AKD10",
-      "address": "FA_PLA_WP_AKD10"
+      "mode": "native",
+      "profile": null,
+      "address": "HELLFIRE_X4",
+      "native_weapon": 647,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011813,
       "name": "90 mm unguided rockets",
       "scope": "VEHICLE",
-      "profile": "POD90",
-      "address": "FA_PLA_WP_POD90"
+      "mode": "native",
+      "profile": null,
+      "address": "HYDRA_x19_PYLON",
+      "native_weapon": 15,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011819,
       "name": "TY-90",
       "scope": "VEHICLE",
-      "profile": "TY90",
-      "address": "FA_PLA_WP_TY90"
+      "mode": "native",
+      "profile": null,
+      "address": "STINGER_x2_WINGTIP",
+      "native_weapon": 354,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011832,
       "name": "PF-98",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_PF98",
-      "address": "FA_PLA_WP_LAUNCHER_PF98"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_RPG29",
+      "native_weapon": 172,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011834,
       "name": "QJB-201",
       "scope": "INFANTRY",
-      "profile": "QJB201",
-      "address": "FA_PLA_WP_QJB201"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_Mk46",
+      "native_weapon": 53,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011864,
       "name": "HJ-12",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_HJ12",
-      "address": "FA_PLA_WP_LAUNCHER_HJ12"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_JAVELIN",
+      "native_weapon": 62,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011887,
       "name": "PF-89",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_PF89",
-      "address": "FA_PLA_WP_LAUNCHER_PF89"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_RPG26",
+      "native_weapon": 168,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011889,
       "name": "QLG-10A",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_QLG10",
-      "address": "FA_PLA_WP_LAUNCHER_QLG10"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_AK74M_GP",
+      "native_weapon": 31,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011919,
       "name": "PF-98A",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_PF98",
-      "address": "FA_PLA_WP_LAUNCHER_PF98"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_RPG29",
+      "native_weapon": 172,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011922,
       "name": "QJS-161",
       "scope": "INFANTRY",
-      "profile": "QJS161",
-      "address": "FA_PLA_WP_QJS161"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_Mk46",
+      "native_weapon": 53,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2011972,
       "name": "QJZ-171",
       "scope": "INFANTRY",
-      "profile": "QJZ171",
-      "address": "FA_PLA_WP_QJZ171"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_HMG_KORD",
+      "native_weapon": 145,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012024,
       "name": "DZJ-08",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_DZJ08",
-      "address": "FA_PLA_WP_LAUNCHER_DZJ08"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M141",
+      "native_weapon": 200,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012054,
       "name": "QBU-10",
       "scope": "INFANTRY",
-      "profile": "QBU10",
-      "address": "FA_PLA_WP_QBU10"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_ASVK",
+      "native_weapon": 523,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012081,
       "name": "HN-6",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_MANPADS",
-      "address": "FA_PLA_WP_LAUNCHER_MANPADS"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_IGLA",
+      "native_weapon": 583,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012131,
       "name": "QBS-09",
       "scope": "INFANTRY",
-      "profile": "QBS09",
-      "address": "FA_PLA_WP_QBS09"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M1014",
+      "native_weapon": 45,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012157,
       "name": "QLZ-87",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_QLZ87",
-      "address": "FA_PLA_WP_LAUNCHER_QLZ87"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_AGS30",
+      "native_weapon": 148,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012205,
       "name": "QBZ-95",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QBZ95",
-      "address": "FA_PLA_WP_QBZ95"
+      "address": "FA_PLA_WP_QBZ95",
+      "native_weapon": 156,
+      "basis": "Photo-based vector contour; related-family variants are approximations"
     },
     {
       "weapon": 2012207,
       "name": "QBB-95",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QBB95",
-      "address": "FA_PLA_WP_QBB95"
+      "address": "FA_PLA_WP_QBB95",
+      "native_weapon": 14,
+      "basis": "Photo-based vector contour; related-family variants are approximations"
     },
     {
       "weapon": 2012264,
       "name": "HJ-8E",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_HJ8",
-      "address": "FA_PLA_WP_LAUNCHER_HJ8"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_KONKURS",
+      "native_weapon": 141,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012288,
       "name": "QW-2",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_MANPADS",
-      "address": "FA_PLA_WP_LAUNCHER_MANPADS"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_IGLA",
+      "native_weapon": 537,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012312,
       "name": "QLZ-04",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_QLZ04",
-      "address": "FA_PLA_WP_LAUNCHER_QLZ04"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_AGS30",
+      "native_weapon": 148,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012387,
       "name": "QJZ-89",
       "scope": "INFANTRY",
-      "profile": "QJZ89",
-      "address": "FA_PLA_WP_QJZ89"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_HMG_KORD",
+      "native_weapon": 145,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012411,
       "name": "QJY-201",
       "scope": "INFANTRY",
-      "profile": "QJY201",
-      "address": "FA_PLA_WP_QJY201"
+      "mode": "native",
+      "profile": null,
+      "address": "M240",
+      "native_weapon": 30,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012515,
       "name": "PF-97",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_PF97",
-      "address": "FA_PLA_WP_LAUNCHER_PF97"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_RPG26",
+      "native_weapon": 668,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012643,
       "name": "HJ-73D",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_HJ73",
-      "address": "FA_PLA_WP_LAUNCHER_HJ73"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_FAGOT",
+      "native_weapon": 175,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2012821,
       "name": "QBU-88",
       "scope": "INFANTRY",
+      "mode": "custom",
       "profile": "QBU88",
-      "address": "FA_PLA_WP_QBU88"
+      "address": "FA_PLA_WP_QBU88",
+      "native_weapon": 167,
+      "basis": "Photo-based vector contour; related-family variants are approximations"
     },
     {
       "weapon": 2012924,
       "name": "QCQ-05",
       "scope": "INFANTRY",
-      "profile": "QCQ05",
-      "address": "FA_PLA_WP_QCQ05"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_MP5",
+      "native_weapon": 508,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2013057,
       "name": "FHJ-02",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_FHJ02",
-      "address": "FA_PLA_WP_LAUNCHER_FHJ02"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M202",
+      "native_weapon": 698,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2013087,
       "name": "QBZ-192",
       "scope": "INFANTRY",
-      "profile": "QBZ192",
-      "address": "FA_PLA_WP_QBZ192"
+      "mode": "custom",
+      "profile": "QBZ191",
+      "address": "FA_PLA_WP_QBZ191",
+      "native_weapon": 2003998,
+      "basis": "Installed model side contour"
     },
     {
       "weapon": 2013157,
       "name": "PF-98A",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_PF98",
-      "address": "FA_PLA_WP_LAUNCHER_PF98"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_RPG29",
+      "native_weapon": 172,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2013349,
       "name": "QCW-05",
       "scope": "INFANTRY",
-      "profile": "QCW05",
-      "address": "FA_PLA_WP_QCW05"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_MP5",
+      "native_weapon": 508,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014001,
       "name": "QBZ-97",
       "scope": "INFANTRY",
-      "profile": "QBZ95",
-      "address": "FA_PLA_WP_QBZ95"
+      "mode": "custom",
+      "profile": "QBZ97",
+      "address": "FA_PLA_WP_QBZ97",
+      "native_weapon": 156,
+      "basis": "Photo-based vector contour; related-family variants are approximations"
     },
     {
       "weapon": 2014088,
       "name": "LG5",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_LG5",
-      "address": "FA_PLA_WP_LAUNCHER_LG5"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_MK47",
+      "native_weapon": 203,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014116,
       "name": "LG5s",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_LG5S",
-      "address": "FA_PLA_WP_LAUNCHER_LG5S"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_MK47",
+      "native_weapon": 203,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014146,
       "name": "LG6",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_LG6",
-      "address": "FA_PLA_WP_LAUNCHER_LG6"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M32",
+      "native_weapon": 68,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014177,
       "name": "LG4",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_LG4",
-      "address": "FA_PLA_WP_LAUNCHER_LG4"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M32",
+      "native_weapon": 68,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014208,
       "name": "LG3",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_LG3",
-      "address": "FA_PLA_WP_LAUNCHER_LG3"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_MK19",
+      "native_weapon": 75,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014236,
       "name": "QN-202",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_QN202",
-      "address": "FA_PLA_WP_LAUNCHER_QN202"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_KONKURS",
+      "native_weapon": 141,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014264,
       "name": "TL-4",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_TL4",
-      "address": "FA_PLA_WP_LAUNCHER_TL4"
+      "mode": "native",
+      "profile": null,
+      "address": "TOW_M220",
+      "native_weapon": 205,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014292,
       "name": "GAM-102LR",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_GAM102",
-      "address": "FA_PLA_WP_LAUNCHER_GAM102"
+      "mode": "native",
+      "profile": null,
+      "address": "TOW_M220",
+      "native_weapon": 205,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014320,
       "name": "HJ-12E",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_HJ12",
-      "address": "FA_PLA_WP_LAUNCHER_HJ12"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_JAVELIN",
+      "native_weapon": 62,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     },
     {
       "weapon": 2014406,
       "name": "FHJ-02",
       "scope": "INFANTRY",
-      "profile": "LAUNCHER_FHJ02",
-      "address": "FA_PLA_WP_LAUNCHER_FHJ02"
+      "mode": "native",
+      "profile": null,
+      "address": "INF_M202",
+      "native_weapon": 698,
+      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
     }
   ],
   "vehicle_weapons": 307,
   "infantry_weapons": 44,
   "profiles": [
-    "AKD10",
-    "BA7",
-    "CHIN23",
-    "CHIN30",
-    "DF15",
-    "DF17",
-    "DF21",
-    "DF31",
-    "FB10",
-    "FK2000",
-    "GSH23",
-    "GSH301",
-    "GUN100_BMP",
-    "GUN100_RIFLED",
-    "GUN73",
-    "GUN85",
-    "GUN_MORTAR120",
-    "HJ10",
-    "HJ73",
-    "HJ8",
-    "HJ9",
-    "HOWITZER122",
-    "HOWITZER152",
-    "HOWITZER155",
-    "HQ11",
-    "HQ12",
-    "HQ16",
-    "HQ17",
-    "HQ6",
-    "HQ7",
-    "HQ9",
-    "KD20",
-    "KD88",
-    "KH29",
-    "KPVT",
-    "LAUNCHER_DZJ08",
-    "LAUNCHER_FHJ02",
-    "LAUNCHER_GAM102",
-    "LAUNCHER_HJ12",
-    "LAUNCHER_HJ73",
-    "LAUNCHER_HJ8",
-    "LAUNCHER_LG3",
-    "LAUNCHER_LG4",
-    "LAUNCHER_LG5",
-    "LAUNCHER_LG5S",
-    "LAUNCHER_LG6",
-    "LAUNCHER_MANPADS",
-    "LAUNCHER_PF89",
-    "LAUNCHER_PF97",
-    "LAUNCHER_PF98",
-    "LAUNCHER_QLG10",
-    "LAUNCHER_QLZ04",
-    "LAUNCHER_QLZ87",
-    "LAUNCHER_QN202",
-    "LAUNCHER_TL4",
-    "LOITERING_PROXY",
-    "LS6",
-    "NAVAL76",
-    "PHL122",
-    "PHL300",
-    "PHL370",
-    "PL10",
-    "PL12",
-    "PL15",
-    "PL17",
-    "PL2",
-    "PL8",
-    "POD57",
-    "POD90",
     "QBB95",
-    "QBS09",
-    "QBU10",
     "QBU191",
     "QBU88",
     "QBZ191",
-    "QBZ192",
     "QBZ95",
-    "QCQ05",
-    "QCW05",
-    "QJB201",
-    "QJC88",
-    "QJS161",
-    "QJY201",
-    "QJZ171",
-    "QJZ89",
-    "QJZ89_MOUNT",
+    "QBZ97",
     "QLU11",
-    "QN201",
-    "QN502",
-    "QTS11",
-    "QUAD25",
-    "QW2",
-    "R73",
-    "ROTARY25",
-    "SR5220",
-    "SY400",
-    "TANK105",
-    "TANK120",
-    "TWIN30",
-    "TWIN35",
-    "TWIN37",
-    "TY90",
-    "TYPE86",
-    "UNSPECIFIED_UAV_ATGM",
-    "YJ18",
-    "YJ91",
-    "ZPT98",
-    "ZPT99"
+    "QTS11"
   ],
+  "resources": [
+    "FA_PLA_WP_QBB95",
+    "FA_PLA_WP_QBB95_OUTLINE",
+    "FA_PLA_WP_QBU191",
+    "FA_PLA_WP_QBU191_OUTLINE",
+    "FA_PLA_WP_QBU88",
+    "FA_PLA_WP_QBU88_OUTLINE",
+    "FA_PLA_WP_QBZ191",
+    "FA_PLA_WP_QBZ191_OUTLINE",
+    "FA_PLA_WP_QBZ95",
+    "FA_PLA_WP_QBZ95_OUTLINE",
+    "FA_PLA_WP_QBZ97",
+    "FA_PLA_WP_QBZ97_OUTLINE",
+    "FA_PLA_WP_QLU11",
+    "FA_PLA_WP_QLU11_OUTLINE",
+    "FA_PLA_WP_QTS11",
+    "FA_PLA_WP_QTS11_OUTLINE"
+  ],
+  "native_icon_entries": 341,
+  "custom_icon_entries": 10,
   "native_verified": false,
-  "limits": "Simplified recognition silhouettes. Related variants share physical-family art. Prototype/unnamed analog weapons use recorded family approximations; exact variant geometry is not established."
+  "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection."
 }

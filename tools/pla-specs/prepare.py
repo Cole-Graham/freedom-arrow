@@ -37,7 +37,7 @@ with zipfile.ZipFile(a.base) as z:
  assignments=apply_assignments(R,effective,patches,models,native_ids)
  vehicles=apply_vehicle_weapons(R,effective,patches,native_ids,vanilla_tables,models)
  designer=apply_designer_infantry(R,effective,patches,native_ids,bodies,weapons,assignments)
- weapon_hud=apply_weapon_hud(R,effective,patches)
+ weapon_hud=apply_weapon_hud(R,effective,patches,vanilla_tables)
  for e in catalogue['entries']:
   e.update(specs=assignments['assignments'].get(str(e['unit']),[]),native_model=effective['Units'][e['unit']]['ModelFileName'],custom_model=models.get(effective['Units'][e['unit']]['Name']))
   if e['unit']==1129:e['parent']=226

@@ -1,3 +1,9 @@
+# PLA TEST Build 18
+
+**Weapon HUD revision: replaces the rejected block sketches with detailed native stand-in art for 341 entries and eight custom Chinese profile families (16 normal/outline sprites) for ten entries. Four custom profiles come from the approved meshes; four bullpup profiles use photo references or marked family approximations. Build17 Arsenal grouping is retained. Unit artwork, ammo, weapon stats, loadouts, models and rigging are unchanged. Native HUD validation is pending.**
+
+## Historical Build17 UI correction
+
 # PLA TEST Build 5
 
 **China UI candidate: a separate China country, five planned specializations, and native Arsenal/deck-country buttons. Existing PLA unit statistics and approved infantry/model assets are retained. Spec grouping and code-drawn badges are provisional; native layout and online country support remain unverified. Live dev.45 is unchanged.**
@@ -615,3 +621,5 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
 
 - 2026-11-10 18:46:09 PST (America/Los_Angeles) — Added China country/spec UI candidate and native ordering hooks; preserved the live dev.45 hold.
+
+- 2026-11-11 11:43:40 PST (America/Los_Angeles) — Replaced rejected weapon sketches, added normal/outline contours, documented native stand-ins and retained the Build17 UI correction.

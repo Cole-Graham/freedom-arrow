@@ -8,7 +8,7 @@ using var pe=new PEReader(input);var metadata=pe.GetMetadataReader();
 var resources=metadata.ManifestResources.Select(x=>metadata.GetManifestResource(x)).ToDictionary(x=>metadata.GetString(x.Name));
 var block=pe.GetSectionData(pe.PEHeaders.CorHeader!.ResourcesDirectory.RelativeVirtualAddress);
 using var receipt=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"../UserData/FreedomArrow/pla-weapon-hud.json")));
-var addresses=receipt.RootElement.GetProperty("entries").EnumerateArray().Select(x=>x.GetProperty("address").GetString()!).Distinct().ToArray();
+var addresses=receipt.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!).Distinct().ToArray();
 foreach(var address in addresses)
 {
     var resource=resources["FreedomArrow.icons."+address+".png"];

@@ -153,5 +153,6 @@ def apply(root,t,patches,native_ids,bodies,weapon_rules,assignments):
  assignments['pool_counts']={str(s):sum(r['SpecializationId']==s for r in t['SpecializationAvailabilitiesJson'].values()) for s in range(17,23)}
  (root/'source/UserData/FreedomArrow/pla-spec-assignments.json').write_text(json.dumps(assignments,indent=2)+'\n')
  receipt={'build':json.loads((root/'pla-specializations-contract.json').read_text())['build'],'source_sheet':c['spreadsheet_id'],'source_range':c['source_range'],'entries':summary,'count':90,'retired_drafts':retired,'icon_keys':sorted(icons),'native_verified':False,'limits':'Names, sizes, selected weapons and quantities match the sheet. Weapon performance, ammo stocks, costs and armor tiers are native analog drafts. Custom meshes used where installed; remaining handhelds use native meshes.'}
+ receipt['weapon_sources']={str(v[0]):v[3] for v in cache.values()}
  (root/'source/UserData/FreedomArrow/pla-infantry-designer.json').write_text(json.dumps(receipt,indent=2)+'\n')
  return receipt

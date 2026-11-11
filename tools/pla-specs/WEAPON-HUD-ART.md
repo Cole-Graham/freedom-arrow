@@ -1,17 +1,23 @@
 # PLA weapon HUD artwork
 
-**Build16 replaces weapon-class symbols on 307 equipment weapon definitions and 44 designer-infantry weapon definitions. Unit portraits, unit thumbnails, ammunition icons and gameplay remain unchanged.**
+**Weapon HUD revision: replaces the rejected block sketches with detailed native stand-in art for 341 entries and eight custom Chinese profile families (16 normal/outline sprites) for ten entries. Four custom profiles come from the approved meshes; four bullpup profiles use photo references or marked family approximations. Build17 Arsenal grouping is retained. Unit artwork, ammo, weapon stats, loadouts, models and rigging are unchanged. Native HUD validation is pending.**
 
-There are 108 embedded transparent PNG resources. Related weapons can share a physical-family silhouette. These are recognition drawings for review at game HUD size, not dimensional drawings or proof of exact variant geometry.
+## Comparison and limits
 
-QBZ-191, QBU-191, QLU-11 and QTS-11 use side profiles projected from the exact installed weapon meshes. The editable projections record source hashes in `hud-model-vectors/model-projection.json`. Remaining profiles are original vector sketches. Observed online photo sources, authors and evidence limits are recorded in `weapon-hud-references.json`; the HJ-10 folding-wing photo is an export-family reference. Prototype/unspecified weapons retain family approximations.
+The source comparison uses actual native weapon art visible in the 2 November Arsenal captures, alongside old and revised custom icons in equal preview slots. Gameplay values in those captures belong to ActualArrow 1.1.20 and are not a vanilla balance baseline. Offline texture exports showed artifacts, so they were rejected as visual approval evidence.
 
-The art does not establish final weapon designations, missile models, statistics or ammunition types. In particular, the existing generic gun names and prototype labels still require unit design work.
+Native game addresses are resolved from the native weapon definitions, with closer physical-shape substitutions for selected missiles, guns and machine guns. They are explicit stand-in art, not exact drawings of every Chinese weapon. No native artwork pixels are repackaged. The source index records the bundle checksum.
 
-## Rebuild
+Custom profiles face left and use natural aspect ratios, a pale foreground, real contour holes and separate outline resources. QBZ-191, QBU-191, QLU-11 and QTS-11 are unions of projected installed mesh triangles. QBZ-192 shares the QBZ-191 family mesh. QBZ-95 and QBU-88 follow public photo references; QBZ-97 and QBB-95 remain related-family approximations. Source links and mesh checksums are recorded in the receipts.
 
-Run the normal pinned `prepare.py`, then `render_weapon_hud.py --renderer PATH_TO_RSVG_CONVERT`. Mesh source SVGs are already versioned; `project_weapon_mesh.py` regenerates them from the existing FAM files. `preview_weapon_hud.py` makes review sheets. `verify_weapon_hud.py` compares every effective database field against Build15 and checks alpha/dimensions. The resource-check project verifies the actual compiled PNG bytes.
+## Rebuild and checks
+
+Run the pinned prepare.py, then render_weapon_hud.py with the RSVG renderer. project_weapon_mesh.py requires Shapely and rebuilds vector contours from FAM geometry without changing the models. reference_weapon_vectors.py rebuilds the editable reference paths. preview_weapon_hud.py creates the HTML comparison from unchanged images.
+
+extract_baseline.py reconstructs all effective Build17 rows from the exact predecessor archive. verify_weapon_hud.py permits only weapon HUDIcon changes and checks all custom sprites and native addresses. The resource-check project compares the compiled PNG bytes with the approved source. Package with package_hud.py over the pinned Build17 archive, preserving its UI receipt and every model/music payload.
 
 ## Document change log
 
 - 2026-11-11 10:52:55 PST (America/Los_Angeles) — Added weapon-only scope, source/approximation limits, model projection provenance and rebuild checks.
+
+- 2026-11-11 11:43:40 PST (America/Los_Angeles) — Build18: replaced rejected family sketches, recorded native-art reuse, separate outlines, actual capture comparison and evidence limits.

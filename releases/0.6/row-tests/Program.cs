@@ -322,7 +322,7 @@ foreach(var e in vehicles14["entries"].AsArray()){
  var stocks=merged["WeaponAmmunitionsJson"].Where(r=>r["UnitId"].GetValue<int>()==uid).ToList();
  Check(mounted.SetEquals(stocks.Select(r=>r["WeaponId"].GetValue<int>())),"equipment mounted guns and ammo agree "+uid);
  Check(!merged["ModificationsJson"].Any(r=>r["UnitId"].GetValue<int>()==uid),"no foreign donor loadout can reappear "+uid);
- foreach(int wid in mounted)Check(Row("WeaponsJson",wid)["HUDIcon"].GetValue<string>().StartsWith("FA_PLA_WP_"),"custom weapon icon "+uid+"/"+wid);
+ foreach(int wid in mounted){var art=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"pla-weapon-hud.json")))["entries"].AsArray().Single(e=>e["weapon"].GetValue<int>()==wid);Check(Row("WeaponsJson",wid)["HUDIcon"].GetValue<string>()==art["address"].GetValue<string>(),"approved weapon art address "+uid+"/"+wid);}
  foreach(var stock in stocks){var ammo=Row("AmmunitionsJson",stock["AmmunitionId"].GetValue<int>());Check(stock["Quantity"].GetValue<int>()>0&&ammo["HUDMultiplier"].GetValue<int>()>0&&ammo["HUDIcon"].GetValue<string>().StartsWith("FA_PLA_AMMO_"),"positive stock and custom ammo icon "+uid);}
 }
 foreach(int uid in new[]{936,1055}){

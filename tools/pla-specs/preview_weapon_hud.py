@@ -1,16 +1,15 @@
-"""Create labelled vector preview sheets from the editable weapon drawings."""
-import argparse,html,json,subprocess
+"""Make a browser review board from unchanged source images; no asset pixels are edited."""
+import argparse,base64,html,json
 from pathlib import Path
-from weapon_hud_art import get_profile
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);p.add_argument('--renderer',required=True);a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-root=Path(__file__).resolve().parents[2];data=json.loads((root/'releases/0.6/source/UserData/FreedomArrow/pla-weapon-hud.json').read_text());entries={}
-for e in data['entries']:entries.setdefault(e['profile'],e)
-for page in range((len(entries)+35)//36):
- rows=list(entries.values())[page*36:(page+1)*36];width=1560;height=60+((len(rows)+5)//6)*174
- svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}"><rect width="100%" height="100%" fill="#19202a"/><text x="24" y="35" fill="#fff" font-family="sans-serif" font-size="24">PLA weapon HUD art — draft preview {page+1}</text>'
- for i,e in enumerate(rows):
-  x=(i%6)*260;y=60+(i//6)*174;_,shape=get_profile(e['name'],e['scope']);override=root/'tools/pla-specs/hud-model-vectors'/(e['address']+'.svg')
-  if override.exists():raw=override.read_text();shape=raw[raw.index('>')+1:raw.rindex('</svg>')]
-  svg+=f'<g transform="translate({x} {y})"><rect x="5" width="250" height="167" rx="6" fill="#283241"/><g fill="#fff" transform="translate(0 -4)">{shape}</g><text x="12" y="154" fill="#b9d6ed" font-family="sans-serif" font-size="14">{html.escape(e["name"][:31])}</text></g>'
- svg+='</svg>';s=a.output/f'weapon-hud-preview-{page+1}.svg';s.write_text(svg);subprocess.run([a.renderer,'-o',str(s.with_suffix('.png')),str(s)],check=True)
-print('Preview sheets:',(len(entries)+35)//36)
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
+root=Path(__file__).resolve().parents[2];work=root.parent;icons=root/'releases/0.6/source/runtime-qa/icons';oldroot=work/'pla-five-specs-repo/releases/0.6/source/runtime-qa/icons';old=json.loads((work/'pla-five-specs-repo/releases/0.6/source/UserData/FreedomArrow/pla-weapon-hud.json').read_text());lookup={e['name']:e['address'] for e in old['entries']}
+def uri(p):return 'data:image/png;base64,'+base64.b64encode(p.read_bytes()).decode()
+def image(p,cls='large'):return f'<div class="{cls}"><img src="{uri(p)}"></div>'
+native=uri(work/'vengeance-armory-20261102/12-su34-stats.png');rows=''
+for name,key in [('QBZ-191','QBZ191'),('QBZ-95','QBZ95'),('QLU-11','QLU11'),('QBU-88','QBU88'),('QTS-11','QTS11')]:
+ previous=oldroot/(lookup[name]+'.png');current=icons/('FA_PLA_WP_'+key+'.png');outline=icons/('FA_PLA_WP_'+key+'_OUTLINE.png')
+ rows+=f'<div class="row"><b>{html.escape(name)}</b><div>{image(previous)}<small>Previous sketch / canvas</small></div><div>{image(current)}<small>Revised normal</small></div><div>{image(outline)}<small>Revised outline</small></div><div class="hud">{image(current,"slot")}{image(outline,"slot")}<small>100 × 40 px slots</small></div></div>'
+page='''<!doctype html><meta charset="utf-8"><title>[BA-codex:1567745029781454889] Weapon HUD comparison</title><style>
+*{box-sizing:border-box}body{margin:0;background:#17221f;color:#e7f7e4;font:15px Arial,sans-serif;padding:24px;width:1400px}h1{font-size:28px;margin:0 0 8px}p{color:#bdcdbf;line-height:1.4;margin:6px 0 14px}header{border-bottom:1px solid #55675b;padding-bottom:12px}.layout{display:grid;grid-template-columns:310px 1fr;gap:22px;margin-top:18px}.native{width:310px;height:350px;overflow:hidden;border:1px solid #6b796c}.native img{width:1568px;max-width:none;transform:translate(-1184px,-332px)}h2{font-size:18px;margin:0 0 14px}.row{display:grid;grid-template-columns:82px 202px 202px 202px 112px;gap:12px;align-items:center;border-bottom:1px solid #46534a;padding:12px 0}.large{height:100px;display:flex;align-items:center;justify-content:center;background:#26332d}.large img{max-width:194px;max-height:94px;object-fit:contain}.slot{width:100px;height:40px;display:flex;align-items:center;justify-content:center;background:#26332d;margin-bottom:3px}.slot img{max-width:100%;max-height:100%;object-fit:contain}small{display:block;color:#afc1b4;font-size:11px;margin-top:4px}.note{background:#27372e;border-left:3px solid #a5c3ae;padding:12px;margin-top:16px}.foot{font-size:13px;margin-top:18px;color:#c6d6c8}</style>
+<header><h1>Weapon HUD art — vanilla style comparison</h1><p>PLA TEST Build 18 candidate · Offline artwork review · Native game appearance of this revision is untested</p></header><div class="layout"><aside><h2>Native weapon HUD reference</h2><div class="native"><img src="'''+native+'''"></div><p>Actual Arsenal capture, 2 November 2026. Native weapon art is visible; gameplay values came from ActualArrow 1.1.20 and are not a vanilla balance baseline.</p><div class="note">Compare facing direction, long thin barrels/missiles, natural proportions, small gaps and pale silhouettes.</div><p>341 weapon entries now reuse the game’s own detailed stand-in art by native address. No native texture pixels are repackaged.</p><p>Four Chinese profiles use the installed weapon meshes. Four bullpup profiles use photo references or marked family approximations.</p></aside><main><h2>Before / revised normal / revised outline / HUD-sized view</h2>'''+rows+'''</main></div><div class="foot">Weapon HUD art only. Portraits, unit icons, ammunition counts, weapon statistics, models and rigging are unchanged. Preview slots illustrate readability; they are not proof of native Unity layout.</div>'''
+(a.output/'comparison.html').write_text(page);print(a.output/'comparison.html')

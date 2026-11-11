@@ -1,76 +1,163 @@
 {
-  "scope": "Weapon HUD only; no unit portrait or thumbnail work is included.",
-  "observed_photo_references": [
-    {
-      "family": "PL10",
-      "url": "https://commons.wikimedia.org/wiki/File:PL-10_Air-to-air_missile_20250921.jpg",
-      "author": "颐园居",
-      "license": "CC BY-SA 4.0",
-      "basis": "Original exhibit photograph inspected; rounded nose and long strakes simplified."
-    },
-    {
-      "family": "PL15",
-      "url": "https://commons.wikimedia.org/wiki/File:PL-15_20250921.jpg",
-      "author": "颐园居",
-      "license": "CC BY-SA 4.0",
-      "basis": "Original exhibit photograph inspected; pointed nose and compact fins simplified."
-    },
-    {
-      "family": "HJ10",
-      "url": "https://commons.wikimedia.org/wiki/File:Red_Arrow_10_Anti-tank_missile.jpg",
-      "author": "Airbunny",
-      "license": "CC BY-SA 4.0",
-      "basis": "Export Red Arrow10B exhibit photo inspected. Folding-wing family reference, not exact AFT10 missile geometry."
-    },
-    {
-      "family": "QJY201",
-      "url": "https://commons.wikimedia.org/wiki/File:QJY-201Zhuhai.jpg",
-      "author": "Dan3031949",
-      "license": "CC BY-SA 4.0",
-      "basis": "Original exhibit photograph inspected. Folding stock, feed box and bipod simplified."
-    },
-    {
-      "family": "QBZ191",
-      "url": "https://commons.wikimedia.org/wiki/File:QBZ191zhuhai_(cropped).jpg",
-      "author": "Dan3031949",
-      "license": "CC BY-SA 4.0",
-      "basis": "Photo inspected for recognition; shipped profile instead projects the installed mesh."
-    }
-  ],
-  "mesh_projections": [
+  "build": 18,
+  "style_basis": "Native weapon HUD sprites and actual unmodified-art HUD captures; left-facing, natural aspect, pale ivory silhouettes with contour detail and negative spaces. Offline texture exports showed artifacts and were not used as visual approval evidence.",
+  "native_art": "341 entries resolve original native game addresses. These remain stand-in weapon shapes, not exact Chinese artwork. MALVA is absent from the native bundle, so PLA uses 2A64_MSTA.",
+  "native_bundle": "unitweaponicons_assets_all_59aec698ffecc40167652e2f74c4ac89.bundle",
+  "custom_models": [
     {
       "profile": "QBZ191",
       "source_file": "w_qbz191.fam",
       "source_sha256": "e10bd671f64987e951254b8199c6500f341fd945128c5cb5315521fcfda34320",
-      "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
-      "triangles": 10692,
-      "svg_sha256": "4a84ba5dfab739821619dfd812c38562d0ebf2a6ae578896763618cc8b20c669"
+      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "triangles": 11085,
+      "svg_sha256": {
+        "plain": "64e1781d557ee6e108669d56441a0d7d3f9fad24952d8e968f9afe8424770631",
+        "_OUTLINE": "1b8b6dedf014b2cfb7444681fd7dfcfe12b9430ef62fc1f90c51d61a6d297a34"
+      },
+      "width": 232,
+      "height": 93
     },
     {
       "profile": "QBU191",
       "source_file": "w_qbu191.fam",
       "source_sha256": "a865a719c66341d3a54a827f286dd7e514981cde88e45f9a6cbe8a9cedb497b7",
-      "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
-      "triangles": 10328,
-      "svg_sha256": "16cdb3990283ef7426ef7c30dd03cd81f04330ad45d250802e193d1825f6882a"
+      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "triangles": 10719,
+      "svg_sha256": {
+        "plain": "2d38b046f5f37669ec521f170767f2600737612299401507376ecc6cbcb85072",
+        "_OUTLINE": "a4b28491a621c8ecb77b2cc9897555a003ef0ab9be51b6a29ae13e5dbb20206a"
+      },
+      "width": 232,
+      "height": 76
     },
     {
       "profile": "QLU11",
       "source_file": "w_qlu11.fam",
       "source_sha256": "3b59eca9d0fce42090e4a8fd743bd6fd10077e8aa569f580a47834195570cf11",
-      "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
-      "triangles": 9448,
-      "svg_sha256": "3499f5a3587a2366fc788777d366c9ae460ff430f8120a3f5758c7eb0358d6b2"
+      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "triangles": 10927,
+      "svg_sha256": {
+        "plain": "dcec08a067bc307d320de5b7b98346b72137acfd8876ed46b91759b6ec67a19c",
+        "_OUTLINE": "8c4dc89b0d11d207ebdeeed2af573218a6e641fcdfce970acc95c0fe2a9cb3f7"
+      },
+      "width": 232,
+      "height": 76
     },
     {
       "profile": "QTS11",
       "source_file": "w_qts11.fam",
       "source_sha256": "79d101e5e047bd5b1367b1f5119f65d41855486de11d04351c03f1a6ccb8483e",
-      "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
-      "triangles": 9932,
-      "svg_sha256": "971a1a3ef3a21a01e2926a7887c0c367af24584d0d009806e74eb2495120b522"
+      "projection": "Unity +Z faces left; +Y up; union of all side-projected mesh triangles, holes retained",
+      "triangles": 10349,
+      "svg_sha256": {
+        "plain": "c11c196761f938df460115affa607ebaafbec14e580ed6a2e08c88fbe25c956c",
+        "_OUTLINE": "2707f886ad0866402ca5006a7d061eba09fe00b947c9249f5a9f78372e982243"
+      },
+      "width": 232,
+      "height": 100
     }
   ],
-  "other_profiles": "Original simplified family sketches. Exact variant appearance and native HUD readability remain unverified. Generic/prototype designations do not establish a distinct real weapon.",
-  "art_license": "Original reference-based SVG drawings are provided under CC BY-SA 4.0; model projections retain the underlying model permissions. No reference photos are embedded or redistributed in the mod."
+  "custom_reference_contours": [
+    {
+      "profile": "QBZ95",
+      "basis": "QBZ95 photo contour",
+      "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+      "method": "Original editable contour vector; no photo pixels copied"
+    },
+    {
+      "profile": "QBZ97",
+      "basis": "QBZ95 family approximation with straight magazine",
+      "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+      "method": "Original editable contour vector; no photo pixels copied"
+    },
+    {
+      "profile": "QBB95",
+      "basis": "QBZ95 support-weapon family approximation with drum, barrel and bipod",
+      "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+      "method": "Original editable contour vector; no photo pixels copied"
+    },
+    {
+      "profile": "QBU88",
+      "basis": "QBU88 photo contour",
+      "source": "https://commons.wikimedia.org/wiki/File:Qbu-88-0.jpg",
+      "method": "Original editable contour vector; no photo pixels copied"
+    }
+  ],
+  "prior_photo_research": {
+    "scope": "Weapon HUD only; no unit portrait or thumbnail work is included.",
+    "observed_photo_references": [
+      {
+        "family": "PL10",
+        "url": "https://commons.wikimedia.org/wiki/File:PL-10_Air-to-air_missile_20250921.jpg",
+        "author": "\u9890\u56ed\u5c45",
+        "license": "CC BY-SA 4.0",
+        "basis": "Original exhibit photograph inspected; rounded nose and long strakes simplified."
+      },
+      {
+        "family": "PL15",
+        "url": "https://commons.wikimedia.org/wiki/File:PL-15_20250921.jpg",
+        "author": "\u9890\u56ed\u5c45",
+        "license": "CC BY-SA 4.0",
+        "basis": "Original exhibit photograph inspected; pointed nose and compact fins simplified."
+      },
+      {
+        "family": "HJ10",
+        "url": "https://commons.wikimedia.org/wiki/File:Red_Arrow_10_Anti-tank_missile.jpg",
+        "author": "Airbunny",
+        "license": "CC BY-SA 4.0",
+        "basis": "Export Red Arrow10B exhibit photo inspected. Folding-wing family reference, not exact AFT10 missile geometry."
+      },
+      {
+        "family": "QJY201",
+        "url": "https://commons.wikimedia.org/wiki/File:QJY-201Zhuhai.jpg",
+        "author": "Dan3031949",
+        "license": "CC BY-SA 4.0",
+        "basis": "Original exhibit photograph inspected. Folding stock, feed box and bipod simplified."
+      },
+      {
+        "family": "QBZ191",
+        "url": "https://commons.wikimedia.org/wiki/File:QBZ191zhuhai_(cropped).jpg",
+        "author": "Dan3031949",
+        "license": "CC BY-SA 4.0",
+        "basis": "Photo inspected for recognition; shipped profile instead projects the installed mesh."
+      }
+    ],
+    "mesh_projections": [
+      {
+        "profile": "QBZ191",
+        "source_file": "w_qbz191.fam",
+        "source_sha256": "e10bd671f64987e951254b8199c6500f341fd945128c5cb5315521fcfda34320",
+        "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+        "triangles": 10692,
+        "svg_sha256": "4a84ba5dfab739821619dfd812c38562d0ebf2a6ae578896763618cc8b20c669"
+      },
+      {
+        "profile": "QBU191",
+        "source_file": "w_qbu191.fam",
+        "source_sha256": "a865a719c66341d3a54a827f286dd7e514981cde88e45f9a6cbe8a9cedb497b7",
+        "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+        "triangles": 10328,
+        "svg_sha256": "16cdb3990283ef7426ef7c30dd03cd81f04330ad45d250802e193d1825f6882a"
+      },
+      {
+        "profile": "QLU11",
+        "source_file": "w_qlu11.fam",
+        "source_sha256": "3b59eca9d0fce42090e4a8fd743bd6fd10077e8aa569f580a47834195570cf11",
+        "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+        "triangles": 9448,
+        "svg_sha256": "3499f5a3587a2366fc788777d366c9ae460ff430f8120a3f5758c7eb0358d6b2"
+      },
+      {
+        "profile": "QTS11",
+        "source_file": "w_qts11.fam",
+        "source_sha256": "79d101e5e047bd5b1367b1f5119f65d41855486de11d04351c03f1a6ccb8483e",
+        "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+        "triangles": 9932,
+        "svg_sha256": "971a1a3ef3a21a01e2926a7887c0c367af24584d0d009806e74eb2495120b522"
+      }
+    ],
+    "other_profiles": "Original simplified family sketches. Exact variant appearance and native HUD readability remain unverified. Generic/prototype designations do not establish a distinct real weapon.",
+    "art_license": "Original reference-based SVG drawings are provided under CC BY-SA 4.0; model projections retain the underlying model permissions. No reference photos are embedded or redistributed in the mod."
+  },
+  "native_verified": false
 }

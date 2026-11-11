@@ -1,0 +1,26 @@
+[
+  {
+    "profile": "QBZ95",
+    "basis": "QBZ95 photo contour",
+    "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+    "method": "Original editable contour vector; no photo pixels copied"
+  },
+  {
+    "profile": "QBZ97",
+    "basis": "QBZ95 family approximation with straight magazine",
+    "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+    "method": "Original editable contour vector; no photo pixels copied"
+  },
+  {
+    "profile": "QBB95",
+    "basis": "QBZ95 support-weapon family approximation with drum, barrel and bipod",
+    "source": "https://commons.wikimedia.org/wiki/File:QBZ95_automatic_rifle_mod_noBG.png",
+    "method": "Original editable contour vector; no photo pixels copied"
+  },
+  {
+    "profile": "QBU88",
+    "basis": "QBU88 photo contour",
+    "source": "https://commons.wikimedia.org/wiki/File:Qbu-88-0.jpg",
+    "method": "Original editable contour vector; no photo pixels copied"
+  }
+]

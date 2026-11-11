@@ -1,0 +1,2629 @@
+{
+  "passed": true,
+  "weapon_fields_changed": 343,
+  "vehicle_weapons": 307,
+  "infantry_weapons": 44,
+  "native_icon_entries": 341,
+  "custom_icon_entries": 10,
+  "custom_profiles": 8,
+  "custom_normal_outline_pngs": 16,
+  "all_other_database_fields_identical": true,
+  "unit_art_unchanged": true,
+  "ammo_icons_and_counts_unchanged": true,
+  "png_sha256": {
+    "FA_PLA_WP_QBB95": "8d9b82506870e89d9c333b877328f4eb242c1f9c093513541451b34a28496087",
+    "FA_PLA_WP_QBB95_OUTLINE": "562728118283e29c2faf469f47628fa427de4f12eb329f524e5a0ecbb803c58e",
+    "FA_PLA_WP_QBU191": "38b4e6a08626fce570956551568c198a48dec1cbb270bda4004cb45f8697de61",
+    "FA_PLA_WP_QBU191_OUTLINE": "e9f48690fcaf2cfd93e64ccec3bb89e790de1d63e493f8c616ed5ca295d6bee3",
+    "FA_PLA_WP_QBU88": "3db4cbcea5a50a61d9a625b0831cdc2747de719ebfac26590e0f262c2f8bdb89",
+    "FA_PLA_WP_QBU88_OUTLINE": "8d3d3e76b050e1550bab7a4cfe40ef856b0e57c0e68fab341527266b202c20a5",
+    "FA_PLA_WP_QBZ191": "bdb78d81568ee30d5713033d7cb9f180c98769a798dc039baa176f736bb6d297",
+    "FA_PLA_WP_QBZ191_OUTLINE": "d9a6c13bcadd7e1a012a4d85650137af8d00eb989d100710a553b89e1cae67f8",
+    "FA_PLA_WP_QBZ95": "c47c9c465d37405bb1ec41215694f19ece461d2ad0c2d8a762127d7e48fe571b",
+    "FA_PLA_WP_QBZ95_OUTLINE": "75fbb927b04b0a234874aad1695b4ebdd19ee8791a7b9805250107b7800a2362",
+    "FA_PLA_WP_QBZ97": "4a8bf18695a5bcffae9f0fbad3dab1a9e9dcfc819fb07b07b23d34ed2d7c102c",
+    "FA_PLA_WP_QBZ97_OUTLINE": "fef365e5e33e31d2fa4a82bdfea97aaddda56afeb8bf560e13812ad6c6bcc8f4",
+    "FA_PLA_WP_QLU11": "9db5d71ee296d9ea126bd020902e6c2528148ed00085a3536c9f193e2c6a6382",
+    "FA_PLA_WP_QLU11_OUTLINE": "0ae56476cd03268de949f9e4240cd82a53800c80f04ede7adf006ba1d28dbe03",
+    "FA_PLA_WP_QTS11": "38950022c20f722132796df0fe848130d2e305428336933117d613cf35ea9493",
+    "FA_PLA_WP_QTS11_OUTLINE": "85e1a6c3a9531f7a0427a166501512d03366cd6cf21e3b9f0dfe4faa32912543"
+  },
+  "png_dimensions": {
+    "FA_PLA_WP_QBB95": {
+      "size": [
+        232,
+        87
+      ],
+      "alpha_bounds": [
+        3,
+        3,
+        229,
+        79
+      ]
+    },
+    "FA_PLA_WP_QBB95_OUTLINE": {
+      "size": [
+        232,
+        87
+      ],
+      "alpha_bounds": [
+        3,
+        3,
+        229,
+        80
+      ]
+    },
+    "FA_PLA_WP_QBU191": {
+      "size": [
+        232,
+        76
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        230,
+        74
+      ]
+    },
+    "FA_PLA_WP_QBU191_OUTLINE": {
+      "size": [
+        232,
+        76
+      ],
+      "alpha_bounds": [
+        1,
+        1,
+        231,
+        75
+      ]
+    },
+    "FA_PLA_WP_QBU88": {
+      "size": [
+        232,
+        75
+      ],
+      "alpha_bounds": [
+        4,
+        3,
+        229,
+        71
+      ]
+    },
+    "FA_PLA_WP_QBU88_OUTLINE": {
+      "size": [
+        232,
+        75
+      ],
+      "alpha_bounds": [
+        3,
+        2,
+        230,
+        72
+      ]
+    },
+    "FA_PLA_WP_QBZ191": {
+      "size": [
+        232,
+        93
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        230,
+        91
+      ]
+    },
+    "FA_PLA_WP_QBZ191_OUTLINE": {
+      "size": [
+        232,
+        93
+      ],
+      "alpha_bounds": [
+        1,
+        1,
+        231,
+        91
+      ]
+    },
+    "FA_PLA_WP_QBZ95": {
+      "size": [
+        232,
+        94
+      ],
+      "alpha_bounds": [
+        4,
+        4,
+        228,
+        90
+      ]
+    },
+    "FA_PLA_WP_QBZ95_OUTLINE": {
+      "size": [
+        232,
+        94
+      ],
+      "alpha_bounds": [
+        3,
+        3,
+        229,
+        90
+      ]
+    },
+    "FA_PLA_WP_QBZ97": {
+      "size": [
+        232,
+        82
+      ],
+      "alpha_bounds": [
+        4,
+        4,
+        228,
+        77
+      ]
+    },
+    "FA_PLA_WP_QBZ97_OUTLINE": {
+      "size": [
+        232,
+        82
+      ],
+      "alpha_bounds": [
+        3,
+        3,
+        229,
+        78
+      ]
+    },
+    "FA_PLA_WP_QLU11": {
+      "size": [
+        232,
+        76
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        230,
+        74
+      ]
+    },
+    "FA_PLA_WP_QLU11_OUTLINE": {
+      "size": [
+        232,
+        76
+      ],
+      "alpha_bounds": [
+        1,
+        1,
+        231,
+        74
+      ]
+    },
+    "FA_PLA_WP_QTS11": {
+      "size": [
+        232,
+        100
+      ],
+      "alpha_bounds": [
+        2,
+        2,
+        230,
+        98
+      ]
+    },
+    "FA_PLA_WP_QTS11_OUTLINE": {
+      "size": [
+        232,
+        100
+      ],
+      "alpha_bounds": [
+        1,
+        1,
+        231,
+        99
+      ]
+    }
+  },
+  "changes": [
+    {
+      "table": "WeaponsJson",
+      "id": 2009001,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ89_MOUNT",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009019,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_BMP",
+      "after": "2A70"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009027,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A72"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009033,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009045,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009053,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009059,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009071,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009081,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009085,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009099,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009109,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009113,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009127,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK105",
+      "after": "M35_M10"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009135,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009141,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009153,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER155",
+      "after": "M284_PALADIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009165,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PHL300",
+      "after": "SMERCH"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009181,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TWIN35",
+      "after": "PANCIR_AC"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009195,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ17",
+      "after": "TOR_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009209,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ9",
+      "after": "S300_FAVORIT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009229,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN23",
+      "after": "M197"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009235,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009241,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009247,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009261,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJY201",
+      "after": "M240"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009267,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009273,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009279,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009285,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009291,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_KD88",
+      "after": "KH29_T_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009297,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009303,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009309,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009315,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009321,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009327,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009333,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_YJ91",
+      "after": "KH31P"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009339,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_KD88",
+      "after": "KH38ML"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009345,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_KD20",
+      "after": "TOMAHAWK_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009351,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009365,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ROTARY25",
+      "after": "GAU12U_EQUALIZER"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009371,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_FB10",
+      "after": "Stinger_x4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009375,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009381,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009393,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PHL122",
+      "after": "GRAD"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009399,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009405,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009411,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009417,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009423,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_R73",
+      "after": "R73_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009429,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_KH29",
+      "after": "KH29_T_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009445,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ7",
+      "after": "OSA_AKM"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009459,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN_MORTAR120",
+      "after": "NONA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009473,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A82_ARMATA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009483,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009487,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009493,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009499,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL17",
+      "after": "R37"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009513,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK105",
+      "after": "M35_M10"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009521,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009527,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009541,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009555,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QUAD25",
+      "after": "AZP23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009561,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QW2",
+      "after": "IGLA_N_ZRK"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009573,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER155",
+      "after": "M284_PALADIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009585,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_SR5220",
+      "after": "SMERCH"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009599,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TWIN30",
+      "after": "PANCIR_AC"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009605,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_FK2000",
+      "after": "PANCIR_MISSILES"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009619,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ10",
+      "after": "HELLFIRE_X2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009633,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009641,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009647,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QN502",
+      "after": "KORNET_x2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009653,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QN201",
+      "after": "BULAT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009665,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK105",
+      "after": "M68A1_MGS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009673,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009679,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009693,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009703,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009707,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009721,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009727,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009733,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009747,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009753,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009759,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009771,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "INF_PKP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009777,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009783,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009789,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009795,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009801,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL17",
+      "after": "R37"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009819,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_BMP",
+      "after": "2A70"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009827,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A72"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009833,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009837,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_BA7",
+      "after": "KORNET_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009851,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK120",
+      "after": "M256_ABRAMS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009859,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009865,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009879,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009889,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009893,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009907,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009917,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009921,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009933,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009947,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_NAVAL76",
+      "after": "2A91_57MM"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009963,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK105",
+      "after": "M35_M10"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009971,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009977,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009991,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ89_MOUNT",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2009997,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010003,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010009,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010021,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010031,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010035,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010049,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_KPVT",
+      "after": "KPVT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010055,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010065,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN85",
+      "after": "D56TS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010073,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010077,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010091,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010105,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010121,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ7",
+      "after": "OSA_AKM"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010135,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010143,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010149,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010159,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PHL122",
+      "after": "GRAD"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010165,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010171,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010177,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LS6",
+      "after": "GBU53"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010191,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A82_ARMATA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010201,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010205,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010211,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010217,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010223,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LS6",
+      "after": "GBU53"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010229,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010235,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010241,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_YJ91",
+      "after": "KH31P"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010247,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010253,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL2",
+      "after": "R60"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010259,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LS6",
+      "after": "GBU53"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010265,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010271,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010277,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_YJ91",
+      "after": "KH31P"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010291,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN23",
+      "after": "M197"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010297,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010303,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010309,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010323,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010331,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010337,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010347,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_DF17",
+      "after": "ISKANDER_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010359,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_DF15",
+      "after": "ISKANDER_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010371,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_DF21",
+      "after": "ISKANDER_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010383,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_DF21",
+      "after": "ISKANDER_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010395,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_DF31",
+      "after": "ISKANDER_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010409,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010423,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER155",
+      "after": "M284_PALADIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010435,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PHL370",
+      "after": "SMERCH"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010447,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PHL370",
+      "after": "SMERCH"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010461,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN_MORTAR120",
+      "after": "NONA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010475,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010487,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER155",
+      "after": "M284_PALADIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010501,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010515,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER152",
+      "after": "2A64_MSTA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010529,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010543,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HOWITZER122",
+      "after": "GVOZDIKA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010555,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_SY400",
+      "after": "ISKANDER_2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010569,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ6",
+      "after": "BUK_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010583,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ11",
+      "after": "BUK_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010597,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ12",
+      "after": "BUK_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010611,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ16",
+      "after": "BUK_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010625,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HQ17",
+      "after": "TOR_M2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010639,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QUAD25",
+      "after": "AZP23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010645,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QW2",
+      "after": "IGLA_N_ZRK"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010659,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TWIN37",
+      "after": "AZP23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010673,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QUAD25",
+      "after": "AZP23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010679,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QW2",
+      "after": "IGLA_N_ZRK"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010691,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ9",
+      "after": "KONKURS_BRDM"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010705,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LOITERING_PROXY",
+      "after": "HELLFIRE_X2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010721,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ10",
+      "after": "HELLFIRE_X2"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010735,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010743,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010749,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010761,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ89_MOUNT",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010775,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ89_MOUNT",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010789,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_RIFLED",
+      "after": "MT12"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010799,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010805,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010817,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_RIFLED",
+      "after": "MT12"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010827,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010833,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010845,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_RIFLED",
+      "after": "MT12"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010855,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010861,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010875,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010887,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN73",
+      "after": "2A28_GROM"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010895,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010901,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ73",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010915,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010929,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010943,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010951,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010957,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010969,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010977,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010983,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2010995,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011003,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011009,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011021,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011029,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011035,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011045,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJY201",
+      "after": "M240"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011057,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011067,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011071,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011085,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011095,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011099,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011113,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK120",
+      "after": "M256_ABRAMS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011123,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011127,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011139,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011147,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011151,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ73",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011167,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_BMP",
+      "after": "2A70"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011175,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A72"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011181,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011193,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011201,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011207,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011219,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011227,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011233,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011245,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011253,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011259,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011271,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT99",
+      "after": "2A42"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011279,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011285,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "KONKURS_VEHICAL"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011297,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TANK105",
+      "after": "M68A1_MGS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011305,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011311,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011323,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GUN100_RIFLED",
+      "after": "MT12"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011333,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011339,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011353,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011363,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011367,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011381,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_ZPT98",
+      "after": "2A46M"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011391,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TYPE86",
+      "after": "PKT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011395,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJC88",
+      "after": "Kord"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011409,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM",
+      "after": "KORNET_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011423,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM",
+      "after": "KORNET_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011437,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM",
+      "after": "KORNET_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011443,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH301",
+      "after": "GSH30_1"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011449,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011455,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011461,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL10",
+      "after": "AIM_9X_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011467,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL15",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011473,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011479,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011485,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011491,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL2",
+      "after": "R60"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011497,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011503,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL2",
+      "after": "R60"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011509,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011515,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL2",
+      "after": "R60"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011521,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011527,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL8",
+      "after": "R73_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011533,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_PL12",
+      "after": "AMRAAM_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011539,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_GSH23",
+      "after": "GSH23"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011553,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011559,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011565,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011579,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN30",
+      "after": "M230_HELI"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011585,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011591,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011597,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011611,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_UNSPECIFIED_UAV_ATGM",
+      "after": "KORNET_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011625,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJY201",
+      "after": "M240"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011645,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_YJ18",
+      "after": "TOMAHAWK_MISSILE"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011659,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN23",
+      "after": "M197"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011665,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011671,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011677,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011691,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN23",
+      "after": "M197"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011697,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011703,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011709,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011723,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011729,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011735,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011749,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011755,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011761,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011775,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_HJ8",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011781,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD57",
+      "after": "HYDRA_x7_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011787,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011801,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_CHIN30",
+      "after": "M230_HELI"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011807,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_AKD10",
+      "after": "HELLFIRE_X4"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011813,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_POD90",
+      "after": "HYDRA_x19_PYLON"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011819,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_TY90",
+      "after": "STINGER_x2_WINGTIP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011832,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_PF98",
+      "after": "INF_RPG29"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011834,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJB201",
+      "after": "INF_Mk46"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011864,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_HJ12",
+      "after": "INF_JAVELIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011887,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_PF89",
+      "after": "INF_RPG26"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011889,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_QLG10",
+      "after": "INF_AK74M_GP"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011919,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_PF98",
+      "after": "INF_RPG29"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011922,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJS161",
+      "after": "INF_Mk46"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2011972,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ171",
+      "after": "INF_HMG_KORD"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012024,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_DZJ08",
+      "after": "INF_M141"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012054,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QBU10",
+      "after": "INF_ASVK"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012081,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_MANPADS",
+      "after": "INF_IGLA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012131,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QBS09",
+      "after": "INF_M1014"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012157,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_QLZ87",
+      "after": "INF_AGS30"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012264,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_HJ8",
+      "after": "INF_KONKURS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012288,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_MANPADS",
+      "after": "INF_IGLA"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012312,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_QLZ04",
+      "after": "INF_AGS30"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012387,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJZ89",
+      "after": "INF_HMG_KORD"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012411,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QJY201",
+      "after": "M240"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012515,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_PF97",
+      "after": "INF_RPG26"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012643,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_HJ73",
+      "after": "INF_FAGOT"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2012924,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QCQ05",
+      "after": "INF_MP5"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2013057,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_FHJ02",
+      "after": "INF_M202"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2013087,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QBZ192",
+      "after": "FA_PLA_WP_QBZ191"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2013157,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_PF98",
+      "after": "INF_RPG29"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2013349,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QCW05",
+      "after": "INF_MP5"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014001,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_QBZ95",
+      "after": "FA_PLA_WP_QBZ97"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014088,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_LG5",
+      "after": "INF_MK47"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014116,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_LG5S",
+      "after": "INF_MK47"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014146,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_LG6",
+      "after": "INF_M32"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014177,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_LG4",
+      "after": "INF_M32"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014208,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_LG3",
+      "after": "INF_MK19"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014236,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_QN202",
+      "after": "INF_KONKURS"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014264,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_TL4",
+      "after": "TOW_M220"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014292,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_GAM102",
+      "after": "TOW_M220"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014320,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_HJ12",
+      "after": "INF_JAVELIN"
+    },
+    {
+      "table": "WeaponsJson",
+      "id": 2014406,
+      "field": "HUDIcon",
+      "before": "FA_PLA_WP_LAUNCHER_FHJ02",
+      "after": "INF_M202"
+    }
+  ],
+  "native_verified": false
+}

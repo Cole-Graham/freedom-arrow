@@ -1,3 +1,9 @@
+# PLA TEST Build 18
+
+**Weapon HUD revision: replaces the rejected block sketches with detailed native stand-in art for 341 entries and eight custom Chinese profile families (16 normal/outline sprites) for ten entries. Four custom profiles come from the approved meshes; four bullpup profiles use photo references or marked family approximations. Build17 Arsenal grouping is retained. Unit artwork, ammo, weapon stats, loadouts, models and rigging are unchanged. Native HUD validation is pending.**
+
+## Historical Build17 UI correction
+
 # PLA TEST Build 17
 
 **Arsenal specialization presentation fix: shared PLA units follow a selected specialization heading instead of remaining under their first eligible heading. Native availability, search, category/type filters, normal/photo cards and callbacks stay in use. Build16 weapon-family HUD artwork and all existing gameplay, infantry sizes, models, offsets and music are retained. Native UI verification is pending.**
@@ -575,3 +581,5 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.
 - 2026-11-11 10:52:55 PST (America/Los_Angeles) — Build16 weapon HUD update only; unit art and gameplay retained.
 - 2026-11-11 10:58:01 PST (America/Los_Angeles) — Build17: selected-spec shared-card grouping and normal/photo reset support; retains Build16 weapon HUD art. Native UI verification pending.
+
+- 2026-11-11 11:43:40 PST (America/Los_Angeles) — Replaced rejected weapon sketches, added normal/outline contours, documented native stand-ins and retained the Build17 UI correction.

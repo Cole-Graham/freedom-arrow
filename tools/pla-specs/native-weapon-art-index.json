@@ -1,0 +1,1810 @@
+{
+  "source_bundle": "unitweaponicons_assets_all_59aec698ffecc40167652e2f74c4ac89.bundle",
+  "source_sha256": "2e1205f80353ce10622b2b8b3d01b95ad6762c01b2e885d1078fec7a41ec641e",
+  "textures": {
+    "KH31P": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M4A1_M203": {
+      "width": 234,
+      "height": 90
+    },
+    "HELLFIRE_X4": {
+      "width": 232,
+      "height": 88
+    },
+    "JAVELIN": {
+      "width": 232,
+      "height": 88
+    },
+    "GBU57_MOB": {
+      "width": 234,
+      "height": 90
+    },
+    "MLRS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M16A4_M320": {
+      "width": 936,
+      "height": 360
+    },
+    "INF_M141": {
+      "width": 936,
+      "height": 360
+    },
+    "CATFAE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_HK416_D10RS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SV98": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M4A1": {
+      "width": 234,
+      "height": 90
+    },
+    "ZB_500AS": {
+      "width": 234,
+      "height": 90
+    },
+    "STRELEC_X2": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_MRGG_S": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPK16_LONG": {
+      "width": 232,
+      "height": 88
+    },
+    "KORNET_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "MORTAR_HE": {
+      "width": 234,
+      "height": 90
+    },
+    "JATM": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_DXL4": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SVDU": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK_74M": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK74RMO": {
+      "width": 232,
+      "height": 88
+    },
+    "AP23": {
+      "width": 232,
+      "height": 88
+    },
+    "DEVA": {
+      "width": 234,
+      "height": 90
+    },
+    "KORNET_x2": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH_MK13": {
+      "width": 232,
+      "height": 88
+    },
+    "KH_35U": {
+      "width": 234,
+      "height": 90
+    },
+    "TOW_M41": {
+      "width": 936,
+      "height": 360
+    },
+    "INF_AK15_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "S13_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "MK77_FIREBOMB": {
+      "width": 234,
+      "height": 90
+    },
+    "KPVT_UAZ": {
+      "width": 234,
+      "height": 90
+    },
+    "TUNGUSKA": {
+      "width": 936,
+      "height": 360
+    },
+    "S60_57MM": {
+      "width": 232,
+      "height": 88
+    },
+    "RBS70": {
+      "width": 234,
+      "height": 90
+    },
+    "GAU12U_EQUALIZER": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M27": {
+      "width": 232,
+      "height": 88
+    },
+    "SCIMITAR": {
+      "width": 234,
+      "height": 90
+    },
+    "AK630M": {
+      "width": 234,
+      "height": 90
+    },
+    "FAB_250": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_ADS_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "KH29_T_MISSILE": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_PKM": {
+      "width": 232,
+      "height": 88
+    },
+    "PANCIR_AC": {
+      "width": 232,
+      "height": 88
+    },
+    "HELLFIRE_SHORAD": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M240L_TPD": {
+      "width": 232,
+      "height": 88
+    },
+    "M197": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M4A1_M320": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_VERBA": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_Mk48": {
+      "width": 232,
+      "height": 88
+    },
+    "TOR_M2": {
+      "width": 232,
+      "height": 88
+    },
+    "GIAZINT": {
+      "width": 234,
+      "height": 90
+    },
+    "RPG_7OG": {
+      "width": 234,
+      "height": 90
+    },
+    "MK84_BOMB": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_CQBR_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "ZUNI_POD": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M107A1": {
+      "width": 232,
+      "height": 88
+    },
+    "SMERCH": {
+      "width": 232,
+      "height": 88
+    },
+    "2A46M": {
+      "width": 232,
+      "height": 88
+    },
+    "GBU54": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_PKP_PBS": {
+      "width": 232,
+      "height": 88
+    },
+    "MK82_SNAKEYE": {
+      "width": 232,
+      "height": 88
+    },
+    "GVOZDIKA": {
+      "width": 234,
+      "height": 90
+    },
+    "TOS2": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AN94_GP": {
+      "width": 234,
+      "height": 90
+    },
+    "R27_R_MISSILE": {
+      "width": 232,
+      "height": 88
+    },
+    "HYDRA_x19_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK15": {
+      "width": 232,
+      "height": 88
+    },
+    "GSH30_2": {
+      "width": 232,
+      "height": 88
+    },
+    "TOW_M220": {
+      "width": 232,
+      "height": 88
+    },
+    "BOFORS_L60": {
+      "width": 232,
+      "height": 88
+    },
+    "TOW_x2": {
+      "width": 232,
+      "height": 88
+    },
+    "KAMA_TUBES": {
+      "width": 232,
+      "height": 88
+    },
+    "JSM": {
+      "width": 234,
+      "height": 90
+    },
+    "GBU55": {
+      "width": 234,
+      "height": 90
+    },
+    "GERMES_A": {
+      "width": 234,
+      "height": 90
+    },
+    "M68A1_M60": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK74M": {
+      "width": 234,
+      "height": 90
+    },
+    "RPG_7V": {
+      "width": 234,
+      "height": 90
+    },
+    "GBU39_BOMB": {
+      "width": 232,
+      "height": 88
+    },
+    "2A82_ARMATA": {
+      "width": 232,
+      "height": 88
+    },
+    "AGM_181A_LRSO": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M2": {
+      "width": 234,
+      "height": 90
+    },
+    "KONKURS_VEHICAL": {
+      "width": 234,
+      "height": 90
+    },
+    "M35_M10": {
+      "width": 234,
+      "height": 90
+    },
+    "GAU19": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_TAC338": {
+      "width": 232,
+      "height": 88
+    },
+    "NSVT": {
+      "width": 232,
+      "height": 88
+    },
+    "MORTAR_80": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_PKP_M": {
+      "width": 232,
+      "height": 88
+    },
+    "TOW_X2_PYLON": {
+      "width": 234,
+      "height": 90
+    },
+    "A22_OGON": {
+      "width": 234,
+      "height": 90
+    },
+    "PBK_500U": {
+      "width": 234,
+      "height": 90
+    },
+    "M230_HELI": {
+      "width": 232,
+      "height": 88
+    },
+    "XM301": {
+      "width": 234,
+      "height": 90
+    },
+    "TOS_1": {
+      "width": 232,
+      "height": 88
+    },
+    "RBS56": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_DRAGON": {
+      "width": 232,
+      "height": 88
+    },
+    "MK44_BUSHMASTER2": {
+      "width": 232,
+      "height": 88
+    },
+    "PZH2000": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_KORNET": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_PKP": {
+      "width": 232,
+      "height": 88
+    },
+    "RIM116": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SAIGA": {
+      "width": 234,
+      "height": 90
+    },
+    "VIKHR_X8": {
+      "width": 936,
+      "height": 360
+    },
+    "AGM88_HARM": {
+      "width": 234,
+      "height": 90
+    },
+    "MK82_BOMB": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_ADS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_JAVELIN": {
+      "width": 232,
+      "height": 88
+    },
+    "URAGAN_220": {
+      "width": 232,
+      "height": 88
+    },
+    "GBU56": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M110": {
+      "width": 232,
+      "height": 88
+    },
+    "MK47_VEH": {
+      "width": 234,
+      "height": 90
+    },
+    "GRAD": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M1014": {
+      "width": 232,
+      "height": 88
+    },
+    "RBK_250": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_FAGOT": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M27_M320": {
+      "width": 232,
+      "height": 88
+    },
+    "M777_TRUCK": {
+      "width": 234,
+      "height": 90
+    },
+    "ISKANDER_2": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_KONKURS": {
+      "width": 234,
+      "height": 90
+    },
+    "JSOW": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH": {
+      "width": 232,
+      "height": 88
+    },
+    "M135": {
+      "width": 234,
+      "height": 90
+    },
+    "BUK_M2": {
+      "width": 234,
+      "height": 90
+    },
+    "AZP23": {
+      "width": 232,
+      "height": 88
+    },
+    "ZU_23_2": {
+      "width": 232,
+      "height": 88
+    },
+    "TOCHKA": {
+      "width": 234,
+      "height": 90
+    },
+    "HOSTA": {
+      "width": 234,
+      "height": 90
+    },
+    "HYDRA_x7_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "KH_55SM": {
+      "width": 234,
+      "height": 90
+    },
+    "ODAB_500": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M202": {
+      "width": 234,
+      "height": 90
+    },
+    "SM6": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPG28": {
+      "width": 232,
+      "height": 88
+    },
+    "TOR_M1": {
+      "width": 232,
+      "height": 88
+    },
+    "IGLA_N_ZRK": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_ASVK": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SPIKE_SR": {
+      "width": 234,
+      "height": 90
+    },
+    "A127": {
+      "width": 232,
+      "height": 88
+    },
+    "LEO_105": {
+      "width": 234,
+      "height": 90
+    },
+    "M240": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SVD": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPG7L": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_METIS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M4_MOD2_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "R77_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "M242": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M590A1": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SRAW": {
+      "width": 936,
+      "height": 360
+    },
+    "KH_35U_HELY": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_MRAD": {
+      "width": 234,
+      "height": 90
+    },
+    "DROK": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M32": {
+      "width": 232,
+      "height": 88
+    },
+    "ISKANDER_1": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_TBG7": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_MGK_BUR": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK74RMO_GP34": {
+      "width": 232,
+      "height": 88
+    },
+    "MARK45": {
+      "width": 234,
+      "height": 90
+    },
+    "2A70": {
+      "width": 232,
+      "height": 88
+    },
+    "AMRAAM_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "S350": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_G3": {
+      "width": 234,
+      "height": 90
+    },
+    "Kinzhal": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M320": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPK74M": {
+      "width": 234,
+      "height": 90
+    },
+    "PAC3_X8": {
+      "width": 234,
+      "height": 90
+    },
+    "SPG9_VEH": {
+      "width": 234,
+      "height": 90
+    },
+    "R27_T_MISSILE": {
+      "width": 232,
+      "height": 88
+    },
+    "KH58USHK": {
+      "width": 232,
+      "height": 88
+    },
+    "VIHR_x6_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "2A64_MSTA": {
+      "width": 232,
+      "height": 88
+    },
+    "KAB500": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_TBG7 1": {
+      "width": 232,
+      "height": 88
+    },
+    "AIM9_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "KOKON_x4_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "KH_101": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK74M_KASH": {
+      "width": 232,
+      "height": 88
+    },
+    "R77_M_MISSILE": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_TAC50": {
+      "width": 232,
+      "height": 88
+    },
+    "AIM174": {
+      "width": 234,
+      "height": 90
+    },
+    "KH_59MK2_SQUARED": {
+      "width": 234,
+      "height": 90
+    },
+    "GAU21_POD": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SCARL_MK13": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "VIKHR_x1_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "2A72": {
+      "width": 232,
+      "height": 88
+    },
+    "AGS30_VEH": {
+      "width": 235,
+      "height": 90
+    },
+    "MT12": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK74M_KASH_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "GSH30_1": {
+      "width": 232,
+      "height": 88
+    },
+    "S8_POD": {
+      "width": 232,
+      "height": 88
+    },
+    "KPVB": {
+      "width": 232,
+      "height": 88
+    },
+    "M134_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SMAW": {
+      "width": 936,
+      "height": 360
+    },
+    "FLETCHER_X12": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M4A1_URGI": {
+      "width": 234,
+      "height": 90
+    },
+    "Kord": {
+      "width": 234,
+      "height": 90
+    },
+    "MSE_X8": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK12": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH_DMR": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPO_A": {
+      "width": 234,
+      "height": 90
+    },
+    "TOMAHAWK_MISSILE old": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AN94": {
+      "width": 234,
+      "height": 90
+    },
+    "S300_FAVORIT": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M38": {
+      "width": 232,
+      "height": 88
+    },
+    "R73_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M202_FLASH": {
+      "width": 234,
+      "height": 90
+    },
+    "FAB_3000": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M110_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AEK762": {
+      "width": 232,
+      "height": 88
+    },
+    "KOKON_x2_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_ZMB_BITE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_PKP_SHORT": {
+      "width": 232,
+      "height": 88
+    },
+    "KOKON_x8_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AKM_PBS": {
+      "width": 232,
+      "height": 88
+    },
+    "ATAKA_X1": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M26_MASS": {
+      "width": 936,
+      "height": 360
+    },
+    "KH32": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M2010": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_MRGG_A": {
+      "width": 234,
+      "height": 90
+    },
+    "MG250": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_FN_MAG": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPG29": {
+      "width": 232,
+      "height": 88
+    },
+    "STINGER_x2_WINGTIP": {
+      "width": 232,
+      "height": 88
+    },
+    "S13_PLANE": {
+      "width": 232,
+      "height": 88
+    },
+    "PAC3_X16": {
+      "width": 234,
+      "height": 90
+    },
+    "KH38ML": {
+      "width": 234,
+      "height": 90
+    },
+    "AGM_65_MISSILE": {
+      "width": 232,
+      "height": 88
+    },
+    "M270": {
+      "width": 234,
+      "height": 90
+    },
+    "AIM_9X_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "AIM7_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M240L": {
+      "width": 234,
+      "height": 90
+    },
+    "M320-WeaponIcon": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK74SSO": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_Carl_M3": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPG26": {
+      "width": 232,
+      "height": 88
+    },
+    "M590A1_MOSBERG": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_KAC_AMG": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPK74M_SUP": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SVDM": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_MK46": {
+      "width": 232,
+      "height": 88
+    },
+    "AGM176_GRIFFIN": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPG7R": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M4_MOD2": {
+      "width": 232,
+      "height": 88
+    },
+    "KH_555": {
+      "width": 234,
+      "height": 90
+    },
+    "GBU12_BOMB": {
+      "width": 936,
+      "height": 360
+    },
+    "R60_HELY": {
+      "width": 234,
+      "height": 90
+    },
+    "URAGAN_300": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH_MK20_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_MK19": {
+      "width": 234,
+      "height": 90
+    },
+    "AIM54": {
+      "width": 936,
+      "height": 360
+    },
+    "LSHO_57": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPK74M_KASH": {
+      "width": 234,
+      "height": 90
+    },
+    "MAPATS": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_MK47": {
+      "width": 936,
+      "height": 360
+    },
+    "INF_ZMB_HAND": {
+      "width": 234,
+      "height": 90
+    },
+    "Mi8_KORD": {
+      "width": 234,
+      "height": 90
+    },
+    "OSA_AKM": {
+      "width": 232,
+      "height": 88
+    },
+    "2A90_57MM": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SV98M": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_ZMB_CARS_THROWER": {
+      "width": 234,
+      "height": 90
+    },
+    "ATACMS_MISSILE old": {
+      "width": 232,
+      "height": 88
+    },
+    "GSh23_Il76": {
+      "width": 232,
+      "height": 88
+    },
+    "MK19": {
+      "width": 232,
+      "height": 88
+    },
+    "L55": {
+      "width": 234,
+      "height": 90
+    },
+    "STRELA10": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_MK12": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M16A4": {
+      "width": 936,
+      "height": 360
+    },
+    "AK130_BEREG": {
+      "width": 232,
+      "height": 88
+    },
+    "CBU_87": {
+      "width": 232,
+      "height": 88
+    },
+    "S60": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_DP64": {
+      "width": 232,
+      "height": 88
+    },
+    "TYULPAN": {
+      "width": 232,
+      "height": 88
+    },
+    "M35_M8_AGS": {
+      "width": 234,
+      "height": 90
+    },
+    "KORNET_x4": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_STINGER_F": {
+      "width": 234,
+      "height": 90
+    },
+    "VASILEK": {
+      "width": 234,
+      "height": 90
+    },
+    "DILEMMA": {
+      "width": 234,
+      "height": 90
+    },
+    "KPVT": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AT4": {
+      "width": 232,
+      "height": 88
+    },
+    "PKT": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M40A5": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARL_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "GAU21": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_KONKURS_M": {
+      "width": 234,
+      "height": 90
+    },
+    "KAB1500LG": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_ZMB_ACID": {
+      "width": 234,
+      "height": 90
+    },
+    "NONA": {
+      "width": 232,
+      "height": 88
+    },
+    "PAC2_X2": {
+      "width": 234,
+      "height": 90
+    },
+    "IGLAV_x2_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_B300": {
+      "width": 234,
+      "height": 90
+    },
+    "M134": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPG27": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AGS17": {
+      "width": 232,
+      "height": 88
+    },
+    "RPG_16": {
+      "width": 234,
+      "height": 90
+    },
+    "HELLFIRE_X2": {
+      "width": 232,
+      "height": 88
+    },
+    "KOALICIYA_SV": {
+      "width": 232,
+      "height": 88
+    },
+    "SHTURM_S": {
+      "width": 232,
+      "height": 88
+    },
+    "MG3-WeaponIcon": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SCARL": {
+      "width": 232,
+      "height": 88
+    },
+    "GSHG": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_G36": {
+      "width": 234,
+      "height": 90
+    },
+    "DAGR": {
+      "width": 232,
+      "height": 88
+    },
+    "S_25_O": {
+      "width": 232,
+      "height": 88
+    },
+    "AGM86_NUKE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPO_M": {
+      "width": 234,
+      "height": 90
+    },
+    "XM913": {
+      "width": 234,
+      "height": 90
+    },
+    "S5_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "LMUR": {
+      "width": 234,
+      "height": 90
+    },
+    "FLASHBANG": {
+      "width": 936,
+      "height": 360
+    },
+    "GSH23_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "GSH23": {
+      "width": 232,
+      "height": 88
+    },
+    "SPIKE_VILKAS": {
+      "width": 234,
+      "height": 90
+    },
+    "TOMAHAWK_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M4_MOD2_M320": {
+      "width": 232,
+      "height": 88
+    },
+    "KH29_L_MISSILE": {
+      "width": 234,
+      "height": 90
+    },
+    "KINZHAL_NUKE": {
+      "width": 936,
+      "height": 360
+    },
+    "AKACIYA": {
+      "width": 232,
+      "height": 88
+    },
+    "2A42": {
+      "width": 232,
+      "height": 88
+    },
+    "ATAKA": {
+      "width": 234,
+      "height": 90
+    },
+    "M284_PALADIN": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_MK46_SUP": {
+      "width": 232,
+      "height": 88
+    },
+    "KONKURS_BRDM": {
+      "width": 232,
+      "height": 88
+    },
+    "Dragon_Fire": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SCARH_LR": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK74SSO_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "GBU24_BOMB": {
+      "width": 936,
+      "height": 360
+    },
+    "KHRIZANTEMA": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPK74": {
+      "width": 232,
+      "height": 88
+    },
+    "ZU_23_2M": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK74M_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "S8_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "M197_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "M2_BROWNING": {
+      "width": 232,
+      "height": 88
+    },
+    "R37": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AGS40": {
+      "width": 232,
+      "height": 88
+    },
+    "YAKB": {
+      "width": 232,
+      "height": 88
+    },
+    "2A80_VENA": {
+      "width": 232,
+      "height": 88
+    },
+    "M81E1": {
+      "width": 234,
+      "height": 90
+    },
+    "B61_NUKE": {
+      "width": 232,
+      "height": 88
+    },
+    "KH_102": {
+      "width": 234,
+      "height": 90
+    },
+    "AGM_122": {
+      "width": 232,
+      "height": 88
+    },
+    "FAB_1500T": {
+      "width": 232,
+      "height": 88
+    },
+    "Shmel_MTLB": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_NO_WEAPON": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_IGLA": {
+      "width": 232,
+      "height": 88
+    },
+    "M68A1_MGS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_OC14": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_T5000": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M249": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_M5_SPEAR": {
+      "width": 936,
+      "height": 360
+    },
+    "MML": {
+      "width": 234,
+      "height": 90
+    },
+    "M291_120": {
+      "width": 234,
+      "height": 90
+    },
+    "M907_IRON_THUNDER": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_PLACEHOLDER": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_HMG_KORD": {
+      "width": 234,
+      "height": 90
+    },
+    "S_24": {
+      "width": 234,
+      "height": 90
+    },
+    "K6_MORTAR": {
+      "width": 232,
+      "height": 88
+    },
+    "CBU_78": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AKM": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SCARH_MK20": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_SIG_LVAW": {
+      "width": 232,
+      "height": 88
+    },
+    "MG338": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPG30": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPK_74M_KASH": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_ASVAL": {
+      "width": 232,
+      "height": 88
+    },
+    "BULAT": {
+      "width": 232,
+      "height": 88
+    },
+    "GAU8_AVENGER": {
+      "width": 232,
+      "height": 88
+    },
+    "M230": {
+      "width": 232,
+      "height": 88
+    },
+    "2A44_MALKA": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_VSS": {
+      "width": 234,
+      "height": 90
+    },
+    "R60": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_ZMB_EXPLOSION": {
+      "width": 234,
+      "height": 90
+    },
+    "BUK_M3": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPK16_SHORT": {
+      "width": 232,
+      "height": 88
+    },
+    "ATACMS_MISSILE": {
+      "width": 936,
+      "height": 360
+    },
+    "HIMARS": {
+      "width": 232,
+      "height": 88
+    },
+    "M256_ABRAMS": {
+      "width": 232,
+      "height": 88
+    },
+    "FAB_9000": {
+      "width": 234,
+      "height": 90
+    },
+    "FAB_500SHL": {
+      "width": 232,
+      "height": 88
+    },
+    "KH25ML": {
+      "width": 232,
+      "height": 88
+    },
+    "2A28_GROM": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_XM25": {
+      "width": 936,
+      "height": 360
+    },
+    "SOSNA": {
+      "width": 234,
+      "height": 90
+    },
+    "RBK_500": {
+      "width": 232,
+      "height": 88
+    },
+    "AGM84_SLAM_ER": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_CQBR": {
+      "width": 234,
+      "height": 90
+    },
+    "M61": {
+      "width": 232,
+      "height": 88
+    },
+    "FAB_500": {
+      "width": 232,
+      "height": 88
+    },
+    "STRELEC_X4": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_TBG_7L": {
+      "width": 234,
+      "height": 90
+    },
+    "OFAB_100": {
+      "width": 232,
+      "height": 88
+    },
+    "S300": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPG7V2": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_SPG9": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AN94_PBS": {
+      "width": 234,
+      "height": 90
+    },
+    "STINGER_x4": {
+      "width": 232,
+      "height": 88
+    },
+    "KAMA_BASKET": {
+      "width": 232,
+      "height": 88
+    },
+    "GSH_6_23": {
+      "width": 232,
+      "height": 88
+    },
+    "FAB_250SHL": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M249E3": {
+      "width": 234,
+      "height": 90
+    },
+    "KORNET_T": {
+      "width": 232,
+      "height": 88
+    },
+    "LMUR_X1": {
+      "width": 234,
+      "height": 90
+    },
+    "KONKURS_BTR82": {
+      "width": 232,
+      "height": 88
+    },
+    "AGS_17": {
+      "width": 232,
+      "height": 88
+    },
+    "ISKANDER_3": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK12_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "AWP": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AK103_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "CIWS": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_STINGER_J": {
+      "width": 234,
+      "height": 90
+    },
+    "MK83_BOMB": {
+      "width": 232,
+      "height": 88
+    },
+    "TOS_1\u0410": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_RPG7": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AEK545": {
+      "width": 232,
+      "height": 88
+    },
+    "MICLIC_AAVP": {
+      "width": 234,
+      "height": 90
+    },
+    "KH_59MK2": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_DVL10": {
+      "width": 234,
+      "height": 90
+    },
+    "HELLFIRE_X1": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_Carl_M4": {
+      "width": 232,
+      "height": 88
+    },
+    "MSE_X4": {
+      "width": 234,
+      "height": 90
+    },
+    "KAB50": {
+      "width": 232,
+      "height": 88
+    },
+    "GSH_30": {
+      "width": 232,
+      "height": 88
+    },
+    "KOKON_x6_PYLON": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_M107": {
+      "width": 232,
+      "height": 88
+    },
+    "RIM162": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_RPG29_TPD": {
+      "width": 232,
+      "height": 88
+    },
+    "AGM_86C": {
+      "width": 234,
+      "height": 90
+    },
+    "HAWKEYE": {
+      "width": 232,
+      "height": 88
+    },
+    "FLETCHER_X4": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AKM_GP": {
+      "width": 232,
+      "height": 88
+    },
+    "PAC2_X4": {
+      "width": 234,
+      "height": 90
+    },
+    "JASSM_BOMB": {
+      "width": 232,
+      "height": 88
+    },
+    "TOW_X4_PYLON": {
+      "width": 234,
+      "height": 90
+    },
+    "MSE_X12": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_PPK20": {
+      "width": 936,
+      "height": 360
+    },
+    "GBU53": {
+      "width": 232,
+      "height": 88
+    },
+    "D56TS": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_AGS30": {
+      "width": 232,
+      "height": 88
+    },
+    "M102_AC130": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_AK103": {
+      "width": 232,
+      "height": 88
+    },
+    "UPK_23_250": {
+      "width": 234,
+      "height": 90
+    },
+    "PANCIR_MISSILES": {
+      "width": 232,
+      "height": 88
+    },
+    "INF_KORNET_M": {
+      "width": 234,
+      "height": 90
+    },
+    "2A91_57MM": {
+      "width": 232,
+      "height": 88
+    },
+    "SPIKE": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_LAW": {
+      "width": 936,
+      "height": 360
+    },
+    "INF_MP5": {
+      "width": 234,
+      "height": 90
+    },
+    "INF_KSK": {
+      "width": 234,
+      "height": 90
+    }
+  }
+}
