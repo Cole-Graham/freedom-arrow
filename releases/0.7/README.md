@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.35 — development candidate
+# Freedom Arrow 0.7.0-dev.36 — development candidate
+
+**Copperhead:75 mm HEAT penetration at both range endpoints, reduced from472.5. Base damage remains11. Data change; not yet tested in game.**
 
 **Lateralus selected promotion: changelog items 3, 5 and 7–12.** Target dummies are editor-only; passive AA diagnostics from lat.4 are included with zero targeting/scoring detours. RMG4 damage/100% Ignore Cover; standard SMAW-D25%; Mech. Engineers CQC55; Mech. Riflemen MMG4 AT4CS-RS; HIT ammo shown as84mm Thermobaric with6.5 damage/100% Ignore Cover; Combat Engineers75. Latest LOSAT and M25 changes below are retained.
 
@@ -196,3 +198,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 04:23:12 PST (America/Los_Angeles) — Promoted Lateralus items3,5,7–12 only; passive lat.4 observer and editor-only dummies; six infantry changes; other batch items held.
 
 - 2026-11-10 11:24:11 PST (America/Los_Angeles) — Corrected LOSAT firing gap to6 seconds; retained dev.34 balance changes,1300 missile speed,10 damage and550 mm KE.
+
+- 2026-11-10 16:10:37 PST (America/Los_Angeles) — Set M712 Copperhead ammunition426 to75 mm penetration at minimum and maximum range; retained base damage11 and all other ammunition settings.
