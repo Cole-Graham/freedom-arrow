@@ -1,0 +1,34 @@
+[
+  {
+    "profile": "QBZ191",
+    "source_file": "w_qbz191.fam",
+    "source_sha256": "e10bd671f64987e951254b8199c6500f341fd945128c5cb5315521fcfda34320",
+    "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+    "triangles": 10692,
+    "svg_sha256": "4a84ba5dfab739821619dfd812c38562d0ebf2a6ae578896763618cc8b20c669"
+  },
+  {
+    "profile": "QBU191",
+    "source_file": "w_qbu191.fam",
+    "source_sha256": "a865a719c66341d3a54a827f286dd7e514981cde88e45f9a6cbe8a9cedb497b7",
+    "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+    "triangles": 10328,
+    "svg_sha256": "16cdb3990283ef7426ef7c30dd03cd81f04330ad45d250802e193d1825f6882a"
+  },
+  {
+    "profile": "QLU11",
+    "source_file": "w_qlu11.fam",
+    "source_sha256": "3b59eca9d0fce42090e4a8fd743bd6fd10077e8aa569f580a47834195570cf11",
+    "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+    "triangles": 9448,
+    "svg_sha256": "3499f5a3587a2366fc788777d366c9ae460ff430f8120a3f5758c7eb0358d6b2"
+  },
+  {
+    "profile": "QTS11",
+    "source_file": "w_qts11.fam",
+    "source_sha256": "79d101e5e047bd5b1367b1f5119f65d41855486de11d04351c03f1a6ccb8483e",
+    "projection": "Unity +Z right, +Y up; all projected triangles have consistent winding",
+    "triangles": 9932,
+    "svg_sha256": "971a1a3ef3a21a01e2926a7887c0c367af24584d0d009806e74eb2495120b522"
+  }
+]

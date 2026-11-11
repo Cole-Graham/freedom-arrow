@@ -1,3 +1,9 @@
+# PLA TEST Build 16
+
+**Weapon HUD artwork update: 307 vehicle weapon definitions and 44 designer-infantry weapon definitions use 108 physical-family silhouette assets. Related variants share art. Unit portraits, unit thumbnails, ammunition icons, stocks, loadouts, performance, models and saved rigging are unchanged from Build 15. These are simplified recognition drawings; prototype and unnamed weapon geometry remains provisional. Native HUD validation is pending.**
+
+## Historical Build 15 model update
+
 # PLA TEST Build 15
 
 **Final family-model reuse correction: J-20B uses the installed J-20 mesh, J-8II uses J-8 and Y-20B uses Y-20. VT-1A, VT-4, Type 80, Type 63 APC and Type 89/89A reuse the closest installed PLA tank/APC family meshes. This changes nine visual bindings, with Build14 weapons, ammunition, armor, squads, spec pools, camo and saved offsets unchanged. These are explicit related-family stand-ins, not newly acquired exact meshes. Native validation remains pending.**
@@ -312,3 +318,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 02:55:11 PST (America/Los_Angeles) — Build 14: imported 90 designer squads, explicit equipment armament and custom weapon/ammo HUD icons, matching infantry camo/armor, capacity-checked transport and vanilla Linebacker guidance for HJ-10. Native validation pending.
 
 - 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.
+
+- 2026-11-11 10:45:47 PST (America/Los_Angeles) — Build16: replaced weapon-class HUD symbols with physical-family weapon silhouettes on equipment and designer infantry. Unit art and gameplay retained. Native visual verification pending.

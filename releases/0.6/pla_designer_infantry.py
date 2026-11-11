@@ -149,9 +149,9 @@ def apply(root,t,patches,native_ids,bodies,weapon_rules,assignments):
   assignments['assignments'][str(uid)]=[sid]
   summary.append({'unit':uid,'row':record['row'],'name':name,'spec':sid,'men':men,'recon':recon,'troop_type':typ,'base_rifle':base_label,'weapons':selected,'munitions':cells[12],'notes':cells[13],'body_from':body_id,'camo':'desert' if desert else 'green','armor':10 if sf else 8 if engineer or typ=='Elite' else 6,'health':men*5,'carriers':carriers,'native_verified':False})
  assert len(summary)==90
- assignments['build']=15;assignments['retired_infantry_drafts']=retired
+ assignments['build']=json.loads((root/'pla-specializations-contract.json').read_text())['build'];assignments['retired_infantry_drafts']=retired
  assignments['pool_counts']={str(s):sum(r['SpecializationId']==s for r in t['SpecializationAvailabilitiesJson'].values()) for s in range(17,23)}
  (root/'source/UserData/FreedomArrow/pla-spec-assignments.json').write_text(json.dumps(assignments,indent=2)+'\n')
- receipt={'build':15,'source_sheet':c['spreadsheet_id'],'source_range':c['source_range'],'entries':summary,'count':90,'retired_drafts':retired,'icon_keys':sorted(icons),'native_verified':False,'limits':'Names, sizes, selected weapons and quantities match the sheet. Weapon performance, ammo stocks, costs and armor tiers are native analog drafts. Custom meshes used where installed; remaining handhelds use native meshes.'}
+ receipt={'build':json.loads((root/'pla-specializations-contract.json').read_text())['build'],'source_sheet':c['spreadsheet_id'],'source_range':c['source_range'],'entries':summary,'count':90,'retired_drafts':retired,'icon_keys':sorted(icons),'native_verified':False,'limits':'Names, sizes, selected weapons and quantities match the sheet. Weapon performance, ammo stocks, costs and armor tiers are native analog drafts. Custom meshes used where installed; remaining handhelds use native meshes.'}
  (root/'source/UserData/FreedomArrow/pla-infantry-designer.json').write_text(json.dumps(receipt,indent=2)+'\n')
  return receipt

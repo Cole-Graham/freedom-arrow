@@ -1,3 +1,5 @@
+PLA TEST Build16: weapon HUD art on 307 equipment weapon definitions and 44 designer-infantry weapon definitions, using 108 physical-family PNGs. Four infantry profiles project the installed meshes. Related/prototype weapon appearances remain simplified. Unit art, ammo, performance and rigging are retained. Native visual validation pending.
+
 # PLA TEST Build 15
 
 **Final family-model reuse correction: J-20B uses the installed J-20 mesh, J-8II uses J-8 and Y-20B uses Y-20. VT-1A, VT-4, Type 80, Type 63 APC and Type 89/89A reuse the closest installed PLA tank/APC family meshes. This changes nine visual bindings, with Build14 weapons, ammunition, armor, squads, spec pools, camo and saved offsets unchanged. These are explicit related-family stand-ins, not newly acquired exact meshes. Native validation remains pending.**
@@ -565,3 +567,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 - 2026-11-11 02:55:11 PST (America/Los_Angeles) — Added the Build 14 complete equipment/infantry draft and evidence limits.
 
 - 2026-11-11 03:17:32 PST (America/Los_Angeles) — Build15: corrected nine available PLA family-model bindings; Build14 gameplay tables remain unchanged. Native validation pending.
+- 2026-11-11 10:52:55 PST (America/Los_Angeles) — Build16 weapon HUD update only; unit art and gameplay retained.

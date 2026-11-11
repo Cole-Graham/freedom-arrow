@@ -134,6 +134,6 @@ def apply(root,t,patches,native_ids,vanilla,models):
  assert len(entries)==160
  retired_options=sorted(set(baseline['OptionsJson'])-set(t['OptionsJson']))
  assert not set(retired_options)&native_ids['OptionsJson'],'An original vanilla option was removed'
- receipt={'build':15,'entries':entries,'count':len(entries),'icon_keys':sorted(icon_keys),'retired_option_ids':retired_options,'ammo_display':'Quantity × HUDMultiplier. Grouped native shots retained; rounding is explicit per stock.','native_verified':False}
+ receipt={'build':json.loads((root/'pla-specializations-contract.json').read_text())['build'],'entries':entries,'count':len(entries),'icon_keys':sorted(icon_keys),'retired_option_ids':retired_options,'ammo_display':'Quantity × HUDMultiplier. Grouped native shots retained; rounding is explicit per stock.','native_verified':False}
  (root/'source/UserData/FreedomArrow/pla-vehicle-armament.json').write_text(json.dumps(receipt,indent=2)+'\n')
  return receipt
