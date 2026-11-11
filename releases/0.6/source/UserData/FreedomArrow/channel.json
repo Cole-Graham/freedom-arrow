@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "4",
+  "package_version": "5",
   "spotting": "vanilla",
   "deployment_status": "built_offline_execution_held",
-  "verification": "Internal Build 4: verified build identity and Build 3 infantry files; native fit remains unverified."
+  "verification": "Cockpit material candidate: offline geometry/UV checks passed; native appearance pending."
 }

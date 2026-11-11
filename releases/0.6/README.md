@@ -1,4 +1,6 @@
-# PLA TEST Build 4
+# PLA TEST Build 5
+
+**Build 5 cockpit update:** F-22 donor for 5th-generation and newer custom fighters, F-16 donor for 4th/4.5 generation including Su-47, and Su-57 donor for Su-75/Su-57D. Covers 20 entries and 36 model copies. Outside canopy/glass only; native visual verification pending.
 
 **Build 4 corrects the displayed identity. The menu shows PLA TEST Build 4 only after checking runtime/package agreement and the infantry files. All Build 3 meshes, textures, weapon rules, gameplay constants and music remain unchanged. Native helmet and hand fit still need visual review.**
 
@@ -611,3 +613,4 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Prepared requested Build 3 installation with refined hands, all 13 woodland helmet configurations lowered 1 cm, and pinned FA Music 1.4.2 compilations retained. Native fit remains unverified.
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
+- 2026-11-10 23:08:10 PST (America/Los_Angeles) — Build 5: added scoped native cockpit donors; preserved infantry, constants and music; native appearance pending.

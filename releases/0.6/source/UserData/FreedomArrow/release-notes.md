@@ -1,4 +1,4 @@
-# PLA TEST Build 4
+# PLA TEST Build 5
 
 **Build 4 corrects the displayed identity. The menu shows PLA TEST Build 4 only after checking runtime/package agreement and the infantry files. All Build 3 meshes, textures, weapon rules, gameplay constants and music remain unchanged. Native helmet and hand fit still need visual review.**
 
@@ -255,6 +255,8 @@ All damaging tube, mortar and MLRS ammunition now has at least 40 penetration at
 
 The two China and two Black Hawk Down menu compilations from FA Music 1.4.2 are included, with embedded 120-second gaps and equal selection chances. BHD theme09 stays removed. The saved pack choice and voice recordings are preserved.
 
+Build 5: custom fighter canopy materials follow Osama’s F-22/F-16V/Su-57 donor policy. Geometry and non-canopy UVs preserved; in-game appearance pending.
+
 ## Document change log
 
 - 2026-11-04 15:25:27 PST (America/Los_Angeles) — Replaced stale0.1 acceptance wording with0.2 included/held scope and unverified runtime limits after final review.
@@ -459,3 +461,4 @@ Dev.24 (Osama): first to 300 conquest points wins, or the leader when time runs 
 
 - 2026-11-10 15:46:45 PST (America/Los_Angeles) — Added the existing music update to the complete Build 3 pack for installation.
 - 2026-11-10 16:04:24 PST (America/Los_Angeles) — Corrected the PLA build label and added startup identity and infantry file checks.
+- 2026-11-10 23:08:54 PST (America/Los_Angeles) — Added Build 5 cockpit material policy and validation limits.
