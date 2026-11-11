@@ -1674,6 +1674,8 @@ def main():
         put('ArmorsJson',aid,fields,'Osama: T80BVM2017/2018 KE700 front;2018 HEAT1100 front')
     from black_eagle import apply as apply_black_eagle
     apply_black_eagle(effective,clone,add_unit,rows_of,json.loads((R/'black-eagle-contract.json').read_text()))
+    from black_eagle import fix_t80_defaults
+    fix_t80_defaults(effective,patches,clone,put,audit)
     assert not (equipment_faults(effective)-equipment_faults(original)), sorted(equipment_faults(effective)-equipment_faults(original))[:10]
     # UnitInfoCard.SetArmorInfo requires a linked default armor for its comparison.
     armor_ids_by_unit=collections.defaultdict(set)

@@ -57,3 +57,31 @@ def apply(t, clone, add_unit, rows_of, c):
                     if t['SpecializationAvailabilitiesJson'][r]['SpecializationId'] == c['specialization']]
     assert len(availability) == 1
     clone('SpecializationAvailabilitiesJson', availability[0], {'UnitId': uid}, why)
+
+
+def fix_t80_defaults(t, patches, clone, put, audit):
+    """Discard inherited BV fallbacks on the BVM card without changing BV."""
+    uid = 716
+    options = [t['OptionsJson'][oid] for oid in (564, 566)]
+    def unlink_except(table, key, allowed):
+        removed = {r['Id'] for r in t[table].values() if r['UnitId'] == uid and r[key] not in allowed}
+        for rid in removed:
+            assert rid >= 2_000_000
+            del t[table][rid]
+            patches[table].pop(str(rid), None)
+        audit[:] = [r for r in audit if not (r['table'] == table and r['id'] in removed)]
+    unlink_except('UnitArmorsJson', 'ArmorId', {o['ArmorId'] for o in options})
+    put('ArmorsJson', options[0]['ArmorId'], {'IsDefault': True}, 'T80BVM2017 is the intrinsic armor, not inherited BV')
+    put('OptionsJson', 564, {'IsDefault': True}, 'T80BVM2017 fresh loadout default')
+    source = options[0]['MobilityId']
+    own = clone('MobilityJson', source, {'Name': 'Tracks T80BVM default', 'IsDefault': True}, 'BVM own default mobility; BV unchanged')
+    unlink_except('UnitPropulsionsJson', 'MobilityId', {source})
+    for row in list(t['UnitPropulsionsJson'].values()):
+        if row['UnitId'] == uid:
+            put('UnitPropulsionsJson', row['Id'], {'MobilityId': own}, 'BVM sole intrinsic mobility')
+    for o in options:
+        put('OptionsJson', o['Id'], {'MobilityId': own}, 'BVM both variants retain same selected mobility')
+    unlink_except('SensorUnitsJson', 'SensorId', {options[0]['MainSensorId']})
+    turret = options[0]['Turret0Id']
+    assert {r['UnitId'] for r in t['TurretUnitsJson'].values() if r['TurretId'] == turret} == {uid}
+    put('TurretsJson', turret, {'IsDefault': True}, 'BVM intrinsic main turret covers empty saved loadout')

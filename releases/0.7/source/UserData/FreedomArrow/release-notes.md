@@ -1,4 +1,6 @@
-# Freedom Arrow 0.7.0-dev.48 — development candidate
+# Freedom Arrow 0.7.0-dev.49 — development candidate
+
+**Follow-up correction: T-80BVM now has its own default2017 armor/mobility/optics and main turret, with inherited unused BV fallbacks removed from this card. Selected2017/2018 values stay170/190points,700 KE front and950/1100 HEAT front. The scoped model update corrects Black Eagle source normals and gloss-map packing.**
 
 **Playtest batch: adds Object640 Black Eagle in Coastal (220points,14HP,availability3,front800 KE/1300 HEAT,reverse40,one smoke). T-80BVM2017/2018 cost170/190 with front700 KE;2018 has1100 HEAT front. Tigr Kornet2x4 costs100; Kornet-D1 base70, Kornet-M/optics+20 and2x4+0. XM30 has14HP. Su75 carries two fixed R73 with every rear payload. Regular Troopers replace two M203s with one M25.**
 
@@ -231,3 +233,5 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-10 18:32:06 PST (America/Los_Angeles) — Extended the existing M-25 CDTE replacement to regular Troopers, without changing their price, rifles or AT-4s.
 
 - 2026-11-10 21:39:22 PST (America/Los_Angeles) — Prepared local playtest batch, Black Eagle and companion model update; public dev.45 lock retained.
+
+- 2026-11-10 21:49:47 PST (America/Los_Angeles) — Removed stale T80BV fallback profiles from BVM and prepared Black Eagle material/normal conversion correction following dev.48 visual feedback.

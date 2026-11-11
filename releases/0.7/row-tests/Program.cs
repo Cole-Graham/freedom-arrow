@@ -145,7 +145,7 @@ Check(UC(3)==50&&UC(89)==50&&UC(208)==50&&OC(473)==10&&OC(40)==10&&OC(1761)==10&
 foreach(int a in new[]{5,52,96,125,203,345,572,2000147,2000154,2000158,2000159,2000181})Check(Row("AmmunitionsJson",a)["Damage"].GetValue<double>()==10.5,"ground ATGM 10.5 "+a);
 Check(Row("AmmunitionsJson",131)["Damage"].GetValue<double>()==12&&Row("AmmunitionsJson",352)["PenetrationAtGroundRange"].GetValue<float>()==1000&&Row("AmmunitionsJson",164)["Damage"].GetValue<double>()==12,"dev.22 helicopter Kornet-M and Hellfire 12");
 Check(Linked("WeaponAmmunitionsJson","AmmunitionId",87).Select(a=>Row("AmmunitionsJson",a)).Where(r=>r["Name"].GetValue<string>()=="Missile AT TOW2A").All(r=>r["Damage"].GetValue<double>()==12)&&Linked("WeaponAmmunitionsJson","AmmunitionId",87).Any(a=>Row("AmmunitionsJson",a)["Name"].GetValue<string>()=="Missile AT TOW2A"),"AH-1W TOW-2A 12");
-foreach(var (u,fronts) in new[]{(14,new[]{300,600}),(602,new[]{600,650}),(615,new[]{700,750}),(717,new[]{600,650}),(9,new[]{650,750}),(703,new[]{900}),(157,new[]{750,900}),(236,new[]{750,900}),(239,new[]{800,900}),(53,new[]{900}),(245,new[]{900}),(479,new[]{950}),(158,new[]{600,950}),(716,new[]{600,950,1100}),(238,new[]{1300}),(244,new[]{1300}),(503,new[]{1400}),(191,new[]{1400}),(13,new[]{1300,1400})})
+foreach(var (u,fronts) in new[]{(14,new[]{300,600}),(602,new[]{600,650}),(615,new[]{700,750}),(717,new[]{600,650}),(9,new[]{650,750}),(703,new[]{900}),(157,new[]{750,900}),(236,new[]{750,900}),(239,new[]{800,900}),(53,new[]{900}),(245,new[]{900}),(479,new[]{950}),(158,new[]{600,950}),(716,new[]{950,1100}),(238,new[]{1300}),(244,new[]{1300}),(503,new[]{1400}),(191,new[]{1400}),(13,new[]{1300,1400})})
 Check(Linked("UnitArmorsJson","ArmorId",u).Select(a=>Row("ArmorsJson",a)["HeatArmorFront"].GetValue<int>()).Distinct().OrderBy(x=>x).SequenceEqual(fronts),"front HEAT "+u);
 // 0.4 dev.14: ammo, one launcher, Vampyr 5 men, split cards, launcher reload.
 foreach(var (wa,q) in new[]{(474,6),(536,6),(2500,10),(598,10),(2274,10),(3174,10),(2596,6),(2701,6),(3551,8),(3017,6),(230,4),(2260,4),(3015,4),(3020,4)})Check(Row("WeaponAmmunitionsJson",wa)["Quantity"].GetValue<int>()==q,"dev.14 ammo "+wa);
@@ -590,4 +590,13 @@ Console.WriteLine($"PASS final LOSAT total: {checks} row/reference/regression ch
  foreach(int oid in new[]{564,566})Check(I(Row("ArmorsJson",I(Row("OptionsJson",oid),"ArmorId")),"KinArmorFront")==700,"T80BVM front KE700 "+oid);
  Check(I(Row("ArmorsJson",I(option,"ArmorId")),"HeatArmorFront")==1100,"T80BVM2018 HEAT1100");
  Console.WriteLine($"PASS Black Eagle and T80BVM requested playtest overrides: {checks} total checks. Native Armory/SP/MP untested.");
+}
+
+{
+ var armorLinks=merged["UnitArmorsJson"].Where(x=>x["UnitId"].GetValue<int>()==716).ToArray();
+ Check(armorLinks.Length==2&&armorLinks.Select(x=>Row("ArmorsJson",x["ArmorId"].GetValue<int>())).Count(a=>a["IsDefault"].GetValue<bool>())==1,"T80BVM exactly two real variants, one default armor");
+ Check(Row("ArmorsJson",Row("OptionsJson",564)["ArmorId"].GetValue<int>())["IsDefault"].GetValue<bool>()&&Row("OptionsJson",564)["IsDefault"].GetValue<bool>(),"T80BVM2017 intrinsic and selected default agree");
+ var mob=merged["UnitPropulsionsJson"].Single(x=>x["UnitId"].GetValue<int>()==716);Check(Row("MobilityJson",mob["MobilityId"].GetValue<int>())["IsDefault"].GetValue<bool>(),"T80BVM sole default mobility");
+ Check(merged["SensorUnitsJson"].Count(x=>x["UnitId"].GetValue<int>()==716)==1,"T80BVM no BV optic fallback");
+ Console.WriteLine($"PASS repaired empty BVM loadout: {checks} checks");
 }
