@@ -14,6 +14,8 @@ with zipfile.ZipFile(a.base) as base:
   for f in sorted((src/folder).glob('*.json')):
    n=f.relative_to(src).as_posix();data=f.read_bytes()
    if n not in oldpins or sha(data)!=oldpins[n]:override[n]=data
+ if c.get('merged_from'):
+  override['UserData/FreedomArrow/merge-provenance.json']=enc({'build':c['build'],'parents':c['merged_from'],'scope':'All Build9 branch/Test/infantry work plus Build10 immediate stand-in hide; native validation pending'})
  override['UserData/FreedomArrow/pla-specializations.json']=(src/'UserData/FreedomArrow/pla-specializations.json').read_bytes()
  repair=json.loads((src/'UserData/FreedomArrow/infantry-arm-repair.json').read_text())
  for n,h in repair['sha256'].items():

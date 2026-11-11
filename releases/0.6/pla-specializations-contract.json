@@ -1,7 +1,7 @@
 {
-  "build": 9,
-  "base_build": 8,
-  "base_sha256": "5fa558c9e592505032ec1cb891fca8e8b7759840370621d6d6f7bf9ba440be97",
+  "build": 11,
+  "base_build": 10,
+  "base_sha256": "42b9267b5d8328da75d68179f0e73fbb2c5862a8829ac8449148a48652305c69",
   "pla_only": true,
   "hide_comparison_squads": false,
   "specs": [
@@ -996,5 +996,15 @@
     1009
   ],
   "note": "First functional branch draft. Existing vehicle combat stats and prices are retained; infantry costs/health/training come from the named native donor. New heavy-weapon behavior and models are explicitly temporary. All five category point budgets total5000,following native two-specialization deck structure; provisional,not approved final balance. RU/US selection is hidden only in this isolated PLA pack; source rows and old fit-test data remain for safe merging and QA.",
-  "test_spec": 22
+  "test_spec": 22,
+  "merged_from": {
+    "9": {
+      "sha256": "4c64486811f3919acac1de29c02b4d9ca5bfafe8bc1f58482e71594fbcb22ff5",
+      "source": "aac76e189db2a4bc5f799cb17d30eb1013c69dde"
+    },
+    "10": {
+      "sha256": "42b9267b5d8328da75d68179f0e73fbb2c5862a8829ac8449148a48652305c69",
+      "source": "7d27cd76b15840cb213a5293edd357c79bb6002f"
+    }
+  }
 }

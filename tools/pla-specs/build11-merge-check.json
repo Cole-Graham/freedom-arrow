@@ -1,0 +1,7 @@
+{
+  "build9_payloads_byte_identical_except_explicit_revision_files": 7966,
+  "all_build9_constants_and_repaired_assets_retained": true,
+  "build10_static_model_cockpit_and_music_assets_retained": true,
+  "build10_immediate_hide_and_failure_restore_source_exact_except_version": true,
+  "native_verified": false
+}

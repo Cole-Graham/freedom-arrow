@@ -1,4 +1,15 @@
-# PLA TEST Build 9 validation
+# PLA TEST Build 11: combined Build 9 and Build 10
+
+**Build 11 retains all Build 9 branch/Test/infantry work and Build 10 immediate stand-in hiding. The complete archive and parent comparison pass. It is not installed and native behavior remains unverified.**
+
+- 7,966 inherited Build 9 files compare byte-for-byte after excluding explicit version/manifest updates. Every gameplay table and repaired infantry asset is retained.
+- Build 10 static models, cockpit configuration and music compare byte-for-byte. Its immediate-hide and failure-restoration loader source matches exactly except the version label.
+- 7,975 payload hashes, 76 core hashes and 41,542 data/reference checks pass. Runtime 11 and FAModels 0.3.11 compile with zero warnings/errors.
+- Linked Mod Launcher core accepts a fresh file install with 7,976 files in a disposable folder. Windows GUI, network download and PLAY remain untested.
+- merge-provenance.json records both exact parent archive hashes and source commits. Run verify_merge.py against the pinned parent archives and Build 11 to reproduce the union check.
+- This is a PLA-only candidate. Canonical installed Build 10 and the public LIVE dev.45 lock remain unchanged.
+
+## Historical Build 9 evidence
 
 **Data and complete-package checks passed. The user accepted the replacement arm fit in offline previews. Native Arsenal, deck creation, animation and combat are untested; this candidate is not installed.**
 
@@ -53,3 +64,5 @@ This candidate has not been installed. Use an isolated test copy or reconcile ne
 - 2026-11-10 23:34:48 PST (America/Los_Angeles) — Added measured launcher file-import result,reproduction path and installation preservation boundary.
 
 - 2026-11-11 00:10:03 PST (America/Los_Angeles) — Recorded combined Build 9 checks, Test pool, arm repair and exact canopy base preservation; kept candidate 6 results historical.
+
+- 2026-11-11 00:24:15 PST (America/Los_Angeles) — Added Build 11 exact parent-union checks and package validation; preserved Build 9/6 historical evidence.

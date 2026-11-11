@@ -1,8 +1,11 @@
-# PLA TEST Build 9
+# PLA TEST Build 11
 
 **First PLA branch draft: five planned specializations, a Test pool, and 18 donor-based infantry roles in one complete pack. The arm fit is replaced to preserve forearm and hand thickness. Data and offline previews can be checked; native Arsenal, deck creation and combat remain unverified.**
 
 ## Changes in this pack
+
+Build 11 combines the Build 9 branch/Test/infantry work with Build 10 immediate stand-in hiding. Loading failure still restores the original model.
+
 
 - China is the only selectable nation in the test pack. Russia and USA cards/specs are hidden, while their donor data remains internally.
 - Airforce / SF, Ground Force / Armored, Rocket Force / Conscripts, Naval / Marines and Motorized have separate primary/shared unit pools. Category budgets are provisional at 5,000 points per spec.
@@ -240,3 +243,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-10 23:36:02 PST (America/Los_Angeles) — Preserved earlier guide content and every prior document-log entry under the current Build6 summary.
 
 - 2026-11-11 00:04:13 PST (America/Los_Angeles) — Prepared Build 9 with five branches plus Test, 18 infantry roles and replacement arm fit; preserved Build 8 cockpit work. Native checks remain pending.
+
+- 2026-11-11 00:21:03 PST (America/Los_Angeles) — Combined Build 9 specs and arm repair with Build 10 immediate hiding, retaining failure restoration and canopy assets. Native checks remain pending.
