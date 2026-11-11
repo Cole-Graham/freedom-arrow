@@ -29,8 +29,17 @@ The full combined package uses the ordinary launcher process. The delta updater 
 
 `python tools/asset-packs/test_pack.py` tests dependency closure, separation from PLA/gameplay data, exclusion of local playlist/history state, changed-file export, existing model mappings, saved playlist retention and rejection of an incorrect base. Actual model rendering, music playback and matchmaking still require game tests.
 
+## LIVE assets 0.1.15
+
+Adds FA Music 1.5.1 and its native Home-menu selector to the exact pinned LIVE assets 0.1.14. Only the music DLL changes in the payload. All 6,038 asset pins pass; all models, songs and voices retain their bytes. Existing playlist choice stays local. The loaded LIVE version appears above the selector; no PLA gameplay or models are added.
+
+This is a local candidate. The public manifest remains on gameplay dev.45/assets 0.1.14. Update packages and manifest together when an explicit public rollout is authorized. Source/API compatibility and host checks cover dev.45 and main dev.55; a fresh LIVE native run remains pending.
+
+Reproduce with `python tools/asset-packs/build_015_from_014.py --base /path/FreedomArrow-Assets-0.1.14.bamod --music-dll /path/FAMusic.dll --output /path/FreedomArrow-Assets-0.1.15.bamod`. The input DLL must be built from tools/music-player/FAMusic.csproj version 1.5.1; icon resources are embedded. Exact hashes are in approved-live-015.json.
+
 ## Document change log
 
 - 2026-11-09 16:27:30 PST (America/Los_Angeles) — Added independent combined live-model/music packaging, USA default policy and prototype delta workflow; retained gameplay installation method.
 
 - 2026-11-09 16:45:58 PST (America/Los_Angeles) — Corrected asset type to a normal add-on in0.1.1; verified15 install/update checks against unchanged manager Core source using full real archives.
+- 2026-11-11 14:05:49 PST (America/Los_Angeles) — Added LIVE assets 0.1.15 native music selector candidate, exact base pin and unchanged model/audio checks; public lock retained.

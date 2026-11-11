@@ -1,0 +1,20 @@
+{
+  "stream": "live assets",
+  "version": "0.1.15",
+  "file": "FreedomArrow-Assets-0.1.15.bamod",
+  "sha256": "29d64a8fda3b0fb880481f53c555718054b1625155d49097bac8eeb354c62205",
+  "bytes": 1219969770,
+  "base_sha256": "1683bae9270a1d19e43cba662c93f92a5002635c1d61841191762701d25ac153",
+  "music_version": "1.5.1",
+  "music_sha256": "ce190009d50b5e71f9dcb5e6a13ca738eb03e2664ab4b156ba4bc8a011bea7f5",
+  "changed_paths": [
+    "Mods/FAMusic.dll",
+    "UserData/FAAssets/manifest.json",
+    "mod.json",
+    "README.md"
+  ],
+  "verified_payloads": 6038,
+  "unchanged_archive_entries": 6037,
+  "native_live_tested": false,
+  "published": false
+}

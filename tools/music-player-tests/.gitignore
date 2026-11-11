@@ -1,0 +1,5 @@
+bin/
+obj/
+Generated.cs
+MenuIdentity.cs
+Test.csproj

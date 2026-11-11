@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.3.10", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.1", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
@@ -65,6 +65,7 @@ public sealed class Player : MelonMod
 
     public override void OnInitializeMelon()
     {
+        MusicMenu.Install(HarmonyInstance);
         Directory.CreateDirectory(Root);
 
         Directory.CreateDirectory(PacksDir);
@@ -164,6 +165,7 @@ public sealed class Player : MelonMod
     {
         try
         {
+            if (!VoicePolicy.UseCustom(pack)) return;
             int cmd = (int)command;
             if (string.IsNullOrEmpty(__result) || system == IntPtr.Zero) return;
             if (IsOrder(cmd))
@@ -183,8 +185,9 @@ public sealed class Player : MelonMod
                 clips = Pick(slot = __instance.Attack, 1, preset, unit);
             var parts = slot.Split('/');
             unit = preset ?? unit;
-            if (clips.Count == 0) return;
-            var file = clips[Rng.Next(clips.Count)];
+            // Osama 9 Nov: a US line with no C&C clip stays silent; never fall back to the vanilla voice.
+            if (clips.Count == 0) { if (__result.Contains("/BA_Command/US_")) __result = ""; return; }
+            var file = NextVoice(clips);
             if (voiceChannel != IntPtr.Zero) Fmod.FMOD_Channel_Stop(voiceChannel);
             if (voiceSound != IntPtr.Zero) Fmod.FMOD_Sound_Release(voiceSound);
             voiceChannel = voiceSound = IntPtr.Zero;
@@ -195,6 +198,22 @@ public sealed class Player : MelonMod
             __result = "";
         }
         catch (Exception e) { Melon<Player>.Logger.Warning("FA_MUSIC voice failed: " + e.Message); }
+    }
+
+    // Osama 9 Nov: no repeated lines. Each folder plays all its clips in shuffled order before any repeats,
+    // and the same line never plays twice in a row (clips are shared across folders).
+    static readonly Dictionary<string, List<string>> voiceBags = new();
+    static string lastVoice = "";
+    static string NextVoice(List<string> clips)
+    {
+        var key = Path.GetDirectoryName(clips[0]) ?? "";
+        if (!voiceBags.TryGetValue(key, out var bag) || bag.Count == 0)
+            voiceBags[key] = bag = clips.OrderBy(_ => Rng.Next()).ToList();
+        int i = bag.FindIndex(f => Path.GetFileName(f) != lastVoice);
+        if (i < 0) i = 0;
+        var file = bag[i]; bag.RemoveAt(i);
+        lastVoice = Path.GetFileName(file);
+        return file;
     }
 
     static float VoiceSlider()
@@ -287,19 +306,21 @@ public sealed class Player : MelonMod
         ? Directory.GetDirectories(PacksDir).Select(Path.GetFileName).OrderBy(n => n).ToList()
         : new List<string>();
 
-    static bool InMenu => lastType is 2 or 20 or 30;
+    internal static string CurrentPack => pack;
 
-    // Cycles USA -> Russia -> ... -> Game music on the main menu.
-    public override void OnGUI()
+    internal static void CyclePack()
     {
-        if (!InMenu) return;
-        var w = 260f;
-        var x = UnityEngine.Screen.width - w - 20;
-        var r = new UnityEngine.Rect(x, 20, w, 34);
-        if (!UnityEngine.GUI.Button(r, $"Music: {pack}  (click to change)")) return;
         var options = Packs();
         options.Add(GameMusic);
         pack = options[(options.IndexOf(pack) + 1) % options.Count];
+        if (!VoicePolicy.UseCustom(pack))
+        {
+            if (voiceChannel != IntPtr.Zero) Fmod.FMOD_Channel_Stop(voiceChannel);
+            if (voiceSound != IntPtr.Zero) Fmod.FMOD_Sound_Release(voiceSound);
+            voiceChannel = voiceSound = IntPtr.Zero;
+        }
+        lastOrderLine = -100f;
+        skipNextOrder = false;
         File.WriteAllText(PackFile, pack + "\n");
         Melon<Player>.Logger.Msg("FA_MUSIC pack selected: " + pack);
         Switch(FolderFor(lastType));
@@ -331,6 +352,7 @@ public sealed class Player : MelonMod
 
     public override void OnUpdate()
     {
+        MusicMenu.Update();
         if (system == IntPtr.Zero) return;
         if (folder != null)
         {
@@ -348,12 +370,12 @@ public sealed class Player : MelonMod
             }
             if (playing == 0 && !playedOnce)
             {
-                if (channel != IntPtr.Zero && Path.GetFileName(folder) == "Battle")
+                if (channel != IntPtr.Zero && (Path.GetFileName(folder) == "Battle" || (Path.GetFileName(folder) == "Menu" && pack == "Black Hawk Down" && MenuSequence.CompilationFiles(pack, folder).Count == 0)))
                 {
                     StopTrack();
-                    var gap = Path.GetFileName(playingDir) == "Calm" ? CalmGap : BattleGap;
+                    var gap = Path.GetFileName(folder) == "Menu" ? MenuSequence.MenuGapSeconds(pack) : Path.GetFileName(playingDir) == "Calm" ? CalmGap : BattleGap;
                     resumeAt = UnityEngine.Time.unscaledTime + gap;
-                    Melon<Player>.Logger.Msg($"FA_MUSIC battle pause {gap:0} s");
+                    Melon<Player>.Logger.Msg($"FA_MUSIC song pause {gap:0} s");
                 }
                 if (UnityEngine.Time.unscaledTime >= resumeAt) PlayNext();
             }
@@ -382,11 +404,27 @@ public sealed class Player : MelonMod
         if (!queues.TryGetValue(dir, out var queue) || queue.Count == 0)
             queues[dir] = queue = Files(dir).OrderBy(_ => Rng.Next()).ToList();
         string file;
-        var intro = Path.GetFileName(dir) == "Menu" ? Files(Path.Combine(dir, "First")) : new List<string>();
-        if (intro.Count > 0)
+        var isMenu = Path.GetFileName(dir) == "Menu";
+        var compilations = isMenu ? MenuSequence.CompilationFiles(pack, dir) : new List<string>();
+        var orderedMenu = isMenu && compilations.Count == 0 && MenuSequence.IsOrderedPack(pack);
+        var intro = isMenu && compilations.Count == 0 ? Files(Path.Combine(dir, "First")) : new List<string>();
+        if (orderedMenu && intro.Count == 0) intro = Files(dir);
+        var regular = Files(dir);
+        if (orderedMenu)
+        {
+            var battleTracks = Files(Path.Combine(Path.GetDirectoryName(dir), "Battle"));
+            if (battleTracks.Count > 0) regular = battleTracks;
+            regular = regular.Where(f => !intro.Any(i => Path.GetFileName(i).Equals(Path.GetFileName(f), StringComparison.OrdinalIgnoreCase))).ToList();
+        }
+        if (compilations.Count > 0)
+        {
+            // Each complete mix is an independent equal-probability choice. Its gaps are embedded.
+            file = compilations[Rng.Next(compilations.Count)];
+        }
+        else if (intro.Count > 0)
         {
             // Explicit menu opener once on entering this pack/menu; then the regular shuffled queue.
-            file = menuSequence.Next(intro, Files(dir), Rng);
+            file = menuSequence.Next(intro, regular, Rng);
         }
         else
         {
@@ -396,6 +434,7 @@ public sealed class Player : MelonMod
             file = queue[0];
             queue.RemoveAt(0);
         }
+        var remaining = intro.Count > 0 ? menuSequence.Remaining : queue.Count;
         // FMOD_CREATESTREAM | FMOD_2D | FMOD_LOOP_OFF
         if (Fmod.FMOD_System_CreateSound(system, Encoding.UTF8.GetBytes(file + "\0"), 0x80 | 0x8 | 0x1, IntPtr.Zero, out sound) != 0
             || Fmod.FMOD_System_PlaySound(system, sound, IntPtr.Zero, 0, out channel) != 0)
@@ -408,7 +447,7 @@ public sealed class Player : MelonMod
         Fmod.FMOD_Channel_SetVolume(channel, volume * slider);
         playingDir = dir;
         Melon<Player>.Logger.Msg($"FA_MUSIC playing {Path.GetFileName(file)} from {Path.GetFileName(dir)}" + (battleStart >= 0 ? $" at battle {UnityEngine.Time.time - battleStart:0} s" : ""));
-        try { File.AppendAllText(Path.Combine(Root, "music-history.txt"), $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}  {pack}/{Path.GetRelativePath(Path.Combine(PacksDir, pack), dir)}  {Path.GetFileName(file)}  ({queue.Count} left before a repeat)\n"); } catch { }
+        try { File.AppendAllText(Path.Combine(Root, "music-history.txt"), $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}  {pack}/{Path.GetRelativePath(Path.Combine(PacksDir, pack), dir)}  {Path.GetFileName(file)}  ({remaining} left before a repeat)\n"); } catch { }
     }
 
     static void StopTrack()
