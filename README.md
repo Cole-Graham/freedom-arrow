@@ -1,3 +1,9 @@
+# PLA TEST Build 52
+
+Extra loadouts for aircraft that CMO lists few for (Osama: add extra rather than be cautious): J-20/J-20S, J-35, J-31, J-36, J-50, J-15D, J-16D, GJ-11, Wing Loong, J-5, J-6W, H-6K, J-10A, J-8D, J-7, Z-21, Z-9WA now carry 4-8 loadouts each. Stealth jets internal only; recon helicopters stay rockets only. Native behaviour unverified.
+
+## Historical Build51
+
 # PLA TEST Build 51
 
 ZTZ-99 = T-90M (armour, gun, ammo, 195). ZTZ-99A front kinetic armour 800 (300 pts). Z-20KA and Z-20T get the MH-60M DAP pylon menus with Chinese munitions (AKD-10, FS-70A, 70 mm rockets, TY-90, 30 mm pods). HJ-73/HJ-73D missiles slower (100 vs Fagot 150); HJ-73D Team 30, ZBD-03 40, ZBD-86 20. Recon helicopters carry unguided rockets and guns only. Native behaviour unverified.
@@ -591,3 +597,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:34:11 PST (America/Los_Angeles) — Build50: Osama 05:24/05:31 requests (Airborne, Godswords, moves, PHL-16 loadouts, SR-5 HIMARS, HMV3 Cargo PLS, weapon order).
 
 - 2026-11-12 05:37:10 PST (America/Los_Angeles) — Build51: ZTZ-99 = T-90M, ZTZ-99A KE 800, Z-20 DAP menus, slow cheap HJ-73D, recon helicopters rockets only.
+
+- 2026-11-12 05:41:30 PST (America/Los_Angeles) — Build52: extra aircraft loadouts.

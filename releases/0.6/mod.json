@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 51",
-  "version": "51",
+  "name": "PLA TEST Build 52",
+  "version": "52",
   "type": "modpack",
-  "description": "Build50 plus ZTZ-99 = T-90M, ZTZ-99A front KE 800, Z-20 DAP menus with Chinese munitions, slow cheap HJ-73D, recon helicopters rockets only.",
+  "description": "Build51 plus extra aircraft loadouts (4-8 per aircraft) where CMO listed few.",
   "repo": "Cole-Graham/freedom-arrow"
 }

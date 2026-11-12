@@ -1,0 +1,177 @@
+{
+  "build": 52,
+  "base_build": 51,
+  "base_sha256": "6134b236cca1218c9d43c9207490b3fe88e36db17b64e8217397c30cdd651918",
+  "added": {
+    "J-20 (915)": {
+      "before": 3,
+      "after": 7,
+      "added": [
+        "2x PL-15, 2x PL-10, 2x LS-6 (100)",
+        "2x PL-10, 4x LT-2 (85)",
+        "2x PL-15, 2x PL-10, 2x YJ-91 (150)",
+        "2x PL-17, 2x PL-15, 2x PL-10 (130)"
+      ]
+    },
+    "J-20S (966)": {
+      "before": 3,
+      "after": 7,
+      "added": [
+        "2x PL-15, 2x PL-10, 2x LS-6 (100)",
+        "2x PL-10, 4x LT-2 (85)",
+        "2x PL-15, 2x PL-10, 2x YJ-91 (150)",
+        "2x PL-17, 2x PL-15, 2x PL-10 (130)"
+      ]
+    },
+    "J-35 (921)": {
+      "before": 3,
+      "after": 7,
+      "added": [
+        "2x PL-15, 2x LT-2 (75)",
+        "4x LS-6 (60)",
+        "2x PL-15C, 2x YJ-91 (120)",
+        "4x PL-15C, 2x PL-10 (105)"
+      ]
+    },
+    "J-31 (971)": {
+      "before": 3,
+      "after": 7,
+      "added": [
+        "2x PL-15, 2x LT-2 (75)",
+        "4x LS-6 (60)",
+        "2x PL-15C, 2x YJ-91 (120)",
+        "4x PL-15C, 2x PL-10 (105)"
+      ]
+    },
+    "J-36 (929)": {
+      "before": 2,
+      "after": 7,
+      "added": [
+        "4x PL-15C, 4x LS-6 (140)",
+        "4x PL-15C, 4x YJ-91 (195)",
+        "4x PL-15C, 4x KD-88 (185)",
+        "4x PL-15C, 6x LT-2 (160)",
+        "4x PL-15C, 4x GB-6 (165)"
+      ]
+    },
+    "J-50 (944)": {
+      "before": 3,
+      "after": 6,
+      "added": [
+        "4x PL-15C, 2x PL-10, 2x LS-6 (135)",
+        "4x PL-15C, 2x PL-10, 2x YJ-91 (170)",
+        "2x PL-15C, 2x PL-10, 4x LT-2 (125)"
+      ]
+    },
+    "J-15D (974)": {
+      "before": 2,
+      "after": 6,
+      "added": [
+        "2x PL-15, 4x YJ-91 (180)",
+        "2x PL-15, 2x PL-10, 2x YJ-91 (150)",
+        "4x PL-12, 2x PL-10 (95)",
+        "2x PL-12, 2x PL-10, 2x YJ-83K (150)"
+      ]
+    },
+    "J-16D (977)": {
+      "before": 2,
+      "after": 6,
+      "added": [
+        "2x PL-15, 4x YJ-91 (180)",
+        "2x PL-15, 2x PL-10, 2x YJ-91 (150)",
+        "4x PL-12, 2x PL-10 (95)",
+        "2x PL-12, 2x PL-10, 2x KD-88 (130)"
+      ]
+    },
+    "GJ-11 (967)": {
+      "before": 1,
+      "after": 5,
+      "added": [
+        "4x LS-6 (60)",
+        "2x GB-6 (50)",
+        "2x KD-88 (70)",
+        "2x YJ-91 (80)"
+      ]
+    },
+    "Wing Loong (946)": {
+      "before": 1,
+      "after": 5,
+      "added": [
+        "2x LS-6, 4x AKD-10 (70)",
+        "4x LS-6 (60)",
+        "8x AKD-9 (65)",
+        "2x LT-2 (30)"
+      ]
+    },
+    "J-5 (1089)": {
+      "before": 0,
+      "after": 4,
+      "added": [
+        "2x PL-5E (15)",
+        "32x 57 mm rocket (15)",
+        "2x 250 kg bomb (10)",
+        "14x 90 mm rocket (10)"
+      ]
+    },
+    "J-6W (1091)": {
+      "before": 3,
+      "after": 5,
+      "added": [
+        "2x PL-5E (15)",
+        "2x PL-5E, 16x 57 mm rocket (25)"
+      ]
+    },
+    "H-6K (919)": {
+      "before": 5,
+      "after": 8,
+      "added": [
+        "6x CJ-10K (225)",
+        "4x KD-88 (140)",
+        "4x YJ-83K (165)"
+      ]
+    },
+    "J-10A (1226)": {
+      "before": 5,
+      "after": 7,
+      "added": [
+        "4x PL-12, 2x PL-10 (95)",
+        "2x PL-12, 2x PL-10, 2x YJ-91 (140)"
+      ]
+    },
+    "J-8D (975)": {
+      "before": 4,
+      "after": 6,
+      "added": [
+        "2x PL-12, 2x PL-9 (55)",
+        "4x PL-9 (40)"
+      ]
+    },
+    "J-7 (1092)": {
+      "before": 5,
+      "after": 7,
+      "added": [
+        "2x PL-8, 2x 250 kg bomb (30)",
+        "2x PL-8, 36x 57 mm rocket (40)"
+      ]
+    },
+    "Z-21 (1104)": {
+      "before": 4,
+      "after": 7,
+      "added": [
+        "4x TY-90, 8x AKD-10 (110)",
+        "16x AKD-10 (155)",
+        "8x CM-501GA, 14x 70 mm rocket (95)"
+      ]
+    },
+    "Z-9WA (941)": {
+      "before": 4,
+      "after": 7,
+      "added": [
+        "4x HJ-8, 36x 57 mm rocket (40)",
+        "4x TY-90, 36x 57 mm rocket (50)",
+        "4x AKD-9, 18x 57 mm rocket (40)"
+      ]
+    }
+  },
+  "checks": 18897
+}
