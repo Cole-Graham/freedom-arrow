@@ -1,0 +1,70 @@
+{
+  "build": 51,
+  "base_build": 50,
+  "base_sha256": "ebdf5a45b5a4d008fda832573b13a9753f4ae46c4883d63349a10ace2d93c1bb",
+  "tanks": {
+    "ZTZ-99": "T-90M armour/gun/ammo, 195",
+    "ZTZ-99A": "front KE 800, 300"
+  },
+  "z20": {
+    "source": "MH-60M DAP (272) inner and outer pylon menus",
+    "swap": {
+      "AGM-114K Hellfire": "AKD-10",
+      "JAGM ": "AKD-10",
+      "DAGR": "FS-70A",
+      "70mm Hydra": "70 mm rocket",
+      "FIM-92K Stinger": "TY-90",
+      "30×113mm HEDP": "30 mm gun pod"
+    },
+    "mods": {
+      "914": [
+        "Weapons InnerPylons MH60M DAP PLA Z-20",
+        "Weapons OuterPylons MH60M DAP PLA Z-20"
+      ],
+      "1245": [
+        "Weapons InnerPylons MH60M DAP PLA Z-20",
+        "Weapons OuterPylons MH60M DAP PLA Z-20"
+      ]
+    }
+  },
+  "hj73d": {
+    "ammo_rows": [
+      2010905,
+      2011153,
+      2012644,
+      2017433,
+      2017434,
+      2017435,
+      2017436
+    ],
+    "MaxSpeed": "150 -> 100 (Fagot 150)",
+    "prices": {
+      "HJ-73D Team": 30,
+      "ZBD-03 / ZLC-2000": 40,
+      "ZBD-86": 20
+    }
+  },
+  "recon_helicopters": {
+    "Z-19 Recon (1132)": [
+      "36x 57 mm rocket (20)",
+      "14x 90 mm rocket (10)"
+    ],
+    "Z-19 Recon (1134)": [
+      "36x 57 mm rocket (20)",
+      "14x 90 mm rocket (10)"
+    ],
+    "Z-19 Recon (1237)": [
+      "36x 57 mm rocket (20)",
+      "14x 90 mm rocket (10)"
+    ],
+    "Z-9WA Recon (1133)": [
+      "72x 57 mm rocket (35)",
+      "28x 90 mm rocket (20)"
+    ],
+    "Z-21 Recon (1135)": [
+      "14x 70 mm rocket (10)",
+      "14x 90 mm rocket (10)"
+    ]
+  },
+  "checks": 6241
+}

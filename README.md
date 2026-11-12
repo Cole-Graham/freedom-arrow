@@ -1,3 +1,9 @@
+# PLA TEST Build 51
+
+ZTZ-99 = T-90M (armour, gun, ammo, 195). ZTZ-99A front kinetic armour 800 (300 pts). Z-20KA and Z-20T get the MH-60M DAP pylon menus with Chinese munitions (AKD-10, FS-70A, 70 mm rockets, TY-90, 30 mm pods). HJ-73/HJ-73D missiles slower (100 vs Fagot 150); HJ-73D Team 30, ZBD-03 40, ZBD-86 20. Recon helicopters carry unguided rockets and guns only. Native behaviour unverified.
+
+## Historical Build50
+
 # PLA TEST Build 50
 
 Airborne Riflemen renamed Airborne. Godswords carry 6 QTS-11 with grenade launchers again (no PF-89). Mountain Leopards in the recon tab. HQ-7 removed (HQ-7B stays); HQ-9A stowed. J-16 and J-16D to PLAAF, J-11D and GJ-11 to PLAGF Motorized, FH-97A to PLAAF air tab, MD-22 to the PLAN SOF air tab, WZ-8 to PLAN SOF recon. PHL-16 loadouts: 10x BRE3 300 mm, 8x BRE6/BRE8 370 mm or 2x Fire Dragon 480. SR-5 copies the M142 HIMARS (Fire Dragon 70, Fire Dragon 70 cluster, Fire Dragon 300, Fire Dragon 480) and moves to PLAN SOF. Shaanxi HMV3 Cargo uses M1075A1 PLS statistics on the HEMTT model. Squad weapons listed rifle, AT, MG. In-game appearance and behaviour remain unverified.
@@ -583,3 +589,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:23:55 PST (America/Los_Angeles) — Build49: artillery at vanilla scale, infantry weapon fixes, nearest-vanilla squad prices.
 
 - 2026-11-12 05:34:11 PST (America/Los_Angeles) — Build50: Osama 05:24/05:31 requests (Airborne, Godswords, moves, PHL-16 loadouts, SR-5 HIMARS, HMV3 Cargo PLS, weapon order).
+
+- 2026-11-12 05:37:10 PST (America/Los_Angeles) — Build51: ZTZ-99 = T-90M, ZTZ-99A KE 800, Z-20 DAP menus, slow cheap HJ-73D, recon helicopters rockets only.

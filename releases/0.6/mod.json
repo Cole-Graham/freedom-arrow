@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 50",
-  "version": "50",
+  "name": "PLA TEST Build 51",
+  "version": "51",
   "type": "modpack",
-  "description": "Build48 plus artillery at vanilla scale, infantry weapon fixes and squad prices from the nearest vanilla squads.",
+  "description": "Build50 plus ZTZ-99 = T-90M, ZTZ-99A front KE 800, Z-20 DAP menus with Chinese munitions, slow cheap HJ-73D, recon helicopters rockets only.",
   "repo": "Cole-Graham/freedom-arrow"
 }
