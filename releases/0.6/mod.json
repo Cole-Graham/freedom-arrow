@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 53",
-  "version": "53",
+  "name": "PLA TEST Build 54",
+  "version": "54",
   "type": "modpack",
-  "description": "Build52 with AKD-10 renamed HJ-10 and Chinese Z-20 menu labels.",
+  "description": "Build53 plus LD-8A and PL-16 stealth loadouts and the J-16 32x250 kg bomb loadout.",
   "repo": "Cole-Graham/freedom-arrow"
 }

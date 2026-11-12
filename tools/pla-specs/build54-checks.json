@@ -1,0 +1,67 @@
+{
+  "build": 54,
+  "base_build": 53,
+  "base_sha256": "d7747ad677e3c049844a23a4482a30a311b38fd1c90c465cd26059547611492d",
+  "added": {
+    "J-20 (915)": {
+      "before": 7,
+      "after": 10,
+      "added": [
+        "6x PL-16, 2x PL-10 (155)",
+        "2x PL-10, 4x LD-8A (170)",
+        "2x PL-15, 2x PL-10, 2x LD-8A (150)"
+      ]
+    },
+    "J-20S (966)": {
+      "before": 7,
+      "after": 10,
+      "added": [
+        "6x PL-16, 2x PL-10 (155)",
+        "2x PL-10, 4x LD-8A (170)",
+        "2x PL-15, 2x PL-10, 2x LD-8A (150)"
+      ]
+    },
+    "J-35 (921)": {
+      "before": 7,
+      "after": 10,
+      "added": [
+        "6x PL-16 (135)",
+        "4x LD-8A (155)",
+        "2x PL-15, 2x LD-8A (125)"
+      ]
+    },
+    "J-31 (971)": {
+      "before": 7,
+      "after": 10,
+      "added": [
+        "6x PL-16 (135)",
+        "4x LD-8A (155)",
+        "2x PL-15, 2x LD-8A (125)"
+      ]
+    },
+    "J-50 (944)": {
+      "before": 6,
+      "after": 8,
+      "added": [
+        "6x PL-16, 2x PL-10 (155)",
+        "2x PL-10, 4x LD-8A (170)"
+      ]
+    },
+    "J-36 (929)": {
+      "before": 7,
+      "after": 9,
+      "added": [
+        "8x PL-16, 2x PL-10 (180)",
+        "4x PL-15C, 6x LD-8A (235)"
+      ]
+    },
+    "J-16 (916)": {
+      "before": 8,
+      "after": 9,
+      "added": [
+        "2x PL-15, 2x PL-10, 32x 250 kg bomb (190)"
+      ]
+    }
+  },
+  "checks": 18720
+}

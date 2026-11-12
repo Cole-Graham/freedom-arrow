@@ -1,3 +1,9 @@
+# PLA TEST Build 54
+
+Stealth jets (J-20, J-20S, J-35, J-31, J-50, J-36) gain LD-8A anti-radiation loadouts (AGM-88 HARM performance, internal) and PL-16 loadouts (PL-15 performance; 6 in the bay that holds 4 PL-15). J-16 gains 32x 250 kg bombs + 2x PL-15 + 2x PL-10. Menus may hold up to 10 loadouts. Native behaviour unverified.
+
+## Historical Build53
+
 # PLA TEST Build 53
 
 AKD-10 renamed HJ-10 in every PLA weapon, ammunition, pylon and loadout label (statistics unchanged). Z-20KA/Z-20T menu labels now name the Chinese weapons (HJ-10, FS-70A, 70 mm rockets, TY-90, 30 mm gun pods) instead of the vanilla DAP text. Native appearance unverified.
@@ -607,3 +613,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:41:30 PST (America/Los_Angeles) — Build52: extra aircraft loadouts.
 
 - 2026-11-12 11:02:32 PST (America/Los_Angeles) — Build53: AKD-10 renamed HJ-10; Z-20 menu labels in Chinese weapon names.
+
+- 2026-11-12 11:13:05 PST (America/Los_Angeles) — Build54: LD-8A and PL-16 stealth loadouts, J-16 heavy bomb load.
