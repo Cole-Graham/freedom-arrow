@@ -1,4 +1,8 @@
-# PLA TEST Build 62
+# PLA TEST Build 63
+
+Chinese APCs and IFVs carry cargo (resupply points) like their vanilla analogues: ZSD-89A (all four), ZSD-89, ZSD-90, ZSD-63, ZSD-63C and CSK-181 carry 400 (M113A3 class); CSK-131 Transport, ZBD-86, ZBD-03, ZBL-191 and ZBD-251 carry 250 (Tigr, BMP-1, BMD-2, Bumerang and Kurganets class), as do the recon cars with seats (CSK-131 Mengshi, ZFB-05, CS/VN3C MG, WZ-701, VP4). Helicopters, aircraft and trucks have no cargo field in vanilla's tables; their cargo comes from the native model, which they share with the vanilla unit. ZBD-04A, ZBD-20 and ZBD-04 already had 250 on their third default ability; the game keeps only the first, so every default ability now carries it. Prices are unchanged. Everything else is exactly Build62. In-game check pending.
+
+## Historical Build62
 
 PLARF size correction: Conscripts, QJZ-89 Team, QLZ-87 Team and Thermobaric Team are 12 men again; Ambush Team (4) and Sharp Blades (6) are as in Build60; HJ-73D, FN-6, PF-98 Teams, Infantry and Counter-Raid Team stay 7. Conscripts cost 25. ZSD-89A is four separate cards with 12 seats and a QJC-88 12.7 mm HMG: PLARF, PLAGF (both PLAGF specs), PLAAF and PLAN SOF. All use the M113A3 body until the ZSD-89A model is bought. ZBD-86 is also in PLAAF airborne. Everything else is exactly Build61. In-game check pending.
 
@@ -683,3 +687,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:54:53 PST (America/Los_Angeles) — Build60: PF-98 swap between the PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters.
 - 2026-11-12 12:07:25 PST (America/Los_Angeles) — Build61: PLARF 7-man squads, conscript rifle fire rate -30%, Ambush Team name, PF-89 for PLARF Infantry.
 - 2026-11-12 12:15:10 PST (America/Los_Angeles) — Build62: PLARF size correction, Conscripts 25, ZSD-89A x4 (12 seats), ZBD-86 in PLAAF.
+- 2026-11-12 12:22:54 PST (America/Los_Angeles) — Build63: vanilla-style cargo on Chinese APCs and IFVs.

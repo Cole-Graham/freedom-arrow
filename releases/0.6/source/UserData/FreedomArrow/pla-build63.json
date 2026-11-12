@@ -1,0 +1,124 @@
+{
+  "build": 63,
+  "base_build": 62,
+  "base_sha256": "e50b2ffe8b113e5b58e54fa17e6a52f36cf34d593bd6f60c03a9df75cbecbfb4",
+  "changes": [
+    {
+      "unit": 1065,
+      "name": "ZSD-89A",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1248,
+      "name": "ZSD-89A",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1249,
+      "name": "ZSD-89A",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1250,
+      "name": "ZSD-89A",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1064,
+      "name": "ZSD-89",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1246,
+      "name": "ZSD-89",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 959,
+      "name": "ZSD-90",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 960,
+      "name": "ZSD-63C",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1062,
+      "name": "ZSD-63",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1230,
+      "name": "CSK-181 Transport",
+      "change": "cargo 400 (1 default ability [0] -> 400)"
+    },
+    {
+      "unit": 1229,
+      "name": "CSK-131 Transport",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 1063,
+      "name": "ZBD-86",
+      "change": "cargo 250 (new default supply ability)"
+    },
+    {
+      "unit": 1074,
+      "name": "ZBD-03 / ZLC-2000",
+      "change": "cargo 250 (new default supply ability)"
+    },
+    {
+      "unit": 979,
+      "name": "ZBL-191",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 1056,
+      "name": "ZBD-251",
+      "change": "cargo 250 (2 default abilities [0, 0] -> 250)"
+    },
+    {
+      "unit": 902,
+      "name": "ZBD-04A",
+      "change": "cargo 250 (3 default abilities [0, 0, 250] -> 250)"
+    },
+    {
+      "unit": 945,
+      "name": "ZBD-20",
+      "change": "cargo 250 (3 default abilities [0, 0, 250] -> 250)"
+    },
+    {
+      "unit": 1075,
+      "name": "ZBD-04",
+      "change": "cargo 250 (3 default abilities [0, 0, 250] -> 250)"
+    },
+    {
+      "unit": 900,
+      "name": "CSK-131 Mengshi",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 954,
+      "name": "ZFB-05",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 1057,
+      "name": "CS/VN3C MG",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 957,
+      "name": "WZ-701",
+      "change": "cargo 250 (1 default ability [0] -> 250)"
+    },
+    {
+      "unit": 1070,
+      "name": "VP4",
+      "change": "cargo 250 (new default supply ability)"
+    }
+  ],
+  "checks": 69,
+  "native_verified": false
+}

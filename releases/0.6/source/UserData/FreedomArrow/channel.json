@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "62",
+  "package_version": "63",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build61 plus PLARF size correction, Conscripts 25, ZSD-89A x4 with 12 seats, ZBD-86 in PLAAF. Data checks only; in-game check pending."
+  "verification": "Build62 plus vanilla-style cargo on Chinese APCs and IFVs. Data checks only; in-game check pending."
 }
