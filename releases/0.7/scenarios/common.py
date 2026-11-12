@@ -295,3 +295,25 @@ def vanilla_spec(scene,network,skirmish,name,guid,values,online_from_skirmish=Fa
                 flavors=[dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,deploy_target=136,deploy_pin='in2') if online_from_skirmish else
                          dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,host=network),
                          dict(name=f'[FA] {name} Skirmish 0.1',guid=guid+'b',kind=3,public=False,host=skirmish)])
+
+# Map batch: orient authored spawns and starting cameras using each team's own spawn side.
+def face_spawns_to_objectives(objects,team=None):
+    import math
+    zones=[o['pos'] for o in objects if o.get('_type')==15]
+    cx=sum(p['X'] for p in zones)/len(zones);cz=sum(p['Z'] for p in zones)/len(zones)
+    for o in objects:
+        if o.get('_type')!=10 or (team is not None and o['team']['id']!=team):continue
+        half=math.atan2(cx-o['pos']['X'],cz-o['pos']['Z'])/2
+        o['rotate']=dict(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half))
+def add_team_cameras(objects):
+    import math
+    assert not any(o.get('_type')==18 for o in objects),'Existing cameras need explicit reconciliation'
+    zones=[o['pos'] for o in objects if o.get('_type')==15]
+    cx=sum(p['X'] for p in zones)/len(zones);cz=sum(p['Z'] for p in zones)/len(zones)
+    for team,name in [('Alpha team','Camera alpha'),('Bravo team','Camera bravo')]:
+        tid=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']==team)
+        ps=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==tid]
+        assert ps,team
+        x=sum(p['X'] for p in ps)/len(ps);z=sum(p['Z'] for p in ps)/len(ps);y=sum(p['Y'] for p in ps)/len(ps)
+        d=math.hypot(cx-x,cz-z);assert d>1200,team
+        add_camera(objects,team,name,dict(X=x,Y=y,Z=z),dict(X=x+(cx-x)*1200/d,Y=y,Z=z+(cz-z)*1200/d),700)

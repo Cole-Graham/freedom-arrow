@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.55.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.18.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-dev.55'
+    assert manifest['version']=='0.7.0-devtest.lat.18'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.55 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.18 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -339,7 +339,7 @@ with zipfile.ZipFile(p) as z:
         raw=zipfile.ZipFile(io.BytesIO(z.read(f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'))).read(part)
         return ms.load(ms.dec(raw))
     def scenario_objects(name):return scenario_part(name,'objects.bam')
-    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1','crop'),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',(4250,9000)),('[FA] [2v2] Chkalovsk Airbase 0.1','[FA] [2v2] Chkalovsk Airbase Skirmish 0.1',(9000,5000))]
+    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1','crop'),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',(4250,9000)),('[FA] [2v2] Chkalovsk Airbase 0.1','[FA] [2v2] Chkalovsk Airbase Skirmish 0.1',(9000,4850.01636)),('[FA] [2v2] Highway of Death 0.1','[FA] [2v2] Highway of Death Skirmish 0.1',(6000,9000))]
     for net_name,sk_name,crop in pairs:
         for name,kind in [(net_name,2),(sk_name,3)]:
             assert f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr' in names
@@ -391,6 +391,33 @@ with zipfile.ZipFile(p) as z:
     for o in [o for o in ckobj if o.get('_type')==10]:
         yaw=math.degrees(2*math.atan2(o['rotate']['Y'],o['rotate']['W']));to=math.degrees(math.atan2(cx-o['pos']['X'],cz-o['pos']['Z']))
         assert abs((yaw-to+180)%360-180)<60,(o['_dname'],yaw,to)
+    for net_name,sk_name,_ in pairs:
+        for name in (net_name,sk_name):
+            objs=scenario_objects(name);head=scenario_part(name,'head.bam')
+            play=next(o for o in objs if o.get('_type')==7)
+            assert head['spz']==play['_uid'],(name,'inactive playable zone')
+    ckbox=next(o for o in ckobj if o.get('_type')==7)
+    assert abs(ckbox['pos']['X']-ckbox['scale']['X']/2)<.001 and abs(ckbox['pos']['Z']-ckbox['scale']['Z']/2)<.001
+    alpha=next(o for o in ckobj if o.get('_type')==15 and o['hudText']=='Alpha')
+    assert abs(ckbox['pos']['Z']+ckbox['scale']['Z']/2-alpha['pos']['Z']-1500)<.001
+    for name in ('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1','[FA] [2v2] Highway of Death 0.1','[FA] [2v2] Highway of Death Skirmish 0.1'):
+        objs=scenario_objects(name);zones=[o for o in objs if o.get('_type')==15]
+        cx=sum(o['pos']['X'] for o in zones)/len(zones);cz=sum(o['pos']['Z'] for o in zones)/len(zones)
+        red=next(o['_uid'] for o in objs if o.get('_type')==3 and o['teamSide']==1)
+        for o in objs:
+            if o.get('_type')!=10 or ('Dead Center' in name and o['team']['id']!=red):continue
+            yaw=2*math.atan2(o['rotate']['Y'],o['rotate']['W']);to=math.atan2(cx-o['pos']['X'],cz-o['pos']['Z'])
+            assert abs((yaw-to+math.pi)%(2*math.pi)-math.pi)<1e-5,(name,o['_dname'])
+        if 'Highway' in name:
+            values=dict(Alpha=2,Bravo=2,Charlie=2,Delta=6,Echo=6,Foxtrot=3,Golf=2)
+            assert {o['hudText'] for o in zones}==set(values)
+            assert {str(o['_uid']):values[o['hudText']] for o in zones}==settings['MapZoneWeights'][name]
+            assert all(o['ZoneIcon']==ord(o['hudText'][0])-ord('A')+1 for o in zones)
+            assert all(len(t['slots'])==2 for t in scenario_meta(name)['teams'])
+            assert len([o for o in objs if o.get('_type')==13])==4
+            assert all(o['_uid']>=10000 for o in zones)
+    for name in ('playable_borders_installed','playable_borders_bounds','lobby_deck_refresh_installed','lobby_deck_refresh'):
+        assert name.encode('utf-16le') in z.read('Mods/FreedomArrow.Runtime.dll')
     # Vanilla maps keep the native mission; each zone shows its own name and value, none stays hidden, and only network pauses for deployment.
     for mname,(scene,_,_,_,values,*_) in van.MAPS.items():
         assert set(values)=={o["_dname"] for o in scenario_objects(f"[FA] {mname} Skirmish 0.1") if o.get("_type")==15},mname

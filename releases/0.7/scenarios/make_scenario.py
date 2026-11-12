@@ -2,8 +2,8 @@
 from pathlib import Path
 import argparse, sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-import chkalovsk_2v2, dead_center_1v1, dead_center_2v2, vanilla
+import highway_2v2, chkalovsk_2v2, dead_center_1v1, dead_center_2v2, vanilla
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--game-dir',required=True,type=Path);ap.add_argument('--out',required=True,type=Path);a=ap.parse_args()
-    for mod in (dead_center_2v2, dead_center_1v1, chkalovsk_2v2, vanilla):mod.build(a.game_dir,a.out)
+    for mod in (dead_center_2v2, dead_center_1v1, chkalovsk_2v2, highway_2v2, vanilla):mod.build(a.game_dir,a.out)
 if __name__=='__main__':main()

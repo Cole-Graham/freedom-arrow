@@ -1,4 +1,4 @@
-"""[FA] [2v2] Chkalovsk Airbase: Lateralus's authored layout on the Airbase scene, FA script grafted. Zones, spawns and playable stay put."""
+"""[FA] [2v2] Chkalovsk Airbase: Lateralus's authored layout on the Airbase scene, FA script grafted. Authored objectives preserved; playable bounds activated and cropped beyond Alpha."""
 import math
 import common as C
 NAME='[FA] [2v2] Chkalovsk Airbase 0.1';GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c007'
@@ -33,6 +33,15 @@ def prepare(game,spec):
     assert head['map']=='Airbase' and meta['gameVersion']==C.GAME_VERSION
     assert not nodes['b'] and not nodes['c'] and 'pblOpt' not in meta,'authored map has a script now. Check this merge.'
     assert not [o for o in objects if o.get('_type')==18],'authored map has cameras now. Check this merge.'
+    # The authored object existed but spz=0 left it inactive. Three sides meet the map limits;
+    # the fourth is 1500 engine units beyond Alpha's centre, away from Charlie.
+    alpha=next(o for o in objects if o.get('_type')==15 and o['_dname']=='Alpha')
+    charlie=next(o for o in objects if o.get('_type')==15 and o['_dname']=='Charlie')
+    assert alpha['pos']['Z']>charlie['pos']['Z']
+    edge=alpha['pos']['Z']+1500.0;assert 4040.42578<edge<=9000.0
+    play=next(o for o in objects if o.get('_type')==7)
+    play['pos']=C.vec(dict(X=4500,Y=136,Z=edge/2));play['scale']=C.vec(dict(X=9000,Y=1,Z=edge))
+    play['rotate']=dict(X=0.0,Y=0.0,Z=0.0,W=1.0);head['spz']=play['_uid']
     C.strip_editor_teams(objects,meta)
     C.letter_zones(objects,LETTERS,[fl['name'] for fl in spec['flavors']])
     face_spawn(objects,'Spawn point 5')

@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-dev.55", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.18", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -63,14 +63,18 @@ public class Runtime : MelonMod
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
+        PlayableBorders.Update();
+        LobbyDeckRefresh.Update();
     }
-    public override void OnGUI() => conquest?.OnGUI();
+    public override void OnGUI() {PlayableBorders.Draw();conquest?.OnGUI();}
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         GroundAaLog.SceneChanged();
         CramPrediction.SceneChanged();
         AaCooldown.SceneChanged();
+        PlayableBorders.SceneChanged();
+        LobbyDeckRefresh.Clear();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -81,6 +85,7 @@ public class Runtime : MelonMod
             try { CramPrediction.Close(); } catch(Exception e) { MelonLogger.Warning("FREEDOM_ARROW_CRAM_PREDICTION_CLOSE_FAILED: "+e.Message); }
             AaCooldown.SceneChanged();
             GroundAaLog.Close();DiagnosticLog.Close("deinitialize");
+            PlayableBorders.Clear();LobbyDeckRefresh.Clear();
             try
             {
                 var bundle=TestLogBundle.Create(MelonEnvironment.GameRootDirectory,DiagnosticSessionStart,PackageVersion);
@@ -117,6 +122,10 @@ public class Runtime : MelonMod
         HarmonyInstance.Patch(AccessTools.Method(typeof(DataBaseCompiled), "LoadSource"),
             prefix: new HarmonyMethod(typeof(Runtime), nameof(Apply)) { priority=HarmonyLib.Priority.First });
         LoggerInstance.Msg($"Freedom Arrow {PackageVersion} package initialized. Main database constants hook installed.");
+        try {PlayableBorders.Install(HarmonyInstance);}
+        catch(Exception e){LoggerInstance.Error("FREEDOM_ARROW_PLAYABLE_BORDERS_INSTALL_FAILED: "+e.Message);}
+        try {LobbyDeckRefresh.Install(HarmonyInstance);}
+        catch(Exception e){LoggerInstance.Error("FREEDOM_ARROW_LOBBY_DECK_REFRESH_INSTALL_FAILED: "+e.Message);}
         try { DetectionConfig.Install(HarmonyInstance,Root); }
         catch(Exception e) { LoggerInstance.Error("FREEDOM_ARROW_DETECTION_FAILED: config hook not installed. "+e.Message); }
         try { CoverDamage.Install(HarmonyInstance,Root); }
