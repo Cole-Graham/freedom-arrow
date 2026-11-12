@@ -1,0 +1,7 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). Long-range SAM cards availability 3 (was 2, vanilla): Patriot PAC-2 (USMC), Patriot PAC-3 (Armored Brigade), Patriot PAC-3 MSE (Stryker), S-350 Vityaz (Motorized Infantry), S-300PM Favorit (Defense Forces), S-300V4 Antey (Mechanized Infantry). S-400 Triumph stays at 2. Guess: 'bump' read as +1. Not yet run in a game.",
+  "pools": {"1225": 163, "1226": 251, "766": 448, "831": 225, "835": 466, "868": 156},
+  "was": 2,
+  "availability": 3,
+  "held": {"727": 227}
+}

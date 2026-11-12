@@ -1,0 +1,7 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). The Airborne TOW-2A team (unit 414, 55, availability 4) is also in the Stryker Cavalry regiment, the same card with the same availability. In Airborne it rides a Humvee or an M1301 ISV; in Stryker it rides a Stryker ICV, as Troopers AT and the other Stryker infantry do (transport row copied from Troopers AT, 1294). Guess: Stryker ICV as the transport. Not yet run in a game.",
+  "unit": 414,
+  "like": 807,
+  "spec": 6,
+  "transport_like": 1294
+}

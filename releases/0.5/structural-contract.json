@@ -1,0 +1,315 @@
+{
+  "splits": [
+    {
+      "unit": 714,
+      "parent": 467,
+      "name": "M-ATV Javelin",
+      "cost": 90,
+      "move_turrets": [
+        1769,
+        1771
+      ],
+      "clone_turrets": [
+        1772
+      ],
+      "move_ammo": [
+        2745
+      ],
+      "moved": {
+        "2049": 578,
+        "2050": 578
+      },
+      "copied": {
+        "579": [
+          2051,
+          2052
+        ]
+      },
+      "pool": {
+        "parent": 4,
+        "new": 2
+      }
+    },
+    {
+      "unit": 715,
+      "parent": 209,
+      "name": "PRP-5G",
+      "cost": 35,
+      "move_turrets": [
+        523
+      ],
+      "clone_turrets": [],
+      "move_ammo": [],
+      "moved": {
+        "480": 180
+      },
+      "copied": {
+        "470": [
+          1709,
+          1710
+        ]
+      },
+      "pool": {
+        "parent": 2,
+        "new": 2
+      }
+    },
+    {
+      "unit": 716,
+      "parent": 158,
+      "name": "T-80BVM",
+      "cost": 175,
+      "move_turrets": [
+        333,
+        334
+      ],
+      "clone_turrets": [],
+      "move_ammo": [],
+      "moved": {
+        "564": 217,
+        "566": 217
+      },
+      "copied": {},
+      "pool": {
+        "parent": 3,
+        "new": 3
+      },
+      "concat": {
+        "564": "",
+        "566": " obr. 18"
+      },
+      "keep_cost": {
+        "566": 10
+      }
+    },
+    {
+      "unit": 717,
+      "parent": 615,
+      "name": "Object 787 Gadyuka",
+      "cost": 80,
+      "move_turrets": [
+        2014,
+        2015
+      ],
+      "clone_turrets": [],
+      "move_ammo": [],
+      "moved": {
+        "3033": 715
+      },
+      "copied": {
+        "716": [
+          3034,
+          3035
+        ]
+      },
+      "pool": {
+        "parent": 6,
+        "new": 6
+      }
+    },
+    {
+      "unit": 718,
+      "parent": 14,
+      "name": "M728 CEV",
+      "cost": 70,
+      "move_turrets": [
+        1677,
+        1678
+      ],
+      "clone_turrets": [],
+      "move_ammo": [],
+      "moved": {
+        "1905": 532
+      },
+      "copied": {
+        "575": [
+          2041,
+          2042
+        ]
+      },
+      "pool": {
+        "parent": 6,
+        "new": 6
+      }
+    },
+    {
+      "unit": 719,
+      "parent": 183,
+      "name": "M8 Thunderbolt",
+      "cost": 85,
+      "move_turrets": [
+        433
+      ],
+      "clone_turrets": [
+        434,
+        435
+      ],
+      "move_ammo": [],
+      "moved": {
+        "381": 140
+      },
+      "copied": {
+        "141": [
+          382,
+          383,
+          1461
+        ]
+      },
+      "pool": {
+        "parent": 6,
+        "new": 6
+      }
+    },
+    {
+      "unit": 720,
+      "parent": 453,
+      "name": "M10 Booker XM913",
+      "cost": 110,
+      "move_turrets": [
+        1702
+      ],
+      "clone_turrets": [
+        1701
+      ],
+      "move_ammo": [],
+      "moved": {
+        "1949": 548
+      },
+      "copied": {
+        "549": [
+          1950
+        ]
+      },
+      "pool": {
+        "parent": 4,
+        "new": 4
+      }
+    }
+  ],
+  "retire_options": [
+    565,
+    1462,
+    1775,
+    1792,
+    1895,
+    1898,
+    1931,
+    1939,
+    2117,
+    3321,
+    571
+  ],
+  "retire_mods": [
+    515,
+    804
+  ],
+  "retire_members": [
+    98,
+    99,
+    100,
+    1017,
+    407,
+    802,
+    804,
+    525,
+    798,
+    800,
+    791,
+    794,
+    796
+  ],
+  "retire_squad_weapons": [
+    43,
+    758,
+    759,
+    621,
+    99,
+    623,
+    561,
+    156,
+    345,
+    421
+  ],
+  "retire_ammo": [
+    2809,
+    2971,
+    3166,
+    2970,
+    478,
+    1760,
+    2373,
+    537,
+    1769,
+    2177
+  ],
+  "member_fields": {
+    "211": {
+      "PrimaryWeaponId": 122
+    },
+    "573": {
+      "PrimaryWeaponId": 122
+    },
+    "732": {
+      "SpecialWeaponId": 0
+    },
+    "326": {
+      "PrimaryWeaponId": 156
+    },
+    "600": {
+      "PrimaryWeaponId": 29
+    },
+    "694": {
+      "SpecialWeaponId": 0
+    },
+    "1616": {
+      "SpecialWeaponId": 59
+    }
+  },
+  "armor_links": {
+    "913": 280,
+    "751": 81,
+    "729": 280,
+    "727": 280
+  },
+  "unit_fields": {
+    "701": {
+      "IsUnitModification": false
+    },
+    "408": {
+      "IsUnitModification": false
+    },
+    "62": {
+      "HUDName": "Troopers AT"
+    },
+    "453": {
+      "HUDName": "M10 Booker M35"
+    },
+    "158": {
+      "HUDName": "T-80BV"
+    }
+  },
+  "new_pools": [
+    {
+      "unit": 701,
+      "like": 774,
+      "xp0": 8,
+      "transports": [
+        22
+      ]
+    },
+    {
+      "unit": 408,
+      "like": 448,
+      "xp0": 4,
+      "transports": [
+        180,
+        78
+      ]
+    }
+  ],
+  "set_pools": {
+    "774": 4,
+    "608": 8
+  },
+  "note": "Availability: M-ATV 4/2 approved by Osama. Other split pools are halved so the total stays the same, and are provisional. Troopers 8 and Troopers AT 4 were requested. CAAT Dragon 4 and Javelin 4 are provisional. 0.4 dev.37: T-80UM-2 Drozd variant (option 571) retired (Osama, 6 November 2026)."
+}

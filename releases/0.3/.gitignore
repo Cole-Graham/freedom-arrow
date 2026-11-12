@@ -1,0 +1,8 @@
+out/
+build/
+**/bin/
+**/obj/
+# build_constants.py writes these. Regenerate them; do not commit them.
+constant-audit.json
+source/UserData/FreedomArrow/constants/
+source/UserData/FreedomArrow/deck-migration.json

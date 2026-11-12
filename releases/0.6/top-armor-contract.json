@@ -1,0 +1,5 @@
+{
+  "note": "Lateralus, 8 November 2026: top armour 20 (HEAT and kinetic) on every M-ATV, Typhoon and BPM-97 variant, so fire and top hits separate them from the Humvee and Tigr (top 10). Typhoon-K (armour 111) is already 20. Key: FA armour row.",
+  "armors": {"2000019": "Typhoon VDV", "2000070": "BPM-97", "2000111": "M-ATV / M-ATV Javelin", "2000112": "M-ATV / M-ATV Javelin (option 2052)"},
+  "top": 20
+}

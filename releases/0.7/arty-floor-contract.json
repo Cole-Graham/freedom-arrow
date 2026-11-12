@@ -1,0 +1,76 @@
+{
+  "note": "Osama, 9 November 2026: artillery penetration has a 40 floor. Apply after historical tuning to both endpoints of all damaging tube/mortar/MLRS ammunition (trajectory 20/30/40). Smoke, nondamaging rows and engineering mine-clearing charges are excluded. Overrides earlier below-vanilla caps, including vanilla TOS penetration 15. Damage, ignore cover, radii and dispersion unchanged. Static data verification only.",
+  "minimum": 40.0,
+  "trajectories": [
+    20,
+    30,
+    40
+  ],
+  "engineering_excluded": [
+    466,
+    467,
+    558
+  ],
+  "changed_before": {
+    "15": [
+      17.0,
+      17.0
+    ],
+    "67": [
+      14.0,
+      14.0
+    ],
+    "71": [
+      30.0,
+      30.0
+    ],
+    "178": [
+      15,
+      15
+    ],
+    "179": [
+      15,
+      15
+    ],
+    "214": [
+      15.0,
+      15.0
+    ],
+    "215": [
+      15,
+      15
+    ],
+    "430": [
+      14.0,
+      14.0
+    ],
+    "432": [
+      15,
+      15
+    ],
+    "443": [
+      17.0,
+      17.0
+    ],
+    "481": [
+      37.5,
+      37.5
+    ],
+    "928": [
+      17.0,
+      17.0
+    ],
+    "930": [
+      14.0,
+      14.0
+    ],
+    "932": [
+      14.0,
+      14.0
+    ],
+    "934": [
+      14.0,
+      14.0
+    ]
+  }
+}

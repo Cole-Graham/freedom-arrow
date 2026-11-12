@@ -1,0 +1,24 @@
+{
+  "note": "0.4 dev.22 (Osama, 6 November 2026). PTRK Konkurs-M leaves the PTRK Konkurs card (Coastal Troops) and is its own card at 50; base Konkurs card 30. Same card mechanism as dev21-contract.json.",
+  "cards": [
+    {
+      "unit": 357,
+      "like_pool": 822,
+      "xp0": 4,
+      "transports": [
+        425,
+        212,
+        208
+      ],
+      "retire_parent_options": [
+        1517
+      ],
+      "parent": 121,
+      "fields": {
+        "HUDName": "PTRK Konkurs-M",
+        "Cost": 50
+      },
+      "parent_default_option": 1516
+    }
+  ]
+}

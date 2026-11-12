@@ -1,0 +1,20 @@
+{
+  "note": "0.4 dev.42 (Osama, 6 November 2026). T-62M health 14 -> 12 on all three armor kits, so it is less spammable at 60 points. T-72A front armor +100 KE and HEAT on both kits (base 400/600 -> 500/700, Kontakt-1 450/650 -> 550/750) to separate it from the T-62M. Rear, side and top armor unchanged. Gadyuka keeps its own T-72A rows unchanged. Prices are in vehicle-contract.json. Not deployed.",
+  "t62": {
+    "unit": 602,
+    "options": [
+      3006,
+      3007,
+      3008
+    ],
+    "hp": 12
+  },
+  "t72a": {
+    "unit": 615,
+    "options": [
+      3034,
+      3035
+    ],
+    "front_add": 100
+  }
+}

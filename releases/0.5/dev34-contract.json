@@ -1,0 +1,14 @@
+{
+  "note": "0.4 dev.34 (Osama, 6 November 2026). M8 Thunderbolt only (M8 AGS unchanged): ERA kit 700 HEAT front and sides; Applique kit 400 HEAT front and sides. Per-unit armor clones. Next patch: not installed or announced. dev.35: rear armor left at vanilla (Osama: never change tank rear armor).",
+  "option_armor": {
+    "2000354": {
+      "HeatArmorFront": 700,
+      "HeatArmorSides": 700
+    },
+    "2000355": {
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    }
+  },
+  "unit": 719
+}

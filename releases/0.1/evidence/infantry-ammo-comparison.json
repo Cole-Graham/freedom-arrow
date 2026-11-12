@@ -1,0 +1,107 @@
+[
+  {
+    "unit_id": 57,
+    "ammunition_rows": [
+      {
+        "weapon": "Rifle M4A1 T1",
+        "old": 80,
+        "new": 160
+      },
+      {
+        "weapon": "UGL 40 M203 (M4A1)",
+        "old": 24,
+        "new": 48
+      },
+      {
+        "weapon": "Autorifle M249E3 T1",
+        "old": 200,
+        "new": 400
+      },
+      {
+        "weapon": "RocketLauncher AT4 Disposable",
+        "old": 1,
+        "new": 1
+      }
+    ]
+  },
+  {
+    "unit_id": 59,
+    "ammunition_rows": [
+      {
+        "weapon": "UGL 40 M320 Standalone",
+        "old": 24,
+        "new": 48
+      },
+      {
+        "weapon": "RocketLauncher AT4 Disposable",
+        "old": 1,
+        "new": 1
+      },
+      {
+        "weapon": "Rifle M27 T3 Marines",
+        "old": 100,
+        "new": 200
+      }
+    ]
+  },
+  {
+    "unit_id": 132,
+    "ammunition_rows": [
+      {
+        "weapon": "MMG 7.62 PKPM T2",
+        "old": 200,
+        "new": 400
+      },
+      {
+        "weapon": "ATGM MetisM x1 Infantry",
+        "old": 5,
+        "new": 5
+      },
+      {
+        "weapon": "Rifle AK74RMO T2",
+        "old": 60,
+        "new": 120
+      }
+    ]
+  },
+  {
+    "unit_id": 66,
+    "ammunition_rows": [
+      {
+        "weapon": "Rifle M4A1 T1",
+        "old": 80,
+        "new": 160
+      },
+      {
+        "weapon": "ATGM Javelin Infantry",
+        "old": 3,
+        "new": 3
+      },
+      {
+        "weapon": "MMG 7.62 M240L Infantry",
+        "old": 200,
+        "new": 400
+      },
+      {
+        "weapon": "MMG 6.8 M240L6.8 Infantry",
+        "old": 200,
+        "new": 400
+      }
+    ]
+  },
+  {
+    "unit_id": 68,
+    "ammunition_rows": [
+      {
+        "weapon": "DMR 5.56 M38 Silenced T2",
+        "old": 60,
+        "new": 120
+      },
+      {
+        "weapon": "Sniper 7.62 M40A5 T2",
+        "old": 30,
+        "new": 60
+      }
+    ]
+  }
+]

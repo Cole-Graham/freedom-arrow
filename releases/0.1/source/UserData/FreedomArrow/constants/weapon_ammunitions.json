@@ -1,0 +1,2111 @@
+{
+  "8": {
+    "AmmunitionId": 2000147
+  },
+  "227": {
+    "AmmunitionId": 2000149
+  },
+  "230": {
+    "AmmunitionId": 2000149
+  },
+  "405": {
+    "AmmunitionId": 2000150
+  },
+  "443": {
+    "AmmunitionId": 2000131
+  },
+  "489": {
+    "AmmunitionId": 2000128
+  },
+  "496": {
+    "AmmunitionId": 2000132
+  },
+  "503": {
+    "AmmunitionId": 2000132
+  },
+  "511": {
+    "AmmunitionId": 2000153
+  },
+  "519": {
+    "AmmunitionId": 2000133
+  },
+  "531": {
+    "AmmunitionId": 2000135
+  },
+  "536": {
+    "AmmunitionId": 2000157
+  },
+  "537": {
+    "AmmunitionId": 2000157
+  },
+  "550": {
+    "AmmunitionId": 2000133
+  },
+  "572": {
+    "AmmunitionId": 2000137
+  },
+  "586": {
+    "AmmunitionId": 2000159
+  },
+  "598": {
+    "AmmunitionId": 2000129
+  },
+  "621": {
+    "AmmunitionId": 2000160
+  },
+  "636": {
+    "AmmunitionId": 2000159
+  },
+  "640": {
+    "AmmunitionId": 2000159
+  },
+  "659": {
+    "AmmunitionId": 2000161
+  },
+  "750": {
+    "AmmunitionId": 2000163
+  },
+  "797": {
+    "AmmunitionId": 2000160
+  },
+  "846": {
+    "AmmunitionId": 2000164
+  },
+  "861": {
+    "AmmunitionId": 2000147
+  },
+  "862": {
+    "AmmunitionId": 2000164
+  },
+  "889": {
+    "AmmunitionId": 2000154
+  },
+  "972": {
+    "AmmunitionId": 2000159
+  },
+  "973": {
+    "AmmunitionId": 2000159
+  },
+  "987": {
+    "AmmunitionId": 2000165
+  },
+  "998": {
+    "AmmunitionId": 2000159
+  },
+  "999": {
+    "AmmunitionId": 2000166
+  },
+  "1000": {
+    "AmmunitionId": 2000166
+  },
+  "1004": {
+    "AmmunitionId": 2000158
+  },
+  "1045": {
+    "AmmunitionId": 2000154
+  },
+  "1050": {
+    "AmmunitionId": 2000159
+  },
+  "1054": {
+    "AmmunitionId": 2000160
+  },
+  "1064": {
+    "AmmunitionId": 2000160
+  },
+  "1075": {
+    "AmmunitionId": 2000160
+  },
+  "1145": {
+    "AmmunitionId": 2000131
+  },
+  "1157": {
+    "AmmunitionId": 2000131
+  },
+  "1185": {
+    "AmmunitionId": 2000160
+  },
+  "1570": {
+    "AmmunitionId": 2000129
+  },
+  "1747": {
+    "AmmunitionId": 2000156
+  },
+  "1760": {
+    "AmmunitionId": 2000160
+  },
+  "1768": {
+    "AmmunitionId": 2000170
+  },
+  "1769": {
+    "AmmunitionId": 2000170
+  },
+  "1957": {
+    "AmmunitionId": 2000157
+  },
+  "1958": {
+    "AmmunitionId": 2000170
+  },
+  "1960": {
+    "AmmunitionId": 2000135
+  },
+  "1975": {
+    "AmmunitionId": 2000131
+  },
+  "1977": {
+    "AmmunitionId": 2000131
+  },
+  "1984": {
+    "AmmunitionId": 2000129
+  },
+  "2015": {
+    "AmmunitionId": 2000137
+  },
+  "2019": {
+    "AmmunitionId": 2000160
+  },
+  "2022": {
+    "AmmunitionId": 2000159
+  },
+  "2026": {
+    "AmmunitionId": 2000155
+  },
+  "2078": {
+    "AmmunitionId": 2000158
+  },
+  "2116": {
+    "AmmunitionId": 2000154
+  },
+  "2120": {
+    "AmmunitionId": 2000147
+  },
+  "2123": {
+    "AmmunitionId": 2000164
+  },
+  "2137": {
+    "AmmunitionId": 2000131
+  },
+  "2150": {
+    "AmmunitionId": 2000185
+  },
+  "2154": {
+    "AmmunitionId": 2000185
+  },
+  "2215": {
+    "AmmunitionId": 2000133
+  },
+  "2218": {
+    "AmmunitionId": 2000133
+  },
+  "2228": {
+    "AmmunitionId": 2000156
+  },
+  "2260": {
+    "AmmunitionId": 2000149
+  },
+  "2268": {
+    "AmmunitionId": 2000131
+  },
+  "2274": {
+    "AmmunitionId": 2000138
+  },
+  "2297": {
+    "AmmunitionId": 2000139
+  },
+  "2317": {
+    "AmmunitionId": 2000137
+  },
+  "2320": {
+    "AmmunitionId": 2000137
+  },
+  "2360": {
+    "AmmunitionId": 2000156
+  },
+  "2362": {
+    "AmmunitionId": 2000133
+  },
+  "2373": {
+    "AmmunitionId": 2000156
+  },
+  "2403": {
+    "AmmunitionId": 2000131
+  },
+  "2407": {
+    "AmmunitionId": 2000131
+  },
+  "2410": {
+    "AmmunitionId": 2000129
+  },
+  "2413": {
+    "AmmunitionId": 2000129
+  },
+  "2424": {
+    "AmmunitionId": 2000149
+  },
+  "2445": {
+    "AmmunitionId": 2000154
+  },
+  "2457": {
+    "AmmunitionId": 2000185
+  },
+  "2458": {
+    "AmmunitionId": 2000185
+  },
+  "2459": {
+    "AmmunitionId": 2000185
+  },
+  "2460": {
+    "AmmunitionId": 2000185
+  },
+  "2461": {
+    "AmmunitionId": 2000185
+  },
+  "2462": {
+    "AmmunitionId": 2000185
+  },
+  "2463": {
+    "AmmunitionId": 2000185
+  },
+  "2464": {
+    "AmmunitionId": 2000184
+  },
+  "2466": {
+    "AmmunitionId": 2000186
+  },
+  "2487": {
+    "AmmunitionId": 2000138
+  },
+  "2500": {
+    "AmmunitionId": 2000136
+  },
+  "2519": {
+    "AmmunitionId": 2000174
+  },
+  "2520": {
+    "AmmunitionId": 2000140
+  },
+  "2527": {
+    "AmmunitionId": 2000155
+  },
+  "2528": {
+    "AmmunitionId": 2000174
+  },
+  "2529": {
+    "AmmunitionId": 2000174
+  },
+  "2530": {
+    "AmmunitionId": 2000174
+  },
+  "2532": {
+    "AmmunitionId": 2000174
+  },
+  "2537": {
+    "AmmunitionId": 2000149
+  },
+  "2546": {
+    "AmmunitionId": 2000170
+  },
+  "2552": {
+    "AmmunitionId": 2000185
+  },
+  "2557": {
+    "AmmunitionId": 2000160
+  },
+  "2559": {
+    "AmmunitionId": 2000187
+  },
+  "2562": {
+    "AmmunitionId": 2000175
+  },
+  "2585": {
+    "AmmunitionId": 2000160
+  },
+  "2586": {
+    "AmmunitionId": 2000154
+  },
+  "2589": {
+    "AmmunitionId": 2000176
+  },
+  "2621": {
+    "AmmunitionId": 2000138
+  },
+  "2655": {
+    "AmmunitionId": 2000165
+  },
+  "2701": {
+    "AmmunitionId": 2000130
+  },
+  "2710": {
+    "AmmunitionId": 2000133
+  },
+  "2719": {
+    "AmmunitionId": 2000132
+  },
+  "2734": {
+    "AmmunitionId": 2000154
+  },
+  "2735": {
+    "AmmunitionId": 2000158
+  },
+  "2745": {
+    "AmmunitionId": 2000174
+  },
+  "2752": {
+    "AmmunitionId": 2000173
+  },
+  "2753": {
+    "AmmunitionId": 2000177
+  },
+  "2754": {
+    "AmmunitionId": 2000177
+  },
+  "2759": {
+    "AmmunitionId": 2000129
+  },
+  "2772": {
+    "AmmunitionId": 2000134
+  },
+  "2779": {
+    "AmmunitionId": 2000189
+  },
+  "2780": {
+    "AmmunitionId": 2000178
+  },
+  "2781": {
+    "AmmunitionId": 2000190
+  },
+  "2782": {
+    "AmmunitionId": 2000179
+  },
+  "2783": {
+    "AmmunitionId": 2000191
+  },
+  "2784": {
+    "AmmunitionId": 2000192
+  },
+  "2799": {
+    "AmmunitionId": 2000138
+  },
+  "2802": {
+    "AmmunitionId": 2000131
+  },
+  "2840": {
+    "AmmunitionId": 2000129
+  },
+  "2845": {
+    "AmmunitionId": 2000129
+  },
+  "2882": {
+    "AmmunitionId": 2000184
+  },
+  "2885": {
+    "AmmunitionId": 2000132
+  },
+  "2895": {
+    "AmmunitionId": 2000177
+  },
+  "2898": {
+    "AmmunitionId": 2000180
+  },
+  "2906": {
+    "AmmunitionId": 2000131
+  },
+  "2907": {
+    "AmmunitionId": 2000185
+  },
+  "2959": {
+    "AmmunitionId": 2000177
+  },
+  "2972": {
+    "AmmunitionId": 2000129
+  },
+  "2987": {
+    "AmmunitionId": 2000173
+  },
+  "2991": {
+    "AmmunitionId": 2000131
+  },
+  "2999": {
+    "AmmunitionId": 2000142
+  },
+  "3001": {
+    "AmmunitionId": 2000141
+  },
+  "3015": {
+    "AmmunitionId": 2000149
+  },
+  "3017": {
+    "AmmunitionId": 2000181
+  },
+  "3018": {
+    "AmmunitionId": 2000181
+  },
+  "3020": {
+    "AmmunitionId": 2000177
+  },
+  "3029": {
+    "AmmunitionId": 2000177
+  },
+  "3033": {
+    "AmmunitionId": 2000173
+  },
+  "3042": {
+    "AmmunitionId": 2000138
+  },
+  "3059": {
+    "AmmunitionId": 2000181
+  },
+  "3060": {
+    "AmmunitionId": 2000180
+  },
+  "3061": {
+    "AmmunitionId": 2000177
+  },
+  "3065": {
+    "AmmunitionId": 2000177
+  },
+  "3066": {
+    "AmmunitionId": 2000174
+  },
+  "3083": {
+    "AmmunitionId": 2000177
+  },
+  "3173": {
+    "AmmunitionId": 2000129
+  },
+  "3174": {
+    "AmmunitionId": 2000138
+  },
+  "3175": {
+    "AmmunitionId": 2000132
+  },
+  "3327": {
+    "AmmunitionId": 2000135
+  },
+  "3337": {
+    "AmmunitionId": 2000136
+  },
+  "3351": {
+    "AmmunitionId": 2000147
+  },
+  "3354": {
+    "AmmunitionId": 2000164
+  },
+  "3365": {
+    "AmmunitionId": 2000154
+  },
+  "3431": {
+    "AmmunitionId": 2000133
+  },
+  "3465": {
+    "AmmunitionId": 2000144
+  },
+  "3477": {
+    "AmmunitionId": 2000145
+  },
+  "3481": {
+    "AmmunitionId": 2000144
+  },
+  "3496": {
+    "AmmunitionId": 2000158
+  },
+  "3530": {
+    "AmmunitionId": 2000160
+  },
+  "3543": {
+    "AmmunitionId": 2000132
+  },
+  "3551": {
+    "AmmunitionId": 2000132
+  },
+  "3597": {
+    "AmmunitionId": 2000131
+  },
+  "3601": {
+    "AmmunitionId": 2000138
+  },
+  "4003": {
+    "AmmunitionId": 2000138
+  },
+  "4020": {
+    "AmmunitionId": 2000146
+  },
+  "4072": {
+    "AmmunitionId": 2000143
+  },
+  "4076": {
+    "AmmunitionId": 2000143
+  },
+  "4092": {
+    "AmmunitionId": 2000187
+  },
+  "4093": {
+    "AmmunitionId": 2000184
+  },
+  "4105": {
+    "AmmunitionId": 2000134
+  },
+  "4110": {
+    "AmmunitionId": 2000141
+  },
+  "4112": {
+    "AmmunitionId": 2000133
+  },
+  "4113": {
+    "AmmunitionId": 2000131
+  },
+  "4115": {
+    "AmmunitionId": 2000131
+  },
+  "4120": {
+    "AmmunitionId": 2000131
+  },
+  "4121": {
+    "AmmunitionId": 2000139
+  },
+  "4125": {
+    "AmmunitionId": 2000176
+  },
+  "4127": {
+    "AmmunitionId": 2000132
+  },
+  "4129": {
+    "AmmunitionId": 2000128
+  },
+  "4136": {
+    "AmmunitionId": 2000132
+  },
+  "4144": {
+    "AmmunitionId": 2000159
+  },
+  "4150": {
+    "AmmunitionId": 2000159
+  },
+  "4154": {
+    "AmmunitionId": 2000159
+  },
+  "4167": {
+    "AmmunitionId": 2000133
+  },
+  "4172": {
+    "AmmunitionId": 2000131
+  },
+  "4178": {
+    "AmmunitionId": 2000131
+  },
+  "4211": {
+    "AmmunitionId": 2000131
+  },
+  "4217": {
+    "AmmunitionId": 2000129
+  },
+  "4004": {
+    "Quantity": 40
+  },
+  "3598": {
+    "Quantity": 120
+  },
+  "3599": {
+    "Quantity": 300
+  },
+  "4007": {
+    "Quantity": 48
+  },
+  "3600": {
+    "Quantity": 200
+  },
+  "1972": {
+    "Quantity": 120
+  },
+  "1971": {
+    "Quantity": 190
+  },
+  "1761": {
+    "Quantity": 120
+  },
+  "1762": {
+    "Quantity": 200
+  },
+  "1976": {
+    "Quantity": 400
+  },
+  "2919": {
+    "Quantity": 200
+  },
+  "2921": {
+    "Quantity": 48
+  },
+  "2600": {
+    "Quantity": 160
+  },
+  "2601": {
+    "Quantity": 400
+  },
+  "2623": {
+    "Quantity": 48
+  },
+  "2480": {
+    "Quantity": 160
+  },
+  "2481": {
+    "Quantity": 400
+  },
+  "2482": {
+    "Quantity": 48
+  },
+  "3594": {
+    "Quantity": 160
+  },
+  "4002": {
+    "Quantity": 120
+  },
+  "4006": {
+    "Quantity": 48
+  },
+  "1158": {
+    "Quantity": 160
+  },
+  "1159": {
+    "Quantity": 48
+  },
+  "2510": {
+    "Quantity": 100
+  },
+  "3121": {
+    "Quantity": 160
+  },
+  "3617": {
+    "Quantity": 200
+  },
+  "1717": {
+    "Quantity": 160
+  },
+  "3618": {
+    "Quantity": 200
+  },
+  "2511": {
+    "Quantity": 60
+  },
+  "1718": {
+    "Quantity": 48
+  },
+  "3122": {
+    "Quantity": 160
+  },
+  "2798": {
+    "Quantity": 160
+  },
+  "2797": {
+    "Quantity": 160
+  },
+  "4041": {
+    "Quantity": 160
+  },
+  "4042": {
+    "Quantity": 160
+  },
+  "4074": {
+    "Quantity": 100
+  },
+  "4075": {
+    "Quantity": 48
+  },
+  "4052": {
+    "Quantity": 160
+  },
+  "4050": {
+    "Quantity": 300
+  },
+  "4049": {
+    "Quantity": 180
+  },
+  "4073": {
+    "Quantity": 48
+  },
+  "2969": {
+    "Quantity": 400
+  },
+  "3169": {
+    "Quantity": 400
+  },
+  "2370": {
+    "Quantity": 160
+  },
+  "3355": {
+    "Quantity": 160
+  },
+  "2970": {
+    "Quantity": 400
+  },
+  "3170": {
+    "Quantity": 400
+  },
+  "2971": {
+    "Quantity": 400
+  },
+  "3171": {
+    "Quantity": 400
+  },
+  "2133": {
+    "Quantity": 120
+  },
+  "3356": {
+    "Quantity": 160
+  },
+  "3166": {
+    "Quantity": 400
+  },
+  "3172": {
+    "Quantity": 400
+  },
+  "225": {
+    "Quantity": 160
+  },
+  "226": {
+    "Quantity": 48
+  },
+  "3325": {
+    "Quantity": 180
+  },
+  "3335": {
+    "Quantity": 400
+  },
+  "3324": {
+    "Quantity": 400
+  },
+  "3361": {
+    "Quantity": 400
+  },
+  "3359": {
+    "Quantity": 180
+  },
+  "3326": {
+    "Quantity": 48
+  },
+  "3336": {
+    "Quantity": 60
+  },
+  "3360": {
+    "Quantity": 48
+  },
+  "2874": {
+    "Quantity": 180
+  },
+  "2875": {
+    "Quantity": 48
+  },
+  "3328": {
+    "Quantity": 180
+  },
+  "2879": {
+    "Quantity": 400
+  },
+  "3329": {
+    "Quantity": 48
+  },
+  "2880": {
+    "Quantity": 180
+  },
+  "3339": {
+    "Quantity": 60
+  },
+  "2878": {
+    "Quantity": 180
+  },
+  "2877": {
+    "Quantity": 48
+  },
+  "2476": {
+    "Quantity": 160
+  },
+  "2477": {
+    "Quantity": 48
+  },
+  "2478": {
+    "Quantity": 400
+  },
+  "2479": {
+    "Quantity": 90
+  },
+  "2313": {
+    "Quantity": 96
+  },
+  "2251": {
+    "Quantity": 120
+  },
+  "2250": {
+    "Quantity": 200
+  },
+  "2252": {
+    "Quantity": 400
+  },
+  "2614": {
+    "Quantity": 160
+  },
+  "2613": {
+    "Quantity": 300
+  },
+  "2612": {
+    "Quantity": 60
+  },
+  "1639": {
+    "Quantity": 180
+  },
+  "2883": {
+    "Quantity": 400
+  },
+  "2361": {
+    "Quantity": 48
+  },
+  "2350": {
+    "Quantity": 200
+  },
+  "2773": {
+    "Quantity": 120
+  },
+  "2348": {
+    "Quantity": 200
+  },
+  "2408": {
+    "Quantity": 160
+  },
+  "2846": {
+    "Quantity": 400
+  },
+  "2748": {
+    "Quantity": 160
+  },
+  "2750": {
+    "Quantity": 400
+  },
+  "2751": {
+    "Quantity": 60
+  },
+  "3118": {
+    "Quantity": 160
+  },
+  "3117": {
+    "Quantity": 400
+  },
+  "3116": {
+    "Quantity": 100
+  },
+  "3005": {
+    "Quantity": 160
+  },
+  "3006": {
+    "Quantity": 48
+  },
+  "3007": {
+    "Quantity": 400
+  },
+  "1588": {
+    "Quantity": 80
+  },
+  "1587": {
+    "Quantity": 48
+  },
+  "1586": {
+    "Quantity": 200
+  },
+  "3333": {
+    "Quantity": 160
+  },
+  "211": {
+    "Quantity": 100
+  },
+  "2651": {
+    "Quantity": 48
+  },
+  "1705": {
+    "Quantity": 100
+  },
+  "2860": {
+    "Quantity": 160
+  },
+  "568": {
+    "Quantity": 60
+  },
+  "1565": {
+    "Quantity": 180
+  },
+  "1733": {
+    "Quantity": 60
+  },
+  "1732": {
+    "Quantity": 180
+  },
+  "1734": {
+    "Quantity": 60
+  },
+  "4085": {
+    "Quantity": 180
+  },
+  "4014": {
+    "Quantity": 100
+  },
+  "4015": {
+    "Quantity": 180
+  },
+  "4016": {
+    "Quantity": 60
+  },
+  "3449": {
+    "Quantity": 180
+  },
+  "3452": {
+    "Quantity": 100
+  },
+  "3450": {
+    "Quantity": 40
+  },
+  "3142": {
+    "Quantity": 400
+  },
+  "3002": {
+    "Quantity": 160
+  },
+  "3003": {
+    "Quantity": 48
+  },
+  "3152": {
+    "Quantity": 100
+  },
+  "2400": {
+    "Quantity": 160
+  },
+  "2401": {
+    "Quantity": 48
+  },
+  "2747": {
+    "Quantity": 400
+  },
+  "3052": {
+    "Quantity": 160
+  },
+  "3053": {
+    "Quantity": 192
+  },
+  "2357": {
+    "Quantity": 160
+  },
+  "2358": {
+    "Quantity": 48
+  },
+  "2587": {
+    "Quantity": 60
+  },
+  "1153": {
+    "Quantity": 100
+  },
+  "2767": {
+    "Quantity": 400
+  },
+  "2768": {
+    "Quantity": 60
+  },
+  "2760": {
+    "Quantity": 160
+  },
+  "2633": {
+    "Quantity": 40
+  },
+  "1721": {
+    "Quantity": 100
+  },
+  "2632": {
+    "Quantity": 100
+  },
+  "2634": {
+    "Quantity": 40
+  },
+  "2764": {
+    "Quantity": 80
+  },
+  "2765": {
+    "Quantity": 160
+  },
+  "2766": {
+    "Quantity": 400
+  },
+  "2796": {
+    "Quantity": 160
+  },
+  "3023": {
+    "Quantity": 160
+  },
+  "1561": {
+    "Quantity": 400
+  },
+  "555": {
+    "Quantity": 160
+  },
+  "556": {
+    "Quantity": 48
+  },
+  "3135": {
+    "Quantity": 400
+  },
+  "3137": {
+    "Quantity": 160
+  },
+  "3136": {
+    "Quantity": 192
+  },
+  "3126": {
+    "Quantity": 400
+  },
+  "2421": {
+    "Quantity": 160
+  },
+  "3593": {
+    "Quantity": 300
+  },
+  "2943": {
+    "Quantity": 180
+  },
+  "2944": {
+    "Quantity": 48
+  },
+  "2708": {
+    "Quantity": 180
+  },
+  "1643": {
+    "Quantity": 100
+  },
+  "2709": {
+    "Quantity": 48
+  },
+  "2945": {
+    "Quantity": 180
+  },
+  "2946": {
+    "Quantity": 48
+  },
+  "2704": {
+    "Quantity": 180
+  },
+  "2705": {
+    "Quantity": 48
+  },
+  "2756": {
+    "Quantity": 48
+  },
+  "2755": {
+    "Quantity": 160
+  },
+  "2758": {
+    "Quantity": 400
+  },
+  "2757": {
+    "Quantity": 60
+  },
+  "3145": {
+    "Quantity": 400
+  },
+  "3151": {
+    "Quantity": 160
+  },
+  "2984": {
+    "Quantity": 48
+  },
+  "3148": {
+    "Quantity": 100
+  },
+  "3014": {
+    "Quantity": 160
+  },
+  "2423": {
+    "Quantity": 160
+  },
+  "2412": {
+    "Quantity": 400
+  },
+  "2414": {
+    "Quantity": 160
+  },
+  "2411": {
+    "Quantity": 200
+  },
+  "3040": {
+    "Quantity": 120
+  },
+  "3041": {
+    "Quantity": 400
+  },
+  "3039": {
+    "Quantity": 160
+  },
+  "2994": {
+    "Quantity": 400
+  },
+  "2993": {
+    "Quantity": 160
+  },
+  "4088": {
+    "Quantity": 400
+  },
+  "3183": {
+    "Quantity": 160
+  },
+  "3034": {
+    "Quantity": 160
+  },
+  "3457": {
+    "Quantity": 180
+  },
+  "3460": {
+    "Quantity": 400
+  },
+  "3461": {
+    "Quantity": 400
+  },
+  "3462": {
+    "Quantity": 180
+  },
+  "3625": {
+    "Quantity": 400
+  },
+  "3127": {
+    "Quantity": 400
+  },
+  "3128": {
+    "Quantity": 400
+  },
+  "3050": {
+    "Quantity": 160
+  },
+  "608": {
+    "Quantity": 120
+  },
+  "3129": {
+    "Quantity": 400
+  },
+  "3130": {
+    "Quantity": 400
+  },
+  "1628": {
+    "Quantity": 96
+  },
+  "2859": {
+    "Quantity": 240
+  },
+  "2248": {
+    "Quantity": 120
+  },
+  "2865": {
+    "Quantity": 240
+  },
+  "3184": {
+    "Quantity": 400
+  },
+  "2598": {
+    "Quantity": 100
+  },
+  "2441": {
+    "Quantity": 200
+  },
+  "2071": {
+    "Quantity": 48
+  },
+  "3536": {
+    "Quantity": 160
+  },
+  "4226": {
+    "Quantity": 300
+  },
+  "600": {
+    "Quantity": 160
+  },
+  "602": {
+    "Quantity": 48
+  },
+  "601": {
+    "Quantity": 90
+  },
+  "4212": {
+    "Quantity": 160
+  },
+  "4214": {
+    "Quantity": 48
+  },
+  "4213": {
+    "Quantity": 90
+  },
+  "1142": {
+    "Quantity": 160
+  },
+  "1143": {
+    "Quantity": 48
+  },
+  "1144": {
+    "Quantity": 400
+  },
+  "2005": {
+    "Quantity": 160
+  },
+  "2006": {
+    "Quantity": 48
+  },
+  "2007": {
+    "Quantity": 400
+  },
+  "4168": {
+    "Quantity": 160
+  },
+  "4169": {
+    "Quantity": 48
+  },
+  "4170": {
+    "Quantity": 400
+  },
+  "4207": {
+    "Quantity": 160
+  },
+  "4208": {
+    "Quantity": 48
+  },
+  "4210": {
+    "Quantity": 400
+  },
+  "2003": {
+    "Quantity": 160
+  },
+  "2968": {
+    "Quantity": 300
+  },
+  "2406": {
+    "Quantity": 400
+  },
+  "2404": {
+    "Quantity": 160
+  },
+  "2405": {
+    "Quantity": 48
+  },
+  "2988": {
+    "Quantity": 160
+  },
+  "2989": {
+    "Quantity": 48
+  },
+  "2992": {
+    "Quantity": 400
+  },
+  "3016": {
+    "Quantity": 160
+  },
+  "610": {
+    "Quantity": 120
+  },
+  "611": {
+    "Quantity": 192
+  },
+  "530": {
+    "Quantity": 150
+  },
+  "2713": {
+    "Quantity": 180
+  },
+  "2714": {
+    "Quantity": 48
+  },
+  "2740": {
+    "Quantity": 180
+  },
+  "2738": {
+    "Quantity": 300
+  },
+  "2739": {
+    "Quantity": 48
+  },
+  "2521": {
+    "Quantity": 150
+  },
+  "2328": {
+    "Quantity": 160
+  },
+  "2329": {
+    "Quantity": 48
+  },
+  "205": {
+    "Quantity": 160
+  },
+  "411": {
+    "Quantity": 400
+  },
+  "208": {
+    "Quantity": 48
+  },
+  "2774": {
+    "Quantity": 60
+  },
+  "3546": {
+    "Quantity": 180
+  },
+  "3541": {
+    "Quantity": 400
+  },
+  "3540": {
+    "Quantity": 48
+  },
+  "3542": {
+    "Quantity": 190
+  },
+  "2213": {
+    "Quantity": 300
+  },
+  "2212": {
+    "Quantity": 160
+  },
+  "2214": {
+    "Quantity": 48
+  },
+  "2231": {
+    "Quantity": 180
+  },
+  "2580": {
+    "Quantity": 400
+  },
+  "2232": {
+    "Quantity": 48
+  },
+  "4163": {
+    "Quantity": 180
+  },
+  "4166": {
+    "Quantity": 400
+  },
+  "4164": {
+    "Quantity": 46
+  },
+  "1651": {
+    "Quantity": 120
+  },
+  "1778": {
+    "Quantity": 120
+  },
+  "2312": {
+    "Quantity": 40
+  },
+  "2629": {
+    "Quantity": 200
+  },
+  "2308": {
+    "Quantity": 400
+  },
+  "1677": {
+    "Quantity": 160
+  },
+  "570": {
+    "Quantity": 48
+  },
+  "571": {
+    "Quantity": 80
+  },
+  "2147": {
+    "Quantity": 80
+  },
+  "3021": {
+    "Quantity": 160
+  },
+  "3634": {
+    "Quantity": 300
+  },
+  "4082": {
+    "Quantity": 160
+  },
+  "4023": {
+    "Quantity": 120
+  },
+  "4084": {
+    "Quantity": 48
+  },
+  "3468": {
+    "Quantity": 60
+  },
+  "3467": {
+    "Quantity": 100
+  },
+  "4081": {
+    "Quantity": 160
+  },
+  "4080": {
+    "Quantity": 48
+  },
+  "2934": {
+    "Quantity": 240
+  },
+  "2225": {
+    "Quantity": 180
+  },
+  "2227": {
+    "Quantity": 400
+  },
+  "2226": {
+    "Quantity": 48
+  },
+  "1653": {
+    "Quantity": 120
+  },
+  "2354": {
+    "Quantity": 120
+  },
+  "4107": {
+    "Quantity": 180
+  },
+  "1649": {
+    "Quantity": 120
+  },
+  "2356": {
+    "Quantity": 120
+  },
+  "4108": {
+    "Quantity": 180
+  },
+  "2858": {
+    "Quantity": 120
+  },
+  "2857": {
+    "Quantity": 120
+  },
+  "2219": {
+    "Quantity": 180
+  },
+  "3132": {
+    "Quantity": 400
+  },
+  "3133": {
+    "Quantity": 400
+  },
+  "2216": {
+    "Quantity": 180
+  },
+  "3165": {
+    "Quantity": 400
+  },
+  "1647": {
+    "Quantity": 120
+  },
+  "2355": {
+    "Quantity": 120
+  },
+  "1771": {
+    "Quantity": 120
+  },
+  "559": {
+    "Quantity": 120
+  },
+  "1630": {
+    "Quantity": 400
+  },
+  "2671": {
+    "Quantity": 48
+  },
+  "3557": {
+    "Quantity": 300
+  },
+  "2905": {
+    "Quantity": 100
+  },
+  "2922": {
+    "Quantity": 160
+  },
+  "2866": {
+    "Quantity": 240
+  },
+  "2861": {
+    "Quantity": 400
+  },
+  "2863": {
+    "Quantity": 48
+  },
+  "2314": {
+    "Quantity": 160
+  },
+  "2605": {
+    "Quantity": 300
+  },
+  "2606": {
+    "Quantity": 160
+  },
+  "2273": {
+    "Quantity": 160
+  },
+  "1633": {
+    "Quantity": 160
+  },
+  "2142": {
+    "Quantity": 192
+  },
+  "4109": {
+    "Quantity": 300
+  },
+  "1632": {
+    "Quantity": 160
+  },
+  "2616": {
+    "Quantity": 160
+  },
+  "2281": {
+    "Quantity": 300
+  },
+  "2615": {
+    "Quantity": 48
+  },
+  "2622": {
+    "Quantity": 160
+  },
+  "2620": {
+    "Quantity": 48
+  },
+  "2618": {
+    "Quantity": 300
+  },
+  "2619": {
+    "Quantity": 100
+  },
+  "2624": {
+    "Quantity": 60
+  },
+  "2852": {
+    "Quantity": 60
+  },
+  "1665": {
+    "Quantity": 200
+  },
+  "1716": {
+    "Quantity": 40
+  },
+  "1714": {
+    "Quantity": 120
+  },
+  "1631": {
+    "Quantity": 160
+  },
+  "2604": {
+    "Quantity": 300
+  },
+  "2324": {
+    "Quantity": 160
+  },
+  "2325": {
+    "Quantity": 48
+  },
+  "2947": {
+    "Quantity": 200
+  },
+  "518": {
+    "Quantity": 60
+  },
+  "3025": {
+    "Quantity": 160
+  },
+  "2369": {
+    "Quantity": 160
+  },
+  "2640": {
+    "Quantity": 48
+  },
+  "2255": {
+    "Quantity": 300
+  },
+  "1644": {
+    "Quantity": 120
+  },
+  "502": {
+    "Quantity": 24
+  },
+  "1645": {
+    "Quantity": 200
+  },
+  "4077": {
+    "Quantity": 160
+  },
+  "3475": {
+    "Quantity": 48
+  },
+  "4056": {
+    "Quantity": 300
+  },
+  "4078": {
+    "Quantity": 160
+  },
+  "3479": {
+    "Quantity": 48
+  },
+  "4061": {
+    "Quantity": 400
+  },
+  "4028": {
+    "Quantity": 400
+  },
+  "4029": {
+    "Quantity": 100
+  },
+  "4079": {
+    "Quantity": 160
+  },
+  "4070": {
+    "Quantity": 96
+  },
+  "532": {
+    "Quantity": 120
+  },
+  "2842": {
+    "Quantity": 160
+  },
+  "2843": {
+    "Quantity": 48
+  },
+  "2844": {
+    "Quantity": 400
+  },
+  "1583": {
+    "Quantity": 120
+  },
+  "1663": {
+    "Quantity": 60
+  },
+  "1703": {
+    "Quantity": 40
+  },
+  "1702": {
+    "Quantity": 120
+  },
+  "1154": {
+    "Quantity": 160
+  },
+  "4124": {
+    "Quantity": 400
+  },
+  "1156": {
+    "Quantity": 400
+  },
+  "4122": {
+    "Quantity": 160
+  },
+  "4123": {
+    "Quantity": 48
+  },
+  "2221": {
+    "Quantity": 180
+  },
+  "2223": {
+    "Quantity": 400
+  },
+  "2222": {
+    "Quantity": 48
+  },
+  "2941": {
+    "Quantity": 180
+  },
+  "2942": {
+    "Quantity": 48
+  },
+  "2224": {
+    "Quantity": 290
+  },
+  "3044": {
+    "Quantity": 160
+  },
+  "3045": {
+    "Quantity": 48
+  },
+  "3046": {
+    "Quantity": 60
+  },
+  "3047": {
+    "Quantity": 60
+  },
+  "1741": {
+    "Quantity": 60
+  },
+  "521": {
+    "Quantity": 100
+  },
+  "1740": {
+    "Quantity": 100
+  },
+  "1742": {
+    "Quantity": 40
+  },
+  "3146": {
+    "Quantity": 100
+  },
+  "3049": {
+    "Quantity": 40
+  },
+  "2417": {
+    "Quantity": 160
+  },
+  "2418": {
+    "Quantity": 100
+  },
+  "4063": {
+    "Quantity": 120
+  },
+  "4071": {
+    "Quantity": 180
+  },
+  "4064": {
+    "Quantity": 100
+  },
+  "4179": {
+    "Quantity": 400
+  },
+  "4025": {
+    "Quantity": 180
+  },
+  "3382": {
+    "Quantity": 160
+  },
+  "1657": {
+    "Quantity": 42
+  },
+  "548": {
+    "Quantity": 80
+  },
+  "547": {
+    "Quantity": 120
+  },
+  "3381": {
+    "Quantity": 500
+  },
+  "3636": {
+    "Quantity": 72
+  },
+  "4086": {
+    "Quantity": 180
+  },
+  "3385": {
+    "Quantity": 120
+  },
+  "3384": {
+    "Quantity": 180
+  },
+  "3386": {
+    "Quantity": 400
+  },
+  "2341": {
+    "Quantity": 200
+  },
+  "2347": {
+    "Quantity": 100
+  },
+  "2342": {
+    "Quantity": 48
+  },
+  "1735": {
+    "Quantity": 200
+  },
+  "2346": {
+    "Quantity": 100
+  },
+  "1736": {
+    "Quantity": 48
+  },
+  "2338": {
+    "Quantity": 200
+  },
+  "2345": {
+    "Quantity": 100
+  },
+  "2339": {
+    "Quantity": 48
+  },
+  "2371": {
+    "Quantity": 400
+  },
+  "1963": {
+    "Quantity": 160
+  },
+  "1964": {
+    "Quantity": 40
+  },
+  "2321": {
+    "Quantity": 60
+  },
+  "2322": {
+    "Quantity": 60
+  },
+  "1967": {
+    "Quantity": 160
+  },
+  "1968": {
+    "Quantity": 40
+  },
+  "1969": {
+    "Quantity": 40
+  },
+  "564": {
+    "Quantity": 180
+  },
+  "4068": {
+    "Quantity": 200
+  },
+  "3437": {
+    "Quantity": 400
+  },
+  "4096": {
+    "Quantity": 180
+  },
+  "4019": {
+    "Quantity": 180
+  },
+  "4067": {
+    "Quantity": 400
+  },
+  "4066": {
+    "Quantity": 180
+  },
+  "4106": {
+    "Quantity": 180
+  },
+  "3019": {
+    "Quantity": 160
+  },
+  "2415": {
+    "Quantity": 160
+  },
+  "2591": {
+    "Quantity": 300
+  },
+  "2590": {
+    "Quantity": 200
+  },
+  "3592": {
+    "Quantity": 96
+  },
+  "2737": {
+    "Quantity": 48
+  },
+  "2238": {
+    "Quantity": 180
+  },
+  "2240": {
+    "Quantity": 400
+  },
+  "2239": {
+    "Quantity": 48
+  },
+  "4099": {
+    "Quantity": 60
+  },
+  "235": {
+    "Quantity": 160
+  },
+  "2419": {
+    "Quantity": 160
+  },
+  "2625": {
+    "Quantity": 200
+  },
+  "2627": {
+    "Quantity": 400
+  },
+  "2626": {
+    "Quantity": 60
+  },
+  "3036": {
+    "Quantity": 96
+  },
+  "3035": {
+    "Quantity": 160
+  },
+  "3037": {
+    "Quantity": 120
+  },
+  "2303": {
+    "Quantity": 160
+  },
+  "2305": {
+    "Quantity": 160
+  },
+  "214": {
+    "Quantity": 160
+  },
+  "218": {
+    "Quantity": 48
+  },
+  "2554": {
+    "Quantity": 400
+  },
+  "4116": {
+    "Quantity": 160
+  },
+  "4119": {
+    "Quantity": 60
+  },
+  "4117": {
+    "Quantity": 48
+  },
+  "4118": {
+    "Quantity": 400
+  },
+  "2299": {
+    "Quantity": 160
+  },
+  "3616": {
+    "Quantity": 60
+  },
+  "2300": {
+    "Quantity": 48
+  },
+  "2538": {
+    "Quantity": 400
+  },
+  "4173": {
+    "Quantity": 160
+  },
+  "4177": {
+    "Quantity": 60
+  },
+  "4174": {
+    "Quantity": 48
+  },
+  "4176": {
+    "Quantity": 400
+  },
+  "1640": {
+    "Quantity": 160
+  },
+  "481": {
+    "Quantity": 190
+  },
+  "3549": {
+    "Quantity": 160
+  },
+  "4009": {
+    "Quantity": 400
+  },
+  "3548": {
+    "Quantity": 200
+  },
+  "3550": {
+    "Quantity": 48
+  },
+  "1637": {
+    "Quantity": 160
+  },
+  "1636": {
+    "Quantity": 400
+  },
+  "470": {
+    "Quantity": 48
+  },
+  "1638": {
+    "Quantity": 160
+  },
+  "1757": {
+    "Quantity": 160
+  },
+  "2711": {
+    "Quantity": 120
+  },
+  "2588": {
+    "Quantity": 400
+  },
+  "2712": {
+    "Quantity": 120
+  },
+  "3131": {
+    "Quantity": 400
+  },
+  "1634": {
+    "Quantity": 160
+  },
+  "1635": {
+    "Quantity": 200
+  },
+  "2849": {
+    "Quantity": 200
+  },
+  "466": {
+    "Quantity": 48
+  },
+  "2326": {
+    "Quantity": 160
+  },
+  "2871": {
+    "Quantity": 100
+  },
+  "2327": {
+    "Quantity": 48
+  },
+  "3602": {
+    "Quantity": 160
+  },
+  "3603": {
+    "Quantity": 200
+  },
+  "3604": {
+    "Quantity": 48
+  },
+  "3168": {
+    "Quantity": 160
+  },
+  "490": {
+    "Quantity": 60
+  },
+  "1568": {
+    "Quantity": 100
+  },
+  "1743": {
+    "Quantity": 200
+  },
+  "1744": {
+    "Quantity": 60
+  },
+  "1974": {
+    "Quantity": 160
+  },
+  "2522": {
+    "Quantity": 300
+  },
+  "2332": {
+    "Quantity": 100
+  },
+  "2331": {
+    "Quantity": 200
+  },
+  "3167": {
+    "Quantity": 200
+  },
+  "2337": {
+    "Quantity": 100
+  },
+  "228": {
+    "Quantity": 160
+  },
+  "2809": {
+    "Quantity": 400
+  },
+  "4126": {
+    "Quantity": 400
+  },
+  "3009": {
+    "Quantity": 160
+  },
+  "3010": {
+    "Quantity": 400
+  },
+  "3011": {
+    "Quantity": 96
+  },
+  "2838": {
+    "Quantity": 160
+  },
+  "2839": {
+    "Quantity": 400
+  },
+  "3112": {
+    "Quantity": 160
+  },
+  "2998": {
+    "Quantity": 400
+  },
+  "3115": {
+    "Quantity": 48
+  }
+}

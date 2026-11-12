@@ -1,0 +1,19 @@
+{
+  "note": "0.5 dev.22 (Osama, 6 November 2026, stop-gap): helicopter anti-tank missiles do 12 damage, except LMUR. Rounds also fired by ground units (9M120M Ataka, 9M133M-2 Kornet-M) get a helicopter-only copy, so ground values do not change. The helicopter TOW-2A is already its own row (2000454). ARM, anti-ship and Kh-25ML missiles are not changed. Not yet run in a game.",
+  "damage": 12.0,
+  "ammo": [
+    2000454,
+    13,
+    80,
+    83,
+    123,
+    131,
+    164,
+    270,
+    456,
+    936
+  ],
+  "excluded": {
+    "449": "LMUR"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "unit": 984,
+  "name": "MGM-166 LOSAT",
+  "parent": 15,
+  "cost": 200,
+  "specs": [
+    6
+  ],
+  "availability": 2,
+  "vehicle_hp": 12,
+  "damage": 12,
+  "penetration": 550,
+  "kornet_ammo": 63,
+  "kornet_weapon": 214,
+  "notes": "LOSAT:200 points,Stryker only,availability2,12 damage,550 KE penetration,12 missiles,missile card speed1500 (raw1500/3.6),vehicle road speed50,6-second firing gap,no interception,tank-shell crit rules. Static model; unupgraded Bradley armor,12 hull HP.",
+  "shot_gap": 6,
+  "projectile_speed_ui": 1500,
+  "vehicle_speed": 50
+}

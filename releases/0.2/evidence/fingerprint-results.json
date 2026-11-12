@@ -1,0 +1,7 @@
+{
+  "checks": 14,
+  "pins": {
+    "MelonLoader/Il2CppAssemblies/Il2CppBrokenArrow.dll": "sha256-mvid-v1:09f46011c7cc67f9e2eed680be7bcac7a2c3aa088f8bef58d9cb50f4b55e56c6",
+    "MelonLoader/Il2CppAssemblies/Il2CppNetworkCommon.dll": "sha256-mvid-v1:107d71c0cbea9a8d39ba229fe668ea633d8a0f8d71a3a846f6219801b420adc4"
+  }
+}

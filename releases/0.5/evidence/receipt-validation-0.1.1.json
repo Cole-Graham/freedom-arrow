@@ -1,0 +1,13 @@
+{
+  "version": "0.1.1",
+  "tables": 7,
+  "writes": 8624,
+  "mismatches": [],
+  "t90m_side_heat": {
+    "2000076": 200,
+    "2000077": 400,
+    "2000078": 200,
+    "2000079": 400
+  },
+  "evidence_limit": "Receipt verifies writes, selected armory verifies effective models; not an independent readback of all ECS properties."
+}

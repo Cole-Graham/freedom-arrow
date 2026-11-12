@@ -1,0 +1,47 @@
+{
+  "note": "0.6 dev.74 (Osama, 8 November 2026). Armored Brigade: the M1299 Iron Thunder is its own card (unit 749): a copy of the M109A7 Paladin with only the Iron Thunder turret and the two armor options, cost 310 (270 + the old +40 turret option, now +0), availability 2. The M109A7 Paladin keeps only its Paladin turret (the Iron Thunder option 305 is retired; a saved deck that had it falls back to the Paladin turret). M109A6 Paladin also in USMC, availability 2 (copy of its Armored Brigade pool 384, which stays 3). Not yet run in a game. dev.77 (Osama): SLAMRAAM also in US Special Operations, availability 4 (copy of its Airborne pool 685, which stays 4).",
+  "country": 2,
+  "type": 4,
+  "category": 3,
+  "availability": 2,
+  "cards": [
+    {
+      "unit": 749,
+      "parent": 162,
+      "fields": {
+        "Name": "FA M1299 Iron Thunder",
+        "HUDName": "M1299 Iron Thunder",
+        "Cost": 310
+      },
+      "keep_options": [
+        305,
+        306,
+        307
+      ],
+      "option_costs": {
+        "305": 0
+      },
+      "decks": [
+        4
+      ],
+      "retire_parent_options": [
+        305
+      ]
+    }
+  ],
+  "add_pool": {
+    "like_pool": 384,
+    "unit": 247,
+    "specialization": 3,
+    "availability": 2
+  },
+  "more_pools": [
+    {
+      "like_pool": 685,
+      "unit": 389,
+      "specialization": 13,
+      "availability": 4,
+      "why": "SLAMRAAM in Special Operations, availability 4"
+    }
+  ]
+}

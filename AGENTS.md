@@ -111,3 +111,17 @@ Do not commit decrypted tables, `data.unity3d`, bundle hashes of a local install
 ## Offline play
 
 Day-to-day play goes through BAModManager or BAModLauncher. PLAY starts the game with Anti-Cheat disabled. **Play vanilla with no mods** is that program's button. It removes `version.dll`. Do not add a second implementation of that button. `hangar` remains only for trying `dist/stable/data.unity3d` locally.
+
+To make a 0.3 test version, follow `releases/0.3/TESTING.md`. 0.2 stays on `codex/0.2-development`.
+
+To make a 0.4 test version, follow `releases/0.4/TESTING.md`. Do not set the 0.4 dev version yourself. `build_constants.py` keeps it until that version has been built and its inputs changed, then moves to the next number. Commit `releases/0.4/builds.json` with the version.
+
+## Maintained branches and isolated batches
+
+Use docs/development/BRANCH-POLICY.md and branch-streams.json. Advance the appropriate codex/ maintained stream rather than creating a branch for each build. Main is approved public source; codex/0.7-development is main 0.7 integration. Keep PLA/assets/launcher work in their own streams. Use one codex/batch/lateralus/<topic> branch per coherent unpromoted batch and reuse it across test builds. Active and held batches are protected from cleanup. Promote only approved changes; do not merge whole experiments for graph cleanup. The original83-name scope is approved and recorded in the ledger; never widen it or re-request the same approval. Keep pinned package hashes/source commits and the public deployment lock unchanged unless explicitly authorized.
+
+## Document change log
+
+- 2026-11-04 19:24:57 PST (America/Los_Angeles) — Added the pointer to the 0.2 test-version guide.
+- 2026-11-05 19:46:48 PST (America/Los_Angeles) — Added the 0.4 guide pointer and the automatic dev version rule.
+- 2026-11-11 22:48:48 PST (America/Los_Angeles) — Added the approved maintained-stream/batch policy and exact-scope cleanup reference.

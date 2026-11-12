@@ -1,0 +1,69 @@
+{
+  "note": "0.4 dev.37 (Osama, 6 November 2026). No missile ripple fire: every ATGM weapon (types 80, 81, 89) fires 1 missile per burst, and no more missiles are guided at once than targets tracked, so 1 missile per target. Covers every Kornet launcher (Kornet-EM, Epokha, T-15 Barbaris, Tigr Kornet, Kornet-D1, Bumerang Kornet-M), Khrizantema, Vikhr, Hellfire and Griffin. SAMs and air-to-air missiles are not changed. T-80UM-2 Drozd variant retired (structural-contract). Javelin aim 3-4 s (dev30-contract). Not deployed.",
+  "types": [
+    80,
+    81,
+    89
+  ],
+  "weapon_fields": {
+    "89": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "107": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "214": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "215": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "299": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "303": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "304": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1
+    },
+    "433": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1
+    },
+    "512": {
+      "SimultaneousTracking": 1
+    },
+    "647": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1
+    },
+    "666": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "686": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "SimultaneousTracking": 1
+    },
+    "1029": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1
+    }
+  }
+}

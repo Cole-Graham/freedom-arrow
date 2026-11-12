@@ -1,0 +1,118 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). F-35C in Airborne infantry: a copy of the F-35A card with all its bay loadouts, except each bay's 1x GBU-56 LJDAM 2000lb becomes 1x GBU-55 LJDAM 1000lb at +50 (the F-35B's GBU-55 bay option; the F-35A has the GBU-55 pylon in its data already). Same model, cost 240 and availability 2 as the F-35A. EA-18G Growler in Airborne infantry (Osama: Airborne gets the naval planes; dev.27 had it in USMC as a guess): a copy of the F/A-18D Hornet card, same model and icon, availability 2. Centerline and fuselage choices as the F/A-18D. Inner pylons: only the 2x fuel tank option, renamed 2x ECM jammer pods with the ECM picture. ECM 20% (ability 46 in place of the F/A-18D's 10%, ability 31). Outer pylons: only 2x AGM-88 HARM (+80, as the F-16CJ's 2x HARM), on the same pylons as the F/A-18D's 2x Maverick. Base 195, so the default loadout (2x AIM-120 +35, jammer pods +20, HARM +80) totals 330. Guess: 330 read as the default card total. Not yet run in a game.",
+  "country": 2,
+  "type": 16,
+  "availability": 2,
+  "category": 6,
+  "cards": [
+    {
+      "unit": 741,
+      "parent": 294,
+      "fields": {
+        "Name": "FA F-35C",
+        "HUDName": "F-35C"
+      },
+      "keep_options": [
+        1027,
+        1028,
+        1029,
+        1030,
+        1031,
+        1888,
+        1891,
+        1941,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1889,
+        1890,
+        1940
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "1029": {
+          "Name": "LeftBay F35C 1xGBU55",
+          "UIName": "1x GBU-55 LJDAM 1000lb",
+          "OptionPicture": "GBU55",
+          "Cost": 50,
+          "Turret1Id": 532
+        },
+        "1034": {
+          "Name": "RightBay F35C 1xGBU55",
+          "UIName": "1x GBU-55 LJDAM 1000lb",
+          "OptionPicture": "GBU55",
+          "Cost": 50,
+          "Turret2Id": 532
+        }
+      },
+      "drop_turrets": [
+        533
+      ],
+      "keep_turrets": [
+        532
+      ],
+      "decks": [
+        5
+      ]
+    },
+    {
+      "unit": 742,
+      "parent": 292,
+      "fields": {
+        "Name": "FA EA-18G Growler",
+        "HUDName": "EA-18G Growler",
+        "Cost": 210
+      },
+      "keep_options": [
+        1921,
+        1922,
+        1016,
+        1017,
+        1018,
+        1009,
+        1003
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "1921": {
+          "Ability2Id": 46
+        },
+        "1922": {
+          "Ability2Id": 46
+        },
+        "1009": {
+          "Name": "InnerPylons EA18G 2xECM",
+          "UIName": "2x ECM jammer pods",
+          "OptionPicture": "ECM"
+        },
+        "1003": {
+          "Name": "OuterPylons EA18G 2xHARM",
+          "UIName": "2x AGM-88 HARM",
+          "OptionPicture": "AGM88_HARM",
+          "Cost": 80,
+          "Turret3Id": 554,
+          "Turret4Id": 554
+        }
+      },
+      "drop_turrets": [
+        235
+      ],
+      "ability_swap": {
+        "31": 46
+      },
+      "add_rows": {
+        "TurretUnitsJson": [
+          851
+        ],
+        "WeaponAmmunitionsJson": [
+          1259
+        ]
+      },
+      "decks": [
+        5
+      ]
+    }
+  ]
+}

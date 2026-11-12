@@ -1,0 +1,7 @@
+{
+  "note": "0.6 (Lateralus, 7 November 2026). MiG-31 agility, moderate nerf. Flight preset 3 'BigFast MiG31' (used only by mobility 169, Plane MIG31: MiG-31BM, MiG-31K, MiG-31K (S)): turn rate 20/45/45 -> 14/30/30 deg/s at min/max/afterburner speed, pitch 60 -> 45 deg/s, max roll 90 -> 75. Speeds and acceleration unchanged. Turn rate rises with speed between MinSpeed and MaxSpeed (AircraftControl.SetManeuverability, read from game code). Calculated hard-turn radius: 404 -> 598 (corner speed 240), afterburner 428 -> 642.",
+  "preset": 3,
+  "name": "BigFast MiG31",
+  "was": {"MinSpeedYaw": 20.0, "MaxSpeedYaw": 45.0, "AfterburnYaw": 45.0, "MinSpeedPitch": 60.0, "MaxSpeedPitch": 60.0, "AfterburnPitch": 60.0, "MaxRoll": 90.0},
+  "fields": {"MinSpeedYaw": 14.0, "MaxSpeedYaw": 30.0, "AfterburnYaw": 30.0, "MinSpeedPitch": 45.0, "MaxSpeedPitch": 45.0, "AfterburnPitch": 45.0, "MaxRoll": 75.0}
+}

@@ -1,0 +1,6 @@
+{
+  "DefaultPlayerMoney": 1500,
+  "ForestDamageTaken": 0.7,
+  "BuildingDamageFloor": 0.13,
+  "BuildingDamagePerSoldier": 0
+}

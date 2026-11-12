@@ -1,0 +1,267 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). Recon helicopters: separate cards in the recon tab, availability 4, not transports. Each is a copy of the helicopter card (model, portrait, icon, armor, ECM) with the listed options only. Names use Razvedchik (scout), as in T-90M Razvedchik. Defense Forces: Ka-60 Razvedchik, unarmed, 4 seats, no cargo, Very Good optics, 60; Ka-226T Razvedchik, Good optics, 4 seats, 45. Coastal Troops: Ka-29 Razvedchik, 4 seats, Very Good optics, 60, guns and rockets but no ATGM. Motorized Infantry: Mi-24K Razvedchik, S-8 pods +10 each (was +30), 70 like the Mi-24K. VDV Brigade and Guard Tank Brigade: Mi-8AMTSh Razvedchik, Very Good optics, 60, gun and rocket options only. Mi-24K price and the Mi-8AMTSh 4 seats are guesses. Not yet run in a game. The Mi-8AMTSh copy also leaves out the Igla-S and Verba x4 pylons, which no vanilla option uses. dev.31 (Osama): the Ka-29 Razvedchik inner pylons and the Mi-8AMTSh Razvedchik middle pylons get an Empty choice (+0, the empty pylon turret 160 on the same mounts), as the default; vanilla had no empty choice there, so the S-8 (+30) was forced and both cards opened at 90. dev.69 (Osama, 8 November 2026): VDV Brigade Mi-28NM Razvedchik (unit 747), a copy of the Mi-28NM Mikhalych with only empty or rocket pylons (inner: empty, new on this card, S-8 or S-13; outer: empty, S-8 or S-13; no LMUR, Vikhr or Igla), gun kept, Exceptional optics as the Mi-28NM, 90 with empty pylons by default. dev.70 (Osama, 8 November 2026): Coastal Troops Ka-52K Razvedchik (unit 748), a copy of the Ka-52K Katran with only rockets, gun pods or empty (inner: empty, new on this card, S-8, S-13 or GSh-23L gun pod; outer: empty, S-8 or S-13; no Ataka, Hermes, Kh-31P or Kh-35U), Exceptional optics, 100 with empty pylons by default.",
+  "availability": 4,
+  "category": 0,
+  "sensors": {
+    "Good": 1,
+    "Very Good": 3
+  },
+  "cards": [
+    {
+      "unit": 727,
+      "parent": 257,
+      "fields": {
+        "Name": "FA Ka-60 Razvedchik",
+        "HUDName": "Ka-60 Razvedchik",
+        "Cost": 60,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        656
+      ],
+      "option_costs": {},
+      "decks": [
+        12
+      ]
+    },
+    {
+      "unit": 728,
+      "parent": 258,
+      "fields": {
+        "Name": "FA Ka-226T Razvedchik",
+        "HUDName": "Ka-226T Razvedchik",
+        "Cost": 45,
+        "InfantrySlots": 4
+      },
+      "optics": "Good",
+      "keep_options": [],
+      "option_costs": {},
+      "decks": [
+        12
+      ]
+    },
+    {
+      "unit": 729,
+      "parent": 273,
+      "fields": {
+        "Name": "FA Ka-29 Razvedchik",
+        "HUDName": "Ka-29 Razvedchik",
+        "Cost": 60,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        728,
+        729,
+        731,
+        730,
+        732,
+        735
+      ],
+      "option_costs": {},
+      "decks": [
+        10
+      ],
+      "option_fields": {
+        "730": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 730,
+          "fields": {
+            "Name": "InnerPylons KA29 Empty FA",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "IsDefault": true,
+            "Turret2Id": 160,
+            "Turret3Id": 160
+          }
+        }
+      ]
+    },
+    {
+      "unit": 730,
+      "parent": 107,
+      "fields": {
+        "Name": "FA Mi-24K Razvedchik",
+        "HUDName": "Mi-24K Razvedchik",
+        "Cost": 70
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        228,
+        227,
+        230,
+        231,
+        229
+      ],
+      "option_costs": {
+        "227": 10,
+        "229": 10
+      },
+      "decks": [
+        9
+      ]
+    },
+    {
+      "unit": 731,
+      "parent": 145,
+      "fields": {
+        "Name": "FA Mi-8AMTSh Razvedchik",
+        "HUDName": "Mi-8AMTSh Razvedchik",
+        "Cost": 60,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        263,
+        1631,
+        262,
+        266,
+        264,
+        265,
+        1632,
+        3302,
+        3303
+      ],
+      "option_costs": {},
+      "decks": [
+        7,
+        8
+      ],
+      "drop_turrets": [
+        186,
+        1414
+      ],
+      "option_fields": {
+        "264": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 264,
+          "fields": {
+            "Name": "MiddlePylons MI8AMTSH Empty FA",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "IsDefault": true,
+            "Turret2Id": 160,
+            "Turret3Id": 160
+          }
+        }
+      ]
+    },
+    {
+      "unit": 747,
+      "parent": 380,
+      "fields": {
+        "Name": "FA Mi-28NM Razvedchik",
+        "HUDName": "Mi-28NM Razvedchik",
+        "Cost": 90
+      },
+      "keep_options": [
+        1719,
+        1720,
+        1722,
+        1723,
+        1724
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "1719": {
+          "IsDefault": false
+        },
+        "1720": {
+          "IsDefault": false
+        },
+        "1722": {
+          "IsDefault": true
+        },
+        "1723": {
+          "IsDefault": false
+        },
+        "1724": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 1719,
+          "fields": {
+            "Name": "InnerPylon Mi28NM Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret1Id": 160,
+            "Turret2Id": 160,
+            "IsDefault": true
+          }
+        }
+      ],
+      "decks": [
+        7
+      ]
+    },
+    {
+      "unit": 748,
+      "parent": 271,
+      "fields": {
+        "Name": "FA Ka-52K Razvedchik",
+        "HUDName": "Ka-52K Razvedchik",
+        "Cost": 100
+      },
+      "keep_options": [
+        712,
+        713,
+        2112,
+        714,
+        715,
+        716
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "712": {
+          "IsDefault": false
+        },
+        "713": {
+          "IsDefault": false
+        },
+        "2112": {
+          "IsDefault": false
+        },
+        "714": {
+          "IsDefault": false
+        },
+        "715": {
+          "IsDefault": true
+        },
+        "716": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 713,
+          "fields": {
+            "Name": "InnerPylons Ka52K Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret1Id": 160,
+            "Turret2Id": 160,
+            "IsDefault": true
+          }
+        }
+      ],
+      "decks": [
+        10
+      ]
+    }
+  ]
+}

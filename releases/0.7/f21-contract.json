@@ -1,0 +1,115 @@
+{
+  "unit": 981,
+  "parent": 291,
+  "slam_parent": 292,
+  "name": "F-21 Super Tomcat",
+  "cost_increment": 30,
+  "speed": 950,
+  "ecm_multiplier": 0.6,
+  "slots": [
+    {
+      "name": "OuterPylons",
+      "ui": "Custom_Slot_Outer_pylons",
+      "loads": [
+        {
+          "id": 20300,
+          "name": "OuterPylons F21 2xAIM9",
+          "label": "2x AIM-9 Sidewinder",
+          "cost": 25,
+          "icon": "AIM_9X_MISSILE",
+          "mounts": {
+            "3": 166,
+            "4": 166
+          }
+        }
+      ]
+    },
+    {
+      "name": "InnerPylons",
+      "ui": "Custom_Slot_Inner_pylons",
+      "loads": [
+        {
+          "id": 20301,
+          "name": "InnerPylons F21 4xAIM9",
+          "label": "4x AIM-9 Sidewinder",
+          "cost": 50,
+          "icon": "AIM_9X_MISSILE",
+          "mounts": {
+            "1": "aim9_double",
+            "2": "aim9_double"
+          }
+        },
+        {
+          "id": 20302,
+          "name": "InnerPylons F21 2xAIM174",
+          "label": "2x AIM-174 Gunslinger",
+          "cost": 60,
+          "icon": "AIM174",
+          "mounts": {
+            "1": 935,
+            "2": 935
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fuselage",
+      "ui": "Custom_Slot_Fuselage",
+      "loads": [
+        {
+          "id": 20303,
+          "name": "Fuselage F21 6xAIM120",
+          "label": "6x AIM-120 AMRAAM",
+          "cost": 80,
+          "icon": "AMRAAM_MISSILE",
+          "mounts": {
+            "7": "aim120_triple",
+            "8": "aim120_triple",
+            "5": 160,
+            "6": 160
+          }
+        },
+        {
+          "id": 20304,
+          "name": "Fuselage F21 4xAIM174",
+          "label": "4x AIM-174 Gunslinger",
+          "cost": 100,
+          "icon": "AIM174",
+          "mounts": {
+            "7": "aim174_double",
+            "8": "aim174_double",
+            "5": 160,
+            "6": 160
+          }
+        },
+        {
+          "id": 20305,
+          "name": "Fuselage F21 2xAIM174",
+          "label": "2x AIM-174 Gunslinger",
+          "cost": 60,
+          "icon": "AIM174",
+          "mounts": {
+            "7": 935,
+            "8": 935,
+            "5": 160,
+            "6": 160
+          }
+        },
+        {
+          "id": 20306,
+          "name": "Fuselage F21 2xSLAMER",
+          "label": "2x AGM-84 SLAM-ER",
+          "cost": 90,
+          "icon": "AGM84_SLAM_ER",
+          "mounts": {
+            "7": 869,
+            "8": 869,
+            "5": 160,
+            "6": 160
+          }
+        }
+      ]
+    }
+  ],
+  "flight_speed_mps": 263.88888888888886
+}

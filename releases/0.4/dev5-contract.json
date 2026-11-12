@@ -1,0 +1,44 @@
+{
+  "note": "0.4 dev.5 (Osama, 5 November 2026). Smoke: tanks below 100 points base and IFVs at 30 points base or less lose their smoke ability. HP and HEAT edits are per unit; shared armor rows are cloned, not edited. dev.13: BMP-3 chassis (BMP-3, BMP-3F, BMP-3K, BRM-3K, Kornet-T) 12 HP. dev.23: BMP-2 base is 30 only because that is the Reserve (no ATGM) price; its ATGM loadouts are 45-65, so it keeps smoke. dev.29: BMP-2 keep-smoke exception removed (Osama); at base 30 it loses smoke like other 30-point IFVs.",
+  "smoke": {
+    "tank_role": 11,
+    "tank_min_cost": 100,
+    "ifv_role": 10,
+    "ifv_max_cost_without_smoke": 30,
+    "keep_units": []
+  },
+  "unit_hp": {
+    "3": 12,
+    "477": 10,
+    "208": 12,
+    "209": 12,
+    "213": 12,
+    "480": 12,
+    "230": 8
+  },
+  "option_armor": {
+    "640": {
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    },
+    "638": {
+      "HeatArmorFront": 400,
+      "HeatArmorSides": 400
+    }
+  },
+  "unit_ammo": [
+    {
+      "units": [
+        72,
+        74,
+        339
+      ],
+      "ammo": 2000129,
+      "fields": {
+        "PenetrationAtMinRange": 650.0,
+        "PenetrationAtGroundRange": 650.0
+      },
+      "why": "Rangers Carl Gustaf M3 HEAT 450 to 650 (Osama, 5 November 2026); other users of the round keep 450"
+    }
+  ]
+}

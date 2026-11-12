@@ -1,0 +1,6 @@
+{
+  "note": "0.4 dev.43 (Osama, 6 November 2026). Troopers AT (unit 62) carry the AT4 CS HP (weapon 631, tandem round 2000139: 750 penetration, 9 damage) instead of the plain AT4 (weapon 59, round 2000131: 450 penetration). All four launchers, 1 rocket each, 7 s reload as before. Not deployed.",
+  "unit": 62,
+  "swap": [59, 631],
+  "ammo": {"id": 2000139, "qty": 1}
+}

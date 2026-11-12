@@ -1,0 +1,4 @@
+{
+  "note": "0.6 (Lateralus, 7 November 2026). Display names only; stats and internal names are unchanged. M72A3 LAW (weapon 1019; Scouts, Reserve Marines) is shown as M72A7 LAW.",
+  "WeaponsJson": {"1019": {"was": "M72A3 LAW", "HUDName": "M72A7 LAW"}}
+}

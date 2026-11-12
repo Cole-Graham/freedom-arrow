@@ -1,0 +1,190 @@
+{
+  "note": "0.6 dev.85 (Osama, 9 November 2026): tube artillery and mortar HE (guided HE included) back to vanilla infantry damage in buildings by ignore cover only. Vanilla lets 18% + 2% per soldier through (38% for a 10-man squad) plus its own ignore cover; FA lets 0.18 + 0.82 x IgnoreCover through. IgnoreCover = (vanilla damage x (0.38 + 0.62 x vanilla IC) / FA damage - 0.18) / 0.82. Damage and penetration unchanged. In forest FA still takes 30% off the part that does not ignore cover, so forest damage rises but stays under vanilla (vanilla forest has no reduction). Cluster, HEAT, incendiary, smoke, MICLIC/UR-77 rows unchanged. MLRS and TOS rows are in cover-wargame-contract.json. Calculated, not yet run in a game.",
+  "squad": 10,
+  "ammo": {
+    "4": {
+      "name": "Shell 155 M284 M109A7 HE",
+      "IgnoreCover": 0.357
+    },
+    "6": {
+      "name": "Obus 120 M121 HE",
+      "IgnoreCover": 0.335
+    },
+    "37": {
+      "name": "Shell 105 M20 HE",
+      "IgnoreCover": 0.32
+    },
+    "64": {
+      "name": "Shell 130 AK130 HE",
+      "IgnoreCover": 0.342
+    },
+    "71": {
+      "name": "Obus 240 HE",
+      "IgnoreCover": 0.433
+    },
+    "133": {
+      "name": "Obus 81 M252 HE",
+      "IgnoreCover": 0.304
+    },
+    "134": {
+      "name": "Obus 82 HE",
+      "IgnoreCover": 0.304
+    },
+    "174": {
+      "name": "Shell 122 2A31 HE",
+      "IgnoreCover": 0.335
+    },
+    "183": {
+      "name": "Obus 120 Dilemma HE",
+      "IgnoreCover": 0.335
+    },
+    "190": {
+      "name": "Obus 120 2A51 HE",
+      "IgnoreCover": 0.335
+    },
+    "191": {
+      "name": "Obus 120 2A51M HE-RAP",
+      "IgnoreCover": 0.335
+    },
+    "228": {
+      "name": "Shell 152 2A88 HE",
+      "IgnoreCover": 0.357
+    },
+    "229": {
+      "name": "Shell 152 2A88 Rad HE-RAP",
+      "IgnoreCover": 0.357
+    },
+    "236": {
+      "name": "Shell 152 2A33 T2 HE",
+      "IgnoreCover": 0.357
+    },
+    "261": {
+      "name": "Shell 155 M284 M109A6 HE",
+      "IgnoreCover": 0.357
+    },
+    "281": {
+      "name": "Shell 155 M284 M109A7 HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "347": {
+      "name": "Shell 152 2A64 M2 HE",
+      "IgnoreCover": 0.357
+    },
+    "348": {
+      "name": "Shell 152 2A64 M2 HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "404": {
+      "name": "Obus 120 2A51 HE-RAP",
+      "IgnoreCover": 0.335
+    },
+    "405": {
+      "name": "Obus 120 2A51 HE Guided",
+      "IgnoreCover": 0.335
+    },
+    "409": {
+      "name": "Obus 240 HE Guided",
+      "IgnoreCover": 0.433
+    },
+    "410": {
+      "name": "Obus 82 Vasilyok HE",
+      "IgnoreCover": 0.304
+    },
+    "412": {
+      "name": "Shell 152 2A88 Rad HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "415": {
+      "name": "Obus 120 2A80 Vena HE Guided",
+      "IgnoreCover": 0.335
+    },
+    "416": {
+      "name": "Obus 120 2A80 Vena HE-RAP",
+      "IgnoreCover": 0.335
+    },
+    "417": {
+      "name": "Obus 120 2A80 Vena HE",
+      "IgnoreCover": 0.335
+    },
+    "418": {
+      "name": "Obus 120 2A51M HE Guided",
+      "IgnoreCover": 0.335
+    },
+    "421": {
+      "name": "Shell 105 M20 HE-RAP",
+      "IgnoreCover": 0.32
+    },
+    "422": {
+      "name": "Obus 120 M121 HE Guided",
+      "IgnoreCover": 0.335
+    },
+    "423": {
+      "name": "Shell 155 M907 IronThunder HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "424": {
+      "name": "Shell 155 M284 M109A6 HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "446": {
+      "name": "Shell 127 Mark45 HE",
+      "IgnoreCover": 0.342
+    },
+    "481": {
+      "name": "Shell 203 2A44 Malka HE",
+      "IgnoreCover": 0.395
+    },
+    "489": {
+      "name": "Shell 152 2A37 M1 HE",
+      "IgnoreCover": 0.357
+    },
+    "503": {
+      "name": "Shell 105 LEO HE",
+      "IgnoreCover": 0.32
+    },
+    "565": {
+      "name": "Shell 203 2A44 Malka HE Guided",
+      "IgnoreCover": 0.395
+    },
+    "605": {
+      "name": "Shell 155 M284 M109A5O HE",
+      "IgnoreCover": 0.357
+    },
+    "607": {
+      "name": "Shell 155 PZH2000 HE",
+      "IgnoreCover": 0.357
+    },
+    "610": {
+      "name": "Shell 155 K9EST HE",
+      "IgnoreCover": 0.357
+    },
+    "611": {
+      "name": "Shell 155 K9EST HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "613": {
+      "name": "Shell 155 K9EST HE RAP",
+      "IgnoreCover": 0.357
+    },
+    "623": {
+      "name": "Obus 120 M121 HE-RAP",
+      "IgnoreCover": 0.335
+    },
+    "624": {
+      "name": "Obus 120 M121 HE Guided PERM",
+      "IgnoreCover": 0.335
+    },
+    "625": {
+      "name": "Shell 155 PZH2000 HE-RAP",
+      "IgnoreCover": 0.357
+    },
+    "718": {
+      "name": "Shell 152 2A37 M1 HE Guided",
+      "IgnoreCover": 0.357
+    },
+    "910": {
+      "name": "Shell 152 2A64 Malva HE-RAP",
+      "IgnoreCover": 0.357
+    }
+  }
+}

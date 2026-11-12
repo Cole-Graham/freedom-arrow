@@ -1,0 +1,14 @@
+{
+  "source_commit": "0b7c72b7f4c1b93b863879b0217109e8807701f8",
+  "version": "0.1.0",
+  "game_build": 26273833,
+  "prepared_package_sha256": "68f3b42ae70fba61165710f4cc7bfb84b0cd25eec06033d29fc1860aaa308f30",
+  "prepared_game_launch": false,
+  "runtime_checks": 41,
+  "scoring_host_checks": 74,
+  "payload_hashes": 34,
+  "field_writes": 8624,
+  "patched_rows": 1545,
+  "spotting": "vanilla",
+  "scope": "ground, offline guarded Local AI Skirmish; multiplayer unverified"
+}

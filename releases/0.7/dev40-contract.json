@@ -1,0 +1,31 @@
+{
+  "note": "0.4 dev.40 (Osama, 6 November 2026). Spetsnaz Alpha CQC (unit 131): 2 AK-15SK riflemen removed, 14 -> 12 men, health 70 -> 60 (vanilla Elite 12-man armor row 283, armor 10). Spetsnaz Alpha standoff loadout (unit 354): still 14 men and 70 health; 1 AEK-999 gunner and 1 RG-6 grenadier become AK-107 riflemen; RPG-30 carried by 4 men instead of 6 (4 rockets, 1 each). Not deployed.",
+  "retire_members": [
+    352,
+    356
+  ],
+  "armor_links": {
+    "222": 283
+  },
+  "member_fields": {
+    "588": {
+      "PrimaryWeaponId": 911,
+      "ModelFileName": "DLC3_SpetsnazAlpha_rifle1"
+    },
+    "591": {
+      "PrimaryWeaponId": 911
+    },
+    "589": {
+      "SpecialWeaponId": 0
+    },
+    "596": {
+      "SpecialWeaponId": 0
+    }
+  },
+  "member_why": {
+    "588": "Alpha standoff: one AEK-999 becomes an AK-107",
+    "591": "Alpha standoff: one RG-6 becomes an AK-107",
+    "589": "Alpha standoff: RPG-30 on 4 men",
+    "596": "Alpha standoff: RPG-30 on 4 men"
+  }
+}

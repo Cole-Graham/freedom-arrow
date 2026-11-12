@@ -1,0 +1,242 @@
+{
+  "0.4.0-dev.10": {
+    "inputs": "9a1543a756f5f98a43999e6495f2a9cdbb0d19e58f9c18138f108b282df5f6ed",
+    "bamod_sha256": "c932f5bf0068cfee10f2969018224db698a35b53b3fedaaa8c66f870284085c5",
+    "parent_commit": "9bc8b55",
+    "built_utc": "2026-11-06T03:47:07Z"
+  },
+  "0.4.0-dev.11": {
+    "inputs": "3ff08a3c15b36ea8c026f9bb18978e4c177b56a4be5fd63be2459ed496e4423e",
+    "bamod_sha256": "7437f4a653eacb2d0c3c387a706f3419c8cf6c002d18377e14cd0931afcfbcae",
+    "parent_commit": "5aac6dc",
+    "built_utc": "2026-11-06T04:45:16Z"
+  },
+  "0.4.0-dev.12": {
+    "inputs": "c010b365c49d928f23868115050b01dc99a315d2dddb628f47272b5d6a686440",
+    "bamod_sha256": "c0633bad2780e36a98ad50987331f2bb399af769f04f3408ba6b86c66842dd8c",
+    "parent_commit": "8811e00",
+    "built_utc": "2026-11-06T04:47:19Z"
+  },
+  "0.4.0-dev.13": {
+    "inputs": "1f443674f185da774921a3e6f2c2700647075dcc7a9db6948400f83f20836a9c",
+    "bamod_sha256": "2b022658bcdcf4c61fda54ee3c5bf502ef8a8e08018c9de81b468b701f84d2e6",
+    "parent_commit": "3459953",
+    "built_utc": "2026-11-06T05:17:17Z"
+  },
+  "0.4.0-dev.14": {
+    "inputs": "7d2dec518789878ec28cf5562554cbf18e7de0dca1325b30883595938d6b7303",
+    "bamod_sha256": "cfb1b13afff96f47f2baad5069010da4ac38e0c628e3e6a0c320a82ef0a72e68",
+    "parent_commit": "4631cc8",
+    "built_utc": "2026-11-06T05:36:20Z"
+  },
+  "0.4.0-dev.15": {
+    "inputs": "5ae2ae5f58c0b4f6dd832f1389b823b8dfea44efcc5eb55c0d18272b011b8a48",
+    "bamod_sha256": "6d73b68db9d6441efae9ec96aed80e4f5ac2fa3c53d4d6e0210546580dc5d73e",
+    "parent_commit": "32b19e2",
+    "built_utc": "2026-11-06T05:45:50Z"
+  },
+  "0.4.0-dev.16": {
+    "inputs": "d21a5233dde6045b14eafbb9f3b379430b30e476a707f16e437bcf28d2c44abd",
+    "bamod_sha256": "f094359ed1c5ddea5ab4dd37e18e11e4a078756fa555a8796ecff4672260147b",
+    "parent_commit": "fae63f3",
+    "built_utc": "2026-11-06T06:04:14Z"
+  },
+  "0.4.0-dev.17": {
+    "inputs": "3004d4770bdb685ac1686ac5e2059f27edfa9ca46aa118b9979467d1ae155618",
+    "bamod_sha256": "aaade28c276a25ddca7799f2b5caf1f271da8428b3de52aa99bda4288a443705",
+    "parent_commit": "627f7ca",
+    "built_utc": "2026-11-06T06:07:27Z"
+  },
+  "0.4.0-dev.18": {
+    "inputs": "dede5babe589dedc8c39ce6e5fa78046ff49d8180155d274f4817389ffec2971",
+    "bamod_sha256": "0cf1ddb2c7cdc425f4c003202bd93c879271ab1d11d3f57c95400fc01f0e5d00",
+    "parent_commit": "b828b8c",
+    "built_utc": "2026-11-06T06:13:35Z"
+  },
+  "0.4.0-dev.19": {
+    "inputs": "1061d2b21b6fe50927ff6c08a772bcbcbdda4dee93f2d47cea1e0e37fb0ed334",
+    "bamod_sha256": "2ea14e995aa859fc1f44e95720a5864e2785045adbb6652d2a8244899ef807ea",
+    "parent_commit": "6c25caa",
+    "built_utc": "2026-11-06T07:54:42Z"
+  },
+  "0.4.0-dev.20": {
+    "inputs": "713e309f2f224b60338e39d86795d8742e814fd52dbe046e091dc16e72a96b02",
+    "bamod_sha256": "8d1b0e1729be39f0f6e3b51886ea7c2c58ea4d5c75a26d0376370c308e1cd3dd",
+    "parent_commit": "c10711a",
+    "built_utc": "2026-11-06T07:58:44Z"
+  },
+  "0.4.0-dev.21": {
+    "inputs": "677773e4470108875b0762bc7386a530694e845fa6566ed04d1fbfcda0a299da",
+    "bamod_sha256": "e2cdc510603675d52085abc174769f0a38e8e2b24732a629844f550f09d725b1",
+    "parent_commit": "4ffd701",
+    "built_utc": "2026-11-06T08:12:25Z"
+  },
+  "0.4.0-dev.22": {
+    "inputs": "425e5378f5fdd02f5606b7143b75269acaeb94fc7c5747e1875ca0df32a0f50f",
+    "bamod_sha256": "d531efa37af1c107284a215b79015396dda566e3cbf4de3c281884bc663a0b0f",
+    "parent_commit": "12ec475",
+    "built_utc": "2026-11-06T08:27:57Z"
+  },
+  "0.4.0-dev.23": {
+    "inputs": "f6253943849e68a481260b979c8abd588b2bd8a38bb3225e40d2001a75f26ebe",
+    "bamod_sha256": "f1ef4999fe113ef0a886af0cfffd01c62c2793a4d5b4152e8e83d33958d71261",
+    "parent_commit": "06f0675",
+    "built_utc": "2026-11-06T08:33:13Z"
+  },
+  "0.4.0-dev.24": {
+    "inputs": "4db2d2688074b403b552b208bac1c81f09ac9c78527238a5699afb8eb5cb953c",
+    "bamod_sha256": "13a4ad9ced0a334b9238cc731c9b19ca4f44b203ee1aa7da6f6b6f9628554355",
+    "parent_commit": "1dd3413",
+    "built_utc": "2026-11-06T08:34:25Z"
+  },
+  "0.4.0-dev.25": {
+    "inputs": "8529d51b541e37914c72a3ab5312bcde6650662781df1ea97101e73e6adca491",
+    "bamod_sha256": "95841ffd2c48f89e46c93acd882672deddcd0bde0617f30cf13f1b9d45e44a4a",
+    "parent_commit": "438ac53",
+    "built_utc": "2026-11-06T08:35:17Z"
+  },
+  "0.4.0-dev.26": {
+    "inputs": "84ad995deb5dd4924c58bc91c79e6bd78754f624a64c92ba124192d6d5235f0f",
+    "bamod_sha256": "53762e5dd538882a8ad20bb4909929c3ef2fb03adc4bd5ee1358628eecf95f30",
+    "parent_commit": "c44fae6",
+    "built_utc": "2026-11-06T08:35:47Z"
+  },
+  "0.4.0-dev.27": {
+    "inputs": "e8160526359bfb97ed9ec47e05e26af96f9148b21b8eae7efb399e3bdd0d12c8",
+    "bamod_sha256": "8c70a55f12b21c27f1018226177a21329f05a06cd0387a7f67625e52ea474d8f",
+    "parent_commit": "f0c9bb8",
+    "built_utc": "2026-11-06T08:37:14Z"
+  },
+  "0.4.0-dev.28": {
+    "inputs": "f7de4c399548952ed55e8453e9ba76a9ecd93af8790cb845978d20e6005d1626",
+    "bamod_sha256": "201fc0afb44731a3b886bde9ecdc000a22a3ab741ec60076f05ef5a6e969eb84",
+    "parent_commit": "cebaa6b",
+    "built_utc": "2026-11-06T08:39:15Z"
+  },
+  "0.4.0-dev.29": {
+    "inputs": "72318e6aeba7522b596f457da72ce4b3604eb4bdea0e772d935a9f3402216a3b",
+    "bamod_sha256": "6eea6a340bed32cfee0ee2d72c1cb986fbb2e38c3cd53b9fd0cd42e4883f2b00",
+    "parent_commit": "78bb776",
+    "built_utc": "2026-11-06T08:40:50Z"
+  },
+  "0.4.0-dev.30": {
+    "inputs": "56f3a627757c28fb433da1efd3778cbfff9d426c80dd066a0e9e643b59a67b4d",
+    "bamod_sha256": "c7cfc7bc7ac6c279661c2a231b569aaa2e4448bcdc7bb1420c0f785fccc12df3",
+    "parent_commit": "46b0064",
+    "built_utc": "2026-11-06T09:16:18Z"
+  },
+  "0.4.0-dev.31": {
+    "inputs": "8018425cf04e759484b422ec719580912144cf6b3f2ba21987ec255335bbef2d",
+    "bamod_sha256": "cfcce8791bb79e43447d66aa92ff6bce2060e53e92116ae195b92d243967583c",
+    "parent_commit": "b4c35ae",
+    "built_utc": "2026-11-06T09:24:41Z"
+  },
+  "0.4.0-dev.32": {
+    "inputs": "35aeafbc0b1bc603c4b5f8670a2cee322da34470ca5be1b1e127f4706c7fbc65",
+    "bamod_sha256": "22777e1f38f0374e0f130678ac31d0825f61bf9f2760a82959540447be5d3e58",
+    "parent_commit": "30ac3c0",
+    "built_utc": "2026-11-06T09:35:36Z"
+  },
+  "0.4.0-dev.33": {
+    "inputs": "d7ceccd1efca46f24ded949e592ddbdca6d531bd18a84276ee17ab90d12afce9",
+    "bamod_sha256": "01431c7693e65523bfbf688a7ba83067ad65d4bd8cbcda65c2597987db2b1fa8",
+    "parent_commit": "953772b",
+    "built_utc": "2026-11-06T09:38:38Z"
+  },
+  "0.4.0-dev.34": {
+    "inputs": "c46b68c0432df36313db2f7fcece05e2ee30d25ea0a0d8557afc69cb8e660e71",
+    "bamod_sha256": "77175269acd1108cbe7c8725c8f041582bf40f2162fc0e6e3206d9fb67a64031",
+    "parent_commit": "705b490",
+    "built_utc": "2026-11-06T09:57:26Z"
+  },
+  "0.4.0-dev.35": {
+    "inputs": "87debde85a546a958bfdd2c606cdaafef86644fa347dc7c1023eff78c4c0b348",
+    "bamod_sha256": "fcfb23a2d5ce310218319841e7dab54fc32330e952df68d3faec25b070751f45",
+    "parent_commit": "ffbf886",
+    "built_utc": "2026-11-06T10:00:02Z"
+  },
+  "0.4.0-dev.36": {
+    "inputs": "5b6268af2eb14237a9de62a7828718e85556edc6999082b9ea8edb79081d9cb8",
+    "bamod_sha256": "2cab3cdde499ce117cbdc2056a6102ce0f4541919c48cd543d7ebd55f5171c76",
+    "parent_commit": "6fade51",
+    "built_utc": "2026-11-06T10:30:09Z"
+  },
+  "0.4.0-dev.37": {
+    "inputs": "baa95104e0c39e608bc3a03d6c547f57d74ad14b229d7ef11ddfc035038de414",
+    "bamod_sha256": "49f3762b0e755abaab2b881f9a458d908a1fcfe3e534632ea2dee649d0620200",
+    "parent_commit": "a9fc24e",
+    "built_utc": "2026-11-06T11:19:16Z"
+  },
+  "0.4.0-dev.38": {
+    "inputs": "c336d0dcd158b11f9a6a7845534f2b20bd44e3209957c5d235842ee05dda48ec",
+    "bamod_sha256": "a19b8a5d3d212788519291d7ee0dc78f0a51234265d5a151144f644d32e85d03",
+    "parent_commit": "6b2dd2f",
+    "built_utc": "2026-11-06T11:41:00Z"
+  },
+  "0.4.0-dev.39": {
+    "inputs": "caba3a1dd1d36d4d11814a70f2c080b14fbbd18ed0e6483f56f9331a9ff5a0b2",
+    "bamod_sha256": "a8ee1d90351296757bc4af80e937627bf1ea2c2f23728074ef40e6403f23cbb8",
+    "parent_commit": "0e722ae",
+    "built_utc": "2026-11-06T11:57:41Z"
+  },
+  "0.4.0-dev.40": {
+    "inputs": "8f4fc7b8edeb570369cdb90fce8187bd03e9e91ea2ec95b8117263b6cab88ddf",
+    "bamod_sha256": "e0b27164b933ca72a35e52881462cd5017bedea8079d575b015cea84cbded0c2",
+    "parent_commit": "7d5de80",
+    "built_utc": "2026-11-06T12:16:02Z"
+  },
+  "0.4.0-dev.41": {
+    "inputs": "52e4427db49efd30be8d853cfc69ac04c1029f844455a94a9069d434488948a4",
+    "bamod_sha256": "766b071da6305463fba8202bf0d83e1a289b025deefcf49402625df86033927e",
+    "parent_commit": "07a1c0d",
+    "built_utc": "2026-11-06T12:24:08Z"
+  },
+  "0.4.0-dev.42": {
+    "inputs": "de25ce9b780843e56a5ed30c8ff1521122dc9cd3324379ab9729ee3af209fd7c",
+    "bamod_sha256": "efbfa1ba0e62b349a18f6c332070625cd29b5a168439efd1d6075fc7956bfe58",
+    "parent_commit": "4eb982c",
+    "built_utc": "2026-11-06T21:25:10Z"
+  },
+  "0.4.0-dev.43": {
+    "inputs": "f4237e3a3ab431836b6091b4861cb78a6720c11595d6c0cbe6bb4d1716d9a25f",
+    "bamod_sha256": "eb26c459dec8a63c0abe0c5d37b06a3966fa6ad71be02d9638bc50a6fb1d3b34",
+    "parent_commit": "80e3e83",
+    "built_utc": "2026-11-06T21:37:40Z"
+  },
+  "0.4.0-dev.44": {
+    "inputs": "1505f49b202f6c1c181a195bdc73ece28f5aa384e533182139b83162cdbe1b2f",
+    "bamod_sha256": "c2d3ffb3f3b1937f26b37b69a04939bc450a3cbf925e647f52997bfc08d78209",
+    "parent_commit": "14b679f",
+    "built_utc": "2026-11-06T21:44:03Z"
+  },
+  "0.4.0-dev.45": {
+    "inputs": "bc90b3287dd4c519eceec4cc76fff7dd64168a93303b2ecf72ff981bed63c457",
+    "bamod_sha256": "6fec8ea3f1961cca04814a6990a8aa989f4964490d3fc09e89ae5c548338b26d",
+    "parent_commit": "d7cfd58",
+    "built_utc": "2026-11-06T21:49:47Z"
+  },
+  "0.4.0-dev.46": {
+    "inputs": "f4237e3a3ab431836b6091b4861cb78a6720c11595d6c0cbe6bb4d1716d9a25f",
+    "bamod_sha256": "8f784e6b3868e6f0e897edb3d024df8906e081e37c69b08df798ea041408adae",
+    "parent_commit": "e0c03e0",
+    "built_utc": "2026-11-06T21:55:46Z"
+  },
+  "0.4.0-dev.47": {
+    "inputs": "17f48a58c83c1c10b58090daea97a6860091e261438c7151c1ac582f022e1610",
+    "bamod_sha256": "44521997a7097c2a85dfd6979e007c4ceb12a8764bdc393e32443f614aed44e8",
+    "parent_commit": "6d5db4d",
+    "built_utc": "2026-11-06T21:59:35Z"
+  },
+  "0.4.0-dev.48": {
+    "inputs": "3b8fefd70832af0103e29971e3ed2248364c0ac424e0bd8daf4ae834f02185bf",
+    "bamod_sha256": "ab405c0de69d9a3a55f8e6808b78bac33fd00c10300a1a90022ac01ac87a64ec",
+    "parent_commit": "19f89f2",
+    "built_utc": "2026-11-06T22:02:52Z"
+  },
+  "0.4.0-dev.49": {
+    "inputs": "e272d2cd08f2d72be5444af8575cbfe5b20080833b10d4355e200e7b581f3e21",
+    "bamod_sha256": "a4a5602c240b05cc5d5f0eed0bb6ec0f96dd7ce816e92fa4811cb9b41ec7ad5b",
+    "parent_commit": "4cf7085",
+    "built_utc": "2026-11-06T22:05:58Z"
+  }
+}

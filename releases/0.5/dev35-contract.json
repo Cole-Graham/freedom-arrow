@@ -1,0 +1,11 @@
+{
+  "note": "0.4 dev.35 (Osama, 6 November 2026). TOW-2B matches the Javelin: 140 penetration, 10.5 damage. One ammunition row (52) serves every TOW-2B launcher: CAAT TOW-2B Saber, TOW-2B team, Humvee TOW-2, LAV-AT, M2A3 Bradley, M3A3 CFV, Stryker ATGM. Not deployed.",
+  "ammo_fields": {
+    "52": {
+      "PenetrationAtMinRange": 140.0,
+      "PenetrationAtGroundRange": 140.0,
+      "Damage": 10.5
+    }
+  },
+  "match": "2000149"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "staged only; no running install change",
+  "requested_track": "011",
+  "existing_file": "China theme 11.mp3",
+  "source": "UserData/FAMusic/Packs/China/Battle/China theme 11.mp3",
+  "destination": "UserData/FAMusic/Packs/China/Menu/First/China theme 11.mp3",
+  "sha256": "b769da8e33dc83ffb424951d37b51c7956ac0815c4167c7105404642deb59867",
+  "bytes": 7783379,
+  "processing": "Byte-identical copy; no re-encoding",
+  "ordering": "Once on entering China menu, then regular China/Menu tracks; other packs without Menu/First unchanged",
+  "battle_copy": "Retained; no battle removal requested",
+  "runtime_tested": false
+}

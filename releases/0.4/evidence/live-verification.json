@@ -1,0 +1,23 @@
+{
+  "ticks": 55,
+  "mismatches": [],
+  "both_awarded_ticks": [],
+  "contested_ticks": 5,
+  "scoreboard_readbacks": 1800,
+  "scoreboard_mismatches": 0,
+  "custom_hud_samples": 0,
+  "AI_spawn_events": 27,
+  "final": [
+    {
+      "alpha": 48,
+      "bravo": 22,
+      "elapsed": 1800,
+      "invalid": false,
+      "winnerEvaluations": 1,
+      "winnerFoundCalls": 0,
+      "stoppedCalls": 1
+    }
+  ],
+  "synthetic_events": 0,
+  "errors": []
+}

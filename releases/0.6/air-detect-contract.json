@@ -1,0 +1,33 @@
+{
+  "note": "Lateralus, 8 November 2026. Displayed m = 2 x optics x radar x stealth. Fighters 16 km on a high stealth-1.0 plane; Patriot tier 10.6 km with radar on; six SHORADs 6 km with radar on; stealth planes and drones +0.25 UI stealth.",
+  "high_optics": {
+    "6": 8000.0,
+    "8": 2650.0,
+    "27": 2650.0,
+    "36": 2650.0
+  },
+  "plane_stealth": {
+    "0.571": 0.5,
+    "0.8": 0.666
+  },
+  "shorad": {
+    "units": [
+      31,
+      188,
+      94,
+      12,
+      634,
+      20
+    ],
+    "sensors": [
+      7,
+      18,
+      30
+    ],
+    "high_optics": 1500.0
+  },
+  "unit_stealth": {
+    "299": 0.444
+  },
+  "unit_stealth_note": "0.6 dev.63 (Osama, 8 November 2026): B-2 Spirit UI stealth 2.25 (raw 0.444; was 0.5 = UI 2.0 from the +0.25 above)."
+}

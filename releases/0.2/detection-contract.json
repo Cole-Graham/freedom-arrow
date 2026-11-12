@@ -1,0 +1,62 @@
+{
+  "optics_ground_tiers": {
+    "500": 900.0,
+    "600": 1300.0,
+    "700": 1450.0,
+    "875": 1650.0,
+    "1000": 2300.0,
+    "1200": 2800.0
+  },
+  "optics_held_sensors": [
+    6,
+    9,
+    10,
+    24,
+    25,
+    35
+  ],
+  "stealth": {
+    "vehicle": 1.0,
+    "infantry": 0.5,
+    "recon_infantry": 0.4,
+    "sniper": 0.333
+  },
+  "stealth_override_options": {
+    "51": 0.8,
+    "52": 0.8,
+    "425": 0.8,
+    "480": 0.8,
+    "512": 0.8,
+    "757": 0.8,
+    "1713": 0.8,
+    "2085": 0.8,
+    "2086": 0.8
+  },
+  "medium_plus_rule": "Lateralus: interpolate from vanilla, nearest 50. 1300 + 350 x 100/275 = 1427, rounded to 1450.",
+  "optics_ground_drones": {
+    "32": 6400.0,
+    "33": 5250.0,
+    "34": 4650.0
+  },
+  "drone_rule": "Lateralus: proportional. Vanilla x 2800/1200, nearest 50.",
+  "stealth_unit_values": {
+    "21": 0.8,
+    "35": 0.8,
+    "51": 0.8,
+    "99": 0.8,
+    "152": 0.8,
+    "167": 0.8,
+    "173": 0.8,
+    "186": 0.8,
+    "249": 0.8,
+    "384": 0.8,
+    "445": 0.8,
+    "455": 0.8,
+    "458": 0.8,
+    "467": 0.8,
+    "509": 0.8,
+    "543": 0.8,
+    "714": 0.8
+  },
+  "stealth_unit_values_note": "Lateralus: stealth numbers are UI values. UI 1.25 is raw 0.8. Recon vehicles at UI 1.5 in vanilla go to UI 1.25; the listed units keep or take UI 1.25."
+}

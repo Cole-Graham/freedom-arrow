@@ -1,0 +1,38 @@
+{
+  "status": "Current play version held; future work allowed separately",
+  "recorded": "2026-11-09 16:59:06 PST (America/Los_Angeles)",
+  "gameplay": {
+    "version": "0.6.0-dev.115",
+    "source_commit": "dc55226",
+    "sha256": "1f1fa6abfc9fb507b4d42d83e7327540de35739973ad75dfc7601fc330ba384b",
+    "download": "https://drive.google.com/file/d/1GVRya8G2c3ztQdeabUid_rNuJ0jt6Kmx/view"
+  },
+  "assets": {
+    "version": "0.1.1",
+    "source_commit": "af6f279",
+    "sha256": "a5fae65a162aad38627d963d270cff770b63f100093e2c3b74d0550e3e338311",
+    "download": "https://drive.google.com/file/d/1eslqlWsG7bVIg_bhOmwKuUDhbO5gFgFy/view"
+  },
+  "install_authorized_now": false,
+  "future_changes": {
+    "XM30": {
+      "name": "XM30",
+      "old_scale": 0.7,
+      "next_scale": 0.77,
+      "factor": 1.1,
+      "status": "staged mapping only; not built or installed",
+      "old_cost": 220,
+      "next_cost": 190,
+      "voice": "Same as M2A3 Bradley: UNIT_SOUND_PRESET_BRADLEY_ALL"
+    },
+    "Su-75": {
+      "availability": 2,
+      "status": "keep; request for one withdrawn"
+    },
+    "Abrams X": {
+      "voice": "Same as existing Abrams: UNIT_SOUND_PRESET_ABRAMS; requested Crusader Tank lines",
+      "status": "Preset already matches current Abrams; audible playback unverified"
+    }
+  },
+  "next_release": "0.7; release date not set"
+}

@@ -106,6 +106,23 @@ internal sealed class LauncherForm : Form
         _settings.Dock = DockStyle.Left;
         _settings.AutoSize = true;
         footer.Controls.Add(_settings);
+        var help = Theme.MakeButton("🩺   " + T("Help me install"), ButtonKind.Ghost);
+        help.Dock = DockStyle.Right;
+        help.AutoSize = true;
+        help.Click += (_, _) => CheckInstall();
+        footer.Controls.Add(help);
+        if (LauncherService.HelperUrl is string helperUrl)
+        {
+            var ask = Theme.MakeButton("💬   " + T("Ask the AI helper"), ButtonKind.Ghost);
+            ask.Dock = DockStyle.Right;
+            ask.AutoSize = true;
+            ask.Click += (_, _) =>
+            {
+                using var dlg = new HelperChatForm(helperUrl, InstallDoctor.Run(_gameDir).Report);
+                dlg.ShowDialog(this);
+            };
+            footer.Controls.Add(ask);
+        }
 
         // Docked top controls are added bottom-up
         Controls.Add(_vanilla);
@@ -481,6 +498,32 @@ internal sealed class LauncherForm : Form
         {
             SetBusy(false);
         }
+    }
+
+    // ───────────────────────── help me install ─────────────────────────
+
+    /// <summary>Optional, read-only: checks the game folder and explains what to fix. Nothing is changed or sent.</summary>
+    private void CheckInstall()
+    {
+        var (findings, report) = InstallDoctor.Run(_gameDir);
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine(T("This check only reads files in the Broken Arrow folder. It changes nothing and sends nothing."));
+        sb.AppendLine();
+        foreach (var f in findings)
+        {
+            sb.AppendLine((f.Ok ? "✔  " : "✖  ") + f.Title);
+            if (!f.Ok && f.Fix.Length > 0) sb.AppendLine("      " + T("Fix:") + " " + f.Fix);
+            sb.AppendLine();
+        }
+        bool copied = false;
+        try { Clipboard.SetText(report); copied = true; } catch (System.Runtime.InteropServices.ExternalException) { }
+        sb.AppendLine(copied
+            ? T("Still stuck? The report below is copied. Paste it in the Freedom Arrow Discord and we'll help.")
+            : T("Still stuck? Copy the report below and paste it in the Freedom Arrow Discord and we'll help."));
+        sb.AppendLine();
+        sb.Append(report);
+        using var dlg = new ReadmeForm(T("Help me install"), sb.ToString());
+        dlg.ShowDialog(this);
     }
 
     // ───────────────────────── settings ─────────────────────────

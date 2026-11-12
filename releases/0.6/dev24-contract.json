@@ -1,0 +1,79 @@
+{
+  "note": "0.5 dev.24 (Osama, 6 November 2026). M-ATV and M-ATV Javelin: 10 HP on both armor choices (was 8; the two armor rows are used only by these two cards). MH-60X Silent Hawk 90 (was 110; the price lives in vehicle-contract.json). M10 Booker and M10 Booker XM913: availability 4 (was 3). Mech. Riflemen: availability 8 (was 6). All recon-tab infantry except Pogranichniki can laser-designate (24 cards get it; 21 already had it): their sprint/smoke ability gets a copy with the laser of 'Sprint Smoke Laser' (1200 m), smoke and sprint unchanged. Availability lives in structural-contract.json (Booker split pool 4/4, set_pools 608: 8). Not yet run in a game.",
+  "hp": {
+    "armors": [
+      2000111,
+      2000112
+    ],
+    "units": [
+      467,
+      714
+    ],
+    "value": 10
+  },
+  "laser": {
+    "category": 0,
+    "exclude_names": [
+      "Pogranichniki"
+    ],
+    "like": 28,
+    "fields": [
+      "IsLaserDesignator",
+      "LaserMaxRange",
+      "LaserUsableInMove"
+    ],
+    "units": [
+      61,
+      65,
+      77,
+      114,
+      116,
+      123,
+      125,
+      136,
+      138,
+      177,
+      276,
+      277,
+      336,
+      338,
+      346,
+      366,
+      385,
+      417,
+      418,
+      470,
+      525,
+      526,
+      527,
+      528
+    ],
+    "already": [
+      68,
+      76,
+      115,
+      124,
+      137,
+      278,
+      333,
+      339,
+      340,
+      341,
+      342,
+      347,
+      348,
+      349,
+      350,
+      367,
+      368,
+      403,
+      529,
+      530,
+      644
+    ],
+    "excluded": [
+      135,
+      626
+    ]
+  }
+}

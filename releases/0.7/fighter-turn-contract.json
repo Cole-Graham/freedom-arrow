@@ -1,0 +1,6 @@
+{
+  "units": [297, 44, 950],
+  "ui_turn_radius": 800,
+  "max_speed_yaw": 59.0,
+  "note": "Osama, 10 November 2026: only F22, single-seat Su57 and Su75. Preserve Su47 maneuverability and every other aircraft. The native card uses AircraftHelper.GetRotationRadius(MaxSpeedYaw, MaxSpeed), then InfocardConfig.EffectiveRangeMultiplier=2, rounded to integer then down to a multiple of5. Radius=2*speed*(1+1/tan(yaw degrees)). At250 m/s,59 deg/s gives800.43 before rounding, displayed800. Scale only horizontal yaw rates together; preserve speed, pitch, roll and all other flight settings. Calculated from native code and serialized config; not yet proven in game."
+}

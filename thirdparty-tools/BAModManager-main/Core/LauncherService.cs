@@ -68,6 +68,19 @@ public sealed class LauncherService
     /// <summary>The built-in Testing channel (second argument of build_launcher.bat), if any.</summary>
     public static string? BuiltInTestingPack => BuiltIn("TestingModPack");
 
+    /// <summary>The AI install helper relay this copy is built with (https only), if any.</summary>
+    public static string? HelperUrl
+    {
+        get
+        {
+            var value = typeof(LauncherService).Assembly
+                .GetCustomAttributes(typeof(System.Reflection.AssemblyMetadataAttribute), false)
+                .OfType<System.Reflection.AssemblyMetadataAttribute>()
+                .FirstOrDefault(a => a.Key == "HelperUrl")?.Value;
+            return value != null && value.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ? value : null;
+        }
+    }
+
     /// <summary>launcher.json next to the exe: the modpack a modder set up for this copy of the Mod Launcher.</summary>
     public static string ConfigFile => Path.Combine(AppContext.BaseDirectory, "launcher.json");
 

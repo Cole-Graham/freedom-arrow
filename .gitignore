@@ -230,6 +230,10 @@ config.YAML
 cache/
 dist/
 
+# DPM visualizer local state
+dev-tools/dpm_visualizer/user_data.json
+dev-tools/dpm_visualizer/exports/
+
 # Mod stuff
 BrokenArrow_Data/
 GameAssembly.dll

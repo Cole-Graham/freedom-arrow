@@ -1,0 +1,89 @@
+{
+  "note": "0.6 dev.96 (Osama, 9 November 2026: 'push the Abrams X and B-21 to live'). Two new US cards, first built on the PLA test branch (pla.20 to pla.26). Abrams X (964): a copy of the M1A2 SEP v3 (191) in its specializations; its stats are in abramsx-contract.json. B-21 Raider (965): a copy of the B-2 Spirit (299) in Airborne (5) only, with the B-2's slots; its extra loadouts are in b21-loadout-contract.json. Without the private FAModels mod they look like the SEP v3 and the B-2. Not yet run in a game. dev.101 (Osama, 9 Nov 2026): X-47B (969), a copy of the S-70 Okhotnik made American: US side, Air Naval deck (spec 5), the same costs and bays with US weapons from the F-15EX (2x R-77 -> 2x AIM-120, R-37 -> 1x AIM-120, KAB-500 -> GBU-56, PBK-500U -> AGM-154 JSOW, Kh-59MK2 -> AGM-158 JASSM). Su-57D (970): a copy of the Su-57 with the same stats, for its own model. late_cards (Osama 9 Nov): Su-47 Berkut (Su-35S stats), F-14 Tomcat (F-15C stats), YF-23 Black Widow II (F-22 stats, AIM-120 or AIM-260 bays only), moved from the PLA test lane; stats are stand-ins.",
+  "cards": [
+    {
+      "unit": 964,
+      "parent": 191,
+      "name": "Abrams X"
+    },
+    {
+      "unit": 965,
+      "parent": 299,
+      "name": "B-21 Raider",
+      "specs": [
+        5
+      ]
+    },
+    {
+      "unit": 969,
+      "parent": 633,
+      "name": "X-47B",
+      "country": 2,
+      "specs": [
+        5
+      ],
+      "swap_turrets": {
+        "603": 223,
+        "606": 173,
+        "626": 533,
+        "643": 551,
+        "868": 568
+      },
+      "weapons_from": 289,
+      "name_from": "S70",
+      "name_to": "X47B",
+      "swap_ui": {
+        "223": [
+          "2xAIM120",
+          "2x AIM-120 AMRAAM"
+        ],
+        "173": [
+          "1xAIM120",
+          "1x AIM-120 AMRAAM"
+        ],
+        "533": [
+          "1xGBU56",
+          "1x GBU-56 LJDAM 2000lb"
+        ],
+        "551": [
+          "1xJSOW",
+          "1x AGM-154 JSOW 1000lb"
+        ],
+        "568": [
+          "1xJASSM",
+          "1x AGM-158 JASSM"
+        ]
+      },
+      "icon_from": 395
+    },
+    {
+      "unit": 970,
+      "parent": 44,
+      "name": "Su-57D"
+    }
+  ],
+  "late_cards": [
+    {
+      "unit": 980,
+      "parent": 169,
+      "name": "Su-47 Berkut",
+      "specs": [
+        12
+      ]
+    },
+    {
+      "unit": 981,
+      "parent": 283,
+      "name": "F-14 Tomcat"
+    },
+    {
+      "unit": 982,
+      "parent": 297,
+      "name": "YF-23 Black Widow II",
+      "only_options": [
+        "2xAIM120",
+        "2xAIM260"
+      ]
+    }
+  ]
+}

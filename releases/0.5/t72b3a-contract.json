@@ -1,0 +1,10 @@
+{
+  "note": "0.5 dev.20 (Osama, 6 November 2026). T-72B3AM obr. 16 is the T-72B3A card's base: the old base option (3320, T-72B3A without ERA) is retired, obr. 16 ERA (3323) costs +0 and comes first, and obr. 16 + Arena is +70. Unit cost 165 (115 + the old +50). The unit's own armor link moves to the obr. 16 armor. BMP-3, BMP-3F and BMD-4M base cost 50 (was 45); these prices live in vehicle-contract.json. Not yet run in a game.",
+  "unit": 703,
+  "hud": "T-72B3AM obr. 16",
+  "retire_option": 3320,
+  "base_option": 3323,
+  "arena_like": 3323,
+  "old_armor": 2000465,
+  "new_armor": 2000467
+}

@@ -1,0 +1,247 @@
+{
+  "note": "0.6 (Osama, 7 November 2026). US recon helicopters: own cards in the recon tab, availability 4, not transports, copies of the helicopter card (model, portrait, icon, armor, ECM); the original cards are unchanged. USMC: UH-1Y Venom Recon, Very Good optics, 65, door guns and rockets. Airborne: OH-58D Recon Optronic, the mast sight (Exceptional optics and laser) built in, GAU-21 and Hydra pylons, 70; OH-58D Recon, Very Good optics, no weapons, no laser, 55. Special Operations: MH-60M SOAR Recon, Very Good optics, 4 seats, door guns, 60; MH-6 Little Bird Recon, its Good optics sight built in, 4 seats, 35; RAH-66 Comanche Recon, recon module built in, gun plus Hydra or DAGR pylons, 180. Baltic: AS-365 Dauphin Recon, Very Good optics, 60, guns and rockets. Guesses: Venom and Dauphin 4 seats, Little Bird price 35 (MH-6 30 + its 5-point sight). Not yet run in a game. dev.46 (Osama): RAH-66 Comanche Recon availability 2 (was 4). dev.68 (Osama, 8 November 2026): USMC AH-1Z Viper Recon (unit 745), a copy of the AH-1Z Viper with only empty or rocket loadouts (inner 38x Hydra or 14x APKWS; outer empty, 38x Hydra or 14x APKWS; wingtips empty), gun kept, Very Good optics as the Viper, 130. dev.69 (Osama, 8 November 2026): Airborne AH-64D Longbow Recon (unit 746), a copy of the AH-64D Longbow with only empty or rocket pylons (inner and outer: empty, 38x Hydra or 14x APKWS; empty is new on this card, as the Apache's empty pylon, turret 160), no Hellfire, gun kept, Exceptional optics as the Longbow, 90 with empty pylons by default. dev.72 (Osama): AH-1Z Viper Recon base 100, so its default rockets (14x APKWS inner and outer, +15 each) total 130.",
+  "country": 2,
+  "availability": 4,
+  "category": 0,
+  "sensors": {
+    "Good": 1,
+    "Very Good": 3
+  },
+  "cards": [
+    {
+      "unit": 732,
+      "parent": 159,
+      "fields": {
+        "Name": "FA UH-1Y Venom Recon",
+        "HUDName": "UH-1Y Venom Recon",
+        "Cost": 65,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        281,
+        282,
+        2103,
+        283,
+        285,
+        284
+      ],
+      "option_costs": {},
+      "decks": [
+        3
+      ]
+    },
+    {
+      "unit": 733,
+      "parent": 267,
+      "fields": {
+        "Name": "FA OH-58D Recon Optronic",
+        "HUDName": "OH-58D Recon Optronic",
+        "Cost": 70
+      },
+      "keep_options": [
+        682,
+        683,
+        686,
+        687,
+        691
+      ],
+      "option_costs": {
+        "691": 0
+      },
+      "decks": [
+        5
+      ]
+    },
+    {
+      "unit": 734,
+      "parent": 267,
+      "fields": {
+        "Name": "FA OH-58D Recon",
+        "HUDName": "OH-58D Recon",
+        "Cost": 55
+      },
+      "optics": "Very Good",
+      "keep_options": [],
+      "option_costs": {},
+      "drop_abilities": [
+        8
+      ],
+      "decks": [
+        5
+      ]
+    },
+    {
+      "unit": 735,
+      "parent": 262,
+      "fields": {
+        "Name": "FA MH-60M SOAR Recon",
+        "HUDName": "MH-60M SOAR Recon",
+        "Cost": 60,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        664,
+        665,
+        666
+      ],
+      "option_costs": {},
+      "decks": [
+        13
+      ]
+    },
+    {
+      "unit": 736,
+      "parent": 79,
+      "fields": {
+        "Name": "FA MH-6 Little Bird Recon",
+        "HUDName": "MH-6 Little Bird Recon",
+        "Cost": 35,
+        "InfantrySlots": 4
+      },
+      "keep_options": [
+        236
+      ],
+      "option_costs": {
+        "236": 0
+      },
+      "pool_like": 623,
+      "decks": [
+        13
+      ]
+    },
+    {
+      "unit": 737,
+      "parent": 364,
+      "fields": {
+        "Name": "FA RAH-66 Comanche Recon",
+        "HUDName": "RAH-66 Comanche Recon",
+        "Cost": 180
+      },
+      "keep_options": [
+        1568,
+        1573,
+        1569,
+        1575,
+        1570,
+        1576,
+        1572
+      ],
+      "option_costs": {
+        "1572": 0
+      },
+      "decks": [
+        13
+      ],
+      "availability": 2
+    },
+    {
+      "unit": 738,
+      "parent": 532,
+      "fields": {
+        "Name": "FA AS-365 Dauphin Recon",
+        "HUDName": "AS-365 Dauphin Recon",
+        "Cost": 60,
+        "InfantrySlots": 4
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        2204,
+        2203,
+        2202,
+        2201
+      ],
+      "option_costs": {},
+      "decks": [
+        16
+      ]
+    },
+    {
+      "unit": 745,
+      "parent": 86,
+      "fields": {
+        "Name": "FA AH-1Z Viper Recon",
+        "HUDName": "AH-1Z Viper Recon",
+        "Cost": 100
+      },
+      "optics": "Very Good",
+      "keep_options": [
+        164,
+        165,
+        167,
+        168,
+        169,
+        170
+      ],
+      "option_costs": {},
+      "decks": [
+        3
+      ]
+    },
+    {
+      "unit": 746,
+      "parent": 8,
+      "fields": {
+        "Name": "FA AH-64D Longbow Recon",
+        "HUDName": "AH-64D Longbow Recon",
+        "Cost": 90
+      },
+      "keep_options": [
+        348,
+        349,
+        350,
+        351
+      ],
+      "option_costs": {},
+      "option_fields": {
+        "348": {
+          "IsDefault": false
+        },
+        "349": {
+          "IsDefault": false
+        },
+        "350": {
+          "IsDefault": false
+        },
+        "351": {
+          "IsDefault": false
+        }
+      },
+      "extra_options": [
+        {
+          "like": 348,
+          "fields": {
+            "Name": "Option InnerPylons Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret1Id": 160,
+            "Turret2Id": 160,
+            "IsDefault": true
+          }
+        },
+        {
+          "like": 350,
+          "fields": {
+            "Name": "Option OuterPylons Empty",
+            "UIName": "Custom_Option_Empty",
+            "OptionPicture": "EMPTY",
+            "Cost": 0,
+            "Turret3Id": 160,
+            "Turret4Id": 160,
+            "IsDefault": true
+          }
+        }
+      ],
+      "add_rows": {
+        "TurretUnitsJson": [
+          279
+        ]
+      },
+      "decks": [
+        5
+      ]
+    }
+  ]
+}

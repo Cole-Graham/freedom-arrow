@@ -1,0 +1,468 @@
+{
+  "note": "0.5 dev.21 (Osama, 6 November 2026, from a friend's note): artillery costs more supply to resupply, copying ActualArrow 1.1.20 values. Howitzers 122 mm and up x2 (105 mm unchanged), 240 mm mortar x2 (other mortars unchanged), rocket artillery x4 (Grad smoke and TOS-2/Ogon rows as ActualArrow), ballistic missiles 4000, ground-launched Iskander-K 2000. Rocket rows added to the game after ActualArrow 1.1.20 get the x4 rule. Air munitions are not changed. Not yet run in a game. Retired in 0.6 dev.87 (Osama, 9 November 2026: 'bring the artillery supply cost back to vanilla'): no row is changed; the values stay here for reference.",
+  "ammo": {
+    "4": {
+      "name": "Shell 155 M284 M109A7 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "15": {
+      "name": "MLRS 227 HE Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "34": {
+      "name": "Missile Ballistic 560 ATACMS Cluster",
+      "was": 1000.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "38": {
+      "name": "MLRS 227 Cluster Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "64": {
+      "name": "Shell 130 AK130 HE",
+      "was": 40.0,
+      "SupplyCost": 80.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "65": {
+      "name": "Shell 130 AK130 AAG",
+      "was": 20.0,
+      "SupplyCost": 40.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "66": {
+      "name": "MLRS 122 Grad HE",
+      "was": 60.0,
+      "SupplyCost": 240.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "67": {
+      "name": "MLRS 300 HE",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "68": {
+      "name": "Shell 152 2A64 M1 SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "71": {
+      "name": "Obus 240 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "73": {
+      "name": "MLRS 122 Grad SMK",
+      "was": 60.0,
+      "SupplyCost": 720.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "92": {
+      "name": "Round 152 2A33 Akatsiya HEAT T1",
+      "was": 24.0,
+      "SupplyCost": 48.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "149": {
+      "name": "Shell 155 M284 M109A6 SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "152": {
+      "name": "Shell 155 M284 M109A7 SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "174": {
+      "name": "Shell 122 2A31 HE",
+      "was": 40.0,
+      "SupplyCost": 80.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "178": {
+      "name": "MLRS 220 TOS1 Thermobaric",
+      "was": 100.0,
+      "SupplyCost": 400.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "179": {
+      "name": "MLRS 220 TOS1A Thermobaric",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "214": {
+      "name": "MLRS 220 Uragan1M",
+      "was": 110.0,
+      "SupplyCost": 440.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "215": {
+      "name": "MLRS 220 TOS2 Thermobaric",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "218": {
+      "name": "Missile Ballistic 500 IskanderM HE",
+      "was": 1000.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "219": {
+      "name": "Missile Cruise IskanderK HE Guided",
+      "was": 1000.0,
+      "SupplyCost": 2000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "228": {
+      "name": "Shell 152 2A88 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "229": {
+      "name": "Shell 152 2A88 Rad HE-RAP",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "236": {
+      "name": "Shell 152 2A33 T2 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "237": {
+      "name": "Shell 152 2A33 SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "261": {
+      "name": "Shell 155 M284 M109A6 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "281": {
+      "name": "Shell 155 M284 M109A7 HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "347": {
+      "name": "Shell 152 2A64 M2 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "348": {
+      "name": "Shell 152 2A64 M2 HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "349": {
+      "name": "Shell 152 2A64 M2 SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "408": {
+      "name": "Round 122 2A31 Gvozdika HEAT T1",
+      "was": 16.0,
+      "SupplyCost": 32.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "409": {
+      "name": "Obus 240 HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "412": {
+      "name": "Shell 152 2A88 Rad HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "413": {
+      "name": "Shell 152 2A64 M1 Cluster",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "423": {
+      "name": "Shell 155 M907 IronThunder HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "424": {
+      "name": "Shell 155 M284 M109A6 HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "425": {
+      "name": "Shell 155 M284 M109A6 Cluster",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "426": {
+      "name": "Shell 155 M284 M109A6 HEAT Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "427": {
+      "name": "Missile Ballistic 400 PrSM HE Guided",
+      "was": 700.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "428": {
+      "name": "MLRS 300 Cluster",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "429": {
+      "name": "MLRS 300 Cluster Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "430": {
+      "name": "MLRS 300 HE Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "431": {
+      "name": "MLRS 122 Grad Cluster",
+      "was": 60.0,
+      "SupplyCost": 240.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "432": {
+      "name": "MLRS 122 Grad Incendiary",
+      "was": 60.0,
+      "SupplyCost": 240.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "439": {
+      "name": "Missile Ballistic 500 TochkaU HE",
+      "was": 1000.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "440": {
+      "name": "Missile Ballistic 500 TochkaU Cluster",
+      "was": 1000.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "443": {
+      "name": "MLRS 227 HE",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "444": {
+      "name": "MLRS 227 Cluster",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "446": {
+      "name": "Shell 127 Mark45 HE",
+      "was": 20.0,
+      "SupplyCost": 40.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "448": {
+      "name": "Shell 127 Mark45 AA",
+      "was": 20.0,
+      "SupplyCost": 40.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "466": {
+      "name": "MLRS 345 CATFAE Thermobaric",
+      "was": 180.0,
+      "SupplyCost": 720.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "481": {
+      "name": "Shell 203 2A44 Malka HE",
+      "was": 75.0,
+      "SupplyCost": 150.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "489": {
+      "name": "Shell 152 2A37 M1 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "535": {
+      "name": "MLRS 140 A22 Ogon HE",
+      "was": 60.0,
+      "SupplyCost": 720.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "565": {
+      "name": "Shell 203 2A44 Malka HE Guided",
+      "was": 150.0,
+      "SupplyCost": 300.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "566": {
+      "name": "Missile Ballistic 500 IskanderM Cluster",
+      "was": 1000.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "605": {
+      "name": "Shell 155 M284 M109A5O HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "606": {
+      "name": "Shell 155 M284 M109A5O SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "607": {
+      "name": "Shell 155 PZH2000 HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "610": {
+      "name": "Shell 155 K9EST HE",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "611": {
+      "name": "Shell 155 K9EST HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "612": {
+      "name": "Shell 155 K9EST SMK",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "613": {
+      "name": "Shell 155 K9EST HE RAP",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "625": {
+      "name": "Shell 155 PZH2000 HE-RAP",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "718": {
+      "name": "Shell 152 2A37 M1 HE Guided",
+      "was": 100.0,
+      "SupplyCost": 200.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "752": {
+      "name": "Missile Cruise IskanderK Fast Resupply",
+      "was": 1000.0,
+      "SupplyCost": 2000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "903": {
+      "name": "Missile Ballistic 400 PrSM HE Guided Fast Reload",
+      "was": 700.0,
+      "SupplyCost": 4000.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "910": {
+      "name": "Shell 152 2A64 Malva HE-RAP",
+      "was": 50.0,
+      "SupplyCost": 100.0,
+      "basis": "ActualArrow 1.1.20"
+    },
+    "928": {
+      "name": "MLRS 227 HE  HIMARS Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "929": {
+      "name": "MLRS 227 Cluster HIMARS Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "930": {
+      "name": "MLRS 300 Uragan-S HE",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "931": {
+      "name": "MLRS 300 Uragan-S Cluster",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "932": {
+      "name": "MLRS 300 Kama HE",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "933": {
+      "name": "MLRS 300 Kama Cluster",
+      "was": 125.0,
+      "SupplyCost": 500.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "934": {
+      "name": "MLRS 300 Sarma HE Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "935": {
+      "name": "MLRS 300 Sarma Cluster Guided",
+      "was": 165.0,
+      "SupplyCost": 660.0,
+      "basis": "new since ActualArrow 1.1.20; MLRS rule x4"
+    },
+    "2000509": {
+      "name": "Obus 240 SMK",
+      "was": 20.0,
+      "SupplyCost": 40.0,
+      "basis": "FA clone of the 240 mm round; 240 mm rule x2"
+    }
+  },
+  "retired": true
+}

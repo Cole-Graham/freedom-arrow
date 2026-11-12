@@ -1,4 +1,16 @@
-# freedom-arrow
+# Freedom Arrow — public
+
+**Approved public gameplay source — dev.45. Main 0.7 development is separate.**
+
+## Maintained branches
+
+- [Main 0.7 development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/0.7-development) — dev.55 integration.
+- [Public gameplay source](https://github.com/Cole-Graham/freedom-arrow/tree/main) — locked dev.45.
+- [PLA development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/pla-development) — complete PLA pack.
+- [Assets development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/assets-development) — shared models, music and voices.
+- [Launcher development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/launcher-development) — launcher and manifest client.
+
+Use one `codex/batch/lateralus/<topic>` branch per coherent unpromoted batch; reuse it across commits and test builds. Build identities use tags. See [branch policy](docs/development/BRANCH-POLICY.md) and [source pins](docs/development/branch-streams.json). Source maintenance does not change the public manifest lock or rebuild existing packages.
 
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
@@ -181,3 +193,23 @@ MelonLoader, Il2CppDumper, and ILSpy are vendored beside BAModManager. The manag
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
+
+## Document change log
+
+- 2026-11-04 16:54:02 PST (America/Los_Angeles) — Added an unreleased0.2 development/build pointer and explicit recon/card/runtime limits; preserved the0.1 candidate and upstream cleanup.
+- 2026-11-04 17:30:00 PST (America/Los_Angeles) — Updated the development pointer to dev.4.
+- 2026-11-04 17:54:19 PST (America/Los_Angeles) — Updated the development pointer to dev.5.
+- 2026-11-04 18:01:47 PST (America/Los_Angeles) — Updated the development pointer to dev.6.
+- 2026-11-04 18:07:58 PST (America/Los_Angeles) — Updated the development pointer to dev.7.
+- 2026-11-04 18:11:00 PST (America/Los_Angeles) — Updated the development pointer to dev.8.
+- 2026-11-04 18:26:32 PST (America/Los_Angeles) — Updated the development pointer to dev.9.
+- 2026-11-04 18:37:44 PST (America/Los_Angeles) — Updated the development pointer to dev.10.
+- 2026-11-04 19:05:03 PST (America/Los_Angeles) — Updated the development pointer to dev.11.
+- 2026-11-04 19:11:24 PST (America/Los_Angeles) — Updated the development pointer to dev.12.
+- 2026-11-04 19:24:04 PST (America/Los_Angeles) — Updated the development pointer to dev.14.
+- 2026-11-04 19:37:31 PST (America/Los_Angeles) — Updated the development pointer to dev.16.
+- 2026-11-04 19:42:51 PST (America/Los_Angeles) — Updated the development pointer to dev.17.
+- 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.
+- 2026-11-06 14:40 PST (America/Los_Angeles) — Added the 0.5 development pointer (accuracy); 0.4 stays on its branch.
+- 2026-11-07 12:43 PST (America/Los_Angeles) — Added the 0.6 development pointer (ActualArrow features); 0.5 stays on its branch.
+- 2026-11-11 22:48:48 PST (America/Los_Angeles) — Added approved maintained-stream and isolated-batch navigation; preserved existing history and gameplay.
