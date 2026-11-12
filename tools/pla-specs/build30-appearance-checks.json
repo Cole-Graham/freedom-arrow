@@ -1,0 +1,14 @@
+{
+  "build": 30,
+  "appearance_assignments": 48,
+  "changed_body_rows": 47,
+  "all_sf_night": 15,
+  "marine_only_down_woodland": 4,
+  "unrelated_body_rows_unchanged": 88,
+  "gameplay_tables_identical_to29": 24,
+  "source_png_resources_exact29": 116,
+  "approved_weapon_png_locks_passed": 8,
+  "weapon_bindings_and_offsets_identical_to29": true,
+  "preset_lods_exist_and_byte_identical": true,
+  "native_verified": false
+}

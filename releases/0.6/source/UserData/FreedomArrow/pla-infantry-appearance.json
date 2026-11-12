@@ -1,0 +1,1804 @@
+{
+  "build": 30,
+  "scope": "Current playable designer infantry; hidden historical drafts and Test preset showcase unchanged. SF class takes priority over branch rules.",
+  "basis": "Sam: Motorized desert goggles down/up plus some assault desert; engineers heavy. PLAGF woodland goggles up/down and assault. PLAN goggles down for Marines only. All SF night, with fixed varied assignments.",
+  "entries": [
+    {
+      "unit": 1143,
+      "name": "Thunder Gods",
+      "spec": 17,
+      "troop_type": "Special forces",
+      "donor": 1000,
+      "preset": "SF night down desert",
+      "previous_body": {
+        "unitId": 1143,
+        "lods": [
+          "pla2_sf_light_desert_0.fas",
+          "pla2_sf_light_desert_1.fas",
+          "pla2_sf_light_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1143,
+        "lods": [
+          "pla2_sf_night_down_desert_0.fas",
+          "pla2_sf_night_down_desert_1.fas",
+          "pla2_sf_night_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1144,
+      "name": "Airborne Snipers",
+      "spec": 17,
+      "troop_type": "Special forces",
+      "donor": 997,
+      "preset": "SF night up woodland",
+      "previous_body": {
+        "unitId": 1144,
+        "lods": [
+          "pla2_sf_light_desert_0.fas",
+          "pla2_sf_light_desert_1.fas",
+          "pla2_sf_light_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1144,
+        "lods": [
+          "pla2_sf_night_up_woodland_0.fas",
+          "pla2_sf_night_up_woodland_1.fas",
+          "pla2_sf_night_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1151,
+      "name": "Mechanized Riflemen",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1151,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1151,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1152,
+      "name": "Mechanized HJ-8E Team",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1152,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1152,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1153,
+      "name": "Mechanized QW-2 Team",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1153,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1153,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1154,
+      "name": "Mechanized QLZ-04 Team",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 995,
+      "preset": "SF assault woodland",
+      "previous_body": {
+        "unitId": 1154,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1154,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1155,
+      "name": "Mechanized PF-98 Tank Hunters",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1155,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1155,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1156,
+      "name": "Mechanized Combat Engineers",
+      "spec": 18,
+      "troop_type": "Engineers",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1156,
+        "lods": [
+          "pla2_sf_heavy_woodland_0.fas",
+          "pla2_sf_heavy_woodland_1.fas",
+          "pla2_sf_heavy_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1156,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1157,
+      "name": "Mechanized QJZ-89 Team",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1157,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1157,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1158,
+      "name": "Mechanized GPMG Riflemen",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1158,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1158,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1159,
+      "name": "Mechanized Guided-AT Riflemen",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 995,
+      "preset": "SF assault woodland",
+      "previous_body": {
+        "unitId": 1159,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1159,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1160,
+      "name": "Armored Scouts",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1160,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1160,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1161,
+      "name": "Armored Sniper Pair",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1161,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1161,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1162,
+      "name": "Mechanized Thermobaric Breachers",
+      "spec": 18,
+      "troop_type": "Engineers",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1162,
+        "lods": [
+          "pla2_sf_heavy_woodland_0.fas",
+          "pla2_sf_heavy_woodland_1.fas",
+          "pla2_sf_heavy_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1162,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1163,
+      "name": "Mechanized Close-AT Riflemen",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1001,
+      "preset": "SF goggles up woodland",
+      "previous_body": {
+        "unitId": 1163,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1163,
+        "lods": [
+          "pla2_sf_goggles_up_woodland_0.fas",
+          "pla2_sf_goggles_up_woodland_1.fas",
+          "pla2_sf_goggles_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1164,
+      "name": "Armored Forward Observers",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 995,
+      "preset": "SF assault woodland",
+      "previous_body": {
+        "unitId": 1164,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1164,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1165,
+      "name": "Recon HJ-8E Ambush Team",
+      "spec": 18,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1165,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1165,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1174,
+      "name": "Sharp Blades",
+      "spec": 19,
+      "troop_type": "Special forces",
+      "donor": 999,
+      "preset": "SF night down woodland",
+      "previous_body": {
+        "unitId": 1174,
+        "lods": [
+          "pla2_sf_light_desert_0.fas",
+          "pla2_sf_light_desert_1.fas",
+          "pla2_sf_light_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1174,
+        "lods": [
+          "pla2_sf_night_down_woodland_0.fas",
+          "pla2_sf_night_down_woodland_1.fas",
+          "pla2_sf_night_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1181,
+      "name": "Godsword",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 998,
+      "preset": "SF night up desert",
+      "previous_body": {
+        "unitId": 1181,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1181,
+        "lods": [
+          "pla2_sf_night_up_desert_0.fas",
+          "pla2_sf_night_up_desert_1.fas",
+          "pla2_sf_night_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1182,
+      "name": "Whistling Arrows",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 999,
+      "preset": "SF night down woodland",
+      "previous_body": {
+        "unitId": 1182,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1182,
+        "lods": [
+          "pla2_sf_night_down_woodland_0.fas",
+          "pla2_sf_night_down_woodland_1.fas",
+          "pla2_sf_night_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1183,
+      "name": "Blood Wolves",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 1000,
+      "preset": "SF night down desert",
+      "previous_body": {
+        "unitId": 1183,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1183,
+        "lods": [
+          "pla2_sf_night_down_desert_0.fas",
+          "pla2_sf_night_down_desert_1.fas",
+          "pla2_sf_night_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1184,
+      "name": "Sky Hunters",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 997,
+      "preset": "SF night up woodland",
+      "previous_body": {
+        "unitId": 1184,
+        "lods": [
+          "pla2_sf_light_woodland_0.fas",
+          "pla2_sf_light_woodland_1.fas",
+          "pla2_sf_light_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1184,
+        "lods": [
+          "pla2_sf_night_up_woodland_0.fas",
+          "pla2_sf_night_up_woodland_1.fas",
+          "pla2_sf_night_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1185,
+      "name": "Southern Swords",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 998,
+      "preset": "SF night up desert",
+      "previous_body": {
+        "unitId": 1185,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1185,
+        "lods": [
+          "pla2_sf_night_up_desert_0.fas",
+          "pla2_sf_night_up_desert_1.fas",
+          "pla2_sf_night_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1186,
+      "name": "Mountain Hunters",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 999,
+      "preset": "SF night down woodland",
+      "previous_body": {
+        "unitId": 1186,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1186,
+        "lods": [
+          "pla2_sf_night_down_woodland_0.fas",
+          "pla2_sf_night_down_woodland_1.fas",
+          "pla2_sf_night_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1187,
+      "name": "Blue Sword",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 1000,
+      "preset": "SF night down desert",
+      "previous_body": {
+        "unitId": 1187,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1187,
+        "lods": [
+          "pla2_sf_night_down_desert_0.fas",
+          "pla2_sf_night_down_desert_1.fas",
+          "pla2_sf_night_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1188,
+      "name": "Falcon",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 997,
+      "preset": "SF night up woodland",
+      "previous_body": {
+        "unitId": 1188,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1188,
+        "lods": [
+          "pla2_sf_night_up_woodland_0.fas",
+          "pla2_sf_night_up_woodland_1.fas",
+          "pla2_sf_night_up_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1189,
+      "name": "PAP Snow Leopards",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 998,
+      "preset": "SF night up desert",
+      "previous_body": {
+        "unitId": 1189,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1189,
+        "lods": [
+          "pla2_sf_night_up_desert_0.fas",
+          "pla2_sf_night_up_desert_1.fas",
+          "pla2_sf_night_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1190,
+      "name": "Sea Dragons",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 999,
+      "preset": "SF night down woodland",
+      "previous_body": {
+        "unitId": 1190,
+        "lods": [
+          "pla2_sf_assault_woodland_0.fas",
+          "pla2_sf_assault_woodland_1.fas",
+          "pla2_sf_assault_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1190,
+        "lods": [
+          "pla2_sf_night_down_woodland_0.fas",
+          "pla2_sf_night_down_woodland_1.fas",
+          "pla2_sf_night_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1191,
+      "name": "Sea Dragons Recon",
+      "spec": 20,
+      "troop_type": "Special forces",
+      "donor": 1000,
+      "preset": "SF night down desert",
+      "previous_body": {
+        "unitId": 1191,
+        "lods": [
+          "pla2_sf_light_woodland_0.fas",
+          "pla2_sf_light_woodland_1.fas",
+          "pla2_sf_light_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1191,
+        "lods": [
+          "pla2_sf_night_down_desert_0.fas",
+          "pla2_sf_night_down_desert_1.fas",
+          "pla2_sf_night_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1192,
+      "name": "Marine Riflemen",
+      "spec": 20,
+      "troop_type": "Regular",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1192,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1192,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1193,
+      "name": "Marine HJ-12 Team",
+      "spec": 20,
+      "troop_type": "Support",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1193,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1193,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1194,
+      "name": "Marine HN-6 Team",
+      "spec": 20,
+      "troop_type": "Support",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1194,
+        "lods": [
+          "pla2_regular_woodland_0.fas",
+          "pla2_regular_woodland_1.fas",
+          "pla2_regular_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1194,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1195,
+      "name": "Marine Thermobaric Engineers",
+      "spec": 20,
+      "troop_type": "Engineers",
+      "donor": 1003,
+      "preset": "SF goggles down woodland",
+      "previous_body": {
+        "unitId": 1195,
+        "lods": [
+          "pla2_sf_heavy_woodland_0.fas",
+          "pla2_sf_heavy_woodland_1.fas",
+          "pla2_sf_heavy_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1195,
+        "lods": [
+          "pla2_sf_goggles_down_woodland_0.fas",
+          "pla2_sf_goggles_down_woodland_1.fas",
+          "pla2_sf_goggles_down_woodland_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1196,
+      "name": "Motorized Line Infantry",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1196,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1196,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1197,
+      "name": "Motorized Troopers \u2014 AA",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1197,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1197,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1198,
+      "name": "Motorized Troopers \u2014 HJ-12",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1198,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1198,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1199,
+      "name": "Motorized Weapons Squad",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1199,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1199,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1200,
+      "name": "Motorized PF-98 Fire Support",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 996,
+      "preset": "SF assault desert",
+      "previous_body": {
+        "unitId": 1200,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1200,
+        "lods": [
+          "pla2_sf_assault_desert_0.fas",
+          "pla2_sf_assault_desert_1.fas",
+          "pla2_sf_assault_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1201,
+      "name": "Motorized Recon Patrol",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1002,
+      "preset": "SF goggles up desert",
+      "previous_body": {
+        "unitId": 1201,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1201,
+        "lods": [
+          "pla2_sf_goggles_up_desert_0.fas",
+          "pla2_sf_goggles_up_desert_1.fas",
+          "pla2_sf_goggles_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1202,
+      "name": "Motorized Snipers",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1002,
+      "preset": "SF goggles up desert",
+      "previous_body": {
+        "unitId": 1202,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1202,
+        "lods": [
+          "pla2_sf_goggles_up_desert_0.fas",
+          "pla2_sf_goggles_up_desert_1.fas",
+          "pla2_sf_goggles_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1203,
+      "name": "Eagles Recon",
+      "spec": 21,
+      "troop_type": "Special forces",
+      "donor": 1000,
+      "preset": "SF night down desert",
+      "previous_body": {
+        "unitId": 1203,
+        "lods": [
+          "pla2_sf_light_desert_0.fas",
+          "pla2_sf_light_desert_1.fas",
+          "pla2_sf_light_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1203,
+        "lods": [
+          "pla2_sf_night_down_desert_0.fas",
+          "pla2_sf_night_down_desert_1.fas",
+          "pla2_sf_night_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1204,
+      "name": "Motorized CQC Engineers",
+      "spec": 21,
+      "troop_type": "Engineers",
+      "donor": 994,
+      "preset": "SF heavy desert",
+      "previous_body": {
+        "unitId": 1204,
+        "lods": [
+          "pla2_sf_heavy_desert_0.fas",
+          "pla2_sf_heavy_desert_1.fas",
+          "pla2_sf_heavy_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1204,
+        "lods": [
+          "pla2_sf_heavy_desert_0.fas",
+          "pla2_sf_heavy_desert_1.fas",
+          "pla2_sf_heavy_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": false
+    },
+    {
+      "unit": 1205,
+      "name": "Motorized Light-AT Riflemen",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1205,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1205,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1206,
+      "name": "Motorized Air-Defense Scouts",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1002,
+      "preset": "SF goggles up desert",
+      "previous_body": {
+        "unitId": 1206,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1206,
+        "lods": [
+          "pla2_sf_goggles_up_desert_0.fas",
+          "pla2_sf_goggles_up_desert_1.fas",
+          "pla2_sf_goggles_up_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1207,
+      "name": "Motorized PF-98 Tank Hunters",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1207,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1207,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1208,
+      "name": "Motorized QLZ-04 Team",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1208,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1208,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1209,
+      "name": "Motorized Thermobaric Assault",
+      "spec": 21,
+      "troop_type": "Regular",
+      "donor": 996,
+      "preset": "SF assault desert",
+      "previous_body": {
+        "unitId": 1209,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1209,
+        "lods": [
+          "pla2_sf_assault_desert_0.fas",
+          "pla2_sf_assault_desert_1.fas",
+          "pla2_sf_assault_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    },
+    {
+      "unit": 1210,
+      "name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
+      "spec": 21,
+      "troop_type": "Support",
+      "donor": 1004,
+      "preset": "SF goggles down desert",
+      "previous_body": {
+        "unitId": 1210,
+        "lods": [
+          "pla2_regular_desert_0.fas",
+          "pla2_regular_desert_1.fas",
+          "pla2_regular_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.00311,
+          0
+        ],
+        "anchorHands": true
+      },
+      "body": {
+        "unitId": 1210,
+        "lods": [
+          "pla2_sf_goggles_down_desert_0.fas",
+          "pla2_sf_goggles_down_desert_1.fas",
+          "pla2_sf_goggles_down_desert_2.fas"
+        ],
+        "offset": [
+          0,
+          0.01558,
+          0
+        ],
+        "anchorHands": true
+      },
+      "changed": true
+    }
+  ],
+  "count": 48,
+  "changed_count": 47,
+  "distribution": {
+    "SF night down desert": 5,
+    "SF night up woodland": 3,
+    "SF goggles up woodland": 6,
+    "SF goggles down woodland": 10,
+    "SF assault woodland": 3,
+    "SF night down woodland": 4,
+    "SF night up desert": 3,
+    "SF goggles down desert": 8,
+    "SF assault desert": 2,
+    "SF goggles up desert": 3,
+    "SF heavy desert": 1
+  },
+  "weapon_bindings_and_offsets_preserved": true,
+  "gameplay_tables_unchanged_from_build29": 24,
+  "geometry_textures_materials_rigging_unchanged": true,
+  "native_verified": false,
+  "randomization": "Stable per-unit mix, not changed each spawn or launch.",
+  "body_offsets": "Copy the chosen existing preset, including its approved +0.01558 body offset and anchorHands; weapon offsets untouched."
+}

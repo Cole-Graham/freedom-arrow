@@ -1,0 +1,37 @@
+{
+  "label": "PLA TEST Build 30",
+  "sha256": "809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a",
+  "bytes": 3897342189,
+  "base_build": 29,
+  "base_sha256": "7d4729e1bd65726c2a0c4670af398598820fc7b522402eeda0d57a8123a0a63e",
+  "verified_payloads": 7987,
+  "verified_core_hashes": 88,
+  "gameplay_tables_byte_identical": 24,
+  "model_geometry_weapon_alignment_materials_music_rigging_audio_unchanged": true,
+  "body_preset_rows_changed": 47,
+  "music_player_version": "1.5.0",
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/infantry-bodies.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-approved-art.json",
+    "UserData/FreedomArrow/pla-arsenal-ui.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-infantry-designer.json",
+    "UserData/FreedomArrow/pla-infantry-identity.json",
+    "UserData/FreedomArrow/pla-qbz-reference-art.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/pla-specializations.json",
+    "UserData/FreedomArrow/pla-vehicle-armament.json",
+    "UserData/FreedomArrow/pla-weapon-hud.json",
+    "UserData/FreedomArrow/pla-white-unit-icons.json",
+    "UserData/FreedomArrow/release-notes.md"
+  ],
+  "new_paths": [
+    "UserData/FreedomArrow/pla-infantry-appearance.json"
+  ],
+  "native_verified": false,
+  "installed": false
+}

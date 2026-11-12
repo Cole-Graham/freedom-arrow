@@ -1,5 +1,5 @@
 {
-  "build": 29,
+  "build": 30,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -338,7 +338,7 @@
       ],
       "munitions": "Limited QTS 20 mm HE/airburst-design allocation; capability requires testing",
       "notes": "Elite air-mobile reconnaissance/raids; two digital grenadiers, no heavy ATGM. Vanilla pattern: Rangers RRC. Research: S03 (cell note).",
-      "body_from": 993,
+      "body_from": 1000,
       "camo": "desert",
       "armor": 10,
       "health": 30,
@@ -351,7 +351,8 @@
       "native_verified": false,
       "source_design_name": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
       "identity": "PLAAF Airborne Corps Leishen (\u96f7\u795e)",
-      "unit_icon": "FA_PLA_INF_LEISHEN"
+      "unit_icon": "FA_PLA_INF_LEISHEN",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1144,
@@ -380,8 +381,8 @@
       ],
       "munitions": "12.7 mm + 5.8 mm; no vehicle-kill guarantee",
       "notes": "Heavy sniper, marksman and security rifle; precision, not assault manpower. Vanilla pattern: Army Snipers.",
-      "body_from": 993,
-      "camo": "desert",
+      "body_from": 997,
+      "camo": "woodland",
       "armor": 10,
       "health": 15,
       "carriers": [
@@ -397,7 +398,8 @@
       "native_verified": false,
       "source_design_name": "Airborne Snipers",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "US_SCOUT_SNIPERS_M107-Label"
+      "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1145,
@@ -691,8 +693,8 @@
       ],
       "munitions": "PF-98 HEAT + 35 mm HE-frag",
       "notes": "Compact mechanized dismounts; IFV supplies extra fire support. Vanilla pattern: Mech. Riflemen MAAWS.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 6,
       "health": 35,
       "carriers": [
@@ -706,7 +708,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_LINE_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1152,
@@ -728,8 +731,8 @@
       ],
       "munitions": "Tandem HEAT",
       "notes": "Affordable guided AT; requires exposure while guiding, unlike HJ-12. Vanilla pattern: PTRK Konkurs.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -743,7 +746,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized HJ-8E Team",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_KONKURS-Label"
+      "unit_icon": "RU_KONKURS-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1153,
@@ -765,8 +769,8 @@
       ],
       "munitions": "IR SAMs",
       "notes": "Dedicated air defense, little spare infantry firepower. Vanilla pattern: Stinger team.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -780,7 +784,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized QW-2 Team",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_IGLA-Label"
+      "unit_icon": "RU_IGLA-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1154,
@@ -802,8 +807,8 @@
       ],
       "munitions": "35 mm HE-frag",
       "notes": "Sustained AGL position defense; heavy gun crew, not assault infantry. Vanilla pattern: Mk19 AGL team.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 995,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -817,7 +822,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized QLZ-04 Team",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1155,
@@ -839,8 +845,8 @@
       ],
       "munitions": "HEAT only",
       "notes": "Shorter-range unguided AT concentration; distinct from mixed-ammo fire support. Vanilla pattern: Assaultmen SMAW.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -854,7 +860,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized PF-98 Tank Hunters",
       "identity": "PLA Ground Force",
-      "unit_icon": "US_SMAW_TEAM-Label"
+      "unit_icon": "US_SMAW_TEAM-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1156,
@@ -890,8 +897,8 @@
       ],
       "munitions": "Buckshot + assault rounds",
       "notes": "Clear defended positions with shotgun/assault launchers and rifle security. Vanilla pattern: Combat Engineers.",
-      "body_from": 989,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 8,
       "health": 40,
       "carriers": [
@@ -904,7 +911,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized Combat Engineers",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_SAPERI-Label"
+      "unit_icon": "RU_SAPERI-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1157,
@@ -926,8 +934,8 @@
       ],
       "munitions": "12.7 mm ball/AP mix",
       "notes": "Dedicated heavy suppression; no missile or grenade capability. Vanilla pattern: M2 HMG team.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -941,7 +949,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized QJZ-89 Team",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_HMG_KORD-Label"
+      "unit_icon": "RU_HMG_KORD-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1158,
@@ -970,8 +979,8 @@
       ],
       "munitions": "Light HEAT",
       "notes": "Suppression-heavy fixed kit; weaker on the move than standard dismounts. Vanilla pattern: Mech. Riflemen MMG.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 6,
       "health": 35,
       "carriers": [
@@ -985,7 +994,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized GPMG Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_LINE_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1159,
@@ -1021,8 +1031,8 @@
       ],
       "munitions": "HJ-8E HEAT + 35 mm HE-frag",
       "notes": "Rifle squad trades heavy rocket burst for one guided AT weapon. Vanilla pattern: Mech. Riflemen Dragon.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 995,
+      "camo": "woodland",
       "armor": 6,
       "health": 35,
       "carriers": [
@@ -1036,7 +1046,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized Guided-AT Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_LINE_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1160,
@@ -1072,8 +1083,8 @@
       ],
       "munitions": "Light HEAT",
       "notes": "Small scouts screening armor; limited casualties can collapse firepower. Vanilla pattern: Cavalry Scouts.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -1087,7 +1098,8 @@
       "native_verified": false,
       "source_design_name": "Armored Scouts",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1161,
@@ -1116,8 +1128,8 @@
       ],
       "munitions": "12.7 mm + 5.8 mm",
       "notes": "Two-man precision team with almost no spare bodies. Vanilla pattern: Scout Snipers.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 6,
       "health": 10,
       "carriers": [
@@ -1131,7 +1143,8 @@
       "native_verified": false,
       "source_design_name": "Armored Sniper Pair",
       "identity": "PLA Ground Force",
-      "unit_icon": "US_SCOUT_SNIPERS_M107-Label"
+      "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1162,
@@ -1160,8 +1173,8 @@
       ],
       "munitions": "Buckshot + thermobaric",
       "notes": "Hard CQC/anti-cover specialist, deliberately poor at long-range AT. Vanilla pattern: Mech. Engineers CQC.",
-      "body_from": 989,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 8,
       "health": 35,
       "carriers": [
@@ -1175,7 +1188,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized Thermobaric Breachers",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_FLAMETHROWER-Label"
+      "unit_icon": "RU_FLAMETHROWER-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1163,
@@ -1211,8 +1225,8 @@
       ],
       "munitions": "Light HEAT + 35 mm HE-frag",
       "notes": "Cheaper fixed light-AT loadout; guided team remains the MBT counter. Vanilla pattern: Motostrelki.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1001,
+      "camo": "woodland",
       "armor": 6,
       "health": 35,
       "carriers": [
@@ -1226,7 +1240,8 @@
       "native_verified": false,
       "source_design_name": "Mechanized Close-AT Riflemen",
       "identity": "PLA Ground Force",
-      "unit_icon": "FA_PLA_INF_LINE_GROUND"
+      "unit_icon": "FA_PLA_INF_LINE_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1164,
@@ -1248,8 +1263,8 @@
       ],
       "munitions": "Designator/radio role is a proposal",
       "notes": "Low-firepower observation unit for armor/artillery coordination. Vanilla pattern: Airborne Recce.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 995,
+      "camo": "woodland",
       "armor": 6,
       "health": 15,
       "carriers": [
@@ -1263,7 +1278,8 @@
       "native_verified": false,
       "source_design_name": "Armored Forward Observers",
       "identity": "PLA Ground Force",
-      "unit_icon": "US_CAVALRY_SCOUTS-Label"
+      "unit_icon": "US_CAVALRY_SCOUTS-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1165,
@@ -1292,8 +1308,8 @@
       ],
       "munitions": "Tandem HEAT",
       "notes": "Hidden observation and one guided ambush weapon; avoid infantry duels. Vanilla pattern: Cavalry Scouts.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 20,
       "carriers": [
@@ -1307,7 +1323,8 @@
       "native_verified": false,
       "source_design_name": "Recon HJ-8E Ambush Team",
       "identity": "PLA Ground Force",
-      "unit_icon": "RU_KONKURS-Label"
+      "unit_icon": "RU_KONKURS-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1166,
@@ -1717,8 +1734,8 @@
       ],
       "munitions": "Limited QTS 20 mm grenades + light HEAT",
       "notes": "Small high-value reconnaissance/security element; one digital grenadier, not a super-squad. Vanilla pattern: Green Berets. Research: S11 (cell note).",
-      "body_from": 993,
-      "camo": "desert",
+      "body_from": 999,
+      "camo": "woodland",
       "armor": 10,
       "health": 20,
       "carriers": [
@@ -1739,7 +1756,8 @@
       "native_verified": false,
       "source_design_name": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
       "identity": "PLA Rocket Force Liren (\u5229\u5203)",
-      "unit_icon": "FA_PLA_INF_ROCKET_SOF"
+      "unit_icon": "FA_PLA_INF_ROCKET_SOF",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1175,
@@ -2082,8 +2100,8 @@
       ],
       "munitions": "QTS 20 mm + QLU 35 mm HE; no automatic airburst/cover bonus",
       "notes": "Signature high-tech explosive/precision squad; limited grenade reserves and no hard AT. Vanilla pattern: Delta Force. Research: S02 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 998,
+      "camo": "desert",
       "armor": 10,
       "health": 40,
       "carriers": [
@@ -2100,7 +2118,8 @@
       "native_verified": false,
       "source_design_name": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
       "identity": "Dongfang Shenjian (\u4e1c\u65b9\u795e\u5251)",
-      "unit_icon": "FA_PLA_INF_DONGFANG"
+      "unit_icon": "FA_PLA_INF_DONGFANG",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1182,
@@ -2136,8 +2155,8 @@
       ],
       "munitions": "Buckshot + assault rounds",
       "notes": "Carbine/shotgun entry squad; hard CQC and breaching, little long-range punch. Vanilla pattern: SSO. Research: S02 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 999,
+      "camo": "woodland",
       "armor": 10,
       "health": 40,
       "carriers": [
@@ -2154,7 +2173,8 @@
       "native_verified": false,
       "source_design_name": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
       "identity": "Xiangjian (\u54cd\u7bad)",
-      "unit_icon": "FA_PLA_INF_XIANGJIAN"
+      "unit_icon": "FA_PLA_INF_XIANGJIAN",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1183,
@@ -2190,8 +2210,8 @@
       ],
       "munitions": "HEAT only; cold-weather identity is flavor, not an automatic buff",
       "notes": "Robust field assault with heavy unguided AT; not covert observation. Vanilla pattern: Spetsnaz GRU AT. Research: S05 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 1000,
+      "camo": "desert",
       "armor": 10,
       "health": 40,
       "carriers": [
@@ -2208,7 +2228,8 @@
       "native_verified": false,
       "source_design_name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
       "identity": "Xuelang (\u8840\u72fc)",
-      "unit_icon": "FA_PLA_INF_BLOOD_WOLF"
+      "unit_icon": "FA_PLA_INF_BLOOD_WOLF",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1184,
@@ -2244,8 +2265,8 @@
       ],
       "munitions": "QLU 35 mm HE + QBU-10 12.7 mm + 5.8 mm",
       "notes": "SF standoff recon team: precision grenades and 12.7 mm sniper fire, with marksman/spotter and carbine security. Small team; no dedicated AT. User-requested fixed kit. Vanilla pattern: small mixed-weapon Green Berets / sniper teams. Research S06 supports the sniper theme, not this exact equipment mix.",
-      "body_from": 988,
-      "camo": "green",
+      "body_from": 997,
+      "camo": "woodland",
       "armor": 10,
       "health": 20,
       "carriers": [
@@ -2264,7 +2285,8 @@
       "native_verified": false,
       "source_design_name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
       "identity": "Tianlang (\u5929\u72fc)",
-      "unit_icon": "FA_PLA_INF_TIANLANG"
+      "unit_icon": "FA_PLA_INF_TIANLANG",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1185,
@@ -2300,8 +2322,8 @@
       ],
       "munitions": "35 mm HE + light HEAT",
       "notes": "Standoff grenade/GPMG support; suppresses infantry but lacks premium guided AT. Vanilla pattern: Green Berets. Research: S07 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 998,
+      "camo": "desert",
       "armor": 10,
       "health": 40,
       "carriers": [
@@ -2318,7 +2340,8 @@
       "native_verified": false,
       "source_design_name": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
       "identity": "Nanguo Lijian / Huanan Zhi Jian (\u5357\u56fd\u5229\u5251 / \u534e\u5357\u4e4b\u5251)",
-      "unit_icon": "FA_PLA_INF_SOF"
+      "unit_icon": "FA_PLA_INF_SOF",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1186,
@@ -2354,8 +2377,8 @@
       ],
       "munitions": "Light HEAT",
       "notes": "Light mountain fighting with marksmen; no HMG, missile or free terrain bonus. Vanilla pattern: Gornostrelki. Research: S08 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 999,
+      "camo": "woodland",
       "armor": 10,
       "health": 30,
       "carriers": [
@@ -2372,7 +2395,8 @@
       "native_verified": false,
       "source_design_name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
       "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
-      "unit_icon": "FA_PLA_INF_PLATEAU_LEOPARD"
+      "unit_icon": "FA_PLA_INF_PLATEAU_LEOPARD",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1187,
@@ -2401,8 +2425,8 @@
       ],
       "munitions": "SMG ammunition + buckshot; no explosive launcher",
       "notes": "Police-themed room-clearing specialist; excellent CQC identity, no AT. Vanilla pattern: DLC3 Spetsnaz Vympel CQC. Research: S01 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 1000,
+      "camo": "desert",
       "armor": 10,
       "health": 30,
       "carriers": [
@@ -2419,7 +2443,8 @@
       "native_verified": false,
       "source_design_name": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
       "identity": "Beijing Public Security Blue Sword / Lanjian (\u84dd\u5251)",
-      "unit_icon": "FA_PLA_INF_POLICE"
+      "unit_icon": "FA_PLA_INF_POLICE",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1188,
@@ -2455,8 +2480,8 @@
       ],
       "munitions": "Limited 20 mm HE + buckshot + assault rounds",
       "notes": "PAP rapid-entry squad with small digital-grenade element; no heavy ATGM. Vanilla pattern: SSO. Research: S04 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 997,
+      "camo": "woodland",
       "armor": 10,
       "health": 40,
       "carriers": [
@@ -2473,7 +2498,8 @@
       "native_verified": false,
       "source_design_name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
       "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
-      "unit_icon": "FA_PLA_INF_FALCON"
+      "unit_icon": "FA_PLA_INF_FALCON",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1189,
@@ -2509,8 +2535,8 @@
       ],
       "munitions": "35 mm HE + buckshot; exact issued kit not asserted",
       "notes": "Compact CT raid kit; suppressed weapon concept without free invisibility. Vanilla pattern: Force Recon CQC. Research: S09 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 998,
+      "camo": "desert",
       "armor": 10,
       "health": 30,
       "carriers": [
@@ -2527,7 +2553,8 @@
       "native_verified": false,
       "source_design_name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
       "identity": "PAP Snow Leopard / Xuebao (\u96ea\u8c79)",
-      "unit_icon": "FA_PLA_INF_SNOW_LEOPARD"
+      "unit_icon": "FA_PLA_INF_SNOW_LEOPARD",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1190,
@@ -2563,8 +2590,8 @@
       ],
       "munitions": "HEAT + 35 mm HE",
       "notes": "Marine SOF assault manpower; heavy rocket support, less compact than scouts. Vanilla pattern: Marine Raiders AT. Research: S10 (cell note).",
-      "body_from": 995,
-      "camo": "green",
+      "body_from": 999,
+      "camo": "woodland",
       "armor": 10,
       "health": 50,
       "carriers": [
@@ -2575,7 +2602,8 @@
       "native_verified": false,
       "source_design_name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
       "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
-      "unit_icon": "FA_PLA_INF_JIAOLONG"
+      "unit_icon": "FA_PLA_INF_JIAOLONG",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1191,
@@ -2611,8 +2639,8 @@
       ],
       "munitions": "Assault rounds; no heavy anti-tank weapon",
       "notes": "Maritime reconnaissance/raid team; no automatic swimming/diving ability implied. Vanilla pattern: Force Recon. Research: S10 (cell note).",
-      "body_from": 988,
-      "camo": "green",
+      "body_from": 1000,
+      "camo": "desert",
       "armor": 10,
       "health": 30,
       "carriers": [
@@ -2629,7 +2657,8 @@
       "native_verified": false,
       "source_design_name": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
       "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
-      "unit_icon": "FA_PLA_INF_JIAOLONG"
+      "unit_icon": "FA_PLA_INF_JIAOLONG",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1192,
@@ -2665,8 +2694,8 @@
       ],
       "munitions": "Light HEAT + 35 mm HE",
       "notes": "Large sustained-assault squad; manpower rather than elite stealth. Vanilla pattern: Marines.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 60,
       "carriers": [
@@ -2676,7 +2705,8 @@
       "native_verified": false,
       "source_design_name": "Marine Riflemen",
       "identity": "PLA Navy Marine Corps",
-      "unit_icon": "FA_PLA_INF_LINE_MARINE"
+      "unit_icon": "FA_PLA_INF_LINE_MARINE",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1193,
@@ -2705,8 +2735,8 @@
       ],
       "munitions": "Tandem HEAT",
       "notes": "Dedicated premium armor counter with a security gun. Vanilla pattern: CAAT Javelin.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 30,
       "carriers": [
@@ -2723,7 +2753,8 @@
       "native_verified": false,
       "source_design_name": "Marine HJ-12 Team",
       "identity": "PLA Navy Marine Corps",
-      "unit_icon": "US_JAVELIN-Label"
+      "unit_icon": "US_JAVELIN-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1194,
@@ -2752,8 +2783,8 @@
       ],
       "munitions": "IR SAMs",
       "notes": "Marine air-defense team with limited self-protection. Vanilla pattern: Rangers Stinger.",
-      "body_from": 985,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 6,
       "health": 30,
       "carriers": [
@@ -2770,7 +2801,8 @@
       "native_verified": false,
       "source_design_name": "Marine HN-6 Team",
       "identity": "PLA Navy Marine Corps",
-      "unit_icon": "RU_IGLA-Label"
+      "unit_icon": "RU_IGLA-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1195,
@@ -2806,8 +2838,8 @@
       ],
       "munitions": "Thermobaric + buckshot",
       "notes": "Breach fortified infantry positions; weak versus heavy armor. Vanilla pattern: Combat Engineers.",
-      "body_from": 989,
-      "camo": "green",
+      "body_from": 1003,
+      "camo": "woodland",
       "armor": 8,
       "health": 40,
       "carriers": [
@@ -2824,7 +2856,8 @@
       "native_verified": false,
       "source_design_name": "Marine Thermobaric Engineers",
       "identity": "PLA Navy Marine Corps",
-      "unit_icon": "RU_FLAMETHROWER-Label"
+      "unit_icon": "RU_FLAMETHROWER-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1196,
@@ -2860,7 +2893,7 @@
       ],
       "munitions": "PF-98 HEAT + QLU 35 mm HE",
       "notes": "User-selected mixed kit retained; versatile but expensive and less specialized than support teams. Vanilla pattern: Troopers.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 45,
@@ -2871,7 +2904,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Line Infantry",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1197,
@@ -2907,7 +2941,7 @@
       ],
       "munitions": "IR SAMs + 35 mm HE",
       "notes": "Troopers-style mixed AA squad; trades anti-tank slot for MANPADS. Vanilla pattern: Troopers AA.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 45,
@@ -2918,7 +2952,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Troopers \u2014 AA",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1198,
@@ -2954,7 +2989,7 @@
       ],
       "munitions": "Tandem HEAT + 35 mm HE",
       "notes": "Separate guided-AT trooper unit, matched in size to AA troopers. Vanilla pattern: Troopers AT.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 45,
@@ -2965,7 +3000,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Troopers \u2014 HJ-12",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1199,
@@ -3001,7 +3037,7 @@
       ],
       "munitions": "35 mm HE + 12.7 mm",
       "notes": "User-selected grenade/HMG/sniper firebase; broad standoff coverage, limited assault manpower. No guided anti-tank weapon. Vanilla pattern: DLC2 HMG GMG.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 30,
@@ -3019,7 +3055,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Weapons Squad",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_WPN_QLU11"
+      "unit_icon": "FA_PLA_INF_WPN_QLU11",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1200,
@@ -3041,7 +3078,7 @@
       ],
       "munitions": "Also thermo | Draft: Fixed mix: HEAT + DZT-98 thermobaric; reserve count TBD",
       "notes": "Small direct-fire team with the user-requested mixed AT/thermobaric kit. Vanilla pattern: Assaultmen SMAW.",
-      "body_from": 990,
+      "body_from": 996,
       "camo": "desert",
       "armor": 6,
       "health": 20,
@@ -3061,7 +3098,8 @@
       "native_verified": false,
       "source_design_name": "Motorized PF-98 Fire Support",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "US_SMAW_TEAM-Label"
+      "unit_icon": "US_SMAW_TEAM-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1201,
@@ -3097,7 +3135,7 @@
       ],
       "munitions": "Light HEAT",
       "notes": "Mobile forward screen with one marksman and light self-defense AT. Vanilla pattern: Scouts.",
-      "body_from": 990,
+      "body_from": 1002,
       "camo": "desert",
       "armor": 6,
       "health": 30,
@@ -3115,7 +3153,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Recon Patrol",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_GROUND"
+      "unit_icon": "FA_PLA_INF_GROUND",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1202,
@@ -3144,7 +3183,7 @@
       ],
       "munitions": "12.7 mm + 5.8 mm",
       "notes": "Heavy rifle and marksman with security; cannot hold a line. Vanilla pattern: Army Snipers.",
-      "body_from": 990,
+      "body_from": 1002,
       "camo": "desert",
       "armor": 6,
       "health": 15,
@@ -3164,7 +3203,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Snipers",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "US_SCOUT_SNIPERS_M107-Label"
+      "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1203,
@@ -3200,7 +3240,7 @@
       ],
       "munitions": "Limited 20 mm HE + light HEAT; designator is a proposed role",
       "notes": "Networked target-finding theme with limited digital grenades; spotting over brute assault. Vanilla pattern: Rangers RRC. Research: S13 (cell note).",
-      "body_from": 993,
+      "body_from": 1000,
       "camo": "desert",
       "armor": 10,
       "health": 30,
@@ -3218,7 +3258,8 @@
       "native_verified": false,
       "source_design_name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
       "identity": "Xiongying (\u96c4\u9e70), historical Jinan-region SOF lineage",
-      "unit_icon": "FA_PLA_INF_EAGLE"
+      "unit_icon": "FA_PLA_INF_EAGLE",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1204,
@@ -3265,7 +3306,8 @@
       "native_verified": false,
       "source_design_name": "Motorized CQC Engineers",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "RU_SAPERI-Label"
+      "unit_icon": "RU_SAPERI-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1205,
@@ -3301,7 +3343,7 @@
       ],
       "munitions": "Light HEAT + 35 mm HE",
       "notes": "Cheaper fixed kit than the heavy mixed line squad. Vanilla pattern: Troopers.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 45,
@@ -3312,7 +3354,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Light-AT Riflemen",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_LINE_MOTOR80"
+      "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1206,
@@ -3348,7 +3391,7 @@
       ],
       "munitions": "IR SAMs",
       "notes": "Forward observer with a single defensive SAM; not a full AA battery. Vanilla pattern: VDV Igla.",
-      "body_from": 990,
+      "body_from": 1002,
       "camo": "desert",
       "armor": 6,
       "health": 25,
@@ -3366,7 +3409,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Air-Defense Scouts",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "RU_IGLA-Label"
+      "unit_icon": "RU_IGLA-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1207,
@@ -3395,7 +3439,7 @@
       ],
       "munitions": "HEAT only",
       "notes": "AT-only counterpart to the mixed-ammo fire-support team. Vanilla pattern: Rangers RAWS.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 25,
@@ -3413,7 +3457,8 @@
       "native_verified": false,
       "source_design_name": "Motorized PF-98 Tank Hunters",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "US_SMAW_TEAM-Label"
+      "unit_icon": "US_SMAW_TEAM-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1208,
@@ -3435,7 +3480,7 @@
       ],
       "munitions": "35 mm HE",
       "notes": "Sustained grenade firebase; needs transport and a front line. Vanilla pattern: Mk19 AGL team.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 20,
@@ -3455,7 +3500,8 @@
       "native_verified": false,
       "source_design_name": "Motorized QLZ-04 Team",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1209,
@@ -3484,7 +3530,7 @@
       ],
       "munitions": "Thermobaric + buckshot",
       "notes": "Dedicated blast assault; gives up heavy AT and long-range suppression. Vanilla pattern: Ognemetchiki.",
-      "body_from": 990,
+      "body_from": 996,
       "camo": "desert",
       "armor": 6,
       "health": 40,
@@ -3502,7 +3548,8 @@
       "native_verified": false,
       "source_design_name": "Motorized Thermobaric Assault",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "RU_FLAMETHROWER-Label"
+      "unit_icon": "RU_FLAMETHROWER-Label",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1210,
@@ -3538,7 +3585,7 @@
       ],
       "munitions": "HJ-8E tandem HEAT + QLU 35 mm HE + 7.62 mm GPMG",
       "notes": "Mixed AT/infantry-support team: one guided launcher, one precision GL and one GPMG; remaining personnel provide rifle security and crew support. Eight-man CAAT-style fixed kit, less suited to mobile assault. Exact price and weapon stats TBD.",
-      "body_from": 990,
+      "body_from": 1004,
       "camo": "desert",
       "armor": 6,
       "health": 40,
@@ -3556,7 +3603,8 @@
       "native_verified": false,
       "source_design_name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
       "identity": "PLA Ground Force motorized role",
-      "unit_icon": "FA_PLA_INF_WPN_QLU11"
+      "unit_icon": "FA_PLA_INF_WPN_QLU11",
+      "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1211,

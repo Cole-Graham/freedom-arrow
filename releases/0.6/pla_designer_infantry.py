@@ -136,6 +136,9 @@ def apply(root,t,patches,native_ids,bodies,weapon_rules,assignments):
    elif any(x in labels for x in ['HJ-12','HJ-12E','HJ-8E','HJ-73D','TL-4','GAM-102LR']) and men<=7:g.put('Units',uid,{'Role':35})
   desert=conscript or sid in (17,19,21)
   body_id=(994 if desert else 989) if engineer else (993 if desert else 988) if sf and recon else (996 if desert else 995) if sf else 990 if desert else 985
+  from pla_infantry_appearance import body_preset
+  body_id=body_preset(uid,sid,typ,name) or body_id
+  desert='desert' in body_by_id[body_id]['lods'][0]
   bodies.append({**copy.deepcopy(body_by_id[body_id]),'unitId':uid})
   for rule in rules901:
    if rule['weaponId'] in carried:weapon_rules.append({**copy.deepcopy(rule),'unitId':uid})

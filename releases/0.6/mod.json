@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 29",
-  "version": "29",
+  "name": "PLA TEST Build 30",
+  "version": "30",
   "type": "modpack",
-  "description": "Detailed reference weapon cards and plain/optic rifle assignments;conscripts cannot sprint or smoke, SF retained.",
+  "description": "Approved weapon cards and conscript ability policy, with branch-specific infantry presets and SF night variants.",
   "repo": "Cole-Graham/freedom-arrow"
 }

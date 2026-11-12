@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "29",
+  "package_version": "30",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Reference-derived detailed1160px weapon HUD;plain191 for reserves/noncombat;optic191 combat;separate192/QCW05;13conscripts no sprint/smoke,SF unchanged. Native inspection pending."
+  "verification": "Branch-specific body presets; all15SF use night variants. Build29 approved weapon HUD and all24 gameplay tables retained. Native inspection pending."
 }
