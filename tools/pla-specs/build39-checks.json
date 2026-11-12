@@ -1,0 +1,138 @@
+{
+  "build": 39,
+  "base_build": 38,
+  "base_sha256": "35d97dfc5273f533442e06d6f03ab937e2218d26dd516eb02a28afa1005a79e3",
+  "infantry_changes": [
+    {
+      "unit": 1166,
+      "name": "Conscripts \u4e49\u52a1\u5175",
+      "men": [
+        12,
+        12
+      ],
+      "kit": [
+        [
+          [
+            "QBB-95",
+            2
+          ]
+        ],
+        [
+          [
+            "QBB-95",
+            2
+          ],
+          [
+            "QBU-88",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1175,
+      "name": "Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b",
+      "men": [
+        10,
+        10
+      ],
+      "kit": [
+        [
+          [
+            "HJ-73D",
+            1
+          ],
+          [
+            "QBB-95",
+            2
+          ]
+        ],
+        [
+          [
+            "HJ-73D",
+            1
+          ],
+          [
+            "QBB-95",
+            2
+          ],
+          [
+            "QBU-88",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1184,
+      "name": "Whistling Arrows \u54cd\u7bad",
+      "men": [
+        4,
+        4
+      ],
+      "kit": [
+        [
+          [
+            "QBU-10",
+            1
+          ],
+          [
+            "QBU-191",
+            1
+          ],
+          [
+            "QLU-11",
+            1
+          ]
+        ],
+        [
+          [
+            "QBU-10",
+            1
+          ],
+          [
+            "QLU-11",
+            1
+          ],
+          [
+            "QN-202",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1214,
+      "name": "Test LG5 Precision Grenadiers",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1215,
+      "name": "Test LG5s Mobile Grenadiers",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1216,
+      "name": "Test LG6 CQC Grenadiers",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1217,
+      "name": "Test LG4 Revolver Team",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1218,
+      "name": "Test LG3 Heavy AGL",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1221,
+      "name": "Motorized GAM-102LR Team",
+      "change": "Test -> Motorized; Spike LR missile; 75 pts"
+    }
+  ],
+  "sheet_snapshot": "tools/pla-specs/build39-sheet-snapshot.json",
+  "checks": 771,
+  "native_verified": false
+}

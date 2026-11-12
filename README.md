@@ -1,3 +1,9 @@
+# PLA TEST Build 39
+
+QN-202 is a Javelin-style, infantry-only missile with RPG-7 HE, 12 shots in Whistling Arrows; the CTL-181 launcher fires the same missile. GAM-102LR copies Spike LR as the new Motorized GAM-102LR Team (75 pts). Conscripts and Missile Site Security each get one QBU-88 marksman. The five LG export test squads are removed. New QBU-88 and QN-202 weapon cards traced from Osama's photos. Runtime DLL compiled as 39. Native behaviour unverified.
+
+## Historical Build38
+
 # PLA TEST Build 38
 
 Fixes "PLA TEST (verification failed)" at game start. Builds 34-37 carried the Build 33 runtime DLL, so its compiled version (33) did not match the package build number and the runtime refused the payload. The DLL is rebuilt with 38 compiled in, and the regression and package checks now refuse any DLL whose compiled version is not the build number. Everything else is exactly Build37. In-game load remains to be confirmed.
@@ -487,3 +493,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:43:45 PST (America/Los_Angeles) — Build37: J-10A repainted on its own texture (neutral dark white-grey); the salmon/tan colorScale tint is removed.
 
 - 2026-11-12 01:57:13 PST (America/Los_Angeles) — Build38: runtime DLL rebuilt with compiled version 38; Builds34-37 shipped the Build33 DLL and failed the start-up identity check. Added a compiled-version check to verify_roster_revision.py and the package script.
+
+- 2026-11-12 02:14:22 PST (America/Los_Angeles) — Build39: QN-202 anti-infantry missile (shared with CTL-181), Motorized GAM-102LR Team, QBU-88 conscript marksmen, LG test squads removed, two new weapon cards.

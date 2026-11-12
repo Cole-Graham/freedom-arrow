@@ -1,5 +1,5 @@
 {
-  "build": 35,
+  "build": 39,
   "scope": "Short English SF names and refined central emblems;17 mixed line/security squads use patch motifs; dedicated support teams use weapon thumbnails. Portraits, internal IDs, loadouts, ammo, stats and28 rigging fixtures retained.",
   "units": [
     {
@@ -1426,7 +1426,8 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
       "native_donor_unit": 112,
-      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1215,
@@ -1443,7 +1444,8 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
       "native_donor_unit": 112,
-      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1216,
@@ -1460,7 +1462,8 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
       "native_donor_unit": 112,
-      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1217,
@@ -1477,7 +1480,8 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
       "native_donor_unit": 112,
-      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1218,
@@ -1494,7 +1498,8 @@
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
       "native_donor_unit": 112,
-      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1219,

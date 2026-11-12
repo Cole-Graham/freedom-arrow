@@ -7,14 +7,21 @@ import argparse
 import cv2,numpy as np
 from PIL import Image
 cv2.setRNGSeed(0)
-r=Path(__file__).resolve().parents[2];v=r/'tools/pla-specs/hud-photo-vectors';p=v/'references';out=r/'tools/pla-specs/hud-style-overrides';icons=r/'releases/0.6/source/runtime-qa/icons';args=argparse.ArgumentParser(description=__doc__);args.add_argument('--renderer',required=True);render=args.parse_args().renderer
-configs=[('QBZ191_PLAIN','qbz191-plain.webp',(0,210,527,190),False,213),('QBZ191','qbz191-optic.jpg',(230,235,1265,480),True,185),('QBZ192','qbz192.png',(65,60,1045,321),False,None),('QCW05','qcw05.png',(5,27,592,247),True,225)]
+r=Path(__file__).resolve().parents[2];v=r/'tools/pla-specs/hud-photo-vectors';p=v/'references';out=r/'tools/pla-specs/hud-style-overrides';icons=r/'releases/0.6/source/runtime-qa/icons';args=argparse.ArgumentParser(description=__doc__);args.add_argument('--renderer',required=True);args.add_argument('--only',nargs='*',help='Trace only these profiles; other cards and receipts stay unchanged');ns=args.parse_args();render=ns.renderer
+configs=[('QBZ191_PLAIN','qbz191-plain.webp',(0,210,527,190),False,213),('QBZ191','qbz191-optic.jpg',(230,235,1265,480),True,185),('QBZ192','qbz192.png',(65,60,1045,321),False,None),('QCW05','qcw05.png',(5,27,592,247),True,225),('QBU88','qbu88-osama.png',(0,0,330,89),True,232),('QN202','qn202-osama.png',(80,170,1280,510),True,'tan')]
 carbine=[(80,146),(335,145),(347,154),(367,154),(369,149),(388,149),(390,138),(416,138),(421,127),(618,128),(629,125),(658,123),(663,132),(668,102),(669,75),(747,75),(756,82),(758,105),(749,112),(741,115),(741,126),(762,128),(772,116),(787,118),(797,124),(818,115),(835,120),(849,132),(878,139),(1071,140),(1094,146),(1093,205),(1076,291),(1053,291),(1014,260),(960,232),(915,212),(875,211),(864,213),(858,240),(879,292),(869,305),(836,307),(801,260),(789,228),(771,208),(735,209),(728,234),(703,243),(680,233),(663,211),(640,215),(630,253),(607,313),(625,367),(594,371),(560,349),(599,298),(615,250),(619,212),(602,206),(593,208),(560,210),(550,204),(535,206),(525,215),(509,231),(499,262),(495,339),(485,361),(473,366),(452,362),(447,348),(451,282),(448,245),(433,226),(417,212),(406,204),(391,195),(368,193),(364,184),(345,183),(340,192),(94,193),(82,189)]
 proof=[]
 for key,ref,roi,right,threshold in configs:
+ if ns.only and key not in ns.only:continue
  rgb=np.asarray(Image.open(p/ref).convert('RGB'));height,width=rgb.shape[:2];x,y,w,h=roi
  # Pixel analysis only: isolate foreground; final output is SVG geometry.
- if threshold:
+ if threshold=='tan':
+  # Sam's QN-202 photo: tan tube and sight unit plus black end caps on a white stand. The passport and
+  # stands are outside the launcher polygon; grey table shadow is low-saturation and excluded.
+  hsv=cv2.cvtColor(rgb,cv2.COLOR_RGB2HSV);fg=(((hsv[...,1]>40)&(hsv[...,2]>60))|(rgb.max(axis=2)<70)).astype(np.uint8)
+  domain=np.zeros_like(fg);cv2.fillPoly(domain,[np.array([(80,330),(1215,180),(1350,180),(1350,410),(1235,420),(1230,675),(885,675),(880,470),(230,505),(80,505)],np.int32)],1);fg*=domain
+  fg=cv2.morphologyEx(fg,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(9,9)))
+ elif threshold:
   fg=(rgb.max(axis=2)<threshold).astype(np.uint8)
   domain=np.zeros_like(fg);domain[y:y+h,x:x+w]=1
   if key=='QBZ191':
@@ -58,4 +65,6 @@ for key,ref,roi,right,threshold in configs:
   name='FA_PLA_WP_'+key+suffix;dest=out/(name+'.svg');dest.write_text(svg+'\n');subprocess.run([render,'-o',str(icons/(name+'.png')),str(dest)],check=True)
  overlay=f'<svg xmlns="http://www.w3.org/2000/svg" width="{vw:g}" height="{vh:g}" {common}><image width="{width}" height="{height}" href="references/{ref}"/><path fill="none" fill-rule="evenodd" stroke="#00ffff" stroke-width="{max(1,vw/500):g}" d="{d}"/></svg>';f=v/('overlay-'+key+'.svg');f.write_text(overlay);subprocess.run([render,'-o',str(p/('edge-check-'+key+'.png')),str(f)],check=True)
  proof.append({'profile':key,'reference':ref,'reference_sha256':hashlib.sha256((p/ref).read_bytes()).hexdigest(),'method':'Source pixel segmentation → measured contour → editable SVG; internal measured line segments','boundary_simplification_max_parameter_px':.45,'boundary_vertices':sum(len(q) for q in kept),'internal_measured_segments':len(segments),'raster_width':1160,'source_boundary_box':[bx,by,bw,bh],'source_faces_right':right,'native_direction':'muzzle right after native HUD mirror','edge_overlay':'edge-check-'+key+'.png'})
+if ns.only:
+ previous=[x for x in json.loads((v/'references.json').read_text()) if x['profile'] not in ns.only];proof=previous+proof
 (p/'edge-trace-proof.json').write_text(json.dumps(proof,indent=2)+'\n');(v/'references.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps(proof,indent=2))

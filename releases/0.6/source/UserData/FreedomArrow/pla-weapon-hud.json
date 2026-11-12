@@ -1,5 +1,5 @@
 {
-  "build": 32,
+  "build": 39,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3350,7 +3350,7 @@
       "profile": "QBU88",
       "address": "FA_PLA_WP_QBU88",
       "native_weapon": 167,
-      "basis": "Photo-based vector contour; related-family variants are approximations"
+      "basis": "Osama-supplied QBU-88 photo (Wikimedia Qbu-88-0), measured source edges"
     },
     {
       "weapon": 2012924,
@@ -3466,11 +3466,11 @@
       "weapon": 2014236,
       "name": "QN-202",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_KONKURS",
+      "mode": "custom",
+      "profile": "QN202",
+      "address": "FA_PLA_WP_QN202",
       "native_weapon": 141,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied QN-202 launcher photo, measured source edges"
     },
     {
       "weapon": 2014264,
@@ -3547,7 +3547,8 @@
     "QCW05",
     "QLG10A",
     "QLU11",
-    "QTS11"
+    "QTS11",
+    "QN202"
   ],
   "resources": [
     "FA_PLA_WP_QBB95",
@@ -3573,10 +3574,12 @@
     "FA_PLA_WP_QLU11",
     "FA_PLA_WP_QLU11_OUTLINE",
     "FA_PLA_WP_QTS11",
-    "FA_PLA_WP_QTS11_OUTLINE"
+    "FA_PLA_WP_QTS11_OUTLINE",
+    "FA_PLA_WP_QN202",
+    "FA_PLA_WP_QN202_OUTLINE"
   ],
-  "native_icon_entries": 339,
-  "custom_icon_entries": 14,
+  "native_icon_entries": 338,
+  "custom_icon_entries": 15,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {

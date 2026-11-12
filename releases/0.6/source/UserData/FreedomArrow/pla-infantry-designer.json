@@ -1,5 +1,5 @@
 {
-  "build": 37,
+  "build": 39,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -1349,6 +1349,13 @@
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 14
+        },
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
         }
       ],
       "munitions": "Rifle/LMG ammunition only",
@@ -1776,6 +1783,13 @@
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 14
+        },
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
         },
         {
           "name": "HJ-73D",
@@ -2246,14 +2260,15 @@
           "native_weapon": 523
         },
         {
-          "name": "QBU-191",
-          "weapon": 2004000,
+          "name": "QN-202",
+          "weapon": 2014236,
           "quantity": 1,
-          "slot": "primary",
-          "native_weapon": 2004000
+          "slot": "special",
+          "native_weapon": 141,
+          "shots": 12
         }
       ],
-      "munitions": "QLU 35 mm HE + QBU-10 12.7 mm + 5.8 mm",
+      "munitions": "QLU 35 mm HE + QBU-10 12.7 mm + QN-202 (12 shots, RPG-level HE, Javelin-style fire-and-forget, infantry targets only)",
       "notes": "SF standoff recon team: precision grenades and 12.7 mm sniper fire, with marksman/spotter and carbine security. Small team; no dedicated AT. User-requested fixed kit. Vanilla pattern: small mixed-weapon Green Berets / sniper teams. Research S06 supports the sniper theme, not this exact equipment mix.",
       "body_from": 997,
       "camo": "woodland",
@@ -3766,7 +3781,8 @@
       "native_verified": false,
       "source_design_name": "Test LG5 Precision Grenadiers",
       "identity": "PLA equipment/squad test concept",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1215,
@@ -3814,7 +3830,8 @@
       "native_verified": false,
       "source_design_name": "Test LG5s Mobile Grenadiers",
       "identity": "PLA equipment/squad test concept",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1216,
@@ -3861,7 +3878,8 @@
       "native_verified": false,
       "source_design_name": "Test LG6 CQC Grenadiers",
       "identity": "PLA equipment/squad test concept",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1217,
@@ -3908,7 +3926,8 @@
       "native_verified": false,
       "source_design_name": "Test LG4 Revolver Team",
       "identity": "PLA equipment/squad test concept",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1218,
@@ -3949,7 +3968,8 @@
       "native_verified": false,
       "source_design_name": "Test LG3 Heavy AGL",
       "identity": "PLA equipment/squad test concept",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1219,
@@ -3966,7 +3986,8 @@
           "weapon": 2014236,
           "quantity": 2,
           "slot": "special",
-          "native_weapon": 141
+          "native_weapon": 141,
+          "shots": 6
         }
       ],
       "munitions": "HE-fragmentation; anti-MBT role excluded",
@@ -4036,8 +4057,8 @@
     {
       "unit": 1221,
       "row": 93,
-      "name": "Test GAM-102LR Team",
-      "spec": 22,
+      "name": "Motorized GAM-102LR Team",
+      "spec": 21,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
@@ -4051,26 +4072,23 @@
           "native_weapon": 205
         }
       ],
-      "munitions": "Tandem HEAT; no native range imported from advertisements",
+      "munitions": "Tandem HEAT; copies the game's Spike LR missile",
       "notes": "TEST CONCEPT \u2014 Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
       "health": 20,
       "carriers": [
-        900,
-        902,
         903,
-        914,
-        945,
-        959,
-        960,
-        962,
         979,
-        912
+        1077,
+        1078,
+        1079,
+        1227,
+        1232
       ],
       "native_verified": false,
-      "source_design_name": "Test GAM-102LR Team",
+      "source_design_name": "Motorized GAM-102LR Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_JAVELIN-Label"
     },

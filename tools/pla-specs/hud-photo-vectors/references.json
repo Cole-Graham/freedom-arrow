@@ -74,5 +74,43 @@
     "source_faces_right": true,
     "native_direction": "muzzle right after native HUD mirror",
     "edge_overlay": "edge-check-QCW05.png"
+  },
+  {
+    "profile": "QBU88",
+    "reference": "qbu88-osama.png",
+    "reference_sha256": "1c01e4fc9f7d370ecdec01fe2279500bc2378710f91dc0efa1a4566094fba54a",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 334,
+    "internal_measured_segments": 39,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      2,
+      2,
+      327,
+      86
+    ],
+    "source_faces_right": true,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QBU88.png"
+  },
+  {
+    "profile": "QN202",
+    "reference": "qn202-osama.png",
+    "reference_sha256": "cfaf3343ef2c23f2564b12fa9f185ac63b95261b409972ecf4f0119eb57af673",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 959,
+    "internal_measured_segments": 180,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      90,
+      187,
+      1252,
+      481
+    ],
+    "source_faces_right": true,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QN202.png"
   }
 ]

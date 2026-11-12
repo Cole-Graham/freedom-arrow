@@ -1,5 +1,5 @@
 {
-  "build": 37,
+  "build": 39,
   "entries": [
     {
       "unit": 900,
@@ -6001,8 +6001,8 @@
           "kind": "ATGM",
           "stocks": [
             {
-              "ammo": 2010709,
-              "name": "Vehicle-launched loitering munition (proxy) ammunition",
+              "ammo": 2014237,
+              "name": "QN-202 anti-personnel missile",
               "requested_rounds": 12,
               "displayed_rounds": 12,
               "logical_quantity": 12,
