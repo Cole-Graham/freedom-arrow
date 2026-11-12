@@ -1,6 +1,16 @@
-# Freedom Arrow 0.7.0-dev.57 — development candidate
+# Freedom Arrow 0.7.0-dev.58 — development candidate
 
-## Current main promotion — map, border and time-up batch (dev.57)
+## Current main addition — [5v5] Oil Rush (dev.58)
+
+**Main dev.58 adds Lateralus's [5v5] Oil Rush 0.1 on the Oil refinery scene (12 November 2026). Everything else equals dev.57.**
+
+- Zones: Bravo, Charlie, Echo, Foxtrot, Juliett and Kilo are worth 3; Alpha, Delta, Golf, Hotel and India are worth 2. Five slots per team; the whole 9000×9000 map is the play area.
+- A start camera per team: at its spawn centroid, 700 high, looking 1200 engine units toward the zone centre. Lateralus's spawn facings are kept.
+- FA conquest script, 3-minute online deployment pause, 15 s capture time and an offline Skirmish flavor with bots in all ten slots.
+- The export had seven HMMWVs owned by Alpha Player 1 parked on Bravo's spawn points (an editor test). The build removes them, so neither side starts with units.
+- Spawn points 6, 7 and 9 used UIDs 69/70/72, which the FA lobby options need; they now have new UIDs (positions and facings unchanged).
+
+## Previous main promotion (dev.57) — map, border and time-up batch
 
 **Main dev.57 promotes Lateralus's map, border and time-up batch (changelog items 13–21 except 17, tested as lat.18–lat.24) onto main dev.55. It adds Highway of Death 0.1, Lateralus's [5v5] Airport 0.1, [3v3] Baltiisk 0.1 and [3v3] Dam 0.1 (replacing the vanilla-built Airport, Baltiisk and Dam), activates/crops Chkalovsk's play area, fixes Dead Center 1v1 red spawns and cameras, sets every FA map's capture time to the vanilla 15 seconds, draws the play area as a white line in the 3D scene, and decides the time-up result from the FA score (10% lead wins).**
 
@@ -15,7 +25,7 @@
 - [3v3] Baltiisk and [3v3] Dam (lat.23): Lateralus's redesigns replace [FA] Baltiisk 0.1 and [FA] Dam 0.1, with his scripts. Baltiisk: Hotel/India 4; Delta/Echo/Foxtrot/Golf 3; Alpha/Bravo/Charlie 2 (Hotel and India showed "Echo" and now show their names). Dam: Charlie/Delta/India/Juliet 4; Alpha/Bravo/Golf/Hotel 3; Echo/Foxtrot/Kilo/Lima 2 (an extra capturing team 7 is removed). All three of Lateralus's maps (Airport, Baltiisk, Dam) now build through one shared path; the vanilla-map builder is retired because no map uses it.
 - Time-up result (lat.24): when the match clock runs out, a side at 300 wins; otherwise the side with at least 10% more points wins (any lead over 0 points); otherwise it is a draw. Before, the game's own time-up check gave a draw below 300 (Lateralus, 12 November 2026). Setting `TimeWinMarginPercent` 10. Offline the result is returned directly; online the scenario host sends it the same way as a 300-point win. Not yet run in a game.
 
-All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. Promoted to `codex/0.7-development` from `codex/batch/lateralus/map-borders-lobby` (Lateralus, 12 November 2026). The public launcher stays locked to dev.45/assets 0.1.14. Import the exact dev.57 package through Mod Manager.
+All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. Promoted to `codex/0.7-development` from `codex/batch/lateralus/map-borders-lobby` (Lateralus, 12 November 2026). The public launcher stays locked to dev.45/assets 0.1.14. Import the exact dev.58 package through Mod Manager.
 
 
 ## Previous main promotion (dev.55) — all missile-defence guns and four AT4 carriers
@@ -295,3 +305,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-12 04:47:28 PST (America/Los_Angeles) — lat.24: time-up result uses the FA ledger: score limit, else a 10% lead wins, else a draw (Lateralus).
 - 2026-11-12 04:49:28 PST (America/Los_Angeles) — Main dev.56: promoted Lateralus's batch items 13–21 (lat.18–24) to 0.7 development at his request.
 - 2026-11-12 04:50:59 PST (America/Los_Angeles) — Main dev.57: item 17 (lobby deck refresh) removed from main at Lateralus's request; supersedes dev.56.
+- 2026-11-12 11:18:37 PST (America/Los_Angeles) — Main dev.58: added Lateralus's [5v5] Oil Rush 0.1 with team cameras and his zone values.

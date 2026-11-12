@@ -163,6 +163,22 @@ def letter_zones(objects,letters,names):
     for o in zones:
         o['_dname']=o['hudText']=letters[o['_dname']][0]
         o['capturableBy']=[c for c in o['capturableBy'] if c['id'] in (teams['Alpha team'],teams['Bravo team'])];assert len(o['capturableBy'])==2
+# graft_conquest adds lobby objects with these fixed UIDs (from the native network host).
+GRAFT_UIDS={69,70,72}
+def free_uids(objects,nodes,uids=GRAFT_UIDS):
+    """Move objects that use a reserved UID to new UIDs and update every {'id','type'} link to them."""
+    moved={}
+    for o in objects:
+        if o['_uid'] in uids:new=new_uid(objects);moved[(o['_uid'],o['_type'])]=new;o['_uid']=new
+    assert not [n for n in nodes['b'] if any(p.get('v') in {f'c{u}' for u,_ in moved} for p in n.get('props_v2',[]))],'script links to a moved object'
+    def walk(v):
+        if isinstance(v,dict):
+            if set(v)=={'id','type'} and (v['id'],v['type']) in moved:v['id']=moved[(v['id'],v['type'])]
+            for x in v.values():walk(x)
+        elif isinstance(v,list):
+            for x in v:walk(x)
+    walk(objects)
+    return moved
 def graft_conquest(game,objects,nodes,meta):
     nn,no,nm=read_native(game,NETWORK_HOST)[1:]
     want={69:'ui_lobby_StartMoney_desc',70:'ui_lobby_Income_desc',72:'ui_lobby_Timer_desc'}

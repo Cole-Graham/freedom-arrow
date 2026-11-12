@@ -1,19 +1,19 @@
 """Verify exactly the development candidate we intend to ship to a later test."""
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
-R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import airport_5v5,baltiisk_3v3,dam_3v3
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.57.bamod'
+R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import airport_5v5,baltiisk_3v3,dam_3v3,oil_rush_5v5
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-dev.58.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-dev.57'
+    assert manifest['version']=='0.7.0-dev.58'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.57 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-dev.58 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -340,7 +340,7 @@ with zipfile.ZipFile(p) as z:
         raw=zipfile.ZipFile(io.BytesIO(z.read(f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'))).read(part)
         return ms.load(ms.dec(raw))
     def scenario_objects(name):return scenario_part(name,'objects.bam')
-    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1','crop'),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',(4250,9000)),('[FA] [2v2] Chkalovsk Airbase 0.1','[FA] [2v2] Chkalovsk Airbase Skirmish 0.1',(9000,4850.01636)),('[FA] [2v2] Highway of Death 0.1','[FA] [2v2] Highway of Death Skirmish 0.1',(6000,9000))]
+    pairs=[('[FA] [2v2] Dead Center 0.1','[FA] [2v2] Dead Center Skirmish 0.1','crop'),('[FA] [1v1] Dead Center 0.1','[FA] [1v1] Dead Center Skirmish 0.1',(4250,9000)),('[FA] [2v2] Chkalovsk Airbase 0.1','[FA] [2v2] Chkalovsk Airbase Skirmish 0.1',(9000,4850.01636)),('[FA] [2v2] Highway of Death 0.1','[FA] [2v2] Highway of Death Skirmish 0.1',(6000,9000)),('[FA] [5v5] Oil Rush 0.1','[FA] [5v5] Oil Rush Skirmish 0.1',(9000,9000))]
     for net_name,sk_name,crop in pairs:
         for name,kind in [(net_name,2),(sk_name,3)]:
             assert f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr' in names
@@ -438,6 +438,11 @@ with zipfile.ZipFile(p) as z:
             if mod is airport_5v5:
                 assert (plays[0]['_uid'],plays[0]['scale']['X'],plays[0]['scale']['Z'])==(10,9000.0,9000.0),name
                 assert not [o for o in meta['pblOpt'] if 'Size' in o['desc']] and not {n['nnKey'] for n in nodes['b']}&{'objVisible2','act_pz','Network Players'},name
+    # Lateralus 2026-11-12: Oil Rush 5v5 values, five slots per team, no placed units.
+    for name in ('[FA] [5v5] Oil Rush 0.1','[FA] [5v5] Oil Rush Skirmish 0.1'):
+        objs=scenario_objects(name);zones=[o for o in objs if o.get('_type')==15]
+        assert {str(o['_uid']):oil_rush_5v5.VALUES[o['hudText']] for o in zones}==settings['MapZoneWeights'][name] and len(zones)==11,name
+        assert not [o for o in objs if o.get('_type')==1] and all(len(t['slots'])==5 for t in scenario_meta(name)['teams']),name
     # Lateralus 2026-11-12: every FA map uses the vanilla 15 s zone capture time.
     for name in sorted({n.split('/')[3] for n in names if n.startswith('UserData/FreedomArrow/scenarios/') and n.endswith('.bascr')}):
         assert {o['capTime'] for o in scenario_objects(name) if o.get('_type')==15}=={15.0},name
