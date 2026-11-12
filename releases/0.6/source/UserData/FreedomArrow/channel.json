@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "41",
+  "package_version": "42",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build40 plus Osama 12 Nov 03:08-03:37 batch: removals, spec moves, designation names, SF helicopter copies, Y-8 Harvest Hawk, QBZ-95 Rocket Force rifles, Godswords, tab moves, recon helicopters without missiles, QBU-191 suppressed, QJY-201 card, J-50 probe stowed. Data checks only; native validation pending."
+  "verification": "Build41 plus Z-10K and a Z-10 copy in Air Force (no Z-10 recon cards), QLB-06 for Assault Raiders, PF-98 weapon card and revised spec badges. Data checks only; native validation pending."
 }

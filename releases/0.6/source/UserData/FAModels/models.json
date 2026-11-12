@@ -592,5 +592,10 @@
     "file": "m_z20.fam",
     "align": false,
     "battle": "m_z20_lo.fam"
+  },
+  "PLA Air Force Z-10": {
+    "file": "m_z10_black.fam",
+    "battle": "m_z10_black_lo.fam",
+    "align": false
   }
 }

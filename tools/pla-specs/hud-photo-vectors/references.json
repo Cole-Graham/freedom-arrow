@@ -131,5 +131,24 @@
     "source_faces_right": false,
     "native_direction": "muzzle right after native HUD mirror",
     "edge_overlay": "edge-check-QJY201.png"
+  },
+  {
+    "profile": "PF98",
+    "reference": "pf98-osama.png",
+    "reference_sha256": "1ae8899cfabe06eaf4404403adf5be52ec32d0176f57871fe09d65ce580f02ac",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 475,
+    "internal_measured_segments": 122,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      106,
+      6,
+      1068,
+      348
+    ],
+    "source_faces_right": true,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-PF98.png"
   }
 ]

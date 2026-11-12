@@ -1,0 +1,43 @@
+{
+  "build": 42,
+  "base_build": 41,
+  "base_sha256": "4233eaec14e32a73ef51cebb6990108c2a4e50f1567aa67d059cd0e4064ff3c5",
+  "changes": [
+    {
+      "unit": 1130,
+      "name": "Z-10K Recon",
+      "change": "removed: Z-10K Recon (Osama: no Z-10 recons)"
+    },
+    {
+      "unit": 1131,
+      "name": "Z-10 Recon",
+      "change": "removed: Z-10 Recon (Osama: no Z-10 recons)"
+    },
+    {
+      "unit": 1239,
+      "name": "Z-10",
+      "change": "new Air Force copy of 978"
+    },
+    {
+      "unit": 1146,
+      "name": "Assault Raiders \u7a81\u51fb\u961f",
+      "change": "adds 1 QLB-06 (vanilla M32 MGL copy)"
+    },
+    {
+      "weapons": [
+        2004962,
+        2011832,
+        2011919,
+        2013157
+      ],
+      "change": "PF-98 weapon card"
+    }
+  ],
+  "checks": 1138,
+  "native_verified": false,
+  "new_ids": {
+    "z10_air_force": 1239,
+    "qlb06_weapon": 2016050,
+    "qlb06_ammo": 2016051
+  }
+}

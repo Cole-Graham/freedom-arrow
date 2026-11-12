@@ -1,5 +1,5 @@
 {
-  "build": 41,
+  "build": 42,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -475,6 +475,13 @@
           "quantity": 1,
           "slot": "special",
           "native_weapon": 168
+        },
+        {
+          "name": "QLB-06",
+          "weapon": 2016050,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 68
         }
       ],
       "munitions": "Light HEAT",

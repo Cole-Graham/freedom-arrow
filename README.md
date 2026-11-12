@@ -1,3 +1,9 @@
+# PLA TEST Build 42
+
+Air Force has Z-10K and a Z-10 (copy of the Armored Z-10); the Z-10K Recon and Z-10 Recon cards are removed. Assault Raiders carry one QLB-06, a handheld 35 mm launcher copied from the vanilla M32 MGL. PF-98 and PF-98A use a weapon card traced from Osama's PF-98 icon. Spec badges: the Bayi star is removed from Air Force and Armored and the emblem enlarged; Navy shows the enlarged anchor with a small Bayi star on the shank; Rocket keeps its original badge. Everything else is exactly Build41. In-game appearance remains unverified.
+
+## Historical Build41
+
 # PLA TEST Build 41
 
 Osama's 12 Nov roster batch. Removed: AFT-10 duplicate card (the HJ-10 card is now named AFT-10), J-20B seller package, ZTZ-85-III, ZTZ-80, VT-5, ZBL-19 seller card, ZBL-09 and the CSK-181 recon card (CSK-181 stays as the Rocket Force transport). Moved: J-10CE to Motorized; FH-97A, J-16D, Jiutian UAV and Y-8 to PLAN SF; H-6K to Air Force. New PLAN SF copies of Z-19, Z-19 Recon and Z-20. Y-8 is a Harvest Hawk-style gunship (native KC-130J Harvest Hawk weapons, model and flight). Designation names replace Type and seller names (ZTZ-59, ZTZ-59D, ZSD-63, ZSD-89, ZSD-89A, ZBD-86, JJ-5, J-2, Y-8, DF-17/ZF). Spec names: PLAAF Air Force, PLAGF Ground Force/Armored, PLARF Rocket/Reservist, PLAN Navy/SOF, PLAGF Motorized. Mi-8 Cargo moves from the hidden Logistic tab to Helicopters and China has no logistic slots, as in vanilla. Infantry: every Rocket Force rifle is the QBZ-95; Godswords are 6 men with 6 QTS-11; Blood Wolves and Sea Dragons in the infantry tab, Beijing Swords in recon; Falcons get a PF-98; names shortened (no Airborne except Airborne Riflemen, no Reserve, Infantry, Counter-Raid Team, Assault Raiders, Marines) with at most four Chinese characters; Whistling Arrows use their own emblem. QBU-191 is suppressed. Recon helicopters keep guns and unguided rockets only. QJY-201 has a traced weapon card. J-11B shows the J-16 model. The J-50 refuelling probe is stowed. In-game appearance and behaviour remain unverified.
@@ -511,3 +517,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 02:18:23 PST (America/Los_Angeles) — Build40: removed the invalid BaseSquadSize field from 73 new infantry Units rows (Builds33-39 loaded vanilla); verify_roster_revision.py now enforces the runtime new-row field rule.
 
 - 2026-11-12 03:24:21 PST (America/Los_Angeles) — Build41: Osama's 12 Nov roster batch (removals, spec moves, designation names, SF helicopter copies, Y-8 Harvest Hawk, QBZ-95 Rocket Force rifles, Godswords, tabs, recon helicopters without missiles, QBU-191 suppressed, QJY-201 card, J-11B J-16 model, J-50 probe stowed, Mi-8 Cargo to Helicopters).
+
+- 2026-11-12 03:41:02 PST (America/Los_Angeles) — Build42: Air Force Z-10K + Z-10, Z-10 recon cards removed, QLB-06 for Assault Raiders, PF-98 weapon card, spec badges without the Bayi star (small star on Navy).

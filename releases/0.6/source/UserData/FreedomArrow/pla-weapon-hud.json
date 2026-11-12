@@ -1,5 +1,5 @@
 {
-  "build": 41,
+  "build": 42,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3126,11 +3126,11 @@
       "weapon": 2011832,
       "name": "PF-98",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_RPG29",
+      "mode": "custom",
+      "profile": "PF98",
+      "address": "FA_PLA_WP_PF98",
       "native_weapon": 172,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied PF-98 icon (12 Nov 03:43), launcher only, measured source edges"
     },
     {
       "weapon": 2011834,
@@ -3176,11 +3176,11 @@
       "weapon": 2011919,
       "name": "PF-98A",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_RPG29",
+      "mode": "custom",
+      "profile": "PF98",
+      "address": "FA_PLA_WP_PF98",
       "native_weapon": 172,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied PF-98 icon (12 Nov 03:43), launcher only, measured source edges"
     },
     {
       "weapon": 2011922,
@@ -3386,11 +3386,11 @@
       "weapon": 2013157,
       "name": "PF-98A",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_RPG29",
+      "mode": "custom",
+      "profile": "PF98",
+      "address": "FA_PLA_WP_PF98",
       "native_weapon": 172,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied PF-98 icon (12 Nov 03:43), launcher only, measured source edges"
     },
     {
       "weapon": 2013349,
@@ -3549,7 +3549,8 @@
     "QLU11",
     "QTS11",
     "QN202",
-    "QJY201"
+    "QJY201",
+    "PF98"
   ],
   "resources": [
     "FA_PLA_WP_QBB95",
@@ -3579,10 +3580,12 @@
     "FA_PLA_WP_QN202",
     "FA_PLA_WP_QN202_OUTLINE",
     "FA_PLA_WP_QJY201",
-    "FA_PLA_WP_QJY201_OUTLINE"
+    "FA_PLA_WP_QJY201_OUTLINE",
+    "FA_PLA_WP_PF98",
+    "FA_PLA_WP_PF98_OUTLINE"
   ],
-  "native_icon_entries": 337,
-  "custom_icon_entries": 16,
+  "native_icon_entries": 334,
+  "custom_icon_entries": 19,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {
