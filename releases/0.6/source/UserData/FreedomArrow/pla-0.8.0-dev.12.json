@@ -1,0 +1,21 @@
+{
+  "version": "0.8.0-dev.12",
+  "base": "0.8.0-dev.11",
+  "base_sha256": "1b5010a89642ec776744bd41c4ef6d4e1abd925aeadfdf9b4fd4d9e0d43244f7",
+  "request": "Osama 12 Nov PST: NLOS missiles interceptable by APS",
+  "ammo": {
+    "2009623": {
+      "HUDName": "HJ-10 guided missile",
+      "CanBeIntercepted": true,
+      "CanBeTargeted": true,
+      "TrajectoryType": 200
+    },
+    "2018448": {
+      "HUDName": "CH-901",
+      "CanBeIntercepted": true,
+      "CanBeTargeted": true,
+      "TrajectoryType": 200
+    }
+  },
+  "checks": 27721
+}

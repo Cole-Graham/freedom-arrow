@@ -1,6 +1,6 @@
 {
-  "build": 79,
-  "label": "Freedom Arrow 0.8.0-dev.11",
+  "build": 80,
+  "label": "Freedom Arrow 0.8.0-dev.12",
   "roster_contract": "pla-test-contract.json",
   "infantry": {
     "unit": 901,

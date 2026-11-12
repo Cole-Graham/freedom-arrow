@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.11
+# Freedom Arrow 0.8.0-dev.12
+
+- HJ-10 and CH-901 NLOS missiles can be intercepted by APS again (the precision-path copy had turned this off). Not yet measured against an APS in a match.
+- NLOS hook: the 0.8.0-dev.11 game log showed it could not find a target on any HJ-10 missile (empty launcher link), so it stood down and the missiles flew the normal precision path (8 of 8 hit). It now also finds the launcher through the warhead, and logs why when no unit target exists (for example when the launcher fires at a ground position).
+- Includes 0.8.0-dev.8 to dev.11. Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.11
 
 - CTL-181 NLOS missile: 8 damage (was 10 in 0.8.0-dev.10, 15 before). Name CTL-181 NLOS and 1800 m range kept.
 - Includes 0.8.0-dev.10, dev.9 (NLOS hook fix) and dev.8 (aircraft batch). Not yet verified in a game run.
@@ -868,3 +876,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 14:57:19 PST (America/Los_Angeles) — 0.8.0-dev.10: CTL-181 NLOS name, 10 damage, 1800 m.
 
 - 2026-11-12 14:59:57 PST (America/Los_Angeles) — 0.8.0-dev.11: CTL-181 NLOS 8 damage.
+
+- 2026-11-12 15:11:59 PST (America/Los_Angeles) — 0.8.0-dev.12: NLOS missiles interceptable by APS; hook launcher lookup via warhead.

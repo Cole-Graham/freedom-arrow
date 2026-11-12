@@ -104,13 +104,17 @@ static class NlosTrait
         string weaponState="no shooter weapon";
         if(!target.IsAlive)
         {
-            var weapon=NativeEcs.Field<MissileGuidanceInfoComponent,Entity>(missile,"ShooterWeapon");
-            weaponState=!weapon.IsAlive?"shooter weapon gone":!weapon.Has<TargetComponent>()?"shooter weapon has no unit target":"shooter weapon target dead";
-            if(weapon.IsAlive&&weapon.Has<TargetComponent>())
+            // 0.8.0-dev.11 log (15:09): MissileGuidanceInfoComponent.ShooterWeapon was empty on every HJ-10 missile, so also try the warhead's.
+            var weapon=NativeEcs.Field<MissileGuidanceInfoComponent,Entity>(missile,"ShooterWeapon");string via="guidance";
+            if(!weapon.IsAlive&&missile.Has<WarheadComponent>()){weapon=NativeEcs.Field<WarheadComponent,Entity>(missile,"ShooterWeapon");via="warhead";}
+            if(!weapon.IsAlive)weaponState="shooter weapon not found (guidance and warhead links empty)";
+            else if(weapon.Has<TargetComponent>())
             {
                 var aim=NativeEcs.Field<TargetComponent,Entity>(weapon,"Target");
-                if(aim.IsAlive){target=aim;from="launcher target";}
+                if(aim.IsAlive){target=aim;from="launcher target via "+via;}
+                else weaponState="shooter weapon target dead (via "+via+")";
             }
+            else weaponState=(weapon.Has<GroundTargetComponent>()?"shooter weapon is firing at a ground position, not a unit":"shooter weapon has no target component")+" (via "+via+")";
         }
         if(!target.IsAlive)
         {
