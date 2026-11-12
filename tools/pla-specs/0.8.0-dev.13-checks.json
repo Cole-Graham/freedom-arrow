@@ -1,0 +1,21 @@
+{
+  "version": "0.8.0-dev.13",
+  "base": "0.8.0-dev.12",
+  "base_sha256": "cc37e849591cb8bcb4ac330242e3bfd84464cddd450bcde06049ca01fe3a34b9",
+  "request": "Osama 12 Nov PST: CH-901 not interceptable",
+  "ammo": {
+    "2009623": {
+      "HUDName": "HJ-10 guided missile",
+      "CanBeIntercepted": true,
+      "CanBeTargeted": true,
+      "TrajectoryType": 200
+    },
+    "2018448": {
+      "HUDName": "CH-901",
+      "CanBeIntercepted": false,
+      "CanBeTargeted": true,
+      "TrajectoryType": 200
+    }
+  },
+  "checks": 27722
+}
