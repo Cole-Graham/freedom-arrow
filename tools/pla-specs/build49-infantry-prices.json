@@ -1,0 +1,1347 @@
+{
+ "coef": {
+  "base": 0.0,
+  "men": 0.0,
+  "atgm": 0.0,
+  "manpad": 0.0,
+  "heavy_at": 0.0,
+  "light_at": 0.0,
+  "thermo": 0.0,
+  "gl": 0.0,
+  "sniper": 0.0,
+  "hmg": 0.0,
+  "mg": 0.0,
+  "marksman": 0.0,
+  "sf": 0.0,
+  "recon": 0.0
+ },
+ "n": 114,
+ "mae": 11.69929017247237,
+ "pla": {
+  "1136": {
+   "name": "Airborne Riflemen 空降步兵",
+   "old": 65,
+   "new": 70,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Rangers",
+    "Airborne NGWS",
+    "Assaultmen SMAW"
+   ]
+  },
+  "1137": {
+   "name": "HJ-12 Team",
+   "old": 35,
+   "new": 45,
+   "features": {
+    "men": 5,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "VDV Kornet",
+    "PTRK Konkurs",
+    "PTRK Konkurs-M"
+   ]
+  },
+  "1139": {
+   "name": "Tank Hunters 坦克杀手",
+   "old": 40,
+   "new": 55,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Assaultmen SMAW",
+    "RPG-29 Vampyr",
+    "Airborne NGWS"
+   ]
+  },
+  "1140": {
+   "name": "QLU-11 Team",
+   "old": 35,
+   "new": 45,
+   "features": {
+    "men": 5,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "VDV AGS-30",
+    "Rangers Mk47 AGL",
+    "Mk19 AGL team "
+   ]
+  },
+  "1142": {
+   "name": "Pathfinders 先遣队",
+   "old": 30,
+   "new": 60,
+   "features": {
+    "men": 7,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 2.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Spetsnaz Vympel",
+    "Green Berets",
+    "KNT"
+   ]
+  },
+  "1143": {
+   "name": "Thunder Gods 雷神",
+   "old": 50,
+   "new": 60,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 2.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Ognemetchiki",
+    "SSO",
+    "Motopekhota"
+   ]
+  },
+  "1144": {
+   "name": "Snipers 狙击组",
+   "old": 25,
+   "new": 65,
+   "features": {
+    "men": 3,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Scout Snipers",
+    "Snaipery",
+    "VDV Snaipery"
+   ]
+  },
+  "1145": {
+   "name": "QW-12 Patrol 防空巡逻",
+   "old": 35,
+   "new": 65,
+   "features": {
+    "men": 5,
+    "atgm": 0.0,
+    "manpad": 1.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "VDV Igla",
+    "Stinger team",
+    "Piorun"
+   ]
+  },
+  "1146": {
+   "name": "Assault Raiders 突击队",
+   "old": 35,
+   "new": 60,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 3.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Desantniki",
+    "Mech. Riflemen MMG",
+    "Savanoriai"
+   ]
+  },
+  "1149": {
+   "name": "Recon 侦察组",
+   "old": 20,
+   "new": 65,
+   "features": {
+    "men": 3,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Green Berets",
+    "Spetsnaz Vympel",
+    "Eesti Scouts"
+   ]
+  },
+  "1152": {
+   "name": "Mechanized HJ-8E Team",
+   "old": 30,
+   "new": 50,
+   "features": {
+    "men": 4,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "PTRK Konkurs",
+    "PTRK Konkurs-M",
+    "Spike LR"
+   ]
+  },
+  "1153": {
+   "name": "Mechanized QW-2 Team",
+   "old": 30,
+   "new": 65,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 2.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Stinger team",
+    "PZRK Verba",
+    "PZRK Igla"
+   ]
+  },
+  "1154": {
+   "name": "Mechanized QLZ-04 Team",
+   "old": 30,
+   "new": 45,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Mk19 AGL team ",
+    "AGS-40 Balkan",
+    "AGS-17 Plamya"
+   ]
+  },
+  "1155": {
+   "name": "Mechanized PF-98 Tank Hunters",
+   "old": 30,
+   "new": 45,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "RPG-29 Vampyr",
+    "Assaultmen SMAW",
+    "Kaitseliit"
+   ]
+  },
+  "1156": {
+   "name": "Mechanized Combat Engineers 工兵班",
+   "old": 55,
+   "new": 50,
+   "features": {
+    "men": 7,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 2.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 2.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Eesti Kaitseliit",
+    "Zemessardze",
+    "Motopekhota"
+   ]
+  },
+  "1157": {
+   "name": "Mechanized QJZ-89 Team",
+   "old": 30,
+   "new": 35,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 2.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "M2 HMG team",
+    "M2 HMG",
+    "Kord "
+   ]
+  },
+  "1160": {
+   "name": "Armored Scouts 装甲侦察",
+   "old": 30,
+   "new": 55,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Green Berets",
+    "Spetsnaz Vympel",
+    "Pogranichniki"
+   ]
+  },
+  "1161": {
+   "name": "Armored Sniper Pair 狙击组",
+   "old": 15,
+   "new": 60,
+   "features": {
+    "men": 2,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Scout Snipers",
+    "Snaipery",
+    "VDV Snaipery"
+   ]
+  },
+  "1163": {
+   "name": "Mech. Rifles 机步班",
+   "old": 50,
+   "new": 45,
+   "features": {
+    "men": 7,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 2.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Mech. Riflemen MMG",
+    "Savanoriai",
+    "Reservisty"
+   ]
+  },
+  "1164": {
+   "name": "Forward Observers 前观组",
+   "old": 20,
+   "new": 60,
+   "features": {
+    "men": 3,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Green Berets",
+    "Spetsnaz Vympel",
+    "KNT"
+   ]
+  },
+  "1166": {
+   "name": "Conscripts 义务兵",
+   "old": 60,
+   "new": 65,
+   "features": {
+    "men": 12,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Desantniki",
+    "Motopekhota",
+    "Jalaväe Jagu"
+   ]
+  },
+  "1168": {
+   "name": "HJ-73D Team",
+   "old": 20,
+   "new": 50,
+   "features": {
+    "men": 9,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "PTRK Fagot",
+    "PTO Metis",
+    "VDV Kornet"
+   ]
+  },
+  "1169": {
+   "name": "FN-6 Team",
+   "old": 20,
+   "new": 65,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 2.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Stinger team",
+    "PZRK Verba",
+    "PZRK Igla"
+   ]
+  },
+  "1170": {
+   "name": "QJZ-89 Team",
+   "old": 20,
+   "new": 35,
+   "features": {
+    "men": 12,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 2.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "M2 HMG team",
+    "M2 HMG",
+    "Kord "
+   ]
+  },
+  "1171": {
+   "name": "QLZ-87 Team",
+   "old": 20,
+   "new": 55,
+   "features": {
+    "men": 12,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "BARS FS",
+    "Desantniki",
+    "Reservisty"
+   ]
+  },
+  "1172": {
+   "name": "PF-98 Team",
+   "old": 25,
+   "new": 55,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Assaultmen SMAW",
+    "RPG-29 Vampyr",
+    "Airborne NGWS"
+   ]
+  },
+  "1173": {
+   "name": "Malyutka Recon Ambush Team 侦察伏击",
+   "old": 30,
+   "new": 60,
+   "features": {
+    "men": 4,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Weapons Squad",
+    "PTRK Konkurs",
+    "PTRK Konkurs-M"
+   ]
+  },
+  "1174": {
+   "name": "Sharp Blades 利刃",
+   "old": 30,
+   "new": 55,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 4.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Rosgvardia",
+    "VDV Spetsnaz",
+    "Ingenery-Shturmoviki"
+   ]
+  },
+  "1175": {
+   "name": "Infantry 步兵",
+   "old": 50,
+   "new": 50,
+   "features": {
+    "men": 10,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "PTO Metis",
+    "PTRK Fagot",
+    "VDV Metis-M"
+   ]
+  },
+  "1176": {
+   "name": "Counter-Raid Team 反袭击队",
+   "old": 55,
+   "new": 55,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 3.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Rosgvardia",
+    "Motopekhota",
+    "Jalaväe Jagu"
+   ]
+  },
+  "1177": {
+   "name": "Thermobaric Team",
+   "old": 30,
+   "new": 60,
+   "features": {
+    "men": 12,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 1.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Desantniki",
+    "BARS FS",
+    "Savanoriai"
+   ]
+  },
+  "1181": {
+   "name": "Godswords 东方神剑",
+   "old": 65,
+   "new": 50,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 6.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Mech. Riflemen",
+    "Mech. Engineers",
+    "Geležinis Vilkas"
+   ]
+  },
+  "1182": {
+   "name": "PAP Snow Leopards 雪豹",
+   "old": 65,
+   "new": 60,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 2.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 2.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Motopekhota",
+    "Jalaväe Jagu",
+    "BARS FS"
+   ]
+  },
+  "1183": {
+   "name": "Blood Wolves 血狼",
+   "old": 65,
+   "new": 55,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 2.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 1.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Rangers RAWS",
+    "Assaultmen SMAW",
+    "Rangers"
+   ]
+  },
+  "1184": {
+   "name": "Whistling Arrows 响箭",
+   "old": 30,
+   "new": 65,
+   "features": {
+    "men": 4,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Army Snipers",
+    "Scout Snipers",
+    "Snaipery"
+   ]
+  },
+  "1185": {
+   "name": "Falcons 猎鹰",
+   "old": 65,
+   "new": 65,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Airborne NGWS",
+    "Assaultmen SMAW",
+    "Rangers"
+   ]
+  },
+  "1186": {
+   "name": "Mountain Leopards 高原雪豹",
+   "old": 50,
+   "new": 50,
+   "features": {
+    "men": 3,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "PTRK Konkurs",
+    "PTRK Konkurs-M",
+    "Spike LR"
+   ]
+  },
+  "1187": {
+   "name": "Beijing Swords 蓝剑",
+   "old": 50,
+   "new": 55,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 4.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Rosgvardia",
+    "VDV Spetsnaz",
+    "Ingenery-Shturmoviki"
+   ]
+  },
+  "1191": {
+   "name": "Sea Dragons 蛟龙",
+   "old": 50,
+   "new": 65,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 1.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 2.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "BARS Igla",
+    "Stinger team",
+    "Piorun"
+   ]
+  },
+  "1192": {
+   "name": "Marines 陆战队",
+   "old": 85,
+   "new": 65,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 3.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 3.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Desantniki",
+    "Motopekhota",
+    "Jalaväe Jagu"
+   ]
+  },
+  "1193": {
+   "name": "Marine HJ-8 Team",
+   "old": 40,
+   "new": 70,
+   "features": {
+    "men": 6,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Weapons Squad",
+    "VDV Kornet",
+    "VDV Metis-M"
+   ]
+  },
+  "1194": {
+   "name": "Marine QW-2 Team",
+   "old": 40,
+   "new": 65,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 2.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Stinger team",
+    "PZRK Verba",
+    "VDV Igla"
+   ]
+  },
+  "1196": {
+   "name": "Motorized Line Infantry 摩步班",
+   "old": 65,
+   "new": 70,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 1.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Airborne NGWS",
+    "Assaultmen SMAW",
+    "Rangers"
+   ]
+  },
+  "1197": {
+   "name": "Motorized AA Troopers 防空班",
+   "old": 65,
+   "new": 55,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 1.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 2.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Troopers AA",
+    "Motostrelki Igla",
+    "Mech. Riflemen AA"
+   ]
+  },
+  "1198": {
+   "name": "Motorized AT Troopers 反坦克组",
+   "old": 65,
+   "new": 70,
+   "features": {
+    "men": 8,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "VDV Metis-M",
+    "PTO Metis",
+    "Weapons Squad"
+   ]
+  },
+  "1199": {
+   "name": "Motorized Weapons Squad",
+   "old": 40,
+   "new": 35,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 1.0,
+    "hmg": 2.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "M2 HMG team",
+    "M2 HMG",
+    "Kord "
+   ]
+  },
+  "1201": {
+   "name": "Motorized Recon Patrol 侦察班",
+   "old": 40,
+   "new": 60,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Green Berets",
+    "Spetsnaz Vympel",
+    "Spetsnaz VMF"
+   ]
+  },
+  "1202": {
+   "name": "Motorized Snipers 狙击组",
+   "old": 20,
+   "new": 60,
+   "features": {
+    "men": 3,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 1.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Scout Snipers",
+    "Snaipery",
+    "VDV Snaipery"
+   ]
+  },
+  "1203": {
+   "name": "Taishan Eagles 泰山雄鹰",
+   "old": 50,
+   "new": 55,
+   "features": {
+    "men": 6,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 1.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 2.0,
+    "sf": 0.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Spetsnaz Vympel",
+    "Rosgvardia",
+    "Motopekhota"
+   ]
+  },
+  "1205": {
+   "name": "Motorized Light AT Riflemen 轻反坦克",
+   "old": 65,
+   "new": 50,
+   "features": {
+    "men": 8,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 3.0,
+    "thermo": 0.0,
+    "gl": 1.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 2.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Pulemetchiki PKP",
+    "Mech. Riflemen MMG",
+    "Mech. Riflemen"
+   ]
+  },
+  "1206": {
+   "name": "Air Defense Scouts 防空侦察",
+   "old": 35,
+   "new": 60,
+   "features": {
+    "men": 5,
+    "atgm": 0.0,
+    "manpad": 1.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 1.0,
+    "marksman": 1.0,
+    "sf": 1.0,
+    "recon": 1.0
+   },
+   "vanilla_neighbours": [
+    "Green Berets",
+    "Spetsnaz Vympel",
+    "Spetsnaz VMF"
+   ]
+  },
+  "1209": {
+   "name": "Thermobaric Assault 温压突击",
+   "old": 55,
+   "new": 60,
+   "features": {
+    "men": 9,
+    "atgm": 0.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 3.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 2.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "Motopekhota",
+    "Jalaväe Jagu",
+    "Ingenery-Shturmoviki"
+   ]
+  },
+  "1221": {
+   "name": "Motorized GAM-102LR Team",
+   "old": 75,
+   "new": 50,
+   "features": {
+    "men": 4,
+    "atgm": 1.0,
+    "manpad": 0.0,
+    "heavy_at": 0.0,
+    "light_at": 0.0,
+    "thermo": 0.0,
+    "gl": 0.0,
+    "sniper": 0.0,
+    "hmg": 0.0,
+    "mg": 0.0,
+    "marksman": 0.0,
+    "sf": 0.0,
+    "recon": 0.0
+   },
+   "vanilla_neighbours": [
+    "PTRK Konkurs",
+    "PTRK Konkurs-M",
+    "Spike LR"
+   ]
+  }
+ }
+}

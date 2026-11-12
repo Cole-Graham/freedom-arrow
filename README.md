@@ -1,3 +1,9 @@
+# PLA TEST Build 49
+
+Artillery: each PLA tube and rocket system copies the main round, launcher behaviour, ammunition count and price of its vanilla counterpart (PHL-03 = Smerch, PHL-16/191 = Tornado-S round, PHL-11 = Grad, SR-5 = Uragan 220 mm, PLZ-05 = K9, PLZ-07/89 = 2S1, PLZ-45 = M109A6, PLZ-83 = 2S3M1, PLL-05 = Nona-SVK, DF-15/17/21 one Iskander missile each). DF-31 untouched. Infantry: PF-97 = MRO-Z values; HJ-8E 700 and HJ-73D 600 penetration everywhere. 53 PLA squads priced from the three most similar vanilla US/RU squads (pla-build49.json lists them). Native behaviour unverified.
+
+## Historical Build48
+
 # PLA TEST Build 48
 
 Ground-vehicle pass over Build47. ZTZ-99A matches the T-14 Armata (850/1300 front armour, 500/525 APFSDS, 3 gun-launched missiles); ZTZ-100/ZTZ-20 the same class; ZTZ-99 = T-90A, 96B = T-72B3, 96 = T-72B, 59D = T-62M, 59 = T-55 class. Every PLA vehicle ATGM uses 10.5 damage. 31 vehicles repriced against their vanilla counterparts (pla-vehicle-pass.json). Native behaviour unverified.
@@ -567,3 +573,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:13:37 PST (America/Los_Angeles) — Build47: CMO-derived aircraft loadouts, generation chassis and prices for every armed PLA aircraft (see pla-air-loadouts.json).
 
 - 2026-11-12 05:19:39 PST (America/Los_Angeles) — Build48: tank armour/penetration/ammo by generation, ATGM 10.5 standard, vehicle prices.
+
+- 2026-11-12 05:23:55 PST (America/Los_Angeles) — Build49: artillery at vanilla scale, infantry weapon fixes, nearest-vanilla squad prices.

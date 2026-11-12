@@ -1,0 +1,121 @@
+{
+  "build": 49,
+  "base_build": 48,
+  "base_sha256": "645dc1f18878a5de9203054e702fc3bf0b0e74058640da0957ba9202594a5848",
+  "infantry_weapons": [
+    [
+      "Assault Engineers",
+      "PF-97 = MRO-Z values"
+    ],
+    [
+      "Marine Thermobaric Engineers",
+      "PF-97 = MRO-Z values"
+    ],
+    [
+      "Thermobaric Breachers 温压工兵",
+      "PF-97 = MRO-Z values"
+    ],
+    [
+      "Thermobaric Assault 温压突击",
+      "PF-97 = MRO-Z values"
+    ],
+    [
+      "ZBL-08",
+      "HJ-8E 700"
+    ],
+    [
+      "HJ-8",
+      "HJ-8E 700"
+    ],
+    [
+      "WZ-551",
+      "HJ-8E 700"
+    ],
+    [
+      "ZBL-191",
+      "HJ-8E 700"
+    ],
+    [
+      "VN17",
+      "HJ-8E 700"
+    ],
+    [
+      "VN20",
+      "HJ-8E 700"
+    ],
+    [
+      "VN20-B",
+      "HJ-8E 700"
+    ],
+    [
+      "VN22",
+      "HJ-8E 700"
+    ],
+    [
+      "ZBD-05",
+      "HJ-8E 700"
+    ],
+    [
+      "ZBL-09",
+      "HJ-8E 700"
+    ],
+    [
+      "ZBL19 — seller name",
+      "HJ-8E 700"
+    ],
+    [
+      "Mechanized Guided-AT Riflemen",
+      "HJ-8E 700"
+    ],
+    [
+      "Reserve Heavy HJ-8E Team",
+      "HJ-8E 700"
+    ],
+    [
+      "Motorized CAAT — HJ-8E / QLU-11",
+      "HJ-8E 700"
+    ],
+    [
+      "Mechanized HJ-8E Team",
+      "HJ-8E 700"
+    ],
+    [
+      "Recon HJ-8E Ambush Team",
+      "HJ-8E 700"
+    ],
+    [
+      "Marine HJ-8 Team",
+      "HJ-8E 700"
+    ],
+    [
+      "ZBD-03 / ZLC-2000",
+      "HJ-73D 600"
+    ],
+    [
+      "Reserve Riflemen — HJ-73D",
+      "HJ-73D 600"
+    ],
+    [
+      "Rocket Convoy Escort — HJ-73D",
+      "HJ-73D 600"
+    ],
+    [
+      "Malyutka Recon Ambush Team 侦察伏击",
+      "HJ-73D 600"
+    ],
+    [
+      "HJ-73D Team",
+      "HJ-73D 600"
+    ],
+    [
+      "Infantry 步兵",
+      "HJ-73D 600"
+    ]
+  ],
+  "price_model": {
+    "method": "3 nearest vanilla US/RU squads, distance-weighted",
+    "vanilla_squads": 114,
+    "leave_one_out_mean_abs_error": 11.7
+  },
+  "checks": 2072
+}
