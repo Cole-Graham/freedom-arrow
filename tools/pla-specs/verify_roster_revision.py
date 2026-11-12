@@ -66,8 +66,8 @@ with zipfile.ZipFile(a.package) as z:
   ok(all(n[f]==k[f] for f in ['Damage','HealthAOERadius','OverpressureRadius','StressAOERadius','FXPreset','AudioPreset']) and n['TrajectoryType']==300,'DF31 nuclear Kinzhal warhead, ballistic flight')
  if build>=34:
   hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
-  ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==[18,19,21],'HMV3 specs')
-  ok(not ammo(1235) and not any(r['UnitId']==1235 for r in t['TurretUnitsJson'].values()),'HMV3 unarmed')
+  ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==([18,19,21] if build<46 else [17,18,19,20,21]),'HMV3 specs')  # Build46: every spec
+  if build<46:ok(not ammo(1235) and not any(r['UnitId']==1235 for r in t['TurretUnitsJson'].values()),'HMV3 unarmed')  # Build46: HEMTT mounts/options so the model draws
  if build>=32:
   links=defaultdict(list)
   spec_file=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'));assignments=spec_file['assignments']

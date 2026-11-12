@@ -1,0 +1,22 @@
+{
+  "build": 46,
+  "base_build": 45,
+  "base_sha256": "a04447e8a26f226b06e40d8a2a6b9658e1ca8fec9d0565164057664029ae1801",
+  "changes": [
+    {
+      "unit": 1235,
+      "name": "Shaanxi HMV3",
+      "change": "HEMTT mounts and options (model parts draw), all specs, carries infantry (27 seats)"
+    },
+    {
+      "unit": 1247,
+      "name": "Shaanxi HMV3 Cargo",
+      "change": "new pure cargo version, all specs"
+    }
+  ],
+  "checks": 1236,
+  "native_verified": false,
+  "new_ids": {
+    "hmv3_cargo": 1247
+  }
+}
