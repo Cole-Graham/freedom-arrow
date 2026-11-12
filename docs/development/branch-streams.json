@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "transition_status": "active",
+  "approval_url": "https://discord.com/channels/1566969627743879208/1570305472982941727/1570322693017047061",
+  "public_version": "0.7.0-dev.45",
+  "public_assets_version": "0.1.14",
+  "branches": [
+    {
+      "name": "main",
+      "role": "approved public gameplay source",
+      "package_source_commit": "73f7c1b48291a780610b1b4a83d0475dee5b35f1"
+    },
+    {
+      "name": "codex/0.7-development",
+      "role": "main 0.7 integration",
+      "package_source_commit": "0282972a20ccb20bc37dce443bf16343c7c0abc3"
+    },
+    {
+      "name": "codex/pla-development",
+      "role": "complete PLA test pack",
+      "package_source_commit": "a833f9611a1d1b695b3e672e034880ace90b85ce",
+      "package_version": "PLA TEST Build 28"
+    },
+    {
+      "name": "codex/assets-development",
+      "role": "shared asset candidate source",
+      "package_source_commit": "88e3a5aa62bab3b3566a71d7c4a495311333dbb4"
+    },
+    {
+      "name": "codex/launcher-development",
+      "role": "launcher and manifest client source",
+      "package_source_commit": "e3b7ada8b62f9ac001fea8254429e94c3040e631"
+    }
+  ],
+  "batch_pattern": "codex/batch/lateralus/<topic>",
+  "cleanup_candidate_count": 83,
+  "cleanup_hold_count": 42,
+  "deployment_lock_changed": false,
+  "activated_at": "2026-11-11 22:48:48 PST (America/Los_Angeles)",
+  "protection_read": "succeeded; zero legacy protection rules and zero repository rulesets observed"
+}

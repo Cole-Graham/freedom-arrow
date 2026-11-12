@@ -1,3 +1,17 @@
+# Freedom Arrow — pla
+
+**Complete PLA development pack — Build 28. This stream is separate from main gameplay.**
+
+## Maintained branches
+
+- [Main 0.7 development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/0.7-development) — dev.55 integration.
+- [Public gameplay source](https://github.com/Cole-Graham/freedom-arrow/tree/main) — locked dev.45.
+- [PLA development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/pla-development) — complete PLA pack.
+- [Assets development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/assets-development) — shared models, music and voices.
+- [Launcher development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/launcher-development) — launcher and manifest client.
+
+Use one `codex/batch/lateralus/<topic>` branch per coherent unpromoted batch; reuse it across commits and test builds. Build identities use tags. See [branch policy](docs/development/BRANCH-POLICY.md) and [source pins](docs/development/branch-streams.json). Source maintenance does not change the public manifest lock or rebuild existing packages.
+
 # PLA TEST Build 28
 
 **Three targeted emblem corrections, white-outline grey-fill right-facing weapon HUD and Russia → USA → China country controls. Original approved masters and all gameplay/model/music data retained. Native inspection pending.**
@@ -395,3 +409,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 20:22:37 PST (America/Los_Angeles) — Corrected runtime build identity and added compiled-attribute regression check; Build25 artwork retained.
 - 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-photo motif copies and clean-white unit icon export; all original masters preserved.
 - 2026-11-11 22:33:26 PST (America/Los_Angeles) — Three unit emblems,16weapon HUD sprites and country-control order corrected.
+- 2026-11-11 22:48:48 PST (America/Los_Angeles) — Added approved maintained-stream and isolated-batch navigation; preserved existing history and gameplay.
