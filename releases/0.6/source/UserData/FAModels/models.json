@@ -548,5 +548,34 @@
     "file": "m_z10me.fam",
     "align": false,
     "battle": "m_z10me_lo.fam"
+  },
+  "PLA HQ-9B": {
+    "file": "hq9.fam",
+    "align": false,
+    "battle": "hq9_lo.fam"
+  },
+  "PLA HQ-9A": {
+    "file": "hq9.fam",
+    "align": false,
+    "battle": "hq9_lo.fam"
+  },
+  "PLA J-10A": {
+    "file": "m_j10a_grey.fam",
+    "battle": "m_j10a_grey_lo.fam",
+    "align": false
+  },
+  "PLA CSK-131 Transport": {
+    "file": "mengshi.fam",
+    "align": false,
+    "battle": "mengshi_lo.fam"
+  },
+  "PLA Shaanxi Troop Truck": {
+    "file": "m_sx2220.fam",
+    "battle": "m_sx2220_lo.fam"
+  },
+  "PLA ZSL-92 MG": {
+    "file": "m_wz551_static.fam",
+    "battle": "m_wz551_lo_static.fam",
+    "align": false
   }
 }

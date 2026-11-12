@@ -68,9 +68,7 @@
       "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        19
-      ]
+      "specs": []
     },
     {
       "sheet_row": 7,
@@ -163,7 +161,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        19
+        21
       ]
     },
     {
@@ -181,7 +179,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        19
+        21
       ]
     },
     {
@@ -202,7 +200,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19
+        21
       ]
     },
     {
@@ -419,7 +417,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        19
+        17
       ]
     },
     {
@@ -436,9 +434,7 @@
       "native_model": "RU_Iskander",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        19
-      ]
+      "specs": []
     },
     {
       "sheet_row": 34,
@@ -527,8 +523,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        18,
-        21
+        18
       ]
     },
     {
@@ -546,7 +541,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        21
+        18
       ]
     },
     {
@@ -613,8 +608,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18,
-        19
+        21
       ]
     },
     {
@@ -658,7 +652,6 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19,
         21
       ]
     },
@@ -842,7 +835,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        18
+        17
       ]
     },
     {
@@ -1012,7 +1005,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18
+        20
       ]
     },
     {
@@ -1148,9 +1141,7 @@
       "native_model": "RU_Kurganets",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        18
-      ]
+      "specs": []
     },
     {
       "sheet_row": 76,
@@ -1166,9 +1157,7 @@
       "native_model": "RU_T15",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        18
-      ]
+      "specs": []
     },
     {
       "sheet_row": 77,
@@ -1184,9 +1173,7 @@
       "native_model": "RU_T15",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        18
-      ]
+      "specs": []
     },
     {
       "sheet_row": 78,
@@ -1202,9 +1189,7 @@
       "native_model": "RU_Bumerang",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        21
-      ]
+      "specs": []
     },
     {
       "sheet_row": 79,
@@ -1245,9 +1230,7 @@
         "align": false
       },
       "implementation": "Named stand-in",
-      "specs": [
-        18
-      ]
+      "specs": []
     },
     {
       "sheet_row": 81,
@@ -1307,9 +1290,7 @@
       "native_model": "RU_T72B3",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        18
-      ]
+      "specs": []
     },
     {
       "sheet_row": 85,
@@ -1329,12 +1310,7 @@
         "align": false
       },
       "implementation": "Existing card",
-      "specs": [
-        18,
-        19,
-        20,
-        21
-      ]
+      "specs": []
     },
     {
       "sheet_row": 91,
@@ -1542,6 +1518,7 @@
       },
       "implementation": "Named stand-in",
       "specs": [
+        18,
         19,
         20,
         21
@@ -1990,8 +1967,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        18
+        20
       ]
     },
     {
@@ -2035,8 +2011,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        18
+        17
       ]
     },
     {
@@ -2058,8 +2033,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        18
+        17
       ]
     },
     {
@@ -2169,7 +2143,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17
+        20
       ]
     },
     {
@@ -2227,7 +2201,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17
+        20
       ]
     },
     {
@@ -2347,9 +2321,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19,
-        20,
-        21
+        20
       ]
     },
     {
@@ -2607,7 +2579,7 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        17
+        21
       ]
     },
     {

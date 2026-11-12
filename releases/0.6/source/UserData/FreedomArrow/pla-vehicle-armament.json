@@ -1,5 +1,5 @@
 {
-  "build": 30,
+  "build": 31,
   "entries": [
     {
       "unit": 900,
@@ -36,7 +36,13 @@
         "battle": "mengshi_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        19,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 902,
@@ -94,7 +100,7 @@
             {
               "ammo": 2009031,
               "name": "ZPT-99 30 mm HE",
-              "requested_rounds": 350,
+              "requested_rounds": 351,
               "displayed_rounds": 351,
               "logical_quantity": 117,
               "hud_multiplier": 3,
@@ -133,7 +139,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 903,
@@ -152,7 +162,7 @@
             {
               "ammo": 2009049,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -161,7 +171,7 @@
             {
               "ammo": 2009051,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -221,7 +231,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 904,
@@ -318,7 +333,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 905,
@@ -414,7 +433,11 @@
         "battle": "m_ztz96b_green_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 906,
@@ -424,7 +447,7 @@
       "weapons": [
         {
           "weapon": 2009127,
-          "name": "105 mm rifled gun",
+          "name": "105 mm high-pressure rifled gun",
           "native_weapon": 657,
           "native_unit": 453,
           "magazine": 1,
@@ -432,7 +455,7 @@
           "stocks": [
             {
               "ammo": 2009131,
-              "name": "105 mm rifled gun APFSDS",
+              "name": "105 mm DU APFSDS",
               "requested_rounds": 18,
               "displayed_rounds": 18,
               "logical_quantity": 18,
@@ -502,7 +525,13 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 907,
@@ -539,7 +568,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        19
+      ],
+      "active": true
     },
     {
       "unit": 908,
@@ -576,7 +610,11 @@
         "battle": "phl03_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 909,
@@ -613,7 +651,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 910,
@@ -624,17 +666,17 @@
         {
           "weapon": 2009195,
           "name": "HQ-17",
-          "native_weapon": 99,
+          "native_weapon": 28,
           "native_unit": 31,
-          "magazine": 16,
+          "magazine": 8,
           "kind": "SAM",
           "stocks": [
             {
               "ammo": 2009199,
-              "name": "HQ-17 ammunition",
-              "requested_rounds": 16,
-              "displayed_rounds": 16,
-              "logical_quantity": 16,
+              "name": "HQ-17 missile",
+              "requested_rounds": 8,
+              "displayed_rounds": 8,
+              "logical_quantity": 8,
               "hud_multiplier": 1,
               "native_ammo": 77
             }
@@ -646,34 +688,38 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 911,
-      "name": "HQ-9",
+      "name": "HQ-9C",
       "type": 4,
       "native_parent": 466,
       "weapons": [
         {
-          "weapon": 2009209,
-          "name": "HQ-9",
-          "native_weapon": 690,
-          "native_unit": 466,
+          "weapon": 2014555,
+          "name": "HQ-9C missile",
+          "native_weapon": 319,
+          "native_unit": null,
           "magazine": 4,
           "kind": "SAM",
           "stocks": [
             {
-              "ammo": 2009213,
-              "name": "HQ-9 ammunition",
+              "ammo": 2014556,
+              "name": "HQ-9C missile",
               "requested_rounds": 4,
               "displayed_rounds": 4,
               "logical_quantity": 4,
               "hud_multiplier": 1,
-              "native_ammo": 547
+              "native_ammo": 220
             }
           ],
-          "basis": "Draft capacity and ammunition split; verify before balance lock.",
-          "performance": "Closest native analog; not measured Chinese weapon performance."
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
         }
       ],
       "slots": 0,
@@ -683,7 +729,11 @@
         "battle": "hq9_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 912,
@@ -697,7 +747,15 @@
         "battle": "m_sx2220_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 913,
@@ -797,7 +855,11 @@
         "battle": "m_z10me_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 914,
@@ -834,7 +896,15 @@
         "battle": "m_z20_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 915,
@@ -892,7 +962,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 916,
@@ -971,7 +1045,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 917,
@@ -1050,7 +1128,15 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 918,
@@ -1171,7 +1257,11 @@
         "battle": "m_jh7a2_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 919,
@@ -1229,7 +1319,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 920,
@@ -1287,7 +1381,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 921,
@@ -1345,7 +1443,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 922,
@@ -1382,7 +1484,11 @@
         "battle": "sx2190_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 923,
@@ -1461,7 +1567,11 @@
         "battle": "j11b_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 924,
@@ -1540,7 +1650,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 925,
@@ -1577,7 +1691,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 926,
@@ -1614,7 +1733,13 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 927,
@@ -1711,7 +1836,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 928,
@@ -1726,7 +1855,11 @@
         "battle": "y20_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 929,
@@ -1784,7 +1917,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 930,
@@ -1872,7 +2009,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 931,
@@ -1909,7 +2050,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 932,
@@ -1928,7 +2073,7 @@
             {
               "ammo": 2009559,
               "name": "Four 25 mm AA guns ammunition",
-              "requested_rounds": 1000,
+              "requested_rounds": 1008,
               "displayed_rounds": 1008,
               "logical_quantity": 84,
               "hud_multiplier": 12,
@@ -1967,7 +2112,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        20
+      ],
+      "active": true
     },
     {
       "unit": 933,
@@ -2004,7 +2154,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 934,
@@ -2037,7 +2191,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 935,
@@ -2095,7 +2253,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 936,
@@ -2132,7 +2294,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 937,
@@ -2241,7 +2407,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 938,
@@ -2329,7 +2499,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 939,
@@ -2426,7 +2601,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 940,
@@ -2505,7 +2684,11 @@
         "battle": "m_z19e_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 941,
@@ -2584,7 +2767,12 @@
         "battle": "m_z9wa_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 942,
@@ -2621,7 +2809,11 @@
         "battle": "m_z11wb_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 943,
@@ -2700,7 +2892,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 944,
@@ -2758,7 +2954,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 945,
@@ -2816,7 +3016,7 @@
             {
               "ammo": 2009831,
               "name": "ZPT-99 30 mm HE",
-              "requested_rounds": 350,
+              "requested_rounds": 351,
               "displayed_rounds": 351,
               "logical_quantity": 117,
               "hud_multiplier": 3,
@@ -2855,7 +3055,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 946,
@@ -2892,7 +3096,13 @@
         "battle": "m_wingloong_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 947,
@@ -2980,7 +3190,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 948,
@@ -3077,7 +3291,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 949,
@@ -3173,7 +3391,11 @@
         "battle": "m_ztz96b_green_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 951,
@@ -3210,7 +3432,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 952,
@@ -3256,7 +3483,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 953,
@@ -3344,7 +3575,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 954,
@@ -3381,7 +3616,11 @@
         "battle": "m_zfb05_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 955,
@@ -3460,7 +3699,12 @@
         "battle": "j10t_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 956,
@@ -3557,7 +3801,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 957,
@@ -3614,7 +3862,13 @@
         "battle": "m_wz701_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 958,
@@ -3702,7 +3956,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 959,
@@ -3739,7 +3997,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 960,
@@ -3775,7 +4037,11 @@
         "battle": "m_zsd63c_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 961,
@@ -3812,7 +4078,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 962,
@@ -3831,7 +4101,7 @@
             {
               "ammo": 2010139,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -3840,7 +4110,7 @@
             {
               "ammo": 2010141,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -3900,7 +4170,9 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 963,
@@ -3936,7 +4208,11 @@
         "battle": "m_phl81_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 966,
@@ -3994,7 +4270,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 967,
@@ -4031,7 +4311,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 968,
@@ -4127,7 +4411,11 @@
         "battle": "m_ztz100_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 971,
@@ -4185,7 +4473,12 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 972,
@@ -4200,7 +4493,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 973,
@@ -4237,7 +4534,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 974,
@@ -4316,7 +4617,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 975,
@@ -4374,7 +4679,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 976,
@@ -4412,7 +4721,11 @@
         "scale": 3.0
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 977,
@@ -4491,7 +4804,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 978,
@@ -4591,7 +4908,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        20
+      ],
+      "active": true
     },
     {
       "unit": 979,
@@ -4610,7 +4932,7 @@
             {
               "ammo": 2010327,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -4619,7 +4941,7 @@
             {
               "ammo": 2010329,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -4678,7 +5000,13 @@
         "battle": "m_zbl191_green_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1028,
@@ -4711,7 +5039,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1029,
@@ -4744,7 +5076,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1030,
@@ -4777,7 +5113,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1031,
@@ -4810,11 +5150,13 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1032,
-      "name": "DF-31A",
+      "name": "DF-31A Nuclear",
       "type": 4,
       "native_parent": 226,
       "weapons": [
@@ -4843,7 +5185,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1033,
@@ -4876,7 +5222,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1034,
@@ -4909,7 +5259,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1035,
@@ -4942,7 +5296,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1036,
@@ -4975,7 +5333,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1037,
@@ -5008,7 +5370,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1038,
@@ -5045,7 +5411,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1039,
@@ -5078,7 +5448,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1040,
@@ -5111,7 +5485,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1041,
@@ -5144,7 +5522,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1042,
@@ -5177,7 +5559,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1043,
@@ -5210,7 +5596,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1044,
@@ -5243,7 +5633,9 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1045,
@@ -5276,7 +5668,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1046,
@@ -5309,7 +5705,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1047,
@@ -5342,7 +5742,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1048,
@@ -5375,7 +5779,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1049,
@@ -5385,18 +5793,18 @@
       "weapons": [
         {
           "weapon": 2010625,
-          "name": "HQ-17",
+          "name": "HQ-17A",
           "native_weapon": 99,
           "native_unit": 31,
-          "magazine": 16,
+          "magazine": 8,
           "kind": "SAM",
           "stocks": [
             {
               "ammo": 2010629,
-              "name": "HQ-17 ammunition",
-              "requested_rounds": 16,
-              "displayed_rounds": 16,
-              "logical_quantity": 16,
+              "name": "HQ-17A missile",
+              "requested_rounds": 8,
+              "displayed_rounds": 8,
+              "logical_quantity": 8,
               "hud_multiplier": 1,
               "native_ammo": 77
             }
@@ -5408,7 +5816,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1050,
@@ -5427,7 +5839,7 @@
             {
               "ammo": 2010643,
               "name": "Four 25 mm AA guns ammunition",
-              "requested_rounds": 1000,
+              "requested_rounds": 1008,
               "displayed_rounds": 1008,
               "logical_quantity": 84,
               "hud_multiplier": 12,
@@ -5466,7 +5878,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1051,
@@ -5485,7 +5901,7 @@
             {
               "ammo": 2010663,
               "name": "Twin 37 mm AA guns ammunition",
-              "requested_rounds": 1000,
+              "requested_rounds": 1008,
               "displayed_rounds": 1008,
               "logical_quantity": 84,
               "hud_multiplier": 12,
@@ -5499,7 +5915,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1052,
@@ -5518,7 +5938,7 @@
             {
               "ammo": 2010677,
               "name": "Four 25 mm AA guns ammunition",
-              "requested_rounds": 1000,
+              "requested_rounds": 1008,
               "displayed_rounds": 1008,
               "logical_quantity": 84,
               "hud_multiplier": 12,
@@ -5557,7 +5977,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1053,
@@ -5590,7 +6014,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1054,
@@ -5623,7 +6051,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1055,
@@ -5660,7 +6092,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1056,
@@ -5679,7 +6115,7 @@
             {
               "ammo": 2010739,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -5688,7 +6124,7 @@
             {
               "ammo": 2010741,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -5720,31 +6156,56 @@
           "performance": "Closest native analog; not measured Chinese weapon performance."
         },
         {
-          "weapon": 2010749,
-          "name": "HJ-8E",
-          "native_weapon": 248,
-          "native_unit": 90,
-          "magazine": 1,
+          "weapon": 2014655,
+          "name": "HJ-10",
+          "native_weapon": 616,
+          "native_unit": null,
+          "magazine": 2,
           "kind": "ATGM",
           "stocks": [
             {
-              "ammo": 2010751,
-              "name": "HJ-8E ammunition",
+              "ammo": 2014656,
+              "name": "HJ-10",
+              "requested_rounds": 2,
+              "displayed_rounds": 2,
+              "logical_quantity": 2,
+              "hud_multiplier": 1,
+              "native_ammo": 2009623
+            }
+          ],
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
+        },
+        {
+          "weapon": 2014659,
+          "name": "ABZ-13 anti-personnel",
+          "native_weapon": 175,
+          "native_unit": null,
+          "magazine": 4,
+          "kind": "ATGM",
+          "stocks": [
+            {
+              "ammo": 2014660,
+              "name": "ABZ-13 anti-personnel",
               "requested_rounds": 4,
               "displayed_rounds": 4,
               "logical_quantity": 4,
               "hud_multiplier": 1,
-              "native_ammo": 96
+              "native_ammo": 578
             }
           ],
-          "basis": "Draft capacity and ammunition split; verify before balance lock.",
-          "performance": "Closest native analog; not measured Chinese weapon performance."
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
         }
       ],
       "slots": 7,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1057,
@@ -5777,7 +6238,11 @@
       "slots": 4,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1058,
@@ -5810,7 +6275,14 @@
       "slots": 4,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1059,
@@ -5829,27 +6301,18 @@
             {
               "ammo": 2010793,
               "name": "100 mm rifled gun AP",
-              "requested_rounds": 12,
-              "displayed_rounds": 12,
-              "logical_quantity": 12,
+              "requested_rounds": 4,
+              "displayed_rounds": 4,
+              "logical_quantity": 4,
               "hud_multiplier": 1,
               "native_ammo": 498
             },
             {
-              "ammo": 2010795,
-              "name": "100 mm rifled gun HEAT",
-              "requested_rounds": 8,
-              "displayed_rounds": 8,
-              "logical_quantity": 8,
-              "hud_multiplier": 1,
-              "native_ammo": 499
-            },
-            {
               "ammo": 2010797,
               "name": "100 mm rifled gun HE",
-              "requested_rounds": 10,
-              "displayed_rounds": 10,
-              "logical_quantity": 10,
+              "requested_rounds": 26,
+              "displayed_rounds": 26,
+              "logical_quantity": 26,
               "hud_multiplier": 1,
               "native_ammo": 500
             }
@@ -5903,7 +6366,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1060,
@@ -5996,7 +6463,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1061,
@@ -6089,7 +6560,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1062,
@@ -6125,7 +6600,11 @@
         "battle": "m_zsd63c_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1063,
@@ -6209,7 +6688,11 @@
       "slots": 8,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1064,
@@ -6246,7 +6729,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1065,
@@ -6283,7 +6770,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1066,
@@ -6302,7 +6793,7 @@
             {
               "ammo": 2010947,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -6311,7 +6802,7 @@
             {
               "ammo": 2010949,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -6367,7 +6858,9 @@
       "slots": 7,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1067,
@@ -6386,7 +6879,7 @@
             {
               "ammo": 2010973,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -6395,7 +6888,7 @@
             {
               "ammo": 2010975,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -6451,7 +6944,9 @@
       "slots": 8,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1068,
@@ -6470,7 +6965,7 @@
             {
               "ammo": 2010999,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -6479,7 +6974,7 @@
             {
               "ammo": 2011001,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -6535,7 +7030,9 @@
       "slots": 8,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1069,
@@ -6554,7 +7051,7 @@
             {
               "ammo": 2011025,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -6563,7 +7060,7 @@
             {
               "ammo": 2011027,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -6619,7 +7116,9 @@
       "slots": 8,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1070,
@@ -6652,7 +7151,14 @@
       "slots": 4,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1071,
@@ -6749,7 +7255,9 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1072,
@@ -6846,7 +7354,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1073,
@@ -6939,7 +7451,9 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1074,
@@ -6958,7 +7472,7 @@
             {
               "ammo": 2011143,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -6967,7 +7481,7 @@
             {
               "ammo": 2011145,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -7023,7 +7537,11 @@
       "slots": 4,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1075,
@@ -7081,7 +7599,7 @@
             {
               "ammo": 2011179,
               "name": "ZPT-99 30 mm HE",
-              "requested_rounds": 350,
+              "requested_rounds": 351,
               "displayed_rounds": 351,
               "logical_quantity": 117,
               "hud_multiplier": 3,
@@ -7120,7 +7638,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1076,
@@ -7139,7 +7661,7 @@
             {
               "ammo": 2011197,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -7148,7 +7670,7 @@
             {
               "ammo": 2011199,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -7204,7 +7726,11 @@
       "slots": 8,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 1077,
@@ -7223,7 +7749,7 @@
             {
               "ammo": 2011223,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -7232,7 +7758,7 @@
             {
               "ammo": 2011225,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -7292,7 +7818,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1078,
@@ -7311,7 +7841,7 @@
             {
               "ammo": 2011249,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -7320,7 +7850,7 @@
             {
               "ammo": 2011251,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -7379,11 +7909,16 @@
         "battle": "m_zbl191_green_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1079,
-      "name": "ZSL-92 family",
+      "name": "ZSL-92 Autocannon",
       "type": 4,
       "native_parent": 1,
       "weapons": [
@@ -7398,7 +7933,7 @@
             {
               "ammo": 2011275,
               "name": "30 mm autocannon AP",
-              "requested_rounds": 150,
+              "requested_rounds": 152,
               "displayed_rounds": 152,
               "logical_quantity": 38,
               "hud_multiplier": 4,
@@ -7407,7 +7942,7 @@
             {
               "ammo": 2011277,
               "name": "30 mm autocannon HE",
-              "requested_rounds": 350,
+              "requested_rounds": 352,
               "displayed_rounds": 352,
               "logical_quantity": 88,
               "hud_multiplier": 4,
@@ -7437,27 +7972,6 @@
           ],
           "basis": "Draft capacity and ammunition split; verify before balance lock.",
           "performance": "Closest native analog; not measured Chinese weapon performance."
-        },
-        {
-          "weapon": 2011285,
-          "name": "HJ-8E",
-          "native_weapon": 248,
-          "native_unit": 90,
-          "magazine": 1,
-          "kind": "ATGM",
-          "stocks": [
-            {
-              "ammo": 2011287,
-              "name": "HJ-8E ammunition",
-              "requested_rounds": 4,
-              "displayed_rounds": 4,
-              "logical_quantity": 4,
-              "hud_multiplier": 1,
-              "native_ammo": 96
-            }
-          ],
-          "basis": "Draft capacity and ammunition split; verify before balance lock.",
-          "performance": "Closest native analog; not measured Chinese weapon performance."
         }
       ],
       "slots": 8,
@@ -7467,7 +7981,14 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1080,
@@ -7477,7 +7998,7 @@
       "weapons": [
         {
           "weapon": 2011297,
-          "name": "105 mm rifled gun",
+          "name": "105 mm high-pressure rifled gun",
           "native_weapon": 24,
           "native_unit": 24,
           "magazine": 1,
@@ -7485,7 +8006,7 @@
           "stocks": [
             {
               "ammo": 2011301,
-              "name": "105 mm rifled gun APFSDS",
+              "name": "105 mm DU APFSDS",
               "requested_rounds": 18,
               "displayed_rounds": 18,
               "logical_quantity": 18,
@@ -7551,7 +8072,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1081,
@@ -7648,7 +8173,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1082,
@@ -7744,7 +8273,11 @@
         "battle": "m_ztz96b_green_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1083,
@@ -7841,7 +8374,11 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18
+      ],
+      "active": true
     },
     {
       "unit": 1084,
@@ -7874,40 +8411,26 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1085,
-      "name": "CR-500",
+      "name": "CR-500 Recon",
       "type": 8,
       "native_parent": 632,
-      "weapons": [
-        {
-          "weapon": 2011423,
-          "name": "UAV guided missile",
-          "native_weapon": 514,
-          "native_unit": 329,
-          "magazine": 1,
-          "kind": "ATGM",
-          "stocks": [
-            {
-              "ammo": 2011427,
-              "name": "UAV guided missile ammunition",
-              "requested_rounds": 2,
-              "displayed_rounds": 2,
-              "logical_quantity": 2,
-              "hud_multiplier": 1,
-              "native_ammo": 578
-            }
-          ],
-          "basis": "Draft capacity and ammunition split; verify before balance lock.",
-          "performance": "Closest native analog; not measured Chinese weapon performance."
-        }
-      ],
+      "weapons": [],
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1086,
@@ -7940,7 +8463,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1087,
@@ -8019,7 +8546,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1088,
@@ -8077,7 +8608,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1089,
@@ -8110,7 +8645,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1090,
@@ -8143,7 +8682,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1091,
@@ -8197,7 +8740,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1092,
@@ -8251,7 +8798,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1093,
@@ -8305,7 +8856,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1094,
@@ -8384,7 +8939,11 @@
         "align": false
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1095,
@@ -8395,7 +8954,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1096,
@@ -8406,7 +8969,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1097,
@@ -8417,7 +8984,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
     },
     {
       "unit": 1098,
@@ -8450,7 +9021,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1100,
@@ -8461,7 +9036,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1101,
@@ -8476,7 +9055,11 @@
         "battle": "y20_lo.fam"
       },
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1102,
@@ -8487,7 +9070,11 @@
       "slots": 125,
       "custom_model": null,
       "armor_basis": "Existing PLA draft armor preserved.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1103,
@@ -8566,7 +9153,11 @@
         "battle": "m_z19e_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1104,
@@ -8666,7 +9257,11 @@
         "battle": "m_z10me_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1105,
@@ -8699,7 +9294,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1106,
@@ -8732,7 +9331,12 @@
       "slots": 27,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        20
+      ],
+      "active": true
     },
     {
       "unit": 1107,
@@ -8747,7 +9351,14 @@
         "battle": "m_z9wa_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1129,
@@ -8757,7 +9368,7 @@
       "weapons": [
         {
           "weapon": 2011645,
-          "name": "YJ-18 cruise missiles",
+          "name": "YJ-18",
           "native_weapon": 317,
           "native_unit": 226,
           "magazine": 2,
@@ -8765,7 +9376,7 @@
           "stocks": [
             {
               "ammo": 2011649,
-              "name": "YJ-18 cruise missiles ammunition",
+              "name": "YJ-18",
               "requested_rounds": 2,
               "displayed_rounds": 2,
               "logical_quantity": 2,
@@ -8780,7 +9391,11 @@
       "slots": 0,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
     },
     {
       "unit": 1130,
@@ -8880,7 +9495,11 @@
         "battle": "m_z10me_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1131,
@@ -8980,7 +9599,12 @@
         "align": false
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        18,
+        20
+      ],
+      "active": true
     },
     {
       "unit": 1132,
@@ -9059,7 +9683,11 @@
         "battle": "m_z19e_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     },
     {
       "unit": 1133,
@@ -9138,7 +9766,12 @@
         "battle": "m_z9wa_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        20,
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1134,
@@ -9217,7 +9850,11 @@
         "battle": "m_z19e_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
     },
     {
       "unit": 1135,
@@ -9317,10 +9954,301 @@
         "battle": "m_z10me_lo.fam"
       },
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
-      "native_verified": false
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
+    },
+    {
+      "unit": 1233,
+      "name": "HQ-9B",
+      "type": 4,
+      "native_parent": 163,
+      "weapons": [
+        {
+          "weapon": 2014534,
+          "name": "HQ-9B missile",
+          "native_weapon": 236,
+          "native_unit": null,
+          "magazine": 4,
+          "kind": "SAM",
+          "stocks": [
+            {
+              "ammo": 2014535,
+              "name": "HQ-9B missile",
+              "requested_rounds": 4,
+              "displayed_rounds": 4,
+              "logical_quantity": 4,
+              "hud_multiplier": 1,
+              "native_ammo": 154
+            }
+          ],
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
+        }
+      ],
+      "slots": 0,
+      "custom_model": {
+        "file": "hq9.fam",
+        "align": false,
+        "battle": "hq9_lo.fam"
+      },
+      "native_verified": false,
+      "specs": [
+        20
+      ],
+      "active": true
+    },
+    {
+      "unit": 1234,
+      "name": "HQ-9A",
+      "type": 4,
+      "native_parent": 163,
+      "weapons": [
+        {
+          "weapon": 2014549,
+          "name": "HQ-9A missile",
+          "native_weapon": 236,
+          "native_unit": null,
+          "magazine": 4,
+          "kind": "SAM",
+          "stocks": [
+            {
+              "ammo": 2014550,
+              "name": "HQ-9A missile",
+              "requested_rounds": 4,
+              "displayed_rounds": 4,
+              "logical_quantity": 4,
+              "hud_multiplier": 1,
+              "native_ammo": 154
+            }
+          ],
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
+        }
+      ],
+      "slots": 0,
+      "custom_model": {
+        "file": "hq9.fam",
+        "align": false,
+        "battle": "hq9_lo.fam"
+      },
+      "native_verified": false,
+      "specs": [
+        19
+      ],
+      "active": true
+    },
+    {
+      "unit": 1226,
+      "name": "J-10A",
+      "type": 16,
+      "native_parent": 917,
+      "weapons": [
+        {
+          "weapon": 2009297,
+          "name": "30 mm aircraft cannon",
+          "native_weapon": 241,
+          "native_unit": 917,
+          "magazine": 15,
+          "kind": "AUTOCANNON",
+          "stocks": [
+            {
+              "ammo": 2009301,
+              "name": "30 mm aircraft cannon ammunition",
+              "requested_rounds": 150,
+              "displayed_rounds": 150,
+              "logical_quantity": 15,
+              "hud_multiplier": 10,
+              "native_ammo": 90
+            }
+          ],
+          "basis": "Native analog loadout including repeated pylon mounts; provisional Chinese configuration.",
+          "performance": "Closest native analog; not measured Chinese weapon performance."
+        },
+        {
+          "weapon": 2009303,
+          "name": "PL-10",
+          "native_weapon": 243,
+          "native_unit": 917,
+          "magazine": 4,
+          "kind": "SAM",
+          "stocks": [
+            {
+              "ammo": 2009307,
+              "name": "PL-10 ammunition",
+              "requested_rounds": 4,
+              "displayed_rounds": 4,
+              "logical_quantity": 4,
+              "hud_multiplier": 1,
+              "native_ammo": 158
+            }
+          ],
+          "basis": "Native analog loadout including repeated pylon mounts; provisional Chinese configuration.",
+          "performance": "Closest native analog; not measured Chinese weapon performance."
+        },
+        {
+          "weapon": 2009309,
+          "name": "PL-15",
+          "native_weapon": 440,
+          "native_unit": 917,
+          "magazine": 2,
+          "kind": "SAM",
+          "stocks": [
+            {
+              "ammo": 2009313,
+              "name": "PL-15 ammunition",
+              "requested_rounds": 2,
+              "displayed_rounds": 2,
+              "logical_quantity": 2,
+              "hud_multiplier": 1,
+              "native_ammo": 311
+            }
+          ],
+          "basis": "Native analog loadout including repeated pylon mounts; provisional Chinese configuration.",
+          "performance": "Closest native analog; not measured Chinese weapon performance."
+        }
+      ],
+      "slots": 0,
+      "custom_model": {
+        "file": "m_j10a_grey.fam",
+        "battle": "m_j10a_grey_lo.fam",
+        "align": false
+      },
+      "armor_basis": "Existing PLA draft armor preserved.",
+      "native_verified": false,
+      "specs": [
+        21
+      ],
+      "active": true
+    },
+    {
+      "unit": 1232,
+      "name": "ZSL-92 MG",
+      "type": 4,
+      "native_parent": 1079,
+      "weapons": [
+        {
+          "weapon": 2014643,
+          "name": "QJC-88 12.7 mm",
+          "native_weapon": 97,
+          "native_unit": null,
+          "magazine": 30,
+          "kind": "MG",
+          "stocks": [
+            {
+              "ammo": 2014644,
+              "name": "QJC-88 12.7 mm",
+              "requested_rounds": 500,
+              "displayed_rounds": 500,
+              "logical_quantity": 100,
+              "hud_multiplier": 5,
+              "native_ammo": 70
+            }
+          ],
+          "basis": "Sam-directed fixed kit; donor performance provisional.",
+          "performance": "Native analog; no new match test."
+        }
+      ],
+      "slots": 8,
+      "custom_model": {
+        "file": "m_wz551_static.fam",
+        "battle": "m_wz551_lo_static.fam",
+        "align": false
+      },
+      "native_verified": false,
+      "specs": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
+    },
+    {
+      "unit": 1227,
+      "name": "Mi-8 Cargo",
+      "type": 8,
+      "native_parent": 7,
+      "weapons": [],
+      "slots": 21,
+      "custom_model": null,
+      "native_verified": false,
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "active": true
+    },
+    {
+      "unit": 1228,
+      "name": "Lynx ATV",
+      "type": 4,
+      "native_parent": 82,
+      "weapons": [],
+      "slots": 9,
+      "custom_model": null,
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
+    },
+    {
+      "unit": 1229,
+      "name": "CSK-131 Transport",
+      "type": 4,
+      "native_parent": 900,
+      "weapons": [],
+      "slots": 4,
+      "custom_model": {
+        "file": "mengshi.fam",
+        "align": false,
+        "battle": "mengshi_lo.fam"
+      },
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
+    },
+    {
+      "unit": 1230,
+      "name": "CSK-181 Transport",
+      "type": 4,
+      "native_parent": 1058,
+      "weapons": [],
+      "slots": 4,
+      "custom_model": null,
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
+    },
+    {
+      "unit": 1231,
+      "name": "Shaanxi Troop Truck",
+      "type": 4,
+      "native_parent": 912,
+      "weapons": [],
+      "slots": 16,
+      "custom_model": {
+        "file": "m_sx2220.fam",
+        "battle": "m_sx2220_lo.fam"
+      },
+      "native_verified": false,
+      "specs": [
+        17
+      ],
+      "active": true
     }
   ],
-  "count": 160,
+  "count": 169,
   "icon_keys": [
     "FA_PLA_AMMO_ATGM",
     "FA_PLA_AMMO_AUTOCANNON",

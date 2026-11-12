@@ -252,3 +252,6 @@ thirdparty-tools/BAModManager-main/release/
 /releases/0.6/source/UserData/FAModels/*.png
 
 /tools/pla-specs/effective-preview.json
+
+# J-10A variants are reproduced from the pinned base pack by apply_roster_revision.py.
+/releases/0.6/source/UserData/FAModels/m_j10a_grey*.fam

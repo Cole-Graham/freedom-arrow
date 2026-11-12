@@ -1,0 +1,149 @@
+{
+  "build": 31,
+  "base_build": 30,
+  "base_sha256": "809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a",
+  "native_verified": false,
+  "moves": {
+    "910": [
+      18
+    ],
+    "1049": [
+      18
+    ],
+    "915": [
+      17
+    ],
+    "916": [
+      20
+    ],
+    "918": [
+      20
+    ],
+    "929": [
+      20
+    ],
+    "944": [
+      20
+    ],
+    "937": [
+      20
+    ],
+    "955": [
+      17,
+      21
+    ],
+    "971": [
+      17,
+      21
+    ],
+    "1103": [
+      21
+    ],
+    "1134": [
+      21
+    ],
+    "1056": [
+      17
+    ],
+    "1035": [
+      21
+    ],
+    "1036": [
+      21
+    ],
+    "963": [
+      21
+    ],
+    "922": [
+      17
+    ],
+    "920": [
+      21
+    ],
+    "934": [
+      17
+    ],
+    "911": [
+      21
+    ],
+    "1061": [
+      19
+    ]
+  },
+  "removed_units": [
+    962,
+    1066,
+    1067,
+    1068,
+    1069,
+    1071,
+    1073,
+    1031,
+    1044
+  ],
+  "new_units": {
+    "J-10A": 1226,
+    "Mi-8 Cargo": 1227,
+    "Lynx ATV": 1228,
+    "CSK-131 Transport": 1229,
+    "CSK-181 Transport": 1230,
+    "Shaanxi Troop Truck": 1231,
+    "HQ-9B": 1233,
+    "HQ-9A": 1234,
+    "ZSL-92 MG": 1232
+  },
+  "decisions": [],
+  "drone_model_audit": {
+    "1084": {
+      "name": "AR-2000",
+      "custom_model": null,
+      "native_model": "DLC3_MDP01_Termit"
+    },
+    "1085": {
+      "name": "CR-500 Recon",
+      "custom_model": null,
+      "native_model": "DLC3_MDP01_Termit"
+    },
+    "1086": {
+      "name": "CR-500B",
+      "custom_model": null,
+      "native_model": "DLC3_MDP01_Termit"
+    },
+    "1105": {
+      "name": "Z-6B UAV",
+      "custom_model": null,
+      "native_model": "DLC3_MDP01_Termit"
+    }
+  },
+  "pen_targets": {
+    "PTL-02": [
+      200,
+      225,
+      4
+    ],
+    "ZTQ-15": [
+      475,
+      500,
+      18
+    ],
+    "ZTL-191": [
+      550,
+      575,
+      18
+    ]
+  },
+  "nuclear_effect": "pending; conventional explosion retained",
+  "checks": {
+    "passed": 1681,
+    "native_verified": false,
+    "infantry_body_weapon_alignment_preserved": true,
+    "non_pla_units_preserved": true
+  },
+  "nuclear_warning": {
+    "ammo": 2010399,
+    "path": "existing ActualArrow ballistic poll before team ownership filter",
+    "audio": "original synthesized replaceable draft",
+    "controls": "existing ballistic warning enable, sound mute and volume; same game bus",
+    "runtime_verified": false
+  }
+}

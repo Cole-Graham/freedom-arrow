@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "30", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "31", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -56,7 +56,7 @@ public class Runtime : MelonMod
     public override void OnUpdate() => conquest?.OnUpdate();
     public override void OnGUI() => conquest?.OnGUI();
     public override void OnSceneWasLoaded(int buildIndex,string sceneName) => conquest?.OnSceneWasLoaded(buildIndex,sceneName);
-    public override void OnDeinitializeMelon() => conquest?.OnDeinitializeMelon();
+    public override void OnDeinitializeMelon() { NuclearLaunchWarning.Shutdown(); conquest?.OnDeinitializeMelon(); }
     public override void OnInitializeMelon()
     {
         StartConquest();
@@ -112,9 +112,13 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPORT_SLOTS_FAILED: SUP tab keeps 7 slots. "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
+        try { NuclearLaunchWarning.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
     }
     public override void OnLateInitializeMelon()
     {
+        try { NuclearLaunchWarning.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
         try { conquest?.OnLateInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }

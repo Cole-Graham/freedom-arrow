@@ -1,4 +1,6 @@
-# PLA TEST Build 30
+# PLA TEST Build 31
+
+Build31 applies Sam's 12 November equipment/spec revision over exact Build30. Infantry bodies, approved HUD art, music and saved alignment are retained. Native visual and combat checks remain pending. See `tools/pla-specs/build31-roster-checks.json`. DF-31 has a separate, original synthesized warning draft through the existing ballistic alert; it respects its mute/volume settings. Launch/audio behavior is not yet proven in-game. Nuclear blast tuning remains pending.
 
 **Branch-specific infantry body presets and all15SF in night variants. Approved Build29 weapon artwork, rifle assignments and conscript ability policy retained. All24 gameplay tables, weapon alignment, geometry and materials are unchanged from29. Native appearance pending.**
 
@@ -425,3 +427,7 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 23:28:12 PST (America/Los_Angeles) — Detailed reference HUD and conscript capability rule.
 
 - 2026-11-11 23:52:08 PST (America/Los_Angeles) — Added approved branch/class infantry appearance presets for Build30.
+
+- 2026-11-12 00:30:48 PST (America/Los_Angeles) — Build31 equipment/spec roster, transport coverage and weapon drafts; preserved Build30 infantry/art.
+
+- 2026-11-12 00:44:41 PST (America/Los_Angeles) — Added a DF-31-specific original warning draft through the existing ballistic alert path and audio controls; native launch/mix and nuclear effect remain pending.

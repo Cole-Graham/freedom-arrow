@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 30",
-  "version": "30",
+  "name": "PLA TEST Build 31",
+  "version": "31",
   "type": "modpack",
-  "description": "Approved weapon cards and conscript ability policy, with branch-specific infantry presets and SF night variants.",
+  "description": "Sam roster revision: spec moves, removals, transport coverage, fixed missiles and 105 mm DU drafts; approved Build30 infantry/art retained.",
   "repo": "Cole-Graham/freedom-arrow"
 }

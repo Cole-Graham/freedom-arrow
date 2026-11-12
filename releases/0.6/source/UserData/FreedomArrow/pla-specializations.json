@@ -1,5 +1,5 @@
 {
-  "build": 30,
+  "build": 31,
   "pla_only": true,
   "hidden_fixture_units": [],
   "test_spec": 22,
@@ -2339,5 +2339,6 @@
     1,
     2,
     4
-  ]
+  ],
+  "roster_revision": "Sam 12 November: see pla-roster-revision.json"
 }

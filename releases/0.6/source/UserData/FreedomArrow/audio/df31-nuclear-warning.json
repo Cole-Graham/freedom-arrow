@@ -1,0 +1,12 @@
+{
+  "sound": "original synthesized draft",
+  "phrase": "Warning. Nuclear missile launched.",
+  "reference_only": "https://www.youtube.com/watch?v=6Ji6d-AmPHY",
+  "copied_audio": false,
+  "seconds": 4.598140589569161,
+  "peak_dbfs": -5.687474398014217,
+  "rms_dbfs": -22.399362865149467,
+  "sha256": "c91385030e48500dcb8f9dbbb0acc41699d7e8b7b3a3b9c0f52b6b502c3dff34",
+  "runtime_gain": "0.30 times existing ballistic alarm volume; game warning bus",
+  "native_listening_test": false
+}

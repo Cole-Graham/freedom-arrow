@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "30",
+  "package_version": "31",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Branch-specific body presets; all15SF use night variants. Build29 approved weapon HUD and all24 gameplay tables retained. Native inspection pending."
+  "verification": "Roster/spec and armament revision; package/table checks passed; native visual/combat tests pending."
 }
