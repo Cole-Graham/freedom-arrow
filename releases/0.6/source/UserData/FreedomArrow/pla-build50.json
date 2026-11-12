@@ -1,0 +1,96 @@
+{
+  "build": 50,
+  "base_build": 49,
+  "base_sha256": "e12aadf85b00d1fd1b7d1f1ad8fb089984b69eabdbfe45cd3330f2a8fd9192d5",
+  "changes": [
+    {
+      "unit": 1136,
+      "name": "Airborne \u7a7a\u964d\u5175",
+      "change": "renamed from Airborne Riflemen"
+    },
+    {
+      "unit": 1181,
+      "name": "Godswords \u4e1c\u65b9\u795e\u5251",
+      "change": "6x QTS-11 with grenade launcher; PF-89 removed (option A)"
+    },
+    {
+      "unit": 1186,
+      "name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
+      "change": "recon tab"
+    },
+    {
+      "unit": 961,
+      "name": "HQ-7",
+      "change": "removed: HQ-7 (HQ-7B stays)"
+    },
+    {
+      "unit": 1234,
+      "name": "HQ-9A",
+      "change": "removed: HQ-9A stowed (rows kept)"
+    },
+    {
+      "unit": 916,
+      "name": "J-16",
+      "change": "spec 20 -> 17"
+    },
+    {
+      "unit": 1242,
+      "name": "J-11D",
+      "change": "spec 17 -> 21"
+    },
+    {
+      "unit": 977,
+      "name": "J-16D",
+      "change": "spec 20 -> 17"
+    },
+    {
+      "unit": 973,
+      "name": "FH-97A",
+      "change": "spec 20 -> 17, tab 6"
+    },
+    {
+      "unit": 967,
+      "name": "GJ-11",
+      "change": "spec 17 -> 21"
+    },
+    {
+      "unit": 976,
+      "name": "MD-22",
+      "change": "spec 20 -> 20, tab 6"
+    },
+    {
+      "unit": 972,
+      "name": "WZ-8",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 1247,
+      "name": "Shaanxi HMV3 Cargo",
+      "change": "M1075A1 PLS statistics on the HEMTT model and mounts"
+    },
+    {
+      "unit": 1035,
+      "name": "PHL-16",
+      "change": "loadouts: 10x BRE3 300 mm (Smerch 300 mm copy), 8x BRE6/BRE8 370 mm, 2x Fire Dragon 480 (ATACMS copy)"
+    },
+    {
+      "unit": 934,
+      "name": "SR-5",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 934,
+      "name": "SR-5",
+      "change": "M142 HIMARS copy; Fire Dragon 70 / 70 cluster / 300 / 480 names"
+    },
+    {
+      "change": "squad weapon order rifle/AT/MG (179 rows reordered)"
+    }
+  ],
+  "checks": 1646,
+  "native_verified": false,
+  "notes": [
+    "HMV3 Cargo supply capacity comes from the model or a runtime component, not a table field; PLS statistics are copied, capacity must be checked in game",
+    "SR-5 munition names from defence press (Fire Dragon 70, Fire Dragon 300, Fire Dragon 480), not Norinco primary sources"
+  ]
+}

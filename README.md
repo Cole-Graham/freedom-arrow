@@ -1,3 +1,9 @@
+# PLA TEST Build 50
+
+Airborne Riflemen renamed Airborne. Godswords carry 6 QTS-11 with grenade launchers again (no PF-89). Mountain Leopards in the recon tab. HQ-7 removed (HQ-7B stays); HQ-9A stowed. J-16 and J-16D to PLAAF, J-11D and GJ-11 to PLAGF Motorized, FH-97A to PLAAF air tab, MD-22 to the PLAN SOF air tab, WZ-8 to PLAN SOF recon. PHL-16 loadouts: 10x BRE3 300 mm, 8x BRE6/BRE8 370 mm or 2x Fire Dragon 480. SR-5 copies the M142 HIMARS (Fire Dragon 70, Fire Dragon 70 cluster, Fire Dragon 300, Fire Dragon 480) and moves to PLAN SOF. Shaanxi HMV3 Cargo uses M1075A1 PLS statistics on the HEMTT model. Squad weapons listed rifle, AT, MG. In-game appearance and behaviour remain unverified.
+
+## Historical Build49
+
 # PLA TEST Build 49
 
 Artillery: each PLA tube and rocket system copies the main round, launcher behaviour, ammunition count and price of its vanilla counterpart (PHL-03 = Smerch, PHL-16/191 = Tornado-S round, PHL-11 = Grad, SR-5 = Uragan 220 mm, PLZ-05 = K9, PLZ-07/89 = 2S1, PLZ-45 = M109A6, PLZ-83 = 2S3M1, PLL-05 = Nona-SVK, DF-15/17/21 one Iskander missile each). DF-31 untouched. Infantry: PF-97 = MRO-Z values; HJ-8E 700 and HJ-73D 600 penetration everywhere. 53 PLA squads priced from the three most similar vanilla US/RU squads (pla-build49.json lists them). Native behaviour unverified.
@@ -575,3 +581,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:19:39 PST (America/Los_Angeles) — Build48: tank armour/penetration/ammo by generation, ATGM 10.5 standard, vehicle prices.
 
 - 2026-11-12 05:23:55 PST (America/Los_Angeles) — Build49: artillery at vanilla scale, infantry weapon fixes, nearest-vanilla squad prices.
+
+- 2026-11-12 05:34:11 PST (America/Los_Angeles) — Build50: Osama 05:24/05:31 requests (Airborne, Godswords, moves, PHL-16 loadouts, SR-5 HIMARS, HMV3 Cargo PLS, weapon order).

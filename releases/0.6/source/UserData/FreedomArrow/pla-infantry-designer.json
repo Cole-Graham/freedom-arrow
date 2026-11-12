@@ -1,12 +1,12 @@
 {
-  "build": 45,
+  "build": 50,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
     {
       "unit": 1136,
       "row": 8,
-      "name": "Airborne Riflemen \u7a7a\u964d\u6b65\u5175",
+      "name": "Airborne \u7a7a\u964d\u5175",
       "spec": 17,
       "men": 9,
       "recon": false,
@@ -2354,7 +2354,7 @@
       "name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
       "spec": 20,
       "men": 3,
-      "recon": false,
+      "recon": true,
       "troop_type": "Special forces",
       "base_rifle": "QBZ-192",
       "weapons": [

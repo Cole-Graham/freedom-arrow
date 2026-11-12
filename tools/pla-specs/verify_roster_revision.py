@@ -57,7 +57,7 @@ with zipfile.ZipFile(a.package) as z:
   if r['UnitId']==1032:ok(sum(r['MaxAvailabilityXp'+str(i)] for i in range(4))==1,'DF31 availability')
  if build>=33:
   for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
-  for uid in [1049,943,974,918,961,1063,1054]:ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
+  for uid in [1049,943,974,918,1063,1054]+([961] if build<50 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
   # Build41: CSK-181 recon card removed; transport 1230 stays
   for uid in [909,1230]+([1058] if build<41 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
  if build>=36:

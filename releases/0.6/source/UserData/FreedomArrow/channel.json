@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "49",
+  "package_version": "50",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build45 plus Shaanxi HMV3 with the HEMTT mounts/options (model parts draw), HMV3 mixed and HMV3 Cargo in every spec. Data checks only; native validation pending."
+  "verification": "Build49 plus Osama 12 Nov 05:24/05:31: Airborne name, Godswords grenade launchers, Mountain Leopards recon, HQ-7/HQ-9A removed, aircraft moves, PHL-16 loadouts, SR-5 HIMARS copy, HMV3 Cargo PLS statistics, squad weapon order. Data checks only; native validation pending."
 }
