@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 34",
-  "version": "34",
+  "name": "PLA TEST Build 35",
+  "version": "35",
   "type": "modpack",
-  "description": "Build33 plus Shaanxi HMV3 supply truck (HEMTT) for Armored, Rocket Force and Motorized.",
+  "description": "Build34 plus the latest infantry sheet edits: reserve team sizes, Marine Riflemen 8, HJ-73D team 1 launcher, FHJ-02 Incendiary Team removed.",
   "repo": "Cole-Graham/freedom-arrow"
 }

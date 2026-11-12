@@ -1,0 +1,149 @@
+{
+  "build": 35,
+  "base_build": 34,
+  "base_sha256": "69e1f84e4e24faf89810954d80037642f958da0b0c352b140dd6b39dff5ba91a",
+  "infantry_changes": [
+    {
+      "unit": 1168,
+      "name": "Reserve HJ-73D Team",
+      "men": [
+        9,
+        9
+      ],
+      "kit": [
+        [
+          [
+            "HJ-73D",
+            2
+          ]
+        ],
+        [
+          [
+            "HJ-73D",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1170,
+      "name": "Reserve QJZ-89 Team",
+      "men": [
+        9,
+        12
+      ],
+      "kit": [
+        [
+          [
+            "QJZ-89",
+            2
+          ]
+        ],
+        [
+          [
+            "QJZ-89",
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1171,
+      "name": "Reserve QLZ-87 Team",
+      "men": [
+        9,
+        12
+      ],
+      "kit": [
+        [
+          [
+            "QLZ-87",
+            2
+          ]
+        ],
+        [
+          [
+            "QLZ-87",
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1177,
+      "name": "Reserve Thermobaric Team",
+      "men": [
+        6,
+        12
+      ],
+      "kit": [
+        [
+          [
+            "FHJ-02",
+            2
+          ],
+          [
+            "QBB-95",
+            1
+          ]
+        ],
+        [
+          [
+            "FHJ-02",
+            2
+          ],
+          [
+            "QBB-95",
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "unit": 1180,
+      "name": "FHJ-02 Incendiary Team",
+      "change": "removed (struck in sheet)"
+    },
+    {
+      "unit": 1192,
+      "name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
+      "men": [
+        12,
+        8
+      ],
+      "kit": [
+        [
+          [
+            "PF-89",
+            1
+          ],
+          [
+            "QJS-161",
+            3
+          ],
+          [
+            "QLG-10A",
+            3
+          ]
+        ],
+        [
+          [
+            "PF-89",
+            1
+          ],
+          [
+            "QJS-161",
+            3
+          ],
+          [
+            "QLG-10A",
+            3
+          ]
+        ]
+      ]
+    }
+  ],
+  "sheet_snapshot": "tools/pla-specs/build35-sheet-snapshot.json",
+  "checks": 775,
+  "native_verified": false
+}

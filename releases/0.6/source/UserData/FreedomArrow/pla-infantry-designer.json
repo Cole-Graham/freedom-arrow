@@ -1,5 +1,5 @@
 {
-  "build": 34,
+  "build": 35,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -1435,7 +1435,7 @@
         {
           "name": "HJ-73D",
           "weapon": 2012643,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 175
         }
@@ -1519,7 +1519,7 @@
       "row": 41,
       "name": "Reserve QJZ-89 Team",
       "spec": 19,
-      "men": 9,
+      "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
       "base_rifle": "QBZ-191",
@@ -1537,7 +1537,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 60,
       "carriers": [
         959,
         960,
@@ -1565,7 +1565,7 @@
       "row": 42,
       "name": "Reserve QLZ-87 Team",
       "spec": 19,
-      "men": 9,
+      "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
       "base_rifle": "QBZ-191",
@@ -1583,7 +1583,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 60,
       "carriers": [
         959,
         960,
@@ -1868,7 +1868,7 @@
       "row": 48,
       "name": "Reserve Thermobaric Team",
       "spec": 19,
-      "men": 6,
+      "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
       "base_rifle": "QBZ-191",
@@ -1893,7 +1893,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 30,
+      "health": 60,
       "carriers": [
         959,
         960,
@@ -2060,7 +2060,8 @@
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "RU_FLAMETHROWER-Label",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
-      "ability_rule": "No sprint or smoke; SF exception retained"
+      "ability_rule": "No sprint or smoke; SF exception retained",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1181,
@@ -2643,7 +2644,7 @@
       "row": 61,
       "name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
       "spec": 20,
-      "men": 12,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
       "base_rifle": "QBZ-191",
@@ -2675,7 +2676,7 @@
       "body_from": 1003,
       "camo": "woodland",
       "armor": 6,
-      "health": 60,
+      "health": 40,
       "carriers": [
         1106,
         912

@@ -1,3 +1,9 @@
+# PLA TEST Build 35
+
+Build34 plus the infantry sheet edits Osama made after the Build32 import: Reserve QJZ-89 and QLZ-87 Teams 12 men (were 9), Reserve Thermobaric Team 12 (was 6), Marine Riflemen 8 (was 12), Reserve HJ-73D Team one HJ-73D (was 2), and the struck FHJ-02 Incendiary Team removed. Carriers follow the new sizes. Everything else is exactly Build34. Native validation pending.
+
+## Historical Build34
+
 # PLA TEST Build 34
 
 Adds the Shaanxi HMV3 supply truck (native HEMTT model and statistics), shared by Armored, Rocket Force and Motorized. Everything else is exactly Build33. Native appearance and resupply remain unverified.
@@ -455,3 +461,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:01:43 PST (America/Los_Angeles) — Build33 combines one-spec deck correction and latest PLAN/Rocket moves with the full Build32 infantry pass; Mi-8 Cargo is the only shared card.
 
 - 2026-11-12 01:36:00 PST (America/Los_Angeles) — Build34 adds the Shaanxi HMV3 supply truck from the HEMTT for Armored, Rocket Force and Motorized; second shared exception after Mi-8 Cargo.
+
+- 2026-11-12 01:32:53 PST (America/Los_Angeles) — Build35 applies the latest infantry sheet sizes, kit and removal over Build34.

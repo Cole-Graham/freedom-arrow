@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "34",
+  "package_version": "35",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Formatting-aware sheet reconciliation and bilingual infantry; QLG10A reference HUD; exact Build31 vehicle and approved body/art carry-forward. Native inspection pending."
+  "verification": "Build34 plus infantry sheet edits made after the Build32 import. Data checks only; native validation pending."
 }
