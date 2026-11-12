@@ -1,0 +1,13 @@
+{
+  "build": 55,
+  "base_build": 54,
+  "base_sha256": "852a0058f0f02ce0a1c07dbf7ebc4741eae20c71faed481af26bd0c4191fa2d0",
+  "ammunition": {
+    "2011459": "PL-15 ammunition = AMRAAM +500 (4500)",
+    "2011471": "PL-15 ammunition = AMRAAM +500 (4500)",
+    "2016398": "PL-15 = AMRAAM +500 (4500)",
+    "2016474": "PL-17 = AIM-260 JATM",
+    "2017953": "PL-16 = AMRAAM +500 (4500)"
+  },
+  "checks": 28372
+}

@@ -1,3 +1,9 @@
+# PLA TEST Build 55
+
+PL-15 and PL-16 copy the AMRAAM with 500 more range (4500); PL-17 copies the AIM-260 JATM (5500). PL-21 and PL-15C unchanged. Native behaviour unverified.
+
+## Historical Build54
+
 # PLA TEST Build 54
 
 Stealth jets (J-20, J-20S, J-35, J-31, J-50, J-36) gain LD-8A anti-radiation loadouts (AGM-88 HARM performance, internal) and PL-16 loadouts (PL-15 performance; 6 in the bay that holds 4 PL-15). J-16 gains 32x 250 kg bombs + 2x PL-15 + 2x PL-10. Menus may hold up to 10 loadouts. Native behaviour unverified.
@@ -615,3 +621,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:02:32 PST (America/Los_Angeles) — Build53: AKD-10 renamed HJ-10; Z-20 menu labels in Chinese weapon names.
 
 - 2026-11-12 11:13:05 PST (America/Los_Angeles) — Build54: LD-8A and PL-16 stealth loadouts, J-16 heavy bomb load.
+
+- 2026-11-12 11:16:34 PST (America/Los_Angeles) — Build55: PL-15/PL-16 = AMRAAM +500, PL-17 = JATM.

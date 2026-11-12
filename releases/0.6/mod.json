@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 54",
-  "version": "54",
+  "name": "PLA TEST Build 55",
+  "version": "55",
   "type": "modpack",
-  "description": "Build53 plus LD-8A and PL-16 stealth loadouts and the J-16 32x250 kg bomb loadout.",
+  "description": "Build54 with PL-15/PL-16 = AMRAAM +500 range and PL-17 = JATM.",
   "repo": "Cole-Graham/freedom-arrow"
 }
