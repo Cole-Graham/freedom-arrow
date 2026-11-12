@@ -1,28 +1,26 @@
+using System.Numerics;
 using FreedomArrow;
 int passed=0;
-void Clip(float ax,float ay,float bx,float by,bool expected,params float[] endpoints)
-{
-    bool got=BorderGeometry.Clip(ref ax,ref ay,ref bx,ref by,100,80);
-    if(got!=expected)throw new Exception($"Visibility {passed}: {got} != {expected}");
-    if(got&&endpoints.Length>0)
-    {
-        float[] actual={ax,ay,bx,by};
-        for(int i=0;i<4;i++)if(Math.Abs(actual[i]-endpoints[i])>.002)throw new Exception($"Endpoint {passed}/{i}: {actual[i]} != {endpoints[i]}");
-    }
-    passed++;
-}
-Clip(10,20,90,70,true,10,20,90,70);
-Clip(-20,40,120,40,true,0,40,100,40);
-Clip(120,40,-20,40,true,100,40,0,40);
-Clip(50,-100,50,100,true,50,0,50,80);
-Clip(-10,-10,100,100,true,0,0,80,80);
-Clip(-10,90,110,-30,true,0,80,80,0);
-Clip(-10,0,-10,80,false);
-Clip(0,90,100,90,false);
-Clip(0,0,0,80,true,0,0,0,80);
-Clip(100,80,100,80,true,100,80,100,80);
-Clip(-100,-100,-10,-10,false);
-Clip(float.NaN,0,100,80,false);
-Clip(0,0,float.PositiveInfinity,80,false);
-Clip(-1e20f,40,1e20f,40,true,0,40,0,40); // Precision loss stays bounded; never send huge coordinates to GUI.
-Console.WriteLine($"PASS {passed} border clipping cases. No native render claim.");
+void Check(bool ok,string what){if(!ok)throw new Exception($"Case {passed}: {what}");passed++;}
+const float Pixel=.001f;
+var line=new[]{new Vector3(0,0,0),new Vector3(100,0,0),new Vector3(200,0,0)};
+var v=new Vector3[6];
+// Seen from above at 1000 units: 4 pixels = 4 units across, perpendicular to the border, lifted by half width.
+BorderGeometry.Ribbon(line,new Vector3(100,1000,0),Pixel,4,v);
+float w=Vector3.Distance(v[2],v[3]);
+Check(Math.Abs(w-4)<.01f,$"width {w}");
+Check(Math.Abs(Vector3.Dot(Vector3.Normalize(v[3]-v[2]),Vector3.UnitX))<1e-4f,"perpendicular");
+Check(Math.Abs((v[2].Y+v[3].Y)/2-(BorderGeometry.Lift+2))<.01f,"lift");
+// Twice as far: twice as wide in world units, the same on screen.
+BorderGeometry.Ribbon(line,new Vector3(100,2000,0),Pixel,4,v);
+Check(Math.Abs(Vector3.Distance(v[2],v[3])-8)<.02f,"distance scaling");
+// Seen from the side at ground level: the strip stands up toward the camera, so it does not collapse to zero height.
+BorderGeometry.Ribbon(line,new Vector3(100,0,-1000),Pixel,4,v);
+Check(Math.Abs(v[3].Y-v[2].Y)>3.9f,"side view");
+// Looking straight along the border: fallback direction, finite vertices.
+BorderGeometry.Ribbon(line,new Vector3(-1000,0,0),Pixel,4,v);
+Check(v.All(p=>float.IsFinite(p.X)&&float.IsFinite(p.Y)&&float.IsFinite(p.Z)),"degenerate view");
+// Endpoints use one-sided tangents.
+BorderGeometry.Ribbon(line,new Vector3(0,1000,0),Pixel,4,v);
+Check(Math.Abs(Vector3.Distance(v[0],v[1])-4)<.01f,"endpoint");
+Console.WriteLine($"PASS {passed} border strip cases. No native render claim.");

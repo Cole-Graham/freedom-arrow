@@ -1,13 +1,13 @@
 # Map, border and lobby test batch
 
-**lat.21 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
+**lat.22 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
 
 ## Source and package
 
 - Branch: `codex/batch/lateralus/map-borders-lobby`.
 - Base: `codex/0.7-development`, `939658d500d4fee4a27c9ad7ac655e6f47d9e6c8`.
-- Package: `FreedomArrow-0.7.0-devtest.lat.21.bamod`.
-- SHA256: `2569eb86713b2bf408ef3016691c005aa5295804c9a83a17be838b2b8d5b5d39`.
+- Package: `FreedomArrow-0.7.0-devtest.lat.22.bamod`.
+- SHA256: `1b7e59bb05c05a05546eb3f671d55ff0d59508f1b8f07c6bcd95261329cd6b59`.
 - This is a complete gameplay candidate. It does not contain the separate PLA pack or replace shared model/music assets. Public dev.45/assets 0.1.14 and the main integration branch remain pinned.
 
 ## What changes
@@ -20,6 +20,7 @@
 6. `[FA] [5v5] Airport 0.1` is Lateralus's 12 November export of his redesigned Airport, with his script, built by `scenarios/airport_5v5`. It replaces the vanilla-built `[FA] Airport 0.1`. Values: H and J 4; A and D 3; B, C, E, F, G and I 2. Five slots per team. The native size logic is removed: lobby Size option 53, Play Zone Small (uid 55), and nodes 22, 34–36, 187, 196–198, 210, 223, 225, 228, 229, 231, 232, 239, 245, 248, 249, 253, 257, 264, 265, 337 and their comments. Conquest node 330 now starts directly when the match is not matchmaking. Play Zone Large (uid 10, 9000×9000) is the only play area. Nodes 223/225/228/229 were the editor's "missing any target" warnings: they hid native zones 40 (Golf) and 46 (India) for medium and small lobbies, and those zones are not in the redesign. Zone labels Golf, Hotel, India and Juliett showed other names and now match. The Skirmish flavor has no deployment pause and bots in all 10 slots.
 7. Every FA map's objectives use the vanilla 15-second capture time (`common.CAPTURE_SECONDS`, set in `write_flavor`). Dead Center 1v1, Chkalovsk and Highway were 5 seconds from their editor exports; the other maps were already 15 seconds. No other scenario byte changes.
 8. lat.21 border fix. Lateralus tested lat.20 on 12 November: no change, only the vanilla orange wall. Measured in GameAssembly.dll: zero direct calls to `PlayableZone..ctor` (RVA 0x70F5A0), so the lat.18–20 constructor postfix never ran and the overlay had no zone. `add_OnZoneBoundsChanged` (0x70F6A0) has one direct caller, `MiniMapBehaviour.OnMissionLoaded`, and `SetPlayZone` (0x70F2F0) one, `PlayableZoneScript.OnActivatePlayableZone`. lat.21 takes the zone from postfixes on these two. `ContainsForPlayer` (7 callers, including target search) is not hooked, to avoid per-search cost. If `Camera.main` is null, the enabled screen camera with the highest depth is used. Not yet run in a game.
+9. lat.22 border look. Lateralus tested lat.21 on 12 November (screenshots in the task thread): the line drew, but it was aliased, drawn over trees, units and the HUD, and he asked for white without the dark outline, maybe slightly transparent. lat.22 removes the IMGUI overlay. A MeshRenderer strip faces the camera and is rebuilt when the camera moves, so its width stays about 4 pixels. Its material is a runtime copy of the game's `ObjZone_Border` (HDRP/Unlit, transparent alpha blend, `_ZTestTransparent` 4 = LessEqual, read from the prefabsme bundle), with `_UnlitColor` white at alpha 0.8 and a 32-texel alpha ramp across the strip for soft edges. The renderer uses the objective-border renderer's layer when found (else 0), casts no shadows and writes no motion vectors. Terrain heights are sampled every 10 engine units (at most 1025 points per edge); the strip is lifted 1.5 units plus its half width. Host tests check the strip's screen width, direction, lift and fallbacks (7 cases). Expected trade-off: tall tree canopy now hides the line in forests. Not yet run in a game.
 
 ## Evidence and limits
 
@@ -35,7 +36,7 @@ These are compilation, code/data and host-test results. They do not prove the na
 
 ## Test in the game
 
-Import lat.21 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
+Import lat.22 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
 
 - Check Chkalovsk at Alpha, Charlie and both spawn sides; confirm the border and legal movement agree.
 - Check Highway's A–G symbols and weights, both team cameras, initial deployment and conquest scoring. Confirm the native active box clips the authored zone at Frontiers' full map edge.
@@ -52,3 +53,4 @@ Import lat.21 through Mod Manager, then check the exact version label. Use the o
 - 2026-11-11 23:51:28 PST (America/Los_Angeles) — Superseded internal lat.18 with lat.19: run native accessibility before native fill so an empty/missing-map dropdown remains disabled. Map/border code unchanged.
 - 2026-11-12 01:57:27 PST (America/Los_Angeles) — lat.20: [5v5] Airport 0.1 replaces [FA] Airport 0.1, size logic removed; 15-second capture time on every FA map.
 - 2026-11-12 02:46:12 PST (America/Los_Angeles) — lat.21: border hook fix after Lateralus's lat.20 report; caller evidence from GameAssembly.
+- 2026-11-12 03:09:31 PST (America/Los_Angeles) — lat.22: in-scene white border strip using the objective-border material, after Lateralus's lat.21 screenshots.

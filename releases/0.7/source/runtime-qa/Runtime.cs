@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.21", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.7.0-devtest.lat.22", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -66,7 +66,7 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         LobbyDeckRefresh.Update();
     }
-    public override void OnGUI() {PlayableBorders.Draw();conquest?.OnGUI();}
+    public override void OnGUI() => conquest?.OnGUI();
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
