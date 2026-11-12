@@ -1,7 +1,7 @@
 {
   "channel": "live",
-  "package_version": "0.8.0-dev.1",
+  "package_version": "0.8.0-dev.2",
   "spotting": "vanilla",
   "deployment_status": "live",
-  "verification": "0.8.0-dev.1 = PLA TEST Build 68 content (China on 0.7.0-dev.58). Data checks passed; in-game check of the 0.8 identity before the manifest switch."
+  "verification": "0.8.0-dev.1 plus CSK-131 seats and SX2190 removal. Data checks passed; in-game check pending."
 }

@@ -1,3 +1,12 @@
+# Freedom Arrow 0.8.0-dev.2
+
+- CSK-131 Mengshi and CSK-131 Transport: 7 seats (the Tigr model's vanilla seats; were 4), now carrying the Airborne squads of 7 or fewer.
+- Shaanxi SX2190 removed (Shaanxi Troop Truck stays).
+
+Models and music unchanged: Freedom Arrow — Models and Music 0.2.0.
+
+## Historical 0.8.0-dev.1
+
 # Freedom Arrow 0.8.0-dev.1
 
 Freedom Arrow 0.8: China (PLA) as the third nation on the full 0.7.0-dev.58 game. Same game content as PLA TEST Build 68; this build changes the identity to Freedom Arrow 0.8.0-dev.1 and ships as two launcher packages: gameplay `FreedomArrow-0.8.0-dev.1.bamod` and models/music `FreedomArrow-Assets-0.2.0.bamod`. Change log: Library → Changelogs → Freedom Arrow Changes 0.8.
@@ -754,3 +763,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:25:45 PST (America/Los_Angeles) — Build68: JRVG-1 on the Mark 45 naval gun.
 
 - 2026-11-12 13:28:26 PST (America/Los_Angeles) — 0.8.0-dev.1: Build 68 content as Freedom Arrow 0.8, live package split.
+
+- 2026-11-12 13:42:25 PST (America/Los_Angeles) — 0.8.0-dev.2: CSK-131 seats, SX2190 removed.

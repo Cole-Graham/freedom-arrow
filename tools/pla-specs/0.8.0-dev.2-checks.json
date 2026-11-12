@@ -1,0 +1,52 @@
+{
+  "version": "0.8.0-dev.2",
+  "base": "0.8.0-dev.1",
+  "base_sha256": "b1b8c206b30ba07e72eef3bde0b6599cb94de74f19d7e262eaa83859063ddae1",
+  "request": "Osama 12 Nov 13:38 PST",
+  "csk131": {
+    "CSK-131 Mengshi": {
+      "seats": [
+        4,
+        7
+      ],
+      "now_carries": [
+        "HJ-12 Team (5)",
+        "Tank Hunters 坦克杀手 (6)",
+        "QLU-11 Team (5)",
+        "Pathfinders 先遣队 (7)",
+        "QW-12 Patrol 防空巡逻 (5)"
+      ]
+    },
+    "CSK-131 Transport": {
+      "seats": [
+        4,
+        7
+      ],
+      "now_carries": [
+        "HJ-12 Team (5)",
+        "Tank Hunters 坦克杀手 (6)",
+        "QLU-11 Team (5)",
+        "Pathfinders 先遣队 (7)",
+        "QW-12 Patrol 防空巡逻 (5)"
+      ]
+    }
+  },
+  "sx2190": {
+    "specs_removed": [
+      17
+    ],
+    "was_carrier_for": [
+      "Airborne 空降兵",
+      "HJ-12 Team",
+      "Tank Hunters 坦克杀手",
+      "QLU-11 Team",
+      "Pathfinders 先遣队",
+      "Thunder Gods 雷神",
+      "Snipers 狙击组",
+      "QW-12 Patrol 防空巡逻",
+      "Assault Raiders 突击队",
+      "Recon 侦察组"
+    ]
+  },
+  "checks": 17464
+}

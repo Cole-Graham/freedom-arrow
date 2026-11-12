@@ -1,0 +1,39 @@
+{
+  "version": "0.8.0-dev.2",
+  "build": 70,
+  "previous": "0.8.0-dev.1",
+  "assets_version": "0.2.0",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.0.bamod",
+    "sha256": "ef5da6ae7e8d01c6f40d40bf49245c862de515271515dd1ba2421821338757be",
+    "size": 4031291500,
+    "files": 8005
+  },
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.2-complete.bamod",
+    "sha256": "f66550baa2a8682d775c7e075aa5229cfd25fe515f0a1c0796db9d73f12d30eb",
+    "size": 4101183754,
+    "files": 8139
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.2.bamod",
+    "sha256": "d1e6e379797c8a95bdffb8a7e5648f21cbee71dcd2cceae8dd57f977959040e8",
+    "size": 69892942,
+    "files": 136
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.2.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
