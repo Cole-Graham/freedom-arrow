@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "42",
+  "package_version": "43",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build41 plus Z-10K and a Z-10 copy in Air Force (no Z-10 recon cards), QLB-06 for Assault Raiders, PF-98 weapon card and revised spec badges. Data checks only; native validation pending."
+  "verification": "Build42 plus Osama 12 Nov 03:41-03:57: four-tier MANPAD ladder, Tank Hunters DZT-98, removals and moves, ZTQ-15 Recon and autoloader, Lynx ATV loadouts, J-35/J-31 model swap with a low-vis J-31. Data checks only; native validation pending."
 }

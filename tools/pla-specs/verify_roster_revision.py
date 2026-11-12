@@ -50,7 +50,8 @@ with zipfile.ZipFile(a.package) as z:
  for name,entry in models.items():
   for field in ['file','battle']:
    if entry.get(field):ok('UserData/FAModels/'+entry[field] in z.namelist(),('missing model',name,entry[field]))
- for uid in [1227,1228,1229,1230,1231]:ok(not ammo(uid),('cargo armed',uid))
+ # Build43: Lynx ATV (1228) carries the M1301 ISV weapons (Osama 12 Nov); the other carriers stay unarmed.
+ for uid in [1227,1229,1230,1231]+([1228] if build<43 else []):ok(not ammo(uid),('cargo armed',uid))
  for sid in range(17,22):ok(any(r['UnitId']==1227 and r['SpecializationId']==sid for r in t['SpecializationAvailabilitiesJson'].values()),('Mi8 spec missing',sid))
  for r in t['SpecializationAvailabilitiesJson'].values():
   if r['UnitId']==1032:ok(sum(r['MaxAvailabilityXp'+str(i)] for i in range(4))==1,'DF31 availability')

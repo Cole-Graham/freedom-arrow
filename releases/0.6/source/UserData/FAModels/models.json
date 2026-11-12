@@ -89,8 +89,8 @@
     "align": false
   },
   "PLA J-35": {
-    "file": "m_j35n_fixed.fam",
-    "battle": "m_j35n_fixed_lo.fam",
+    "file": "m_j35_cg.fam",
+    "battle": "m_j35_lo.fam",
     "align": false
   },
   "PLA PHL-11": {
@@ -332,8 +332,8 @@
     "align": false
   },
   "PLA J-31": {
-    "file": "m_j35_cg.fam",
-    "battle": "m_j35_lo.fam",
+    "file": "m_j31_lowvis.fam",
+    "battle": "m_j31_lowvis_lo.fam",
     "align": false
   },
   "PLA WZ-8": {
@@ -596,6 +596,11 @@
   "PLA Air Force Z-10": {
     "file": "m_z10_black.fam",
     "battle": "m_z10_black_lo.fam",
+    "align": false
+  },
+  "PLA ZTQ-15 Recon": {
+    "file": "m_ztq15_green_static.fam",
+    "battle": "m_ztq15_green_lo_static.fam",
     "align": false
   }
 }

@@ -1,3 +1,9 @@
+# PLA TEST Build 43
+
+Four-tier MANPAD ladder, each copying a vanilla missile: FN-6 = Igla-N (FN-6 Team), HN-6 = FIM-92F Stinger (Motorized AA Troopers, Air Defense Scouts), QW-2 = Igla-S (Mechanized and Marine QW-2 Teams), QW-12 = Verba (QW-12 Patrol, Sea Dragons). Tank Hunters carry 6 DZT-98 thermobaric rockets, 600 m, no vehicle or helicopter targets. Removed: Recon HJ-8E Ambush Team, ZTZ-99A2, ZTZ-99G, VT-4, J-10CE. MD-22 to PLAN SF, HQ-9B to Rocket Force. New ZTQ-15 Recon in Armored (Very Good Optics); ZTQ-15 gun autoloaded, 4-5 s reload. HJ-10 name restored. Lynx ATV has the M1301 ISV weapons and M240/M2/Mk19 options. Z-19E cards renamed Z-19 and Z-19 Recon. J-35 uses the former J-31 model; J-31 uses the J-35 model with the low-vis texture (no Chinese writing). In-game appearance and behaviour remain unverified.
+
+## Historical Build42
+
 # PLA TEST Build 42
 
 Air Force has Z-10K and a Z-10 (copy of the Armored Z-10); the Z-10K Recon and Z-10 Recon cards are removed. Assault Raiders carry one QLB-06, a handheld 35 mm launcher copied from the vanilla M32 MGL. PF-98 and PF-98A use a weapon card traced from Osama's PF-98 icon. Spec badges: the Bayi star is removed from Air Force and Armored and the emblem enlarged; Navy shows the enlarged anchor with a small Bayi star on the shank; Rocket keeps its original badge. Everything else is exactly Build41. In-game appearance remains unverified.
@@ -519,3 +525,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 03:24:21 PST (America/Los_Angeles) — Build41: Osama's 12 Nov roster batch (removals, spec moves, designation names, SF helicopter copies, Y-8 Harvest Hawk, QBZ-95 Rocket Force rifles, Godswords, tabs, recon helicopters without missiles, QBU-191 suppressed, QJY-201 card, J-11B J-16 model, J-50 probe stowed, Mi-8 Cargo to Helicopters).
 
 - 2026-11-12 03:41:02 PST (America/Los_Angeles) — Build42: Air Force Z-10K + Z-10, Z-10 recon cards removed, QLB-06 for Assault Raiders, PF-98 weapon card, spec badges without the Bayi star (small star on Navy).
+
+- 2026-11-12 04:03:00 PST (America/Los_Angeles) — Build43: MANPAD ladder, Tank Hunters DZT-98, removals and moves, ZTQ-15 Recon and autoloader, HJ-10 name, Lynx ATV loadouts, Z-19 names, J-35/J-31 model swap (low-vis J-31).

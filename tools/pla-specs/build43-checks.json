@@ -1,0 +1,143 @@
+{
+  "build": 43,
+  "base_build": 42,
+  "base_sha256": "30f165e9960df5fbd1b91331935cb5d7c03d3cdfd94a7746c21a13a5b7678c7d",
+  "changes": [
+    {
+      "unit": 1169,
+      "name": "FN-6 Team",
+      "change": "FN-6 tier (Igla-N)"
+    },
+    {
+      "unit": 1197,
+      "name": "Motorized AA Troopers \u9632\u7a7a\u73ed",
+      "change": "HN-6 tier (FIM-92F Stinger)"
+    },
+    {
+      "unit": 1206,
+      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf",
+      "change": "HN-6 tier (FIM-92F Stinger)"
+    },
+    {
+      "unit": 1153,
+      "name": "Mechanized QW-2 Team",
+      "change": "QW-2 tier (Igla-S (unchanged; already this))"
+    },
+    {
+      "unit": 1194,
+      "name": "Marine QW-2 Team",
+      "change": "QW-2 tier (Igla-S (unchanged; already this))"
+    },
+    {
+      "unit": 1223,
+      "name": "Test QW-2 Escort",
+      "change": "QW-2 tier (Igla-S (unchanged; already this))"
+    },
+    {
+      "unit": 1145,
+      "name": "QW-12 Patrol \u9632\u7a7a\u5de1\u903b",
+      "change": "QW-12 tier (Verba)"
+    },
+    {
+      "unit": 1191,
+      "name": "Sea Dragons \u86df\u9f99",
+      "change": "QW-12 tier (Verba)"
+    },
+    {
+      "unit": 1139,
+      "name": "Tank Hunters \u5766\u514b\u6740\u624b",
+      "change": "DZT-98: 6 rockets, 600 m, no vehicles or helicopters"
+    },
+    {
+      "unit": 1165,
+      "name": "Recon HJ-8E Ambush Team",
+      "change": "removed: PLAGF has no recon HJ-8 teams"
+    },
+    {
+      "unit": 939,
+      "name": "ZTZ-99A2",
+      "change": "removed: ZTZ-99A2"
+    },
+    {
+      "unit": 948,
+      "name": "ZTZ-99G",
+      "change": "removed: ZTZ-99G"
+    },
+    {
+      "unit": 1072,
+      "name": "VT-4 / Al-Hyder",
+      "change": "removed: VT-4"
+    },
+    {
+      "unit": 1087,
+      "name": "J-10CE",
+      "change": "removed: J-10CE"
+    },
+    {
+      "unit": 976,
+      "name": "MD-22",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 1233,
+      "name": "HQ-9B",
+      "change": "spec 20 -> 19"
+    },
+    {
+      "unit": 1240,
+      "name": "ZTQ-15 Recon",
+      "change": "new Armored recon copy of ZTQ-15; Very Good Optics"
+    },
+    {
+      "unit": 936,
+      "name": "HJ-10",
+      "change": "renamed from AFT-10"
+    },
+    {
+      "unit": 940,
+      "name": "Z-19",
+      "change": "renamed from Z-19E"
+    },
+    {
+      "unit": 1132,
+      "name": "Z-19 Recon",
+      "change": "renamed from Z-19E Recon"
+    },
+    {
+      "unit": 1228,
+      "name": "Lynx ATV",
+      "change": "M1301 ISV weapons and M240/M2/Mk19 options"
+    },
+    {
+      "units": [
+        921,
+        971
+      ],
+      "change": "J-35 uses the former J-31 model; J-31 uses the J-35 model with the low-vis texture"
+    }
+  ],
+  "checks": 1147,
+  "native_verified": false,
+  "new_ids": {
+    "ztq15_recon": 1240,
+    "dzt98_tank_hunters": 2016058,
+    "manpad": {
+      "FN-6": [
+        2016054,
+        2016055
+      ],
+      "HN-6": [
+        2012081,
+        2012082
+      ],
+      "QW-2": [
+        2012288,
+        2012289
+      ],
+      "QW-12": [
+        2016056,
+        2016057
+      ]
+    }
+  }
+}

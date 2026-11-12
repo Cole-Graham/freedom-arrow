@@ -1,5 +1,5 @@
 {
-  "build": 42,
+  "build": 43,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -406,7 +406,7 @@
     {
       "unit": 1145,
       "row": 14,
-      "name": "HN-6 Patrol \u9632\u7a7a\u5de1\u903b",
+      "name": "QW-12 Patrol \u9632\u7a7a\u5de1\u903b",
       "spec": 17,
       "men": 5,
       "recon": false,
@@ -421,8 +421,8 @@
           "native_weapon": 53
         },
         {
-          "name": "HN-6",
-          "weapon": 2012081,
+          "name": "QW-12",
+          "weapon": 2016056,
           "quantity": 1,
           "slot": "special",
           "native_weapon": 583
@@ -1485,7 +1485,7 @@
     {
       "unit": 1169,
       "row": 40,
-      "name": "HN-6 Team",
+      "name": "FN-6 Team",
       "spec": 19,
       "men": 9,
       "recon": false,
@@ -1493,8 +1493,8 @@
       "base_rifle": "QBZ-95",
       "weapons": [
         {
-          "name": "HN-6",
-          "weapon": 2012081,
+          "name": "FN-6",
+          "weapon": 2016054,
           "quantity": 2,
           "slot": "special",
           "native_weapon": 583
@@ -2631,8 +2631,8 @@
           "native_weapon": 172
         },
         {
-          "name": "QW-2",
-          "weapon": 2012288,
+          "name": "QW-12",
+          "weapon": 2016056,
           "quantity": 1,
           "slot": "special",
           "native_weapon": 537
@@ -2760,7 +2760,7 @@
     {
       "unit": 1194,
       "row": 63,
-      "name": "Marine HN-6 Team",
+      "name": "Marine QW-2 Team",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2775,8 +2775,8 @@
           "native_weapon": 30
         },
         {
-          "name": "HN-6",
-          "weapon": 2012081,
+          "name": "QW-2",
+          "weapon": 2012288,
           "quantity": 2,
           "slot": "special",
           "native_weapon": 583
