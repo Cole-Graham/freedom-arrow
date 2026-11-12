@@ -1,5 +1,5 @@
 {
-  "build": 26,
+  "build": 27,
   "approval_basis": "Sam voice message1570243627152842833: all latest designs perfect; add to PLA test; five branch spec icons",
   "approved_count": 13,
   "profiles": {
@@ -199,7 +199,8 @@
       "address": "FA_CHINA_MOTORIZED",
       "method": "Exact approved Motorized unit master reused; fit to original128x128 native spec canvas",
       "master_sha256": "718172f17e3894e80cd8d67dcc209c141814fbfbe7ab86ccdcaf9ecf5c6aaca5",
-      "png_sha256": "1d0664ad07b6c8cd6338b7279e0448dbf22a9dc2d679e3aea1009ce8441349e9"
+      "png_sha256": "88acf93eae01dca48b6b84b56b0334e56cebd40c1b039032d69e449e113bc284",
+      "colour_revision_build27": "Clean-white mask; exact layout/source master retained"
     }
   ],
   "source_gameplay_tables_changed": false,
@@ -296,5 +297,6 @@
       }
     ],
     "user_instruction": "Only contrast; exact shapes preserved. Chinese characters clarified by Sam."
-  }
+  },
+  "render_revision_build27": "Input masters retained by hash; native outputs use clean-white SVG masks. Three reopened motifs use source photographs. See pla-white-unit-icons.json."
 }

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "custom_unit_families": 26,
+  "unit_pngs_clean_white": 52,
+  "changed_pngs": 53,
+  "other57_pngs_byte_identical": true,
+  "four_service_badges_and_flag_unchanged": true,
+  "all_original_master_hashes_retained": true,
+  "all_unit_canvases_unchanged": true,
+  "interior_RGB": [
+    255,
+    255,
+    255
+  ],
+  "new_motifs_exact_photo_mask": 3,
+  "native_verified": false
+}

@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "26",
+  "package_version": "27",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Runtime MelonInfo identity corrected to26; all Build25 artwork and gameplay retained."
+  "verification": "Three source-photo unit motifs and white/halo cleanup across26customunitfamilies; all gameplay unchanged."
 }

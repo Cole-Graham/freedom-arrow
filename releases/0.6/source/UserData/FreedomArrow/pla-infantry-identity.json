@@ -1,5 +1,5 @@
 {
-  "build": 26,
+  "build": 27,
   "scope": "Short English SF names and refined central emblems;17 mixed line/security squads use patch motifs; dedicated support teams use weapon thumbnails. Portraits, internal IDs, loadouts, ammo, stats and28 rigging fixtures retained.",
   "units": [
     {
@@ -18,7 +18,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLAAF Airborne Corps",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1137,
@@ -34,7 +35,8 @@
       "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 408
+      "native_donor_unit": 408,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1138,
@@ -52,7 +54,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLAAF Airborne Corps",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1139,
@@ -68,7 +71,8 @@
       "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 63
+      "native_donor_unit": 63,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1140,
@@ -84,7 +88,8 @@
       "art_basis": "Owned QLU11 side contour for precision-grenade weapon team",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": null
+      "native_donor_unit": null,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1141,
@@ -100,7 +105,8 @@
       "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 400
+      "native_donor_unit": 400,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1142,
@@ -115,7 +121,8 @@
       "art_source": "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
-      "icon_kind": "branch_insignia"
+      "icon_kind": "branch_insignia",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1143,
@@ -133,7 +140,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Leishen Commandos \u2014 Airborne Recon",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1144,
@@ -149,7 +157,8 @@
       "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 333
+      "native_donor_unit": 333,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1145,
@@ -165,7 +174,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1146,
@@ -183,7 +193,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLAAF Airborne Corps",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1147,
@@ -199,7 +210,8 @@
       "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 117
+      "native_donor_unit": 117,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1148,
@@ -215,7 +227,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1149,
@@ -231,7 +244,8 @@
       "art_basis": "Native scout/observation equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 65
+      "native_donor_unit": 65,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1150,
@@ -249,7 +263,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLAAF Airborne Corps",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1151,
@@ -267,7 +282,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Ground Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1152,
@@ -283,7 +299,8 @@
       "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 121
+      "native_donor_unit": 121,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1153,
@@ -299,7 +316,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1154,
@@ -315,7 +333,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1155,
@@ -331,7 +350,8 @@
       "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 63
+      "native_donor_unit": 63,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1156,
@@ -347,7 +367,8 @@
       "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 117
+      "native_donor_unit": 117,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1157,
@@ -363,7 +384,8 @@
       "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 400
+      "native_donor_unit": 400,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1158,
@@ -381,7 +403,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Ground Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1159,
@@ -399,7 +422,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Ground Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1160,
@@ -414,7 +438,8 @@
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
-      "icon_kind": "branch_insignia"
+      "icon_kind": "branch_insignia",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1161,
@@ -430,7 +455,8 @@
       "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 333
+      "native_donor_unit": 333,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1162,
@@ -446,7 +472,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1163,
@@ -464,7 +491,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Ground Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1164,
@@ -480,7 +508,8 @@
       "art_basis": "Native scout/observation equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 65
+      "native_donor_unit": 65,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1165,
@@ -496,7 +525,8 @@
       "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 121
+      "native_donor_unit": 121,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1166,
@@ -514,7 +544,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA reserve infantry",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1167,
@@ -532,7 +563,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA reserve infantry",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1168,
@@ -548,7 +580,8 @@
       "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 128
+      "native_donor_unit": 128,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1169,
@@ -564,7 +597,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1170,
@@ -580,7 +614,8 @@
       "art_basis": "Tripod heavy machine-gun team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 400
+      "native_donor_unit": 400,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1171,
@@ -596,7 +631,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1172,
@@ -612,7 +648,8 @@
       "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 63
+      "native_donor_unit": 63,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1173,
@@ -628,7 +665,8 @@
       "art_basis": "Native light ATGM team icon; Chinese launcher geometry remains a stand-in; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 128
+      "native_donor_unit": 128,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1174,
@@ -646,7 +684,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Liren Reconnaissance \u2014 Missile-Site Recon",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1175,
@@ -664,7 +703,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Rocket Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1176,
@@ -679,7 +719,8 @@
       "art_source": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Rocket_Force_shoulder_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
-      "icon_kind": "branch_insignia"
+      "icon_kind": "branch_insignia",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1177,
@@ -695,7 +736,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1178,
@@ -711,7 +753,8 @@
       "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 121
+      "native_donor_unit": 121,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1179,
@@ -729,7 +772,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Rocket Force",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1180,
@@ -745,7 +789,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1181,
@@ -763,7 +808,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Dongfang Shenjian \u2014 Digital Assault",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1182,
@@ -781,7 +827,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Xiangjian Commandos \u2014 Breachers",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1183,
@@ -793,14 +840,15 @@
       "profile": "BLOOD_WOLF",
       "address": "FA_PLA_INF_BLOOD_WOLF",
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/lj/4838532.html",
-      "art_source": "https://www.mod.gov.cn/gfbw/wzll/lj/4838532.html",
-      "art_basis": "Original game emblem inspired by the documented English unit name; exact issued patch not verified. Retains the separately sourced formation identity.",
+      "art_source": "https://forum.warthunder.com/t/more-chinese-decal/243731",
+      "art_basis": "Photographed unit-sign emblem labelled \u8840\u72fc\u52b2\u65c5; wolf/crossed-sword motif. Not an independently authenticated current issued patch.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Xuelang Commandos \u2014 Shock Team",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
+      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
+      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1184,
@@ -819,7 +867,8 @@
       "previous_build20_display_name": "Tianlang Commandos \u2014 QLU / Sniper Recon",
       "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "previous_build21_display_name": "Sky Wolves"
+      "previous_build21_display_name": "Sky Wolves",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1185,
@@ -837,7 +886,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Nanguo Lijian \u2014 Fire Support",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1186,
@@ -849,15 +899,16 @@
       "profile": "PLATEAU_LEOPARD",
       "address": "FA_PLA_INF_PLATEAU_LEOPARD",
       "identity_source": "https://military.people.com.cn/n1/2017/0730/c1011-29437331.html",
-      "art_source": "https://military.people.com.cn/n1/2017/0730/c1011-29437331.html",
-      "art_basis": "Original game emblem inspired by the documented English unit name; exact issued patch not verified. Retains the separately sourced formation identity.",
+      "art_source": "https://forum.warthunder.com/t/more-chinese-decal/243731",
+      "art_basis": "Photographed cloth patch labelled \u9ad8\u539f\u96ea\u8c79 / HIGHLAND SNOW LEOPARD; roaring profile extracted. Current-issued authenticity unverified.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Gaoyuan Xuebao \u2014 Mountain Team",
       "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch",
-      "previous_build21_display_name": "Plateau Snow Leopards"
+      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
+      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified",
+      "previous_build21_display_name": "Plateau Snow Leopards",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1187,
@@ -869,13 +920,15 @@
       "profile": "POLICE",
       "address": "FA_PLA_INF_POLICE",
       "identity_source": "https://gaj.beijing.gov.cn/xxfb/jwbd/201912/t20191220_1367050.html",
-      "art_source": "https://commons.wikimedia.org/wiki/File:\u4e2d\u534e\u4eba\u6c11\u5171\u548c\u56fd\u4eba\u6c11\u8b66\u5bdf\u8b66\u5fbd.svg",
-      "art_basis": "Parent public-security badge motif fallback; exact Blue Sword patch unverified",
+      "art_source": "https://www.ebay.com/itm/313568352844",
+      "art_basis": "Photographed commercial Blue Sword cloth patch. Two crossed swords corroborated by contemporary news. Current-issued authenticity unverified.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Blue Sword \u2014 Beijing SWAT",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
+      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified"
     },
     {
       "unit": 1188,
@@ -894,7 +947,8 @@
       "previous_build20_display_name": "Falcon Commandos \u2014 Counter-Terror Assault",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
+      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1189,
@@ -912,7 +966,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Snow Leopard Commandos \u2014 Raid Team",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1190,
@@ -930,7 +985,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Jiaolong Commandos \u2014 Marine Assault",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1191,
@@ -948,7 +1004,8 @@
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Jiaolong Commandos \u2014 Maritime Recon",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained"
+      "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1192,
@@ -966,7 +1023,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "PLA Navy Marine Corps",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1193,
@@ -982,7 +1040,8 @@
       "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 408
+      "native_donor_unit": 408,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1194,
@@ -998,7 +1057,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1195,
@@ -1014,7 +1074,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1196,
@@ -1032,7 +1093,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "Historical80th Motorized Infantry Brigade",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1197,
@@ -1050,7 +1112,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "Historical80th Motorized Infantry Brigade",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1198,
@@ -1068,7 +1131,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "Historical80th Motorized Infantry Brigade",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1199,
@@ -1084,7 +1148,8 @@
       "art_basis": "Dedicated QLU11/HMG/sniper weapons squad: leading grenade launcher contour, not a line rifle squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": null
+      "native_donor_unit": null,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1200,
@@ -1100,7 +1165,8 @@
       "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 63
+      "native_donor_unit": 63,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1201,
@@ -1115,7 +1181,8 @@
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
-      "icon_kind": "branch_insignia"
+      "icon_kind": "branch_insignia",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1202,
@@ -1131,7 +1198,8 @@
       "art_basis": "Sniper/anti-materiel rifle team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 333
+      "native_donor_unit": 333,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1203,
@@ -1150,7 +1218,8 @@
       "previous_build20_display_name": "Xiongying Commandos \u2014 Deep Recon",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
       "art_revision": "Smoother editable curves and transparent alpha cutouts around foreground layers; parent/generic fallback limits retained",
-      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch"
+      "art_authenticity": "Name-inspired fallback, not a verified issued unit patch",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1204,
@@ -1166,7 +1235,8 @@
       "art_basis": "Native assault-engineer weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 117
+      "native_donor_unit": 117,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1205,
@@ -1184,7 +1254,8 @@
       "icon_kind": "line_patch",
       "native_donor_unit": null,
       "patch_identity": "Historical80th Motorized Infantry Brigade",
-      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name"
+      "classification_basis": "Explicit mixed rifle/security squad assignment; not inferred from an ATGM or MG token in the display name",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1206,
@@ -1200,7 +1271,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1207,
@@ -1216,7 +1288,8 @@
       "art_basis": "Recoilless/shoulder-launcher fire-support team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 63
+      "native_donor_unit": 63,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1208,
@@ -1232,7 +1305,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1209,
@@ -1248,7 +1322,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1210,
@@ -1264,7 +1339,8 @@
       "art_basis": "Owned QLU11 side contour for precision-grenade weapon team",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": null
+      "native_donor_unit": null,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1211,
@@ -1279,7 +1355,8 @@
       "art_source": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
       "art_basis": "Parent service/branch badge adaptation; no distinct issued patch claimed for this gameplay squad",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
-      "icon_kind": "branch_insignia"
+      "icon_kind": "branch_insignia",
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1212,
@@ -1295,7 +1372,8 @@
       "art_basis": "Native close-assault weapon icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 409
+      "native_donor_unit": 409,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1213,
@@ -1311,7 +1389,8 @@
       "art_basis": "Native scout weapon/equipment icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 65
+      "native_donor_unit": 65,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1214,
@@ -1327,7 +1406,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1215,
@@ -1343,7 +1423,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1216,
@@ -1359,7 +1440,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1217,
@@ -1375,7 +1457,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1218,
@@ -1391,7 +1474,8 @@
       "art_basis": "Closest native automatic-grenade weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 112
+      "native_donor_unit": 112,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1219,
@@ -1407,7 +1491,8 @@
       "art_basis": "Tripod ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 121
+      "native_donor_unit": 121,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1220,
@@ -1423,7 +1508,8 @@
       "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 408
+      "native_donor_unit": 408,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1221,
@@ -1439,7 +1525,8 @@
       "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 408
+      "native_donor_unit": 408,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1222,
@@ -1455,7 +1542,8 @@
       "art_basis": "Portable modern ATGM weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 408
+      "native_donor_unit": 408,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1223,
@@ -1471,7 +1559,8 @@
       "art_basis": "Shoulder-fired MANPADS weapon-team icon; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 120
+      "native_donor_unit": 120,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1224,
@@ -1487,7 +1576,8 @@
       "art_basis": "Owned QTS11 side contour for test specialty cell",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": null
+      "native_donor_unit": null,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
       "unit": 1225,
@@ -1503,7 +1593,8 @@
       "art_basis": "Native incendiary/thermobaric tube-team icon; not exact FHJ02 seven-tube geometry; reused native artwork, not an exact Chinese drawing",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "weapon_team",
-      "native_donor_unit": 122
+      "native_donor_unit": 122,
+      "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     }
   ],
   "count": 90,

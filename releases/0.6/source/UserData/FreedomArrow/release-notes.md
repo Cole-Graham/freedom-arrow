@@ -1,7 +1,7 @@
-# PLA TEST Build 26
+# PLA TEST Build 27
 
-Corrects stale runtime MelonInfo identity23 to26, matching channel, package and assembly. Build25 refused before its database hook; this revision retains every Build25 icon and all game tables. Compiled identity/resource checks required. Native validation pending.
+Three source-photo motif replacements: Blood Wolves, Mountain Hunters, Blue Sword. Names retained. White/transparent cleanup across26 custom unit/team icon families and Motorized badge. Original input masters and all other designs retained; no gameplay/table/model/rigging/audio changes. Current-issued patch provenance is not independently authenticated. Native validation pending.
 
 ## Document change log
 
-- 2026-11-11 20:22:37 PST (America/Los_Angeles) — Runtime identity correction; artwork unchanged.
+- 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-copy and white/halo artwork correction.

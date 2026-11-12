@@ -9,3 +9,7 @@ for f in sorted((tools/'approved-patch-masters').glob('*.svg')):
 for suffix in ['','_OUTLINE']:
  f=tools/'infantry-insignia-vectors'/('FA_PLA_INF_DONGFANG'+suffix+'.svg');subprocess.run([a.renderer,'-o',str(out/(f.stem+'.png')),str(f)],check=True)
 print('Rendered approved unit/spec resources; pinned Whistling Arrows PNGs retained unchanged')
+
+# Build27: the native clean-white overrides are the final artwork export.
+import sys
+if (tools/"white-unit-icons").is_dir():subprocess.run([sys.executable,str(tools/"render_white_unit_icons.py"),"--renderer",a.renderer],check=True)

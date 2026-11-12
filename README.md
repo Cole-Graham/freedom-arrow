@@ -1,3 +1,9 @@
+# PLA TEST Build 27
+
+**Replaces Blood Wolves, Mountain Hunters and Blue Sword with photographed central motifs. All26 custom unit-icon families now use clean white/transparent exports; baked grey-green shading and low-alpha halos are removed. Original approved masters are preserved; other silhouettes/layouts remain. Four service badges retain their approved star/八一 contrast; Motorized badge is whitened consistently. Gameplay, models, offsets, weapon HUD, rigging, music and audio stayBuild26. Native appearance pending.**
+
+## Historical Build26
+
 # PLA TEST Build 26
 
 **Corrects the runtime MelonInfo version that remained23 and caused Build25 to refuse its PLA payload. All Build25 artwork, geometry, contrast, gameplay and shared assets are retained. Compiled identity is now checked against channel/build metadata before packaging. Native verification pending.**
@@ -381,3 +387,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 17:15:13 PST (America/Los_Angeles) — Integrated approved unit art and branch spec badges into Build24; retained Build23 gameplay/model/music data.
 - 2026-11-11 18:58:42 PST (America/Los_Angeles) — Build25 changes star/八一 color contrast only; source geometry and all other icons retained.
 - 2026-11-11 20:22:37 PST (America/Los_Angeles) — Corrected runtime build identity and added compiled-attribute regression check; Build25 artwork retained.
+- 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-photo motif copies and clean-white unit icon export; all original masters preserved.

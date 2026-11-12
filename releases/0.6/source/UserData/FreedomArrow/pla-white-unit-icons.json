@@ -1,0 +1,260 @@
+{
+  "build": 27,
+  "scope": "All26 custom unit/team icon families;52unitPNG and1MotorizedspecPNG. Other fourservicebadges/Chinaflag/weaponHUD retained.",
+  "method": "Existing SVG paths/layouts retained except3source-photo motif replacements. Source pixels are clipped and converted to white/transparent via SVG filters; no generated animal redraw. Low-alpha halo suppressed; fine antialiasing retained.",
+  "original_masters_preserved": true,
+  "source_refs": {
+    "BLOOD_WOLF": {
+      "reference": "https://s2.loli.net/2025/07/18/cAVqs8Y65E1xOzd.jpg",
+      "source_page": "https://forum.warthunder.com/t/more-chinese-decal/243731",
+      "basis": "Photographed unit-sign emblem labelled \u8840\u72fc\u52b2\u65c5; wolf/crossed-sword motif. Not an independently authenticated current issued patch.",
+      "corroboration": "https://www.81.cn/2018zgjddjxl/2018-01/30/content_7926358.htm"
+    },
+    "PLATEAU_LEOPARD": {
+      "reference": "https://s2.loli.net/2025/07/18/msLu2KACgDzWlHb.jpg",
+      "source_page": "https://forum.warthunder.com/t/more-chinese-decal/243731",
+      "basis": "Photographed cloth patch labelled \u9ad8\u539f\u96ea\u8c79 / HIGHLAND SNOW LEOPARD; roaring profile extracted. Current-issued authenticity unverified.",
+      "corroboration": "https://news.sina.cn/2021-01-14/detail-ikftssan5828759.d.html"
+    },
+    "POLICE": {
+      "reference": "https://i.ebayimg.com/images/g/jOkAAOSwN1Fgyjf9/s-l1200.jpg",
+      "source_page": "https://www.ebay.com/itm/313568352844",
+      "basis": "Photographed commercial Blue Sword cloth patch. Two crossed swords corroborated by contemporary news. Current-issued authenticity unverified.",
+      "corroboration": "https://www.chinanews.com/olympic/news/2008/09-10/1377266.shtml"
+    }
+  },
+  "geometry_reopened_profiles": [
+    "BLOOD_WOLF",
+    "PLATEAU_LEOPARD",
+    "POLICE"
+  ],
+  "unit_icons": [
+    {
+      "profile": "AIRBORNE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_AIRBORNE.svg",
+      "source_svg_sha256": "da2090261c1009e6f98f4e5a3050c814128b8d6ddb299959abfc28df7ed6548e",
+      "normal_sha256": "b540218575f3d624715f8055b85c54a1b8384fca315e8ec297c82f719821c83c",
+      "outline_sha256": "b540218575f3d624715f8055b85c54a1b8384fca315e8ec297c82f719821c83c",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "BLOOD_WOLF",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_BLOOD_WOLF.svg",
+      "source_svg_sha256": "e27761b83dce4b180aab53e311d2d241a9a1608d53d00cb1df476b28f028bc32",
+      "normal_sha256": "cc141f1d0c884a5ca90db4794c54cfa88b0671af21d29806675505d468c20730",
+      "outline_sha256": "cc141f1d0c884a5ca90db4794c54cfa88b0671af21d29806675505d468c20730",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "DONGFANG",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_DONGFANG.svg",
+      "source_svg_sha256": "087f6be391e4bbf4927b00db67dcffbe28a598dba70193e449dffe123240d70f",
+      "normal_sha256": "fccc3690652d9b2a200503b8514ca4fc851d395948259e2c25f367227a3fda1a",
+      "outline_sha256": "fccc3690652d9b2a200503b8514ca4fc851d395948259e2c25f367227a3fda1a",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "EAGLE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_EAGLE.svg",
+      "source_svg_sha256": "e30fb2f2b607cc0b48e1cb80471db58f809bbfc3f78f237a59315428cd91272a",
+      "normal_sha256": "65058764b4cb3654e8b98d83192a192be08bde99679a08c5bc358062a50aef41",
+      "outline_sha256": "65058764b4cb3654e8b98d83192a192be08bde99679a08c5bc358062a50aef41",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "FALCON",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_FALCON.svg",
+      "source_svg_sha256": "9d30a57797b333d19152d7a80051e9160aa4b71feabb51fbcf21c427ac5c2aba",
+      "normal_sha256": "c78ba814bbbca337bbfb869c2a29c8a44fcdee9a564bd3a5fe5987433ed2719f",
+      "outline_sha256": "c78ba814bbbca337bbfb869c2a29c8a44fcdee9a564bd3a5fe5987433ed2719f",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "GROUND",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_GROUND.svg",
+      "source_svg_sha256": "08dc0bcd40a3c7c6fbe2d353125ba508538e0af58a95b00d8c3e03c76750ed9b",
+      "normal_sha256": "b014d1799703af233693dc8d8f7aa16e625ef6410dc293eb363c6eeaef5affb6",
+      "outline_sha256": "b014d1799703af233693dc8d8f7aa16e625ef6410dc293eb363c6eeaef5affb6",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "JIAOLONG",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_JIAOLONG.svg",
+      "source_svg_sha256": "db37b6c1297fbfcb30f26141effc05c40628872efa25aec39f45945fd5d9873a",
+      "normal_sha256": "e17ae8540dc75f373ffdb4f3be728ef9df72d13a4860caef26f7893df2cc9ed1",
+      "outline_sha256": "e17ae8540dc75f373ffdb4f3be728ef9df72d13a4860caef26f7893df2cc9ed1",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LEISHEN",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LEISHEN.svg",
+      "source_svg_sha256": "6bce009404179ce099408b5dc07b90b511b88c0afb965b1134304bf9e01f03b0",
+      "normal_sha256": "fecd59b5ccb6bff74fb4079f98cf4aafa7d4d615ba2f2c6bc2b52f1291506e5e",
+      "outline_sha256": "fecd59b5ccb6bff74fb4079f98cf4aafa7d4d615ba2f2c6bc2b52f1291506e5e",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_AIRBORNE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_AIRBORNE.svg",
+      "source_svg_sha256": "7053d13535dc8492bd51745fed990e18934dd5cf774f7e9ab23787692f9e8156",
+      "normal_sha256": "eff4ca31727b9072a7d0685813c6977ce26aa527375f3bde57421585db8b794e",
+      "outline_sha256": "eff4ca31727b9072a7d0685813c6977ce26aa527375f3bde57421585db8b794e",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_GROUND",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_GROUND.svg",
+      "source_svg_sha256": "7894a7ad6f7bf0104fb0bbda2023dcddbc330d51f237577bef879dbe8572e765",
+      "normal_sha256": "9be8d4896c6392eb6bc260f3b7d4cf4773113b5430256c9d3bd5bf5cae102a22",
+      "outline_sha256": "9be8d4896c6392eb6bc260f3b7d4cf4773113b5430256c9d3bd5bf5cae102a22",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_MARINE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_MARINE.svg",
+      "source_svg_sha256": "91ecb1b273294fe7c4eb19ad25a595051cad47e442b135795725a4f0295ae766",
+      "normal_sha256": "20bc2f6f39ce391d9c535b11c8b9aa65b4476431305c9ef1b358feb5d1390773",
+      "outline_sha256": "20bc2f6f39ce391d9c535b11c8b9aa65b4476431305c9ef1b358feb5d1390773",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_MOTOR80",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_MOTOR80.svg",
+      "source_svg_sha256": "4ddc67517c90e158c7553bd97852bcbab6379c461dd5bc29eaab3ceb155a50c9",
+      "normal_sha256": "f397977b1d37ffe28382f35af1cb26c01c72f9ce318370cc45b8831e1d200df9",
+      "outline_sha256": "f397977b1d37ffe28382f35af1cb26c01c72f9ce318370cc45b8831e1d200df9",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_RESERVE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_RESERVE.svg",
+      "source_svg_sha256": "1ed4eb0f0baae2b5372213d649ba865a74710690a7fb49ca7d16bb399c5479af",
+      "normal_sha256": "e61ae86f09a40fa6951c6a8b6365f6096c150cb0dc68dec6d1f386da1432ca86",
+      "outline_sha256": "e61ae86f09a40fa6951c6a8b6365f6096c150cb0dc68dec6d1f386da1432ca86",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "LINE_ROCKET",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_LINE_ROCKET.svg",
+      "source_svg_sha256": "cfb86475f6ec2b15768b54dacba1c2cc641e38d5720ae9648fe1704813bb0448",
+      "normal_sha256": "c39c9408359aafbf57bdea44e17f18dc5edf1ff5e1ebb744cb5053a9fa979acb",
+      "outline_sha256": "c39c9408359aafbf57bdea44e17f18dc5edf1ff5e1ebb744cb5053a9fa979acb",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "MARINE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_MARINE.svg",
+      "source_svg_sha256": "899ac6e6c6111efd9b629f7249eac038b1c971cabda546c1d9d344210613b971",
+      "normal_sha256": "6d93d3b2d31153c151a438ceaac6393dbebdc2b3011a368eb808dfc568091c89",
+      "outline_sha256": "6d93d3b2d31153c151a438ceaac6393dbebdc2b3011a368eb808dfc568091c89",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "PAP",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_PAP.svg",
+      "source_svg_sha256": "57386217e9a774d99e18e852a4293780b1dd8f6912757e671213a1b4f83c3730",
+      "normal_sha256": "68048a89bcebc681ded640530933a1ea1bf6a02b0e4fc892a25c4db905c24078",
+      "outline_sha256": "68048a89bcebc681ded640530933a1ea1bf6a02b0e4fc892a25c4db905c24078",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "PLATEAU_LEOPARD",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_PLATEAU_LEOPARD.svg",
+      "source_svg_sha256": "aafb2f1c12d0e9204a8be8e95bbc43822f56a66f83036595471170f53b34e381",
+      "normal_sha256": "f5ba5897257d2d658c99ef1b5e9fc6e488f492adec8d9828865362783ee2e895",
+      "outline_sha256": "f5ba5897257d2d658c99ef1b5e9fc6e488f492adec8d9828865362783ee2e895",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "POLICE",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_POLICE.svg",
+      "source_svg_sha256": "db44646ec63c0cea6b8c13089276ef967403d3c25f1b456fefd34080d1253201",
+      "normal_sha256": "a819457d71f5adcb11ac804e0d0d4af93f7a98a471b9d6c60498a72c722e7ad3",
+      "outline_sha256": "a819457d71f5adcb11ac804e0d0d4af93f7a98a471b9d6c60498a72c722e7ad3",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "ROCKET",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_ROCKET.svg",
+      "source_svg_sha256": "e3f897bac52052bef2933ac67bf5e59cd0e6719c0a41dfb8aa1568878da6d864",
+      "normal_sha256": "3f2229d6f52cc7d064c91155b4b503c837d0c7d89549d3be66d9b7e3e9b52f65",
+      "outline_sha256": "3f2229d6f52cc7d064c91155b4b503c837d0c7d89549d3be66d9b7e3e9b52f65",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "ROCKET_SOF",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_ROCKET_SOF.svg",
+      "source_svg_sha256": "fc5450619e2888382e25a8de962e91be795deef6925d10857ee28cf5952f7b9e",
+      "normal_sha256": "c898473807c8f487548b1233c1d5429e8310d16ee13f920283a537e7f6e340eb",
+      "outline_sha256": "c898473807c8f487548b1233c1d5429e8310d16ee13f920283a537e7f6e340eb",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "SNOW_LEOPARD",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_SNOW_LEOPARD.svg",
+      "source_svg_sha256": "b7ea69022f2a162f0ba587021435b988df7d4cf6080f9a80f1b8b8c5cf6fc33d",
+      "normal_sha256": "3f12bc811117ea3eb1c27846ada4e5e0073959d39a0c8344a752bab1d5fa903f",
+      "outline_sha256": "3f12bc811117ea3eb1c27846ada4e5e0073959d39a0c8344a752bab1d5fa903f",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "SOF",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_SOF.svg",
+      "source_svg_sha256": "c45843fc48a128e0ce1276e9f05311e691fff325a1fd9e6c06ab3f4bc223af6e",
+      "normal_sha256": "a6fcfd05f0fc3a16b2c9c03feadac728de64cc0499cb731137d0ea94f3d4df34",
+      "outline_sha256": "a6fcfd05f0fc3a16b2c9c03feadac728de64cc0499cb731137d0ea94f3d4df34",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "TIANLANG",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_TIANLANG.svg",
+      "source_svg_sha256": "23930f0cd862ac1e87b253a29cf994029f516a62483b5225bb78cc58659cf64e",
+      "normal_sha256": "e7891fa8e11b9c27354b3206868e368ae4e47048489866e0a5518ed5ed090da7",
+      "outline_sha256": "e7891fa8e11b9c27354b3206868e368ae4e47048489866e0a5518ed5ed090da7",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "WPN_QLU11",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_WPN_QLU11.svg",
+      "source_svg_sha256": "69a30e3522aa7d9f5b243edd6c20687e48cf59f8616f8105866bf37026ccf856",
+      "normal_sha256": "67de831d4f2439fd0748ab1a81c81580095a45659715fdac407e4ba364ce0b92",
+      "outline_sha256": "67de831d4f2439fd0748ab1a81c81580095a45659715fdac407e4ba364ce0b92",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "WPN_QTS11",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_WPN_QTS11.svg",
+      "source_svg_sha256": "93b7898c4ccc8399417f547bd5cd17144e9afde71b398847861e32797d97de2e",
+      "normal_sha256": "c9584d66f3a431a25dbc5231989781ee019b7218dd8ba9843e4bb8953743df19",
+      "outline_sha256": "c9584d66f3a431a25dbc5231989781ee019b7218dd8ba9843e4bb8953743df19",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    },
+    {
+      "profile": "XIANGJIAN",
+      "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_XIANGJIAN.svg",
+      "source_svg_sha256": "ef953ac32de33826dd37775ceb876d1d1677f277ca0dc4aa235932c078419571",
+      "normal_sha256": "bf70e31f6d08b426094158b628b8e410b7ced8225701e4ae9821e7b9c1b8b2c8",
+      "outline_sha256": "bf70e31f6d08b426094158b628b8e410b7ced8225701e4ae9821e7b9c1b8b2c8",
+      "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
+    }
+  ],
+  "native_verified": false,
+  "source_file_hashes": {
+    "plateau-leopard-forum.jpg": "01a1b59aac7c9d8cb355f312dff741467368357a98037a0f88d2000509ae1d70",
+    "JIAOLONG-master.png": "607b6c73f4f7591f6f834f5c3ffe4bb86f6b96376fbe4c960a26ef4037e764fe",
+    "LINE_GROUND-master.png": "93c2d0a72766bd8798a2baed7ab5ca75031bc68e8c4dde4de51cab8a8fd79c6a",
+    "TIANLANG-master.png": "6488de63cd5a342c412b772ac93307bf27caf4c49864b303569d26028b31cc8a",
+    "blue-sword-commercial.jpg": "6af82e2d69bd5a64e950c1a3dd940673ac9b42a4d2ff0f4207c59b173a022128",
+    "EAGLE-master.png": "0bfe8163c040c5ef21da2a052ab2985ff1367a00c0bb72fb72a672092bd269f1",
+    "blood-wolf-forum.jpg": "aae210d6c3daf46595fea323587dfc04f82b54931da29e62f385ce9ad582b801",
+    "LEISHEN-master.png": "7105856f5d24d09c1880f25a2c067a9eaf3ea4c67c39090dbd122bcbc1ee5a4f",
+    "SNOW_LEOPARD-master.png": "36d676ebd13bf76dcde207f3ac3b9c610739e05015d25fdaed53204374047eaa",
+    "SOF-master.png": "a9cf803000f6b8ece1059dbeb07016627ecc3bf257b63826238c9a1dd240c951",
+    "FA_CHINA_MOTORIZED-master.png": "718172f17e3894e80cd8d67dcc209c141814fbfbe7ab86ccdcaf9ecf5c6aaca5",
+    "LINE_MOTOR80-master.png": "718172f17e3894e80cd8d67dcc209c141814fbfbe7ab86ccdcaf9ecf5c6aaca5",
+    "FALCON-master.png": "1ab22daf967e5a6c23e963d1902f7a99bdae76f96bb01437463d5214396c3d55",
+    "LINE_RESERVE-master.png": "7d4dbbab326e735986b87743e97a5e32fe924d8cc34ecc43cd9a4a4b8317cf1a",
+    "LINE_AIRBORNE-master.png": "8d4b31fdd7f330b80b33cbd87355b0e88278b489533e724a6943cc32b0129ae5",
+    "ROCKET_SOF-master.png": "823ea53b9e7e5266f4039e5a7f353d08e1cb5260d6293448d78e2c4301ecdf85"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 26",
-  "version": "26",
+  "name": "PLA TEST Build 27",
+  "version": "27",
   "type": "modpack",
-  "description": "Complete PLA pack: runtime build identity corrected; exact Build25 approved unit/spec artwork and all gameplay retained.",
+  "description": "Complete PLA pack: Blood Wolves, Mountain Hunters and Blue Sword source-photo motifs; clean white unit icons without baked grey/green glow. Gameplay/assets retained.",
   "repo": "Cole-Graham/freedom-arrow"
 }
