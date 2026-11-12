@@ -20,6 +20,9 @@ public static class CritRule
         var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         return words.Length > 2 && words[0] == "Round" && int.TryParse(words[1], out int caliber) && caliber >= 100 && (words.Contains("AP") || words.Contains("HEAT"));
     }
+    // The dedicated LOSAT round follows tank-shell thresholds, without broadening other missiles.
+    public static bool Losat(int trajectory,int armorTargeted,string name) =>
+        trajectory is >= 100 and <= 120 && armorTargeted == Kinetic && name == "Missile AT LOSAT KE";
     // ATGM names start with "Missile AT" or "Missile GLAT" (gun-launched).
     public static bool Atgm(int trajectory, int armorTargeted, bool topAttack, string name) =>
         trajectory is >= 100 and <= 120 && armorTargeted == Heat && !topAttack && name != null && (name.StartsWith("Missile AT ") || name.StartsWith("Missile GLAT "));
@@ -44,6 +47,8 @@ public sealed class Settings
     public string Contested { get; set; } = "exclude";
     public string Ending { get; set; } = "time_limit";
     public int ScoreLimit { get; set; } = 0;
+    // Lateralus 12 November 2026: when time runs out, a side with at least this many percent more points wins; otherwise a draw.
+    public int TimeWinMarginPercent { get; set; } = 10;
     public string PhasePolicy { get; set; } = "native";
     public bool EnableDeveloperFixtures { get; set; } = false;
     // Runtime-only layer: never serialize synthetic weights into packaged/saved defaults.
@@ -78,6 +83,7 @@ public sealed class Settings
         if (Ending is not ("time_limit" or "score_or_time")) throw new ArgumentException("Ending must be time_limit or score_or_time");
         if (Ending == "score_or_time" && (ScoreLimit < 1 || ScoreLimit > 1000000)) throw new ArgumentException("ScoreLimit must be 1..1000000 for score_or_time");
         if (Ending == "time_limit" && ScoreLimit != 0) throw new ArgumentException("ScoreLimit must be zero for time_limit");
+        if (TimeWinMarginPercent < 0 || TimeWinMarginPercent > 1000) throw new ArgumentException("TimeWinMarginPercent must be 0..1000");
         if (PhasePolicy is not ("native" or "continuous")) throw new ArgumentException("PhasePolicy must be native or continuous");
         if (!double.IsFinite(MaximumSampleLatenessSeconds) || MaximumSampleLatenessSeconds < 0 || MaximumSampleLatenessSeconds > 5)
             throw new ArgumentException("MaximumSampleLatenessSeconds must be finite, 0..5");
@@ -176,6 +182,12 @@ public sealed class Ledger
     public bool Finished { get; private set; }
     public bool ReachedScoreLimit => Config.Ending == "score_or_time" && Math.Max(Alpha, Bravo) >= Config.ScoreLimit && Alpha != Bravo;
     public int? ScoreLimitWinner => ReachedScoreLimit ? (Alpha > Bravo ? 0 : 1) : null;
+    public bool TimeUp => Elapsed >= Duration;
+    // At time up: a side at the score limit wins; otherwise the leader wins with at least TimeWinMarginPercent more points
+    // than the other side (any lead over 0 points); else a draw (null).
+    public int? TimeWinner => !TimeUp ? null : ScoreLimitWinner ?? MarginWinner(Alpha, Bravo, Config.TimeWinMarginPercent);
+    public static int? MarginWinner(int alpha, int bravo, int percent) => alpha != bravo &&
+        (long)Math.Max(alpha, bravo) * 100 >= (long)Math.Min(alpha, bravo) * (100 + percent) ? (alpha > bravo ? 0 : 1) : null;
     bool observed;
     public Ledger(Settings config, string map, double duration)
     {

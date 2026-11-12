@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "63",
+  "package_version": "64",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build62 plus vanilla-style cargo on Chinese APCs and IFVs. Data checks only; in-game check pending."
+  "verification": "PLA Build63 on main dev 0.7.0-dev.58. Data checks only; in-game check pending."
 }

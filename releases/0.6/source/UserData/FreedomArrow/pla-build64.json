@@ -1,0 +1,178 @@
+{
+  "build": 64,
+  "request": "Osama 12 Nov: \"update the latest build into our PLA test build, we're getting close to launching\"",
+  "merge": {
+    "inputs": {
+      "base": {
+        "file": "FreedomArrow-0.6.0-dev.101.bamod",
+        "sha256": "ba52aa657a5304ead296f0751f4fddf234664b00e2fa1ec4e57c5371522be707"
+      },
+      "pla": {
+        "file": "PLA-TEST-Build-63.bamod",
+        "sha256": "29bd4cb6c707266cb89288712f71c927f7a6bd4ff4debc1763240b0b51eff8a2"
+      },
+      "dev": {
+        "file": "FreedomArrow-0.7.0-dev.58.bamod",
+        "sha256": "1ca6f2c9b8b0b548fa6a3c02fa4fad84bcd3a2cb18662feb125913ed4bc82294"
+      }
+    },
+    "renumbered_china_units": {
+      "971": {
+        "to": 1251,
+        "name": "J-31"
+      },
+      "972": {
+        "to": 1252,
+        "name": "WZ-8"
+      },
+      "973": {
+        "to": 1253,
+        "name": "FH-97A"
+      },
+      "985": {
+        "to": 1254,
+        "name": "Type21 woodland"
+      }
+    },
+    "conflicts_dev_wins": [],
+    "delete_vs_change": [],
+    "option_ids_reassigned": {},
+    "counts": {
+      "Units": {
+        "rows": 936,
+        "patch_rows": 711,
+        "china_rows": 341
+      },
+      "AbilitiesJson": {
+        "rows": 411,
+        "patch_rows": 363,
+        "china_rows": 0
+      },
+      "UnitAbilitiesJson": {
+        "rows": 1045,
+        "patch_rows": 646,
+        "china_rows": 332
+      },
+      "AmmunitionsJson": {
+        "rows": 1140,
+        "patch_rows": 756,
+        "china_rows": 0
+      },
+      "ArmorsJson": {
+        "rows": 864,
+        "patch_rows": 573,
+        "china_rows": 0
+      },
+      "MobilityJson": {
+        "rows": 578,
+        "patch_rows": 312,
+        "china_rows": 0
+      },
+      "FlyPresetsJson": {
+        "rows": 29,
+        "patch_rows": 7,
+        "china_rows": 0
+      },
+      "UnitPropulsionsJson": {
+        "rows": 1095,
+        "patch_rows": 444,
+        "china_rows": 378
+      },
+      "CountriesJson": {
+        "rows": 4,
+        "patch_rows": 1,
+        "china_rows": 0
+      },
+      "TurretsJson": {
+        "rows": 1458,
+        "patch_rows": 401,
+        "china_rows": 0
+      },
+      "TurretUnitsJson": {
+        "rows": 2628,
+        "patch_rows": 1038,
+        "china_rows": 789
+      },
+      "WeaponsJson": {
+        "rows": 1255,
+        "patch_rows": 555,
+        "china_rows": 0
+      },
+      "TurretWeaponsJson": {
+        "rows": 1741,
+        "patch_rows": 461,
+        "china_rows": 0
+      },
+      "WeaponAmmunitionsJson": {
+        "rows": 3985,
+        "patch_rows": 2333,
+        "china_rows": 1337
+      },
+      "SensorUnitsJson": {
+        "rows": 1014,
+        "patch_rows": 407,
+        "china_rows": 342
+      },
+      "SensorsJson": {
+        "rows": 159,
+        "patch_rows": 157,
+        "china_rows": 0
+      },
+      "SquadMembersJson": {
+        "rows": 1984,
+        "patch_rows": 920,
+        "china_rows": 844
+      },
+      "SquadWeaponsJson": {
+        "rows": 1232,
+        "patch_rows": 541,
+        "china_rows": 515
+      },
+      "ModificationsJson": {
+        "rows": 784,
+        "patch_rows": 173,
+        "china_rows": 75
+      },
+      "OptionsJson": {
+        "rows": 2611,
+        "patch_rows": 1018,
+        "china_rows": 0
+      },
+      "UnitArmorsJson": {
+        "rows": 1140,
+        "patch_rows": 654,
+        "china_rows": 353
+      },
+      "SpecializationAvailabilitiesJson": {
+        "rows": 677,
+        "patch_rows": 361,
+        "china_rows": 259
+      },
+      "SpecializationsJson": {
+        "rows": 19,
+        "patch_rows": 7,
+        "china_rows": 0
+      },
+      "TransportAvailabilitiesJson": {
+        "rows": 710,
+        "patch_rows": 483,
+        "china_rows": 423
+      }
+    },
+    "removed_unused_pla_rows": {
+      "AbilitiesJson": 148,
+      "TurretsJson": 79,
+      "MobilityJson": 123,
+      "TurretWeaponsJson": 82,
+      "AmmunitionsJson": 89,
+      "WeaponsJson": 92,
+      "ArmorsJson": 171,
+      "SensorsJson": 14
+    },
+    "dangling_refs_new": {},
+    "dangling_china": [],
+    "china_units": 341,
+    "option_migration_entries": 596
+  },
+  "native_verified": false
+}

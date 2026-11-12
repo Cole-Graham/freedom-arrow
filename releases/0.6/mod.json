@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 63",
-  "version": "63",
+  "name": "PLA TEST Build 64",
+  "version": "64",
   "type": "modpack",
-  "description": "Build57 with RU/US units visible again, Motorized squads in SF assault desert, the GAM-102LR launcher as a Spike LR, \"Motorized\" removed from names and Light Riflemen.",
+  "description": "Latest PLA pack on top of main dev 0.7.0-dev.58: dev.58 runtime, maps, Russian and US units, with all China work kept.",
   "repo": "Cole-Graham/freedom-arrow"
 }

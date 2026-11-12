@@ -1,3 +1,11 @@
+# PLA TEST Build 64
+
+The PLA pack now sits on the latest main dev build, 0.7.0-dev.58, instead of 0.6.0-dev.101. Everything Russian and US, the runtime (AA cooldown, C-RAM prediction, playable borders, conquest and the rest), the skirmish mod, the game config and the maps (Oil Rush, Airport, Baltiisk, Dam, Highway of Death, Dead Center, Chkalovsk) are exactly dev.58. Every China unit, loadout, squad and specialization is exactly Build 63.
+
+Four China units moved to new IDs because dev.58 uses those numbers: J-31 971 -> 1251, WZ-8 972 -> 1252, FH-97A 973 -> 1253, Type21 woodland fixture 985 -> 1254. Saved decks with those four cards lose them. PLA's own older copies of RU/US units (Su-75, Su-47, F-14, YF-23, XM30, ZIL Karatel) are replaced by dev.58's versions. Merge: tools/pla-specs/merge_dev58.py; 0 field conflicts.
+
+## Historical Build63
+
 # PLA TEST Build 63
 
 Chinese APCs and IFVs carry cargo (resupply points) like their vanilla analogues: ZSD-89A (all four), ZSD-89, ZSD-90, ZSD-63, ZSD-63C and CSK-181 carry 400 (M113A3 class); CSK-131 Transport, ZBD-86, ZBD-03, ZBL-191 and ZBD-251 carry 250 (Tigr, BMP-1, BMD-2, Bumerang and Kurganets class), as do the recon cars with seats (CSK-131 Mengshi, ZFB-05, CS/VN3C MG, WZ-701, VP4). Helicopters, aircraft and trucks have no cargo field in vanilla's tables; their cargo comes from the native model, which they share with the vanilla unit. ZBD-04A, ZBD-20 and ZBD-04 already had 250 on their third default ability; the game keeps only the first, so every default ability now carries it. Prices are unchanged. Everything else is exactly Build62. In-game check pending.
@@ -688,3 +696,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 12:07:25 PST (America/Los_Angeles) — Build61: PLARF 7-man squads, conscript rifle fire rate -30%, Ambush Team name, PF-89 for PLARF Infantry.
 - 2026-11-12 12:15:10 PST (America/Los_Angeles) — Build62: PLARF size correction, Conscripts 25, ZSD-89A x4 (12 seats), ZBD-86 in PLAAF.
 - 2026-11-12 12:22:54 PST (America/Los_Angeles) — Build63: vanilla-style cargo on Chinese APCs and IFVs.
+
+- 2026-11-12 12:28:51 PST (America/Los_Angeles) — Build64: PLA pack on main dev 0.7.0-dev.58.

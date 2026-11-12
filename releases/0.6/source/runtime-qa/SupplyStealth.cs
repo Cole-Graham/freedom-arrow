@@ -1,53 +1,66 @@
-using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar.Components;
-using Il2CppBrokenArrow.Client.Ecs.Spawn;
 using Il2CppBrokenArrow.Client.Ecs.Transports.Systems;
 using Il2CppDefaultEcs;
 using MelonLoader;
 namespace FreedomArrow;
-// Supply caches (Lateralus, 8 November 2026): stealth UI 2.5 (raw 0.4). Vanilla hard-codes AntiVisible 1.0 in
-// SpawnService.SpawnSupply (RVA 0x3349F0, constant at 0x677FC04); caches have no unit row, so the tables cannot set it.
-// SpawnSupply passes its new entity to SupplySystem.AddActiveSupply, then builds the FogOfWarComponent; the postfix sets
-// AntiVisible once the component exists. Remote spawns use the same function, so every client with the mod agrees.
+// Caches have no unit row. Set UI stealth 2.5 (raw 0.4) after native creation.
+// Do not intercept SpawnService.SpawnSupply: its by-reference SupplySpawnData value crosses the
+// generated IL2CPP callback incorrectly. Both dev.3 dumps read UID/HasValue bytes as an object pointer.
 static class SupplyStealth
 {
     const float AntiVisible=0.4f;
     const int MaxLog=5;
     static IntPtr hasFog,getFog,getFogCode;
-    [ThreadStatic] static bool spawning;
-    [ThreadStatic] static Entity spawned;
-    [ThreadStatic] static bool haveSpawned;
     static bool broken;
     static int logged;
-    public static unsafe void Install(HarmonyLib.Harmony harmony)
+    static long passes,changes;
+    static int active,lastChanged=-1;
+    static bool firstPass;
+    public static object Status()=>new{bound=getFogCode!=IntPtr.Zero,broken,passes,active,changes,lastChanged};
+    public static unsafe void Install()
     {
         hasFog=SpottingCap.Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(FogOfWarComponent));
         getFog=SpottingCap.Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(FogOfWarComponent));
         getFogCode=*(IntPtr*)getFog;
         if(getFogCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<FogOfWarComponent> has no code");
-        harmony.Patch(AccessTools.Method(typeof(SpawnService),"SpawnSupply"),prefix:new HarmonyMethod(typeof(SupplyStealth),nameof(SpawnBefore)),postfix:new HarmonyMethod(typeof(SupplyStealth),nameof(SpawnAfter)));
-        harmony.Patch(AccessTools.Method(typeof(SupplySystem),"AddActiveSupply"),prefix:new HarmonyMethod(typeof(SupplyStealth),nameof(AddBefore)));
-        MelonLogger.Msg($"FREEDOM_ARROW_SUPPLY_STEALTH installed: supply caches AntiVisible {AntiVisible:g} (UI {1/AntiVisible:g})");
+        DiagnosticLog.Write("supply_bound",new{mode="LateUpdate; no native spawn hooks",antiVisible=AntiVisible});
+        MelonLogger.Msg($"FREEDOM_ARROW_SUPPLY_STEALTH installed: late-update active caches, AntiVisible {AntiVisible:g}; no spawn hooks");
     }
-    public static void SpawnBefore(){spawning=true;haveSpawned=false;}
-    public static void AddBefore(Entity __0){if(spawning){spawned=__0;haveSpawned=true;}}
-    public static unsafe void SpawnAfter()
+    public static unsafe void LateUpdate()
     {
-        spawning=false;
-        if(broken||!haveSpawned||!Runtime.IsApplied)return;
-        haveSpawned=false;
+        if(broken||getFogCode==IntPtr.Zero||!Runtime.IsApplied)return;
         try
         {
-            var e=spawned;
-            if(!SpottingCap.Has(hasFog,e))return;
-            float* fow=(float*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getFogCode)(&e,getFog);
-            float old=fow[3];fow[3]=AntiVisible;  // FogOfWarComponent.AntiVisible at 0xC
-            if(++logged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_SUPPLY_STEALTH cache AntiVisible {old:g} -> {AntiVisible:g}");
+            var supplies=SupplySystem._activeSupplies;
+            if(supplies==null)return;
+            passes++;active=supplies.Count;
+            if(!firstPass)
+            {
+                firstPass=true;
+                DiagnosticLog.Write("supply_first_scan",new{active});
+            }
+            foreach(var supply in supplies.Keys)
+            {
+                var e=supply;
+                if(!e.IsAlive||!SpottingCap.Has(hasFog,e))continue;
+                float* fow=(float*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getFogCode)(&e,getFog);
+                if(fow==null)throw new InvalidOperationException("Entity.Get<FogOfWarComponent> returned null");
+                float old=fow[3]; // FogOfWarComponent.AntiVisible at 0xC.
+                if(old==AntiVisible)continue;
+                lastChanged=e.GetHashCode();
+                DiagnosticLog.Write("supply_write_begin",new{entity=lastChanged,before=old,target=AntiVisible});
+                fow[3]=AntiVisible;
+                if(fow[3]!=AntiVisible)throw new InvalidOperationException("Supply AntiVisible readback mismatch");
+                changes++;
+                DiagnosticLog.Write("supply_write_verified",new{entity=lastChanged,before=old,after=fow[3],changes});
+                if(++logged<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_SUPPLY_STEALTH cache AntiVisible {old:g} -> {AntiVisible:g}");
+            }
         }
         catch(Exception x)
         {
             broken=true;
-            MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: off for this session; caches keep stealth 1.0. "+x.Message);
+            DiagnosticLog.Write("supply_failed",new{error=x.ToString(),passes,active,changes,lastChanged});
+            MelonLogger.Error("FREEDOM_ARROW_SUPPLY_STEALTH_FAILED: off for this session. "+x);
         }
     }
 }
