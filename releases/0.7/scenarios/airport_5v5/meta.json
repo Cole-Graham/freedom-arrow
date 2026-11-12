@@ -1,0 +1,179 @@
+{
+  "v": 3,
+  "author": "Lateralus",
+  "desc": "Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, the side with the higher zone value scores the difference. First to 300 wins. A D are worth 4, F G H I are worth 3, B C E are worth 2. Flat 200 income, no upkeep.",
+  "guid": "e069dd6c-5a2a-4bf6-a1ed-ca7556f6f872",
+  "type": 2,
+  "public": true,
+  "hasDiff": false,
+  "meDiff": 1,
+  "sceneName": "Airport",
+  "dtp": "Morning (default)",
+  "createdDate": 1696772650,
+  "updatedDate": 1794474151,
+  "scenario": "[FA] [5v5] Airport 0.1",
+  "locName": "",
+  "files": [],
+  "teams": [
+    {
+      "teamSide": 0,
+      "teamName": "Alpha team",
+      "slots": [
+        {
+          "playerName": "Alpha Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    },
+    {
+      "teamSide": 1,
+      "teamName": "Bravo team",
+      "slots": [
+        {
+          "playerName": "Bravo Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    }
+  ],
+  "pblOpt": [
+    {
+      "id": 48,
+      "name": "ui_lobby_StartMoney_title",
+      "t": 101,
+      "nt": 1,
+      "desc": "ui_lobby_StartMoney_desc",
+      "defV": 1500,
+      "ord": 2,
+      "sld": true,
+      "mnv": 500,
+      "mxv": 1500,
+      "sv": 100
+    },
+    {
+      "id": 49,
+      "name": "ui_lobby_Income_title",
+      "t": 101,
+      "nt": 2,
+      "desc": "ui_lobby_Income_desc",
+      "defV": 300,
+      "ord": 3,
+      "sld": true,
+      "mxv": 600,
+      "sv": 25
+    },
+    {
+      "id": 51,
+      "name": "ui_lobby_Timer_title",
+      "t": 101,
+      "desc": "ui_lobby_Timer_desc",
+      "defV": 45,
+      "ord": 4,
+      "sld": true,
+      "mnv": 30,
+      "mxv": 60,
+      "sv": 3
+    },
+    {
+      "id": 53,
+      "name": "ui_lobby_Size_Title",
+      "t": 102,
+      "desc": "ui_lobby_Size_Description",
+      "drpdV": {
+        "0": "ui_lobby_Size_Auto",
+        "1": "ui_lobby_Size_Large",
+        "2": "ui_lobby_Size_Medium",
+        "3": "ui_lobby_Size_Small"
+      },
+      "ord": 0
+    },
+    {
+      "id": 56,
+      "name": "ui_lobby_Daytime_Title",
+      "t": 102,
+      "desc": "ui_lobby_Daytime_Description",
+      "drpdV": {
+        "0": "ui_set_hangar_morning",
+        "1": "ui_set_hangar_day",
+        "2": "ui_set_hangar_evening",
+        "3": "ui_set_hangar_night",
+        "4": "ui_lobby_random_nation"
+      },
+      "ord": 1
+    }
+  ],
+  "gameVersion": "1.2.2",
+  "dlc": []
+}

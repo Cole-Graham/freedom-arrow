@@ -2,18 +2,18 @@
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
 R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.19.bamod'
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.20.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-devtest.lat.19'
+    assert manifest['version']=='0.7.0-devtest.lat.20'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.19 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.20 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -431,6 +431,20 @@ with zipfile.ZipFile(p) as z:
             assert not [q for q in props if q['oz2'] in {f'c{u}' for u in zones} and q['isv']=='False'],name
             assert any(n.get('nnKey')=='pauseGame' for n in nodes)==(kind==2),name
             if kind==3:assert any(o.get('isBot') for o in objs if o.get('_type')==13),name
+    # Lateralus 2026-11-12: Airport 5v5 always plays on Play Zone Large; its size logic and lobby Size option are gone.
+    for name,kind in (('[FA] [5v5] Airport 0.1',2),('[FA] [5v5] Airport Skirmish 0.1',3)):
+        meta=scenario_meta(name);objs=scenario_objects(name);nodes=scenario_part(name,'nodes.bam');head=scenario_part(name,'head.bam')
+        assert meta['type']==kind and meta['sceneName']=='Airport' and len(meta['teams'])==2 and all(len(t['slots'])==5 for t in meta['teams']),name
+        assert [(o['_uid'],o['scale']['X'],o['scale']['Z']) for o in objs if o.get('_type')==7]==[(10,9000.0,9000.0)] and head['spz']==10,name
+        assert not [o for o in meta['pblOpt'] if 'Size' in o['desc']] and not {n['nnKey'] for n in nodes['b']}&{'objVisible2','act_pz','Network Players'},name
+        ids={n['id'] for n in nodes['b']};assert all(c['a'] in ids and c['b'] in ids for c in nodes['c']),name
+        values=dict(Alpha=3,Bravo=2,Charlie=2,Delta=3,Echo=2,Foxtrot=2,Golf=2,Hotel=4,India=2,Juliett=4)
+        zones=[o for o in objs if o.get('_type')==15]
+        assert {str(o['_uid']):values[o['hudText']] for o in zones}==settings['MapZoneWeights'][name] and all(o['ZoneIcon']==ord(o['hudText'][0])-ord('A')+1 for o in zones),name
+        assert any(n['nnKey']=='pauseGame' for n in nodes['b'])==(kind==2) and all(o.get('isBot',False)==(kind==3) for o in objs if o.get('_type')==13),name
+    # Lateralus 2026-11-12: every FA map uses the vanilla 15 s zone capture time.
+    for name in sorted({n.split('/')[3] for n in names if n.startswith('UserData/FreedomArrow/scenarios/') and n.endswith('.bascr')}):
+        assert {o['capTime'] for o in scenario_objects(name) if o.get('_type')==15}=={15.0},name
     assert settings['SetupSeconds']==180 and settings['OpeningDelaySeconds']==300
     assert settings['Crits'] and settings['CritDamage']==9.3 and settings['AtgmCritDamage']==8.9 and settings['RearCritMinPenetration']==250 and settings['FrontArcDegrees']==60
     assert json.loads(z.read('UserData/FreedomArrow/game-config.json'))=={'DefaultPlayerMoney':1500,'ForestDamageTaken':0.7,'BuildingDamageFloor':0.18,'BuildingDamagePerSoldier':0,'MinorMobilityMultiplier':0.4,'ShockedMoveSpeed':0.7,'PanickedMoveSpeed':0.4,'FlareRerollCap':4,'AaCooldownEnabled':True,'AaCooldownShadowOnly':False}

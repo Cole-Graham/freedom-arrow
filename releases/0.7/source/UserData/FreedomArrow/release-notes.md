@@ -1,16 +1,18 @@
-# Freedom Arrow 0.7.0-devtest.lat.19 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.20 — development candidate
 
 ## Map, playable-border and lobby test batch
 
-**This isolated lat.19 test starts from maintained dev.55. It adds Highway of Death 0.1, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer border overlay plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
+**This isolated lat.20 test starts from maintained dev.55. It adds Highway of Death 0.1 and Lateralus's [5v5] Airport 0.1, sets every FA map's zone capture time to the vanilla 15 seconds, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer border overlay plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
 
 - Highway: Alpha/Bravo/Charlie/Golf 2; Foxtrot 3; Delta/Echo 6. Correct native A–G icons, two slots per team, FA conquest/deployment scripts, offline Skirmish flavor, and per-team cameras. Objective IDs are unique to this map so clients can identify its weights.
 - Chkalovsk: X 0–9000; Z 0–4850.01636. The north edge is 1500 engine units beyond Alpha's centre. The other three edges meet Airbase's native 9000×9000 map limits. The existing unselected playable-zone object is now active.
 - Dead Center 1v1: all three red spawns point toward the objective centroid; each team's camera starts on its own spawn side and looks inward. Blue spawn facings, objectives and playable area stay as authored.
 - Border: opaque orange 3-pixel line plus dark 7-pixel outline follows native PlayZoneBounds, including full-map fallback and scripted switches. Cached terrain samples; near-plane and screen clipping. The old wall and objective visuals are not modified. Readability and frame cost require an actual game run.
 - Lobby: retry the local unready FA scenario card's native deck fill/accessibility checks for at most 15 seconds. Retain country/DLC/scenario restrictions. Do not force the dropdown open, change the map or change readiness. This is a candidate repair; the reported symptom still needs reproduction and verification in a real lobby.
+- [5v5] Airport: Lateralus's redesign replaces [FA] Airport 0.1. Hotel/Juliett 4; Alpha/Delta 3; Bravo/Charlie/Echo/Foxtrot/Golf/India 2. Five slots per team. Play Zone Large (the whole 9000×9000 map) is always active: the lobby Size option, its player-count logic and Play Zone Small are removed, with the four script nodes the editor reported as "missing any target". Lateralus's other script (time of day, deployment pause) stays. Zone labels now match the zone names.
+- Capture time: Dead Center 1v1, Chkalovsk and Highway were 5 seconds (their editor exports). Every FA map now uses the vanilla 15 seconds; the build sets it.
 
-All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.19 package through Mod Manager; this task does not switch the installed PLA pack.
+All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.20 package through Mod Manager; this task does not switch the installed PLA pack.
 
 
 ## Current main promotion — all missile-defence guns and four AT4 carriers
@@ -283,3 +285,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-11 02:36:39 PST (America/Los_Angeles) — Extended doubled speed and overkill scope to all existing land/naval projectile-defence guns and native projectile categories; included changelog #10 four AT4 carriers with one round each; prior main changes retained.
 - 2026-11-11 23:45:00 PST (America/Los_Angeles) — Added isolated lat.18 map/border/lobby batch and explicit in-game verification limits.
 - 2026-11-11 23:51:28 PST (America/Los_Angeles) — Superseded internal lat.18 with lat.19: run native accessibility before native fill so an empty/missing-map dropdown remains disabled. Map/border code unchanged.
+- 2026-11-12 01:57:27 PST (America/Los_Angeles) — lat.20: added Lateralus's [5v5] Airport 0.1 (replaces [FA] Airport 0.1; whole-map play area, size logic removed, his zone values) and the vanilla 15-second capture time on every FA map.

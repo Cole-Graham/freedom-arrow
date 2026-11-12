@@ -179,7 +179,11 @@ def graft_conquest(game,objects,nodes,meta):
     wires=[c for c in nn['c'] if (c['a'],c['b']) in {(136,22),(161,163),(162,163)}];assert len(wires)==3
     wires.append(dict(a=136,b=163,c='in2',d='flow',e=163))
     nodes.update(b=script,c=wires)
+# Zone capture time of the vanilla maps. Lateralus 2026-11-12: every FA map uses it unless we design otherwise.
+CAPTURE_SECONDS=15.0
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
+    for o in objects:
+        if o.get('_type')==15:o['capTime']=CAPTURE_SECONDS
     stamp(head,meta,flavor['name'],flavor['guid'],spec['desc'],spec['author'],flavor['kind'],flavor['public'])
     write(out,flavor['name'],head,objects,nodes,meta)
 def build_host_flavor(game,out,spec,flavor,layout):
