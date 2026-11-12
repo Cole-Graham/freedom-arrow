@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles;
@@ -25,13 +26,14 @@ namespace FreedomArrow;
 // Every action is logged (FREEDOM_ARROW_NLOS lines, capped) and written to the diagnostic log.
 static class NlosTrait
 {
-    const int MaxLog=400,Prune=2048,MaxRestore=20;
+    const int MaxLog=400,Prune=2048,MaxRestore=20,MaxTries=30;
     static readonly int[] KeptReasons={5,6,7,25,26,28};
     static readonly HashSet<int> ammo=new();
     // Missile -> original target (0 = not an NLOS missile).
     static readonly Dictionary<ulong,ulong> missiles=new();
     static readonly HashSet<ulong> tracked=new();
     static readonly Dictionary<ulong,int> restores=new();
+    static readonly Dictionary<ulong,int> tries=new();
     static readonly HashSet<(ulong,int)> keptLogged=new();
     static bool broken;
     static int logged,kept,updates;
@@ -60,7 +62,7 @@ static class NlosTrait
     }
     static void Fail(Exception e)
     {
-        broken=true;missiles.Clear();tracked.Clear();restores.Clear();keptLogged.Clear();
+        broken=true;missiles.Clear();tracked.Clear();restores.Clear();tries.Clear();keptLogged.Clear();
         MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: vanilla seeker behaviour for this session. "+e);
         DiagnosticLog.Write("nlos_failed",new{error=e.ToString()});
     }
@@ -75,7 +77,8 @@ static class NlosTrait
     static Vector3 Position(Entity e)=>NativeEcs.Read<ViewComponent>(e).transform.position;
     static float Distance(Entity a,Entity b)=>a.Has<ViewComponent>()&&b.Has<ViewComponent>()?Vector3.Distance(Position(a),Position(b)):-1;
     static int Id(Entity e)=>e.GetHashCode();
-    // Returns the original target of an NLOS missile, or false for any other missile. The first call per missile decides.
+    // Returns the original target of an NLOS missile, or false for any other missile. Target: seeker, else the seeker's
+    // original target, else the launcher's target; retried for MaxTries calls while none is alive.
     static bool NlosTarget(Entity missile,out Entity target)
     {
         target=default;ulong key=Key(missile);
@@ -86,26 +89,41 @@ static class NlosTrait
         }
         if(missiles.Count>Prune)
         {
-            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);}
+            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);tries.Remove(k);}
         }
-        missiles[key]=0;
-        if(!missile.Has<MissileGuidanceInfoComponent>()||!missile.Has<SeekerComponent>())return false;
+        if(!missile.Has<MissileGuidanceInfoComponent>()||!missile.Has<SeekerComponent>()){missiles[key]=0;return false;}
         var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;
-        if(info==null||!ammo.Contains(info.Id))return false;
-        bool has=SeekerTarget(missile,out target);
-        if(!has||!target.IsAlive)
+        if(info==null||!ammo.Contains(info.Id)){missiles[key]=0;return false;}
+        bool has=SeekerTarget(missile,out target)&&target.IsAlive;string from="seeker";
+        if(!has)
         {
             var original=NativeEcs.Field<SeekerComponent,Entity>(missile,"OriginalTarget");
-            if(original.IsAlive)target=original;
+            if(original.IsAlive){target=original;from="original target";}
+        }
+        // 0.8.0-dev.7 game log (Osama, 12 Nov 14:53): a ground HJ-10 missile had neither, so take the launcher's own target.
+        string weaponState="no shooter weapon";
+        if(!target.IsAlive)
+        {
+            var weapon=NativeEcs.Field<MissileGuidanceInfoComponent,Entity>(missile,"ShooterWeapon");
+            weaponState=!weapon.IsAlive?"shooter weapon gone":!weapon.Has<TargetComponent>()?"shooter weapon has no unit target":"shooter weapon target dead";
+            if(weapon.IsAlive&&weapon.Has<TargetComponent>())
+            {
+                var aim=NativeEcs.Field<TargetComponent,Entity>(weapon,"Target");
+                if(aim.IsAlive){target=aim;from="launcher target";}
+            }
         }
         if(!target.IsAlive)
         {
-            Log("nlos_no_target",$"launch ammo {info.Id} missile {Id(missile)}: seeker has no live target; vanilla behaviour",new{ammo=info.Id,missile=Id(missile)});
+            // The seeker can be empty on the first frames after launch: retry before giving up.
+            tries.TryGetValue(key,out int n);tries[key]=n+1;
+            if(n+1<MaxTries)return false;
+            missiles[key]=0;tries.Remove(key);
+            Log("nlos_no_target",$"launch ammo {info.Id} missile {Id(missile)}: no live target after {MaxTries} checks ({weaponState}); vanilla behaviour",new{ammo=info.Id,missile=Id(missile),weaponState});
             return false;
         }
-        missiles[key]=Key(target);
-        Log("nlos_launch",$"launch ammo {info.Id} missile {Id(missile)} target {Id(target)} at {Distance(missile,target):0} world units; seeker {(has?"locked":"empty, set from original target")}",
-            new{ammo=info.Id,missile=Id(missile),target=Id(target),distance=Distance(missile,target),seekerLocked=has});
+        tries.Remove(key);missiles[key]=Key(target);
+        Log("nlos_launch",$"launch ammo {info.Id} missile {Id(missile)} target {Id(target)} at {Distance(missile,target):0} world units; target from {from}",
+            new{ammo=info.Id,missile=Id(missile),target=Id(target),distance=Distance(missile,target),from});
         return true;
     }
     public static void UpdateBefore(in Entity __0)

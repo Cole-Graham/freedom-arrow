@@ -1,0 +1,6 @@
+{
+  "version": "0.8.0-dev.9",
+  "base": "0.8.0-dev.8",
+  "request": "0.8.0-dev.7 game log, Osama 12 Nov 14:53: ground HJ-10 NLOS missile launched with an empty seeker",
+  "change": "Runtime only: NlosTrait takes the target from the seeker, its original target, or the launcher weapon target, and retries for 30 calls; data unchanged from 0.8.0-dev.8"
+}
