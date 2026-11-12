@@ -1,0 +1,39 @@
+{
+  "version": "0.8.0-dev.14",
+  "build": 82,
+  "previous": "0.8.0-dev.13",
+  "assets_version": "0.2.0",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.0.bamod",
+    "sha256": "ef5da6ae7e8d01c6f40d40bf49245c862de515271515dd1ba2421821338757be",
+    "size": 4031291500,
+    "files": 8005
+  },
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.14-complete.bamod",
+    "sha256": "abc7536f6e874e526ad2df524919b6a51ab0d2a106b326d33f97588c1c39dbd2",
+    "size": 4101218701,
+    "files": 8152
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.14.bamod",
+    "sha256": "31a4b54c143da484d899bb900265ced0121598d911bbed65c0e329735631b04e",
+    "size": 69927889,
+    "files": 149
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/nlos.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.14.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

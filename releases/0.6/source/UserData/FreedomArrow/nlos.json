@@ -1,17 +1,20 @@
 {
   "trait": "NLOS",
-  "version": "0.8.0-dev.7",
-  "note": "Missiles listed here keep their seeker on a live target without line of sight or a laser (runtime NlosTrait.cs).",
+  "version": "0.8.0-dev.14",
+  "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs).",
   "ammunition": [
-    2009623,
-    2018448
+    2009623
+  ],
+  "fire_weapons": [
+    2009619
+  ],
+  "fire_units": [
+    936
   ],
   "weapons": [
-    2009619,
-    2018447
+    2009619
   ],
   "units": {
-    "936": "HJ-10",
-    "1183": "Blood Wolves"
+    "936": "HJ-10"
   }
 }

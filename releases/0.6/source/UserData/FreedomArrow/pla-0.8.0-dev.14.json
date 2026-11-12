@@ -1,0 +1,50 @@
+{
+  "version": "0.8.0-dev.14",
+  "base": "0.8.0-dev.13",
+  "base_sha256": "97a352f3791b10ceb871729a27e1e35038ed224fd3607e6c88ad97fbb62e6063",
+  "request": "Osama 12 Nov PST: Hellfire HJ-10 without LOS, semi-active, no fire on the move; CH-901 like CTL-181",
+  "hj10": {
+    "TrajectoryType": 110,
+    "Seeker": 100,
+    "Damage": 13.0,
+    "PenetrationAtGroundRange": 90.0,
+    "GroundRange": 900.0,
+    "MaxSpeed": 330.0,
+    "CanBeIntercepted": true
+  },
+  "hj10_launcher": {
+    "Type": 81,
+    "CanShootOnTheMove": false,
+    "IsVerticalLauncher": false,
+    "MagazineSize": 8
+  },
+  "ch901": {
+    "TrajectoryType": 200,
+    "Seeker": 0,
+    "LaserGuided": true,
+    "CanBeIntercepted": false,
+    "Damage": 20.0,
+    "PenetrationAtGroundRange": 65.0
+  },
+  "nlos": {
+    "trait": "NLOS",
+    "version": "0.8.0-dev.14",
+    "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs).",
+    "ammunition": [
+      2009623
+    ],
+    "fire_weapons": [
+      2009619
+    ],
+    "fire_units": [
+      936
+    ],
+    "weapons": [
+      2009619
+    ],
+    "units": {
+      "936": "HJ-10"
+    }
+  },
+  "checks": 27723
+}

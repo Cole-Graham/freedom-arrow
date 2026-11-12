@@ -8,6 +8,11 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles.Components;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
+using Il2CppBrokenArrow.Client.Ecs.FogOfWar;
+using Il2CppBrokenArrow.Client.Ecs.FogOfWar.Components;
+using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppNetworkCommon.Enums;
 using Il2CppBrokenArrow.Client.Ecs.Render.Components;
 using Il2CppDefaultEcs;
 using MelonLoader;
@@ -15,9 +20,13 @@ using UnityEngine;
 namespace FreedomArrow;
 // NLOS trait (Osama, 12 November 2026): "if the target moves and there's no laser it loses track right? I think a special
 // hook for this unit is ok" / "Any future weapon with this NLOS trait will receive the same benefits".
-// Data (apply_0_8_dev7.py): an NLOS missile flies the CTL-181 precision path (TrajectoryType 200), which the game fires at
-// spotted enemies without the launcher's line of sight, and has a fire-and-forget seeker (Seeker 10).
-// Hook, for missiles whose ammunition ID is in UserData/FreedomArrow/nlos.json, while the original target is alive:
+// 0.8.0-dev.14 (Osama: "the HJ-10 should be the same bradley hellfire weapon but doesn't require line of sight"): the
+// missile is the ground Hellfire again (TrajectoryType 110, seeker 50). Two parts, both driven by nlos.json:
+// - Firing: FogOfWarUnit.Update postfix. That update rebuilds the unit's FogOfWarComponent.Shootable set from its own line
+//   of sight; for a unit carrying a "fire_weapons" launcher the hook then adds every enemy (the update's target list) that
+//   any unit of the shooter's side sees (target VisibleTo) and that is within the game's own shooting distance for the
+//   launcher's selected ammunition (BattleSystemHelpers.GetAmmoShootingDistance). Patched method takes classes only.
+// - Missile, for ammunition IDs in "ammunition", while the original target is alive:
 // - SeekerSystem.InternalUpdate prefix: the seeker keeps the original target, with line of sight and vision set and the last
 //   target position set to where the target is now, so the missile follows a moving target with no laser.
 // - SeekerSystem.DropCurrentTarget prefix: drops for no line of sight, not visible, too far, beyond seeker angles, shooter
@@ -35,7 +44,15 @@ static class NlosTrait
     static readonly Dictionary<ulong,int> restores=new();
     static readonly Dictionary<ulong,int> tries=new();
     static readonly HashSet<(ulong,int)> keptLogged=new();
-    static bool broken;
+    static bool broken,fireBroken;
+    // Firing part: unit -> (launcher weapon entity, 0 = not an NLOS shooter), and the last added targets per unit.
+    static readonly HashSet<int> fireWeapons=new(),fireUnits=new();
+    static readonly Dictionary<ulong,ulong> shooters=new();
+    static readonly Dictionary<ulong,(float time,List<Entity> targets)> fireCache=new();
+    static readonly HashSet<(ulong,ulong)> fireLogged=new();
+    static int mainThread,fireAdds,offThread;
+    static EntitySet weaponSet;static World weaponWorld,fireWorld;
+    const float Refresh=0.5f;
     static int logged,kept,updates;
     [StructLayout(LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
@@ -51,8 +68,88 @@ static class NlosTrait
         var drop=AccessTools.Method(typeof(SeekerSystem),nameof(SeekerSystem.DropCurrentTarget))??throw new InvalidOperationException("SeekerSystem.DropCurrentTarget not found");
         harmony.Patch(update,prefix:new HarmonyMethod(typeof(NlosTrait),nameof(UpdateBefore)));
         harmony.Patch(drop,prefix:new HarmonyMethod(typeof(NlosTrait),nameof(DropBefore)));
+        var cfg=JsonNode.Parse(File.ReadAllText(path))!;
+        foreach(var n in cfg["fire_weapons"]?.AsArray()??new JsonArray())fireWeapons.Add(n!.GetValue<int>());
+        foreach(var n in cfg["fire_units"]?.AsArray()??new JsonArray())fireUnits.Add(n!.GetValue<int>());
+        if(fireWeapons.Count>0&&fireUnits.Count>0)
+        {
+            mainThread=Environment.CurrentManagedThreadId;
+            var fog=AccessTools.Method(typeof(FogOfWarUnit),nameof(FogOfWarUnit.Update))??throw new InvalidOperationException("FogOfWarUnit.Update not found");
+            harmony.Patch(fog,postfix:new HarmonyMethod(typeof(NlosTrait),nameof(FogAfter)));
+            MelonLogger.Msg($"FREEDOM_ARROW_NLOS fire hook installed: units {string.Join(",",fireUnits)} with launchers {string.Join(",",fireWeapons)} may shoot enemies their side has spotted, within launcher range, without own line of sight");
+        }
         MelonLogger.Msg($"FREEDOM_ARROW_NLOS installed: ammunition {string.Join(",",ammo)} keep their seeker on a live target without line of sight or laser");
         DiagnosticLog.Write("nlos_installed",new{ammunition=ammo.ToArray()});
+    }
+    // Finds the NLOS launcher on a unit (once per unit).
+    static Entity Launcher(Entity unit)
+    {
+        ulong key=Key(unit);
+        if(shooters.TryGetValue(key,out var w))return FromKey(w);
+        shooters[key]=0;
+        if(!unit.Has<UnitComponent>()||!fireUnits.Contains(NativeEcs.Read<UnitComponent>(unit).UnitData.Id))return default;
+        var world=ShootingSystem._gameContext;if(world==null)return default;
+        if(weaponSet==null||weaponWorld==null||weaponWorld.Pointer!=world.Pointer){weaponWorld=world;weaponSet=world.GetEntities().With<WeaponComponent>().AsSet();}
+        var arr=weaponSet._entities;int n=Math.Min(weaponSet.Count,arr?.Length??0);
+        for(int i=0;i<n;i++)
+        {
+            var e=arr![i];if(!e.IsAlive)continue;
+            var wc=NativeEcs.Read<WeaponComponent>(e);
+            if(wc?.WeaponInfo==null||!fireWeapons.Contains(wc.WeaponInfo.Id))continue;
+            if(Key(wc.GetUnitEntity())!=key)continue;
+            shooters[key]=Key(e);
+            Log("nlos_fire_unit",$"fire: unit {Id(unit)} ({NativeEcs.Read<UnitComponent>(unit).UnitData.HUDName}) launcher {wc.WeaponInfo.HUDName} found",new{unit=Id(unit),weapon=wc.WeaponInfo.Id});
+            return e;
+        }
+        Log("nlos_fire_unit_missing",$"fire: unit {Id(unit)} has no NLOS launcher among {n} weapons",new{unit=Id(unit)});
+        return default;
+    }
+    static bool Spotted(Entity target,TeamSide side)
+    {
+        if(!target.Has<FogOfWarComponent>())return false;
+        var seen=NativeEcs.Read<FogOfWarComponent>(target).VisibleTo;if(seen==null)return false;
+        foreach(var o in seen)if(o.IsAlive&&o.Has<UnitComponent>()&&NativeEcs.Read<UnitComponent>(o).Owner?.TeamSide==side)return true;
+        return false;
+    }
+    public static void FogAfter(FogOfWarUnit __instance,Il2CppSystem.Collections.Generic.HashSet<FogOfWarUnit> __0)
+    {
+        if(fireBroken||!Runtime.IsApplied||__instance==null)return;
+        try
+        {
+            var world=ShootingSystem._gameContext;
+            if(world!=null&&(fireWorld==null||fireWorld.Pointer!=world.Pointer)){fireWorld=world;shooters.Clear();fireCache.Clear();fireLogged.Clear();}
+            var unit=__instance.UnitEntity;
+            if(!unit.IsAlive)return;
+            ulong key=Key(unit);
+            if(shooters.TryGetValue(key,out var known)&&known==0)return;
+            if(Environment.CurrentManagedThreadId!=mainThread){if(++offThread==1)Log("nlos_fire_off_thread","fire: fog update ran off the main thread; firing part skipped there",new{offThread});return;}
+            var weapon=Launcher(unit);if(!weapon.IsAlive||!unit.Has<FogOfWarComponent>())return;
+            var shootable=NativeEcs.Read<FogOfWarComponent>(unit).Shootable;if(shootable==null)return;
+            float now=Time.time;
+            if(!fireCache.TryGetValue(key,out var cache)||now-cache.time>=Refresh||__0==null)
+            {
+                var list=new List<Entity>();
+                var ammoInfo=NativeEcs.Read<WeaponComponent>(weapon).SelectedAmmunition;
+                var side=NativeEcs.Read<UnitComponent>(unit).Owner?.TeamSide;
+                if(ammoInfo!=null&&side!=null&&__0!=null)
+                {
+                    var here=Position(unit);
+                    foreach(var t in __0)
+                    {
+                        var e=t?.UnitEntity??default;
+                        if(!e.IsAlive||!e.Has<ViewComponent>())continue;
+                        float range=BattleSystemHelpers.GetAmmoShootingDistance(unit,e,ammoInfo);
+                        float dist=Vector3.Distance(here,Position(e));
+                        if(dist>range||!Spotted(e,side.Value))continue;
+                        list.Add(e);
+                        if(fireLogged.Count<4096&&fireLogged.Add((key,Key(e))))Log("nlos_fire_target",$"fire: unit {Id(unit)} may shoot spotted enemy {Id(e)} at {dist:0} (shooting distance {range:0}); own line of sight {(shootable.Contains(e)?"yes":"no")}",new{unit=Id(unit),target=Id(e),dist,range,ownLos=shootable.Contains(e)});
+                    }
+                }
+                cache=(now,list);fireCache[key]=cache;
+            }
+            foreach(var e in cache.targets)if(e.IsAlive&&!shootable.Contains(e)){shootable.Add(e);fireAdds++;}
+        }
+        catch(Exception e){fireBroken=true;fireCache.Clear();MelonLogger.Error("FREEDOM_ARROW_NLOS_FIRE_FAILED: vanilla line of sight for this session. "+e);DiagnosticLog.Write("nlos_fire_failed",new{error=e.ToString()});}
     }
     static void Log(string kind,string text,object data)
     {

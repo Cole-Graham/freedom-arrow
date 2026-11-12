@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.13
+# Freedom Arrow 0.8.0-dev.14
+
+- Ground HJ-10: back to the ground Hellfire missile (13 damage, 90 penetration, top attack, 1800 m, fast and straight, interceptable by APS), with a semi-active seeker and no firing on the move. A runtime hook lets it fire at enemies its side has spotted, within its range, without its own line of sight; the seeker hook keeps the missile locked on a moving target without line of sight. Every target the hook allows is logged (`FREEDOM_ARROW_NLOS fire:`).
+- CH-901: a CTL-181-style precision munition (laser guided, no seeker, not interceptable). No hook.
+- Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.13
 
 - CH-901 cannot be intercepted by APS (Osama: OK as is). The ground HJ-10 NLOS missile stays interceptable (0.8.0-dev.12).
 - Includes 0.8.0-dev.8 to dev.12, with the NLOS hook launcher lookup through the warhead. Not yet verified in a game run.
@@ -887,3 +895,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:11:59 PST (America/Los_Angeles) — 0.8.0-dev.12: NLOS missiles interceptable by APS; hook launcher lookup via warhead.
 
 - 2026-11-12 15:12:49 PST (America/Los_Angeles) — 0.8.0-dev.13: CH-901 not interceptable.
+
+- 2026-11-12 15:20:33 PST (America/Los_Angeles) — 0.8.0-dev.14: HJ-10 semi-active Hellfire with no-LOS fire hook; CH-901 CTL-style.
