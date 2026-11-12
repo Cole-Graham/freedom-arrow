@@ -1,5 +1,5 @@
 {
-  "build": 44,
+  "build": 45,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -583,7 +583,7 @@
     {
       "unit": 1149,
       "row": 16,
-      "name": "Target Observers \u89c2\u5bdf\u7ec4",
+      "name": "Recon \u4fa6\u5bdf\u7ec4",
       "spec": 17,
       "men": 3,
       "recon": true,
@@ -880,7 +880,7 @@
       "row": 28,
       "name": "Mechanized Combat Engineers \u5de5\u5175\u73ed",
       "spec": 18,
-      "men": 8,
+      "men": 7,
       "recon": false,
       "troop_type": "Engineers",
       "base_rifle": "QBZ-191",
@@ -1208,7 +1208,7 @@
     {
       "unit": 1163,
       "row": 34,
-      "name": "Mechanized Riflemen \u673a\u6b65\u73ed",
+      "name": "Mech. Rifles \u673a\u6b65\u73ed",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -1260,7 +1260,7 @@
     {
       "unit": 1164,
       "row": 35,
-      "name": "Armored Forward Observers \u524d\u89c2\u7ec4",
+      "name": "Forward Observers \u524d\u89c2\u7ec4",
       "spec": 18,
       "men": 3,
       "recon": true,

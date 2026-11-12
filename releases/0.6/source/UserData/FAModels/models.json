@@ -627,5 +627,10 @@
     "file": "m_z20.fam",
     "align": false,
     "battle": "m_z20_lo.fam"
+  },
+  "PLA PLAN ZSD-89": {
+    "file": "m_zsd90_static.fam",
+    "battle": "m_zsd90_lo_static.fam",
+    "align": false
   }
 }

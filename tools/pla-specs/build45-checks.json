@@ -1,0 +1,104 @@
+{
+  "build": 45,
+  "base_build": 44,
+  "base_sha256": "b3e03c11b8a50ac7b2dd60514c98692b2f070f44563093a0dd4dd530f0f6925b",
+  "changes": [
+    {
+      "unit": 1149,
+      "name": "Recon \u4fa6\u5bdf\u7ec4",
+      "change": "renamed from Target Observers \u89c2\u5bdf\u7ec4"
+    },
+    {
+      "unit": 1164,
+      "name": "Forward Observers \u524d\u89c2\u7ec4",
+      "change": "renamed from Armored Forward Observers \u524d\u89c2\u7ec4"
+    },
+    {
+      "unit": 1163,
+      "name": "Mech. Rifles \u673a\u6b65\u73ed",
+      "change": "renamed from Mechanized Riflemen \u673a\u6b65\u73ed"
+    },
+    {
+      "unit": 1136,
+      "name": "Airborne Riflemen \u7a7a\u964d\u6b65\u5175",
+      "change": "+1 QBU-10"
+    },
+    {
+      "unit": 1139,
+      "name": "Tank Hunters \u5766\u514b\u6740\u624b",
+      "change": "QJY-201 removed"
+    },
+    {
+      "unit": 1186,
+      "name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
+      "change": "QBU-191 -> QBU-10"
+    },
+    {
+      "unit": 1156,
+      "name": "Mechanized Combat Engineers \u5de5\u5175\u73ed",
+      "change": "7 men"
+    },
+    {
+      "unit": 1177,
+      "name": "Thermobaric Team",
+      "change": "1 FHJ-02"
+    },
+    {
+      "unit": 1181,
+      "name": "Godswords \u4e1c\u65b9\u795e\u5251",
+      "change": "6x PF-89 (special slot; replaces the QTS-11 grenade launcher)"
+    },
+    {
+      "unit": 1175,
+      "name": "Infantry \u6b65\u5175",
+      "change": "conscripts emblem with a gear"
+    },
+    {
+      "unit": 1207,
+      "name": "PF-98 Tank Hunters",
+      "change": "removed: PF-98 Tank Hunters (Motorized)"
+    },
+    {
+      "unit": 1158,
+      "name": "Mechanized GPMG Riflemen \u673a\u67aa\u73ed",
+      "change": "removed: Mechanized GPMG Riflemen"
+    },
+    {
+      "unit": 1151,
+      "name": "Mechanized AT Riflemen \u53cd\u5766\u514b\u73ed",
+      "change": "removed: Mechanized AT Riflemen"
+    },
+    {
+      "unit": 1155,
+      "name": "Mechanized PF-98 Tank Hunters",
+      "change": "tripod PF-98: HEAT 800 m + DZD98A HE (SPG-9 OG-9V copy, 1000 m, ignores cover, no vehicles)"
+    },
+    {
+      "weapon": 2014292,
+      "change": "GAM-102LR Spike icon"
+    },
+    {
+      "unit": 973,
+      "name": "FH-97A",
+      "change": "F-35B flight, armor, stealth, sensors and ECM; 4 AMRAAM"
+    },
+    {
+      "unit": 1246,
+      "name": "ZSD-89",
+      "change": "PLAN SOF copy (Type 89 APC; Osama said ZBD-89)"
+    }
+  ],
+  "checks": 1615,
+  "native_verified": false,
+  "new_ids": {
+    "pf98_tripod": 2016259,
+    "dzd98a": 2016261,
+    "tripod_heat": 2016260,
+    "fh97a_amraam": 2016267,
+    "plan_zsd89": 1246
+  },
+  "provisional": [
+    "tripod PF-98: 10 HEAT + 10 DZD98A",
+    "FH-97A keeps its 180 cost and recon tab"
+  ]
+}

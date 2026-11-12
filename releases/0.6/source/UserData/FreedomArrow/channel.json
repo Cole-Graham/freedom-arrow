@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "44",
+  "package_version": "45",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build43 plus Osama 12 Nov 04:18: J-11BS/J-11BHG/J-11D with lighter skins, removals and renames, Z-8L in every spec, Z-20 family with DAP-style loadouts, CM-501G/CM-502, TY-90 as a Sidewinder. Data checks only; native validation pending."
+  "verification": "Build44 plus Osama 12 Nov 04:29/04:40: squad edits, renames, removals, FH-97A as F-35B with 4 AMRAAM, tripod PF-98 with DZD98A, GAM-102LR Spike icon, PLAN ZSD-89, PLARF Infantry gear icon, Godswords PF-89. Data checks only; native validation pending."
 }

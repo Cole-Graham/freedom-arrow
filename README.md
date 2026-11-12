@@ -1,3 +1,9 @@
+# PLA TEST Build 45
+
+Names: Recon (was Target Observers), Forward Observers, Mech. Rifles. Squads: Airborne Riflemen +1 QBU-10; Tank Hunters lose the QJY-201; Mountain Leopards QBU-191 -> QBU-10; Mechanized Combat Engineers 7 men; Thermobaric Team 1 FHJ-02; Godswords carry 6 PF-89 (special slot, replacing the QTS-11 grenade launcher). Removed: Motorized PF-98 Tank Hunters, Mechanized GPMG Riflemen, Mechanized AT Riflemen. Mechanized PF-98 Tank Hunters use a tripod PF-98 with its own weapon card: HEAT to 800 m and DZD98A HE (SPG-9 OG-9V copy, 1000 m, ignores cover, no vehicle targets). GAM-102LR uses the Spike weapon card. FH-97A copies the F-35B flight, armor, stealth, sensors and ECM and carries 4 AMRAAM. ZSD-89 also in PLAN SOF. PLARF Infantry uses the conscripts emblem with a gear. In-game appearance and behaviour remain unverified.
+
+## Historical Build44
+
 # PLA TEST Build 44
 
 J-11 family: J-11BS (former J-11B, 4th gen), new J-11BHG (4.5 gen: Su-35S flight and ECM, J-11B weapons) and new J-11D (SEAD copy of J-16D), all on a lighter J-11 skin (J-16 / J-16D models). Removed Y-20B, J-7E, J-8II, JJ-5, J-2. Renamed J-8D and J-6W. Z-8L is in every spec and carries infantry that fits its 27 seats. Z-20 family: Z-20S Air Force recon (Exceptional Optics), Z-20KA Air Force armed transport, Z-20 for PLAGF, Z-20J unarmed and Z-20T armed for PLAN SOF. Armed Z-20s use DAP-style loadouts: 2x TY-90 + 4x CM-501G, 2x TY-90 + 4x CM-502, or 6x TY-90. CM-502 copies the vanilla LMUR; CM-501G is an anti-infantry LMUR (20 damage, ignores cover, no vehicle or helicopter targets). TY-90 copies the vanilla helicopter AIM-9. In-game appearance and behaviour remain unverified.
@@ -535,3 +541,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 04:03:00 PST (America/Los_Angeles) — Build43: MANPAD ladder, Tank Hunters DZT-98, removals and moves, ZTQ-15 Recon and autoloader, HJ-10 name, Lynx ATV loadouts, Z-19 names, J-35/J-31 model swap (low-vis J-31).
 
 - 2026-11-12 04:24:27 PST (America/Los_Angeles) — Build44: J-11BS/BHG/D with lighter skins, removals/renames, Z-8L shared, Z-20 family with loadouts, CM-501G/CM-502, TY-90 Sidewinder.
+
+- 2026-11-12 04:44:44 PST (America/Los_Angeles) — Build45: squad edits and renames, removals, tripod PF-98 with DZD98A, GAM-102LR Spike icon, FH-97A as F-35B with 4 AMRAAM, PLAN ZSD-89, PLARF Infantry gear icon, Godswords PF-89.

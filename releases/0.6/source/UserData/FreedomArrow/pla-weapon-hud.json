@@ -1,5 +1,5 @@
 {
-  "build": 42,
+  "build": 45,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3531,6 +3531,16 @@
       "address": "FA_PLA_WP_QBZ191_PLAIN",
       "native_weapon": 2012205,
       "basis": "Sam-supplied iron-sight reference; donor stats/model/audio and ammunition stocks retained"
+    },
+    {
+      "weapon": 2016259,
+      "name": "PF-98",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "PF98T",
+      "address": "FA_PLA_WP_PF98T",
+      "native_weapon": 172,
+      "basis": "Osama-supplied tripod PF-98 image (12 Nov 04:40), measured source edges"
     }
   ],
   "vehicle_weapons": 307,
@@ -3550,7 +3560,8 @@
     "QTS11",
     "QN202",
     "QJY201",
-    "PF98"
+    "PF98",
+    "PF98T"
   ],
   "resources": [
     "FA_PLA_WP_QBB95",
@@ -3582,10 +3593,12 @@
     "FA_PLA_WP_QJY201",
     "FA_PLA_WP_QJY201_OUTLINE",
     "FA_PLA_WP_PF98",
-    "FA_PLA_WP_PF98_OUTLINE"
+    "FA_PLA_WP_PF98_OUTLINE",
+    "FA_PLA_WP_PF98T",
+    "FA_PLA_WP_PF98T_OUTLINE"
   ],
   "native_icon_entries": 334,
-  "custom_icon_entries": 19,
+  "custom_icon_entries": 20,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {
