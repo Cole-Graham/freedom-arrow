@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "64",
+  "package_version": "65",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "PLA Build63 on main dev 0.7.0-dev.58. Data checks only; in-game check pending."
+  "verification": "Build64 plus aircraft loadout pass, CTL-181 NLOS and CSK-181 in Motorized. Data checks only; in-game check pending."
 }

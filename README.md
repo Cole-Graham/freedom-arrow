@@ -1,3 +1,15 @@
+# PLA TEST Build 65
+
+- Aircraft pylons clear: every PLA loadout sets every pylon its menu uses, with the vanilla Empty turret on unused ones (306 slots filled), so weapons from another loadout no longer stay mounted.
+- Loadouts are named by role: Light/Heavy CAP, Light/Heavy SEAD, Anti-ship, Standoff strike, Light/Heavy strike, CAS; helicopters Light/Heavy anti-armor, Multirole, Fire support, Air escort.
+- LT-2 and LS-6 are one bomb, shown as LS-6 500kg. J-16 32-bomb load is LS-6 250kg (guided). Duplicate entries removed.
+- J-20 air-to-air only; J-20S strike/SEAD. J-20/J-20S: at most 4 PL-15 internal, PL-16 gives 6, no PL-17. YJ-91 removed from all stealth aircraft.
+- MD-22: MiG-31BM flight profile, the J-31 loadout menu, J-31 stealth. J-50 hidden. J-36 uses the F-35A fly preset.
+- CTL-181 NLOS: indirect laser-guided missile (vanilla PGMM behaviour) at targets others spot; 2000 m, 48 missiles, 15 damage, 20 penetration, 50% ignore cover.
+- CSK-181 transport also in Motorized.
+
+## Historical Build64
+
 # PLA TEST Build 64
 
 The PLA pack now sits on the latest main dev build, 0.7.0-dev.58, instead of 0.6.0-dev.101. Everything Russian and US, the runtime (AA cooldown, C-RAM prediction, playable borders, conquest and the rest), the skirmish mod, the game config and the maps (Oil Rush, Airport, Baltiisk, Dam, Highway of Death, Dead Center, Chkalovsk) are exactly dev.58. Every China unit, loadout, squad and specialization is exactly Build 63.
@@ -698,3 +710,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 12:22:54 PST (America/Los_Angeles) — Build63: vanilla-style cargo on Chinese APCs and IFVs.
 
 - 2026-11-12 12:28:51 PST (America/Los_Angeles) — Build64: PLA pack on main dev 0.7.0-dev.58.
+
+- 2026-11-12 12:56:55 PST (America/Los_Angeles) — Build65: aircraft loadout pass, CTL-181 NLOS, CSK-181 Motorized.

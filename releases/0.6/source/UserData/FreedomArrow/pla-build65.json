@@ -1,0 +1,1557 @@
+{
+  "build": 65,
+  "base_build": 64,
+  "base_sha256": "99c30504bb1607cb92d1dd6195cda897282e2f44a5ad5ebbe186ccf2fd0efd47",
+  "request": "Osama 12 Nov 12:39 PST aircraft/CTL batch; 12:42 CSK-181 in Motorized",
+  "removed_options": [
+    {
+      "unit": "J-20",
+      "option": "6x PL-15C, 2x PL-10",
+      "why": "J-20 bays hold 4 PL-15; PL-16 gives 6"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-15, 2x PL-10, 2x LS-6",
+      "why": "J-20 is air-to-air only"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-10, 4x LT-2",
+      "why": "J-20 is air-to-air only"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-15, 2x PL-10, 2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-17, 2x PL-15, 2x PL-10",
+      "why": "J-20/J-20S fly internal loads only; no PL-17"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-10, 4x LD-8A",
+      "why": "J-20 is air-to-air only"
+    },
+    {
+      "unit": "J-20",
+      "option": "2x PL-15, 2x PL-10, 2x LD-8A",
+      "why": "J-20 is air-to-air only"
+    },
+    {
+      "unit": "J-35",
+      "option": "2x PL-15C, 2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-36",
+      "option": "4x PL-15C, 4x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-50",
+      "option": "4x PL-15C, 2x PL-10, 2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-20S",
+      "option": "6x PL-15C, 2x PL-10",
+      "why": "J-20 bays hold 4 PL-15; PL-16 gives 6"
+    },
+    {
+      "unit": "J-20S",
+      "option": "2x PL-15, 2x PL-10, 2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-20S",
+      "option": "2x PL-17, 2x PL-15, 2x PL-10",
+      "why": "J-20/J-20S fly internal loads only; no PL-17"
+    },
+    {
+      "unit": "GJ-11",
+      "option": "2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-31",
+      "option": "2x PL-15C, 2x YJ-91",
+      "why": "YJ-91 off stealth aircraft"
+    },
+    {
+      "unit": "J-16",
+      "option": "2x PL-15, 2x PL-10, 32x 250 kg bomb",
+      "why": "rebuilt as LS-6 250kg"
+    },
+    {
+      "unit": "J-10C",
+      "option": "2x PL-12, 2x PL-10, 4x LT-2",
+      "why": "same load as another entry once LT-2 is LS-6 500kg"
+    },
+    {
+      "unit": "GJ-11",
+      "option": "4x LS-6",
+      "why": "same load as another entry once LT-2 is LS-6 500kg"
+    }
+  ],
+  "added_options": [
+    {
+      "unit": "J-20",
+      "load": {
+        "PL-15": 2,
+        "PL-10": 2
+      },
+      "cost": 70
+    },
+    {
+      "unit": "J-20S",
+      "load": {
+        "LS-6 250kg": 8,
+        "PL-10": 2
+      },
+      "cost": 85
+    },
+    {
+      "unit": "J-16",
+      "load": {
+        "LS-6 250kg": 32,
+        "PL-15": 2,
+        "PL-10": 2
+      },
+      "cost": 230
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "PL-15C": 6
+      },
+      "cost": 120
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "PL-12": 4
+      },
+      "cost": 70
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "PL-15": 4
+      },
+      "cost": 90
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "LT-2": 2,
+        "PL-15": 2
+      },
+      "cost": 75
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "LS-6": 4
+      },
+      "cost": 60
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "PL-15C": 4,
+        "PL-10": 2
+      },
+      "cost": 105
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "PL-16": 6
+      },
+      "cost": 135
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "LD-8A": 4
+      },
+      "cost": 155
+    },
+    {
+      "unit": "MD-22",
+      "load": {
+        "LD-8A": 2,
+        "PL-15": 2
+      },
+      "cost": 125
+    }
+  ],
+  "names": {
+    "Z-10K": [
+      [
+        "Heavy anti-armor (HJ-10)",
+        "8x HJ-10, 2x PL-5E",
+        95,
+        true
+      ],
+      [
+        "Heavy anti-armor (AKD-9)",
+        "8x AKD-9, 2x PL-7",
+        80,
+        false
+      ],
+      [
+        "Heavy anti-armor (HJ-8)",
+        "8x HJ-8, 2x PL-9",
+        70,
+        false
+      ],
+      [
+        "Fire support",
+        "8x TY-90, 36x 57 mm rocket",
+        80,
+        false
+      ],
+      [
+        "Multirole (8x HJ-10, 14x 70 mm rocket)",
+        "8x HJ-10, 14x 70 mm rocket",
+        90,
+        false
+      ],
+      [
+        "Multirole (8x HJ-10, 14x 90 mm rocket)",
+        "8x HJ-10, 14x 90 mm rocket",
+        90,
+        false
+      ]
+    ],
+    "J-20": [
+      [
+        "Heavy CAP (PL-12)",
+        "6x PL-12, 2x PL-10",
+        130,
+        true
+      ],
+      [
+        "Heavy CAP (PL-15)",
+        "4x PL-15, 2x PL-10",
+        115,
+        false
+      ],
+      [
+        "Light CAP",
+        "2x PL-10, 2x PL-15",
+        70,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16, 2x PL-10",
+        155,
+        false
+      ]
+    ],
+    "J-16": [
+      [
+        "Heavy CAP",
+        "4x PL-15, 4x PL-10, 2x PL-17",
+        175,
+        true
+      ],
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-12, 2x PL-8",
+        110,
+        false
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-12, 2x PL-8",
+        95,
+        false
+      ],
+      [
+        "Heavy strike (250 kg bomb)",
+        "8x 250 kg bomb, 2x PL-12, 2x PL-8",
+        95,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb, 2x PL-12, 2x PL-8",
+        85,
+        false
+      ],
+      [
+        "Light strike (AKF-98A)",
+        "4x AKF-98A, 2x PL-12, 2x PL-8",
+        160,
+        false
+      ],
+      [
+        "Light strike (LS-6 500kg)",
+        "4x LS-6 500kg, 2x PL-12, 2x PL-8",
+        115,
+        false
+      ],
+      [
+        "Anti-ship",
+        "4x YJ-15, 2x PL-12, 2x PL-8",
+        220,
+        false
+      ],
+      [
+        "Heavy strike (LS-6 250kg)",
+        "32x LS-6 250kg, 2x PL-15, 2x PL-10",
+        230,
+        false
+      ]
+    ],
+    "J-10C": [
+      [
+        "Heavy CAP",
+        "4x PL-15, 2x PL-10",
+        115,
+        true
+      ],
+      [
+        "Light strike (LS-6 500kg)",
+        "2x PL-10, 4x LS-6 500kg, 2x PL-12",
+        120,
+        false
+      ],
+      [
+        "Standoff strike",
+        "2x KD-88, 2x PL-8",
+        90,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-10",
+        65,
+        false
+      ],
+      [
+        "Light CAP",
+        "2x PL-10, 2x PL-17",
+        85,
+        false
+      ],
+      [
+        "Light strike (BBC-5)",
+        "2x BBC-5, 2x PL-10",
+        75,
+        false
+      ],
+      [
+        "Light strike (GB-6)",
+        "2x GB-6, 2x PL-10",
+        75,
+        false
+      ]
+    ],
+    "JH-7A": [
+      [
+        "Heavy strike (BL-755)",
+        "8x BL-755, 2x PL-8",
+        120,
+        true
+      ],
+      [
+        "Heavy strike (250 kg bomb)",
+        "8x 250 kg bomb, 2x PL-8",
+        60,
+        false
+      ],
+      [
+        "Heavy CAP",
+        "4x PL-11, 2x PL-8",
+        70,
+        false
+      ],
+      [
+        "Standoff strike",
+        "2x KD-88, 2x PL-8",
+        90,
+        false
+      ],
+      [
+        "Light strike (Kh-29T)",
+        "2x Kh-29T, 2x PL-8",
+        70,
+        false
+      ],
+      [
+        "Light strike (BBC-5)",
+        "2x BBC-5, 2x PL-8",
+        70,
+        false
+      ],
+      [
+        "Light strike (GB-6)",
+        "2x GB-6, 2x PL-8",
+        70,
+        false
+      ],
+      [
+        "Anti-ship",
+        "2x YJ-83K, 2x PL-8",
+        110,
+        false
+      ]
+    ],
+    "H-6K": [
+      [
+        "Standoff strike (KD-63)",
+        "4x KD-63, 2x CJ-10K",
+        195,
+        true
+      ],
+      [
+        "Heavy strike (250 kg bomb)",
+        "36x 250 kg bomb",
+        165,
+        false
+      ],
+      [
+        "Heavy strike (500 kg bomb)",
+        "12x 500 kg bomb",
+        90,
+        false
+      ],
+      [
+        "Anti-ship (YJ-12)",
+        "4x YJ-12",
+        195,
+        false
+      ],
+      [
+        "Anti-ship (YJ-21)",
+        "2x YJ-21",
+        150,
+        false
+      ],
+      [
+        "Standoff strike (CJ-10K)",
+        "6x CJ-10K",
+        225,
+        false
+      ],
+      [
+        "Standoff strike (KD-88)",
+        "4x KD-88",
+        140,
+        false
+      ],
+      [
+        "Anti-ship (YJ-83K)",
+        "4x YJ-83K",
+        165,
+        false
+      ]
+    ],
+    "J-35": [
+      [
+        "Heavy CAP (6x PL-15C)",
+        "6x PL-15C",
+        120,
+        true
+      ],
+      [
+        "Light CAP (PL-12)",
+        "4x PL-12",
+        70,
+        false
+      ],
+      [
+        "Light CAP (PL-15)",
+        "4x PL-15",
+        90,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "2x LS-6 500kg, 2x PL-15",
+        75,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "4x LS-6 500kg",
+        60,
+        false
+      ],
+      [
+        "Heavy CAP (4x PL-15C)",
+        "4x PL-15C, 2x PL-10",
+        105,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16",
+        135,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x LD-8A",
+        155,
+        false
+      ],
+      [
+        "Light SEAD",
+        "2x LD-8A, 2x PL-15",
+        125,
+        false
+      ]
+    ],
+    "J-11BS": [
+      [
+        "Light CAP",
+        "2x PL-10, 2x PL-15",
+        70,
+        true
+      ],
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-10, 2x PL-12",
+        115,
+        false
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb, 2x PL-10, 2x PL-12",
+        90,
+        false
+      ],
+      [
+        "Light strike (BBC-5)",
+        "4x BBC-5, 2x PL-10, 2x PL-12",
+        155,
+        false
+      ],
+      [
+        "Light strike (GB-6)",
+        "4x GB-6, 2x PL-10, 2x PL-12",
+        155,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x YJ-91, 2x PL-10, 2x PL-12",
+        185,
+        false
+      ]
+    ],
+    "Su-30MKK": [
+      [
+        "Heavy CAP",
+        "4x PL-12, 4x PL-10, 2x PL-17",
+        165,
+        true
+      ],
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-12, 2x PL-10",
+        115,
+        false
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-12, 2x PL-10",
+        100,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-12, 2x PL-10",
+        100,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb, 2x PL-12, 2x PL-10",
+        90,
+        false
+      ],
+      [
+        "Anti-ship",
+        "4x Kh-31A, 2x PL-12, 2x PL-10",
+        195,
+        false
+      ],
+      [
+        "Light strike (KAB-500Kr)",
+        "4x KAB-500Kr, 2x PL-12, 2x PL-10",
+        120,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x YJ-91, 2x PL-12, 2x PL-10",
+        185,
+        false
+      ]
+    ],
+    "J-36": [
+      [
+        "Heavy CAP (8x PL-17, 6x PL-15C)",
+        "6x PL-15C, 8x PL-17",
+        255,
+        true
+      ],
+      [
+        "Heavy CAP (8x PL-17, 4x PL-21)",
+        "4x PL-21, 8x PL-17",
+        255,
+        false
+      ],
+      [
+        "Light strike (LS-6 500kg)",
+        "4x PL-15C, 4x LS-6 500kg",
+        140,
+        false
+      ],
+      [
+        "Standoff strike",
+        "4x PL-15C, 4x KD-88",
+        185,
+        false
+      ],
+      [
+        "Heavy strike",
+        "4x PL-15C, 6x LS-6 500kg",
+        160,
+        false
+      ],
+      [
+        "Light strike (GB-6)",
+        "4x PL-15C, 4x GB-6",
+        165,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "8x PL-16, 2x PL-10",
+        180,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x PL-15C, 6x LD-8A",
+        235,
+        false
+      ]
+    ],
+    "Z-19": [
+      [
+        "Multirole (HJ-10)",
+        "8x HJ-10, 36x 57 mm rocket",
+        100,
+        true
+      ],
+      [
+        "Multirole (AKD-9)",
+        "8x AKD-9, 14x 90 mm rocket",
+        75,
+        false
+      ],
+      [
+        "Heavy anti-armor",
+        "8x TY-90, 8x HJ-8",
+        110,
+        false
+      ],
+      [
+        "Multirole (CM-501GA)",
+        "8x CM-501GA, 36x 57 mm rocket",
+        105,
+        false
+      ]
+    ],
+    "Z-9WA": [
+      [
+        "Heavy anti-armor",
+        "8x HJ-8",
+        50,
+        true
+      ],
+      [
+        "Air escort",
+        "8x TY-90",
+        65,
+        false
+      ],
+      [
+        "Fire support (72x 57 mm rocket)",
+        "72x 57 mm rocket",
+        35,
+        false
+      ],
+      [
+        "Fire support (90 mm rocket)",
+        "28x 90 mm rocket",
+        20,
+        false
+      ],
+      [
+        "Multirole (HJ-8)",
+        "4x HJ-8, 36x 57 mm rocket",
+        40,
+        false
+      ],
+      [
+        "Fire support (36x 57 mm rocket)",
+        "4x TY-90, 36x 57 mm rocket",
+        50,
+        false
+      ],
+      [
+        "Multirole (AKD-9)",
+        "4x AKD-9, 18x 57 mm rocket",
+        40,
+        false
+      ]
+    ],
+    "J-15": [
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-8, 2x PL-12",
+        110,
+        true
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-8, 2x PL-12",
+        95,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-8, 2x PL-12",
+        95,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb, 2x PL-8, 2x PL-12",
+        85,
+        false
+      ],
+      [
+        "Standoff strike",
+        "4x KD-88, 2x PL-8, 2x PL-12",
+        170,
+        false
+      ],
+      [
+        "Light strike (LS-6 500kg)",
+        "4x LS-6 500kg, 2x PL-8, 2x PL-12",
+        115,
+        false
+      ],
+      [
+        "Anti-ship",
+        "4x YJ-83K, 2x PL-8, 2x PL-12",
+        190,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x Kh-31P, 2x PL-8, 2x PL-12",
+        180,
+        false
+      ]
+    ],
+    "J-50": [
+      [
+        "Heavy CAP (PL-15C)",
+        "8x PL-15C, 2x PL-10",
+        170,
+        true
+      ],
+      [
+        "Heavy CAP (PL-21)",
+        "6x PL-21, 2x PL-10",
+        180,
+        false
+      ],
+      [
+        "Heavy CAP (PL-17)",
+        "4x PL-17, 2x PL-10",
+        145,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "4x PL-15C, 2x LS-6 500kg, 2x PL-10",
+        135,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "2x PL-10, 2x PL-15C, 4x LS-6 500kg",
+        125,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16, 2x PL-10",
+        155,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x LD-8A, 2x PL-10",
+        170,
+        false
+      ]
+    ],
+    "Wing Loong": [
+      [
+        "Light CAP (HJ-10)",
+        "6x HJ-10",
+        60,
+        true
+      ],
+      [
+        "Light strike (HJ-10)",
+        "2x LS-6 500kg, 4x HJ-10",
+        70,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "4x LS-6 500kg",
+        60,
+        false
+      ],
+      [
+        "Light CAP (AKD-9)",
+        "8x AKD-9",
+        65,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "2x LS-6 500kg",
+        30,
+        false
+      ]
+    ],
+    "J-10S": [
+      [
+        "Light strike (4x LS-6 500kg, 2x PL-12, 2x PL-8)",
+        "2x PL-8, 4x LS-6 500kg, 2x PL-12",
+        115,
+        true
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-8",
+        60,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg, 2x PL-12, 2x PL-10)",
+        "2x PL-10, 4x LS-6 500kg, 2x PL-12",
+        120,
+        false
+      ],
+      [
+        "CAS (57 mm rocket)",
+        "24x 57 mm rocket, 2x PL-8",
+        30,
+        false
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "14x 90 mm rocket, 2x PL-8",
+        30,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "2x 500 kg bomb, 2x PL-8",
+        35,
+        false
+      ]
+    ],
+    "J-20S": [
+      [
+        "Heavy CAP (PL-12)",
+        "6x PL-12, 2x PL-10",
+        130,
+        true
+      ],
+      [
+        "Heavy CAP (PL-15)",
+        "4x PL-15, 2x PL-10",
+        115,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "2x PL-10, 2x PL-15, 2x LS-6 500kg",
+        100,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "4x LS-6 500kg, 2x PL-10",
+        85,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16, 2x PL-10",
+        155,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x LS-6 250kg, 2x PL-10",
+        85,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x LD-8A, 2x PL-10",
+        170,
+        false
+      ],
+      [
+        "Light SEAD",
+        "2x PL-10, 2x PL-15, 2x LD-8A",
+        150,
+        false
+      ]
+    ],
+    "GJ-11": [
+      [
+        "Light strike (LS-6 500kg)",
+        "4x LS-6 500kg",
+        60,
+        true
+      ],
+      [
+        "Light strike (GB-6)",
+        "2x GB-6",
+        50,
+        false
+      ],
+      [
+        "Standoff strike",
+        "2x KD-88",
+        70,
+        false
+      ]
+    ],
+    "J-15D": [
+      [
+        "Light CAP",
+        "2x PL-15",
+        45,
+        true
+      ],
+      [
+        "Light SEAD (2x YJ-91, 2x PL-15)",
+        "2x YJ-91, 2x PL-15",
+        125,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x YJ-91, 2x PL-15",
+        180,
+        false
+      ],
+      [
+        "Light SEAD (2x YJ-91, 2x PL-15, 2x PL-10)",
+        "2x YJ-91, 2x PL-10, 2x PL-15",
+        150,
+        false
+      ],
+      [
+        "Heavy CAP",
+        "4x PL-12, 2x PL-10",
+        95,
+        false
+      ],
+      [
+        "Anti-ship",
+        "2x YJ-83K, 2x PL-10, 2x PL-12",
+        150,
+        false
+      ]
+    ],
+    "J-8D": [
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-9",
+        60,
+        true
+      ],
+      [
+        "CAS (57 mm rocket)",
+        "48x 57 mm rocket, 2x PL-9",
+        45,
+        false
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "28x 90 mm rocket, 2x PL-9",
+        40,
+        false
+      ],
+      [
+        "Light strike",
+        "4x 500 kg bomb, 2x PL-9",
+        50,
+        false
+      ],
+      [
+        "Light CAP (PL-12)",
+        "2x PL-9, 2x PL-12",
+        55,
+        false
+      ],
+      [
+        "Light CAP (PL-9)",
+        "4x PL-9",
+        40,
+        false
+      ]
+    ],
+    "MD-22": [
+      [
+        "Heavy CAP (6x PL-15C)",
+        "6x PL-15C",
+        120,
+        true
+      ],
+      [
+        "Light CAP (PL-12)",
+        "4x PL-12",
+        70,
+        false
+      ],
+      [
+        "Light CAP (PL-15)",
+        "4x PL-15",
+        90,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "2x PL-15, 2x LS-6 500kg",
+        75,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "4x LS-6 500kg",
+        60,
+        false
+      ],
+      [
+        "Heavy CAP (4x PL-15C)",
+        "4x PL-15C, 2x PL-10",
+        105,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16",
+        135,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x LD-8A",
+        155,
+        false
+      ],
+      [
+        "Light SEAD",
+        "2x PL-15, 2x LD-8A",
+        125,
+        false
+      ]
+    ],
+    "J-16D": [
+      [
+        "Light CAP",
+        "2x PL-15",
+        45,
+        true
+      ],
+      [
+        "Light SEAD (2x YJ-91, 2x PL-15)",
+        "2x YJ-91, 2x PL-15",
+        125,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x YJ-91, 2x PL-15",
+        180,
+        false
+      ],
+      [
+        "Light SEAD (2x YJ-91, 2x PL-15, 2x PL-10)",
+        "2x YJ-91, 2x PL-10, 2x PL-15",
+        150,
+        false
+      ],
+      [
+        "Heavy CAP",
+        "4x PL-12, 2x PL-10",
+        95,
+        false
+      ],
+      [
+        "Standoff strike",
+        "2x KD-88, 2x PL-10, 2x PL-12",
+        130,
+        false
+      ]
+    ],
+    "Z-10": [
+      [
+        "Heavy anti-armor (HJ-10)",
+        "8x HJ-10, 2x PL-5E",
+        95,
+        true
+      ],
+      [
+        "Heavy anti-armor (AKD-9)",
+        "8x AKD-9, 2x PL-7",
+        80,
+        false
+      ],
+      [
+        "Heavy anti-armor (CM-501GA)",
+        "8x CM-501GA, 2x PL-9",
+        110,
+        false
+      ],
+      [
+        "Multirole (HJ-8)",
+        "8x HJ-8, 36x 57 mm rocket",
+        65,
+        false
+      ],
+      [
+        "Fire support",
+        "8x TY-90, 14x 70 mm rocket",
+        70,
+        false
+      ],
+      [
+        "Multirole (HJ-10)",
+        "8x HJ-10, 14x 90 mm rocket",
+        90,
+        false
+      ]
+    ],
+    "J-5": [
+      [
+        "Light CAP",
+        "2x PL-5E",
+        15,
+        true
+      ],
+      [
+        "CAS (57 mm rocket)",
+        "32x 57 mm rocket",
+        15,
+        false
+      ],
+      [
+        "Light strike",
+        "2x 250 kg bomb",
+        10,
+        false
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "14x 90 mm rocket",
+        10,
+        false
+      ]
+    ],
+    "J-6W": [
+      [
+        "CAS (16x 57 mm rocket)",
+        "16x 57 mm rocket",
+        10,
+        true
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "14x 90 mm rocket",
+        10,
+        false
+      ],
+      [
+        "Light strike",
+        "4x 250 kg bomb",
+        20,
+        false
+      ],
+      [
+        "Light CAP",
+        "2x PL-5E",
+        15,
+        false
+      ],
+      [
+        "CAS (2x PL-5E, 16x 57 mm rocket)",
+        "16x 57 mm rocket, 2x PL-5E",
+        25,
+        false
+      ]
+    ],
+    "J-7": [
+      [
+        "Light CAP",
+        "4x PL-8",
+        40,
+        true
+      ],
+      [
+        "CAS (72x 57 mm rocket)",
+        "72x 57 mm rocket",
+        35,
+        false
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "28x 90 mm rocket",
+        20,
+        false
+      ],
+      [
+        "Light strike (4x 250 kg bomb)",
+        "4x 250 kg bomb",
+        20,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb",
+        30,
+        false
+      ],
+      [
+        "Light strike (2x 250 kg bomb)",
+        "2x 250 kg bomb, 2x PL-8",
+        30,
+        false
+      ],
+      [
+        "CAS (36x 57 mm rocket)",
+        "36x 57 mm rocket, 2x PL-8",
+        40,
+        false
+      ]
+    ],
+    "Z-21": [
+      [
+        "Multirole (8x HJ-10, 14x FS-70A)",
+        "8x HJ-10, 14x FS-70A",
+        100,
+        true
+      ],
+      [
+        "Fire support",
+        "2x PL-9, 14x 70 mm rocket",
+        30,
+        false
+      ],
+      [
+        "Air escort",
+        "6x PL-10",
+        75,
+        false
+      ],
+      [
+        "Multirole (8x HJ-10, 14x 90 mm rocket)",
+        "8x HJ-10, 14x 90 mm rocket",
+        90,
+        false
+      ],
+      [
+        "Heavy anti-armor (8x HJ-10)",
+        "4x TY-90, 8x HJ-10",
+        110,
+        false
+      ],
+      [
+        "Heavy anti-armor (16x HJ-10)",
+        "16x HJ-10",
+        155,
+        false
+      ],
+      [
+        "Multirole (CM-501GA)",
+        "8x CM-501GA, 14x 70 mm rocket",
+        95,
+        false
+      ]
+    ],
+    "Z-19 Recon": [
+      [
+        "Fire support (57 mm rocket)",
+        "36x 57 mm rocket",
+        20,
+        true
+      ],
+      [
+        "Fire support (90 mm rocket)",
+        "14x 90 mm rocket",
+        10,
+        false
+      ]
+    ],
+    "Z-9WA Recon": [
+      [
+        "Fire support (57 mm rocket)",
+        "72x 57 mm rocket",
+        35,
+        true
+      ],
+      [
+        "Fire support (90 mm rocket)",
+        "28x 90 mm rocket",
+        20,
+        false
+      ]
+    ],
+    "Z-21 Recon": [
+      [
+        "Fire support (70 mm rocket)",
+        "14x 70 mm rocket",
+        10,
+        true
+      ],
+      [
+        "Fire support (90 mm rocket)",
+        "14x 90 mm rocket",
+        10,
+        false
+      ]
+    ],
+    "J-10A": [
+      [
+        "Light strike (LS-6 500kg)",
+        "2x PL-10, 4x LS-6 500kg, 2x PL-12",
+        120,
+        true
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-10",
+        65,
+        false
+      ],
+      [
+        "CAS (57 mm rocket)",
+        "24x 57 mm rocket, 2x PL-10",
+        35,
+        false
+      ],
+      [
+        "CAS (90 mm rocket)",
+        "14x 90 mm rocket, 2x PL-10",
+        35,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "2x 500 kg bomb, 2x PL-10",
+        40,
+        false
+      ],
+      [
+        "Heavy CAP",
+        "4x PL-12, 2x PL-10",
+        95,
+        false
+      ],
+      [
+        "Light SEAD",
+        "2x PL-10, 2x YJ-91, 2x PL-12",
+        140,
+        false
+      ]
+    ],
+    "J-11BHG": [
+      [
+        "Light CAP",
+        "2x PL-10, 2x PL-15",
+        70,
+        true
+      ],
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-10, 2x PL-12",
+        115,
+        false
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Light strike",
+        "4x 500 kg bomb, 2x PL-10, 2x PL-12",
+        90,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x YJ-91, 2x PL-10, 2x PL-12",
+        185,
+        false
+      ]
+    ],
+    "J-11D": [
+      [
+        "Light CAP",
+        "2x PL-10, 2x PL-15",
+        70,
+        true
+      ],
+      [
+        "CAS (S-8KO)",
+        "80x S-8KO, 2x PL-10, 2x PL-12",
+        115,
+        false
+      ],
+      [
+        "CAS (S-13B)",
+        "20x S-13B, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Heavy strike",
+        "8x 250 kg bomb, 2x PL-10, 2x PL-12",
+        100,
+        false
+      ],
+      [
+        "Light strike (500 kg bomb)",
+        "4x 500 kg bomb, 2x PL-10, 2x PL-12",
+        90,
+        false
+      ],
+      [
+        "Light strike (LS-6 500kg)",
+        "4x LS-6 500kg, 2x PL-10, 2x PL-12",
+        120,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x Kh-31P, 2x PL-10, 2x PL-12",
+        185,
+        false
+      ]
+    ],
+    "J-31": [
+      [
+        "Heavy CAP (6x PL-15C)",
+        "6x PL-15C",
+        120,
+        true
+      ],
+      [
+        "Light CAP (PL-12)",
+        "4x PL-12",
+        70,
+        false
+      ],
+      [
+        "Light CAP (PL-15)",
+        "4x PL-15",
+        90,
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        "2x LS-6 500kg, 2x PL-15",
+        75,
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        "4x LS-6 500kg",
+        60,
+        false
+      ],
+      [
+        "Heavy CAP (4x PL-15C)",
+        "4x PL-15C, 2x PL-10",
+        105,
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        "6x PL-16",
+        135,
+        false
+      ],
+      [
+        "Heavy SEAD",
+        "4x LD-8A",
+        155,
+        false
+      ],
+      [
+        "Light SEAD",
+        "2x LD-8A, 2x PL-15",
+        125,
+        false
+      ]
+    ]
+  },
+  "pylons_filled": 306,
+  "ctl181": {
+    "model": "indirect, laser-guided (vanilla PGMM 120 mm mortar round behaviour)",
+    "range_data": 1000,
+    "range_displayed_m": 2000,
+    "missiles": 48,
+    "damage": 15,
+    "penetration": 20,
+    "ignore_cover": 0.5,
+    "magazine": 4
+  },
+  "checks": 20351
+}

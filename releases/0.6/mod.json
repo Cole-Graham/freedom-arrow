@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 64",
-  "version": "64",
+  "name": "PLA TEST Build 65",
+  "version": "65",
   "type": "modpack",
-  "description": "Latest PLA pack on top of main dev 0.7.0-dev.58: dev.58 runtime, maps, Russian and US units, with all China work kept.",
+  "description": "Build64 with aircraft pylons that clear, role-named loadouts, LS-6 500kg/250kg, J-20 air-to-air and J-20S strike, MD-22, J-50 hidden, J-36 F-35 turning, CTL-181 NLOS and CSK-181 in Motorized.",
   "repo": "Cole-Graham/freedom-arrow"
 }
