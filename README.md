@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.15
+# Freedom Arrow 0.8.0-dev.16
+
+- Shaanxi Troop Truck is no longer offered as a squad transport (10 squad links removed); it stays as its own card.
+- ZSD-63 removed (Rocket card and its 7 squad transport links). ZSD-63C stays.
+- Every squad that had a transport still has at least one.
+- Includes 0.8.0-dev.15 (transport cleanup) and dev.14 (HJ-10 no-LOS hook). Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.15
 
 - Shaanxi HMV3, Z-8L and Mi-8 Cargo are no longer offered as squad transports (53 squad links each removed); they stay as their own cards.
 - Z-20T is a gunship: no longer a squad transport, gunship role (Helo tab).
@@ -910,3 +919,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:20:33 PST (America/Los_Angeles) — 0.8.0-dev.14: HJ-10 semi-active Hellfire with no-LOS fire hook; CH-901 CTL-style.
 
 - 2026-11-12 15:27:33 PST (America/Los_Angeles) — 0.8.0-dev.15: transport cleanup, CSK-181 spread, Chinese Lynx weapons.
+
+- 2026-11-12 15:40:22 PST (America/Los_Angeles) — 0.8.0-dev.16: Shaanxi Troop Truck not a squad transport; ZSD-63 removed.

@@ -1,0 +1,11 @@
+{
+  "version": "0.8.0-dev.16",
+  "base": "0.8.0-dev.15",
+  "base_sha256": "f0dda195da5dfa2414d0ece0974694020db44310a44b88a14da27770d3b65446",
+  "request": "Osama 12 Nov 15:39 PST: Shaanxi Troop Truck not a transport; remove ZSD-63",
+  "removed_transport_links": {
+    "Shaanxi Troop Truck": 10,
+    "ZSD-63": 7
+  },
+  "checks": 27573
+}
