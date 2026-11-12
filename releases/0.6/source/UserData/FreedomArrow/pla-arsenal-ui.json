@@ -1,0 +1,10 @@
+{
+  "build": 28,
+  "base_build": 16,
+  "scope": "Presentation only; existing native unit/search/type/category filters retained",
+  "group_rule": "Shared cards follow an eligible selected specialization heading; All restores primary heading",
+  "both_card_modes": true,
+  "native_verified": false,
+  "country_order": "Russia, USA, China (left to right)",
+  "china_position": "last"
+}

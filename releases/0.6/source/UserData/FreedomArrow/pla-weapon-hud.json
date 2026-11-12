@@ -1,5 +1,5 @@
 {
-  "build": 27,
+  "build": 28,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3546,5 +3546,14 @@
   "native_icon_entries": 341,
   "custom_icon_entries": 10,
   "native_verified": false,
-  "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection."
+  "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
+  "style_build28": {
+    "outline": "#ffffff",
+    "fill": "#65706b",
+    "fill_opacity": 0.8,
+    "stroke_width_svg": 2.2,
+    "direction": "Source PNG mirrored horizontally to compensate for native HUD mirror; expected in-game muzzle right, requires native check.",
+    "geometry": "Original mesh/reference contours retained; no weapon/address/stat changes",
+    "native_verified": false
+  }
 }

@@ -13,3 +13,7 @@ print('Rendered approved unit/spec resources; pinned Whistling Arrows PNGs retai
 # Build27: the native clean-white overrides are the final artwork export.
 import sys
 if (tools/"white-unit-icons").is_dir():subprocess.run([sys.executable,str(tools/"render_white_unit_icons.py"),"--renderer",a.renderer],check=True)
+
+# Sam2026-11-11: exact supplied China flag is canonical; never regenerate it.
+import shutil
+shutil.copy2(tools/"approved-country-flags/china.png",out/"FA_CHINA_FLAG.png")

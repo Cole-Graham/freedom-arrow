@@ -1,5 +1,5 @@
 {
-  "build": 27,
+  "build": 28,
   "scope": "Short English SF names and refined central emblems;17 mixed line/security squads use patch motifs; dedicated support teams use weapon thumbnails. Portraits, internal IDs, loadouts, ammo, stats and28 rigging fixtures retained.",
   "units": [
     {
@@ -841,13 +841,13 @@
       "address": "FA_PLA_INF_BLOOD_WOLF",
       "identity_source": "https://www.mod.gov.cn/gfbw/wzll/lj/4838532.html",
       "art_source": "https://forum.warthunder.com/t/more-chinese-decal/243731",
-      "art_basis": "Photographed unit-sign emblem labelled \u8840\u72fc\u52b2\u65c5; wolf/crossed-sword motif. Not an independently authenticated current issued patch.",
+      "art_basis": "Sam-selected existing Sky Hunters wolf master, exact same shape; shared deliberately per attached reference1570323964113330196.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Xuelang Commandos \u2014 Shock Team",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
-      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified",
+      "art_revision": "Build28 targeted correction; prior27 motif record superseded",
+      "art_authenticity": "User-directed game artwork; no new issued-patch authenticity claim",
       "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
     {
@@ -900,13 +900,13 @@
       "address": "FA_PLA_INF_PLATEAU_LEOPARD",
       "identity_source": "https://military.people.com.cn/n1/2017/0730/c1011-29437331.html",
       "art_source": "https://forum.warthunder.com/t/more-chinese-decal/243731",
-      "art_basis": "Photographed cloth patch labelled \u9ad8\u539f\u96ea\u8c79 / HIGHLAND SNOW LEOPARD; roaring profile extracted. Current-issued authenticity unverified.",
+      "art_basis": "Same photographed Highland Snow Leopard head; transparent brow/eye/cheek separations strengthen facial contrast without changing the outer head.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Gaoyuan Xuebao \u2014 Mountain Team",
       "display_name_basis": "User-requested distinctive English game label; real formation identity remains separately recorded, not claimed as a literal translation or historical nickname",
-      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
-      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified",
+      "art_revision": "Build28 targeted correction; prior27 motif record superseded",
+      "art_authenticity": "User-directed game artwork; no new issued-patch authenticity claim",
       "previous_build21_display_name": "Plateau Snow Leopards",
       "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles."
     },
@@ -921,14 +921,14 @@
       "address": "FA_PLA_INF_POLICE",
       "identity_source": "https://gaj.beijing.gov.cn/xxfb/jwbd/201912/t20191220_1367050.html",
       "art_source": "https://www.ebay.com/itm/313568352844",
-      "art_basis": "Photographed commercial Blue Sword cloth patch. Two crossed swords corroborated by contemporary news. Current-issued authenticity unverified.",
+      "art_basis": "Two centered symmetric straight double-edged jian, per Sam; perspective/offset photo motif replaced by native SVG geometry.",
       "formation_assignment": "Names identify real organizations; assignment to this game spec and current loadout is a mod design, not a real-world establishment claim",
       "icon_kind": "sf_emblem",
       "previous_build20_display_name": "Blue Sword \u2014 Beijing SWAT",
       "display_name_basis": "User-requested short English game name based on original designer label; Godsword explicitly shortened; Eagles avoids unverified Taishan qualifier",
-      "art_revision": "Exact source pixels clipped/masked; no invented wolf/leopard/shield; two crossed swords replace prior BlueSword genericshield",
+      "art_revision": "Build28 targeted correction; prior27 motif record superseded",
       "colour_revision_build27": "Clean white/transparent; baked grey-green tint and low-alpha halo removed; approved geometry retained except3explicitly reopened profiles.",
-      "art_authenticity": "Source-photo-derived central motif; current-issued authenticity not independently verified"
+      "art_authenticity": "User-directed game artwork; no new issued-patch authenticity claim"
     },
     {
       "unit": 1188,

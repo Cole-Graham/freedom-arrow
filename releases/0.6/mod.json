@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 27",
-  "version": "27",
+  "name": "PLA TEST Build 28",
+  "version": "28",
   "type": "modpack",
-  "description": "Complete PLA pack: Blood Wolves, Mountain Hunters and Blue Sword source-photo motifs; clean white unit icons without baked grey/green glow. Gameplay/assets retained.",
+  "description": "Targeted unit emblem corrections, native-style right-facing weapon HUD and RU-USA-China order; gameplay/assets retained.",
   "repo": "Cole-Graham/freedom-arrow"
 }

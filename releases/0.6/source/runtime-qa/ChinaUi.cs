@@ -22,6 +22,8 @@ static class ChinaUi
     static readonly Dictionary<string,byte[]> png=new();
     static readonly Dictionary<string,Sprite> made=new();
     static bool failed,plaOnly;
+    static Type musicMenu;
+    static bool flagLogged;
     static bool Ready=>!failed&&Runtime.IsApplied;
     public static void Install(HarmonyLib.Harmony harmony)
     {
@@ -39,6 +41,10 @@ static class ChinaUi
         harmony.Patch(AccessTools.Method(typeof(HangarUnitFilter),"Initialize"),prefix:new HarmonyMethod(typeof(ChinaUi),nameof(Capacity)),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(FilterReady)));
         harmony.Patch(AccessTools.Method(typeof(CountryFilterButtonsGroup),"Initialize"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(CountryRow)));
         harmony.Patch(AccessTools.Method(typeof(DeckCreationPopup),"RenderCountries"),postfix:new HarmonyMethod(typeof(ChinaUi),nameof(DeckCountries)));
+        // Reuse the same supplied flag for the shared music menu without modifying its audio DLL.
+        musicMenu=AccessTools.TypeByName("FAMusic.MusicMenu");
+        var refresh=musicMenu==null?null:AccessTools.Method(musicMenu,"Refresh");
+        if(refresh!=null)harmony.Patch(refresh,prefix:new HarmonyMethod(typeof(ChinaUi),nameof(Seed)));
         ArsenalSpecGroups.Install(harmony,plaOnly);
         MelonLogger.Msg("PLA_CHINA_UI hooks installed; native layout/click validation pending");
     }
@@ -62,6 +68,17 @@ static class ChinaUi
             // Weapon outlines are separate sprites, after all plain aliases have been seeded.
             foreach(var address in Addresses.Where(a=>a.StartsWith("FA_PLA_")&&a.EndsWith("_OUTLINE")))
                 cache["outline\\"+address.Substring(0,address.Length-8)]=made[address];
+            if(musicMenu!=null && made.TryGetValue("FA_CHINA_FLAG",out var chinaFlag))
+            {
+                var flags=AccessTools.Field(musicMenu,"sprites")?.GetValue(null) as System.Collections.IDictionary;
+                if(flags!=null)flags["china"]=chinaFlag;
+                if(AccessTools.Field(musicMenu,"shown")?.GetValue(null)?.ToString()=="China")
+                {
+                    var image=AccessTools.Field(musicMenu,"flag")?.GetValue(null) as UnityEngine.UI.Image;
+                    if(image!=null)image.sprite=chinaFlag;
+                }
+                if(!flagLogged){flagLogged=true;MelonLogger.Msg("PLA_CHINA_FLAG canonical supplied image cached for country and music menus");}
+            }
         }
         catch(Exception e){failed=true;MelonLogger.Error("PLA_CHINA_UI_FAILED: "+e);}
     }
@@ -78,8 +95,8 @@ static class ChinaUi
     {
         if(!Ready)return;
         if(country.Id!=4)return;
-        __instance.transform.SetAsFirstSibling();
-        MelonLogger.Msg("PLA_CHINA_UI Arsenal China row initialized above other countries; next filter bit="+__instance.NextBitIndex);
+        __instance.transform.SetAsLastSibling();
+        MelonLogger.Msg("PLA_CHINA_UI Arsenal China row initialized after Russia and USA; next filter bit="+__instance.NextBitIndex);
     }
     public static void DeckCountries(DeckCreationPopup __instance)
     {
@@ -90,7 +107,7 @@ static class ChinaUi
         for(int i=0;i<countries.Length&&i<buttons.Length;i++)
         {
             buttons[i].gameObject.SetActive(true);
-            if(countries[i].Id==4){china=i;buttons[i].transform.SetAsFirstSibling();}
+            if(countries[i].Id==4){china=i;buttons[i].transform.SetAsLastSibling();}
         }
         if(plaOnly&&china>=0&&__instance._selectedCountryIdx!=china)__instance.OnCountrySelected(buttons[china].gameObject);
         MelonLogger.Msg($"PLA_CHINA_UI deck countries rendered; PLA-units-only={plaOnly}; China index={china}; native callbacks retained");

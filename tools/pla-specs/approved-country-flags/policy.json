@@ -1,0 +1,12 @@
+{
+  "basis": "Sam attached image1570325641344188569; exact image is mandatory wherever a China flag is used from now on",
+  "sha256": "947281f2f4bae0b51d47d6be99a61408a3e68c0ab84fa7e877faa9adda4b3271",
+  "master": "tools/pla-specs/approved-country-flags/china.png",
+  "current_pla_country_address": "FA_CHINA_FLAG",
+  "current_pla_music": "Runtime shares the same sprite with FAMusic China pack, leaving FAMusic audio DLL bytes unchanged",
+  "future_music_sources": [
+    "tools/music-player/icons/china.png",
+    "releases/0.7/music/icons/china.png"
+  ],
+  "live_deployment": "No LIVE rollout or public manifest change in this task"
+}

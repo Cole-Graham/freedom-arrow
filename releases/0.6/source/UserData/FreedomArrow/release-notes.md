@@ -1,7 +1,7 @@
-# PLA TEST Build 27
+# PLA TEST Build 28
 
-Three source-photo motif replacements: Blood Wolves, Mountain Hunters, Blue Sword. Names retained. White/transparent cleanup across26 custom unit/team icon families and Motorized badge. Original input masters and all other designs retained; no gameplay/table/model/rigging/audio changes. Current-issued patch provenance is not independently authenticated. Native validation pending.
+Blood Wolves uses Sam-selected Sky Hunters wolf; Mountain Hunters facial contrast strengthened, outer head retained; Blue Sword has two centered crossed jian.16custom weapon HUD sprites use white outlines, grey fill and native mirror compensation for muzzle-right display. Country controls move to RU,USA,China. Other unit icons and all gameplay/models/offsets/audio retained. Native checks pending.
 
 ## Document change log
 
-- 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-copy and white/halo artwork correction.
+- 2026-11-11 22:33:26 PST (America/Los_Angeles) — Targeted artwork/HUD/country ordering corrections.

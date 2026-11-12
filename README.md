@@ -1,3 +1,9 @@
+# PLA TEST Build 28
+
+**Three targeted emblem corrections, white-outline grey-fill right-facing weapon HUD and Russia → USA → China country controls. Original approved masters and all gameplay/model/music data retained. Native inspection pending.**
+
+## Historical Build27
+
 # PLA TEST Build 27
 
 **Replaces Blood Wolves, Mountain Hunters and Blue Sword with photographed central motifs. All26 custom unit-icon families now use clean white/transparent exports; baked grey-green shading and low-alpha halos are removed. Original approved masters are preserved; other silhouettes/layouts remain. Four service badges retain their approved star/八一 contrast; Motorized badge is whitened consistently. Gameplay, models, offsets, weapon HUD, rigging, music and audio stayBuild26. Native appearance pending.**
@@ -388,3 +394,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 18:58:42 PST (America/Los_Angeles) — Build25 changes star/八一 color contrast only; source geometry and all other icons retained.
 - 2026-11-11 20:22:37 PST (America/Los_Angeles) — Corrected runtime build identity and added compiled-attribute regression check; Build25 artwork retained.
 - 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-photo motif copies and clean-white unit icon export; all original masters preserved.
+- 2026-11-11 22:33:26 PST (America/Los_Angeles) — Three unit emblems,16weapon HUD sprites and country-control order corrected.

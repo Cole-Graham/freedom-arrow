@@ -1,14 +1,13 @@
 {
-  "build": 27,
+  "build": 28,
   "scope": "All26 custom unit/team icon families;52unitPNG and1MotorizedspecPNG. Other fourservicebadges/Chinaflag/weaponHUD retained.",
   "method": "Existing SVG paths/layouts retained except3source-photo motif replacements. Source pixels are clipped and converted to white/transparent via SVG filters; no generated animal redraw. Low-alpha halo suppressed; fine antialiasing retained.",
   "original_masters_preserved": true,
   "source_refs": {
     "BLOOD_WOLF": {
-      "reference": "https://s2.loli.net/2025/07/18/cAVqs8Y65E1xOzd.jpg",
-      "source_page": "https://forum.warthunder.com/t/more-chinese-decal/243731",
-      "basis": "Photographed unit-sign emblem labelled \u8840\u72fc\u52b2\u65c5; wolf/crossed-sword motif. Not an independently authenticated current issued patch.",
-      "corroboration": "https://www.81.cn/2018zgjddjxl/2018-01/30/content_7926358.htm"
+      "basis": "Sam-selected existing Sky Hunters wolf master, exact same shape; shared deliberately per attached reference1570323964113330196.",
+      "source_master": "TIANLANG-master.png",
+      "supersedes": "Build27 photographed sign motif"
     },
     "PLATEAU_LEOPARD": {
       "reference": "https://s2.loli.net/2025/07/18/msLu2KACgDzWlHb.jpg",
@@ -17,10 +16,9 @@
       "corroboration": "https://news.sina.cn/2021-01-14/detail-ikftssan5828759.d.html"
     },
     "POLICE": {
-      "reference": "https://i.ebayimg.com/images/g/jOkAAOSwN1Fgyjf9/s-l1200.jpg",
-      "source_page": "https://www.ebay.com/itm/313568352844",
-      "basis": "Photographed commercial Blue Sword cloth patch. Two crossed swords corroborated by contemporary news. Current-issued authenticity unverified.",
-      "corroboration": "https://www.chinanews.com/olympic/news/2008/09-10/1377266.shtml"
+      "basis": "Two centered symmetric straight double-edged jian, per Sam; perspective/offset photo motif replaced by native SVG geometry.",
+      "source": "User-directed two-jian SVG",
+      "supersedes": "Build27 perspective photo motif"
     }
   },
   "geometry_reopened_profiles": [
@@ -40,9 +38,9 @@
     {
       "profile": "BLOOD_WOLF",
       "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_BLOOD_WOLF.svg",
-      "source_svg_sha256": "e27761b83dce4b180aab53e311d2d241a9a1608d53d00cb1df476b28f028bc32",
-      "normal_sha256": "cc141f1d0c884a5ca90db4794c54cfa88b0671af21d29806675505d468c20730",
-      "outline_sha256": "cc141f1d0c884a5ca90db4794c54cfa88b0671af21d29806675505d468c20730",
+      "source_svg_sha256": "23930f0cd862ac1e87b253a29cf994029f516a62483b5225bb78cc58659cf64e",
+      "normal_sha256": "e7891fa8e11b9c27354b3206868e368ae4e47048489866e0a5518ed5ed090da7",
+      "outline_sha256": "e7891fa8e11b9c27354b3206868e368ae4e47048489866e0a5518ed5ed090da7",
       "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
     },
     {
@@ -160,17 +158,17 @@
     {
       "profile": "PLATEAU_LEOPARD",
       "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_PLATEAU_LEOPARD.svg",
-      "source_svg_sha256": "aafb2f1c12d0e9204a8be8e95bbc43822f56a66f83036595471170f53b34e381",
-      "normal_sha256": "f5ba5897257d2d658c99ef1b5e9fc6e488f492adec8d9828865362783ee2e895",
-      "outline_sha256": "f5ba5897257d2d658c99ef1b5e9fc6e488f492adec8d9828865362783ee2e895",
+      "source_svg_sha256": "191416c6c4876e606974f88b8d504e1e6ff6ee927512a3c5e04573f4e775738b",
+      "normal_sha256": "d5d4394a5ebe91811952070a14cab1e4084d8b79e9bf6fb6b68ee465a330868f",
+      "outline_sha256": "d5d4394a5ebe91811952070a14cab1e4084d8b79e9bf6fb6b68ee465a330868f",
       "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
     },
     {
       "profile": "POLICE",
       "normal_svg": "tools/pla-specs/white-unit-icons/FA_PLA_INF_POLICE.svg",
-      "source_svg_sha256": "db44646ec63c0cea6b8c13089276ef967403d3c25f1b456fefd34080d1253201",
-      "normal_sha256": "a819457d71f5adcb11ac804e0d0d4af93f7a98a471b9d6c60498a72c722e7ad3",
-      "outline_sha256": "a819457d71f5adcb11ac804e0d0d4af93f7a98a471b9d6c60498a72c722e7ad3",
+      "source_svg_sha256": "dac8fd456e900008de61c9d0812612e9076236945023a0cf9f40e738cc475ae5",
+      "normal_sha256": "44078f88a795763c7ea285e085f50fa128c0ff0c07bccb5d65b29dfe53fd059a",
+      "outline_sha256": "44078f88a795763c7ea285e085f50fa128c0ff0c07bccb5d65b29dfe53fd059a",
       "outline_policy": "Same clean-white graphic; no dark/glowing outline paint; native selection state retained"
     },
     {
@@ -256,5 +254,27 @@
     "LINE_RESERVE-master.png": "7d4dbbab326e735986b87743e97a5e32fe924d8cc34ecc43cd9a4a4b8317cf1a",
     "LINE_AIRBORNE-master.png": "8d4b31fdd7f330b80b33cbd87355b0e88278b489533e724a6943cc32b0129ae5",
     "ROCKET_SOF-master.png": "823ea53b9e7e5266f4039e5a7f353d08e1cb5260d6293448d78e2c4301ecdf85"
+  },
+  "revision_build28": {
+    "basis": {
+      "BLOOD_WOLF": "Sam-selected existing Sky Hunters wolf master, exact same shape; shared deliberately per attached reference1570323964113330196.",
+      "PLATEAU_LEOPARD": "Same photographed Highland Snow Leopard head; transparent brow/eye/cheek separations strengthen facial contrast without changing the outer head.",
+      "POLICE": "Two centered symmetric straight double-edged jian, per Sam; perspective/offset photo motif replaced by native SVG geometry."
+    },
+    "other_unit_profiles_unchanged": true,
+    "native_verified": false
+  },
+  "china_flag_build28": {
+    "basis": "Sam attached image1570325641344188569; exact image is mandatory wherever a China flag is used from now on",
+    "sha256": "947281f2f4bae0b51d47d6be99a61408a3e68c0ab84fa7e877faa9adda4b3271",
+    "master": "tools/pla-specs/approved-country-flags/china.png",
+    "current_pla_country_address": "FA_CHINA_FLAG",
+    "current_pla_music": "Runtime shares the same sprite with FAMusic China pack, leaving FAMusic audio DLL bytes unchanged",
+    "future_music_sources": [
+      "tools/music-player/icons/china.png",
+      "releases/0.7/music/icons/china.png"
+    ],
+    "live_deployment": "No LIVE rollout or public manifest change in this task",
+    "workspace_master": "work/art-direction/china-flag.png"
   }
 }

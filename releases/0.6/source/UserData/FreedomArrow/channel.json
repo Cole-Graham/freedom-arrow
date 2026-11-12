@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "27",
+  "package_version": "28",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Three source-photo unit motifs and white/halo cleanup across26customunitfamilies; all gameplay unchanged."
+  "verification": "Targeted three unit motifs;16 white-outline grey-fill weapon HUD sprites mirrored for native view;RU-USA-China UI order. Gameplay retained."
 }
