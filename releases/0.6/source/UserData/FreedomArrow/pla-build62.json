@@ -1,0 +1,69 @@
+{
+  "build": 62,
+  "base_build": 61,
+  "base_sha256": "002c2bb4cedd43f94279369ef700fd802662e22d6e6e96eb0d00fb36c0d9fdc9",
+  "changes": [
+    {
+      "unit": 1166,
+      "name": "Conscripts \u4e49\u52a1\u5175",
+      "change": "back to 12 men as in Build60 (HP 60, Build60 transport links)"
+    },
+    {
+      "unit": 1170,
+      "name": "QJZ-89 Team",
+      "change": "back to 12 men as in Build60 (HP 60, Build60 transport links)"
+    },
+    {
+      "unit": 1171,
+      "name": "QLZ-87 Team",
+      "change": "back to 12 men as in Build60 (HP 60, Build60 transport links)"
+    },
+    {
+      "unit": 1177,
+      "name": "Thermobaric Team",
+      "change": "back to 12 men as in Build60 (HP 60, Build60 transport links)"
+    },
+    {
+      "unit": 1173,
+      "name": "Ambush Team \u4f0f\u51fb\u7ec4",
+      "change": "back to 4 men as in Build60 (HP 20, Build60 transport links)"
+    },
+    {
+      "unit": 1174,
+      "name": "Sharp Blades \u5229\u5203",
+      "change": "back to 6 men as in Build60 (HP 30, Build60 transport links)"
+    },
+    {
+      "unit": 1166,
+      "name": "Conscripts \u4e49\u52a1\u5175",
+      "change": "cost 65 -> 25"
+    },
+    {
+      "unit": 1248,
+      "name": "ZSD-89A",
+      "change": "new card for specs [18, 21] (green digital skin once the model is bought); 12 seats, QJC-88 12.7 mm"
+    },
+    {
+      "unit": 1249,
+      "name": "ZSD-89A",
+      "change": "new card for specs [17] (desert digital skin once the model is bought); 12 seats, QJC-88 12.7 mm"
+    },
+    {
+      "unit": 1250,
+      "name": "ZSD-89A",
+      "change": "new card for specs [20] (marine blue digital skin once the model is bought); 12 seats, QJC-88 12.7 mm"
+    },
+    {
+      "unit": 1065,
+      "name": "ZSD-89A",
+      "change": "PLARF card (olive skin once bought); 10 -> 12 seats"
+    },
+    {
+      "unit": 1063,
+      "name": "ZBD-86",
+      "change": "also in PLAAF airborne (sand camo model needs the CGTrader purchase; BMD-2 body until then)"
+    }
+  ],
+  "checks": 42,
+  "native_verified": false
+}

@@ -1,4 +1,8 @@
-# PLA TEST Build 61
+# PLA TEST Build 62
+
+PLARF size correction: Conscripts, QJZ-89 Team, QLZ-87 Team and Thermobaric Team are 12 men again; Ambush Team (4) and Sharp Blades (6) are as in Build60; HJ-73D, FN-6, PF-98 Teams, Infantry and Counter-Raid Team stay 7. Conscripts cost 25. ZSD-89A is four separate cards with 12 seats and a QJC-88 12.7 mm HMG: PLARF, PLAGF (both PLAGF specs), PLAAF and PLAN SOF. All use the M113A3 body until the ZSD-89A model is bought. ZBD-86 is also in PLAAF airborne. Everything else is exactly Build61. In-game check pending.
+
+## Historical Build61
 
 Every PLARF infantry card is now 7 men (plain QBZ-95 riflemen trimmed or added; every launcher, MG and DMR kept; HP 35). The 12-man squads now also fit the 10-seat ZSD carriers. QBZ-95, QBB-95 and QBU-88 fire 30% slower: PLARF conscripts are meat shields. The Malyutka Recon Ambush Team is renamed Ambush Team 伏击组, and PLARF Infantry carries one PF-89 beside its HJ-73D. Prices are unchanged. Everything else is exactly Build60. In-game check pending.
 
@@ -678,3 +682,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 
 - 2026-11-12 11:54:53 PST (America/Los_Angeles) — Build60: PF-98 swap between the PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters.
 - 2026-11-12 12:07:25 PST (America/Los_Angeles) — Build61: PLARF 7-man squads, conscript rifle fire rate -30%, Ambush Team name, PF-89 for PLARF Infantry.
+- 2026-11-12 12:15:10 PST (America/Los_Angeles) — Build62: PLARF size correction, Conscripts 25, ZSD-89A x4 (12 seats), ZBD-86 in PLAAF.
