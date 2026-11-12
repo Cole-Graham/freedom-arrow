@@ -1,3 +1,12 @@
+# Freedom Arrow 0.8.0-dev.5
+
+- ZBD-20 and ZBD-20 Recon: 4 of the CTL-181 precision missiles with a top-attack AT warhead (base 20, penetration 65): 2 hits on low-end tanks (top 80), 3 on high-end (top 100), about 20 to infantry. Calculated with the native HEAT formula, not measured. 175 / 180 points.
+- ZBD-20 and ZBD-20 Recon have the vehicle laser designator; the ZBD-20 and CTL-181 missiles follow laser spots.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.4
+
 # Freedom Arrow 0.8.0-dev.4
 
 - CTL-181 NLOS: small precision-strike cruise missile copied from the vanilla Iskander-K (vertical launch, cruise flight) with a Hellfire-size missile and AT-missile impact; 48 missiles, 15 damage, 20 penetration, 50% ignore cover, 2000 m. Replaces the mortar-style round of 0.8.0-dev.1.
@@ -790,3 +799,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:48:37 PST (America/Los_Angeles) — 0.8.0-dev.3: ZBD batch.
 
 - 2026-11-12 13:54:42 PST (America/Los_Angeles) — 0.8.0-dev.4: CTL-181 cruise missile, ZBD-20 without missiles.
+
+- 2026-11-12 14:00:25 PST (America/Los_Angeles) — 0.8.0-dev.5: ZBD-20 precision missiles and laser.

@@ -1,0 +1,55 @@
+{
+  "laser": "ability 8 Laser Veh on ZBD-20 and Recon; ZBD-20 and CTL-181 missiles laser-guided (KAB-500 seeker fields)",
+  "version": "0.8.0-dev.5",
+  "base": "0.8.0-dev.4",
+  "base_sha256": "b9715d31b2aff9ce54a2d491e3d4730165a1f90b9705d389c23f14c407db0284",
+  "request": "Osama 12 Nov 13:58 PST",
+  "weapon": 2018440,
+  "ammo": 2018441,
+  "calculated": {
+    "T-72B3": {
+      "hp": 14,
+      "top_heat": 80,
+      "damage": 7.95,
+      "hits": 2
+    },
+    "ZTZ-96B": {
+      "hp": 14,
+      "top_heat": 80,
+      "damage": 7.95,
+      "hits": 2
+    },
+    "T-90M": {
+      "hp": 14,
+      "top_heat": 100,
+      "damage": 5.94,
+      "hits": 3
+    },
+    "ZTZ-99A": {
+      "hp": 14,
+      "top_heat": 100,
+      "damage": 5.94,
+      "hits": 3
+    },
+    "M1A2 SEP v3": {
+      "hp": 14,
+      "top_heat": 100,
+      "damage": 5.94,
+      "hits": 3
+    },
+    "T-14 Armata": {
+      "hp": 14,
+      "top_heat": 100,
+      "damage": 5.94,
+      "hits": 3
+    },
+    "infantry (armour value 6)": {
+      "damage": 19.83
+    }
+  },
+  "cost": [
+    175,
+    180
+  ],
+  "checks": 17310
+}

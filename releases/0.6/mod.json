@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.8 (China)",
-  "version": "0.8.0-dev.4",
+  "version": "0.8.0-dev.5",
   "type": "modpack",
-  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.4: CTL-181 small precision-strike cruise missile, ZBD-20 without missiles. Needs Freedom Arrow — Models and Music 0.2.0.",
+  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.5: ZBD-20 laser designator and 4 laser-guided precision AT missiles. Needs Freedom Arrow — Models and Music 0.2.0.",
   "repo": "Cole-Graham/freedom-arrow"
 }
