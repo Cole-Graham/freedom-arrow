@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.8 (China)",
-  "version": "0.8.0-dev.2",
+  "version": "0.8.0-dev.3",
   "type": "modpack",
-  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.2: CSK-131 7 seats, Shaanxi SX2190 removed. Needs Freedom Arrow — Models and Music 0.2.0.",
+  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.3: ZBD-04/04A/20 rework, ZTZ-99 750 KE, five ZBD recon variants. Needs Freedom Arrow — Models and Music 0.2.0.",
   "repo": "Cole-Graham/freedom-arrow"
 }

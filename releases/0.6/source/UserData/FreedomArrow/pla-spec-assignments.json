@@ -739,6 +739,21 @@
     ],
     "1250": [
       20
+    ],
+    "1255": [
+      18
+    ],
+    "1256": [
+      18
+    ],
+    "1257": [
+      17
+    ],
+    "1258": [
+      19
+    ],
+    "1259": [
+      20
     ]
   },
   "excluded_units": [
@@ -826,6 +841,46 @@
       "name": "Z-21 Recon",
       "specs": [
         17
+      ]
+    },
+    {
+      "unit": 1255,
+      "parent": 902,
+      "name": "ZBD-04A Recon",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1256,
+      "parent": 945,
+      "name": "ZBD-20 Recon",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1257,
+      "parent": 1074,
+      "name": "ZBD-03 Recon",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1258,
+      "parent": 1063,
+      "name": "ZBD-86 Recon",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1259,
+      "parent": 1063,
+      "name": "ZBD-86 Recon",
+      "specs": [
+        20
       ]
     }
   ],

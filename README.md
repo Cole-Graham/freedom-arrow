@@ -1,3 +1,15 @@
+# Freedom Arrow 0.8.0-dev.3
+
+- ZBD-03 / ZLC-2000 renamed ZBD-03.
+- ZBD-04A: Bradley BUSK armour with weaker sides (KE 100/60, HEAT 400/150), Bradley M2A2 mobility (60/20), 65 points. ZBD-04: Bradley base armour, keeps 70/25.
+- ZBD-20: ZTZ-96B armour (650/750 front, 14 HP) and mobility (80/40); 30 mm on the Bushmaster II profile with 57 mm HE blast/ignore cover and 550 range; Iron Fist APS; 175 points.
+- ZTZ-99: T-90M armour with 750 KE front.
+- Recon copies: ZBD-04A Recon (PLAGF, Exceptional Optics), ZBD-20 Recon (PLAGF), ZBD-03 Recon (Airborne), ZBD-86 Recon (Rocket Force) and ZBD-86 Recon (PLAN SOF), Very Good Optics.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.2
+
 # Freedom Arrow 0.8.0-dev.2
 
 - CSK-131 Mengshi and CSK-131 Transport: 7 seats (the Tigr model's vanilla seats; were 4), now carrying the Airborne squads of 7 or fewer.
@@ -765,3 +777,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:28:26 PST (America/Los_Angeles) — 0.8.0-dev.1: Build 68 content as Freedom Arrow 0.8, live package split.
 
 - 2026-11-12 13:42:25 PST (America/Los_Angeles) — 0.8.0-dev.2: CSK-131 seats, SX2190 removed.
+
+- 2026-11-12 13:48:37 PST (America/Los_Angeles) — 0.8.0-dev.3: ZBD batch.

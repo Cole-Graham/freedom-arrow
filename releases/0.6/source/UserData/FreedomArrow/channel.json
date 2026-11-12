@@ -1,7 +1,7 @@
 {
   "channel": "live",
-  "package_version": "0.8.0-dev.2",
+  "package_version": "0.8.0-dev.3",
   "spotting": "vanilla",
   "deployment_status": "live",
-  "verification": "0.8.0-dev.1 plus CSK-131 seats and SX2190 removal. Data checks passed; in-game check pending."
+  "verification": "0.8.0-dev.2 plus the ZBD batch. Data checks passed; in-game check pending."
 }
