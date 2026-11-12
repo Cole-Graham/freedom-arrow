@@ -1,5 +1,6 @@
 """Independent structural and numeric checks for the packaged PLA31 batch."""
 import argparse,json,sys,zipfile
+from collections import defaultdict
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 from pipeline.tables import FIELD_TO_FILE
@@ -12,10 +13,13 @@ with zipfile.ZipFile(a.package) as z:
    if v is None:t[tab].pop(int(k),None)
    else:t[tab].setdefault(int(k),{'Id':int(k)}).update(v)
  models=json.loads(z.read('UserData/FAModels/models.json'))
+ build=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'))['build']
  checks=0
  def ok(value,msg):
   global checks
   assert value,msg;checks+=1
+ for tab,rs in t.items():
+  for key,r in rs.items():ok(key==r['Id'],('row identity mismatch',tab,key,r['Id']))
  for tab,field,target in [('UnitArmorsJson','UnitId','Units'),('UnitArmorsJson','ArmorId','ArmorsJson'),('UnitPropulsionsJson','UnitId','Units'),('UnitPropulsionsJson','MobilityId','MobilityJson'),('UnitAbilitiesJson','UnitId','Units'),('UnitAbilitiesJson','AbilityId','AbilitiesJson'),('SensorUnitsJson','UnitId','Units'),('SensorUnitsJson','SensorId','SensorsJson'),('TurretUnitsJson','UnitId','Units'),('TurretUnitsJson','TurretId','TurretsJson'),('TurretWeaponsJson','TurretId','TurretsJson'),('TurretWeaponsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','UnitId','Units'),('WeaponAmmunitionsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','AmmunitionId','AmmunitionsJson'),('SpecializationAvailabilitiesJson','UnitId','Units'),('SpecializationAvailabilitiesJson','SpecializationId','SpecializationsJson'),('TransportAvailabilitiesJson','UnitId','Units'),('TransportAvailabilitiesJson','SpecializationAvailabilityId','SpecializationAvailabilitiesJson')]:
   for r in t[tab].values():ok(r[field] in t[target],(tab,r['Id'],field,r[field]))
  def ammo(uid):return [t['AmmunitionsJson'][r['AmmunitionId']] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==uid]
@@ -41,4 +45,20 @@ with zipfile.ZipFile(a.package) as z:
  for sid in range(17,22):ok(any(r['UnitId']==1227 and r['SpecializationId']==sid for r in t['SpecializationAvailabilitiesJson'].values()),('Mi8 spec missing',sid))
  for r in t['SpecializationAvailabilitiesJson'].values():
   if r['UnitId']==1032:ok(sum(r['MaxAvailabilityXp'+str(i)] for i in range(4))==1,'DF31 availability')
- print(json.dumps({'checks':checks,'passed':True,'native_verified':False},indent=2))
+ if build>=33:
+  for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
+  for uid in [1049,943,974,918,961,1063,1054]:ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
+  for uid in [909,1058,1230]:ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+ if build>=32:
+  links=defaultdict(list)
+  assignments=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'))['assignments']
+  for r in t['SpecializationAvailabilitiesJson'].values():links[r['UnitId']].append(r['SpecializationId'])
+  for uid,expected in assignments.items():
+   uid=int(uid);ok(sorted(links[uid])==sorted(expected),('assignment metadata',uid))
+   if expected:ok(sorted(expected)==list(range(17,22)) if uid==1227 else len(expected)==1,('single spec',uid))
+  for r in t['TransportAvailabilitiesJson'].values():
+   sid=t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId']
+   if sid>=17:ok(sid in links[r['UnitId']],('carrier crosses spec',r['Id']))
+ result={'build':build,'checks':checks,'passed':True,'native_verified':False}
+ (ROOT/f'tools/pla-specs/build{build}-regression-checks.json').write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps(result,indent=2))

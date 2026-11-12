@@ -1,0 +1,2303 @@
+{
+  "build": 33,
+  "base_build": 32,
+  "base_sha256": "8f537832f6d8a0e52c20ac83d6faf486d4a71af1148c7e3f7fba27dda1e09024",
+  "changes": [
+    {
+      "unit": 900,
+      "name": "CSK-131 Mengshi",
+      "before": [
+        17,
+        19,
+        21
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 957,
+      "name": "WZ-701",
+      "before": [
+        18,
+        19,
+        21
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 906,
+      "name": "ZTQ-15",
+      "before": [
+        17,
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 951,
+      "name": "HJ-8",
+      "before": [
+        19,
+        21
+      ],
+      "after": [
+        19
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 938,
+      "name": "ZTL-11",
+      "before": [
+        20,
+        21
+      ],
+      "after": [
+        20
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 907,
+      "name": "PLZ-05",
+      "before": [
+        18,
+        19
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 926,
+      "name": "PLL-05",
+      "before": [
+        19,
+        20,
+        21
+      ],
+      "after": [
+        19
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 909,
+      "name": "PGZ-09",
+      "before": [
+        18
+      ],
+      "after": [
+        19
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 932,
+      "name": "PGZ-04A",
+      "before": [
+        18,
+        20
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 961,
+      "name": "HQ-7",
+      "before": [
+        19
+      ],
+      "after": [
+        20
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 925,
+      "name": "HQ-7B",
+      "before": [
+        20,
+        21
+      ],
+      "after": [
+        20
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 912,
+      "name": "Shaanxi SX2190",
+      "before": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 914,
+      "name": "Z-20",
+      "before": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 978,
+      "name": "Z-10",
+      "before": [
+        18,
+        20
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 941,
+      "name": "Z-9WA",
+      "before": [
+        20,
+        21
+      ],
+      "after": [
+        20
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 917,
+      "name": "J-10C",
+      "before": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 946,
+      "name": "Wing Loong",
+      "before": [
+        18,
+        19,
+        21
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 955,
+      "name": "J-10S",
+      "before": [
+        17,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 971,
+      "name": "J-31",
+      "before": [
+        17,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1049,
+      "name": "HQ-17A",
+      "before": [
+        18
+      ],
+      "after": [
+        20
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1054,
+      "name": "CTL-181 loitering munition launcher",
+      "before": [
+        19
+      ],
+      "after": [
+        20
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1058,
+      "name": "CSK-181",
+      "before": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        19
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1063,
+      "name": "Type 86 \u2014 original turret",
+      "before": [
+        19
+      ],
+      "after": [
+        20
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1070,
+      "name": "VP4",
+      "before": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 979,
+      "name": "ZBL-191",
+      "before": [
+        18,
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1078,
+      "name": "ZBL19 \u2014 seller name",
+      "before": [
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1079,
+      "name": "ZSL-92 Autocannon",
+      "before": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1106,
+      "name": "Z-8L",
+      "before": [
+        17,
+        20
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1107,
+      "name": "Z-9",
+      "before": [
+        17,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        17
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 903,
+      "name": "ZBL-08",
+      "before": [
+        18,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1131,
+      "name": "Z-10 Recon",
+      "before": [
+        18,
+        20
+      ],
+      "after": [
+        18
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1133,
+      "name": "Z-9WA Recon",
+      "before": [
+        20,
+        21
+      ],
+      "after": [
+        20
+      ],
+      "basis": "sheet primary spec"
+    },
+    {
+      "unit": 1230,
+      "name": "CSK-181 Transport",
+      "before": [
+        17
+      ],
+      "after": [
+        19
+      ],
+      "basis": "explicit current batch"
+    },
+    {
+      "unit": 1232,
+      "name": "ZSL-92 MG",
+      "before": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "after": [
+        21
+      ],
+      "basis": "explicit current batch"
+    }
+  ],
+  "removed_cross_spec_carrier_links": 569,
+  "visible_units": [
+    {
+      "unit": 900,
+      "name": "CSK-131 Mengshi",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 901,
+      "name": "PLA Rifle Squad",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 902,
+      "name": "ZBD-04A",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 903,
+      "name": "ZBL-08",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 904,
+      "name": "ZTZ-99A",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 905,
+      "name": "ZTZ-96B",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 906,
+      "name": "ZTQ-15",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 907,
+      "name": "PLZ-05",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 908,
+      "name": "PHL-03",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 909,
+      "name": "PGZ-09",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 910,
+      "name": "HQ-17",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 911,
+      "name": "HQ-9C",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 912,
+      "name": "Shaanxi SX2190",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 913,
+      "name": "Z-10K",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 914,
+      "name": "Z-20",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 915,
+      "name": "J-20",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 916,
+      "name": "J-16",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 917,
+      "name": "J-10C",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 918,
+      "name": "JH-7A",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 919,
+      "name": "H-6K",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 920,
+      "name": "PGL-625",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 921,
+      "name": "J-35",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 922,
+      "name": "PHL-11",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 923,
+      "name": "J-11B",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 924,
+      "name": "Su-30MKK",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 925,
+      "name": "HQ-7B",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 926,
+      "name": "PLL-05",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 927,
+      "name": "ZTZ-20",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 928,
+      "name": "Y-20",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 929,
+      "name": "J-36",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 930,
+      "name": "ZTD-05",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 931,
+      "name": "PLZ-07B",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 932,
+      "name": "PGZ-04A",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 933,
+      "name": "SH-16",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 934,
+      "name": "SR-5",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 935,
+      "name": "FK-2000",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 936,
+      "name": "HJ-10",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 937,
+      "name": "QN-506",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 938,
+      "name": "ZTL-11",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 939,
+      "name": "ZTZ-99A2",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 940,
+      "name": "Z-19E",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 941,
+      "name": "Z-9WA",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 942,
+      "name": "Z-11WB",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 943,
+      "name": "J-15",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 944,
+      "name": "J-50",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 945,
+      "name": "ZBD-20",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 946,
+      "name": "Wing Loong",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 947,
+      "name": "PTZ-89",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 948,
+      "name": "ZTZ-99G",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 949,
+      "name": "ZTZ-96",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 951,
+      "name": "HJ-8",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 952,
+      "name": "JRVG-1",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 953,
+      "name": "VT-5",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 954,
+      "name": "ZFB-05",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 955,
+      "name": "J-10S",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 956,
+      "name": "ZTZ-85-III",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 957,
+      "name": "WZ-701",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 958,
+      "name": "ZTQ-62-I",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 959,
+      "name": "ZSD-90",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 960,
+      "name": "ZSD-63C",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 961,
+      "name": "HQ-7",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 963,
+      "name": "PHL-81",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 966,
+      "name": "J-20S",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 967,
+      "name": "GJ-11",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 968,
+      "name": "ZTZ-100",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 971,
+      "name": "J-31",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 972,
+      "name": "WZ-8",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 973,
+      "name": "FH-97A",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 974,
+      "name": "J-15D",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 975,
+      "name": "J-8I / J-8A",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 976,
+      "name": "MD-22",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 977,
+      "name": "J-16D",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 978,
+      "name": "Z-10",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 979,
+      "name": "ZBL-191",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 985,
+      "name": "Type21 woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 986,
+      "name": "SF carrier woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 987,
+      "name": "SF condor woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 988,
+      "name": "SF light woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 989,
+      "name": "SF heavy woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 990,
+      "name": "Type21 desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 991,
+      "name": "SF carrier desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 992,
+      "name": "SF condor desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 993,
+      "name": "SF light desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 994,
+      "name": "SF heavy desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 995,
+      "name": "SF assault woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 996,
+      "name": "SF assault desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 997,
+      "name": "SF night up woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 998,
+      "name": "SF night up desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 999,
+      "name": "SF night down woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1000,
+      "name": "SF night down desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1001,
+      "name": "SF goggles up woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1002,
+      "name": "SF goggles up desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1003,
+      "name": "SF goggles down woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1004,
+      "name": "SF goggles down desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1005,
+      "name": "SF condor pouches woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1006,
+      "name": "SF condor pouches desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1007,
+      "name": "SF grenadier woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1008,
+      "name": "SF grenadier desert",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1009,
+      "name": "SF condor pouches B woodland",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1028,
+      "name": "DF-17",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1029,
+      "name": "DF-15",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1030,
+      "name": "DF-21",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1032,
+      "name": "DF-31A Nuclear",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1033,
+      "name": "PCL-09",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1034,
+      "name": "PCL-181 / SH-15",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1035,
+      "name": "PHL-16",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1036,
+      "name": "PHL-191 / AR3",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1037,
+      "name": "PLL-09",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1038,
+      "name": "PLZ-07",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1039,
+      "name": "PLZ-45A4",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1040,
+      "name": "PLZ-70",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1041,
+      "name": "PLZ-83",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1042,
+      "name": "PLZ-85",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1043,
+      "name": "PLZ-89",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1045,
+      "name": "HQ-6A",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1046,
+      "name": "HQ-11",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1047,
+      "name": "HQ-12 / KS-1",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1048,
+      "name": "HQ-16",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1049,
+      "name": "HQ-17A",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1050,
+      "name": "PGZ-04",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1051,
+      "name": "PGZ-88",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1052,
+      "name": "PGZ-95",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1053,
+      "name": "AFT-09",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1054,
+      "name": "CTL-181 loitering munition launcher",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1055,
+      "name": "AFT-10",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1056,
+      "name": "ZBD-251",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1057,
+      "name": "CS/VN3C MG",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1058,
+      "name": "CSK-181",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1059,
+      "name": "PTL-02",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1060,
+      "name": "Type 59 \u2014 FlashPoint",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1061,
+      "name": "Type 59D",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1062,
+      "name": "Type 63 APC \u2014 older base",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1063,
+      "name": "Type 86 \u2014 original turret",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1064,
+      "name": "Type 89",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1065,
+      "name": "Type 89A",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1070,
+      "name": "VP4",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1072,
+      "name": "VT-4 / Al-Hyder",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1074,
+      "name": "ZBD-03 / ZLC-2000",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1075,
+      "name": "ZBD-04",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1076,
+      "name": "ZBD-05",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1077,
+      "name": "ZBL-09",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1078,
+      "name": "ZBL19 \u2014 seller name",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1079,
+      "name": "ZSL-92 Autocannon",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1080,
+      "name": "ZTL-191",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1081,
+      "name": "ZTZ-80 / Type 80",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1082,
+      "name": "ZTZ-96A",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1083,
+      "name": "ZTZ-99",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1084,
+      "name": "AR-2000",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1085,
+      "name": "CR-500 Recon",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1086,
+      "name": "CR-500B",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1087,
+      "name": "J-10CE",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1088,
+      "name": "J-20B \u2014 seller package",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1089,
+      "name": "J-5",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1090,
+      "name": "J-5 \u2014 two seat package",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1091,
+      "name": "J-6",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1092,
+      "name": "J-7",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1093,
+      "name": "J-7E / J-7G",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1094,
+      "name": "J-8II / J-8F",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1095,
+      "name": "Jiutian UAV",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1096,
+      "name": "KJ-500 / KJ-500H",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1097,
+      "name": "KQ-200",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1098,
+      "name": "MiG-15 \u2014 PLAAF markings",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1100,
+      "name": "WZ-7",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1101,
+      "name": "Y-20B",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1102,
+      "name": "Y-8 family \u2014 seller package",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1103,
+      "name": "Z-19",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1104,
+      "name": "Z-21",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1105,
+      "name": "Z-6B UAV",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1106,
+      "name": "Z-8L",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1107,
+      "name": "Z-9",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1108,
+      "name": "PLAN flight deck crew",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1109,
+      "name": "QJY-201",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1129,
+      "name": "YJ-18",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1130,
+      "name": "Z-10K Recon",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1131,
+      "name": "Z-10 Recon",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1132,
+      "name": "Z-19E Recon",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1133,
+      "name": "Z-9WA Recon",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1134,
+      "name": "Z-19 Recon",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1135,
+      "name": "Z-21 Recon",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1136,
+      "name": "Airborne Riflemen \u7a7a\u964d\u6b65\u5175",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1137,
+      "name": "Airborne HJ-12 Team",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1139,
+      "name": "Airborne Tank Hunters \u5766\u514b\u6740\u624b",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1140,
+      "name": "Airborne QLU-11 Precision Team",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1142,
+      "name": "Airborne Pathfinders \u7a7a\u964d\u5148\u9063\u4fa6\u5bdf\u5175",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1143,
+      "name": "Thunder Gods \u96f7\u795e",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1144,
+      "name": "Airborne Snipers \u7a7a\u964d\u72d9\u51fb\u7ec4",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1145,
+      "name": "Airborne HN-6 Patrol \u7a7a\u964d\u9632\u7a7a\u5de1\u903b\u961f",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1146,
+      "name": "Air Assault Raiders \u7a7a\u4e2d\u7a81\u51fb\u5175",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1149,
+      "name": "Airborne Target Observers \u7a7a\u964d\u76ee\u6807\u89c2\u5bdf\u7ec4",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1151,
+      "name": "Mechanized AT Riflemen \u673a\u68b0\u5316\u53cd\u5766\u514b\u6b65\u5175",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1152,
+      "name": "Mechanized HJ-8E Team",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1153,
+      "name": "Mechanized QW-2 Team",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1154,
+      "name": "Mechanized QLZ-04 Team",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1155,
+      "name": "Mechanized PF-98 Tank Hunters",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1156,
+      "name": "Mechanized Combat Engineers \u673a\u68b0\u5316\u6218\u6597\u5de5\u5175",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1157,
+      "name": "Mechanized QJZ-89 Team",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1158,
+      "name": "Mechanized GPMG Riflemen \u673a\u68b0\u5316\u673a\u67aa\u6b65\u5175",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1160,
+      "name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf\u5175",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1161,
+      "name": "Armored Sniper Pair \u88c5\u7532\u72d9\u51fb\u7ec4",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1163,
+      "name": "Mechanized Riflemen \u673a\u68b0\u5316\u6b65\u5175",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1164,
+      "name": "Armored Forward Observers \u88c5\u7532\u524d\u6cbf\u89c2\u5bdf\u7ec4",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1165,
+      "name": "Recon HJ-8E Ambush Team",
+      "specs": [
+        18
+      ]
+    },
+    {
+      "unit": 1166,
+      "name": "Conscripts \u4e49\u52a1\u5175",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1168,
+      "name": "Reserve HJ-73D Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1169,
+      "name": "Reserve HN-6 Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1170,
+      "name": "Reserve QJZ-89 Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1171,
+      "name": "Reserve QLZ-87 Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1172,
+      "name": "Reserve PF-98 Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1173,
+      "name": "Malyutka Recon Ambush Team \u53cd\u5766\u514b\u4f0f\u51fb\u4fa6\u5bdf\u7ec4",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1174,
+      "name": "Sharp Blades \u5229\u5203",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1175,
+      "name": "Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1176,
+      "name": "Missile-Site Counter-Raid Team \u5bfc\u5f39\u9635\u5730\u53cd\u88ad\u51fb\u961f",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1177,
+      "name": "Reserve Thermobaric Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1180,
+      "name": "FHJ-02 Incendiary Team",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1181,
+      "name": "Godswords \u4e1c\u65b9\u795e\u5251",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1182,
+      "name": "PAP Snow Leopards \u96ea\u8c79",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1183,
+      "name": "Blood Wolves \u8840\u72fc",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1184,
+      "name": "Whistling Arrows \u54cd\u7bad",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1185,
+      "name": "Falcons \u730e\u9e70",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1186,
+      "name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1187,
+      "name": "Beijing Swords \u84dd\u5251",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1191,
+      "name": "Sea Dragons \u86df\u9f99",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1192,
+      "name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1193,
+      "name": "Marine HJ-8 Team",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1194,
+      "name": "Marine HN-6 Team",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1196,
+      "name": "Motorized Line Infantry \u6469\u6258\u5316\u6b65\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1197,
+      "name": "Motorized AA Troopers \u6469\u6258\u5316\u9632\u7a7a\u6b65\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1198,
+      "name": "Motorized AT Troopers \u6469\u6258\u5316\u53cd\u5766\u514b\u6b65\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1199,
+      "name": "Motorized Weapons Squad",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1201,
+      "name": "Motorized Recon Patrol \u6469\u6258\u5316\u4fa6\u5bdf\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1202,
+      "name": "Motorized Snipers \u6469\u6258\u5316\u72d9\u51fb\u7ec4",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1203,
+      "name": "Taishan Eagles \u6cf0\u5c71\u96c4\u9e70",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1205,
+      "name": "Motorized Light AT Riflemen \u6469\u6258\u5316\u8f7b\u578b\u53cd\u5766\u514b\u6b65\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1206,
+      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1207,
+      "name": "PF-98 Tank Hunters",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1209,
+      "name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb\u5175",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1211,
+      "name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa\u8bd5\u9a8c\u7ec4",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1212,
+      "name": "Test SMG Assault \u51b2\u950b\u67aa\u7a81\u51fb\u8bd5\u9a8c\u7ec4",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1213,
+      "name": "Test Suppressed Scouts \u6d88\u58f0\u6b66\u5668\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1214,
+      "name": "Test LG5 Precision Grenadiers",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1215,
+      "name": "Test LG5s Mobile Grenadiers",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1216,
+      "name": "Test LG6 CQC Grenadiers",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1217,
+      "name": "Test LG4 Revolver Team",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1218,
+      "name": "Test LG3 Heavy AGL",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1219,
+      "name": "Test QN-202 Guided Support",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1220,
+      "name": "Test TL-4 Team",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1221,
+      "name": "Test GAM-102LR Team",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1222,
+      "name": "Test HJ-12E Team",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1223,
+      "name": "Test QW-2 Escort",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1224,
+      "name": "Test QTS Recon Cell \u6570\u5b57\u5316\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1225,
+      "name": "Test FHJ-02 Smoke Team",
+      "specs": [
+        22
+      ]
+    },
+    {
+      "unit": 1233,
+      "name": "HQ-9B",
+      "specs": [
+        20
+      ]
+    },
+    {
+      "unit": 1234,
+      "name": "HQ-9A",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1226,
+      "name": "J-10A",
+      "specs": [
+        21
+      ]
+    },
+    {
+      "unit": 1227,
+      "name": "Mi-8 Cargo",
+      "specs": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "unit": 1228,
+      "name": "Lynx ATV",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1229,
+      "name": "CSK-131 Transport",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1230,
+      "name": "CSK-181 Transport",
+      "specs": [
+        19
+      ]
+    },
+    {
+      "unit": 1231,
+      "name": "Shaanxi Troop Truck",
+      "specs": [
+        17
+      ]
+    },
+    {
+      "unit": 1232,
+      "name": "ZSL-92 MG",
+      "specs": [
+        21
+      ]
+    }
+  ],
+  "single_spec_units": 259,
+  "shared_exception": 1227,
+  "identity_repairs": [
+    {
+      "unit": 1233,
+      "incorrect_donor_id": 911
+    },
+    {
+      "unit": 1234,
+      "incorrect_donor_id": 911
+    },
+    {
+      "unit": 1226,
+      "incorrect_donor_id": 917
+    },
+    {
+      "unit": 1227,
+      "incorrect_donor_id": 7
+    },
+    {
+      "unit": 1228,
+      "incorrect_donor_id": 82
+    },
+    {
+      "unit": 1229,
+      "incorrect_donor_id": 900
+    },
+    {
+      "unit": 1230,
+      "incorrect_donor_id": 1058
+    },
+    {
+      "unit": 1231,
+      "incorrect_donor_id": 912
+    },
+    {
+      "unit": 1232,
+      "incorrect_donor_id": 1079
+    }
+  ],
+  "checks": 1747,
+  "native_verified": false
+}

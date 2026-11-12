@@ -1,12 +1,12 @@
 {
-  "build": 32,
+  "build": 33,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
     {
       "unit": 1136,
       "row": 8,
-      "name": "Airborne Riflemen 空降步兵",
+      "name": "Airborne Riflemen \u7a7a\u964d\u6b65\u5175",
       "spec": 17,
       "men": 9,
       "recon": false,
@@ -47,7 +47,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Riflemen 空降步兵",
+      "source_design_name": "Airborne Riflemen \u7a7a\u964d\u6b65\u5175",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
@@ -139,7 +139,7 @@
     {
       "unit": 1139,
       "row": 9,
-      "name": "Airborne Tank Hunters 坦克杀手",
+      "name": "Airborne Tank Hunters \u5766\u514b\u6740\u624b",
       "spec": 17,
       "men": 6,
       "recon": false,
@@ -174,7 +174,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Tank Hunters 坦克杀手",
+      "source_design_name": "Airborne Tank Hunters \u5766\u514b\u6740\u624b",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_SMAW_TEAM-Label"
     },
@@ -263,7 +263,7 @@
     {
       "unit": 1142,
       "row": 11,
-      "name": "Airborne Pathfinders 空降先遣侦察兵",
+      "name": "Airborne Pathfinders \u7a7a\u964d\u5148\u9063\u4fa6\u5bdf\u5175",
       "spec": 17,
       "men": 7,
       "recon": true,
@@ -302,14 +302,14 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Pathfinders 空降先遣侦察兵",
+      "source_design_name": "Airborne Pathfinders \u7a7a\u964d\u5148\u9063\u4fa6\u5bdf\u5175",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1143,
       "row": 12,
-      "name": "Thunder Gods 雷神",
+      "name": "Thunder Gods \u96f7\u795e",
       "spec": 17,
       "men": 9,
       "recon": false,
@@ -351,15 +351,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Thunder Gods 雷神",
-      "identity": "PLAAF Airborne Corps Leishen (雷神)",
+      "source_design_name": "Thunder Gods \u96f7\u795e",
+      "identity": "PLAAF Airborne Corps Leishen (\u96f7\u795e)",
       "unit_icon": "FA_PLA_INF_LEISHEN",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1144,
       "row": 13,
-      "name": "Airborne Snipers 空降狙击组",
+      "name": "Airborne Snipers \u7a7a\u964d\u72d9\u51fb\u7ec4",
       "spec": 17,
       "men": 3,
       "recon": true,
@@ -398,7 +398,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Snipers 空降狙击组",
+      "source_design_name": "Airborne Snipers \u7a7a\u964d\u72d9\u51fb\u7ec4",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -406,7 +406,7 @@
     {
       "unit": 1145,
       "row": 14,
-      "name": "Airborne HN-6 Patrol 空降防空巡逻队",
+      "name": "Airborne HN-6 Patrol \u7a7a\u964d\u9632\u7a7a\u5de1\u903b\u961f",
       "spec": 17,
       "men": 5,
       "recon": false,
@@ -448,14 +448,14 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne HN-6 Patrol 空降防空巡逻队",
+      "source_design_name": "Airborne HN-6 Patrol \u7a7a\u964d\u9632\u7a7a\u5de1\u903b\u961f",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "RU_IGLA-Label"
     },
     {
       "unit": 1146,
       "row": 15,
-      "name": "Air Assault Raiders 空中突击兵",
+      "name": "Air Assault Raiders \u7a7a\u4e2d\u7a81\u51fb\u5175",
       "spec": 17,
       "men": 9,
       "recon": false,
@@ -490,7 +490,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Air Assault Raiders 空中突击兵",
+      "source_design_name": "Air Assault Raiders \u7a7a\u4e2d\u7a81\u51fb\u5175",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
@@ -576,7 +576,7 @@
     {
       "unit": 1149,
       "row": 16,
-      "name": "Airborne Target Observers 空降目标观察组",
+      "name": "Airborne Target Observers \u7a7a\u964d\u76ee\u6807\u89c2\u5bdf\u7ec4",
       "spec": 17,
       "men": 3,
       "recon": true,
@@ -615,7 +615,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Target Observers 空降目标观察组",
+      "source_design_name": "Airborne Target Observers \u7a7a\u964d\u76ee\u6807\u89c2\u5bdf\u7ec4",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_CAVALRY_SCOUTS-Label"
     },
@@ -667,7 +667,7 @@
     {
       "unit": 1151,
       "row": 23,
-      "name": "Mechanized AT Riflemen 机械化反坦克步兵",
+      "name": "Mechanized AT Riflemen \u673a\u68b0\u5316\u53cd\u5766\u514b\u6b65\u5175",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -711,7 +711,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized AT Riflemen 机械化反坦克步兵",
+      "source_design_name": "Mechanized AT Riflemen \u673a\u68b0\u5316\u53cd\u5766\u514b\u6b65\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -871,7 +871,7 @@
     {
       "unit": 1156,
       "row": 28,
-      "name": "Mechanized Combat Engineers 机械化战斗工兵",
+      "name": "Mechanized Combat Engineers \u673a\u68b0\u5316\u6218\u6597\u5de5\u5175",
       "spec": 18,
       "men": 8,
       "recon": false,
@@ -914,7 +914,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Combat Engineers 机械化战斗工兵",
+      "source_design_name": "Mechanized Combat Engineers \u673a\u68b0\u5316\u6218\u6597\u5de5\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "RU_SAPERI-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -960,7 +960,7 @@
     {
       "unit": 1158,
       "row": 30,
-      "name": "Mechanized GPMG Riflemen 机械化机枪步兵",
+      "name": "Mechanized GPMG Riflemen \u673a\u68b0\u5316\u673a\u67aa\u6b65\u5175",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -997,7 +997,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized GPMG Riflemen 机械化机枪步兵",
+      "source_design_name": "Mechanized GPMG Riflemen \u673a\u68b0\u5316\u673a\u67aa\u6b65\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1058,7 +1058,7 @@
     {
       "unit": 1160,
       "row": 31,
-      "name": "Armored Scouts 装甲侦察兵",
+      "name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf\u5175",
       "spec": 18,
       "men": 4,
       "recon": true,
@@ -1102,7 +1102,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Scouts 装甲侦察兵",
+      "source_design_name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1110,7 +1110,7 @@
     {
       "unit": 1161,
       "row": 32,
-      "name": "Armored Sniper Pair 装甲狙击组",
+      "name": "Armored Sniper Pair \u88c5\u7532\u72d9\u51fb\u7ec4",
       "spec": 18,
       "men": 2,
       "recon": true,
@@ -1147,7 +1147,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Sniper Pair 装甲狙击组",
+      "source_design_name": "Armored Sniper Pair \u88c5\u7532\u72d9\u51fb\u7ec4",
       "identity": "PLA Ground Force",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1155,7 +1155,7 @@
     {
       "unit": 1162,
       "row": 33,
-      "name": "Thermobaric Breachers 机械化温压突击工兵",
+      "name": "Thermobaric Breachers \u673a\u68b0\u5316\u6e29\u538b\u7a81\u51fb\u5de5\u5175",
       "spec": 18,
       "men": 8,
       "recon": false,
@@ -1192,7 +1192,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Thermobaric Breachers 机械化温压突击工兵",
+      "source_design_name": "Thermobaric Breachers \u673a\u68b0\u5316\u6e29\u538b\u7a81\u51fb\u5de5\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "RU_FLAMETHROWER-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset",
@@ -1201,7 +1201,7 @@
     {
       "unit": 1163,
       "row": 34,
-      "name": "Mechanized Riflemen 机械化步兵",
+      "name": "Mechanized Riflemen \u673a\u68b0\u5316\u6b65\u5175",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -1245,7 +1245,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Riflemen 机械化步兵",
+      "source_design_name": "Mechanized Riflemen \u673a\u68b0\u5316\u6b65\u5175",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1253,7 +1253,7 @@
     {
       "unit": 1164,
       "row": 35,
-      "name": "Armored Forward Observers 装甲前沿观察组",
+      "name": "Armored Forward Observers \u88c5\u7532\u524d\u6cbf\u89c2\u5bdf\u7ec4",
       "spec": 18,
       "men": 3,
       "recon": true,
@@ -1283,7 +1283,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Forward Observers 装甲前沿观察组",
+      "source_design_name": "Armored Forward Observers \u88c5\u7532\u524d\u6cbf\u89c2\u5bdf\u7ec4",
       "identity": "PLA Ground Force",
       "unit_icon": "US_CAVALRY_SCOUTS-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1336,7 +1336,7 @@
     {
       "unit": 1166,
       "row": 38,
-      "name": "Conscripts 义务兵",
+      "name": "Conscripts \u4e49\u52a1\u5175",
       "spec": 19,
       "men": 12,
       "recon": false,
@@ -1361,7 +1361,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Conscripts 义务兵",
+      "source_design_name": "Conscripts \u4e49\u52a1\u5175",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "FA_PLA_INF_LINE_RESERVE",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1370,7 +1370,7 @@
     {
       "unit": 1167,
       "row": 39,
-      "name": "Reserve Riflemen — HJ-73D",
+      "name": "Reserve Riflemen \u2014 HJ-73D",
       "spec": 19,
       "men": 9,
       "recon": false,
@@ -1415,7 +1415,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Reserve Riflemen — HJ-73D",
+      "source_design_name": "Reserve Riflemen \u2014 HJ-73D",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "FA_PLA_INF_LINE_RESERVE",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1653,7 +1653,7 @@
     {
       "unit": 1173,
       "row": 44,
-      "name": "Malyutka Recon Ambush Team 反坦克伏击侦察组",
+      "name": "Malyutka Recon Ambush Team \u53cd\u5766\u514b\u4f0f\u51fb\u4fa6\u5bdf\u7ec4",
       "spec": 19,
       "men": 4,
       "recon": true,
@@ -1702,7 +1702,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Malyutka Recon Ambush Team 反坦克伏击侦察组",
+      "source_design_name": "Malyutka Recon Ambush Team \u53cd\u5766\u514b\u4f0f\u51fb\u4fa6\u5bdf\u7ec4",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "RU_FAGOT-Label",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1711,7 +1711,7 @@
     {
       "unit": 1174,
       "row": 45,
-      "name": "Sharp Blades 利刃",
+      "name": "Sharp Blades \u5229\u5203",
       "spec": 19,
       "men": 6,
       "recon": true,
@@ -1755,15 +1755,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Sharp Blades 利刃",
-      "identity": "PLA Rocket Force Liren (利刃)",
+      "source_design_name": "Sharp Blades \u5229\u5203",
+      "identity": "PLA Rocket Force Liren (\u5229\u5203)",
       "unit_icon": "FA_PLA_INF_ROCKET_SOF",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1175,
       "row": 46,
-      "name": "Missile Site Security 导弹阵地警卫",
+      "name": "Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b",
       "spec": 19,
       "men": 10,
       "recon": false,
@@ -1801,7 +1801,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Missile Site Security 导弹阵地警卫",
+      "source_design_name": "Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b",
       "identity": "PLA Rocket Force security/support role",
       "unit_icon": "FA_PLA_INF_LINE_ROCKET",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1810,7 +1810,7 @@
     {
       "unit": 1176,
       "row": 47,
-      "name": "Missile-Site Counter-Raid Team 导弹阵地反袭击队",
+      "name": "Missile-Site Counter-Raid Team \u5bfc\u5f39\u9635\u5730\u53cd\u88ad\u51fb\u961f",
       "spec": 19,
       "men": 8,
       "recon": false,
@@ -1859,7 +1859,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Missile-Site Counter-Raid Team 导弹阵地反袭击队",
+      "source_design_name": "Missile-Site Counter-Raid Team \u5bfc\u5f39\u9635\u5730\u53cd\u88ad\u51fb\u961f",
       "identity": "PLA Rocket Force security/support role",
       "unit_icon": "FA_PLA_INF_ROCKET"
     },
@@ -1969,7 +1969,7 @@
     {
       "unit": 1179,
       "row": 51,
-      "name": "Rocket Convoy Escort — HJ-73D",
+      "name": "Rocket Convoy Escort \u2014 HJ-73D",
       "spec": 19,
       "men": 8,
       "recon": false,
@@ -2011,7 +2011,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Rocket Convoy Escort — HJ-73D",
+      "source_design_name": "Rocket Convoy Escort \u2014 HJ-73D",
       "identity": "PLA Rocket Force security/support role",
       "unit_icon": "FA_PLA_INF_LINE_ROCKET",
       "removed_by_sheet_strikethrough": true
@@ -2065,7 +2065,7 @@
     {
       "unit": 1181,
       "row": 53,
-      "name": "Godswords 东方神剑",
+      "name": "Godswords \u4e1c\u65b9\u795e\u5251",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2105,15 +2105,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Godswords 东方神剑",
-      "identity": "Dongfang Shenjian (东方神剑)",
+      "source_design_name": "Godswords \u4e1c\u65b9\u795e\u5251",
+      "identity": "Dongfang Shenjian (\u4e1c\u65b9\u795e\u5251)",
       "unit_icon": "FA_PLA_INF_DONGFANG",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1182,
       "row": 54,
-      "name": "PAP Snow Leopards 雪豹",
+      "name": "PAP Snow Leopards \u96ea\u8c79",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2160,15 +2160,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "PAP Snow Leopards 雪豹",
-      "identity": "PAP Snow Leopard / Xuebao (雪豹)",
+      "source_design_name": "PAP Snow Leopards \u96ea\u8c79",
+      "identity": "PAP Snow Leopard / Xuebao (\u96ea\u8c79)",
       "unit_icon": "FA_PLA_INF_SNOW_LEOPARD",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1183,
       "row": 55,
-      "name": "Blood Wolves 血狼",
+      "name": "Blood Wolves \u8840\u72fc",
       "spec": 20,
       "men": 8,
       "recon": true,
@@ -2215,15 +2215,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Blood Wolves 血狼",
-      "identity": "Xuelang (血狼)",
+      "source_design_name": "Blood Wolves \u8840\u72fc",
+      "identity": "Xuelang (\u8840\u72fc)",
       "unit_icon": "FA_PLA_INF_BLOOD_WOLF",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1184,
       "row": 56,
-      "name": "Whistling Arrows 响箭",
+      "name": "Whistling Arrows \u54cd\u7bad",
       "spec": 20,
       "men": 4,
       "recon": true,
@@ -2272,15 +2272,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Whistling Arrows 响箭",
-      "identity": "Xiangjian (响箭)",
+      "source_design_name": "Whistling Arrows \u54cd\u7bad",
+      "identity": "Xiangjian (\u54cd\u7bad)",
       "unit_icon": "FA_PLA_INF_XIANGJIAN",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1185,
       "row": 57,
-      "name": "Falcons 猎鹰",
+      "name": "Falcons \u730e\u9e70",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2320,15 +2320,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Falcons 猎鹰",
-      "identity": "PAP Falcon / Lieying (猎鹰)",
+      "source_design_name": "Falcons \u730e\u9e70",
+      "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
       "unit_icon": "FA_PLA_INF_FALCON",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1186,
       "row": 58,
-      "name": "Mountain Leopards 高原雪豹",
+      "name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
       "spec": 20,
       "men": 3,
       "recon": false,
@@ -2368,15 +2368,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mountain Leopards 高原雪豹",
-      "identity": "Gaoyuan Xuebao (高原雪豹), plateau special operations",
+      "source_design_name": "Mountain Leopards \u9ad8\u539f\u96ea\u8c79",
+      "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
       "unit_icon": "FA_PLA_INF_PLATEAU_LEOPARD",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1187,
       "row": 59,
-      "name": "Beijing Swords 蓝剑",
+      "name": "Beijing Swords \u84dd\u5251",
       "spec": 20,
       "men": 6,
       "recon": false,
@@ -2416,8 +2416,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Beijing Swords 蓝剑",
-      "identity": "Beijing Public Security Blue Sword / Lanjian (蓝剑)",
+      "source_design_name": "Beijing Swords \u84dd\u5251",
+      "identity": "Beijing Public Security Blue Sword / Lanjian (\u84dd\u5251)",
       "unit_icon": "FA_PLA_INF_POLICE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
@@ -2471,8 +2471,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Falcon — Counter-Terror Assault (猎鹰)",
-      "identity": "PAP Falcon / Lieying (猎鹰)",
+      "source_design_name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
+      "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
       "unit_icon": "FA_PLA_INF_FALCON",
       "appearance_policy": "Sam-approved Build30 branch/class preset",
       "removed_by_sheet_strikethrough": true
@@ -2527,8 +2527,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "PAP Snow Leopards — Raid Team (雪豹)",
-      "identity": "PAP Snow Leopard / Xuebao (雪豹)",
+      "source_design_name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
+      "identity": "PAP Snow Leopard / Xuebao (\u96ea\u8c79)",
       "unit_icon": "FA_PLA_INF_SNOW_LEOPARD",
       "appearance_policy": "Sam-approved Build30 branch/class preset",
       "removed_by_sheet_strikethrough": true
@@ -2577,8 +2577,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Jiaolong — Marine Assault (蛟龙)",
-      "identity": "PLA Navy Marine Corps Jiaolong (蛟龙)",
+      "source_design_name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
+      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
       "unit_icon": "FA_PLA_INF_JIAOLONG",
       "appearance_policy": "Sam-approved Build30 branch/class preset",
       "removed_by_sheet_strikethrough": true
@@ -2586,7 +2586,7 @@
     {
       "unit": 1191,
       "row": 60,
-      "name": "Sea Dragons 蛟龙",
+      "name": "Sea Dragons \u86df\u9f99",
       "spec": 20,
       "men": 8,
       "recon": true,
@@ -2633,15 +2633,15 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Sea Dragons 蛟龙",
-      "identity": "PLA Navy Marine Corps Jiaolong (蛟龙)",
+      "source_design_name": "Sea Dragons \u86df\u9f99",
+      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
       "unit_icon": "FA_PLA_INF_JIAOLONG",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1192,
       "row": 61,
-      "name": "Marine Riflemen 海军陆战步兵",
+      "name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
       "spec": 20,
       "men": 12,
       "recon": false,
@@ -2681,7 +2681,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Marine Riflemen 海军陆战步兵",
+      "source_design_name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
       "identity": "PLA Navy Marine Corps",
       "unit_icon": "FA_PLA_INF_LINE_MARINE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -2841,7 +2841,7 @@
     {
       "unit": 1196,
       "row": 68,
-      "name": "Motorized Line Infantry 摩托化步兵",
+      "name": "Motorized Line Infantry \u6469\u6258\u5316\u6b65\u5175",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -2881,7 +2881,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Line Infantry 摩托化步兵",
+      "source_design_name": "Motorized Line Infantry \u6469\u6258\u5316\u6b65\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -2889,7 +2889,7 @@
     {
       "unit": 1197,
       "row": 69,
-      "name": "Motorized AA Troopers 摩托化防空步兵",
+      "name": "Motorized AA Troopers \u6469\u6258\u5316\u9632\u7a7a\u6b65\u5175",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -2929,7 +2929,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized AA Troopers 摩托化防空步兵",
+      "source_design_name": "Motorized AA Troopers \u6469\u6258\u5316\u9632\u7a7a\u6b65\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -2937,7 +2937,7 @@
     {
       "unit": 1198,
       "row": 70,
-      "name": "Motorized AT Troopers 摩托化反坦克步兵",
+      "name": "Motorized AT Troopers \u6469\u6258\u5316\u53cd\u5766\u514b\u6b65\u5175",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -2977,7 +2977,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized AT Troopers 摩托化反坦克步兵",
+      "source_design_name": "Motorized AT Troopers \u6469\u6258\u5316\u53cd\u5766\u514b\u6b65\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3084,7 +3084,7 @@
     {
       "unit": 1201,
       "row": 72,
-      "name": "Motorized Recon Patrol 摩托化侦察兵",
+      "name": "Motorized Recon Patrol \u6469\u6258\u5316\u4fa6\u5bdf\u5175",
       "spec": 21,
       "men": 6,
       "recon": true,
@@ -3131,7 +3131,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Recon Patrol 摩托化侦察兵",
+      "source_design_name": "Motorized Recon Patrol \u6469\u6258\u5316\u4fa6\u5bdf\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3139,7 +3139,7 @@
     {
       "unit": 1202,
       "row": 73,
-      "name": "Motorized Snipers 摩托化狙击组",
+      "name": "Motorized Snipers \u6469\u6258\u5316\u72d9\u51fb\u7ec4",
       "spec": 21,
       "men": 3,
       "recon": true,
@@ -3181,7 +3181,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Snipers 摩托化狙击组",
+      "source_design_name": "Motorized Snipers \u6469\u6258\u5316\u72d9\u51fb\u7ec4",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3189,7 +3189,7 @@
     {
       "unit": 1203,
       "row": 74,
-      "name": "Taishan Eagles 泰山雄鹰",
+      "name": "Taishan Eagles \u6cf0\u5c71\u96c4\u9e70",
       "spec": 21,
       "men": 6,
       "recon": true,
@@ -3236,8 +3236,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Taishan Eagles 泰山雄鹰",
-      "identity": "Xiongying (雄鹰), historical Jinan-region SOF lineage",
+      "source_design_name": "Taishan Eagles \u6cf0\u5c71\u96c4\u9e70",
+      "identity": "Xiongying (\u96c4\u9e70), historical Jinan-region SOF lineage",
       "unit_icon": "FA_PLA_INF_EAGLE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
@@ -3293,7 +3293,7 @@
     {
       "unit": 1205,
       "row": 75,
-      "name": "Motorized Light AT Riflemen 摩托化轻型反坦克步兵",
+      "name": "Motorized Light AT Riflemen \u6469\u6258\u5316\u8f7b\u578b\u53cd\u5766\u514b\u6b65\u5175",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -3333,7 +3333,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Light AT Riflemen 摩托化轻型反坦克步兵",
+      "source_design_name": "Motorized Light AT Riflemen \u6469\u6258\u5316\u8f7b\u578b\u53cd\u5766\u514b\u6b65\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3341,7 +3341,7 @@
     {
       "unit": 1206,
       "row": 76,
-      "name": "Air Defense Scouts 防空侦察兵",
+      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf\u5175",
       "spec": 21,
       "men": 5,
       "recon": true,
@@ -3388,7 +3388,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Air Defense Scouts 防空侦察兵",
+      "source_design_name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_IGLA-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3488,7 +3488,7 @@
     {
       "unit": 1209,
       "row": 78,
-      "name": "Thermobaric Assault 温压突击兵",
+      "name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb\u5175",
       "spec": 21,
       "men": 9,
       "recon": false,
@@ -3528,7 +3528,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Thermobaric Assault 温压突击兵",
+      "source_design_name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb\u5175",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_FLAMETHROWER-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3536,7 +3536,7 @@
     {
       "unit": 1210,
       "row": 82,
-      "name": "Motorized CAAT — HJ-8E / QLU-11",
+      "name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -3583,7 +3583,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized CAAT — HJ-8E / QLU-11",
+      "source_design_name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_WPN_QLU11",
       "appearance_policy": "Sam-approved Build30 branch/class preset",
@@ -3592,7 +3592,7 @@
     {
       "unit": 1211,
       "row": 83,
-      "name": "Test Export Riflemen 出口步枪试验组",
+      "name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa\u8bd5\u9a8c\u7ec4",
       "spec": 22,
       "men": 8,
       "recon": false,
@@ -3615,7 +3615,7 @@
         }
       ],
       "munitions": "Light HEAT",
-      "notes": "TEST CONCEPT — Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki.",
+      "notes": "TEST CONCEPT \u2014 Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3630,14 +3630,14 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test Export Riflemen 出口步枪试验组",
+      "source_design_name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa\u8bd5\u9a8c\u7ec4",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1212,
       "row": 84,
-      "name": "Test SMG Assault 冲锋枪突击试验组",
+      "name": "Test SMG Assault \u51b2\u950b\u67aa\u7a81\u51fb\u8bd5\u9a8c\u7ec4",
       "spec": 22,
       "men": 8,
       "recon": false,
@@ -3660,7 +3660,7 @@
         }
       ],
       "munitions": "SMG ammunition + buckshot",
-      "notes": "TEST CONCEPT — All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC.",
+      "notes": "TEST CONCEPT \u2014 All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3675,14 +3675,14 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test SMG Assault 冲锋枪突击试验组",
+      "source_design_name": "Test SMG Assault \u51b2\u950b\u67aa\u7a81\u51fb\u8bd5\u9a8c\u7ec4",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_RANGERS_CQC-Label"
     },
     {
       "unit": 1213,
       "row": 85,
-      "name": "Test Suppressed Scouts 消声武器侦察试验组",
+      "name": "Test Suppressed Scouts \u6d88\u58f0\u6b66\u5668\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
       "spec": 22,
       "men": 6,
       "recon": true,
@@ -3705,7 +3705,7 @@
         }
       ],
       "munitions": "No AT rockets",
-      "notes": "TEST CONCEPT — Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT.",
+      "notes": "TEST CONCEPT \u2014 Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3722,7 +3722,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test Suppressed Scouts 消声武器侦察试验组",
+      "source_design_name": "Test Suppressed Scouts \u6d88\u58f0\u6b66\u5668\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_CAVALRY_SCOUTS-Label"
     },
@@ -3744,8 +3744,8 @@
           "native_weapon": 203
         }
       ],
-      "munitions": "40×53 mm HE; not QLU 35 mm",
-      "notes": "TEST CONCEPT — Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL.",
+      "munitions": "40\u00d753 mm HE; not QLU 35 mm",
+      "notes": "TEST CONCEPT \u2014 Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3793,7 +3793,7 @@
         }
       ],
       "munitions": "LG5s configuration to verify; 35 mm carried separately",
-      "notes": "TEST CONCEPT — Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT \u2014 Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3840,8 +3840,8 @@
           "native_weapon": 45
         }
       ],
-      "munitions": "40×46 mm HE + buckshot",
-      "notes": "TEST CONCEPT — Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC.",
+      "munitions": "40\u00d746 mm HE + buckshot",
+      "notes": "TEST CONCEPT \u2014 Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3887,8 +3887,8 @@
           "native_weapon": 53
         }
       ],
-      "munitions": "40×46 mm HE; no airburst assumption",
-      "notes": "TEST CONCEPT — Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force.",
+      "munitions": "40\u00d746 mm HE; no airburst assumption",
+      "notes": "TEST CONCEPT \u2014 Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3927,8 +3927,8 @@
           "native_weapon": 75
         }
       ],
-      "munitions": "40×53 mm HE",
-      "notes": "TEST CONCEPT — Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team.",
+      "munitions": "40\u00d753 mm HE",
+      "notes": "TEST CONCEPT \u2014 Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3969,7 +3969,7 @@
         }
       ],
       "munitions": "HE-fragmentation; anti-MBT role excluded",
-      "notes": "TEST CONCEPT — Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT \u2014 Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4010,7 +4010,7 @@
         }
       ],
       "munitions": "Tandem HEAT; guidance modes require validation",
-      "notes": "TEST CONCEPT — Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A.",
+      "notes": "TEST CONCEPT \u2014 Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4051,7 +4051,7 @@
         }
       ],
       "munitions": "Tandem HEAT; no native range imported from advertisements",
-      "notes": "TEST CONCEPT — Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
+      "notes": "TEST CONCEPT \u2014 Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4092,7 +4092,7 @@
         }
       ],
       "munitions": "Tandem HEAT; domestic/export stats not assumed equal",
-      "notes": "TEST CONCEPT — Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet.",
+      "notes": "TEST CONCEPT \u2014 Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4140,7 +4140,7 @@
         }
       ],
       "munitions": "IR SAMs",
-      "notes": "TEST CONCEPT — Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla.",
+      "notes": "TEST CONCEPT \u2014 Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4164,7 +4164,7 @@
     {
       "unit": 1224,
       "row": 96,
-      "name": "Test QTS Recon Cell 数字化侦察试验组",
+      "name": "Test QTS Recon Cell \u6570\u5b57\u5316\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
       "spec": 22,
       "men": 4,
       "recon": true,
@@ -4187,7 +4187,7 @@
         }
       ],
       "munitions": "Limited 20 mm grenades; no assumed sensor/airburst bonus",
-      "notes": "TEST CONCEPT — Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT \u2014 Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4205,7 +4205,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test QTS Recon Cell 数字化侦察试验组",
+      "source_design_name": "Test QTS Recon Cell \u6570\u5b57\u5316\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "FA_PLA_INF_WPN_QTS11"
     },
@@ -4228,7 +4228,7 @@
         }
       ],
       "munitions": "Smoke rockets only; behavior and reload need implementation",
-      "notes": "TEST CONCEPT — Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
+      "notes": "TEST CONCEPT \u2014 Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
       "body_from": 985,
       "camo": "green",
       "armor": 6,

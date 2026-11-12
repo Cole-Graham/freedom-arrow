@@ -53,7 +53,7 @@ def main():
         def unit(uid,fields):return g.put('Units',uid,fields)
         def clone_unit(uid,donor,name,unarmed=False):
             assert uid not in t['Units']
-            d=copy.deepcopy(t['Units'][donor]);d.update(Name='PLA '+name,HUDName=name,CountryId=4,DisplayInArmory=True,ContentMembership=-1,IsUnitModification=False)
+            d=copy.deepcopy(t['Units'][donor]);d.pop('Id',None);d.update(Name='PLA '+name,HUDName=name,CountryId=4,DisplayInArmory=True,ContentMembership=-1,IsUnitModification=False)
             unit(uid,d)
             for tab,target,field in [('UnitArmorsJson','ArmorsJson','ArmorId'),('UnitPropulsionsJson','MobilityJson','MobilityId'),('UnitAbilitiesJson','AbilitiesJson','AbilityId'),('SensorUnitsJson','SensorsJson','SensorId')]:
                 ls=rows(tab,donor)

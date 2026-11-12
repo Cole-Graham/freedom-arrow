@@ -1,3 +1,9 @@
+# PLA TEST Build 33
+
+One spec per selectable PLA card, except Mi-8 Cargo across all five. Includes latest HQ-17A, J-15/JH-7, PGZ-09, HQ-7 and ZBD-86 assignments, Build32 infantry sheet reconciliation, and the original DF-31 warning draft. Cross-spec carrier links and nine donor-ID fields are corrected. Native deck building, warning audio and appearance remain unverified.
+
+## Historical Build32
+
 # PLA TEST Build 32
 
 **Applies the current formatted infantry sheet: removals, bilingual names, sizes, classes and fixed kits; combat-engineer thermobaric loadout; reference-derived QLG-10A HUD. Build31 equipment and approved body/art alignment retained. Native validation pending.**
@@ -439,3 +445,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 00:44:41 PST (America/Los_Angeles) — Added a DF-31-specific original warning draft through the existing ballistic alert path and audio controls; native launch/mix and nuclear effect remain pending.
 
 - 2026-11-12 00:52:01 PST (America/Los_Angeles) — Added formatting-aware sheet import and QLG10A reference icon.
+
+- 2026-11-12 01:01:43 PST (America/Los_Angeles) — Build33 combines one-spec deck correction and latest PLAN/Rocket moves with the full Build32 infantry pass; Mi-8 Cargo is the only shared card.

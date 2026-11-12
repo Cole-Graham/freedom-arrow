@@ -222,9 +222,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19,
-        20,
-        21
+        19
       ]
     },
     {
@@ -264,8 +262,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18,
-        19
+        18
       ]
     },
     {
@@ -541,7 +538,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        18
+        20
       ]
     },
     {
@@ -563,7 +560,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19
+        20
       ]
     },
     {
@@ -585,8 +582,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        20,
-        21
+        20
       ]
     },
     {
@@ -696,8 +692,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18,
-        20
+        18
       ]
     },
     {
@@ -719,7 +714,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18
+        19
       ]
     },
     {
@@ -795,7 +790,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        19
+        20
       ]
     },
     {
@@ -875,9 +870,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        19,
-        21
+        17
       ]
     },
     {
@@ -895,10 +888,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        17,
-        19,
-        20,
-        21
+        19
       ]
     },
     {
@@ -942,8 +932,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        19,
-        21
+        19
       ]
     },
     {
@@ -1080,7 +1069,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        19
+        20
       ]
     },
     {
@@ -1206,10 +1195,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        17,
-        19,
-        20,
-        21
+        17
       ]
     },
     {
@@ -1432,8 +1418,6 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18,
-        20,
         21
       ]
     },
@@ -1455,7 +1439,6 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        20,
         21
       ]
     },
@@ -1474,7 +1457,7 @@
       "custom_model": null,
       "implementation": "Existing card",
       "specs": [
-        19
+        20
       ]
     },
     {
@@ -1518,9 +1501,6 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        18,
-        19,
-        20,
         21
       ]
     },
@@ -1543,8 +1523,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        20,
-        21
+        20
       ]
     },
     {
@@ -1584,8 +1563,6 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        20,
         21
       ]
     },
@@ -1875,10 +1852,6 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        18,
-        19,
-        20,
         21
       ]
     },
@@ -2534,8 +2507,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        18,
-        20
+        18
       ]
     },
     {
@@ -2601,11 +2573,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        17,
-        18,
-        19,
-        20,
-        21
+        17
       ]
     },
     {
@@ -2663,8 +2631,7 @@
       "custom_model": null,
       "implementation": "Named stand-in",
       "specs": [
-        17,
-        20
+        17
       ]
     },
     {
@@ -2686,10 +2653,7 @@
       },
       "implementation": "Named stand-in",
       "specs": [
-        17,
-        19,
-        20,
-        21
+        17
       ]
     },
     {
@@ -2711,8 +2675,7 @@
       },
       "implementation": "Existing card",
       "specs": [
-        20,
-        21
+        20
       ]
     },
     {
@@ -3200,5 +3163,6 @@
     1109
   ],
   "excluded_no_model": 71,
-  "native_verified": false
+  "native_verified": false,
+  "build": 33
 }

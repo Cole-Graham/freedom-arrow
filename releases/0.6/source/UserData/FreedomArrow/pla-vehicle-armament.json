@@ -1,5 +1,5 @@
 {
-  "build": 31,
+  "build": 33,
   "entries": [
     {
       "unit": 900,
@@ -38,9 +38,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        19,
-        21
+        17
       ],
       "active": true
     },
@@ -233,7 +231,6 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
         21
       ],
       "active": true
@@ -527,8 +524,6 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        20,
         21
       ],
       "active": true
@@ -570,8 +565,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        19
+        18
       ],
       "active": true
     },
@@ -653,7 +647,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18
+        19
       ],
       "active": true
     },
@@ -749,11 +743,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        18,
-        19,
-        20,
-        21
+        17
       ],
       "active": true
     },
@@ -898,11 +888,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        18,
-        19,
-        20,
-        21
+        17
       ],
       "active": true
     },
@@ -1130,10 +1116,6 @@
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false,
       "specs": [
-        17,
-        18,
-        19,
-        20,
         21
       ],
       "active": true
@@ -1693,8 +1675,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        20,
-        21
+        20
       ],
       "active": true
     },
@@ -1735,9 +1716,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        19,
-        20,
-        21
+        19
       ],
       "active": true
     },
@@ -2114,8 +2093,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        20
+        18
       ],
       "active": true
     },
@@ -2501,8 +2479,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        20,
-        21
+        20
       ],
       "active": true
     },
@@ -2769,8 +2746,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        20,
-        21
+        20
       ],
       "active": true
     },
@@ -3098,9 +3074,7 @@
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false,
       "specs": [
-        18,
-        19,
-        21
+        18
       ],
       "active": true
     },
@@ -3434,8 +3408,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        19,
-        21
+        19
       ],
       "active": true
     },
@@ -3701,7 +3674,6 @@
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false,
       "specs": [
-        17,
         21
       ],
       "active": true
@@ -3864,9 +3836,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        19,
-        21
+        18
       ],
       "active": true
     },
@@ -4080,7 +4050,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        19
+        20
       ],
       "active": true
     },
@@ -4475,7 +4445,6 @@
       "armor_basis": "Existing PLA draft armor preserved.",
       "native_verified": false,
       "specs": [
-        17,
         21
       ],
       "active": true
@@ -4910,8 +4879,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        20
+        18
       ],
       "active": true
     },
@@ -5002,8 +4970,6 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        20,
         21
       ],
       "active": true
@@ -5818,7 +5784,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18
+        20
       ],
       "active": true
     },
@@ -6053,7 +6019,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        19
+        20
       ],
       "active": true
     },
@@ -6272,15 +6238,12 @@
           "performance": "Closest native analog; not measured Chinese weapon performance."
         }
       ],
-      "slots": 4,
+      "slots": 12,
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        19,
-        20,
-        21
+        19
       ],
       "active": true
     },
@@ -6690,7 +6653,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        19
+        20
       ],
       "active": true
     },
@@ -7153,10 +7116,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        19,
-        20,
-        21
+        17
       ],
       "active": true
     },
@@ -7911,7 +7871,6 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        20,
         21
       ],
       "active": true
@@ -7983,9 +7942,6 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        19,
-        20,
         21
       ],
       "active": true
@@ -9333,8 +9289,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        20
+        17
       ],
       "active": true
     },
@@ -9353,10 +9308,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        17,
-        19,
-        20,
-        21
+        17
       ],
       "active": true
     },
@@ -9601,8 +9553,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        18,
-        20
+        18
       ],
       "active": true
     },
@@ -9768,8 +9719,7 @@
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
       "specs": [
-        20,
-        21
+        20
       ],
       "active": true
     },
@@ -10159,9 +10109,6 @@
       },
       "native_verified": false,
       "specs": [
-        18,
-        19,
-        20,
         21
       ],
       "active": true
@@ -10222,11 +10169,11 @@
       "type": 4,
       "native_parent": 1058,
       "weapons": [],
-      "slots": 4,
+      "slots": 12,
       "custom_model": null,
       "native_verified": false,
       "specs": [
-        17
+        19
       ],
       "active": true
     },
