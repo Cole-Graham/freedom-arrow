@@ -1,3 +1,9 @@
+# PLA TEST Build 68
+
+JRVG-1 gun copied from the vanilla Arleigh Burke Mark 45 naval gun (sound, autoloader, elevation, muzzle flash, 127 mm shell model and impact effect), tuned down: 8 damage, 20 m blast, 7 m proximity fuse, 2400 m low-altitude range, one shot per second (about 8 damage per second). It keeps the AA gun type, direct fire and air targets.
+
+## Historical Build67
+
 # PLA TEST Build 67
 
 - PHL-191 (no "/ AR3") in Rocket Force; PHL-03 in Motorized as a Smerch copy (HE, Cluster, Guided HE, Guided Cluster).
@@ -738,3 +744,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:11:01 PST (America/Los_Angeles) — Build66: live models, ZTZ mobility, removals, PTZ-89, HMV3 Cargo, ZTQ-62-I maps.
 
 - 2026-11-12 13:22:04 PST (America/Los_Angeles) — Build67: rocket force, artillery and JRVG-1 batch.
+
+- 2026-11-12 13:25:45 PST (America/Los_Angeles) — Build68: JRVG-1 on the Mark 45 naval gun.

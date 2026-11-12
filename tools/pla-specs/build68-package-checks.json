@@ -1,0 +1,27 @@
+{
+  "build": 68,
+  "label": "PLA TEST Build 68",
+  "base_build": 67,
+  "base_sha256": "dc4e407971284f3e188ff9802d70e8a08cc9425bab7f2b5cd75ff34ad376e837",
+  "sha256": "d427bd30b391e7d7971b626e5e0899a34b03c582ebb21187f78e772da21bea6e",
+  "bytes": 4101182633,
+  "verified_payloads": 8134,
+  "verified_core_hashes": 131,
+  "unchanged_archive_entries": 8125,
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-build68.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false,
+  "installed": false
+}

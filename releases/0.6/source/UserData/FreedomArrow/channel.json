@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "67",
+  "package_version": "68",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build66 plus Osama 13:17 rocket force/artillery/JRVG batch. Data checks only; in-game check pending."
+  "verification": "Build67 plus JRVG-1 on the Mark 45 naval gun. Data checks only; in-game check pending."
 }

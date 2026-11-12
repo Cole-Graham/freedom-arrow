@@ -1,0 +1,149 @@
+{
+  "build": 68,
+  "base_build": 67,
+  "base_sha256": "dc4e407971284f3e188ff9802d70e8a08cc9425bab7f2b5cd75ff34ad376e837",
+  "request": "Osama 12 Nov 13:25 PST",
+  "weapon": {
+    "HUDName": [
+      "76 mm radar-assisted AA gun",
+      "76 mm naval AA gun"
+    ],
+    "HUDIcon": [
+      "2A91_57MM",
+      "MARK45"
+    ],
+    "AutoLoaded": [
+      false,
+      true
+    ],
+    "HasPriorityOnChassis": [
+      true,
+      false
+    ],
+    "AimTimeMax": [
+      2.0,
+      1.0
+    ],
+    "FlashPerShot": [
+      0.65,
+      1.0
+    ],
+    "LowerVerticalAngle": [
+      -10,
+      -15
+    ],
+    "UpperVerticalAngles": [
+      75,
+      85
+    ],
+    "VerticalRotationSpeed": [
+      35,
+      25
+    ],
+    "MagazineSize": [
+      80,
+      1
+    ],
+    "MagazineReloadTimeMin": [
+      3.0,
+      1.0
+    ],
+    "MagazineReloadTimeMax": [
+      3.0,
+      1.0
+    ],
+    "ShotsPerBurstMin": [
+      2,
+      1
+    ],
+    "ShotsPerBurstMax": [
+      4,
+      1
+    ],
+    "TimeBetweenBurstsMin": [
+      1.65,
+      0.0
+    ],
+    "TimeBetweenBurstsMax": [
+      1.65,
+      0.0
+    ],
+    "TimeBetweenShotsInBurst": [
+      0.65,
+      0.0
+    ],
+    "ShortGroundAttackBurst": [
+      0,
+      6
+    ],
+    "NormalGroundAttackBurst": [
+      5,
+      12
+    ],
+    "LongGroundAttackBurst": [
+      0,
+      18
+    ]
+  },
+  "ammo": {
+    "HUDName": [
+      "76 mm radar-assisted AA gun HE",
+      "76 mm HE (proximity)"
+    ],
+    "HUDIcon": [
+      "FA_PLA_AMMO_AUTOCANNON",
+      "AMMO_RU_ARTILLERY_152mm"
+    ],
+    "UiOptions": [
+      1,
+      0
+    ],
+    "ModelFileName": [
+      "Ammo\\30mm",
+      "Ammo\\Ammo_Arty_shell_LOD"
+    ],
+    "AudioPreset": [
+      "AmmunitionSoundsPreset_SFX_ROUND_SHELL_OBUS_80-105",
+      "AmmunitionSoundsPreset_SFX_SHELL_120-130"
+    ],
+    "FXPreset": [
+      "AMMUNITION_VFX_PRESET_ROUND_DERIVATSIYA_57mm_HE",
+      "AMMUNITION_VFX_PRESET_SHELL_127mm_HE"
+    ],
+    "VfxCountPerShotMax": [
+      0,
+      1
+    ],
+    "Airburst": [
+      true,
+      false
+    ],
+    "SupplyCost": [
+      1.2,
+      20.0
+    ],
+    "ResupplyTime": [
+      0.75,
+      6.0
+    ],
+    "StressDamage": [
+      57.0,
+      260.0
+    ],
+    "IgnoreCover": [
+      0.0,
+      0.342
+    ],
+    "OverpressureRadius": [
+      0.0,
+      4.5
+    ],
+    "CriticMultiplier": [
+      3.0,
+      1.0
+    ]
+  },
+  "shots_per_second": 1.0,
+  "dps_est": 8.0,
+  "checks": 17645
+}

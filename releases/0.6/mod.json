@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 67",
-  "version": "67",
+  "name": "PLA TEST Build 68",
+  "version": "68",
   "type": "modpack",
-  "description": "Build66 plus PHL-191/PHL-03 moves and Smerch copy, PHL-16 mount fix, DF-21/DF-17/DF-31A, PCL-181 Koalitsiya copy and JRVG-1 76 mm rework.",
+  "description": "Build67 with the JRVG-1 gun copied from the vanilla Mark 45 naval gun, tuned to 8 damage, 20 m blast, 2400 m low-altitude range.",
   "repo": "Cole-Graham/freedom-arrow"
 }
