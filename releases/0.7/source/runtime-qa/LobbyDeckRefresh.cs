@@ -64,7 +64,9 @@ internal static class LobbyDeckRefresh
                 {pending.Remove(pair.Key);continue;}
                 p.Attempts++;
                 filling=true;
-                try {card.FillDeckDropdown();card.UpdateDeckAccessibility();}
+                // Apply current native permissions first. Fill runs last so its empty/missing-map
+                // branch keeps the selector disabled instead of being re-enabled afterwards.
+                try {card.UpdateDeckAccessibility();card.FillDeckDropdown();}
                 finally {filling=false;}
                 int count=card._deckList?.Count??0;
                 DiagnosticLog.Write("lobby_deck_refresh",new{attempt=p.Attempts,decks=count,accessible=card._deckAccessible,scenario=state.ScenarioMeta.Name});

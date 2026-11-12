@@ -1,13 +1,13 @@
 # Map, border and lobby test batch
 
-**lat.18 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
+**lat.19 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
 
 ## Source and package
 
 - Branch: `codex/batch/lateralus/map-borders-lobby`.
 - Base: `codex/0.7-development`, `939658d500d4fee4a27c9ad7ac655e6f47d9e6c8`.
-- Package: `FreedomArrow-0.7.0-devtest.lat.18.bamod`.
-- SHA256: `6f3cc81e8d6034b1bbce1ede40ed48bd99634b9cfa074a8e0ac4b0b7b50636a7`.
+- Package: `FreedomArrow-0.7.0-devtest.lat.19.bamod`.
+- SHA256: `61b7e8e2b4b0d52c7cd0cad591adf43c52043376485a4d8787a3886eb449f323`.
 - This is a complete gameplay candidate. It does not contain the separate PLA pack or replace shared model/music assets. Public dev.45/assets 0.1.14 and the main integration branch remain pinned.
 
 ## What changes
@@ -32,7 +32,7 @@ These are compilation, code/data and host-test results. They do not prove the na
 
 ## Test in the game
 
-Import lat.18 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
+Import lat.19 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
 
 - Check Chkalovsk at Alpha, Charlie and both spawn sides; confirm the border and legal movement agree.
 - Check Highway's A–G symbols and weights, both team cameras, initial deployment and conquest scoring. Confirm the native active box clips the authored zone at Frontiers' full map edge.
@@ -44,3 +44,4 @@ Import lat.18 through Mod Manager, then check the exact version label. Use the o
 ## Document change log
 
 - 2026-11-11 23:47:30 PST (America/Los_Angeles) — Recorded isolated lat.18 implementation, exact package hash, data/host checks, native evidence limits and the verification checklist.
+- 2026-11-11 23:51:28 PST (America/Los_Angeles) — Superseded internal lat.18 with lat.19: run native accessibility before native fill so an empty/missing-map dropdown remains disabled. Map/border code unchanged.

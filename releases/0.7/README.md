@@ -1,8 +1,8 @@
-# Freedom Arrow 0.7.0-devtest.lat.18 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.19 — development candidate
 
 ## Map, playable-border and lobby test batch
 
-**This isolated lat.18 test starts from maintained dev.55. It adds Highway of Death 0.1, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer border overlay plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
+**This isolated lat.19 test starts from maintained dev.55. It adds Highway of Death 0.1, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer border overlay plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
 
 - Highway: Alpha/Bravo/Charlie/Golf 2; Foxtrot 3; Delta/Echo 6. Correct native A–G icons, two slots per team, FA conquest/deployment scripts, offline Skirmish flavor, and per-team cameras. Objective IDs are unique to this map so clients can identify its weights.
 - Chkalovsk: X 0–9000; Z 0–4850.01636. The north edge is 1500 engine units beyond Alpha's centre. The other three edges meet Airbase's native 9000×9000 map limits. The existing unselected playable-zone object is now active.
@@ -10,7 +10,7 @@
 - Border: opaque orange 3-pixel line plus dark 7-pixel outline follows native PlayZoneBounds, including full-map fallback and scripted switches. Cached terrain samples; near-plane and screen clipping. The old wall and objective visuals are not modified. Readability and frame cost require an actual game run.
 - Lobby: retry the local unready FA scenario card's native deck fill/accessibility checks for at most 15 seconds. Retain country/DLC/scenario restrictions. Do not force the dropdown open, change the map or change readiness. This is a candidate repair; the reported symptom still needs reproduction and verification in a real lobby.
 
-All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.18 package through Mod Manager; this task does not switch the installed PLA pack.
+All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.19 package through Mod Manager; this task does not switch the installed PLA pack.
 
 
 ## Current main promotion — all missile-defence guns and four AT4 carriers
@@ -282,3 +282,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-11 02:26:15 PST (America/Los_Angeles) — Promoted C-RAM speed and projectile prediction, helicopter flare stock 15, and the conservative cooldown-aware SEAD overkill gate onto main dev.53 while preserving other batch/model changes; native combined test pending.
 - 2026-11-11 02:36:39 PST (America/Los_Angeles) — Extended doubled speed and overkill scope to all existing land/naval projectile-defence guns and native projectile categories; included changelog #10 four AT4 carriers with one round each; prior main changes retained.
 - 2026-11-11 23:45:00 PST (America/Los_Angeles) — Added isolated lat.18 map/border/lobby batch and explicit in-game verification limits.
+- 2026-11-11 23:51:28 PST (America/Los_Angeles) — Superseded internal lat.18 with lat.19: run native accessibility before native fill so an empty/missing-map dropdown remains disabled. Map/border code unchanged.
