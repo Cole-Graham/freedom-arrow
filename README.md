@@ -1,3 +1,9 @@
+# PLA TEST Build 48
+
+Ground-vehicle pass over Build47. ZTZ-99A matches the T-14 Armata (850/1300 front armour, 500/525 APFSDS, 3 gun-launched missiles); ZTZ-100/ZTZ-20 the same class; ZTZ-99 = T-90A, 96B = T-72B3, 96 = T-72B, 59D = T-62M, 59 = T-55 class. Every PLA vehicle ATGM uses 10.5 damage. 31 vehicles repriced against their vanilla counterparts (pla-vehicle-pass.json). Native behaviour unverified.
+
+## Historical Build47
+
 # PLA TEST Build 47
 
 Every armed PLA jet and helicopter gets a loadout menu taken from Command: Modern Operations (DB3K_519): up to 8 distinct loadouts, no fuel tanks or pods, internal bays only for stealth fighters. Chinese weapons copy the closest weapon already in the game (PL-15 = AIM-260, PL-12 = R-77-1, PL-10 = AIM-9, YJ-91 = Kh-31P, LT-2 = KAB-500, CJ-10K = Kh-101; helicopter ATGMs 10.5 damage). Each aircraft takes speed, armour, sensors, stealth and default ECM from one vanilla counterpart of its generation, and a new base price. Native behaviour unverified.
@@ -559,3 +565,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 04:48:24 PST (America/Los_Angeles) — Build46: Shaanxi HMV3 HEMTT mounts/options, mixed and Cargo versions in every spec.
 
 - 2026-11-12 05:13:37 PST (America/Los_Angeles) — Build47: CMO-derived aircraft loadouts, generation chassis and prices for every armed PLA aircraft (see pla-air-loadouts.json).
+
+- 2026-11-12 05:19:39 PST (America/Los_Angeles) — Build48: tank armour/penetration/ammo by generation, ATGM 10.5 standard, vehicle prices.

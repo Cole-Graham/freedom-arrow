@@ -1,0 +1,511 @@
+{
+  "build": 48,
+  "base_build": 47,
+  "base_sha256": "96a75fe8ff780542fb30d45ea0df065773072296723549b6a367a20f3588d415",
+  "vehicles": {
+    "904": {
+      "name": "ZTZ-99A",
+      "cost": [
+        195,
+        320
+      ],
+      "basis": "T-14 Armata (Osama: same armour and penetration)",
+      "armor": {
+        "KinArmorFront": 850,
+        "KinArmorSides": 150,
+        "KinArmorRear": 100,
+        "KinArmorTop": 80,
+        "HeatArmorFront": 1300,
+        "HeatArmorSides": 500,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 100,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        500,
+        525
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 17,
+        "heat": 5,
+        "gl": 3
+      }
+    },
+    "927": {
+      "name": "ZTZ-20",
+      "cost": [
+        195,
+        320
+      ],
+      "basis": "T-14 Armata class",
+      "armor": {
+        "KinArmorFront": 850,
+        "KinArmorSides": 150,
+        "KinArmorRear": 100,
+        "KinArmorTop": 80,
+        "HeatArmorFront": 1300,
+        "HeatArmorSides": 500,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 100,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        500,
+        525
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 17,
+        "heat": 5,
+        "gl": 3
+      }
+    },
+    "968": {
+      "name": "ZTZ-100",
+      "cost": [
+        360,
+        340
+      ],
+      "basis": "T-14 class next-generation tank, lighter hull",
+      "armor": {
+        "KinArmorFront": 800,
+        "KinArmorSides": 180,
+        "KinArmorRear": 100,
+        "KinArmorTop": 80,
+        "HeatArmorFront": 1200,
+        "HeatArmorSides": 500,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 100,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        500,
+        525
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 17,
+        "heat": 5,
+        "gl": 3
+      }
+    },
+    "1083": {
+      "name": "ZTZ-99",
+      "cost": [
+        125,
+        160
+      ],
+      "basis": "T-90A class (first-generation ZTZ-99)",
+      "armor": {
+        "KinArmorFront": 650,
+        "KinArmorSides": 120,
+        "KinArmorRear": 100,
+        "KinArmorTop": 80,
+        "HeatArmorFront": 900,
+        "HeatArmorSides": 200,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 80,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        425,
+        450
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 17,
+        "heat": 5,
+        "gl": 3
+      }
+    },
+    "905": {
+      "name": "ZTZ-96B",
+      "cost": [
+        125,
+        125
+      ],
+      "basis": "T-72B3 (donor kept)",
+      "ke": [
+        425,
+        450
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 20,
+        "heat": 6,
+        "gl": 3
+      }
+    },
+    "1082": {
+      "name": "ZTZ-96A",
+      "cost": [
+        125,
+        105
+      ],
+      "basis": "between T-72B3 and T-72B",
+      "armor": {
+        "KinArmorFront": 600,
+        "KinArmorSides": 120,
+        "KinArmorRear": 100,
+        "KinArmorTop": 80,
+        "HeatArmorFront": 700,
+        "HeatArmorSides": 200,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 80,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        400,
+        425
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 20,
+        "heat": 6
+      }
+    },
+    "949": {
+      "name": "ZTZ-96",
+      "cost": [
+        125,
+        80
+      ],
+      "basis": "T-72B",
+      "armor": {
+        "KinArmorFront": 550,
+        "KinArmorSides": 100,
+        "KinArmorRear": 100,
+        "KinArmorTop": 60,
+        "HeatArmorFront": 650,
+        "HeatArmorSides": 200,
+        "HeatArmorRear": 100,
+        "HeatArmorTop": 80,
+        "MaxHealthPoints": 14
+      },
+      "ke": [
+        325,
+        350
+      ],
+      "rounds": {
+        "ke": 14,
+        "he": 22,
+        "heat": 6
+      }
+    },
+    "1061": {
+      "name": "ZTZ-59D",
+      "cost": [
+        125,
+        60
+      ],
+      "basis": "T-62M (donor kept), 105 mm",
+      "ke": [
+        325,
+        350
+      ],
+      "rounds": {
+        "ke": 16,
+        "he": 16,
+        "heat": 8
+      }
+    },
+    "1060": {
+      "name": "ZTZ-59",
+      "cost": [
+        125,
+        40
+      ],
+      "basis": "T-55 class, 100 mm",
+      "armor": {
+        "KinArmorFront": 250,
+        "KinArmorSides": 80,
+        "KinArmorRear": 60,
+        "KinArmorTop": 40,
+        "HeatArmorFront": 300,
+        "HeatArmorSides": 100,
+        "HeatArmorRear": 60,
+        "HeatArmorTop": 40,
+        "MaxHealthPoints": 12
+      },
+      "ke": [
+        225,
+        250
+      ],
+      "rounds": {
+        "ke": 12,
+        "he": 18,
+        "heat": 8
+      }
+    },
+    "930": {
+      "name": "ZTD-05",
+      "cost": [
+        70,
+        65
+      ],
+      "basis": "Sprut-SD class amphibious 105 mm",
+      "ke": [
+        325,
+        350
+      ],
+      "rounds": {
+        "ke": 18,
+        "he": 20
+      }
+    },
+    "938": {
+      "name": "ZTL-11",
+      "cost": [
+        70,
+        70
+      ],
+      "basis": "Stryker MGS class 105 mm",
+      "ke": [
+        325,
+        350
+      ],
+      "rounds": {
+        "ke": 18,
+        "he": 20
+      }
+    },
+    "947": {
+      "name": "PTZ-89",
+      "cost": [
+        55,
+        60
+      ],
+      "basis": "120 mm towed-gun tank destroyer",
+      "ke": [
+        400,
+        425
+      ],
+      "rounds": {
+        "ke": 16,
+        "heat": 14
+      }
+    },
+    "906": {
+      "name": "ZTQ-15",
+      "cost": [
+        95,
+        95
+      ],
+      "basis": "Osama: 475/500 DU (kept)"
+    },
+    "1240": {
+      "name": "ZTQ-15 Recon",
+      "cost": [
+        95,
+        100
+      ],
+      "basis": "ZTQ-15 + Very Good optics (kept)"
+    },
+    "1080": {
+      "name": "ZTL-191",
+      "cost": [
+        115,
+        115
+      ],
+      "basis": "Osama: 550/575 DU (kept)"
+    },
+    "1059": {
+      "name": "PTL-02",
+      "cost": [
+        40,
+        40
+      ],
+      "basis": "Osama: cheap, low pen (kept)"
+    },
+    "958": {
+      "name": "ZTQ-62-I",
+      "cost": [
+        25,
+        25
+      ],
+      "basis": "PT-76 class"
+    },
+    "937": {
+      "name": "QN-506",
+      "cost": [
+        140,
+        140
+      ],
+      "basis": "BMPT class"
+    },
+    "902": {
+      "name": "ZBD-04A",
+      "cost": [
+        50,
+        55
+      ],
+      "basis": "BMP-3 class, newer"
+    },
+    "1075": {
+      "name": "ZBD-04",
+      "cost": [
+        50,
+        50
+      ],
+      "basis": "BMP-3 class"
+    },
+    "945": {
+      "name": "ZBD-20",
+      "cost": [
+        50,
+        55
+      ],
+      "basis": "BMP-3 class, new production"
+    },
+    "903": {
+      "name": "ZBL-08",
+      "cost": [
+        35,
+        40
+      ],
+      "basis": "BTR-82A class + ATGM"
+    },
+    "979": {
+      "name": "ZBL-191",
+      "cost": [
+        30,
+        40
+      ],
+      "basis": "Bumerang class"
+    },
+    "1076": {
+      "name": "ZBD-05",
+      "cost": [
+        50,
+        45
+      ],
+      "basis": "amphibious 30 mm IFV"
+    },
+    "1074": {
+      "name": "ZBD-03 / ZLC-2000",
+      "cost": [
+        50,
+        45
+      ],
+      "basis": "BMD-4M class airborne IFV"
+    },
+    "1063": {
+      "name": "ZBD-86",
+      "cost": [
+        50,
+        25
+      ],
+      "basis": "BMP-1 copy"
+    },
+    "1056": {
+      "name": "ZBD-251",
+      "cost": [
+        95,
+        75
+      ],
+      "basis": "Kurganets class airborne IFV with HJ-10/ABZ-13"
+    },
+    "1079": {
+      "name": "ZSL-92 Autocannon",
+      "cost": [
+        35,
+        35
+      ],
+      "basis": "BTR-82A class"
+    },
+    "951": {
+      "name": "HJ-8",
+      "cost": [
+        100,
+        50
+      ],
+      "basis": "BRDM ATGM class"
+    },
+    "1053": {
+      "name": "AFT-09",
+      "cost": [
+        90,
+        65
+      ],
+      "basis": "HJ-9 long-range ATGM carrier"
+    },
+    "936": {
+      "name": "HJ-10",
+      "cost": [
+        90,
+        90
+      ],
+      "basis": "M6/AFT-10 class"
+    }
+  },
+  "atgm_normalised": [
+    [
+      902,
+      "ZBD-04A",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      903,
+      "ZBL-08",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      937,
+      "QN-506",
+      "QN-502 guided missile ammunition",
+      12.0
+    ],
+    [
+      945,
+      "ZBD-20",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      951,
+      "HJ-8",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      979,
+      "ZBL-191",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      1053,
+      "AFT-09",
+      "HJ-9 ammunition",
+      11.0
+    ],
+    [
+      1063,
+      "ZBD-86",
+      "HJ-73 ammunition",
+      11.0
+    ],
+    [
+      1074,
+      "ZBD-03 / ZLC-2000",
+      "HJ-73D ammunition",
+      11.0
+    ],
+    [
+      1075,
+      "ZBD-04",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      1076,
+      "ZBD-05",
+      "HJ-8E ammunition",
+      11.0
+    ]
+  ],
+  "checks": 1298
+}

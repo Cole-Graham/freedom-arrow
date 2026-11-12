@@ -1,0 +1,74 @@
+{
+  "build": 48,
+  "base_build": 47,
+  "base_sha256": "96a75fe8ff780542fb30d45ea0df065773072296723549b6a367a20f3588d415",
+  "atgm_normalised": [
+    [
+      902,
+      "ZBD-04A",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      903,
+      "ZBL-08",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      937,
+      "QN-506",
+      "QN-502 guided missile ammunition",
+      12.0
+    ],
+    [
+      945,
+      "ZBD-20",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      951,
+      "HJ-8",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      979,
+      "ZBL-191",
+      "HJ-8E ammunition",
+      11.0
+    ],
+    [
+      1053,
+      "AFT-09",
+      "HJ-9 ammunition",
+      11.0
+    ],
+    [
+      1063,
+      "ZBD-86",
+      "HJ-73 ammunition",
+      11.0
+    ],
+    [
+      1074,
+      "ZBD-03 / ZLC-2000",
+      "HJ-73D ammunition",
+      11.0
+    ],
+    [
+      1075,
+      "ZBD-04",
+      "100 mm gun / HJ-9 launcher HE",
+      7.5
+    ],
+    [
+      1076,
+      "ZBD-05",
+      "HJ-8E ammunition",
+      11.0
+    ]
+  ],
+  "checks": 1298
+}
