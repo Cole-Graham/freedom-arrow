@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "60",
+  "package_version": "61",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build59 plus PF-98 swap: PLARF PF-98 Team tripod PF-98, Mechanized plain PF-98. Data checks only; in-game check pending."
+  "verification": "Build60 plus PLARF 7-man squads, QBZ-95/QBB-95/QBU-88 30% slower fire, Ambush Team name, PF-89 for PLARF Infantry. Data checks only; in-game check pending."
 }

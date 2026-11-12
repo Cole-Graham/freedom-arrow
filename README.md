@@ -1,4 +1,8 @@
-# PLA TEST Build 60
+# PLA TEST Build 61
+
+Every PLARF infantry card is now 7 men (plain QBZ-95 riflemen trimmed or added; every launcher, MG and DMR kept; HP 35). The 12-man squads now also fit the 10-seat ZSD carriers. QBZ-95, QBB-95 and QBU-88 fire 30% slower: PLARF conscripts are meat shields. The Malyutka Recon Ambush Team is renamed Ambush Team 伏击组, and PLARF Infantry carries one PF-89 beside its HJ-73D. Prices are unchanged. Everything else is exactly Build60. In-game check pending.
+
+## Historical Build60
 
 The PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters swap PF-98 versions: PLARF carries the tripod PF-98 (HEAT to 800 m, DZD98A HE to 1000 m, no vehicle targets for the HE), Mechanized carries the plain PF-98. Rifles, squad size and price stay with each squad. Everything else is exactly Build59. In-game check pending.
 
@@ -673,3 +677,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:48:01 PST (America/Los_Angeles) — Build59: Blood Wolves armour hunters, Falcons desert raiders (Osama 11:46).
 
 - 2026-11-12 11:54:53 PST (America/Los_Angeles) — Build60: PF-98 swap between the PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters.
+- 2026-11-12 12:07:25 PST (America/Los_Angeles) — Build61: PLARF 7-man squads, conscript rifle fire rate -30%, Ambush Team name, PF-89 for PLARF Infantry.

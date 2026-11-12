@@ -1,0 +1,92 @@
+{
+  "build": 61,
+  "base_build": 60,
+  "base_sha256": "4197c6bf2c6c9b8630e2d0f9822dabb37faa73767db48c9343c7230a4331cb73",
+  "changes": [
+    {
+      "unit": 1173,
+      "name": "Ambush Team \u4f0f\u51fb\u7ec4",
+      "change": "renamed from Malyutka Recon Ambush Team \u4fa6\u5bdf\u4f0f\u51fb"
+    },
+    {
+      "unit": 1175,
+      "name": "Infantry \u6b65\u5175",
+      "change": "PF-89 x1 added (ammo copied from unit 1138); HJ-73D kept; cost unchanged 50"
+    },
+    {
+      "unit": 1166,
+      "name": "Conscripts \u4e49\u52a1\u5175",
+      "change": "12 -> 7 men, HP 60 -> 35"
+    },
+    {
+      "unit": 1168,
+      "name": "HJ-73D Team",
+      "change": "9 -> 7 men, HP 45 -> 35"
+    },
+    {
+      "unit": 1169,
+      "name": "FN-6 Team",
+      "change": "9 -> 7 men, HP 45 -> 35"
+    },
+    {
+      "unit": 1170,
+      "name": "QJZ-89 Team",
+      "change": "12 -> 7 men, HP 60 -> 35"
+    },
+    {
+      "unit": 1171,
+      "name": "QLZ-87 Team",
+      "change": "12 -> 7 men, HP 60 -> 35"
+    },
+    {
+      "unit": 1172,
+      "name": "PF-98 Team",
+      "change": "9 -> 7 men, HP 45 -> 35"
+    },
+    {
+      "unit": 1173,
+      "name": "Ambush Team \u4f0f\u51fb\u7ec4",
+      "change": "4 -> 7 men, HP 20 -> 35"
+    },
+    {
+      "unit": 1174,
+      "name": "Sharp Blades \u5229\u5203",
+      "change": "6 -> 7 men, HP 30 -> 35"
+    },
+    {
+      "unit": 1175,
+      "name": "Infantry \u6b65\u5175",
+      "change": "10 -> 7 men, HP 50 -> 35"
+    },
+    {
+      "unit": 1176,
+      "name": "Counter-Raid Team \u53cd\u88ad\u51fb\u961f",
+      "change": "8 -> 7 men, HP 40 -> 35"
+    },
+    {
+      "unit": 1177,
+      "name": "Thermobaric Team",
+      "change": "12 -> 7 men, HP 60 -> 35"
+    },
+    {
+      "change": "transport links +20 (7-man squads now fit 10-seat carriers)"
+    },
+    {
+      "weapon": 2012205,
+      "name": "QBZ-95",
+      "change": "rate of fire -30%: time between shots 4.0-4.0 s -> 5.71-5.71 s"
+    },
+    {
+      "weapon": 2012207,
+      "name": "QBB-95",
+      "change": "rate of fire -30%: time between shots 2.0-2.0 s -> 2.86-2.86 s"
+    },
+    {
+      "weapon": 2012821,
+      "name": "QBU-88",
+      "change": "rate of fire -30%: time between shots 3.0-4.0 s -> 4.29-5.71 s"
+    }
+  ],
+  "checks": 72,
+  "native_verified": false
+}
