@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 68",
-  "version": "68",
+  "name": "Freedom Arrow — 0.8 (China)",
+  "version": "0.8.0-dev.1",
   "type": "modpack",
-  "description": "Build67 with the JRVG-1 gun copied from the vanilla Mark 45 naval gun, tuned to 8 damage, 20 m blast, 2400 m low-altitude range.",
+  "description": "Freedom Arrow 0.8: China (PLA) as a third nation on the full 0.7.0-dev.58 game. Content of PLA TEST Build 68. Needs Freedom Arrow — Models and Music 0.2.0.",
   "repo": "Cole-Graham/freedom-arrow"
 }

@@ -1,7 +1,7 @@
 {
-  "channel": "testing",
-  "package_version": "68",
+  "channel": "live",
+  "package_version": "0.8.0-dev.1",
   "spotting": "vanilla",
-  "deployment_status": "native_validation_pending",
-  "verification": "Build67 plus JRVG-1 on the Mark 45 naval gun. Data checks only; in-game check pending."
+  "deployment_status": "live",
+  "verification": "0.8.0-dev.1 = PLA TEST Build 68 content (China on 0.7.0-dev.58). Data checks passed; in-game check of the 0.8 identity before the manifest switch."
 }

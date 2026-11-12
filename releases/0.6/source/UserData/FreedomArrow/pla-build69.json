@@ -1,0 +1,12 @@
+{
+  "build": 69,
+  "version": "0.8.0-dev.1",
+  "label": "Freedom Arrow 0.8.0-dev.1",
+  "content": "PLA TEST Build 68 (91332f23) unchanged; identity only",
+  "request": "Osama 12 Nov 13:27 PST: \"We need to make this latest build 0.8 and make it go live\"",
+  "live_split": {
+    "gameplay": "FreedomArrow-0.8.0-dev.1.bamod",
+    "assets": "FreedomArrow-Assets-0.2.0.bamod"
+  },
+  "native_verified": false
+}

@@ -1,0 +1,28 @@
+{
+  "version": "0.8.0-dev.1",
+  "assets_version": "0.2.0",
+  "build": 69,
+  "content_build": 68,
+  "base_sha256": "d427bd30b391e7d7971b626e5e0899a34b03c582ebb21187f78e772da21bea6e",
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.1-complete.bamod",
+    "sha256": "b1b8c206b30ba07e72eef3bde0b6599cb94de74f19d7e262eaa83859063ddae1",
+    "size": 4101182834,
+    "files": 8138
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.1.bamod",
+    "sha256": "f1d53261bc41a9b47fe6fcd3a5982a13c29b9a6a3a0c828bc0f9623a35d201db",
+    "size": 69892022,
+    "files": 135
+  },
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.0.bamod",
+    "sha256": "ef5da6ae7e8d01c6f40d40bf49245c862de515271515dd1ba2421821338757be",
+    "size": 4031291500,
+    "files": 8005
+  },
+  "verified_payloads": 8135,
+  "core_hashes": 132,
+  "native_verified": false
+}

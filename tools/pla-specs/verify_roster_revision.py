@@ -22,10 +22,12 @@ with zipfile.ZipFile(a.package) as z:
   global checks
   assert value,msg;checks+=1
  # Same identity rule the runtime enforces at game start (BuildIdentity.ResolveLabel); Builds34-37 shipped the Build33 DLL and failed it.
- dll=z.read('Mods/FreedomArrow.Runtime.dll');compiled=[dll[m.end():m.end()+m.group(1)[0]].decode() for m in re.finditer(rb'\x08PLA TEST(.)',dll)]
- ok(compiled==[str(build)],('runtime DLL compiled version',compiled,build))
- ok(json.loads(z.read('UserData/FreedomArrow/channel.json'))['package_version']==str(build),'channel package_version')
- ok(json.loads(z.read('mod.json'))['version']==str(build) and whole['label']=='PLA TEST Build '+str(build),'mod.json version / package label')
+ dll=z.read('Mods/FreedomArrow.Runtime.dll');compiled=[dll[m.end():m.end()+m.group(2)[0]].decode() for m in re.finditer(rb'(\x08PLA TEST|\x0dFreedom Arrow)(.)',dll)]
+ version=json.loads(z.read('UserData/FreedomArrow/channel.json'))['package_version']
+ release=whole['label'].startswith('Freedom Arrow ')  # 0.8 live line: version string, build stays the internal counter
+ ok(compiled==[version] and (release or version==str(build)),('runtime DLL compiled version',compiled,build,version))
+ ok(version==(version if release else str(build)),'channel package_version')
+ ok(json.loads(z.read('mod.json'))['version']==version and whole['label']==('Freedom Arrow '+version if release else 'PLA TEST Build '+str(build)),'mod.json version / package label')
  ok(not rowrule,('constants break the runtime row rule',len(rowrule),rowrule[:3]))
  for tab,rs in t.items():
   for key,r in rs.items():ok(key==r['Id'],('row identity mismatch',tab,key,r['Id']))

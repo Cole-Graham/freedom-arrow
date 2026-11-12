@@ -1,3 +1,9 @@
+# Freedom Arrow 0.8.0-dev.1
+
+Freedom Arrow 0.8: China (PLA) as the third nation on the full 0.7.0-dev.58 game. Same game content as PLA TEST Build 68; this build changes the identity to Freedom Arrow 0.8.0-dev.1 and ships as two launcher packages: gameplay `FreedomArrow-0.8.0-dev.1.bamod` and models/music `FreedomArrow-Assets-0.2.0.bamod`. Change log: Library → Changelogs → Freedom Arrow Changes 0.8.
+
+## Historical PLA TEST Build 68
+
 # PLA TEST Build 68
 
 JRVG-1 gun copied from the vanilla Arleigh Burke Mark 45 naval gun (sound, autoloader, elevation, muzzle flash, 127 mm shell model and impact effect), tuned down: 8 damage, 20 m blast, 7 m proximity fuse, 2400 m low-altitude range, one shot per second (about 8 damage per second). It keeps the AA gun type, direct fire and air targets.
@@ -746,3 +752,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:22:04 PST (America/Los_Angeles) — Build67: rocket force, artillery and JRVG-1 batch.
 
 - 2026-11-12 13:25:45 PST (America/Los_Angeles) — Build68: JRVG-1 on the Mark 45 naval gun.
+
+- 2026-11-12 13:28:26 PST (America/Los_Angeles) — 0.8.0-dev.1: Build 68 content as Freedom Arrow 0.8, live package split.

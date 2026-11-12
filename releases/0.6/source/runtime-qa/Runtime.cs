@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "PLA TEST", "68", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.8.0-dev.1", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -23,7 +23,7 @@ public class Runtime : MelonMod
     public static bool IsApplied => applied && !failed;
     static int count;
     static string PackageVersion="unknown";
-    public static string DisplayLabel { get; private set; } = "PLA TEST (not verified)";
+    public static string DisplayLabel { get; private set; } = "Freedom Arrow (not verified)";
     internal static string DiagnosticPackageVersion=>PackageVersion;
     static readonly DateTime DiagnosticSessionStart=DateTime.UtcNow;
     static readonly Dictionary<string, string> Files = new()
@@ -125,7 +125,7 @@ public class Runtime : MelonMod
         catch(Exception e)
         {
             DiagnosticLog.Write("payload_failed",new{error=e.ToString()});
-            DisplayLabel="PLA TEST (verification failed)";failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
+            DisplayLabel="Freedom Arrow (verification failed)";failed=true;File.WriteAllText(Path.Combine(Root,"runtime-failure.txt"),e.ToString());
             LoggerInstance.Error("FREEDOM_ARROW_FAILED: payload refused before database hook: "+e.Message);return;
         }
         // Scenarios can route to another database. This line shows which one a battle uses.
