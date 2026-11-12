@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "43",
+  "package_version": "44",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build42 plus Osama 12 Nov 03:41-03:57: four-tier MANPAD ladder, Tank Hunters DZT-98, removals and moves, ZTQ-15 Recon and autoloader, Lynx ATV loadouts, J-35/J-31 model swap with a low-vis J-31. Data checks only; native validation pending."
+  "verification": "Build43 plus Osama 12 Nov 04:18: J-11BS/J-11BHG/J-11D with lighter skins, removals and renames, Z-8L in every spec, Z-20 family with DAP-style loadouts, CM-501G/CM-502, TY-90 as a Sidewinder. Data checks only; native validation pending."
 }

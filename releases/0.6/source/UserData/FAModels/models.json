@@ -114,8 +114,8 @@
     "align": false
   },
   "PLA J-11B": {
-    "file": "m_j16_cg.fam",
-    "battle": "m_j16_lo2.fam",
+    "file": "m_j11_cg.fam",
+    "battle": "m_j11_lo2.fam",
     "align": false
   },
   "PLA Y-20": {
@@ -602,5 +602,30 @@
     "file": "m_ztq15_green_static.fam",
     "battle": "m_ztq15_green_lo_static.fam",
     "align": false
+  },
+  "PLA J-11BHG": {
+    "file": "m_j11_cg.fam",
+    "battle": "m_j11_lo2.fam",
+    "align": false
+  },
+  "PLA J-11D": {
+    "file": "m_j11d_cg.fam",
+    "battle": "m_j11d_lo.fam",
+    "align": false
+  },
+  "PLA Z-20S": {
+    "file": "m_z20.fam",
+    "align": false,
+    "battle": "m_z20_lo.fam"
+  },
+  "PLA PLAGF Z-20": {
+    "file": "m_z20.fam",
+    "align": false,
+    "battle": "m_z20_lo.fam"
+  },
+  "PLA Z-20T": {
+    "file": "m_z20.fam",
+    "align": false,
+    "battle": "m_z20_lo.fam"
   }
 }

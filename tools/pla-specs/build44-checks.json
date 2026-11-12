@@ -1,0 +1,153 @@
+{
+  "build": 44,
+  "base_build": 43,
+  "base_sha256": "a8f11615a5d70e9f5d328f3eb8a5696ed91638afa65ae0a9dcdd9aac7f72d0e3",
+  "changes": [
+    {
+      "unit": 923,
+      "name": "J-11BS",
+      "change": "renamed from J-11B; 4th-gen (Su-27SM stats); lighter J-11 skin on the J-16 model"
+    },
+    {
+      "unit": 1241,
+      "name": "J-11BHG",
+      "change": "new 4.5-gen J-11 (Su-35S flight and ECM); Air Force"
+    },
+    {
+      "unit": 1242,
+      "name": "J-11D",
+      "change": "new SEAD aircraft, copy of J-16D; lighter J-11 skin on the J-16D model; Air Force"
+    },
+    {
+      "unit": 1101,
+      "name": "Y-20B",
+      "change": "removed: Y-20B"
+    },
+    {
+      "unit": 1093,
+      "name": "J-7E / J-7G",
+      "change": "removed: J-7E"
+    },
+    {
+      "unit": 1094,
+      "name": "J-8II / J-8F",
+      "change": "removed: J-8II"
+    },
+    {
+      "unit": 1090,
+      "name": "JJ-5",
+      "change": "removed: JJ-5"
+    },
+    {
+      "unit": 1098,
+      "name": "J-2",
+      "change": "removed: J-2"
+    },
+    {
+      "unit": 975,
+      "name": "J-8D",
+      "change": "renamed from J-8I / J-8A"
+    },
+    {
+      "unit": 1091,
+      "name": "J-6W",
+      "change": "renamed from J-6"
+    },
+    {
+      "unit": 1106,
+      "name": "Z-8L",
+      "change": "all five specs; carrier for infantry that fits 27 seats"
+    },
+    {
+      "ammo": [
+        2009251,
+        2009737,
+        2009763,
+        2010313,
+        2011569,
+        2011601,
+        2011681,
+        2011713,
+        2011739,
+        2011765,
+        2011791,
+        2011823,
+        2016167
+      ],
+      "change": "TY-90 = vanilla helicopter AIM-9 Sidewinder"
+    },
+    {
+      "ammo": [
+        2016169,
+        2016168
+      ],
+      "change": "CM-501G anti-infantry LMUR (20 damage, ignores cover, no vehicle/helicopter targets); CM-502 = LMUR"
+    },
+    {
+      "unit": 1243,
+      "name": "Z-20S",
+      "change": "new Air Force recon helicopter, Exceptional Optics"
+    },
+    {
+      "unit": 1244,
+      "name": "Z-20",
+      "change": "new PLAGF Armored Z-20"
+    },
+    {
+      "unit": 1245,
+      "name": "Z-20T",
+      "change": "new PLAN SOF armed transport with 3 loadouts"
+    },
+    {
+      "unit": 914,
+      "name": "Z-20KA",
+      "change": "Air Force armed transport with 3 loadouts"
+    },
+    {
+      "unit": 1238,
+      "name": "Z-20J",
+      "change": "PLAN SOF unarmed transport (door guns removed)"
+    }
+  ],
+  "checks": 1574,
+  "native_verified": false,
+  "new_ids": {
+    "J-11BHG": 1241,
+    "J-11D": 1242,
+    "Z-20S": 1243,
+    "PLAGF Z-20": 1244,
+    "Z-20T": 1245,
+    "ammo": {
+      "TY-90 Z-20": 2016167,
+      "CM-501G": 2016169,
+      "CM-502": 2016168
+    },
+    "pylons": {
+      "TY1": [
+        2016171,
+        2016170,
+        2016167
+      ],
+      "TY3": [
+        2016174,
+        2016173,
+        2016167
+      ],
+      "C501": [
+        2016177,
+        2016176,
+        2016169
+      ],
+      "C502": [
+        2016180,
+        2016179,
+        2016168
+      ]
+    }
+  },
+  "provisional": [
+    "J-11BHG cost 155 (Su-35S)",
+    "Z-20 loadout costs 60/70/50",
+    "CM-501G IgnoreCover 1.0 (vanilla 84 mm thermobaric value)"
+  ]
+}
