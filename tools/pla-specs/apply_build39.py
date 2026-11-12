@@ -97,7 +97,6 @@ for r in sheet:
     for order,wid in enumerate(sorted(carried)):
         g.add('SquadWeaponsJson',next(iter(before['SquadWeaponsJson'].values())),{'UnitId':uid,'WeaponId':wid,'Order':order})
         for ar in stock[wid]:g.add('WeaponAmmunitionsJson',ar,{'UnitId':uid,'WeaponId':wid})
-    g.put('Units',uid,{'BaseSquadSize':men})
     for ar in rows('UnitArmorsJson',uid):g.put('ArmorsJson',ar['ArmorId'],{'MaxHealthPoints':men*5})
     # Carriers: drop links that no longer fit, add the spec's carriers that do.
     for tr in list(t['TransportAvailabilitiesJson'].values()):

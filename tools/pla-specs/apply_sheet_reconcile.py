@@ -69,7 +69,7 @@ for p in plan:
  for order,wid in enumerate(sorted(carried)):
   g.add('SquadWeaponsJson',next(iter(before['SquadWeaponsJson'].values())),{'UnitId':uid,'WeaponId':wid,'Order':order})
   for ar in stock[wid]:g.add('WeaponAmmunitionsJson',ar,{'UnitId':uid,'WeaponId':wid})
- recon=c[2]=='Yes';fields={'HUDName':p['display_name'],'CategoryType':0 if recon else 1,'Role':32 if recon else 36 if typ=='Special forces' else 31 if typ in ['Engineers','Elite'] else 30,'BaseSquadSize':men}
+ recon=c[2]=='Yes';fields={'HUDName':p['display_name'],'CategoryType':0 if recon else 1,'Role':32 if recon else 36 if typ=='Special forces' else 31 if typ in ['Engineers','Elite'] else 30}
  if typ==old['troop_type'] and recon==old['recon']:fields['Role']=before['Units'][uid]['Role']
  if uid in [1182,1184,1185]:fields['ThumbnailFileName']=byid[{1182:1189,1184:1182,1185:1188}[uid]]['unit_icon']
  g.put('Units',uid,fields)

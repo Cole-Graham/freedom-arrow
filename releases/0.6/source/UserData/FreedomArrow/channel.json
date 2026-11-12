@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "39",
+  "package_version": "40",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build37 plus the runtime DLL rebuilt with build 38 compiled in (Builds34-37 carried the Build33 DLL and showed verification failed). Data checks only; native validation pending."
+  "verification": "Build39 with the invalid BaseSquadSize field removed from 73 new infantry Units rows, so the runtime applies the China data again (Builds33-39 restored vanilla). Data checks only; native validation pending."
 }

@@ -1,3 +1,9 @@
+# PLA TEST Build 40
+
+Restores China in the armory. Builds 33-39 gave 73 new infantry squads a BaseSquadSize field that the game's unit table does not have; the runtime refuses a new row whose fields differ from the table, so it restored vanilla and the armory showed only RU and US. The field is removed (squad size still comes from the squad member rows), and the regression check now applies the same row rule. Everything else is exactly Build39. In-game load remains to be confirmed.
+
+## Historical Build39
+
 # PLA TEST Build 39
 
 QN-202 is a Javelin-style, infantry-only missile with RPG-7 HE, 12 shots in Whistling Arrows; the CTL-181 launcher fires the same missile. GAM-102LR copies Spike LR as the new Motorized GAM-102LR Team (75 pts). Conscripts and Missile Site Security each get one QBU-88 marksman. The five LG export test squads are removed. New QBU-88 and QN-202 weapon cards traced from Osama's photos. Runtime DLL compiled as 39. Native behaviour unverified.
@@ -495,3 +501,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:57:13 PST (America/Los_Angeles) — Build38: runtime DLL rebuilt with compiled version 38; Builds34-37 shipped the Build33 DLL and failed the start-up identity check. Added a compiled-version check to verify_roster_revision.py and the package script.
 
 - 2026-11-12 02:14:22 PST (America/Los_Angeles) — Build39: QN-202 anti-infantry missile (shared with CTL-181), Motorized GAM-102LR Team, QBU-88 conscript marksmen, LG test squads removed, two new weapon cards.
+
+- 2026-11-12 02:18:23 PST (America/Los_Angeles) — Build40: removed the invalid BaseSquadSize field from 73 new infantry Units rows (Builds33-39 loaded vanilla); verify_roster_revision.py now enforces the runtime new-row field rule.

@@ -5,11 +5,14 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 from pipeline.tables import FIELD_TO_FILE
 p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
-t={}
+t={};rowrule=[]
 with zipfile.ZipFile(a.package) as z:
  for tab,fn in FIELD_TO_FILE.items():
   t[tab]={r['Id']:r for r in json.loads((a.vanilla/(tab+'.json')).read_text())}
+  fields=set(next(iter(t[tab].values())))-{'Id'}
   for k,v in json.loads(z.read('UserData/FreedomArrow/constants/'+fn)).items():
+   # RowPlanner rule: a new row has exactly the table's fields; a patch uses only existing fields. One violation and the game loads vanilla (Builds33-39, BaseSquadSize).
+   if v is not None and ((int(k) not in t[tab] and set(v)!=fields) or (int(k) in t[tab] and set(v)-set(t[tab][int(k)]))):rowrule.append((tab,k,sorted(set(v)^fields)[:3]))
    if v is None:t[tab].pop(int(k),None)
    else:t[tab].setdefault(int(k),{'Id':int(k)}).update(v)
  models=json.loads(z.read('UserData/FAModels/models.json'))
@@ -23,6 +26,7 @@ with zipfile.ZipFile(a.package) as z:
  ok(compiled==[str(build)],('runtime DLL compiled version',compiled,build))
  ok(json.loads(z.read('UserData/FreedomArrow/channel.json'))['package_version']==str(build),'channel package_version')
  ok(json.loads(z.read('mod.json'))['version']==str(build) and whole['label']=='PLA TEST Build '+str(build),'mod.json version / package label')
+ ok(not rowrule,('constants break the runtime row rule',len(rowrule),rowrule[:3]))
  for tab,rs in t.items():
   for key,r in rs.items():ok(key==r['Id'],('row identity mismatch',tab,key,r['Id']))
  for tab,field,target in [('UnitArmorsJson','UnitId','Units'),('UnitArmorsJson','ArmorId','ArmorsJson'),('UnitPropulsionsJson','UnitId','Units'),('UnitPropulsionsJson','MobilityId','MobilityJson'),('UnitAbilitiesJson','UnitId','Units'),('UnitAbilitiesJson','AbilityId','AbilitiesJson'),('SensorUnitsJson','UnitId','Units'),('SensorUnitsJson','SensorId','SensorsJson'),('TurretUnitsJson','UnitId','Units'),('TurretUnitsJson','TurretId','TurretsJson'),('TurretWeaponsJson','TurretId','TurretsJson'),('TurretWeaponsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','UnitId','Units'),('WeaponAmmunitionsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','AmmunitionId','AmmunitionsJson'),('SpecializationAvailabilitiesJson','UnitId','Units'),('SpecializationAvailabilitiesJson','SpecializationId','SpecializationsJson'),('TransportAvailabilitiesJson','UnitId','Units'),('TransportAvailabilitiesJson','SpecializationAvailabilityId','SpecializationAvailabilitiesJson')]:
