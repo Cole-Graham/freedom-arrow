@@ -1,0 +1,19 @@
+{
+  "build": 60,
+  "base_build": 59,
+  "base_sha256": "3caf09127fa7546723dc4328c98bdf190db5bf022c387b3e0fb3ba0d74328383",
+  "changes": [
+    {
+      "unit": 1172,
+      "name": "PF-98 Team",
+      "change": "tripod PF-98: HEAT 800 m + DZD98A HE 1000 m"
+    },
+    {
+      "unit": 1155,
+      "name": "PF-98 Tank Hunters",
+      "change": "plain PF-98"
+    }
+  ],
+  "checks": 25,
+  "native_verified": false
+}

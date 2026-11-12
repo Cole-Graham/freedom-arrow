@@ -1,3 +1,9 @@
+# PLA TEST Build 60
+
+The PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters swap PF-98 versions: PLARF carries the tripod PF-98 (HEAT to 800 m, DZD98A HE to 1000 m, no vehicle targets for the HE), Mechanized carries the plain PF-98. Rifles, squad size and price stay with each squad. Everything else is exactly Build59. In-game check pending.
+
+## Historical Build59
+
 # PLA TEST Build 59
 
 Blood Wolves become armour hunters: QBZ-192 riflemen, one HJ-12, two PF-89 and a QBU-10 sniper. Falcons become desert raiders: QBZ-192 riflemen, a QJZ-171 12.7 mm HMG, two QLB-06, a QBU-10 sniper and a PF-89. Everything else is exactly Build58. In-game check pending.
@@ -665,3 +671,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:39:54 PST (America/Los_Angeles) — Build58: RU/US units visible; Motorized in SF assault desert; GAM-102LR launcher = Spike LR; "Motorized" removed from names; Light Riflemen.
 
 - 2026-11-12 11:48:01 PST (America/Los_Angeles) — Build59: Blood Wolves armour hunters, Falcons desert raiders (Osama 11:46).
+
+- 2026-11-12 11:54:53 PST (America/Los_Angeles) — Build60: PF-98 swap between the PLARF PF-98 Team and the Mechanized PF-98 Tank Hunters.
