@@ -1,4 +1,20 @@
-# Freedom Arrow 0.8.0-dev.7
+# Freedom Arrow 0.8.0-dev.8
+
+- Stray weapons removed from Chinese aircraft. Planes without a gun mount showed a leftover store in the gun slot (J-7 PL-8, J-8D 4x 250 kg, J-20S PL-12); they now have an empty default mount, with no gun added. Every loadout now sets every pylon of its model (the J-16 left 2 open). 77 unused mount rows and 58 unused ammo rows were deleted.
+- Loadout pictures show the role weapon (bomb on strike loadouts). The missing R73 picture is fixed. PL-17 and PL-21 have new icons.
+- Loadouts are ordered by category, then price: air-to-air, strike (with CAS and anti-armor), SEAD, standoff and anti-ship.
+- YJ-15 loadouts are Standoff strike. GB-6 loadouts are Anti-armor. BBC-5 removed (the GB-6 version is kept).
+- SEAD removed from Su-30MKK, J-11BS, J-11BHG and J-15. H-6K: KD-63 standoff is 6x KD-63; new Heavy SEAD with 6x YJ-91 (195).
+- New LS-6 1000kg guided bomb (GBU-56 values): 2x on J-20S, J-31, J-35, MD-22 and FH-97A; J-36 Heavy strike is 4x.
+- FH-97A has the J-31 loadouts and price (250); its fixed AMRAAM is removed.
+- ECM: J-16 40%, J-16D 50%, F-15EX 40% (165 points, the J-16 price), Su-35S 30% in every loadout (135 points).
+- J-36: top speed 900 km/h in flight (it flew on the F-35's 810 km/h preset).
+- Blood Wolves NLOS missile is the CH-901.
+- Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.7
 
 - New NLOS trait. A missile with the trait flies the CTL-181 precision path, so it fires at any enemy your side has spotted without its own line of sight, and a runtime hook keeps its seeker on the target while the target lives, so it follows a moving target with no laser. The trait list is `UserData/FreedomArrow/nlos.json`; any missile added there gets the same behaviour. Every hook action is logged (`FREEDOM_ARROW_NLOS`).
 - Ground HJ-10: NLOS trait. Warhead unchanged (13 damage, 90 penetration, top attack, 1800 m). Laser guidance off.
@@ -823,3 +839,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 14:03:39 PST (America/Los_Angeles) — 0.8.0-dev.6: CTL-181/ZBD-20 missile tuning.
 
 - 2026-11-12 14:29:14 PST (America/Los_Angeles) — 0.8.0-dev.7: NLOS trait hook, ground HJ-10, Blood Wolves NLOS missile.
+
+- 2026-11-12 14:52:50 PST (America/Los_Angeles) — 0.8.0-dev.8: Chinese aircraft loadout batch, ECM/prices, CH-901.
