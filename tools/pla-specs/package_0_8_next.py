@@ -28,6 +28,8 @@ with zipfile.ZipFile(base) as z:
         k=f.relative_to(SRC).as_posix()
         if f.read_bytes()!=z.read(k):override[k]=f.read_bytes()
     for name in ['channel.json','pla-build.json','pla-spec-assignments.json',f'pla-{V}.json']:k='UserData/FreedomArrow/'+name;override[k]=(SRC/k).read_bytes()
+    k='UserData/FreedomArrow/nlos.json'   # NLOS trait list (0.8.0-dev.7)
+    if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
     assert json.loads(override['mod.json'])['version']==V and json.loads(override['UserData/FreedomArrow/channel.json'])['package_version']==V
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
     core['version']=V

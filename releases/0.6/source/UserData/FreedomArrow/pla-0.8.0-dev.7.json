@@ -1,0 +1,54 @@
+{
+  "version": "0.8.0-dev.7",
+  "base": "0.8.0-dev.6",
+  "base_sha256": "3e6eda635c49e20836825dc8346bc733f8f577431d66d520d9436a081904bed0",
+  "request": "Osama 12 Nov PST (NLOS trait, HJ-10, Blood Wolves)",
+  "nlos": {
+    "trait": "NLOS",
+    "version": "0.8.0-dev.7",
+    "note": "Missiles listed here keep their seeker on a live target without line of sight or a laser (runtime NlosTrait.cs).",
+    "ammunition": [
+      2009623,
+      2018448
+    ],
+    "weapons": [
+      2009619,
+      2018447
+    ],
+    "units": {
+      "936": "HJ-10",
+      "1183": "Blood Wolves"
+    }
+  },
+  "hj10": {
+    "weapon": 2009619,
+    "ammo": {
+      "HUDName": "HJ-10 guided missile",
+      "Damage": 13.0,
+      "PenetrationAtGroundRange": 90.0,
+      "GroundRange": 900.0,
+      "TrajectoryType": 200,
+      "Seeker": 10,
+      "SeekerAngle": 180.0,
+      "MaxSeekerDistance": 900.0,
+      "LaserGuided": false
+    }
+  },
+  "blood_wolves": {
+    "weapon": 2018447,
+    "ammo_id": 2018448,
+    "ammo": {
+      "HUDName": "NLOS AT missile",
+      "Damage": 20.0,
+      "PenetrationAtGroundRange": 65.0,
+      "GroundRange": 1000.0,
+      "TrajectoryType": 200,
+      "Seeker": 10,
+      "SeekerAngle": 180.0,
+      "MaxSeekerDistance": 1000.0,
+      "LaserGuided": false
+    },
+    "replaced": 2011864
+  },
+  "checks": 17658
+}

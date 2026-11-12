@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.6
+# Freedom Arrow 0.8.0-dev.7
+
+- New NLOS trait. A missile with the trait flies the CTL-181 precision path, so it fires at any enemy your side has spotted without its own line of sight, and a runtime hook keeps its seeker on the target while the target lives, so it follows a moving target with no laser. The trait list is `UserData/FreedomArrow/nlos.json`; any missile added there gets the same behaviour. Every hook action is logged (`FREEDOM_ARROW_NLOS`).
+- Ground HJ-10: NLOS trait. Warhead unchanged (13 damage, 90 penetration, top attack, 1800 m). Laser guidance off.
+- Blood Wolves: the HJ-12 is replaced by an NLOS missile launcher, 2 missiles: the ZBD-20 precision AT warhead (20 damage, 65 penetration, top attack, 2000 m) with the NLOS trait.
+- Not yet verified in a game run. The unit card trait icon is a follow-up.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.6
 
 - CTL-181 NLOS missile: 30 mm penetration (was 20), no dispersion, laser guided, an attack order fires repeatedly (4/48/48 short/normal/long).
 - ZBD-20 precision missile: no dispersion, laser guided, repeat fire (2/4/4).
@@ -812,3 +821,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 14:00:25 PST (America/Los_Angeles) — 0.8.0-dev.5: ZBD-20 precision missiles and laser.
 
 - 2026-11-12 14:03:39 PST (America/Los_Angeles) — 0.8.0-dev.6: CTL-181/ZBD-20 missile tuning.
+
+- 2026-11-12 14:29:14 PST (America/Los_Angeles) — 0.8.0-dev.7: NLOS trait hook, ground HJ-10, Blood Wolves NLOS missile.

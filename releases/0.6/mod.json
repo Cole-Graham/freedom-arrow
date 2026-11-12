@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.8 (China)",
-  "version": "0.8.0-dev.6",
+  "version": "0.8.0-dev.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.6: CTL-181 and ZBD-20 laser-guided precision missiles with no dispersion and repeat fire; CTL-181 30 mm penetration. Needs Freedom Arrow — Models and Music 0.2.0.",
+  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.7: NLOS trait (missiles keep tracking a spotted, moving target without line of sight or a laser): ground HJ-10, and Blood Wolves with an NLOS AT missile in place of the HJ-12. Needs Freedom Arrow — Models and Music 0.2.0.",
   "repo": "Cole-Graham/freedom-arrow"
 }

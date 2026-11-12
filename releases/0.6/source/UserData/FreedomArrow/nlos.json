@@ -1,0 +1,17 @@
+{
+  "trait": "NLOS",
+  "version": "0.8.0-dev.7",
+  "note": "Missiles listed here keep their seeker on a live target without line of sight or a laser (runtime NlosTrait.cs).",
+  "ammunition": [
+    2009623,
+    2018448
+  ],
+  "weapons": [
+    2009619,
+    2018447
+  ],
+  "units": {
+    "936": "HJ-10",
+    "1183": "Blood Wolves"
+  }
+}
