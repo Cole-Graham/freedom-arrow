@@ -1,3 +1,9 @@
+# PLA TEST Build 47
+
+Every armed PLA jet and helicopter gets a loadout menu taken from Command: Modern Operations (DB3K_519): up to 8 distinct loadouts, no fuel tanks or pods, internal bays only for stealth fighters. Chinese weapons copy the closest weapon already in the game (PL-15 = AIM-260, PL-12 = R-77-1, PL-10 = AIM-9, YJ-91 = Kh-31P, LT-2 = KAB-500, CJ-10K = Kh-101; helicopter ATGMs 10.5 damage). Each aircraft takes speed, armour, sensors, stealth and default ECM from one vanilla counterpart of its generation, and a new base price. Native behaviour unverified.
+
+## Historical Build46
+
 # PLA TEST Build 46
 
 Shaanxi HMV3 now has the HEMTT mounts and option sets (cab/armor and weapon slot); the native HEMTT model draws those parts through them, and the HMV3 had none. Two versions in every spec: Shaanxi HMV3 (mixed cargo/infantry, 27 seats, carries infantry) and Shaanxi HMV3 Cargo (pure supply, no seats). Everything else is exactly Build45. In-game appearance remains unverified.
@@ -551,3 +557,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 04:44:44 PST (America/Los_Angeles) — Build45: squad edits and renames, removals, tripod PF-98 with DZD98A, GAM-102LR Spike icon, FH-97A as F-35B with 4 AMRAAM, PLAN ZSD-89, PLARF Infantry gear icon, Godswords PF-89.
 
 - 2026-11-12 04:48:24 PST (America/Los_Angeles) — Build46: Shaanxi HMV3 HEMTT mounts/options, mixed and Cargo versions in every spec.
+
+- 2026-11-12 05:13:37 PST (America/Los_Angeles) — Build47: CMO-derived aircraft loadouts, generation chassis and prices for every armed PLA aircraft (see pla-air-loadouts.json).

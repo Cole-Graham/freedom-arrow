@@ -1,0 +1,12 @@
+{
+  "build": 47,
+  "base_build": 46,
+  "base_sha256": "a623afa4b772d566fa850f98252d1f31051c947e5503c3ae579e477b1bbbbd15",
+  "source": "CMO DB3K_519 (sha256 aea7489e3dc4ccd972c7f0153fce1e0ddbf9197d1840f6ee79ea64d5b49e6995)",
+  "checks": 2776,
+  "new_rows": {
+    "ammunition": 44,
+    "weapons": 66,
+    "turrets": 94
+  }
+}

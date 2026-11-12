@@ -1,6 +1,6 @@
 {
   "channel": "testing",
-  "package_version": "46",
+  "package_version": "47",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
   "verification": "Build45 plus Shaanxi HMV3 with the HEMTT mounts/options (model parts draw), HMV3 mixed and HMV3 Cargo in every spec. Data checks only; native validation pending."
