@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 36",
-  "version": "36",
+  "name": "PLA TEST Build 37",
+  "version": "37",
   "type": "modpack",
-  "description": "Build35 plus nuclear Kinzhal warhead on DF-31 and removal of four drone helicopters without models.",
+  "description": "Build36 plus J-10A neutral dark white-grey livery on its own texture.",
   "repo": "Cole-Graham/freedom-arrow"
 }

@@ -1,3 +1,9 @@
+# PLA TEST Build 37
+
+J-10A now has its own texture: the J-10C blue-grey panels are repainted a neutral dark white-grey. Builds 31-36 used a colour tint that turned it salmon/tan. J-10C is unchanged. Everything else is exactly Build36. In-game appearance remains unverified.
+
+## Historical Build36
+
 # PLA TEST Build 36
 
 DF-31A now carries the native Kh-47M2 Kinzhal nuclear warhead (666 damage, 350 m blast, nuclear explosion effect and sound) on its ballistic flight. AR-2000, CR-500 Recon, CR-500B and Z-6B UAV are removed because they had no model. ZBD-251 keeps the Kurganets model. Everything else is exactly Build35. Native launch, blast and warning remain unverified.
@@ -471,3 +477,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:32:53 PST (America/Los_Angeles) — Build35 applies the latest infantry sheet sizes, kit and removal over Build34.
 
 - 2026-11-12 01:38:31 PST (America/Los_Angeles) — Build36: DF-31 copies the nuclear Kinzhal warhead; four drone helicopters without models removed. Correction: the Build34 entry above says 01:36:00; the actual Build34 edit was about 01:31 PST.
+
+- 2026-11-12 01:43:45 PST (America/Los_Angeles) — Build37: J-10A repainted on its own texture (neutral dark white-grey); the salmon/tan colorScale tint is removed.

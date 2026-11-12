@@ -1,5 +1,5 @@
 {
-  "build": 36,
+  "build": 37,
   "base_build": 30,
   "base_sha256": "809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a",
   "native_verified": false,
@@ -151,5 +151,6 @@
     "controls": "existing ballistic warning enable, sound mute and volume; same game bus",
     "runtime_verified": false
   },
-  "drone_model_audit_result": "All four used DLC3_MDP01_Termit with no custom model; removed (Osama 12 Nov)"
+  "drone_model_audit_result": "All four used DLC3_MDP01_Termit with no custom model; removed (Osama 12 Nov)",
+  "j10a_livery": "Own repainted tex1 (blue-grey to neutral dark white-grey); colorScale tint removed; J-10C unchanged"
 }
