@@ -170,6 +170,7 @@
   "TestDurationSeconds": 0,
   "PhasePolicy": "continuous",
   "ScoreLimit": 300,
+  "TimeWinMarginPercent": 10,
   "EnableDeveloperFixtures": false,
   "FixedIncomePerMinute": 200
 }

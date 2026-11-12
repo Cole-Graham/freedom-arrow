@@ -93,6 +93,12 @@ faWin.Advance(540,faAll);Check(faWin.Bravo==306&&faWin.ReachedScoreLimit&&faWin.
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","2v2 Dead Center map resolution");
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
 Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"2v2 Dead Center weighted advantage");
+Check(fa.TimeWinMarginPercent==10,"time-up margin 10%");
+Check(Ledger.MarginWinner(110,100,10)==0&&Ledger.MarginWinner(100,110,10)==1&&Ledger.MarginWinner(109,100,10)==null,"time up: 10% more wins, 9.x% is a draw");
+Check(Ledger.MarginWinner(5,0,10)==0&&Ledger.MarginWinner(0,0,10)==null&&Ledger.MarginWinner(200,200,10)==null,"time up: any lead over 0 wins; ties draw");
+var timeUp=new Ledger(fa,cv,2700);var held=new List<Zone>{new(57,0,false)};
+for(int t=300;t<=2670;t+=30)timeUp.Advance(t,held);Check(!timeUp.TimeUp&&timeUp.TimeWinner==null,"no time-up result before the clock ends");
+timeUp.Advance(2700,held);Check(timeUp.TimeUp&&timeUp.Alpha==162&&timeUp.Bravo==0&&timeUp.TimeWinner==0&&!timeUp.ReachedScoreLimit,"162 to 0 at time up (81 ticks of a 2-point zone) wins without reaching 300");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");
 
 Check(FreedomArrow.Conquest.CritRule.Losat(110,1,"Missile AT LOSAT KE") && !FreedomArrow.Conquest.CritRule.Losat(110,2,"Missile AT LOSAT KE") && !FreedomArrow.Conquest.CritRule.Losat(110,1,"Missile AT Kornet"),"LOSAT isolated KE tank-shell crit classification");

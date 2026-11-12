@@ -1,13 +1,13 @@
 # Map, border and lobby test batch
 
-**lat.23 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
+**lat.24 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
 
 ## Source and package
 
 - Branch: `codex/batch/lateralus/map-borders-lobby`.
 - Base: `codex/0.7-development`, `939658d500d4fee4a27c9ad7ac655e6f47d9e6c8`.
-- Package: `FreedomArrow-0.7.0-devtest.lat.23.bamod`.
-- SHA256: `0d908e1b4827b3c6735f7b9e230f32fc5e0dfde9cc7c68cd911f37a75f04bf92`.
+- Package: `FreedomArrow-0.7.0-devtest.lat.24.bamod`.
+- SHA256: `897b7efcb15c0fc76cab4fa167a18a11d3559c5ea8cf19bd4cb19220147e14f0`.
 - This is a complete gameplay candidate. It does not contain the separate PLA pack or replace shared model/music assets. Public dev.45/assets 0.1.14 and the main integration branch remain pinned.
 
 ## What changes
@@ -22,6 +22,7 @@
 8. lat.21 border fix. Lateralus tested lat.20 on 12 November: no change, only the vanilla orange wall. Measured in GameAssembly.dll: zero direct calls to `PlayableZone..ctor` (RVA 0x70F5A0), so the lat.18–20 constructor postfix never ran and the overlay had no zone. `add_OnZoneBoundsChanged` (0x70F6A0) has one direct caller, `MiniMapBehaviour.OnMissionLoaded`, and `SetPlayZone` (0x70F2F0) one, `PlayableZoneScript.OnActivatePlayableZone`. lat.21 takes the zone from postfixes on these two. `ContainsForPlayer` (7 callers, including target search) is not hooked, to avoid per-search cost. If `Camera.main` is null, the enabled screen camera with the highest depth is used. Not yet run in a game.
 9. lat.22 border look. Lateralus tested lat.21 on 12 November (screenshots in the task thread): the line drew, but it was aliased, drawn over trees, units and the HUD, and he asked for white without the dark outline, maybe slightly transparent. lat.22 removes the IMGUI overlay. A MeshRenderer strip faces the camera and is rebuilt when the camera moves, so its width stays about 4 pixels. Its material is a runtime copy of the game's `ObjZone_Border` (HDRP/Unlit, transparent alpha blend, `_ZTestTransparent` 4 = LessEqual, read from the prefabsme bundle), with `_UnlitColor` white at alpha 0.8 and a 32-texel alpha ramp across the strip for soft edges. The renderer uses the objective-border renderer's layer when found (else 0), casts no shadows and writes no motion vectors. Terrain heights are sampled every 10 engine units (at most 1025 points per edge); the strip is lifted 1.5 units plus its half width. Host tests check the strip's screen width, direction, lift and fallbacks (7 cases). Expected trade-off: tall tree canopy now hides the line in forests. Not yet run in a game.
 10. lat.23 maps. Lateralus confirmed the lat.22 border looks good and sent `[FA] [3v3] Baltiisk 0.1` and `[FA] [3v3] Dam 0.1` (12 November) to replace the vanilla-built Baltiisk and Dam. `scenarios/baltiisk_3v3` and `scenarios/dam_3v3` keep his scripts, cameras and play areas, like `airport_5v5`; the shared code is `common.prepare_authored` and `common.build_authored`. Values: Baltiisk A B C 2, D E F G 3, H I 4; Dam E F K L 2, A B G H 3, C D I J 4. Baltiisk's Hotel and India were labelled "Echo"; Dam's zones also listed capturing team 7, removed. Both have 5 slots per team although named 3v3. Baltiisk keeps a lobby dropdown named "Compensation" whose values are the native Auto/Medium/Small size; in his script it chooses only the native destruction goals (100 or 200), not the play area. `vanilla.py` and its helpers and the Baltiisk/Dam native pins are removed because no map uses them. Airport and the other maps build byte-identical to lat.22.
+11. lat.24 time-up result. Lateralus (12 November): matches ended in a draw when neither side reached 300; a side with 10% more points should win. Before, at time up `Winner` (Mod.cs) let the native `ConquestMode.GetWinner(true)` decide, and that gave a draw below the score limit. Now `Ledger.TimeWinner` decides: score-limit winner, else `MarginWinner` (leader × 100 ≥ other × (100 + `TimeWinMarginPercent`), so any lead over 0 wins), else draw (`TeamSide.Neutral`). Offline `Winner` returns it to `OfflineTick` and skips the native check. Online, `QueueScoreLimitEnding` queues the margin winner at time up and the host sends `NetworkRoomService.SendEndGame`, as for a 300-point win; a draw sends nothing. Host tests: 5 new checks (73 total). Not yet run in a game; the online path races the server's own time-up and is unmeasured.
 
 ## Evidence and limits
 
@@ -37,12 +38,13 @@ These are compilation, code/data and host-test results. They do not prove the na
 
 ## Test in the game
 
-Import lat.23 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
+Import lat.24 through Mod Manager, then check the exact version label. Use the offline Local AI Skirmish path and verify its guard before a battle. Do not use multiplayer as an automated test.
 
 - Check Chkalovsk at Alpha, Charlie and both spawn sides; confirm the border and legal movement agree.
 - Check Highway's A–G symbols and weights, both team cameras, initial deployment and conquest scoring. Confirm the native active box clips the authored zone at Frontiers' full map edge.
 - Check [5v5] Airport: whole-map play area for every lobby size, no Size option, all ten zone labels and values, and spawns outside the old small zone.
 - Check that capturing a zone takes 15 seconds.
+- Let a match run out of time below 300 with one side 10% or more ahead: that side wins. Under 10%: a draw. Logs show `time_up_result` (offline) or `score_limit_queued` with `timeUp` true (online).
 - Check [3v3] Baltiisk and [3v3] Dam zone labels and values, both cameras, and the Skirmish bots.
 - Check Dead Center from both teams; red reinforcements should arrive facing inward, and each camera should look toward the fight.
 - Check the line at maximum/minimum zoom, top-down and oblique views, and on land/water. Verify active-zone changes and full-map fallback. Check HUD interference and frame cost.
@@ -57,3 +59,4 @@ Import lat.23 through Mod Manager, then check the exact version label. Use the o
 - 2026-11-12 02:46:12 PST (America/Los_Angeles) — lat.21: border hook fix after Lateralus's lat.20 report; caller evidence from GameAssembly.
 - 2026-11-12 03:09:31 PST (America/Los_Angeles) — lat.22: in-scene white border strip using the objective-border material, after Lateralus's lat.21 screenshots.
 - 2026-11-12 04:04:59 PST (America/Los_Angeles) — lat.23: [3v3] Baltiisk and [3v3] Dam replace the vanilla-built maps; shared authored-map build; vanilla builder retired.
+- 2026-11-12 04:47:28 PST (America/Los_Angeles) — lat.24: time-up margin win (10%), after Lateralus's draw report.

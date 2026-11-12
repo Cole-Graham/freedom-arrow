@@ -288,8 +288,7 @@ public sealed partial class Prototype
         }
         catch (Exception e) { Fail(e); }
     }
-    // Keep the native terminal calculation (including its draw and result/stat callbacks).
-    // ConquestMode can otherwise finish by a native threshold; this prototype uses time-limit ending.
+    // Mid-match native checks stay off; sudden death stays native. At time up the FA ledger decides (TimeWinner).
     static bool Winner(View candidate, bool timeEnd, ref TeamSide result)
     {
         // Option 1 (Lateralus, 6 November): score limit and native sudden death both end the match, whichever comes first.
@@ -314,8 +313,11 @@ public sealed partial class Prototype
             }
             if (!timeEnd || remaining > 0) { result = TeamSide.NotDefined; return false; }
             terminalStarted=true;pendingEnding=null;endingModePointer=candidate.Pointer;nativeResultStarted=true;HideLabels("time limit");
-            Publish(); Log("native_final_evaluation", new { alpha = ledger!.Alpha, bravo = ledger.Bravo, remaining, synthetic=fixtureUsedThisMatch });
-            return true;
+            // The native time-up result ignores the FA ledger and gave draws below the score limit (Lateralus, 12 November 2026).
+            // OfflineTick passes this result on to its result delegate.
+            result = ledger!.TimeWinner is int side ? (TeamSide)side : TeamSide.Neutral;
+            Publish(); Log("time_up_result", new { alpha = ledger.Alpha, bravo = ledger.Bravo, config.TimeWinMarginPercent, result = result.ToString(), remaining, synthetic=fixtureUsedThisMatch });
+            return false;
         }
         catch (Exception e) { Fail(e); return true; }
     }
