@@ -1,14 +1,16 @@
-# freedom-arrow
+# Freedom Arrow — launcher
 
-**Unreleased 0.6 development — ActualArrow features:** [build instructions and changes](releases/0.6/README.md) on `codex/0.6-development`. 0.5 stays on `codex/0.5-development` (accuracy, [changes](releases/0.5/README.md)); 0.4 stays on `codex/0.4-development`.
+**Launcher development — manifest launcher 1.1.3 source. Player versions come from the stable manifest.**
 
-**Unreleased 0.4 development:** [build instructions and changes](releases/0.4/README.md) on `codex/0.4-development`. 0.3 stays on `codex/0.3-development`.
+## Maintained branches
 
-**Unreleased 0.3 development:** [build instructions and changes](releases/0.3/README.md). 0.2 stays on `codex/0.2-development`.
+- [Main 0.7 development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/0.7-development) — dev.55 integration.
+- [Public gameplay source](https://github.com/Cole-Graham/freedom-arrow/tree/main) — locked dev.45.
+- [PLA development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/pla-development) — complete PLA pack.
+- [Assets development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/assets-development) — shared models, music and voices.
+- [Launcher development](https://github.com/Cole-Graham/freedom-arrow/tree/codex/launcher-development) — launcher and manifest client.
 
-**0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.38 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
-
-**Prepared 0.1 candidate:** [download, scope and source](releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
+Use one `codex/batch/lateralus/<topic>` branch per coherent unpromoted batch; reuse it across commits and test builds. Build identities use tags. See [branch policy](docs/development/BRANCH-POLICY.md) and [source pins](docs/development/branch-streams.json). Source maintenance does not change the public manifest lock or rebuild existing packages.
 
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
@@ -210,3 +212,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-05 14:52:23 PST (America/Los_Angeles) — Added the 0.4 development pointer; 0.3 stays on its branch.
 - 2026-11-06 14:40 PST (America/Los_Angeles) — Added the 0.5 development pointer (accuracy); 0.4 stays on its branch.
 - 2026-11-07 12:43 PST (America/Los_Angeles) — Added the 0.6 development pointer (ActualArrow features); 0.5 stays on its branch.
+- 2026-11-11 22:48:48 PST (America/Los_Angeles) — Added approved maintained-stream and isolated-batch navigation; preserved existing history and gameplay.
