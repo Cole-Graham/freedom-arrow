@@ -69,7 +69,7 @@ for uid,extras in EXTRA.items():
         if order>=10:break
         label=', '.join(f'{n}x {k}' for k,n in sorted(load.items(),key=lambda x:ORDER.index(C[x[0]]['cls'])))
         if label in labels:continue
-        plan=assign(uid,load,stealth,heli);opt={k:(None if k.startswith('Turret') else copy.deepcopy(v)) for k,v in OPT_T.items() if k!='Id'}
+        plan=assign(uid,load,stealth,heli);opt={k:(0 if k.startswith('Turret') else copy.deepcopy(v)) for k,v in OPT_T.items() if k!='Id'}
         for (s,kind),parts in plan.items():
             tid=turret(parts,heli,kind);opt[f'Turret{s}Id']=tid;used_t.add(tid)
             for n,q in parts:used_w.add((weapon(n,q,heli),ammo(n,heli),q))

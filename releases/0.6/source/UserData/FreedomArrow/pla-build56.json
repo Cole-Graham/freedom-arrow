@@ -1,0 +1,30 @@
+{
+  "build": 56,
+  "base_build": 55,
+  "base_sha256": "98a53926014c8168b3ba6ccd7d10dadacc95831dfe7a6c45aac6f0db9e00d508",
+  "cause": "FREEDOM_ARROW_FAILED: Field type mismatch Turret0Id (null empty pylon slots since Build47)",
+  "fixed": {
+    "OptionsJson.Turret0Id": 201,
+    "OptionsJson.Turret7Id": 178,
+    "OptionsJson.Turret8Id": 178,
+    "OptionsJson.Turret9Id": 236,
+    "OptionsJson.Turret10Id": 238,
+    "OptionsJson.Turret11Id": 197,
+    "OptionsJson.Turret12Id": 180,
+    "OptionsJson.Turret13Id": 238,
+    "OptionsJson.Turret14Id": 238,
+    "OptionsJson.Turret15Id": 238,
+    "OptionsJson.Turret16Id": 238,
+    "OptionsJson.Turret17Id": 238,
+    "OptionsJson.Turret18Id": 238,
+    "OptionsJson.Turret19Id": 238,
+    "OptionsJson.Turret20Id": 238,
+    "OptionsJson.Turret4Id": 122,
+    "OptionsJson.Turret5Id": 128,
+    "OptionsJson.Turret3Id": 111,
+    "OptionsJson.Turret6Id": 133,
+    "OptionsJson.Turret1Id": 17,
+    "OptionsJson.Turret2Id": 47
+  },
+  "total": 3870
+}

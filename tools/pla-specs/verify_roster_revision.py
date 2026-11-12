@@ -79,6 +79,15 @@ with zipfile.ZipFile(a.package) as z:
   for r in t['TransportAvailabilitiesJson'].values():
    sid=t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId']
    if sid>=17:ok(sid in links[r['UnitId']],('carrier crosses spec',r['Id']))
+ # Runtime "Field type mismatch" rule (Build56): patched fields keep the vanilla JSON type; no null where vanilla never has null.
+ for tab,fn in FIELD_TO_FILE.items():
+  vt={}
+  for r in json.loads((a.vanilla/(tab+'.json')).read_text()):
+   for k2,v2 in r.items():vt.setdefault(k2,set()).add(type(v2).__name__)
+  for key,row in json.loads(z.read('UserData/FreedomArrow/constants/'+fn)).items():
+   if row is None:continue
+   for f2,v2 in row.items():
+    if f2 in vt:ok(type(v2).__name__ in vt[f2] or (type(v2).__name__ in('int','float') and vt[f2]&{'int','float'} and 'bool' not in vt[f2]),('field type mismatch',tab,key,f2,type(v2).__name__))
  result={'build':build,'checks':checks,'passed':True,'native_verified':False}
  (ROOT/f'tools/pla-specs/build{build}-regression-checks.json').write_text(json.dumps(result,indent=2)+'\n')
  print(json.dumps(result,indent=2))

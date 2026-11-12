@@ -1,3 +1,9 @@
+# PLA TEST Build 56
+
+China restored. Builds 47-55 wrote empty pylon slots in the new loadout options as null; the game requires 0 and rejected the whole PLA patch (FREEDOM_ARROW_FAILED: Field type mismatch Turret0Id). All 3,870 slots now 0. Everything else is exactly Build55. check_field_types.py now runs on every build.
+
+## Historical Build55
+
 # PLA TEST Build 55
 
 PL-15 and PL-16 copy the AMRAAM with 500 more range (4500); PL-17 copies the AIM-260 JATM (5500). PL-21 and PL-15C unchanged. Native behaviour unverified.
@@ -623,3 +629,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:13:05 PST (America/Los_Angeles) — Build54: LD-8A and PL-16 stealth loadouts, J-16 heavy bomb load.
 
 - 2026-11-12 11:16:34 PST (America/Los_Angeles) — Build55: PL-15/PL-16 = AMRAAM +500, PL-17 = JATM.
+
+- 2026-11-12 11:21:16 PST (America/Los_Angeles) — Build56: null pylon slots set to 0; China loads again.

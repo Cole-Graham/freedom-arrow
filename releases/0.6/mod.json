@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 55",
-  "version": "55",
+  "name": "PLA TEST Build 56",
+  "version": "56",
   "type": "modpack",
-  "description": "Build54 with PL-15/PL-16 = AMRAAM +500 range and PL-17 = JATM.",
+  "description": "Build55 with China restored: empty pylon slots in loadout options written as 0, not null.",
   "repo": "Cole-Graham/freedom-arrow"
 }

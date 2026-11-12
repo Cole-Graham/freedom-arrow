@@ -125,7 +125,7 @@ for uid in RECON:
     for o in old:g.remove('OptionsJson',o['Id'])
     made=[]
     for i,slots in enumerate(list(keep.values())[:8]):
-        f={k:(None if k.startswith('Turret') else v) for k,v in tpl.items() if k!='Id'};tot={}
+        f={k:(0 if k.startswith('Turret') else v) for k,v in tpl.items() if k!='Id'};tot={}
         for s,parts in slots.items():
             wids=[lib_weapon(uid,n,q) for n,q in parts]
             assert all(wids),(uid,parts)
@@ -140,7 +140,7 @@ for uid in RECON:
         f.update(ModificationId=mod['Id'],Name=f'PLA recon loadout {uid} {i}',Order=i,UIName=label,Cost=cost,IsDefault=i==0,OptionPicture='HYDRA_x19_PYLON')
         g.add('OptionsJson',tpl,f);made.append(f'{label} ({cost})')
     if not made:
-        f={k:(None if k.startswith('Turret') else v) for k,v in tpl.items() if k!='Id'};f.update(ModificationId=mod['Id'],Name=f'PLA recon loadout {uid} empty',Order=0,UIName='Custom_Option_Empty',Cost=0,IsDefault=True,OptionPicture='EMPTY')
+        f={k:(0 if k.startswith('Turret') else v) for k,v in tpl.items() if k!='Id'};f.update(ModificationId=mod['Id'],Name=f'PLA recon loadout {uid} empty',Order=0,UIName='Custom_Option_Empty',Cost=0,IsDefault=True,OptionPicture='EMPTY')
         g.add('OptionsJson',tpl,f);made.append('no pylon weapons')
     receipt['recon_helicopters'][U[uid]['HUDName']+f' ({uid})']=made
 # ---- checks

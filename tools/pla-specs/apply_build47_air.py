@@ -212,7 +212,7 @@ for uid,(analog,cost,gen) in PLAN.items():
         mid=g.add('ModificationsJson',MOD_T,{'UnitId':uid,'Name':'PLA loadout '+u['HUDName'],'Type':3,'UIName':'Custom_Slot_Weapon_package','ThumbnailFileName':None,'Order':0})
         used_t=set();used_w=set();rec['loadouts']=[]
         for i,(std,load,src) in enumerate(chosen):
-            plan=assign(uid,load,stealth,heli);opt={k:(None if k.startswith('Turret') else copy.deepcopy(v)) for k,v in OPT_T.items() if k!='Id'}
+            plan=assign(uid,load,stealth,heli);opt={k:(0 if k.startswith('Turret') else copy.deepcopy(v)) for k,v in OPT_T.items() if k!='Id'}
             for (s,kind),parts in plan.items():
                 tid=turret(parts,heli,kind);opt[f'Turret{s}Id']=tid;used_t.add(tid)
                 for n,q in parts:used_w.add((weapon(n,q,heli),ammo(n,heli),q))
