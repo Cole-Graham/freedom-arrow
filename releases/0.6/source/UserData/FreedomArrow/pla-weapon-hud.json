@@ -1,5 +1,5 @@
 {
-  "build": 39,
+  "build": 41,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3316,11 +3316,11 @@
       "weapon": 2012411,
       "name": "QJY-201",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "M240",
+      "mode": "custom",
+      "profile": "QJY201",
+      "address": "FA_PLA_WP_QJY201",
       "native_weapon": 30,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied QJY-201 model render (12 Nov 03:08), measured source edges"
     },
     {
       "weapon": 2012515,
@@ -3548,7 +3548,8 @@
     "QLG10A",
     "QLU11",
     "QTS11",
-    "QN202"
+    "QN202",
+    "QJY201"
   ],
   "resources": [
     "FA_PLA_WP_QBB95",
@@ -3576,10 +3577,12 @@
     "FA_PLA_WP_QTS11",
     "FA_PLA_WP_QTS11_OUTLINE",
     "FA_PLA_WP_QN202",
-    "FA_PLA_WP_QN202_OUTLINE"
+    "FA_PLA_WP_QN202_OUTLINE",
+    "FA_PLA_WP_QJY201",
+    "FA_PLA_WP_QJY201_OUTLINE"
   ],
-  "native_icon_entries": 338,
-  "custom_icon_entries": 15,
+  "native_icon_entries": 337,
+  "custom_icon_entries": 16,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {

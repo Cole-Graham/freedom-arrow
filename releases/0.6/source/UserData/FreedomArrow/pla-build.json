@@ -1,6 +1,6 @@
 {
-  "build": 40,
-  "label": "PLA TEST Build 40",
+  "build": 41,
+  "label": "PLA TEST Build 41",
   "roster_contract": "pla-test-contract.json",
   "infantry": {
     "unit": 901,

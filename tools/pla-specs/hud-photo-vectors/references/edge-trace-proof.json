@@ -112,5 +112,24 @@
     "source_faces_right": true,
     "native_direction": "muzzle right after native HUD mirror",
     "edge_overlay": "edge-check-QN202.png"
+  },
+  {
+    "profile": "QJY201",
+    "reference": "qjy201-render.png",
+    "reference_sha256": "a3d16009ed1ff4817cb7a1ba40ccdaf10c7fa2dea057a785957afd49382d7ff5",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 1018,
+    "internal_measured_segments": 180,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      17,
+      15,
+      1210,
+      393
+    ],
+    "source_faces_right": false,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QJY201.png"
   }
 ]

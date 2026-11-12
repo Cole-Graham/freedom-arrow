@@ -114,9 +114,9 @@
     "align": false
   },
   "PLA J-11B": {
-    "file": "j11b.fam",
-    "align": false,
-    "battle": "j11b_lo.fam"
+    "file": "m_j16_cg.fam",
+    "battle": "m_j16_lo2.fam",
+    "align": false
   },
   "PLA Y-20": {
     "file": "y20.fam",
@@ -577,5 +577,20 @@
     "file": "m_wz551_static.fam",
     "battle": "m_wz551_lo_static.fam",
     "align": false
+  },
+  "PLA SF Z-19": {
+    "file": "m_z19e.fam",
+    "align": false,
+    "battle": "m_z19e_lo.fam"
+  },
+  "PLA SF Recon Z-19": {
+    "file": "m_z19e.fam",
+    "align": false,
+    "battle": "m_z19e_lo.fam"
+  },
+  "PLA SF Z-20": {
+    "file": "m_z20.fam",
+    "align": false,
+    "battle": "m_z20_lo.fam"
   }
 }

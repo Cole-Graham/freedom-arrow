@@ -1,0 +1,480 @@
+{
+  "build": 41,
+  "base_build": 40,
+  "base_sha256": "c47d9c033604727d462a69fb152d8d19040263314d03f0aa846fa1fc0d4bb888",
+  "changes": [
+    {
+      "unit": 1055,
+      "name": "AFT-10",
+      "change": "removed: duplicate of HJ-10 card 936 (AFT-10 is the HJ-10 carrier)"
+    },
+    {
+      "unit": 1088,
+      "name": "J-20B \u2014 seller package",
+      "change": "removed: J-20B seller package"
+    },
+    {
+      "unit": 956,
+      "name": "ZTZ-85-III",
+      "change": "removed: ZTZ-85-III"
+    },
+    {
+      "unit": 1081,
+      "name": "ZTZ-80 / Type 80",
+      "change": "removed: ZTZ-80"
+    },
+    {
+      "unit": 953,
+      "name": "VT-5",
+      "change": "removed: VT-5"
+    },
+    {
+      "unit": 1078,
+      "name": "ZBL19 \u2014 seller name",
+      "change": "removed: ZBL-19 seller name"
+    },
+    {
+      "unit": 1077,
+      "name": "ZBL-09",
+      "change": "removed: ZBL-09"
+    },
+    {
+      "unit": 1058,
+      "name": "CSK-181",
+      "change": "removed: CSK-181 stays only as the Rocket Force transport (unit 1230)"
+    },
+    {
+      "unit": 1087,
+      "name": "J-10CE",
+      "change": "spec 17 -> 21"
+    },
+    {
+      "unit": 973,
+      "name": "FH-97A",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 977,
+      "name": "J-16D",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 1095,
+      "name": "Jiutian UAV",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 919,
+      "name": "H-6K",
+      "change": "spec 19 -> 17"
+    },
+    {
+      "unit": 1102,
+      "name": "Y-8 family \u2014 seller package",
+      "change": "spec 17 -> 20"
+    },
+    {
+      "unit": 936,
+      "name": "AFT-10",
+      "change": "renamed from HJ-10"
+    },
+    {
+      "unit": 1028,
+      "name": "DF-17/ZF",
+      "change": "renamed from DF-17"
+    },
+    {
+      "unit": 1063,
+      "name": "ZBD-86",
+      "change": "renamed from Type 86 \u2014 original turret"
+    },
+    {
+      "unit": 1060,
+      "name": "ZTZ-59",
+      "change": "renamed from Type 59 \u2014 FlashPoint"
+    },
+    {
+      "unit": 1061,
+      "name": "ZTZ-59D",
+      "change": "renamed from Type 59D"
+    },
+    {
+      "unit": 1062,
+      "name": "ZSD-63",
+      "change": "renamed from Type 63 APC \u2014 older base"
+    },
+    {
+      "unit": 1064,
+      "name": "ZSD-89",
+      "change": "renamed from Type 89"
+    },
+    {
+      "unit": 1065,
+      "name": "ZSD-89A",
+      "change": "renamed from Type 89A"
+    },
+    {
+      "unit": 1102,
+      "name": "Y-8",
+      "change": "renamed from Y-8 family \u2014 seller package"
+    },
+    {
+      "unit": 1090,
+      "name": "JJ-5",
+      "change": "renamed from J-5 \u2014 two seat package"
+    },
+    {
+      "unit": 1098,
+      "name": "J-2",
+      "change": "renamed from MiG-15 \u2014 PLAAF markings"
+    },
+    {
+      "unit": 1236,
+      "name": "Z-19",
+      "change": "new PLAN SF copy of 1103"
+    },
+    {
+      "unit": 1237,
+      "name": "Z-19 Recon",
+      "change": "new PLAN SF copy of 1134"
+    },
+    {
+      "unit": 1238,
+      "name": "Z-20",
+      "change": "new PLAN SF copy of 914"
+    },
+    {
+      "unit": 1130,
+      "name": "Z-10K Recon",
+      "change": "removed guided weapon HJ-10 air-launched ATGM"
+    },
+    {
+      "unit": 1130,
+      "name": "Z-10K Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1131,
+      "name": "Z-10 Recon",
+      "change": "removed guided weapon HJ-10 air-launched ATGM"
+    },
+    {
+      "unit": 1131,
+      "name": "Z-10 Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1132,
+      "name": "Z-19E Recon",
+      "change": "removed guided weapon HJ-8 air-launched ATGM"
+    },
+    {
+      "unit": 1132,
+      "name": "Z-19E Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1133,
+      "name": "Z-9WA Recon",
+      "change": "removed guided weapon HJ-8 air-launched ATGM"
+    },
+    {
+      "unit": 1133,
+      "name": "Z-9WA Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1134,
+      "name": "Z-19 Recon",
+      "change": "removed guided weapon HJ-8 air-launched ATGM"
+    },
+    {
+      "unit": 1134,
+      "name": "Z-19 Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1135,
+      "name": "Z-21 Recon",
+      "change": "removed guided weapon AKD-10 guided missile"
+    },
+    {
+      "unit": 1135,
+      "name": "Z-21 Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1237,
+      "name": "Z-19 Recon",
+      "change": "removed guided weapon HJ-8 air-launched ATGM"
+    },
+    {
+      "unit": 1237,
+      "name": "Z-19 Recon",
+      "change": "removed guided weapon TY-90"
+    },
+    {
+      "unit": 1102,
+      "name": "Y-8",
+      "change": "Harvest Hawk loadout and model; PLAN SF"
+    },
+    {
+      "unit": 923,
+      "name": "J-11B",
+      "change": "J-16 model (visual only)"
+    },
+    {
+      "unit": 1227,
+      "name": "Mi-8 Cargo",
+      "change": "Logistic (hidden tab) -> Helicopters"
+    },
+    {
+      "unit": 1137,
+      "name": "HJ-12 Team",
+      "change": "renamed from Airborne HJ-12 Team"
+    },
+    {
+      "unit": 1139,
+      "name": "Tank Hunters \u5766\u514b\u6740\u624b",
+      "change": "renamed from Airborne Tank Hunters \u5766\u514b\u6740\u624b"
+    },
+    {
+      "unit": 1140,
+      "name": "QLU-11 Team",
+      "change": "renamed from Airborne QLU-11 Precision Team"
+    },
+    {
+      "unit": 1142,
+      "name": "Pathfinders \u5148\u9063\u961f",
+      "change": "renamed from Airborne Pathfinders \u7a7a\u964d\u5148\u9063\u4fa6\u5bdf\u5175"
+    },
+    {
+      "unit": 1144,
+      "name": "Snipers \u72d9\u51fb\u7ec4",
+      "change": "renamed from Airborne Snipers \u7a7a\u964d\u72d9\u51fb\u7ec4"
+    },
+    {
+      "unit": 1145,
+      "name": "HN-6 Patrol \u9632\u7a7a\u5de1\u903b",
+      "change": "renamed from Airborne HN-6 Patrol \u7a7a\u964d\u9632\u7a7a\u5de1\u903b\u961f"
+    },
+    {
+      "unit": 1146,
+      "name": "Assault Raiders \u7a81\u51fb\u961f",
+      "change": "renamed from Air Assault Raiders \u7a7a\u4e2d\u7a81\u51fb\u5175"
+    },
+    {
+      "unit": 1149,
+      "name": "Target Observers \u89c2\u5bdf\u7ec4",
+      "change": "renamed from Airborne Target Observers \u7a7a\u964d\u76ee\u6807\u89c2\u5bdf\u7ec4"
+    },
+    {
+      "unit": 1151,
+      "name": "Mechanized AT Riflemen \u53cd\u5766\u514b\u73ed",
+      "change": "renamed from Mechanized AT Riflemen \u673a\u68b0\u5316\u53cd\u5766\u514b\u6b65\u5175"
+    },
+    {
+      "unit": 1156,
+      "name": "Mechanized Combat Engineers \u5de5\u5175\u73ed",
+      "change": "renamed from Mechanized Combat Engineers \u673a\u68b0\u5316\u6218\u6597\u5de5\u5175"
+    },
+    {
+      "unit": 1158,
+      "name": "Mechanized GPMG Riflemen \u673a\u67aa\u73ed",
+      "change": "renamed from Mechanized GPMG Riflemen \u673a\u68b0\u5316\u673a\u67aa\u6b65\u5175"
+    },
+    {
+      "unit": 1160,
+      "name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf",
+      "change": "renamed from Armored Scouts \u88c5\u7532\u4fa6\u5bdf\u5175"
+    },
+    {
+      "unit": 1161,
+      "name": "Armored Sniper Pair \u72d9\u51fb\u7ec4",
+      "change": "renamed from Armored Sniper Pair \u88c5\u7532\u72d9\u51fb\u7ec4"
+    },
+    {
+      "unit": 1162,
+      "name": "Thermobaric Breachers \u6e29\u538b\u5de5\u5175",
+      "change": "renamed from Thermobaric Breachers \u673a\u68b0\u5316\u6e29\u538b\u7a81\u51fb\u5de5\u5175"
+    },
+    {
+      "unit": 1163,
+      "name": "Mechanized Riflemen \u673a\u6b65\u73ed",
+      "change": "renamed from Mechanized Riflemen \u673a\u68b0\u5316\u6b65\u5175"
+    },
+    {
+      "unit": 1164,
+      "name": "Armored Forward Observers \u524d\u89c2\u7ec4",
+      "change": "renamed from Armored Forward Observers \u88c5\u7532\u524d\u6cbf\u89c2\u5bdf\u7ec4"
+    },
+    {
+      "unit": 1168,
+      "name": "HJ-73D Team",
+      "change": "renamed from Reserve HJ-73D Team"
+    },
+    {
+      "unit": 1169,
+      "name": "HN-6 Team",
+      "change": "renamed from Reserve HN-6 Team"
+    },
+    {
+      "unit": 1170,
+      "name": "QJZ-89 Team",
+      "change": "renamed from Reserve QJZ-89 Team"
+    },
+    {
+      "unit": 1171,
+      "name": "QLZ-87 Team",
+      "change": "renamed from Reserve QLZ-87 Team"
+    },
+    {
+      "unit": 1172,
+      "name": "PF-98 Team",
+      "change": "renamed from Reserve PF-98 Team"
+    },
+    {
+      "unit": 1177,
+      "name": "Thermobaric Team",
+      "change": "renamed from Reserve Thermobaric Team"
+    },
+    {
+      "unit": 1173,
+      "name": "Malyutka Recon Ambush Team \u4fa6\u5bdf\u4f0f\u51fb",
+      "change": "renamed from Malyutka Recon Ambush Team \u53cd\u5766\u514b\u4f0f\u51fb\u4fa6\u5bdf\u7ec4"
+    },
+    {
+      "unit": 1175,
+      "name": "Infantry \u6b65\u5175",
+      "change": "renamed from Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b"
+    },
+    {
+      "unit": 1176,
+      "name": "Counter-Raid Team \u53cd\u88ad\u51fb\u961f",
+      "change": "renamed from Missile-Site Counter-Raid Team \u5bfc\u5f39\u9635\u5730\u53cd\u88ad\u51fb\u961f"
+    },
+    {
+      "unit": 1192,
+      "name": "Marines \u9646\u6218\u961f",
+      "change": "renamed from Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175"
+    },
+    {
+      "unit": 1196,
+      "name": "Motorized Line Infantry \u6469\u6b65\u73ed",
+      "change": "renamed from Motorized Line Infantry \u6469\u6258\u5316\u6b65\u5175"
+    },
+    {
+      "unit": 1197,
+      "name": "Motorized AA Troopers \u9632\u7a7a\u73ed",
+      "change": "renamed from Motorized AA Troopers \u6469\u6258\u5316\u9632\u7a7a\u6b65\u5175"
+    },
+    {
+      "unit": 1198,
+      "name": "Motorized AT Troopers \u53cd\u5766\u514b\u7ec4",
+      "change": "renamed from Motorized AT Troopers \u6469\u6258\u5316\u53cd\u5766\u514b\u6b65\u5175"
+    },
+    {
+      "unit": 1201,
+      "name": "Motorized Recon Patrol \u4fa6\u5bdf\u73ed",
+      "change": "renamed from Motorized Recon Patrol \u6469\u6258\u5316\u4fa6\u5bdf\u5175"
+    },
+    {
+      "unit": 1202,
+      "name": "Motorized Snipers \u72d9\u51fb\u7ec4",
+      "change": "renamed from Motorized Snipers \u6469\u6258\u5316\u72d9\u51fb\u7ec4"
+    },
+    {
+      "unit": 1205,
+      "name": "Motorized Light AT Riflemen \u8f7b\u53cd\u5766\u514b",
+      "change": "renamed from Motorized Light AT Riflemen \u6469\u6258\u5316\u8f7b\u578b\u53cd\u5766\u514b\u6b65\u5175"
+    },
+    {
+      "unit": 1206,
+      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf",
+      "change": "renamed from Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf\u5175"
+    },
+    {
+      "unit": 1209,
+      "name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb",
+      "change": "renamed from Thermobaric Assault \u6e29\u538b\u7a81\u51fb\u5175"
+    },
+    {
+      "unit": 1211,
+      "name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa",
+      "change": "renamed from Test Export Riflemen \u51fa\u53e3\u6b65\u67aa\u8bd5\u9a8c\u7ec4"
+    },
+    {
+      "unit": 1212,
+      "name": "Test SMG Assault \u51b2\u950b\u67aa\u7ec4",
+      "change": "renamed from Test SMG Assault \u51b2\u950b\u67aa\u7a81\u51fb\u8bd5\u9a8c\u7ec4"
+    },
+    {
+      "unit": 1213,
+      "name": "Test Suppressed Scouts \u6d88\u58f0\u4fa6\u5bdf",
+      "change": "renamed from Test Suppressed Scouts \u6d88\u58f0\u6b66\u5668\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4"
+    },
+    {
+      "unit": 1224,
+      "name": "Test QTS Recon Cell \u6570\u5b57\u4fa6\u5bdf",
+      "change": "renamed from Test QTS Recon Cell \u6570\u5b57\u5316\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4"
+    },
+    {
+      "unit": 1183,
+      "name": "Blood Wolves \u8840\u72fc",
+      "change": "infantry tab"
+    },
+    {
+      "unit": 1191,
+      "name": "Sea Dragons \u86df\u9f99",
+      "change": "infantry tab"
+    },
+    {
+      "unit": 1187,
+      "name": "Beijing Swords \u84dd\u5251",
+      "change": "recon tab"
+    },
+    {
+      "unit": 1184,
+      "name": "Whistling Arrows \u54cd\u7bad",
+      "change": "Whistling Arrows emblem"
+    },
+    {
+      "units": [
+        1166,
+        1168,
+        1169,
+        1170,
+        1171,
+        1172,
+        1173,
+        1174,
+        1175,
+        1176,
+        1177
+      ],
+      "change": "Rocket Force rifles -> QBZ-95 (2012205)"
+    },
+    {
+      "unit": 1181,
+      "name": "Godswords \u4e1c\u65b9\u795e\u5251",
+      "change": "6 men, 6x QTS-11 only"
+    },
+    {
+      "unit": 1185,
+      "name": "Falcons \u730e\u9e70",
+      "change": "adds 1 PF-98"
+    },
+    {
+      "weapon": 2004000,
+      "name": "QBU-191",
+      "change": "suppressed (Silent, Mk12 suppressed sound)"
+    }
+  ],
+  "checks": 1941,
+  "native_verified": false,
+  "not_done": {
+    "ZBD-03 BMD-3 hull": "no BMD-3 in the game; BMD-4 hull has its turret built in",
+    "Z-20 marine skin": "no marine Z-20 skin found",
+    "ZBD-98": "no such unit in the roster"
+  }
+}

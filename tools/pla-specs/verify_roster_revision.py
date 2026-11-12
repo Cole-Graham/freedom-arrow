@@ -57,7 +57,8 @@ with zipfile.ZipFile(a.package) as z:
  if build>=33:
   for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
   for uid in [1049,943,974,918,961,1063,1054]:ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
-  for uid in [909,1058,1230]:ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+  # Build41: CSK-181 recon card removed; transport 1230 stays
+  for uid in [909,1230]+([1058] if build<41 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
  if build>=36:
   for uid in [1084,1085,1086,1105]:ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
   n=t['AmmunitionsJson'][2010399];k=t['AmmunitionsJson'][340]

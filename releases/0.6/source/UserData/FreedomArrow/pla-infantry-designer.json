@@ -1,5 +1,5 @@
 {
-  "build": 39,
+  "build": 41,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -54,7 +54,7 @@
     {
       "unit": 1137,
       "row": 17,
-      "name": "Airborne HJ-12 Team",
+      "name": "HJ-12 Team",
       "spec": 17,
       "men": 5,
       "recon": false,
@@ -139,7 +139,7 @@
     {
       "unit": 1139,
       "row": 9,
-      "name": "Airborne Tank Hunters \u5766\u514b\u6740\u624b",
+      "name": "Tank Hunters \u5766\u514b\u6740\u624b",
       "spec": 17,
       "men": 6,
       "recon": false,
@@ -181,7 +181,7 @@
     {
       "unit": 1140,
       "row": 10,
-      "name": "Airborne QLU-11 Precision Team",
+      "name": "QLU-11 Team",
       "spec": 17,
       "men": 5,
       "recon": false,
@@ -263,7 +263,7 @@
     {
       "unit": 1142,
       "row": 11,
-      "name": "Airborne Pathfinders \u7a7a\u964d\u5148\u9063\u4fa6\u5bdf\u5175",
+      "name": "Pathfinders \u5148\u9063\u961f",
       "spec": 17,
       "men": 7,
       "recon": true,
@@ -359,7 +359,7 @@
     {
       "unit": 1144,
       "row": 13,
-      "name": "Airborne Snipers \u7a7a\u964d\u72d9\u51fb\u7ec4",
+      "name": "Snipers \u72d9\u51fb\u7ec4",
       "spec": 17,
       "men": 3,
       "recon": true,
@@ -406,7 +406,7 @@
     {
       "unit": 1145,
       "row": 14,
-      "name": "Airborne HN-6 Patrol \u7a7a\u964d\u9632\u7a7a\u5de1\u903b\u961f",
+      "name": "HN-6 Patrol \u9632\u7a7a\u5de1\u903b",
       "spec": 17,
       "men": 5,
       "recon": false,
@@ -455,7 +455,7 @@
     {
       "unit": 1146,
       "row": 15,
-      "name": "Air Assault Raiders \u7a7a\u4e2d\u7a81\u51fb\u5175",
+      "name": "Assault Raiders \u7a81\u51fb\u961f",
       "spec": 17,
       "men": 9,
       "recon": false,
@@ -576,7 +576,7 @@
     {
       "unit": 1149,
       "row": 16,
-      "name": "Airborne Target Observers \u7a7a\u964d\u76ee\u6807\u89c2\u5bdf\u7ec4",
+      "name": "Target Observers \u89c2\u5bdf\u7ec4",
       "spec": 17,
       "men": 3,
       "recon": true,
@@ -667,7 +667,7 @@
     {
       "unit": 1151,
       "row": 23,
-      "name": "Mechanized AT Riflemen \u673a\u68b0\u5316\u53cd\u5766\u514b\u6b65\u5175",
+      "name": "Mechanized AT Riflemen \u53cd\u5766\u514b\u73ed",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -871,7 +871,7 @@
     {
       "unit": 1156,
       "row": 28,
-      "name": "Mechanized Combat Engineers \u673a\u68b0\u5316\u6218\u6597\u5de5\u5175",
+      "name": "Mechanized Combat Engineers \u5de5\u5175\u73ed",
       "spec": 18,
       "men": 8,
       "recon": false,
@@ -960,7 +960,7 @@
     {
       "unit": 1158,
       "row": 30,
-      "name": "Mechanized GPMG Riflemen \u673a\u68b0\u5316\u673a\u67aa\u6b65\u5175",
+      "name": "Mechanized GPMG Riflemen \u673a\u67aa\u73ed",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -1058,7 +1058,7 @@
     {
       "unit": 1160,
       "row": 31,
-      "name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf\u5175",
+      "name": "Armored Scouts \u88c5\u7532\u4fa6\u5bdf",
       "spec": 18,
       "men": 4,
       "recon": true,
@@ -1110,7 +1110,7 @@
     {
       "unit": 1161,
       "row": 32,
-      "name": "Armored Sniper Pair \u88c5\u7532\u72d9\u51fb\u7ec4",
+      "name": "Armored Sniper Pair \u72d9\u51fb\u7ec4",
       "spec": 18,
       "men": 2,
       "recon": true,
@@ -1155,7 +1155,7 @@
     {
       "unit": 1162,
       "row": 33,
-      "name": "Thermobaric Breachers \u673a\u68b0\u5316\u6e29\u538b\u7a81\u51fb\u5de5\u5175",
+      "name": "Thermobaric Breachers \u6e29\u538b\u5de5\u5175",
       "spec": 18,
       "men": 8,
       "recon": false,
@@ -1201,7 +1201,7 @@
     {
       "unit": 1163,
       "row": 34,
-      "name": "Mechanized Riflemen \u673a\u68b0\u5316\u6b65\u5175",
+      "name": "Mechanized Riflemen \u673a\u6b65\u73ed",
       "spec": 18,
       "men": 7,
       "recon": false,
@@ -1253,7 +1253,7 @@
     {
       "unit": 1164,
       "row": 35,
-      "name": "Armored Forward Observers \u88c5\u7532\u524d\u6cbf\u89c2\u5bdf\u7ec4",
+      "name": "Armored Forward Observers \u524d\u89c2\u7ec4",
       "spec": 18,
       "men": 3,
       "recon": true,
@@ -1341,7 +1341,7 @@
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1432,12 +1432,12 @@
     {
       "unit": 1168,
       "row": 39,
-      "name": "Reserve HJ-73D Team",
+      "name": "HJ-73D Team",
       "spec": 19,
       "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "HJ-73D",
@@ -1478,12 +1478,12 @@
     {
       "unit": 1169,
       "row": 40,
-      "name": "Reserve HN-6 Team",
+      "name": "HN-6 Team",
       "spec": 19,
       "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "HN-6",
@@ -1524,12 +1524,12 @@
     {
       "unit": 1170,
       "row": 41,
-      "name": "Reserve QJZ-89 Team",
+      "name": "QJZ-89 Team",
       "spec": 19,
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QJZ-89",
@@ -1570,12 +1570,12 @@
     {
       "unit": 1171,
       "row": 42,
-      "name": "Reserve QLZ-87 Team",
+      "name": "QLZ-87 Team",
       "spec": 19,
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QLZ-87",
@@ -1616,12 +1616,12 @@
     {
       "unit": 1172,
       "row": 43,
-      "name": "Reserve PF-98 Team",
+      "name": "PF-98 Team",
       "spec": 19,
       "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "PF-98",
@@ -1660,12 +1660,12 @@
     {
       "unit": 1173,
       "row": 44,
-      "name": "Malyutka Recon Ambush Team \u53cd\u5766\u514b\u4f0f\u51fb\u4fa6\u5bdf\u7ec4",
+      "name": "Malyutka Recon Ambush Team \u4fa6\u5bdf\u4f0f\u51fb",
       "spec": 19,
       "men": 4,
       "recon": true,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QBU-88",
@@ -1723,7 +1723,7 @@
       "men": 6,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QCW-05",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QBS-09",
@@ -1770,12 +1770,12 @@
     {
       "unit": 1175,
       "row": 46,
-      "name": "Missile Site Security \u5bfc\u5f39\u9635\u5730\u8b66\u536b",
+      "name": "Infantry \u6b65\u5175",
       "spec": 19,
       "men": 10,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1824,12 +1824,12 @@
     {
       "unit": 1176,
       "row": 47,
-      "name": "Missile-Site Counter-Raid Team \u5bfc\u5f39\u9635\u5730\u53cd\u88ad\u51fb\u961f",
+      "name": "Counter-Raid Team \u53cd\u88ad\u51fb\u961f",
       "spec": 19,
       "men": 8,
       "recon": false,
       "troop_type": "Elite",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QJS-161",
@@ -1880,12 +1880,12 @@
     {
       "unit": 1177,
       "row": 48,
-      "name": "Reserve Thermobaric Team",
+      "name": "Thermobaric Team",
       "spec": 19,
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191",
+      "base_rifle": "QBZ-95",
       "weapons": [
         {
           "name": "QBB-95",
@@ -2082,7 +2082,7 @@
       "row": 53,
       "name": "Godswords \u4e1c\u65b9\u795e\u5251",
       "spec": 20,
-      "men": 8,
+      "men": 6,
       "recon": false,
       "troop_type": "Special forces",
       "base_rifle": "QBZ-192",
@@ -2093,13 +2093,6 @@
           "quantity": 6,
           "slot": "primary",
           "native_weapon": 2004004
-        },
-        {
-          "name": "QLU-11",
-          "weapon": 2004002,
-          "quantity": 2,
-          "slot": "primary",
-          "native_weapon": 2004002
         }
       ],
       "munitions": "QTS 20 mm + QLU 35 mm HE; no automatic airburst/cover bonus",
@@ -2107,7 +2100,7 @@
       "body_from": 998,
       "camo": "desert",
       "armor": 10,
-      "health": 40,
+      "health": 30,
       "carriers": [
         1076,
         962,
@@ -2186,7 +2179,7 @@
       "name": "Blood Wolves \u8840\u72fc",
       "spec": 20,
       "men": 8,
-      "recon": true,
+      "recon": false,
       "troop_type": "Special forces",
       "base_rifle": "QBZ-192",
       "weapons": [
@@ -2316,6 +2309,13 @@
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 30
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
         }
       ],
       "munitions": "35 mm HE + light HEAT",
@@ -2395,7 +2395,7 @@
       "name": "Beijing Swords \u84dd\u5251",
       "spec": 20,
       "men": 6,
-      "recon": false,
+      "recon": true,
       "troop_type": "Special forces",
       "base_rifle": "QCW-05",
       "weapons": [
@@ -2605,7 +2605,7 @@
       "name": "Sea Dragons \u86df\u9f99",
       "spec": 20,
       "men": 8,
-      "recon": true,
+      "recon": false,
       "troop_type": "Special forces",
       "base_rifle": "QBZ-192",
       "weapons": [
@@ -2657,7 +2657,7 @@
     {
       "unit": 1192,
       "row": 61,
-      "name": "Marine Riflemen \u6d77\u519b\u9646\u6218\u6b65\u5175",
+      "name": "Marines \u9646\u6218\u961f",
       "spec": 20,
       "men": 8,
       "recon": false,
@@ -2857,7 +2857,7 @@
     {
       "unit": 1196,
       "row": 68,
-      "name": "Motorized Line Infantry \u6469\u6258\u5316\u6b65\u5175",
+      "name": "Motorized Line Infantry \u6469\u6b65\u73ed",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -2905,7 +2905,7 @@
     {
       "unit": 1197,
       "row": 69,
-      "name": "Motorized AA Troopers \u6469\u6258\u5316\u9632\u7a7a\u6b65\u5175",
+      "name": "Motorized AA Troopers \u9632\u7a7a\u73ed",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -2953,7 +2953,7 @@
     {
       "unit": 1198,
       "row": 70,
-      "name": "Motorized AT Troopers \u6469\u6258\u5316\u53cd\u5766\u514b\u6b65\u5175",
+      "name": "Motorized AT Troopers \u53cd\u5766\u514b\u7ec4",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -3100,7 +3100,7 @@
     {
       "unit": 1201,
       "row": 72,
-      "name": "Motorized Recon Patrol \u6469\u6258\u5316\u4fa6\u5bdf\u5175",
+      "name": "Motorized Recon Patrol \u4fa6\u5bdf\u73ed",
       "spec": 21,
       "men": 6,
       "recon": true,
@@ -3155,7 +3155,7 @@
     {
       "unit": 1202,
       "row": 73,
-      "name": "Motorized Snipers \u6469\u6258\u5316\u72d9\u51fb\u7ec4",
+      "name": "Motorized Snipers \u72d9\u51fb\u7ec4",
       "spec": 21,
       "men": 3,
       "recon": true,
@@ -3309,7 +3309,7 @@
     {
       "unit": 1205,
       "row": 75,
-      "name": "Motorized Light AT Riflemen \u6469\u6258\u5316\u8f7b\u578b\u53cd\u5766\u514b\u6b65\u5175",
+      "name": "Motorized Light AT Riflemen \u8f7b\u53cd\u5766\u514b",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -3357,7 +3357,7 @@
     {
       "unit": 1206,
       "row": 76,
-      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf\u5175",
+      "name": "Air Defense Scouts \u9632\u7a7a\u4fa6\u5bdf",
       "spec": 21,
       "men": 5,
       "recon": true,
@@ -3504,7 +3504,7 @@
     {
       "unit": 1209,
       "row": 78,
-      "name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb\u5175",
+      "name": "Thermobaric Assault \u6e29\u538b\u7a81\u51fb",
       "spec": 21,
       "men": 9,
       "recon": false,
@@ -3608,7 +3608,7 @@
     {
       "unit": 1211,
       "row": 83,
-      "name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa\u8bd5\u9a8c\u7ec4",
+      "name": "Test Export Riflemen \u51fa\u53e3\u6b65\u67aa",
       "spec": 22,
       "men": 8,
       "recon": false,
@@ -3653,7 +3653,7 @@
     {
       "unit": 1212,
       "row": 84,
-      "name": "Test SMG Assault \u51b2\u950b\u67aa\u7a81\u51fb\u8bd5\u9a8c\u7ec4",
+      "name": "Test SMG Assault \u51b2\u950b\u67aa\u7ec4",
       "spec": 22,
       "men": 8,
       "recon": false,
@@ -3698,7 +3698,7 @@
     {
       "unit": 1213,
       "row": 85,
-      "name": "Test Suppressed Scouts \u6d88\u58f0\u6b66\u5668\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
+      "name": "Test Suppressed Scouts \u6d88\u58f0\u4fa6\u5bdf",
       "spec": 22,
       "men": 6,
       "recon": true,
@@ -4183,7 +4183,7 @@
     {
       "unit": 1224,
       "row": 96,
-      "name": "Test QTS Recon Cell \u6570\u5b57\u5316\u4fa6\u5bdf\u8bd5\u9a8c\u7ec4",
+      "name": "Test QTS Recon Cell \u6570\u5b57\u4fa6\u5bdf",
       "spec": 22,
       "men": 4,
       "recon": true,

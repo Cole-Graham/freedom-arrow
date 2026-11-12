@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "40",
+  "package_version": "41",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build39 with the invalid BaseSquadSize field removed from 73 new infantry Units rows, so the runtime applies the China data again (Builds33-39 restored vanilla). Data checks only; native validation pending."
+  "verification": "Build40 plus Osama 12 Nov 03:08-03:37 batch: removals, spec moves, designation names, SF helicopter copies, Y-8 Harvest Hawk, QBZ-95 Rocket Force rifles, Godswords, tab moves, recon helicopters without missiles, QBU-191 suppressed, QJY-201 card, J-50 probe stowed. Data checks only; native validation pending."
 }
