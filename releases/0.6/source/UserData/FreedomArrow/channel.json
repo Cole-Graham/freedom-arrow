@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "37",
+  "package_version": "38",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build34 plus infantry sheet edits made after the Build32 import. Data checks only; native validation pending."
+  "verification": "Build37 plus the runtime DLL rebuilt with build 38 compiled in (Builds34-37 carried the Build33 DLL and showed verification failed). Data checks only; native validation pending."
 }

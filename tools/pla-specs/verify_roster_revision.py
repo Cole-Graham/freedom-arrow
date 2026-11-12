@@ -1,5 +1,5 @@
 """Independent structural and numeric checks for the packaged PLA31+ batches."""
-import argparse,json,sys,zipfile
+import argparse,json,re,sys,zipfile
 from collections import defaultdict
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
@@ -13,11 +13,16 @@ with zipfile.ZipFile(a.package) as z:
    if v is None:t[tab].pop(int(k),None)
    else:t[tab].setdefault(int(k),{'Id':int(k)}).update(v)
  models=json.loads(z.read('UserData/FAModels/models.json'))
- build=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'))['build']
+ whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));build=whole['build']
  checks=0
  def ok(value,msg):
   global checks
   assert value,msg;checks+=1
+ # Same identity rule the runtime enforces at game start (BuildIdentity.ResolveLabel); Builds34-37 shipped the Build33 DLL and failed it.
+ dll=z.read('Mods/FreedomArrow.Runtime.dll');compiled=[dll[m.end():m.end()+m.group(1)[0]].decode() for m in re.finditer(rb'\x08PLA TEST(.)',dll)]
+ ok(compiled==[str(build)],('runtime DLL compiled version',compiled,build))
+ ok(json.loads(z.read('UserData/FreedomArrow/channel.json'))['package_version']==str(build),'channel package_version')
+ ok(json.loads(z.read('mod.json'))['version']==str(build) and whole['label']=='PLA TEST Build '+str(build),'mod.json version / package label')
  for tab,rs in t.items():
   for key,r in rs.items():ok(key==r['Id'],('row identity mismatch',tab,key,r['Id']))
  for tab,field,target in [('UnitArmorsJson','UnitId','Units'),('UnitArmorsJson','ArmorId','ArmorsJson'),('UnitPropulsionsJson','UnitId','Units'),('UnitPropulsionsJson','MobilityId','MobilityJson'),('UnitAbilitiesJson','UnitId','Units'),('UnitAbilitiesJson','AbilityId','AbilitiesJson'),('SensorUnitsJson','UnitId','Units'),('SensorUnitsJson','SensorId','SensorsJson'),('TurretUnitsJson','UnitId','Units'),('TurretUnitsJson','TurretId','TurretsJson'),('TurretWeaponsJson','TurretId','TurretsJson'),('TurretWeaponsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','UnitId','Units'),('WeaponAmmunitionsJson','WeaponId','WeaponsJson'),('WeaponAmmunitionsJson','AmmunitionId','AmmunitionsJson'),('SpecializationAvailabilitiesJson','UnitId','Units'),('SpecializationAvailabilitiesJson','SpecializationId','SpecializationsJson'),('TransportAvailabilitiesJson','UnitId','Units'),('TransportAvailabilitiesJson','SpecializationAvailabilityId','SpecializationAvailabilitiesJson')]:

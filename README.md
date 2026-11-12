@@ -1,3 +1,9 @@
+# PLA TEST Build 38
+
+Fixes "PLA TEST (verification failed)" at game start. Builds 34-37 carried the Build 33 runtime DLL, so its compiled version (33) did not match the package build number and the runtime refused the payload. The DLL is rebuilt with 38 compiled in, and the regression and package checks now refuse any DLL whose compiled version is not the build number. Everything else is exactly Build37. In-game load remains to be confirmed.
+
+## Historical Build37
+
 # PLA TEST Build 37
 
 J-10A now has its own texture: the J-10C blue-grey panels are repainted a neutral dark white-grey. Builds 31-36 used a colour tint that turned it salmon/tan. J-10C is unchanged. Everything else is exactly Build36. In-game appearance remains unverified.
@@ -479,3 +485,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:38:31 PST (America/Los_Angeles) — Build36: DF-31 copies the nuclear Kinzhal warhead; four drone helicopters without models removed. Correction: the Build34 entry above says 01:36:00; the actual Build34 edit was about 01:31 PST.
 
 - 2026-11-12 01:43:45 PST (America/Los_Angeles) — Build37: J-10A repainted on its own texture (neutral dark white-grey); the salmon/tan colorScale tint is removed.
+
+- 2026-11-12 01:57:13 PST (America/Los_Angeles) — Build38: runtime DLL rebuilt with compiled version 38; Builds34-37 shipped the Build33 DLL and failed the start-up identity check. Added a compiled-version check to verify_roster_revision.py and the package script.
