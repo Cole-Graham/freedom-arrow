@@ -1,8 +1,8 @@
-# Freedom Arrow 0.7.0-devtest.lat.24 — development candidate
+# Freedom Arrow 0.7.0-dev.56 — development candidate
 
-## Map, playable-border and lobby test batch
+## Current main promotion — map, border, lobby and time-up batch (dev.56)
 
-**This isolated lat.24 test starts from maintained dev.55. It adds Highway of Death 0.1 Lateralus's [5v5] Airport 0.1, [3v3] Baltiisk 0.1 and [3v3] Dam 0.1, sets every FA map's zone capture time to the vanilla 15 seconds, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer in-scene border line plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
+**Main dev.56 promotes Lateralus's map, border, lobby and time-up batch (changelog items 13–21, tested as lat.18–lat.24) onto main dev.55. It adds Highway of Death 0.1, Lateralus's [5v5] Airport 0.1, [3v3] Baltiisk 0.1 and [3v3] Dam 0.1 (replacing the vanilla-built Airport, Baltiisk and Dam), activates/crops Chkalovsk's play area, fixes Dead Center 1v1 red spawns and cameras, sets every FA map's capture time to the vanilla 15 seconds, draws the play area as a white line in the 3D scene, adds a bounded lobby deck-list refresh, and decides the time-up result from the FA score (10% lead wins).**
 
 - Highway: Alpha/Bravo/Charlie/Golf 2; Foxtrot 3; Delta/Echo 6. Correct native A–G icons, two slots per team, FA conquest/deployment scripts, offline Skirmish flavor, and per-team cameras. Objective IDs are unique to this map so clients can identify its weights.
 - Chkalovsk: X 0–9000; Z 0–4850.01636. The north edge is 1500 engine units beyond Alpha's centre. The other three edges meet Airbase's native 9000×9000 map limits. The existing unselected playable-zone object is now active.
@@ -15,10 +15,10 @@
 - [3v3] Baltiisk and [3v3] Dam (lat.23): Lateralus's redesigns replace [FA] Baltiisk 0.1 and [FA] Dam 0.1, with his scripts. Baltiisk: Hotel/India 4; Delta/Echo/Foxtrot/Golf 3; Alpha/Bravo/Charlie 2 (Hotel and India showed "Echo" and now show their names). Dam: Charlie/Delta/India/Juliet 4; Alpha/Bravo/Golf/Hotel 3; Echo/Foxtrot/Kilo/Lima 2 (an extra capturing team 7 is removed). All three of Lateralus's maps (Airport, Baltiisk, Dam) now build through one shared path; the vanilla-map builder is retired because no map uses it.
 - Time-up result (lat.24): when the match clock runs out, a side at 300 wins; otherwise the side with at least 10% more points wins (any lead over 0 points); otherwise it is a draw. Before, the game's own time-up check gave a draw below 300 (Lateralus, 12 November 2026). Setting `TimeWinMarginPercent` 10. Offline the result is returned directly; online the scenario host sends it the same way as a 300-point win. Not yet run in a game.
 
-All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.24 package through Mod Manager; this task does not switch the installed PLA pack.
+All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. Promoted to `codex/0.7-development` from `codex/batch/lateralus/map-borders-lobby` (Lateralus, 12 November 2026). The public launcher stays locked to dev.45/assets 0.1.14. Import the exact dev.56 package through Mod Manager.
 
 
-## Current main promotion — all missile-defence guns and four AT4 carriers
+## Previous main promotion (dev.55) — all missile-defence guns and four AT4 carriers
 
 **Every existing direct-fire projectile-defence gun now gets 2x muzzle velocity, the new prediction and cooldown-aware overkill handling: Pantsir, PIVADS, Shilka, Tunguska, C-RAM, M230LF, ship CIWS and AK-630M. All eight native round speeds are 805, so each becomes 1610. Normal dispersion and native range/damage/traversal remain. Helicopter flare stock 15 is retained.**
 
@@ -293,3 +293,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-12 03:09:31 PST (America/Los_Angeles) — lat.22: border redrawn in the 3D scene with the objective-border material (white, soft-edged, hidden by terrain/trees/units, under the HUD), after Lateralus's lat.21 test.
 - 2026-11-12 04:04:59 PST (America/Los_Angeles) — lat.23: Lateralus's [3v3] Baltiisk and [3v3] Dam replace the vanilla-built Baltiisk and Dam, with his zone values; shared authored-map build.
 - 2026-11-12 04:47:28 PST (America/Los_Angeles) — lat.24: time-up result uses the FA ledger: score limit, else a 10% lead wins, else a draw (Lateralus).
+- 2026-11-12 04:49:28 PST (America/Los_Angeles) — Main dev.56: promoted Lateralus's batch items 13–21 (lat.18–24) to 0.7 development at his request.

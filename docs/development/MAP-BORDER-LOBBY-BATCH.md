@@ -1,6 +1,6 @@
 # Map, border and lobby test batch
 
-**lat.24 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
+**Promoted to main 0.7 development as dev.56 (Lateralus, 12 November 2026: "push # 13 - 21 to the main dev build"). lat.24 implements Lateralus's requested map changes on the maintained dev.55 base. It is an isolated candidate, with no installation, native visual test or live-lobby verification performed.**
 
 ## Source and package
 
@@ -60,3 +60,4 @@ Import lat.24 through Mod Manager, then check the exact version label. Use the o
 - 2026-11-12 03:09:31 PST (America/Los_Angeles) — lat.22: in-scene white border strip using the objective-border material, after Lateralus's lat.21 screenshots.
 - 2026-11-12 04:04:59 PST (America/Los_Angeles) — lat.23: [3v3] Baltiisk and [3v3] Dam replace the vanilla-built maps; shared authored-map build; vanilla builder retired.
 - 2026-11-12 04:47:28 PST (America/Los_Angeles) — lat.24: time-up margin win (10%), after Lateralus's draw report.
+- 2026-11-12 04:49:28 PST (America/Los_Angeles) — Promoted as main dev.56 on codex/0.7-development; the batch branch is kept.
