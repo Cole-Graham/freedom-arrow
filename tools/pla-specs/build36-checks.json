@@ -1,0 +1,33 @@
+{
+  "build": 36,
+  "base_build": 35,
+  "base_sha256": "5075df533637dbfa33d39930457b2eec6883f785a942107fe496a93c28e8d171",
+  "df31_ammo": {
+    "Damage": 666.0,
+    "CriticMultiplier": 202.0,
+    "DamageOverTimeDuration": 5.0,
+    "HealthAOERadius": 350.0,
+    "OverpressureRadius": 175.0,
+    "StressAOERadius": 400.0,
+    "StressDamage": 9999.0,
+    "PenetrationAtGroundRange": 2000.0,
+    "PenetrationAtMinRange": 2000.0,
+    "IsTopArmorArmorAttack": true,
+    "AudioPreset": "AmmunitionSoundsPreset_SFX_Explosion_Nuke",
+    "FXPreset": "AMMUNITION_VFX_PRESET_CRUISE_MISSLE_NUKE",
+    "VfxCountPerShotMax": 1,
+    "SupplyCost": 27500.0,
+    "ResupplyTime": 1300.0,
+    "TrajectoryType": 300,
+    "HUDName": "DF-31A nuclear warhead"
+  },
+  "removed_drones": [
+    1084,
+    1085,
+    1086,
+    1105
+  ],
+  "visible_units": 256,
+  "checks": 26709,
+  "native_verified": false
+}

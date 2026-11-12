@@ -49,6 +49,10 @@ with zipfile.ZipFile(a.package) as z:
   for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
   for uid in [1049,943,974,918,961,1063,1054]:ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
   for uid in [909,1058,1230]:ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+ if build>=36:
+  for uid in [1084,1085,1086,1105]:ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
+  n=t['AmmunitionsJson'][2010399];k=t['AmmunitionsJson'][340]
+  ok(all(n[f]==k[f] for f in ['Damage','HealthAOERadius','OverpressureRadius','StressAOERadius','FXPreset','AudioPreset']) and n['TrajectoryType']==300,'DF31 nuclear Kinzhal warhead, ballistic flight')
  if build>=34:
   hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
   ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==[18,19,21],'HMV3 specs')

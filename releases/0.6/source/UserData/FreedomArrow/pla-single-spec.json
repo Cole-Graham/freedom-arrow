@@ -1,7 +1,7 @@
 {
-  "build": 35,
-  "base_build": 33,
-  "base_sha256": "329c54858cfac03ef5712f6e42334180a696e5872b293e682bb163db99f7f41c",
+  "build": 36,
+  "base_build": 35,
+  "base_sha256": "5075df533637dbfa33d39930457b2eec6883f785a942107fe496a93c28e8d171",
   "changes": [
     {
       "unit": 900,
@@ -1463,27 +1463,6 @@
       ]
     },
     {
-      "unit": 1084,
-      "name": "AR-2000",
-      "specs": [
-        17
-      ]
-    },
-    {
-      "unit": 1085,
-      "name": "CR-500 Recon",
-      "specs": [
-        17
-      ]
-    },
-    {
-      "unit": 1086,
-      "name": "CR-500B",
-      "specs": [
-        17
-      ]
-    },
-    {
       "unit": 1087,
       "name": "J-10CE",
       "specs": [
@@ -1598,13 +1577,6 @@
     {
       "unit": 1104,
       "name": "Z-21",
-      "specs": [
-        17
-      ]
-    },
-    {
-      "unit": 1105,
-      "name": "Z-6B UAV",
       "specs": [
         17
       ]
@@ -1920,13 +1892,6 @@
     {
       "unit": 1177,
       "name": "Reserve Thermobaric Team",
-      "specs": [
-        19
-      ]
-    },
-    {
-      "unit": 1180,
-      "name": "FHJ-02 Incendiary Team",
       "specs": [
         19
       ]
@@ -2267,7 +2232,7 @@
       ]
     }
   ],
-  "single_spec_units": 259,
+  "single_spec_units": 254,
   "shared_exception": [
     1227,
     1235
@@ -2310,6 +2275,6 @@
       "incorrect_donor_id": 1079
     }
   ],
-  "checks": 26702,
+  "checks": 26709,
   "native_verified": false
 }

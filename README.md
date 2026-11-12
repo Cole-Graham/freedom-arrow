@@ -1,3 +1,9 @@
+# PLA TEST Build 36
+
+DF-31A now carries the native Kh-47M2 Kinzhal nuclear warhead (666 damage, 350 m blast, nuclear explosion effect and sound) on its ballistic flight. AR-2000, CR-500 Recon, CR-500B and Z-6B UAV are removed because they had no model. ZBD-251 keeps the Kurganets model. Everything else is exactly Build35. Native launch, blast and warning remain unverified.
+
+## Historical Build35
+
 # PLA TEST Build 35
 
 Build34 plus the infantry sheet edits Osama made after the Build32 import: Reserve QJZ-89 and QLZ-87 Teams 12 men (were 9), Reserve Thermobaric Team 12 (was 6), Marine Riflemen 8 (was 12), Reserve HJ-73D Team one HJ-73D (was 2), and the struck FHJ-02 Incendiary Team removed. Carriers follow the new sizes. Everything else is exactly Build34. Native validation pending.
@@ -463,3 +469,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 01:36:00 PST (America/Los_Angeles) — Build34 adds the Shaanxi HMV3 supply truck from the HEMTT for Armored, Rocket Force and Motorized; second shared exception after Mi-8 Cargo.
 
 - 2026-11-12 01:32:53 PST (America/Los_Angeles) — Build35 applies the latest infantry sheet sizes, kit and removal over Build34.
+
+- 2026-11-12 01:38:31 PST (America/Los_Angeles) — Build36: DF-31 copies the nuclear Kinzhal warhead; four drone helicopters without models removed. Correction: the Build34 entry above says 01:36:00; the actual Build34 edit was about 01:31 PST.

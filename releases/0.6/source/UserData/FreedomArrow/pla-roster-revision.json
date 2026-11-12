@@ -1,5 +1,5 @@
 {
-  "build": 35,
+  "build": 36,
   "base_build": 30,
   "base_sha256": "809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a",
   "native_verified": false,
@@ -72,14 +72,18 @@
   },
   "removed_units": [
     962,
+    1031,
+    1044,
     1066,
     1067,
     1068,
     1069,
     1071,
     1073,
-    1031,
-    1044
+    1084,
+    1085,
+    1086,
+    1105
   ],
   "new_units": {
     "J-10A": 1226,
@@ -133,7 +137,7 @@
       18
     ]
   },
-  "nuclear_effect": "pending; conventional explosion retained",
+  "nuclear_effect": "DF-31 warhead copies native ammo 340 Kh-47M2 Kinzhal Nuke; ballistic flight retained",
   "checks": {
     "passed": 1681,
     "native_verified": false,
@@ -146,5 +150,6 @@
     "audio": "original synthesized replaceable draft",
     "controls": "existing ballistic warning enable, sound mute and volume; same game bus",
     "runtime_verified": false
-  }
+  },
+  "drone_model_audit_result": "All four used DLC3_MDP01_Termit with no custom model; removed (Osama 12 Nov)"
 }

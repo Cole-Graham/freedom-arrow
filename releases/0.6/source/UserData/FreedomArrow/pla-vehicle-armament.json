@@ -1,5 +1,5 @@
 {
-  "build": 35,
+  "build": 36,
   "entries": [
     {
       "unit": 900,
@@ -5136,7 +5136,7 @@
           "stocks": [
             {
               "ammo": 2010399,
-              "name": "DF-31A conventional test missile ammunition",
+              "name": "DF-31A nuclear warhead",
               "requested_rounds": 1,
               "displayed_rounds": 1,
               "logical_quantity": 1,
@@ -8368,10 +8368,8 @@
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
-      "specs": [
-        17
-      ],
-      "active": true
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1085,
@@ -8383,10 +8381,8 @@
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
-      "specs": [
-        17
-      ],
-      "active": true
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1086,
@@ -8420,10 +8416,8 @@
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
-      "specs": [
-        17
-      ],
-      "active": true
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1087,
@@ -9251,10 +9245,8 @@
       "custom_model": null,
       "armor_basis": "Selected native chassis analog; not a measured Chinese armor claim.",
       "native_verified": false,
-      "specs": [
-        17
-      ],
-      "active": true
+      "specs": [],
+      "active": false
     },
     {
       "unit": 1106,

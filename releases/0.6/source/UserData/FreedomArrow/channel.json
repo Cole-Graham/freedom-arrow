@@ -1,6 +1,6 @@
 {
   "channel": "testing",
-  "package_version": "35",
+  "package_version": "36",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
   "verification": "Build34 plus infantry sheet edits made after the Build32 import. Data checks only; native validation pending."

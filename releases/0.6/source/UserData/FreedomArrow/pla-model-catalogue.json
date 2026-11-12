@@ -1727,9 +1727,7 @@
       "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        17
-      ]
+      "specs": []
     },
     {
       "sheet_row": 125,
@@ -1745,9 +1743,7 @@
       "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        17
-      ]
+      "specs": []
     },
     {
       "sheet_row": 126,
@@ -1763,9 +1759,7 @@
       "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        17
-      ]
+      "specs": []
     },
     {
       "sheet_row": 127,
@@ -2612,9 +2606,7 @@
       "native_model": "DLC3_MDP01_Termit",
       "custom_model": null,
       "implementation": "Named stand-in",
-      "specs": [
-        17
-      ]
+      "specs": []
     },
     {
       "sheet_row": 170,
@@ -3164,5 +3156,5 @@
   ],
   "excluded_no_model": 71,
   "native_verified": false,
-  "build": 35
+  "build": 36
 }
