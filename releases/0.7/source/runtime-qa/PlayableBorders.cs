@@ -10,29 +10,45 @@ namespace FreedomArrow;
 internal static class PlayableBorders
 {
     static PlayableZone zone;
-    static IntPtr owner;
     static Bounds cached;
     static Vector3[][] edges=Array.Empty<Vector3[]>();
     static float next;
-    static bool off;
+    static bool off,waitLogged;
     public static void Install(HarmonyLib.Harmony h)
     {
-        h.Patch(AccessTools.Constructor(typeof(PlayableZone),new[]{typeof(IGameController)})
-            ??throw new MissingMethodException("PlayableZone(IGameController)"),
-            postfix:new HarmonyMethod(typeof(PlayableBorders),nameof(Created)));
+        // lat.18-20 hooked the PlayableZone constructor. GameAssembly has no direct call to it (the
+        // constructor is inlined), so the hook never ran and nothing was drawn (Lateralus, 12 November 2026).
+        // These methods have direct native callers: the minimap subscribes at mission load
+        // (MiniMapBehaviour.OnMissionLoaded), and the scenario script switches zones with SetPlayZone.
+        // ContainsForPlayer is not used: target search calls it often.
+        var seen=new HarmonyMethod(typeof(PlayableBorders),nameof(Seen));
+        foreach(var name in new[]{"add_OnZoneBoundsChanged","SetPlayZone"})
+            h.Patch(AccessTools.Method(typeof(PlayableZone),name)??throw new MissingMethodException("PlayableZone."+name),postfix:seen);
         h.Patch(AccessTools.Method(typeof(GameController),nameof(GameController.Dispose)),
             prefix:new HarmonyMethod(typeof(PlayableBorders),nameof(Disposed)));
-        DiagnosticLog.Write("playable_borders_installed",new{innerPixels=3,outlinePixels=7,sampleSpacing=50,maxSamplesPerEdge=192});
+        DiagnosticLog.Write("playable_borders_installed",new{innerPixels=3,outlinePixels=7,sampleSpacing=50,maxSamplesPerEdge=192,
+            hooks="add_OnZoneBoundsChanged,SetPlayZone"});
     }
-    static void Created(PlayableZone __instance,IGameController __0)
+    static void Seen(PlayableZone __instance)
     {
-        zone=__instance;owner=__0.Pointer;edges=Array.Empty<Vector3[]>();next=0;off=false;
+        if(zone!=null&&zone.Pointer==__instance.Pointer)return;
+        zone=__instance;edges=Array.Empty<Vector3[]>();next=0;off=false;waitLogged=false;
+        DiagnosticLog.Write("playable_borders_zone",new{});
     }
-    static void Disposed(GameController __instance){if(__instance.Pointer==owner)Clear();}
-    public static void Clear(){zone=null;owner=IntPtr.Zero;edges=Array.Empty<Vector3[]>();}
+    static void Disposed(){Clear();}
+    public static void Clear(){zone=null;edges=Array.Empty<Vector3[]>();}
     public static void SceneChanged(){edges=Array.Empty<Vector3[]>();next=0;}
     static bool Active=>!off&&Runtime.IsApplied&&zone!=null&&!zone.WasCollected&&GameController.IsInstanceAlive
-        &&GameController.Instance.Pointer==owner&&!GameController.Instance._disposed;
+        &&!GameController.Instance._disposed;
+    // Camera.main needs the MainCamera tag. Otherwise use the enabled screen camera with the highest depth.
+    static Camera View()
+    {
+        var main=Camera.main;if(main!=null)return main;
+        Camera best=null;
+        foreach(var c in Camera.allCameras)
+            if(c!=null&&c.isActiveAndEnabled&&c.targetTexture==null&&(best==null||c.depth>best.depth))best=c;
+        return best;
+    }
     public static void Update()
     {
         try
@@ -40,7 +56,11 @@ internal static class PlayableBorders
             if(!Active||Time.unscaledTime<next)return;
             next=Time.unscaledTime+.5f;
             var game=GameController.Instance;
-            if(game.MapMetaData==null||game.MapSettings==null||Camera.main==null)return;
+            if(game.MapMetaData==null||game.MapSettings==null||View()==null)
+            {
+                if(!waitLogged){waitLogged=true;DiagnosticLog.Write("playable_borders_waiting",new{metadata=game.MapMetaData!=null,settings=game.MapSettings!=null,camera=View()!=null});}
+                return;
+            }
             var bounds=zone.PlayZoneBounds;
             if(edges.Length!=0&&bounds==cached)return;
             var lo=bounds.min;var hi=bounds.max;
@@ -66,7 +86,8 @@ internal static class PlayableBorders
                 sampled[edge]=points;
             }
             cached=bounds;edges=sampled;
-            DiagnosticLog.Write("playable_borders_bounds",new{minX=lo.x,minZ=lo.z,maxX=hi.x,maxZ=hi.z,samples=edges.Sum(e=>e.Length)});
+            var view=View();
+            DiagnosticLog.Write("playable_borders_bounds",new{minX=lo.x,minZ=lo.z,maxX=hi.x,maxZ=hi.z,samples=edges.Sum(e=>e.Length),camera=view.name,mainTag=Camera.main!=null});
         }
         catch(Exception e){Fail(e);}
     }
@@ -76,7 +97,7 @@ internal static class PlayableBorders
         try
         {
             if(!Active||edges.Length==0)return;
-            var camera=Camera.main;if(camera==null)return;
+            var camera=View();if(camera==null)return;
             var oldColor=GUI.color;var oldMatrix=GUI.matrix;int depth=GUI.depth;
             try
             {
