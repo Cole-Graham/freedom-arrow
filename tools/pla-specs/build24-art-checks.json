@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "gameplay_tables_equal": 24,
+  "approved_master_hashes": 13,
+  "requested_godsword_pair": true,
+  "unit_sprites_changed": 26,
+  "spec_sprites_changed": 5,
+  "weapon_hud_sprites_unchanged": 16,
+  "country_flag_unchanged": true,
+  "native_spec_addresses_verified": 5,
+  "all90_card_assignments_retained": true,
+  "test_spec_still22": true,
+  "native_verified": false
+}

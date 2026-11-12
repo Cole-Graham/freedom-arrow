@@ -9,7 +9,7 @@ var resources=metadata.ManifestResources.Select(x=>metadata.GetManifestResource(
 var block=pe.GetSectionData(pe.PEHeaders.CorHeader!.ResourcesDirectory.RelativeVirtualAddress);
 using var receipt=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"../UserData/FreedomArrow/pla-weapon-hud.json")));
 using var identity=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"../UserData/FreedomArrow/pla-infantry-identity.json")));
-var addresses=receipt.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!).Concat(identity.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!)).Distinct().ToArray();
+var addresses=receipt.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!).Concat(identity.RootElement.GetProperty("resources").EnumerateArray().Select(x=>x.GetString()!)).Concat(new[]{"FA_CHINA_FLAG","FA_CHINA_AIR_SF","FA_CHINA_ARMORED","FA_CHINA_ROCKET","FA_CHINA_NAVAL","FA_CHINA_MOTORIZED"}).Distinct().ToArray();
 foreach(var address in addresses)
 {
     var resource=resources["FreedomArrow.icons."+address+".png"];

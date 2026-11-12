@@ -1,3 +1,11 @@
+# PLA TEST Build 24
+
+**Approved infantry unit emblems and five branch spec badges. All Build23 gameplay data, weapon HUD art, models, rigging, audio and FA Music1.5.0 retained. Native appearance pending.**
+
+Thirteen approved unit profiles use the reviewed shapes; the earlier requested Godsword blade-only correction is included. Air Force, Ground Force, Rocket Force and Navy spec icons reuse actual branch-badge central SVG geometry; Motorized reuses its approved unit emblem. No new combat statistics or roster assignments.
+
+## Historical Build23
+
 # PLA TEST Build 23
 
 **Build23 combines the complete Build22 emblem/name refinement with the installed FA Music1.5.0 native Home selector. Every game-table field and all64 addressed icon PNGs match Build22; approved Thunder Gods and Whistling Arrows remain untouched. Audio, models, ammo, stats, rigging, preferences and Build17 grouping are retained. The music selector was tested separately on Build21; the combinedBuild23 pack remains untested in-game.**
@@ -357,3 +365,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 13:02:37 PST (America/Los_Angeles) — Build22 feedback: fierce leopard, coiled sea dragon, visible sword, detailed birds; larger star-free Airborne/Rocket patch motifs; Sky Hunters/Mountain Hunters labels; approved Thunder Gods/Whistling Arrows retained.
 
 - 2026-11-11 13:09:29 PST (America/Los_Angeles) — Build23 merges the verified installed FA Music1.5.0 player with unchanged Build22 art/game data to prevent a full-package switch from reverting the native music selector.
+
+- 2026-11-11 17:15:13 PST (America/Los_Angeles) — Integrated approved unit art and branch spec badges into Build24; retained Build23 gameplay/model/music data.

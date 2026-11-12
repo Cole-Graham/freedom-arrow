@@ -1,0 +1,235 @@
+{
+  "build": 24,
+  "approval_basis": "Sam voice message1570243627152842833: all latest designs perfect; add to PLA test; five branch spec icons",
+  "approved_count": 13,
+  "profiles": {
+    "EAGLE": {
+      "profile": "EAGLE",
+      "name": "Eagles Recon",
+      "sha256": "0bfe8163c040c5ef21da2a052ab2985ff1367a00c0bb72fb72a672092bd269f1",
+      "approved_master": "tools/pla-specs/approved-patch-masters/EAGLE-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_EAGLE": "98be8ca42ad251eeb25812a439212a57267bb6c23d13f533fdd3a461a1db587c",
+        "FA_PLA_INF_EAGLE_OUTLINE": "1e531e213163fc1c190565ff4262d338c8ae0532d99d85f327711d3c2f3c2e2f"
+      }
+    },
+    "FALCON": {
+      "profile": "FALCON",
+      "name": "Falcon",
+      "sha256": "1ab22daf967e5a6c23e963d1902f7a99bdae76f96bb01437463d5214396c3d55",
+      "approved_master": "tools/pla-specs/approved-patch-masters/FALCON-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_FALCON": "c5c8d8e2b992f0b43e6f427138d1ff70b68af288d94d36638939a26e25f36919",
+        "FA_PLA_INF_FALCON_OUTLINE": "afcd79b3aafb0ecf513080455f75e213eea9a3849fc2b66eb52b634cecf87ebd"
+      }
+    },
+    "JIAOLONG": {
+      "profile": "JIAOLONG",
+      "name": "Sea Dragons",
+      "sha256": "607b6c73f4f7591f6f834f5c3ffe4bb86f6b96376fbe4c960a26ef4037e764fe",
+      "approved_master": "tools/pla-specs/approved-patch-masters/JIAOLONG-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_JIAOLONG": "bb8a920694d9b5e8b829b79e23d6e8b2c521b08b7afc9f1a63c89353b69cd8de",
+        "FA_PLA_INF_JIAOLONG_OUTLINE": "374dd5c37f96543e11dab565925e72104c3709ebabee742c497f0e5fd1ba547c"
+      }
+    },
+    "LEISHEN": {
+      "profile": "LEISHEN",
+      "name": "Thunder Gods",
+      "sha256": "7105856f5d24d09c1880f25a2c067a9eaf3ea4c67c39090dbd122bcbc1ee5a4f",
+      "approved_master": "tools/pla-specs/approved-patch-masters/LEISHEN-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_LEISHEN": "25652b52470541334d9129d14833fe3c3702f6b5ae094b2cba4af941ca4a3505",
+        "FA_PLA_INF_LEISHEN_OUTLINE": "9ef851389cb1e6f726f2502aa86ea64217dd8e371ee84ad7bbf4d5483aa3cbf4"
+      }
+    },
+    "LINE_AIRBORNE": {
+      "profile": "LINE_AIRBORNE",
+      "name": "Airborne infantry",
+      "sha256": "8d4b31fdd7f330b80b33cbd87355b0e88278b489533e724a6943cc32b0129ae5",
+      "approved_master": "tools/pla-specs/approved-patch-masters/LINE_AIRBORNE-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_LINE_AIRBORNE": "5d3d461d6ebe080630821d7e0cd4203c590b4fdbd1e80bbfaebe82264e3405d0",
+        "FA_PLA_INF_LINE_AIRBORNE_OUTLINE": "03e46a8853fab6a626f3cbf22b2ab279b26ccb8386fcb74645783cbb704847ba"
+      }
+    },
+    "LINE_GROUND": {
+      "profile": "LINE_GROUND",
+      "name": "Ground Forces",
+      "sha256": "93c2d0a72766bd8798a2baed7ab5ca75031bc68e8c4dde4de51cab8a8fd79c6a",
+      "approved_master": "tools/pla-specs/approved-patch-masters/LINE_GROUND-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_LINE_GROUND": "71cf49a8a7104e49da422676692c66e05a25622db184265250203d6e524b0106",
+        "FA_PLA_INF_LINE_GROUND_OUTLINE": "4b228a619ef30a21ec506aea133803d8fc45ee5ac90e98c564261661e0e355da"
+      }
+    },
+    "LINE_MOTOR80": {
+      "profile": "LINE_MOTOR80",
+      "name": "Motorized Infantry",
+      "sha256": "718172f17e3894e80cd8d67dcc209c141814fbfbe7ab86ccdcaf9ecf5c6aaca5",
+      "approved_master": "tools/pla-specs/approved-patch-masters/LINE_MOTOR80-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_LINE_MOTOR80": "4d08d90e1a1234ce7cab589abb980f5bc36b1cae7cab71694a2a0e6ff2637680",
+        "FA_PLA_INF_LINE_MOTOR80_OUTLINE": "24add1eae7e3166186f2573f57ba9bf5208a1a613fd2ec90e27cd67b78dcffce"
+      }
+    },
+    "LINE_RESERVE": {
+      "profile": "LINE_RESERVE",
+      "name": "Reserve Infantry",
+      "sha256": "7d4dbbab326e735986b87743e97a5e32fe924d8cc34ecc43cd9a4a4b8317cf1a",
+      "approved_master": "tools/pla-specs/approved-patch-masters/LINE_RESERVE-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_LINE_RESERVE": "610b1e0b925742e52d9d45e8115b8ad30416655cf36ada796f2d440fc439ac2c",
+        "FA_PLA_INF_LINE_RESERVE_OUTLINE": "bd981f05dcff2bf2c95cb72cdfe95a4d42e2acbbaecd0d43d08e20d647b0f83e"
+      }
+    },
+    "ROCKET_SOF": {
+      "profile": "ROCKET_SOF",
+      "name": "Sharp Blades",
+      "sha256": "823ea53b9e7e5266f4039e5a7f353d08e1cb5260d6293448d78e2c4301ecdf85",
+      "approved_master": "tools/pla-specs/approved-patch-masters/ROCKET_SOF-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_ROCKET_SOF": "2d7a3f294ac0d4e00792a4e6b5bcf7683e5530ec3b8b02f6c3256d4ae0e0891b",
+        "FA_PLA_INF_ROCKET_SOF_OUTLINE": "24cb9b3989997b264b28bb6eed8bab5593e41406153a0a8e67343c3fef71d392"
+      }
+    },
+    "SNOW_LEOPARD": {
+      "profile": "SNOW_LEOPARD",
+      "name": "PAP Snow Leopards",
+      "sha256": "36d676ebd13bf76dcde207f3ac3b9c610739e05015d25fdaed53204374047eaa",
+      "approved_master": "tools/pla-specs/approved-patch-masters/SNOW_LEOPARD-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_SNOW_LEOPARD": "6f8b58042bf022366f1077ab76848da38da8a0e05bb5f1bd8c23f366092d7ebc",
+        "FA_PLA_INF_SNOW_LEOPARD_OUTLINE": "15b3d15ba368f55f2cdfe9f7fca6855bea4b34c62ac373956e4bac6544ff8696"
+      }
+    },
+    "SOF": {
+      "profile": "SOF",
+      "name": "Southern Swords",
+      "sha256": "a9cf803000f6b8ece1059dbeb07016627ecc3bf257b63826238c9a1dd240c951",
+      "approved_master": "tools/pla-specs/approved-patch-masters/SOF-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_SOF": "2992555af5385b41df9f59f0e5b451423694f3d9fb4fa0f4321755baa71be5e5",
+        "FA_PLA_INF_SOF_OUTLINE": "807fc4d56291a3e8b188db85f4dfe4f6bdeb4abe73a4eefef6ae08fa12a402f5"
+      }
+    },
+    "TIANLANG": {
+      "profile": "TIANLANG",
+      "name": "Sky Hunters",
+      "sha256": "6488de63cd5a342c412b772ac93307bf27caf4c49864b303569d26028b31cc8a",
+      "approved_master": "tools/pla-specs/approved-patch-masters/TIANLANG-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_TIANLANG": "5e11dad1eb01ad4312724eddf96c724a9c54be8aefa8f66ea125fb4946200ba2",
+        "FA_PLA_INF_TIANLANG_OUTLINE": "2dbbdbd5baf3058df1c8ce0ff17d7f63e158e88747e7ca84437581b2fbb432e6"
+      }
+    },
+    "XIANGJIAN": {
+      "profile": "XIANGJIAN",
+      "name": "Whistling Arrows",
+      "sha256": "4aaa15450db69eda6b066a06ca46d2aba6e7b56d6ee58ac322c3b33743aaa20a",
+      "approved_master": "tools/pla-specs/approved-patch-masters/XIANGJIAN-master.png",
+      "approval_status": "Approved by Sam voice review",
+      "png_sha256": {
+        "FA_PLA_INF_XIANGJIAN": "4aaa15450db69eda6b066a06ca46d2aba6e7b56d6ee58ac322c3b33743aaa20a",
+        "FA_PLA_INF_XIANGJIAN_OUTLINE": "e505f03ea3bdbdd6f036222cfbf87a5d472379c3a091c314c9a6b39b73726073"
+      }
+    }
+  },
+  "spec_icons": [
+    {
+      "address": "FA_CHINA_AIR_SF",
+      "method": "Exact selected source SVG paths retained; monochrome palette only; outer text/wreath/shield omitted",
+      "source": "references/airforce.svg",
+      "source_sha256": "f91a90b3d7fe3ce713ce88242bcc6e32c115c749b99cadb68760622e8200d8f9",
+      "source_top_level_nodes": [
+        4,
+        6
+      ],
+      "png_sha256": "159ffd234f5bbe856f5c9bb5c3a8bf4a7d9cf038b2bb0a41c7ad8e704ece03b1"
+    },
+    {
+      "address": "FA_CHINA_ARMORED",
+      "method": "Exact selected source SVG paths retained; monochrome palette only; outer text/wreath/shield omitted",
+      "source": "references/ground.svg",
+      "source_sha256": "4e8e0b9494a4883cb0e92e47aedfce2818b163285578e5fe3e31b0d0f6793dcd",
+      "source_top_level_nodes": [
+        5,
+        7
+      ],
+      "png_sha256": "22671b2e61575476bf483a6ba8d40f0a97e0c4bc9317ddc5dcd15a14156a9a80"
+    },
+    {
+      "address": "FA_CHINA_ROCKET",
+      "method": "Exact selected source SVG paths retained; monochrome palette only; outer text/wreath/shield omitted",
+      "source": "references/rocket.svg",
+      "source_sha256": "12d61814a9ca129693fba7a39d5b0e26f12ce5f18c694f9aa075a0134ba07b38",
+      "source_top_level_nodes": [
+        6
+      ],
+      "png_sha256": "97d6001ba9beb169a7e5f28109b3c965fc5d04e62549a8fa9b16e3ffdce6e1a5"
+    },
+    {
+      "address": "FA_CHINA_NAVAL",
+      "method": "Exact selected source SVG paths retained; monochrome palette only; outer text/wreath/shield omitted",
+      "source": "references/navy.svg",
+      "source_sha256": "be9ffc40f85634e617c456669cbba0a2c919b7c11a7cbbceb5a8cbe995719d28",
+      "source_top_level_nodes": [
+        4,
+        6
+      ],
+      "png_sha256": "fbbee1547a22cd366318aeec1bfbecdcbf22f02e4c42c6afc70c56192d517773"
+    },
+    {
+      "address": "FA_CHINA_MOTORIZED",
+      "method": "Exact approved Motorized unit master reused; fit to original128x128 native spec canvas",
+      "master_sha256": "718172f17e3894e80cd8d67dcc209c141814fbfbe7ab86ccdcaf9ecf5c6aaca5",
+      "png_sha256": "1d0664ad07b6c8cd6338b7279e0448dbf22a9dc2d679e3aea1009ce8441349e9"
+    }
+  ],
+  "source_gameplay_tables_changed": false,
+  "native_verified": false,
+  "godsword_requested_fix": {
+    "method": "Exact earlier Build21 blade-only fill; map/guard/grip unchanged",
+    "source": "Earlier requested Build21-derived blade-only correction; exact retained SVG and PNG pairs in this source tree",
+    "runtime_pngs": {
+      "": "0716b0dd715d6e665515b631f5e9f4ac466440d560a9c7c6216008d5fbfc4076",
+      "_OUTLINE": "7bf5406b515bc544f0010345f5ecde1f9c1c005d6b62ff64f0ec945ff3357eff"
+    }
+  },
+  "source_urls": {
+    "LINE_AIRBORNE": "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
+    "LEISHEN": "https://www.xinhuanet.com/mil/2015-12/28/c_128573417_4.htm",
+    "XIANGJIAN": "https://finance.ifeng.com/a/20170625/15483459_0.shtml",
+    "ROCKET_SOF": "https://www.junpin360.com/html/2015-03-30/4053.html",
+    "SOF": "https://photo.81.cn/jrfc/2014-12/16/content_6270918_5.htm",
+    "LINE_RESERVE": "https://commons.wikimedia.org/wiki/File:Chinese_People%27s_Liberation_Army_Reserve_shoulder_sleeve_badge.svg",
+    "JIAOLONG": "https://commons.wikimedia.org/wiki/File:Jiaolong_Commando_Unit.png",
+    "LINE_MOTOR80": "https://commons.wikimedia.org/wiki/File:PLA80MHU.jpg",
+    "LINE_GROUND": "https://commons.wikimedia.org/wiki/File:People%27s_Liberation_Army_Ground_Force_sleeve_badge.svg",
+    "SNOW_LEOPARD": "https://ishare.ifeng.com/c/s/v002Rfg9l3cARET8UIep3e17LTt7CdlJ3-_5roLFakXDaFqY__",
+    "FALCON": "https://www.xinhuanet.com/politics/2017-07/31/c_1121409961.htm",
+    "EAGLE": "https://in.pinterest.com/pin/26458716544468327/",
+    "TIANLANG": "https://www.baike.com/wikiid/6625755357922503653"
+  },
+  "source_limits": [
+    "Generated unit edits are not pixel-exact source transfers",
+    "Ground Forces rifle/star is user-approved game adaptation",
+    "Motorized historical80MHU current issue unverified",
+    "Sea Dragons commercial-source provenance; Eagle collector-source provenance",
+    "No new claimed real patch for Blood Wolves or Mountain Hunters",
+    "Branch spec sprites reuse exact selected public source SVG geometry with monochrome palette"
+  ],
+  "sharp_blades_source_choice": "Historical Liren sword/lightning candidate approved by Sam voice message1570243627152842833; historical source limits retained"
+}

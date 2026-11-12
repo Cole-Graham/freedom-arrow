@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 23",
-  "version": "23",
+  "name": "PLA TEST Build 24",
+  "version": "24",
   "type": "modpack",
-  "description": "Complete PLA pack: selected Arsenal specializations regroup shared units under matching headings; Build16 weapon-family HUD art retained. Native UI validation pending.",
+  "description": "Complete PLA pack: approved infantry emblems and source branch spec badges; existing gameplay, weapon HUD, models, rigging and music retained. Native appearance pending.",
   "repo": "Cole-Graham/freedom-arrow"
 }
