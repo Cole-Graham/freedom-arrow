@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "5",
+  "package_version": "26",
   "spotting": "vanilla",
-  "deployment_status": "built_offline_execution_held",
-  "verification": "China UI candidate. Native layout/clicks and network country support unverified."
+  "deployment_status": "native_validation_pending",
+  "verification": "Runtime MelonInfo identity corrected to26; all Build25 artwork and gameplay retained."
 }

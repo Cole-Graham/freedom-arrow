@@ -1,5 +1,5 @@
 {
-  "build": 25,
+  "build": 26,
   "base_build": 10,
   "base_sha256": "42b9267b5d8328da75d68179f0e73fbb2c5862a8829ac8449148a48652305c69",
   "pla_only": true,
@@ -1005,6 +1005,6 @@
       "source": "7d27cd76b15840cb213a5293edd357c79bb6002f"
     }
   },
-  "runtime_base_build": 24,
-  "runtime_base_sha256": "3dabec7cb470434279e6de00a8a118cb4d80dd292e2280922df05f9ab4f2d62e"
+  "runtime_base_build": 25,
+  "runtime_base_sha256": "d70c5ea213be746ebf64559a0f07cad5d0a55b018397a7a1444f2a23fae4ea30"
 }

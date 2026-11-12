@@ -1,7 +1,7 @@
-# PLA TEST Build 25
+# PLA TEST Build 26
 
-Higher star/八一 contrast on Air Force, Ground Forces, Rocket Force and Navy spec badges. Exact shapes, alpha, sizes and placement are unchanged. All unit icons, Motorized badge, flag, Test22, weapons, gameplay, models, rigging, music and audio remain Build24. Native appearance untested.
+Corrects stale runtime MelonInfo identity23 to26, matching channel, package and assembly. Build25 refused before its database hook; this revision retains every Build25 icon and all game tables. Compiled identity/resource checks required. Native validation pending.
 
 ## Document change log
 
-- 2026-11-11 18:58:42 PST (America/Los_Angeles) — Contrast-only branch badge revision.
+- 2026-11-11 20:22:37 PST (America/Los_Angeles) — Runtime identity correction; artwork unchanged.

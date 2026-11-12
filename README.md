@@ -1,3 +1,9 @@
+# PLA TEST Build 26
+
+**Corrects the runtime MelonInfo version that remained23 and caused Build25 to refuse its PLA payload. All Build25 artwork, geometry, contrast, gameplay and shared assets are retained. Compiled identity is now checked against channel/build metadata before packaging. Native verification pending.**
+
+## Historical Build25
+
 # PLA TEST Build 25
 
 **Four branch badges now give the 八一 characters stronger contrast against the star. Only existing fill/stroke colors change. Exact shapes, alpha, sizes and positions are preserved; all approved unit icons and gameplay remain Build24. Native appearance pending.**
@@ -374,3 +380,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 
 - 2026-11-11 17:15:13 PST (America/Los_Angeles) — Integrated approved unit art and branch spec badges into Build24; retained Build23 gameplay/model/music data.
 - 2026-11-11 18:58:42 PST (America/Los_Angeles) — Build25 changes star/八一 color contrast only; source geometry and all other icons retained.
+- 2026-11-11 20:22:37 PST (America/Los_Angeles) — Corrected runtime build identity and added compiled-attribute regression check; Build25 artwork retained.
