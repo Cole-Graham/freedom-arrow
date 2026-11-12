@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.10
+# Freedom Arrow 0.8.0-dev.11
+
+- CTL-181 NLOS missile: 8 damage (was 10 in 0.8.0-dev.10, 15 before). Name CTL-181 NLOS and 1800 m range kept.
+- Includes 0.8.0-dev.10, dev.9 (NLOS hook fix) and dev.8 (aircraft batch). Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.10
 
 - CTL-181 is named CTL-181 NLOS. Its NLOS missile does 10 damage (was 15) and reaches 1800 m (was 2000 m).
 - Includes 0.8.0-dev.9 (NLOS hook fix) and 0.8.0-dev.8 (aircraft batch). Not yet verified in a game run.
@@ -859,3 +866,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 14:54:37 PST (America/Los_Angeles) — 0.8.0-dev.9: NLOS hook takes the launcher target when the seeker is empty.
 
 - 2026-11-12 14:57:19 PST (America/Los_Angeles) — 0.8.0-dev.10: CTL-181 NLOS name, 10 damage, 1800 m.
+
+- 2026-11-12 14:59:57 PST (America/Los_Angeles) — 0.8.0-dev.11: CTL-181 NLOS 8 damage.

@@ -1,0 +1,16 @@
+{
+  "version": "0.8.0-dev.11",
+  "base": "0.8.0-dev.10",
+  "base_sha256": "2aef1e4d11bda20da284851c0eddd7e59611edc6bcc520fb4cf2b80f7e83461f",
+  "request": "Osama 12 Nov PST: CTL-181 NLOS 8 damage",
+  "unit": "CTL-181 NLOS",
+  "missile": {
+    "HUDName": "NLOS missile",
+    "Damage": 8.0,
+    "GroundRange": 900.0,
+    "PenetrationAtGroundRange": 30.0,
+    "IgnoreCover": 0.5
+  },
+  "displayed_range_m": 1800,
+  "checks": 27723
+}
