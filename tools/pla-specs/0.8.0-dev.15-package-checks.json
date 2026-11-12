@@ -1,0 +1,46 @@
+{
+  "version": "0.8.0-dev.15",
+  "build": 83,
+  "previous": "0.8.0-dev.14",
+  "assets_version": "0.2.0",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.0.bamod",
+    "sha256": "ef5da6ae7e8d01c6f40d40bf49245c862de515271515dd1ba2421821338757be",
+    "size": 4031291500,
+    "files": 8005
+  },
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.15-complete.bamod",
+    "sha256": "f0dda195da5dfa2414d0ece0974694020db44310a44b88a14da27770d3b65446",
+    "size": 4101220536,
+    "files": 8153
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.15.bamod",
+    "sha256": "a7b8b4004dd6df1f260e51c0ea06040c0e134ee76042ffa5cebf757552c16a02",
+    "size": 69929724,
+    "files": 150
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/turret_units.json",
+    "UserData/FreedomArrow/constants/turret_weapons.json",
+    "UserData/FreedomArrow/constants/turrets.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.15.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

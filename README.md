@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.14
+# Freedom Arrow 0.8.0-dev.15
+
+- Shaanxi HMV3, Z-8L and Mi-8 Cargo are no longer offered as squad transports (53 squad links each removed); they stay as their own cards.
+- Z-20T is a gunship: no longer a squad transport, gunship role (Helo tab).
+- CSK-131 Transport is merged into CSK-131 Mengshi (its 7 squad links duplicated the Mengshi's; the copy leaves the roster).
+- CSK-181 Transport is now in Air Force/Airborne, Navy/SOF and Motorized as well as Rocket, offered to 32 more squads.
+- Lynx ATV: Type 86 7.62 mm, QJC-88 12.7 mm and QLZ-87 35 mm grenade launcher replace the M240, M2 and Mk19.
+- Includes 0.8.0-dev.14 (HJ-10 no-LOS hook). Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.14
 
 - Ground HJ-10: back to the ground Hellfire missile (13 damage, 90 penetration, top attack, 1800 m, fast and straight, interceptable by APS), with a semi-active seeker and no firing on the move. A runtime hook lets it fire at enemies its side has spotted, within its range, without its own line of sight; the seeker hook keeps the missile locked on a moving target without line of sight. Every target the hook allows is logged (`FREEDOM_ARROW_NLOS fire:`).
 - CH-901: a CTL-181-style precision munition (laser guided, no seeker, not interceptable). No hook.
@@ -897,3 +908,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:12:49 PST (America/Los_Angeles) — 0.8.0-dev.13: CH-901 not interceptable.
 
 - 2026-11-12 15:20:33 PST (America/Los_Angeles) — 0.8.0-dev.14: HJ-10 semi-active Hellfire with no-LOS fire hook; CH-901 CTL-style.
+
+- 2026-11-12 15:27:33 PST (America/Los_Angeles) — 0.8.0-dev.15: transport cleanup, CSK-181 spread, Chinese Lynx weapons.

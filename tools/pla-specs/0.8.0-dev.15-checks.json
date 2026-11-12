@@ -1,0 +1,43 @@
+{
+  "version": "0.8.0-dev.15",
+  "base": "0.8.0-dev.14",
+  "base_sha256": "abc7536f6e874e526ad2df524919b6a51ab0d2a106b326d33f97588c1c39dbd2",
+  "request": "Osama 12 Nov 15:24 PST transports",
+  "removed_transport_links": {
+    "Shaanxi HMV3": 53,
+    "Z-8L": 53,
+    "Mi-8 Cargo": 53,
+    "Z-20T": 11
+  },
+  "csk131_merge": {
+    "links_dropped_duplicate": 7,
+    "links_moved_to_mengshi": 0
+  },
+  "csk181_added": {
+    "17": 10,
+    "20": 11,
+    "21": 11
+  },
+  "lynx": {
+    "Lynx ATV": [
+      "Type 86 7.62 mm",
+      "QJC-88 12.7 mm",
+      "QLZ-87 35 mm AGL"
+    ],
+    "options": [
+      [
+        "Type 86 machine gun",
+        "PKT"
+      ],
+      [
+        "QJC-88 heavy machine gun",
+        "Kord"
+      ],
+      [
+        "QLZ-87 grenade launcher",
+        "AGS30_VEH"
+      ]
+    ]
+  },
+  "checks": 17000
+}
