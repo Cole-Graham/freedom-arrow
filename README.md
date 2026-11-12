@@ -1,3 +1,9 @@
+# PLA TEST Build 25
+
+**Four branch badges now give the 八一 characters stronger contrast against the star. Only existing fill/stroke colors change. Exact shapes, alpha, sizes and positions are preserved; all approved unit icons and gameplay remain Build24. Native appearance pending.**
+
+## Historical Build24
+
 # PLA TEST Build 24
 
 **Approved infantry unit emblems and five branch spec badges. All Build23 gameplay data, weapon HUD art, models, rigging, audio and FA Music1.5.0 retained. Native appearance pending.**
@@ -367,3 +373,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 13:09:29 PST (America/Los_Angeles) — Build23 merges the verified installed FA Music1.5.0 player with unchanged Build22 art/game data to prevent a full-package switch from reverting the native music selector.
 
 - 2026-11-11 17:15:13 PST (America/Los_Angeles) — Integrated approved unit art and branch spec badges into Build24; retained Build23 gameplay/model/music data.
+- 2026-11-11 18:58:42 PST (America/Los_Angeles) — Build25 changes star/八一 color contrast only; source geometry and all other icons retained.

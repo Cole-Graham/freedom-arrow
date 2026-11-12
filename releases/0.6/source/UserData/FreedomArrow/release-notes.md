@@ -1,7 +1,7 @@
-# PLA TEST Build 24
+# PLA TEST Build 25
 
-Approved infantry emblems, centre star/contrast fixes, earlier Godsword blade-only correction and five branch-specific specialization badges. No gameplay-table changes. Native appearance untested.
+Higher star/八一 contrast on Air Force, Ground Forces, Rocket Force and Navy spec badges. Exact shapes, alpha, sizes and placement are unchanged. All unit icons, Motorized badge, flag, Test22, weapons, gameplay, models, rigging, music and audio remain Build24. Native appearance untested.
 
 ## Document change log
 
-- 2026-11-11 17:15:13 PST (America/Los_Angeles) — Complete Build24 artwork integration over Build23.
+- 2026-11-11 18:58:42 PST (America/Los_Angeles) — Contrast-only branch badge revision.

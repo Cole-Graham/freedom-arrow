@@ -1,0 +1,66 @@
+{
+  "build": 25,
+  "base_build": 24,
+  "changed_spec_pngs": 4,
+  "other_pngs_byte_identical": true,
+  "approved_masters_byte_identical": true,
+  "runtime_logic_byte_identical": true,
+  "checks": [
+    {
+      "address": "FA_CHINA_AIR_SF",
+      "geometry_identical": true,
+      "alpha_identical": true,
+      "changed_rgb_bounds": [
+        38,
+        12,
+        90,
+        61
+      ],
+      "before_sha256": "159ffd234f5bbe856f5c9bb5c3a8bf4a7d9cf038b2bb0a41c7ad8e704ece03b1",
+      "after_sha256": "6c2152d47f534db7087a957b9f12c47e465a732469342447b4e9cfbc9c15bf4f"
+    },
+    {
+      "address": "FA_CHINA_ARMORED",
+      "geometry_identical": true,
+      "alpha_identical": true,
+      "changed_rgb_bounds": [
+        39,
+        15,
+        89,
+        62
+      ],
+      "before_sha256": "22671b2e61575476bf483a6ba8d40f0a97e0c4bc9317ddc5dcd15a14156a9a80",
+      "after_sha256": "35edf118e57c3a9b47d17a71e07afebe51ec0398c1dcb084681c7d76e5f2ece6"
+    },
+    {
+      "address": "FA_CHINA_ROCKET",
+      "geometry_identical": true,
+      "alpha_identical": true,
+      "changed_rgb_bounds": [
+        40,
+        41,
+        88,
+        87
+      ],
+      "before_sha256": "97d6001ba9beb169a7e5f28109b3c965fc5d04e62549a8fa9b16e3ffdce6e1a5",
+      "after_sha256": "b075c3fbef5fe06c78b36686d4d754f4651b6f364fee4ba308a1443f7746bc55"
+    },
+    {
+      "address": "FA_CHINA_NAVAL",
+      "geometry_identical": true,
+      "alpha_identical": true,
+      "changed_rgb_bounds": [
+        41,
+        12,
+        87,
+        55
+      ],
+      "before_sha256": "fbbee1547a22cd366318aeec1bfbecdcbf22f02e4c42c6afc70c56192d517773",
+      "after_sha256": "91d1713a0800360a701145e8f57c4649bd184e8c10182a02d5797882bdf5ae43"
+    }
+  ],
+  "solid_white_to_star_face_contrast": 8.805095772226485,
+  "previous_solid_white_to_star_face_contrast": 1.6764352462271805,
+  "native_verified": false,
+  "contrast_basis": "Calculated solid fill contrast; antialiasing and downsampling reduce effective tiny-pixel contrast."
+}

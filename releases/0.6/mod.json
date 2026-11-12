@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 24",
-  "version": "24",
+  "name": "PLA TEST Build 25",
+  "version": "25",
   "type": "modpack",
-  "description": "Complete PLA pack: approved infantry emblems and source branch spec badges; existing gameplay, weapon HUD, models, rigging and music retained. Native appearance pending.",
+  "description": "Complete PLA pack: higher star/\u516b\u4e00 contrast on four branch badges; exact Build24 shapes, unit emblems and gameplay retained. Native appearance pending.",
   "repo": "Cole-Graham/freedom-arrow"
 }
