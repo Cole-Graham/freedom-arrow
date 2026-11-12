@@ -1,5 +1,5 @@
 {
-  "build": 28,
+  "build": 29,
   "base_build": 16,
   "scope": "Presentation only; existing native unit/search/type/category filters retained",
   "group_rule": "Shared cards follow an eligible selected specialization heading; All restores primary heading",

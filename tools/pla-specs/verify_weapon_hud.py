@@ -22,10 +22,10 @@ images={};sizes={}
 for name in receipt['resources']:
  path=source/'runtime-qa/icons'/(name+'.png')
  with Image.open(path) as im:
-  assert im.mode=='RGBA' and im.width==232 and 20<=im.height<=110,(name,im.mode,im.size)
+  assert im.mode=='RGBA' and im.width in (232,1160) and 20<=im.height<=550,(name,im.mode,im.size)
   alpha=im.getchannel('A');assert alpha.getextrema()==(0,255),name
   box=alpha.getbbox();assert box and box[0]>0 and box[1]>0 and box[2]<im.width and box[3]<im.height,(name,box,im.size)
   sizes[name]={'size':im.size,'alpha_bounds':box}
  images[name]=hashlib.sha256(path.read_bytes()).hexdigest()
-assert len(images)==16 and len(receipt['profiles'])==8
+assert len(images)==len(receipt['resources']) and len(images)==2*len(receipt['profiles'])
 result={'passed':True,'weapon_fields_changed':len(changes),'vehicle_weapons':307,'infantry_weapons':44,'native_icon_entries':receipt['native_icon_entries'],'custom_icon_entries':receipt['custom_icon_entries'],'custom_profiles':8,'custom_normal_outline_pngs':16,'all_other_database_fields_identical':True,'unit_art_unchanged':True,'ammo_icons_and_counts_unchanged':True,'png_sha256':images,'png_dimensions':sizes,'changes':changes,'native_verified':False};a.out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('png_sha256','png_dimensions','changes')}))

@@ -92,6 +92,7 @@ def apply(root,t,patches,native_ids,bodies,weapon_rules,assignments):
    for r in ls:
     fields={'Name':'PLA '+name+' '+target,'IsDefault':True}
     if target=='ArmorsJson':fields.update(MaxHealthPoints=men*5,ArmorValue=10 if sf else 8 if engineer or typ=='Elite' else 6)
+    if target=='AbilitiesJson' and conscript and not sf:fields.update(IsInfantrySprint=False,IsSmoke=False,SmokeAmmunitionQuantity=0)
     g.add(table,r,{'UnitId':uid,field:g.add(target,t[target][r[field]],fields)})
   for r in g.rows('SensorUnitsJson',parent):g.add('SensorUnitsJson',r,{'UnitId':uid})
   base_label=cells[5] or ('QBZ-95 (rifle)' if conscript else 'QBZ-191 (rifle)');assert not base_label.startswith('=')

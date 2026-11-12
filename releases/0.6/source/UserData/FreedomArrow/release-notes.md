@@ -1,7 +1,7 @@
-# PLA TEST Build 28
+# PLA TEST Build 29
 
-Blood Wolves uses Sam-selected Sky Hunters wolf; Mountain Hunters facial contrast strengthened, outer head retained; Blue Sword has two centered crossed jian.16custom weapon HUD sprites use white outlines, grey fill and native mirror compensation for muzzle-right display. Country controls move to RU,USA,China. Other unit icons and all gameplay/models/offsets/audio retained. Native checks pending.
+Reference-edge weapon HUD:plain/optic QBZ191,separate suppressed QBZ192 and QCW05.All22custom weapon sprites exported at1160px. Plain191 for13reserves and3observer/crew units;combat191 uses optic art.13PLA conscript squads have sprint/smoke disabled;SF unchanged. Numeric weapon/ammo stats,ammunition quantities,unit stats and all model alignment preserved. Live sheet cells and native visual/behavior checks pending.
 
 ## Document change log
 
-- 2026-11-11 22:33:26 PST (America/Los_Angeles) — Targeted artwork/HUD/country ordering corrections.
+- 2026-11-11 23:28:12 PST (America/Los_Angeles) — Reference-edge HUD and requested conscript ability policy.

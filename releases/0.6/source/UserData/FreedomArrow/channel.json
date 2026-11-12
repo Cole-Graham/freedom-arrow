@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "28",
+  "package_version": "29",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Targeted three unit motifs;16 white-outline grey-fill weapon HUD sprites mirrored for native view;RU-USA-China UI order. Gameplay retained."
+  "verification": "Reference-derived detailed1160px weapon HUD;plain191 for reserves/noncombat;optic191 combat;separate192/QCW05;13conscripts no sprint/smoke,SF unchanged. Native inspection pending."
 }

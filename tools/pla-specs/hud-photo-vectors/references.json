@@ -1,0 +1,78 @@
+[
+  {
+    "profile": "QBZ191_PLAIN",
+    "reference": "qbz191-plain.webp",
+    "reference_sha256": "fe45b31596582a76a5022ba1d24147f339060aafa3cf5ea6b86017f6be3d3373",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 689,
+    "internal_measured_segments": 112,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      6,
+      220,
+      503,
+      173
+    ],
+    "source_faces_right": false,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QBZ191_PLAIN.png"
+  },
+  {
+    "profile": "QBZ191",
+    "reference": "qbz191-optic.jpg",
+    "reference_sha256": "ea36f39764dbbea12654d6eea5f7e855f3b617632dc01882aaa80d9ee28082f1",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 1457,
+    "internal_measured_segments": 350,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      240,
+      247,
+      1240,
+      458
+    ],
+    "source_faces_right": true,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QBZ191.png"
+  },
+  {
+    "profile": "QBZ192",
+    "reference": "qbz192.png",
+    "reference_sha256": "807dc6f0cced9f67487abc713a68b43ca7c6812669413513b3d76491e5184cf1",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 765,
+    "internal_measured_segments": 180,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      78,
+      69,
+      1019,
+      303
+    ],
+    "source_faces_right": false,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QBZ192.png"
+  },
+  {
+    "profile": "QCW05",
+    "reference": "qcw05.png",
+    "reference_sha256": "57afa0a230ff5d130eb2b8eade760ba1c684591c01ebf0dafa876c4f607a770f",
+    "method": "Source pixel segmentation \u2192 measured contour \u2192 editable SVG; internal measured line segments",
+    "boundary_simplification_max_parameter_px": 0.45,
+    "boundary_vertices": 512,
+    "internal_measured_segments": 170,
+    "raster_width": 1160,
+    "source_boundary_box": [
+      13,
+      34,
+      580,
+      233
+    ],
+    "source_faces_right": true,
+    "native_direction": "muzzle right after native HUD mirror",
+    "edge_overlay": "edge-check-QCW05.png"
+  }
+]

@@ -1,3 +1,9 @@
+# PLA TEST Build 29
+
+**Reference-edge weapon HUD cards,plain/optic QBZ191 assignments,separate QBZ192/QCW05,and no sprint/smoke for13PLA conscript squads.SF abilities and existing weapon/ammo statistics,stocks,unit stats and model alignment are preserved.Native validation pending.**
+
+## Historical Build28
+
 # Freedom Arrow — pla
 
 **Complete PLA development pack — Build 28. This stream is separate from main gameplay.**
@@ -410,3 +416,4 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-11 21:12:34 PST (America/Los_Angeles) — Source-photo motif copies and clean-white unit icon export; all original masters preserved.
 - 2026-11-11 22:33:26 PST (America/Los_Angeles) — Three unit emblems,16weapon HUD sprites and country-control order corrected.
 - 2026-11-11 22:48:48 PST (America/Los_Angeles) — Added approved maintained-stream and isolated-batch navigation; preserved existing history and gameplay.
+- 2026-11-11 23:28:12 PST (America/Los_Angeles) — Detailed reference HUD and conscript capability rule.

@@ -1,0 +1,1241 @@
+{
+  "build": 29,
+  "basis": "Sam reference images and no-sprint/no-smoke conscript instruction",
+  "plain_qbz191_units": [
+    1108,
+    1149,
+    1150,
+    1164,
+    1166,
+    1167,
+    1168,
+    1169,
+    1170,
+    1171,
+    1172,
+    1173,
+    1175,
+    1177,
+    1178,
+    1180
+  ],
+  "reservists": [
+    1150,
+    1166,
+    1167,
+    1168,
+    1169,
+    1170,
+    1171,
+    1172,
+    1173,
+    1175,
+    1177,
+    1178,
+    1180
+  ],
+  "plain_noncombat_units": [
+    1108,
+    1149,
+    1164
+  ],
+  "sf_units_retained": [
+    1143,
+    1144,
+    1174,
+    1181,
+    1182,
+    1183,
+    1184,
+    1185,
+    1186,
+    1187,
+    1188,
+    1189,
+    1190,
+    1191,
+    1203
+  ],
+  "plain_aliases": {
+    "2014500": 2003998,
+    "2014501": 2012205
+  },
+  "weapon_reference_edits": [
+    {
+      "table": "squad_members",
+      "id": 2007538,
+      "unit": 1108,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2007540,
+      "unit": 1108,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2007541,
+      "unit": 1108,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2007542,
+      "unit": 1108,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2007544,
+      "unit": 1108,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2012181,
+      "unit": 1149,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2012182,
+      "unit": 1149,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2012211,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012212,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012213,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012214,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012215,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012216,
+      "unit": 1150,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012574,
+      "unit": 1164,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2012575,
+      "unit": 1164,
+      "field": "PrimaryWeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_members",
+      "id": 2012620,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012621,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012622,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012623,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012624,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012625,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012626,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012627,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012628,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012629,
+      "unit": 1166,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012647,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012648,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012649,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012650,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012651,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012652,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012653,
+      "unit": 1167,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012677,
+      "unit": 1168,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012678,
+      "unit": 1168,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012679,
+      "unit": 1168,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012680,
+      "unit": 1168,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012706,
+      "unit": 1169,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012707,
+      "unit": 1169,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012708,
+      "unit": 1169,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012709,
+      "unit": 1169,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012735,
+      "unit": 1170,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012736,
+      "unit": 1170,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012737,
+      "unit": 1170,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012738,
+      "unit": 1170,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012764,
+      "unit": 1171,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012765,
+      "unit": 1171,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012766,
+      "unit": 1171,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012767,
+      "unit": 1171,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012793,
+      "unit": 1172,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012794,
+      "unit": 1172,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012795,
+      "unit": 1172,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012796,
+      "unit": 1172,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012797,
+      "unit": 1172,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012825,
+      "unit": 1173,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012826,
+      "unit": 1173,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012827,
+      "unit": 1173,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012828,
+      "unit": 1173,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012893,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012894,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012895,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012896,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012897,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012898,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012899,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012900,
+      "unit": 1175,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012962,
+      "unit": 1177,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012963,
+      "unit": 1177,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012964,
+      "unit": 1177,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012965,
+      "unit": 1177,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012966,
+      "unit": 1177,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012993,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012994,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012995,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012996,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012997,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2012998,
+      "unit": 1178,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2013059,
+      "unit": 1180,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2013060,
+      "unit": 1180,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_members",
+      "id": 2013061,
+      "unit": 1180,
+      "field": "PrimaryWeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2007547,
+      "unit": 1108,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012183,
+      "unit": 1149,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012219,
+      "unit": 1150,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012576,
+      "unit": 1164,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012630,
+      "unit": 1166,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012656,
+      "unit": 1167,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012681,
+      "unit": 1168,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012712,
+      "unit": 1169,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012739,
+      "unit": 1170,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012770,
+      "unit": 1171,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012800,
+      "unit": 1172,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012829,
+      "unit": 1173,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012903,
+      "unit": 1175,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012967,
+      "unit": 1177,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2012999,
+      "unit": 1178,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "squad_weapons",
+      "id": 2013062,
+      "unit": 1180,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2007536,
+      "unit": 1108,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012184,
+      "unit": 1149,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012220,
+      "unit": 1150,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012577,
+      "unit": 1164,
+      "field": "WeaponId",
+      "before": 2003998,
+      "after": 2014500
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012631,
+      "unit": 1166,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012657,
+      "unit": 1167,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012682,
+      "unit": 1168,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012713,
+      "unit": 1169,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012740,
+      "unit": 1170,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012771,
+      "unit": 1171,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012801,
+      "unit": 1172,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012830,
+      "unit": 1173,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012904,
+      "unit": 1175,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2012968,
+      "unit": 1177,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2013000,
+      "unit": 1178,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    },
+    {
+      "table": "weapon_ammunitions",
+      "id": 2013063,
+      "unit": 1180,
+      "field": "WeaponId",
+      "before": 2012205,
+      "after": 2014501
+    }
+  ],
+  "conscript_ability_edits": [
+    {
+      "ability": 2012202,
+      "unit": 1150,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012202,
+      "unit": 1150,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012202,
+      "unit": 1150,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012615,
+      "unit": 1166,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012615,
+      "unit": 1166,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012615,
+      "unit": 1166,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012640,
+      "unit": 1167,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012640,
+      "unit": 1167,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012640,
+      "unit": 1167,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012674,
+      "unit": 1168,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012674,
+      "unit": 1168,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012674,
+      "unit": 1168,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012703,
+      "unit": 1169,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012703,
+      "unit": 1169,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012703,
+      "unit": 1169,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012732,
+      "unit": 1170,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012732,
+      "unit": 1170,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012732,
+      "unit": 1170,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012761,
+      "unit": 1171,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012761,
+      "unit": 1171,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012761,
+      "unit": 1171,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012790,
+      "unit": 1172,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012790,
+      "unit": 1172,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012790,
+      "unit": 1172,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012818,
+      "unit": 1173,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012818,
+      "unit": 1173,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012818,
+      "unit": 1173,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012888,
+      "unit": 1175,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012888,
+      "unit": 1175,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012888,
+      "unit": 1175,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012958,
+      "unit": 1177,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012958,
+      "unit": 1177,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012958,
+      "unit": 1177,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2012989,
+      "unit": 1178,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012989,
+      "unit": 1178,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2012989,
+      "unit": 1178,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "ability": 2013054,
+      "unit": 1180,
+      "field": "IsInfantrySprint",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2013054,
+      "unit": 1180,
+      "field": "IsSmoke",
+      "before": true,
+      "after": false
+    },
+    {
+      "ability": 2013054,
+      "unit": 1180,
+      "field": "SmokeAmmunitionQuantity",
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "model_binding_alias_edits": 3,
+  "all_alignment_values_preserved": true,
+  "ammo_quantities_and_stats_preserved": true,
+  "weapon_numeric_stats_preserved": true,
+  "new_image_profiles": [
+    "QBZ191_PLAIN",
+    "QBZ191",
+    "QBZ192",
+    "QCW05"
+  ],
+  "rejected_hand_drawn_pass_superseded": true,
+  "native_verified": false,
+  "source_sheet_updated": false
+}

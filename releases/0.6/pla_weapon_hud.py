@@ -9,7 +9,7 @@ def apply(root,t,patches,vanilla):
  infantry={r['WeaponId'] for r in t['SquadWeaponsJson'].values() if r['UnitId'] in designer_ids}
  inf_sources={int(k):v for k,v in designers['weapon_sources'].items()}
  available={n.casefold() for n in json.loads((tools/'native-weapon-art-index.json').read_text())['textures']}
- custom={'QBZ-191':'QBZ191','QBZ-192':'QBZ191','QBU-191':'QBU191','QLU-11':'QLU11','QTS-11':'QTS11','QTS-11 grenade launcher':'QTS11','QBZ-95':'QBZ95','QBZ-97':'QBZ97','QBB-95':'QBB95','QBU-88':'QBU88'}
+ custom={'QCW-05':'QCW05','QBZ-191':'QBZ191','QBZ-192':'QBZ192','QBU-191':'QBU191','QLU-11':'QLU11','QTS-11':'QTS11','QTS-11 grenade launcher':'QTS11','QBZ-95':'QBZ95','QBZ-97':'QBZ97','QBB-95':'QBB95','QBU-88':'QBU88'}
  overrides={'PL-15':'AMRAAM_MISSILE','PL-15 (prototype loadout)':'AMRAAM_MISSILE','PL-12':'AMRAAM_MISSILE','PL-10':'AIM_9X_MISSILE','YJ-18 cruise missiles':'TOMAHAWK_MISSILE','KD-20':'TOMAHAWK_MISSILE','73 mm low-pressure gun':'2A28_GROM','Prototype 120 mm smoothbore':'M256_ABRAMS','QJY-201':'M240','QJY-201 7.62 mm':'M240','QJY-201 door guns':'M240'}
  entries=[]
  for wid in sorted(set(equipment)|infantry):

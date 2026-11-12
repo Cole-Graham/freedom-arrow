@@ -1,5 +1,5 @@
 {
-  "build": 28,
+  "build": 29,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -575,7 +575,7 @@
       "men": 3,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBU-191",
@@ -621,7 +621,7 @@
       "men": 8,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBB-95",
@@ -653,7 +653,9 @@
       "native_verified": false,
       "source_design_name": "Airborne Reserve Riflemen",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1151,
@@ -1234,7 +1236,7 @@
       "men": 3,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBU-191",
@@ -1315,7 +1317,7 @@
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1337,7 +1339,9 @@
       "native_verified": false,
       "source_design_name": "Conscripts \u2014 No AT",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "FA_PLA_INF_LINE_RESERVE"
+      "unit_icon": "FA_PLA_INF_LINE_RESERVE",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1167,
@@ -1347,7 +1351,7 @@
       "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1389,7 +1393,9 @@
       "native_verified": false,
       "source_design_name": "Reserve Riflemen \u2014 HJ-73D",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "FA_PLA_INF_LINE_RESERVE"
+      "unit_icon": "FA_PLA_INF_LINE_RESERVE",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1168,
@@ -1399,7 +1405,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "HJ-73D",
@@ -1433,7 +1439,9 @@
       "native_verified": false,
       "source_design_name": "Reserve HJ-73D Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_FAGOT-Label"
+      "unit_icon": "RU_FAGOT-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1169,
@@ -1443,7 +1451,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "HN-6",
@@ -1477,7 +1485,9 @@
       "native_verified": false,
       "source_design_name": "Reserve HN-6 Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_IGLA-Label"
+      "unit_icon": "RU_IGLA-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1170,
@@ -1487,7 +1497,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QJZ-89",
@@ -1521,7 +1531,9 @@
       "native_verified": false,
       "source_design_name": "Reserve QJZ-89 Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_HMG_KORD-Label"
+      "unit_icon": "RU_HMG_KORD-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1171,
@@ -1531,7 +1543,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QLZ-87",
@@ -1565,7 +1577,9 @@
       "native_verified": false,
       "source_design_name": "Reserve QLZ-87 Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1172,
@@ -1575,7 +1589,7 @@
       "men": 5,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "PF-98",
@@ -1607,7 +1621,9 @@
       "native_verified": false,
       "source_design_name": "Reserve PF-98 Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "US_SMAW_TEAM-Label"
+      "unit_icon": "US_SMAW_TEAM-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1173,
@@ -1617,7 +1633,7 @@
       "men": 6,
       "recon": true,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBU-88",
@@ -1663,7 +1679,9 @@
       "native_verified": false,
       "source_design_name": "Malyutka Recon Ambush Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_FAGOT-Label"
+      "unit_icon": "RU_FAGOT-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1174,
@@ -1731,7 +1749,7 @@
       "men": 10,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1773,7 +1791,9 @@
       "native_verified": false,
       "source_design_name": "Missile-Site Security \u2014 HJ-73D",
       "identity": "PLA Rocket Force security/support role",
-      "unit_icon": "FA_PLA_INF_LINE_ROCKET"
+      "unit_icon": "FA_PLA_INF_LINE_ROCKET",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1176,
@@ -1839,7 +1859,7 @@
       "men": 6,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1878,7 +1898,9 @@
       "native_verified": false,
       "source_design_name": "Reserve Thermobaric Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_FLAMETHROWER-Label"
+      "unit_icon": "RU_FLAMETHROWER-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1178,
@@ -1888,7 +1910,7 @@
       "men": 7,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "QJY-201",
@@ -1927,7 +1949,9 @@
       "native_verified": false,
       "source_design_name": "Reserve Heavy HJ-8E Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_KONKURS-Label"
+      "unit_icon": "RU_KONKURS-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1179,
@@ -1986,7 +2010,7 @@
       "men": 3,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-95 (rifle)",
+      "base_rifle": "QBZ-191 (iron sights)",
       "weapons": [
         {
           "name": "FHJ-02",
@@ -2020,7 +2044,9 @@
       "native_verified": false,
       "source_design_name": "FHJ-02 Incendiary Team",
       "identity": "PLA Ground Force reserve/infantry role",
-      "unit_icon": "RU_FLAMETHROWER-Label"
+      "unit_icon": "RU_FLAMETHROWER-Label",
+      "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
+      "ability_rule": "No sprint or smoke; SF exception retained"
     },
     {
       "unit": 1181,
@@ -4280,6 +4306,9 @@
     "2014264": 205,
     "2014292": 205,
     "2014320": 62,
-    "2014406": 698
-  }
+    "2014406": 698,
+    "2014500": 2003998,
+    "2014501": 2012205
+  },
+  "reference_card_revision": "User-directed reference and conscript ability overlay; live source-sheet cells have not been edited"
 }

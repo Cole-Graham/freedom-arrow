@@ -1,5 +1,5 @@
 {
-  "build": 28,
+  "build": 29,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -10,7 +10,7 @@
       "profile": "QBZ191",
       "address": "FA_PLA_WP_QBZ191",
       "native_weapon": 2003998,
-      "basis": "Installed model side contour"
+      "basis": "Sam-supplied optic-equipped QBZ191 CAD image, measured source edges"
     },
     {
       "weapon": 2004000,
@@ -3377,10 +3377,10 @@
       "name": "QBZ-192",
       "scope": "INFANTRY",
       "mode": "custom",
-      "profile": "QBZ191",
-      "address": "FA_PLA_WP_QBZ191",
+      "profile": "QBZ192",
+      "address": "FA_PLA_WP_QBZ192",
       "native_weapon": 2003998,
-      "basis": "Installed model side contour"
+      "basis": "Sam-supplied suppressed QBZ192 image, measured source edges"
     },
     {
       "weapon": 2013157,
@@ -3396,11 +3396,11 @@
       "weapon": 2013349,
       "name": "QCW-05",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_MP5",
+      "mode": "custom",
+      "profile": "QCW05",
+      "address": "FA_PLA_WP_QCW05",
       "native_weapon": 508,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Sam-supplied suppressed QCW05 bullpup image, measured source edges"
     },
     {
       "weapon": 2014001,
@@ -3511,17 +3511,40 @@
       "address": "INF_M202",
       "native_weapon": 698,
       "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+    },
+    {
+      "weapon": 2014500,
+      "name": "QBZ-191",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QBZ191_PLAIN",
+      "address": "FA_PLA_WP_QBZ191_PLAIN",
+      "native_weapon": 2003998,
+      "basis": "Sam-supplied iron-sight reference; donor stats/model/audio and ammunition stocks retained"
+    },
+    {
+      "weapon": 2014501,
+      "name": "QBZ-191",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QBZ191_PLAIN",
+      "address": "FA_PLA_WP_QBZ191_PLAIN",
+      "native_weapon": 2012205,
+      "basis": "Sam-supplied iron-sight reference; donor stats/model/audio and ammunition stocks retained"
     }
   ],
   "vehicle_weapons": 307,
-  "infantry_weapons": 44,
+  "infantry_weapons": 46,
   "profiles": [
     "QBB95",
     "QBU191",
     "QBU88",
     "QBZ191",
+    "QBZ191_PLAIN",
+    "QBZ192",
     "QBZ95",
     "QBZ97",
+    "QCW05",
     "QLU11",
     "QTS11"
   ],
@@ -3534,17 +3557,23 @@
     "FA_PLA_WP_QBU88_OUTLINE",
     "FA_PLA_WP_QBZ191",
     "FA_PLA_WP_QBZ191_OUTLINE",
+    "FA_PLA_WP_QBZ191_PLAIN",
+    "FA_PLA_WP_QBZ191_PLAIN_OUTLINE",
+    "FA_PLA_WP_QBZ192",
+    "FA_PLA_WP_QBZ192_OUTLINE",
     "FA_PLA_WP_QBZ95",
     "FA_PLA_WP_QBZ95_OUTLINE",
     "FA_PLA_WP_QBZ97",
     "FA_PLA_WP_QBZ97_OUTLINE",
+    "FA_PLA_WP_QCW05",
+    "FA_PLA_WP_QCW05_OUTLINE",
     "FA_PLA_WP_QLU11",
     "FA_PLA_WP_QLU11_OUTLINE",
     "FA_PLA_WP_QTS11",
     "FA_PLA_WP_QTS11_OUTLINE"
   ],
-  "native_icon_entries": 341,
-  "custom_icon_entries": 10,
+  "native_icon_entries": 340,
+  "custom_icon_entries": 13,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {
@@ -3555,5 +3584,7 @@
     "direction": "Source PNG mirrored horizontally to compensate for native HUD mirror; expected in-game muzzle right, requires native check.",
     "geometry": "Original mesh/reference contours retained; no weapon/address/stat changes",
     "native_verified": false
-  }
+  },
+  "raster_export_width": 1160,
+  "reference_revision": "Measured source boundaries and internal lines replace rejected hand approximations"
 }

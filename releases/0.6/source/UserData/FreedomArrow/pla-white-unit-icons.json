@@ -1,5 +1,5 @@
 {
-  "build": 28,
+  "build": 29,
   "scope": "All26 custom unit/team icon families;52unitPNG and1MotorizedspecPNG. Other fourservicebadges/Chinaflag/weaponHUD retained.",
   "method": "Existing SVG paths/layouts retained except3source-photo motif replacements. Source pixels are clipped and converted to white/transparent via SVG filters; no generated animal redraw. Low-alpha halo suppressed; fine antialiasing retained.",
   "original_masters_preserved": true,
