@@ -1,0 +1,179 @@
+{
+  "build": 57,
+  "base_build": 56,
+  "base_sha256": "1443261d225c8f725bf98ae1272ec35f96c95932dffcb869ef928a71cd5dc8a6",
+  "request": "Osama 12 Nov: \"Airborne troops should all be wearing googles down desert models.\"",
+  "preset": "SF goggles down desert",
+  "preset_body": {
+    "lods": [
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
+    ],
+    "offset": [
+      0,
+      0.01558,
+      0
+    ],
+    "anchorHands": true
+  },
+  "changed": [
+    {
+      "unit": 1136,
+      "name": "Airborne 空降兵",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1137,
+      "name": "HJ-12 Team",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1139,
+      "name": "Tank Hunters 坦克杀手",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1140,
+      "name": "QLU-11 Team",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1142,
+      "name": "Pathfinders 先遣队",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1143,
+      "name": "Thunder Gods 雷神",
+      "playable": true,
+      "from": "pla2_sf_night_down_desert"
+    },
+    {
+      "unit": 1144,
+      "name": "Snipers 狙击组",
+      "playable": true,
+      "from": "pla2_sf_night_up_woodland"
+    },
+    {
+      "unit": 1145,
+      "name": "QW-12 Patrol 防空巡逻",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1146,
+      "name": "Assault Raiders 突击队",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1149,
+      "name": "Recon 侦察组",
+      "playable": true,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1138,
+      "name": "Airborne Close-Assault Riflemen",
+      "playable": false,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1141,
+      "name": "Airborne QJZ-171 Team",
+      "playable": false,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1147,
+      "name": "Airborne Assault Engineers",
+      "playable": false,
+      "from": "pla2_sf_heavy_desert"
+    },
+    {
+      "unit": 1148,
+      "name": "Airborne QLZ-87 Team",
+      "playable": false,
+      "from": "pla2_regular_desert"
+    },
+    {
+      "unit": 1150,
+      "name": "Airborne Reserve Riflemen",
+      "playable": false,
+      "from": "pla2_regular_desert"
+    }
+  ],
+  "unchanged_already": [],
+  "gameplay_values_unchanged": true,
+  "weapon_bindings_and_offsets_unchanged": true,
+  "native_verified": false,
+  "renamed": [
+    {
+      "unit": 1151,
+      "from": "Mechanized AT Riflemen 反坦克班",
+      "to": "AT Riflemen 反坦克班",
+      "playable": false
+    },
+    {
+      "unit": 1152,
+      "from": "Mechanized HJ-8E Team",
+      "to": "HJ-8E Team",
+      "playable": true
+    },
+    {
+      "unit": 1153,
+      "from": "Mechanized QW-2 Team",
+      "to": "QW-2 Team",
+      "playable": true
+    },
+    {
+      "unit": 1154,
+      "from": "Mechanized QLZ-04 Team",
+      "to": "QLZ-04 Team",
+      "playable": true
+    },
+    {
+      "unit": 1155,
+      "from": "Mechanized PF-98 Tank Hunters",
+      "to": "PF-98 Tank Hunters",
+      "playable": true
+    },
+    {
+      "unit": 1156,
+      "from": "Mechanized Combat Engineers 工兵班",
+      "to": "Combat Engineers 工兵班",
+      "playable": true
+    },
+    {
+      "unit": 1157,
+      "from": "Mechanized QJZ-89 Team",
+      "to": "QJZ-89 Team",
+      "playable": true
+    },
+    {
+      "unit": 1158,
+      "from": "Mechanized GPMG Riflemen 机枪班",
+      "to": "GPMG Riflemen 机枪班",
+      "playable": false
+    },
+    {
+      "unit": 1159,
+      "from": "Mechanized Guided-AT Riflemen",
+      "to": "Guided-AT Riflemen",
+      "playable": false
+    }
+  ],
+  "left_for_osama": [
+    {
+      "unit": 1163,
+      "name": "Mech. Rifles 机步班",
+      "why": "abbreviation \"Mech.\" not the word \"Mechanized\""
+    }
+  ]
+}

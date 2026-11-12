@@ -1,3 +1,11 @@
+# PLA TEST Build 57
+
+Every Airborne squad (PLAAF Air Force) now wears the SF goggles down desert body: Airborne, HJ-12 Team, Tank Hunters, QLU-11 Team, Pathfinders, Thunder Gods, Snipers, QW-12 Patrol, Assault Raiders and Recon, plus the five unused Airborne rows. Same preset, body offset and hand anchoring as the existing goggles-down squads; weapon alignment is unchanged.
+
+"Mechanized" is removed from the displayed names of the PLAGF squads: HJ-8E Team, QW-2 Team, QLZ-04 Team, PF-98 Tank Hunters, Combat Engineers 工兵班, QJZ-89 Team, plus three unused rows (AT Riflemen, GPMG Riflemen, Guided-AT Riflemen). "Mech. Rifles 机步班" keeps its name for now. No other value changed.
+
+## Historical Build56
+
 # PLA TEST Build 56
 
 China restored. Builds 47-55 wrote empty pylon slots in the new loadout options as null; the game requires 0 and rejected the whole PLA patch (FREEDOM_ARROW_FAILED: Field type mismatch Turret0Id). All 3,870 slots now 0. Everything else is exactly Build55. check_field_types.py now runs on every build.
@@ -631,3 +639,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:16:34 PST (America/Los_Angeles) — Build55: PL-15/PL-16 = AMRAAM +500, PL-17 = JATM.
 
 - 2026-11-12 11:21:16 PST (America/Los_Angeles) — Build56: null pylon slots set to 0; China loads again.
+
+- 2026-11-12 11:35:47 PST (America/Los_Angeles) — Build57: all Airborne squads wear SF goggles down desert; "Mechanized" removed from PLAGF names.

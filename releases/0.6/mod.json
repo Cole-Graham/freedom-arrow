@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 56",
-  "version": "56",
+  "name": "PLA TEST Build 57",
+  "version": "57",
   "type": "modpack",
-  "description": "Build55 with China restored: empty pylon slots in loadout options written as 0, not null.",
+  "description": "Build56 with every Airborne squad wearing SF goggles down desert, and \"Mechanized\" removed from PLAGF squad names.",
   "repo": "Cole-Graham/freedom-arrow"
 }

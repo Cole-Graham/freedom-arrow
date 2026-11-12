@@ -645,13 +645,13 @@
   {
     "unitId": 1136,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -659,13 +659,13 @@
   {
     "unitId": 1137,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -673,13 +673,13 @@
   {
     "unitId": 1138,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -687,13 +687,13 @@
   {
     "unitId": 1139,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -701,13 +701,13 @@
   {
     "unitId": 1140,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -715,13 +715,13 @@
   {
     "unitId": 1141,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -729,13 +729,13 @@
   {
     "unitId": 1142,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -743,9 +743,9 @@
   {
     "unitId": 1143,
     "lods": [
-      "pla2_sf_night_down_desert_0.fas",
-      "pla2_sf_night_down_desert_1.fas",
-      "pla2_sf_night_down_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
@@ -757,9 +757,9 @@
   {
     "unitId": 1144,
     "lods": [
-      "pla2_sf_night_up_woodland_0.fas",
-      "pla2_sf_night_up_woodland_1.fas",
-      "pla2_sf_night_up_woodland_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
@@ -771,13 +771,13 @@
   {
     "unitId": 1145,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -785,13 +785,13 @@
   {
     "unitId": 1146,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -799,9 +799,9 @@
   {
     "unitId": 1147,
     "lods": [
-      "pla2_sf_heavy_desert_0.fas",
-      "pla2_sf_heavy_desert_1.fas",
-      "pla2_sf_heavy_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
@@ -813,13 +813,13 @@
   {
     "unitId": 1148,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -827,13 +827,13 @@
   {
     "unitId": 1149,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
@@ -841,13 +841,13 @@
   {
     "unitId": 1150,
     "lods": [
-      "pla2_regular_desert_0.fas",
-      "pla2_regular_desert_1.fas",
-      "pla2_regular_desert_2.fas"
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas"
     ],
     "offset": [
       0,
-      0.00311,
+      0.01558,
       0
     ],
     "anchorHands": true
