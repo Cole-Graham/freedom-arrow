@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 33",
-  "version": "33",
+  "name": "PLA TEST Build 34",
+  "version": "34",
   "type": "modpack",
-  "description": "One spec per unit except Mi-8 Cargo, latest PLAN/Rocket moves, infantry sheet reconciliation and DF31 warning.",
+  "description": "Build33 plus Shaanxi HMV3 supply truck (HEMTT) for Armored, Rocket Force and Motorized.",
   "repo": "Cole-Graham/freedom-arrow"
 }

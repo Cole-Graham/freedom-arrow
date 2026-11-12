@@ -1,5 +1,5 @@
 {
-  "build": 33,
+  "build": 34,
   "base_build": 30,
   "base_sha256": "809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a",
   "native_verified": false,
@@ -90,7 +90,8 @@
     "Shaanxi Troop Truck": 1231,
     "HQ-9B": 1233,
     "HQ-9A": 1234,
-    "ZSL-92 MG": 1232
+    "ZSL-92 MG": 1232,
+    "Shaanxi HMV3": 1235
   },
   "decisions": [],
   "drone_model_audit": {

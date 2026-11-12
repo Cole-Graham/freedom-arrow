@@ -1,0 +1,18 @@
+{
+  "build": 34,
+  "base_build": 33,
+  "base_sha256": "329c54858cfac03ef5712f6e42334180a696e5872b293e682bb163db99f7f41c",
+  "unit": 1235,
+  "name": "Shaanxi HMV3",
+  "donor": 242,
+  "specs": [
+    18,
+    19,
+    21
+  ],
+  "cost": 50,
+  "availability_xp0": 4,
+  "visible_units": 261,
+  "checks": 26702,
+  "native_verified": false
+}

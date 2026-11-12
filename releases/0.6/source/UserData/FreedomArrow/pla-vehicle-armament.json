@@ -1,5 +1,5 @@
 {
-  "build": 33,
+  "build": 34,
   "entries": [
     {
       "unit": 900,
@@ -10193,9 +10193,26 @@
         17
       ],
       "active": true
+    },
+    {
+      "unit": 1235,
+      "name": "Shaanxi HMV3",
+      "type": 4,
+      "native_parent": 242,
+      "weapons": [],
+      "slots": 27,
+      "custom_model": null,
+      "armor_basis": "Native HEMTT armor and mobility; not a measured Chinese armor claim.",
+      "native_verified": false,
+      "specs": [
+        18,
+        19,
+        21
+      ],
+      "active": true
     }
   ],
-  "count": 169,
+  "count": 170,
   "icon_keys": [
     "FA_PLA_AMMO_ATGM",
     "FA_PLA_AMMO_AUTOCANNON",

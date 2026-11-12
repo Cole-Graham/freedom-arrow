@@ -1,7 +1,7 @@
 {
-  "build": 33,
-  "base_build": 32,
-  "base_sha256": "8f537832f6d8a0e52c20ac83d6faf486d4a71af1148c7e3f7fba27dda1e09024",
+  "build": 34,
+  "base_build": 33,
+  "base_sha256": "329c54858cfac03ef5712f6e42334180a696e5872b293e682bb163db99f7f41c",
   "changes": [
     {
       "unit": 900,
@@ -2256,10 +2256,22 @@
       "specs": [
         21
       ]
+    },
+    {
+      "unit": 1235,
+      "name": "Shaanxi HMV3",
+      "specs": [
+        18,
+        19,
+        21
+      ]
     }
   ],
   "single_spec_units": 259,
-  "shared_exception": 1227,
+  "shared_exception": [
+    1227,
+    1235
+  ],
   "identity_repairs": [
     {
       "unit": 1233,
@@ -2298,6 +2310,6 @@
       "incorrect_donor_id": 1079
     }
   ],
-  "checks": 1747,
+  "checks": 26702,
   "native_verified": false
 }

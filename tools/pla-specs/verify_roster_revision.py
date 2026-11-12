@@ -1,4 +1,4 @@
-"""Independent structural and numeric checks for the packaged PLA31 batch."""
+"""Independent structural and numeric checks for the packaged PLA31+ batches."""
 import argparse,json,sys,zipfile
 from collections import defaultdict
 from pathlib import Path
@@ -49,13 +49,18 @@ with zipfile.ZipFile(a.package) as z:
   for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
   for uid in [1049,943,974,918,961,1063,1054]:ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
   for uid in [909,1058,1230]:ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+ if build>=34:
+  hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
+  ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==[18,19,21],'HMV3 specs')
+  ok(not ammo(1235) and not any(r['UnitId']==1235 for r in t['TurretUnitsJson'].values()),'HMV3 unarmed')
  if build>=32:
   links=defaultdict(list)
-  assignments=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'))['assignments']
+  spec_file=json.loads(z.read('UserData/FreedomArrow/pla-spec-assignments.json'));assignments=spec_file['assignments']
+  shared=spec_file.get('shared_transports') or {'1227':list(range(17,22))}
   for r in t['SpecializationAvailabilitiesJson'].values():links[r['UnitId']].append(r['SpecializationId'])
   for uid,expected in assignments.items():
    uid=int(uid);ok(sorted(links[uid])==sorted(expected),('assignment metadata',uid))
-   if expected:ok(sorted(expected)==list(range(17,22)) if uid==1227 else len(expected)==1,('single spec',uid))
+   if expected:ok(sorted(expected)==sorted(shared[str(uid)]) if str(uid) in shared else len(expected)==1,('single spec',uid))
   for r in t['TransportAvailabilitiesJson'].values():
    sid=t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId']
    if sid>=17:ok(sid in links[r['UnitId']],('carrier crosses spec',r['Id']))

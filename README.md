@@ -1,3 +1,9 @@
+# PLA TEST Build 34
+
+Adds the Shaanxi HMV3 supply truck (native HEMTT model and statistics), shared by Armored, Rocket Force and Motorized. Everything else is exactly Build33. Native appearance and resupply remain unverified.
+
+## Historical Build33
+
 # PLA TEST Build 33
 
 One spec per selectable PLA card, except Mi-8 Cargo across all five. Includes latest HQ-17A, J-15/JH-7, PGZ-09, HQ-7 and ZBD-86 assignments, Build32 infantry sheet reconciliation, and the original DF-31 warning draft. Cross-spec carrier links and nine donor-ID fields are corrected. Native deck building, warning audio and appearance remain unverified.
@@ -447,3 +453,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 00:52:01 PST (America/Los_Angeles) — Added formatting-aware sheet import and QLG10A reference icon.
 
 - 2026-11-12 01:01:43 PST (America/Los_Angeles) — Build33 combines one-spec deck correction and latest PLAN/Rocket moves with the full Build32 infantry pass; Mi-8 Cargo is the only shared card.
+
+- 2026-11-12 01:36:00 PST (America/Los_Angeles) — Build34 adds the Shaanxi HMV3 supply truck from the HEMTT for Armored, Rocket Force and Motorized; second shared exception after Mi-8 Cargo.
