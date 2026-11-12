@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "66",
+  "package_version": "67",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build65 plus Osama 13:03 batch and live model set. Data checks only; in-game check pending."
+  "verification": "Build66 plus Osama 13:17 rocket force/artillery/JRVG batch. Data checks only; in-game check pending."
 }

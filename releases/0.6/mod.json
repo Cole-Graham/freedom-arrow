@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 66",
-  "version": "66",
+  "name": "PLA TEST Build 67",
+  "version": "67",
   "type": "modpack",
-  "description": "Build65 plus the live Black Eagle, LOSAT and RU/US jet models, ZTZ Abrams mobility, unit removals, PTZ-89 autoloader, HMV3 Cargo 15k supply and ZTQ-62-I normal/mask maps.",
+  "description": "Build66 plus PHL-191/PHL-03 moves and Smerch copy, PHL-16 mount fix, DF-21/DF-17/DF-31A, PCL-181 Koalitsiya copy and JRVG-1 76 mm rework.",
   "repo": "Cole-Graham/freedom-arrow"
 }

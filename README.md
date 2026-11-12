@@ -1,3 +1,13 @@
+# PLA TEST Build 67
+
+- PHL-191 (no "/ AR3") in Rocket Force; PHL-03 in Motorized as a Smerch copy (HE, Cluster, Guided HE, Guided Cluster).
+- PHL-16: only the default launcher is mounted at spawn, so the other loadouts' weapons no longer appear together.
+- DF-21: 82 damage and 90 m blast (KAB-1500), 180 points. DF-17/ZF: Kinzhal flight, top speed 1500, not interceptable, 300 points. DF-31A: 120 s aim, 1000 points.
+- PCL-181: Koalitsiya weapons and menu, 155 mm HE / HE-RAP / Guided.
+- JRVG-1: 76 mm HE 8 damage (about 8/s), 20 m blast, 2400 m low-altitude range, SHORAD radar, Mark 45 naval gun sound; camo net hidden, metal mask maps.
+
+## Historical Build66
+
 # PLA TEST Build 66
 
 - Live models restored: Object 640 Black Eagle (dev.51 model), MGM-166 LOSAT (scale 1.2), F-21 scale 1.1, and the live 0.1.14 copies of the Su-57D, F-14, Su-47, Su-75 and YF-23 models.
@@ -726,3 +736,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 12:56:55 PST (America/Los_Angeles) — Build65: aircraft loadout pass, CTL-181 NLOS, CSK-181 Motorized.
 
 - 2026-11-12 13:11:01 PST (America/Los_Angeles) — Build66: live models, ZTZ mobility, removals, PTZ-89, HMV3 Cargo, ZTQ-62-I maps.
+
+- 2026-11-12 13:22:04 PST (America/Los_Angeles) — Build67: rocket force, artillery and JRVG-1 batch.

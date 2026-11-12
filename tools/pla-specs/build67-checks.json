@@ -1,0 +1,53 @@
+{
+  "build": 67,
+  "base_build": 66,
+  "base_sha256": "990b4436bcba0b7533d13f7c14a5db43d685aa7c5b8d6ec92b8d6eb548a35c6b",
+  "request": "Osama 12 Nov 13:17 PST",
+  "phl03": {
+    "copied_from": "9K58 Smerch",
+    "options": [
+      "Custom_Option_HE_warheads",
+      "Custom_Option_Cluster_warheads",
+      "Custom_Option_Guided_he",
+      "Custom_Option_Guided_cluster"
+    ]
+  },
+  "phl16": {
+    "default": "8x BRE6/BRE8 370 mm",
+    "non_default_mounts": [
+      "PLA PHL-16 mount 0 10x BRE3 300 mm",
+      "PLA PHL-16 mount 0 2x Fire Dragon 480"
+    ]
+  },
+  "df17": {
+    "TrajectoryType": 200,
+    "LoftAngle": 85,
+    "Acceleration": 100.0,
+    "BurnTime": 20.0,
+    "MainEngineIgnitionDelay": 2.0,
+    "RotationSpeed": 50.0,
+    "LaunchMarginAngle": 85.0,
+    "CanBeIntercepted": false,
+    "MaxSpeed": 1500.0
+  },
+  "pcl181": {
+    "HE": 70,
+    "HE-RAP": 50,
+    "Guided": 20,
+    "reload": 4.0,
+    "aim": [
+      16.0,
+      20.0
+    ]
+  },
+  "jrvg": {
+    "sound": "Mark 45 (Arleigh Burke) firing, 80-105 mm shell impact",
+    "damage": 8.0,
+    "aoe": 20.0,
+    "low_alt_range_data": 1200,
+    "shots_per_second_est": 1.017,
+    "dps_est": 8.14,
+    "radar_ability": 60
+  },
+  "checks": 17316
+}
