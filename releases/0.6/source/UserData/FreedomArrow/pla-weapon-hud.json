@@ -1,5 +1,5 @@
 {
-  "build": 30,
+  "build": 32,
   "scope": "Weapon HUD icons only; portraits, unit icons, ammo, statistics and approved models retained.",
   "entries": [
     {
@@ -3166,11 +3166,11 @@
       "weapon": 2011889,
       "name": "QLG-10A",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_AK74M_GP",
+      "mode": "custom",
+      "profile": "QLG10A",
+      "address": "FA_PLA_WP_QLG10A",
       "native_weapon": 31,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Sam C_1.png reference, measured contour and internal lines"
     },
     {
       "weapon": 2011919,
@@ -3545,6 +3545,7 @@
     "QBZ95",
     "QBZ97",
     "QCW05",
+    "QLG10A",
     "QLU11",
     "QTS11"
   ],
@@ -3567,13 +3568,15 @@
     "FA_PLA_WP_QBZ97_OUTLINE",
     "FA_PLA_WP_QCW05",
     "FA_PLA_WP_QCW05_OUTLINE",
+    "FA_PLA_WP_QLG10A",
+    "FA_PLA_WP_QLG10A_OUTLINE",
     "FA_PLA_WP_QLU11",
     "FA_PLA_WP_QLU11_OUTLINE",
     "FA_PLA_WP_QTS11",
     "FA_PLA_WP_QTS11_OUTLINE"
   ],
-  "native_icon_entries": 340,
-  "custom_icon_entries": 13,
+  "native_icon_entries": 339,
+  "custom_icon_entries": 14,
   "native_verified": false,
   "limits": "Detailed native art is reused for stand-ins. Four mesh profiles and four bullpup reference/family contours are custom. Native HUD sizing and final appearance require game inspection.",
   "style_build28": {
@@ -3586,5 +3589,14 @@
     "native_verified": false
   },
   "raster_export_width": 1160,
-  "reference_revision": "Measured source boundaries and internal lines replace rejected hand approximations"
+  "reference_revision": "Measured source boundaries and internal lines replace rejected hand approximations",
+  "qlg10a_revision": {
+    "build": 32,
+    "weapons": [
+      2011889
+    ],
+    "source": "Sam C_1.png",
+    "width": 1160,
+    "native_verified": false
+  }
 }

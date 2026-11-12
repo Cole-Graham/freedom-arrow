@@ -1,0 +1,11 @@
+{
+  "profile": "QLG10A",
+  "source_sha256": "c348b3366b02b067702b260baba9b4fa23b337b5070e29e214110a72f53aacf9",
+  "boundary_vertices": 748,
+  "reference": "Sam C_1.png",
+  "method": "Measured source contour to SVG; measured internal hardware lines",
+  "raster_width": 1160,
+  "source_faces_right": true,
+  "native_direction": "right after HUD horizontal mirror; native inspection pending",
+  "native_verified": false
+}

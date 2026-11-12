@@ -1,0 +1,15 @@
+{
+  "build": 32,
+  "checks": 2787,
+  "sheet_rows": 90,
+  "removed": 17,
+  "active_rows": 73,
+  "parent_cards": 72,
+  "bilingual_active": 43,
+  "weapon_numeric_stats_and_ammo_definitions_exact31": true,
+  "vehicle_unit_fields_exact31": true,
+  "all_model_geometry_body_and_weapon_bindings_exact31": true,
+  "existing_pngs_exact31": 116,
+  "new_qlg_pngs": 2,
+  "native_verified": false
+}

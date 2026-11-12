@@ -1,0 +1,12 @@
+{
+  "written_names": 72,
+  "bilingual_active": 43,
+  "full_rows_moved_to_spec_bottom": 18,
+  "currently_struck_rows": 17,
+  "current_unstruck_team": 1137,
+  "all90rows_retained": true,
+  "all_other_cell_values_notes_dropdowns_and_chips_preserved": true,
+  "formulas_and_numeric_validation_follow_new_row_indices": true,
+  "native_sheet_render_inspected": "sheet-native-view.png",
+  "source_data_note": "HJ12 team1137is unstruck in final readback and is retained. No cause of that edit is asserted."
+}

@@ -1,0 +1,1943 @@
+{
+  "build": 32,
+  "base_build": 31,
+  "base_sha256": "6474690619db697d6daadbb6343bb86ebb37c321cd8615bcd1195b6b905e0009",
+  "removed_units": [
+    1138,
+    1141,
+    1147,
+    1148,
+    1150,
+    1159,
+    1167,
+    1178,
+    1179,
+    1188,
+    1189,
+    1190,
+    1195,
+    1200,
+    1204,
+    1208,
+    1210
+  ],
+  "entries": [
+    {
+      "unit": 1136,
+      "row": 8,
+      "source_original_row": 8,
+      "name": "Airborne Riflemen 空降步兵",
+      "men": 9,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1137,
+      "row": 17,
+      "source_original_row": 9,
+      "name": "Airborne HJ-12 Team",
+      "men": 5,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ]
+    },
+    {
+      "unit": 1139,
+      "row": 9,
+      "source_original_row": 11,
+      "name": "Airborne Tank Hunters 坦克杀手",
+      "men": 6,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2011919,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1140,
+      "row": 10,
+      "source_original_row": 12,
+      "name": "Airborne QLU-11 Precision Team",
+      "men": 5,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1142,
+      "row": 11,
+      "source_original_row": 14,
+      "name": "Airborne Pathfinders 空降先遣侦察兵",
+      "men": 7,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1143,
+      "row": 12,
+      "source_original_row": 15,
+      "name": "Thunder Gods 雷神",
+      "men": 9,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "FHJ-02",
+          "weapon": 2013057,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ]
+    },
+    {
+      "unit": 1144,
+      "row": 13,
+      "source_original_row": 16,
+      "name": "Airborne Snipers 空降狙击组",
+      "men": 3,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1145,
+      "row": 14,
+      "source_original_row": 17,
+      "name": "Airborne HN-6 Patrol 空降防空巡逻队",
+      "men": 5,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1146,
+      "row": 15,
+      "source_original_row": 18,
+      "name": "Air Assault Raiders 空中突击兵",
+      "men": 9,
+      "type": "Elite",
+      "recon": false,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1149,
+      "row": 16,
+      "source_original_row": 21,
+      "name": "Airborne Target Observers 空降目标观察组",
+      "men": 3,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2014500,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1151,
+      "row": 23,
+      "source_original_row": 23,
+      "name": "Mechanized AT Riflemen 机械化反坦克步兵",
+      "men": 7,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1152,
+      "row": 24,
+      "source_original_row": 24,
+      "name": "Mechanized HJ-8E Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ]
+    },
+    {
+      "unit": 1153,
+      "row": 25,
+      "source_original_row": 25,
+      "name": "Mechanized QW-2 Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 537
+        }
+      ]
+    },
+    {
+      "unit": 1154,
+      "row": 26,
+      "source_original_row": 26,
+      "name": "Mechanized QLZ-04 Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QLZ-04",
+          "weapon": 2012312,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ]
+    },
+    {
+      "unit": 1155,
+      "row": 27,
+      "source_original_row": 27,
+      "name": "Mechanized PF-98 Tank Hunters",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1156,
+      "row": 28,
+      "source_original_row": 28,
+      "name": "Mechanized Combat Engineers 机械化战斗工兵",
+      "men": 8,
+      "type": "Engineers",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ]
+    },
+    {
+      "unit": 1157,
+      "row": 29,
+      "source_original_row": 29,
+      "name": "Mechanized QJZ-89 Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJZ-89",
+          "weapon": 2012387,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ]
+    },
+    {
+      "unit": 1158,
+      "row": 30,
+      "source_original_row": 30,
+      "name": "Mechanized GPMG Riflemen 机械化机枪步兵",
+      "men": 7,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1160,
+      "row": 31,
+      "source_original_row": 32,
+      "name": "Armored Scouts 装甲侦察兵",
+      "men": 4,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1161,
+      "row": 32,
+      "source_original_row": 33,
+      "name": "Armored Sniper Pair 装甲狙击组",
+      "men": 2,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1162,
+      "row": 33,
+      "source_original_row": 34,
+      "name": "Thermobaric Breachers 机械化温压突击工兵",
+      "men": 8,
+      "type": "Engineers",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ]
+    },
+    {
+      "unit": 1163,
+      "row": 34,
+      "source_original_row": 35,
+      "name": "Mechanized Riflemen 机械化步兵",
+      "men": 7,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1164,
+      "row": 35,
+      "source_original_row": 36,
+      "name": "Armored Forward Observers 装甲前沿观察组",
+      "men": 3,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2014500,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1165,
+      "row": 36,
+      "source_original_row": 37,
+      "name": "Recon HJ-8E Ambush Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ]
+    },
+    {
+      "unit": 1166,
+      "row": 38,
+      "source_original_row": 38,
+      "name": "Conscripts 义务兵",
+      "men": 12,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        }
+      ]
+    },
+    {
+      "unit": 1168,
+      "row": 39,
+      "source_original_row": 40,
+      "name": "Reserve HJ-73D Team",
+      "men": 9,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ]
+    },
+    {
+      "unit": 1169,
+      "row": 40,
+      "source_original_row": 41,
+      "name": "Reserve HN-6 Team",
+      "men": 9,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ]
+    },
+    {
+      "unit": 1170,
+      "row": 41,
+      "source_original_row": 42,
+      "name": "Reserve QJZ-89 Team",
+      "men": 9,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QJZ-89",
+          "weapon": 2012387,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ]
+    },
+    {
+      "unit": 1171,
+      "row": 42,
+      "source_original_row": 43,
+      "name": "Reserve QLZ-87 Team",
+      "men": 9,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QLZ-87",
+          "weapon": 2012157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 148
+        }
+      ]
+    },
+    {
+      "unit": 1172,
+      "row": 43,
+      "source_original_row": 44,
+      "name": "Reserve PF-98 Team",
+      "men": 9,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1173,
+      "row": 44,
+      "source_original_row": 45,
+      "name": "Malyutka Recon Ambush Team 反坦克伏击侦察组",
+      "men": 4,
+      "type": "Conscripts",
+      "recon": true,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
+        },
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ]
+    },
+    {
+      "unit": 1174,
+      "row": 45,
+      "source_original_row": 46,
+      "name": "Sharp Blades 利刃",
+      "men": 6,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2013349,
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        }
+      ]
+    },
+    {
+      "unit": 1175,
+      "row": 46,
+      "source_original_row": 47,
+      "name": "Missile Site Security 导弹阵地警卫",
+      "men": 10,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "HJ-73D",
+          "weapon": 2012643,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 175
+        }
+      ]
+    },
+    {
+      "unit": 1176,
+      "row": 47,
+      "source_original_row": 48,
+      "name": "Missile-Site Counter-Raid Team 导弹阵地反袭击队",
+      "men": 8,
+      "type": "Elite",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ]
+    },
+    {
+      "unit": 1177,
+      "row": 48,
+      "source_original_row": 49,
+      "name": "Reserve Thermobaric Team",
+      "men": 6,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "QBB-95",
+          "weapon": 2012207,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 14
+        },
+        {
+          "name": "FHJ-02",
+          "weapon": 2013057,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ]
+    },
+    {
+      "unit": 1180,
+      "row": 49,
+      "source_original_row": 52,
+      "name": "FHJ-02 Incendiary Team",
+      "men": 3,
+      "type": "Conscripts",
+      "recon": false,
+      "base_weapon": 2014501,
+      "weapons": [
+        {
+          "name": "FHJ-02",
+          "weapon": 2013057,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ]
+    },
+    {
+      "unit": 1181,
+      "row": 53,
+      "source_original_row": 53,
+      "name": "Godswords 东方神剑",
+      "men": 8,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 6,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004002
+        }
+      ]
+    },
+    {
+      "unit": 1182,
+      "row": 54,
+      "source_original_row": 54,
+      "name": "PAP Snow Leopards 雪豹",
+      "men": 8,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2013349,
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "DZJ-08",
+          "weapon": 2012024,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 200
+        }
+      ]
+    },
+    {
+      "unit": 1183,
+      "row": 55,
+      "source_original_row": 55,
+      "name": "Blood Wolves 血狼",
+      "men": 8,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1184,
+      "row": 56,
+      "source_original_row": 56,
+      "name": "Whistling Arrows 响箭",
+      "men": 4,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1185,
+      "row": 57,
+      "source_original_row": 57,
+      "name": "Falcons 猎鹰",
+      "men": 8,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        }
+      ]
+    },
+    {
+      "unit": 1186,
+      "row": 58,
+      "source_original_row": 58,
+      "name": "Mountain Leopards 高原雪豹",
+      "men": 3,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ]
+    },
+    {
+      "unit": 1187,
+      "row": 59,
+      "source_original_row": 59,
+      "name": "Beijing Swords 蓝剑",
+      "men": 6,
+      "type": "Special forces",
+      "recon": false,
+      "base_weapon": 2013349,
+      "weapons": [
+        {
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ]
+    },
+    {
+      "unit": 1191,
+      "row": 60,
+      "source_original_row": 63,
+      "name": "Sea Dragons 蛟龙",
+      "men": 8,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2013087,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        },
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 537
+        }
+      ]
+    },
+    {
+      "unit": 1192,
+      "row": 61,
+      "source_original_row": 64,
+      "name": "Marine Riflemen 海军陆战步兵",
+      "men": 12,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 3,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1193,
+      "row": 62,
+      "source_original_row": 65,
+      "name": "Marine HJ-8 Team",
+      "men": 6,
+      "type": "Support",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ]
+    },
+    {
+      "unit": 1194,
+      "row": 63,
+      "source_original_row": 66,
+      "name": "Marine HN-6 Team",
+      "men": 6,
+      "type": "Support",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ]
+    },
+    {
+      "unit": 1196,
+      "row": 68,
+      "source_original_row": 68,
+      "name": "Motorized Line Infantry 摩托化步兵",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-98",
+          "weapon": 2011832,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1197,
+      "row": 69,
+      "source_original_row": 69,
+      "name": "Motorized AA Troopers 摩托化防空步兵",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1198,
+      "row": 70,
+      "source_original_row": 70,
+      "name": "Motorized AT Troopers 摩托化反坦克步兵",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HJ-12",
+          "weapon": 2011864,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 62
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1199,
+      "row": 71,
+      "source_original_row": 71,
+      "name": "Motorized Weapons Squad",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QLU-11",
+          "weapon": 2004002,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004002
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QJZ-171",
+          "weapon": 2011972,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 145
+        }
+      ]
+    },
+    {
+      "unit": 1201,
+      "row": 72,
+      "source_original_row": 73,
+      "name": "Motorized Recon Patrol 摩托化侦察兵",
+      "men": 6,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1202,
+      "row": 73,
+      "source_original_row": 74,
+      "name": "Motorized Snipers 摩托化狙击组",
+      "men": 3,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 523
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1203,
+      "row": 74,
+      "source_original_row": 75,
+      "name": "Taishan Eagles 泰山雄鹰",
+      "men": 6,
+      "type": "Special forces",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1205,
+      "row": 75,
+      "source_original_row": 77,
+      "name": "Motorized Light AT Riflemen 摩托化轻型反坦克步兵",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 53
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 168
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1206,
+      "row": 76,
+      "source_original_row": 78,
+      "name": "Air Defense Scouts 防空侦察兵",
+      "men": 5,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        },
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "HN-6",
+          "weapon": 2012081,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 583
+        }
+      ]
+    },
+    {
+      "unit": 1207,
+      "row": 77,
+      "source_original_row": 79,
+      "name": "PF-98 Tank Hunters",
+      "men": 5,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-98A",
+          "weapon": 2013157,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 172
+        }
+      ]
+    },
+    {
+      "unit": 1209,
+      "row": 78,
+      "source_original_row": 81,
+      "name": "Thermobaric Assault 温压突击兵",
+      "men": 9,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        },
+        {
+          "name": "PF-97",
+          "weapon": 2012515,
+          "quantity": 3,
+          "slot": "special",
+          "native_weapon": 668
+        }
+      ]
+    },
+    {
+      "unit": 1211,
+      "row": 83,
+      "source_original_row": 83,
+      "name": "Test Export Riflemen 出口步枪试验组",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2014001,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 168
+        }
+      ]
+    },
+    {
+      "unit": 1212,
+      "row": 84,
+      "source_original_row": 84,
+      "name": "Test SMG Assault 冲锋枪突击试验组",
+      "men": 8,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QCQ-05",
+          "weapon": 2012924,
+          "quantity": 6,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ]
+    },
+    {
+      "unit": 1213,
+      "row": 85,
+      "source_original_row": 85,
+      "name": "Test Suppressed Scouts 消声武器侦察试验组",
+      "men": 6,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QCW-05",
+          "weapon": 2013349,
+          "quantity": 4,
+          "slot": "primary",
+          "native_weapon": 508
+        },
+        {
+          "name": "QBU-88",
+          "weapon": 2012821,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 167
+        }
+      ]
+    },
+    {
+      "unit": 1214,
+      "row": 86,
+      "source_original_row": 86,
+      "name": "Test LG5 Precision Grenadiers",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "LG5",
+          "weapon": 2014088,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 203
+        }
+      ]
+    },
+    {
+      "unit": 1215,
+      "row": 87,
+      "source_original_row": 87,
+      "name": "Test LG5s Mobile Grenadiers",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "LG5s",
+          "weapon": 2014116,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 203
+        },
+        {
+          "name": "QLG-10A",
+          "weapon": 2011889,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 31
+        }
+      ]
+    },
+    {
+      "unit": 1216,
+      "row": 88,
+      "source_original_row": 88,
+      "name": "Test LG6 CQC Grenadiers",
+      "men": 6,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "LG6",
+          "weapon": 2014146,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 45
+        }
+      ]
+    },
+    {
+      "unit": 1217,
+      "row": 89,
+      "source_original_row": 89,
+      "name": "Test LG4 Revolver Team",
+      "men": 6,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 68
+        },
+        {
+          "name": "QJB-201",
+          "weapon": 2011834,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 53
+        }
+      ]
+    },
+    {
+      "unit": 1218,
+      "row": 90,
+      "source_original_row": 90,
+      "name": "Test LG3 Heavy AGL",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "LG3",
+          "weapon": 2014208,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 75
+        }
+      ]
+    },
+    {
+      "unit": 1219,
+      "row": 91,
+      "source_original_row": 91,
+      "name": "Test QN-202 Guided Support",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QN-202",
+          "weapon": 2014236,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 141
+        }
+      ]
+    },
+    {
+      "unit": 1220,
+      "row": 92,
+      "source_original_row": 92,
+      "name": "Test TL-4 Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "TL-4",
+          "weapon": 2014264,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 205
+        }
+      ]
+    },
+    {
+      "unit": 1221,
+      "row": 93,
+      "source_original_row": 93,
+      "name": "Test GAM-102LR Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "GAM-102LR",
+          "weapon": 2014292,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 205
+        }
+      ]
+    },
+    {
+      "unit": 1222,
+      "row": 94,
+      "source_original_row": 94,
+      "name": "Test HJ-12E Team",
+      "men": 4,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "HJ-12E",
+          "weapon": 2014320,
+          "quantity": 2,
+          "slot": "special",
+          "native_weapon": 62
+        }
+      ]
+    },
+    {
+      "unit": 1223,
+      "row": 95,
+      "source_original_row": 95,
+      "name": "Test QW-2 Escort",
+      "men": 5,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QJY-201",
+          "weapon": 2012411,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 30
+        },
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 537
+        }
+      ]
+    },
+    {
+      "unit": 1224,
+      "row": 96,
+      "source_original_row": 96,
+      "name": "Test QTS Recon Cell 数字化侦察试验组",
+      "men": 4,
+      "type": "Regular",
+      "recon": true,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "QTS-11",
+          "weapon": 2004004,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2004004
+        },
+        {
+          "name": "QBU-191",
+          "weapon": 2004000,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2004000
+        }
+      ]
+    },
+    {
+      "unit": 1225,
+      "row": 97,
+      "source_original_row": 97,
+      "name": "Test FHJ-02 Smoke Team",
+      "men": 3,
+      "type": "Regular",
+      "recon": false,
+      "base_weapon": 2003998,
+      "weapons": [
+        {
+          "name": "FHJ-02",
+          "weapon": 2014406,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 698
+        }
+      ]
+    }
+  ],
+  "native_verified": false,
+  "reserve_rifle": "191",
+  "weapon_performance_definitions_unchanged": true,
+  "cost_policy": "Existing unit costs retained; squad HP follows five per soldier. Ammunition stocks retained for existing weapons; newly carried weapons reuse their existing unit donor stock.",
+  "engineer_loadout": {
+    "parent": 1156,
+    "child": 1162
+  },
+  "geometry_art_body_preserved": true,
+  "playable_parent_cards": 72,
+  "sheet_rows_retained_as_definitions": 73,
+  "weapon_alias_model_bindings_changed": 0
+}

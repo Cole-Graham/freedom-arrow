@@ -1,3 +1,9 @@
+# PLA TEST Build 32
+
+**Applies the current formatted infantry sheet: removals, bilingual names, sizes, classes and fixed kits; combat-engineer thermobaric loadout; reference-derived QLG-10A HUD. Build31 equipment and approved body/art alignment retained. Native validation pending.**
+
+## Historical Build31
+
 # PLA TEST Build 31
 
 Build31 applies Sam's 12 November equipment/spec revision over exact Build30. Infantry bodies, approved HUD art, music and saved alignment are retained. Native visual and combat checks remain pending. See `tools/pla-specs/build31-roster-checks.json`. DF-31 has a separate, original synthesized warning draft through the existing ballistic alert; it respects its mute/volume settings. Launch/audio behavior is not yet proven in-game. Nuclear blast tuning remains pending.
@@ -431,3 +437,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 00:30:48 PST (America/Los_Angeles) — Build31 equipment/spec roster, transport coverage and weapon drafts; preserved Build30 infantry/art.
 
 - 2026-11-12 00:44:41 PST (America/Los_Angeles) — Added a DF-31-specific original warning draft through the existing ballistic alert path and audio controls; native launch/mix and nuclear effect remain pending.
+
+- 2026-11-12 00:52:01 PST (America/Los_Angeles) — Added formatting-aware sheet import and QLG10A reference icon.

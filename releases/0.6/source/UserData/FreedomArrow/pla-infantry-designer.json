@@ -1,21 +1,21 @@
 {
-  "build": 31,
+  "build": 32,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
     {
       "unit": 1136,
       "row": 8,
-      "name": "Airborne Riflemen",
+      "name": "Airborne Riflemen 空降步兵",
       "spec": 17,
       "men": 9,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJS-161",
+          "weapon": 2011922,
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 53
@@ -47,24 +47,24 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Riflemen",
+      "source_design_name": "Airborne Riflemen 空降步兵",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
     {
       "unit": 1137,
-      "row": 9,
+      "row": 17,
       "name": "Airborne HJ-12 Team",
       "spec": 17,
       "men": 5,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "HJ-12",
           "weapon": 2011864,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 62
         }
@@ -133,29 +133,30 @@
       "native_verified": false,
       "source_design_name": "Airborne Close-Assault Riflemen",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
+      "unit_icon": "FA_PLA_INF_LINE_AIRBORNE",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1139,
-      "row": 11,
-      "name": "Airborne PF-98 Fire Support",
+      "row": 9,
+      "name": "Airborne Tank Hunters 坦克杀手",
       "spec": 17,
       "men": 6,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-98A",
           "weapon": 2011919,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 172
         }
@@ -173,19 +174,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne PF-98 Fire Support",
+      "source_design_name": "Airborne Tank Hunters 坦克杀手",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_SMAW_TEAM-Label"
     },
     {
       "unit": 1140,
-      "row": 12,
+      "row": 10,
       "name": "Airborne QLU-11 Precision Team",
       "spec": 17,
       "men": 5,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QLU-11",
@@ -256,31 +257,32 @@
       "native_verified": false,
       "source_design_name": "Airborne QJZ-171 Team",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "RU_HMG_KORD-Label"
+      "unit_icon": "RU_HMG_KORD-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1142,
-      "row": 14,
-      "name": "Airborne Pathfinders",
+      "row": 11,
+      "name": "Airborne Pathfinders 空降先遣侦察兵",
       "spec": 17,
-      "men": 4,
+      "men": 7,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
           "weapon": 2004000,
-          "quantity": 1,
+          "quantity": 2,
           "slot": "primary",
           "native_weapon": 2004000
         },
         {
-          "name": "PF-89",
-          "weapon": 2011887,
+          "name": "PF-98A",
+          "weapon": 2013157,
           "quantity": 1,
           "slot": "special",
-          "native_weapon": 168
+          "native_weapon": 172
         }
       ],
       "munitions": "Light HEAT reserve",
@@ -288,7 +290,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 20,
+      "health": 35,
       "carriers": [
         900,
         1058,
@@ -300,19 +302,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Pathfinders",
+      "source_design_name": "Airborne Pathfinders 空降先遣侦察兵",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_AIRBORNE"
     },
     {
       "unit": 1143,
-      "row": 15,
-      "name": "Thunder Gods",
+      "row": 12,
+      "name": "Thunder Gods 雷神",
       "spec": 17,
-      "men": 6,
-      "recon": true,
+      "men": 9,
+      "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QTS-11",
@@ -322,18 +324,18 @@
           "native_weapon": 2004004
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QCW-05",
+          "weapon": 2013349,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 508
         },
         {
-          "name": "DZJ-08",
-          "weapon": 2012024,
-          "quantity": 1,
+          "name": "FHJ-02",
+          "weapon": 2013057,
+          "quantity": 2,
           "slot": "special",
-          "native_weapon": 200
+          "native_weapon": 698
         }
       ],
       "munitions": "Limited QTS 20 mm HE/airburst-design allocation; capability requires testing",
@@ -341,7 +343,7 @@
       "body_from": 1000,
       "camo": "desert",
       "armor": 10,
-      "health": 30,
+      "health": 45,
       "carriers": [
         914,
         1106,
@@ -349,20 +351,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Thunder Gods \u2014 Airborne Recon (\u96f7\u795e)",
-      "identity": "PLAAF Airborne Corps Leishen (\u96f7\u795e)",
+      "source_design_name": "Thunder Gods 雷神",
+      "identity": "PLAAF Airborne Corps Leishen (雷神)",
       "unit_icon": "FA_PLA_INF_LEISHEN",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1144,
-      "row": 16,
-      "name": "Airborne Snipers",
+      "row": 13,
+      "name": "Airborne Snipers 空降狙击组",
       "spec": 17,
       "men": 3,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-10",
@@ -396,20 +398,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Snipers",
+      "source_design_name": "Airborne Snipers 空降狙击组",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1145,
-      "row": 17,
-      "name": "Airborne HN-6 Patrol",
+      "row": 14,
+      "name": "Airborne HN-6 Patrol 空降防空巡逻队",
       "spec": 17,
       "men": 5,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJS-161",
@@ -446,24 +448,24 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne HN-6 Patrol",
+      "source_design_name": "Airborne HN-6 Patrol 空降防空巡逻队",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "RU_IGLA-Label"
     },
     {
       "unit": 1146,
-      "row": 18,
-      "name": "Air Assault Raiders",
+      "row": 15,
+      "name": "Air Assault Raiders 空中突击兵",
       "spec": 17,
-      "men": 5,
+      "men": 9,
       "recon": false,
       "troop_type": "Elite",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
           "name": "QJS-161",
           "weapon": 2011922,
-          "quantity": 2,
+          "quantity": 3,
           "slot": "primary",
           "native_weapon": 53
         },
@@ -480,7 +482,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 8,
-      "health": 25,
+      "health": 45,
       "carriers": [
         914,
         1106,
@@ -488,7 +490,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Air Assault Raiders",
+      "source_design_name": "Air Assault Raiders 空中突击兵",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_LINE_AIRBORNE"
     },
@@ -532,7 +534,8 @@
       "native_verified": false,
       "source_design_name": "Airborne Assault Engineers",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "RU_SAPERI-Label"
+      "unit_icon": "RU_SAPERI-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1148,
@@ -567,17 +570,18 @@
       "native_verified": false,
       "source_design_name": "Airborne QLZ-87 Team",
       "identity": "PLAAF Airborne Corps",
-      "unit_icon": "RU_AGS_30-Label"
+      "unit_icon": "RU_AGS_30-Label",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1149,
-      "row": 21,
-      "name": "Airborne Target Observers",
+      "row": 16,
+      "name": "Airborne Target Observers 空降目标观察组",
       "spec": 17,
       "men": 3,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -611,7 +615,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Airborne Target Observers",
+      "source_design_name": "Airborne Target Observers 空降目标观察组",
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "US_CAVALRY_SCOUTS-Label"
     },
@@ -657,24 +661,25 @@
       "identity": "PLAAF Airborne Corps",
       "unit_icon": "FA_PLA_INF_LINE_AIRBORNE",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
-      "ability_rule": "No sprint or smoke; SF exception retained"
+      "ability_rule": "No sprint or smoke; SF exception retained",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1151,
       "row": 23,
-      "name": "Mechanized Riflemen",
+      "name": "Mechanized AT Riflemen 机械化反坦克步兵",
       "spec": 18,
       "men": 7,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 2,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-98",
@@ -706,7 +711,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Riflemen",
+      "source_design_name": "Mechanized AT Riflemen 机械化反坦克步兵",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -719,7 +724,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "HJ-8E",
@@ -757,7 +762,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QW-2",
@@ -795,7 +800,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QLZ-04",
@@ -833,12 +838,12 @@
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "PF-98",
           "weapon": 2011832,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 172
         }
@@ -866,12 +871,12 @@
     {
       "unit": 1156,
       "row": 28,
-      "name": "Mechanized Combat Engineers",
+      "name": "Mechanized Combat Engineers 机械化战斗工兵",
       "spec": 18,
       "men": 8,
       "recon": false,
       "troop_type": "Engineers",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBS-09",
@@ -909,7 +914,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Combat Engineers",
+      "source_design_name": "Mechanized Combat Engineers 机械化战斗工兵",
       "identity": "PLA Ground Force",
       "unit_icon": "RU_SAPERI-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -922,7 +927,7 @@
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJZ-89",
@@ -955,12 +960,12 @@
     {
       "unit": 1158,
       "row": 30,
-      "name": "Mechanized GPMG Riflemen",
+      "name": "Mechanized GPMG Riflemen 机械化机枪步兵",
       "spec": 18,
       "men": 7,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJY-201",
@@ -992,7 +997,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized GPMG Riflemen",
+      "source_design_name": "Mechanized GPMG Riflemen 机械化机枪步兵",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -1047,17 +1052,18 @@
       "source_design_name": "Mechanized Guided-AT Riflemen",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1160,
-      "row": 32,
-      "name": "Armored Scouts",
+      "row": 31,
+      "name": "Armored Scouts 装甲侦察兵",
       "spec": 18,
       "men": 4,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -1067,11 +1073,11 @@
           "native_weapon": 2004000
         },
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-89",
@@ -1096,20 +1102,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Scouts",
+      "source_design_name": "Armored Scouts 装甲侦察兵",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1161,
-      "row": 33,
-      "name": "Armored Sniper Pair",
+      "row": 32,
+      "name": "Armored Sniper Pair 装甲狙击组",
       "spec": 18,
       "men": 2,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-10",
@@ -1141,20 +1147,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Sniper Pair",
+      "source_design_name": "Armored Sniper Pair 装甲狙击组",
       "identity": "PLA Ground Force",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1162,
-      "row": 34,
-      "name": "Mechanized Thermobaric Breachers",
+      "row": 33,
+      "name": "Thermobaric Breachers 机械化温压突击工兵",
       "spec": 18,
-      "men": 7,
+      "men": 8,
       "recon": false,
       "troop_type": "Engineers",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBS-09",
@@ -1172,11 +1178,11 @@
         }
       ],
       "munitions": "Buckshot + thermobaric",
-      "notes": "Hard CQC/anti-cover specialist, deliberately poor at long-range AT. Vanilla pattern: Mech. Engineers CQC.",
+      "notes": "Hard CQC/anti-cover specialist, deliberately poor at long-range AT. Vanilla pattern: Mech. Engineers CQC.\nSam: make this a loadout of Mechanized Combat Engineers.",
       "body_from": 1003,
       "camo": "woodland",
       "armor": 8,
-      "health": 35,
+      "health": 40,
       "carriers": [
         902,
         979,
@@ -1186,20 +1192,21 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Thermobaric Breachers",
+      "source_design_name": "Thermobaric Breachers 机械化温压突击工兵",
       "identity": "PLA Ground Force",
       "unit_icon": "RU_FLAMETHROWER-Label",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "loadout_parent": 1156
     },
     {
       "unit": 1163,
-      "row": 35,
-      "name": "Mechanized Close-AT Riflemen",
+      "row": 34,
+      "name": "Mechanized Riflemen 机械化步兵",
       "spec": 18,
       "men": 7,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJB-201",
@@ -1238,20 +1245,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Mechanized Close-AT Riflemen",
+      "source_design_name": "Mechanized Riflemen 机械化步兵",
       "identity": "PLA Ground Force",
       "unit_icon": "FA_PLA_INF_LINE_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1164,
-      "row": 36,
-      "name": "Armored Forward Observers",
+      "row": 35,
+      "name": "Armored Forward Observers 装甲前沿观察组",
       "spec": 18,
       "men": 3,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -1276,20 +1283,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Armored Forward Observers",
+      "source_design_name": "Armored Forward Observers 装甲前沿观察组",
       "identity": "PLA Ground Force",
       "unit_icon": "US_CAVALRY_SCOUTS-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1165,
-      "row": 37,
+      "row": 36,
       "name": "Recon HJ-8E Ambush Team",
       "spec": 18,
       "men": 4,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -1329,12 +1336,12 @@
     {
       "unit": 1166,
       "row": 38,
-      "name": "Conscripts \u2014 No AT",
+      "name": "Conscripts 义务兵",
       "spec": 19,
       "men": 12,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1354,7 +1361,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Conscripts \u2014 No AT",
+      "source_design_name": "Conscripts 义务兵",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "FA_PLA_INF_LINE_RESERVE",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1363,7 +1370,7 @@
     {
       "unit": 1167,
       "row": 39,
-      "name": "Reserve Riflemen \u2014 HJ-73D",
+      "name": "Reserve Riflemen — HJ-73D",
       "spec": 19,
       "men": 9,
       "recon": false,
@@ -1408,21 +1415,22 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Reserve Riflemen \u2014 HJ-73D",
+      "source_design_name": "Reserve Riflemen — HJ-73D",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "FA_PLA_INF_LINE_RESERVE",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
-      "ability_rule": "No sprint or smoke; SF exception retained"
+      "ability_rule": "No sprint or smoke; SF exception retained",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1168,
-      "row": 40,
+      "row": 39,
       "name": "Reserve HJ-73D Team",
       "spec": 19,
-      "men": 4,
+      "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "HJ-73D",
@@ -1437,7 +1445,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 20,
+      "health": 45,
       "carriers": [
         959,
         960,
@@ -1462,13 +1470,13 @@
     },
     {
       "unit": 1169,
-      "row": 41,
+      "row": 40,
       "name": "Reserve HN-6 Team",
       "spec": 19,
-      "men": 4,
+      "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "HN-6",
@@ -1483,7 +1491,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 20,
+      "health": 45,
       "carriers": [
         959,
         960,
@@ -1508,13 +1516,13 @@
     },
     {
       "unit": 1170,
-      "row": 42,
+      "row": 41,
       "name": "Reserve QJZ-89 Team",
       "spec": 19,
-      "men": 4,
+      "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJZ-89",
@@ -1529,7 +1537,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 20,
+      "health": 45,
       "carriers": [
         959,
         960,
@@ -1554,13 +1562,13 @@
     },
     {
       "unit": 1171,
-      "row": 43,
+      "row": 42,
       "name": "Reserve QLZ-87 Team",
       "spec": 19,
-      "men": 4,
+      "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QLZ-87",
@@ -1575,7 +1583,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 20,
+      "health": 45,
       "carriers": [
         959,
         960,
@@ -1600,18 +1608,18 @@
     },
     {
       "unit": 1172,
-      "row": 44,
+      "row": 43,
       "name": "Reserve PF-98 Team",
       "spec": 19,
-      "men": 5,
+      "men": 9,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "PF-98",
           "weapon": 2011832,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 172
         }
@@ -1621,7 +1629,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 25,
+      "health": 45,
       "carriers": [
         959,
         960,
@@ -1644,13 +1652,13 @@
     },
     {
       "unit": 1173,
-      "row": 45,
-      "name": "Malyutka Recon Ambush Team",
+      "row": 44,
+      "name": "Malyutka Recon Ambush Team 反坦克伏击侦察组",
       "spec": 19,
-      "men": 6,
+      "men": 4,
       "recon": true,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-88",
@@ -1679,7 +1687,7 @@
       "body_from": 990,
       "camo": "desert",
       "armor": 6,
-      "health": 30,
+      "health": 20,
       "carriers": [
         959,
         960,
@@ -1694,7 +1702,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Malyutka Recon Ambush Team",
+      "source_design_name": "Malyutka Recon Ambush Team 反坦克伏击侦察组",
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "RU_FAGOT-Label",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1702,34 +1710,27 @@
     },
     {
       "unit": 1174,
-      "row": 46,
-      "name": "Sharp Blades",
+      "row": 45,
+      "name": "Sharp Blades 利刃",
       "spec": 19,
-      "men": 4,
+      "men": 6,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QCW-05",
       "weapons": [
         {
-          "name": "QTS-11",
-          "weapon": 2004004,
-          "quantity": 1,
+          "name": "QBS-09",
+          "weapon": 2012131,
+          "quantity": 2,
           "slot": "primary",
-          "native_weapon": 2004004
+          "native_weapon": 45
         },
         {
-          "name": "QBU-191",
-          "weapon": 2004000,
-          "quantity": 1,
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
           "slot": "primary",
-          "native_weapon": 2004000
-        },
-        {
-          "name": "PF-89",
-          "weapon": 2011887,
-          "quantity": 1,
-          "slot": "special",
-          "native_weapon": 168
+          "native_weapon": 68
         }
       ],
       "munitions": "Limited QTS 20 mm grenades + light HEAT",
@@ -1737,7 +1738,7 @@
       "body_from": 999,
       "camo": "woodland",
       "armor": 10,
-      "health": 20,
+      "health": 30,
       "carriers": [
         959,
         960,
@@ -1754,20 +1755,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Sharp Blades \u2014 Missile-Site Recon (\u5229\u5203)",
-      "identity": "PLA Rocket Force Liren (\u5229\u5203)",
+      "source_design_name": "Sharp Blades 利刃",
+      "identity": "PLA Rocket Force Liren (利刃)",
       "unit_icon": "FA_PLA_INF_ROCKET_SOF",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1175,
-      "row": 47,
-      "name": "Missile-Site Security \u2014 HJ-73D",
+      "row": 46,
+      "name": "Missile Site Security 导弹阵地警卫",
       "spec": 19,
       "men": 10,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1775,13 +1776,6 @@
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 14
-        },
-        {
-          "name": "DZJ-08",
-          "weapon": 2012024,
-          "quantity": 1,
-          "slot": "special",
-          "native_weapon": 200
         },
         {
           "name": "HJ-73D",
@@ -1807,7 +1801,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Missile-Site Security \u2014 HJ-73D",
+      "source_design_name": "Missile Site Security 导弹阵地警卫",
       "identity": "PLA Rocket Force security/support role",
       "unit_icon": "FA_PLA_INF_LINE_ROCKET",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
@@ -1815,24 +1809,24 @@
     },
     {
       "unit": 1176,
-      "row": 48,
-      "name": "Missile-Site Counter-Raid Team",
+      "row": 47,
+      "name": "Missile-Site Counter-Raid Team 导弹阵地反袭击队",
       "spec": 19,
       "men": 8,
       "recon": false,
-      "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "troop_type": "Elite",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJS-161",
+          "weapon": 2011922,
           "quantity": 1,
           "slot": "primary",
           "native_weapon": 53
         },
         {
-          "name": "QCQ-05",
-          "weapon": 2012924,
+          "name": "QCW-05",
+          "weapon": 2013349,
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 508
@@ -1849,7 +1843,7 @@
       "notes": "Short-range security reserve; standard weapons, no special sensor bonus. Vanilla pattern: DLC3 Rosgvardia.",
       "body_from": 990,
       "camo": "desert",
-      "armor": 6,
+      "armor": 8,
       "health": 40,
       "carriers": [
         959,
@@ -1865,19 +1859,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Missile-Site Counter-Raid Team",
+      "source_design_name": "Missile-Site Counter-Raid Team 导弹阵地反袭击队",
       "identity": "PLA Rocket Force security/support role",
       "unit_icon": "FA_PLA_INF_ROCKET"
     },
     {
       "unit": 1177,
-      "row": 49,
+      "row": 48,
       "name": "Reserve Thermobaric Team",
       "spec": 19,
       "men": 6,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBB-95",
@@ -1887,11 +1881,11 @@
           "native_weapon": 14
         },
         {
-          "name": "PF-97",
-          "weapon": 2012515,
+          "name": "FHJ-02",
+          "weapon": 2013057,
           "quantity": 2,
           "slot": "special",
-          "native_weapon": 668
+          "native_weapon": 698
         }
       ],
       "munitions": "Thermobaric only",
@@ -1969,12 +1963,13 @@
       "identity": "PLA Ground Force reserve/infantry role",
       "unit_icon": "RU_KONKURS-Label",
       "latest_user_rifle_override": "Sam2026-11-11: reservists/non-combat plain191; old sheet95 baseline superseded, current ammo quantities/performance retained",
-      "ability_rule": "No sprint or smoke; SF exception retained"
+      "ability_rule": "No sprint or smoke; SF exception retained",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1179,
       "row": 51,
-      "name": "Rocket Convoy Escort \u2014 HJ-73D",
+      "name": "Rocket Convoy Escort — HJ-73D",
       "spec": 19,
       "men": 8,
       "recon": false,
@@ -2016,19 +2011,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Rocket Convoy Escort \u2014 HJ-73D",
+      "source_design_name": "Rocket Convoy Escort — HJ-73D",
       "identity": "PLA Rocket Force security/support role",
-      "unit_icon": "FA_PLA_INF_LINE_ROCKET"
+      "unit_icon": "FA_PLA_INF_LINE_ROCKET",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1180,
-      "row": 52,
+      "row": 49,
       "name": "FHJ-02 Incendiary Team",
       "spec": 19,
       "men": 3,
       "recon": false,
       "troop_type": "Conscripts",
-      "base_rifle": "QBZ-191 (iron sights)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "FHJ-02",
@@ -2069,33 +2065,26 @@
     {
       "unit": 1181,
       "row": 53,
-      "name": "Godsword",
+      "name": "Godswords 东方神剑",
       "spec": 20,
       "men": 8,
       "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
           "name": "QTS-11",
           "weapon": 2004004,
-          "quantity": 4,
+          "quantity": 6,
           "slot": "primary",
           "native_weapon": 2004004
         },
         {
           "name": "QLU-11",
           "weapon": 2004002,
-          "quantity": 1,
+          "quantity": 2,
           "slot": "primary",
           "native_weapon": 2004002
-        },
-        {
-          "name": "QBU-191",
-          "weapon": 2004000,
-          "quantity": 1,
-          "slot": "primary",
-          "native_weapon": 2004000
         }
       ],
       "munitions": "QTS 20 mm + QLU 35 mm HE; no automatic airburst/cover bonus",
@@ -2116,20 +2105,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Eastern Sword \u2014 Digital Assault (\u4e1c\u65b9\u795e\u5251)",
-      "identity": "Dongfang Shenjian (\u4e1c\u65b9\u795e\u5251)",
+      "source_design_name": "Godswords 东方神剑",
+      "identity": "Dongfang Shenjian (东方神剑)",
       "unit_icon": "FA_PLA_INF_DONGFANG",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1182,
       "row": 54,
-      "name": "Whistling Arrows",
+      "name": "PAP Snow Leopards 雪豹",
       "spec": 20,
       "men": 8,
       "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QCW-05",
       "weapons": [
         {
           "name": "QBS-09",
@@ -2139,11 +2128,11 @@
           "native_weapon": 45
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "LG4",
+          "weapon": 2014177,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 68
         },
         {
           "name": "DZJ-08",
@@ -2171,27 +2160,27 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Whistling Arrows \u2014 Breachers (\u54cd\u7bad)",
-      "identity": "Xiangjian (\u54cd\u7bad)",
-      "unit_icon": "FA_PLA_INF_XIANGJIAN",
+      "source_design_name": "PAP Snow Leopards 雪豹",
+      "identity": "PAP Snow Leopard / Xuebao (雪豹)",
+      "unit_icon": "FA_PLA_INF_SNOW_LEOPARD",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1183,
       "row": 55,
-      "name": "Blood Wolves",
+      "name": "Blood Wolves 血狼",
       "spec": 20,
       "men": 8,
-      "recon": false,
+      "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 2,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "QBU-191",
@@ -2226,20 +2215,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Blood Wolves \u2014 Shock Team (\u8840\u72fc)",
-      "identity": "Xuelang (\u8840\u72fc)",
+      "source_design_name": "Blood Wolves 血狼",
+      "identity": "Xuelang (血狼)",
       "unit_icon": "FA_PLA_INF_BLOOD_WOLF",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1184,
       "row": 56,
-      "name": "Sky Hunters",
+      "name": "Whistling Arrows 响箭",
       "spec": 20,
       "men": 4,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
           "name": "QLU-11",
@@ -2283,20 +2272,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Sky Wolves \u2014 QLU / Sniper Recon (\u5929\u72fc)",
-      "identity": "Tianlang (\u5929\u72fc)",
-      "unit_icon": "FA_PLA_INF_TIANLANG",
+      "source_design_name": "Whistling Arrows 响箭",
+      "identity": "Xiangjian (响箭)",
+      "unit_icon": "FA_PLA_INF_XIANGJIAN",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1185,
       "row": 57,
-      "name": "Southern Swords",
+      "name": "Falcons 猎鹰",
       "spec": 20,
       "men": 8,
       "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
           "name": "QLU-11",
@@ -2311,13 +2300,6 @@
           "quantity": 2,
           "slot": "primary",
           "native_weapon": 30
-        },
-        {
-          "name": "PF-89",
-          "weapon": 2011887,
-          "quantity": 1,
-          "slot": "special",
-          "native_weapon": 168
         }
       ],
       "munitions": "35 mm HE + light HEAT",
@@ -2338,41 +2320,34 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Southern Sharp Swords \u2014 Fire Support (\u5357\u56fd\u5229\u5251)",
-      "identity": "Nanguo Lijian / Huanan Zhi Jian (\u5357\u56fd\u5229\u5251 / \u534e\u5357\u4e4b\u5251)",
-      "unit_icon": "FA_PLA_INF_SOF",
+      "source_design_name": "Falcons 猎鹰",
+      "identity": "PAP Falcon / Lieying (猎鹰)",
+      "unit_icon": "FA_PLA_INF_FALCON",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1186,
       "row": 58,
-      "name": "Mountain Hunters",
+      "name": "Mountain Leopards 高原雪豹",
       "spec": 20,
-      "men": 6,
+      "men": 3,
       "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-192 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
         {
           "name": "QBU-191",
           "weapon": 2004000,
-          "quantity": 2,
+          "quantity": 1,
           "slot": "primary",
           "native_weapon": 2004000
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
-          "quantity": 1,
-          "slot": "primary",
-          "native_weapon": 53
-        },
-        {
-          "name": "PF-89",
-          "weapon": 2011887,
+          "name": "HJ-12",
+          "weapon": 2011864,
           "quantity": 1,
           "slot": "special",
-          "native_weapon": 168
+          "native_weapon": 62
         }
       ],
       "munitions": "Light HEAT",
@@ -2380,7 +2355,7 @@
       "body_from": 999,
       "camo": "woodland",
       "armor": 10,
-      "health": 30,
+      "health": 15,
       "carriers": [
         1076,
         962,
@@ -2393,27 +2368,27 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Plateau Snow Leopards \u2014 Mountain Team (\u9ad8\u539f\u96ea\u8c79)",
-      "identity": "Gaoyuan Xuebao (\u9ad8\u539f\u96ea\u8c79), plateau special operations",
+      "source_design_name": "Mountain Leopards 高原雪豹",
+      "identity": "Gaoyuan Xuebao (高原雪豹), plateau special operations",
       "unit_icon": "FA_PLA_INF_PLATEAU_LEOPARD",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1187,
       "row": 59,
-      "name": "Blue Sword",
+      "name": "Beijing Swords 蓝剑",
       "spec": 20,
       "men": 6,
       "recon": false,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QCW-05",
       "weapons": [
         {
-          "name": "QCQ-05",
-          "weapon": 2012924,
-          "quantity": 4,
+          "name": "LG4",
+          "weapon": 2014177,
+          "quantity": 2,
           "slot": "primary",
-          "native_weapon": 508
+          "native_weapon": 68
         },
         {
           "name": "QBS-09",
@@ -2441,8 +2416,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Blue Sword \u2014 Beijing CQC (\u84dd\u5251)",
-      "identity": "Beijing Public Security Blue Sword / Lanjian (\u84dd\u5251)",
+      "source_design_name": "Beijing Swords 蓝剑",
+      "identity": "Beijing Public Security Blue Sword / Lanjian (蓝剑)",
       "unit_icon": "FA_PLA_INF_POLICE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
@@ -2496,10 +2471,11 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Falcon \u2014 Counter-Terror Assault (\u730e\u9e70)",
-      "identity": "PAP Falcon / Lieying (\u730e\u9e70)",
+      "source_design_name": "Falcon — Counter-Terror Assault (猎鹰)",
+      "identity": "PAP Falcon / Lieying (猎鹰)",
       "unit_icon": "FA_PLA_INF_FALCON",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1189,
@@ -2551,10 +2527,11 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "PAP Snow Leopards \u2014 Raid Team (\u96ea\u8c79)",
-      "identity": "PAP Snow Leopard / Xuebao (\u96ea\u8c79)",
+      "source_design_name": "PAP Snow Leopards — Raid Team (雪豹)",
+      "identity": "PAP Snow Leopard / Xuebao (雪豹)",
       "unit_icon": "FA_PLA_INF_SNOW_LEOPARD",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1190,
@@ -2600,49 +2577,50 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Jiaolong \u2014 Marine Assault (\u86df\u9f99)",
-      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
+      "source_design_name": "Jiaolong — Marine Assault (蛟龙)",
+      "identity": "PLA Navy Marine Corps Jiaolong (蛟龙)",
       "unit_icon": "FA_PLA_INF_JIAOLONG",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1191,
-      "row": 63,
-      "name": "Sea Dragons Recon",
+      "row": 60,
+      "name": "Sea Dragons 蛟龙",
       "spec": 20,
-      "men": 6,
+      "men": 8,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-192",
       "weapons": [
-        {
-          "name": "QCW-05",
-          "weapon": 2013349,
-          "quantity": 2,
-          "slot": "primary",
-          "native_weapon": 508
-        },
         {
           "name": "QBU-191",
           "weapon": 2004000,
-          "quantity": 1,
+          "quantity": 2,
           "slot": "primary",
           "native_weapon": 2004000
         },
         {
-          "name": "DZJ-08",
-          "weapon": 2012024,
+          "name": "PF-98",
+          "weapon": 2011832,
           "quantity": 1,
           "slot": "special",
-          "native_weapon": 200
+          "native_weapon": 172
+        },
+        {
+          "name": "QW-2",
+          "weapon": 2012288,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 537
         }
       ],
-      "munitions": "Assault rounds; no heavy anti-tank weapon",
+      "munitions": "",
       "notes": "Maritime reconnaissance/raid team; no automatic swimming/diving ability implied. Vanilla pattern: Force Recon. Research: S10 (cell note).",
       "body_from": 1000,
       "camo": "desert",
       "armor": 10,
-      "health": 30,
+      "health": 40,
       "carriers": [
         1076,
         962,
@@ -2655,39 +2633,39 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Jiaolong \u2014 Maritime Recon (\u86df\u9f99)",
-      "identity": "PLA Navy Marine Corps Jiaolong (\u86df\u9f99)",
+      "source_design_name": "Sea Dragons 蛟龙",
+      "identity": "PLA Navy Marine Corps Jiaolong (蛟龙)",
       "unit_icon": "FA_PLA_INF_JIAOLONG",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1192,
-      "row": 64,
-      "name": "Marine Riflemen",
+      "row": 61,
+      "name": "Marine Riflemen 海军陆战步兵",
       "spec": 20,
       "men": 12,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
-          "quantity": 2,
+          "name": "QJS-161",
+          "weapon": 2011922,
+          "quantity": 3,
           "slot": "primary",
           "native_weapon": 53
         },
         {
           "name": "PF-89",
           "weapon": 2011887,
-          "quantity": 3,
+          "quantity": 1,
           "slot": "special",
           "native_weapon": 168
         },
         {
           "name": "QLG-10A",
           "weapon": 2011889,
-          "quantity": 2,
+          "quantity": 3,
           "slot": "special",
           "native_weapon": 31
         }
@@ -2703,20 +2681,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Marine Riflemen",
+      "source_design_name": "Marine Riflemen 海军陆战步兵",
       "identity": "PLA Navy Marine Corps",
       "unit_icon": "FA_PLA_INF_LINE_MARINE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1193,
-      "row": 65,
-      "name": "Marine HJ-12 Team",
+      "row": 62,
+      "name": "Marine HJ-8 Team",
       "spec": 20,
       "men": 6,
       "recon": false,
       "troop_type": "Support",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJY-201",
@@ -2726,11 +2704,11 @@
           "native_weapon": 30
         },
         {
-          "name": "HJ-12",
-          "weapon": 2011864,
-          "quantity": 2,
+          "name": "HJ-8E",
+          "weapon": 2012264,
+          "quantity": 1,
           "slot": "special",
-          "native_weapon": 62
+          "native_weapon": 141
         }
       ],
       "munitions": "Tandem HEAT",
@@ -2751,27 +2729,27 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Marine HJ-12 Team",
+      "source_design_name": "Marine HJ-8 Team",
       "identity": "PLA Navy Marine Corps",
       "unit_icon": "US_JAVELIN-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1194,
-      "row": 66,
+      "row": 63,
       "name": "Marine HN-6 Team",
       "spec": 20,
       "men": 6,
       "recon": false,
       "troop_type": "Support",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "HN-6",
@@ -2857,17 +2835,18 @@
       "source_design_name": "Marine Thermobaric Engineers",
       "identity": "PLA Navy Marine Corps",
       "unit_icon": "RU_FLAMETHROWER-Label",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1196,
       "row": 68,
-      "name": "Motorized Line Infantry",
+      "name": "Motorized Line Infantry 摩托化步兵",
       "spec": 21,
-      "men": 9,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QLU-11",
@@ -2877,11 +2856,11 @@
           "native_weapon": 2004002
         },
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 2,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-98",
@@ -2896,13 +2875,13 @@
       "body_from": 1004,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 40,
       "carriers": [
         914,
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Line Infantry",
+      "source_design_name": "Motorized Line Infantry 摩托化步兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -2910,12 +2889,12 @@
     {
       "unit": 1197,
       "row": 69,
-      "name": "Motorized Troopers \u2014 AA",
+      "name": "Motorized AA Troopers 摩托化防空步兵",
       "spec": 21,
-      "men": 9,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJY-201",
@@ -2944,13 +2923,13 @@
       "body_from": 1004,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 40,
       "carriers": [
         914,
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Troopers \u2014 AA",
+      "source_design_name": "Motorized AA Troopers 摩托化防空步兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -2958,19 +2937,19 @@
     {
       "unit": 1198,
       "row": 70,
-      "name": "Motorized Troopers \u2014 HJ-12",
+      "name": "Motorized AT Troopers 摩托化反坦克步兵",
       "spec": 21,
-      "men": 9,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 2,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "HJ-12",
@@ -2980,11 +2959,11 @@
           "native_weapon": 62
         },
         {
-          "name": "QLG-10A",
-          "weapon": 2011889,
-          "quantity": 2,
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
           "slot": "special",
-          "native_weapon": 31
+          "native_weapon": 168
         }
       ],
       "munitions": "Tandem HEAT + 35 mm HE",
@@ -2992,13 +2971,13 @@
       "body_from": 1004,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 40,
       "carriers": [
         914,
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Troopers \u2014 HJ-12",
+      "source_design_name": "Motorized AT Troopers 摩托化反坦克步兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3008,10 +2987,10 @@
       "row": 71,
       "name": "Motorized Weapons Squad",
       "spec": 21,
-      "men": 6,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QLU-11",
@@ -3030,7 +3009,7 @@
         {
           "name": "QJZ-171",
           "weapon": 2011972,
-          "quantity": 1,
+          "quantity": 2,
           "slot": "special",
           "native_weapon": 145
         }
@@ -3040,7 +3019,7 @@
       "body_from": 1004,
       "camo": "desert",
       "armor": 6,
-      "health": 30,
+      "health": 40,
       "carriers": [
         903,
         962,
@@ -3099,17 +3078,18 @@
       "source_design_name": "Motorized PF-98 Fire Support",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "US_SMAW_TEAM-Label",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1201,
-      "row": 73,
-      "name": "Motorized Recon Patrol",
+      "row": 72,
+      "name": "Motorized Recon Patrol 摩托化侦察兵",
       "spec": 21,
       "men": 6,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -3119,11 +3099,11 @@
           "native_weapon": 2004000
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-89",
@@ -3151,20 +3131,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Recon Patrol",
+      "source_design_name": "Motorized Recon Patrol 摩托化侦察兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_GROUND",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1202,
-      "row": 74,
-      "name": "Motorized Snipers",
+      "row": 73,
+      "name": "Motorized Snipers 摩托化狙击组",
       "spec": 21,
       "men": 3,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-10",
@@ -3201,20 +3181,20 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Snipers",
+      "source_design_name": "Motorized Snipers 摩托化狙击组",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "US_SCOUT_SNIPERS_M107-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1203,
-      "row": 75,
-      "name": "Eagles Recon",
+      "row": 74,
+      "name": "Taishan Eagles 泰山雄鹰",
       "spec": 21,
       "men": 6,
       "recon": true,
       "troop_type": "Special forces",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QTS-11",
@@ -3256,8 +3236,8 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Taishan Eagles \u2014 Deep Recon (\u6cf0\u5c71\u96c4\u9e70)",
-      "identity": "Xiongying (\u96c4\u9e70), historical Jinan-region SOF lineage",
+      "source_design_name": "Taishan Eagles 泰山雄鹰",
+      "identity": "Xiongying (雄鹰), historical Jinan-region SOF lineage",
       "unit_icon": "FA_PLA_INF_EAGLE",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
@@ -3307,17 +3287,18 @@
       "source_design_name": "Motorized CQC Engineers",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_SAPERI-Label",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1205,
-      "row": 77,
-      "name": "Motorized Light-AT Riflemen",
+      "row": 75,
+      "name": "Motorized Light AT Riflemen 摩托化轻型反坦克步兵",
       "spec": 21,
-      "men": 9,
+      "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QJB-201",
@@ -3346,26 +3327,26 @@
       "body_from": 1004,
       "camo": "desert",
       "armor": 6,
-      "health": 45,
+      "health": 40,
       "carriers": [
         914,
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Light-AT Riflemen",
+      "source_design_name": "Motorized Light AT Riflemen 摩托化轻型反坦克步兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_LINE_MOTOR80",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1206,
-      "row": 78,
-      "name": "Motorized Air-Defense Scouts",
+      "row": 76,
+      "name": "Air Defense Scouts 防空侦察兵",
       "spec": 21,
       "men": 5,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBU-191",
@@ -3375,11 +3356,11 @@
           "native_weapon": 2004000
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "HN-6",
@@ -3407,27 +3388,27 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Air-Defense Scouts",
+      "source_design_name": "Air Defense Scouts 防空侦察兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_IGLA-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
     },
     {
       "unit": 1207,
-      "row": 79,
-      "name": "Motorized PF-98 Tank Hunters",
+      "row": 77,
+      "name": "PF-98 Tank Hunters",
       "spec": 21,
       "men": 5,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-98A",
@@ -3455,7 +3436,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized PF-98 Tank Hunters",
+      "source_design_name": "PF-98 Tank Hunters",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "US_SMAW_TEAM-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3501,17 +3482,18 @@
       "source_design_name": "Motorized QLZ-04 Team",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_AGS_30-Label",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1209,
-      "row": 81,
-      "name": "Motorized Thermobaric Assault",
+      "row": 78,
+      "name": "Thermobaric Assault 温压突击兵",
       "spec": 21,
-      "men": 8,
+      "men": 9,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QBS-09",
@@ -3533,7 +3515,7 @@
       "body_from": 996,
       "camo": "desert",
       "armor": 6,
-      "health": 40,
+      "health": 45,
       "carriers": [
         903,
         962,
@@ -3546,7 +3528,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized Thermobaric Assault",
+      "source_design_name": "Thermobaric Assault 温压突击兵",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "RU_FLAMETHROWER-Label",
       "appearance_policy": "Sam-approved Build30 branch/class preset"
@@ -3554,7 +3536,7 @@
     {
       "unit": 1210,
       "row": 82,
-      "name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
+      "name": "Motorized CAAT — HJ-8E / QLU-11",
       "spec": 21,
       "men": 8,
       "recon": false,
@@ -3601,27 +3583,28 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Motorized CAAT \u2014 HJ-8E / QLU-11",
+      "source_design_name": "Motorized CAAT — HJ-8E / QLU-11",
       "identity": "PLA Ground Force motorized role",
       "unit_icon": "FA_PLA_INF_WPN_QLU11",
-      "appearance_policy": "Sam-approved Build30 branch/class preset"
+      "appearance_policy": "Sam-approved Build30 branch/class preset",
+      "removed_by_sheet_strikethrough": true
     },
     {
       "unit": 1211,
       "row": 83,
-      "name": "Test \u2014 Export Riflemen",
+      "name": "Test Export Riflemen 出口步枪试验组",
       "spec": 22,
       "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-97 (rifle)",
+      "base_rifle": "QBZ-97",
       "weapons": [
         {
-          "name": "QJB-201",
-          "weapon": 2011834,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 2,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "PF-89",
@@ -3632,7 +3615,7 @@
         }
       ],
       "munitions": "Light HEAT",
-      "notes": "TEST CONCEPT \u2014 Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki.",
+      "notes": "TEST CONCEPT — Export-rifle comparison; a game test kit, not an asserted issued squad. Vanilla pattern: Motostrelki.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3647,19 +3630,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 Export Riflemen",
+      "source_design_name": "Test Export Riflemen 出口步枪试验组",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "FA_PLA_INF_GROUND"
     },
     {
       "unit": 1212,
       "row": 84,
-      "name": "Test \u2014 SMG Assault",
+      "name": "Test SMG Assault 冲锋枪突击试验组",
       "spec": 22,
       "men": 8,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QCQ-05",
@@ -3677,7 +3660,7 @@
         }
       ],
       "munitions": "SMG ammunition + buckshot",
-      "notes": "TEST CONCEPT \u2014 All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC.",
+      "notes": "TEST CONCEPT — All-short-range assault benchmark; deliberately no armor counter. Vanilla pattern: Force Recon CQC.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3692,19 +3675,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 SMG Assault",
+      "source_design_name": "Test SMG Assault 冲锋枪突击试验组",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_RANGERS_CQC-Label"
     },
     {
       "unit": 1213,
       "row": 85,
-      "name": "Test \u2014 Suppressed Scouts",
+      "name": "Test Suppressed Scouts 消声武器侦察试验组",
       "spec": 22,
       "men": 6,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QCW-05",
@@ -3722,7 +3705,7 @@
         }
       ],
       "munitions": "No AT rockets",
-      "notes": "TEST CONCEPT \u2014 Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT.",
+      "notes": "TEST CONCEPT — Quiet-weapon reconnaissance benchmark; actual signature needs testing. Vanilla pattern: DLC2 KNT.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3739,19 +3722,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 Suppressed Scouts",
+      "source_design_name": "Test Suppressed Scouts 消声武器侦察试验组",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_CAVALRY_SCOUTS-Label"
     },
     {
       "unit": 1214,
       "row": 86,
-      "name": "Test \u2014 LG5 Precision Grenadiers",
+      "name": "Test LG5 Precision Grenadiers",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "LG5",
@@ -3761,8 +3744,8 @@
           "native_weapon": 203
         }
       ],
-      "munitions": "40\u00d753 mm HE; not QLU 35 mm",
-      "notes": "TEST CONCEPT \u2014 Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL.",
+      "munitions": "40×53 mm HE; not QLU 35 mm",
+      "notes": "TEST CONCEPT — Export precision-GL team; separate from domestic QLU-11. Vanilla pattern: Rangers Mk47 AGL.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3780,19 +3763,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 LG5 Precision Grenadiers",
+      "source_design_name": "Test LG5 Precision Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_AGS_30-Label"
     },
     {
       "unit": 1215,
       "row": 87,
-      "name": "Test \u2014 LG5s Mobile Grenadiers",
+      "name": "Test LG5s Mobile Grenadiers",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "LG5s",
@@ -3810,7 +3793,7 @@
         }
       ],
       "munitions": "LG5s configuration to verify; 35 mm carried separately",
-      "notes": "TEST CONCEPT \u2014 Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT — Lighter export precision-support layout; no automatic mobility buff. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3828,19 +3811,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 LG5s Mobile Grenadiers",
+      "source_design_name": "Test LG5s Mobile Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_AGS_30-Label"
     },
     {
       "unit": 1216,
       "row": 88,
-      "name": "Test \u2014 LG6 CQC Grenadiers",
+      "name": "Test LG6 CQC Grenadiers",
       "spec": 22,
       "men": 6,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "LG6",
@@ -3857,8 +3840,8 @@
           "native_weapon": 45
         }
       ],
-      "munitions": "40\u00d746 mm HE + buckshot",
-      "notes": "TEST CONCEPT \u2014 Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC.",
+      "munitions": "40×46 mm HE + buckshot",
+      "notes": "TEST CONCEPT — Short-range grenade/shotgun burst kit, not long-range AGL support. Vanilla pattern: Marine Raiders CQC.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3875,19 +3858,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 LG6 CQC Grenadiers",
+      "source_design_name": "Test LG6 CQC Grenadiers",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_AGS_30-Label"
     },
     {
       "unit": 1217,
       "row": 89,
-      "name": "Test \u2014 LG4 Revolver Team",
+      "name": "Test LG4 Revolver Team",
       "spec": 22,
       "men": 6,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "LG4",
@@ -3897,15 +3880,15 @@
           "native_weapon": 68
         },
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJB-201",
+          "weapon": 2011834,
           "quantity": 1,
           "slot": "primary",
           "native_weapon": 53
         }
       ],
-      "munitions": "40\u00d746 mm HE; no airburst assumption",
-      "notes": "TEST CONCEPT \u2014 Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force.",
+      "munitions": "40×46 mm HE; no airburst assumption",
+      "notes": "TEST CONCEPT — Six-shot MGL-style burst-support benchmark. Vanilla pattern: Delta Force.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3922,19 +3905,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 LG4 Revolver Team",
+      "source_design_name": "Test LG4 Revolver Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_AGS_30-Label"
     },
     {
       "unit": 1218,
       "row": 90,
-      "name": "Test \u2014 LG3 Heavy AGL",
+      "name": "Test LG3 Heavy AGL",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "LG3",
@@ -3944,8 +3927,8 @@
           "native_weapon": 75
         }
       ],
-      "munitions": "40\u00d753 mm HE",
-      "notes": "TEST CONCEPT \u2014 Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team.",
+      "munitions": "40×53 mm HE",
+      "notes": "TEST CONCEPT — Heavy sustained export grenade support; setup burden to balance. Vanilla pattern: Mk19 AGL team.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -3963,19 +3946,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 LG3 Heavy AGL",
+      "source_design_name": "Test LG3 Heavy AGL",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_AGS_30-Label"
     },
     {
       "unit": 1219,
       "row": 91,
-      "name": "Test \u2014 QN-202 Guided Support",
+      "name": "Test QN-202 Guided Support",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QN-202",
@@ -3986,7 +3969,7 @@
         }
       ],
       "munitions": "HE-fragmentation; anti-MBT role excluded",
-      "notes": "TEST CONCEPT \u2014 Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT — Light guided support against soft/light targets; not a Javelin replacement. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4004,19 +3987,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 QN-202 Guided Support",
+      "source_design_name": "Test QN-202 Guided Support",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_KONKURS-Label"
     },
     {
       "unit": 1220,
       "row": 92,
-      "name": "Test \u2014 TL-4 Team",
+      "name": "Test TL-4 Team",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "TL-4",
@@ -4027,7 +4010,7 @@
         }
       ],
       "munitions": "Tandem HEAT; guidance modes require validation",
-      "notes": "TEST CONCEPT \u2014 Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A.",
+      "notes": "TEST CONCEPT — Long-range export ATGM concept; foot-team/model suitability unresolved. Vanilla pattern: TOW-2A.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4045,19 +4028,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 TL-4 Team",
+      "source_design_name": "Test TL-4 Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_JAVELIN-Label"
     },
     {
       "unit": 1221,
       "row": 93,
-      "name": "Test \u2014 GAM-102LR Team",
+      "name": "Test GAM-102LR Team",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "GAM-102LR",
@@ -4068,7 +4051,7 @@
         }
       ],
       "munitions": "Tandem HEAT; no native range imported from advertisements",
-      "notes": "TEST CONCEPT \u2014 Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
+      "notes": "TEST CONCEPT — Export long-range missile concept; deployment scale not yet locked. Vanilla pattern: TOW-2A.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4086,19 +4069,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 GAM-102LR Team",
+      "source_design_name": "Test GAM-102LR Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_JAVELIN-Label"
     },
     {
       "unit": 1222,
       "row": 94,
-      "name": "Test \u2014 HJ-12E Team",
+      "name": "Test HJ-12E Team",
       "spec": 22,
       "men": 4,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "HJ-12E",
@@ -4109,7 +4092,7 @@
         }
       ],
       "munitions": "Tandem HEAT; domestic/export stats not assumed equal",
-      "notes": "TEST CONCEPT \u2014 Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet.",
+      "notes": "TEST CONCEPT — Export missile variant kept separate from domestic HJ-12. Vanilla pattern: VDV Kornet.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4127,26 +4110,26 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 HJ-12E Team",
+      "source_design_name": "Test HJ-12E Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "US_JAVELIN-Label"
     },
     {
       "unit": 1223,
       "row": 95,
-      "name": "Test \u2014 QW-2 Escort",
+      "name": "Test QW-2 Escort",
       "spec": 22,
       "men": 5,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
-          "name": "QJS-161",
-          "weapon": 2011922,
+          "name": "QJY-201",
+          "weapon": 2012411,
           "quantity": 1,
           "slot": "primary",
-          "native_weapon": 53
+          "native_weapon": 30
         },
         {
           "name": "QW-2",
@@ -4157,7 +4140,7 @@
         }
       ],
       "munitions": "IR SAMs",
-      "notes": "TEST CONCEPT \u2014 Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla.",
+      "notes": "TEST CONCEPT — Mobile AA-escort comparison with modest ground defense. Vanilla pattern: VDV Igla.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4174,19 +4157,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 QW-2 Escort",
+      "source_design_name": "Test QW-2 Escort",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_IGLA-Label"
     },
     {
       "unit": 1224,
       "row": 96,
-      "name": "Test \u2014 QTS Recon Cell",
+      "name": "Test QTS Recon Cell 数字化侦察试验组",
       "spec": 22,
       "men": 4,
       "recon": true,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "QTS-11",
@@ -4204,7 +4187,7 @@
         }
       ],
       "munitions": "Limited 20 mm grenades; no assumed sensor/airburst bonus",
-      "notes": "TEST CONCEPT \u2014 Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets.",
+      "notes": "TEST CONCEPT — Small digital-recon alternative to Eastern Sword assault manpower. Vanilla pattern: Green Berets.",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4222,19 +4205,19 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 QTS Recon Cell",
+      "source_design_name": "Test QTS Recon Cell 数字化侦察试验组",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "FA_PLA_INF_WPN_QTS11"
     },
     {
       "unit": 1225,
       "row": 97,
-      "name": "Test \u2014 FHJ-02 Smoke Team",
+      "name": "Test FHJ-02 Smoke Team",
       "spec": 22,
       "men": 3,
       "recon": false,
       "troop_type": "Regular",
-      "base_rifle": "QBZ-191 (rifle)",
+      "base_rifle": "QBZ-191",
       "weapons": [
         {
           "name": "FHJ-02",
@@ -4245,7 +4228,7 @@
         }
       ],
       "munitions": "Smoke rockets only; behavior and reload need implementation",
-      "notes": "TEST CONCEPT \u2014 Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
+      "notes": "TEST CONCEPT — Separate smoke-screen unit, not an ammunition option on incendiary team. Vanilla pattern: Green Berets Flash. Research: S12 (cell note).",
       "body_from": 985,
       "camo": "green",
       "armor": 6,
@@ -4263,7 +4246,7 @@
         912
       ],
       "native_verified": false,
-      "source_design_name": "Test \u2014 FHJ-02 Smoke Team",
+      "source_design_name": "Test FHJ-02 Smoke Team",
       "identity": "PLA equipment/squad test concept",
       "unit_icon": "RU_FLAMETHROWER-Label"
     }
