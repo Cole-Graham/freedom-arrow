@@ -1,0 +1,13 @@
+{
+  "build": 53,
+  "base_build": 52,
+  "base_sha256": "5f5ed9c610155e8f5f4894c56f3f8f61645e57151eff43774850f2eb1c5dee7f",
+  "renamed_rows": {
+    "WeaponsJson": 11,
+    "AmmunitionsJson": 3,
+    "OptionsJson": 16,
+    "TurretsJson": 6,
+    "Z-20 menu labels": 16
+  },
+  "checks": 27029
+}

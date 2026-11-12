@@ -1,3 +1,9 @@
+# PLA TEST Build 53
+
+AKD-10 renamed HJ-10 in every PLA weapon, ammunition, pylon and loadout label (statistics unchanged). Z-20KA/Z-20T menu labels now name the Chinese weapons (HJ-10, FS-70A, 70 mm rockets, TY-90, 30 mm gun pods) instead of the vanilla DAP text. Native appearance unverified.
+
+## Historical Build52
+
 # PLA TEST Build 52
 
 Extra loadouts for aircraft that CMO lists few for (Osama: add extra rather than be cautious): J-20/J-20S, J-35, J-31, J-36, J-50, J-15D, J-16D, GJ-11, Wing Loong, J-5, J-6W, H-6K, J-10A, J-8D, J-7, Z-21, Z-9WA now carry 4-8 loadouts each. Stealth jets internal only; recon helicopters stay rockets only. Native behaviour unverified.
@@ -599,3 +605,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 05:37:10 PST (America/Los_Angeles) — Build51: ZTZ-99 = T-90M, ZTZ-99A KE 800, Z-20 DAP menus, slow cheap HJ-73D, recon helicopters rockets only.
 
 - 2026-11-12 05:41:30 PST (America/Los_Angeles) — Build52: extra aircraft loadouts.
+
+- 2026-11-12 11:02:32 PST (America/Los_Angeles) — Build53: AKD-10 renamed HJ-10; Z-20 menu labels in Chinese weapon names.
