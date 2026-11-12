@@ -1,19 +1,19 @@
 """Verify exactly the development candidate we intend to ship to a later test."""
 from pathlib import Path
 import hashlib,io,json,math,sys,zipfile
-R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import vanilla as van
-p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.22.bamod'
+R=Path(__file__).resolve().parent;sys.path.insert(0,str(R/'scenarios'));import common as ms;import dead_center_2v2 as dc2;import airport_5v5,baltiisk_3v3,dam_3v3
+p=Path(sys.argv[1]) if len(sys.argv)>1 else R/'out/FreedomArrow-0.7.0-devtest.lat.23.bamod'
 with zipfile.ZipFile(p) as z:
     names=z.namelist();assert len(names)==len(set(names))
     assert all(not n.startswith('/') and '..' not in Path(n).parts and '\\' not in n for n in names)
     manifest=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    assert manifest['version']=='0.7.0-devtest.lat.22'
+    assert manifest['version']=='0.7.0-devtest.lat.23'
     assert set(names)-{'mod.json','README.md','UserData/FreedomArrow/payload-manifest.json'}==set(manifest['sha256'])
     for n,h in manifest['sha256'].items():assert hashlib.sha256(z.read(n)).hexdigest()==h,n
     mod=json.loads(z.read('mod.json'));assert mod['type']=='modpack' and mod['version']==manifest['version']
     channel=json.loads(z.read('UserData/FreedomArrow/channel.json'));assert channel['package_version']==mod['version'] and channel['channel']=='testing'
     assert channel['deployment_status']=='built_offline_execution_held'
-    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.22 — development candidate'
+    assert z.read('UserData/FreedomArrow/release-notes.md').decode().splitlines()[0]=='# Freedom Arrow 0.7.0-devtest.lat.23 — development candidate'
     third={'HudQuick.dll':'71b81b88330288cac2a486f003564002b6a856728fbac1b74d6fbbc599555117','TeamVoice.dll':'e1f80c77fd18858e82f8b9517c48208d51c87b99a3b4d0aedb4bcd6be05181ed','ArrowQueue.dll':'0ab2455b16a3481d19625adada5df8b39de84bcb19cb6b58df2536db0293526a','FlatIncomeMod.dll':'9b71a1eb0776564c9884d59cf591853eb1b1fdcefd40291a2c59b74ca05dc4d3'}
     assert {n for n in names if n.startswith('Mods/')}=={'Mods/BALocalSkirmish.dll','Mods/FreedomArrow.Runtime.dll',*('Mods/'+n for n in third)}
     assert all(hashlib.sha256(z.read('Mods/'+n)).hexdigest()==h for n,h in third.items()),'0.6 ActualArrow mods unchanged'
@@ -418,30 +418,23 @@ with zipfile.ZipFile(p) as z:
             assert all(o['_uid']>=10000 for o in zones)
     for name in ('playable_borders_installed','playable_borders_bounds','playable_borders_material','lobby_deck_refresh_installed','lobby_deck_refresh'):
         assert name.encode('utf-16le') in z.read('Mods/FreedomArrow.Runtime.dll')
-    # Vanilla maps keep the native mission; each zone shows its own name and value, none stays hidden, and only network pauses for deployment.
-    for mname,(scene,_,_,_,values,*_) in van.MAPS.items():
-        assert set(values)=={o["_dname"] for o in scenario_objects(f"[FA] {mname} Skirmish 0.1") if o.get("_type")==15},mname
-        for name,kind in ((f'[FA] {mname} 0.1',2),(f'[FA] {mname} Skirmish 0.1',3)):
-            meta=scenario_meta(name);assert meta['gameVersion']=='1.2.2' and meta['type']==kind and meta['sceneName']==scene,name
+    # Lateralus's authored maps keep his script. Online pauses for deployment; Skirmish has none and bots in every slot.
+    # Airport 5v5 always plays on Play Zone Large; its size logic and lobby Size option are gone.
+    for mod,scene,slots in ((airport_5v5,'Airport',5),(baltiisk_3v3,'Baltiisk',5),(dam_3v3,'Dam',5)):
+        for flavor in mod.FLAVORS:
+            name,kind=flavor['name'],flavor['kind']
+            meta=scenario_meta(name);objs=scenario_objects(name);nodes=scenario_part(name,'nodes.bam');head=scenario_part(name,'head.bam')
+            assert meta['type']==kind and meta['sceneName']==scene and meta['guid']==flavor['guid'] and [len(t['slots']) for t in meta['teams']]==[slots,slots],name
             assert [o['defV'] for o in meta['pblOpt'] if o.get('desc')=='ui_lobby_Timer_desc']==[45],name
-            objs=scenario_objects(name);nodes=scenario_part(name,'nodes.bam')['b']
-            zones={str(o['_uid']):o for o in objs if o.get('_type')==15}
-            assert all(o['hudText']==o['_dname'] for o in zones.values()) and {u:values[o['hudText']] for u,o in zones.items()}==settings['MapZoneWeights'][name],name
-            props=[{p['k']:p.get('v') for p in n['props_v2']} for n in nodes if n.get('nnKey')=='objVisible2']
-            assert not [q for q in props if q['oz2'] in {f'c{u}' for u in zones} and q['isv']=='False'],name
-            assert any(n.get('nnKey')=='pauseGame' for n in nodes)==(kind==2),name
-            if kind==3:assert any(o.get('isBot') for o in objs if o.get('_type')==13),name
-    # Lateralus 2026-11-12: Airport 5v5 always plays on Play Zone Large; its size logic and lobby Size option are gone.
-    for name,kind in (('[FA] [5v5] Airport 0.1',2),('[FA] [5v5] Airport Skirmish 0.1',3)):
-        meta=scenario_meta(name);objs=scenario_objects(name);nodes=scenario_part(name,'nodes.bam');head=scenario_part(name,'head.bam')
-        assert meta['type']==kind and meta['sceneName']=='Airport' and len(meta['teams'])==2 and all(len(t['slots'])==5 for t in meta['teams']),name
-        assert [(o['_uid'],o['scale']['X'],o['scale']['Z']) for o in objs if o.get('_type')==7]==[(10,9000.0,9000.0)] and head['spz']==10,name
-        assert not [o for o in meta['pblOpt'] if 'Size' in o['desc']] and not {n['nnKey'] for n in nodes['b']}&{'objVisible2','act_pz','Network Players'},name
-        ids={n['id'] for n in nodes['b']};assert all(c['a'] in ids and c['b'] in ids for c in nodes['c']),name
-        values=dict(Alpha=3,Bravo=2,Charlie=2,Delta=3,Echo=2,Foxtrot=2,Golf=2,Hotel=4,India=2,Juliett=4)
-        zones=[o for o in objs if o.get('_type')==15]
-        assert {str(o['_uid']):values[o['hudText']] for o in zones}==settings['MapZoneWeights'][name] and all(o['ZoneIcon']==ord(o['hudText'][0])-ord('A')+1 for o in zones),name
-        assert any(n['nnKey']=='pauseGame' for n in nodes['b'])==(kind==2) and all(o.get('isBot',False)==(kind==3) for o in objs if o.get('_type')==13),name
+            plays=[o for o in objs if o.get('_type')==7];assert len(plays)==1 and head['spz']==plays[0]['_uid'],name
+            ids={n['id'] for n in nodes['b']};assert all(c['a'] in ids and c['b'] in ids for c in nodes['c']),name
+            zones=[o for o in objs if o.get('_type')==15]
+            assert {str(o['_uid']):mod.VALUES[o['hudText']] for o in zones}==settings['MapZoneWeights'][name] and all(o['hudText']==o['_dname'] for o in zones),name
+            assert all(o['ZoneIcon']==ord(o['hudText'][0])-ord('A')+1 and len(o['capturableBy'])==2 for o in zones),name
+            assert any(n['nnKey']=='pauseGame' for n in nodes['b'])==(kind==2) and all(o.get('isBot',False)==(kind==3) for o in objs if o.get('_type')==13),name
+            if mod is airport_5v5:
+                assert (plays[0]['_uid'],plays[0]['scale']['X'],plays[0]['scale']['Z'])==(10,9000.0,9000.0),name
+                assert not [o for o in meta['pblOpt'] if 'Size' in o['desc']] and not {n['nnKey'] for n in nodes['b']}&{'objVisible2','act_pz','Network Players'},name
     # Lateralus 2026-11-12: every FA map uses the vanilla 15 s zone capture time.
     for name in sorted({n.split('/')[3] for n in names if n.startswith('UserData/FreedomArrow/scenarios/') and n.endswith('.bascr')}):
         assert {o['capTime'] for o in scenario_objects(name) if o.get('_type')==15}=={15.0},name

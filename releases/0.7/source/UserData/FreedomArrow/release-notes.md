@@ -1,8 +1,8 @@
-# Freedom Arrow 0.7.0-devtest.lat.22 — development candidate
+# Freedom Arrow 0.7.0-devtest.lat.23 — development candidate
 
 ## Map, playable-border and lobby test batch
 
-**This isolated lat.22 test starts from maintained dev.55. It adds Highway of Death 0.1 and Lateralus's [5v5] Airport 0.1, sets every FA map's zone capture time to the vanilla 15 seconds, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer in-scene border line plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
+**This isolated lat.23 test starts from maintained dev.55. It adds Highway of Death 0.1 Lateralus's [5v5] Airport 0.1, [3v3] Baltiisk 0.1 and [3v3] Dam 0.1, sets every FA map's zone capture time to the vanilla 15 seconds, activates/crops Chkalovsk's playable area, fixes Dead Center 1v1 red spawn directions and team cameras, and adds a clearer in-scene border line plus a bounded initial deck-list refresh. It has not been installed or tested in-game.**
 
 - Highway: Alpha/Bravo/Charlie/Golf 2; Foxtrot 3; Delta/Echo 6. Correct native A–G icons, two slots per team, FA conquest/deployment scripts, offline Skirmish flavor, and per-team cameras. Objective IDs are unique to this map so clients can identify its weights.
 - Chkalovsk: X 0–9000; Z 0–4850.01636. The north edge is 1500 engine units beyond Alpha's centre. The other three edges meet Airbase's native 9000×9000 map limits. The existing unselected playable-zone object is now active.
@@ -12,8 +12,9 @@
 - [5v5] Airport: Lateralus's redesign replaces [FA] Airport 0.1. Hotel/Juliett 4; Alpha/Delta 3; Bravo/Charlie/Echo/Foxtrot/Golf/India 2. Five slots per team. Play Zone Large (the whole 9000×9000 map) is always active: the lobby Size option, its player-count logic and Play Zone Small are removed, with the four script nodes the editor reported as "missing any target". Lateralus's other script (time of day, deployment pause) stays. Zone labels now match the zone names.
 - Capture time: Dead Center 1v1, Chkalovsk and Highway were 5 seconds (their editor exports). Every FA map now uses the vanilla 15 seconds; the build sets it.
 - Border fix (lat.21): Lateralus saw no change in lat.20; the overlay never drew. Its hook was on the PlayableZone constructor, which GameAssembly inlines (no direct call), so the play area was never found. lat.21 finds it when the minimap subscribes at mission load and when a script switches zones. If the camera has no MainCamera tag, the highest enabled screen camera is used. New log lines: `playable_borders_zone`, `playable_borders_waiting`, and `playable_borders_bounds` with the camera name.
+- [3v3] Baltiisk and [3v3] Dam (lat.23): Lateralus's redesigns replace [FA] Baltiisk 0.1 and [FA] Dam 0.1, with his scripts. Baltiisk: Hotel/India 4; Delta/Echo/Foxtrot/Golf 3; Alpha/Bravo/Charlie 2 (Hotel and India showed "Echo" and now show their names). Dam: Charlie/Delta/India/Juliet 4; Alpha/Bravo/Golf/Hotel 3; Echo/Foxtrot/Kilo/Lima 2 (an extra capturing team 7 is removed). All three of Lateralus's maps (Airport, Baltiisk, Dam) now build through one shared path; the vanilla-map builder is retired because no map uses it.
 
-All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.22 package through Mod Manager; this task does not switch the installed PLA pack.
+All dev.55 gameplay constants, missile-defence speed/prediction/overkill, helicopter flare stock 15 and item #10's AT4 carriers remain. This batch stays on `codex/batch/lateralus/map-borders-lobby`; it does not advance 0.7 integration or the public dev.45/assets 0.1.14 lock. Import the exact lat.23 package through Mod Manager; this task does not switch the installed PLA pack.
 
 
 ## Current main promotion — all missile-defence guns and four AT4 carriers
@@ -289,3 +290,4 @@ The separate model pack contains FAModels0.3.4 and the clear-canopy sidecars. Ga
 - 2026-11-12 01:57:27 PST (America/Los_Angeles) — lat.20: added Lateralus's [5v5] Airport 0.1 (replaces [FA] Airport 0.1; whole-map play area, size logic removed, his zone values) and the vanilla 15-second capture time on every FA map.
 - 2026-11-12 02:46:12 PST (America/Los_Angeles) — lat.21: border overlay hook moved off the inlined PlayableZone constructor (lat.18–20 drew nothing); camera fallback and step logs added.
 - 2026-11-12 03:09:31 PST (America/Los_Angeles) — lat.22: border redrawn in the 3D scene with the objective-border material (white, soft-edged, hidden by terrain/trees/units, under the HUD), after Lateralus's lat.21 test.
+- 2026-11-12 04:04:59 PST (America/Los_Angeles) — lat.23: Lateralus's [3v3] Baltiisk and [3v3] Dam replace the vanilla-built Baltiisk and Dam, with his zone values; shared authored-map build.

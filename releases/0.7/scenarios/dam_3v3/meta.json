@@ -1,0 +1,152 @@
+{
+  "v": 3,
+  "author": "Freedom Arrow",
+  "desc": "Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, the side with the higher zone value scores the difference. First to 300 wins. C D H I J are worth 4, A F G L are worth 3, B E K are worth 2. Flat 200 income, no upkeep.",
+  "guid": "88e3aa7d-1fe8-401f-ac60-0e059f72e46a",
+  "type": 2,
+  "public": true,
+  "hasDiff": true,
+  "meDiff": 3,
+  "sceneName": "Dam",
+  "dtp": "Evening (Default)",
+  "createdDate": 1664297223,
+  "updatedDate": 1794484815,
+  "scenario": "[FA] [3v3] Dam 0.1",
+  "locName": "map_loc_dam",
+  "files": [],
+  "teams": [
+    {
+      "teamSide": 0,
+      "teamName": "Alpha team",
+      "slots": [
+        {
+          "playerName": "Alpha Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    },
+    {
+      "teamSide": 1,
+      "teamName": "Bravo team",
+      "slots": [
+        {
+          "playerName": "Bravo Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    }
+  ],
+  "pblOpt": [
+    {
+      "id": 69,
+      "name": "ui_lobby_StartMoney_title",
+      "t": 101,
+      "nt": 1,
+      "desc": "ui_lobby_StartMoney_desc",
+      "defV": 1500,
+      "ord": 0,
+      "sld": true,
+      "mnv": 500,
+      "mxv": 1500,
+      "sv": 100
+    },
+    {
+      "id": 70,
+      "name": "ui_lobby_Income_title",
+      "t": 101,
+      "nt": 2,
+      "desc": "ui_lobby_Income_desc",
+      "defV": 300,
+      "ord": 1,
+      "sld": true,
+      "mxv": 600,
+      "sv": 25
+    },
+    {
+      "id": 72,
+      "name": "ui_lobby_Timer_title",
+      "t": 101,
+      "desc": "ui_lobby_Timer_desc",
+      "defV": 45,
+      "ord": 2,
+      "sld": true,
+      "mnv": 30,
+      "mxv": 60,
+      "sv": 3
+    }
+  ],
+  "gameVersion": "1.2.2",
+  "dlc": []
+}

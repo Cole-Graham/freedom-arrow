@@ -1,6 +1,6 @@
 """Shared scenario build: IO, layout overlay, lobby sliders, FA script graft, flavors."""
 from pathlib import Path
-import copy, hashlib, json, shutil, sys, zipfile
+import copy, hashlib, json, shutil, sys, uuid, zipfile
 from Crypto.Cipher import AES
 ROOT=Path(__file__).resolve().parent.parent;REPO=ROOT.parent.parent
 sys.path.insert(0,str(REPO))
@@ -191,8 +191,7 @@ def build_host_flavor(game,out,spec,flavor,layout):
     spec['patch_host'](head,nodes,objects,meta,flavor)
     if layout is not None:apply_layout(objects,layout);print(f"{flavor['name']} physical layout copied from package {LAYOUT}")
     if flavor['kind']==2:
-        start,target=spec['deploy_target'](game) if 'deploy_target' in spec else (163,flavor.get('deploy_target',159))
-        add_deployment(nodes,start,target,flavor.get('deploy_pin','in'))
+        add_deployment(nodes,163,flavor.get('deploy_target',159),flavor.get('deploy_pin','in'))
     write_flavor(out,spec,flavor,head,objects,nodes,meta)
 def build_template_flavor(game,out,spec,flavor,template):
     head,nodes,objects,meta=copy.deepcopy(template)
@@ -213,93 +212,54 @@ def build_pair(game,out,spec):
         if flavor.get('host'):build_host_flavor(game,out,spec,flavor,layout)
         else:build_template_flavor(game,out,spec,flavor,template)
     if spec.get('assets',True):copy_assets(out,spec)
-# Vanilla maps: the native network and Skirmish missions stay as they are (zones, spawns, cameras, play areas, AI).
-# Only the score values, zone visibility, income, money and the online deployment pause change.
 def describe(values):
     by={}
     for name,v in values.items():by.setdefault(v,[]).append(name[0])
     parts=[f"{' '.join(sorted(by[v]))} {'is' if len(by[v])==1 else 'are'} worth {v}" for v in sorted(by,reverse=True)]
     return ('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
             'the side with the higher zone value scores the difference. First to 300 wins. '+', '.join(parts)+'. Flat 200 income, no upkeep.')
-def drop_zones(objects,nodes,gone):
-    """Osama 2026-11-07: the Skirmish map is the master. Remove network-only zones. A size-logic node that shows or hides
-    such a zone is spliced out, its flow passed straight on; any other reference stops the build."""
-    import json as _j
-    for z in gone:
-        ref=f"c{z['_uid']}";objects.remove(z)
-        assert not [o for o in objects if f'"id": {z["_uid"]},' in _j.dumps(o)],z['_dname']
-        for n in [n for n in nodes['b'] if any(p.get('v')==ref for p in n.get('props_v2',[]))]:
-            assert n['nnKey']=='objVisible2',(z['_dname'],n['nnKey'])
-            ins=[c for c in nodes['c'] if c['a']==n['id']];outs=[c for c in nodes['c'] if c['b']==n['id']]
-            assert all(c['c']=='in2' for c in ins) and all(c['d']=='out2' for c in outs),(ins,outs)
-            nodes['c']=[c for c in nodes['c'] if n['id'] not in (c['a'],c['b'])]
-            nodes['c']+=[dict(a=o['a'],b=i['b'],c=o['c'],d=i['d'],e=i['e']) for i in ins for o in outs]
-            nodes['b'].remove(n)
-        print(f"zone {z['_dname']} removed: not on the Skirmish map")
-def patch_vanilla(head,nodes,objects,meta,flavor,scene,values):
-    """values: zone _dname -> value. Sets hudText to the _dname, because some native zones show another zone's name."""
-    kind=flavor['kind']
-    assert head['GameMode']==kind and head['map']==scene,(head['GameMode'],head['map'])
-    drop_zones(objects,nodes,[o for o in objects if o.get('_type')==15 and o['_dname'] not in values])
-    zones=[o for o in objects if o.get('_type')==15]
-    assert sorted(o['_dname'] for o in zones)==sorted(values),sorted(o['_dname'] for o in zones)
-    for o in zones:o['hudText']=o['_dname']
-    want={str(o['_uid']):values[o['_dname']] for o in zones}
-    assert want==weights(flavor['name']),(flavor['name'],want)
-    ids={f"c{o['_uid']}" for o in zones};conquest=shown=caps=0
-    for n in nodes['b']:
-        props={p['k']:p for p in n.get('props_v2',[])}
-        if n.get('nnKey')=='setConquestMode':conquest+=1
-        # The native size logic hides outer zones on small lobbies. Every valued zone stays on the map.
-        if n.get('nnKey')=='objVisible2' and props['oz2'].get('v') in ids and props['isv']['v']=='False':props['isv']['v']='True';shown+=1
-        if n.get('nnKey')=='setIncomeCurveState':props['state']['v']='False'
-        if n.get('nnKey')=='setMaxMoney':props['moneyValue']['v']=str(MONEY_CAP);caps+=1
-    assert conquest>=1 and caps==(1 if kind==2 else 0),(conquest,caps)
-    byid={b['id']:b for b in nodes['b']}
-    calcs={c['b'] for c in nodes['c'] if c['d']=='Multiply' and c['c']=='amount' and byid.get(c['a'],{}).get('nnKey')=='setMoney2'}
-    assert len(calcs)==(2 if kind==3 else 0),calcs
-    for calc in calcs:
-        source=[c['b'] for c in nodes['c'] if c['a']==calc and c['c']=='a'];assert len(source)==1
-        assert not [c for c in nodes['c'] if c['a']==source[0] and c['c']=='Value'],'money variable has an input'
-        nodes['c']=[c for c in nodes['c'] if not (c['a']==calc and c['c']=='B')]
-        next(p for p in byid[calc]['props_v2'] if p['k']=='B')['v']='1'
-        next(p for p in byid[source[0]]['props_v2'] if p['k']=='Value')['v']=str(START_POINTS)
-    slider_defaults(objects,meta,2 if kind==2 else 0)
-    print(f"{flavor['name']}: {len(zones)} zones valued, {shown} hidden-zone nodes now show the zone")
-# Lobby option objects (sliders 101, dropdowns 102) of a native Skirmish mission; graft_conquest adds its own.
-LOBBY_TYPES={101,102}
-def skirmish_template(game,skirmish,scene,values):
-    """Online flavor from the native Skirmish mission, for maps whose network zones differ (Osama 2026-11-07: use the Skirmish map).
-    The Skirmish AI script and lobby options go; graft_conquest then adds the FA script. Zones, spawns, cameras and play area stay."""
-    head,nodes,objects,meta=read_native(game,skirmish)
-    assert head['map']==scene and len([o for o in objects if o.get('_type')==7])==1,'one play area expected'
-    objects[:]=[o for o in objects if o.get('_type') not in LOBBY_TYPES]
-    meta['pblOpt']=[];nodes.update(b=[],c=[])
+# Lateralus's authored maps (12 November 2026 onward) keep their own script, cameras and play area. The online flavor is
+# his file; the Skirmish flavor drops the deployment pause, as the other FA Skirmish flavors do, and fills every slot with bots.
+def prepare_authored(mod_file,scene,letters,names,edit=None):
+    """edit(head,nodes,objects,meta) runs first, for map-specific script changes."""
+    head,nodes,objects,meta=read_layout(mod_file)
+    assert head['map']==scene and head['GameMode']==2 and meta['gameVersion']==GAME_VERSION,(head['map'],head['GameMode'])
+    if edit:edit(head,nodes,objects,meta)
+    strip_editor_teams(objects,meta)
+    letter_zones(objects,letters,names)
     for o in objects:
-        if o.get('_type')==13:o['isBot']=False
-        if o.get('_type')==15:o['hudText']=o['_dname']
-    for t in meta['teams']:
-        for sl in t['slots']:sl['bot']=False
-    assert {o.get('teamSide') for o in objects if o.get('_type')==3}=={0,1}
+        if o.get('_type')==15:assert o['ZoneIcon']==ord(o['_dname'][0])-ord('A')+1,o['_dname']
+    assert head['spz']==next(o['_uid'] for o in objects if o.get('_type')==7),'one active play area expected'
+    assert sum(1 for o in objects if o.get('_type')==18)==2,'two team cameras expected'
+    deployment(nodes)
+    slider_defaults(objects,meta,2)
     return head,nodes,objects,meta
-def vanilla_spec(scene,network,skirmish,name,guid,values,online_from_skirmish=False):
-    """One vanilla map: network flavor from `network` (or from the Skirmish mission), Skirmish flavor from `skirmish`.
-    guid gets 'a' (network) and 'b' (Skirmish)."""
-    def patch(head,nodes,objects,meta,flavor):patch_vanilla(head,nodes,objects,meta,flavor,scene,values)
-    def prepare(game,spec):
-        sk=sorted(o['_dname'] for o in read_native(game,skirmish)[2] if o.get('_type')==15)
-        assert sk==sorted(values),('values must name exactly the Skirmish zones',sk)
-        return None,(skirmish_template(game,skirmish,scene,values) if online_from_skirmish else None)
-    def deploy_target(game):
-        nodes=read_native(game,network)[1];byid={b['id']:b for b in nodes['b']}
-        start=[b['id'] for b in nodes['b'] if b.get('nnKey')=='start'];assert len(start)==1,start
-        nxt=[c['a'] for c in nodes['c'] if c['b']==start[0] and byid[c['a']]['nnKey']=='testCond2'];assert len(nxt)==1,nxt
-        return start[0],nxt[0]
-    return dict(author='Freedom Arrow',desc=describe(values),prepare=prepare,assets=False,patch_host=patch,deploy_target=deploy_target,
-                flavors=[dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,deploy_target=136,deploy_pin='in2') if online_from_skirmish else
-                         dict(name=f'[FA] {name} 0.1',guid=guid+'a',kind=2,public=True,host=network),
-                         dict(name=f'[FA] {name} Skirmish 0.1',guid=guid+'b',kind=3,public=False,host=skirmish)])
-
+def deployment(nodes):
+    """The deployment pause of an authored online script: (start, pause, wait, unpause, wire from unpause)."""
+    byid={b['id']:b for b in nodes['b']}
+    def val(b,k):return next(p['v'] for p in b['props_v2'] if p['k']==k)
+    start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'];assert len(start)==1,start
+    pause={val(b,'val'):b['id'] for b in nodes['b'] if b['nnKey']=='pauseGame'};assert len(pause)==2,pause
+    on,off=pause['True'],pause['False']
+    wait=[c['b'] for c in nodes['c'] if c['a']==off and byid[c['b']]['nnKey']=='delay'];assert len(wait)==1,wait
+    assert {(c['a'],c['b']) for c in nodes['c'] if c['b']==start[0]}>={(on,start[0]),(wait[0],start[0])}
+    assert val(byid[wait[0]],'Time')==str(deploy_seconds())
+    after=[c for c in nodes['c'] if c['b']==off];assert len(after)==1,after
+    return start[0],on,wait[0],off,after[0]
+def build_authored(out,spec,base):
+    for flavor in spec['flavors']:
+        head,nodes,objects,meta=copy.deepcopy(base)
+        if flavor['kind']==3:
+            start,on,wait,off,after=deployment(nodes)
+            gone={on,wait,off}
+            nodes['b']=[b for b in nodes['b'] if b['id'] not in gone]
+            nodes['c']=[c for c in nodes['c'] if c['a'] not in gone and c['b'] not in gone]
+            nodes['c'].append(dict(a=after['a'],b=start,c=after['c'],d='flow',e=start))
+            set_bots(objects,meta)
+        write_flavor(out,spec,flavor,head,objects,nodes,meta)
+def authored_flavors(name,skirmish_name):
+    return [dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True),
+            dict(name=skirmish_name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish_name)),kind=3,public=False)]
 # Map batch: orient authored spawns and starting cameras using each team's own spawn side.
 def face_spawns_to_objectives(objects,team=None):
     import math
