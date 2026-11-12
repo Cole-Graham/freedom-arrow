@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.16
+# Freedom Arrow 0.8.0-dev.17
+
+- ZBL-191: 4x HJ-16 in place of the HJ-8E. HJ-16 = the Javelin (10.5 damage, 140 penetration, top attack, fire-and-forget) at 2000 m instead of 1500 m.
+- ZBL-191: IronFist APS (as on the ZBD-20) and Stryker SRAT I armour (12 HP, HEAT 250/200/130/20, kinetic 80/60/30/20 front/sides/rear/top; was 60/40/30/30).
+- ZBL-191 price 40 -> 105 (theoretical: 30 mm wheeled IFV, 4 long-range top-attack missiles, APS, SRAT I armour; compare M2A3 65, Stryker ATGM 70, ZBD-20 175).
+- Includes 0.8.0-dev.16 and earlier. Not yet verified in a game run.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.16
 
 - Shaanxi Troop Truck is no longer offered as a squad transport (10 squad links removed); it stays as its own card.
 - ZSD-63 removed (Rocket card and its 7 squad transport links). ZSD-63C stays.
@@ -921,3 +930,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:27:33 PST (America/Los_Angeles) — 0.8.0-dev.15: transport cleanup, CSK-181 spread, Chinese Lynx weapons.
 
 - 2026-11-12 15:40:22 PST (America/Los_Angeles) — 0.8.0-dev.16: Shaanxi Troop Truck not a squad transport; ZSD-63 removed.
+
+- 2026-11-12 15:44:49 PST (America/Los_Angeles) — 0.8.0-dev.17: ZBL-191 HJ-16, APS, SRAT I armour, 105 points.

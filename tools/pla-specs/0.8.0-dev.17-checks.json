@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0-dev.17",
+  "base": "0.8.0-dev.16",
+  "base_sha256": "81d7374465bd42dc706b409b91c1a0713a4570aa418bd1a45b61896694269261",
+  "request": "Osama 12 Nov PST: ZBL-191 HJ-16, APS, SRAT I armour, price",
+  "hj16": {
+    "Damage": 10.5,
+    "PenetrationAtGroundRange": 140.0,
+    "GroundRange": 1000.0,
+    "IsTopArmorArmorAttack": true,
+    "Seeker": 50,
+    "TrajectoryType": 110
+  },
+  "displayed_range_m": 2000,
+  "armor": {
+    "MaxHealthPoints": 12,
+    "HeatArmorFront": 250,
+    "HeatArmorSides": 200,
+    "HeatArmorRear": 130,
+    "HeatArmorTop": 20,
+    "KinArmorFront": 80,
+    "KinArmorSides": 60,
+    "KinArmorRear": 30,
+    "KinArmorTop": 20
+  },
+  "aps_ability": 82,
+  "cost": {
+    "before": 40,
+    "after": 105
+  },
+  "checks": 27570
+}
