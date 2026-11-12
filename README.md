@@ -1,3 +1,12 @@
+# Freedom Arrow 0.8.0-dev.4
+
+- CTL-181 NLOS: small precision-strike cruise missile copied from the vanilla Iskander-K (vertical launch, cruise flight) with a Hellfire-size missile and AT-missile impact; 48 missiles, 15 damage, 20 penetration, 50% ignore cover, 2000 m. Replaces the mortar-style round of 0.8.0-dev.1.
+- ZBD-20 and ZBD-20 Recon: 100 mm gun / HJ-9 launcher removed (30 mm main gun); 165 / 170 points.
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.3
+
 # Freedom Arrow 0.8.0-dev.3
 
 - ZBD-03 / ZLC-2000 renamed ZBD-03.
@@ -779,3 +788,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:42:25 PST (America/Los_Angeles) — 0.8.0-dev.2: CSK-131 seats, SX2190 removed.
 
 - 2026-11-12 13:48:37 PST (America/Los_Angeles) — 0.8.0-dev.3: ZBD batch.
+
+- 2026-11-12 13:54:42 PST (America/Los_Angeles) — 0.8.0-dev.4: CTL-181 cruise missile, ZBD-20 without missiles.

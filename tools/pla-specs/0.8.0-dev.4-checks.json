@@ -1,0 +1,27 @@
+{
+  "version": "0.8.0-dev.4",
+  "base": "0.8.0-dev.3",
+  "base_sha256": "d4599c2ed5832eb4ba5dbde34a2f5d5bc09e1c3c910af2a202ebd76321988c83",
+  "request": "Osama 12 Nov 13:53 PST",
+  "ctl181": {
+    "flight": "Iskander-K 9M728 cruise (trajectory 200, vertical launch True)",
+    "model": "Ammo\\AGM-114_Hellfire_Main_LOD",
+    "damage": 15,
+    "penetration": 20,
+    "ignore_cover": 0.5,
+    "range_data": 1000,
+    "missiles": 48
+  },
+  "zbd20": {
+    "removed": "100 mm gun / HJ-9 launcher",
+    "weapons_now": [
+      "ZPT-99 30 mm",
+      "Type 86 7.62 mm"
+    ],
+    "cost": [
+      165,
+      170
+    ]
+  },
+  "checks": 17308
+}
