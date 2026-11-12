@@ -1,0 +1,231 @@
+{
+  "build": 58,
+  "base_build": 57,
+  "base_sha256": "42df73973318f1fb053804832aa0dc88f23acb4266d9fcb93db97418cd9b69ab",
+  "request": "Osama 12 Nov: \"Motorized GAM team isn't using the right model. remove \\\"motorized\\\" from all the names. Light AT riflemen renamed \\\"Light Riflemen\\\"\"",
+  "gam_launcher": {
+    "weapon": 2014292,
+    "copies_vanilla": "697 ATGM Spike LR Infantry",
+    "changed": {
+      "AudioPreset": [
+        "WEAPON_SOUND_PRESET_GENERIC_ATGM_TOW",
+        "WEAPON_SOUND_PRESET_GENERIC_ATGM_JAVELIN"
+      ],
+      "ModelFileName": [
+        "M220",
+        "SPIKE_LR_Tripod"
+      ],
+      "AimTimeMin": [
+        1.0,
+        2.0
+      ],
+      "AimTimeMax": [
+        2.0,
+        3.0
+      ],
+      "MagazineReloadTimeMin": [
+        5.0,
+        8.0
+      ],
+      "MagazineReloadTimeMax": [
+        6.0,
+        10.0
+      ]
+    }
+  },
+  "renamed": [
+    {
+      "unit": 1196,
+      "from": "Motorized Line Infantry 摩步班",
+      "to": "Line Infantry 摩步班"
+    },
+    {
+      "unit": 1197,
+      "from": "Motorized AA Troopers 防空班",
+      "to": "AA Troopers 防空班"
+    },
+    {
+      "unit": 1198,
+      "from": "Motorized AT Troopers 反坦克组",
+      "to": "AT Troopers 反坦克组"
+    },
+    {
+      "unit": 1199,
+      "from": "Motorized Weapons Squad",
+      "to": "Weapons Squad"
+    },
+    {
+      "unit": 1200,
+      "from": "Motorized PF-98 Fire Support",
+      "to": "PF-98 Fire Support"
+    },
+    {
+      "unit": 1201,
+      "from": "Motorized Recon Patrol 侦察班",
+      "to": "Recon Patrol 侦察班"
+    },
+    {
+      "unit": 1202,
+      "from": "Motorized Snipers 狙击组",
+      "to": "Snipers 狙击组"
+    },
+    {
+      "unit": 1204,
+      "from": "Motorized CQC Engineers",
+      "to": "CQC Engineers"
+    },
+    {
+      "unit": 1205,
+      "from": "Motorized Light AT Riflemen 轻反坦克",
+      "to": "Light Riflemen"
+    },
+    {
+      "unit": 1208,
+      "from": "Motorized QLZ-04 Team",
+      "to": "QLZ-04 Team"
+    },
+    {
+      "unit": 1210,
+      "from": "Motorized CAAT — HJ-8E / QLU-11",
+      "to": "CAAT — HJ-8E / QLU-11"
+    },
+    {
+      "unit": 1221,
+      "from": "Motorized GAM-102LR Team",
+      "to": "GAM-102LR Team"
+    }
+  ],
+  "native_verified": false,
+  "unhidden": {
+    "vanilla": 470,
+    "freedom_arrow": [
+      "714 M-ATV Javelin",
+      "715 PRP-5G",
+      "716 T-80BVM",
+      "717 Object 787 Gadyuka",
+      "718 M728 CEV",
+      "719 M8 Thunderbolt",
+      "720 M10 Booker XM913",
+      "721 BARS Kornet",
+      "722 Sprut-SDM",
+      "723 Tigr Kornet 2x4",
+      "724 TGB-1111",
+      "725 Razvedka",
+      "726 Scouts",
+      "727 Ka-60 Razvedchik",
+      "728 Ka-226T Razvedchik",
+      "729 Ka-29 Razvedchik",
+      "730 Mi-24K Razvedchik",
+      "731 Mi-8AMTSh Razvedchik",
+      "732 UH-1Y Venom Recon",
+      "733 OH-58D Recon Optronic",
+      "734 OH-58D Recon",
+      "735 MH-60M SOAR Recon",
+      "736 MH-6 Little Bird Recon",
+      "737 RAH-66 Comanche Recon",
+      "738 AS-365 Dauphin Recon",
+      "739 KamAZ-6560 Cargo",
+      "740 F-16C Block 50 ASF",
+      "741 F-35C",
+      "742 EA-18G Growler",
+      "743 MiG-31BSM",
+      "744 MiG-29S",
+      "745 AH-1Z Viper Recon",
+      "746 AH-64D Longbow Recon",
+      "747 Mi-28NM Razvedchik",
+      "748 Ka-52K Razvedchik",
+      "749 M1299 Iron Thunder",
+      "950 Su-75 Checkmate",
+      "964 Abrams X",
+      "965 B-21 Raider",
+      "969 X-47B",
+      "970 Su-57D",
+      "980 Su-47 Berkut",
+      "981 F-14 Tomcat",
+      "982 YF-23 Black Widow II",
+      "983 XM30",
+      "984 ZIL Karatel Punisher"
+    ]
+  },
+  "motorized_bodies": {
+    "preset": "SF assault desert",
+    "kept": {
+      "1203": "Taishan Eagles: SF night (SF rule)"
+    },
+    "changed": [
+      {
+        "unit": 1196,
+        "name": "Line Infantry 摩步班",
+        "playable": true,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1197,
+        "name": "AA Troopers 防空班",
+        "playable": true,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1198,
+        "name": "AT Troopers 反坦克组",
+        "playable": true,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1199,
+        "name": "Weapons Squad",
+        "playable": true,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1201,
+        "name": "Recon Patrol 侦察班",
+        "playable": true,
+        "from": "pla2_sf_goggles_up_desert"
+      },
+      {
+        "unit": 1202,
+        "name": "Snipers 狙击组",
+        "playable": true,
+        "from": "pla2_sf_goggles_up_desert"
+      },
+      {
+        "unit": 1204,
+        "name": "CQC Engineers",
+        "playable": false,
+        "from": "pla2_sf_heavy_desert"
+      },
+      {
+        "unit": 1205,
+        "name": "Light Riflemen",
+        "playable": true,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1206,
+        "name": "Air Defense Scouts 防空侦察",
+        "playable": true,
+        "from": "pla2_sf_goggles_up_desert"
+      },
+      {
+        "unit": 1208,
+        "name": "QLZ-04 Team",
+        "playable": false,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1210,
+        "name": "CAAT — HJ-8E / QLU-11",
+        "playable": false,
+        "from": "pla2_sf_goggles_down_desert"
+      },
+      {
+        "unit": 1221,
+        "name": "GAM-102LR Team",
+        "playable": true,
+        "from": "pla2_regular_woodland"
+      }
+    ]
+  },
+  "checks": 28623
+}

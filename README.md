@@ -1,3 +1,17 @@
+# PLA TEST Build 58
+
+GAM-102LR Team: the launcher was a TOW-2A clone (M220 model, TOW sound, 1-2 s aim, 5-6 s reload). It now copies the vanilla Spike LR team launcher in full: SPIKE_LR_Tripod model, Javelin-type sound, 2-3 s aim, 8-10 s reload. Missile unchanged (Spike LR copy).
+
+"Motorized" is removed from every PLA unit name (12 rows), and Motorized Light AT Riflemen is now "Light Riflemen".
+
+Russian and US units are visible again: the PLA build had set DisplayInArmory to false on every non-China unit. 470 vanilla RU/US units get their vanilla value back and 46 Freedom Arrow RU/US additions are visible (as in live dev.45). Vanilla-hidden units and other countries stay hidden; China stays the default deck country.
+
+Every Motorized squad now wears SF assault desert (Taishan Eagles keep SF night vision). The GAM-102LR Team was on the regular woodland body.
+
+No other value changed. Includes Build57 (Airborne goggles-down desert bodies, "Mechanized" removed from PLAGF names).
+
+## Historical Build57
+
 # PLA TEST Build 57
 
 Every Airborne squad (PLAAF Air Force) now wears the SF goggles down desert body: Airborne, HJ-12 Team, Tank Hunters, QLU-11 Team, Pathfinders, Thunder Gods, Snipers, QW-12 Patrol, Assault Raiders and Recon, plus the five unused Airborne rows. Same preset, body offset and hand anchoring as the existing goggles-down squads; weapon alignment is unchanged.
@@ -641,3 +655,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:21:16 PST (America/Los_Angeles) — Build56: null pylon slots set to 0; China loads again.
 
 - 2026-11-12 11:35:47 PST (America/Los_Angeles) — Build57: all Airborne squads wear SF goggles down desert; "Mechanized" removed from PLAGF names.
+
+- 2026-11-12 11:39:54 PST (America/Los_Angeles) — Build58: RU/US units visible; Motorized in SF assault desert; GAM-102LR launcher = Spike LR; "Motorized" removed from names; Light Riflemen.

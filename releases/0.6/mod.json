@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 57",
-  "version": "57",
+  "name": "PLA TEST Build 58",
+  "version": "58",
   "type": "modpack",
-  "description": "Build56 with every Airborne squad wearing SF goggles down desert, and \"Mechanized\" removed from PLAGF squad names.",
+  "description": "Build57 with RU/US units visible again, Motorized squads in SF assault desert, the GAM-102LR launcher as a Spike LR, \"Motorized\" removed from names and Light Riflemen.",
   "repo": "Cole-Graham/freedom-arrow"
 }
