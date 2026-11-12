@@ -1,7 +1,7 @@
 {
   "channel": "testing",
-  "package_version": "65",
+  "package_version": "66",
   "spotting": "vanilla",
   "deployment_status": "native_validation_pending",
-  "verification": "Build64 plus aircraft loadout pass, CTL-181 NLOS and CSK-181 in Motorized. Data checks only; in-game check pending."
+  "verification": "Build65 plus Osama 13:03 batch and live model set. Data checks only; in-game check pending."
 }

@@ -1,3 +1,15 @@
+# PLA TEST Build 66
+
+- Live models restored: Object 640 Black Eagle (dev.51 model), MGM-166 LOSAT (scale 1.2), F-21 scale 1.1, and the live 0.1.14 copies of the Su-57D, F-14, Su-47, Su-75 and YF-23 models.
+- ZTQ-62-I: generated normal and mask maps at the Black Eagle (vanilla-matched) metal/gloss levels.
+- J-31, J-35 and MD-22: 6x PL-15C loadouts removed.
+- Removed: SH-16, ZTZ-20, PGZ-04, ZTZ-59, PLZ-07 (Armored), Z-10 Armored card (Airborne keeps its Z-10).
+- ZTZ-99, 99A, 96, 96A: M1A2 Abrams mobility (70/35, cross-country 55). ZTZ-96B 80/40. ZTZ-100 keeps 80/40.
+- PTZ-89 main gun autoloaded, 5 s reload.
+- Shaanxi HMV3 Cargo: LVSR mobility with HEMTT model, default resupply 15,000.
+
+## Historical Build65
+
 # PLA TEST Build 65
 
 - Aircraft pylons clear: every PLA loadout sets every pylon its menu uses, with the vanilla Empty turret on unused ones (306 slots filled), so weapons from another loadout no longer stay mounted.
@@ -712,3 +724,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 12:28:51 PST (America/Los_Angeles) — Build64: PLA pack on main dev 0.7.0-dev.58.
 
 - 2026-11-12 12:56:55 PST (America/Los_Angeles) — Build65: aircraft loadout pass, CTL-181 NLOS, CSK-181 Motorized.
+
+- 2026-11-12 13:11:01 PST (America/Los_Angeles) — Build66: live models, ZTZ mobility, removals, PTZ-89, HMV3 Cargo, ZTQ-62-I maps.

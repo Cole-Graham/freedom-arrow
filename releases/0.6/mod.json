@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
-  "name": "PLA TEST Build 65",
-  "version": "65",
+  "name": "PLA TEST Build 66",
+  "version": "66",
   "type": "modpack",
-  "description": "Build64 with aircraft pylons that clear, role-named loadouts, LS-6 500kg/250kg, J-20 air-to-air and J-20S strike, MD-22, J-50 hidden, J-36 F-35 turning, CTL-181 NLOS and CSK-181 in Motorized.",
+  "description": "Build65 plus the live Black Eagle, LOSAT and RU/US jet models, ZTZ Abrams mobility, unit removals, PTZ-89 autoloader, HMV3 Cargo 15k supply and ZTQ-62-I normal/mask maps.",
   "repo": "Cole-Graham/freedom-arrow"
 }

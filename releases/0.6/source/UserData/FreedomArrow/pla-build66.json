@@ -1,0 +1,368 @@
+{
+  "build": 66,
+  "base_build": 65,
+  "base_sha256": "9f11c2f5c0bca0c94505d31bc0e8fa1b045cbb92ed7f1c323020db77eeababad",
+  "request": "Osama 12 Nov 13:03 PST",
+  "removed_options": [
+    {
+      "unit": "J-31",
+      "option": "Heavy CAP (6x PL-15C)",
+      "load": {
+        "PL-15C": 6
+      }
+    },
+    {
+      "unit": "J-35",
+      "option": "Heavy CAP (6x PL-15C)",
+      "load": {
+        "PL-15C": 6
+      }
+    },
+    {
+      "unit": "MD-22",
+      "option": "Heavy CAP (6x PL-15C)",
+      "load": {
+        "PL-15C": 6
+      }
+    }
+  ],
+  "removed_units": {
+    "SH-16": {
+      "unit": 933,
+      "specs_removed": [
+        18
+      ]
+    },
+    "ZTZ-20": {
+      "unit": 927,
+      "specs_removed": [
+        18
+      ]
+    },
+    "PGZ-04": {
+      "unit": 1050,
+      "specs_removed": [
+        18
+      ]
+    },
+    "ZTZ-59": {
+      "unit": 1060,
+      "specs_removed": [
+        19
+      ]
+    },
+    "PLZ-07": {
+      "unit": 1038,
+      "specs_removed": [
+        18
+      ]
+    },
+    "Z-10 (Armored; Airborne keeps 1239)": {
+      "unit": 978,
+      "specs_removed": [
+        18
+      ]
+    }
+  },
+  "mobility": {
+    "ZTZ-99A": {
+      "before": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 20.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      },
+      "after": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 35.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      }
+    },
+    "ZTZ-99": {
+      "before": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 20.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      },
+      "after": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 35.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      }
+    },
+    "ZTZ-96A": {
+      "before": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 60.0,
+        "MaxSpeedReverse": 15.0,
+        "MaxCrossCountrySpeed": 45.0,
+        "ClimbRate": 0.0
+      },
+      "after": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 35.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      }
+    },
+    "ZTZ-96": {
+      "before": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 60.0,
+        "MaxSpeedReverse": 15.0,
+        "MaxCrossCountrySpeed": 45.0,
+        "ClimbRate": 0.0
+      },
+      "after": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 70.0,
+        "MaxSpeedReverse": 35.0,
+        "MaxCrossCountrySpeed": 55.0,
+        "ClimbRate": 0.0
+      }
+    },
+    "ZTZ-96B": {
+      "before": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 60.0,
+        "MaxSpeedReverse": 15.0,
+        "MaxCrossCountrySpeed": 45.0,
+        "ClimbRate": 0.0
+      },
+      "after": {
+        "Acceleration": 10.0,
+        "Agility": 0.0,
+        "TurnRate": 60.0,
+        "MaxSpeedRoad": 80.0,
+        "MaxSpeedReverse": 40.0,
+        "MaxCrossCountrySpeed": 62.9,
+        "ClimbRate": 0.0
+      }
+    }
+  },
+  "names": {
+    "J-31": [
+      [
+        "Light CAP (PL-12)",
+        {
+          "PL-12": 4
+        },
+        true
+      ],
+      [
+        "Light CAP (PL-15)",
+        {
+          "PL-15": 4
+        },
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        {
+          "LS-6 500kg": 2,
+          "PL-15": 2
+        },
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        {
+          "LS-6 500kg": 4
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-15C)",
+        {
+          "PL-15C": 4,
+          "PL-10": 2
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        {
+          "PL-16": 6
+        },
+        false
+      ],
+      [
+        "Heavy SEAD",
+        {
+          "LD-8A": 4
+        },
+        false
+      ],
+      [
+        "Light SEAD",
+        {
+          "LD-8A": 2,
+          "PL-15": 2
+        },
+        false
+      ]
+    ],
+    "J-35": [
+      [
+        "Light CAP (PL-12)",
+        {
+          "PL-12": 4
+        },
+        true
+      ],
+      [
+        "Light CAP (PL-15)",
+        {
+          "PL-15": 4
+        },
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        {
+          "LS-6 500kg": 2,
+          "PL-15": 2
+        },
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        {
+          "LS-6 500kg": 4
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-15C)",
+        {
+          "PL-15C": 4,
+          "PL-10": 2
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        {
+          "PL-16": 6
+        },
+        false
+      ],
+      [
+        "Heavy SEAD",
+        {
+          "LD-8A": 4
+        },
+        false
+      ],
+      [
+        "Light SEAD",
+        {
+          "LD-8A": 2,
+          "PL-15": 2
+        },
+        false
+      ]
+    ],
+    "MD-22": [
+      [
+        "Light CAP (PL-12)",
+        {
+          "PL-12": 4
+        },
+        true
+      ],
+      [
+        "Light CAP (PL-15)",
+        {
+          "PL-15": 4
+        },
+        false
+      ],
+      [
+        "Light strike (2x LS-6 500kg)",
+        {
+          "PL-15": 2,
+          "LS-6 500kg": 2
+        },
+        false
+      ],
+      [
+        "Light strike (4x LS-6 500kg)",
+        {
+          "LS-6 500kg": 4
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-15C)",
+        {
+          "PL-15C": 4,
+          "PL-10": 2
+        },
+        false
+      ],
+      [
+        "Heavy CAP (PL-16)",
+        {
+          "PL-16": 6
+        },
+        false
+      ],
+      [
+        "Heavy SEAD",
+        {
+          "LD-8A": 4
+        },
+        false
+      ],
+      [
+        "Light SEAD",
+        {
+          "PL-15": 2,
+          "LD-8A": 2
+        },
+        false
+      ]
+    ]
+  },
+  "ptz89": {
+    "before": {
+      "AutoLoaded": false,
+      "MagazineReloadTimeMin": 6.0,
+      "MagazineReloadTimeMax": 7.0
+    }
+  },
+  "hmv3_cargo": {
+    "ability": 2018324,
+    "ResupplyPoints": 15000,
+    "model": "US_HEMTT",
+    "mobility": "Wheels LVSR"
+  },
+  "checks": 17336
+}
