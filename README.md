@@ -1,3 +1,12 @@
+# Freedom Arrow 0.8.0-dev.6
+
+- CTL-181 NLOS missile: 30 mm penetration (was 20), no dispersion, laser guided, an attack order fires repeatedly (4/48/48 short/normal/long).
+- ZBD-20 precision missile: no dispersion, laser guided, repeat fire (2/4/4).
+
+Models and music unchanged: 0.2.0.
+
+## Historical 0.8.0-dev.5
+
 # Freedom Arrow 0.8.0-dev.5
 
 - ZBD-20 and ZBD-20 Recon: 4 of the CTL-181 precision missiles with a top-attack AT warhead (base 20, penetration 65): 2 hits on low-end tanks (top 80), 3 on high-end (top 100), about 20 to infantry. Calculated with the native HEAT formula, not measured. 175 / 180 points.
@@ -801,3 +810,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 13:54:42 PST (America/Los_Angeles) — 0.8.0-dev.4: CTL-181 cruise missile, ZBD-20 without missiles.
 
 - 2026-11-12 14:00:25 PST (America/Los_Angeles) — 0.8.0-dev.5: ZBD-20 precision missiles and laser.
+
+- 2026-11-12 14:03:39 PST (America/Los_Angeles) — 0.8.0-dev.6: CTL-181/ZBD-20 missile tuning.

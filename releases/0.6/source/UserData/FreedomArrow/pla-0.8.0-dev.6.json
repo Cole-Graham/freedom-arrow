@@ -1,0 +1,27 @@
+{
+  "version": "0.8.0-dev.6",
+  "base": "0.8.0-dev.5",
+  "base_sha256": "57e9115c1d6e4b6356309389f23ec01d94fe9b3b715a938df5748b4e278f1fbc",
+  "request": "Osama 12 Nov 14:01-14:03 PST",
+  "ctl181": {
+    "PenetrationAtGroundRange": 30.0,
+    "LaserGuided": true,
+    "DispersionHorizontalRadius": 0.0,
+    "DispersionVerticalRadius": 0.0,
+    "DispersionMinimal": 0.0,
+    "ShortGroundAttackBurst": 4,
+    "NormalGroundAttackBurst": 48,
+    "LongGroundAttackBurst": 48
+  },
+  "zbd20": {
+    "PenetrationAtGroundRange": 65.0,
+    "LaserGuided": true,
+    "DispersionHorizontalRadius": 0.0,
+    "DispersionVerticalRadius": 0.0,
+    "DispersionMinimal": 0.0,
+    "ShortGroundAttackBurst": 2,
+    "NormalGroundAttackBurst": 4,
+    "LongGroundAttackBurst": 4
+  },
+  "checks": 17649
+}
