@@ -1,0 +1,1035 @@
+{
+  "status": "approved_execution_ledger",
+  "repository": "Cole-Graham/freedom-arrow",
+  "observed_at": "2026-11-11 21:45:21 PST (America/Los_Angeles)",
+  "anchors": {
+    "public-dev45": "73f7c1b48291a780610b1b4a83d0475dee5b35f1",
+    "main-dev55": "0282972a20ccb20bc37dce443bf16343c7c0abc3",
+    "pla-build27": "31ac168be4fb9b5288e1e929f9ef3b503f973cbf",
+    "assets015": "88e3a5aa62bab3b3566a71d7c4a495311333dbb4",
+    "launcher-manifest": "e3b7ada8b62f9ac001fea8254429e94c3040e631"
+  },
+  "current_main": "123dd7ba91488e9770ce705f0a9b9a79bb29f608",
+  "delete_candidates": [
+    {
+      "branch": "codex/asset-pack-v1",
+      "expected_sha": "6bc6adb28815d2ea22de4490e4e71f8024b942e2",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/asset-pack-v2",
+      "expected_sha": "af6f2799983d5888f75dcacd7870cbbb34d58dc4",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/launcher-dev45",
+      "expected_sha": "c787e988d3a7282073a7bac338659102c3624694",
+      "reachable_from": [
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-approved-patches-build24",
+      "expected_sha": "f4731d32a12c533c86af860b8348779d0421ccaa",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-art-music-merge-build23",
+      "expected_sha": "a1d0dc78417f5957431bf4e11e0db64edc59f45a",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-assigned-specs-build13",
+      "expected_sha": "c3b2c9afd8c795178ddbb4cef0e9e272db2ddb2d",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-build-1",
+      "expected_sha": "9e26978e0cb301a4764d1e57ba558d852f6528fd",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-china-ui",
+      "expected_sha": "489f282e4d28986a6abca8dd030adf8991870b68",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-detailed-infantry-icons-build21",
+      "expected_sha": "151621ec5147dccee96f827c5a2addd064059317",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-five-specializations",
+      "expected_sha": "aac76e189db2a4bc5f799cb17d30eb1013c69dde",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-infantry-insignia-build19",
+      "expected_sha": "74133e2f29097c963b35d7074e302ee644a0ee61",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-merged-build11",
+      "expected_sha": "77883388ca4a7739091d488e63a58b17998d9912",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-model-family-reuse-build15",
+      "expected_sha": "62c44f6a0e984c2a5a0a197f211ff541fc42c9b5",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-realistic-weapon-hud-build18",
+      "expected_sha": "a90348aa1cedec03f94837514249400c3380810d",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-refined-animal-emblems-build22",
+      "expected_sha": "32cf312e4ae5d80d31bd29c5ee5bb44fce4d1b6f",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-roster-expansion-build12",
+      "expected_sha": "69399f246a79aad5dfd245a77d98733fa868b3d4",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-runtime-identity-build26",
+      "expected_sha": "c58906046ad8d59f4b1e39525465f0d88e67ab5a",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-sf-emblems-weapon-teams-build20",
+      "expected_sha": "4786276dd0904561d52ad74638767b98a85b69db",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-spec-filter-build17",
+      "expected_sha": "03bef33fa5261f06421c69ba641b694b1c106213",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-star-contrast-build25",
+      "expected_sha": "ea1a4d4db9c6a1fbd3bcc48b0459340738d64535",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-test-build-1",
+      "expected_sha": "fe75303ec1e8faaeb78382c9b34099205c708d7c",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-test-build-2",
+      "expected_sha": "922aeb3fa7cf71754a164116282912b40ad2c027",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-test-build-3",
+      "expected_sha": "060d8b3c6b39acd22f87caaf07af65f493be398c",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-test-build-4",
+      "expected_sha": "d9bdf98755ee383a79bb59881da0ca4388e3938a",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/pla-vehicle-weapons-build14",
+      "expected_sha": "30b2d11f1fbca279300d0c44065605972407681e",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/pla-weapon-hud-art-build16",
+      "expected_sha": "9ceb01e6282dac5f3e7cc16c55e199e394b89ba4",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.1-deployment",
+      "expected_sha": "72783a51acfd0fac53fc1f40ea881f0f009fe6e0",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "pla-build27",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.2-dev22-prep",
+      "expected_sha": "26477c243ee88cc49e5f1ec9365fb1fe236e0ab7",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "pla-build27",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.2-development",
+      "expected_sha": "5f8e0a08aa32d92c20e020b0e368f0e15efa039d",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "pla-build27",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.3-development",
+      "expected_sha": "223a6fee5b76bc31a2fe150fbd9c2a15ddc3391e",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "pla-build27",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.4-development",
+      "expected_sha": "4a9084bc3163fdcd1c514397e6594f108de6bc86",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "pla-build27",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev103",
+      "expected_sha": "e748a109c31e93617c38ca58da9fa6506ddf39cc",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev104",
+      "expected_sha": "97404d28a499f239c525d4aecbd6b1663d4db956",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev105",
+      "expected_sha": "2dda583338560a6c329b712c6bd1fd934fe999da",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev107",
+      "expected_sha": "23a613bdb6db150ac0eae73086c3e128345b21aa",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev108",
+      "expected_sha": "f3e4f3abed2f80a473909d443e2e9ccf7cdbc91f",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev109",
+      "expected_sha": "6bfe08e51ebb00ad1527c608d9f55814b386105c",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev111",
+      "expected_sha": "1ef1e043ce7712d7db5d2c5c6eb04e99cdb80277",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-dev112",
+      "expected_sha": "9f200657e97b7354f1b4607f768075f579b8a339",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev113",
+      "expected_sha": "f4b1b2b088acad1fa249b16f9be0a425382fc8d1",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev114",
+      "expected_sha": "957b8d24d29da3e8eff750c2107482f93a6745c9",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-dev115",
+      "expected_sha": "dc55226c7f957ae8b38106c87b11128b8bbee4bb",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-development",
+      "expected_sha": "17bc2f2b246d8d457f4f491d3c3d86348a2930c5",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla35",
+      "expected_sha": "925a79f50d9e8dc5b7f4c8f5a90146961630199a",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla36",
+      "expected_sha": "cd3937315a0b36b8cf9dcce738ea5c92320995ab",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla37",
+      "expected_sha": "22aa0d6d86d967c715d8cc8ce3f579a489b2a7e4",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla38",
+      "expected_sha": "a6c6fd44d3b272eb71529f586d673c05d00dd96c",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla39",
+      "expected_sha": "ed7a6c8554fa4e56900879d7ed9af7363dfad462",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla40",
+      "expected_sha": "6e5829f189e226401340a510f89479e6cffa50e0",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla41",
+      "expected_sha": "cd0cfe37d65bf60fbe9770bf666e7810ce585936",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla44",
+      "expected_sha": "745fb40fba1cd3251442554cf8ef22d3e33215fa",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.6-pla46",
+      "expected_sha": "a90dde7b1d1c221ead023836d6a5f7b136ce2a0a",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.6-pla-test",
+      "expected_sha": "bc50042f7eaa16931646d597a4aeb11ee29df2c2",
+      "reachable_from": [
+        "pla-build27"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-black-widow-turn700",
+      "expected_sha": "323669459e426a967331bd92f0fdcfc95598f18e",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-copperhead-75",
+      "expected_sha": "4c1e4634bed40dcf0de881aa1f3527c01de695fd",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-defense-fix",
+      "expected_sha": "246e6a02bbc58af22ea20529eb9927be203be4d8",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-dev1",
+      "expected_sha": "5cc8aba98f52822bc2ec15f9b578b8fed43a2c1d",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-dev9",
+      "expected_sha": "1d1da2b5f53e70853f16606de90255415b4d5333",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-dev15-air-cards",
+      "expected_sha": "9d8076dd6a4e719feebc0f381920620fd08c973f",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-dev16-su47-icons",
+      "expected_sha": "8e102ac1e5e6d3de3a06978aadf48b72f6a69084",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-dev17-f21-icons",
+      "expected_sha": "8f7eb96057e5c502ad9bdfa5e1918320cb954df0",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev18-silhouettes",
+      "expected_sha": "99a90b289a30789b4d2e16fc7e65148c287c6ba7",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev19-x47-pictures",
+      "expected_sha": "5f39a37067c46d1c358db4f5702df847fd3c3eed",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev20-aircraft-fixes",
+      "expected_sha": "b2f915e9e1cf606a898e4ba59dbe737e5131199a",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev21-icon-edges",
+      "expected_sha": "677b4da237462b745ebb8d58b60747dd0aa8dcab",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev22-x47-jatm",
+      "expected_sha": "7d637eaa7ed136277443a7080bd1e830d0a6a69b",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev23-wheel-zoom",
+      "expected_sha": "c7e0ecff6ce2fd9224919b1202028802edcc5afa",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-dev24-fighter-turn",
+      "expected_sha": "b76269753f60e6ffba9cfda0ae8ce7ea39e5ab93",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-f22-mako-mig31bsm",
+      "expected_sha": "fd3f4f6886a42fa0ce9fb635a494e910c514d8e2",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-lateralus-promote",
+      "expected_sha": "30f844805c39330a625732964cd5e5df1988c005",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-losat",
+      "expected_sha": "4756d37347c4d9e074db4907f6d697a4dadd874e",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-losat-damage12-speed1500",
+      "expected_sha": "51b7ac89c0af5ee6de66fdb32a00ac061cb50d4c",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-losat-gap",
+      "expected_sha": "62a5bce1b906402205ab569e401d55ad43e80db9",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-losat-speed-model",
+      "expected_sha": "13eff4005a85e069f65195b0bf1e827320474e0a",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-losat-tune",
+      "expected_sha": "fc4941d87fef2c6b59a39f84dee64254a9e53438",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-m25-cdte",
+      "expected_sha": "26a0812ec4855b76a1e795dd9f52e6fd59334c78",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-mako-amraam-model",
+      "expected_sha": "8070ff86cc373b70e34da9b125d58daab470eb8e",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-playtest-batch",
+      "expected_sha": "bc2051ec7c0789269d189b1decaf7fb0816fbbc2",
+      "reachable_from": [
+        "main-dev55",
+        "assets015"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-preparation",
+      "expected_sha": "5090f2412d3c21dd22aa801269e1759698da0483",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-supply-crash-fix",
+      "expected_sha": "f89433bc89523eeb404db9189fea51859eb00fa2",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": false
+    },
+    {
+      "branch": "codex/0.7-t72-armor-card",
+      "expected_sha": "dbd42797290fbb3680108ff65050046509ef29f3",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-troopers-m25",
+      "expected_sha": "5b03677ff7f6d8f0d795767904d7ea72660fb652",
+      "reachable_from": [
+        "main-dev55",
+        "assets015"
+      ],
+      "checked_out_locally": true
+    },
+    {
+      "branch": "codex/0.7-xm30-200-abramsx-silver",
+      "expected_sha": "2de3e8938920e0fd3a1c27c291705f142410974c",
+      "reachable_from": [
+        "public-dev45",
+        "main-dev55",
+        "assets015",
+        "launcher-manifest"
+      ],
+      "checked_out_locally": true
+    }
+  ],
+  "keep_review": [
+    {
+      "branch": "codex/abramsx-grey-metallic",
+      "sha": "7c4dc034e1d7c3a94e315493a07768299daa22de"
+    },
+    {
+      "branch": "codex/assets-0.1.4",
+      "sha": "8b7c6d27bfc1e93c9d19856b26b7a4eff6494ecd"
+    },
+    {
+      "branch": "codex/assets-0.1.6",
+      "sha": "ecdeebce4d1e75fb53458fe60c6b8a1ce25799a3"
+    },
+    {
+      "branch": "codex/assets-0.1.7",
+      "sha": "aae20d3b20893dbfc13f12721ee4e8d072020547"
+    },
+    {
+      "branch": "codex/assets-0.1.8",
+      "sha": "5d0a15c7f6b2e32af7379608f83f5b1050059c8e"
+    },
+    {
+      "branch": "codex/assets-0.1.9",
+      "sha": "0c055bb7ed0031294e7a733ab93f0b8cbd062dae"
+    },
+    {
+      "branch": "codex/assets-0.1.10",
+      "sha": "718978beb4d47f95ffca51615c50fb0c22f6b57e"
+    },
+    {
+      "branch": "codex/assets-0.1.11",
+      "sha": "8e37aa60f3101e40d7fd65e5cf6e59ceaa238ed3"
+    },
+    {
+      "branch": "codex/assets-0.1.12",
+      "sha": "45f3b21e6fe8ea8162d705617ced74f3b329a190"
+    },
+    {
+      "branch": "codex/canopy-clear-034",
+      "sha": "b43574acef4250a2678ae6b8b5e3c3ab5a352c1b"
+    },
+    {
+      "branch": "codex/famodels-032-body-fit",
+      "sha": "7efb1651e0bda3e9ea70742ba09ea109a9da256a"
+    },
+    {
+      "branch": "codex/lateralus-batch",
+      "sha": "4d48a4314d736acaed66f081200e271b4f43325a"
+    },
+    {
+      "branch": "codex/music-1.4.1",
+      "sha": "8a96b7abd5c95cd9f0b13240872b96719ab40745"
+    },
+    {
+      "branch": "codex/music-1.4.2",
+      "sha": "ae4b9126894f1acd6728cb3b97ad97dd62936efb"
+    },
+    {
+      "branch": "codex/music-menu-1.5.0",
+      "sha": "4712dba1a0674ba850f9e75ff271c382d3f320e3"
+    },
+    {
+      "branch": "codex/pla-canopy-reflections-build8",
+      "sha": "c64c963d94c3a2a9b19950c36a76791ed9843b0f"
+    },
+    {
+      "branch": "codex/pla-cockpit-repair-build7",
+      "sha": "b3d3e634821eb74edd75efd150cc9fa960e508f3"
+    },
+    {
+      "branch": "codex/pla-cockpits-build5",
+      "sha": "9777091302d43d34447aa54851579643c29a4a8a"
+    },
+    {
+      "branch": "codex/pla-hide-standin-build10",
+      "sha": "7d27cd76b15840cb213a5293edd357c79bb6002f"
+    },
+    {
+      "branch": "codex/pla-infantry7",
+      "sha": "c42b46f1bd1baf15858f7cf70ff274d479c34112"
+    },
+    {
+      "branch": "codex/pla-infantry9",
+      "sha": "bcb3c49b82031ecfc5fcc7d768aee543b73c9411"
+    },
+    {
+      "branch": "codex/pla-infantry10",
+      "sha": "c9296ee1f24b6b3f9941f865ca737f6eb1152811"
+    },
+    {
+      "branch": "codex/pla-infantry11",
+      "sha": "bad4381f904ff98581e3acff0dba3f3aaa19e1d3"
+    },
+    {
+      "branch": "codex/pla-infantry-dev104",
+      "sha": "2fe7aaa815102447ebe39344bb09ec534fe1db5b"
+    },
+    {
+      "branch": "codex/0.2-split-test",
+      "sha": "e145034cd715dc1a019af06a7a590c90df06105e"
+    },
+    {
+      "branch": "codex/0.5-development",
+      "sha": "48e7b2201510acb8cd19ac28907aa3a0201fe3fe"
+    },
+    {
+      "branch": "codex/0.7-cram-prediction-layout-fix",
+      "sha": "ba68eab88a193ef8dc2d6f78d0557ee7c22308e6"
+    },
+    {
+      "branch": "codex/0.7-cram-prediction-test",
+      "sha": "cf472876ca09fcff664e6f4e456b334ec1603b6a"
+    },
+    {
+      "branch": "codex/0.7-lateralus-batch-proposal",
+      "sha": "782d5e53d5c1bb0705118f0e5b95ab0314bfa1a8"
+    },
+    {
+      "branch": "codex/0.7-lateralus-devtest1",
+      "sha": "f67e9e77df3eb9644305e32cb837f7c6884678d7"
+    },
+    {
+      "branch": "codex/0.7-mmg-four-at4",
+      "sha": "4bebfee1488bf5a7658cac4937eebf65b3a5cb1b"
+    },
+    {
+      "branch": "codex/0.7-next",
+      "sha": "0eca3e09cc49b4d210ee050f66a1bc9d12eefd14"
+    },
+    {
+      "branch": "codex/0.7-option-network",
+      "sha": "e5330fb014dee8d44db7a93ed2838a40d14f0fd4"
+    },
+    {
+      "branch": "codex/0.7-radar-gun-prediction-test",
+      "sha": "c10039704a03a8a34bfb3ccb2f6e1861648c7b74"
+    },
+    {
+      "branch": "codex/0.7-spaag-deviation-test",
+      "sha": "165c75963b206a7ac111d57acfca3c2adf9e6f1d"
+    },
+    {
+      "branch": "codex/0.7-spaag-dispersion-isolation-test",
+      "sha": "ee570dfe28a72dbe42faa52fcfe08204c815c9ad"
+    },
+    {
+      "branch": "codex/0.7-spaag-flighttime-test",
+      "sha": "a5621c75bfdf990f078b1f38d6424be5e2690a46"
+    },
+    {
+      "branch": "codex/0.7-spaag-full-test",
+      "sha": "1c406bedc3d68636f7ffbbf48289502168016d54"
+    },
+    {
+      "branch": "codex/0.7-spaag-prediction-only-test",
+      "sha": "36fac539212918307488df88905d820cd78643e0"
+    },
+    {
+      "branch": "codex/0.7-spaag-speed-isolation-test",
+      "sha": "3a57dbe3f8be5a10fc6513ebf77e2602214b2faa"
+    },
+    {
+      "branch": "codex/0.7-spaag-tracking-test",
+      "sha": "299f44d4ab2afc65395a1e865d436f3f1ea480ae"
+    },
+    {
+      "branch": "codex/0.7-su75-stealth2",
+      "sha": "0725fd23f1a875302a25ffd1459ebb2dcf4258f6"
+    }
+  ],
+  "keep_current": [
+    {
+      "branch": "codex/launcher-manifest",
+      "sha": "e3b7ada8b62f9ac001fea8254429e94c3040e631"
+    },
+    {
+      "branch": "codex/live-music-menu-assets015",
+      "sha": "88e3a5aa62bab3b3566a71d7c4a495311333dbb4"
+    },
+    {
+      "branch": "codex/pla-patch-white-build27",
+      "sha": "31ac168be4fb9b5288e1e929f9ef3b503f973cbf"
+    },
+    {
+      "branch": "codex/0.7-aa-main-promotion",
+      "sha": "0282972a20ccb20bc37dce443bf16343c7c0abc3"
+    },
+    {
+      "branch": "codex/0.7-su75-stealth2-dev45",
+      "sha": "73f7c1b48291a780610b1b4a83d0475dee5b35f1"
+    },
+    {
+      "branch": "main",
+      "sha": "123dd7ba91488e9770ce705f0a9b9a79bb29f608"
+    }
+  ],
+  "pr_count": 0,
+  "protection_status": "unverified: GitHub integration denied access; no further calls made",
+  "backup": {
+    "bundle_sha256": "855788152cbe57215f3a3c3d6a5c3f9694ce79cc43478820e4cdf984f49011dc",
+    "bytes": 99895045,
+    "shallow": true,
+    "full_remote_history_backup": false,
+    "restored_heads": 131
+  },
+  "approval_url": "https://discord.com/channels/1566969627743879208/1570305472982941727/1570322693017047061",
+  "reapproval_required": false,
+  "note": "Historical exact approval snapshot; fresh preflight confirmed all83 expected tips unchanged. Kept PLA alias advanced to Build28 and is preserved."
+}
