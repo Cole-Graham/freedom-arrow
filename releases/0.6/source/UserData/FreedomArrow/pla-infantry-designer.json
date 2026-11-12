@@ -1,5 +1,5 @@
 {
-  "build": 50,
+  "build": 59,
   "source_sheet": "1jZ-kxcuRbhx5QPifL9aaZYrCQnlXr-aUTwnsu0bXaDU",
   "source_range": "A8:N97",
   "entries": [
@@ -2191,25 +2191,25 @@
       "base_rifle": "QBZ-192",
       "weapons": [
         {
-          "name": "QJY-201",
-          "weapon": 2012411,
-          "quantity": 2,
-          "slot": "primary",
-          "native_weapon": 30
-        },
-        {
-          "name": "QBU-191",
-          "weapon": 2004000,
+          "name": "HJ-12",
+          "weapon": 2011864,
           "quantity": 1,
-          "slot": "primary",
-          "native_weapon": 2004000
+          "slot": "special",
+          "native_weapon": 2011864
         },
         {
-          "name": "PF-98A",
-          "weapon": 2013157,
+          "name": "PF-89",
+          "weapon": 2011887,
           "quantity": 2,
           "slot": "special",
-          "native_weapon": 172
+          "native_weapon": 2011887
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2012054
         }
       ],
       "munitions": "HEAT only; cold-weather identity is flavor, not an automatic buff",
@@ -2304,25 +2304,32 @@
       "base_rifle": "QBZ-192",
       "weapons": [
         {
-          "name": "QLU-11",
-          "weapon": 2004002,
-          "quantity": 2,
-          "slot": "primary",
-          "native_weapon": 2004002
-        },
-        {
-          "name": "QJY-201",
-          "weapon": 2012411,
-          "quantity": 2,
-          "slot": "primary",
-          "native_weapon": 30
-        },
-        {
-          "name": "PF-98",
-          "weapon": 2011832,
+          "name": "QJZ-171",
+          "weapon": 2011972,
           "quantity": 1,
           "slot": "special",
-          "native_weapon": 172
+          "native_weapon": 2011972
+        },
+        {
+          "name": "QLB-06",
+          "weapon": 2016050,
+          "quantity": 2,
+          "slot": "primary",
+          "native_weapon": 2016050
+        },
+        {
+          "name": "QBU-10",
+          "weapon": 2012054,
+          "quantity": 1,
+          "slot": "primary",
+          "native_weapon": 2012054
+        },
+        {
+          "name": "PF-89",
+          "weapon": 2011887,
+          "quantity": 1,
+          "slot": "special",
+          "native_weapon": 2011887
         }
       ],
       "munitions": "35 mm HE + light HEAT",

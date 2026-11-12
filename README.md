@@ -1,3 +1,9 @@
+# PLA TEST Build 59
+
+Blood Wolves become armour hunters: QBZ-192 riflemen, one HJ-12, two PF-89 and a QBU-10 sniper. Falcons become desert raiders: QBZ-192 riflemen, a QJZ-171 12.7 mm HMG, two QLB-06, a QBU-10 sniper and a PF-89. Everything else is exactly Build58. In-game check pending.
+
+## Historical Build58
+
 # PLA TEST Build 58
 
 GAM-102LR Team: the launcher was a TOW-2A clone (M220 model, TOW sound, 1-2 s aim, 5-6 s reload). It now copies the vanilla Spike LR team launcher in full: SPIKE_LR_Tripod model, Javelin-type sound, 2-3 s aim, 8-10 s reload. Missile unchanged (Spike LR copy).
@@ -657,3 +663,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 11:35:47 PST (America/Los_Angeles) — Build57: all Airborne squads wear SF goggles down desert; "Mechanized" removed from PLAGF names.
 
 - 2026-11-12 11:39:54 PST (America/Los_Angeles) — Build58: RU/US units visible; Motorized in SF assault desert; GAM-102LR launcher = Spike LR; "Motorized" removed from names; Light Riflemen.
+
+- 2026-11-12 11:48:01 PST (America/Los_Angeles) — Build59: Blood Wolves armour hunters, Falcons desert raiders (Osama 11:46).

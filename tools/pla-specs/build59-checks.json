@@ -1,0 +1,19 @@
+{
+  "build": 59,
+  "base_build": 58,
+  "base_sha256": "f8212ea2a89837096c1cd37fa398e56e23ba1746682262dcfc6ec7e6ad05cf75",
+  "changes": [
+    {
+      "unit": 1183,
+      "name": "Blood Wolves \u8840\u72fc",
+      "change": "kit: QBZ-192, HJ-12, PF-89, QBU-10"
+    },
+    {
+      "unit": 1185,
+      "name": "Falcons \u730e\u9e70",
+      "change": "kit: QBZ-192, PF-89, QJZ-171, QLB-06, QBU-10"
+    }
+  ],
+  "checks": 26,
+  "native_verified": false
+}
