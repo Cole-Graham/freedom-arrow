@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.20
+# Freedom Arrow 0.8.0-dev.21
+
+- Prices from the infantry DPS-per-point check: PAP Snow Leopards 60 -> 90, Weapons Squad 35 -> 45, AA Troopers 55 -> 60, Beijing Swords 55 -> 70, Marine HJ-8 Team 70 -> 55, Godswords 50 -> 90, Taishan Eagles 55 -> 65.
+- Kits: PAP Snow Leopards carry 4 DZJ-08; Falcons carry a PF-98 instead of the PF-89; Mountain Leopards carry 3 HJ-12.
+- Blood Wolves CH-901: 12 rounds, 1800 m, damage 8, penetration 30, can be intercepted. The squad can now lase targets for it (laser designator, 1800, not on the move).
+- PLAAF Tank Hunters: DZT-98 thermobaric rounds 6 -> 10.
+- QLU-11 fires the XM25 round at the XM25 rate, 10% slower, out to 1000 m, with spread scaled to the longer range. The QTS-11 grenade launcher fires the XM25 round at the XM25 rate (600 m). The QTS-11 rifle and QLZ-04 are unchanged.
+- Includes the retired-scenario cleanup (old untagged Airport, Baltiisk and Dam folders are removed at start). Not yet verified in a game run.
+
+Models and music: 0.2.1.
+
+## Historical 0.8.0-dev.20
 
 - Launcher ammo matched to the Russian/US equivalents: PF-98 and PF-98A carried inside squads 10 -> 6 (dedicated PF-98 teams keep 10, like the RAWS and RPG-29 teams); FHJ-02 14 -> 6; HJ-12 Team 2 -> 4 (as the Javelin team); single-gunner AA teams (QW-12 Patrol, AA Troopers) 4 -> 6.
 - In a match, infantry can board any deck unit that has seats, whatever the armory transport list says. Z-20T, Shaanxi HMV3, Z-8L, Mi-8 Cargo and Shaanxi Troop Truck now have 0 infantry seats, so they no longer appear as transports in the match either.

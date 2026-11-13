@@ -1,0 +1,56 @@
+{
+  "version": "0.8.0-dev.21",
+  "base": "0.8.0-dev.20",
+  "base_sha256": "5e57e395a9359ffbd81d099497b6250dabbcad09e5de4b67c26d814a37c752ac",
+  "request": "Osama 13 Nov 00:58-01:09 PST (DPS-per-point follow-up)",
+  "prices": {
+    "PAP Snow Leopards 雪豹": [
+      60,
+      90
+    ],
+    "Weapons Squad": [
+      35,
+      45
+    ],
+    "AA Troopers 防空班": [
+      55,
+      60
+    ],
+    "Beijing Swords 蓝剑": [
+      55,
+      70
+    ],
+    "Marine HJ-8 Team": [
+      70,
+      55
+    ],
+    "Godswords 东方神剑": [
+      50,
+      90
+    ],
+    "Taishan Eagles 泰山雄鹰": [
+      55,
+      65
+    ]
+  },
+  "kits": {
+    "PAP Snow Leopards": "4x DZJ-08",
+    "Falcons": "PF-98 instead of PF-89",
+    "Mountain Leopards": "3x HJ-12"
+  },
+  "ch901": {
+    "rounds": 12,
+    "range_world": 900,
+    "damage": 8,
+    "penetration": 30,
+    "interceptable": true,
+    "blood_wolves_laser": 1800
+  },
+  "dzt98_rounds": [
+    6,
+    10
+  ],
+  "qlu11": "XM25 round and fire rate, 500 world range, 10% slower, spread x500/300",
+  "qts11_gl": "XM25 round and fire rate",
+  "checks": 38
+}

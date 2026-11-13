@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.8 (China)",
-  "version": "0.8.0-dev.20",
+  "version": "0.8.0-dev.21",
   "type": "modpack",
-  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.20: launcher ammo parity, non-transports lose seats; 0.8.0-dev.19: ZSL-92 retexture pilot (woodland digital); 0.8.0-dev.18: FAModels 0.3.17 infantry body fix; ZBL-191 with HJ-16 (1500 m), APS and SRAT II armour (105); 0.8.0-dev.16: transport cleanup (no logistics vehicles, Shaanxi Troop Truck or Z-20T as squad transports, CSK-131 merged, CSK-181 in Airborne/Navy/Motorized, Chinese Lynx weapons); 0.8.0-dev.14: HJ-10 is a semi-active Hellfire that fires at spotted enemies without its own line of sight (runtime hook); CH-901 is a CTL-181-style munition. Includes the dev.8 aircraft batch and CTL-181 NLOS (8 damage, 1800 m). Needs Freedom Arrow — Models and Music 0.2.0.",
+  "description": "Freedom Arrow 0.8: China (PLA) on the full 0.7.0-dev.58 game. 0.8.0-dev.21: DPS-per-point price and kit pass, CH-901 rework with Blood Wolves laser, QLU-11 and QTS-11 grenade launcher tuned as XM25; 0.8.0-dev.20: launcher ammo parity, non-transports lose seats; 0.8.0-dev.19: ZSL-92 retexture pilot (woodland digital); 0.8.0-dev.18: FAModels 0.3.17 infantry body fix; ZBL-191 with HJ-16 (1500 m), APS and SRAT II armour (105); 0.8.0-dev.16: transport cleanup (no logistics vehicles, Shaanxi Troop Truck or Z-20T as squad transports, CSK-131 merged, CSK-181 in Airborne/Navy/Motorized, Chinese Lynx weapons); 0.8.0-dev.14: HJ-10 is a semi-active Hellfire that fires at spotted enemies without its own line of sight (runtime hook); CH-901 is a CTL-181-style munition. Includes the dev.8 aircraft batch and CTL-181 NLOS (8 damage, 1800 m). Needs Freedom Arrow — Models and Music 0.2.1.",
   "repo": "Cole-Graham/freedom-arrow"
 }
