@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.22
+# Freedom Arrow 0.8.0-dev.23
+
+- ZSL-92: the same textures, a lot darker (tyres too), with a stronger metallic layer. Only the ZSL-92 textures change.
+- Includes 0.8.0-dev.22. Not yet verified in a game run.
+
+Models and music: 0.2.2.
+
+## Historical 0.8.0-dev.22
 
 - Conscript rifles QBZ-95, QBB-95 and QBU-88 fire another 30% slower (QBZ-95 one shot every 8.2 s, QBB-95 4.1 s, QBU-88 6.1-8.2 s).
 - WZ-8: armour, laser, sensor, stealth (0.5) and size of the RQ-170 Sentinel with the MiG-31 flight model (1260 speed, afterburner). 260 points.

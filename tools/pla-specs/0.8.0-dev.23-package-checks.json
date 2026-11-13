@@ -1,0 +1,45 @@
+{
+  "version": "0.8.0-dev.23",
+  "build": 91,
+  "previous": "0.8.0-dev.22",
+  "assets_version": "0.2.2",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.2.bamod",
+    "sha256": "eee9a7b96a374d78fa6a2dd6e40ba69ec4d0a7dd16cf2ad46a18ff30eeaa2f1c",
+    "size": 4038698892,
+    "files": 8009
+  },
+  "assets_compatible": true,
+  "assets_mismatch": [],
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.23-complete.bamod",
+    "sha256": "e2f17d84e861cece362a30788d83c1dfaaee90382cdebda47b6b98e03b37ec5c",
+    "size": 4117233419,
+    "files": 8165
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.23.bamod",
+    "sha256": "67a7e4ff296780a22c9fc4e157c9e25c398afcc9537580eb00126e321285ba6c",
+    "size": 69937639,
+    "files": 158
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/m_wz551_lo_tex0.png",
+    "UserData/FAModels/m_wz551_lo_tex0_mask.png",
+    "UserData/FAModels/m_wz551_lo_tex1.png",
+    "UserData/FAModels/m_wz551_tex0.png",
+    "UserData/FAModels/m_wz551_tex0_mask.png",
+    "UserData/FAModels/m_wz551_tex1.png",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.23.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
