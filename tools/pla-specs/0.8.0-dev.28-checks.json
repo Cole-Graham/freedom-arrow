@@ -1,0 +1,23 @@
+{
+  "version": "0.8.0-dev.28",
+  "base": "0.8.0-dev.27",
+  "base_sha256": "8dfb1329987e164577e95df9e93724b97f2b2ce9d8ace1d2d1dd454eace7c47e",
+  "request": "Osama 13 Nov 02:12 PST: QN-202 twice as hard, half the rate of fire, to save ammunition",
+  "qn202": {
+    "damage": [
+      9.0,
+      18.0
+    ],
+    "reload_s": [
+      [
+        5.0,
+        6.0
+      ],
+      [
+        10.0,
+        12.0
+      ]
+    ]
+  },
+  "checks": 27572
+}

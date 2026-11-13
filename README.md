@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.27
+# Freedom Arrow 0.8.0-dev.28
+
+- QN-202: hits twice as hard (damage 9 -> 18) at half the rate of fire (reload 5-6 s -> 10-12 s), so the 12 rounds last.
+- Includes 0.8.0-dev.27. Not yet verified in a game run.
+
+Models and music: 0.2.2.
+
+## Historical 0.8.0-dev.27
 
 - QLU-11: almost no dispersion (smart airburst grenade launcher). Rounds land on the aim point out to 1000 m.
 - Includes 0.8.0-dev.26. Not yet verified in a game run.
