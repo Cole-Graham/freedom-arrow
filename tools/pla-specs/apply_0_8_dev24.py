@@ -1,4 +1,4 @@
-"""Freedom Arrow 0.8.0-dev.23 over exact 0.8.0-dev.22 (Osama 13 Nov 01:37 PST, thread 1567745029781454889):
+"""Freedom Arrow 0.8.0-dev.24 over exact 0.8.0-dev.23 (ZSL-92 dark textures, ded9bbda). Request: Osama 13 Nov 01:37 PST, thread 1567745029781454889):
 - Godswords 90 -> 80 points.
 - QLU-11: XM25 rate of fire (dev.21's 10% slowdown removed); still the XM25 round out to 1000 m (500 world) with spread scaled.
 """
@@ -7,8 +7,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.8.0-dev.23'
-BASE=json.loads((REL/'out/0.8/FreedomArrow-0.8.0-dev.22.json').read_text())['complete']['sha256']
+V='0.8.0-dev.24'
+BASE=json.loads((REL/'out/0.8/FreedomArrow-0.8.0-dev.23.json').read_text())['complete']['sha256']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==BASE
 z=zipfile.ZipFile(a.base)
@@ -34,7 +34,7 @@ ok(t['AmmunitionsJson'][2004003]['GroundRange']==500.0,'QLU-11 1000 m kept')
 for tab in t:
     for key,row in before[tab].items():
         if (tab,key) not in {('Units',GW),('WeaponsJson',QLU)}:ok(t[tab].get(key)==row,('row changed',tab,key))
-receipt={'version':V,'base':'0.8.0-dev.22','base_sha256':BASE,'request':'Osama 13 Nov 01:37 PST: Godswords 80 pts; QLU-11 = XM25 at 1000 m, same rate of fire',
+receipt={'version':V,'base':'0.8.0-dev.23','base_sha256':BASE,'request':'Osama 13 Nov 01:37 PST: Godswords 80 pts; QLU-11 = XM25 at 1000 m, same rate of fire',
  'godswords':[90,80],'qlu11_rate':{k:[before['WeaponsJson'][QLU][k],W[QLU][k]] for k in F},'checks':checks}
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])

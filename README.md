@@ -1,13 +1,12 @@
-# Freedom Arrow 0.8.0-dev.23
+# Freedom Arrow 0.8.0-dev.24
 
 - Godswords 90 -> 80 points.
 - QLU-11 fires at the full XM25 rate (dev.21's 10% slowdown removed); still the XM25 round out to 1000 m.
-- Includes 0.8.0-dev.22 (conscript rifles 30% slower again; WZ-8 as an RQ-170 with MiG-31 flight). Not yet verified in a game run.
+- Includes 0.8.0-dev.23 (darker ZSL-92). Not yet verified in a game run.
 
-Models and music: 0.2.1.
+Models and music: 0.2.2.
 
-## Historical 0.8.0-dev.22
-# Freedom Arrow 0.8.0-dev.23
+## Historical 0.8.0-dev.23
 
 - ZSL-92: the same textures, a lot darker (tyres too), with a stronger metallic layer. Only the ZSL-92 textures change.
 - Includes 0.8.0-dev.22. Not yet verified in a game run.

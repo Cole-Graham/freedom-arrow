@@ -2,28 +2,14 @@
   "version": "0.8.0-dev.23",
   "base": "0.8.0-dev.22",
   "base_sha256": "b39201ac85e94214fae41daaccd3103d67f272a5942a8556837aaf095b0d6cea",
-  "request": "Osama 13 Nov 01:37 PST: Godswords 80 pts; QLU-11 = XM25 at 1000 m, same rate of fire",
-  "godswords": [
-    90,
-    80
-  ],
-  "qlu11_rate": {
-    "TimeBetweenBurstsMin": [
-      1.111,
-      1.0
-    ],
-    "TimeBetweenBurstsMax": [
-      1.111,
-      1.0
-    ],
-    "MagazineReloadTimeMin": [
-      3.333,
-      3.0
-    ],
-    "MagazineReloadTimeMax": [
-      4.444,
-      4.0
-    ]
+  "request": "Osama 13 Nov 01:18-01:27 PST: ZSL-92 textures a lot darker (same textures, tyres too) with a metallic layer; add it to the build",
+  "zsl92": {
+    "albedo": "x0.55 all colours, tyres x0.36 (x0.55 then x0.65)",
+    "metallic": "+0.40 on painted and steel pixels; tyres stay 0",
+    "smoothness": "+0.10 on metal",
+    "normal_maps": "unchanged",
+    "tool": "work/pla-0.8/zsl92/dark.py"
   },
-  "checks": 27574
+  "gameplay_data": "unchanged from 0.8.0-dev.22",
+  "assets": "0.2.2"
 }

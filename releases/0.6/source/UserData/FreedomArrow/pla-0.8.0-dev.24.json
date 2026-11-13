@@ -1,0 +1,29 @@
+{
+  "version": "0.8.0-dev.24",
+  "base": "0.8.0-dev.23",
+  "base_sha256": "e2f17d84e861cece362a30788d83c1dfaaee90382cdebda47b6b98e03b37ec5c",
+  "request": "Osama 13 Nov 01:37 PST: Godswords 80 pts; QLU-11 = XM25 at 1000 m, same rate of fire",
+  "godswords": [
+    90,
+    80
+  ],
+  "qlu11_rate": {
+    "TimeBetweenBurstsMin": [
+      1.111,
+      1.0
+    ],
+    "TimeBetweenBurstsMax": [
+      1.111,
+      1.0
+    ],
+    "MagazineReloadTimeMin": [
+      3.333,
+      3.0
+    ],
+    "MagazineReloadTimeMax": [
+      4.444,
+      4.0
+    ]
+  },
+  "checks": 27574
+}
