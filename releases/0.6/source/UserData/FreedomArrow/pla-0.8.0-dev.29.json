@@ -1,0 +1,37 @@
+{
+  "version": "0.8.0-dev.29",
+  "base": "0.8.0-dev.28",
+  "request": "Osama 13 Nov 01:54-01:58 PST: Lateralus got all the models, start implementing; finish it all",
+  "models": {
+    "source": "22 ShuyangXi CGTrader models bought by Lateralus 13 Nov 2026 (private Drive folder); not in git",
+    "units": {
+      "df21": "DF-21, DF-21D",
+      "df31a": "DF-31A",
+      "yj18": "YJ-18",
+      "pcl09": "PCL-09",
+      "pll09": "PLL-09",
+      "plz45a4": "PLZ-45A4",
+      "plz70": "PLZ-70",
+      "plz83": "PLZ-83",
+      "plz85": "PLZ-85",
+      "plz89": "PLZ-89",
+      "hq12": "HQ-12 / KS-1",
+      "pgz88": "PGZ-88",
+      "ptl02": "PTL-02",
+      "j5": "J-5",
+      "j6": "J-6W",
+      "j7": "J-7, J-7E / J-7G",
+      "kj500": "KJ-500",
+      "kq200": "KQ-200",
+      "y8": "Y-8",
+      "jiutian": "Jiutian UAV",
+      "wz7": "WZ-7",
+      "z8l": "Z-8L"
+    },
+    "paint": "Rocket Force ground units: desert digital recolour of the author woodland digital; Motorized/PLAGF: author woodland digital; aircraft and helicopters: author paint",
+    "form": "static meshes (align false), 2048 px armory and 1024 px battle copies with PBR mask and normal maps",
+    "tools": "work/pla-0.8/purchased-20261113 (fbx2glb.py, desert.py, build_all.py, famconv.py)"
+  },
+  "gameplay_data": "unchanged from 0.8.0-dev.28",
+  "assets": "0.2.3"
+}
