@@ -1,0 +1,330 @@
+{
+  "version": "0.8.0-dev.51",
+  "base": "0.8.0-dev.50",
+  "base_sha256": "ad7e41ebe10cf8e0a35392c523400476674757b30325f57d4f3b53a9d7ff3649",
+  "request": "Osama 13 Nov 14:36 PST: vanilla glass transplants and transparent windows; Z-11WB and HQ-6 more metallic.",
+  "glass_donor_files": [
+    "m_df17_lo_static.mat.json",
+    "m_df17_static.mat.json",
+    "m_df21_lo_static.mat.json",
+    "m_df21_static.mat.json",
+    "m_df31a_lo_static.mat.json",
+    "m_df31a_static.mat.json",
+    "m_hq12_lo_static.mat.json",
+    "m_hq12_static.mat.json",
+    "m_j5_lo_static.mat.json",
+    "m_j5_static.mat.json",
+    "m_j6_lo_static.mat.json",
+    "m_j6_static.mat.json",
+    "m_j7_lo_static.mat.json",
+    "m_j7_static.mat.json",
+    "m_j8_cg.mat.json",
+    "m_j8_lo.mat.json",
+    "m_pcl09_lo_static.mat.json",
+    "m_pcl09_static.mat.json",
+    "m_phl16_lo_static.mat.json",
+    "m_phl16_static.mat.json",
+    "m_phl191b_lo_static.mat.json",
+    "m_phl191b_static.mat.json",
+    "m_z10_black.mat.json",
+    "m_z10_black_lo.mat.json",
+    "m_z11wb.mat.json",
+    "m_z11wb_lo.mat.json"
+  ],
+  "build_log": {
+    "j5": [
+      [
+        "m_j5_static",
+        258,
+        true,
+        "{\"parts\": {\"root\": 22101}, \"bbox_min\": [-4.855, 0.0, -5.68], \"bbox_max\": [4.855, 3.812, 5."
+      ],
+      [
+        "m_j5_lo_static",
+        258,
+        true,
+        "{\"parts\": {\"root\": 22101}, \"bbox_min\": [-4.855, 0.0, -5.68], \"bbox_max\": [4.855, 3.812, 5."
+      ]
+    ],
+    "j6": [
+      [
+        "m_j6_static",
+        168,
+        true,
+        "{\"parts\": {\"root\": 19018}, \"bbox_min\": [-3.905, 0.0, -6.3], \"bbox_max\": [3.905, 3.481, 6.3"
+      ],
+      [
+        "m_j6_lo_static",
+        168,
+        true,
+        "{\"parts\": {\"root\": 19018}, \"bbox_min\": [-3.905, 0.0, -6.3], \"bbox_max\": [3.905, 3.481, 6.3"
+      ]
+    ],
+    "df21": [
+      [
+        "m_df21_static",
+        30,
+        true,
+        "{\"parts\": {\"root\": 55940}, \"bbox_min\": [-1.345, 0.0, -7.5], \"bbox_max\": [1.345, 3.51, 7.5]"
+      ],
+      [
+        "m_df21_lo_static",
+        30,
+        true,
+        "{\"parts\": {\"root\": 55940}, \"bbox_min\": [-1.345, 0.0, -7.5], \"bbox_max\": [1.345, 3.51, 7.5]"
+      ]
+    ],
+    "pcl09": [
+      [
+        "m_pcl09_static",
+        44,
+        true,
+        "{\"parts\": {\"root\": 27654}, \"bbox_min\": [-1.433, 0.0, -3.83], \"bbox_max\": [1.433, 2.982, 3."
+      ],
+      [
+        "m_pcl09_lo_static",
+        44,
+        true,
+        "{\"parts\": {\"root\": 27654}, \"bbox_min\": [-1.433, 0.0, -3.83], \"bbox_max\": [1.433, 2.982, 3."
+      ]
+    ],
+    "df17": [
+      [
+        "m_df17_static",
+        4672,
+        true,
+        "{\"parts\": {\"root\": 530715}, \"bbox_min\": [-1.587, 0.0, -6.9], \"bbox_max\": [1.587, 3.009, 6."
+      ],
+      [
+        "m_df17_lo_static",
+        4672,
+        true,
+        "{\"parts\": {\"root\": 530715}, \"bbox_min\": [-1.587, 0.0, -6.9], \"bbox_max\": [1.587, 3.009, 6."
+      ]
+    ],
+    "j8": [
+      [
+        "m_j8_cg",
+        142,
+        true,
+        "{\"parts\": {\"root\": 18791}, \"bbox_min\": [-5.015, 0.0, -10.806], \"bbox_max\": [5.015, 5.652, "
+      ],
+      [
+        "m_j8_lo",
+        82,
+        true,
+        "{\"parts\": {\"root\": 5373}, \"bbox_min\": [-5.015, 0.0, -10.806], \"bbox_max\": [5.015, 4.651, 1"
+      ]
+    ],
+    "m_z10_black": [
+      "m_z10_black_tex0.png|1.0000,1.0000,1.000"
+    ],
+    "m_z10_black_lo": [
+      "m_z10_black_lo_tex0.png|1.0000,1.0000,1."
+    ],
+    "m_z11wb": [
+      "|0.0000,0.0000,0.0000,0.4500"
+    ],
+    "m_z11wb_lo": [
+      "|0.0000,0.0000,0.0000,0.4500"
+    ],
+    "m_phl16_static": [
+      "|0.0200,0.0250,0.0300,0.0588"
+    ],
+    "m_phl16_lo_static": [
+      "|0.0200,0.0250,0.0300,0.0588"
+    ],
+    "m_hq12_static": [
+      "m_hq12_static_tex0.png|1.0000,1.0000,1.0"
+    ],
+    "m_hq12_lo_static": [
+      "m_hq12_lo_static_tex0.png|1.0000,1.0000,"
+    ],
+    "m_j7_static": [
+      "m_j7_static_tex1.png|1.0000,1.0000,1.000"
+    ],
+    "m_j7_lo_static": [
+      "m_j7_lo_static_tex1.png|1.0000,1.0000,1."
+    ],
+    "m_df31a_static": [
+      "m_df31a_static_tex0.png|1.0000,1.0000,1."
+    ],
+    "m_df31a_lo_static": [
+      "m_df31a_lo_static_tex0.png|1.0000,1.0000"
+    ],
+    "m_phl191b_static": [
+      "m_phl191b_static_tex0.png|1.0000,1.0000,"
+    ],
+    "m_phl191b_lo_static": [
+      "m_phl191b_lo_static_tex0.png|1.0000,1.00"
+    ],
+    "m_hq6a_static_tex2_mask": {
+      "before": [
+        "0.632",
+        "0.494"
+      ],
+      "after": [
+        "0.658",
+        "0.614"
+      ]
+    },
+    "m_hq6a_static_tex4_mask": {
+      "before": [
+        "0.593",
+        "0.467"
+      ],
+      "after": [
+        "0.624",
+        "0.587"
+      ]
+    },
+    "m_hq6a_lo_static_tex2_mask": {
+      "before": [
+        "0.632",
+        "0.494"
+      ],
+      "after": [
+        "0.658",
+        "0.614"
+      ]
+    },
+    "m_hq6a_lo_static_tex4_mask": {
+      "before": [
+        "0.593",
+        "0.467"
+      ],
+      "after": [
+        "0.624",
+        "0.587"
+      ]
+    },
+    "m_z11wb_tex1_mask": {
+      "before": [
+        "0.0",
+        "0.055"
+      ],
+      "after": [
+        "0.5",
+        "0.205"
+      ]
+    },
+    "m_z11wb_lo_tex1_mask": {
+      "before": [
+        "0.0",
+        "0.055"
+      ],
+      "after": [
+        "0.5",
+        "0.205"
+      ]
+    }
+  },
+  "files": [
+    "m_df17_lo_static.fam",
+    "m_df17_lo_static.mat.json",
+    "m_df17_lo_static_tex0.png",
+    "m_df17_lo_static_tex0_n.png",
+    "m_df17_lo_static_tex1.png",
+    "m_df17_lo_static_tex1_n.png",
+    "m_df17_lo_static_tex3.png",
+    "m_df17_lo_static_tex3_n.png",
+    "m_df17_lo_static_tex4.png",
+    "m_df17_lo_static_tex4_n.png",
+    "m_df17_static.fam",
+    "m_df17_static.mat.json",
+    "m_df17_static_tex0.png",
+    "m_df17_static_tex0_n.png",
+    "m_df17_static_tex1.png",
+    "m_df17_static_tex1_n.png",
+    "m_df17_static_tex3.png",
+    "m_df17_static_tex3_n.png",
+    "m_df17_static_tex4.png",
+    "m_df17_static_tex4_n.png",
+    "m_df21_lo_static.fam",
+    "m_df21_lo_static.mat.json",
+    "m_df21_lo_static_tex0.png",
+    "m_df21_lo_static_tex0_mask.png",
+    "m_df21_lo_static_tex0_n.png",
+    "m_df21_lo_static_tex2.png",
+    "m_df21_lo_static_tex2_mask.png",
+    "m_df21_lo_static_tex2_n.png",
+    "m_df21_static.fam",
+    "m_df21_static.mat.json",
+    "m_df21_static_tex0.png",
+    "m_df21_static_tex0_mask.png",
+    "m_df21_static_tex0_n.png",
+    "m_df21_static_tex2.png",
+    "m_df21_static_tex2_mask.png",
+    "m_df21_static_tex2_n.png",
+    "m_df31a_lo_static.mat.json",
+    "m_df31a_static.mat.json",
+    "m_hq12_lo_static.mat.json",
+    "m_hq12_static.mat.json",
+    "m_hq6a_lo_static_tex2_mask.png",
+    "m_hq6a_lo_static_tex4_mask.png",
+    "m_hq6a_static_tex2_mask.png",
+    "m_hq6a_static_tex4_mask.png",
+    "m_j5_lo_static.fam",
+    "m_j5_lo_static.mat.json",
+    "m_j5_lo_static_tex0.png",
+    "m_j5_lo_static_tex0_mask.png",
+    "m_j5_lo_static_tex0_n.png",
+    "m_j5_static.fam",
+    "m_j5_static.mat.json",
+    "m_j5_static_tex0.png",
+    "m_j5_static_tex0_mask.png",
+    "m_j5_static_tex0_n.png",
+    "m_j6_lo_static.fam",
+    "m_j6_lo_static.mat.json",
+    "m_j6_lo_static_tex0.png",
+    "m_j6_lo_static_tex0_mask.png",
+    "m_j6_lo_static_tex0_n.png",
+    "m_j6_static.fam",
+    "m_j6_static.mat.json",
+    "m_j6_static_tex0.png",
+    "m_j6_static_tex0_mask.png",
+    "m_j6_static_tex0_n.png",
+    "m_j7_lo_static.mat.json",
+    "m_j7_static.mat.json",
+    "m_j8_cg.fam",
+    "m_j8_cg.mat.json",
+    "m_j8_cg_tex0.png",
+    "m_j8_cg_tex0_mask.png",
+    "m_j8_cg_tex0_n.png",
+    "m_j8_lo.fam",
+    "m_j8_lo.mat.json",
+    "m_j8_lo_tex0.png",
+    "m_j8_lo_tex0_mask.png",
+    "m_j8_lo_tex0_n.png",
+    "m_pcl09_lo_static.fam",
+    "m_pcl09_lo_static.mat.json",
+    "m_pcl09_lo_static_tex0.png",
+    "m_pcl09_lo_static_tex0_mask.png",
+    "m_pcl09_lo_static_tex0_n.png",
+    "m_pcl09_lo_static_tex2.png",
+    "m_pcl09_lo_static_tex2_mask.png",
+    "m_pcl09_lo_static_tex2_n.png",
+    "m_pcl09_static.fam",
+    "m_pcl09_static.mat.json",
+    "m_pcl09_static_tex0.png",
+    "m_pcl09_static_tex0_mask.png",
+    "m_pcl09_static_tex0_n.png",
+    "m_pcl09_static_tex2.png",
+    "m_pcl09_static_tex2_mask.png",
+    "m_pcl09_static_tex2_n.png",
+    "m_phl16_lo_static.mat.json",
+    "m_phl16_static.mat.json",
+    "m_phl191b_lo_static.mat.json",
+    "m_phl191b_static.mat.json",
+    "m_z10_black.mat.json",
+    "m_z10_black_lo.mat.json",
+    "m_z11wb.mat.json",
+    "m_z11wb_lo.mat.json",
+    "m_z11wb_lo_tex1_mask.png",
+    "m_z11wb_tex1_mask.png"
+  ],
+  "not_done": {
+    "Z-8L glass": "no map marks the windows in the seller texture"
+  },
+  "checks": 27
+}

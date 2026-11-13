@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.50
+# Freedom Arrow 0.8.0-dev.51
+
+- Vanilla glass (the game's own F-16 canopy glass) on J-5, J-6, J-7, J-8, Z-10, Z-11WB, HQ-12, PCL-09, PHL-16, DF-ZF (DF-17), DF-21, DF-31A and PHL-191. Where the seller painted the windows into the main texture, the see-through parts are cut out using the seller's own opacity map.
+- HQ-6A and Z-11WB: more metallic and a little smoother, like the vanilla helicopters and trucks.
+- Z-8L glass is not done yet: its seller texture has no map that marks the windows.
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.50
 
 - DF-17/ZF: the missile's motor now lights at launch (it waited 2 s, the air-launched Kinzhal setting, so it fell onto its own launcher and the blast killed it). The steep climb, dive and 1500 top speed stay.
 - DF-31A: normal ballistic aim time, 10-12 s (was 120 s). Blast 500 m as shown in game (was 700 m).
