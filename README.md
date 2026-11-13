@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.48
+# Freedom Arrow 0.8.0-dev.49
+
+- Removed (parked until models are found): PHL-11, Shaanxi Troop Truck, VP4, PGZ-04 / PGZ-04A (it is the PGZ-95), WZ-701, ZSD-90, PHL-81. The Lynx ATV keeps VP4's Air Force availability and carries every squad VP4 carried.
+- FH-97A: the strike and SEAD packages no longer carry PL-15 air-to-air missiles.
+- J-5, J-6W, J-7 and J-8D: no ECM. New Heavy strike for +40: J-5 and J-7 2x 1000 kg bomb, J-6W 2x 500 kg bomb, J-8D 4x 1000 kg bomb (replaces its old Heavy strike).
+- Names and icons: Light Riflemen 轻步兵, Weapons Squad 火力班; ABZ-13 uses the TOW-2BB icon; GAM-102LR Team uses the Spike unit icon.
+- Models: PLZ-07/PLZ-07B use the PLZ-89 model; Z-10 is 20% smaller; Z-8L faces forward; ZSD-89A is 20% bigger; the Lynx ATV no longer shows the seated US soldiers; ZTQ-15, ZTZ-99 family, ZBL-191 and ZTZ-100 seller camo models are unrigged (one static model) and ZTZ-100 is no longer see-through; HQ-17 front radar forward and lower.
+- FAModels 0.3.18 (hide-only entries). Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.48
 
 - PHL-191 Ballistic: a loadout choice like the vanilla HIMARS, 2x ATACMS (default) or 2x PrSM, both at +0, instead of 8x 370 mm rockets. Unit cost 250 -> 225.
 - Everything else as 0.8.0-dev.47.

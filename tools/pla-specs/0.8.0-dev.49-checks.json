@@ -1,0 +1,296 @@
+{
+  "lynx": {
+    "vp4_specs": [
+      17
+    ],
+    "added_transport_links": 0
+  },
+  "removed": {
+    "PHL-11": {
+      "cards": 1,
+      "transport_links": 0
+    },
+    "Shaanxi Troop Truck": {
+      "cards": 1,
+      "transport_links": 0
+    },
+    "VP4": {
+      "cards": 1,
+      "transport_links": 2
+    },
+    "PGZ-04A": {
+      "cards": 1,
+      "transport_links": 0
+    },
+    "PGZ-04": {
+      "cards": 0,
+      "transport_links": 0
+    },
+    "WZ-701": {
+      "cards": 1,
+      "transport_links": 0
+    },
+    "ZSD-90": {
+      "cards": 1,
+      "transport_links": 7
+    },
+    "PHL-81": {
+      "cards": 1,
+      "transport_links": 0
+    }
+  },
+  "fh97a": {
+    "options": [
+      "Light strike (2x LS-6 500kg)",
+      "Light SEAD",
+      "Light strike (LS-6 1000kg)"
+    ],
+    "new_turrets": {
+      "LT-2 x2": 2018677,
+      "LS-6 1000kg x2": 2018679
+    }
+  },
+  "jets": {
+    "ecm_removed": [
+      [
+        "J-5",
+        "ECM Plane 00 Default FA 0.85"
+      ],
+      [
+        "J-6W",
+        "ECM Plane 00 Default FA 0.85"
+      ],
+      [
+        "J-7",
+        "ECM Plane 10 Default"
+      ],
+      [
+        "J-8D",
+        "ECM Plane 10 Default"
+      ],
+      [
+        "J-7E / J-7G",
+        "ECM Plane 10 Default FA 0.85"
+      ],
+      [
+        "J-8II / J-8F",
+        "ECM Plane 10 Default FA 0.85"
+      ]
+    ],
+    "heavy_strike": {
+      "J-5": {
+        "option": 31040,
+        "loadout": "Heavy strike (2x 1000 kg bomb)",
+        "cost": 40
+      },
+      "J-7": {
+        "option": 31041,
+        "loadout": "Heavy strike (2x 1000 kg bomb)",
+        "cost": 40
+      },
+      "J-8D": {
+        "option": 24479,
+        "loadout": "Heavy strike (4x 1000 kg bomb)",
+        "cost": 40
+      },
+      "J-6W": {
+        "option": 31042,
+        "loadout": "Heavy strike (2x 500 kg bomb)",
+        "cost": 40
+      }
+    }
+  },
+  "names_icons": {
+    "1205": "Light Riflemen 轻步兵",
+    "1199": "Weapons Squad 火力班",
+    "ABZ-13 HUDIcon": "TOW_x2",
+    "GAM-102LR thumbnail": "DLC2_SPIKE_LR-label"
+  },
+  "models_json": {
+    "PLA PLZ-07B": {
+      "before": {
+        "file": "m_plz07b_static.fam",
+        "battle": "m_plz07b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_plz89_static.fam",
+        "battle": "m_plz89_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue PLZ-07": {
+      "before": {
+        "file": "m_plz07b_static.fam",
+        "battle": "m_plz07b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_plz89_static.fam",
+        "battle": "m_plz89_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Z-10": {
+      "before": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    },
+    "PLA Air Force Z-10": {
+      "before": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    },
+    "PLA Recon Z-10": {
+      "before": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z10_black.fam",
+        "battle": "m_z10_black_lo.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    },
+    "PLA Catalogue Z-8L": {
+      "before": {
+        "file": "m_z8l_static.fam",
+        "battle": "m_z8l_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z8l_static.fam",
+        "battle": "m_z8l_lo_static.fam",
+        "align": false,
+        "yaw": 180.0
+      }
+    },
+    "PLA Catalogue Type 89A": {
+      "before": {
+        "file": "m_zsd89a_static.fam",
+        "battle": "m_zsd89a_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsd89a_static.fam",
+        "battle": "m_zsd89a_lo_static.fam",
+        "align": false,
+        "scale": 1.2
+      }
+    },
+    "PLA Lynx ATV": {
+      "before": null,
+      "after": {
+        "file": "",
+        "battle": "",
+        "align": false,
+        "hide": "(?i)soldier|crew|driver|gunner|passenger|human|pilot|infantry|_char"
+      }
+    }
+  },
+  "version": "0.8.0-dev.49",
+  "base": "0.8.0-dev.48",
+  "base_sha256": "6524f5a9c58b4d336c51474ce23e32049945d8c0705cb1b71dbb6c796ca6eaea",
+  "request": "Osama 13 Nov 14:36 PST model/roster list, batch 1",
+  "replaced_files": [
+    "m_hq17a_lo_static.fam",
+    "m_hq17a_lo_static.mat.json",
+    "m_hq17a_lo_static_tex0.png",
+    "m_hq17a_lo_static_tex0_mask.png",
+    "m_hq17a_lo_static_tex0_n.png",
+    "m_hq17a_static.fam",
+    "m_hq17a_static.mat.json",
+    "m_hq17a_static_tex0.png",
+    "m_hq17a_static_tex0_mask.png",
+    "m_hq17a_static_tex0_n.png",
+    "m_zbl191_camo_lo_static.fam",
+    "m_zbl191_camo_lo_static.mat.json",
+    "m_zbl191_camo_lo_static_tex0.png",
+    "m_zbl191_camo_lo_static_tex0_mask.png",
+    "m_zbl191_camo_lo_static_tex0_n.png",
+    "m_zbl191_camo_static.fam",
+    "m_zbl191_camo_static.mat.json",
+    "m_zbl191_camo_static_tex0.png",
+    "m_zbl191_camo_static_tex0_mask.png",
+    "m_zbl191_camo_static_tex0_n.png",
+    "m_ztq15_camo_lo_static.fam",
+    "m_ztq15_camo_lo_static.mat.json",
+    "m_ztq15_camo_lo_static_tex0.png",
+    "m_ztq15_camo_lo_static_tex0_mask.png",
+    "m_ztq15_camo_lo_static_tex0_n.png",
+    "m_ztq15_camo_lo_static_tex1.png",
+    "m_ztq15_camo_lo_static_tex1_mask.png",
+    "m_ztq15_camo_lo_static_tex1_n.png",
+    "m_ztq15_camo_lo_static_tex2.png",
+    "m_ztq15_camo_lo_static_tex2_mask.png",
+    "m_ztq15_camo_lo_static_tex2_n.png",
+    "m_ztq15_camo_static.fam",
+    "m_ztq15_camo_static.mat.json",
+    "m_ztq15_camo_static_tex0.png",
+    "m_ztq15_camo_static_tex0_mask.png",
+    "m_ztq15_camo_static_tex0_n.png",
+    "m_ztq15_camo_static_tex1.png",
+    "m_ztq15_camo_static_tex1_mask.png",
+    "m_ztq15_camo_static_tex1_n.png",
+    "m_ztq15_camo_static_tex2.png",
+    "m_ztq15_camo_static_tex2_mask.png",
+    "m_ztq15_camo_static_tex2_n.png",
+    "m_ztz100_camo_lo_static.fam",
+    "m_ztz100_camo_lo_static.mat.json",
+    "m_ztz100_camo_lo_static_tex0.png",
+    "m_ztz100_camo_lo_static_tex0_mask.png",
+    "m_ztz100_camo_lo_static_tex0_n.png",
+    "m_ztz100_camo_lo_static_tex1.png",
+    "m_ztz100_camo_lo_static_tex1_mask.png",
+    "m_ztz100_camo_lo_static_tex1_n.png",
+    "m_ztz100_camo_lo_static_tex2.png",
+    "m_ztz100_camo_lo_static_tex2_mask.png",
+    "m_ztz100_camo_lo_static_tex2_n.png",
+    "m_ztz100_camo_static.fam",
+    "m_ztz100_camo_static.mat.json",
+    "m_ztz100_camo_static_tex0.png",
+    "m_ztz100_camo_static_tex0_mask.png",
+    "m_ztz100_camo_static_tex0_n.png",
+    "m_ztz100_camo_static_tex1.png",
+    "m_ztz100_camo_static_tex1_mask.png",
+    "m_ztz100_camo_static_tex1_n.png",
+    "m_ztz100_camo_static_tex2.png",
+    "m_ztz100_camo_static_tex2_mask.png",
+    "m_ztz100_camo_static_tex2_n.png",
+    "m_ztz99a_mix_lo_static.fam",
+    "m_ztz99a_mix_lo_static.mat.json",
+    "m_ztz99a_mix_lo_static_tex0.png",
+    "m_ztz99a_mix_lo_static_tex0_mask.png",
+    "m_ztz99a_mix_lo_static_tex0_n.png",
+    "m_ztz99a_mix_lo_static_tex1.png",
+    "m_ztz99a_mix_lo_static_tex1_mask.png",
+    "m_ztz99a_mix_lo_static_tex1_n.png",
+    "m_ztz99a_mix_static.fam",
+    "m_ztz99a_mix_static.mat.json",
+    "m_ztz99a_mix_static_tex0.png",
+    "m_ztz99a_mix_static_tex0_mask.png",
+    "m_ztz99a_mix_static_tex0_n.png",
+    "m_ztz99a_mix_static_tex1.png",
+    "m_ztz99a_mix_static_tex1_mask.png",
+    "m_ztz99a_mix_static_tex1_n.png"
+  ],
+  "checks": 115
+}
