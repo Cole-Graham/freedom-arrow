@@ -1,0 +1,13 @@
+{
+  "version": "0.8.0-dev.34",
+  "base": "0.8.0-dev.33",
+  "request": "Osama 13 Nov 10:56 PST: the US voice lines are too loud; equalise them with the Russian lines",
+  "famusic": {
+    "version": "1.5.1",
+    "sha256": "8ea1d6bd6372a414d1400ead4641549b95c8baf6f08e3cae2d113554049defb9",
+    "change": "US (FA Music) voice clips get an extra gain read from UserData/FAMusic/voice-gain-db.txt, default -6 dB (x0.501); logged as FA_MUSIC voice gain at the first voice line"
+  },
+  "basis": "Our US clips are levelled to about -16 LUFS (25 measured: -15.3 to -16.4). The game Russian lines are in encrypted FMOD banks, so -6 dB is a starting point, to be matched by ear or by an in-game recording.",
+  "gameplay_data": "unchanged from 0.8.0-dev.33",
+  "native_verified": false
+}

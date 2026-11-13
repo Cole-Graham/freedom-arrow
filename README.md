@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.33
+# Freedom Arrow 0.8.0-dev.34
+
+- US voice lines (FA Music C&C clips) 6 dB quieter, to sit with the game's Russian lines. FA Music 1.5.1 reads the level from UserData/FAMusic/voice-gain-db.txt (one number in dB, default -6; restart the game after changing it).
+- Gameplay data unchanged from 0.8.0-dev.33. FAMusic.dll ships in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus FAMusic 1.5.1.
+
+## Historical 0.8.0-dev.33
 
 - Shawn's models: HQ-17 and HQ-17A, J-20S (high res), PLZ-05, ZTZ-96A (woodland) and ZTZ-96 (desert), ZTL-191, ZBL-09, Z-21, Type 052D, PGL-625 and PGZ-09 (desert).
 - Model fix: parts that the source files moved with animation tracks (turrets, guns, launchers) are now baked in place for every purchased model.

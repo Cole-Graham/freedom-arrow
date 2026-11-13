@@ -48,7 +48,7 @@ with zipfile.ZipFile(base) as z:
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
     if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
     for spec in a.asset:
-        k,f=spec.split('=',1);assert k.startswith('UserData/FAModels/'),k;override[k]=Path(f).read_bytes()
+        k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f).read_bytes()
     if a.famodels or a.asset:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
         for k in override:

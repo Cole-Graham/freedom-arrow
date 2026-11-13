@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.0", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.1", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
@@ -61,6 +61,19 @@ public sealed class Player : MelonMod
     // Voice lines: UserData/FAMusic/Voice/<GROUP>/<Line>/ replaces event:/BrokenArrowGame/BA_Command/<GROUP>/<Line>.
     static readonly string VoiceRoot = Path.Combine(Root, "Voice");
     const float VoiceBase = 0.234f;   // Osama 7 Nov: the old 41% level (0.4 x 0.41) now sits at 70%
+    // Osama 13 Nov: US lines were louder than the game's Russian lines. Extra gain in dB from
+    // UserData/FAMusic/voice-gain-db.txt (one number; default -6) so it can be matched by ear without a rebuild.
+    static readonly string VoiceGainFile = Path.Combine(Root, "voice-gain-db.txt");
+    static float voiceGain = -1f;
+    static float VoiceGain()
+    {
+        if (voiceGain >= 0f) return voiceGain;
+        float db = -6f;
+        try { if (File.Exists(VoiceGainFile)) db = float.Parse(File.ReadAllText(VoiceGainFile).Trim(), System.Globalization.CultureInfo.InvariantCulture); } catch { }
+        voiceGain = (float)Math.Pow(10.0, db / 20.0);
+        Melon<Player>.Logger.Msg($"FA_MUSIC voice gain {db:0.0} dB (x{voiceGain:0.000}) from {(File.Exists(VoiceGainFile) ? "voice-gain-db.txt" : "default")}");
+        return voiceGain;
+    }
     static IntPtr voiceSound, voiceChannel;
 
     public override void OnInitializeMelon()
@@ -193,7 +206,7 @@ public sealed class Player : MelonMod
             voiceChannel = voiceSound = IntPtr.Zero;
             if (Fmod.FMOD_System_CreateSound(system, Encoding.UTF8.GetBytes(file + "\0"), 0x80 | 0x8 | 0x1, IntPtr.Zero, out voiceSound) != 0
                 || Fmod.FMOD_System_PlaySound(system, voiceSound, IntPtr.Zero, 0, out voiceChannel) != 0) return;
-            Fmod.FMOD_Channel_SetVolume(voiceChannel, VoiceBase * VoiceSlider());
+            Fmod.FMOD_Channel_SetVolume(voiceChannel, VoiceBase * VoiceGain() * VoiceSlider());
             Melon<Player>.Logger.Msg($"FA_MUSIC voice {parts[^2]}/{parts[^1]} command {cmd} unit {unit} slider {VoiceSlider():0.00} -> {Path.GetFileName(file)}");
             __result = "";
         }

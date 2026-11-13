@@ -1,0 +1,43 @@
+{
+  "version": "0.8.0-dev.34",
+  "build": 102,
+  "previous": "0.8.0-dev.33",
+  "assets_version": "0.2.5",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.5.bamod",
+    "sha256": "6284fc78c2384e01a2810799c0808dfea6d2e8acc8c10016f9408e0e3d2b9ecd",
+    "size": 5271393729,
+    "files": 8605
+  },
+  "assets_compatible": false,
+  "assets_mismatch": [
+    "Mods/FAMusic.dll",
+    "UserData/FAAssets/manifest.json"
+  ],
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.34-complete.bamod",
+    "sha256": "dc2126c1183ddb35118b8cb1cfc2f8437992b47f3330ef916bfc48be30ca9a3c",
+    "size": 5350147586,
+    "files": 8776
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.34.bamod",
+    "sha256": "5eabd6f73e36468262ceedc72cf8d55860b499615ba711bf48b46cd20e6edac9",
+    "size": 70024526,
+    "files": 173
+  },
+  "changed_paths": [
+    "Mods/FAMusic.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.34.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
