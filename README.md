@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.51
+# Freedom Arrow 0.8.0-dev.52
+
+- DF-17/ZF: now a ballistic missile with the same arc as the DF-21 and Iskander-M (it flew flat with the Kinzhal profile), with twice their acceleration (200) and twice their top speed (1600; they cap at 800).
+- Everything else as 0.8.0-dev.51.
+
+## Historical 0.8.0-dev.51
 
 - Vanilla glass (the game's own F-16 canopy glass) on J-5, J-6, J-7, J-8, Z-10, Z-11WB, HQ-12, PCL-09, PHL-16, DF-ZF (DF-17), DF-21, DF-31A and PHL-191. Where the seller painted the windows into the main texture, the see-through parts are cut out using the seller's own opacity map.
 - HQ-6A and Z-11WB: more metallic and a little smoother, like the vanilla helicopters and trucks.

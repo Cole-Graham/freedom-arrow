@@ -1,0 +1,38 @@
+{
+  "version": "0.8.0-dev.52",
+  "base": "0.8.0-dev.51",
+  "base_sha256": "a81f17a231dad887033aa0102105ebdcb220a3f64e97dfc718234309b8d2e241",
+  "request": "Osama 13 Nov PST: DF-ZF has a really flat trajectory, no climb; make it a ballistic missile that accelerates twice as fast; double the top speed too",
+  "ammo": 2010351,
+  "before": {
+    "TrajectoryType": 200,
+    "LoftAngle": 85,
+    "LoftHeight": 0,
+    "LaunchMarginAngle": 85.0,
+    "RotationSpeed": 50.0,
+    "BurnTime": 20.0,
+    "MainEngineIgnitionDelay": 0.0,
+    "PreEgnitionRotationSpeed": 0.0,
+    "OverflyHeight": 0,
+    "MinimalRange": 500.0,
+    "Acceleration": 100.0,
+    "MaxSpeed": 1500.0
+  },
+  "after": {
+    "TrajectoryType": 300,
+    "LoftAngle": 0,
+    "LoftHeight": 0,
+    "LaunchMarginAngle": 180.0,
+    "RotationSpeed": 10.0,
+    "BurnTime": 8.0,
+    "MainEngineIgnitionDelay": 0.0,
+    "PreEgnitionRotationSpeed": 0.0,
+    "OverflyHeight": 0,
+    "MinimalRange": 500.0,
+    "Acceleration": 200.0,
+    "MaxSpeed": 1600.0
+  },
+  "source_of_flight": "DF-21 missile 2010375 (= vanilla Iskander-M 218)",
+  "checks": 12,
+  "verified": "data only; not yet observed in a game"
+}
