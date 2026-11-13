@@ -2,15 +2,15 @@
 import numpy as np,sys
 from PIL import Image
 from famread import read_fam
-FAM,TEX,R,OUT=sys.argv[1],sys.argv[2],int(sys.argv[3]),sys.argv[4];FLIP=sys.argv[5]=="flip"
-pos=np.zeros((R,R,3),np.float32);nrm=np.zeros((R,R,3),np.float32);cov=np.zeros((R,R),bool);uvs=[]
+FAM,TEX,OUT=sys.argv[1],sys.argv[2],sys.argv[4];WH=sys.argv[3].split('x');RW,RH=int(WH[0]),int(WH[-1]);FLIP=sys.argv[5]=="flip"
+pos=np.zeros((RH,RW,3),np.float32);nrm=np.zeros((RH,RW,3),np.float32);cov=np.zeros((RH,RW),bool);uvs=[]
 for bone,subs in read_fam(FAM):
     for s in subs:
         if s['tex']!=TEX:continue
         P=np.array(s['pos'],np.float32).reshape(-1,3);N=np.array(s['nrm'],np.float32).reshape(-1,3);UV=np.array(s['uv'],np.float32).reshape(-1,2);I=np.array(s['idx']).reshape(-1,3);uvs.append(UV)
         for t in I:
-            p,n,uv=P[t],N[t],UV[t];x=uv[:,0]*R-0.5;y=((1-uv[:,1]) if FLIP else uv[:,1])*R-0.5
-            x0,x1=max(int(np.floor(x.min())),0),min(int(np.ceil(x.max())),R-1);y0,y1=max(int(np.floor(y.min())),0),min(int(np.ceil(y.max())),R-1)
+            p,n,uv=P[t],N[t],UV[t];x=uv[:,0]*RW-0.5;y=((1-uv[:,1]) if FLIP else uv[:,1])*RH-0.5
+            x0,x1=max(int(np.floor(x.min())),0),min(int(np.ceil(x.max())),RW-1);y0,y1=max(int(np.floor(y.min())),0),min(int(np.ceil(y.max())),RH-1)
             if x1<x0 or y1<y0:continue
             gx,gy=np.meshgrid(np.arange(x0,x1+1),np.arange(y0,y1+1))
             d=(y[1]-y[2])*(x[0]-x[2])+(x[2]-x[1])*(y[0]-y[2])

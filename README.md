@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.36
+# Freedom Arrow 0.8.0-dev.37
+
+- Woodland digital camo on the ZTZ-99 and ZTZ-99A (were plain green) and the ZTZ-96B (was plain green).
+- The ZTZ-96 uses Shawn's woodland set, the same as the ZTZ-96A (was his desert set).
+- The ZTQ-15 Recon is in desert digital; the ZTQ-15 tank stays woodland.
+- Gameplay data unchanged from 0.8.0-dev.36. Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-37 files (complete package).
+
+## Historical 0.8.0-dev.36
 
 - ZTQ-15 and ZTQ-15 Recon now both serve PLAGF Armored, in woodland digital. The ZTQ-15 card moved from Motorized.
 - New VT-5 and VT-5 Recon for Motorized, in desert digital; the VT-5 card is also in PLAN Navy/SOF. They are ZTQ-15 / ZTQ-15 Recon stat clones except:
