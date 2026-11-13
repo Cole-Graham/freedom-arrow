@@ -1,0 +1,14 @@
+{
+  "version": "0.8.0-dev.25",
+  "base": "0.8.0-dev.24",
+  "base_sha256": "2290155be8ce2c572b0129cf7f823aee6e9a02a34a08d4420baa3e2f27aef476",
+  "request": "Osama 13 Nov 01:52 PST: lasering for the CTL-181 NLOS made the missile go haywire; it is already a cruise missile",
+  "ctl181_ammo": {
+    "id": 2018321,
+    "LaserGuided": [
+      true,
+      false
+    ]
+  },
+  "checks": 27573
+}

@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.24
+# Freedom Arrow 0.8.0-dev.25
+
+- CTL-181 NLOS missile: laser guidance off. Lasering for it made the missile go haywire; it now flies its precision path to the point it was fired at, like a cruise missile.
+- Includes 0.8.0-dev.24. Not yet verified in a game run.
+
+Models and music: 0.2.2.
+
+## Historical 0.8.0-dev.24
 
 - Godswords 90 -> 80 points.
 - QLU-11 fires at the full XM25 rate (dev.21's 10% slowdown removed); still the XM25 round out to 1000 m.
