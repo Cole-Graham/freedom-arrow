@@ -1,0 +1,43 @@
+{
+  "version": "0.8.0-dev.40",
+  "base": "0.8.0-dev.39",
+  "base_sha256": "d8ca1e107a6f0caf4eb0c20bccabd2d820a506bddd31a5c0f2c9faa1671e2cbe",
+  "request": "Osama 13 Nov: \"QN-506 should have textures, let me redownload\"; \"QN-506 redownloaded please check\"; \"do we have zbl-08 btw because the current in game model isn't good\".",
+  "models": {
+    "PLA QN-506": {
+      "before": {
+        "file": "m_qn506c_static.fam",
+        "battle": "m_qn506c_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_qn506w_static.fam",
+        "battle": "m_qn506w_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZBL-08": {
+      "before": {
+        "file": "m_zbl08_static.fam",
+        "battle": "m_zbl08_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zbl09_static.fam",
+        "battle": "m_zbl09_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "new_files": [
+    "m_qn506w_lo_static.fam",
+    "m_qn506w_lo_static.mat.json",
+    "m_qn506w_lo_static_tex2.png",
+    "m_qn506w_static.fam",
+    "m_qn506w_static.mat.json",
+    "m_qn506w_static_tex2.png"
+  ],
+  "qn506": "re-download identical (OBJ byte-identical; SKP has 97 thumbnails, no texture maps); body material _3 gets triplanar woodland digital, tile 3200 units (~4 m)",
+  "zbl08": "Shawn ZBL-09 PBR model, same Type 08 8x8 family",
+  "checks": 8
+}

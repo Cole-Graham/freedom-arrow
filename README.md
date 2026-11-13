@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.39
+# Freedom Arrow 0.8.0-dev.40
+
+- QN-506: woodland digital camo on the hull and turret. The seller files have no texture maps (the re-download is identical), so the camo is projected onto the model's main paint.
+- ZBL-08: now uses Shawn's PBR ZBL-09 model (same 8x8 family, woodland) in place of the old model with camo netting.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-40 files (complete package).
+
+## Historical 0.8.0-dev.39
 
 - 17 purchased models from Osama's cart now show in the armory and in battle:
   - New models (these units had none): DF-15, DF-17, HQ-6A, HQ-11, PHL-16, PHL-191 Ballistic, PCL-181 / SH-15, AFT-09, CTL-181, CSK-181 and CSK-181 Transport, ZBD-251, Type 59D and ZTZ-59D1.
@@ -6,8 +14,6 @@
   - Camo: Rocket Force-only units (DF-15, DF-17, HQ-6A, Type 59D, ZTZ-59D1, Type 89) in desert; the rest keep the seller's woodland or green paint. The QN-506 file is flat sand, recoloured olive.
 - PHL-191 card renamed "PHL-191 Ballistic" (the two-pod launcher). "PHL-191 Cruise" (three-box AR3) comes when its model arrives.
 - Model files ship in the complete package only until the next assets release.
-
-Models and music: 0.2.5 plus the dev.35-39 files (complete package).
 
 ## Historical 0.8.0-dev.38
 
