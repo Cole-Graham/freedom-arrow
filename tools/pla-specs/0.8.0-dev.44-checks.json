@@ -1,0 +1,51 @@
+{
+  "version": "0.8.0-dev.44",
+  "base": "0.8.0-dev.43",
+  "base_sha256": "7b8c0cad8462d0fed80a740a9223a254bd4f6a3b6839db42ca1689c58b5095a2",
+  "request": "Osama 13 Nov 13:44 PST: HQ-6 seller ships multiple textures; re-downloaded a few.",
+  "files": [
+    "m_hq6a_lo_static.fam",
+    "m_hq6a_lo_static.mat.json",
+    "m_hq6a_lo_static_tex0.png",
+    "m_hq6a_lo_static_tex0_mask.png",
+    "m_hq6a_lo_static_tex0_n.png",
+    "m_hq6a_lo_static_tex1.png",
+    "m_hq6a_lo_static_tex1_mask.png",
+    "m_hq6a_lo_static_tex1_n.png",
+    "m_hq6a_lo_static_tex2.png",
+    "m_hq6a_lo_static_tex2_mask.png",
+    "m_hq6a_lo_static_tex2_n.png",
+    "m_hq6a_lo_static_tex3.png",
+    "m_hq6a_lo_static_tex3_mask.png",
+    "m_hq6a_lo_static_tex3_n.png",
+    "m_hq6a_lo_static_tex4.png",
+    "m_hq6a_lo_static_tex4_mask.png",
+    "m_hq6a_lo_static_tex4_n.png",
+    "m_hq6a_static.fam",
+    "m_hq6a_static.mat.json",
+    "m_hq6a_static_tex0.png",
+    "m_hq6a_static_tex0_mask.png",
+    "m_hq6a_static_tex0_n.png",
+    "m_hq6a_static_tex1.png",
+    "m_hq6a_static_tex1_mask.png",
+    "m_hq6a_static_tex1_n.png",
+    "m_hq6a_static_tex2.png",
+    "m_hq6a_static_tex2_mask.png",
+    "m_hq6a_static_tex2_n.png",
+    "m_hq6a_static_tex3.png",
+    "m_hq6a_static_tex3_mask.png",
+    "m_hq6a_static_tex3_n.png",
+    "m_hq6a_static_tex4.png",
+    "m_hq6a_static_tex4_mask.png",
+    "m_hq6a_static_tex4_n.png"
+  ],
+  "fixed": {
+    "HQ-6A": "seller Camouflage set (forest camo) from Camouflage.rar"
+  },
+  "redownload_check": {
+    "DF-15 zip": "same contents",
+    "ZSD-89A zip": "same contents",
+    "PCL-181 zip": "same size"
+  },
+  "checks": 34
+}

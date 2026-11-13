@@ -1,13 +1,18 @@
-# Freedom Arrow 0.8.0-dev.43
+# Freedom Arrow 0.8.0-dev.44
+
+- HQ-6A: the seller's Camouflage set (the forest camo on the listing preview), from Osama's re-download, in place of the plain Base Green set.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-44 files (complete package).
+
+## Historical 0.8.0-dev.43
 
 - Seller textures that the FBX export had dropped are reconnected, checked against each CGTrader listing preview:
   - DF-15: the seller's 3-colour camo on the cab, body and launcher (was plain green).
   - PCL-181: the seller's digital camo on the body (was plain tan); the seller's flag and badge textures are no longer painted over.
   - ZSD-89A: the seller's main woodland-digital set from the listing preview (was the plain-green set).
-- Still missing from the seller downloads (reported, not made up): HQ-6A Forest Camo set, QN-506 and ZTZ-59D paint (SketchUp/Lumion only), DF-15 and PHL-03 decal placement, PHL-03 tyre texture.
+- Still missing from the seller downloads (reported, not made up): QN-506 and ZTZ-59D paint (SketchUp/Lumion only), DF-15 and PHL-03 decal placement, PHL-03 tyre texture.
 - Model files ship in the complete package only until the next assets release.
-
-Models and music: 0.2.5 plus the dev.35-43 files (complete package).
 
 ## Historical 0.8.0-dev.42
 
