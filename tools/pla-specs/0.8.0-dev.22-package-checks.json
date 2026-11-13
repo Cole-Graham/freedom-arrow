@@ -1,0 +1,44 @@
+{
+  "version": "0.8.0-dev.22",
+  "build": 90,
+  "previous": "0.8.0-dev.21",
+  "assets_version": "0.2.1",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.1.bamod",
+    "sha256": "1c668bf23c915c0b6d678d084291584cafdf17fbe0bb8696ee417a585fc5f49f",
+    "size": 4039552979,
+    "files": 8009
+  },
+  "assets_compatible": true,
+  "assets_mismatch": [],
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.22-complete.bamod",
+    "sha256": "b39201ac85e94214fae41daaccd3103d67f272a5942a8556837aaf095b0d6cea",
+    "size": 4118086569,
+    "files": 8164
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.22.bamod",
+    "sha256": "d7434411ab6c5029d4094c17fbf64ccadce80e5d2644fd51a5b18a0b0797d193",
+    "size": 69936856,
+    "files": 157
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/sensor_units.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/unit_armors.json",
+    "UserData/FreedomArrow/constants/unit_propulsions.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.22.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

@@ -1,0 +1,29 @@
+{
+  "version": "0.8.0-dev.22",
+  "base": "0.8.0-dev.21",
+  "base_sha256": "d5f802dc9ba6961a6181cd4efb95e9bd13a4479aeb2142551768eacfc2c570aa",
+  "request": "Osama 13 Nov 01:24-01:31 PST: conscript rifles another -30% RoF; WZ-8 = RQ-170 with MiG-31 flight and afterburner, 260 pts",
+  "conscript_rof": {
+    "QBZ-95": [
+      5.71,
+      8.16
+    ],
+    "QBB-95": [
+      2.86,
+      4.09
+    ],
+    "QBU-88": [
+      4.29,
+      6.13
+    ]
+  },
+  "wz8": {
+    "copies": "RQ-170 Sentinel 395 armour/ability/sensor/stealth/size",
+    "mobility": 169,
+    "cost": [
+      50,
+      260
+    ]
+  },
+  "checks": 27
+}
