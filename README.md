@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.29
+# Freedom Arrow 0.8.0-dev.30
+
+- MD-22: the LS-6 1000kg loadout is now "Heavy strike (2x LS-6 1000kg)" with no PL-15s, 105 -> 60 points; loadouts ordered by category then price.
+- Godswords 80 -> 100 points.
+- Spike LR and GAM-102LR: penetration 700 -> 140, the Javelin's value for a top-attack missile.
+- Includes 0.8.0-dev.29 (purchased models). Not yet verified in a game run.
+
+Models and music: 0.2.3.
+
+## Historical 0.8.0-dev.29
 
 - 22 purchased models replace their stand-ins: DF-21, DF-31A, YJ-18, PCL-09, PLL-09, PLZ-45A4, PLZ-70, PLZ-83, PLZ-85, PLZ-89, HQ-12, PGZ-88, PTL-02, J-5, J-6, J-7, KJ-500, KQ-200, Y-8, Jiutian, WZ-7 and Z-8L. Rocket Force ground units in desert digital, Motorized and PLAGF in woodland digital.
 - Includes 0.8.0-dev.28. Not yet verified in a game run.
