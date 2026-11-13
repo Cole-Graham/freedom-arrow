@@ -1,8 +1,9 @@
 """Package the next Freedom Arrow 0.8 gameplay version over the exact previous complete 0.8 package.
 
-Usage: package_0_8_next.py --prev VERSION --version VERSION --build N --base PREV_COMPLETE --outdir DIR.
-Changed constants, identity files and the version receipt go in; models/music must be byte-identical, so
-the launcher keeps the published assets package. Writes the complete package (Vengeance switcher) and the
+Usage: package_0_8_next.py --prev VERSION --version VERSION --build N --base PREV_COMPLETE --assets ASSETS.bamod --outdir DIR.
+Changed constants, identity files and the version receipt go in. --assets names the published assets package the
+gameplay file pairs with; the build stops if the complete package's model files differ from it (--complete-only allows it
+and records that the complete package is required). Writes the complete package (Vengeance switcher) and the
 launcher gameplay package.
 """
 from pathlib import Path
@@ -15,7 +16,7 @@ def digest(p):
 ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAMusic/','UserData/FAAssets/')
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
-p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
+p.add_argument('--assets',required=True,help='published assets .bamod that the gameplay package pairs with (players install it separately)');p.add_argument('--complete-only',action='store_true',help='allow model files newer than --assets; the receipt then says the complete package is required');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
@@ -66,7 +67,19 @@ with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipF
     assert set(gz.namelist())==set(names)-set(asset_names)
     for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
     assert json.loads(gz.read('mod.json'))['version']==V
-receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':prev['assets_version'],'assets':prev['assets'],
+# Lateralus 13 Nov 2026: dev.18-20 changed FAModels.dll and ZSL-92 textures in the complete package only, but the receipt
+# kept saying assets 0.2.0, so "gameplay + assets 0.2.0" failed the runtime's hash check. Check the real assets package.
+assets=Path(a.assets)
+with zipfile.ZipFile(complete) as c,zipfile.ZipFile(assets) as az:
+    amod=json.loads(az.read('mod.json'));an={i.filename:i for i in az.infolist()}
+    mismatch=[n for n in asset_names if n not in an or an[n].CRC!=c.getinfo(n).CRC or an[n].file_size!=c.getinfo(n).file_size]
+    mismatch+=[n for n,pin in whole['sha256'].items() if n.startswith(ASSET) and n not in mismatch and (n not in an or sha(az.read(n))!=pin)]
+    mismatch=[n for n in mismatch if n!='UserData/FAAssets/manifest.json' or json.loads(az.read(n))['files']!=json.loads(c.read(n))['files']]
+if mismatch and not a.complete_only:
+    raise SystemExit(f"Model files differ from assets {amod['version']}: {mismatch[:10]} ({len(mismatch)}). Publish a new assets version and pass it with --assets, or pass --complete-only.")
+receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':amod['version'],
+ 'assets':{'file':assets.name,'sha256':digest(assets),'size':assets.stat().st_size,'files':len(an)},
+ 'assets_compatible':not mismatch,'assets_mismatch':mismatch,
  'complete':{'file':complete.name,'sha256':digest(complete),'size':complete.stat().st_size,'files':len(names)},
  'gameplay':{'file':gameplay.name,'sha256':digest(gameplay),'size':gameplay.stat().st_size,'files':len(set(names)-set(asset_names))},
  'changed_paths':sorted(override),'native_verified':False}
