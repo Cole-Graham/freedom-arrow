@@ -1,0 +1,14 @@
+{
+  "version": "0.8.0-dev.26",
+  "base": "0.8.0-dev.25",
+  "base_sha256": "064666238238d0e35f53a2ee2b5ce146300abdd3a095c84e497e0afb4b6e6aaf",
+  "request": "Osama 13 Nov: QN-202 should be 9 damage",
+  "qn202": {
+    "id": 2014237,
+    "Damage": [
+      4.0,
+      9.0
+    ]
+  },
+  "checks": 27573
+}

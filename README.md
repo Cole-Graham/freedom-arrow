@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.25
+# Freedom Arrow 0.8.0-dev.26
+
+- QN-202 anti-personnel missile: damage 4 -> 9 (Whistling Arrows). Build 39 had given it the RPG-7 HE warhead's damage.
+- Includes 0.8.0-dev.25. Not yet verified in a game run.
+
+Models and music: 0.2.2.
+
+## Historical 0.8.0-dev.25
 
 - CTL-181 NLOS missile: laser guidance off. Lasering for it made the missile go haywire; it now flies its precision path to the point it was fired at, like a cruise missile.
 - Includes 0.8.0-dev.24. Not yet verified in a game run.
