@@ -6,19 +6,24 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 
 ## Permanent branches
 
-- `main`: source of the approved public gameplay build. Initially synchronize it with locked public dev.45 (`73f7c1b`). Its README must link prominently to the current development branch and the live manifest. A source merge is separate from publishing packages or changing the manifest.
-- `codex/0.7-development`: the one integration branch for main 0.7 development; initially dev.55 (`0282972`). New main-development versions advance this branch rather than create another numbered branch. When 0.8 begins, explicitly designate its new version branch and retain a version tag for 0.7.
-- `codex/pla-development`: the complete PLA test pack; initially PLA TEST Build 28 (`a833f96`), retaining Build 27 under its version tag. Infantry stays inside this stream.
-- `codex/assets-development`: shared model/music/voice add-on source; initially assets 0.1.15 candidate (`88e3a5a`). This is a development candidate, not the public manifest's assets 0.1.14.
+**Update, 12 November 2026 (Lateralus approved): 0.8 is the main development line.** Osama made the China build 0.8 and live on 12 November (13:27 PST). Its source had been `codex/pla-development`; 0.7 dev.58's gameplay was merged into it by data port (`tools/pla-specs/merge_dev58.py`) and code ports, not by a Git merge.
+
+- `main`: source of the approved public gameplay build; still dev.45 (`73f7c1b`). The live launcher manifest is locked separately (0.8.0-dev.1). Updating `main` needs Sam or Lateralus's approval.
+- `codex/0.8-development`: **the one integration branch for main development from 0.8 on**, China included. Created at `be49cdd` (0.8.0-dev.20 plus the retired-scenario cleanup). New dev builds advance this branch; snapshots keep their `gameplay/0.8.0-dev.N` tags.
+- `codex/0.7-development`: **frozen** at 0.7.0-dev.58 (`c049c26`, tag `gameplay/0.7.0-dev.58`). History only; do not push to it.
+- `codex/pla-development`: **retired alias** of the 0.8 line, kept for its history and existing package receipts; do not push to it. Use `codex/0.8-development`.
+- `codex/assets-development`: shared model/music/voice add-on source. A gameplay build that needs newer model files than the published assets version must ship a new assets version (or say "complete package only"); see the 13 November note in the build-install workflow.
 - `codex/launcher-development`: launcher and manifest client source; initially `e3b7ada`. The manifest controls player versions independently of this source branch.
 
-These are five maintained branch names. Package source commits remain the immutable identity of existing builds; a documentation commit on a maintained branch does not rebuild a package.
+A pre-push hook in the deck's shared repository refuses pushes to the frozen and retired names.
+
+These are the maintained branch names. Package source commits remain the immutable identity of existing builds; a documentation commit on a maintained branch does not rebuild a package.
 
 ## Short-lived work
 
-Use `codex/batch/lateralus/<topic>` for a coherent Lateralus batch that is not ready for 0.7 integration. Reuse the same branch across commits and test builds. Independent batches use independent branches. Promote the whole batch only when approved, or selected self-contained commits; keep unfinished work on the batch branch. Active and explicitly held batches are excluded from cleanup regardless of age. Updating the batch from development does not merge the batch into development.
+Use `codex/batch/lateralus/<topic>` for a coherent Lateralus batch that is not ready for 0.8 development integration. Reuse the same branch across commits and test builds. Independent batches use independent branches. Promote the whole batch only when approved, or selected self-contained commits; keep unfinished work on the batch branch. Active and explicitly held batches are excluded from cleanup regardless of age. Updating the batch from development does not merge the batch into development.
 
-- `codex/feature/0.7/<topic>`, `codex/feature/pla/<topic>`, `codex/feature/assets/<topic>` or `codex/feature/launcher/<topic>`: one concrete change or coherent batch, based on the appropriate stream.
+- `codex/feature/0.8/<topic>`, `codex/feature/assets/<topic>` or `codex/feature/launcher/<topic>`: one concrete change or coherent batch, based on the appropriate stream.
 - `codex/test/0.7/<experiment>`: isolated tests such as SPAAG speed versus dispersion. Record the exact base commit and the fields being varied. Never merge an entire experiment merely because one part performed well; promote the selected changes.
 - `codex/fix/0.7/<topic>`: urgent gameplay fixes. Branch from the affected public source when needed, then carry the fix into the appropriate development stream.
 - `codex/docs/<topic>`: documentation-only changes, targeted at the relevant maintained branch.
@@ -58,3 +63,4 @@ The expected first-stage remote count would be 52: 131 current + four maintained
 
 - 2026-11-11 22:27:20 PST (America/Los_Angeles) — Recorded approved layout, explicit batch isolation and unchanged 83-branch cleanup scope; prepared for publication once GitHub permission preflight succeeds.
 - 2026-11-11 22:48:48 PST (America/Los_Angeles) — Activated the approved branch workflow after installation permission acceptance; retained the newer pinned PLA28 source and original cleanup scope.
+- 2026-11-12 23:43:01 PST (America/Los_Angeles) — 0.8 designated: `codex/0.8-development` created at `be49cdd`; `codex/0.7-development` frozen at dev.58 (tag `gameplay/0.7.0-dev.58`); `codex/pla-development` retired as an alias (Lateralus approval, 12 Nov).
