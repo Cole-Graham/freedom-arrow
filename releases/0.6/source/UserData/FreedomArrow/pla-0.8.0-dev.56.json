@@ -1,0 +1,580 @@
+{
+  "version": "0.8.0-dev.56",
+  "base": "0.8.0-dev.55",
+  "base_sha256": "3b931a4d61002e79354412d60fdfb57f8da2be5e3c2d37384b9c278e8aa81efa",
+  "request": [
+    "\"Please add or replace these unit cards. PLAGF Motorized units use \"SF Jungle\". \"Airborne\" use Airborne. \"Marines\" go to",
+    "Marines. \"Motorized\" goes to Motorized. \"SF High Tech\" goes to Blood Wolves, Godswords, Whistling Arrows and Mountain",
+    "Leopards. \"SF CQC\" to the rest of the SF\"."
+  ],
+  "changed": 40,
+  "kept": 51,
+  "by_card": {
+    "FA_CN_INF_SF_HIGH_TECH-Portrait": [
+      "Blood Wolves 血狼",
+      "Godswords 东方神剑",
+      "Mountain Leopards 高原雪豹",
+      "Whistling Arrows 响箭"
+    ],
+    "FA_CN_INF_SF_JUNGLE-Portrait": [
+      "Armored Scouts 装甲侦察",
+      "Combat Engineers 工兵班",
+      "Forward Observers 前观组",
+      "HJ-8E Team",
+      "Mech. Rifles 机步班",
+      "PF-98 Tank Hunters",
+      "QJZ-89 Team",
+      "QLZ-04 Team",
+      "QW-2 Team"
+    ],
+    "FA_CN_INF_AIRBORNE-Portrait": [
+      "Airborne 空降兵",
+      "Assault Raiders 突击队",
+      "HJ-12 Team",
+      "Pathfinders 先遣队",
+      "QLU-11 Team",
+      "QW-12 Patrol 防空巡逻",
+      "Recon 侦察组",
+      "Tank Hunters 坦克杀手"
+    ],
+    "FA_CN_INF_MARINES-Portrait": [
+      "Marine HJ-8 Team",
+      "Marine QW-2 Team",
+      "Marines 陆战队"
+    ],
+    "FA_CN_INF_SF_CQC-Portrait": [
+      "Beijing Swords 蓝剑",
+      "Falcons 猎鹰",
+      "PAP Snow Leopards 雪豹",
+      "Sea Dragons 蛟龙",
+      "Sharp Blades 利刃",
+      "Taishan Eagles 泰山雄鹰",
+      "Thunder Gods 雷神"
+    ],
+    "FA_CN_INF_MOTORIZED-Portrait": [
+      "AA Troopers 防空班",
+      "AT Troopers 反坦克组",
+      "Air Defense Scouts 防空侦察",
+      "GAM-102LR Team",
+      "Light Riflemen 轻步兵",
+      "Line Infantry 摩步班",
+      "Recon Patrol 侦察班",
+      "Thermobaric Assault 温压突击",
+      "Weapons Squad 火力班"
+    ]
+  },
+  "changes": {
+    "1136": {
+      "name": "Airborne 空降兵",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1137": {
+      "name": "HJ-12 Team",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1139": {
+      "name": "Tank Hunters 坦克杀手",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1140": {
+      "name": "QLU-11 Team",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1142": {
+      "name": "Pathfinders 先遣队",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1143": {
+      "name": "Thunder Gods 雷神",
+      "spec": "PLA PLAAF Air Force",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1145": {
+      "name": "QW-12 Patrol 防空巡逻",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1146": {
+      "name": "Assault Raiders 突击队",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1149": {
+      "name": "Recon 侦察组",
+      "spec": "PLA PLAAF Air Force",
+      "before": "FA_CN_INF_AIR_ASSAULT-Portrait",
+      "after": "FA_CN_INF_AIRBORNE-Portrait"
+    },
+    "1152": {
+      "name": "HJ-8E Team",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1153": {
+      "name": "QW-2 Team",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1154": {
+      "name": "QLZ-04 Team",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1155": {
+      "name": "PF-98 Tank Hunters",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1156": {
+      "name": "Combat Engineers 工兵班",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1157": {
+      "name": "QJZ-89 Team",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1160": {
+      "name": "Armored Scouts 装甲侦察",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1163": {
+      "name": "Mech. Rifles 机步班",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1164": {
+      "name": "Forward Observers 前观组",
+      "spec": "PLA PLAGF Ground Force/Armored",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_SF_JUNGLE-Portrait"
+    },
+    "1174": {
+      "name": "Sharp Blades 利刃",
+      "spec": "PLA PLARF Rocket/Reservist",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1181": {
+      "name": "Godswords 东方神剑",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_HIGH_TECH-Portrait"
+    },
+    "1182": {
+      "name": "PAP Snow Leopards 雪豹",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1183": {
+      "name": "Blood Wolves 血狼",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_HIGH_TECH-Portrait"
+    },
+    "1184": {
+      "name": "Whistling Arrows 响箭",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_HIGH_TECH-Portrait"
+    },
+    "1185": {
+      "name": "Falcons 猎鹰",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1186": {
+      "name": "Mountain Leopards 高原雪豹",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_HIGH_TECH-Portrait"
+    },
+    "1187": {
+      "name": "Beijing Swords 蓝剑",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1191": {
+      "name": "Sea Dragons 蛟龙",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "FA_CN_INF_SEA_DRAGON-Portrait",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1192": {
+      "name": "Marines 陆战队",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "FA_CN_INF_SEA_DRAGON-Portrait",
+      "after": "FA_CN_INF_MARINES-Portrait"
+    },
+    "1193": {
+      "name": "Marine HJ-8 Team",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "FA_CN_INF_SEA_DRAGON-Portrait",
+      "after": "FA_CN_INF_MARINES-Portrait"
+    },
+    "1194": {
+      "name": "Marine QW-2 Team",
+      "spec": "PLA PLAN Navy/SOF",
+      "before": "FA_CN_INF_SEA_DRAGON-Portrait",
+      "after": "FA_CN_INF_MARINES-Portrait"
+    },
+    "1196": {
+      "name": "Line Infantry 摩步班",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1197": {
+      "name": "AA Troopers 防空班",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1198": {
+      "name": "AT Troopers 反坦克组",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1199": {
+      "name": "Weapons Squad 火力班",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1201": {
+      "name": "Recon Patrol 侦察班",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1203": {
+      "name": "Taishan Eagles 泰山雄鹰",
+      "spec": "PLA PLAGF Motorized",
+      "before": "RU\\SSO\\SSO",
+      "after": "FA_CN_INF_SF_CQC-Portrait"
+    },
+    "1205": {
+      "name": "Light Riflemen 轻步兵",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1206": {
+      "name": "Air Defense Scouts 防空侦察",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1209": {
+      "name": "Thermobaric Assault 温压突击",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    },
+    "1221": {
+      "name": "GAM-102LR Team",
+      "spec": "PLA PLAGF Motorized",
+      "before": "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+      "after": "FA_CN_INF_MOTORIZED-Portrait"
+    }
+  },
+  "kept_units": {
+    "901": [
+      "PLA Rifle Squad",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "986": [
+      "SF carrier woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "987": [
+      "SF condor woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "988": [
+      "SF light woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "989": [
+      "SF heavy woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "990": [
+      "Type21 desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "991": [
+      "SF carrier desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "992": [
+      "SF condor desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "993": [
+      "SF light desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "994": [
+      "SF heavy desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "995": [
+      "SF assault woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "996": [
+      "SF assault desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "997": [
+      "SF night up woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "998": [
+      "SF night up desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "999": [
+      "SF night down woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1000": [
+      "SF night down desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1001": [
+      "SF goggles up woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1002": [
+      "SF goggles up desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1003": [
+      "SF goggles down woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1004": [
+      "SF goggles down desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1005": [
+      "SF condor pouches woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1006": [
+      "SF condor pouches desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1007": [
+      "SF grenadier woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1008": [
+      "SF grenadier desert",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1009": [
+      "SF condor pouches B woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1108": [
+      "PLAN flight deck crew",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ],
+    "1109": [
+      "QJY-201",
+      "DLC3/HMG_KORD/HMG_KORD",
+      "test or no specialization"
+    ],
+    "1144": [
+      "Snipers 狙击组",
+      "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "sniper pair"
+    ],
+    "1161": [
+      "Armored Sniper Pair 狙击组",
+      "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "sniper pair"
+    ],
+    "1162": [
+      "Thermobaric Breachers 温压工兵",
+      "RU\\INGENERY\\INGENERY",
+      "test or no specialization"
+    ],
+    "1166": [
+      "Conscripts 义务兵",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1168": [
+      "HJ-73D Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1169": [
+      "FN-6 Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1170": [
+      "QJZ-89 Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1171": [
+      "QLZ-87 Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1172": [
+      "PF-98 Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1173": [
+      "Ambush Team 伏击组",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1175": [
+      "Infantry 步兵",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1176": [
+      "Counter-Raid Team 反袭击队",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1177": [
+      "Thermobaric Team",
+      "FA_CN_INF_CONSCRIPTS-Portrait",
+      "PLARF conscripts"
+    ],
+    "1202": [
+      "Snipers 狙击组",
+      "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "sniper pair"
+    ],
+    "1211": [
+      "Test Export Riflemen 出口步枪",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1212": [
+      "Test SMG Assault 冲锋枪组",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1213": [
+      "Test Suppressed Scouts 消声侦察",
+      "RU\\VDV_RAZVEDKA\\VDV_RAZVEDKA",
+      "test or no specialization"
+    ],
+    "1219": [
+      "Test QN-202 Guided Support",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1220": [
+      "Test TL-4 Team",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1222": [
+      "Test HJ-12E Team",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1223": [
+      "Test QW-2 Escort",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1224": [
+      "Test QTS Recon Cell 数字侦察",
+      "RU\\VDV_RAZVEDKA\\VDV_RAZVEDKA",
+      "test or no specialization"
+    ],
+    "1225": [
+      "Test FHJ-02 Smoke Team",
+      "RU\\MOTOPEKHOTA\\MOTOPEKHOTA",
+      "test or no specialization"
+    ],
+    "1254": [
+      "Type21 woodland",
+      "RU\\MOTOSTRELKI\\MOTOSTRELKI",
+      "test or no specialization"
+    ]
+  },
+  "removed_images": [
+    "FA_CN_INF_AIRBORNE_ASSAULT-Portrait",
+    "FA_CN_INF_AIR_ASSAULT-Portrait",
+    "FA_CN_INF_SEA_DRAGON-Portrait"
+  ],
+  "images": {
+    "FA_CN_INF_AIRBORNE-Portrait": "397c59d7e2f3e515910c8b42fbc88b915af7e820a51f94068c88fb9cdfef856e",
+    "FA_CN_INF_CONSCRIPTS-Portrait": "4321e057d03d42d53e918225d2c7d72623f8e755474ceb0ac5fbd3b3bbcde525",
+    "FA_CN_INF_MARINES-Portrait": "b4b19028dafcf6691e0b953e276001f626c3844f43b974d1e1a19508828b909c",
+    "FA_CN_INF_MOTORIZED-Portrait": "c8662142ba1c0d3b5b3bedcb90d2f046587241789eb6f622545c24d10ad5c72d",
+    "FA_CN_INF_SF_CQC-Portrait": "2365cdbbcc52756bfa7d9c77a343a0522932823c8b17ece85cb84f57d7f05301",
+    "FA_CN_INF_SF_HIGH_TECH-Portrait": "aadd4115fbdf8bf07d1f62e6fef7faf8a75c00fb69b6675725f2c3d246efa82d",
+    "FA_CN_INF_SF_JUNGLE-Portrait": "a04126edcfeb4c1b57f7136740097707aadc9d1daecaeea7ced2c235c223fd13",
+    "FA_CN_INF_SNIPER_PAIR-Portrait": "135cdd977218ffb9a9fdc064a22e562c34e89b1036a843f3d52ae2394df7fd63"
+  }
+}

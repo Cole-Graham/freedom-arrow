@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.55
+# Freedom Arrow 0.8.0-dev.56
+
+- PLA infantry cards now use Osama's six supplied images (40 cards changed):
+  - SF High Tech: Blood Wolves, Godswords, Whistling Arrows, Mountain Leopards.
+  - SF CQC: every other special forces card (Thunder Gods, Sharp Blades, PAP Snow Leopards, Falcons, Beijing Swords, Sea Dragons, Taishan Eagles).
+  - SF Jungle: PLAGF Ground Force/Armored infantry.
+  - Airborne: PLAAF infantry. Motorized: PLAGF Motorized infantry. Marines: Marines, Marine HJ-8 and Marine QW-2.
+- Conscripts and sniper pair cards are unchanged. The three replaced dev.41 images are removed from FreedomArrow.Runtime.dll.
+
+## Historical 0.8.0-dev.55
 
 - J-5, J-7 and J-8D get one cannon and the J-6W two, with GSh-23 stats and their real names (Type 23-1, Type 30-1, Type 23-3).
 - Z-8L: King Stallion stats (cost 120, 30 seats, armour, speed, sensors), no weapons. WZ-7: Global Hawk stats.
