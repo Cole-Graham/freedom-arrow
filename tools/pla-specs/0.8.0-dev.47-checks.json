@@ -1,0 +1,311 @@
+{
+  "version": "0.8.0-dev.47",
+  "base": "0.8.0-dev.46",
+  "base_sha256": "aec9bd4f63e1afc517327b011341315f133963c6657888aa35d2b9d96f5589b1",
+  "request": "Osama 13 Nov 13:52 PST: PGZ-09 guns, HQ-17 radars, ZTL-191 turret height, turretless ZSL-92 (MG card named ZSL-92), seller woodland digital for ZSD-89A/ZBL-191/ZTZ-99A/ZTZ-99/ZTZ-100/ZTQ-15, ZTZ-59D model, CSK-181 textures.",
+  "mappings": {
+    "PLA ZTQ-15": {
+      "before": {
+        "file": "m_ztq15_green_static.fam",
+        "battle": "m_ztq15_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztq15_camo_static.fam",
+        "battle": "m_ztq15_camo_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTQ-15 Recon": {
+      "before": {
+        "file": "m_ztq15_green_static.fam",
+        "battle": "m_ztq15_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztq15_camo_static.fam",
+        "battle": "m_ztq15_camo_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZTZ-99": {
+      "before": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-99A": {
+      "before": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-99A2": {
+      "before": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-99G": {
+      "before": {
+        "file": "m_ztz99a_green_static.fam",
+        "battle": "m_ztz99a_green_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZBL-191": {
+      "before": {
+        "file": "m_zbl191_green.fam",
+        "battle": "m_zbl191_green_lo.fam"
+      },
+      "after": {
+        "file": "m_zbl191_camo_static.fam",
+        "battle": "m_zbl191_camo_lo_static.fam"
+      }
+    },
+    "PLA Catalogue ZBL19 — seller name": {
+      "before": {
+        "file": "m_zbl191_green.fam",
+        "battle": "m_zbl191_green_lo.fam"
+      },
+      "after": {
+        "file": "m_zbl191_camo_static.fam",
+        "battle": "m_zbl191_camo_lo_static.fam"
+      }
+    },
+    "PLA ZTZ-100": {
+      "before": {
+        "file": "m_ztz100_cg.fam",
+        "battle": "m_ztz100_lo.fam"
+      },
+      "after": {
+        "file": "m_ztz100_camo_static.fam",
+        "battle": "m_ztz100_camo_lo_static.fam"
+      }
+    },
+    "PLA ZSL-92 MG": {
+      "before": {
+        "file": "m_zsl92_static.fam",
+        "battle": "m_zsl92_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsl92mg_static.fam",
+        "battle": "m_zsl92mg_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "renamed": {
+    "1232 HUDName": [
+      "ZSL-92 MG",
+      "ZSL-92"
+    ]
+  },
+  "files": [
+    "m_csk181_lo_static.fam",
+    "m_csk181_lo_static.mat.json",
+    "m_csk181_lo_static_tex2.png",
+    "m_csk181_lo_static_tex28.png",
+    "m_csk181_lo_static_tex2_n.png",
+    "m_csk181_lo_static_tex3.png",
+    "m_csk181_static.fam",
+    "m_csk181_static.mat.json",
+    "m_csk181_static_tex2.png",
+    "m_csk181_static_tex28.png",
+    "m_csk181_static_tex2_n.png",
+    "m_csk181_static_tex3.png",
+    "m_hq17a_lo_static.fam",
+    "m_hq17a_lo_static.mat.json",
+    "m_hq17a_lo_static_tex0.png",
+    "m_hq17a_lo_static_tex0_mask.png",
+    "m_hq17a_lo_static_tex0_n.png",
+    "m_hq17a_static.fam",
+    "m_hq17a_static.mat.json",
+    "m_hq17a_static_tex0.png",
+    "m_hq17a_static_tex0_mask.png",
+    "m_hq17a_static_tex0_n.png",
+    "m_pcl181_lo_static.fam",
+    "m_pcl181_lo_static.mat.json",
+    "m_pcl181_lo_static_tex0.png",
+    "m_pcl181_lo_static_tex1.png",
+    "m_pcl181_lo_static_tex16.png",
+    "m_pcl181_lo_static_tex17.png",
+    "m_pcl181_lo_static_tex19.png",
+    "m_pcl181_lo_static_tex22.png",
+    "m_pcl181_lo_static_tex24.png",
+    "m_pcl181_lo_static_tex29.png",
+    "m_pcl181_lo_static_tex31.png",
+    "m_pcl181_lo_static_tex40.png",
+    "m_pcl181_lo_static_tex41.png",
+    "m_pcl181_lo_static_tex42.png",
+    "m_pcl181_lo_static_tex48.png",
+    "m_pcl181_lo_static_tex50.png",
+    "m_pcl181_lo_static_tex52.png",
+    "m_pcl181_lo_static_tex53.png",
+    "m_pcl181_lo_static_tex59.png",
+    "m_pcl181_lo_static_tex73.png",
+    "m_pcl181_static.fam",
+    "m_pcl181_static.mat.json",
+    "m_pcl181_static_tex0.png",
+    "m_pcl181_static_tex1.png",
+    "m_pcl181_static_tex16.png",
+    "m_pcl181_static_tex17.png",
+    "m_pcl181_static_tex19.png",
+    "m_pcl181_static_tex22.png",
+    "m_pcl181_static_tex24.png",
+    "m_pcl181_static_tex29.png",
+    "m_pcl181_static_tex31.png",
+    "m_pcl181_static_tex40.png",
+    "m_pcl181_static_tex41.png",
+    "m_pcl181_static_tex42.png",
+    "m_pcl181_static_tex48.png",
+    "m_pcl181_static_tex50.png",
+    "m_pcl181_static_tex52.png",
+    "m_pcl181_static_tex53.png",
+    "m_pcl181_static_tex59.png",
+    "m_pcl181_static_tex73.png",
+    "m_pgz09_lo_static.fam",
+    "m_pgz09_lo_static.mat.json",
+    "m_pgz09_lo_static_tex0.png",
+    "m_pgz09_lo_static_tex0_mask.png",
+    "m_pgz09_lo_static_tex0_n.png",
+    "m_pgz09_lo_static_tex1.png",
+    "m_pgz09_lo_static_tex1_mask.png",
+    "m_pgz09_lo_static_tex1_n.png",
+    "m_pgz09_static.fam",
+    "m_pgz09_static.mat.json",
+    "m_pgz09_static_tex0.png",
+    "m_pgz09_static_tex0_mask.png",
+    "m_pgz09_static_tex0_n.png",
+    "m_pgz09_static_tex1.png",
+    "m_pgz09_static_tex1_mask.png",
+    "m_pgz09_static_tex1_n.png",
+    "m_zbl191_camo_lo_static.fam",
+    "m_zbl191_camo_lo_static.mat.json",
+    "m_zbl191_camo_lo_static_tex0.png",
+    "m_zbl191_camo_lo_static_tex0_mask.png",
+    "m_zbl191_camo_lo_static_tex0_n.png",
+    "m_zbl191_camo_static.fam",
+    "m_zbl191_camo_static.mat.json",
+    "m_zbl191_camo_static_tex0.png",
+    "m_zbl191_camo_static_tex0_mask.png",
+    "m_zbl191_camo_static_tex0_n.png",
+    "m_zsl92mg_lo_static.fam",
+    "m_zsl92mg_lo_static.mat.json",
+    "m_zsl92mg_lo_static_tex0.png",
+    "m_zsl92mg_lo_static_tex0_mask.png",
+    "m_zsl92mg_lo_static_tex0_n.png",
+    "m_zsl92mg_lo_static_tex1.png",
+    "m_zsl92mg_lo_static_tex1_mask.png",
+    "m_zsl92mg_lo_static_tex1_n.png",
+    "m_zsl92mg_static.fam",
+    "m_zsl92mg_static.mat.json",
+    "m_zsl92mg_static_tex0.png",
+    "m_zsl92mg_static_tex0_mask.png",
+    "m_zsl92mg_static_tex0_n.png",
+    "m_zsl92mg_static_tex1.png",
+    "m_zsl92mg_static_tex1_mask.png",
+    "m_zsl92mg_static_tex1_n.png",
+    "m_ztl191_lo_static.fam",
+    "m_ztl191_lo_static.mat.json",
+    "m_ztl191_lo_static_tex0.png",
+    "m_ztl191_lo_static_tex0_mask.png",
+    "m_ztl191_lo_static_tex0_n.png",
+    "m_ztl191_lo_static_tex1.png",
+    "m_ztl191_lo_static_tex1_mask.png",
+    "m_ztl191_lo_static_tex1_n.png",
+    "m_ztl191_static.fam",
+    "m_ztl191_static.mat.json",
+    "m_ztl191_static_tex0.png",
+    "m_ztl191_static_tex0_mask.png",
+    "m_ztl191_static_tex0_n.png",
+    "m_ztl191_static_tex1.png",
+    "m_ztl191_static_tex1_mask.png",
+    "m_ztl191_static_tex1_n.png",
+    "m_ztq15_camo_lo_static.fam",
+    "m_ztq15_camo_lo_static.mat.json",
+    "m_ztq15_camo_lo_static_tex0.png",
+    "m_ztq15_camo_lo_static_tex0_mask.png",
+    "m_ztq15_camo_lo_static_tex0_n.png",
+    "m_ztq15_camo_lo_static_tex1.png",
+    "m_ztq15_camo_lo_static_tex1_mask.png",
+    "m_ztq15_camo_lo_static_tex1_n.png",
+    "m_ztq15_camo_lo_static_tex2.png",
+    "m_ztq15_camo_lo_static_tex2_mask.png",
+    "m_ztq15_camo_lo_static_tex2_n.png",
+    "m_ztq15_camo_static.fam",
+    "m_ztq15_camo_static.mat.json",
+    "m_ztq15_camo_static_tex0.png",
+    "m_ztq15_camo_static_tex0_mask.png",
+    "m_ztq15_camo_static_tex0_n.png",
+    "m_ztq15_camo_static_tex1.png",
+    "m_ztq15_camo_static_tex1_mask.png",
+    "m_ztq15_camo_static_tex1_n.png",
+    "m_ztq15_camo_static_tex2.png",
+    "m_ztq15_camo_static_tex2_mask.png",
+    "m_ztq15_camo_static_tex2_n.png",
+    "m_ztz100_camo_lo_static.fam",
+    "m_ztz100_camo_lo_static.mat.json",
+    "m_ztz100_camo_lo_static_tex0.png",
+    "m_ztz100_camo_lo_static_tex0_mask.png",
+    "m_ztz100_camo_lo_static_tex0_n.png",
+    "m_ztz100_camo_lo_static_tex1.png",
+    "m_ztz100_camo_lo_static_tex1_mask.png",
+    "m_ztz100_camo_lo_static_tex1_n.png",
+    "m_ztz100_camo_lo_static_tex2.png",
+    "m_ztz100_camo_lo_static_tex2_mask.png",
+    "m_ztz100_camo_lo_static_tex2_n.png",
+    "m_ztz100_camo_static.fam",
+    "m_ztz100_camo_static.mat.json",
+    "m_ztz100_camo_static_tex0.png",
+    "m_ztz100_camo_static_tex0_mask.png",
+    "m_ztz100_camo_static_tex0_n.png",
+    "m_ztz100_camo_static_tex1.png",
+    "m_ztz100_camo_static_tex1_mask.png",
+    "m_ztz100_camo_static_tex1_n.png",
+    "m_ztz100_camo_static_tex2.png",
+    "m_ztz100_camo_static_tex2_mask.png",
+    "m_ztz100_camo_static_tex2_n.png",
+    "m_ztz99a_mix_lo_static.fam",
+    "m_ztz99a_mix_lo_static.mat.json",
+    "m_ztz99a_mix_lo_static_tex0.png",
+    "m_ztz99a_mix_lo_static_tex0_mask.png",
+    "m_ztz99a_mix_lo_static_tex0_n.png",
+    "m_ztz99a_mix_lo_static_tex1.png",
+    "m_ztz99a_mix_lo_static_tex1_mask.png",
+    "m_ztz99a_mix_lo_static_tex1_n.png",
+    "m_ztz99a_mix_static.fam",
+    "m_ztz99a_mix_static.mat.json",
+    "m_ztz99a_mix_static_tex0.png",
+    "m_ztz99a_mix_static_tex0_mask.png",
+    "m_ztz99a_mix_static_tex0_n.png",
+    "m_ztz99a_mix_static_tex1.png",
+    "m_ztz99a_mix_static_tex1_mask.png",
+    "m_ztz99a_mix_static_tex1_n.png"
+  ],
+  "checks": 21
+}

@@ -1,4 +1,14 @@
-# Freedom Arrow 0.8.0-dev.46
+# Freedom Arrow 0.8.0-dev.47
+
+- Seller woodland digital camo (the artist's own coatings): ZTQ-15 and ZTQ-15 Recon, ZTZ-99, ZTZ-99A, ZTZ-99A2, ZTZ-99G, ZBL-191 and ZTZ-100. ZSD-89A already uses the seller's woodland digital set (dev.43).
+- PGZ-09: the twin 35 mm guns are back on the turret.
+- HQ-17 / HQ-17A: both radars moved onto the turret roof (search radar forward and lower, tracking radar higher).
+- ZTL-191: turret, gun and remote MG lowered onto the hull, matching Shawn's original Blender file.
+- ZSL-92: the MG card is now called "ZSL-92" and uses the model without the turret; the other card stays "ZSL-92 Autocannon".
+- CSK-181 and PCL-181: the very heavy seller meshes (3.1 million and 14 million vertices) are reduced so they draw properly; PCL-181 tyres are dark as in the seller's picture.
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.46
 
 - ZBD-251 ABZ-13: the same stats as the Bradley ESV BLAAM (TOW-BB): damage 15 (was 13.5), 20 m blast (was 10), 2-round magazine with an 8-12 s reload (was 4 and 5-6 s), but 60 mm penetration (was 35). It keeps its own vertical launch, model and sounds.
 - HE and thermobaric ATGMs at 60 mm penetration: TOW-BB and Kornet-M 9M133FM-2, Kornet 9M133F, Khrizantema 9M123F (were 80); Kokon 9M114F, Ataka-M 9M120F, Konkurs-M 9M113F (were 70).
