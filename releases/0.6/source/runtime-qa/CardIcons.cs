@@ -13,6 +13,7 @@ namespace FreedomArrow;
 // treats an unknown address as Vanilla content. The PNGs are embedded in this DLL; icons/*.png in runtime-qa.
 // Aircraft portraits use the supplied PNGs verbatim; numeric card fields remain native.
 // Portrait, _BASIC and _HOVER aliases share one Sprite/Texture per resource.
+// PLA infantry portraits (Osama, 13 Nov 2026): original generated art, one card shared by each specialization group.
 static class CardIcons
 {
     static readonly (string address,string resource)[] Icons=
@@ -83,6 +84,21 @@ static class CardIcons
         ("FA_BLACK_EAGLE_USER-Portrait_BASIC","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE_USER-Portrait_HOVER","FA_BLACK_EAGLE-Portrait.png"),
         ("FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
+        ("FA_CN_INF_CONSCRIPTS-Portrait","FA_CN_INF_CONSCRIPTS-Portrait.png"),
+        ("FA_CN_INF_CONSCRIPTS-Portrait_BASIC","FA_CN_INF_CONSCRIPTS-Portrait.png"),
+        ("FA_CN_INF_CONSCRIPTS-Portrait_HOVER","FA_CN_INF_CONSCRIPTS-Portrait.png"),
+        ("FA_CN_INF_AIRBORNE_ASSAULT-Portrait","FA_CN_INF_AIRBORNE_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_AIRBORNE_ASSAULT-Portrait_BASIC","FA_CN_INF_AIRBORNE_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_AIRBORNE_ASSAULT-Portrait_HOVER","FA_CN_INF_AIRBORNE_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_AIR_ASSAULT-Portrait","FA_CN_INF_AIR_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_AIR_ASSAULT-Portrait_BASIC","FA_CN_INF_AIR_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_AIR_ASSAULT-Portrait_HOVER","FA_CN_INF_AIR_ASSAULT-Portrait.png"),
+        ("FA_CN_INF_SNIPER_PAIR-Portrait","FA_CN_INF_SNIPER_PAIR-Portrait.png"),
+        ("FA_CN_INF_SNIPER_PAIR-Portrait_BASIC","FA_CN_INF_SNIPER_PAIR-Portrait.png"),
+        ("FA_CN_INF_SNIPER_PAIR-Portrait_HOVER","FA_CN_INF_SNIPER_PAIR-Portrait.png"),
+        ("FA_CN_INF_SEA_DRAGON-Portrait","FA_CN_INF_SEA_DRAGON-Portrait.png"),
+        ("FA_CN_INF_SEA_DRAGON-Portrait_BASIC","FA_CN_INF_SEA_DRAGON-Portrait.png"),
+        ("FA_CN_INF_SEA_DRAGON-Portrait_HOVER","FA_CN_INF_SEA_DRAGON-Portrait.png"),
         ("outline\\FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
         // A distinct address avoids a native UI item retaining the previous gray sprite.
         ("FA_BLACK_EAGLE_WHITE-Label","FA_BLACK_EAGLE-Label.png"),
@@ -103,7 +119,7 @@ static class CardIcons
         var seed=new HarmonyMethod(typeof(CardIcons),nameof(Seed));
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSprite)),prefix:seed);
         harmony.Patch(AccessTools.Method(typeof(IconsLoader),nameof(IconsLoader.LoadSpriteAsync)),prefix:seed);
-        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 10 portraits, 10 right-facing cutouts, existing ground icons");
+        MelonLogger.Msg($"FREEDOM_ARROW_CARD_ICONS installed: {Icons.Length} sprite addresses; 15 portraits, 10 right-facing cutouts, existing ground icons");
     }
     public static void Seed()
     {
@@ -119,7 +135,7 @@ static class CardIcons
                 if(cache.TryGetValue(address,out var have)&&have!=null&&have.Pointer==sprite.Pointer)continue;
                 cache[address]=sprite;
             }
-            if(!logged){logged=true;MelonLogger.Msg("FREEDOM_ARROW_CARD_ICONS cached: ground icons plus Su-75, Su-47, Su-57D, YF-23, F-21, Karatel, XM30, Abrams X and X-47B portraits and right-facing cutouts");}
+            if(!logged){logged=true;MelonLogger.Msg("FREEDOM_ARROW_CARD_ICONS cached: ground icons plus Su-75, Su-47, Su-57D, YF-23, F-21, Karatel, XM30, Abrams X and X-47B portraits, 5 PLA infantry portraits and right-facing cutouts");}
         }
         catch(Exception x)
         {

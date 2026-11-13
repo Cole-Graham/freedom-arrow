@@ -1,10 +1,22 @@
-# Freedom Arrow 0.8.0-dev.40
+# Freedom Arrow 0.8.0-dev.41
+
+- PLA infantry card portraits: 43 PLA infantry cards now use new Chinese portraits instead of Russian ones.
+  - Conscripts: every PLARF Rocket/Reservist infantry card.
+  - Airborne assault: PLAGF Motorized and PLAGF Armored infantry.
+  - Air assault: PLAAF Airborne infantry.
+  - Sea Dragons: Marines, Marine HJ-8, Marine QW-2 and Sea Dragons.
+  - Sniper pair: both Snipers cards and the Armored Sniper Pair.
+- Special forces keep their current portraits until more SF art is made. Test cards are unchanged.
+- The portraits are original generated art, embedded in FreedomArrow.Runtime.dll.
+
+Models and music: 0.2.5 plus the dev.35-40 files (complete package).
+
+## Historical 0.8.0-dev.40
 
 - QN-506: woodland digital camo on the hull and turret. The seller files have no texture maps (the re-download is identical), so the camo is projected onto the model's main paint.
 - ZBL-08: now uses Shawn's PBR ZBL-09 model (same 8x8 family, woodland) in place of the old model with camo netting.
 - Model files ship in the complete package only until the next assets release.
 
-Models and music: 0.2.5 plus the dev.35-40 files (complete package).
 
 ## Historical 0.8.0-dev.39
 
