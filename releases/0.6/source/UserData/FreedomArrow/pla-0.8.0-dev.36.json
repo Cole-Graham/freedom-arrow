@@ -1,0 +1,46 @@
+{
+  "version": "0.8.0-dev.36",
+  "base": "0.8.0-dev.35",
+  "base_sha256": "0c8bed0c0fbc1bac00f4cf556a86774f24bfc357a7a701d05f17bbf3f8e46794",
+  "request": "Osama 13 Nov 11:52-12:00 PST: VT-5 for PLAN SOF; VT-5 serves Motorized and ZTQ-15 PLAGF, each with a recon and a vehicle version; stat clones except VT-5 gets APS; VT-5 more armour: SRAT II sides, ZTZ-96A front",
+  "ztq15": {
+    "unit": 906,
+    "spec": [
+      21,
+      18
+    ],
+    "camo": "woodland digital"
+  },
+  "vt5": {
+    "unit": 1261,
+    "parent": 906,
+    "specs": [
+      21,
+      20
+    ],
+    "cost": 140
+  },
+  "vt5_recon": {
+    "unit": 1262,
+    "parent": 1240,
+    "specs": [
+      21
+    ],
+    "cost": 145
+  },
+  "vt5_changes": {
+    "armour_front": "KE 300->600, HEAT 500->700 (ZTZ-96A)",
+    "armour_sides": "HEAT 250->700 (SRAT II); KE 100 unchanged",
+    "aps": "2 charges, 10 s cooldown (vanilla light APS)",
+    "camo": "desert digital ZTQ-15 model until the VT-5 model is bought"
+  },
+  "pool_counts": {
+    "17": 47,
+    "18": 37,
+    "19": 46,
+    "20": 46,
+    "21": 47,
+    "22": 37
+  },
+  "checks": 23
+}

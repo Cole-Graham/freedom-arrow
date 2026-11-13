@@ -14,7 +14,7 @@
       18
     ],
     "906": [
-      21
+      18
     ],
     "949": [
       19
@@ -752,6 +752,13 @@
     ],
     "1260": [
       19
+    ],
+    "1261": [
+      21,
+      20
+    ],
+    "1262": [
+      21
     ]
   },
   "excluded_units": [
@@ -924,6 +931,10 @@
       19,
       20,
       21
+    ],
+    "1261": [
+      20,
+      21
     ]
   },
   "carriers": {
@@ -1017,10 +1028,10 @@
   ],
   "pool_counts": {
     "17": 47,
-    "18": 36,
+    "18": 37,
     "19": 46,
-    "20": 45,
-    "21": 46,
+    "20": 46,
+    "21": 47,
     "22": 37
   },
   "native_verified": false,
@@ -1082,9 +1093,13 @@
       "1063": [
         17,
         20
+      ],
+      "1261": [
+        21,
+        20
       ]
     },
     "all_other_active_units": 1,
-    "basis": "Sam 12 Nov: deck building requires one spec; Mi-8 Cargo and Shaanxi HMV3 explicitly shared; Z-8L in every spec (Osama 12 Nov 04:18); Shaanxi HMV3 and HMV3 Cargo in every spec (Osama 12 Nov 04:45); ZSD-89A PLAGF card in both PLAGF specs, ZBD-86 in PLAN SOF and PLAAF (Osama 12 Nov 12:09-12:16)"
+    "basis": "Sam 12 Nov: deck building requires one spec; Mi-8 Cargo and Shaanxi HMV3 explicitly shared; Z-8L in every spec (Osama 12 Nov 04:18); Shaanxi HMV3 and HMV3 Cargo in every spec (Osama 12 Nov 04:45); ZSD-89A PLAGF card in both PLAGF specs, ZBD-86 in PLAN SOF and PLAAF (Osama 12 Nov 12:09-12:16); VT-5 in Motorized and PLAN Navy/SOF (Osama 13 Nov 11:52-11:56)"
   }
 }

@@ -1,4 +1,17 @@
-# Freedom Arrow 0.8.0-dev.35
+# Freedom Arrow 0.8.0-dev.36
+
+- ZTQ-15 and ZTQ-15 Recon now both serve PLAGF Armored, in woodland digital. The ZTQ-15 card moved from Motorized.
+- New VT-5 and VT-5 Recon for Motorized, in desert digital; the VT-5 card is also in PLAN Navy/SOF. They are ZTQ-15 / ZTQ-15 Recon stat clones except:
+  - APS (2 charges, 10 s cooldown, the vanilla light APS).
+  - ZTZ-96A front armour: kinetic 600, HEAT 700 (ZTQ-15: 300 / 500).
+  - SRAT II side armour: HEAT 700 (ZTQ-15: 250); kinetic sides stay 100.
+  - 140 and 145 points (ZTQ-15: 95 and 100).
+- The VT-5 uses the ZTQ-15 model until the VT-5 model is bought and converted.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35 and dev.36 files (complete package).
+
+## Historical 0.8.0-dev.35
 
 - ZTQ-62-I removed from the game (its PLARF card is gone).
 - New ZTZ-59D1: a recon copy of the ZTZ-59D in PLARF. Recon category, Very Good Optics (2300 m ground), 65 points, 6 cards. Same gun, armour and model as the ZTZ-59D.
