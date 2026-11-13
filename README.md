@@ -1,12 +1,21 @@
-# Freedom Arrow 0.8.0-dev.42
+# Freedom Arrow 0.8.0-dev.43
+
+- Seller textures that the FBX export had dropped are reconnected, checked against each CGTrader listing preview:
+  - DF-15: the seller's 3-colour camo on the cab, body and launcher (was plain green).
+  - PCL-181: the seller's digital camo on the body (was plain tan); the seller's flag and badge textures are no longer painted over.
+  - ZSD-89A: the seller's main woodland-digital set from the listing preview (was the plain-green set).
+- Still missing from the seller downloads (reported, not made up): HQ-6A Forest Camo set, QN-506 and ZTZ-59D paint (SketchUp/Lumion only), DF-15 and PHL-03 decal placement, PHL-03 tyre texture.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-43 files (complete package).
+
+## Historical 0.8.0-dev.42
 
 - Seller-provided textures on all models (Osama: "we want to use what the seller already provided"):
   - Back to the seller's own paint (desert recolours removed): DF-15, DF-17, DF-21/21D, DF-31A, YJ-18, HQ-6A (also no brightening), HQ-12, PGZ-88, PGZ-09, PLZ-70, PLZ-83, PLZ-85, PLZ-89, Type 89 (PLARF) and ZTZ-59D/59D1.
   - Generated digital camo replaced with the seller files: ZTQ-15, ZTQ-15 Recon, VT-5, VT-5 Recon, ZTZ-99, ZTZ-99A, ZTZ-99A2, ZTZ-99G, VT-4, ZBD-04, ZBD-04A and ZTZ-100.
 - Kept: QN-506 woodland camo (its seller files have no textures), the ZTZ-96/96A/96B swap, black tyres and dark windows where seller textures were missing, and clear glass.
 - Model files ship in the complete package only until the next assets release.
-
-Models and music: 0.2.5 plus the dev.35-42 files (complete package).
 
 ## Historical 0.8.0-dev.41
 
