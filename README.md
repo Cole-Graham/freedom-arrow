@@ -1,4 +1,17 @@
-# Freedom Arrow 0.8.0-dev.56
+# Freedom Arrow 0.8.0-dev.57
+
+- PGL-625: a Pantsir S1 stat copy (armour, radar, optics, guns and missiles) with road speed 100, reverse 40, 8 missiles (Pantsir 12) and a missile ground range of 1200 as shown in game. 170 points as before.
+- PGZ-09: twin 35 mm guns with the Pantsir 30 mm gun stats and 133 rounds (was 67).
+- PHL-16: 350 points (was 250); its 300 mm and 370 mm rockets do 48 damage (was 33) with a 165 m blast as shown in game (was 150 m).
+- PHL-191 Ballistic: loadouts named after its real missiles, 2x Fire Dragon 480 and 2x Fire Dragon 280A (stats as before: ATACMS and PrSM).
+- PHL-03: choosing a guided loadout no longer renames the unit "9K515 Tornado-S".
+- PGZ-88: 80 points (was 175).
+- JRVG-1: moved from Motorized to PLAN Navy/SOF; ground range 1400 and high-altitude range 1800 as shown in game (were 1100 and 1000); road speed 100 (was 70), reverse 25.
+- HQ-7B: moved from PLAN Navy/SOF to PLAAF.
+- HQ-17A: now in both PLAN Navy/SOF and Motorized.
+- HQ-6A: moved from Rocket Force to Motorized.
+
+## Historical 0.8.0-dev.56
 
 - PLA infantry cards now use Osama's six supplied images (40 cards changed):
   - SF High Tech: Blood Wolves, Godswords, Whistling Arrows, Mountain Leopards.

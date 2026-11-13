@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0-dev.57",
+  "base": "0.8.0-dev.56",
+  "base_sha256": "f809ce2710fd128e20db50d4a20c6786061521b4dd4c7dbcb72d9b0960c5ce53",
+  "request": "Osama 13 Nov 15:4x PST: PGZ-09 guns like Pantsir; PGZ-88 80; PHL-16 48 damage, 165 m radius, 350; PHL-191 munition names; PHL-03 loadout must not change its name; PGL-625 Pantsir clone (reverse 40, forward 100, 8 missiles, ground range 1200); JRVG-1 to PLAN SOF; JRVG 1400 ground, 1800 high altitude, 100 forward, 25 reverse; HQ-7B to PLAAF; HQ-17A in both SOF and Motorized; HQ-6 to Motorized",
+  "log": {
+    "costs": {
+      "PGZ-88": [
+        175,
+        80
+      ],
+      "PHL-16": [
+        250,
+        350
+      ]
+    },
+    "phl16_2017442": [
+      33.0,
+      75.0,
+      112.5
+    ],
+    "phl16_2010439": [
+      33.0,
+      75.0,
+      112.5
+    ]
+  },
+  "fire_dragon_280a_ammo": 2018727,
+  "names_source": "PHL-16/PCL-191 carries two 750 mm missiles: Fire Dragon 480 and Fire Dragon 280A (Wikipedia PHL-16; Janes)",
+  "checks": 18,
+  "verified": "data only"
+}
