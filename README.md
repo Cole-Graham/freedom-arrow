@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.52
+# Freedom Arrow 0.8.0-dev.53
+
+- DF-15: the seller's 3-colour camo now covers the cab and body at the size shown in the seller's picture; the paint no longer renders as bare metal.
+- PHL-03: the doors have the seller's camo again and the paint no longer renders as bare metal.
+- CSK-181: the camo body is kept at full detail (only the wheels and small parts are reduced). PCL-181: body reduced, tyres intact, vanilla window glass.
+- QN-506: tracks and wheels dark, gun and missile pods olive.
+- ZBD-04, ZBD-04A and ZBD-04A Recon: the seller's digital camo, as one static model.
+- PGL-625: the seller's digital camo. KQ-200: see-through propeller discs from the seller's texture.
+- SR-5: the driver is hidden.
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.52
 
 - DF-17/ZF: now a ballistic missile with the same arc as the DF-21 and Iskander-M (it flew flat with the Kinzhal profile), with twice their acceleration (200) and twice their top speed (1600; they cap at 800).
 - Everything else as 0.8.0-dev.51.
