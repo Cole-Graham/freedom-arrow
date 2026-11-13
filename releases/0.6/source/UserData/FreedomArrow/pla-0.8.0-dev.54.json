@@ -1,0 +1,17 @@
+{
+  "version": "0.8.0-dev.54",
+  "base": "0.8.0-dev.53",
+  "base_sha256": "2b7a323b768a0b6173f23816300420eb3e8212911d26882133f5c099fcc198b1",
+  "request": "Osama 13 Nov 15:08 PST: DF-31A needs a 10 minutes CD and 30000 kg resupply",
+  "ammo": 2010399,
+  "ResupplyTime": [
+    1300,
+    600
+  ],
+  "SupplyCost": [
+    27500,
+    30000
+  ],
+  "checks": 2,
+  "verified": "data only"
+}

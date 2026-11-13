@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.53
+# Freedom Arrow 0.8.0-dev.54
+
+- DF-31A: 10 minutes to rearm its missile (was about 22) and 30000 supply per missile (was 27500).
+- Everything else as 0.8.0-dev.53.
+
+## Historical 0.8.0-dev.53
 
 - DF-15: the seller's 3-colour camo now covers the cab and body at the size shown in the seller's picture; the paint no longer renders as bare metal.
 - PHL-03: the doors have the seller's camo again and the paint no longer renders as bare metal.
