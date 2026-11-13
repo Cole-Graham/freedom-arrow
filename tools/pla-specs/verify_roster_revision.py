@@ -45,8 +45,8 @@ with zipfile.ZipFile(a.package) as z:
  ok(ammo(1233)[0]['Seeker']==50,'HQ9B FNF');ok(ammo(1234)[0]['Seeker']==100,'HQ9A SA')
  for uid in [1233,1234]:ok(ammo(uid)[0]['LowAltRange']==t['AmmunitionsJson'][154]['LowAltRange'] and ammo(uid)[0]['HighAltRange']==t['AmmunitionsJson'][154]['HighAltRange'],'GEM+ ranges')
  ok(ammo(911)[0]['Seeker']==50 and ammo(911)[0]['HighAltRange']==t['AmmunitionsJson'][220]['HighAltRange'],'S400 profile')
- missiles=[(am['HUDName'],r['Quantity']) for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1056 for am in [t['AmmunitionsJson'][r['AmmunitionId']]] if am['HUDName'] in ['HJ-10','ABZ-13 anti-personnel']]
- ok(sorted(missiles)==[('ABZ-13 anti-personnel',4),('HJ-10',2)],'ZBD missile counts')
+ missiles=[(am['HUDName'],r['Quantity']) for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1056 for am in [t['AmmunitionsJson'][r['AmmunitionId']]] if am['HUDName'] in ['HJ-10','HJ-16','ABZ-13 anti-personnel']]
+ ok(sorted(missiles) in ([('ABZ-13 anti-personnel',4),('HJ-10',2)],[('ABZ-13 anti-personnel',4),('HJ-16',2)]),'ZBD missile counts (HJ-16 name since dev.55, Osama 13 Nov)')
  ok(any(t['AbilitiesJson'][r['AbilityId']]['IsLaserDesignator'] for r in t['UnitAbilitiesJson'].values() if r['UnitId']==1056),'ZBD laser')
  ok(not ammo(1085),'recon drone must be unarmed')
  for name,entry in models.items():

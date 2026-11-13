@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.54
+# Freedom Arrow 0.8.0-dev.55
+
+- J-5, J-7 and J-8D get one cannon and the J-6W two, with GSh-23 stats and their real names (Type 23-1, Type 30-1, Type 23-3).
+- Z-8L: King Stallion stats (cost 120, 30 seats, armour, speed, sensors), no weapons. WZ-7: Global Hawk stats.
+- Z-10K: Longbow optics (the Z-21 already had them). ZBD-251: its missile is the HJ-10 with the name HJ-16.
+- CSK-181 Transport is now just CSK-181. Mountain Leopards cost 90. Z-11WB is also in PLAN Navy/SOF. The PLAAF Z-19 Recon is removed.
+- Models: DF-15 black tyres, dark olive missile and vanilla glass; HQ-17 front radar further forward; Z-11WB shinier; QN-506 more metallic; crew hidden on the Lynx ATV, SR-5 and both Shaanxi HMV3 (FAModels 0.3.19 keeps checking for late-spawned crew).
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.54
 
 - DF-31A: 10 minutes to rearm its missile (was about 22) and 30000 supply per missile (was 27500).
 - Everything else as 0.8.0-dev.53.

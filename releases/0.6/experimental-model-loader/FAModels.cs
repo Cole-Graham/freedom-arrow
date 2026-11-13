@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.18", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.19", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -47,7 +47,7 @@ public partial class Mod : MelonMod
             if (!map.TryGetValue(unitData.Name, out var e)) return;
             // Osama 13 Nov (Lynx ATV): an entry with no file and a "hide" pattern keeps the stand-in model and only hides
             // its renderers whose object path matches the pattern (for example the seated US soldiers on the M1301 ISV).
-            if (e.file == "" && e.hide != "") { HideMatching(unitModel.PrefabRootScript.gameObject, e.hide, unitData.Name); return; }
+            if (e.file == "" && e.hide != "") { HideMatching(unitModel.PrefabRootScript.gameObject, e.hide, unitData.Name); queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 1)); return; }
             // In a battle, use the entry's low-res copy (smaller textures and mesh; aircraft with the gear up) when it has one.
             // The armory keeps the full-fidelity file.
             if (e.battle != "" && scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null)
@@ -181,16 +181,16 @@ public partial class Mod : MelonMod
     static void HideMatching(GameObject root, string pattern, string unit)
     {
         var rx = new System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-        int n = 0; var names = new List<string>();
+        int n = 0, fresh = 0; var names = new List<string>();
         foreach (var r in root.GetComponentsInChildren<Renderer>(true))
         {
             string path = r.gameObject.name; for (var q = r.transform.parent; q != null && q != root.transform; q = q.parent) path = q.name + "/" + path;
             bool hit = rx.IsMatch(path);
-            if (hit) { r.forceRenderingOff = true; n++; }
-            names.Add((hit ? "-" : "+") + path);
+            if (hit) { if (!r.forceRenderingOff) fresh++; r.forceRenderingOff = true; n++; }
+            if (hideLogged.Add(unit + "|" + path)) names.Add((hit ? "-" : "+") + path);
         }
-        MelonLogger.Msg($"FAMODELS {unit}: hid {n} matching renderer(s) for /{pattern}/");
-        if (hideLogged.Add(unit)) MelonLogger.Msg($"FAMODELS {unit} renderers: " + string.Join(" | ", names));
+        if (fresh > 0) MelonLogger.Msg($"FAMODELS {unit}: hid {fresh} new matching renderer(s) ({n} total) for /{pattern}/");
+        if (names.Count > 0) MelonLogger.Msg($"FAMODELS {unit} renderers: " + string.Join(" | ", names));
     }
 
     // Hide the stand-in only after its replacement has loaded completely.
@@ -207,6 +207,8 @@ public partial class Mod : MelonMod
 
     static void Apply(GameObject root, Entry e, string unit, bool build)
     {
+        // Hide-only entries: turrets, gunners and LOD children can be spawned after InitView, so re-check every pass.
+        if (e.file == "") { if (e.hide != "") HideMatching(root, e.hide, unit); return; }
         if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return; }
         var holder = new GameObject("FAM_holder");
         holder.SetActive(false);
