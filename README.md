@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.26
+# Freedom Arrow 0.8.0-dev.27
+
+- QLU-11: almost no dispersion (smart airburst grenade launcher). Rounds land on the aim point out to 1000 m.
+- Includes 0.8.0-dev.26. Not yet verified in a game run.
+
+Models and music: 0.2.2.
+
+## Historical 0.8.0-dev.26
 
 - QN-202 anti-personnel missile: damage 4 -> 9 (Whistling Arrows). Build 39 had given it the RPG-7 HE warhead's damage.
 - Includes 0.8.0-dev.25. Not yet verified in a game run.

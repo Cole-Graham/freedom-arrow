@@ -1,0 +1,21 @@
+{
+  "version": "0.8.0-dev.27",
+  "base": "0.8.0-dev.26",
+  "base_sha256": "4f6b9957069b35967b715f9074f37570ffcd214661ab84e64dd1b1bba5f954d1",
+  "request": "Osama 13 Nov 02:05 PST: QLU-11 should have very little to no dispersion, it is a smart grenade launcher",
+  "qlu11_dispersion": {
+    "DispersionHorizontalRadius": [
+      16.667,
+      0.5
+    ],
+    "DispersionVerticalRadius": [
+      3.333,
+      0.25
+    ],
+    "DispersionMinimal": [
+      0.0,
+      0.0
+    ]
+  },
+  "checks": 27573
+}
