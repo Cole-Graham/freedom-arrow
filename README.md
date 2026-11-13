@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.34
+# Freedom Arrow 0.8.0-dev.35
+
+- ZTQ-62-I removed from the game (its PLARF card is gone).
+- New ZTZ-59D1: a recon copy of the ZTZ-59D in PLARF. Recon category, Very Good Optics (2300 m ground), 65 points, 6 cards. Same gun, armour and model as the ZTZ-59D.
+- ZFB-05 uses the Russian BPM-97 model, portrait, sound and size; its 12.7 mm mount shows the BPM-97 Kord turret.
+- ZTQ-15 in PLA digital camo: desert digital for Motorized, woodland digital for the PLAGF ZTQ-15 Recon.
+- US voice lines at 70% of their original level by default (FA Music 1.5.2, -3.1 dB). UserData/FAMusic/voice-gain-db.txt still overrides it.
+- Model and music files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the files above (complete package).
+
+## Historical 0.8.0-dev.34
 
 - US voice lines (FA Music C&C clips) 6 dB quieter, to sit with the game's Russian lines. FA Music 1.5.1 reads the level from UserData/FAMusic/voice-gain-db.txt (one number in dB, default -6; restart the game after changing it).
 - Gameplay data unchanged from 0.8.0-dev.33. FAMusic.dll ships in the complete package only until the next assets release.

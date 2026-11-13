@@ -1,0 +1,62 @@
+{
+  "version": "0.8.0-dev.35",
+  "base": "0.8.0-dev.34",
+  "base_sha256": "dc2126c1183ddb35118b8cb1cfc2f8437992b47f3330ef916bfc48be30ca9a3c",
+  "request": "Osama 13 Nov 11:33 PST: remove ZTQ-62 from the game; make a ZTZ-59 recon called ZTZ-59D1",
+  "removed": {
+    "unit": 958,
+    "name": "ZTQ-62-I",
+    "spec": 19
+  },
+  "added": {
+    "unit": 1260,
+    "name": "ZTZ-59D1",
+    "parent": 1061,
+    "spec": 19,
+    "category": "recon",
+    "cost": 65,
+    "availability": 6,
+    "sensor": "vanilla Very Good Optics (3): ground 2300 m, low alt 1250 m, high alt 1000 m (ZTZ-59D: 600/800/1000)"
+  },
+  "zfb05": {
+    "unit": 954,
+    "model_from": "BPM-97 (219)",
+    "before": {
+      "ModelFileName": "DLC3_Tigr",
+      "PortraitFileName": "DLC3/TIGR/TIGR",
+      "ThumbnailFileName": "DLC3_TIGR_AGS-Label",
+      "AudioPreset": "UNIT_SOUND_PRESET_DLC3_RU_VEH_BRShM-Tigr",
+      "Length": 5.4,
+      "Width": 2.4,
+      "Height": 2.7
+    },
+    "after": {
+      "ModelFileName": "DLC3_BPM97",
+      "PortraitFileName": "DLC3/BPM97/BPM97",
+      "ThumbnailFileName": "DLC3_BPM97_KORD-Label",
+      "AudioPreset": "UNIT_SOUND_PRESET_DLC3_RU_BPM-97",
+      "Length": 6.0,
+      "Width": 2.5,
+      "Height": 2.9
+    },
+    "mount": [
+      2009992,
+      "DLC3_BPM97/DLC3_BPM97_Kord"
+    ],
+    "famodels_mapping_removed": "PLA ZFB-05"
+  },
+  "ztq15_camo": {
+    "906 ZTQ-15 (Motorized)": "desert digital m_ztq15_ddigi",
+    "1240 ZTQ-15 Recon (PLAGF Armored)": "woodland digital m_ztq15_wdigi"
+  },
+  "pool_counts": {
+    "17": 47,
+    "18": 36,
+    "19": 46,
+    "20": 45,
+    "21": 46,
+    "22": 37
+  },
+  "famusic_default_db": -3.1,
+  "checks": 18
+}

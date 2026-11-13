@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.1", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.2", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
@@ -62,13 +62,13 @@ public sealed class Player : MelonMod
     static readonly string VoiceRoot = Path.Combine(Root, "Voice");
     const float VoiceBase = 0.234f;   // Osama 7 Nov: the old 41% level (0.4 x 0.41) now sits at 70%
     // Osama 13 Nov: US lines were louder than the game's Russian lines. Extra gain in dB from
-    // UserData/FAMusic/voice-gain-db.txt (one number; default -6) so it can be matched by ear without a rebuild.
+    // UserData/FAMusic/voice-gain-db.txt (one number; default -3.1, 70% of the original level) so it can be matched by ear without a rebuild.
     static readonly string VoiceGainFile = Path.Combine(Root, "voice-gain-db.txt");
     static float voiceGain = -1f;
     static float VoiceGain()
     {
         if (voiceGain >= 0f) return voiceGain;
-        float db = -6f;
+        float db = -3.1f;   // Osama 13 Nov 11:22: 70% of the original level
         try { if (File.Exists(VoiceGainFile)) db = float.Parse(File.ReadAllText(VoiceGainFile).Trim(), System.Globalization.CultureInfo.InvariantCulture); } catch { }
         voiceGain = (float)Math.Pow(10.0, db / 20.0);
         Melon<Player>.Logger.Msg($"FA_MUSIC voice gain {db:0.0} dB (x{voiceGain:0.000}) from {(File.Exists(VoiceGainFile) ? "voice-gain-db.txt" : "default")}");
