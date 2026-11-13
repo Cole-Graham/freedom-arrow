@@ -1,0 +1,111 @@
+{
+  "v": 3,
+  "author": "Steel Balalaika",
+  "desc": "ui_wargoals_full",
+  "guid": null,
+  "type": 2,
+  "public": false,
+  "hasDiff": false,
+  "meDiff": 1,
+  "sceneName": "Central Village",
+  "createdDate": 1664393788,
+  "updatedDate": 1789037379,
+  "scenario": "Central Village_network",
+  "files": [],
+  "teams": [
+    {
+      "teamSide": 0,
+      "teamName": "Alpha team",
+      "slots": [
+        {
+          "playerName": "Alpha Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    },
+    {
+      "teamSide": 1,
+      "teamName": "Bravo team",
+      "slots": [
+        {
+          "playerName": "Bravo Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    }
+  ],
+  "gameVersion": "1.2.0.2",
+  "dlc": []
+}

@@ -7,7 +7,7 @@ and records that the complete package is required). Writes the complete package 
 launcher gameplay package.
 """
 from pathlib import Path
-import argparse,hashlib,json,re,subprocess,tempfile,zipfile
+import argparse,hashlib,json,re,subprocess,sys,tempfile,zipfile
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
 enc=lambda x:(json.dumps(x,indent=2,ensure_ascii=False)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()
@@ -16,7 +16,7 @@ def digest(p):
 ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAMusic/','UserData/FAAssets/')
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
-p.add_argument('--assets',required=True,help='published assets .bamod that the gameplay package pairs with (players install it separately)');p.add_argument('--complete-only',action='store_true',help='allow model files newer than --assets; the receipt then says the complete package is required');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
+p.add_argument('--assets',required=True,help='published assets .bamod that the gameplay package pairs with (players install it separately)');p.add_argument('--complete-only',action='store_true',help='allow model files newer than --assets; the receipt then says the complete package is required');p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
@@ -31,6 +31,19 @@ with zipfile.ZipFile(base) as z:
     for name in ['channel.json','pla-build.json','pla-spec-assignments.json',f'pla-{V}.json']:k='UserData/FreedomArrow/'+name;override[k]=(SRC/k).read_bytes()
     k='UserData/FreedomArrow/nlos.json'   # NLOS trait list (0.8.0-dev.7)
     if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
+    # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in
+    # releases/0.8/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
+    with tempfile.TemporaryDirectory() as built_dir:
+        subprocess.run([sys.executable,str(ROOT/'releases/0.8/scenarios/make_scenario.py'),'--game-dir',a.game_dir,'--out',built_dir],check=True)
+        built={'UserData/FreedomArrow/scenarios/'+f.relative_to(built_dir).as_posix():f.read_bytes() for f in Path(built_dir).rglob('*') if f.is_file()}
+    for k,b in built.items():
+        if k not in z.namelist() or z.read(k)!=b:override[k]=b
+    retired_scenarios=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and not n.endswith('/') and n not in built]
+    conquest=ROOT/'releases/0.8/source/UserData/FAConquestPrototype'
+    settings=(conquest/'settings.json').read_bytes();compat=json.loads((conquest/'compatibility.json').read_text())
+    compat['UserData/FAConquestPrototype/settings.json']=sha(settings);compat=enc(compat)
+    for k,b in (('UserData/FAConquestPrototype/settings.json',settings),('UserData/FAConquestPrototype/compatibility.json',compat)):
+        if z.read(k)!=b:override[k]=b
     assert json.loads(override['mod.json'])['version']==V and json.loads(override['UserData/FreedomArrow/channel.json'])['package_version']==V
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
     if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
@@ -45,12 +58,14 @@ with zipfile.ZipFile(base) as z:
     for n,b in override.items():
         if n in core['sha256'] or n.startswith('UserData/FreedomArrow/'):core['sha256'][n]=sha(b)
     override['UserData/FreedomArrow/payload-manifest.json']=enc(core)
+    for n in retired_scenarios:core['sha256'].pop(n,None);whole['sha256'].pop(n,None)
     whole.update(build=a.build,label='Freedom Arrow '+V)
     for n,b in override.items():
         if n not in ['mod.json','README.md']:whole['sha256'][n]=sha(b)
     whole['core_paths']=sorted(set(whole['core_paths'])|{n for n in override if n.startswith('UserData/FreedomArrow/')})
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(complete.resolve())],check=True)
+    if retired_scenarios:subprocess.run([a.zip,'-q','-d',str(complete.resolve()),*retired_scenarios],check=True)
     with tempfile.TemporaryDirectory() as tmp:
         stage=Path(tmp)
         for n,b in override.items():f=stage/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b)
