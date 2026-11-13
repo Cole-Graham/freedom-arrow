@@ -1,0 +1,132 @@
+{
+  "version": "0.8.0-dev.46",
+  "base": "0.8.0-dev.45",
+  "base_sha256": "b356baf87fbd2353d2b3b86d30a93c61cd54db5b91e2a4c81fa49020cdd8aa97",
+  "request": "Osama 13 Nov 13:58-14:00 PST: ZBD-251 ABZ-13 same stats as the Bradley ESV BLAAM missiles, 60 mm penetration; TOW-BB and similar HE ATGMs 60 mm penetration too",
+  "abz13": {
+    "before": {
+      "Damage": 13.5,
+      "StressDamage": 280.0,
+      "HealthAOERadius": 10.0,
+      "StressAOERadius": 10.0,
+      "OverpressureRadius": 0.0,
+      "AimStartDelay": 0.5,
+      "MuzzleVelocity": 0.0,
+      "ResupplyTime": 1.0,
+      "SupplyCost": 300.0,
+      "TargetType": 39,
+      "GroundRange": 800.0,
+      "LowAltRange": 0.0,
+      "HighAltRange": 0.0,
+      "MinimalRange": 100.0,
+      "MaxSpeed": 200.0,
+      "Acceleration": 58.0,
+      "DispersionHorizontalRadius": 1.0,
+      "DispersionVerticalRadius": 0.0,
+      "CanBeIntercepted": true,
+      "CanBeTargeted": false,
+      "IsTopArmorArmorAttack": false,
+      "TopArmorAttack": false,
+      "CriticMultiplier": 1.0,
+      "PenetrationAtMinRange": 35.0,
+      "PenetrationAtGroundRange": 35.0,
+      "w.MagazineSize": 4,
+      "w.MagazineReloadTimeMin": 5.0,
+      "w.MagazineReloadTimeMax": 6.0,
+      "w.TimeBetweenBurstsMin": 1.0,
+      "w.TimeBetweenBurstsMax": 1.0,
+      "w.TimeBetweenShotsInBurstMin": null,
+      "w.TimeBetweenShotsInBurstMax": null,
+      "w.ShotsPerBurstMin": 1,
+      "w.ShotsPerBurstMax": 1,
+      "w.AimTimeMin": 1.0,
+      "w.AimTimeMax": 2.0
+    },
+    "after": {
+      "Damage": 15.0,
+      "StressDamage": 300.0,
+      "HealthAOERadius": 20.0,
+      "StressAOERadius": 20.0,
+      "OverpressureRadius": 0.0,
+      "AimStartDelay": 0.0,
+      "MuzzleVelocity": 5.0,
+      "ResupplyTime": 5.0,
+      "SupplyCost": 100.0,
+      "TargetType": 38,
+      "GroundRange": 800.0,
+      "LowAltRange": 0.0,
+      "HighAltRange": 0.0,
+      "MinimalRange": 100.0,
+      "MaxSpeed": 200.0,
+      "Acceleration": 58.0,
+      "DispersionHorizontalRadius": 1.0,
+      "DispersionVerticalRadius": 0.0,
+      "CanBeIntercepted": true,
+      "CanBeTargeted": false,
+      "IsTopArmorArmorAttack": false,
+      "TopArmorAttack": false,
+      "CriticMultiplier": 1.0,
+      "PenetrationAtGroundRange": 60.0,
+      "w.MagazineSize": 2,
+      "w.MagazineReloadTimeMin": 8.0,
+      "w.MagazineReloadTimeMax": 12.0,
+      "w.TimeBetweenBurstsMin": 3.0,
+      "w.TimeBetweenBurstsMax": 4.0,
+      "w.TimeBetweenShotsInBurstMin": null,
+      "w.TimeBetweenShotsInBurstMax": null,
+      "w.ShotsPerBurstMin": 1,
+      "w.ShotsPerBurstMax": 1,
+      "w.AimTimeMin": 1.0,
+      "w.AimTimeMax": 2.0
+    }
+  },
+  "penetration_60": {
+    "2000184": [
+      "9M133FM-2",
+      80.0,
+      60.0
+    ],
+    "2000185": [
+      "TOW-BB",
+      80.0,
+      60.0
+    ],
+    "2000186": [
+      "9M123F",
+      80.0,
+      60.0
+    ],
+    "2000187": [
+      "9M133F",
+      80.0,
+      60.0
+    ],
+    "2000189": [
+      "9M133F",
+      80.0,
+      60.0
+    ],
+    "2000190": [
+      "9M114F",
+      70.0,
+      60.0
+    ],
+    "2000191": [
+      "Ataka-M 9M120F",
+      70.0,
+      60.0
+    ],
+    "2000192": [
+      "9M113F",
+      70.0,
+      60.0
+    ],
+    "2014660": [
+      "ABZ-13 anti-personnel",
+      35.0,
+      60.0
+    ]
+  },
+  "not_changed": "air-launched HE missiles (Griffin 70, LMUR 100, Hellfire AGM-114M 90, Kh-BPLA 80), Konkurs UAV 9M113F (35), infantry thermobaric rockets",
+  "checks": 42
+}

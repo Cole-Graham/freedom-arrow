@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.45
+# Freedom Arrow 0.8.0-dev.46
+
+- ZBD-251 ABZ-13: the same stats as the Bradley ESV BLAAM (TOW-BB): damage 15 (was 13.5), 20 m blast (was 10), 2-round magazine with an 8-12 s reload (was 4 and 5-6 s), but 60 mm penetration (was 35). It keeps its own vertical launch, model and sounds.
+- HE and thermobaric ATGMs at 60 mm penetration: TOW-BB and Kornet-M 9M133FM-2, Kornet 9M133F, Khrizantema 9M123F (were 80); Kokon 9M114F, Ataka-M 9M120F, Konkurs-M 9M113F (were 70).
+- Air-launched HE missiles (Griffin, LMUR, Hellfire AGM-114M, Kh-BPLA) are unchanged.
+
+## Historical 0.8.0-dev.45
 
 - HJ-10 weapon icon: the AFT-10 (HJ-10 card) and ZBD-251 launchers show a new HJ-10 silhouette instead of the US Hellfire or the generic ATGM icon. Drawn to the proportions of Osama's Red Arrow 10B photo. Helicopter and drone AKD-10 racks keep their rack icons.
 - Everything else as 0.8.0-dev.44.
