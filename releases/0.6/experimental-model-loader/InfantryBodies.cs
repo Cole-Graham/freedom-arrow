@@ -75,7 +75,12 @@ public partial class Mod
         var original=native.sharedMesh;
         // Cache only when bind matrices and native bone ordering are identical via the original mesh ID.
         string key=file+":"+original.GetInstanceID()+":"+string.Join(",",native.bones.Select(b=>b==null?"?":b.name));
-        if(bodyCache.TryGetValue(key,out var cached))return cached;
+        // 0.3.17: the game unloads unused assets between scenes; a destroyed cached mesh or material made every later body
+        // apply throw (Mesh.vertexCount NullReferenceException) and fall back to the native body. Rebuild when destroyed.
+        if(bodyCache.TryGetValue(key,out var cached)) {
+            if(cached.mesh!=null && cached.materials.All(m=>m!=null))return cached;
+            bodyCache.Remove(key);MelonLogger.Msg($"FAMODELS body cache rebuilt for {file}: cached mesh or material was unloaded");
+        }
         using var f=new BinaryReader(File.OpenRead(Path.Combine(dir,file)));
         if(new string(f.ReadChars(4))!="FAS1")throw new InvalidDataException("Invalid skinned mesh header");
         int nb=f.ReadInt32();if(nb!=40)throw new InvalidDataException("Expected 40 donor bones");
@@ -104,7 +109,7 @@ public partial class Mod
             materials.Add(Mat(tex,new Color(1,1,1,1),new MatP{metallic=0,smoothness=.25f}));
         }
         if(f.BaseStream.Position!=f.BaseStream.Length)throw new InvalidDataException("Trailing skin data");
-        var mesh=new Mesh{name="FAM_BODY_"+file,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};
+        var mesh=new Mesh{name="FAM_BODY_"+file,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32,hideFlags=HideFlags.DontUnloadUnusedAsset};
         mesh.vertices=new Il2CppStructArray<Vector3>(pos.ToArray());mesh.normals=new Il2CppStructArray<Vector3>(normals.ToArray());mesh.uv=new Il2CppStructArray<Vector2>(uv.ToArray());mesh.boneWeights=new Il2CppStructArray<BoneWeight>(weights.ToArray());mesh.bindposes=original.bindposes;mesh.subMeshCount=ns;
         for(int s=0;s<ns;s++)mesh.SetTriangles(new Il2CppStructArray<int>(indices[s]),s);
         mesh.RecalculateBounds();mesh.RecalculateTangents();

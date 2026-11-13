@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.17
+# Freedom Arrow 0.8.0-dev.18
+
+- Infantry models fixed: FAModels 0.3.17. In the 0.8.0-dev.15 game log, after two matches every Chinese infantry body in the Arsenal failed (Mesh.vertexCount NullReferenceException) and the game showed the native Russian body. The loader kept body and weapon meshes that the game had unloaded between scenes; it now rebuilds them and keeps built meshes across scene changes. Included in the complete package; the launcher's models package (0.2.0) still has 0.3.16.
+- ZBL-191: HJ-16 range 1500 m (the Javelin's), SRAT II armour (12 HP, HEAT 700/700/130/20, kinetic 80/60/30/20). Price stays 105.
+- Not yet verified in a game run.
+
+Models and music: 0.2.0 plus FAModels.dll 0.3.17.
+
+## Historical 0.8.0-dev.17
 
 - ZBL-191: 4x HJ-16 in place of the HJ-8E. HJ-16 = the Javelin (10.5 damage, 140 penetration, top attack, fire-and-forget) at 2000 m instead of 1500 m.
 - ZBL-191: IronFist APS (as on the ZBD-20) and Stryker SRAT I armour (12 HP, HEAT 250/200/130/20, kinetic 80/60/30/20 front/sides/rear/top; was 60/40/30/30).
@@ -932,3 +940,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:40:22 PST (America/Los_Angeles) — 0.8.0-dev.16: Shaanxi Troop Truck not a squad transport; ZSD-63 removed.
 
 - 2026-11-12 15:44:49 PST (America/Los_Angeles) — 0.8.0-dev.17: ZBL-191 HJ-16, APS, SRAT I armour, 105 points.
+
+- 2026-11-12 16:22:23 PST (America/Los_Angeles) — 0.8.0-dev.18: FAModels 0.3.17 infantry body fix; HJ-16 1500 m; SRAT II.

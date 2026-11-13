@@ -111,7 +111,7 @@ public partial class Mod
                         {
                             // Share identical geometry between soldiers, keeping native-like draw/memory costs.
                             var filters = holder.GetComponentsInChildren<MeshFilter>(true).ToArray();
-                            if (weaponMeshes.TryGetValue(e.file, out var shared) && shared.Length == filters.Length)
+                            if (weaponMeshes.TryGetValue(e.file, out var shared) && shared.Length == filters.Length && shared.All(m => m != null))  // 0.3.17: skip unloaded meshes
                             {
                                 for (int f = 0; f < filters.Length; f++)
                                 {
@@ -120,7 +120,7 @@ public partial class Mod
                                     if (duplicate != shared[f]) UnityEngine.Object.Destroy(duplicate);
                                 }
                             }
-                            else weaponMeshes[e.file] = filters.Select(f => f.sharedMesh).ToArray();
+                            else { weaponMeshes[e.file] = filters.Select(f => f.sharedMesh).ToArray(); foreach (var m in weaponMeshes[e.file]) if (m != null) m.hideFlags = HideFlags.DontUnloadUnusedAsset; }
                             var renderers = holder.GetComponentsInChildren<MeshRenderer>(true).ToArray();
                             foreach (var renderer in renderers) if (renderer.sharedMaterial != null) renderer.sharedMaterial.enableInstancing = true;
                             // Measured native AK74M/RPK74M/SVD/M32 prefabs have a single LOD and 0.02 screen cutoff.

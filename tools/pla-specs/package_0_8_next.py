@@ -15,7 +15,7 @@ def digest(p):
 ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAMusic/','UserData/FAAssets/')
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
-p.add_argument('--build',type=int,required=True);a=p.parse_args()
+p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');a=p.parse_args()
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
@@ -32,6 +32,9 @@ with zipfile.ZipFile(base) as z:
     if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
     assert json.loads(override['mod.json'])['version']==V and json.loads(override['UserData/FreedomArrow/channel.json'])['package_version']==V
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
+    if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
+    if a.famodels:
+        fa=json.loads(z.read('UserData/FAAssets/manifest.json'));fa['files']['Mods/FAModels.dll']=sha(override['Mods/FAModels.dll']);override['UserData/FAAssets/manifest.json']=enc(fa)
     core['version']=V
     for n,b in override.items():
         if n in core['sha256'] or n.startswith('UserData/FreedomArrow/'):core['sha256'][n]=sha(b)
@@ -53,7 +56,7 @@ with tempfile.NamedTemporaryFile('w',delete=False) as lst:lst.write('\n'.join(as
 subprocess.run(f'{a.zip} -q -nw -d {gameplay.resolve()} -@ < {lp}',shell=True,check=True)
 with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipFile(base) as bz:
     for n,pin in whole['sha256'].items():assert sha(c.read(n))==pin,n
-    for n in asset_names:assert c.getinfo(n).CRC==bz.getinfo(n).CRC,n
+    for n in asset_names:assert c.getinfo(n).CRC==bz.getinfo(n).CRC or (a.famodels and n in('Mods/FAModels.dll','UserData/FAAssets/manifest.json')),n
     assert set(gz.namelist())==set(names)-set(asset_names)
     for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
     assert json.loads(gz.read('mod.json'))['version']==V

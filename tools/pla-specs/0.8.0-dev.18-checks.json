@@ -1,0 +1,20 @@
+{
+  "version": "0.8.0-dev.18",
+  "base": "0.8.0-dev.17",
+  "base_sha256": "a3c537d84a5eb5b3dda5ab8e524c312f867d38ecb878329d40240383c4e07512",
+  "request": "Osama 12 Nov 16:19 PST: HJ-16 1500 m, SRAT II; infantry models broken",
+  "hj16_range_m": 1500,
+  "armor": {
+    "MaxHealthPoints": 12,
+    "HeatArmorFront": 700,
+    "HeatArmorSides": 700,
+    "HeatArmorRear": 130,
+    "HeatArmorTop": 20,
+    "KinArmorFront": 80,
+    "KinArmorSides": 60,
+    "KinArmorRear": 30,
+    "KinArmorTop": 20
+  },
+  "famodels": "0.3.17 (cached mesh rebuild after scene unload)",
+  "checks": 27571
+}
