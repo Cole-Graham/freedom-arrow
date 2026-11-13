@@ -65,7 +65,10 @@ with zipfile.ZipFile(a.package) as z:
  if build>=36:
   for uid in [1084,1085,1086,1105]:ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
   n=t['AmmunitionsJson'][2010399];k=t['AmmunitionsJson'][340]
-  ok(all(n[f]==k[f] for f in ['Damage','HealthAOERadius','OverpressureRadius','StressAOERadius','FXPreset','AudioPreset']) and n['TrajectoryType']==300,'DF31 nuclear Kinzhal warhead, ballistic flight')
+  # Osama 13 Nov 14:47-14:52 PST (0.8.0-dev.50, build 118): DF-31A blast 500 m as shown in game (250 data), stress/overpressure scaled x250/350.
+  blast=['HealthAOERadius','OverpressureRadius','StressAOERadius'] if build<118 else []
+  ok(all(n[f]==k[f] for f in ['Damage','FXPreset','AudioPreset']+blast) and n['TrajectoryType']==300,'DF31 nuclear Kinzhal warhead, ballistic flight')
+  if build>=118:ok((n['HealthAOERadius'],n['StressAOERadius'],n['OverpressureRadius'])==(250.0,286,125),'DF31 500 m displayed blast')
  if build>=34:
   hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
   ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==([18,19,21] if build<46 else [17,18,19,20,21]),'HMV3 specs')  # Build46: every spec

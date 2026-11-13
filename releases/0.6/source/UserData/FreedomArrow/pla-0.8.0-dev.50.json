@@ -1,0 +1,43 @@
+{
+  "version": "0.8.0-dev.50",
+  "base": "0.8.0-dev.49",
+  "base_sha256": "b42c9f509f110e462858714da10b29c281e7fff2ce06aeb341665b3b52d7e71d",
+  "request": "Osama 13 Nov 14:47-14:52 PST: DF-ZF kills itself when it shoots; DF-31 nuclear missile aim time normal, blast radius down 20%, 500 m blast radius is fine",
+  "df_zf": {
+    "ammo": 2010351,
+    "MainEngineIgnitionDelay": [
+      2.0,
+      0.0
+    ],
+    "cause": "air-launch ignition delay on a ground launcher; theoretical, not yet proven in a game"
+  },
+  "df_31a": {
+    "aim_time": [
+      [
+        120,
+        120
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "HealthAOERadius": [
+      350,
+      250
+    ],
+    "StressAOERadius": [
+      400,
+      286
+    ],
+    "OverpressureRadius": [
+      175,
+      125
+    ],
+    "displayed_blast_m": [
+      700,
+      500
+    ]
+  },
+  "checks": 3
+}

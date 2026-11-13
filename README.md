@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.49
+# Freedom Arrow 0.8.0-dev.50
+
+- DF-17/ZF: the missile's motor now lights at launch (it waited 2 s, the air-launched Kinzhal setting, so it fell onto its own launcher and the blast killed it). The steep climb, dive and 1500 top speed stay.
+- DF-31A: normal ballistic aim time, 10-12 s (was 120 s). Blast 500 m as shown in game (was 700 m).
+- Everything else as 0.8.0-dev.49.
+
+## Historical 0.8.0-dev.49
 
 - Removed (parked until models are found): PHL-11, Shaanxi Troop Truck, VP4, PGZ-04 / PGZ-04A (it is the PGZ-95), WZ-701, ZSD-90, PHL-81. The Lynx ATV keeps VP4's Air Force availability and carries every squad VP4 carried.
 - FH-97A: the strike and SEAD packages no longer carry PL-15 air-to-air missiles.
