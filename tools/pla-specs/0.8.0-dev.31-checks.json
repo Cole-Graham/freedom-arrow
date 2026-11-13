@@ -1,0 +1,18 @@
+{
+  "version": "0.8.0-dev.31",
+  "base": "0.8.0-dev.30",
+  "request": "Osama 13 Nov 02:32 PST: the ZSL-92 looks wrinkly, smooth out what we have",
+  "zsl92_normal_maps": {
+    "m_wz551_tex0_n.png": {
+      "before": "297836f7a352faf53d144df07da30f37bbf4df1c6a08827841909a3e5a0127ef",
+      "after": "171b1a6c45df2287c9f230c62c2b97490d05847e98bd7d33291dd86e5b3f9d38"
+    },
+    "m_wz551_lo_tex0_n.png": {
+      "before": "b6e5d196aabae543546278366417c8a248aebd2de15f5961fd44ada88269294f",
+      "after": "da6bfcd5526f94235b5f8e10d2222f466a8796f099214896a1a7c5dcd05c11bc"
+    }
+  },
+  "method": "median filter (7 px at 2048, 5 px at 1024) + 1 px blur, then 60% of the remaining relief kept; colour, mask and meshes unchanged",
+  "gameplay_data": "unchanged from 0.8.0-dev.30",
+  "native_verified": false
+}

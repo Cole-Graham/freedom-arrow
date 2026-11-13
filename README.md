@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.30
+# Freedom Arrow 0.8.0-dev.31
+
+- ZSL-92: smoother surface. The fine noise in its surface-detail (normal) maps that looked wrinkly is filtered out; panel shapes, colours, camo and markings are unchanged.
+- Gameplay data unchanged from 0.8.0-dev.30. The two normal maps ship in the complete package only (needs the all-in-one file until the next assets release).
+
+Models and music: 0.2.3 plus the two ZSL-92 normal maps.
+
+## Historical 0.8.0-dev.30
 
 - MD-22: the LS-6 1000kg loadout is now "Heavy strike (2x LS-6 1000kg)" with no PL-15s, 105 -> 60 points; loadouts ordered by category then price.
 - Godswords 80 -> 100 points.
