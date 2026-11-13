@@ -1,0 +1,53 @@
+{
+  "version": "0.8.0-dev.20",
+  "base": "0.8.0-dev.19",
+  "base_sha256": "00f0cad76c6fcfb4a69f48b683d135785cf2faf70b5b47e5e955860d835615c1",
+  "request": "Osama 12 Nov 17:48 PST voice message (ammo parity, armory = in-match, Skirmish test)",
+  "ammo": {
+    "Airborne 空降兵 PF-98": [
+      10,
+      6
+    ],
+    "Pathfinders 先遣队 PF-98A": [
+      10,
+      6
+    ],
+    "Sea Dragons 蛟龙 PF-98": [
+      10,
+      6
+    ],
+    "Line Infantry 摩步班 PF-98": [
+      10,
+      6
+    ],
+    "Thunder Gods 雷神 FHJ-02": [
+      14,
+      6
+    ],
+    "Thermobaric Team FHJ-02": [
+      14,
+      6
+    ],
+    "HJ-12 Team HJ-12": [
+      2,
+      4
+    ],
+    "QW-12 Patrol 防空巡逻 QW-12": [
+      4,
+      6
+    ],
+    "AA Troopers 防空班 HN-6": [
+      4,
+      6
+    ]
+  },
+  "zero_seats": [
+    "Z-20T",
+    "Shaanxi HMV3",
+    "Z-8L",
+    "Mi-8 Cargo",
+    "Shaanxi Troop Truck"
+  ],
+  "csk181_transport_default_mount": 2018554,
+  "checks": 27573
+}

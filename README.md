@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.19
+# Freedom Arrow 0.8.0-dev.20
+
+- Launcher ammo matched to the Russian/US equivalents: PF-98 and PF-98A carried inside squads 10 -> 6 (dedicated PF-98 teams keep 10, like the RAWS and RPG-29 teams); FHJ-02 14 -> 6; HJ-12 Team 2 -> 4 (as the Javelin team); single-gunner AA teams (QW-12 Patrol, AA Troopers) 4 -> 6.
+- In a match, infantry can board any deck unit that has seats, whatever the armory transport list says. Z-20T, Shaanxi HMV3, Z-8L, Mi-8 Cargo and Shaanxi Troop Truck now have 0 infantry seats, so they no longer appear as transports in the match either.
+- CSK-181 Transport gets an empty default mount; its armory card threw a resupply-time error.
+- Includes 0.8.0-dev.19 (ZSL-92 retexture pilot). Not yet verified in a game run.
+
+Models and music: 0.2.0 plus FAModels.dll 0.3.17 and the ZSL-92 textures.
+
+## Historical 0.8.0-dev.19
 
 - ZSL-92 retexture pilot (both ZSL-92 cards): woodland digital camo applied across the hull in 3D, markings kept, dust and edge wear, colour map 2048 px (was 1024), and new surface-detail (normal) and metal/shine (mask) maps. Complete package only; the launcher models package is unchanged.
 - Includes 0.8.0-dev.18 (FAModels 0.3.17 infantry fix). Not yet verified in a game run.
@@ -951,3 +960,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 16:22:23 PST (America/Los_Angeles) — 0.8.0-dev.18: FAModels 0.3.17 infantry body fix; HJ-16 1500 m; SRAT II.
 
 - 2026-11-12 16:48:43 PST (America/Los_Angeles) — 0.8.0-dev.19: ZSL-92 retexture pilot.
+
+- 2026-11-12 18:18:33 PST (America/Los_Angeles) — 0.8.0-dev.20: launcher ammo parity, zero seats on non-transports, CSK-181 Transport mount.
