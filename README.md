@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.37
+# Freedom Arrow 0.8.0-dev.38
+
+- PLZ-05: the gun sits in the turret again (it was 1.66 m forward) and the roof MG is back on the roof.
+- HQ-17 and HQ-17A: both radars raised out of the hull onto the turret; they move at wheeled speed (the vanilla Tor-M2KM: road 90, cross-country 45, reverse 20, turn rate 80).
+- ZBD-04, ZBD-04A and ZBD-04A Recon (PLAGF) in woodland digital (were plain green).
+- ZTZ-100 in woodland digital.
+- ZTZ-96A and ZTZ-96B swap models: the ZTZ-96B now uses Shawn's woodland-digital model, and the ZTZ-96A the old plain-green one.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-38 files (complete package).
+
+## Historical 0.8.0-dev.37
 
 - Woodland digital camo on the ZTZ-99 and ZTZ-99A (were plain green) and the ZTZ-96B (was plain green).
 - The ZTZ-96 uses Shawn's woodland set, the same as the ZTZ-96A (was his desert set).

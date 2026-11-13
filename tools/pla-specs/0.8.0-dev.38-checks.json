@@ -1,0 +1,50 @@
+{
+  "version": "0.8.0-dev.38",
+  "base": "0.8.0-dev.37",
+  "base_sha256": "cf5aa2354f4cda60964996b96e4ed108ddc20f27dfd88d4f33c4b429ee6509fd",
+  "request": "Osama 13 Nov 12:26-12:34 PST: ZTZ-100 needs its woodland digital camo; ZTZ-96A and B can swap models, 96A can be the non-digital camo; PLZ-05 gun sticking out in front; HQ-17 speed of a wheeled vehicle, HQ-17 model looks off, radar dish sunk into the model; ZBD-04 in PLAGF does not use their digital camo",
+  "mobility": {
+    "HQ-17": {
+      "before": {
+        "MaxSpeedRoad": 65.0,
+        "MaxCrossCountrySpeed": 50.0,
+        "MaxSpeedReverse": 20.0,
+        "TurnRate": 60.0,
+        "Acceleration": 10.0
+      },
+      "after": {
+        "MaxSpeedRoad": 90.0,
+        "MaxCrossCountrySpeed": 45.0,
+        "MaxSpeedReverse": 20.0,
+        "TurnRate": 80.0,
+        "Acceleration": 10.0
+      }
+    },
+    "HQ-17A": {
+      "before": {
+        "MaxSpeedRoad": 65.0,
+        "MaxCrossCountrySpeed": 50.0,
+        "MaxSpeedReverse": 20.0,
+        "TurnRate": 60.0,
+        "Acceleration": 10.0
+      },
+      "after": {
+        "MaxSpeedRoad": 90.0,
+        "MaxCrossCountrySpeed": 45.0,
+        "MaxSpeedReverse": 20.0,
+        "TurnRate": 80.0,
+        "Acceleration": 10.0
+      }
+    }
+  },
+  "mobility_source": "vanilla Tor-M2KM (634)",
+  "models": {
+    "PLZ-05": "PLZ05Gun +1.66 m back, CN_MG +1.52 m back +0.10 m up (Shawn PLZ-05.blend positions)",
+    "HQ-17/HQ-17A": "HQ17_Rada_01 +2.56 m up (top 5.1 m), HQ17_Rada_02 +1.34 m up",
+    "ZBD-04": "woodland digital m_zbd04_wdigi",
+    "ZTZ-100": "woodland digital m_ztz100_wd",
+    "ZTZ-96B": "Shawn woodland-digital ZTZ-96A model",
+    "ZTZ-96A": "old plain-green ZTZ-96B model"
+  },
+  "checks": 5
+}

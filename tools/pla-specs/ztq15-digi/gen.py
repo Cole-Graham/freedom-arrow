@@ -31,6 +31,8 @@ ref=np.median(L[P]);detail=np.clip(L[P]/ref,0.35,1.5)[:,None]
 # dirt: how far the pixel's colour has drifted from clean paint towards brown; keep that share of the source colour
 clean=np.median(a[P],0);drift=np.clip(np.linalg.norm(a[P]-clean*(L[P]/ref)[:,None],axis=1)*3.0,0,0.6)[:,None]
 out=a.copy();out[P]=np.clip(camo*detail*(1-drift)+a[P]*drift,0,1)
+mark=((r>0.45)&(r>g*1.6)&(r>b*1.6))|((mx>0.55)&(s<0.15))   # red stars, white numbers: keep the source pixels
+out[mark&cov]=a[mark&cov]
 # feather: blend 1 px at the paint edge
 O=Image.fromarray(np.concatenate([(out*255).astype(np.uint8),alpha],-1),'RGBA');O.save(OUT)
 print(SCHEME,'paint share',round(float(P.mean()),3),'of covered',round(float(P.sum()/cov.sum()),3))
