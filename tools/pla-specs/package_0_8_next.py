@@ -19,6 +19,10 @@ for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=
 p.add_argument('--assets',required=True,help='published assets .bamod that the gameplay package pairs with (players install it separately)');p.add_argument('--complete-only',action='store_true',help='allow model files newer than --assets; the receipt then says the complete package is required');p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
+# Osama 13 Nov 12:39 ("make sure the model fixes land with your other thread"): two threads build on this branch. Stack every
+# build on the newest receipt, and refuse a package that drops the dev.35-38 model/camo/data fixes (check_model_carry.py).
+newest=max((int(re.search(r'dev\.(\d+)\.json$',f.name).group(1)),f.name) for f in (REL/'out/0.8').glob('FreedomArrow-0.8.0-dev.*.json') if re.search(r'dev\.\d+\.json$',f.name))
+assert a.prev==f'0.8.0-dev.{newest[0]}',f'--prev {a.prev} is not the newest build 0.8.0-dev.{newest[0]}; build on it so other threads\' fixes are kept'
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
 with zipfile.ZipFile(base) as z:
     whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='Freedom Arrow '+a.prev
@@ -100,3 +104,5 @@ receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':amod['ve
  'changed_paths':sorted(override),'native_verified':False}
 (out/f'FreedomArrow-{V}.json').write_bytes(enc(receipt));(ROOT/f'tools/pla-specs/{V}-package-checks.json').write_bytes(enc(receipt))
 print(json.dumps({k:v for k,v in receipt.items() if k!='changed_paths'},indent=2))
+carry=ROOT.parent/'pla-audit-20261112/check_model_carry.py'
+if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check=True)   # dev.35-38 fixes still present
