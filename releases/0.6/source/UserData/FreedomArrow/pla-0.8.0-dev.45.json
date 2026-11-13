@@ -1,0 +1,23 @@
+{
+  "version": "0.8.0-dev.45",
+  "base": "0.8.0-dev.44",
+  "base_sha256": "32a12204a2ca7865d0cc81205f7e390486cd1575551dd1f05161c7a41856cce4",
+  "request": "Osama 13 Nov 13:52 PST: Here is the HJ-10, make a weapon icon for the vehicle variant",
+  "icon": "FA_PLA_HJ10",
+  "weapons": {
+    "2009619": [
+      "HELLFIRE_X2",
+      "FA_PLA_HJ10"
+    ],
+    "2010721": [
+      "HELLFIRE_X2",
+      "FA_PLA_HJ10"
+    ],
+    "2014655": [
+      "FA_PLA_WP_ATGM",
+      "FA_PLA_HJ10"
+    ]
+  },
+  "source": "Discord attachment 1570919354122633287 (proportions only; drawn silhouette)",
+  "checks": 4
+}

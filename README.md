@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.44
+# Freedom Arrow 0.8.0-dev.45
+
+- HJ-10 weapon icon: the AFT-10 (HJ-10 card) and ZBD-251 launchers show a new HJ-10 silhouette instead of the US Hellfire or the generic ATGM icon. Drawn to the proportions of Osama's Red Arrow 10B photo. Helicopter and drone AKD-10 racks keep their rack icons.
+- Everything else as 0.8.0-dev.44.
+
+## Historical 0.8.0-dev.44
 
 - HQ-6A: the seller's Camouflage set (the forest camo on the listing preview), from Osama's re-download, in place of the plain Base Green set.
 - Model files ship in the complete package only until the next assets release.
