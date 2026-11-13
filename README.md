@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.38
+# Freedom Arrow 0.8.0-dev.39
+
+- 17 purchased models from Osama's cart now show in the armory and in battle:
+  - New models (these units had none): DF-15, DF-17, HQ-6A, HQ-11, PHL-16, PHL-191 Ballistic, PCL-181 / SH-15, AFT-09, CTL-181, CSK-181 and CSK-181 Transport, ZBD-251, Type 59D and ZTZ-59D1.
+  - Replaced stand-ins: PHL-03, QN-506, ZSL-92 (both cards), ZSD-89 (Type 89 and PLAN ZSD-89) and ZSD-89A (all four cards).
+  - Camo: Rocket Force-only units (DF-15, DF-17, HQ-6A, Type 59D, ZTZ-59D1, Type 89) in desert; the rest keep the seller's woodland or green paint. The QN-506 file is flat sand, recoloured olive.
+- PHL-191 card renamed "PHL-191 Ballistic" (the two-pod launcher). "PHL-191 Cruise" (three-box AR3) comes when its model arrives.
+- Model files ship in the complete package only until the next assets release.
+
+Models and music: 0.2.5 plus the dev.35-39 files (complete package).
+
+## Historical 0.8.0-dev.38
 
 - PLZ-05: the gun sits in the turret again (it was 1.66 m forward) and the roof MG is back on the roof.
 - HQ-17 and HQ-17A: both radars raised out of the hull onto the turret; they move at wheeled speed (the vanilla Tor-M2KM: road 90, cross-country 45, reverse 20, turn rate 80).
@@ -6,8 +17,6 @@
 - ZTZ-100 in woodland digital.
 - ZTZ-96A and ZTZ-96B swap models: the ZTZ-96B now uses Shawn's woodland-digital model, and the ZTZ-96A the old plain-green one.
 - Model files ship in the complete package only until the next assets release.
-
-Models and music: 0.2.5 plus the dev.35-38 files (complete package).
 
 ## Historical 0.8.0-dev.37
 

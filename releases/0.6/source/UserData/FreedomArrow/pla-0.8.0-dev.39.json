@@ -1,0 +1,224 @@
+{
+  "version": "0.8.0-dev.39",
+  "base": "0.8.0-dev.38",
+  "base_sha256": "2c9cada2d44f6888fd71cbf8b70c754bd18fb5d0e0972caca7165f88b440953d",
+  "request": "Osama 13 Nov: \"I downloaded a ton of files ... please add them to the game\"; \"implement all the models. I purchased the cart so all the models should be there\"; PHL-191 two-pod = \"PHL-191 Ballistic\".",
+  "models": {
+    "PLA Catalogue AFT-09": {
+      "before": null,
+      "after": {
+        "file": "m_aft09_static.fam",
+        "battle": "m_aft09_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue CSK-181": {
+      "before": null,
+      "after": {
+        "file": "m_csk181_static.fam",
+        "battle": "m_csk181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-181 Transport": {
+      "before": null,
+      "after": {
+        "file": "m_csk181_static.fam",
+        "battle": "m_csk181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue CTL-181 loitering munition launcher": {
+      "before": null,
+      "after": {
+        "file": "m_ctl181_static.fam",
+        "battle": "m_ctl181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue DF-15": {
+      "before": null,
+      "after": {
+        "file": "m_df15_static.fam",
+        "battle": "m_df15_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue DF-17": {
+      "before": null,
+      "after": {
+        "file": "m_df17_static.fam",
+        "battle": "m_df17_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue HQ-11": {
+      "before": null,
+      "after": {
+        "file": "m_hq11_static.fam",
+        "battle": "m_hq11_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue HQ-6A": {
+      "before": null,
+      "after": {
+        "file": "m_hq6a_static.fam",
+        "battle": "m_hq6a_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue PCL-181 / SH-15": {
+      "before": null,
+      "after": {
+        "file": "m_pcl181_static.fam",
+        "battle": "m_pcl181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA PHL-03": {
+      "before": {
+        "file": "phl03.fam",
+        "align": false,
+        "battle": "phl03_lo.fam"
+      },
+      "after": {
+        "file": "m_phl03_static.fam",
+        "battle": "m_phl03_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue PHL-16": {
+      "before": null,
+      "after": {
+        "file": "m_phl16_static.fam",
+        "battle": "m_phl16_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue PHL-191 / AR3": {
+      "before": null,
+      "after": {
+        "file": "m_phl191b_static.fam",
+        "battle": "m_phl191b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA QN-506": {
+      "before": {
+        "file": "m_qn506_static.fam",
+        "battle": "m_qn506_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_qn506c_static.fam",
+        "battle": "m_qn506c_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZBD-251": {
+      "before": null,
+      "after": {
+        "file": "m_zbd251_static.fam",
+        "battle": "m_zbd251_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Type 89": {
+      "before": {
+        "file": "m_zsd90_static.fam",
+        "battle": "m_zsd90_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsd89d_static.fam",
+        "battle": "m_zsd89d_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA PLAN ZSD-89": {
+      "before": {
+        "file": "m_zsd90_static.fam",
+        "battle": "m_zsd90_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsd89_static.fam",
+        "battle": "m_zsd89_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Type 89A": {
+      "before": {
+        "file": "m_zsd90_static.fam",
+        "battle": "m_zsd90_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsd89a_static.fam",
+        "battle": "m_zsd89a_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZSL-92 family": {
+      "before": {
+        "file": "m_wz551_static.fam",
+        "battle": "m_wz551_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsl92_static.fam",
+        "battle": "m_zsl92_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZSL-92 MG": {
+      "before": {
+        "file": "m_wz551_static.fam",
+        "battle": "m_wz551_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsl92_static.fam",
+        "battle": "m_zsl92_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Type 59D": {
+      "before": null,
+      "after": {
+        "file": "m_ztz59d_static.fam",
+        "battle": "m_ztz59d_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-59D1": {
+      "before": null,
+      "after": {
+        "file": "m_ztz59d_static.fam",
+        "battle": "m_ztz59d_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "new_files": 448,
+  "renamed": {
+    "1036 HUDName": [
+      "PHL-191",
+      "PHL-191 Ballistic"
+    ]
+  },
+  "camo": {
+    "desert (PLARF only)": [
+      "DF-15",
+      "DF-17",
+      "HQ-6A",
+      "Type 59D",
+      "ZTZ-59D1",
+      "Type 89"
+    ],
+    "seller paint": "the rest; QN-506 seller file is flat sand, recoloured olive"
+  },
+  "tools": "work/pla-0.8/cart-20261113 (private purchased sources stay out of git)",
+  "checks": 470
+}
