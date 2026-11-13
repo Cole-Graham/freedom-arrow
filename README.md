@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.47
+# Freedom Arrow 0.8.0-dev.48
+
+- PHL-191 Ballistic: a loadout choice like the vanilla HIMARS, 2x ATACMS (default) or 2x PrSM, both at +0, instead of 8x 370 mm rockets. Unit cost 250 -> 225.
+- Everything else as 0.8.0-dev.47.
+
+## Historical 0.8.0-dev.47
 
 - Seller woodland digital camo (the artist's own coatings): ZTQ-15 and ZTQ-15 Recon, ZTZ-99, ZTZ-99A, ZTZ-99A2, ZTZ-99G, ZBL-191 and ZTZ-100. ZSD-89A already uses the seller's woodland digital set (dev.43).
 - PGZ-09: the twin 35 mm guns are back on the turret.

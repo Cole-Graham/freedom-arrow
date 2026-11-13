@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0-dev.48",
+  "base": "0.8.0-dev.47",
+  "base_sha256": "8cd61f99d21b103a1e3b310880c86bd44c72443ed92617145c1a3874734363a8",
+  "request": "Osama 13 Nov 14:39 PST: The PHL-191 should have 2x ATACM or 2x PRSM. Please price the unit at 225",
+  "unit": 1036,
+  "cost": [
+    250,
+    225
+  ],
+  "options": {
+    "2x ATACMS": {
+      "option": 31038,
+      "turret": 2018666,
+      "weapon": 2018667,
+      "ammo": 34,
+      "default": true
+    },
+    "2x PrSM": {
+      "option": 31039,
+      "turret": 2018671,
+      "weapon": 2018672,
+      "ammo": 427
+    }
+  },
+  "removed": {
+    "turret_unit": 2010449,
+    "ammo_row": 2010452,
+    "old_mount_still_used_by": []
+  },
+  "checks": 9
+}
