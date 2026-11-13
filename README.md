@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.18
+# Freedom Arrow 0.8.0-dev.19
+
+- ZSL-92 retexture pilot (both ZSL-92 cards): woodland digital camo applied across the hull in 3D, markings kept, dust and edge wear, colour map 2048 px (was 1024), and new surface-detail (normal) and metal/shine (mask) maps. Complete package only; the launcher models package is unchanged.
+- Includes 0.8.0-dev.18 (FAModels 0.3.17 infantry fix). Not yet verified in a game run.
+
+Models and music: 0.2.0 plus FAModels.dll 0.3.17 and the ZSL-92 textures.
+
+## Historical 0.8.0-dev.18
 
 - Infantry models fixed: FAModels 0.3.17. In the 0.8.0-dev.15 game log, after two matches every Chinese infantry body in the Arsenal failed (Mesh.vertexCount NullReferenceException) and the game showed the native Russian body. The loader kept body and weapon meshes that the game had unloaded between scenes; it now rebuilds them and keeps built meshes across scene changes. Included in the complete package; the launcher's models package (0.2.0) still has 0.3.16.
 - ZBL-191: HJ-16 range 1500 m (the Javelin's), SRAT II armour (12 HP, HEAT 700/700/130/20, kinetic 80/60/30/20). Price stays 105.
@@ -942,3 +949,5 @@ Apache License 2.0. See [LICENSE](LICENSE).
 - 2026-11-12 15:44:49 PST (America/Los_Angeles) — 0.8.0-dev.17: ZBL-191 HJ-16, APS, SRAT I armour, 105 points.
 
 - 2026-11-12 16:22:23 PST (America/Los_Angeles) — 0.8.0-dev.18: FAModels 0.3.17 infantry body fix; HJ-16 1500 m; SRAT II.
+
+- 2026-11-12 16:48:43 PST (America/Los_Angeles) — 0.8.0-dev.19: ZSL-92 retexture pilot.

@@ -1,0 +1,7 @@
+{
+  "version": "0.8.0-dev.19",
+  "base": "0.8.0-dev.18",
+  "request": "Osama 12 Nov 16:40 PST: try it on the ZSL-92 first; 16:48 install it",
+  "change": "ZSL-92 (m_wz551) texture set: 2048 px woodland digital colour map baked from the model geometry, new mask (metal/occlusion/smoothness) and normal maps, battle LOD at 1024 px. Data unchanged from 0.8.0-dev.18.",
+  "tool": "work/pla-0.8/zsl92/bake.py, gen.py"
+}
