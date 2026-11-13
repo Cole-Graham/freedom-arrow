@@ -1,0 +1,24 @@
+{
+  "version": "0.8.0-dev.33",
+  "base": "0.8.0-dev.32",
+  "request": "Osama 13 Nov 02:43 PST: Shawn uploaded his files too; finish it all",
+  "models": {
+    "shawn": {
+      "HQ-17, HQ-17A": "hq17a woodland digital",
+      "J-20S": "j20s (high res)",
+      "PLZ-05": "plz05 woodland",
+      "ZTZ-96A": "ztz96a woodland mix",
+      "ZTZ-96": "ztz96 desert mix",
+      "ZTL-191": "ztl191 woodland",
+      "ZBL-09": "zbl09 woodland mix",
+      "Z-21, Z-21 Recon": "z21 black",
+      "Type 052D": "type052d",
+      "PGL-625": "pgl625 green",
+      "PGZ-09": "pgz09 desert"
+    },
+    "pipeline": "FBX animation tracks were re-applied on export and displaced turrets/guns; animation is now cleared and each part world transform baked into its mesh. PGL-625 hull children (+1.12 m) and ZTL-191 turret (+0.29 m) re-seated; two floating ZBL-09 parts removed. All 22 purchased models rebuilt the same way.",
+    "not_included": "QJY-201 (infantry weapon model; needs the weapon attach path); ZTZ-98/99 (Shawn package is an OBJ/blend set without the PBR texture layout)"
+  },
+  "gameplay_data": "unchanged from 0.8.0-dev.32",
+  "assets": "0.2.5"
+}

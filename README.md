@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.32
+# Freedom Arrow 0.8.0-dev.33
+
+- Shawn's models: HQ-17 and HQ-17A, J-20S (high res), PLZ-05, ZTZ-96A (woodland) and ZTZ-96 (desert), ZTL-191, ZBL-09, Z-21, Type 052D, PGL-625 and PGZ-09 (desert).
+- Model fix: parts that the source files moved with animation tracks (turrets, guns, launchers) are now baked in place for every purchased model.
+- Includes 0.8.0-dev.32. Not yet verified in a game run.
+
+Models and music: 0.2.5.
+
+## Historical 0.8.0-dev.32
 
 - Purchased models fixed: PLL-09, PLZ-45A4, PLZ-83 and PLZ-89 have their guns on the turret again (and the PLL-09/PLZ-89 roof MGs); DF-31A, HQ-12 and J-7 glass is clear instead of mirror chrome; Jiutian faces forward.
 - Includes 0.8.0-dev.31. Not yet verified in a game run.
