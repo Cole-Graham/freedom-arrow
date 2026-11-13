@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.31
+# Freedom Arrow 0.8.0-dev.32
+
+- Purchased models fixed: PLL-09, PLZ-45A4, PLZ-83 and PLZ-89 have their guns on the turret again (and the PLL-09/PLZ-89 roof MGs); DF-31A, HQ-12 and J-7 glass is clear instead of mirror chrome; Jiutian faces forward.
+- Includes 0.8.0-dev.31. Not yet verified in a game run.
+
+Models and music: 0.2.4.
+
+## Historical 0.8.0-dev.31
 
 - ZSL-92: smoother surface. The fine noise in its surface-detail (normal) maps that looked wrinkly is filtered out; panel shapes, colours, camo and markings are unchanged.
 - Gameplay data unchanged from 0.8.0-dev.30. The two normal maps ship in the complete package only (needs the all-in-one file until the next assets release).

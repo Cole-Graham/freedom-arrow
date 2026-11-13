@@ -1,0 +1,12 @@
+{
+  "version": "0.8.0-dev.32",
+  "base": "0.8.0-dev.31",
+  "request": "Osama 13 Nov 02:23-02:30 PST: missing barrels on PLL and PLZ; Jiutian UAV backwards; glass on many new units not right, check transparency and metal",
+  "fixes": {
+    "guns": "FBX gun parts carried a bad pivot offset; every part is now snapped to the author world-space OBJ (PLL-09 gun and MG +1.23/+1.55 m, PLZ-45A4 gun, PLZ-83 gun, PLZ-89 gun and MG, PTL-02 MG)",
+    "glass": "DF-31A, HQ-12 and J-7 glass materials were opaque, 90% metallic and very smooth (mirror chrome); now FAModels clear glass (opacity 0.3, no metal)",
+    "jiutian": "turned to face forward; author opacity map applied as alpha cutout"
+  },
+  "gameplay_data": "unchanged from 0.8.0-dev.31",
+  "assets": "0.2.4 (includes the dev.31 ZSL-92 normal maps)"
+}
