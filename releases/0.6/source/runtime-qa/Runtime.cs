@@ -198,6 +198,24 @@ public class Runtime : MelonMod
     }
     // Previous packaged names. Remove leftover copies so the lobby does not list both.
     static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
+    // Maps we no longer ship, by folder and the exact GUID we published. Lateralus (12 November 2026) still saw the old
+    // vanilla-built Airport, Baltiisk and Dam in the mod lobby list after the [5v5]/[3v3] redesigns replaced them; their
+    // GUIDs match no packaged map, so the rename cleanup above never removed them. A different GUID (someone else's map) stays.
+    static readonly (string Folder,string Guid)[] RetiredScenarios={
+        ("[FA] Airport 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c01a"),("[FA] Airport Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c01b"),
+        ("[FA] Baltiisk 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c02a"),("[FA] Baltiisk Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c02b"),
+        ("[FA] Dam 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c03a"),("[FA] Dam Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c03b")};
+    static void RemoveRetiredScenarios()
+    {
+        foreach(var (folder,guid) in RetiredScenarios)
+            foreach(string root in new[]{Path.Combine(MelonEnvironment.GameRootDirectory,"Scenarios"),Path.Combine(MelonEnvironment.GameRootDirectory,"Mods","Scenarios")})
+            {
+                string leftover=Path.Combine(root,folder),meta=Path.Combine(leftover,"meta.json");
+                if(!File.Exists(meta)||JsonNode.Parse(File.ReadAllText(meta))?["guid"]?.GetValue<string>()!=guid)continue;
+                Directory.Delete(leftover,true);
+                MelonLogger.Msg("FREEDOM_ARROW_SCENARIO: removed retired "+folder);
+            }
+    }
     // The mod manager only installs Mods and UserData. Copy packaged scenarios to the game's scenario folder.
     static void InstallScenarios()
     {
@@ -231,6 +249,8 @@ public class Runtime : MelonMod
             }
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_SCENARIO_FAILED: "+e.Message);}
+        try{RemoveRetiredScenarios();}
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_SCENARIO_RETIRE_FAILED: "+e.Message);}
     }
     static bool SameGuid(string a,string b)
     {
