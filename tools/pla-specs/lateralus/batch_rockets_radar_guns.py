@@ -66,7 +66,7 @@ for r in [r for r in WA.values() if r['WeaponId'] in PF97]:
 ok(len(rec['pf97'])>=4,rec['pf97'])
 # Lateralus 14 Nov 2026: the PF-97 rounds were the MRO-Z napalm (10 s burn, M202 effect). Make them a thermobaric round
 # like the RPO-M (also 93 mm): every combat field of RPO-M ammo 396, with damage 5 and Ignore Cover 75%.
-SM=t['SquadMembersJson'];SW=t['SquadWeaponsJson']
+SM=t['SquadMembersJson'];SW=t['SquadWeaponsJson'];O_=t['OptionsJson']
 RPOM=A[396];ok(RPOM['HUDName']=='Thermobaric rocket' and RPOM['DamageOverTimeDuration']==0,'RPO-M ammo')
 COPY=('AudioPreset','FXPreset','StressDamage','DamageOverTimeDuration','TargetType','PenetrationAtMinRange','PenetrationAtGroundRange',
       'NoDamageFalloff','TopArmorAttack','IsTopArmorArmorAttack','HealthAOERadius','StressAOERadius','CriticMultiplier','LowAltRange','HighAltRange')
@@ -86,21 +86,18 @@ for aid in DZT:
 TG=1143;FHJ=2013057;QBZ191=2003998
 car=sorted(m['Id'] for m in SM.values() if m['UnitId']==TG and m['SpecialWeaponId']==FHJ);ok(len(car)==2 and all(SM[i]['PrimaryWeaponId']==QBZ191 for i in car),car)
 g.put('SquadMembersJson',car[-1],{'SpecialWeaponId':0});rec['thunder_gods']={'member':car[-1],'FHJ-02 launchers':[2,1]}
-# Combat Engineers (1156): five PF-97 with 1 round each, like the US Combat Engineers' five SMAW-D HIT (2 shotgunners, 3 riflemen).
-CE=1156;DZJ=2012024;QBS09=2012131;PFW=2012515
-mem={m['Id']:m for m in SM.values() if m['UnitId']==CE};ok(U[CE]['HUDName'].startswith('Combat Engineers') and len(mem)==7,len(mem))
-dzj=sorted(i for i,m in mem.items() if m['SpecialWeaponId']==DZJ);shot=sorted(i for i,m in mem.items() if m['PrimaryWeaponId']==QBS09 and not m['SpecialWeaponId'])
-rifle=sorted(i for i,m in mem.items() if m['PrimaryWeaponId']==QBZ191 and not m['SpecialWeaponId'])
-ok(len(dzj)==2 and len(shot)==2 and len(rifle)==2,(dzj,shot,rifle))
-for i in dzj+shot+rifle[:1]:g.put('SquadMembersJson',i,{'SpecialWeaponId':PFW})
-for r in [r for r in SW.values() if r['UnitId']==CE and r['WeaponId']==DZJ]:g.remove('SquadWeaponsJson',r['Id'])
-for r in [r for r in WA.values() if r['UnitId']==CE and r['WeaponId']==DZJ]:g.remove('WeaponAmmunitionsJson',r['Id'])
-sw_tpl=next(r for r in SW.values() if r['WeaponId']==PFW);wa_tpl=next(r for r in WA.values() if r['WeaponId']==PFW)
-g.add('SquadWeaponsJson',sw_tpl,{'UnitId':CE,'WeaponId':PFW,'Order':1})
-g.add('WeaponAmmunitionsJson',wa_tpl,{'UnitId':CE,'WeaponId':PFW,'AmmunitionId':wa_tpl['AmmunitionId'],'Order':0,'Quantity':1})
-ok(sum(1 for m in SM.values() if m['UnitId']==CE and m['SpecialWeaponId']==PFW)==5 and not any(m['SpecialWeaponId']==DZJ for m in SM.values() if m['UnitId']==CE),'CE carriers')
-ok([r['Quantity'] for r in WA.values() if r['UnitId']==CE and r['WeaponId']==PFW]==[1] and not [r for r in WA.values() if r['UnitId']==CE and r['WeaponId']==DZJ],'CE ammo')
-rec['combat_engineers']={'PF-97 carriers':5,'rounds_per_launcher':1,'DZJ-08':[2,0],'ammo':wa_tpl['AmmunitionId']}
+# Combat Engineers' Thermobaric loadout (option 24354 swaps 1156 for unit 1162, Thermobaric Breachers): five PF-97 with
+# 1 round each (Lateralus 14 Nov 2026). The two PF-97 riflemen are joined by the other three QBZ-191 riflemen. The default
+# DZJ-08 loadout (unit 1156) is unchanged.
+TB=1162;PFW=2012515
+ok(O_[24354]['ReplaceUnitId']==TB and O_[24354]['UIName']=='Custom_Option_Thermobaric_launcher' and O_[24353]['ReplaceUnitId']==1156,'Combat Engineers loadouts')
+mem={m['Id']:m for m in SM.values() if m['UnitId']==TB};ok(len(mem)==8,len(mem))
+pf=sorted(i for i,m in mem.items() if m['SpecialWeaponId']==PFW);rifle=sorted(i for i,m in mem.items() if m['PrimaryWeaponId']==QBZ191 and not m['SpecialWeaponId'])
+ok(len(pf)==2 and len(rifle)==3,(pf,rifle))
+for i in rifle:g.put('SquadMembersJson',i,{'SpecialWeaponId':PFW})
+ok(sum(1 for m in SM.values() if m['UnitId']==TB and m['SpecialWeaponId']==PFW)==5,'5 PF-97')
+ok([r['Quantity'] for r in WA.values() if r['UnitId']==TB and r['WeaponId']==PFW]==[1],'1 round each')
+rec['combat_engineers_thermobaric']={'option':24354,'unit':TB,'PF-97 launchers':[2,5],'rounds_per_launcher':1}
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():
