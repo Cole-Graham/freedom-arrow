@@ -1,0 +1,50 @@
+{
+  "version": "0.8.0-dev.86",
+  "build": 154,
+  "previous": "0.8.0-dev.85",
+  "assets_version": "0.2.13",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.13.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.13.bamod",
+    "sha256": "38cd9a9753fbefcea0a8b93ab94404476284c85a8978b9085909b79ae28fbd45",
+    "size": 7614739845,
+    "files": 9883,
+    "new_in_this_build": true
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.86-complete.bamod",
+    "sha256": "13f579f37a67aa0a071da5a681d91ee2af8211dd2f3cb4b46fa1b40b912b8e5b",
+    "size": 7691590036,
+    "files": 10106
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.86.bamod",
+    "sha256": "a6f4e3ec15f4cf4c0ccc50bfcad7aabba8338c2be7961cbce93ca171adcca038",
+    "size": 76850759,
+    "files": 225
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/models.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/armors.json",
+    "UserData/FreedomArrow/constants/mobility.json",
+    "UserData/FreedomArrow/constants/sensor_units.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.86.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.85
+# Freedom Arrow 0.8.0-dev.86
+
+- ZTZ-85-II: T-80BV stat copy (armour, mobility, optics, smoke, 2A46M-1 with AP/HE/HEAT, PKT, Kord, 85 points).
+- VT-5 and VT-5 Recon: front HEAT armour 1000 (was 700). ZTL-11 moved to Motorized.
+- PLAN Navy/SOF ZBD-86 and ZBD-86 Recon removed; ZBD-05 uses the ZBD-86 model. QN-506 model 80%.
+- Everything else as 0.8.0-dev.85.
+
+## Historical 0.8.0-dev.85
 
 - J-20, J-20S: stealth 2 (as J-31/J-35). ZTD-05 removed.
 - HJ-10: 1600 m. QN-506: QN-502 is an HJ-10 copy at 1600 m with NLOS fire, Recon category, laser designator, 2000 m optics.

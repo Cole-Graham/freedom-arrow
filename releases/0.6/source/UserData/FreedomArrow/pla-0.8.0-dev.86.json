@@ -1,0 +1,89 @@
+{
+  "ztz85ii_t80bv": {
+    "unit": 1264,
+    "armor": 2000420,
+    "mobility": 106,
+    "sensor": 2,
+    "ability": 2000199,
+    "weapons": {
+      "2010021": 334,
+      "2010031": 7,
+      "2010035": 97
+    },
+    "ammo": {
+      "2010025": [
+        246,
+        13
+      ],
+      "2010027": [
+        247,
+        19
+      ],
+      "2010029": [
+        541,
+        6
+      ],
+      "2010033": [
+        9,
+        400
+      ],
+      "2010039": [
+        70,
+        60
+      ]
+    },
+    "cost": [
+      80,
+      85
+    ],
+    "weight": [
+      45000,
+      45700
+    ],
+    "shared_with_hidden": 956
+  },
+  "zbd86_plan_removed": {
+    "cards": [
+      2015786,
+      2018439
+    ],
+    "transport_links": 0
+  },
+  "ztl11_spec": [
+    20,
+    21
+  ],
+  "vt5_heat_front": [
+    700,
+    1000
+  ],
+  "models_json": {
+    "PLA Catalogue ZBD-05": {
+      "before": null,
+      "after": {
+        "file": "m_zbd86_static.fam",
+        "battle": "m_zbd86_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA QN-506": {
+      "before": {
+        "file": "m_qn506w_static.fam",
+        "battle": "m_qn506w_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_qn506w_static.fam",
+        "battle": "m_qn506w_lo_static.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    }
+  },
+  "version": "0.8.0-dev.86",
+  "base": "0.8.0-dev.85",
+  "base_sha256": "1c62a3d6268b462489811de4a112f511e1476eb6b6d8602df771795348e4c8af",
+  "request": "Osama 13 Nov 21:37-21:45 PST",
+  "checks": 30,
+  "verified": "data only"
+}
