@@ -1,0 +1,18 @@
+{
+  "version": "0.8.0-dev.64",
+  "base": "0.8.0-dev.63",
+  "base_sha256": "466f33fed916e1e75e6b2f19737ed31f44d221a064c5e78c9d6e5f080ad21b0e",
+  "request": "Osama 13 Nov 17:57 PST: CH-901 to 15 damage (corrected from 165)",
+  "ammo": 2018448,
+  "users": [
+    1183
+  ],
+  "before": {
+    "Damage": 8.0
+  },
+  "after": {
+    "Damage": 15.0
+  },
+  "checks": 3,
+  "verified": "data only; not yet observed in a game"
+}

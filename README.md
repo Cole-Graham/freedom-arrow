@@ -1,4 +1,8 @@
-# Freedom Arrow 0.8.0-dev.63
+# Freedom Arrow 0.8.0-dev.64
+
+- CH-901 (Blood Wolves NLOS missile) damage 8 -> 15.
+
+## Historical 0.8.0-dev.63
 
 - DF-ZF top speed 1200 (was 2400), acceleration stays 300. Test: can HQ-9s still engage it? Vanilla ballistic missiles fly at 800; HQ-9s ignored 1600.
 - DF-17/ZF costs 250 points (was 300).
