@@ -64,8 +64,10 @@ with zipfile.ZipFile(base) as z:
     core['version']=V
     for n,b in override.items():
         if n in core['sha256'] or n.startswith('UserData/FreedomArrow/'):core['sha256'][n]=sha(b)
-    override['UserData/FreedomArrow/payload-manifest.json']=enc(core)
+    # Drop retired maps before the manifest is written: 0.8.0-dev.98-lat.1 pinned the deleted 0.1 map files, so the
+    # runtime's payload check failed ("verification failed") on every install.
     for n in retired_scenarios:core['sha256'].pop(n,None);whole['sha256'].pop(n,None)
+    override['UserData/FreedomArrow/payload-manifest.json']=enc(core)
     whole.update(build=a.build,label='Freedom Arrow '+V)
     for n,b in override.items():
         if n not in ['mod.json','README.md']:whole['sha256'][n]=sha(b)
@@ -85,6 +87,8 @@ with tempfile.NamedTemporaryFile('w',delete=False) as lst:lst.write('\n'.join(as
 subprocess.run(f'{a.zip} -q -nw -d {gameplay.resolve()} -@ < {lp}',shell=True,check=True)
 with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipFile(base) as bz:
     for n,pin in whole['sha256'].items():assert sha(c.read(n))==pin,n
+    # The runtime checks these core pins at start; every one must be in the package with its hash.
+    for n,pin in json.loads(c.read('UserData/FreedomArrow/payload-manifest.json'))['sha256'].items():assert n in names and sha(c.read(n))==pin,('core pin',n)
     for n in [x for x in asset_names if x in bz.namelist()]:assert c.getinfo(n).CRC==bz.getinfo(n).CRC or n in override_assets,n
     assert set(gz.namelist())==set(names)-set(asset_names)
     for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n

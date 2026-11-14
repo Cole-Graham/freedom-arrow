@@ -1,6 +1,8 @@
-# Freedom Arrow 0.8.0-dev.98-lat.1
+# Freedom Arrow 0.8.0-dev.98-lat.2
 
 Lateralus batch test build on 0.8.0-dev.98 (branch codex/batch/lateralus/0.8-rockets-radar-guns). Not for multiplayer playtests.
+
+lat.2 fixes lat.1 "(verification failed)": lat.1 still listed the removed 0.1 map files in its payload check.
 
 - Rockets: M72A10 6.0 and 25%; M72A7 0% and "66mm HEDP"; RMG 4.5 and 75%; OG-7V 25%; TBG-7L, TBG-7V, RPO-M, RShG-1, RShG-2, SMAW and SMAW-D HIT 75%; SPG-9M OG-9V 25%; SRAW 25% (Ignore Cover).
 - Radar guns: PGZ-04A, PGZ-04, PGZ-88 and PGZ-95 rounds at 1610 projectile speed.

@@ -1,0 +1,249 @@
+{
+  "rockets": [
+    {
+      "launcher": "M72A10",
+      "ammo": 130,
+      "hud": "66mm HE",
+      "changes": {
+        "Damage": [
+          6.5,
+          6.0
+        ],
+        "IgnoreCover": [
+          0.5,
+          0.25
+        ]
+      },
+      "units": [
+        "Force Recon CQC",
+        "Marine Raiders",
+        "Mech. Engineers CQC",
+        "Rangers CQC",
+        "Zaliukai"
+      ]
+    },
+    {
+      "launcher": "M72A7",
+      "ammo": 2001500,
+      "hud": "66mm HEAT",
+      "changes": {
+        "IgnoreCover": [
+          0.35,
+          0.0
+        ],
+        "HUDName": [
+          "66mm HEAT",
+          "66mm HEDP"
+        ]
+      },
+      "units": [
+        "Reserve Marines",
+        "Scouts"
+      ]
+    },
+    {
+      "launcher": "RMG",
+      "ammo": 121,
+      "hud": "105mm HEAT Thermobaric",
+      "changes": {
+        "Damage": [
+          4.0,
+          4.5
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Spetsnaz Vympel RMG"
+      ]
+    },
+    {
+      "launcher": "RPG-7V",
+      "ammo": 476,
+      "hud": "OG-7V 40mm HE",
+      "changes": {
+        "IgnoreCover": [
+          0.2,
+          0.25
+        ]
+      },
+      "units": [
+        "Shturmoviki"
+      ]
+    },
+    {
+      "launcher": "RPG-7V",
+      "ammo": 906,
+      "hud": "TBG-7L Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "VDV Shturm"
+      ]
+    },
+    {
+      "launcher": "RPG-7V2",
+      "ammo": 107,
+      "hud": "TBG-7V Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Ingenery-Shturmoviki"
+      ]
+    },
+    {
+      "launcher": "RPO-M",
+      "ammo": 396,
+      "hud": "Thermobaric rocket",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Ognemetchiki ",
+        "SSO"
+      ]
+    },
+    {
+      "launcher": "RShG-1",
+      "ammo": 524,
+      "hud": "RShG-1 Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Chernye Berety RShG",
+        "SSO"
+      ]
+    },
+    {
+      "launcher": "RShG-2",
+      "ammo": 377,
+      "hud": "73mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Razvedka Mech",
+        "Rosgvardia",
+        "Spetsnaz Alpha "
+      ]
+    },
+    {
+      "launcher": "SMAW",
+      "ammo": 41,
+      "hud": "84mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Assaultmen SMAW"
+      ]
+    },
+    {
+      "launcher": "SMAW-D HIT",
+      "ammo": 937,
+      "hud": "84mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Combat Engineers"
+      ]
+    },
+    {
+      "launcher": "SPG-9M",
+      "ammo": 525,
+      "hud": "OG-9V",
+      "changes": {
+        "IgnoreCover": [
+          0.2,
+          0.25
+        ]
+      },
+      "units": [
+        "BARS FS",
+        "SPG-9 Sapog",
+        "UAZ Kozlik"
+      ]
+    },
+    {
+      "launcher": "SRAW MPV",
+      "ammo": 392,
+      "hud": "140mm blast-frag",
+      "changes": {
+        "IgnoreCover": [
+          0.5,
+          0.25
+        ]
+      },
+      "units": [
+        "Assaultmen SRAW"
+      ]
+    }
+  ],
+  "radar_guns": [
+    {
+      "unit": "PGZ-04A",
+      "unit_id": 932,
+      "ammo": 2009559,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-04",
+      "unit_id": 1050,
+      "ammo": 2010643,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-88",
+      "unit_id": 1051,
+      "ammo": 2010663,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-95",
+      "unit_id": 1052,
+      "ammo": 2010677,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    }
+  ],
+  "checks": 58,
+  "base": "0.8.0-dev.98"
+}
