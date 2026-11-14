@@ -111,6 +111,11 @@ internal sealed class LauncherForm : Form
         help.AutoSize = true;
         help.Click += (_, _) => CheckInstall();
         footer.Controls.Add(help);
+        var decks = Theme.MakeButton("🗂   " + T("Deck backups"), ButtonKind.Ghost);
+        decks.Dock = DockStyle.Left;
+        decks.AutoSize = true;
+        decks.Click += (_, _) => RestoreDecks();
+        footer.Controls.Add(decks);
         if (LauncherService.HelperUrl is string helperUrl)
         {
             var ask = Theme.MakeButton("💬   " + T("Ask the AI helper"), ButtonKind.Ghost);
@@ -185,6 +190,7 @@ internal sealed class LauncherForm : Form
         }
         RefreshCard();
         SetStatus(_gameDir == null ? T("Broken Arrow wasn't found. Choose its folder in Settings.") : "");
+        if (_gameDir != null && !GameLocator.IsGameRunning(_gameDir)) DeckNote(DeckGuard.AfterModdedSession(Log));
 
         // Double-clicked .bamod files (if the player turned that on in Settings)
         SingleInstance.StartServer(OnFilesFromExplorer);
@@ -347,6 +353,7 @@ internal sealed class LauncherForm : Form
             return;
         }
 
+        DeckNote(DeckGuard.BeforeLaunch(true, Log));
         SetBusy(true);
         try
         {
@@ -411,6 +418,7 @@ internal sealed class LauncherForm : Form
     {
         if (_busy || !CheckGame()) return;
         var dir = _gameDir!;
+        DeckNote(DeckGuard.BeforeLaunch(false, Log));
         try
         {
             _launcher.TurnOffMods(dir, Log);
@@ -557,10 +565,31 @@ internal sealed class LauncherForm : Form
         bool running = _gameDir != null && GameLocator.IsGameRunning(_gameDir);
         if (running == _gameRunning) return;
         _gameRunning = running;
+        if (!running) DeckNote(DeckGuard.AfterModdedSession(Log));
         _play.Text = running ? T("GAME IS RUNNING") : "▶   " + T("PLAY");
         if (running) SetStatus(T("{0} is running. Close the game to use these buttons again.", _cfg.GameName));
         else if (!_busy) SetStatus("");
         ApplyEnabled();
+    }
+
+    private void DeckNote(string? message)
+    {
+        if (message == null) return;
+        SetStatus(message);
+        MessageBox.Show(this, message, T("Decks"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    /// <summary>Puts a deck backup back: vanilla-*.zip into Decks, mod-*.zip into Decks\FreedomArrow.</summary>
+    private void RestoreDecks()
+    {
+        if (_busy || !CheckGame()) return;
+        Directory.CreateDirectory(DeckGuard.BackupDir);
+        using var dlg = new OpenFileDialog { InitialDirectory = DeckGuard.BackupDir, Filter = T("Deck backups") + " (*.zip)|*.zip", Title = T("Choose a deck backup to put back") };
+        if (dlg.ShowDialog(this) != DialogResult.OK) return;
+        if (MessageBox.Show(this, T("Put the decks in {0} back? Decks with the same name are replaced; the current decks are backed up first.", Path.GetFileName(dlg.FileName)), T("Decks"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+        try { SetStatus(T("{0} decks put back.", DeckGuard.Restore(dlg.FileName, Log))); }
+        catch (Exception ex) { Log(ex.Message); SetStatus(ex.Message); }
     }
 
     private void ApplyEnabled()
