@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.93
+# Freedom Arrow 0.8.0-dev.94
+
+- WZ-550: seller model rebuilt in the seller's dark olive (was pale with brown hatches and a loose missile).
+- PHL-191 AR3 model fixed (travel position, no smoke plume or flying missile, woodland digital, clear windows) and used by a new PHL-191 Cruise card in Motorized (Ballistic stats and loadouts until the cruise loadout is set).
+- Everything else as 0.8.0-dev.93.
+
+## Historical 0.8.0-dev.93
 
 - Armory vs multiplayer audit (tools/pla-specs/audit_mp_equipment.py, now run on every build):
   - ZBD-251: its laser designator never loaded (the game loads only a unit's first default ability). Smoke, resupply and laser are now one ability.
