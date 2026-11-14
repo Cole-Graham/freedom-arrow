@@ -1,0 +1,46 @@
+{
+  "version": "0.8.0-dev.93",
+  "build": 161,
+  "previous": "0.8.0-dev.92",
+  "assets_version": "0.2.19",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.19.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.19.bamod",
+    "sha256": "294e0e956a5641b54494a388284a3e46e23c7c2948ab459bfce0f3424299238d",
+    "size": 8058934821,
+    "files": 10015,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.93-complete.bamod",
+    "sha256": "177d607dc7bf0cc9369783e927292adf3770428f799457e6ef631d893a6b236c",
+    "size": 8135798662,
+    "files": 10245
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.93.bamod",
+    "sha256": "8fbd79ac92fb4fc86ea8d095efa3d91d0b58255b1104940c317662a702864d77",
+    "size": 76864423,
+    "files": 232
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/abilities.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.93.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase 0.1/[FA] [2v2] Chkalovsk Airbase 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death 0.1/[FA] [2v2] Highway of Death 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death Skirmish 0.1/[FA] [2v2] Highway of Death Skirmish 0.1.bascr",
+    "mod.json"
+  ],
+  "native_verified": false
+}

@@ -1,0 +1,18 @@
+{
+  "version": "0.8.0-dev.93",
+  "base": "0.8.0-dev.92",
+  "base_sha256": "cfa54ebee4848bf22298d4d6580d61090bae1d453c97862a42d6da13b6bf90af",
+  "request": "Osama 13 Nov 22:58 PST: audit armory vs MP equipment (smoke, APS, weapons)",
+  "fixes": {
+    "zbd251": "laser merged into 2010731",
+    "ZBD-04A": "removed 2 duplicate defaults",
+    "ZBD-20": "removed 2 duplicate defaults",
+    "ZBD-04A Recon": "removed 2 duplicate defaults",
+    "ZBD-20 Recon": "removed 2 duplicate defaults",
+    "HQ-7B": "second (static) radar link removed",
+    "HQ-7": "second (static) radar link removed",
+    "F-15EX": "ECM link 2001402 -> 2001404"
+  },
+  "checks": 9,
+  "verified": "data only"
+}

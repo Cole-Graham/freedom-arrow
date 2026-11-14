@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.92
+# Freedom Arrow 0.8.0-dev.93
+
+- Armory vs multiplayer audit (tools/pla-specs/audit_mp_equipment.py, now run on every build):
+  - ZBD-251: its laser designator never loaded (the game loads only a unit's first default ability). Smoke, resupply and laser are now one ability.
+  - ZBD-04A, ZBD-20 and their Recon cards: two duplicate smoke abilities removed (nothing lost).
+  - HQ-7B: duplicate radar removed; it keeps the moving radar that already loaded.
+  - F-15EX: its ECM loadouts now have the matching ability link (ECM 40%), as vanilla requires.
+- Everything else as 0.8.0-dev.92.
+
+## Historical 0.8.0-dev.92
 
 - Clear glass: opacity 0.3 -> 0.1 (it looked frosted white).
 - HQ-16: Osama's seller model. VT-5 Recon: seller desert camo. HQ-6A model 75%.
