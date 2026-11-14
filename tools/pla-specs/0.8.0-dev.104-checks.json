@@ -1,0 +1,162 @@
+{
+  "z21_cm501ga": {
+    "option": 24645,
+    "per_rack": [
+      4,
+      2
+    ],
+    "total": [
+      8,
+      4
+    ],
+    "cost": 95
+  },
+  "z20t_fs90": {
+    "LeftPylonTurret FS-90 x16 PLA Z-20": {
+      "turret": 2019019,
+      "weapon": 2019018,
+      "rounds": 16
+    },
+    "RightPylonTurret Hydra FS-90 x16 PLA Z-20": {
+      "turret": 2019024,
+      "weapon": 2019023,
+      "rounds": 16
+    },
+    "LeftPylonTurret Hydra FS-90 x8 PLA Z-20": {
+      "turret": 2019029,
+      "weapon": 2019028,
+      "rounds": 8
+    },
+    "RightPylonTurret Hydra FS-90 x8 PLA Z-20": {
+      "turret": 2019034,
+      "weapon": 2019033,
+      "rounds": 8
+    },
+    "32x FS-90": {
+      "option": 31067,
+      "cost": 35
+    },
+    "16x FS-90": {
+      "option": 31068,
+      "cost": 15
+    }
+  },
+  "df15_cards": [
+    2,
+    4
+  ],
+  "pgz09_ground_range": {
+    "data": [
+      500,
+      600
+    ],
+    "shown": [
+      1000,
+      1200
+    ]
+  },
+  "hq17a": {
+    "removed_spec": 20,
+    "kept": 21
+  },
+  "csk_transports": {
+    "CSK-181": {
+      "19": 11,
+      "20": 11
+    },
+    "CSK-131": {
+      "17": 10,
+      "21": 11
+    }
+  },
+  "zbl191_ztl191": {
+    "zbl_heat": {
+      "front": [
+        700,
+        500
+      ],
+      "sides": [
+        700,
+        300
+      ]
+    },
+    "ztl191_armour": {
+      "before": {
+        "MaxHealthPoints": 12,
+        "HeatArmorFront": 60,
+        "HeatArmorRear": 30,
+        "HeatArmorSides": 40,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 60,
+        "KinArmorRear": 30,
+        "KinArmorSides": 40,
+        "KinArmorTop": 20
+      },
+      "after": {
+        "MaxHealthPoints": 12,
+        "HeatArmorFront": 500,
+        "HeatArmorRear": 130,
+        "HeatArmorSides": 300,
+        "HeatArmorTop": 20,
+        "KinArmorFront": 80,
+        "KinArmorRear": 30,
+        "KinArmorSides": 60,
+        "KinArmorTop": 20
+      }
+    },
+    "ztl191_cost": [
+      115,
+      180
+    ],
+    "ztl191_recon_cost": [
+      120,
+      200
+    ]
+  },
+  "ztl11": {
+    "missile_ammo": 2019038,
+    "rounds": 8,
+    "cost": [
+      70,
+      90
+    ]
+  },
+  "ptl02_cost": [
+    50,
+    60
+  ],
+  "df17_supply": {
+    "cost": [
+      2000,
+      5000
+    ],
+    "time": [
+      120,
+      180
+    ]
+  },
+  "j20s_glass": {
+    "m_j20sg_static": 0.025,
+    "m_j20sg_lo_static": 0.025
+  },
+  "pcl181": {
+    "m_pcl181_static": {
+      "0.6": 18,
+      "0.7": 39
+    },
+    "m_pcl181_lo_static": {
+      "0.6": 18,
+      "0.7": 39
+    }
+  },
+  "z21_canopy": {
+    "donor": "US_AH_64_Glass",
+    "as": "Z-10"
+  },
+  "version": "0.8.0-dev.104",
+  "base": "0.8.0-dev.103",
+  "base_sha256": "da8c3a99598f3c3e04568deaac839237f76cbd512ed0dd01b8ac9611c3b6760b",
+  "request": "Osama 14 Nov 04:0x PST",
+  "checks": 82,
+  "verified": "data and file checks; not in game"
+}

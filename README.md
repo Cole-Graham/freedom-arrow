@@ -1,4 +1,17 @@
-# Freedom Arrow 0.8.0-dev.103
+# Freedom Arrow 0.8.0-dev.104
+
+- Z-20 family: real canopy glass (AH-1Z glass; the UH-60M donor was a body material).
+- PCL-181: clear windows and darker paint.
+- Z-21 Multirole: 4 CM-501GA (2 racks of 2), fired one at a time. Z-21 canopy: real glass (the Z-10's AH-64 glass).
+- Z-20T: FS-90 rocket loadouts (32x inner, 16x outer).
+- DF-15: 4 cards. PGZ-09 guns: 1200 m ground range. HQ-17A: PLAGF Motorized only (out of PLAN SOF).
+- One CSK transport per deck: CSK-181 for PLARF and PLAN SOF, CSK-131 for PLAAF and Motorized.
+- J-20S: clearer canopy glass.
+- ZBL-191: HEAT front 500, sides 300. ZTL-191: same armour, 180 pts (Recon 200). ZTL-11: gun-launched missile, 90 pts. PTL-02: 60 pts.
+- DF-17: supply cost 5000, resupply 180 s.
+- Everything else as 0.8.0-dev.103.
+
+## Historical 0.8.0-dev.103
 
 - ZTQ-15 Light: new PLAAF airborne card (front armour 100 KE / 300 HEAT). The PLAGF Armored card stays ZTQ-15.
 - ZTZ-96B: 170 pts, HEAT front 1000, HEAT sides 700. ZTZ-99: KE front 700.

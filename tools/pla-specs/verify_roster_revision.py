@@ -64,7 +64,9 @@ with zipfile.ZipFile(a.package) as z:
  if build>=33:
   for uid in [1058,1230]:ok(t['Units'][uid]['InfantrySlots']==12,('CSK181 capacity',uid))
   # dev.86 (build 154, Osama 13 Nov 21:44 PST): PLAN Navy/SOF ZBD-86 (1063) removed on request, so its PLAN move is checked only before build 154.
-  for uid in [1049,943,974,1054]+([1063] if build<154 else [])+([918] if build<144 else [])+([961] if build<50 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
+  # Build172 (0.8.0-dev.104, Osama 14 Nov 04:1x): HQ-17A leaves PLAN SOF; it keeps its PLAGF Motorized card.
+  if build>=172:ok(not any(r['UnitId']==1049 and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()) and any(r['UnitId']==1049 and r['SpecializationId']==21 for r in t['SpecializationAvailabilitiesJson'].values()),('HQ-17A Motorized only',1049))
+  for uid in ([1049] if build<172 else [])+[943,974,1054]+([1063] if build<154 else [])+([918] if build<144 else [])+([961] if build<50 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==20 for r in t['SpecializationAvailabilitiesJson'].values()),('PLAN move',uid))
   # Build144 (0.8.0-dev.76): JH-7A removed for now (Osama 13 Nov).
   if build>=144:ok(not t['Units'][918]['DisplayInArmory'] and not any(r['UnitId']==918 for r in t['SpecializationAvailabilitiesJson'].values()),('JH-7A removed',918))
   # Build41: CSK-181 recon card removed; transport 1230 stays
