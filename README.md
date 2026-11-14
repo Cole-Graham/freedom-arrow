@@ -1,4 +1,11 @@
-# Freedom Arrow 0.9.0-dev.1
+# Freedom Arrow 0.9.0-dev.2
+
+Osama's 14 Nov 2026 batch (threads 1571014792016171120 and 1567745029781454889), built on his word at 14:40 PST
+("push the big live build for us to play"): new vanilla-style unit icons for about 100 PLA vehicle, helicopter and aircraft
+cards; the pricing follow-up; armour and speed changes; ZBL-08 HJ-73D Super Malyutka option; Marine Recon and Conscript
+Recon; recon SF at 4 cards; PTZ-89 metal; Y-8 faces forward; KJ-500 name. Full list: tools/pla-specs/apply_0_9_dev2.py.
+
+## Historical 0.9.0-dev.1
 
 First 0.9 build (Osama 14 Nov 2026 11:05 PST: "let's launch this as 0.9"). Same content as 0.8.0-dev.105:
 Osama's 14 Nov PLA batches (0.8.0-dev.101 to 104) plus Lateralus's 0.8 batch (rocket Ignore Cover, interceptor guns 1000,

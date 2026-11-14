@@ -1,0 +1,407 @@
+{
+  "cs_vn3c_removed": {
+    "unit": 1057,
+    "card": [
+      21,
+      2
+    ]
+  },
+  "marine_recon": {
+    "unit": 1224,
+    "removed_cards": [
+      2014388,
+      2019046,
+      2019051,
+      2019060
+    ],
+    "removed_transport_links": 18,
+    "kept": 2019055
+  },
+  "conscript_recon": {
+    "unit": 1213,
+    "card": 2014071,
+    "spec": [
+      22,
+      19
+    ],
+    "transport_links": 3
+  },
+  "prices": {
+    "ZTQ-15": [
+      150,
+      130
+    ],
+    "ZTQ-15 Recon": [
+      165,
+      145
+    ],
+    "ZTQ-15 Light": [
+      150,
+      120
+    ],
+    "ZTL-191": [
+      180,
+      160
+    ],
+    "ZTL-191 Recon": [
+      200,
+      180
+    ],
+    "VT-5": [
+      240,
+      200
+    ],
+    "VT-5 Recon": [
+      145,
+      220
+    ],
+    "PGZ-09": [
+      175,
+      120
+    ],
+    "PGZ-95": [
+      175,
+      130
+    ],
+    "HQ-17A": [
+      200,
+      150
+    ],
+    "Mengshi Recon": [
+      50,
+      30
+    ],
+    "Marine HJ-8H Team": [
+      70,
+      60
+    ],
+    "HJ-12 Team": [
+      45,
+      90
+    ],
+    "ZBD-86 Recon": [
+      15,
+      35
+    ],
+    "PLZ-89": [
+      80,
+      95
+    ],
+    "PLZ-85": [
+      90,
+      80
+    ],
+    "PGZ-88": [
+      80,
+      90
+    ],
+    "GAM-102LR Team": [
+      50,
+      110
+    ],
+    "Mountain Leopards 高原雪豹": [
+      90,
+      100
+    ],
+    "Whistling Arrows 响箭": [
+      65,
+      85
+    ],
+    "Wing Loong": [
+      135,
+      100
+    ]
+  },
+  "hj12": {
+    "range_data": [
+      650,
+      750
+    ],
+    "shown": [
+      1300,
+      1500
+    ],
+    "pen": [
+      140,
+      130
+    ]
+  },
+  "j7_j8d": {
+    "afterburner": true,
+    "heavy_strike": [
+      40,
+      60
+    ]
+  },
+  "qn506_armour": {
+    "before": {
+      "MaxHealthPoints": 14,
+      "HeatArmorFront": 1200,
+      "HeatArmorRear": 200,
+      "HeatArmorSides": 200,
+      "HeatArmorTop": 80,
+      "KinArmorFront": 700,
+      "KinArmorRear": 100,
+      "KinArmorSides": 150,
+      "KinArmorTop": 60
+    },
+    "after": {
+      "MaxHealthPoints": 14,
+      "HeatArmorFront": 600,
+      "HeatArmorRear": 100,
+      "HeatArmorSides": 400,
+      "HeatArmorTop": 80,
+      "KinArmorFront": 450,
+      "KinArmorRear": 100,
+      "KinArmorSides": 100,
+      "KinArmorTop": 60
+    }
+  },
+  "z6b_termit": {
+    "unit": 1105,
+    "from": 632,
+    "modification": 2019080,
+    "stealth_raw": 0.4,
+    "category": 0
+  },
+  "zbl_ztl_14nov": {
+    "ztq15_light_road_reverse": [
+      [
+        70,
+        35
+      ],
+      [
+        80,
+        40
+      ]
+    ],
+    "ztz59_ke_front": [
+      250,
+      150
+    ],
+    "ctl181_cost": [
+      90,
+      180
+    ],
+    "ztq15_light_ke_front_side": [
+      100,
+      80
+    ],
+    "zbd20_base": [
+      175,
+      120
+    ],
+    "zbl191_cost": [
+      105,
+      80
+    ],
+    "hj16_iir_options": {
+      "ids": [
+        31048,
+        31050,
+        31052
+      ],
+      "cost": [
+        40,
+        15
+      ]
+    },
+    "zbl08": {
+      "removed": "HJ-8E",
+      "options": {
+        "no_atgm": 31073,
+        "hj73d": 31074
+      },
+      "mount": 2019081,
+      "option_cost": 10
+    },
+    "armour_front_side": {
+      "KE": [
+        60,
+        30
+      ],
+      "HEAT": [
+        250,
+        100
+      ],
+      "units": [
+        903,
+        938
+      ]
+    }
+  },
+  "plagf_z20_recon_only": {
+    "removed_inf_links": [
+      "HJ-8E Team",
+      "QW-2 Team",
+      "QLZ-04 Team",
+      "PF-98 Tank Hunters",
+      "Combat Engineers 工兵班",
+      "QJZ-89 Team",
+      "Mech. Rifles 机步班"
+    ]
+  },
+  "vehicle_icons": {
+    "937": "QN506",
+    "902": "ZBD04",
+    "1255": "ZBD04",
+    "906": "ZTQ15",
+    "1240": "ZTQ15",
+    "1268": "ZTQ15",
+    "940": "Z19",
+    "1103": "Z19",
+    "1134": "Z19",
+    "1236": "Z19",
+    "1237": "Z19",
+    "941": "Z9",
+    "1107": "Z9",
+    "1133": "Z9",
+    "1104": "Z21",
+    "1135": "Z21",
+    "1261": "VT5",
+    "1262": "VT5",
+    "1080": "ZTL191",
+    "1263": "ZTL191",
+    "1095": "JIUTIAN",
+    "1100": "WZ7",
+    "1252": "WZ8",
+    "967": "GJ11",
+    "1258": "ZBD86",
+    "1076": "ZBD86",
+    "1056": "ZBD251",
+    "1065": "ZSD89A",
+    "1248": "ZSD89A",
+    "1249": "ZSD89A",
+    "1250": "ZSD89A",
+    "936": "HJ10",
+    "945": "ZBD20",
+    "968": "ZTZ100",
+    "1082": "ZTZ96A",
+    "949": "ZTZ96A",
+    "905": "ZTZ96A",
+    "1083": "ZTZ96A",
+    "904": "ZTZ99A",
+    "947": "PTZ89",
+    "1064": "ZSD89",
+    "1061": "ZTZ59D",
+    "1260": "ZTZ59D",
+    "1264": "ZTZ85",
+    "1230": "CSK181",
+    "1054": "CTL181",
+    "1059": "PTL02",
+    "903": "ZBL08",
+    "979": "ZBL191",
+    "1079": "ZSL92",
+    "938": "ZTL11",
+    "925": "HQ7",
+    "1048": "HQ16",
+    "910": "HQ17",
+    "1049": "HQ17",
+    "1052": "PGZ95",
+    "907": "PLZ05",
+    "1039": "PLZ45",
+    "1029": "DF15",
+    "1028": "DF17",
+    "1030": "DF21",
+    "1032": "DF31",
+    "911": "HQ22",
+    "1233": "HQ22",
+    "909": "PGZ09",
+    "1051": "PGZ88",
+    "1040": "PLZ70",
+    "1041": "PLZ83",
+    "1042": "PLZ85",
+    "1043": "PLZ89",
+    "935": "FK2000",
+    "952": "JRVG1",
+    "1129": "YJ18",
+    "1046": "HQ11",
+    "1045": "HQ6",
+    "1033": "PCL09",
+    "1034": "PCL181",
+    "920": "PGL625",
+    "1035": "PHL16",
+    "1036": "PHL191B",
+    "1037": "PLL09",
+    "1239": "Z10",
+    "913": "Z10K",
+    "1105": "Z6B",
+    "1106": "Z8L",
+    "1084": "AR2000",
+    "1253": "FH97A",
+    "919": "H6K",
+    "923": "J11",
+    "1241": "J11",
+    "916": "J16",
+    "977": "J16D",
+    "915": "J20",
+    "966": "J20",
+    "1096": "KJ500",
+    "928": "Y20",
+    "1089": "J5",
+    "1091": "J6",
+    "1092": "J7",
+    "975": "J8",
+    "943": "J15",
+    "921": "J35",
+    "929": "J36",
+    "976": "MD22",
+    "917": "J10",
+    "955": "J10",
+    "1226": "J10"
+  },
+  "ar2000": {
+    "unit": 1084,
+    "cost": [
+      65,
+      95
+    ],
+    "weapon": 2019087,
+    "ammo": 2019088,
+    "turret": 2019089,
+    "rounds": 8,
+    "stealth": [
+      1.25,
+      1.75
+    ],
+    "category": [
+      5,
+      0
+    ]
+  },
+  "ptz89_metal": {
+    "files": 16,
+    "assets_list": "0.9.0-dev.2-assets.txt"
+  },
+  "y8_yaw": [
+    180,
+    270
+  ],
+  "recon_sf": {
+    "cards": {
+      "Whistling Arrows 响箭": [
+        3,
+        4
+      ],
+      "Mountain Leopards 高原雪豹": [
+        3,
+        4
+      ],
+      "Beijing Swords 蓝剑": [
+        3,
+        4
+      ],
+      "Marine Recon": [
+        8,
+        4
+      ]
+    },
+    "marine_recon_body": "pla2_sf_night_up_woodland_0.fas",
+    "marine_recon_portrait": "FA_CN_INF_SF_CQC-Portrait"
+  },
+  "version": "0.9.0-dev.2",
+  "base": "0.9.0-dev.1",
+  "base_sha256": "24baec46ef89138e0bd159d0cbf9672b26b505ee964534a05a01311f192ce925",
+  "checks": 353,
+  "verified": "data checks only"
+}
