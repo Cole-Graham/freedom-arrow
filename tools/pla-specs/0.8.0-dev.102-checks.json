@@ -1,0 +1,84 @@
+{
+  "j36": {
+    "Long-range CAP (8x PL-17, 4x PL-21)": {
+      "option": 31063,
+      "load": {
+        "PL-21": 4,
+        "PL-17": 8
+      },
+      "slots": [
+        0,
+        2016475,
+        2016475,
+        2016475,
+        2016481,
+        2016481,
+        2016475,
+        160,
+        160
+      ],
+      "cost": 255,
+      "order": 3
+    },
+    "Mixed CAP (8x PL-17, 6x PL-16)": {
+      "option": 31064,
+      "load": {
+        "PL-16": 6,
+        "PL-17": 8
+      },
+      "slots": [
+        0,
+        2018021,
+        2018021,
+        2017956,
+        2016481,
+        2016481,
+        2017956,
+        160,
+        160
+      ],
+      "cost": 255,
+      "order": 4
+    }
+  },
+  "ztq15_agl": {
+    "weapon": 2018995,
+    "ammo": 2018996,
+    "turret": 2018997,
+    "units": {
+      "ZTQ-15": {
+        "weapons": [
+          "105 mm high-pressure rifled gun",
+          "LG3 40 mm AGL",
+          "Type 86 7.62 mm"
+        ],
+        "rounds": [
+          100,
+          320
+        ]
+      },
+      "ZTQ-15 Recon": {
+        "weapons": [
+          "105 mm high-pressure rifled gun",
+          "LG3 40 mm AGL",
+          "Type 86 7.62 mm"
+        ],
+        "rounds": [
+          100,
+          320
+        ]
+      }
+    }
+  },
+  "version": "0.8.0-dev.102",
+  "base": "0.8.0-dev.101",
+  "base_sha256": "826c7e4b840a25e052ad2079d7fdfdcb1eeeb1319e3d6eefddecbf7a5974f6c5",
+  "request": "Osama 14 Nov PST",
+  "checks": 34,
+  "verified": "data checks",
+  "assumptions": {
+    "J-36 CAP price": "255 for both (Heavy CAP price; not specified)",
+    "AGL": "Norinco LG3 40 mm; Osama did not recall the name",
+    "AGL rounds": 320
+  }
+}

@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.101
+# Freedom Arrow 0.8.0-dev.102
+
+- J-36: two more CAP loadouts next to Heavy CAP. Long-range CAP: 8x PL-17 and 4x PL-21. Mixed CAP: 8x PL-17 and 6x PL-16. Both 255, the Heavy CAP price.
+- ZTQ-15 and ZTQ-15 Recon: the roof QJC-88 12.7 mm is replaced by an LG3 40 mm automatic grenade launcher (320 rounds). VT-5 keeps its QJC-88.
+- Everything else as 0.8.0-dev.101.
+
+## Historical 0.8.0-dev.101
 
 - J-36 Heavy CAP: 4x PL-17, 4x PL-16 and 4x PL-21.
 - Shaanxi HMV3 Cargo: 15000 supply in both armory versions (was 9000, or 4500 armored).
