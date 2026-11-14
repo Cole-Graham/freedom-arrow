@@ -1,0 +1,76 @@
+{
+  "hj16_icon": {
+    "2014655": [
+      "FA_PLA_HJ10",
+      "VEH_SPIKE_LR"
+    ]
+  },
+  "models_json": {
+    "PLA HQ-9": {
+      "before": {
+        "file": "hq9.fam",
+        "align": false,
+        "battle": "hq9_lo.fam"
+      },
+      "after": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-9B": {
+      "before": {
+        "file": "hq9.fam",
+        "align": false,
+        "battle": "hq9_lo.fam"
+      },
+      "after": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-9A": {
+      "before": {
+        "file": "hq9.fam",
+        "align": false,
+        "battle": "hq9_lo.fam"
+      },
+      "after": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZTZ-99": {
+      "before": {
+        "file": "m_ztz99b_static.fam",
+        "battle": "m_ztz99b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99_static.fam",
+        "battle": "m_ztz99_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Mengshi Recon": {
+      "before": {
+        "file": "m_mengshir_static.fam",
+        "battle": "m_mengshir_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_mengshird_static.fam",
+        "battle": "m_mengshird_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.89",
+  "base": "0.8.0-dev.88",
+  "base_sha256": "8a0b02c7104556091a92b70da3606dc16ef78dfcaad3d1db54ab888d912f89d2",
+  "request": "Osama 13 Nov 21:52-22:12 PST",
+  "checks": 15,
+  "verified": "data and file checks only"
+}

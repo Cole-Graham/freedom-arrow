@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.88
+# Freedom Arrow 0.8.0-dev.89
+
+- HQ-9C, HQ-9B, HQ-9A: Osama's new seller model (HQ-22 pack).
+- Mengshi Recon: much darker paint.
+- ZTZ-99: both tracks back (dev.85 position fix had moved both to one side).
+- HJ-16 on ZBD-251 uses the vehicle Spike icon, as on ZBD-20 and ZBL-191.
+- Everything else as 0.8.0-dev.88.
+
+## Historical 0.8.0-dev.88
 
 - FireSnake: FS-70A and new FS-90 laser-guided rockets (rocket-pod-with-laser icon). Recon gunships (Z-19 Recon, Z-21 Recon) carry FireSnake 70/90 loadouts; higher-end Z-19, Z-10, Z-10K and Z-21 loadouts swap basic rockets for FireSnakes.
 - ZBL-191, ZBD-20 and ZBD-20 Recon: semi-active HJ-16 by default, option HJ-16 IIR (fire and forget) +40.
