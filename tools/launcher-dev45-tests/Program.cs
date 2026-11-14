@@ -12,7 +12,7 @@ var assets = PinnedFreedomArrow.AssetsArchivePath; File.Copy(args[1],assets,true
 var temp = Path.Combine(Path.GetTempPath(), "fa-launcher45-"+Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(temp);
 var settings = AppSettings.FolderPath;
-if (Directory.Exists(settings)) throw new Exception("Test settings already exist; inspect first");
+if (Directory.Exists(settings)) throw new Exception("Test settings already exist; inspect first: "+settings);
 try {
  Check(PinnedFreedomArrow.Enabled,"dedicated pin enabled");
  Check(LauncherService.Channels.Count == 1 && LauncherService.ActiveRepo() == PinnedFreedomArrow.Repo,"only dedicated stable channel");
@@ -40,8 +40,10 @@ try {
  PinnedFreedomArrow.Ensure(service,temp,_=>{},CancellationToken.None);
  Check(service.FindPack(Manifest.Load(temp))!.InstalledAt==at,"repeat PLAY validates without reinstall");
  registry=JsonNode.Parse(File.ReadAllText(registryPath))!.AsObject();
- Check(registry.ContainsKey("MGM-166 LOSAT"),"older model registry gains missing required model binding");
- Check((double)registry["Abrams X"]!["scale"]! == 1.234,"existing model alignment retained during registry merge");
+ // Lateralus 14 Nov 2026: stale UserData model files (e.g. infantry-bodies.json) must be replaced by the package's version.
+ Check(registry.ContainsKey("MGM-166 LOSAT"),"older model registry gets the package's missing binding");
+ Check(registry["Abrams X"]?["scale"]?.GetValue<double>() != 1.234,"edited model registry entry replaced by the package version");
+ Check(File.ReadAllText(skin)!="approved skin" && File.ReadAllText(voice)=="approved preference","stale model texture updated; voice preference kept");
  // Repair a same-version changed DLL, then restore a newer installation to the locked version.
  var dll=PathUtil.ToFull(temp,"Mods/FreedomArrow.Runtime.dll");File.WriteAllText(dll,"corrupted");
  PinnedFreedomArrow.Ensure(service,temp,_=>{},CancellationToken.None);
@@ -52,7 +54,7 @@ try {
  m=Manifest.Load(temp);pack=service.FindPack(m)!;var mods=new ModService(new ManagerConfig());var entry=mods.Scan(temp,m).Single(p=>p.Package==pack);mods.SetEnabled(temp,entry,false,_=>{});m.Save(temp);
  PinnedFreedomArrow.Ensure(service,temp,_=>{},CancellationToken.None);
  Check(File.Exists(dll)&&!File.Exists(dll+PathUtil.DisabledSuffix),"disabled gameplay reenabled");
- Check(File.ReadAllText(skin)=="approved skin" && File.ReadAllText(voice)=="approved preference","approved skins and voice preferences preserved");
+ Check(File.ReadAllText(voice)=="approved preference","voice preferences preserved");
  var assetDll=PathUtil.ToFull(temp,"Mods/FAModels.dll");File.WriteAllText(assetDll,"broken library");
  var missing=PathUtil.ToFull(temp,"UserData/FAMusic/Voice/sentinel-missing.txt");
  using(var z=ZipFile.OpenRead(assets)){var path=z.Entries.First(e=>e.FullName.StartsWith("UserData/FAMusic/Voice/")).FullName;missing=PathUtil.ToFull(temp,path);}

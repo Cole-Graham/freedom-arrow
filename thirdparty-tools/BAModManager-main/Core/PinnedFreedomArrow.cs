@@ -47,6 +47,9 @@ public static class PinnedFreedomArrow
 
     // Install through the upstream package planner. UserData files already on disk are retained so
     // approved skins, music replacements and preferences survive. Missing content is installed atomically.
+    private static readonly HashSet<string> Preferences = new(StringComparer.OrdinalIgnoreCase)
+        { "UserData/FAMusic/voice-presets.txt", "UserData/FAMusic/music-history.txt" };
+
     private static void EnsureAssets(string gameDir, Action<string> log, CancellationToken ct)
     {
         var mods = new ModService(new ManagerConfig());
@@ -63,30 +66,11 @@ public static class PinnedFreedomArrow
             if (!File.Exists(path) && File.Exists(path + PathUtil.DisabledSuffix))
                 File.Move(path + PathUtil.DisabledSuffix, path);
             bool exists = File.Exists(path);
-            if (exists && file.TargetRel.Replace('\\', '/') == "UserData/FAModels/models.json")
-            {
-                // An older asset install can lack newly required model bindings. Add missing units,
-                // retaining each existing model entry in full, including approved offsets and skins.
-                var current = JsonNode.Parse(File.ReadAllText(path)) as JsonObject
-                    ?? throw new InvalidDataException("Existing models.json is not a model registry.");
-                using var src = file.Open();
-                var baseline = JsonNode.Parse(src)!.AsObject();
-                bool changed = false;
-                foreach (var pair in baseline)
-                    if (!current.ContainsKey(pair.Key)) { current[pair.Key] = pair.Value?.DeepClone(); changed = true; }
-                if (changed)
-                {
-                    var tempRegistry = path + ".fa-install-" + Guid.NewGuid().ToString("N");
-                    try
-                    {
-                        File.WriteAllText(tempRegistry, current.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
-                        File.Move(tempRegistry, path, overwrite: true);
-                    }
-                    finally { if (File.Exists(tempRegistry)) File.Delete(tempRegistry); }
-                }
-            }
-            bool userData = file.TargetRel.Replace('\\', '/').StartsWith("UserData/", StringComparison.OrdinalIgnoreCase);
-            if (exists && (userData || newer || SameContent(file, path))) { retained++; continue; }
+            // Lateralus 14 Nov 2026: keeping every existing UserData file meant model, texture and infantry updates never
+            // arrived (0.9.0-dev.2 refused to load: old UserData/FAModels/infantry-bodies.json). Same rule as the PC
+            // installer (switch.py): the package's files win; only the player's voice and music preferences are kept.
+            bool preference = Preferences.Contains(file.TargetRel.Replace('\\', '/'));
+            if (exists && (preference || newer || SameContent(file, path))) { retained++; continue; }
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             var temp = path + ".fa-install-" + Guid.NewGuid().ToString("N");
             try
