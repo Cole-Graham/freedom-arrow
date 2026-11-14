@@ -1,0 +1,18 @@
+{
+  "version": "0.8.0-dev.71",
+  "base": "0.8.0-dev.70",
+  "base_sha256": "ac2ca831bbba91114834999858855859a77f7768d194dfd3f0dc800bc48c6a0e",
+  "request": "Osama 13 Nov 18:5x PST: PGL-625 gun 20 damage per second, armour profile same as ZBL-191; WZ-8 remove low altitude, only high",
+  "pgl625": {
+    "rounds_per_s": 2.561,
+    "damage": [
+      3.0,
+      7.8
+    ],
+    "dps": 19.98,
+    "armour_from": 2010315
+  },
+  "wz8_mobility": 2018772,
+  "checks": 4,
+  "verified": "data only"
+}

@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.70
+# Freedom Arrow 0.8.0-dev.71
+
+- PGL-625: gun at 20 damage per second (7.8 per round at the Pantsir gun rate; was 3.0, about 7.7/s), and the ZBL-191 armour profile (HEAT 700 front and sides).
+- WZ-8: flies high only; it can no longer switch to low altitude.
+- Everything else as 0.8.0-dev.70.
+
+## Historical 0.8.0-dev.70
 
 - WZ-8: 300 points (was 260).
 - Everything else as 0.8.0-dev.69.
