@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.2", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.3", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -100,6 +100,9 @@ public class Runtime : MelonMod
         Directory.CreateDirectory(Root);
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
         DiagnosticLog.Start(Root,PackageVersion);
+        // 0.9.0-dev.3: before the payload check, so even a refused package never loads or rewrites vanilla decks.
+        try { DeckFolder.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_FOLDER_FAILED: decks use the vanilla folder. "+e.Message); }
         File.Delete(Path.Combine(Root,"runtime-receipt.json"));
         File.Delete(Path.Combine(Root,"runtime-failure.txt"));
         try

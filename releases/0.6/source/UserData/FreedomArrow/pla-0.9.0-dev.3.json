@@ -1,0 +1,17 @@
+{
+  "swap_prices": {
+    "Spetsnaz Alpha stand-off (354)": [
+      95,
+      90
+    ],
+    "Troopers AA +RPG (706)": [
+      60,
+      65
+    ]
+  },
+  "version": "0.9.0-dev.3",
+  "base": "0.9.0-dev.2",
+  "base_sha256": "107b5b61d4d5948a49850fa494fa751a3985585c9b88dff7e1ec2e435e62d963",
+  "checks": 3,
+  "verified": "data checks only"
+}

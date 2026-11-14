@@ -1,4 +1,9 @@
-# Freedom Arrow 0.9.0-dev.2
+# Freedom Arrow 0.9.0-dev.3
+Osama's word, 14 Nov 2026 15:26 PST ("build it all together including the launcher and test it"; thread 1571297086974992537):
+mod decks live in Decks/FreedomArrow, so the mod never loads or rewrites vanilla decks (runtime-qa/DeckFolder.cs; vanilla decks are
+copied in once). Loadout swap prices: Spetsnaz Alpha stand-off 90, Troopers AA +RPG 65 (tools/pla-specs/apply_0_9_dev3.py).
+Pairs with launcher 1.1.4 (deck backups, vanilla deck check after modded sessions).
+## Historical 0.9.0-dev.2
 
 Osama's 14 Nov 2026 batch (threads 1571014792016171120 and 1567745029781454889), built on his word at 14:40 PST
 ("push the big live build for us to play"): new vanilla-style unit icons for about 100 PLA vehicle, helicopter and aircraft

@@ -8,7 +8,7 @@ from that assets package, this script makes the next assets version (make_assets
 with the gameplay package.
 """
 from pathlib import Path
-import argparse,hashlib,json,re,subprocess,sys,tempfile,zipfile
+import argparse,hashlib,json,os,re,subprocess,sys,tempfile,zipfile
 sys.path.insert(0,str(Path(__file__).parent));import make_assets
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
 enc=lambda x:(json.dumps(x,indent=2,ensure_ascii=False)+'\n').encode()
@@ -27,6 +27,10 @@ prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());asser
 # 0.9 (Osama 14 Nov 2026 11:05 PST, "launch this as 0.9"): 0.9.0-dev.N builds continue in out/0.8 after 0.8.0-dev.105.
 newest=max(((int(m.group(1)),int(m.group(2))),f'0.{m.group(1)}.0-dev.{m.group(2)}') for f in (REL/'out/0.8').glob('FreedomArrow-0.*.0-dev.*.json') if (m:=re.search(r'FreedomArrow-0\.([89])\.0-dev\.(\d+)\.json$',f.name)))
 assert a.prev==newest[1],f'--prev {a.prev} is not the newest build {newest[1]}; build on it so other threads\' fixes are kept'
+# Osama 14 Nov 2026 15:39 PST ("make sure dev builds we aren't skipping"): the #build-install dev-build post fell behind from 0.8.0-dev.82
+# to 0.9.0-dev.2. The next build may start only after the previous one is on that post (work/build-install/devpost.py).
+_st=json.loads(Path('/home/sam/tars/work/ba-dev/replicas/codex/work/build-install/state.json').read_text()).get('dev_build',{}).get('version')
+if _st!=a.prev and not os.environ.get('BA_DEVPOST_SKIP'):raise SystemExit(f'The #build-install dev-build post shows {_st}, not {a.prev}. Upload {a.prev} (gameplay, assets, complete) and run work/build-install/devpost.py first, or set BA_DEVPOST_SKIP=<reason>.')
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
 with zipfile.ZipFile(base) as z:
     whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='Freedom Arrow '+a.prev
@@ -136,3 +140,5 @@ if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check
 # dev.93 (Osama 13 Nov 22:58): no armory-vs-multiplayer equipment fault that vanilla does not have (lost default abilities,
 # unlinked option abilities, child turrets without parents, weapons without ammo, option ids above 32767).
 subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+# 0.9.0-dev.3 (12the12 bug report, Osama 14 Nov 14:58): a loadout swap row costs base + option, or the Arsenal overview and editor disagree.
+subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
