@@ -1,13 +1,40 @@
-# Freedom Arrow 0.8.0-dev.98-lat.2
+# Freedom Arrow 0.8.0-dev.101
 
-Lateralus batch test build on 0.8.0-dev.98 (branch codex/batch/lateralus/0.8-rockets-radar-guns). Not for multiplayer playtests.
+- J-36 Heavy CAP: 4x PL-17, 4x PL-16 and 4x PL-21.
+- Shaanxi HMV3 Cargo: 15000 supply in both armory versions (was 9000, or 4500 armored).
+- Helicopter glass copies a similar base-game helicopter: Z-20 family UH-60M, Z-19 AH-1Z, Z-10 AH-64E, Z-9 UH-1Y, Z-11WB OH-58 (FAModels 0.3.24).
+- CSK-131: side panels back (solid body), dark glossy windows. CSK-181: dark glossy windows instead of the wavy canopy glass.
+- ZTZ-96A and ZTZ-96B show the right models again; ZTZ-96B in green digital camo.
+- Z-19: no cargo. PLAN SOF Z-19 is now Z-19G. ZBD-20 Recon removed. DF-15 and YJ-18 models 20% smaller.
+- PLAN SOF spec points: aircraft 1250, helicopters 1000. PLARF is now named PLARF Rocket Force/Reservist.
+- Infantry: backpacks on all non-conscript PLA soldiers (conscripts and deck crew excepted).
+- Type 59D and ZTZ-59D1: textures in the ZTZ-99A style (digital woodland, ZTZ-99A tracks).
+- Mengshi Recon: now on the CSK-131 (Mengshi) model in a darker finish, with closed doors and windows.
+- ZBD-05: loadouts with the HJ-8E ATGM (+10, default) or without it (35 pts).
+- Motorized AT Troopers: 4 PF-89 launchers. CTL-181 NLOS: 2 cards. Blood Wolves: CH-901 1400 m range, 75 points.
+- Everything else as 0.8.0-dev.100.
 
-lat.2 fixes lat.1 "(verification failed)": lat.1 still listed the removed 0.1 map files in its payload check.
+## Historical 0.8.0-dev.100
 
-- Rockets: M72A10 6.0 and 25%; M72A7 0% and "66mm HEDP"; RMG 4.5 and 75%; OG-7V 25%; TBG-7L, TBG-7V, RPO-M, RShG-1, RShG-2, SMAW and SMAW-D HIT 75%; SPG-9M OG-9V 25%; SRAW 25% (Ignore Cover).
-- Radar guns: PGZ-04A, PGZ-04, PGZ-88 and PGZ-95 rounds at 1610 projectile speed.
-- Overkill improvement: only weapons whose round can target missiles count; the 128 limit counts those interceptors only.
-- Maps: [5v5] Oil Rush 0.2 (E F 4, H 3), Airport 0.2 (new zones), Cold Harbor 0.2 (no Charlie, larger Delta). The 0.1 folders are removed.
+- ZFB-05 is a transport for Motorized infantry (10 seats, like the base-game BPM-97 it is built on), not its own card.
+- Z-19: stealth 1.75.
+- J-10C and J-10S: ECM and flares (same as the J-10CE).
+- Y-8: faces forward, and the flaps and elevators lie flat again.
+- KQ-200: propellers no longer look mid-spin.
+- Everything else as 0.8.0-dev.99.
+
+## Historical 0.8.0-dev.99
+
+- Transports (IFVs, APCs, trucks, ATV) no longer have their own vehicle card; buy them with the infantry, as in the base game. ZBD-20 is now a transport like ZBD-04A. Helicopters keep their cards.
+- Removed: CSK-131 Mengshi; the PLAN SOF ZSD-89; CSK-131 4x4 as a PLAAF transport; CSK-181 as a PLAN SOF transport.
+- Cards: DF-17 1, YJ-18 2, HQ-9C/HQ-9B 2, ZTZ-99A 2, ZTZ-99 4, J-5/J-6W/J-7/J-8D 4, Conscripts/HJ-73D Team/Infantry/Mech. Rifles 8, PLAN SOF SF infantry 2 and SF recon 3.
+- Prices: Forward Observers 25, ZTQ-15 150, ZTQ-15 Recon 165, PLZ-70 95, PLZ-85 90, PLZ-07B 130, MD-22 +100.
+- Sharp Blades is now Sharp Swords.
+- PLZ-85 dispersion 300 m x 240 m; PLZ-89 range 4300 m.
+- 20 smoke rounds on PLL-05, PLL-09, PLZ-70 and PLZ-07B; PLZ-07B 12 laser-guided rounds.
+- Recon helicopters with loadouts get an Empty loadout (0 pts). FK-2000 model 10% smaller.
+- ZTL-191 uses the desert camo too.
+- PTL-02 50, VT-5 240. ZSD-89A is no longer a Motorized transport. Line Infantry renamed Moto. Riflemen; Moto. Riflemen, Light Riflemen and Marines 6 cards. Recon tanks (ZTQ-15, VT-5, ZTL-191 Recon) 2 cards.
 - Everything else as 0.8.0-dev.98.
 
 ## Historical 0.8.0-dev.98

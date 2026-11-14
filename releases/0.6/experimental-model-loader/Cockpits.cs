@@ -15,7 +15,14 @@ public partial class Mod
     {
         ["US_F22_Glass"] = "f22",
         ["US_F16_Glass"] = "f16",
-        ["!RU_SU-57glass"] = "su57"
+        ["!RU_SU-57glass"] = "su57",
+        // 0.3.24 (Osama 14 Nov: helicopters use the glass of a similar vanilla helicopter). Material names read from the vanilla
+        // unit bundle (prefab renderers); the token picks the donor prefab (US_UH60M, US_AH-1Z Viper, US_AH64E, US_UH-1Y, US_OH58Kiowa).
+        ["US_UH60M_glass"] = "usuh60m",
+        ["US_AH-1Z_Viper_Glass"] = "ah1zviper",
+        ["US_AH_64_Glass"] = "usah64e",
+        ["US_UH-1Y_Glass"] = "usuh1y",
+        ["US_OH58Kiowa_glass"] = "oh58kiowa"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

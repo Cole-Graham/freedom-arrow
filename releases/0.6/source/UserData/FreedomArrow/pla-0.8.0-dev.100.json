@@ -1,0 +1,77 @@
+{
+  "zfb05": {
+    "card_removed": 21,
+    "seats": [
+      4,
+      10
+    ],
+    "category": [
+      0,
+      2
+    ],
+    "transport_links": 10,
+    "passengers": [
+      "AA Troopers 防空班",
+      "AT Troopers 反坦克组",
+      "Air Defense Scouts 防空侦察",
+      "GAM-102LR Team",
+      "Light Riflemen 轻步兵",
+      "Moto. Riflemen 摩步班",
+      "Recon Patrol 侦察班",
+      "Snipers 狙击组",
+      "Taishan Eagles 泰山雄鹰",
+      "Weapons Squad 火力班"
+    ]
+  },
+  "z19_stealth": {
+    "raw": [
+      0.8,
+      0.571
+    ],
+    "shown": [
+      1.25,
+      1.75
+    ]
+  },
+  "j10_ecm": {
+    "ability": 2006990,
+    "name": "ECM Plane 10 Default FA 0.85",
+    "units": [
+      917,
+      955
+    ]
+  },
+  "models_json": {
+    "PLA Catalogue Y-8 family — seller package": {
+      "before": {
+        "file": "m_y8_static.fam",
+        "battle": "m_y8_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_y8b_static.fam",
+        "battle": "m_y8b_lo_static.fam",
+        "align": false,
+        "yaw": 180
+      }
+    },
+    "PLA Catalogue KQ-200": {
+      "before": {
+        "file": "m_kq200_static.fam",
+        "battle": "m_kq200_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_kq200p_static.fam",
+        "battle": "m_kq200p_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.100",
+  "base": "0.8.0-dev.99",
+  "base_sha256": "ea8f9c786d283091e216c4c6184361fea5d9c4daf9a8a398d4a5c9dc91489d31",
+  "request": "Osama 14 Nov 00:4x-01:0x PST",
+  "checks": 28,
+  "verified": "data and file checks; models rendered offline"
+}
