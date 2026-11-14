@@ -1,0 +1,57 @@
+{
+  "version": "0.8.0-dev.75",
+  "base": "0.8.0-dev.74",
+  "base_sha256": "8d92984387bbdade54ef2fb3592ead09f5f25888f5a56d5b8d91606299b88000",
+  "request": "Osama 13 Nov 19:45 PST: DF-17 2000 supply; 19:46 SR-5 change the weapon name (right now its HIMARS and ATACM)",
+  "df17": {
+    "ammunition": 2010351,
+    "supply_cost": [
+      1000.0,
+      2000.0
+    ]
+  },
+  "sr5": {
+    "Fire Dragon 70": {
+      "weapon": [
+        10,
+        2018773
+      ],
+      "turret": [
+        9,
+        2018774
+      ]
+    },
+    "Fire Dragon 70 CLU": {
+      "weapon": [
+        254,
+        2018776
+      ],
+      "turret": [
+        81,
+        2018777
+      ]
+    },
+    "Fire Dragon 300": {
+      "weapon": [
+        37,
+        2018779
+      ],
+      "turret": [
+        82,
+        2018780
+      ]
+    },
+    "Fire Dragon 480": {
+      "weapon": [
+        569,
+        2018782
+      ],
+      "turret": [
+        779,
+        2018783
+      ]
+    }
+  },
+  "checks": 6,
+  "verified": "data only"
+}

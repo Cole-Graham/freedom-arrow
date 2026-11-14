@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.74
+# Freedom Arrow 0.8.0-dev.75
+
+- DF-17/ZF: missile resupply costs 2000 supply (was 1000). Resupply time is unchanged (120 s).
+- SR-5: its launchers are named Fire Dragon 70, Fire Dragon 70 CLU, Fire Dragon 300 and Fire Dragon 480 (were HIMARS and ATACMS). Same stats; they are now SR-5 copies, so the M142 HIMARS is unchanged. The Fire Dragon 300 loadout no longer renames the unit to "ATACMS".
+- Everything else as 0.8.0-dev.74.
+
+## Historical 0.8.0-dev.74
 
 - Radar now loads on JRVG-1, PGZ-09, HJ-10 and AFT-10 (Radar SHORAD values: low-altitude optics and weapon range x1.25, high-altitude optics x2). The game loads only the first default ability of a unit; these units had smoke first and radar second, so the radar was dropped. Smoke and radar are now one ability.
 - Everything else as 0.8.0-dev.73.
