@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.61
+# Freedom Arrow 0.8.0-dev.62
+
+- DF-ZF: acceleration 3x the DF-21 (300, was 200). Top speed is 2400 = acceleration x 8 s burn, so the cap never stops the boost.
+- Ballistic missiles keep their burnout speed to impact; the game adds no speed on the descent.
+- DF-15, DF-17, DF-21, DF-21D and DF-31A keep their own models in matches: the copied F-16 glass now survives scene loads (FAModels 0.3.21).
+
+## Historical 0.8.0-dev.61
 
 - Road speed: every tracked vehicle (all nations) now drives 60% faster on roads than off-road: road speed = off-road speed x 1.6.
   - Examples: M1A2, T-90M, BMP-3, ZTZ-99A 70 -> 88; T-80U, T-14, XM30, ZTZ-100 80 -> 96; Bradley 60 -> 72; Spartan 95 -> 112.

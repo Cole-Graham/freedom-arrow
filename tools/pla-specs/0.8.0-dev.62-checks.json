@@ -1,0 +1,24 @@
+{
+  "version": "0.8.0-dev.62",
+  "base": "0.8.0-dev.61",
+  "base_sha256": "6ade9b061f36d8694ff7dcd10487232ab0ae4e9293e54efef216768986a9cc43",
+  "request": "Osama 13 Nov PST: DF-ZF should be 3x acceleration rather than 2x; unlock its top speed so it never hits a cap",
+  "ammo": 2010351,
+  "before": {
+    "Acceleration": 200.0,
+    "MaxSpeed": 1600.0,
+    "BurnTime": 8.0
+  },
+  "after": {
+    "Acceleration": 300.0,
+    "MaxSpeed": 2400.0,
+    "BurnTime": 8.0
+  },
+  "checks": 2,
+  "native": {
+    "RocketEngineSystem.IntenalUpdate": "0x80BEB0",
+    "TrajectoryShellSystem.InternalUpdate": "0x82C4B0",
+    "IsKinematicallyAbleToInterceptTarget": "0x7D9420"
+  },
+  "verified": "data and native code read only; not yet observed in a game"
+}
