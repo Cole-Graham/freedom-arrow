@@ -9,3 +9,4 @@
 ## Document change log
 
 - 2026-11-13 02:46:43 PST (America/Los_Angeles) — Created: map sources moved from 0.7 dev.58, plus [5v5] Cold Harbor 0.1 (Lateralus).
+- 2026-11-13 23:53:44 PST (America/Los_Angeles) — Lateralus batch: [5v5] Oil Rush, Airport and Cold Harbor 0.2 (new values; new Airport zones; Cold Harbor without Charlie). The 0.1 folders are retired by GUID.

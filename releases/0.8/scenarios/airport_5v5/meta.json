@@ -1,8 +1,8 @@
 {
   "v": 3,
   "author": "Lateralus",
-  "desc": "Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, the side with the higher zone value scores the difference. First to 300 wins. A D are worth 4, F G H I are worth 3, B C E are worth 2. Flat 200 income, no upkeep.",
-  "guid": "e069dd6c-5a2a-4bf6-a1ed-ca7556f6f872",
+  "desc": "Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, the side with the higher zone value scores the difference. First to 300 wins. H J are worth 4, A D are worth 3, B C E F G I are worth 2. Flat 200 income, no upkeep.",
+  "guid": "8846b2a6-4523-4a5b-aa84-361b2fc853d9",
   "type": 2,
   "public": true,
   "hasDiff": false,
@@ -10,7 +10,7 @@
   "sceneName": "Airport",
   "dtp": "Morning (default)",
   "createdDate": 1696772650,
-  "updatedDate": 1794474151,
+  "updatedDate": 1794641428,
   "scenario": "[FA] [5v5] Airport 0.1",
   "locName": "",
   "files": [],
@@ -116,7 +116,7 @@
       "nt": 1,
       "desc": "ui_lobby_StartMoney_desc",
       "defV": 1500,
-      "ord": 2,
+      "ord": 1,
       "sld": true,
       "mnv": 500,
       "mxv": 1500,
@@ -129,7 +129,7 @@
       "nt": 2,
       "desc": "ui_lobby_Income_desc",
       "defV": 300,
-      "ord": 3,
+      "ord": 2,
       "sld": true,
       "mxv": 600,
       "sv": 25
@@ -140,24 +140,11 @@
       "t": 101,
       "desc": "ui_lobby_Timer_desc",
       "defV": 45,
-      "ord": 4,
+      "ord": 3,
       "sld": true,
       "mnv": 30,
       "mxv": 60,
       "sv": 3
-    },
-    {
-      "id": 53,
-      "name": "ui_lobby_Size_Title",
-      "t": 102,
-      "desc": "ui_lobby_Size_Description",
-      "drpdV": {
-        "0": "ui_lobby_Size_Auto",
-        "1": "ui_lobby_Size_Large",
-        "2": "ui_lobby_Size_Medium",
-        "3": "ui_lobby_Size_Small"
-      },
-      "ord": 0
     },
     {
       "id": 56,
@@ -171,7 +158,7 @@
         "3": "ui_set_hangar_night",
         "4": "ui_lobby_random_nation"
       },
-      "ord": 1
+      "ord": 0
     }
   ],
   "gameVersion": "1.2.2",

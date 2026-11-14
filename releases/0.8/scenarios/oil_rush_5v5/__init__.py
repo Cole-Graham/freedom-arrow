@@ -1,12 +1,13 @@
 """[FA] [5v5] Oil Rush: Lateralus's Oil refinery layout (12 November 2026), with FA conquest and a camera for each team.
 His spawn facings are kept. The export had seven HMMWVs owned by Alpha Player 1 parked on Bravo's spawn points (an editor
-test); the build removes all placed units, so neither side starts with units."""
+test); the build removes all placed units, so neither side starts with units.
+0.2 (Lateralus 14 Nov 2026): zone values only. Echo 3 -> 4, Foxtrot 3 -> 4, Hotel 2 -> 3."""
 import uuid
 import common as C
-NAME='[FA] [5v5] Oil Rush 0.1'
-SKIRMISH_NAME='[FA] [5v5] Oil Rush Skirmish 0.1'
-# Lateralus 2026-11-12.
-VALUES=dict(Alpha=2,Bravo=3,Charlie=3,Delta=2,Echo=3,Foxtrot=3,Golf=2,Hotel=2,India=2,Juliett=3,Kilo=3)
+NAME='[FA] [5v5] Oil Rush 0.2'
+SKIRMISH_NAME='[FA] [5v5] Oil Rush Skirmish 0.2'
+# Lateralus 2026-11-12; 0.2 values 2026-11-14.
+VALUES=dict(Alpha=2,Bravo=3,Charlie=3,Delta=2,Echo=4,Foxtrot=4,Golf=2,Hotel=3,India=2,Juliett=3,Kilo=3)
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 UNIT=1
 def prepare(game,spec):
