@@ -1,0 +1,71 @@
+{
+  "renamed": {
+    "1255": [
+      "PLA ZBD-04A",
+      "PLA ZBD-04A Recon"
+    ],
+    "1256": [
+      "PLA ZBD-20",
+      "PLA ZBD-20 Recon"
+    ]
+  },
+  "hud": {
+    "1047": [
+      "HQ-12 / KS-1",
+      "HQ-12"
+    ],
+    "1034": [
+      "PCL-181 / SH-15",
+      "PCL-181"
+    ]
+  },
+  "hj8h": {
+    "unit": 1193,
+    "weapon": 2018801,
+    "ammo": 2018802,
+    "icon": "INF_KORNET",
+    "thumbnail": "RU_KORNET-Label",
+    "cost": [
+      55,
+      70
+    ],
+    "missiles": 6,
+    "damage": 10.5
+  },
+  "models_json": {
+    "PLA ZBD-20": {
+      "before": {
+        "file": "zbd04ag_static.fam",
+        "battle": "zbd04ag_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vn17s_static.fam",
+        "battle": "m_vn17s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZBD-20 Recon": {
+      "before": null,
+      "after": {
+        "file": "m_vn17d_static.fam",
+        "battle": "m_vn17d_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZBD-04A Recon": {
+      "before": null,
+      "after": {
+        "file": "m_zbd04d_static.fam",
+        "battle": "m_zbd04d_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.84",
+  "base": "0.8.0-dev.83",
+  "base_sha256": "b74320e3048bf96e08c53a3007a108e70a6d446f7f46d4c5a8db0c247c2eaf7a",
+  "request": "Osama 13 Nov 21:00-21:14 PST",
+  "checks": 127,
+  "verified": "data and file checks only"
+}

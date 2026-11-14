@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.83
+# Freedom Arrow 0.8.0-dev.84
+
+- ZBD-20: purchased VN-17 model (woodland digital). ZBD-20 Recon and ZBD-04A Recon: seller desert digital.
+- Marine HJ-8H Team (PLAN Navy/SOF): HJ-8H launcher and missile copied from the Kornet-M, Kornet icon, 70 points.
+- Names: HQ-12 (was HQ-12 / KS-1), PCL-181 (was PCL-181 / SH-15).
+- Everything else as 0.8.0-dev.83.
+
+## Historical 0.8.0-dev.83
 
 - New purchased models, seller paint, static: ZTZ-99, ZTZ-59A (on ZTZ-59D and ZTZ-59D1), PGZ-95, VT-5 and VT-5 Recon, PLZ-07 and PLZ-07B, Z-9, all Z-19 cards, Z-20 (navy grey for PLAN SOF and PLAAF, green for PLAGF), ZBD-86 (also on ZBD-03), the 4x4 CSK-181 on the CSK-181 Transport.
 - New unit: ZTZ-85-II in PLARF Rocket/Reservist (ZTZ-85-III stats).
