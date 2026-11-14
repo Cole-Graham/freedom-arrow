@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.8.0-dev.100", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.8.0-dev.101", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -113,7 +113,8 @@ public class Runtime : MelonMod
             foreach(var entry in identity["sha256"].AsObject())
                 if(entry.Key=="Mods/FAModels.dll" || entry.Key=="UserData/FAModels/infantry-bodies.json" || entry.Key.StartsWith("UserData/FAModels/pla2_",StringComparison.Ordinal))
                     infantryHashes[entry.Key]=JsonValue.Create(entry.Value.GetValue<string>());
-            if(infantryHashes.Count!=227)throw new InvalidDataException("Expected 25 infantry configurations with 3 meshes with diffuse and normal textures each, plus loader and rules");
+            // 0.8.0-dev.101: 25 body types + 2 Type 21 backpack bodies (x3 meshes, diffuse + normal) + 2 backpack gear atlases (x3 LODs, diffuse + normal), loader and rules.
+            if(infantryHashes.Count!=245)throw new InvalidDataException("Expected 27 infantry configurations and 2 backpack atlases with 3 LODs each, diffuse and normal textures, plus loader and rules");
             int infantryFiles=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,infantryHashes);
             DisplayLabel=label;
             File.WriteAllText(Path.Combine(Root,"loaded-build.json"),JsonSerializer.Serialize(new { label,version=PackageVersion,process_id=Environment.ProcessId,loaded_at_utc=DateTime.UtcNow,core_files=files,infantry_files=infantryFiles },new JsonSerializerOptions { WriteIndented=true }));

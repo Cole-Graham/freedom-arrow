@@ -1,0 +1,454 @@
+{
+  "j36_heavy_cap": {
+    "option": 24393,
+    "load": {
+      "PL-16": 4,
+      "PL-17": 4,
+      "PL-21": 4
+    },
+    "slots": [
+      2018021,
+      2018021,
+      2016481,
+      2016475,
+      2016475,
+      2016475,
+      2016475,
+      160
+    ],
+    "cost": 255
+  },
+  "hmv3_cargo": {
+    "unit": 1247,
+    "heavy_lift": 15000,
+    "options_mobility": {
+      "24379": [
+        231,
+        0
+      ],
+      "24380": [
+        108,
+        0
+      ]
+    },
+    "was": {
+      "default": 9000,
+      "armored": 4500
+    },
+    "removed_ability": 2018324
+  },
+  "z19_no_cargo": {
+    "mobility": 2018990,
+    "copy_of": 258,
+    "heavy_lift": [
+      1500,
+      0
+    ],
+    "units": [
+      1103,
+      1132,
+      1134,
+      1236,
+      1237
+    ]
+  },
+  "plan_sof_points": {
+    "AirPoints": [
+      1500,
+      1250
+    ],
+    "HelicoptersPoints": [
+      750,
+      1000
+    ]
+  },
+  "at_troopers_pf89": {
+    "unit": 1198,
+    "carriers": 4,
+    "members": [
+      2015495,
+      2015496,
+      2015497
+    ]
+  },
+  "ctl181_availability": [
+    [
+      20,
+      2
+    ]
+  ],
+  "ch901_range": {
+    "ammo": 2018448,
+    "world": [
+      900.0,
+      700.0
+    ],
+    "shown_m": [
+      1800,
+      1400
+    ]
+  },
+  "blood_wolves_cost": [
+    55,
+    75
+  ],
+  "zbd05_atgm_option": {
+    "unit": 1076,
+    "cost": [
+      45,
+      35
+    ],
+    "options": {
+      "HJ-8E ATGM (default)": [
+        31061,
+        10
+      ],
+      "No ATGM": [
+        31062,
+        0
+      ]
+    },
+    "no_atgm_turret": 2018991
+  },
+  "plarf_uiname": [
+    "PLARF Rocket/Reservist",
+    "PLARF Rocket Force/Reservist"
+  ],
+  "removed": [
+    [
+      1256,
+      "ZBD-20 Recon"
+    ]
+  ],
+  "models_json": {
+    "PLA CSK-181 4x4": {
+      "before": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_csk4c_static.fam",
+        "battle": "m_csk4c_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-131 Transport": {
+      "before": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_csk4c_static.fam",
+        "battle": "m_csk4c_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-131 Mengshi": {
+      "before": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_csk4c_static.fam",
+        "battle": "m_csk4c_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-96B": {
+      "before": {
+        "file": "m_ztz96a_static.fam",
+        "battle": "m_ztz96a_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz96b_green.fam",
+        "battle": "m_ztz96b_green_lo.fam"
+      }
+    },
+    "PLA Catalogue ZTZ-96A": {
+      "before": {
+        "file": "m_ztz96b_green.fam",
+        "battle": "m_ztz96b_green_lo.fam"
+      },
+      "after": {
+        "file": "m_ztz96a_static.fam",
+        "battle": "m_ztz96a_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Type 59D": {
+      "before": {
+        "file": "m_ztz59d2_static.fam",
+        "battle": "m_ztz59d2_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz59d3_static.fam",
+        "battle": "m_ztz59d3_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-59D1": {
+      "before": {
+        "file": "m_ztz59d2_static.fam",
+        "battle": "m_ztz59d2_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz59d3_static.fam",
+        "battle": "m_ztz59d3_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Mengshi Recon": {
+      "before": {
+        "file": "m_mengshird_static.fam",
+        "battle": "m_mengshird_lo_static.fam",
+        "align": false,
+        "scale": 0.75
+      },
+      "after": {
+        "file": "m_csk4r_static.fam",
+        "battle": "m_csk4r_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue YJ-18 ship launcher": {
+      "before": {
+        "file": "m_yj18_static.fam",
+        "battle": "m_yj18_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_yj18_static.fam",
+        "battle": "m_yj18_lo_static.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    },
+    "PLA Catalogue DF-15": {
+      "before": {
+        "file": "m_df15_static.fam",
+        "battle": "m_df15_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_df15_static.fam",
+        "battle": "m_df15_lo_static.fam",
+        "align": false,
+        "scale": 0.8
+      }
+    }
+  },
+  "helo_glass": {
+    "m_z20a_static": [
+      "m_z20a_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z20a_lo_static": [
+      "m_z20a_lo_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z20n_static": [
+      "m_z20n_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z20n_lo_static": [
+      "m_z20n_lo_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z20na_static": [
+      "m_z20na_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z20na_lo_static": [
+      "m_z20na_lo_static_tex2.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH60M_glass"
+    ],
+    "m_z19g_static": [
+      "|1.0000,1.0000,1.0000,0.9980",
+      "US_AH-1Z_Viper_Glass"
+    ],
+    "m_z19g_lo_static": [
+      "|1.0000,1.0000,1.0000,0.9980",
+      "US_AH-1Z_Viper_Glass"
+    ],
+    "m_z10_black": [
+      "m_z10_black_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_AH_64_Glass"
+    ],
+    "m_z10_black_lo": [
+      "m_z10_black_lo_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_AH_64_Glass"
+    ],
+    "m_z9_static": [
+      "m_z9_static_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH-1Y_Glass"
+    ],
+    "m_z9_lo_static": [
+      "m_z9_lo_static_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH-1Y_Glass"
+    ],
+    "m_z9t_static": [
+      "m_z9t_static_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH-1Y_Glass"
+    ],
+    "m_z9t_lo_static": [
+      "m_z9t_lo_static_tex0.png|1.0000,1.0000,1.0000,1.0000",
+      "US_UH-1Y_Glass"
+    ],
+    "m_z11wb": [
+      "|0.0000,0.0000,0.0000,0.4500",
+      "US_OH58Kiowa_glass"
+    ],
+    "m_z11wb_lo": [
+      "|0.0000,0.0000,0.0000,0.4500",
+      "US_OH58Kiowa_glass"
+    ]
+  },
+  "rename": {
+    "1236": [
+      "Z-19",
+      "Z-19G"
+    ],
+    "1237": [
+      "Z-19 Recon",
+      "Z-19G Recon"
+    ]
+  },
+  "infantry_gear": {
+    "sf_bodies_with_pack": [
+      "pla2_sf_carrier_desert_0.fas",
+      "pla2_sf_carrier_desert_1.fas",
+      "pla2_sf_carrier_desert_2.fas",
+      "pla2_sf_carrier_woodland_0.fas",
+      "pla2_sf_carrier_woodland_1.fas",
+      "pla2_sf_carrier_woodland_2.fas",
+      "pla2_sf_condor_desert_0.fas",
+      "pla2_sf_condor_desert_1.fas",
+      "pla2_sf_condor_desert_2.fas",
+      "pla2_sf_condor_pouches_b_woodland_0.fas",
+      "pla2_sf_condor_pouches_b_woodland_1.fas",
+      "pla2_sf_condor_pouches_b_woodland_2.fas",
+      "pla2_sf_condor_pouches_desert_0.fas",
+      "pla2_sf_condor_pouches_desert_1.fas",
+      "pla2_sf_condor_pouches_desert_2.fas",
+      "pla2_sf_condor_pouches_woodland_0.fas",
+      "pla2_sf_condor_pouches_woodland_1.fas",
+      "pla2_sf_condor_pouches_woodland_2.fas",
+      "pla2_sf_condor_woodland_0.fas",
+      "pla2_sf_condor_woodland_1.fas",
+      "pla2_sf_condor_woodland_2.fas",
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas",
+      "pla2_sf_goggles_down_woodland_0.fas",
+      "pla2_sf_goggles_down_woodland_1.fas",
+      "pla2_sf_goggles_down_woodland_2.fas",
+      "pla2_sf_goggles_up_desert_0.fas",
+      "pla2_sf_goggles_up_desert_1.fas",
+      "pla2_sf_goggles_up_desert_2.fas",
+      "pla2_sf_goggles_up_woodland_0.fas",
+      "pla2_sf_goggles_up_woodland_1.fas",
+      "pla2_sf_goggles_up_woodland_2.fas",
+      "pla2_sf_grenadier_desert_0.fas",
+      "pla2_sf_grenadier_desert_1.fas",
+      "pla2_sf_grenadier_desert_2.fas",
+      "pla2_sf_grenadier_woodland_0.fas",
+      "pla2_sf_grenadier_woodland_1.fas",
+      "pla2_sf_grenadier_woodland_2.fas",
+      "pla2_sf_heavy_desert_0.fas",
+      "pla2_sf_heavy_desert_1.fas",
+      "pla2_sf_heavy_desert_2.fas",
+      "pla2_sf_heavy_woodland_0.fas",
+      "pla2_sf_heavy_woodland_1.fas",
+      "pla2_sf_heavy_woodland_2.fas",
+      "pla2_sf_light_desert_0.fas",
+      "pla2_sf_light_desert_1.fas",
+      "pla2_sf_light_desert_2.fas",
+      "pla2_sf_light_woodland_0.fas",
+      "pla2_sf_light_woodland_1.fas",
+      "pla2_sf_light_woodland_2.fas",
+      "pla2_sf_night_down_desert_0.fas",
+      "pla2_sf_night_down_desert_1.fas",
+      "pla2_sf_night_down_desert_2.fas",
+      "pla2_sf_night_down_woodland_0.fas",
+      "pla2_sf_night_down_woodland_1.fas",
+      "pla2_sf_night_down_woodland_2.fas",
+      "pla2_sf_night_up_desert_0.fas",
+      "pla2_sf_night_up_desert_1.fas",
+      "pla2_sf_night_up_desert_2.fas",
+      "pla2_sf_night_up_woodland_0.fas",
+      "pla2_sf_night_up_woodland_1.fas",
+      "pla2_sf_night_up_woodland_2.fas"
+    ],
+    "goggle_bodies_with_vest": [],
+    "regular_units_with_pack": [
+      1254,
+      990,
+      1010,
+      1011,
+      1015,
+      1016,
+      1017,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1025,
+      1109,
+      1167,
+      1168,
+      1169,
+      1170,
+      1171,
+      1172,
+      1173,
+      1175,
+      1176,
+      1177,
+      1178,
+      1179,
+      1180,
+      1211,
+      1212,
+      1213,
+      1214,
+      1215,
+      1216,
+      1217,
+      1218,
+      1219,
+      1220,
+      1222,
+      1223,
+      1224,
+      1225
+    ],
+    "kept_plain": [
+      1166,
+      1108
+    ]
+  },
+  "csk181_windows": {
+    "dark_glossy": [
+      "|0.5000,0.5000,0.5000,1.0000",
+      "|0.2235,0.2235,0.2235,0.5647"
+    ],
+    "clear_lenses": [
+      "|0.2941,0.2941,0.2941,0.4510",
+      "|0.0863,0.1020,0.1412,0.0706"
+    ]
+  },
+  "famodels": "0.3.24",
+  "version": "0.8.0-dev.101",
+  "base": "0.8.0-dev.100",
+  "base_sha256": "68032d5b206de3b817949ef3192b89b98fb6faec90ef33a29524cd2a29ca2769",
+  "request": "Osama 14 Nov 00:3x PST",
+  "checks": 318,
+  "verified": "data checks only"
+}

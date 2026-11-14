@@ -1,0 +1,17 @@
+{
+ "|0.0000,0.0000,0.0000,0.4500": {
+  "cockpitDonor": "US_OH58Kiowa_glass"
+ },
+ "m_z11wb_lo_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.05318295896944991,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

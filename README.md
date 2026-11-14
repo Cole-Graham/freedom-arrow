@@ -1,4 +1,20 @@
-# Freedom Arrow 0.8.0-dev.100
+# Freedom Arrow 0.8.0-dev.101
+
+- J-36 Heavy CAP: 4x PL-17, 4x PL-16 and 4x PL-21.
+- Shaanxi HMV3 Cargo: 15000 supply in both armory versions (was 9000, or 4500 armored).
+- Helicopter glass copies a similar base-game helicopter: Z-20 family UH-60M, Z-19 AH-1Z, Z-10 AH-64E, Z-9 UH-1Y, Z-11WB OH-58 (FAModels 0.3.24).
+- CSK-131: side panels back (solid body), dark glossy windows. CSK-181: dark glossy windows instead of the wavy canopy glass.
+- ZTZ-96A and ZTZ-96B show the right models again; ZTZ-96B in green digital camo.
+- Z-19: no cargo. PLAN SOF Z-19 is now Z-19G. ZBD-20 Recon removed. DF-15 and YJ-18 models 20% smaller.
+- PLAN SOF spec points: aircraft 1250, helicopters 1000. PLARF is now named PLARF Rocket Force/Reservist.
+- Infantry: backpacks on all non-conscript PLA soldiers (conscripts and deck crew excepted).
+- Type 59D and ZTZ-59D1: textures in the ZTZ-99A style (digital woodland, ZTZ-99A tracks).
+- Mengshi Recon: now on the CSK-131 (Mengshi) model in a darker finish, with closed doors and windows.
+- ZBD-05: loadouts with the HJ-8E ATGM (+10, default) or without it (35 pts).
+- Motorized AT Troopers: 4 PF-89 launchers. CTL-181 NLOS: 2 cards. Blood Wolves: CH-901 1400 m range, 75 points.
+- Everything else as 0.8.0-dev.100.
+
+## Historical 0.8.0-dev.100
 
 - ZFB-05 is a transport for Motorized infantry (10 seats, like the base-game BPM-97 it is built on), not its own card.
 - Z-19: stealth 1.75.
