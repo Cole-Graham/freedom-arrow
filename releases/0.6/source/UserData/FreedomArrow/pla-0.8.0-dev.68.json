@@ -1,0 +1,13 @@
+{
+  "version": "0.8.0-dev.68",
+  "base": "0.8.0-dev.67",
+  "base_sha256": "d5bdd1985660e98c0d56e49590e6de488f512219b2283aeea61fb3124a56de73",
+  "request": "Osama 13 Nov 18:3x PST: Infantry PLARF remove HJ-73D",
+  "member": 2015920,
+  "removed_rows": {
+    "squad_weapon": 2015929,
+    "ammo": 2015930
+  },
+  "checks": 6,
+  "verified": "data only"
+}

@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.67
+# Freedom Arrow 0.8.0-dev.68
+
+- PLARF Infantry 步兵: no HJ-73D (the soldier who carried it keeps his QBZ-95). Still 7 men, 50 points.
+- Everything else as 0.8.0-dev.67.
+
+## Historical 0.8.0-dev.67
 
 - Sea Dragons and Beijing Swords: amphibious, swimming at 18 like the vanilla PDSS and Green Light Team (were land only).
 - Forward Observers: VDV Razvedka unit icon.
