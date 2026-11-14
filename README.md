@@ -1,4 +1,14 @@
-# Freedom Arrow 0.8.0-dev.98
+# Freedom Arrow 0.8.0-dev.98-lat.1
+
+Lateralus batch test build on 0.8.0-dev.98 (branch codex/batch/lateralus/0.8-rockets-radar-guns). Not for multiplayer playtests.
+
+- Rockets: M72A10 6.0 and 25%; M72A7 0% and "66mm HEDP"; RMG 4.5 and 75%; OG-7V 25%; TBG-7L, TBG-7V, RPO-M, RShG-1, RShG-2, SMAW and SMAW-D HIT 75%; SPG-9M OG-9V 25%; SRAW 25% (Ignore Cover).
+- Radar guns: PGZ-04A, PGZ-04, PGZ-88 and PGZ-95 rounds at 1610 projectile speed.
+- Overkill improvement: only weapons whose round can target missiles count; the 128 limit counts those interceptors only.
+- Maps: [5v5] Oil Rush 0.2 (E F 4, H 3), Airport 0.2 (new zones), Cold Harbor 0.2 (no Charlie, larger Delta). The 0.1 folders are removed.
+- Everything else as 0.8.0-dev.98.
+
+## Historical 0.8.0-dev.98
 
 - Type 59D and ZTZ-59D1: the 59D model is back, with dark olive colours instead of the pale ones.
 - HQ-9, HQ-9A, HQ-9B: darker paint, less metal shine, real clear glass in the cab windows.

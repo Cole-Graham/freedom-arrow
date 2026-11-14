@@ -1,0 +1,54 @@
+{
+  "version": "0.8.0-dev.98-lat.1",
+  "build": 166,
+  "previous": "0.8.0-dev.98",
+  "assets_version": "0.2.23",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.23.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.23.bamod",
+    "sha256": "4a268c4cc66de94b049ed1dff11c097e807c49dd80f32f4016fe3b867d2b478c",
+    "size": 8459246124,
+    "files": 10251,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.98-lat.1-complete.bamod",
+    "sha256": "79020e9b7f36c44c41f6ca579003460f9a49bcb489b4819c0dd6c66d08032fa0",
+    "size": 8536121438,
+    "files": 10487
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.98-lat.1.bamod",
+    "sha256": "05cb331318fe52c49f956b0b516bbfae11ce185cc6a28f5d93f1d7c291ad1698",
+    "size": 76875922,
+    "files": 238
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAConquestPrototype/compatibility.json",
+    "UserData/FAConquestPrototype/settings.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.98-lat.1.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport 0.2/[FA] [5v5] Airport 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport Skirmish 0.2/[FA] [5v5] Airport Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport Skirmish 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor 0.2/[FA] [5v5] Cold Harbor 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor Skirmish 0.2/[FA] [5v5] Cold Harbor Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor Skirmish 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush 0.2/[FA] [5v5] Oil Rush 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush Skirmish 0.2/[FA] [5v5] Oil Rush Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush Skirmish 0.2/meta.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

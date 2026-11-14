@@ -72,7 +72,7 @@ with zipfile.ZipFile(base) as z:
     whole['core_paths']=sorted(set(whole['core_paths'])|{n for n in override if n.startswith('UserData/FreedomArrow/')})
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(complete.resolve())],check=True)
-    if retired_scenarios:subprocess.run([a.zip,'-q','-d',str(complete.resolve()),*retired_scenarios],check=True)
+    if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(complete.resolve()),*retired_scenarios],check=True)   # -nw: map names contain [ ], which zip reads as wildcards
     with tempfile.TemporaryDirectory() as tmp:
         stage=Path(tmp)
         for n,b in override.items():f=stage/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b)
