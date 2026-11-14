@@ -1,0 +1,68 @@
+{
+  "version": "0.8.0-dev.65",
+  "base": "0.8.0-dev.64",
+  "base_sha256": "94994ef5924d1a4ed387896a8d172b602b9d5c992b6288cc4460a2835074d4aa",
+  "request": "Osama 13 Nov 18:0x PST: ZTL-191 needs AP 500-550, same for VT-5 and ZTQ-15; FH-97, MD-22 remove SEAD loadouts",
+  "ap_before": {
+    "2009131": [
+      500.0,
+      475.0,
+      [
+        906,
+        1240,
+        1261,
+        1262
+      ]
+    ],
+    "2011301": [
+      575.0,
+      550.0,
+      [
+        1080,
+        1263
+      ]
+    ]
+  },
+  "removed": {
+    "MD-22": {
+      "options": [
+        [
+          31014,
+          "Heavy SEAD"
+        ],
+        [
+          31015,
+          "Light SEAD"
+        ]
+      ],
+      "turret_rows_for": [
+        2018272,
+        2018277
+      ],
+      "ammo_rows_for_weapons": [
+        2018273
+      ]
+    },
+    "FH-97A": {
+      "options": [
+        [
+          31035,
+          "Heavy SEAD"
+        ],
+        [
+          31036,
+          "Light SEAD"
+        ]
+      ],
+      "turret_rows_for": [
+        2018543
+      ],
+      "ammo_rows_for_weapons": [
+        2018471,
+        2018544
+      ]
+    }
+  },
+  "checks": 51,
+  "verified": "data only"
+}

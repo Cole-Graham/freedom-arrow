@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.64
+# Freedom Arrow 0.8.0-dev.65
+
+- ZTL-191, VT-5 and ZTQ-15 (and their Recon copies): 105 mm DU APFSDS penetration 550 close and 500 at full range (ZTQ-15/VT-5 were 500/475, ZTL-191 575/550).
+- FH-97A and MD-22: Light SEAD and Heavy SEAD loadouts removed.
+- Everything else as 0.8.0-dev.64.
+
+## Historical Freedom Arrow 0.8.0-dev.64
 
 - CH-901 (Blood Wolves NLOS missile) damage 8 -> 15.
 
