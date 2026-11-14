@@ -68,7 +68,9 @@ with zipfile.ZipFile(a.package) as z:
   # Build144 (0.8.0-dev.76): JH-7A removed for now (Osama 13 Nov).
   if build>=144:ok(not t['Units'][918]['DisplayInArmory'] and not any(r['UnitId']==918 for r in t['SpecializationAvailabilitiesJson'].values()),('JH-7A removed',918))
   # Build41: CSK-181 recon card removed; transport 1230 stays
-  for uid in [909,1230]+([1058] if build<41 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+  # Build167 (0.8.0-dev.99, Osama 14 Nov 00:1x PST): ground transports have no own card (vanilla rule); CSK-181 (1230) stays a Rocket Force transport.
+  for uid in [909]+([1230] if build<167 else [])+([1058] if build<41 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
+  if build>=167:ok(any(r['UnitId']==1230 and t['SpecializationAvailabilitiesJson'].get(r['SpecializationAvailabilityId'],{}).get('SpecializationId')==19 for r in t['TransportAvailabilitiesJson'].values()),('Rocket transport',1230))
  if build>=36:
   for uid in [1084,1085,1086,1105]:ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
   n=t['AmmunitionsJson'][2010399];k=t['AmmunitionsJson'][340]
@@ -90,7 +92,9 @@ with zipfile.ZipFile(a.package) as z:
    if expected:ok(sorted(expected)==sorted(shared[str(uid)]) if str(uid) in shared else len(expected)==1,('single spec',uid))
   for r in t['TransportAvailabilitiesJson'].values():
    sid=t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['SpecializationId']
-   if sid>=17:ok(sid in links[r['UnitId']],('carrier crosses spec',r['Id']))
+   # Build167 (0.8.0-dev.99): ground transports have no own card (vanilla: 0 of 54 carriers do); only carriers that keep a card
+   # (helicopters) must have it in the spec they are offered in.
+   if sid>=17 and (build<167 or links[r['UnitId']]):ok(sid in links[r['UnitId']],('carrier crosses spec',r['Id']))
  # Runtime "Field type mismatch" rule (Build56): patched fields keep the vanilla JSON type; no null where vanilla never has null.
  for tab,fn in FIELD_TO_FILE.items():
   vt={}

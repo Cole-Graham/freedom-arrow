@@ -1,4 +1,18 @@
-# Freedom Arrow 0.8.0-dev.98
+# Freedom Arrow 0.8.0-dev.99
+
+- Transports (IFVs, APCs, trucks, ATV) no longer have their own vehicle card; buy them with the infantry, as in the base game. ZBD-20 is now a transport like ZBD-04A. Helicopters keep their cards.
+- Removed: CSK-131 Mengshi; the PLAN SOF ZSD-89; CSK-131 4x4 as a PLAAF transport; CSK-181 as a PLAN SOF transport.
+- Cards: DF-17 1, YJ-18 2, HQ-9C/HQ-9B 2, ZTZ-99A 2, ZTZ-99 4, J-5/J-6W/J-7/J-8D 4, Conscripts/HJ-73D Team/Infantry/Mech. Rifles 8, PLAN SOF SF infantry 2 and SF recon 3.
+- Prices: Forward Observers 25, ZTQ-15 150, ZTQ-15 Recon 165, PLZ-70 95, PLZ-85 90, PLZ-07B 130, MD-22 +100.
+- Sharp Blades is now Sharp Swords.
+- PLZ-85 dispersion 300 m x 240 m; PLZ-89 range 4300 m.
+- 20 smoke rounds on PLL-05, PLL-09, PLZ-70 and PLZ-07B; PLZ-07B 12 laser-guided rounds.
+- Recon helicopters with loadouts get an Empty loadout (0 pts). FK-2000 model 10% smaller.
+- ZTL-191 uses the desert camo too.
+- PTL-02 50, VT-5 240. ZSD-89A is no longer a Motorized transport. Line Infantry renamed Moto. Riflemen; Moto. Riflemen, Light Riflemen and Marines 6 cards. Recon tanks (ZTQ-15, VT-5, ZTL-191 Recon) 2 cards.
+- Everything else as 0.8.0-dev.98.
+
+## Historical 0.8.0-dev.98
 
 - Type 59D and ZTZ-59D1: the 59D model is back, with dark olive colours instead of the pale ones.
 - HQ-9, HQ-9A, HQ-9B: darker paint, less metal shine, real clear glass in the cab windows.

@@ -1,6 +1,6 @@
 {
   "channel": "live",
-  "package_version": "0.8.0-dev.98",
+  "package_version": "0.8.0-dev.99",
   "spotting": "vanilla",
   "deployment_status": "live",
   "verification": "0.8.0-dev.5 plus CTL-181/ZBD-20 missile tuning. Data checks passed; in-game check pending."

@@ -1,0 +1,476 @@
+{
+  "availability": {
+    "DF-17/ZF": [
+      [
+        19,
+        2,
+        1
+      ]
+    ],
+    "YJ-18": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "Conscripts 义务兵": [
+      [
+        19,
+        4,
+        8
+      ]
+    ],
+    "HJ-73D Team": [
+      [
+        19,
+        4,
+        8
+      ]
+    ],
+    "Infantry 步兵": [
+      [
+        19,
+        4,
+        8
+      ]
+    ],
+    "Mech. Rifles 机步班": [
+      [
+        18,
+        4,
+        8
+      ]
+    ],
+    "Line Infantry 摩步班": [
+      [
+        21,
+        4,
+        6
+      ]
+    ],
+    "Light Riflemen 轻步兵": [
+      [
+        21,
+        4,
+        6
+      ]
+    ],
+    "Marines 陆战队": [
+      [
+        20,
+        4,
+        6
+      ]
+    ],
+    "ZTQ-15 Recon": [
+      [
+        18,
+        6,
+        2
+      ]
+    ],
+    "VT-5 Recon": [
+      [
+        21,
+        6,
+        2
+      ]
+    ],
+    "ZTL-191 Recon": [
+      [
+        21,
+        6,
+        2
+      ]
+    ],
+    "ZTZ-99A": [
+      [
+        18,
+        3,
+        2
+      ]
+    ],
+    "HQ-9C": [
+      [
+        21,
+        3,
+        2
+      ]
+    ],
+    "HQ-9B": [
+      [
+        19,
+        4,
+        2
+      ]
+    ],
+    "ZTZ-99": [
+      [
+        18,
+        6,
+        4
+      ]
+    ],
+    "J-5": [
+      [
+        19,
+        2,
+        4
+      ]
+    ],
+    "J-6W": [
+      [
+        19,
+        2,
+        4
+      ]
+    ],
+    "J-7": [
+      [
+        19,
+        2,
+        4
+      ]
+    ],
+    "J-8D": [
+      [
+        19,
+        2,
+        4
+      ]
+    ],
+    "Godswords 东方神剑": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "PAP Snow Leopards 雪豹": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "Blood Wolves 血狼": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "Falcons 猎鹰": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "Sea Dragons 蛟龙": [
+      [
+        20,
+        4,
+        2
+      ]
+    ],
+    "Whistling Arrows 响箭": [
+      [
+        20,
+        4,
+        3
+      ]
+    ],
+    "Mountain Leopards 高原雪豹": [
+      [
+        20,
+        4,
+        3
+      ]
+    ],
+    "Beijing Swords 蓝剑": [
+      [
+        20,
+        4,
+        3
+      ]
+    ]
+  },
+  "prices": {
+    "Forward Observers 前观组": [
+      60,
+      25
+    ],
+    "ZTQ-15": [
+      95,
+      150
+    ],
+    "ZTQ-15 Recon": [
+      100,
+      165
+    ],
+    "PLZ-70": [
+      65,
+      95
+    ],
+    "PLZ-85": [
+      75,
+      90
+    ],
+    "MD-22": [
+      180,
+      280
+    ],
+    "PLZ-07B": [
+      80,
+      130
+    ],
+    "PTL-02": [
+      40,
+      50
+    ],
+    "VT-5": [
+      140,
+      240
+    ]
+  },
+  "rename": {
+    "1174": [
+      "Sharp Blades 利刃",
+      "Sharp Swords 利剑"
+    ],
+    "1196": [
+      "Line Infantry 摩步班",
+      "Moto. Riflemen 摩步班"
+    ]
+  },
+  "plz85_dispersion": {
+    "horizontal": [
+      90.0,
+      120.0
+    ],
+    "vertical": [
+      120.0,
+      150.0
+    ],
+    "reading": "300 x 240 m radii, world = m/2"
+  },
+  "plz89_range_world": [
+    1850.0,
+    2150.0
+  ],
+  "smoke": {
+    "PLL-05": {
+      "ammo": 2018957,
+      "copy_of": 192,
+      "rounds": 20,
+      "range": 1575.0
+    },
+    "PLL-09": {
+      "ammo": 2018959,
+      "copy_of": 68,
+      "rounds": 20,
+      "range": 1850.0
+    },
+    "PLZ-70": {
+      "ammo": 2018961,
+      "copy_of": 68,
+      "rounds": 20,
+      "range": 1850.0
+    },
+    "PLZ-07B": {
+      "ammo": 2018963,
+      "copy_of": 68,
+      "rounds": 20,
+      "range": 1850.0
+    }
+  },
+  "plz07b_guided": {
+    "ammo": 2018965,
+    "rounds": 12,
+    "damage": 9.0,
+    "supply": 80.0,
+    "range": 1850.0
+  },
+  "removed": [
+    [
+      900,
+      "CSK-131 Mengshi"
+    ],
+    [
+      1246,
+      "ZSD-89"
+    ]
+  ],
+  "csk131_plaaf_links_removed": 10,
+  "csk181_plan_links_removed": 11,
+  "zbd20_transport_links": 9,
+  "transport_cards_removed": [
+    [
+      902,
+      "ZBD-04A",
+      [
+        18
+      ]
+    ],
+    [
+      903,
+      "ZBL-08",
+      [
+        21
+      ]
+    ],
+    [
+      945,
+      "ZBD-20",
+      [
+        18
+      ]
+    ],
+    [
+      979,
+      "ZBL-191",
+      [
+        21
+      ]
+    ],
+    [
+      1056,
+      "ZBD-251",
+      [
+        17
+      ]
+    ],
+    [
+      1064,
+      "ZSD-89",
+      [
+        19
+      ]
+    ],
+    [
+      1065,
+      "ZSD-89A",
+      [
+        19
+      ]
+    ],
+    [
+      1074,
+      "ZBD-03",
+      [
+        17
+      ]
+    ],
+    [
+      1076,
+      "ZBD-05",
+      [
+        20
+      ]
+    ],
+    [
+      1079,
+      "ZSL-92",
+      [
+        21
+      ]
+    ],
+    [
+      1228,
+      "Lynx ATV",
+      [
+        17
+      ]
+    ],
+    [
+      1230,
+      "CSK-181",
+      [
+        17,
+        19,
+        20,
+        21
+      ]
+    ],
+    [
+      1248,
+      "ZSD-89A",
+      [
+        18,
+        21
+      ]
+    ],
+    [
+      1249,
+      "ZSD-89A",
+      [
+        17
+      ]
+    ],
+    [
+      1250,
+      "ZSD-89A",
+      [
+        20
+      ]
+    ],
+    [
+      1266,
+      "CSK-131",
+      [
+        17,
+        19,
+        20,
+        21
+      ]
+    ]
+  ],
+  "zsd89a_motorized_links_removed": 11,
+  "empty_loadouts": {
+    "Z-9WA Recon 1133": {
+      "option": 31057,
+      "slots": [
+        "Turret0Id",
+        "Turret1Id"
+      ]
+    },
+    "Z-19 Recon 1134": {
+      "option": 31058,
+      "slots": [
+        "Turret0Id",
+        "Turret1Id"
+      ]
+    },
+    "Z-21 Recon 1135": {
+      "option": 31059,
+      "slots": [
+        "Turret1Id",
+        "Turret2Id",
+        "Turret3Id",
+        "Turret4Id"
+      ]
+    },
+    "Z-19 Recon 1237": {
+      "option": 31060,
+      "slots": [
+        "Turret0Id",
+        "Turret1Id"
+      ]
+    }
+  },
+  "fk2000_scale": 0.9,
+  "ztl191_desert": true,
+  "version": "0.8.0-dev.99",
+  "base": "0.8.0-dev.98",
+  "base_sha256": "d8c0d16383fcfd1c01a682c0b26bb846f6311707539c88c3390bb77d92bb87ed",
+  "request": "Osama 14 Nov 00:0x-00:2x PST",
+  "checks": 151,
+  "verified": "data checks only",
+  "not_done": {
+    "HQ-9B": "request text unclear",
+    "J-36 PL-21": "removed in dev.76 at Osama 13 Nov 19:5x request (one Heavy CAP 4x PL-17 4x PL-16); restore on request",
+    "HMV3 Cargo 15000": "needs a runtime cargo patch; the truck cargo comes from the US_HEMTT prefab"
+  }
+}
