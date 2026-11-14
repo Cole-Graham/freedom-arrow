@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.65
+# Freedom Arrow 0.8.0-dev.66
+
+- Tank speeds: the 152 tracked vehicle road speeds raised in dev.61 (road = 1.6x off-road) are back to their dev.60 values for every nation. A road bonus will return as a game rule that leaves unit speeds alone.
+- ZTZ-100: 4 s reload (was 5-6 s).
+- ZBD-251: new protection slot like the M2A3 Bradley's: None or APS (+60, 2 charges).
+
+## Historical 0.8.0-dev.65
 
 - ZTL-191, VT-5 and ZTQ-15 (and their Recon copies): 105 mm DU APFSDS penetration 550 close and 500 at full range (ZTQ-15/VT-5 were 500/475, ZTL-191 575/550).
 - FH-97A and MD-22: Light SEAD and Heavy SEAD loadouts removed.

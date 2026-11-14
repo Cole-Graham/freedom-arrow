@@ -1,0 +1,82 @@
+{
+  "version": "0.8.0-dev.66",
+  "base": "0.8.0-dev.65",
+  "base_sha256": "04704f66ebdff38a02944c60c318bd1c9759709e85e4133bf0209d0963b6c259",
+  "request": "Osama 13 Nov 18:1x PST: tank speeds broken by the road speed change, fix unit speeds and do road speed by hook; ZTZ-100 4 second reload; ZBD-251 APS as an option for +60",
+  "road_speed_rows_restored": 152,
+  "examples": {
+    "1": [
+      88.0,
+      70.0,
+      [
+        "Abrams X",
+        "M1A2 Abrams",
+        "M1A2 SEP"
+      ]
+    ],
+    "4": [
+      88.0,
+      70.0,
+      [
+        "2S31 Vena",
+        "BMP-3",
+        "BMP-3F"
+      ]
+    ],
+    "8": [
+      96.0,
+      80.0,
+      [
+        "T-14 Armata",
+        "T-15 Barbaris",
+        "XM30"
+      ]
+    ],
+    "9": [
+      72.0,
+      50.0,
+      [
+        "M60A1",
+        "M728 CEV"
+      ]
+    ],
+    "10": [
+      72.0,
+      60.0,
+      [
+        "M2A2 Bradley",
+        "M2A2 Bradley ESV",
+        "M2A3 Bradley"
+      ]
+    ],
+    "13": [
+      80.0,
+      65.0,
+      [
+        "Abrams X",
+        "M1A2 Abrams",
+        "M1A2 SEP"
+      ]
+    ]
+  },
+  "ztz100_reload": [
+    [
+      5,
+      6
+    ],
+    [
+      4,
+      4
+    ]
+  ],
+  "zbd251": {
+    "modification": 2018745,
+    "options": {
+      "None": 31043,
+      "APS +60": 31044
+    },
+    "aps_ability": 88
+  },
+  "checks": 9,
+  "verified": "data only"
+}
