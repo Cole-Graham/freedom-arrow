@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.77
+# Freedom Arrow 0.8.0-dev.78
+
+- ZTL-191, VT-5, ZTQ-15 (and Recon cards): 105 mm APFSDS penetration 525 close, 475 at range (was 550/500).
+- ZTZ-100: 125 mm APFSDS penetration 550 close, 525 at range (was 525/500); gun range 2000 m (was 1400 m) for APFSDS, HE and HEAT. The GP125 missile stays 1800 m.
+- Everything else as 0.8.0-dev.77.
+
+## Historical 0.8.0-dev.77
 
 - ZTQ-15, ZTQ-15 Recon, VT-5, VT-5 Recon: 105 mm gun reload 4 s (was 4-5 s).
 - ZSD-63C removed (its card and its 7 transport links).
