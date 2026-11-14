@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.87
+# Freedom Arrow 0.8.0-dev.88
+
+- FireSnake: FS-70A and new FS-90 laser-guided rockets (rocket-pod-with-laser icon). Recon gunships (Z-19 Recon, Z-21 Recon) carry FireSnake 70/90 loadouts; higher-end Z-19, Z-10, Z-10K and Z-21 loadouts swap basic rockets for FireSnakes.
+- ZBL-191, ZBD-20 and ZBD-20 Recon: semi-active HJ-16 by default, option HJ-16 IIR (fire and forget) +40.
+- Abrams X: jammer removed.
+- Base ZTZ-59 in PLARF Rocket/Reservist (seller ZTZ-59 model, 40 points).
+- Everything else as 0.8.0-dev.87.
+
+## Historical 0.8.0-dev.87
 
 - ZTQ-15 Recon: seller desert digital camo.
 - ZTZ-100: front KE 700 (front HEAT 1200 unchanged), side HEAT 700, Abrams X jammer.

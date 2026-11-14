@@ -1,0 +1,52 @@
+{
+  "version": "0.8.0-dev.88",
+  "build": 156,
+  "previous": "0.8.0-dev.87",
+  "assets_version": "0.2.15",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.15.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.15.bamod",
+    "sha256": "a827df5f644606575ad15906ef69afc5acba7beedc75b3264503bbd84329cfdc",
+    "size": 7692672656,
+    "files": 9911,
+    "new_in_this_build": true
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.88-complete.bamod",
+    "sha256": "8a0b02c7104556091a92b70da3606dc16ef78dfcaad3d1db54ab888d912f89d2",
+    "size": 7769527613,
+    "files": 10136
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.88.bamod",
+    "sha256": "8a2d88c4304e422e5f5fc67e3da22030b613b19ef744886423071bcca2d794fa",
+    "size": 76855527,
+    "files": 227
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/models.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/modifications.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/turret_units.json",
+    "UserData/FreedomArrow/constants/turret_weapons.json",
+    "UserData/FreedomArrow/constants/turrets.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.88.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
