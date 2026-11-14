@@ -1,4 +1,14 @@
-# Freedom Arrow 0.8.0-dev.97
+# Freedom Arrow 0.8.0-dev.98
+
+- Type 59D and ZTZ-59D1: the 59D model is back, with dark olive colours instead of the pale ones.
+- HQ-9, HQ-9A, HQ-9B: darker paint, less metal shine, real clear glass in the cab windows.
+- HQ-7B and HQ-7: clear glass in the windows (they were cut out).
+- ZTL-191 Recon: desert camo.
+- PHL-03: darker, especially the tyres. Mengshi Recon: darker and more metallic.
+- Ambush Team 40 points. YJ-18 moved to PLAN SOF. PHL-191 Cruise moved to PLARF.
+- Everything else as 0.8.0-dev.97.
+
+## Historical 0.8.0-dev.97
 
 - FAModels 0.3.23: jets that use the vanilla F-16 canopy no longer turn frosted when the F-16 glass is not loaded yet; the stand-in glass is clear and becomes the F-16 glass once it loads.
 - Z-9 (transport): no weapons on the model. Z-9WA and Z-9WA Recon: seller model with the weapons.
