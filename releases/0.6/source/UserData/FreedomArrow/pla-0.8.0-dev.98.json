@@ -1,0 +1,160 @@
+{
+  "spec_moves": [
+    {
+      "unit": 1129,
+      "name": "YJ-18",
+      "from": 19,
+      "to": 20,
+      "row": 2008984
+    },
+    {
+      "unit": 1267,
+      "name": "PHL-191 Cruise",
+      "from": 21,
+      "to": 19,
+      "row": 2018956
+    }
+  ],
+  "ambush_team": {
+    "unit": 1173,
+    "cost": [
+      60,
+      40
+    ]
+  },
+  "models_json": {
+    "PLA Catalogue Type 59D": {
+      "before": {
+        "file": "m_ztz59a_static.fam",
+        "battle": "m_ztz59a_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz59d2_static.fam",
+        "battle": "m_ztz59d2_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-59D1": {
+      "before": {
+        "file": "m_ztz59a_static.fam",
+        "battle": "m_ztz59a_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz59d2_static.fam",
+        "battle": "m_ztz59d2_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-9": {
+      "before": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq22g_static.fam",
+        "battle": "m_hq22g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-9B": {
+      "before": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq22g_static.fam",
+        "battle": "m_hq22g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-9A": {
+      "before": {
+        "file": "m_hq22_static.fam",
+        "battle": "m_hq22_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq22g_static.fam",
+        "battle": "m_hq22g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-7B": {
+      "before": {
+        "file": "m_hq7s_static.fam",
+        "battle": "m_hq7s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq7g_static.fam",
+        "battle": "m_hq7g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-7": {
+      "before": {
+        "file": "m_hq7s_static.fam",
+        "battle": "m_hq7s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq7g_static.fam",
+        "battle": "m_hq7g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTL-191 Recon": {
+      "before": {
+        "file": "m_ztl191_static.fam",
+        "battle": "m_ztl191_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztl191d_static.fam",
+        "battle": "m_ztl191d_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "glass": {
+    "m_hq22g": "269 window faces",
+    "m_hq7g": "358 see-through faces"
+  },
+  "phl03_colorScale": {
+    "m_phl03_static": {
+      "0.6": 21,
+      "0.7": 11,
+      "0.4": 5,
+      "0.35": 1,
+      "0.3": 1
+    },
+    "m_phl03_lo_static": {
+      "0.6": 21,
+      "0.7": 11,
+      "0.4": 5,
+      "0.35": 1,
+      "0.3": 1
+    }
+  },
+  "mengshi_recon": {
+    "metallic": 0.55,
+    "smoothness": 0.5,
+    "colorScale": 0.75,
+    "glass": "none in the seller model"
+  },
+  "version": "0.8.0-dev.98",
+  "base": "0.8.0-dev.97",
+  "base_sha256": "042f0174659d94a12e8c528337751b74d0141e7ac907adbaa2f99ad1d1f84fb2",
+  "request": "Osama 13 Nov 23:30-23:55 PST",
+  "checks": 105,
+  "verified": "data and file checks only",
+  "not_done": {
+    "HMV3 Cargo 15000": "ResupplyPoints is already 15000 (Build66); truck cargo comes from the US_HEMTT prefab, not the tables",
+    "Mengshi Recon windows": "seller model has no glass parts",
+    "PHL-191 Cruise loadout": "copy of Ballistic until specified"
+  }
+}

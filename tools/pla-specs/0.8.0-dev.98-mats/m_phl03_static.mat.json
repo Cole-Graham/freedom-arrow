@@ -1,0 +1,679 @@
+{
+ "m_phl03_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.0549,0.0706,0.0863,0.8000": {
+  "metallic": 0.09999999403953552,
+  "smoothness": 0.141421377658844,
+  "alpha": "MASK",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "m_phl03_static_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.20705300569534302,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.5880,0.5880,0.5880,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.4,
+   0.4,
+   0.4
+  ]
+ },
+ "|0.5882,0.5882,0.5882,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.4,
+   0.4,
+   0.4
+  ]
+ },
+ "m_phl03_static_tex5.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.2078,0.1843,0.1804,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.3138335943222046,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|0.1059,0.1059,0.1059,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2828426957130432,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|0.1294,0.1294,0.1294,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "m_phl03_static_tex9.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.21435469388961792,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.0196,0.0196,0.0196,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "m_phl03_static_tex11.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.7490,0.7490,0.7490,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.37321317195892334,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.4,
+   0.4,
+   0.4
+  ]
+ },
+ "m_phl03_static_tex13.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 1.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.0000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.025
+ },
+ "m_phl03_static_tex15.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex16.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.6157,0.2196,0.0784,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|0.2235,0.2235,0.2235,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|0.4549,0.4549,0.4549,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2219138741493225,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.4,
+   0.4,
+   0.4
+  ]
+ },
+ "m_phl03_static_tex20.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.0500,0.0500,0.0500,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.35,
+   0.35,
+   0.35
+  ]
+ },
+ "|0.1333,0.1216,0.1176,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.3,
+   0.3,
+   0.3
+  ]
+ },
+ "|0.5294,0.1255,0.0824,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2219138741493225,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.4,
+   0.4,
+   0.4
+  ]
+ },
+ "|0.1529,0.0941,0.0706,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "m_phl03_static_tex29.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex30.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex31.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.1802501082420349,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex32.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.22973966598510742,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex33.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex34.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex35.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.19318723678588867,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "|0.1922,0.1922,0.1922,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "|0.1843,0.1843,0.1843,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.19999998807907104,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.7,
+   0.7,
+   0.7
+  ]
+ },
+ "m_phl03_static_tex38.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.20705300569534302,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex39.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex40.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.19999998807907104,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex41.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.20705300569534302,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "m_phl03_static_tex42.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.6,
+   0.6,
+   0.6
+  ]
+ }
+}

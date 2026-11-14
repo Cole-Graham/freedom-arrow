@@ -1,0 +1,41 @@
+{
+  "phl191_cruise": {
+    "unit": 1267,
+    "from": 1036,
+    "cost": 225,
+    "options": [
+      31055,
+      31056
+    ],
+    "spec": 21,
+    "note": "loadout copied from the Ballistic until Osama specifies the cruise loadout"
+  },
+  "models_json": {
+    "PLA Catalogue AFT-09": {
+      "before": {
+        "file": "m_aft09_static.fam",
+        "battle": "m_aft09_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_aft09f_static.fam",
+        "battle": "m_aft09f_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA PHL-191 Cruise": {
+      "before": null,
+      "after": {
+        "file": "m_phl191cf_static.fam",
+        "battle": "m_phl191cf_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.94",
+  "base": "0.8.0-dev.93",
+  "base_sha256": "177d607dc7bf0cc9369783e927292adf3770428f799457e6ef631d893a6b236c",
+  "request": "Osama 13 Nov 22:45 PST",
+  "checks": 52,
+  "verified": "data and file checks only"
+}

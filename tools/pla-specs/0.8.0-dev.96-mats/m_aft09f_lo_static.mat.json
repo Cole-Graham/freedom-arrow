@@ -1,0 +1,140 @@
+{
+ "|0.0750,0.0850,0.0500,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0400,0.0420,0.0350,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0120,0.0120,0.0120,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.8000,0.6000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.8000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2431,0.3569,0.0196,0.5000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.025
+ },
+ "m_aft09f_lo_static_tex15.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.4000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.5020,0.5020,0.5020,0.5000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.025
+ },
+ "m_aft09f_lo_static_tex19.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0120,0.0120,0.0120,0.7500": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.025
+ }
+}

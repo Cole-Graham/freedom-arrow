@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.22", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.23", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -22,6 +22,9 @@ public partial class Mod : MelonMod
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
     static readonly Dictionary<string, Material> mats = new();
+    static string fallbackDonor;
+    static float upgradeT;
+    static readonly Dictionary<string, List<Material>> fallbackMats = new();
     static readonly HashSet<string> donorFallbacks = new();
 
     public override void OnInitializeMelon()
@@ -153,6 +156,7 @@ public partial class Mod : MelonMod
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
         if (Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
         try { CamTick(); } catch (Exception ex) { MelonLogger.Error("FAMODELS cam: " + ex.Message); camWant = "off"; }
+        if (fallbackMats.Count > 0 && Time.realtimeSinceStartup - upgradeT > 10f) { upgradeT = Time.realtimeSinceStartup; try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
         for (int i = queue.Count - 1; i >= 0; i--)
         {
             var q = queue[i];
@@ -319,7 +323,10 @@ public partial class Mod : MelonMod
             catch (InvalidDataException e)
             {
                 if (donorFallbacks.Add(p.cockpitDonor)) MelonLogger.Warning($"FAMODELS_COCKPIT_FALLBACK {p.cockpitDonor}: {e.Message}; clear glass used until the donor loads");
-                p = new MatP { clearGlass = true, opacity = 0.3f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
+                // 0.3.23 (Osama 13 Nov): the 0.3 fallback read as frosted white on every jet that uses the F-16 glass. Use the clear
+                // value the good-looking canopies use, and upgrade these materials to the donor in place once it loads (UpgradeFallbacks).
+                fallbackDonor = p.cockpitDonor;
+                p = new MatP { clearGlass = true, opacity = 0.025f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
             }
         }
         // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.
@@ -329,7 +336,7 @@ public partial class Mod : MelonMod
         if (!clearGlass && p?.colorScale is { Length: 3 } scale && scale.All(x => float.IsFinite(x) && x >= 0f && x <= 4f))
             col = new Color(col.r * scale[0], col.g * scale[1], col.b * scale[2], col.a);
         string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}");
-        if (mats.TryGetValue(key, out var m) && m != null) return m;
+        if (mats.TryGetValue(key, out var m) && m != null) { fallbackDonor = null; return m; }
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
         var sh = Shader.Find("HDRP/Lit");
@@ -385,6 +392,7 @@ public partial class Mod : MelonMod
         // Without it, TAA smears the model with the background and it looks see-through. Run HDRP's own validation.
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
+        if (fallbackDonor != null) { if (!fallbackMats.TryGetValue(fallbackDonor, out var fl)) fallbackMats[fallbackDonor] = fl = new List<Material>(); fl.Add(m); fallbackDonor = null; }
         MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} sourceCanopy={p.sourceCanopy} preserveSpecular={m.GetFloat("_EnableBlendModePreserveSpecularLighting"):F0} effectiveMetallic={m.GetFloat("_Metallic"):F2} smoothRange={m.GetFloat("_SmoothnessRemapMin"):F2}..{m.GetFloat("_SmoothnessRemapMax"):F2} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }

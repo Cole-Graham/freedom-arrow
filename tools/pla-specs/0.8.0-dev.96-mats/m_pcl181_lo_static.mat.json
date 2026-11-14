@@ -1,0 +1,712 @@
+{
+ "m_pcl181_lo_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.3098,0.3098,0.3098,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.7765,0.7765,0.7765,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.8000,0.8000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.3373,0.3373,0.3373,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.3176,0.3176,0.3176,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1373,0.1373,0.1373,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.7529,0.7529,0.7529,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.9686,0.9686,0.9686,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.8000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0784,0.0784,0.0784,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.6667,0.6667,0.6667,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.5922,0.6627,0.6784,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex16.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex17.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2078,0.2196,0.2471,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex19.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.6000,0.6000,0.6000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.4000,0.4000,0.4000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex22.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1569,0.1686,0.2157,0.9889": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.025
+ },
+ "m_pcl181_lo_static_tex24.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   1.0,
+   0.0051905415101411705,
+   0.0051905415101411705
+  ],
+  "unlit": false
+ },
+ "|0.2000,0.2000,0.2000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.7020,0.7020,0.7020,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.5373,0.5373,0.5373,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex29.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex31.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1686,0.1686,0.1686,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.7569,0.6667,0.1922,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0000,0.0000,0.8039,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.3843,0.3843,0.3843,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex40.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex41.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex42.png|1.0000,1.0000,1.0000,0.6126": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "MASK",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|1.0000,0.7490,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1490,0.1490,0.1490,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.4471,0.4471,0.4471,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1176,0.1176,0.1176,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex48.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.6902,0.7137,0.7490,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex50.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2980,0.2980,0.2980,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex52.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex53.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.7569,0.7569,0.7569,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1216,0.2157,0.2275,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex59.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|1.0000,0.9490,0.8000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.6157,0.7098,0.7255,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2784,0.2275,0.1843,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2275,0.2275,0.2275,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.5569,0.5569,0.5569,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.4157,0.4314,0.4824,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0863,0.1961,0.2353,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0863,0.0863,0.0863,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_pcl181_lo_static_tex73.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0300,0.0300,0.0300,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

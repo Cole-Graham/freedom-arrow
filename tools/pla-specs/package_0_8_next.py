@@ -128,3 +128,6 @@ receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':AV,
 print(json.dumps({k:v for k,v in receipt.items() if k!='changed_paths'},indent=2))
 carry=ROOT.parent/'pla-audit-20261112/check_model_carry.py'
 if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check=True)   # dev.35-38 fixes still present
+# dev.93 (Osama 13 Nov 22:58): no armory-vs-multiplayer equipment fault that vanilla does not have (lost default abilities,
+# unlinked option abilities, child turrets without parents, weapons without ammo, option ids above 32767).
+subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)

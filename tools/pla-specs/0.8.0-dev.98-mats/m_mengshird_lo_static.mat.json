@@ -1,0 +1,19 @@
+{
+ "m_mengshird_lo_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.55,
+  "smoothness": 0.5,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "colorScale": [
+   0.75,
+   0.75,
+   0.75
+  ]
+ }
+}

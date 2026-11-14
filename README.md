@@ -1,4 +1,49 @@
-# Freedom Arrow 0.8.0-dev.92
+# Freedom Arrow 0.8.0-dev.98
+
+- Type 59D and ZTZ-59D1: the 59D model is back, with dark olive colours instead of the pale ones.
+- HQ-9, HQ-9A, HQ-9B: darker paint, less metal shine, real clear glass in the cab windows.
+- HQ-7B and HQ-7: clear glass in the windows (they were cut out).
+- ZTL-191 Recon: desert camo.
+- PHL-03: darker, especially the tyres. Mengshi Recon: darker and more metallic.
+- Ambush Team 40 points. YJ-18 moved to PLAN SOF. PHL-191 Cruise moved to PLARF.
+- Everything else as 0.8.0-dev.97.
+
+## Historical 0.8.0-dev.97
+
+- FAModels 0.3.23: jets that use the vanilla F-16 canopy no longer turn frosted when the F-16 glass is not loaded yet; the stand-in glass is clear and becomes the F-16 glass once it loads.
+- Z-9 (transport): no weapons on the model. Z-9WA and Z-9WA Recon: seller model with the weapons.
+- PHL-191 Cruise: loose tube door removed, launcher behind the cab.
+- CSK-131: no longer glows white. CSK-181: camo without the scraped-metal shading.
+- Everything else as 0.8.0-dev.96.
+
+## Historical 0.8.0-dev.96
+
+- Aircraft glass restored to how it was before the glass passes (F-14, Su-47, Su-57D, YF-23 had been made more frosted).
+- Helicopter and ground-vehicle clear glass at the aircraft value (opacity 0.025).
+- PHL-191 Cruise: launcher moved back so it no longer clips into the cab.
+- Everything else as 0.8.0-dev.95.
+
+## Historical 0.8.0-dev.95
+
+- Spec points: PLAAF Recon 500 / Air 1500; PLAGF Armored Air 0 / Vehicles 2000; PLARF Recon 500 / Support 2000; PLAN SOF Support 500 / Air 1500 / Vehicles 500 / Helicopters 750; PLAGF Motorized Infantry 1250 / Helicopters 500 / Recon 750 / Air 750.
+- Everything else as 0.8.0-dev.94.
+
+## Historical 0.8.0-dev.94
+
+- WZ-550: seller model rebuilt in the seller's dark olive (was pale with brown hatches and a loose missile).
+- PHL-191 AR3 model fixed (travel position, no smoke plume or flying missile, woodland digital, clear windows) and used by a new PHL-191 Cruise card in Motorized (Ballistic stats and loadouts until the cruise loadout is set).
+- Everything else as 0.8.0-dev.93.
+
+## Historical 0.8.0-dev.93
+
+- Armory vs multiplayer audit (tools/pla-specs/audit_mp_equipment.py, now run on every build):
+  - ZBD-251: its laser designator never loaded (the game loads only a unit's first default ability). Smoke, resupply and laser are now one ability.
+  - ZBD-04A, ZBD-20 and their Recon cards: two duplicate smoke abilities removed (nothing lost).
+  - HQ-7B: duplicate radar removed; it keeps the moving radar that already loaded.
+  - F-15EX: its ECM loadouts now have the matching ability link (ECM 40%), as vanilla requires.
+- Everything else as 0.8.0-dev.92.
+
+## Historical 0.8.0-dev.92
 
 - Clear glass: opacity 0.3 -> 0.1 (it looked frosted white).
 - HQ-16: Osama's seller model. VT-5 Recon: seller desert camo. HQ-6A model 75%.
