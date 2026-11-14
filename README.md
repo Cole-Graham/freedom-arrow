@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.72
+# Freedom Arrow 0.8.0-dev.73
+
+- FK-2000: both 30 mm guns use the PGL-625 gun stats again: 7.8 damage per round (was 3.0), 20 damage per second per gun, 40 for the unit. The SAM is unchanged.
+- Everything else as 0.8.0-dev.72.
+
+## Historical 0.8.0-dev.72
 
 - PGZ-88: ZTZ-59D armour profile (front HEAT 600 / KE 400, sides 200 / 100; was 30 all round).
 - ZTZ-100: front kinetic armour 750 (was 800).

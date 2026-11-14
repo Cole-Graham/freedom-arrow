@@ -1,0 +1,17 @@
+{
+  "version": "0.8.0-dev.73",
+  "base": "0.8.0-dev.72",
+  "base_sha256": "2c50991af72596b4942fc613a534bf26d44ced86784157a6acd43b20de164471",
+  "request": "Osama 13 Nov 19:10 PST: fk-2000 should be updated (road-speed hook: not implemented, kept in reserve)",
+  "fk2000": {
+    "rounds_per_s": 2.561,
+    "damage": [
+      3.0,
+      7.8
+    ],
+    "dps_per_mount": 19.98,
+    "mounts": 2
+  },
+  "checks": 3,
+  "verified": "data only"
+}
