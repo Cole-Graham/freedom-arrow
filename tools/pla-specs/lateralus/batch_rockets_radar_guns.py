@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--gun-speed',type=float,help='test variant: every projectile-defence gun round at this MuzzleVelocity instead of 1610');a=p.parse_args()
 z=zipfile.ZipFile(a.base);t={};patches={};native={}
 for tab,fn in FIELD_TO_FILE.items():
     t[tab]={r['Id']:r for r in json.loads((a.vanilla/(tab+'.json')).read_text())};native[tab]=set(t[tab]);patches[tab]=json.loads(z.read('UserData/FreedomArrow/constants/'+fn))
@@ -149,6 +149,14 @@ for w in WA.values():
     if am and wp and w['UnitId'] in U and int(am.get('TargetType') or 0)&P and am.get('TrajectoryType')==10 and am.get('Seeker')==0 \
        and (wp['Type']==115 or (wp['Type']==114 and wp.get('IsRadarDependent'))) and am['MuzzleVelocity']!=1610.0:left.append((w['UnitId'],am['Id']))
 ok(not left,left)
+if a.gun_speed:   # Lateralus 14 Nov 2026: test builds at 800/1000/1200 to find where interception gets much better
+    gr=set()
+    for w in WA.values():
+        am,wp=A.get(w['AmmunitionId']),W.get(w['WeaponId'])
+        if am and wp and w['UnitId'] in U and int(am.get('TargetType') or 0)&P and am.get('TrajectoryType')==10 and am.get('Seeker')==0 \
+           and (wp['Type']==115 or (wp['Type']==114 and wp.get('IsRadarDependent'))):gr.add(am['Id'])
+    for aid in sorted(gr):g.put('AmmunitionsJson',aid,{'MuzzleVelocity':a.gun_speed})
+    ok(all(A[i]['MuzzleVelocity']==a.gun_speed for i in gr),'gun speed');rec['gun_speed_variant']={'MuzzleVelocity':a.gun_speed,'rounds':sorted(gr)}
 rec['checks']=checks;rec['base']=json.loads(z.read('mod.json'))['version']
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
