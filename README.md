@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.79
+# Freedom Arrow 0.8.0-dev.80
+
+- ZTL-11 and AFT-10: Lateralus's purchased models replace the stand-ins (seller woodland digital, static). The HJ-10 uses the new AFT-10 model.
+- ZSD-89A: the PLAAF card uses the seller's desert paint; the other three cards stay woodland.
+- Needs the complete package or Assets 0.2.7 (new model files).
+- Everything else as 0.8.0-dev.79.
+
+## Historical 0.8.0-dev.79
 
 - J-36: 100 points cheaper (unit cost 315 -> 215; loadout prices unchanged, so Heavy CAP is 470 in total).
 - Everything else as 0.8.0-dev.78.

@@ -1,0 +1,114 @@
+{
+  "version": "0.8.0-dev.80",
+  "base": "0.8.0-dev.79",
+  "base_sha256": "1a1f39d9328fef20788d1118bbf829ce8db901e505f8081cdab36378f9ca2a37",
+  "request": "Osama 13 Nov 20:07 PST: add Lateralus's 3 uploaded models; 20:14 PST: PLAAF ZSD-89A desert, others woodland",
+  "models_json": {
+    "PLA ZTL-11": {
+      "before": {
+        "file": "m_ztl11_static.fam",
+        "battle": "m_ztl11_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztl11s_static.fam",
+        "battle": "m_ztl11s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue AFT-10": {
+      "before": {
+        "file": "m_aft10_static.fam",
+        "battle": "m_aft10_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_aft10s_static.fam",
+        "battle": "m_aft10s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HJ-10": {
+      "before": {
+        "file": "m_aft10_static.fam",
+        "battle": "m_aft10_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_aft10s_static.fam",
+        "battle": "m_aft10s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Type 89A PLAAF": {
+      "before": null,
+      "after": {
+        "file": "m_zsd89ad_static.fam",
+        "battle": "m_zsd89ad_lo_static.fam",
+        "align": false,
+        "scale": 1.2
+      }
+    }
+  },
+  "units": {
+    "1249": {
+      "Name": [
+        "PLA Catalogue Type 89A",
+        "PLA Catalogue Type 89A PLAAF"
+      ]
+    }
+  },
+  "pcl181": "upload identical to the cart copy already shipped; unchanged",
+  "files": [
+    "m_aft10s_lo_static.fam",
+    "m_aft10s_lo_static.mat.json",
+    "m_aft10s_lo_static_tex0.png",
+    "m_aft10s_lo_static_tex0_mask.png",
+    "m_aft10s_lo_static_tex0_n.png",
+    "m_aft10s_lo_static_tex1.png",
+    "m_aft10s_lo_static_tex1_mask.png",
+    "m_aft10s_lo_static_tex1_n.png",
+    "m_aft10s_static.fam",
+    "m_aft10s_static.mat.json",
+    "m_aft10s_static_tex0.png",
+    "m_aft10s_static_tex0_mask.png",
+    "m_aft10s_static_tex0_n.png",
+    "m_aft10s_static_tex1.png",
+    "m_aft10s_static_tex1_mask.png",
+    "m_aft10s_static_tex1_n.png",
+    "m_zsd89ad_lo_static.fam",
+    "m_zsd89ad_lo_static.mat.json",
+    "m_zsd89ad_lo_static_tex0.png",
+    "m_zsd89ad_lo_static_tex0_mask.png",
+    "m_zsd89ad_lo_static_tex0_n.png",
+    "m_zsd89ad_lo_static_tex1.png",
+    "m_zsd89ad_lo_static_tex1_mask.png",
+    "m_zsd89ad_lo_static_tex2.png",
+    "m_zsd89ad_lo_static_tex3.png",
+    "m_zsd89ad_lo_static_tex4.png",
+    "m_zsd89ad_lo_static_tex4_mask.png",
+    "m_zsd89ad_static.fam",
+    "m_zsd89ad_static.mat.json",
+    "m_zsd89ad_static_tex0.png",
+    "m_zsd89ad_static_tex0_mask.png",
+    "m_zsd89ad_static_tex0_n.png",
+    "m_zsd89ad_static_tex1.png",
+    "m_zsd89ad_static_tex1_mask.png",
+    "m_zsd89ad_static_tex2.png",
+    "m_zsd89ad_static_tex3.png",
+    "m_zsd89ad_static_tex4.png",
+    "m_zsd89ad_static_tex4_mask.png",
+    "m_ztl11s_lo_static.fam",
+    "m_ztl11s_lo_static.mat.json",
+    "m_ztl11s_lo_static_tex0.png",
+    "m_ztl11s_lo_static_tex0_mask.png",
+    "m_ztl11s_lo_static_tex0_n.png",
+    "m_ztl11s_static.fam",
+    "m_ztl11s_static.mat.json",
+    "m_ztl11s_static_tex0.png",
+    "m_ztl11s_static_tex0_mask.png",
+    "m_ztl11s_static_tex0_n.png"
+  ],
+  "checks": 26,
+  "verified": "data and file checks only"
+}
