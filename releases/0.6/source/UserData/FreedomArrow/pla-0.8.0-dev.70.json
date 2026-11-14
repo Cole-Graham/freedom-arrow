@@ -1,0 +1,12 @@
+{
+  "version": "0.8.0-dev.70",
+  "base": "0.8.0-dev.69",
+  "base_sha256": "c6a270314ff682c2ebf7c80a3b6e5349e958657961ce5a8807111912b73fda82",
+  "request": "Osama 13 Nov 18:49 PST: WZ-8 300 points",
+  "wz8": [
+    260,
+    300
+  ],
+  "checks": 1,
+  "verified": "data only"
+}

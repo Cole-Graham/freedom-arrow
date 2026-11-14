@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.69
+# Freedom Arrow 0.8.0-dev.70
+
+- WZ-8: 300 points (was 260).
+- Everything else as 0.8.0-dev.69.
+
+## Historical 0.8.0-dev.69
 
 - PLZ-05: a 2S35 Koalitsiya-SV stat copy (armour, speed, optics, smoke, 260 points; was 200) with the Koalitsiya menu:
   - HE rounds (default): 155 mm L/54 howitzer, 70x 155 mm ERFB-BB.
