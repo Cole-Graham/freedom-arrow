@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.57
+# Freedom Arrow 0.8.0-dev.58
+
+- FK-2000: the purchased CGTrader model with the seller's own textures and vanilla glass replaces the old stand-in model (static, launchers in travel position as the seller exported them).
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.57
 
 - PGL-625: a Pantsir S1 stat copy (armour, radar, optics, guns and missiles) with road speed 100, reverse 40, 8 missiles (Pantsir 12) and a missile ground range of 1200 as shown in game. 170 points as before.
 - PGZ-09: twin 35 mm guns with the Pantsir 30 mm gun stats and 133 rounds (was 67).

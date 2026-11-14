@@ -1,0 +1,63 @@
+{
+  "version": "0.8.0-dev.58",
+  "base": "0.8.0-dev.57",
+  "base_sha256": "6c5889cf1b81daa712f6473ab7a42411237af4c886d888300672b288f8408b6e",
+  "request": "Osama 13 Nov 15:57 PST: FK-2000 downloaded",
+  "models_json": {
+    "PLA FK-2000": {
+      "before": {
+        "file": "m_fk2000_static.fam",
+        "battle": "m_fk2000_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_fk2000s_static.fam",
+        "battle": "m_fk2000s_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "files": [
+    "m_fk2000s_lo_static.fam",
+    "m_fk2000s_lo_static.mat.json",
+    "m_fk2000s_lo_static_tex0.png",
+    "m_fk2000s_lo_static_tex0_mask.png",
+    "m_fk2000s_lo_static_tex0_n.png",
+    "m_fk2000s_lo_static_tex1.png",
+    "m_fk2000s_lo_static_tex1_mask.png",
+    "m_fk2000s_lo_static_tex1_n.png",
+    "m_fk2000s_lo_static_tex2.png",
+    "m_fk2000s_lo_static_tex2_mask.png",
+    "m_fk2000s_lo_static_tex2_n.png",
+    "m_fk2000s_lo_static_tex3.png",
+    "m_fk2000s_lo_static_tex3_mask.png",
+    "m_fk2000s_lo_static_tex3_n.png",
+    "m_fk2000s_lo_static_tex4.png",
+    "m_fk2000s_lo_static_tex4_mask.png",
+    "m_fk2000s_lo_static_tex4_n.png",
+    "m_fk2000s_lo_static_tex5.png",
+    "m_fk2000s_lo_static_tex5_mask.png",
+    "m_fk2000s_lo_static_tex5_n.png",
+    "m_fk2000s_static.fam",
+    "m_fk2000s_static.mat.json",
+    "m_fk2000s_static_tex0.png",
+    "m_fk2000s_static_tex0_mask.png",
+    "m_fk2000s_static_tex0_n.png",
+    "m_fk2000s_static_tex1.png",
+    "m_fk2000s_static_tex1_mask.png",
+    "m_fk2000s_static_tex1_n.png",
+    "m_fk2000s_static_tex2.png",
+    "m_fk2000s_static_tex2_mask.png",
+    "m_fk2000s_static_tex2_n.png",
+    "m_fk2000s_static_tex3.png",
+    "m_fk2000s_static_tex3_mask.png",
+    "m_fk2000s_static_tex3_n.png",
+    "m_fk2000s_static_tex4.png",
+    "m_fk2000s_static_tex4_mask.png",
+    "m_fk2000s_static_tex4_n.png",
+    "m_fk2000s_static_tex5.png",
+    "m_fk2000s_static_tex5_mask.png",
+    "m_fk2000s_static_tex5_n.png"
+  ],
+  "checks": 2
+}
