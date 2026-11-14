@@ -1,0 +1,27 @@
+{
+  "version": "0.8.0-dev.67",
+  "forward_observers_icon": [
+    "US_CAVALRY_SCOUTS-Label",
+    "RU_VDV_RAZVEDKA-Label"
+  ],
+  "base": "0.8.0-dev.66",
+  "base_sha256": "3549b0dce6a4f411b536a2a7763c26e9989810b571190fec75e708cf96c217d1",
+  "request": "Osama 13 Nov 18:2x PST: Sea Dragons Amphibious; Beijing Swords amphibious; Forward observer give icon from VDV Razvedka",
+  "rows_before": {
+    "2013377": [
+      false,
+      9.0
+    ],
+    "2013406": [
+      false,
+      9.0
+    ],
+    "2013282": [
+      false,
+      9.0
+    ]
+  },
+  "pattern": "vanilla PDSS / Green Light Team / KNT: amphibious, water 18",
+  "checks": 4,
+  "verified": "data only"
+}

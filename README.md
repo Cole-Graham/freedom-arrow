@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.66
+# Freedom Arrow 0.8.0-dev.67
+
+- Sea Dragons and Beijing Swords: amphibious, swimming at 18 like the vanilla PDSS and Green Light Team (were land only).
+- Forward Observers: VDV Razvedka unit icon.
+- Everything else as 0.8.0-dev.66.
+
+## Historical 0.8.0-dev.66
 
 - Tank speeds: the 152 tracked vehicle road speeds raised in dev.61 (road = 1.6x off-road) are back to their dev.60 values for every nation. A road bonus will return as a game rule that leaves unit speeds alone.
 - ZTZ-100: 4 s reload (was 5-6 s).
