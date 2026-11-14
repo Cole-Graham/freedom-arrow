@@ -1,0 +1,2392 @@
+{
+  "version": "0.8.0-dev.61",
+  "base": "0.8.0-dev.60",
+  "base_sha256": "335fb4e24ee5353b6a1aa9c1a2c127a2cb53f584bc5af92942dfde8ee34e41ff",
+  "request": "\"Tracked vehicles should get a +60% speed bonus on the road. Wheeled should be about double.\"",
+  "tracked_rows": 152,
+  "wheeled_rows_unchanged": 133,
+  "by_offroad": {
+    "40.0": [
+      64.0
+    ],
+    "45.0": [
+      72.0
+    ],
+    "50.0": [
+      80.0
+    ],
+    "55.0": [
+      88.0
+    ],
+    "60.0": [
+      96.0
+    ],
+    "62.9": [
+      101.0
+    ],
+    "63.0": [
+      101.0
+    ],
+    "70.0": [
+      112.0
+    ]
+  },
+  "changes": {
+    "1": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "Abrams X",
+        "M1A2 Abrams",
+        "M1A2 SEP",
+        "M1A2 SEP v2",
+        "M1A2 SEP v2 TUA",
+        "M1A2 SEP v3"
+      ]
+    },
+    "4": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "2S31 Vena",
+        "BMP-3",
+        "BMP-3F",
+        "BRM-3K",
+        "BT-3F",
+        "Derivatsiya",
+        "Kornet-T",
+        "PRP-5G"
+      ]
+    },
+    "8": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "T-14 Armata",
+        "T-15 Barbaris",
+        "XM30"
+      ]
+    },
+    "9": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M60A1",
+        "M728 CEV"
+      ]
+    },
+    "10": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M2A2 Bradley",
+        "M2A2 Bradley ESV",
+        "M2A3 Bradley",
+        "M2A3 Bradley ESV",
+        "M3A2 CFV",
+        "M3A3 CFV",
+        "M6 Linebacker ",
+        "M7 BFIST"
+      ]
+    },
+    "13": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "Abrams X",
+        "M1A2 Abrams",
+        "M1A2 SEP",
+        "M1A2 SEP v2",
+        "M1A2 SEP v3"
+      ]
+    },
+    "14": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "Abrams X",
+        "M1A2 Abrams",
+        "M1A2 SEP",
+        "M1A2 SEP v2",
+        "M1A2 SEP v3"
+      ]
+    },
+    "17": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "2K22M Tunguska-M",
+        "Buk M2",
+        "Buk M3",
+        "Tor"
+      ]
+    },
+    "23": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "M1150 Assault Breacher",
+        "M1A1 FEP",
+        "M1A1 HC"
+      ]
+    },
+    "24": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "AAVP MICLIC",
+        "AAVP-7A1"
+      ]
+    },
+    "35": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "BMD-4M",
+        "BTR-MDM ",
+        "Kornet-D1"
+      ]
+    },
+    "36": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "1V119 Reostat",
+        "BMD-2",
+        "BTR-D",
+        "BTR-RD Robot",
+        "BTR-ZD Skrezhet"
+      ]
+    },
+    "44": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S4 Tulpan",
+        "2S5 Giatsint"
+      ]
+    },
+    "50": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "Sprut-SD",
+        "Sprut-SDM"
+      ]
+    },
+    "54": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "S-300V4 Antey"
+      ]
+    },
+    "55": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "T-72B3",
+        "T-72B3AM obr. 16"
+      ]
+    },
+    "56": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "T-80BV"
+      ]
+    },
+    "63": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M109A7 Paladin",
+        "M1299 Iron Thunder"
+      ]
+    },
+    "75": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M8 AGS",
+        "M8 Thunderbolt"
+      ]
+    },
+    "76": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M551A1 Sheridan"
+      ]
+    },
+    "78": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M1064A3",
+        "M113",
+        "M113 Panzermörser",
+        "M113A3",
+        "M163 PIVADS",
+        "M901A3",
+        "M981 FISTV"
+      ]
+    },
+    "79": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "M270A1 MLRS",
+        "M270A2 GMLRS"
+      ]
+    },
+    "80": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M1A1 FEP",
+        "M1A1 HC"
+      ]
+    },
+    "83": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "TOS-1"
+      ]
+    },
+    "84": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "MT-LB"
+      ]
+    },
+    "85": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "MT-LB"
+      ]
+    },
+    "86": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "2S1 Gvozdika ",
+        "UR-77 Meteorit"
+      ]
+    },
+    "87": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S9 Nona-S"
+      ]
+    },
+    "88": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "BMO-1",
+        "BMP-2"
+      ]
+    },
+    "91": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZSU-23-4 Shilka"
+      ]
+    },
+    "97": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PTS-4 Duplo"
+      ]
+    },
+    "98": {
+      "before": 45.0,
+      "after": 64.0,
+      "off_road": 40.0,
+      "units": [
+        "PT-76"
+      ]
+    },
+    "99": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PT-76"
+      ]
+    },
+    "100": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "2S35 Koalitsiya-SV"
+      ]
+    },
+    "101": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S3M1 Akatsia"
+      ]
+    },
+    "102": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "BMO-T"
+      ]
+    },
+    "103": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "T-90"
+      ]
+    },
+    "104": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "T-90"
+      ]
+    },
+    "105": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "BMPT Terminator",
+        "T-90M",
+        "T-90M Razvedchik"
+      ]
+    },
+    "106": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "T-80BV"
+      ]
+    },
+    "107": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "T-80U"
+      ]
+    },
+    "109": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M548A3 "
+      ]
+    },
+    "112": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "Object 787 Gadyuka",
+        "T-72A",
+        "T-72B"
+      ]
+    },
+    "113": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "T-72B"
+      ]
+    },
+    "114": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "T-72B3",
+        "T-72B3AM obr. 16"
+      ]
+    },
+    "116": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "B10 Kurganets"
+      ]
+    },
+    "179": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M8 AGS",
+        "M8 Thunderbolt"
+      ]
+    },
+    "184": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "BMP-1",
+        "BRM-1K"
+      ]
+    },
+    "185": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "BMP-1",
+        "BRM-1K"
+      ]
+    },
+    "187": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "BMD-4M",
+        "BTR-MDM ",
+        "Kornet-D1"
+      ]
+    },
+    "188": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S19M1 Msta-S"
+      ]
+    },
+    "199": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "DT-30PM Vityaz"
+      ]
+    },
+    "200": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S39 Magnolia",
+        "DT-30AA"
+      ]
+    },
+    "203": {
+      "before": 70.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "M2A3 Bradley",
+        "M2A3 Bradley ESV",
+        "M3A2 CFV",
+        "M3A3 CFV",
+        "M6 Linebacker ",
+        "M7 BFIST"
+      ]
+    },
+    "204": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M7 BFIST"
+      ]
+    },
+    "205": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "BMO-T"
+      ]
+    },
+    "206": {
+      "before": 70.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "M1283 AMPV",
+        "M1287 MCV"
+      ]
+    },
+    "218": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "BTO",
+        "MT-LB",
+        "Shturm-S"
+      ]
+    },
+    "219": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "BTO",
+        "MT-LB",
+        "Shturm-S"
+      ]
+    },
+    "222": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "2S7M Malka"
+      ]
+    },
+    "226": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "1V14 Mashina-S",
+        "BMOP Toros"
+      ]
+    },
+    "228": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "M10 Booker M35",
+        "M10 Booker XM913"
+      ]
+    },
+    "234": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M60A1",
+        "M728 CEV"
+      ]
+    },
+    "236": {
+      "before": 55.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "M109A5Ö ",
+        "M109A6 Paladin"
+      ]
+    },
+    "243": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "MT-SM"
+      ]
+    },
+    "244": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "246": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "UR-77 Meteorit"
+      ]
+    },
+    "250": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "CV-9035"
+      ]
+    },
+    "251": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "Scimitar"
+      ]
+    },
+    "261": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "K9 Kõu"
+      ]
+    },
+    "262": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PzH-2000"
+      ]
+    },
+    "263": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "Type-X RCV"
+      ]
+    },
+    "266": {
+      "before": 95.0,
+      "after": 112.0,
+      "off_road": 70.0,
+      "units": [
+        "Spartan"
+      ]
+    },
+    "267": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "Leopard 2A8"
+      ]
+    },
+    "268": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "Leopard 2A8"
+      ]
+    },
+    "301": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "T-62M"
+      ]
+    },
+    "302": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "T-62M"
+      ]
+    },
+    "307": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "Uran-9"
+      ]
+    },
+    "2000222": {
+      "before": 60.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "Sprut-SD",
+        "Sprut-SDM"
+      ]
+    },
+    "2001644": {
+      "before": 80.0,
+      "after": 101.0,
+      "off_road": 63.0,
+      "units": [
+        "Abrams X"
+      ]
+    },
+    "2002030": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "MGM-166 LOSAT"
+      ]
+    },
+    "2002033": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "Object 640 Black Eagle"
+      ]
+    },
+    "2002052": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "T-80BVM"
+      ]
+    },
+    "2009009": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-04A"
+      ]
+    },
+    "2009065": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTZ-99A"
+      ]
+    },
+    "2009093": {
+      "before": 80.0,
+      "after": 101.0,
+      "off_road": 62.9,
+      "units": [
+        "ZTZ-96B"
+      ]
+    },
+    "2009121": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTQ-15"
+      ]
+    },
+    "2009149": {
+      "before": 55.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PLZ-05"
+      ]
+    },
+    "2009173": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PGZ-09"
+      ]
+    },
+    "2009467": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": []
+    },
+    "2009507": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTD-05"
+      ]
+    },
+    "2009535": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PLZ-07B"
+      ]
+    },
+    "2009549": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2009569": {
+      "before": 55.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2009611": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "HJ-10"
+      ]
+    },
+    "2009627": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "QN-506"
+      ]
+    },
+    "2009687": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2009809": {
+      "before": 80.0,
+      "after": 101.0,
+      "off_road": 62.9,
+      "units": [
+        "ZBD-20"
+      ]
+    },
+    "2009845": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "PTZ-89"
+      ]
+    },
+    "2009873": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2009901": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTZ-96"
+      ]
+    },
+    "2009957": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2010017": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2010061": {
+      "before": 45.0,
+      "after": 64.0,
+      "off_road": 40.0,
+      "units": []
+    },
+    "2010085": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2010099": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-63C"
+      ]
+    },
+    "2010185": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "ZTZ-100"
+      ]
+    },
+    "2010469": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": []
+    },
+    "2010483": {
+      "before": 55.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PLZ-45A4"
+      ]
+    },
+    "2010495": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PLZ-70"
+      ]
+    },
+    "2010523": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PLZ-85"
+      ]
+    },
+    "2010537": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "PLZ-89"
+      ]
+    },
+    "2010563": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "HQ-6A"
+      ]
+    },
+    "2010577": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "HQ-11"
+      ]
+    },
+    "2010591": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "HQ-12 / KS-1"
+      ]
+    },
+    "2010605": {
+      "before": 65.0,
+      "after": 80.0,
+      "off_road": 50.0,
+      "units": [
+        "HQ-16"
+      ]
+    },
+    "2010633": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2010653": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PGZ-88"
+      ]
+    },
+    "2010667": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "PGZ-95"
+      ]
+    },
+    "2010713": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2010729": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": [
+        "ZBD-251"
+      ]
+    },
+    "2010813": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2010841": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZTZ-59D"
+      ]
+    },
+    "2010869": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2010883": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-86"
+      ]
+    },
+    "2010909": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89"
+      ]
+    },
+    "2010923": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89A"
+      ]
+    },
+    "2010937": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": []
+    },
+    "2010963": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": []
+    },
+    "2010989": {
+      "before": 80.0,
+      "after": 96.0,
+      "off_road": 60.0,
+      "units": []
+    },
+    "2011053": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2011079": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": []
+    },
+    "2011107": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2011135": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-03"
+      ]
+    },
+    "2011157": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZBD-04"
+      ]
+    },
+    "2011187": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZBD-05"
+      ]
+    },
+    "2011319": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": []
+    },
+    "2011347": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTZ-96A"
+      ]
+    },
+    "2011375": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTZ-99"
+      ]
+    },
+    "2016061": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZTQ-15 Recon"
+      ]
+    },
+    "2016270": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89"
+      ]
+    },
+    "2018102": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89A"
+      ]
+    },
+    "2018113": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89A"
+      ]
+    },
+    "2018123": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "ZSD-89A"
+      ]
+    },
+    "2018361": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-04A Recon"
+      ]
+    },
+    "2018379": {
+      "before": 80.0,
+      "after": 101.0,
+      "off_road": 62.9,
+      "units": [
+        "ZBD-20 Recon"
+      ]
+    },
+    "2018399": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-03 Recon"
+      ]
+    },
+    "2018412": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-86 Recon"
+      ]
+    },
+    "2018427": {
+      "before": 60.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZBD-86 Recon"
+      ]
+    },
+    "2018623": {
+      "before": 50.0,
+      "after": 72.0,
+      "off_road": 45.0,
+      "units": [
+        "ZTZ-59D1"
+      ]
+    },
+    "2018637": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "VT-5"
+      ]
+    },
+    "2018653": {
+      "before": 70.0,
+      "after": 88.0,
+      "off_road": 55.0,
+      "units": [
+        "VT-5 Recon"
+      ]
+    }
+  },
+  "wheeled_unchanged": {
+    "3": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "BRDM-3",
+        "BTR-82"
+      ]
+    },
+    "5": {
+      "road": 140.0,
+      "off_road": 70.0,
+      "ratio": 2.0,
+      "units": [
+        "Tigr",
+        "Tigr BRShM ",
+        "Tigr Gibka",
+        "Tigr Kornet",
+        "Tigr Kornet 2x4",
+        "ZIL Karatel Punisher"
+      ]
+    },
+    "12": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Stryker ATGM",
+        "Stryker ESV",
+        "Stryker ICV",
+        "Stryker M-SHORAD",
+        "Stryker MC",
+        "Stryker MGS",
+        "Stryker RV",
+        "Stryker SPH"
+      ]
+    },
+    "15": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "2S41 Drok",
+        "Typhoon VDV"
+      ]
+    },
+    "16": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "LAV-25",
+        "LAV-AT",
+        "LAV-M"
+      ]
+    },
+    "18": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "LAV-AD"
+      ]
+    },
+    "19": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "M1117 Guardian"
+      ]
+    },
+    "20": {
+      "road": 115.0,
+      "off_road": 55.0,
+      "ratio": 2.09,
+      "units": [
+        "AN/TWQ-1 Avenger",
+        "HMMWV",
+        "Hawkeye MWS",
+        "Humvee",
+        "Humvee GMV",
+        "Humvee LRAS3",
+        "Humvee RWS",
+        "Humvee TOW-2"
+      ]
+    },
+    "21": {
+      "road": 120.0,
+      "off_road": 60.0,
+      "ratio": 2.0,
+      "units": [
+        "M1301 ISV"
+      ]
+    },
+    "22": {
+      "road": 85.0,
+      "off_road": 40.0,
+      "ratio": 2.12,
+      "units": [
+        "M142 HIMARS",
+        "SR-5"
+      ]
+    },
+    "27": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "LMTV"
+      ]
+    },
+    "30": {
+      "road": 105.0,
+      "off_road": 50.0,
+      "ratio": 2.1,
+      "units": [
+        "MTVR"
+      ]
+    },
+    "37": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "A222 Bereg"
+      ]
+    },
+    "38": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "9K51 Grad"
+      ]
+    },
+    "39": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "9K58 Smerch",
+        "S-300PM Favorit"
+      ]
+    },
+    "40": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "Osa-AKM"
+      ]
+    },
+    "41": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "KamAZ-6560",
+        "KamAZ-6560 Cargo"
+      ]
+    },
+    "42": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "Typhoon-K"
+      ]
+    },
+    "43": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "9K58 Kama"
+      ]
+    },
+    "45": {
+      "road": 130.0,
+      "off_road": 65.0,
+      "ratio": 2.0,
+      "units": [
+        "G-Wagen",
+        "IFAV"
+      ]
+    },
+    "52": {
+      "road": 130.0,
+      "off_road": 65.0,
+      "ratio": 2.0,
+      "units": [
+        "Sarmat-2",
+        "UAZ Kozlik"
+      ]
+    },
+    "64": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Patriot PAC-2",
+        "Patriot PAC-3",
+        "Patriot PAC-3 MSE"
+      ]
+    },
+    "65": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "LVSR",
+        "M1075A1 PLS",
+        "Shaanxi HMV3 Cargo"
+      ]
+    },
+    "66": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "KamAZ VDV"
+      ]
+    },
+    "67": {
+      "road": 130.0,
+      "off_road": 65.0,
+      "ratio": 2.0,
+      "units": [
+        "Chaborz M-6"
+      ]
+    },
+    "71": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "BRDM ATGM",
+        "BRDM-2M"
+      ]
+    },
+    "72": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "BRDM-2M"
+      ]
+    },
+    "74": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ACV"
+      ]
+    },
+    "77": {
+      "road": 130.0,
+      "off_road": 65.0,
+      "ratio": 2.0,
+      "units": [
+        "RSOV",
+        "Wolf WMIK"
+      ]
+    },
+    "82": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "Tigr",
+        "Tigr BRShM ",
+        "Tigr Gibka",
+        "Tigr Kornet",
+        "Tigr Kornet 2x4",
+        "ZIL Karatel Punisher"
+      ]
+    },
+    "89": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "BRDM-3",
+        "BTR-82"
+      ]
+    },
+    "90": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "BPM Strela",
+        "BPM-97"
+      ]
+    },
+    "92": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "Ural-4320 ZU-23"
+      ]
+    },
+    "93": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "9K512 Uragan-1M",
+        "9K720 Iskander",
+        "S-400 Triumph"
+      ]
+    },
+    "94": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "2S40 Floks",
+        "TOS-2 Tosochka"
+      ]
+    },
+    "95": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "S-350 Vityaz"
+      ]
+    },
+    "96": {
+      "road": 85.0,
+      "off_road": 40.0,
+      "ratio": 2.12,
+      "units": [
+        "Ural-5323"
+      ]
+    },
+    "108": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "HEMTT"
+      ]
+    },
+    "110": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "AN/TWQ-1 Avenger",
+        "Hawkeye MWS",
+        "Humvee",
+        "Humvee LRAS3",
+        "Humvee RWS",
+        "Humvee TOW-2"
+      ]
+    },
+    "111": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Centurion C-RAM"
+      ]
+    },
+    "115": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "K16 Bumerang"
+      ]
+    },
+    "177": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "Pantsir S1",
+        "Tor-M2KM"
+      ]
+    },
+    "178": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "2S23 Nona-SVK",
+        "BTR-80"
+      ]
+    },
+    "182": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "186": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "Tochka-U"
+      ]
+    },
+    "189": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Stryker ATGM",
+        "Stryker ESV",
+        "Stryker ICV",
+        "Stryker M-SHORAD",
+        "Stryker MC",
+        "Stryker MGS",
+        "Stryker RV",
+        "Stryker SPH"
+      ]
+    },
+    "192": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "LAV-L"
+      ]
+    },
+    "201": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "BTR-90"
+      ]
+    },
+    "202": {
+      "road": 105.0,
+      "off_road": 50.0,
+      "ratio": 2.1,
+      "units": [
+        "MTVR"
+      ]
+    },
+    "207": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "Brutus"
+      ]
+    },
+    "208": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "Brutus"
+      ]
+    },
+    "211": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "MML",
+        "SLAMRAAM"
+      ]
+    },
+    "212": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "MTV"
+      ]
+    },
+    "213": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "LMTV War Pig"
+      ]
+    },
+    "215": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "XA-180"
+      ]
+    },
+    "221": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "M985 Battleship"
+      ]
+    },
+    "223": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "Ural-4320"
+      ]
+    },
+    "224": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "2S23 Nona-SVK",
+        "BTR-80"
+      ]
+    },
+    "231": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "HEMTT"
+      ]
+    },
+    "235": {
+      "road": 105.0,
+      "off_road": 50.0,
+      "ratio": 2.1,
+      "units": [
+        "M-ATV",
+        "M-ATV Javelin"
+      ]
+    },
+    "237": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "LMTV"
+      ]
+    },
+    "238": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Stryker ATGM",
+        "Stryker ESV",
+        "Stryker ICV",
+        "Stryker M-SHORAD",
+        "Stryker MC",
+        "Stryker MGS",
+        "Stryker RV",
+        "Stryker SPH"
+      ]
+    },
+    "240": {
+      "road": 85.0,
+      "off_road": 40.0,
+      "ratio": 2.12,
+      "units": [
+        "Ural-5323"
+      ]
+    },
+    "242": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "Ural-4320"
+      ]
+    },
+    "249": {
+      "road": 140.0,
+      "off_road": 70.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "252": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Vilkas"
+      ]
+    },
+    "253": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "E13TP"
+      ]
+    },
+    "254": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "NASAMS"
+      ]
+    },
+    "255": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "TGB-1111"
+      ]
+    },
+    "257": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "XA-180"
+      ]
+    },
+    "260": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "Unimog"
+      ]
+    },
+    "264": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "Unimog"
+      ]
+    },
+    "265": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "IRIS-T SLM"
+      ]
+    },
+    "303": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "KamAZ-6560",
+        "KamAZ-6560 Cargo"
+      ]
+    },
+    "306": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "Shchuka"
+      ]
+    },
+    "310": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "2S43 Malva",
+        "2S44 Giatsint-K"
+      ]
+    },
+    "403": {
+      "road": 140.0,
+      "off_road": 60.0,
+      "ratio": 2.33,
+      "units": [
+        "Flyer GMV"
+      ]
+    },
+    "404": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "MTV"
+      ]
+    },
+    "405": {
+      "road": 95.0,
+      "off_road": 45.0,
+      "ratio": 2.11,
+      "units": [
+        "MML",
+        "SLAMRAAM"
+      ]
+    },
+    "2008995": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "CSK-131 Mengshi"
+      ]
+    },
+    "2009039": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZBL-08"
+      ]
+    },
+    "2009161": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "PHL-03"
+      ]
+    },
+    "2009189": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "HQ-17"
+      ]
+    },
+    "2009217": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2009359": {
+      "road": 100.0,
+      "off_road": 45.0,
+      "ratio": 2.22,
+      "units": [
+        "PGL-625"
+      ]
+    },
+    "2009389": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2009437": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "HQ-7B"
+      ]
+    },
+    "2009453": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "PLL-05"
+      ]
+    },
+    "2009593": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "FK-2000"
+      ]
+    },
+    "2009659": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZTL-11"
+      ]
+    },
+    "2009929": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "HJ-8"
+      ]
+    },
+    "2009941": {
+      "road": 100.0,
+      "off_road": 55.0,
+      "ratio": 1.82,
+      "units": [
+        "JRVG-1"
+      ]
+    },
+    "2009985": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "ZFB-05"
+      ]
+    },
+    "2010043": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010113": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010129": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010155": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010317": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZBL-191"
+      ]
+    },
+    "2010343": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "DF-17/ZF"
+      ]
+    },
+    "2010355": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "DF-15"
+      ]
+    },
+    "2010367": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "DF-21"
+      ]
+    },
+    "2010379": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010391": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "DF-31A Nuclear"
+      ]
+    },
+    "2010403": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "PCL-09"
+      ]
+    },
+    "2010417": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "PCL-181 / SH-15"
+      ]
+    },
+    "2010431": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "PHL-16"
+      ]
+    },
+    "2010443": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "PHL-191 Ballistic"
+      ]
+    },
+    "2010455": {
+      "road": 80.0,
+      "off_road": 40.0,
+      "ratio": 2.0,
+      "units": [
+        "PLL-09"
+      ]
+    },
+    "2010509": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "PLZ-83"
+      ]
+    },
+    "2010551": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010619": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": [
+        "HQ-17A"
+      ]
+    },
+    "2010687": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "WZ-550"
+      ]
+    },
+    "2010699": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "CTL-181 NLOS"
+      ]
+    },
+    "2010755": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "CS/VN3C MG"
+      ]
+    },
+    "2010769": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2010783": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "PTL-02"
+      ]
+    },
+    "2011015": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2011041": {
+      "road": 130.0,
+      "off_road": 65.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2011213": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2011239": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2011265": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZSL-92 Autocannon"
+      ]
+    },
+    "2011291": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZTL-191"
+      ]
+    },
+    "2011641": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "YJ-18"
+      ]
+    },
+    "2014527": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": [
+        "HQ-9B"
+      ]
+    },
+    "2014542": {
+      "road": 60.0,
+      "off_road": 30.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2014563": {
+      "road": 70.0,
+      "off_road": 35.0,
+      "ratio": 2.0,
+      "units": [
+        "HQ-9C"
+      ]
+    },
+    "2014599": {
+      "road": 120.0,
+      "off_road": 60.0,
+      "ratio": 2.0,
+      "units": [
+        "Lynx ATV"
+      ]
+    },
+    "2014608": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2014617": {
+      "road": 110.0,
+      "off_road": 55.0,
+      "ratio": 2.0,
+      "units": [
+        "CSK-181"
+      ]
+    },
+    "2014626": {
+      "road": 90.0,
+      "off_road": 45.0,
+      "ratio": 2.0,
+      "units": []
+    },
+    "2014633": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZSL-92"
+      ]
+    },
+    "2015812": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "Shaanxi HMV3"
+      ]
+    },
+    "2018732": {
+      "road": 100.0,
+      "off_road": 50.0,
+      "ratio": 2.0,
+      "units": [
+        "ZTL-191 Recon"
+      ]
+    }
+  }
+}

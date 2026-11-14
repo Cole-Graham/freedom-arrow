@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.60
+# Freedom Arrow 0.8.0-dev.61
+
+- Road speed: every tracked vehicle (all nations) now drives 60% faster on roads than off-road: road speed = off-road speed x 1.6.
+  - Examples: M1A2, T-90M, BMP-3, ZTZ-99A 70 -> 88; T-80U, T-14, XM30, ZTZ-100 80 -> 96; Bradley 60 -> 72; Spartan 95 -> 112.
+  - 152 mobility rows. Off-road, reverse and water speeds are unchanged.
+- Wheeled vehicles are unchanged: their road speed is already about double (1.8-2.3x, most exactly 2x).
+- Broken Arrow has no global road multiplier; the only global movement settings are the forest multipliers (vehicles 0.5, infantry 1.0).
+
+## Historical 0.8.0-dev.60
 
 - AFT-09 is now called WZ-550 (the model is the WZ-550 4x4 with HJ-9).
 - PGL-625 and FK-2000 guns: 1200 m ground range, the same on both.
