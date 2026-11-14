@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.89
+# Freedom Arrow 0.8.0-dev.90
+
+- HQ-7B: Osama's seller HQ-7 model.
+- ZBD-86 removed from PLAAF. ZBD-86 Recon: no ATGM by default (15 points), HJ-73 Malyutka option +10.
+- Z-20, Z-20J, Z-20KA, Z-20T: laser designation.
+- CSK-181: the 6x6 stays on CSK-181 Transport; new CSK-181 4x4 card wherever the 6x6 is (cards and squad transports). 4x4 paint fixed.
+- Mengshi Recon model 75%.
+- Everything else as 0.8.0-dev.89.
+
+## Historical 0.8.0-dev.89
 
 - HQ-9C, HQ-9B, HQ-9A: Osama's new seller model (HQ-22 pack).
 - Mengshi Recon: much darker paint.

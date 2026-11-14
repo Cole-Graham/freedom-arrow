@@ -1,0 +1,113 @@
+{
+  "zbd86_plaaf_removed": {
+    "card": 2018177,
+    "transport_links": 7
+  },
+  "zbd86_recon": {
+    "cost": [
+      25,
+      15
+    ],
+    "malyutka_option": {
+      "id": 31054,
+      "cost": 10,
+      "mount": 2018885
+    },
+    "no_atgm_option": 31053
+  },
+  "z20_laser": [
+    914,
+    1238,
+    1244,
+    1245
+  ],
+  "csk181_4x4": {
+    "unit": 1266,
+    "from": 1230,
+    "specs": [
+      17,
+      19,
+      20,
+      21
+    ],
+    "transport_links": 43,
+    "cost": 35
+  },
+  "models_json": {
+    "PLA CSK-181 Transport": {
+      "before": {
+        "file": "m_csk4_static.fam",
+        "battle": "m_csk4_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_csk181_static.fam",
+        "battle": "m_csk181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue CSK-181": {
+      "before": {
+        "file": "m_csk4_static.fam",
+        "battle": "m_csk4_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_csk181_static.fam",
+        "battle": "m_csk181_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-181 4x4": {
+      "before": null,
+      "after": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-7B": {
+      "before": {
+        "file": "m_hq7b_static.fam",
+        "battle": "m_hq7b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq7s_static.fam",
+        "battle": "m_hq7s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA HQ-7": {
+      "before": {
+        "file": "m_hq7_static.fam",
+        "battle": "m_hq7_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq7s_static.fam",
+        "battle": "m_hq7s_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Mengshi Recon": {
+      "before": {
+        "file": "m_mengshird_static.fam",
+        "battle": "m_mengshird_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_mengshird_static.fam",
+        "battle": "m_mengshird_lo_static.fam",
+        "align": false,
+        "scale": 0.75
+      }
+    }
+  },
+  "version": "0.8.0-dev.90",
+  "base": "0.8.0-dev.89",
+  "base_sha256": "06e39a0ee70b7074a24d716c822d6520cb16f96eb2ada67c24aa4d4c910dae05",
+  "request": "Osama 13 Nov 22:13-22:22 PST",
+  "checks": 39,
+  "verified": "data and file checks only"
+}
