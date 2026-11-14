@@ -916,6 +916,57 @@
       35
     ]
   },
-  "checks": 97,
+  "qts_recon_cell": {
+    "PLAAF Air Force": {
+      "cards": 8,
+      "transports": [
+        "CSK-181",
+        "Lynx ATV",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251",
+        "ZSD-89A"
+      ]
+    },
+    "PLAGF Ground Force/Armored": {
+      "cards": 8,
+      "transports": [
+        "Z-20",
+        "ZBD-04A",
+        "ZBD-20",
+        "ZSD-89A"
+      ]
+    },
+    "PLARF Rocket Force/Reservist": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "CSK-181",
+        "ZSD-89",
+        "ZSD-89A"
+      ]
+    },
+    "PLAN Navy/SOF": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "Z-20J",
+        "ZBD-05",
+        "ZSD-89A"
+      ]
+    },
+    "PLAGF Motorized": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "CSK-181",
+        "ZBL-08",
+        "ZBL-191",
+        "ZFB-05",
+        "ZSL-92"
+      ]
+    }
+  },
+  "checks": 104,
   "base": "0.8.0-dev.101"
 }

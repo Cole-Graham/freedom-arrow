@@ -114,6 +114,24 @@ ok(all(r['SensorId']==3 for r in SU.values() if r['UnitId'] in recon) and all(an
 for uid,name in ((726,'Scouts'),(725,'Razvedka'),(1224,'Test QTS Recon Cell 数字侦察')):
     ok(U[uid]['HUDName'].strip()==name and U[uid]['Cost']==30,(uid,U[uid]['HUDName'],U[uid]['Cost']));g.put('Units',uid,{'Cost':35})
 g.put('Units',1224,{'HUDName':'QTS Recon Cell 数字侦察'});rec['prices']={'Scouts':[30,35],'Razvedka':[30,35],'QTS Recon Cell':[30,35]}
+# QTS Recon Cell becomes China's general recon squad, like Scouts and Razvedka in every US and Russian deck (Lateralus
+# 14 Nov 2026): out of the Test deck, into all five PLA decks at 8 cards, each with the transport set most of that deck's
+# infantry use.
+import collections
+SA=t['SpecializationAvailabilitiesJson'];TA=t['TransportAvailabilitiesJson'];QTS=1224
+own=[r for r in SA.values() if r['UnitId']==QTS];ok([r['SpecializationId'] for r in own]==[22] and not [r for r in TA.values() if r['SpecializationAvailabilityId']==own[0]['Id']],'QTS in Test only, no transports')
+tr=collections.defaultdict(list)
+for r in TA.values():tr[r['SpecializationAvailabilityId']].append(r['UnitId'])
+rec['qts_recon_cell']={}
+for i,spec in enumerate((17,18,19,20,21)):
+    sets=collections.Counter(tuple(sorted(tr[r['Id']])) for r in SA.values() if r['SpecializationId']==spec and r['UnitId'] in squads and tr[r['Id']])
+    best=sets.most_common(1)[0][0];ok(best,spec)
+    if i==0:sa=own[0]['Id'];g.put('SpecializationAvailabilitiesJson',sa,{'SpecializationId':spec,'MaxAvailabilityXp0':8})
+    else:sa=g.add('SpecializationAvailabilitiesJson',own[0],{'SpecializationId':spec,'MaxAvailabilityXp0':8})
+    tpl=next(iter(TA.values()))
+    for x in best:g.add('TransportAvailabilitiesJson',tpl,{'SpecializationAvailabilityId':sa,'UnitId':x})
+    rec['qts_recon_cell'][t['SpecializationsJson'][spec]['UIName']]={'cards':8,'transports':sorted(U[x]['HUDName'] for x in best)}
+ok(sorted(r['SpecializationId'] for r in SA.values() if r['UnitId']==QTS)==[17,18,19,20,21],'QTS decks')
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():
