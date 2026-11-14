@@ -22,7 +22,7 @@ for tab,fn in FIELD_TO_FILE.items():
     for k,v in patches[tab].items():
         if v is None:t[tab].pop(int(k),None)
         else:t[tab].setdefault(int(k),{'Id':int(k)}).update(v)
-g=Graph(t,patches,native);A=t['AmmunitionsJson'];WA=t['WeaponAmmunitionsJson'];U=t['Units']
+g=Graph(t,patches,native);A=t['AmmunitionsJson'];WA=t['WeaponAmmunitionsJson'];U=t['Units'];W_=t['WeaponsJson']
 # (ammo id, HUD name now, launcher, {field: (from, to)})
 ROCKETS=[(130,'66mm HE','M72A10',{'Damage':(6.5,6.0),'IgnoreCover':(0.5,0.25)}),
  (2001500,'66mm HEAT','M72A7',{'IgnoreCover':(0.35,0.0),'HUDName':('66mm HEAT','66mm HEDP')}),
@@ -54,6 +54,16 @@ for aid,uid,name in GUNS:
     users={w['UnitId'] for w in WA.values() if w['AmmunitionId']==aid};ok(users=={uid} and U[uid]['HUDName']==name,(aid,users))
     ok(A[aid]['MuzzleVelocity']==805.0,(aid,A[aid]['MuzzleVelocity']));g.put('AmmunitionsJson',aid,{'MuzzleVelocity':1610.0});ok(A[aid]['MuzzleVelocity']==1610.0,aid)
     rec['radar_guns'].append({'unit':name,'unit_id':uid,'ammo':aid,'MuzzleVelocity':[805.0,1610.0]})
+# Lateralus 14 Nov 2026: a disposable never has more than one round per launcher. The PF-97 copied the RPO-M/MRO-Z setup
+# (4-round magazine, 4 rounds per carrier); it becomes one tube per soldier. The Russian weapons stay as they are.
+PF97=(2004876,2012515);rec['pf97']=[]
+for wid in PF97:
+    ok(W_[wid]['HUDName']=='PF-97' and W_[wid]['Type']==63 and W_[wid]['MagazineSize']==4,(wid,W_[wid]['MagazineSize']))
+    g.put('WeaponsJson',wid,{'MagazineSize':1});ok(W_[wid]['MagazineSize']==1,wid)
+for r in [r for r in WA.values() if r['WeaponId'] in PF97]:
+    ok(r['Quantity']==4,(r['Id'],r['Quantity']));g.put('WeaponAmmunitionsJson',r['Id'],{'Quantity':1});ok(WA[r['Id']]['Quantity']==1,r['Id'])
+    rec['pf97'].append({'unit':U[r['UnitId']]['HUDName'],'unit_id':r['UnitId'],'stock_row':r['Id'],'rounds_per_launcher':[4,1]})
+ok(len(rec['pf97'])>=4,rec['pf97'])
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():

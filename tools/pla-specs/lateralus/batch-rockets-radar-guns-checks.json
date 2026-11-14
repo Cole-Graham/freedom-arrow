@@ -244,6 +244,44 @@
       ]
     }
   ],
-  "checks": 58,
-  "base": "0.8.0-dev.98"
+  "pf97": [
+    {
+      "unit": "Assault Engineers",
+      "unit_id": 1018,
+      "stock_row": 2004885,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Marine Thermobaric Engineers",
+      "unit_id": 1195,
+      "stock_row": 2013545,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Thermobaric Breachers 温压工兵",
+      "unit_id": 1162,
+      "stock_row": 2015099,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Thermobaric Assault 温压突击",
+      "unit_id": 1209,
+      "stock_row": 2015630,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    }
+  ],
+  "checks": 71,
+  "base": "0.8.0-dev.101"
 }
