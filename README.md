@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.99
+# Freedom Arrow 0.8.0-dev.100
+
+- ZFB-05 is a transport for Motorized infantry (10 seats, like the base-game BPM-97 it is built on), not its own card.
+- Z-19: stealth 1.75.
+- J-10C and J-10S: ECM and flares (same as the J-10CE).
+- Y-8: faces forward, and the flaps and elevators lie flat again.
+- KQ-200: propellers no longer look mid-spin.
+- Everything else as 0.8.0-dev.99.
+
+## Historical 0.8.0-dev.99
 
 - Transports (IFVs, APCs, trucks, ATV) no longer have their own vehicle card; buy them with the infantry, as in the base game. ZBD-20 is now a transport like ZBD-04A. Helicopters keep their cards.
 - Removed: CSK-131 Mengshi; the PLAN SOF ZSD-89; CSK-131 4x4 as a PLAAF transport; CSK-181 as a PLAN SOF transport.
