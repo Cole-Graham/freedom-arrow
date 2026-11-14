@@ -6,6 +6,13 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 
 ## Permanent branches
 
+**Update, 14 November 2026 (Osama): 0.9 is the main development line.** Osama, 11:05 PST: "let's launch this as 0.9. Remember from now on we need to batch our changes because the file is big." `0.9.0-dev.1` is 0.8.0-dev.105's content (Osama's 14 Nov batches plus Lateralus's 0.8 batch) under the 0.9 identity.
+
+- `codex/0.9-development`: **the one integration branch for main development from 0.9 on**, created at `007e2ce` (0.8.0-dev.105). New dev builds advance this branch; snapshots keep their `gameplay/0.9.0-dev.N` tags.
+- `codex/0.8-development`: **frozen** at 0.8.0-dev.105 (`007e2ce`, tag `gameplay/0.8.0-dev.105`). History only; do not push to it. The pre-push hook refuses it.
+- Batching: changes are collected and built only when Osama or Lateralus say a batch is ready, because each package upload is large (assets 8.6 GB).
+- Lateralus batches use `codex/batch/lateralus/<topic>` based on 0.9.
+
 **Update, 12 November 2026 (Lateralus approved): 0.8 is the main development line.** Osama made the China build 0.8 and live on 12 November (13:27 PST). Its source had been `codex/pla-development`; 0.7 dev.58's gameplay was merged into it by data port (`tools/pla-specs/merge_dev58.py`) and code ports, not by a Git merge.
 
 - `main`: source of the approved public gameplay build; still dev.45 (`73f7c1b`). The live launcher manifest is locked separately (0.8.0-dev.1). Updating `main` needs Sam or Lateralus's approval.
@@ -64,3 +71,4 @@ The expected first-stage remote count would be 52: 131 current + four maintained
 - 2026-11-11 22:27:20 PST (America/Los_Angeles) — Recorded approved layout, explicit batch isolation and unchanged 83-branch cleanup scope; prepared for publication once GitHub permission preflight succeeds.
 - 2026-11-11 22:48:48 PST (America/Los_Angeles) — Activated the approved branch workflow after installation permission acceptance; retained the newer pinned PLA28 source and original cleanup scope.
 - 2026-11-12 23:43:01 PST (America/Los_Angeles) — 0.8 designated: `codex/0.8-development` created at `be49cdd`; `codex/0.7-development` frozen at dev.58 (tag `gameplay/0.7.0-dev.58`); `codex/pla-development` retired as an alias (Lateralus approval, 12 Nov).
+- 2026-11-14 11:10:26 PST (America/Los_Angeles) — 0.9 designated: `codex/0.9-development` created at `007e2ce` (0.8.0-dev.105); `codex/0.8-development` frozen; batch-only builds (Osama, 14 Nov 11:05).

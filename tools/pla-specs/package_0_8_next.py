@@ -1,4 +1,4 @@
-"""Package the next Freedom Arrow 0.8 gameplay version over the exact previous complete 0.8 package.
+"""Package the next Freedom Arrow 0.8/0.9 gameplay version over the exact previous complete package.
 
 Usage: package_0_8_next.py --prev VERSION --version VERSION --build N --base PREV_COMPLETE --outdir DIR [--assets ASSETS.bamod].
 Changed constants, identity files and the version receipt go in. Writes the complete package (Vengeance switcher) and the
@@ -24,8 +24,9 @@ base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.v
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
 # Osama 13 Nov 12:39 ("make sure the model fixes land with your other thread"): two threads build on this branch. Stack every
 # build on the newest receipt, and refuse a package that drops the dev.35-38 model/camo/data fixes (check_model_carry.py).
-newest=max((int(re.search(r'dev\.(\d+)\.json$',f.name).group(1)),f.name) for f in (REL/'out/0.8').glob('FreedomArrow-0.8.0-dev.*.json') if re.search(r'dev\.\d+\.json$',f.name))
-assert a.prev==f'0.8.0-dev.{newest[0]}',f'--prev {a.prev} is not the newest build 0.8.0-dev.{newest[0]}; build on it so other threads\' fixes are kept'
+# 0.9 (Osama 14 Nov 2026 11:05 PST, "launch this as 0.9"): 0.9.0-dev.N builds continue in out/0.8 after 0.8.0-dev.105.
+newest=max(((int(m.group(1)),int(m.group(2))),f'0.{m.group(1)}.0-dev.{m.group(2)}') for f in (REL/'out/0.8').glob('FreedomArrow-0.*.0-dev.*.json') if (m:=re.search(r'FreedomArrow-0\.([89])\.0-dev\.(\d+)\.json$',f.name)))
+assert a.prev==newest[1],f'--prev {a.prev} is not the newest build {newest[1]}; build on it so other threads\' fixes are kept'
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
 with zipfile.ZipFile(base) as z:
     whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='Freedom Arrow '+a.prev
@@ -108,7 +109,7 @@ AV,mismatch=differ(assets)
 assert vt(AV)>=vt(prev['assets_version']),f'--assets {AV} is older than {prev["assets_version"]} of {a.prev}'
 made=None
 if mismatch:
-    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in (REL/'out/0.8').glob('FreedomArrow-0.8.0-dev.*.json')]
+    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in (REL/'out/0.8').glob('FreedomArrow-0.[89].0-dev.*.json')]
     x=max([AV,*known],key=vt).split('.');NV='.'.join(x[:-1]+[str(int(x[-1])+1)])
     print(f'Model files differ from assets {AV} ({len(mismatch)}: {mismatch[:5]}). Making assets {NV}.',flush=True)
     assets=out/f'FreedomArrow-Assets-{NV}.bamod';made=make_assets.build(complete,paired,NV,V,assets,a.zip)

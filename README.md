@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.105
+# Freedom Arrow 0.9.0-dev.1
+
+First 0.9 build (Osama 14 Nov 2026 11:05 PST: "let's launch this as 0.9"). Same content as 0.8.0-dev.105:
+Osama's 14 Nov PLA batches (0.8.0-dev.101 to 104) plus Lateralus's 0.8 batch (rocket Ignore Cover, interceptor guns 1000,
+PF-97, recon optics, QTS Recon Cell, FK-2000 gun, 5v5 maps 0.2). Needs Freedom Arrow — Models and Music 0.2.28.
+
+## Historical 0.8.0-dev.105
 
 Lateralus's 0.8 batch (codex/batch/lateralus/0.8-rockets-radar-guns) on top of 0.8.0-dev.104:
 - Rocket launchers: M72A10, M72A7 (66mm HEDP), RMG, RPG-7V/V2, RPO-M, RShG-1/2, SMAW, SMAW-D, SPG-9M, SRAW MPV Ignore Cover and damage changes.
