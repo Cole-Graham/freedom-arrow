@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.96
+# Freedom Arrow 0.8.0-dev.97
+
+- FAModels 0.3.23: jets that use the vanilla F-16 canopy no longer turn frosted when the F-16 glass is not loaded yet; the stand-in glass is clear and becomes the F-16 glass once it loads.
+- Z-9 (transport): no weapons on the model. Z-9WA and Z-9WA Recon: seller model with the weapons.
+- PHL-191 Cruise: loose tube door removed, launcher behind the cab.
+- CSK-131: no longer glows white. CSK-181: camo without the scraped-metal shading.
+- Everything else as 0.8.0-dev.96.
+
+## Historical 0.8.0-dev.96
 
 - Aircraft glass restored to how it was before the glass passes (F-14, Su-47, Su-57D, YF-23 had been made more frosted).
 - Helicopter and ground-vehicle clear glass at the aircraft value (opacity 0.025).

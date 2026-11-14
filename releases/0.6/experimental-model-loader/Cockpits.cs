@@ -39,6 +39,24 @@ public partial class Mod
             if (cockpitMaterials.TryGetValue(name, out var ready) && ready != null) continue;
             try { CockpitMaterial(name); } catch (InvalidDataException) { }
         }
+        UpgradeFallbacks(true);
+    }
+    // 0.3.23: turn the clear-glass stand-ins into the real donor once it can be found. full=false is the cheap periodic check
+    // (already-cloned donor or a loaded material by name); full=true also searches the loaded bundles (scene loads only).
+    static void UpgradeFallbacks(bool full)
+    {
+        foreach (var name in fallbackMats.Keys.ToList())
+        {
+            Material donor = null;
+            if (cockpitMaterials.TryGetValue(name, out var ready) && ready != null) donor = ready;
+            else if (full) { try { donor = CockpitMaterial(name); } catch (InvalidDataException) { } }
+            else { var src = FindCockpitMaterial(name); if (src != null) { try { donor = CockpitMaterial(name); } catch (InvalidDataException) { } } }
+            if (donor == null) continue;
+            int n = 0;
+            foreach (var m in fallbackMats[name]) { if (m == null) continue; m.shader = donor.shader; m.CopyPropertiesFromMaterial(donor); n++; }
+            fallbackMats.Remove(name);
+            MelonLogger.Msg($"FAMODELS_COCKPIT_UPGRADED {name}: {n} fallback material(s) now use the donor glass");
+        }
     }
     static Material CockpitMaterial(string name)
     {

@@ -1,0 +1,61 @@
+{
+  "models_json": {
+    "PLA Catalogue Z-9": {
+      "before": {
+        "file": "m_z9_static.fam",
+        "battle": "m_z9_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z9t_static.fam",
+        "battle": "m_z9t_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Z-9WA": {
+      "before": {
+        "file": "m_z9wa.fam",
+        "align": false,
+        "battle": "m_z9wa_lo.fam"
+      },
+      "after": {
+        "file": "m_z9_static.fam",
+        "battle": "m_z9_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Recon Z-9WA": {
+      "before": {
+        "file": "m_z9wa.fam",
+        "align": false,
+        "battle": "m_z9wa_lo.fam"
+      },
+      "after": {
+        "file": "m_z9_static.fam",
+        "battle": "m_z9_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA PHL-191 Cruise": {
+      "before": {
+        "file": "m_phl191cg_static.fam",
+        "battle": "m_phl191cg_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_phl191ch_static.fam",
+        "battle": "m_phl191ch_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "csk131_emissive_off": true,
+  "csk181_flat_body_normal": true,
+  "version": "0.8.0-dev.97",
+  "base": "0.8.0-dev.96",
+  "base_sha256": "94f4d1856a3126f6bb7140fe023fb26185c1bfe7e6cd893ac6849151b3376230",
+  "famodels": "0.3.23",
+  "request": "Osama 13 Nov 23:13-23:30 PST",
+  "checks": 54,
+  "verified": "data and file checks only"
+}
