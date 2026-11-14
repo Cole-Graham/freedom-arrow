@@ -1,20 +1,25 @@
 {
   "trait": "NLOS",
-  "version": "0.8.0-dev.14",
+  "version": "0.8.0-dev.85",
   "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs).",
   "ammunition": [
-    2009623
+    2009623,
+    2009651
   ],
   "fire_weapons": [
-    2009619
+    2009619,
+    2009647
   ],
   "fire_units": [
-    936
+    936,
+    937
   ],
   "weapons": [
-    2009619
+    2009619,
+    2009647
   ],
   "units": {
-    "936": "HJ-10"
+    "936": "HJ-10",
+    "937": "QN-506"
   }
 }

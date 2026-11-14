@@ -1,0 +1,340 @@
+{
+ "m_df15_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2512328028678894,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1294,0.1294,0.1294,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2512328028678894,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex3.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex4.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex5.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2512328028678894,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex6.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex7.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2235,0.2235,0.2235,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.19318723678588867,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2078,0.2706,0.2941,1.0000": {
+  "metallic": 0.29999998211860657,
+  "smoothness": 0.22973966598510742,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex10.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.14671331644058228,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0350,0.0450,0.0180,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1333,0.1333,0.1333,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4924577474594116,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex15.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 1.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|1.0000,1.0000,1.0000,0.9980": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "opacity": 0.3,
+  "clearGlass": true
+ },
+ "m_df15_static_tex17.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex18.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.14671331644058228,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1255,0.1255,0.1255,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2828426957130432,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1725,0.1725,0.1725,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.10352647304534912,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex21.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex22.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.14671331644058228,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0200,0.0200,0.0200,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2462288737297058,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex24.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2706,0.2706,0.2706,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex26.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2157,0.2157,0.2157,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.26390159130096436,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_df15_static_tex28.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1922,0.1922,0.1922,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.2462288737297058,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

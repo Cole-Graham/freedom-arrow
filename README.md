@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.84
+# Freedom Arrow 0.8.0-dev.85
+
+- J-20, J-20S: stealth 2 (as J-31/J-35). ZTD-05 removed.
+- HJ-10: 1600 m. QN-506: QN-502 is an HJ-10 copy at 1600 m with NLOS fire, Recon category, laser designator, 2000 m optics.
+- ZBD-20 and ZBD-20 Recon: 8 HJ-16 (long-range Spike copy, 1600 m, top attack, semi-active) replace the precision missiles.
+- Models: J-20S and Z-19 glass, armed Z-20KA/Z-20T, PGZ-95 guns, ZBD-20 gun, ZTZ-99 track, VT-5 MG; PGZ-95 and ZTZ-99A 90%, ZBD-251 85%; desert ZSD-89A fixed.
+- Helicopter and ground-vehicle windows use clear glass (the copied F-16 glass looked wavy); jets keep it.
+- Everything else as 0.8.0-dev.84.
+
+## Historical 0.8.0-dev.84
 
 - ZBD-20: purchased VN-17 model (woodland digital). ZBD-20 Recon and ZBD-04A Recon: seller desert digital.
 - Marine HJ-8H Team (PLAN Navy/SOF): HJ-8H launcher and missile copied from the Kornet-M, Kornet icon, 70 points.

@@ -1,0 +1,504 @@
+{
+  "stealth": {
+    "J-20": [
+      0.666,
+      0.5
+    ],
+    "J-20S": [
+      0.666,
+      0.5
+    ],
+    "J-20B": [
+      1.0,
+      0.5
+    ]
+  },
+  "ztd05_removed": {
+    "cards": 1,
+    "transport_links": 0
+  },
+  "hj10_range_m": [
+    1800,
+    1600
+  ],
+  "qn502": "HJ-10 copy, 1600 m",
+  "qn506": {
+    "category": [
+      2,
+      0
+    ],
+    "laser": {
+      "IsLaserDesignator": true,
+      "LaserMaxRange": 1500.0,
+      "LaserUsableInMove": true
+    },
+    "optics_raw": [
+      700,
+      1000
+    ]
+  },
+  "zbd20_hj16": {
+    "weapon": 2018803,
+    "ammo": 2018804,
+    "range_m": 1600,
+    "seeker": 100,
+    "top_attack": true,
+    "missiles": 8,
+    "icon": "VEH_SPIKE_LR"
+  },
+  "models_json": {
+    "PLA J-20S": {
+      "before": {
+        "file": "m_j20s_static.fam",
+        "battle": "m_j20s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_j20sg_static.fam",
+        "battle": "m_j20sg_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Z-19E": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Z-19": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Recon Z-19E": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Recon Z-19": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA SF Z-19": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA SF Recon Z-19": {
+      "before": {
+        "file": "m_z19_static.fam",
+        "battle": "m_z19_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z19g_static.fam",
+        "battle": "m_z19g_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Z-20": {
+      "before": {
+        "file": "m_z20n_static.fam",
+        "battle": "m_z20n_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z20na_static.fam",
+        "battle": "m_z20na_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Z-20T": {
+      "before": {
+        "file": "m_z20n_static.fam",
+        "battle": "m_z20n_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_z20na_static.fam",
+        "battle": "m_z20na_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue PGZ-95": {
+      "before": {
+        "file": "m_pgz95_static.fam",
+        "battle": "m_pgz95_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_pgz95b_static.fam",
+        "battle": "m_pgz95b_lo_static.fam",
+        "align": false,
+        "scale": 0.9
+      }
+    },
+    "PLA ZBD-20": {
+      "before": {
+        "file": "m_vn17s_static.fam",
+        "battle": "m_vn17s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vn17sb_static.fam",
+        "battle": "m_vn17sb_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZBD-20 Recon": {
+      "before": {
+        "file": "m_vn17d_static.fam",
+        "battle": "m_vn17d_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vn17db_static.fam",
+        "battle": "m_vn17db_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZTZ-99": {
+      "before": {
+        "file": "m_ztz99_static.fam",
+        "battle": "m_ztz99_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99b_static.fam",
+        "battle": "m_ztz99b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA VT-5": {
+      "before": {
+        "file": "m_vt5s_static.fam",
+        "battle": "m_vt5s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vt5b_static.fam",
+        "battle": "m_vt5b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA VT-5 Recon": {
+      "before": {
+        "file": "m_vt5s_static.fam",
+        "battle": "m_vt5s_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vt5b_static.fam",
+        "battle": "m_vt5b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA ZTZ-99A": {
+      "before": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztz99a_mix_static.fam",
+        "battle": "m_ztz99a_mix_lo_static.fam",
+        "align": false,
+        "scale": 0.9
+      }
+    },
+    "PLA Catalogue ZBD-251": {
+      "before": {
+        "file": "m_zbd251_static.fam",
+        "battle": "m_zbd251_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zbd251_static.fam",
+        "battle": "m_zbd251_lo_static.fam",
+        "align": false,
+        "scale": 0.85
+      }
+    }
+  },
+  "clear_glass": [
+    [
+      "m_z10_black.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z10_black_lo.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z11wb.mat.json",
+      [
+        0
+      ]
+    ],
+    [
+      "m_z11wb_lo.mat.json",
+      [
+        0
+      ]
+    ],
+    [
+      "m_df21_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df21_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df31a_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df31a_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_hq12_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_hq12_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_pcl09_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_pcl09_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df15_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df15_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df17_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_df17_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_pcl181_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_pcl181_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_phl16_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_phl16_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_phl191b_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_phl191b_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_fk2000s_lo_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_fk2000s_static.mat.json",
+      [
+        3
+      ]
+    ],
+    [
+      "m_csk4_lo_static.mat.json",
+      [
+        0,
+        2
+      ]
+    ],
+    [
+      "m_csk4_static.mat.json",
+      [
+        0,
+        2
+      ]
+    ],
+    [
+      "m_z20a_lo_static.mat.json",
+      [
+        5
+      ]
+    ],
+    [
+      "m_z20a_static.mat.json",
+      [
+        5
+      ]
+    ],
+    [
+      "m_z20n_lo_static.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z20n_static.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z9_lo_static.mat.json",
+      [
+        5
+      ]
+    ],
+    [
+      "m_z9_static.mat.json",
+      [
+        5
+      ]
+    ],
+    [
+      "m_zbd86_lo_static.mat.json",
+      [
+        0,
+        2
+      ]
+    ],
+    [
+      "m_zbd86_static.mat.json",
+      [
+        0,
+        2
+      ]
+    ],
+    [
+      "m_z19g_lo_static.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z19g_static.mat.json",
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      "m_z20na_lo_static.mat.json",
+      [
+        5
+      ]
+    ],
+    [
+      "m_z20na_static.mat.json",
+      [
+        5
+      ]
+    ]
+  ],
+  "version": "0.8.0-dev.85",
+  "base": "0.8.0-dev.84",
+  "base_sha256": "09cad158887c3cde1d7d1ee71a3398f313e2280809c063fd7a211ef200b62ff5",
+  "request": "Osama 13 Nov 21:15-21:35 PST",
+  "checks": 154,
+  "verified": "data and file checks only"
+}
