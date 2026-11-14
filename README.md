@@ -1,4 +1,14 @@
-# Freedom Arrow 0.8.0-dev.75
+# Freedom Arrow 0.8.0-dev.76
+
+- J-36: card turn radius 985 (was 1095); yaw rates x1.144, speed unchanged.
+- J-36 Heavy CAP: one loadout, 4x PL-17 and 4x PL-16 (default). The 8x PL-17 + 4x PL-21 and the PL-16 Heavy CAP loadouts are removed. Prices unchanged.
+- J-8D: Light strike +30 (was +50).
+- JH-7A removed for now.
+- MD-22: Light strike (2x LS-6 500kg) no longer carries PL-15 air-to-air missiles. Its other strike loadouts had none.
+- MD-22: J-35 optics (Optics Plane Air Superiority: high altitude 8000, low 2000, no ground spotting; was the drone set 5250/1600/1000).
+- Everything else as 0.8.0-dev.75.
+
+## Historical 0.8.0-dev.75
 
 - DF-17/ZF: missile resupply costs 2000 supply (was 1000). Resupply time is unchanged (120 s).
 - SR-5: its launchers are named Fire Dragon 70, Fire Dragon 70 CLU, Fire Dragon 300 and Fire Dragon 480 (were HIMARS and ATACMS). Same stats; they are now SR-5 copies, so the M142 HIMARS is unchanged. The Fire Dragon 300 loadout no longer renames the unit to "ATACMS".

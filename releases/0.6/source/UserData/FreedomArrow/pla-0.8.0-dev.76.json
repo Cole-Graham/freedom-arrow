@@ -1,0 +1,73 @@
+{
+  "version": "0.8.0-dev.76",
+  "base": "0.8.0-dev.75",
+  "base_sha256": "cd0b3c9f2cdc3c1e676e8327e583e6d43c3620e82a8186aa8dd971cd52f6b0e6",
+  "request": "Osama 13 Nov 19:5x PST: J-36 turn radius 985 (now 1095); Heavy CAP only 4x PL-17 and 4x PL-16; this plane about 100 pts (price question open); J-8D light strike +30 not 50; remove JH-7 for now; MD-22 ASF missiles removed from strike loadouts; MD-22 optics same as J-35",
+  "j36_turn": {
+    "preset": 2018570,
+    "yaw_before": {
+      "MinSpeedYaw": 20.0,
+      "MaxSpeedYaw": 40.0,
+      "AfterburnYaw": 40.0,
+      "CornerSpeedYaw": 37.77778,
+      "CornerAfterburnSpeedYaw": 40.0
+    },
+    "yaw_after": {
+      "MinSpeedYaw": 22.88,
+      "MaxSpeedYaw": 45.76,
+      "AfterburnYaw": 45.76,
+      "CornerSpeedYaw": 43.21778,
+      "CornerAfterburnSpeedYaw": 45.76
+    },
+    "ui_radius": [
+      1095,
+      985
+    ]
+  },
+  "j36_heavy_cap": {
+    "option": 24393,
+    "load": {
+      "PL-16": 4,
+      "PL-17": 4
+    },
+    "removed_options": [
+      24394,
+      24663
+    ],
+    "cost": 255
+  },
+  "jh7a_removed": {
+    "cards": 1,
+    "transport_links": 0
+  },
+  "md22_optics": [
+    33,
+    6
+  ],
+  "md22": {
+    "Light CAP (PL-12)": {
+      "PL-12": 4
+    },
+    "Light CAP (PL-15)": {
+      "PL-15": 4
+    },
+    "Light strike (2x LS-6 500kg)": {
+      "LT-2": 2
+    },
+    "Light strike (4x LS-6 500kg)": {
+      "LS-6": 4
+    },
+    "Heavy CAP (PL-15C)": {
+      "PL-15C": 4,
+      "PL-10": 2
+    },
+    "Heavy CAP (PL-16)": {
+      "PL-16": 6
+    },
+    "Heavy strike (2x LS-6 1000kg)": {
+      "LS-6 1000kg": 2
+    }
+  },
+  "checks": 10,
+  "verified": "data only"
+}
