@@ -1,0 +1,40 @@
+{
+  "aircraft_glass_restored_from_dev84": [
+    "m_f14_cg",
+    "m_f14_lo",
+    "m_su47",
+    "m_su47_lo",
+    "m_su57d_cg",
+    "m_su57d_lo",
+    "m_yf23",
+    "m_yf23_lo"
+  ],
+  "helo_ground_clear_glass": {
+    "opacity": [
+      0.1,
+      0.025
+    ],
+    "materials": 54,
+    "files": 50
+  },
+  "models_json": {
+    "PLA PHL-191 Cruise": {
+      "before": {
+        "file": "m_phl191cf_static.fam",
+        "battle": "m_phl191cf_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_phl191cg_static.fam",
+        "battle": "m_phl191cg_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.96",
+  "base": "0.8.0-dev.95",
+  "base_sha256": "5bc188b33f23a8e62bd1f5b1b050649fe437dfd7ede7d348b453749c0c10e992",
+  "request": "Osama 13 Nov 22:59-23:13 PST",
+  "checks": 56,
+  "verified": "data and file checks only"
+}

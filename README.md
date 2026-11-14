@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.95
+# Freedom Arrow 0.8.0-dev.96
+
+- Aircraft glass restored to how it was before the glass passes (F-14, Su-47, Su-57D, YF-23 had been made more frosted).
+- Helicopter and ground-vehicle clear glass at the aircraft value (opacity 0.025).
+- PHL-191 Cruise: launcher moved back so it no longer clips into the cab.
+- Everything else as 0.8.0-dev.95.
+
+## Historical 0.8.0-dev.95
 
 - Spec points: PLAAF Recon 500 / Air 1500; PLAGF Armored Air 0 / Vehicles 2000; PLARF Recon 500 / Support 2000; PLAN SOF Support 500 / Air 1500 / Vehicles 500 / Helicopters 750; PLAGF Motorized Infantry 1250 / Helicopters 500 / Recon 750 / Air 750.
 - Everything else as 0.8.0-dev.94.

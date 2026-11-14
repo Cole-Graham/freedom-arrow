@@ -1,0 +1,966 @@
+{
+  "PLA ZTZ-99A": {
+    "file": "m_ztz99a_mix_static.fam",
+    "battle": "m_ztz99a_mix_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA ZTZ-96B": {
+    "file": "m_ztz96a_static.fam",
+    "battle": "m_ztz96a_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTQ-15": {
+    "file": "m_ztq15_camo_static.fam",
+    "battle": "m_ztq15_camo_lo_static.fam",
+    "align": false
+  },
+  "PLA ZBD-04A": {
+    "file": "m_zbd04_camo_static.fam",
+    "battle": "m_zbd04_camo_lo_static.fam",
+    "align": false
+  },
+  "PLA ZBL-08": {
+    "file": "m_zbl09_static.fam",
+    "battle": "m_zbl09_lo_static.fam",
+    "align": false
+  },
+  "PLA PLZ-05": {
+    "file": "m_plz05_static.fam",
+    "battle": "m_plz05_lo_static.fam",
+    "align": false
+  },
+  "PLA PGZ-09": {
+    "file": "m_pgz09_static.fam",
+    "battle": "m_pgz09_lo_static.fam",
+    "align": false
+  },
+  "PLA PHL-03": {
+    "file": "m_phl03_static.fam",
+    "battle": "m_phl03_lo_static.fam",
+    "align": false
+  },
+  "PLA HQ-9": {
+    "file": "m_hq22_static.fam",
+    "battle": "m_hq22_lo_static.fam",
+    "align": false
+  },
+  "PLA CSK-131 Mengshi": {
+    "file": "m_csk4b_static.fam",
+    "battle": "m_csk4b_lo_static.fam",
+    "align": false
+  },
+  "PLA Z-20": {
+    "file": "m_z20na_static.fam",
+    "battle": "m_z20na_lo_static.fam",
+    "align": false
+  },
+  "PLA Z-10": {
+    "file": "m_z10_black.fam",
+    "battle": "m_z10_black_lo.fam",
+    "align": false,
+    "scale": 0.8
+  },
+  "PLA J-20": {
+    "file": "m_j20_cg.fam",
+    "battle": "m_j20_lo.fam",
+    "align": false
+  },
+  "PLA J-16": {
+    "file": "m_j16_cg.fam",
+    "battle": "m_j16_lo2.fam",
+    "align": false
+  },
+  "PLA J-10C": {
+    "file": "m_j10c_cg.fam",
+    "battle": "m_j10c_lo2.fam",
+    "align": false
+  },
+  "PLA JH-7A": {
+    "file": "m_jh7a2.fam",
+    "align": false,
+    "battle": "m_jh7a2_lo.fam"
+  },
+  "PLA H-6K": {
+    "file": "m_h6k_cg.fam",
+    "battle": "m_h6k_lo2.fam",
+    "align": false
+  },
+  "PLA PGL-625": {
+    "file": "m_pgl625_static.fam",
+    "battle": "m_pgl625_lo_static.fam",
+    "align": false
+  },
+  "PLA J-35": {
+    "file": "m_j35_cg.fam",
+    "battle": "m_j35_lo.fam",
+    "align": false
+  },
+  "PLA PHL-11": {
+    "file": "sx2190.fam",
+    "align": false,
+    "battle": "sx2190_lo.fam"
+  },
+  "PLA ZTZ-20": {
+    "file": "m_ztz201_static.fam",
+    "battle": "m_ztz201_lo_static.fam",
+    "align": false
+  },
+  "PLA HQ-7B": {
+    "file": "m_hq7s_static.fam",
+    "battle": "m_hq7s_lo_static.fam",
+    "align": false
+  },
+  "PLA Su-30MKK": {
+    "file": "m_j16_cg.fam",
+    "battle": "m_j16_lo2.fam",
+    "align": false
+  },
+  "PLA J-11B": {
+    "file": "m_j11_cg.fam",
+    "battle": "m_j11_lo2.fam",
+    "align": false
+  },
+  "PLA Y-20": {
+    "file": "y20.fam",
+    "align": false,
+    "battle": "y20_lo.fam"
+  },
+  "PLA J-36": {
+    "file": "m_j36_cg.fam",
+    "battle": "m_j36_lo.fam",
+    "align": false
+  },
+  "PLA PLL-05": {
+    "file": "pll05_static.fam",
+    "battle": "pll05_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTD-05": {
+    "file": "ztd05ag_static.fam",
+    "battle": "ztd05ag_lo_static.fam",
+    "align": false
+  },
+  "PLA Shaanxi SX2190": {
+    "file": "m_sx2220.fam",
+    "battle": "m_sx2220_lo.fam"
+  },
+  "PLA PLZ-07B": {
+    "file": "m_plz07_static.fam",
+    "battle": "m_plz07_lo_static.fam",
+    "align": false
+  },
+  "PLA PGZ-04A": {
+    "file": "m_pgz04a_static.fam",
+    "battle": "m_pgz04a_lo_static.fam",
+    "align": false
+  },
+  "PLA SH-16": {
+    "file": "m_sh16_static.fam",
+    "battle": "m_sh16_lo_static.fam",
+    "align": false
+  },
+  "PLA FK-2000": {
+    "file": "m_fk2000s_static.fam",
+    "battle": "m_fk2000s_lo_static.fam",
+    "align": false
+  },
+  "PLA QN-506": {
+    "file": "m_qn506w_static.fam",
+    "battle": "m_qn506w_lo_static.fam",
+    "align": false,
+    "scale": 0.8
+  },
+  "PLA ZTL-11": {
+    "file": "m_ztl11s_static.fam",
+    "battle": "m_ztl11s_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTZ-99A2": {
+    "file": "m_ztz99a_mix_static.fam",
+    "battle": "m_ztz99a_mix_lo_static.fam",
+    "align": false
+  },
+  "PLA Z-19E": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA Z-9WA": {
+    "file": "m_z9wa.fam",
+    "align": false,
+    "battle": "m_z9wa_lo.fam"
+  },
+  "PLA Z-11WB": {
+    "file": "m_z11wb.fam",
+    "align": false,
+    "battle": "m_z11wb_lo.fam"
+  },
+  "PLA J-15": {
+    "file": "m_j15_cg.fam",
+    "battle": "m_j15_lo2.fam",
+    "align": false
+  },
+  "PLA J-50": {
+    "file": "m_j50_cg.fam",
+    "battle": "m_j50_lo2.fam",
+    "align": false
+  },
+  "PLA ZBD-20": {
+    "file": "m_vn17sb_static.fam",
+    "battle": "m_vn17sb_lo_static.fam",
+    "align": false
+  },
+  "PLA Wing Loong": {
+    "file": "m_wingloong.fam",
+    "align": false,
+    "battle": "m_wingloong_lo.fam"
+  },
+  "PLA PTZ-89": {
+    "file": "m_ptz89_static.fam",
+    "battle": "m_ptz89_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA ZTZ-99G": {
+    "file": "m_ztz99a_mix_static.fam",
+    "battle": "m_ztz99a_mix_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTZ-96": {
+    "file": "m_ztz96a_static.fam",
+    "battle": "m_ztz96a_lo_static.fam",
+    "align": false
+  },
+  "Su-75 Checkmate": {
+    "file": "m_su75_t75.fam",
+    "battle": "m_su75_t75_lo.fam",
+    "align": false
+  },
+  "PLA HJ-10": {
+    "file": "m_aft10s_static.fam",
+    "battle": "m_aft10s_lo_static.fam",
+    "align": false
+  },
+  "PLA HJ-8": {
+    "file": "m_hj8_static.fam",
+    "battle": "m_hj8_lo_static.fam",
+    "align": false
+  },
+  "PLA JRVG-1": {
+    "file": "m_jrvg1_static.fam",
+    "battle": "m_jrvg1_lo_static.fam",
+    "align": false
+  },
+  "PLA VT-5": {
+    "file": "m_vt5b_static.fam",
+    "battle": "m_vt5b_lo_static.fam",
+    "align": false
+  },
+  "PLA J-10S": {
+    "file": "j10t.fam",
+    "align": false,
+    "battle": "j10t_lo.fam"
+  },
+  "PLA ZTZ-85-III": {
+    "file": "m_ztz85iii_static.fam",
+    "battle": "m_ztz85iii_lo_static.fam",
+    "align": false
+  },
+  "PLA WZ-701": {
+    "file": "m_wz701.fam",
+    "battle": "m_wz701_lo.fam"
+  },
+  "PLA ZTQ-62-I": {
+    "file": "m_ztq62i_static.fam",
+    "battle": "m_ztq62i_lo_static.fam",
+    "align": false
+  },
+  "PLA ZSD-90": {
+    "file": "m_zsd90_static.fam",
+    "battle": "m_zsd90_lo_static.fam",
+    "align": false
+  },
+  "PLA ZSD-63C": {
+    "file": "m_zsd63c.fam",
+    "battle": "m_zsd63c_lo.fam"
+  },
+  "PLA HQ-7": {
+    "file": "m_hq7s_static.fam",
+    "battle": "m_hq7s_lo_static.fam",
+    "align": false
+  },
+  "PLA WZ-551": {
+    "file": "m_wz551_static.fam",
+    "battle": "m_wz551_lo_static.fam",
+    "align": false
+  },
+  "PLA PHL-81": {
+    "file": "m_phl81.fam",
+    "battle": "m_phl81_lo.fam"
+  },
+  "Abrams X": {
+    "file": "m_abramsx_cg.fam",
+    "battle": "m_abramsx_lo.fam"
+  },
+  "B-21 Raider": {
+    "file": "m_b21_gear.fam",
+    "battle": "m_b21_lo2.fam",
+    "align": false
+  },
+  "PLA GJ-11": {
+    "file": "m_gj11_cg.fam",
+    "battle": "m_gj11_lo.fam",
+    "align": false
+  },
+  "PLA J-20S": {
+    "file": "m_j20sg_static.fam",
+    "battle": "m_j20sg_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTZ-100": {
+    "file": "m_ztz100_camo_static.fam",
+    "battle": "m_ztz100_camo_lo_static.fam"
+  },
+  "X-47B": {
+    "file": "m_x47b.fam",
+    "battle": "m_x47b_lo.fam",
+    "align": false
+  },
+  "Su-57D": {
+    "file": "m_su57d_cg.fam",
+    "battle": "m_su57d_lo.fam",
+    "align": false
+  },
+  "PLA J-31": {
+    "file": "m_j31_lowvis.fam",
+    "battle": "m_j31_lowvis_lo.fam",
+    "align": false
+  },
+  "PLA WZ-8": {
+    "file": "m_wz8_cg.fam",
+    "battle": "m_wz8_lo2.fam",
+    "align": false
+  },
+  "PLA FH-97A": {
+    "file": "m_fh97a_cg.fam",
+    "battle": "m_fh97a_lo2.fam",
+    "align": false
+  },
+  "PLA J-15D": {
+    "file": "m_j15d_cg.fam",
+    "battle": "m_j15d_lo2.fam",
+    "align": false
+  },
+  "PLA J-16D": {
+    "file": "m_j16d_cg.fam",
+    "battle": "m_j16d_lo.fam",
+    "align": false
+  },
+  "PLA ZBL-191": {
+    "file": "m_zbl191_camo_static.fam",
+    "battle": "m_zbl191_camo_lo_static.fam"
+  },
+  "PLA Z-10K": {
+    "file": "m_z10me.fam",
+    "align": false,
+    "battle": "m_z10me_lo.fam"
+  },
+  "PLA J-8": {
+    "file": "m_j8_cg.fam",
+    "battle": "m_j8_lo.fam",
+    "align": false
+  },
+  "PLA MD-22": {
+    "file": "m_md22_cg.fam",
+    "battle": "m_md22_lo.fam",
+    "align": false,
+    "scale": 3.0
+  },
+  "ZIL Karatel Punisher": {
+    "file": "m_karatel.fam",
+    "battle": "m_karatel_lo.fam",
+    "align": false
+  },
+  "XM30": {
+    "file": "m_xm30.fam",
+    "battle": "m_xm30_lo.fam",
+    "align": false,
+    "scale": 0.77
+  },
+  "Su-47 Berkut": {
+    "file": "m_su47.fam",
+    "battle": "m_su47_lo.fam",
+    "align": false
+  },
+  "F-14 Tomcat": {
+    "file": "m_f14_cg.fam",
+    "battle": "m_f14_lo.fam",
+    "align": false
+  },
+  "YF-23 Black Widow II": {
+    "file": "m_yf23.fam",
+    "battle": "m_yf23_lo.fam",
+    "align": false
+  },
+  "F-21 Super Tomcat": {
+    "file": "m_f14_cg.fam",
+    "battle": "m_f14_lo.fam",
+    "align": false,
+    "scale": 1.1
+  },
+  "PLA Catalogue ZBD-04": {
+    "file": "m_zbd04_camo_static.fam",
+    "battle": "m_zbd04_camo_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-10CE": {
+    "file": "m_j10c_cg.fam",
+    "battle": "m_j10c_lo2.fam",
+    "align": false
+  },
+  "PLA Recon Z-10K": {
+    "file": "m_z10me.fam",
+    "align": false,
+    "battle": "m_z10me_lo.fam"
+  },
+  "PLA Recon Z-10": {
+    "file": "m_z10_black.fam",
+    "battle": "m_z10_black_lo.fam",
+    "align": false,
+    "scale": 0.8
+  },
+  "PLA Recon Z-19E": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA Recon Z-9WA": {
+    "file": "m_z9wa.fam",
+    "align": false,
+    "battle": "m_z9wa_lo.fam"
+  },
+  "PLA Catalogue PLZ-07": {
+    "file": "m_plz07_static.fam",
+    "battle": "m_plz07_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PGZ-04": {
+    "file": "m_pgz04a_static.fam",
+    "battle": "m_pgz04a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PGZ-95": {
+    "file": "m_pgz95b_static.fam",
+    "battle": "m_pgz95b_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA Catalogue AFT-10": {
+    "file": "m_aft10s_static.fam",
+    "battle": "m_aft10s_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Type 63 APC — older base": {
+    "file": "m_zsd63c.fam",
+    "battle": "m_zsd63c_lo.fam"
+  },
+  "PLA Catalogue Type 89": {
+    "file": "m_zsd89_static.fam",
+    "battle": "m_zsd89_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Type 89A": {
+    "file": "m_zsd89a_static.fam",
+    "battle": "m_zsd89a_lo_static.fam",
+    "align": false,
+    "scale": 1.2
+  },
+  "PLA Catalogue VT-1A / MBT-2000": {
+    "file": "m_ztz85iii_static.fam",
+    "battle": "m_ztz85iii_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue VT-4 / Al-Hyder": {
+    "file": "m_ztz99a_green_static.fam",
+    "battle": "m_ztz99a_green_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBL-09": {
+    "file": "m_zbl09_static.fam",
+    "battle": "m_zbl09_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBL19 — seller name": {
+    "file": "m_zbl191_camo_static.fam",
+    "battle": "m_zbl191_camo_lo_static.fam"
+  },
+  "PLA Catalogue ZSL-92 family": {
+    "file": "m_zsl92_static.fam",
+    "battle": "m_zsl92_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA Catalogue ZTZ-80 / Type 80": {
+    "file": "m_ztz85iii_static.fam",
+    "battle": "m_ztz85iii_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZTZ-96A": {
+    "file": "m_ztz96b_green.fam",
+    "battle": "m_ztz96b_green_lo.fam"
+  },
+  "PLA Catalogue ZTZ-99": {
+    "file": "m_ztz99_static.fam",
+    "battle": "m_ztz99_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-20B — seller package": {
+    "file": "m_j20_cg.fam",
+    "battle": "m_j20_lo.fam",
+    "align": false
+  },
+  "PLA Catalogue J-8II / J-8F": {
+    "file": "m_j8_cg.fam",
+    "battle": "m_j8_lo.fam",
+    "align": false
+  },
+  "PLA Catalogue Y-20B": {
+    "file": "y20.fam",
+    "align": false,
+    "battle": "y20_lo.fam"
+  },
+  "PLA Catalogue Z-19": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Z-21": {
+    "file": "m_z21_static.fam",
+    "battle": "m_z21_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Z-9": {
+    "file": "m_z9_static.fam",
+    "battle": "m_z9_lo_static.fam",
+    "align": false
+  },
+  "PLA Recon Z-19": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA Recon Z-21": {
+    "file": "m_z21_static.fam",
+    "battle": "m_z21_lo_static.fam",
+    "align": false
+  },
+  "PLA HQ-9B": {
+    "file": "m_hq22_static.fam",
+    "battle": "m_hq22_lo_static.fam",
+    "align": false
+  },
+  "PLA HQ-9A": {
+    "file": "m_hq22_static.fam",
+    "battle": "m_hq22_lo_static.fam",
+    "align": false
+  },
+  "PLA J-10A": {
+    "file": "m_j10a_grey.fam",
+    "battle": "m_j10a_grey_lo.fam",
+    "align": false
+  },
+  "PLA CSK-131 Transport": {
+    "file": "m_csk4b_static.fam",
+    "battle": "m_csk4b_lo_static.fam",
+    "align": false
+  },
+  "PLA Shaanxi Troop Truck": {
+    "file": "m_sx2220.fam",
+    "battle": "m_sx2220_lo.fam"
+  },
+  "PLA ZSL-92 MG": {
+    "file": "m_zsl92mg_static.fam",
+    "battle": "m_zsl92mg_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA SF Z-19": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA SF Recon Z-19": {
+    "file": "m_z19g_static.fam",
+    "battle": "m_z19g_lo_static.fam",
+    "align": false
+  },
+  "PLA SF Z-20": {
+    "file": "m_z20n_static.fam",
+    "battle": "m_z20n_lo_static.fam",
+    "align": false
+  },
+  "PLA Air Force Z-10": {
+    "file": "m_z10_black.fam",
+    "battle": "m_z10_black_lo.fam",
+    "align": false,
+    "scale": 0.8
+  },
+  "PLA ZTQ-15 Recon": {
+    "file": "m_ztq15d_static.fam",
+    "battle": "m_ztq15d_lo_static.fam",
+    "align": false
+  },
+  "PLA J-11BHG": {
+    "file": "m_j11_cg.fam",
+    "battle": "m_j11_lo2.fam",
+    "align": false
+  },
+  "PLA J-11D": {
+    "file": "m_j11d_cg.fam",
+    "battle": "m_j11d_lo.fam",
+    "align": false
+  },
+  "PLA Z-20S": {
+    "file": "m_z20n_static.fam",
+    "battle": "m_z20n_lo_static.fam",
+    "align": false
+  },
+  "PLA PLAGF Z-20": {
+    "file": "m_z20a_static.fam",
+    "battle": "m_z20a_lo_static.fam",
+    "align": false
+  },
+  "PLA Z-20T": {
+    "file": "m_z20na_static.fam",
+    "battle": "m_z20na_lo_static.fam",
+    "align": false
+  },
+  "PLA PLAN ZSD-89": {
+    "file": "m_zsd89_static.fam",
+    "battle": "m_zsd89_lo_static.fam",
+    "align": false
+  },
+  "Object 640 Black Eagle": {
+    "file": "m_blackeagle_cg.fam",
+    "battle": "m_blackeagle_lo.fam",
+    "align": false
+  },
+  "MGM-166 LOSAT": {
+    "file": "m_losat_static.fam",
+    "battle": "m_losat_lo_static.fam",
+    "scale": 1.2,
+    "align": false
+  },
+  "PLA Catalogue DF-21": {
+    "file": "m_df21_static.fam",
+    "battle": "m_df21_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue DF-21D": {
+    "file": "m_df21_static.fam",
+    "battle": "m_df21_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue DF-31A": {
+    "file": "m_df31a_static.fam",
+    "battle": "m_df31a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue YJ-18 ship launcher": {
+    "file": "m_yj18_static.fam",
+    "battle": "m_yj18_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PCL-09": {
+    "file": "m_pcl09_static.fam",
+    "battle": "m_pcl09_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PLL-09": {
+    "file": "m_pll09_static.fam",
+    "battle": "m_pll09_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PLZ-45A4": {
+    "file": "m_plz45a4_static.fam",
+    "battle": "m_plz45a4_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PLZ-70": {
+    "file": "m_plz70_static.fam",
+    "battle": "m_plz70_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PLZ-83": {
+    "file": "m_plz83_static.fam",
+    "battle": "m_plz83_lo_static.fam",
+    "align": false,
+    "scale": 0.75
+  },
+  "PLA Catalogue PLZ-85": {
+    "file": "m_plz85_static.fam",
+    "battle": "m_plz85_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PLZ-89": {
+    "file": "m_plz89_static.fam",
+    "battle": "m_plz89_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue HQ-12 / KS-1": {
+    "file": "m_hq12_static.fam",
+    "battle": "m_hq12_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PGZ-88": {
+    "file": "m_pgz88_static.fam",
+    "battle": "m_pgz88_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PTL-02": {
+    "file": "m_ptl02_static.fam",
+    "battle": "m_ptl02_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-5": {
+    "file": "m_j5_static.fam",
+    "battle": "m_j5_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-6": {
+    "file": "m_j6_static.fam",
+    "battle": "m_j6_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-7": {
+    "file": "m_j7_static.fam",
+    "battle": "m_j7_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue J-7E / J-7G": {
+    "file": "m_j7_static.fam",
+    "battle": "m_j7_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue KJ-500 / KJ-500H": {
+    "file": "m_kj500_static.fam",
+    "battle": "m_kj500_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue KQ-200": {
+    "file": "m_kq200_static.fam",
+    "battle": "m_kq200_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Y-8 family — seller package": {
+    "file": "m_y8_static.fam",
+    "battle": "m_y8_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Jiutian UAV": {
+    "file": "m_jiutian_static.fam",
+    "battle": "m_jiutian_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue WZ-7": {
+    "file": "m_wz7_static.fam",
+    "battle": "m_wz7_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Z-8L": {
+    "file": "m_z8l_static.fam",
+    "battle": "m_z8l_lo_static.fam",
+    "align": false,
+    "yaw": 180.0
+  },
+  "PLA HQ-17": {
+    "file": "m_hq17a_static.fam",
+    "battle": "m_hq17a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue HQ-17A": {
+    "file": "m_hq17a_static.fam",
+    "battle": "m_hq17a_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZTL-191": {
+    "file": "m_ztl191_static.fam",
+    "battle": "m_ztl191_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Type 052D": {
+    "file": "m_type052d_static.fam",
+    "battle": "m_type052d_lo_static.fam",
+    "align": false
+  },
+  "PLA VT-5 Recon": {
+    "file": "m_vt5d_static.fam",
+    "battle": "m_vt5d_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue AFT-09": {
+    "file": "m_aft09f_static.fam",
+    "battle": "m_aft09f_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue CSK-181": {
+    "file": "m_csk181_static.fam",
+    "battle": "m_csk181_lo_static.fam",
+    "align": false
+  },
+  "PLA CSK-181 Transport": {
+    "file": "m_csk181_static.fam",
+    "battle": "m_csk181_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue CTL-181 loitering munition launcher": {
+    "file": "m_ctl181_static.fam",
+    "battle": "m_ctl181_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue DF-15": {
+    "file": "m_df15_static.fam",
+    "battle": "m_df15_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue DF-17": {
+    "file": "m_df17_static.fam",
+    "battle": "m_df17_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue HQ-11": {
+    "file": "m_hq11_static.fam",
+    "battle": "m_hq11_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue HQ-6A": {
+    "file": "m_hq6a_static.fam",
+    "battle": "m_hq6a_lo_static.fam",
+    "align": false,
+    "scale": 0.75
+  },
+  "PLA Catalogue PCL-181 / SH-15": {
+    "file": "m_pcl181_static.fam",
+    "battle": "m_pcl181_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PHL-16": {
+    "file": "m_phl16_static.fam",
+    "battle": "m_phl16_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue PHL-191 / AR3": {
+    "file": "m_phl191b_static.fam",
+    "battle": "m_phl191b_lo_static.fam",
+    "align": false,
+    "scale": 0.9
+  },
+  "PLA Catalogue ZBD-251": {
+    "file": "m_zbd251_static.fam",
+    "battle": "m_zbd251_lo_static.fam",
+    "align": false,
+    "scale": 0.85
+  },
+  "PLA Catalogue Type 59D": {
+    "file": "m_ztz59a_static.fam",
+    "battle": "m_ztz59a_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTZ-59D1": {
+    "file": "m_ztz59a_static.fam",
+    "battle": "m_ztz59a_lo_static.fam",
+    "align": false
+  },
+  "PLA Lynx ATV": {
+    "file": "",
+    "battle": "",
+    "align": false,
+    "hide": "(?i)soldier|crew|driver|gunner|passenger|human|pilot|infantry|_char|airborne"
+  },
+  "PLA SR-5": {
+    "file": "",
+    "battle": "",
+    "align": false,
+    "hide": "(?i)soldier|crew|driver|gunner|passenger|human|pilot|infantry|_char|airborne"
+  },
+  "PLA Shaanxi HMV3": {
+    "file": "",
+    "battle": "",
+    "align": false,
+    "hide": "(?i)soldier|crew|driver|gunner|passenger|human|pilot|infantry|_char|airborne"
+  },
+  "PLA Shaanxi HMV3 Cargo": {
+    "file": "",
+    "battle": "",
+    "align": false,
+    "hide": "(?i)soldier|crew|driver|gunner|passenger|human|pilot|infantry|_char|airborne"
+  },
+  "PLA ZTL-191 Recon": {
+    "file": "m_ztl191_static.fam",
+    "battle": "m_ztl191_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue Type 89A PLAAF": {
+    "file": "m_zsd89ad_static.fam",
+    "battle": "m_zsd89ad_lo_static.fam",
+    "align": false,
+    "scale": 1.2
+  },
+  "PLA Catalogue Type 86 — original turret": {
+    "file": "m_zbd86_static.fam",
+    "battle": "m_zbd86_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBD-03 / ZLC-2000": {
+    "file": "m_zbd86_static.fam",
+    "battle": "m_zbd86_lo_static.fam",
+    "align": false
+  },
+  "PLA ZTZ-85-II": {
+    "file": "m_type85_static.fam",
+    "battle": "m_type85_lo_static.fam",
+    "align": false
+  },
+  "PLA ZBD-20 Recon": {
+    "file": "m_vn17db_static.fam",
+    "battle": "m_vn17db_lo_static.fam",
+    "align": false
+  },
+  "PLA ZBD-04A Recon": {
+    "file": "m_zbd04d_static.fam",
+    "battle": "m_zbd04d_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue ZBD-05": {
+    "file": "m_zbd86_static.fam",
+    "battle": "m_zbd86_lo_static.fam",
+    "align": false
+  },
+  "PLA Mengshi Recon": {
+    "file": "m_mengshird_static.fam",
+    "battle": "m_mengshird_lo_static.fam",
+    "align": false,
+    "scale": 0.75
+  },
+  "PLA Catalogue Type 59 — FlashPoint": {
+    "file": "m_ztz59a_static.fam",
+    "battle": "m_ztz59a_lo_static.fam",
+    "align": false
+  },
+  "PLA CSK-181 4x4": {
+    "file": "m_csk4b_static.fam",
+    "battle": "m_csk4b_lo_static.fam",
+    "align": false
+  },
+  "PLA Catalogue HQ-16": {
+    "file": "m_hq16_static.fam",
+    "battle": "m_hq16_lo_static.fam",
+    "align": false
+  },
+  "PLA PHL-191 Cruise": {
+    "file": "m_phl191cg_static.fam",
+    "battle": "m_phl191cg_lo_static.fam",
+    "align": false
+  }
+}
