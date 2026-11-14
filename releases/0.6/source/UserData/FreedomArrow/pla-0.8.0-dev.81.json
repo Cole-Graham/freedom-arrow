@@ -1,0 +1,13 @@
+{
+  "version": "0.8.0-dev.81",
+  "base": "0.8.0-dev.80",
+  "base_sha256": "4f83724b2c000697680ec14df2ca244f98f85bf0b891da6c98b7495cc046f993",
+  "request": "Osama 13 Nov 20:2x PST: dig in on the CSK-181 model; ZTZ-100 range change was not what he meant",
+  "ztz100_range": [
+    1000.0,
+    700.0
+  ],
+  "csk181_model": "tread lug groups recentred on tyres; windows clear glass (complete/assets files)",
+  "checks": 2,
+  "verified": "data only"
+}

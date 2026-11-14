@@ -1,0 +1,57 @@
+{
+  "version": "0.8.0-dev.81",
+  "build": 149,
+  "previous": "0.8.0-dev.80",
+  "assets_version": "0.2.8",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.8.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.8.bamod",
+    "sha256": "77cc55b42597a7cf7feb595124ebdd76161bc0b9336f8592bfd7ea995a3c5f0b",
+    "size": 6544834177,
+    "files": 9371,
+    "new_in_this_build": true
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.81-complete.bamod",
+    "sha256": "b4211666a88ace721fc61b23d3a1ea19098f9dd0440a14a21386f8b8b00e01fb",
+    "size": 6621659474,
+    "files": 9589
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.81.bamod",
+    "sha256": "aa2a3c0f79ca50a1d45bd641d62d326ca7a9f45775933755f5153d9bbf0503cd",
+    "size": 76825873,
+    "files": 220
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/m_csk181_lo_static.fam",
+    "UserData/FAModels/m_csk181_lo_static.mat.json",
+    "UserData/FAModels/m_csk181_lo_static_tex2.png",
+    "UserData/FAModels/m_csk181_lo_static_tex28.png",
+    "UserData/FAModels/m_csk181_lo_static_tex2_n.png",
+    "UserData/FAModels/m_csk181_lo_static_tex3.png",
+    "UserData/FAModels/m_csk181_static.fam",
+    "UserData/FAModels/m_csk181_static.mat.json",
+    "UserData/FAModels/m_csk181_static_tex2.png",
+    "UserData/FAModels/m_csk181_static_tex28.png",
+    "UserData/FAModels/m_csk181_static_tex2_n.png",
+    "UserData/FAModels/m_csk181_static_tex3.png",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.81.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase 0.1/[FA] [2v2] Chkalovsk Airbase 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death 0.1/[FA] [2v2] Highway of Death 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death Skirmish 0.1/[FA] [2v2] Highway of Death Skirmish 0.1.bascr",
+    "mod.json"
+  ],
+  "native_verified": false
+}

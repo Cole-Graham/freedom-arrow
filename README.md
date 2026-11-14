@@ -1,4 +1,10 @@
-# Freedom Arrow 0.8.0-dev.80
+# Freedom Arrow 0.8.0-dev.81
+
+- CSK-181: model fixed. The seller file's tread lugs (all six tyres and the spare) imported one wheel radius too high, so the tyres were smooth, the lugs floated over the fenders and the spare stuck up over the roof. Each lug ring now sits on its tyre. The side and rear windows are clear glass (were plain white-grey).
+- ZTZ-100: gun range back to 1400 m (dev.78 had 2000 m). The dev.78 penetration (APFSDS 550/525) stays.
+- Everything else as 0.8.0-dev.80.
+
+## Historical 0.8.0-dev.80
 
 - ZTL-11 and AFT-10: Lateralus's purchased models replace the stand-ins (seller woodland digital, static). The HJ-10 uses the new AFT-10 model.
 - ZSD-89A: the PLAAF card uses the seller's desert paint; the other three cards stay woodland.
