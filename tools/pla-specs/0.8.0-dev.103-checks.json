@@ -1,0 +1,242 @@
+{
+  "ztq15_light": {
+    "unit": 1268,
+    "spec": 17,
+    "cost": 150,
+    "cards": 6,
+    "armour_front": {
+      "KE": [
+        300,
+        100
+      ],
+      "HEAT": [
+        500,
+        300
+      ]
+    }
+  },
+  "ztz96b": {
+    "cost": [
+      125,
+      170
+    ],
+    "HEAT_front": [
+      750,
+      1000
+    ],
+    "HEAT_sides": [
+      200,
+      700
+    ]
+  },
+  "ztz99": {
+    "KE_front": [
+      750,
+      700
+    ]
+  },
+  "points": {
+    "PLAAF Recon 1149": [
+      65,
+      25
+    ],
+    "Recon Patrol 1201": [
+      60,
+      50
+    ]
+  },
+  "hj8_removed": {
+    "unit": 951,
+    "spec": 19
+  },
+  "drones": {
+    "AR-2000": {
+      "unit": 1084,
+      "spec": 20,
+      "cards": 2,
+      "cost": 65,
+      "weapons": "as catalogue (UAV guided missile x2)",
+      "model": "m_ar2000"
+    },
+    "Z-6B UAV": {
+      "unit": 1105,
+      "spec": 17,
+      "cards": 2,
+      "cost": 65,
+      "weapons": "as catalogue (UAV guided missile x2)",
+      "model": "m_z6b"
+    }
+  },
+  "models_json": {
+    "PLA ZTQ-15 Light": {
+      "before": null,
+      "after": {
+        "file": "m_ztq15_camo_static.fam",
+        "battle": "m_ztq15_camo_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue AR-2000": {
+      "before": null,
+      "after": {
+        "file": "m_ar2000_static.fam",
+        "battle": "m_ar2000_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue Z-6B UAV": {
+      "before": null,
+      "after": {
+        "file": "m_z6b_static.fam",
+        "battle": "m_z6b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZTL-191": {
+      "before": {
+        "file": "m_ztl191d_static.fam",
+        "battle": "m_ztl191d_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztl191_static.fam",
+        "battle": "m_ztl191_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "zbd20": {
+    "modification": 2019016,
+    "options": {
+      "No APS": [
+        31065,
+        0
+      ],
+      "Iron Fist APS": [
+        31066,
+        40
+      ]
+    },
+    "aps_ability": 82,
+    "side_armour": {
+      "KE": [
+        120,
+        150
+      ],
+      "HEAT": [
+        200,
+        700
+      ]
+    },
+    "ammo": {
+      "ZPT-99 30 mm (2009830)": [
+        50,
+        100
+      ],
+      "ZPT-99 30 mm (2009832)": [
+        117,
+        234
+      ],
+      "Type 86 7.62 mm (2009836)": [
+        400,
+        800
+      ],
+      "HJ-16 (2018443)": [
+        8,
+        16
+      ],
+      "HJ-16 IIR (2018879)": [
+        8,
+        16
+      ]
+    }
+  },
+  "abramsx": {
+    "approved": "Osama 10 Nov (Blender preview, \"looks great\"); work/abramsx-brighter-grey-20261110",
+    "files": {
+      "m_abramsx_cg_tex0.png": "d3e9c83da6655341e1570e3a64761fbf502a007a4b0ed8fcf3698761adf42dbd",
+      "m_abramsx_lo_tex0.png": "33f7ebcd5a577590cf707b8dad5b9f4aaa28ca9cb2a7d35ce340ebc172b49a93",
+      "m_abramsx_cg_tex0_mask.png": "c3d0499ba2dc91eed915babb4d30c56ef4224556c591a4a9b63d9cf106a9d00a",
+      "m_abramsx_lo_tex0_mask.png": "b18e7ca0075c5773a0fa9322fc5496cd15dc912c449166b12c25e66f9f61d926"
+    }
+  },
+  "infantry_plates": {
+    "changed": [
+      "pla2_sf_assault_desert_0.fas",
+      "pla2_sf_assault_desert_1.fas",
+      "pla2_sf_assault_desert_2.fas",
+      "pla2_sf_assault_woodland_0.fas",
+      "pla2_sf_assault_woodland_1.fas",
+      "pla2_sf_assault_woodland_2.fas",
+      "pla2_sf_carrier_desert_0.fas",
+      "pla2_sf_carrier_desert_1.fas",
+      "pla2_sf_carrier_desert_2.fas",
+      "pla2_sf_carrier_woodland_0.fas",
+      "pla2_sf_carrier_woodland_1.fas",
+      "pla2_sf_carrier_woodland_2.fas",
+      "pla2_sf_goggles_down_desert_0.fas",
+      "pla2_sf_goggles_down_desert_1.fas",
+      "pla2_sf_goggles_down_desert_2.fas",
+      "pla2_sf_goggles_down_woodland_0.fas",
+      "pla2_sf_goggles_down_woodland_1.fas",
+      "pla2_sf_goggles_down_woodland_2.fas",
+      "pla2_sf_goggles_up_desert_0.fas",
+      "pla2_sf_goggles_up_desert_1.fas",
+      "pla2_sf_goggles_up_desert_2.fas",
+      "pla2_sf_goggles_up_woodland_0.fas",
+      "pla2_sf_goggles_up_woodland_1.fas",
+      "pla2_sf_goggles_up_woodland_2.fas",
+      "pla2_sf_grenadier_desert_0.fas",
+      "pla2_sf_grenadier_desert_1.fas",
+      "pla2_sf_grenadier_desert_2.fas",
+      "pla2_sf_grenadier_woodland_0.fas",
+      "pla2_sf_grenadier_woodland_1.fas",
+      "pla2_sf_grenadier_woodland_2.fas",
+      "pla2_sf_light_desert_0.fas",
+      "pla2_sf_light_desert_1.fas",
+      "pla2_sf_light_desert_2.fas",
+      "pla2_sf_light_woodland_0.fas",
+      "pla2_sf_light_woodland_1.fas",
+      "pla2_sf_light_woodland_2.fas",
+      "pla2_sf_night_down_desert_0.fas",
+      "pla2_sf_night_down_desert_1.fas",
+      "pla2_sf_night_down_desert_2.fas",
+      "pla2_sf_night_down_woodland_0.fas",
+      "pla2_sf_night_down_woodland_1.fas",
+      "pla2_sf_night_down_woodland_2.fas",
+      "pla2_sf_night_up_desert_0.fas",
+      "pla2_sf_night_up_desert_1.fas",
+      "pla2_sf_night_up_desert_2.fas",
+      "pla2_sf_night_up_woodland_0.fas",
+      "pla2_sf_night_up_woodland_1.fas",
+      "pla2_sf_night_up_woodland_2.fas"
+    ],
+    "new": [
+      "pla2_gear_plates_desert_0.png",
+      "pla2_gear_plates_desert_0_n.png",
+      "pla2_gear_plates_desert_1.png",
+      "pla2_gear_plates_desert_1_n.png",
+      "pla2_gear_plates_desert_2.png",
+      "pla2_gear_plates_desert_2_n.png",
+      "pla2_gear_plates_woodland_0.png",
+      "pla2_gear_plates_woodland_0_n.png",
+      "pla2_gear_plates_woodland_1.png",
+      "pla2_gear_plates_woodland_1_n.png",
+      "pla2_gear_plates_woodland_2.png",
+      "pla2_gear_plates_woodland_2_n.png"
+    ]
+  },
+  "version": "0.8.0-dev.103",
+  "base": "0.8.0-dev.102",
+  "base_sha256": "c1295c33658751bb0b3c85e684654701528b0419802dd16407b2a9a397463435",
+  "request": "Osama 14 Nov 03:2x-04:0x PST",
+  "checks": 68,
+  "verified": "data and file checks; models rendered offline",
+  "assumptions": {
+    "ZTQ-15 Light": "price 150 and 6 cards copied from ZTQ-15",
+    "AR-2000/Z-6B": "2 cards (Termit), catalogue stats and price kept"
+  },
+  "not_done": {
+    "WZ-550 textures": "the zip on Osama PC is byte-identical to the one used before (sha256 d7ebc71f...)"
+  }
+}

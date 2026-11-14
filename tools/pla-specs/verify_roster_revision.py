@@ -72,7 +72,10 @@ with zipfile.ZipFile(a.package) as z:
   for uid in [909]+([1230] if build<167 else [])+([1058] if build<41 else []):ok(any(r['UnitId']==uid and r['SpecializationId']==19 for r in t['SpecializationAvailabilitiesJson'].values()),('Rocket move',uid))
   if build>=167:ok(any(r['UnitId']==1230 and t['SpecializationAvailabilitiesJson'].get(r['SpecializationAvailabilityId'],{}).get('SpecializationId')==19 for r in t['TransportAvailabilitiesJson'].values()),('Rocket transport',1230))
  if build>=36:
-  for uid in [1084,1085,1086,1105]:ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
+  # Build171 (0.8.0-dev.103, Osama 14 Nov): AR-2000 (PLAN SOF) and Z-6B UAV (PLAAF) back with their seller models.
+  for uid in [1085,1086]+([1084,1105] if build<171 else []):ok(not t['Units'][uid]['DisplayInArmory'] and not any(r['UnitId']==uid for r in t['SpecializationAvailabilitiesJson'].values()),('drone removed',uid))
+  if build>=171:
+   for uid,spec in ((1084,20),(1105,17)):ok(t['Units'][uid]['DisplayInArmory'] and [r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==uid]==[spec],('drone card',uid))
   n=t['AmmunitionsJson'][2010399];k=t['AmmunitionsJson'][340]
   # Osama 13 Nov 14:47-14:52 PST (0.8.0-dev.50, build 118): DF-31A blast 500 m as shown in game (250 data), stress/overpressure scaled x250/350.
   blast=['HealthAOERadius','OverpressureRadius','StressAOERadius'] if build<118 else []

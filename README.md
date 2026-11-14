@@ -1,4 +1,16 @@
-# Freedom Arrow 0.8.0-dev.102
+# Freedom Arrow 0.8.0-dev.103
+
+- ZTQ-15 Light: new PLAAF airborne card (front armour 100 KE / 300 HEAT). The PLAGF Armored card stays ZTQ-15.
+- ZTZ-96B: 170 pts, HEAT front 1000, HEAT sides 700. ZTZ-99: KE front 700.
+- PLAAF Recon 25 pts. Motorized Recon Patrol 50 pts. HJ-8 vehicle removed from PLARF.
+- AR-2000 (PLAN SOF) and Z-6B UAV (PLAAF): new cards with their own models.
+- ZTL-191: green woodland model again; ZTL-191 Recon stays desert.
+- Abrams X: the approved silver finish is now part of the package.
+- Infantry: SF soldiers who had only the 901 chest rig (and the SF light body) now wear a plate carrier under it. Regulars already had plates.
+- ZBD-20: APS is an armory option (Iron Fist, +40; 175 without). Side armour 150 KE / 700 HEAT. Double ammunition.
+- Everything else as 0.8.0-dev.102.
+
+## Historical 0.8.0-dev.102
 
 - J-36: two more CAP loadouts next to Heavy CAP. Long-range CAP: 8x PL-17 and 4x PL-21. Mixed CAP: 8x PL-17 and 6x PL-16. Both 255, the Heavy CAP price.
 - ZTQ-15 and ZTQ-15 Recon: the roof QJC-88 12.7 mm is replaced by an LG3 40 mm automatic grenade launcher (320 rounds). VT-5 keeps its QJC-88.
