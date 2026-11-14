@@ -282,6 +282,340 @@
       ]
     }
   ],
-  "checks": 71,
+  "pf97_ammo": [
+    {
+      "ammo": 2004884,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2012516,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2017426,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2017427,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    }
+  ],
+  "dzt98": [
+    {
+      "ammo": 2011921,
+      "Damage": [
+        5.0,
+        4.5
+      ],
+      "IgnoreCover": [
+        1.0,
+        0.75
+      ]
+    },
+    {
+      "ammo": 2016058,
+      "Damage": [
+        5.0,
+        4.5
+      ],
+      "IgnoreCover": [
+        1.0,
+        0.75
+      ]
+    }
+  ],
+  "thunder_gods": {
+    "member": 2014923,
+    "FHJ-02 launchers": [
+      2,
+      1
+    ]
+  },
+  "combat_engineers": {
+    "PF-97 carriers": 5,
+    "rounds_per_launcher": 1,
+    "DZJ-08": [
+      2,
+      0
+    ],
+    "ammo": 2017426
+  },
+  "checks": 89,
   "base": "0.8.0-dev.101"
 }

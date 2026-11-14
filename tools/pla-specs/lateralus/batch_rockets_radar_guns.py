@@ -64,6 +64,43 @@ for r in [r for r in WA.values() if r['WeaponId'] in PF97]:
     ok(r['Quantity']==4,(r['Id'],r['Quantity']));g.put('WeaponAmmunitionsJson',r['Id'],{'Quantity':1});ok(WA[r['Id']]['Quantity']==1,r['Id'])
     rec['pf97'].append({'unit':U[r['UnitId']]['HUDName'],'unit_id':r['UnitId'],'stock_row':r['Id'],'rounds_per_launcher':[4,1]})
 ok(len(rec['pf97'])>=4,rec['pf97'])
+# Lateralus 14 Nov 2026: the PF-97 rounds were the MRO-Z napalm (10 s burn, M202 effect). Make them a thermobaric round
+# like the RPO-M (also 93 mm): every combat field of RPO-M ammo 396, with damage 5 and Ignore Cover 75%.
+SM=t['SquadMembersJson'];SW=t['SquadWeaponsJson']
+RPOM=A[396];ok(RPOM['HUDName']=='Thermobaric rocket' and RPOM['DamageOverTimeDuration']==0,'RPO-M ammo')
+COPY=('AudioPreset','FXPreset','StressDamage','DamageOverTimeDuration','TargetType','PenetrationAtMinRange','PenetrationAtGroundRange',
+      'NoDamageFalloff','TopArmorAttack','IsTopArmorArmorAttack','HealthAOERadius','StressAOERadius','CriticMultiplier','LowAltRange','HighAltRange')
+pf_ammo=sorted({r['AmmunitionId'] for r in WA.values() if r['WeaponId'] in PF97});rec['pf97_ammo']=[]
+for aid in pf_ammo:
+    x=A[aid];ok(x['Damage']==10.0 and x['DamageOverTimeDuration']==10.0 and x['FXPreset']=='AMMUNITION_VFX_PRESET_ROCKET_M202_Flash',(aid,x['Damage']))
+    new={k:RPOM[k] for k in COPY};new.update(Damage=5.0,IgnoreCover=0.75);before={k:x[k] for k in new}
+    g.put('AmmunitionsJson',aid,new);ok(all(A[aid][k]==v for k,v in new.items()),aid)
+    rec['pf97_ammo'].append({'ammo':aid,'changes':{k:[before[k],v] for k,v in new.items() if before[k]!=v}})
+ok(len(pf_ammo)>=2,pf_ammo)
+# DZT-98 (PF-98A thermobaric): damage 5 -> 4.5, Ignore Cover 100% -> 75%.
+DZT=sorted(i for i,x in A.items() if x.get('HUDName')=='DZT-98 thermobaric (analog)');ok(len(DZT)>=1,DZT);rec['dzt98']=[]
+for aid in DZT:
+    ok(A[aid]['Damage']==5.0 and A[aid]['IgnoreCover']==1.0 and A[aid]['DamageOverTimeDuration']==0,(aid,A[aid]['Damage']))
+    g.put('AmmunitionsJson',aid,{'Damage':4.5,'IgnoreCover':0.75});rec['dzt98'].append({'ammo':aid,'Damage':[5.0,4.5],'IgnoreCover':[1.0,0.75]})
+# Thunder Gods (1143): one FHJ-02 carrier becomes a plain QBZ-191 rifleman.
+TG=1143;FHJ=2013057;QBZ191=2003998
+car=sorted(m['Id'] for m in SM.values() if m['UnitId']==TG and m['SpecialWeaponId']==FHJ);ok(len(car)==2 and all(SM[i]['PrimaryWeaponId']==QBZ191 for i in car),car)
+g.put('SquadMembersJson',car[-1],{'SpecialWeaponId':0});rec['thunder_gods']={'member':car[-1],'FHJ-02 launchers':[2,1]}
+# Combat Engineers (1156): five PF-97 with 1 round each, like the US Combat Engineers' five SMAW-D HIT (2 shotgunners, 3 riflemen).
+CE=1156;DZJ=2012024;QBS09=2012131;PFW=2012515
+mem={m['Id']:m for m in SM.values() if m['UnitId']==CE};ok(U[CE]['HUDName'].startswith('Combat Engineers') and len(mem)==7,len(mem))
+dzj=sorted(i for i,m in mem.items() if m['SpecialWeaponId']==DZJ);shot=sorted(i for i,m in mem.items() if m['PrimaryWeaponId']==QBS09 and not m['SpecialWeaponId'])
+rifle=sorted(i for i,m in mem.items() if m['PrimaryWeaponId']==QBZ191 and not m['SpecialWeaponId'])
+ok(len(dzj)==2 and len(shot)==2 and len(rifle)==2,(dzj,shot,rifle))
+for i in dzj+shot+rifle[:1]:g.put('SquadMembersJson',i,{'SpecialWeaponId':PFW})
+for r in [r for r in SW.values() if r['UnitId']==CE and r['WeaponId']==DZJ]:g.remove('SquadWeaponsJson',r['Id'])
+for r in [r for r in WA.values() if r['UnitId']==CE and r['WeaponId']==DZJ]:g.remove('WeaponAmmunitionsJson',r['Id'])
+sw_tpl=next(r for r in SW.values() if r['WeaponId']==PFW);wa_tpl=next(r for r in WA.values() if r['WeaponId']==PFW)
+g.add('SquadWeaponsJson',sw_tpl,{'UnitId':CE,'WeaponId':PFW,'Order':1})
+g.add('WeaponAmmunitionsJson',wa_tpl,{'UnitId':CE,'WeaponId':PFW,'AmmunitionId':wa_tpl['AmmunitionId'],'Order':0,'Quantity':1})
+ok(sum(1 for m in SM.values() if m['UnitId']==CE and m['SpecialWeaponId']==PFW)==5 and not any(m['SpecialWeaponId']==DZJ for m in SM.values() if m['UnitId']==CE),'CE carriers')
+ok([r['Quantity'] for r in WA.values() if r['UnitId']==CE and r['WeaponId']==PFW]==[1] and not [r for r in WA.values() if r['UnitId']==CE and r['WeaponId']==DZJ],'CE ammo')
+rec['combat_engineers']={'PF-97 carriers':5,'rounds_per_launcher':1,'DZJ-08':[2,0],'ammo':wa_tpl['AmmunitionId']}
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():
