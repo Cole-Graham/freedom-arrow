@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.104
+# Freedom Arrow 0.8.0-dev.105
+
+Lateralus's 0.8 batch (codex/batch/lateralus/0.8-rockets-radar-guns) on top of 0.8.0-dev.104:
+- Rocket launchers: M72A10, M72A7 (66mm HEDP), RMG, RPG-7V/V2, RPO-M, RShG-1/2, SMAW, SMAW-D, SPG-9M, SRAW MPV Ignore Cover and damage changes.
+- Interceptor (projectile-defence) gun rounds: muzzle velocity 1000 (Lateralus's choice after the 800/1000/1200 tests).
+- PF-97 one tube per soldier, damage 5; DZT-98 4.5; Combat Engineers thermobaric loadout 5 PF-97; Thunder Gods 1 FHJ-02 + QBZ-191, 80 pts.
+- Recon infantry Very Good optics; Scouts, Razvedka and QTS Recon Cell 35 pts; QTS Recon Cell in all five PLA decks with transports.
+- FK-2000: its 30 mm gun listed once on the mount (freeze fix candidate).
+- Maps: 5v5 Oil Rush, Airport and Cold Harbor 0.2.
+- Everything else as 0.8.0-dev.104.
+
+## Historical 0.8.0-dev.104
 
 - Z-20 family: real canopy glass (AH-1Z glass; the UH-60M donor was a body material).
 - PCL-181: clear windows and darker paint.

@@ -1,0 +1,981 @@
+{
+  "rockets": [
+    {
+      "launcher": "M72A10",
+      "ammo": 130,
+      "hud": "66mm HE",
+      "changes": {
+        "Damage": [
+          6.5,
+          6.0
+        ],
+        "IgnoreCover": [
+          0.5,
+          0.25
+        ]
+      },
+      "units": [
+        "Force Recon CQC",
+        "Marine Raiders",
+        "Mech. Engineers CQC",
+        "Rangers CQC",
+        "Zaliukai"
+      ]
+    },
+    {
+      "launcher": "M72A7",
+      "ammo": 2001500,
+      "hud": "66mm HEAT",
+      "changes": {
+        "IgnoreCover": [
+          0.35,
+          0.0
+        ],
+        "HUDName": [
+          "66mm HEAT",
+          "66mm HEDP"
+        ]
+      },
+      "units": [
+        "Reserve Marines",
+        "Scouts"
+      ]
+    },
+    {
+      "launcher": "RMG",
+      "ammo": 121,
+      "hud": "105mm HEAT Thermobaric",
+      "changes": {
+        "Damage": [
+          4.0,
+          4.5
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Spetsnaz Vympel RMG"
+      ]
+    },
+    {
+      "launcher": "RPG-7V",
+      "ammo": 476,
+      "hud": "OG-7V 40mm HE",
+      "changes": {
+        "IgnoreCover": [
+          0.2,
+          0.25
+        ]
+      },
+      "units": [
+        "Shturmoviki"
+      ]
+    },
+    {
+      "launcher": "RPG-7V",
+      "ammo": 906,
+      "hud": "TBG-7L Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "VDV Shturm"
+      ]
+    },
+    {
+      "launcher": "RPG-7V2",
+      "ammo": 107,
+      "hud": "TBG-7V Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Ingenery-Shturmoviki"
+      ]
+    },
+    {
+      "launcher": "RPO-M",
+      "ammo": 396,
+      "hud": "Thermobaric rocket",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Ognemetchiki ",
+        "SSO"
+      ]
+    },
+    {
+      "launcher": "RShG-1",
+      "ammo": 524,
+      "hud": "RShG-1 Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Chernye Berety RShG",
+        "SSO"
+      ]
+    },
+    {
+      "launcher": "RShG-2",
+      "ammo": 377,
+      "hud": "73mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Razvedka Mech",
+        "Rosgvardia",
+        "Spetsnaz Alpha "
+      ]
+    },
+    {
+      "launcher": "SMAW",
+      "ammo": 41,
+      "hud": "84mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Assaultmen SMAW"
+      ]
+    },
+    {
+      "launcher": "SMAW-D HIT",
+      "ammo": 937,
+      "hud": "84mm Thermobaric",
+      "changes": {
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      },
+      "units": [
+        "Combat Engineers"
+      ]
+    },
+    {
+      "launcher": "SPG-9M",
+      "ammo": 525,
+      "hud": "OG-9V",
+      "changes": {
+        "IgnoreCover": [
+          0.2,
+          0.25
+        ]
+      },
+      "units": [
+        "BARS FS",
+        "SPG-9 Sapog",
+        "UAZ Kozlik"
+      ]
+    },
+    {
+      "launcher": "SRAW MPV",
+      "ammo": 392,
+      "hud": "140mm blast-frag",
+      "changes": {
+        "IgnoreCover": [
+          0.5,
+          0.25
+        ]
+      },
+      "units": [
+        "Assaultmen SRAW"
+      ]
+    }
+  ],
+  "radar_guns": [
+    {
+      "unit": "PGZ-04A",
+      "unit_id": 932,
+      "ammo": 2009559,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-04",
+      "unit_id": 1050,
+      "ammo": 2010643,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-88",
+      "unit_id": 1051,
+      "ammo": 2010663,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    },
+    {
+      "unit": "PGZ-95",
+      "unit_id": 1052,
+      "ammo": 2010677,
+      "MuzzleVelocity": [
+        805.0,
+        1610.0
+      ]
+    }
+  ],
+  "pf97": [
+    {
+      "unit": "Assault Engineers",
+      "unit_id": 1018,
+      "stock_row": 2004885,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Marine Thermobaric Engineers",
+      "unit_id": 1195,
+      "stock_row": 2013545,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Thermobaric Breachers 温压工兵",
+      "unit_id": 1162,
+      "stock_row": 2015099,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    },
+    {
+      "unit": "Thermobaric Assault 温压突击",
+      "unit_id": 1209,
+      "stock_row": 2015630,
+      "rounds_per_launcher": [
+        4,
+        1
+      ]
+    }
+  ],
+  "pf97_ammo": [
+    {
+      "ammo": 2004884,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2012516,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2017426,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    {
+      "ammo": 2017427,
+      "changes": {
+        "AudioPreset": [
+          "AmmunitionSoundsPreset_SFX_Explosion_122mm_Incendiary",
+          "AmmunitionSoundsPreset_SFX_MISSILE-AT_ROCKET_Small"
+        ],
+        "FXPreset": [
+          "AMMUNITION_VFX_PRESET_ROCKET_M202_Flash",
+          "AMMUNITION_VFX_PRESET_ROCKET_RPG_93-105mm_THERMOBARIC"
+        ],
+        "StressDamage": [
+          244.0,
+          46.0
+        ],
+        "DamageOverTimeDuration": [
+          10.0,
+          0.0
+        ],
+        "TargetType": [
+          3,
+          47
+        ],
+        "PenetrationAtMinRange": [
+          15.0,
+          50.0
+        ],
+        "PenetrationAtGroundRange": [
+          15.0,
+          50.0
+        ],
+        "NoDamageFalloff": [
+          true,
+          false
+        ],
+        "TopArmorAttack": [
+          true,
+          false
+        ],
+        "IsTopArmorArmorAttack": [
+          true,
+          false
+        ],
+        "HealthAOERadius": [
+          25.0,
+          22.0
+        ],
+        "StressAOERadius": [
+          25.0,
+          22.0
+        ],
+        "CriticMultiplier": [
+          0.0,
+          2.0
+        ],
+        "LowAltRange": [
+          0.0,
+          75.0
+        ],
+        "HighAltRange": [
+          0.0,
+          -1.0
+        ],
+        "Damage": [
+          10.0,
+          5.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    }
+  ],
+  "dzt98": [
+    {
+      "ammo": 2011921,
+      "Damage": [
+        5.0,
+        4.5
+      ],
+      "IgnoreCover": [
+        1.0,
+        0.75
+      ]
+    },
+    {
+      "ammo": 2016058,
+      "Damage": [
+        5.0,
+        4.5
+      ],
+      "IgnoreCover": [
+        1.0,
+        0.75
+      ]
+    }
+  ],
+  "thunder_gods": {
+    "member": 2014923,
+    "FHJ-02 launchers": [
+      2,
+      1
+    ],
+    "cost": [
+      60,
+      80
+    ]
+  },
+  "combat_engineers_thermobaric": {
+    "option": 24354,
+    "unit": 1162,
+    "PF-97 launchers": [
+      2,
+      5
+    ],
+    "rounds_per_launcher": 1
+  },
+  "recon_optics": [
+    {
+      "unit": "Cavalry Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Scouts Stryker",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Force Recon CQC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pogranichniki",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Razvedka Mech",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Airborne Recce",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Morskaya razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Diversanty RPG",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Eesti Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Green Berets",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz VMF",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz VMF",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz GRU AT",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Spetsnaz",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Spetsnaz",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Force Recon",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Green Berets",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pararescue",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Rangers RRC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Rangers RRC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Eesti Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "SUV",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Jegeris",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "PDSS",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "AB Recce NGSW",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz GRU AA",
+      "country": "Russia",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "Spetsnaz GRU Mix",
+      "country": "Russia",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "STT",
+      "country": "USA",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "Pogranichniki",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel RMG",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel AT",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "SF Recon",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "QTS-11 Digital Scouts",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Forward Observers",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pathfinders 先遣队",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Snipers 狙击组",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Recon 侦察组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Armored Scouts 装甲侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Armored Sniper Pair 狙击组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Forward Observers 前观组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Recon HJ-8E Ambush Team",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Ambush Team 伏击组",
+      "country": "China",
+      "from": "Bad Optics"
+    },
+    {
+      "unit": "Sharp Swords 利剑",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Whistling Arrows 响箭",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Mountain Leopards 高原雪豹",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Beijing Swords 蓝剑",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Recon Patrol 侦察班",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Snipers 狙击组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Taishan Eagles 泰山雄鹰",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Air Defense Scouts 防空侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Test Suppressed Scouts 消声侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Test QTS Recon Cell 数字侦察",
+      "country": "China",
+      "from": "Good Optics"
+    }
+  ],
+  "prices": {
+    "Scouts": [
+      30,
+      35
+    ],
+    "Razvedka": [
+      30,
+      35
+    ],
+    "QTS Recon Cell": [
+      30,
+      35
+    ]
+  },
+  "qts_recon_cell": {
+    "PLAAF Air Force": {
+      "cards": 8,
+      "transports": [
+        "CSK-181",
+        "Lynx ATV",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251",
+        "ZSD-89A"
+      ]
+    },
+    "PLAGF Ground Force/Armored": {
+      "cards": 8,
+      "transports": [
+        "Z-20",
+        "ZBD-04A",
+        "ZBD-20",
+        "ZSD-89A"
+      ]
+    },
+    "PLARF Rocket Force/Reservist": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "CSK-181",
+        "ZSD-89",
+        "ZSD-89A"
+      ]
+    },
+    "PLAN Navy/SOF": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "Z-20J",
+        "ZBD-05",
+        "ZSD-89A"
+      ]
+    },
+    "PLAGF Motorized": {
+      "cards": 8,
+      "transports": [
+        "CSK-131",
+        "CSK-181",
+        "ZBL-08",
+        "ZBL-191",
+        "ZFB-05",
+        "ZSL-92"
+      ]
+    }
+  },
+  "fk2000": {
+    "gun rows on mount": [
+      2,
+      1
+    ],
+    "removed_row": 2018729,
+    "name": "2x 30 mm AA gun",
+    "note": "freeze A/B test"
+  },
+  "checks": 107,
+  "base": "0.8.0-dev.101"
+}

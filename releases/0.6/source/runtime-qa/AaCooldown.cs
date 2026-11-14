@@ -35,6 +35,9 @@ static class AaCooldown
     static int cursor, reported, invocations, corrections, wouldCorrect;
     static float next, nextMetrics, nextSampleLog;
     static readonly ConcurrentQueue<(ulong Target, ulong Caller)> Corrected = new();
+    // Weapon entity -> interceptor role and when it was checked. Main thread only (LateUpdate).
+    static readonly Dictionary<ulong,(bool Defender,float At)> roles = new();
+    const int MaxWeapons=8192;
     static ulong Key(Entity e) => Unsafe.As<Entity,ulong>(ref e);
 
     public static void Install(HarmonyLib.Harmony harmony, string root)
@@ -54,7 +57,7 @@ static class AaCooldown
         if(Unsafe.SizeOf<Entity>()!=8)throw new InvalidOperationException("Entity layout changed");
         harmony.Patch(method,postfix:new HarmonyMethod(typeof(AaCooldown),nameof(After)));
         DiagnosticLog.Write("aa_cooldown_installed",new{shadow,nativeBehaviorHooks=1,
-            scope="Land/naval-AA caller, native projectile target, all other future reservations clearly late, no airborne protection. Native priority retained.",
+            scope="Land/naval interceptor caller (current round has a projectile TargetType bit), native projectile target, all other future reservations clearly late, no airborne protection. Native priority retained.",
             caveat="Native invocation and safety unproven until this build is exercised. Mixed/unknown/stale cases retain native behavior."});
         MelonLogger.Msg("FREEDOM_ARROW_AA_COOLDOWN installed: one bool hook; managed cache only; shadow="+shadow);
     }
@@ -78,7 +81,7 @@ static class AaCooldown
         Volatile.Write(ref frame,Empty);
         try{if(world!=null&&!world._isDisposed){units?.Dispose();weapons?.Dispose();}}
         catch(Exception e){Fail(e);}
-        finally{world=null;units=weapons=null;cursor=0;next=0;}
+        finally{world=null;units=weapons=null;cursor=0;next=0;roles.Clear();}
     }
     static bool Defender(Entity e)
     {
@@ -88,7 +91,8 @@ static class AaCooldown
         bool gun=info!=null&&ammo!=null&&CramPredictionPolicy.Gun((int)info.Type,info.IsRadarDependent,
             (int)ammo.TrajectoryType,(int)ammo.Seeker,(long)ammo.TargetType);
         var u=w.GetUnitEntity();
-        return u.IsAlive&&u.Has<UnitComponent>()&&AaCooldownPolicy.Defender((int)NativeEcs.Read<UnitComponent>(u).UnitData.Type,w.IsAntiAir,gun);
+        return ammo!=null&&u.IsAlive&&u.Has<UnitComponent>()
+            &&AaCooldownPolicy.Defender((int)NativeEcs.Read<UnitComponent>(u).UnitData.Type,w.IsAntiAir,gun,(long)ammo.TargetType);
     }
     static float Timer<T>(Entity e,string field)=>e.Has<T>()?NativeEcs.EncodedField<T>(e,field):0;
     static AaCooldownPolicy.Contributor Contributor(Entity e, bool launched)
@@ -117,9 +121,22 @@ static class AaCooldown
             }
             var ground=new HashSet<ulong>();var wa=weapons._entities;
             int wc=Math.Min(weapons.Count,wa?.Length??0);
-            // Large scenes fall back to native instead of scanning unbounded collections.
-            if(wc>128){Volatile.Write(ref frame,Empty);return;}
-            for(int i=0;i<wc;i++)if(Defender(wa[i]))ground.Add(Key(wa[i]));
+            // Only interceptors count toward the limit (was: every weapon, which turned this off in large battles).
+            // Each weapon's role is cached and rechecked every 2 s (its selected round can change). A scan that runs out
+            // of time keeps native behavior this update and continues from the cache on the next one.
+            if(wc>MaxWeapons){Volatile.Write(ref frame,Empty);return;}
+            if(roles.Count>wc*4+1024)roles.Clear();
+            for(int i=0;i<wc;i++)
+            {
+                ulong k=Key(wa[i]);
+                if(!roles.TryGetValue(k,out var r)||now-r.At>2f)
+                {
+                    if(clock.Elapsed.TotalMilliseconds>2){Volatile.Write(ref frame,Empty);return;}
+                    r=(Defender(wa[i]),now);roles[k]=r;
+                }
+                if(r.Defender)ground.Add(k);
+            }
+            if(ground.Count>AaCooldownPolicy.MaxDefenders){Volatile.Write(ref frame,Empty);return;}
             var targets=new Dictionary<ulong,Target>();var ua=units._entities;
             int count=Math.Min(units.Count,ua?.Length??0),visited=0,observed=0,unknownDeadlines=0;
             while(visited<Math.Min(count,64)&&observed<8&&clock.Elapsed.TotalMilliseconds<3)
@@ -160,7 +177,7 @@ static class AaCooldown
             if(now>=nextMetrics)
             {
                 nextMetrics=now+5;
-                DiagnosticLog.Write("aa_cooldown_metrics",new{t=now,shadow,targets=targets.Count,observedProjectiles=observed,unknownDeadlines,groundWeapons=ground.Count,
+                DiagnosticLog.Write("aa_cooldown_metrics",new{t=now,shadow,targets=targets.Count,observedProjectiles=observed,unknownDeadlines,weapons=wc,groundWeapons=ground.Count,
                     invocations=Volatile.Read(ref invocations),wouldCorrect=Volatile.Read(ref wouldCorrect),corrections=Volatile.Read(ref corrections),
                     workMs=clock.Elapsed.TotalMilliseconds,scope="Conservative all-late rule; mixed reservations and unknown estimates retain native behavior"});
             }
