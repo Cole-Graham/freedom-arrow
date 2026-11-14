@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.78
+# Freedom Arrow 0.8.0-dev.79
+
+- J-36: 100 points cheaper (unit cost 315 -> 215; loadout prices unchanged, so Heavy CAP is 470 in total).
+- Everything else as 0.8.0-dev.78.
+
+## Historical 0.8.0-dev.78
 
 - ZTL-191, VT-5, ZTQ-15 (and Recon cards): 105 mm APFSDS penetration 525 close, 475 at range (was 550/500).
 - ZTZ-100: 125 mm APFSDS penetration 550 close, 525 at range (was 525/500); gun range 2000 m (was 1400 m) for APFSDS, HE and HEAT. The GP125 missile stays 1800 m.

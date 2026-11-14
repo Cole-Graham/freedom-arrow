@@ -1,0 +1,12 @@
+{
+  "version": "0.8.0-dev.79",
+  "base": "0.8.0-dev.78",
+  "base_sha256": "a51eaaaca9d2db1b869656ad4f4d1157d5a48d1e76b44df3a9ddd7042bddda22",
+  "request": "Osama 13 Nov 20:19 PST: J-36 should be 100 pts less",
+  "j36_cost": [
+    315,
+    215
+  ],
+  "checks": 1,
+  "verified": "data only"
+}
