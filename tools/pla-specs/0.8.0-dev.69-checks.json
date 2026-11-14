@@ -1,0 +1,52 @@
+{
+  "version": "0.8.0-dev.69",
+  "base": "0.8.0-dev.68",
+  "base_sha256": "53cd2b3646b4f3b1ec20ec41ff10f31c58396f8b1318b56be3e7dcfd22672602",
+  "request": "Osama 13 Nov 18:4x PST: PLZ-05 should be a Koalitsiya copy and the options also copied; weapon names Chinese names found online",
+  "before": {
+    "cost": 200,
+    "mobility": {
+      "MaxSpeedRoad": 55.0,
+      "MaxCrossCountrySpeed": 45.0,
+      "MaxSpeedReverse": 20.0
+    }
+  },
+  "after": {
+    "cost": 260,
+    "mobility": {
+      "MaxSpeedRoad": 70.0,
+      "MaxCrossCountrySpeed": 55.0,
+      "MaxSpeedReverse": 20.0
+    }
+  },
+  "rows": {
+    "turrets": [
+      2018755,
+      2018756,
+      2018757,
+      2018758
+    ],
+    "weapons": [
+      2018748,
+      2018749,
+      2018753
+    ],
+    "ammo": {
+      "ERFB-BB": 2018750,
+      "ERFB-BB-RA": 2018751,
+      "GP155": 2018752,
+      "12.7": 2018754
+    },
+    "options": [
+      31045,
+      31046
+    ],
+    "modification": 2018771
+  },
+  "names_source": [
+    "https://en.wikipedia.org/wiki/PLZ-05",
+    "https://www.janes.com/defence-intelligence-insights/defence-news/norinco-marketing-sh-15-155-mm-artillery-system-for-export"
+  ],
+  "checks": 15,
+  "verified": "data only"
+}

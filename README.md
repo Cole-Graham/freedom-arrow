@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.68
+# Freedom Arrow 0.8.0-dev.69
+
+- PLZ-05: a 2S35 Koalitsiya-SV stat copy (armour, speed, optics, smoke, 260 points; was 200) with the Koalitsiya menu:
+  - HE rounds (default): 155 mm L/54 howitzer, 70x 155 mm ERFB-BB.
+  - Extended range (+70): 50x 155 mm ERFB-BB-RA and 20x GP155 laser-guided.
+  - A QJC-88 12.7 mm roof gun in both.
+- Everything else as 0.8.0-dev.68.
+
+## Historical 0.8.0-dev.68
 
 - PLARF Infantry 步兵: no HJ-73D (the soldier who carried it keeps his QBZ-95). Still 7 men, 50 points.
 - Everything else as 0.8.0-dev.67.
