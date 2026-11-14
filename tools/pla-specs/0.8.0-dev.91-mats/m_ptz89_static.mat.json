@@ -1,0 +1,50 @@
+{
+ "m_ptz89_tex3.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.6,
+  "smoothness": 0.4,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_ptz89_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.6,
+  "smoothness": 0.4,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_ptz89_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.6,
+  "smoothness": 0.4,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_ptz89_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.6,
+  "smoothness": 0.4,
+  "alpha": "MASK",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

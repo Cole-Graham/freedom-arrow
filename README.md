@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.90
+# Freedom Arrow 0.8.0-dev.91
+
+- ZTZ-59, ZTZ-59D, ZTZ-59D1: stand-in turret models as the vanilla T-62M (the gun mount had the Toros Rapira turret model), so the model can show.
+- ZBD-04 (non-A) removed.
+- PTZ-89: painted-metal material and model 90%.
+- J-7 and J-8D: no afterburner (J-5 and J-6W had none).
+- Everything else as 0.8.0-dev.90.
+
+## Historical 0.8.0-dev.90
 
 - HQ-7B: Osama's seller HQ-7 model.
 - ZBD-86 removed from PLAAF. ZBD-86 Recon: no ATGM by default (15 points), HJ-73 Malyutka option +10.

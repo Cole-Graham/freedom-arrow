@@ -1,0 +1,48 @@
+{
+  "version": "0.8.0-dev.91",
+  "build": 159,
+  "previous": "0.8.0-dev.90",
+  "assets_version": "0.2.18",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.18.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.18.bamod",
+    "sha256": "26f79a42f9bb7ce927bb87e97d9a04d5ab218e368851b9e9f50fdc7986cbcab6",
+    "size": 7940081624,
+    "files": 9965,
+    "new_in_this_build": true
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.91-complete.bamod",
+    "sha256": "01f2e2b310ac01c95e015cf6749a94b66823cd85ca4c79674da2a1d850feaae3",
+    "size": 8016941774,
+    "files": 10193
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.91.bamod",
+    "sha256": "9371fe66b36a5fe49e017a3c4b37703510d385523268f63572d2affefd02ac2f",
+    "size": 76860749,
+    "files": 230
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/m_ptz89_lo_static.mat.json",
+    "UserData/FAModels/m_ptz89_static.mat.json",
+    "UserData/FAModels/models.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/mobility.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/turrets.json",
+    "UserData/FreedomArrow/constants/unit_propulsions.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.91.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

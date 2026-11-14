@@ -1,0 +1,55 @@
+{
+  "ztz59_turret_models": {
+    "gun": "DLC3_T62M/DLC3_T62M_NoATGM",
+    "mg": null,
+    "was": [
+      "RU_Toros/RU_Toros_Rapira",
+      "DLC3_T62M/DLC3_T62M_NoATGM"
+    ]
+  },
+  "zbd04_removed": {
+    "cards": [
+      2008926
+    ],
+    "transport_links": 0
+  },
+  "afterburner_off": {
+    "J-8D": 975,
+    "J-7": 1092,
+    "clones": {
+      "161": 2018944,
+      "163": 2018945
+    }
+  },
+  "models_json": {
+    "PLA PTZ-89": {
+      "before": {
+        "file": "m_ptz89_static.fam",
+        "battle": "m_ptz89_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ptz89_static.fam",
+        "battle": "m_ptz89_lo_static.fam",
+        "align": false,
+        "scale": 0.9
+      }
+    }
+  },
+  "ptz89_material": {
+    "metallic": [
+      0.0,
+      0.6
+    ],
+    "smoothness": [
+      0.0,
+      0.4
+    ]
+  },
+  "version": "0.8.0-dev.91",
+  "base": "0.8.0-dev.90",
+  "base_sha256": "7943f011d73f55ceeb7ac5add3ad232c30ad7d82f9e4b9a670cdf56b939f6c35",
+  "request": "Osama 13 Nov 22:22-22:30 PST",
+  "checks": 14,
+  "verified": "data only"
+}
