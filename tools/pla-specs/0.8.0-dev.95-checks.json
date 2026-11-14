@@ -1,0 +1,118 @@
+{
+  "PLAAF Air Force": {
+    "before": {
+      "ReconPoints": 1000,
+      "InfantryPoints": 1000,
+      "CombatPoints": 500,
+      "SupportPoints": 500,
+      "HelicoptersPoints": 1000,
+      "AirPoints": 1000
+    },
+    "after": {
+      "ReconPoints": 500,
+      "InfantryPoints": 1000,
+      "CombatPoints": 500,
+      "SupportPoints": 500,
+      "HelicoptersPoints": 1000,
+      "AirPoints": 1500
+    },
+    "total": [
+      5000,
+      5000
+    ]
+  },
+  "PLAGF Ground Force/Armored": {
+    "before": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1000,
+      "CombatPoints": 1500,
+      "SupportPoints": 1000,
+      "HelicoptersPoints": 250,
+      "AirPoints": 500
+    },
+    "after": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1000,
+      "CombatPoints": 2000,
+      "SupportPoints": 1000,
+      "HelicoptersPoints": 250,
+      "AirPoints": 0
+    },
+    "total": [
+      5000,
+      5000
+    ]
+  },
+  "PLARF Rocket/Reservist": {
+    "before": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1000,
+      "CombatPoints": 500,
+      "SupportPoints": 1750,
+      "HelicoptersPoints": 250,
+      "AirPoints": 750
+    },
+    "after": {
+      "ReconPoints": 500,
+      "InfantryPoints": 1000,
+      "CombatPoints": 500,
+      "SupportPoints": 2000,
+      "HelicoptersPoints": 250,
+      "AirPoints": 750
+    },
+    "total": [
+      5000,
+      5000
+    ]
+  },
+  "PLAN Navy/SOF": {
+    "before": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1250,
+      "CombatPoints": 750,
+      "SupportPoints": 750,
+      "HelicoptersPoints": 500,
+      "AirPoints": 1000
+    },
+    "after": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1250,
+      "CombatPoints": 500,
+      "SupportPoints": 500,
+      "HelicoptersPoints": 750,
+      "AirPoints": 1500
+    },
+    "total": [
+      5000,
+      5250
+    ]
+  },
+  "PLAGF Motorized": {
+    "before": {
+      "ReconPoints": 1000,
+      "InfantryPoints": 1500,
+      "CombatPoints": 750,
+      "SupportPoints": 1000,
+      "HelicoptersPoints": 250,
+      "AirPoints": 500
+    },
+    "after": {
+      "ReconPoints": 750,
+      "InfantryPoints": 1250,
+      "CombatPoints": 750,
+      "SupportPoints": 1000,
+      "HelicoptersPoints": 500,
+      "AirPoints": 750
+    },
+    "total": [
+      5000,
+      5000
+    ]
+  },
+  "version": "0.8.0-dev.95",
+  "base": "0.8.0-dev.94",
+  "base_sha256": "85147566567266b1c4915cbe78d3fcdd2046d3e2ff4e685338b7bad2d42048f5",
+  "request": "Osama 13 Nov 23:10 PST spec point distribution",
+  "checks": 10,
+  "verified": "data only"
+}

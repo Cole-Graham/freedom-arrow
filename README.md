@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.94
+# Freedom Arrow 0.8.0-dev.95
+
+- Spec points: PLAAF Recon 500 / Air 1500; PLAGF Armored Air 0 / Vehicles 2000; PLARF Recon 500 / Support 2000; PLAN SOF Support 500 / Air 1500 / Vehicles 500 / Helicopters 750; PLAGF Motorized Infantry 1250 / Helicopters 500 / Recon 750 / Air 750.
+- Everything else as 0.8.0-dev.94.
+
+## Historical 0.8.0-dev.94
 
 - WZ-550: seller model rebuilt in the seller's dark olive (was pale with brown hatches and a loose missile).
 - PHL-191 AR3 model fixed (travel position, no smoke plume or flying missile, woodland digital, clear windows) and used by a new PHL-191 Cruise card in Motorized (Ballistic stats and loadouts until the cruise loadout is set).
