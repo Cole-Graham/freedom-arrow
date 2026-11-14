@@ -620,6 +620,302 @@
     ],
     "rounds_per_launcher": 1
   },
-  "checks": 91,
+  "recon_optics": [
+    {
+      "unit": "Cavalry Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Scouts Stryker",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Force Recon CQC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pogranichniki",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Razvedka Mech",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Airborne Recce",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Morskaya razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Diversanty RPG",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Eesti Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Green Berets",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz VMF",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz VMF",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz GRU AT",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Spetsnaz",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "VDV Spetsnaz",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Force Recon",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Green Berets",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pararescue",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Rangers RRC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Rangers RRC",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Eesti Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "SUV",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Jegeris",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "PDSS",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "AB Recce NGSW",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz GRU AA",
+      "country": "Russia",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "Spetsnaz GRU Mix",
+      "country": "Russia",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "STT",
+      "country": "USA",
+      "from": "Good Optics Manpad"
+    },
+    {
+      "unit": "Pogranichniki",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel RMG",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Spetsnaz Vympel AT",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Razvedka",
+      "country": "Russia",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Scouts",
+      "country": "USA",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "SF Recon",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "QTS-11 Digital Scouts",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Forward Observers",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Pathfinders 先遣队",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Snipers 狙击组",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Recon 侦察组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Armored Scouts 装甲侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Armored Sniper Pair 狙击组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Forward Observers 前观组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Recon HJ-8E Ambush Team",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Ambush Team 伏击组",
+      "country": "China",
+      "from": "Bad Optics"
+    },
+    {
+      "unit": "Sharp Swords 利剑",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Whistling Arrows 响箭",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Mountain Leopards 高原雪豹",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Beijing Swords 蓝剑",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Recon Patrol 侦察班",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Snipers 狙击组",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Taishan Eagles 泰山雄鹰",
+      "country": "China",
+      "from": "Medium Plus Optics"
+    },
+    {
+      "unit": "Air Defense Scouts 防空侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Test Suppressed Scouts 消声侦察",
+      "country": "China",
+      "from": "Good Optics"
+    },
+    {
+      "unit": "Test QTS Recon Cell 数字侦察",
+      "country": "China",
+      "from": "Good Optics"
+    }
+  ],
+  "prices": {
+    "Scouts": [
+      30,
+      35
+    ],
+    "Razvedka": [
+      30,
+      35
+    ],
+    "QTS Recon Cell": [
+      30,
+      35
+    ]
+  },
+  "checks": 97,
   "base": "0.8.0-dev.101"
 }

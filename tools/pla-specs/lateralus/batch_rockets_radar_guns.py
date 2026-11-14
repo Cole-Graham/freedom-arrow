@@ -99,6 +99,21 @@ for i in rifle:g.put('SquadMembersJson',i,{'SpecialWeaponId':PFW})
 ok(sum(1 for m in SM.values() if m['UnitId']==TB and m['SpecialWeaponId']==PFW)==5,'5 PF-97')
 ok([r['Quantity'] for r in WA.values() if r['UnitId']==TB and r['WeaponId']==PFW]==[1],'1 round each')
 rec['combat_engineers_thermobaric']={'option':24354,'unit':TB,'PF-97 launchers':[2,5],'rounds_per_launcher':1}
+# Lateralus 14 Nov 2026: every recon-tab infantry squad (CategoryType 0) of China, Russia and the USA gets Very Good optics
+# (sensor 3: 2300 ground, 1250 low altitude), including squads not in any deck.
+CTRY={c['Id']:c['Name'] for c in t['CountriesJson'].values()};SU=t['SensorUnitsJson'];SE=t['SensorsJson']
+ok(SE[3]['Name']=='Very Good Optics' and SE[3]['OpticsGround']==2300.0,'VG sensor')
+squads={m['UnitId'] for m in t['SquadMembersJson'].values()}
+recon=sorted(u['Id'] for u in U.values() if u['Id'] in squads and u['CategoryType']==0 and CTRY.get(u['CountryId']) in ('China','Russia','USA'))
+ok(len(recon)>=70,len(recon));rec['recon_optics']=[]
+for r in [r for r in SU.values() if r['UnitId'] in recon and r['SensorId']!=3]:
+    rec['recon_optics'].append({'unit':U[r['UnitId']]['HUDName'].strip(),'country':CTRY[U[r['UnitId']]['CountryId']],'from':SE[r['SensorId']]['Name']})
+    g.put('SensorUnitsJson',r['Id'],{'SensorId':3})
+ok(all(r['SensorId']==3 for r in SU.values() if r['UnitId'] in recon) and all(any(r['UnitId']==u for r in SU.values()) for u in recon),'recon optics')
+# Prices 30 -> 35: Scouts (USA), Razvedka (Russia), QTS Recon Cell (China; "Test" dropped from its name).
+for uid,name in ((726,'Scouts'),(725,'Razvedka'),(1224,'Test QTS Recon Cell 数字侦察')):
+    ok(U[uid]['HUDName'].strip()==name and U[uid]['Cost']==30,(uid,U[uid]['HUDName'],U[uid]['Cost']));g.put('Units',uid,{'Cost':35})
+g.put('Units',1224,{'HUDName':'QTS Recon Cell 数字侦察'});rec['prices']={'Scouts':[30,35],'Razvedka':[30,35],'QTS Recon Cell':[30,35]}
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():
