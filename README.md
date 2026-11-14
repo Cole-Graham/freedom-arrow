@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.62
+# Freedom Arrow 0.8.0-dev.63
+
+- DF-ZF top speed 1200 (was 2400), acceleration stays 300. Test: can HQ-9s still engage it? Vanilla ballistic missiles fly at 800; HQ-9s ignored 1600.
+- DF-17/ZF costs 250 points (was 300).
+
+## Historical 0.8.0-dev.62
 
 - DF-ZF: acceleration 3x the DF-21 (300, was 200). Top speed is 2400 = acceleration x 8 s burn, so the cap never stops the boost.
 - Ballistic missiles keep their burnout speed to impact; the game adds no speed on the descent.

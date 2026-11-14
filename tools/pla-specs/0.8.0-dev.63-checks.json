@@ -1,0 +1,26 @@
+{
+  "version": "0.8.0-dev.63",
+  "base": "0.8.0-dev.62",
+  "base_sha256": "9bbda8fc0696c31eac5da1c6fbe8ffad735c3848e59f86010d1519cfaf031200",
+  "request": "Osama 13 Nov 17:19 PST: build the 1200 DF-ZF interceptability test and reduce the DF-ZF price to 250",
+  "ammo": 2010351,
+  "before": {
+    "Acceleration": 300.0,
+    "MaxSpeed": 2400.0,
+    "BurnTime": 8.0,
+    "cost": 300
+  },
+  "after": {
+    "Acceleration": 300.0,
+    "MaxSpeed": 1200.0,
+    "BurnTime": 8.0,
+    "cost": 250
+  },
+  "checks": 3,
+  "native": {
+    "RocketEngineSystem.IntenalUpdate": "0x80BEB0",
+    "TrajectoryShellSystem.InternalUpdate": "0x82C4B0",
+    "IsKinematicallyAbleToInterceptTarget": "0x7D9420"
+  },
+  "verified": "data and native code read only; not yet observed in a game"
+}
