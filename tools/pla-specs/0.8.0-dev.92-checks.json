@@ -1,0 +1,77 @@
+{
+  "card_1266_hud": [
+    "CSK-181 4x4",
+    "CSK-131"
+  ],
+  "models_json": {
+    "PLA VT-5 Recon": {
+      "before": {
+        "file": "m_vt5b_static.fam",
+        "battle": "m_vt5b_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_vt5d_static.fam",
+        "battle": "m_vt5d_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue HQ-16": {
+      "before": null,
+      "after": {
+        "file": "m_hq16_static.fam",
+        "battle": "m_hq16_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-131 Mengshi": {
+      "before": {
+        "file": "mengshi.fam",
+        "align": false,
+        "battle": "mengshi_lo.fam"
+      },
+      "after": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA CSK-131 Transport": {
+      "before": {
+        "file": "mengshi.fam",
+        "align": false,
+        "battle": "mengshi_lo.fam"
+      },
+      "after": {
+        "file": "m_csk4b_static.fam",
+        "battle": "m_csk4b_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue HQ-6A": {
+      "before": {
+        "file": "m_hq6a_static.fam",
+        "battle": "m_hq6a_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_hq6a_static.fam",
+        "battle": "m_hq6a_lo_static.fam",
+        "align": false,
+        "scale": 0.75
+      }
+    }
+  },
+  "clear_glass_opacity": {
+    "from": 0.3,
+    "to": 0.1,
+    "materials": 64,
+    "files": 60
+  },
+  "version": "0.8.0-dev.92",
+  "base": "0.8.0-dev.91",
+  "base_sha256": "01f2e2b310ac01c95e015cf6749a94b66823cd85ca4c79674da2a1d850feaae3",
+  "request": "Osama 13 Nov 22:30-22:40 PST",
+  "checks": 24,
+  "verified": "data and file checks only"
+}

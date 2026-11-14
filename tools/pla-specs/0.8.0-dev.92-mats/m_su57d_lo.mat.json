@@ -1,0 +1,126 @@
+{
+ "m_su57d_lo_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex3.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.1
+ },
+ "m_su57d_lo_tex4.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex5.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex6.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex7.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_su57d_lo_tex8.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.1
+ },
+ "m_su57d_lo_tex9.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

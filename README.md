@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.91
+# Freedom Arrow 0.8.0-dev.92
+
+- Clear glass: opacity 0.3 -> 0.1 (it looked frosted white).
+- HQ-16: Osama's seller model. VT-5 Recon: seller desert camo. HQ-6A model 75%.
+- CSK-131: the 4x4 seller model (card renamed from "CSK-181 4x4"; CSK-131 Mengshi too). CSK-181 stays the 6x6.
+- Everything else as 0.8.0-dev.91.
+
+## Historical 0.8.0-dev.91
 
 - ZTZ-59, ZTZ-59D, ZTZ-59D1: stand-in turret models as the vanilla T-62M (the gun mount had the Toros Rapira turret model), so the model can show.
 - ZBD-04 (non-A) removed.

@@ -1,0 +1,28 @@
+{
+ "m_su47_lo_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.6519380211830139,
+  "alpha": "MASK",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0200,0.0300,0.0350,0.3000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.1
+ }
+}

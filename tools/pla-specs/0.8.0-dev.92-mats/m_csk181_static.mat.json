@@ -1,0 +1,165 @@
+{
+ "|0.0500,0.0500,0.0500,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_csk181_static_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_csk181_static_tex3.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.141421377658844,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.0000,0.0000,0.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   1.0,
+   0.3490196168422699,
+   0.09019608050584793
+  ],
+  "unlit": false
+ },
+ "|0.1529,0.1529,0.1529,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1765,0.1765,0.1765,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2235,0.2235,0.2235,0.5647": {
+  "cockpitDonor": "US_F16_Glass"
+ },
+ "|0.5000,0.5000,0.5000,1.0000": {
+  "cockpitDonor": "US_F16_Glass"
+ },
+ "|0.1569,0.1569,0.1569,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2941,0.2941,0.2941,0.4510": {
+  "cockpitDonor": "US_F16_Glass"
+ },
+ "|0.0863,0.1020,0.1412,0.0706": {
+  "cockpitDonor": "US_F16_Glass"
+ },
+ "|0.4510,0.0588,0.0588,0.9268": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "MASK",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.1725,0.1725,0.1725,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.6667,0.6667,0.6667,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|1.0000,0.4784,0.0000,0.2706": {
+  "clearGlass": true,
+  "opacity": 0.1,
+  "alpha": "BLEND",
+  "metallic": 0.0,
+  "smoothness": 0.95
+ },
+ "|0.1765,0.1216,0.1059,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_csk181_static_tex28.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

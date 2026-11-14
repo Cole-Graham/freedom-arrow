@@ -1,0 +1,136 @@
+{
+ "m_zbd251_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.2905,0.1116,0.2869,0.4600": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.1
+ },
+ "m_zbd251_static_tex4.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex5.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "|0.5000,0.5000,0.5000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex9.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex11.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex12.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_zbd251_static_tex13.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 1.0,
+  "smoothness": 0.0,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}
