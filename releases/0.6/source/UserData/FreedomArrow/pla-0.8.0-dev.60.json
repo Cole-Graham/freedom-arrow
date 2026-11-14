@@ -1,0 +1,210 @@
+{
+  "spec_moves": {
+    "FK-2000": [
+      21,
+      20
+    ],
+    "GJ-11": [
+      21,
+      17
+    ],
+    "PHL-191 Ballistic": [
+      19,
+      21
+    ],
+    "PHL-03": [
+      21,
+      18
+    ]
+  },
+  "ztl191_recon": {
+    "unit": 1263,
+    "cost": 120,
+    "spec": 21,
+    "optics": "Very Good Optics (3)"
+  },
+  "dzd98a": [
+    7.5,
+    10.0
+  ],
+  "infantry_weapon_rules": [
+    [
+      1150,
+      "Airborne Reserve Riflemen",
+      2012207,
+      "primary"
+    ],
+    [
+      1167,
+      "Reserve Riflemen — HJ-73D",
+      2012207,
+      "primary"
+    ],
+    [
+      1169,
+      "FN-6 Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1172,
+      "PF-98 Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1173,
+      "Ambush Team 伏击组",
+      2012207,
+      "primary"
+    ],
+    [
+      1173,
+      "Ambush Team 伏击组",
+      2012821,
+      "primary"
+    ],
+    [
+      1173,
+      "Ambush Team 伏击组",
+      2012205,
+      "primary"
+    ],
+    [
+      1176,
+      "Counter-Raid Team 反袭击队",
+      2012205,
+      "primary"
+    ],
+    [
+      1213,
+      "Test Suppressed Scouts 消声侦察",
+      2012821,
+      "primary"
+    ],
+    [
+      1168,
+      "HJ-73D Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1170,
+      "QJZ-89 Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1171,
+      "QLZ-87 Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1177,
+      "Thermobaric Team",
+      2012207,
+      "primary"
+    ],
+    [
+      1177,
+      "Thermobaric Team",
+      2012205,
+      "primary"
+    ],
+    [
+      1166,
+      "Conscripts 义务兵",
+      2012207,
+      "primary"
+    ],
+    [
+      1166,
+      "Conscripts 义务兵",
+      2012821,
+      "primary"
+    ],
+    [
+      1166,
+      "Conscripts 义务兵",
+      2012205,
+      "primary"
+    ],
+    [
+      1175,
+      "Infantry 步兵",
+      2012207,
+      "primary"
+    ],
+    [
+      1175,
+      "Infantry 步兵",
+      2012821,
+      "primary"
+    ],
+    [
+      1175,
+      "Infantry 步兵",
+      2012205,
+      "primary"
+    ]
+  ],
+  "version": "0.8.0-dev.60",
+  "base": "0.8.0-dev.59",
+  "base_sha256": "23abfddaf141c593cc304f3779b1f61314c54873d60068a8750eb6647de22b26",
+  "request": "Osama 13 Nov 16:3x PST list",
+  "files": [
+    "m_df17_lo_static.fam",
+    "m_df17_lo_static.mat.json",
+    "m_df17_lo_static_tex0.png",
+    "m_df17_lo_static_tex0_n.png",
+    "m_df17_lo_static_tex1.png",
+    "m_df17_lo_static_tex1_n.png",
+    "m_df17_lo_static_tex3.png",
+    "m_df17_lo_static_tex3_n.png",
+    "m_df17_lo_static_tex4.png",
+    "m_df17_lo_static_tex4_n.png",
+    "m_df17_static.fam",
+    "m_df17_static.mat.json",
+    "m_df17_static_tex0.png",
+    "m_df17_static_tex0_n.png",
+    "m_df17_static_tex1.png",
+    "m_df17_static_tex1_n.png",
+    "m_df17_static_tex3.png",
+    "m_df17_static_tex3_n.png",
+    "m_df17_static_tex4.png",
+    "m_df17_static_tex4_n.png",
+    "m_ztl191_lo_static.fam",
+    "m_ztl191_lo_static.mat.json",
+    "m_ztl191_lo_static_tex0.png",
+    "m_ztl191_lo_static_tex0_mask.png",
+    "m_ztl191_lo_static_tex0_n.png",
+    "m_ztl191_lo_static_tex1.png",
+    "m_ztl191_lo_static_tex1_mask.png",
+    "m_ztl191_lo_static_tex1_n.png",
+    "m_ztl191_static.fam",
+    "m_ztl191_static.mat.json",
+    "m_ztl191_static_tex0.png",
+    "m_ztl191_static_tex0_mask.png",
+    "m_ztl191_static_tex0_n.png",
+    "m_ztl191_static_tex1.png",
+    "m_ztl191_static_tex1_mask.png",
+    "m_ztl191_static_tex1_n.png",
+    "w_qbb95.fam",
+    "w_qbb95.mat.json",
+    "w_qbb95_lo.fam",
+    "w_qbb95_lo.mat.json",
+    "w_qbu88.fam",
+    "w_qbu88.mat.json",
+    "w_qbu88_lo.fam",
+    "w_qbu88_lo.mat.json",
+    "w_qbz95.fam",
+    "w_qbz95.mat.json",
+    "w_qbz95_lo.fam",
+    "w_qbz95_lo.mat.json"
+  ],
+  "checks": 8,
+  "not_done": {
+    "CSK-181": "needs the purchased 4x4 model (subscription sheet row 14); the current file is a 6x6 Mengshi"
+  }
+}

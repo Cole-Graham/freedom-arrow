@@ -1,0 +1,5417 @@
+[
+  {
+    "unitId": 901,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 901,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 901,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 901,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 901,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1254,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1254,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1254,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1254,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1254,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 986,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 986,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 986,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 986,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 986,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 987,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 987,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 987,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 987,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 987,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 988,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 988,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 988,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 988,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 988,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 989,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 989,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 989,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 989,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 989,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 990,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 990,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 990,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 990,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 990,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 991,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 991,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 991,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 991,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 991,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 992,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 992,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 992,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 992,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 992,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 993,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 993,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 993,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 993,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 993,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 994,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 994,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 994,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 994,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 994,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 995,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 995,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 995,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 995,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 995,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 996,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 996,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 996,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 996,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 996,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 997,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 997,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 997,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 997,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 997,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 998,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 998,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 998,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 998,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 998,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 999,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 999,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 999,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 999,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 999,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1000,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1000,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1000,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1000,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1000,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1001,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1001,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1001,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1001,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1001,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1002,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1002,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1002,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1002,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1002,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1003,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1003,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1003,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1003,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1003,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1004,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1004,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1004,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1004,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1004,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1005,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1005,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1005,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1005,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1005,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1006,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1006,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1006,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1006,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1006,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1007,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1007,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1007,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1007,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1007,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1008,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1008,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1008,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1008,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1008,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1009,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1009,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1009,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1009,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1009,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1010,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1011,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1012,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1013,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1014,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1014,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1015,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1017,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1018,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1019,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1019,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1020,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1021,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1022,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1023,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1024,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1025,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1026,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1027,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1027,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1108,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2014500,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1109,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1136,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1136,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1137,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1138,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1139,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1140,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1140,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1140,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1141,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1142,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1142,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1143,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1143,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1143,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1144,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1144,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1145,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1146,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1147,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1148,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1149,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2014500,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1149,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1151,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1152,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1153,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1154,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1155,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1156,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1157,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1158,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1159,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1160,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1160,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1161,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1162,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1163,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1164,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2014500,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1164,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1165,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1165,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1174,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1174,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1174,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1174,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1176,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1179,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1181,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1181,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1181,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1181,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1181,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1182,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1183,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1183,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1184,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1184,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1184,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1185,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1185,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1186,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2013087,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1186,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1188,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1188,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1188,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1189,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1189,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1190,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1191,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1191,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1192,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1193,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1194,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1195,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1196,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1196,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1197,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1198,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1199,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1199,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1200,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1201,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1201,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1202,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1202,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1203,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1203,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1203,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1203,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1204,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1205,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1206,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1206,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1207,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1208,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1209,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1210,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1210,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004002,
+    "file": "w_qlu11.fam",
+    "battle": "w_qlu11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.22
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1213,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1214,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1215,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1216,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1217,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1218,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1219,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1220,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1221,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1222,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1223,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1224,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1224,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004000,
+    "file": "w_qbu191.fam",
+    "battle": "w_qbu191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.12
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1224,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2004004,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1224,
+    "soldierIndex": -1,
+    "slot": "special",
+    "weaponId": 2004006,
+    "file": "w_qts11.fam",
+    "battle": "w_qts11_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1225,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2003998,
+    "file": "w_qbz191.fam",
+    "battle": "w_qbz191_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.22,
+      0.196
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1150,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1167,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1169,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1172,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1173,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1173,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012821,
+    "file": "w_qbu88.fam",
+    "battle": "w_qbu88_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1173,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1176,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1213,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012821,
+    "file": "w_qbu88.fam",
+    "battle": "w_qbu88_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1168,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1170,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1171,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1177,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1177,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1166,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1166,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012821,
+    "file": "w_qbu88.fam",
+    "battle": "w_qbu88_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1166,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1175,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012207,
+    "file": "w_qbb95.fam",
+    "battle": "w_qbb95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.04
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1175,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012821,
+    "file": "w_qbu88.fam",
+    "battle": "w_qbu88_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.17,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "unitId": 1175,
+    "soldierIndex": -1,
+    "slot": "primary",
+    "weaponId": 2012205,
+    "file": "w_qbz95.fam",
+    "battle": "w_qbz95_lo.fam",
+    "scale": 1,
+    "offset": [
+      0,
+      -0.2,
+      -0.06
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  }
+]

@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.19", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.20", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -156,6 +156,8 @@ public partial class Mod : MelonMod
         {
             var q = queue[i];
             if (q.root == null) { queue.RemoveAt(i); continue; }
+            // Osama 13 Nov: never show the stand-in while the replacement waits to be built; re-hide every frame until then.
+            if (q.pass == 0 && q.e.file != "") Hide(q.root);
             float wait = q.pass == 0 ? 0.5f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
             try { Apply(q.root, q.e, q.unit, q.pass == 0); }

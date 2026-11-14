@@ -1,4 +1,15 @@
-# Freedom Arrow 0.8.0-dev.59
+# Freedom Arrow 0.8.0-dev.60
+
+- AFT-09 is now called WZ-550 (the model is the WZ-550 4x4 with HJ-9).
+- PGL-625 and FK-2000 guns: 1200 m ground range, the same on both.
+- Spec moves: FK-2000 to PLAN Navy/SOF, GJ-11 to PLAAF, PHL-191 Ballistic to PLAGF Motorized, PHL-03 to PLAGF Ground Force/Armored.
+- New ZTL-191 Recon (Motorized, +5 points, Very Good Optics), like the ZTQ-15 Recon.
+- DZD98A HE damage 7.5 -> 10. HJ-8 uses the Kornet unit icon.
+- QBZ-95, QBB-95 and QBU-88 now show their own models on every squad that carries them.
+- Models: ZTL-191 gun raised back to its source height; DF-17 small utility doors visible again; stand-in models are hidden every frame until our model is built (FAModels 0.3.20).
+- Model files ship in the complete package only until the next assets release.
+
+## Historical 0.8.0-dev.59
 
 - FK-2000: two 30 mm AA guns, each with the PGL-625 gun stats (the Pantsir 2A38M stats): muzzle velocity 805 -> 1610 and 133 rounds (was 70). The FK-2000 SAM is unchanged.
 
