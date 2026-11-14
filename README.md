@@ -1,4 +1,13 @@
-# Freedom Arrow 0.8.0-dev.86
+# Freedom Arrow 0.8.0-dev.87
+
+- ZTQ-15 Recon: seller desert digital camo.
+- ZTZ-100: front KE 700 (front HEAT 1200 unchanged), side HEAT 700, Abrams X jammer.
+- ZSL-92 models 90%. ZTL-191 and ZTL-191 Recon reload 4-5 s.
+- Lasers on Z-19, Z-19 Recon, Z-9WA Recon, Z-11WB and Z-20S (Z-10/Z-21 already had them).
+- New Mengshi Recon (CSK-131 stats, Very Good optics, 50 points) in PLAAF, PLAN Navy/SOF and PLAGF Motorized.
+- Everything else as 0.8.0-dev.86.
+
+## Historical 0.8.0-dev.86
 
 - ZTZ-85-II: T-80BV stat copy (armour, mobility, optics, smoke, 2A46M-1 with AP/HE/HEAT, PKT, Kord, 85 points).
 - VT-5 and VT-5 Recon: front HEAT armour 1000 (was 700). ZTL-11 moved to Motorized.

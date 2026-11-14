@@ -1,0 +1,101 @@
+{
+  "ztz100": {
+    "KinArmorFront": [
+      750,
+      700
+    ],
+    "HeatArmorSides": [
+      500,
+      700
+    ],
+    "HeatArmorFront": 1200,
+    "jammer_ECMAccuracyMultiplier": 0.7
+  },
+  "ztl191_reload": [
+    [
+      5,
+      6
+    ],
+    [
+      4,
+      5
+    ]
+  ],
+  "helo_laser": {
+    "swapped_23_to_2000771": [
+      940,
+      1103,
+      1236,
+      1133,
+      1134,
+      1237
+    ],
+    "Z-11WB": "ability 10",
+    "Z-20S": 2016186
+  },
+  "mengshi_recon": {
+    "unit": 1265,
+    "from": 900,
+    "cost": 50,
+    "specs": [
+      17,
+      20,
+      21
+    ],
+    "sensor": 3
+  },
+  "models_json": {
+    "PLA ZTQ-15 Recon": {
+      "before": {
+        "file": "m_ztq15_camo_static.fam",
+        "battle": "m_ztq15_camo_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_ztq15d_static.fam",
+        "battle": "m_ztq15d_lo_static.fam",
+        "align": false
+      }
+    },
+    "PLA Catalogue ZSL-92 family": {
+      "before": {
+        "file": "m_zsl92_static.fam",
+        "battle": "m_zsl92_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsl92_static.fam",
+        "battle": "m_zsl92_lo_static.fam",
+        "align": false,
+        "scale": 0.9
+      }
+    },
+    "PLA ZSL-92 MG": {
+      "before": {
+        "file": "m_zsl92mg_static.fam",
+        "battle": "m_zsl92mg_lo_static.fam",
+        "align": false
+      },
+      "after": {
+        "file": "m_zsl92mg_static.fam",
+        "battle": "m_zsl92mg_lo_static.fam",
+        "align": false,
+        "scale": 0.9
+      }
+    },
+    "PLA Mengshi Recon": {
+      "before": null,
+      "after": {
+        "file": "m_mengshir_static.fam",
+        "battle": "m_mengshir_lo_static.fam",
+        "align": false
+      }
+    }
+  },
+  "version": "0.8.0-dev.87",
+  "base": "0.8.0-dev.86",
+  "base_sha256": "13f579f37a67aa0a071da5a681d91ee2af8211dd2f3cb4b46fa1b40b912b8e5b",
+  "request": "Osama 13 Nov 21:47-21:55 PST",
+  "checks": 52,
+  "verified": "data and file checks only"
+}
