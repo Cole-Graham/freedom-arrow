@@ -1,0 +1,53 @@
+{
+ "m_phl191b_lo_static_tex0.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.0,
+  "smoothness": 0.95,
+  "alpha": "BLEND",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false,
+  "clearGlass": true,
+  "opacity": 0.3,
+  "cockpitDonor": "US_F16_Glass"
+ },
+ "m_phl191b_lo_static_tex1.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.5,
+  "smoothness": 0.2512328028678894,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_phl191b_lo_static_tex2.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.5,
+  "smoothness": 0.2512328028678894,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ },
+ "m_phl191b_lo_static_tex3.png|1.0000,1.0000,1.0000,1.0000": {
+  "metallic": 0.15,
+  "smoothness": 0.4472135901451111,
+  "alpha": "OPAQUE",
+  "cutoff": 0.5,
+  "emissive": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "unlit": false
+ }
+}

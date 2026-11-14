@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.82
+# Freedom Arrow 0.8.0-dev.83
+
+- New purchased models, seller paint, static: ZTZ-99, ZTZ-59A (on ZTZ-59D and ZTZ-59D1), PGZ-95, VT-5 and VT-5 Recon, PLZ-07 and PLZ-07B, Z-9, all Z-19 cards, Z-20 (navy grey for PLAN SOF and PLAAF, green for PLAGF), ZBD-86 (also on ZBD-03), the 4x4 CSK-181 on the CSK-181 Transport.
+- New unit: ZTZ-85-II in PLARF Rocket/Reservist (ZTZ-85-III stats).
+- PLZ-83 model 75%; PHL-191 Ballistic model 90% with vanilla window glass.
+- Needs the complete package or the new assets version.
+- Everything else as 0.8.0-dev.82.
+
+## Historical 0.8.0-dev.82
 
 - PGL-625: Stryker armour profile (HEAT and KE 60 front, 40 sides, 30 rear, 20 top; 12 HP). Was the ZBL-191 profile (HEAT 700).
 - FAModels 0.3.22: when the vanilla glass (F-16 canopy) is not loaded, for example in the scenario editor, a model now uses clear glass instead of being refused. Before, the FK-2000, DF-15/17/21/31A, HQ-12 and the J-5 to J-16 showed their stand-ins in those scenes.
