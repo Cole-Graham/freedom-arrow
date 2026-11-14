@@ -1,0 +1,86 @@
+{
+  "version": "0.8.0-dev.72",
+  "zsd89a": {
+    "1065": {
+      "cost": [
+        35,
+        25
+      ],
+      "removed_turret_rows": [
+        2010931
+      ],
+      "removed_ammo_rows": [
+        2010934
+      ]
+    },
+    "1248": {
+      "cost": [
+        35,
+        25
+      ],
+      "removed_turret_rows": [
+        2018106
+      ],
+      "removed_ammo_rows": [
+        2018107
+      ]
+    },
+    "1249": {
+      "cost": [
+        35,
+        25
+      ],
+      "removed_turret_rows": [
+        2018117
+      ],
+      "removed_ammo_rows": [
+        2018118
+      ]
+    },
+    "1250": {
+      "cost": [
+        35,
+        25
+      ],
+      "removed_turret_rows": [
+        2018127
+      ],
+      "removed_ammo_rows": [
+        2018128
+      ]
+    }
+  },
+  "ztz100_ke_front": [
+    800,
+    750
+  ],
+  "base": "0.8.0-dev.71",
+  "base_sha256": "07e5cb7c1161e5905d7054d8f5d0b9546f08e2d10b5268d862c7ca11ca1668c2",
+  "request": "Osama 13 Nov 19:0x PST: PGZ-88 should have same armor profile as ZTZ-59D; ZSD-98A same stats as AMPV base just no weapons; ZTZ-100 front armor KE 750",
+  "before": {
+    "ArmorValue": 0,
+    "MaxHealthPoints": 14,
+    "HeatArmorFront": 30,
+    "HeatArmorRear": 20,
+    "HeatArmorSides": 20,
+    "HeatArmorTop": 15,
+    "KinArmorFront": 30,
+    "KinArmorRear": 20,
+    "KinArmorSides": 20,
+    "KinArmorTop": 15
+  },
+  "after": {
+    "ArmorValue": 0,
+    "MaxHealthPoints": 12,
+    "HeatArmorFront": 600,
+    "HeatArmorRear": 100,
+    "HeatArmorSides": 200,
+    "HeatArmorTop": 60,
+    "KinArmorFront": 400,
+    "KinArmorRear": 100,
+    "KinArmorSides": 100,
+    "KinArmorTop": 60
+  },
+  "checks": 1,
+  "verified": "data only"
+}

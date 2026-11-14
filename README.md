@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.71
+# Freedom Arrow 0.8.0-dev.72
+
+- PGZ-88: ZTZ-59D armour profile (front HEAT 600 / KE 400, sides 200 / 100; was 30 all round).
+- ZTZ-100: front kinetic armour 750 (was 800).
+- ZSD-89A (all four cards): M1283 AMPV base armour, speed and optics, 25 points (was 35), 12 seats, no weapons (the 12.7 mm mount is removed).
+- Everything else as 0.8.0-dev.71.
+
+## Historical 0.8.0-dev.71
 
 - PGL-625: gun at 20 damage per second (7.8 per round at the Pantsir gun rate; was 3.0, about 7.7/s), and the ZBL-191 armour profile (HEAT 700 front and sides).
 - WZ-8: flies high only; it can no longer switch to low altitude.
