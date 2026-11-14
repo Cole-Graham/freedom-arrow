@@ -4,8 +4,14 @@ namespace FreedomArrow;
 static class AaCooldownPolicy
 {
     public static bool ProjectileType(int type)=>type is 128 or 256 or 512 or 1024;
-    public static bool Defender(int unitType,bool nativeAntiAir,bool interceptionGun)
-        =>(unitType&(2|4|32))!=0&&(nativeAntiAir||interceptionGun);
+    // Ammunitions.TargetType bits that let a round engage projectiles: Projectile, SEADMissile, CruiseMissile, BallisticMissile.
+    public const long InterceptBits=128|256|512|1024;
+    // Lateralus 14 Nov 2026: only weapons whose current round may target missiles count, guns or missiles alike.
+    // Unit types: Infantry 2, Vehicle 4, Ship 32.
+    public static bool Defender(int unitType,bool nativeAntiAir,bool interceptionGun,long ammoTargetType)
+        =>(unitType&(2|4|32))!=0&&(nativeAntiAir||interceptionGun)&&(ammoTargetType&InterceptBits)!=0;
+    // The scan stops (native behavior) above this many interceptors in one battle.
+    public const int MaxDefenders=128;
     public readonly struct Contributor
     {
         public readonly ulong Weapon; public readonly float Remaining; public readonly bool Known,Airborne;
