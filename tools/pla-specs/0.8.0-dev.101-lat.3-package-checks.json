@@ -1,0 +1,62 @@
+{
+  "version": "0.8.0-dev.101-lat.3",
+  "build": 169,
+  "previous": "0.8.0-dev.101",
+  "assets_version": "0.2.26",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.26.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.26.bamod",
+    "sha256": "0852875c6677112c288d450fafd5da7351a196809ff2d80e38ef3fa0d2690403",
+    "size": 8625936561,
+    "files": 10335,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.101-lat.3-complete.bamod",
+    "sha256": "90a5219236ef3019037833f9252f167df35b1d2e795bccfa9cd98bb89798f3ce",
+    "size": 8702822979,
+    "files": 10574
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.101-lat.3.bamod",
+    "sha256": "ff9a06111ca8ad65f7c20e177e0b6d3faa1a8dfbe84664efad14a18ca4b6d0b0",
+    "size": 76886966,
+    "files": 241
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAConquestPrototype/compatibility.json",
+    "UserData/FAConquestPrototype/settings.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/sensor_units.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/squad_members.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/turret_weapons.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.101-lat.3.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport 0.2/[FA] [5v5] Airport 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport Skirmish 0.2/[FA] [5v5] Airport Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Airport Skirmish 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor 0.2/[FA] [5v5] Cold Harbor 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor Skirmish 0.2/[FA] [5v5] Cold Harbor Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Cold Harbor Skirmish 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush 0.2/[FA] [5v5] Oil Rush 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush 0.2/meta.json",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush Skirmish 0.2/[FA] [5v5] Oil Rush Skirmish 0.2.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [5v5] Oil Rush Skirmish 0.2/meta.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

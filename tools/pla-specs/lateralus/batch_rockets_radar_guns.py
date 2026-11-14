@@ -132,6 +132,16 @@ for i,spec in enumerate((17,18,19,20,21)):
     for x in best:g.add('TransportAvailabilitiesJson',tpl,{'SpecializationAvailabilityId':sa,'UnitId':x})
     rec['qts_recon_cell'][t['SpecializationsJson'][spec]['UIName']]={'cards':8,'transports':sorted(U[x]['HUDName'] for x in best)}
 ok(sorted(r['SpecializationId'] for r in SA.values() if r['UnitId']==QTS)==[17,18,19,20,21],'QTS decks')
+AN='UserData/FreedomArrow/pla-spec-assignments.json';assign=json.loads(z.read(AN))   # roster check reads each unit's decks here
+ok(assign['assignments'].get(str(QTS))==[22],assign['assignments'].get(str(QTS)));assign['assignments'][str(QTS)]=[17,18,19,20,21];assign.setdefault('shared_transports',{})[str(QTS)]=[17,18,19,20,21]   # multi-deck units are listed here
+# FK-2000 freeze A/B (Lateralus 14 Nov 2026: freezes when it spawns; Player.log shows the simulation thread
+# SubController.Run stuck until quit, no error logged). dev.59 put its 30 mm gun on the mount twice with the same priority,
+# a layout no vanilla ground unit uses. Test: one gun row, as the vanilla Pantsir's single "2x 2A38M" weapon (same stats).
+TW=t['TurretWeaponsJson'];FKG=2009599
+dup=sorted((r['Order'],r['Id']) for r in TW.values() if r['TurretId']==2009600 and r['WeaponId']==FKG);ok(len(dup)==2,dup)
+g.remove('TurretWeaponsJson',dup[1][1]);g.put('WeaponsJson',FKG,{'HUDName':'2x 30 mm AA gun'})
+ok(len([r for r in TW.values() if r['TurretId']==2009600 and r['WeaponId']==FKG])==1 and W_[FKG]['TimeBetweenShotsInBurst']==W_[19]['TimeBetweenShotsInBurst'],'FK-2000 one gun')
+rec['fk2000']={'gun rows on mount':[2,1],'removed_row':dup[1][1],'name':'2x 30 mm AA gun','note':'freeze A/B test'}
 # Every projectile-defence gun round that the prediction and overkill gate select now flies at 1610.
 P=128|256|512|1024;W=t['WeaponsJson'];left=[]
 for w in WA.values():
@@ -142,5 +152,6 @@ ok(not left,left)
 rec['checks']=checks;rec['base']=json.loads(z.read('mod.json'))['version']
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
+save(AN,assign)
 (Path(__file__).parent/'batch-rockets-radar-guns-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks,'base',rec['base'])

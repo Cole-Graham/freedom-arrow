@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.101
+# Freedom Arrow 0.8.0-dev.101-lat.3
+
+Lateralus batch test build on 0.8.0-dev.101 (branch codex/batch/lateralus/0.8-rockets-radar-guns). Not for multiplayer playtests.
+Items 1-27 of the Lateralus 0.8 Changelog plus the FK-2000 freeze test: its 30 mm gun is on the mount once ("2x 30 mm AA gun", like the vanilla Pantsir) instead of twice.
+
+## Historical 0.8.0-dev.101
 
 - J-36 Heavy CAP: 4x PL-17, 4x PL-16 and 4x PL-21.
 - Shaanxi HMV3 Cargo: 15000 supply in both armory versions (was 9000, or 4500 armored).

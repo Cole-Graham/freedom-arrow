@@ -967,6 +967,15 @@
       ]
     }
   },
-  "checks": 104,
+  "fk2000": {
+    "gun rows on mount": [
+      2,
+      1
+    ],
+    "removed_row": 2018729,
+    "name": "2x 30 mm AA gun",
+    "note": "freeze A/B test"
+  },
+  "checks": 107,
   "base": "0.8.0-dev.101"
 }
