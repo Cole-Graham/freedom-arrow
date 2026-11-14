@@ -1,4 +1,8 @@
-# Freedom Arrow 0.8.0-dev.58
+# Freedom Arrow 0.8.0-dev.59
+
+- FK-2000: two 30 mm AA guns, each with the PGL-625 gun stats (the Pantsir 2A38M stats): muzzle velocity 805 -> 1610 and 133 rounds (was 70). The FK-2000 SAM is unchanged.
+
+## Historical 0.8.0-dev.58
 
 - FK-2000: the purchased CGTrader model with the seller's own textures and vanilla glass replaces the old stand-in model (static, launchers in travel position as the seller exported them).
 - Model files ship in the complete package only until the next assets release.

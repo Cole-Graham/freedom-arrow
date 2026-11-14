@@ -1,0 +1,15 @@
+{
+  "version": "0.8.0-dev.59",
+  "base": "0.8.0-dev.58",
+  "base_sha256": "c26aace1c52fdaa819c23292f9ffbf913a8ee6593e3a35c4784d28a60cbe3c6c",
+  "request": "Osama 13 Nov 16:20 PST: FK-2000 guns same as PGL-625 except dual",
+  "changed_from": {
+    "weapon": {},
+    "ammo": {
+      "MuzzleVelocity": 805.0
+    }
+  },
+  "rounds": 133,
+  "guns": 2,
+  "checks": 95
+}
