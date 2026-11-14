@@ -1,4 +1,11 @@
-# Freedom Arrow 0.8.0-dev.76
+# Freedom Arrow 0.8.0-dev.77
+
+- ZTQ-15, ZTQ-15 Recon, VT-5, VT-5 Recon: 105 mm gun reload 4 s (was 4-5 s).
+- ZSD-63C removed (its card and its 7 transport links).
+- ZSD-89 (PLAGF Armored and PLAN cards): 12 HP (was 10).
+- Everything else as 0.8.0-dev.76.
+
+## Historical 0.8.0-dev.76
 
 - J-36: card turn radius 985 (was 1095); yaw rates x1.144, speed unchanged.
 - J-36 Heavy CAP: one loadout, 4x PL-17 and 4x PL-16 (default). The 8x PL-17 + 4x PL-21 and the PL-16 Heavy CAP loadouts are removed. Prices unchanged.

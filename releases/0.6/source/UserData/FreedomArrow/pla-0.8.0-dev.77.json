@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0-dev.77",
+  "base": "0.8.0-dev.76",
+  "base_sha256": "7b8fec2ea02811d20fd61b8b38f54ef9449a7c79d296d2a8eae2440932caeb6c",
+  "request": "Osama 13 Nov 20:1x PST: ZTQ-15 4 second reload and VT-5 not 4-5; ZSD-63C remove; ZSD-89 12 hp",
+  "gun_reload": [
+    [
+      4.0,
+      5.0
+    ],
+    [
+      4.0,
+      4.0
+    ]
+  ],
+  "zsd63c_removed": {
+    "cards": 1,
+    "transport_links": 7
+  },
+  "zsd89_hp": {
+    "1064": [
+      10,
+      12
+    ],
+    "1246": [
+      10,
+      12
+    ]
+  },
+  "checks": 3,
+  "verified": "data only"
+}
