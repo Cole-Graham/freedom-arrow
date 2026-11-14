@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.21", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.22", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -22,6 +22,7 @@ public partial class Mod : MelonMod
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
     static readonly Dictionary<string, Material> mats = new();
+    static readonly HashSet<string> donorFallbacks = new();
 
     public override void OnInitializeMelon()
     {
@@ -310,7 +311,17 @@ public partial class Mod : MelonMod
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
-        if (!string.IsNullOrEmpty(p?.cockpitDonor)) return CockpitMaterial(p.cockpitDonor);
+        if (!string.IsNullOrEmpty(p?.cockpitDonor))
+        {
+            // 0.3.22: the donor (F-16 glass) is only loaded in some scenes (not the editor, not every match). Before this the
+            // whole model swap was refused and the stand-in showed (FK-2000, DF-15/17/21, J-jets). Use clear glass until it loads.
+            try { return CockpitMaterial(p.cockpitDonor); }
+            catch (InvalidDataException e)
+            {
+                if (donorFallbacks.Add(p.cockpitDonor)) MelonLogger.Warning($"FAMODELS_COCKPIT_FALLBACK {p.cockpitDonor}: {e.Message}; clear glass used until the donor loads");
+                p = new MatP { clearGlass = true, opacity = 0.3f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
+            }
+        }
         // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.
         bool clearGlass = p?.clearGlass == true;
         if (clearGlass) { tex = ""; col = new Color(1f, 1f, 1f, Mathf.Clamp01(p.opacity)); }

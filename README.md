@@ -1,4 +1,12 @@
-# Freedom Arrow 0.8.0-dev.81
+# Freedom Arrow 0.8.0-dev.82
+
+- PGL-625: Stryker armour profile (HEAT and KE 60 front, 40 sides, 30 rear, 20 top; 12 HP). Was the ZBL-191 profile (HEAT 700).
+- FAModels 0.3.22: when the vanilla glass (F-16 canopy) is not loaded, for example in the scenario editor, a model now uses clear glass instead of being refused. Before, the FK-2000, DF-15/17/21/31A, HQ-12 and the J-5 to J-16 showed their stand-ins in those scenes.
+- CSK-181: windows use the vanilla glass.
+- ZSL-92: the autocannon version is now the ZSL-92; the 12.7 mm MG version is removed (both carried the same squads).
+- Everything else as 0.8.0-dev.81.
+
+## Historical 0.8.0-dev.81
 
 - CSK-181: model fixed. The seller file's tread lugs (all six tyres and the spare) imported one wheel radius too high, so the tyres were smooth, the lugs floated over the fenders and the spare stuck up over the roof. Each lug ring now sits on its tyre. The side and rear windows are clear glass (were plain white-grey).
 - ZTZ-100: gun range back to 1400 m (dev.78 had 2000 m). The dev.78 penetration (APFSDS 550/525) stays.

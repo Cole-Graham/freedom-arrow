@@ -1,0 +1,43 @@
+{
+  "version": "0.8.0-dev.82",
+  "base": "0.8.0-dev.81",
+  "base_sha256": "b4211666a88ace721fc61b23d3a1ea19098f9dd0440a14a21386f8b8b00e01fb",
+  "request": "Osama 13 Nov 20:4x PST: PGL-625 armor profile should be like Stryker armor profile; make sure glass is transplanted; Make ZSL-92 autocannon the main ZSL-92 and remove the non autocannon version",
+  "pgl625_armour": {
+    "from": {
+      "ArmorValue": 0,
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 700,
+      "HeatArmorRear": 130,
+      "HeatArmorSides": 700,
+      "HeatArmorTop": 20,
+      "KinArmorFront": 80,
+      "KinArmorRear": 30,
+      "KinArmorSides": 60,
+      "KinArmorTop": 20
+    },
+    "to": {
+      "ArmorValue": 0,
+      "MaxHealthPoints": 12,
+      "HeatArmorFront": 60,
+      "HeatArmorRear": 30,
+      "HeatArmorSides": 40,
+      "HeatArmorTop": 20,
+      "KinArmorFront": 60,
+      "KinArmorRear": 30,
+      "KinArmorSides": 40,
+      "KinArmorTop": 20
+    },
+    "donor": 2000016
+  },
+  "famodels": "0.3.22 donor fallback",
+  "csk181_glass": "cockpitDonor US_F16_Glass",
+  "zsl92": {
+    "renamed": 1079,
+    "removed": 1232,
+    "cards": 1,
+    "transport_links": 10
+  },
+  "checks": 3,
+  "verified": "data only"
+}

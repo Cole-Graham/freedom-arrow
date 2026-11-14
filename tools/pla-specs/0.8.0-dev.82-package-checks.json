@@ -1,0 +1,47 @@
+{
+  "version": "0.8.0-dev.82",
+  "build": 150,
+  "previous": "0.8.0-dev.81",
+  "assets_version": "0.2.9",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.9.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.9.bamod",
+    "sha256": "f3142ba133fc02add49e31e22f5279f298806251e7b2d2485dc61c980086418a",
+    "size": 6544834392,
+    "files": 9371,
+    "new_in_this_build": true
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.8.0-dev.82-complete.bamod",
+    "sha256": "ce563db9e74cf0493f1c01dc054f1bb7dc283112fca2f8dc4ee0f46b8a17668d",
+    "size": 6621660742,
+    "files": 9590
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.8.0-dev.82.bamod",
+    "sha256": "a19db933950b6bd83529d6843027c3b3deaefa5271b959f1376528f6805fc05a",
+    "size": 76826926,
+    "files": 221
+  },
+  "changed_paths": [
+    "Mods/FAModels.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FAModels/m_csk181_lo_static.mat.json",
+    "UserData/FAModels/m_csk181_static.mat.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/armors.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.8.0-dev.82.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
