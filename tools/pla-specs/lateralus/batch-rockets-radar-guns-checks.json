@@ -605,6 +605,10 @@
     "FHJ-02 launchers": [
       2,
       1
+    ],
+    "cost": [
+      60,
+      80
     ]
   },
   "combat_engineers_thermobaric": {
@@ -616,6 +620,6 @@
     ],
     "rounds_per_launcher": 1
   },
-  "checks": 90,
+  "checks": 91,
   "base": "0.8.0-dev.101"
 }

@@ -86,6 +86,7 @@ for aid in DZT:
 TG=1143;FHJ=2013057;QBZ191=2003998
 car=sorted(m['Id'] for m in SM.values() if m['UnitId']==TG and m['SpecialWeaponId']==FHJ);ok(len(car)==2 and all(SM[i]['PrimaryWeaponId']==QBZ191 for i in car),car)
 g.put('SquadMembersJson',car[-1],{'SpecialWeaponId':0});rec['thunder_gods']={'member':car[-1],'FHJ-02 launchers':[2,1]}
+ok(U[TG]['Cost']==60,('Thunder Gods cost',U[TG]['Cost']));g.put('Units',TG,{'Cost':80});rec['thunder_gods']['cost']=[60,80]   # Lateralus 14 Nov 2026
 # Combat Engineers' Thermobaric loadout (option 24354 swaps 1156 for unit 1162, Thermobaric Breachers): five PF-97 with
 # 1 round each (Lateralus 14 Nov 2026). The two PF-97 riflemen are joined by the other three QBZ-191 riflemen. The default
 # DZJ-08 loadout (unit 1156) is unchanged.
