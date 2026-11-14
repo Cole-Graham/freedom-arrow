@@ -1,0 +1,30 @@
+{
+  "version": "0.8.0-dev.74",
+  "base": "0.8.0-dev.73",
+  "base_sha256": "ed7084e220dda917caa0678382690d331d65c802b9975965b6d0b09e046335a4",
+  "request": "Osama 13 Nov 19:4x PST: JRVG needs radar",
+  "fixed": {
+    "JRVG-1": {
+      "ability": 2009943,
+      "radar_from": 60,
+      "removed_link": 2018347
+    },
+    "PGZ-09": {
+      "ability": 2009175,
+      "radar_from": 2009177,
+      "removed_link": 2009178
+    },
+    "HJ-10": {
+      "ability": 2009613,
+      "radar_from": 2009615,
+      "removed_link": 2009616
+    },
+    "AFT-10": {
+      "ability": 2010715,
+      "radar_from": 2010717,
+      "removed_link": 2010718
+    }
+  },
+  "checks": 9,
+  "verified": "data only"
+}

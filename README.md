@@ -1,4 +1,9 @@
-# Freedom Arrow 0.8.0-dev.73
+# Freedom Arrow 0.8.0-dev.74
+
+- Radar now loads on JRVG-1, PGZ-09, HJ-10 and AFT-10 (Radar SHORAD values: low-altitude optics and weapon range x1.25, high-altitude optics x2). The game loads only the first default ability of a unit; these units had smoke first and radar second, so the radar was dropped. Smoke and radar are now one ability.
+- Everything else as 0.8.0-dev.73.
+
+## Historical 0.8.0-dev.73
 
 - FK-2000: both 30 mm guns use the PGL-625 gun stats again: 7.8 damage per round (was 3.0), 20 damage per second per gun, 40 for the unit. The SAM is unchanged.
 - Everything else as 0.8.0-dev.72.
