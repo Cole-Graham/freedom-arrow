@@ -205,8 +205,14 @@ def check_slots(name,objects,meta):
     players={t:sum(1 for o in objects if o.get('_type')==13 and o.get('ownTeam',{}).get('id')==u) for u,t in fight.items()}
     slots={t.get('teamName'):len(t.get('slots',[])) for t in meta.get('teams',[]) if t.get('teamName') in fight.values()}
     assert len(fight)==2 and set(players.values())=={SLOTS_PER_TEAM} and set(slots.values())=={SLOTS_PER_TEAM},(name,players,slots)
+# Osama 2026-11-06 and 2026-11-15 01:04 PST: "1v1 should all be 100 points". Every [1v1] flavor ends at 100 (MapScoreLimits).
+ONE_V_ONE_LIMIT=100
+def check_limit(name,desc):
+    if '[1v1]' in name:
+        assert settings().get('MapScoreLimits',{}).get(name)==ONE_V_ONE_LIMIT and f'First to {ONE_V_ONE_LIMIT} wins' in desc,(name,'1v1 maps end at 100: set MapScoreLimits and the description')
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
+    check_limit(flavor['name'],spec['desc'])
     for o in objects:
         if o.get('_type')==15:o['capTime']=CAPTURE_SECONDS
     stamp(head,meta,flavor['name'],flavor['guid'],spec['desc'],spec['author'],flavor['kind'],flavor['public'])
@@ -237,12 +243,12 @@ def build_pair(game,out,spec):
         if flavor.get('host'):build_host_flavor(game,out,spec,flavor,layout)
         else:build_template_flavor(game,out,spec,flavor,template)
     if spec.get('assets',True):copy_assets(out,spec)
-def describe(values):
+def describe(values,limit=300):
     by={}
     for name,v in values.items():by.setdefault(v,[]).append(name[0])
     parts=[f"{' '.join(sorted(by[v]))} {'is' if len(by[v])==1 else 'are'} worth {v}" for v in sorted(by,reverse=True)]
     return ('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
-            'the side with the higher zone value scores the difference. First to 300 wins. '+', '.join(parts)+'. Flat 200 income, no upkeep.')
+            f'the side with the higher zone value scores the difference. First to {limit} wins. '+', '.join(parts)+'. Flat 200 income, no upkeep.')
 # Lateralus's authored maps (12 November 2026 onward) keep their own script, cameras and play area. The online flavor is
 # his file; the Skirmish flavor drops the deployment pause, as the other FA Skirmish flavors do, and fills every slot with bots.
 def prepare_authored(mod_file,scene,letters,names,edit=None):

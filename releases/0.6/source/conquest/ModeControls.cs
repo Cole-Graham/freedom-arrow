@@ -104,7 +104,7 @@ public sealed partial class Prototype
         if(profile is not ("native_control" or "continuous_score" or "continuous_time"))throw new ArgumentException("Unknown mode profile");
         config.PhasePolicy=profile=="native_control"?"native":"continuous";
         config.Ending=profile=="continuous_time"?"time_limit":"score_or_time";
-        config.ScoreLimit=profile=="continuous_time"?0:6;config.Validate();requestedProfile=profile;
+        config.ScoreLimit=profile=="continuous_time"?0:6;config.MapScoreLimits.Clear();config.Validate();requestedProfile=profile;
         Log("mode_profile_ready",new{profile,config.PhasePolicy,config.Ending,config.ScoreLimit,persistence="current process only; packaged defaults unchanged"});
     }
     static ObjectiveZoneScript[] ModeZoneArray()
@@ -130,7 +130,7 @@ public sealed partial class Prototype
         if(view.Conquest==null)throw new InvalidOperationException("Score-limit dispatch requires audited ConquestMode");
         pendingEnding=new PendingEnding {View=view,Epoch=ledgerEpoch,Winner=(TeamSide)side,
             Alpha=ledger.Alpha,Bravo=ledger.Bravo,Elapsed=ledger.Elapsed,Synthetic=fixtureUsedThisMatch};
-        Log("score_limit_queued",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,config.ScoreLimit,timeUp=ledger.TimeUp,config.TimeWinMarginPercent,epoch=ledgerEpoch,synthetic=fixtureUsedThisMatch});
+        Log("score_limit_queued",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,ledger.ScoreLimit,timeUp=ledger.TimeUp,config.TimeWinMarginPercent,epoch=ledgerEpoch,synthetic=fixtureUsedThisMatch});
     }
     static void DispatchPendingEnding()
     {
@@ -178,7 +178,7 @@ public sealed partial class Prototype
         int sample=(int)ledger.Elapsed/10;if(!force&&sample==lastModeSample)return;lastModeSample=sample;
         var mode=view.Conquest;
         var phases=new List<float>();if(mode._phasesTime!=null)foreach(var phase in mode._phasesTime)phases.Add(phase);
-        Log("mode_snapshot",new{epoch=ledgerEpoch,mode=view.Name,requestedProfile,config.PhasePolicy,config.Ending,config.ScoreLimit,
+        Log("mode_snapshot",new{epoch=ledgerEpoch,mode=view.Name,requestedProfile,config.PhasePolicy,config.Ending,ledger.ScoreLimit,
             ledger.Elapsed,ledger.Duration,ledger.Alpha,ledger.Bravo,ledger.Finished,ledger.ReachedScoreLimit,
             currentPhase=mode._currentPhase,phaseTimes=phases.ToArray(),nativePhaseCalls,continuousTimerCalls,
             mode._initData.DeathByScore,mode._initData.IsDestructionEnabled,mode._initData.IsCompensationEnabled,

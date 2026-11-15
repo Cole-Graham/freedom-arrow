@@ -23,7 +23,7 @@ def prepare(game,spec):
     head['spz']=pz[0]   # End's file leaves the active play area unset; the other FA maps name their one play area
     C.add_team_cameras(objects)
     return C.extract_layout(objects),(head,nodes,objects,meta)
-SPEC=dict(author='End',desc=C.describe(VALUES)+' Map by End.',prepare=prepare,flavors=[
+SPEC=dict(author='End',desc=C.describe(VALUES,100)+' Map by End.',prepare=prepare,flavors=[
     dict(name=NAME,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,NAME)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
     dict(name=SKIRMISH_NAME,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,SKIRMISH_NAME)),kind=3,public=False)])
 def build(game,out):C.build_pair(game,out,SPEC)

@@ -47,6 +47,9 @@ public sealed class Settings
     public string Contested { get; set; } = "exclude";
     public string Ending { get; set; } = "time_limit";
     public int ScoreLimit { get; set; } = 0;
+    // Osama 15 Nov 2026 01:04 PST: "1v1 should all be 100 points". A map listed here uses its own score limit; others use ScoreLimit.
+    public Dictionary<string, int> MapScoreLimits { get; set; } = new();
+    public int ScoreLimitFor(string map) => map != null && MapScoreLimits.TryGetValue(map, out int limit) ? limit : ScoreLimit;
     // Lateralus 12 November 2026: when time runs out, a side with at least this many percent more points wins; otherwise a draw.
     public int TimeWinMarginPercent { get; set; } = 10;
     public string PhasePolicy { get; set; } = "native";
@@ -87,6 +90,10 @@ public sealed class Settings
         if (PhasePolicy is not ("native" or "continuous")) throw new ArgumentException("PhasePolicy must be native or continuous");
         if (!double.IsFinite(MaximumSampleLatenessSeconds) || MaximumSampleLatenessSeconds < 0 || MaximumSampleLatenessSeconds > 5)
             throw new ArgumentException("MaximumSampleLatenessSeconds must be finite, 0..5");
+        if (MapScoreLimits == null) throw new ArgumentException("MapScoreLimits cannot be null");
+        foreach (var map in MapScoreLimits)
+            if (string.IsNullOrWhiteSpace(map.Key) || map.Value < 1 || map.Value > 1000000)
+                throw new ArgumentException("MapScoreLimits must be 1..1000000 per map (used only when Ending is score_or_time)");
         if (MapZoneWeights == null) throw new ArgumentException("MapZoneWeights cannot be null");
         foreach (var map in MapZoneWeights)
         {
@@ -180,7 +187,8 @@ public sealed class Ledger
     public int Alpha { get; private set; }
     public int Bravo { get; private set; }
     public bool Finished { get; private set; }
-    public bool ReachedScoreLimit => Config.Ending == "score_or_time" && Math.Max(Alpha, Bravo) >= Config.ScoreLimit && Alpha != Bravo;
+    public int ScoreLimit => Config.ScoreLimitFor(Map);
+    public bool ReachedScoreLimit => Config.Ending == "score_or_time" && Math.Max(Alpha, Bravo) >= ScoreLimit && Alpha != Bravo;
     public int? ScoreLimitWinner => ReachedScoreLimit ? (Alpha > Bravo ? 0 : 1) : null;
     public bool TimeUp => Elapsed >= Duration;
     // At time up: a side at the score limit wins; otherwise the leader wins with at least TimeWinMarginPercent more points

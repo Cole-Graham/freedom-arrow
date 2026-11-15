@@ -234,5 +234,11 @@
   "ScoreLimit": 300,
   "TimeWinMarginPercent": 10,
   "EnableDeveloperFixtures": false,
-  "FixedIncomePerMinute": 200
+  "FixedIncomePerMinute": 200,
+  "MapScoreLimits": {
+    "[FA] [1v1] Dead Center 0.1": 100,
+    "[FA] [1v1] Dead Center Skirmish 0.1": 100,
+    "[FA] [1v1] Kadaga 0.1": 100,
+    "[FA] [1v1] Kadaga Skirmish 0.1": 100
+  }
 }

@@ -238,7 +238,7 @@ public sealed partial class Prototype
     // Native conquest bars show points out of the score limit. A bar fault turns off the bars, not the scoring.
     static bool ShowScoreBars(WarGoalsPanel panel)
     {
-        if(barsOff||config.ScoreLimit<=0)return false;
+        if(barsOff||ledger.ScoreLimit<=0)return false;
         try
         {
             bool bravo=LocalIsBravo(panel);
@@ -247,7 +247,7 @@ public sealed partial class Prototype
             if(!barsLogged)
             {
                 barsLogged=true;
-                Log("score_bars",new{limit=config.ScoreLimit,alphaVisible=panel._alphaConquestBar.gameObject.activeInHierarchy,bravoVisible=panel._bravoConquestBar.gameObject.activeInHierarchy});
+                Log("score_bars",new{limit=ledger.ScoreLimit,alphaVisible=panel._alphaConquestBar.gameObject.activeInHierarchy,bravoVisible=panel._bravoConquestBar.gameObject.activeInHierarchy});
             }
             return true;
         }
@@ -260,7 +260,7 @@ public sealed partial class Prototype
     static void ShowScoreBar(GoalsBar bar,int points)
     {
         bar.gameObject.SetActive(true);
-        bar._progress.fillAmount=Mathf.Clamp01(points/(float)config.ScoreLimit);
+        bar._progress.fillAmount=Mathf.Clamp01(points/(float)ledger.ScoreLimit);
         // Auto-size so that three digit scores stay in the box and are not cut off.
         var text=bar._progressText;
         if(!text.enableAutoSizing)
@@ -269,7 +269,7 @@ public sealed partial class Prototype
             text.fontSizeMin=text.fontSize*0.4f;
             text.enableAutoSizing=true;
         }
-        text.text=$"{points}/{config.ScoreLimit}";
+        text.text=$"{points}/{ledger.ScoreLimit}";
         // The stars and markers belong to the native three-goal mode.
         foreach(var marker in new Component[]{bar._goalPointA,bar._goalPointB,bar._goalPointC,bar._goalIconA,bar._goalIconB,bar._goalIconC,bar._progressLineMain,bar._limiterParent})
             if(marker!=null&&marker.gameObject.activeSelf)marker.gameObject.SetActive(false);

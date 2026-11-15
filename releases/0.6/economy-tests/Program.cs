@@ -93,4 +93,14 @@ faWin.Advance(540,faAll);Check(faWin.Bravo==306&&faWin.ReachedScoreLimit&&faWin.
 Check(fa.ResolveMap(Settings.OnlineUnknownMap,cvIds)==cv&&fa.ResolveMap(Settings.OnlineUnknownMap,cvIds.Skip(1))==Settings.OnlineUnknownMap&&fa.ResolveMap("other map",cvIds)=="other map","2v2 Dead Center map resolution");
 var cvTick=new Ledger(fa,cv,2700).Forecast(new List<Zone>{new(53,0,false),new(54,0,false),new(57,0,false),new(55,1,false),new(62,1,true)});
 Check(cvTick.AlphaHeld==10&&cvTick.BravoHeld==3&&cvTick.Alpha==7&&cvTick.Bravo==0,"2v2 Dead Center weighted advantage");
+// Osama 15 Nov 2026 01:04 PST: "1v1 should all be 100 points". Per-map score limits; other maps keep ScoreLimit.
+var perMap=new Settings{Ending="score_or_time",ScoreLimit=300,OpeningDelaySeconds=0,TickSeconds=30,MapScoreLimits=new(){["one"]=100},MapZoneWeights=new(){["one"]=new(){["1"]=10}}};perMap.Validate();
+var oneMap=new Ledger(perMap,"one",2700);var held=new List<Zone>{new(1,0,false)};
+for(int t=30;t<=270;t+=30)oneMap.Advance(t,held);Check(oneMap.ScoreLimit==100&&oneMap.Alpha==90&&!oneMap.ReachedScoreLimit,"90 of 100 does not end a 1v1 match");
+oneMap.Advance(300,held);Check(oneMap.Alpha==100&&oneMap.ScoreLimitWinner==0,"a 1v1 match ends at 100");
+Check(new Ledger(perMap,"two",2700).ScoreLimit==300,"maps without their own limit keep 300");
+Throws(()=>new Settings{Ending="score_or_time",ScoreLimit=300,MapScoreLimits=new(){["one"]=0}}.Validate(),"per-map limit must be at least 1");
+var packaged=JsonSerializer.Deserialize<Settings>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"../../../../../0.8/source/UserData/FAConquestPrototype/settings.json")),new JsonSerializerOptions{PropertyNameCaseInsensitive=true})!;packaged.Validate();
+var oneVsOne=packaged.MapZoneWeights.Keys.Where(m=>m.Contains("[1v1]")).ToList();
+Check(oneVsOne.Count>=4&&oneVsOne.All(m=>packaged.ScoreLimitFor(m)==100)&&packaged.ScoreLimitFor("[FA] [2v2] Dead Center 0.1")==300,"packaged: every 1v1 map ends at 100, others at 300");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");
