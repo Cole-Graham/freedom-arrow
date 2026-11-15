@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.29", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.30", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -49,7 +49,7 @@ public partial class Mod : MelonMod
         try
         {
             if (unitData == null || unitModel?.PrefabRootScript == null) return;
-            QueueBodies(unitModel, unitData.Id);
+            QueueBodies(unitModel, unitData.Id, LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
             QueueWeapons(unitModel, unitData.Id, scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
             if (!map.TryGetValue(unitData.Name, out var e)) return;
             // Osama 13 Nov (Lynx ATV): an entry with no file and a "hide" pattern keeps the stand-in model and only hides
