@@ -1,0 +1,183 @@
+{
+  "version": "0.9.0-dev.12-hp9-noburst",
+  "base": "0.9.0-dev.12",
+  "build": 186,
+  "projectile_health": 9.0,
+  "vanilla_health": 1.0,
+  "hook": "ProjectileSpawnerHelper.MakeShellTargetable postfix (RVA 0x7DF1E0) writes _health, MaxHealth, HalfHealth",
+  "data_changes": {
+    "weapons": {
+      "19": {
+        "TimeBetweenBursts_patch_before": [
+          null,
+          null
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "261": {
+        "TimeBetweenBursts_patch_before": [
+          null,
+          null
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "309": {
+        "TimeBetweenBursts_patch_before": [
+          null,
+          null
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "327": {
+        "TimeBetweenBursts_patch_before": [
+          null,
+          null
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "345": {
+        "TimeBetweenBursts_patch_before": [
+          null,
+          null
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2009181": {
+        "TimeBetweenBursts_patch_before": [
+          1.5,
+          2.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2009365": {
+        "TimeBetweenBursts_patch_before": [
+          1.5,
+          2.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2009555": {
+        "TimeBetweenBursts_patch_before": [
+          2.0,
+          3.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2009599": {
+        "TimeBetweenBursts_patch_before": [
+          1.5,
+          2.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2010639": {
+        "TimeBetweenBursts_patch_before": [
+          2.0,
+          3.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2010659": {
+        "TimeBetweenBursts_patch_before": [
+          2.0,
+          3.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      },
+      "2010673": {
+        "TimeBetweenBursts_patch_before": [
+          2.0,
+          3.0
+        ],
+        "after": [
+          0.2,
+          0.2
+        ]
+      }
+    },
+    "ammunition_damage": {
+      "60": [
+        3.0,
+        1.5
+      ],
+      "231": [
+        3.0,
+        1.5
+      ],
+      "2009185": [
+        3.0,
+        1.5
+      ],
+      "2009369": [
+        7.8,
+        4.0
+      ],
+      "2009603": [
+        7.8,
+        4.0
+      ],
+      "62": [
+        2.0,
+        1.0
+      ],
+      "262": [
+        2.0,
+        1.5
+      ],
+      "213": [
+        2.3,
+        1.0
+      ],
+      "2010643": [
+        2.3,
+        1.0
+      ],
+      "2009559": [
+        2.3,
+        1.0
+      ],
+      "2010663": [
+        2.3,
+        1.0
+      ],
+      "2010677": [
+        2.3,
+        1.5
+      ]
+    }
+  },
+  "verified": "build checks only; not yet seen in a game"
+}
