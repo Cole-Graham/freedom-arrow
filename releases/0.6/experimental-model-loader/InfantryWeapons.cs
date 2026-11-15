@@ -104,7 +104,7 @@ public partial class Mod
                     {
                         var e = new Entry { file = view.battle && r.battle != "" ? r.battle : r.file,
                             align = false, scale = r.scale, offset = r.offset };
-                        Apply(go, e, $"infantry {view.unitId} soldier {i} {r.slot}", true);
+                        Apply(go, e, $"infantry {view.unitId} soldier {i} {r.slot}", true, 1f);   // 1 s: never defer weapons
                         var holder = go.transform.Find("FAM_holder");
                         if (holder != null) holder.localRotation = Quaternion.Euler(r.rotation[0], r.rotation[1], r.rotation[2]);
                         if (holder != null)

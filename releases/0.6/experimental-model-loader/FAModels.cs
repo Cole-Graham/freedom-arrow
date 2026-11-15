@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.24", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.25", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -163,9 +163,11 @@ public partial class Mod : MelonMod
             if (q.root == null) { queue.RemoveAt(i); continue; }
             // Osama 13 Nov: never show the stand-in while the replacement waits to be built; re-hide every frame until then.
             if (q.pass == 0 && q.e.file != "") Hide(q.root);
-            float wait = q.pass == 0 ? 0.5f : 1.0f;
+            // 0.3.25 (Osama 14 Nov): no fixed 0.5 s wait before the swap. Build on the next frame; Apply waits (up to 0.5 s)
+            // only while a turret bone the model needs is not there yet. The 1 s re-hide pass for late renderers stays.
+            float wait = q.pass == 0 ? 0f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
-            try { Apply(q.root, q.e, q.unit, q.pass == 0); }
+            try { if (!Apply(q.root, q.e, q.unit, q.pass == 0, Time.realtimeSinceStartup - q.t)) continue; }
             catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
@@ -212,11 +214,65 @@ public partial class Mod : MelonMod
         return hidden;
     }
 
-    static void Apply(GameObject root, Entry e, string unit, bool build)
+    // 0.3.25 (Osama 14 Nov): keep each parsed model (meshes and materials) after the first load, as the infantry bodies do.
+    // Reopening a card now only creates GameObjects. The game unloads unused assets between scenes, so the kept meshes are
+    // flagged DontUnloadUnusedAsset and every entry is checked for destroyed objects before reuse (0.3.17 lesson).
+    sealed class FamSub { public Mesh mesh; public Material mat; }
+    sealed class FamPart { public string bone = ""; public List<FamSub> subs = new(); }
+    static readonly Dictionary<string, List<FamPart>> famCache = new();
+    static List<FamPart> LoadFam(string file, out bool kept)
+    {
+        if (famCache.TryGetValue(file, out var c) && c.All(p => p.subs.All(x => x.mesh != null && x.mat != null))) { kept = true; return c; }
+        kept = false;
+        var mj = Path.Combine(dir, Path.ChangeExtension(file, null) + ".mat.json");
+        var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
+        var parts = new List<FamPart>();
+        using var f = new BinaryReader(File.OpenRead(Path.Combine(dir, file)));
+        if (new string(f.ReadChars(4)) != "FAM1") throw new Exception("not a FAM1 file");
+        int np = f.ReadInt32();
+        for (int p = 0; p < np; p++)
+        {
+            var part = new FamPart { bone = Str(f) }; int ns = f.ReadInt32();
+            for (int s = 0; s < ns; s++)
+            {
+                string tex = Str(f); var col = new Color(f.ReadSingle(), f.ReadSingle(), f.ReadSingle(), f.ReadSingle());
+                int nv = f.ReadInt32();
+                // Read each array in one block (the file stores plain little-endian floats and ints).
+                var fp = Floats(f, nv * 3); var pos = new Il2CppStructArray<Vector3>(nv); for (int k = 0; k < nv; k++) pos[k] = new Vector3(fp[3 * k], fp[3 * k + 1], fp[3 * k + 2]);
+                var fn = Floats(f, nv * 3); var nrm = new Il2CppStructArray<Vector3>(nv); bool anyN = false;
+                for (int k = 0; k < nv; k++) { var v = new Vector3(fn[3 * k], fn[3 * k + 1], fn[3 * k + 2]); nrm[k] = v; anyN |= v.sqrMagnitude > 0; }
+                var fu = Floats(f, nv * 2); var uv = new Il2CppStructArray<Vector2>(nv); for (int k = 0; k < nv; k++) uv[k] = new Vector2(fu[2 * k], fu[2 * k + 1]);
+                int ni = f.ReadInt32(); var bi = f.ReadBytes(ni * 4); var ii = new int[ni]; Buffer.BlockCopy(bi, 0, ii, 0, bi.Length);
+                var idx = new Il2CppStructArray<int>(ni); for (int k = 0; k < ni; k++) idx[k] = ii[k];
+                var mesh = new Mesh { name = $"FAM_{file}_{part.bone}_{s}" };
+                mesh.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+                mesh.vertices = pos; mesh.uv = uv; mesh.triangles = idx;
+                if (anyN) mesh.normals = nrm; else mesh.RecalculateNormals();
+                mesh.RecalculateBounds();
+                mp.TryGetValue(MatKey(tex, col), out var matp);
+                var mat = Mat(tex, col, matp);
+                mat.hideFlags |= HideFlags.DontUnloadUnusedAsset;
+                if (!string.IsNullOrEmpty(matp?.cockpitDonor) || mat.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();  // HDRP normal maps need tangents; the .fam carries none
+                part.subs.Add(new FamSub { mesh = mesh, mat = mat });
+            }
+            parts.Add(part);
+        }
+        famCache[file] = parts;
+        return parts;
+    }
+    static float[] Floats(BinaryReader f, int n) { var b = f.ReadBytes(n * 4); var r = new float[n]; Buffer.BlockCopy(b, 0, r, 0, b.Length); return r; }
+
+    // Returns false to try again next frame (pass 0 only, while a needed turret bone is not spawned yet, at most 0.5 s).
+    static bool Apply(GameObject root, Entry e, string unit, bool build, float age)
     {
         // Hide-only entries: turrets, gunners and LOD children can be spawned after InitView, so re-check every pass.
-        if (e.file == "") { if (e.hide != "") HideMatching(root, e.hide, unit); return; }
-        if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return; }
+        if (e.file == "") { if (e.hide != "") HideMatching(root, e.hide, unit); return true; }
+        if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return true; }
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        var fam = LoadFam(e.file, out bool kept);
+        float loadMs = (float)sw.Elapsed.TotalMilliseconds;
+        if (age < 0.5f && fam.Any(p => p.bone != "root" && Find(root.transform, p.bone) == null)) return false;
         var holder = new GameObject("FAM_holder");
         holder.SetActive(false);
         var pending = new List<(GameObject, string)>();
@@ -227,38 +283,18 @@ public partial class Mod : MelonMod
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
         int verts = 0, parts = 0;
-        var mj = Path.Combine(dir, Path.ChangeExtension(e.file, null) + ".mat.json");
-        var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
-        using var f = new BinaryReader(File.OpenRead(Path.Combine(dir, e.file)));
-        if (new string(f.ReadChars(4)) != "FAM1") throw new Exception("not a FAM1 file");
-        int np = f.ReadInt32();
-        for (int p = 0; p < np; p++)
+        foreach (var fp in fam)
         {
-            string bone = Str(f); int ns = f.ReadInt32();
+            string bone = fp.bone;
             var part = new GameObject("FAM_" + bone);
             part.transform.SetParent(holder.transform, false);
-            for (int s = 0; s < ns; s++)
+            for (int s = 0; s < fp.subs.Count; s++)
             {
-                string tex = Str(f); var col = new Color(f.ReadSingle(), f.ReadSingle(), f.ReadSingle(), f.ReadSingle());
-                int nv = f.ReadInt32();
-                var pos = new Il2CppStructArray<Vector3>(nv); for (int k = 0; k < nv; k++) pos[k] = new Vector3(f.ReadSingle(), f.ReadSingle(), f.ReadSingle());
-                var nrm = new Il2CppStructArray<Vector3>(nv); bool anyN = false;
-                for (int k = 0; k < nv; k++) { var v = new Vector3(f.ReadSingle(), f.ReadSingle(), f.ReadSingle()); nrm[k] = v; anyN |= v.sqrMagnitude > 0; }
-                var uv = new Il2CppStructArray<Vector2>(nv); for (int k = 0; k < nv; k++) uv[k] = new Vector2(f.ReadSingle(), f.ReadSingle());
-                int ni = f.ReadInt32(); var idx = new Il2CppStructArray<int>(ni); for (int k = 0; k < ni; k++) idx[k] = f.ReadInt32();
-                var mesh = new Mesh { name = $"FAM_{unit}_{bone}_{s}" };
-                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-                mesh.vertices = pos; mesh.uv = uv; mesh.triangles = idx;
-                if (anyN) mesh.normals = nrm; else mesh.RecalculateNormals();
-                mesh.RecalculateBounds();
                 var go = new GameObject($"FAM_{bone}_{s}");
                 go.transform.SetParent(part.transform, false);
-                go.AddComponent<MeshFilter>().sharedMesh = mesh;
-                mp.TryGetValue(MatKey(tex, col), out var matp);
-                var mat = Mat(tex, col, matp);
-                if (!string.IsNullOrEmpty(matp?.cockpitDonor) || mat.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();  // HDRP normal maps need tangents; the .fam carries none
-                go.AddComponent<MeshRenderer>().sharedMaterial = mat;
-                verts += nv;
+                go.AddComponent<MeshFilter>().sharedMesh = fp.subs[s].mesh;
+                go.AddComponent<MeshRenderer>().sharedMaterial = fp.subs[s].mat;
+                verts += fp.subs[s].mesh.vertexCount;
             }
             if (bone != "root") pending.Add((part, bone));
             parts++;
@@ -293,7 +329,8 @@ public partial class Mod : MelonMod
         int hidden = Hide(root);
         holder.SetActive(true);
         live.Add((root, unit));
-        MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file}");
+        MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s)");
+        return true;
         }
         catch
         {
