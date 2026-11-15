@@ -5,10 +5,11 @@ D=os.path.dirname(os.path.dirname(os.path.abspath(__file__)));B='/nix/store/fakn
 LIMIT=int(os.environ.get('LIMIT','60000'))
 z=zipfile.ZipFile('/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-0.9.0-dev.2-complete.bamod');m=json.loads(z.read('UserData/FAModels/models.json'));N=set(z.namelist())
 tris=dict((k,t) for t,k in json.load(open('/tmp/d35/battle_tris.json')))
+ONLY=set(os.environ.get('ONLY','').split(',')) - {''}
 jobs={}
 for k,v in m.items():
     f=v.get('battle')
-    if f and tris.get(k,0)>LIMIT and f not in jobs:jobs[f]=k
+    if f and tris.get(k,0)>LIMIT and f not in jobs and (not ONLY or f in ONLY):jobs[f]=k
 print('jobs',len(jobs),flush=True)
 def blenders():return int(subprocess.run(['pgrep','-c','-f','bin/blender'],capture_output=True,text=True).stdout.strip() or 0)
 run=[];todo=list(jobs.items());res={}
@@ -29,6 +30,6 @@ while todo or run:
             if n.startswith('UserData/FAModels/'+stem+'.') or n.startswith('UserData/FAModels/'+stem+'_tex'):
                 t=f'{D}/src/'+n.split('/')[-1]
                 if not os.path.exists(t):open(t,'wb').write(z.read(n))
-        run.append((f,subprocess.Popen(['nice','-n','10',B,'-b','-P',f'{D}/tools/lod.py','--',f'{D}/src/{f}',f'{D}/out/{f}',str(LIMIT)],stdout=open(f'{D}/out/{stem}.log','w'),stderr=subprocess.STDOUT)))
+        run.append((f,subprocess.Popen(['bash','-c',f'T={LIMIT}; for i in 1 2 3 4 5 6 7 8 9 10; do CULL=0.004 KEEP=12 nice -n 10 {B} -b -P {D}/tools/lod2.py -- {D}/src/{f} {D}/out/{f} $T > {D}/out/{stem}.log 2>&1; n=$(grep -o -e "-> [0-9]*" {D}/out/{stem}.log | tail -1 | cut -c4-); [ -n "$n" ] && [ $n -le {LIMIT} ] && break; T=$((T*90/100)); done'])))
     time.sleep(1)
-json.dump(res,open(f'{D}/out/results.json','w'),indent=1);print('ALLDONE',flush=True)
+prev=json.load(open(f'{D}/out/results.json')) if os.path.exists(f'{D}/out/results.json') else {};prev.update(res);json.dump(prev,open(f'{D}/out/results.json','w'),indent=1);print('ALLDONE',flush=True)

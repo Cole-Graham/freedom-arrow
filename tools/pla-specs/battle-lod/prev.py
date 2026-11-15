@@ -16,11 +16,11 @@ while jobs or run:
     time.sleep(0.5)
 from PIL import Image,ImageDraw
 items=sorted(r.items(),key=lambda x:-x[1]['tris'][0])
-for si in range(0,len(items),6):
-    S_=Image.new('RGB',(1300,6*230),(90,90,90));d=ImageDraw.Draw(S_)
-    for j,(f,v) in enumerate(items[si:si+6]):
+for si in range(0,len(items),8):
+    S_=Image.new("RGB",(1300,8*230),(90,90,90));d=ImageDraw.Draw(S_)
+    for j,(f,v) in enumerate(items[si:si+8]):
         for c,w in enumerate(('src','out')):
             im=Image.open(f'{D}/prev/{f[:-4]}_{w}.png').convert('RGBA');im=im.crop(im.getbbox());im.thumbnail((620,200));bg=Image.new('RGBA',im.size,(90,90,90,255));bg.alpha_composite(im);S_.paste(bg.convert('RGB'),(20+650*c,230*j+25))
         d.text((20,230*j+5),f"{v['unit']}: {v['tris'][0]:,} -> {v['tris'][1]:,} triangles",fill=(255,255,255))
-    S_.save(f'{D}/prev/sheet{si//6+1}.png')
-print('sheets',(len(items)+5)//6)
+    S_.save(f'{D}/prev/sheet{si//8+1}.png')
+print("sheets",(len(items)+7)//8)
