@@ -1,0 +1,316 @@
+[
+ {
+  "file": "m_phl03_static.fam",
+  "now": 486078,
+  "vanilla": "RU_9K58_Smerch",
+  "target": 154463,
+  "cut": true,
+  "goal": 162026,
+  "after": 161768
+ },
+ {
+  "file": "m_phl16_static.fam",
+  "now": 198778,
+  "vanilla": "RU_9K58_Smerch",
+  "target": 154463,
+  "cut": true,
+  "goal": 154463,
+  "after": 153977
+ },
+ {
+  "file": "m_phl191b_static.fam",
+  "now": 36687,
+  "vanilla": "RU_9K58_Smerch",
+  "target": 154463,
+  "cut": false
+ },
+ {
+  "file": "m_phl191ch_static.fam",
+  "now": 241183,
+  "vanilla": "RU_9K58_Smerch",
+  "target": 154463,
+  "cut": true,
+  "goal": 154463,
+  "after": 154419
+ },
+ {
+  "file": "m_phl81.fam",
+  "now": 6983,
+  "vanilla": "RU_BM_21_Grad",
+  "target": 63123,
+  "cut": false
+ },
+ {
+  "file": "sx2190.fam",
+  "now": 11007,
+  "vanilla": "RU_BM_21_Grad",
+  "target": 63123,
+  "cut": false
+ },
+ {
+  "file": "m_df15_static.fam",
+  "now": 244982,
+  "vanilla": "Iskander_Klub",
+  "target": 135566,
+  "cut": true,
+  "goal": 135566,
+  "after": 134828
+ },
+ {
+  "file": "m_df17_static.fam",
+  "now": 192981,
+  "vanilla": "Iskander_Klub",
+  "target": 135566,
+  "cut": true,
+  "goal": 135566,
+  "after": 98234
+ },
+ {
+  "file": "m_df21_static.fam",
+  "now": 53123,
+  "vanilla": "Iskander_Klub",
+  "target": 135566,
+  "cut": false
+ },
+ {
+  "file": "m_df31a_static.fam",
+  "now": 60104,
+  "vanilla": "Iskander_Klub",
+  "target": 135566,
+  "cut": false
+ },
+ {
+  "file": "m_yj18_static.fam",
+  "now": 45766,
+  "vanilla": "Iskander_Klub",
+  "target": 135566,
+  "cut": false
+ },
+ {
+  "file": "m_hq22g_static.fam",
+  "now": 195497,
+  "vanilla": "RU_S300PM",
+  "target": 81904,
+  "cut": true,
+  "goal": 81904,
+  "after": 82011
+ },
+ {
+  "file": "m_hq11_static.fam",
+  "now": 197081,
+  "vanilla": "RU_BUKM2",
+  "target": 51942,
+  "cut": true,
+  "goal": 65693,
+  "after": 65831
+ },
+ {
+  "file": "m_hq12_static.fam",
+  "now": 44684,
+  "vanilla": "RU_BUKM2",
+  "target": 51942,
+  "cut": false
+ },
+ {
+  "file": "m_hq16_static.fam",
+  "now": 53950,
+  "vanilla": "RU_BUKM2",
+  "target": 51942,
+  "cut": false
+ },
+ {
+  "file": "m_hq6a_static.fam",
+  "now": 59962,
+  "vanilla": "RU_BUKM2",
+  "target": 51942,
+  "cut": true,
+  "goal": 51942,
+  "after": 51927
+ },
+ {
+  "file": "m_hq17a_static.fam",
+  "now": 53769,
+  "vanilla": "RU_TOR",
+  "target": 33047,
+  "cut": true,
+  "goal": 33047,
+  "after": 33029
+ },
+ {
+  "file": "m_hq7g_static.fam",
+  "now": 42290,
+  "vanilla": "RU_AKM_OSA",
+  "target": 45453,
+  "cut": false
+ },
+ {
+  "file": "m_fk2000s_static.fam",
+  "now": 150348,
+  "vanilla": "RU_DT30_PANTSIR",
+  "target": 73401,
+  "cut": true,
+  "goal": 73401,
+  "after": 73036
+ },
+ {
+  "file": "m_pcl181_static.fam",
+  "now": 282628,
+  "vanilla": "DLC3_2S43_Malva",
+  "target": 38584,
+  "cut": true,
+  "goal": 94209,
+  "after": 133549
+ },
+ {
+  "file": "m_pcl09_static.fam",
+  "now": 25618,
+  "vanilla": "DLC3_2S43_Malva",
+  "target": 38584,
+  "cut": false
+ },
+ {
+  "file": "m_plz83_static.fam",
+  "now": 46786,
+  "vanilla": "DLC3_2S43_Malva",
+  "target": 38584,
+  "cut": true,
+  "goal": 38584,
+  "after": 38535
+ },
+ {
+  "file": "m_plz05_static.fam",
+  "now": 63559,
+  "vanilla": "US_M109A6",
+  "target": 63169,
+  "cut": false
+ },
+ {
+  "file": "m_plz45a4_static.fam",
+  "now": 40110,
+  "vanilla": "US_M109A6",
+  "target": 63169,
+  "cut": false
+ },
+ {
+  "file": "m_sh16_static.fam",
+  "now": 29119,
+  "vanilla": "US_M109A6",
+  "target": 63169,
+  "cut": false
+ },
+ {
+  "file": "m_plz07_static.fam",
+  "now": 48085,
+  "vanilla": "RU_2S1",
+  "target": 31677,
+  "cut": true,
+  "goal": 31677,
+  "after": 31576
+ },
+ {
+  "file": "m_plz70_static.fam",
+  "now": 35572,
+  "vanilla": "RU_2S1",
+  "target": 31677,
+  "cut": true,
+  "goal": 31677,
+  "after": 31656
+ },
+ {
+  "file": "m_plz85_static.fam",
+  "now": 37783,
+  "vanilla": "RU_2S1",
+  "target": 31677,
+  "cut": true,
+  "goal": 31677,
+  "after": 31632
+ },
+ {
+  "file": "m_plz89_static.fam",
+  "now": 55732,
+  "vanilla": "RU_2S1",
+  "target": 31677,
+  "cut": true,
+  "goal": 31677,
+  "after": 31623
+ },
+ {
+  "file": "pll05_static.fam",
+  "now": 79750,
+  "vanilla": "RU_NonaSVK",
+  "target": 46089,
+  "cut": true,
+  "goal": 46089,
+  "after": 45953
+ },
+ {
+  "file": "m_pll09_static.fam",
+  "now": 62834,
+  "vanilla": "RU_NonaSVK",
+  "target": 46089,
+  "cut": true,
+  "goal": 46089,
+  "after": 43385
+ },
+ {
+  "file": "m_pgz04a_static.fam",
+  "now": 36630,
+  "vanilla": "RU_ZSU-2-4",
+  "target": 30058,
+  "cut": true,
+  "goal": 30058,
+  "after": 28061
+ },
+ {
+  "file": "m_pgz88_static.fam",
+  "now": 39219,
+  "vanilla": "RU_ZSU-2-4",
+  "target": 30058,
+  "cut": true,
+  "goal": 30058,
+  "after": 29773
+ },
+ {
+  "file": "m_pgz95b_static.fam",
+  "now": 63608,
+  "vanilla": "RU_ZSU-2-4",
+  "target": 30058,
+  "cut": true,
+  "goal": 30058,
+  "after": 30009
+ },
+ {
+  "file": "m_pgz09_static.fam",
+  "now": 58760,
+  "vanilla": "RU_Tunguska",
+  "target": 28325,
+  "cut": true,
+  "goal": 28325,
+  "after": 28174
+ },
+ {
+  "file": "m_pgl625_static.fam",
+  "now": 41421,
+  "vanilla": "US_LAV_AD",
+  "target": 25153,
+  "cut": true,
+  "goal": 25153,
+  "after": 25072
+ },
+ {
+  "file": "m_jrvg1_static.fam",
+  "now": 36903,
+  "vanilla": "RU_Derivatsiya",
+  "target": 42197,
+  "cut": false
+ },
+ {
+  "file": "m_sx2220.fam",
+  "now": 64793,
+  "vanilla": "DLC3_KamAZ6560",
+  "target": 34005,
+  "cut": true,
+  "goal": 34005,
+  "after": 33598
+ }
+]

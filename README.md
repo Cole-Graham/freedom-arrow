@@ -1,4 +1,11 @@
-# Freedom Arrow 0.9.0-dev.8
+# Freedom Arrow 0.9.0-dev.9
+
+Osama 14 Nov 22:4x-22:59 PST: support tab armory models at vanilla level ("estimate what vanilla has and pare it down",
+"bring support textures down to near vanilla size too"). 24 meshes cut to the matching vanilla unit's LOD0 triangles (max 3x;
+2.97M -> 1.57M), 241 GPU textures so each of 38 support models is at or under 6.3 Mpx (677 -> 182 MB).
+Asset list and notes: work/pla-0.9/dev9 (support-assets.txt, SUPPORT-README.md). No gameplay data change. Local build.
+
+## Historical 0.9.0-dev.8
 
 Osama 14 Nov late batch (tools/pla-specs/apply_0_9_dev8.py): YJ-18 to PLAAF, VT-5 front KE 350 (all variants), Z-11WB to PLAGF
 Motorized only, card stat numbers one size at 90 % of vanilla, SX2190 driver hidden. Vehicle and aircraft PNGs dropped: their GPU

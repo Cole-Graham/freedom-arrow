@@ -1,0 +1,22 @@
+{
+  "support_vanilla_level": {
+    "meshes": 24,
+    "triangles": [
+      2974260,
+      1571656
+    ],
+    "textures": 241,
+    "texture_budget_mpx": 6.3,
+    "texture_mb": [
+      677.4,
+      182.4
+    ],
+    "assets": "tools/pla-specs/0.9.0-dev.9-assets.txt",
+    "approved": "Osama 14 Nov 2026 22:49 and 22:59 PST"
+  },
+  "version": "0.9.0-dev.9",
+  "base": "0.9.0-dev.8",
+  "base_sha256": "f9348be3bc2697a8e8433ae5555f46ee12e4ed94384bf3556f35d097d579bfb8",
+  "checks": 0,
+  "verified": "asset-only build; mesh structure and texture headers checked offline"
+}
