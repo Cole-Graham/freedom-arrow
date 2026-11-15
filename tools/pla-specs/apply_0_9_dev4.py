@@ -18,7 +18,7 @@ Run with --check while another thread is still building on the shared source fol
 - One weapon per mount (Osama 17:50 PST, thread 1571338089186599002): the J-20 freeze was 2 weapons on one pylon. 17 China air
   pylons and the J-6W double cannon fixed; J-20/J-20S/J-50 move the 2nd weapon to wingtip slot 7;
   helicopters keep every weapon (shared missile on the mirror pylon with double ammo); MD-22/FH-97A lose the PL-10 (Osama 18:02);
-  check_mount_weapons.py gates builds.
+  check_mount_weapons.py gates builds. Second pass: J-36 Heavy CAP slot 0 -> 8; ZBD-86 Recon / ZBL-08 ATGM on the turret mount.
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -315,6 +315,26 @@ for uid,mid in ((1080,2011291),(1263,2018732),(938,2009659)):
     ok(MOB[mid].get('IsAirDroppable') is True,('was air-droppable',uid))
     g.put('MobilityJson',mid,{'IsAirDroppable':False});rec['not_air_droppable'][U[uid]['HUDName'] or U[uid]['Name']]=mid
     ok(MOB[mid]['IsAirDroppable'] is False and not any(o.get('MobilityId') and MOB.get(o['MobilityId'],{}).get('IsAirDroppable') for o in O.values() if o.get('UnitId')==uid),('still air-droppable',uid))
+# ---------- Second pass over every China unit (Osama 18:19 PST, thread 1571338089186599002) ----------
+# Loadout slots the donor body never uses in vanilla. J-36 "Heavy CAP" put a PL-16 pylon in slot 0, the Su-57 gun mount (vanilla
+# Su-57 loadouts use 1-8): it moves to the free wingtip slot 8. ZBD-86 Recon and ZBL-08 added their ATGM option as a 3rd mount in
+# slot 2 (vanilla BMD-2 / BTR-82A loadouts use 0-1 / 0): the ATGM now rides on the unit's BMD-2 turret mount, as the vanilla BMD-2
+# turret carries 2A42 + PKT + Konkurs (3 weapons; this makes 2). check_mount_weapons.py now also fails builds on such slots.
+ok(U[929]['HUDName']=='J-36' and O[24393]['Turret0Id']==2018021 and not O[24393].get('Turret8Id'),'J-36 Heavy CAP slot 0')
+g.put('OptionsJson',24393,{'Turret0Id':0,'Turret8Id':2018021});rec['j36_heavy_cap_slot']={'PL-16 x2 pylon':'slot 0 -> 8'}
+rec['atgm_option_on_turret']={}
+for _u,_none,_atgm in ((1258,31053,31054),(903,31073,31074)):
+    _tu=sorted((r for r in TUJ.values() if r['UnitId']==_u and TJ[r['TurretId']].get('IsDefault')),key=lambda r:r['Id'])
+    _slot=next(i for i,r in enumerate(_tu) if TJ[r['TurretId']].get('ModelFileName')=='RU_BMD-2/RU_BMD_2_base_tower');_base=_tu[_slot]['TurretId']
+    _am=O[_atgm]['Turret2Id'];_aw=[r for r in TWJ.values() if r['TurretId']==_am]
+    ok(O[_none]['Turret2Id']==160 and len(_aw)==1 and len([r for r in TWJ.values() if r['TurretId']==_base])==1,(U[_u]['HUDName'],'ATGM option layout'))
+    _new=g.add('TurretsJson',TJ[_base],{'Name':TJ[_base]['Name']+' + '+(WJ[_aw[0]['WeaponId']].get('HUDName') or 'ATGM'),'IsDefault':False})
+    for _r in [r for r in TWJ.values() if r['TurretId']==_base]+_aw:g.add('TurretWeaponsJson',_r,{'TurretId':_new,'Order':0 if _r['TurretId']==_base else 1})
+    g.add('TurretUnitsJson',_tu[0],{'UnitId':_u,'TurretId':_new,'Order':0})
+    g.put('OptionsJson',_none,{'Turret2Id':0,f'Turret{_slot}Id':_base});g.put('OptionsJson',_atgm,{'Turret2Id':0,f'Turret{_slot}Id':_new})
+    ok(any(r['UnitId']==_u and r['WeaponId']==_aw[0]['WeaponId'] for r in t['WeaponAmmunitionsJson'].values()),(U[_u]['HUDName'],'ATGM ammo row'))
+    rec['atgm_option_on_turret'][U[_u]['HUDName']]={'slot':_slot,'mount':_new,'weapons':[WJ[r['WeaponId']].get('HUDName') for r in TWJ.values() if r['TurretId']==_new]}
+ok(not _over(),'mounts within slots after the second pass')
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

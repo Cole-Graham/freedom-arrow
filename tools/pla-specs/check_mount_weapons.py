@@ -1,13 +1,14 @@
 """Mount weapon slots: a mount may carry at most as many weapons as the most any vanilla mount with the same model carries
 (model-less mounts: the most on any vanilla model-less mount of the same body), and no weapon twice, unless it is a vanilla mount
-as shipped. More weapons than the model has slots throws IndexOutOfRange in UnitBuilder.SetupWeaponComponents at spawn
+as shipped; and a deployable unit's loadout may only use slot numbers that vanilla uses on the same body (vanilla loadout
+slots, or its default mounts). More weapons than the model has slots throws IndexOutOfRange in UnitBuilder.SetupWeaponComponents at spawn
 ("CombatSystem initialization ... failed") and the match freezes (J-20 14 Nov 2026; FK-2000 13 Nov).
 Usage: check_mount_weapons.py PACKAGE.bamod VANILLA_DIR   (exit 1 and list the mounts when any are over)"""
 import json,sys,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
 from pipeline.tables import FIELD_TO_FILE
-TABS=('Units','TurretsJson','TurretUnitsJson','TurretWeaponsJson','WeaponsJson')
+TABS=('Units','TurretsJson','TurretUnitsJson','TurretWeaponsJson','WeaponsJson','OptionsJson','ModificationsJson','SpecializationAvailabilitiesJson')
 def tables(van,z=None):
     t={}
     for tab in TABS:
@@ -41,7 +42,35 @@ def over(t,v):
         if lim and len(ws)>lim or len(set(ws))<len(ws):
             bad.append((k,t['TurretsJson'][k]['Name'],mf,len(ws),lim,sorted({t['Units'][u]['HUDName'] for u in tu[k]})))
     return bad
+# F-35A/B/C "Wingtips F35 2xAIM9" (0.6 dev.52 test slot, 8 Nov): slots 5-6, past vanilla F-35 slots 0-4. Never confirmed in a
+# game; held for Osama's call (14 Nov) rather than silently passed.
+KNOWN={20162,20164,20166}
+def slots(t,v):
+    def opts(tt):
+        m={}
+        for o in tt['OptionsJson'].values():
+            md=tt['ModificationsJson'].get(o.get('ModificationId'))
+            if md and md['UnitId'] in tt['Units']:m.setdefault(md['UnitId'],[]).append(o)
+        return m
+    vo,to,vu=opts(v),opts(t),users(v);used,dflt={},{}
+    for u,r in v['Units'].items():
+        b=r['ModelFileName'];used.setdefault(b,set());dflt.setdefault(b,{0})
+        used[b]|={i for o in vo.get(u,[]) for i in range(21) if o.get(f'Turret{i}Id')}
+        dflt[b]|=set(range(sum(1 for k,us in vu.items() if u in us and v['TurretsJson'].get(k,{}).get('IsDefault'))))
+    ok={b:used[b] or dflt[b] for b in used}   # vanilla loadout slots; bodies with none (2S43 Malva) allow their default mounts
+    deploy={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}
+    deploy|={o['ReplaceUnitId'] for u in deploy for o in to.get(u,[]) if o.get('ReplaceUnitId')}
+    bad=[]
+    for u in sorted(deploy):
+        if u not in t['Units'] or u in v['Units'] and to.get(u)==vo.get(u):continue
+        b=t['Units'][u]['ModelFileName']
+        if b not in ok:continue
+        for o in to.get(u,[]):
+            extra=sorted(i for i in range(21) if o.get(f'Turret{i}Id') and i not in ok[b])
+            if extra and o['Id'] not in KNOWN:bad.append((t['Units'][u]['HUDName'],u,o['Id'],o.get('Name'),b,extra,sorted(ok[b])))
+    return bad
 if __name__=='__main__':
-    van=Path(sys.argv[2]);bad=over(tables(van,zipfile.ZipFile(sys.argv[1])),tables(van))
+    van=Path(sys.argv[2]);t,v=tables(van,zipfile.ZipFile(sys.argv[1])),tables(van);bad=over(t,v);bs=slots(t,v)
     for k,n,mf,c,lim,us in bad:print(f'{k} {n}: {c} weapons on model {mf} (vanilla most {lim}); units {", ".join(us)}')
-    print('mounts over their weapon slots',len(bad));sys.exit(1 if bad else 0)
+    for h,u,o,n,b,x,okk in bs:print(f'{h} ({u}) loadout {o} {n}: slots {x} on body {b} (vanilla uses {okk})')
+    print('mounts over their weapon slots',len(bad),'| loadout slots the body never uses',len(bs));sys.exit(1 if bad or bs else 0)
