@@ -36,13 +36,15 @@ public partial class Mod
                         if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
                         {
                             var f = e.battle != "" ? e.battle : e.file;
-                            if (preloadSeen.Add(f)) { preload.Enqueue(f); added++; }
+                            // 0.3.31: the file is read and prepared on a background thread right away (Background.cs Prefetch).
+                            if (preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; }
+                            if (e.battle != "") foreach (var lf in e.lods) if (lf != "" && preloadSeen.Add(lf)) { preload.Enqueue(lf); Prefetch(lf); added++; }
                         }
                         // 0.3.29 (Osama 15 Nov: "we should build it all before the match"): infantry bodies, their GPU textures and
                         // their battle weapon models are built here too, so the first squad of a type does no file work in battle.
                         foreach (var b in BodyFiles(id)) if (preloadSeen.Add("body:" + b)) { preload.Enqueue("body:" + b); added++; }
                         foreach (var r in weaponRules.Where(r => r.unitId == id))
-                        { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); added++; } }
+                        { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; } }
                     }
             MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} battle model(s), bodies and infantry weapons queued");
         }
@@ -53,6 +55,8 @@ public partial class Mod
     {
         if (preload.Count == 0) return;
         var f = preload.Dequeue();
+        // 0.3.31: a model whose background preparation is still running waits at the back of the queue; this frame does nothing.
+        if (!f.StartsWith("body:") && !FamReady(f) && famJobs.ContainsKey(f)) { preload.Enqueue(f); return; }
         var sw = System.Diagnostics.Stopwatch.StartNew();
         try
         {

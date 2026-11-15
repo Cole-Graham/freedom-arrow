@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.30", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.31", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -17,7 +17,7 @@ namespace FAModels;
 // Parts named for a bone (for example turret_0) are reparented to that bone, so they turn with it.
 public partial class Mod : MelonMod
 {
-    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; }
+    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); }
     static Dictionary<string, Entry> map = new();
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
@@ -58,7 +58,7 @@ public partial class Mod : MelonMod
             // In a battle, use the entry's low-res copy (smaller textures and mesh; aircraft with the gear up) when it has one.
             // The armory keeps the full-fidelity file, except on Potato or Low models quality (LowSettings.cs, 0.3.28).
             if (e.battle != "" && (LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null))
-                e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align };
+                e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, lods = e.lods };
             // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
             Hide(unitModel.PrefabRootScript.gameObject);
@@ -132,14 +132,15 @@ public partial class Mod : MelonMod
             // 0.3.29 (Osama 15 Nov: "clean model dead, we should just remove it so there's no wreck"): when the game switches the unit
             // to its dead model (AnimationHub.DeadModel active), our model goes too. The vanilla wreck stays hidden, so nothing remains.
             if (vis && IsDead(root, k)) { vis = false; if (deadLogged.Add(k)) MelonLogger.Msg($"FAMODELS {unit}: destroyed, model removed (no wreck)"); }
-            if (!famRenderers.TryGetValue(k, out var rs) || rs.Any(r => r == null) || Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 5f)
+            // 0.3.31: the renderer list is refreshed every 15 s (was: every 5 s, plus a native null check of every renderer every 0.2 s).
+            if (!famRenderers.TryGetValue(k, out var rs) || Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f)
             {
                 var list = new List<MeshRenderer>();var h = root.transform.Find("FAM_holder");
                 if (h != null) list.AddRange(h.GetComponentsInChildren<MeshRenderer>(true));
                 foreach (var t in root.GetComponentsInChildren<Transform>(true)) if (t.name.StartsWith("FAM_") && t.name != "FAM_holder" && t.parent != h) list.AddRange(t.GetComponentsInChildren<MeshRenderer>(true));
                 famRenderers[k] = rs = list.Distinct().ToArray(); famRenderersT[k] = Time.realtimeSinceStartup;
             }
-            foreach (var fr in rs) if (fr.enabled != vis) fr.enabled = vis;
+            foreach (var fr in rs) if (fr != null && fr.enabled != vis) fr.enabled = vis;
         }
         if (famRenderers.Count > 2000) { famRenderers.Clear(); famRenderersT.Clear(); hubs.Clear(); }
     }
@@ -201,7 +202,8 @@ public partial class Mod : MelonMod
         try { TickInfantryBodies(); } catch (Exception ex) { MelonLogger.Error("FAMODELS body poll: " + ex.Message); }
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
-        if (Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
+        // 0.3.31: the turret-yaw diagnostic walked every China unit's whole transform tree every 2 s; only with verbose.txt now.
+        if (Verbose && Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
         try { CamTick(); } catch (Exception ex) { MelonLogger.Error("FAMODELS cam: " + ex.Message); camWant = "off"; }
         if (fallbackMats.Count > 0 && Time.realtimeSinceStartup - upgradeT > 10f) { upgradeT = Time.realtimeSinceStartup; try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
         for (int i = queue.Count - 1; i >= 0; i--)
@@ -291,40 +293,53 @@ public partial class Mod : MelonMod
         kept = false;
         var mj = Path.Combine(dir, Path.ChangeExtension(file, null) + ".mat.json");
         var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
+        // 0.3.31: the file was read, converted and given tangents on a background thread (Background.cs); only the Unity objects
+        // are made here. Without a prefetch (a unit not in any deck, the armory) the same preparation runs here, as before.
+        var data = famJobs.TryRemove(file, out var job) ? job.Result : ParseFamData(file);
         var parts = new List<FamPart>();
-        using var f = new BinaryReader(File.OpenRead(Path.Combine(dir, file)));
-        if (new string(f.ReadChars(4)) != "FAM1") throw new Exception("not a FAM1 file");
-        int np = f.ReadInt32();
-        for (int p = 0; p < np; p++)
+        foreach (var pd in data)
         {
-            var part = new FamPart { bone = Str(f) }; int ns = f.ReadInt32();
-            for (int s = 0; s < ns; s++)
+            var part = new FamPart { bone = pd.bone };
+            for (int s = 0; s < pd.subs.Count; s++)
             {
-                string tex = Str(f); var col = new Color(f.ReadSingle(), f.ReadSingle(), f.ReadSingle(), f.ReadSingle());
-                int nv = f.ReadInt32();
-                // Read each array in one block (the file stores plain little-endian floats and ints).
-                var fp = Floats(f, nv * 3); var pos = new Il2CppStructArray<Vector3>(nv); for (int k = 0; k < nv; k++) pos[k] = new Vector3(fp[3 * k], fp[3 * k + 1], fp[3 * k + 2]);
-                var fn = Floats(f, nv * 3); var nrm = new Il2CppStructArray<Vector3>(nv); bool anyN = false;
-                for (int k = 0; k < nv; k++) { var v = new Vector3(fn[3 * k], fn[3 * k + 1], fn[3 * k + 2]); nrm[k] = v; anyN |= v.sqrMagnitude > 0; }
-                var fu = Floats(f, nv * 2); var uv = new Il2CppStructArray<Vector2>(nv); for (int k = 0; k < nv; k++) uv[k] = new Vector2(fu[2 * k], fu[2 * k + 1]);
-                int ni = f.ReadInt32(); var bi = f.ReadBytes(ni * 4); var ii = new int[ni]; Buffer.BlockCopy(bi, 0, ii, 0, bi.Length);
-                var idx = new Il2CppStructArray<int>(ni); for (int k = 0; k < ni; k++) idx[k] = ii[k];
+                var d = pd.subs[s]; var col = new Color(d.col[0], d.col[1], d.col[2], d.col[3]); int nv = d.pos.Length / 3;
+                var pos = new Il2CppStructArray<Vector3>(nv); for (int k = 0; k < nv; k++) pos[k] = new Vector3(d.pos[3 * k], d.pos[3 * k + 1], d.pos[3 * k + 2]);
+                var uv = new Il2CppStructArray<Vector2>(nv); for (int k = 0; k < nv; k++) uv[k] = new Vector2(d.uv[2 * k], d.uv[2 * k + 1]);
+                var idx = new Il2CppStructArray<int>(d.idx.Length); for (int k = 0; k < d.idx.Length; k++) idx[k] = d.idx[k];
                 var mesh = new Mesh { name = $"FAM_{file}_{part.bone}_{s}" };
                 mesh.hideFlags = HideFlags.DontUnloadUnusedAsset;
                 mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
                 mesh.vertices = pos; mesh.uv = uv; mesh.triangles = idx;
-                if (anyN) mesh.normals = nrm; else mesh.RecalculateNormals();
+                if (d.anyN) { var nrm = new Il2CppStructArray<Vector3>(nv); for (int k = 0; k < nv; k++) nrm[k] = new Vector3(d.nrm[3 * k], d.nrm[3 * k + 1], d.nrm[3 * k + 2]); mesh.normals = nrm; }
+                else mesh.RecalculateNormals();
                 mesh.RecalculateBounds();
-                mp.TryGetValue(MatKey(tex, col), out var matp);
-                var mat = Mat(tex, col, matp);
+                mp.TryGetValue(MatKey(d.tex, col), out var matp);
+                var mat = Mat(d.tex, col, matp);
                 mat.hideFlags |= HideFlags.DontUnloadUnusedAsset;
-                if (!string.IsNullOrEmpty(matp?.cockpitDonor) || mat.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();  // HDRP normal maps need tangents; the .fam carries none
+                if (!string.IsNullOrEmpty(matp?.cockpitDonor) || mat.IsKeywordEnabled("_NORMALMAP"))
+                {
+                    // HDRP normal maps need tangents; the .fam carries none, so they come from the background thread.
+                    if (d.tan.Length == 4 * nv) { var tan = new Il2CppStructArray<Vector4>(nv); for (int k = 0; k < nv; k++) tan[k] = new Vector4(d.tan[4 * k], d.tan[4 * k + 1], d.tan[4 * k + 2], d.tan[4 * k + 3]); mesh.tangents = tan; }
+                    else mesh.RecalculateTangents();
+                }
                 part.subs.Add(new FamSub { mesh = mesh, mat = mat });
             }
             parts.Add(part);
         }
         famCache[file] = parts;
         return parts;
+    }
+    // The stand-in's own LOD switch heights (screen share where each level ends), so our levels change where vanilla's would.
+    // Without a stand-in LODGroup: 0.25 / 0.10 / 0.02 of the screen height. Past the last level the model is culled, as vanilla's is.
+    static void AddLods(GameObject root, GameObject holder, List<List<Renderer>> levelRenderers, string unit)
+    {
+        float[] h = { 0.25f, 0.10f, 0.02f };
+        var native = root.GetComponentsInChildren<LODGroup>(true).FirstOrDefault(g => g.gameObject != holder);
+        if (native != null) { var nl = native.GetLODs(); for (int i = 0; i < Math.Min(nl.Length, h.Length); i++) h[i] = nl[i].screenRelativeTransitionHeight; }
+        int n = levelRenderers.Count; var lods = new Il2CppReferenceArray<LOD>(n);
+        for (int i = 0; i < n; i++) lods[i] = new LOD(i < h.Length ? h[i] : h[h.Length - 1] * 0.5f, new Il2CppReferenceArray<Renderer>(levelRenderers[i].ToArray()));
+        var g = holder.AddComponent<LODGroup>(); g.SetLODs(lods); g.RecalculateBounds();
+        if (Verbose) MelonLogger.Msg($"FAMODELS {unit}: {n} detail levels at {string.Join("/", h.Take(n).Select(x => x.ToString("F3")))} of the screen ({(native != null ? "stand-in's" : "default")})");
     }
     static float[] Floats(BinaryReader f, int n) { var b = f.ReadBytes(n * 4); var r = new float[n]; Buffer.BlockCopy(b, 0, r, 0, b.Length); return r; }
 
@@ -348,21 +363,27 @@ public partial class Mod : MelonMod
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
         int verts = 0, parts = 0;
-        foreach (var fp in fam)
+        // 0.3.31: distance detail levels like vanilla's LOD groups. A battle entry may name lighter copies ("lods": [l1, l2]); each level
+        // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (below). Level 0 is the model above.
+        var levels = new List<List<FamPart>> { fam };
+        foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) levels.Add(LoadFam(lf, out _));
+        var levelRenderers = levels.Select(_ => new List<Renderer>()).ToList();
+        for (int L = 0; L < levels.Count; L++)
+        foreach (var fp in levels[L])
         {
             string bone = fp.bone;
-            var part = new GameObject("FAM_" + bone);
+            var part = new GameObject(L == 0 ? "FAM_" + bone : $"FAM_{bone}_L{L}");
             part.transform.SetParent(holder.transform, false);
             for (int s = 0; s < fp.subs.Count; s++)
             {
-                var go = new GameObject($"FAM_{bone}_{s}");
+                var go = new GameObject(L == 0 ? $"FAM_{bone}_{s}" : $"FAM_{bone}_{s}_L{L}");
                 go.transform.SetParent(part.transform, false);
                 go.AddComponent<MeshFilter>().sharedMesh = fp.subs[s].mesh;
-                go.AddComponent<MeshRenderer>().sharedMaterial = fp.subs[s].mat;
-                verts += fp.subs[s].mesh.vertexCount;
+                var mr = go.AddComponent<MeshRenderer>(); mr.sharedMaterial = fp.subs[s].mat; levelRenderers[L].Add(mr);
+                if (L == 0) verts += fp.subs[s].mesh.vertexCount;
             }
             if (bone != "root") pending.Add((part, bone));
-            parts++;
+            if (L == 0) parts++;
         }
         // Line the turret up with the stand-in's turret bone (x/z), so it turns about its own ring; then reparent.
         bool aligned = false;
@@ -391,6 +412,7 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
+        if (levels.Count > 1) AddLods(root, holder, levelRenderers, unit);
         int hidden = Hide(root);
         holder.SetActive(true);
         live.Add((root, unit));
@@ -426,11 +448,16 @@ public partial class Mod : MelonMod
         {
             try
             {
-                using var r = new BinaryReader(File.OpenRead(fat));
-                if (new string(r.ReadChars(4)) != "FAT1") throw new Exception("not a FAT1 file");
-                int w = r.ReadInt32(), h = r.ReadInt32(), fmt = r.ReadInt32(), mips = r.ReadInt32(); bool lin = r.ReadInt32() != 0; int n = r.ReadInt32();
-                var t = new Texture2D(w, h, (TextureFormat)fmt, mips, lin) { name = "FAM_" + png };
-                t.LoadRawTextureData(r.ReadBytes(n));
+                // 0.3.31: bytes already read on a background thread (Background.cs PrefetchTextures) when the model was prefetched.
+                if (!fatReady.TryRemove(fat, out var d))
+                {
+                    using var r = new BinaryReader(File.OpenRead(fat));
+                    if (new string(r.ReadChars(4)) != "FAT1") throw new Exception("not a FAT1 file");
+                    d = new FatData { w = r.ReadInt32(), h = r.ReadInt32(), fmt = r.ReadInt32(), mips = r.ReadInt32(), lin = r.ReadInt32() != 0 };
+                    int n = r.ReadInt32(); d.data = r.ReadBytes(n);
+                }
+                var t = new Texture2D(d.w, d.h, (TextureFormat)d.fmt, d.mips, d.lin) { name = "FAM_" + png };
+                t.LoadRawTextureData(d.data);
                 t.Apply(false, true);
                 return t;
             }
