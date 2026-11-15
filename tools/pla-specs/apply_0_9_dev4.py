@@ -20,7 +20,7 @@ Run with --check while another thread is still building on the shared source fol
   helicopters keep every weapon (shared missile on the mirror pylon with double ammo); MD-22/FH-97A lose the PL-10 (Osama 18:02);
   check_mount_weapons.py gates builds. Second pass: J-36 Heavy CAP slot 0 -> 8; ZBD-86 Recon / ZBL-08 ATGM on the turret mount.
 """
-import argparse,hashlib,json,sys,zipfile
+import argparse,hashlib,json,os,sys,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent)]
 from pipeline.tables import FIELD_TO_FILE
@@ -178,7 +178,11 @@ rec['akf98a_maverick']={'was':_was,'now':{k:_AM[2016661][k] for k in _was},'relo
 # 39 battle meshes over 60,000 triangles rebuilt in Blender (work/pla-0.9/battle-lod/tools/lod.py: weld per UV island, planar merge
 # that keeps UVs, then collapse to an even triangle density). Armory files unchanged; textures unchanged. check_battle_tris.py gates builds.
 LOD=Path('/home/sam/tars/work/ba-dev/replicas/codex/work/pla-0.9/battle-lod/out');lr=json.loads((LOD/'results.json').read_text())
-ok(len(lr)==39 and all(v['tris'][1]<=60000 and v.get('parts_same') for v in lr.values()),'39 battle meshes at or under 60k, same parts')
+# Osama 18:25 PST ("load build 4 ... I know some battle models aren't ready yet"): a mesh still being redone may be over 60k for
+# now; it ships in its reduced form, and check_battle_tris.py lets only the files named in BA_BATTLE_TRIS_PENDING through.
+_pend={f for f,v in lr.items() if v['tris'][1]>60000};_allow=set(filter(None,os.environ.get('BA_BATTLE_TRIS_PENDING','').split(',')))
+ok(len(lr)==39 and all(v.get('parts_same') and v['tris'][1]<v['tris'][0] for v in lr.values()) and _pend<=_allow,('39 battle meshes reduced, same parts; over 60k only if pending',sorted(_pend-_allow)))
+rec['battle_lod_pending']={f:lr[f]['tris'] for f in sorted(_pend)}
 ALd=ROOT/f'tools/pla-specs/{V}-assets.txt';old=dict(l.split('=',1) for l in ALd.read_text().splitlines() if '=' in l) if ALd.exists() else {}
 for f in lr:ok((LOD/f).exists(),('lod file',f));old['UserData/FAModels/'+f]=str(LOD/f)
 ALd.write_text(''.join(f'{k}={v}\n' for k,v in sorted(old.items())))
@@ -370,6 +374,17 @@ ok(U[1047]['HUDName']=='HQ-12' and U[911]['ThumbnailFileName']=='FA_PLA_VEH_HQ22
 g.put('Units',1047,{'ThumbnailFileName':'FA_PLA_VEH_HQ22'})
 for _h in (911,1233,1234):g.put('Units',_h,{'ThumbnailFileName':U[227]['ThumbnailFileName']})
 rec['hq_icons']={'HQ-12':'FA_PLA_VEH_HQ22','HQ-9A/B/C':U[227]['ThumbnailFileName']}
+# ---------- ZTL-191 jammer option +20 (Osama 14 Nov 18:31 PST, thread 1571297086974992537: "ZTL-191 has a Jammer loadout option for
+# +20 points, 30% jammer from the Abrams"). Same slot as the vanilla M1A1 FEP (mod 397: base option + Hardhat, ability 80, ECM 0.7).
+ok(U[1080]['HUDName']=='ZTL-191' and ABJ[80]['Name'].strip()=='ECM Hardhat' and abs(ABJ[80]['ECMAccuracyMultiplier']-0.7)<1e-6,'Abrams Hardhat 30%')
+ok(not [x for x in M.values() if x['UnitId']==1080 and x.get('Type')==6],'no ZTL-191 protection slot yet')
+_za=[x for x in UAB.values() if x['UnitId']==1080];ok(len(_za)==1,'ZTL-191 one ability');_base=_za[0]['AbilityId']
+for _ab in (4,80):g.add('UnitAbilitiesJson',_za[0],{'AbilityId':_ab})
+_zm=g.add('ModificationsJson',M[397],{'UnitId':1080,'Name':'PLA ZTL-191 Jammer'})
+_z1=g.add('OptionsJson',O[1468],{'ModificationId':_zm,'Name':'ECM ZTL191 Base','Ability1Id':_base,'Ability2Id':4,'Cost':0,'IsDefault':True})
+_z2=g.add('OptionsJson',O[1469],{'ModificationId':_zm,'Name':'ECM ZTL191 Jammer','Ability1Id':_base,'Ability2Id':80,'Cost':20,'IsDefault':False})
+ok(_z1<=32767 and _z2<=32767,'short option ids')
+rec['ztl191_jammer']={'option':_z2,'cost':20,'ability':'ECM Hardhat (0.7 accuracy, the M1A1 FEP jammer)','ui':O[1469]['UIName']}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
