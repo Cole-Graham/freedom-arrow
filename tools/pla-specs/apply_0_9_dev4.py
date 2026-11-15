@@ -307,6 +307,14 @@ for k,(ws,lim,users) in sorted(_bad.items()):
     g.put('TurretsJson',k,{'Name':f'PLA air pylon {kept}'})
     rec['one_weapon_per_mount'][f'{k} {nm}']={'units':sorted(U[u]['HUDName'] for u in users),'loadouts':sorted({o['Id'] for o,_ in uses}),'kept':kept,'change':how}
 ok(not _over(),('mounts still over the vanilla slot count',sorted(_over())))
+# ---------- Not air-droppable: ZTL-191, ZTL-191 Recon, ZTL-11 (Osama 14 Nov 18:19 PST, thread 1571297086974992537) ----------
+# Air drop is MobilityJson.IsAirDroppable; each of these mobility rows belongs to that one unit only.
+MOB=t['MobilityJson'];PRJ=t['UnitPropulsionsJson'];rec['not_air_droppable']={}
+for uid,mid in ((1080,2011291),(1263,2018732),(938,2009659)):
+    ok([p['UnitId'] for p in PRJ.values() if p.get('MobilityId')==mid]==[uid],('mobility row not exclusive',uid,mid))
+    ok(MOB[mid].get('IsAirDroppable') is True,('was air-droppable',uid))
+    g.put('MobilityJson',mid,{'IsAirDroppable':False});rec['not_air_droppable'][U[uid]['HUDName'] or U[uid]['Name']]=mid
+    ok(MOB[mid]['IsAirDroppable'] is False and not any(o.get('MobilityId') and MOB.get(o['MobilityId'],{}).get('IsAirDroppable') for o in O.values() if o.get('UnitId')==uid),('still air-droppable',uid))
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
