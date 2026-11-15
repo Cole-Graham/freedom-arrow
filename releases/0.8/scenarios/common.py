@@ -230,10 +230,41 @@ def build_template_flavor(game,out,spec,flavor,template):
     if flavor['kind']==2:add_deployment(nodes,163,flavor['deploy_target'],flavor.get('deploy_pin','in'))
     else:set_bots(objects,meta)
     write_flavor(out,spec,flavor,head,objects,nodes,meta)
+
+# End's 1v1 maps (Steam Workshop, 1-3 Nov 2026; Osama 15 Nov 2026 00:54 PST: "End said we can use his maps here and implement them
+# into our mod"; 01:01 "these are 1v1"). All five share one shape: stock conquest script (start, delay, two pauses,
+# setConquestMode 300 points / 45 min), zones Alpha-Echo with no values, 5 slots per team, no units or cameras. The FA conquest
+# graft replaces the script. Bravo is the centre zone on all five (nearest the midpoint of the two teams' spawns): worth 3.
+END_SCRIPT=sorted(['start','delay','pauseGame','pauseGame','setConquestMode'])
+END_VALUES=dict(Alpha=2,Bravo=3,Charlie=2,Delta=2,Echo=2)
+def prepare_end(mod_file,scene,spec):
+    head,nodes,objects,meta=read_layout(mod_file)
+    assert head['map']==scene and head['author']=='End' and meta['gameVersion']==GAME_VERSION,(head['map'],head['author'])
+    assert not [o for o in objects if o.get('_type') in (1,18)],'authored map has units or cameras now. Check this merge.'
+    assert sorted(b['nnKey'] for b in nodes['b'])==END_SCRIPT,'End changed his script. Check this merge.'
+    nodes.update(b=[],c=[])   # the FA conquest graft supplies the script
+    strip_editor_teams(objects,meta)
+    assert free_uids(objects,nodes)=={}
+    for o in objects:
+        if o.get('_type')==15:assert o['ZoneIcon']==ord(o['_dname'][0])-ord('A')+1,o['_dname']
+    letter_zones(objects,{n:(n,v) for n,v in END_VALUES.items()},[f['name'] for f in spec['flavors']])
+    pz=[o['_uid'] for o in objects if o.get('_type')==7];assert len(pz)==1 and head['spz'] in (0,pz[0])
+    head['spz']=pz[0]   # some of End's files leave the active play area unset; the other FA maps name their one play area
+    add_team_cameras(objects)
+    return extract_layout(objects),(head,nodes,objects,meta)
+def end_spec(mod_file,title,scene,steam_id):
+    import uuid
+    name=f'[FA] [1v1] {title} 0.1';skirmish=f'[FA] [1v1] {title} Skirmish 0.1'
+    spec=dict(author='End',desc=describe(END_VALUES,ONE_V_ONE_LIMIT)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
+        dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
+        dict(name=skirmish,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish)),kind=3,public=False)])
+    spec['prepare']=lambda game,sp:prepare_end(mod_file,scene,sp)
+    spec['asset_dir']=Path(mod_file).resolve().parent
+    return spec
 # Files beside layout.bascr, such as .png previews, go into every built flavor folder.
 SOURCE_ONLY={'__init__.py',LAYOUT+'.bascr','meta.json'}
 def copy_assets(out,spec):
-    src=Path(sys.modules[spec['prepare'].__module__].__file__).resolve().parent
+    src=Path(spec['asset_dir']) if 'asset_dir' in spec else Path(sys.modules[spec['prepare'].__module__].__file__).resolve().parent
     for f in sorted(src.iterdir()):
         if f.is_file() and f.name not in SOURCE_ONLY and f.suffix!='.pyc':
             for flavor in spec['flavors']:shutil.copyfile(f,out/flavor['name']/f.name);print(f"{flavor['name']}: copied {f.name}")
