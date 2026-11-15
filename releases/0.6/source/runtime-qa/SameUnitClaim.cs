@@ -1,8 +1,11 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppDefaultEcs;
@@ -14,7 +17,8 @@ namespace FreedomArrow;
 // and SAM hit the same missile 3 times; our AaCooldown hook made 0 corrections, so this is native: ShootingSystem.InternalUpdate calls
 // OverkillScoringSystem.IsTargetOverkilled with excludeShooter = the calling weapon, so a launcher ignores its own missile in flight.
 // A unit claims a SEAD missile when one of its listed SAMs has a missile flying at it (ShootPriorityComponent.Shooters entry with
-// MissileLaunched) or one of its listed guns has it as target and fired in the last GunClaimSeconds. Every listed weapon of that unit
+// MissileLaunched, or, as seen in his tier3-sam-claim run where that flag was almost never set, the flying missile's own
+// SeekerComponent.ShooterWeapon + Target) or one of its listed guns has it as target and fired in the last GunClaimSeconds. Every listed weapon of that unit
 // then gets "overkilled" for that missile (the claiming gun itself excepted), so it takes another missile or holds fire.
 // Weapons: sameUnitClaimWeapons in spaag-weapons.json. Same pattern as AaCooldown: LateUpdate builds an immutable snapshot, the native
 // callback only reads it. Other units are not affected.
@@ -29,11 +33,13 @@ static class SameUnitClaim
     static Frame frame=new(0,new(),new());
     static HashSet<int> ids=new();
     static bool enabled,failed;
-    static World world;static EntitySet weaponSet,missileSet;
+    static World world;static EntitySet weaponSet,missileSet,seekerSet;
+    [StructLayout(LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
+    static ulong Raw(NullableEntity n)=>n.HasValue==0?0:(uint)n.Lo|((ulong)(uint)n.Hi<<32);
     static float next,nextScan,nextMetrics;
     static readonly List<(Entity E,ulong Key,ulong Unit,bool Gun)> listed=new();
     static readonly Dictionary<ulong,(int made,int ammo,float at)> fired=new();
-    static int blocks,blockLogs,claimsSeen;
+    static int blocks,blockLogs,claimsSeen,seekerClaims,shooterClaims,gunClaims;
     static readonly Dictionary<(ulong,ulong),float> lastBlockLog=new();
     static readonly System.Collections.Concurrent.ConcurrentQueue<(ulong Target,ulong Caller,bool Missile)> Blocked=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
@@ -42,6 +48,8 @@ static class SameUnitClaim
         var file=Path.Combine(root,"spaag-weapons.json");if(!File.Exists(file))return;
         ids=JsonNode.Parse(File.ReadAllText(file))?["sameUnitClaimWeapons"]?.AsArray().Select(x=>x!.GetValue<int>()).ToHashSet()??new();
         if(ids.Count==0)return;
+        if(Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<NullableEntity>()!=12)throw new InvalidOperationException("Entity layout changed");
+        if(!NativeEcs.Compiled<SeekerComponent>())throw new InvalidOperationException("SeekerComponent getter not compiled");
         var method=AccessTools.Method(typeof(OverkillScoringSystem),"IsTargetOverkilled")??throw new MissingMethodException("IsTargetOverkilled");
         var p=method.GetParameters();
         if(method.ReturnType!=typeof(bool)||p.Length!=10||p[0].ParameterType!=typeof(Entity).MakeByRefType()||p[3].ParameterType!=typeof(Entity).MakeByRefType())
@@ -72,8 +80,8 @@ static class SameUnitClaim
     public static void SceneChanged()
     {
         Volatile.Write(ref frame,new(0,new(),new()));
-        try{if(world!=null&&!world._isDisposed){weaponSet?.Dispose();missileSet?.Dispose();}}catch{}
-        world=null;weaponSet=missileSet=null;listed.Clear();fired.Clear();lastBlockLog.Clear();next=nextScan=0;
+        try{if(world!=null&&!world._isDisposed){weaponSet?.Dispose();missileSet?.Dispose();seekerSet?.Dispose();}}catch{}
+        world=null;weaponSet=missileSet=seekerSet=null;listed.Clear();fired.Clear();lastBlockLog.Clear();next=nextScan=0;
     }
     static Entity Target(Entity w)=>w.IsAlive&&w.Has<TargetComponent>()?NativeEcs.Field<TargetComponent,Entity>(w,"Target"):default;
     public static void LateUpdate()
@@ -89,6 +97,7 @@ static class SameUnitClaim
                 SceneChanged();world=current;
                 weaponSet=world.GetEntities().With<WeaponComponent>().AsSet();
                 missileSet=world.GetEntities().With<UnitComponent>().With<WarheadComponent>().With<ShootPriorityComponent>().AsSet();
+                seekerSet=world.GetEntities().With<SeekerComponent>().AsSet();
             }
             if(now>=nextScan)
             {
@@ -113,7 +122,7 @@ static class SameUnitClaim
                 if(now-s.at>GunClaimSeconds)continue;
                 var t=Target(l.E);if(!t.IsAlive||!t.Has<UnitComponent>())continue;
                 if(!AaCooldownPolicy.ProjectileType((int)NativeEcs.Read<UnitComponent>(t).UnitData.Type))continue;
-                ulong tk=Key(t);if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();list.Add((l.Unit,l.Key,false));
+                ulong tk=Key(t);if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();list.Add((l.Unit,l.Key,false));gunClaims++;
             }
             var ma=missileSet._entities;int mc=Math.Min(missileSet.Count,ma?.Length??0);
             for(int i=0;i<mc&&i<512;i++)
@@ -128,10 +137,21 @@ static class SameUnitClaim
                     {
                         var kv=it.Current;if(kv.Value==null||!kv.Value.MissileLaunched)continue;
                         ulong wk=Key(kv.Key);if(!weaponUnit.TryGetValue(wk,out var u))continue;
-                        ulong tk=Key(e);if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();list.Add((u,wk,true));
+                        ulong tk=Key(e);if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();list.Add((u,wk,true));shooterClaims++;
                     }
                 }
                 finally{it.Dispose();}
+            }
+            // Each flying missile names the launcher that fired it and what it is chasing.
+            var sa=seekerSet._entities;int sc=Math.Min(seekerSet.Count,sa?.Length??0);
+            for(int i=0;i<sc&&i<1024;i++)
+            {
+                var e=sa[i];if(!e.IsAlive||!e.Has<SeekerComponent>())continue;
+                ulong wk=Raw(NativeEcs.Field<SeekerComponent,NullableEntity>(e,"ShooterWeapon"));if(wk==0||!weaponUnit.TryGetValue(wk,out var u))continue;
+                ulong tk=Raw(NativeEcs.Field<SeekerComponent,NullableEntity>(e,"Target"));if(tk==0)continue;
+                if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();
+                if(!list.Exists(c=>c.Item2==wk&&c.Item3))list.Add((u,wk,true));
+                seekerClaims++;
             }
             claimsSeen+=claims.Count;
             Volatile.Write(ref frame,new(Stopwatch.GetTimestamp(),weaponUnit,claims.ToDictionary(p=>p.Key,p=>p.Value.ToArray())));
@@ -142,7 +162,7 @@ static class SameUnitClaim
                 lastBlockLog[(b.Target,b.Caller)]=now;
                 if(blockLogs++<2000)DiagnosticLog.Write("same_unit_claim_block",new{t=now,target=b.Target.ToString("X16"),weapon=b.Caller.ToString("X16"),claimBy=b.Missile?"missile_in_flight":"gun_firing"});
             }
-            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,blocks=Volatile.Read(ref blocks)});}
+            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,seekerClaims,shooterClaims,gunClaims,blocks=Volatile.Read(ref blocks)});}
         }
         catch(Exception x){failed=true;Volatile.Write(ref frame,new(0,new(),new()));DiagnosticLog.Write("same_unit_claim_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: native targeting. "+x.Message);}
     }
