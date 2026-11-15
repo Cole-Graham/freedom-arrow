@@ -15,7 +15,7 @@ namespace BAModManager.Core;
 public static class DeckGuard
 {
     public const string Vanilla = "vanilla", Mod = "mod";
-    private const string ModSub = "FreedomArrow";
+    private const string ModSub = "FreedomArrow", ModMarker = "freedom-arrow-import.txt";
     private const int Keep = 20;
 
     public static string? DecksDir
@@ -96,6 +96,13 @@ public static class DeckGuard
             var s = JsonSerializer.Deserialize<Session>(File.ReadAllText(PendingFile));
             var dir = Folder(Vanilla);
             if (s == null || dir == null) return null;
+            // Builds before Freedom Arrow 0.9.0-dev.3 keep mod decks in the top Decks folder, so a changed "vanilla" deck
+            // there is the player's own mod edit. Only check once the mod has its own folder (its import marker).
+            if (!File.Exists(Path.Combine(Folder(Mod)!, ModMarker)))
+            {
+                log(T("This Freedom Arrow build keeps its decks in the main Decks folder; vanilla deck check skipped (backups still made)."));
+                return null;
+            }
             var now = Hashes(dir);
             var changed = s.Vanilla.Where(x => !now.TryGetValue(x.Key, out var h) || h != x.Value).Select(x => x.Key).ToList();
             if (changed.Count == 0)
