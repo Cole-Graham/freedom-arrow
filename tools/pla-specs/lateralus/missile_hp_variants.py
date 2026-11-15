@@ -41,6 +41,7 @@ Usage: missile_hp_variants.py 5 7 9
            14:24-15:02 PST aircraft sale rework part 1, test build only: Aircrafts-tab units refund through the engine formula with
            plane-refund.json values (max 100%, health x0, ammo/flare x0, multiplier 1) and are paid out over 300 s; PlaneSale.cs; branch
            codex/batch/lateralus/plane-refund. "This is just a proposal and you should not queue it for a dev build until I say so.")
+           -planes = 24bc9555 (payouts cleared on the first frame: points taken back, never paid). The flag now builds -planes2 (fixed).
        missile_hp_variants.py 5 --burst-tier --mid-burst 7   (0.9.0-dev.12-hp5-burst-tier2: Lateralus 11:41 PST "the tunguska tier doesn't
            seem to be able to shoot down 2 missiles". hp5btier-1940 log: every middle burst of 5 went 2 hits on missile 1, 1 round
            already in flight when it died, 2 rounds at missile 2 still ~1.2 s out (1 hit); burst 7 = 3 for missile 1 + 4 for missile 2)
@@ -150,7 +151,7 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for j,x in enumerate(sys.argv[1:],1) if x.isdigit() and sys.argv[j-1]!='--mid-burst']:   # 11:45: '--mid-burst 7' had also built an unwanted hp7
-        V=f'{PREV}-hp{hp}'+('-burst-tier'+('3' if tier3 else '' if MIDN==5 else '2')+('-sam' if sam else '')+('-claim6' if claim else '')+('-gunsam' if gunsam else '')+('-planes' if planes else '') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
+        V=f'{PREV}-hp{hp}'+('-burst-tier'+('3' if tier3 else '' if MIDN==5 else '2')+('-sam' if sam else '')+('-claim6' if claim else '')+('-gunsam' if gunsam else '')+('-planes2' if planes else '') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
         before=burst_tier() if btier else burst_pause() if burst else None
         dmg={i:(v[0],TIER3_DAMAGE[i] if tier3 else 2.6) for i,v in NOBURST_DAMAGE.items()} if btier else tier_damage(hp) if tier else NOBURST_DAMAGE
         if nob or btier:noburst_damage(dmg)

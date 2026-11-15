@@ -25,13 +25,12 @@ static class PlaneSale
     const int MaxLog=300;
     sealed class Settings{public int Category=6;public float Max=100,Min=20,Health=0,Supply=0,Multiplier=1,Seconds=300;}
     sealed class Saved{public bool Swapped;public GameConfig Cfg;public float Max,Min,Health,Multiplier,Supply;}
-    sealed class Payout{public PlayerInfo Player;public IntPtr Ptr;public float Amount,Paid,Start;public int Unit;}
+    sealed class Payout{public PlayerInfo Player;public IntPtr Ptr,Session;public float Amount,Paid,Start,NextLog;public int Unit;}
     static Settings s=new();
     static bool on,broken;
     static int logged;
     static readonly object Gate=new();
     static readonly List<Payout> payouts=new();
-    static IntPtr session;
     static TextMeshProUGUI label;static MainShopButtonUI labelOwner;
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
@@ -85,7 +84,7 @@ static class PlaneSale
             }
             var p=u.Owner?.TryCast<PlayerInfo>();if(p==null)return;
             float before=p.Points.Value;p.Points=before-__result;
-            payouts.Add(new Payout{Player=p,Ptr=p.Pointer,Amount=__result,Start=Time.time,Unit=u.UnitData.Id});
+            payouts.Add(new Payout{Player=p,Ptr=p.Pointer,Session=CurrentSession(),Amount=__result,Start=Time.time,NextLog=Time.time+60,Unit=u.UnitData.Id});
             if(logged<MaxLog){logged++;DiagnosticLog.Write("plane_sale",new{t=Time.time,unit=u.UnitData.Id,name=u.UnitData.Name,cost=u.UnitData.Cost,refund=__result,
                 pointsWithInstant=before,pointsAfterTakeBack=p.Points.Value,perMinute=__result/s.Seconds*60f,s.Seconds,active=payouts.Count});}
         }
@@ -104,19 +103,27 @@ static class PlaneSale
         if(!on||broken||payouts.Count==0)return;
         try
         {
-            var g=Il2CppBrokenArrow.Client.Ecs.Controllers.GameController.Instance;
-            var cur=g?.GameSession==null?IntPtr.Zero:g.GameSession.Pointer;
-            if(cur!=session){session=cur;payouts.Clear();return;}
+            // 15 Nov 2026 test (Lateralus 15:26 PST "it doesn't seem to work at all"): the first version compared the session with a value that
+            // started at zero and cleared every payout on the first frame after a sale, so the points were taken back and never paid.
+            // Each payout now remembers its own session and is only dropped when that session has really ended.
+            var cur=CurrentSession();
             float now=Time.time;
             for(int i=payouts.Count-1;i>=0;i--)
             {
                 var q=payouts[i];
+                if(q.Session!=cur){payouts.RemoveAt(i);if(logged<MaxLog){logged++;DiagnosticLog.Write("plane_sale_dropped",new{t=now,unit=q.Unit,q.Amount,q.Paid,reason="match ended"});}continue;}
                 float due=Math.Min(q.Amount,q.Amount*(now-q.Start)/s.Seconds),d=due-q.Paid;
                 if(d>0){q.Player.Points=q.Player.Points.Value+d;q.Paid=due;}
+                if(now>=q.NextLog&&logged<MaxLog){logged++;q.NextLog=now+60;DiagnosticLog.Write("plane_sale_progress",new{t=now,unit=q.Unit,q.Amount,q.Paid,points=q.Player.Points.Value});}
                 if(q.Paid>=q.Amount-1e-4f){payouts.RemoveAt(i);if(logged<MaxLog){logged++;DiagnosticLog.Write("plane_sale_paid",new{t=now,unit=q.Unit,q.Amount,seconds=now-q.Start});}}
             }
         }
         catch(Exception x){Fail(x);}
+    }
+    static IntPtr CurrentSession()
+    {
+        var g=Il2CppBrokenArrow.Client.Ecs.Controllers.GameController.Instance;
+        return g?.GameSession==null?IntPtr.Zero:g.GameSession.Pointer;
     }
     public static void SceneChanged(){payouts.Clear();label=null;labelOwner=null;}
     static void HudAfter(MainShopButtonUI __instance,PlayerInfo __0)
