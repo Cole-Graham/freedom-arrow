@@ -248,8 +248,10 @@ internal sealed class LauncherForm : Form
         if (PinnedFreedomArrow.Enabled)
         {
             _packName.Text = "Freedom Arrow";
-            _packVersion.Text = pack?.Info?.Version == PinnedFreedomArrow.Version
-                ? PinnedFreedomArrow.Version + " installed"
+            // Lateralus 14 Nov 2026: show the installed mod and launcher versions.
+            var assets = manifest?.Packages.FirstOrDefault(p => p.Info?.Id == PinnedFreedomArrow.AssetsId)?.Info?.Version;
+            _packVersion.Text = pack?.Info?.Version is string installed
+                ? "Mod " + installed + (assets != null ? "  ·  Assets " + assets : "")
                 : "Downloads all mod content on PLAY";
         }
         if (!PinnedFreedomArrow.Enabled && pack != null && LauncherService.InstalledFromOtherRepo())
@@ -266,7 +268,7 @@ internal sealed class LauncherForm : Form
         RefreshChannels();
 
         _modsState.ForeColor = on ? Theme.Good : Theme.TextMuted;
-        _modsState.Text = PinnedFreedomArrow.Enabled ? "Models + music/voices automatic" : on
+        _modsState.Text = PinnedFreedomArrow.Enabled ? "Launcher " + (typeof(LauncherForm).Assembly.GetName().Version?.ToString(3) ?? "?") : on
             ? "●  " + T("Mods are on")
             : "○  " + T("Mods are off - the game starts normally with Anti-Cheat");
     }
