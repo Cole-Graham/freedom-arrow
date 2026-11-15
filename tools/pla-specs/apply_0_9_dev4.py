@@ -12,6 +12,7 @@ Run with --check while another thread is still building on the shared source fol
   ZBL-08 12 HP; ZBD-251 9 seats; VT-5 base 140 without APS, Iron Fist APS option +60 (as on the ZBD-20), Motorized 4 cards. VT-5 and VT-5 Recon KE front 500 (was 600; Osama 16:09 PST). Marine HJ-8H Team 85 (was 60; Osama 16:13 PST).
 - Icons: J-31 uses the J-35 icon, J-11D the J-16 icon, J-15D a new icon from its own model.
 - Recon and Conscript Recon get a binoculars-only icon (FA_PLA_INF_LINE_RECON); Z-6B UAV is unarmed with no loadouts (Osama 16:2x PST).
+- AKF-98A (J-16) has the vanilla AGM-65H Maverick stats; name and model kept (Osama 16:3x PST).
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -156,6 +157,17 @@ g.clear_options(1105)
 ok([r['TurretId'] for r in rows('TurretUnitsJson',1105)]==[160] and not [x for x in TWJ.values() if x['TurretId']==160] and not rows('WeaponAmmunitionsJson',1105),'Z-6B unarmed')
 ok(not rows('ModificationsJson',1105) and not [o for o in O.values() if o['ModificationId']==_zm[0]],'Z-6B no loadouts')
 rec['z6b_unarmed']={'removed_turrets':[1227,1228,1229],'removed_modification':_zm[0],'kept':'turret 160 (empty), laser ability 10'}
+# AKF-98A = AGM-65H Maverick stats (Osama 16:3x PST, thread 1571014792016171120). It was a Kh-38ML copy (750 m/s, 375 accel, 950 pen,
+# 23 dmg, 5 s reload). Every ammunition field is the vanilla AGM-65H's except name, HUD name and model; the x1 weapon gets the
+# Maverick x1 reload (0). Only the J-16 carries it.
+_AM=t['AmmunitionsJson'];_W=t['WeaponsJson'];_WA=t['WeaponAmmunitionsJson']
+ok(_AM[2016661]['HUDName']=='AKF-98A' and _AM[147]['HUDName']=='AGM-65H' and _W[2016659]['HUDName']=='AKF-98A' and _W[230]['Name']=='ATGM AGM65 x1 ','AKF-98A / AGM-65H rows')
+ok(sorted({U[x['UnitId']]['HUDName'] for x in _WA.values() if x['AmmunitionId']==2016661})==['J-16'],'AKF-98A on J-16 only')
+_was={k:_AM[2016661].get(k) for k in ('MaxSpeed','Acceleration','PenetrationAtGroundRange','Damage')}
+g.put('AmmunitionsJson',2016661,{k:v for k,v in _AM[147].items() if k not in ('Id','Name','HUDName','ModelFileName')})
+g.put('WeaponsJson',2016659,{'MagazineReloadTimeMin':_W[230]['MagazineReloadTimeMin'],'MagazineReloadTimeMax':_W[230]['MagazineReloadTimeMax']})
+ok(all(_AM[2016661].get(k)==v for k,v in _AM[147].items() if k not in ('Id','Name','HUDName','ModelFileName')),'AKF-98A = AGM-65H')
+rec['akf98a_maverick']={'was':_was,'now':{k:_AM[2016661][k] for k in _was},'reload':[5.0,_W[230]['MagazineReloadTimeMax']]}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
