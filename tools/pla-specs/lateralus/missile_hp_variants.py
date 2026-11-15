@@ -11,6 +11,13 @@ Usage: missile_hp_variants.py 5 7 9
        missile_hp_variants.py 7 9 --no-burst   (0.9.0-dev.12-hp7-noburst, -hp9-noburst)
        missile_hp_variants.py 5 7 --tier   (0.9.0-dev.12-hp5-tier, -hp7-tier: no bursts + TIER_DAMAGE)
        missile_hp_variants.py 5 --tier2   (0.9.0-dev.12-hp5-tier2: Lateralus 10:39 PST "lets try this", one hit harder per tier: 1.0/1.3/1.7)
+       missile_hp_variants.py 5 --burst-tier   (0.9.0-dev.12-hp5-burst-tier: Lateralus 11:29 PST "yes build that test build for me")
+
+--burst-tier (Lateralus 15 Nov 2026 11:21-11:29 PST: re-introduce bursts to set how many missiles a tier stops, a burst that refills on
+downtime, card DPS with burst cooldowns but without magazine reloads for the 12 SPAAG guns only, listed by weapon ID in a config file).
+All 12 rounds 2.6 damage = a 2-hit kill at 5 HP, so a short window (gun guarding a neighbour) still kills; the burst sets the count:
+light burst 3 (one kill + one spare) pause 2.0-3.0 s, middle burst 5 (two kills + one spare) pause 2.0-3.0 s, heavy no bursts.
+Timing model work/missile-hp-tests/burstsim/sim.py (theoretical). spaag-weapons.json drives SpaagWeapons.cs (card DPS, refill after 3 s).
 
 --tier (Lateralus 15 Nov 2026 10:16-10:23 PST: keep no bursts; power curve light guns stop 1 missile (2 occasionally), middle 2,
 heavy 3; "Give me test builds for both options, and yes make the PGZ-09 on same tier as Tunguska"). A gun lands ~4 hits per
@@ -40,7 +47,7 @@ def edit(p,old,new):
     s=p.read_text();assert s.count(old)==1,(p,old);p.write_text(s.replace(old,new))
 base=REL/f'out/0.8/FreedomArrow-{PREV}-complete.bamod';assert base.exists(),base
 BURST=[19,261,309,327,345,2009181,2009365,2009555,2009599,2010639,2010659,2010673];PAUSE=(0.2,0.2) if ('--no-burst' in sys.argv or '--tier' in sys.argv or '--tier2' in sys.argv) else (0.8,1.0)
-tier2='--tier2' in sys.argv;tier='--tier' in sys.argv or tier2;nob='--no-burst' in sys.argv or tier;burst='--burst-pause' in sys.argv or nob;lead='--lead-log' in sys.argv;fix='--lead-fix' in sys.argv;CONST=FA/'constants/weapons.json';ACONST=FA/'constants/ammunitions.json'
+btier='--burst-tier' in sys.argv;tier2='--tier2' in sys.argv;tier='--tier' in sys.argv or tier2;nob='--no-burst' in sys.argv or tier;burst='--burst-pause' in sys.argv or nob;lead='--lead-log' in sys.argv;fix='--lead-fix' in sys.argv;CONST=FA/'constants/weapons.json';ACONST=FA/'constants/ammunitions.json'
 # ammo id: (dev.12 damage, Lateralus 10:00 PST value)
 NOBURST_DAMAGE={60:(3.0,1.5),231:(3.0,1.5),2009185:(3.0,1.5),          # Pantsir/Tunguska 30 mm, PGZ-09 35 mm
     2009369:(7.8,4.0),2009603:(7.8,4.0),                                   # PGL-625, FK-2000
@@ -50,6 +57,24 @@ NOBURST_DAMAGE={60:(3.0,1.5),231:(3.0,1.5),2009185:(3.0,1.5),          # Pantsir
 LIGHT=[62,213,2010643,2009559,2010663];MID=[262,2010677,231,60,2009185];HEAVY=[2009369,2009603]   # PIVADS ZSU-23 PGZ-04 PGZ-04A PGZ-88 | C-RAM PGZ-95 Tunguska Pantsir PGZ-09 | PGL-625 FK-2000
 TIER_DAMAGE={5:(1.3,1.7,2.6),7:(1.8,2.4,3.6)}
 if '--tier2' in sys.argv:TIER_DAMAGE={5:(1.0,1.3,1.7)}   # hp5-tier killed 20/20: hits per kill 5/4/3 instead of 4/3/2
+LIGHT_W=[261,309,2009555,2010639,2010659];MID_W=[345,2010673,327,19,2009181];HEAVY_W=[2009365,2009599]   # weapon ids, same order as LIGHT/MID/HEAVY ammo
+BURST_TIER={**{i:(3,2.0,3.0) for i in LIGHT_W},**{i:(5,2.0,3.0) for i in MID_W}}   # weapon id: (shots per burst, pause min, pause max)
+SPAAG=FA/'spaag-weapons.json'
+def burst_tier():
+    assert sorted(LIGHT_W+MID_W+HEAVY_W)==sorted(BURST)
+    w=json.loads(zipfile.ZipFile(base).read('UserData/FreedomArrow/constants/weapons.json'));van={r['Id']:r for r in json.load(open('/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla/WeaponsJson.json'))};changed={}
+    keys=['ShotsPerBurstMin','ShotsPerBurstMax','TimeBetweenBurstsMin','TimeBetweenBurstsMax']
+    for i in BURST:
+        r=w.setdefault(str(i),{});changed[i]=[r.get(k,van.get(i,{}).get(k)) for k in keys]
+        n,lo,hi=BURST_TIER.get(i,(None,0.2,0.2))
+        r.update(TimeBetweenBurstsMin=lo,TimeBetweenBurstsMax=hi)
+        if n:r.update(ShotsPerBurstMin=n,ShotsPerBurstMax=n)
+    CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
+    SPAAG.write_text(enc({'weapons':sorted(BURST),'burstRefillIdleSeconds':3.0,
+        'card_dps':'Arsenal card DPS of these weapons counts burst cooldowns but not magazine reloads (Lateralus 11:29 PST)',
+        'burst_refill':'a listed gun that has not fired for burstRefillIdleSeconds and is not in a burst pause starts its next burst full',
+        'source':'Lateralus 15 Nov 2026, thread 1571554273639006392'}))
+    return {i:dict(zip(keys,v)) for i,v in changed.items()}
 def tier_damage(hp):
     l,m,h=TIER_DAMAGE[hp];new={**{i:l for i in LIGHT},**{i:m for i in MID},**{i:h for i in HEAVY}};assert set(new)==set(NOBURST_DAMAGE)
     return {i:(NOBURST_DAMAGE[i][0],v) for i,v in new.items()}
@@ -70,15 +95,15 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for x in sys.argv[1:] if x.isdigit()]:
-        V=f'{PREV}-hp{hp}'+('-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
-        before=burst_pause() if burst else None
-        dmg=tier_damage(hp) if tier else NOBURST_DAMAGE
-        if nob:noburst_damage(dmg)
+        V=f'{PREV}-hp{hp}'+('-burst-tier' if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
+        before=burst_tier() if btier else burst_pause() if burst else None
+        dmg={i:(v[0],2.6) for i,v in NOBURST_DAMAGE.items()} if btier else tier_damage(hp) if tier else NOBURST_DAMAGE
+        if nob or btier:noburst_damage(dmg)
         (FA/'projectile-health.json').write_text(enc({'health':float(hp),'vanilla':1.0,'scope':'every CanBeTargeted projectile (MakeShellTargetable)',
             'source':'Lateralus 15 Nov 2026, thread 1571554273639006392'}))
         m=json.loads((REL/'mod.json').read_text());assert m['version']==PREV
         m['version']=V;m['description']=re.sub(r'^(Freedom Arrow 0\.9: China \(PLA\) on the full 0\.7\.0-dev\.58 game\. )',
-            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
+            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(', 12 SPAAG guns 2.6 damage per round, light guns burst 3 and middle guns burst 5 with a 2-3 s pause, heavy guns no bursts, bursts refill after 3 s without firing, card DPS without magazine reload' if btier else '')+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
         (REL/'mod.json').write_text(enc(m))
         c=json.loads((FA/'channel.json').read_text());c['package_version']=V;(FA/'channel.json').write_text(enc(c))
         b=json.loads((FA/'pla-build.json').read_text());b.update(build=BUILD,label='Freedom Arrow '+V);(FA/'pla-build.json').write_text(enc(b))
@@ -86,11 +111,11 @@ try:
         edit(SRC/'runtime-qa/FreedomArrow.Runtime.csproj','<Version>0.9.0-dev.12</Version>',f'<Version>{V}</Version>')
         (FA/f'pla-{V}.json').write_text(enc({'version':V,'base':PREV,'build':BUILD,'projectile_health':float(hp),'vanilla_health':1.0,
             'hook':'ProjectileSpawnerHelper.MakeShellTargetable postfix (RVA 0x7DF1E0) writes _health, MaxHealth, HalfHealth',
-            'data_changes':({'weapons':{str(i):{'TimeBetweenBursts_patch_before':before[i],'after':list(PAUSE)} for i in BURST}}|({'ammunition_damage':{str(i):list(v) for i,v in dmg.items()}} if nob else {})) if burst else 'none','verified':'build checks only; not yet seen in a game'}))
+            'data_changes':{'weapons':before,'ammunition_damage':{str(i):list(v) for i,v in dmg.items()},'spaag_weapons':json.loads(SPAAG.read_text())} if btier else ({'weapons':{str(i):{'TimeBetweenBursts_patch_before':before[i],'after':list(PAUSE)} for i in BURST}}|({'ammunition_damage':{str(i):list(v) for i,v in dmg.items()}} if nob else {})) if burst else 'none','verified':'build checks only; not yet seen in a game'}))
         subprocess.run([DOTNET,'build','-c','Release','-p:GameDir=/home/sam/tars/work/ba-dev/game'],cwd=SRC/'runtime-qa',check=True,
             env={**os.environ,'DOTNET_CLI_TELEMETRY_OPTOUT':'1'})
         subprocess.run([PY,str(ROOT/'tools/pla-specs/package_0_8_next.py'),'--prev',PREV,'--version',V,'--build',str(BUILD),
             '--base',str(base),'--outdir',str(REL/'out/0.8'),'--zip',ZIP],check=True,env={**os.environ,'BA_DEVPOST_SKIP':'Lateralus missile HP test build, not a dev build'})
         subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True)
 finally:
-    subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True);(FA/'projectile-health.json').unlink(missing_ok=True);CONST.unlink(missing_ok=True);ACONST.unlink(missing_ok=True)
+    subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True);(FA/'projectile-health.json').unlink(missing_ok=True);CONST.unlink(missing_ok=True);ACONST.unlink(missing_ok=True);SPAAG.unlink(missing_ok=True)
