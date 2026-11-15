@@ -3,6 +3,7 @@ using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.Configs;
 using Il2CppBrokenArrow.Client.Ecs.Economy.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Shop.UI;
+using Il2CppBrokenArrow.Client.Ecs.UI;
 using Il2CppBrokenArrow.Client.Ecs.Utils;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppDefaultEcs;
@@ -23,7 +24,7 @@ namespace FreedomArrow;
 static class PlaneSale
 {
     const int MaxLog=300;
-    sealed class Settings{public int Category=6;public float Max=100,Min=20,Health=0,Supply=0,Multiplier=1,Seconds=300;}
+    sealed class Settings{public int Category=6;public float Max=100,Min=20,Health=0,Supply=0,Multiplier=1,Seconds=300;public string Icon="US_F15C-Label";}
     sealed class Saved{public bool Swapped;public GameConfig Cfg;public float Max,Min,Health,Multiplier,Supply;}
     sealed class Payout{public PlayerInfo Player;public IntPtr Ptr,Session;public float Amount,Paid,Start,NextLog;public int Unit;}
     static Settings s=new();
@@ -38,7 +39,7 @@ static class PlaneSale
         var c=JsonNode.Parse(File.ReadAllText(file))!;
         float F(string k,float d)=>c[k]?.GetValue<float>()??d;
         s=new Settings{Category=c["Category"]?.GetValue<int>()??6,Max=F("MaximumRefundPercent",100),Min=F("MinimumRefundPercent",20),
-            Health=F("HealthCostMultiplier",0),Supply=F("SupplyMultiplier",0),Multiplier=F("RefundMultiplier",1),Seconds=F("PayoutSeconds",300)};
+            Health=F("HealthCostMultiplier",0),Supply=F("SupplyMultiplier",0),Multiplier=F("RefundMultiplier",1),Seconds=F("PayoutSeconds",300),Icon=c["HudIcon"]?.GetValue<string>()??"US_F15C-Label"};
         if(!(s.Seconds>0)||s.Max<s.Min)throw new InvalidDataException("plane-refund.json: PayoutSeconds > 0 and Maximum >= Minimum");
         var m=AccessTools.Method(typeof(RefundSystem),"RefundUnit")??throw new MissingMethodException("RefundSystem.RefundUnit");
         harmony.Patch(m,prefix:new HarmonyMethod(typeof(PlaneSale),nameof(Before)){priority=Priority.First},
@@ -125,26 +126,55 @@ static class PlaneSale
         var g=Il2CppBrokenArrow.Client.Ecs.Controllers.GameController.Instance;
         return g?.GameSession==null?IntPtr.Zero:g.GameSession.Pointer;
     }
-    public static void SceneChanged(){payouts.Clear();label=null;labelOwner=null;}
+    public static void SceneChanged(){payouts.Clear();label=null;labelOwner=null;icon=null;lastText=null;}
+    // HUD (Lateralus 15:42 PST: "use the plane icon, I think the F-15C icon will work best ... obviously you will have to shrink it. Also, the padding
+    // between the Air refund income and the players current points pool, should be the same as the padding for the regular income below it").
+    // A copy of the income text sits above the points; its gap to the points equals the points-to-income gap, measured from the rendered text
+    // bounds. The F-15C map label sprite (IconsLoader address HudIcon, default US_F15C-Label) is scaled to the text height left of "+N".
+    static UnityEngine.UI.Image icon;static string lastText;static bool hudLogged;
     static void HudAfter(MainShopButtonUI __instance,PlayerInfo __0)
     {
         if(!on||broken||__0==null)return;
         try
         {
             float perMin=0;foreach(var q in payouts)if(q.Ptr==__0.Pointer)perMin+=q.Amount/s.Seconds*60f;
+            var inc=__instance._incomeText;var score=__instance._scoreText;if(inc==null||score==null)return;
             if(label==null||labelOwner==null||labelOwner.Pointer!=__instance.Pointer)
             {
-                var inc=__instance._incomeText;var score=__instance._scoreText;if(inc==null||score==null)return;
                 var go=UnityEngine.Object.Instantiate(inc.gameObject,inc.transform.parent);go.name="FA_PlaneSaleIncome";
-                label=go.GetComponent<TextMeshProUGUI>();labelOwner=__instance;
-                var lr=label.rectTransform;var sr=score.rectTransform;var ir=inc.rectTransform;
-                lr.anchoredPosition=sr.anchoredPosition+(sr.anchoredPosition-ir.anchoredPosition);
+                label=go.GetComponent<TextMeshProUGUI>();labelOwner=__instance;lastText=null;icon=null;
+                var ig=new GameObject("FA_PlaneSaleIcon");ig.transform.SetParent(go.transform,false);
+                icon=ig.AddComponent<UnityEngine.UI.Image>();icon.preserveAspect=true;icon.raycastTarget=false;
+                var sp=IconsLoader.LoadSprite(s.Icon,false,icon);
+                if(sp==null){UnityEngine.Object.Destroy(ig);icon=null;}
+                go.SetActive(false);
             }
             bool show=perMin>=0.5f;
             if(label.gameObject.activeSelf!=show)label.gameObject.SetActive(show);
-            if(show)label.text=(label.font!=null&&label.font.HasCharacter('✈')?"✈ +":"AIR +")+Mathf.RoundToInt(perMin);
+            if(!show)return;
+            string text=(icon==null?"AIR +":"+")+Mathf.RoundToInt(perMin);
+            if(text==lastText)return;
+            lastText=text;label.text=text;Layout(score,inc);
         }
         catch(Exception x){Fail(x);}
+    }
+    static float Edge(TMP_Text t,bool top)
+    {
+        var r=t.rectTransform;return r.localPosition.y+(top?t.textBounds.max.y:t.textBounds.min.y)*r.localScale.y;
+    }
+    static void Layout(TextMeshProUGUI score,TextMeshProUGUI inc)
+    {
+        score.ForceMeshUpdate();inc.ForceMeshUpdate();label.ForceMeshUpdate();
+        float gap=Edge(score,false)-Edge(inc,true);
+        var lr=label.rectTransform;var lp=lr.localPosition;lp.x=inc.rectTransform.localPosition.x;lp.y+=Edge(score,true)+gap-Edge(label,false);lr.localPosition=lp;
+        if(icon!=null)
+        {
+            var b=label.textBounds;float h=b.size.y*1.15f;var sp=icon.sprite;float w=sp==null?h:h*sp.rect.width/Math.Max(1f,sp.rect.height);
+            var ir=icon.rectTransform;var piv=lr.pivot;ir.anchorMin=piv;ir.anchorMax=piv;ir.pivot=new Vector2(0.5f,0.5f);ir.sizeDelta=new Vector2(w,h);
+            ir.anchoredPosition=new Vector2(b.min.x-0.35f*b.size.y-w/2f,b.center.y);icon.color=label.color;
+        }
+        if(!hudLogged){hudLogged=true;DiagnosticLog.Write("plane_sale_hud",new{icon=icon!=null?s.Icon:null,gap,scoreBottom=Edge(score,false),incomeTop=Edge(inc,true),
+            scoreTop=Edge(score,true),labelBottom=Edge(label,false)});}
     }
     static void Fail(Exception x)
     {
