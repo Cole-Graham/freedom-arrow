@@ -191,6 +191,9 @@ for _u,_h,_aid in ((945,'ZBD-20',2009807),(1256,'ZBD-20 Recon',2018377)):
     ok(U[_u]['HUDName']==_h and [r['ArmorId'] for r in t['UnitArmorsJson'].values() if r['UnitId']==_u]==[_aid] and [r['UnitId'] for r in t['UnitArmorsJson'].values() if r['ArmorId']==_aid]==[_u],(_h,'own armour'))
     ok(t['ArmorsJson'][_aid]['KinArmorFront']==650,(_h,'KE front 650'));g.put('ArmorsJson',_aid,{'KinArmorFront':500})
 rec['zbd20_ke_front']={'ZBD-20':[650,500],'ZBD-20 Recon':[650,500]}
+# XM30 availability 2 -> 4 (Osama 16:47 PST, thread 1571014792016171120); its only card is US Armored (spec 4)
+ok(U[983]['HUDName']=='XM30' and [(x['Id'],x['SpecializationId'],x['MaxAvailabilityXp0']) for x in SAJ.values() if x['UnitId']==983]==[(2001842,4,2)],'XM30 card')
+g.put('SpecializationAvailabilitiesJson',2001842,{'MaxAvailabilityXp0':4});rec['xm30_cards']=[2,4]
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
