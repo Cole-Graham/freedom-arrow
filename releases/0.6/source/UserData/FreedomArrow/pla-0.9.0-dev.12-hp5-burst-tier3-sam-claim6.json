@@ -1,0 +1,492 @@
+{
+  "version": "0.9.0-dev.12-hp5-burst-tier3-sam-claim6",
+  "base": "0.9.0-dev.12",
+  "build": 186,
+  "projectile_health": 5.0,
+  "vanilla_health": 1.0,
+  "hook": "ProjectileSpawnerHelper.MakeShellTargetable postfix (RVA 0x7DF1E0) writes _health, MaxHealth, HalfHealth",
+  "data_changes": {
+    "weapons": {
+      "19": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "261": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "309": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "327": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "345": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009181": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009365": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009555": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2009599": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2010639": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2010659": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2010673": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "20": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "28": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "99": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "329": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "605": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "619": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "620": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "625": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "628": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "704": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "705": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "732": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "772": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "773": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2009195": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2009371": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2009605": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2010625": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "315": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "320": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "323": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "324": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "346": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "347": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "366": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "599": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "650": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "651": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "685": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "774": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "783": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "784": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "2010569": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "2010583": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "2010597": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "2010611": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 3.0,
+        "TimeBetweenBurstsMax": 4.0
+      },
+      "220": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "236": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "238": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "307": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "319": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "690": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "691": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "2014534": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "2014549": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      },
+      "2014555": {
+        "ShotsPerBurstMin": 1,
+        "ShotsPerBurstMax": 1,
+        "TimeBetweenBurstsMin": 4.0,
+        "TimeBetweenBurstsMax": 5.0
+      }
+    },
+    "ammunition_damage": {
+      "60": [
+        3.0,
+        4.0
+      ],
+      "231": [
+        3.0,
+        4.0
+      ],
+      "2009185": [
+        3.0,
+        4.0
+      ],
+      "2009369": [
+        7.8,
+        4.9
+      ],
+      "2009603": [
+        7.8,
+        4.9
+      ],
+      "62": [
+        2.0,
+        4.0
+      ],
+      "262": [
+        2.0,
+        2.7
+      ],
+      "213": [
+        2.3,
+        4.6
+      ],
+      "2010643": [
+        2.3,
+        4.6
+      ],
+      "2009559": [
+        2.3,
+        4.6
+      ],
+      "2010663": [
+        2.3,
+        4.6
+      ],
+      "2010677": [
+        2.3,
+        2.6
+      ]
+    },
+    "spaag_weapons": {
+      "weapons": [
+        19,
+        261,
+        309,
+        327,
+        345,
+        2009181,
+        2009365,
+        2009555,
+        2009599,
+        2010639,
+        2010659,
+        2010673
+      ],
+      "burstRefillIdleSeconds": 3.0,
+      "sameUnitClaimWeapons": [
+        19,
+        20,
+        28,
+        99,
+        220,
+        236,
+        238,
+        261,
+        307,
+        309,
+        315,
+        319,
+        320,
+        323,
+        324,
+        327,
+        329,
+        345,
+        346,
+        347,
+        366,
+        599,
+        605,
+        619,
+        620,
+        625,
+        628,
+        650,
+        651,
+        685,
+        690,
+        691,
+        704,
+        705,
+        732,
+        772,
+        773,
+        774,
+        783,
+        784,
+        2009181,
+        2009195,
+        2009365,
+        2009371,
+        2009555,
+        2009599,
+        2009605,
+        2010569,
+        2010583,
+        2010597,
+        2010611,
+        2010625,
+        2010639,
+        2010659,
+        2010673,
+        2014534,
+        2014549,
+        2014555
+      ],
+      "same_unit_claim": "a unit whose listed SAM has a missile flying at a SEAD missile, or whose listed gun is firing at it, does not fire another listed weapon at it (Lateralus 12:3x PST)",
+      "card_dps": "Arsenal card DPS of these weapons counts burst cooldowns but not magazine reloads (Lateralus 11:29 PST)",
+      "burst_refill": "a listed gun that has not fired for burstRefillIdleSeconds and is not in a burst pause starts its next burst full",
+      "source": "Lateralus 15 Nov 2026, thread 1571554273639006392"
+    }
+  },
+  "verified": "build checks only; not yet seen in a game"
+}
