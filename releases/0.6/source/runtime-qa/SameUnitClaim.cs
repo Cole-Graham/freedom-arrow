@@ -45,7 +45,8 @@ static class SameUnitClaim
     static float next,nextScan,nextMetrics;
     static readonly List<(Entity E,ulong Key,ulong Unit,bool Gun)> listed=new();
     static readonly Dictionary<ulong,(int made,int ammo,float at)> fired=new();
-    static int flips,blocks,blockLogs,claimsSeen,seekerClaims,shooterClaims,gunClaims;
+    static bool guidanceOk;
+    static int flips,blocks,blockLogs,claimsSeen,guidanceClaims,seekerClaims,shooterClaims,gunClaims;
     static readonly Dictionary<(ulong,ulong),float> lastBlockLog=new();
     static readonly System.Collections.Concurrent.ConcurrentQueue<(ulong Target,ulong Caller,bool Missile)> Blocked=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
@@ -56,6 +57,7 @@ static class SameUnitClaim
         if(ids.Count==0)return;
         if(Unsafe.SizeOf<Entity>()!=8||Unsafe.SizeOf<NullableEntity>()!=12)throw new InvalidOperationException("Entity layout changed");
         if(!NativeEcs.Compiled<SeekerComponent>())throw new InvalidOperationException("SeekerComponent getter not compiled");
+        guidanceOk=NativeEcs.Compiled<ActiveGuidanceComponent>();
         var method=AccessTools.Method(typeof(OverkillScoringSystem),"IsTargetOverkilled")??throw new MissingMethodException("IsTargetOverkilled");
         var p=method.GetParameters();
         if(method.ReturnType!=typeof(bool)||p.Length!=10||p[0].ParameterType!=typeof(Entity).MakeByRefType()||p[3].ParameterType!=typeof(Entity).MakeByRefType())
@@ -67,7 +69,7 @@ static class SameUnitClaim
         if(me.ReturnType!=typeof(bool)||mp.Length!=2||mp.Any(x=>x.ParameterType!=typeof(Entity).MakeByRefType()))throw new InvalidOperationException("TargetingMe hook signature changed");
         harmony.Patch(me,postfix:new HarmonyMethod(typeof(SameUnitClaim),nameof(TargetingMe)));
         enabled=true;
-        DiagnosticLog.Write("same_unit_claim_installed",new{weapons=ids.Count,gunClaimSeconds=GunClaimSeconds});
+        DiagnosticLog.Write("same_unit_claim_installed",new{weapons=ids.Count,gunClaimSeconds=GunClaimSeconds,launcherGuidance=guidanceOk});
         MelonLogger.Msg($"FREEDOM_ARROW_SAME_UNIT_CLAIM installed: {ids.Count} interceptor weapons take one SEAD missile per unit");
     }
     // Native callback: reads the snapshot only.
@@ -162,6 +164,22 @@ static class SameUnitClaim
                 }
                 finally{it.Dispose();}
             }
+            // Launcher-steered SAMs (claim4, Lateralus 13:07 PST "the mixed weapons still fire at the same target on the Pantsir"; Pantsir 57E6E
+            // and Tor are seeker type 100, SeaRAM 10): the missile does not hold the target, the launcher's ActiveGuidanceComponent does.
+            if(guidanceOk)
+                foreach(var l in listed)
+                {
+                    if(l.Gun||!l.E.IsAlive||!l.E.Has<ActiveGuidanceComponent>())continue;
+                    var g=NativeEcs.Read<ActiveGuidanceComponent>(l.E);var all=g?.GetAllMissiles();if(all==null)continue;
+                    foreach(var m in all)
+                    {
+                        var mm=m;if(!mm.IsAlive||!g.DoesMissileHaveTarget(ref mm))continue;
+                        var t=g.GetMissileTarget(ref mm);ulong tk=Key(t);if(tk==0)continue;
+                        if(!claims.TryGetValue(tk,out var list))claims[tk]=list=new();
+                        if(!list.Exists(c=>c.Item2==l.Key&&c.Item3))list.Add((l.Unit,l.Key,true));
+                        guidanceClaims++;
+                    }
+                }
             // Each flying missile names the launcher that fired it and what it is chasing.
             var sa=seekerSet._entities;int sc=Math.Min(seekerSet.Count,sa?.Length??0);
             for(int i=0;i<sc&&i<1024;i++)
@@ -182,7 +200,7 @@ static class SameUnitClaim
                 lastBlockLog[(b.Target,b.Caller)]=now;
                 if(blockLogs++<2000)DiagnosticLog.Write("same_unit_claim_block",new{t=now,target=b.Target.ToString("X16"),weapon=b.Caller.ToString("X16"),claimBy=b.Missile?"missile_in_flight":"gun_firing"});
             }
-            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,seekerClaims,shooterClaims,gunClaims,targetingMeFlips=Volatile.Read(ref flips),blocks=Volatile.Read(ref blocks)});}
+            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,guidanceClaims,seekerClaims,shooterClaims,gunClaims,targetingMeFlips=Volatile.Read(ref flips),blocks=Volatile.Read(ref blocks)});}
         }
         catch(Exception x){failed=true;Volatile.Write(ref frame,new(0,new(),new()));DiagnosticLog.Write("same_unit_claim_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: native targeting. "+x.Message);}
     }
