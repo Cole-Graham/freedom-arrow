@@ -335,6 +335,41 @@ for _u,_none,_atgm in ((1258,31053,31054),(903,31073,31074)):
     ok(any(r['UnitId']==_u and r['WeaponId']==_aw[0]['WeaponId'] for r in t['WeaponAmmunitionsJson'].values()),(U[_u]['HUDName'],'ATGM ammo row'))
     rec['atgm_option_on_turret'][U[_u]['HUDName']]={'slot':_slot,'mount':_new,'weapons':[WJ[r['WeaponId']].get('HUDName') for r in TWJ.values() if r['TurretId']==_new]}
 ok(not _over(),'mounts within slots after the second pass')
+# ---------- SX2190: LMTV body with MTV stats for PLAAF and PLAN SOF; their Shaanxi HMV3 trucks go (Osama 14 Nov 18:25 PST,
+# thread 1571297086974992537: "basically an MTV stat clone with the model of the LMTV", 4500 supply, 18 seats, no driver or
+# loadouts, 50 pts, "Airforce and SOF lose their large Shaanxi trucks"; 18:27 "will be called SX2190"). Body, icon and the empty
+# LMTV mount come from vanilla LMTV (52); seats, armour, mobility (4500 supply) and sensors from vanilla MTV (390). No weapon mounts.
+_UP=t['UnitPropulsionsJson'];_MOB=t['MobilityJson'];_SUJ=t['SensorUnitsJson'];_TUJ=t['TurretUnitsJson'];_TJ=t['TurretsJson'];_WAJ=t['WeaponAmmunitionsJson']
+ok(U[52]['ModelFileName']=='US_LMTV' and U[390]['ModelFileName']=='US_MTV' and U[390]['InfantrySlots']==18,'vanilla LMTV and MTV')
+ok(not any(u.get('HUDName')=='SX2190' for u in U.values()),'SX2190 name free')
+_sx=max(U)+1;_d=json.loads(json.dumps(U[52]));_d.pop('Id')
+_d.update(Name='PLA SX2190',HUDName='SX2190',OriginalName='PLA SX2190',CountryId=U[912]['CountryId'],Cost=50,OriginalCost=50,
+          InfantrySlots=U[390]['InfantrySlots'],Weight=U[390]['Weight'],DisplayInArmory=True)
+g.put('Units',_sx,_d)
+_ar=[r for r in UAJ.values() if r['UnitId']==390 and ARJ[r['ArmorId']].get('IsDefault')];ok(len(_ar)==1,'MTV base armour')
+g.add('UnitArmorsJson',_ar[0],{'UnitId':_sx,'ArmorId':g.add('ArmorsJson',ARJ[_ar[0]['ArmorId']],{'Name':'PLA SX2190 ArmorsJson'})})
+_mb=[r for r in _UP.values() if r['UnitId']==390 and _MOB[r['MobilityId']]['Name']=='Wheels MTV'];ok(len(_mb)==1 and _MOB[_mb[0]['MobilityId']]['HeavyLiftWeight']==4500,'MTV mobility 4500')
+g.add('UnitPropulsionsJson',_mb[0],{'UnitId':_sx,'MobilityId':g.add('MobilityJson',_MOB[_mb[0]['MobilityId']],{'Name':'PLA SX2190 MobilityJson','IsAirDroppable':_MOB[_mb[0]['MobilityId']].get('IsAirDroppable')})})
+for r in [r for r in _SUJ.values() if r['UnitId']==390]:g.add('SensorUnitsJson',r,{'UnitId':_sx})
+_em=[r for r in _TUJ.values() if r['UnitId']==52 and not [w for w in t['TurretWeaponsJson'].values() if w['TurretId']==r['TurretId']]];ok(len(_em)==1,'LMTV empty mount')
+g.add('TurretUnitsJson',_em[0],{'UnitId':_sx})
+_swap={17:'PLAAF',20:'PLAN SOF'};_gone=[]
+for _old in (1235,1247):
+    for r in [r for r in SAJ.values() if r['UnitId']==_old and r['SpecializationId'] in _swap]:g.remove('SpecializationAvailabilitiesJson',r['Id']);_gone.append((U[_old]['HUDName'],_swap[r['SpecializationId']]))
+    ok(not [x for x in TAJ.values() if x['UnitId']==_old],'HMV3 not a listed transport')
+    assign['assignments'][str(_old)]=[x for x in assign['assignments'].get(str(_old),[]) if x not in _swap]
+_tpl=next(r for r in SAJ.values() if r['UnitId']==1235)
+for _sp in _swap:g.add('SpecializationAvailabilitiesJson',_tpl,{'UnitId':_sx,'SpecializationId':_sp,'MaxAvailabilityXp0':4})
+assign['assignments'][str(_sx)]=sorted(_swap)
+ok(len(_gone)==4 and sorted(r['SpecializationId'] for r in SAJ.values() if r['UnitId']==_sx)==[17,20],'SX2190 in PLAAF and PLAN SOF; HMV3 pair out')
+ok(not [r for r in _TUJ.values() if r['UnitId']==_sx and [w for w in t['TurretWeaponsJson'].values() if w['TurretId']==r['TurretId']]] and not [r for r in _WAJ.values() if r['UnitId']==_sx] and not [o for o in O.values() if o.get('UnitId')==_sx],'no weapons, ammo or loadouts')
+rec['sx2190']={'unit':_sx,'body':'US_LMTV','stats_from':'MTV 390','cost':50,'seats':18,'supply':4500,'cards':{'PLAAF':4,'PLAN SOF':4},'removed':_gone}
+# ---------- HQ icons (Osama 18:26/18:27 PST: "HQ-12 is missing its icon"; "HQ-9's icon should be what HQ-12 has. HQ-9 uses the
+# vanilla S-400 icon"). The rendered FA_PLA_VEH_HQ22 icon moves from HQ-9B/HQ-9C to HQ-12; every HQ-9 shows vanilla S-400 (227).
+ok(U[1047]['HUDName']=='HQ-12' and U[911]['ThumbnailFileName']=='FA_PLA_VEH_HQ22' and U[227]['ThumbnailFileName']=='DLC3_S400_X4-Label','HQ icon start')
+g.put('Units',1047,{'ThumbnailFileName':'FA_PLA_VEH_HQ22'})
+for _h in (911,1233,1234):g.put('Units',_h,{'ThumbnailFileName':U[227]['ThumbnailFileName']})
+rec['hq_icons']={'HQ-12':'FA_PLA_VEH_HQ22','HQ-9A/B/C':U[227]['ThumbnailFileName']}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
