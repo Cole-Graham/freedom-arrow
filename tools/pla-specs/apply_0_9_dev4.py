@@ -15,6 +15,8 @@ Run with --check while another thread is still building on the shared source fol
 - Battle meshes: 39 China battle models over 60,000 triangles rebuilt under the limit (Osama 16:28 PST); check_battle_tris.py now
   fails a build with any battle model over 60,000. Armory models and all textures unchanged.
 - AKF-98A (J-16) has the vanilla AGM-65H Maverick stats; name and model kept (Osama 16:3x PST). HJ-10 NLOS 90 -> 150 (Osama 16:42 PST).
+- One weapon per mount (Osama 17:50 PST, thread 1571338089186599002): the J-20 freeze was 2 weapons on one pylon. 17 China air
+  pylons and the J-6W double cannon fixed; J-20/J-20S/J-50 move the 2nd weapon to wingtip slot 7; check_mount_weapons.py gates builds.
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -203,6 +205,86 @@ for _sa in (608,661,662):
     ok(_sq['SpecializationId']==4 and U[_sq['UnitId']]['HUDName'].startswith('Mech. Riflemen') and any(r['SpecializationAvailabilityId']==_sa and r['UnitId']==_m2a3 for r in TAJ.values()) and 0<_men<=8,(_sa,'Mech. Riflemen card with M2A3'))
     g.add('TransportAvailabilitiesJson',next(iter(TAJ.values())),{'SpecializationAvailabilityId':_sa,'UnitId':983});rec['xm30_transport'][U[_sq['UnitId']]['HUDName']]=_men
 g.put('Units',983,{'Cost':230});ok(len([r for r in TAJ.values() if r['UnitId']==983])==3,'XM30 offered on 3 cards');rec['xm30_cost']=[200,230]
+# ---------- One weapon per mount (Osama 17:50 PST, thread 1571338089186599002: "do this for all potential units") ----------
+# The 17:45 freeze: "CombatSystem initialization for unit=PLA J-20 failed" (IndexOutOfRange in UnitBuilder.SetupWeaponComponents),
+# then "Get failed ... TurretComponent" every 2 s (Sentry breadcrumbs, Vengeance). SetupWeaponComponents gives a mount one weapon slot
+# per weapon its model has; no vanilla pylon model carries 2 weapons, and the FK-2000 freeze was 2 guns on one mount. Every mount now
+# carries at most as many weapons as the most any vanilla mount with the same model (or, model-less, on the same body) carries.
+# - Su-57 bodies (J-20, J-20S, J-50): the second weapon moves to the empty wingtip slot 7 (vanilla Su-57 wingtips), nothing lost.
+# - Helicopters, MD-22, FH-97A have no free slot: the mount keeps its first weapon, the one its model and its mirror slot carry.
+# - J-6W: its cannon was listed twice; one entry now fires twice as fast with a doubled magazine (same output).
+_van={tab:{r['Id']:r for r in json.loads((a.vanilla/(tab+'.json')).read_text())} for tab in ('TurretsJson','TurretWeaponsJson','TurretUnitsJson','Units')}
+def _wmap(TWx):
+    m={}
+    for r in TWx.values():m.setdefault(r['TurretId'],[]).append(r)
+    for v in m.values():v.sort(key=lambda r:(r['Order'],r['Id']))
+    return m
+def _caps(tt,TW_):
+    cap,body={},{}
+    for k,ws in _wmap(TW_).items():
+        if k not in tt['TurretsJson']:continue
+        mf=tt['TurretsJson'][k].get('ModelFileName')
+        if mf:cap[mf]=max(cap.get(mf,0),len(ws))
+        else:
+            for r in tt['TurretUnitsJson'].values():
+                if r['TurretId']==k and r['UnitId'] in tt['Units']:b=tt['Units'][r['UnitId']]['ModelFileName'];body[b]=max(body.get(b,0),len(ws))
+    return cap,body
+_vcap,_vbody=_caps(_van,_van['TurretWeaponsJson'])
+_vtw=_wmap(_van['TurretWeaponsJson'])
+TJ=t['TurretsJson'];TWJ=t['TurretWeaponsJson'];TUJ=t['TurretUnitsJson'];WJ=t['WeaponsJson']
+def _over():
+    out={}
+    for k,ws in _wmap(TWJ).items():
+        if k not in TJ:continue
+        users={r['UnitId'] for r in TUJ.values() if r['TurretId']==k and r['UnitId'] in U}
+        if not users or [w['WeaponId'] for w in ws]==[w['WeaponId'] for w in _vtw.get(k,[])]:continue   # vanilla mounts as shipped (IL-76, Tu-95 tail guns)
+        mf=TJ[k].get('ModelFileName')
+        lim=_vcap.get(mf) if mf else min(_vbody.get(U[u]['ModelFileName'],0) or 99 for u in users)
+        if lim and len(ws)>lim or len({w['WeaponId'] for w in ws})<len(ws):out[k]=(ws,lim,users)
+    return out
+_bad=_over();ok(len(_bad)==18,('over-slot mounts',sorted(_bad)))
+def _opts_using(k):
+    res=[]
+    for o in O.values():
+        for i in range(21):
+            if o.get(f'Turret{i}Id')==k:res.append((o,i))
+    return res
+rec['one_weapon_per_mount']={}
+_tips={}
+for k,(ws,lim,users) in sorted(_bad.items()):
+    nm=TJ[k]['Name'];ids=[w['WeaponId'] for w in ws]
+    if len(set(ids))<len(ids):
+        ok(nm=='PLA J-6W cannon mount' and len(ids)==2 and [U[u]['HUDName'] for u in users]==['J-6W'],('duplicate gun',nm))
+        w0=WJ[ids[0]];ok(w0['TimeBetweenShotsInBurst']==0.2 and w0['MagazineSize']==25,'J-6W gun as built')
+        g.remove('TurretWeaponsJson',ws[1]['Id'])
+        g.put('WeaponsJson',ids[0],{'TimeBetweenShotsInBurst':0.1,'MagazineSize':50,'HUDName':'2x '+w0['HUDName']})
+        rec['one_weapon_per_mount'][f'{k} {nm}']={'units':['J-6W'],'change':'one gun entry, 0.2 -> 0.1 s between shots, magazine 25 -> 50'};continue
+    ok(lim==1 and len(ws)==2,(nm,lim,len(ws)))
+    keep,extra=ws[0],ws[1];uses=_opts_using(k);bodies={U[u]['ModelFileName'] for u in users}
+    if bodies=={'RU_SU-57'} and all(i==3 and o.get('Turret7Id') in (None,0,160) for o,i in uses):
+        xw=extra['WeaponId'];xname=WJ[xw].get('HUDName') or WJ[xw]['Name']
+        if xw not in _tips:
+            mf='Weapon/R73/R73_Wingtip' if 'PL-10' in xname else TJ[2016541]['ModelFileName']
+            tip=g.add('TurretsJson',TJ[653],{'Name':f'PLA air wingtip {xname}','ModelFileName':mf})
+            g.add('TurretWeaponsJson',extra,{'TurretId':tip,'Order':0});_tips[xw]=tip
+        tip=_tips[xw]
+        for u in users:
+            if not any(r['UnitId']==u and r['TurretId']==tip for r in TUJ.values()):g.add('TurretUnitsJson',next(r for r in TUJ.values() if r['UnitId']==u),{'UnitId':u,'TurretId':tip,'Order':0})
+            ok(any(r['UnitId']==u and r['WeaponId']==xw for r in t['WeaponAmmunitionsJson'].values()),(U[u]['HUDName'],xname,'ammo row'))
+        for o,i in uses:g.put('OptionsJson',o['Id'],{'Turret7Id':tip})
+        how=f'{xname} moved to wingtip slot 7'
+    elif (WJ[extra['WeaponId']].get('HUDName') or '').startswith('HJ-') and (WJ[keep['WeaponId']].get('HUDName') or '').startswith('TY-90'):
+        # TY-90 + HJ-8/HJ-10 (Z-19, Z-21): the TY-90 stays on the other slots, so this mount keeps the anti-tank missile, on the
+        # Hellfire x4 rail model the HJ-10 x4 mount uses.
+        keep,extra=extra,keep;g.put('TurretsJson',k,{'ModelFileName':'Weapon/Hellfire/Hellfire_4'});g.put('TurretWeaponsJson',keep['Id'],{'Order':0})
+        how=f'{WJ[extra["WeaponId"]].get("HUDName")} removed (no free slot; TY-90 stays on the other slots)'
+    else:
+        how=f'{WJ[extra["WeaponId"]].get("HUDName") or WJ[extra["WeaponId"]]["Name"]} removed (no free slot)'
+    g.remove('TurretWeaponsJson',extra['Id'])
+    kept=WJ[keep['WeaponId']].get('HUDName') or WJ[keep['WeaponId']]['Name']
+    g.put('TurretsJson',k,{'Name':f'PLA air pylon {kept}'})
+    rec['one_weapon_per_mount'][f'{k} {nm}']={'units':sorted(U[u]['HUDName'] for u in users),'loadouts':sorted({o['Id'] for o,_ in uses}),'kept':kept,'change':how}
+ok(not _over(),('mounts still over the vanilla slot count',sorted(_over())))
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
