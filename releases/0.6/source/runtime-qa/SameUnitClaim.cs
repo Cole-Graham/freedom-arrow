@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using HarmonyLib;
+using Il2CppBrokenArrow.Client.Ecs.BattleSystem;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Missiles.Components;
@@ -22,6 +23,11 @@ namespace FreedomArrow;
 // then gets "overkilled" for that missile (the claiming gun itself excepted), so it takes another missile or holds fire.
 // Weapons: sameUnitClaimWeapons in spaag-weapons.json. Same pattern as AaCooldown: LateUpdate builds an immutable snapshot, the native
 // callback only reads it. Other units are not affected.
+// Second hook (claim3, after Lateralus 12:57 PST "still seems the same": 3 blocks in the claim2 run although 286 SAM-in-flight claims were
+// seen): ShootingSystem.InternalUpdate(weapon, shooterUnit) first calls BattleSystemHelpers.IsTargetSEADProjectileTargetingMe(target,
+// shooterUnit) (call 0x80DF3F) and, if the SEAD missile is aimed at this unit, fires without asking IsTargetOverkilled at all. Lateralus's
+// SeaRAM and Pantsir were the SEAD targets. Postfix: when this unit already claims that missile, answer "not aimed at me", so the normal
+// overkill check (and the rule above) runs. Other callers: TargetMaintenanceSystem.LocalTargetUpdate (target keeping), ShellHitSystem ctor.
 static class SameUnitClaim
 {
     const float GunClaimSeconds=0.5f,Period=0.05f,MaxAge=0.25f;
@@ -39,7 +45,7 @@ static class SameUnitClaim
     static float next,nextScan,nextMetrics;
     static readonly List<(Entity E,ulong Key,ulong Unit,bool Gun)> listed=new();
     static readonly Dictionary<ulong,(int made,int ammo,float at)> fired=new();
-    static int blocks,blockLogs,claimsSeen,seekerClaims,shooterClaims,gunClaims;
+    static int flips,blocks,blockLogs,claimsSeen,seekerClaims,shooterClaims,gunClaims;
     static readonly Dictionary<(ulong,ulong),float> lastBlockLog=new();
     static readonly System.Collections.Concurrent.ConcurrentQueue<(ulong Target,ulong Caller,bool Missile)> Blocked=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
@@ -56,6 +62,10 @@ static class SameUnitClaim
             throw new InvalidOperationException("Overkill hook signature changed");
         // Runs after AaCooldown's postfix so a claim is the final word for these weapons.
         harmony.Patch(method,postfix:new HarmonyMethod(typeof(SameUnitClaim),nameof(After)){priority=Priority.Last});
+        var me=AccessTools.Method(typeof(BattleSystemHelpers),"IsTargetSEADProjectileTargetingMe")??throw new MissingMethodException("IsTargetSEADProjectileTargetingMe");
+        var mp=me.GetParameters();
+        if(me.ReturnType!=typeof(bool)||mp.Length!=2||mp.Any(x=>x.ParameterType!=typeof(Entity).MakeByRefType()))throw new InvalidOperationException("TargetingMe hook signature changed");
+        harmony.Patch(me,postfix:new HarmonyMethod(typeof(SameUnitClaim),nameof(TargetingMe)));
         enabled=true;
         DiagnosticLog.Write("same_unit_claim_installed",new{weapons=ids.Count,gunClaimSeconds=GunClaimSeconds});
         MelonLogger.Msg($"FREEDOM_ARROW_SAME_UNIT_CLAIM installed: {ids.Count} interceptor weapons take one SEAD missile per unit");
@@ -76,6 +86,16 @@ static class SameUnitClaim
                 if(Blocked.Count<256)Blocked.Enqueue((Key(__0),caller,c.Missile));
                 return;
             }
+    }
+    // Native callback: reads the snapshot only. A claimed SEAD missile aimed at this unit no longer skips the overkill check.
+    static void TargetingMe(ref Entity __0,ref Entity __1,ref bool __result)
+    {
+        if(!__result||!enabled||failed)return;
+        var f=Volatile.Read(ref frame);
+        if((Stopwatch.GetTimestamp()-f.At)/(double)Stopwatch.Frequency>MaxAge)return;
+        if(!f.Claims.TryGetValue(Key(__0),out var claims))return;
+        ulong unit=Key(__1);
+        foreach(var c in claims)if(c.Unit==unit){__result=false;Interlocked.Increment(ref flips);return;}
     }
     public static void SceneChanged()
     {
@@ -162,7 +182,7 @@ static class SameUnitClaim
                 lastBlockLog[(b.Target,b.Caller)]=now;
                 if(blockLogs++<2000)DiagnosticLog.Write("same_unit_claim_block",new{t=now,target=b.Target.ToString("X16"),weapon=b.Caller.ToString("X16"),claimBy=b.Missile?"missile_in_flight":"gun_firing"});
             }
-            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,seekerClaims,shooterClaims,gunClaims,blocks=Volatile.Read(ref blocks)});}
+            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,seekerClaims,shooterClaims,gunClaims,targetingMeFlips=Volatile.Read(ref flips),blocks=Volatile.Read(ref blocks)});}
         }
         catch(Exception x){failed=true;Volatile.Write(ref frame,new(0,new(),new()));DiagnosticLog.Write("same_unit_claim_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: native targeting. "+x.Message);}
     }
