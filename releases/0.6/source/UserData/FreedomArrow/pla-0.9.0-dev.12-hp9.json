@@ -1,0 +1,10 @@
+{
+  "version": "0.9.0-dev.12-hp9",
+  "base": "0.9.0-dev.12",
+  "build": 186,
+  "projectile_health": 9.0,
+  "vanilla_health": 1.0,
+  "hook": "ProjectileSpawnerHelper.MakeShellTargetable postfix (RVA 0x7DF1E0) writes _health, MaxHealth, HalfHealth",
+  "data_changes": "none",
+  "verified": "build checks only; not yet seen in a game"
+}
