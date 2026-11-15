@@ -1,0 +1,41 @@
+{
+  "version": "0.9.0-dev.12-hp7-burst",
+  "build": 186,
+  "previous": "0.9.0-dev.12",
+  "assets_version": "0.2.37",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.37.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.37.bamod",
+    "sha256": "2b4427439c252f5bad7a3f45596c8341e617aba16d27021c72e7ed596c2fe347",
+    "size": 6333437398,
+    "files": 10457,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.12-hp7-burst-complete.bamod",
+    "sha256": "f98d50d48b623edef67ff30a7060b0085582a3a5ef4fd7f1559e276419e44845",
+    "size": 6414078375,
+    "files": 10733
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.12-hp7-burst.bamod",
+    "sha256": "f1979fb1ed94a74a192d7ad415a3eb0285c69bf67810e9452fd88120f41aca2e",
+    "size": 80641551,
+    "files": 278
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.12-hp7-burst.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/projectile-health.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
