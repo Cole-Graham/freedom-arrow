@@ -197,7 +197,16 @@ def graft_conquest(game,objects,nodes,meta):
     nodes.update(b=script,c=wires)
 # Zone capture time of the vanilla maps. Lateralus 2026-11-12: every FA map uses it unless we design otherwise.
 CAPTURE_SECONDS=15.0
+# Lateralus 14 Nov 2026: "all maps should allow all 5 slots on each team". Every flavor must have 5 players and 5 lobby
+# slots on Alpha and on Bravo, whatever the map's size tag.
+SLOTS_PER_TEAM=5
+def check_slots(name,objects,meta):
+    fight={o['_uid']:o['_dname'] for o in objects if o.get('_type')==3 and o['_dname'] in ('Alpha team','Bravo team')}
+    players={t:sum(1 for o in objects if o.get('_type')==13 and o.get('ownTeam',{}).get('id')==u) for u,t in fight.items()}
+    slots={t.get('teamName'):len(t.get('slots',[])) for t in meta.get('teams',[]) if t.get('teamName') in fight.values()}
+    assert len(fight)==2 and set(players.values())=={SLOTS_PER_TEAM} and set(slots.values())=={SLOTS_PER_TEAM},(name,players,slots)
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
+    check_slots(flavor['name'],objects,meta)
     for o in objects:
         if o.get('_type')==15:o['capTime']=CAPTURE_SECONDS
     stamp(head,meta,flavor['name'],flavor['guid'],spec['desc'],spec['author'],flavor['kind'],flavor['public'])

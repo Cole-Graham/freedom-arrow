@@ -16,12 +16,11 @@ def prepare(game,spec):
             o['_uid']+=10000
             o['ZoneIcon']=ord(o['_dname'][0])-ord('A')+1
     C.letter_zones(objects,LETTERS,[f['name'] for f in spec['flavors']])
+    # Lateralus 14 Nov 2026: every FA map offers all 5 slots per team. The layout's 5 players and lobby slots per team stay
+    # (until 0.9.0-dev.4 this build cut them to 2).
     for o in objects:
-        if o.get('_type')==3:
-            o['players']=o['players'][:2]
-    keep={x['id'] for o in objects if o.get('_type')==3 for x in o['players']}
-    objects[:]=[o for o in objects if o.get('_type')!=13 or o['_uid'] in keep]
-    for team in meta['teams']:team['slots']=team['slots'][:2]
+        if o.get('_type')==3 and o['_dname'] in ('Alpha team','Bravo team'):assert len(o['players'])==5,(o['_dname'],len(o['players']))
+    assert all(len(t['slots'])==5 for t in meta['teams']),[len(t['slots']) for t in meta['teams']]
     head['spz']=next(o['_uid'] for o in objects if o.get('_type')==7)
     C.face_spawns_to_objectives(objects)
     C.add_team_cameras(objects)
