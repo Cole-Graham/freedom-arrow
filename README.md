@@ -1,4 +1,10 @@
-# Freedom Arrow 0.9.0-dev.7
+# Freedom Arrow 0.9.0-dev.8
+
+Osama 14 Nov late batch (tools/pla-specs/apply_0_9_dev8.py): YJ-18 to PLAAF, VT-5 front KE 350 (all variants), Z-11WB to PLAGF
+Motorized only, card stat numbers one size at 90 % of vanilla, SX2190 driver hidden. Vehicle and aircraft PNGs dropped: their GPU
+textures (.fat) are the only copy, 477 of them back at the 5x-vanilla size (work/pla-0.9/dev8-slim). Infantry keep PNGs. Local build.
+
+## Historical 0.9.0-dev.7
 
 Osama's 14 Nov evening batch (tools/pla-specs/apply_0_9_dev7.py, 99 checks): QN-506 stall fix (body slot check now in every build),
 MD-22 -65 / ECM without flares / high only, FH-97A no flares / high only, J-36 laser, AKF-98A mixed strike on J-10A/J-20S/J-31/J-35,

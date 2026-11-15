@@ -1,0 +1,32 @@
+{
+  "yj18_to_plaaf": {
+    "card": 2008984,
+    "spec": [
+      20,
+      17
+    ]
+  },
+  "vt5_front_ke": {
+    "1261 VT-5": [
+      500,
+      350
+    ],
+    "1262 VT-5 Recon": [
+      500,
+      350
+    ],
+    "953 VT-5 draft (no card)": [
+      300,
+      350
+    ]
+  },
+  "z11wb_to_motorized": {
+    "moved": 2008231,
+    "removed": 2018726
+  },
+  "version": "0.9.0-dev.8",
+  "base": "0.9.0-dev.7",
+  "base_sha256": "290daa005bd2dfef854f73ab8d9b4cd177ff990d299533d7c40d805240bcca24",
+  "checks": 10,
+  "verified": "data checks only"
+}
