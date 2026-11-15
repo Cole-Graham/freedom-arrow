@@ -8,7 +8,7 @@ namespace FreedomArrow;
 // Independent, bounded evidence. A logging failure must never disable gameplay or scoring.
 static class DiagnosticLog
 {
-    const long MaxBytes=4*1024*1024;
+    const long MaxBytes=16*1024*1024;   // 4 MB before the missile-hp lead log (15 Nov 2026)
     const int KeepSessions=8;
     static readonly object Gate=new();
     static StreamWriter writer;

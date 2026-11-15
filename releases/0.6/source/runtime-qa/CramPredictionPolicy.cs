@@ -70,6 +70,7 @@ internal sealed class CramMotionHistory
 {
     readonly List<(float Time,Vector3 Velocity)> samples=new(32);
     public float LastTime=>samples.Count==0?float.NegativeInfinity:samples[^1].Time;
+    public int Count=>samples.Count;
     public bool Observe(float now,Vector3 velocity,out Vector3 acceleration,out float interval)
     {
         acceleration=default;interval=0;

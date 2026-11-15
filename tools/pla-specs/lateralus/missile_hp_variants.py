@@ -6,6 +6,7 @@ Nothing else differs. For each HP: write the identity files, build the runtime, 
 back to dev.12 at the end (the branch stays at dev.12 plus the hook); the per-variant receipts are kept.
 Usage: missile_hp_variants.py 5 7 9
        missile_hp_variants.py 7 --burst-pause   (0.9.0-dev.12-hp7-burst: also the SPAAG burst pause below)
+       missile_hp_variants.py 7 --burst-pause --lead-log   (0.9.0-dev.12-hp7-burst-lead: same, named for the full CramPrediction lead log)
 
 --burst-pause (Lateralus 15 Nov 2026 09:01 PST: "Yes shorten the burst, and also add the sideways aim error log... just give me a
 test build with these fixes and hp7"). In his hp7 run the gun spent its burst on missile 1 of a 2-missile salvo and sat in its
@@ -26,7 +27,7 @@ def edit(p,old,new):
     s=p.read_text();assert s.count(old)==1,(p,old);p.write_text(s.replace(old,new))
 base=REL/f'out/0.8/FreedomArrow-{PREV}-complete.bamod';assert base.exists(),base
 BURST=[19,261,309,327,345,2009181,2009365,2009555,2009599,2010639,2010659,2010673];PAUSE=(0.8,1.0)
-burst='--burst-pause' in sys.argv;CONST=FA/'constants/weapons.json'
+burst='--burst-pause' in sys.argv;lead='--lead-log' in sys.argv;CONST=FA/'constants/weapons.json'
 def burst_pause():
     w=json.loads(zipfile.ZipFile(base).read('UserData/FreedomArrow/constants/weapons.json'));changed={}
     for i in BURST:
@@ -36,13 +37,13 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for x in sys.argv[1:] if x.isdigit()]:
-        V=f'{PREV}-hp{hp}'+('-burst' if burst else '')
+        V=f'{PREV}-hp{hp}'+('-burst' if burst else '')+('-lead' if lead else '')
         before=burst_pause() if burst else None
         (FA/'projectile-health.json').write_text(enc({'health':float(hp),'vanilla':1.0,'scope':'every CanBeTargeted projectile (MakeShellTargetable)',
             'source':'Lateralus 15 Nov 2026, thread 1571554273639006392'}))
         m=json.loads((REL/'mod.json').read_text());assert m['version']==PREV
         m['version']=V;m['description']=re.sub(r'^(Freedom Arrow 0\.9: China \(PLA\) on the full 0\.7\.0-dev\.58 game\. )',
-            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log' if burst else '')+'; ',m['description']);assert V in m['description']
+            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log' if burst else '')+(', full gun lead-correction log' if lead else '')+'; ',m['description']);assert V in m['description']
         (REL/'mod.json').write_text(enc(m))
         c=json.loads((FA/'channel.json').read_text());c['package_version']=V;(FA/'channel.json').write_text(enc(c))
         b=json.loads((FA/'pla-build.json').read_text());b.update(build=BUILD,label='Freedom Arrow '+V);(FA/'pla-build.json').write_text(enc(b))
