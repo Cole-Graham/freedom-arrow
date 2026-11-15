@@ -1,0 +1,43 @@
+{
+  "version": "0.9.0-dev.12-hp5-burst-tier3-sam-claim4",
+  "build": 186,
+  "previous": "0.9.0-dev.12",
+  "assets_version": "0.2.37",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.37.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.37.bamod",
+    "sha256": "2b4427439c252f5bad7a3f45596c8341e617aba16d27021c72e7ed596c2fe347",
+    "size": 6333437398,
+    "files": 10457,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.12-hp5-burst-tier3-sam-claim4-complete.bamod",
+    "sha256": "964b73c145d5d28bca699df83538415fda377d5112d26f947cd8c613b92f0f7c",
+    "size": 6414089210,
+    "files": 10734
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.12-hp5-burst-tier3-sam-claim4.bamod",
+    "sha256": "4bc5ce836c26c7133ba50893d33e6bb56e88f6a5b0a7f129bf89515b1c13b3d5",
+    "size": 80652386,
+    "files": 279
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.12-hp5-burst-tier3-sam-claim4.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/projectile-health.json",
+    "UserData/FreedomArrow/spaag-weapons.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
