@@ -46,6 +46,11 @@ internal static class CramPredictionPolicy
         acceleration=Limit(acceleration,MaxAcceleration,out bool limited);
         float maximum=Math.Min(MaxCorrection,native.Aim.Length()*MaxFraction),time=native.Time;
         if(maximum<=0)return false;
+        // Find the flight time t with t = solve(aim(t)).Time. Plain repetition contracts by about the closing
+        // speed over the round speed per step (0.65 for a 650 m/s missile head-on against 1000 m/s rounds), so
+        // 8 repeats did not reach 0.1 ms and the call fell back to native lead (Lateralus hp7 logs, 15 Nov 2026).
+        // Secant steps on f(t) = solve(aim(t)).Time - t converge in 3-5 solves; plain repetition is the fallback step.
+        float prevTime=float.NaN,prevResidual=float.NaN;
         for(int i=0;i<MaxIterations;i++)
         {
             var turn=Limit(.5f*acceleration*time*time,maximum,out bool clipped);limited|=clipped;
@@ -54,11 +59,18 @@ internal static class CramPredictionPolicy
             Solution next;
             try{next=solve(aim);}catch{reason="solver_exception";return false;}
             if(!Valid(next)){reason="invalid_solution";return false;}
-            if(Math.Abs(next.Time-time)<.0001f)
+            float residual=next.Time-time;
+            if(Math.Abs(residual)<.0001f)
             {
                 result=new(next,acceleration,aim-native.Aim,i+1,limited);reason="applied";return true;
             }
-            time=next.Time;
+            float step=next.Time;
+            if(float.IsFinite(prevResidual)&&Math.Abs(residual-prevResidual)>1e-7f)
+            {
+                float secant=time-residual*(time-prevTime)/(residual-prevResidual);
+                if(float.IsFinite(secant)&&secant>=.005f&&secant<=MaxHorizon)step=secant;
+            }
+            prevTime=time;prevResidual=residual;time=step;
         }
         reason="no_convergence";return false;
     }
