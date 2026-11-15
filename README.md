@@ -1,4 +1,7 @@
-# Freedom Arrow 0.9.0-dev.3
+# Freedom Arrow 0.9.0-dev.4
+Osama/Lateralus 14 Nov 2026 evening batch, built on Osama's word at 18:25 PST ("load build 4 and everything we have so far for it
+on my pc"; thread 1571297086974992537). Full list: tools/pla-specs/apply_0_9_dev4.py. FAModels 0.3.26 (GPU textures), 39 battle meshes.
+## Historical 0.9.0-dev.3
 Osama's word, 14 Nov 2026 15:26 PST ("build it all together including the launcher and test it"; thread 1571297086974992537):
 mod decks live in Decks/FreedomArrow, so the mod never loads or rewrites vanilla decks (runtime-qa/DeckFolder.cs; vanilla decks are
 copied in once). Loadout swap prices: Spetsnaz Alpha stand-off 90, Troopers AA +RPG 65 (tools/pla-specs/apply_0_9_dev3.py).

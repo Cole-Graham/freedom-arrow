@@ -1,0 +1,466 @@
+{
+  "ztl191_autoloader": {
+    "weapon": 2011297,
+    "units": [
+      1080,
+      1263
+    ],
+    "reload": [
+      4.0,
+      5.0
+    ]
+  },
+  "spec_names": {
+    "18": [
+      "PLAGF Ground Force/Armored",
+      "PLAGF Armored Force"
+    ],
+    "19": [
+      "PLARF Rocket Force/Reservist",
+      "PLARF Rocket Conscript Force"
+    ],
+    "20": [
+      "PLAN Navy/SOF",
+      "PLAN Special Forces"
+    ]
+  },
+  "spec_descriptions": {
+    "17": "The PLA Air Force fields China's most modern fighters, bombers and stealth jets, and its airborne troops ride helicopters to seize ground ahead of the main force.",
+    "18": "The armored force gives you access to China's heaviest tanks, backed by self-propelled artillery and mobile air defense. This firepower comes at the cost of having no fixed-wing aircraft.",
+    "19": "Conscript infantry and older tanks hold the line while the Rocket Force's ballistic missiles and long-range artillery strike deep into enemy territory. An aging fleet of jets provides the air cover.",
+    "20": "Elite special forces and marines supported by carrier aviation and long-range drones, striking from the sea and the air deep behind enemy lines.",
+    "21": "Fast wheeled vehicles carry a large infantry force, supported by mobile rocket artillery and air defense, to hit hard and keep moving."
+  },
+  "df15_cost": [
+    125,
+    150
+  ],
+  "j5_heavy_strike": {
+    "option": 31040,
+    "bombs": "2x 500 kg (was 2x 1000 kg)",
+    "cost": 40
+  },
+  "phl191_cruise": {
+    "ammo": 2019099,
+    "name": "CJ-10 (copy of vanilla 9M728 Iskander-K, ammo 219)",
+    "options": {
+      "2x CJ-10": 0,
+      "4x CJ-10": 50
+    },
+    "mounts": {
+      "2": [
+        2019100,
+        2019101
+      ],
+      "4": [
+        2019103,
+        2019104
+      ]
+    }
+  },
+  "icons": {
+    "1251": "FA_PLA_VEH_J35",
+    "1242": "FA_PLA_VEH_J16",
+    "974": "FA_PLA_VEH_J15D"
+  },
+  "mengshi_recon_removed": [
+    17,
+    20,
+    21
+  ],
+  "tank_hunters_removed_from": [
+    18
+  ],
+  "availability": {
+    "Airborne": [
+      4,
+      8
+    ],
+    "Thunder Gods": [
+      4,
+      2
+    ]
+  },
+  "zbl08_hp": [
+    10,
+    12
+  ],
+  "zbd251_seats": [
+    7,
+    9
+  ],
+  "vt5": {
+    "cost": [
+      200,
+      140
+    ],
+    "aps_option": {
+      "id": 31076,
+      "cost": 60
+    },
+    "none_option": 31075,
+    "base_ability_no_aps": 2019108,
+    "motorized_cards": [
+      6,
+      4
+    ]
+  },
+  "vt5_ke_front": {
+    "VT-5": [
+      600,
+      500
+    ],
+    "VT-5 Recon": [
+      600,
+      500
+    ]
+  },
+  "marine_hj8h_cost": [
+    60,
+    85
+  ],
+  "recon_icon": {
+    "1149": "FA_PLA_INF_LINE_RECON",
+    "1213": "FA_PLA_INF_LINE_RECON"
+  },
+  "z6b_unarmed": {
+    "removed_turrets": [
+      1227,
+      1228,
+      1229
+    ],
+    "removed_modification": 2019080,
+    "kept": "turret 160 (empty), laser ability 10"
+  },
+  "akf98a_maverick": {
+    "was": {
+      "MaxSpeed": 750.0,
+      "Acceleration": 375.0,
+      "PenetrationAtGroundRange": 950.0,
+      "Damage": 23.0
+    },
+    "now": {
+      "MaxSpeed": 350.0,
+      "Acceleration": 150.0,
+      "PenetrationAtGroundRange": 900.0,
+      "Damage": 22.0
+    },
+    "reload": [
+      5.0,
+      0.0
+    ]
+  },
+  "battle_lod_pending": {},
+  "battle_lod": {
+    "limit": 60000,
+    "models": 39,
+    "triangles": [
+      9785243,
+      2234975
+    ]
+  },
+  "hj10_cost": [
+    90,
+    150
+  ],
+  "hmv3_seats": [
+    0,
+    27
+  ],
+  "zbd20_ke_front": {
+    "ZBD-20": [
+      650,
+      500
+    ],
+    "ZBD-20 Recon": [
+      650,
+      500
+    ]
+  },
+  "xm30_cards": [
+    2,
+    4
+  ],
+  "xm30_transport": {
+    "Mech. Riflemen": 6,
+    "Mech. Riflemen AA": 6,
+    "Mech. Riflemen MMG": 7
+  },
+  "xm30_cost": [
+    200,
+    230
+  ],
+  "one_weapon_per_mount": {
+    "2016375 PLA air pylon PL-12 x1 + PL-10 x2": {
+      "units": [
+        "J-20",
+        "J-20S"
+      ],
+      "loadouts": [
+        24381,
+        24384
+      ],
+      "kept": "PL-12",
+      "change": "PL-10 moved to wingtip slot 7"
+    },
+    "2016499 PLA air pylon PL-15C x2 + PL-10 x2": {
+      "units": [
+        "J-50"
+      ],
+      "loadouts": [
+        24395
+      ],
+      "kept": "PL-15C",
+      "change": "PL-10 moved to wingtip slot 7"
+    },
+    "2016505 PLA air pylon PL-21 x1 + PL-10 x2": {
+      "units": [
+        "J-50"
+      ],
+      "loadouts": [
+        24396
+      ],
+      "kept": "PL-21",
+      "change": "PL-10 moved to wingtip slot 7"
+    },
+    "2017078 PLA air pylon TY-90 x2 + 57 mm rocket x36": {
+      "units": [
+        "Z-10K"
+      ],
+      "loadouts": [
+        24496
+      ],
+      "kept": "57 mm rocket",
+      "change": "TY-90 moved to the mirror pylon (slot 6) with double ammo (2 -> 4); this pylon carries 57 mm rocket only"
+    },
+    "2017132 PLA air pylon TY-90 x2 + 70 mm rocket x14": {
+      "units": [
+        "Z-10",
+        "Z-10"
+      ],
+      "loadouts": [
+        24503,
+        24509
+      ],
+      "kept": "70 mm rocket",
+      "change": "TY-90 moved to the mirror pylon (slot 6) with double ammo (2 -> 4); this pylon carries 70 mm rocket only"
+    },
+    "2017245 PLA air pylon AKD-9 x4 + 90 mm rocket x14": {
+      "units": [
+        "Z-19",
+        "Z-19",
+        "Z-19G"
+      ],
+      "loadouts": [
+        24520,
+        24524,
+        24528
+      ],
+      "kept": "90 mm rocket",
+      "change": "AKD-9 moved to the mirror pylon (slot 1) with double ammo (4 -> 8); this pylon carries 90 mm rocket only"
+    },
+    "2017249 PLA air pylon TY-90 x4 + HJ-8 x8": {
+      "units": [
+        "Z-19",
+        "Z-19",
+        "Z-19G"
+      ],
+      "loadouts": [
+        24521,
+        24525,
+        24529
+      ],
+      "kept": "HJ-8",
+      "change": "TY-90 moved to the mirror pylon (slot 1) with double ammo (4 -> 8); this pylon carries HJ-8 only"
+    },
+    "2017729 PLA air pylon PL-15C x1 + LS-6 x2": {
+      "units": [
+        "J-50"
+      ],
+      "loadouts": [
+        24609
+      ],
+      "kept": "PL-15C",
+      "change": "LS-6 500kg moved to wingtip slot 7"
+    },
+    "2017891 PLA air pylon TY-90 x1 + HJ-10 x8": {
+      "units": [
+        "Z-21"
+      ],
+      "loadouts": [
+        24643
+      ],
+      "kept": "HJ-10",
+      "change": "TY-90 moved to the mirror pylon (slot 2) with double ammo (1 -> 2); this pylon carries HJ-10 only"
+    },
+    "2017917 PLA air pylon HJ-8 x2 + 57 mm rocket x36": {
+      "units": [
+        "Z-9WA"
+      ],
+      "loadouts": [
+        24646
+      ],
+      "kept": "57 mm rocket",
+      "change": "HJ-8 moved to the mirror pylon (slot 1) with double ammo (2 -> 4); this pylon carries 57 mm rocket only"
+    },
+    "2017924 PLA air pylon TY-90 x2 + 57 mm rocket x36": {
+      "units": [
+        "Z-9WA"
+      ],
+      "loadouts": [
+        24647
+      ],
+      "kept": "57 mm rocket",
+      "change": "TY-90 moved to the mirror pylon (slot 1) with double ammo (2 -> 4); this pylon carries 57 mm rocket only"
+    },
+    "2017930 PLA air pylon AKD-9 x2 + 57 mm rocket x18": {
+      "units": [
+        "Z-9WA"
+      ],
+      "loadouts": [
+        24648
+      ],
+      "kept": "57 mm rocket",
+      "change": "AKD-9 moved to the mirror pylon (slot 1) with double ammo (2 -> 4); this pylon carries 57 mm rocket only"
+    },
+    "2017948 PLA air pylon PL-16 x1 + PL-10 x2": {
+      "units": [
+        "J-20",
+        "J-20S",
+        "J-50"
+      ],
+      "loadouts": [
+        24649,
+        24652,
+        24661
+      ],
+      "kept": "PL-16",
+      "change": "PL-10 moved to wingtip slot 7"
+    },
+    "2018256 PLA air pylon PL-15C x2 + PL-10 x2": {
+      "units": [
+        "MD-22"
+      ],
+      "loadouts": [
+        31012
+      ],
+      "kept": "PL-15C",
+      "change": "PL-10 removed (Osama: no PL-10 on MD-22 / FH-97A)"
+    },
+    "2018527 PLA air pylon PL-15C x2 + PL-10 x2": {
+      "units": [
+        "FH-97A"
+      ],
+      "loadouts": [
+        31033
+      ],
+      "kept": "PL-15C",
+      "change": "PL-10 removed (Osama: no PL-10 on MD-22 / FH-97A)"
+    },
+    "2018700 PLA J-6W cannon mount": {
+      "units": [
+        "J-6W"
+      ],
+      "change": "one gun entry, 0.2 -> 0.1 s between shots, magazine 25 -> 50"
+    },
+    "2018829 PLA air pylon HJ-10 x4 + FS-70A x14": {
+      "units": [
+        "Z-19",
+        "Z-19",
+        "Z-19G"
+      ],
+      "loadouts": [
+        24519,
+        24523,
+        24527
+      ],
+      "kept": "FS-70A",
+      "change": "HJ-10 moved to the mirror pylon (slot 1) with double ammo (4 -> 8); this pylon carries FS-70A only"
+    },
+    "2018832 PLA air pylon CM-501GA x4 + FS-70A x14": {
+      "units": [
+        "Z-19",
+        "Z-19",
+        "Z-19G"
+      ],
+      "loadouts": [
+        24522,
+        24526,
+        24530
+      ],
+      "kept": "FS-70A",
+      "change": "CM-501GA moved to the mirror pylon (slot 1) with double ammo (4 -> 8); this pylon carries FS-70A only"
+    }
+  },
+  "not_air_droppable": {
+    "ZTL-191": 2011291,
+    "ZTL-191 Recon": 2018732,
+    "ZTL-11": 2009659
+  },
+  "j36_heavy_cap_slot": {
+    "PL-16 x2 pylon": "slot 0 -> 8"
+  },
+  "atgm_option_on_turret": {
+    "ZBD-86 Recon": {
+      "slot": 1,
+      "mount": 2019196,
+      "weapons": [
+        "Type 86 7.62 mm",
+        "HJ-73"
+      ]
+    },
+    "ZBL-08": {
+      "slot": 0,
+      "mount": 2019200,
+      "weapons": [
+        "30 mm autocannon",
+        "HJ-73D"
+      ]
+    }
+  },
+  "sx2190": {
+    "unit": 1269,
+    "body": "US_LMTV",
+    "stats_from": "MTV 390",
+    "cost": 50,
+    "seats": 18,
+    "supply": 4500,
+    "cards": {
+      "PLAAF": 4,
+      "PLAN SOF": 4
+    },
+    "removed": [
+      [
+        "Shaanxi HMV3",
+        "PLAAF"
+      ],
+      [
+        "Shaanxi HMV3",
+        "PLAN SOF"
+      ],
+      [
+        "Shaanxi HMV3 Cargo",
+        "PLAAF"
+      ],
+      [
+        "Shaanxi HMV3 Cargo",
+        "PLAN SOF"
+      ]
+    ]
+  },
+  "hq_icons": {
+    "HQ-12": "FA_PLA_VEH_HQ22",
+    "HQ-9A/B/C": "DLC3_S400_X4-Label"
+  },
+  "ztl191_jammer": {
+    "option": 31078,
+    "cost": 20,
+    "ability": "ECM Hardhat (0.7 accuracy, the M1A1 FEP jammer)",
+    "ui": "Custom_Option_ANVLQ6_jammer"
+  },
+  "version": "0.9.0-dev.4",
+  "base": "0.9.0-dev.3",
+  "base_sha256": "667939f66290b124f82dd15fdc736801342ebbcae77a7a721d21fc962d55fe38",
+  "checks": 230,
+  "verified": "data checks only"
+}
