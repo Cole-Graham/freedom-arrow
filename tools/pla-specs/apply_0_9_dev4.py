@@ -186,6 +186,11 @@ ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==90,('HJ-10',U[936]['Cost']));g
 # The armory transport lists stay without it; the HMV3 Cargo stays at 0 seats (pure supply).
 ok(U[1235]['HUDName']=='Shaanxi HMV3' and U[1235]['InfantrySlots']==0 and U[1235]['ModelFileName']=='US_HEMTT' and U[242]['InfantrySlots']==27,'HMV3 0 seats, HEMTT 27')
 g.put('Units',1235,{'InfantrySlots':27});ok(U[1247]['InfantrySlots']==0,'HMV3 Cargo stays 0');rec['hmv3_seats']=[0,27]
+# ZBD-20 and ZBD-20 Recon: 500 KE front (Osama 16:46 PST, thread 1571014792016171120; was 650, flagged in the pricing check)
+for _u,_h,_aid in ((945,'ZBD-20',2009807),(1256,'ZBD-20 Recon',2018377)):
+    ok(U[_u]['HUDName']==_h and [r['ArmorId'] for r in t['UnitArmorsJson'].values() if r['UnitId']==_u]==[_aid] and [r['UnitId'] for r in t['UnitArmorsJson'].values() if r['ArmorId']==_aid]==[_u],(_h,'own armour'))
+    ok(t['ArmorsJson'][_aid]['KinArmorFront']==650,(_h,'KE front 650'));g.put('ArmorsJson',_aid,{'KinArmorFront':500})
+rec['zbd20_ke_front']={'ZBD-20':[650,500],'ZBD-20 Recon':[650,500]}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
