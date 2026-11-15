@@ -16,7 +16,9 @@ Run with --check while another thread is still building on the shared source fol
   fails a build with any battle model over 60,000. Armory models and all textures unchanged.
 - AKF-98A (J-16) has the vanilla AGM-65H Maverick stats; name and model kept (Osama 16:3x PST). HJ-10 NLOS 90 -> 150 (Osama 16:42 PST).
 - One weapon per mount (Osama 17:50 PST, thread 1571338089186599002): the J-20 freeze was 2 weapons on one pylon. 17 China air
-  pylons and the J-6W double cannon fixed; J-20/J-20S/J-50 move the 2nd weapon to wingtip slot 7; check_mount_weapons.py gates builds.
+  pylons and the J-6W double cannon fixed; J-20/J-20S/J-50 move the 2nd weapon to wingtip slot 7;
+  helicopters keep every weapon (shared missile on the mirror pylon with double ammo); MD-22/FH-97A lose the PL-10 (Osama 18:02);
+  check_mount_weapons.py gates builds.
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -211,7 +213,8 @@ g.put('Units',983,{'Cost':230});ok(len([r for r in TAJ.values() if r['UnitId']==
 # per weapon its model has; no vanilla pylon model carries 2 weapons, and the FK-2000 freeze was 2 guns on one mount. Every mount now
 # carries at most as many weapons as the most any vanilla mount with the same model (or, model-less, on the same body) carries.
 # - Su-57 bodies (J-20, J-20S, J-50): the second weapon moves to the empty wingtip slot 7 (vanilla Su-57 wingtips), nothing lost.
-# - Helicopters, MD-22, FH-97A have no free slot: the mount keeps its first weapon, the one its model and its mirror slot carry.
+# - Helicopters have no free slot: each weapon gets its own pylon and the shared missile's mirror pylon carries both pylons' ammo.
+# - MD-22, FH-97A: PL-10 removed (Osama 18:02 PST).
 # - J-6W: its cannon was listed twice; one entry now fires twice as fast with a doubled magazine (same output).
 _van={tab:{r['Id']:r for r in json.loads((a.vanilla/(tab+'.json')).read_text())} for tab in ('TurretsJson','TurretWeaponsJson','TurretUnitsJson','Units')}
 def _wmap(TWx):
@@ -273,13 +276,32 @@ for k,(ws,lim,users) in sorted(_bad.items()):
             ok(any(r['UnitId']==u and r['WeaponId']==xw for r in t['WeaponAmmunitionsJson'].values()),(U[u]['HUDName'],xname,'ammo row'))
         for o,i in uses:g.put('OptionsJson',o['Id'],{'Turret7Id':tip})
         how=f'{xname} moved to wingtip slot 7'
-    elif (WJ[extra['WeaponId']].get('HUDName') or '').startswith('HJ-') and (WJ[keep['WeaponId']].get('HUDName') or '').startswith('TY-90'):
-        # TY-90 + HJ-8/HJ-10 (Z-19, Z-21): the TY-90 stays on the other slots, so this mount keeps the anti-tank missile, on the
-        # Hellfire x4 rail model the HJ-10 x4 mount uses.
-        keep,extra=extra,keep;g.put('TurretsJson',k,{'ModelFileName':'Weapon/Hellfire/Hellfire_4'});g.put('TurretWeaponsJson',keep['Id'],{'Order':0})
-        how=f'{WJ[extra["WeaponId"]].get("HUDName")} removed (no free slot; TY-90 stays on the other slots)'
+    elif bodies=={'DLC3_S70_Okhotnik'}:
+        # MD-22, FH-97A: no PL-10 at all (Osama 18:02 PST); this pylon was their only PL-10, and its ammo rows go too.
+        ok((WJ[extra['WeaponId']].get('HUDName') or '')=='PL-10',(nm,'PL-10 second'))
+        for u in users:
+            for r in [r for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==u and r['WeaponId']==extra['WeaponId']]:g.remove('WeaponAmmunitionsJson',r['Id'])
+        how='PL-10 removed (Osama: no PL-10 on MD-22 / FH-97A)'
     else:
-        how=f'{WJ[extra["WeaponId"]].get("HUDName") or WJ[extra["WeaponId"]]["Name"]} removed (no free slot)'
+        # No free slot (Osama 18:02 PST: "lower the weapon count but increase ammo instead", visuals don't matter): this pylon keeps
+        # the weapon the loadout has nowhere else; the shared weapon moves onto its mirror pylon as a copy with both pylons' ammo.
+        kw=keep['WeaponId'];mates=[]
+        for o,i in uses:
+            mate=[j for j in range(21) if j!=i and o.get(f'Turret{j}Id') and kw in [r['WeaponId'] for r in TWJ.values() if r['TurretId']==o[f'Turret{j}Id']]]
+            ok(mate and len([r for r in TWJ.values() if r['TurretId']==o[f'Turret{mate[0]}Id']])==1,(nm,o['Id'],'mirror pylon'));mates.append((o,mate[0],o[f'Turret{mate[0]}Id']))
+        ok(len({m for _,_,m in mates})==1,(nm,'one mirror mount'));mm=mates[0][2]
+        w0=WJ[kw];k2w=g.add('WeaponsJson',w0,{'Name':w0['Name']+' (2 pylons)'})
+        q={u:[r for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==u and r['WeaponId']==kw] for u in users}
+        for u in users:
+            ok(len(q[u])==1,(U[u]['HUDName'],nm,'one ammo row'));g.add('WeaponAmmunitionsJson',q[u][0],{'WeaponId':k2w,'Quantity':2*q[u][0]['Quantity']})
+        qs={r[0]['Quantity'] for r in q.values()};ok(len(qs)==1,(nm,'same ammo on every unit'));qq=qs.pop()
+        if w0['MagazineSize']==qq:g.put('WeaponsJson',k2w,{'MagazineSize':2*qq})
+        m2=g.add('TurretsJson',TJ[mm],{'Name':TJ[mm]['Name']+' (2 pylons)'})
+        g.add('TurretWeaponsJson',next(r for r in TWJ.values() if r['TurretId']==mm),{'TurretId':m2,'WeaponId':k2w,'Order':0})
+        for u in users:g.add('TurretUnitsJson',next(r for r in TUJ.values() if r['UnitId']==u),{'UnitId':u,'TurretId':m2,'Order':0})
+        for o,j,_ in mates:g.put('OptionsJson',o['Id'],{f'Turret{j}Id':m2})
+        kname=w0.get('HUDName');keep,extra=extra,keep;g.put('TurretWeaponsJson',keep['Id'],{'Order':0})
+        how=f'{kname} moved to the mirror pylon (slot {mates[0][1]}) with double ammo ({qq} -> {2*qq}); this pylon carries {WJ[keep["WeaponId"]].get("HUDName")} only'
     g.remove('TurretWeaponsJson',extra['Id'])
     kept=WJ[keep['WeaponId']].get('HUDName') or WJ[keep['WeaponId']]['Name']
     g.put('TurretsJson',k,{'Name':f'PLA air pylon {kept}'})
