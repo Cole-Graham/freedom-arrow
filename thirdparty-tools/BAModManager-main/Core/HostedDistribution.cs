@@ -75,7 +75,9 @@ public static class HostedDistribution
         var html=await r.Content.ReadAsStringAsync(ct);r.Dispose();
         if(html.Length>131072)throw new InvalidDataException("Unexpected download page.");
         var action=Regex.Match(html,"<form[^>]+action=\"([^\"]+)\"",RegexOptions.IgnoreCase);
-        if(!action.Success)throw new InvalidDataException("Drive did not return the package. It may be unavailable or over quota.");
+        if(!action.Success)throw new InvalidDataException(html.Contains("Quota exceeded",StringComparison.OrdinalIgnoreCase)
+            ? "Google Drive's download limit for this file has been reached (too many downloads today). Try PLAY again later; Drive says it can take up to 24 hours."
+            : "Drive did not return the package. It may be unavailable or over quota.");
         var target=WebUtility.HtmlDecode(action.Groups[1].Value);
         if(!Uri.TryCreate(target,UriKind.Absolute,out var formUri) || formUri.Scheme!="https" || formUri.Host!="drive.usercontent.google.com")
             throw new InvalidDataException("Unexpected Drive download confirmation.");
@@ -86,7 +88,14 @@ public static class HostedDistribution
             if(name.Success)values.Add(Uri.EscapeDataString(WebUtility.HtmlDecode(name.Groups[1].Value))+"="+Uri.EscapeDataString(WebUtility.HtmlDecode(value.Groups[1].Value)));
         }
         r=await Get(target+"?"+string.Join("&",values));
-        if(r.Content.Headers.ContentType?.MediaType=="text/html"){r.Dispose();throw new InvalidDataException("Drive returned another page instead of the package.");}
+        if(r.Content.Headers.ContentType?.MediaType=="text/html")
+        {
+            // 14 Nov 2026: a busy 8.7 GB file hit Drive's per-file download limit ("Quota exceeded").
+            var page=await r.Content.ReadAsStringAsync(ct);r.Dispose();
+            if(page.Contains("Quota exceeded",StringComparison.OrdinalIgnoreCase)||page.Contains("Too many users",StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException("Google Drive's download limit for this file has been reached (too many downloads today). Try PLAY again later; Drive says it can take up to 24 hours.");
+            throw new InvalidDataException("Drive returned another page instead of the package.");
+        }
         return r;
     }
 

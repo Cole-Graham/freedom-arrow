@@ -543,14 +543,16 @@ public sealed class LauncherService
     /// <summary>False when Steam isn't running (it's started, and the player has to press the button again).</summary>
     public static bool EnsureSteam()
     {
+        if (LinuxSteam.IsWine) return true;   // Linux: the steam:// link starts native Steam if needed
         if (Process.GetProcessesByName("steam").Length > 0) return true;
         Process.Start(new ProcessStartInfo("steam://open/main") { UseShellExecute = true })?.Dispose();
         return false;
     }
 
     /// <summary>Starts the game exe directly, like Steam's "Anti-Cheat Disabled" option.</summary>
-    public Process StartModded(string gameDir)
+    public Process? StartModded(string gameDir)
     {
+        if (LinuxSteam.IsWine) { StartThroughLinuxSteam(gameDir); return null; }
         var exe = GameLocator.FindExe(gameDir) ?? throw new FileNotFoundException(T("Couldn't find the game's .exe."));
         return Start(exe, gameDir);
     }
@@ -558,6 +560,7 @@ public sealed class LauncherService
     /// <summary>Starts the normal game with Anti-Cheat (EACLauncher.exe, like Steam's "Play Broken Arrow").</summary>
     public void StartVanilla(string gameDir)
     {
+        if (LinuxSteam.IsWine) { StartThroughLinuxSteam(gameDir); return; }
         var eac = Path.Combine(gameDir, "EACLauncher.exe");
         if (File.Exists(eac))
         {
@@ -566,6 +569,18 @@ public sealed class LauncherService
         }
         var appId = GameLocator.FindSteamAppId(gameDir) ?? ManagerConfig.SteamAppId;
         Process.Start(new ProcessStartInfo($"steam://rungameid/{appId}") { UseShellExecute = true })?.Dispose();
+    }
+
+    /// <summary>
+    /// Linux: the game must start in its own Proton prefix with its Steam launch options, so Steam starts it.
+    /// The dialog lets the player pick "Play Anti-Cheat Disabled" (mods) or "Play" (vanilla).
+    /// winebrowser hands non-web links to xdg-open on the Linux side, where Steam handles steam://.
+    /// </summary>
+    private static void StartThroughLinuxSteam(string gameDir)
+    {
+        var url = "steam://launch/" + (GameLocator.FindSteamAppId(gameDir) ?? ManagerConfig.SteamAppId) + "/Dialog";
+        try { Process.Start(new ProcessStartInfo("winebrowser.exe", url) { UseShellExecute = false })?.Dispose(); }
+        catch { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true })?.Dispose(); }
     }
 
     private static Process Start(string exe, string gameDir)

@@ -43,6 +43,8 @@ public static class GameLocator
     {
         var exe = FindExe(dir);
         if (exe == null) return false;
+        // Linux: the game runs in its own Proton prefix, invisible to this prefix's process list.
+        if (LinuxSteam.IsWine && LinuxSteam.ProcessRunning(Path.GetFileName(exe))) return true;
         var procs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(exe));
         var running = procs.Length > 0;
         foreach (var p in procs) p.Dispose();
@@ -107,6 +109,7 @@ public static class GameLocator
         FromRegistry(Registry.CurrentUser, @"Software\Valve\Steam", "SteamPath");
         FromRegistry(Registry.LocalMachine, @"SOFTWARE\WOW6432Node\Valve\Steam", "InstallPath");
         FromRegistry(Registry.LocalMachine, @"SOFTWARE\Valve\Steam", "InstallPath");
+        if (LinuxSteam.IsWine) steamRoots.AddRange(LinuxSteam.SteamRoots());   // Linux Steam through Z:
 
         var libraries = new List<string>(steamRoots);
 
@@ -118,7 +121,7 @@ public static class GameLocator
             {
                 if (!File.Exists(vdf)) continue;
                 foreach (Match m in Regex.Matches(File.ReadAllText(vdf), "\"path\"\\s+\"([^\"]+)\""))
-                    libraries.Add(m.Groups[1].Value.Replace(@"\\", @"\"));
+                    libraries.Add(LinuxSteam.LibraryPath(m.Groups[1].Value.Replace(@"\\", @"\")));
             }
             catch
             {

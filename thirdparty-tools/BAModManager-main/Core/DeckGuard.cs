@@ -18,10 +18,15 @@ public static class DeckGuard
     private const string ModSub = "FreedomArrow", ModMarker = "freedom-arrow-import.txt";
     private const int Keep = 20;
 
+    /// <summary>Set by the launcher window; on Linux the decks are in the game's Proton prefix next to its Steam library.</summary>
+    public static string? GameDir { get; set; }
+
     public static string? DecksDir
     {
         get
         {
+            if (LinuxSteam.ProtonDecks(GameDir, GameDir == null ? ManagerConfig.SteamAppId : GameLocator.FindSteamAppId(GameDir) ?? ManagerConfig.SteamAppId) is string proton)
+                return proton;
             var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var parent = string.IsNullOrEmpty(local) ? null : Path.GetDirectoryName(local);
             if (parent == null) return null;

@@ -212,8 +212,28 @@ internal sealed class LauncherForm : Form
         catch (InvalidOperationException) { /* closing */ }
     }
 
+    /// <summary>
+    /// Linux: Steam starts the game, and only loads MelonLoader's version.dll with this launch option.
+    /// We read Steam's settings but never write them (Steam overwrites them while it runs).
+    /// </summary>
+    private bool LinuxLaunchOptionSet(string dir)
+    {
+        var ok = LinuxSteam.HasLaunchOption(LinuxSteam.SteamRoots(), GameLocator.FindSteamAppId(dir) ?? ManagerConfig.SteamAppId);
+        if (ok != false)
+        {
+            if (ok == null) Log(T("Couldn't read Steam's launch options; make sure Broken Arrow has: ") + LinuxSteam.LaunchOption);
+            return true;
+        }
+        try { Clipboard.SetText(LinuxSteam.LaunchOption); } catch { /* no clipboard */ }
+        var msg = T("Linux: Broken Arrow needs this Steam launch option to load mods (copied to the clipboard):\n\n{0}\n\nIn Steam: right-click Broken Arrow > Properties > General > Launch Options, paste it, then press PLAY again.", LinuxSteam.LaunchOption);
+        SetStatus(T("Set Broken Arrow's Steam launch option first."));
+        MessageBox.Show(this, msg, T("Steam launch option"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return false;
+    }
+
     private void RefreshCard()
     {
+        DeckGuard.GameDir = _gameDir;
         Manifest? manifest = null;
         InstalledPackage? pack = null;
         string? preview = null;
@@ -355,6 +375,7 @@ internal sealed class LauncherForm : Form
             return;
         }
 
+        if (LinuxSteam.IsWine && !LinuxLaunchOptionSet(dir)) return;
         DeckNote(DeckGuard.BeforeLaunch(true, Log));
         SetBusy(true);
         try
@@ -372,7 +393,8 @@ internal sealed class LauncherForm : Form
             SetStatus(T("Starting {0}…", _cfg.GameName));
             var game = _launcher.StartModded(dir);
             _gameRunning = false;
-            ShowLoadingScreen(game, dir);
+            if (game != null) ShowLoadingScreen(game, dir);
+            else SetStatus(T("Steam is starting {0}: choose \"Play Anti-Cheat Disabled\".", _cfg.GameName));
         }
         catch (Exception ex)
         {
@@ -431,7 +453,8 @@ internal sealed class LauncherForm : Form
                 return;
             }
             _launcher.StartVanilla(dir);
-            SetStatus(T("Mods are off. Starting {0} with Anti-Cheat…", _cfg.GameName));
+            SetStatus(LinuxSteam.IsWine ? T("Mods are off. Steam is starting {0}: choose \"Play\".", _cfg.GameName)
+                                        : T("Mods are off. Starting {0} with Anti-Cheat…", _cfg.GameName));
             _play.Enabled = _vanilla.Enabled = false;   // until the game window closes again (checked every second)
         }
         catch (Exception ex)
