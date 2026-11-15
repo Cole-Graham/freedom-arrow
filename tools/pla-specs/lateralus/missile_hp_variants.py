@@ -10,6 +10,7 @@ Usage: missile_hp_variants.py 5 7 9
        missile_hp_variants.py 7 --burst-pause --lead-log --lead-fix   (...-lead-fix: names the build with the secant lead solver)
        missile_hp_variants.py 7 9 --no-burst   (0.9.0-dev.12-hp7-noburst, -hp9-noburst)
        missile_hp_variants.py 5 7 --tier   (0.9.0-dev.12-hp5-tier, -hp7-tier: no bursts + TIER_DAMAGE)
+       missile_hp_variants.py 5 --tier2   (0.9.0-dev.12-hp5-tier2: Lateralus 10:39 PST "lets try this", one hit harder per tier: 1.0/1.3/1.7)
 
 --tier (Lateralus 15 Nov 2026 10:16-10:23 PST: keep no bursts; power curve light guns stop 1 missile (2 occasionally), middle 2,
 heavy 3; "Give me test builds for both options, and yes make the PGZ-09 on same tier as Tunguska"). A gun lands ~4 hits per
@@ -38,8 +39,8 @@ enc=lambda d:(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
 def edit(p,old,new):
     s=p.read_text();assert s.count(old)==1,(p,old);p.write_text(s.replace(old,new))
 base=REL/f'out/0.8/FreedomArrow-{PREV}-complete.bamod';assert base.exists(),base
-BURST=[19,261,309,327,345,2009181,2009365,2009555,2009599,2010639,2010659,2010673];PAUSE=(0.2,0.2) if ('--no-burst' in sys.argv or '--tier' in sys.argv) else (0.8,1.0)
-tier='--tier' in sys.argv;nob='--no-burst' in sys.argv or tier;burst='--burst-pause' in sys.argv or nob;lead='--lead-log' in sys.argv;fix='--lead-fix' in sys.argv;CONST=FA/'constants/weapons.json';ACONST=FA/'constants/ammunitions.json'
+BURST=[19,261,309,327,345,2009181,2009365,2009555,2009599,2010639,2010659,2010673];PAUSE=(0.2,0.2) if ('--no-burst' in sys.argv or '--tier' in sys.argv or '--tier2' in sys.argv) else (0.8,1.0)
+tier2='--tier2' in sys.argv;tier='--tier' in sys.argv or tier2;nob='--no-burst' in sys.argv or tier;burst='--burst-pause' in sys.argv or nob;lead='--lead-log' in sys.argv;fix='--lead-fix' in sys.argv;CONST=FA/'constants/weapons.json';ACONST=FA/'constants/ammunitions.json'
 # ammo id: (dev.12 damage, Lateralus 10:00 PST value)
 NOBURST_DAMAGE={60:(3.0,1.5),231:(3.0,1.5),2009185:(3.0,1.5),          # Pantsir/Tunguska 30 mm, PGZ-09 35 mm
     2009369:(7.8,4.0),2009603:(7.8,4.0),                                   # PGL-625, FK-2000
@@ -48,6 +49,7 @@ NOBURST_DAMAGE={60:(3.0,1.5),231:(3.0,1.5),2009185:(3.0,1.5),          # Pantsir
     2010677:(2.3,1.5)}                                                     # PGZ-95
 LIGHT=[62,213,2010643,2009559,2010663];MID=[262,2010677,231,60,2009185];HEAVY=[2009369,2009603]   # PIVADS ZSU-23 PGZ-04 PGZ-04A PGZ-88 | C-RAM PGZ-95 Tunguska Pantsir PGZ-09 | PGL-625 FK-2000
 TIER_DAMAGE={5:(1.3,1.7,2.6),7:(1.8,2.4,3.6)}
+if '--tier2' in sys.argv:TIER_DAMAGE={5:(1.0,1.3,1.7)}   # hp5-tier killed 20/20: hits per kill 5/4/3 instead of 4/3/2
 def tier_damage(hp):
     l,m,h=TIER_DAMAGE[hp];new={**{i:l for i in LIGHT},**{i:m for i in MID},**{i:h for i in HEAVY}};assert set(new)==set(NOBURST_DAMAGE)
     return {i:(NOBURST_DAMAGE[i][0],v) for i,v in new.items()}
@@ -68,7 +70,7 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for x in sys.argv[1:] if x.isdigit()]:
-        V=f'{PREV}-hp{hp}'+('-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
+        V=f'{PREV}-hp{hp}'+('-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
         before=burst_pause() if burst else None
         dmg=tier_damage(hp) if tier else NOBURST_DAMAGE
         if nob:noburst_damage(dmg)
