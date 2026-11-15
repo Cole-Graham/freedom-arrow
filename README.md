@@ -1,4 +1,12 @@
-# Freedom Arrow 0.9.0-dev.10
+# Freedom Arrow 0.9.0-dev.11
+
+Osama and Lateralus 15 Nov 00:2x-02:1x PST batch: data changes in tools/pla-specs/apply_0_9_dev11.py (DZJ-08, Snow Leopards, SF
+availability, Godswords QTS-11, Z-19 CM-501GA, J-10A mixed strike, ZBD-20 HP, fire-support sprint/smoke, ZBL-191 GL-5 APS option,
+ZTL-191 Recon jammer, FK-2000, SR-5, AR-2000, US squad splits, M-25 CDTE, QLU-11, M7 Spear, Combat Engineers, VT-5 Recon hidden).
+FAModels 0.3.29: infantry bodies parsed and textured before the match, quiet per-soldier logging, hitch log, cached visibility,
+dead units leave no model. 204 infantry textures as GPU .fat. Lighter ZBD-251 / ZBD-86 armory meshes. End's 1v1 maps.
+
+## Historical 0.9.0-dev.10
 
 Osama 14 Nov 23:1x-23:3x PST after testing dev.9:
 - VEH, Helo and Air armory models: textures back to source size, each at most 2048 (dev.7 sizes; dev.7 measured <= 0.29 s

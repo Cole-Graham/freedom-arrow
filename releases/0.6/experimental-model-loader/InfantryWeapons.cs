@@ -131,7 +131,7 @@ public partial class Mod
                             group.RecalculateBounds();
                         }
                         view.applied.Add(id);
-                        MelonLogger.Msg($"FAMODELS weapon applied: unit={view.unitId} soldier={i} slot={r.slot} nativeWeapon={weapon.Weapon.Id} file={e.file}");
+                        if(Verbose)MelonLogger.Msg($"FAMODELS weapon applied: unit={view.unitId} soldier={i} slot={r.slot} nativeWeapon={weapon.Weapon.Id} file={e.file}");
                     }
                     catch (Exception ex)
                     {

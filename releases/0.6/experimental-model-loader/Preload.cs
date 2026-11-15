@@ -32,12 +32,19 @@ public partial class Mod
             foreach (var slots in deck.GetSlots.Values)
                 foreach (var s in slots)
                     foreach (var id in new[] { s.UnitID, s.TransportID })
+                    {
                         if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
                         {
                             var f = e.battle != "" ? e.battle : e.file;
                             if (preloadSeen.Add(f)) { preload.Enqueue(f); added++; }
                         }
-            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} battle model(s) queued");
+                        // 0.3.29 (Osama 15 Nov: "we should build it all before the match"): infantry bodies, their GPU textures and
+                        // their battle weapon models are built here too, so the first squad of a type does no file work in battle.
+                        foreach (var b in BodyFiles(id)) if (preloadSeen.Add("body:" + b)) { preload.Enqueue("body:" + b); added++; }
+                        foreach (var r in weaponRules.Where(r => r.unitId == id))
+                        { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); added++; } }
+                    }
+            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} battle model(s), bodies and infantry weapons queued");
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
     }
@@ -47,7 +54,12 @@ public partial class Mod
         if (preload.Count == 0) return;
         var f = preload.Dequeue();
         var sw = System.Diagnostics.Stopwatch.StartNew();
-        try { LoadFam(f, out bool kept); MelonLogger.Msg($"FAMODELS preloaded {f} in {sw.Elapsed.TotalMilliseconds:F0} ms{(kept ? " (already kept)" : "")}, {preload.Count} left"); }
+        try
+        {
+            bool kept = false;
+            if (f.StartsWith("body:")) PreloadBody(f.Substring(5)); else LoadFam(f, out kept);
+            if (Verbose || preload.Count == 0 || sw.Elapsed.TotalMilliseconds > 50) MelonLogger.Msg($"FAMODELS preloaded {f} in {sw.Elapsed.TotalMilliseconds:F0} ms{(kept ? " (already kept)" : "")}, {preload.Count} left");
+        }
         catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload {f}: {ex.Message}"); }
     }
 }

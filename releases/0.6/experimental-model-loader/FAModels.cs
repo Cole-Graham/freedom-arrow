@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.28", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.29", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -34,6 +34,7 @@ public partial class Mod : MelonMod
         if (File.Exists(cfg)) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
         LoadWeaponRules();
         LoadBodyRules();
+        Verbose = File.Exists(Path.Combine(dir, "verbose.txt"));
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
         try { InstallLowSettings(); } catch (Exception ex) { MelonLogger.Error("FAMODELS low-settings switch not installed; armory keeps full models: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
@@ -105,19 +106,42 @@ public partial class Mod : MelonMod
     static readonly List<(GameObject root, string unit)> live = new();
     static readonly Dictionary<int, List<Renderer>> origs = new();
     // The game toggles the stand-in's renderers for fog of war and LOD; ours follow whatever the stand-in would show.
+    // 0.3.29: the FA renderers of each unit are collected once (they never change after the swap), not by walking the unit's whole
+    // object tree 5 times a second for every live unit. The list is refreshed every 5 s, for weapon parts attached later.
+    static readonly Dictionary<int, MeshRenderer[]> famRenderers = new();
+    static readonly Dictionary<int, Il2CppBrokenArrow.Client.Ecs.Animations.AnimationHub> hubs = new();
+    static readonly HashSet<int> deadLogged = new();
+    static bool IsDead(GameObject root, int k)
+    {
+        if (deadLogged.Contains(k)) return true;
+        if (!hubs.TryGetValue(k, out var hub) || hub == null) { hub = root.GetComponentInChildren<Il2CppBrokenArrow.Client.Ecs.Animations.AnimationHub>(true); hubs[k] = hub; }
+        var dead = hub?.DeadModel;
+        return dead != null && dead.activeInHierarchy;
+    }
+    static readonly Dictionary<int, float> famRenderersT = new();
     static void SyncVisibility()
     {
         for (int i = live.Count - 1; i >= 0; i--)
         {
             var (root, unit) = live[i];
             if (root == null) { live.RemoveAt(i); continue; }
-            if (!origs.TryGetValue(root.GetInstanceID(), out var os) || os.Count == 0) continue;
+            int k = root.GetInstanceID();
+            if (!origs.TryGetValue(k, out var os) || os.Count == 0) continue;
             bool vis = false;
             foreach (var o in os) if (o != null && o.enabled && o.gameObject.activeInHierarchy) { vis = true; break; }
-            var h = root.transform.Find("FAM_holder");
-            if (h != null) foreach (var fr in h.GetComponentsInChildren<MeshRenderer>(true)) fr.enabled = vis;
-            foreach (var t in root.GetComponentsInChildren<Transform>(true)) if (t.name.StartsWith("FAM_") && t.name != "FAM_holder" && t.parent != h) foreach (var fr in t.GetComponentsInChildren<MeshRenderer>(true)) fr.enabled = vis;
+            // 0.3.29 (Osama 15 Nov: "clean model dead, we should just remove it so there's no wreck"): when the game switches the unit
+            // to its dead model (AnimationHub.DeadModel active), our model goes too. The vanilla wreck stays hidden, so nothing remains.
+            if (vis && IsDead(root, k)) { vis = false; if (deadLogged.Add(k)) MelonLogger.Msg($"FAMODELS {unit}: destroyed, model removed (no wreck)"); }
+            if (!famRenderers.TryGetValue(k, out var rs) || rs.Any(r => r == null) || Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 5f)
+            {
+                var list = new List<MeshRenderer>();var h = root.transform.Find("FAM_holder");
+                if (h != null) list.AddRange(h.GetComponentsInChildren<MeshRenderer>(true));
+                foreach (var t in root.GetComponentsInChildren<Transform>(true)) if (t.name.StartsWith("FAM_") && t.name != "FAM_holder" && t.parent != h) list.AddRange(t.GetComponentsInChildren<MeshRenderer>(true));
+                famRenderers[k] = rs = list.Distinct().ToArray(); famRenderersT[k] = Time.realtimeSinceStartup;
+            }
+            foreach (var fr in rs) if (fr.enabled != vis) fr.enabled = vis;
         }
+        if (famRenderers.Count > 2000) { famRenderers.Clear(); famRenderersT.Clear(); hubs.Clear(); }
     }
     static float syncT, yawT;
     static readonly Dictionary<int, float> lastYaw = new(), lastTurn = new(), lastMove = new();
@@ -150,8 +174,27 @@ public partial class Mod : MelonMod
         }
     }
 
+    // 0.3.29 (Osama 15 Nov: "I'm having frame stutters in game"): every frame over 50 ms in a match is logged with what FAModels did in
+    // the frame before it, so a hitch can be blamed on us or ruled out. verbose.txt in UserData/FAModels brings back per-soldier lines.
+    static bool Verbose;
+    static int bodySwapsThisFrame, modelSwapsThisFrame, hitchCount;
+    static float hitchLogT;
+    static void HitchLog()
+    {
+        float dt = Time.unscaledDeltaTime;
+        if (dt > 0.05f && Time.realtimeSinceStartup > 30f)
+        {
+            hitchCount++;
+            if (Time.realtimeSinceStartup - hitchLogT > 0.5f || dt > 0.2f)
+            { hitchLogT = Time.realtimeSinceStartup; MelonLogger.Msg($"FAMODELS hitch {dt * 1000f:F0} ms (#{hitchCount}): previous frame FAModels did {modelSwapsThisFrame} model swap(s), {bodySwapsThisFrame} body swap(s), {preload.Count} preload(s) left"); }
+        }
+        bodySwapsThisFrame = 0; modelSwapsThisFrame = 0;
+        if (lodLevels.Count > 4000) lodLevels.Clear();
+    }
+
     public override void OnUpdate()
     {
+        try { HitchLog(); } catch { }
         try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
         try { TickPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload: " + ex.Message); }
         try { TickInfantryBodies(true); } catch (Exception ex) { MelonLogger.Error("FAMODELS body swap: " + ex.Message); }
@@ -351,7 +394,9 @@ public partial class Mod : MelonMod
         int hidden = Hide(root);
         holder.SetActive(true);
         live.Add((root, unit));
-        MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s)");
+        modelSwapsThisFrame++;
+        // 0.3.29: infantry weapon swaps log only with UserData/FAModels/verbose.txt (they were ~1,600 lines a session).
+        if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s)");
         return true;
         }
         catch
