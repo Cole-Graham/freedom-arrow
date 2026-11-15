@@ -1,0 +1,246 @@
+{
+  "v": 3,
+  "author": "End",
+  "desc": "",
+  "guid": "6f089c17-8db4-45be-95c4-6b9866a0e8a8",
+  "type": 2,
+  "public": true,
+  "hasDiff": false,
+  "meDiff": 0,
+  "sceneName": "Kadaga Military Base",
+  "dtp": "Day overcast (default)",
+  "createdDate": 1793618318,
+  "updatedDate": 1793721551,
+  "scenario": "KADAGA",
+  "files": [],
+  "teams": [
+    {
+      "teamSide": 0,
+      "teamName": "Alpha team",
+      "slots": [
+        {
+          "playerName": "Alpha Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Alpha Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Alpha Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Alpha Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Alpha Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        }
+      ]
+    },
+    {
+      "teamSide": 1,
+      "teamName": "Bravo team",
+      "slots": [
+        {
+          "playerName": "Bravo Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Bravo Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Bravo Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Bravo Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        },
+        {
+          "playerName": "Bravo Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": true
+        }
+      ]
+    },
+    {
+      "teamSide": 101,
+      "teamName": "Neutral team",
+      "slots": [
+        {
+          "playerName": "Neutral Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Neutral Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Neutral Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Neutral Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Neutral Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    },
+    {
+      "teamSide": 100,
+      "teamName": "Spectators team",
+      "slots": [
+        {
+          "playerName": "Spectators Player 1",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 2",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 3",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 4",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 5",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 6",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 7",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 8",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 9",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        },
+        {
+          "playerName": "Spectators Player 10",
+          "bot": false,
+          "mandatory": false,
+          "deckRestric": {},
+          "deckList": [],
+          "lock": false
+        }
+      ]
+    }
+  ],
+  "gameVersion": "1.2.2",
+  "dlc": [
+    2
+  ]
+}
