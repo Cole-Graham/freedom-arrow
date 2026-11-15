@@ -48,7 +48,8 @@ static class SameUnitClaim
     static bool guidanceOk;
     static int drops,dropLogs,flips,blocks,blockLogs,claimsSeen,guidanceClaims,seekerClaims,shooterClaims,gunClaims;
     static readonly Dictionary<(ulong,ulong),float> lastBlockLog=new();
-    static readonly Dictionary<ulong,float> lastDrop=new();
+    static readonly HashSet<(ulong,ulong)> holding=new();
+    static HashSet<ulong> holdGuns=new();static long holdStamp;
     static readonly System.Collections.Concurrent.ConcurrentQueue<(ulong Target,ulong Caller,bool Missile)> Blocked=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
     public static void Install(HarmonyLib.Harmony harmony,string root)
@@ -69,6 +70,10 @@ static class SameUnitClaim
         var mp=me.GetParameters();
         if(me.ReturnType!=typeof(bool)||mp.Length!=2||mp.Any(x=>x.ParameterType!=typeof(Entity).MakeByRefType()))throw new InvalidOperationException("TargetingMe hook signature changed");
         harmony.Patch(me,postfix:new HarmonyMethod(typeof(SameUnitClaim),nameof(TargetingMe)));
+        var shoot=AccessTools.Method(typeof(ShootingSystem),"InternalUpdate")??throw new MissingMethodException("ShootingSystem.InternalUpdate");
+        var sp=shoot.GetParameters();
+        if(sp.Length!=2||sp.Any(x=>x.ParameterType!=typeof(Entity).MakeByRefType()))throw new InvalidOperationException("ShootingSystem.InternalUpdate signature changed");
+        harmony.Patch(shoot,prefix:new HarmonyMethod(typeof(SameUnitClaim),nameof(ShootBefore)));
         enabled=true;
         DiagnosticLog.Write("same_unit_claim_installed",new{weapons=ids.Count,gunClaimSeconds=GunClaimSeconds,launcherGuidance=guidanceOk});
         MelonLogger.Msg($"FREEDOM_ARROW_SAME_UNIT_CLAIM installed: {ids.Count} interceptor weapons take one SEAD missile per unit");
@@ -100,11 +105,20 @@ static class SameUnitClaim
         ulong unit=Key(__1);
         foreach(var c in claims)if(c.Unit==unit){__result=false;Interlocked.Increment(ref flips);return;}
     }
+    // Native callback, per weapon per frame: a held gun skips this frame's aiming and firing. Stale snapshot = native.
+    public static bool ShootBefore(in Entity __0)
+    {
+        if(!enabled||failed)return true;
+        var h=Volatile.Read(ref holdGuns);if(h.Count==0)return true;
+        if((Stopwatch.GetTimestamp()-Volatile.Read(ref holdStamp))/(double)Stopwatch.Frequency>MaxAge)return true;
+        var e=__0;if(!h.Contains(Key(e)))return true;
+        Interlocked.Increment(ref drops);return false;
+    }
     public static void SceneChanged()
     {
         Volatile.Write(ref frame,new(0,new(),new()));
         try{if(world!=null&&!world._isDisposed){weaponSet?.Dispose();missileSet?.Dispose();seekerSet?.Dispose();}}catch{}
-        world=null;weaponSet=missileSet=seekerSet=null;listed.Clear();fired.Clear();lastBlockLog.Clear();lastDrop.Clear();next=nextScan=0;
+        world=null;weaponSet=missileSet=seekerSet=null;listed.Clear();fired.Clear();lastBlockLog.Clear();holding.Clear();Volatile.Write(ref holdGuns,new HashSet<ulong>());next=nextScan=0;
     }
     static Entity Target(Entity w)=>w.IsAlive&&w.Has<TargetComponent>()?NativeEcs.Field<TargetComponent,Entity>(w,"Target"):default;
     public static void LateUpdate()
@@ -192,21 +206,24 @@ static class SameUnitClaim
                 if(!list.Exists(c=>c.Item2==wk&&c.Item3))list.Add((u,wk,true));
                 seekerClaims++;
             }
-            // Guns (claim5, Lateralus 13:17 PST "no improvement"): ShootingSystem.InternalUpdate only asks IsTargetOverkilled when the
+            // Guns (claim6, Lateralus 13:26 PST "no improvement still"): ShootingSystem.InternalUpdate only asks IsTargetOverkilled when the
             // selected round has a seeker (Ammunitions.Seeker at 0x108 > 0, check at 0x80DEF0), so gun rounds never reach the hooks above.
-            // A listed gun whose current target is a SEAD missile that another weapon of its unit has a missile flying at drops that
-            // target the way the game drops an overkilled one: RemoveTarget(weapon, false, false, TargetOverkilled). At most every 0.25 s.
+            // claim5 dropped such a gun's target with RemoveTarget, but the gun re-picked the same missile within a frame and kept firing.
+            // claim6 holds the gun instead: a listed gun whose current target is a SEAD missile that another weapon of its unit has a
+            // missile flying at skips ShootingSystem.InternalUpdate (prefix) until that claim ends, so its burst is kept for the next one.
+            var hold=new HashSet<ulong>();
             foreach(var l in listed)
             {
                 if(!l.Gun||!l.E.IsAlive)continue;
                 var t=Target(l.E);if(!t.IsAlive)continue;ulong tk=Key(t);
                 if(!claims.TryGetValue(tk,out var cl)||!cl.Exists(c=>c.Item1==l.Unit&&c.Item3&&c.Item2!=l.Key))continue;
-                if(lastDrop.TryGetValue(l.Key,out var at)&&now-at<0.25f)continue;
-                lastDrop[l.Key]=now;var w=l.E;
-                BattleSystemHelpers.RemoveTarget(ref w,false,false,TargetRemoveReason.TargetOverkilled);drops++;
-                if(dropLogs++<500)DiagnosticLog.Write("same_unit_claim_gun_drop",new{t=now,weapon=l.Key.ToString("X16"),target=tk.ToString("X16"),after=Key(Target(l.E)).ToString("X16")});
+                hold.Add(l.Key);
+                if(!holding.Contains((l.Key,tk))&&dropLogs++<500)DiagnosticLog.Write("same_unit_claim_gun_hold",new{t=now,weapon=l.Key.ToString("X16"),target=tk.ToString("X16")});
             }
+            holding.Clear();foreach(var l in listed)if(hold.Contains(l.Key)){var t=Target(l.E);holding.Add((l.Key,Key(t)));}
+            Volatile.Write(ref holdGuns,hold);
             claimsSeen+=claims.Count;
+            holdStamp=Stopwatch.GetTimestamp();
             Volatile.Write(ref frame,new(Stopwatch.GetTimestamp(),weaponUnit,claims.ToDictionary(p=>p.Key,p=>p.Value.ToArray())));
             int flushed=0;
             while(flushed++<32&&Blocked.TryDequeue(out var b))
@@ -215,7 +232,7 @@ static class SameUnitClaim
                 lastBlockLog[(b.Target,b.Caller)]=now;
                 if(blockLogs++<2000)DiagnosticLog.Write("same_unit_claim_block",new{t=now,target=b.Target.ToString("X16"),weapon=b.Caller.ToString("X16"),claimBy=b.Missile?"missile_in_flight":"gun_firing"});
             }
-            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,guidanceClaims,seekerClaims,shooterClaims,gunClaims,targetingMeFlips=Volatile.Read(ref flips),gunDrops=drops,blocks=Volatile.Read(ref blocks)});}
+            if(now>=nextMetrics){nextMetrics=now+5;DiagnosticLog.Write("same_unit_claim_metrics",new{t=now,weapons=listed.Count,claims=claims.Count,claimsSeen,guidanceClaims,seekerClaims,shooterClaims,gunClaims,targetingMeFlips=Volatile.Read(ref flips),gunHeldFrames=Volatile.Read(ref drops),blocks=Volatile.Read(ref blocks)});}
         }
         catch(Exception x){failed=true;Volatile.Write(ref frame,new(0,new(),new()));DiagnosticLog.Write("same_unit_claim_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: native targeting. "+x.Message);}
     }
