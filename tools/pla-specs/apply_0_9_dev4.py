@@ -12,7 +12,9 @@ Run with --check while another thread is still building on the shared source fol
   ZBL-08 12 HP; ZBD-251 9 seats; VT-5 base 140 without APS, Iron Fist APS option +60 (as on the ZBD-20), Motorized 4 cards. VT-5 and VT-5 Recon KE front 500 (was 600; Osama 16:09 PST). Marine HJ-8H Team 85 (was 60; Osama 16:13 PST).
 - Icons: J-31 uses the J-35 icon, J-11D the J-16 icon, J-15D a new icon from its own model.
 - Recon and Conscript Recon get a binoculars-only icon (FA_PLA_INF_LINE_RECON); Z-6B UAV is unarmed with no loadouts (Osama 16:2x PST).
-- AKF-98A (J-16) has the vanilla AGM-65H Maverick stats; name and model kept (Osama 16:3x PST).
+- Battle meshes: 39 China battle models over 60,000 triangles rebuilt under the limit (Osama 16:28 PST); check_battle_tris.py now
+  fails a build with any battle model over 60,000. Armory models and all textures unchanged.
+- AKF-98A (J-16) has the vanilla AGM-65H Maverick stats; name and model kept (Osama 16:3x PST). HJ-10 NLOS 90 -> 150 (Osama 16:42 PST).
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -168,6 +170,17 @@ g.put('AmmunitionsJson',2016661,{k:v for k,v in _AM[147].items() if k not in ('I
 g.put('WeaponsJson',2016659,{'MagazineReloadTimeMin':_W[230]['MagazineReloadTimeMin'],'MagazineReloadTimeMax':_W[230]['MagazineReloadTimeMax']})
 ok(all(_AM[2016661].get(k)==v for k,v in _AM[147].items() if k not in ('Id','Name','HUDName','ModelFileName')),'AKF-98A = AGM-65H')
 rec['akf98a_maverick']={'was':_was,'now':{k:_AM[2016661][k] for k in _was},'reload':[5.0,_W[230]['MagazineReloadTimeMax']]}
+# ---------- Battle triangle limit (Osama 16:28 PST: "in battle we want a triangle limit, we should rebuild the battle mesh") ----------
+# 39 battle meshes over 60,000 triangles rebuilt in Blender (work/pla-0.9/battle-lod/tools/lod.py: weld per UV island, planar merge
+# that keeps UVs, then collapse to an even triangle density). Armory files unchanged; textures unchanged. check_battle_tris.py gates builds.
+LOD=Path('/home/sam/tars/work/ba-dev/replicas/codex/work/pla-0.9/battle-lod/out');lr=json.loads((LOD/'results.json').read_text())
+ok(len(lr)==39 and all(v['tris'][1]<=60000 and v.get('parts_same') for v in lr.values()),'39 battle meshes at or under 60k, same parts')
+ALd=ROOT/f'tools/pla-specs/{V}-assets.txt';old=dict(l.split('=',1) for l in ALd.read_text().splitlines() if '=' in l) if ALd.exists() else {}
+for f in lr:ok((LOD/f).exists(),('lod file',f));old['UserData/FAModels/'+f]=str(LOD/f)
+ALd.write_text(''.join(f'{k}={v}\n' for k,v in sorted(old.items())))
+rec['battle_lod']={'limit':60000,'models':len(lr),'triangles':[sum(v['tris'][0] for v in lr.values()),sum(v['tris'][1] for v in lr.values())]}
+# HJ-10 NLOS vehicle 90 -> 150 pts (Osama 16:42 PST, thread 1571014792016171120; "HQ-10 150 pts" corrected to "HJ-10 I mean the NLOS")
+ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==90,('HJ-10',U[936]['Cost']));g.put('Units',936,{'Cost':150});rec['hj10_cost']=[90,150]
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
