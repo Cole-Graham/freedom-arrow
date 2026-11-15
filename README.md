@@ -1,4 +1,7 @@
-# Freedom Arrow 0.9.0-dev.4
+# Freedom Arrow 0.9.0-dev.5
+dev.4 plus: the SX2190 data fix (dev.4's constants were refused at game start, "Field type mismatch OriginalName") and the
+ZBL-191 jammer option +20. check_field_types.py now gates every package. tools/pla-specs/apply_0_9_dev5.py.
+## Historical 0.9.0-dev.4
 Osama/Lateralus 14 Nov 2026 evening batch, built on Osama's word at 18:25 PST ("load build 4 and everything we have so far for it
 on my pc"; thread 1571297086974992537). Full list: tools/pla-specs/apply_0_9_dev4.py. FAModels 0.3.26 (GPU textures), 39 battle meshes.
 ## Historical 0.9.0-dev.3

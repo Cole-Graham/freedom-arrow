@@ -1,0 +1,17 @@
+{
+  "zbl191_jammer": {
+    "option": 31080,
+    "cost": 20,
+    "ability": "ECM Hardhat (0.7 accuracy, the M1A1 FEP jammer)",
+    "in_a_deck": false
+  },
+  "sx2190_original_name": [
+    "PLA SX2190",
+    null
+  ],
+  "version": "0.9.0-dev.5",
+  "base": "0.9.0-dev.4",
+  "base_sha256": "a9a6808dfa853484181afec88722df908cc97fce538edf88e519e452aa6ebb85",
+  "checks": 5,
+  "verified": "data checks only"
+}

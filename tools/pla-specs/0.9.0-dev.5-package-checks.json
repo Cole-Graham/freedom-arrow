@@ -1,0 +1,47 @@
+{
+  "version": "0.9.0-dev.5",
+  "build": 178,
+  "previous": "0.9.0-dev.4",
+  "assets_version": "0.2.30",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.30.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/0.8/FreedomArrow-Assets-0.2.30.bamod",
+    "sha256": "483254b16bdd5c68f27b2ac301b688a73e6ebfa2981d85389de2e4242502a22c",
+    "size": 5877941116,
+    "files": 10387,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.5-complete.bamod",
+    "sha256": "aaddc13ac9197a35262d440b94540a6934712e8ee6a835d7d2fe8b292d8bfec4",
+    "size": 5958392667,
+    "files": 10634
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.5.bamod",
+    "sha256": "ef0a61fc51fffc9501f7060454e2ee319f380a2d358ae5aeafc976ac32593562",
+    "size": 80452146,
+    "files": 249
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/modifications.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.5.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase 0.1/[FA] [2v2] Chkalovsk Airbase 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1/[FA] [2v2] Chkalovsk Airbase Skirmish 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death 0.1/[FA] [2v2] Highway of Death 0.1.bascr",
+    "UserData/FreedomArrow/scenarios/[FA] [2v2] Highway of Death Skirmish 0.1/[FA] [2v2] Highway of Death Skirmish 0.1.bascr",
+    "mod.json"
+  ],
+  "native_verified": false
+}

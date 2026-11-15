@@ -385,18 +385,6 @@ _z1=g.add('OptionsJson',O[1468],{'ModificationId':_zm,'Name':'ECM ZTL191 Base','
 _z2=g.add('OptionsJson',O[1469],{'ModificationId':_zm,'Name':'ECM ZTL191 Jammer','Ability1Id':_base,'Ability2Id':80,'Cost':20,'IsDefault':False})
 ok(_z1<=32767 and _z2<=32767,'short option ids')
 rec['ztl191_jammer']={'option':_z2,'cost':20,'ability':'ECM Hardhat (0.7 accuracy, the M1A1 FEP jammer)','ui':O[1469]['UIName']}
-# ---------- ZBL-191 ECM option +20 (Osama 14 Nov 18:33 PST, thread 1571338089186599002: "ZBL-191 also ecm upgrade for +20"), the same
-# Hardhat jammer slot as the ZTL-191 above (vanilla M1A1 FEP mod 397, ability 80, ECM 0.7). The ZBL-191 keeps its smoke/supply and
-# Iron Fist APS abilities in both options; the jammer is the third.
-ok(U[979]['HUDName']=='ZBL-191' and sorted(x['AbilityId'] for x in UAB.values() if x['UnitId']==979)==[82,2010319],'ZBL-191 abilities smoke + APS')
-ok(not [x for x in M.values() if x['UnitId']==979 and x.get('Type')==6],'no ZBL-191 protection slot yet')
-_ba=next(x for x in UAB.values() if x['UnitId']==979)
-for _ab in (4,80):g.add('UnitAbilitiesJson',_ba,{'AbilityId':_ab})
-_bm=g.add('ModificationsJson',M[397],{'UnitId':979,'Name':'PLA ZBL-191 Jammer'})
-_b1=g.add('OptionsJson',O[1468],{'ModificationId':_bm,'Name':'ECM ZBL191 Base','Ability1Id':2010319,'Ability2Id':82,'Ability3Id':4,'Cost':0,'IsDefault':True})
-_b2=g.add('OptionsJson',O[1469],{'ModificationId':_bm,'Name':'ECM ZBL191 Jammer','Ability1Id':2010319,'Ability2Id':82,'Ability3Id':80,'Cost':20,'IsDefault':False})
-ok(_b1<=32767 and _b2<=32767,'short option ids')
-rec['zbl191_jammer']={'option':_b2,'cost':20,'ability':'ECM Hardhat (0.7 accuracy, the M1A1 FEP jammer)','in_a_deck':bool([x for x in SAJ.values() if x['UnitId']==979])}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
