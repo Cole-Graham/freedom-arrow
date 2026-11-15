@@ -7,6 +7,10 @@ import unittest
 import tkinter as tk
 from tkinter import ttk
 
+from pathlib import Path
+
+from dpm_visualizer.joins import Catalog
+from dpm_visualizer.tables import default_vanilla_dir, load_vanilla
 from dpm_visualizer.units_tab import UnitsTab
 from dpm_visualizer.weapons_tab import WeaponsTab
 
@@ -48,6 +52,7 @@ class TabStateTests(unittest.TestCase):
         tab.face_var.set("Top")
         tab.damage_type.set("Stress")
         tab.ammo_pref.set("HEAT")
+        tab.launcher_mode.set("Show both")
         tab.include_upgrade.set(True)
         tab.normalize.set(True)
         tab.assume_hits.set(True)
@@ -69,6 +74,7 @@ class TabStateTests(unittest.TestCase):
         self.assertEqual(restored["face"], "Top")
         self.assertEqual(restored["damage_type"], "Stress")
         self.assertEqual(restored["ammo_pref"], "HEAT")
+        self.assertEqual(restored["launcher_mode"], "Show both")
         self.assertTrue(restored["include_upgrade"])
         self.assertTrue(restored["normalize"])
         self.assertTrue(restored["assume_hits"])
@@ -142,3 +148,47 @@ class TabStateTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _vanilla() -> Path | None:
+    return default_vanilla_dir(Path(__file__).resolve().parents[3])
+
+
+@unittest.skipUnless(_vanilla() is not None, "cache/vanilla snapshot is missing")
+class LauncherModeTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.root = tk.Tk()
+        cls.root.withdraw()
+        cls.app = _App()
+        cls.app.catalog = Catalog(load_vanilla(_vanilla()))
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.root.destroy()
+
+    def _lines(self, mode: str, unit: str):
+        tab = UnitsTab(ttk.Frame(self.root), self.app)
+        tab.rows[0]["unit"].set(unit)
+        tab.launcher_mode.set(mode)
+        armor = self.app.catalog.infantry_armor("Armor Infantry", 8)[0]
+        return tab._row_lines(tab.rows[0], armor, "Front", "Physical", None, False)
+
+    def test_show_both_adds_a_dashed_line_with_the_launcher(self) -> None:
+        # Marine Raiders [70] carry the M72A10 LAW [212].
+        lines = self._lines("Show both", "Marine Raiders [70]")
+        self.assertEqual([style for _meta, style in lines], ["-", "--"])
+        without, full = (meta for meta, _style in lines)
+        self.assertNotIn(212, [int(w["weapon"]["Id"]) for w in without["weapons"]])
+        self.assertIn(212, [int(w["weapon"]["Id"]) for w in full["weapons"]])
+        self.assertTrue(full["label"].endswith(" + launchers"))
+        self.assertGreater(max(d for _c, d in full["series"]), max(d for _c, d in without["series"]))
+
+    def test_without_launchers_drops_the_launcher(self) -> None:
+        (meta, style), = self._lines("Show without launcher damage", "Marine Raiders [70]")
+        self.assertNotIn(212, [int(w["weapon"]["Id"]) for w in meta["weapons"]])
+        self.assertTrue(meta["label"].endswith(" (no launchers)"))
+
+    def test_show_both_is_one_line_for_a_unit_without_launchers(self) -> None:
+        lines = self._lines("Show both", "T-72B [9]")
+        self.assertEqual([style for _meta, style in lines], ["-"])

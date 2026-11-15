@@ -23,6 +23,8 @@ INFANTRY_AT_WEAPON_TYPES = frozenset({62, 63, 80, 81})
 # Ammunitions.TargetType flag Infantry (game enum BrokenArrow.DataBase.Enums.TargetType: Ground 1,
 # Infantry 2, Vehicle 4, Helicopter 8, Aircraft 16, Ship 32). M72A10 66mm HE is 47 (has it), M72A2 HEAT is 45.
 TARGET_TYPE_INFANTRY = 2
+# Units tab: infantry launchers (the RPG/ATGM rows above) carry only a few rounds per man.
+LAUNCHER_MODES = ("Show launcher damage", "Show without launcher damage", "Show both")
 
 # Armory slots that change weapons or armor. Pylons are omitted: their combinations explode.
 LOADOUT_SLOT_UINAMES = frozenset(

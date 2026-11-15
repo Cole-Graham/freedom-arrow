@@ -34,7 +34,7 @@ class ChartPanel:
 
     def draw(
         self,
-        series: list[tuple[str, list[tuple[float, float]], str | None]],
+        series: list[tuple],
         log_scale: bool,
         ylabel: str,
         title: str,
@@ -43,12 +43,14 @@ class ChartPanel:
         self.line_data = {}
         self._hover = None
         self._pin = None
-        for index, (label, points, style) in enumerate(series):
+        # Each item: (label, points, line style) or (label, points, line style, colour index).
+        for index, item in enumerate(series):
+            label, points, style = item[:3]
             if not points:
                 continue
             xs = [p[0] for p in points]
             ys = [p[1] for p in points]
-            color = LINE_COLORS[index % len(LINE_COLORS)]
+            color = LINE_COLORS[(item[3] if len(item) > 3 else index) % len(LINE_COLORS)]
             self.ax.plot(xs, ys, label=label, color=color, linestyle=style or "-", linewidth=1.8)
             self.line_data[label] = points
         self.ax.set_title(title)

@@ -9,7 +9,7 @@ from typing import Any
 
 from .calculations import Cover, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
-from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES
+from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES, LAUNCHER_MODES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
 
 
@@ -82,6 +82,9 @@ class UnitsTab:
             state="readonly",
             width=12,
         ).pack(anchor=tk.W)
+        self.launcher_mode = tk.StringVar(value=LAUNCHER_MODES[0])
+        ttk.Label(target, text="Infantry launchers (few rounds per man)").pack(anchor=tk.W, pady=(6, 0))
+        ttk.Combobox(target, textvariable=self.launcher_mode, values=list(LAUNCHER_MODES), state="readonly", width=28).pack(anchor=tk.W)
         self.cover_ctl = CoverControls(target, self.app, self._touch)
         self.include_upgrade = tk.BooleanVar(value=False)
         ttk.Checkbutton(target, text="Include non-default weapons", variable=self.include_upgrade, command=self._touch).pack(anchor=tk.W)
@@ -114,6 +117,7 @@ class UnitsTab:
         self.face_var.trace_add("write", lambda *_: self._touch())
         self.damage_type.trace_add("write", lambda *_: self._touch())
         self.ammo_pref.trace_add("write", lambda *_: self._touch())
+        self.launcher_mode.trace_add("write", lambda *_: self._touch())
 
     def _build_custom(self, parent: ttk.Frame) -> None:
         """Custom unit: start from a unit and loadout, then change cost, HP, armor and weapons."""
@@ -505,13 +509,16 @@ class UnitsTab:
         damage_type: str,
         silhouette: tuple[float, float] | None,
         apply_accuracy: bool,
+        launchers: bool = True,
     ):
+        """launchers False: leave out infantry launchers. meta["has_launcher"] says whether the unit has one."""
         catalog = self.app.catalog
         assert catalog is not None
         label = row["unit"].get()
         preference = self.ammo_pref.get()
         parts = []
         weapons_meta = []
+        has_launcher = False
         if label in self.app.custom_units and self.app.custom_units[label].get("weapons") is not None:
             custom = self.app.custom_units[label]
             source_id = custom["source_unit_id"]
@@ -553,6 +560,10 @@ class UnitsTab:
                 guns, carried = item.gun_count, choice.quantity
             if guns <= 0:
                 continue
+            launcher = catalog.is_anti_tank_weapon(int(weapon.get("Id") or 0)) and catalog.is_infantry(source_id)
+            has_launcher = has_launcher or launcher
+            if launcher and not launchers:
+                continue
             series = sample_dpm(
                 weapon,
                 ammo,
@@ -566,7 +577,7 @@ class UnitsTab:
             )
             # Infantry RPGs carry a few rounds per man: count only the rounds they have in the first minute.
             share = 1.0
-            if catalog.is_anti_tank_weapon(int(weapon.get("Id") or 0)) and catalog.is_infantry(source_id):
+            if launcher:
                 pair = catalog.ammo_pairs.get((int(weapon.get("Id") or 0), int(ammo.get("Id") or 0)))
                 share = carried_ammo_share(weapon, carried if carried is not None else (pair.quantity if pair else 0))
                 series = [(card, dpm * share) for card, dpm in series]
@@ -597,7 +608,28 @@ class UnitsTab:
             "source_id": source_id,
             "silhouette": silhouette,
             "versus": None,
+            "has_launcher": has_launcher,
         }
+
+    def _row_lines(self, row: dict[str, Any], *args) -> list[tuple[dict[str, Any], str]]:
+        """(meta, line style) for one compared unit under the launcher setting. "Show both" draws
+        the unit without launchers as a solid line and with launchers as a dashed line."""
+        mode = self.launcher_mode.get()
+        if mode == LAUNCHER_MODES[0]:
+            meta = self._row_series(row, *args, launchers=True)
+            return [(meta, "-")] if meta else []
+        without = self._row_series(row, *args, launchers=False)
+        if mode == LAUNCHER_MODES[1]:
+            if without and without["has_launcher"]:
+                without["label"] += " (no launchers)"
+            return [(without, "-")] if without else []
+        lines = [(without, "-")] if without else []
+        if without is None or without["has_launcher"]:
+            full = self._row_series(row, *args, launchers=True)
+            if full and full["has_launcher"]:
+                full["label"] += " + launchers"
+                lines.append((full, "--"))
+        return lines
 
     def generate(self, quiet: bool = False) -> None:
         """quiet: automatic redraw after a change; problems go to the info box instead of a pop-up."""
@@ -621,40 +653,22 @@ class UnitsTab:
                     (left, right),
                     (right, left),
                 )
-                for shooter, target in pairs:
+                for color, (shooter, target) in enumerate(pairs):
                     armor = self._row_armor(target)
                     silhouette = self._row_silhouette(target) if apply_accuracy else None
-                    meta = self._row_series(
-                        shooter,
-                        armor,
-                        face,
-                        damage_type,
-                        silhouette,
-                        apply_accuracy,
-                    )
-                    if not meta:
-                        continue
-                    meta["versus"] = self._row_display_name(target)
-                    plotted.append((meta["label"], meta["series"], "-"))
-                    self._series_meta.append(meta)
+                    for meta, style in self._row_lines(shooter, armor, face, damage_type, silhouette, apply_accuracy):
+                        meta["versus"] = self._row_display_name(target)
+                        plotted.append((meta["label"], meta["series"], style, color))
+                        self._series_meta.append(meta)
                 self._silhouette = None
             else:
                 armor = self._resolve_armor()
                 silhouette = self._resolve_silhouette() if apply_accuracy else None
                 self._silhouette = silhouette
-                for row in active:
-                    meta = self._row_series(
-                        row,
-                        armor,
-                        face,
-                        damage_type,
-                        silhouette,
-                        apply_accuracy,
-                    )
-                    if not meta:
-                        continue
-                    plotted.append((meta["label"], meta["series"], "-"))
-                    self._series_meta.append(meta)
+                for color, row in enumerate(active):
+                    for meta, style in self._row_lines(row, armor, face, damage_type, silhouette, apply_accuracy):
+                        plotted.append((meta["label"], meta["series"], style, color))
+                        self._series_meta.append(meta)
         except ValueError as exc:
             if quiet:
                 self.info.delete("1.0", tk.END)
@@ -807,6 +821,7 @@ class UnitsTab:
             "face": self.face_var.get(),
             "damage_type": self.damage_type.get(),
             "ammo_pref": self.ammo_pref.get(),
+            "launcher_mode": self.launcher_mode.get(),
             "include_upgrade": bool(self.include_upgrade.get()),
             "normalize": bool(self.normalize.get()),
             "assume_hits": bool(self.assume_hits.get()),
@@ -827,6 +842,8 @@ class UnitsTab:
                 self.damage_type.set(state["damage_type"])
             if state.get("ammo_pref"):
                 self.ammo_pref.set(state["ammo_pref"])
+            if state.get("launcher_mode") in LAUNCHER_MODES:
+                self.launcher_mode.set(state["launcher_mode"])
             if "include_upgrade" in state:
                 self.include_upgrade.set(bool(state["include_upgrade"]))
             if "normalize" in state:
