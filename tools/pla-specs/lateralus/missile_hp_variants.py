@@ -12,6 +12,9 @@ Usage: missile_hp_variants.py 5 7 9
        missile_hp_variants.py 5 7 --tier   (0.9.0-dev.12-hp5-tier, -hp7-tier: no bursts + TIER_DAMAGE)
        missile_hp_variants.py 5 --tier2   (0.9.0-dev.12-hp5-tier2: Lateralus 10:39 PST "lets try this", one hit harder per tier: 1.0/1.3/1.7)
        missile_hp_variants.py 5 --burst-tier   (0.9.0-dev.12-hp5-burst-tier: Lateralus 11:29 PST "yes build that test build for me")
+       missile_hp_variants.py 5 --burst-tier --mid-burst 7   (0.9.0-dev.12-hp5-burst-tier2: Lateralus 11:41 PST "the tunguska tier doesn't
+           seem to be able to shoot down 2 missiles". hp5btier-1940 log: every middle burst of 5 went 2 hits on missile 1, 1 round
+           already in flight when it died, 2 rounds at missile 2 still ~1.2 s out (1 hit); burst 7 = 3 for missile 1 + 4 for missile 2)
 
 --burst-tier (Lateralus 15 Nov 2026 11:21-11:29 PST: re-introduce bursts to set how many missiles a tier stops, a burst that refills on
 downtime, card DPS with burst cooldowns but without magazine reloads for the 12 SPAAG guns only, listed by weapon ID in a config file).
@@ -58,7 +61,8 @@ LIGHT=[62,213,2010643,2009559,2010663];MID=[262,2010677,231,60,2009185];HEAVY=[2
 TIER_DAMAGE={5:(1.3,1.7,2.6),7:(1.8,2.4,3.6)}
 if '--tier2' in sys.argv:TIER_DAMAGE={5:(1.0,1.3,1.7)}   # hp5-tier killed 20/20: hits per kill 5/4/3 instead of 4/3/2
 LIGHT_W=[261,309,2009555,2010639,2010659];MID_W=[345,2010673,327,19,2009181];HEAVY_W=[2009365,2009599]   # weapon ids, same order as LIGHT/MID/HEAVY ammo
-BURST_TIER={**{i:(3,2.0,3.0) for i in LIGHT_W},**{i:(5,2.0,3.0) for i in MID_W}}   # weapon id: (shots per burst, pause min, pause max)
+MIDN=int(sys.argv[sys.argv.index('--mid-burst')+1]) if '--mid-burst' in sys.argv else 5
+BURST_TIER={**{i:(3,2.0,3.0) for i in LIGHT_W},**{i:(MIDN,2.0,3.0) for i in MID_W}}   # weapon id: (shots per burst, pause min, pause max)
 SPAAG=FA/'spaag-weapons.json'
 def burst_tier():
     assert sorted(LIGHT_W+MID_W+HEAVY_W)==sorted(BURST)
@@ -95,7 +99,7 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for x in sys.argv[1:] if x.isdigit()]:
-        V=f'{PREV}-hp{hp}'+('-burst-tier' if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
+        V=f'{PREV}-hp{hp}'+('-burst-tier'+('' if MIDN==5 else '2') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
         before=burst_tier() if btier else burst_pause() if burst else None
         dmg={i:(v[0],2.6) for i,v in NOBURST_DAMAGE.items()} if btier else tier_damage(hp) if tier else NOBURST_DAMAGE
         if nob or btier:noburst_damage(dmg)
@@ -103,7 +107,7 @@ try:
             'source':'Lateralus 15 Nov 2026, thread 1571554273639006392'}))
         m=json.loads((REL/'mod.json').read_text());assert m['version']==PREV
         m['version']=V;m['description']=re.sub(r'^(Freedom Arrow 0\.9: China \(PLA\) on the full 0\.7\.0-dev\.58 game\. )',
-            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(', 12 SPAAG guns 2.6 damage per round, light guns burst 3 and middle guns burst 5 with a 2-3 s pause, heavy guns no bursts, bursts refill after 3 s without firing, card DPS without magazine reload' if btier else '')+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
+            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+(', 12 SPAAG guns 2.6 damage per round, light guns burst 3 and middle guns burst %d with a 2-3 s pause'%MIDN+', heavy guns no bursts, bursts refill after 3 s without firing, card DPS without magazine reload' if btier else '')+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
         (REL/'mod.json').write_text(enc(m))
         c=json.loads((FA/'channel.json').read_text());c['package_version']=V;(FA/'channel.json').write_text(enc(c))
         b=json.loads((FA/'pla-build.json').read_text());b.update(build=BUILD,label='Freedom Arrow '+V);(FA/'pla-build.json').write_text(enc(b))
