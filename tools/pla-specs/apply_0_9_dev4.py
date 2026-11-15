@@ -9,8 +9,9 @@ Run with --check while another thread is still building on the shared source fol
 - PHL-191 Cruise fires a copy of the vanilla Iskander-K 9M728 cruise missile named CJ-10, with the Iskander's cruise loadouts
   (2x default, 4x +50) instead of Fire Dragon 480 / 280A; PHL-191 Ballistic keeps the Fire Dragons.
 - Osama 16:02 PST: Mengshi Recon removed; PF-98 Tank Hunters out of PLAGF Armored Force; PLAAF Airborne 8 and Thunder Gods 2 cards;
-  ZBL-08 12 HP; ZBD-251 9 seats; VT-5 base 140 without APS, Iron Fist APS option +60 (as on the ZBD-20), Motorized 4 cards. VT-5 and VT-5 Recon KE front 500 (was 600; Osama 16:09 PST).
+  ZBL-08 12 HP; ZBD-251 9 seats; VT-5 base 140 without APS, Iron Fist APS option +60 (as on the ZBD-20), Motorized 4 cards. VT-5 and VT-5 Recon KE front 500 (was 600; Osama 16:09 PST). Marine HJ-8H Team 85 (was 60; Osama 16:13 PST).
 - Icons: J-31 uses the J-35 icon, J-11D the J-16 icon, J-15D a new icon from its own model.
+- Recon and Conscript Recon get a binoculars-only icon (FA_PLA_INF_LINE_RECON); Z-6B UAV is unarmed with no loadouts (Osama 16:2x PST).
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
@@ -134,6 +135,27 @@ _AR=t['ArmorsJson'];_UAR=t['UnitArmorsJson'];rec['vt5_ke_front']={}
 for _u,_h in ((1261,'VT-5'),(1262,'VT-5 Recon')):
     ok(U[_u]['HUDName']==_h,(_u,_h));_a=[r['ArmorId'] for r in _UAR.values() if r['UnitId']==_u];ok(len(_a)==1 and sum(1 for r in _UAR.values() if r['ArmorId']==_a[0])==1,(_h,'own armour'))
     ok(_AR[_a[0]]['KinArmorFront']==600,(_h,'KE front 600',_AR[_a[0]]['KinArmorFront']));g.put('ArmorsJson',_a[0],{'KinArmorFront':500});rec['vt5_ke_front'][_h]=[600,500]
+# Marine HJ-8H Team 85 pts (Osama 16:13 PST, thread 1571014792016171120; was 60 since dev.2)
+ok(U[1193]['HUDName']=='Marine HJ-8H Team' and U[1193]['Cost']==60,('Marine HJ-8H',U[1193]['Cost']));g.put('Units',1193,{'Cost':85});rec['marine_hj8h_cost']=[60,85]
+# Recon and Conscript Recon: binoculars-only icon FA_PLA_INF_LINE_RECON(_OUTLINE) (Osama 16:2x PST, thread 1571014792016171120;
+# vanilla scout binoculars alone, made by work/pla-0.9/recon-icon/make.py). Both used the vanilla US_CAVALRY_SCOUTS-Label.
+ok((icon_dir/'FA_PLA_INF_LINE_RECON.png').exists() and (icon_dir/'FA_PLA_INF_LINE_RECON_OUTLINE.png').exists(),'recon icon files')
+for _u,_h in ((1149,'Recon'),(1213,'Conscript Recon')):
+    ok(U[_u]['HUDName'].startswith(_h) and U[_u]['ThumbnailFileName']=='US_CAVALRY_SCOUTS-Label',(_u,U[_u]['HUDName'],U[_u]['ThumbnailFileName']));g.put('Units',_u,{'ThumbnailFileName':'FA_PLA_INF_LINE_RECON'})
+rec['recon_icon']={'1149':'FA_PLA_INF_LINE_RECON','1213':'FA_PLA_INF_LINE_RECON'}
+# Z-6B UAV unarmed, no loadouts (Osama 16:2x PST, thread 1571014792016171120): the Termit S-8L / Kornet-M / Igla-S pylons, their
+# ammunition and the 4-option loadout slot (dev.2 copies) are removed. It keeps the Termit empty turret (as the Termit's empty
+# default) and the laser ability, like the unarmed vanilla MH-60X / Mi-26 which have no turret and no slot.
+TUJ=t['TurretUnitsJson'];WAJ=t['WeaponAmmunitionsJson'];TWJ=t['TurretWeaponsJson']
+ok(U[1105]['HUDName']=='Z-6B UAV' and sorted(r['TurretId'] for r in rows('TurretUnitsJson',1105))==[160,1227,1228,1229],'Z-6B Termit mounts')
+for r in rows('TurretUnitsJson',1105):
+    if r['TurretId']!=160:g.remove('TurretUnitsJson',r['Id'])
+for r in rows('WeaponAmmunitionsJson',1105):g.remove('WeaponAmmunitionsJson',r['Id'])
+_zm=[m['Id'] for m in rows('ModificationsJson',1105)];ok(len(_zm)==1 and len([o for o in O.values() if o['ModificationId']==_zm[0]])==4,'Z-6B one slot, 4 options')
+g.clear_options(1105)
+ok([r['TurretId'] for r in rows('TurretUnitsJson',1105)]==[160] and not [x for x in TWJ.values() if x['TurretId']==160] and not rows('WeaponAmmunitionsJson',1105),'Z-6B unarmed')
+ok(not rows('ModificationsJson',1105) and not [o for o in O.values() if o['ModificationId']==_zm[0]],'Z-6B no loadouts')
+rec['z6b_unarmed']={'removed_turrets':[1227,1228,1229],'removed_modification':_zm[0],'kept':'turret 160 (empty), laser ability 10'}
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
