@@ -1,4 +1,13 @@
-# Freedom Arrow 0.9.0-dev.11
+# Freedom Arrow 0.9.0-dev.12
+
+Osama and Lateralus 15 Nov 02:4x-04:1x PST batch: data changes in tools/pla-specs/apply_0_9_dev12.py (QN-502 one missile, HQ-9C launcher,
+one QTS-11 grenade launcher for China, China rifle tiers QBZ-95/QBZ-191/QMK/QBZ-192, Mountain Leopards, Falcons/Blood Wolves smoke,
+J-5/J-6W 10 HP, CH-901 and CTL-181 laser guidance, J-36 loadouts normalised, J-35/J-31 Light SEAD, JRVG-1 speed 65 and 12 HP, bombs drop
+their full load, CM-501GA only on Z-21, Z-20 gunship FS-90 pods, FS-70A/FS-90 ignore cover 60%, Lateralus's flame and smoke nerfs).
+Infantry bodies cut to 28k/7k/3k triangles (72 of 84 files, work/pla-0.9/inf-lod), the last 204 PNGs dropped (GPU textures only).
+Shot log: penetration, armour, penetrated, shell distance per hit and a per-match summary.
+
+## Historical 0.9.0-dev.11
 
 Osama and Lateralus 15 Nov 00:2x-02:1x PST batch: data changes in tools/pla-specs/apply_0_9_dev11.py (DZJ-08, Snow Leopards, SF
 availability, Godswords QTS-11, Z-19 CM-501GA, J-10A mixed strike, ZBD-20 HP, fire-support sprint/smoke, ZBL-191 GL-5 APS option,

@@ -45,14 +45,29 @@ public sealed partial class Prototype
         InstallBombRoof();
         MelonLogger.Msg($"FREEDOM_ARROW_COMBAT installed crits {config.Crits} damage {config.CritDamage} ATGM damage {config.AtgmCritDamage} rear penetration {config.RearCritMinPenetration} front arc {config.FrontArcDegrees}");
     }
-    public static void MarkRealHit() { realHit=true; }
-    public static void QueueCrit(Entity __0,Ammunitions __2,ArmorSides __5,float __result)
+    // 0.9.0-dev.12 (Osama 15 Nov 2026): the shot log also records the shell's distance travelled for each real hit.
+    [ThreadStatic] static float shellDistance;
+    static bool distanceOff,distanceChecked;
+    public static void MarkRealHit(Entity __0)
+    {
+        realHit=true;shellDistance=-1;
+        if(distanceOff||shotFile==null)return;
+        if(!distanceChecked)
+        {
+            distanceChecked=true;
+            if(!NativeEcs.Compiled<Il2CppBrokenArrow.Client.Ecs.BattleSystem.Ballistics.Components.TrajectoryShellComponent>()){distanceOff=true;MelonLogger.Warning("FREEDOM_ARROW_SHOT_LOG shell distance off: component access not compiled");return;}
+        }
+        try{shellDistance=NativeEcs.Field<Il2CppBrokenArrow.Client.Ecs.BattleSystem.Ballistics.Components.TrajectoryShellComponent,float>(__0,"CurrentDistance");}
+        catch(InvalidOperationException){}
+        catch(Exception e){distanceOff=true;MelonLogger.Warning("FREEDOM_ARROW_SHOT_LOG shell distance off: "+e.Message);}
+    }
+    public static void QueueCrit(Entity __0,Ammunitions __2,float __3,bool __4,ArmorSides __5,float __result)
     {
         bool real=realHit;realHit=false;
         bool arc=arcPending;arcPending=false;
         if(!real||!combatActive||__2==null)return;
         CountHit(__2.Name);
-        try{LogHit(__0,__2.Name,__2.Id,__5.ToString(),__result,__2.ArmorTargeted.ToString(),__2.Damage);}catch{}
+        try{LogHit(__0,__2,__5,__result,__3,__4,shellDistance);}catch{}
         try
         {
             if(arc&&__5==ArmorSides.Front)arcHits.Enqueue((__0,arcAngle,__result,__2.Name,arcWidened));

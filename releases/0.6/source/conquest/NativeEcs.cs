@@ -35,6 +35,12 @@ internal static unsafe class NativeEcs
         if(result==IntPtr.Zero)throw new InvalidOperationException("Native ECS generic method unavailable: "+typeof(T).Name);
         return methods[key]=result;
     }
+    // True when the game compiled Entity.Has<T> and Entity.Get<T> for this component, so Field<T> cannot reach a missing native method.
+    public static bool Compiled<T>()
+    {
+        try{return *(IntPtr*)Method<T>("MethodInfoStoreGeneric_Has_Public_Boolean_0`1")!=IntPtr.Zero&&*(IntPtr*)Method<T>("MethodInfoStoreGeneric_Get_Public_byref_T_0`1")!=IntPtr.Zero;}
+        catch{return false;}
+    }
     static IntPtr Class<T>()
     {
         RuntimeHelpers.RunClassConstructor(typeof(T).TypeHandle);

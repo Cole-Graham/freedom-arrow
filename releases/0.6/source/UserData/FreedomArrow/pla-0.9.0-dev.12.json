@@ -1,0 +1,517 @@
+{
+  "qn502_single": {
+    "weapon": 2009647,
+    "burst": [
+      2,
+      1
+    ]
+  },
+  "hq9c_mount": {
+    "unit": 911,
+    "removed_empty_turret": 2009210,
+    "kept": 2014557
+  },
+  "qts11_gl_one_weapon": {
+    "from": [
+      2004006,
+      2004007
+    ],
+    "to": [
+      2019270,
+      2019271
+    ],
+    "squads": 31,
+    "units": [
+      901,
+      986,
+      987,
+      988,
+      989,
+      990,
+      991,
+      992,
+      993,
+      994,
+      995,
+      996,
+      997,
+      998,
+      999,
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1014,
+      1143,
+      1188,
+      1203,
+      1224,
+      1254
+    ],
+    "members": 34,
+    "rows": 31,
+    "models": 31,
+    "stats": {
+      "damage": [
+        2.5,
+        1.5
+      ],
+      "penetration": [
+        15,
+        40
+      ],
+      "time_between_shots": [
+        1.0,
+        4.0
+      ]
+    }
+  },
+  "qbz192_m4a1_urgi": {
+    "weapon": 2013087,
+    "ammunition": 2013088,
+    "clone_of": [
+      722,
+      358
+    ],
+    "damage": [
+      1.2,
+      1.8
+    ],
+    "units": [
+      1146,
+      1183,
+      1184,
+      1185,
+      1186,
+      1191
+    ]
+  },
+  "mountain_leopards_hj12": {
+    "unit": 1186,
+    "launchers": [
+      3,
+      1
+    ],
+    "missiles": [
+      6,
+      2
+    ]
+  },
+  "sf_smoke": {
+    "1183 Blood Wolves": [
+      4,
+      1
+    ],
+    "1185 Falcons": [
+      4,
+      1
+    ]
+  },
+  "j5_j6_hp": {
+    "units": [
+      1089,
+      1091
+    ],
+    "armor": [
+      334,
+      2019294
+    ],
+    "hp": [
+      20,
+      10
+    ],
+    "options_repointed": []
+  },
+  "ch901_laze": {
+    "ammunition": 2018448,
+    "trajectory": [
+      200,
+      110
+    ],
+    "seeker": [
+      0,
+      100
+    ],
+    "max_seeker_distance": [
+      300,
+      700
+    ]
+  },
+  "ch901_icon": {
+    "weapon": 2018447,
+    "hud_icon": [
+      "INF_JAVELIN",
+      "FA_PLA_WP_QN202"
+    ]
+  },
+  "j36_cap": {
+    "removed_option": 31063,
+    "new_pl16_x4": {
+      "weapon": 2019295,
+      "turret": 2019296
+    },
+    "heavy_cap": {
+      "option": 24393,
+      "was": "4x PL-17, 4x PL-16, 4x PL-21 (7 pylons)",
+      "now": "8x PL-16 (pylons 1-2), 4x PL-21 (4-5)",
+      "cost": 255
+    },
+    "mixed_cap": {
+      "option": 31064,
+      "was": "8x PL-17, 6x PL-16 (6 pylons)",
+      "now": "8x PL-16 (pylons 1-2), 4x PL-17 (4-5)",
+      "cost": [
+        255,
+        230
+      ]
+    }
+  },
+  "light_sead_j35_j31": {
+    "options": [
+      24657,
+      24660
+    ],
+    "was": "2x LD-8A, 2x PL-15",
+    "now": "2x LD-8A, 4x PL-15 (2 per pylon on 3 and 6)",
+    "cost": 125
+  },
+  "jrvg1_speed": {
+    "unit": 952,
+    "mobility": 2009941,
+    "road": [
+      100,
+      65
+    ],
+    "off_road": 55
+  },
+  "j36_normalised": {
+    "base": [
+      215,
+      380
+    ],
+    "options": {
+      "Heavy CAP (4x PL-21, 8x PL-16)": 90,
+      "Light strike (4x PL-16, 4x PL-17, 4x LS-6 500kg)": 65,
+      "Standoff strike (4x PL-16, 4x PL-17, 4x KD-88)": 55,
+      "Anti-armor": 0,
+      "Heavy SEAD (4x PL-16, 4x PL-17, 6x LD-8A)": 70,
+      "Heavy strike": 55,
+      "Mixed CAP (4x PL-17, 8x PL-16)": 65
+    },
+    "totals": {
+      "Heavy CAP (4x PL-21, 8x PL-16)": 470,
+      "Light strike (4x PL-16, 4x PL-17, 4x LS-6 500kg)": 445,
+      "Standoff strike (4x PL-16, 4x PL-17, 4x KD-88)": 435,
+      "Anti-armor": 380,
+      "Heavy SEAD (4x PL-16, 4x PL-17, 6x LD-8A)": 450,
+      "Heavy strike": 435,
+      "Mixed CAP (4x PL-17, 8x PL-16)": 445
+    }
+  },
+  "bomb_magazines": {
+    "2016542 LS-6 500kg": [
+      1,
+      2
+    ],
+    "2016560 LS-6 500kg": [
+      1,
+      2
+    ],
+    "2016799 GB-6": [
+      1,
+      2
+    ],
+    "2016833 KAB-500Kr": [
+      1,
+      2
+    ],
+    "2016893 BL-755": [
+      1,
+      4
+    ],
+    "2016940 250 kg bomb": [
+      6,
+      9
+    ],
+    "2016943 500 kg bomb": [
+      2,
+      6
+    ],
+    "2017629 LS-6 500kg": [
+      1,
+      2
+    ],
+    "2017671 LS-6 500kg": [
+      1,
+      2
+    ],
+    "2017714 GB-6": [
+      1,
+      2
+    ],
+    "2018220 LS-6 250kg": [
+      6,
+      8
+    ],
+    "2018243 LT-2": [
+      1,
+      2
+    ],
+    "2018252 LS-6": [
+      1,
+      2
+    ],
+    "2018483 LS-6 1000kg": [
+      1,
+      2
+    ],
+    "2018516 LT-2": [
+      1,
+      2
+    ],
+    "2018523 LS-6": [
+      1,
+      2
+    ]
+  },
+  "china_rifle_tiers": {
+    "T0_qbz95": {
+      "weapon": 2012205,
+      "ammunition": 2012206,
+      "damage": [
+        1.2,
+        0.9
+      ],
+      "time_between_shots": [
+        8.16,
+        4.0
+      ]
+    },
+    "qbz191_iron_sights_2014501": {
+      "units": [
+        1150,
+        1167,
+        1178,
+        1180
+      ],
+      "ammunition": [
+        2012206,
+        2003999
+      ],
+      "note": "stays tier 1"
+    },
+    "T2_qmk": {
+      "weapon": 2019300,
+      "ammunition": 2019301,
+      "clone_of": [
+        70,
+        357
+      ],
+      "damage": 1.5,
+      "squads": [
+        {
+          "unit": 1136,
+          "name": "Airborne 空降兵",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 5,
+          "rounds": 160
+        },
+        {
+          "unit": 1146,
+          "name": "Assault Raiders 突击队",
+          "from": 2013087,
+          "to": 2019300,
+          "men": 5,
+          "rounds": 160
+        },
+        {
+          "unit": 1142,
+          "name": "Pathfinders 先遣队",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 5,
+          "rounds": 160
+        },
+        {
+          "unit": 1144,
+          "name": "Snipers 狙击组",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 1,
+          "rounds": 160
+        },
+        {
+          "unit": 1202,
+          "name": "Snipers 狙击组",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 1,
+          "rounds": 160
+        },
+        {
+          "unit": 1185,
+          "name": "Falcons 猎鹰",
+          "from": 2013087,
+          "to": 2019300,
+          "men": 5,
+          "rounds": 160
+        },
+        {
+          "unit": 1140,
+          "name": "QLU-11 Team",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 1,
+          "rounds": 160
+        },
+        {
+          "unit": 1203,
+          "name": "Taishan Eagles 泰山雄鹰",
+          "from": 2003998,
+          "to": 2019300,
+          "men": 3,
+          "rounds": 160
+        }
+      ]
+    },
+    "T3_qbz192_thunder_gods": {
+      "unit": 1143,
+      "name": "Thunder Gods 雷神",
+      "from": 2003998,
+      "to": 2013087,
+      "men": 6,
+      "rounds": 160
+    }
+  },
+  "cm501ga_z21_only": {
+    "978 Z-10": {
+      "option_removed": 24501,
+      "mounts_removed": 1,
+      "ammo_rows_removed": 1
+    },
+    "1239 Z-10": {
+      "option_removed": 24507,
+      "mounts_removed": 1,
+      "ammo_rows_removed": 1
+    },
+    "1270 Z-10U": {
+      "option_removed": 31087,
+      "mounts_removed": 1,
+      "ammo_rows_removed": 1
+    }
+  },
+  "gunship_fs90": {
+    "z20ka_pods_to_fs90": {
+      "2017495": 2017496,
+      "2017498": 2017499,
+      "2017511": 2017512,
+      "2017514": 2017515
+    },
+    "z20ka_costs": {
+      "32x FS-90": [
+        35,
+        45
+      ],
+      "16x FS-90": [
+        15,
+        20
+      ]
+    },
+    "z20t_removed_options": [
+      24571,
+      24575
+    ],
+    "z20t_removed_mounts": [
+      2017558,
+      2017561,
+      2017574,
+      2017577
+    ]
+  },
+  "fs90_ignore_cover": {
+    "ammunition": 2018819,
+    "ignore_cover": [
+      0.0,
+      0.6
+    ],
+    "as": 45
+  },
+  "jrvg1_hp": {
+    "unit": 952,
+    "armor": 2009939,
+    "hp": [
+      14,
+      12
+    ]
+  },
+  "incendiary_and_gb_flash_smoke": {
+    "damage": {
+      "M202 Flash 550": [
+        8,
+        5
+      ],
+      "FHJ-02 2013058": [
+        8,
+        5
+      ],
+      "MRO-Z 522": [
+        10,
+        7
+      ]
+    },
+    "green_berets_flash": {
+      "unit": 470,
+      "ability": [
+        2000611,
+        2019302
+      ],
+      "smoke": [
+        4,
+        1
+      ],
+      "2000611_kept_for": [
+        136,
+        276,
+        527
+      ]
+    }
+  },
+  "fs70a_ignore_cover": {
+    "ammunition": 2017197,
+    "ignore_cover": [
+      0.0,
+      0.6
+    ]
+  },
+  "ctl181_laze": {
+    "ammunition": 2018321,
+    "trajectory": [
+      200,
+      110
+    ],
+    "seeker": [
+      0,
+      100
+    ],
+    "laser_guided": [
+      false,
+      true
+    ],
+    "max_seeker_distance": [
+      300,
+      900
+    ]
+  },
+  "version": "0.9.0-dev.12",
+  "base": "0.9.0-dev.11",
+  "base_sha256": "cc6890ca46959c9ef35087458e45f686074b2117392f747fd73aed28fd24feac",
+  "checks": 263,
+  "verified": "data checks only"
+}
