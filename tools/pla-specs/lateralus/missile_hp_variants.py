@@ -98,7 +98,7 @@ def burst_pause():
         r.update(TimeBetweenBurstsMin=PAUSE[0],TimeBetweenBurstsMax=PAUSE[1])
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
-    for hp in [int(x) for x in sys.argv[1:] if x.isdigit()]:
+    for hp in [int(x) for j,x in enumerate(sys.argv[1:],1) if x.isdigit() and sys.argv[j-1]!='--mid-burst']:   # 11:45: '--mid-burst 7' had also built an unwanted hp7
         V=f'{PREV}-hp{hp}'+('-burst-tier'+('' if MIDN==5 else '2') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
         before=burst_tier() if btier else burst_pause() if burst else None
         dmg={i:(v[0],2.6) for i,v in NOBURST_DAMAGE.items()} if btier else tier_damage(hp) if tier else NOBURST_DAMAGE
