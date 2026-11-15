@@ -2,17 +2,30 @@
 
 from __future__ import annotations
 
+import warnings
 from typing import Callable
 
 import matplotlib
 
 matplotlib.use("TkAgg")
+from matplotlib import font_manager
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import tkinter as tk
 
 from .chart_axes import apply_dpm_y_axis_scale
 from .constants import LINE_COLORS
+
+# China unit names have Chinese characters (Godswords 东方神剑), which DejaVu Sans does not have.
+# Add the first installed Chinese font as a fallback; without one, the characters show as boxes and
+# the "Glyph ... missing" warnings are hidden.
+CJK_FONTS = ("Microsoft YaHei", "SimHei", "Microsoft JhengHei", "Noto Sans CJK SC", "Noto Sans CJK JP", "Noto Sans SC", "PingFang SC", "WenQuanYi Zen Hei")
+_installed = {font.name for font in font_manager.fontManager.ttflist}
+_cjk = next((name for name in CJK_FONTS if name in _installed), None)
+if _cjk:
+    matplotlib.rcParams["font.family"] = ["DejaVu Sans", _cjk]
+else:
+    warnings.filterwarnings("ignore", message=r"Glyph \d+ .* missing from font", category=UserWarning)
 
 
 class ChartPanel:
