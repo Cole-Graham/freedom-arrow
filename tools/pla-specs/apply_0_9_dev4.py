@@ -194,6 +194,15 @@ rec['zbd20_ke_front']={'ZBD-20':[650,500],'ZBD-20 Recon':[650,500]}
 # XM30 availability 2 -> 4 (Osama 16:47 PST, thread 1571014792016171120); its only card is US Armored (spec 4)
 ok(U[983]['HUDName']=='XM30' and [(x['Id'],x['SpecializationId'],x['MaxAvailabilityXp0']) for x in SAJ.values() if x['UnitId']==983]==[(2001842,4,2)],'XM30 card')
 g.put('SpecializationAvailabilitiesJson',2001842,{'MaxAvailabilityXp0':4});rec['xm30_cards']=[2,4]
+# XM30 230 pts and an infantry transport (Osama 16:55 PST, thread 1571014792016171120: "XM30 moved to 230 pts but added to inf transport tab").
+# Offered to the US Armored infantry cards that take the M2A3 Bradley: Mech. Riflemen, Mech. Riflemen AA, Mech. Riflemen MMG (6-7 men; XM30 8 seats).
+ok(U[983]['Cost']==200 and U[983]['InfantrySlots']==8 and not [r for r in TAJ.values() if r['UnitId']==983],'XM30 200, 8 seats, not a transport yet')
+_m2a3=next(u['Id'] for u in U.values() if u['HUDName']=='M2A3 Bradley');rec['xm30_transport']={}
+for _sa in (608,661,662):
+    _sq=SAJ[_sa];_men=sum(1 for m in t['SquadMembersJson'].values() if m['UnitId']==_sq['UnitId'])
+    ok(_sq['SpecializationId']==4 and U[_sq['UnitId']]['HUDName'].startswith('Mech. Riflemen') and any(r['SpecializationAvailabilityId']==_sa and r['UnitId']==_m2a3 for r in TAJ.values()) and 0<_men<=8,(_sa,'Mech. Riflemen card with M2A3'))
+    g.add('TransportAvailabilitiesJson',next(iter(TAJ.values())),{'SpecializationAvailabilityId':_sa,'UnitId':983});rec['xm30_transport'][U[_sq['UnitId']]['HUDName']]=_men
+g.put('Units',983,{'Cost':230});ok(len([r for r in TAJ.values() if r['UnitId']==983])==3,'XM30 offered on 3 cards');rec['xm30_cost']=[200,230]
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
