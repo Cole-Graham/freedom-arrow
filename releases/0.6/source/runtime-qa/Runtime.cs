@@ -152,6 +152,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { NlosTrait.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: not installed; NLOS missiles use vanilla seekers. "+e.Message); }
+        try { ProjectileHealth.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CHINA_VOICE_FAILED: not installed; China units use their preset voices. "+e.Message); }
         try { GroundAaLog.Install(Root); }
