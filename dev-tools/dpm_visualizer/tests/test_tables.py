@@ -5,9 +5,10 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
-from dpm_visualizer.tables import apply_overlay, default_vanilla_dir, load_vanilla
+from dpm_visualizer.tables import apply_overlay, default_vanilla_dir, extract_package, load_vanilla
 
 
 def _vanilla() -> Path | None:
@@ -39,3 +40,28 @@ class NullRowTests(unittest.TestCase):
             merged = apply_overlay(tables, Path(tmp))
         self.assertEqual(sorted(merged["SquadMembersJson"]), [1])
         self.assertEqual(sorted(tables["SquadMembersJson"]), [1, 2])
+
+
+class PartialRowTests(unittest.TestCase):
+    def test_patch_on_a_row_missing_from_vanilla_is_refused(self) -> None:
+        tables = {"WeaponsJson": {1: {"Id": 1, "Type": 1, "MagazineSize": 30}}}
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "weapons.json").write_text(json.dumps({"7": {"MagazineSize": 5}}), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "pipeline decrypt"):
+                apply_overlay(tables, Path(tmp))
+
+
+class PackageTests(unittest.TestCase):
+    def test_extract_package_reads_constants_config_and_version(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp) / "FreedomArrow-0.9.0-dev.99.bamod"
+            with zipfile.ZipFile(package, "w") as bamod:
+                bamod.writestr("mod.json", json.dumps({"version": "0.9.0-dev.99"}))
+                bamod.writestr("UserData/FreedomArrow/constants/units.json", json.dumps({"9": {"Cost": 1}}))
+                bamod.writestr("UserData/FreedomArrow/game-config.json", json.dumps({"ForestDamageTaken": 0.5}))
+                bamod.writestr("UserData/FAModels/x.fam", b"model")
+            constants, version = extract_package(package, Path(tmp))
+            self.assertEqual(version, "0.9.0-dev.99")
+            self.assertEqual(json.loads((constants / "units.json").read_text()), {"9": {"Cost": 1}})
+            self.assertTrue((constants.parent / "game-config.json").is_file())
+            self.assertFalse((Path(tmp) / "cache" / "fa-package" / "UserData" / "FAModels").exists())

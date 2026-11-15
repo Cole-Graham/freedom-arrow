@@ -16,6 +16,7 @@ from .constants import (
     INFANTRY_SIZE_PER_SOLDIER,
     LOADOUT_SLOT_UINAMES,
     MAX_LOADOUT_COMBINATIONS,
+    TARGET_TYPE_INFANTRY,
     UNIT_TYPE_INFANTRY,
 )
 
@@ -215,13 +216,24 @@ class Catalog:
         include_upgrade: bool = False,
         loadout: Loadout | None = None,
     ) -> list[MountedWeapon]:
-        """Weapons for a loadout. Infantry RPG/ATGM rows are omitted."""
+        """Weapons for a loadout. An infantry RPG/ATGM keeps only the rounds that can target infantry
+        (for example the M72A10's 66mm HE); with no such round it is omitted."""
         loadout = loadout or self.default_loadout(unit_id)
         mounted = self.mounted_weapons(unit_id, include_upgrade=include_upgrade, loadout=loadout)
         effective_id, _ = self._loadout_source(unit_id, loadout)
         if not self.is_infantry(effective_id):
             return mounted
-        return [item for item in mounted if not self.is_anti_tank_weapon(item.weapon_id)]
+        kept = []
+        for item in mounted:
+            if self.is_anti_tank_weapon(item.weapon_id):
+                item.ammos = [choice for choice in item.ammos if self.can_target_infantry(choice.ammunition_id)]
+                if not item.ammos:
+                    continue
+            kept.append(item)
+        return kept
+
+    def can_target_infantry(self, ammunition_id: int) -> bool:
+        return bool(int(self.ammos.get(ammunition_id, {}).get("TargetType") or 0) & TARGET_TYPE_INFANTRY)
 
     def pick_ammo(self, mounted: MountedWeapon, preference: str) -> AmmoChoice | None:
         if not mounted.ammos:

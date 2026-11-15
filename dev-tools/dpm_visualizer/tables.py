@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import json
 import re
-import subprocess
-import sys
+import shutil
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -26,38 +26,28 @@ def default_vanilla_dir(root: Path | None = None) -> Path | None:
     return max(dirs, key=lambda p: p.stat().st_mtime)
 
 
-def latest_release(root: Path | None = None) -> Path | None:
-    """Newest releases/<major.minor> folder that has a build_constants.py."""
-    releases = [
-        p for p in ((root or repo_root()) / "releases").glob("*")
-        if re.fullmatch(r"\d+\.\d+", p.name) and (p / "build_constants.py").is_file()
-    ]
-    return max(releases, key=lambda p: tuple(int(n) for n in p.name.split("."))) if releases else None
+PACKAGE_DIR = "UserData/FreedomArrow/"
 
 
-# Run build_constants.py without dev_version.ensure(): making data to look at must never change a version.
-_GENERATE = (
-    "import runpy, sys; rel, root, vanilla = sys.argv[1:4]; sys.path[:0] = [rel, root]; "
-    "import dev_version; dev_version.ensure = lambda: None; "
-    "sys.argv = ['build_constants.py', '--vanilla-dir', vanilla]; "
-    "runpy.run_path(rel + '/build_constants.py', run_name='__main__')"
-)
-
-
-def build_latest_mod(vanilla_dir: Path, root: Path | None = None) -> tuple[Path, str]:
-    """Generate the newest release's constants overlay and return (overlay dir, version)."""
-    root = root or repo_root()
-    release = latest_release(root)
-    if release is None:
-        raise FileNotFoundError(f"no releases/<version>/build_constants.py under {root}")
-    done = subprocess.run(
-        [sys.executable, "-c", _GENERATE, str(release), str(root), str(vanilla_dir)],
-        cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace",
-    )
-    if done.returncode:
-        raise RuntimeError(f"{release.name}/build_constants.py failed:\n{(done.stderr or done.stdout)[-1500:]}")
-    version = json.loads((release / "mod.json").read_text(encoding="utf-8")).get("version") or release.name
-    return release / "source" / "UserData" / "FreedomArrow" / "constants", version
+def extract_package(package: Path, root: Path | None = None) -> tuple[Path, str]:
+    """Copy the constants and game-config.json of a Freedom Arrow .bamod (gameplay or complete package)
+    to cache/fa-package and return (constants dir, version). The package is the build the game loads;
+    China and every later change are in it. The release folders cannot rebuild 0.8 and later constants."""
+    out = (root or repo_root()) / "cache" / "fa-package"
+    shutil.rmtree(out, ignore_errors=True)
+    with zipfile.ZipFile(package) as bamod:
+        names = [
+            n for n in bamod.namelist()
+            if re.fullmatch(re.escape(PACKAGE_DIR) + r"(constants/[^/]+\.json|game-config\.json)", n)
+        ]
+        if not any("/constants/" in n for n in names):
+            raise FileNotFoundError(f"{package.name} has no {PACKAGE_DIR}constants. Pick a Freedom Arrow gameplay or complete package.")
+        for name in names:
+            dest = out / name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(bamod.read(name))
+        version = json.loads(bamod.read("mod.json")).get("version") if "mod.json" in bamod.namelist() else None
+    return out / PACKAGE_DIR / "constants", version or package.stem
 
 
 def mod_cover(overlay_dir: Path) -> dict[str, float]:
@@ -106,6 +96,7 @@ def apply_overlay(
     merged = {name: {row_id: dict(row) for row_id, row in rows.items()} for name, rows in tables.items()}
     if not overlay_dir.is_dir():
         raise FileNotFoundError(overlay_dir)
+    partial: list[str] = []
     for path in sorted(overlay_dir.glob("*.json")):
         field = FILE_TO_FIELD.get(path.name)
         if field is None or field not in merged:
@@ -127,7 +118,14 @@ def apply_overlay(
             else:
                 row = dict(fields)
                 row["Id"] = row_id
+                if tables[field] and not set(next(iter(tables[field].values()))) <= set(row):
+                    partial.append(f"{field} {row_id}")
                 dest[row_id] = row
+    if partial:
+        raise ValueError(
+            f"The mod changes {len(partial)} rows that are not in this vanilla snapshot (for example {', '.join(partial[:3])}). "
+            "The snapshot is older than the game the build was made for. Run python -m pipeline decrypt again."
+        )
     return merged
 
 

@@ -162,6 +162,15 @@ def shots_per_minute(weapon: dict[str, Any], gun_count: float = 1.0) -> float:
     return rate_of_fire_second(weapon, gun_count) * 60.0
 
 
+def carried_ammo_share(weapon: dict[str, Any], carried: int) -> float:
+    """Share of one minute of sustained fire that `carried` rounds per gun allow (at most 1).
+    A disposable M72A10 carries 1 rocket per man, so it fires 1 per minute, not one per reload."""
+    per_gun = shots_per_minute(weapon)
+    if carried <= 0 or per_gun <= 0:
+        return 1.0
+    return min(1.0, carried / per_gun)
+
+
 def in_range(ammo: dict[str, Any], world_m: float) -> bool:
     ground = float(ammo.get("GroundRange") or 0)
     minimum = float(ammo.get("MinimalRange") or 0)

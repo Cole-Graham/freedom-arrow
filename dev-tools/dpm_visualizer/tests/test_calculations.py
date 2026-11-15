@@ -6,6 +6,7 @@ import unittest
 
 from dpm_visualizer.calculations import (
     card_range_text,
+    carried_ammo_share,
     damage_formula_heat,
     damage_formula_kinetic,
     diamond_in_box,
@@ -356,3 +357,12 @@ class InterpolateTests(unittest.TestCase):
         self.assertEqual(interpolate_dpm(series, 200.0), 6.0)
         self.assertEqual(interpolate_dpm(series, 225.0), 0.0)
         self.assertEqual(interpolate_dpm(series, 150.0), 7.0)
+
+
+class CarriedAmmoTests(unittest.TestCase):
+    def test_one_rocket_per_man_limits_the_minute(self) -> None:
+        # 1-round magazine, 10 s reload: 6 shots a minute sustained, but 1 carried rocket allows 1/6 of that.
+        law = {"MagazineSize": 1, "MagazineReloadTimeMin": 10, "MagazineReloadTimeMax": 10}
+        self.assertAlmostEqual(carried_ammo_share(law, 1), 1 / 6)
+        self.assertEqual(carried_ammo_share(law, 10), 1.0)
+        self.assertEqual(carried_ammo_share(law, 0), 1.0)

@@ -73,6 +73,13 @@ class T72BJoinTests(unittest.TestCase):
         self.assertNotIn(168, dpm_ids)
         self.assertIn(29, dpm_ids)
 
+    def test_infantry_dpm_keeps_law_he(self) -> None:
+        # Marine Raiders [70]: the M72A10 [212] fires 66mm HE [130] (TargetType 47, has Infantry 2).
+        law = next(row for row in self.catalog.dpm_weapons(70) if row.weapon_id == 212)
+        self.assertEqual([choice.ammunition_id for choice in law.ammos], [130])
+        self.assertTrue(self.catalog.can_target_infantry(130))
+        self.assertFalse(self.catalog.can_target_infantry(109))  # RPG-26 73mm HEAT, TargetType 45
+
     def test_vehicle_dpm_keeps_atgm(self) -> None:
         self.assertFalse(self.catalog.is_infantry(9))
         self.assertEqual(

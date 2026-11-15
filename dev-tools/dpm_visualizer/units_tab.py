@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import Cover, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
+from .calculations import Cover, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
@@ -564,6 +564,12 @@ class UnitsTab:
                 apply_accuracy=apply_accuracy,
                 cover=cover,
             )
+            # Infantry RPGs carry a few rounds per man: count only the rounds they have in the first minute.
+            share = 1.0
+            if catalog.is_anti_tank_weapon(int(weapon.get("Id") or 0)) and catalog.is_infantry(source_id):
+                pair = catalog.ammo_pairs.get((int(weapon.get("Id") or 0), int(ammo.get("Id") or 0)))
+                share = carried_ammo_share(weapon, carried if carried is not None else (pair.quantity if pair else 0))
+                series = [(card, dpm * share) for card, dpm in series]
             parts.append(series)
             weapons_meta.append(
                 {
@@ -571,6 +577,7 @@ class UnitsTab:
                     "ammo": ammo,
                     "gun_count": guns,
                     "carried": carried if carried is not None else "-",
+                    "ammo_share": share,
                     "series": series,
                     "cover": cover_multiplier(ammo, armor, cover) if damage_type == "Physical" else 1.0,
                 }
@@ -707,6 +714,7 @@ class UnitsTab:
                     f"pen {ammo.get('PenetrationAtMinRange')}→{ammo.get('PenetrationAtGroundRange')}  "
                     f"guns {weapon_meta['gun_count']}  carried {weapon_meta['carried']}"
                     f"{hit_txt}"
+                    + (f"  ammo-limited to {weapon_meta['ammo_share']:.0%} of a minute" if weapon_meta.get("ammo_share", 1.0) < 1.0 else "")
                 )
         self.info.insert(tk.END, "\n".join(lines))
 

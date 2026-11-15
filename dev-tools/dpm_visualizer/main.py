@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import tkinter as tk
 from pathlib import Path
-from tkinter import messagebox, simpledialog, ttk
+from tkinter import filedialog, messagebox, simpledialog, ttk
 
 from .joins import Catalog
 from .constants import VANILLA_COVER
-from .tables import build_latest_mod, default_vanilla_dir, load_dataset, mod_cover, repo_root
+from .tables import default_vanilla_dir, extract_package, load_dataset, mod_cover, repo_root
 from .ui_components import SearchableCombobox
 from .units_tab import UnitsTab
 from .weapons_tab import WeaponsTab
@@ -41,8 +41,9 @@ class DPMVisualizerApp:
         chrome = ttk.Frame(self.root, padding=8)
         chrome.pack(fill=tk.X)
         ttk.Button(chrome, text="Load vanilla", command=lambda: self.load_data("vanilla")).pack(side=tk.LEFT)
-        ttk.Button(chrome, text="Load Freedom Arrow (latest)", command=lambda: self.load_data("mod")).pack(side=tk.LEFT, padx=4)
+        ttk.Button(chrome, text="Load Freedom Arrow package…", command=self._pick_package).pack(side=tk.LEFT, padx=4)
         self.source = "vanilla"
+        self.package = ""
         self.status_var = tk.StringVar(value="Nothing loaded")
         ttk.Label(chrome, textvariable=self.status_var).pack(side=tk.LEFT, padx=8)
 
@@ -72,8 +73,18 @@ class DPMVisualizerApp:
     def _try_autoload(self) -> None:
         self.load_data(self.source)
 
+    def _pick_package(self) -> None:
+        path = filedialog.askopenfilename(
+            title="Freedom Arrow gameplay or complete package",
+            filetypes=[("Freedom Arrow package", "*.bamod"), ("All files", "*.*")],
+            initialdir=str(Path(self.package).parent) if self.package else None,
+        )
+        if path:
+            self.package = path
+            self.load_data("mod")
+
     def load_data(self, source: str) -> None:
-        """source "vanilla": the game tables only. "mod": the newest releases/<version>, generated now."""
+        """source "vanilla": the game tables only. "mod": the .bamod in self.package, on top of vanilla."""
         vanilla = default_vanilla_dir(repo_root())
         if vanilla is None:
             messagebox.showerror("DPM", "No vanilla tables in cache/vanilla. Run python -m pipeline decrypt first.")
@@ -81,7 +92,9 @@ class DPMVisualizerApp:
         try:
             overlay, label, cover = None, f"Vanilla ({vanilla.name})", dict(VANILLA_COVER)
             if source == "mod":
-                overlay, version = build_latest_mod(vanilla)
+                if not self.package or not Path(self.package).is_file():
+                    raise FileNotFoundError(f"Freedom Arrow package not found: {self.package or 'none picked'}")
+                overlay, version = extract_package(Path(self.package))
                 label, cover = f"Freedom Arrow {version}", mod_cover(overlay)
             self.catalog = Catalog(load_dataset(vanilla, overlay))
             self.cover_rules = cover
@@ -145,7 +158,8 @@ class DPMVisualizerApp:
             self.profile_combo["values"] = ["default"]
             return
         data = json.loads(USER_DATA.read_text(encoding="utf-8"))
-        self.source = data.get("source") if data.get("source") in ("vanilla", "mod") else "vanilla"
+        self.package = data.get("package") or ""
+        self.source = "mod" if data.get("source") == "mod" and self.package else "vanilla"
         self.profiles = data.get("profiles") or {"default": {"custom_units": {}, "custom_weapons": {}}}
         self.current_profile = data.get("current_profile") or "default"
         if self.current_profile not in self.profiles:
@@ -207,6 +221,7 @@ class DPMVisualizerApp:
         }
         payload = {
             "source": self.source,
+            "package": self.package,
             "current_profile": self.current_profile,
             "profiles": self.profiles,
             "geometry": ui_state["window_geometry"],

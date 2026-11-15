@@ -17,8 +17,12 @@ UNIT_TYPE_INFANTRY = 2
 INFANTRY_BASE_SQUAD_SIZE = 1.0
 INFANTRY_SIZE_PER_SOLDIER = 0.5
 
-# WeaponType: RPGReloadable, RPGDisposable, ATGM, ATGMHE. Units-tab infantry DPM skips these.
+# WeaponType: RPGReloadable, RPGDisposable, ATGM, ATGMHE. Units-tab infantry DPM keeps only their
+# rounds that can target infantry.
 INFANTRY_AT_WEAPON_TYPES = frozenset({62, 63, 80, 81})
+# Ammunitions.TargetType flag Infantry (game enum BrokenArrow.DataBase.Enums.TargetType: Ground 1,
+# Infantry 2, Vehicle 4, Helicopter 8, Aircraft 16, Ship 32). M72A10 66mm HE is 47 (has it), M72A2 HEAT is 45.
+TARGET_TYPE_INFANTRY = 2
 
 # Armory slots that change weapons or armor. Pylons are omitted: their combinations explode.
 LOADOUT_SLOT_UINAMES = frozenset(
