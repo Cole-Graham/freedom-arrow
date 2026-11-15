@@ -181,6 +181,11 @@ ALd.write_text(''.join(f'{k}={v}\n' for k,v in sorted(old.items())))
 rec['battle_lod']={'limit':60000,'models':len(lr),'triangles':[sum(v['tris'][0] for v in lr.values()),sum(v['tris'][1] for v in lr.values())]}
 # HJ-10 NLOS vehicle 90 -> 150 pts (Osama 16:42 PST, thread 1571014792016171120; "HQ-10 150 pts" corrected to "HJ-10 I mean the NLOS")
 ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==90,('HJ-10',U[936]['Cost']));g.put('Units',936,{'Cost':150});rec['hj10_cost']=[90,150]
+# Shaanxi HMV3 seats back: 0 -> 27, the vanilla HEMTT's (Osama 16:44 PST, thread 1571014792016171120: "Shaanxi HMV3 seats are missing").
+# dev.20 had zeroed them because the in-match transport picker offers every deck unit with seats (Osama 12 Nov: not a transport).
+# The armory transport lists stay without it; the HMV3 Cargo stays at 0 seats (pure supply).
+ok(U[1235]['HUDName']=='Shaanxi HMV3' and U[1235]['InfantrySlots']==0 and U[1235]['ModelFileName']=='US_HEMTT' and U[242]['InfantrySlots']==27,'HMV3 0 seats, HEMTT 27')
+g.put('Units',1235,{'InfantrySlots':27});ok(U[1247]['InfantrySlots']==0,'HMV3 Cargo stays 0');rec['hmv3_seats']=[0,27]
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 if a.check:print('checks',checks,'(check only, nothing written)');raise SystemExit
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
