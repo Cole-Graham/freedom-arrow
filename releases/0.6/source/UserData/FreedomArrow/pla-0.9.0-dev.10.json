@@ -1,0 +1,73 @@
+{
+  "godswords_qts11": {
+    "unit": 1181,
+    "squad": [
+      6,
+      12
+    ],
+    "weapon": [
+      2004006,
+      2019270
+    ],
+    "ammunition": [
+      2004007,
+      2019271
+    ],
+    "penetration": [
+      15,
+      40
+    ],
+    "time_between_bursts": [
+      1.0,
+      2.0
+    ],
+    "damage": [
+      2.5,
+      1.5
+    ],
+    "transport_removed": "ZBD-05 1076 (8 seats)"
+  },
+  "z20_seats": {
+    "units": [
+      914,
+      1238,
+      1244
+    ],
+    "seats": [
+      11,
+      13
+    ]
+  },
+  "four_man_teams": {
+    "1137 HJ-12 Team": [
+      5,
+      4
+    ],
+    "1140 QLU-11 Team": [
+      5,
+      4
+    ],
+    "1145 QW-12 Patrol": [
+      5,
+      4
+    ],
+    "1139 Tank Hunters": [
+      6,
+      4
+    ]
+  },
+  "version": "0.9.0-dev.10",
+  "base": "0.9.0-dev.9",
+  "base_sha256": "546095ef6ff96b2e2b177a0d3dc8f7da138e103825db70687a278096602db798",
+  "checks": 28,
+  "verified": "data checks; texture headers and asset hashes offline; voice mute and low-settings switch not yet seen in game",
+  "armory_textures": {
+    "veh_helo_air_models": 91,
+    "source_size_cap": 2048,
+    "colour_first_30mpx": "CTL-181 and other tabs",
+    "assets": "tools/pla-specs/0.9.0-dev.10-assets.txt"
+  },
+  "hq9_mesh": "dev.8 m_hq22g_static.fam",
+  "china_voice": "muted (CountryId 4), FreedomArrow.Runtime ChinaVoice.cs",
+  "famodels": "0.3.28 battle models in the armory on Potato/Low models quality"
+}

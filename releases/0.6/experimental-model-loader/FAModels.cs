@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.27", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.28", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -35,6 +35,7 @@ public partial class Mod : MelonMod
         LoadWeaponRules();
         LoadBodyRules();
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
+        try { InstallLowSettings(); } catch (Exception ex) { MelonLogger.Error("FAMODELS low-settings switch not installed; armory keeps full models: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
         HarmonyInstance.Patch(m, postfix: new HarmonyMethod(typeof(Mod), nameof(After)));
         var infantryView = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitInfantryView" && x.GetParameters().Length == 4);
@@ -54,8 +55,8 @@ public partial class Mod : MelonMod
             // its renderers whose object path matches the pattern (for example the seated US soldiers on the M1301 ISV).
             if (e.file == "" && e.hide != "") { HideMatching(unitModel.PrefabRootScript.gameObject, e.hide, unitData.Name); queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 1)); return; }
             // In a battle, use the entry's low-res copy (smaller textures and mesh; aircraft with the gear up) when it has one.
-            // The armory keeps the full-fidelity file.
-            if (e.battle != "" && scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null)
+            // The armory keeps the full-fidelity file, except on Potato or Low models quality (LowSettings.cs, 0.3.28).
+            if (e.battle != "" && (LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null))
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align };
             // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));

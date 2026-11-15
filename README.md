@@ -1,4 +1,14 @@
-# Freedom Arrow 0.9.0-dev.9
+# Freedom Arrow 0.9.0-dev.10
+
+Osama 14 Nov 23:1x-23:3x PST after testing dev.9:
+- VEH, Helo and Air armory models: textures back to source size, each at most 2048 (dev.7 sizes; dev.7 measured <= 0.29 s
+  first load on his PC). CTL-181 (0.37 s in dev.7) and the other tabs' models use the colour-first 30 Mpx plan.
+- HQ-9 back on its dev.8 mesh (the dev.9 cut faceted the missile canisters).
+- China units (CountryId 4) play no command voice lines (FreedomArrow.Runtime ChinaVoice.cs).
+- FAModels 0.3.28: on Potato or Low "Models quality" the armory uses the battle model too (LowSettings.cs).
+Asset list and notes: work/pla-0.9/dev10. Local build.
+
+## Historical 0.9.0-dev.9
 
 Osama 14 Nov 22:4x-22:59 PST: support tab armory models at vanilla level ("estimate what vanilla has and pare it down",
 "bring support textures down to near vanilla size too"). 24 meshes cut to the matching vanilla unit's LOD0 triangles (max 3x;
