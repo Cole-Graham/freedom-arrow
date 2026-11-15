@@ -47,6 +47,11 @@ internal static unsafe class CramPrediction
     static float nextSummary;
     static string pendingError;
     static readonly Dictionary<ulong,CramMotionHistory> histories=new();
+    // Lateralus 15 Nov 2026 ("yes lets record a missile's motion as soon as it's spotted"): in the hp7 lead logs every new target
+    // started with ~0.08 s of history_missing (264 calls), because motion was only recorded once a gun aimed at it. Interceptable
+    // missiles are now observed every frame from launch. Only the last 0.075-0.25 s is ever used, so a gun gains no earlier
+    // knowledge than its own sight of the missile; the first shot simply gets the corrected lead.
+    static EntitySet missileSet;static IntPtr missileWorld;static long tracked;
     static readonly Dictionary<string,long> fallbacks=new();
     static readonly Dictionary<string,long> appliedByWeaponAmmo=new();
     readonly record struct Scope(bool Valid,ulong Target,Entity Weapon,int WeaponId,int AmmoId,int TargetType,Vector3 Center,float OriginRadius,
@@ -217,6 +222,28 @@ internal static unsafe class CramPrediction
         }
         catch(Exception e){Disable(e);}
     }
+    static void TrackMissiles()
+    {
+        var world=ShootingSystem._gameContext;if(world==null||world._isDisposed){missileSet=null;missileWorld=IntPtr.Zero;return;}
+        if(missileWorld!=world.Pointer){try{missileSet?.Dispose();}catch{}missileSet=world.GetEntities().With<UnitComponent>().With<WarheadComponent>().With<SpeedComponent>().AsSet();missileWorld=world.Pointer;}
+        if(worldPointer!=world.Pointer){histories.Clear();worldPointer=world.Pointer;}
+        var list=missileSet._entities;int count=Math.Min(missileSet.Count,list?.Length??0);float now=Time.time;
+        for(int i=0;i<count&&i<MaxTargets;i++)
+        {
+            var e=list[i];if(!e.IsAlive||!e.Has<UnitComponent>()||!e.Has<SpeedComponent>())continue;
+            int type=(int)(NativeEcs.Read<UnitComponent>(e).UnitData?.Type??0);if(type is not (128 or 256 or 512 or 1024))continue;
+            ulong key=Key(e);
+            if(!histories.TryGetValue(key,out var history))
+            {
+                if(histories.Count>=MaxTargets)
+                    foreach(var old in histories.Where(p=>now-p.Value.LastTime>2).Select(p=>p.Key).ToArray())histories.Remove(old);
+                if(histories.Count>=MaxTargets)return;
+                history=new CramMotionHistory();histories.Add(key,history);
+            }
+            var velocity=N(NativeEcs.Field<SpeedComponent,Vector3>(e,"Direction")*NativeEcs.Field<SpeedComponent,float>(e,"Value"));
+            history.Observe(now,velocity,out _,out _);tracked++;
+        }
+    }
     static void Record(Scope call,string reason,CramPredictionPolicy.Solution native,CramPredictionPolicy.Result? result)
     {
         if(logged+samples.Count>=MaxSamples||samples.Count>=512){dropped++;return;}
@@ -227,7 +254,7 @@ internal static unsafe class CramPrediction
     }
     static object R(NVector v)=>new[]{MathF.Round(v.X,1),MathF.Round(v.Y,1),MathF.Round(v.Z,1)};
     static void Disable(Exception e){off=true;scope=default;pendingError=e.ToString();}
-    public static void SceneChanged(){scope=default;histories.Clear();worldPointer=IntPtr.Zero;}
+    public static void SceneChanged(){scope=default;histories.Clear();worldPointer=IntPtr.Zero;try{missileSet?.Dispose();}catch{}missileSet=null;missileWorld=IntPtr.Zero;}
     public static void LateUpdate()
     {
         if(!installed)return;
@@ -246,10 +273,16 @@ internal static unsafe class CramPrediction
         if(Time.time>=nextSummary)
         {
             nextSummary=Time.time+5;
-            DiagnosticLog.Write("cram_prediction_summary",new{t=Time.time,eligible,applied,off,logged,dropped,
+            DiagnosticLog.Write("cram_prediction_summary",new{t=Time.time,eligible,applied,off,logged,dropped,tracked,
                 appliedByWeaponAmmo=new Dictionary<string,long>(appliedByWeaponAmmo),fallbackReasons=new Dictionary<string,long>(fallbacks)});
         }
         if(!Conquest.Prototype.DiagnosticSceneActive){scope=default;histories.Clear();}
+        else if(!off)
+        {
+            try{TrackMissiles();}
+            catch(Exception e){missileSet=null;missileWorld=IntPtr.Zero;DiagnosticLog.Write("cram_track_failed",new{error=e.ToString()});off=true;
+                MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: missile tracking; native leading restored. "+e.Message);}
+        }
     }
     public static void Close()
     {
