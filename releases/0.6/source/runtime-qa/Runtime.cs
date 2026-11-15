@@ -62,6 +62,7 @@ public class Runtime : MelonMod
         CramPrediction.LateUpdate();
         AaCooldown.LateUpdate();
         SpaagWeapons.LateUpdate();
+        SameUnitClaim.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
@@ -75,6 +76,7 @@ public class Runtime : MelonMod
         CramPrediction.SceneChanged();
         AaCooldown.SceneChanged();
         SpaagWeapons.SceneChanged();
+        SameUnitClaim.SceneChanged();
         PlayableBorders.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
@@ -156,6 +158,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: not installed; NLOS missiles use vanilla seekers. "+e.Message); }
         try { ProjectileHealth.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
+        try { SameUnitClaim.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }
