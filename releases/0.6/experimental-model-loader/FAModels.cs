@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.26", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.27", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -34,6 +34,7 @@ public partial class Mod : MelonMod
         if (File.Exists(cfg)) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
         LoadWeaponRules();
         LoadBodyRules();
+        try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
         HarmonyInstance.Patch(m, postfix: new HarmonyMethod(typeof(Mod), nameof(After)));
         var infantryView = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitInfantryView" && x.GetParameters().Length == 4);
@@ -151,6 +152,8 @@ public partial class Mod : MelonMod
     public override void OnUpdate()
     {
         try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
+        try { TickPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload: " + ex.Message); }
+        try { TickInfantryBodies(true); } catch (Exception ex) { MelonLogger.Error("FAMODELS body swap: " + ex.Message); }
         try { TickInfantryBodies(); } catch (Exception ex) { MelonLogger.Error("FAMODELS body poll: " + ex.Message); }
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
@@ -161,8 +164,6 @@ public partial class Mod : MelonMod
         {
             var q = queue[i];
             if (q.root == null) { queue.RemoveAt(i); continue; }
-            // Osama 13 Nov: never show the stand-in while the replacement waits to be built; re-hide every frame until then.
-            if (q.pass == 0 && q.e.file != "") Hide(q.root);
             // 0.3.25 (Osama 14 Nov): no fixed 0.5 s wait before the swap. Build on the next frame; Apply waits (up to 0.5 s)
             // only while a turret bone the model needs is not there yet. The 1 s re-hide pass for late renderers stays.
             float wait = q.pass == 0 ? 0f : 1.0f;
@@ -171,6 +172,26 @@ public partial class Mod : MelonMod
             catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
+    }
+
+    // 0.3.27 (Osama 14 Nov: "make sure the standin models never pop up"): the game spawns turrets, gunners and LOD children
+    // a few frames after InitView. 0.3.26 re-hid those only on the 1 s pass, so the stand-in turret showed for up to a second
+    // (log: ZTQ-15 Light 14, ZBD-04A 9, HQ-9B 6 late renderers). Now every frame, after the game's own Update and before the
+    // frame is drawn: while the replacement waits, and for 5 s after the swap. The 1 s pass stays as the long-term check.
+    // The 1 s pass advances q.pass once a second after the swap, so passes 1-5 are the first 5 s.
+    // Called from OnLateUpdate (InfantryBodies.cs).
+    static void LateHide()
+    {
+        try
+        {
+            foreach (var q in queue)
+            {
+                if (q.root == null || q.e.file == "" || q.pass > 5) continue;
+                int n = Hide(q.root);
+                if (n > 0 && q.pass > 0) MelonLogger.Msg($"FAMODELS {q.unit}: hid {n} late renderer(s) on {q.root.name} in the frame they appeared (second {q.pass} after the swap)");
+            }
+        }
+        catch (Exception ex) { MelonLogger.Error("FAMODELS late hide: " + ex.Message); }
     }
 
     static string Vis(Transform fam)
@@ -208,7 +229,7 @@ public partial class Mod : MelonMod
         int hidden = 0;
         foreach (var r in root.GetComponentsInChildren<Renderer>(true))
         {
-            if (r.gameObject.name.StartsWith("FAM_")) continue;
+            if (r.forceRenderingOff || r.gameObject.name.StartsWith("FAM_")) continue;
             if (r.TryCast<MeshRenderer>() != null || r.TryCast<SkinnedMeshRenderer>() != null) { if (!r.forceRenderingOff) { hidden++; r.forceRenderingOff = true; origs.TryAdd(root.GetInstanceID(), new()); origs[root.GetInstanceID()].Add(r); } }
         }
         return hidden;

@@ -155,6 +155,8 @@ subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'
 # 0.9.0-dev.3 (12the12 bug report, Osama 14 Nov 14:58): a loadout swap row costs base + option, or the Arsenal overview and editor disagree.
 # 0.9.0-dev.4 (Osama 14 Nov 16:28): every battle model at most 60,000 triangles.
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_battle_tris.py'),str(complete)],check=True)
+# 0.9.0-dev.7: a mount may not carry more weapons than its body slot holds in vanilla (QN-506 stall, J-20 freeze).
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_slot_weapons.py'),str(complete),str(a.vanilla) if getattr(a,'vanilla',None) else '/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.0-dev.5 (Osama's PC 14 Nov 18:56 PST: dev.4 refused its constants, "Field type mismatch OriginalName"): the runtime's field-type
 # rule runs at build time, so a package the game would refuse can't be built.
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_field_types.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True,env={**os.environ,'PYTHONPATH':str(ROOT)+os.pathsep+os.environ.get('PYTHONPATH','')})

@@ -58,7 +58,8 @@ with zipfile.ZipFile(a.package) as z:
    if entry.get(field):ok('UserData/FAModels/'+entry[field] in z.namelist(),('missing model',name,entry[field]))
  # Build43: Lynx ATV (1228) carries the M1301 ISV weapons (Osama 12 Nov); the other carriers stay unarmed.
  for uid in [1227,1229,1230,1231]+([1228] if build<43 else []):ok(not ammo(uid),('cargo armed',uid))
- for sid in range(17,22):ok(any(r['UnitId']==1227 and r['SpecializationId']==sid for r in t['SpecializationAvailabilitiesJson'].values()),('Mi8 spec missing',sid))
+ # 0.9.0-dev.7 (build 180, Osama 14 Nov): Mi-8 Cargo removed from China.
+ for sid in range(17,22):ok(any(r['UnitId']==1227 and r['SpecializationId']==sid for r in t['SpecializationAvailabilitiesJson'].values())==(build<180),('Mi8 spec',sid))
  for r in t['SpecializationAvailabilitiesJson'].values():
   if r['UnitId']==1032:ok(sum(r['MaxAvailabilityXp'+str(i)] for i in range(4))==1,'DF31 availability')
  if build>=33:
@@ -85,7 +86,7 @@ with zipfile.ZipFile(a.package) as z:
   if build>=118:ok((n['HealthAOERadius'],n['StressAOERadius'],n['OverpressureRadius'])==(250.0,286,125),'DF31 500 m displayed blast')
  if build>=34:
   hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
-  ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==([18,19,21] if build<46 else [17,18,19,20,21]),'HMV3 specs')  # Build46: every spec
+  ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==([18,19,21] if build<46 or build>=177 else [17,18,19,20,21]),'HMV3 specs')  # 0.9.0-dev.4 (build 177): SX2190 replaces the HMV3 in PLAAF and PLAN SOF  # Build46: every spec
   if build<46:ok(not ammo(1235) and not any(r['UnitId']==1235 for r in t['TurretUnitsJson'].values()),'HMV3 unarmed')  # Build46: HEMTT mounts/options so the model draws
  if build>=32:
   links=defaultdict(list)

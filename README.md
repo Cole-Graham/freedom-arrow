@@ -1,4 +1,19 @@
-# Freedom Arrow 0.9.0-dev.5
+# Freedom Arrow 0.9.0-dev.7
+
+Osama's 14 Nov evening batch (tools/pla-specs/apply_0_9_dev7.py, 99 checks): QN-506 stall fix (body slot check now in every build),
+MD-22 -65 / ECM without flares / high only, FH-97A no flares / high only, J-36 laser, AKF-98A mixed strike on J-10A/J-20S/J-31/J-35,
+XM30 200/+10 and transport only, ZFB-05 and Mi-8 Cargo out, helicopter ECM/optics/prices, new Z-10U (PLAN) and Z-18 (PLAN), recon
+FireSnakes doubled, protection-slot options shown, PF-98 SPG icon. Models: navy Z-20/Z-9/Z-10U/Z-18, black Z-19, digi Z-10K, Abrams X
+silver, PHL-16 flat glass, 12 lighter armory meshes, GPU textures (.fat, bottom row first) for every vehicle and aircraft.
+FAModels 0.3.27: deck pre-loading, same-frame stand-in hiding (vehicles and infantry). Card stat text at full size. Local build.
+
+## Historical 0.9.0-dev.6
+
+dev.5 with the original PNG model textures from dev.2 back (Osama 14 Nov 19:18 PST: "go back on the old textures but the new
+LOD is fine"). FAModels 0.3.26's pre-built .fat textures were stored top row first and showed upside down in the game; with no
+.fat files FAModels 0.3.26 loads the PNGs. Same gameplay data and battle meshes as dev.5. Local test build, not uploaded.
+
+## Historical 0.9.0-dev.5
 dev.4 plus: the SX2190 data fix (dev.4's constants were refused at game start, "Field type mismatch OriginalName") and the
 ZBL-191 jammer option +20. check_field_types.py now gates every package. tools/pla-specs/apply_0_9_dev5.py.
 ## Historical 0.9.0-dev.4

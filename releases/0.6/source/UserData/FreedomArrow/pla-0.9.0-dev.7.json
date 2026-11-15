@@ -1,0 +1,191 @@
+{
+  "qn506": {
+    "moved": "QN-201 (weapon 2009653) from slot 2 (turret 2009648) to slot 0 (turret 2009634)"
+  },
+  "md22": {
+    "cost": [
+      280,
+      215
+    ],
+    "ability": [
+      45,
+      2019218
+    ],
+    "ecm": 0.55,
+    "laser": true,
+    "flares": false,
+    "mobility": [
+      169,
+      2019219
+    ]
+  },
+  "fh97a": {
+    "ability": [
+      2001399,
+      2019218
+    ],
+    "flares": false,
+    "mobility": [
+      149,
+      2019220
+    ]
+  },
+  "j36_laser": {
+    "ability": [
+      2001398,
+      2019221
+    ]
+  },
+  "akf98a": {
+    "J-10A": {
+      "option": 31081,
+      "from": 24437,
+      "cost": [
+        120,
+        140
+      ],
+      "slot": 4,
+      "load": "2x LS-6 500kg + 2x AKF-98A"
+    },
+    "J-20S": {
+      "option": 31082,
+      "from": 24593,
+      "cost": [
+        85,
+        105
+      ],
+      "slot": 2,
+      "load": "2x LS-6 500kg + 2x AKF-98A"
+    },
+    "J-31": {
+      "option": 31083,
+      "from": 24601,
+      "cost": [
+        60,
+        80
+      ],
+      "slot": 2,
+      "load": "2x LS-6 500kg + 2x AKF-98A"
+    },
+    "J-35": {
+      "option": 31084,
+      "from": 24597,
+      "cost": [
+        60,
+        80
+      ],
+      "slot": 2,
+      "load": "2x LS-6 500kg + 2x AKF-98A"
+    }
+  },
+  "xm30": {
+    "cost": [
+      230,
+      200
+    ],
+    "javelin_option": [
+      0,
+      10
+    ],
+    "removed_card": 2001842,
+    "transport_for": 3
+  },
+  "zfb05_removed": {
+    "transport_links": [
+      2018976,
+      2018977,
+      2018978,
+      2018979,
+      2018980,
+      2018981,
+      2018982,
+      2018983,
+      2018984,
+      2018985
+    ]
+  },
+  "recon_firesnake_x2": {
+    "Z-19 Recon": [
+      14,
+      28
+    ],
+    "Z-19G Recon": [
+      14,
+      28
+    ],
+    "Z-21 Recon per pylon": [
+      7,
+      14
+    ]
+  },
+  "moto_z19_recon_removed": 2014515,
+  "protection_slot_default_cleared": [
+    31065,
+    31075,
+    31077,
+    31079
+  ],
+  "pf98_spg_icon": [
+    1172,
+    1023
+  ],
+  "helicopters": {
+    "Z-10 (978,1239)": {
+      "cost": [
+        105,
+        195
+      ],
+      "ecm": 0.95,
+      "optics": "sensor 3 (2300, unchanged)"
+    },
+    "Z-10K 913": {
+      "cost": [
+        105,
+        195
+      ],
+      "ecm": 0.85,
+      "optics": "sensor 5 -> 3 (2800 -> 2300)"
+    },
+    "Z-19 all": {
+      "units": [
+        940,
+        1103,
+        1132,
+        1134,
+        1236,
+        1237
+      ],
+      "ecm": 0.8,
+      "optics": "sensor 5 (2800)",
+      "stealth": "0.571 raw = 1.75"
+    }
+  },
+  "z10u": {
+    "unit": 1270,
+    "from": 1239,
+    "spec": 20,
+    "cost": 195,
+    "ecm": 0.85,
+    "optics": "sensor 5",
+    "icon": "FA_PLA_VEH_Z10K",
+    "cards": 2
+  },
+  "mi8_cargo_removed": [
+    2014592,
+    2014593,
+    2014594,
+    2014595,
+    2014596
+  ],
+  "z18": {
+    "unit": 1271,
+    "from": 1106,
+    "spec": 20,
+    "card": 2016119
+  },
+  "version": "0.9.0-dev.7",
+  "base": "0.9.0-dev.6",
+  "base_sha256": "77cd715b965ce896207f4118b3948890d8877cde0c2c9ed7563261b5c3ce0248",
+  "checks": 103,
+  "verified": "data checks only"
+}

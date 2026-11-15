@@ -1,0 +1,8 @@
+{
+  "version": "0.9.0-dev.6",
+  "base": "0.9.0-dev.5",
+  "request": "Osama 14 Nov 2026 19:18 PST (thread 1567745029781454889): \"go back on the old textures but the new LOD is fine\"",
+  "content": "same gameplay data as 0.9.0-dev.5; the 3,743 FAModels .fat textures (0.3.26, stored top row first, shown upside down in game) replaced by the original PNGs from 0.9.0-dev.2; battle meshes as dev.5",
+  "checks": 5,
+  "verified": "data unchanged from dev.5"
+}

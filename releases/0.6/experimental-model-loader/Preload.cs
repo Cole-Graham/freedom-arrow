@@ -1,0 +1,53 @@
+using System.Text.Json;
+using MelonLoader;
+using UnityEngine;
+using Il2CppBrokenArrow.Client.Ecs.Decks_v2;
+using Il2CppBrokenArrow.Client.Ecs.Decks.Models;
+namespace FAModels;
+// 0.3.27 (Osama 14 Nov: "there's a stutter when I call a unit into the game"; "optimize for the potatoes"). The first copy of a unit
+// type read its model file in the frame it spawned (J-35 323 ms, J-36 299 ms in his log). The game sets every player's deck at match
+// start (SharedPlayerDeck.OnSetDeck); the battle models of the mapped units in those decks (and their transports) now load one per
+// frame from then on, into the same kept-model cache the spawn uses. Only the match's decks; armory models are not loaded.
+public partial class Mod
+{
+    static Dictionary<int, string> unitNames = new();
+    static readonly Queue<string> preload = new();
+    static readonly HashSet<string> preloadSeen = new();
+    static void InstallPreload()
+    {
+        // Unit id -> Name for the mapped units, from the Freedom Arrow constants (models.json is keyed by Name).
+        var cf = Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FreedomArrow", "constants", "units.json");
+        if (File.Exists(cf))
+            foreach (var kv in JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(cf)) ?? new())
+                if (kv.Value.ValueKind == JsonValueKind.Object && kv.Value.TryGetProperty("Name", out var n) && n.ValueKind == JsonValueKind.String && map.ContainsKey(n.GetString()!))
+                    unitNames[int.Parse(kv.Key)] = n.GetString()!;
+        SharedPlayerDeck.add_OnSetDeck(new System.Action<int, IDeckDataModel, IDeckHelper>(OnSetDeck));
+        MelonLogger.Msg($"FAMODELS preload installed: {unitNames.Count} mapped unit id(s)");
+    }
+    static void OnSetDeck(int player, IDeckDataModel deck, IDeckHelper helper)
+    {
+        try
+        {
+            int added = 0;
+            foreach (var slots in deck.GetSlots.Values)
+                foreach (var s in slots)
+                    foreach (var id in new[] { s.UnitID, s.TransportID })
+                        if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
+                        {
+                            var f = e.battle != "" ? e.battle : e.file;
+                            if (preloadSeen.Add(f)) { preload.Enqueue(f); added++; }
+                        }
+            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} battle model(s) queued");
+        }
+        catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
+    }
+    // One model per frame, so a weak PC never stalls for the whole deck at once.
+    static void TickPreload()
+    {
+        if (preload.Count == 0) return;
+        var f = preload.Dequeue();
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        try { LoadFam(f, out bool kept); MelonLogger.Msg($"FAMODELS preloaded {f} in {sw.Elapsed.TotalMilliseconds:F0} ms{(kept ? " (already kept)" : "")}, {preload.Count} left"); }
+        catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload {f}: {ex.Message}"); }
+    }
+}

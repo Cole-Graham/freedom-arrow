@@ -61,6 +61,8 @@ public partial class Mod
     }
     public override void OnLateUpdate()
     {
+        LateHide();
+        try { TickInfantryBodies(true,true); } catch (Exception ex) { MelonLogger.Error("FAMODELS body late poll: " + ex.Message); }
         try { ReviewCamera(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW camera: "+e.Message); }
         foreach(var key in bodyOffsets.Keys.ToArray()) {
             var item=bodyOffsets[key];
@@ -115,11 +117,18 @@ public partial class Mod
         mesh.RecalculateBounds();mesh.RecalculateTangents();
         var result=new BodyMesh(mesh,materials.ToArray());bodyCache.Add(key,result);return result;
     }
-    static void TickInfantryBodies()
+    // 0.3.27 (Osama 14 Nov: "I still see the stand in infantry", then "still infantry standins but much shorter"): the 0.25 s
+    // poll let the vanilla soldier show for up to a quarter second, and the first read of a body file (about 0.5 s) froze the
+    // screen with the vanilla soldier on it. Squads spawned in the last 5 s are now checked every frame: OnLateUpdate only hides
+    // their new vanilla soldiers (hideOnly) before the frame is drawn; the next OnUpdate swaps the body and shows it. The 0.25 s
+    // poll stays for older squads (reinforced or re-spawned soldiers).
+    static void TickInfantryBodies(bool young=false,bool hideOnly=false)
     {
-        if(Time.realtimeSinceStartup-bodyPoll<.25f)return;bodyPoll=Time.realtimeSinceStartup;
+        float now=Time.realtimeSinceStartup;
+        if(!young){if(now-bodyPoll<.25f)return;bodyPoll=now;}
         for(int v=bodyViews.Count-1;v>=0;v--) {
             var view=bodyViews[v];
+            if(young && now-view.created>5f)continue;
             if(view.model?.PrefabRootScript==null){if(Time.realtimeSinceStartup-view.created>30)bodyViews.RemoveAt(v);continue;}
             var rule=bodyRules.First(r=>r.unitId==view.unitId);
             var soldiers=view.model.SquadSolders;if(soldiers==null)continue;
@@ -141,13 +150,14 @@ public partial class Mod
                 if(renderer==null||renderer.sharedMesh==null||renderer.bones.Length<1)continue;
                 int id=renderer.GetInstanceID();if(view.applied.Contains(id)||view.failed.Contains(id))continue;
                 if(renderer.sharedMesh.name.StartsWith("FAM_BODY_")){view.applied.Add(id);continue;}
+                if(hideOnly){renderer.forceRenderingOff=true;continue;}
                 // Use the game's actual LODGroup membership, not a guessed renderer ordering.
                 int level=-1;
                 foreach(var group in candidate.root.GetComponentsInChildren<LODGroup>(true)) {
                     var lods=group.GetLODs();for(int l=0;l<lods.Length;l++)foreach(var r in lods[l].renderers)if(r==renderer)level=Math.Min(l,2);
                 }
                 if(level<0) {string n=renderer.name.ToLowerInvariant();if(n.Contains("lod_0")||n.Contains("lod0"))level=0;else if(n.Contains("lod_1")||n.Contains("lod1"))level=1;else if(n.Contains("lod_2")||n.Contains("lod2"))level=2;}
-                if(level<0){view.failed.Add(id);MelonLogger.Warning($"FAMODELS body skipped unknown LOD {renderer.name}; native mesh retained");continue;}
+                if(level<0){renderer.forceRenderingOff=false;view.failed.Add(id);MelonLogger.Warning($"FAMODELS body skipped unknown LOD {renderer.name}; native mesh retained");continue;}
                 var oldMesh=renderer.sharedMesh;var oldMats=renderer.sharedMaterials;var oldBounds=renderer.localBounds;var oldBones=renderer.bones;
                 try {
                     var body=ReadBody(rule.lods[level],renderer);
@@ -155,9 +165,10 @@ public partial class Mod
                     renderer.bones=OffsetBodyBones(renderer,rule);
                     // Conservative local bounds for first deformation test; native LOD and visibility logic stays in place.
                     renderer.localBounds=new Bounds(new Vector3(0,.95f,0),new Vector3(3f,3f,3f));
-                    view.applied.Add(id);MelonLogger.Msg($"FAMODELS body applied unit={view.unitId} soldier={candidate.soldier} renderer={renderer.name} lod={level} bones={renderer.bones.Length} vertices={body.mesh.vertexCount} file={rule.lods[level]} bodyOffset={string.Join(",",rule.offset)}");
+                    renderer.forceRenderingOff=false;
+                    view.applied.Add(id);MelonLogger.Msg($"FAMODELS body applied unit={view.unitId} after={now-view.created:F2}s soldier={candidate.soldier} renderer={renderer.name} lod={level} bones={renderer.bones.Length} vertices={body.mesh.vertexCount} file={rule.lods[level]} bodyOffset={string.Join(",",rule.offset)}");
                 } catch(Exception e) {
-                    renderer.sharedMesh=oldMesh;renderer.sharedMaterials=oldMats;renderer.localBounds=oldBounds;renderer.bones=oldBones;view.failed.Add(id);MelonLogger.Error($"FAMODELS body failed {renderer.name}: {e.Message}; native mesh retained");
+                    renderer.sharedMesh=oldMesh;renderer.sharedMaterials=oldMats;renderer.localBounds=oldBounds;renderer.bones=oldBones;renderer.forceRenderingOff=false;view.failed.Add(id);MelonLogger.Error($"FAMODELS body failed {renderer.name}: {e.Message}; native mesh retained");
                 }
             }
         }
