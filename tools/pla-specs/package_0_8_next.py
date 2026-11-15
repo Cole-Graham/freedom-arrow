@@ -141,4 +141,6 @@ if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check
 # unlinked option abilities, child turrets without parents, weapons without ammo, option ids above 32767).
 subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.0-dev.3 (12the12 bug report, Osama 14 Nov 14:58): a loadout swap row costs base + option, or the Arsenal overview and editor disagree.
+# 0.9.0-dev.4 (Osama 14 Nov 16:28): every battle model at most 60,000 triangles.
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_battle_tris.py'),str(complete)],check=True)
 subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
