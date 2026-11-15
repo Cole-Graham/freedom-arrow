@@ -15,10 +15,12 @@ enc=lambda x:(json.dumps(x,indent=2,ensure_ascii=False)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def digest(p):
     with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+# 0.9.0-dev.4 (FAModels 0.3.26 textures, ~3,700 files): --asset files stay on disk until staged, not all in memory.
+H=lambda x:digest(x) if isinstance(x,Path) else sha(x)
 ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAMusic/','UserData/FAAssets/')
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
-p.add_argument('--assets',help='assets .bamod that the gameplay package pairs with (default: the one in the previous receipt)');p.add_argument('--complete-only',action='store_true',help=argparse.SUPPRESS);p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
+p.add_argument('--drop-assets',help='file listing asset paths to remove from the package (0.9.0-dev.4: PNGs replaced by FAModels 0.3.26 .fat textures)');p.add_argument('--assets',help='assets .bamod that the gameplay package pairs with (default: the one in the previous receipt)');p.add_argument('--complete-only',action='store_true',help=argparse.SUPPRESS);p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
 if a.complete_only:raise SystemExit('--complete-only is retired (Lateralus 13 Nov 2026: gameplay and assets are always available separately). A new assets version is made automatically.')
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
@@ -60,29 +62,38 @@ with zipfile.ZipFile(base) as z:
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
     if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
     for spec in a.asset:
-        k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f).read_bytes()
-    if a.famodels or a.asset:
+        k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f)
+    drops=sorted({l.strip() for l in Path(a.drop_assets).read_text().splitlines() if l.strip()}) if a.drop_assets else []
+    assert all(n.startswith('UserData/FAModels/') and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels files of the base package only'
+    if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
         for k in override:
-            if k.startswith(ASSET) and k!='UserData/FAAssets/manifest.json':fa['files'][k]=sha(override[k])
+            if k.startswith(ASSET) and k!='UserData/FAAssets/manifest.json':fa['files'][k]=H(override[k])
+        for n in drops:fa['files'].pop(n,None)
         override['UserData/FAAssets/manifest.json']=enc(fa)
     core['version']=V
     for n,b in override.items():
-        if n in core['sha256'] or n.startswith('UserData/FreedomArrow/'):core['sha256'][n]=sha(b)
+        if n in core['sha256'] or n.startswith('UserData/FreedomArrow/'):core['sha256'][n]=H(b)
     # Drop retired maps before the manifest is written: 0.8.0-dev.98-lat.1 pinned the deleted 0.1 map files, so the
     # runtime's payload check failed ("verification failed") on every install.
-    for n in retired_scenarios:core['sha256'].pop(n,None);whole['sha256'].pop(n,None)
+    for n in retired_scenarios+drops:core['sha256'].pop(n,None);whole['sha256'].pop(n,None)
     override['UserData/FreedomArrow/payload-manifest.json']=enc(core)
     whole.update(build=a.build,label='Freedom Arrow '+V)
     for n,b in override.items():
-        if n not in ['mod.json','README.md']:whole['sha256'][n]=sha(b)
+        if n not in ['mod.json','README.md']:whole['sha256'][n]=H(b)
     whole['core_paths']=sorted(set(whole['core_paths'])|{n for n in override if n.startswith('UserData/FreedomArrow/')})
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(complete.resolve())],check=True)
-    if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(complete.resolve()),*retired_scenarios],check=True)   # -nw: map names contain [ ], which zip reads as wildcards
+    if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(complete.resolve()),*retired_scenarios],check=True)
+    if drops:
+        with tempfile.NamedTemporaryFile('w',delete=False) as dl:dl.write('\n'.join(drops)+'\n')
+        subprocess.run(f'{a.zip} -q -nw -d {complete.resolve()} -@ < {dl.name}',shell=True,check=True)   # -nw: map names contain [ ], which zip reads as wildcards
     with tempfile.TemporaryDirectory() as tmp:
         stage=Path(tmp)
-        for n,b in override.items():f=stage/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b)
+        for n,b in override.items():
+            f=stage/n;f.parent.mkdir(parents=True,exist_ok=True)
+            if isinstance(b,Path):os.link(b,f) if os.stat(b).st_dev==os.stat(stage).st_dev else f.write_bytes(b.read_bytes())
+            else:f.write_bytes(b)
         subprocess.run([a.zip,'-q','-nw',str(complete.resolve()),*sorted(override)],cwd=stage,check=True)
 override_assets={n for n in override if n.startswith(ASSET)}
 with zipfile.ZipFile(complete) as c:names=c.namelist()
@@ -97,6 +108,7 @@ with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipF
     for n in [x for x in asset_names if x in bz.namelist()]:assert c.getinfo(n).CRC==bz.getinfo(n).CRC or n in override_assets,n
     assert set(gz.namelist())==set(names)-set(asset_names)
     for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
+    assert not [n for n in drops if n in names],'a dropped asset is still in the package'
     assert json.loads(gz.read('mod.json'))['version']==V
 # Lateralus 13 Nov 2026: dev.18-20 changed FAModels.dll and ZSL-92 textures in the complete package only, but the receipt
 # kept saying assets 0.2.0, so "gameplay + assets 0.2.0" failed the runtime's hash check. Check the real assets package.

@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.25", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.26", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -346,6 +346,33 @@ public partial class Mod : MelonMod
         }
     }
 
+    // 0.3.26 (Osama 14 Nov: "We should be loading models like vanilla"): textures pre-built at package time as X.fat, the
+    // graphics card's own compressed format (BC7 colour/mask, BC5 normal) with every mip level, like vanilla's bundles. The bytes
+    // go straight to the GPU: no PNG decode and no mip generation on the main thread, a quarter of the video memory, and no
+    // CPU-side copy kept (non-readable). A model without .fat files still loads its PNGs, also kept non-readable now.
+    // X.fat: "FAT1", int32 width, height, Unity TextureFormat, mip count, linear (0/1), data length, then the mip data.
+    static bool TexExists(string png) => File.Exists(Path.Combine(dir, Path.ChangeExtension(png, ".fat"))) || File.Exists(Path.Combine(dir, png));
+    static Texture2D Tex(string png, bool linear)
+    {
+        var fat = Path.Combine(dir, Path.ChangeExtension(png, ".fat"));
+        if (File.Exists(fat))
+        {
+            try
+            {
+                using var r = new BinaryReader(File.OpenRead(fat));
+                if (new string(r.ReadChars(4)) != "FAT1") throw new Exception("not a FAT1 file");
+                int w = r.ReadInt32(), h = r.ReadInt32(), fmt = r.ReadInt32(), mips = r.ReadInt32(); bool lin = r.ReadInt32() != 0; int n = r.ReadInt32();
+                var t = new Texture2D(w, h, (TextureFormat)fmt, mips, lin) { name = "FAM_" + png };
+                t.LoadRawTextureData(r.ReadBytes(n));
+                t.Apply(false, true);
+                return t;
+            }
+            catch (Exception ex) { MelonLogger.Warning($"FAMODELS texture {png}: {ex.Message}; using the PNG"); }
+        }
+        var p = new Texture2D(2, 2, TextureFormat.RGBA32, true, linear) { name = "FAM_" + png };
+        ImageConversion.LoadImage(p, File.ReadAllBytes(Path.Combine(dir, png)), true);
+        return p;
+    }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
     public class MatP { public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
@@ -381,9 +408,7 @@ public partial class Mod : MelonMod
         m.SetColor("_BaseColor", col.gamma);  // glTF colour factors are linear; SetColor expects sRGB
         if (tex != "")
         {
-            var t = new Texture2D(2, 2, TextureFormat.RGBA32, true);
-            ImageConversion.LoadImage(t, File.ReadAllBytes(Path.Combine(dir, tex)));
-            m.SetTexture("_BaseColorMap", t);
+            m.SetTexture("_BaseColorMap", Tex(tex, false));
         }
         // The model's own surface settings (metallic, smoothness, alpha mode, emission) from famconv's X.mat.json.
         p ??= new MatP();
@@ -410,17 +435,13 @@ public partial class Mod : MelonMod
         // PBR maps from the source model, written by famconv.py beside the base texture: X_n.png (normal) and X_mask.png
         // (HDRP mask map: R metallic, G occlusion, B detail mask, A smoothness). Both are linear data, not colour.
         string stem = tex.EndsWith(".png") ? tex[..^4] : tex;
-        if (tex != "" && File.Exists(Path.Combine(dir, stem + "_n.png")))
+        if (tex != "" && TexExists(stem + "_n.png"))
         {
-            var n = new Texture2D(2, 2, TextureFormat.RGBA32, true, true);
-            ImageConversion.LoadImage(n, File.ReadAllBytes(Path.Combine(dir, stem + "_n.png")));
-            m.SetTexture("_NormalMap", n); m.SetFloat("_NormalScale", 1f); m.EnableKeyword("_NORMALMAP"); m.EnableKeyword("_NORMALMAP_TANGENT_SPACE");
+            m.SetTexture("_NormalMap", Tex(stem + "_n.png", true)); m.SetFloat("_NormalScale", 1f); m.EnableKeyword("_NORMALMAP"); m.EnableKeyword("_NORMALMAP_TANGENT_SPACE");
         }
-        if (tex != "" && File.Exists(Path.Combine(dir, stem + "_mask.png")))
+        if (tex != "" && TexExists(stem + "_mask.png"))
         {
-            var k = new Texture2D(2, 2, TextureFormat.RGBA32, true, true);
-            ImageConversion.LoadImage(k, File.ReadAllBytes(Path.Combine(dir, stem + "_mask.png")));
-            m.SetTexture("_MaskMap", k); m.EnableKeyword("_MASKMAP");
+            m.SetTexture("_MaskMap", Tex(stem + "_mask.png", true)); m.EnableKeyword("_MASKMAP");
             m.SetFloat("_MetallicRemapMin", 0f); m.SetFloat("_MetallicRemapMax", 1f); m.SetFloat("_SmoothnessRemapMin", 0f); m.SetFloat("_SmoothnessRemapMax", 1f);
             m.SetFloat("_AORemapMin", 0f); m.SetFloat("_AORemapMax", 1f);
         }
