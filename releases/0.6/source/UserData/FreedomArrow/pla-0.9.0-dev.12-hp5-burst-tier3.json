@@ -1,0 +1,155 @@
+{
+  "version": "0.9.0-dev.12-hp5-burst-tier3",
+  "base": "0.9.0-dev.12",
+  "build": 186,
+  "projectile_health": 5.0,
+  "vanilla_health": 1.0,
+  "hook": "ProjectileSpawnerHelper.MakeShellTargetable postfix (RVA 0x7DF1E0) writes _health, MaxHealth, HalfHealth",
+  "data_changes": {
+    "weapons": {
+      "19": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "261": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "309": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "327": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "345": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009181": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009365": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2009555": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2009599": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 1.5,
+        "TimeBetweenBurstsMax": 2.0
+      },
+      "2010639": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2010659": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "2010673": {
+        "ShotsPerBurstMin": 7,
+        "ShotsPerBurstMax": 10,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      }
+    },
+    "ammunition_damage": {
+      "60": [
+        3.0,
+        4.0
+      ],
+      "231": [
+        3.0,
+        4.0
+      ],
+      "2009185": [
+        3.0,
+        4.0
+      ],
+      "2009369": [
+        7.8,
+        4.9
+      ],
+      "2009603": [
+        7.8,
+        4.9
+      ],
+      "62": [
+        2.0,
+        4.0
+      ],
+      "262": [
+        2.0,
+        2.7
+      ],
+      "213": [
+        2.3,
+        4.6
+      ],
+      "2010643": [
+        2.3,
+        4.6
+      ],
+      "2009559": [
+        2.3,
+        4.6
+      ],
+      "2010663": [
+        2.3,
+        4.6
+      ],
+      "2010677": [
+        2.3,
+        2.6
+      ]
+    },
+    "spaag_weapons": {
+      "weapons": [
+        19,
+        261,
+        309,
+        327,
+        345,
+        2009181,
+        2009365,
+        2009555,
+        2009599,
+        2010639,
+        2010659,
+        2010673
+      ],
+      "burstRefillIdleSeconds": 3.0,
+      "card_dps": "Arsenal card DPS of these weapons counts burst cooldowns but not magazine reloads (Lateralus 11:29 PST)",
+      "burst_refill": "a listed gun that has not fired for burstRefillIdleSeconds and is not in a burst pause starts its next burst full",
+      "source": "Lateralus 15 Nov 2026, thread 1571554273639006392"
+    }
+  },
+  "verified": "build checks only; not yet seen in a game"
+}
