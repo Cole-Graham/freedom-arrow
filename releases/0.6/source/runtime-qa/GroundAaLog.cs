@@ -35,7 +35,11 @@ static class GroundAaLog
         public Threat(Entity entity,int type,int? ammo,string team,Vector3 position,float seen)
         {Entity=entity;Type=type;Ammo=ammo;Team=team;Position=position;Seen=seen;}
     }
-    static EntitySet weaponSet,unitSet;
+    static EntitySet weaponSet,unitSet,turretSet;
+    // Lateralus missile-hp batch (15 Nov 2026): WeaponComponent.TurretParrent was never a live turret for any AA weapon in the
+    // hp5/7/9 logs, so the sideways aim error was always null. The turret is found from TurretComponent.Weapons instead.
+    static readonly Dictionary<ulong,Entity> TurretOf=new();
+    static float nextTurretMap;
     static World world;
     static StreamWriter writer;
     static long bytes;
@@ -63,10 +67,10 @@ static class GroundAaLog
     {
         try
         {
-            if(world!=null&&!world._isDisposed){weaponSet?.Dispose();unitSet?.Dispose();}
+            if(world!=null&&!world._isDisposed){weaponSet?.Dispose();unitSet?.Dispose();turretSet?.Dispose();}
         }
         catch(Exception e){Fail(e);}
-        finally{weaponSet=null;unitSet=null;world=null;Threats.Clear();Last.Clear();while(ShotSignals.TryDequeue(out _)){ }weaponCursor=unitCursor=0;nextSample=0;}
+        finally{weaponSet=null;unitSet=null;turretSet=null;TurretOf.Clear();nextTurretMap=0;world=null;Threats.Clear();Last.Clear();while(ShotSignals.TryDequeue(out _)){ }weaponCursor=unitCursor=0;nextSample=0;}
     }
     public static void LateUpdate()
     {
@@ -82,6 +86,7 @@ static class GroundAaLog
                 // Our own read-only subscriptions, not the game's search/system sets.
                 weaponSet=world.GetEntities().With<WeaponComponent>().AsSet();
                 unitSet=world.GetEntities().With<UnitComponent>().AsSet();
+                turretSet=world.GetEntities().With<TurretComponent>().AsSet();
                 Emit("observer_bound",default,default,new{world=(long)world.Pointer,weapons=weaponSet.Count,units=unitSet.Count},true);
             }
             for(int n=0;n<16&&clock.Elapsed.TotalMilliseconds<WorkBudgetMs&&ShotSignals.TryDequeue(out var fired);n++)
@@ -104,6 +109,17 @@ static class GroundAaLog
             }
             foreach(var pair in Threats.ToArray())
                 if(!pair.Value.Entity.IsAlive||now-pair.Value.Seen>ThreatAge)Threats.Remove(pair.Key);
+            if(now>=nextTurretMap)
+            {
+                nextTurretMap=now+2;TurretOf.Clear();
+                var turrets=turretSet._entities;int turretCount=Math.Min(turretSet.Count,turrets?.Length??0);
+                for(int n=0;n<turretCount;n++)
+                {
+                    var t=turrets[n];if(!t.IsAlive||!t.Has<TurretComponent>())continue;
+                    var list=NativeEcs.Read<TurretComponent>(t).Weapons;if(list==null)continue;
+                    for(int i=0;i<list.Length;i++)TurretOf[Key(list[i])]=t;
+                }
+            }
             var weapons=weaponSet._entities;int count=Math.Min(weaponSet.Count,weapons?.Length??0);
             int visited=0;
             while(visited<Math.Min(WeaponBatch,count)&&clock.Elapsed.TotalMilliseconds<WorkBudgetMs)
@@ -157,20 +173,22 @@ static class GroundAaLog
         }
         catch(Exception e){return new{available=false,error=e.GetType().Name};}
     }
-    static object Tracking(WeaponComponent weapon)
+    static object Tracking(Entity weaponEntity,WeaponComponent weapon)
     {
         try
         {
-        float? horizontal=null,error=null;int? turretId=null;
+        float? horizontal=null,error=null;int? turretId=null;string turretSource=null;
         var turret=weapon.TurretParrent;
-        if(turret.IsAlive&&turret.Has<TurretComponent>())
+        if(turret.IsAlive&&turret.Has<TurretComponent>())turretSource="parent";
+        else if(TurretOf.TryGetValue(Key(weaponEntity),out turret)&&turret.IsAlive&&turret.Has<TurretComponent>())turretSource="weapon_list";
+        if(turretSource!=null)
         {
             horizontal=NativeEcs.Field<TurretComponent,float>(turret,"CurrentHorizontalAngle");
             error=AaObservationPolicy.AngleError(weapon.TargetHorizontalAngle,horizontal.Value);
             turretId=NativeEcs.Read<TurretComponent>(turret).TurretInfo?.Id;
         }
         var cached=weapon.CachedShotData;
-        return new{turretId,currentHorizontalAngle=horizontal,horizontalError=error,
+        return new{turretId,turretSource,currentHorizontalAngle=horizontal,horizontalError=error,
             verticalError=AaObservationPolicy.AngleError(weapon.TargetVerticalAngle,weapon.CurrentVerticalAngle),
             cachedBallistics=new{vectorToTarget=Coords(cached.VectorToTarget),fireVector=Coords(cached.FireVector),
                 muzzleSpeed=cached.InitialProjectileSpeed,timeToImpact=cached.TimeToImpact,canShoot=cached.CanShoot},
@@ -221,7 +239,7 @@ static class GroundAaLog
                 aimSecondsRemaining=aimRemaining,
                 magazineReload=reload,burstCooldown=burst,weaponCycle=cycle,targetSearchDelayed=weapon.Has<TargetSearchDelayComponent>(),
                 networkRemote=weapon.Has<NetworkWeaponRemoteComponent>(),guidingMissiles=weapon.Has<ActiveGuidanceComponent>(),
-                tracking=Tracking(w),targetKinematics=Kinematics(target),
+                tracking=Tracking(weapon,w),targetKinematics=Kinematics(target),
                 targetHorizontalAngle=w.TargetHorizontalAngle,targetVerticalAngle=w.TargetVerticalAngle,currentVerticalAngle=w.CurrentVerticalAngle,
                 lowRangeRaw=a?.LowAltRange,highRangeRaw=a?.HighAltRange,seadRangeOverrideRaw=a?.SeadProjectileRangeOverride,
                 position=hasPosition?Coords(pos):null,selected=selectedData,targetPriority,
