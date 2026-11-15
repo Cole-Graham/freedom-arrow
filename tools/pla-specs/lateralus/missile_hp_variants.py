@@ -37,6 +37,10 @@ Usage: missile_hp_variants.py 5 7 9
            between missiles on units that also have an intercepting gun, so SAM, gun, SAM take turns. 2.0-2.5 s on Pantsir 57E6E (weapon 20,
            also the Tunguska's 57E6E loadout), FK-2000 SAM 2009605, PGL-625 FB-10 2009371. Not C-RAM SeaRAM 732 (missile-only loadout) and
            not Tunguska 9M311 329 (never fired at a SEAD missile in 10 test runs).)
+       missile_hp_variants.py 5 --burst-tier3 --sam-pause --claim --gun-sam-pause --plane-refund   (...-gunsam-planes: Lateralus 15 Nov 2026
+           14:24-15:02 PST aircraft sale rework part 1, test build only: Aircrafts-tab units refund through the engine formula with
+           plane-refund.json values (max 100%, health x0, ammo/flare x0, multiplier 1) and are paid out over 300 s; PlaneSale.cs; branch
+           codex/batch/lateralus/plane-refund. "This is just a proposal and you should not queue it for a dev build until I say so.")
        missile_hp_variants.py 5 --burst-tier --mid-burst 7   (0.9.0-dev.12-hp5-burst-tier2: Lateralus 11:41 PST "the tunguska tier doesn't
            seem to be able to shoot down 2 missiles". hp5btier-1940 log: every middle burst of 5 went 2 hits on missile 1, 1 round
            already in flight when it died, 2 rounds at missile 2 still ~1.2 s out (1 hit); burst 7 = 3 for missile 1 + 4 for missile 2)
@@ -94,7 +98,8 @@ SPAAG=FA/'spaag-weapons.json'
 SAM_PAUSE={(2.0,3.0):((0.8,1.2),[20,28,99,329,605,619,620,625,628,704,705,732,772,773,2009195,2009371,2009605,2010625]),
     (3.0,4.0):((1.5,2.0),[315,320,323,324,346,347,366,599,650,651,685,774,783,784,2010569,2010583,2010597,2010611]),
     (4.0,5.0):((2.5,3.0),[220,236,238,307,319,690,691,2014534,2014549,2014555])}   # dev.12 pause: (new pause, weapon ids)
-sam='--sam-pause' in sys.argv;claim='--claim' in sys.argv;gunsam='--gun-sam-pause' in sys.argv
+sam='--sam-pause' in sys.argv;claim='--claim' in sys.argv;gunsam='--gun-sam-pause' in sys.argv;planes='--plane-refund' in sys.argv
+PLANE_REFUND=FA/'plane-refund.json'
 GUN_SAM=[20,2009605,2009371]
 def burst_tier():
     assert sorted(LIGHT_W+MID_W+HEAVY_W)==sorted(BURST)
@@ -113,6 +118,10 @@ def burst_tier():
     for i in GUN_SAM if gunsam else ():
         r=w[str(i)];assert sam and (r['TimeBetweenBurstsMin'],r['TimeBetweenBurstsMax'])==(0.8,1.2),(i,r.get('TimeBetweenBurstsMin'))
         r.update(TimeBetweenBurstsMin=2.0,TimeBetweenBurstsMax=2.5)
+    if planes:PLANE_REFUND.write_text(enc({'Category':6,'MaximumRefundPercent':100.0,'MinimumRefundPercent':20.0,'HealthCostMultiplier':0.0,
+        'SupplyMultiplier':0.0,'RefundMultiplier':1.0,'PayoutSeconds':300.0,
+        'note':'Aircrafts deck tab only (UnitCategoryType 6). Engine refund settings swapped in for that unit\'s RefundUnit call; vanilla 90 / 20 / 0.5 / 0.04 x / 1.0. SupplyMultiplier scales the engine ammo/flare deduction (0.04 points per supply point). Payout spread evenly over PayoutSeconds of game time.',
+        'source':'Lateralus 15 Nov 2026 14:24-15:02 PST, thread 1571554273639006392 (test build only)'}))
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
     SPAAG.write_text(enc({'weapons':sorted(BURST),'burstRefillIdleSeconds':3.0,
         **({'sameUnitClaimWeapons':sorted(BURST+[i for _,ids in SAM_PAUSE.values() for i in ids]),
@@ -141,7 +150,7 @@ def burst_pause():
     CONST.parent.mkdir(exist_ok=True);CONST.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n');return changed
 try:
     for hp in [int(x) for j,x in enumerate(sys.argv[1:],1) if x.isdigit() and sys.argv[j-1]!='--mid-burst']:   # 11:45: '--mid-burst 7' had also built an unwanted hp7
-        V=f'{PREV}-hp{hp}'+('-burst-tier'+('3' if tier3 else '' if MIDN==5 else '2')+('-sam' if sam else '')+('-claim6' if claim else '')+('-gunsam' if gunsam else '') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
+        V=f'{PREV}-hp{hp}'+('-burst-tier'+('3' if tier3 else '' if MIDN==5 else '2')+('-sam' if sam else '')+('-claim6' if claim else '')+('-gunsam' if gunsam else '')+('-planes' if planes else '') if btier else '-tier2' if tier2 else '-tier' if tier else '-noburst' if nob else ('-burst' if burst else '')+('-lead' if lead else '')+('-fix' if fix else ''))
         before=burst_tier() if btier else burst_pause() if burst else None
         dmg={i:(v[0],TIER3_DAMAGE[i] if tier3 else 2.6) for i,v in NOBURST_DAMAGE.items()} if btier else tier_damage(hp) if tier else NOBURST_DAMAGE
         if nob or btier:noburst_damage(dmg)
@@ -149,7 +158,7 @@ try:
             'source':'Lateralus 15 Nov 2026, thread 1571554273639006392'}))
         m=json.loads((REL/'mod.json').read_text());assert m['version']==PREV
         m['version']=V;m['description']=re.sub(r'^(Freedom Arrow 0\.9: China \(PLA\) on the full 0\.7\.0-dev\.58 game\. )',
-            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+((', 12 SPAAG guns 2.6-4.9 damage per round (dev.12 DPS), light guns burst 3 and middle guns burst 7 with a 2-3 s pause, heavy guns burst 11 with a 1.5-2 s pause,'+(' SEAD-capable SAMs launch faster (pause 0.8-1.2 / 1.5-2.0 / 2.5-3.0 s short/medium/long range),' if sam else '')+(' one weapon per SEAD missile per unit,' if claim else '')+(' Pantsir/FK-2000/PGL-625 SAMs pause 2.0-2.5 s,' if gunsam else '') if tier3 else ', 12 SPAAG guns 2.6 damage per round, light guns burst 3 and middle guns burst %d with a 2-3 s pause'%MIDN+', heavy guns no bursts,')+' bursts refill after 3 s without firing, card DPS without magazine reload' if btier else '')+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
+            rf'\g<1>{V}: TEST BUILD, dev.12 with every interceptable missile at {hp} HP (vanilla 1)'+((', 12 SPAAG guns 2.6-4.9 damage per round (dev.12 DPS), light guns burst 3 and middle guns burst 7 with a 2-3 s pause, heavy guns burst 11 with a 1.5-2 s pause,'+(' SEAD-capable SAMs launch faster (pause 0.8-1.2 / 1.5-2.0 / 2.5-3.0 s short/medium/long range),' if sam else '')+(' one weapon per SEAD missile per unit,' if claim else '')+(' Pantsir/FK-2000/PGL-625 SAMs pause 2.0-2.5 s,' if gunsam else '')+(' sold Aircrafts-tab planes refund 100% (engine formula, max 100%, no damage/ammo deduction) paid over 5 minutes, HUD +N/min,' if planes else '') if tier3 else ', 12 SPAAG guns 2.6 damage per round, light guns burst 3 and middle guns burst %d with a 2-3 s pause'%MIDN+', heavy guns no bursts,')+' bursts refill after 3 s without firing, card DPS without magazine reload' if btier else '')+(((', 12 SPAAG guns fire steadily (no bursts), tiered damage %s light/middle/heavy, missile motion recorded from launch'%('/'.join(map(str,TIER_DAMAGE[hp]))) if tier else ', 12 SPAAG guns fire steadily (no bursts) with lower damage per round, missile motion recorded from launch') if nob else ', SPAAG burst pause 0.8-1.0 s, turret aim error in the AA log') if burst else '')+(', full gun lead-correction log' if lead else '')+(', lead correction solves head-on missiles (secant)' if fix else '')+'; ',m['description']);assert V in m['description']
         (REL/'mod.json').write_text(enc(m))
         c=json.loads((FA/'channel.json').read_text());c['package_version']=V;(FA/'channel.json').write_text(enc(c))
         b=json.loads((FA/'pla-build.json').read_text());b.update(build=BUILD,label='Freedom Arrow '+V);(FA/'pla-build.json').write_text(enc(b))
@@ -164,4 +173,4 @@ try:
             '--base',str(base),'--outdir',str(REL/'out/0.8'),'--zip',ZIP],check=True,env={**os.environ,'BA_DEVPOST_SKIP':'Lateralus missile HP test build, not a dev build'})
         subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True)
 finally:
-    subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True);(FA/'projectile-health.json').unlink(missing_ok=True);CONST.unlink(missing_ok=True);ACONST.unlink(missing_ok=True);SPAAG.unlink(missing_ok=True)
+    subprocess.run(['git','checkout','--',*IDENTITY],cwd=ROOT,check=True);(FA/'projectile-health.json').unlink(missing_ok=True);CONST.unlink(missing_ok=True);ACONST.unlink(missing_ok=True);SPAAG.unlink(missing_ok=True);PLANE_REFUND.unlink(missing_ok=True)

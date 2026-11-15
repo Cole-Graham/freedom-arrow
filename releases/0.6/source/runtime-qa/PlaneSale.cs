@@ -1,0 +1,148 @@
+using System.Text.Json.Nodes;
+using HarmonyLib;
+using Il2CppBrokenArrow.Client.Ecs.Configs;
+using Il2CppBrokenArrow.Client.Ecs.Economy.Systems;
+using Il2CppBrokenArrow.Client.Ecs.Shop.UI;
+using Il2CppBrokenArrow.Client.Ecs.Utils;
+using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppDefaultEcs;
+using Il2CppTMPro;
+using MelonLoader;
+using UnityEngine;
+namespace FreedomArrow;
+// Aircraft sale rework, part 1 (Lateralus 15 Nov 2026, thread 1571554273639006392, test build only: "when you sell your planes you get 100% of the
+// points back, but over a 5 minute window"; 14:30 PST: damaged/unarmed planes 100%, shot-down planes nothing, buy-again delay unchanged, no cap;
+// 14:42 PST: "it would be better if we could tweak the engine's actual parameters that control refunds").
+// Native RefundSystem.RefundUnit(in Entity, bool onlyCount) RVA 0x6DBEC0 (from the code, work/plane-refund-20261109/REPORT.md):
+//   refund = clamp(RefundMultiplier x (Cost x (1 - HealthCostMultiplier x HP lost) - _supplyMul x missing ammo/flare supply), Min%..Max% of Cost)
+// and, when onlyCount is false, adds it to the owner's PlayerInfo.Points (0x6DCC87-0x6DCCD2). Those settings are global, so for units of
+// category Aircrafts (UnitCategoryType 6) the values in plane-refund.json are swapped in for the call and restored after it (same method as the
+// unshipped 0.7 PlaneRefund.cs). For a real sale the instant payment is taken back and paid out evenly over PayoutSeconds (game time).
+// Helicopters (5), pilots and every other unit keep the native refund. Lost planes: RefundUnit is not called, so nothing is paid (vanilla too).
+// HUD: a line above the points in the shop button (MainShopButtonUI) shows the points per minute still coming from sold planes.
+static class PlaneSale
+{
+    const int MaxLog=300;
+    sealed class Settings{public int Category=6;public float Max=100,Min=20,Health=0,Supply=0,Multiplier=1,Seconds=300;}
+    sealed class Saved{public bool Swapped;public GameConfig Cfg;public float Max,Min,Health,Multiplier,Supply;}
+    sealed class Payout{public PlayerInfo Player;public IntPtr Ptr;public float Amount,Paid,Start;public int Unit;}
+    static Settings s=new();
+    static bool on,broken;
+    static int logged;
+    static readonly object Gate=new();
+    static readonly List<Payout> payouts=new();
+    static IntPtr session;
+    static TextMeshProUGUI label;static MainShopButtonUI labelOwner;
+    public static void Install(HarmonyLib.Harmony harmony,string root)
+    {
+        var file=Path.Combine(root,"plane-refund.json");if(!File.Exists(file))return;
+        var c=JsonNode.Parse(File.ReadAllText(file))!;
+        float F(string k,float d)=>c[k]?.GetValue<float>()??d;
+        s=new Settings{Category=c["Category"]?.GetValue<int>()??6,Max=F("MaximumRefundPercent",100),Min=F("MinimumRefundPercent",20),
+            Health=F("HealthCostMultiplier",0),Supply=F("SupplyMultiplier",0),Multiplier=F("RefundMultiplier",1),Seconds=F("PayoutSeconds",300)};
+        if(!(s.Seconds>0)||s.Max<s.Min)throw new InvalidDataException("plane-refund.json: PayoutSeconds > 0 and Maximum >= Minimum");
+        var m=AccessTools.Method(typeof(RefundSystem),"RefundUnit")??throw new MissingMethodException("RefundSystem.RefundUnit");
+        harmony.Patch(m,prefix:new HarmonyMethod(typeof(PlaneSale),nameof(Before)){priority=Priority.First},
+            postfix:new HarmonyMethod(typeof(PlaneSale),nameof(After)){priority=Priority.First},
+            finalizer:new HarmonyMethod(typeof(PlaneSale),nameof(Finally)));
+        var ui=AccessTools.Method(typeof(MainShopButtonUI),"GameUpdate")??throw new MissingMethodException("MainShopButtonUI.GameUpdate");
+        harmony.Patch(ui,postfix:new HarmonyMethod(typeof(PlaneSale),nameof(HudAfter)));
+        on=true;
+        MelonLogger.Msg($"FREEDOM_ARROW_PLANE_SALE installed: category {s.Category} refunds use max {s.Max}% min {s.Min}% health x{s.Health} supply x{s.Supply} multiplier {s.Multiplier}, paid over {s.Seconds} s");
+        DiagnosticLog.Write("plane_sale_installed",new{s.Category,s.Max,s.Min,s.Health,s.Supply,s.Multiplier,s.Seconds});
+    }
+    static bool IsPlane(Entity e,out UnitComponent u)
+    {
+        u=null;if(!e.IsAlive||!e.Has<UnitComponent>())return false;
+        u=NativeEcs.Read<UnitComponent>(e);return u?.UnitData!=null&&(int)u.UnitData.CategoryType==s.Category;
+    }
+    static void Before(in Entity __0,out Saved __state)
+    {
+        __state=new Saved();
+        if(!on||broken||!Runtime.IsApplied)return;
+        try
+        {
+            if(!IsPlane(__0,out _))return;
+            var cfg=GameConfig.Instance;if(cfg==null)return;
+            __state.Cfg=cfg;__state.Max=cfg.MaximumRefundPercent;__state.Min=cfg.MinimumRefundPercent;__state.Health=cfg.HealthCostMultiplier;
+            __state.Multiplier=cfg.RefundMultiplier;__state.Supply=RefundSystem._supplyMul;
+            Monitor.Enter(Gate);__state.Swapped=true;
+            cfg.MaximumRefundPercent=s.Max;cfg.MinimumRefundPercent=s.Min;cfg.HealthCostMultiplier=s.Health;cfg.RefundMultiplier=s.Multiplier;
+            RefundSystem._supplyMul=__state.Supply*s.Supply;
+        }
+        catch(Exception x){Restore(__state);Fail(x);}
+    }
+    static void After(in Entity __0,bool __1,float __result,Saved __state)
+    {
+        if(__state?.Swapped!=true)return;
+        try
+        {
+            if(!IsPlane(__0,out var u))return;
+            if(__1||!(__result>0))
+            {
+                if(logged<MaxLog&&!__1){logged++;DiagnosticLog.Write("plane_sale",new{t=Time.time,unit=u.UnitData.Id,cost=u.UnitData.Cost,refund=__result,note="nothing to pay"});}
+                return;
+            }
+            var p=u.Owner?.TryCast<PlayerInfo>();if(p==null)return;
+            float before=p.Points.Value;p.Points=before-__result;
+            payouts.Add(new Payout{Player=p,Ptr=p.Pointer,Amount=__result,Start=Time.time,Unit=u.UnitData.Id});
+            if(logged<MaxLog){logged++;DiagnosticLog.Write("plane_sale",new{t=Time.time,unit=u.UnitData.Id,name=u.UnitData.Name,cost=u.UnitData.Cost,refund=__result,
+                pointsWithInstant=before,pointsAfterTakeBack=p.Points.Value,perMinute=__result/s.Seconds*60f,s.Seconds,active=payouts.Count});}
+        }
+        catch(Exception x){Fail(x);}
+    }
+    static Exception Finally(Exception __exception,Saved __state){Restore(__state);return __exception;}
+    static void Restore(Saved st)
+    {
+        if(st==null||!st.Swapped)return;
+        try{st.Cfg.MaximumRefundPercent=st.Max;st.Cfg.MinimumRefundPercent=st.Min;st.Cfg.HealthCostMultiplier=st.Health;st.Cfg.RefundMultiplier=st.Multiplier;RefundSystem._supplyMul=st.Supply;}
+        finally{st.Swapped=false;Monitor.Exit(Gate);}
+    }
+    // Main thread: pay every frame the share that game time has made due.
+    public static void LateUpdate()
+    {
+        if(!on||broken||payouts.Count==0)return;
+        try
+        {
+            var g=Il2CppBrokenArrow.Client.Ecs.Controllers.GameController.Instance;
+            var cur=g?.GameSession==null?IntPtr.Zero:g.GameSession.Pointer;
+            if(cur!=session){session=cur;payouts.Clear();return;}
+            float now=Time.time;
+            for(int i=payouts.Count-1;i>=0;i--)
+            {
+                var q=payouts[i];
+                float due=Math.Min(q.Amount,q.Amount*(now-q.Start)/s.Seconds),d=due-q.Paid;
+                if(d>0){q.Player.Points=q.Player.Points.Value+d;q.Paid=due;}
+                if(q.Paid>=q.Amount-1e-4f){payouts.RemoveAt(i);if(logged<MaxLog){logged++;DiagnosticLog.Write("plane_sale_paid",new{t=now,unit=q.Unit,q.Amount,seconds=now-q.Start});}}
+            }
+        }
+        catch(Exception x){Fail(x);}
+    }
+    public static void SceneChanged(){payouts.Clear();label=null;labelOwner=null;}
+    static void HudAfter(MainShopButtonUI __instance,PlayerInfo __0)
+    {
+        if(!on||broken||__0==null)return;
+        try
+        {
+            float perMin=0;foreach(var q in payouts)if(q.Ptr==__0.Pointer)perMin+=q.Amount/s.Seconds*60f;
+            if(label==null||labelOwner==null||labelOwner.Pointer!=__instance.Pointer)
+            {
+                var inc=__instance._incomeText;var score=__instance._scoreText;if(inc==null||score==null)return;
+                var go=UnityEngine.Object.Instantiate(inc.gameObject,inc.transform.parent);go.name="FA_PlaneSaleIncome";
+                label=go.GetComponent<TextMeshProUGUI>();labelOwner=__instance;
+                var lr=label.rectTransform;var sr=score.rectTransform;var ir=inc.rectTransform;
+                lr.anchoredPosition=sr.anchoredPosition+(sr.anchoredPosition-ir.anchoredPosition);
+            }
+            bool show=perMin>=0.5f;
+            if(label.gameObject.activeSelf!=show)label.gameObject.SetActive(show);
+            if(show)label.text=(label.font!=null&&label.font.HasCharacter('✈')?"✈ +":"AIR +")+Mathf.RoundToInt(perMin);
+        }
+        catch(Exception x){Fail(x);}
+    }
+    static void Fail(Exception x)
+    {
+        if(broken)return;broken=true;
+        DiagnosticLog.Write("plane_sale_failed",new{error=x.ToString()});
+        MelonLogger.Error("FREEDOM_ARROW_PLANE_SALE_FAILED: native refunds from now on. "+x.Message);
+    }
+}
