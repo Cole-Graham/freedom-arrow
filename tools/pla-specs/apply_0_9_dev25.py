@@ -32,6 +32,13 @@ W=t['WeaponsJson'];WA=t['WeaponAmmunitionsJson'];AM=t['AmmunitionsJson'];TW=t['T
 sys.path.insert(0,str(Path(__file__).parent/'lateralus'))
 import spaag_sead_data
 rec['spaag_sead']=spaag_sead_data.apply(t,lambda tab,i,f:g.put(tab,i,f),ok)
+# ---------- Lateralus SEAD prices (16 Nov 2026 08:3x PST, "looks good, queue it up for the next build"; sheet 1Y0rUZ0Do1uMdGyENd1TsnvSWi4ecTLYMQSBLrEiLCC4):
+# 13 SEAD planes -20% base (strike/multirole planes exempt), 54 SEAD options lose half of their SEAD share, helicopters options only.
+import sead_prices
+rec['sead_prices']=sead_prices.apply(t,lambda tab,i,f:g.put(tab,i,f),ok)
+# ---------- Plane ECM pods 10% each (same message: "make ECM pods give 10% ECM per pod on planes"): 26 pod options, see lateralus/ecm_pods.py.
+import ecm_pods
+rec['ecm_pods']=ecm_pods.apply(t,g,ok)
 # The plane sale (Lateralus 16 Nov 06:07 PST, "#23 (plane sale) is no longer a proposal") is runtime only: runtime-qa/PlaneSale.cs,
 # ServerMoney.cs and UserData/FreedomArrow/plane-refund.json (shipped by package_0_8_next.py). No table changes.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
