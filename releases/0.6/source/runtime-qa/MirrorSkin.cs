@@ -13,12 +13,14 @@ namespace FreedomArrow;
 // options include the configured option, every renderer material whose name starts with the configured prefix is replaced by a copy with the
 // configured albedo (the Vanguard skin) and a mask that is mirror in the white paint only; the material floats in the config scale the mask.
 // UserData/FreedomArrow/mirror-skins.json; edits are read again while the game runs (every 2 s), for tuning.
+// 16 Nov 2026 (dev.29 on Osama's PC): UnitV3 ignores the mask slot (masks with opposite channels looked the same), so "shader": "HDRP/Lit"
+// builds the copy on HDRP Lit instead: _BaseColorMap = albedo, _MaskMap = mask (HDRP layout: R metallic, G occlusion, B detail, A smoothness).
 static class MirrorSkin
 {
     sealed class Entry
     {
         public string unit="",prefix="",albedo="",mask="";public string[] options=Array.Empty<string>(),exclude=Array.Empty<string>();
-        public Dictionary<string,float> floats=new();public bool all;
+        public Dictionary<string,float> floats=new();public bool all;public string shader="";
     }
     sealed class View{public GameObject root=null!;public Units data=null!;public Entry e=null!;public bool on;public float until;public Dictionary<IntPtr,Material[]> orig=new();}
     static string dir="";static List<Entry> entries=new();static DateTime stamp;static float nextLoad,nextTick;static int logs;
@@ -37,7 +39,7 @@ static class MirrorSkin
         var list=new List<Entry>();
         foreach(var n in JsonNode.Parse(File.ReadAllText(f))!["skins"]!.AsArray())
         {
-            var e=new Entry{unit=(string)n!["unit"]!,prefix=(string)n["prefix"]!,albedo=(string?)n["albedo"]??"",mask=(string)n["mask"]!,all=(bool?)n["all"]??false};
+            var e=new Entry{unit=(string)n!["unit"]!,prefix=(string)n["prefix"]!,albedo=(string?)n["albedo"]??"",mask=(string)n["mask"]!,all=(bool?)n["all"]??false,shader=(string?)n["shader"]??""};
             e.options=n["options"]?.AsArray().Select(x=>(string)x!).ToArray()??Array.Empty<string>();
             e.exclude=n["exclude"]?.AsArray().Select(x=>(string)x!).ToArray()??Array.Empty<string>();
             if(n["floats"] is JsonObject fl)foreach(var kv in fl)e.floats[kv.Key]=(float)kv.Value!;
@@ -104,10 +106,14 @@ static class MirrorSkin
                 if(!n.StartsWith(v.e.prefix)||v.e.exclude.Any(x=>n.Contains(x))||n.StartsWith("FA_MIRROR"))continue;
                 if(!mats.TryGetValue((v.e,m.Pointer),out var c)||!c)
                 {
-                    c=new Material(m){name="FA_MIRROR "+n,hideFlags=HideFlags.HideAndDontSave};
-                    if(v.e.albedo!="")c.SetTexture("Layer_A97CDC25",Tex(v.e.albedo,false));
-                    c.SetTexture("Layer_4C4561B0",Tex(v.e.mask,true));
-                    foreach(var kv in v.e.floats)c.SetFloat(kv.Key,kv.Value);
+                    if(v.e.shader!="")c=Lit(v.e,n);
+                    else
+                    {
+                        c=new Material(m){name="FA_MIRROR "+n,hideFlags=HideFlags.HideAndDontSave};
+                        if(v.e.albedo!="")c.SetTexture("Layer_A97CDC25",Tex(v.e.albedo,false));
+                        c.SetTexture("Layer_4C4561B0",Tex(v.e.mask,true));
+                        foreach(var kv in v.e.floats)c.SetFloat(kv.Key,kv.Value);
+                    }
                     mats[(v.e,m.Pointer)]=c;
                 }
                 if(!v.orig.ContainsKey(r.Pointer))v.orig[r.Pointer]=r.sharedMaterials;
@@ -116,6 +122,20 @@ static class MirrorSkin
             if(any)r.sharedMaterials=ms;
         }
         if(swapped>0&&logs++<200)DiagnosticLog.Write("mirror_skin_applied",new{unit=v.data.Name,id=v.data.Id,materials=swapped});
+    }
+    static Material Lit(Entry e,string n)
+    {
+        var sh=Shader.Find(e.shader)??throw new InvalidOperationException("shader not found: "+e.shader);
+        var c=new Material(sh){name="FA_MIRROR "+n,hideFlags=HideFlags.HideAndDontSave};
+        c.SetColor("_BaseColor",Color.white);c.SetTexture("_BaseColorMap",Tex(e.albedo,false));
+        c.SetTexture("_MaskMap",Tex(e.mask,true));c.EnableKeyword("_MASKMAP");
+        c.SetFloat("_MetallicRemapMin",0f);c.SetFloat("_MetallicRemapMax",1f);c.SetFloat("_SmoothnessRemapMin",0f);c.SetFloat("_SmoothnessRemapMax",1f);c.SetFloat("_AORemapMin",0f);c.SetFloat("_AORemapMax",1f);
+        foreach(var kv in e.floats)c.SetFloat(kv.Key,kv.Value);
+        // Thin panels (fins, gear doors) are single faces in the game's model: draw both sides, as the game's material does.
+        c.SetFloat("_DoubleSidedEnable",1f);c.SetFloat("_DoubleSidedNormalMode",0f);c.SetFloat("_CullMode",0f);c.SetFloat("_CullModeForward",0f);c.EnableKeyword("_DOUBLESIDED_ON");c.doubleSidedGI=true;
+        bool ok=false;try{ok=UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(c);}catch(Exception x){if(logs++<20)DiagnosticLog.Write("mirror_skin_failed",new{where="validate",error=x.Message});}
+        if(logs++<40)DiagnosticLog.Write("mirror_skin_lit",new{material=n,shader=sh.name,validated=ok});
+        return c;
     }
     static void Restore(View v)
     {

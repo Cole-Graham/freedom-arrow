@@ -26,6 +26,7 @@
     <Reference Include="Il2CppDefaultEcs"><HintPath>$(IL2)/Il2CppDefaultEcs.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Il2CppNetworkCommon"><HintPath>$(IL2)/Il2CppNetworkCommon.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Il2CppGalaxyCoreCommon"><HintPath>$(IL2)/Il2CppGalaxyCoreCommon.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime"><HintPath>$(IL2)/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(IL2)/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(IL2)/UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(IL2)/UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
