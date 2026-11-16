@@ -55,7 +55,8 @@ static class MirrorSkin
         try
         {
             if(unitData==null||unitModel?.PrefabRootScript==null)return;
-            var e=entries.FirstOrDefault(x=>x.unit==unitData.Name);if(e==null)return;
+            // Match by unit name or id: a loadout option with ReplaceUnitName (dev.32 "F-22 Symbiote") may rename the unit.
+            var e=entries.FirstOrDefault(x=>x.unit==unitData.Name||x.unit==unitData.Id.ToString());if(e==null)return;
             views.Add(new View{root=unitModel.PrefabRootScript.gameObject,data=unitData,e=e,until=Time.realtimeSinceStartup+5f});
         }
         catch(Exception x){if(logs++<20)DiagnosticLog.Write("mirror_skin_failed",new{where="hook",error=x.Message});}
