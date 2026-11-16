@@ -57,6 +57,15 @@ g.put('AmmunitionsJson',_la,{'Damage':0.08,'StressDamage':80.0,'SupplyCost':0.04
 for r in _was:g.put('WeaponAmmunitionsJson',r['Id'],{'Quantity':1000})
 ok(W[_lw]['TimeBetweenBurstsMax']==1.0 and AM[_la]['StressDamage']==80.0 and all(WA[r['Id']]['Quantity']==1000 for r in _was),'LSDW: 1 pulse / s, 80 stress, 1000 pulses')
 rec['lsdw_rof']={'weapon':_lw,'ammo':_la,'pulse_s':1.0,'magazine':250,'pulses':1000,'damage':0.08,'stress':80.0,'supply':0.04}
+# ---------- FK-2000 moves to PLAGF Motorized (Osama 16 Nov 2026 12:2x PST: "FK-2000 moved to motorized"). Its one card (PLAN SF, 4
+# availability, no transport links) becomes the Motorized card, as SR-5 in dev.11.
+SAJ=t['SpecializationAvailabilitiesJson']
+ok(U[935]['HUDName']=='FK-2000' and SAJ[2008222]['UnitId']==935 and SAJ[2008222]['SpecializationId']==20 and len([c for c in SAJ.values() if c['UnitId']==935])==1,'FK-2000 PLAN card')
+ok(not [r for r in t['TransportAvailabilitiesJson'].values() if r['SpecializationAvailabilityId']==2008222],'FK-2000 no transport links')
+ok(assign['assignments'].get('935')==[20],'FK-2000 assigned to PLAN')
+g.put('SpecializationAvailabilitiesJson',2008222,{'SpecializationId':21});assign['assignments']['935']=[21]
+ok(SAJ[2008222]['SpecializationId']==21,'FK-2000 card now PLAGF Motorized')
+rec['fk2000_to_motorized']={'card':2008222,'spec':[20,21]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
