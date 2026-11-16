@@ -209,11 +209,11 @@ def check_slots(name,objects,meta):
     players={t:sum(1 for o in objects if o.get('_type')==13 and o.get('ownTeam',{}).get('id')==u) for u,t in fight.items()}
     slots={t.get('teamName'):len(t.get('slots',[])) for t in meta.get('teams',[]) if t.get('teamName') in fight.values()}
     assert len(fight)==2 and set(players.values())=={SLOTS_PER_TEAM} and set(slots.values())=={SLOTS_PER_TEAM},(name,players,slots)
-# Osama 2026-11-06 and 2026-11-15 01:04 PST: "1v1 should all be 100 points". Every [1v1] flavor ends at 100 (MapScoreLimits).
-ONE_V_ONE_LIMIT=100
+# Every FA map ends at the global ScoreLimit (300). Lateralus 16 Nov 2026: "Honestly just make it 300 for all maps" (the 1v1 limit of
+# 100, Osama 6 and 15 Nov, is removed; MapScoreLimits stays empty). The description must say the same limit.
 def check_limit(name,desc):
-    if '[1v1]' in name:
-        assert settings().get('MapScoreLimits',{}).get(name)==ONE_V_ONE_LIMIT and f'First to {ONE_V_ONE_LIMIT} wins' in desc,(name,'1v1 maps end at 100: set MapScoreLimits and the description')
+    limit=settings()['ScoreLimit']
+    assert name not in settings().get('MapScoreLimits',{}) and f'First to {limit} wins' in desc,(name,f'every FA map ends at {limit}: no MapScoreLimits entry, and the description says so')
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
     check_limit(flavor['name'],spec['desc'])
@@ -261,7 +261,7 @@ def prepare_end(mod_file,scene,spec):
 def end_spec(mod_file,title,scene,steam_id):
     import uuid
     name=f'[FA] [1v1] {title} 0.1';skirmish=f'[FA] [1v1] {title} Skirmish 0.1'
-    spec=dict(author='End',desc=describe(END_VALUES,ONE_V_ONE_LIMIT)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
+    spec=dict(author='End',desc=describe(END_VALUES)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
         dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
         dict(name=skirmish,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish)),kind=3,public=False)])
     spec['prepare']=lambda game,sp:prepare_end(mod_file,scene,sp)

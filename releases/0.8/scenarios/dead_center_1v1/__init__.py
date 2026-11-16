@@ -3,7 +3,7 @@ import common as C
 NAME='[FA] [1v1] Dead Center 0.1';GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005'
 SKIRMISH_NAME='[FA] [1v1] Dead Center Skirmish 0.1';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c006'
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
-      'the side with the higher zone value scores the difference. First to 100 wins. A B C are worth 2, D E are worth 3. Flat 200 income, no upkeep.')
+      'the side with the higher zone value scores the difference. First to 300 wins. A B C are worth 2, D E are worth 3. Flat 200 income, no upkeep.')
 LETTERS=dict(A=('Alpha',2),B=('Bravo',2),C=('Charlie',2),D=('Delta',3),E=('Echo',3))
 CONQUEST_NODE=136
 def add_start_cameras(game,objects):

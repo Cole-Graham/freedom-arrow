@@ -279,16 +279,5 @@
   "TimeWinMarginPercent": 10,
   "EnableDeveloperFixtures": false,
   "FixedIncomePerMinute": 200,
-  "MapScoreLimits": {
-    "[FA] [1v1] Dead Center 0.1": 100,
-    "[FA] [1v1] Dead Center Skirmish 0.1": 100,
-    "[FA] [1v1] Kadaga 0.1": 100,
-    "[FA] [1v1] Kadaga Skirmish 0.1": 100,
-    "[FA] [1v1] Klaipeda 0.1": 100,
-    "[FA] [1v1] Klaipeda Skirmish 0.1": 100,
-    "[FA] [1v1] Jelgava 0.1": 100,
-    "[FA] [1v1] Jelgava Skirmish 0.1": 100,
-    "[FA] [1v1] Chernyakhovsky 0.1": 100,
-    "[FA] [1v1] Chernyakhovsky Skirmish 0.1": 100
-  }
+  "MapScoreLimits": {}
 }
