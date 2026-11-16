@@ -32,6 +32,9 @@ import mshorad_laser_slot as MLS
 rec['mshorad_laser_slot']=MLS.apply(t,g,ok)
 avail={r.get('UnitId') for r in t['SpecializationAvailabilitiesJson'].values()}
 coll=MLS.slot_collisions(U,M,O,AB,avail);ok(not coll,f'no unit has two modifications filling one ability slot with a real ability: {coll}')
+# Maps (Lateralus 16 Nov 2026): Klaipeda, Kadaga and Jelgava 1v1 zones A B C 2, D E 4 (scenarios/common.py END_VALUES and
+# FAConquestPrototype/settings.json); Central Village 1v1 and Chernyakhovsky removed from make_scenario.py and settings, and the installed
+# copies retired by GUID in runtime-qa/Runtime.cs. No table changes; the packager rebuilds the scenarios and drops the removed ones.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

@@ -246,7 +246,10 @@ public class Runtime : MelonMod
         // Lateralus 14 Nov 2026: the 0.2 versions replace these (GUID = uuid5(URL namespace, name), as common.py makes them).
         ("[FA] [5v5] Oil Rush 0.1","45ab8340-2c7f-54ca-9ec4-aa8f625472c0"),("[FA] [5v5] Oil Rush Skirmish 0.1","2bace80d-9e50-557a-a2c1-a864e8aacaf1"),
         ("[FA] [5v5] Airport 0.1","7d8ec986-71aa-5f4c-832c-9997babdbf2f"),("[FA] [5v5] Airport Skirmish 0.1","986a0190-74a4-5182-81ec-26dae52deb73"),
-        ("[FA] [5v5] Cold Harbor 0.1","931bc088-091f-59a7-9764-08b11e6f3bfa"),("[FA] [5v5] Cold Harbor Skirmish 0.1","56545179-c383-5ea9-b6e6-36ca3a16cb02")};
+        ("[FA] [5v5] Cold Harbor 0.1","931bc088-091f-59a7-9764-08b11e6f3bfa"),("[FA] [5v5] Cold Harbor Skirmish 0.1","56545179-c383-5ea9-b6e6-36ca3a16cb02"),
+        // Lateralus 16 Nov 2026: "Remove Central Village 1v1 and Chernyakhovsky from our mod, they are not suitable designs" (shipped 0.9.0-dev.11 to dev.25).
+        ("[FA] [1v1] Central Village 0.1","8007113c-143e-5b93-a5c5-d1515ce0e8e6"),("[FA] [1v1] Central Village Skirmish 0.1","fd87c5c8-5b82-5567-88da-613af880c648"),
+        ("[FA] [1v1] Chernyakhovsky 0.1","4df6945f-58b4-5220-9aba-a7d17dbfba7c"),("[FA] [1v1] Chernyakhovsky Skirmish 0.1","e2460289-851f-5fb2-9dc3-a6d4df08cf08")};
     static void RemoveRetiredScenarios()
     {
         foreach(var (folder,guid) in RetiredScenarios)

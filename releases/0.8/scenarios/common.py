@@ -234,9 +234,11 @@ def build_template_flavor(game,out,spec,flavor,template):
 # End's 1v1 maps (Steam Workshop, 1-3 Nov 2026; Osama 15 Nov 2026 00:54 PST: "End said we can use his maps here and implement them
 # into our mod"; 01:01 "these are 1v1"). All five share one shape: stock conquest script (start, delay, two pauses,
 # setConquestMode 300 points / 45 min), zones Alpha-Echo with no values, 5 slots per team, no units or cameras. The FA conquest
-# graft replaces the script. Bravo is the centre zone on all five (nearest the midpoint of the two teams' spawns): worth 3.
+# graft replaces the script. Bravo is the centre zone on all five (nearest the midpoint of the two teams' spawns).
+# Lateralus 16 Nov 2026: "Klaipeda / Kadaga / Jelgava 1v1: A B C - 2 points, D E - 4 points"; Central Village and Chernyakhovsky
+# removed ("they are not suitable designs"; Runtime.cs RetiredScenarios deletes the installed copies by GUID).
 END_SCRIPT=sorted(['start','delay','pauseGame','pauseGame','setConquestMode'])
-END_VALUES=dict(Alpha=2,Bravo=3,Charlie=2,Delta=2,Echo=2)
+END_VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=4,Echo=4)
 def prepare_end(mod_file,scene,spec):
     head,nodes,objects,meta=read_layout(mod_file)
     assert head['map']==scene and head['author']=='End' and meta['gameVersion']==GAME_VERSION,(head['map'],head['author'])
