@@ -1,0 +1,14 @@
+{
+  "ztz80_name": {
+    "unit": 1061,
+    "hud": [
+      "ZTZ-59D",
+      "ZTZ-80"
+    ]
+  },
+  "version": "0.9.0-dev.17",
+  "base": "0.9.0-dev.16",
+  "base_sha256": "27ec9e3d09203a142d047979e2aa951eebcfe696c3a6f2007453b485227046b9",
+  "checks": 2,
+  "verified": "data checks only"
+}
