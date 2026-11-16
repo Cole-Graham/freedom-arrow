@@ -10,8 +10,7 @@ VALUES=dict(Alpha=2,Bravo=2,Charlie=4,Delta=3,Echo=3,Foxtrot=4)
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    # Saved in the 1.2.2.1 editor; the build stamps C.GAME_VERSION, as on every FA map.
-    assert head['map']=='Chernyakhovsk' and head['author']=='Lateralus' and meta['gameVersion'] in (C.GAME_VERSION,'1.2.2.1'),(head['map'],meta['gameVersion'])
+    assert head['map']=='Chernyakhovsk' and head['author']=='Lateralus' and meta['gameVersion'] in C.SOURCE_VERSIONS,(head['map'],meta['gameVersion'])
     assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type') in (1,18)]
     C.strip_editor_teams(objects,meta)
     assert C.free_uids(objects,nodes)=={}

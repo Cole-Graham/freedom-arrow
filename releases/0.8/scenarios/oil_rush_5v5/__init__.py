@@ -12,7 +12,7 @@ LETTERS={n:(n,v) for n,v in VALUES.items()}
 UNIT=1
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    assert head['map']=='Oil refinery' and meta['gameVersion']==C.GAME_VERSION
+    assert head['map']=='Oil refinery' and meta['gameVersion'] in C.SOURCE_VERSIONS
     assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type')==18],'authored map has a script or cameras now. Check this merge.'
     units=[o for o in objects if o.get('_type')==UNIT]
     assert {o['_dname'][:5] for o in units}<={'HMMWV'} and len(units)==7,'placed units changed. Check this merge.'

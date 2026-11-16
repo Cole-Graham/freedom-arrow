@@ -6,7 +6,11 @@ ROOT=Path(__file__).resolve().parent.parent;REPO=ROOT.parent.parent
 sys.path.insert(0,str(REPO))
 from pipeline.crypto import AES_KEY
 MARKER=b'fhk3s0g3'
-GAME_VERSION='1.2.2'
+# The game version written into every built map (meta.json gameVersion). It is the game the package runs on: 1.2.2.1 since the
+# 0.9.0-dev.20 port (Lateralus 16 Nov 2026: "Why would the build change the editor version stamp?" -- it was left at 1.2.2).
+GAME_VERSION='1.2.2.1'
+# Editor versions accepted in a source layout. A layout from any other version stops the build for a check.
+SOURCE_VERSIONS=('1.2.2','1.2.2.1')
 START_POINTS=1500
 MATCH_MINUTES=45
 MONEY_CAP=100000
@@ -241,7 +245,7 @@ END_SCRIPT=sorted(['start','delay','pauseGame','pauseGame','setConquestMode'])
 END_VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=4,Echo=4)
 def prepare_end(mod_file,scene,spec):
     head,nodes,objects,meta=read_layout(mod_file)
-    assert head['map']==scene and head['author']=='End' and meta['gameVersion']==GAME_VERSION,(head['map'],head['author'])
+    assert head['map']==scene and head['author']=='End' and meta['gameVersion'] in SOURCE_VERSIONS,(head['map'],head['author'])
     assert not [o for o in objects if o.get('_type') in (1,18)],'authored map has units or cameras now. Check this merge.'
     assert sorted(b['nnKey'] for b in nodes['b'])==END_SCRIPT,'End changed his script. Check this merge.'
     nodes.update(b=[],c=[])   # the FA conquest graft supplies the script
@@ -287,7 +291,7 @@ def describe(values,limit=300):
 def prepare_authored(mod_file,scene,letters,names,edit=None):
     """edit(head,nodes,objects,meta) runs first, for map-specific script changes."""
     head,nodes,objects,meta=read_layout(mod_file)
-    assert head['map']==scene and head['GameMode']==2 and meta['gameVersion']==GAME_VERSION,(head['map'],head['GameMode'])
+    assert head['map']==scene and head['GameMode']==2 and meta['gameVersion'] in SOURCE_VERSIONS,(head['map'],head['GameMode'])
     if edit:edit(head,nodes,objects,meta)
     strip_editor_teams(objects,meta)
     letter_zones(objects,letters,names)

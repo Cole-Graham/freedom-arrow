@@ -10,7 +10,7 @@ VALUES=dict(Alpha=3,Bravo=3,Delta=2,Echo=3,Foxtrot=3,Golf=3,Hotel=3,India=2,Juli
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    assert head['map']=='Tallinn Harbour' and meta['gameVersion']==C.GAME_VERSION
+    assert head['map']=='Tallinn Harbour' and meta['gameVersion'] in C.SOURCE_VERSIONS
     assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type') in (1,18)],'authored map has a script, units or cameras now. Check this merge.'
     C.strip_editor_teams(objects,meta)
     for o in objects:

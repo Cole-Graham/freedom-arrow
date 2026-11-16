@@ -19,7 +19,7 @@ def prepare_letter_zones(objects,names):
         o['capturableBy']=[c for c in o['capturableBy'] if c['id'] in (teams['Alpha team'],teams['Bravo team'])];assert len(o['capturableBy'])==2
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    assert head['map']=='Central Village' and meta['gameVersion']==C.GAME_VERSION
+    assert head['map']=='Central Village' and meta['gameVersion'] in C.SOURCE_VERSIONS
     assert not nodes['b'] and not nodes['c'] and 'pblOpt' not in meta,'authored map has a script now. Check this merge.'
     C.strip_editor_teams(objects,meta)
     prepare_letter_zones(objects,[fl['name'] for fl in spec['flavors']])

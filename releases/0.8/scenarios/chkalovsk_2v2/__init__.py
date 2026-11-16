@@ -30,7 +30,7 @@ def face_spawn(objects,name):
     o['rotate'].update(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half))
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    assert head['map']=='Airbase' and meta['gameVersion']==C.GAME_VERSION
+    assert head['map']=='Airbase' and meta['gameVersion'] in C.SOURCE_VERSIONS
     assert not nodes['b'] and not nodes['c'] and 'pblOpt' not in meta,'authored map has a script now. Check this merge.'
     assert not [o for o in objects if o.get('_type')==18],'authored map has cameras now. Check this merge.'
     # The authored object existed but spz=0 left it inactive. Three sides meet the map limits;

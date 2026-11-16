@@ -7,7 +7,7 @@ VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=6,Echo=6,Foxtrot=3,Golf=2)
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)
-    assert head['map']=='Frontiers' and meta['gameVersion']==C.GAME_VERSION
+    assert head['map']=='Frontiers' and meta['gameVersion'] in C.SOURCE_VERSIONS
     assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type')==18]
     C.strip_editor_teams(objects,meta)
     # Distinct objective IDs avoid ambiguous online map identification against Chkalovsk (31..37).
