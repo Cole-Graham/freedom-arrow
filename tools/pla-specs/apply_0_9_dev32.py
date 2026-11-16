@@ -108,6 +108,13 @@ ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==150 and (_A[2009623]['TargetTy
 g.put('Units',936,{'Cost':170});g.put('AmmunitionsJson',2009623,{'TargetType':36,'LowAltRange':0.0})
 ok((_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'],U[936]['Cost'],_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009651]['TargetType'])==(525.0,475.0,170,36,0.0,44),'ZTZ-100 525/475, HJ-10 170 ground only, QN-502 unchanged')
 rec['ztz100_hj10']={'ztz100_apfsds':[[550,500],[525,475]],'hj10_cost':[150,170],'hj10_missile':{'target_type':[44,36],'low_alt_range':[1000,0]}}
+# ---------- VN20 without APS (Osama 16 Nov 2026 15:0x PST, thread 1567745029781454889: "VN-20 only jammer, please remove the APS, it shows 0x APS").
+# Its one built-in ability 2019369 (copy of the T-15 profile, only on 1274) kept IsAPS on with APSQuantity 0, so the card showed "0x APS". APS off
+# as on 2009067 in dev.21; smoke, the 30% jammer and the T-15 carried-troop resupply stay.
+_vb=AB[2019369];ok(_vb['Name']=='PLA VN20 smoke + jammer' and _vb['IsAPS'] and _vb['APSQuantity']==0 and _vb['ECMAccuracyMultiplier']==0.7 and [r['UnitId'] for r in UAB.values() if r['AbilityId']==2019369]==[1274],'VN20 ability: APS on with 0 charges, jammer 0.7, only on 1274')
+g.put('AbilitiesJson',2019369,{'IsAPS':False,'APSHitboxProportion':0.0,'APSQuantity':0,'APSCooldown':0.0,'APSSupplyCost':0.0,'APSResupplyTime':0.0})
+ok(not AB[2019369]['IsAPS'] and AB[2019369]['ECMAccuracyMultiplier']==0.7 and AB[2019369]['IsSmoke'],'VN20: jammer and smoke, no APS')
+rec['vn20_no_aps']={'ability':2019369,'aps':'off','ecm':0.7}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
