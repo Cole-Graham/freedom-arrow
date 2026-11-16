@@ -76,6 +76,17 @@ for r in _jp:g.put('UnitPropulsionsJson',r['Id'],{'MobilityId':_nm})
 ok(_card(_FP[_np]['MaxSpeed'],_FP[_np]['MaxSpeedYaw'])==985 and all(_UP[r['Id']]['MobilityId']==_nm for r in _jp),'J-20 and J-20S card radius 985')
 ok(_MB[31]['FlyPresetId']==2001429 and _FP[2001429]['MaxSpeedYaw']==82.5,'Su-57D, F-22 and Su-35/47 rows unchanged')
 rec['j20_turn']={'units':[915,966],'preset':_np,'mobility':_nm,'yaw':_y,'card_radius':[565,985]}
+# ---------- YF-23 Black Widow II: 45% ECM, 295 base (Osama 16 Nov 2026 14:3x PST: "YF-23 should be 45% ecm and dropped to 295 base (so 365
+# after 2 sets of 2x AMRAAMS) points"). Its default ECM 2001398 (0.5 = 50%) is shared with the J-50, so the YF-23 is relinked to a copy at 0.55,
+# as the F-22 in dev.29. Base 315 -> 295; with 2x AIM-120 in both bays (+35 each) = 365.
+_yf=[u_ for u_ in U.values() if u_.get('Name')=='YF-23 Black Widow II'];ok(len(_yf)==1 and _yf[0]['Cost']==315,'YF-23 unit, 315');_yf=_yf[0]['Id']
+_ua=[r for r in UAB.values() if r['UnitId']==_yf];ok(len(_ua)==1 and _ua[0]['AbilityId']==2001398 and AB[2001398]['ECMAccuracyMultiplier']==0.5,'YF-23: one ability, shared ECM 2001398 at 50%')
+g.put('Units',_yf,{'Cost':295})
+_e=g.add('AbilitiesJson',AB[2001398],{'Name':'ECM Plane YF-23 Default FA 0.55','ECMAccuracyMultiplier':0.55})
+g.put('UnitAbilitiesJson',_ua[0]['Id'],{'AbilityId':_e})
+_bays=sorted(o['Cost'] for o in t['OptionsJson'].values() if 'AIM120' in str(o.get('Name','')).replace('-','').upper() and M.get(o.get('ModificationId'),{}).get('UnitId')==_yf)
+ok(U[_yf]['Cost']==295 and AB[_e]['ECMAccuracyMultiplier']==0.55 and AB[2001398]['ECMAccuracyMultiplier']==0.5,'YF-23 295 points, ECM 45%; shared 2001398 unchanged')
+rec['yf23']={'unit':_yf,'cost':295,'ecm_ability':_e,'ecm':0.55,'aim120_bay_costs':_bays}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
