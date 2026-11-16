@@ -235,8 +235,8 @@ def build_template_flavor(game,out,spec,flavor,template):
 # into our mod"; 01:01 "these are 1v1"). All five share one shape: stock conquest script (start, delay, two pauses,
 # setConquestMode 300 points / 45 min), zones Alpha-Echo with no values, 5 slots per team, no units or cameras. The FA conquest
 # graft replaces the script. Bravo is the centre zone on all five (nearest the midpoint of the two teams' spawns).
-# Lateralus 16 Nov 2026: "Klaipeda / Kadaga / Jelgava 1v1: A B C - 2 points, D E - 4 points"; Central Village and Chernyakhovsky
-# removed ("they are not suitable designs"; Runtime.cs RetiredScenarios deletes the installed copies by GUID).
+# Lateralus 16 Nov 2026: "Klaipeda / Kadaga / Jelgava 1v1: A B C - 2 points, D E - 4 points"; Central Village removed ("not suitable
+# designs"; Runtime.cs RetiredScenarios deletes the installed copies by GUID). Chernyakhovsky is now Lateralus's own design (chernyakhovsky_1v1).
 END_SCRIPT=sorted(['start','delay','pauseGame','pauseGame','setConquestMode'])
 END_VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=4,Echo=4)
 def prepare_end(mod_file,scene,spec):

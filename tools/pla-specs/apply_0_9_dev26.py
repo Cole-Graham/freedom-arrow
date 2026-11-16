@@ -33,8 +33,8 @@ rec['mshorad_laser_slot']=MLS.apply(t,g,ok)
 avail={r.get('UnitId') for r in t['SpecializationAvailabilitiesJson'].values()}
 coll=MLS.slot_collisions(U,M,O,AB,avail);ok(not coll,f'no unit has two modifications filling one ability slot with a real ability: {coll}')
 # Maps (Lateralus 16 Nov 2026): Klaipeda, Kadaga and Jelgava 1v1 zones A B C 2, D E 4 (scenarios/common.py END_VALUES and
-# FAConquestPrototype/settings.json); Central Village 1v1 and Chernyakhovsky removed from make_scenario.py and settings, and the installed
-# copies retired by GUID in runtime-qa/Runtime.cs. No table changes; the packager rebuilds the scenarios and drops the removed ones.
+# FAConquestPrototype/settings.json); Central Village 1v1 removed from make_scenario.py and settings, and the installed copies retired
+# by GUID in runtime-qa/Runtime.cs. [1v1] Chernyakhovsky 0.1 is replaced by Lateralus's new design (same name and GUID; A B 2, D E 3, C F 4). No table changes; the packager rebuilds the scenarios and drops the removed ones.
 # Create a lobby tabs 1v1 / 2v2 / 3v3 / 5v5 (Lateralus 16 Nov 2026): runtime only, runtime-qa/LobbyMapTabs.cs (patches ArrowQueue's map window).
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

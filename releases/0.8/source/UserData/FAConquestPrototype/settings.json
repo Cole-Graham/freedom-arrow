@@ -255,6 +255,22 @@
       "43": 2,
       "44": 2,
       "45": 4
+    },
+    "[FA] [1v1] Chernyakhovsky 0.1": {
+      "31": 2,
+      "32": 3,
+      "33": 3,
+      "34": 4,
+      "35": 4,
+      "36": 2
+    },
+    "[FA] [1v1] Chernyakhovsky Skirmish 0.1": {
+      "31": 2,
+      "32": 3,
+      "33": 3,
+      "34": 4,
+      "35": 4,
+      "36": 2
     }
   },
   "TestDurationSeconds": 0,
@@ -271,6 +287,8 @@
     "[FA] [1v1] Klaipeda 0.1": 100,
     "[FA] [1v1] Klaipeda Skirmish 0.1": 100,
     "[FA] [1v1] Jelgava 0.1": 100,
-    "[FA] [1v1] Jelgava Skirmish 0.1": 100
+    "[FA] [1v1] Jelgava Skirmish 0.1": 100,
+    "[FA] [1v1] Chernyakhovsky 0.1": 100,
+    "[FA] [1v1] Chernyakhovsky Skirmish 0.1": 100
   }
 }
