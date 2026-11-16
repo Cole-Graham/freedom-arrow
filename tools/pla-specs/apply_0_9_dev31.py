@@ -32,6 +32,12 @@ ok(sorted({U[r['UnitId']]['HUDName'] for r in UAB.values() if r['AbilityId']==_l
 g.put('AbilitiesJson',_ly,{'APSCooldown':10.0})
 ok(AB[_ly]['APSCooldown']==10.0,'LY-1 laser APS 10 s')
 rec['ly1_aps_cooldown']={'ability':_ly,'cooldown_s':10.0}
+# ---------- F-22 mirror finish on HDRP Lit (Osama 16 Nov 2026 13:5x PST: "mirror finish doesn't work, still"; the dev.29 UnitV3 mask
+# slot is ignored by the game's shader). mirror-skins.json now builds the mirror copy on HDRP/Lit with FA_F22_MIRROR_LITMASK.png
+# (white paint: metallic 1, smoothness 0.96; the rest: metallic 0.3, smoothness 0.4). Runtime and config only.
+_ms=json.loads((SRC/'UserData/FreedomArrow/mirror-skins.json').read_text())['skins'][0]
+ok(_ms['shader']=='HDRP/Lit' and _ms['mask']=='FA_F22_MIRROR_LITMASK.png' and (SRC/'UserData/FreedomArrow/FA_F22_MIRROR_LITMASK.png').exists(),'F-22 mirror on HDRP Lit')
+rec['f22_mirror_lit']={'shader':'HDRP/Lit','mask':'FA_F22_MIRROR_LITMASK.png'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
