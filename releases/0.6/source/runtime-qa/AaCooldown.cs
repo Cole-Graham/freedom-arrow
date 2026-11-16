@@ -88,7 +88,7 @@ static class AaCooldown
         if(!e.IsAlive||!e.Has<WeaponComponent>())return false;
         var w=NativeEcs.Read<WeaponComponent>(e);if(w==null)return false;
         var info=w.WeaponInfo;var ammo=w.SelectedAmmunition;
-        bool gun=info!=null&&ammo!=null&&CramPredictionPolicy.Gun((int)info.Type,info.IsRadarDependent,
+        bool gun=info!=null&&ammo!=null&&InterceptLeadPolicy.Gun((int)info.Type,info.IsRadarDependent,
             (int)ammo.TrajectoryType,(int)ammo.Seeker,(long)ammo.TargetType);
         var u=w.GetUnitEntity();
         return ammo!=null&&u.IsAlive&&u.Has<UnitComponent>()

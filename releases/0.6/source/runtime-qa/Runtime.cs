@@ -59,7 +59,7 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
-        CramPrediction.LateUpdate();
+        InterceptLead.LateUpdate();
         AaCooldown.LateUpdate();
         SpaagWeapons.LateUpdate();
         SameUnitClaim.LateUpdate();
@@ -76,7 +76,7 @@ public class Runtime : MelonMod
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         GroundAaLog.SceneChanged();
-        CramPrediction.SceneChanged();
+        InterceptLead.SceneChanged();
         AaCooldown.SceneChanged();
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
@@ -92,7 +92,7 @@ public class Runtime : MelonMod
         try { conquest?.OnDeinitializeMelon(); }
         finally
         {
-            try { CramPrediction.Close(); } catch(Exception e) { MelonLogger.Warning("FREEDOM_ARROW_CRAM_PREDICTION_CLOSE_FAILED: "+e.Message); }
+            try { InterceptLead.Close(); } catch(Exception e) { MelonLogger.Warning("FREEDOM_ARROW_INTERCEPT_LEAD_CLOSE_FAILED: "+e.Message); }
             AaCooldown.SceneChanged();
             GroundAaLog.Close();DiagnosticLog.Close("deinitialize");
             PlayableBorders.Clear();
@@ -184,11 +184,11 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CHINA_VOICE_FAILED: not installed; China units use their preset voices. "+e.Message); }
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
-        try { CramPrediction.Install(); }
+        try { InterceptLead.Install(); }
         catch (Exception e)
         {
-            DiagnosticLog.Write("cram_prediction_install_failed",new{error=e.ToString(),fallback="native leading"});
-            MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: not installed; native leading. "+e);
+            DiagnosticLog.Write("intercept_lead_install_failed",new{error=e.ToString(),fallback="native leading"});
+            MelonLogger.Error("FREEDOM_ARROW_INTERCEPT_LEAD_FAILED: not installed; native leading. "+e);
         }
         try { AaCooldown.Install(HarmonyInstance,Root); }
         catch(Exception e)

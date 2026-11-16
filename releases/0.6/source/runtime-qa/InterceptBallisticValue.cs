@@ -7,7 +7,7 @@ namespace FreedomArrow;
 // between installations; no generated BallisticDataStruct crosses this boundary.
 // Flags are explicit bytes, not automatically marshaled managed bool fields.
 [StructLayout(LayoutKind.Sequential,Pack=4)]
-internal struct CramBallisticValue
+internal struct InterceptBallisticValue
 {
     public Vector3 VectorToTarget;
     public float InitialProjectileSpeed;

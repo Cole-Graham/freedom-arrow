@@ -4,7 +4,7 @@ namespace FreedomArrow;
 
 // Pure math shared with the offline tests. The caller supplies the native
 // fixed-point ballistic solver; this class never reads or changes game state.
-internal static class CramPredictionPolicy
+internal static class InterceptLeadPolicy
 {
     public const float MinHistory=.075f,MaxHistory=.25f,MaxHorizon=.75f;
     public const float MaxAcceleration=1500,MaxCorrection=60,MaxFraction=.1f;
@@ -78,7 +78,7 @@ internal static class CramPredictionPolicy
 
 // At most 32 samples per target; equal-time callbacks cannot create a zero-dt
 // acceleration. World/scene changes are handled by the native bridge.
-internal sealed class CramMotionHistory
+internal sealed class InterceptMotionHistory
 {
     readonly List<(float Time,Vector3 Velocity)> samples=new(32);
     public float LastTime=>samples.Count==0?float.NegativeInfinity:samples[^1].Time;
@@ -86,7 +86,7 @@ internal sealed class CramMotionHistory
     public bool Observe(float now,Vector3 velocity,out Vector3 acceleration,out float interval)
     {
         acceleration=default;interval=0;
-        if(!float.IsFinite(now)||!CramPredictionPolicy.Finite(velocity))return false;
+        if(!float.IsFinite(now)||!InterceptLeadPolicy.Finite(velocity))return false;
         if(now<LastTime||now-LastTime>.5f)samples.Clear();
         if(now>LastTime)
         {
@@ -97,12 +97,12 @@ internal sealed class CramMotionHistory
         for(int i=0;i<samples.Count;i++)
         {
             float dt=now-samples[i].Time;
-            if(dt<CramPredictionPolicy.MinHistory||dt>CramPredictionPolicy.MaxHistory)continue;
+            if(dt<InterceptLeadPolicy.MinHistory||dt>InterceptLeadPolicy.MaxHistory)continue;
             float score=Math.Abs(dt-.15f);
             if(score<distance){best=i;distance=score;}
         }
         if(best<0)return false;
         interval=now-samples[best].Time;acceleration=(velocity-samples[best].Velocity)/interval;
-        return CramPredictionPolicy.Finite(acceleration);
+        return InterceptLeadPolicy.Finite(acceleration);
     }
 }
