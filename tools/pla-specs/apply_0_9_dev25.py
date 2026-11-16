@@ -39,6 +39,9 @@ rec['sead_prices']=sead_prices.apply(t,lambda tab,i,f:g.put(tab,i,f),ok)
 # ---------- Plane ECM pods 10% each (same message: "make ECM pods give 10% ECM per pod on planes"): 26 pod options, see lateralus/ecm_pods.py.
 import ecm_pods
 rec['ecm_pods']=ecm_pods.apply(t,g,ok)
+# ---------- Stryker M-SHORAD (Lateralus 16 Nov 2026 09:0x PST): laser with the APKWS loadout; APKWS +30, double Stinger +40, Hellfire +60, SRAT II/APS +45.
+import mshorad
+rec['mshorad']=mshorad.apply(t,g,ok)
 # The plane sale (Lateralus 16 Nov 06:07 PST, "#23 (plane sale) is no longer a proposal") is runtime only: runtime-qa/PlaneSale.cs,
 # ServerMoney.cs and UserData/FreedomArrow/plane-refund.json (shipped by package_0_8_next.py). No table changes.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)

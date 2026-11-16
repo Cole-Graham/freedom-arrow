@@ -7,7 +7,7 @@ Usage: queued_checks.py COMPLETE.bamod VERSION VANILLA_DIR"""
 import json,re,sys,zipfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
-import spaag_sead_data as S,sead_prices as SP,ecm_pods as EP
+import spaag_sead_data as S,sead_prices as SP,ecm_pods as EP,mshorad as MS
 pkg,V,van=sys.argv[1],sys.argv[2],Path(sys.argv[3])
 m=re.match(r'0\.(\d+)\.0-dev\.(\d+)',V)
 if not m or (int(m.group(1)),int(m.group(2)))<(9,25):print('queued_checks: not required before 0.9.0-dev.25');sys.exit(0)
@@ -27,6 +27,16 @@ bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(u,n,
 for i,want in EP.EXPECT.items():
     got=[At.get(Ot.get(i,{}).get(f'Ability{k}Id'),{}).get('ECMAccuracyMultiplier') for k in (1,2,3)]
     if not any(g is not None and abs(g-want)<1e-6 for g in got):bad.append(f'ECM option {i} multipliers {got} (want {want})')
+for i,want in EP.EXPECT_NOPOD.items():
+    got=[At.get(Ot.get(i,{}).get(f'Ability{k}Id'),{}).get('ECMAccuracyMultiplier') for k in (1,2,3)]
+    if not any(g is not None and abs(g-want)<1e-6 for g in got):bad.append(f'no-pod ECM option {i} multipliers {got} (want {want})')
+UAt=merged('UnitAbilitiesJson.json','unit_abilities.json')
+for name,want in EP.EXPECT_DEFAULT.items():
+    uid=[k for k,v in Ut.items() if v.get('Name')==name]
+    got=[At.get(x.get('AbilityId'),{}) for x in UAt.values() if uid and x.get('UnitId')==uid[0]]
+    if not any(a.get('IsDefault') and a.get('ECMAccuracyMultiplier') is not None and abs(a['ECMAccuracyMultiplier']-want)<1e-6 for a in got):bad.append(f'{name} default ECM is not {want}')
+bad+=[f'M-SHORAD option {i} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(n,old,new) in MS.PRICES.items() if Ot.get(i,{}).get('Cost')!=new]
+if Ot.get(1937,{}).get('Ability1Id')!=MS.LASER:bad.append('M-SHORAD APKWS option has no laser')
 if 'UserData/FreedomArrow/plane-refund.json' not in z.namelist():bad.append('plane-refund.json missing')
 dll=z.read('Mods/FreedomArrow.Runtime.dll')
 for s in ('plane_sale_installed','server_money_set'):
