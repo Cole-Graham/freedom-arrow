@@ -15,8 +15,7 @@ namespace FreedomArrow;
 // missile's capped damage score by SEAD_SCORE_MULTIPLIER (vanilla 0.99), so one SEAD missile is never a sure kill and two are: about 2 in
 // flight per target, whoever fired them. Enemy SAMs and guns are not counted, so with 5 HP missiles and the SPAAG tiers most of those 2 die
 // and every other launcher at that radar is held (RemoveTarget reason 13). sead-overkill.json sets the multiplier (0.33: up to 4 in flight).
-// Log: every IsTargetOverkilled == true for a SEAD launcher, with the missile score, kill chance and missile count already on the target
-// (GetCurrentMissileScoreOnTarget). The hook only queues keys (it can run off the main thread); LateUpdate reads the game state.
+// Log: every IsTargetOverkilled == true for a SEAD launcher, with the number of SEAD missiles already flying at the target. The hook only queues keys (it can run off the main thread); LateUpdate reads the game state.
 static class SeadOverkill
 {
     const int MaxLog=400,QueueMax=512;
@@ -70,11 +69,10 @@ static class SeadOverkill
                 held++;
                 if(logged>=MaxLog)continue;
                 var target=h.Target;if(!target.IsAlive)continue;
-                var t=OverkillScoringSystem.GetCurrentMissileScoreOnTarget(ref target,false,false,ref caller,false,false,true,false,false,false);
+                int inFlight=SeadInFlight(target);
                 string name="";try{name=NativeEcs.Read<UnitComponent>(target).UnitData?.Name??"";}catch{}
                 logged++;
-                DiagnosticLog.Write("sead_overkill_held",new{t=now,target=name,missileScore=t.Item1,killChance=t.Item2,missilesInFlight=t.Item3,
-                    multiplier=OverkillScoringSystem._battleSettings?.SEAD_SCORE_MULTIPLIER});
+                DiagnosticLog.Write("sead_overkill_held",new{t=now,target=name,seadMissilesInFlight=inFlight,multiplier=OverkillScoringSystem._battleSettings?.SEAD_SCORE_MULTIPLIER});
             }
             if(now>=nextSummary){nextSummary=now+60;if(held!=lastHeld){DiagnosticLog.Write("sead_overkill_summary",new{t=now,heldTotal=held});lastHeld=held;}}
         }
@@ -84,5 +82,23 @@ static class SeadOverkill
             MelonLogger.Error("FREEDOM_ARROW_SEAD_OVERKILL_FAILED: logging stopped; the multiplier set so far stays. "+x.Message);
         }
     }
-    public static void SceneChanged(){sead.Clear();while(Hits.TryDequeue(out _)){}}
+    // sead4 logged GetCurrentMissileScoreOnTarget's tuple, which came back unreadable (6E-10 / 807807632). Count instead: live SEAD-seeker
+    // missiles whose SeekerComponent.Target is the held target.
+    [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
+    static EntitySet missiles;static IntPtr missilesWorld;
+    static int SeadInFlight(Entity target)
+    {
+        var world=ShootingSystem._gameContext;if(world==null||world._isDisposed)return -1;
+        if(missilesWorld!=world.Pointer){try{missiles?.Dispose();}catch{}missiles=world.GetEntities().With<Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components.SeekerComponent>().AsSet();missilesWorld=world.Pointer;}
+        ulong want=Key(target);int n=0;var list=missiles._entities;int count=Math.Min(missiles.Count,list?.Length??0);
+        for(int i=0;i<count;i++)
+        {
+            var m=list[i];if(!m.IsAlive)continue;
+            if(NativeEcs.Field<Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components.SeekerComponent,int>(m,"Type")!=200)continue;
+            var t=NativeEcs.Field<Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components.SeekerComponent,NullableEntity>(m,"Target");
+            if(t.HasValue!=0&&((ulong)(uint)t.Lo|((ulong)(uint)t.Hi<<32))==want)n++;
+        }
+        return n;
+    }
+    public static void SceneChanged(){sead.Clear();while(Hits.TryDequeue(out _)){}try{missiles?.Dispose();}catch{}missiles=null;missilesWorld=IntPtr.Zero;}
 }

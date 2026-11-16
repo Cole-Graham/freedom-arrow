@@ -80,6 +80,7 @@ public class Runtime : MelonMod
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
         SeadOverkill.SceneChanged();
+        SeadRetarget.SceneChanged();
         Dazzler.SceneChanged();
         AltitudeIntent.SceneChanged();
         PlayableBorders.SceneChanged();
@@ -171,6 +172,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
         try { SeadOverkill.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SEAD_OVERKILL_FAILED: not installed; vanilla SEAD overkill (0.99). "+e.Message); }
+        try { SeadRetarget.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SEAD_RETARGET_FAILED: not installed; SEAD missiles keep flying to a dead radar. "+e.Message); }
         try { TurretDiag.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
