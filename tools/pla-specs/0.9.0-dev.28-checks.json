@@ -1,0 +1,14 @@
+{
+  "zbd86_recon_cost": {
+    "unit": 1258,
+    "cost": [
+      35,
+      40
+    ]
+  },
+  "version": "0.9.0-dev.28",
+  "base": "0.9.0-dev.27",
+  "base_sha256": "229846f7e697caa5db4ab031d0fc8da6e2d8c0510eabfaed96ee5e5c4293fb60",
+  "checks": 2,
+  "verified": "data checks only"
+}
