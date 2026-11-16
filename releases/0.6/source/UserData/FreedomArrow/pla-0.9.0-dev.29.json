@@ -1,0 +1,38 @@
+{
+  "f22_mirror": {
+    "modification": 2019455,
+    "options": {
+      "standard": 31103,
+      "mirror": 31104
+    },
+    "cost": {
+      "f22": 305,
+      "mirror": 30
+    },
+    "ecm": {
+      "base": 0.55,
+      "mirror": 0.5,
+      "abilities": [
+        2019452,
+        2019453
+      ]
+    },
+    "stealth_raw": 0.4545
+  },
+  "ctl181_nlos": {
+    "ammunition": 2018321,
+    "target_type": [
+      1,
+      37
+    ],
+    "nlos_trait": {
+      "unit": 1054,
+      "weapon": 2018322
+    }
+  },
+  "version": "0.9.0-dev.29",
+  "base": "0.9.0-dev.28",
+  "base_sha256": "e5259eb5b29ebe4e4a6af5d2af20e4c8981609ac84d43065b8cf7b2d839b65e0",
+  "checks": 15,
+  "verified": "data checks only"
+}

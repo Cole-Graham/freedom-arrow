@@ -1,0 +1,51 @@
+{
+  "version": "0.9.0-dev.29",
+  "build": 206,
+  "previous": "0.9.0-dev.28",
+  "assets_version": "0.2.43",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.43.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev27/FreedomArrow-Assets-0.2.43.bamod",
+    "sha256": "e5dd5030326fa1b89d159c70c059e60b63bf7293408d9bcd10cbe3f43e422aaf",
+    "size": 6479921429,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.29-complete.bamod",
+    "sha256": "5998b0c51f9a3e88cbb4b14f5edead6705aad08f79473bb72d1386c2c5342e70",
+    "size": 6563095159,
+    "files": 11292
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.29.bamod",
+    "sha256": "1a04b2272c829b6bd3fe10bf3ba016afa643ea9ffd0a6d7eb387912049e8a38a",
+    "size": 83174315,
+    "files": 297
+  },
+  "changed_paths": [
+    "Mods/FAModels.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/FA_F22_MIRROR_ALBEDO.png",
+    "UserData/FreedomArrow/FA_F22_MIRROR_MASK.png",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/abilities.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/modifications.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/mirror-skins.json",
+    "UserData/FreedomArrow/nlos.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.29.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

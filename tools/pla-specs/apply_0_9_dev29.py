@@ -58,10 +58,25 @@ _ms=json.loads((SRC/'UserData/FreedomArrow/mirror-skins.json').read_text())
 ok([(s['unit'],s['options']) for s in _ms['skins']]==[('F-22 Raptor',['F22 Mirror finish'])] and not any(s.get('all') for s in _ms['skins']),'mirror-skins.json: F-22, by option name, not forced on')
 ok(all((SRC/'UserData/FreedomArrow'/s[k]).exists() for s in _ms['skins'] for k in ('albedo','mask')) and (SRC/'runtime-qa/icons/FA_PLA_OPT_MIRROR.png').exists(),'mirror textures and option icon present')
 rec['f22_mirror']={'modification':_mf22,'options':{'standard':_std,'mirror':_mir},'cost':{'f22':305,'mirror':30},'ecm':{'base':0.55,'mirror':0.5,'abilities':[_e45,_e50]},'stealth_raw':round(1/2.2,4)}
+# ---------- CTL-181 NLOS has no usable weapon in battle (Osama 16 Nov 2026 13:0x PST, thread 1567745029781454889: "CTL-181 NLOS doesn't have its
+# weapons in battle"). dev.12 (15 Nov, "theory from the data only") turned its missile 2018321 from the precision path (trajectory 200, which
+# fired at spotted enemies, verified by Osama in 0.8.0-dev.4) into the direct laser missile (trajectory 110, seeker 100) but kept TargetType 1
+# (Ground: ground-attack points only), so the direct missile has no unit it may target. Now 37 = Ground + Vehicle + Ship (the vanilla Hellfire
+# 36 plus Ground). It also joins the NLOS trait like the HJ-10 / QN-506 (nlos.json): fires at enemies its side has spotted within range, and
+# the missile keeps its lock without line of sight or laser. Not yet seen in a game.
+_A=t['AmmunitionsJson'];_W=t['WeaponsJson']
+ok((_A[2018321]['HUDName'],_A[2018321]['TargetType'],_A[2018321]['TrajectoryType'],_A[2018321]['Seeker'])==('NLOS missile',1,110,100) and _W[2018322]['HUDName']=='CTL-181 NLOS launcher' and {r['UnitId'] for r in t['WeaponAmmunitionsJson'].values() if r['WeaponId']==2018322}=={1054},'CTL-181 missile: direct laser path, TargetType 1, launcher only on 1054')
+ok(_A[164]['TargetType']==36,'vanilla Hellfire K targets 36')
+g.put('AmmunitionsJson',2018321,{'TargetType':37});ok(_A[2018321]['TargetType']==37,'CTL-181 missile targets ground, vehicles, ships')
+NL=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(NL.read_text())
+ok(_nl['fire_units']==[936,937] and _nl['fire_weapons']==[2009619,2009647] and _nl['ammunition']==[2009623,2009651],'nlos.json HJ-10 + QN-506')
+for k,v in (('fire_units',1054),('fire_weapons',2018322),('weapons',2018322),('ammunition',2018321)):_nl[k]=[x for x in _nl[k] if x!=v]+[v]
+_nl['units']['1054']='CTL-181 NLOS';_nl['version']=V
+rec['ctl181_nlos']={'ammunition':2018321,'target_type':[1,37],'nlos_trait':{'unit':1054,'weapon':2018322}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
-save(AN,assign);save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
+save(AN,assign);NL.write_text(json.dumps(_nl,indent=2,ensure_ascii=False)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks)
 
