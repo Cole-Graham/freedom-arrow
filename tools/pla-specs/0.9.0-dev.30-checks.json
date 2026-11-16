@@ -1,0 +1,11 @@
+{
+  "hook_timing": {
+    "runtime": "PerfProbe.cs FREEDOM_ARROW_HOOKS",
+    "switch": "UserData/FreedomArrow/perf-hooks.txt"
+  },
+  "version": "0.9.0-dev.30",
+  "base": "0.9.0-dev.29",
+  "base_sha256": "5998b0c51f9a3e88cbb4b14f5edead6705aad08f79473bb72d1386c2c5342e70",
+  "checks": 0,
+  "verified": "data checks only"
+}

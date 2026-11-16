@@ -207,6 +207,9 @@ internal static unsafe class InterceptLead
         // Always preserve the original calculation, including its native failure behavior.
         leadHook.Trampoline(targetPointer,originPointer,dataPointer,cycles,method);
         if(!call.Valid||!Active)return;
+        long probeStart=PerfProbe.On?System.Diagnostics.Stopwatch.GetTimestamp():0;   // hook timing (perf-probe.txt only)
+        try
+        {
         try
         {
             eligible++;
@@ -247,6 +250,8 @@ internal static unsafe class InterceptLead
             Record(call,"applied",native,result);
         }
         catch(Exception e){Disable(e);}
+        }
+        finally{if(probeStart!=0)PerfProbe.Record("InterceptLead lead correction (native detour, mod part)",probeStart);}
     }
     static void TrackMissiles()
     {
