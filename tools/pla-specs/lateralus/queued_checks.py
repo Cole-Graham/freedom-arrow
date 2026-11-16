@@ -2,7 +2,8 @@
 Why: the SPAAG/SAM data queued for 0.9.0-dev.13 was in the commit but never in any package dev.13-dev.24 (its data step ran without the
 section), and nothing noticed. From 0.9.0-dev.25 on, package_0_8_next.py runs this on the complete package:
 - every SPAAG/SAM value in spaag_sead_data.py is in the merged weapon and ammo tables;
-- the plane sale ships: UserData/FreedomArrow/plane-refund.json and the plane_sale / server_money hooks in the runtime DLL.
+- the plane sale ships: UserData/FreedomArrow/plane-refund.json and the plane_sale / server_money hooks in the runtime DLL;
+- from 0.9.0-dev.26: the M-SHORAD APKWS laser is in ability slot 2, and no unit has two modifications filling one ability slot.
 Usage: queued_checks.py COMPLETE.bamod VERSION VANILLA_DIR"""
 import json,re,sys,zipfile
 from pathlib import Path
@@ -36,7 +37,13 @@ for name,want in EP.EXPECT_DEFAULT.items():
     got=[At.get(x.get('AbilityId'),{}) for x in UAt.values() if uid and x.get('UnitId')==uid[0]]
     if not any(a.get('IsDefault') and a.get('ECMAccuracyMultiplier') is not None and abs(a['ECMAccuracyMultiplier']-want)<1e-6 for a in got):bad.append(f'{name} default ECM is not {want}')
 bad+=[f'M-SHORAD option {i} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(n,old,new) in MS.PRICES.items() if Ot.get(i,{}).get('Cost')!=new]
-if Ot.get(1937,{}).get('Ability1Id')!=MS.LASER:bad.append('M-SHORAD APKWS option has no laser')
+if (int(m.group(1)),int(m.group(2)))<(9,26):
+    if Ot.get(1937,{}).get('Ability1Id')!=MS.LASER:bad.append('M-SHORAD APKWS option has no laser')
+else:   # dev.26+: laser in slot 2, and no unit loses an ability to a slot collision (mshorad_laser_slot.py)
+    import mshorad_laser_slot as MLS
+    if Ot.get(1937,{}).get('Ability2Id')!=MLS.LASER or Ot.get(1937,{}).get('Ability1Id'):bad.append('M-SHORAD APKWS laser is not in ability slot 2 only')
+    Mt=merged('ModificationsJson.json','modifications.json');SAt=merged('SpecializationAvailabilitiesJson.json','specialization_availabilities.json')
+    bad+=[f'ability slot {k} collision on unit {u} {n}' for u,n,k in MLS.slot_collisions(Ut,Mt,Ot,At,{r.get('UnitId') for r in SAt.values()})]
 if 'UserData/FreedomArrow/plane-refund.json' not in z.namelist():bad.append('plane-refund.json missing')
 dll=z.read('Mods/FreedomArrow.Runtime.dll')
 for s in ('plane_sale_installed','server_money_set'):
