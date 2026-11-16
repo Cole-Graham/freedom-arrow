@@ -1,8 +1,9 @@
 """Lateralus's Frontiers layout, with FA conquest and consistent objective symbols."""
 import uuid
 import common as C
-NAME='[FA] [2v2] Highway of Death 0.1'
-SKIRMISH_NAME='[FA] [2v2] Highway of Death Skirmish 0.1'
+# 0.2 (Lateralus 16 Nov 2026): his zone and spawn edits (work/maps-02-20261116/merge.py); his spawn facings are kept.
+NAME='[FA] [2v2] Highway of Death 0.2'
+SKIRMISH_NAME='[FA] [2v2] Highway of Death Skirmish 0.2'
 VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=6,Echo=6,Foxtrot=3,Golf=2)
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 def prepare(game,spec):
@@ -22,7 +23,6 @@ def prepare(game,spec):
         if o.get('_type')==3 and o['_dname'] in ('Alpha team','Bravo team'):assert len(o['players'])==5,(o['_dname'],len(o['players']))
     assert all(len(t['slots'])==5 for t in meta['teams']),[len(t['slots']) for t in meta['teams']]
     head['spz']=next(o['_uid'] for o in objects if o.get('_type')==7)
-    C.face_spawns_to_objectives(objects)
     C.add_team_cameras(objects)
     return C.extract_layout(objects),(head,nodes,objects,meta)
 SPEC=dict(author='Lateralus',desc=C.describe(VALUES),prepare=prepare,flavors=[

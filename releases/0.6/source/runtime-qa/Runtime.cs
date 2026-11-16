@@ -264,7 +264,13 @@ public class Runtime : MelonMod
         ("[FA] [5v5] Cold Harbor 0.1","931bc088-091f-59a7-9764-08b11e6f3bfa"),("[FA] [5v5] Cold Harbor Skirmish 0.1","56545179-c383-5ea9-b6e6-36ca3a16cb02"),
         // Lateralus 16 Nov 2026: "Remove Central Village 1v1 and Chernyakhovsky from our mod, they are not suitable designs" (shipped 0.9.0-dev.11 to dev.25).
         // Chernyakhovsky came back the same day as Lateralus's new design under the same name and GUID, so it is not retired.
-        ("[FA] [1v1] Central Village 0.1","8007113c-143e-5b93-a5c5-d1515ce0e8e6"),("[FA] [1v1] Central Village Skirmish 0.1","fd87c5c8-5b82-5567-88da-613af880c648")};
+        ("[FA] [1v1] Central Village 0.1","8007113c-143e-5b93-a5c5-d1515ce0e8e6"),("[FA] [1v1] Central Village Skirmish 0.1","fd87c5c8-5b82-5567-88da-613af880c648"),
+        // Lateralus 16 Nov 2026: the 0.2 versions (his zone and spawn edits) replace these.
+        ("[FA] [2v2] Highway of Death 0.1","35645673-5d88-500b-8ddf-6ad4900f79d6"),("[FA] [2v2] Highway of Death Skirmish 0.1","fa8367be-1748-5e68-8b34-eb3caea31251"),
+        ("[FA] [3v3] Baltiisk 0.1","4822100d-5d11-57f9-8d2f-63dfc816e735"),("[FA] [3v3] Baltiisk Skirmish 0.1","f203ec91-e074-5557-a946-ab4eb6fc7bb6"),
+        ("[FA] [3v3] Dam 0.1","0286f6b4-b70d-5a15-9bf0-39c4df27fd0e"),("[FA] [3v3] Dam Skirmish 0.1","eff1170e-8014-5993-b0e3-66adee16e306"),
+        ("[FA] [2v2] Chkalovsk Airbase 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c007"),("[FA] [2v2] Chkalovsk Airbase Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c008"),
+        ("[FA] [2v2] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003"),("[FA] [2v2] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004")};
     static void RemoveRetiredScenarios()
     {
         foreach(var (folder,guid) in RetiredScenarios)

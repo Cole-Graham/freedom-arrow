@@ -1,23 +1,14 @@
 """[FA] [2v2] Dead Center: layout.bascr in this package, overlaid onto native network and Skirmish hosts."""
 import common as C
-NAME='[FA] [2v2] Dead Center 0.1';GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003'
-SKIRMISH_NAME='[FA] [2v2] Dead Center Skirmish 0.1';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004'
+import uuid
+# 0.2 (Lateralus 16 Nov 2026): his zone, spawn and camera edits. 0.1 used fixed GUIDs ...c003/c004 (retired in Runtime.cs).
+NAME='[FA] [2v2] Dead Center 0.2';GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,NAME))
+SKIRMISH_NAME='[FA] [2v2] Dead Center Skirmish 0.2';SKIRMISH_GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,SKIRMISH_NAME))
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
       'the side with the higher zone value scores the difference. First to 300 wins. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
-MAP_LENGTH=9000;FLANK_MARGIN=1200
-# Lateralus 16 Nov 2026: "one of the ground spawns is sitting outside the playable zone... extend the playable zone 500m further out on
-# that side (250 engine units)". Alpha's east ground spawn (X 6925) was 53 units past the east edge (6872); the east side gets 250 more.
-EAST_EXTRA=250
-def set_playable(objects):
-    zones=[o for o in objects if o.get('_type')==15];play=[o for o in objects if o.get('_type')==7]
-    assert zones and play and all(C.identity(o['rotate']) for o in play)
-    west=min(o['pos']['X']-C.world_x_half(o) for o in zones);east=max(o['pos']['X']+C.world_x_half(o) for o in zones)
-    width=east-west+2*FLANK_MARGIN+EAST_EXTRA;cx=(west+east+EAST_EXTRA)/2
-    assert 0<=west-FLANK_MARGIN and east+FLANK_MARGIN+EAST_EXTRA<=MAP_LENGTH,(west,east)
-    for o in play:
-        o['pos']['X']=cx;o['pos']['Z']=MAP_LENGTH/2;o['scale']['X']=width;o['scale']['Z']=MAP_LENGTH;C.mag(o['pos']);C.mag(o['scale'])
-    return west,east,width
+# 0.2: the playable zone is Lateralus's own (his edited file, X 1677..6997); the build no longer computes it from the zones
+# (0.1 did: zone span + 1200 each side, + 250 east). The map build checks that every ground spawn is inside it.
 def patch_host(head,nodes,objects,meta,flavor):
     kind=flavor['kind']
     assert head['GameMode']==kind and head['map']=='Central Village'
@@ -50,8 +41,6 @@ def patch_host(head,nodes,objects,meta,flavor):
     C.slider_defaults(objects,meta,2 if kind==2 else 0)
 def prepare(game,spec):
     objects=C.read_layout(__file__)[2]
-    west,east,width=set_playable(objects)
-    print(f"layout playable width {width:.3f} m (zones {west:.3f}..{east:.3f}, flanks {FLANK_MARGIN})")
     return C.extract_layout(objects),None
 SPEC=dict(
     author='Freedom Arrow',desc=DESC,prepare=prepare,patch_host=patch_host,

@@ -94,6 +94,9 @@ ok(not [o for o in O.values() if M.get(o.get('ModificationId'),{}).get('UnitId')
 g.put('Units',_j,{'Cost':355,'Stealth':round(1/2.2,4)})
 ok(U[_j]['Cost']==355 and abs(U[_j]['Stealth']-0.4545)<1e-4,'J-36 355 points, stealth 2.2 (raw 0.4545)')
 rec['j36_stealth']={'unit':_j,'cost':355,'stealth_raw':round(1/2.2,4)}
+# Maps 0.2 (Lateralus 16 Nov 2026 14:4x PST): Highway of Death, Baltiisk, Dam, Chkalovsk Airbase and Dead Center 2v2 with his zone and spawn
+# edits (scenarios/*/layout.bascr; merge script and report in work/maps-02-20261116); Baltiisk zones J and K worth 1; the 0.1 versions are
+# retired by GUID in runtime-qa/Runtime.cs. Scenarios and runtime only, no table changes.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
