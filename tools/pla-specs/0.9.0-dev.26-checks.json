@@ -1,0 +1,28 @@
+{
+  "mshorad_laser_slot": {
+    "option": 1937,
+    "Ability2Id": 8
+  },
+  "lsdw_rof": {
+    "weapon": 2019388,
+    "ammo": 2019387,
+    "pulse_s": 1.0,
+    "magazine": 250,
+    "pulses": 1000,
+    "damage": 0.08,
+    "stress": 80.0,
+    "supply": 0.04
+  },
+  "fk2000_to_motorized": {
+    "card": 2008222,
+    "spec": [
+      20,
+      21
+    ]
+  },
+  "version": "0.9.0-dev.26",
+  "base": "0.9.0-dev.25",
+  "base_sha256": "8f8d2436d4b2976065d793a0b5b90ec3e570a80abfaaa042457e3b243e2bc153",
+  "checks": 15,
+  "verified": "data checks only"
+}
