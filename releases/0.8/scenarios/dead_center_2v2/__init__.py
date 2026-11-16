@@ -6,12 +6,15 @@ DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. E
       'the side with the higher zone value scores the difference. First to 300 wins. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.')
 ZONE_VALUES=dict(Alpha=4,Bravo=4,Charlie=3,Delta=3,Echo=2,Foxtrot=2,Golf=4,Hotel=4,India=4,Juliet=4)
 MAP_LENGTH=9000;FLANK_MARGIN=1200
+# Lateralus 16 Nov 2026: "one of the ground spawns is sitting outside the playable zone... extend the playable zone 500m further out on
+# that side (250 engine units)". Alpha's east ground spawn (X 6925) was 53 units past the east edge (6872); the east side gets 250 more.
+EAST_EXTRA=250
 def set_playable(objects):
     zones=[o for o in objects if o.get('_type')==15];play=[o for o in objects if o.get('_type')==7]
     assert zones and play and all(C.identity(o['rotate']) for o in play)
     west=min(o['pos']['X']-C.world_x_half(o) for o in zones);east=max(o['pos']['X']+C.world_x_half(o) for o in zones)
-    width=east-west+2*FLANK_MARGIN;cx=(west+east)/2
-    assert 0<=west-FLANK_MARGIN and east+FLANK_MARGIN<=MAP_LENGTH,(west,east)
+    width=east-west+2*FLANK_MARGIN+EAST_EXTRA;cx=(west+east+EAST_EXTRA)/2
+    assert 0<=west-FLANK_MARGIN and east+FLANK_MARGIN+EAST_EXTRA<=MAP_LENGTH,(west,east)
     for o in play:
         o['pos']['X']=cx;o['pos']['Z']=MAP_LENGTH/2;o['scale']['X']=width;o['scale']['Z']=MAP_LENGTH;C.mag(o['pos']);C.mag(o['scale'])
     return west,east,width

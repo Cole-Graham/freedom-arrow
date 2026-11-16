@@ -252,8 +252,22 @@ def deployment_in_time_limit(nodes):
         pins={c['c'] for c in flows};assert len(pins)==1,pins
         for c in flows:c['a']=calc;c['c']='in2'
         nodes['c'].append(dict(a=sc['id'],b=calc,c=pins.pop(),d='out2',e=calc))
+# Every ground spawn (not the air spawns, spawnType2 5, which sit off the map) must be inside the active playable zone
+# (Lateralus 16 Nov 2026: a Dead Center 2v2 ground spawn was outside it).
+def check_spawns(name,head,objects):
+    import math
+    pz=[o for o in objects if o.get('_type')==7 and o['_uid']==head['spz']];assert len(pz)==1,(name,'active playable zone')
+    pz=pz[0];q=pz.get('rotate',{'Y':0.0,'W':1.0});ang=2*math.atan2(q['Y'],q['W'])
+    out=[]
+    for s in objects:
+        if s.get('_type')!=10 or 5 in s.get('spawnType2',[]):continue
+        dx=s['pos']['X']-pz['pos']['X'];dz=s['pos']['Z']-pz['pos']['Z']
+        lx=dx*math.cos(ang)-dz*math.sin(ang);lz=dx*math.sin(ang)+dz*math.cos(ang)
+        if abs(lx)>pz['scale']['X']/2 or abs(lz)>pz['scale']['Z']/2:out.append((s['_uid'],s['spawnType2'],round(s['pos']['X']),round(s['pos']['Z'])))
+    assert not out,(name,'ground spawns outside the playable zone',out)
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
+    check_spawns(flavor['name'],head,objects)
     if flavor['kind']==2:conquest_during_deployment(nodes)
     check_limit(flavor['name'],spec['desc'])
     for o in objects:
