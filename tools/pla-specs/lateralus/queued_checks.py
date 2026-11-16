@@ -61,5 +61,10 @@ if (int(m.group(1)),int(m.group(2)))>=(9,26):
     for s in ('altitude_intent_installed','sead_overkill_installed','sead_retarget_installed','FREEDOM_ARROW_LOBBY_TABS installed','online_room_status','overlay_hidden_for_menu','leaving_match','FREEDOM_ARROW_LOBBY_SLOTS installed','same name in two places','deployment_in_clock'):
         if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
     if 'UserData/FreedomArrow/sead-overkill.json' not in z.namelist():bad.append('sead-overkill.json missing')
+# From dev.33: the SEAD availability change (lateralus/sead_availability.py).
+if (int(m.group(1)),int(m.group(2)))>=(9,33):
+    import sead_availability as SAV
+    SAt=merged('SpecializationAvailabilitiesJson.json','specialization_availabilities.json')
+    bad+=[f'{n} deck row {row}: {SAt.get(row,{}).get("MaxAvailabilityXp0")} cards (want {new})' for u,(n,row,old,new) in SAV.ROWS.items() if SAt.get(row,{}).get('MaxAvailabilityXp0')!=new]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
