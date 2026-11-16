@@ -97,6 +97,17 @@ rec['j36_stealth']={'unit':_j,'cost':355,'stealth_raw':round(1/2.2,4)}
 # Maps 0.2 (Lateralus 16 Nov 2026 14:4x PST): Highway of Death, Baltiisk, Dam, Chkalovsk Airbase, Dead Center 2v2 and 1v1 with his zone and spawn
 # edits (scenarios/*/layout.bascr; merge script and report in work/maps-02-20261116); Baltiisk zones J and K worth 1; the 0.1 versions are
 # retired by GUID in runtime-qa/Runtime.cs. Scenarios and runtime only, no table changes.
+# ---------- ZTZ-100 APFSDS 525/475, HJ-10 170 and ground only (Osama 16 Nov 2026 15:0x PST, thread 1567745029781454889: "ZTZ-100 475mm penetration
+# - 525, HJ-10 to 170 pts", "HJ-10 can not fire at helos or air so please remove that"). ZTZ-100 round 2010195 (only on 968): 550 close / 500 at
+# range -> 525 / 475 (keeps the 50 mm tank spread). HJ-10 (936) 150 -> 170; its missile 2009623 (only on 936) TargetType 44 (vehicle, helicopter,
+# ship) -> 36 (vehicle, ship, as the vanilla Hellfire K) and low-altitude range 1000 -> 0. The QN-506's QN-502 round 2009651 is not changed.
+_A=t['AmmunitionsJson'];_WA=t['WeaponAmmunitionsJson']
+ok(U[968]['HUDName']=='ZTZ-100' and (_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'])==(550.0,500.0) and {r['UnitId'] for r in _WA.values() if r['AmmunitionId']==2010195}=={968},'ZTZ-100 APFSDS 550/500, only on 968')
+g.put('AmmunitionsJson',2010195,{'PenetrationAtMinRange':525.0,'PenetrationAtGroundRange':475.0})
+ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==150 and (_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009623]['HighAltRange'])==(44,1000.0,0.0) and {r['UnitId'] for r in _WA.values() if r['AmmunitionId']==2009623}=={936},'HJ-10 150, missile TargetType 44, low alt 1000, only on 936')
+g.put('Units',936,{'Cost':170});g.put('AmmunitionsJson',2009623,{'TargetType':36,'LowAltRange':0.0})
+ok((_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'],U[936]['Cost'],_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009651]['TargetType'])==(525.0,475.0,170,36,0.0,44),'ZTZ-100 525/475, HJ-10 170 ground only, QN-502 unchanged')
+rec['ztz100_hj10']={'ztz100_apfsds':[[550,500],[525,475]],'hj10_cost':[150,170],'hj10_missile':{'target_type':[44,36],'low_alt_range':[1000,0]}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
