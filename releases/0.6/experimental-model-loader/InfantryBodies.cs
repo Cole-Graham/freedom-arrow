@@ -9,13 +9,17 @@ public partial class Mod
     class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} }
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
-    class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; }
+    class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; public bool done; }
     class BodyMesh { public Mesh mesh; public Material[] materials; public BodyMesh(Mesh m,Material[] a){mesh=m;materials=a;} }
     static List<BodyRule> bodyRules=new();
     static readonly List<BodyView> bodyViews=new();
     static readonly Dictionary<string,BodyMesh> bodyCache=new();
     static readonly Dictionary<int,Dictionary<int,int>> lodLevels=new();
     static float bodyPoll;
+    // 0.3.31 (Osama 15 Nov: the China game had about 3x the slow frames of a vanilla game at the same stage). The 1.6 cm body offset moved a
+    // helper on every bone of every China soldier every frame (OnLateUpdate), tens of thousands of engine calls per frame in a 5v5. It is off
+    // unless UserData/FAModels/body-offset-on.txt exists; bodies then sit on the native bones (the offset is 1.6 cm, 0.3 cm on 43 rules).
+    static bool bodyOffsetsOn;
     static void LoadBodyRules()
     {
         var file=Path.Combine(dir,"infantry-bodies.json"); if(!File.Exists(file))return;
@@ -26,7 +30,7 @@ public partial class Mod
                 if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
                 foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
             }
-            bodyRules=rules;MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
+            bodyRules=rules;bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
         } catch(Exception e){bodyRules.Clear();MelonLogger.Error("FAMODELS body rules rejected: "+e.Message);}
     }
     static void QueueBodies(UnitModelInfo model,int unitId,bool battle)
@@ -37,7 +41,7 @@ public partial class Mod
     static Il2CppReferenceArray<Transform> OffsetBodyBones(SkinnedMeshRenderer renderer,BodyRule rule)
     {
         var baseOffset=new Vector3(rule.offset[0],rule.offset[1],rule.offset[2]);
-        var bones=renderer.bones;if(baseOffset.sqrMagnitude==0)return bones;
+        var bones=renderer.bones;if(baseOffset.sqrMagnitude==0||!bodyOffsetsOn)return bones;
         var result=new Transform[bones.Length];
         for(int i=0;i<bones.Length;i++) {
             var bone=bones[i];if(bone==null)continue;
@@ -169,6 +173,7 @@ public partial class Mod
         for(int v=bodyViews.Count-1;v>=0;v--) {
             var view=bodyViews[v];
             if(young && now-view.created>5f)continue;
+            if(view.done)continue;
             if(view.model?.PrefabRootScript==null){if(Time.realtimeSinceStartup-view.created>30)bodyViews.RemoveAt(v);continue;}
             var rule=bodyRules.First(r=>r.unitId==view.unitId);
             var soldiers=view.model.SquadSolders;if(soldiers==null)continue;
@@ -185,10 +190,14 @@ public partial class Mod
             if(Time.realtimeSinceStartup-view.lastDiagnostic>10 && view.applied.Count==0) {
                 view.lastDiagnostic=Time.realtimeSinceStartup;MelonLogger.Msg($"FAMODELS body scan unit={view.unitId} soldiers={soldiers.Length} skins={candidates.Count} applied={view.applied.Count} failed={view.failed.Count}");
             }
+            // 0.3.31: a squad whose every soldier renderer is swapped (or refused) is not scanned again; the scan re-read each soldier's
+            // renderers and bone arrays four times a second for every China squad of the match.
+            if(!young && candidates.Count>0 && now-view.created>10f && candidates.All(c=>c.renderer!=null&&(view.applied.Contains(c.renderer.GetInstanceID())||view.failed.Contains(c.renderer.GetInstanceID())))){view.done=true;continue;}
             foreach(var candidate in candidates) {
                 var renderer=candidate.renderer;
-                if(renderer==null||renderer.sharedMesh==null||renderer.bones.Length<1)continue;
+                if(renderer==null)continue;
                 int id=renderer.GetInstanceID();if(view.applied.Contains(id)||view.failed.Contains(id))continue;
+                if(renderer.sharedMesh==null||renderer.bones.Length<1)continue;
                 if(renderer.sharedMesh.name.StartsWith("FAM_BODY_")){view.applied.Add(id);continue;}
                 if(hideOnly){renderer.forceRenderingOff=true;continue;}
                 // Use the game's actual LODGroup membership, not a guessed renderer ordering.

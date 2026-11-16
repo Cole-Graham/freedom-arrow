@@ -23,6 +23,9 @@ static class SpottingCap
     const int MaxLog=15;
     static readonly Dictionary<float,float> capTable=new();
     static readonly ConcurrentDictionary<(IntPtr,int),float> observerCaps=new();
+    // 0.9.0-dev.13: whether a target is an aircraft, helicopter or fuse never changes, so it is looked up once per entity (3 native lookups
+    // each time before); the observer cap is read without allocating a lambda per call.
+    static readonly ConcurrentDictionary<ulong,bool> airTargets=new();
     static IntPtr hasFog,getFog,getFogCode,hasAircraft,hasHeli,hasFuse;
     static bool capBroken,cardBroken;
     static long calls,capped,airSkipped;
@@ -76,9 +79,12 @@ static class SpottingCap
             long n=Interlocked.Increment(ref calls);
             if(n==1)MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP first call thread {Environment.CurrentManagedThreadId} maxDistance {__3:0.#}");
             var observer=__instance.UnitEntity;
-            float cap=observerCaps.GetOrAdd((__instance.Pointer,observer.GetHashCode()),_=>ObserverCap(observer));
+            var okey=(__instance.Pointer,observer.GetHashCode());
+            if(!observerCaps.TryGetValue(okey,out float cap)){cap=ObserverCap(observer);observerCaps[okey]=cap;}
             if(cap<=0||__3<=cap)return;
-            if(IsAir(__0))
+            var target=__0;ulong tkey=System.Runtime.CompilerServices.Unsafe.As<Entity,ulong>(ref target);// world, version and id: a reused id gets a new version
+            if(!airTargets.TryGetValue(tkey,out bool air)){air=IsAir(__0);if(airTargets.Count>20000)airTargets.Clear();airTargets[tkey]=air;}
+            if(air)
             {
                 long a=Interlocked.Increment(ref airSkipped);
                 if(a<=MaxLog||IsPowerOfTen(a))MelonLogger.Msg($"FREEDOM_ARROW_SPOTTING_CAP air target not capped: {__3:0.#} raw kept (cap {cap:0.#}); {a} air skips");

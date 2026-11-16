@@ -38,6 +38,10 @@ static class CoverDamage
         getTerrain=Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(TerrainTypeComponent));
         getTerrainCode=*(IntPtr*)getTerrain;
         if(getTerrainCode==IntPtr.Zero)throw new InvalidOperationException("Entity.Get<TerrainTypeComponent> has no code");
+        // 0.9.0-dev.13 (Osama 15 Nov: optimise the main thread): the AI calls CalculateHitDamage many times a frame to score possible shots.
+        // Only a real hit reads the shell's penetration first (GetPenetrationForShell), so that marks the next calculation on this thread as
+        // real; scoring calls return at once instead of making two native component lookups each. AI scoring sees vanilla (no forest) damage.
+        harmony.Patch(AccessTools.Method(typeof(BattleSystemHelpers),"GetPenetrationForShell"),postfix:new HarmonyMethod(typeof(CoverDamage),nameof(MarkReal)));
         harmony.Patch(AccessTools.Method(typeof(BattleSystemHelpers),"CalculateHitDamage"),postfix:new HarmonyMethod(typeof(CoverDamage),nameof(After)));
         MelonLogger.Msg($"FREEDOM_ARROW_COVER_DAMAGE installed forest {forest}");
     }
@@ -48,9 +52,12 @@ static class CoverDamage
         Il2CppInterop.Runtime.Il2CppException.RaiseExceptionIfNecessary(error);
         return result!=IntPtr.Zero&&*(bool*)IL2CPP.il2cpp_object_unbox(result);
     }
+    [ThreadStatic] static bool realHit;
+    static void MarkReal(){realHit=true;}
     static unsafe void After(Entity __0,float __1,Ammunitions __2,float __3,bool __4,ArmorSides __5,ref float __result)
     {
-        if(broken||__result<=0||!Runtime.IsApplied)return;
+        bool real=realHit;realHit=false;
+        if(!real||broken||__result<=0||!Runtime.IsApplied)return;
         try
         {
             // This line is written before the first native read, so a crash log shows how far the hook got.

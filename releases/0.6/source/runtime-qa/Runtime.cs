@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.12", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.13", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -61,6 +61,8 @@ public class Runtime : MelonMod
         DiagnosticLog.Heartbeat();
         CramPrediction.LateUpdate();
         AaCooldown.LateUpdate();
+        SpaagWeapons.LateUpdate();
+        SameUnitClaim.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
@@ -73,6 +75,8 @@ public class Runtime : MelonMod
         GroundAaLog.SceneChanged();
         CramPrediction.SceneChanged();
         AaCooldown.SceneChanged();
+        SpaagWeapons.SceneChanged();
+        SameUnitClaim.SceneChanged();
         PlayableBorders.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
@@ -117,7 +121,11 @@ public class Runtime : MelonMod
                 if(entry.Key=="Mods/FAModels.dll" || entry.Key=="UserData/FAModels/infantry-bodies.json" || entry.Key.StartsWith("UserData/FAModels/pla2_",StringComparison.Ordinal))
                     infantryHashes[entry.Key]=JsonValue.Create(entry.Value.GetValue<string>());
             // 0.8.0-dev.101: 25 body types + 2 Type 21 backpack bodies (x3 meshes, diffuse + normal) + 2 backpack gear atlases (x3 LODs, diffuse + normal), loader and rules.
-            if(infantryHashes.Count!=257)throw new InvalidDataException("Expected 27 infantry configurations 2 backpack and 2 plate-carrier atlases with 3 LODs each, diffuse and normal textures, plus loader and rules");
+            // 0.9.0-dev.13: FAModels 0.3.30 adds battle copies (X_b.fat, X_b_n.fat) of the 29 infantry texture pairs. They are verified
+            // with the rest but not counted, so the count still checks the armory set.
+            int battleCopies=infantryHashes.Count(e=>e.Key.EndsWith("_b.fat",StringComparison.Ordinal)||e.Key.EndsWith("_b_n.fat",StringComparison.Ordinal));
+            if(battleCopies!=0&&battleCopies!=58)throw new InvalidDataException($"Expected 0 or 58 infantry battle texture copies, found {battleCopies}");
+            if(infantryHashes.Count-battleCopies!=257)throw new InvalidDataException("Expected 27 infantry configurations 2 backpack and 2 plate-carrier atlases with 3 LODs each, diffuse and normal textures, plus loader and rules");
             int infantryFiles=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,infantryHashes);
             DisplayLabel=label;
             File.WriteAllText(Path.Combine(Root,"loaded-build.json"),JsonSerializer.Serialize(new { label,version=PackageVersion,process_id=Environment.ProcessId,loaded_at_utc=DateTime.UtcNow,core_files=files,infantry_files=infantryFiles },new JsonSerializerOptions { WriteIndented=true }));
@@ -152,6 +160,12 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { NlosTrait.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: not installed; NLOS missiles use vanilla seekers. "+e.Message); }
+        try { ProjectileHealth.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
+        try { SameUnitClaim.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
+        try { SpaagWeapons.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CHINA_VOICE_FAILED: not installed; China units use their preset voices. "+e.Message); }
         try { GroundAaLog.Install(Root); }
@@ -191,6 +205,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
         try { conquest?.OnLateInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
+        try { PerfProbe.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PERF_FAILED: "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
         try { ThirdPartyGuard.PointArrowQueue(); }

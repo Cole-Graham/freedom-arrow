@@ -210,6 +210,9 @@ public partial class Mod : MelonMod
         {
             var q = queue[i];
             if (q.root == null) { queue.RemoveAt(i); continue; }
+            // 0.9.0-dev.13 (perf probe): the 1 s re-hide pass ran for the whole life of every China unit (a full renderer search of
+            // the unit each second). Run F's late renderers were each re-hidden once, in the first seconds; stop after 60 passes.
+            if (q.pass > 60) { queue.RemoveAt(i); continue; }
             // 0.3.25 (Osama 14 Nov): no fixed 0.5 s wait before the swap. Build on the next frame; Apply waits (up to 0.5 s)
             // only while a turret bone the model needs is not there yet. The 1 s re-hide pass for late renderers stays.
             float wait = q.pass == 0 ? 0f : 1.0f;
@@ -330,16 +333,20 @@ public partial class Mod : MelonMod
         return parts;
     }
     // The stand-in's own LOD switch heights (screen share where each level ends), so our levels change where vanilla's would.
-    // Without a stand-in LODGroup: 0.25 / 0.10 / 0.02 of the screen height. Past the last level the model is culled, as vanilla's is.
+    // Without a stand-in LODGroup: 0.10 / 0.04 / 0.005 of the screen height, the values the vanilla stand-ins use (dev.13 run F log:
+    // ZBD-20, Type 59). The earlier 0.25 / 0.10 / 0.02 culled a unit under 2% of the screen height, which is a tank seen from far up.
+    // Past the last level the model is culled, as vanilla's is.
+    static int lodLogged;
     static void AddLods(GameObject root, GameObject holder, List<List<Renderer>> levelRenderers, string unit)
     {
-        float[] h = { 0.25f, 0.10f, 0.02f };
+        float[] h = { 0.10f, 0.04f, 0.005f };
         var native = root.GetComponentsInChildren<LODGroup>(true).FirstOrDefault(g => g.gameObject != holder);
         if (native != null) { var nl = native.GetLODs(); for (int i = 0; i < Math.Min(nl.Length, h.Length); i++) h[i] = nl[i].screenRelativeTransitionHeight; }
         int n = levelRenderers.Count; var lods = new Il2CppReferenceArray<LOD>(n);
         for (int i = 0; i < n; i++) lods[i] = new LOD(i < h.Length ? h[i] : h[h.Length - 1] * 0.5f, new Il2CppReferenceArray<Renderer>(levelRenderers[i].ToArray()));
         var g = holder.AddComponent<LODGroup>(); g.SetLODs(lods); g.RecalculateBounds();
-        if (Verbose) MelonLogger.Msg($"FAMODELS {unit}: {n} detail levels at {string.Join("/", h.Take(n).Select(x => x.ToString("F3")))} of the screen ({(native != null ? "stand-in's" : "default")})");
+        // dev.13 LOD test (Osama 15 Nov: "make sure ... the lod models we added actually helped"): the first 20 always, the rest with verbose.
+        if (Verbose || ++lodLogged <= 20) MelonLogger.Msg($"FAMODELS {unit}: {n} detail levels at {string.Join("/", h.Take(n).Select(x => x.ToString("F3")))} of the screen ({(native != null ? "stand-in's" : "default")})");
     }
     static float[] Floats(BinaryReader f, int n) { var b = f.ReadBytes(n * 4); var r = new float[n]; Buffer.BlockCopy(b, 0, r, 0, b.Length); return r; }
 

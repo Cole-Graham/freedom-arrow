@@ -26,7 +26,9 @@ namespace FreedomArrow;
 internal static unsafe class CramPrediction
 {
     const string GameHash="12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf";
-    const int MaxTargets=128,MaxSamples=1000;
+    // Lateralus missile-hp batch (15 Nov 2026): the old 1,000-sample log ended at ~105-138 s, before the Tunguska salvos. Every eligible
+    // lead call (applied or fallback, with its reason) is now logged in a compact line, up to 12,000 per session.
+    const int MaxTargets=128,MaxSamples=12000;
     // Explicit pointer ABI avoids automatic marshaling of the two bool fields
     // in ref BallisticDataStruct. Native metadata/layout and engine hash gate it.
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -45,12 +47,17 @@ internal static unsafe class CramPrediction
     static float nextSummary;
     static string pendingError;
     static readonly Dictionary<ulong,CramMotionHistory> histories=new();
+    // Lateralus 15 Nov 2026 ("yes lets record a missile's motion as soon as it's spotted"): in the hp7 lead logs every new target
+    // started with ~0.08 s of history_missing (264 calls), because motion was only recorded once a gun aimed at it. Interceptable
+    // missiles are now observed every frame from launch. Only the last 0.075-0.25 s is ever used, so a gun gains no earlier
+    // knowledge than its own sight of the missile; the first shot simply gets the corrected lead.
+    static EntitySet missileSet;static IntPtr missileWorld;static long tracked;
     static readonly Dictionary<string,long> fallbacks=new();
     static readonly Dictionary<string,long> appliedByWeaponAmmo=new();
     readonly record struct Scope(bool Valid,ulong Target,Entity Weapon,int WeaponId,int AmmoId,int TargetType,Vector3 Center,float OriginRadius,
-        NVector Velocity,NVector Acceleration,float HistoryInterval,float Time,float Speed,bool History);
+        NVector Velocity,NVector Acceleration,float HistoryInterval,float Time,float Speed,bool History,int HistoryCount);
     readonly record struct Sample(float Time,ulong Target,int WeaponId,int AmmoId,int TargetType,float HistoryInterval,NVector Acceleration,
-        NVector Before,NVector After,NVector Fire,float BeforeTime,float AfterTime,int Iterations,bool Limited);
+        NVector Before,NVector After,NVector Fire,float BeforeTime,float AfterTime,int Iterations,bool Limited,string Reason,NVector Velocity,int HistoryCount);
     [ThreadStatic] static Scope scope;
     static readonly Queue<Sample> samples=new();
     static ulong Key(Entity e)=>Unsafe.As<Entity,ulong>(ref e);
@@ -163,7 +170,7 @@ internal static unsafe class CramPrediction
             }
             bool ready=history.Observe(now,velocity,out var acceleration,out float interval);
             scope=new(true,key,weapon,info.Id,__1.Id,type,NativeEcs.Property<TransformComponent,Vector3>(unit,"CenterPosition"),originRadius,
-                velocity,acceleration,interval,now,__result,ready);
+                velocity,acceleration,interval,now,__result,ready,history.Count);
         }
         catch(Exception e){Disable(e);}
     }
@@ -186,8 +193,8 @@ internal static unsafe class CramPrediction
                 ||(origin-call.Center).sqrMagnitude>call.OriginRadius*call.OriginRadius
                 ||Math.Abs(original.InitialProjectileSpeed-call.Speed)>.01f)
             {Fallback("scope_mismatch");return;}
-            if(!call.History){Fallback("history_missing");return;}
             var native=new CramPredictionPolicy.Solution(original.VectorToTarget,original.FireVector,original.TimeToImpact,original.FireAngleTan,original.CanShoot!=0);
+            if(!call.History){Fallback("history_missing");Record(call,"history_missing",native,null);return;}
             CramPredictionPolicy.Solution Solve(NVector aim)
             {
                 // Overallocate known trailing padding so either validated native
@@ -201,7 +208,7 @@ internal static unsafe class CramPrediction
             }
             if(!CramPredictionPolicy.TryCorrect(native,call.Velocity,call.Acceleration,Solve,out var result,out string reason))
             {
-                Fallback(reason);if(reason=="solver_exception")Disable(new InvalidOperationException("Native ballistic re-solve failed"));return;
+                Fallback(reason);Record(call,reason,native,null);if(reason=="solver_exception")Disable(new InvalidOperationException("Native ballistic re-solve failed"));return;
             }
             var corrected=original;corrected.VectorToTarget=result.Solution.Aim;corrected.FireVector=result.Solution.Fire;
             corrected.TimeToImpact=result.Solution.Time;corrected.FireAngleTan=result.Solution.Tan;corrected.CanShoot=(byte)(result.Solution.CanShoot?1:0);
@@ -211,15 +218,43 @@ internal static unsafe class CramPrediction
             string pair=call.WeaponId+":"+call.AmmoId;
             if(appliedByWeaponAmmo.ContainsKey(pair)||appliedByWeaponAmmo.Count<128)
                 appliedByWeaponAmmo[pair]=appliedByWeaponAmmo.GetValueOrDefault(pair)+1;
-            if(logged+samples.Count<MaxSamples&&samples.Count<128)
-                samples.Enqueue(new(call.Time,call.Target,call.WeaponId,call.AmmoId,call.TargetType,call.HistoryInterval,result.Acceleration,native.Aim,result.Solution.Aim,
-                    result.Solution.Fire,native.Time,result.Solution.Time,result.Iterations,result.Limited));
-            else dropped++;
+            Record(call,"applied",native,result);
         }
         catch(Exception e){Disable(e);}
     }
+    static void TrackMissiles()
+    {
+        var world=ShootingSystem._gameContext;if(world==null||world._isDisposed){missileSet=null;missileWorld=IntPtr.Zero;return;}
+        if(missileWorld!=world.Pointer){try{missileSet?.Dispose();}catch{}missileSet=world.GetEntities().With<UnitComponent>().With<WarheadComponent>().With<SpeedComponent>().AsSet();missileWorld=world.Pointer;}
+        if(worldPointer!=world.Pointer){histories.Clear();worldPointer=world.Pointer;}
+        var list=missileSet._entities;int count=Math.Min(missileSet.Count,list?.Length??0);float now=Time.time;
+        for(int i=0;i<count&&i<MaxTargets;i++)
+        {
+            var e=list[i];if(!e.IsAlive||!e.Has<UnitComponent>()||!e.Has<SpeedComponent>())continue;
+            int type=(int)(NativeEcs.Read<UnitComponent>(e).UnitData?.Type??0);if(type is not (128 or 256 or 512 or 1024))continue;
+            ulong key=Key(e);
+            if(!histories.TryGetValue(key,out var history))
+            {
+                if(histories.Count>=MaxTargets)
+                    foreach(var old in histories.Where(p=>now-p.Value.LastTime>2).Select(p=>p.Key).ToArray())histories.Remove(old);
+                if(histories.Count>=MaxTargets)return;
+                history=new CramMotionHistory();histories.Add(key,history);
+            }
+            var velocity=N(NativeEcs.Field<SpeedComponent,Vector3>(e,"Direction")*NativeEcs.Field<SpeedComponent,float>(e,"Value"));
+            history.Observe(now,velocity,out _,out _);tracked++;
+        }
+    }
+    static void Record(Scope call,string reason,CramPredictionPolicy.Solution native,CramPredictionPolicy.Result? result)
+    {
+        if(logged+samples.Count>=MaxSamples||samples.Count>=512){dropped++;return;}
+        var r=result.GetValueOrDefault();
+        samples.Enqueue(new(call.Time,call.Target,call.WeaponId,call.AmmoId,call.TargetType,call.HistoryInterval,result.HasValue?r.Acceleration:call.Acceleration,
+            native.Aim,result.HasValue?r.Solution.Aim:native.Aim,result.HasValue?r.Solution.Fire:native.Fire,native.Time,result.HasValue?r.Solution.Time:native.Time,
+            result.HasValue?r.Iterations:0,result.HasValue&&r.Limited,reason,call.Velocity,call.HistoryCount));
+    }
+    static object R(NVector v)=>new[]{MathF.Round(v.X,1),MathF.Round(v.Y,1),MathF.Round(v.Z,1)};
     static void Disable(Exception e){off=true;scope=default;pendingError=e.ToString();}
-    public static void SceneChanged(){scope=default;histories.Clear();worldPointer=IntPtr.Zero;}
+    public static void SceneChanged(){scope=default;histories.Clear();worldPointer=IntPtr.Zero;try{missileSet?.Dispose();}catch{}missileSet=null;missileWorld=IntPtr.Zero;}
     public static void LateUpdate()
     {
         if(!installed)return;
@@ -229,20 +264,25 @@ internal static unsafe class CramPrediction
             DiagnosticLog.Write("cram_prediction_failed",new{error=pendingError,fallback="native leading for rest of session"});
             MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: native leading restored; "+pendingError);pendingError=null;
         }
-        for(int i=0;i<8&&samples.TryDequeue(out var s);i++)
+        for(int i=0;i<64&&samples.TryDequeue(out var s);i++)
         {
-            logged++;DiagnosticLog.Write("cram_prediction_applied",new{t=s.Time,target=s.Target.ToString("X16"),weapon=s.WeaponId,ammo=s.AmmoId,targetType=s.TargetType,
-                historySeconds=s.HistoryInterval,acceleration=V(s.Acceleration),nativeVector=V(s.Before),correctedVector=V(s.After),
-                fireVector=V(s.Fire),nativeTime=s.BeforeTime,correctedTime=s.AfterTime,iterations=s.Iterations,limited=s.Limited,
-                caveat="Native lead calculation; may be aiming or launch, not a shot counter"});
+            logged++;DiagnosticLog.Write("cram_lead",new{t=MathF.Round(s.Time,3),target=s.Target.ToString("X16"),weapon=s.WeaponId,reason=s.Reason,
+                hist=s.HistoryCount,histS=MathF.Round(s.HistoryInterval,3),vel=R(s.Velocity),acc=R(s.Acceleration),nat=R(s.Before),cor=R(s.After),
+                tNat=MathF.Round(s.BeforeTime,3),tCor=MathF.Round(s.AfterTime,3),it=s.Iterations,lim=s.Limited});
         }
         if(Time.time>=nextSummary)
         {
             nextSummary=Time.time+5;
-            DiagnosticLog.Write("cram_prediction_summary",new{t=Time.time,eligible,applied,off,logged,dropped,
+            DiagnosticLog.Write("cram_prediction_summary",new{t=Time.time,eligible,applied,off,logged,dropped,tracked,
                 appliedByWeaponAmmo=new Dictionary<string,long>(appliedByWeaponAmmo),fallbackReasons=new Dictionary<string,long>(fallbacks)});
         }
         if(!Conquest.Prototype.DiagnosticSceneActive){scope=default;histories.Clear();}
+        else if(!off)
+        {
+            try{TrackMissiles();}
+            catch(Exception e){missileSet=null;missileWorld=IntPtr.Zero;DiagnosticLog.Write("cram_track_failed",new{error=e.ToString()});off=true;
+                MelonLogger.Error("FREEDOM_ARROW_CRAM_PREDICTION_FAILED: missile tracking; native leading restored. "+e.Message);}
+        }
     }
     public static void Close()
     {
