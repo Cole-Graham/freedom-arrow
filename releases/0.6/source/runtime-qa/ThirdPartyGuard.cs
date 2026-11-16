@@ -116,13 +116,26 @@ static class ThirdPartyGuard
         var all=allScenarios.Invoke(null,null) as System.Collections.IList;
         found.Clear();
         var names=new SortedDictionary<string,object>(StringComparer.OrdinalIgnoreCase);
+        // Lateralus 16 Nov 2026: Chernyakhovsky 1v1 and Dead Center 1v1 failed to load into a new lobby. A map author's own editor copy
+        // (game folder Scenarios, saved as an editor scenario) can have the same name as our packaged map; the first one found was kept.
+        // Our copy is the one InstallScenarios puts in Mods/Scenarios (the game lists it as manually downloaded), so it wins a name clash.
+        var dupes=new List<string>();
         foreach(var s in all??new object[0])
         {
             var name=s?.GetType().GetProperty("Name")?.GetValue(s) as string;
-            if(name!=null&&name.StartsWith("[FA]")&&!name.Contains("Skirmish"))names.TryAdd(name,s);
+            if(name==null||!name.StartsWith("[FA]")||name.Contains("Skirmish"))continue;
+            if(!names.TryGetValue(name,out var had)){names[name]=s;continue;}
+            dupes.Add(name);
+            if(Ours(s)&&!Ours(had))names[name]=s;
         }
         foreach(var s in names.Values)found.Add(s);
-        if(!mapsSaid){mapsSaid=true;MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: lobby maps: {string.Join(", ",names.Keys)}");}
+        if(!mapsSaid){mapsSaid=true;MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: lobby maps: {string.Join(", ",names.Keys)}");
+            if(dupes.Count>0)MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: same name in two places, the Freedom Arrow copy (Mods/Scenarios) is used: {string.Join(", ",dupes.Distinct())}");}
+    }
+    static bool Ours(object s)
+    {
+        var folder=(s.GetType().GetProperty("Folder")?.GetValue(s) as string??"").Replace('\\','/');
+        return folder.Contains("/Mods/Scenarios/",StringComparison.OrdinalIgnoreCase)||s.GetType().GetProperty("ManuallyDownloaded")?.GetValue(s) is true;
     }
     static void ProductName(ref string __result)=>__result="Freedom Arrow";
     static void ProductVer(ref string __result)=>__result=faVersion;

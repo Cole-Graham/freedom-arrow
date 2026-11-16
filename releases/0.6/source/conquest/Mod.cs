@@ -86,6 +86,11 @@ public sealed partial class Prototype
             Patch(typeof(WarGoalsPanel), "Update", null, nameof(UpdateNativeUi));
             Patch(typeof(WarGoalsPanel), "SetPhase", null, nameof(UpdateNativeUi));
             Patch(typeof(WarGoalsPanel), "SetEndPhaseMessage", null, nameof(UpdateNativeUi));
+            // Lateralus 16 Nov 2026: zone values showed on the loading screen after "Return to main menu". Hide them as soon as a leave is confirmed.
+            // The confirm callbacks of the leave popups (a cancelled popup never calls them).
+            foreach(var leave in new[]{"ReturnToHangar","LeaveMatch","Quit"})
+                try{Patch(typeof(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu),leave,nameof(LeavingMatch),null);}
+                catch(Exception e){MelonLogger.Warning($"FREEDOM_ARROW_LEAVE_HOOK_MISSING: {leave}: "+e.Message);}
             InitializeEconomy();
             try { InstallCombatHooks(); }
             catch (Exception e) { StopCombat(e); }

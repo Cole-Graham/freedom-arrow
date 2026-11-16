@@ -3,7 +3,8 @@ Why: the SPAAG/SAM data queued for 0.9.0-dev.13 was in the commit but never in a
 section), and nothing noticed. From 0.9.0-dev.25 on, package_0_8_next.py runs this on the complete package:
 - every SPAAG/SAM value in spaag_sead_data.py is in the merged weapon and ammo tables;
 - the plane sale ships: UserData/FreedomArrow/plane-refund.json and the plane_sale / server_money hooks in the runtime DLL;
-- from 0.9.0-dev.26: the M-SHORAD APKWS laser is in ability slot 2, and no unit has two modifications filling one ability slot.
+- from 0.9.0-dev.26: the M-SHORAD APKWS laser is in ability slot 2, no unit has two modifications filling one ability slot, and the runtime has
+  altitude intent, SEAD overkill (sead-overkill.json), SEAD re-target, lobby tabs and the deployment/menu overlay fixes.
 Usage: queued_checks.py COMPLETE.bamod VERSION VANILLA_DIR"""
 import json,re,sys,zipfile
 from pathlib import Path
@@ -48,5 +49,12 @@ if 'UserData/FreedomArrow/plane-refund.json' not in z.namelist():bad.append('pla
 dll=z.read('Mods/FreedomArrow.Runtime.dll')
 for s in ('plane_sale_installed','server_money_set'):
     if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
+# Lateralus 16 Nov 2026 ("These builds do not have the yellow altitude changing indicator ... Was there anything else you forgot to keep?"):
+# altitude intent, SEAD overkill 0.33 and SEAD re-target were in the sead3-sead5 test builds only. From dev.26 the package must have them,
+# and the other dev.26 runtime work.
+if (int(m.group(1)),int(m.group(2)))>=(9,26):
+    for s in ('altitude_intent_installed','sead_overkill_installed','sead_retarget_installed','FREEDOM_ARROW_LOBBY_TABS installed','online_room_status','overlay_hidden_for_menu','leaving_match','FREEDOM_ARROW_LOBBY_SLOTS installed','same name in two places'):
+        if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
+    if 'UserData/FreedomArrow/sead-overkill.json' not in z.namelist():bad.append('sead-overkill.json missing')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

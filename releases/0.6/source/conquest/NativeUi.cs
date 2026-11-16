@@ -112,10 +112,13 @@ public sealed partial class Prototype
     static void NoteLabelMode(View candidate)
     {
         if(labelView!=null&&labelView.Pointer==candidate.Pointer)return;
-        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;matchEnded=false;
+        labelView=candidate;labelMap=null;labelsOff=false;labelsLogged=false;barsLogged=false;matchEnded=false;leaving=false;
     }
     // Osama, 7 November: the zone point labels and round banner go away when the match ends, not when the player leaves.
     static void HideLabels(string reason){if(matchEnded||labelView==null)return;matchEnded=true;Log("zone_labels_hidden",new{reason});}
+    // Set when the player confirms leaving (Escape menu); cleared when the next match's mode or preview screen comes up.
+    static bool leaving;
+    public static void LeavingMatch(){leaving=true;try{Log("leaving_match",new{t=Time.unscaledTime});}catch{}}
     static void ClearLabelMode(){labelView=null;labelMap=null;}
     static double clockOffset=-1;
     static float clockStart;
@@ -139,7 +142,7 @@ public sealed partial class Prototype
         Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Client.Ecs.GameMode.GameModeService>(out var service,false);
         var status=service?._networkRoomService?.State?.Status;
         string state=status?.ToString()??"none";
-        if(state!=lastRoomStatus){lastRoomStatus=state;Log("online_room_status",new{status=state,t=Time.unscaledTime});}
+        if(state!=lastRoomStatus){lastRoomStatus=state;Log("online_room_status",new{status=state,t=Time.unscaledTime});if(status==RoomStatus.DeploymentPhase)leaving=false;}
         return status==RoomStatus.InProcess;
     }
     // Seconds of the online deployment pause left, or null. From 16 Nov 2026 the conquest mode starts with the pause (scenarios/common.py
@@ -184,6 +187,7 @@ public sealed partial class Prototype
     public void OnGUI()
     {
         DrawVersionLabel();
+        if(leaving)return;
         try{if(MenuOpen()){if(!menuLogged){menuLogged=true;Log("overlay_hidden_for_menu",new{});}return;}}
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_MENU_CHECK_FAILED: "+e.Message);}
         if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)

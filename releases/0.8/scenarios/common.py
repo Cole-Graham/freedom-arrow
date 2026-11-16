@@ -209,6 +209,11 @@ def check_slots(name,objects,meta):
     players={t:sum(1 for o in objects if o.get('_type')==13 and o.get('ownTeam',{}).get('id')==u) for u,t in fight.items()}
     slots={t.get('teamName'):len(t.get('slots',[])) for t in meta.get('teams',[]) if t.get('teamName') in fight.values()}
     assert len(fight)==2 and set(players.values())=={SLOTS_PER_TEAM} and set(slots.values())=={SLOTS_PER_TEAM},(name,players,slots)
+    # Lateralus 16 Nov 2026: "Klaipeda 1v1 and some other 1v1 maps only have 2 available slots, none of our maps should have unavailable
+    # slots". A slot's "lock" in the map file makes it unavailable in the lobby (End's maps locked slots 2-5). How many are open by default
+    # is the runtime's job (LobbySlotDefaults.cs), not the map's.
+    locked=[(t.get('teamName'),i) for t in meta.get('teams',[]) if t.get('teamName') in fight.values() for i,x in enumerate(t.get('slots',[])) if x.get('lock')]
+    assert not locked,(name,'locked lobby slots',locked)
 # Every FA map ends at the global ScoreLimit (300). Lateralus 16 Nov 2026: "Honestly just make it 300 for all maps" (the 1v1 limit of
 # 100, Osama 6 and 15 Nov, is removed; MapScoreLimits stays empty). The description must say the same limit.
 def check_limit(name,desc):
@@ -260,6 +265,8 @@ def prepare_end(mod_file,scene,spec):
     assert sorted(b['nnKey'] for b in nodes['b'])==END_SCRIPT,'End changed his script. Check this merge.'
     nodes.update(b=[],c=[])   # the FA conquest graft supplies the script
     strip_editor_teams(objects,meta)
+    for t in meta['teams']:
+        for x in t['slots']:x['lock']=False   # End locked slots 2-5 (Lateralus 16 Nov 2026: every slot available)
     assert free_uids(objects,nodes)=={}
     for o in objects:
         if o.get('_type')==15:assert o['ZoneIcon']==ord(o['_dname'][0])-ord('A')+1,o['_dname']

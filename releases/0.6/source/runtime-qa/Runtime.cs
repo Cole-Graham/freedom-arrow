@@ -60,6 +60,8 @@ public class Runtime : MelonMod
     {
         DiagnosticLog.Heartbeat();
         InterceptLead.LateUpdate();
+        SeadOverkill.LateUpdate();
+        LobbySlotDefaults.LateUpdate();
         AaCooldown.LateUpdate();
         SpaagWeapons.LateUpdate();
         SameUnitClaim.LateUpdate();
@@ -77,6 +79,9 @@ public class Runtime : MelonMod
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         GroundAaLog.SceneChanged();
         InterceptLead.SceneChanged();
+        SeadOverkill.SceneChanged();
+        SeadRetarget.SceneChanged();
+        AltitudeIntent.SceneChanged();
         AaCooldown.SceneChanged();
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
@@ -178,6 +183,14 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_SALE_FAILED: not installed; native refunds. "+e.Message); }
         try { ServerMoney.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SERVER_MONEY_FAILED: not installed; no server points log. "+e.Message); }
+        try { SeadOverkill.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SEAD_OVERKILL_FAILED: not installed; vanilla SEAD overkill (0.99). "+e.Message); }
+        try { SeadRetarget.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SEAD_RETARGET_FAILED: not installed; SEAD missiles keep flying to a dead radar. "+e.Message); }
+        try { AltitudeIntent.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALTITUDE_INTENT_FAILED: not installed; the game's own altitude icon. "+e.Message); }
+        try { LobbySlotDefaults.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOBBY_SLOTS_FAILED: not installed; new lobbies open every slot. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }

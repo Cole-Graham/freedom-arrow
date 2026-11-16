@@ -39,6 +39,9 @@ coll=MLS.slot_collisions(U,M,O,AB,avail);ok(not coll,f'no unit has two modificat
 # Deployment (Lateralus 16 Nov 2026): the online conquest mode starts with the deployment pause, so the top bar and zone values show during
 # deployment (scenarios/common.py conquest_during_deployment); the DEPLOYMENT banner waits for RoomStatus.InProcess, not the map preview
 # screen; zone values and banners hide while the Escape menu or settings are open (conquest/NativeUi.cs). Runtime and scenarios only.
+# Lateralus 16 Nov 2026 (11:4x): altitude intent, SEAD overkill 0.33 and SEAD re-target ported from codex/batch/lateralus/intercept-sead
+# (test builds sead3-sead5 only until now); overlay hidden once a leave is confirmed; lobby map list prefers the Mods/Scenarios copy on a
+# name clash; End's 1v1 maps no longer lock slots 2-5 (build check: no locked slots); new [FA] [NvN] lobbies open N slots per team.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

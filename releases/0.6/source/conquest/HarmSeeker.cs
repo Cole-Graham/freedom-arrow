@@ -35,6 +35,8 @@ public sealed partial class Prototype
     static readonly Dictionary<long,Vector3> harmKept=new();
     static bool harmReleasing;
     static long Key(Entity e)=>Unsafe.As<Entity,long>(ref e);
+    // SeadRetarget (16 Nov 2026): a missile that switched to a new radar must not keep the old dark radar's spot.
+    public static void HarmForget(Entity missile)=>harmKept.Remove(Key(missile));
     static bool LiveSeadTarget(Entity missile,out Entity target)
     {
         target=default;
