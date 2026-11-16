@@ -43,7 +43,9 @@ with zipfile.ZipFile(a.package) as z:
   ke=next(r for r in ammo(uid) if r['ArmorTargeted']==1)
   # Osama 13 Nov 18:0x PST (0.8.0-dev.65, build 133): ZTL-191, VT-5, ZTQ-15 AP "500-550" = 550 close, 500 at range.
   # Osama 13 Nov 20:1x PST (0.8.0-dev.78, build 146): "475-525 pen" = 525 close, 475 at range.
-  if build>=146 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(525.0,475.0),'AP 475-525')
+  # Osama 16 Nov 00:18 PST (0.9.0-dev.14, build 187): ZTQ-15s, ZTL-191, VT-5 "450mm to 500mm" = 500 close, 450 at range.
+  if build>=187 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(500.0,450.0),'AP 450-500')
+  elif build>=146 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(525.0,475.0),'AP 475-525')
   elif build>=133 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(550.0,500.0),'AP 500-550')
   else:ok(ke['PenetrationAtMinRange']==ke['PenetrationAtGroundRange']+25,'KE close bonus')
  ok(ammo(1233)[0]['Seeker']==50,'HQ9B FNF');ok(ammo(1234)[0]['Seeker']==100,'HQ9A SA')

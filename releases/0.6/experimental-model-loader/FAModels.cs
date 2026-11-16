@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.31", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.32", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -476,7 +476,7 @@ public partial class Mod : MelonMod
     }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
+    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
@@ -500,7 +500,7 @@ public partial class Mod : MelonMod
         // Optional material-only livery adjustment; source textures and UVs stay intact.
         if (!clearGlass && p?.colorScale is { Length: 3 } scale && scale.All(x => float.IsFinite(x) && x >= 0f && x <= 4f))
             col = new Color(col.r * scale[0], col.g * scale[1], col.b * scale[2], col.a);
-        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}");
+        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}/{(p.metallicRemap == null ? "" : string.Join(",", p.metallicRemap))}/{(p.smoothnessRemap == null ? "" : string.Join(",", p.smoothnessRemap))}");
         if (mats.TryGetValue(key, out var m) && m != null) { fallbackDonor = null; return m; }
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
@@ -543,7 +543,10 @@ public partial class Mod : MelonMod
         if (tex != "" && TexExists(stem + "_mask.png"))
         {
             m.SetTexture("_MaskMap", Tex(stem + "_mask.png", true)); m.EnableKeyword("_MASKMAP");
-            m.SetFloat("_MetallicRemapMin", 0f); m.SetFloat("_MetallicRemapMax", 1f); m.SetFloat("_SmoothnessRemapMin", 0f); m.SetFloat("_SmoothnessRemapMax", 1f);
+            // 0.9.0-dev.14 (Osama 15 Nov: "X-47B needs a much more metallic skin, right now it's flat"): a model's mat.json can lift the mask's
+            // metallic and smoothness ranges (metallicRemap / smoothnessRemap [min, max]); without them the mask is used as painted (0..1).
+            var mr = p.metallicRemap is { Length: 2 } ? p.metallicRemap : new[] { 0f, 1f }; var sr = p.smoothnessRemap is { Length: 2 } ? p.smoothnessRemap : new[] { 0f, 1f };
+            m.SetFloat("_MetallicRemapMin", mr[0]); m.SetFloat("_MetallicRemapMax", mr[1]); m.SetFloat("_SmoothnessRemapMin", sr[0]); m.SetFloat("_SmoothnessRemapMax", sr[1]);
             m.SetFloat("_AORemapMin", 0f); m.SetFloat("_AORemapMax", 1f);
         }
         ApplyCanopyFinish(m, p.sourceCanopy);
