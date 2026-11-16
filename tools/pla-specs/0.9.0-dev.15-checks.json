@@ -1,0 +1,34 @@
+{
+  "j36_slot0_empty": {
+    "unit": 929,
+    "default_empty_mount": 2019381,
+    "extra_removed": "PL-16 x4 (turret 2019296) in slot 0"
+  },
+  "jd3": {
+    "renamed": [
+      31078,
+      31080,
+      31093,
+      31094
+    ],
+    "ztz99a": {
+      "modification": 2019383,
+      "options": {
+        "None": [
+          31098,
+          0
+        ],
+        "JD-3 jammer": [
+          31099,
+          20
+        ]
+      },
+      "ecm": 0.3
+    }
+  },
+  "version": "0.9.0-dev.15",
+  "base": "0.9.0-dev.14",
+  "base_sha256": "0e8aff748ca8305360e480c5865053cd7f6a6f16dd2579a935cf41cf12d70bd6",
+  "checks": 5,
+  "verified": "data checks only"
+}
