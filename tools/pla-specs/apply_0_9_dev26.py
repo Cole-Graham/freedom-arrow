@@ -42,6 +42,21 @@ coll=MLS.slot_collisions(U,M,O,AB,avail);ok(not coll,f'no unit has two modificat
 # Lateralus 16 Nov 2026 (11:4x): altitude intent, SEAD overkill 0.33 and SEAD re-target ported from codex/batch/lateralus/intercept-sead
 # (test builds sead3-sead5 only until now); overlay hidden once a leave is confirmed; lobby map list prefers the Mods/Scenarios copy on a
 # name clash; End's 1v1 maps no longer lock slots 2-5 (build check: no locked slots); new [FA] [NvN] lobbies open N slots per team.
+# ---------- LSDW laser: one pulse a second (Osama 16 Nov 2026 12:1x PST, thread 1571014792016171120: "the effect is perfect, but I just want it
+# to have a rof of 1 second and increase the salvo size. But halve or third the effect since we shoot twice/thrice as fast"). dev.21-25: one
+# pulse every 2-3 s (2.5 s mean), 100-pulse magazine, 400 pulses, 0.2 damage and 200 stress a pulse. Now one pulse every 1.0 s (2.5x as often);
+# per-pulse damage, stress and supply cost divided by 2.5 and magazine and pulses carried multiplied by 2.5, so stress per second, time between
+# reloads, firing time per load and resupply cost stay as before.
+W=t['WeaponsJson'];AM=t['AmmunitionsJson'];WA=t['WeaponAmmunitionsJson']
+_lw=[w['Id'] for w in W.values() if w.get('HUDName')=='LSDW'];ok(len(_lw)==1,'one LSDW weapon');_lw=_lw[0]
+_was=[r for r in WA.values() if r['WeaponId']==_lw];_la={r['AmmunitionId'] for r in _was};ok(len(_la)==1 and len(_was)==2,'LSDW: one ammo, rows for ZTZ-99A and ZTZ-99');_la=_la.pop()
+ok((W[_lw]['TimeBetweenBurstsMin'],W[_lw]['TimeBetweenBurstsMax'],W[_lw]['ShotsPerBurstMax'],W[_lw]['MagazineSize'])==(2.0,3.0,1,100),'LSDW dev.25 rate: 1 pulse / 2-3 s, magazine 100')
+ok((AM[_la]['Damage'],AM[_la]['StressDamage'],AM[_la]['SupplyCost'])==(0.2,200.0,0.1) and all(r['Quantity']==400 for r in _was),'LSDW dev.25 pulse: 0.2 damage, 200 stress, 0.1 supply, 400 pulses')
+g.put('WeaponsJson',_lw,{'TimeBetweenBurstsMin':1.0,'TimeBetweenBurstsMax':1.0,'MagazineSize':250})
+g.put('AmmunitionsJson',_la,{'Damage':0.08,'StressDamage':80.0,'SupplyCost':0.04})
+for r in _was:g.put('WeaponAmmunitionsJson',r['Id'],{'Quantity':1000})
+ok(W[_lw]['TimeBetweenBurstsMax']==1.0 and AM[_la]['StressDamage']==80.0 and all(WA[r['Id']]['Quantity']==1000 for r in _was),'LSDW: 1 pulse / s, 80 stress, 1000 pulses')
+rec['lsdw_rof']={'weapon':_lw,'ammo':_la,'pulse_s':1.0,'magazine':250,'pulses':1000,'damage':0.08,'stress':80.0,'supply':0.04}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
