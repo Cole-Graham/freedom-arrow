@@ -344,7 +344,8 @@
   "PLA FH-97A": {
     "file": "m_fh97a_cg.fam",
     "battle": "m_fh97a_lo2.fam",
-    "align": false
+    "align": false,
+    "scale": 1.2
   },
   "PLA J-15D": {
     "file": "m_j15d_cg.fam",
