@@ -47,6 +47,13 @@ for w in _lw:g.put('WeaponsJson',w,{'AudioPreset':'WEAPON_SOUND_PRESET_INF_SNIPE
 for x in _la:g.put('AmmunitionsJson',x,{'AudioPreset':'','FXPreset':'AMMUNITION_VFX_PRESET_Sniper_BULLET_US'})
 ok(all(AM[x]['AudioPreset']=='' and AM[x]['FXPreset']=='AMMUNITION_VFX_PRESET_Sniper_BULLET_US' for x in _la),'laser pulses: no impact sound, sniper tracer')
 rec['laser_effects']={'weapons':_lw,'ammo':_la,'weapon_sound':'WEAPON_SOUND_PRESET_INF_SNIPER_Subsonic','fx':'AMMUNITION_VFX_PRESET_Sniper_BULLET_US'}
+# ---------- F-22 Symbiote (Osama 16 Nov 2026 14:2x PST, thread 1567745029781454889: "The F-22 mirror coat should be called symbiote coating and the
+# name should change to F-22 Symbiote"). The mirror option keeps its internal Name (mirror-skins.json selects the skin by it); its button reads
+# "Symbiote coating" and, like vanilla options such as Tor-M1/M2 or Dragoon (ReplaceUnitName), it renames the unit to "F-22 Symbiote".
+_sym=[o['Id'] for o in t['OptionsJson'].values() if o.get('Name')=='F22 Mirror finish'];ok(len(_sym)==1 and t['OptionsJson'][_sym[0]]['UIName']=='Mirror finish' and t['OptionsJson'][_sym[0]]['Cost']==30,'one F-22 Mirror finish option (+30)')
+g.put('OptionsJson',_sym[0],{'UIName':'Symbiote coating','ReplaceUnitName':'F-22 Symbiote'})
+ok((t['OptionsJson'][_sym[0]]['UIName'],t['OptionsJson'][_sym[0]]['ReplaceUnitName'],t['OptionsJson'][_sym[0]]['Name'])==('Symbiote coating','F-22 Symbiote','F22 Mirror finish'),'Symbiote coating renames the unit F-22 Symbiote')
+rec['f22_symbiote']={'option':_sym[0],'ui_name':'Symbiote coating','unit_name':'F-22 Symbiote'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
