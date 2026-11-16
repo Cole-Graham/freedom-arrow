@@ -97,17 +97,16 @@ rec['j36_stealth']={'unit':_j,'cost':355,'stealth_raw':round(1/2.2,4)}
 # Maps 0.2 (Lateralus 16 Nov 2026 14:4x PST): Highway of Death, Baltiisk, Dam, Chkalovsk Airbase, Dead Center 2v2 and 1v1 with his zone and spawn
 # edits (scenarios/*/layout.bascr; merge script and report in work/maps-02-20261116); Baltiisk zones J and K worth 1; the 0.1 versions are
 # retired by GUID in runtime-qa/Runtime.cs. Scenarios and runtime only, no table changes.
-# ---------- ZTZ-100 APFSDS 525/475, HJ-10 170 and ground only (Osama 16 Nov 2026 15:0x PST, thread 1567745029781454889: "ZTZ-100 475mm penetration
-# - 525, HJ-10 to 170 pts", "HJ-10 can not fire at helos or air so please remove that"). ZTZ-100 round 2010195 (only on 968): 550 close / 500 at
-# range -> 525 / 475 (keeps the 50 mm tank spread). HJ-10 (936) 150 -> 170; its missile 2009623 (only on 936) TargetType 44 (vehicle, helicopter,
-# ship) -> 36 (vehicle, ship, as the vanilla Hellfire K) and low-altitude range 1000 -> 0. The QN-506's QN-502 round 2009651 is not changed.
+# ---------- HJ-10 170 and ground only (Osama 16 Nov 2026 15:0x PST, thread 1567745029781454889: "HJ-10 to 170 pts", "HJ-10 can not fire at helos or
+# air so please remove that"). HJ-10 (936) 150 -> 170; its missile 2009623 (only on 936) TargetType 44 (vehicle, helicopter, ship) -> 36 (vehicle,
+# ship, as the vanilla Hellfire K) and low-altitude range 1000 -> 0. The QN-506's QN-502 round 2009651 is not changed. The ZTZ-100 APFSDS 525/475
+# asked at the same time was undone before the build (Osama 15:1x: "Undo the ZTZ-100 penetration change"); it stays 550/500.
 _A=t['AmmunitionsJson'];_WA=t['WeaponAmmunitionsJson']
-ok(U[968]['HUDName']=='ZTZ-100' and (_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'])==(550.0,500.0) and {r['UnitId'] for r in _WA.values() if r['AmmunitionId']==2010195}=={968},'ZTZ-100 APFSDS 550/500, only on 968')
-g.put('AmmunitionsJson',2010195,{'PenetrationAtMinRange':525.0,'PenetrationAtGroundRange':475.0})
+ok((_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'])==(550.0,500.0),'ZTZ-100 APFSDS stays 550/500')
 ok(U[936]['HUDName']=='HJ-10' and U[936]['Cost']==150 and (_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009623]['HighAltRange'])==(44,1000.0,0.0) and {r['UnitId'] for r in _WA.values() if r['AmmunitionId']==2009623}=={936},'HJ-10 150, missile TargetType 44, low alt 1000, only on 936')
 g.put('Units',936,{'Cost':170});g.put('AmmunitionsJson',2009623,{'TargetType':36,'LowAltRange':0.0})
-ok((_A[2010195]['PenetrationAtMinRange'],_A[2010195]['PenetrationAtGroundRange'],U[936]['Cost'],_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009651]['TargetType'])==(525.0,475.0,170,36,0.0,44),'ZTZ-100 525/475, HJ-10 170 ground only, QN-502 unchanged')
-rec['ztz100_hj10']={'ztz100_apfsds':[[550,500],[525,475]],'hj10_cost':[150,170],'hj10_missile':{'target_type':[44,36],'low_alt_range':[1000,0]}}
+ok((U[936]['Cost'],_A[2009623]['TargetType'],_A[2009623]['LowAltRange'],_A[2009651]['TargetType'])==(170,36,0.0,44),'HJ-10 170 ground only, QN-502 unchanged')
+rec['hj10']={'cost':[150,170],'missile':{'target_type':[44,36],'low_alt_range':[1000,0]}}
 # ---------- VN20 without APS (Osama 16 Nov 2026 15:0x PST, thread 1567745029781454889: "VN-20 only jammer, please remove the APS, it shows 0x APS").
 # Its one built-in ability 2019369 (copy of the T-15 profile, only on 1274) kept IsAPS on with APSQuantity 0, so the card showed "0x APS". APS off
 # as on 2009067 in dev.21; smoke, the 30% jammer and the T-15 carried-troop resupply stay.
@@ -115,6 +114,46 @@ _vb=AB[2019369];ok(_vb['Name']=='PLA VN20 smoke + jammer' and _vb['IsAPS'] and _
 g.put('AbilitiesJson',2019369,{'IsAPS':False,'APSHitboxProportion':0.0,'APSQuantity':0,'APSCooldown':0.0,'APSSupplyCost':0.0,'APSResupplyTime':0.0})
 ok(not AB[2019369]['IsAPS'] and AB[2019369]['ECMAccuracyMultiplier']==0.7 and AB[2019369]['IsSmoke'],'VN20: jammer and smoke, no APS')
 rec['vn20_no_aps']={'ability':2019369,'aps':'off','ecm':0.7}
+# ---------- ZBD-20 HJ-16 low altitude 1100 m, T-15 Barbaris 220 in the infantry tab (Osama 16 Nov 2026 15:0x-15:1x PST, thread 1567745029781454889:
+# "ZBD-20's low alt range should be 1100", "T-15 barbaris is 220 points and goes back into infantry tab now"; "zbd-20 HE damage set to 3.4/s":
+# the 30 mm HE card value is already 3.0 x 1.135 shots/s = 3.41/s, so it is unchanged). Card range = 2 x data: HJ-16 and HJ-16 IIR (only on the
+# ZBD-20 945 and its Recon copy 1256) low altitude 650 (1300 m) -> 550 (1100 m). T-15 (255) 200 -> 220, CategoryType 2 (VEH) -> 1 (INF).
+ok(all((_A[i]['LowAltRange'],sorted({r['UnitId'] for r in _WA.values() if r['AmmunitionId']==i}))==(650.0,[945,1256]) for i in (2019312,2019313)),'HJ-16 rounds low alt 650, only on the ZBD-20s')
+for i in (2019312,2019313):g.put('AmmunitionsJson',i,{'LowAltRange':550.0})
+ok(U[255]['HUDName']=='T-15 Barbaris' and U[255]['Cost']==200 and U[255]['CategoryType']==2,'T-15 200, VEH tab')
+g.put('Units',255,{'Cost':220,'CategoryType':1})
+ok(_A[2019312]['LowAltRange']==550.0 and _A[2019313]['LowAltRange']==550.0 and (U[255]['Cost'],U[255]['CategoryType'])==(220,1),'ZBD-20 HJ-16 1100 m low, T-15 220 INF')
+rec['zbd20_t15']={'hj16_low_alt':[650,550],'t15':{'cost':[200,220],'category':[2,1]},'zbd20_he_card_dps':3.41}
+# ---------- ZTZ-99 JD-3 jammer option, WZ-550 off the deck (Osama 16 Nov 2026 15:1x PST, thread 1567745029781454889: "ZTZ-99 gets the same jd-3 jammer
+# option as a protection package", "wz550 removed from the game"). ZTZ-99 (1083) protection slot 2019401: None / JD-3 jammer +20 (copy of the ZTZ-99A
+# option 31099: ECM Hardhat 80 in ability slot 2, ZTZ-99 default ability 2011377 and main mount 2011382 as its None option) / LSDW +100 (now 3rd).
+# WZ-550 (unit 1053 "PLA Catalogue AFT-09"): its only card 2008898 (PLAGF Motorized, 8) is removed; the unit row stays hidden, like earlier removals.
+_m99=[m['Id'] for m in M.values() if m['UnitId']==1083];ok(_m99==[2019401],'ZTZ-99 one protection slot 2019401')
+_o99=sorted((o['Order'],o['Id'],o['UIName']) for o in O.values() if o['ModificationId']==2019401);ok([x[2] for x in _o99]==['Custom_Option_None','LSDW'],'ZTZ-99 slot: None, LSDW')
+ok((O[31099]['UIName'],O[31099]['Cost'],O[31099]['Ability2Id'])==('JD-3 jammer',20,80) and AB[80]['ECMAccuracyMultiplier']==0.7,'ZTZ-99A JD-3 option +20, ECM Hardhat 0.7')
+_jd=g.add('OptionsJson',O[31099],{'ModificationId':2019401,'Name':'PLA ZTZ-99 JD-3 jammer','Order':1,'Ability1Id':2011377,'Ability2Id':80,'Turret0Id':2011382,'IsDefault':False})
+g.put('OptionsJson',[x[1] for x in _o99 if x[2]=='LSDW'][0],{'Order':2})
+if not [r for r in UAB.values() if r['UnitId']==1083 and r['AbilityId']==80]:g.add('UnitAbilitiesJson',{'UnitId':1083,'AbilityId':80})
+ok([O[i]['UIName'] for _,i in sorted((o['Order'],o['Id']) for o in O.values() if o['ModificationId']==2019401)]==['Custom_Option_None','JD-3 jammer','LSDW'],'ZTZ-99 slot: None, JD-3 +20, LSDW +100')
+_SA=t['SpecializationAvailabilitiesJson']
+ok(U[1053]['HUDName']=='WZ-550' and [(c['Id'],c['SpecializationId']) for c in _SA.values() if c['UnitId']==1053]==[(2008898,21)] and not [r for r in t['TransportAvailabilitiesJson'].values() if r.get('UnitId')==1053 or r.get('SpecializationAvailabilityId')==2008898],'WZ-550: one Motorized card, no transport links')
+g.remove('SpecializationAvailabilitiesJson',2008898);assign['assignments'].pop('1053',None)
+ok(not [c for c in _SA.values() if c['UnitId']==1053],'WZ-550 has no card')
+rec['ztz99_jd3_wz550']={'ztz99_jd3_option':_jd,'wz550_card_removed':2008898}
+# ---------- WZ1224 120 mm names (Osama 16 Nov 2026 15:2x PST, thread 1567745029781454889: "WZ1224 all munitions are called 120mm", "can you call the
+# cannon 120mm rheinmetal (whatever it's called in real life)"). The real gun is the Rheinmetall Rh-120 L/44 (the WZ-1224 used a copy of it). Gun
+# 2019338 (only on 1272) -> "Rheinmetall Rh-120 L/44". Its HE and HEAT rows used the ZTZ-96 125 mm rounds 2009913/2009915 (shared with 949), so the
+# WZ1224 gets its own copies named "120 mm HE" / "120 mm HEAT" with the same stats; the ZTZ-96 keeps its 125 mm rounds. APFSDS was already "120 mm APFSDS".
+_A=t['AmmunitionsJson'];_W=t['WeaponsJson'];_WA=t['WeaponAmmunitionsJson']
+_wz=[u_['Id'] for u_ in U.values() if u_.get('Name')=='PLA WZ1224'];ok(_wz==[1272],'WZ1224 is 1272');_wz=1272
+_rows={_A[r['AmmunitionId']]['HUDName']:r for r in _WA.values() if r['UnitId']==_wz and r['WeaponId']==2019338}
+ok(sorted(_rows)==['120 mm APFSDS','125 mm tank gun HE','125 mm tank gun HEAT'] and _W[2019338]['HUDName']=='120 mm smoothbore' and {r['UnitId'] for r in _WA.values() if r['WeaponId']==2019338}=={_wz},'WZ1224 gun rows: 120 APFSDS, 125 HE/HEAT; gun only on 1272')
+g.put('WeaponsJson',2019338,{'HUDName':'Rheinmetall Rh-120 L/44'})
+for old,new in (('125 mm tank gun HE','120 mm HE'),('125 mm tank gun HEAT','120 mm HEAT')):
+    r=_rows[old];na=g.add('AmmunitionsJson',_A[r['AmmunitionId']],{'Name':'PLA WZ1224 '+new,'HUDName':new});g.put('WeaponAmmunitionsJson',r['Id'],{'AmmunitionId':na})
+_n=sorted(_A[r['AmmunitionId']]['HUDName'] for r in _WA.values() if r['UnitId']==_wz and r['WeaponId']==2019338)
+ok(_n==['120 mm APFSDS','120 mm HE','120 mm HEAT'] and _A[2009913]['HUDName']=='125 mm tank gun HE' and _A[2009915]['HUDName']=='125 mm tank gun HEAT','WZ1224 all 120 mm, ZTZ-96 rounds unchanged')
+rec['wz1224_names']={'gun':'Rheinmetall Rh-120 L/44','rounds':_n}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

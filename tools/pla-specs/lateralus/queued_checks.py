@@ -24,7 +24,12 @@ for tab,fn,spec in (('WeaponsJson.json','weapons.json',S.SPW),('AmmunitionsJson.
     t=merged(tab,fn)
     bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {n})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=n]
 Ut=merged('Units.json','units.json');Ot=merged('OptionsJson.json','options.json');At=merged('AbilitiesJson.json','abilities.json')
-bad+=[f'unit {i} {n} cost {Ut.get(i,{}).get("Cost")} (want {new})' for i,(n,old,new) in SP.UNITS.items() if Ut.get(i,{}).get('Cost')!=new]
+# Later decisions that supersede a queued price, from the version that made them (0.9.0-dev.32, Osama 16 Nov 14:4x PST: "J-36 ... price increased
+# by 50 points": 305 -> 355).
+LATER={929:((9,32),355)}
+def _want(i,new):
+    l=LATER.get(i);return l[1] if l and (int(m.group(1)),int(m.group(2)))>=l[0] else new
+bad+=[f'unit {i} {n} cost {Ut.get(i,{}).get("Cost")} (want {_want(i,new)})' for i,(n,old,new) in SP.UNITS.items() if Ut.get(i,{}).get('Cost')!=_want(i,new)]
 bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(u,n,old,new) in SP.OPTIONS.items() if (Ot.get(i,{}).get('Cost') or 0)!=new]
 for i,want in EP.EXPECT.items():
     got=[At.get(Ot.get(i,{}).get(f'Ability{k}Id'),{}).get('ECMAccuracyMultiplier') for k in (1,2,3)]

@@ -1,0 +1,121 @@
+{
+  "ly1_radar": {
+    "ability": 2019443,
+    "from": 2010621,
+    "fields": [
+      "IsRadar",
+      "IsRadarStatic",
+      "RadarHighAltOpticsModifier",
+      "RadarHighAltWeaponRangeModifier",
+      "RadarLowAltOpticsModifier",
+      "RadarLowAltWeaponRangeModifier",
+      "RadarSwitchCooldown"
+    ]
+  },
+  "laser_effects": {
+    "weapons": [
+      2019388,
+      2019445
+    ],
+    "ammo": [
+      2019387,
+      2019446
+    ],
+    "weapon_sound": "WEAPON_SOUND_PRESET_INF_SNIPER_Subsonic",
+    "fx": "AMMUNITION_VFX_PRESET_Sniper_BULLET_US"
+  },
+  "f22_symbiote": {
+    "option": 31104,
+    "ui_name": "Symbiote coating",
+    "unit_name": "F-22 Symbiote"
+  },
+  "j20_turn": {
+    "units": [
+      915,
+      966
+    ],
+    "preset": 2019456,
+    "mobility": 2019457,
+    "yaw": {
+      "MinSpeedYaw": 21.88,
+      "CornerSpeedYaw": 41.56,
+      "AfterburnYaw": 44.44,
+      "CornerAfterburnSpeedYaw": 44.0,
+      "MaxSpeedYaw": 45.7
+    },
+    "card_radius": [
+      565,
+      985
+    ]
+  },
+  "yf23": {
+    "unit": 982,
+    "cost": 295,
+    "ecm_ability": 2019458,
+    "ecm": 0.55,
+    "aim120_bay_costs": [
+      35,
+      35
+    ]
+  },
+  "j36_stealth": {
+    "unit": 929,
+    "cost": 355,
+    "stealth_raw": 0.4545
+  },
+  "hj10": {
+    "cost": [
+      150,
+      170
+    ],
+    "missile": {
+      "target_type": [
+        44,
+        36
+      ],
+      "low_alt_range": [
+        1000,
+        0
+      ]
+    }
+  },
+  "vn20_no_aps": {
+    "ability": 2019369,
+    "aps": "off",
+    "ecm": 0.7
+  },
+  "zbd20_t15": {
+    "hj16_low_alt": [
+      650,
+      550
+    ],
+    "t15": {
+      "cost": [
+        200,
+        220
+      ],
+      "category": [
+        2,
+        1
+      ]
+    },
+    "zbd20_he_card_dps": 3.41
+  },
+  "ztz99_jd3_wz550": {
+    "ztz99_jd3_option": 31105,
+    "wz550_card_removed": 2008898
+  },
+  "wz1224_names": {
+    "gun": "Rheinmetall Rh-120 L/44",
+    "rounds": [
+      "120 mm APFSDS",
+      "120 mm HE",
+      "120 mm HEAT"
+    ]
+  },
+  "version": "0.9.0-dev.32",
+  "base": "0.9.0-dev.31",
+  "base_sha256": "9804e26a06abc611174990b1b17ee3ead92380464d9994412d3663c8d5f44f2c",
+  "checks": 37,
+  "verified": "data checks only"
+}
