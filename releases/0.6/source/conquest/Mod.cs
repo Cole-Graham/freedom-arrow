@@ -208,7 +208,12 @@ public sealed partial class Prototype
             var activeName = MapName(candidate);
             view = candidate;
             modeServicePointer=candidate.Service.Pointer;
-            ledger = new Ledger(config, activeName, candidate.Duration);
+            // Online FA maps start conquest with the deployment pause and add the deployment to the time limit (scenarios/common.py
+            // deployment_in_time_limit; Lateralus 16 Nov 2026 "the match-clock DOES run during deployment"). The ledger and the shown
+            // clock leave it out: they start at 0 when deployment ends.
+            deployInClock=candidate.Service._isOnline&&config.OnlineDeploySeconds>0&&candidate.Duration>config.OnlineDeploySeconds?config.OnlineDeploySeconds:0;
+            ledger = new Ledger(config, activeName, candidate.Duration-deployInClock);
+            Log("deployment_in_clock",new{native=candidate.Duration,ledger=ledger.Duration,deployInClock});
             if(config.PhasePolicy == "continuous")uiEnabled=true;
             StartSetup(candidate);
             clockOffset=-1;
@@ -218,9 +223,11 @@ public sealed partial class Prototype
         }
         return true;
     }
+    static double deployInClock;
     static bool Observe(View candidate, float remaining)
     {
         if (!Prepare(candidate)) return false;
+        if (deployInClock>0) remaining=(float)Math.Min(remaining,ledger!.Duration);   // the deployment part of the native clock
         if (!float.IsFinite(remaining) || remaining < -5 || remaining > ledger!.Duration + 0.01)
             throw new InvalidOperationException("Unexpected GameMode countdown value");
         ValidateModeFixture();

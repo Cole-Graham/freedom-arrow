@@ -345,7 +345,7 @@ public sealed partial class Prototype
             __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
             __instance._timeText.color=Color.cyan;
             // The native phase bar shows the rounds. It stays hidden during the setup phase, which has the large banner.
-            bool showRound=setupEnds<0;
+            bool showRound=setupEnds<0&&!(view.Service._isOnline&&OnlineSetupLeft()!=null);   // online deployment has the banner too
             foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf!=showRound)root.widget.SetActive(showRound);
             __instance._phaseText.gameObject.SetActive(showRound);
             __instance._phasePeriodProgressImage.gameObject.SetActive(showRound);

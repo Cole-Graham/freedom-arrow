@@ -228,6 +228,30 @@ def conquest_during_deployment(nodes):
     nodes['c'].remove(after)
     nodes['c'].append(dict(a=after['a'],b=start,c=after['c'],d='flow',e=start))
     assert not [c for c in nodes['c'] if c['b']==off],'unpause must lead nowhere now'
+    deployment_in_time_limit(nodes)
+# Lateralus 16 Nov 2026: "the match-clock DOES run during deployment". Online, the room server's match clock runs from the moment
+# conquest starts, which is now the start of the deployment pause. Each setConquestMode gets the deployment minutes added to its time
+# limit (lobby Timer + 3 with the game's calc3 node, as in the native network missions), so 45:00 is left when deployment ends. The
+# runtime (conquest/Mod.cs) holds the shown clock and the FA ledger at 0 elapsed for the deployment.
+def deployment_in_time_limit(nodes):
+    assert deploy_seconds()%60==0,'OnlineDeploySeconds must be whole minutes'
+    extra=deploy_seconds()//60
+    for sc in [b for b in nodes['b'] if b['nnKey']=='setConquestMode']:
+        limit=[c for c in nodes['c'] if c['a']==sc['id'] and c['c']=='TimeLimitMin']
+        if not limit:
+            p=next(p for p in sc['props_v2'] if p['k']=='TimeLimitMin');p['v']=str(int(p['v'])+extra);continue
+        assert len(limit)==1,limit
+        flows=[c for c in nodes['c'] if c['a']==sc['id'] and c['c'].startswith('in')];assert flows,'setConquestMode has no flow input'
+        calc=max(b['id'] for b in nodes['b'])+1
+        nodes['b'].append(dict(v=0,nnKey='calc3',px=sc['px']-300.0,py=sc['py']-250.0,id=calc,rtpt=True,
+            props_v2=[dict(k='B',v=str(extra),t=1),dict(k='Round',v='True',t=3)]))
+        src=limit[0]
+        nodes['c'].remove(src)
+        nodes['c'].append(dict(a=calc,b=src['b'],c='a',d=src['d'],e=src['e']))
+        nodes['c'].append(dict(a=sc['id'],b=calc,c='TimeLimitMin',d='Plus',e=calc))
+        pins={c['c'] for c in flows};assert len(pins)==1,pins
+        for c in flows:c['a']=calc;c['c']='in2'
+        nodes['c'].append(dict(a=sc['id'],b=calc,c=pins.pop(),d='out2',e=calc))
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
     if flavor['kind']==2:conquest_during_deployment(nodes)
