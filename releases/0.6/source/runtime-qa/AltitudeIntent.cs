@@ -24,15 +24,17 @@ namespace FreedomArrow;
 //   {IsChangePending = (AltitudeComponent.GlobalAltitudeLevel != target), TargetAltitude = target}. Cancelling mid-descent writes target High
 //   with IsChangePending false (the level is still High), so sead3, which only took orders from IsChangePending, kept the old Low order.
 // - Helicopters: the ordered mode is HelicopterNavDataComponent.FlyMode (HighAltitude 0, LowAltitude 1), set by AltitudeChangeCommandSystem.
-// Rule (the same for both): every change of the ordered value is a new order. Ordered low but not yet low -> yellow arrow down; ordered high
-// but still low -> yellow arrow up; the order is dropped when the actual state matches it or the order is taken back. Otherwise the game's
-// own icon, original colour and rotation. Local player's own units only. Display only: no orders, data or network.
+// Rule (the same for both): once a unit has an order (a change of the ordered value; a plane's pending order at first sight), the arrow
+// follows ordered vs actual: ordered low but not low -> yellow arrow down; ordered high but still low -> yellow arrow up; when they
+// match, the game's own icon, original colour and rotation. Planes keep following (momentum can carry them out of the low band after
+// a cancelled climb); a helicopter's order ends at its first arrival. Local player's own units only. Display only: no orders, data or network.
 static class AltitudeIntent
 {
     const byte PlaneLow=1,HeliLow=1;
     static readonly Color Yellow=new(1f,0.85f,0.1f,1f);
     sealed class Saved{public GameObject Icon;public Image[] Images;public Color[] Colors;public Quaternion Rotation;}
-    sealed class Track{public byte LastOrder;public sbyte Intent;}   // Intent: +1 down (to low), -1 up (to high), 0 none
+    // Intent: +1 down (to low), -1 up (to high), 0 none. Ordered: an altitude order has been seen for this unit.
+    sealed class Track{public byte LastOrder;public sbyte Intent;public bool Ordered;}
     static readonly Dictionary<ulong,Track> tracks=new();
     static readonly Dictionary<ulong,Saved> changed=new();
     static EntitySet planes,helis;static IntPtr setsWorld;static bool on,broken;static readonly HashSet<string> logged=new();
@@ -83,14 +85,19 @@ static class AltitudeIntent
             if(!tracks.TryGetValue(k,out var t))
             {
                 // First sight: only a plane's still-pending order counts; a helicopter's standing fly mode is not a new order.
-                t=new Track{LastOrder=order,Intent=(sbyte)(plane&&pending&&orderedLow!=actualLow?(orderedLow?1:-1):0)};tracks[k]=t;
+                t=new Track{LastOrder=order,Ordered=plane&&pending};tracks[k]=t;
             }
             else if(order!=t.LastOrder)
             {
-                t.LastOrder=order;t.Intent=(sbyte)(orderedLow!=actualLow?(orderedLow?1:-1):0);
-                Log((plane?"plane":"heli")+"_order_"+(t.Intent>0?"down":t.Intent<0?"up":"none"),new{order,actualLow,pending});
+                t.LastOrder=order;t.Ordered=true;
+                Log((plane?"plane":"heli")+"_order_"+(orderedLow!=actualLow?(orderedLow?"down":"up"):"none"),new{order,actualLow,pending});
             }
-            if(t.Intent>0&&actualLow||t.Intent<0&&!actualLow)t.Intent=0;   // arrived
+            // Lateralus 16 Nov 2026 (dev.26): a climb cancelled while still low showed the orange icon (ordered low, is low), then momentum
+            // carried the plane above the low band and no arrow showed. Once a unit has an order, the arrow follows ordered vs actual all
+            // the time: whenever they differ, the yellow arrow points to the ordered altitude.
+            // Helicopters stop at the first arrival: a landed helicopter can read as low while its fly mode is high.
+            t.Intent=(sbyte)(t.Ordered&&orderedLow!=actualLow?(orderedLow?1:-1):0);
+            if(!plane&&t.Ordered&&orderedLow==actualLow)t.Ordered=false;
             var icon=NativeEcs.Read<UnitLabelComponent>(e).Label?._label?.LowAltitudeIcon;if(icon==null)continue;
             if(t.Intent!=0)Show(k,icon,t.Intent<0,plane);
             else if(changed.ContainsKey(k))Restore(k,actualLow);
