@@ -66,6 +66,7 @@ static class ThirdPartyGuard
         MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue menu names Freedom Arrow {version}");
         SameBuildCode(game);
         OnlyFaMaps(h,game);
+        LobbyMapTabs.Install(h);
     }
 
     // 0.6 dev.16 (Osama, 7 November 2026): players on the same FA build saw different build codes. ArrowQueue hashes every
