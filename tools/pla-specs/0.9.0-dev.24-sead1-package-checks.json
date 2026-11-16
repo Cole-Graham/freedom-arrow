@@ -1,0 +1,40 @@
+{
+  "version": "0.9.0-dev.24-sead1",
+  "build": 197,
+  "previous": "0.9.0-dev.24",
+  "assets_version": "0.2.42",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.42.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev21/FreedomArrow-Assets-0.2.42.bamod",
+    "sha256": "f4fe671fa3907d0acf3448403bc54eca30b7e8a59fc408c7fd8accdac184215a",
+    "size": 6447863070,
+    "files": 10979,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.24-sead1-complete.bamod",
+    "sha256": "4724afcba16bb15706533b953525045e896fd321feaa381c351a60ce7fbf05fe",
+    "size": 6528680432,
+    "files": 11269
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.24-sead1.bamod",
+    "sha256": "a19d9c85e03164a34d3ab343697e3877fbb93320e1dcfc87190f3411b9240bdd",
+    "size": 80817958,
+    "files": 292
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/weapons.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.24-sead1.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

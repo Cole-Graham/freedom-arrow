@@ -1,0 +1,36 @@
+{
+  "version": "0.9.0-dev.24-sead1",
+  "base": "0.9.0-dev.24",
+  "build": 197,
+  "sead_burst": {
+    "weapons": [
+      267,
+      358,
+      395,
+      407,
+      449,
+      542,
+      2016699,
+      2016727,
+      2017632,
+      2017962,
+      2018029,
+      2018455,
+      2019306
+    ],
+    "before": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "TimeBetweenShotsInBurst": 0.0
+    },
+    "after": {
+      "ShotsPerBurstMin": 2,
+      "ShotsPerBurstMax": 2,
+      "TimeBetweenShotsInBurst": 1.0
+    },
+    "timeBetweenBursts": "unchanged (6-8 s planes, 2-5 s helicopters)"
+  },
+  "sead_checks": 53,
+  "intercept_lead": "CramPrediction renamed InterceptLead; native attach retried at 5/15/30/60 s after a failure",
+  "verified": "build checks only; not yet seen in a game"
+}
