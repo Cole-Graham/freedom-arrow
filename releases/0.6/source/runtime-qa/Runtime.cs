@@ -270,7 +270,8 @@ public class Runtime : MelonMod
         ("[FA] [3v3] Baltiisk 0.1","4822100d-5d11-57f9-8d2f-63dfc816e735"),("[FA] [3v3] Baltiisk Skirmish 0.1","f203ec91-e074-5557-a946-ab4eb6fc7bb6"),
         ("[FA] [3v3] Dam 0.1","0286f6b4-b70d-5a15-9bf0-39c4df27fd0e"),("[FA] [3v3] Dam Skirmish 0.1","eff1170e-8014-5993-b0e3-66adee16e306"),
         ("[FA] [2v2] Chkalovsk Airbase 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c007"),("[FA] [2v2] Chkalovsk Airbase Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c008"),
-        ("[FA] [2v2] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003"),("[FA] [2v2] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004")};
+        ("[FA] [2v2] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003"),("[FA] [2v2] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004"),
+        ("[FA] [1v1] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005"),("[FA] [1v1] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c006")};
     static void RemoveRetiredScenarios()
     {
         foreach(var (folder,guid) in RetiredScenarios)

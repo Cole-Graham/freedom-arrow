@@ -18,20 +18,6 @@
   "MaximumSampleLatenessSeconds": 5,
   "ShowOverlay": true,
   "MapZoneWeights": {
-    "[FA] [1v1] Dead Center 0.1": {
-      "38": 2,
-      "39": 2,
-      "40": 2,
-      "41": 3,
-      "42": 3
-    },
-    "[FA] [1v1] Dead Center Skirmish 0.1": {
-      "38": 2,
-      "39": 2,
-      "40": 2,
-      "41": 3,
-      "42": 3
-    },
     "[FA] [5v5] Airport 0.2": {
       "21": 3,
       "22": 2,
@@ -275,6 +261,20 @@
       "159": 4,
       "178": 4,
       "179": 4
+    },
+    "[FA] [1v1] Dead Center 0.2": {
+      "38": 2,
+      "39": 2,
+      "40": 2,
+      "41": 3,
+      "42": 3
+    },
+    "[FA] [1v1] Dead Center Skirmish 0.2": {
+      "38": 2,
+      "39": 2,
+      "40": 2,
+      "41": 3,
+      "42": 3
     }
   },
   "TestDurationSeconds": 0,

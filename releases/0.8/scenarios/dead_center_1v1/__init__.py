@@ -1,7 +1,10 @@
 """[FA] [1v1] Dead Center: authored layout in this package, FA script grafted. Objectives and playable area preserved; red spawn facing and team cameras corrected."""
 import common as C
-NAME='[FA] [1v1] Dead Center 0.1';GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005'
-SKIRMISH_NAME='[FA] [1v1] Dead Center Skirmish 0.1';SKIRMISH_GUID='6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c006'
+import uuid
+# 0.2 (Lateralus 16 Nov 2026): his spawn and playable-zone edits, four new spawns; his spawn facings are kept. 0.1 used fixed GUIDs
+# ...c005/c006 (retired in Runtime.cs).
+NAME='[FA] [1v1] Dead Center 0.2';GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,NAME))
+SKIRMISH_NAME='[FA] [1v1] Dead Center Skirmish 0.2';SKIRMISH_GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,SKIRMISH_NAME))
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
       'the side with the higher zone value scores the difference. First to 300 wins. A B C are worth 2, D E are worth 3. Flat 200 income, no upkeep.')
 LETTERS=dict(A=('Alpha',2),B=('Bravo',2),C=('Charlie',2),D=('Delta',3),E=('Echo',3))
@@ -23,8 +26,6 @@ def prepare(game,spec):
     assert not nodes['b'] and not nodes['c'] and 'pblOpt' not in meta,'authored map has a script now. Check this merge.'
     C.strip_editor_teams(objects,meta)
     prepare_letter_zones(objects,[fl['name'] for fl in spec['flavors']])
-    red=next(o['_uid'] for o in objects if o.get('_type')==3 and o['teamSide']==1)
-    C.face_spawns_to_objectives(objects,red)
     add_start_cameras(game,objects)
     return C.extract_layout(objects),(head,nodes,objects,meta)
 SPEC=dict(
