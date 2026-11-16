@@ -1,0 +1,15 @@
+{
+  "ly1_aps_cooldown": {
+    "ability": 2019443,
+    "cooldown_s": 10.0
+  },
+  "f22_mirror_lit": {
+    "shader": "HDRP/Lit",
+    "mask": "FA_F22_MIRROR_LITMASK.png"
+  },
+  "version": "0.9.0-dev.31",
+  "base": "0.9.0-dev.30",
+  "base_sha256": "b80628d99f151c10d538101c77a310da49ec62d9ecd50e09854c2c84c4d3bd2f",
+  "checks": 4,
+  "verified": "data checks only"
+}
