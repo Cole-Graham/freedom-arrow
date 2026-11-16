@@ -1,16 +1,16 @@
 {
   "v": 3,
-  "author": "Steel Balalaika",
-  "desc": "ui_wargoals_full",
-  "guid": null,
+  "author": "Lateralus",
+  "desc": "Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, the side with the higher zone value scores the difference. First to 300 wins. A B G H I J are worth 4, C D are worth 3, E F are worth 2. Flat 200 income, no upkeep.",
+  "guid": "c8cb9b1f-7d0d-4a93-8753-f1327d363fd3",
   "type": 2,
-  "public": false,
+  "public": true,
   "hasDiff": false,
   "meDiff": 1,
   "sceneName": "Central Village",
   "createdDate": 1664393788,
-  "updatedDate": 1789037379,
-  "scenario": "Central Village_network",
+  "updatedDate": 1794866426,
+  "scenario": "[FA] [2v2] Dead Center 0.1",
   "files": [],
   "teams": [
     {
@@ -106,6 +106,70 @@
       ]
     }
   ],
-  "gameVersion": "1.2.0.2",
+  "pblOpt": [
+    {
+      "id": 69,
+      "name": "ui_lobby_StartMoney_title",
+      "t": 101,
+      "nt": 1,
+      "desc": "ui_lobby_StartMoney_desc",
+      "defV": 1500,
+      "ord": 2,
+      "sld": true,
+      "mnv": 500,
+      "mxv": 1500,
+      "sv": 100
+    },
+    {
+      "id": 70,
+      "name": "ui_lobby_Income_title",
+      "t": 101,
+      "nt": 2,
+      "desc": "ui_lobby_Income_desc",
+      "defV": 300,
+      "ord": 3,
+      "sld": true,
+      "mxv": 600,
+      "sv": 25
+    },
+    {
+      "id": 72,
+      "name": "ui_lobby_Timer_title",
+      "t": 101,
+      "desc": "ui_lobby_Timer_desc",
+      "defV": 45,
+      "ord": 4,
+      "sld": true,
+      "mnv": 30,
+      "mxv": 60,
+      "sv": 3
+    },
+    {
+      "id": 74,
+      "name": "ui_lobby_Size_Title",
+      "t": 102,
+      "desc": "ui_lobby_Size_Description",
+      "drpdV": {
+        "0": "ui_lobby_Size_Auto",
+        "1": "ui_lobby_Size_Large",
+        "2": "ui_lobby_Size_Small"
+      },
+      "ord": 0
+    },
+    {
+      "id": 75,
+      "name": "ui_lobby_Daytime_Title",
+      "t": 102,
+      "desc": "ui_lobby_Daytime_Description",
+      "drpdV": {
+        "0": "ui_set_hangar_morning",
+        "1": "ui_set_hangar_evening",
+        "2": "ui_set_hangar_night",
+        "3": "ui_lobby_random_nation"
+      },
+      "ord": 1
+    }
+  ],
+  "gameVersion": "1.2.2.1",
   "dlc": []
 }
