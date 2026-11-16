@@ -19,6 +19,7 @@ public sealed partial class Prototype
     static int shotLines;
     static bool shotOff,editorBound,shotRunActive;
     static int shotRun;
+    static float nextShotFlush;
     static PropertyInfo editorInstance,editorLaunched,editorMode;
     // Editor Play, offline: ISceneLoadManager says the scenario came from the editor and the editor is not open.
     internal static bool DiagnosticSceneActive=>combatActive;
@@ -37,8 +38,7 @@ public sealed partial class Prototype
             var manager=editorInstance?.GetValue(null);
             if(manager==null||editorLaunched?.GetValue(manager) is not true||editorMode?.GetValue(manager) is not false)return false;
             if(view!=null&&view.Service._isOnline)return false;
-            var runtime=AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a=>a.GetName().Name=="FreedomArrow.Runtime");
-            return runtime?.GetType("FreedomArrow.Runtime")?.GetProperty("IsApplied")?.GetValue(null) is true;
+            return FreedomArrow.Runtime.IsApplied;
         }
         catch(Exception e){editorInstance=null;MelonLogger.Warning("FREEDOM_ARROW_EDITOR_TEST check failed: "+e.Message);return false;}
     }
@@ -65,7 +65,7 @@ public sealed partial class Prototype
             ShotLine("stop",new{run=shotRun,lines=shotLines});shotRunActive=false;
             shotFile?.Flush();MelonLogger.Msg("FREEDOM_ARROW_SHOT_LOG run stopped; session file retained");
         }
-        else shotFile?.Flush();
+        else if(Time.unscaledTime>=nextShotFlush){nextShotFlush=Time.unscaledTime+1f;shotFile?.Flush();}
     }
     static void CloseShotSession()
     {

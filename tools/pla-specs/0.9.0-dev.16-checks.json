@@ -1,0 +1,29 @@
+{
+  "ztz80_stats": {
+    "units": [
+      1061,
+      1260
+    ],
+    "gun": "105 mm rifled",
+    "apfsds": [
+      400,
+      375
+    ],
+    "speed": {
+      "road": [
+        50,
+        72
+      ],
+      "offroad": 45
+    }
+  },
+  "zbd20_cost": [
+    120,
+    130
+  ],
+  "version": "0.9.0-dev.16",
+  "base": "0.9.0-dev.15",
+  "base_sha256": "48d8537e0ade0d8877cff550782cef088f55869fd594894d2c402994b194602f",
+  "checks": 5,
+  "verified": "data checks only"
+}

@@ -22,7 +22,10 @@ public partial class Mod
         ["US_AH-1Z_Viper_Glass"] = "ah1zviper",
         ["US_AH_64_Glass"] = "usah64e",
         ["US_UH-1Y_Glass"] = "usuh1y",
-        ["US_OH58Kiowa_glass"] = "oh58kiowa"
+        ["US_OH58Kiowa_glass"] = "oh58kiowa",
+        // 0.3.33 (Osama 16 Nov 2026: "HHQ-10 needs vanilla glass transplant from another truck"): the Centurion C-RAM truck cab glass.
+        // The HHQ-10 is built on the C-RAM unit, so its stand-in prefab (US_CRAM) and this material are loaded wherever it is.
+        ["US_CRAM_GLASS"] = "uscram"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

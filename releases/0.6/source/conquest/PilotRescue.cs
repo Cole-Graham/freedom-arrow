@@ -24,6 +24,9 @@ public sealed partial class Prototype
     static bool pilotOff;
     static int pilotLogged;
     static readonly HashSet<int> PilotUnits=new(){322,323,324,325,326,327};
+    // 0.9.0-dev.13 (Osama 15 Nov 2026: "Pilots should not be able to be spawned by any of the PLARF planes because they're literally cheaper
+    // than the pilots"). The PLARF planes J-8D 975 (80), J-5 1089 (35), J-6W 1091 (40) and J-7 1092 (60) never eject a pilot (pilots cost 100-120).
+    static readonly HashSet<int> NoPilotPlanes=new(){975,1089,1091,1092};
     static void InstallPilotRescue()
     {
         if(!config.PilotRescue){MelonLogger.Msg("FREEDOM_ARROW_PILOT_RESCUE off in settings.json");return;}
@@ -43,6 +46,7 @@ public sealed partial class Prototype
             var side=owner.TeamSide;
             string name=unit.UnitData?.Name;
             if(__2){PilotLine("fuel_out_no_pilot",name,side,pos,null,null);return false;}
+            if(unit.UnitData!=null&&NoPilotPlanes.Contains(unit.UnitData.Id)){PilotLine("plarf_plane_no_pilot",name,side,pos,null,null);return false;}
             int captured=CapturedZoneCount();
             if(captured==0){PilotLine("no_zones_captured_no_pilot",name,side,pos,null,null);return false;}
             var (own,enemy)=SpawnDistances(pos,side);

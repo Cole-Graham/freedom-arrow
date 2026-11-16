@@ -8,7 +8,9 @@ namespace FreedomArrow.Conquest;
 // return false for wheel input to pass through unit labels. Other camera controls and UI gates remain native.
 public sealed partial class Prototype
 {
-    internal static readonly int[] ZoomCallRvas={0x7B3B19,0x7C0FCB};
+    // BA 1.2.2.1 (16 Nov 2026): both call sites moved by -0x680 with identical bytes (old 0x7B3B19, 0x7C0FCB; found by
+    // surrounding-byte search, twin site 0x7C02B9 -> 0x7BFC39 moved the same). The byte check below still guards every write.
+    internal static readonly int[] ZoomCallRvas={0x7B3499,0x7C094B};
     internal static readonly byte[][] ZoomCallsOld={new byte[]{0xE8,0x12,0x03,0x00,0x00},new byte[]{0xE8,0x70,0x31,0xFF,0xFF}};
     internal static readonly byte[][] ZoomTails={new byte[]{0x84,0xC0,0x0F,0x85,0xAD,0x02,0x00,0x00},new byte[]{0x84,0xC0,0x0F,0x85,0x88,0x00,0x00,0x00}};
     internal static readonly byte[] ZoomCallNew={0x31,0xC0,0x90,0x90,0x90};

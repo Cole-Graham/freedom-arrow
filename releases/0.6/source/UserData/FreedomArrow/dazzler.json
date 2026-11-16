@@ -1,0 +1,30 @@
+{
+  "_about": "ZTZ-99A laser dazzler (Osama 16 Nov 2026): native APS that stops guided interceptable missiles up to reachMeters away; unguided rounds (RPG, recoilless) pass. Read by runtime-qa/Dazzler.cs. 16 Nov 03:2x (Osama \"much brighter and more obvious ... make the beam a lot thicker\"): core 0.12 -> 0.35 m, glow 0.45 -> 1.4 m, 0.35 -> 0.6 s, colours x3 (HDR, above 1 = brighter than white). 03:4x (Osama \"let's set the interception range to 200m\"): reachMeters 100 -> 200. 03:4x (Osama \"replace the 762 gun on the ZTZ ... use the same laser as the aps\"): laserWeapons [2009081] = beam on each LSDW pulse. 03:47 (Osama \"just make it do minimal damage thats fine\"): no zero-damage hook (laserAmmo unset); the pulse does 0.2 damage. 03:5x (Osama): LSDW is a +100 protection option on ZTZ-99A and ZTZ-99 (laser APS 999 charges / 60 s + LSDW laser weapon); laserWeaponNames [\"LSDW\"]; the unit card shows cardIcon instead of the APS icon, without a count.",
+  "units": [
+    904,
+    1083
+  ],
+  "reachMeters": 200,
+  "beam": {
+    "seconds": 0.6,
+    "coreWidth": 0.35,
+    "glowWidth": 1.4,
+    "headHeight": 2.8,
+    "core": [
+      3.0,
+      2.8,
+      2.5,
+      1.0
+    ],
+    "glow": [
+      3.0,
+      0.18,
+      0.06,
+      1.0
+    ]
+  },
+  "laserWeaponNames": [
+    "LSDW"
+  ],
+  "cardIcon": "FA_PLA_ABILITY_LSDW"
+}

@@ -43,8 +43,9 @@ with zipfile.ZipFile(base) as z:
         k=f.relative_to(SRC).as_posix()
         if f.read_bytes()!=z.read(k):override[k]=f.read_bytes()
     for name in ['channel.json','pla-build.json','pla-spec-assignments.json',f'pla-{V}.json']:k='UserData/FreedomArrow/'+name;override[k]=(SRC/k).read_bytes()
-    # nlos.json: NLOS trait list (0.8.0-dev.7). projectile-health.json: interceptable missile HP; spaag-weapons.json: SPAAG card DPS and burst refill (Lateralus missile-hp tests, 15 Nov 2026).
-    for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/plane-refund.json'):
+    # nlos.json: NLOS trait list (0.8.0-dev.7). projectile-health.json: interceptable missile HP; spaag-weapons.json: SPAAG card DPS and burst refill (Lateralus missile-hp tests, 15 Nov 2026). dazzler.json: ZTZ-99A laser dazzler (Osama 16 Nov 2026). plane-refund.json: Lateralus plane sale test (15 Nov 2026), only when present.
+    # compatibility.json: game build pins (BA 1.2.2.1 port, 16 Nov 2026: dev.19 shipped the old GameAssembly pin because this file was carried from the base).
+    for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/dazzler.json','UserData/FreedomArrow/compatibility.json','UserData/FreedomArrow/plane-refund.json'):
         if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
     # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in
     # releases/0.8/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
@@ -83,6 +84,11 @@ with zipfile.ZipFile(base) as z:
     for n,b in override.items():
         if n not in ['mod.json','README.md']:whole['sha256'][n]=H(b)
     whole['core_paths']=sorted(set(whole['core_paths'])|{n for n in override if n.startswith('UserData/FreedomArrow/')})
+    # The runtime refuses the payload unless this set is exactly 257 files plus 0 or 58 battle copies (Runtime.cs;
+    # 0.9.0-dev.13 first failed in game with 315). Keep this in step with that check.
+    inf=[n for n in whole['sha256'] if n in ('Mods/FAModels.dll','UserData/FAModels/infantry-bodies.json') or n.startswith('UserData/FAModels/pla2_')]
+    bc=sum(n.endswith(('_b.fat','_b_n.fat')) for n in inf)
+    assert bc in (0,58) and len(inf)-bc==257,f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58'
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(complete.resolve())],check=True)
     if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(complete.resolve()),*retired_scenarios],check=True)

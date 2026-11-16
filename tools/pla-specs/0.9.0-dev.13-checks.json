@@ -1,0 +1,50 @@
+{
+  "qts11_rifle_damage": {
+    "weapon": 2004004,
+    "ammunition": 2004005,
+    "damage": [
+      1.2,
+      1.5
+    ],
+    "squads": 32
+  },
+  "godswords_cost": {
+    "unit": 1181,
+    "cost": [
+      100,
+      90
+    ]
+  },
+  "conscripts_qbz03": {
+    "unit": 1166,
+    "weapon": 2019303,
+    "ammunition": 2019304,
+    "clone_of": [
+      156,
+      364
+    ],
+    "time_between_shots": 4.0,
+    "damage": [
+      1.2,
+      0.36
+    ],
+    "men": 9,
+    "rounds": 120,
+    "dpm_per_man": [
+      13.5,
+      5.4
+    ]
+  },
+  "ztz59_cost": {
+    "unit": 1060,
+    "cost": [
+      40,
+      55
+    ]
+  },
+  "version": "0.9.0-dev.13",
+  "base": "0.9.0-dev.12",
+  "base_sha256": "956651fbf604ecec1fa88a72607e3bab6e3b9866f1d9bf54bd41510c4cf87852",
+  "checks": 9,
+  "verified": "data checks only"
+}

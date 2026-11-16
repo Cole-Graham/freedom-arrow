@@ -104,6 +104,8 @@ public sealed partial class Prototype
             catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CAMERA_ZOOM_LOCK_FAILED: " + e.Message); }
             try { InstallPilotRescue(); }
             catch (Exception e) { pilotOff = true; LoggerInstance.Error("FREEDOM_ARROW_PILOT_RESCUE_FAILED: " + e.Message); }
+            try { InstallPilotKd(); }
+            catch (Exception e) { pilotKdOff = true; LoggerInstance.Error("FREEDOM_ARROW_PILOT_KD_FAILED: " + e.Message); }
             try { InstallHarmSeeker(); }
             catch (Exception e) { harmOff = true; LoggerInstance.Error("FREEDOM_ARROW_HARM_FAILED: " + e.Message); }
             try { InstallAlertVolume(); }
@@ -141,8 +143,9 @@ public sealed partial class Prototype
     static bool Guarded(GameModeService service)
     {
         if (!ready || faulted || !config.Enabled || service == null) return false;
-        var runtime=AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a=>a.GetName().Name=="FreedomArrow.Runtime");
-        if(runtime?.GetType("FreedomArrow.Runtime")?.GetProperty("IsApplied")?.GetValue(null) is not true)return false;
+        // 0.9.0-dev.13 (perf probe, Osama 15 Nov "optimize our game"): this ran several times a frame and searched every loaded
+        // assembly by name (one AssemblyName object each) to find this same DLL. The conquest code is built into the runtime DLL.
+        if(!FreedomArrow.Runtime.IsApplied)return false;
         if (localGuard == null)
         {
             var type = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "BALocalSkirmish")?.GetType("BALocalSkirmish.Core");

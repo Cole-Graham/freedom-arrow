@@ -28,6 +28,7 @@ public partial class Mod
         public float created = Time.realtimeSinceStartup;
         public readonly HashSet<int> applied = new();
         public readonly HashSet<string> failed = new();
+        public bool done;
     }
     static List<InfantryWeaponRule> weaponRules = new();
     static readonly List<InfantryWeaponView> weaponViews = new();
@@ -59,7 +60,7 @@ public partial class Mod
 
     static void AfterInfantryWeapons(UnitModelInfo unitModel, Il2CppBrokenArrow.DataBase.Models.Units unitData, Il2CppBrokenArrow.Shared.Ecs.MemoryController.IUnitLoadScope scope)
     {
-        if (unitModel != null && unitData != null) QueueBodies(unitModel, unitData.Id);
+        if (unitModel != null && unitData != null) QueueBodies(unitModel, unitData.Id, LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
         if (unitModel != null && unitData != null)
             QueueWeapons(unitModel, unitData.Id, scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null);
     }
@@ -78,6 +79,7 @@ public partial class Mod
         for (int n = weaponViews.Count - 1; n >= 0; n--)
         {
             var view = weaponViews[n];
+            if (view.done) continue;
             if (view.model?.PrefabRootScript == null)
             {
                 if (Time.realtimeSinceStartup - view.created > 30) weaponViews.RemoveAt(n);
@@ -85,6 +87,9 @@ public partial class Mod
             }
             var soldiers = view.model.SquadSolders;
             if (soldiers == null) continue; // Infantry view construction completes asynchronously.
+            // 0.9.0-dev.13 (perf probe): a squad whose weapons are all swapped (or refused) is not scanned again, as 0.3.31 does for
+            // bodies. The scan walked every soldier x every rule and built a key string per pair four times a second for every squad.
+            bool open = false;
             for (int i = 0; i < soldiers.Length; i++)
             {
                 var soldier = soldiers[i];
@@ -93,7 +98,7 @@ public partial class Mod
                 {
                     if (r.unitId != view.unitId || (r.soldierIndex >= 0 && r.soldierIndex != i)) continue;
                     var weapon = r.slot == "special" ? soldier.SpecialWeapon : soldier.PrimaryWeapon;
-                    if (weapon?.WeaponGameObject == null || weapon.Weapon == null) continue;
+                    if (weapon?.WeaponGameObject == null || weapon.Weapon == null) { open = true; continue; }
                     if (r.weaponId > 0 && weapon.Weapon.Id != r.weaponId) continue;
                     var go = weapon.WeaponGameObject;
                     int id = go.GetInstanceID();
@@ -130,7 +135,7 @@ public partial class Mod
                             group.SetLODs(list);
                             group.RecalculateBounds();
                         }
-                        view.applied.Add(id);
+                        view.applied.Add(id); open = true;
                         if(Verbose)MelonLogger.Msg($"FAMODELS weapon applied: unit={view.unitId} soldier={i} slot={r.slot} nativeWeapon={weapon.Weapon.Id} file={e.file}");
                     }
                     catch (Exception ex)
@@ -148,6 +153,7 @@ public partial class Mod
                     }
                 }
             }
+            if (!open && Time.realtimeSinceStartup - view.created > 10f) view.done = true;
         }
     }
 }

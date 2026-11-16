@@ -1,0 +1,416 @@
+{
+  "ea18g": {
+    "unit": 742,
+    "ecm": {
+      "ability": 2019305,
+      "options": [
+        20121,
+        20122
+      ],
+      "copied_from": 2001406,
+      "ECMAccuracyMultiplier": [
+        0.6,
+        0.55
+      ],
+      "ecm_percent": [
+        40,
+        45
+      ]
+    },
+    "harm": {
+      "option": 20116,
+      "cost": [
+        80,
+        0
+      ],
+      "loadout": [
+        "2x AGM-88 HARM",
+        "4x AGM-88 HARM"
+      ],
+      "weapon": 2019306,
+      "pylon": 2019307,
+      "rounds_per_pylon": 2
+    },
+    "base_cost": [
+      210,
+      290
+    ]
+  },
+  "matv_smoke": {
+    "units": [
+      467,
+      714
+    ],
+    "ability": 2000195,
+    "smoke": 1,
+    "as": "Tigr"
+  },
+  "f21_gunslinger": {
+    "unit": 981,
+    "options": {
+      "20302": [
+        60,
+        40
+      ],
+      "20305": [
+        60,
+        40
+      ],
+      "20304": [
+        100,
+        80
+      ]
+    },
+    "screenshot_config": [
+      400,
+      360
+    ],
+    "default_config": 370
+  },
+  "plarf_jets": {
+    "costs": {
+      "1089": [
+        35,
+        45
+      ],
+      "1091": [
+        40,
+        50
+      ],
+      "1092": [
+        60,
+        90
+      ],
+      "975": [
+        80,
+        130
+      ]
+    },
+    "j7_armor": {
+      "row": 2019311,
+      "copied_from": 238,
+      "hp": [
+        20,
+        10
+      ]
+    }
+  },
+  "zsd89a_cost": {
+    "units": [
+      1065,
+      1248,
+      1249,
+      1250
+    ],
+    "cost": [
+      25,
+      40
+    ]
+  },
+  "conscripts_cost": {
+    "unit": 1166,
+    "cost": [
+      25,
+      35
+    ]
+  },
+  "zbd20_hj16_air": {
+    "units": [
+      945,
+      1256
+    ],
+    "rounds": {
+      "2018804": 2019312,
+      "2018867": 2019313
+    },
+    "LowAltRange": [
+      0,
+      650
+    ],
+    "card_m": 1300,
+    "TargetType": [
+      36,
+      44
+    ]
+  },
+  "ztz96b": {
+    "unit": 905,
+    "apfsds": 2009103,
+    "penetration": [
+      [
+        425,
+        450
+      ],
+      [
+        500,
+        525
+      ]
+    ],
+    "cost": [
+      170,
+      220
+    ]
+  },
+  "apfsds_105": {
+    "rounds": {
+      "2009131": [
+        [
+          475,
+          525
+        ],
+        [
+          450,
+          500
+        ]
+      ],
+      "2011301": [
+        [
+          475,
+          525
+        ],
+        [
+          450,
+          500
+        ]
+      ],
+      "2009967": [
+        [
+          325,
+          520
+        ],
+        [
+          450,
+          500
+        ]
+      ]
+    },
+    "units": [
+      "VT-5",
+      "VT-5 Recon",
+      "ZTL-191",
+      "ZTL-191 Recon",
+      "ZTQ-15",
+      "ZTQ-15 Light",
+      "ZTQ-15 Recon"
+    ]
+  },
+  "ztz99a": {
+    "unit": 904,
+    "ke_front": [
+      800,
+      850
+    ],
+    "apfsds": [
+      [
+        500,
+        525
+      ],
+      [
+        500,
+        550
+      ]
+    ]
+  },
+  "zbd20_jammer": {
+    "option": 31094,
+    "copied_from": 31080,
+    "cost": 20,
+    "ecm": 0.3
+  },
+  "mountain_leopards_hj12": {
+    "unit": 1186,
+    "launchers": [
+      1,
+      3
+    ],
+    "missiles_per_man": [
+      2,
+      1
+    ]
+  },
+  "marine_recon": {
+    "unit": 1224,
+    "pf89": {
+      "carriers": 2,
+      "per_man": 2,
+      "total": 4
+    },
+    "cost": [
+      35,
+      45
+    ]
+  },
+  "zbd251_aps": {
+    "option": 31044,
+    "cost": [
+      60,
+      40
+    ]
+  },
+  "airborne_qjy201": {
+    "unit": 1136,
+    "gunners": 2,
+    "from": 2011922,
+    "to": 2012411,
+    "dpm_per_gunner": [
+      74,
+      52
+    ]
+  },
+  "vt5_cost": {
+    "unit": 1261,
+    "cost": [
+      140,
+      160
+    ]
+  },
+  "vt5_availability": {
+    "unit": 1261,
+    "spec20": [
+      6,
+      4
+    ],
+    "spec21": [
+      4,
+      4
+    ]
+  },
+  "ztq15_light_cost": {
+    "unit": 1268,
+    "cost": [
+      120,
+      140
+    ]
+  },
+  "ztq15_roof": {
+    "units": [
+      906,
+      1240,
+      1268
+    ],
+    "lg3_ground_range": [
+      400,
+      500
+    ],
+    "lg3_card_m": [
+      800,
+      1000
+    ],
+    "qjc88": {
+      "weapon": 2009141,
+      "round": 2009145,
+      "rounds": 100,
+      "mount": 2019317
+    }
+  },
+  "z19_cargo": {
+    "unit": 940,
+    "mobility": [
+      258,
+      2018990
+    ],
+    "supply": [
+      1500,
+      0
+    ]
+  },
+  "z19_escort": {
+    "units": [
+      940,
+      1103,
+      1236
+    ],
+    "weapon": 2019323,
+    "pylon": 2019324,
+    "loadout": "8x TY-90, 14x FS-90",
+    "cost": 75
+  },
+  "removed_cards": {
+    "PHL-191 Cruise 1267": 2018956,
+    "ZTZ-96 949 (PLARF)": 2008240
+  },
+  "wz1224": {
+    "unit": 1272,
+    "spec": 19,
+    "cards": 4,
+    "cost": 95,
+    "KE": [
+      500,
+      100,
+      100,
+      60
+    ],
+    "HEAT": [
+      650,
+      200,
+      100,
+      60
+    ],
+    "hp": 14,
+    "speed": [
+      65,
+      41
+    ],
+    "apfsds": [
+      450,
+      425
+    ],
+    "basis": "estimate from WZ-1224 history; not tested"
+  },
+  "hhq10": {
+    "unit": 1273,
+    "spec": 20,
+    "cards": 2,
+    "cost": 220,
+    "missiles": 18,
+    "from": "Centurion C-RAM 250 SeaRAM turret, no gun"
+  },
+  "vn20": {
+    "unit": 1274,
+    "spec": 18,
+    "cards": 2,
+    "cost": 250,
+    "troops": 14,
+    "speed": {
+      "road": 65,
+      "offroad": 41,
+      "reverse": 30
+    },
+    "ability": {
+      "id": 2019369,
+      "smoke": true,
+      "ecm": 0.3,
+      "aps": 0
+    },
+    "weapons": [
+      "2A72 30 mm",
+      "2A70 100 mm HE only",
+      "HJ-12 x2"
+    ]
+  },
+  "md22_light_strike": {
+    "option": 31010,
+    "cost": [
+      75,
+      20
+    ]
+  },
+  "y8_unarmed": {
+    "unit": 1102,
+    "removed_slots": [
+      2016020,
+      2016021
+    ],
+    "cost": 100
+  },
+  "mixed_strike_4x_akf98a": {
+    "J-35": 31084,
+    "J-31": 31083,
+    "J-20S": 31082
+  },
+  "version": "0.9.0-dev.14",
+  "base": "0.9.0-dev.13",
+  "base_sha256": "c7f008ed05fa78b2d85c35d38584409cbb106eb331ec11d4b232595b3f477a9c",
+  "checks": 98,
+  "verified": "data checks only"
+}

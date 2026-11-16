@@ -33,6 +33,7 @@ static class PlaneSale
     static readonly object Gate=new();
     static readonly List<Payout> payouts=new();
     static TextMeshProUGUI label;static MainShopButtonUI labelOwner;
+    public static int Active=>payouts.Count;
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
         var file=Path.Combine(root,"plane-refund.json");if(!File.Exists(file))return;

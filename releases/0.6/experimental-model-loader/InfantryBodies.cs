@@ -9,13 +9,17 @@ public partial class Mod
     class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} }
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
-    class BodyView { public UnitModelInfo model; public int unitId; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; }
+    class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; public bool done; }
     class BodyMesh { public Mesh mesh; public Material[] materials; public BodyMesh(Mesh m,Material[] a){mesh=m;materials=a;} }
     static List<BodyRule> bodyRules=new();
     static readonly List<BodyView> bodyViews=new();
     static readonly Dictionary<string,BodyMesh> bodyCache=new();
     static readonly Dictionary<int,Dictionary<int,int>> lodLevels=new();
     static float bodyPoll;
+    // 0.3.31 (Osama 15 Nov: the China game had about 3x the slow frames of a vanilla game at the same stage). The 1.6 cm body offset moved a
+    // helper on every bone of every China soldier every frame (OnLateUpdate), tens of thousands of engine calls per frame in a 5v5. It is off
+    // unless UserData/FAModels/body-offset-on.txt exists; bodies then sit on the native bones (the offset is 1.6 cm, 0.3 cm on 43 rules).
+    static bool bodyOffsetsOn;
     static void LoadBodyRules()
     {
         var file=Path.Combine(dir,"infantry-bodies.json"); if(!File.Exists(file))return;
@@ -26,18 +30,18 @@ public partial class Mod
                 if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
                 foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
             }
-            bodyRules=rules;MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
+            bodyRules=rules;bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
         } catch(Exception e){bodyRules.Clear();MelonLogger.Error("FAMODELS body rules rejected: "+e.Message);}
     }
-    static void QueueBodies(UnitModelInfo model,int unitId)
+    static void QueueBodies(UnitModelInfo model,int unitId,bool battle)
     {
         if(model==null || !bodyRules.Any(r=>r.unitId==unitId) || bodyViews.Any(v=>v.model==model))return;
-        bodyViews.Add(new BodyView{model=model,unitId=unitId});
+        bodyViews.Add(new BodyView{model=model,unitId=unitId,battle=battle});
     }
     static Il2CppReferenceArray<Transform> OffsetBodyBones(SkinnedMeshRenderer renderer,BodyRule rule)
     {
         var baseOffset=new Vector3(rule.offset[0],rule.offset[1],rule.offset[2]);
-        var bones=renderer.bones;if(baseOffset.sqrMagnitude==0)return bones;
+        var bones=renderer.bones;if(baseOffset.sqrMagnitude==0||!bodyOffsetsOn)return bones;
         var result=new Transform[bones.Length];
         for(int i=0;i<bones.Length;i++) {
             var bone=bones[i];if(bone==null)continue;
@@ -78,7 +82,16 @@ public partial class Mod
     class ParsedSub { public string tex=""; public Vector3[] pos=Array.Empty<Vector3>(); public Vector3[] nrm=Array.Empty<Vector3>(); public Vector2[] uv=Array.Empty<Vector2>(); public int[][] bi=Array.Empty<int[]>(); public float[][] bw=Array.Empty<float[]>(); public int[] idx=Array.Empty<int>(); }
     class ParsedBody { public string[] bones=Array.Empty<string>(); public ParsedSub[] subs=Array.Empty<ParsedSub>(); }
     static readonly Dictionary<string,ParsedBody> parsedBodies=new();
-    static Material BodyMat(string tex)=>Mat(tex,new Color(1,1,1,1),new MatP{metallic=0,smoothness=.25f});
+    // 0.3.30 (Osama 15 Nov: "can't we have armory and battle bodies for infantry? ... we need to optimize performance"): in a
+    // battle a body uses the battle copy of its texture, X_b (with X_b_n and X_b_mask), when the package has one; the armory keeps
+    // X. The battle copies are the same GPU textures one mip level down (2048 -> 1024), about vanilla soldier weight.
+    static string BodyTex(string tex,bool battle)
+    {
+        if(!battle)return tex;
+        var b=Path.GetFileNameWithoutExtension(tex)+"_b"+Path.GetExtension(tex);
+        return TexExists(b)?b:tex;
+    }
+    static Material BodyMat(string tex,bool battle)=>Mat(BodyTex(tex,battle),new Color(1,1,1,1),new MatP{metallic=0,smoothness=.25f});
     static ParsedBody ParseBody(string file)
     {
         if(parsedBodies.TryGetValue(file,out var done))return done;
@@ -108,13 +121,13 @@ public partial class Mod
         parsedBodies[file]=body;return body;
     }
     // Before the match: read the body file and make its materials (GPU textures), so the first squad of a type does no file work.
-    static void PreloadBody(string file){var b=ParseBody(file);foreach(var sub in b.subs)BodyMat(sub.tex);}
+    static void PreloadBody(string file){var b=ParseBody(file);foreach(var sub in b.subs)BodyMat(sub.tex,true);}
     static List<string> BodyFiles(int unitId){var l=new List<string>();foreach(var r in bodyRules)if(r.unitId==unitId)l.AddRange(r.lods);return l;}
-    static BodyMesh ReadBody(string file,SkinnedMeshRenderer native)
+    static BodyMesh ReadBody(string file,SkinnedMeshRenderer native,bool battle)
     {
         var original=native.sharedMesh;
         // Cache only when bind matrices and native bone ordering are identical via the original mesh ID.
-        string key=file+":"+original.GetInstanceID()+":"+string.Join(",",native.bones.Select(b=>b==null?"?":b.name));
+        string key=file+(battle?":battle:":":")+original.GetInstanceID()+":"+string.Join(",",native.bones.Select(b=>b==null?"?":b.name));
         // 0.3.17: the game unloads unused assets between scenes; a destroyed cached mesh or material made every later body
         // apply throw (Mesh.vertexCount NullReferenceException) and fall back to the native body. Rebuild when destroyed.
         if(bodyCache.TryGetValue(key,out var cached)) {
@@ -140,7 +153,7 @@ public partial class Mod
             }
             pos.AddRange(sub.pos);normals.AddRange(sub.nrm);uv.AddRange(sub.uv);
             var ix=new int[sub.idx.Length];for(int k=0;k<ix.Length;k++)ix[k]=sub.idx[k]+start;indices.Add(ix);
-            materials.Add(BodyMat(sub.tex));
+            materials.Add(BodyMat(sub.tex,battle));
         }
         var mesh=new Mesh{name="FAM_BODY_"+file,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32,hideFlags=HideFlags.DontUnloadUnusedAsset};
         mesh.vertices=new Il2CppStructArray<Vector3>(pos.ToArray());mesh.normals=new Il2CppStructArray<Vector3>(normals.ToArray());mesh.uv=new Il2CppStructArray<Vector2>(uv.ToArray());mesh.boneWeights=new Il2CppStructArray<BoneWeight>(weights.ToArray());mesh.bindposes=original.bindposes;mesh.subMeshCount=ns;
@@ -160,6 +173,7 @@ public partial class Mod
         for(int v=bodyViews.Count-1;v>=0;v--) {
             var view=bodyViews[v];
             if(young && now-view.created>5f)continue;
+            if(view.done)continue;
             if(view.model?.PrefabRootScript==null){if(Time.realtimeSinceStartup-view.created>30)bodyViews.RemoveAt(v);continue;}
             var rule=bodyRules.First(r=>r.unitId==view.unitId);
             var soldiers=view.model.SquadSolders;if(soldiers==null)continue;
@@ -176,10 +190,14 @@ public partial class Mod
             if(Time.realtimeSinceStartup-view.lastDiagnostic>10 && view.applied.Count==0) {
                 view.lastDiagnostic=Time.realtimeSinceStartup;MelonLogger.Msg($"FAMODELS body scan unit={view.unitId} soldiers={soldiers.Length} skins={candidates.Count} applied={view.applied.Count} failed={view.failed.Count}");
             }
+            // 0.3.31: a squad whose every soldier renderer is swapped (or refused) is not scanned again; the scan re-read each soldier's
+            // renderers and bone arrays four times a second for every China squad of the match.
+            if(!young && candidates.Count>0 && now-view.created>10f && candidates.All(c=>c.renderer!=null&&(view.applied.Contains(c.renderer.GetInstanceID())||view.failed.Contains(c.renderer.GetInstanceID())))){view.done=true;continue;}
             foreach(var candidate in candidates) {
                 var renderer=candidate.renderer;
-                if(renderer==null||renderer.sharedMesh==null||renderer.bones.Length<1)continue;
+                if(renderer==null)continue;
                 int id=renderer.GetInstanceID();if(view.applied.Contains(id)||view.failed.Contains(id))continue;
+                if(renderer.sharedMesh==null||renderer.bones.Length<1)continue;
                 if(renderer.sharedMesh.name.StartsWith("FAM_BODY_")){view.applied.Add(id);continue;}
                 if(hideOnly){renderer.forceRenderingOff=true;continue;}
                 // Use the game's actual LODGroup membership, not a guessed renderer ordering.
@@ -196,7 +214,7 @@ public partial class Mod
                 if(level<0){renderer.forceRenderingOff=false;view.failed.Add(id);MelonLogger.Warning($"FAMODELS body skipped unknown LOD {renderer.name}; native mesh retained");continue;}
                 var oldMesh=renderer.sharedMesh;var oldMats=renderer.sharedMaterials;var oldBounds=renderer.localBounds;var oldBones=renderer.bones;
                 try {
-                    var body=ReadBody(rule.lods[level],renderer);
+                    var body=ReadBody(rule.lods[level],renderer,view.battle);
                     renderer.sharedMaterials=new Il2CppReferenceArray<Material>(body.materials);renderer.sharedMesh=body.mesh;
                     renderer.bones=OffsetBodyBones(renderer,rule);
                     // Conservative local bounds for first deformation test; native LOD and visibility logic stays in place.
