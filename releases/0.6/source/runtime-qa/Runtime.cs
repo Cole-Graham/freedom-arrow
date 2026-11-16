@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() => conquest?.OnUpdate();
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -177,6 +177,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
         try { TurretDiag.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
+        try { MirrorSkin.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MIRROR_SKIN_FAILED: not installed; mirror finishes show the normal skin. "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DAZZLER_FAILED: not installed; ZTZ-99A APS is a vanilla point-blank APS. "+e.Message); }
         try { PlaneSale.Install(HarmonyInstance,Root); }

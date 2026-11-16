@@ -1,0 +1,14 @@
+{
+  "note": "Mirror-finish skins chosen by a loadout option (MirrorSkin.cs). Materials whose name starts with prefix get albedo and mask; floats scale the mask (UnitV3: mask R metallic, A smoothness; mirror paint 1.0, other areas 0.5). Re-read every 2 s while the game runs.",
+  "skins": [
+    {
+      "unit": "F-22 Raptor",
+      "options": ["F22 Mirror finish"],
+      "prefix": "US_F22 ",
+      "exclude": ["Glass"],
+      "albedo": "FA_F22_MIRROR_ALBEDO.png",
+      "mask": "FA_F22_MIRROR_MASK.png",
+      "floats": {"_Metal": 2.0, "_Smoothness": 1.8}
+    }
+  ]
+}
