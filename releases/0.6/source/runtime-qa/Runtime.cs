@@ -63,6 +63,7 @@ public class Runtime : MelonMod
         AaCooldown.LateUpdate();
         SpaagWeapons.LateUpdate();
         SameUnitClaim.LateUpdate();
+        SeadOverkill.LateUpdate();
         Dazzler.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
@@ -78,6 +79,7 @@ public class Runtime : MelonMod
         AaCooldown.SceneChanged();
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
+        SeadOverkill.SceneChanged();
         Dazzler.SceneChanged();
         AltitudeIntent.SceneChanged();
         PlayableBorders.SceneChanged();
@@ -167,6 +169,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
         try { SameUnitClaim.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
+        try { SeadOverkill.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SEAD_OVERKILL_FAILED: not installed; vanilla SEAD overkill (0.99). "+e.Message); }
         try { TurretDiag.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
