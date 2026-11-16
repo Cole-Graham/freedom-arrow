@@ -79,6 +79,7 @@ public class Runtime : MelonMod
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
         Dazzler.SceneChanged();
+        AltitudeIntent.SceneChanged();
         PlayableBorders.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
@@ -170,6 +171,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DAZZLER_FAILED: not installed; ZTZ-99A APS is a vanilla point-blank APS. "+e.Message); }
+        try { AltitudeIntent.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALTITUDE_INTENT_FAILED: not installed; the game's own altitude icon. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }
