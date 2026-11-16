@@ -25,7 +25,8 @@ namespace FreedomArrow;
 // its immediately following matching native projectile lead may change.
 internal static unsafe class CramPrediction
 {
-    const string GameHash="12e7088369539b029a7bf0064062ce030a53b5189e7067420903f47b4281fddf";
+    // BA 1.2.2.1 (build 26627577, 16 Nov 2026): game code rebuilt; was 12e70883 (build 26273833).
+    const string GameHash="007c019575fabcf16748fcdc02052d3bb2571757b8bfd8c69b05508eaf022cc1";
     // Lateralus missile-hp batch (15 Nov 2026): the old 1,000-sample log ended at ~105-138 s, before the Tunguska salvos. Every eligible
     // lead call (applied or fallback, with its reason) is now logged in a compact line, up to 12,000 per session.
     const int MaxTargets=128,MaxSamples=12000;
