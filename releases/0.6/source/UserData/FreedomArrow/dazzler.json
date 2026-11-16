@@ -1,0 +1,6 @@
+{
+  "_about": "ZTZ-99A laser dazzler (Osama 16 Nov 2026): native APS that stops guided interceptable missiles up to reachMeters away; unguided rounds (RPG, recoilless) pass. Read by runtime-qa/Dazzler.cs.",
+  "units": [904],
+  "reachMeters": 100,
+  "beam": {"seconds": 0.35, "coreWidth": 0.12, "glowWidth": 0.45, "headHeight": 2.8, "core": [1.0, 0.92, 0.8, 1.0], "glow": [1.0, 0.06, 0.02, 0.75]}
+}

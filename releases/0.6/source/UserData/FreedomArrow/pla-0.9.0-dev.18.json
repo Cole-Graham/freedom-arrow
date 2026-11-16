@@ -1,0 +1,21 @@
+{
+  "ztz99a_dazzler": {
+    "unit": 904,
+    "ability": 2009067,
+    "aps": {
+      "charges": 2,
+      "cooldown": 10.0,
+      "hitbox": 1.0
+    },
+    "runtime": "Dazzler.cs + dazzler.json (100 m, guided only, red beam)"
+  },
+  "models_sharpened": {
+    "files": 62,
+    "angle": 45
+  },
+  "version": "0.9.0-dev.18",
+  "base": "0.9.0-dev.17",
+  "base_sha256": "2deda2985cf2231e8c88abd26cebaf1df2fa8dd7486614675e11c81637a85caa",
+  "checks": 4,
+  "verified": "data checks only"
+}

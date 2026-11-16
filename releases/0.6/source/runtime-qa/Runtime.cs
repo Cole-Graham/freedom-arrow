@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.17", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.0-dev.18", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -63,6 +63,7 @@ public class Runtime : MelonMod
         AaCooldown.LateUpdate();
         SpaagWeapons.LateUpdate();
         SameUnitClaim.LateUpdate();
+        Dazzler.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
@@ -77,6 +78,7 @@ public class Runtime : MelonMod
         AaCooldown.SceneChanged();
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
+        Dazzler.SceneChanged();
         PlayableBorders.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
@@ -164,6 +166,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
         try { SameUnitClaim.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
+        try { Dazzler.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DAZZLER_FAILED: not installed; ZTZ-99A APS is a vanilla point-blank APS. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }
