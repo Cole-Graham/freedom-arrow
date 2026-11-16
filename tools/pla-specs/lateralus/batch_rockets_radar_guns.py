@@ -5,7 +5,7 @@ Applies over any 0.8 complete package (--base). Each change first checks the val
 changed the same field stops this script instead of being overwritten. Writes the constants into releases/0.6/source and
 tools/pla-specs/lateralus/batch-rockets-radar-guns-checks.json. A dev build then packages them as usual.
 
-Radar guns: the mod's prediction (CramPrediction) and overkill gate (AaCooldown) select guns by data (weapon Type 115, or
+Radar guns: the mod's prediction (InterceptLead, called CramPrediction before 16 Nov 2026) and overkill gate (AaCooldown) select guns by data (weapon Type 115, or
 114 with IsRadarDependent; ammo TrajectoryType 10, Seeker 0, a projectile target bit). All 27 Chinese units with such a gun
 already qualify in 0.8.0-dev.92. The 0.7 rule also gives every projectile-defence gun round MuzzleVelocity 1610; four
 Chinese rounds were still at the vanilla 805.
