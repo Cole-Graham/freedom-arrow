@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[3];REL=ROOT/'releases/0.6';SRC=REL/'source
 sys.path[:0]=[str(ROOT),str(Path(__file__).parent)]
 from pipeline.tables import FIELD_TO_FILE
 import sead_burst,spaag_sead_data
-PREV='0.9.0-dev.24';V=PREV+'-sead4';BUILD=197   # sead2: + the SPAAG/SAM data missing from dev.13-dev.24; sead3: + altitude intent arrow
+PREV='0.9.0-dev.24';V=PREV+'-sead5';BUILD=197   # sead2: + the SPAAG/SAM data missing from dev.13-dev.24; sead3: + altitude intent arrow
 SHARED=ROOT.parent/'pla-hotfix39-worktree/releases/0.6/out/local-dev24';base=SHARED/f'FreedomArrow-{PREV}-complete.bamod'
 VAN=ROOT.parent/'lateralus-infantry-20261110/vanilla'
 PY='/home/sam/tars/work/ba-dev/replicas/codex/work/freedom-arrow/.venv/bin/python'
@@ -38,7 +38,7 @@ try:
         wn='UserData/FreedomArrow/constants/'+FIELD_TO_FILE[tab]
         (SRC/wn).write_bytes((json.dumps(patches[tab],indent=2,ensure_ascii=z.read(wn).isascii())+'\n').encode())
     m=json.loads((REL/'mod.json').read_text());assert m['version']==PREV
-    m['version']=V;m['description']=f'{V}: TEST BUILD for Lateralus, {PREV} plus: the Lateralus SPAAG/SAM vs SEAD data (bursts, gun damage, SAM pauses; missing from dev.13-dev.24), SEAD missiles (planes and helicopters) fire in bursts of 2, 1.0 s apart; own planes and helicopters show a yellow altitude arrow (down or up) while an altitude order is under way; SEAD overkill multiplier 0.33 (up to 4 SEAD missiles in flight per target); the missile-defence gun lead correction is renamed Intercept Lead (logs intercept_lead_*) and retries its hook if Windows refuses it at startup. '+m['description']
+    m['version']=V;m['description']=f'{V}: TEST BUILD for Lateralus, {PREV} plus: the Lateralus SPAAG/SAM vs SEAD data (bursts, gun damage, SAM pauses; missing from dev.13-dev.24), SEAD missiles (planes and helicopters) fire in bursts of 2, 1.0 s apart; own planes and helicopters show a yellow altitude arrow (down or up) while an altitude order is under way; SEAD overkill multiplier 0.33 (up to 4 SEAD missiles in flight per target); SEAD missiles switch to another radar that is on when their radar dies; the missile-defence gun lead correction is renamed Intercept Lead (logs intercept_lead_*) and retries its hook if Windows refuses it at startup. '+m['description']
     (REL/'mod.json').write_text(enc(m))
     c=json.loads((FA/'channel.json').read_text());c['package_version']=V;(FA/'channel.json').write_text(enc(c))
     b=json.loads((FA/'pla-build.json').read_text());b.update(build=BUILD,label='Freedom Arrow '+V);(FA/'pla-build.json').write_text(enc(b))
