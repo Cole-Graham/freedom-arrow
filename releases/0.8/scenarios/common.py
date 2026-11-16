@@ -214,8 +214,18 @@ def check_slots(name,objects,meta):
 def check_limit(name,desc):
     limit=settings()['ScoreLimit']
     assert name not in settings().get('MapScoreLimits',{}) and f'First to {limit} wins' in desc,(name,f'every FA map ends at {limit}: no MapScoreLimits entry, and the description says so')
+# Lateralus 16 Nov 2026: "during the deployment time you can't see the zone values, nor can you see the players and objective details at
+# the top of the screen". The online script was start -> pause -> wait -> unpause -> setConquestMode (and the rest), so the conquest mode,
+# its top bar and our zone values only appeared after deployment. The rest of the script now starts with the pause, as on F8 Skirmish
+# (where the runtime pauses after the mode exists); the pause, wait and unpause stay as they are.
+def conquest_during_deployment(nodes):
+    start,on,wait,off,after=deployment(nodes)
+    nodes['c'].remove(after)
+    nodes['c'].append(dict(a=after['a'],b=start,c=after['c'],d='flow',e=start))
+    assert not [c for c in nodes['c'] if c['b']==off],'unpause must lead nowhere now'
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
+    if flavor['kind']==2:conquest_during_deployment(nodes)
     check_limit(flavor['name'],spec['desc'])
     for o in objects:
         if o.get('_type')==15:o['capTime']=CAPTURE_SECONDS

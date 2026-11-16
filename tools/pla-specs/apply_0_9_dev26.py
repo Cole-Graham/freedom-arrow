@@ -36,6 +36,9 @@ coll=MLS.slot_collisions(U,M,O,AB,avail);ok(not coll,f'no unit has two modificat
 # FAConquestPrototype/settings.json); Central Village 1v1 removed from make_scenario.py and settings, and the installed copies retired
 # by GUID in runtime-qa/Runtime.cs. [1v1] Chernyakhovsky 0.1 is replaced by Lateralus's new design (same name and GUID; A B 2, D E 3, C F 4). No table changes; the packager rebuilds the scenarios and drops the removed ones.
 # Create a lobby tabs 1v1 / 2v2 / 3v3 / 5v5 (Lateralus 16 Nov 2026): runtime only, runtime-qa/LobbyMapTabs.cs (patches ArrowQueue's map window).
+# Deployment (Lateralus 16 Nov 2026): the online conquest mode starts with the deployment pause, so the top bar and zone values show during
+# deployment (scenarios/common.py conquest_during_deployment); the DEPLOYMENT banner waits for RoomStatus.InProcess, not the map preview
+# screen; zone values and banners hide while the Escape menu or settings are open (conquest/NativeUi.cs). Runtime and scenarios only.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

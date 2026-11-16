@@ -129,25 +129,63 @@ public sealed partial class Prototype
         GUI.contentColor=Color.black;GUI.Label(new Rect(2,y+2,Screen.width,h),text,bannerStyle);
         GUI.contentColor=Color.white;GUI.Label(new Rect(0,y,Screen.width,h),text,bannerStyle);
     }
+    // Lateralus 16 Nov 2026: the DEPLOYMENT banner started on the "BATTLE STARTS IN" map preview screen, which is paused too. Read from
+    // GameAssembly 6000.3.24f1 (GameModeService.OnlineTick 0x441430): the room server's NetworkRoomService.State.Status is 0/1 while players
+    // connect, 10 (RoomStatus.DeploymentPhase) on that preview screen, and 20 (InProcess) once the battle runs. Our deployment is the
+    // scenario script's pause inside the battle, so the banner runs only at InProcess.
+    static string lastRoomStatus;
+    static bool BattleRunning()
+    {
+        Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Client.Ecs.GameMode.GameModeService>(out var service,false);
+        var status=service?._networkRoomService?.State?.Status;
+        string state=status?.ToString()??"none";
+        if(state!=lastRoomStatus){lastRoomStatus=state;Log("online_room_status",new{status=state,t=Time.unscaledTime});}
+        return status==RoomStatus.InProcess;
+    }
+    // Seconds of the online deployment pause left, or null. From 16 Nov 2026 the conquest mode starts with the pause (scenarios/common.py
+    // conquest_during_deployment), so this also runs while the mode and its labels are up.
+    static double? OnlineSetupLeft()
+    {
+        if(economyOnlineGuard?.Invoke()!=true||GameController.Instance?.GameSession?.IsPaused!=true
+            ||!config.MapZoneWeights.ContainsKey(Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name??"")
+            ||!BattleRunning()){onlineSetupStart=-1;return null;}
+        if(onlineSetupStart<0){onlineSetupStart=Time.unscaledTime;Log("online_setup_banner_started",new{t=onlineSetupStart,config.OnlineDeploySeconds,modeUp=view!=null,
+            elapsed=ledger?.Elapsed});}
+        double left=config.OnlineDeploySeconds-(Time.unscaledTime-onlineSetupStart);
+        return left>0?left:null;
+    }
     static void DrawOnlineSetup()
     {
-        if(view!=null||economyOnlineGuard?.Invoke()!=true||GameController.Instance?.GameSession?.IsPaused!=true
-            ||!config.MapZoneWeights.ContainsKey(Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name??"")){onlineSetupStart=-1;return;}
-        if(onlineSetupStart<0)onlineSetupStart=Time.unscaledTime;
-        double left=config.OnlineDeploySeconds-(Time.unscaledTime-onlineSetupStart);
-        if(left>0)DrawBanner(Settings.SetupBanner(left),Math.Max(16,Screen.height/38));
+        if(OnlineSetupLeft() is double left)DrawBanner(Settings.SetupBanner(left),Math.Max(16,Screen.height/38));
     }
     static void DrawRoundBanner()
     {
         if(ledger==null||view==null||view.Pointer!=labelView.Pointer)return;
-        string setup=setupEnds>=0?Settings.SetupBanner(setupEnds-Time.unscaledTime):null;
+        string setup=setupEnds>=0?Settings.SetupBanner(setupEnds-Time.unscaledTime)
+            :view.Service._isOnline&&OnlineSetupLeft() is double left?Settings.SetupBanner(left):null;
         string text=setup??config.RoundAnnouncement(ShownElapsed());
         if(text==null)return;
         DrawBanner(text,Math.Max(setup!=null?16:12,Screen.height/(setup!=null?38:64)));
     }
+    // Lateralus 16 Nov 2026: the zone values stayed on screen over the Escape menu. Nothing of ours draws while it (or the settings it
+    // opens) is up. EscapeMenu.IsActive is the game's own flag; the settings screen is looked up at most once a second.
+    static float menuCheckedAt=-10;static bool settingsOpen,menuLogged;
+    static bool MenuOpen()
+    {
+        if(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu.IsActive)return true;
+        if(Time.unscaledTime-menuCheckedAt>=1f)
+        {
+            menuCheckedAt=Time.unscaledTime;
+            var settings=UnityEngine.Object.FindObjectOfType<Il2CppBrokenArrow.Client.Ecs.UI.Menu.Settings.SettingsScreen>();
+            settingsOpen=settings!=null&&settings.gameObject.activeInHierarchy;
+        }
+        return settingsOpen;
+    }
     public void OnGUI()
     {
         DrawVersionLabel();
+        try{if(MenuOpen()){if(!menuLogged){menuLogged=true;Log("overlay_hidden_for_menu",new{});}return;}}
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_MENU_CHECK_FAILED: "+e.Message);}
         if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)
         {
             // A banner fault must not stop the match.
