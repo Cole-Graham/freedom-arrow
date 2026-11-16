@@ -1,0 +1,40 @@
+{
+  "version": "0.9.0-dev.21-planes4",
+  "build": 194,
+  "previous": "0.9.0-dev.21",
+  "assets_version": "0.2.42",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.42.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev21/FreedomArrow-Assets-0.2.42.bamod",
+    "sha256": "f4fe671fa3907d0acf3448403bc54eca30b7e8a59fc408c7fd8accdac184215a",
+    "size": 6447863070,
+    "files": 10979,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.21-planes4-complete.bamod",
+    "sha256": "84beb1e20ef7634f6d6b196105f2f82a8343520e32e3d2b38fa5b69015f2ce8d",
+    "size": 6528683695,
+    "files": 11267
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.21-planes4.bamod",
+    "sha256": "ce137c79a847ed448c141db944618a7ed6c8cbb54b8ad0a931f2f75cb9e19167",
+    "size": 80821221,
+    "files": 290
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.21-planes4.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "UserData/FreedomArrow/plane-refund.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
