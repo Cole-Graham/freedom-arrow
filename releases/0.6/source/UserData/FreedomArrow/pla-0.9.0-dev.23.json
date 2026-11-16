@@ -1,0 +1,14 @@
+{
+  "lsdw_child_turret": {
+    "main_copies": [
+      2019389,
+      2019395
+    ],
+    "note": "laser on a child turret of the main-mount copy; options use slot 0 only"
+  },
+  "version": "0.9.0-dev.23",
+  "base": "0.9.0-dev.22",
+  "base_sha256": "82df00be1ce334321eb2062743aa215a6f3bc8c7b35ab1ad0841d4ac9f2926d9",
+  "checks": 8,
+  "verified": "data checks only"
+}
