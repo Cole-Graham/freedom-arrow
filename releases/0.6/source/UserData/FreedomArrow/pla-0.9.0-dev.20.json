@@ -1,0 +1,13 @@
+{
+  "port": {
+    "game": "1.2.2.1",
+    "steam_build": 26627577,
+    "game_assembly": "007c019575fabcf16748fcdc02052d3bb2571757b8bfd8c69b05508eaf022cc1",
+    "tables": "unchanged (24 plaintext pins match)"
+  },
+  "version": "0.9.0-dev.20",
+  "base": "0.9.0-dev.19",
+  "base_sha256": "2732d7dd90baa1c35aafd259834a23f1d412539ffa9cfc31e4e4d20c7befa1aa",
+  "checks": 1,
+  "verified": "data checks only"
+}
