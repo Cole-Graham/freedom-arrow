@@ -54,6 +54,28 @@ _sym=[o['Id'] for o in t['OptionsJson'].values() if o.get('Name')=='F22 Mirror f
 g.put('OptionsJson',_sym[0],{'UIName':'Symbiote coating','ReplaceUnitName':'F-22 Symbiote'})
 ok((t['OptionsJson'][_sym[0]]['UIName'],t['OptionsJson'][_sym[0]]['ReplaceUnitName'],t['OptionsJson'][_sym[0]]['Name'])==('Symbiote coating','F-22 Symbiote','F22 Mirror finish'),'Symbiote coating renames the unit F-22 Symbiote')
 rec['f22_symbiote']={'option':_sym[0],'ui_name':'Symbiote coating','unit_name':'F-22 Symbiote'}
+# ---------- J-20 / J-20S turn like the F-35 (Osama 16 Nov 2026 14:2x PST, thread 1567745029781454889: "J-20's should have the same turn radius as the
+# F-35, in game displays 985", "both variants"). Card radius (fighter-turn-20261110: AircraftHelper.GetRotationRadius) = floor(round(2 x MaxSpeed x
+# (1 + 1/tan MaxSpeedYaw))/5) x 5: F-35 preset 17 (225, 40 deg) = 985; J-20/J-20S mobility 31 "Plane Su57" with FA preset 2001429 (250, 82.5 deg)
+# = 565. Mobility 31 is shared with the Su-57D and preset 2001429 with the F-22 and Su-35/47 rows, so both J-20s get their own copies. Their speeds,
+# pitch and other values stay; the yaw rates give the F-35's turn radius at each speed (yaw x J-20 speed / F-35 speed), and MaxSpeedYaw 45.7 gives
+# card 985 exactly (the speed-scaled 44.4 would show 1005). Calculated from data; flight not yet seen in a game.
+import math
+_FP=t['FlyPresetsJson'];_MB=t['MobilityJson'];_UP=t['UnitPropulsionsJson']
+def _card(v,y):return math.floor(round(2*v*(1+1/math.tan(math.radians(y))))/5)*5
+_jp=[r for r in _UP.values() if r['UnitId'] in (915,966)]
+ok(U[915]['HUDName']=='J-20' and U[966]['HUDName']=='J-20S' and sorted(r['MobilityId'] for r in _jp)==[31,31] and _MB[31]['FlyPresetId']==2001429,'J-20 and J-20S on mobility 31, preset 2001429')
+ok(not [o for o in t['OptionsJson'].values() if o.get('MobilityId') and M.get(o['ModificationId'],{}).get('UnitId') in (915,966)],'no J-20 option overrides mobility')
+ok(_card(_FP[17]['MaxSpeed'],_FP[17]['MaxSpeedYaw'])==985 and _card(_FP[2001429]['MaxSpeed'],_FP[2001429]['MaxSpeedYaw'])==565,'card radius: F-35 985, J-20 565')
+_f,_j=_FP[17],_FP[2001429]
+_y={k:round(_f[k]*_j[v]/_f[v],2) for k,v in (('MinSpeedYaw','MinSpeed'),('CornerSpeedYaw','CornerSpeed'),('AfterburnYaw','AfterburnSpeed'),('CornerAfterburnSpeedYaw','AfterburnCornerSpeed'))}
+_y['MaxSpeedYaw']=45.7
+_np=g.add('FlyPresetsJson',_j,{'Name':'FA Fighter J-20 F-35 turn',**_y})
+_nm=g.add('MobilityJson',_MB[31],{'Name':'Plane J-20 F-35 turn','FlyPresetId':_np})
+for r in _jp:g.put('UnitPropulsionsJson',r['Id'],{'MobilityId':_nm})
+ok(_card(_FP[_np]['MaxSpeed'],_FP[_np]['MaxSpeedYaw'])==985 and all(_UP[r['Id']]['MobilityId']==_nm for r in _jp),'J-20 and J-20S card radius 985')
+ok(_MB[31]['FlyPresetId']==2001429 and _FP[2001429]['MaxSpeedYaw']==82.5,'Su-57D, F-22 and Su-35/47 rows unchanged')
+rec['j20_turn']={'units':[915,966],'preset':_np,'mobility':_nm,'yaw':_y,'card_radius':[565,985]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
