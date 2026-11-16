@@ -64,6 +64,8 @@ public class Runtime : MelonMod
         SpaagWeapons.LateUpdate();
         SameUnitClaim.LateUpdate();
         Dazzler.LateUpdate();
+        PlaneSale.LateUpdate();
+        ServerMoney.LateUpdate();
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
@@ -79,6 +81,8 @@ public class Runtime : MelonMod
         SpaagWeapons.SceneChanged();
         SameUnitClaim.SceneChanged();
         Dazzler.SceneChanged();
+        PlaneSale.SceneChanged();
+        ServerMoney.SceneChanged();
         PlayableBorders.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
@@ -170,6 +174,10 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DAZZLER_FAILED: not installed; ZTZ-99A APS is a vanilla point-blank APS. "+e.Message); }
+        try { PlaneSale.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_SALE_FAILED: not installed; native refunds. "+e.Message); }
+        try { ServerMoney.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SERVER_MONEY_FAILED: not installed; no server points log. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance); }

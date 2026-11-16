@@ -45,7 +45,7 @@ with zipfile.ZipFile(base) as z:
     for name in ['channel.json','pla-build.json','pla-spec-assignments.json',f'pla-{V}.json']:k='UserData/FreedomArrow/'+name;override[k]=(SRC/k).read_bytes()
     # nlos.json: NLOS trait list (0.8.0-dev.7). projectile-health.json: interceptable missile HP; spaag-weapons.json: SPAAG card DPS and burst refill (Lateralus missile-hp tests, 15 Nov 2026). dazzler.json: ZTZ-99A laser dazzler (Osama 16 Nov 2026).
     # compatibility.json: game build pins (BA 1.2.2.1 port, 16 Nov 2026: dev.19 shipped the old GameAssembly pin because this file was carried from the base).
-    for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/dazzler.json','UserData/FreedomArrow/compatibility.json'):
+    for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/dazzler.json','UserData/FreedomArrow/compatibility.json','UserData/FreedomArrow/plane-refund.json'):
         if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
     # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in
     # releases/0.8/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
@@ -169,3 +169,5 @@ subprocess.run([sys.executable,str(Path(__file__).parent/'check_slot_weapons.py'
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_field_types.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True,env={**os.environ,'PYTHONPATH':str(ROOT)+os.pathsep+os.environ.get('PYTHONPATH','')})
 subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_mount_weapons.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+# Lateralus 16 Nov 2026: the dev.13 SPAAG/SAM data never reached a package; fail if queued changes are missing (lateralus/queued_checks.py).
+subprocess.run([sys.executable,str(Path(__file__).parent/'lateralus/queued_checks.py'),str(complete),V,'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
