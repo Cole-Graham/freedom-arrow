@@ -87,6 +87,13 @@ g.put('UnitAbilitiesJson',_ua[0]['Id'],{'AbilityId':_e})
 _bays=sorted(o['Cost'] for o in t['OptionsJson'].values() if 'AIM120' in str(o.get('Name','')).replace('-','').upper() and M.get(o.get('ModificationId'),{}).get('UnitId')==_yf)
 ok(U[_yf]['Cost']==295 and AB[_e]['ECMAccuracyMultiplier']==0.55 and AB[2001398]['ECMAccuracyMultiplier']==0.5,'YF-23 295 points, ECM 45%; shared 2001398 unchanged')
 rec['yf23']={'unit':_yf,'cost':295,'ecm_ability':_e,'ecm':0.55,'aim120_bay_costs':_bays}
+# ---------- J-36: stealth 2.2, +50 points (Osama 16 Nov 2026 14:4x PST: "J-36 to 2.2 stealth and price increased by 50 points"). Card stealth
+# 2.2 = raw 1/2.2 (J-36 raw 0.5 = 2.0); 305 -> 355. No J-36 option overrides stealth, and no option swaps to another J-36 unit.
+_j=[u_ for u_ in U.values() if u_.get('Name')=='PLA J-36'];ok(len(_j)==1 and _j[0]['Cost']==305 and _j[0]['Stealth']==0.5,'J-36 unit, 305, raw stealth 0.5');_j=_j[0]['Id']
+ok(not [o for o in O.values() if M.get(o.get('ModificationId'),{}).get('UnitId')==_j and o.get('StealthOverride')],'no J-36 option overrides stealth')
+g.put('Units',_j,{'Cost':355,'Stealth':round(1/2.2,4)})
+ok(U[_j]['Cost']==355 and abs(U[_j]['Stealth']-0.4545)<1e-4,'J-36 355 points, stealth 2.2 (raw 0.4545)')
+rec['j36_stealth']={'unit':_j,'cost':355,'stealth_raw':round(1/2.2,4)}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
