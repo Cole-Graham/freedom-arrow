@@ -228,6 +228,9 @@ public sealed partial class Prototype
     {
         if (!Prepare(candidate)) return false;
         if (deployInClock>0) remaining=(float)Math.Min(remaining,ledger!.Duration);   // the deployment part of the native clock
+        // Lateralus 16 Nov 2026 (test4): the clock showed 24:59 during deployment. The room server's clock starts a moment before the
+        // script's deployment wait, so it crosses the full time just before deployment ends. Hold it at full time while the banner runs.
+        if (deployInClock>0&&OnlineSetupLeft()!=null) remaining=(float)ledger!.Duration;
         if (!float.IsFinite(remaining) || remaining < -5 || remaining > ledger!.Duration + 0.01)
             throw new InvalidOperationException("Unexpected GameMode countdown value");
         ValidateModeFixture();
