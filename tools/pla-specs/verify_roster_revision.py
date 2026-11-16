@@ -47,6 +47,8 @@ with zipfile.ZipFile(a.package) as z:
   if build>=187 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(500.0,450.0),'AP 450-500')
   elif build>=146 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(525.0,475.0),'AP 475-525')
   elif build>=133 and uid in (906,1080):ok((ke['PenetrationAtMinRange'],ke['PenetrationAtGroundRange'])==(550.0,500.0),'AP 500-550')
+  # Osama 16 Nov 03:1x PST (0.9.0-dev.21, build 194): every carded tank KE round 50 mm between close and max range.
+  elif build>=194:ok(ke['PenetrationAtMinRange']==ke['PenetrationAtGroundRange']+50,'KE close bonus 50')
   else:ok(ke['PenetrationAtMinRange']==ke['PenetrationAtGroundRange']+25,'KE close bonus')
  ok(ammo(1233)[0]['Seeker']==50,'HQ9B FNF');ok(ammo(1234)[0]['Seeker']==100,'HQ9A SA')
  for uid in [1233,1234]:ok(ammo(uid)[0]['LowAltRange']==t['AmmunitionsJson'][154]['LowAltRange'] and ammo(uid)[0]['HighAltRange']==t['AmmunitionsJson'][154]['HighAltRange'],'GEM+ ranges')
