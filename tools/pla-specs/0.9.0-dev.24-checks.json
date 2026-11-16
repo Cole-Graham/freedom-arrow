@@ -1,0 +1,15 @@
+{
+  "lsdw_child_order": {
+    "rows": [
+      2019405,
+      2019409
+    ],
+    "order": 0,
+    "note": "child turret weapon list was [null, LSDW]"
+  },
+  "version": "0.9.0-dev.24",
+  "base": "0.9.0-dev.23",
+  "base_sha256": "5b62d0f4a341522560f6b8da5c39683aac6d21b2abc1d0b41f114329b54f5573",
+  "checks": 9,
+  "verified": "data checks only"
+}

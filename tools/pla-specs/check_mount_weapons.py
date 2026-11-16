@@ -3,6 +3,8 @@
 as shipped; and a deployable unit's loadout may only use slot numbers that vanilla uses on the same body (vanilla loadout
 slots, or its default mounts). More weapons than the model has slots throws IndexOutOfRange in UnitBuilder.SetupWeaponComponents at spawn
 ("CombatSystem initialization ... failed") and the match freezes (J-20 14 Nov 2026; FK-2000 13 Nov).
+A child turret's weapon orders must be 0..n-1 (all 86 vanilla child turrets are): the game puts each weapon at index Order, so a gap
+leaves a null in the list and Turrets.CloneWithClonedWeaponsAndTurrets throws (unit card, editor; ZTZ-99A LSDW Order 2, dev.23 16 Nov).
 Usage: check_mount_weapons.py PACKAGE.bamod VANILLA_DIR   (exit 1 and list the mounts when any are over)"""
 import json,sys,zipfile
 from pathlib import Path
@@ -69,8 +71,13 @@ def slots(t,v):
             extra=sorted(i for i in range(21) if o.get(f'Turret{i}Id') and i not in ok[b])
             if extra and o['Id'] not in KNOWN:bad.append((t['Units'][u]['HUDName'],u,o['Id'],o.get('Name'),b,extra,sorted(ok[b])))
     return bad
+def holes(t):
+    o={}
+    for r in t['TurretWeaponsJson'].values():o.setdefault(r['TurretId'],[]).append(r['Order'])
+    return sorted((k,t['TurretsJson'][k]['Name'],sorted(v)) for k,v in o.items() if t['TurretsJson'].get(k,{}).get('ParentTurretId') and sorted(v)!=list(range(len(v))))
 if __name__=='__main__':
-    van=Path(sys.argv[2]);t,v=tables(van,zipfile.ZipFile(sys.argv[1])),tables(van);bad=over(t,v);bs=slots(t,v)
+    van=Path(sys.argv[2]);t,v=tables(van,zipfile.ZipFile(sys.argv[1])),tables(van);bad=over(t,v);bs=slots(t,v);hs=holes(t)
     for k,n,mf,c,lim,us in bad:print(f'{k} {n}: {c} weapons on model {mf} (vanilla most {lim}); units {", ".join(us)}')
     for h,u,o,n,b,x,okk in bs:print(f'{h} ({u}) loadout {o} {n}: slots {x} on body {b} (vanilla uses {okk})')
-    print('mounts over their weapon slots',len(bad),'| loadout slots the body never uses',len(bs));sys.exit(1 if bad or bs else 0)
+    for k,n,o in hs:print(f'{k} {n}: child turret weapon orders {o}, not 0..{len(o)-1}')
+    print('mounts over their weapon slots',len(bad),'| loadout slots the body never uses',len(bs),'| child turrets with an order gap',len(hs));sys.exit(1 if bad or bs or hs else 0)

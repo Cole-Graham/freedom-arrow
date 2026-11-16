@@ -286,7 +286,8 @@ static unsafe class Dazzler
                 if(!e.IsAlive||!e.Has<WeaponComponent>())continue;
                 var w=NativeEcs.Read<WeaponComponent>(e);var u=w.GetUnitEntity();if(!u.IsAlive||!u.Has<TransformComponent>())continue;
                 int made=w.ShotsMade.Value;
-                if(laserShots.TryGetValue(k,out var was)&&made!=was&&e.Has<TargetComponent>())
+                // ShotsMade goes up once per shot and back down when the weapon resets its count; only the rise is a shot (dev.23 drew two beams per pulse).
+                if(laserShots.TryGetValue(k,out var was)&&made>was&&e.Has<TargetComponent>())
                 {
                     var t=NativeEcs.Field<TargetComponent,Entity>(e,"Target");
                     if(t.IsAlive&&t.Has<TransformComponent>())
