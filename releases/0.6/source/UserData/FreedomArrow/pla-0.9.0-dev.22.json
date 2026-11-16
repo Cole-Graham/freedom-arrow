@@ -1,0 +1,21 @@
+{
+  "lsdw_option_picture": {
+    "options": [
+      31100,
+      31102
+    ],
+    "picture": "FA_PLA_WP_LSDW_DAZZLER"
+  },
+  "lsdw_mount1": {
+    "turrets": [
+      2019389,
+      2019395
+    ],
+    "weapon": 2019388
+  },
+  "version": "0.9.0-dev.22",
+  "base": "0.9.0-dev.21",
+  "base_sha256": "54074731f8d09cd6bf1e2ff6de471b4990726365e58bc61f9342625a17847cab",
+  "checks": 9,
+  "verified": "data checks only"
+}

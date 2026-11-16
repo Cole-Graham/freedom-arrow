@@ -39,14 +39,14 @@ static unsafe class Dazzler
     // Read from the game's metadata at install (BA 1.2.2 values 0xA4 / 0x108); the first main-thread hit cross-checks them again.
     static int CanBeInterceptedOffset=0xA4,SeekerOffset=0x108;
     static HashSet<int> unitIds=new();
-    static float boxSize=200,period=0.05f,beamSeconds=0.35f,coreWidth=0.12f,glowWidth=0.45f,headHeight=2.8f;
+    static float laserBeamSeconds=0.2f,boxSize=200,period=0.05f,beamSeconds=0.35f,coreWidth=0.12f,glowWidth=0.45f,headHeight=2.8f;
     static Color core=new(1f,0.92f,0.8f,1f),glow=new(1f,0.06f,0.02f,0.75f);
     static bool enabled,failed,offsetsChecked;
     // Worker snapshot: listed units whose APS is ready now. Stale after MaxAge -> native box.
     static HashSet<ulong> ready=new();static long readyAt;const double MaxAge=0.25;
     static HashSet<ulong> listedKeys=new();
     static HashSet<int> laserIds=new();static HashSet<string> laserNames=new();static string cardIcon;static EntitySet weaponSet;static readonly List<(Entity E,ulong Key,ulong Unit)> lasers=new();
-    static readonly Dictionary<ulong,int> laserShots=new();static int laserBeams,laserLogs;static bool stressOk;
+    static readonly Dictionary<ulong,int> laserShots=new();static int laserBeams,laserLogs,laserLogErrors;static bool stressOk;
     static World world;static EntitySet unitSet;static float next,nextScan,nextMetrics;
     static readonly List<(Entity E,ulong Key)> listed=new();
     static readonly Dictionary<ulong,int> lastCount=new();
@@ -74,13 +74,21 @@ static unsafe class Dazzler
                 harmony.Patch(card,prefix:new HarmonyMethod(typeof(Dazzler),nameof(CardBefore)),postfix:new HarmonyMethod(typeof(Dazzler),nameof(CardAfter)));
             }
             catch(Exception x){DiagnosticLog.Write("dazzler_card_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_DAZZLER_CARD_FAILED: APS icon stays. "+x.Message);}
+            // Battle order panel (Osama 04:3x: "change the in game aps icon to the laser, and don't show the ammo count"): the APS button's count
+            // goes through UiOrderButton.SetUsage(state, charges). Only LSDW units carry 999 charges, so >= HudCharges marks an LSDW selection.
+            try
+            {
+                var use=AccessTools.Method(typeof(Il2CppBrokenArrow.Client.Ecs.UI.Orders.UiOrderButton),"SetUsage")??throw new MissingMethodException("UiOrderButton.SetUsage");
+                harmony.Patch(use,prefix:new HarmonyMethod(typeof(Dazzler),nameof(UsageBefore)));
+            }
+            catch(Exception x){DiagnosticLog.Write("dazzler_hud_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_DAZZLER_HUD_FAILED: APS button stays. "+x.Message);}
         }
         laserAmmo=j["laserAmmo"]?.AsArray().Select(x=>x!.GetValue<int>()).ToHashSet()??new();
         stressOk=NativeEcs.Compiled<StressComponent>()&&NativeEcs.Compiled<TargetComponent>()&&NativeEcs.Compiled<WeaponComponent>();
         var b=j["beam"];
         if(b!=null)
         {
-            beamSeconds=b["seconds"]?.GetValue<float>()??beamSeconds;coreWidth=b["coreWidth"]?.GetValue<float>()??coreWidth;
+            beamSeconds=b["seconds"]?.GetValue<float>()??beamSeconds;laserBeamSeconds=b["laserSeconds"]?.GetValue<float>()??laserBeamSeconds;coreWidth=b["coreWidth"]?.GetValue<float>()??coreWidth;
             glowWidth=b["glowWidth"]?.GetValue<float>()??glowWidth;headHeight=b["headHeight"]?.GetValue<float>()??headHeight;
             Color C(JsonNode n,Color d)=>n==null?d:new(n[0]!.GetValue<float>(),n[1]!.GetValue<float>(),n[2]!.GetValue<float>(),n[3]!.GetValue<float>());
             core=C(b["core"],core);glow=C(b["glow"],glow);
@@ -107,6 +115,30 @@ static unsafe class Dazzler
         var c=Il2CppClassPointerStore<Ammunitions>.NativeClassPtr;if(c==IntPtr.Zero)throw new InvalidOperationException("Ammunitions class missing");
         var f=IL2CPP.il2cpp_class_get_field_from_name(c,name);if(f==IntPtr.Zero)throw new MissingFieldException("Ammunitions",name);
         return checked((int)IL2CPP.il2cpp_field_get_offset(f));
+    }
+    // ---------- Battle APS button: icon and no count for LSDW units; the original sprites come back for any other APS unit.
+    const uint HudCharges=900;static readonly Dictionary<IntPtr,Sprite> hudOriginal=new();static bool hudLogged;
+    static void UsageBefore(Il2CppBrokenArrow.Client.Ecs.UI.Orders.UiOrderButton __instance,ref bool __0,uint __1)
+    {
+        try
+        {
+            bool lsdw=__0&&__1>=HudCharges;
+            foreach(var img in __instance.GetComponentsInChildren<UnityEngine.UI.Image>(true))
+            {
+                var sp=img.sprite;if(sp==null)continue;var key=img.Pointer;
+                if(lsdw)
+                {
+                    if(!sp.name.StartsWith("Ability_Aps"))continue;
+                    var cache=Il2CppBrokenArrow.Client.Ecs.UI.IconsLoader._sprites;Sprite icon=null;
+                    if(cache==null||!cache.TryGetValue(cardIcon,out icon)){ChinaUi.Seed();cache=Il2CppBrokenArrow.Client.Ecs.UI.IconsLoader._sprites;if(cache==null||!cache.TryGetValue(cardIcon,out icon))return;}
+                    hudOriginal[key]=sp;img.sprite=icon;
+                    if(!hudLogged){hudLogged=true;DiagnosticLog.Write("dazzler_hud_icon",new{charges=__1,replaced=sp.name});}
+                }
+                else if(hudOriginal.TryGetValue(key,out var orig)&&orig!=null){img.sprite=orig;hudOriginal.Remove(key);}
+            }
+            if(lsdw)__0=false;   // no charge count on the button
+        }
+        catch(Exception x){DiagnosticLog.Write("dazzler_hud_failed",new{error=x.ToString()});}
     }
     // ---------- Arsenal card: the APS entry of a listed unit shows cardIcon and no charge count. Items are pooled, so counts this hook hid are
     // shown again before the native code fills the next card.
@@ -191,7 +223,7 @@ static unsafe class Dazzler
     static void Fail(Exception x)
     {
         try{Restore();}catch{}restore=restoreDamage=null;
-        failed=true;Volatile.Write(ref ready,new HashSet<ulong>());
+        failed=true;Volatile.Write(ref ready,new HashSet<ulong>());try{foreach(var b in live)Drop(b);live.Clear();}catch{}
         DiagnosticLog.Write("dazzler_failed",new{error=x.ToString()});MelonLogger.Error("FREEDOM_ARROW_DAZZLER_FAILED: native APS. "+x.Message);
     }
     public static void SceneChanged()
@@ -203,8 +235,8 @@ static unsafe class Dazzler
     }
     public static void LateUpdate()
     {
+        if(live.Count>0)FadeBeams();   // also after a failure, so no beam is left on screen (dev.21 test)
         if(!enabled||failed)return;
-        if(live.Count>0)FadeBeams();
         if(!Runtime.IsApplied||!Conquest.Prototype.DiagnosticSceneActive){Volatile.Write(ref ready,new HashSet<ulong>());return;}
         float now=Time.time;if(now<next)return;next=now+period;
         try
@@ -261,14 +293,16 @@ static unsafe class Dazzler
                     {
                         var head=NativeEcs.Property<TransformComponent,Vector3>(u,"Position")+Vector3.up*headHeight;
                         var at=NativeEcs.Property<TransformComponent,Vector3>(t,"CenterPosition");
-                        Beam(head,at);laserBeams++;
+                        Beam(head,at,laserBeamSeconds);laserBeams++;
                         if(laserLogs++<3000)
+                        try
                         {
                             bool hs=t.Has<StressComponent>();
                             DiagnosticLog.Write("dazzler_laser_shot",new{t=now,unit=uk.ToString("X16"),target=Key(t).ToString("X16"),
                                 targetType=t.Has<UnitComponent>()?(int)NativeEcs.Read<UnitComponent>(t).UnitData.Type:-1,distance=Vector3.Distance(head,at),
-                                stress=hs?NativeEcs.Field<StressComponent,float>(t,"CurrentStressValue"):-1f,level=hs?NativeEcs.Field<StressComponent,int>(t,"CurrentStressLevel"):-1});
+                                stress=hs?NativeEcs.Field<StressComponent,float>(t,"CurrentStressValue"):-1f,level=hs?(int)NativeEcs.Field<StressComponent,byte>(t,"CurrentStressLevel"):-1});
                         }
+                        catch(Exception x){if(laserLogErrors++<5)DiagnosticLog.Write("dazzler_laser_log_failed",new{error=x.Message});}
                     }
                 }
                 laserShots[k]=made;
@@ -282,7 +316,7 @@ static unsafe class Dazzler
         catch(Exception x){Fail(x);}
     }
     // ---------- Beam: two cylinders (white-hot core, red glow) on a copy of the game's HDRP/Unlit border material, faded out.
-    sealed class Live{public GameObject Go;public Renderer Core,Glow;public float Born;}
+    sealed class Live{public GameObject Go;public Renderer Core,Glow;public float Born,Life;}
     static readonly List<Live> live=new();
     static Material coreMat,glowMat;static bool materialMissing;
     static bool EnsureMaterials()
@@ -302,7 +336,7 @@ static unsafe class Dazzler
         }
         coreMat=Make(core,"FreedomArrow dazzler core");glowMat=Make(glow,"FreedomArrow dazzler glow");return true;
     }
-    static void Beam(Vector3 from,Vector3 to)
+    static void Beam(Vector3 from,Vector3 to,float life=-1)
     {
         if(!EnsureMaterials())return;
         var go=new GameObject("FreedomArrow dazzler beam");
@@ -315,7 +349,7 @@ static unsafe class Dazzler
             c.transform.position=(from+to)/2;c.transform.up=(to-from).normalized;c.transform.localScale=new Vector3(width,len/2,width);
             var r=c.GetComponent<Renderer>();r.sharedMaterial=m;r.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;r.receiveShadows=false;return r;
         }
-        live.Add(new Live{Go=go,Glow=Rod(glowWidth,glowMat),Core=Rod(coreWidth,coreMat),Born=Time.time});beams++;
+        live.Add(new Live{Go=go,Glow=Rod(glowWidth,glowMat),Core=Rod(coreWidth,coreMat),Born=Time.time,Life=life>0?life:beamSeconds});beams++;
     }
     static void Drop(Live b)
     {
@@ -326,7 +360,7 @@ static unsafe class Dazzler
         float now=Time.time;
         for(int i=live.Count-1;i>=0;i--)
         {
-            var b=live[i];float k=1-(now-b.Born)/beamSeconds;
+            var b=live[i];float k=1-(now-b.Born)/b.Life;
             if(k<=0||b.Go==null){Drop(b);live.RemoveAt(i);continue;}
             b.Core.material.SetColor("_UnlitColor",new Color(core.r,core.g,core.b,core.a*k));
             b.Glow.material.SetColor("_UnlitColor",new Color(glow.r,glow.g,glow.b,glow.a*k));

@@ -66,7 +66,10 @@ def slots(t,v):
         b=t['Units'][u]['ModelFileName']
         if b not in ok:continue
         for o in to.get(u,[]):
-            extra=sorted(i for i in range(21) if o.get(f'Turret{i}Id') and i not in ok[b])
+            # A slot the unit's own default mounts already fill is not new to the body (16 Nov 2026, dev.22: ZTZ-99A/ZTZ-99 LSDW swaps the
+            # default 12.7 mm mount in slot 1 on the T-90M body; vanilla BMP-3/BMPT/BTR-MDM loadouts swap slot 1 the same way).
+            own={r.get('Order',0) for r in t['TurretUnitsJson'].values() if r['UnitId']==u and t['TurretsJson'].get(r['TurretId'],{}).get('IsDefault')}
+            extra=sorted(i for i in range(21) if o.get(f'Turret{i}Id') and i not in ok[b] and i not in own)
             if extra and o['Id'] not in KNOWN:bad.append((t['Units'][u]['HUDName'],u,o['Id'],o.get('Name'),b,extra,sorted(ok[b])))
     return bad
 if __name__=='__main__':
