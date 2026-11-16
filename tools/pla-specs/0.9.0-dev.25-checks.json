@@ -1,0 +1,94 @@
+{
+  "spaag_sead": {
+    "source": "0.9.0-dev.12-hp5-burst-tier3-sam-claim6-gunsam",
+    "weapons": 58,
+    "rounds": 12
+  },
+  "sead_prices": {
+    "units": 13,
+    "options": 54
+  },
+  "ecm_pods": {
+    "options": {
+      "809": 0.65,
+      "811": 0.75,
+      "880": 0.55,
+      "950": 0.75,
+      "952": 0.75,
+      "1118": 0.7,
+      "1119": 0.7,
+      "1120": 0.7,
+      "1135": 0.6,
+      "1137": 0.6,
+      "1206": 0.65,
+      "1305": 0.65,
+      "1306": 0.65,
+      "1344": 0.65,
+      "1346": 0.65,
+      "1406": 0.6,
+      "1408": 0.6,
+      "1660": 0.65,
+      "1682": 0.8,
+      "1683": 0.7,
+      "2003": 0.6,
+      "2010": 0.65,
+      "2012": 0.65,
+      "2036": 0.65,
+      "3089": 0.65,
+      "20141": 0.7
+    },
+    "noPod": {
+      "1134": 0.8,
+      "1136": 0.8,
+      "1138": 0.8,
+      "1139": 0.8
+    },
+    "defaults": {
+      "Su-35S": 0.9,
+      "Su-30SM": 0.8
+    },
+    "newAbilities": 14
+  },
+  "mshorad": {
+    "prices": {
+      "1937": 30,
+      "1936": 40,
+      "1938": 60,
+      "1934": 45
+    },
+    "laserOn": 1937
+  },
+  "sead_burst": {
+    "weapons": [
+      267,
+      358,
+      395,
+      407,
+      449,
+      542,
+      2016699,
+      2016727,
+      2017632,
+      2017962,
+      2018029,
+      2018455,
+      2019306
+    ],
+    "before": {
+      "ShotsPerBurstMin": 1,
+      "ShotsPerBurstMax": 1,
+      "TimeBetweenShotsInBurst": 0.0
+    },
+    "after": {
+      "ShotsPerBurstMin": 2,
+      "ShotsPerBurstMax": 2,
+      "TimeBetweenShotsInBurst": 1.0
+    },
+    "timeBetweenBursts": "unchanged (6-8 s planes, 2-5 s helicopters)"
+  },
+  "version": "0.9.0-dev.25",
+  "base": "0.9.0-dev.24",
+  "base_sha256": "b01f11b1ea1a4623d67fc7759427dc6f3c0a0a5bbaa5d752e9eb9359da701977",
+  "checks": 428,
+  "verified": "data checks only"
+}

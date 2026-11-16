@@ -42,6 +42,10 @@ rec['ecm_pods']=ecm_pods.apply(t,g,ok)
 # ---------- Stryker M-SHORAD (Lateralus 16 Nov 2026 09:0x PST): laser with the APKWS loadout; APKWS +30, double Stinger +40, Hellfire +60, SRAT II/APS +45.
 import mshorad
 rec['mshorad']=mshorad.apply(t,g,ok)
+# ---------- SEAD missiles fire in bursts of 2 (Lateralus 16 Nov 2026 05:5x PST, proposal A; tested in 0.9.0-dev.24-sead2..5): 13 plane and
+# helicopter SEAD weapons ShotsPerBurst 1 -> 2, TimeBetweenShotsInBurst 0 -> 1.0 s. Intercept Lead rename and attach retry ship in the runtime.
+import sead_burst
+rec['sead_burst']=sead_burst.apply(t,lambda tab,i,f:g.put(tab,i,f),ok)
 # The plane sale (Lateralus 16 Nov 06:07 PST, "#23 (plane sale) is no longer a proposal") is runtime only: runtime-qa/PlaneSale.cs,
 # ServerMoney.cs and UserData/FreedomArrow/plane-refund.json (shipped by package_0_8_next.py). No table changes.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
