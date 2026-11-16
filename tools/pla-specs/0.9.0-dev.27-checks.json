@@ -1,0 +1,29 @@
+{
+  "ly1": {
+    "unit": 1275,
+    "cost": 120,
+    "spec": 20,
+    "cards": 2,
+    "weapon": 2019445,
+    "ammo": 2019446,
+    "mount": 2019447,
+    "ability": 2019443,
+    "aps_cooldown_s": 3.0,
+    "card_range_m": {
+      "ground": 1200,
+      "low": 1500,
+      "high": 1200
+    },
+    "damage": 5.0,
+    "penetration_mm": 20,
+    "stress": 80.0,
+    "pulse_s": 1.0,
+    "targets": 1983,
+    "model": "PLA LY-1 (work/pla-0.9/ly1)"
+  },
+  "version": "0.9.0-dev.27",
+  "base": "0.9.0-dev.26",
+  "base_sha256": "573c4861b0eea6290ac29a80e9cdd537b765997fefd70ee12168a72ba1d7600a",
+  "checks": 14,
+  "verified": "data checks only"
+}
