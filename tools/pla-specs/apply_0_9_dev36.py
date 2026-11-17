@@ -45,6 +45,19 @@ rec['cm501ga']={'ammo':2017128,'TargetType':[35,38],'MaxSeekerDistance':[1000,25
 # Nuclear launch announcements (Osama 17 Nov 10:2x PST: "these should start fading out after 3.5 seconds a bit earlier on the nuclear warnings"):
 # audio/nuke-warning-{cn,us,ru}.mp3 fade out from 3.5 s to 5.0 s and end there (were 11.9 s).
 rec['alarms']={'ballistic':'aircraft-alarm-burke.ogg','aircraft':'none','nuclear_fade':[3.5,5.0]}
+# ---------- "The CM-501GA should be a LMUR clone" (Osama 16 Nov 2026 23:0x PST): the rest of the LMUR (vanilla ammo 449, weapon 603) is copied, except
+# names and icon. Ammo IgnoreCover 1.0 -> 0.0. Weapon 2017902 (Z-21 only): Type 80 -> 81 (LMUR's launcher type), aim arc -30..+30 at 80 deg/s, tracks 2
+# targets, 24-32 s between bursts, 1 s between the shots of a burst.
+import json as _json
+_VW={r['Id']:r for r in _json.loads((a.vanilla/'WeaponsJson.json').read_text())}
+_W=t['WeaponsJson'];_L=_VW[603]
+ok(_A[2017128]['IgnoreCover']==1.0 and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['WeaponId']==2017902}=={1104},'CM-501GA IgnoreCover 1, weapon Z-21 only')
+g.put('AmmunitionsJson',2017128,{'IgnoreCover':0.0})
+_keys=('Type','LowerVerticalAngle','UpperVerticalAngles','VerticalRotationSpeed','MultiTargetTracking','TimeBetweenBurstsMin','TimeBetweenBurstsMax','TimeBetweenShotsInBurst')
+g.put('WeaponsJson',2017902,{k:_L.get(k) for k in _keys})
+_VA={r['Id']:r for r in _json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
+ok(all(_A[2017128].get(k)==_VA[449].get(k) for k in _VA[449] if k not in ('Id','Name','HUDName')) and all(_W[2017902].get(k)==_L.get(k) for k in _L if k not in ('Id','Name','HUDName','HUDIcon')),'CM-501GA = LMUR except names and icon')
+rec['cm501ga_lmur_clone']={'ammo':2017128,'weapon':2017902,'template':{'ammo':449,'weapon':603}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
