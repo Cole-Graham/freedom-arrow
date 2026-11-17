@@ -43,18 +43,19 @@ ok(sorted(r['PrimaryWeaponId'] for r in SM.values() if r['UnitId']==1213)==[2012
    and sorted((r['WeaponId'],r['Order']) for r in SW.values() if r.get('UnitId')==1213)==[(2012205,0),(2012821,1)]
    and sorted((r['WeaponId'],r['Quantity']) for r in WA.values() if r.get('UnitId')==1213)==[(2012205,120),(2012821,60)],'Conscript Recon: 3 QBZ-95 + QBU-88, 25 points')
 rec['conscript_recon']={'unit':1213,'men':[6,4],'cost':[40,25],'weapons':'3 x QBZ-95 2012205 + QBU-88 2012821','removed_members':[2015660,2015662]}
-# ---------- Falcons (unit 1185): QLB-06 -> QLU-11, 75 points (Osama 16 Nov 2026 20:4x PST, thread 1571014792016171120: "falcons replace 2x ALB-06 with
-# QLU-11 and 75 points"; "ALB-06" = the squad's two QLB-06 grenade launchers). QLU-11 2004002 with ammo 2004003 x 120, as the 33 other squads that carry it.
+# ---------- Falcons (unit 1185): 2 x QLB-06 -> 1 x QLU-11, 75 points (Osama 16 Nov 2026 20:4x PST, thread 1571014792016171120: "falcons replace 2x ALB-06
+# with QLU-11 and 75 points", then "sorry only 1x QLU"; "ALB-06" = the squad's two QLB-06 grenade launchers). The second grenadier takes the squad rifle QMK
+# 2019300 (its ammo row is per carrier), so the squad stays at 8 men. QLU-11 2004002 with ammo 2004003 x 120, as the 33 other squads that carry it.
 _f=sorted((r['Id'],r['PrimaryWeaponId']) for r in SM.values() if r['UnitId']==1185 and r['PrimaryWeaponId'] in (2016050,2004002))
 ok(_f==[(2015349,2016050),(2015350,2016050)] and U[1185]['Cost']==65 and U[1185]['HUDName']=='Falcons 猎鹰','Falcons: 2 QLB-06, 65 points')
 ok((SW[2018065]['UnitId'],SW[2018065]['WeaponId'])==(1185,2016050) and (WA[2018069]['UnitId'],WA[2018069]['WeaponId'],WA[2018069]['Quantity'])==(1185,2016050,120),'Falcons QLB-06 squad weapon and ammo rows')
 ok(t['WeaponsJson'][2004002].get('HUDName')=='QLU-11' and sorted({(r['AmmunitionId'],r['Quantity']) for r in WA.values() if r.get('WeaponId')==2004002})==[(2004003,120)],'QLU-11 2004002 with ammo 2004003 x 120')
-for _id in (2015349,2015350):g.put('SquadMembersJson',_id,{'PrimaryWeaponId':2004002})
+g.put('SquadMembersJson',2015349,{'PrimaryWeaponId':2004002});g.put('SquadMembersJson',2015350,{'PrimaryWeaponId':2019300})
 g.put('SquadWeaponsJson',2018065,{'WeaponId':2004002});g.put('WeaponAmmunitionsJson',2018069,{'WeaponId':2004002,'AmmunitionId':2004003,'Quantity':120})
 g.put('Units',1185,{'Cost':75})
-ok(not any(r['UnitId']==1185 and 2016050 in (r['PrimaryWeaponId'],r['SpecialWeaponId']) for r in SM.values()) and sum(r['PrimaryWeaponId']==2004002 for r in SM.values() if r['UnitId']==1185)==2
-   and U[1185]['Cost']==75,'Falcons: 2 QLU-11, no QLB-06, 75 points')
-rec['falcons']={'unit':1185,'QLB-06 -> QLU-11':[2015349,2015350],'cost':[65,75]}
+ok(not any(r['UnitId']==1185 and 2016050 in (r['PrimaryWeaponId'],r['SpecialWeaponId']) for r in SM.values()) and sum(r['PrimaryWeaponId']==2004002 for r in SM.values() if r['UnitId']==1185)==1
+   and sum(r['PrimaryWeaponId']==2019300 for r in SM.values() if r['UnitId']==1185)==6 and U[1185]['Cost']==75,'Falcons: 1 QLU-11, 6 QMK, no QLB-06, 75 points')
+rec['falcons']={'unit':1185,'QLB-06 -> QLU-11':[2015349],'QLB-06 -> QMK':[2015350],'cost':[65,75]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
