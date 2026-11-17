@@ -44,8 +44,21 @@ internal static class PerfProbe
     static readonly ConcurrentDictionary<MethodBase,string> hookNames=new();
     public static void Record(string name,long start)
     {
-        if(!hooks.TryGetValue(name,out var c)){c=new Counter();if(!hooks.TryAdd(name,c))c=hooks[name];}Interlocked.Increment(ref c.Calls);Interlocked.Add(ref c.Ticks,Stopwatch.GetTimestamp()-start);
+        long d=Stopwatch.GetTimestamp()-start;
+        if(!hooks.TryGetValue(name,out var c)){c=new Counter();if(!hooks.TryAdd(name,c))c=hooks[name];}Interlocked.Increment(ref c.Calls);Interlocked.Add(ref c.Ticks,d);
+        if(Detail&&Environment.CurrentManagedThreadId==mainThread){frameAcc.TryGetValue(name,out var a);frameAcc[name]=a+d;frameModTicks+=d;}
     }
+    // 0.9.0-dev.37 detail mode (Osama 17 Nov 2026 15:1x PST: "Get detailed logging and tracking and then run it again"): UserData/FreedomArrow/
+    // perf-detail.txt. No probes on game methods (they add their own native-hook cost); instead every mod's per-frame Melon callbacks (OnUpdate,
+    // OnLateUpdate, OnFixedUpdate, OnGUI) of every loaded mod, third-party included, plus every mod patch body (as perf-hooks.txt). Each frame over
+    // 50 ms gets a FREEDOM_ARROW_SLOW_FRAME line: frame ms, mod ms in that frame, the 6 biggest mod entries, and garbage collections started since
+    // the last frame (managed .NET heap of the mods, and the game's IL2CPP heap). Every 60 s a FREEDOM_ARROW_MODS line totals the time per mod
+    // assembly and a FREEDOM_ARROW_SLOW_SUMMARY line counts slow frames with and without a GC or a big mod entry.
+    public static bool Detail;static int mainThread;
+    static readonly Dictionary<string,long> frameAcc=new();static long frameModTicks;
+    static readonly ConcurrentDictionary<string,string> hookAssembly=new();
+    static int slowLogged,slowWindow,slowWithGc,slowWithMod;static long lastGc0=-1,lastGc1,lastGc2,lastIlGc=-1;
+    static readonly Dictionary<string,double> slowShare=new();
     static void HookPre(out long __state){__state=Stopwatch.GetTimestamp();}
     static void HookPost(long __state,MethodBase __originalMethod){if(hookNames.TryGetValue(__originalMethod,out var n))Record(n,__state);}
     static int hookCount,hookFailures;
@@ -65,7 +78,7 @@ internal static class PerfProbe
                     var m=patch.PatchMethod;
                     if(m==null||m.DeclaringType==null||m.DeclaringType==typeof(PerfProbe)||m.DeclaringType.IsGenericType||m.IsGenericMethod
                         ||(m.DeclaringType.DeclaringType==typeof(PerfProbe)))continue;
-                    targets.TryAdd(m,$"{m.DeclaringType.Name}.{m.Name} ({kind} on {where})");
+                    targets.TryAdd(m,$"{m.DeclaringType.Name}.{m.Name} ({kind} on {where})");hookAssembly[$"{m.DeclaringType.Name}.{m.Name} ({kind} on {where})"]=m.DeclaringType.Assembly.GetName().Name??"?";
                 }
         }
         foreach(var (t,mn) in new[]{(typeof(InterceptLead),"LateUpdate"),(typeof(SeadOverkill),"LateUpdate"),(typeof(LobbySlotDefaults),"LateUpdate"),
@@ -75,6 +88,15 @@ internal static class PerfProbe
         {
             var m=AccessTools.Method(t,mn);if(m!=null)targets.TryAdd(m,$"{t.Name}.{mn} (per frame)");
         }
+        if(Detail)
+            foreach(var melon in MelonLoader.MelonMod.RegisteredMelons.ToList())
+                foreach(var cb in new[]{"OnUpdate","OnLateUpdate","OnFixedUpdate","OnGUI"})
+                {
+                    var m=melon.GetType().GetMethod(cb,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly,null,Type.EmptyTypes,null);
+                    if(m==null||m.IsAbstract)continue;
+                    string nm=$"{melon.Info.Name}.{cb} (mod callback)";
+                    if(targets.TryAdd(m,nm))hookAssembly[nm]=melon.GetType().Assembly.GetName().Name??"?";
+                }
         foreach(var (m,name) in targets)
         {
             try{hookNames[m]=name;harmony.Patch(m,prefix:pre,postfix:post);hookCount++;}
@@ -86,6 +108,14 @@ internal static class PerfProbe
     static float windowStart=-1;
     public static void Install(HarmonyLib.Harmony harmony,string root)
     {
+        Detail=File.Exists(Path.Combine(root,"perf-detail.txt"));mainThread=Environment.CurrentManagedThreadId;
+        if(Detail)
+        {
+            try{InstallHooks(harmony);}catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HOOKS_FAILED: "+e.Message);}
+            On=true;MelonEvents.OnUpdate.Subscribe(Frame);
+            MelonLogger.Msg("FREEDOM_ARROW_PERF detail mode on: mod callbacks and patch bodies of every mod, slow-frame attribution; no probes on game methods");
+            return;
+        }
         if(!File.Exists(Path.Combine(root,"perf-probe.txt")))return;
         for(int i=0;i<Targets.Length;i++)
         {
@@ -105,8 +135,28 @@ internal static class PerfProbe
         MelonEvents.OnUpdate.Subscribe(Frame);
         MelonLogger.Msg($"FREEDOM_ARROW_PERF probe on: {probes.Count} functions measured, one report every 60 s");
     }
+    static void SlowFrame()
+    {
+        float dt=Time.unscaledDeltaTime;
+        long g0=GC.CollectionCount(0),g1=GC.CollectionCount(1),g2=GC.CollectionCount(2),il=-1;
+        try{il=Il2CppSystem.GC.CollectionCount(0);}catch{}
+        if(lastGc0>=0&&dt>0.05f)
+        {
+            slowWindow++;double modMs=frameModTicks*1000.0/Stopwatch.Frequency;
+            int dg0=(int)(g0-lastGc0),dg1=(int)(g1-lastGc1),dg2=(int)(g2-lastGc2),dil=lastIlGc>=0&&il>=0?(int)(il-lastIlGc):-1;
+            if(dg0+dg1+dg2>0||dil>0)slowWithGc++;
+            var top=frameAcc.OrderByDescending(kv=>kv.Value).Take(6).Select(kv=>(kv.Key,ms:kv.Value*1000.0/Stopwatch.Frequency)).ToList();
+            if(top.Count>0&&top[0].ms>=10)slowWithMod++;
+            foreach(var (k,ms) in top){slowShare.TryGetValue(k,out var v);slowShare[k]=v+ms;}
+            if(slowLogged++<600)
+                MelonLogger.Msg($"FREEDOM_ARROW_SLOW_FRAME {dt*1000:0} ms, mod {modMs:0.0} ms, gc net {dg0}/{dg1}/{dg2} il2cpp {dil}, heap {GC.GetTotalMemory(false)/1048576} MB | "
+                    +string.Join(" | ",top.Select(t=>$"{t.Key} {t.ms:0.00} ms")));
+        }
+        lastGc0=g0;lastGc1=g1;lastGc2=g2;lastIlGc=il;frameAcc.Clear();frameModTicks=0;
+    }
     static void Frame()
     {
+        if(Detail)SlowFrame();
         float now=Time.realtimeSinceStartup;
         if(windowStart<0){windowStart=now;return;}
         frames.Add(Time.unscaledDeltaTime);
@@ -132,6 +182,16 @@ internal static class PerfProbe
         }
         double frameMs=n>0?span*1000.0/n:0;
         MelonLogger.Msg($"FREEDOM_ARROW_HOOKS {span:0} s: mod hook time {(n>0?total/n:0):0.00} ms per frame of a {frameMs:0.0} ms frame | "+string.Join(" | ",ranked.OrderByDescending(r=>r.ms).Take(40).Select(r=>r.line)));
+        if(Detail)
+        {
+            var byAsm=new Dictionary<string,double>();
+            foreach(var (ms,line) in ranked){var key=line.Substring(0,line.LastIndexOf(" calls/s")).Trim();key=key.Substring(0,key.LastIndexOf(' ')).Trim();
+                var asm=hookAssembly.TryGetValue(key,out var a)?a:"?";byAsm.TryGetValue(asm,out var v);byAsm[asm]=v+ms;}
+            MelonLogger.Msg($"FREEDOM_ARROW_MODS {span:0} s, {n} frames: "+string.Join(" | ",byAsm.OrderByDescending(kv=>kv.Value).Select(kv=>$"{kv.Key} {(n>0?kv.Value/n:0):0.000} ms per frame")));
+            MelonLogger.Msg($"FREEDOM_ARROW_SLOW_SUMMARY {span:0} s: {slowWindow} frames over 50 ms, {slowWithGc} with a garbage collection, {slowWithMod} with a mod entry over 10 ms | biggest mod entries in slow frames: "
+                +string.Join(" | ",slowShare.OrderByDescending(kv=>kv.Value).Take(8).Select(kv=>$"{kv.Key} {kv.Value:0} ms")));
+            slowWindow=slowWithGc=slowWithMod=0;slowShare.Clear();
+        }
     }
 
 }
