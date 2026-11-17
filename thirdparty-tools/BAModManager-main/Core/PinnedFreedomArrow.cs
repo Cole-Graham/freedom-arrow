@@ -25,6 +25,14 @@ public static class PinnedFreedomArrow
     public static string AssetsSha256 => HostedDistribution.Active.Assets.Sha256;
     public static string AssetsArchivePath => HostedDistribution.ArchivePath(HostedDistribution.Active.Assets);
 
+    // A manifest with an Assets file list (launcher 1.1.5+) installs file by file; otherwise the full package is used, as before.
+    public static string? AssetsIndexPath => HostedDistribution.IndexPath(HostedDistribution.Active.Assets);
+    public static void VerifyAssets()
+    {
+        if (HostedDistribution.Active.Assets.Index == null) { VerifyAssetsArchive(); return; }
+        AssetsIndexInstall.Load(AssetsIndexPath ?? throw new FileNotFoundException("The Models + Music/Voices file list was not downloaded."), HostedDistribution.Active.Assets);
+    }
+
     public static void VerifyAssetsArchive()
     {
         using var file = File.OpenRead(AssetsArchivePath);
@@ -52,6 +60,11 @@ public static class PinnedFreedomArrow
 
     private static void EnsureAssets(string gameDir, Action<string> log, CancellationToken ct)
     {
+        if (HostedDistribution.Active.Assets.Index != null)
+        {
+            AssetsIndexInstall.Ensure(gameDir, AssetsIndexPath!, HostedDistribution.Active.Assets, Preferences, log, ct);
+            return;
+        }
         var mods = new ModService(new ManagerConfig());
         using var plan = mods.BuildPlan(AssetsArchivePath, _ => null)
             ?? throw new InvalidDataException("The included asset package is empty.");
@@ -141,7 +154,7 @@ public static class PinnedFreedomArrow
     public static void Ensure(LauncherService launcher, string gameDir, Action<string> log, CancellationToken ct)
     {
         VerifyArchive(ArchivePath);
-        VerifyAssetsArchive();
+        VerifyAssets();
         EnsureAssets(gameDir, log, ct);
         var pack = launcher.FindPack(Manifest.Load(gameDir));
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))

@@ -289,7 +289,7 @@ public sealed class LauncherService
             progress.Report(new LaunchProgress("Verifying gameplay, models, music and voices…"));
             await Task.Run(() => {
                 PinnedFreedomArrow.VerifyArchive(PinnedFreedomArrow.ArchivePath);
-                PinnedFreedomArrow.VerifyAssetsArchive();
+                PinnedFreedomArrow.VerifyAssets();
             }, ct);
             var loaderManifest = LoadManifest(gameDir);
             try { await EnsureMelonLoaderAsync(gameDir, loaderManifest, progress, log, ct); }

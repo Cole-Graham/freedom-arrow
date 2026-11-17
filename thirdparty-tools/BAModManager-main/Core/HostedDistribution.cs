@@ -7,7 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace BAModManager.Core;
 
-public sealed record DistributionPackage(string Id, string Version, string Filename, string Url, long Size, string Sha256);
+public sealed record DistributionPackage(string Id, string Version, string Filename, string Url, long Size, string Sha256, DistributionIndex? Index = null);
+/// <summary>Per-file Assets list (Lateralus 17 Nov 2026): launchers from 1.1.5 download only missing or changed files. Older launchers ignore it.</summary>
+public sealed record DistributionIndex(string Url, long Size, string Sha256);
 public sealed record DistributionRelease(string Version, DistributionPackage Gameplay, DistributionPackage Assets);
 public sealed record DistributionManifest(int Schema, string Channel, string Current, [property: JsonPropertyName("locked_version")] string? LockedVersion, List<DistributionRelease> Releases);
 
@@ -47,6 +49,37 @@ public static class HostedDistribution
         if(p==null || p.Id!=id || string.IsNullOrWhiteSpace(p.Version) || p.Size<=0 || !Regex.IsMatch(p.Sha256??"","^[a-fA-F0-9]{64}$") ||
             string.IsNullOrWhiteSpace(p.Filename) || p.Filename!=Path.GetFileName(p.Filename) || p.Filename.Contains('\\') || p.Filename.Contains(':') || !p.Filename.EndsWith(".bamod",StringComparison.OrdinalIgnoreCase) ||
             !Uri.TryCreate(p.Url,UriKind.Absolute,out var url) || url.Scheme!="https")throw new InvalidDataException("Invalid package in version manifest.");
+        if(p.Index!=null && (p.Index.Size<=0 || p.Index.Size>MaxIndexSize || !Regex.IsMatch(p.Index.Sha256??"","^[a-fA-F0-9]{64}$") ||
+            !Uri.TryCreate(p.Index.Url,UriKind.Absolute,out var index) || index.Scheme!="https"))throw new InvalidDataException("Invalid file list in version manifest.");
+    }
+    public const long MaxIndexSize=16<<20;
+    internal static HttpClient Client => Http;
+    /// <summary>The verified cached file list of a package, or null when the manifest has none (full-package mode).</summary>
+    public static string? IndexPath(DistributionPackage p)
+    {
+        if(p.Index==null)return null;
+        var file=Path.Combine(CacheRoot,p.Index.Sha256.ToLowerInvariant()+"-"+Path.GetFileNameWithoutExtension(p.Filename)+".files.json");
+        return File.Exists(file)?file:null;
+    }
+    private static async Task EnsureIndexAsync(DistributionPackage p,HttpClient client,string cache,IProgress<LaunchProgress>? progress,CancellationToken ct)
+    {
+        var dest=Path.Combine(cache,p.Index!.Sha256.ToLowerInvariant()+"-"+Path.GetFileNameWithoutExtension(p.Filename)+".files.json");
+        bool Valid(byte[] b)=>b.LongLength==p.Index.Size && Convert.ToHexString(SHA256.HashData(b)).Equals(p.Index.Sha256,StringComparison.OrdinalIgnoreCase);
+        if(File.Exists(dest) && Valid(await File.ReadAllBytesAsync(dest,ct))){progress?.Report(new("Using cached file list for "+p.Filename));return;}
+        progress?.Report(new("Downloading the file list for "+p.Filename));
+        for(int attempt=0;;attempt++)
+        {
+            try
+            {
+                using var r=await OpenAsync(client,p.Index.Url,0,ct);
+                if(r.Content.Headers.ContentLength>MaxIndexSize)throw new InvalidDataException("File list is too large.");
+                var bytes=await r.Content.ReadAsByteArrayAsync(ct);
+                if(!Valid(bytes))throw new InvalidDataException("File list checksum failed; the game will not start.");
+                await File.WriteAllBytesAsync(dest+".part",bytes,ct);File.Move(dest+".part",dest,true);return;
+            }
+            catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException) && !ct.IsCancellationRequested && attempt<2)
+            { await Task.Delay(TimeSpan.FromSeconds(attempt+1),ct); }
+        }
     }
     public static DistributionRelease Select(DistributionManifest m)=>m.Releases.Single(r=>r.Version==(m.LockedVersion??m.Current));
     public static bool ValidFile(string file,DistributionPackage p)
@@ -164,7 +197,9 @@ public static class HostedDistribution
         var manifest=await ReadManifestAsync(Http,ManifestUrl,manifestFile,progress,ct);
         var selected=Select(manifest);
         await EnsurePackageAsync(selected.Gameplay,Http,CacheRoot,progress,ct);
-        await EnsurePackageAsync(selected.Assets,Http,CacheRoot,progress,ct);
+        // With a file list the Assets files are fetched one by one during install (AssetsIndexInstall); the full pack is not downloaded.
+        if(selected.Assets.Index!=null)await EnsureIndexAsync(selected.Assets,Http,CacheRoot,progress,ct);
+        else await EnsurePackageAsync(selected.Assets,Http,CacheRoot,progress,ct);
         // Commit the new manifest only once both referenced packages have verified successfully.
         await File.WriteAllTextAsync(manifestFile+".tmp",JsonSerializer.Serialize(manifest,Json),ct);File.Move(manifestFile+".tmp",manifestFile,true);
         Active=selected;
