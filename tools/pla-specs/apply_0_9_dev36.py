@@ -42,7 +42,9 @@ rec['cm501ga']={'ammo':2017128,'TargetType':[35,38],'MaxSeekerDistance':[1000,25
 # ---------- Alarms (Osama 17 Nov 2026 10:1x PST, thread 1567745029781454889: "swap the air warning out and make that the missile warning and then remove
 # the air warning in general because I think there already is one in vanilla"). Runtime only (runtime-qa/AlertSounds.cs): the ballistic missile alarm
 # plays the Arleigh Burke sound (audio/aircraft-alarm-burke.ogg) instead of the C-RAM "incoming"; nothing plays on the aircraft warning any more.
-rec['alarms']={'ballistic':'aircraft-alarm-burke.ogg','aircraft':'none'}
+# Nuclear launch announcements (Osama 17 Nov 10:2x PST: "these should start fading out after 3.5 seconds a bit earlier on the nuclear warnings"):
+# audio/nuke-warning-{cn,us,ru}.mp3 fade out from 3.5 s to 5.0 s and end there (were 11.9 s).
+rec['alarms']={'ballistic':'aircraft-alarm-burke.ogg','aircraft':'none','nuclear_fade':[3.5,5.0]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
