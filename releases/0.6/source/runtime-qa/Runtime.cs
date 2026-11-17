@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -78,6 +78,7 @@ public class Runtime : MelonMod
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
+        try { LogUpload.SceneLoaded(sceneName); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD scene: "+e.Message); }
         GroundAaLog.SceneChanged();
         InterceptLead.SceneChanged();
         SeadOverkill.SceneChanged();
@@ -116,6 +117,7 @@ public class Runtime : MelonMod
         Directory.CreateDirectory(Root);
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
         DiagnosticLog.Start(Root,PackageVersion);
+        try { LogUpload.Start(PackageVersion); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD off: "+e.Message); }
         // 0.9.0-dev.3: before the payload check, so even a refused package never loads or rewrites vanilla decks.
         try { DeckFolder.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_FOLDER_FAILED: decks use the vanilla folder. "+e.Message); }
@@ -240,6 +242,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALERT_SOUNDS_FAILED: old alarms stay. "+e.Message); }
         try { conquest?.OnLateInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
+        try { LogUpload.InstallSettingsRow(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD settings row failed: "+e.Message); }
         try { PerfProbe.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PERF_FAILED: "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }
@@ -252,6 +256,7 @@ public class Runtime : MelonMod
     public override void OnApplicationQuit()
     {
         DiagnosticLog.Write("application_quit",new{});
+        LogUpload.Quit();
         try { ThirdPartyGuard.RestoreArrowQueue(); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: restore "+e.Message); }
     }
