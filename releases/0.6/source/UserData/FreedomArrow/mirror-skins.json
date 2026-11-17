@@ -1,5 +1,5 @@
 {
-  "note": "Mirror-finish skins chosen by a loadout option (MirrorSkin.cs). Materials whose name starts with prefix are replaced by an HDRP/Lit copy: albedo -> _BaseColorMap, mask -> _MaskMap (R metallic, G occlusion, B detail, A smoothness). The game's UnitV3 shader ignores its mask slot (dev.29 test), so shader is HDRP/Lit. Re-read every 2 s while the game runs. Gold canopy (Osama 16 Nov 14:30): prefix US_F22 also takes the canopy (US_F22_Glass); its atlas area is gold, metallic 1, smoothness 0.95 (opaque).",
+  "note": "Mirror-finish skins chosen by a loadout option (MirrorSkin.cs). Materials whose name starts with prefix are replaced by an HDRP/Lit copy: albedo -> _BaseColorMap, mask -> _MaskMap (R metallic, G occlusion, B detail, A smoothness). The game's UnitV3 shader ignores its mask slot (dev.29 test), so shader is HDRP/Lit. Re-read every 2 s while the game runs. Gold canopy (Osama 16 Nov 14:30): prefix US_F22 also takes the canopy (US_F22_Glass); its atlas area is gold, metallic 1, smoothness 0.95 (opaque). Stainless steel (Osama 16 Nov 16:0x: \"a little too chrome. should be more shiny stainless steel ... mostly how smooth it is\"): mirror-paint smoothness 0.96 -> 0.80 (mask alpha 245 -> 204); colour, metallic and the gold canopy (0.95) unchanged.",
   "skins": [
     {
       "unit": "297",
