@@ -26,7 +26,7 @@ internal static class ChinaVoice
     [ThreadStatic] static bool chinaSpeaking;
     [ThreadStatic] static int speakerId,speakerType,speakerCategory;
     static bool broken;static int muted,played;
-    static string dir="";static readonly Dictionary<int,(string set,string? unit)> units=new();static readonly Dictionary<string,string> fallback=new();
+    static string dir="";static readonly Dictionary<int,(string set,string unit)> units=new();static readonly Dictionary<string,string> fallback=new();
     static float volume=0.234f;
     static IntPtr system,sound,channel;
     static readonly Dictionary<string,List<string>> files=new(),bags=new();static string last="";
@@ -47,7 +47,7 @@ internal static class ChinaVoice
     static void LoadConfig(string f)
     {
         var j=JsonNode.Parse(File.ReadAllText(f))!;
-        foreach(var kv in j["units"]!.AsObject())units[int.Parse(kv.Key)]=((string)kv.Value!["set"]!,(string?)kv.Value["unit"]);
+        foreach(var kv in j["units"]!.AsObject())units[int.Parse(kv.Key)]=((string)kv.Value!["set"]!,(string)kv.Value["unit"]);
         foreach(var kv in j["fallback"]!.AsObject())fallback[kv.Key]=(string)kv.Value!;
         volume=(float?)j["volume"]??volume;
     }
@@ -55,7 +55,7 @@ internal static class ChinaVoice
     static void OpenFmod()
     {
         // The game's FMOD library is in BrokenArrow_Data/Plugins/x86_64, not on the search path (FAMusic does the same).
-        NativeLibrary.Load(Path.Combine(MelonEnvironment.GameRootDirectory,"BrokenArrow_Data","Plugins","x86_64","fmodstudio.dll"));
+        System.Runtime.InteropServices.NativeLibrary.Load(Path.Combine(MelonEnvironment.GameRootDirectory,"BrokenArrow_Data","Plugins","x86_64","fmodstudio.dll"));
         if(Fmod.FMOD_System_Create(out system,Fmod.Version)!=0||Fmod.FMOD_System_Init(system,4,0,IntPtr.Zero)!=0)throw new InvalidOperationException("FMOD system");
     }
 
@@ -97,7 +97,7 @@ internal static class ChinaVoice
         if(!units.TryGetValue(speakerId,out var map))
         {
             if(!fallback.TryGetValue($"{speakerType}:{speakerCategory}",out var s)&&!fallback.TryGetValue(speakerType.ToString(),out s))return;
-            map=(s,null);
+            map=(s,null!);
         }
         var clips=Clips(map,Triggers(c,cmd,isUp,slot));
         if(clips.Count==0){if(muted++<20)MelonLogger.Msg($"FREEDOM_ARROW_CHINA_VOICE no line: unit {speakerId} command {cmd} {map.set}");return;}
@@ -121,7 +121,7 @@ internal static class ChinaVoice
     // Folders to try, in order; the first one with clips wins. Names are the trigger folders under each set.
     static string[] Triggers(AudioCommandsCollection c,int cmd,bool isUp,string slot)
     {
-        bool cbt(string? s)=>!string.IsNullOrEmpty(s)&&slot==s;
+        bool cbt(string s)=>!string.IsNullOrEmpty(s)&&slot==s;
         return cmd switch
         {
             0=>cbt(c.SelectionCBT)?new[]{"Selection_CBT","Selection"}:new[]{"Selection"},
@@ -166,7 +166,7 @@ internal static class ChinaVoice
     }
 
     // Attack also pools the plane Missile and Strike lines; every other command uses the first folder that has clips.
-    static List<string> Clips((string set,string? unit) map,string[] triggers)
+    static List<string> Clips((string set,string unit) map,string[] triggers)
     {
         var all=new List<string>();
         for(int i=0;i<triggers.Length;i++)
