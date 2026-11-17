@@ -21,7 +21,8 @@ class Cover:
     """Cover on an infantry target. Values come from the loaded data set (vanilla or the mod).
 
     Building (ShellHitSystem.DamageBuilding): M = clamp(floor + per_soldier x soldiers),
-    damage x (M + (1 - M) x IgnoreCover); the shell hits the building, so it always lands.
+    damage x (M + (1 - M) x IgnoreCover). The round must land on the building: its spread is checked against the
+    building's width x height (world m, editable; Lateralus 17 Nov 2026). Until then every round counted as a hit.
     Woods (FA CoverDamage hook; vanilla has none): damage x (1 - (1 - forest_taken) x (1 - IgnoreCover)).
     """
 
@@ -30,6 +31,13 @@ class Cover:
     building_floor: float = 0.18
     building_per_soldier: float = 0.02
     soldiers: int = 6
+    building_width: float = 20.0
+    building_height: float = 10.0
+
+
+def building_box(cover: Cover) -> tuple[float, float]:
+    """Width x height (world m) a round must land in when the target squad is in a building."""
+    return (max(0.1, float(cover.building_width)), max(0.1, float(cover.building_height)))
 
 
 def cover_multiplier(ammo: dict[str, Any], armor: dict[str, Any], cover: Cover | None) -> float:
@@ -288,7 +296,8 @@ def dpm_at_world(
     if covered and damage_type == "Physical":
         damage *= cover_multiplier(ammo, armor, cover)
     in_building = covered and cover.kind == "Building"
-    chance = hit_chance(ammo, world_m, silhouette) if apply_accuracy and not in_building else 1.0
+    box = building_box(cover) if in_building else silhouette
+    chance = hit_chance(ammo, world_m, box) if apply_accuracy else 1.0
     return damage * chance * shots_per_minute(weapon, gun_count)
 
 

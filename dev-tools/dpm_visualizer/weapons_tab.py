@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import Cover, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
+from .calculations import Cover, building_box, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_LINE_STYLES, FACES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
@@ -313,10 +313,9 @@ class WeaponsTab:
             ammo = meta["ammo"]
             weapon = meta["weapon"]
             spm = shots_per_minute(weapon, meta["qty"])
-            chance = hit_chance(ammo, world, self._silhouette)
             covered = self._cover.kind != "Open" and meta["cover"] != 1.0
-            if covered and self._cover.kind == "Building":
-                chance = 1.0
+            in_building = covered and self._cover.kind == "Building"
+            chance = hit_chance(ammo, world, building_box(self._cover) if in_building else self._silhouette)
             hit_txt = f"  hit {chance:.0%}" if self._apply_accuracy else ""
             if self._cover.kind != "Open":
                 hit_txt += f"  through cover {meta['cover']:.0%}"

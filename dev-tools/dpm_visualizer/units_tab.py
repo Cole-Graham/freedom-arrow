@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import Cover, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
+from .calculations import Cover, building_box, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES, LAUNCHER_MODES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
@@ -715,9 +715,10 @@ class UnitsTab:
                 wdpm = interpolate_dpm(weapon_meta["series"], card)
                 ammo = weapon_meta["ammo"]
                 weapon = weapon_meta["weapon"]
-                chance = hit_chance(ammo, world, meta.get("silhouette") or self._silhouette)
                 in_building = self.cover_ctl.kind.get() == "Building" and weapon_meta["cover"] != 1.0
-                hit_txt = f"  hit {1.0 if in_building else chance:.0%}" if self._apply_accuracy else ""
+                box = building_box(self.cover_ctl.cover()) if in_building else (meta.get("silhouette") or self._silhouette)
+                chance = hit_chance(ammo, world, box)
+                hit_txt = f"  hit {chance:.0%}" if self._apply_accuracy else ""
                 if self.cover_ctl.kind.get() != "Open":
                     hit_txt += f"  through cover {weapon_meta['cover']:.0%}"
                 range_txt = card_range_text(ammo)

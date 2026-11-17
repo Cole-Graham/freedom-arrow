@@ -180,10 +180,17 @@ class CoverControls:
         ttk.Label(row, text="Soldiers in building").pack(side=tk.LEFT)
         self.soldiers = tk.IntVar(value=6)
         ttk.Spinbox(row, from_=1, to=60, textvariable=self.soldiers, width=4).pack(side=tk.LEFT, padx=4)
+        ttk.Label(row, text="Building W×H (m)").pack(side=tk.LEFT)
+        self.building_width = tk.DoubleVar(value=20.0)
+        self.building_height = tk.DoubleVar(value=10.0)
+        ttk.Spinbox(row, from_=1, to=200, textvariable=self.building_width, width=5).pack(side=tk.LEFT, padx=2)
+        ttk.Spinbox(row, from_=1, to=100, textvariable=self.building_height, width=5).pack(side=tk.LEFT, padx=2)
         self.info = tk.StringVar()
         ttk.Label(parent, textvariable=self.info, foreground="#555", wraplength=380, justify=tk.LEFT).pack(anchor=tk.W)
         self.kind.trace_add("write", lambda *_: (self.update_info(), on_change()))
         self.soldiers.trace_add("write", lambda *_: (self.update_info(), on_change()))
+        self.building_width.trace_add("write", lambda *_: (self.update_info(), on_change()))
+        self.building_height.trace_add("write", lambda *_: (self.update_info(), on_change()))
 
     def cover(self):
         from .calculations import Cover
@@ -193,7 +200,13 @@ class CoverControls:
             soldiers = max(1, int(self.soldiers.get()))
         except (tk.TclError, ValueError):
             soldiers = 1
-        return Cover(self.kind.get(), rules["forest_taken"], rules["building_floor"], rules["building_per_soldier"], soldiers)
+        def size(var, default):
+            try:
+                return max(1.0, float(var.get()))
+            except (tk.TclError, ValueError):
+                return default
+        return Cover(self.kind.get(), rules["forest_taken"], rules["building_floor"], rules["building_per_soldier"], soldiers,
+                     size(self.building_width, 20.0), size(self.building_height, 10.0))
 
     def update_info(self) -> None:
         cover = self.cover()
@@ -205,19 +218,26 @@ class CoverControls:
         elif cover.kind == "Building":
             share = min(1.0, cover.building_floor + cover.building_per_soldier * cover.soldiers)
             text = (f"Building: take {share:.0%} (floor {cover.building_floor:g} + {cover.building_per_soldier:g} × "
-                    f"{cover.soldiers} soldiers), plus ignore cover × the rest. Shells hit the building: no misses.")
+                    f"{cover.soldiers} soldiers), plus ignore cover × the rest. A round counts as a hit when it lands on the "
+                    f"building: spread vs a {cover.building_width:g} × {cover.building_height:g} m building (world m).")
         else:
             text = ""
         self.info.set(text)
 
     def save(self) -> dict:
-        return {"cover": self.kind.get(), "cover_soldiers": self.cover().soldiers}
+        cover = self.cover()
+        return {"cover": self.kind.get(), "cover_soldiers": cover.soldiers,
+                "cover_building_w": cover.building_width, "cover_building_h": cover.building_height}
 
     def load(self, state: dict) -> None:
         if state.get("cover") in ("Open", "Woods", "Building"):
             self.kind.set(state["cover"])
         if state.get("cover_soldiers"):
             self.soldiers.set(int(state["cover_soldiers"]))
+        if state.get("cover_building_w"):
+            self.building_width.set(float(state["cover_building_w"]))
+        if state.get("cover_building_h"):
+            self.building_height.set(float(state["cover_building_h"]))
 
 
 class ArmorPicker:
