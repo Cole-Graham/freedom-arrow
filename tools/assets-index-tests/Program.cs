@@ -5,6 +5,22 @@ using System.IO.Compression;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text.Json;
+if(args.Length==2&&args[0]=="--update")
+{
+ // Real-size check (Lateralus 17 Nov): run the launcher's file-list install on a COPY of a real game folder against the live 0.2.44 list.
+ using var web=new HttpClient{Timeout=TimeSpan.FromMinutes(20)};var url="https://freedomarrow.app/assets/index/FreedomArrow-Assets-0.2.44.files.json";
+ var bytes=await web.GetByteArrayAsync(url);var file=Path.Combine(Path.GetTempPath(),"fa-0.2.44.files.json");File.WriteAllBytes(file,bytes);
+ var pk=new DistributionPackage("freedomarrow.assets.live","0.2.44","FreedomArrow-Assets-0.2.44.bamod","https://freedomarrow.app/assets/FreedomArrow-Assets-0.2.44.bamod",6479921431,"11015eb1ee2ecac84aa0ef7d27633acc6e1ae4a65b162fa3a7d62072a265a1f5",
+  new DistributionIndex(url,bytes.Length,Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(bytes)).ToLowerInvariant()));
+ AssetsIndexInstall.Client=web;var keepPrefs=new HashSet<string>(StringComparer.OrdinalIgnoreCase){"UserData/FAMusic/voice-presets.txt","UserData/FAMusic/music-history.txt"};
+ for(int run=1;run<=2;run++)
+ {
+  var sw=System.Diagnostics.Stopwatch.StartNew();
+  AssetsIndexInstall.Ensure(args[1],file,pk,keepPrefs,s=>Console.WriteLine($"[{sw.Elapsed:mm\\:ss}] {s}"),CancellationToken.None);
+  Console.WriteLine($"RUN {run}: {sw.Elapsed.TotalSeconds:0.0} s");
+ }
+ return;
+}
 int count=0;
 void Check(bool value,string label){if(!value)throw new Exception("FAIL "+label);count++;Console.WriteLine("PASS "+label);}
 string Sha(byte[] b)=>Convert.ToHexString(SHA256.HashData(b)).ToLowerInvariant();
