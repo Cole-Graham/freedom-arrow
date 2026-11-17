@@ -76,6 +76,12 @@ rec['t15_transport']={'category':[1,2],'card_removed':865,'transport_for':_inf}
 # options keep their own prices.
 ok(U[976]['HUDName']=='MD-22' and U[976]['Cost']==215,'MD-22 215');g.put('Units',976,{'Cost':255});ok(U[976]['Cost']==255,'MD-22 255')
 rec['md22_cost']=[215,255]
+# ---------- China SF smoke, Mountain Leopards HJ-12 and sprint, Taishan Eagles PF-89, cheap recon lasers (Lateralus 16 Nov 2026 16:5x PST, thread
+# 1571942037488410817). Smoke 4 -> 1: Sea Dragons (both), Mountain Leopards ("Mountain Lions"), Whistling Arrows, Thunder Gods. Mountain Leopards: one
+# HJ-12 carrier with 3 rounds (was 3 carriers x 1), no sprint. Taishan Eagles PF-89 1 -> 4. Laser designators off for the 8 recon squads of 40 points
+# or less. See lateralus/china_sf_recon.py; lateralus/queued_checks.py checks the package.
+import china_sf_recon
+rec['china_sf_recon']=china_sf_recon.apply(t,g,ok)
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
