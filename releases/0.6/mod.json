@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.0-dev.34",
+  "version": "0.9.0-dev.35",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.34 (Osama 16 Nov): China units speak their own voice lines (Mandarin Regular, Conscript and SF sets; Blood Wolves and Godswords English), Blood Wolves card name 朱日和之狼 (Zhurihe Wolves, 195th Brigade). Includes 0.9.0-dev.33. Needs Freedom Arrow — Models and Music 0.2.44.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.35 (Osama 16 Nov playtest): nuclear launch announcement by faction for every nuclear missile, C-RAM ballistic and Burke aircraft alarms at 40%, DF-31A calm voice, drones silent, CTL-181 and CH-901 precision strike, LY-1 10 HP and slower laser, ZBD-20 4 HJ-16, no HEAT on ZTZ-59/80, Conscript Recon 4 men 25 pts, Falcons QLU-11 75 pts, VT-5 no APS, PLZ-70 PLAAF, 5th-gen fighters 2 cards and pre-SEAD prices. Includes 0.9.0-dev.34. Needs Freedom Arrow — Models and Music 0.2.44.",
   "repo": "Cole-Graham/freedom-arrow"
 }
