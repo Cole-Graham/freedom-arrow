@@ -58,23 +58,40 @@ g.put('WeaponsJson',2017902,{k:_L.get(k) for k in _keys})
 _VA={r['Id']:r for r in _json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
 ok(all(_A[2017128].get(k)==_VA[449].get(k) for k in _VA[449] if k not in ('Id','Name','HUDName')) and all(_W[2017902].get(k)==_L.get(k) for k in _L if k not in ('Id','Name','HUDName','HUDIcon')),'CM-501GA = LMUR except names and icon')
 rec['cm501ga_lmur_clone']={'ammo':2017128,'weapon':2017902,'template':{'ammo':449,'weapon':603}}
-# ---------- Osama 17 Nov 2026 10:2x PST: "ZTQ-15 seems to not have all its weapons" and "remove ztz-85-II".
-# ZTQ-15, Recon and Light share mount 1 (2019317: Type 86 at order 1, QJC-88 at order 2) and mount 2 (2018997: LG3 at order 2). The game builds each mount's
-# weapon list by order and puts an empty slot for every skipped number, so mount 1 got one empty slot and mount 2 two. Vanilla numbers each mount from 0 without
-# gaps (Kurganets 57 mm turret 0,1,2,3). Renumbered from 0. The Kurganets stand-in (Osama's idea) is kept for later if weapons are still missing.
-_TW,_TU=t['TurretWeaponsJson'],t['TurretUnitsJson']
-for _tur,_want in ((2019317,[(1,'Type 86 7.62 mm'),(2,'QJC-88 12.7 mm')]),(2018997,[(2,'LG3 40 mm AGL')])):
-    _rows=sorted((r for r in _TW.values() if r['TurretId']==_tur),key=lambda r:r['Order'])
-    ok([(r['Order'],t['WeaponsJson'][r['WeaponId']].get('HUDName')) for r in _rows]==_want and sorted({r['UnitId'] for r in _TU.values() if r['TurretId']==_tur})==[906,1240,1268],f'ZTQ-15 mount {_tur} orders {_want}')
-    for _i,_r in enumerate(_rows):g.put('TurretWeaponsJson',_r['Id'],{'Order':_i})
-    ok([r['Order'] for r in sorted((r for r in _TW.values() if r['TurretId']==_tur),key=lambda r:r['Order'])]==list(range(len(_rows))),f'ZTQ-15 mount {_tur} numbered from 0')
+# ---------- Osama 17 Nov 2026 10:2x PST: "ZTQ-15 seems to not have all its weapons", "remove ztz-85-II"; 17 Nov 11:1x PST (thread 1571014792016171120):
+# "no swap the kurganets stand in. I tested and it fucked up", "the ZTQ-15 does not fire its other weapons, we'll need to swap it for the bulat".
+# ZTQ-15, Recon and Light sat on the M10 body with three mounts: the 105 mm on the M10 turret (works), Type 86 + QJC-88 on the BTR-82AT turret part
+# (2019317) and LG3 on a mount with no model part (2018997). The M10 body has neither part, so those three guns had no point to fire from.
+# Now on the Kurganets body with one mount on its 57 mm turret part (RU_Kurganets57mm, vanilla mount 470: 2A94, PKT, Kornet, Bulat = 4 weapon
+# points): 105 mm, Type 86, QJC-88, LG3 at orders 0-3. The model is still the ZTQ-15 (FAModels, by name). VT-5 keeps the old M10 layout (not asked).
+_TW,_TU,_TT=t['TurretWeaponsJson'],t['TurretUnitsJson'],t['TurretsJson'];_ZTQ=[906,1240,1268]
+def _ztq(u):return [(r['TurretId'],[_W[w['WeaponId']]['HUDName'] for w in sorted((w for w in _TW.values() if w['TurretId']==r['TurretId']),key=lambda w:w['Order'])]) for r in sorted((r for r in _TU.values() if r['UnitId']==u),key=lambda r:r['Order'])]
+_old=[(2009128,['105 mm high-pressure rifled gun']),(2019317,['Type 86 7.62 mm','QJC-88 12.7 mm']),(2018997,['LG3 40 mm AGL'])]
+ok(all(U[u]['ModelFileName']=='US_M10' and _ztq(u)==_old for u in _ZTQ),'ZTQ-15 x3 on M10 with the three old mounts')
+ok(all(sorted({r['UnitId'] for r in _TU.values() if r['TurretId']==k})==_ZTQ for k in (2019317,2018997)),'mounts 2019317/2018997 ZTQ-15 only')
+_mt=g.add('TurretsJson',_TT[2009128],{'Name':'PLA ZTQ-15 mount 0 Kurganets 57','ModelFileName':'RU_Kurganets/RU_Kurganets57mm'})
+for _i,_src in enumerate((2009130,2019318,2019319,2018998)):
+    g.add('TurretWeaponsJson',_TW[_src],{'TurretId':_mt,'Order':_i,'WeaponChannel':0,'WeaponPriority':_i})
+for _u in _ZTQ:
+    g.put('Units',_u,{'ModelFileName':'RU_Kurganets'})
+    for _r in [r for r in _TU.values() if r['UnitId']==_u]:
+        if _r['TurretId']==2009128:g.put('TurretUnitsJson',_r['Id'],{'TurretId':_mt,'Order':0})
+        else:g.remove('TurretUnitsJson',_r['Id'])
+for _k in (2019317,2018997):
+    for _r in [r for r in _TW.values() if r['TurretId']==_k]:g.remove('TurretWeaponsJson',_r['Id'])
+    g.remove('TurretsJson',_k)
+_new=[(_mt,['105 mm high-pressure rifled gun','Type 86 7.62 mm','QJC-88 12.7 mm','LG3 40 mm AGL'])]
+ok(all(U[u]['ModelFileName']=='RU_Kurganets' and _ztq(u)==_new for u in _ZTQ),'ZTQ-15 x3 on Kurganets, one 57 mm mount, 4 weapons')
+ok(sorted(w['Order'] for w in _TW.values() if w['TurretId']==_mt)==[0,1,2,3] and _TT[_mt]['ModelFileName']=='RU_Kurganets/RU_Kurganets57mm','mount numbered 0-3 on the Kurganets 57 mm part')
+ok(all(U[u]['ModelFileName']=='US_M10' and _ztq(u)[0][0]==2009128 for u in (1261,1262)),'VT-5 unchanged')
+rec['ztq15_kurganets']={'units':_ZTQ,'model':['US_M10','RU_Kurganets'],'mount':_mt,'part':'RU_Kurganets/RU_Kurganets57mm','removed_mounts':[2019317,2018997]}
 # ZTZ-85-II (1264): its only deck card (row 2018800, PLARF Conscript, 6) goes; the unit row stays for old saves and decks.
 _SA=t['SpecializationAvailabilitiesJson']
 ok(U[1264]['HUDName']=='ZTZ-85-II' and [r['Id'] for r in _SA.values() if r.get('UnitId')==1264]==[2018800] and assign['assignments'].get('1264')==[19],'ZTZ-85-II one deck row, assignment 19')
 ok(not [r for r in t['TransportAvailabilitiesJson'].values() if r.get('UnitId')==1264 or r.get('SpecializationAvailabilityId')==2018800],'ZTZ-85-II: no transport links')
 g.remove('SpecializationAvailabilitiesJson',2018800);assign['assignments'].pop('1264',None)   # as WZ-550 in dev.32
 ok(not any(r.get('UnitId')==1264 for r in _SA.values()),'ZTZ-85-II in no deck')
-rec['ztq15_mount_orders']={'2019317':[[1,2],[0,1]],'2018997':[[2],[0]]};rec['ztz85ii_removed']={'unit':1264,'deck_row':2018800}
+rec['ztz85ii_removed']={'unit':1264,'deck_row':2018800}
 # ---------- ZTZ-59 and ZTZ-80 (Osama 17 Nov 2026 10:3x PST, thread 1567745029781454889: "ZTZ-59 to 10 HP, 45 forward speed, 45 ppoints", "ZTZ-80 shows 72
 # forward move, this should be 60 forward, 65 points"). Forward = road speed (MaxSpeedRoad, what the card shows). ZTZ-59 (1060): HP 12 -> 10, road 50 -> 45,
 # 55 -> 45 points. ZTZ-80 (1061, the renamed Type 59D card): road 72 -> 60, 60 -> 65 points. Own armour/mobility rows only; the ZTZ-59D1 recon copy
