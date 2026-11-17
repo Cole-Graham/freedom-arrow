@@ -58,6 +58,23 @@ g.put('WeaponsJson',2017902,{k:_L.get(k) for k in _keys})
 _VA={r['Id']:r for r in _json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
 ok(all(_A[2017128].get(k)==_VA[449].get(k) for k in _VA[449] if k not in ('Id','Name','HUDName')) and all(_W[2017902].get(k)==_L.get(k) for k in _L if k not in ('Id','Name','HUDName','HUDIcon')),'CM-501GA = LMUR except names and icon')
 rec['cm501ga_lmur_clone']={'ammo':2017128,'weapon':2017902,'template':{'ammo':449,'weapon':603}}
+# ---------- Osama 17 Nov 2026 10:2x PST: "ZTQ-15 seems to not have all its weapons" and "remove ztz-85-II".
+# ZTQ-15, Recon and Light share mount 1 (2019317: Type 86 at order 1, QJC-88 at order 2) and mount 2 (2018997: LG3 at order 2). The game builds each mount's
+# weapon list by order and puts an empty slot for every skipped number, so mount 1 got one empty slot and mount 2 two. Vanilla numbers each mount from 0 without
+# gaps (Kurganets 57 mm turret 0,1,2,3). Renumbered from 0. The Kurganets stand-in (Osama's idea) is kept for later if weapons are still missing.
+_TW,_TU=t['TurretWeaponsJson'],t['TurretUnitsJson']
+for _tur,_want in ((2019317,[(1,'Type 86 7.62 mm'),(2,'QJC-88 12.7 mm')]),(2018997,[(2,'LG3 40 mm AGL')])):
+    _rows=sorted((r for r in _TW.values() if r['TurretId']==_tur),key=lambda r:r['Order'])
+    ok([(r['Order'],t['WeaponsJson'][r['WeaponId']].get('HUDName')) for r in _rows]==_want and sorted({r['UnitId'] for r in _TU.values() if r['TurretId']==_tur})==[906,1240,1268],f'ZTQ-15 mount {_tur} orders {_want}')
+    for _i,_r in enumerate(_rows):g.put('TurretWeaponsJson',_r['Id'],{'Order':_i})
+    ok([r['Order'] for r in sorted((r for r in _TW.values() if r['TurretId']==_tur),key=lambda r:r['Order'])]==list(range(len(_rows))),f'ZTQ-15 mount {_tur} numbered from 0')
+# ZTZ-85-II (1264): its only deck card (row 2018800, PLARF Conscript, 6) goes; the unit row stays for old saves and decks.
+_SA=t['SpecializationAvailabilitiesJson']
+ok(U[1264]['HUDName']=='ZTZ-85-II' and [r['Id'] for r in _SA.values() if r.get('UnitId')==1264]==[2018800] and assign['assignments'].get('1264')==[19],'ZTZ-85-II one deck row, assignment 19')
+ok(not [r for r in t['TransportAvailabilitiesJson'].values() if r.get('UnitId')==1264 or r.get('SpecializationAvailabilityId')==2018800],'ZTZ-85-II: no transport links')
+g.remove('SpecializationAvailabilitiesJson',2018800);assign['assignments'].pop('1264',None)   # as WZ-550 in dev.32
+ok(not any(r.get('UnitId')==1264 for r in _SA.values()),'ZTZ-85-II in no deck')
+rec['ztq15_mount_orders']={'2019317':[[1,2],[0,1]],'2018997':[[2],[0]]};rec['ztz85ii_removed']={'unit':1264,'deck_row':2018800}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
