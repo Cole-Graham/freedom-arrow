@@ -65,7 +65,7 @@ static class SameUnitClaim
         if(method.ReturnType!=typeof(bool)||p.Length!=10||p[0].ParameterType!=typeof(Entity).MakeByRefType()||p[3].ParameterType!=typeof(Entity).MakeByRefType())
             throw new InvalidOperationException("Overkill hook signature changed");
         // Runs after AaCooldown's postfix so a claim is the final word for these weapons.
-        harmony.Patch(method,postfix:new HarmonyMethod(typeof(SameUnitClaim),nameof(After)){priority=Priority.Last});
+        OverkillHooks.Use("same_unit_claim");   // 0.9.0-dev.37: called from the one merged postfix (OverkillHooks.cs), after AaCooldown
         var me=AccessTools.Method(typeof(BattleSystemHelpers),"IsTargetSEADProjectileTargetingMe")??throw new MissingMethodException("IsTargetSEADProjectileTargetingMe");
         var mp=me.GetParameters();
         if(me.ReturnType!=typeof(bool)||mp.Length!=2||mp.Any(x=>x.ParameterType!=typeof(Entity).MakeByRefType()))throw new InvalidOperationException("TargetingMe hook signature changed");
@@ -79,7 +79,7 @@ static class SameUnitClaim
         MelonLogger.Msg($"FREEDOM_ARROW_SAME_UNIT_CLAIM installed: {ids.Count} interceptor weapons take one SEAD missile per unit");
     }
     // Native callback: reads the snapshot only.
-    static void After(ref Entity __0,ref Entity __3,ref bool __result)
+    internal static void After(ref Entity __0,ref Entity __3,ref bool __result)
     {
         if(__result||!enabled||failed)return;
         var f=Volatile.Read(ref frame);

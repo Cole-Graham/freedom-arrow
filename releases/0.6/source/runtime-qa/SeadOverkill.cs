@@ -29,12 +29,12 @@ static class SeadOverkill
         var c=JsonNode.Parse(File.ReadAllText(file))!;value=c["SeadScoreMultiplier"]?.GetValue<float>()??0.33f;
         if(!(value>0&&value<=1))throw new InvalidDataException("sead-overkill.json: SeadScoreMultiplier must be in (0, 1]");
         var m=AccessTools.Method(typeof(OverkillScoringSystem),"IsTargetOverkilled")??throw new MissingMethodException("IsTargetOverkilled");
-        harmony.Patch(m,postfix:new HarmonyMethod(typeof(SeadOverkill),nameof(After)){priority=Priority.Last});
+        OverkillHooks.Use("sead_overkill");   // 0.9.0-dev.37: called from the one merged postfix (OverkillHooks.cs), last
         on=true;
         MelonLogger.Msg($"FREEDOM_ARROW_SEAD_OVERKILL installed: SEAD missile overkill score multiplier {value} (vanilla 0.99)");
         DiagnosticLog.Write("sead_overkill_installed",new{SeadScoreMultiplier=value});
     }
-    static void After(ref Entity __0,ref Entity __3,bool __result)
+    internal static void After(ref Entity __0,ref Entity __3,bool __result)
     {
         if(!__result||!on||Hits.Count>=QueueMax)return;
         Hits.Enqueue((__0,__3));

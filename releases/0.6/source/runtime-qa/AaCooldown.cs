@@ -55,14 +55,14 @@ static class AaCooldown
             ||p.Where((_,i)=>i!=0&&i!=3).Any(x=>x.ParameterType!=typeof(bool)))
             throw new InvalidOperationException("Overkill hook signature changed");
         if(Unsafe.SizeOf<Entity>()!=8)throw new InvalidOperationException("Entity layout changed");
-        harmony.Patch(method,postfix:new HarmonyMethod(typeof(AaCooldown),nameof(After)));
+        OverkillHooks.Use("aa_cooldown");   // 0.9.0-dev.37: called from the one merged postfix (OverkillHooks.cs), same order as before
         DiagnosticLog.Write("aa_cooldown_installed",new{shadow,nativeBehaviorHooks=1,
             scope="Land/naval interceptor caller (current round has a projectile TargetType bit), native projectile target, all other future reservations clearly late, no airborne protection. Native priority retained.",
             caveat="Native invocation and safety unproven until this build is exercised. Mixed/unknown/stale cases retain native behavior."});
         MelonLogger.Msg("FREEDOM_ARROW_AA_COOLDOWN installed: one bool hook; managed cache only; shadow="+shadow);
     }
     // Reference shape matches the original in Entity parameters. Never read native storage here.
-    static void After(ref Entity __0, ref Entity __3, bool __7, ref bool __result)
+    internal static void After(ref Entity __0, ref Entity __3, bool __7, ref bool __result)
     {
         Interlocked.Increment(ref invocations);
         if(!__result||!enabled||failed)return;

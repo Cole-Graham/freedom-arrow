@@ -59,6 +59,7 @@ public class Runtime : MelonMod
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
+        HookHealth.LateUpdate();
         InterceptLead.LateUpdate();
         SeadOverkill.LateUpdate();
         LobbySlotDefaults.LateUpdate();
@@ -244,6 +245,8 @@ public class Runtime : MelonMod
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
         try { MatchLog.Install(HarmonyInstance,Root,LogUpload.Session); }
         catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_MATCH_LOG failed: "+e.Message); }
+        try { OverkillHooks.Install(HarmonyInstance); }   // after AaCooldown, SameUnitClaim and SeadOverkill registered (0.9.0-dev.37)
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_OVERKILL_HOOK_FAILED: native overkill for all three. "+e); }
         try { PerfProbe.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PERF_FAILED: "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }

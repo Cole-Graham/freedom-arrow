@@ -22,7 +22,7 @@ namespace FreedomArrow;
 // hook for this unit is ok" / "Any future weapon with this NLOS trait will receive the same benefits".
 // 0.8.0-dev.14 (Osama: "the HJ-10 should be the same bradley hellfire weapon but doesn't require line of sight"): the
 // missile is the ground Hellfire again (TrajectoryType 110, seeker 50). Two parts, both driven by nlos.json:
-// - Firing: FogOfWarUnit.Update postfix. That update rebuilds the unit's FogOfWarComponent.Shootable set from its own line
+// - Firing: FogOfWarUnit.Update postfix (0.9.0-dev.37: FogOfWarWorker update postfix, once per worker per frame; see Install). That update rebuilds the unit's FogOfWarComponent.Shootable set from its own line
 //   of sight; for a unit carrying a "fire_weapons" launcher the hook then adds every enemy (the update's target list) that
 //   any unit of the shooter's side sees (target VisibleTo) and that is within the game's own shooting distance for the
 //   launcher's selected ammunition (BattleSystemHelpers.GetAmmoShootingDistance). Patched method takes classes only.
@@ -74,8 +74,12 @@ static class NlosTrait
         if(fireWeapons.Count>0&&fireUnits.Count>0)
         {
             mainThread=Environment.CurrentManagedThreadId;
-            var fog=AccessTools.Method(typeof(FogOfWarUnit),nameof(FogOfWarUnit.Update))??throw new InvalidOperationException("FogOfWarUnit.Update not found");
-            harmony.Patch(fog,postfix:new HarmonyMethod(typeof(NlosTrait),nameof(FogAfter)));
+            // 0.9.0-dev.37: one call per fog worker per frame instead of one per unit (FogOfWarUnit.Update ran ~7,500 times a second in a 5v5).
+            // The only native caller of FogOfWarUnit.Update (RVA 0x6A2CC0 in 1.2.2.1) is FogOfWarWorker.IFogOfWarWorker.Update (0x6A3FB0),
+            // which calls it for each of the worker's own units with the worker's enemy set; our postfix on the worker runs right after
+            // those per-unit updates, so the NLOS targets are added at the same point in the frame as before.
+            var fog=AccessTools.Method(typeof(FogOfWarWorker),"BrokenArrow_Client_Ecs_FogOfWar_IFogOfWarWorker_Update")??throw new InvalidOperationException("FogOfWarWorker.IFogOfWarWorker.Update not found");
+            harmony.Patch(fog,postfix:new HarmonyMethod(typeof(NlosTrait),nameof(WorkerAfter)));
             MelonLogger.Msg($"FREEDOM_ARROW_NLOS fire hook installed: units {string.Join(",",fireUnits)} with launchers {string.Join(",",fireWeapons)} may shoot enemies their side has spotted, within launcher range, without own line of sight");
         }
         MelonLogger.Msg($"FREEDOM_ARROW_NLOS installed: ammunition {string.Join(",",ammo)} keep their seeker on a live target without line of sight or laser");
@@ -111,18 +115,49 @@ static class NlosTrait
         foreach(var o in seen)if(o.IsAlive&&o.Has<UnitComponent>()&&NativeEcs.Read<UnitComponent>(o).Owner?.TeamSide==side)return true;
         return false;
     }
-    public static void FogAfter(FogOfWarUnit __instance,Il2CppSystem.Collections.Generic.HashSet<FogOfWarUnit> __0)
+    // Health counters (FREEDOM_ARROW_HOOK_HEALTH, HookHealth.cs): worker calls, NLOS units found, units processed, targets added.
+    public static long WorkerCalls,UnitsProcessed;public static int NlosUnits=>workerUnits.Values.Sum(v=>v.units.Count);
+    public static int FireAdds=>fireAdds;public static bool FireBroken=>fireBroken;public static bool FireInstalled=>mainThread!=0;
+    static readonly Dictionary<IntPtr,(float at,List<FogOfWarUnit> units)> workerUnits=new();
+    const float UnitScan=1f;
+    // Once per worker per frame. Every second the worker's own units are scanned for NLOS shooters (Launcher caches the answer per unit);
+    // in between only those units are processed, with the worker's enemy set as the target list (the same list FogOfWarUnit.Update gets).
+    public static void WorkerAfter(FogOfWarWorker __instance)
     {
         if(fireBroken||!Runtime.IsApplied||__instance==null)return;
+        WorkerCalls++;
         try
         {
             var world=ShootingSystem._gameContext;
-            if(world!=null&&(fireWorld==null||fireWorld.Pointer!=world.Pointer)){fireWorld=world;shooters.Clear();fireCache.Clear();fireLogged.Clear();}
+            if(world!=null&&(fireWorld==null||fireWorld.Pointer!=world.Pointer)){fireWorld=world;shooters.Clear();fireCache.Clear();fireLogged.Clear();workerUnits.Clear();}
+            if(Environment.CurrentManagedThreadId!=mainThread){if(++offThread==1)Log("nlos_fire_off_thread","fire: fog worker ran off the main thread; firing part skipped there",new{offThread});return;}
+            float now=Time.time;var ptr=__instance.Pointer;
+            if(!workerUnits.TryGetValue(ptr,out var wu)||now-wu.at>=UnitScan)
+            {
+                var list=new List<FogOfWarUnit>();var team=__instance._teamUnits;
+                if(team!=null)foreach(var u in team)
+                {
+                    if(u==null)continue;var e=u.UnitEntity;if(!e.IsAlive)continue;
+                    if(shooters.TryGetValue(Key(e),out var known)&&known==0)continue;
+                    if(Launcher(e).IsAlive)list.Add(u);
+                }
+                wu=(now,list);workerUnits[ptr]=wu;
+            }
+            if(wu.units.Count==0)return;
+            var enemies=__instance._enemyUnits;
+            foreach(var u in wu.units){UnitsProcessed++;Apply(u,enemies);}
+        }
+        catch(Exception e){fireBroken=true;fireCache.Clear();MelonLogger.Error("FREEDOM_ARROW_NLOS_FIRE_FAILED: vanilla line of sight for this session. "+e);DiagnosticLog.Write("nlos_fire_failed",new{error=e.ToString()});}
+    }
+    // The former FogOfWarUnit.Update postfix body, for one NLOS unit (called from WorkerAfter only).
+    static void Apply(FogOfWarUnit __instance,Il2CppSystem.Collections.Generic.HashSet<FogOfWarUnit> __0)
+    {
+        if(__instance==null)return;
+        {
             var unit=__instance.UnitEntity;
             if(!unit.IsAlive)return;
             ulong key=Key(unit);
             if(shooters.TryGetValue(key,out var known)&&known==0)return;
-            if(Environment.CurrentManagedThreadId!=mainThread){if(++offThread==1)Log("nlos_fire_off_thread","fire: fog update ran off the main thread; firing part skipped there",new{offThread});return;}
             var weapon=Launcher(unit);if(!weapon.IsAlive||!unit.Has<FogOfWarComponent>())return;
             var shootable=NativeEcs.Read<FogOfWarComponent>(unit).Shootable;if(shootable==null)return;
             float now=Time.time;
@@ -149,7 +184,6 @@ static class NlosTrait
             }
             foreach(var e in cache.targets)if(e.IsAlive&&!shootable.Contains(e)){shootable.Add(e);fireAdds++;}
         }
-        catch(Exception e){fireBroken=true;fireCache.Clear();MelonLogger.Error("FREEDOM_ARROW_NLOS_FIRE_FAILED: vanilla line of sight for this session. "+e);DiagnosticLog.Write("nlos_fire_failed",new{error=e.ToString()});}
     }
     static void Log(string kind,string text,object data)
     {
