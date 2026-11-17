@@ -420,6 +420,8 @@ namespace BALocalSkirmish
         internal void OverrideAiSpawn(NodeSpawnMultiUnits node)
         {
             if (!_deckOverridesActive || node == null || node.PlayerOwner == null) return;
+            // [FA] [PvE] maps (0.9.0-dev.36, Osama 17 Nov 2026): their China waves are the map's own design; groups FAPVE* keep their units.
+            if (node.UnitGroup != null && node.UnitGroup.StartsWith("FAPVE", StringComparison.Ordinal)) return;
             int uid = node.PlayerOwner.DataUID;
             IDeckDataModel deck = null;
             try

@@ -74,5 +74,23 @@ if (int(m.group(1)),int(m.group(2)))>=(9,33):
     import china_sf_recon as CSR
     _F={'AbilitiesJson':'abilities.json','UnitAbilitiesJson':'unit_abilities.json','SquadMembersJson':'squad_members.json','WeaponAmmunitionsJson':'weapon_ammunitions.json','Units':'units.json'}
     bad+=CSR.check(lambda tab:merged(tab+'.json',_F[tab]))
+# From dev.36: the six [FA] [PvE] maps ship, and every China wave in them names units and options that exist in this package (Osama 17 Nov
+# 13:2x PST: "do units update when we update the armory": the maps store only unit and option ids, so stats follow the armory, but a removed
+# or renumbered unit/option would break a wave).
+if (int(m.group(1)),int(m.group(2)))>=(9,36):
+    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'releases/0.8/scenarios'))
+    import common as SC,pve as PVE
+    Mt=merged('ModificationsJson.json','modifications.json')
+    for name in PVE.ALL_NAMES:
+        f=f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'
+        if f not in z.namelist():bad.append(f'PvE map missing: {name}');continue
+        waves=[json.loads(next(q['v'] for q in b['props_v2'] if q['k']=='val').replace('\u00a8','"')) for b in SC.load(SC.dec(zipfile.ZipFile(z.open(f)).read('nodes.bam')))['b'] if b['nnKey']=='getSpMultUnData']
+        want=next(len(PVE.WAVES[t]) for p_,_,_,t,_ in PVE.BASES if name in PVE.names(p_,t))
+        if len(waves)!=want:bad.append(f'{name}: {len(waves)} waves (want {want})')
+        for w in waves:
+            for u in w['Units']:
+                if u['unitId'] not in Ut:bad.append(f'{name}: wave unit {u["unitId"]} not in the package')
+                for it in u['items']:
+                    if Mt.get(it['mod'],{}).get('UnitId')!=u['unitId'] or Ot.get(it['opt'],{}).get('ModificationId')!=it['mod']:bad.append(f'{name}: unit {u["unitId"]} option {it} not in the package')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
