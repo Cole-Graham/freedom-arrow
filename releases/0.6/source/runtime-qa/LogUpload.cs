@@ -25,6 +25,7 @@ static class LogUpload
     static string session="",day="",version="",started="",player="",steamId="",lastMap="",scene="";
     static bool identityTried;static long lastLength=-1;static int busy;static DateTime nextPeriodic=DateTime.MaxValue;
     static string[] mods=Array.Empty<string>();
+    public static string Session=>session;
 
     public static void Start(string packageVersion)
     {
@@ -104,7 +105,8 @@ static class LogUpload
         string log=Path.Combine(MelonEnvironment.GameRootDirectory,"MelonLoader","Latest.log");
         if(!File.Exists(log))return;
         long length=new FileInfo(log).Length;
-        if(kind=="every 5 min"&&length==lastLength)return;
+        long snapLength=MatchLog.File.Length>0&&File.Exists(MatchLog.File)?new FileInfo(MatchLog.File).Length:0;
+        if(kind=="every 5 min"&&length+snapLength==lastLength)return;
         var header=new{session,started,version,player,steamId,kind,lastMap,uploadedUtc=DateTime.UtcNow.ToString("u"),mods};
         using var body=new MemoryStream();
         using(var gz=new GZipStream(body,CompressionLevel.Optimal,true))
@@ -113,6 +115,14 @@ static class LogUpload
             gz.Write(head);
             using var src=new FileStream(log,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);
             src.CopyTo(gz);
+            // Unit snapshots of this session (MatchLog), when there was a battle.
+            MatchLog.Flush();
+            if(MatchLog.File.Length>0&&File.Exists(MatchLog.File))
+            {
+                gz.Write(Encoding.UTF8.GetBytes("\n---- match snapshots (MatchLog) ----\n"));
+                using var snap=new FileStream(MatchLog.File,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);
+                snap.CopyTo(gz);
+            }
         }
         var req=new HttpRequestMessage(HttpMethod.Post,Url){Content=new ByteArrayContent(body.ToArray())};
         void H(string n,string v)=>req.Headers.TryAddWithoutValidation("X-FA-"+n,Uri.EscapeDataString(v??""));
@@ -122,7 +132,7 @@ static class LogUpload
         using var cts=new CancellationTokenSource(TimeSpan.FromSeconds(quit?5:60));
         var res=http.Send(req,cts.Token);
         if(!res.IsSuccessStatusCode)throw new HttpRequestException($"HTTP {(int)res.StatusCode}");
-        lastLength=length;
+        lastLength=length+snapLength;
         if(!quit)MelonLogger.Msg($"FREEDOM_ARROW_LOG_UPLOAD sent ({kind}, {body.Length/1024} KB)");
     }
 }
