@@ -82,6 +82,10 @@ rec['md22_cost']=[215,255]
 # or less. See lateralus/china_sf_recon.py; lateralus/queued_checks.py checks the package.
 import china_sf_recon
 rec['china_sf_recon']=china_sf_recon.apply(t,g,ok)
+# ---------- LY-1 120 -> 160 (Osama 16 Nov 2026 17:5x PST, thread 1571014792016171120: "can you increase the ly1 to 160 points").
+_ly1=[u_ for u_ in U.values() if u_.get('HUDName')=='LY-1'];ok(len(_ly1)==1 and _ly1[0]['Cost']==120,'LY-1 unit, 120');_ly1=_ly1[0]['Id']
+g.put('Units',_ly1,{'Cost':160});ok(U[_ly1]['Cost']==160,'LY-1 160')
+rec['ly1_cost']={'unit':_ly1,'cost':[120,160]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
