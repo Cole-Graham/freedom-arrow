@@ -60,6 +60,19 @@ def payload(counts,players):
 
 def p(k,v,t=3):return {'k':k,'v':v,'t':t}
 
+# Doctrine (Osama 13:2x PST: "make sure the AI are pre programmed with a smart strategy", "It should play like a PVP game and get players ready
+# for pvp"). Each wave is split by role into its own group, the way a player uses combined arms:
+# - recon (ucat 0): takes the nearest open zone first and stays there as a forward screen;
+# - infantry (ucat 1, and recon infantry): takes a zone and holds it for HOLD_SECONDS, then takes the next;
+# - armour (ucat 2): overwatch: every 20 s it attack-moves to its infantry; with no infantry left it spearheads zone to zone itself;
+# - air defence (ucat 3): escorts the armour every 15 s (the infantry when no armour is left).
+# Scripted, not adaptive: no retreat, no artillery fire missions, no aircraft yet.
+HOLD_SECONDS=120
+INF_RECON={1201}   # Recon Patrol: infantry that scouts, moves with the infantry group
+def role(uid):
+    ucat=UNITS[uid][0]
+    return 'I' if ucat==1 or uid in INF_RECON else {0:'R',2:'A',3:'S'}[ucat]
+
 def add_waves(nodes,objects,players,after,waves):
     """after = (node id, out port) that fires when the deployment pause ends."""
     bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
@@ -75,27 +88,65 @@ def add_waves(nodes,objects,players,after,waves):
     def node(key,props,x,y):
         nonlocal nid;nid+=1;nodes['b'].append({'v':0,'nnKey':key,'px':x,'py':y,'id':nid,'rtpt':True,'props_v2':props});return nid
     def wire(a,c,b,d):nodes['c'].append({'a':a,'b':b,'c':c,'d':d,'e':b})
+    def delay(sec,x,y):return node('delay',[p('Time',str(sec),1),p('igGmSp','False',1)],x,y)
+    def capture(group,x,y):
+        return node('captureObj',[p('tgz2','c-2',1),p('AggressiveRadius2','600:0:0',1),p('forUnit2','c0'),p('forGroup2',group),p('pathf','Fast'),
+                                  p('moveAttack','True'),p('lt','60'),p('bl','True')],x,y)
+    def follow(group,leader,radius,x,y):
+        """getObjPos(leader centre) -> moveComplex(group, attack-move). Returns (position node, move node)."""
+        pos=node('getObjPos',[p('forGroup',leader),p('center','True')]+[p(k,'c0') for k in ('targetUnitLink','targetTriggerLink','targetTagLink',
+                 'targetZoneLink','targetWayLink','targetSPLink')],x,y)
+        mv=node('moveComplex',[p('tt2','c0',1),p('AggressiveRadius2',f'{radius}:0:0',1),p('forUnit2','c0'),p('forGroup2',group),p('pathf','Fast'),
+                p('moveAttack','True'),p('speedLimit','True'),p('tranBeh','LoadInTransport'),p('duringRide','UnloadWhenEngaged'),p('atDest','Nothing'),
+                p('ErrorRadius','80'),p('lt','-1'),p('bl','True')],x+400,y)
+        wire(mv,'targetVec3',pos,'outPos');wire(mv,'in2',pos,'outFound')
+        return pos,mv
     player=node('node_player',[p('value',f'c{owner}')],-3000.0,4000.0)
     prev,prev_port,t=after[0],after[1],0
     for i,(minute,counts) in enumerate(waves):
-        y=4300.0+i*400.0;group=f'FAPVE{i+1}'
-        wait=node('delay',[p('Time',str((minute-t)*60),1),p('igGmSp','False',1)],-2600.0,y);t=minute
-        wire(wait,'in2',prev,prev_port)
-        data=node('getSpMultUnData',[p('val',payload(counts,players))],-2200.0,y+150)
-        tag=node('getTag',[p('val',f'c{tags[i%len(tags)]}')],-2200.0,y+250)
-        spawn=node('spawnMultiUnits',[p('TargetTag','c0',1),p('TargetSpawnPoint','c0',1),p('PlayerOwner','c0',1),p('UnitInfo','',1),
-                                      p('UnitGroup',group),p('CargoUnitGroup',group+'C'),p('assign','False')],-1800.0,y)
-        wire(spawn,'in',wait,'out2');wire(spawn,'UnitInfo',data,'out');wire(spawn,'TargetTag',tag,'out');wire(spawn,'PlayerOwner',player,'out')
-        settle=node('delay',[p('Time','3',1),p('igGmSp','False',1)],-1400.0,y);wire(settle,'in2',spawn,'out')
-        cap=node('captureObj',[p('tgz2','c-2',1),p('AggressiveRadius2','600:0:0',1),p('forUnit2','c0'),p('forGroup2',group),p('pathf','Fast'),
-                               p('moveAttack','True'),p('lt','60'),p('bl','True')],-1000.0,y)
-        wire(cap,'in2',settle,'out2')
-        again=node('delay',[p('Time','20',1),p('igGmSp','False',1)],-600.0,y)   # zone taken or failed: wait, then take the next one
-        wire(again,'in2',cap,'out2');wire(again,'in2',cap,'outFailed');wire(cap,'in2',again,'out2')
+        y=4300.0+i*1200.0;g=f'FAPVE{i+1}'
+        wait=delay((minute-t)*60,-3000.0,y);t=minute;wire(wait,'in2',prev,prev_port)
+        go=delay(1,-2700.0,y);wire(go,'in2',wait,'out2')
+        roles={}
+        for u,n in counts.items():roles.setdefault(role(u),{})[u]=n
+        tag=node('getTag',[p('val',f'c{tags[i%len(tags)]}')],-2400.0,y-150)
+        settled={}
+        for k,(r,c) in enumerate(sorted(roles.items())):
+            yy=y+k*250.0
+            data=node('getSpMultUnData',[p('val',payload(c,players))],-2400.0,yy+100)
+            spawn=node('spawnMultiUnits',[p('TargetTag','c0',1),p('TargetSpawnPoint','c0',1),p('PlayerOwner','c0',1),p('UnitInfo','',1),
+                                          p('UnitGroup',g+r),p('CargoUnitGroup',g+r+'C'),p('assign','False')],-2000.0,yy)
+            wire(spawn,'in',go,'out2');wire(spawn,'UnitInfo',data,'out');wire(spawn,'TargetTag',tag,'out');wire(spawn,'PlayerOwner',player,'out')
+            settled[r]=delay(3,-1600.0,yy);wire(settled[r],'in2',spawn,'out')
+        x=-1200.0
+        if 'R' in settled:   # recon: one zone, then stay as a screen
+            cap=capture(g+'R',x,y);wire(cap,'in2',settled['R'],'out2')
+            retry=delay(30,x+400,y);wire(retry,'in2',cap,'outFailed');wire(cap,'in2',retry,'out2')
+        if 'I' in settled:   # infantry: take a zone, hold it, take the next
+            cap=capture(g+'I',x,y+250);wire(cap,'in2',settled['I'],'out2')
+            hold=delay(HOLD_SECONDS,x+400,y+250);wire(hold,'in2',cap,'out2');wire(cap,'in2',hold,'out2')
+            retry=delay(30,x+400,y+350);wire(retry,'in2',cap,'outFailed');wire(cap,'in2',retry,'out2')
+        if 'A' in settled:   # armour: overwatch on its infantry, else spearhead
+            tick=delay(20,x,y+500);wire(tick,'in2',settled['A'],'out2')
+            if 'I' in settled:
+                pos,mv=follow(g+'A',g+'I',500,x+400,y+500)
+                wire(pos,'in',tick,'out2');wire(tick,'in2',mv,'out2');wire(tick,'in2',mv,'outFailed')
+                lead=capture(g+'A',x+1200,y+500);wire(lead,'in2',pos,'outMiss')
+            else:
+                lead=capture(g+'A',x+400,y+500);wire(lead,'in2',tick,'out2')
+            wire(tick,'in2',lead,'out2');wire(tick,'in2',lead,'outFailed')
+        if 'S' in settled:   # air defence: escort the armour, else the infantry
+            leader=g+'A' if 'A' in settled else g+'I' if 'I' in settled else None
+            tick=delay(15,x,y+750);wire(tick,'in2',settled['S'],'out2')
+            if leader:
+                pos,mv=follow(g+'S',leader,300,x+400,y+750)
+                wire(pos,'in',tick,'out2');wire(tick,'in2',mv,'out2');wire(tick,'in2',mv,'outFailed');wire(tick,'in2',pos,'outMiss')
+            else:
+                lead=capture(g+'S',x+400,y+750);wire(lead,'in2',tick,'out2');wire(tick,'in2',lead,'out2');wire(tick,'in2',lead,'outFailed')
         prev,prev_port=wait,'out2'
-    # The last wave again every REPEAT_MINUTES: its delay re-arms itself after each spawn.
-    loop=node('delay',[p('Time',str(REPEAT_MINUTES*60),1),p('igGmSp','False',1)],-2600.0,4300.0+len(waves)*400.0)
-    wire(loop,'in2',spawn,'out');wire(spawn,'in',loop,'out2')
+    # The last wave again every REPEAT_MINUTES.
+    loop=delay(REPEAT_MINUTES*60,-3000.0,4300.0+len(waves)*1200.0)
+    wire(loop,'in2',go,'out2');wire(go,'in2',loop,'out2')
     return len(waves),len(tags)
 
 def configure_slots(objects,meta,players):
