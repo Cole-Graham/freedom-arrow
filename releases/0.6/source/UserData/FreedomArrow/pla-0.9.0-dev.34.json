@@ -1,0 +1,14 @@
+{
+  "blood_wolves_name": {
+    "unit": 1183,
+    "HUDName": [
+      "Blood Wolves 血狼",
+      "Blood Wolves 朱日和之狼"
+    ]
+  },
+  "version": "0.9.0-dev.34",
+  "base": "0.9.0-dev.33",
+  "base_sha256": "18a4a78b1124fff16a118c42b7e1d7df12602787342b05da48fc9afee0afe9d3",
+  "checks": 2,
+  "verified": "data checks only"
+}
