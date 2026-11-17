@@ -55,6 +55,10 @@ ok([(O[i]['UIName'],O[i]['Cost']) for i in (31083,31084)]==[('Mixed strike (4x A
 for i in (31083,31084):g.put('OptionsJson',i,{'Cost':160})
 ok(O[31083]['Cost']==160 and O[31084]['Cost']==160,'J-31 / J-35 AKF loadouts +160')
 rec['j31_j35_akf_cost']={'options':[31083,31084],'cost':[80,160]}
+# ---------- FH-97A -65 (Osama 16 Nov 2026 16:1x PST, thread 1567745029781454889: "FH-97A reduce by 65 points"): unit 1253 base 250 -> 185 (its
+# loadout options keep their own +60..+135).
+ok(U[1253]['HUDName']=='FH-97A' and U[1253]['Cost']==250,'FH-97A 250');g.put('Units',1253,{'Cost':185});ok(U[1253]['Cost']==185,'FH-97A 185')
+rec['fh97a_cost']=[250,185]
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
