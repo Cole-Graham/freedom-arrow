@@ -54,7 +54,7 @@ Stored `HealthAOERadius` 40 (80 m on the card), `Damage` 12, penetration 50, top
 
 ## Stress
 
-Stress uses the same shape with `StressAOERadius`, written to `StressAOEDamageModifier`. It does not go through the armor formula. `DealUnitDamage` sends `StressDamage × stressModifier × DoTModifier` to `BattleSystemHelpers.CalculateStressDamage`. A unit outside the health radius and inside the stress radius takes stress and no health damage.
+Stress uses the same shape with `StressAOERadius`, written to `StressAOEDamageModifier`. That fraction scales the ammunition `StressDamage` only. `BattleSystemHelpers.CalculateStressDamage` then adds `MaxStress × (healthLoss / maxHealth)` as well. The levels, the shocked and panicked modifiers, and the recovery clock are in [Stress](stress.md). A unit outside the health radius and inside the stress radius takes the blast term and no health share.
 
 ## Buildings
 
