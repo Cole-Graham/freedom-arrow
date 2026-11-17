@@ -107,7 +107,7 @@ static class LogUpload
         long length=new FileInfo(log).Length;
         long snapLength=MatchLog.File.Length>0&&File.Exists(MatchLog.File)?new FileInfo(MatchLog.File).Length:0;
         if(kind=="every 5 min"&&length+snapLength==lastLength)return;
-        var header=new{session,started,version,player,steamId,kind,lastMap,uploadedUtc=DateTime.UtcNow.ToString("u"),mods};
+        var header=new{session,started,version,player,steamId,kind,lastMap,match=MatchLog.FightId,uploadedUtc=DateTime.UtcNow.ToString("u"),mods};
         using var body=new MemoryStream();
         using(var gz=new GZipStream(body,CompressionLevel.Optimal,true))
         {
@@ -128,7 +128,7 @@ static class LogUpload
         void H(string n,string v)=>req.Headers.TryAddWithoutValidation("X-FA-"+n,Uri.EscapeDataString(v??""));
         req.Headers.TryAddWithoutValidation("X-FA-Key",Key);
         H("SteamId",steamId);H("Session",session);H("Day",day);H("Player",player);H("Version",version);H("Kind",kind);H("Started",started);H("Map",lastMap);
-        H("Mods",string.Join(",",mods.Select(m=>m.Split(' ')[0].Split('/')[1])));
+        H("Match",MatchLog.FightId==0?"":MatchLog.FightId.ToString());H("Mods",string.Join(",",mods.Select(m=>m.Split(' ')[0].Split('/')[1])));
         using var cts=new CancellationTokenSource(TimeSpan.FromSeconds(quit?5:60));
         var res=http.Send(req,cts.Token);
         if(!res.IsSuccessStatusCode)throw new HttpRequestException($"HTTP {(int)res.StatusCode}");

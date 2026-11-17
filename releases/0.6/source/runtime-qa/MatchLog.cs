@@ -6,6 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.UI.Labels.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Utils;
 using Il2CppBrokenArrow.Shared.Ecs;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppBrokenArrow.Client.Ecs.GNetwork.Services.Room;
 using Il2CppDefaultEcs;
 using Il2CppNetworkCommon.Enums;
 using MelonLoader;
@@ -20,6 +21,10 @@ namespace FreedomArrow;
 // Drawn but not spotted = a model shown through fog; positions and health let the logs of all players in a match be compared afterwards on our side.
 // "P" lines name every player who owns units in the battle (UID, team, bot, Steam name), once each (Osama 12:5x: "we could definitely find out who is not
 // sending logs or if their logs differ from other players consistently"): a player named in others' logs with no upload of his own stands out.
+// "H/O/C" lines at battle start (Osama 12:5x: "at the start of the game it should be listing down all players in the match and the settings in the map ...
+// all the players who filed logs for the same game should have a similar match ID"): the server's FightId (RoomState.FightId, the same on every
+// player's PC), map, scenario, mode, seed, host and lobby options; then every client in the room with bots (id, team, faction, human/bot, online,
+// deserter, app version, Epic product user id, name). Offline games have no room and write "H offline".
 // The file goes up with the game log (LogUpload). One renderer per unit is looked up once and cached; a snapshot reads components only.
 static class MatchLog
 {
@@ -30,6 +35,7 @@ static class MatchLog
     static readonly HashSet<IntPtr> players=new();
     static readonly System.Text.StringBuilder line=new(8192);
     public static string File=>file;
+    public static long FightId;
 
     public static void Install(HarmonyLib.Harmony harmony,string root,string session)
     {
@@ -56,6 +62,7 @@ static class MatchLog
                 units=ctx.GetEntities().With<UnitComponent>().AsSet();world=ctx.Pointer;view.Clear();players.Clear();battleStart=Time.time;
                 if(w==null){Directory.CreateDirectory(Path.GetDirectoryName(file)!);w=new StreamWriter(new FileStream(file,FileMode.Append,FileAccess.Write,FileShare.ReadWrite|FileShare.Delete));}
                 w.WriteLine($"B {DateTime.UtcNow:u} team {me.TeamSide}");
+                Header();
             }
             var side=me.TeamSide;
             var list=units._entities;int n=Math.Min(units.Count,list?.Length??0);
@@ -85,6 +92,26 @@ static class MatchLog
             snaps++;
         }
         catch(Exception x){broken=true;MelonLogger.Warning("FREEDOM_ARROW_MATCH_LOG off: "+x.Message);}
+    }
+
+    static void Header()
+    {
+        try
+        {
+            Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<NetworkRoomService>(out var room,false);
+            var st=room?.State;
+            if(st==null){FightId=0;w.WriteLine("H offline");return;}
+            FightId=st.FightId;
+            w.WriteLine($"H fight {st.FightId} map {st.Map?.Name}|{st.Map?.SceneName} scenario {st.ScenarioMeta?.Name}|{st.ScenarioMeta?.Guid}|{st.ScenarioMeta?.WorkshopId} mode {st.GameMode} lobby {st.LobbyType} seed {st.Seed} host {st.HostId} suddenDeath {st.SuddenDeath}");
+            if(st.ScenarioPublicOptions!=null)foreach(var kv in st.ScenarioPublicOptions)w.WriteLine($"O {kv.Key} {kv.Value?.Type} {kv.Value?.Value}");
+            var all=st._allClientsWithBots??st._allClients;
+            if(all!=null)foreach(var kv in all)
+            {
+                var c=kv.Value;if(c==null)continue;
+                w.WriteLine($"C {c.Id} {c.TeamSide} {c.Country} {(c.IsBot?"bot":"human")} online={c.Online} deserter={c.Deserter} slot={c.SlotIdx} app={c.AppVersion} puid={c.ProductUserId} {c.Name}");
+            }
+        }
+        catch(Exception x){w.WriteLine("H error "+x.Message);}
     }
 
     static bool Spotted(Entity target,TeamSide side)
