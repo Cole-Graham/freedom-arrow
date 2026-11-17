@@ -160,6 +160,31 @@ for _i,(_o,_n) in _fx.items():
     ok(_P+_n in _VFX,(_n,'is a vanilla effect'))
     g.put('AmmunitionsJson',_i,{'FXPreset':_P+_n});ok(_A[_i]['FXPreset']==_P+_n,(_i,_n))
 rec['fx_by_weapon_type']={str(k):[_P+o,_P+n] for k,(o,n) in _fx.items()}
+# ---------- Artillery audit (Osama 17 Nov 2026 11:2x PST, same thread: "look at all the artillery and make sure their stats match the real life unit and
+# of course match performance from the other units of their type"). Report: work/pla-0.9/ly1/data (art3.py, art4.py: every artillery round, scored with the
+# game's spread formula, ShootingSystem.AddBallisticDeviation).
+# PLL-09 (1037) is a 120 mm wheeled gun-mortar (like the PLL-05 and vanilla 2S23 Nona-SVK) but was built as a 122 mm howitzer copy: howitzer gun type 111,
+# 12-15 s aim, 6-7 s reload, 122 mm splash 35, howitzer spread 90x120 and 1850 m. Its gun and both rounds now take the PLL-05 gun-mortar values (mortar
+# type 112, mortar trajectory 30, splash 25, spread 60x60 with the mortar's 0.5 minimum, 125-1575 m, mortar sounds and shell). 40 HE + 20 smoke rounds,
+# 80 points, names and icons kept.
+_W=t['WeaponsJson'];_w9=[r['WeaponId'] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1037];_w5=[r['WeaponId'] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==926]
+ok(set(_w9)=={2010461} and set(_w5)=={2009459} and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['WeaponId']==2010461}=={1037},'PLL-09 gun 2010461 own, PLL-05 gun 2009459')
+ok((_W[2010461]['Type'],_A[2010465]['TrajectoryType'],_A[2010465]['HealthAOERadius'],_A[2018959]['TrajectoryType'])==(111,20,35.0,20),'PLL-09 howitzer copy')
+_skip=('Id','Name','HUDName','HUDIcon','FXPreset')
+g.put('WeaponsJson',2010461,{k:v for k,v in _W[2009459].items() if k not in _skip})
+g.put('AmmunitionsJson',2010465,{k:v for k,v in _A[2009463].items() if k not in _skip})
+g.put('AmmunitionsJson',2018959,{k:v for k,v in _A[2018957].items() if k not in _skip+('HUDIcon',)})
+g.put('AmmunitionsJson',2018959,{'HUDIcon':_A[2018957]['HUDIcon']})   # mortar smoke icon, not the 152 mm one
+ok(all(_W[2010461].get(k)==v for k,v in _W[2009459].items() if k not in _skip) and all(_A[2010465].get(k)==v for k,v in _A[2009463].items() if k not in _skip)
+   and all(_A[2018959].get(k)==v for k,v in _A[2018957].items() if k not in ('Id','Name','HUDName','FXPreset')),'PLL-09 = PLL-05 gun-mortar values')
+ok(_A[2010465]['FXPreset']==_A[2018959]['FXPreset']=='AMMUNITION_VFX_PRESET_MORTAR_OBUS_120mm','PLL-09 rounds on the 120 mm mortar effect')
+rec['pll09_gun_mortar']={'unit':1037,'weapon':2010461,'ammo':[2010465,2018959],'template':{'weapon':2009459,'ammo':[2009463,2018957]}}
+# GP6 122 mm laser-guided (2018965, PLZ-07B only) had the 152 mm Krasnopol splash (45, stress 67.5/304); a 122 mm round gets the 122 mm splash of the
+# PLZ-07B's own HE (35, stress 52.5/244). Guided accuracy (60x80, seeker) unchanged.
+ok((_A[2018965]['HealthAOERadius'],_A[2009545]['HealthAOERadius'])==(45.0,35.0),'GP6 splash 45, PLZ-07B HE 35')
+g.put('AmmunitionsJson',2018965,{k:_A[2009545][k] for k in ('HealthAOERadius','StressAOERadius','StressDamage','OverpressureRadius')})
+ok(_A[2018965]['HealthAOERadius']==35.0 and _A[2018965]['StressAOERadius']==52.5,'GP6 122 mm splash')
+rec['gp6_splash']={'ammo':2018965,'HealthAOERadius':[45,35]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
