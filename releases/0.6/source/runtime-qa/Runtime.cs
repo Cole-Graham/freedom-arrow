@@ -254,11 +254,11 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: restore "+e.Message); }
     }
     // Previous packaged names. Remove leftover copies so the lobby does not list both.
-    static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
+    internal static readonly string[] RetiredScenarioFolders={"[FA] Central Village","[FA] Central Village Skirmish","[FA] Dead Center 0.1"};
     // Maps we no longer ship, by folder and the exact GUID we published. Lateralus (12 November 2026) still saw the old
     // vanilla-built Airport, Baltiisk and Dam in the mod lobby list after the [5v5]/[3v3] redesigns replaced them; their
     // GUIDs match no packaged map, so the rename cleanup above never removed them. A different GUID (someone else's map) stays.
-    static readonly (string Folder,string Guid)[] RetiredScenarios={
+    internal static readonly (string Folder,string Guid)[] RetiredScenarios={
         ("[FA] Airport 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c01a"),("[FA] Airport Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c01b"),
         ("[FA] Baltiisk 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c02a"),("[FA] Baltiisk Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c02b"),
         ("[FA] Dam 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c03a"),("[FA] Dam Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c03b"),

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Reflection;
-using System.Text.Json.Nodes;
 using HarmonyLib;
 using MelonLoader;
-using MelonLoader.Utils;
 using UnityEngine;
 namespace FreedomArrow;
 // Create a lobby: one tab per game size (Lateralus 16 Nov 2026, thread 1571554273639006392: "the menu that pops up should have tabs or
@@ -13,90 +11,26 @@ namespace FreedomArrow;
 // the four tabs at the top right with ArrowQueue's own UiKit.TextButton. A tab click shows the window again with that size. A map is in a
 // size by the "[1v1]" etc. tag in its name; a map without a tag is in every tab. Tabs with no maps do nothing (an empty card grid has
 // a negative height). The search window (create == false) is not changed.
-// Only the mod's own copy of an [FA] map (Lateralus 17 Nov 2026, same thread: "when I have local copies of a map in my game install, it
-// shows them in this menu, I only want to see the copy that comes with the mod"). The game lists every scenario on the disk, and a map
-// author's own copy (another GUID, which InstallScenarios keeps) or an old version (his [1v1] Dead Center 0.1) appears beside the packaged
-// one. So the window keeps an [FA] map only if this package ships that name (UserData/FreedomArrow/scenarios/*/meta.json "scenario"). When
-// the listed copy of a shipped name has another GUID (ArrowQueue keeps one map per name), it is swapped for the packaged copy, found with
-// ArrowQueue's own Game.AllScenarios and Game.Workshop. Maps without the [FA] prefix are not changed. Nothing is deleted from the disk.
 static class LobbyMapTabs
 {
     static readonly string[] Sizes={"1v1","2v2","3v3","5v5"};
     static MethodInfo show,button;static FieldInfo win,openToSearch,orange,dim;static MethodInfo showOpen;
     static IList full;static object def,onPick,onCancel;static string mode,tab;static bool again,broken;
-    static MethodInfo all,workshop;static Dictionary<string,string> shipped;
     public static void Install(HarmonyLib.Harmony h)
     {
         var panels=AccessTools.TypeByName("ArrowQueue.Panels");var kit=AccessTools.TypeByName("ArrowQueue.UiKit");var page=AccessTools.TypeByName("ArrowQueue.ModPage");
         show=panels==null?null:AccessTools.Method(panels,"ShowMaps");button=kit==null?null:AccessTools.Method(kit,"TextButton");
         win=panels==null?null:AccessTools.Field(panels,"_win");openToSearch=panels==null?null:AccessTools.Field(panels,"OpenToSearch");showOpen=panels==null?null:AccessTools.Method(panels,"ShowOpen");
         orange=page==null?null:AccessTools.Field(page,"Orange");dim=page==null?null:AccessTools.Field(page,"Dim");
-        var game=AccessTools.TypeByName("ArrowQueue.Game");
-        all=game==null?null:AccessTools.Method(game,"AllScenarios");workshop=game==null?null:AccessTools.Method(game,"Workshop");
         if(show==null||button==null||win==null||openToSearch==null||showOpen==null||orange==null||dim==null||show.GetParameters().Length!=6)
         {MelonLogger.Error("FREEDOM_ARROW_LOBBY_TABS: ArrowQueue map window not found; Create a lobby shows every map in one list");return;}
         h.Patch(show,prefix:new HarmonyMethod(typeof(LobbyMapTabs),nameof(Before)),postfix:new HarmonyMethod(typeof(LobbyMapTabs),nameof(After)));
         MelonLogger.Msg("FREEDOM_ARROW_LOBBY_TABS installed: Create a lobby has 1v1 / 2v2 / 3v3 / 5v5 tabs");
     }
-    static string NameOf(object m)=>(m?.GetType().GetProperty("Name")?.GetValue(m) as string??"").Trim();
     static string SizeOf(object m)
     {
-        var name=NameOf(m);
+        var name=m?.GetType().GetProperty("Name")?.GetValue(m) as string??"";
         return Sizes.FirstOrDefault(s=>name.Contains("["+s+"]"));
-    }
-    static string GuidOf(object m)
-    {
-        try
-        {
-            var g=m.GetType().GetProperty("Guid")?.GetValue(m)?.ToString();
-            if(!string.IsNullOrEmpty(g))return g;
-            var folder=m.GetType().GetProperty("Folder")?.GetValue(m) as string;
-            var meta=folder==null?null:Path.Combine(folder,"meta.json");
-            return meta!=null&&File.Exists(meta)?JsonNode.Parse(File.ReadAllText(meta))?["guid"]?.GetValue<string>():null;
-        }
-        catch{return null;}
-    }
-    static Dictionary<string,string> Shipped()
-    {
-        var names=new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
-        var root=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","scenarios");
-        if(!Directory.Exists(root))return names;
-        foreach(var folder in Directory.GetDirectories(root))
-        {
-            try
-            {
-                var meta=JsonNode.Parse(File.ReadAllText(Path.Combine(folder,"meta.json")));
-                names[(meta?["scenario"]?.GetValue<string>()??Path.GetFileName(folder)).Trim()]=meta?["guid"]?.GetValue<string>()??"";
-            }
-            catch{}
-        }
-        return names;
-    }
-    static object ModCopy(string name,string guid)
-    {
-        if(all==null||workshop==null||guid=="")return null;
-        foreach(var s in (IEnumerable)all.Invoke(null,null)!)
-            if(string.Equals(NameOf(s),name,StringComparison.OrdinalIgnoreCase)&&string.Equals(GuidOf(s),guid,StringComparison.OrdinalIgnoreCase))
-                return workshop.Invoke(null,new[]{s});
-        return null;
-    }
-    static void ModCopiesOnly(IList maps)
-    {
-        shipped??=Shipped();
-        if(shipped.Count==0)return;   // no packaged scenarios found: leave ArrowQueue's list as it is
-        var keep=new List<object>();var dropped=new List<string>();var swapped=new List<string>();
-        foreach(var m in maps)
-        {
-            var name=NameOf(m);
-            if(!name.StartsWith("[FA]")){keep.Add(m);continue;}
-            if(!shipped.TryGetValue(name,out var guid)){dropped.Add(name);continue;}
-            var g=GuidOf(m);
-            if(g!=null&&!string.Equals(g,guid,StringComparison.OrdinalIgnoreCase)&&ModCopy(name,guid) is {} mod){keep.Add(mod);swapped.Add(name);continue;}
-            keep.Add(m);
-        }
-        if(dropped.Count+swapped.Count==0)return;
-        maps.Clear();foreach(var m in keep)maps.Add(m);
-        MelonLogger.Msg($"FREEDOM_ARROW_LOBBY_TABS: local map copies left out: {string.Join(", ",dropped)}; swapped for the mod's copy: {string.Join(", ",swapped)}");
     }
     static int Count(string size){int n=0;foreach(var m in full)if(SizeOf(m) is var s&&(s==null||s==size))n++;return n;}
     static void Before(object[] __args)
@@ -106,8 +40,6 @@ static class LobbyMapTabs
         {
             if(!again)
             {
-                try{ModCopiesOnly(maps);}
-                catch(Exception x){MelonLogger.Error("FREEDOM_ARROW_LOBBY_TABS: local map filter skipped. "+(x.InnerException??x).Message);}
                 full=(IList)Activator.CreateInstance(maps.GetType())!;foreach(var m in maps)full.Add(m);
                 def=__args[1];onPick=__args[2];onCancel=__args[3];mode=__args[4] as string;
                 if(full.Cast<object>().All(m=>SizeOf(m)==null)){full=null;return;}   // no size tags: ArrowQueue's own list

@@ -1,6 +1,8 @@
 using System.Reflection;
+using System.Text.Json.Nodes;
 using HarmonyLib;
 using MelonLoader;
+using MelonLoader.Utils;
 namespace FreedomArrow;
 // 0.6 dev.1 (Osama, 7 November 2026): FlatIncomeMod (Speer) ships with Freedom Arrow, but its forest cover stays off.
 // Its ForestCover.Post cuts infantry damage in woods by 30%, the same rule as our CoverDamage, so both would cut it twice.
@@ -120,17 +122,46 @@ static class ThirdPartyGuard
         // (game folder Scenarios, saved as an editor scenario) can have the same name as our packaged map; the first one found was kept.
         // Our copy is the one InstallScenarios puts in Mods/Scenarios (the game lists it as manually downloaded), so it wins a name clash.
         var dupes=new List<string>();
+        // Lateralus 17 Nov 2026: "when I have local copies of a map in my game install, it shows them in this menu, I only want to see the
+        // copy that comes with the mod". A local [FA] map that this package does not ship (an old version such as his [1v1] Dead Center
+        // 0.1, saved under another GUID so RemoveRetiredScenarios keeps it) stays out. Nothing is deleted from the disk.
+        shipped??=Shipped();
+        var local=new SortedSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach(var s in all??new object[0])
         {
-            var name=s?.GetType().GetProperty("Name")?.GetValue(s) as string;
+            var name=(s?.GetType().GetProperty("Name")?.GetValue(s) as string)?.Trim();
             if(name==null||!name.StartsWith("[FA]")||name.Contains("Skirmish"))continue;
+            if(shipped.Count>0&&!shipped.Contains(name)){local.Add(name);continue;}
             if(!names.TryGetValue(name,out var had)){names[name]=s;continue;}
             dupes.Add(name);
             if(Ours(s)&&!Ours(had))names[name]=s;
         }
         foreach(var s in names.Values)found.Add(s);
         if(!mapsSaid){mapsSaid=true;MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: lobby maps: {string.Join(", ",names.Keys)}");
-            if(dupes.Count>0)MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: same name in two places, the Freedom Arrow copy (Mods/Scenarios) is used: {string.Join(", ",dupes.Distinct())}");}
+            if(dupes.Count>0)MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: same name in two places, the Freedom Arrow copy (Mods/Scenarios) is used: {string.Join(", ",dupes.Distinct())}");
+            if(local.Count>0)MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: local [FA] maps not in this package left out: {string.Join(", ",local)}");}
+    }
+    // Map names this package ships: UserData/FreedomArrow/scenarios/*/meta.json "scenario" (folder name if missing). Empty if the folder
+    // cannot be read; then no map is left out. Retired maps (Runtime.RetiredScenarios) never count as shipped.
+    static HashSet<string> shipped;
+    static HashSet<string> Shipped()
+    {
+        var names=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        try
+        {
+            var root=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","scenarios");
+            foreach(var folder in Directory.Exists(root)?Directory.GetDirectories(root):new string[0])
+            {
+                string name=null;
+                try{name=JsonNode.Parse(File.ReadAllText(Path.Combine(folder,"meta.json")))?["scenario"]?.GetValue<string>();}catch{}
+                names.Add((name??Path.GetFileName(folder)).Trim());
+            }
+            // A retired map left in UserData by an older package is not shipped.
+            foreach(var (folder,_) in Runtime.RetiredScenarios)names.Remove(folder);
+            foreach(var folder in Runtime.RetiredScenarioFolders)names.Remove(folder);
+        }
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: packaged map names not read, local maps stay in the list. "+e.Message);names.Clear();}
+        return names;
     }
     static bool Ours(object s)
     {
