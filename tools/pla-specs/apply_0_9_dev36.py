@@ -144,16 +144,15 @@ rec['hide_texture_test']={'runtime':'HideTextureTest.cs','switch':'UserData/Free
 # effects from their proper weapon type", "a 152 mm howitzer should also use effects from a 152 mm howitzer. Weapons using a 120 mm mortar use effects
 # from a 120 mm mortar"). Data audit of every China round against the vanilla users of its effect (work/pla-0.9/ly1/data/fx.py, fx2.py). Effect only:
 # no damage, range or spread change. The JRVG-1 round is above.
-# - PLL-09 120 mm gun-mortar HE and smoke: 122 mm howitzer / 152-155 mm howitzer effects -> the 120 mm mortar effect (vanilla Nona, Vena, 120 mm smoke).
-# - PLZ-70 and PLZ-07B 122 mm smoke, PLZ-07B GP6 122 mm: 152-155 mm howitzer effect -> the 122 mm howitzer effect (vanilla 2S1 2A31, AMMUNITION_VFX_
+# - PLL-09, PLZ-70 and PLZ-07B 122 mm smoke, PLZ-07B GP6 122 mm: 152-155 mm howitzer effect -> the 122 mm howitzer effect (vanilla 2S1 2A31, AMMUNITION_VFX_
 #   PRESET_SHELL_120mm_HE), the same as their own 122 mm HE.
 # - WZ1224 120 mm (and the old WZ-1224 rows): 125 mm effects -> the vanilla 120 mm tank gun effects (Leopard 2A8 / M1: ROUND_120mm_AP for APFSDS,
 #   ROUND_120mm_RADIOFUSE for HE and HEAT).
-_P='AMMUNITION_VFX_PRESET_';_fx={2010465:('SHELL_120mm_HE','MORTAR_OBUS_120mm'),2018959:('SHELL_152-155mm_HE','MORTAR_OBUS_120mm'),
+_P='AMMUNITION_VFX_PRESET_';_fx={2018959:('SHELL_152-155mm_HE','SHELL_120mm_HE'),
  2018961:('SHELL_152-155mm_HE','SHELL_120mm_HE'),2018963:('SHELL_152-155mm_HE','SHELL_120mm_HE'),2018965:('SHELL_152-155mm_HE','SHELL_120mm_HE'),
  2019344:('ROUND_125mm_AP','ROUND_120mm_AP'),2011117:('ROUND_125mm_AP','ROUND_120mm_AP'),
  2019460:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2019461:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2011119:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2011121:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE')}
-_own={2010465:{1037},2018959:{1037},2018961:{1040},2018963:{931},2018965:{931},2019344:{1272},2019460:{1272},2019461:{1272},2011117:{1073},2011119:{1073},2011121:{1073}}
+_own={2018959:{1037},2018961:{1040},2018963:{931},2018965:{931},2019344:{1272},2019460:{1272},2019461:{1272},2011117:{1073},2011119:{1073},2011121:{1073}}
 _VFX={r['FXPreset'] for r in _VA.values()}
 for _i,(_o,_n) in _fx.items():
     ok(_A[_i]['FXPreset']==_P+_o and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==_i}==_own[_i],(_i,_A[_i]['HUDName'],'old effect, own unit'))
@@ -163,22 +162,19 @@ rec['fx_by_weapon_type']={str(k):[_P+o,_P+n] for k,(o,n) in _fx.items()}
 # ---------- Artillery audit (Osama 17 Nov 2026 11:2x PST, same thread: "look at all the artillery and make sure their stats match the real life unit and
 # of course match performance from the other units of their type"). Report: work/pla-0.9/ly1/data (art3.py, art4.py: every artillery round, scored with the
 # game's spread formula, ShootingSystem.AddBallisticDeviation).
-# PLL-09 (1037) is a 120 mm wheeled gun-mortar (like the PLL-05 and vanilla 2S23 Nona-SVK) but was built as a 122 mm howitzer copy: howitzer gun type 111,
-# 12-15 s aim, 6-7 s reload, 122 mm splash 35, howitzer spread 90x120 and 1850 m. Its gun and both rounds now take the PLL-05 gun-mortar values (mortar
-# type 112, mortar trajectory 30, splash 25, spread 60x60 with the mortar's 0.5 minimum, 125-1575 m, mortar sounds and shell). 40 HE + 20 smoke rounds,
-# 80 points, names and icons kept.
-_W=t['WeaponsJson'];_w9=[r['WeaponId'] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1037];_w5=[r['WeaponId'] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==926]
-ok(set(_w9)=={2010461} and set(_w5)=={2009459} and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['WeaponId']==2010461}=={1037},'PLL-09 gun 2010461 own, PLL-05 gun 2009459')
-ok((_W[2010461]['Type'],_A[2010465]['TrajectoryType'],_A[2010465]['HealthAOERadius'],_A[2018959]['TrajectoryType'])==(111,20,35.0,20),'PLL-09 howitzer copy')
-_skip=('Id','Name','HUDName','HUDIcon','FXPreset')
-g.put('WeaponsJson',2010461,{k:v for k,v in _W[2009459].items() if k not in _skip})
-g.put('AmmunitionsJson',2010465,{k:v for k,v in _A[2009463].items() if k not in _skip})
-g.put('AmmunitionsJson',2018959,{k:v for k,v in _A[2018957].items() if k not in _skip+('HUDIcon',)})
-g.put('AmmunitionsJson',2018959,{'HUDIcon':_A[2018957]['HUDIcon']})   # mortar smoke icon, not the 152 mm one
-ok(all(_W[2010461].get(k)==v for k,v in _W[2009459].items() if k not in _skip) and all(_A[2010465].get(k)==v for k,v in _A[2009463].items() if k not in _skip)
-   and all(_A[2018959].get(k)==v for k,v in _A[2018957].items() if k not in ('Id','Name','HUDName','FXPreset')),'PLL-09 = PLL-05 gun-mortar values')
-ok(_A[2010465]['FXPreset']==_A[2018959]['FXPreset']=='AMMUNITION_VFX_PRESET_MORTAR_OBUS_120mm','PLL-09 rounds on the 120 mm mortar effect')
-rec['pll09_gun_mortar']={'unit':1037,'weapon':2010461,'ammo':[2010465,2018959],'template':{'weapon':2009459,'ammo':[2009463,2018957]}}
+# PLL-09 (1037) is a 122 mm wheeled self-propelled howitzer (Type 96 / D-30 type 122 mm gun on the ZBL-09 chassis; the armoured sister of the PCL-09
+# truck: <https://www.armyrecognition.com/wqwy>, <https://defence-blog.com/?p=18231>), not a 120 mm gun-mortar. Its data is already a 122 mm howitzer
+# (gun type 111, 122 mm splash 35, 1850 m, the 122 mm howitzer effect), the same as the PCL-09; only its names said "120 mm gun-mortar". Names and
+# the weapon icon now say 122 mm howitzer (as the PCL-09). No stat change.
+_W=t['WeaponsJson']
+ok((_W[2010461]['HUDName'],_W[2010461]['HUDIcon'],_A[2010465]['HUDName'],_A[2018959]['HUDName'])==('120 mm gun-mortar','NONA','120 mm gun-mortar ammunition','120 mm smoke'),'PLL-09 120 mm names')
+ok((_W[2010461]['Type'],_A[2010465]['TrajectoryType'],_A[2010465]['HealthAOERadius'],_A[2010465]['FXPreset'])==(111,20,35.0,'AMMUNITION_VFX_PRESET_SHELL_120mm_HE'),'PLL-09 data is a 122 mm howitzer')
+_pc=[r['WeaponId'] for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1033];ok(len(set(_pc))==1,'PCL-09 one gun')
+g.put('WeaponsJson',2010461,{'Name':'PLA PLL-09 122 mm howitzer','HUDName':'122 mm howitzer','HUDIcon':_W[_pc[0]]['HUDIcon']})
+g.put('AmmunitionsJson',2010465,{'Name':'PLA PLL-09 122 mm howitzer ammunition','HUDName':'122 mm howitzer ammunition'})
+g.put('AmmunitionsJson',2018959,{'Name':'PLA PLL-09 122 mm smoke','HUDName':'122 mm smoke'})
+ok(_A[2010465]['HUDName']=='122 mm howitzer ammunition' and _A[2018959]['HUDName']=='122 mm smoke' and _W[2010461]['HUDName']=='122 mm howitzer','PLL-09 122 mm names')
+rec['pll09_names']={'unit':1037,'weapon':2010461,'ammo':[2010465,2018959],'from':'120 mm gun-mortar','to':'122 mm howitzer'}
 # GP6 122 mm laser-guided (2018965, PLZ-07B only) had the 152 mm Krasnopol splash (45, stress 67.5/304); a 122 mm round gets the 122 mm splash of the
 # PLZ-07B's own HE (35, stress 52.5/244). Guided accuracy (60x80, seeker) unchanged.
 ok((_A[2018965]['HealthAOERadius'],_A[2009545]['HealthAOERadius'])==(45.0,35.0),'GP6 splash 45, PLZ-07B HE 35')
