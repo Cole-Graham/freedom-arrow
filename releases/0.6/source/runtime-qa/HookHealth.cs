@@ -51,7 +51,7 @@ static class HookHealth
             MelonLogger.Msg($"FREEDOM_ARROW_HOOK_HEALTH {span:0} s, battle={battle}, units {units} | nlos {nlos}: fog worker {wps:0.0} calls/s, {NlosTrait.NlosUnits} NLOS units, "
                 +$"{pps:0.0} unit updates/s, {NlosTrait.FireAdds} targets added total | overkill {(OverkillHooks.Modules.Length==0?"off":"ok")}: {ops:0} calls/s, modules {OverkillHooks.Modules}, "
                 +$"aa corrections {c["AaCooldown.corrections"]} (would {c["AaCooldown.wouldCorrect"]}, seen {c["AaCooldown.invocations"]}), claim blocks {c["SameUnitClaim.blocks"]} flips {c["SameUnitClaim.flips"]}, "
-                +$"sead holds {c["SeadOverkill.held"]}{(errs.Length>0?" | ERRORS "+errs:"")}");
+                +$"sead holds {c["SeadOverkill.held"]} | settings-screen scene searches {FreedomArrow.Conquest.Prototype.SettingsSearches} total{(errs.Length>0?" | ERRORS "+errs:"")}");
             DiagnosticLog.Write("hook_health",new{span,battle,units,nlos,workerPerSecond=wps,nlosUnits=NlosTrait.NlosUnits,unitUpdatesPerSecond=pps,nlosTargetsAdded=NlosTrait.FireAdds,
                 overkillPerSecond=ops,overkillModules=OverkillHooks.Modules,counters=c,errors=OverkillHooks.Errors});
         }

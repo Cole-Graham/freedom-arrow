@@ -31,6 +31,11 @@ internal static class MusicMenu
         {
             if (home == null)
             {
+                // 1.5.3 (Osama 17 Nov 2026, 5v5 FPS test): FindObjectsOfTypeAll walks every loaded object. In a battle the Home button does not
+                // exist, so this ran 5 times a second for the whole match and cost about 0.5 ms per frame with 5-20 ms spikes. Search only in
+                // the menu scene, and at most once every 2 s there.
+                if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Hangar_Scene") { nextScan = Time.unscaledTime + 2f; return; }
+                nextScan = Time.unscaledTime + 2f;
                 foreach (var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
                 {
                     if (!b.gameObject.scene.IsValid() || b._buttonText == null) continue;

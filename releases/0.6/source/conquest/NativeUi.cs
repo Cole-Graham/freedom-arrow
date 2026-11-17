@@ -172,15 +172,25 @@ public sealed partial class Prototype
     }
     // Lateralus 16 Nov 2026: the zone values stayed on screen over the Escape menu. Nothing of ours draws while it (or the settings it
     // opens) is up. EscapeMenu.IsActive is the game's own flag; the settings screen is looked up at most once a second.
-    static float menuCheckedAt=-10;static bool settingsOpen,menuLogged;
+    // 0.9.0-dev.37 (Osama 17 Nov 2026, 5v5 FPS test, FREEDOM_ARROW_SLOW_FRAME lines): FindObjectOfType searches every object in the scene and took
+    // 7-11 ms in a 5v5 battle, once a second, every second, so it caused most of the >50 ms frames. The settings screen can only be opened from
+    // the Escape menu, so the search now runs only while the Escape menu is up, for 10 s after it closes, or while settings is open, and the
+    // found screen is kept, so later checks are a cheap activeInHierarchy read. SettingsSearches is in the FREEDOM_ARROW_HOOK_HEALTH line.
+    static float menuCheckedAt=-10,escapeSeenAt=-100;static bool settingsOpen,menuLogged;
+    static Il2CppBrokenArrow.Client.Ecs.UI.Menu.Settings.SettingsScreen settingsScreen;
+    public static int SettingsSearches;
     static bool MenuOpen()
     {
-        if(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu.IsActive)return true;
-        if(Time.unscaledTime-menuCheckedAt>=1f)
+        float now=Time.unscaledTime;
+        if(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu.IsActive){escapeSeenAt=now;return true;}
+        if(settingsScreen!=null&&settingsScreen.WasCollected)settingsScreen=null;
+        if(settingsScreen!=null){settingsOpen=settingsScreen.gameObject.activeInHierarchy;return settingsOpen;}
+        if(!settingsOpen&&now-escapeSeenAt>10f)return false;
+        if(now-menuCheckedAt>=1f)
         {
-            menuCheckedAt=Time.unscaledTime;
-            var settings=UnityEngine.Object.FindObjectOfType<Il2CppBrokenArrow.Client.Ecs.UI.Menu.Settings.SettingsScreen>();
-            settingsOpen=settings!=null&&settings.gameObject.activeInHierarchy;
+            menuCheckedAt=now;SettingsSearches++;
+            settingsScreen=UnityEngine.Object.FindObjectOfType<Il2CppBrokenArrow.Client.Ecs.UI.Menu.Settings.SettingsScreen>();
+            settingsOpen=settingsScreen!=null&&settingsScreen.gameObject.activeInHierarchy;
         }
         return settingsOpen;
     }

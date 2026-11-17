@@ -5,7 +5,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using Il2CppBrokenArrow.AudioSystem;
 
-[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.2", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FAMusic.Player), "FA Music", "1.5.3", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FAMusic;
