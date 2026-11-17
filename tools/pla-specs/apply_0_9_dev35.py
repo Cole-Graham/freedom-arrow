@@ -25,8 +25,8 @@ def ok(c,l):
     assert c,l;checks+=1
 AB=t['AbilitiesJson'];UAB=t['UnitAbilitiesJson']
 sys.path.insert(0,str(Path(__file__).parent/'lateralus'))
-# ---------- Conscript Recon (unit 1213) to 4 men, 20 points (Osama 16 Nov 2026 20:39 PST, thread 1571014792016171120: "conscript recon to 4 man (lose
-# the qcw and QBZ-191 and add 3 QBZ-95)", "and 20 points"). Was 6 men: 4 x QCW-05, 1 x QBU-88, 1 x QBZ-191, 40 points. Now 3 x QBZ-95 (weapon 2012205,
+# ---------- Conscript Recon (unit 1213) to 4 men, 25 points (Osama 16 Nov 2026 20:39 PST, thread 1571014792016171120: "conscript recon to 4 man (lose
+# the qcw and QBZ-191 and add 3 QBZ-95)", "and 20 points"; 20:4x: "conscript recon are 25 pts"). Was 6 men: 4 x QCW-05, 1 x QBU-88, 1 x QBZ-191, 40 points. Now 3 x QBZ-95 (weapon 2012205,
 # ammo 2012206, 120 rounds per row as in the other China squads that carry it) and the QBU-88. Squad weapon orders stay 0, 1 (no gap).
 SM,SW,WA=t['SquadMembersJson'],t['SquadWeaponsJson'],t['WeaponAmmunitionsJson']
 _m=sorted((r['Id'],r['PrimaryWeaponId']) for r in SM.values() if r['UnitId']==1213)
@@ -38,11 +38,11 @@ for _id in (2015657,2015658,2015659):g.put('SquadMembersJson',_id,{'PrimaryWeapo
 for _id in (2015660,2015662):g.remove('SquadMembersJson',_id)
 g.put('SquadWeaponsJson',2015667,{'WeaponId':2012205,'Order':0});g.put('SquadWeaponsJson',2015665,{'Order':1});g.remove('SquadWeaponsJson',2015663)
 g.put('WeaponAmmunitionsJson',2015668,{'WeaponId':2012205,'AmmunitionId':2012206,'Quantity':120});g.remove('WeaponAmmunitionsJson',2015664)
-g.put('Units',1213,{'Cost':20})
-ok(sorted(r['PrimaryWeaponId'] for r in SM.values() if r['UnitId']==1213)==[2012205,2012205,2012205,2012821] and U[1213]['Cost']==20
+g.put('Units',1213,{'Cost':25})
+ok(sorted(r['PrimaryWeaponId'] for r in SM.values() if r['UnitId']==1213)==[2012205,2012205,2012205,2012821] and U[1213]['Cost']==25
    and sorted((r['WeaponId'],r['Order']) for r in SW.values() if r.get('UnitId')==1213)==[(2012205,0),(2012821,1)]
-   and sorted((r['WeaponId'],r['Quantity']) for r in WA.values() if r.get('UnitId')==1213)==[(2012205,120),(2012821,60)],'Conscript Recon: 3 QBZ-95 + QBU-88, 20 points')
-rec['conscript_recon']={'unit':1213,'men':[6,4],'cost':[40,20],'weapons':'3 x QBZ-95 2012205 + QBU-88 2012821','removed_members':[2015660,2015662]}
+   and sorted((r['WeaponId'],r['Quantity']) for r in WA.values() if r.get('UnitId')==1213)==[(2012205,120),(2012821,60)],'Conscript Recon: 3 QBZ-95 + QBU-88, 25 points')
+rec['conscript_recon']={'unit':1213,'men':[6,4],'cost':[40,25],'weapons':'3 x QBZ-95 2012205 + QBU-88 2012821','removed_members':[2015660,2015662]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
