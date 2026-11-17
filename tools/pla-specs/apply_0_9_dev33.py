@@ -49,6 +49,12 @@ ok(all('Mixed strike' in O[i]['UIName'] and 'AKF-98A' in O[i]['UIName'] and O[i]
 for i in _mx:g.put('OptionsJson',i,{'OptionPicture':'KH38ML'})
 ok(_A[2004003]['Damage']==1.75 and all((O[e]['Turret5Id'],O[e]['Turret6Id'])==(160,160) for e in (20161,20163,20165)) and all(O[i]['OptionPicture']=='KH38ML' for i in _mx),'QLU-11 1.75, F-35 empty wingtips clear, AKF icons')
 rec['osama_1606']={'qlu11_damage':[2.5,1.75],'f35_empty_wingtips':[20161,20163,20165],'akf_icons':_mx,'f22_symbiote_smoothness':[0.96,0.80]}
+# ---------- J-35 / J-31 AKF loadouts +160 (Osama 16 Nov 2026 16:1x PST, thread 1567745029781454889: "J-35/J-31 AKF loadouts are +160"): Mixed strike
+# (4x AKF-98A) 31083 (J-31) and 31084 (J-35) 80 -> 160.
+ok([(O[i]['UIName'],O[i]['Cost']) for i in (31083,31084)]==[('Mixed strike (4x AKF-98A)',80)]*2 and [M[O[i]['ModificationId']]['UnitId'] for i in (31083,31084)]==[1251,921],'J-31 / J-35 Mixed strike +80')
+for i in (31083,31084):g.put('OptionsJson',i,{'Cost':160})
+ok(O[31083]['Cost']==160 and O[31084]['Cost']==160,'J-31 / J-35 AKF loadouts +160')
+rec['j31_j35_akf_cost']={'options':[31083,31084],'cost':[80,160]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
