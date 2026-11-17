@@ -46,7 +46,9 @@ def over(t,v):
     return bad
 # F-35A/B/C "Wingtips F35 2xAIM9" (0.6 dev.52 test slot, 8 Nov): slots 5-6, past vanilla F-35 slots 0-4. Never confirmed in a
 # game; held for Osama's call (14 Nov) rather than silently passed.
-KNOWN={20162,20164,20166}
+# dev.33 (Osama 16 Nov 16:0x): their "Empty" counterparts 20161/20163/20165 now put the vanilla blank mount 160 on the same slots 5-6,
+# so swapping back to Empty removes the Sidewinders (vanilla Empty options do the same, e.g. AH-1Z, Ka-52). Same slots, same exception.
+KNOWN={20162,20164,20166,20161,20163,20165}
 def slots(t,v):
     def opts(tt):
         m={}
