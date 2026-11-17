@@ -31,7 +31,11 @@ UNITS={1166:(1,[]),1175:(1,[]),1172:(1,[]),1183:(1,[]),1192:(1,[]),1181:(1,[]),1
        1272:(2,[]),1261:(2,[]),909:(3,[]),1051:(3,[]),
        1205:(1,[]),1201:(0,[]),1059:(2,[]),1196:(1,[]),938:(2,[]),1163:(1,[]),1082:(2,[]),1080:(2,[(2019214,31077)]),1052:(3,[]),
        904:(2,[(2019383,31098)]),905:(2,[]),1198:(1,[]),1049:(3,[]),
-       1136:(1,[]),1146:(1,[]),1257:(0,[]),1268:(2,[]),1139:(1,[]),1083:(2,[(2019401,31101)]),925:(3,[]),1143:(1,[]),906:(2,[]),1137:(1,[])}
+       1136:(1,[]),1146:(1,[]),1257:(0,[]),1268:(2,[]),1139:(1,[]),1083:(2,[(2019401,31101)]),925:(3,[]),1143:(1,[]),906:(2,[]),1137:(1,[]),
+       # AI purchase cards (default loadouts): aircraft ucat 6, helicopters 5
+       943:(6,[(2016862,24458)]),975:(6,[(2016971,24479)]),1092:(6,[(2016997,24483)]),1270:(5,[(2019263,31085)]),1041:(3,[]),
+       917:(6,[(2016532,24398)]),955:(6,[(2016601,24406)]),1242:(6,[(2016697,24420)]),1103:(5,[(2017279,24523)]),1033:(3,[]),
+       923:(6,[(2016794,24442)]),916:(6,[(2016642,24412)]),924:(6,[(2016825,24450)]),913:(5,[(2017056,24493)]),1040:(3,[])}
 # Waves for one player (unitId: count); counts are multiplied by the number of players. Minute = after the deployment pause. The last wave
 # repeats every REPEAT_MINUTES.
 WAVES={
@@ -48,6 +52,21 @@ WAVES={
         (7,{1082:1,1083:1,1143:1,925:1}),                              # ZTZ-96A, ZTZ-99, Thunder Gods, HQ-7B
         (10,{904:1,905:1,906:1,1137:1,1052:1})]}                       # ZTZ-99A, ZTZ-96B, ZTQ-15, HJ-12 Team, PGZ-95
 REPEAT_MINUTES=3
+# With the Lua AI: only the first wave is fixed (the opening deployment); after that the AI buys its own units. Cards it can buy, one per
+# kind, each purchase = that card x number of players. ba_purchase.lua channel 1 (inputs 1-5): fighter, strike, bomber, attack helicopter,
+# ground seed (rebuild when wiped out); channel 2: air defence, artillery, infantry, recon, main armour, picked by BA_MIND.scorePurchase
+# from what the enemy fields and what it already has. Card cooldowns as a player's; at most AI_MAX_UNITS x players live units.
+AI_CARDS={
+ 'Dead Center':dict(ch1=[943,975,1092,1270,1175],ch2=[1051,1041,1192,1258,1061]),   # J-15, J-8D, J-7, Z-10U, Infantry | PGZ-88, PLZ-83, Marines, ZBD-86 Recon, ZTZ-80
+ 'Highway of Death':dict(ch1=[917,955,1242,1103,1196],ch2=[1052,1033,1196,1201,1082]),  # J-10C, J-10S, J-11D, Z-19, Moto. Riflemen | PGZ-95, PCL-09, Moto. Riflemen, Recon Patrol, ZTZ-96A
+ 'Dam':dict(ch1=[923,916,924,913,1136],ch2=[925,1040,1136,1257,1083])}              # J-11BS, J-16, Su-30MKK, Z-10K, Airborne | HQ-7B, PLZ-70, Airborne, ZBD-03 Recon, ZTZ-99
+AI_MAX_UNITS=14
+def opening(waves):
+    """The AI's opening deployment, as a player's first buy: waves 1 and 2 together, 1 minute after the deployment pause."""
+    merged={}
+    for _,c in waves[:2]:
+        for u,n in c.items():merged[u]=merged.get(u,0)+n
+    return [(1,merged)]
 
 # ---- Lua decision AI (Osama 13:2x PST: "we should be using real AI", "Plug it into all of them but make sure they fast move and use roads").
 # BrokenArrowAI (seaborndan/BrokenArrowAI 4e4e6450, the pinned checkout on the deck; NOT copied into this repo, see LICENSE NOTE) commands the
@@ -79,6 +98,106 @@ def ai_code(scene):
     for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 400,')):
         assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
     return code
+def pve_header(objects,players):
+    bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
+    sp=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==bravo and 5 not in o.get('spawnType2',[])]
+    spawns=', '.join(f"{{x={q['X']:.1f}, y={q['Y']:.1f}, z={q['Z']:.1f}}}" for q in sp)
+    return f'''BA_FA_PVE = true   -- Freedom Arrow PvE: the AI commands and buys for the Bravo players
+BA_FA_MAX_UNITS = {AI_MAX_UNITS*players}
+BA_FA_SPAWNS = {{ {spawns} }}   -- Bravo ground spawns: purchases arrive here, as a player's do
+local fa_pick = 0
+function FA_SPAWN()
+  fa_pick = fa_pick % #BA_FA_SPAWNS + 1
+  local s = BA_FA_SPAWNS[fa_pick]
+  return Vectors.CreateVector3(s.x, s.y, s.z)
+end
+local function fa_isbravo(p)
+  local ok, n = pcall(function() return p.TeamName end)
+  if ok and n ~= nil and string.find(tostring(n), 'Bravo', 1, true) ~= nil then return true end
+  local ok2, t = pcall(function() return p.TeamID end)
+  return ok2 and t == 1
+end
+function FA_IS_BRAVO(uid)
+  local ok, ps = pcall(function() return API.GetAllPlayers() end)
+  if not ok or ps == nil then return false end
+  for _, p in pairs(ps) do
+    local ok2, u = pcall(function() return p.UID end)
+    if ok2 and u == uid then return fa_isbravo(p) end
+  end
+  return false
+end
+-- Budget parity: the richest human's current money.
+function FA_HUMAN_MONEY()
+  local ok, ps = pcall(function() return API.GetAllPlayers() end)
+  if not ok or ps == nil then return 0 end
+  local best = 0
+  for _, p in pairs(ps) do
+    if not fa_isbravo(p) then
+      local ok2, m = pcall(function() return p:GetMoney() end)
+      if ok2 and type(m) == 'number' and m > best then best = m end
+    end
+  end
+  return best
+end
+-- The owner of the spawned units: "Bravo Player 1" (the map's spawn nodes use it), else the lowest Bravo UID.
+function FA_BRAVO_UID()
+  local ok, ps = pcall(function() return API.GetAllPlayers() end)
+  if not ok or ps == nil then return nil end
+  local best = nil
+  for _, p in pairs(ps) do
+    if fa_isbravo(p) then
+      local ok2, u = pcall(function() return p.UID end)
+      local ok3, nm = pcall(function() return p.PlayerName end)
+      if ok3 and nm == 'Bravo Player 1' and ok2 then return u end
+      if ok2 and u ~= nil and (best == nil or u < best) then best = u end
+    end
+  end
+  return best
+end
+'''
+PURCHASE_FILES=['ba_tactics.lua','ba_roles.lua','ba_doctrine.lua','ba_field.lua','ba_mind.lua','ba_purchase.lua']
+def purchase_code(scene,header):
+    parts=[header,(TERRAIN/f"ba_terrain_{scene.replace(' ','_')}.lua").read_text(encoding='utf-8')]
+    parts+=[(AI_SRC/'ai'/f).read_text(encoding='utf-8') for f in PURCHASE_FILES]
+    code='\n'.join(parts)
+    for a,b in (('local function rallyPoint(units)\n','local function rallyPoint(units)\n  if BA_FA_SPAWNS ~= nil then return FA_SPAWN() end\n'),
+                ('local function fallbackDrop(uid)\n','local function fallbackDrop(uid)\n  if BA_FA_SPAWNS ~= nil then return FA_SPAWN() end\n'),
+                ('local function ownerUID(slot)\n','local function ownerUID(slot)\n  if BA_FA_PVE then return FA_BRAVO_UID() end\n'),
+                ('local function isBotUID(uid)\n','local function isBotUID(uid)\n  if BA_FA_PVE then return FA_IS_BRAVO(uid) end\n'),
+                ('  MAX_UNITS   = 26,','  MAX_UNITS   = BA_FA_MAX_UNITS or 26,'),
+                # Upstream bug: tick() calls situation() before its `local function` line, so with ba_field/ba_mind loaded (the deploy
+                # order its README uses) channel 1 hit a nil global and never bought. Measured with its own test_purchase.lua: 9 of 24 fail
+                # with field+mind loaded, all 24 pass with this forward declaration.
+                ('local function tick(slot)','local situation   -- forward declaration (see pve.py)\nlocal function tick(slot)'),
+                ('local function situation(uid, team, units)','situation = function(uid, team, units)'),
+                # Budget parity (the toolkit's own principle): the empty Bravo slot has no money, so channel 2 would rate every card
+                # unaffordable. In PvE it is rated against the richest human's money instead; spending is still capped by the purchase
+                # interval, card cooldowns and BA_FA_MAX_UNITS.
+                ('  ctx.money = (type(money) == "number") and money or 0','  ctx.money = (type(money) == "number") and money or 0\n  if BA_FA_PVE then ctx.money = FA_HUMAN_MONEY() end')):
+        assert code.count(a)==1,('BrokenArrowAI ba_purchase changed: '+a[:40]);code=code.replace(a,b)
+    return code
+def add_purchase(nodes,objects,scene,players,cards):
+    """Two buying channels for BP1 (ba_purchase.lua Buy_BP1 / Buy2_BP1), wired as tools/inject_purchase.py does: start -> looped LuaNode,
+    static payloads on input_1..5, output_1 -> spawn.UnitInfo, output_2 -> spawn.targetVec, out -> spawn.in, error -> self."""
+    owner=next(o['_uid'] for o in objects if o.get('_type')==13 and o['_dname']=='Bravo Player 1')
+    start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'][0]
+    code=purchase_code(scene,pve_header(objects,players))
+    nid=max(b['id'] for b in nodes['b'])+500
+    def node(key,props,x,y):
+        nonlocal nid;nid+=1;nodes['b'].append({'v':0,'nnKey':key,'px':x,'py':y,'id':nid,'rtpt':True,'props_v2':props});return nid
+    def wire(a,c,b,d):nodes['c'].append({'a':a,'b':b,'c':c,'d':d,'e':b})
+    player=node('node_player',[p('value',f'c{owner}')],-3400.0,8000.0)
+    store=node('mission_storage',[p('value','BP1'),p('actOnSt','False')],-3000.0,8000.0);wire(store,'in',player,'out')
+    for k,(enter,ids) in enumerate((('Buy_BP1',cards['ch1']),('Buy2_BP1',cards['ch2']))):
+        y=8300.0+k*600.0
+        lua=node('LuaNode',[p('EnterMethod',enter),p('Loop','True'),p('Code',code),p('hotreload','False')],-2600.0,y)
+        wire(lua,'in',start,'flow');wire(lua,'in',lua,'error')
+        for i,uid in enumerate(ids):
+            data=node('getSpMultUnData',[p('val',payload({uid:1},players))],-3000.0,y+100+i*60);wire(lua,f'input_{i+1}',data,'out')
+        spawn=node('spawnMultiUnits',[p('TargetTag','',1),p('TargetSpawnPoint','',1),p('PlayerOwner','c0',1),p('UnitInfo','',1),
+                                      p('UnitGroup',f'FAPVEBUY{k+1}'),p('CargoUnitGroup',f'FAPVEBUY{k+1}C'),p('assign','False')],-2000.0,y)
+        wire(spawn,'UnitInfo',lua,'output_1');wire(spawn,'targetVec',lua,'output_2');wire(spawn,'in',lua,'out');wire(spawn,'PlayerOwner',player,'out')
+
 def add_ai(nodes,scene):
     """start.flow -> LuaNode(AiTick, looped, code embedded so no file path is needed); its error output re-enters it."""
     start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'];assert len(start)==1,start
@@ -185,9 +304,10 @@ def add_waves(nodes,objects,players,after,waves,orders=True):
             else:
                 lead=capture(g+'S',x+400,y+750);wire(lead,'in2',tick,'out2');wire(tick,'in2',lead,'out2');wire(tick,'in2',lead,'outFailed')
         prev,prev_port=wait,'out2'
-    # The last wave again every REPEAT_MINUTES.
-    loop=delay(REPEAT_MINUTES*60,-3000.0,4300.0+len(waves)*1200.0)
-    wire(loop,'in2',go,'out2');wire(go,'in2',loop,'out2')
+    # The last wave again every REPEAT_MINUTES (scripted mode only; the Lua AI buys its own reinforcements).
+    if orders:
+        loop=delay(REPEAT_MINUTES*60,-3000.0,4300.0+len(waves)*1200.0)
+        wire(loop,'in2',go,'out2');wire(go,'in2',loop,'out2')
     return len(waves),len(tags)
 
 def configure_slots(objects,meta,players):
@@ -215,12 +335,14 @@ def build(game,out):
             h,n,o,m=copy.deepcopy(base[kind])
             if kind==3:
                 start=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(start)==1
-                waves=add_waves(n,o,players,(start[0],'flow'),WAVES[title],orders=not ai);ai and add_ai(n,h['map'])   # the base Skirmish flavor: bots, no deployment pause
+                waves=add_waves(n,o,players,(start[0],'flow'),opening(WAVES[title]) if ai else WAVES[title],orders=not ai)
+                if ai:add_ai(n,h['map']);add_purchase(n,o,h['map'],players,AI_CARDS[title])   # the base Skirmish flavor: bots, no deployment pause
             else:
                 # Waves start when the deployment pause ends: the delay that unpauses the game.
                 off=[b['id'] for b in n['b'] if b['nnKey']=='pauseGame' and any(q['k']=='val' and q['v']=='False' for q in b['props_v2'])];assert len(off)==1,off
                 wait=[c['b'] for c in n['c'] if c['a']==off[0] and c['d']=='out2'];assert len(wait)==1,wait
-                waves=add_waves(n,o,players,(wait[0],'out2'),WAVES[title],orders=not ai);ai and add_ai(n,h['map'])
+                waves=add_waves(n,o,players,(wait[0],'out2'),opening(WAVES[title]) if ai else WAVES[title],orders=not ai)
+                if ai:add_ai(n,h['map']);add_purchase(n,o,h['map'],players,AI_CARDS[title])
                 configure_slots(o,m,players)
             C.check_spawns(flavor,h,o)
             C.check_limit(flavor,desc)
