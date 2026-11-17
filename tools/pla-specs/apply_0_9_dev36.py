@@ -116,6 +116,10 @@ ok(U[947]['HUDName']=='PTZ-89' and [(c['Id'],c['SpecializationId']) for c in _SA
 g.remove('SpecializationAvailabilitiesJson',2008238);assign['assignments'].pop('947',None)
 ok(not [c for c in _SA.values() if c['UnitId']==947],'PTZ-89 has no card')
 rec['ptz89_removed']=2008238
+# ---------- Brown explosion sheet test switch (Osama 17 Nov 2026 10:4x PST, thread 1567745029781454889, TARS handoff effects-brown-sheet-20261117):
+# runtime only, off by default. runtime-qa/HideTextureTest.cs blanks loaded textures named in UserData/FreedomArrow/hide-textures.json
+# ({"textures": ["Texture_Smoke_Brown_BaseMap"]}) on the GPU and restores them when the name or file goes; read every 3 s, so it switches in a match.
+rec['hide_texture_test']={'runtime':'HideTextureTest.cs','switch':'UserData/FreedomArrow/hide-textures.json','default':'off'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

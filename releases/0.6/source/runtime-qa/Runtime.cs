@@ -72,6 +72,7 @@ public class Runtime : MelonMod
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
         PlayableBorders.Update();
+        HideTextureTest.LateUpdate();
     }
     public override void OnGUI() => conquest?.OnGUI();
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
@@ -229,6 +230,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
         try { AlertSounds.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALERT_SOUNDS_FAILED: old alarms stay. "+e.Message); }
+        HideTextureTest.Install(Root);
     }
     public override void OnLateInitializeMelon()
     {
