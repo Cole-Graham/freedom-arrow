@@ -48,14 +48,16 @@ static class AlertSounds
         planeRow=AccessTools.Field(warnings,"Plane")?.GetValue(null)??throw new MissingFieldException("Warnings.Plane");
         var trigger=AccessTools.Method(warnings,"Trigger",new[]{planeRow.GetType()})??throw new MissingMethodException("Warnings.Trigger");
         harmony.Patch(AccessTools.Method(alarmType,"Load")??throw new MissingMethodException("AlarmSound.Load"),postfix:new HarmonyMethod(typeof(AlertSounds),nameof(AfterAlarmLoad)));
-        harmony.Patch(trigger,prefix:new HarmonyMethod(typeof(AlertSounds),nameof(BeforeTrigger)));
+        // 0.9.0-dev.36 (Osama 17 Nov 2026 10:1x PST, thread 1567745029781454889: "swap the air warning out and make that the missile warning and then
+        // remove the air warning in general because I think there already is one in vanilla"): the Burke sound is now the ballistic missile alarm
+        // (AfterAlarmLoad) and nothing plays on the aircraft warning any more; BeforeTrigger is kept but no longer patched.
         var game=asm.GetType("FlatIncomeMod.Game");
         query=game==null?null:AccessTools.Method(game,"Query");
         unitTypeEnum=query?.GetParameters()[0].ParameterType;
         harmony.Patch(AccessTools.Method(typeof(LabelSystem),"Update")??throw new MissingMethodException("LabelSystem.Update"),
             postfix:new HarmonyMethod(typeof(AlertSounds),nameof(AfterLabels)));
         installed=true;
-        MelonLogger.Msg($"FREEDOM_ARROW_ALERT_SOUNDS installed: ballistic C-RAM, aircraft Burke, nuclear by faction; cruise query {(query!=null?"on":"missing")}");
+        MelonLogger.Msg($"FREEDOM_ARROW_ALERT_SOUNDS installed: ballistic alarm Burke, no aircraft sound, nuclear by faction; cruise query {(query!=null?"on":"missing")}");
     }
 
     // FlatIncomeMod creates its entries in its own OnInitializeMelon; this runs again from every Install call until it finds them.
@@ -78,9 +80,9 @@ static class AlertSounds
         {
             if(!(bool)(AccessTools.Field(alarmType,"_ready").GetValue(null)??false))return;
             var f=AccessTools.Field(alarmType,"_sound");var old=(Sound)f.GetValue(null);
-            if(RuntimeManager.CoreSystem.createSound(Path.Combine(dir,"ballistic-alarm-cram.ogg"),MODE.LOOP_OFF|MODE._2D|MODE.CREATESAMPLE,out var s)!=RESULT.OK)return;
+            if(RuntimeManager.CoreSystem.createSound(Path.Combine(dir,"aircraft-alarm-burke.ogg"),MODE.LOOP_OFF|MODE._2D|MODE.CREATESAMPLE,out var s)!=RESULT.OK)return;
             f.SetValue(null,s);old.release();
-            MelonLogger.Msg("FREEDOM_ARROW_ALERT_SOUNDS ballistic alarm = C-RAM incoming");
+            MelonLogger.Msg("FREEDOM_ARROW_ALERT_SOUNDS ballistic alarm = Arleigh Burke alarm");
         }
         catch(Exception x){MelonLogger.Warning("FREEDOM_ARROW_ALERT_SOUNDS ballistic swap failed, the old alarm stays: "+x.Message);}
     }
