@@ -63,7 +63,7 @@ rec['cm501ga_lmur_clone']={'ammo':2017128,'weapon':2017902,'template':{'ammo':44
 # ZTQ-15, Recon and Light sat on the M10 body with three mounts: the 105 mm on the M10 turret (works), Type 86 + QJC-88 on the BTR-82AT turret part
 # (2019317) and LG3 on a mount with no model part (2018997). The M10 body has neither part, so those three guns had no point to fire from.
 # Now on the Kurganets body with one mount on its 57 mm turret part (RU_Kurganets57mm, vanilla mount 470: 2A94, PKT, Kornet, Bulat = 4 weapon
-# points): 105 mm, Type 86, QJC-88, LG3 at orders 0-3. The model is still the ZTQ-15 (FAModels, by name). VT-5 keeps the old M10 layout (not asked).
+# points): 105 mm, Type 86, QJC-88, LG3 at orders 0-3. The model is still the ZTQ-15 (FAModels, by name). VT-5 and VT-5 Recon get the same fix below.
 _TW,_TU,_TT=t['TurretWeaponsJson'],t['TurretUnitsJson'],t['TurretsJson'];_ZTQ=[906,1240,1268]
 def _ztq(u):return [(r['TurretId'],[_W[w['WeaponId']]['HUDName'] for w in sorted((w for w in _TW.values() if w['TurretId']==r['TurretId']),key=lambda w:w['Order'])]) for r in sorted((r for r in _TU.values() if r['UnitId']==u),key=lambda r:r['Order'])]
 _old=[(2009128,['105 mm high-pressure rifled gun']),(2019317,['Type 86 7.62 mm','QJC-88 12.7 mm']),(2018997,['LG3 40 mm AGL'])]
@@ -83,7 +83,27 @@ for _k in (2019317,2018997):
 _new=[(_mt,['105 mm high-pressure rifled gun','Type 86 7.62 mm','QJC-88 12.7 mm','LG3 40 mm AGL'])]
 ok(all(U[u]['ModelFileName']=='RU_Kurganets' and _ztq(u)==_new for u in _ZTQ),'ZTQ-15 x3 on Kurganets, one 57 mm mount, 4 weapons')
 ok(sorted(w['Order'] for w in _TW.values() if w['TurretId']==_mt)==[0,1,2,3] and _TT[_mt]['ModelFileName']=='RU_Kurganets/RU_Kurganets57mm','mount numbered 0-3 on the Kurganets 57 mm part')
-ok(all(U[u]['ModelFileName']=='US_M10' and _ztq(u)[0][0]==2009128 for u in (1261,1262)),'VT-5 unchanged')
+# VT-5 and VT-5 Recon (Osama 17 Nov 2026 10:4x PST: "Yes can you do it for them too"): the same M10 layout with Type 86 on the BTR-82AT part (2009136) and
+# QJC-88 on a mount with no part (2009142). Now on the Kurganets body, one 57 mm mount: 105 mm, Type 86, QJC-88 at orders 0-2.
+_VT=[1261,1262];_vold=[(2009128,['105 mm high-pressure rifled gun']),(2009136,['Type 86 7.62 mm']),(2009142,['QJC-88 12.7 mm'])]
+ok(all(U[u]['ModelFileName']=='US_M10' and _ztq(u)==_vold for u in _VT),'VT-5 x2 on M10 with the three old mounts')
+ok(all(sorted({r['UnitId'] for r in _TU.values() if r['TurretId']==k})==_VT for k in (2009136,2009142)),'mounts 2009136/2009142 VT-5 only')
+_vt=g.add('TurretsJson',_TT[2009128],{'Name':'PLA VT-5 mount 0 Kurganets 57','ModelFileName':'RU_Kurganets/RU_Kurganets57mm'})
+for _i,_src in enumerate((2009130,2009138,2009144)):
+    g.add('TurretWeaponsJson',_TW[_src],{'TurretId':_vt,'Order':_i,'WeaponChannel':0,'WeaponPriority':_i})
+for _u in _VT:
+    g.put('Units',_u,{'ModelFileName':'RU_Kurganets'})
+    for _r in [r for r in _TU.values() if r['UnitId']==_u]:
+        if _r['TurretId']==2009128:g.put('TurretUnitsJson',_r['Id'],{'TurretId':_vt,'Order':0})
+        else:g.remove('TurretUnitsJson',_r['Id'])
+for _k in (2009136,2009142):
+    for _r in [r for r in _TW.values() if r['TurretId']==_k]:g.remove('TurretWeaponsJson',_r['Id'])
+    g.remove('TurretsJson',_k)
+ok(all(U[u]['ModelFileName']=='RU_Kurganets' and _ztq(u)==[(_vt,['105 mm high-pressure rifled gun','Type 86 7.62 mm','QJC-88 12.7 mm'])] for u in _VT),'VT-5 x2 on Kurganets, one 57 mm mount, 3 weapons')
+# The old M10 105 mm mount 2009128 now has no unit; it goes with its weapon row (an orphan mount fails the SP/MP build guard).
+ok(not any(r['TurretId']==2009128 for r in _TU.values()) and [r['Id'] for r in _TW.values() if r['TurretId']==2009128]==[2009130],'mount 2009128 unused, one weapon row')
+g.remove('TurretWeaponsJson',2009130);g.remove('TurretsJson',2009128)
+rec['vt5_kurganets']={'units':_VT,'model':['US_M10','RU_Kurganets'],'mount':_vt,'part':'RU_Kurganets/RU_Kurganets57mm','removed_mounts':[2009136,2009142]}
 rec['ztq15_kurganets']={'units':_ZTQ,'model':['US_M10','RU_Kurganets'],'mount':_mt,'part':'RU_Kurganets/RU_Kurganets57mm','removed_mounts':[2019317,2018997]}
 # ZTZ-85-II (1264): its only deck card (row 2018800, PLARF Conscript, 6) goes; the unit row stays for old saves and decks.
 _SA=t['SpecializationAvailabilitiesJson']
