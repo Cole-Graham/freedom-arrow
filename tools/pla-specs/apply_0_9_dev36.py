@@ -140,6 +140,26 @@ rec['ptz89_removed']=2008238
 # runtime only, off by default. runtime-qa/HideTextureTest.cs blanks loaded textures named in UserData/FreedomArrow/hide-textures.json
 # ({"textures": ["Texture_Smoke_Brown_BaseMap"]}) on the GPU and restores them when the name or file goes; read every 3 s, so it switches in a match.
 rec['hide_texture_test']={'runtime':'HideTextureTest.cs','switch':'UserData/FreedomArrow/hide-textures.json','default':'off'}
+# ---------- Explosion effects by weapon type and calibre (Osama 17 Nov 2026 11:2x PST, thread 1567745029781454889: "let's make sure all the weapons use
+# effects from their proper weapon type", "a 152 mm howitzer should also use effects from a 152 mm howitzer. Weapons using a 120 mm mortar use effects
+# from a 120 mm mortar"). Data audit of every China round against the vanilla users of its effect (work/pla-0.9/ly1/data/fx.py, fx2.py). Effect only:
+# no damage, range or spread change. The JRVG-1 round is above.
+# - PLL-09 120 mm gun-mortar HE and smoke: 122 mm howitzer / 152-155 mm howitzer effects -> the 120 mm mortar effect (vanilla Nona, Vena, 120 mm smoke).
+# - PLZ-70 and PLZ-07B 122 mm smoke, PLZ-07B GP6 122 mm: 152-155 mm howitzer effect -> the 122 mm howitzer effect (vanilla 2S1 2A31, AMMUNITION_VFX_
+#   PRESET_SHELL_120mm_HE), the same as their own 122 mm HE.
+# - WZ1224 120 mm (and the old WZ-1224 rows): 125 mm effects -> the vanilla 120 mm tank gun effects (Leopard 2A8 / M1: ROUND_120mm_AP for APFSDS,
+#   ROUND_120mm_RADIOFUSE for HE and HEAT).
+_P='AMMUNITION_VFX_PRESET_';_fx={2010465:('SHELL_120mm_HE','MORTAR_OBUS_120mm'),2018959:('SHELL_152-155mm_HE','MORTAR_OBUS_120mm'),
+ 2018961:('SHELL_152-155mm_HE','SHELL_120mm_HE'),2018963:('SHELL_152-155mm_HE','SHELL_120mm_HE'),2018965:('SHELL_152-155mm_HE','SHELL_120mm_HE'),
+ 2019344:('ROUND_125mm_AP','ROUND_120mm_AP'),2011117:('ROUND_125mm_AP','ROUND_120mm_AP'),
+ 2019460:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2019461:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2011119:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE'),2011121:('ROUND_125mm_HE','ROUND_120mm_RADIOFUSE')}
+_own={2010465:{1037},2018959:{1037},2018961:{1040},2018963:{931},2018965:{931},2019344:{1272},2019460:{1272},2019461:{1272},2011117:{1073},2011119:{1073},2011121:{1073}}
+_VFX={r['FXPreset'] for r in _VA.values()}
+for _i,(_o,_n) in _fx.items():
+    ok(_A[_i]['FXPreset']==_P+_o and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==_i}==_own[_i],(_i,_A[_i]['HUDName'],'old effect, own unit'))
+    ok(_P+_n in _VFX,(_n,'is a vanilla effect'))
+    g.put('AmmunitionsJson',_i,{'FXPreset':_P+_n});ok(_A[_i]['FXPreset']==_P+_n,(_i,_n))
+rec['fx_by_weapon_type']={str(k):[_P+o,_P+n] for k,(o,n) in _fx.items()}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
