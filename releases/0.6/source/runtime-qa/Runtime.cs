@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -195,7 +195,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOBBY_SLOTS_FAILED: not installed; new lobbies open every slot. "+e.Message); }
         try { SpaagWeapons.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
-        try { ChinaVoice.Install(HarmonyInstance); }
+        try { ChinaVoice.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CHINA_VOICE_FAILED: not installed; China units use their preset voices. "+e.Message); }
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }

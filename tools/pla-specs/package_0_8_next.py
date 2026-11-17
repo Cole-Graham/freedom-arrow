@@ -47,6 +47,10 @@ with zipfile.ZipFile(base) as z:
     # compatibility.json: game build pins (BA 1.2.2.1 port, 16 Nov 2026: dev.19 shipped the old GameAssembly pin because this file was carried from the base).
     for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/dazzler.json','UserData/FreedomArrow/compatibility.json','UserData/FreedomArrow/plane-refund.json','UserData/FreedomArrow/sead-overkill.json','UserData/FreedomArrow/mirror-skins.json','UserData/FreedomArrow/FA_F22_MIRROR_ALBEDO.png','UserData/FreedomArrow/FA_F22_MIRROR_MASK.png','UserData/FreedomArrow/FA_F22_MIRROR_LITMASK.png'):
         if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
+    # China voice lines (Osama 16 Nov 2026 19:56 PST, dev.34): tools/china-voice/stage.py writes ChinaVoice/ and china-voices.json; ChinaVoice.cs plays them.
+    for f in sorted([SRC/'UserData/FreedomArrow/china-voices.json',*(SRC/'UserData/FreedomArrow/ChinaVoice').rglob('*.mp3')]):
+        k=f.relative_to(SRC).as_posix()
+        if f.is_file() and (k not in z.namelist() or f.read_bytes()!=z.read(k)):override[k]=f.read_bytes()
     # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in
     # releases/0.8/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
     with tempfile.TemporaryDirectory() as built_dir:

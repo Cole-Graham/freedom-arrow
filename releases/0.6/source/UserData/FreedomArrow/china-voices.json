@@ -1,0 +1,607 @@
+{
+ "note": "FreedomArrow ChinaVoice.cs (dev.34). set = ChinaVoice/<set>/<Trigger>; unit = extra ChinaVoice/Units/<unit>/<Trigger> lines. Unmapped China units use fallback by Type, or Type:CategoryType.",
+ "units": {
+  "1029": {
+   "set": "Artillery/Regular",
+   "unit": "DF-15"
+  },
+  "1028": {
+   "set": "Artillery/Regular",
+   "unit": "DF-17"
+  },
+  "1030": {
+   "set": "Artillery/Regular",
+   "unit": "DF-21"
+  },
+  "1032": {
+   "set": "Artillery/Regular",
+   "unit": "DF-31A"
+  },
+  "1033": {
+   "set": "Artillery/Regular"
+  },
+  "1034": {
+   "set": "Artillery/Regular",
+   "unit": "PCL-181"
+  },
+  "908": {
+   "set": "Artillery/Regular"
+  },
+  "1035": {
+   "set": "Artillery/Regular",
+   "unit": "PHL-16"
+  },
+  "1036": {
+   "set": "Artillery/Regular"
+  },
+  "926": {
+   "set": "Artillery/Regular"
+  },
+  "1037": {
+   "set": "Artillery/Regular"
+  },
+  "907": {
+   "set": "Artillery/Regular",
+   "unit": "PLZ-05"
+  },
+  "931": {
+   "set": "Artillery/Regular"
+  },
+  "1039": {
+   "set": "Artillery/Regular"
+  },
+  "1040": {
+   "set": "Artillery/Regular"
+  },
+  "1041": {
+   "set": "Artillery/Regular"
+  },
+  "1042": {
+   "set": "Artillery/Regular"
+  },
+  "1043": {
+   "set": "Artillery/Regular"
+  },
+  "934": {
+   "set": "Artillery/Regular"
+  },
+  "1129": {
+   "set": "Artillery/Regular",
+   "unit": "YJ-18"
+  },
+  "1084": {
+   "set": "Helicopter/Regular"
+  },
+  "978": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-10"
+  },
+  "1239": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-10"
+  },
+  "913": {
+   "set": "Helicopter/Regular"
+  },
+  "1270": {
+   "set": "Helicopter/Regular"
+  },
+  "942": {
+   "set": "Helicopter/Regular"
+  },
+  "1271": {
+   "set": "Helicopter/Regular"
+  },
+  "940": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-19"
+  },
+  "1103": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-19"
+  },
+  "1236": {
+   "set": "Helicopter/Regular"
+  },
+  "1237": {
+   "set": "Helicopter/Regular"
+  },
+  "1244": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-20"
+  },
+  "1238": {
+   "set": "Helicopter/Regular"
+  },
+  "914": {
+   "set": "Helicopter/Regular"
+  },
+  "1243": {
+   "set": "Helicopter/Regular"
+  },
+  "1245": {
+   "set": "Helicopter/Regular"
+  },
+  "1104": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-21"
+  },
+  "1135": {
+   "set": "Helicopter/Regular",
+   "unit": "Z-21"
+  },
+  "1105": {
+   "set": "Helicopter/Regular"
+  },
+  "1106": {
+   "set": "Helicopter/Regular"
+  },
+  "1107": {
+   "set": "Helicopter/Regular"
+  },
+  "941": {
+   "set": "Helicopter/Regular"
+  },
+  "1133": {
+   "set": "Helicopter/Regular"
+  },
+  "1173": {
+   "set": "Infantry/Conscript"
+  },
+  "1213": {
+   "set": "Infantry/Conscript"
+  },
+  "1166": {
+   "set": "Infantry/Conscript"
+  },
+  "1176": {
+   "set": "Infantry/Conscript"
+  },
+  "1169": {
+   "set": "Infantry/Conscript"
+  },
+  "1168": {
+   "set": "Infantry/Conscript"
+  },
+  "1175": {
+   "set": "Infantry/Conscript"
+  },
+  "1172": {
+   "set": "Infantry/Conscript"
+  },
+  "1157": {
+   "set": "Infantry/Regular"
+  },
+  "1170": {
+   "set": "Infantry/Regular"
+  },
+  "1171": {
+   "set": "Infantry/Conscript"
+  },
+  "1177": {
+   "set": "Infantry/Conscript"
+  },
+  "1197": {
+   "set": "Infantry/Regular"
+  },
+  "1198": {
+   "set": "Infantry/Regular"
+  },
+  "1206": {
+   "set": "Infantry/Regular"
+  },
+  "1136": {
+   "set": "Infantry/Regular"
+  },
+  "1160": {
+   "set": "Infantry/Regular"
+  },
+  "1161": {
+   "set": "Infantry/Regular"
+  },
+  "1156": {
+   "set": "Infantry/Regular"
+  },
+  "1164": {
+   "set": "Infantry/Regular"
+  },
+  "1221": {
+   "set": "Infantry/Regular"
+  },
+  "1137": {
+   "set": "Infantry/Regular"
+  },
+  "1152": {
+   "set": "Infantry/Regular"
+  },
+  "1205": {
+   "set": "Infantry/Regular"
+  },
+  "1193": {
+   "set": "Infantry/Regular"
+  },
+  "1194": {
+   "set": "Infantry/Regular"
+  },
+  "1224": {
+   "set": "Infantry/Regular"
+  },
+  "1192": {
+   "set": "Infantry/Regular"
+  },
+  "1163": {
+   "set": "Infantry/Regular"
+  },
+  "1196": {
+   "set": "Infantry/Regular"
+  },
+  "1140": {
+   "set": "Infantry/Regular"
+  },
+  "1154": {
+   "set": "Infantry/Regular"
+  },
+  "1208": {
+   "set": "Infantry/Regular"
+  },
+  "1145": {
+   "set": "Infantry/Regular"
+  },
+  "1153": {
+   "set": "Infantry/Regular"
+  },
+  "1201": {
+   "set": "Infantry/Regular"
+  },
+  "1149": {
+   "set": "Infantry/Regular"
+  },
+  "1144": {
+   "set": "Infantry/Regular"
+  },
+  "1202": {
+   "set": "Infantry/Regular"
+  },
+  "1139": {
+   "set": "Infantry/Regular"
+  },
+  "1209": {
+   "set": "Infantry/Regular"
+  },
+  "1199": {
+   "set": "Infantry/Regular"
+  },
+  "1146": {
+   "set": "Infantry/SF"
+  },
+  "1187": {
+   "set": "Infantry/SF",
+   "unit": "Beijing_Swords"
+  },
+  "1183": {
+   "set": "Infantry/English",
+   "unit": "Blood_Wolves_EN"
+  },
+  "1185": {
+   "set": "Infantry/SF",
+   "unit": "Falcons"
+  },
+  "1181": {
+   "set": "Infantry/English",
+   "unit": "Godswords_EN"
+  },
+  "1186": {
+   "set": "Infantry/SF",
+   "unit": "Mountain_Leopards"
+  },
+  "1182": {
+   "set": "Infantry/SF",
+   "unit": "Snow_Leopards"
+  },
+  "1142": {
+   "set": "Infantry/SF"
+  },
+  "1191": {
+   "set": "Infantry/SF",
+   "unit": "Sea_Dragons"
+  },
+  "1174": {
+   "set": "Infantry/SF",
+   "unit": "Sharp_Swords"
+  },
+  "1203": {
+   "set": "Infantry/SF"
+  },
+  "1143": {
+   "set": "Infantry/SF",
+   "unit": "Thunder_Gods"
+  },
+  "1184": {
+   "set": "Infantry/SF",
+   "unit": "Whistling_Arrows"
+  },
+  "1089": {
+   "set": "Plane/Conscript"
+  },
+  "1091": {
+   "set": "Plane/Conscript"
+  },
+  "1092": {
+   "set": "Plane/Conscript"
+  },
+  "975": {
+   "set": "Plane/Conscript"
+  },
+  "919": {
+   "set": "Plane/Regular",
+   "unit": "H-6K"
+  },
+  "1226": {
+   "set": "Plane/Regular"
+  },
+  "917": {
+   "set": "Plane/Regular"
+  },
+  "955": {
+   "set": "Plane/Regular"
+  },
+  "1241": {
+   "set": "Plane/Regular"
+  },
+  "923": {
+   "set": "Plane/Regular"
+  },
+  "1242": {
+   "set": "Plane/Regular"
+  },
+  "943": {
+   "set": "Plane/Regular"
+  },
+  "974": {
+   "set": "Plane/Regular"
+  },
+  "916": {
+   "set": "Plane/Regular"
+  },
+  "977": {
+   "set": "Plane/Regular"
+  },
+  "1095": {
+   "set": "Plane/Regular"
+  },
+  "1096": {
+   "set": "Plane/Regular",
+   "unit": "KJ-500"
+  },
+  "1097": {
+   "set": "Plane/Regular"
+  },
+  "976": {
+   "set": "Plane/Regular"
+  },
+  "924": {
+   "set": "Plane/Regular"
+  },
+  "1100": {
+   "set": "Plane/Regular"
+  },
+  "1252": {
+   "set": "Plane/Regular"
+  },
+  "946": {
+   "set": "Plane/Regular"
+  },
+  "928": {
+   "set": "Plane/Regular",
+   "unit": "Y-20"
+  },
+  "1102": {
+   "set": "Plane/Regular"
+  },
+  "1253": {
+   "set": "Plane/SF"
+  },
+  "967": {
+   "set": "Plane/SF"
+  },
+  "915": {
+   "set": "Plane/SF",
+   "unit": "J-20"
+  },
+  "966": {
+   "set": "Plane/SF",
+   "unit": "J-20S"
+  },
+  "1251": {
+   "set": "Plane/SF",
+   "unit": "J-31"
+  },
+  "921": {
+   "set": "Plane/SF",
+   "unit": "J-35"
+  },
+  "929": {
+   "set": "Plane/SF",
+   "unit": "J-36"
+  },
+  "1060": {
+   "set": "Tank/Conscript"
+  },
+  "1260": {
+   "set": "Tank/Conscript"
+  },
+  "1061": {
+   "set": "Tank/Conscript"
+  },
+  "1264": {
+   "set": "Tank/Conscript"
+  },
+  "938": {
+   "set": "Tank/Regular"
+  },
+  "1080": {
+   "set": "Tank/Regular"
+  },
+  "1263": {
+   "set": "Tank/Regular"
+  },
+  "906": {
+   "set": "Tank/Regular",
+   "unit": "ZTQ-15"
+  },
+  "1268": {
+   "set": "Tank/Regular",
+   "unit": "ZTQ-15"
+  },
+  "1240": {
+   "set": "Tank/Regular",
+   "unit": "ZTQ-15"
+  },
+  "968": {
+   "set": "Tank/Regular",
+   "unit": "ZTZ-100"
+  },
+  "1082": {
+   "set": "Tank/Regular"
+  },
+  "905": {
+   "set": "Tank/Regular",
+   "unit": "ZTZ-96B"
+  },
+  "1083": {
+   "set": "Tank/Regular",
+   "unit": "ZTZ-99"
+  },
+  "904": {
+   "set": "Tank/Regular",
+   "unit": "ZTZ-99A"
+  },
+  "1054": {
+   "set": "Vehicle/Regular"
+  },
+  "935": {
+   "set": "Vehicle/Regular",
+   "unit": "FK-2000"
+  },
+  "1273": {
+   "set": "Vehicle/Regular"
+  },
+  "936": {
+   "set": "Vehicle/Regular"
+  },
+  "1046": {
+   "set": "Vehicle/Regular"
+  },
+  "1047": {
+   "set": "Vehicle/Regular"
+  },
+  "1048": {
+   "set": "Vehicle/Regular",
+   "unit": "HQ-16"
+  },
+  "910": {
+   "set": "Vehicle/Regular",
+   "unit": "HQ-17"
+  },
+  "1049": {
+   "set": "Vehicle/Regular"
+  },
+  "1045": {
+   "set": "Vehicle/Regular"
+  },
+  "925": {
+   "set": "Vehicle/Regular"
+  },
+  "1233": {
+   "set": "Vehicle/Regular",
+   "unit": "HQ-9"
+  },
+  "911": {
+   "set": "Vehicle/Regular",
+   "unit": "HQ-9"
+  },
+  "952": {
+   "set": "Vehicle/Regular"
+  },
+  "1275": {
+   "set": "Vehicle/Regular",
+   "unit": "LY-1"
+  },
+  "920": {
+   "set": "Vehicle/Regular",
+   "unit": "PGL-625"
+  },
+  "909": {
+   "set": "Vehicle/Regular"
+  },
+  "1051": {
+   "set": "Vehicle/Regular"
+  },
+  "1052": {
+   "set": "Vehicle/Regular"
+  },
+  "1059": {
+   "set": "Vehicle/Regular"
+  },
+  "947": {
+   "set": "Vehicle/Regular"
+  },
+  "937": {
+   "set": "Vehicle/Regular"
+  },
+  "1269": {
+   "set": "Vehicle/Regular"
+  },
+  "1235": {
+   "set": "Vehicle/Regular"
+  },
+  "1247": {
+   "set": "Vehicle/Regular"
+  },
+  "1067": {
+   "set": "Vehicle/Regular"
+  },
+  "1274": {
+   "set": "Vehicle/Regular"
+  },
+  "953": {
+   "set": "Vehicle/Regular",
+   "unit": "VT-5"
+  },
+  "1261": {
+   "set": "Vehicle/Regular",
+   "unit": "VT-5"
+  },
+  "1262": {
+   "set": "Vehicle/Regular",
+   "unit": "VT-5"
+  },
+  "1053": {
+   "set": "Vehicle/Regular"
+  },
+  "1272": {
+   "set": "Vehicle/Regular"
+  },
+  "1257": {
+   "set": "Vehicle/Regular"
+  },
+  "1255": {
+   "set": "Vehicle/Regular",
+   "unit": "ZBD-04A"
+  },
+  "1258": {
+   "set": "Vehicle/Regular"
+  },
+  "1259": {
+   "set": "Vehicle/Regular"
+  }
+ },
+ "fallback": {
+  "2": "Infantry/Regular",
+  "16": "Plane/Regular",
+  "8": "Helicopter/Regular",
+  "4:2": "Tank/Regular",
+  "4": "Vehicle/Regular"
+ },
+ "volume": 0.234
+}
