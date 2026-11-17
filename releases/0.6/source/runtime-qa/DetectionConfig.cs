@@ -26,6 +26,12 @@ static class DetectionConfig
     // A missile re-rolls at each new flare; this is how many burning flares that re-roll counts (MissileHitChance.cs).
     static int flareRerollCap;
     static int? originalFlareRerollCap;
+    // Stress recovery (Lateralus 17 Nov 2026, thread 1571554273639006392: "increase recovery time from max stress from 44 seconds to around 1:15"):
+    // BuffConfig.StressRecoveryMultiplier, vanilla 1. Each quiet second StressSystem removes floor(seconds since the last stress) x multiplier + 1
+    // (docs/engine/stress.md); 0.33 empties a full 1000 bar in 75 s (panicked to shocked 32 s, to calm 52 s). StressSystem copies the value
+    // in its constructor (_stressRecoveryMultiplayer), so it is written here, before the battle systems are built.
+    static float stressRecovery;
+    static float? originalStressRecovery;
     static void WriteBuildings()
     {
         var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
@@ -41,6 +47,9 @@ static class DetectionConfig
         originalStressSpeed??=(shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier);
         (shocked.MovementSpeedMultiplier,panicked.MovementSpeedMultiplier)=Runtime.IsApplied?(shockedSpeed,panickedSpeed):originalStressSpeed.Value;
         MelonLogger.Msg($"FREEDOM_ARROW_STRESS_SPEED shocked {shocked.MovementSpeedMultiplier} panicked {panicked.MovementSpeedMultiplier}");
+        originalStressRecovery??=buff.StressRecoveryMultiplier;
+        buff.StressRecoveryMultiplier=Runtime.IsApplied?stressRecovery:originalStressRecovery.Value;
+        MelonLogger.Msg($"FREEDOM_ARROW_STRESS_RECOVERY multiplier {buff.StressRecoveryMultiplier} (vanilla {originalStressRecovery})");
         var battle=GameConfig.Instance.BattleSystemSettings??throw new InvalidDataException("Battle system settings missing");
         originalFlareRerollCap??=battle.MAX_FLARES_COUNT_MISSILE_REROLL;
         battle.MAX_FLARES_COUNT_MISSILE_REROLL=Runtime.IsApplied?flareRerollCap:originalFlareRerollCap.Value;
@@ -63,6 +72,8 @@ static class DetectionConfig
         if(!(shockedSpeed>0&&shockedSpeed<=1&&panickedSpeed>0&&panickedSpeed<=1))throw new InvalidDataException("Stress move speed out of range");
         flareRerollCap=game["FlareRerollCap"].GetValue<int>();
         if(!(flareRerollCap>=1&&flareRerollCap<=100))throw new InvalidDataException("FlareRerollCap out of range");
+        stressRecovery=game["StressRecoveryMultiplier"].GetValue<float>();
+        if(!(stressRecovery>0&&stressRecovery<=5))throw new InvalidDataException("StressRecoveryMultiplier out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }

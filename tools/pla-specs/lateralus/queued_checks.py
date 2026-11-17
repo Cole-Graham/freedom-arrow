@@ -92,5 +92,11 @@ if (int(m.group(1)),int(m.group(2)))>=(9,36):
                 if u['unitId'] not in Ut:bad.append(f'{name}: wave unit {u["unitId"]} not in the package')
                 for it in u['items']:
                     if Mt.get(it['mod'],{}).get('UnitId')!=u['unitId'] or Ot.get(it['opt'],{}).get('ModificationId')!=it['mod']:bad.append(f'{name}: unit {u["unitId"]} option {it} not in the package')
+# From dev.36: stress recovery 0.33 (Lateralus 17 Nov 12:35 PST "queue it"), the lobby list of packaged maps only and the altitude arrow traces.
+if (int(m.group(1)),int(m.group(2)))>=(9,36):
+    gc=json.loads(z.read('UserData/FreedomArrow/game-config.json'))
+    if gc.get('StressRecoveryMultiplier')!=0.33:bad.append(f"game-config StressRecoveryMultiplier {gc.get('StressRecoveryMultiplier')} (want 0.33)")
+    for s in ('FREEDOM_ARROW_STRESS_RECOVERY','local [FA] maps not in this package','still_shown','icon_left_modified'):
+        if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
