@@ -70,6 +70,7 @@ ok(not any(m.get('UnitId')==1261 for m in _M.values()) and [r['AbilityId'] for r
 _SA=t['SpecializationAvailabilitiesJson']
 ok([(r['Id'],r['SpecializationId']) for r in _SA.values() if r.get('UnitId')==1040]==[(2008885,19)] and U[1040]['HUDName']=='PLZ-70','PLZ-70 in PLARF Conscript')
 g.put('SpecializationAvailabilitiesJson',2008885,{'SpecializationId':17})
+ok(assign['assignments'].get('1040')==[19],'PLZ-70 assignment 19');assign['assignments']['1040']=[17]   # pla-spec-assignments.json, read by verify_roster_revision.py
 ok([r['SpecializationId'] for r in _SA.values() if r.get('UnitId')==1040]==[17],'PLZ-70 in PLAAF Air Force')
 # 5th/6th-gen fighters out of the SEAD changes (lateralus/sead_availability.py and sead_prices.py, dev.33): back to 2 cards and their pre-SEAD prices.
 # J-36 base price stays 355 (Osama's dev.32 +50 was set over the SEAD price); its x8 loadout is restored.
@@ -115,16 +116,19 @@ for _u,(_h,_he) in _heat.items():
     ok(WA[_h]['UnitId']==_u and 'HEAT' in _A[WA[_h]['AmmunitionId']]['HUDName'] and WA[_h].get('Order')==1 and WA[_he].get('Order')==2,f'{U[_u]["HUDName"]}: HEAT order 1, HE order 2')
     g.remove('WeaponAmmunitionsJson',_h);g.put('WeaponAmmunitionsJson',_he,{'Order':1})
     ok(not any(x['UnitId']==_u and 'HEAT' in (_A[x['AmmunitionId']].get('HUDName') or '') for x in WA.values()),f'{U[_u]["HUDName"]}: no HEAT')
-# "MD-22 afterburners don't seem to work ... model it off an F-35 for its stand in": the game model under the MD-22 (shown through FAModels) was the
-# S-70 Okhotnik drone, which has no afterburner. Now the F-35A (US_F35A); FAModels still draws the MD-22.
-ok(U[976]['HUDName']=='MD-22' and U[976]['ModelFileName']=='DLC3_S70_Okhotnik','MD-22 on the Okhotnik stand-in')
-g.put('Units',976,{'ModelFileName':'US_F35A'});ok(U[976]['ModelFileName']=='US_F35A','MD-22 on the F-35A stand-in')
+# "MD-22 afterburners ... model it off an F-35 for its stand in": NOT in dev.35. The MD-22 loadouts mount on slot 0 of the S-70 Okhotnik stand-in; the
+# F-35A body has no slot 0 (check_mount_weapons.py: 7 loadouts would lose their weapons). Needs the loadouts moved to F-35 slots first.
 # "Helocopters didn't seem to fire their CM-501GA": the only carrier is Z-21 (loadout 24645, weapon 2017902, ammo 2017128). Its seeker reached 250 m
 # (MaxSeekerDistance) against a 1000 m range; the helicopter ATGMs that fire have seeker reach = range (800-950 m). Seeker reach 1000 m.
 ok(_A[2017128]['MaxSeekerDistance']==250.0 and _A[2017128]['GroundRange']==1000.0 and sorted({x['UnitId'] for x in WA.values() if x['AmmunitionId']==2017128})==[1104],'CM-501GA seeker 250 m, range 1000, Z-21 only')
 g.put('AmmunitionsJson',2017128,{'MaxSeekerDistance':1000.0});ok(_A[2017128]['MaxSeekerDistance']==1000.0,'CM-501GA seeker 1000 m')
+# "Abrams X should not have Jammer" (Osama 22:3x): its default ability 2001843 (Abrams X only) carries ECMAccuracyMultiplier 0.7, the jammer. 0.0 = no jammer
+# (as 335 of the abilities, including its own smoke ability 2001844).
+_AB=t['AbilitiesJson']
+ok(_AB[2001843]['ECMAccuracyMultiplier']==0.7 and sorted(r['UnitId'] for r in t['UnitAbilitiesJson'].values() if r['AbilityId']==2001843)==[964],'Abrams X jammer 0.7, own ability')
+g.put('AbilitiesJson',2001843,{'ECMAccuracyMultiplier':0.0});ok(_AB[2001843]['ECMAccuracyMultiplier']==0.0,'Abrams X no jammer')
 rec['osama_2215']={'ctl181_trajectory':[110,200],'ch901':{'weapon_type':[80,82],'trajectory':[110,200]},'ly1':{'hp':[14,10],'seconds_between_pulses':[1,3]},
-                   'zbd20_hj16':{'zbd20':[16,4],'recon':[8,4]},'heat_removed':{str(u):h for u,(h,_) in _heat.items()},'md22_stand_in':['DLC3_S70_Okhotnik','US_F35A'],'cm501ga_seeker_m':[250,1000]}
+                   'zbd20_hj16':{'zbd20':[16,4],'recon':[8,4]},'heat_removed':{str(u):h for u,(h,_) in _heat.items()},'cm501ga_seeker_m':[250,1000],'abrams_x_ecm':[0.7,0.0]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
