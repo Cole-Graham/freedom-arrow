@@ -92,6 +92,13 @@ rec['ztz59_ztz80']={'ztz59':{'cost':[55,45],'hp':[12,10],'road':[50,45]},'ztz80'
 # ---------- WZ1224 130 (Osama 17 Nov 2026 10:3x PST, thread 1567745029781454889: "WZ 1224 130 points"): unit 1272 110 -> 130.
 ok(U[1272]['HUDName']=='WZ1224' and U[1272]['Cost']==110,'WZ1224 110');g.put('Units',1272,{'Cost':130});ok(U[1272]['Cost']==130,'WZ1224 130')
 rec['wz1224_cost']=[110,130]
+# ---------- PTZ-89 off the deck (Osama 17 Nov 2026 10:3x PST, thread 1567745029781454889: "ptz-89 removed, model looks ugly"): its only card 2008238
+# (PLARF, 6) is removed; no transport links; the unit row stays hidden, like earlier removals.
+_SA=t['SpecializationAvailabilitiesJson']
+ok(U[947]['HUDName']=='PTZ-89' and [(c['Id'],c['SpecializationId']) for c in _SA.values() if c['UnitId']==947]==[(2008238,19)] and not [r for r in t['TransportAvailabilitiesJson'].values() if r['UnitId']==947 or r['SpecializationAvailabilityId']==2008238],'PTZ-89: one PLARF card, no transport links')
+g.remove('SpecializationAvailabilitiesJson',2008238);assign['assignments'].pop('947',None)
+ok(not [c for c in _SA.values() if c['UnitId']==947],'PTZ-89 has no card')
+rec['ptz89_removed']=2008238
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
