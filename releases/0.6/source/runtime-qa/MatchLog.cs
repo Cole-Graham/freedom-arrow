@@ -18,6 +18,8 @@ namespace FreedomArrow;
 // Only records, no checks here: every 5 s in a battle, one line with every unit: side (L own, A ally, E enemy), unit type, x/z position, health, and for
 // enemies whether the local side has spotted it (FogOfWarComponent.VisibleTo holds a unit of the local team) and whether its model is drawn on this PC.
 // Drawn but not spotted = a model shown through fog; positions and health let the logs of all players in a match be compared afterwards on our side.
+// "P" lines name every player who owns units in the battle (UID, team, bot, Steam name), once each (Osama 12:5x: "we could definitely find out who is not
+// sending logs or if their logs differ from other players consistently"): a player named in others' logs with no upload of his own stands out.
 // The file goes up with the game log (LogUpload). One renderer per unit is looked up once and cached; a snapshot reads components only.
 static class MatchLog
 {
@@ -25,6 +27,7 @@ static class MatchLog
     static string file="";static StreamWriter w;static bool broken;static float next;static int snaps;
     static IntPtr world;static EntitySet units;static float battleStart;
     static readonly Dictionary<int,Renderer> view=new();
+    static readonly HashSet<IntPtr> players=new();
     static readonly System.Text.StringBuilder line=new(8192);
     public static string File=>file;
 
@@ -50,7 +53,7 @@ static class MatchLog
             if(world!=ctx.Pointer)
             {
                 try{units?.Dispose();}catch{}
-                units=ctx.GetEntities().With<UnitComponent>().AsSet();world=ctx.Pointer;view.Clear();battleStart=Time.time;
+                units=ctx.GetEntities().With<UnitComponent>().AsSet();world=ctx.Pointer;view.Clear();players.Clear();battleStart=Time.time;
                 if(w==null){Directory.CreateDirectory(Path.GetDirectoryName(file)!);w=new StreamWriter(new FileStream(file,FileMode.Append,FileAccess.Write,FileShare.ReadWrite|FileShare.Delete));}
                 w.WriteLine($"B {DateTime.UtcNow:u} team {me.TeamSide}");
             }
@@ -61,6 +64,11 @@ static class MatchLog
             {
                 var e=list[i];if(!e.IsAlive)continue;
                 var u=NativeEcs.Read<UnitComponent>(e);var owner=u.Owner;if(owner==null||u.UnitData==null)continue;
+                if(players.Add(owner.Pointer))
+                {
+                    var pi=owner.TryCast<PlayerInfo>();
+                    w.WriteLine($"P {pi?.UID} {owner.TeamSide} {(pi!=null&&pi.IsBot?"bot":"human")} {(owner.Pointer==me.Pointer?"me":"other")} {pi?.PlayerName}");
+                }
                 bool enemy=owner.TeamSide!=side;
                 char who=enemy?'E':owner.Pointer==me.Pointer?'L':'A';
                 var t=e.Has<ViewComponent>()?NativeEcs.Read<ViewComponent>(e).transform:null;
