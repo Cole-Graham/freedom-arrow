@@ -1,0 +1,53 @@
+{
+  "version": "0.9.0-dev.33",
+  "build": 210,
+  "previous": "0.9.0-dev.32",
+  "assets_version": "0.2.44",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.44.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev32/FreedomArrow-Assets-0.2.44.bamod",
+    "sha256": "11015eb1ee2ecac84aa0ef7d27633acc6e1ae4a65b162fa3a7d62072a265a1f5",
+    "size": 6479921431,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.33-complete.bamod",
+    "sha256": "18a4a78b1124fff16a118c42b7e1d7df12602787342b05da48fc9afee0afe9d3",
+    "size": 6543177117,
+    "files": 11297
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.33.bamod",
+    "sha256": "9142fa72ccf34469954db4bebd619cb7e5f52a5a1a59350be2bd257d76ba930a",
+    "size": 63256269,
+    "files": 302
+  },
+  "changed_paths": [
+    "Mods/FAModels.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/FA_F22_MIRROR_LITMASK.png",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/abilities.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/options.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/squad_members.json",
+    "UserData/FreedomArrow/constants/transport_availabilities.json",
+    "UserData/FreedomArrow/constants/turret_units.json",
+    "UserData/FreedomArrow/constants/unit_abilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/constants/weapon_ammunitions.json",
+    "UserData/FreedomArrow/mirror-skins.json",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.33.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
