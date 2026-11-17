@@ -125,3 +125,14 @@ A full 1000 bar, with no further hits:
 The level changes on the second the bar crosses the mark. At 19 seconds it falls through 800, so it is shocked. At 31 seconds it falls through 500, so it is calm. The bar is empty at 44 seconds.
 
 A bar that has just reached panicked at 800 drops under 800 on the first quiet second (798) and is empty on second 39. A bar sitting on the shocked mark at 500 is under 500 on the first quiet second.
+
+Freedom Arrow's `game-config.json` sets `StressRecoveryMultiplier` to 0.33 from 0.9.0-dev.36. `StressSystem` copies the value when the battle systems are built. The loss on second `n` is then `0.33 × n + 1`:
+
+| Seconds since the last stress | Stress left | Level |
+| ---: | ---: | --- |
+| 0 | 1000 | Panicked |
+| 32 | 793.8 | Shocked |
+| 52 | 493.3 | Calm |
+| 75 | 0 | Calm |
+
+A bar that starts at 800 is empty on second 67. A bar that starts at 500 is empty on second 52.
