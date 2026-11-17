@@ -242,8 +242,6 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALERT_SOUNDS_FAILED: old alarms stay. "+e.Message); }
         try { conquest?.OnLateInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
-        try { LogUpload.InstallSettingsRow(HarmonyInstance); }
-        catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD settings row failed: "+e.Message); }
         try { PerfProbe.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PERF_FAILED: "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }
