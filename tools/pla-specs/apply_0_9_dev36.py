@@ -33,6 +33,12 @@ _jr=[x for x in t['WeaponAmmunitionsJson'].values() if x['UnitId']==952];_px=[x[
 ok(len(_px)==1 and _A[_px[0]]['FXPreset']=='AMMUNITION_VFX_PRESET_SHELL_127mm_HE' and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==_px[0]}=={952},'JRVG-1 proximity round on the naval 127 mm effect, JRVG only')
 g.put('AmmunitionsJson',_px[0],{'FXPreset':'AMMUNITION_VFX_PRESET_ROUND_57mm_HE'});ok(_A[_px[0]]['FXPreset']=='AMMUNITION_VFX_PRESET_ROUND_57mm_HE','JRVG-1 proximity round 57 mm HE effect')
 rec['jrvg_proximity_fx']={'ammo':_px[0],'fx':['AMMUNITION_VFX_PRESET_SHELL_127mm_HE','AMMUNITION_VFX_PRESET_ROUND_57mm_HE']}
+# ---------- "isnt the Z-21 CM-501GA an LMUR copy?" (Osama 16 Nov 2026 23:0x PST): yes, ammo 2017128 copies the vanilla LMUR (449): 1000 m, seeker 50, seeker
+# reach 250 m, trajectory 110. It differed in TargetType: 35 = Ground + Infantry + Ship, no Vehicle bit (TargetType enum 1/2/4/8/16/32), so the Z-21 never fired
+# it at vehicles. LMUR is 38 = Infantry + Vehicle + Ship. dev.35's seeker reach 1000 m (wrong cause) goes back to the LMUR's 250 m.
+ok(_A[2017128]['TargetType']==35 and _A[2017128]['MaxSeekerDistance']==1000.0 and {x['UnitId'] for x in t['WeaponAmmunitionsJson'].values() if x['AmmunitionId']==2017128}=={1104},'CM-501GA TargetType 35, seeker 1000 (dev.35), Z-21 only')
+g.put('AmmunitionsJson',2017128,{'TargetType':38,'MaxSeekerDistance':250.0});ok(_A[2017128]['TargetType']==38 and _A[2017128]['MaxSeekerDistance']==250.0,'CM-501GA = LMUR targets and seeker')
+rec['cm501ga']={'ammo':2017128,'TargetType':[35,38],'MaxSeekerDistance':[1000,250],'template':'vanilla LMUR 449'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
