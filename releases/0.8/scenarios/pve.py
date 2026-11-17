@@ -49,6 +49,46 @@ WAVES={
         (10,{904:1,905:1,906:1,1137:1,1052:1})]}                       # ZTZ-99A, ZTZ-96B, ZTQ-15, HJ-12 Team, PGZ-95
 REPEAT_MINUTES=3
 
+# ---- Lua decision AI (Osama 13:2x PST: "we should be using real AI", "Plug it into all of them but make sure they fast move and use roads").
+# BrokenArrowAI (seaborndan/BrokenArrowAI 4e4e6450, the pinned checkout on the deck; NOT copied into this repo, see LICENSE NOTE) commands the
+# China units: it reads the battlefield every few seconds, picks objectives, supports, flanks, pulls damaged units back and moves on roads
+# (MoveToFast) for anything further than FAST_MOVE_MIN, attack-moving the last leg. The waves above stay as its reinforcements; the scripted
+# capture/escort orders are left out when the AI is in, so two commanders never fight over one unit. Terrain (cover, chokepoints, overwatch)
+# comes from pve_terrain/ba_terrain_<scene>.lua, baked from the game's Navigation files by its tools/bake_terrain.py.
+# Changes to the pinned source, applied here so the checkout stays pristine:
+# - commanders: the Bravo players (the empty, locked Bravo slots online; Bravo bots offline), instead of IsBot only;
+# - FAST_MOVE_MIN 700 -> 400 m, so more moves use the roads.
+# LICENSE NOTE: the repository has no licence file; ask the author before shipping it outside the team.
+import os
+AI_SRC=Path(os.environ.get('FA_PVE_AI_SRC','/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/toolkit/sources/BrokenArrowAI'))
+AI_FILES=['ba_tactics.lua','ba_roles.lua','ba_doctrine.lua','ba_field.lua','ba_mind.lua','ba_brain.lua']
+TERRAIN=Path(__file__).resolve().parent/'pve_terrain'
+def ai_code(scene):
+    """One Lua chunk: PvE flag + baked terrain + the AI modules + the commander (tools/deploy_lua.py order)."""
+    parts=['BA_FA_PVE = true   -- Freedom Arrow PvE: the AI commands the Bravo players',
+           (TERRAIN/f"ba_terrain_{scene.replace(' ','_')}.lua").read_text(encoding='utf-8')]
+    parts+=[(AI_SRC/'ai'/f).read_text(encoding='utf-8') for f in AI_FILES]
+    code='\n'.join(parts)
+    old_cond="    if safe(function() return p.IsBot end, false) then\n      local uid = safe(function() return p.UID end)"
+    # The Bravo players: online they are empty, locked slots (IsBot false, no human), offline they are bots. LuaPlayer.TeamName is the team
+    # object's name ("Bravo team" in every FA map); TeamID 1 = TeamSide.Bravo is the fallback.
+    new_cond=("    local fa_bravo = string.find(tostring(safe(function() return p.TeamName end, '')), 'Bravo', 1, true) ~= nil\n"
+              "                     or safe(function() return p.TeamID end, -1) == 1\n"
+              "    if (BA_FA_PVE and fa_bravo) or (not BA_FA_PVE and safe(function() return p.IsBot end, false)) then\n"
+              "      local uid = safe(function() return p.UID end)")
+    for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 400,')):
+        assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
+    return code
+def add_ai(nodes,scene):
+    """start.flow -> LuaNode(AiTick, looped, code embedded so no file path is needed); its error output re-enters it."""
+    start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'];assert len(start)==1,start
+    nid=max(b['id'] for b in nodes['b'])+1
+    nodes['b'].append({'v':0,'nnKey':'LuaNode','px':-3000.0,'py':3600.0,'id':nid,'rtpt':True,'props_v2':[
+        p('EnterMethod','AiTick'),p('Loop','True'),p('Code',ai_code(scene)),p('hotreload','False')]})
+    nodes['c'].append({'a':nid,'b':start[0],'c':'in','d':'flow','e':start[0]})
+    nodes['c'].append({'a':nid,'b':nid,'c':'in','d':'error','e':nid})
+    return nid
+
 def payload(counts,players):
     units=[]
     for uid,n in counts.items():
@@ -73,7 +113,7 @@ def role(uid):
     ucat=UNITS[uid][0]
     return 'I' if ucat==1 or uid in INF_RECON else {0:'R',2:'A',3:'S'}[ucat]
 
-def add_waves(nodes,objects,players,after,waves):
+def add_waves(nodes,objects,players,after,waves,orders=True):
     """after = (node id, out port) that fires when the deployment pause ends."""
     bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
     owner=next(o['_uid'] for o in objects if o.get('_type')==13 and o['_dname']=='Bravo Player 1')
@@ -119,6 +159,7 @@ def add_waves(nodes,objects,players,after,waves):
             wire(spawn,'in',go,'out2');wire(spawn,'UnitInfo',data,'out');wire(spawn,'TargetTag',tag,'out');wire(spawn,'PlayerOwner',player,'out')
             settled[r]=delay(3,-1600.0,yy);wire(settled[r],'in2',spawn,'out')
         x=-1200.0
+        if not orders:prev,prev_port=wait,'out2';continue   # the Lua AI gives the orders
         if 'R' in settled:   # recon: one zone, then stay as a screen
             cap=capture(g+'R',x,y);wire(cap,'in2',settled['R'],'out2')
             retry=delay(30,x+400,y);wire(retry,'in2',cap,'outFailed');wire(cap,'in2',retry,'out2')
@@ -160,7 +201,8 @@ def configure_slots(objects,meta,players):
     assert len(open_names)==players,open_names
 
 def build(game,out):
-    settings=C.settings()
+    settings=C.settings();ai=(AI_SRC/'ai'/'ba_brain.lua').exists()
+    print('PvE commander:','BrokenArrowAI Lua' if ai else f'scripted orders ({AI_SRC} not found)')
     for players,mod,base_name,title,enemy in BASES:
         name,skirmish=names(players,title)
         W=settings['MapZoneWeights'];assert W.get(name)==W[base_name] and W.get(skirmish)==W[mod.SKIRMISH_NAME],(name,'zone weights must equal those of',base_name)
@@ -173,12 +215,12 @@ def build(game,out):
             h,n,o,m=copy.deepcopy(base[kind])
             if kind==3:
                 start=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(start)==1
-                waves=add_waves(n,o,players,(start[0],'flow'),WAVES[title])   # the base Skirmish flavor: bots, no deployment pause
+                waves=add_waves(n,o,players,(start[0],'flow'),WAVES[title],orders=not ai);ai and add_ai(n,h['map'])   # the base Skirmish flavor: bots, no deployment pause
             else:
                 # Waves start when the deployment pause ends: the delay that unpauses the game.
                 off=[b['id'] for b in n['b'] if b['nnKey']=='pauseGame' and any(q['k']=='val' and q['v']=='False' for q in b['props_v2'])];assert len(off)==1,off
                 wait=[c['b'] for c in n['c'] if c['a']==off[0] and c['d']=='out2'];assert len(wait)==1,wait
-                waves=add_waves(n,o,players,(wait[0],'out2'),WAVES[title])
+                waves=add_waves(n,o,players,(wait[0],'out2'),WAVES[title],orders=not ai);ai and add_ai(n,h['map'])
                 configure_slots(o,m,players)
             C.check_spawns(flavor,h,o)
             C.check_limit(flavor,desc)
