@@ -45,7 +45,7 @@ static class NuclearLaunchWarning
     }
     static void BeforeTrigger(object __0)
     {
-        if(ReferenceEquals(__0,row))labelField.SetValue(row,triggering?(Func<string>)(()=>"DF-31 NUCLEAR MISSILE LAUNCHED"):normalLabel);
+        if(ReferenceEquals(__0,row))labelField.SetValue(row,triggering?(Func<string>)(()=>"NUCLEAR MISSILE LAUNCHED"):normalLabel);
     }
     static void Classified(Entity __0,ref bool __result)
     {
@@ -56,7 +56,7 @@ static class NuclearLaunchWarning
             if(NativeEcs.Read<WarheadComponent>(__0).AmmunitionInfo?.Id!=Df31Ammo)return;
             triggering=true;
             try{trigger.Invoke(null,new[]{row});}finally{triggering=false;}
-            Play();
+            AlertSounds.Nuke("DF-31A");   // dev.35: faction announcement (AlertSounds.cs) in place of the synthesized draft
             // The normal ballistic warning now skips this entity, so its generic
             // enemy-only label and alarm cannot overwrite/double the nuclear cue.
             __result=true;
@@ -67,6 +67,13 @@ static class NuclearLaunchWarning
             triggering=false;
             if(!reportedFailure){reportedFailure=true;MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: normal ballistic warning retained. "+e.Message);}
         }
+    }
+    // dev.35: the same banner for every nuclear weapon (AlertSounds.cs calls it for the nuclear cruise missiles).
+    public static void Banner()
+    {
+        if(!installed)return;
+        try{triggering=true;trigger.Invoke(null,new[]{row});}catch(Exception e){if(!reportedFailure){reportedFailure=true;MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: banner "+e.Message);}}
+        finally{triggering=false;}
     }
     static void Play()
     {

@@ -46,7 +46,7 @@ static unsafe class Dazzler
     static HashSet<ulong> ready=new();static long readyAt;const double MaxAge=0.25;
     static HashSet<ulong> listedKeys=new();
     static HashSet<int> laserIds=new();static HashSet<string> laserNames=new();static string cardIcon;static EntitySet weaponSet;static readonly List<(Entity E,ulong Key,ulong Unit)> lasers=new();
-    static readonly Dictionary<ulong,int> laserShots=new();static int laserBeams,laserLogs,laserLogErrors;static bool stressOk;
+    static readonly Dictionary<ulong,int> laserShots=new(),laserMags=new();static int laserBeams,laserLogs,laserLogErrors;static bool stressOk;
     static World world;static EntitySet unitSet;static float next,nextScan,nextMetrics;
     static readonly List<(Entity E,ulong Key)> listed=new();
     static readonly Dictionary<ulong,int> lastCount=new();
@@ -230,7 +230,7 @@ static unsafe class Dazzler
     {
         Volatile.Write(ref ready,new HashSet<ulong>());listedKeys=new();
         try{if(world!=null&&!world._isDisposed){unitSet?.Dispose();weaponSet?.Dispose();}}catch{}
-        world=null;unitSet=null;weaponSet=null;lasers.Clear();laserShots.Clear();listed.Clear();lastCount.Clear();lastHit.Clear();boxLogged.Clear();next=nextScan=0;
+        world=null;unitSet=null;weaponSet=null;lasers.Clear();laserShots.Clear();laserMags.Clear();listed.Clear();lastCount.Clear();lastHit.Clear();boxLogged.Clear();next=nextScan=0;
         foreach(var b in live)Drop(b);live.Clear();
     }
     public static void LateUpdate()
@@ -285,9 +285,13 @@ static unsafe class Dazzler
             {
                 if(!e.IsAlive||!e.Has<WeaponComponent>())continue;
                 var w=NativeEcs.Read<WeaponComponent>(e);var u=w.GetUnitEntity();if(!u.IsAlive||!u.Has<TransformComponent>())continue;
-                int made=w.ShotsMade.Value;
+                int made=w.ShotsMade.Value,mag=w.AmmoInMagazine.Value;
                 // ShotsMade goes up once per shot and back down when the weapon resets its count; only the rise is a shot (dev.23 drew two beams per pulse).
-                if(laserShots.TryGetValue(k,out var was)&&made>was&&e.Has<TargetComponent>())
+                // dev.35 (Osama 16 Nov 22:2x: "lasers seem to only fire every other shot"): a single-shot burst can rise and reset ShotsMade inside one
+                // scan, so that pulse showed no beam. A drop in AmmoInMagazine is also a shot (a reload only raises it).
+                bool rose=laserShots.TryGetValue(k,out var was)&&made>was,spent=laserMags.TryGetValue(k,out var mWas)&&mag<mWas;
+                laserMags[k]=mag;
+                if((rose||spent)&&e.Has<TargetComponent>())
                 {
                     var t=NativeEcs.Field<TargetComponent,Entity>(e,"Target");
                     if(t.IsAlive&&t.Has<TransformComponent>())

@@ -23,10 +23,10 @@ namespace FreedomArrow;
 internal static class ChinaVoice
 {
     const int China=4;
-    [ThreadStatic] static bool chinaSpeaking;
+    [ThreadStatic] static bool chinaSpeaking,droneSpeaking;
     [ThreadStatic] static int speakerId,speakerType,speakerCategory;
     static bool broken;static int muted,played;
-    static string dir="";static readonly Dictionary<int,(string set,string unit)> units=new();static readonly Dictionary<string,string> fallback=new();
+    static string dir="";static readonly Dictionary<int,(string set,string unit)> units=new();static readonly Dictionary<string,string> fallback=new();static readonly HashSet<int> silent=new();
     static float volume=0.234f;
     static IntPtr system,sound,channel;
     static readonly Dictionary<string,List<string>> files=new(),bags=new();static string last="";
@@ -50,6 +50,7 @@ internal static class ChinaVoice
         foreach(var kv in j["units"]!.AsObject())units[int.Parse(kv.Key)]=((string)kv.Value!["set"]!,(string)kv.Value["unit"]);
         foreach(var kv in j["fallback"]!.AsObject())fallback[kv.Key]=(string)kv.Value!;
         volume=(float?)j["volume"]??volume;
+        foreach(var x in j["silent"]?.AsArray()??new JsonArray())silent.Add((int)x!);
     }
 
     static void OpenFmod()
@@ -63,23 +64,26 @@ internal static class ChinaVoice
 
     public static void PlayBefore(in Entity __0)
     {
-        chinaSpeaking=false;
+        chinaSpeaking=droneSpeaking=false;
         if(broken||!Runtime.IsApplied)return;
         try
         {
             var unit=__0;
             if(!unit.IsAlive||!unit.Has<UnitComponent>())return;
             var d=NativeEcs.Read<UnitComponent>(unit).UnitData;
-            chinaSpeaking=d?.CountryId==China;
+            // dev.35 (Osama 16 Nov 22:2x: "remove all voicelines from drones"): drones of every country (unit sound preset named Drone) say nothing.
+            droneSpeaking=d!=null&&((d.AudioPreset??"").IndexOf("drone",StringComparison.OrdinalIgnoreCase)>=0||silent.Contains(d.Id));   // + china-voices.json "silent"
+            chinaSpeaking=!droneSpeaking&&d?.CountryId==China;
             if(chinaSpeaking){speakerId=d!.Id;speakerType=(int)d.Type;speakerCategory=(int)d.CategoryType;}
         }
         catch(Exception e){broken=true;MelonLogger.Warning("FREEDOM_ARROW_CHINA_VOICE disabled, China units use their preset voices: "+e.Message);}
     }
 
-    public static Exception PlayDone(Exception __exception){chinaSpeaking=false;return __exception;}
+    public static Exception PlayDone(Exception __exception){chinaSpeaking=droneSpeaking=false;return __exception;}
 
     public static void PickAfter(AudioCommandsCollection __instance,AudioCommandType command,bool isUp,ref string __result)
     {
+        if(droneSpeaking){__result="";return;}
         if(!chinaSpeaking)return;
         var slot=__result??"";__result="";
         try{Speak(__instance,(int)command,isUp,slot);}
@@ -135,7 +139,9 @@ internal static class ChinaVoice
             8=>new[]{"Spawn"},
             11=>new[]{isUp?"Heli_Up":"Heli_Down"},
             12=>new[]{"Board","LoadInfantry"},
-            13=>new[]{"UnloadNow"},
+            // dev.35 (Osama 16 Nov 22:2x: "getting out buildings triggers vehicle unloading lines"): infantry get this order when they leave a
+            // building (a vehicle speaks its own unload), so infantry use their move lines, not the dismount lines.
+            13=>speakerType==2?new[]{"Move"}:new[]{"UnloadNow"},
             19=>new[]{"RTB"},
             20=>new[]{"Laser","Attack"},
             22=>new[]{cbt(c.RadarOn)?"Radar_ON":"Radar_OFF"},
@@ -191,6 +197,23 @@ internal static class ChinaVoice
         if(!bags.TryGetValue(key,out var bag)||bag.Count==0)bags[key]=bag=clips.OrderBy(_=>rng.Next()).ToList();
         int i=bag.FindIndex(f=>f!=last);if(i<0)i=0;
         var file=bag[i];bag.RemoveAt(i);last=file;return file;
+    }
+
+    // Announcements (nuclear launch, AlertSounds.cs) on their own channel at the voice-line volume, so a unit line does not cut them off.
+    static IntPtr annSound,annChannel;
+    public static void Announce(string file)
+    {
+        try
+        {
+            if(system==IntPtr.Zero||!File.Exists(file))return;
+            if(annChannel!=IntPtr.Zero)Fmod.FMOD_Channel_Stop(annChannel);
+            if(annSound!=IntPtr.Zero)Fmod.FMOD_Sound_Release(annSound);
+            annChannel=annSound=IntPtr.Zero;
+            if(Fmod.FMOD_System_CreateSound(system,Encoding.UTF8.GetBytes(file+"\0"),0x80|0x8|0x1,IntPtr.Zero,out annSound)!=0
+               ||Fmod.FMOD_System_PlaySound(system,annSound,IntPtr.Zero,0,out annChannel)!=0)return;
+            Fmod.FMOD_Channel_SetVolume(annChannel,volume*Slider());
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_CHINA_VOICE announcement failed: "+e.Message);}
     }
 
     static float Slider()

@@ -29,6 +29,8 @@ W=V/'wolves/listen-SanChi'
 for f in sorted((W/'Shared').glob('*/*.mp3')):put(f,root/'Infantry/English'/trig(f.parent.name)/(f.name[:2]+'.mp3'))
 for u in ENGLISH:
     for f in sorted((W/u).glob('*/*.mp3')):put(f,root/'Units'/(u+'_EN')/trig(f.parent.name)/(f.name[:2]+'.mp3'))
+# DF-31A (Osama 16 Nov 22:2x: "a lot of unique voice lines for the DF-31 nuclear ... calm ... old chinese phrases"): its own full set, df31/listen.
+for f in sorted((V/'df31/listen').glob('*/*.mp3')):put(f,root/'Special/DF31'/f.parent.name/f.name)
 # unit -> set. Names in v2/unit_map.json are the card names (HUDName) when the map was written; Blood Wolves was renamed in dev.34.
 M=json.loads((V/'v2/unit_map.json').read_text());byname={}
 for i,u in U.items():
@@ -49,9 +51,13 @@ for cat,sty,hud,_ in M:
         if hud.startswith(('Blood Wolves','Godswords')):e={'set':'Infantry/English','unit':('Blood_Wolves' if hud.startswith('Blood') else 'Godswords')+'_EN'}
         elif f:e['unit']=f
         units[str(i)]=e
+for i,u in U.items():
+    if u.get('CountryId')==4 and (u.get('HUDName') or '').startswith('DF-31'):units[str(i)]={'set':'Special/DF31'}
 cfg={'note':'FreedomArrow ChinaVoice.cs (dev.34). set = ChinaVoice/<set>/<Trigger>; unit = extra ChinaVoice/Units/<unit>/<Trigger> lines. Unmapped China units use fallback by Type, or Type:CategoryType.',
      'units':units,'fallback':{'2':'Infantry/Regular','16':'Plane/Regular','8':'Helicopter/Regular','4:2':'Tank/Regular','4':'Vehicle/Regular'},
-     'volume':0.234}
+     'volume':0.234,
+     # Drones say nothing (Osama 16 Nov 22:2x). Units with a Drone sound preset are found by the runtime; these drones use other presets.
+     'silent':[1105,1253]}   # Z-6B UAV, FH-97A
 (OUT/'china-voices.json').write_text(json.dumps(cfg,indent=1,ensure_ascii=False)+'\n')
 used={e.get('unit') for e in units.values()}-{None}
 print('clips',n,'units mapped',len(units),'unit folders',len(folders),'unused unit folders',sorted(folders-used))

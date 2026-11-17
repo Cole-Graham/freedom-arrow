@@ -227,11 +227,15 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY_FAILED: "+e.Message); }
         try { NuclearLaunchWarning.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
+        try { AlertSounds.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALERT_SOUNDS_FAILED: old alarms stay. "+e.Message); }
     }
     public override void OnLateInitializeMelon()
     {
         try { NuclearLaunchWarning.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
+        try { AlertSounds.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ALERT_SOUNDS_FAILED: old alarms stay. "+e.Message); }
         try { conquest?.OnLateInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: late "+e.Message); }
         try { PerfProbe.Install(HarmonyInstance,Root); }

@@ -14,8 +14,7 @@
    "unit": "DF-21"
   },
   "1032": {
-   "set": "Artillery/Regular",
-   "unit": "DF-31A"
+   "set": "Special/DF31"
   },
   "1033": {
    "set": "Artillery/Regular"
@@ -603,5 +602,9 @@
   "4:2": "Tank/Regular",
   "4": "Vehicle/Regular"
  },
- "volume": 0.234
+ "volume": 0.234,
+ "silent": [
+  1105,
+  1253
+ ]
 }

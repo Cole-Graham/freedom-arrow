@@ -48,7 +48,8 @@ with zipfile.ZipFile(base) as z:
     for k in ('UserData/FreedomArrow/nlos.json','UserData/FreedomArrow/projectile-health.json','UserData/FreedomArrow/spaag-weapons.json','UserData/FreedomArrow/dazzler.json','UserData/FreedomArrow/compatibility.json','UserData/FreedomArrow/plane-refund.json','UserData/FreedomArrow/sead-overkill.json','UserData/FreedomArrow/mirror-skins.json','UserData/FreedomArrow/FA_F22_MIRROR_ALBEDO.png','UserData/FreedomArrow/FA_F22_MIRROR_MASK.png','UserData/FreedomArrow/FA_F22_MIRROR_LITMASK.png'):
         if (SRC/k).exists() and (k not in z.namelist() or (SRC/k).read_bytes()!=z.read(k)):override[k]=(SRC/k).read_bytes()
     # China voice lines (Osama 16 Nov 2026 19:56 PST, dev.34): tools/china-voice/stage.py writes ChinaVoice/ and china-voices.json; ChinaVoice.cs plays them.
-    for f in sorted([SRC/'UserData/FreedomArrow/china-voices.json',*(SRC/'UserData/FreedomArrow/ChinaVoice').rglob('*.mp3')]):
+    # dev.35 warning sounds (AlertSounds.cs): nuclear announcements by faction, C-RAM ballistic alarm, Burke aircraft alarm.
+    for f in sorted([SRC/'UserData/FreedomArrow/china-voices.json',*(SRC/'UserData/FreedomArrow/ChinaVoice').rglob('*.mp3'),*(SRC/'UserData/FreedomArrow/audio').glob('*.mp3'),*(SRC/'UserData/FreedomArrow/audio').glob('*.ogg')]):
         k=f.relative_to(SRC).as_posix()
         if f.is_file() and (k not in z.namelist() or f.read_bytes()!=z.read(k)):override[k]=f.read_bytes()
     # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in

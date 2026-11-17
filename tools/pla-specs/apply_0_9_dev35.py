@@ -87,6 +87,44 @@ ok(all(_SA[_SAV.ROWS[u][1]]['MaxAvailabilityXp0']==2 for u in FIFTH_UNITS) and [
 rec['vt5_no_aps']={'unit':1261,'removed':{'modification':2019111,'options':[31075,31076],'unit_abilities':[2019109,2019110]}}
 rec['plz70_airborne']={'unit':1040,'row':2008885,'spec':[19,17]}
 rec['fifth_gen_out_of_sead']={'cards_2':list(FIFTH_UNITS),'unit_cost':{u:_SP.UNITS[u][1] for u in (921,966,1251)},'option_cost':{i:_SP.OPTIONS[i][2] for i in FIFTH_OPTIONS},'j36_cost':355}
+# ---------- Osama 16 Nov 2026 21:15 / 22:2x PST, thread 1571014792016171120.
+_A,_W,_AR,_ARM=t['AmmunitionsJson'],t['WeaponsJson'],t['UnitArmorsJson'],t['ArmorsJson']
+# "CTL-181 NLOS still does not have the option to precision strike": precision strike is the cruise-missile order, which the game gives a cruise launcher
+# (weapon Type 82) firing cruise-trajectory ammunition (TrajectoryType 200, vanilla Iskander-K 9M728). 0.8.0-dev.4 copied both; the NLOS rework later
+# gave CTL-181 its own ammunition 2018321 on the Hellfire trajectory 110, which has no precision strike. Back to 200; the NLOS trait stays.
+ok(_W[2018322]['Type']==82 and _A[2018321]['TrajectoryType']==110 and sorted({x['UnitId'] for x in WA.values() if x['AmmunitionId']==2018321})==[1054],'CTL-181: cruise launcher, Hellfire trajectory')
+g.put('AmmunitionsJson',2018321,{'TrajectoryType':200});ok(_A[2018321]['TrajectoryType']==200,'CTL-181 cruise trajectory')
+# "Blood Wolves ... CH-901, it should be a precision strike": the CH-901 (weapon 2018447, ammo 2018448, Blood Wolves only) was an infantry ATGM (Type 80,
+# trajectory 110). Same cruise launcher type and trajectory as CTL-181. Not yet seen in game on an infantry squad.
+ok(_W[2018447]['Type']==80 and _A[2018448]['TrajectoryType']==110 and sorted({x['UnitId'] for x in WA.values() if x['WeaponId']==2018447})==[1183],'CH-901: infantry ATGM on Blood Wolves only')
+g.put('WeaponsJson',2018447,{'Type':82,'IsVerticalLauncher':True});g.put('AmmunitionsJson',2018448,{'TrajectoryType':200})
+ok(_W[2018447]['Type']==82 and _A[2018448]['TrajectoryType']==200,'CH-901 cruise launcher and trajectory')
+# "LY-1 10 hp" (armour row 2019439, LY-1 only) and "LY-1 rate of fire should be 20 not 60 ... once every 3 seconds" (laser 2019445, LY-1 only).
+ok(_ARM[2019439]['MaxHealthPoints']==14 and sorted({r['UnitId'] for r in _AR.values() if r['ArmorId']==2019439})==[1275],'LY-1 14 HP, own armour row')
+g.put('ArmorsJson',2019439,{'MaxHealthPoints':10})
+ok(_W[2019445]['TimeBetweenBurstsMin']==1.0 and _W[2019445]['TimeBetweenBurstsMax']==1.0 and sorted({x['UnitId'] for x in WA.values() if x['WeaponId']==2019445})==[1275],'LY-1 laser 1 s, LY-1 only')
+g.put('WeaponsJson',2019445,{'TimeBetweenBurstsMin':3.0,'TimeBetweenBurstsMax':3.0})
+ok(_ARM[2019439]['MaxHealthPoints']==10 and _W[2019445]['TimeBetweenBurstsMin']==3.0,'LY-1 10 HP, one pulse every 3 s')
+# "ZBD-20 has 16 HJ-16's in game ... I think it's 4": both HJ-16 variants 16 -> 4 on ZBD-20 (945); ZBD-20 Recon (1256) 8 -> 4.
+_hj={2018443:16,2018879:16,2018444:8,2018882:8}
+ok(all(WA[i]['Quantity']==q and WA[i]['WeaponId'] in (2018803,2018866) for i,q in _hj.items()),'ZBD-20 HJ-16 rows 16/16, Recon 8/8')
+for i in _hj:g.put('WeaponAmmunitionsJson',i,{'Quantity':4})
+# "ZTZ-59 remove HEAT, ZTZ-80 remove HEAT": ZTZ-59 (1060), ZTZ-59D1 (1260), ZTZ-80 (1061), ZTZ-80 / Type 80 (1081) lose the HEAT row; HE moves to order 1.
+_heat={1060:(2010824,2010826),1260:(2018629,2018630),1061:(2010852,2010854),1081:(2011330,2011332)}
+for _u,(_h,_he) in _heat.items():
+    ok(WA[_h]['UnitId']==_u and 'HEAT' in _A[WA[_h]['AmmunitionId']]['HUDName'] and WA[_h].get('Order')==1 and WA[_he].get('Order')==2,f'{U[_u]["HUDName"]}: HEAT order 1, HE order 2')
+    g.remove('WeaponAmmunitionsJson',_h);g.put('WeaponAmmunitionsJson',_he,{'Order':1})
+    ok(not any(x['UnitId']==_u and 'HEAT' in (_A[x['AmmunitionId']].get('HUDName') or '') for x in WA.values()),f'{U[_u]["HUDName"]}: no HEAT')
+# "MD-22 afterburners don't seem to work ... model it off an F-35 for its stand in": the game model under the MD-22 (shown through FAModels) was the
+# S-70 Okhotnik drone, which has no afterburner. Now the F-35A (US_F35A); FAModels still draws the MD-22.
+ok(U[976]['HUDName']=='MD-22' and U[976]['ModelFileName']=='DLC3_S70_Okhotnik','MD-22 on the Okhotnik stand-in')
+g.put('Units',976,{'ModelFileName':'US_F35A'});ok(U[976]['ModelFileName']=='US_F35A','MD-22 on the F-35A stand-in')
+# "Helocopters didn't seem to fire their CM-501GA": the only carrier is Z-21 (loadout 24645, weapon 2017902, ammo 2017128). Its seeker reached 250 m
+# (MaxSeekerDistance) against a 1000 m range; the helicopter ATGMs that fire have seeker reach = range (800-950 m). Seeker reach 1000 m.
+ok(_A[2017128]['MaxSeekerDistance']==250.0 and _A[2017128]['GroundRange']==1000.0 and sorted({x['UnitId'] for x in WA.values() if x['AmmunitionId']==2017128})==[1104],'CM-501GA seeker 250 m, range 1000, Z-21 only')
+g.put('AmmunitionsJson',2017128,{'MaxSeekerDistance':1000.0});ok(_A[2017128]['MaxSeekerDistance']==1000.0,'CM-501GA seeker 1000 m')
+rec['osama_2215']={'ctl181_trajectory':[110,200],'ch901':{'weapon_type':[80,82],'trajectory':[110,200]},'ly1':{'hp':[14,10],'seconds_between_pulses':[1,3]},
+                   'zbd20_hj16':{'zbd20':[16,4],'recon':[8,4]},'heat_removed':{str(u):h for u,(h,_) in _heat.items()},'md22_stand_in':['DLC3_S70_Okhotnik','US_F35A'],'cm501ga_seeker_m':[250,1000]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
