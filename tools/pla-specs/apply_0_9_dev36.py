@@ -181,6 +181,14 @@ ok((_A[2018965]['HealthAOERadius'],_A[2009545]['HealthAOERadius'])==(45.0,35.0),
 g.put('AmmunitionsJson',2018965,{k:_A[2009545][k] for k in ('HealthAOERadius','StressAOERadius','StressDamage','OverpressureRadius')})
 ok(_A[2018965]['HealthAOERadius']==35.0 and _A[2018965]['StressAOERadius']==52.5,'GP6 122 mm splash')
 rec['gp6_splash']={'ammo':2018965,'HealthAOERadius':[45,35]}
+# PCL-181 (1034) is a 155 mm/52 truck howitzer with a semi-automatic loader, 4-6 rounds/min (Norinco via Janes; Army Recognition), but its two guns had
+# the 2S35 Koalitsiya autoloader reload (4-5 s, 13.3 rounds/min, as the 260-point Koalitsiya and PLZ-05). It now reloads like the vanilla 155 mm truck
+# howitzer, the Brutus (7-8 s, 8 rounds/min). Ammunition, spread, range and 175 points unchanged. Real 4-6 vs game 8 keeps the vanilla scale: the M109A6
+# (real about 4/min) fires 6.7/min in game, the PzH 2000 (real 10) 13.3.
+ok(all((_W[w]['MagazineReloadTimeMin'],_W[w]['MagazineReloadTimeMax'])==(4.0,5.0) and {r['UnitId'] for r in t['WeaponAmmunitionsJson'].values() if r['WeaponId']==w}=={1034} for w in (2018335,2018336)),'PCL-181 guns 4-5 s, PCL-181 only')
+for _w in (2018335,2018336):g.put('WeaponsJson',_w,{'MagazineReloadTimeMin':_W[618]['MagazineReloadTimeMin'],'MagazineReloadTimeMax':_W[618]['MagazineReloadTimeMax']})
+ok(all((_W[w]['MagazineReloadTimeMin'],_W[w]['MagazineReloadTimeMax'])==(7.0,8.0) for w in (2018335,2018336)),'PCL-181 guns 7-8 s (Brutus)')
+rec['pcl181_reload']={'weapons':[2018335,2018336],'reload':[[4,5],[7,8]],'template':'Brutus weapon 618'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
