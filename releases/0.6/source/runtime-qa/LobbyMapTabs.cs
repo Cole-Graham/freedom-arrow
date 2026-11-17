@@ -11,9 +11,11 @@ namespace FreedomArrow;
 // the four tabs at the top right with ArrowQueue's own UiKit.TextButton. A tab click shows the window again with that size. A map is in a
 // size by the "[1v1]" etc. tag in its name; a map without a tag is in every tab. Tabs with no maps do nothing (an empty card grid has
 // a negative height). The search window (create == false) is not changed.
+// 0.9.0-dev.36 (Osama 17 Nov 2026 13:1x PST, thread 1571014792016171120: "add a section to our map selection that is PVE"): a fifth tab, PvE, for maps
+// tagged "[PvE]" (humans on one team against the map script's AI, with no bot in the lobby).
 static class LobbyMapTabs
 {
-    static readonly string[] Sizes={"1v1","2v2","3v3","5v5"};
+    static readonly string[] Sizes={"1v1","2v2","3v3","5v5","PvE"};
     static MethodInfo show,button;static FieldInfo win,openToSearch,orange,dim;static MethodInfo showOpen;
     static IList full;static object def,onPick,onCancel;static string mode,tab;static bool again,broken;
     public static void Install(HarmonyLib.Harmony h)
@@ -62,7 +64,7 @@ static class LobbyMapTabs
                 string size=Sizes[i];int n=Count(size);
                 var color=size==tab?(Color)orange.GetValue(null)!:n>0?(Color)dim.GetValue(null)!:new Color(1f,1f,1f,0.25f);
                 Action click=()=>Switch(size);
-                // Right to left from the close button (x -26, 40 wide): 5v5 nearest it.
+                // Right to left from the close button (x -26, 40 wide): PvE nearest it.
                 button.Invoke(null,new object[]{w.transform,"FaSize"+size,new Vector2(1f,1f),new Vector2(-82f-(Sizes.Length-1-i)*72f,-28f),new Vector2(64f,30f),
                     size,18f,color,click,Enum.ToObject(button.GetParameters()[9].ParameterType,514)});   // 514 = centre, as ArrowQueue's default
             }
