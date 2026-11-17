@@ -59,6 +59,19 @@ rec['j31_j35_akf_cost']={'options':[31083,31084],'cost':[80,160]}
 # loadout options keep their own +60..+135).
 ok(U[1253]['HUDName']=='FH-97A' and U[1253]['Cost']==250,'FH-97A 250');g.put('Units',1253,{'Cost':185});ok(U[1253]['Cost']==185,'FH-97A 185')
 rec['fh97a_cost']=[250,185]
+# ---------- T-15 Barbaris as an infantry transport (Osama 16 Nov 2026 16:2x PST, thread 1567745029781454889: "T-15 Barbaris should be an INF transport,
+# not literally infantry, its still a VEH technically, right now its in the INF tab as an infantry", "and its bugged with no choices"). dev.32 set
+# CategoryType 1, which made its own card an infantry card with no squad choices. Now: CategoryType 2 (vehicle) again, its own Guard Tank Brigade card
+# 865 is removed, and it is a transport choice (8 seats, 220) for the five infantry cards of that deck that ride the B10 Kurganets and BMO-T:
+# Gvardii Motostrelki 362, AGS-40 Balkan 503, PZRK Verba 363, Ingenery-Shturmoviki 1210, Razvedka 2000791.
+_SA=t['SpecializationAvailabilitiesJson'];_TA=t['TransportAvailabilitiesJson']
+ok((U[255]['HUDName'],U[255]['Cost'],U[255]['CategoryType'],U[255]['InfantrySlots'])==('T-15 Barbaris',220,1,8) and [(c['Id'],c['SpecializationId']) for c in _SA.values() if c['UnitId']==255]==[(865,8)] and not [r for r in _TA.values() if r['UnitId']==255],'T-15 220, INF category, card 865, no transport rows')
+_inf=[362,503,363,1210,2000791]
+ok(all(sorted(r['UnitId'] for r in _TA.values() if r['SpecializationAvailabilityId']==c)==[235,254] and _SA[c]['SpecializationId']==8 for c in _inf),'five Guard Tank Brigade infantry cards ride B10 and BMO-T')
+g.put('Units',255,{'CategoryType':2});g.remove('SpecializationAvailabilitiesJson',865);assign['assignments'].pop('255',None)
+for c in _inf:g.add('TransportAvailabilitiesJson',next(r for r in _TA.values() if r['SpecializationAvailabilityId']==c and r['UnitId']==254),{'UnitId':255})
+ok(U[255]['CategoryType']==2 and not [c for c in _SA.values() if c['UnitId']==255] and sorted(r['SpecializationAvailabilityId'] for r in _TA.values() if r['UnitId']==255)==sorted(_inf),'T-15: vehicle, no own card, transport for 5 infantry cards')
+rec['t15_transport']={'category':[1,2],'card_removed':865,'transport_for':_inf}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
