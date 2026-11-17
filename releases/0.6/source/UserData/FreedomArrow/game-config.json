@@ -7,5 +7,7 @@
   "ShockedMoveSpeed": 0.7,
   "PanickedMoveSpeed": 0.4,
   "FlareRerollCap": 4,
-  "StressRecoveryMultiplier": 0.33
+  "StressRecoveryMultiplier": 0.33,
+  "AaCooldownEnabled": true,
+  "AaCooldownShadowOnly": false
 }

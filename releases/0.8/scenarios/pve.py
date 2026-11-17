@@ -8,7 +8,7 @@ sends each wave to capture zones on roads, again and again; waves grow with time
 conquest. Script shape copied from vanilla Dam_Skirmish: node_player -> spawnMultiUnits.PlayerOwner, getSpMultUnData -> UnitInfo,
 getTag (a type-6 tag object) -> TargetTag, then captureObj (tgz2 c-2, pathf Fast, moveAttack) for the wave's UnitGroup.
 Open question, to be tested: whether units can be spawned for a locked, empty Bravo slot in an online lobby. The Skirmish flavor (offline
-test) has bots as in every FA Skirmish flavor; LocalSkirmish leaves FAPVE* groups as designed.
+test) has bots as in every FA Skirmish flavor; offline, LocalSkirmish may swap the units spawned for a bot that has an AI deck (BALocalSkirmish.dll is carried unchanged).
 """
 import copy, json, shutil, tempfile, uuid
 from pathlib import Path

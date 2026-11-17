@@ -1,0 +1,191 @@
+{
+  "jrvg_proximity_fx": {
+    "ammo": 2009953,
+    "fx": [
+      "AMMUNITION_VFX_PRESET_SHELL_127mm_HE",
+      "AMMUNITION_VFX_PRESET_ROUND_57mm_HE"
+    ]
+  },
+  "cm501ga": {
+    "ammo": 2017128,
+    "TargetType": [
+      35,
+      38
+    ],
+    "MaxSeekerDistance": [
+      1000,
+      250
+    ],
+    "template": "vanilla LMUR 449"
+  },
+  "alarms": {
+    "ballistic": "aircraft-alarm-burke.ogg",
+    "aircraft": "none",
+    "nuclear_fade": [
+      3.5,
+      5.0
+    ]
+  },
+  "cm501ga_lmur_clone": {
+    "ammo": 2017128,
+    "weapon": 2017902,
+    "template": {
+      "ammo": 449,
+      "weapon": 603
+    }
+  },
+  "vt5_kurganets": {
+    "units": [
+      1261,
+      1262
+    ],
+    "model": [
+      "US_M10",
+      "RU_Kurganets"
+    ],
+    "mount": 2019476,
+    "part": "RU_Kurganets/RU_Kurganets57mm",
+    "removed_mounts": [
+      2009136,
+      2009142
+    ]
+  },
+  "ztq15_kurganets": {
+    "units": [
+      906,
+      1240,
+      1268
+    ],
+    "model": [
+      "US_M10",
+      "RU_Kurganets"
+    ],
+    "mount": 2019471,
+    "part": "RU_Kurganets/RU_Kurganets57mm",
+    "removed_mounts": [
+      2019317,
+      2018997
+    ]
+  },
+  "ztz85ii_removed": {
+    "unit": 1264,
+    "deck_row": 2018800
+  },
+  "ztz59_ztz80": {
+    "ztz59": {
+      "cost": [
+        55,
+        45
+      ],
+      "hp": [
+        12,
+        10
+      ],
+      "road": [
+        50,
+        45
+      ]
+    },
+    "ztz80": {
+      "cost": [
+        60,
+        65
+      ],
+      "road": [
+        72,
+        60
+      ]
+    }
+  },
+  "wz1224_cost": [
+    110,
+    130
+  ],
+  "ptz89_removed": 2008238,
+  "hide_texture_test": {
+    "runtime": "HideTextureTest.cs",
+    "switch": "UserData/FreedomArrow/hide-textures.json",
+    "default": "off"
+  },
+  "fx_by_weapon_type": {
+    "2018959": [
+      "AMMUNITION_VFX_PRESET_SHELL_152-155mm_HE",
+      "AMMUNITION_VFX_PRESET_SHELL_120mm_HE"
+    ],
+    "2018961": [
+      "AMMUNITION_VFX_PRESET_SHELL_152-155mm_HE",
+      "AMMUNITION_VFX_PRESET_SHELL_120mm_HE"
+    ],
+    "2018963": [
+      "AMMUNITION_VFX_PRESET_SHELL_152-155mm_HE",
+      "AMMUNITION_VFX_PRESET_SHELL_120mm_HE"
+    ],
+    "2018965": [
+      "AMMUNITION_VFX_PRESET_SHELL_152-155mm_HE",
+      "AMMUNITION_VFX_PRESET_SHELL_120mm_HE"
+    ],
+    "2019344": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_AP",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_AP"
+    ],
+    "2011117": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_AP",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_AP"
+    ],
+    "2019460": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_HE",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_RADIOFUSE"
+    ],
+    "2019461": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_HE",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_RADIOFUSE"
+    ],
+    "2011119": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_HE",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_RADIOFUSE"
+    ],
+    "2011121": [
+      "AMMUNITION_VFX_PRESET_ROUND_125mm_HE",
+      "AMMUNITION_VFX_PRESET_ROUND_120mm_RADIOFUSE"
+    ]
+  },
+  "pll09_names": {
+    "unit": 1037,
+    "weapon": 2010461,
+    "ammo": [
+      2010465,
+      2018959
+    ],
+    "from": "120 mm gun-mortar",
+    "to": "122 mm howitzer"
+  },
+  "gp6_splash": {
+    "ammo": 2018965,
+    "HealthAOERadius": [
+      45,
+      35
+    ]
+  },
+  "pcl181_reload": {
+    "weapons": [
+      2018335,
+      2018336
+    ],
+    "reload": [
+      [
+        4,
+        5
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "template": "Brutus weapon 618"
+  },
+  "version": "0.9.0-dev.36",
+  "base": "0.9.0-dev.35",
+  "base_sha256": "802ffbc5145b3bc7691f2665f7b37ddaaf09093a6a084e816a69d721a5122057",
+  "checks": 65,
+  "verified": "data checks only"
+}

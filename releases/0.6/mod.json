@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.0-dev.35",
+  "version": "0.9.0-dev.36",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.35 (Osama 16 Nov playtest): nuclear launch announcement by faction for every nuclear missile, C-RAM ballistic and Burke aircraft alarms at 40%, DF-31A calm voice, drones silent, CTL-181 and CH-901 precision strike, LY-1 10 HP and slower laser, ZBD-20 4 HJ-16, no HEAT on ZTZ-59/80, Conscript Recon 4 men 25 pts, Falcons QLU-11 75 pts, VT-5 no APS, PLZ-70 PLAAF, 5th-gen fighters 2 cards and pre-SEAD prices. Includes 0.9.0-dev.34. Needs Freedom Arrow — Models and Music 0.2.44.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.36 (17 Nov): PvE maps vs China with an AI commander that buys its own units (1P Dead Center, 2P Highway, 3P Dam; PvE lobby tab), game logs and anti-cheat match snapshots uploaded to freedomarrow.app, stress recovery 75 s, ZTQ-15 and VT-5 on the Kurganets stand-in (all weapons fire), CM-501GA a full LMUR clone, explosion effects by weapon and calibre, PLL-09 a 122 mm howitzer, PCL-181 Brutus reload, ZTZ-59/ZTZ-80/WZ1224 changes, ZTZ-85-II and PTZ-89 off the decks, Burke missile alarm, nuclear announcement fade, lobby lists only the mod's maps, altitude arrow fixes. Includes 0.9.0-dev.35. Needs Freedom Arrow — Models and Music 0.2.44.",
   "repo": "Cole-Graham/freedom-arrow"
 }
