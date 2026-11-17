@@ -75,6 +75,20 @@ ok(not [r for r in t['TransportAvailabilitiesJson'].values() if r.get('UnitId')=
 g.remove('SpecializationAvailabilitiesJson',2018800);assign['assignments'].pop('1264',None)   # as WZ-550 in dev.32
 ok(not any(r.get('UnitId')==1264 for r in _SA.values()),'ZTZ-85-II in no deck')
 rec['ztq15_mount_orders']={'2019317':[[1,2],[0,1]],'2018997':[[2],[0]]};rec['ztz85ii_removed']={'unit':1264,'deck_row':2018800}
+# ---------- ZTZ-59 and ZTZ-80 (Osama 17 Nov 2026 10:3x PST, thread 1567745029781454889: "ZTZ-59 to 10 HP, 45 forward speed, 45 ppoints", "ZTZ-80 shows 72
+# forward move, this should be 60 forward, 65 points"). Forward = road speed (MaxSpeedRoad, what the card shows). ZTZ-59 (1060): HP 12 -> 10, road 50 -> 45,
+# 55 -> 45 points. ZTZ-80 (1061, the renamed Type 59D card): road 72 -> 60, 60 -> 65 points. Own armour/mobility rows only; the ZTZ-59D1 recon copy
+# (1260, own mobility 2018623 at 72) is not changed.
+_AR=t['ArmorsJson'];_MB=t['MobilityJson']
+def _one(tab,uid,key):
+    r=[x for x in t[tab].values() if x['UnitId']==uid];ok(len(r)==1 and len([x for x in t[tab].values() if x[key]==r[0][key]])==1,(tab,uid,'own row'));return r[0][key]
+_a59=_one('UnitArmorsJson',1060,'ArmorId');_m59=_one('UnitPropulsionsJson',1060,'MobilityId');_m80=_one('UnitPropulsionsJson',1061,'MobilityId')
+ok((U[1060]['HUDName'],U[1060]['Cost'],_AR[_a59]['MaxHealthPoints'],_MB[_m59]['MaxSpeedRoad'])==('ZTZ-59',55,12,50.0),'ZTZ-59 55, 12 HP, road 50')
+ok((U[1061]['HUDName'],U[1061]['Cost'],_MB[_m80]['MaxSpeedRoad'])==('ZTZ-80',60,72.0),'ZTZ-80 60, road 72')
+g.put('Units',1060,{'Cost':45});g.put('ArmorsJson',_a59,{'MaxHealthPoints':10});g.put('MobilityJson',_m59,{'MaxSpeedRoad':45.0})
+g.put('Units',1061,{'Cost':65});g.put('MobilityJson',_m80,{'MaxSpeedRoad':60.0})
+ok((U[1060]['Cost'],_AR[_a59]['MaxHealthPoints'],_MB[_m59]['MaxSpeedRoad'],U[1061]['Cost'],_MB[_m80]['MaxSpeedRoad'])==(45,10,45.0,65,60.0),'ZTZ-59 45 pts 10 HP road 45; ZTZ-80 65 pts road 60')
+rec['ztz59_ztz80']={'ztz59':{'cost':[55,45],'hp':[12,10],'road':[50,45]},'ztz80':{'cost':[60,65],'road':[72,60]}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
