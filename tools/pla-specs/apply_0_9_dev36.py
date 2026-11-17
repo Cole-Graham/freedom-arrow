@@ -89,6 +89,9 @@ g.put('Units',1060,{'Cost':45});g.put('ArmorsJson',_a59,{'MaxHealthPoints':10});
 g.put('Units',1061,{'Cost':65});g.put('MobilityJson',_m80,{'MaxSpeedRoad':60.0})
 ok((U[1060]['Cost'],_AR[_a59]['MaxHealthPoints'],_MB[_m59]['MaxSpeedRoad'],U[1061]['Cost'],_MB[_m80]['MaxSpeedRoad'])==(45,10,45.0,65,60.0),'ZTZ-59 45 pts 10 HP road 45; ZTZ-80 65 pts road 60')
 rec['ztz59_ztz80']={'ztz59':{'cost':[55,45],'hp':[12,10],'road':[50,45]},'ztz80':{'cost':[60,65],'road':[72,60]}}
+# ---------- WZ1224 130 (Osama 17 Nov 2026 10:3x PST, thread 1567745029781454889: "WZ 1224 130 points"): unit 1272 110 -> 130.
+ok(U[1272]['HUDName']=='WZ1224' and U[1272]['Cost']==110,'WZ1224 110');g.put('Units',1272,{'Cost':130});ok(U[1272]['Cost']==130,'WZ1224 130')
+rec['wz1224_cost']=[110,130]
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
