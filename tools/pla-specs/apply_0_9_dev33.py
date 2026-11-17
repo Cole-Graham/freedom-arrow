@@ -72,6 +72,10 @@ g.put('Units',255,{'CategoryType':2});g.remove('SpecializationAvailabilitiesJson
 for c in _inf:g.add('TransportAvailabilitiesJson',next(r for r in _TA.values() if r['SpecializationAvailabilityId']==c and r['UnitId']==254),{'UnitId':255})
 ok(U[255]['CategoryType']==2 and not [c for c in _SA.values() if c['UnitId']==255] and sorted(r['SpecializationAvailabilityId'] for r in _TA.values() if r['UnitId']==255)==sorted(_inf),'T-15: vehicle, no own card, transport for 5 infantry cards')
 rec['t15_transport']={'category':[1,2],'card_removed':865,'transport_for':_inf}
+# ---------- MD-22 +40 (Osama 16 Nov 2026 16:3x PST, thread 1567745029781454889: "MD-22 should be 40 points more"): unit 976 base 215 -> 255; its loadout
+# options keep their own prices.
+ok(U[976]['HUDName']=='MD-22' and U[976]['Cost']==215,'MD-22 215');g.put('Units',976,{'Cost':255});ok(U[976]['Cost']==255,'MD-22 255')
+rec['md22_cost']=[215,255]
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
