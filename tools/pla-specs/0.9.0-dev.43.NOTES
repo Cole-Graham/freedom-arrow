@@ -5,3 +5,4 @@ dev.43 batch notes (append; one line per change). Builder: read these before bui
   REBUILD THE RUNTIME DLL. Check in game: a player with a stale ActualArrow entry shows BRX7; log "build code ignores the ActualArrow entry".
 - 18 Nov 2026 12:00 PST, thread 1567745029781454889 (Osama "J-36 increase price by 60"): apply_0_9_dev43.py (base exact dev.42) sets unit 929
   PLA J-36 Cost 355 -> 415; no swap rows. Run it in write mode before packaging (constants are gitignored): checks 3.
+- 18 Nov 2026 12:0x PST, thread 1572407822849810463 (Osama: 'one of the guys has a third hand'): US Delta door-stack loading screen replaced by the fixed version (centre operator's extra hand removed). Art only; loading/ still 24.
