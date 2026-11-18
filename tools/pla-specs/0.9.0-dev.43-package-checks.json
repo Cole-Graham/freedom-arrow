@@ -1,0 +1,46 @@
+{
+  "version": "0.9.0-dev.43",
+  "build": 222,
+  "previous": "0.9.0-dev.42",
+  "assets_version": "0.2.46",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.46.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev38/FreedomArrow-Assets-0.2.46.bamod",
+    "sha256": "c11cf7a5f017caf68d6231017c69dad24c782a2fbc9af8b34ab2a7ccf46f78fe",
+    "size": 6479922745,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.43-complete.bamod",
+    "sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
+    "size": 6658450037,
+    "files": 12774
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.43.bamod",
+    "sha256": "3094b89496347fbc1a3f1759341fcc15456b68db8067a73c3271f4d273d6188c",
+    "size": 178527877,
+    "files": 1779
+  },
+  "changed_paths": [
+    "Mods/FAModels.dll",
+    "Mods/FAMusic.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/ammunitions.json",
+    "UserData/FreedomArrow/constants/specialization_availabilities.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_04_delta_stack_fixed.png",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.43.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

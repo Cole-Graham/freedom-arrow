@@ -62,6 +62,8 @@ with zipfile.ZipFile(base) as z:
     for k,b in built.items():
         if k not in z.namelist() or z.read(k)!=b:override[k]=b
     retired_scenarios=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and not n.endswith('/') and n not in built]
+    # 0.9.0-dev.43 (Osama 18 Nov: Delta loading screen 'third hand'): the loading folder is exact, so a replaced picture leaves the package.
+    retired_scenarios+=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/loading/') and not n.endswith('/') and not (SRC/n).is_file()]
     conquest=ROOT/'releases/0.8/source/UserData/FAConquestPrototype'
     settings=(conquest/'settings.json').read_bytes();compat=json.loads((conquest/'compatibility.json').read_text())
     compat['UserData/FAConquestPrototype/settings.json']=sha(settings);compat=enc(compat)

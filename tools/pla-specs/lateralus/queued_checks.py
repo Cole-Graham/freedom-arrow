@@ -25,14 +25,14 @@ for tab,fn,spec in (('WeaponsJson.json','weapons.json',S.SPW),('AmmunitionsJson.
     bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {n})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=n]
 Ut=merged('Units.json','units.json');Ot=merged('OptionsJson.json','options.json');At=merged('AbilitiesJson.json','abilities.json')
 # Later decisions that supersede a queued price, from the version that made them (0.9.0-dev.32, Osama 16 Nov 14:4x PST: "J-36 ... price increased
-# by 50 points": 305 -> 355).
-LATER={929:((9,32),355),921:((9,35),255),966:((9,35),255),1251:((9,35),250)}
+# by 50 points": 305 -> 355; 0.9.0-dev.43, Osama 18 Nov 11:5x PST: "J-36 increase price by 60": 355 -> 415). The latest stage reached applies.
+LATER={929:(((9,32),355),((9,43),415)),921:(((9,35),255),),966:(((9,35),255),),1251:(((9,35),250),)}
 # 0.9.0-dev.35 (Osama 16 Nov 20:5x PST: "All 5th gen fighters are 2x availability and shouldn't have been touched by any SEAD point buffs"): these
 # 5th/6th-gen options are back at their pre-SEAD price and the four fighters back at 2 cards.
 FIFTH_OPTIONS=(1888,1889,24653,24654,24656,24657,24659,24660,24664,20191,20198,20234);FIFTH_ROWS={2008203,2014507,2008260,2014513}
 after35=(int(m.group(1)),int(m.group(2)))>=(9,35)
 def _want(i,new):
-    l=LATER.get(i);return l[1] if l and (int(m.group(1)),int(m.group(2)))>=l[0] else new
+    v=(int(m.group(1)),int(m.group(2)));return ([p for s,p in LATER.get(i,()) if v>=s] or [new])[-1]
 bad+=[f'unit {i} {n} cost {Ut.get(i,{}).get("Cost")} (want {_want(i,new)})' for i,(n,old,new) in SP.UNITS.items() if Ut.get(i,{}).get('Cost')!=_want(i,new)]
 bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {old if after35 and i in FIFTH_OPTIONS else new})' for i,(u,n,old,new) in SP.OPTIONS.items() if (Ot.get(i,{}).get('Cost') or 0)!=(old if after35 and i in FIFTH_OPTIONS else new)]
 for i,want in EP.EXPECT.items():
