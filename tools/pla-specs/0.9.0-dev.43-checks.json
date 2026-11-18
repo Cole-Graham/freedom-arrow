@@ -4,9 +4,35 @@
     "from": 355,
     "to": 415
   },
+  "nlos_not_interceptable": {
+    "2018321": {
+      "unit": 1054,
+      "name": "NLOS missile",
+      "CanBeTargeted": [
+        true,
+        false
+      ],
+      "CanBeIntercepted": [
+        false,
+        false
+      ]
+    },
+    "2018448": {
+      "unit": 1183,
+      "name": "CH-901",
+      "CanBeTargeted": [
+        true,
+        false
+      ],
+      "CanBeIntercepted": [
+        "CH-901 True",
+        false
+      ]
+    }
+  },
   "version": "0.9.0-dev.43",
   "base": "0.9.0-dev.42",
   "base_sha256": "d399616f224870bc61ce3d55305cf3cdb53c76b689d2a1faa20d41cd8b712bc8",
-  "checks": 3,
+  "checks": 9,
   "verified": "data checks only"
 }

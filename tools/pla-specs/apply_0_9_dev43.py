@@ -29,6 +29,18 @@ ok(U[929]['Name']=='PLA J-36' and U[929]['Cost']==355,('J-36 base price',U[929].
 ok(not [k for k,o in O.items() if o and o.get('ReplaceUnitId')==929],'J-36 has no swap rows to keep in step')
 g.put('Units',929,{'Cost':415});ok(U[929]['Cost']==415,'J-36 now 415')
 rec['j36_price']={'unit':929,'from':355,'to':415}
+# ---------- CTL-181 NLOS and Blood Wolves CH-901 cannot be shot down (Osama 18 Nov 2026 12:1x PST, thread 1567745029781454889: "The Blood Wolves
+# missile and the CTL-181 NLOS shouldn't be interceptable but it looks like its happening in game"). dev.42 data: both CanBeTargeted True (air
+# defence guns/SAMs may engage them as projectiles); CH-901 also CanBeIntercepted True (APS). Osama 12 Nov (0.8.0-dev.13) had set CH-901 APS off;
+# it was True again by 0.8.0-dev.105. Both flags off on both rounds; each round is used by one unit only.
+_A=t['AmmunitionsJson'];_WA=t['WeaponAmmunitionsJson']
+_nl={2018321:(1054,'NLOS missile'),2018448:(1183,'CH-901')}
+for _i,(_u,_n) in _nl.items():
+    ok(_A[_i]['HUDName']==_n and sorted({r['UnitId'] for r in _WA.values() if r['AmmunitionId']==_i})==[_u],(_n,'own round on one unit'))
+    ok(_A[_i]['CanBeTargeted'] is True,(_n,'was targetable'))
+    g.put('AmmunitionsJson',_i,{'CanBeTargeted':False,'CanBeIntercepted':False})
+    ok(_A[_i]['CanBeTargeted'] is False and _A[_i]['CanBeIntercepted'] is False,(_n,'not interceptable'))
+rec['nlos_not_interceptable']={str(i):{'unit':u,'name':n,'CanBeTargeted':[True,False],'CanBeIntercepted':['CH-901 True' if i==2018448 else False,False]} for i,(u,n) in _nl.items()}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
