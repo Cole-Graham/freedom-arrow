@@ -15,6 +15,7 @@ static class DetectionConfig
     static DetectionSettings target,vanilla;
     static float startingPoints;
     static float? originalPoints;
+    static (int ground,int lowHeli)? originalCargoKill;
     static float buildingFloor,buildingPerSoldier;
     static (float floor,float perSoldier)? originalBuilding;
     static float minorMobility;
@@ -99,6 +100,12 @@ static class DetectionConfig
             originalPoints??=game.DefaultPlayerMoney;
             game.DefaultPlayerMoney=Runtime.IsApplied?startingPoints:originalPoints.Value;
             MelonLogger.Msg($"FREEDOM_ARROW_START_POINTS {game.DefaultPlayerMoney}");
+            // Passengers die with their transport (Osama 18 Nov 2026 13:1x PST, thread 1567745029781454889: "units should die when the transport
+            // dies"). GameConfig "Dead Container Modifiers": each soldier's minimum % chance to die when the transport is killed. Vanilla ground
+            // 30 (plus last damage x1), low-flying helicopter 50 (plus x0.5); high-flying helicopter and plane are already 100.
+            originalCargoKill??=(game.OnTransportDeathCargoKillFloor,game.OnTransportDeathCargoKillHLFloor);
+            (game.OnTransportDeathCargoKillFloor,game.OnTransportDeathCargoKillHLFloor)=Runtime.IsApplied?(100,100):originalCargoKill.Value;
+            MelonLogger.Msg($"FREEDOM_ARROW_CARGO_DIES_WITH_TRANSPORT ground {game.OnTransportDeathCargoKillFloor}% low helicopter {game.OnTransportDeathCargoKillHLFloor}% high helicopter {game.OnTransportDeathCargoKillHHFloor}% plane {game.OnTransportDeathCargoKillAirFloor}% (vanilla 30/50/100/100)");
             WriteBuildings();
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_START_POINTS_FAILED: "+e.Message);}

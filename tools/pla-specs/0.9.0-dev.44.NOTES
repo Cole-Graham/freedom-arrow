@@ -1,0 +1,5 @@
+dev.44 batch notes (append; one line per change). Builder: read these before building dev.44.
+- 18 Nov 2026 13:2x PST, thread 1567745029781454889 (Osama "units should die when the transport dies"): DetectionConfig.cs BeforePlayers sets
+  GameConfig OnTransportDeathCargoKillFloor 30 -> 100 and OnTransportDeathCargoKillHLFloor 50 -> 100 (high helicopter / plane already 100).
+  Read at death time by UnitUnloadingSystem.UpdateDeadContainerSquad via its static GameConfig. REBUILD THE RUNTIME DLL.
+  Check in game: log FREEDOM_ARROW_CARGO_DIES_WITH_TRANSPORT ground 100% low helicopter 100%; kill a loaded truck/IFV in Skirmish, nobody leaves it.
