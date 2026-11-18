@@ -30,9 +30,20 @@
       ]
     }
   },
+  "csk131_recon": {
+    "unit": 1265,
+    "card_row": 2019480,
+    "spec": 21,
+    "cards": 4,
+    "cost": 30,
+    "name": [
+      "Mengshi Recon",
+      "CSK-131 Recon"
+    ]
+  },
   "version": "0.9.0-dev.43",
   "base": "0.9.0-dev.42",
   "base_sha256": "d399616f224870bc61ce3d55305cf3cdb53c76b689d2a1faa20d41cd8b712bc8",
-  "checks": 9,
+  "checks": 14,
   "verified": "data checks only"
 }

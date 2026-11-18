@@ -9,3 +9,6 @@ dev.43 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 12:2x PST, thread 1567745029781454889 (Osama "The Blood Wolves missile and the CTL-181 NLOS shouldn't be interceptable"):
   apply_0_9_dev43.py: ammo 2018321 (CTL-181 NLOS) CanBeTargeted False; ammo 2018448 (Blood Wolves CH-901) CanBeTargeted and CanBeIntercepted False.
   Check in game: C-RAM / SAMs no longer engage them; APS does not stop the CH-901. 9 checks.
+- 18 Nov 2026 12:3x PST, thread 1567745029781454889 (Osama "add a recon CSK-131 to moto"): apply_0_9_dev43.py re-adds unit 1265 (recon CSK-131,
+  model m_csk4r, QJZ-89 RWS, sensor 3, Recon tab, 30 pts; all cards removed 15 Nov in dev.4) to PLAGF Motorized only: new card row 2019480, 4 cards;
+  card name Mengshi Recon -> CSK-131 Recon; pla-spec-assignments 1265 -> [21]. 14 checks. Check in game: Motorized Recon tab shows CSK-131 Recon.

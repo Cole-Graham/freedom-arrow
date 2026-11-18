@@ -41,6 +41,20 @@ for _i,(_u,_n) in _nl.items():
     g.put('AmmunitionsJson',_i,{'CanBeTargeted':False,'CanBeIntercepted':False})
     ok(_A[_i]['CanBeTargeted'] is False and _A[_i]['CanBeIntercepted'] is False,(_n,'not interceptable'))
 rec['nlos_not_interceptable']={str(i):{'unit':u,'name':n,'CanBeTargeted':[True,False],'CanBeIntercepted':['CH-901 True' if i==2018448 else False,False]} for i,(u,n) in _nl.items()}
+# ---------- Recon CSK-131 back in PLAGF Motorized (Osama 18 Nov 2026 12:3x PST, thread 1567745029781454889: "add a recon CSK-131 to moto").
+# The recon CSK-131 already exists: unit 1265 'PLA Mengshi Recon' (CSK-131 recon model m_csk4r, QJZ-89 12.7 mm RWS, Very Good optics sensor 3,
+# Recon tab, 30 pts). Osama removed all three of its cards (PLAAF, PLAN SF, Motorized) on 15 Nov (0.9.0-dev.4). It comes back in Motorized (21)
+# only, with the 4 cards it had there, and its card name follows his wording: Mengshi Recon -> CSK-131 Recon (internal Name kept: models/voices).
+_SAJ=t['SpecializationAvailabilitiesJson'];_TAJ=t['TransportAvailabilitiesJson']
+_u=U[1265];ok(_u['Name']=='PLA Mengshi Recon' and _u['HUDName']=='Mengshi Recon' and _u['CategoryType']==0 and _u['Cost']==30,'Mengshi Recon unit row')
+ok(not [r for r in _SAJ.values() if r['UnitId']==1265] and '1265' not in assign['assignments'],'no cards now')
+ok(not [r for r in _TAJ.values() if r.get('UnitId')==1265],'carries nobody')
+_tpl=_SAJ[2018744];ok(_tpl['UnitId']==1263 and _tpl['SpecializationId']==21,'template: ZTL-191 Recon Motorized card row')
+_new=g.add('SpecializationAvailabilitiesJson',_tpl,{'UnitId':1265,'SpecializationId':21,'MaxAvailabilityXp0':4,'MaxAvailabilityXp1':0,'MaxAvailabilityXp2':0,'MaxAvailabilityXp3':0})
+g.put('Units',1265,{'HUDName':'CSK-131 Recon'})
+assign['assignments']['1265']=[21]
+ok([(r['SpecializationId'],r['MaxAvailabilityXp0']) for r in _SAJ.values() if r['UnitId']==1265]==[(21,4)] and U[1265]['HUDName']=='CSK-131 Recon','CSK-131 Recon: Motorized, 4 cards')
+rec['csk131_recon']={'unit':1265,'card_row':_new,'spec':21,'cards':4,'cost':30,'name':['Mengshi Recon','CSK-131 Recon']}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
