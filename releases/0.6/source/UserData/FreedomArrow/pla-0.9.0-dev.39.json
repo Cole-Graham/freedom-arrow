@@ -1,0 +1,8 @@
+{
+ "version": "0.9.0-dev.39",
+ "base": "0.9.0-dev.38",
+ "base_sha256": "2b18380b4b13cd33dfe4b3a5fac065cfd41dc3095cf4afc207d976e2226f0d90",
+ "no_data_change": "dev.39 changes only the start-screen menu art and MenuArt.cs; constants are the dev.38 state (apply_0_9_dev38.py re-run in write mode before packaging)",
+ "checks": 0,
+ "verified": "data unchanged from dev.38"
+}
