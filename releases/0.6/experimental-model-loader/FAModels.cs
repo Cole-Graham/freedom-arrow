@@ -121,6 +121,9 @@ public partial class Mod : MelonMod
     static readonly Dictionary<int, float> famRenderersT = new();
     static void SyncVisibility()
     {
+        // 0.3.34 (5v5 detail log: "visibility sync" 16+ ms frames): units spawned together refreshed their renderer lists in the same check,
+        // every 15 s. At most 8 refreshes per check now (0.2 s apart); a unit over the limit keeps its list until a later check.
+        int refreshes = 0;
         for (int i = live.Count - 1; i >= 0; i--)
         {
             var (root, unit) = live[i];
@@ -133,8 +136,9 @@ public partial class Mod : MelonMod
             // to its dead model (AnimationHub.DeadModel active), our model goes too. The vanilla wreck stays hidden, so nothing remains.
             if (vis && IsDead(root, k)) { vis = false; if (deadLogged.Add(k)) MelonLogger.Msg($"FAMODELS {unit}: destroyed, model removed (no wreck)"); }
             // 0.3.31: the renderer list is refreshed every 15 s (was: every 5 s, plus a native null check of every renderer every 0.2 s).
-            if (!famRenderers.TryGetValue(k, out var rs) || Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f)
+            if (!famRenderers.TryGetValue(k, out var rs) || (refreshes < 8 && Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f))
             {
+                refreshes++;
                 var list = new List<MeshRenderer>();var h = root.transform.Find("FAM_holder");
                 if (h != null) list.AddRange(h.GetComponentsInChildren<MeshRenderer>(true));
                 foreach (var t in root.GetComponentsInChildren<Transform>(true)) if (t.name.StartsWith("FAM_") && t.name != "FAM_holder" && t.parent != h) list.AddRange(t.GetComponentsInChildren<MeshRenderer>(true));
