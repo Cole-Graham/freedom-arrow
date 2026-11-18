@@ -71,6 +71,15 @@ for _i in sorted(_rounds):
 ok(len(_chg)>=40,('autocannon HE rounds changed',len(_chg)))
 rec['autocannon_he_buildings_vanilla']={'ignore_cover':_IC,'basis':'10 soldiers, vanilla 0.38','changed':_chg,'excluded_spaag':{str(k):v for k,v in _skip.items()}}
 print('autocannon rounds changed',len(_chg),'excluded',len(_skip))
+# ---------- FAModels 0.3.35: free models nothing uses (Osama 18 Nov 2026 14:4x PST, thread 1572551547726991400: "ishtar is the one that crashed, we should
+# free models"). Code only, no data rows. Since 0.3.25 every model loaded stayed in memory for the whole session; ishtar's dev.41 game went down
+# while browsing the Arsenal after a match with 132 models held (~2.5 GB of textures; the whole Arsenal is ~6.6 GB, Assets 0.2.46). Unload.cs: on
+# every scene load, models no live unit uses are destroyed (mesh, material, FAM_ textures), so Arsenal models go before a battle and battle models
+# go back in the menu; in the menu all but the 12 most recently used unused models are freed after each new load. Infantry weapon files are kept.
+# FAMODELS memory line every 60 s (process working set/private, cache models, vertices, ~MB meshes and textures, freed count). Not yet seen in game.
+# BUILD: complete package --famodels releases/0.6/experimental-model-loader/bin/Release/net6.0/FAModels.dll (0.3.35, built with
+# -p:GameDir=work/game-1.2.2.1); FAModels.dll is in the Assets package, so this batch also makes a new Assets version for launcher players.
+rec['famodels_free_unused']={'version':'0.3.35','file':'releases/0.6/experimental-model-loader/Unload.cs','menu_keep':12,'verified':'compiles; not seen in game'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

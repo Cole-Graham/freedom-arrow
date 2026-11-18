@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.34", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.35", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -207,6 +207,7 @@ public partial class Mod : MelonMod
     {
         Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start;
         try { HitchLog(); } catch { }
+        try { MemoryLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS memory log: " + ex.Message); }
         try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
         t = Mark(8, t);
         try { TickPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload: " + ex.Message); }
@@ -323,6 +324,7 @@ public partial class Mod : MelonMod
     static readonly Dictionary<string, List<FamPart>> famCache = new();
     static List<FamPart> LoadFam(string file, out bool kept)
     {
+        famUsed[file] = Time.realtimeSinceStartup;   // 0.3.35 (Unload.cs): most recently used models are freed last
         if (famCache.TryGetValue(file, out var c) && c.All(p => p.subs.All(x => x.mesh != null && x.mat != null))) { kept = true; return c; }
         kept = false;
         var mj = Path.Combine(dir, Path.ChangeExtension(file, null) + ".mat.json");
@@ -455,6 +457,9 @@ public partial class Mod : MelonMod
         holder.SetActive(true);
         live.Add((root, unit));
         modelSwapsThisFrame++;
+        // 0.3.35 (Unload.cs): remember which units use which files; in the menu, free all but the most recent unused models.
+        foreach (var lf in levels.Count > 1 ? e.lods.Where(x => x != "").Prepend(e.file) : new[] { e.file }) NoteUse(lf, root);
+        if (!kept && inMenu) FreeUnused(MenuKeep, "menu");
         // 0.3.29: infantry weapon swaps log only with UserData/FAModels/verbose.txt (they were ~1,600 lines a session).
         if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s)");
         return true;
@@ -497,12 +502,14 @@ public partial class Mod : MelonMod
                 var t = new Texture2D(d.w, d.h, (TextureFormat)d.fmt, d.mips, d.lin) { name = "FAM_" + png };
                 t.LoadRawTextureData(d.data);
                 t.Apply(false, true);
+                texBytes[t.name] = d.data.Length;
                 return t;
             }
             catch (Exception ex) { MelonLogger.Warning($"FAMODELS texture {png}: {ex.Message}; using the PNG"); }
         }
         var p = new Texture2D(2, 2, TextureFormat.RGBA32, true, linear) { name = "FAM_" + png };
         ImageConversion.LoadImage(p, File.ReadAllBytes(Path.Combine(dir, png)), true);
+        texBytes[p.name] = (long)p.width * p.height * 4 * 4 / 3;
         return p;
     }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
