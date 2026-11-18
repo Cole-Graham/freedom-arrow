@@ -48,5 +48,8 @@
    ]
   }
  },
- "hide_other_layers": true
+ "hide_other_layers": true,
+ "hide_paths": [
+  "GameObject/bg"
+ ]
 }
