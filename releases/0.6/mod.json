@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.0-dev.37",
+  "version": "0.9.0-dev.38",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.37 (17 Nov): performance batch (NLOS fire checked once per frame, one merged overkill hook, hook health log every 60 s, no whole-scene searches in battle, every deck model preloaded at match start, infantry body swaps spread over frames; FAModels 0.3.34, FA Music 1.5.3), MD-22 on the F-35A body with afterburners, China spec names in English and Chinese, SF night card portraits, 110 new Blood Wolves and Godswords callouts. Includes 0.9.0-dev.36. Needs Freedom Arrow — Models and Music 0.2.45.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.38 (18 Nov): new start screen (night flag-raising key art with the FREEDOM ARROW title, mouse parallax), Freedom Arrow loading screens replace every vanilla one (24 pictures: China, US, Russia), China voices regenerated with a word-for-word check and 10 selection/move/attack lines per unit, China 122 mm rounds use the howitzer explosion, FA Music 1.5.4 hides the music panel outside the main menu. Includes 0.9.0-dev.37. Needs Freedom Arrow — Models and Music 0.2.46.",
   "repo": "Cole-Graham/freedom-arrow"
 }
