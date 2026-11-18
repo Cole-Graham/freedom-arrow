@@ -39,6 +39,29 @@ rec['spec_chinese_names']={str(k):f'{e} {z}' for k,(e,z) in _cn.items()}
 # - SF night card portraits (v2, red light): runtime-qa/icons/FA_CN_INF_SF_CQC-Portrait.png and FA_CN_INF_SF_HIGH_TECH-Portrait.png. Embedded in
 #   FreedomArrow.Runtime.dll (CardIcons.cs): REBUILD THE RUNTIME DLL for dev.37.
 # - 110 Blood Wolves / Godswords US-callout clips, staged by tools/china-voice/stage.py into ChinaVoice/Infantry/English and Units/*_EN.
+# ---------- Performance batch (Osama 17 Nov 2026 13:2x-17:5x PST, thread 1567745029781454889: "figure out which hooks are the heaviest or what's causing
+# that discrepancy", "Get detailed logging and tracking and then run it again", "we should preload all the models before the game loads", "Let's put all of
+# this in the next build"). Code only, no data rows. Measured on Osama's PC, 5v5 Local AI Skirmish Airbase, China Armored SF, Hard, 30 min (work/perf-skirmish-
+# 20261117, summ.py): dev.36 with the tracking on 76.8 fps / 554 frames over 50 ms -> with the fixes 85.5 fps / 201 (hooks3), vanilla 101 fps / 22.
+# - runtime f7188eb2: NLOS fire hook on FogOfWarWorker update (once per worker per frame, was FogOfWarUnit.Update ~7,500 calls/s); one merged
+#   IsTargetOverkilled postfix (OverkillHooks.cs) for AaCooldown, SameUnitClaim, SeadOverkill; FREEDOM_ARROW_HOOK_HEALTH every 60 s (HookHealth.cs).
+#   Seen in game: HJ-10 fired at a target added without its own line of sight (hooks1 run, 14:41:47); merged hook 6-8k calls/s, 0 errors.
+# - runtime 89d7067d: PerfProbe detail mode (UserData/FreedomArrow/perf-detail.txt, off by default): every mod's Melon callbacks and patch bodies,
+#   FREEDOM_ARROW_SLOW_FRAME per frame over 50 ms, FREEDOM_ARROW_MODS per-mod totals; live unit count in the health line.
+# - runtime bc321cf1: the settings-screen check (conquest/NativeUi.cs MenuOpen) no longer runs FindObjectOfType once a second in battle (7-11 ms each);
+#   FA Music 1.5.3: the menu-button search (FindObjectsOfTypeAll, 5x a second all match) only in the menu scene.
+# - ae66e785 / 7d5cc977 / c1155743: FAModels 0.3.34: preload burst (the match's whole deck queue built in one pause, 97 items in 3.2 s on Osama's PC,
+#   reset per match); timed update sections (FAMODELS slow update lines); infantry body swaps 6 ms per frame budget; cockpit glass fallback search at
+#   most 3 tries per scene; visibility-sync renderer refresh at most 8 per check; pilot rescue spawn list cached per scene; FA Music voice-preset
+#   rescans at most once per 2 min per unknown set. The body budget, cockpit cap and visibility stagger are not yet seen in a game.
+# BUILD: the complete package needs the new DLLs: --famodels releases/0.6/experimental-model-loader/bin/Release/net6.0/FAModels.dll (0.3.34) and
+# --asset Mods/FAMusic.dll=tools/music-player/bin/Release/net6.0/FAMusic.dll (1.5.3); rebuild both from source first. FAMusic.dll is an asset, so this
+# also makes a new Assets version. pla-audit-20261112/check_model_carry.py accepts FA Music 1.5.3 by hash (APPROVED_FAMUSIC there).
+# The runtime DLL is rebuilt anyway for the night cards above.
+# Leave UserData/FreedomArrow/perf-probe.txt, perf-hooks.txt and perf-detail.txt out of packages (switches for tests only).
+rec['performance_batch']={'runtime':['f7188eb2','89d7067d','bc321cf1'],'famodels':'0.3.34 (ae66e785, 7d5cc977, c1155743)','famusic':'1.5.3',
+    'measured':{'dev36_tracking_on':{'fps':76.8,'frames_over_50ms':554},'with_fixes_hooks3':{'fps':85.5,'frames_over_50ms':201},'vanilla':{'fps':101.1,'frames_over_50ms':22}},
+    'evidence':'work/perf-skirmish-20261117'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
