@@ -94,6 +94,11 @@ def apply_layout(objects,layout):
         assert r in dest,r
         overlay(dest[r],src,PLAYER_KEEP if r[0]=='player' else KEEP)
 def write(out,name,head,objects,nodes,meta):
+    # Osama 18 Nov 2026 15:1x (thread 1571014792016171120): "make sure on all maps, if someone contests a point, it neutralizes it". A zone's
+    # forceNeutral flag does that; dev.43 had it off on all 12 Dam zones (Dam, Dam Skirmish, PvE Dam), on everywhere else (Lateralus 21:51 UTC:
+    # "Dam zones don't neutralize with multiple players in them"). Set here so every map, PvE included, gets it.
+    for o in objects:
+        if o.get('_type')==15:o['forceNeutral']=True
     target=out/name;target.mkdir(parents=True,exist_ok=True)
     # The lobby compares a hash of the .bascr, so every machine must write the same bytes.
     # Python sets create_system to 0 on Windows and 3 elsewhere; fix it and the file mode.
