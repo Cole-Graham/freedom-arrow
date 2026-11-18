@@ -1,5 +1,6 @@
 """Stage the China voice lines into the gameplay payload (Osama 16 Nov 2026 19:56 PST: build dev.34 with them, thread 1571014792016171120).
-Source: work/china-voices (ElevenLabs v4, Old Radio filter, -16 LUFS; every clip checked with speech-to-text for non-speech sounds).
+Source: work/china-voices (ElevenLabs v4, Old Radio filter, -16 LUFS; every clip checked with speech-to-text for non-speech sounds;
+  since 18 Nov also word for word against its script, tools/china-voice/check2.py, transcripts in word-check-20261118.json).
 - Mandarin sets v2/listen/<Category>/<Style>/<NN_Trigger>/<NN_voice>.mp3 -> ChinaVoice/<Category>/<Style>/<Trigger>/<NN>.mp3
 - Unit selection lines v2/listen/Units/<Category>/<Unit>/Selection_NN_<voice>.mp3 -> ChinaVoice/Units/<Unit>/Selection/<NN>.mp3
 - Blood Wolves and Godswords speak English (San Chi): wolves/listen-SanChi/Shared -> ChinaVoice/Infantry/English, and their own lines
@@ -36,6 +37,11 @@ for sub,dst in [('Shared',root/'Infantry/English')]+[(u,root/'Units'/(u+'_EN')) 
     for d in sorted(p for p in (C/sub).iterdir() if p.is_dir()):
         out=dst/trig(d.name);k=len(list(out.glob('*.mp3'))) if out.exists() else 0
         for i,f in enumerate(sorted(d.glob('*.mp3')),k+1):put(f,out/f'{i:02d}.mp3')
+# English Move fill (Osama 18 Nov 2026 01:3x: 10 Move lines per unit): wolves/fill/listen-SanChi/Shared, numbered after the lines above.
+F=V/'wolves/fill/listen-SanChi/Shared'
+for d in sorted(p for p in F.iterdir() if p.is_dir()) if F.exists() else []:
+    out=root/'Infantry/English'/trig(d.name);k=len(list(out.glob('*.mp3'))) if out.exists() else 0
+    for i,f in enumerate(sorted(d.glob('*.mp3')),k+1):put(f,out/f'{i:02d}.mp3')
 # DF-31A (Osama 16 Nov 22:2x: "a lot of unique voice lines for the DF-31 nuclear ... calm ... old chinese phrases"): its own full set, df31/listen.
 for f in sorted((V/'df31/listen').glob('*/*.mp3')):put(f,root/'Special/DF31'/f.parent.name/f.name)
 # unit -> set. Names in v2/unit_map.json are the card names (HUDName) when the map was written; Blood Wolves was renamed in dev.34.

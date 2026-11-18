@@ -1,0 +1,6758 @@
+[
+{
+"path": "Infantry/SF/01_Selection/01_Philip.mp3",
+"voice": "Philip",
+"script": "特战分队，待命。",
+"heard": "特战分队待命。"
+},
+{
+"path": "Infantry/SF/01_Selection/02_Philip.mp3",
+"voice": "Philip",
+"script": "收到，请讲。",
+"heard": "收到，请讲。"
+},
+{
+"path": "Infantry/SF/01_Selection/03_Philip.mp3",
+"voice": "Philip",
+"script": "猎鹰小组，在线。",
+"heard": "猎鹰小组在线。"
+},
+{
+"path": "Infantry/SF/01_Selection/04_Philip.mp3",
+"voice": "Philip",
+"script": "这里是特战一组，讲。",
+"heard": "这里是特战一组，讲。"
+},
+{
+"path": "Infantry/SF/01_Selection/05_Philip.mp3",
+"voice": "Philip",
+"script": "特战分队，随时可以行动。",
+"heard": "特战分队随时可以行动。"
+},
+{
+"path": "Infantry/SF/01_Selection/06_Philip.mp3",
+"voice": "Philip",
+"script": "收到，听你指挥。",
+"heard": "收到，听你指挥。"
+},
+{
+"path": "Infantry/SF/01_Selection/07_Philip.mp3",
+"voice": "Philip",
+"script": "特战组，已就位。",
+"heard": "特战组已就位。"
+},
+{
+"path": "Infantry/SF/01_Selection/08_Philip.mp3",
+"voice": "Philip",
+"script": "准备完毕，下命令吧。",
+"heard": "准备完毕，下命令吧。"
+},
+{
+"path": "Infantry/SF/01_Selection/09_Philip.mp3",
+"voice": "Philip",
+"script": "有活干了？",
+"heard": "有活干了。"
+},
+{
+"path": "Infantry/SF/01_Selection/10_Philip.mp3",
+"voice": "Philip",
+"script": "特种分队，静默待命。",
+"heard": "各种分队静默待命。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "接敌中，讲。",
+"heard": "谢迪中，讲。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "正在交火，快说。",
+"heard": "正在交火，快说。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "受到火力，等你指示。",
+"heard": "受到火力，等你指示。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/04_Philip.mp3",
+"voice": "Philip",
+"script": "有接触，讲重点。",
+"heard": "有接触，讲重点。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/05_Philip.mp3",
+"voice": "Philip",
+"script": "交火中，等你命令。",
+"heard": "交火中，等你命令。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/06_Philip.mp3",
+"voice": "Philip",
+"script": "压力很大，但还能打。",
+"heard": "压力很大，但还能打。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/07_Philip.mp3",
+"voice": "Philip",
+"script": "敌人在侧翼，指示。",
+"heard": "敌人在侧翼，只是"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/08_Philip.mp3",
+"voice": "Philip",
+"script": "火力接触，说。",
+"heard": "回力接触，说"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/09_Philip.mp3",
+"voice": "Philip",
+"script": "正在压制敌人，讲。",
+"heard": "正在压制敌人，讲。"
+},
+{
+"path": "Infantry/SF/02_Selection_CBT/10_Philip.mp3",
+"voice": "Philip",
+"script": "我们被咬住了，快。",
+"heard": "我们被咬住了，快。"
+},
+{
+"path": "Infantry/SF/03_Move/01_Philip.mp3",
+"voice": "Philip",
+"script": "收到，机动。",
+"heard": "收到，机动。"
+},
+{
+"path": "Infantry/SF/03_Move/02_Philip.mp3",
+"voice": "Philip",
+"script": "明白，向坐标前出。",
+"heard": "明白，向坐标前出。"
+},
+{
+"path": "Infantry/SF/03_Move/03_Philip.mp3",
+"voice": "Philip",
+"script": "保持队形，出发。",
+"heard": "保持队形，出发。"
+},
+{
+"path": "Infantry/SF/03_Move/04_Philip.mp3",
+"voice": "Philip",
+"script": "收到，向下一个点位机动。",
+"heard": "收到，向下一个点位机动。"
+},
+{
+"path": "Infantry/SF/03_Move/05_Philip.mp3",
+"voice": "Philip",
+"script": "分队前出，保持静默。",
+"heard": "分队前出，保持静默。"
+},
+{
+"path": "Infantry/SF/03_Move/06_Philip.mp3",
+"voice": "Philip",
+"script": "明白，沿着掩护线走。",
+"heard": "明白，沿着掩护线走。"
+},
+{
+"path": "Infantry/SF/03_Move/07_Philip.mp3",
+"voice": "Philip",
+"script": "收到，按计划路线前进。",
+"heard": "收到，按计划路线前进。"
+},
+{
+"path": "Infantry/SF/03_Move/08_Philip.mp3",
+"voice": "Philip",
+"script": "两人一组，交替前进。",
+"heard": "两人一组，交替前进。"
+},
+{
+"path": "Infantry/SF/03_Move/09_Philip.mp3",
+"voice": "Philip",
+"script": "收到，正在转移位置。",
+"heard": "收到，正在转移位置。"
+},
+{
+"path": "Infantry/SF/03_Move/10_Philip.mp3",
+"voice": "Philip",
+"script": "明白，我们去那边看看。",
+"heard": "明白，我们去那边看看。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "交替掩护，走！",
+"heard": "叫他掩护。走。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "边打边撤，跟上！",
+"heard": "边打边撤，跟上。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "换位置，快！",
+"heard": "换位置，快。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/04_Philip.mp3",
+"voice": "Philip",
+"script": "交替掩护，下一组走！",
+"heard": "交替掩护，下一组走。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/05_Philip.mp3",
+"voice": "Philip",
+"script": "压住火力，我们转移！",
+"heard": "压住火力，我们转移。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/06_Philip.mp3",
+"voice": "Philip",
+"script": "换到右侧，快！",
+"heard": "换到右侧，快！"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/07_Philip.mp3",
+"voice": "Philip",
+"script": "烟幕后面走，跟上！",
+"heard": "烟幕后面走，跟上。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/08_Philip.mp3",
+"voice": "Philip",
+"script": "收到，边打边撤！",
+"heard": "收到，边打边撤。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/09_Philip.mp3",
+"voice": "Philip",
+"script": "离开这个位置，快走！",
+"heard": "离开这个位置，快走。"
+},
+{
+"path": "Infantry/SF/04_Move_CBT/10_Philip.mp3",
+"voice": "Philip",
+"script": "保持队形，冲过去！",
+"heard": "保持队形，冲过去。"
+},
+{
+"path": "Infantry/SF/05_FastMove/01_Philip.mp3",
+"voice": "Philip",
+"script": "快速机动，跟紧。",
+"heard": "快速机动，跟紧。"
+},
+{
+"path": "Infantry/SF/05_FastMove/02_Philip.mp3",
+"voice": "Philip",
+"script": "加速前进！",
+"heard": "加速前进。"
+},
+{
+"path": "Infantry/SF/05_FastMove/03_Philip.mp3",
+"voice": "Philip",
+"script": "全速推进。",
+"heard": "全速推进。"
+},
+{
+"path": "Infantry/SF/06_ReverseMove/01_Philip.mp3",
+"voice": "Philip",
+"script": "后撤，保持火力。",
+"heard": "后撤，保持火力。"
+},
+{
+"path": "Infantry/SF/06_ReverseMove/02_Philip.mp3",
+"voice": "Philip",
+"script": "向后转移。",
+"heard": "向后转移。"
+},
+{
+"path": "Infantry/SF/06_ReverseMove/03_Philip.mp3",
+"voice": "Philip",
+"script": "退到掩体后面。",
+"heard": "推到眼皮后面"
+},
+{
+"path": "Infantry/SF/07_Attack/01_Philip.mp3",
+"voice": "Philip",
+"script": "目标确认，开火。",
+"heard": "目标确认，开火。"
+},
+{
+"path": "Infantry/SF/07_Attack/02_Philip.mp3",
+"voice": "Philip",
+"script": "锁定目标，干掉它。",
+"heard": "锁定目标，干掉他。"
+},
+{
+"path": "Infantry/SF/07_Attack/03_Philip.mp3",
+"voice": "Philip",
+"script": "交战，自由射击。",
+"heard": "交战，自由射击。"
+},
+{
+"path": "Infantry/SF/07_Attack/04_Philip.mp3",
+"voice": "Philip",
+"script": "看到了，干掉。",
+"heard": "看到了，干掉。"
+},
+{
+"path": "Infantry/SF/07_Attack/05_Philip.mp3",
+"voice": "Philip",
+"script": "火力集中，开火。",
+"heard": "火力集中，开火。"
+},
+{
+"path": "Infantry/SF/07_Attack/06_Philip.mp3",
+"voice": "Philip",
+"script": "目标进入射界，交战。",
+"heard": "目标进入射界，交战。"
+},
+{
+"path": "Infantry/SF/07_Attack/07_Philip.mp3",
+"voice": "Philip",
+"script": "一枪一个。",
+"heard": "一枪一个。"
+},
+{
+"path": "Infantry/SF/07_Attack/08_Philip.mp3",
+"voice": "Philip",
+"script": "自由开火，打要害。",
+"heard": "自由开火，打要害。"
+},
+{
+"path": "Infantry/SF/07_Attack/09_Philip.mp3",
+"voice": "Philip",
+"script": "交战中。",
+"heard": "交战中"
+},
+{
+"path": "Infantry/SF/07_Attack/10_Philip.mp3",
+"voice": "Philip",
+"script": "收到，清除目标。",
+"heard": "收到，清除目标。"
+},
+{
+"path": "Infantry/SF/08_FireAtPosition/01_Philip.mp3",
+"voice": "Philip",
+"script": "压制该位置。",
+"heard": "压制该位置。"
+},
+{
+"path": "Infantry/SF/08_FireAtPosition/02_Philip.mp3",
+"voice": "Philip",
+"script": "火力覆盖，开火。",
+"heard": "火力覆盖，开火。"
+},
+{
+"path": "Infantry/SF/08_FireAtPosition/03_Philip.mp3",
+"voice": "Philip",
+"script": "收到，打那个点。",
+"heard": "收到，打那个点。"
+},
+{
+"path": "Infantry/SF/09_MoveAndAttack/01_Philip.mp3",
+"voice": "Philip",
+"script": "搜索前进，发现即打。",
+"heard": "搜索前进，发现即打。"
+},
+{
+"path": "Infantry/SF/09_MoveAndAttack/02_Philip.mp3",
+"voice": "Philip",
+"script": "前出搜索，自由交战。",
+"heard": "前出搜索，自由交战。"
+},
+{
+"path": "Infantry/SF/09_MoveAndAttack/03_Philip.mp3",
+"voice": "Philip",
+"script": "清剿前进。",
+"heard": "轻脚前进。"
+},
+{
+"path": "Infantry/SF/10_Smoke/01_Philip.mp3",
+"voice": "Philip",
+"script": "烟雾弹！遮蔽！",
+"heard": "烟雾弹，遮蔽。"
+},
+{
+"path": "Infantry/SF/10_Smoke/02_Philip.mp3",
+"voice": "Philip",
+"script": "释放烟幕。",
+"heard": "释放烟幕。"
+},
+{
+"path": "Infantry/SF/10_Smoke/03_Philip.mp3",
+"voice": "Philip",
+"script": "放烟，掩护转移！",
+"heard": "放烟，掩护转移。"
+},
+{
+"path": "Infantry/SF/11_DefenceSmoke/01_Philip.mp3",
+"voice": "Philip",
+"script": "紧急烟幕！",
+"heard": "紧急淹没。"
+},
+{
+"path": "Infantry/SF/11_DefenceSmoke/02_Philip.mp3",
+"voice": "Philip",
+"script": "烟雾，脱离接触！",
+"heard": "烟雾脱离接触。"
+},
+{
+"path": "Infantry/SF/11_DefenceSmoke/03_Philip.mp3",
+"voice": "Philip",
+"script": "放烟，撤！",
+"heard": "放烟。撤。"
+},
+{
+"path": "Infantry/SF/12_Sprint/01_Philip.mp3",
+"voice": "Philip",
+"script": "全速冲刺！",
+"heard": "全速冲刺。"
+},
+{
+"path": "Infantry/SF/12_Sprint/02_Philip.mp3",
+"voice": "Philip",
+"script": "冲过去，别停！",
+"heard": "冲过去，别停。"
+},
+{
+"path": "Infantry/SF/12_Sprint/03_Philip.mp3",
+"voice": "Philip",
+"script": "冲上去，快！",
+"heard": "冲上去，快！"
+},
+{
+"path": "Infantry/SF/13_Laser/01_Philip.mp3",
+"voice": "Philip",
+"script": "目标已照射，等待火力。",
+"heard": "目标已照射，等待火力。"
+},
+{
+"path": "Infantry/SF/13_Laser/02_Philip.mp3",
+"voice": "Philip",
+"script": "激光照射中。",
+"heard": "激光照射中。"
+},
+{
+"path": "Infantry/SF/13_Laser/03_Philip.mp3",
+"voice": "Philip",
+"script": "目标指示完毕。",
+"heard": "目标指示完毕。"
+},
+{
+"path": "Infantry/SF/14_Garrison/01_Philip.mp3",
+"voice": "Philip",
+"script": "进楼，占领制高点。",
+"heard": "进楼占领制高点。"
+},
+{
+"path": "Infantry/SF/14_Garrison/02_Philip.mp3",
+"voice": "Philip",
+"script": "进入建筑，建立阵地。",
+"heard": "进入建筑，建立阵地。"
+},
+{
+"path": "Infantry/SF/14_Garrison/03_Philip.mp3",
+"voice": "Philip",
+"script": "占领房屋，守住。",
+"heard": "占领房屋，守住。"
+},
+{
+"path": "Infantry/SF/15_Garrison_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "进楼！快进楼！",
+"heard": "进楼，快进楼。"
+},
+{
+"path": "Infantry/SF/15_Garrison_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "找掩护，进建筑！",
+"heard": "找掩护，进建筑。"
+},
+{
+"path": "Infantry/SF/15_Garrison_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "进屋还击！",
+"heard": "竟无还击。"
+},
+{
+"path": "Infantry/SF/16_Board/01_Philip.mp3",
+"voice": "Philip",
+"script": "上车，清点人数。",
+"heard": "上车，清点人数。"
+},
+{
+"path": "Infantry/SF/16_Board/02_Philip.mp3",
+"voice": "Philip",
+"script": "登车。",
+"heard": "单车"
+},
+{
+"path": "Infantry/SF/16_Board/03_Philip.mp3",
+"voice": "Philip",
+"script": "全员上车，准备出发。",
+"heard": "全员上车，准备出发。"
+},
+{
+"path": "Infantry/SF/17_UnloadNow/01_Philip.mp3",
+"voice": "Philip",
+"script": "下车，展开！",
+"heard": "下车，展开。"
+},
+{
+"path": "Infantry/SF/17_UnloadNow/02_Philip.mp3",
+"voice": "Philip",
+"script": "下车，建立警戒。",
+"heard": "下车建立警戒。"
+},
+{
+"path": "Infantry/SF/17_UnloadNow/03_Philip.mp3",
+"voice": "Philip",
+"script": "全员下车！",
+"heard": "全员下车。"
+},
+{
+"path": "Infantry/SF/18_Cancel/01_Philip.mp3",
+"voice": "Philip",
+"script": "取消，原地待命。",
+"heard": "取消，原地待命。"
+},
+{
+"path": "Infantry/SF/18_Cancel/02_Philip.mp3",
+"voice": "Philip",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Infantry/SF/18_Cancel/03_Philip.mp3",
+"voice": "Philip",
+"script": "停止行动。",
+"heard": "停止行动。"
+},
+{
+"path": "Infantry/SF/19_Cancel_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "取消，守住位置！",
+"heard": "取消，守住位置。"
+},
+{
+"path": "Infantry/SF/19_Cancel_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "收到，原地战斗。",
+"heard": "收到，原地战斗。"
+},
+{
+"path": "Infantry/SF/19_Cancel_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "停，就地防御。",
+"heard": "听，就地防御。"
+},
+{
+"path": "Infantry/SF/20_Impossible/01_Philip.mp3",
+"voice": "Philip",
+"script": "无法执行，换个方案。",
+"heard": "无法执行，换个方案。"
+},
+{
+"path": "Infantry/SF/20_Impossible/02_Philip.mp3",
+"voice": "Philip",
+"script": "那里过不去。",
+"heard": "那里过不去"
+},
+{
+"path": "Infantry/SF/20_Impossible/03_Philip.mp3",
+"voice": "Philip",
+"script": "不可行。",
+"heard": "不可行。"
+},
+{
+"path": "Infantry/SF/21_Hurt/01_Philip.mp3",
+"voice": "Philip",
+"script": "有人中弹，继续战斗！",
+"heard": "有人中弹，继续战斗。"
+},
+{
+"path": "Infantry/SF/21_Hurt/02_Philip.mp3",
+"voice": "Philip",
+"script": "我挂彩了，还能打。",
+"heard": "我挂彩了，还能打。"
+},
+{
+"path": "Infantry/SF/21_Hurt/03_Philip.mp3",
+"voice": "Philip",
+"script": "医务兵！",
+"heard": "一五零。"
+},
+{
+"path": "Infantry/SF/22_Panicked/01_Philip.mp3",
+"voice": "Philip",
+"script": "火力太猛，压制住了！",
+"heard": "火力太猛，压制住了。"
+},
+{
+"path": "Infantry/SF/22_Panicked/02_Philip.mp3",
+"voice": "Philip",
+"script": "抬不起头，需要支援！",
+"heard": "抬不起头，需要支援。"
+},
+{
+"path": "Infantry/SF/22_Panicked/03_Philip.mp3",
+"voice": "Philip",
+"script": "被压制，被压制！",
+"heard": "被压制，被压制。"
+},
+{
+"path": "Infantry/SF/23_AmmoOut/01_Philip.mp3",
+"voice": "Philip",
+"script": "弹药告急，需要补给！",
+"heard": "弹药告急，需要补给。"
+},
+{
+"path": "Infantry/SF/23_AmmoOut/02_Philip.mp3",
+"voice": "Philip",
+"script": "子弹快打完了。",
+"heard": "子弹快打完了"
+},
+{
+"path": "Infantry/SF/23_AmmoOut/03_Philip.mp3",
+"voice": "Philip",
+"script": "弹药耗尽，请求补给。",
+"heard": "弹药耗尽，请求补给。"
+},
+{
+"path": "Infantry/SF/24_EnemyDestroyed/01_Philip.mp3",
+"voice": "Philip",
+"script": "目标清除。",
+"heard": "目标清除。"
+},
+{
+"path": "Infantry/SF/24_EnemyDestroyed/02_Philip.mp3",
+"voice": "Philip",
+"script": "敌人已歼灭，继续。",
+"heard": "敌人已歼灭，继续"
+},
+{
+"path": "Infantry/SF/24_EnemyDestroyed/03_Philip.mp3",
+"voice": "Philip",
+"script": "干掉了。",
+"heard": "干掉了。"
+},
+{
+"path": "Infantry/SF/25_Death/01_Philip.mp3",
+"voice": "Philip",
+"script": "我中弹了，继续任务！",
+"heard": "我中弹了，继续任务。"
+},
+{
+"path": "Infantry/SF/25_Death/02_Philip.mp3",
+"voice": "Philip",
+"script": "人员倒下，掩护他们！",
+"heard": "人员倒下，掩护他们。"
+},
+{
+"path": "Infantry/SF/25_Death/03_Philip.mp3",
+"voice": "Philip",
+"script": "我倒下了，别停！",
+"heard": "我倒下了，别停。"
+},
+{
+"path": "Infantry/SF/26_Spawn/01_Philip.mp3",
+"voice": "Philip",
+"script": "特战分队，抵达战区。",
+"heard": "特战分队抵达战区。"
+},
+{
+"path": "Infantry/SF/26_Spawn/02_Philip.mp3",
+"voice": "Philip",
+"script": "猎鹰小组，已部署。",
+"heard": "月英小组已部署"
+},
+{
+"path": "Infantry/SF/26_Spawn/03_Philip.mp3",
+"voice": "Philip",
+"script": "特种部队，准备就绪。",
+"heard": "特种部队准备就绪。"
+},
+{
+"path": "Infantry/Regular/01_Selection/01_Kang.mp3",
+"voice": "Kang",
+"script": "步兵班，到！",
+"heard": "不平班到。"
+},
+{
+"path": "Infantry/Regular/01_Selection/02_Kang.mp3",
+"voice": "Kang",
+"script": "准备好了，请指示。",
+"heard": "准备好了，请指示。"
+},
+{
+"path": "Infantry/Regular/01_Selection/03_Kang.mp3",
+"voice": "Kang",
+"script": "一班，在！",
+"heard": "一班在。"
+},
+{
+"path": "Infantry/Regular/01_Selection/04_Kang.mp3",
+"voice": "Kang",
+"script": "步兵，准备好了！",
+"heard": "布景准备好了。"
+},
+{
+"path": "Infantry/Regular/01_Selection/05_Kang.mp3",
+"voice": "Kang",
+"script": "二班，听候命令！",
+"heard": "一班，听候命令。"
+},
+{
+"path": "Infantry/Regular/01_Selection/06_Kang.mp3",
+"voice": "Kang",
+"script": "我们在，长官！",
+"heard": "我们在，长官。"
+},
+{
+"path": "Infantry/Regular/01_Selection/07_Kang.mp3",
+"voice": "Kang",
+"script": "请下达命令。",
+"heard": "请下达命令。"
+},
+{
+"path": "Infantry/Regular/01_Selection/08_Kang.mp3",
+"voice": "Kang",
+"script": "全班就位！",
+"heard": "全班就位。"
+},
+{
+"path": "Infantry/Regular/01_Selection/09_Kang.mp3",
+"voice": "Kang",
+"script": "收到，等待指示。",
+"heard": "收到，等待指示。"
+},
+{
+"path": "Infantry/Regular/01_Selection/10_Kang.mp3",
+"voice": "Kang",
+"script": "随时可以出发！",
+"heard": "随时可以出发"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "正在交火！",
+"heard": "正在交火。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "遭遇敌人，请指示！",
+"heard": "遭遇敌人，请指示。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "交战中，说！",
+"heard": "交战中说。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "敌人在开火！",
+"heard": "敌人在开火。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "交战中，长官！",
+"heard": "交战中，长官。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "我们被打了，快下命令！",
+"heard": "我们被打了，快下命令。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "发现敌人，正在还击！",
+"heard": "发现敌人，正在还击。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "火力很猛！",
+"heard": "火量很猛。"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "一班交火中！",
+"heard": "一般交火中"
+},
+{
+"path": "Infantry/Regular/02_Selection_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "说吧，我们顶着呢！",
+"heard": "说吧，我们顶着呢。"
+},
+{
+"path": "Infantry/Regular/03_Move/01_Kang.mp3",
+"voice": "Kang",
+"script": "是，前进！",
+"heard": "是，前进。"
+},
+{
+"path": "Infantry/Regular/03_Move/02_Kang.mp3",
+"voice": "Kang",
+"script": "明白，向目标前进。",
+"heard": "明白，向目标前进。"
+},
+{
+"path": "Infantry/Regular/03_Move/03_Kang.mp3",
+"voice": "Kang",
+"script": "出发！",
+"heard": "出发。"
+},
+{
+"path": "Infantry/Regular/03_Move/04_Kang.mp3",
+"voice": "Kang",
+"script": "是，马上出发！",
+"heard": "是，马上出发。"
+},
+{
+"path": "Infantry/Regular/03_Move/05_Kang.mp3",
+"voice": "Kang",
+"script": "明白，向那边前进。",
+"heard": "明白，向那边前进。"
+},
+{
+"path": "Infantry/Regular/03_Move/06_Kang.mp3",
+"voice": "Kang",
+"script": "全班跟上，出发！",
+"heard": "全班跟上，出发。"
+},
+{
+"path": "Infantry/Regular/03_Move/07_Kang.mp3",
+"voice": "Kang",
+"script": "收到，正在前进。",
+"heard": "收到，正在前进。"
+},
+{
+"path": "Infantry/Regular/03_Move/08_Kang.mp3",
+"voice": "Kang",
+"script": "明白，按命令行动。",
+"heard": "明白，按命令行动。"
+},
+{
+"path": "Infantry/Regular/03_Move/09_Kang.mp3",
+"voice": "Kang",
+"script": "向目标点前进！",
+"heard": "向目标点前进。"
+},
+{
+"path": "Infantry/Regular/03_Move/10_Kang.mp3",
+"voice": "Kang",
+"script": "收到，我们这就过去。",
+"heard": "收到，我们这就过去。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "快，转移阵地！",
+"heard": "快转移阵地。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "跟上，别停！",
+"heard": "跟上，别停。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "边打边走！",
+"heard": "边打边走。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "快跑，别在这儿停！",
+"heard": "快跑，别在这儿停。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "一组掩护，二组走！",
+"heard": "一组掩护，二组走。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "低头前进，快！",
+"heard": "低头前进，快。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "跟紧我，冲过去！",
+"heard": "跟紧我，冲过去。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "换个位置，快点！",
+"heard": "换个位置，快点。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "别管了，快撤！",
+"heard": "别管了，快撤。"
+},
+{
+"path": "Infantry/Regular/04_Move_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "压住他们，我们上！",
+"heard": "压住他们，我们上。"
+},
+{
+"path": "Infantry/Regular/05_FastMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "快速前进！",
+"heard": "快速前进。"
+},
+{
+"path": "Infantry/Regular/05_FastMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "加快速度！",
+"heard": "加快速度。"
+},
+{
+"path": "Infantry/Regular/05_FastMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "跑步前进！",
+"heard": "跑步前进。"
+},
+{
+"path": "Infantry/Regular/06_ReverseMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "向后撤。",
+"heard": "命后撤"
+},
+{
+"path": "Infantry/Regular/06_ReverseMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "后撤，注意掩护！",
+"heard": "后撤，注意掩护。"
+},
+{
+"path": "Infantry/Regular/06_ReverseMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "退后！",
+"heard": "退后。"
+},
+{
+"path": "Infantry/Regular/07_Attack/01_Kang.mp3",
+"voice": "Kang",
+"script": "发现敌人，打！",
+"heard": "发现敌人，打。"
+},
+{
+"path": "Infantry/Regular/07_Attack/02_Kang.mp3",
+"voice": "Kang",
+"script": "坐标确认，开火！",
+"heard": "坐标确认，开火。"
+},
+{
+"path": "Infantry/Regular/07_Attack/03_Kang.mp3",
+"voice": "Kang",
+"script": "消灭他们！",
+"heard": "消灭他们。"
+},
+{
+"path": "Infantry/Regular/07_Attack/04_Kang.mp3",
+"voice": "Kang",
+"script": "全体开火！",
+"heard": "全台开火。"
+},
+{
+"path": "Infantry/Regular/07_Attack/05_Kang.mp3",
+"voice": "Kang",
+"script": "瞄准，射击！",
+"heard": "瞄准，射击。"
+},
+{
+"path": "Infantry/Regular/07_Attack/06_Kang.mp3",
+"voice": "Kang",
+"script": "打掉那个目标！",
+"heard": "打掉那个目标。"
+},
+{
+"path": "Infantry/Regular/07_Attack/07_Kang.mp3",
+"voice": "Kang",
+"script": "压制敌人！",
+"heard": "压制敌人。"
+},
+{
+"path": "Infantry/Regular/07_Attack/08_Kang.mp3",
+"voice": "Kang",
+"script": "交火！",
+"heard": "交火。"
+},
+{
+"path": "Infantry/Regular/07_Attack/09_Kang.mp3",
+"voice": "Kang",
+"script": "向敌人射击！",
+"heard": "向敌人射击。"
+},
+{
+"path": "Infantry/Regular/07_Attack/10_Kang.mp3",
+"voice": "Kang",
+"script": "打！别让他们跑了！",
+"heard": "打，别让他们跑了。"
+},
+{
+"path": "Infantry/Regular/08_FireAtPosition/01_Kang.mp3",
+"voice": "Kang",
+"script": "向那个位置射击！",
+"heard": "向那个位置射击。"
+},
+{
+"path": "Infantry/Regular/08_FireAtPosition/02_Kang.mp3",
+"voice": "Kang",
+"script": "火力压制！",
+"heard": "火六亚制"
+},
+{
+"path": "Infantry/Regular/08_FireAtPosition/03_Kang.mp3",
+"voice": "Kang",
+"script": "打那边！",
+"heard": "打那边。"
+},
+{
+"path": "Infantry/Regular/09_MoveAndAttack/01_Kang.mp3",
+"voice": "Kang",
+"script": "边走边打，注意搜索！",
+"heard": "边走边打，注意搜索。"
+},
+{
+"path": "Infantry/Regular/09_MoveAndAttack/02_Kang.mp3",
+"voice": "Kang",
+"script": "搜索前进！",
+"heard": "搜索前进。"
+},
+{
+"path": "Infantry/Regular/09_MoveAndAttack/03_Kang.mp3",
+"voice": "Kang",
+"script": "见到敌人就打！",
+"heard": "见到敌人就打。"
+},
+{
+"path": "Infantry/Regular/10_Smoke/01_Kang.mp3",
+"voice": "Kang",
+"script": "投烟雾弹！",
+"heard": "投烟雾弹。"
+},
+{
+"path": "Infantry/Regular/10_Smoke/02_Kang.mp3",
+"voice": "Kang",
+"script": "放烟掩护！",
+"heard": "放烟掩护。"
+},
+{
+"path": "Infantry/Regular/10_Smoke/03_Kang.mp3",
+"voice": "Kang",
+"script": "烟幕！",
+"heard": "耶母"
+},
+{
+"path": "Infantry/Regular/11_DefenceSmoke/01_Kang.mp3",
+"voice": "Kang",
+"script": "快放烟！",
+"heard": "快放烟。"
+},
+{
+"path": "Infantry/Regular/11_DefenceSmoke/02_Kang.mp3",
+"voice": "Kang",
+"script": "烟雾，快隐蔽！",
+"heard": "烟雾，快隐蔽。"
+},
+{
+"path": "Infantry/Regular/11_DefenceSmoke/03_Kang.mp3",
+"voice": "Kang",
+"script": "放烟撤离！",
+"heard": "放烟撤离"
+},
+{
+"path": "Infantry/Regular/12_Sprint/01_Kang.mp3",
+"voice": "Kang",
+"script": "快跑！",
+"heard": "快跑！"
+},
+{
+"path": "Infantry/Regular/12_Sprint/02_Kang.mp3",
+"voice": "Kang",
+"script": "冲过去！",
+"heard": "冲过去。"
+},
+{
+"path": "Infantry/Regular/12_Sprint/03_Kang.mp3",
+"voice": "Kang",
+"script": "全力冲刺！",
+"heard": "全力冲刺。"
+},
+{
+"path": "Infantry/Regular/13_Laser/01_Kang.mp3",
+"voice": "Kang",
+"script": "激光照射目标！",
+"heard": "激光照射目标。"
+},
+{
+"path": "Infantry/Regular/13_Laser/02_Kang.mp3",
+"voice": "Kang",
+"script": "目标已指示。",
+"heard": "目标已指示。"
+},
+{
+"path": "Infantry/Regular/13_Laser/03_Kang.mp3",
+"voice": "Kang",
+"script": "照射中！",
+"heard": "照射中。"
+},
+{
+"path": "Infantry/Regular/14_Garrison/01_Kang.mp3",
+"voice": "Kang",
+"script": "进入建筑，建立防线。",
+"heard": "进入建筑，建立防线。"
+},
+{
+"path": "Infantry/Regular/14_Garrison/02_Kang.mp3",
+"voice": "Kang",
+"script": "占领房屋！",
+"heard": "占领房屋。"
+},
+{
+"path": "Infantry/Regular/14_Garrison/03_Kang.mp3",
+"voice": "Kang",
+"script": "进楼防守。",
+"heard": "进楼防守。"
+},
+{
+"path": "Infantry/Regular/15_Garrison_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "快进屋！",
+"heard": "快进屋。"
+},
+{
+"path": "Infantry/Regular/15_Garrison_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "进楼找掩护！",
+"heard": "进楼找掩护。"
+},
+{
+"path": "Infantry/Regular/15_Garrison_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "进建筑，还击！",
+"heard": "进建筑，还击。"
+},
+{
+"path": "Infantry/Regular/16_Board/01_Kang.mp3",
+"voice": "Kang",
+"script": "上车，出发！",
+"heard": "上车，出发。"
+},
+{
+"path": "Infantry/Regular/16_Board/02_Kang.mp3",
+"voice": "Kang",
+"script": "登车！",
+"heard": "登车。"
+},
+{
+"path": "Infantry/Regular/16_Board/03_Kang.mp3",
+"voice": "Kang",
+"script": "全班上车。",
+"heard": "全班上车。"
+},
+{
+"path": "Infantry/Regular/17_UnloadNow/01_Kang.mp3",
+"voice": "Kang",
+"script": "下车！",
+"heard": "下车。"
+},
+{
+"path": "Infantry/Regular/17_UnloadNow/02_Kang.mp3",
+"voice": "Kang",
+"script": "下车展开！",
+"heard": "下车展开。"
+},
+{
+"path": "Infantry/Regular/17_UnloadNow/03_Kang.mp3",
+"voice": "Kang",
+"script": "快下车！",
+"heard": "快下车。"
+},
+{
+"path": "Infantry/Regular/18_Cancel/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Infantry/Regular/18_Cancel/02_Kang.mp3",
+"voice": "Kang",
+"script": "明白，原地待命。",
+"heard": "明白，原地待命。"
+},
+{
+"path": "Infantry/Regular/18_Cancel/03_Kang.mp3",
+"voice": "Kang",
+"script": "是！",
+"heard": "是。"
+},
+{
+"path": "Infantry/Regular/19_Cancel_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "原地防守！",
+"heard": "原地防守。"
+},
+{
+"path": "Infantry/Regular/19_Cancel_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "收到，就地战斗！",
+"heard": "收到，就地战斗。"
+},
+{
+"path": "Infantry/Regular/19_Cancel_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "停下，守住！",
+"heard": "停下，守住。"
+},
+{
+"path": "Infantry/Regular/20_Impossible/01_Kang.mp3",
+"voice": "Kang",
+"script": "做不到，长官！",
+"heard": "做不到，长官。"
+},
+{
+"path": "Infantry/Regular/20_Impossible/02_Kang.mp3",
+"voice": "Kang",
+"script": "那里去不了。",
+"heard": "那里去不了"
+},
+{
+"path": "Infantry/Regular/20_Impossible/03_Kang.mp3",
+"voice": "Kang",
+"script": "无法执行！",
+"heard": "无法执行。"
+},
+{
+"path": "Infantry/Regular/21_Hurt/01_Kang.mp3",
+"voice": "Kang",
+"script": "我中弹了！",
+"heard": "我中弹了。"
+},
+{
+"path": "Infantry/Regular/21_Hurt/02_Kang.mp3",
+"voice": "Kang",
+"script": "有人受伤！",
+"heard": "有人受伤。"
+},
+{
+"path": "Infantry/Regular/21_Hurt/03_Kang.mp3",
+"voice": "Kang",
+"script": "卫生员！",
+"heard": "卫生员。"
+},
+{
+"path": "Infantry/Regular/22_Panicked/01_Kang.mp3",
+"voice": "Kang",
+"script": "被压制了，撤！",
+"heard": "被压制了，撤。"
+},
+{
+"path": "Infantry/Regular/22_Panicked/02_Kang.mp3",
+"voice": "Kang",
+"script": "火力太猛了！",
+"heard": "火流太猛了。"
+},
+{
+"path": "Infantry/Regular/22_Panicked/03_Kang.mp3",
+"voice": "Kang",
+"script": "顶不住了！",
+"heard": "顶不住了。"
+},
+{
+"path": "Infantry/Regular/23_AmmoOut/01_Kang.mp3",
+"voice": "Kang",
+"script": "没子弹了！",
+"heard": "没子弹了。"
+},
+{
+"path": "Infantry/Regular/23_AmmoOut/02_Kang.mp3",
+"voice": "Kang",
+"script": "请求弹药补给！",
+"heard": "请求弹药补给。"
+},
+{
+"path": "Infantry/Regular/23_AmmoOut/03_Kang.mp3",
+"voice": "Kang",
+"script": "弹药打光了！",
+"heard": "弹药打光了。"
+},
+{
+"path": "Infantry/Regular/24_EnemyDestroyed/01_Kang.mp3",
+"voice": "Kang",
+"script": "敌人被消灭了！",
+"heard": "敌人被消灭了。"
+},
+{
+"path": "Infantry/Regular/24_EnemyDestroyed/02_Kang.mp3",
+"voice": "Kang",
+"script": "打中了！",
+"heard": "打中了。"
+},
+{
+"path": "Infantry/Regular/24_EnemyDestroyed/03_Kang.mp3",
+"voice": "Kang",
+"script": "干掉一个！",
+"heard": "干掉一个。"
+},
+{
+"path": "Infantry/Regular/25_Death/01_Kang.mp3",
+"voice": "Kang",
+"script": "我被击中了！",
+"heard": "我被击中了。"
+},
+{
+"path": "Infantry/Regular/25_Death/02_Kang.mp3",
+"voice": "Kang",
+"script": "卫生员！卫生员！",
+"heard": "卫生员，卫生员。"
+},
+{
+"path": "Infantry/Regular/25_Death/03_Kang.mp3",
+"voice": "Kang",
+"script": "有人倒下了！",
+"heard": "有人倒下了。"
+},
+{
+"path": "Infantry/Regular/26_Spawn/01_Kang.mp3",
+"voice": "Kang",
+"script": "步兵班，到达！",
+"heard": "不平班到达。"
+},
+{
+"path": "Infantry/Regular/26_Spawn/02_Kang.mp3",
+"voice": "Kang",
+"script": "步兵已部署！",
+"heard": "布平已部署。"
+},
+{
+"path": "Infantry/Regular/26_Spawn/03_Kang.mp3",
+"voice": "Kang",
+"script": "解放军，报到！",
+"heard": "解放军报道。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/01_Brody.mp3",
+"voice": "Brody",
+"script": "为人民服务！随时准备牺牲！",
+"heard": "为人民服务，随时准备牺牲。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/02_Brody.mp3",
+"voice": "Brody",
+"script": "毛主席的好战士，到！",
+"heard": "毛主席的好战士，到！"
+},
+{
+"path": "Infantry/Conscript/01_Selection/03_Brody.mp3",
+"voice": "Brody",
+"script": "一不怕苦！二不怕死！",
+"heard": "一不怕苦，二不怕死。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/04_Brody.mp3",
+"voice": "Brody",
+"script": "听党指挥！能打胜仗！",
+"heard": "听党指挥，能打胜仗。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/05_Brody.mp3",
+"voice": "Brody",
+"script": "革命战士一块砖，哪里需要哪里搬！",
+"heard": "革命战士一块砖，哪里需要哪里搬。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/06_Brody.mp3",
+"voice": "Brody",
+"script": "人民子弟兵，誓死保卫祖国！",
+"heard": "人民子弟兵誓死保卫祖国。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/07_Brody.mp3",
+"voice": "Brody",
+"script": "同志！革命任务交给我们吧！",
+"heard": "同志，革命任务交给我们吧。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/08_Brody.mp3",
+"voice": "Brody",
+"script": "人民军队忠于党！",
+"heard": "人民军队忠于党。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/09_Brody.mp3",
+"voice": "Brody",
+"script": "我们是工农的子弟！",
+"heard": "我们是工农的子弟。"
+},
+{
+"path": "Infantry/Conscript/01_Selection/10_Brody.mp3",
+"voice": "Brody",
+"script": "红旗飘飘，战士就位！",
+"heard": "红旗飘飘，战士就位。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "人在阵地在！",
+"heard": "人在阵地在。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "敌人来了！拼了！",
+"heard": "敌人来了，拼了！"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，为了革命，顶住！",
+"heard": "同志们，为了革命顶住。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/04_Brody.mp3",
+"voice": "Brody",
+"script": "帝国主义的子弹打不倒我们！",
+"heard": "帝国主义的子弹打不倒我们。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/05_Brody.mp3",
+"voice": "Brody",
+"script": "革命战士，死战不退！",
+"heard": "革命战士死战不退。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/06_Brody.mp3",
+"voice": "Brody",
+"script": "敌人进攻了！同志们，迎上去！",
+"heard": "敌人进攻了，同志们，迎上去。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/07_Brody.mp3",
+"voice": "Brody",
+"script": "为了毛主席，坚决顶住！",
+"heard": "为了毛主席坚决顶住！"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/08_Brody.mp3",
+"voice": "Brody",
+"script": "跟他们拼刺刀！",
+"heard": "跟他们拼刺刀。"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/09_Brody.mp3",
+"voice": "Brody",
+"script": "一寸山河一寸血！",
+"heard": "一寸山河一寸血"
+},
+{
+"path": "Infantry/Conscript/02_Selection_CBT/10_Brody.mp3",
+"voice": "Brody",
+"script": "下命令吧！我们不怕死！",
+"heard": "下命令吧，我们不怕死。"
+},
+{
+"path": "Infantry/Conscript/03_Move/01_Brody.mp3",
+"voice": "Brody",
+"script": "前进！向着胜利前进！",
+"heard": "前进，向着胜利前进。"
+},
+{
+"path": "Infantry/Conscript/03_Move/02_Brody.mp3",
+"voice": "Brody",
+"script": "解放全人类！出发！",
+"heard": "解放全人类，出发！"
+},
+{
+"path": "Infantry/Conscript/03_Move/03_Brody.mp3",
+"voice": "Brody",
+"script": "党指向哪里，我们就打到哪里！",
+"heard": "党指向哪里，我们就打到哪里。"
+},
+{
+"path": "Infantry/Conscript/03_Move/04_Brody.mp3",
+"voice": "Brody",
+"script": "为人民服务，出发！",
+"heard": "为人民服务，出发！"
+},
+{
+"path": "Infantry/Conscript/03_Move/05_Brody.mp3",
+"voice": "Brody",
+"script": "一切行动听指挥！",
+"heard": "一切行动听指挥。"
+},
+{
+"path": "Infantry/Conscript/03_Move/06_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，向前进！",
+"heard": "同志们，向前进！"
+},
+{
+"path": "Infantry/Conscript/03_Move/07_Brody.mp3",
+"voice": "Brody",
+"script": "革命的队伍，前进！",
+"heard": "革命的队伍，前进！"
+},
+{
+"path": "Infantry/Conscript/03_Move/08_Brody.mp3",
+"voice": "Brody",
+"script": "毛主席指引我们前进！",
+"heard": "毛主席指引我们前进。"
+},
+{
+"path": "Infantry/Conscript/03_Move/09_Brody.mp3",
+"voice": "Brody",
+"script": "团结就是力量，出发！",
+"heard": "团结就是力量，出发！"
+},
+{
+"path": "Infantry/Conscript/03_Move/10_Brody.mp3",
+"voice": "Brody",
+"script": "向着红旗前进！",
+"heard": "向着红旗前进。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "不怕牺牲！冲上去！",
+"heard": "不怕牺牲，冲上去。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "踏着烈士的足迹前进！",
+"heard": "踏着烈士的足迹前进。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "子弹打不倒革命意志！",
+"heard": "子弹打不到革命意志。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/04_Brody.mp3",
+"voice": "Brody",
+"script": "革命不怕流血，冲啊！",
+"heard": "革命不怕流血，冲啊！"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/05_Brody.mp3",
+"voice": "Brody",
+"script": "一不怕苦，二不怕死！",
+"heard": "一不怕苦，二不怕死。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/06_Brody.mp3",
+"voice": "Brody",
+"script": "为了新中国，冲上去！",
+"heard": "为了新中国，冲上去！"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/07_Brody.mp3",
+"voice": "Brody",
+"script": "纸老虎吓不倒我们！",
+"heard": "纸老虎吓不倒我们。"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/08_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，跟着红旗冲！",
+"heard": "同志们，跟着红旗冲！"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/09_Brody.mp3",
+"voice": "Brody",
+"script": "人民战争，冲锋向前！",
+"heard": "人民战争冲锋向前！"
+},
+{
+"path": "Infantry/Conscript/04_Move_CBT/10_Brody.mp3",
+"voice": "Brody",
+"script": "宁死不退，冲上去！",
+"heard": "宁死不退，冲上去！"
+},
+{
+"path": "Infantry/Conscript/05_FastMove/01_Brody.mp3",
+"voice": "Brody",
+"script": "急行军！革命不等人！",
+"heard": "急行军，革命不等人。"
+},
+{
+"path": "Infantry/Conscript/05_FastMove/02_Brody.mp3",
+"voice": "Brody",
+"script": "快！再快！为了人民！",
+"heard": "快，再快，为了人民。"
+},
+{
+"path": "Infantry/Conscript/05_FastMove/03_Brody.mp3",
+"voice": "Brody",
+"script": "长征精神！跑起来！",
+"heard": "长征精神，跑起来！"
+},
+{
+"path": "Infantry/Conscript/06_ReverseMove/01_Brody.mp3",
+"voice": "Brody",
+"script": "敌进我退！这是战术！",
+"heard": "敌进我退，这是战术。"
+},
+{
+"path": "Infantry/Conscript/06_ReverseMove/02_Brody.mp3",
+"voice": "Brody",
+"script": "战略转移，同志们！",
+"heard": "战略转移。同志们"
+},
+{
+"path": "Infantry/Conscript/06_ReverseMove/03_Brody.mp3",
+"voice": "Brody",
+"script": "退一步，是为了进两步！",
+"heard": "退一步是为了进两步。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/01_Brody.mp3",
+"voice": "Brody",
+"script": "打倒美帝国主义！",
+"heard": "打倒美帝国主义！"
+},
+{
+"path": "Infantry/Conscript/07_Attack/02_Brody.mp3",
+"voice": "Brody",
+"script": "消灭一切害人虫！",
+"heard": "消灭一切害人虫。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/03_Brody.mp3",
+"voice": "Brody",
+"script": "全世界无产者，开火！",
+"heard": "全世界无残者，开火！"
+},
+{
+"path": "Infantry/Conscript/07_Attack/04_Brody.mp3",
+"voice": "Brody",
+"script": "打倒纸老虎！",
+"heard": "打倒纸老虎。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/05_Brody.mp3",
+"voice": "Brody",
+"script": "人民战争的汪洋大海淹没你们！",
+"heard": "人民战争的汪洋大海淹没你们！"
+},
+{
+"path": "Infantry/Conscript/07_Attack/06_Brody.mp3",
+"voice": "Brody",
+"script": "帝国主义必败！开火！",
+"heard": "帝国主义必败。开火！"
+},
+{
+"path": "Infantry/Conscript/07_Attack/07_Brody.mp3",
+"voice": "Brody",
+"script": "向反动派开火！",
+"heard": "向反动派开火。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/08_Brody.mp3",
+"voice": "Brody",
+"script": "保卫社会主义！打！",
+"heard": "保卫社会主义，打。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/09_Brody.mp3",
+"voice": "Brody",
+"script": "宜将剩勇追穷寇！",
+"heard": "宜将剩勇追穷寇。"
+},
+{
+"path": "Infantry/Conscript/07_Attack/10_Brody.mp3",
+"voice": "Brody",
+"script": "消灭一切敢于来犯之敌！",
+"heard": "消灭一切敢于来犯之敌。"
+},
+{
+"path": "Infantry/Conscript/08_FireAtPosition/01_Brody.mp3",
+"voice": "Brody",
+"script": "向反动派阵地开火！",
+"heard": "向反动派阵地开火。"
+},
+{
+"path": "Infantry/Conscript/08_FireAtPosition/02_Brody.mp3",
+"voice": "Brody",
+"script": "人民的火力，覆盖他们！",
+"heard": "人民的火力覆盖他们。"
+},
+{
+"path": "Infantry/Conscript/08_FireAtPosition/03_Brody.mp3",
+"voice": "Brody",
+"script": "全体射击！一个不留！",
+"heard": "全体射击，一个不留。"
+},
+{
+"path": "Infantry/Conscript/09_MoveAndAttack/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民战争，处处出击！",
+"heard": "人民战争处处出击。"
+},
+{
+"path": "Infantry/Conscript/09_MoveAndAttack/02_Brody.mp3",
+"voice": "Brody",
+"script": "搜索前进，痛打落水狗！",
+"heard": "搜索前进，痛打落水狗。"
+},
+{
+"path": "Infantry/Conscript/09_MoveAndAttack/03_Brody.mp3",
+"voice": "Brody",
+"script": "见到敌人就消灭！",
+"heard": "见到敌人就消灭。"
+},
+{
+"path": "Infantry/Conscript/10_Smoke/01_Brody.mp3",
+"voice": "Brody",
+"script": "放烟幕！准备冲锋！",
+"heard": "放烟幕，准备冲锋。"
+},
+{
+"path": "Infantry/Conscript/10_Smoke/02_Brody.mp3",
+"voice": "Brody",
+"script": "烟幕掩护，革命前进！",
+"heard": "烟幕掩护，革命前进！"
+},
+{
+"path": "Infantry/Conscript/10_Smoke/03_Brody.mp3",
+"voice": "Brody",
+"script": "放烟！人海冲锋！",
+"heard": "放烟，人海冲锋。"
+},
+{
+"path": "Infantry/Conscript/11_DefenceSmoke/01_Brody.mp3",
+"voice": "Brody",
+"script": "快放烟！保存革命力量！",
+"heard": "快放烟，保存革命力量。"
+},
+{
+"path": "Infantry/Conscript/11_DefenceSmoke/02_Brody.mp3",
+"voice": "Brody",
+"script": "烟幕！隐蔽！",
+"heard": "夜幕，隐蔽。"
+},
+{
+"path": "Infantry/Conscript/11_DefenceSmoke/03_Brody.mp3",
+"voice": "Brody",
+"script": "烟雾掩护，转移阵地！",
+"heard": "烟雾掩护，转移阵地。"
+},
+{
+"path": "Infantry/Conscript/12_Sprint/01_Brody.mp3",
+"voice": "Brody",
+"script": "冲啊！为了毛主席！",
+"heard": "冲啊！为了毛主席。"
+},
+{
+"path": "Infantry/Conscript/12_Sprint/02_Brody.mp3",
+"voice": "Brody",
+"script": "冲锋！解放台湾！",
+"heard": "冲锋，解放台湾。"
+},
+{
+"path": "Infantry/Conscript/12_Sprint/03_Brody.mp3",
+"voice": "Brody",
+"script": "冲啊，同志们！",
+"heard": "冲啊！同志们！"
+},
+{
+"path": "Infantry/Conscript/13_Laser/01_Brody.mp3",
+"voice": "Brody",
+"script": "为人民炮兵指示目标！",
+"heard": "为人民炮兵指示目标。"
+},
+{
+"path": "Infantry/Conscript/13_Laser/02_Brody.mp3",
+"voice": "Brody",
+"script": "照亮敌人！让炮火降临！",
+"heard": "照亮敌人，让炮火降临。"
+},
+{
+"path": "Infantry/Conscript/13_Laser/03_Brody.mp3",
+"voice": "Brody",
+"script": "目标已标明，同志！",
+"heard": "目标已标明，同志。"
+},
+{
+"path": "Infantry/Conscript/14_Garrison/01_Brody.mp3",
+"voice": "Brody",
+"script": "深挖洞，广积粮，不称霸！",
+"heard": "深挖洞，广积粮，不称霸。"
+},
+{
+"path": "Infantry/Conscript/14_Garrison/02_Brody.mp3",
+"voice": "Brody",
+"script": "这里就是我们的上甘岭！",
+"heard": "这里就是我们的上甘岭。"
+},
+{
+"path": "Infantry/Conscript/14_Garrison/03_Brody.mp3",
+"voice": "Brody",
+"script": "进入工事！寸土不让！",
+"heard": "进入攻势，寸土不让。"
+},
+{
+"path": "Infantry/Conscript/15_Garrison_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "死守阵地！誓与阵地共存亡！",
+"heard": "死守阵地，誓与阵地共存亡。"
+},
+{
+"path": "Infantry/Conscript/15_Garrison_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "进去！跟敌人拼了！",
+"heard": "进去跟敌人拼了。"
+},
+{
+"path": "Infantry/Conscript/15_Garrison_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "阵地就是生命！",
+"heard": "阵地就是生命。"
+},
+{
+"path": "Infantry/Conscript/16_Board/01_Brody.mp3",
+"voice": "Brody",
+"script": "上车！服从组织安排！",
+"heard": "上车，服从组织安排。"
+},
+{
+"path": "Infantry/Conscript/16_Board/02_Brody.mp3",
+"voice": "Brody",
+"script": "全体登车，奔赴前线！",
+"heard": "全台登车，奔赴前线。"
+},
+{
+"path": "Infantry/Conscript/16_Board/03_Brody.mp3",
+"voice": "Brody",
+"script": "哪里有敌人，就去哪里！",
+"heard": "哪里有敌人就去哪里。"
+},
+{
+"path": "Infantry/Conscript/17_UnloadNow/01_Brody.mp3",
+"voice": "Brody",
+"script": "下车！投入人民战争！",
+"heard": "下车，投入人民战争。"
+},
+{
+"path": "Infantry/Conscript/17_UnloadNow/02_Brody.mp3",
+"voice": "Brody",
+"script": "全体下车！冲锋！",
+"heard": "全体下车，冲锋。"
+},
+{
+"path": "Infantry/Conscript/17_UnloadNow/03_Brody.mp3",
+"voice": "Brody",
+"script": "下车！消灭侵略者！",
+"heard": "下车，消灭侵略者。"
+},
+{
+"path": "Infantry/Conscript/18_Cancel/01_Brody.mp3",
+"voice": "Brody",
+"script": "是！坚决服从命令！",
+"heard": "是，坚决服从命令。"
+},
+{
+"path": "Infantry/Conscript/18_Cancel/02_Brody.mp3",
+"voice": "Brody",
+"script": "组织说停，我们就停！",
+"heard": "组织说停我们就停。"
+},
+{
+"path": "Infantry/Conscript/18_Cancel/03_Brody.mp3",
+"voice": "Brody",
+"script": "服从命令是军人的天职！",
+"heard": "服从命令是军人的天职。"
+},
+{
+"path": "Infantry/Conscript/19_Cancel_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "原地坚守！绝不后退！",
+"heard": "原地坚守，绝不后退。"
+},
+{
+"path": "Infantry/Conscript/19_Cancel_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "是！就地战斗到底！",
+"heard": "是，就地战斗到底。"
+},
+{
+"path": "Infantry/Conscript/19_Cancel_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "停止前进！守住革命阵地！",
+"heard": "停止前进，守住革命阵地。"
+},
+{
+"path": "Infantry/Conscript/20_Impossible/01_Brody.mp3",
+"voice": "Brody",
+"script": "同志，这个任务完成不了！",
+"heard": "同志，这个任务完成不了。"
+},
+{
+"path": "Infantry/Conscript/20_Impossible/02_Brody.mp3",
+"voice": "Brody",
+"script": "过不去啊！请组织重新安排！",
+"heard": "过不去啊，请组织重新安排。"
+},
+{
+"path": "Infantry/Conscript/20_Impossible/03_Brody.mp3",
+"voice": "Brody",
+"script": "报告首长！做不到！",
+"heard": "报告首长，做不到。"
+},
+{
+"path": "Infantry/Conscript/21_Hurt/01_Brody.mp3",
+"voice": "Brody",
+"script": "轻伤不下火线！",
+"heard": "轻伤不下火线。"
+},
+{
+"path": "Infantry/Conscript/21_Hurt/02_Brody.mp3",
+"voice": "Brody",
+"script": "为人民流血，光荣！",
+"heard": "为人民流血，光荣！"
+},
+{
+"path": "Infantry/Conscript/21_Hurt/03_Brody.mp3",
+"voice": "Brody",
+"script": "这点伤算什么！继续战斗！",
+"heard": "这点伤算什么？继续战斗。"
+},
+{
+"path": "Infantry/Conscript/22_Panicked/01_Brody.mp3",
+"voice": "Brody",
+"script": "顶不住了！敌人的火力太猛了！",
+"heard": "顶不住了，敌人的火力太猛了。"
+},
+{
+"path": "Infantry/Conscript/22_Panicked/02_Brody.mp3",
+"voice": "Brody",
+"script": "政委！政委在哪里！",
+"heard": "政委，政委在哪里？"
+},
+{
+"path": "Infantry/Conscript/22_Panicked/03_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，保存力量，撤！",
+"heard": "同志们，保存力量，撤。"
+},
+{
+"path": "Infantry/Conscript/23_AmmoOut/01_Brody.mp3",
+"voice": "Brody",
+"script": "子弹打光了！上刺刀！",
+"heard": "子弹打光了，上刺刀。"
+},
+{
+"path": "Infantry/Conscript/23_AmmoOut/02_Brody.mp3",
+"voice": "Brody",
+"script": "没子弹了！用手榴弹！用拳头！",
+"heard": "没子弹了，用手榴弹，用拳头。"
+},
+{
+"path": "Infantry/Conscript/23_AmmoOut/03_Brody.mp3",
+"voice": "Brody",
+"script": "请求组织补充弹药！",
+"heard": "请求组织补充弹药。"
+},
+{
+"path": "Infantry/Conscript/24_EnemyDestroyed/01_Brody.mp3",
+"voice": "Brody",
+"script": "胜利属于人民！",
+"heard": "胜利属于人民。"
+},
+{
+"path": "Infantry/Conscript/24_EnemyDestroyed/02_Brody.mp3",
+"voice": "Brody",
+"script": "纸老虎被打倒了！",
+"heard": "纸老虎被打倒了。"
+},
+{
+"path": "Infantry/Conscript/24_EnemyDestroyed/03_Brody.mp3",
+"voice": "Brody",
+"script": "又消灭一个帝国主义走狗！",
+"heard": "又消灭一个帝国主义走狗。"
+},
+{
+"path": "Infantry/Conscript/25_Death/01_Brody.mp3",
+"voice": "Brody",
+"script": "为了新中国！",
+"heard": "为了新中国！"
+},
+{
+"path": "Infantry/Conscript/25_Death/02_Brody.mp3",
+"voice": "Brody",
+"script": "毛主席万岁！",
+"heard": "毛主席万岁！"
+},
+{
+"path": "Infantry/Conscript/25_Death/03_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，替我报仇！",
+"heard": "同志们，替我报仇！"
+},
+{
+"path": "Infantry/Conscript/26_Spawn/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民子弟兵，报到！",
+"heard": "人民子弟兵报道。"
+},
+{
+"path": "Infantry/Conscript/26_Spawn/02_Brody.mp3",
+"voice": "Brody",
+"script": "全团集合完毕！誓死保卫祖国！",
+"heard": "全团集合完毕，誓死保卫祖国。"
+},
+{
+"path": "Infantry/Conscript/26_Spawn/03_Brody.mp3",
+"voice": "Brody",
+"script": "千千万万革命战士，到！",
+"heard": "千千万万革命战士，到！"
+},
+{
+"path": "Tank/Regular/01_Selection/01_Philip.mp3",
+"voice": "Philip",
+"script": "坦克车组，准备战斗！",
+"heard": "坦克车组准备战斗。"
+},
+{
+"path": "Tank/Regular/01_Selection/02_Philip.mp3",
+"voice": "Philip",
+"script": "炮已上膛，说吧！",
+"heard": "炮已上膛，说吧。"
+},
+{
+"path": "Tank/Regular/01_Selection/03_Philip.mp3",
+"voice": "Philip",
+"script": "装甲连，听候命令。",
+"heard": "装甲连，听候命令。"
+},
+{
+"path": "Tank/Regular/01_Selection/04_Philip.mp3",
+"voice": "Philip",
+"script": "发动机热好了，去哪儿？",
+"heard": "发动机热好了，去哪儿？"
+},
+{
+"path": "Tank/Regular/01_Selection/05_Philip.mp3",
+"voice": "Philip",
+"script": "钢铁洪流，到！",
+"heard": "钢铁洪流到。"
+},
+{
+"path": "Tank/Regular/01_Selection/06_Philip.mp3",
+"voice": "Philip",
+"script": "装填完毕，等你开口。",
+"heard": "刷填完毕，等你开口。"
+},
+{
+"path": "Tank/Regular/01_Selection/07_Philip.mp3",
+"voice": "Philip",
+"script": "车长报告，全车就绪！",
+"heard": "车长报告，全车就绪。"
+},
+{
+"path": "Tank/Regular/01_Selection/08_Philip.mp3",
+"voice": "Philip",
+"script": "给我个目标。",
+"heard": "给我个目标。"
+},
+{
+"path": "Tank/Regular/01_Selection/09_Philip.mp3",
+"voice": "Philip",
+"script": "装甲兵，到！",
+"heard": "装甲兵到。"
+},
+{
+"path": "Tank/Regular/01_Selection/10_Philip.mp3",
+"voice": "Philip",
+"script": "履带转起来了，指示吧。",
+"heard": "履带转起来了，只是吧"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "正在交战，快说！",
+"heard": "正在交战，快说。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "装甲被打中了，还能打！",
+"heard": "装甲被打中了，还能打。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "敌人在开炮，指示！",
+"heard": "敌人在开炮，指示。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/04_Philip.mp3",
+"voice": "Philip",
+"script": "炮塔转过去了，说！",
+"heard": "炮塔转过去了，说。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/05_Philip.mp3",
+"voice": "Philip",
+"script": "交火中，打谁？",
+"heard": "交火中打谁？"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/06_Philip.mp3",
+"voice": "Philip",
+"script": "正面挨打，下命令！",
+"heard": "四面挨打，下命令。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/07_Philip.mp3",
+"voice": "Philip",
+"script": "让我冲上去！",
+"heard": "让我冲上去。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/08_Philip.mp3",
+"voice": "Philip",
+"script": "被锁定了，快！",
+"heard": "被锁定了，快。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/09_Philip.mp3",
+"voice": "Philip",
+"script": "炮弹不够用，说重点！",
+"heard": "炮弹不够用，说重点。"
+},
+{
+"path": "Tank/Regular/02_Selection_CBT/10_Philip.mp3",
+"voice": "Philip",
+"script": "敌坦克在附近！",
+"heard": "敌坦克在附近。"
+},
+{
+"path": "Tank/Regular/03_Move/01_Philip.mp3",
+"voice": "Philip",
+"script": "装甲前进！",
+"heard": "装甲前进。"
+},
+{
+"path": "Tank/Regular/03_Move/02_Philip.mp3",
+"voice": "Philip",
+"script": "全速开过去！",
+"heard": "全速开过去。"
+},
+{
+"path": "Tank/Regular/03_Move/03_Philip.mp3",
+"voice": "Philip",
+"script": "收到，履带前进。",
+"heard": "收到，履带前进。"
+},
+{
+"path": "Tank/Regular/03_Move/04_Philip.mp3",
+"voice": "Philip",
+"script": "装甲分队，开始机动。",
+"heard": "装甲分队开始机动。"
+},
+{
+"path": "Tank/Regular/03_Move/05_Philip.mp3",
+"voice": "Philip",
+"script": "收到，坦克前进。",
+"heard": "收到。坦克前进。"
+},
+{
+"path": "Tank/Regular/03_Move/06_Philip.mp3",
+"voice": "Philip",
+"script": "发动机全开，出发！",
+"heard": "发动机全开，出发。"
+},
+{
+"path": "Tank/Regular/03_Move/07_Philip.mp3",
+"voice": "Philip",
+"script": "明白，沿公路前进。",
+"heard": "明白，原公路前进。"
+},
+{
+"path": "Tank/Regular/03_Move/08_Philip.mp3",
+"voice": "Philip",
+"script": "车组注意，向前推进。",
+"heard": "车组注意，向前推进。"
+},
+{
+"path": "Tank/Regular/03_Move/09_Philip.mp3",
+"voice": "Philip",
+"script": "收到，转向目标方向。",
+"heard": "收到，转向目标方向。"
+},
+{
+"path": "Tank/Regular/03_Move/10_Philip.mp3",
+"voice": "Philip",
+"script": "履带碾过去，前进！",
+"heard": "履带碾过去，前进。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "冲过去，压碎他们！",
+"heard": "冲过去压碎他们。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "边打边走！",
+"heard": "边打边走。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "换位置，别停！",
+"heard": "换位置，别停。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/04_Philip.mp3",
+"voice": "Philip",
+"script": "倒车，换个射击位置！",
+"heard": "倒车，换个射击位置。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/05_Philip.mp3",
+"voice": "Philip",
+"script": "装甲正面对敌，前进！",
+"heard": "装甲正面对敌，前进。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/06_Philip.mp3",
+"voice": "Philip",
+"script": "别停车，冲过火力区！",
+"heard": "别停车，冲过火力区。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/07_Philip.mp3",
+"voice": "Philip",
+"script": "开过去，碾碎他们！",
+"heard": "开过去，碾碎他们。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/08_Philip.mp3",
+"voice": "Philip",
+"script": "放烟幕，转移阵地！",
+"heard": "放烟幕，转移阵地。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/09_Philip.mp3",
+"voice": "Philip",
+"script": "侧面有敌人，快转向！",
+"heard": "侧面有敌人，快转向。"
+},
+{
+"path": "Tank/Regular/04_Move_CBT/10_Philip.mp3",
+"voice": "Philip",
+"script": "全速冲锋，跟上我！",
+"heard": "全速冲锋，跟上我。"
+},
+{
+"path": "Tank/Regular/05_FastMove/01_Philip.mp3",
+"voice": "Philip",
+"script": "油门踩到底！",
+"heard": "油门踩到底。"
+},
+{
+"path": "Tank/Regular/05_FastMove/02_Philip.mp3",
+"voice": "Philip",
+"script": "全速前进！",
+"heard": "全速前进。"
+},
+{
+"path": "Tank/Regular/05_FastMove/03_Philip.mp3",
+"voice": "Philip",
+"script": "快，快，快！",
+"heard": "快快快。"
+},
+{
+"path": "Tank/Regular/06_ReverseMove/01_Philip.mp3",
+"voice": "Philip",
+"script": "倒车，正面朝敌！",
+"heard": "倒车，正面朝敌。"
+},
+{
+"path": "Tank/Regular/06_ReverseMove/02_Philip.mp3",
+"voice": "Philip",
+"script": "后退，保持装甲朝前！",
+"heard": "后退，保持装甲朝前。"
+},
+{
+"path": "Tank/Regular/06_ReverseMove/03_Philip.mp3",
+"voice": "Philip",
+"script": "倒车！",
+"heard": "倒车。"
+},
+{
+"path": "Tank/Regular/07_Attack/01_Philip.mp3",
+"voice": "Philip",
+"script": "穿甲弹，开炮！",
+"heard": "穿甲弹，开炮。"
+},
+{
+"path": "Tank/Regular/07_Attack/02_Philip.mp3",
+"voice": "Philip",
+"script": "锁定目标，轰掉它！",
+"heard": "锁定目标，轰掉它。"
+},
+{
+"path": "Tank/Regular/07_Attack/03_Philip.mp3",
+"voice": "Philip",
+"script": "主炮瞄准，放！",
+"heard": "主炮瞄准，放。"
+},
+{
+"path": "Tank/Regular/07_Attack/04_Philip.mp3",
+"voice": "Philip",
+"script": "把它炸成废铁！",
+"heard": "把它炸成废铁。"
+},
+{
+"path": "Tank/Regular/07_Attack/05_Philip.mp3",
+"voice": "Philip",
+"script": "目标确认，开火！",
+"heard": "目标确认，开火。"
+},
+{
+"path": "Tank/Regular/07_Attack/06_Philip.mp3",
+"voice": "Philip",
+"script": "一炮一个！",
+"heard": "一炮一个。"
+},
+{
+"path": "Tank/Regular/07_Attack/07_Philip.mp3",
+"voice": "Philip",
+"script": "打它的炮塔！",
+"heard": "打他的炮塔。"
+},
+{
+"path": "Tank/Regular/07_Attack/08_Philip.mp3",
+"voice": "Philip",
+"script": "看到了，打掉它。",
+"heard": "看到了，打掉他。"
+},
+{
+"path": "Tank/Regular/07_Attack/09_Philip.mp3",
+"voice": "Philip",
+"script": "装填，射击！",
+"heard": "邵田，射击。"
+},
+{
+"path": "Tank/Regular/07_Attack/10_Philip.mp3",
+"voice": "Philip",
+"script": "碾过去，开炮！",
+"heard": "碾过去，开炮！"
+},
+{
+"path": "Tank/Regular/08_FireAtWill/01_Philip.mp3",
+"voice": "Philip",
+"script": "自由开火，见什么打什么！",
+"heard": "自由开火，见什么打什么。"
+},
+{
+"path": "Tank/Regular/08_FireAtWill/02_Philip.mp3",
+"voice": "Philip",
+"script": "自主射击！",
+"heard": "自主射击。"
+},
+{
+"path": "Tank/Regular/08_FireAtWill/03_Philip.mp3",
+"voice": "Philip",
+"script": "放开打！",
+"heard": "放开打。"
+},
+{
+"path": "Tank/Regular/09_MoveAndAttack/01_Philip.mp3",
+"voice": "Philip",
+"script": "搜索前进，发现就打！",
+"heard": "搜索前进，发现就打。"
+},
+{
+"path": "Tank/Regular/09_MoveAndAttack/02_Philip.mp3",
+"voice": "Philip",
+"script": "去找他们的坦克！",
+"heard": "去找他们的坦克。"
+},
+{
+"path": "Tank/Regular/09_MoveAndAttack/03_Philip.mp3",
+"voice": "Philip",
+"script": "突击前进！",
+"heard": "突击前进。"
+},
+{
+"path": "Tank/Regular/10_Smoke/01_Philip.mp3",
+"voice": "Philip",
+"script": "发射烟幕弹！",
+"heard": "发射烟幕弹。"
+},
+{
+"path": "Tank/Regular/10_Smoke/02_Philip.mp3",
+"voice": "Philip",
+"script": "烟雾！遮蔽！",
+"heard": "烟雾遮蔽。"
+},
+{
+"path": "Tank/Regular/10_Smoke/03_Philip.mp3",
+"voice": "Philip",
+"script": "烟幕发射！",
+"heard": "烟幕发射。"
+},
+{
+"path": "Tank/Regular/11_Cancel/01_Philip.mp3",
+"voice": "Philip",
+"script": "收到，停车。",
+"heard": "收到，停车。"
+},
+{
+"path": "Tank/Regular/11_Cancel/02_Philip.mp3",
+"voice": "Philip",
+"script": "取消，原地待命。",
+"heard": "取消，原地待命。"
+},
+{
+"path": "Tank/Regular/11_Cancel/03_Philip.mp3",
+"voice": "Philip",
+"script": "停下了。",
+"heard": "停下了。"
+},
+{
+"path": "Tank/Regular/12_Cancel_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "原地战斗！",
+"heard": "原地战斗。"
+},
+{
+"path": "Tank/Regular/12_Cancel_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "停车，就地射击！",
+"heard": "停车，就地射击。"
+},
+{
+"path": "Tank/Regular/12_Cancel_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "守住！",
+"heard": "守住。"
+},
+{
+"path": "Tank/Regular/13_Impossible/01_Philip.mp3",
+"voice": "Philip",
+"script": "这破地方开不过去！",
+"heard": "这破地方开不过去。"
+},
+{
+"path": "Tank/Regular/13_Impossible/02_Philip.mp3",
+"voice": "Philip",
+"script": "做不到，长官！",
+"heard": "做不到，长官。"
+},
+{
+"path": "Tank/Regular/13_Impossible/03_Philip.mp3",
+"voice": "Philip",
+"script": "履带上不去！",
+"heard": "履带上不去"
+},
+{
+"path": "Tank/Regular/14_Hurt/01_Philip.mp3",
+"voice": "Philip",
+"script": "我们被击中了！",
+"heard": "我们被击中了。"
+},
+{
+"path": "Tank/Regular/14_Hurt/02_Philip.mp3",
+"voice": "Philip",
+"script": "装甲被击穿了！",
+"heard": "装甲被击穿了。"
+},
+{
+"path": "Tank/Regular/14_Hurt/03_Philip.mp3",
+"voice": "Philip",
+"script": "车组有人受伤！",
+"heard": "车组有人受伤。"
+},
+{
+"path": "Tank/Regular/15_Panicked/01_Philip.mp3",
+"voice": "Philip",
+"script": "着火了！灭火！",
+"heard": "着火了，灭火。"
+},
+{
+"path": "Tank/Regular/15_Panicked/02_Philip.mp3",
+"voice": "Philip",
+"script": "火力太猛，撤！",
+"heard": "火力太猛，撤！"
+},
+{
+"path": "Tank/Regular/15_Panicked/03_Philip.mp3",
+"voice": "Philip",
+"script": "炮塔卡住了！",
+"heard": "炮塔卡住了。"
+},
+{
+"path": "Tank/Regular/16_AmmoOut/01_Philip.mp3",
+"voice": "Philip",
+"script": "炮弹打光了！",
+"heard": "炮弹打光了。"
+},
+{
+"path": "Tank/Regular/16_AmmoOut/02_Philip.mp3",
+"voice": "Philip",
+"script": "弹舱空了，需要补给！",
+"heard": "碳仓空了，需要补给。"
+},
+{
+"path": "Tank/Regular/16_AmmoOut/03_Philip.mp3",
+"voice": "Philip",
+"script": "弹药耗尽！",
+"heard": "弹药耗尽。"
+},
+{
+"path": "Tank/Regular/17_EnemyDestroyed/01_Philip.mp3",
+"voice": "Philip",
+"script": "命中！敌车起火了！",
+"heard": "妹中，敌车起火了。"
+},
+{
+"path": "Tank/Regular/17_EnemyDestroyed/02_Philip.mp3",
+"voice": "Philip",
+"script": "干掉了，下一个！",
+"heard": "干掉了，下一个。"
+},
+{
+"path": "Tank/Regular/17_EnemyDestroyed/03_Philip.mp3",
+"voice": "Philip",
+"script": "炸飞了！",
+"heard": "炸飞了。"
+},
+{
+"path": "Tank/Regular/18_Spawn/01_Philip.mp3",
+"voice": "Philip",
+"script": "装甲部队，抵达战场！",
+"heard": "装甲部队抵达战场。"
+},
+{
+"path": "Tank/Regular/18_Spawn/02_Philip.mp3",
+"voice": "Philip",
+"script": "钢铁洪流，来了！",
+"heard": "钢铁洪流来了。"
+},
+{
+"path": "Tank/Regular/18_Spawn/03_Philip.mp3",
+"voice": "Philip",
+"script": "坦克连，报到。",
+"heard": "坦克连报道。"
+},
+{
+"path": "Tank/Conscript/01_Selection/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民坦克兵，到！",
+"heard": "人民坦克兵到。"
+},
+{
+"path": "Tank/Conscript/01_Selection/02_Brody.mp3",
+"voice": "Brody",
+"script": "钢铁战车，为革命前进！",
+"heard": "钢铁战车为革命前进。"
+},
+{
+"path": "Tank/Conscript/01_Selection/03_Brody.mp3",
+"voice": "Brody",
+"script": "毛主席的坦克，准备战斗！",
+"heard": "毛主席的坦克准备战斗。"
+},
+{
+"path": "Tank/Conscript/01_Selection/04_Brody.mp3",
+"voice": "Brody",
+"script": "五九式，开动了！",
+"heard": "五九式，开动了！"
+},
+{
+"path": "Tank/Conscript/01_Selection/05_Brody.mp3",
+"voice": "Brody",
+"script": "同志，指一个方向！",
+"heard": "同志，指一个方向。"
+},
+{
+"path": "Tank/Conscript/01_Selection/06_Brody.mp3",
+"voice": "Brody",
+"script": "坦克老，革命心不老！",
+"heard": "坦克老，革命心不老。"
+},
+{
+"path": "Tank/Conscript/01_Selection/07_Brody.mp3",
+"voice": "Brody",
+"script": "装甲铁拳，听从党指挥！",
+"heard": "装甲铁拳，听从党指挥。"
+},
+{
+"path": "Tank/Conscript/01_Selection/08_Brody.mp3",
+"voice": "Brody",
+"script": "开着坦克解放台湾！",
+"heard": "开着坦克解放台湾。"
+},
+{
+"path": "Tank/Conscript/01_Selection/09_Brody.mp3",
+"voice": "Brody",
+"script": "人民装甲兵，随时出发！",
+"heard": "人民装甲兵随时出发。"
+},
+{
+"path": "Tank/Conscript/01_Selection/10_Brody.mp3",
+"voice": "Brody",
+"script": "履带碾碎帝国主义！",
+"heard": "履带碾碎帝国主义。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "被打中了！但革命不停！",
+"heard": "被捣中了，但革命不停。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "跟他们拼了！",
+"heard": "跟他们拼了！"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "装甲薄，意志厚！",
+"heard": "装甲薄，意志厚。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/04_Brody.mp3",
+"voice": "Brody",
+"script": "敌人来了，快下命令！",
+"heard": "敌人来了，快下命令。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/05_Brody.mp3",
+"voice": "Brody",
+"script": "撞上去！",
+"heard": "撞上去。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/06_Brody.mp3",
+"voice": "Brody",
+"script": "车在人在！",
+"heard": "车在人在"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/07_Brody.mp3",
+"voice": "Brody",
+"script": "为了祖国，坚持！",
+"heard": "为了祖国坚持。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/08_Brody.mp3",
+"voice": "Brody",
+"script": "开炮！开炮！",
+"heard": "开炮开炮。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/09_Brody.mp3",
+"voice": "Brody",
+"script": "死也要死在冲锋路上！",
+"heard": "死也要死在冲锋路上。"
+},
+{
+"path": "Tank/Conscript/02_Selection_CBT/10_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，顶住！",
+"heard": "同志们，顶住！"
+},
+{
+"path": "Tank/Conscript/03_Move/01_Brody.mp3",
+"voice": "Brody",
+"script": "坦克前进！解放全人类！",
+"heard": "坦克前进，解放全人类。"
+},
+{
+"path": "Tank/Conscript/03_Move/02_Brody.mp3",
+"voice": "Brody",
+"script": "向前！向前！",
+"heard": "向前，向前。"
+},
+{
+"path": "Tank/Conscript/03_Move/03_Brody.mp3",
+"voice": "Brody",
+"script": "开动！为了人民！",
+"heard": "开动！为了人民。"
+},
+{
+"path": "Tank/Conscript/03_Move/04_Brody.mp3",
+"voice": "Brody",
+"script": "钢铁洪流，前进！",
+"heard": "钢铁洪流，前进！"
+},
+{
+"path": "Tank/Conscript/03_Move/05_Brody.mp3",
+"voice": "Brody",
+"script": "人民的坦克，开动！",
+"heard": "人民的坦克开动。"
+},
+{
+"path": "Tank/Conscript/03_Move/06_Brody.mp3",
+"voice": "Brody",
+"script": "开往前线，保卫祖国！",
+"heard": "开往前线，保卫祖国！"
+},
+{
+"path": "Tank/Conscript/03_Move/07_Brody.mp3",
+"voice": "Brody",
+"script": "坦克兵同志们，出发！",
+"heard": "坦克兵同志们，出发！"
+},
+{
+"path": "Tank/Conscript/03_Move/08_Brody.mp3",
+"voice": "Brody",
+"script": "向前开，革命到底！",
+"heard": "向前开，革命到底。"
+},
+{
+"path": "Tank/Conscript/03_Move/09_Brody.mp3",
+"voice": "Brody",
+"script": "轰隆隆，前进前进！",
+"heard": "轰隆隆，前进前进。"
+},
+{
+"path": "Tank/Conscript/03_Move/10_Brody.mp3",
+"voice": "Brody",
+"script": "为了人民，全速前进！",
+"heard": "为了人民，全速前进！"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "冲上去碾碎他们！",
+"heard": "冲上去碾碎他们。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "边打边冲！",
+"heard": "边打边冲。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "不怕牺牲，冲！",
+"heard": "不怕牺牲，冲！"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/04_Brody.mp3",
+"voice": "Brody",
+"script": "撞上去，和敌人拼了！",
+"heard": "撞上去，和敌人拼了。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/05_Brody.mp3",
+"voice": "Brody",
+"script": "开过去，压倒一切敌人！",
+"heard": "开过去，压倒一切敌人。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/06_Brody.mp3",
+"voice": "Brody",
+"script": "坦克不停，革命不止！",
+"heard": "坦克不停，革命不止。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/07_Brody.mp3",
+"voice": "Brody",
+"script": "顶着炮火冲上去！",
+"heard": "顶着炮火冲上去。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/08_Brody.mp3",
+"voice": "Brody",
+"script": "全车同志，冲锋！",
+"heard": "全车同志，冲锋！"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/09_Brody.mp3",
+"voice": "Brody",
+"script": "宁可战死，绝不后退！",
+"heard": "宁可战死，决不后退。"
+},
+{
+"path": "Tank/Conscript/04_Move_CBT/10_Brody.mp3",
+"voice": "Brody",
+"script": "碾碎帝国主义！",
+"heard": "碾碎帝国主义。"
+},
+{
+"path": "Tank/Conscript/07_Attack/01_Brody.mp3",
+"voice": "Brody",
+"script": "一百毫米，打倒帝国主义！",
+"heard": "一百毫米，打倒帝国主义。"
+},
+{
+"path": "Tank/Conscript/07_Attack/02_Brody.mp3",
+"voice": "Brody",
+"script": "开炮！消灭侵略者！",
+"heard": "开炮，消灭侵略者。"
+},
+{
+"path": "Tank/Conscript/07_Attack/03_Brody.mp3",
+"voice": "Brody",
+"script": "打烂那个纸老虎！",
+"heard": "打烂那个纸老虎。"
+},
+{
+"path": "Tank/Conscript/07_Attack/04_Brody.mp3",
+"voice": "Brody",
+"script": "为人民开炮！",
+"heard": "为人民开炮。"
+},
+{
+"path": "Tank/Conscript/07_Attack/05_Brody.mp3",
+"voice": "Brody",
+"script": "瞄准反动派，放！",
+"heard": "瞄准反动派，放！"
+},
+{
+"path": "Tank/Conscript/07_Attack/06_Brody.mp3",
+"voice": "Brody",
+"script": "开炮！一个不留！",
+"heard": "开炮，一个不留。"
+},
+{
+"path": "Tank/Conscript/07_Attack/07_Brody.mp3",
+"voice": "Brody",
+"script": "保卫祖国，开火！",
+"heard": "保卫祖国，开火！"
+},
+{
+"path": "Tank/Conscript/07_Attack/08_Brody.mp3",
+"voice": "Brody",
+"script": "让他们尝尝人民的炮弹！",
+"heard": "让他们尝尝人民的炮弹。"
+},
+{
+"path": "Tank/Conscript/07_Attack/09_Brody.mp3",
+"voice": "Brody",
+"script": "打！打！打！",
+"heard": "打打打。"
+},
+{
+"path": "Tank/Conscript/07_Attack/10_Brody.mp3",
+"voice": "Brody",
+"script": "人民战争，炮火连天！",
+"heard": "人民战争，炮火连天。"
+},
+{
+"path": "Tank/Conscript/13_Impossible/01_Brody.mp3",
+"voice": "Brody",
+"script": "这辆老坦克开不过去！",
+"heard": "这辆老坦克开不过去。"
+},
+{
+"path": "Tank/Conscript/13_Impossible/02_Brody.mp3",
+"voice": "Brody",
+"script": "报告首长，做不到！",
+"heard": "报告首长，做不到。"
+},
+{
+"path": "Tank/Conscript/14_Hurt/01_Brody.mp3",
+"voice": "Brody",
+"script": "被击中了！继续前进！",
+"heard": "被击中了，继续前进。"
+},
+{
+"path": "Tank/Conscript/14_Hurt/02_Brody.mp3",
+"voice": "Brody",
+"script": "装甲破了，意志没破！",
+"heard": "庄家破了，一直没破。"
+},
+{
+"path": "Tank/Conscript/15_Panicked/01_Brody.mp3",
+"voice": "Brody",
+"script": "着火了！弃车！",
+"heard": "着火了，汽车。"
+},
+{
+"path": "Tank/Conscript/15_Panicked/02_Brody.mp3",
+"voice": "Brody",
+"script": "顶不住了！政委！",
+"heard": "顶不住了，政委。"
+},
+{
+"path": "Tank/Conscript/16_AmmoOut/01_Brody.mp3",
+"voice": "Brody",
+"script": "炮弹打光了！撞过去！",
+"heard": "炮弹打光了，撞过去。"
+},
+{
+"path": "Tank/Conscript/16_AmmoOut/02_Brody.mp3",
+"voice": "Brody",
+"script": "请组织补充炮弹！",
+"heard": "请组织补充炮弹。"
+},
+{
+"path": "Tank/Conscript/17_EnemyDestroyed/01_Brody.mp3",
+"voice": "Brody",
+"script": "纸老虎烧起来了！",
+"heard": "纸老虎烧起来了。"
+},
+{
+"path": "Tank/Conscript/17_EnemyDestroyed/02_Brody.mp3",
+"voice": "Brody",
+"script": "胜利属于人民！",
+"heard": "胜利属于人民。"
+},
+{
+"path": "Tank/Conscript/18_Spawn/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民装甲部队，报到！",
+"heard": "人民装甲部队报到。"
+},
+{
+"path": "Tank/Conscript/18_Spawn/02_Brody.mp3",
+"voice": "Brody",
+"script": "钢铁长城，来了！",
+"heard": "钢铁长城来了！"
+},
+{
+"path": "Vehicle/Regular/01_Selection/01_Kang.mp3",
+"voice": "Kang",
+"script": "步战车，准备出发。",
+"heard": "步战车准备出发。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/02_Kang.mp3",
+"voice": "Kang",
+"script": "车组就位，请指示。",
+"heard": "车组就位，请指示。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/03_Kang.mp3",
+"voice": "Kang",
+"script": "装甲车，在！",
+"heard": "装甲车在。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/04_Kang.mp3",
+"voice": "Kang",
+"script": "发动机启动，等你命令。",
+"heard": "发动机启动，等你命令。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/05_Kang.mp3",
+"voice": "Kang",
+"script": "机步分队，随时可以走。",
+"heard": "机部分队随时可以走。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/06_Kang.mp3",
+"voice": "Kang",
+"script": "车辆就绪。",
+"heard": "车辆就绪。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/07_Kang.mp3",
+"voice": "Kang",
+"script": "去哪里，长官？",
+"heard": "去哪里？长官。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/08_Kang.mp3",
+"voice": "Kang",
+"script": "二号车，听候指挥。",
+"heard": "一号车，听候指挥。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/09_Kang.mp3",
+"voice": "Kang",
+"script": "车组报告，一切正常。",
+"heard": "车组报告，一切正常。"
+},
+{
+"path": "Vehicle/Regular/01_Selection/10_Kang.mp3",
+"voice": "Kang",
+"script": "机械化部队，到！",
+"heard": "机械化部队，到。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "正在交火！",
+"heard": "正在交火。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "车体中弹，还能动！",
+"heard": "车体重弹，还能动。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "交战中，快说！",
+"heard": "交战中，快说。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "敌人在打我们！",
+"heard": "敌人在打我们。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "机炮开火中，指示！",
+"heard": "机炮开火中。指示。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "被压制了，下命令！",
+"heard": "被压制了，下命令。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "装甲还撑得住，说！",
+"heard": "撞脚还撑得住，说！"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "反坦克导弹！",
+"heard": "反坦克导弹。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "敌人很近！",
+"heard": "敌人很近。"
+},
+{
+"path": "Vehicle/Regular/02_Selection_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "交火中，等你指示！",
+"heard": "交火中，等你指示。"
+},
+{
+"path": "Vehicle/Regular/03_Move/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，前进。",
+"heard": "收到，前进。"
+},
+{
+"path": "Vehicle/Regular/03_Move/02_Kang.mp3",
+"voice": "Kang",
+"script": "出发！",
+"heard": "出发。"
+},
+{
+"path": "Vehicle/Regular/03_Move/03_Kang.mp3",
+"voice": "Kang",
+"script": "明白，开过去。",
+"heard": "明白，开过去。"
+},
+{
+"path": "Vehicle/Regular/03_Move/04_Kang.mp3",
+"voice": "Kang",
+"script": "收到，车辆出发。",
+"heard": "收到，车辆出发。"
+},
+{
+"path": "Vehicle/Regular/03_Move/05_Kang.mp3",
+"voice": "Kang",
+"script": "明白，沿公路前进。",
+"heard": "明白，原公路前进。"
+},
+{
+"path": "Vehicle/Regular/03_Move/06_Kang.mp3",
+"voice": "Kang",
+"script": "发动车辆，出发！",
+"heard": "发动车辆，出发。"
+},
+{
+"path": "Vehicle/Regular/03_Move/07_Kang.mp3",
+"voice": "Kang",
+"script": "收到，正在转移。",
+"heard": "收到，正在转移。"
+},
+{
+"path": "Vehicle/Regular/03_Move/08_Kang.mp3",
+"voice": "Kang",
+"script": "明白，向目标点开进。",
+"heard": "明白，向目标点开进。"
+},
+{
+"path": "Vehicle/Regular/03_Move/09_Kang.mp3",
+"voice": "Kang",
+"script": "收到，马上过去。",
+"heard": "收到，马上过去。"
+},
+{
+"path": "Vehicle/Regular/03_Move/10_Kang.mp3",
+"voice": "Kang",
+"script": "全速前进，跟上队伍！",
+"heard": "全速前进，跟上队伍。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "快，换位置！",
+"heard": "快，换位置。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "边打边走！",
+"heard": "边打边走。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "别停，冲过去！",
+"heard": "别停，冲过去。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "倒车，离开火力区！",
+"heard": "倒车离开火力区。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "加速，冲过去！",
+"heard": "加速，冲过去。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "找掩护，快转移！",
+"heard": "找掩护，快转移。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "别停在开阔地！",
+"heard": "别停在开阔地。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "放烟幕，换位置！",
+"heard": "放烟幕，换位置。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "边打边撤，快！",
+"heard": "边打边撤，快。"
+},
+{
+"path": "Vehicle/Regular/04_Move_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "快开走，敌人瞄准我们了！",
+"heard": "快开走，敌人瞄准我们了。"
+},
+{
+"path": "Vehicle/Regular/05_FastMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "全速前进！",
+"heard": "全速前进。"
+},
+{
+"path": "Vehicle/Regular/05_FastMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "加油门！",
+"heard": "加油门。"
+},
+{
+"path": "Vehicle/Regular/05_FastMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "快速机动！",
+"heard": "快速机动。"
+},
+{
+"path": "Vehicle/Regular/06_ReverseMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "倒车！",
+"heard": "倒车。"
+},
+{
+"path": "Vehicle/Regular/06_ReverseMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "后退，正面朝敌！",
+"heard": "后退，正面朝敌。"
+},
+{
+"path": "Vehicle/Regular/06_ReverseMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "向后撤。",
+"heard": "向后撤。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/01_Kang.mp3",
+"voice": "Kang",
+"script": "机炮开火！",
+"heard": "机炮开火。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/02_Kang.mp3",
+"voice": "Kang",
+"script": "目标确认，打！",
+"heard": "目标确认，打。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/03_Kang.mp3",
+"voice": "Kang",
+"script": "锁定目标，射击！",
+"heard": "锁定目标，射击。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/04_Kang.mp3",
+"voice": "Kang",
+"script": "压制他们！",
+"heard": "压制他们。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/05_Kang.mp3",
+"voice": "Kang",
+"script": "交战！",
+"heard": "交战。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/06_Kang.mp3",
+"voice": "Kang",
+"script": "导弹，发射！",
+"heard": "导弹发射。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/07_Kang.mp3",
+"voice": "Kang",
+"script": "打那辆车！",
+"heard": "打那辆车"
+},
+{
+"path": "Vehicle/Regular/07_Attack/08_Kang.mp3",
+"voice": "Kang",
+"script": "开火，消灭他们。",
+"heard": "开火，消灭他们。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/09_Kang.mp3",
+"voice": "Kang",
+"script": "全火力输出！",
+"heard": "全火力输出。"
+},
+{
+"path": "Vehicle/Regular/07_Attack/10_Kang.mp3",
+"voice": "Kang",
+"script": "瞄准，开火！",
+"heard": "瞄准，开火。"
+},
+{
+"path": "Vehicle/Regular/08_FireAtWill/01_Kang.mp3",
+"voice": "Kang",
+"script": "自由射击！",
+"heard": "自由射击。"
+},
+{
+"path": "Vehicle/Regular/08_FireAtWill/02_Kang.mp3",
+"voice": "Kang",
+"script": "自主开火。",
+"heard": "自主开火。"
+},
+{
+"path": "Vehicle/Regular/08_FireAtWill/03_Kang.mp3",
+"voice": "Kang",
+"script": "见到就打！",
+"heard": "见到就打"
+},
+{
+"path": "Vehicle/Regular/09_MoveAndAttack/01_Kang.mp3",
+"voice": "Kang",
+"script": "搜索前进！",
+"heard": "搜索前进。"
+},
+{
+"path": "Vehicle/Regular/09_MoveAndAttack/02_Kang.mp3",
+"voice": "Kang",
+"script": "边走边找目标！",
+"heard": "边走边找目标。"
+},
+{
+"path": "Vehicle/Regular/09_MoveAndAttack/03_Kang.mp3",
+"voice": "Kang",
+"script": "发现即打！",
+"heard": "发现击打。"
+},
+{
+"path": "Vehicle/Regular/10_Smoke/01_Kang.mp3",
+"voice": "Kang",
+"script": "发射烟幕！",
+"heard": "发射烟幕。"
+},
+{
+"path": "Vehicle/Regular/10_Smoke/02_Kang.mp3",
+"voice": "Kang",
+"script": "烟雾遮蔽！",
+"heard": "烟雾遮蔽。"
+},
+{
+"path": "Vehicle/Regular/10_Smoke/03_Kang.mp3",
+"voice": "Kang",
+"script": "放烟！",
+"heard": "放烟。"
+},
+{
+"path": "Vehicle/Regular/11_LoadInfantry/01_Kang.mp3",
+"voice": "Kang",
+"script": "步兵上车！",
+"heard": "不凭上车。"
+},
+{
+"path": "Vehicle/Regular/11_LoadInfantry/02_Kang.mp3",
+"voice": "Kang",
+"script": "后舱打开，上来！",
+"heard": "后舱打开，上来。"
+},
+{
+"path": "Vehicle/Regular/11_LoadInfantry/03_Kang.mp3",
+"voice": "Kang",
+"script": "搭载步兵。",
+"heard": "大载步兵。"
+},
+{
+"path": "Vehicle/Regular/12_UnloadNow/01_Kang.mp3",
+"voice": "Kang",
+"script": "步兵下车！",
+"heard": "不拼下车。"
+},
+{
+"path": "Vehicle/Regular/12_UnloadNow/02_Kang.mp3",
+"voice": "Kang",
+"script": "放下步兵！",
+"heard": "放下步兵。"
+},
+{
+"path": "Vehicle/Regular/12_UnloadNow/03_Kang.mp3",
+"voice": "Kang",
+"script": "下车，快！",
+"heard": "下车，快！"
+},
+{
+"path": "Vehicle/Regular/13_Laser/01_Kang.mp3",
+"voice": "Kang",
+"script": "激光照射目标！",
+"heard": "激光照射目标"
+},
+{
+"path": "Vehicle/Regular/13_Laser/02_Kang.mp3",
+"voice": "Kang",
+"script": "目标已指示。",
+"heard": "目标已指示。"
+},
+{
+"path": "Vehicle/Regular/13_Laser/03_Kang.mp3",
+"voice": "Kang",
+"script": "照射中。",
+"heard": "射射中。"
+},
+{
+"path": "Vehicle/Regular/14_Radar_ON/01_Kang.mp3",
+"voice": "Kang",
+"script": "雷达开机。",
+"heard": "雷达开机。"
+},
+{
+"path": "Vehicle/Regular/14_Radar_ON/02_Kang.mp3",
+"voice": "Kang",
+"script": "雷达已开，搜索空域。",
+"heard": "雷达已开，搜索空域。"
+},
+{
+"path": "Vehicle/Regular/14_Radar_ON/03_Kang.mp3",
+"voice": "Kang",
+"script": "开始搜索。",
+"heard": "开始搜索。"
+},
+{
+"path": "Vehicle/Regular/15_Radar_OFF/01_Kang.mp3",
+"voice": "Kang",
+"script": "雷达关机。",
+"heard": "雷达关机。"
+},
+{
+"path": "Vehicle/Regular/15_Radar_OFF/02_Kang.mp3",
+"voice": "Kang",
+"script": "静默。",
+"heard": "寂寞。"
+},
+{
+"path": "Vehicle/Regular/15_Radar_OFF/03_Kang.mp3",
+"voice": "Kang",
+"script": "关闭雷达，隐蔽。",
+"heard": "关闭雷达，隐蔽。"
+},
+{
+"path": "Vehicle/Regular/16_Cancel/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Vehicle/Regular/16_Cancel/02_Kang.mp3",
+"voice": "Kang",
+"script": "停车待命。",
+"heard": "停车待命。"
+},
+{
+"path": "Vehicle/Regular/16_Cancel/03_Kang.mp3",
+"voice": "Kang",
+"script": "是！",
+"heard": "是。"
+},
+{
+"path": "Vehicle/Regular/17_Cancel_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "原地战斗！",
+"heard": "原地战斗。"
+},
+{
+"path": "Vehicle/Regular/17_Cancel_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "停车还击！",
+"heard": "停车还机。"
+},
+{
+"path": "Vehicle/Regular/17_Cancel_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "守住！",
+"heard": "守住。"
+},
+{
+"path": "Vehicle/Regular/18_Impossible/01_Kang.mp3",
+"voice": "Kang",
+"script": "开不过去！",
+"heard": "开不过去。"
+},
+{
+"path": "Vehicle/Regular/18_Impossible/02_Kang.mp3",
+"voice": "Kang",
+"script": "做不到，长官！",
+"heard": "做不到，长官。"
+},
+{
+"path": "Vehicle/Regular/18_Impossible/03_Kang.mp3",
+"voice": "Kang",
+"script": "路线不通。",
+"heard": "路线不通。"
+},
+{
+"path": "Vehicle/Regular/19_Hurt/01_Kang.mp3",
+"voice": "Kang",
+"script": "我们被击中了！",
+"heard": "我们被击中了。"
+},
+{
+"path": "Vehicle/Regular/19_Hurt/02_Kang.mp3",
+"voice": "Kang",
+"script": "车体受损！",
+"heard": "车体受损。"
+},
+{
+"path": "Vehicle/Regular/19_Hurt/03_Kang.mp3",
+"voice": "Kang",
+"script": "有人受伤！",
+"heard": "有人受伤。"
+},
+{
+"path": "Vehicle/Regular/20_Panicked/01_Kang.mp3",
+"voice": "Kang",
+"script": "火力太猛，撤！",
+"heard": "火流太猛，撤。"
+},
+{
+"path": "Vehicle/Regular/20_Panicked/02_Kang.mp3",
+"voice": "Kang",
+"script": "着火了！",
+"heard": "着火了。"
+},
+{
+"path": "Vehicle/Regular/20_Panicked/03_Kang.mp3",
+"voice": "Kang",
+"script": "顶不住了！",
+"heard": "顶不住了。"
+},
+{
+"path": "Vehicle/Regular/21_AmmoOut/01_Kang.mp3",
+"voice": "Kang",
+"script": "弹药打光了！",
+"heard": "弹药打光了。"
+},
+{
+"path": "Vehicle/Regular/21_AmmoOut/02_Kang.mp3",
+"voice": "Kang",
+"script": "请求补给！",
+"heard": "请求补给。"
+},
+{
+"path": "Vehicle/Regular/21_AmmoOut/03_Kang.mp3",
+"voice": "Kang",
+"script": "弹舱空了！",
+"heard": "弹仓空了。"
+},
+{
+"path": "Vehicle/Regular/22_EnemyDestroyed/01_Kang.mp3",
+"voice": "Kang",
+"script": "命中，目标摧毁！",
+"heard": "命中，目标摧毁。"
+},
+{
+"path": "Vehicle/Regular/22_EnemyDestroyed/02_Kang.mp3",
+"voice": "Kang",
+"script": "干掉了！",
+"heard": "干掉了。"
+},
+{
+"path": "Vehicle/Regular/22_EnemyDestroyed/03_Kang.mp3",
+"voice": "Kang",
+"script": "敌车完蛋了！",
+"heard": "敌车完蛋了。"
+},
+{
+"path": "Vehicle/Regular/23_Spawn/01_Kang.mp3",
+"voice": "Kang",
+"script": "机械化部队，抵达！",
+"heard": "机械化部队抵达。"
+},
+{
+"path": "Vehicle/Regular/23_Spawn/02_Kang.mp3",
+"voice": "Kang",
+"script": "车队到达战区。",
+"heard": "撤队到达战区。"
+},
+{
+"path": "Vehicle/Regular/23_Spawn/03_Kang.mp3",
+"voice": "Kang",
+"script": "装甲车组，报到！",
+"heard": "装甲车组报道。"
+},
+{
+"path": "Artillery/Regular/01_Selection/01_Kang.mp3",
+"voice": "Kang",
+"script": "炮兵连，准备射击。",
+"heard": "炮兵连，准备射击。"
+},
+{
+"path": "Artillery/Regular/01_Selection/02_Kang.mp3",
+"voice": "Kang",
+"script": "炮兵就位，请给坐标。",
+"heard": "炮兵就位，请给坐标。"
+},
+{
+"path": "Artillery/Regular/01_Selection/03_Kang.mp3",
+"voice": "Kang",
+"script": "火力单元，待命。",
+"heard": "火六单元，待命。"
+},
+{
+"path": "Artillery/Regular/01_Selection/04_Kang.mp3",
+"voice": "Kang",
+"script": "炮已展开，等你坐标。",
+"heard": "炮已展开，等你坐标。"
+},
+{
+"path": "Artillery/Regular/01_Selection/05_Kang.mp3",
+"voice": "Kang",
+"script": "炮兵，到！",
+"heard": "炮兵，到。"
+},
+{
+"path": "Artillery/Regular/01_Selection/06_Kang.mp3",
+"voice": "Kang",
+"script": "射击诸元准备好了。",
+"heard": "射击珠元准备好了"
+},
+{
+"path": "Artillery/Regular/01_Selection/07_Kang.mp3",
+"voice": "Kang",
+"script": "随时可以开炮。",
+"heard": "随时可以开炮。"
+},
+{
+"path": "Artillery/Regular/01_Selection/08_Kang.mp3",
+"voice": "Kang",
+"script": "火箭炮营，听候命令。",
+"heard": "火箭炮营听候命令。"
+},
+{
+"path": "Artillery/Regular/01_Selection/09_Kang.mp3",
+"voice": "Kang",
+"script": "导弹营，发射准备完毕。",
+"heard": "导弹营发射准备完毕。"
+},
+{
+"path": "Artillery/Regular/01_Selection/10_Kang.mp3",
+"voice": "Kang",
+"script": "给我目标，我给你火力。",
+"heard": "给我目标，我给你火力。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "我们被炮击了！",
+"heard": "我们被炮击了。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "阵地暴露了，快说！",
+"heard": "阵地暴露了，快说。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "正在射击中，讲！",
+"heard": "正在射击中。讲。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "敌人在找我们！",
+"heard": "敌人在找我们。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "快给坐标，我们要转移！",
+"heard": "快给坐标，我们要转移。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "交火中，指示！",
+"heard": "交火中，只是"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "炮弹在头上飞！",
+"heard": "炮弹在头上飞。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "快，打完就走！",
+"heard": "快，打完就走。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "被发现了！",
+"heard": "被发现了。"
+},
+{
+"path": "Artillery/Regular/02_Selection_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "还能打，坐标！",
+"heard": "还能打，坐标。"
+},
+{
+"path": "Artillery/Regular/03_Move/01_Kang.mp3",
+"voice": "Kang",
+"script": "收拢，转移阵地。",
+"heard": "收拢，转移阵地。"
+},
+{
+"path": "Artillery/Regular/03_Move/02_Kang.mp3",
+"voice": "Kang",
+"script": "明白，移动。",
+"heard": "明白，移动。"
+},
+{
+"path": "Artillery/Regular/03_Move/03_Kang.mp3",
+"voice": "Kang",
+"script": "出发！",
+"heard": "出发。"
+},
+{
+"path": "Artillery/Regular/03_Move/04_Kang.mp3",
+"voice": "Kang",
+"script": "收到，炮车出发。",
+"heard": "收到，炮车出发。"
+},
+{
+"path": "Artillery/Regular/03_Move/05_Kang.mp3",
+"voice": "Kang",
+"script": "明白，转移到新阵地。",
+"heard": "明白，转移到新阵地。"
+},
+{
+"path": "Artillery/Regular/03_Move/06_Kang.mp3",
+"voice": "Kang",
+"script": "收炮，准备机动。",
+"heard": "收炮，准备机动。"
+},
+{
+"path": "Artillery/Regular/03_Move/07_Kang.mp3",
+"voice": "Kang",
+"script": "收到，向指定地点转移。",
+"heard": "收到，向指定地点转移。"
+},
+{
+"path": "Artillery/Regular/03_Move/08_Kang.mp3",
+"voice": "Kang",
+"script": "明白，炮兵阵地前移。",
+"heard": "明白。炮兵阵地前移。"
+},
+{
+"path": "Artillery/Regular/03_Move/09_Kang.mp3",
+"voice": "Kang",
+"script": "全炮连，出发！",
+"heard": "全炮连，出发！"
+},
+{
+"path": "Artillery/Regular/03_Move/10_Kang.mp3",
+"voice": "Kang",
+"script": "收到，换个位置继续打。",
+"heard": "收到，换个位置继续打。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "快撤，换阵地！",
+"heard": "快撤，换阵地。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "打完就跑！",
+"heard": "打完就跑。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "快离开这里！",
+"heard": "快离开这里。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "被发现了，马上转移！",
+"heard": "被发现了，马上转移。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "反炮兵火力，快离开！",
+"heard": "喊炮兵火力，快离开。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "打完这一轮就走！",
+"heard": "打完这一轮就走。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "收炮，快撤！",
+"heard": "收炮，快撤。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "别留在原地，快走！",
+"heard": "别留在原地，快走。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "换阵地，动作快！",
+"heard": "换阵地，动作快。"
+},
+{
+"path": "Artillery/Regular/04_Move_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "敌人炮弹来了，转移！",
+"heard": "敌人炮弹来了，转移。"
+},
+{
+"path": "Artillery/Regular/05_FastMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "全速转移！",
+"heard": "全速转移。"
+},
+{
+"path": "Artillery/Regular/05_FastMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "快走！",
+"heard": "快走。"
+},
+{
+"path": "Artillery/Regular/05_FastMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "加速！",
+"heard": "加速。"
+},
+{
+"path": "Artillery/Regular/06_ReverseMove/01_Kang.mp3",
+"voice": "Kang",
+"script": "倒车！",
+"heard": "倒车。"
+},
+{
+"path": "Artillery/Regular/06_ReverseMove/02_Kang.mp3",
+"voice": "Kang",
+"script": "后撤。",
+"heard": "后撤。"
+},
+{
+"path": "Artillery/Regular/06_ReverseMove/03_Kang.mp3",
+"voice": "Kang",
+"script": "向后转移！",
+"heard": "向后转移。"
+},
+{
+"path": "Artillery/Regular/07_Attack/01_Kang.mp3",
+"voice": "Kang",
+"script": "坐标确认，开炮！",
+"heard": "坐标确认，开炮。"
+},
+{
+"path": "Artillery/Regular/07_Attack/02_Kang.mp3",
+"voice": "Kang",
+"script": "全连齐射！",
+"heard": "全连齐射！"
+},
+{
+"path": "Artillery/Regular/07_Attack/03_Kang.mp3",
+"voice": "Kang",
+"script": "放！",
+"heard": "放。"
+},
+{
+"path": "Artillery/Regular/07_Attack/04_Kang.mp3",
+"voice": "Kang",
+"script": "火箭弹，发射！",
+"heard": "火箭弹发射。"
+},
+{
+"path": "Artillery/Regular/07_Attack/05_Kang.mp3",
+"voice": "Kang",
+"script": "效力射，开始！",
+"heard": "效力社开始。"
+},
+{
+"path": "Artillery/Regular/07_Attack/06_Kang.mp3",
+"voice": "Kang",
+"script": "炮弹出膛！",
+"heard": "炮弹出膛。"
+},
+{
+"path": "Artillery/Regular/07_Attack/07_Kang.mp3",
+"voice": "Kang",
+"script": "覆盖目标区域！",
+"heard": "覆盖目标区域。"
+},
+{
+"path": "Artillery/Regular/07_Attack/08_Kang.mp3",
+"voice": "Kang",
+"script": "诸元装定，射击。",
+"heard": "竹园庄定，射击。"
+},
+{
+"path": "Artillery/Regular/07_Attack/09_Kang.mp3",
+"voice": "Kang",
+"script": "三发急速射！",
+"heard": "三发集束射。"
+},
+{
+"path": "Artillery/Regular/07_Attack/10_Kang.mp3",
+"voice": "Kang",
+"script": "导弹发射！",
+"heard": "导弹发射。"
+},
+{
+"path": "Artillery/Regular/08_FireAtPosition/01_Kang.mp3",
+"voice": "Kang",
+"script": "向该坐标射击！",
+"heard": "向该坐标射击。"
+},
+{
+"path": "Artillery/Regular/08_FireAtPosition/02_Kang.mp3",
+"voice": "Kang",
+"script": "收到坐标，开炮。",
+"heard": "收到坐标，开炮。"
+},
+{
+"path": "Artillery/Regular/08_FireAtPosition/03_Kang.mp3",
+"voice": "Kang",
+"script": "覆盖射击！",
+"heard": "覆盖射击。"
+},
+{
+"path": "Artillery/Regular/09_Smoke/01_Kang.mp3",
+"voice": "Kang",
+"script": "发射烟幕弹！",
+"heard": "发射烟幕弹。"
+},
+{
+"path": "Artillery/Regular/09_Smoke/02_Kang.mp3",
+"voice": "Kang",
+"script": "烟幕射击！",
+"heard": "烟幕射击。"
+},
+{
+"path": "Artillery/Regular/09_Smoke/03_Kang.mp3",
+"voice": "Kang",
+"script": "施放烟幕！",
+"heard": "释放烟幕。"
+},
+{
+"path": "Artillery/Regular/10_Cancel/01_Kang.mp3",
+"voice": "Kang",
+"script": "停止射击。",
+"heard": "停止射击。"
+},
+{
+"path": "Artillery/Regular/10_Cancel/02_Kang.mp3",
+"voice": "Kang",
+"script": "收到，取消任务。",
+"heard": "收到，取消任务。"
+},
+{
+"path": "Artillery/Regular/10_Cancel/03_Kang.mp3",
+"voice": "Kang",
+"script": "停火！",
+"heard": "停火。"
+},
+{
+"path": "Artillery/Regular/11_Impossible/01_Kang.mp3",
+"voice": "Kang",
+"script": "超出射程！",
+"heard": "操出射程。"
+},
+{
+"path": "Artillery/Regular/11_Impossible/02_Kang.mp3",
+"voice": "Kang",
+"script": "打不到那里！",
+"heard": "打不到那里"
+},
+{
+"path": "Artillery/Regular/11_Impossible/03_Kang.mp3",
+"voice": "Kang",
+"script": "无法射击。",
+"heard": "无法射击。"
+},
+{
+"path": "Artillery/Regular/12_Hurt/01_Kang.mp3",
+"voice": "Kang",
+"script": "阵地被击中！",
+"heard": "阵地被击中。"
+},
+{
+"path": "Artillery/Regular/12_Hurt/02_Kang.mp3",
+"voice": "Kang",
+"script": "炮班有人受伤！",
+"heard": "炮班有人受伤。"
+},
+{
+"path": "Artillery/Regular/12_Hurt/03_Kang.mp3",
+"voice": "Kang",
+"script": "车辆受损！",
+"heard": "车辆受损。"
+},
+{
+"path": "Artillery/Regular/13_Panicked/01_Kang.mp3",
+"voice": "Kang",
+"script": "反炮兵火力！撤！",
+"heard": "喊炮兵火力，撤！"
+},
+{
+"path": "Artillery/Regular/13_Panicked/02_Kang.mp3",
+"voice": "Kang",
+"script": "弹药车要炸了！",
+"heard": "弹药车要炸了。"
+},
+{
+"path": "Artillery/Regular/13_Panicked/03_Kang.mp3",
+"voice": "Kang",
+"script": "快离开！",
+"heard": "快离开。"
+},
+{
+"path": "Artillery/Regular/14_AmmoOut/01_Kang.mp3",
+"voice": "Kang",
+"script": "炮弹打完了！",
+"heard": "炮弹打完了。"
+},
+{
+"path": "Artillery/Regular/14_AmmoOut/02_Kang.mp3",
+"voice": "Kang",
+"script": "需要弹药补给！",
+"heard": "需要弹药补给。"
+},
+{
+"path": "Artillery/Regular/14_AmmoOut/03_Kang.mp3",
+"voice": "Kang",
+"script": "火箭弹打光了！",
+"heard": "火箭弹打光了。"
+},
+{
+"path": "Artillery/Regular/15_EnemyDestroyed/01_Kang.mp3",
+"voice": "Kang",
+"script": "目标被摧毁。",
+"heard": "目标被摧毁。"
+},
+{
+"path": "Artillery/Regular/15_EnemyDestroyed/02_Kang.mp3",
+"voice": "Kang",
+"script": "命中目标！",
+"heard": "命中目标。"
+},
+{
+"path": "Artillery/Regular/15_EnemyDestroyed/03_Kang.mp3",
+"voice": "Kang",
+"script": "观察员报告，效果良好。",
+"heard": "观察员报告，效果良好。"
+},
+{
+"path": "Artillery/Regular/16_Spawn/01_Kang.mp3",
+"voice": "Kang",
+"script": "炮兵部队，到达战区！",
+"heard": "炮兵部队到达战区。"
+},
+{
+"path": "Artillery/Regular/16_Spawn/02_Kang.mp3",
+"voice": "Kang",
+"script": "火力单元已部署。",
+"heard": "火力单元已部署。"
+},
+{
+"path": "Artillery/Regular/16_Spawn/03_Kang.mp3",
+"voice": "Kang",
+"script": "战争之神，来了！",
+"heard": "战争之神来了。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/01_Kang.mp3",
+"voice": "Kang",
+"script": "直升机，悬停待命。",
+"heard": "直升机悬停待命。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/02_Kang.mp3",
+"voice": "Kang",
+"script": "机组就位，请指示。",
+"heard": "机组就位，请指示。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/03_Kang.mp3",
+"voice": "Kang",
+"script": "旋翼转起来了，说吧。",
+"heard": "轩逸转起来了，说吧。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/04_Kang.mp3",
+"voice": "Kang",
+"script": "武直在线！",
+"heard": "武直在线。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/05_Kang.mp3",
+"voice": "Kang",
+"script": "空中待命。",
+"heard": "空中待命。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/06_Kang.mp3",
+"voice": "Kang",
+"script": "飞行员报告，准备好了。",
+"heard": "飞行员报告准备好了。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/07_Kang.mp3",
+"voice": "Kang",
+"script": "去哪里？",
+"heard": "去哪里？"
+},
+{
+"path": "Helicopter/Regular/01_Selection/08_Kang.mp3",
+"voice": "Kang",
+"script": "陆航分队，听候指挥。",
+"heard": "陆航分队听候指挥。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/09_Kang.mp3",
+"voice": "Kang",
+"script": "燃油充足，弹药满载。",
+"heard": "燃油充足，弹药满载。"
+},
+{
+"path": "Helicopter/Regular/01_Selection/10_Kang.mp3",
+"voice": "Kang",
+"script": "直升机就绪！",
+"heard": "直升机就绪"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "地面火力打我们！",
+"heard": "祭面火力打我们。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "被雷达锁定了！",
+"heard": "被雷达锁定了。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "交战中，快说！",
+"heard": "交战中，快说。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "机身中弹，还能飞！",
+"heard": "机身中弹还能飞。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "导弹来袭！",
+"heard": "导弹来袭。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "防空火力很猛！",
+"heard": "防空火力很猛。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "正在规避，讲！",
+"heard": "正在规避。讲。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "压低高度，指示！",
+"heard": "亚低高度，指示。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "我们暴露了！",
+"heard": "我们暴露了。"
+},
+{
+"path": "Helicopter/Regular/02_Selection_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "交火中，等你命令！",
+"heard": "交火中，等你命令。"
+},
+{
+"path": "Helicopter/Regular/03_Move/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，飞过去。",
+"heard": "收到，飞过去。"
+},
+{
+"path": "Helicopter/Regular/03_Move/02_Kang.mp3",
+"voice": "Kang",
+"script": "出发！",
+"heard": "出发。"
+},
+{
+"path": "Helicopter/Regular/03_Move/03_Kang.mp3",
+"voice": "Kang",
+"script": "航线确认。",
+"heard": "航线确认。"
+},
+{
+"path": "Helicopter/Regular/03_Move/04_Kang.mp3",
+"voice": "Kang",
+"script": "收到，飞往目标区。",
+"heard": "收到，飞往目标区。"
+},
+{
+"path": "Helicopter/Regular/03_Move/05_Kang.mp3",
+"voice": "Kang",
+"script": "明白，改变航向。",
+"heard": "明白，改变航向。"
+},
+{
+"path": "Helicopter/Regular/03_Move/06_Kang.mp3",
+"voice": "Kang",
+"script": "直升机，起飞出发！",
+"heard": "直升机起飞出发。"
+},
+{
+"path": "Helicopter/Regular/03_Move/07_Kang.mp3",
+"voice": "Kang",
+"script": "收到，贴着地形飞过去。",
+"heard": "收到，贴着地形飞过去。"
+},
+{
+"path": "Helicopter/Regular/03_Move/08_Kang.mp3",
+"voice": "Kang",
+"script": "明白，正在前往航点。",
+"heard": "明白，正在前往航点。"
+},
+{
+"path": "Helicopter/Regular/03_Move/09_Kang.mp3",
+"voice": "Kang",
+"script": "收到，低空转场。",
+"heard": "收到，低空转场。"
+},
+{
+"path": "Helicopter/Regular/03_Move/10_Kang.mp3",
+"voice": "Kang",
+"script": "航线已更新，正在飞行。",
+"heard": "航线已更新，正在飞行。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/01_Kang.mp3",
+"voice": "Kang",
+"script": "导弹发射！",
+"heard": "导弹发射。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/02_Kang.mp3",
+"voice": "Kang",
+"script": "火箭弹齐射！",
+"heard": "火箭弹齐射。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/03_Kang.mp3",
+"voice": "Kang",
+"script": "锁定目标，开火！",
+"heard": "锁定目标，开火。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/04_Kang.mp3",
+"voice": "Kang",
+"script": "机炮扫射！",
+"heard": "机炮扫射。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/05_Kang.mp3",
+"voice": "Kang",
+"script": "目标进入射程，攻击。",
+"heard": "目标进入射程，攻击。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/06_Kang.mp3",
+"voice": "Kang",
+"script": "打掉它！",
+"heard": "打掉他。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/07_Kang.mp3",
+"voice": "Kang",
+"script": "交战！",
+"heard": "交战。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/08_Kang.mp3",
+"voice": "Kang",
+"script": "激光锁定，发射。",
+"heard": "激光锁定，发射。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/09_Kang.mp3",
+"voice": "Kang",
+"script": "开火！",
+"heard": "开火。"
+},
+{
+"path": "Helicopter/Regular/04_Attack/10_Kang.mp3",
+"voice": "Kang",
+"script": "攻击航线，开火！",
+"heard": "攻击航线，开火。"
+},
+{
+"path": "Helicopter/Regular/05_FireAtWill/01_Kang.mp3",
+"voice": "Kang",
+"script": "自由射击！",
+"heard": "自由射击。"
+},
+{
+"path": "Helicopter/Regular/05_FireAtWill/02_Kang.mp3",
+"voice": "Kang",
+"script": "自主攻击。",
+"heard": "自主攻击。"
+},
+{
+"path": "Helicopter/Regular/05_FireAtWill/03_Kang.mp3",
+"voice": "Kang",
+"script": "见到就打！",
+"heard": "见到就打。"
+},
+{
+"path": "Helicopter/Regular/06_MoveAndAttack/01_Kang.mp3",
+"voice": "Kang",
+"script": "搜索攻击！",
+"heard": "搜索攻击。"
+},
+{
+"path": "Helicopter/Regular/06_MoveAndAttack/02_Kang.mp3",
+"voice": "Kang",
+"script": "去找猎物！",
+"heard": "去找猎物。"
+},
+{
+"path": "Helicopter/Regular/06_MoveAndAttack/03_Kang.mp3",
+"voice": "Kang",
+"script": "边飞边打！",
+"heard": "边飞边打。"
+},
+{
+"path": "Helicopter/Regular/07_Heli_Up/01_Kang.mp3",
+"voice": "Kang",
+"script": "升高。",
+"heard": "升高。"
+},
+{
+"path": "Helicopter/Regular/07_Heli_Up/02_Kang.mp3",
+"voice": "Kang",
+"script": "拉升高度。",
+"heard": "拉升高度。"
+},
+{
+"path": "Helicopter/Regular/07_Heli_Up/03_Kang.mp3",
+"voice": "Kang",
+"script": "上升！",
+"heard": "上升。"
+},
+{
+"path": "Helicopter/Regular/08_Heli_Down/01_Kang.mp3",
+"voice": "Kang",
+"script": "降低高度。",
+"heard": "降低高度。"
+},
+{
+"path": "Helicopter/Regular/08_Heli_Down/02_Kang.mp3",
+"voice": "Kang",
+"script": "贴地飞行。",
+"heard": "贴地飞行。"
+},
+{
+"path": "Helicopter/Regular/08_Heli_Down/03_Kang.mp3",
+"voice": "Kang",
+"script": "下降！",
+"heard": "下降。"
+},
+{
+"path": "Helicopter/Regular/09_Flares/01_Kang.mp3",
+"voice": "Kang",
+"script": "投放干扰弹！",
+"heard": "投放干扰弹。"
+},
+{
+"path": "Helicopter/Regular/09_Flares/02_Kang.mp3",
+"voice": "Kang",
+"script": "热焰弹！",
+"heard": "热焰弹。"
+},
+{
+"path": "Helicopter/Regular/09_Flares/03_Kang.mp3",
+"voice": "Kang",
+"script": "干扰弹，规避！",
+"heard": "干扰弹，规避。"
+},
+{
+"path": "Helicopter/Regular/10_Laser/01_Kang.mp3",
+"voice": "Kang",
+"script": "激光照射目标。",
+"heard": "激光照射目标。"
+},
+{
+"path": "Helicopter/Regular/10_Laser/02_Kang.mp3",
+"voice": "Kang",
+"script": "目标已指示。",
+"heard": "目标已指示。"
+},
+{
+"path": "Helicopter/Regular/10_Laser/03_Kang.mp3",
+"voice": "Kang",
+"script": "保持照射。",
+"heard": "保持照射。"
+},
+{
+"path": "Helicopter/Regular/11_LoadInfantry/01_Kang.mp3",
+"voice": "Kang",
+"script": "降落接人。",
+"heard": "降落接人。"
+},
+{
+"path": "Helicopter/Regular/11_LoadInfantry/02_Kang.mp3",
+"voice": "Kang",
+"script": "快上来！",
+"heard": "快上来。"
+},
+{
+"path": "Helicopter/Regular/11_LoadInfantry/03_Kang.mp3",
+"voice": "Kang",
+"script": "搭载步兵。",
+"heard": "大载步兵。"
+},
+{
+"path": "Helicopter/Regular/12_UnloadNow/01_Kang.mp3",
+"voice": "Kang",
+"script": "下机！快下机！",
+"heard": "下机，快下机。"
+},
+{
+"path": "Helicopter/Regular/12_UnloadNow/02_Kang.mp3",
+"voice": "Kang",
+"script": "放下步兵！",
+"heard": "放下步兵。"
+},
+{
+"path": "Helicopter/Regular/12_UnloadNow/03_Kang.mp3",
+"voice": "Kang",
+"script": "着陆，下去！",
+"heard": "朝路下去。"
+},
+{
+"path": "Helicopter/Regular/13_RTB/01_Kang.mp3",
+"voice": "Kang",
+"script": "返回基地。",
+"heard": "返回基地。"
+},
+{
+"path": "Helicopter/Regular/13_RTB/02_Kang.mp3",
+"voice": "Kang",
+"script": "任务结束，返航。",
+"heard": "任务结束，返航。"
+},
+{
+"path": "Helicopter/Regular/13_RTB/03_Kang.mp3",
+"voice": "Kang",
+"script": "回去补给。",
+"heard": "回去补给"
+},
+{
+"path": "Helicopter/Regular/14_Cancel/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Helicopter/Regular/14_Cancel/02_Kang.mp3",
+"voice": "Kang",
+"script": "悬停待命。",
+"heard": "悬停待命。"
+},
+{
+"path": "Helicopter/Regular/14_Cancel/03_Kang.mp3",
+"voice": "Kang",
+"script": "明白！",
+"heard": "明白。"
+},
+{
+"path": "Helicopter/Regular/15_Impossible/01_Kang.mp3",
+"voice": "Kang",
+"script": "做不到！",
+"heard": "做不到。"
+},
+{
+"path": "Helicopter/Regular/15_Impossible/02_Kang.mp3",
+"voice": "Kang",
+"script": "无法执行。",
+"heard": "无法执行"
+},
+{
+"path": "Helicopter/Regular/15_Impossible/03_Kang.mp3",
+"voice": "Kang",
+"script": "那里去不了！",
+"heard": "那里去不了。"
+},
+{
+"path": "Helicopter/Regular/16_Hurt/01_Kang.mp3",
+"voice": "Kang",
+"script": "我们被击中了！",
+"heard": "我们被击中了。"
+},
+{
+"path": "Helicopter/Regular/16_Hurt/02_Kang.mp3",
+"voice": "Kang",
+"script": "液压在漏！",
+"heard": "夜鸦在落。"
+},
+{
+"path": "Helicopter/Regular/16_Hurt/03_Kang.mp3",
+"voice": "Kang",
+"script": "机组有人受伤！",
+"heard": "机组有人受伤。"
+},
+{
+"path": "Helicopter/Regular/17_Panicked/01_Kang.mp3",
+"voice": "Kang",
+"script": "防空太猛了，撤出！",
+"heard": "防空太猛了，撤出。"
+},
+{
+"path": "Helicopter/Regular/17_Panicked/02_Kang.mp3",
+"voice": "Kang",
+"script": "尾桨受损！",
+"heard": "微讲受损。"
+},
+{
+"path": "Helicopter/Regular/17_Panicked/03_Kang.mp3",
+"voice": "Kang",
+"script": "快拉起来！",
+"heard": "快拉起来。"
+},
+{
+"path": "Helicopter/Regular/18_Death/01_Kang.mp3",
+"voice": "Kang",
+"script": "要坠毁了！",
+"heard": "要坠毁了。"
+},
+{
+"path": "Helicopter/Regular/18_Death/02_Kang.mp3",
+"voice": "Kang",
+"script": "失控了！",
+"heard": "失控了。"
+},
+{
+"path": "Helicopter/Regular/18_Death/03_Kang.mp3",
+"voice": "Kang",
+"script": "准备撞击！",
+"heard": "准备撞击。"
+},
+{
+"path": "Helicopter/Regular/19_AmmoOut/01_Kang.mp3",
+"voice": "Kang",
+"script": "弹药打光了！",
+"heard": "弹药打光了。"
+},
+{
+"path": "Helicopter/Regular/19_AmmoOut/02_Kang.mp3",
+"voice": "Kang",
+"script": "需要返航补给。",
+"heard": "需要返航补给"
+},
+{
+"path": "Helicopter/Regular/19_AmmoOut/03_Kang.mp3",
+"voice": "Kang",
+"script": "导弹用完了！",
+"heard": "导弹用完了"
+},
+{
+"path": "Helicopter/Regular/20_EnemyDestroyed/01_Kang.mp3",
+"voice": "Kang",
+"script": "目标摧毁！",
+"heard": "目标摧毁。"
+},
+{
+"path": "Helicopter/Regular/20_EnemyDestroyed/02_Kang.mp3",
+"voice": "Kang",
+"script": "命中！",
+"heard": "命中。"
+},
+{
+"path": "Helicopter/Regular/20_EnemyDestroyed/03_Kang.mp3",
+"voice": "Kang",
+"script": "干掉了！",
+"heard": "干掉了。"
+},
+{
+"path": "Helicopter/Regular/21_Spawn/01_Kang.mp3",
+"voice": "Kang",
+"script": "陆航部队，进入战区！",
+"heard": "陆航部队进入战区。"
+},
+{
+"path": "Helicopter/Regular/21_Spawn/02_Kang.mp3",
+"voice": "Kang",
+"script": "直升机已抵达。",
+"heard": "直升机已抵达。"
+},
+{
+"path": "Helicopter/Regular/21_Spawn/03_Kang.mp3",
+"voice": "Kang",
+"script": "空中骑兵，报到！",
+"heard": "空中奇兵，报到！"
+},
+{
+"path": "Plane/SF/01_Selection/01_Philip.mp3",
+"voice": "Philip",
+"script": "威龙在线，等待指令。",
+"heard": "威龙在线，等待指令。"
+},
+{
+"path": "Plane/SF/01_Selection/02_Philip.mp3",
+"voice": "Philip",
+"script": "隐身战机，已就位。",
+"heard": "隐身战机已就位。"
+},
+{
+"path": "Plane/SF/01_Selection/03_Philip.mp3",
+"voice": "Philip",
+"script": "这里是威龙一号，讲。",
+"heard": "这里是威龙一号，讲"
+},
+{
+"path": "Plane/SF/01_Selection/04_Philip.mp3",
+"voice": "Philip",
+"script": "他们看不到我。",
+"heard": "他们看不到我。"
+},
+{
+"path": "Plane/SF/01_Selection/05_Philip.mp3",
+"voice": "Philip",
+"script": "五代机，随时可以出击。",
+"heard": "五代机随时可以出击。"
+},
+{
+"path": "Plane/SF/01_Selection/06_Philip.mp3",
+"voice": "Philip",
+"script": "雷达静默，等你目标。",
+"heard": "雷达静默，等你目标。"
+},
+{
+"path": "Plane/SF/01_Selection/07_Philip.mp3",
+"voice": "Philip",
+"script": "编队完毕，请指示。",
+"heard": "编队完毕，请指示。"
+},
+{
+"path": "Plane/SF/01_Selection/08_Philip.mp3",
+"voice": "Philip",
+"script": "已升空，讲。",
+"heard": "以升空讲。"
+},
+{
+"path": "Plane/SF/01_Selection/09_Philip.mp3",
+"voice": "Philip",
+"script": "空优任务，准备就绪。",
+"heard": "空优任务准备就绪。"
+},
+{
+"path": "Plane/SF/01_Selection/10_Philip.mp3",
+"voice": "Philip",
+"script": "鹰眼开启，全景态势。",
+"heard": "鹰眼开启，全景态势。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/01_Philip.mp3",
+"voice": "Philip",
+"script": "接敌中，讲。",
+"heard": "《芥蒂》中讲"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/02_Philip.mp3",
+"voice": "Philip",
+"script": "被锁定，规避中。",
+"heard": "被锁定，规避中。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/03_Philip.mp3",
+"voice": "Philip",
+"script": "多个目标，正在分配。",
+"heard": "多个目标正在分配"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/04_Philip.mp3",
+"voice": "Philip",
+"script": "导弹来袭，处理中。",
+"heard": "导弹来袭，处理中。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/05_Philip.mp3",
+"voice": "Philip",
+"script": "空战中，等你指令。",
+"heard": "空战中，等你指令。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/06_Philip.mp3",
+"voice": "Philip",
+"script": "敌机在六点，讲重点。",
+"heard": "敌机在六点，讲重点。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/07_Philip.mp3",
+"voice": "Philip",
+"script": "交战中。",
+"heard": "交战中。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/08_Philip.mp3",
+"voice": "Philip",
+"script": "雷达告警，继续任务。",
+"heard": "雷达告警，继续任务。"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/09_Philip.mp3",
+"voice": "Philip",
+"script": "过载很大，说。",
+"heard": "过载很大。说"
+},
+{
+"path": "Plane/SF/02_Selection_CBT/10_Philip.mp3",
+"voice": "Philip",
+"script": "目标在视距外，讲。",
+"heard": "目标在视距外，讲"
+},
+{
+"path": "Plane/SF/03_Move/01_Philip.mp3",
+"voice": "Philip",
+"script": "收到，飞向航点。",
+"heard": "收到，飞向航点。"
+},
+{
+"path": "Plane/SF/03_Move/02_Philip.mp3",
+"voice": "Philip",
+"script": "航线更新。",
+"heard": "航线更新。"
+},
+{
+"path": "Plane/SF/03_Move/03_Philip.mp3",
+"voice": "Philip",
+"script": "改变航向。",
+"heard": "改变航向。"
+},
+{
+"path": "Plane/SF/03_Move/04_Philip.mp3",
+"voice": "Philip",
+"script": "收到，飞往指定空域。",
+"heard": "收到，飞往指定空域。"
+},
+{
+"path": "Plane/SF/03_Move/05_Philip.mp3",
+"voice": "Philip",
+"script": "明白，保持隐身航线。",
+"heard": "明白，保持隐身航线。"
+},
+{
+"path": "Plane/SF/03_Move/06_Philip.mp3",
+"voice": "Philip",
+"script": "收到，改变航向。",
+"heard": "收到，改变航向。"
+},
+{
+"path": "Plane/SF/03_Move/07_Philip.mp3",
+"voice": "Philip",
+"script": "航点确认，正在飞行。",
+"heard": "航点确认，正在飞行。"
+},
+{
+"path": "Plane/SF/03_Move/08_Philip.mp3",
+"voice": "Philip",
+"script": "明白，加速前往。",
+"heard": "明白，加速前往。"
+},
+{
+"path": "Plane/SF/03_Move/09_Philip.mp3",
+"voice": "Philip",
+"script": "收到，进入巡逻航线。",
+"heard": "收到，进入巡逻航线。"
+},
+{
+"path": "Plane/SF/03_Move/10_Philip.mp3",
+"voice": "Philip",
+"script": "明白，雷达静默飞行。",
+"heard": "明白，雷达静默飞行。"
+},
+{
+"path": "Plane/SF/04_Attack/01_Philip.mp3",
+"voice": "Philip",
+"script": "锁定，发射。",
+"heard": "锁定，发射。"
+},
+{
+"path": "Plane/SF/04_Attack/02_Philip.mp3",
+"voice": "Philip",
+"script": "目标确认，导弹离架。",
+"heard": "目标确认，导弹离架。"
+},
+{
+"path": "Plane/SF/04_Attack/03_Philip.mp3",
+"voice": "Philip",
+"script": "他永远不会知道是谁。",
+"heard": "他永远不会知道是谁。"
+},
+{
+"path": "Plane/SF/04_Attack/04_Philip.mp3",
+"voice": "Philip",
+"script": "交战，自由开火。",
+"heard": "交战，自由开火。"
+},
+{
+"path": "Plane/SF/04_Attack/05_Philip.mp3",
+"voice": "Philip",
+"script": "超视距攻击。",
+"heard": "超视距攻击。"
+},
+{
+"path": "Plane/SF/04_Attack/06_Philip.mp3",
+"voice": "Philip",
+"script": "开弹舱，发射。",
+"heard": "开弹仓，发射。"
+},
+{
+"path": "Plane/SF/04_Attack/07_Philip.mp3",
+"voice": "Philip",
+"script": "攻击开始。",
+"heard": "攻击开始。"
+},
+{
+"path": "Plane/SF/04_Attack/08_Philip.mp3",
+"voice": "Philip",
+"script": "目标已分配，开火。",
+"heard": "目标已分配，开火。"
+},
+{
+"path": "Plane/SF/04_Attack/09_Philip.mp3",
+"voice": "Philip",
+"script": "霹雳十五，离架。",
+"heard": "霹雳十五离架。"
+},
+{
+"path": "Plane/SF/04_Attack/10_Philip.mp3",
+"voice": "Philip",
+"script": "打掉他。",
+"heard": "打掉他。"
+},
+{
+"path": "Plane/SF/05_Missile/01_Philip.mp3",
+"voice": "Philip",
+"script": "导弹发射。",
+"heard": "导弹发射。"
+},
+{
+"path": "Plane/SF/05_Missile/02_Philip.mp3",
+"voice": "Philip",
+"script": "霹雳导弹，离架。",
+"heard": "霹雳导弹，离架。"
+},
+{
+"path": "Plane/SF/05_Missile/03_Philip.mp3",
+"voice": "Philip",
+"script": "发射。",
+"heard": "发射。"
+},
+{
+"path": "Plane/SF/06_Bomb/01_Philip.mp3",
+"voice": "Philip",
+"script": "精确制导炸弹，投放。",
+"heard": "精确制导炸弹投放。"
+},
+{
+"path": "Plane/SF/06_Bomb/02_Philip.mp3",
+"voice": "Philip",
+"script": "弹舱打开，投弹。",
+"heard": "弹仓打开，投弹。"
+},
+{
+"path": "Plane/SF/06_Bomb/03_Philip.mp3",
+"voice": "Philip",
+"script": "炸弹已投放。",
+"heard": "炸弹已投放。"
+},
+{
+"path": "Plane/SF/07_Strike/01_Philip.mp3",
+"voice": "Philip",
+"script": "开始对地攻击。",
+"heard": "开始对地攻击。"
+},
+{
+"path": "Plane/SF/07_Strike/02_Philip.mp3",
+"voice": "Philip",
+"script": "进入攻击航线。",
+"heard": "进入攻击航线。"
+},
+{
+"path": "Plane/SF/07_Strike/03_Philip.mp3",
+"voice": "Philip",
+"script": "打击目标，执行。",
+"heard": "打击目标执行。"
+},
+{
+"path": "Plane/SF/08_Strike_Complete/01_Philip.mp3",
+"voice": "Philip",
+"script": "打击完成。",
+"heard": "打击完成。"
+},
+{
+"path": "Plane/SF/08_Strike_Complete/02_Philip.mp3",
+"voice": "Philip",
+"script": "任务完成，脱离。",
+"heard": "任务完成，脱离。"
+},
+{
+"path": "Plane/SF/08_Strike_Complete/03_Philip.mp3",
+"voice": "Philip",
+"script": "目标已命中。",
+"heard": "目标已命中。"
+},
+{
+"path": "Plane/SF/09_Strafe/01_Philip.mp3",
+"voice": "Philip",
+"script": "机炮扫射。",
+"heard": "机炮扫射。"
+},
+{
+"path": "Plane/SF/09_Strafe/02_Philip.mp3",
+"voice": "Philip",
+"script": "低空扫射。",
+"heard": "低空扫射。"
+},
+{
+"path": "Plane/SF/09_Strafe/03_Philip.mp3",
+"voice": "Philip",
+"script": "机炮攻击。",
+"heard": "机炮攻击"
+},
+{
+"path": "Plane/SF/10_Afterburner/01_Philip.mp3",
+"voice": "Philip",
+"script": "开加力。",
+"heard": "开加力。"
+},
+{
+"path": "Plane/SF/10_Afterburner/02_Philip.mp3",
+"voice": "Philip",
+"script": "全加力。",
+"heard": "全加力。"
+},
+{
+"path": "Plane/SF/10_Afterburner/03_Philip.mp3",
+"voice": "Philip",
+"script": "超音速巡航。",
+"heard": "超音速巡航。"
+},
+{
+"path": "Plane/SF/11_Fly_High/01_Philip.mp3",
+"voice": "Philip",
+"script": "爬升至高空。",
+"heard": "爬升至高空。"
+},
+{
+"path": "Plane/SF/11_Fly_High/02_Philip.mp3",
+"voice": "Philip",
+"script": "拉高。",
+"heard": "拉高。"
+},
+{
+"path": "Plane/SF/11_Fly_High/03_Philip.mp3",
+"voice": "Philip",
+"script": "高空待命。",
+"heard": "高空待命。"
+},
+{
+"path": "Plane/SF/12_Fly_Low/01_Philip.mp3",
+"voice": "Philip",
+"script": "下降至低空。",
+"heard": "下降至低空。"
+},
+{
+"path": "Plane/SF/12_Fly_Low/02_Philip.mp3",
+"voice": "Philip",
+"script": "贴地飞行。",
+"heard": "贴地飞行。"
+},
+{
+"path": "Plane/SF/12_Fly_Low/03_Philip.mp3",
+"voice": "Philip",
+"script": "低空突防。",
+"heard": "低空突防。"
+},
+{
+"path": "Plane/SF/13_Flares/01_Philip.mp3",
+"voice": "Philip",
+"script": "投放干扰弹。",
+"heard": "投放干扰弹。"
+},
+{
+"path": "Plane/SF/13_Flares/02_Philip.mp3",
+"voice": "Philip",
+"script": "干扰弹，规避。",
+"heard": "干扰弹，规避。"
+},
+{
+"path": "Plane/SF/13_Flares/03_Philip.mp3",
+"voice": "Philip",
+"script": "箔条干扰弹。",
+"heard": "薄条干扰弹。"
+},
+{
+"path": "Plane/SF/14_RTB/01_Philip.mp3",
+"voice": "Philip",
+"script": "返回基地。",
+"heard": "返回基地。"
+},
+{
+"path": "Plane/SF/14_RTB/02_Philip.mp3",
+"voice": "Philip",
+"script": "任务结束，返航。",
+"heard": "任务结束，返航。"
+},
+{
+"path": "Plane/SF/14_RTB/03_Philip.mp3",
+"voice": "Philip",
+"script": "脱离战区。",
+"heard": "脱离战区。"
+},
+{
+"path": "Plane/SF/15_Hurt_Panicked/01_Philip.mp3",
+"voice": "Philip",
+"script": "被击中，还能飞。",
+"heard": "被击中还能飞。"
+},
+{
+"path": "Plane/SF/15_Hurt_Panicked/02_Philip.mp3",
+"voice": "Philip",
+"script": "系统告警，正在处理。",
+"heard": "系统告警，正在处理。"
+},
+{
+"path": "Plane/SF/15_Hurt_Panicked/03_Philip.mp3",
+"voice": "Philip",
+"script": "机体受损。",
+"heard": "机体受损。"
+},
+{
+"path": "Plane/SF/16_Eject/01_Philip.mp3",
+"voice": "Philip",
+"script": "弹射！弹射！",
+"heard": "弹射，弹射。"
+},
+{
+"path": "Plane/SF/16_Eject/02_Philip.mp3",
+"voice": "Philip",
+"script": "飞机不行了，跳伞。",
+"heard": "飞机不行了，跳伞。"
+},
+{
+"path": "Plane/SF/16_Eject/03_Philip.mp3",
+"voice": "Philip",
+"script": "弹射！",
+"heard": "反射"
+},
+{
+"path": "Plane/SF/17_Fuel_Warning/01_Philip.mp3",
+"voice": "Philip",
+"script": "燃油不足。",
+"heard": "燃油不足。"
+},
+{
+"path": "Plane/SF/17_Fuel_Warning/02_Philip.mp3",
+"voice": "Philip",
+"script": "油量低，注意。",
+"heard": "油量低，注意。"
+},
+{
+"path": "Plane/SF/17_Fuel_Warning/03_Philip.mp3",
+"voice": "Philip",
+"script": "燃油告警。",
+"heard": "燃油告警。"
+},
+{
+"path": "Plane/SF/18_Fuel_Out/01_Philip.mp3",
+"voice": "Philip",
+"script": "燃油耗尽，准备弹射。",
+"heard": "燃油耗尽，准备弹射。"
+},
+{
+"path": "Plane/SF/18_Fuel_Out/02_Philip.mp3",
+"voice": "Philip",
+"script": "发动机熄火。",
+"heard": "发动机熄火。"
+},
+{
+"path": "Plane/SF/18_Fuel_Out/03_Philip.mp3",
+"voice": "Philip",
+"script": "没油了。",
+"heard": "没油了。"
+},
+{
+"path": "Plane/SF/19_AmmoOut/01_Philip.mp3",
+"voice": "Philip",
+"script": "弹药耗尽。",
+"heard": "弹药耗尽"
+},
+{
+"path": "Plane/SF/19_AmmoOut/02_Philip.mp3",
+"voice": "Philip",
+"script": "导弹打光了，返航。",
+"heard": "导弹打光了，返航。"
+},
+{
+"path": "Plane/SF/19_AmmoOut/03_Philip.mp3",
+"voice": "Philip",
+"script": "武器用尽。",
+"heard": "不欺用尽。"
+},
+{
+"path": "Plane/SF/20_EnemyDestroyed/01_Philip.mp3",
+"voice": "Philip",
+"script": "击落。",
+"heard": "击落。"
+},
+{
+"path": "Plane/SF/20_EnemyDestroyed/02_Philip.mp3",
+"voice": "Philip",
+"script": "目标消失。",
+"heard": "目标消失。"
+},
+{
+"path": "Plane/SF/20_EnemyDestroyed/03_Philip.mp3",
+"voice": "Philip",
+"script": "确认击毁。",
+"heard": "确认机会"
+},
+{
+"path": "Plane/SF/21_Cancel/01_Philip.mp3",
+"voice": "Philip",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Plane/SF/21_Cancel/02_Philip.mp3",
+"voice": "Philip",
+"script": "放弃攻击。",
+"heard": "放弃攻击。"
+},
+{
+"path": "Plane/SF/21_Cancel/03_Philip.mp3",
+"voice": "Philip",
+"script": "明白。",
+"heard": "明白。"
+},
+{
+"path": "Plane/SF/22_Impossible/01_Philip.mp3",
+"voice": "Philip",
+"script": "无法执行。",
+"heard": "无法执行。"
+},
+{
+"path": "Plane/SF/22_Impossible/02_Philip.mp3",
+"voice": "Philip",
+"script": "那不可能。",
+"heard": "那不可能。"
+},
+{
+"path": "Plane/SF/22_Impossible/03_Philip.mp3",
+"voice": "Philip",
+"script": "做不到，换个方案。",
+"heard": "做不到，换个方案。"
+},
+{
+"path": "Plane/SF/23_Spawn/01_Philip.mp3",
+"voice": "Philip",
+"script": "五代机编队，进入战区。",
+"heard": "五代机编队进入战区。"
+},
+{
+"path": "Plane/SF/23_Spawn/02_Philip.mp3",
+"voice": "Philip",
+"script": "隐身战机，到达。",
+"heard": "隐身战机到达。"
+},
+{
+"path": "Plane/SF/23_Spawn/03_Philip.mp3",
+"voice": "Philip",
+"script": "天空是我们的。",
+"heard": "天空是我们的。"
+},
+{
+"path": "Plane/Regular/01_Selection/01_Kang.mp3",
+"voice": "Kang",
+"script": "战斗机，准备就绪。",
+"heard": "战斗机准备就绪。"
+},
+{
+"path": "Plane/Regular/01_Selection/02_Kang.mp3",
+"voice": "Kang",
+"script": "飞行员就位，请指示！",
+"heard": "飞行员就位，请指示。"
+},
+{
+"path": "Plane/Regular/01_Selection/03_Kang.mp3",
+"voice": "Kang",
+"script": "这里是猎鹰二号，讲。",
+"heard": "这里是猎鹰二号，讲"
+},
+{
+"path": "Plane/Regular/01_Selection/04_Kang.mp3",
+"voice": "Kang",
+"script": "发动机启动，随时起飞！",
+"heard": "发动机启动，随时起飞。"
+},
+{
+"path": "Plane/Regular/01_Selection/05_Kang.mp3",
+"voice": "Kang",
+"script": "空中待命。",
+"heard": "空中待命。"
+},
+{
+"path": "Plane/Regular/01_Selection/06_Kang.mp3",
+"voice": "Kang",
+"script": "编队就位！",
+"heard": "编队就位。"
+},
+{
+"path": "Plane/Regular/01_Selection/07_Kang.mp3",
+"voice": "Kang",
+"script": "给我个目标！",
+"heard": "给我个目标。"
+},
+{
+"path": "Plane/Regular/01_Selection/08_Kang.mp3",
+"voice": "Kang",
+"script": "空军分队，听候命令。",
+"heard": "空军分队听候命令。"
+},
+{
+"path": "Plane/Regular/01_Selection/09_Kang.mp3",
+"voice": "Kang",
+"script": "满挂载，燃油充足。",
+"heard": "满挂载，燃油充足。"
+},
+{
+"path": "Plane/Regular/01_Selection/10_Kang.mp3",
+"voice": "Kang",
+"script": "飞机就绪！",
+"heard": "飞机就绪。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/01_Kang.mp3",
+"voice": "Kang",
+"script": "被雷达锁定了！",
+"heard": "被雷达锁定了。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/02_Kang.mp3",
+"voice": "Kang",
+"script": "导弹来袭！",
+"heard": "导弹来袭。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/03_Kang.mp3",
+"voice": "Kang",
+"script": "空战中，快说！",
+"heard": "苦战中，快说！"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/04_Kang.mp3",
+"voice": "Kang",
+"script": "敌机在后面！",
+"heard": "敌机在后面。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/05_Kang.mp3",
+"voice": "Kang",
+"script": "过载太大，讲！",
+"heard": "过载太大，降。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/06_Kang.mp3",
+"voice": "Kang",
+"script": "防空火力！",
+"heard": "防空火力。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/07_Kang.mp3",
+"voice": "Kang",
+"script": "交战中，等你指示！",
+"heard": "肖战中，等你指示。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/08_Kang.mp3",
+"voice": "Kang",
+"script": "正在规避！",
+"heard": "正在规避。"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/09_Kang.mp3",
+"voice": "Kang",
+"script": "敌机很多！",
+"heard": "敌机很多"
+},
+{
+"path": "Plane/Regular/02_Selection_CBT/10_Kang.mp3",
+"voice": "Kang",
+"script": "被咬住了！",
+"heard": "被咬住了。"
+},
+{
+"path": "Plane/Regular/03_Move/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，飞向航点。",
+"heard": "收到，飞向航点。"
+},
+{
+"path": "Plane/Regular/03_Move/02_Kang.mp3",
+"voice": "Kang",
+"script": "出发！",
+"heard": "出发。"
+},
+{
+"path": "Plane/Regular/03_Move/03_Kang.mp3",
+"voice": "Kang",
+"script": "改变航线。",
+"heard": "改变航线。"
+},
+{
+"path": "Plane/Regular/03_Move/04_Kang.mp3",
+"voice": "Kang",
+"script": "收到，飞往目标空域。",
+"heard": "收到，飞往目标空域。"
+},
+{
+"path": "Plane/Regular/03_Move/05_Kang.mp3",
+"voice": "Kang",
+"script": "明白，正在调整航向。",
+"heard": "明白，正在调整航向。"
+},
+{
+"path": "Plane/Regular/03_Move/06_Kang.mp3",
+"voice": "Kang",
+"script": "加力，前往航点！",
+"heard": "加力，前往航点。"
+},
+{
+"path": "Plane/Regular/03_Move/07_Kang.mp3",
+"voice": "Kang",
+"script": "收到，航线已确认。",
+"heard": "收到，航线已确认。"
+},
+{
+"path": "Plane/Regular/03_Move/08_Kang.mp3",
+"voice": "Kang",
+"script": "明白，保持编队飞行。",
+"heard": "明白，保持编队飞行。"
+},
+{
+"path": "Plane/Regular/03_Move/09_Kang.mp3",
+"voice": "Kang",
+"script": "收到，正在前往。",
+"heard": "收到，正在前往。"
+},
+{
+"path": "Plane/Regular/03_Move/10_Kang.mp3",
+"voice": "Kang",
+"script": "收到，转向新的航点。",
+"heard": "收到，转向新的航点。"
+},
+{
+"path": "Plane/Regular/04_Attack/01_Kang.mp3",
+"voice": "Kang",
+"script": "导弹发射！",
+"heard": "导弹发射。"
+},
+{
+"path": "Plane/Regular/04_Attack/02_Kang.mp3",
+"voice": "Kang",
+"script": "锁定，开火！",
+"heard": "锁定，开火。"
+},
+{
+"path": "Plane/Regular/04_Attack/03_Kang.mp3",
+"voice": "Kang",
+"script": "攻击目标！",
+"heard": "攻击目标。"
+},
+{
+"path": "Plane/Regular/04_Attack/04_Kang.mp3",
+"voice": "Kang",
+"script": "交战！",
+"heard": "交战。"
+},
+{
+"path": "Plane/Regular/04_Attack/05_Kang.mp3",
+"voice": "Kang",
+"script": "打下来！",
+"heard": "打下来。"
+},
+{
+"path": "Plane/Regular/04_Attack/06_Kang.mp3",
+"voice": "Kang",
+"script": "目标进入射程，发射！",
+"heard": "目标进入射程，发射。"
+},
+{
+"path": "Plane/Regular/04_Attack/07_Kang.mp3",
+"voice": "Kang",
+"script": "咬住他了！",
+"heard": "咬住它了。"
+},
+{
+"path": "Plane/Regular/04_Attack/08_Kang.mp3",
+"voice": "Kang",
+"script": "开火！",
+"heard": "开火。"
+},
+{
+"path": "Plane/Regular/04_Attack/09_Kang.mp3",
+"voice": "Kang",
+"script": "空空导弹，发射！",
+"heard": "空空导弹发射。"
+},
+{
+"path": "Plane/Regular/04_Attack/10_Kang.mp3",
+"voice": "Kang",
+"script": "干掉他！",
+"heard": "干掉他。"
+},
+{
+"path": "Plane/Regular/05_Missile/01_Kang.mp3",
+"voice": "Kang",
+"script": "导弹离架！",
+"heard": "导弹离架。"
+},
+{
+"path": "Plane/Regular/05_Missile/02_Kang.mp3",
+"voice": "Kang",
+"script": "发射导弹！",
+"heard": "发射导弹。"
+},
+{
+"path": "Plane/Regular/05_Missile/03_Kang.mp3",
+"voice": "Kang",
+"script": "发射！",
+"heard": "发射。"
+},
+{
+"path": "Plane/Regular/06_Bomb/01_Kang.mp3",
+"voice": "Kang",
+"script": "投弹！",
+"heard": "投弹。"
+},
+{
+"path": "Plane/Regular/06_Bomb/02_Kang.mp3",
+"voice": "Kang",
+"script": "炸弹已投放！",
+"heard": "炸弹已投放。"
+},
+{
+"path": "Plane/Regular/06_Bomb/03_Kang.mp3",
+"voice": "Kang",
+"script": "投放！",
+"heard": "投放。"
+},
+{
+"path": "Plane/Regular/07_Strike/01_Kang.mp3",
+"voice": "Kang",
+"script": "开始对地攻击！",
+"heard": "开始对地攻击。"
+},
+{
+"path": "Plane/Regular/07_Strike/02_Kang.mp3",
+"voice": "Kang",
+"script": "进入攻击航线！",
+"heard": "进入攻击航线。"
+},
+{
+"path": "Plane/Regular/07_Strike/03_Kang.mp3",
+"voice": "Kang",
+"script": "打击目标！",
+"heard": "打击目标。"
+},
+{
+"path": "Plane/Regular/08_Strike_Complete/01_Kang.mp3",
+"voice": "Kang",
+"script": "打击完成！",
+"heard": "打击完成。"
+},
+{
+"path": "Plane/Regular/08_Strike_Complete/02_Kang.mp3",
+"voice": "Kang",
+"script": "任务完成，脱离。",
+"heard": "任务完成，脱离。"
+},
+{
+"path": "Plane/Regular/08_Strike_Complete/03_Kang.mp3",
+"voice": "Kang",
+"script": "目标命中！",
+"heard": "目标命中。"
+},
+{
+"path": "Plane/Regular/09_Strafe/01_Kang.mp3",
+"voice": "Kang",
+"script": "机炮扫射！",
+"heard": "机炮扫射。"
+},
+{
+"path": "Plane/Regular/09_Strafe/02_Kang.mp3",
+"voice": "Kang",
+"script": "低空扫射！",
+"heard": "地空扫射。"
+},
+{
+"path": "Plane/Regular/09_Strafe/03_Kang.mp3",
+"voice": "Kang",
+"script": "开炮！",
+"heard": "开炮。"
+},
+{
+"path": "Plane/Regular/10_Afterburner/01_Kang.mp3",
+"voice": "Kang",
+"script": "开加力！",
+"heard": "开加力。"
+},
+{
+"path": "Plane/Regular/10_Afterburner/02_Kang.mp3",
+"voice": "Kang",
+"script": "全加力！",
+"heard": "全加力。"
+},
+{
+"path": "Plane/Regular/10_Afterburner/03_Kang.mp3",
+"voice": "Kang",
+"script": "加速！",
+"heard": "加速。"
+},
+{
+"path": "Plane/Regular/11_Fly_High/01_Kang.mp3",
+"voice": "Kang",
+"script": "爬升！",
+"heard": "哈声。"
+},
+{
+"path": "Plane/Regular/11_Fly_High/02_Kang.mp3",
+"voice": "Kang",
+"script": "拉高高度。",
+"heard": "拉高高度。"
+},
+{
+"path": "Plane/Regular/11_Fly_High/03_Kang.mp3",
+"voice": "Kang",
+"script": "上升！",
+"heard": "上升。"
+},
+{
+"path": "Plane/Regular/12_Fly_Low/01_Kang.mp3",
+"voice": "Kang",
+"script": "降低高度！",
+"heard": "降低高度。"
+},
+{
+"path": "Plane/Regular/12_Fly_Low/02_Kang.mp3",
+"voice": "Kang",
+"script": "低空飞行。",
+"heard": "低空飞行。"
+},
+{
+"path": "Plane/Regular/12_Fly_Low/03_Kang.mp3",
+"voice": "Kang",
+"script": "下降！",
+"heard": "下降。"
+},
+{
+"path": "Plane/Regular/13_Flares/01_Kang.mp3",
+"voice": "Kang",
+"script": "干扰弹！",
+"heard": "干扰弹。"
+},
+{
+"path": "Plane/Regular/13_Flares/02_Kang.mp3",
+"voice": "Kang",
+"script": "投放干扰弹！",
+"heard": "投放干扰弹。"
+},
+{
+"path": "Plane/Regular/13_Flares/03_Kang.mp3",
+"voice": "Kang",
+"script": "规避，干扰弹！",
+"heard": "规避干扰弹。"
+},
+{
+"path": "Plane/Regular/14_RTB/01_Kang.mp3",
+"voice": "Kang",
+"script": "返回基地。",
+"heard": "返回基地。"
+},
+{
+"path": "Plane/Regular/14_RTB/02_Kang.mp3",
+"voice": "Kang",
+"script": "任务完成，返航。",
+"heard": "任务完成，返航。"
+},
+{
+"path": "Plane/Regular/14_RTB/03_Kang.mp3",
+"voice": "Kang",
+"script": "回去加油挂弹。",
+"heard": "回去加油挂蛋。"
+},
+{
+"path": "Plane/Regular/15_Hurt_Panicked/01_Kang.mp3",
+"voice": "Kang",
+"script": "我被击中了！",
+"heard": "我被击中了。"
+},
+{
+"path": "Plane/Regular/15_Hurt_Panicked/02_Kang.mp3",
+"voice": "Kang",
+"script": "发动机起火！",
+"heard": "发动机起火。"
+},
+{
+"path": "Plane/Regular/15_Hurt_Panicked/03_Kang.mp3",
+"voice": "Kang",
+"script": "飞机受损严重！",
+"heard": "飞机受损严重。"
+},
+{
+"path": "Plane/Regular/16_Eject/01_Kang.mp3",
+"voice": "Kang",
+"script": "弹射！弹射！",
+"heard": "弹射，弹射。"
+},
+{
+"path": "Plane/Regular/16_Eject/02_Kang.mp3",
+"voice": "Kang",
+"script": "跳伞！",
+"heard": "撬伞。"
+},
+{
+"path": "Plane/Regular/16_Eject/03_Kang.mp3",
+"voice": "Kang",
+"script": "飞机不行了！",
+"heard": "飞机不行了。"
+},
+{
+"path": "Plane/Regular/17_Fuel_Warning/01_Kang.mp3",
+"voice": "Kang",
+"script": "燃油不足！",
+"heard": "燃油不足。"
+},
+{
+"path": "Plane/Regular/17_Fuel_Warning/02_Kang.mp3",
+"voice": "Kang",
+"script": "油快没了！",
+"heard": "有快没了。"
+},
+{
+"path": "Plane/Regular/17_Fuel_Warning/03_Kang.mp3",
+"voice": "Kang",
+"script": "燃油告警。",
+"heard": "燃油告警。"
+},
+{
+"path": "Plane/Regular/18_Fuel_Out/01_Kang.mp3",
+"voice": "Kang",
+"script": "燃油耗尽！",
+"heard": "燃油耗尽。"
+},
+{
+"path": "Plane/Regular/18_Fuel_Out/02_Kang.mp3",
+"voice": "Kang",
+"script": "发动机熄火了！",
+"heard": "发动机熄火了"
+},
+{
+"path": "Plane/Regular/18_Fuel_Out/03_Kang.mp3",
+"voice": "Kang",
+"script": "没油了，准备弹射！",
+"heard": "没油了，准备弹射。"
+},
+{
+"path": "Plane/Regular/19_AmmoOut/01_Kang.mp3",
+"voice": "Kang",
+"script": "弹药打光了！",
+"heard": "弹药打光了。"
+},
+{
+"path": "Plane/Regular/19_AmmoOut/02_Kang.mp3",
+"voice": "Kang",
+"script": "武器用尽，返航。",
+"heard": "武器用尽，返航。"
+},
+{
+"path": "Plane/Regular/19_AmmoOut/03_Kang.mp3",
+"voice": "Kang",
+"script": "导弹打完了！",
+"heard": "导弹打完了。"
+},
+{
+"path": "Plane/Regular/20_EnemyDestroyed/01_Kang.mp3",
+"voice": "Kang",
+"script": "击落一架！",
+"heard": "击落一架。"
+},
+{
+"path": "Plane/Regular/20_EnemyDestroyed/02_Kang.mp3",
+"voice": "Kang",
+"script": "命中！",
+"heard": "命中。"
+},
+{
+"path": "Plane/Regular/20_EnemyDestroyed/03_Kang.mp3",
+"voice": "Kang",
+"script": "打下来了！",
+"heard": "打下来了。"
+},
+{
+"path": "Plane/Regular/21_Cancel/01_Kang.mp3",
+"voice": "Kang",
+"script": "收到，取消。",
+"heard": "收到，取消。"
+},
+{
+"path": "Plane/Regular/21_Cancel/02_Kang.mp3",
+"voice": "Kang",
+"script": "放弃攻击。",
+"heard": "放弃攻击。"
+},
+{
+"path": "Plane/Regular/21_Cancel/03_Kang.mp3",
+"voice": "Kang",
+"script": "明白！",
+"heard": "明白。"
+},
+{
+"path": "Plane/Regular/22_Impossible/01_Kang.mp3",
+"voice": "Kang",
+"script": "做不到！",
+"heard": "做不到。"
+},
+{
+"path": "Plane/Regular/22_Impossible/02_Kang.mp3",
+"voice": "Kang",
+"script": "无法执行。",
+"heard": "无法执行。"
+},
+{
+"path": "Plane/Regular/22_Impossible/03_Kang.mp3",
+"voice": "Kang",
+"script": "那里去不了！",
+"heard": "那里去不了。"
+},
+{
+"path": "Plane/Regular/23_Spawn/01_Kang.mp3",
+"voice": "Kang",
+"script": "空军编队，进入战区！",
+"heard": "空军编队进入战区。"
+},
+{
+"path": "Plane/Regular/23_Spawn/02_Kang.mp3",
+"voice": "Kang",
+"script": "飞机已抵达。",
+"heard": "飞机已抵达。"
+},
+{
+"path": "Plane/Regular/23_Spawn/03_Kang.mp3",
+"voice": "Kang",
+"script": "人民空军，报到！",
+"heard": "人民空军报到。"
+},
+{
+"path": "Plane/Conscript/01_Selection/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民空军飞行员，到！",
+"heard": "人民空军飞行员到。"
+},
+{
+"path": "Plane/Conscript/01_Selection/02_Brody.mp3",
+"voice": "Brody",
+"script": "老飞机，红心永不老！",
+"heard": "老飞机，红心永不老。"
+},
+{
+"path": "Plane/Conscript/01_Selection/03_Brody.mp3",
+"voice": "Brody",
+"script": "为毛主席飞上蓝天！",
+"heard": "为毛主席飞上蓝天！"
+},
+{
+"path": "Plane/Conscript/01_Selection/04_Brody.mp3",
+"voice": "Brody",
+"script": "歼六，准备战斗！",
+"heard": "歼六，准备战斗。"
+},
+{
+"path": "Plane/Conscript/01_Selection/05_Brody.mp3",
+"voice": "Brody",
+"script": "空中长城，听从党指挥！",
+"heard": "空中长城，听从党指挥。"
+},
+{
+"path": "Plane/Conscript/01_Selection/06_Brody.mp3",
+"voice": "Brody",
+"script": "同志，指一个敌人！",
+"heard": "同志，只一个敌人"
+},
+{
+"path": "Plane/Conscript/01_Selection/07_Brody.mp3",
+"voice": "Brody",
+"script": "英雄飞行员，随时起飞！",
+"heard": "英雄飞行员随时起飞。"
+},
+{
+"path": "Plane/Conscript/01_Selection/08_Brody.mp3",
+"voice": "Brody",
+"script": "撞也要把他撞下来！",
+"heard": "撞也要把它撞下来。"
+},
+{
+"path": "Plane/Conscript/01_Selection/09_Brody.mp3",
+"voice": "Brody",
+"script": "保卫祖国领空！",
+"heard": "保卫祖国领空。"
+},
+{
+"path": "Plane/Conscript/01_Selection/10_Brody.mp3",
+"voice": "Brody",
+"script": "人民的翅膀，到！",
+"heard": "人民的翅膀到。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/01_Brody.mp3",
+"voice": "Brody",
+"script": "帝国主义的飞机来了！",
+"heard": "帝国主义的飞机来了。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/02_Brody.mp3",
+"voice": "Brody",
+"script": "跟他们拼了！",
+"heard": "跟他们拼了！"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/03_Brody.mp3",
+"voice": "Brody",
+"script": "飞机老，意志强！",
+"heard": "飞机佬，意志强。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/04_Brody.mp3",
+"voice": "Brody",
+"script": "被锁定了！为了人民！",
+"heard": "被锁定了，为了人民。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/05_Brody.mp3",
+"voice": "Brody",
+"script": "冲向敌机！",
+"heard": "冲向敌机。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/06_Brody.mp3",
+"voice": "Brody",
+"script": "机在人在！",
+"heard": "机在人在。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/07_Brody.mp3",
+"voice": "Brody",
+"script": "为了祖国，坚持！",
+"heard": "为了祖国坚持。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/08_Brody.mp3",
+"voice": "Brody",
+"script": "开炮！开炮！",
+"heard": "开炮开炮。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/09_Brody.mp3",
+"voice": "Brody",
+"script": "死也要死在空中！",
+"heard": "死也要死在空中。"
+},
+{
+"path": "Plane/Conscript/02_Selection_CBT/10_Brody.mp3",
+"voice": "Brody",
+"script": "同志们，迎上去！",
+"heard": "同志们，迎上去！"
+},
+{
+"path": "Plane/Conscript/03_Move/01_Brody.mp3",
+"voice": "Brody",
+"script": "飞向前线！",
+"heard": "飞向前线。"
+},
+{
+"path": "Plane/Conscript/03_Move/02_Brody.mp3",
+"voice": "Brody",
+"script": "出发！为了人民！",
+"heard": "出发！为了人民。"
+},
+{
+"path": "Plane/Conscript/03_Move/03_Brody.mp3",
+"voice": "Brody",
+"script": "党指向哪里，就飞向哪里！",
+"heard": "党指向哪里就飞向哪里。"
+},
+{
+"path": "Plane/Conscript/03_Move/04_Brody.mp3",
+"voice": "Brody",
+"script": "为了人民，飞向前线！",
+"heard": "为了人民，飞向前线。"
+},
+{
+"path": "Plane/Conscript/03_Move/05_Brody.mp3",
+"voice": "Brody",
+"script": "人民的飞行员，出发！",
+"heard": "人民的飞行员，出发！"
+},
+{
+"path": "Plane/Conscript/03_Move/06_Brody.mp3",
+"voice": "Brody",
+"script": "祖国的天空，由我守护！",
+"heard": "佐国的天空由我守护。"
+},
+{
+"path": "Plane/Conscript/03_Move/07_Brody.mp3",
+"voice": "Brody",
+"script": "驾驶战鹰，飞向胜利！",
+"heard": "驾驶战鹰，飞向胜利。"
+},
+{
+"path": "Plane/Conscript/03_Move/08_Brody.mp3",
+"voice": "Brody",
+"script": "革命飞行员，听从命令！",
+"heard": "革命飞行员听从命令。"
+},
+{
+"path": "Plane/Conscript/03_Move/09_Brody.mp3",
+"voice": "Brody",
+"script": "为了新中国，起飞！",
+"heard": "为了新中国起飞！"
+},
+{
+"path": "Plane/Conscript/03_Move/10_Brody.mp3",
+"voice": "Brody",
+"script": "飞吧，飞向敌人！",
+"heard": "飞吧，飞向敌人。"
+},
+{
+"path": "Plane/Conscript/04_Attack/01_Brody.mp3",
+"voice": "Brody",
+"script": "打下帝国主义的飞机！",
+"heard": "打下帝国主义的飞机。"
+},
+{
+"path": "Plane/Conscript/04_Attack/02_Brody.mp3",
+"voice": "Brody",
+"script": "开火！消灭侵略者！",
+"heard": "开火！消灭侵略者。"
+},
+{
+"path": "Plane/Conscript/04_Attack/03_Brody.mp3",
+"voice": "Brody",
+"script": "打倒纸老虎！",
+"heard": "打倒纸老虎。"
+},
+{
+"path": "Plane/Conscript/04_Attack/04_Brody.mp3",
+"voice": "Brody",
+"script": "为人民开炮！",
+"heard": "为人民开炮。"
+},
+{
+"path": "Plane/Conscript/04_Attack/05_Brody.mp3",
+"voice": "Brody",
+"script": "冲上去，撞下来！",
+"heard": "冲上去，撞下来。"
+},
+{
+"path": "Plane/Conscript/04_Attack/06_Brody.mp3",
+"voice": "Brody",
+"script": "一个不留！",
+"heard": "一个不留"
+},
+{
+"path": "Plane/Conscript/04_Attack/07_Brody.mp3",
+"voice": "Brody",
+"script": "保卫领空，开火！",
+"heard": "保卫领空，开火！"
+},
+{
+"path": "Plane/Conscript/04_Attack/08_Brody.mp3",
+"voice": "Brody",
+"script": "让他们尝尝人民空军的厉害！",
+"heard": "让他们尝尝人民空军的厉害。"
+},
+{
+"path": "Plane/Conscript/04_Attack/09_Brody.mp3",
+"voice": "Brody",
+"script": "打！打！打！",
+"heard": "打打打。"
+},
+{
+"path": "Plane/Conscript/04_Attack/10_Brody.mp3",
+"voice": "Brody",
+"script": "毛主席万岁！攻击！",
+"heard": "毛主席万岁！攻击。"
+},
+{
+"path": "Plane/Conscript/05_Missile/01_Brody.mp3",
+"voice": "Brody",
+"script": "导弹发射！为了人民！",
+"heard": "导弹发射，为了人民。"
+},
+{
+"path": "Plane/Conscript/05_Missile/02_Brody.mp3",
+"voice": "Brody",
+"script": "发射！",
+"heard": "发烧"
+},
+{
+"path": "Plane/Conscript/06_Bomb/01_Brody.mp3",
+"voice": "Brody",
+"script": "投弹！炸毁反动派！",
+"heard": "投弹，炸毁反动派。"
+},
+{
+"path": "Plane/Conscript/06_Bomb/02_Brody.mp3",
+"voice": "Brody",
+"script": "炸弹送给帝国主义！",
+"heard": "炸弹送给帝国主义。"
+},
+{
+"path": "Plane/Conscript/07_Strike/01_Brody.mp3",
+"voice": "Brody",
+"script": "对地攻击！人民战争！",
+"heard": "对地攻击，人民战争。"
+},
+{
+"path": "Plane/Conscript/07_Strike/02_Brody.mp3",
+"voice": "Brody",
+"script": "俯冲轰炸！",
+"heard": "俯冲轰炸。"
+},
+{
+"path": "Plane/Conscript/08_Strike_Complete/01_Brody.mp3",
+"voice": "Brody",
+"script": "任务完成！向党汇报！",
+"heard": "任务完成，向党汇报。"
+},
+{
+"path": "Plane/Conscript/08_Strike_Complete/02_Brody.mp3",
+"voice": "Brody",
+"script": "炸中了！胜利属于人民！",
+"heard": "炸中了，胜利属于人民！"
+},
+{
+"path": "Plane/Conscript/09_Strafe/01_Brody.mp3",
+"voice": "Brody",
+"script": "机炮扫射！",
+"heard": "机炮扫射。"
+},
+{
+"path": "Plane/Conscript/09_Strafe/02_Brody.mp3",
+"voice": "Brody",
+"script": "开炮！开炮！",
+"heard": "开炮，开炮。"
+},
+{
+"path": "Plane/Conscript/10_Afterburner/01_Brody.mp3",
+"voice": "Brody",
+"script": "加力！冲上去！",
+"heard": "加力，冲上去。"
+},
+{
+"path": "Plane/Conscript/10_Afterburner/02_Brody.mp3",
+"voice": "Brody",
+"script": "全速！为了革命！",
+"heard": "全速，为了革命！"
+},
+{
+"path": "Plane/Conscript/11_Fly_High/01_Brody.mp3",
+"voice": "Brody",
+"script": "飞上云霄！",
+"heard": "飞上云霄。"
+},
+{
+"path": "Plane/Conscript/11_Fly_High/02_Brody.mp3",
+"voice": "Brody",
+"script": "爬升！",
+"heard": "爬升。"
+},
+{
+"path": "Plane/Conscript/12_Fly_Low/01_Brody.mp3",
+"voice": "Brody",
+"script": "贴地飞行！",
+"heard": "贴地飞行。"
+},
+{
+"path": "Plane/Conscript/12_Fly_Low/02_Brody.mp3",
+"voice": "Brody",
+"script": "俯冲！",
+"heard": "俯冲。"
+},
+{
+"path": "Plane/Conscript/13_Flares/01_Brody.mp3",
+"voice": "Brody",
+"script": "干扰弹！",
+"heard": "干扰弹。"
+},
+{
+"path": "Plane/Conscript/13_Flares/02_Brody.mp3",
+"voice": "Brody",
+"script": "投干扰弹，继续战斗！",
+"heard": "投干扰弹，继续战斗。"
+},
+{
+"path": "Plane/Conscript/14_RTB/01_Brody.mp3",
+"voice": "Brody",
+"script": "返回基地，向组织报到！",
+"heard": "返回基地，向组织报到。"
+},
+{
+"path": "Plane/Conscript/14_RTB/02_Brody.mp3",
+"voice": "Brody",
+"script": "返航！",
+"heard": "飞航"
+},
+{
+"path": "Plane/Conscript/15_Hurt_Panicked/01_Brody.mp3",
+"voice": "Brody",
+"script": "被击中了！继续飞！",
+"heard": "被击中了，继续飞。"
+},
+{
+"path": "Plane/Conscript/15_Hurt_Panicked/02_Brody.mp3",
+"voice": "Brody",
+"script": "着火了！政委！",
+"heard": "着火了，政委。"
+},
+{
+"path": "Plane/Conscript/16_Eject/01_Brody.mp3",
+"voice": "Brody",
+"script": "飞机交给人民了！跳伞！",
+"heard": "飞机交给人民了，跳伞。"
+},
+{
+"path": "Plane/Conscript/16_Eject/02_Brody.mp3",
+"voice": "Brody",
+"script": "弹射！",
+"heard": "弹射。"
+},
+{
+"path": "Plane/Conscript/17_Fuel_Warning/01_Brody.mp3",
+"voice": "Brody",
+"script": "燃油不足！",
+"heard": "燃油不足。"
+},
+{
+"path": "Plane/Conscript/17_Fuel_Warning/02_Brody.mp3",
+"voice": "Brody",
+"script": "油不多了，还能打！",
+"heard": "油不多了，还能打。"
+},
+{
+"path": "Plane/Conscript/18_Fuel_Out/01_Brody.mp3",
+"voice": "Brody",
+"script": "没油了！撞向敌人！",
+"heard": "没油了，撞向敌人。"
+},
+{
+"path": "Plane/Conscript/18_Fuel_Out/02_Brody.mp3",
+"voice": "Brody",
+"script": "发动机停了！",
+"heard": "发动机停了。"
+},
+{
+"path": "Plane/Conscript/19_AmmoOut/01_Brody.mp3",
+"voice": "Brody",
+"script": "弹药打光了！撞上去！",
+"heard": "弹药打光了，撞上去。"
+},
+{
+"path": "Plane/Conscript/19_AmmoOut/02_Brody.mp3",
+"voice": "Brody",
+"script": "请求组织补充弹药！",
+"heard": "请求组织补充弹药。"
+},
+{
+"path": "Plane/Conscript/20_EnemyDestroyed/01_Brody.mp3",
+"voice": "Brody",
+"script": "打下来了！纸老虎！",
+"heard": "打下来了，纸老虎。"
+},
+{
+"path": "Plane/Conscript/20_EnemyDestroyed/02_Brody.mp3",
+"voice": "Brody",
+"script": "胜利属于人民！",
+"heard": "胜利属于人民。"
+},
+{
+"path": "Plane/Conscript/21_Cancel/01_Brody.mp3",
+"voice": "Brody",
+"script": "是！坚决服从！",
+"heard": "是，坚决服从。"
+},
+{
+"path": "Plane/Conscript/21_Cancel/02_Brody.mp3",
+"voice": "Brody",
+"script": "明白！",
+"heard": "明白。"
+},
+{
+"path": "Plane/Conscript/22_Impossible/01_Brody.mp3",
+"voice": "Brody",
+"script": "同志，做不到！",
+"heard": "同志，做不到。"
+},
+{
+"path": "Plane/Conscript/22_Impossible/02_Brody.mp3",
+"voice": "Brody",
+"script": "报告首长，飞不过去！",
+"heard": "报告首长，飞不过去。"
+},
+{
+"path": "Plane/Conscript/23_Spawn/01_Brody.mp3",
+"voice": "Brody",
+"script": "人民空军，报到！",
+"heard": "人民空军报道。"
+},
+{
+"path": "Plane/Conscript/23_Spawn/02_Brody.mp3",
+"voice": "Brody",
+"script": "空中长城，来了！",
+"heard": "空中长城来了。"
+},
+{
+"path": "Units/Infantry/Blood_Wolves/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "血狼突击队，待命。",
+"heard": "血狼突击队，待命。"
+},
+{
+"path": "Units/Infantry/Blood_Wolves/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "狼群已就位。",
+"heard": "狼群已就位"
+},
+{
+"path": "Units/Infantry/Falcons/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "猎鹰特战队，准备就绪。",
+"heard": "猎鹰特战队准备就绪。"
+},
+{
+"path": "Units/Infantry/Falcons/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "猎鹰，盯住目标了。",
+"heard": "猎鹰盯住目标了。"
+},
+{
+"path": "Units/Infantry/Godswords/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "东方神剑，出鞘。",
+"heard": "东方神剑出鞘。"
+},
+{
+"path": "Units/Infantry/Godswords/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "神剑突击队，请指示。",
+"heard": "神剑突击队，请指示。"
+},
+{
+"path": "Units/Infantry/Snow_Leopards/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "雪豹突击队，到。",
+"heard": "雪豹突击队到。"
+},
+{
+"path": "Units/Infantry/Snow_Leopards/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "雪豹出击，速战速决。",
+"heard": "雪豹出击，速战速决。"
+},
+{
+"path": "Units/Infantry/Sea_Dragons/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "蛟龙突击队，从海上来。",
+"heard": "蛟龙突击队从海上来。"
+},
+{
+"path": "Units/Infantry/Sea_Dragons/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "蛟龙就位，等待命令。",
+"heard": "蛟龙就位，等待命令。"
+},
+{
+"path": "Units/Infantry/Thunder_Gods/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "雷神突击队，降临。",
+"heard": "雷神突击队降临。"
+},
+{
+"path": "Units/Infantry/Thunder_Gods/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "雷神就位，准备打击。",
+"heard": "雷神就位，准备打击。"
+},
+{
+"path": "Units/Infantry/Sharp_Swords/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "利剑小组，待命。",
+"heard": "利剑小组，待命。"
+},
+{
+"path": "Units/Infantry/Sharp_Swords/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "利剑已出鞘。",
+"heard": "利剑已出鞘"
+},
+{
+"path": "Units/Infantry/Whistling_Arrows/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "响箭侦察，在线。",
+"heard": "想见真茶在线。"
+},
+{
+"path": "Units/Infantry/Whistling_Arrows/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "响箭已到位，观察中。",
+"heard": "响箭已到位，观察中。"
+},
+{
+"path": "Units/Infantry/Beijing_Swords/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "蓝剑突击队，准备完毕。",
+"heard": "蓝箭突击队准备完毕。"
+},
+{
+"path": "Units/Infantry/Beijing_Swords/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "蓝剑就位。",
+"heard": "蓝剑就位。"
+},
+{
+"path": "Units/Infantry/Mountain_Leopards/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "高原雪豹，到位。",
+"heard": "高原雪豹到位。"
+},
+{
+"path": "Units/Infantry/Mountain_Leopards/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "高原作战，我们在行。",
+"heard": "高原作战我们在行。"
+},
+{
+"path": "Units/Tank/ZTZ-99A/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "九九A，陆战之王，准备战斗。",
+"heard": "99A陆战之王准备战斗。"
+},
+{
+"path": "Units/Tank/ZTZ-99A/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "激光防御开启，主炮就绪。",
+"heard": "激光防御开启，主炮就绪。"
+},
+{
+"path": "Units/Tank/ZTZ-99/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "九九式，准备出击。",
+"heard": "九九式准备出击。"
+},
+{
+"path": "Units/Tank/ZTZ-99/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "九九式主战坦克，听候命令。",
+"heard": "九九式主战坦克听候命令。"
+},
+{
+"path": "Units/Tank/ZTZ-100/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "新一代坦克，系统在线。",
+"heard": "新一代坦克系统在线。"
+},
+{
+"path": "Units/Tank/ZTZ-100/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "一百式，全向感知开启。",
+"heard": "一百式全向感知开启。"
+},
+{
+"path": "Units/Tank/ZTZ-96B/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "九六B，老伙计还能打。",
+"heard": "96B，老伙计还能打。"
+},
+{
+"path": "Units/Tank/ZTZ-96B/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "九六B，准备好了。",
+"heard": "九六B准备好了。"
+},
+{
+"path": "Units/Tank/ZTQ-15/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "十五式轻坦，山地高原，哪都能去。",
+"heard": "十五世轻坦，山地高原哪都能去。"
+},
+{
+"path": "Units/Tank/ZTQ-15/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "轻坦就位，速度就是装甲。",
+"heard": "轻坦就位，速度就是装甲。"
+},
+{
+"path": "Units/Vehicle/LY-1/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "LY-1激光武器，能量充满。",
+"heard": "LYE激光武器能量充满。"
+},
+{
+"path": "Units/Vehicle/LY-1/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "光速拦截，准备就绪。",
+"heard": "光速拦截，准备就绪。"
+},
+{
+"path": "Units/Vehicle/HQ-9/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "红旗九，雷达开机，锁定空域。",
+"heard": "红七九，雷达开机，锁定空域。"
+},
+{
+"path": "Units/Vehicle/HQ-9/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "远程防空，就位。",
+"heard": "远程防空，就位。"
+},
+{
+"path": "Units/Vehicle/HQ-16/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "红旗十六，中程拦截就绪。",
+"heard": "红旗十六，忠诚拦截就绪。"
+},
+{
+"path": "Units/Vehicle/HQ-16/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "红旗十六，等待目标。",
+"heard": "红旗十六等待目标"
+},
+{
+"path": "Units/Vehicle/HQ-17/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "红旗十七，野战防空就位。",
+"heard": "红旗十七野战防空就位。"
+},
+{
+"path": "Units/Vehicle/HQ-17/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "红旗十七，雷达搜索中。",
+"heard": "红旗十七雷达搜索中。"
+},
+{
+"path": "Units/Vehicle/PGL-625/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "弹炮合一，谁来打谁。",
+"heard": "盘炮合一，谁来打谁？"
+},
+{
+"path": "Units/Vehicle/PGL-625/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "六二五，防空就绪。",
+"heard": "六二五，防空就绪。"
+},
+{
+"path": "Units/Vehicle/FK-2000/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "飞蠓二千，弹炮就位。",
+"heard": "飞榜二签，弹炮就位。"
+},
+{
+"path": "Units/Vehicle/FK-2000/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "近程防空，开机。",
+"heard": "进城防空，开机。"
+},
+{
+"path": "Units/Vehicle/VT-5/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "VT-5轻坦，速度快，打得准。",
+"heard": "VT5，轻坦，速度快，打得准。"
+},
+{
+"path": "Units/Vehicle/VT-5/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "轻型坦克，准备出击。",
+"heard": "轻型坦克准备出击。"
+},
+{
+"path": "Units/Vehicle/ZBD-04A/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "零四A步战车，机步班在车上。",
+"heard": "04A部战车，机步班在车上。"
+},
+{
+"path": "Units/Vehicle/ZBD-04A/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "零四A，就绪。",
+"heard": "04A，就绪。"
+},
+{
+"path": "Units/Artillery/DF-17/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "东风十七，高超音速，没人拦得住。",
+"heard": "东风时期，高超音速没人拦得住。"
+},
+{
+"path": "Units/Artillery/DF-17/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "东风快递，使命必达。",
+"heard": "东风快递，使命必达。"
+},
+{
+"path": "Units/Artillery/DF-21/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "东风二十一，航母杀手就位。",
+"heard": "东风二十一航母杀手就位。"
+},
+{
+"path": "Units/Artillery/DF-21/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "中程导弹，发射准备完毕。",
+"heard": "重程导弹发射准备完毕。"
+},
+{
+"path": "Units/Artillery/DF-15/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "东风十五，短程弹道导弹就位。",
+"heard": "东风十五短程弹道导弹就位。"
+},
+{
+"path": "Units/Artillery/DF-15/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "东风十五，等待坐标。",
+"heard": "东风十五，等待坐标。"
+},
+{
+"path": "Units/Artillery/DF-31A/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "东风三十一，战略力量，请确认授权。",
+"heard": "东风三十一战略力量，请确认授权。"
+},
+{
+"path": "Units/Artillery/DF-31A/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "核力量就位。愿永远不用。",
+"heard": "核力量就位，愿永远不用。"
+},
+{
+"path": "Units/Artillery/PHL-16/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "PHL-16，远程火箭炮就位。",
+"heard": "PHL十六远程火箭炮就位。"
+},
+{
+"path": "Units/Artillery/PHL-16/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "火箭炮准备齐射。",
+"heard": "火箭炮准备齐射。"
+},
+{
+"path": "Units/Artillery/PCL-181/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "一八一车载炮，打完就走。",
+"heard": "一八一车载炮，打完就走。"
+},
+{
+"path": "Units/Artillery/PCL-181/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "车载榴弹炮，就位。",
+"heard": "车载榴弹炮就位。"
+},
+{
+"path": "Units/Artillery/PLZ-05/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "零五自行榴弹炮，准备开火。",
+"heard": "零五自行榴弹炮准备开火。"
+},
+{
+"path": "Units/Artillery/PLZ-05/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "一五五毫米，就绪。",
+"heard": "一五五毫米，就绪。"
+},
+{
+"path": "Units/Artillery/YJ-18/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "鹰击十八，反舰导弹就位。",
+"heard": "英吉十八反舰导弹就位。"
+},
+{
+"path": "Units/Artillery/YJ-18/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "海上目标，交给我们。",
+"heard": "海上目标交给我们。"
+},
+{
+"path": "Units/Helicopter/Z-10/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "直十，霹雳火，准备攻击。",
+"heard": "此时霹雳火准备攻击。"
+},
+{
+"path": "Units/Helicopter/Z-10/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "武直十，猎杀开始。",
+"heard": "五之十，猎杀开始。"
+},
+{
+"path": "Units/Helicopter/Z-20/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "直二十，青霄，听候命令。",
+"heard": "值二十，倾销，听候命令。"
+},
+{
+"path": "Units/Helicopter/Z-20/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "二十吨级，全天候。",
+"heard": "二十吨级全天候。"
+},
+{
+"path": "Units/Helicopter/Z-21/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "直二十一，新一代武直，系统在线。",
+"heard": "值二十一，新一代武直，系统在线。"
+},
+{
+"path": "Units/Helicopter/Z-21/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "直二十一，目标已锁定。",
+"heard": "值二十一，目标已锁定。"
+},
+{
+"path": "Units/Helicopter/Z-19/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "直十九，黑旋风，侦察中。",
+"heard": "执事九，黑旋风，侦查中。"
+},
+{
+"path": "Units/Helicopter/Z-19/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "直十九，盯住他们了。",
+"heard": "知十九盯住他们了。"
+},
+{
+"path": "Units/Plane/J-20/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "歼二十，威龙出击。",
+"heard": "歼二十威龙出击。"
+},
+{
+"path": "Units/Plane/J-20/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "威龙在天，敌人看不见。",
+"heard": "威龙在天，敌人看不见。"
+},
+{
+"path": "Units/Plane/J-20S/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "歼二十S，双座指挥机，网络在线。",
+"heard": "歼20S双座指挥机网络在线。"
+},
+{
+"path": "Units/Plane/J-20S/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "后座锁定目标，前座发射。",
+"heard": "后座锁定目标，前座发射。"
+},
+{
+"path": "Units/Plane/J-35/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "歼三十五，舰载隐身，准备出击。",
+"heard": "歼三十五舰载隐身准备出击。"
+},
+{
+"path": "Units/Plane/J-35/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "从航母上起飞，鹘鹰就位。",
+"heard": "从航母上起飞，胡鹰就位。"
+},
+{
+"path": "Units/Plane/J-31/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "鹘鹰，就位。",
+"heard": "胡英就位。"
+},
+{
+"path": "Units/Plane/J-31/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "歼三十一，隐身突防。",
+"heard": "歼三十一隐身突防。"
+},
+{
+"path": "Units/Plane/J-36/Selection_01_Philip.mp3",
+"voice": "Philip",
+"script": "歼三十六，第六代，系统全部在线。",
+"heard": "歼三十六第六代系统全部在线。"
+},
+{
+"path": "Units/Plane/J-36/Selection_02_Philip.mp3",
+"voice": "Philip",
+"script": "他们还没见过这样的东西。",
+"heard": "他们还没见过这样的东西"
+},
+{
+"path": "Units/Plane/H-6K/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "轰六K，战神，巡航导弹就位。",
+"heard": "红六 K，战神，巡航导弹就位。"
+},
+{
+"path": "Units/Plane/H-6K/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "远程轰炸机，准备出击。",
+"heard": "远程轰炸机准备出击。"
+},
+{
+"path": "Units/Plane/KJ-500/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "空警五百，空中预警，全景态势。",
+"heard": "空警五百空中预警全景态势。"
+},
+{
+"path": "Units/Plane/KJ-500/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "雷达开机，我看得到一切。",
+"heard": "雷达开机，我看得到一切。"
+},
+{
+"path": "Units/Plane/Y-20/Selection_01_Kang.mp3",
+"voice": "Kang",
+"script": "运二十，鲲鹏，空投准备。",
+"heard": "运二十鲲鹏空投准备。"
+},
+{
+"path": "Units/Plane/Y-20/Selection_02_Kang.mp3",
+"voice": "Kang",
+"script": "货舱打开，准备空投。",
+"heard": "货舱打开，准备空投。"
+}
+]
