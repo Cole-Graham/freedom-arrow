@@ -1,0 +1,8 @@
+{
+ "version": "0.9.0-dev.40",
+ "base": "0.9.0-dev.39",
+ "base_sha256": "b7c956896b54c0b34d7abaf890edd60e8be0de0665e9bb1b3763544fe1290802",
+ "no_data_change": "dev.40 changes only menu-art/title.png (the game's own ARROW with its vanilla cut-out, not the ZTZ-99A; Osama 18 Nov 10:2x 'revert the logo', 'remove the ZTZ-99'); constants are the dev.38 state",
+ "checks": 0,
+ "verified": "data unchanged from dev.38"
+}
