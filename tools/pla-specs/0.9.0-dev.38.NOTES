@@ -1,0 +1,4 @@
+dev.38 batch notes (append; one line per change). Builder: read these before building dev.38.
+- 18 Nov 2026 02:2x PST, thread 1572407822849810463 (Osama "I want to remove the vanilla loading screens"): runtime-qa/LoadingScreens.cs + Runtime.cs install;
+  UserData/FreedomArrow/loading/*.png (4 approved China screens, 2048x857) packaged by package_0_8_next.py. REBUILD THE RUNTIME DLL. Untested in game:
+  check the log for "FREEDOM_ARROW_LOADING_SCREENS installed: 4 picture(s)" and "FREEDOM_ARROW_LOADING_SCREEN <name>" on each scene load.
