@@ -39,38 +39,63 @@ g.put('WeaponsJson',2019357,_wch);g.put('AmmunitionsJson',2019358,_ach)
 ok(all(_W[2019357].get(k)==v for k,v in _W[625].items() if k not in _wkeep) and _W[2019357]['MagazineSize']==18,'HHQ-10 launcher = MML AIM-9, magazine 18')
 ok(all(_A[2019358].get(k)==v for k,v in _A[465].items() if k not in _akeep),'HHQ-10 missile = AIM-9')
 rec['hhq10_as_mml_aim9']={'weapon':2019357,'missile':2019358,'from':_before,'to':{'weapon':_wch,'missile':_ach},'kept':'names, icons, sound/FX, TargetType 1944, 18 rounds, cost 220'}
-# ---------- Autocannon HE vs infantry in buildings back to vanilla (Osama 18 Nov 2026 13:3x PST, thread 1567745029781454889: "can we bring autocannon
-# damage to infantry back to vanilla levels?", after the 13:2x comparison). Open-ground damage is already vanilla (same Damage and penetration). In a
-# building vanilla multiplies by 0.18 + 0.02 per soldier inside (0.38 for a 10-man squad); FA uses a flat 0.18 (game-config BuildingDamageFloor), then
-# blends IgnoreCover: f = floor + (1-floor)*IC. For a 10-man squad vanilla 0.38 needs FA IC = (0.38-0.18)/0.82 = 0.2439 (vanilla IC is 0 on all these
-# rounds). Scope: 20-57 mm HE/HEI/HEDP/MP rounds (penetration <= 150) on any unit, China rows included (same 3.0 dmg / 30 pen as the 2A42 HE).
-# Excluded: grenade launchers (QLB-06, QLZ-87 35 mm AGL) and the SPAAG/SAM gun rounds Lateralus tuned for missile defence (spaag-weapons.json weapons and sameUnitClaimWeapons): their Damage differs.
+# ---------- Vanilla Ignore Cover, China by the vanilla rules (Osama 18 Nov 2026 15:4x PST, thread 1567745029781454889: "ok lets try this out, with
+# the vanilla ignore cover. Please make sure for china it is applied like the vanilla rules"). Goes with the runtime change in this batch: no stress
+# protection in the open (game-config InfantryOpenDamageFloor 1, PerSoldier 0) and buildings a flat 30% (BuildingDamageFloor 0.3). This replaces
+# the earlier dev.44 autocannon change (IC 0.2439, commit cb7f185c). Native rows: every IgnoreCover FA changed goes back to the vanilla value
+# (163 rows in dev.43: bombs, rockets, thermobarics, tube and rocket artillery, autocannons, tank HE). New rows (China and FA clones) take the value
+# vanilla gives the same kind of round, first rule that matches.
 import re as _re
-_A=t['AmmunitionsJson'];_W=t['WeaponsJson'];_WA=t['WeaponAmmunitionsJson'];_VA={r['Id']:r for r in json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
-_sp=json.loads(z.read('UserData/FreedomArrow/spaag-weapons.json'));_aaw=set(_sp['weapons'])|set(_sp['sameUnitClaimWeapons'])
-_IC=0.2439
-_rounds={};_skip={}
-for _r in _WA.values():
-    _a=_A.get(_r['AmmunitionId']);_w=_W.get(_r['WeaponId'])
-    if not _a or not _w:continue
-    _nm=str(_a.get('Name'))+' '+str(_w.get('Name'))
-    if not _re.search(r'\b(20|23|25|27|30|35|40|50|57)\s?mm|Round (20|23|25|27|30|35|40|57)\b',_nm):continue
-    if not _re.search(r'HE|FRAG|HEI|MP|Frag|ABM|HEDP|HE-',str(_a.get('Name'))+str(_a.get('HUDName'))):continue
-    if (_a.get('PenetrationAtGroundRange') or 0)>150:continue
-    if _r['WeaponId'] in _aaw:_skip.setdefault(_a['Id'],_a['HUDName']);continue
-    if _re.search(r'grenade|AGL|QLB|QLZ',_nm+str(_w.get('HUDName'))+str(_a.get('HUDName')),_re.I):continue   # grenade launchers (QLB-06, QLZ-87) are not autocannons
-    _rounds[_a['Id']]=_a
-for _i in _skip:_rounds.pop(_i,None)
-for _i,_a in _rounds.items():
-    _v=_VA.get(_i)
-    if _v:ok((_v.get('IgnoreCover') or 0)==0 and _v.get('Damage')==_a.get('Damage'),(_i,_a['HUDName'],'vanilla IC 0, same damage'))
-_chg={}
-for _i in sorted(_rounds):
-    _old=_A[_i].get('IgnoreCover') or 0
-    if _old!=_IC:g.put('AmmunitionsJson',_i,{'IgnoreCover':_IC});_chg[str(_i)]={'name':_A[_i]['HUDName'],'from':_old,'to':_IC}
-ok(len(_chg)>=40,('autocannon HE rounds changed',len(_chg)))
-rec['autocannon_he_buildings_vanilla']={'ignore_cover':_IC,'basis':'10 soldiers, vanilla 0.38','changed':_chg,'excluded_spaag':{str(k):v for k,v in _skip.items()}}
-print('autocannon rounds changed',len(_chg),'excluded',len(_skip))
+_A=t['AmmunitionsJson'];_VA={r['Id']:r for r in json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
+_used={r.get('AmmunitionId') for r in t['WeaponAmmunitionsJson'].values()}
+_ic=lambda r:r.get('IgnoreCover') or 0
+_RULES=[  # (pattern on Name + HUDName, vanilla IC, vanilla example)
+ (r'smoke|SMK',None,'left as is'),
+ (r'incendiar|napalm',1.0,'MROZ / M202 / Grad incendiary 1.0'),
+ (r'nuclear|nuke',0.5,'B61 / Kh-102 nuclear 0.5'),
+ (r'snip|precision|QBU-10',1.0,'sniper rifles 1.0'),
+ (r'DMR|QBU-191|QBU-88',0.25,'DMRs 0.25'),
+ (r'QLU-?11|QTS-?11|M-25 CDTE|XM25',0.25,'XM25 airburst 0.25'),
+ (r'thermobaric',0.0,'RPG-7 TBG-7V / RShG / TOS-1 thermobaric 0'),
+ (r'\bDF-|YJ-21|SY-400|ARRW|MAKO',0.5,'Iskander-M / Tochka-U HE / Kinzhal HE 0.5'),
+ (r'Fire Dragon 480',0.4,'PrSM 0.4'),
+ (r'Fire Dragon (300|280)|300 mm|370 mm',0.3,'Smerch 300 mm 0.3'),
+ (r'220 mm',0.22,'Uragan 220 mm 0.22'),
+ (r'122 mm rocket',0.12,'Grad 122 mm 0.12'),
+ (r'(155|152) mm|GP155',0.15,'152/155 mm howitzers 0.15'),
+ (r'122 mm|120 mm gun-mortar',0.12,'122 mm 2A31, 120 mm Nona 2A51 0.12'),
+ (r'76 mm HE \(proximity\)',0.13,'AK-130 / Mk 45 naval guns 0.13'),
+ (r'(120|125) mm.*\bHE\b',0.3,'120/125 mm tank HE 0.3'),
+ (r'120 mm.*HEAT',0.2,'M256 / Leopard 2A8 120 mm HEAT 0.2 (125 mm HEAT is 0)'),
+ (r'(85|100|105) mm.*\bHE\b',0.1,'100 mm 2A70 / MT-12 HE, 105 mm M68 HESH 0.1'),
+]
+_rows={'native':{},'new':{}};_rule_hits={}
+for _i,_r in sorted(_A.items()):
+    if _i not in _used:continue
+    if _i in _VA:
+        _want=_ic(_VA[_i]);_k='native';_why='vanilla row'
+    else:
+        _nm=str(_r.get('Name'))+' | '+str(_r.get('HUDName'));_want=0.0;_why='no rule: vanilla 0 (autocannons, MGs, rifles, RPG HEAT, ATGMs, bombs, rockets)'
+        for _pat,_v,_ex in ([] if _r.get('Seeker') and (_r.get('PenetrationAtGroundRange') or 0)>=300 else _RULES):  # guided AT missiles named "HE" (ZBD-04 HJ-9 rows): vanilla ATGMs 0
+            if _re.search(_pat,_nm,_re.I):
+                _want=_ic(_r) if _v is None else _v;_why=_ex;break
+        _k='new'
+    _old=_ic(_r)
+    if _old!=_want:
+        g.put('AmmunitionsJson',_i,{'IgnoreCover':_want})
+        _rows[_k][str(_i)]={'name':_r.get('HUDName') or _r.get('Name'),'from':_old,'to':_want,'rule':_why}
+ok(535 not in map(int,_rows['native']),'Ogon A-22 535 untouched')
+ok(all(_ic(_A[i])==_ic(_VA[i]) for i in _used if i in _VA),'every used vanilla row has the vanilla IgnoreCover')
+ok(len(_rows['native'])>=150,('native rows restored',len(_rows['native'])))
+# Spot checks against vanilla: Bushmaster HE 0, 155 mm M109A7 HE 0.15, T-90M 125 mm HE 0.3, TOS-1 0, Mk82 0, sniper 1.0
+for _i,_v in ((26,0),(4,0.15),(243,0.3),(178,0),(61,0),(275,1.0),(133,0.08)):ok(_ic(_A[_i])==_v,(_i,_A[_i]['Name'],_v))
+_chk={2009831:0,2011225:0,2009077:0.3,2009079:0,2009857:0.2,2009133:0.1,2010479:0.12,2018337:0.15,2009463:0.12,2010163:0.12,2010439:0.3,
+      2017460:0.22,2017463:0.4,2010351:0.5,2016544:0,2016607:0,2017197:0,2018321:0,2018448:0,2012516:0,2011921:0,2013058:1.0,2012055:1.0,2004001:0.25,
+      2019271:0.25,2009953:0.13,2010071:0.1,2018752:0.15,2009025:0,2011173:0,2009023:0.1}
+for _i,_v in _chk.items():ok(_ic(_A[_i])==_v,(_i,_A[_i].get('HUDName'),_v))
+rec['vanilla_ignore_cover']={'basis':'vanilla AmmunitionsJson; new rows by the rules above','native_restored':_rows['native'],'new_rows':_rows['new'],
+    'runtime':'game-config InfantryOpenDamageFloor 1, InfantryOpenDamagePerSoldier 0, BuildingDamageFloor 0.3, BuildingDamagePerSoldier 0'}
+print('ignore cover: native rows restored',len(_rows['native']),'new rows changed',len(_rows['new']))
 # ---------- JRVG-1 without smoke (Osama 18 Nov 2026 15:2x PST, thread 1571014792016171120: "JRVG should not have smoke"). JRVG-1 (unit 952) has one
 # ability, 2009943, used by nothing else; it carries both the radar switch and 1 smoke salvo (ammo 268). Smoke off, radar kept.
 ok([r['UnitId'] for r in UAB.values() if r['AbilityId']==2009943]==[952] and AB[2009943].get('IsSmoke') and AB[2009943].get('IsRadar'),'JRVG-1 ability 2009943: own, smoke + radar')

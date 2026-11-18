@@ -11,3 +11,15 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   sets IgnoreCover 0.2439 on 46 autocannon HE/HEI/HEDP rounds (20-57 mm, pen <= 150; was 0 or 0.125), so FA's flat 0.18 building floor gives the
   vanilla 10-soldier factor 0.38. Open-ground damage was already vanilla. Excluded: 5 SPAAG gun rounds (60, 62, 213, 231, 262; Lateralus's
   missile-defence damage) and grenade launchers (QLB-06, QLZ-87). Calculated, not measured. 35 checks in total.
+- 18 Nov 2026 15:4x PST, thread 1567745029781454889 (Osama "ok lets try this out, with the vanilla ignore cover. Please make sure for china it is
+  applied like the vanilla rules" + "woods at 60% like in Wargame"). SUPERSEDES the autocannon IgnoreCover 0.2439 entry above (section replaced).
+  Infantry cover model like Wargame: open 100%, woods 60%, buildings 30%, whatever the stress level and squad size.
+  * game-config.json: InfantryOpenDamageFloor 1 + InfantryOpenDamagePerSoldier 0 (new; DetectionConfig.WriteBuildings writes them to Buff Config
+    StressModifiers Calm/Shocked/Panicked InfantryDmgModFloor/PerSoldier, vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10), BuildingDamageFloor 0.18 -> 0.3,
+    ForestDamageTaken 0.7 -> 0.6. REBUILD THE RUNTIME DLL.
+  * apply_0_9_dev44.py: IgnoreCover back to vanilla on 168 vanilla rows FA had changed (bombs 0.5->0, rockets 0.244->0, thermobarics 0.75/1.0->0,
+    howitzers 0.357->0.15, mortars 0.304/0.335->0.08/0.12, tank HE 0.25->0.3, autocannons 0.125->0, ballistic 1.0->0.4/0.5 ...); 68 new rows (China
+    and FA clones) set to the vanilla value of the same kind of round (rule list in the script; per-row from/to/rule in pla-0.9.0-dev.44.json
+    vanilla_ignore_cover). Ogon 535 untouched. 103 checks in total.
+  Check in game: log FREEDOM_ARROW_OPEN_DAMAGE Calm 1+0/soldier Shocked 1+0/soldier Panicked 1+0/soldier and FREEDOM_ARROW_BUILDING_DAMAGE floor 0.3;
+  repeat the Fletcher test (IC 0): calm and panicked squads both take x1.0; a squad in a building takes x0.30, in woods x0.60.
