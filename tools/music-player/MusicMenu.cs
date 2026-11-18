@@ -29,6 +29,14 @@ internal static class MusicMenu
         nextScan = Time.unscaledTime + .2f;
         try
         {
+            // 1.5.4 (Osama 18 Nov 2026 02:2x PST: "I'm seeing the music pack in deployment ... It should only appear in the main menu"). His log: visible=True
+            // on the Home tab at 02:16:07, a match from 02:20, and no visible=False after it. Leaving the menu destroys the Home button, so the branch below
+            // returned before the panel was hidden. Outside the menu scene the panel is now hidden first, whatever happened to the Home button.
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Hangar_Scene")
+            {
+                if (visible) { visible = false; if (root != null) root.SetActive(false); MelonLogger.Msg("FA_MUSIC_UI visible=False (left the menu)"); }
+                nextScan = Time.unscaledTime + 2f; return;
+            }
             if (home == null)
             {
                 // 1.5.3 (Osama 17 Nov 2026, 5v5 FPS test): FindObjectsOfTypeAll walks every loaded object. In a battle the Home button does not

@@ -27,6 +27,11 @@ AB=t['AbilitiesJson'];UAB=t['UnitAbilitiesJson']
 sys.path.insert(0,str(Path(__file__).parent/'lateralus'))
 # ---------- Not table data, but in this batch (Osama 18 Nov 2026, thread 1571014792016171120): China voices regenerated with a word-for-word
 # check, 10 Selection/Move/Attack lines per unit (commit 952fbc88). Packaged from the voice folder; no runtime DLL change for voices.
+# ---------- Not table data (Osama 18 Nov 2026 02:2x PST, thread 1571014792016171120): "I'm seeing the music pack in deployment ... It should only appear in
+# the main menu". FA Music 1.5.4 (tools/music-player/MusicMenu.cs) hides the pack panel whenever the active scene is not Hangar_Scene. His log had
+# FA_MUSIC_UI visible=True on the Home tab at 02:16:07 and a match from 02:20 with no visible=False: leaving the menu destroyed the Home button and
+# the code returned before hiding the panel. BUILD: --asset Mods/FAMusic.dll=tools/music-player/bin/Release/net6.0/FAMusic.dll (1.5.4, sha256 53951351...,
+# built with -p:GameDir=work/game-1.2.2.1). FAMusic.dll is an asset, so dev.38 also makes a new Assets version. check_model_carry.py accepts 5395.
 # ---------- China 122 mm explosion effect -> the 152-155 mm howitzer effect (Osama 18 Nov 2026 02:1x PST, thread 1572551547726991400: "many of the
 # units in our Chinese faction have these massive explosive shockwaves ... Let's try option A for now"). Option A as offered: every China 122 mm round
 # uses the 152-155 mm howitzer explosion (vanilla Msta-S, Koalitsiya, Paladin), which Osama says looks fine. Effect only: no damage, splash, range or
