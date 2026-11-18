@@ -1,0 +1,14 @@
+{
+  "spec_chinese_names": {
+    "17": "PLAAF Air Force 空军",
+    "18": "PLAGF Armored Force 陆军装甲兵",
+    "19": "PLARF Rocket Conscript Force 火箭军",
+    "20": "PLAN Special Forces 海军特种部队",
+    "21": "PLAGF Motorized 陆军摩托化部队"
+  },
+  "version": "0.9.0-dev.37",
+  "base": "0.9.0-dev.36",
+  "base_sha256": "7598a9a420ee4f07f2b094c3d6b2eaec5b9f1b240f9205f1a93a46110bb4a8c4",
+  "checks": 10,
+  "verified": "data checks only"
+}
