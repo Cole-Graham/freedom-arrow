@@ -1,0 +1,33 @@
+{
+  "china_122mm_fx_152": {
+    "from": "AMMUNITION_VFX_PRESET_SHELL_120mm_HE",
+    "to": "AMMUNITION_VFX_PRESET_SHELL_152-155mm_HE",
+    "rounds": {
+      "2009545": "122 mm howitzer ammunition",
+      "2010413": "122 mm truck howitzer ammunition",
+      "2010465": "122 mm howitzer ammunition",
+      "2010479": "122 mm howitzer ammunition",
+      "2010505": "122 mm howitzer ammunition",
+      "2010533": "122 mm howitzer ammunition",
+      "2010547": "122 mm howitzer ammunition",
+      "2018959": "122 mm smoke",
+      "2018961": "122 mm smoke",
+      "2018963": "122 mm smoke",
+      "2018965": "GP6 122 mm laser-guided"
+    },
+    "units": [
+      "PCL-09",
+      "PLL-09",
+      "PLZ-07",
+      "PLZ-07B",
+      "PLZ-70",
+      "PLZ-85",
+      "PLZ-89"
+    ]
+  },
+  "version": "0.9.0-dev.38",
+  "base": "0.9.0-dev.37",
+  "base_sha256": "2f13aba5540354c15dd419eb02496f4f3e39b36d474a6865a8048e1abbecc77c",
+  "checks": 15,
+  "verified": "data checks only"
+}
