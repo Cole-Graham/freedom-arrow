@@ -9,3 +9,4 @@ dev.38 batch notes (append; one line per change). Builder: read these before bui
 - Build dev.38 from this branch head, not from the detached loading-hook-wt worktree.
 - 18 Nov 2026 02:3x PST, thread 1572407822849810463: +10 US loading screens (FA_US_LOADING_*, Osama 'this is good'); loading/ now 14 pictures.
 - 18 Nov 2026 02:4x PST: +1 US loading screen (SF night raid, red light, rain, NVGs down); loading/ now 15.
+- 18 Nov 2026 02:5x PST: night raid replaced (no green glow, dual-tube NVGs); loading/ still 15.
