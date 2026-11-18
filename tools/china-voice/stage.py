@@ -29,6 +29,13 @@ W=V/'wolves/listen-SanChi'
 for f in sorted((W/'Shared').glob('*/*.mp3')):put(f,root/'Infantry/English'/trig(f.parent.name)/(f.name[:2]+'.mp3'))
 for u in ENGLISH:
     for f in sorted((W/u).glob('*/*.mp3')):put(f,root/'Units'/(u+'_EN')/trig(f.parent.name)/(f.name[:2]+'.mp3'))
+# Additive US-military callouts for Blood Wolves and Godswords (Osama 17 Nov 2026 17:03 PST, thread 1572407822849810463: "All are approved", no "Hooah"):
+# wolves/callouts/listen-SanChi, numbered after the lines above in the same trigger folders (ChinaVoice.cs plays every mp3 in a folder).
+C=V/'wolves/callouts/listen-SanChi'
+for sub,dst in [('Shared',root/'Infantry/English')]+[(u,root/'Units'/(u+'_EN')) for u in sorted(ENGLISH)]:
+    for d in sorted(p for p in (C/sub).iterdir() if p.is_dir()):
+        out=dst/trig(d.name);k=len(list(out.glob('*.mp3'))) if out.exists() else 0
+        for i,f in enumerate(sorted(d.glob('*.mp3')),k+1):put(f,out/f'{i:02d}.mp3')
 # DF-31A (Osama 16 Nov 22:2x: "a lot of unique voice lines for the DF-31 nuclear ... calm ... old chinese phrases"): its own full set, df31/listen.
 for f in sorted((V/'df31/listen').glob('*/*.mp3')):put(f,root/'Special/DF31'/f.parent.name/f.name)
 # unit -> set. Names in v2/unit_map.json are the card names (HUDName) when the map was written; Blood Wolves was renamed in dev.34.

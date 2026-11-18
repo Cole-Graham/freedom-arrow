@@ -35,6 +35,10 @@ for _k,(_en,_zh) in _cn.items():
     ok(_S[_k].get('CountryId')==4 and _S[_k]['UIName']==_en,f'spec {_k} UIName {_en}')
     g.put('SpecializationsJson',_k,{'UIName':f'{_en} {_zh}'});ok(_S[_k]['UIName']==f'{_en} {_zh}',f'spec {_k} Chinese name')
 rec['spec_chinese_names']={str(k):f'{e} {z}' for k,(e,z) in _cn.items()}
+# ---------- Not table data, but in this batch (Osama 17 Nov 2026 17:0x PST, thread 1572407822849810463):
+# - SF night card portraits (v2, red light): runtime-qa/icons/FA_CN_INF_SF_CQC-Portrait.png and FA_CN_INF_SF_HIGH_TECH-Portrait.png. Embedded in
+#   FreedomArrow.Runtime.dll (CardIcons.cs): REBUILD THE RUNTIME DLL for dev.37.
+# - 110 Blood Wolves / Godswords US-callout clips, staged by tools/china-voice/stage.py into ChinaVoice/Infantry/English and Units/*_EN.
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
