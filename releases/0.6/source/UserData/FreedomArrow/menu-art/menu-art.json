@@ -46,10 +46,31 @@
     3,
     3
    ]
+  },
+  "stones": {
+   "image": "hill.png",
+   "w": 2048,
+   "h": 1152,
+   "x": 0,
+   "y": 0,
+   "limit": [
+    -26,
+    12
+   ],
+   "rot": [
+    0,
+    0
+   ]
   }
  },
  "hide_other_layers": true,
  "hide_paths": [
   "GameObject/bg"
+ ],
+ "order": [
+  "ground",
+  "a1",
+  "stones",
+  "logo"
  ]
 }

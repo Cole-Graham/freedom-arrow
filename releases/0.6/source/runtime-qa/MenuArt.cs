@@ -16,7 +16,7 @@ namespace FreedomArrow;
 static class MenuArt
 {
     sealed class LayerSpec { public string image=""; public float w,h,x,y; public float[] limit=new float[2]; public float[] rot=new float[2]; }
-    sealed class Spec { public string background=""; public Dictionary<string,LayerSpec> layers=new(); public bool hide_other_layers=true; public string[] hide_paths=Array.Empty<string>(); }
+    sealed class Spec { public string background=""; public Dictionary<string,LayerSpec> layers=new(); public bool hide_other_layers=true; public string[] hide_paths=Array.Empty<string>(); public string[] order=Array.Empty<string>(); }
     static Spec spec; static readonly Dictionary<string,Sprite> sprites=new(); static string dir;
     static float deadline=-1, nextTry; static int applied; static IntPtr appliedTo;
     public static void Install(string root)
@@ -76,7 +76,9 @@ static class MenuArt
         // "Press any key": made for the bright vanilla sunset, it shows as a grey haze over our night scene (Osama 18 Nov 10:0x: "why is there a glow").
         int off=0;var screen=root.transform.parent;
         foreach(var path in spec.hide_paths){var h=screen!=null?screen.Find(path):null;if(h!=null){h.gameObject.SetActive(false);off++;}else MelonLogger.Warning("FREEDOM_ARROW_MENU_ART hide path not found: "+path);}
-        foreach(var name in new[]{"ground","a1","logo"})if(byName.TryGetValue(name,out var l)&&spec.layers.ContainsKey(name))l.Layer.SetSiblingIndex(order++);
+        // Draw order back to front: menu-art.json "order" (Osama 18 Nov 10:4x: the hill with the soldiers as its own parallax layer, in front of
+        // the aircraft and behind the title); older files without it keep ground, a1, logo.
+        foreach(var name in spec.order.Length>0?spec.order:new[]{"ground","a1","logo"})if(byName.TryGetValue(name,out var l)&&spec.layers.ContainsKey(name))l.Layer.SetSiblingIndex(order++);
         applied++;
         MelonLogger.Msg($"FREEDOM_ARROW_MENU_ART applied: {used} layer(s) ours, {hidden} vanilla layer(s) off, background {(bg!=null?"ours":"not found")}, {off} screen element(s) hidden");
         DiagnosticLog.Write("menu_art_applied",new{used,hidden,background=bg!=null});
