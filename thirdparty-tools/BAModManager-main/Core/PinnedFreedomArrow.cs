@@ -33,6 +33,15 @@ public static class PinnedFreedomArrow
         AssetsIndexInstall.Load(AssetsIndexPath ?? throw new FileNotFoundException("The Models + Music/Voices file list was not downloaded."), HostedDistribution.Active.Assets);
     }
 
+    // Game-relative files of the Models + Music/Voices package (Mods/FAModels.dll, Mods/FAMusic.dll ...): kept in Mods by ForeignMods.Park.
+    private static IEnumerable<string> AssetsGamePaths()
+    {
+        if (HostedDistribution.Active.Assets.Index != null)
+            return AssetsIndexInstall.Load(AssetsIndexPath!, HostedDistribution.Active.Assets).Files.Select(f => f.Path);
+        using var zip = ZipFile.OpenRead(AssetsArchivePath);
+        return zip.Entries.Select(e => e.FullName.Replace('\\', '/')).ToList();
+    }
+
     public static void VerifyAssetsArchive()
     {
         using var file = File.OpenRead(AssetsArchivePath);
@@ -171,5 +180,6 @@ public static class PinnedFreedomArrow
         if (pack.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
             throw new InvalidDataException("dev.45 payload verification failed. The game will not start.");
         log("Verified Freedom Arrow " + Version + " with Models + Music/Voices.");
+        ForeignMods.Park(gameDir, pack.Files.Concat(AssetsGamePaths()), log);   // 1.1.6: other mods' DLLs (ActualArrow etc.) wait outside Mods during a Freedom Arrow game
     }
 }

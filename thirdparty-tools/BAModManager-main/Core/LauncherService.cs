@@ -530,6 +530,7 @@ public sealed class LauncherService
     /// <summary>Removes version.dll from the game folder (a copy is kept so PLAY can turn mods back on offline).</summary>
     public void TurnOffMods(string gameDir, Action<string> log)
     {
+        if (PinnedFreedomArrow.Enabled) ForeignMods.Restore(gameDir, log);   // 1.1.6: give other mods back their DLLs
         var proxy = Proxy(gameDir);
         if (!File.Exists(proxy)) return;
         Directory.CreateDirectory(Path.GetDirectoryName(ParkedProxy)!);
