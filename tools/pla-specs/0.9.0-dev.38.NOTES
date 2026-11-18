@@ -7,3 +7,4 @@ dev.38 batch notes (append; one line per change). Builder: read these before bui
 - The dev.38 batch is ONE line now: 952fbc88 China voices, 75bf496a apply_0_9_dev38.py (122 mm explosion), 9f6fc335 FA Music 1.5.4, fa4699ad loading screens.
 - FA Music 1.5.4 is an asset DLL: build with --asset Mods/FAMusic.dll=tools/music-player/bin/Release/net6.0/FAMusic.dll (new Assets version). See apply_0_9_dev38.py.
 - Build dev.38 from this branch head, not from the detached loading-hook-wt worktree.
+- 18 Nov 2026 02:3x PST, thread 1572407822849810463: +10 US loading screens (FA_US_LOADING_*, Osama 'this is good'); loading/ now 14 pictures.
