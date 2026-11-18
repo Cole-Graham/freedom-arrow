@@ -78,8 +78,8 @@ Ground vehicles (`Type` 4), helicopters (`Type` 8), and ships (`Type` 32) use th
 | Reload | 1 | 1.25 | 1.5 |
 | Dispersion | 1 | 1.15 | 1.52 |
 | Movement speed | 1 | 0.6 | 0.2 |
-| Damage floor | 0.72 | 0.57 | 0.42 |
-| Damage per soldier | 0.02 | 0.015 | 0.01 |
+| Damage floor | 0.36 | 0.36 | 0.10 |
+| Damage per soldier | 0.02 | 0.02 | 0.10 |
 
 Infantry movement is multiplied by `MovementSpeedMultiplier` on that row. Shocked infantry move at 0.6 of their speed, and panicked infantry move at 0.2. Vehicles, helicopters, planes, and ships do not read that movement field in `SetStressModifiers`.
 
@@ -93,9 +93,11 @@ infantryDamageScale = clamp(InfantryDmgModFloor + count × InfantryDmgModPerSold
 
 | Level | Scale |
 | --- | ---: |
-| Calm | 0.72 + 7 × 0.02 = 0.86 |
-| Shocked | 0.57 + 7 × 0.015 = 0.675 |
-| Panicked | 0.42 + 7 × 0.01 = 0.49 |
+| Calm | 0.36 + 7 × 0.02 = 0.50 |
+| Shocked | 0.36 + 7 × 0.02 = 0.50 |
+| Panicked | 0.10 + 7 × 0.10 = 0.80 |
+
+The live Buff Config (path_id 52805) has the values above; an unused Buff Config object (52722) has 0.72/0.57/0.42 and 0.02/0.015/0.01. Lateralus's dev.26 Fletcher test (16 Nov 2026, 12 hits on a 12-man squad) matched the live values. The scale applies to hits under `StressDamageModThreshold` (36), and IgnoreCover blends it: `scale + (1 - scale) × IgnoreCover`. Freedom Arrow from 0.9.0-dev.44 sets the floor to 1 and the per-soldier term to 0 on all three levels (`game-config.json` `InfantryOpenDamageFloor`/`InfantryOpenDamagePerSoldier`), so infantry in the open take full damage.
 
 Freedom Arrow's `game-config.json` replaces the two movement factors with shocked 0.7 and panicked 0.4. The other factors in these tables stay on the asset.
 
