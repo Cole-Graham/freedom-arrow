@@ -24,10 +24,19 @@ public partial class Mod
         SharedPlayerDeck.add_OnSetDeck(new System.Action<int, IDeckDataModel, IDeckHelper>(OnSetDeck));
         MelonLogger.Msg($"FAMODELS preload installed: {unitNames.Count} mapped unit id(s)");
     }
+    // 0.3.34 (Osama 17 Nov 2026: "we should preload all the models before the game loads so there's no stuttering on model loading"). The
+    // 5v5 detail log showed the one-per-frame preload as 10 s of 50-107 ms frames right after deployment began. Now the whole queue is built in
+    // one go 0.3 s after the last deck of the match is set (the game is in its deployment pause then), so the match starts with every battle
+    // model, LOD, body and infantry weapon already built: one pause at the start instead of a stutter for every model. preloadSeen is cleared
+    // when a new match sets its decks (more than 30 s after the last deck), because the game unloads the kept meshes between scenes.
+    static float lastSetDeck = -100f; static bool burst;
     static void OnSetDeck(int player, IDeckDataModel deck, IDeckHelper helper)
     {
         try
         {
+            float now = Time.realtimeSinceStartup;
+            if (now - lastSetDeck > 30f) { preloadSeen.Clear(); MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
+            lastSetDeck = now; burst = true;
             int added = 0;
             foreach (var slots in deck.GetSlots.Values)
                 foreach (var s in slots)
@@ -53,7 +62,20 @@ public partial class Mod
     // One model per frame, so a weak PC never stalls for the whole deck at once.
     static void TickPreload()
     {
-        if (preload.Count == 0) return;
+        if (preload.Count == 0) { burst = false; return; }
+        if (burst && Time.realtimeSinceStartup - lastSetDeck > 0.3f)
+        {
+            burst = false;
+            int n = preload.Count, fails = 0; var all = System.Diagnostics.Stopwatch.StartNew();
+            while (preload.Count > 0)
+            {
+                var b = preload.Dequeue();
+                try { if (b.StartsWith("body:")) PreloadBody(b.Substring(5)); else LoadFam(b, out _); }   // LoadFam waits for the background job
+                catch (Exception ex) { fails++; MelonLogger.Warning($"FAMODELS preload {b}: {ex.Message}"); }
+            }
+            MelonLogger.Msg($"FAMODELS preload burst: {n} model(s)/bodies built in {all.Elapsed.TotalMilliseconds:F0} ms at match start ({fails} failed)");
+            return;
+        }
         var f = preload.Dequeue();
         // 0.3.31: a model whose background preparation is still running waits at the back of the queue; this frame does nothing.
         if (!f.StartsWith("body:") && !FamReady(f) && famJobs.ContainsKey(f)) { preload.Enqueue(f); return; }

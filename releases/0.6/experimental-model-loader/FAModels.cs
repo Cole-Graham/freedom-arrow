@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.33", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.34", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -193,19 +193,46 @@ public partial class Mod : MelonMod
         if (lodLevels.Count > 4000) lodLevels.Clear();
     }
 
+    // 0.3.34 (Osama 17 Nov 2026: "detailed logging and tracking"): each part of the update is timed; an update over 15 ms logs which part
+    // took the time (FAMODELS slow update), so a spike in the FREEDOM_ARROW_SLOW_FRAME lines can be traced inside FAModels.
+    static readonly long[] sec = new long[9];
+    static readonly string[] secNames = { "preload", "body swap", "body poll", "infantry weapons", "visibility sync", "camera", "cockpit upgrade", "camera, cockpits and model swaps", "PLA review" };
+    static int slowUpdates;
+    static long Mark(int i, long t0) { long t = System.Diagnostics.Stopwatch.GetTimestamp(); sec[i] += t - t0; return t; }
     public override void OnUpdate()
     {
+        Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start;
         try { HitchLog(); } catch { }
         try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
+        t = Mark(8, t);
         try { TickPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload: " + ex.Message); }
+        t = Mark(0, t);
         try { TickInfantryBodies(true); } catch (Exception ex) { MelonLogger.Error("FAMODELS body swap: " + ex.Message); }
+        t = Mark(1, t);
         try { TickInfantryBodies(); } catch (Exception ex) { MelonLogger.Error("FAMODELS body poll: " + ex.Message); }
+        t = Mark(2, t);
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
+        t = Mark(3, t);
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
+        t = Mark(4, t);
+        try { UpdateRest(); } finally { t = Mark(7, t); SlowUpdateLog(start, t); }
+    }
+    static void SlowUpdateLog(long start, long end)
+    {
+        double ms = (end - start) * 1000.0 / System.Diagnostics.Stopwatch.Frequency;
+        if (ms < 15 || slowUpdates++ > 400) return;
+        MelonLogger.Msg($"FAMODELS slow update {ms:F0} ms: " + string.Join(", ", Enumerable.Range(0, sec.Length).Where(i => sec[i] * 1000.0 / System.Diagnostics.Stopwatch.Frequency >= 1).OrderByDescending(i => sec[i])
+            .Select(i => $"{secNames[i]} {sec[i] * 1000.0 / System.Diagnostics.Stopwatch.Frequency:F0} ms")) + $" | body swaps {bodySwapsThisFrame}, model swaps {modelSwapsThisFrame}");
+    }
+    // 0.3.34: UpgradeFallbacks searches every loaded material (FindObjectsOfTypeAll). With a donor that never loads in a battle it ran every
+    // 10 s for the whole match; the wait now doubles after each try (10, 20, 40 ... 320 s) and starts again at 10 s in each new scene.
+    static float upgradeGap = 10f;
+    static void UpdateRest()
+    {
         // 0.3.31: the turret-yaw diagnostic walked every China unit's whole transform tree every 2 s; only with verbose.txt now.
         if (Verbose && Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
         try { CamTick(); } catch (Exception ex) { MelonLogger.Error("FAMODELS cam: " + ex.Message); camWant = "off"; }
-        if (fallbackMats.Count > 0 && Time.realtimeSinceStartup - upgradeT > 10f) { upgradeT = Time.realtimeSinceStartup; try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
+        if (fallbackMats.Count > 0 && Time.realtimeSinceStartup - upgradeT > upgradeGap) { upgradeT = Time.realtimeSinceStartup; upgradeGap = Math.Min(upgradeGap * 2f, 320f); try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
         for (int i = queue.Count - 1; i >= 0; i--)
         {
             var q = queue[i];

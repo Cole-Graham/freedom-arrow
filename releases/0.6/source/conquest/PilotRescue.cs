@@ -78,6 +78,7 @@ public sealed partial class Prototype
     // dev.27: hidden spawn points count too (FindObjectsOfType skipped them; Osama's 2v2 Chkalovsk log of dev.15 found none
     // for 19 planes), and the team comes from the spawn point's map data when the script field is empty.
     static bool spawnsLogged;
+    static Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppArrayBase<SpawnPointScript> spawnCache;static int spawnScene;
     static TeamSide SpawnTeam(SpawnPointScript s)
     {
         var team=s._spawnPointTeamSide;
@@ -88,7 +89,11 @@ public sealed partial class Prototype
     static (float? own,float? enemy) SpawnDistances(Vector3 pos,TeamSide side)
     {
         float? own=null,enemy=null;
-        var all=UnityEngine.Object.FindObjectsOfType<SpawnPointScript>(true);
+        // 0.9.0-dev.37 (5v5 FPS test): FindObjectsOfType walks the whole scene; spawn points do not change during a match, so the list is kept
+        // per scene and searched again only in a new scene.
+        int scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().handle;
+        if(spawnCache==null||spawnScene!=scene){spawnCache=UnityEngine.Object.FindObjectsOfType<SpawnPointScript>(true);spawnScene=scene;}
+        var all=spawnCache;
         if(!spawnsLogged)
         {
             spawnsLogged=true;

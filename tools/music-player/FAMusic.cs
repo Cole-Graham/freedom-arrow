@@ -257,10 +257,13 @@ public sealed class Player : MelonMod
     // A collection used by exactly one preset names that preset; a shared collection gives null.
     static Dictionary<IntPtr, List<string>> presets = new();
     static float presetScan;
+    static readonly Dictionary<IntPtr, float> presetMissing = new();   // unknown collection -> no rescan for it until this time (2 min)
     static string PresetOf(Il2CppBrokenArrow.AudioSystem.AudioCommand.AudioCommandsCollection c)
     {
         if (c == null) return null;
-        if (!presets.ContainsKey(c.Pointer) && UnityEngine.Time.unscaledTime > presetScan)
+        // 1.5.3: a collection that is still unknown after a full scan is remembered for 2 min, so it no longer triggers a FindObjectsOfTypeAll walk
+        // of every loaded asset every 5 s for the rest of the match (5v5 FPS test, 17 Nov 2026).
+        if (!presets.ContainsKey(c.Pointer) && !(presetMissing.TryGetValue(c.Pointer, out var until) && UnityEngine.Time.unscaledTime < until) && UnityEngine.Time.unscaledTime > presetScan)
         {
             presetScan = UnityEngine.Time.unscaledTime + 5f;
             presets.Clear();
@@ -275,6 +278,7 @@ public sealed class Player : MelonMod
             }
             try { File.WriteAllLines(Path.Combine(Root, "voice-presets.txt"), lines.OrderBy(x => x)); } catch { }
             Melon<Player>.Logger.Msg($"FA_MUSIC voice presets: {lines.Count} presets, {presets.Count} command sets");
+            if (!presets.ContainsKey(c.Pointer)) presetMissing[c.Pointer] = UnityEngine.Time.unscaledTime + 120f;
         }
         return presets.TryGetValue(c.Pointer, out var names) && names.Count == 1 ? names[0] : null;
     }
