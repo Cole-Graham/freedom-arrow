@@ -84,6 +84,47 @@ rec['jrvg1_no_smoke']={'unit':952,'ability':2009943,'from':{'IsSmoke':True,'Smok
 # (3v3 Dam, Dam Skirmish, PvE Dam 3P and its Skirmish), on for all 206 other zones. Test build of all 32 maps: 254 zones on; only the 4 Dam .bascr
 # change, the other 28 are byte-identical to dev.43. Not yet seen in game.
 rec['zones_force_neutral']={'file':'releases/0.8/scenarios/common.py','changed_maps':['[FA] [3v3] Dam 0.2','[FA] [3v3] Dam Skirmish 0.2','[FA] [PvE] Dam vs China (3P) 0.1','[FA] [PvE] Dam vs China (3P) Skirmish 0.1'],'verified':'map files only; not seen in game'}
+# ---------- China AT launchers like vanilla (Osama 18 Nov 2026 15:3x PST, thread 1571014792016171120, after the outlier scan: "tank hunters should
+# have 6 ammo for each munition and then 50 points. the 1 PF-89 shot teams, we need to fix them, assault raiders 6, amored scouts 4, Infantry 6,
+# marines 6, recon patrol 4. Taishan please fix it so they have 4 disposable at weapons ... Mech. rifles should be 5 PF-89, Blood Wolves should carry 4").
+# Vanilla disposables: one round per carrier, several carriers (AT4/LAW/RPG-26: 3-8 men). The PF-89 goes into the empty special slot of more members
+# (riflemen first, then DMR/MG men); its ammo row stays 1 per carrier. Marines have only 5 free special slots, so one of the three QLG-10A
+# underbarrel grenadiers (2015888) swaps to the PF-89 for the 6th. Prices unchanged except Tank Hunters. Marine Recon (4 men, two of them with the
+# QTS-11 grenade launcher) is NOT changed here: 4 carriers would remove both grenade launchers; asked first.
+_SM=t['SquadMembersJson'];_WA4=t['WeaponAmmunitionsJson'];_PF89=_SM[2014963]['SpecialWeaponId']
+ok(t['WeaponsJson'][_PF89]['HUDName'].strip()=='PF-89','PF-89 weapon id')
+_pf={1146:(6,[2014965,2014966,2014967,2014968,2014962]),1160:(4,[2015068,2015069,2015071]),1175:(6,[2015920,2015922,2015923,2015919,2015917]),
+     1192:(6,[2015889,2015882,2015883,2015884,2015888]),1201:(4,[2015533,2015534,2015535]),1203:(4,[2015557,2015558,2015555]),
+     1163:(5,[2015105,2015106,2015100]),1183:(4,[2015324,2015325])}
+_pfrec={}
+for _u,(_n,_ms) in _pf.items():
+    for _m in _ms:
+        ok(_SM[_m]['UnitId']==_u and (_SM[_m]['SpecialWeaponId']==0 or _m==2015888),('free special slot',_u,_m))
+        g.put('SquadMembersJson',_m,{'SpecialWeaponId':_PF89})
+    _carr=sum(1 for r in _SM.values() if r['UnitId']==_u and _PF89 in (r['PrimaryWeaponId'],r['SpecialWeaponId']))
+    _am=[r for r in _WA4.values() if r['UnitId']==_u and r['WeaponId']==_PF89]
+    ok(len(_am)==1,('one PF-89 ammo row',_u))
+    if _am[0]['Quantity']!=1:g.put('WeaponAmmunitionsJson',_am[0]['Id'],{'Quantity':1})
+    ok(_carr==_n and _WA4[_am[0]['Id']]['Quantity']==1,(t['Units'][_u]['HUDName'],'PF-89 carriers',_carr,'want',_n))
+    _pfrec[str(_u)]={'name':t['Units'][_u]['HUDName'].strip(),'pf89_carriers':_n,'rounds_each':1}
+ok(sum(1 for r in _SM.values() if r['UnitId']==1192 and r['SpecialWeaponId']==_SM[2015886]['SpecialWeaponId'])==2,'Marines keep 2 QLG-10A')
+# Tank Hunters (1139): PF-98A HEAT and DZT-98 thermobaric 10 + 10 -> 6 + 6, price 55 -> 50.
+for _r in (2014891,2014892):ok(_WA4[_r]['UnitId']==1139,('Tank Hunters ammo row',_r));g.put('WeaponAmmunitionsJson',_r,{'Quantity':6})
+ok(t['Units'][1139]['Cost']==55,'Tank Hunters was 55');g.put('Units',1139,{'Cost':50})
+rec['china_at_launchers']={'pf89':_pfrec,'marines_qlg10a_to_pf89':2015888,'tank_hunters_1139':{'ammo':'PF-98A 6 + DZT-98 6 (was 10 + 10)','cost':'55 -> 50'},
+    'not_changed':'Marine Recon 1224 (would lose both QTS-11 grenade launchers), PF-98 Tank Hunters 1155 (10 rds, 45), PF-98 Team 1172 (10+10, 55)'}
+# ---------- Z-10K detection 3200 and Z-19 out of the Air Force (same message: "Z-10K should have 3200 detection, Z-19 removed from Airforce").
+# Z-10K (913) used shared sensor 3 'Very Good Optics' (2300/1250/1000, 120 users): it gets its own copy with ground optics 3200.
+# Z-19 (940) is the Air Force card; its only specialization row 2008228 (PLAAF Air Force) is removed. Z-19 1103 (Motorized) and the Z-19G stay.
+_SU=[r for r in t['SensorUnitsJson'].values() if r['UnitId']==913]
+ok(len(_SU)==1 and _SU[0]['SensorId']==3,'Z-10K uses sensor 3')
+_z10k=g.add('SensorsJson',t['SensorsJson'][3],{'Name':'Optics Z-10K 3200','IsDefault':False,'OpticsGround':3200.0})
+g.put('SensorUnitsJson',_SU[0]['Id'],{'SensorId':_z10k})
+ok(set(t['SensorsJson'][_z10k])==set(t['SensorsJson'][3]) and t['SensorsJson'][_z10k]['OpticsGround']==3200.0,'Z-10K sensor fields like vanilla row, 3200')
+ok(t['SpecializationAvailabilitiesJson'][2008228]['UnitId']==940,'Z-19 Air Force row')
+g.remove('SpecializationAvailabilitiesJson',2008228)
+ok(not any(r['UnitId']==940 for r in t['SpecializationAvailabilitiesJson'].values()),'Z-19 940 in no spec')
+rec['z10k_z19']={'z10k_sensor':_z10k,'z10k_optics_ground':3200,'z19_940_removed_spec_row':2008228}
 # ---------- FAModels 0.3.35: free models nothing uses (Osama 18 Nov 2026 14:4x PST, thread 1572551547726991400: "ishtar is the one that crashed, we should
 # free models"). Code only, no data rows. Since 0.3.25 every model loaded stayed in memory for the whole session; ishtar's dev.41 game went down
 # while browsing the Arsenal after a match with 132 models held (~2.5 GB of textures; the whole Arsenal is ~6.6 GB, Assets 0.2.46). Unload.cs: on
