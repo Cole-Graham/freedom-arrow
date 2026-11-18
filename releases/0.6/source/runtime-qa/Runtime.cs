@@ -181,6 +181,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
         try { TurretDiag.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
+        try { LoadingScreens.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOADING_SCREENS_FAILED: not installed; vanilla loading screens. "+e.Message); }
         try { MirrorSkin.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MIRROR_SKIN_FAILED: not installed; mirror finishes show the normal skin. "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }
