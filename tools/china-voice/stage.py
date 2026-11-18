@@ -2,7 +2,7 @@
 Source: work/china-voices (ElevenLabs v4, Old Radio filter, -16 LUFS; every clip checked with speech-to-text for non-speech sounds).
 - Mandarin sets v2/listen/<Category>/<Style>/<NN_Trigger>/<NN_voice>.mp3 -> ChinaVoice/<Category>/<Style>/<Trigger>/<NN>.mp3
 - Unit selection lines v2/listen/Units/<Category>/<Unit>/Selection_NN_<voice>.mp3 -> ChinaVoice/Units/<Unit>/Selection/<NN>.mp3
-- Blood Wolves speak English (San Chi); Godswords speak English in their own voice (wolves/godswords, see below): wolves/listen-SanChi/Shared -> ChinaVoice/Infantry/English, and their own lines
+- Blood Wolves and Godswords speak English (San Chi): wolves/listen-SanChi/Shared -> ChinaVoice/Infantry/English, and their own lines
   -> ChinaVoice/Units/<Unit>_EN/<Trigger>. Their Mandarin unit lines are not staged.
 Writes china-voices.json: unit id -> voice set and unit folder, plus the fallback set by unit Type (and CategoryType) for unmapped China units.
 usage: stage.py VOICES_DIR UNITS_JSON OUT_USERDATA_DIR"""
@@ -27,21 +27,15 @@ for f in sorted((V/'v2/listen/Units').glob('*/*/*.mp3')):
     put(f,root/'Units'/unit/'Selection'/(re.search(r'_(\d\d)_',name)[1]+'.mp3'))
 W=V/'wolves/listen-SanChi'
 for f in sorted((W/'Shared').glob('*/*.mp3')):put(f,root/'Infantry/English'/trig(f.parent.name)/(f.name[:2]+'.mp3'))
-for u in ['Blood_Wolves']:   # Godswords have their own voice since 17 Nov (below)
+for u in ENGLISH:
     for f in sorted((W/u).glob('*/*.mp3')):put(f,root/'Units'/(u+'_EN')/trig(f.parent.name)/(f.name[:2]+'.mp3'))
 # Additive US-military callouts for Blood Wolves and Godswords (Osama 17 Nov 2026 17:03 PST, thread 1572407822849810463: "All are approved", no "Hooah"):
 # wolves/callouts/listen-SanChi, numbered after the lines above in the same trigger folders (ChinaVoice.cs plays every mp3 in a folder).
 C=V/'wolves/callouts/listen-SanChi'
-def append(src,dst):
-    for d in sorted(p for p in src.iterdir() if p.is_dir()):
+for sub,dst in [('Shared',root/'Infantry/English')]+[(u,root/'Units'/(u+'_EN')) for u in sorted(ENGLISH)]:
+    for d in sorted(p for p in (C/sub).iterdir() if p.is_dir()):
         out=dst/trig(d.name);k=len(list(out.glob('*.mp3'))) if out.exists() else 0
         for i,f in enumerate(sorted(d.glob('*.mp3')),k+1):put(f,out/f'{i:02d}.mp3')
-append(C/'Shared',root/'Infantry/English');append(C/'Blood_Wolves',root/'Units/Blood_Wolves_EN')
-# Godswords speak with their own voice (Osama 17 Nov 2026 17:49 PST, thread 1572407822849810463: "B is the final candidate for the godswords"):
-# saved voice "FA Godswords 9A Haoran", settings B, wolves/godswords/gen_gs.py. Their full English set (original lines, then callouts) goes to
-# ChinaVoice/Infantry/EnglishGS and their own lines to Units/Godswords_EN. Blood Wolves keep San Chi in Infantry/English.
-G=V/'wolves/godswords/listen'
-for src in ('orig','callouts'):append(G/src/'Shared',root/'Infantry/EnglishGS');append(G/src/'Godswords',root/'Units/Godswords_EN')
 # DF-31A (Osama 16 Nov 22:2x: "a lot of unique voice lines for the DF-31 nuclear ... calm ... old chinese phrases"): its own full set, df31/listen.
 for f in sorted((V/'df31/listen').glob('*/*.mp3')):put(f,root/'Special/DF31'/f.parent.name/f.name)
 # unit -> set. Names in v2/unit_map.json are the card names (HUDName) when the map was written; Blood Wolves was renamed in dev.34.
@@ -61,8 +55,7 @@ units={}
 for cat,sty,hud,_ in M:
     for i in byname[hud]:
         e={'set':f'{cat}/{sty}'};f=unit_folder(cat,hud)
-        if hud.startswith('Blood Wolves'):e={'set':'Infantry/English','unit':'Blood_Wolves_EN'}
-        elif hud.startswith('Godswords'):e={'set':'Infantry/EnglishGS','unit':'Godswords_EN'}
+        if hud.startswith(('Blood Wolves','Godswords')):e={'set':'Infantry/English','unit':('Blood_Wolves' if hud.startswith('Blood') else 'Godswords')+'_EN'}
         elif f:e['unit']=f
         units[str(i)]=e
 for i,u in U.items():
