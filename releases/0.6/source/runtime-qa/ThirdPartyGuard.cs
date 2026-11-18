@@ -67,6 +67,7 @@ static class ThirdPartyGuard
         }
         MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue menu names Freedom Arrow {version}");
         SameBuildCode(game);
+        NoActualArrowLabel(h,game);
         OnlyFaMaps(h,game);
         LobbyMapTabs.Install(h);
     }
@@ -82,6 +83,27 @@ static class ThirdPartyGuard
         AccessTools.Field(game,"_packHash")?.SetValue(null,null);   // in case ArrowQueue already made the code
         MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll, FAUiLog.dll and FAModels.dll");
         SameDatabaseCode(game);
+    }
+
+    // 0.9 dev.43 batch (Osama, 18 November 2026: "how come some people are on different versions from the same install"): a player's log
+    // showed the same 4 DLLs as ours (b90982ef) but "ActualArrow 1.0.8", because an old ActualArrow entry is still switched on in the
+    // BAModManager manifest. ArrowQueue then puts "aa1.0.8" instead of "noaa" in front of the DLL hash, so the code was G3XZ, not BRX7.
+    // Freedom Arrow never uses ActualArrow, and any ActualArrow DLL that really loads still changes the DLL hash, so only the label goes.
+    static FieldInfo packHashField;
+    static void NoActualArrowLabel(HarmonyLib.Harmony h,Type game)
+    {
+        var pack=AccessTools.Method(game,"PackHash");packHashField=AccessTools.Field(game,"_packHash");
+        if(pack==null||packHashField==null){MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue PackHash not found; an old ActualArrow entry still changes the build code");return;}
+        h.Patch(pack,postfix:new HarmonyMethod(typeof(ThirdPartyGuard),nameof(DropActualArrowLabel)));
+        packHashField.SetValue(null,null);
+    }
+    static bool labelLogged;
+    static void DropActualArrowLabel(ref string __result)
+    {
+        if(__result==null||!__result.StartsWith("aa",StringComparison.Ordinal))return;
+        var dash=__result.IndexOf('-');if(dash<0)return;
+        var was=__result;__result="noaa"+__result[dash..];packHashField.SetValue(null,__result);
+        if(!labelLogged){labelLogged=true;MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: build code ignores the ActualArrow entry in the Mod Manager ({was} -> {__result}); its DLLs, if loaded, still count");}
     }
 
     // Batch (Lateralus, 8 November 2026): players on the same FA build still saw different codes. ArrowQueue's database part

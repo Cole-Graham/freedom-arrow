@@ -1,0 +1,5 @@
+dev.43 batch notes (append; one line per change). Builder: read these before building dev.43.
+- 18 Nov 2026 11:5x PST, thread 1567745029781454889 (Osama: "how come some people are on different versions from the same install"):
+  ThirdPartyGuard.cs NoActualArrowLabel: postfix on ArrowQueue Game.PackHash turns "aa<ver>-<dllhash>" into "noaa-<dllhash>". Evidence: player
+  Latest1.log had our 4 DLLs (b90982ef) but "ActualArrow 1.0.8" from an old Mod Manager entry -> code G3XZ; without the label -> BRX7 (computed).
+  REBUILD THE RUNTIME DLL. Check in game: a player with a stale ActualArrow entry shows BRX7; log "build code ignores the ActualArrow entry".
