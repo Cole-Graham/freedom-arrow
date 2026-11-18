@@ -39,6 +39,38 @@ g.put('WeaponsJson',2019357,_wch);g.put('AmmunitionsJson',2019358,_ach)
 ok(all(_W[2019357].get(k)==v for k,v in _W[625].items() if k not in _wkeep) and _W[2019357]['MagazineSize']==18,'HHQ-10 launcher = MML AIM-9, magazine 18')
 ok(all(_A[2019358].get(k)==v for k,v in _A[465].items() if k not in _akeep),'HHQ-10 missile = AIM-9')
 rec['hhq10_as_mml_aim9']={'weapon':2019357,'missile':2019358,'from':_before,'to':{'weapon':_wch,'missile':_ach},'kept':'names, icons, sound/FX, TargetType 1944, 18 rounds, cost 220'}
+# ---------- Autocannon HE vs infantry in buildings back to vanilla (Osama 18 Nov 2026 13:3x PST, thread 1567745029781454889: "can we bring autocannon
+# damage to infantry back to vanilla levels?", after the 13:2x comparison). Open-ground damage is already vanilla (same Damage and penetration). In a
+# building vanilla multiplies by 0.18 + 0.02 per soldier inside (0.38 for a 10-man squad); FA uses a flat 0.18 (game-config BuildingDamageFloor), then
+# blends IgnoreCover: f = floor + (1-floor)*IC. For a 10-man squad vanilla 0.38 needs FA IC = (0.38-0.18)/0.82 = 0.2439 (vanilla IC is 0 on all these
+# rounds). Scope: 20-57 mm HE/HEI/HEDP/MP rounds (penetration <= 150) on any unit, China rows included (same 3.0 dmg / 30 pen as the 2A42 HE).
+# Excluded: grenade launchers (QLB-06, QLZ-87 35 mm AGL) and the SPAAG/SAM gun rounds Lateralus tuned for missile defence (spaag-weapons.json weapons and sameUnitClaimWeapons): their Damage differs.
+import re as _re
+_A=t['AmmunitionsJson'];_W=t['WeaponsJson'];_WA=t['WeaponAmmunitionsJson'];_VA={r['Id']:r for r in json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
+_sp=json.loads(z.read('UserData/FreedomArrow/spaag-weapons.json'));_aaw=set(_sp['weapons'])|set(_sp['sameUnitClaimWeapons'])
+_IC=0.2439
+_rounds={};_skip={}
+for _r in _WA.values():
+    _a=_A.get(_r['AmmunitionId']);_w=_W.get(_r['WeaponId'])
+    if not _a or not _w:continue
+    _nm=str(_a.get('Name'))+' '+str(_w.get('Name'))
+    if not _re.search(r'\b(20|23|25|27|30|35|40|50|57)\s?mm|Round (20|23|25|27|30|35|40|57)\b',_nm):continue
+    if not _re.search(r'HE|FRAG|HEI|MP|Frag|ABM|HEDP|HE-',str(_a.get('Name'))+str(_a.get('HUDName'))):continue
+    if (_a.get('PenetrationAtGroundRange') or 0)>150:continue
+    if _r['WeaponId'] in _aaw:_skip.setdefault(_a['Id'],_a['HUDName']);continue
+    if _re.search(r'grenade|AGL|QLB|QLZ',_nm+str(_w.get('HUDName'))+str(_a.get('HUDName')),_re.I):continue   # grenade launchers (QLB-06, QLZ-87) are not autocannons
+    _rounds[_a['Id']]=_a
+for _i in _skip:_rounds.pop(_i,None)
+for _i,_a in _rounds.items():
+    _v=_VA.get(_i)
+    if _v:ok((_v.get('IgnoreCover') or 0)==0 and _v.get('Damage')==_a.get('Damage'),(_i,_a['HUDName'],'vanilla IC 0, same damage'))
+_chg={}
+for _i in sorted(_rounds):
+    _old=_A[_i].get('IgnoreCover') or 0
+    if _old!=_IC:g.put('AmmunitionsJson',_i,{'IgnoreCover':_IC});_chg[str(_i)]={'name':_A[_i]['HUDName'],'from':_old,'to':_IC}
+ok(len(_chg)>=40,('autocannon HE rounds changed',len(_chg)))
+rec['autocannon_he_buildings_vanilla']={'ignore_cover':_IC,'basis':'10 soldiers, vanilla 0.38','changed':_chg,'excluded_spaag':{str(k):v for k,v in _skip.items()}}
+print('autocannon rounds changed',len(_chg),'excluded',len(_skip))
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

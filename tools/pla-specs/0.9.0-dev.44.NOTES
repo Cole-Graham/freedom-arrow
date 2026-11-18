@@ -7,3 +7,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   apply_0_9_dev44.py (base exact dev.43; constants gitignored, run in write mode before packaging): HHQ-10 weapon 2019357 / missile 2019358 take MML
   AIM-9 625/465 values: damage 14->13, stress 254->154, high-alt range 675->775, SEAD projectile range 0->1100, supply 150->75, bursts 2-3 s -> 0.8-1.2 s,
   no magazine reload (was 20-30 s), cannot fire on the move (was true). Kept TargetType 1944, 18 missiles, cost 220, names/FX. 5 checks.
+- 18 Nov 2026 13:4x PST, thread 1567745029781454889 (Osama "can we bring autocannon damage to infantry back to vanilla levels?"): apply_0_9_dev44.py
+  sets IgnoreCover 0.2439 on 46 autocannon HE/HEI/HEDP rounds (20-57 mm, pen <= 150; was 0 or 0.125), so FA's flat 0.18 building floor gives the
+  vanilla 10-soldier factor 0.38. Open-ground damage was already vanilla. Excluded: 5 SPAAG gun rounds (60, 62, 213, 231, 262; Lateralus's
+  missile-defence damage) and grenade launchers (QLB-06, QLZ-87). Calculated, not measured. 35 checks in total.
