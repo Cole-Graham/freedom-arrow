@@ -1,0 +1,2 @@
+dev.42 batch notes (append; one line per change). Builder: read these before building dev.42.
+- 18 Nov 2026 11:3x PST, thread 1572407822849810463 (Osama: 'some of the men got spaced out and then lost their legs'): main menu hill.png/base.png rebuilt with work/main-menu-20261118/split4k_v2.py (mask_v2 = old mask + every soldier pixel, gaps closed). Art only, no code change; the soldiers and flag now move as one piece and the background holds no leftover legs.
