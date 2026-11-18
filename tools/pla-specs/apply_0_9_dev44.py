@@ -71,6 +71,13 @@ for _i in sorted(_rounds):
 ok(len(_chg)>=40,('autocannon HE rounds changed',len(_chg)))
 rec['autocannon_he_buildings_vanilla']={'ignore_cover':_IC,'basis':'10 soldiers, vanilla 0.38','changed':_chg,'excluded_spaag':{str(k):v for k,v in _skip.items()}}
 print('autocannon rounds changed',len(_chg),'excluded',len(_skip))
+# ---------- JRVG-1 without smoke (Osama 18 Nov 2026 15:2x PST, thread 1571014792016171120: "JRVG should not have smoke"). JRVG-1 (unit 952) has one
+# ability, 2009943, used by nothing else; it carries both the radar switch and 1 smoke salvo (ammo 268). Smoke off, radar kept.
+ok([r['UnitId'] for r in UAB.values() if r['AbilityId']==2009943]==[952] and AB[2009943].get('IsSmoke') and AB[2009943].get('IsRadar'),'JRVG-1 ability 2009943: own, smoke + radar')
+ok(not any(2009943 in (o.get('Ability1Id'),o.get('Ability2Id'),o.get('Ability3Id')) for o in t['OptionsJson'].values()),'2009943 on no option')
+g.put('AbilitiesJson',2009943,{'IsSmoke':False,'SmokeAmmunitionQuantity':0})
+ok(not AB[2009943]['IsSmoke'] and AB[2009943]['SmokeAmmunitionQuantity']==0 and AB[2009943]['IsRadar'],'JRVG-1 smoke off, radar kept')
+rec['jrvg1_no_smoke']={'unit':952,'ability':2009943,'from':{'IsSmoke':True,'SmokeAmmunitionQuantity':1},'to':{'IsSmoke':False,'SmokeAmmunitionQuantity':0},'kept':'radar switch'}
 # ---------- FAModels 0.3.35: free models nothing uses (Osama 18 Nov 2026 14:4x PST, thread 1572551547726991400: "ishtar is the one that crashed, we should
 # free models"). Code only, no data rows. Since 0.3.25 every model loaded stayed in memory for the whole session; ishtar's dev.41 game went down
 # while browsing the Arsenal after a match with 132 models held (~2.5 GB of textures; the whole Arsenal is ~6.6 GB, Assets 0.2.46). Unload.cs: on
