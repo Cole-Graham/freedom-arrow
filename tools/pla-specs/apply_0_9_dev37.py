@@ -62,6 +62,20 @@ rec['spec_chinese_names']={str(k):f'{e} {z}' for k,(e,z) in _cn.items()}
 rec['performance_batch']={'runtime':['f7188eb2','89d7067d','bc321cf1'],'famodels':'0.3.34 (ae66e785, 7d5cc977, c1155743)','famusic':'1.5.3',
     'measured':{'dev36_tracking_on':{'fps':76.8,'frames_over_50ms':554},'with_fixes_hooks3':{'fps':85.5,'frames_over_50ms':201},'vanilla':{'fps':101.1,'frames_over_50ms':22}},
     'evidence':'work/perf-skirmish-20261117'}
+# ---------- MD-22 afterburners (Osama 17 Nov 2026 22:4x PST, thread 1567745029781454889: "Fix the md22"; 16 Nov 22:2x: "MD-22 afterburners don't seem
+# to work? I think you might need to model it off an F-35 for its stand in"). The MD-22 (976) sat on the S-70 Okhotnik drone, which has no afterburner;
+# FAModels draws the MD-22 over it, but the engine effects come from the stand-in. dev.35 could not switch it because the 7 loadouts mount on slots 0 and 1,
+# and slot 0 of the F-35A body is its gun. Now the F-35A (US_F35A) is the stand-in and every MD-22 loadout moves slot 0 -> 1 and slot 1 -> 2, the F-35A's
+# left and right weapon bay slots (vanilla F-35A loadouts use 1-6). Pylons, weapons, prices and the drone voice preset are unchanged.
+_O,_M=t['OptionsJson'],t['ModificationsJson']
+_md=[o for o in _O.values() if o['ModificationId']==2018225]
+ok(U[976]['HUDName']=='MD-22' and U[976]['ModelFileName']=='DLC3_S70_Okhotnik' and [m['UnitId'] for m in _M.values() if m['Id']==2018225]==[976],'MD-22 on the Okhotnik, loadout mod 2018225')
+ok(len(_md)==7 and all(o['Turret0Id'] and o['Turret1Id'] and not any(o.get(f'Turret{i}Id') for i in range(2,21)) for o in _md),'7 MD-22 loadouts on slots 0 and 1 only')
+_before={o['Id']:(o['Turret0Id'],o['Turret1Id']) for o in _md}
+g.put('Units',976,{'ModelFileName':'US_F35A'})
+for _o in _md:g.put('OptionsJson',_o['Id'],{'Turret0Id':0,'Turret1Id':_before[_o['Id']][0],'Turret2Id':_before[_o['Id']][1]})
+ok(U[976]['ModelFileName']=='US_F35A' and all((_O[i]['Turret0Id'],_O[i]['Turret1Id'],_O[i]['Turret2Id'])==(0,a,b) for i,(a,b) in _before.items()),'MD-22 on the F-35A, loadouts on slots 1 and 2')
+rec['md22_f35a_stand_in']={'unit':976,'model':['DLC3_S70_Okhotnik','US_F35A'],'loadouts':{str(i):{'slot1':a,'slot2':b} for i,(a,b) in _before.items()}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
