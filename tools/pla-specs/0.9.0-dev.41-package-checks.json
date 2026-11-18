@@ -1,0 +1,47 @@
+{
+  "version": "0.9.0-dev.41",
+  "build": 220,
+  "previous": "0.9.0-dev.40",
+  "assets_version": "0.2.46",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.46.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev38/FreedomArrow-Assets-0.2.46.bamod",
+    "sha256": "c11cf7a5f017caf68d6231017c69dad24c782a2fbc9af8b34ab2a7ccf46f78fe",
+    "size": 6479922745,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.0-dev.41-complete.bamod",
+    "sha256": "05e0dc651551f9d1f907b9f4c6d812497c281829e041689694aed5c125754e79",
+    "size": 6658692693,
+    "files": 12772
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.0-dev.41.bamod",
+    "sha256": "6616467745cf8b6b92ec3bc9631338aea35a70dfa1543643e5a23f5faecb4839",
+    "size": 178770533,
+    "files": 1777
+  },
+  "changed_paths": [
+    "Mods/FAModels.dll",
+    "Mods/FAMusic.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAAssets/manifest.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/menu-art/aircraft.png",
+    "UserData/FreedomArrow/menu-art/base.png",
+    "UserData/FreedomArrow/menu-art/hill.png",
+    "UserData/FreedomArrow/menu-art/menu-art.json",
+    "UserData/FreedomArrow/menu-art/title.png",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.0-dev.41.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

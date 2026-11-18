@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.0-dev.40",
+  "version": "0.9.0-dev.41",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.40 (18 Nov): start screen polish (dev.39 superseded: original ARROW logo back): FREEDOM ARROW title smaller, redder and moved right; the grey bar behind Press any key removed. Includes 0.9.0-dev.38 (new start screen, Freedom Arrow loading screens, regenerated China voices). Needs Freedom Arrow — Models and Music 0.2.46.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.41 (18 Nov): deck editor drag-and-drop to reorder units (Lateralus); 4K start screen with the hill and soldiers as their own parallax layer and the FA patch title. Includes 0.9.0-dev.40 (start screen polish) and 0.9.0-dev.38 (new start screen, Freedom Arrow loading screens, regenerated China voices). Needs Freedom Arrow — Models and Music 0.2.46.",
   "repo": "Cole-Graham/freedom-arrow"
 }
