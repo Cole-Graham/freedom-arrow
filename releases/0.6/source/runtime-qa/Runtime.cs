@@ -184,6 +184,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { LoadingScreens.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOADING_SCREENS_FAILED: not installed; vanilla loading screens. "+e.Message); }
+        try { DeckReorder.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_REORDER_FAILED: not installed; deck units keep their order. "+e.Message); }
         try { MenuArt.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MENU_ART_FAILED: not installed; vanilla start screen. "+e.Message); }
         try { MirrorSkin.Install(HarmonyInstance,Root); }
