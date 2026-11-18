@@ -11,3 +11,4 @@ dev.38 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 02:4x PST: +1 US loading screen (SF night raid, red light, rain, NVGs down); loading/ now 15.
 - 18 Nov 2026 02:5x PST: night raid replaced (no green glow, dual-tube NVGs); loading/ still 15.
 - 18 Nov 2026 03:0x PST: +9 Russia loading screens (all batch 1 except Kornet); loading/ now 24.
+- 18 Nov 2026 03:2x PST, thread 1567745029781454889 (Osama 'finalize this image as our main menu ... add the freedom arrow logo in broken arrow's style'): runtime-qa/MenuArt.cs swaps the start-screen UiParallax pictures (base, aircraft, title) from UserData/FreedomArrow/menu-art (packaged). Runtime references Assembly-CSharp-firstpass. Art source: work/main-menu-20261118 (make_layers.py, make_title.py).

@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -92,6 +92,7 @@ public class Runtime : MelonMod
         PlaneSale.SceneChanged();
         ServerMoney.SceneChanged();
         PlayableBorders.SceneChanged();
+        MenuArt.SceneChanged();
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -183,6 +184,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TURRET_DIAG_FAILED: "+e.Message); }
         try { LoadingScreens.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOADING_SCREENS_FAILED: not installed; vanilla loading screens. "+e.Message); }
+        try { MenuArt.Install(Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MENU_ART_FAILED: not installed; vanilla start screen. "+e.Message); }
         try { MirrorSkin.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MIRROR_SKIN_FAILED: not installed; mirror finishes show the normal skin. "+e.Message); }
         try { Dazzler.Install(HarmonyInstance,Root); }

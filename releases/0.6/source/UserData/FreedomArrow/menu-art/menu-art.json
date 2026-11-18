@@ -1,0 +1,52 @@
+{
+ "note": "Freedom Arrow title screen (MenuArt.cs). Canvas units: 1920x1080 reference, (0,0) = centre, y up. limit = UiParallax LimitPosition.",
+ "background": "base.png",
+ "layers": {
+  "ground": {
+   "image": "base.png",
+   "w": 2048,
+   "h": 1152,
+   "x": 0,
+   "y": 0,
+   "limit": [
+    -14,
+    8
+   ],
+   "rot": [
+    0,
+    0
+   ]
+  },
+  "a1": {
+   "image": "aircraft.png",
+   "w": 2048,
+   "h": 1152,
+   "x": 0,
+   "y": 0,
+   "limit": [
+    -34,
+    16
+   ],
+   "rot": [
+    0,
+    0
+   ]
+  },
+  "logo": {
+   "image": "title.png",
+   "w": 892,
+   "h": 354,
+   "x": -447,
+   "y": 76,
+   "limit": [
+    30,
+    15
+   ],
+   "rot": [
+    3,
+    3
+   ]
+  }
+ },
+ "hide_other_layers": true
+}
