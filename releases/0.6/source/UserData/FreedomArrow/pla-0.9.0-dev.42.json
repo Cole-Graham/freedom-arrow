@@ -1,0 +1,8 @@
+{
+ "version": "0.9.0-dev.42",
+ "base": "0.9.0-dev.41",
+ "base_sha256": "05e0dc651551f9d1f907b9f4c6d812497c281829e041689694aed5c125754e79",
+ "no_data_change": "dev.42 changes the start-screen pictures (menu-art/base.png, hill.png) only; constants are the dev.38 state",
+ "checks": 0,
+ "verified": "data unchanged from dev.38"
+}
