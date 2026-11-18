@@ -1,0 +1,44 @@
+{
+  "hhq10_as_mml_aim9": {
+    "weapon": 2019357,
+    "missile": 2019358,
+    "from": {
+      "weapon": {
+        "CanShootOnTheMove": true,
+        "MagazineReloadTimeMin": 20.0,
+        "MagazineReloadTimeMax": 30.0,
+        "TimeBetweenBurstsMin": 2.0,
+        "TimeBetweenBurstsMax": 3.0
+      },
+      "missile": {
+        "SupplyCost": 150.0,
+        "Damage": 14.0,
+        "StressDamage": 254.0,
+        "HighAltRange": 675.0,
+        "SeadProjectileRangeOverride": 0.0
+      }
+    },
+    "to": {
+      "weapon": {
+        "CanShootOnTheMove": false,
+        "MagazineReloadTimeMin": 0.0,
+        "MagazineReloadTimeMax": 0.0,
+        "TimeBetweenBurstsMin": 0.8,
+        "TimeBetweenBurstsMax": 1.2
+      },
+      "missile": {
+        "SupplyCost": 75.0,
+        "Damage": 13.0,
+        "StressDamage": 154.0,
+        "HighAltRange": 775.0,
+        "SeadProjectileRangeOverride": 1100.0
+      }
+    },
+    "kept": "names, icons, sound/FX, TargetType 1944, 18 rounds, cost 220"
+  },
+  "version": "0.9.0-dev.44",
+  "base": "0.9.0-dev.43",
+  "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
+  "checks": 5,
+  "verified": "data checks only"
+}

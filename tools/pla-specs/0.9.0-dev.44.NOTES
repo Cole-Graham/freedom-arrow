@@ -3,3 +3,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   GameConfig OnTransportDeathCargoKillFloor 30 -> 100 and OnTransportDeathCargoKillHLFloor 50 -> 100 (high helicopter / plane already 100).
   Read at death time by UnitUnloadingSystem.UpdateDeadContainerSquad via its static GameConfig. REBUILD THE RUNTIME DLL.
   Check in game: log FREEDOM_ARROW_CARGO_DIES_WITH_TRANSPORT ground 100% low helicopter 100%; kill a loaded truck/IFV in Skirmish, nobody leaves it.
+- 18 Nov 2026 13:4x PST, thread 1567745029781454889 (Osama "HHQ-10 should be like the MML with side winders in stats but of course 18 missiles"):
+  apply_0_9_dev44.py (base exact dev.43; constants gitignored, run in write mode before packaging): HHQ-10 weapon 2019357 / missile 2019358 take MML
+  AIM-9 625/465 values: damage 14->13, stress 254->154, high-alt range 675->775, SEAD projectile range 0->1100, supply 150->75, bursts 2-3 s -> 0.8-1.2 s,
+  no magazine reload (was 20-30 s), cannot fire on the move (was true). Kept TargetType 1944, 18 missiles, cost 220, names/FX. 5 checks.
