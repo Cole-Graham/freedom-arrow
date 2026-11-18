@@ -1,0 +1,6 @@
+dev.41 batch notes (append; one line per change). Builder: read these before building dev.41.
+- 18 Nov 2026 10:4x PST, thread 1572659362558771252 (Lateralus "it works perfectly, merge it into the batch"): deck editor drag and drop to reorder
+  units within a category (runtime-qa/DeckReorder.cs, Runtime.cs OnUpdate tick, csproj reference Unity.InputSystem). Merged from
+  codex/batch/lateralus/deck-reorder (3aa3a337). No table data. REBUILD THE RUNTIME DLL. Tested: 0.9.0-dev.40-test2 (build 219, Lateralus
+  "it works perfectly"; Vengeance 10:10 PST). Log line on start: "FREEDOM_ARROW_DECK_REORDER installed"; per move "<Category>: slot A -> B".
+  Test builds used build numbers 216 and 219: use 220 or higher for dev.41.
