@@ -6,9 +6,70 @@
     "20": "PLAN Special Forces 海军特种部队",
     "21": "PLAGF Motorized 陆军摩托化部队"
   },
+  "performance_batch": {
+    "runtime": [
+      "f7188eb2",
+      "89d7067d",
+      "bc321cf1"
+    ],
+    "famodels": "0.3.34 (ae66e785, 7d5cc977, c1155743)",
+    "famusic": "1.5.3",
+    "measured": {
+      "dev36_tracking_on": {
+        "fps": 76.8,
+        "frames_over_50ms": 554
+      },
+      "with_fixes_hooks3": {
+        "fps": 85.5,
+        "frames_over_50ms": 201
+      },
+      "vanilla": {
+        "fps": 101.1,
+        "frames_over_50ms": 22
+      }
+    },
+    "evidence": "work/perf-skirmish-20261117"
+  },
+  "md22_f35a_stand_in": {
+    "unit": 976,
+    "model": [
+      "DLC3_S70_Okhotnik",
+      "US_F35A"
+    ],
+    "loadouts": {
+      "31008": {
+        "slot1": 2018231,
+        "slot2": 2018231
+      },
+      "31009": {
+        "slot1": 2018236,
+        "slot2": 2018236
+      },
+      "31010": {
+        "slot1": 2018785,
+        "slot2": 160
+      },
+      "31011": {
+        "slot1": 2018251,
+        "slot2": 2018251
+      },
+      "31012": {
+        "slot1": 2018256,
+        "slot2": 2018264
+      },
+      "31013": {
+        "slot1": 2018267,
+        "slot2": 2018267
+      },
+      "31027": {
+        "slot1": 2018618,
+        "slot2": 160
+      }
+    }
+  },
   "version": "0.9.0-dev.37",
   "base": "0.9.0-dev.36",
   "base_sha256": "7598a9a420ee4f07f2b094c3d6b2eaec5b9f1b240f9205f1a93a46110bb4a8c4",
-  "checks": 10,
+  "checks": 13,
   "verified": "data checks only"
 }
