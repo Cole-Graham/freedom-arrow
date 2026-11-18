@@ -34,7 +34,7 @@ public partial class Mod
     // Copy every donor our models use while its source is still loaded, so a later scene can use it.
     public override void OnSceneWasInitialized(int buildIndex, string sceneName)
     {
-        upgradeGap = 10f;
+        upgradeGap = 10f; upgradeTries = 0;
         if (wantedDonors == null)
         {
             wantedDonors = new HashSet<string>();

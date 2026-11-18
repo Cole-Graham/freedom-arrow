@@ -224,15 +224,15 @@ public partial class Mod : MelonMod
         MelonLogger.Msg($"FAMODELS slow update {ms:F0} ms: " + string.Join(", ", Enumerable.Range(0, sec.Length).Where(i => sec[i] * 1000.0 / System.Diagnostics.Stopwatch.Frequency >= 1).OrderByDescending(i => sec[i])
             .Select(i => $"{secNames[i]} {sec[i] * 1000.0 / System.Diagnostics.Stopwatch.Frequency:F0} ms")) + $" | body swaps {bodySwapsThisFrame}, model swaps {modelSwapsThisFrame}");
     }
-    // 0.3.34: UpgradeFallbacks searches every loaded material (FindObjectsOfTypeAll). With a donor that never loads in a battle it ran every
-    // 10 s for the whole match; the wait now doubles after each try (10, 20, 40 ... 320 s) and starts again at 10 s in each new scene.
-    static float upgradeGap = 10f;
+    // 0.3.34: UpgradeFallbacks searches every loaded material (FindObjectsOfTypeAll, 25-39 ms in a 5v5). With a donor that never loads in a
+    // battle it ran every 10 s for the whole match; now at most 3 tries per scene, 10, 20 and 40 s apart, starting again in each new scene.
+    static float upgradeGap = 10f; static int upgradeTries;
     static void UpdateRest()
     {
         // 0.3.31: the turret-yaw diagnostic walked every China unit's whole transform tree every 2 s; only with verbose.txt now.
         if (Verbose && Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
         try { CamTick(); } catch (Exception ex) { MelonLogger.Error("FAMODELS cam: " + ex.Message); camWant = "off"; }
-        if (fallbackMats.Count > 0 && Time.realtimeSinceStartup - upgradeT > upgradeGap) { upgradeT = Time.realtimeSinceStartup; upgradeGap = Math.Min(upgradeGap * 2f, 320f); try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
+        if (fallbackMats.Count > 0 && upgradeTries < 3 && Time.realtimeSinceStartup - upgradeT > upgradeGap) { upgradeT = Time.realtimeSinceStartup; upgradeGap = Math.Min(upgradeGap * 2f, 320f); upgradeTries++; try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
         for (int i = queue.Count - 1; i >= 0; i--)
         {
             var q = queue[i];

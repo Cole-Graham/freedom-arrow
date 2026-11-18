@@ -166,9 +166,13 @@ public partial class Mod
     // screen with the vanilla soldier on it. Squads spawned in the last 5 s are now checked every frame: OnLateUpdate only hides
     // their new vanilla soldiers (hideOnly) before the frame is drawn; the next OnUpdate swaps the body and shows it. The 0.25 s
     // poll stays for older squads (reinforced or re-spawned soldiers).
+    // 0.3.34 (Osama 17 Nov 2026, 5v5 detail log): a soldier's body swap builds its mesh (5-8 ms each), and a whole squad swapped in one frame
+    // (16-49 ms frames). Swaps now stop after 6 ms in a frame; the rest of that frame's soldiers are hidden (as before a swap) and swapped on
+    // the next frames, so no stand-in body shows and no frame takes the whole squad.
+    const double BodyBudgetMs=6;public static int BodyDeferred;
     static void TickInfantryBodies(bool young=false,bool hideOnly=false)
     {
-        float now=Time.realtimeSinceStartup;
+        float now=Time.realtimeSinceStartup;long budgetStart=System.Diagnostics.Stopwatch.GetTimestamp();
         if(!young){if(now-bodyPoll<.25f)return;bodyPoll=now;}
         for(int v=bodyViews.Count-1;v>=0;v--) {
             var view=bodyViews[v];
@@ -199,6 +203,7 @@ public partial class Mod
                 int id=renderer.GetInstanceID();if(view.applied.Contains(id)||view.failed.Contains(id))continue;
                 if(renderer.sharedMesh==null||renderer.bones.Length<1)continue;
                 if(renderer.sharedMesh.name.StartsWith("FAM_BODY_")){view.applied.Add(id);continue;}
+                if(!hideOnly&&(System.Diagnostics.Stopwatch.GetTimestamp()-budgetStart)*1000.0/System.Diagnostics.Stopwatch.Frequency>BodyBudgetMs){hideOnly=true;BodyDeferred++;}
                 if(hideOnly){renderer.forceRenderingOff=true;continue;}
                 // Use the game's actual LODGroup membership, not a guessed renderer ordering.
                 // 0.3.29: the soldier's LOD groups are read once per soldier, not once per renderer.
