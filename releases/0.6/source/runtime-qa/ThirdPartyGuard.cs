@@ -94,8 +94,10 @@ static class ThirdPartyGuard
         if(AccessTools.Field(game,"Cosmetic")?.GetValue(null) is not HashSet<string> cosmetic)
         {MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING: ArrowQueue Game.Cosmetic not found; the music pack changes the build code");return;}
         cosmetic.Add("FAMusic.dll");cosmetic.Add("FAUiLog.dll");cosmetic.Add("FAModels.dll");
+        // 0.9.1-dev.2: TeamVoice.dll and HudQuick.dll ship as FATeamVoice.dll and FAHudQuick.dll (FA prefix, Lateralus); ArrowQueue lists only the old names.
+        cosmetic.Add("FATeamVoice.dll");cosmetic.Add("FAHudQuick.dll");
         AccessTools.Field(game,"_packHash")?.SetValue(null,null);   // in case ArrowQueue already made the code
-        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll, FAUiLog.dll and FAModels.dll");
+        MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: build code leaves out FAMusic.dll, FAUiLog.dll, FAModels.dll, FATeamVoice.dll and FAHudQuick.dll");
         SameDatabaseCode(game);
     }
 

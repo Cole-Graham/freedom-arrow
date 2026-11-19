@@ -17,6 +17,7 @@ def digest(p):
     with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 # 0.9.0-dev.4 (FAModels 0.3.26 textures, ~3,700 files): --asset files stay on disk until staged, not all in memory.
 H=lambda x:digest(x) if isinstance(x,Path) else sha(x)
+RENAMED_DLLS={f'Mods/{n}.dll':f'Mods/FA{n}.dll' for n in ('ArrowQueue','BALocalSkirmish','FlatIncomeMod','HudQuick','TeamVoice')}
 ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAMusic/','UserData/FAAssets/')
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
@@ -72,6 +73,18 @@ with zipfile.ZipFile(base) as z:
     compat['UserData/FAConquestPrototype/settings.json']=sha(settings);compat=enc(compat)
     for k,b in (('UserData/FAConquestPrototype/settings.json',settings),('UserData/FAConquestPrototype/compatibility.json',compat)):
         if z.read(k)!=b:override[k]=b
+    # Lateralus 19 Nov 2026 (thread 1572724406642286692, "queue it"; asked 18 Nov: "rename any .dll our mod uses to include FA, e.g.
+    # FAArrowQueue.dll"): from 0.9.1-dev.2 the five third-party DLLs ship as FA + their old name. MelonLoader loads a mod whatever its file
+    # name; assembly names, MelonPreferences and UserData/ArrowQueue.cfg do not change. The launcher's update removes files the new package
+    # no longer has (BAModManager ModService.RemovePackageFiles), so the old copies go. ThirdPartyGuard keeps FATeamVoice/FAHudQuick cosmetic.
+    if _vkey(V)>=_vkey('0.9.1-dev.2'):
+        for old,new in RENAMED_DLLS.items():
+            if old in z.namelist():
+                assert new not in z.namelist() and new not in override,new
+                override[new]=z.read(old);retired_scenarios.append(old)
+                if old in core['sha256']:core['sha256'][new]=H(override[new])
+                whole['core_paths']=[new if x==old else x for x in whole['core_paths']]
+            else:assert new in z.namelist(),('neither name in the base package',old)
     assert json.loads(override['mod.json'])['version']==V and json.loads(override['UserData/FreedomArrow/channel.json'])['package_version']==V
     assert not any(n.startswith(ASSET) for n in override),'models/music must not change'
     if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
@@ -129,6 +142,7 @@ with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipF
     for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
     assert not [n for n in drops if n in names],'a dropped asset is still in the package'
     assert json.loads(gz.read('mod.json'))['version']==V
+    if _vkey(V)>=_vkey('0.9.1-dev.2'):assert not set(RENAMED_DLLS)&set(names) and set(RENAMED_DLLS.values())<=set(gz.namelist()),'old DLL names left or FA names missing'
 # Lateralus 13 Nov 2026: dev.18-20 changed FAModels.dll and ZSL-92 textures in the complete package only, but the receipt
 # kept saying assets 0.2.0, so "gameplay + assets 0.2.0" failed the runtime's hash check. Check the real assets package.
 vt=lambda v:tuple(int(x) for x in v.split('.'))
