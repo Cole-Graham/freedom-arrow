@@ -35,6 +35,28 @@ ok(_A[201]['Name']=='Round 57 2A91 Derivatsiya AAG HE T3' and _A[201]['Overpress
 g.put('AmmunitionsJson',2009953,{'OverpressureRadius':0.0})
 ok(_A[2009953]['OverpressureRadius']==0.0,'JRVG-1 proximity HE OP 0')
 rec['jrvg1_he_no_overpressure']={'ammo':2009953,'unit':952,'OverpressureRadius':[4.5,0.0],'why':'direct hits with OP > 0 always use roof armour','verified':'data checks only; not seen in game'}
+# ---------- Air-to-air motors match their ranges; R-37 accuracy back to 1.0 (Lateralus 19 Nov 2026 06:1x PST, thread 1572962048705429598: "Ok fix the
+# AMRAAM-motor missiles and B-21 JATMs. Also ... remove the 0.9 accuracy from the R-37 and set it back to 1.0"). docs/engine/missile-flight.md: a missile
+# burns BurnTime, coasts at -0.13 x MaxSpeed/s and dies at 0.3 x MaxSpeed; the table range only gates firing. 0.6 dev.52 and PLA Build55 raised ranges
+# without motors. Launched at 225 against a target fleeing at 225 (calculated): the AMRAAM motor (MaxSpeed 1150, Acceleration 200, BurnTime 4) catches out
+# to 3694, below its 4000/4500 ranges. BurnTime 4.5 reaches MaxSpeed and catches to 4688. The B-21 JATM 2001658 (5500) takes the motor of the F-22
+# AIM-260 531 (Acceleration 300, BurnTime 5): 6013. PL-12 2011537 (3500) already catches and stays. R-37 312/921 DispersionHorizontalRadius 0.9 -> 1.0.
+_U=t['Units']
+def _air_only(i):return all(_U[r['UnitId']]['Type']==16 for r in _WA.values() if r['AmmunitionId']==i) and any(r['AmmunitionId']==i for r in _WA.values())
+_AMR=[89,159,920,2016380,2016390,2011459,2011471,2016398,2017953]
+for _i in _AMR+[2001658,2011537]:
+    _r=_A[_i];ok((_r['MaxSpeed'],_r['Acceleration'],_r['BurnTime'],_r['MainEngineIgnitionDelay'])==(1150.0,200.0,4.0,0.5) and _r['TargetType']&16 and _air_only(_i),(_i,_r['HUDName'],'AMRAAM motor, aircraft only'))
+for _i in _AMR:
+    ok(_A[_i]['HighAltRange'] in (4000.0,4500.0),(_i,'range 4000/4500'));g.put('AmmunitionsJson',_i,{'BurnTime':4.5})
+ok(_A[2011537]['HighAltRange']==3500.0,'J-8 PL-12 range 3500, left as is')
+ok(_A[531]['HUDName']=='AIM-260' and (_A[531]['MaxSpeed'],_A[531]['Acceleration'],_A[531]['BurnTime'])==(1150.0,300.0,5.0),'F-22 AIM-260 motor')
+ok(_A[2001658]['HUDName']=='AIM-260 JATM' and _A[2001658]['HighAltRange']==5500.0,'B-21 JATM 5500')
+g.put('AmmunitionsJson',2001658,{'Acceleration':_A[531]['Acceleration'],'BurnTime':_A[531]['BurnTime']})
+for _i in (312,921):
+    ok(_A[_i]['HUDName']=='R-37' and _A[_i]['DispersionHorizontalRadius']==0.9,(_i,'R-37 accuracy 0.9 (dev.52)'));g.put('AmmunitionsJson',_i,{'DispersionHorizontalRadius':1.0})
+ok(all(_A[_i]['BurnTime']==4.5 for _i in _AMR) and (_A[2001658]['Acceleration'],_A[2001658]['BurnTime'])==(300.0,5.0) and _A[312]['DispersionHorizontalRadius']==_A[921]['DispersionHorizontalRadius']==1.0,'air-to-air motor and R-37 accuracy set')
+rec['aam_motor_match_range']={'burn_4_to_4_5':_AMR,'b21_jatm_2001658':{'Acceleration':[200.0,300.0],'BurnTime':[4.0,5.0]},'unchanged':{'2011537':'PL-12, range 3500, catches at 3694'},
+    'r37_accuracy':{'312':[0.9,1.0],'921':[0.9,1.0]},'catch_at_225':{'amraam_before':3694,'amraam_after':4688,'jatm_after':6013},'verified':'data checks only; calculated, not seen in game'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

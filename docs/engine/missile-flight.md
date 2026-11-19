@@ -121,6 +121,8 @@ The motor values are `MaxSpeed`, `Acceleration` and `BurnTime`. Every missile ex
   - The R-27T is fired out to 1750 against a catch distance of about 1675. The AIM-7M and R-27ER are fired out to 3000 against about 3060.
 - A missile that runs out of speed dies in flight.
 
+**0.9 dev.45 batch (Lateralus, 19 November).** These AMRAAM-motor rows go to `BurnTime` 4.5 s: 89, 159, 920, 2016380, 2016390, 2011459, 2011471, 2016398 and 2017953. They then reach `MaxSpeed`, and the catch distance at 225 goes from 3694 to 4688. The B-21 JATM (2001658) takes the F-22 AIM-260 motor (`Acceleration` 300, `BurnTime` 5), so it catches to 6013. The J-8 PL-12 (2011537, range 3500) already catches its range and stays. The R-37 rows 312 and 921 go back to `DispersionHorizontalRadius` 1.0. All of this is calculated and has not been seen in a game.
+
 **To give a missile more real reach,** raise `BurnTime` or `Acceleration` so that it burns for longer or reaches `MaxSpeed`, or raise `MaxSpeed`. The coast after burnout is always 5.4 s at most and `3.5 × MaxSpeed` long, so `MaxSpeed` sets the coast as well as the top speed.
 
 ## Not covered
