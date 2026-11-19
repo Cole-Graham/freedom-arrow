@@ -56,3 +56,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   command/ballistic 900, transport+attack helicopters 1650 (shared Z-20 row 2009259), Z-20T recon own new row 2300 / low 1250. Low-alt raised only where
   below every US/RU unit. Rows China-only (checked). Re-audit: 0 China vehicles below the US/RU optics range. Smoke (ZBD-03, ZBD-03/ZBD-86 Recon, Lynx ATV)
   NOT changed. 203 checks.
+- 18 Nov 2026 23:3x PST, thread 1567745029781454889 (Osama "trim the silence, start the tracks a couple seconds in and fade in"): all 8 victory/defeat
+  tracks (USA, Russia x2 same file, China, Black Hawk Down) cut at leading silence + 2.0 s (2.26-2.78 s), 0.75 s fade-in, 256 kbps, loudness unchanged
+  (-11.8 to -12.2 LUFS). Files are third-party music, kept OUT of the repo: work/music-end-trim-20261118/out (sha256.txt). BUILD: pass the 8 lines of
+  work/music-end-trim-20261118/asset-args.txt to package_0_8_next.py (--asset KEY=FILE); this goes into the new Assets version dev.44 already needs.
