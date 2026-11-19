@@ -23,3 +23,6 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
     vanilla_ignore_cover). Ogon 535 untouched. 103 checks in total.
   Check in game: log FREEDOM_ARROW_OPEN_DAMAGE Calm 1+0/soldier Shocked 1+0/soldier Panicked 1+0/soldier and FREEDOM_ARROW_BUILDING_DAMAGE floor 0.3;
   repeat the Fletcher test (IC 0): calm and panicked squads both take x1.0; a squad in a building takes x0.30, in woods x0.60.
+- 18 Nov 2026 16:2x PST, thread 1567745029781454889 (Osama "I don't want to change anything yet from our previous play test"): BOTH cover entries above
+  (autocannon IgnoreCover 0.2439 and the Wargame-style cover + vanilla Ignore Cover) are OUT of dev.44. Parked on codex/batch/osama/cover-rework
+  (83f1f70e). game-config.json and DetectionConfig.cs are back to d55539cc; regenerated constants have 0 IgnoreCover differences from dev.43. 62 checks.

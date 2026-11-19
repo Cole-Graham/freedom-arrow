@@ -33,12 +33,6 @@ static class DetectionConfig
     // in its constructor (_stressRecoveryMultiplayer), so it is written here, before the battle systems are built.
     static float stressRecovery;
     static float? originalStressRecovery;
-    // No stress protection in the open (Osama 18 Nov 2026 15:4x PST, thread 1567745029781454889: "remove the panicked cover too. All infantry in
-    // the open don't receive cover"). ShellHitSystem.DealUnitDamage scales each hit on infantry outside buildings and vehicles by
-    // g + (1-g) x IgnoreCover, g = InfantryDmgModFloor + InfantryDmgModPerSoldier x soldiers alive from this row (vanilla Calm and Shocked
-    // 0.36/0.02, Panicked 0.10/0.10). 1/0 on all three levels makes g 1: full damage whatever the stress and squad size.
-    static float openFloor,openPerSoldier;
-    static (float floor,float perSoldier)[] originalOpen;
     static void WriteBuildings()
     {
         var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
@@ -57,14 +51,6 @@ static class DetectionConfig
         originalStressRecovery??=buff.StressRecoveryMultiplier;
         buff.StressRecoveryMultiplier=Runtime.IsApplied?stressRecovery:originalStressRecovery.Value;
         MelonLogger.Msg($"FREEDOM_ARROW_STRESS_RECOVERY multiplier {buff.StressRecoveryMultiplier} (vanilla {originalStressRecovery})");
-        var levels=new[]{StressLevel.Calm,StressLevel.Shocked,StressLevel.Panicked};
-        originalOpen??=levels.Select(l=>(buff.StressModifiers[l].InfantryDmgModFloor,buff.StressModifiers[l].InfantryDmgModPerSoldier)).ToArray();
-        for(int i=0;i<levels.Length;i++)
-        {
-            var m=buff.StressModifiers[levels[i]];
-            (m.InfantryDmgModFloor,m.InfantryDmgModPerSoldier)=Runtime.IsApplied?(openFloor,openPerSoldier):originalOpen[i];
-        }
-        MelonLogger.Msg("FREEDOM_ARROW_OPEN_DAMAGE "+string.Join(" ",levels.Select(l=>$"{l} {buff.StressModifiers[l].InfantryDmgModFloor}+{buff.StressModifiers[l].InfantryDmgModPerSoldier}/soldier")));
         var battle=GameConfig.Instance.BattleSystemSettings??throw new InvalidDataException("Battle system settings missing");
         originalFlareRerollCap??=battle.MAX_FLARES_COUNT_MISSILE_REROLL;
         battle.MAX_FLARES_COUNT_MISSILE_REROLL=Runtime.IsApplied?flareRerollCap:originalFlareRerollCap.Value;
@@ -89,8 +75,6 @@ static class DetectionConfig
         if(!(flareRerollCap>=1&&flareRerollCap<=100))throw new InvalidDataException("FlareRerollCap out of range");
         stressRecovery=game["StressRecoveryMultiplier"].GetValue<float>();
         if(!(stressRecovery>0&&stressRecovery<=5))throw new InvalidDataException("StressRecoveryMultiplier out of range");
-        openFloor=game["InfantryOpenDamageFloor"].GetValue<float>();openPerSoldier=game["InfantryOpenDamagePerSoldier"].GetValue<float>();
-        if(!(openFloor>=0&&openFloor<=1&&openPerSoldier>=0&&openPerSoldier<=0.2f))throw new InvalidDataException("Infantry open damage settings out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }
