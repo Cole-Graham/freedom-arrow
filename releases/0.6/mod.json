@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.0-dev.43",
+  "version": "0.9.0-dev.44",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.43 (18 Nov): J-36 +60 points (415); recon CSK-131 back in PLAGF Motorized; CTL-181 NLOS and Blood Wolves CH-901 missiles cannot be shot down or stopped by APS; build code ignores an old ActualArrow entry in the Mod Manager; US door-stack loading screen fixed. Includes 0.9.0-dev.42 (start screen soldiers keep their legs), 0.9.0-dev.41 (deck drag-and-drop reorder, 4K start screen) and 0.9.0-dev.38 (Freedom Arrow loading screens, China voices). Needs Freedom Arrow — Models and Music 0.2.46.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.0-dev.44 (19 Nov): China tank and AT balance (front HEAT armour capped at 1200, armour-kit side HEAT lowered, sabots 10, RPGs 10, ZTZ-99A/ZTZ-100 armour, China optics raised to US/RU), China AT launchers like vanilla, open-ground infantry protection off, autocannon and China tank HE Ignore Cover 0.25, passengers die with their transport, contested zones neutralise on every map, HHQ-10 like the MML, new start screen art, trimmed victory/defeat music, FAModels frees unused models. Needs Freedom Arrow — Models and Music 0.2.47.",
   "repo": "Cole-Graham/freedom-arrow"
 }
