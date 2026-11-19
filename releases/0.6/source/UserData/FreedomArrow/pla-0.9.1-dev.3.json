@@ -1,0 +1,8 @@
+{
+ "version": "0.9.1-dev.3",
+ "base": "0.9.1-dev.2",
+ "base_sha256": "7ae2e083d20a58aee129a214b0284b96ae55994c7cbfdbf98d8eabb54e298641",
+ "no_data_change": "dev.3 changes the loading screens only (17 pictures: Su-47, T-14, T-15, AbramsX, F-35A added, with photo credits); constants are the 0.9.1-dev.2 state",
+ "checks": 0,
+ "verified": "data unchanged from 0.9.1-dev.2"
+}

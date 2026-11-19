@@ -1,0 +1,44 @@
+{
+  "version": "0.9.1-dev.3",
+  "build": 228,
+  "previous": "0.9.1-dev.2",
+  "assets_version": "0.2.47",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.47.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev44/FreedomArrow-Assets-0.2.47.bamod",
+    "sha256": "b8e1c0ba22ba65b2de7ceabbd5c539748649b1b5e6f1d3d340b086750d7d4c84",
+    "size": 6479366348,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.1-dev.3-complete.bamod",
+    "sha256": "d6052a60af479dae680888b439315e2739c654a7bca95bec9562456480a6b9fe",
+    "size": 6638923365,
+    "files": 12771
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.1-dev.3.bamod",
+    "sha256": "6d4549803d38ce775609ca9353fdf69e1b645d85df68399436b62932f62b0189",
+    "size": 159557600,
+    "files": 1776
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_11_su47_berkut.png",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_12_t14_armata.png",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_13_t15_armata_ifv.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_11_abramsx.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_12_f35a.png",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.1-dev.3.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
