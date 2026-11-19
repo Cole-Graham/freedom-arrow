@@ -326,6 +326,7 @@ ok(set(t['SensorsJson'][_z10k])==set(t['SensorsJson'][3]) and t['SensorsJson'][_
 ok(t['SpecializationAvailabilitiesJson'][2008228]['UnitId']==940,'Z-19 Air Force row')
 g.remove('SpecializationAvailabilitiesJson',2008228)
 ok(not any(r['UnitId']==940 for r in t['SpecializationAvailabilitiesJson'].values()),'Z-19 940 in no spec')
+assign['assignments']['940']=[]   # pla-spec-assignments.json must match the spec rows (verify_roster_revision 'assignment metadata')
 rec['z10k_z19']={'z10k_sensor':_z10k,'z10k_optics_ground':3200,'z19_940_removed_spec_row':2008228}
 # ---------- FAModels 0.3.35: free models nothing uses (Osama 18 Nov 2026 14:4x PST, thread 1572551547726991400: "ishtar is the one that crashed, we should
 # free models"). Code only, no data rows. Since 0.3.25 every model loaded stayed in memory for the whole session; ishtar's dev.41 game went down

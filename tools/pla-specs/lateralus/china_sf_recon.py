@@ -52,7 +52,10 @@ def check(T):
     if AB.get(2013253,{}).get('IsInfantrySprint'):bad.append('Mountain Leopards still sprint')
     if [r['Id'] for r in SM.values() if r.get('UnitId')==1186 and r.get('SpecialWeaponId')==HJ12['weapon']]!=[HJ12['keep']]:bad.append('Mountain Leopards HJ-12 carriers != 1')
     if WA.get(HJ12['ammo_row'],{}).get('Quantity')!=3:bad.append('HJ-12 rounds != 3')
-    if WA.get(PF89['ammo_row'],{}).get('Quantity')!=4:bad.append('Taishan Eagles PF-89 rounds != 4')
+    # 4 PF-89 rounds in the squad: 1 carrier x 4 (dev.33) or, from dev.44 (Osama "4 disposable AT weapons"), 4 carriers x 1 like vanilla disposables
+    pf=WA.get(PF89['ammo_row'],{}).get('WeaponId',PF89['weapon'])
+    carriers=sum(1 for r in SM.values() if r.get('UnitId')==PF89['unit'] and pf in (r.get('PrimaryWeaponId'),r.get('SpecialWeaponId')))
+    if WA.get(PF89['ammo_row'],{}).get('Quantity',0)*max(carriers,1)!=4:bad.append('Taishan Eagles PF-89 rounds != 4')
     bad+=[f'unit {u} still has a laser' for u in [*LASER_OWN.values(),*LASER_SHARED]
           if any(AB.get(x['AbilityId'],{}).get('IsLaserDesignator') for x in UAB.values() if x.get('UnitId')==u)]
     return bad
