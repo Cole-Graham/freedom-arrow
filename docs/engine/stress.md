@@ -97,7 +97,7 @@ infantryDamageScale = clamp(InfantryDmgModFloor + count × InfantryDmgModPerSold
 | Shocked | 0.36 + 7 × 0.02 = 0.50 |
 | Panicked | 0.10 + 7 × 0.10 = 0.80 |
 
-The live Buff Config (path_id 52805) has the values above; an unused Buff Config object (52722) has 0.72/0.57/0.42 and 0.02/0.015/0.01. Lateralus's dev.26 Fletcher test (16 Nov 2026, 12 hits on a 12-man squad) matched the live values. The scale applies to hits under `StressDamageModThreshold` (36), and IgnoreCover blends it: `scale + (1 - scale) × IgnoreCover`. Freedom Arrow from 0.9.0-dev.44 sets the floor to 1 and the per-soldier term to 0 on all three levels (`game-config.json` `InfantryOpenDamageFloor`/`InfantryOpenDamagePerSoldier`), so infantry in the open take full damage.
+The live Buff Config (path_id 52805) has the values above; an unused Buff Config object (52722) has 0.72/0.57/0.42 and 0.02/0.015/0.01. Lateralus's dev.26 Fletcher test (16 Nov 2026, 12 hits on a 12-man squad) matched the live values. The scale applies to hits under `StressDamageModThreshold` (36), and IgnoreCover blends it: `scale + (1 - scale) × IgnoreCover`. Freedom Arrow keeps these vanilla values. A proposal to set the floor to 1 on all three levels (full damage in the open) is parked on branch `codex/batch/osama/cover-rework` and is not in any build.
 
 Freedom Arrow's `game-config.json` replaces the two movement factors with shocked 0.7 and panicked 0.4. The other factors in these tables stay on the asset.
 
