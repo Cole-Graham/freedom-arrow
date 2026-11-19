@@ -31,3 +31,6 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   them to Buff Config StressModifiers Calm/Shocked/Panicked (vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10). Buildings 0.18, woods 0.7 and all IgnoreCover
   values stay as dev.43 (0 differences). REBUILD THE RUNTIME DLL. Check in game: FREEDOM_ARROW_OPEN_DAMAGE Calm 1+0/soldier Shocked 1+0/soldier
   Panicked 1+0/soldier; Fletcher test (IC 0) on calm and panicked squads in the open: both x1.0.
+- 18 Nov 2026 16:3x PST, thread 1567745029781454889 (Osama "let's give Auto cannons the same 25% ignore cover as tank cannons have"): apply_0_9_dev44.py
+  sets IgnoreCover 0.25 (FA tank HE value) on 46 autocannon HE/HEI/HEDP/MP rounds (20-57 mm, pen <= 150, China included; was 0 or 0.125). AP rounds,
+  grenade launchers (QLB-06, QLZ-87) and 5 SPAAG gun rounds (60, 62, 213, 231, 262) unchanged. Calculated, not measured. 92 checks.

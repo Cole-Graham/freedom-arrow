@@ -47,6 +47,36 @@ rec['hhq10_as_mml_aim9']={'weapon':2019357,'missile':2019358,'from':_before,'to'
 # Buff Config StressModifiers Calm/Shocked/Panicked; vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10): infantry outside buildings take full damage at every
 # stress level. Buildings (0.18 flat), woods (0.7) and every IgnoreCover value stay as dev.43.
 rec['open_ground_protection_off']={'game_config':{'InfantryOpenDamageFloor':1,'InfantryOpenDamagePerSoldier':0},'buildings':0.18,'woods':0.7,'ignore_cover':'dev.43 values','verified':'compiles; not seen in game'}
+# ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
+# same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
+# (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the
+# SPAAG/SAM gun rounds Lateralus tuned for missile defence (spaag-weapons.json weapons and sameUnitClaimWeapons).
+import re as _re
+_A=t['AmmunitionsJson'];_W=t['WeaponsJson'];_WA=t['WeaponAmmunitionsJson'];_VA={r['Id']:r for r in json.loads((a.vanilla/'AmmunitionsJson.json').read_text())}
+_sp=json.loads(z.read('UserData/FreedomArrow/spaag-weapons.json'));_aaw=set(_sp['weapons'])|set(_sp['sameUnitClaimWeapons'])
+_IC=0.25
+_rounds={};_skip={}
+for _r in _WA.values():
+    _a=_A.get(_r['AmmunitionId']);_w=_W.get(_r['WeaponId'])
+    if not _a or not _w:continue
+    _nm=str(_a.get('Name'))+' '+str(_w.get('Name'))
+    if not _re.search(r'\b(20|23|25|27|30|35|40|50|57)\s?mm|Round (20|23|25|27|30|35|40|57)\b',_nm):continue
+    if not _re.search(r'HE|FRAG|HEI|MP|Frag|ABM|HEDP|HE-',str(_a.get('Name'))+str(_a.get('HUDName'))):continue
+    if (_a.get('PenetrationAtGroundRange') or 0)>150:continue
+    if _r['WeaponId'] in _aaw:_skip.setdefault(_a['Id'],_a['HUDName']);continue
+    if _re.search(r'grenade|AGL|QLB|QLZ',_nm+str(_w.get('HUDName'))+str(_a.get('HUDName')),_re.I):continue   # grenade launchers (QLB-06, QLZ-87) are not autocannons
+    _rounds[_a['Id']]=_a
+for _i in _skip:_rounds.pop(_i,None)
+for _i,_a in _rounds.items():
+    _v=_VA.get(_i)
+    if _v:ok((_v.get('IgnoreCover') or 0)==0,(_i,_a['HUDName'],'vanilla IC 0'))
+_chg={}
+for _i in sorted(_rounds):
+    _old=_A[_i].get('IgnoreCover') or 0
+    if _old!=_IC:g.put('AmmunitionsJson',_i,{'IgnoreCover':_IC});_chg[str(_i)]={'name':_A[_i]['HUDName'],'from':_old,'to':_IC}
+ok(len(_chg)>=40,('autocannon HE rounds changed',len(_chg)))
+rec['autocannon_he_ignore_cover']={'ignore_cover':_IC,'basis':'same as FA tank HE (0.25)','changed':_chg,'excluded_spaag':{str(k):v for k,v in _skip.items()}}
+print('autocannon rounds changed',len(_chg),'excluded',len(_skip))
 # ---------- JRVG-1 without smoke (Osama 18 Nov 2026 15:2x PST, thread 1571014792016171120: "JRVG should not have smoke"). JRVG-1 (unit 952) has one
 # ability, 2009943, used by nothing else; it carries both the radar switch and 1 smoke salvo (ammo 268). Smoke off, radar kept.
 ok([r['UnitId'] for r in UAB.values() if r['AbilityId']==2009943]==[952] and AB[2009943].get('IsSmoke') and AB[2009943].get('IsRadar'),'JRVG-1 ability 2009943: own, smoke + radar')

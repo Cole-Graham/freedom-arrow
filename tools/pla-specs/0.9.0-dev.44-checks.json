@@ -46,6 +46,249 @@
     "ignore_cover": "dev.43 values",
     "verified": "compiles; not seen in game"
   },
+  "autocannon_he_ignore_cover": {
+    "ignore_cover": 0.25,
+    "basis": "same as FA tank HE (0.25)",
+    "changed": {
+      "10": {
+        "name": "30×113mm HEDP",
+        "from": 0,
+        "to": 0.25
+      },
+      "26": {
+        "name": "25x137mm HEIT",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "32": {
+        "name": "25x137mm",
+        "from": 0,
+        "to": 0.25
+      },
+      "36": {
+        "name": "30x113mm HEDP",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "53": {
+        "name": "30x173mm HEI-T",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "55": {
+        "name": "40x311mm HEDP",
+        "from": 0,
+        "to": 0.25
+      },
+      "74": {
+        "name": "30x173mm HEI-T",
+        "from": 0,
+        "to": 0.25
+      },
+      "177": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "196": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "199": {
+        "name": "57mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "201": {
+        "name": "57x348mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "204": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "205": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "207": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "210": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "212": {
+        "name": "23x152mm",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "222": {
+        "name": "57x348mm",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "267": {
+        "name": "57x348mm",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "277": {
+        "name": "25x137mm HEIT",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "295": {
+        "name": "20x102mm",
+        "from": 0,
+        "to": 0.25
+      },
+      "350": {
+        "name": "30x165mm ",
+        "from": 0,
+        "to": 0.25
+      },
+      "378": {
+        "name": "30x165mm HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "454": {
+        "name": "30x113mm HEDP",
+        "from": 0,
+        "to": 0.25
+      },
+      "491": {
+        "name": "57x348mm",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "534": {
+        "name": "30x165mm HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "546": {
+        "name": "30x165mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "563": {
+        "name": "30x165mm HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "567": {
+        "name": "30x170mm HEI-T",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "570": {
+        "name": "35x228mm HEI-T",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "2009031": {
+        "name": "ZPT-99 30 mm HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2009051": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2009639": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2009831": {
+        "name": "ZPT-99 30 mm HE",
+        "from": 0.125,
+        "to": 0.25
+      },
+      "2010141": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2010329": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2010741": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2010949": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2010975": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011001": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011027": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011145": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011179": {
+        "name": "ZPT-99 30 mm HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011199": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011225": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011251": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      },
+      "2011277": {
+        "name": "30 mm autocannon HE",
+        "from": 0,
+        "to": 0.25
+      }
+    },
+    "excluded_spaag": {
+      "60": "30x165mm",
+      "62": "20x102mm",
+      "213": "23x152mm",
+      "231": "30x165mm",
+      "262": "20x102mm"
+    }
+  },
   "jrvg1_no_smoke": {
     "unit": 952,
     "ability": 2009943,
@@ -133,6 +376,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 62,
+  "checks": 92,
   "verified": "data checks only"
 }
