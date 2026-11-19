@@ -69,11 +69,15 @@ _users={sid:{r['UnitId'] for r in t['SensorUnitsJson'].values() if r.get('Sensor
 ok(all(u<=_lr for u in _users.values()),('long-range SAM sensors shared with other units',{k:sorted(v-_lr) for k,v in _users.items() if v-_lr}))
 _sold={sid:(t['SensorsJson'][sid]['OpticsLowAltitude'],t['SensorsJson'][sid]['OpticsHighAltitude']) for sid in _sens}
 ok(_sold[8]==(2000.0,2650.0),('sensor 8 low/high',_sold[8]))
+# Lateralus 19 Nov 2026 11:00 PST ("queue it"): the six China SAMs still at the unmodified game's 2000/2000 (HQ-9A, HQ-9B, HQ-16, HQ-11, HQ-12,
+# HQ-6A; sensors copied from vanilla, not from the mod's raised sensor 8) also go to 2650/2650, so all 17 long-range SAMs read 5300/5300 m.
+_T=_sold[8][1]
+ok(_T==2650.0 and all(hi<=_T for lo,hi in _sold.values()),('no long-range SAM sensor above sensor 8 high',_sold))
 for sid,(lo,hi) in _sold.items():
-    if lo<hi:g.put('SensorsJson',sid,{'OpticsLowAltitude':hi})
-ok(all(t['SensorsJson'][sid]['OpticsLowAltitude']==t['SensorsJson'][sid]['OpticsHighAltitude'] for sid in _sens),'low = high on every long-range SAM sensor')
+    if lo<_T or hi<_T:g.put('SensorsJson',sid,{'OpticsLowAltitude':_T,'OpticsHighAltitude':_T})
+ok(all(t['SensorsJson'][sid]['OpticsLowAltitude']==t['SensorsJson'][sid]['OpticsHighAltitude']==_T for sid in _sens),'every long-range SAM sensor 2650/2650 raw')
 ok(t['SensorsJson'][8]['OpticsLowAltitude']==2650.0,'PAC-2 low 2650 raw (5300 m)')
-rec['long_range_sam_low_optics']={'units':sorted(_lr),'sensors':{str(k):{'users':sorted(_users[k]),'low':[v[0],t['SensorsJson'][k]['OpticsLowAltitude']],'high':v[1]} for k,v in _sold.items()},'verified':'data checks only'}
+rec['long_range_sam_low_optics']={'units':sorted(_lr),'sensors':{str(k):{'users':sorted(_users[k]),'low':[v[0],t['SensorsJson'][k]['OpticsLowAltitude']],'high':[v[1],t['SensorsJson'][k]['OpticsHighAltitude']]} for k,v in _sold.items()},'verified':'data checks only'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
