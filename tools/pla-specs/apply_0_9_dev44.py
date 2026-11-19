@@ -90,6 +90,15 @@ for _u,_s in _OPT.items():
     g.put('SensorsJson',_s,{f:_G[f] for f in _of})
 ok(all(all(_SE[_s][f]==_G[f] for f in _of) for _s in _OPT.values()),'modern China MBT optics 1650/1100/1000')
 rec['china_mbt_optics_like_t14']={'units':list(_OPT),'sensor_rows':list(_OPT.values()),'optics':[_G[f] for f in _of]}
+# ---------- Hide the China Test specialization (Osama 18 Nov 2026 20:5x PST, thread 1567745029781454889: "We should completely hide the test specialization
+# right now too"). Spec 22 "PLA Test" (35 test-only units: SF/uniform comparisons, Test teams). ShowInHangar False, as vanilla hides spec 11 "Editor".
+# Its rows and units stay, so it can be shown again by setting True.
+_SP=t['SpecializationsJson']
+ok(_SP[22]['Name']=='PLA Test' and _SP[22]['CountryId']==4 and _SP[22]['ShowInHangar'] is True,'spec 22 = China Test, shown')
+ok(_SP[11]['Name']=='Editor' and _SP[11]['ShowInHangar'] is False,'vanilla Editor spec is the hidden precedent')
+g.put('SpecializationsJson',22,{'ShowInHangar':False})
+ok(_SP[22]['ShowInHangar'] is False,'China Test spec hidden')
+rec['china_test_spec_hidden']={'specialization':22,'ShowInHangar':[True,False]}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

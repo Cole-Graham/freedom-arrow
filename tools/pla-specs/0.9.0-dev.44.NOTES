@@ -48,3 +48,6 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 20:5x PST, thread 1567745029781454889 (Osama "the Optics and stuff like that should be pretty much similar to the T14 in the Abrams"): own
   sensor rows of ZTZ-99A (2009069), ZTZ-99A2 (2009691), ZTZ-99G (2009877), ZTZ-100 (2010189) take vanilla sensor 1 "Good Optics" (T-14, M1A2 SEP v3):
   ground 700/875 -> 1650, low 900/1100 -> 1100, high 1000. ZTZ-99 / ZTZ-96B (700) unchanged pending Osama. 141 checks.
+- 18 Nov 2026 20:5x PST, thread 1567745029781454889 (Osama "We should completely hide the test specialization right now too"): spec 22 "PLA Test"
+  ShowInHangar True -> False (vanilla Editor spec 11 precedent); rows and 35 test-only units kept. CHECK IN GAME that Test no longer appears in the deck
+  builder / hangar. Note: ZTZ-99A2 (939) and ZTZ-99G (948) are in no specialization and not in the armory (orphan rows); their optics edit is inert. 144 checks.
