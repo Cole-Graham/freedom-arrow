@@ -34,3 +34,6 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 16:3x PST, thread 1567745029781454889 (Osama "let's give Auto cannons the same 25% ignore cover as tank cannons have"): apply_0_9_dev44.py
   sets IgnoreCover 0.25 (FA tank HE value) on 46 autocannon HE/HEI/HEDP/MP rounds (20-57 mm, pen <= 150, China included; was 0 or 0.125). AP rounds,
   grenade launchers (QLB-06, QLZ-87) and 5 SPAAG gun rounds (60, 62, 213, 231, 262) unchanged. Calculated, not measured. 92 checks.
+- 18 Nov 2026 16:4x PST, thread 1567745029781454889 (Osama "Chinese tanks should have the same he as Russian tanks" / "please normalize it"): 13 China
+  tank HE rows (VT-1A, VT-4, WZ-1224 x2, ZTZ-100, ZTZ-20, ZTZ-96/96A/96B, ZTZ-99/99A/99A2/99G) IgnoreCover 0.3 -> 0.25 = Russian 125 mm HE (243).
+  Damage 13, pen 125, blast 12, stress already equal; per-gun GroundRange kept. ZTZ-85-III was already 0.25. 120 checks. HE x1.5/x2 NOT applied (undecided).

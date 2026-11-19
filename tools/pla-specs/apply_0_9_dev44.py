@@ -47,6 +47,18 @@ rec['hhq10_as_mml_aim9']={'weapon':2019357,'missile':2019358,'from':_before,'to'
 # Buff Config StressModifiers Calm/Shocked/Panicked; vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10): infantry outside buildings take full damage at every
 # stress level. Buildings (0.18 flat), woods (0.7) and every IgnoreCover value stay as dev.43.
 rec['open_ground_protection_off']={'game_config':{'InfantryOpenDamageFloor':1,'InfantryOpenDamagePerSoldier':0},'buildings':0.18,'woods':0.7,'ignore_cover':'dev.43 values','verified':'compiles; not seen in game'}
+# ---------- China tank HE = Russian 125 mm HE (Osama 18 Nov 2026 16:4x PST, thread 1567745029781454889: "Chinese tanks should have the same he as Russian
+# tanks" ... "can we please normalize it"). Damage 13, penetration 125, blast 12 and stress already match the Russian 125 mm HE rows (e.g. 243 T-90M);
+# only IgnoreCover differed (China 0.3, Russia 0.25). GroundRange is per gun (Russia 600-700) and stays.
+_RU=_A[243];_CNHE=[2011063,2011091,2011119,2019460,2010197,2009479,2009913,2011359,2009105,2011387,2009077,2009699,2009885]
+ok(_RU['Name'].startswith('Round 125 2A46M501') and (_RU.get('IgnoreCover') or 0)==0.25,'Russian 125 mm HE reference')
+_cnf=['Damage','PenetrationAtMinRange','PenetrationAtGroundRange','HealthAOERadius','StressDamage','StressAOERadius','ArmorTargeted']
+for _i in _CNHE:
+    ok(all(_A[_i].get(f)==_RU.get(f) for f in _cnf) and _A[_i].get('IgnoreCover')==0.3,(_i,_A[_i]['HUDName'],'China tank HE = RU except IC 0.3'))
+    ok(all(U[r['UnitId']].get('CountryId')==4 for r in _WA.values() if r.get('AmmunitionId')==_i),(_i,'China units only'))
+    g.put('AmmunitionsJson',_i,{'IgnoreCover':0.25})
+ok(all(_A[_i]['IgnoreCover']==0.25 for _i in _CNHE),'China tank HE IgnoreCover 0.25')
+rec['china_tank_he_like_russia']={'rows':_CNHE,'ignore_cover':[0.3,0.25],'reference':243}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

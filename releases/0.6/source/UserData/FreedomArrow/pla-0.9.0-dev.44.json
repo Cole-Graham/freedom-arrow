@@ -46,6 +46,28 @@
     "ignore_cover": "dev.43 values",
     "verified": "compiles; not seen in game"
   },
+  "china_tank_he_like_russia": {
+    "rows": [
+      2011063,
+      2011091,
+      2011119,
+      2019460,
+      2010197,
+      2009479,
+      2009913,
+      2011359,
+      2009105,
+      2011387,
+      2009077,
+      2009699,
+      2009885
+    ],
+    "ignore_cover": [
+      0.3,
+      0.25
+    ],
+    "reference": 243
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -376,6 +398,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 92,
+  "checks": 120,
   "verified": "data checks only"
 }
