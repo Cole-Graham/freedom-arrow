@@ -51,3 +51,8 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 20:5x PST, thread 1567745029781454889 (Osama "We should completely hide the test specialization right now too"): spec 22 "PLA Test"
   ShowInHangar True -> False (vanilla Editor spec 11 precedent); rows and 35 test-only units kept. CHECK IN GAME that Test no longer appears in the deck
   builder / hangar. Note: ZTZ-99A2 (939) and ZTZ-99G (948) are in no specialization and not in the armory (orphan rows); their optics edit is inert. 144 checks.
+- 18 Nov 2026 21:0x PST, thread 1567745029781454889 (Osama "please go with your proposal for the Optics"): 57 China sensor rows (64 vehicles incl.
+  transports) raised to the US/RU median ground optics of their Type+Role: IFV/APC/transport 1300, tanks + fire support 1450, AA/arty/support/logistics/
+  command/ballistic 900, transport+attack helicopters 1650 (shared Z-20 row 2009259), Z-20T recon own new row 2300 / low 1250. Low-alt raised only where
+  below every US/RU unit. Rows China-only (checked). Re-audit: 0 China vehicles below the US/RU optics range. Smoke (ZBD-03, ZBD-03/ZBD-86 Recon, Lynx ATV)
+  NOT changed. 203 checks.

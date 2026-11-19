@@ -99,6 +99,81 @@ ok(_SP[11]['Name']=='Editor' and _SP[11]['ShowInHangar'] is False,'vanilla Edito
 g.put('SpecializationsJson',22,{'ShowInHangar':False})
 ok(_SP[22]['ShowInHangar'] is False,'China Test spec hidden')
 rec['china_test_spec_hidden']={'specialization':22,'ShowInHangar':[True,False]}
+# ---------- China vehicle optics = US/RU median of the same role (Osama 18 Nov 2026 21:0x PST, thread 1567745029781454889: "please go with your proposal for
+# the Optics"). Audit work/china-parity-audit-20261118 (vehicles.py, optics_plan.py): 64 China vehicles (transports included) had ground optics below every
+# US/RU unit of their Type+Role. Each China sensor row below is raised to the role's US/RU median ground optics (IFV/APC/transport 1300, tanks and fire
+# support 1450, AA/artillery/support/logistics/command/ballistic 900, transport and attack helicopters 1650, recon helicopter 2300); low-altitude
+# optics raised only where below every US/RU unit. Only raised, never lowered; rows are China-only (checked). ZTZ-99A/99A2/99G/ZTZ-100 were set to
+# 1650 above. Shared row 2009259 (Z-20, Z-20J, Z-20KA, Z-20T): transports 1650; Z-20T recon gets its own copy at 2300 / low 1250.
+_OPTV={ 2009017:(600,1300,None),
+ 2009043:(600,1300,None),
+ 2009097:(700,1450,None),
+ 2009125:(700,1450,None),
+ 2009163:(500,900,None),
+ 2009179:(500,900,None),
+ 2009193:(500,900,None),
+ 2009443:(500,900,None),
+ 2009457:(500,900,None),
+ 2009539:(500,900,None),
+ 2009597:(600,900,None),
+ 2009617:(600,1450,None),
+ 2009631:(1000,1450,None),
+ 2009663:(700,1450,None),
+ 2009769:(500,1650,None),
+ 2009817:(600,1300,None),
+ 2009905:(700,1450,None),
+ 2009945:(600,900,None),
+ 2010321:(600,1300,None),
+ 2010345:(500,900,None),
+ 2010357:(500,900,None),
+ 2010369:(500,900,None),
+ 2010393:(500,900,None),
+ 2010407:(500,900,None),
+ 2010421:(500,900,None),
+ 2010433:(500,900,None),
+ 2010445:(500,900,None),
+ 2010459:(500,900,None),
+ 2010485:(500,900,None),
+ 2010499:(500,900,None),
+ 2010513:(500,900,None),
+ 2010527:(500,900,None),
+ 2010541:(500,900,None),
+ 2010567:(500,900,None),
+ 2010581:(500,900,None),
+ 2010595:(500,900,None),
+ 2010609:(500,900,None),
+ 2010623:(500,900,None),
+ 2010657:(500,900,None),
+ 2010671:(500,900,None),
+ 2010703:(600,1450,None),
+ 2010733:(700,1300,None),
+ 2010787:(700,1450,None),
+ 2010815:(600,1450,None),
+ 2010843:(600,1450,None),
+ 2010913:(600,1300,None),
+ 2011137:(600,1300,None),
+ 2011191:(600,1300,None),
+ 2011269:(600,1300,None),
+ 2011295:(700,1450,None),
+ 2011351:(700,1450,None),
+ 2011379:(700,1450,None),
+ 2011637:(600,1650,None),
+ 2011643:(500,900,None),
+ 2014531:(500,900,None),
+ 2014621:(600,1300,None) }  # sensor row: (old ground, new ground, new low or None)
+_SU2=t['SensorUnitsJson'];_SE2=t['SensorsJson']
+for _s,(_old,_new,_low) in _OPTV.items():
+    ok(_SE2[_s]['OpticsGround']==_old and all(U[r['UnitId']].get('CountryId')==4 for r in _SU2.values() if r.get('SensorId')==_s),(_s,_SE2[_s]['Name'],'China-only row at',_old))
+    _p={'OpticsGround':float(_new)}
+    if _low is not None and _low>(_SE2[_s].get('OpticsLowAltitude') or 0):_p['OpticsLowAltitude']=float(_low)
+    g.put('SensorsJson',_s,_p)
+_z20=2009259;ok(sorted(r['UnitId'] for r in _SU2.values() if r.get('SensorId')==_z20)==[914,1238,1244,1245] and _SE2[_z20]['OpticsGround']==500,'Z-20 family shared row')
+g.put('SensorsJson',_z20,{'OpticsGround':1650.0})
+_z20t=g.add('SensorsJson',_SE2[_z20],{'Name':'PLA Z-20T recon optics','OpticsGround':2300.0,'OpticsLowAltitude':1250.0})
+_r=[r for r in _SU2.values() if r.get('UnitId')==1245 and r.get('SensorId')==_z20];ok(len(_r)==1,'Z-20T sensor link')
+g.put('SensorUnitsJson',_r[0]['Id'],{'SensorId':_z20t})
+ok(_SE2[_SU2[_r[0]['Id']]['SensorId']]['OpticsGround']==2300 and _SE2[_z20]['OpticsGround']==1650,'Z-20 1650, Z-20T 2300')
+rec['china_vehicle_optics_role_median']={'rows':{str(k):list(v) for k,v in _OPTV.items()},'z20':[_z20,1650],'z20t_new_row':_z20t}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the
