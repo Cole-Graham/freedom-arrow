@@ -42,6 +42,11 @@ rec['hhq10_as_mml_aim9']={'weapon':2019357,'missile':2019358,'from':_before,'to'
 # ---------- Cover rework: NOT in this batch (Osama 18 Nov 2026 16:2x PST, thread 1567745029781454889: "I don't want to change anything yet from our
 # previous play test"). The Wargame-style cover (open 100%, woods 60%, buildings 30%, vanilla Ignore Cover) and the earlier autocannon IgnoreCover
 # 0.2439 change are parked on branch codex/batch/osama/cover-rework (83f1f70e). dev.44 keeps the dev.43 cover rules and Ignore Cover values.
+# EXCEPTION, in this batch (Osama 18 Nov 2026 16:3x PST: "The only changes I do want to make regarding cover is to remove the open field cover"):
+# runtime only, no table rows. game-config InfantryOpenDamageFloor 1 + InfantryOpenDamagePerSoldier 0 (DetectionConfig.WriteBuildings writes them to
+# Buff Config StressModifiers Calm/Shocked/Panicked; vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10): infantry outside buildings take full damage at every
+# stress level. Buildings (0.18 flat), woods (0.7) and every IgnoreCover value stay as dev.43.
+rec['open_ground_protection_off']={'game_config':{'InfantryOpenDamageFloor':1,'InfantryOpenDamagePerSoldier':0},'buildings':0.18,'woods':0.7,'ignore_cover':'dev.43 values','verified':'compiles; not seen in game'}
 # ---------- JRVG-1 without smoke (Osama 18 Nov 2026 15:2x PST, thread 1571014792016171120: "JRVG should not have smoke"). JRVG-1 (unit 952) has one
 # ability, 2009943, used by nothing else; it carries both the radar switch and 1 smoke salvo (ammo 268). Smoke off, radar kept.
 ok([r['UnitId'] for r in UAB.values() if r['AbilityId']==2009943]==[952] and AB[2009943].get('IsSmoke') and AB[2009943].get('IsRadar'),'JRVG-1 ability 2009943: own, smoke + radar')

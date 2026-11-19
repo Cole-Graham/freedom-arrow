@@ -8,6 +8,8 @@
   "PanickedMoveSpeed": 0.4,
   "FlareRerollCap": 4,
   "StressRecoveryMultiplier": 0.33,
+  "InfantryOpenDamageFloor": 1,
+  "InfantryOpenDamagePerSoldier": 0,
   "AaCooldownEnabled": true,
   "AaCooldownShadowOnly": false
 }

@@ -36,6 +36,16 @@
     },
     "kept": "names, icons, sound/FX, TargetType 1944, 18 rounds, cost 220"
   },
+  "open_ground_protection_off": {
+    "game_config": {
+      "InfantryOpenDamageFloor": 1,
+      "InfantryOpenDamagePerSoldier": 0
+    },
+    "buildings": 0.18,
+    "woods": 0.7,
+    "ignore_cover": "dev.43 values",
+    "verified": "compiles; not seen in game"
+  },
   "jrvg1_no_smoke": {
     "unit": 952,
     "ability": 2009943,

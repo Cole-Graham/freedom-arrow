@@ -26,3 +26,8 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 16:2x PST, thread 1567745029781454889 (Osama "I don't want to change anything yet from our previous play test"): BOTH cover entries above
   (autocannon IgnoreCover 0.2439 and the Wargame-style cover + vanilla Ignore Cover) are OUT of dev.44. Parked on codex/batch/osama/cover-rework
   (83f1f70e). game-config.json and DetectionConfig.cs are back to d55539cc; regenerated constants have 0 IgnoreCover differences from dev.43. 62 checks.
+- 18 Nov 2026 16:3x PST, thread 1567745029781454889 (Osama "The only changes I do want to make regarding cover is to remove the open field cover"):
+  ONLY the open-ground part is back in dev.44. game-config.json InfantryOpenDamageFloor 1 + InfantryOpenDamagePerSoldier 0; DetectionConfig.cs writes
+  them to Buff Config StressModifiers Calm/Shocked/Panicked (vanilla 0.36/0.02, 0.36/0.02, 0.10/0.10). Buildings 0.18, woods 0.7 and all IgnoreCover
+  values stay as dev.43 (0 differences). REBUILD THE RUNTIME DLL. Check in game: FREEDOM_ARROW_OPEN_DAMAGE Calm 1+0/soldier Shocked 1+0/soldier
+  Panicked 1+0/soldier; Fletcher test (IC 0) on calm and panicked squads in the open: both x1.0.
