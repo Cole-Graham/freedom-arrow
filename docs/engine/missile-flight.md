@@ -105,7 +105,7 @@ Ranges are stored world units. The unit card shows twice the number. The launche
 | AMRAAM / R-77-1 (1150, 200, 4 s) | 3500 | 4000 | 5731 | 9.1 s | 3694 | 7767 |
 | PL-15 / PL-16 (AMRAAM motor) | new | 4500 | 5731 | 9.1 s | 3694 | 7767 |
 | AIM-260 JATM, B-21 only, ammo 2001658 (AMRAAM motor) | new | 5500 | 5731 | 9.1 s | 3694 | 7767 |
-| R-37 / AIM-174 / AIM-260 (1150, 300, 5 s) | 4500 | 5500 | 8462 | 10.9 s | 6013 | 10911 |
+| R-37 / AIM-174 / AIM-260 (1150, 300, 5 s); PL-17 and PL-21 are new rows with this motor and range | 4500 | 5500 | 8462 | 10.9 s | 6013 | 10911 |
 
 The motor values are `MaxSpeed`, `Acceleration` and `BurnTime`. Every missile except the AIM-9 class has a 0.5 s ignition delay.
 
