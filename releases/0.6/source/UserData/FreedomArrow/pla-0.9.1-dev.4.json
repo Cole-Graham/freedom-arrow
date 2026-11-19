@@ -1,0 +1,1941 @@
+{
+  "manpad_team_prices": {
+    "cost": {
+      "69": [
+        75,
+        70,
+        2
+      ],
+      "73": [
+        85,
+        75,
+        2
+      ],
+      "109": [
+        60,
+        50,
+        1
+      ],
+      "120": [
+        65,
+        60,
+        2
+      ],
+      "125": [
+        85,
+        70,
+        1
+      ],
+      "134": [
+        60,
+        60,
+        1
+      ],
+      "342": [
+        65,
+        60,
+        1
+      ],
+      "356": [
+        75,
+        70,
+        2
+      ],
+      "371": [
+        50,
+        45,
+        1
+      ],
+      "404": [
+        60,
+        50,
+        1
+      ],
+      "413": [
+        65,
+        55,
+        1
+      ],
+      "417": [
+        85,
+        75,
+        2
+      ],
+      "440": [
+        75,
+        65,
+        1
+      ],
+      "522": [
+        60,
+        50,
+        1
+      ],
+      "523": [
+        65,
+        60,
+        2
+      ],
+      "524": [
+        60,
+        50,
+        1
+      ],
+      "613": [
+        60,
+        50,
+        1
+      ],
+      "704": [
+        60,
+        50,
+        1
+      ],
+      "705": [
+        60,
+        50,
+        1
+      ],
+      "706": [
+        65,
+        55,
+        1
+      ],
+      "1145": [
+        65,
+        60,
+        1
+      ],
+      "1153": [
+        65,
+        65,
+        2
+      ],
+      "1169": [
+        65,
+        60,
+        2
+      ],
+      "1191": [
+        65,
+        55,
+        1
+      ],
+      "1194": [
+        65,
+        70,
+        2
+      ],
+      "1197": [
+        60,
+        55,
+        1
+      ],
+      "1206": [
+        60,
+        50,
+        1
+      ]
+    },
+    "set_by_lateralus": {
+      "1153": 65,
+      "1194": 70,
+      "1197": 55,
+      "1169": 60,
+      "134": 60,
+      "1145": 60
+    },
+    "at_troopers_1198": [
+      70,
+      80
+    ],
+    "swap_option_cost": {
+      "1489": [
+        5,
+        0
+      ],
+      "1497": [
+        15,
+        30
+      ],
+      "1857": [
+        0,
+        5
+      ],
+      "2151": [
+        5,
+        10
+      ],
+      "3332": [
+        10,
+        5
+      ]
+    },
+    "smoke_removed": [
+      1153,
+      1194,
+      1197,
+      1145
+    ],
+    "fn6_smoke": "already off (row 2012703 IsSmoke false)",
+    "ammo_per_launcher_4_to_3": [
+      1194,
+      1169
+    ],
+    "left_out": {
+      "1223": "test unit",
+      "1024": "hidden HN-6 MANPADS Team"
+    },
+    "verified": "data checks only"
+  },
+  "csk131_recon": {
+    "unit": 1265,
+    "optics": [
+      "Very Good 3",
+      "Good 1"
+    ],
+    "specs": [
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "cards": 4,
+    "cost": "30 (unchanged, already 30)"
+  },
+  "vehicle_optics": {
+    "29": {
+      "name": "LAV-25",
+      "sensor_links": {
+        "711": [
+          "Medium Plus Optics",
+          "Good Optics"
+        ],
+        "925": [
+          "Good Optics NonDefault",
+          "Very Good Optics NonDefault"
+        ]
+      },
+      "options": {
+        "18": [
+          "Medium Plus Optics",
+          "Good Optics"
+        ],
+        "19": [
+          "Good Optics NonDefault",
+          "Very Good Optics NonDefault"
+        ]
+      }
+    },
+    "249": {
+      "name": "Humvee RWS",
+      "sensor_links": {
+        "641": [
+          "Good Optics",
+          "Very Good Optics"
+        ]
+      },
+      "options": {}
+    },
+    "467": {
+      "name": "M-ATV",
+      "sensor_links": {
+        "935": [
+          "Good Optics",
+          "Very Good Optics"
+        ]
+      },
+      "options": {},
+      "cost": [
+        30,
+        35
+      ]
+    },
+    "714": {
+      "name": "M-ATV Javelin",
+      "sensor_links": {
+        "2000246": [
+          "Good Optics",
+          "Very Good Optics"
+        ]
+      },
+      "options": {}
+    },
+    "23": {
+      "name": "Typhoon VDV",
+      "sensor_links": {
+        "331": [
+          "Medium Optics",
+          "Good Optics"
+        ],
+        "777": [
+          "Medium Plus Optics NonDefault",
+          "Very Good Optics NonDefault"
+        ]
+      },
+      "options": {
+        "270": [
+          "Medium Optics",
+          "Good Optics"
+        ],
+        "271": [
+          "Medium Plus Optics NonDefault",
+          "Very Good Optics NonDefault"
+        ]
+      }
+    },
+    "383": {
+      "name": "BTR-90",
+      "sensor_links": {
+        "764": [
+          "Medium Optics",
+          "Good Optics"
+        ],
+        "765": [
+          "Medium Plus Optics",
+          "Very Good Optics"
+        ]
+      },
+      "options": {
+        "1731": [
+          "Medium Optics",
+          "Good Optics"
+        ],
+        "1732": [
+          "Medium Optics",
+          "Good Optics"
+        ],
+        "1733": [
+          "Medium Plus Optics",
+          "Very Good Optics"
+        ],
+        "1734": [
+          "Medium Plus Optics",
+          "Very Good Optics"
+        ]
+      }
+    },
+    "195": {
+      "name": "Tigr BRShM",
+      "sensor_links": {
+        "648": [
+          "Good Optics",
+          "Very Good Optics"
+        ]
+      },
+      "options": {
+        "426": [
+          "Good Optics",
+          "Very Good Optics"
+        ]
+      }
+    }
+  },
+  "ability_row_cleanup": {
+    "fa_rows": [
+      380,
+      65
+    ],
+    "merged": {
+      "2000196": [
+        "APS Trophy NoModel",
+        82,
+        "APS IronFist NoModel"
+      ],
+      "2000199": [
+        "Smoke x2 NoModel Default",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2000200": [
+        "Smoke x2 NoModel",
+        2000195,
+        "Smoke x1 NoModel"
+      ],
+      "2000203": [
+        "APS IronFist NoModel",
+        2000201,
+        "APS Arena"
+      ],
+      "2000205": [
+        "APS Arena",
+        82,
+        "APS IronFist NoModel"
+      ],
+      "2000211": [
+        "Laser Smoke x1 Default",
+        2000204,
+        "Laser Smoke x2"
+      ],
+      "2000213": [
+        "Smoke x2 Supply Light Default",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2000609": [
+        "Sprint Smoke Laser",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2000610": [
+        "Sprint Smoke Laser",
+        2000210,
+        "Sprint Smoke Laser"
+      ],
+      "2000612": [
+        "Sprint30 Smoke Laser",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2000771": [
+        "ECM Heli 05 Default + Laser",
+        84,
+        "ECM Heli 05 +Laser Mi24K"
+      ],
+      "2001402": [
+        "ECM Plane 15 Not Default FA 0.7",
+        2001401,
+        "ECM Plane 10 Not Default FA 0.7"
+      ],
+      "2001403": [
+        "ECM Plane 05 Not Default FA 0.7",
+        2001401,
+        "ECM Plane 10 Not Default FA 0.7"
+      ],
+      "2001405": [
+        "ECM Plane 05 Default FA 0.7",
+        2001400,
+        "ECM Plane 10 Default FA 0.7"
+      ],
+      "2001406": [
+        "ECM Plane 20 Not Default FA 0.6",
+        2001404,
+        "ECM Plane 15 Not Default FA 0.6"
+      ],
+      "2001407": [
+        "ECM Plane 20 Default FA 0.7",
+        2001400,
+        "ECM Plane 10 Default FA 0.7"
+      ],
+      "2001408": [
+        "ECM Plane 00 Default FA 0.7",
+        2001400,
+        "ECM Plane 10 Default FA 0.7"
+      ],
+      "2001410": [
+        "ECM Plane 10 Not Default FA 0.85",
+        52,
+        "ECM Plane 15 Not Default"
+      ],
+      "2001411": [
+        "ECM Plane 00 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2001413": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2001414": [
+        "ECM Plane 15 Not Default FA 0.75",
+        2001412,
+        "ECM Plane 10 Not Default FA 0.75"
+      ],
+      "2001419": [
+        "ECM Plane 10 Not Default CAS FA 0.85",
+        2001416,
+        "ECM Plane 05 Not Default CAS  FA 0.85"
+      ],
+      "2001421": [
+        "ECM Plane 05 Not Default FA 0.85",
+        52,
+        "ECM Plane 15 Not Default"
+      ],
+      "2001422": [
+        "ECM Plane 15 SU25T FA 0.75",
+        2001420,
+        "ECM Plane 20 SU25SM FA 0.75"
+      ],
+      "2001423": [
+        "ECM Plane 00 Not Default CAS FA 0.85",
+        2001416,
+        "ECM Plane 05 Not Default CAS  FA 0.85"
+      ],
+      "2001425": [
+        "ECM Plane 05 Not Default FA 0.75",
+        2001412,
+        "ECM Plane 10 Not Default FA 0.75"
+      ],
+      "2001428": [
+        "ECM Plane 10 Default FA 0.75",
+        2001426,
+        "ECM Plane 05 Default FA 0.75"
+      ],
+      "2001812": [
+        "Karatel Smoke x1 NoModel",
+        1,
+        "Smoke x1 NoModel"
+      ],
+      "2001843": [
+        "Abrams X APS Trophy NoModel",
+        2000202,
+        "Abilities T14 Armata"
+      ],
+      "2001844": [
+        "Abrams X Smoke x2 NoModel",
+        2000195,
+        "Smoke x1 NoModel"
+      ],
+      "2001845": [
+        "Abrams X ECM Shtora NoModel",
+        6,
+        "ECM Shtora NoModel"
+      ],
+      "2001847": [
+        "XM30 jammer30 percent",
+        4,
+        "Empty ability"
+      ],
+      "2001973": [
+        "F21 intrinsic ECM 40 percent",
+        2001969,
+        "Su47 intrinsic ECM 40 percent"
+      ],
+      "2002036": [
+        "Black Eagle smoke x1",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2004721": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004741": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004764": [
+        "Sprint30 Smoke x4",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2004789": [
+        "Sprint30 Smoke Laser",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2004807": [
+        "Sprint Smoke Laser",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004821": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004841": [
+        "Sprint",
+        90,
+        "Sprint"
+      ],
+      "2004861": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004873": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2004890": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2004907": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2004925": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2004942": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2004959": [
+        "Sprint Smoke",
+        2000198,
+        "Sprint Smoke"
+      ],
+      "2004977": [
+        "Sprint",
+        90,
+        "Sprint"
+      ],
+      "2004994": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2005015": [
+        "Sprint Smoke Laser",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2005030": [
+        "Sprint Smoke Laser",
+        11,
+        "Sprint Smoke"
+      ],
+      "2006990": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007028": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007104": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007218": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007256": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007292": [
+        "Laser Veh Default",
+        10,
+        "Laser Veh Default"
+      ],
+      "2007306": [
+        "ECM Plane 00 Default",
+        44,
+        "ECM Plane 00 Default"
+      ],
+      "2007315": [
+        "ECM Plane 00 Default",
+        44,
+        "ECM Plane 00 Default"
+      ],
+      "2007326": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007364": [
+        "ECM Plane 10 Default FA 0.85",
+        2001409,
+        "ECM Plane 05 Default FA 0.85"
+      ],
+      "2007400": [
+        "Laser Veh Default",
+        10,
+        "Laser Veh Default"
+      ],
+      "2007414": [
+        "ECM Plane 00 Default",
+        44,
+        "ECM Plane 00 Default"
+      ],
+      "2007532": [
+        "Sprint Smoke",
+        11,
+        "Sprint Smoke"
+      ],
+      "2007558": [
+        "Sprint",
+        2000208,
+        "Sprint"
+      ],
+      "2007584": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007605": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007626": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007647": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007668": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007689": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007710": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007731": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007752": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007773": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007794": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007815": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007836": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007857": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007878": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007899": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007920": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007941": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2007962": [
+        "Radar ArleighBurke",
+        70,
+        "Radar LHA6"
+      ],
+      "2008997": [
+        "PLA CSK-131 Mengshi AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009011": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009013": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009015": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009041": [
+        "PLA ZBL-08 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009067": [
+        "PLA ZTZ-99A AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009095": [
+        "PLA ZTZ-96B AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009123": [
+        "PLA ZTQ-15 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009177": [
+        "PLA PGZ-09 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009191": [
+        "PLA HQ-17 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009361": [
+        "PLA PGL-625 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009439": [
+        "PLA HQ-7B AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009441": [
+        "PLA HQ-7B AbilitiesJson",
+        58,
+        "Radar SHORAD Static"
+      ],
+      "2009455": [
+        "PLA PLL-05 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009469": [
+        "PLA ZTZ-20 AbilitiesJson",
+        2000202,
+        "Abilities T14 Armata"
+      ],
+      "2009509": [
+        "PLA ZTD-05 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009537": [
+        "PLA PLZ-07B AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009551": [
+        "PLA PGZ-04A AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009595": [
+        "PLA FK-2000 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009613": [
+        "PLA HJ-10 AbilitiesJson",
+        2009175,
+        "PLA PGZ-09 AbilitiesJson"
+      ],
+      "2009615": [
+        "PLA HJ-10 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2009629": [
+        "PLA QN-506 AbilitiesJson",
+        2000204,
+        "Laser Smoke x2"
+      ],
+      "2009661": [
+        "PLA ZTL-11 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009689": [
+        "PLA ZTZ-99A2 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009811": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009813": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009815": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2009847": [
+        "PLA PTZ-89 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009875": [
+        "PLA ZTZ-99G AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009903": [
+        "PLA ZTZ-96 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009959": [
+        "PLA VT-5 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2009987": [
+        "PLA ZFB-05 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2010045": [
+        "PLA WZ-701 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2010087": [
+        "PLA ZSD-90 AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2010101": [
+        "PLA ZSD-63C AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2010115": [
+        "PLA HQ-7 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010117": [
+        "PLA HQ-7 AbilitiesJson",
+        58,
+        "Radar SHORAD Static"
+      ],
+      "2010131": [
+        "PLA WZ-551 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2010319": [
+        "PLA ZBL-191 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2010405": [
+        "PLA PCL-09 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010419": [
+        "PLA PCL-181 / SH-15 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010457": [
+        "PLA PLL-09 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010471": [
+        "PLA PLZ-07 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010497": [
+        "PLA PLZ-70 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010511": [
+        "PLA PLZ-83 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010525": [
+        "PLA PLZ-85 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010539": [
+        "PLA PLZ-89 AbilitiesJson",
+        5,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010565": [
+        "PLA HQ-6A AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2010579": [
+        "PLA HQ-11 AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2010593": [
+        "PLA HQ-12 / KS-1 AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2010607": [
+        "PLA HQ-16 AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2010621": [
+        "PLA HQ-17A AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010635": [
+        "PLA PGZ-04 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010655": [
+        "PLA PGZ-88 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010669": [
+        "PLA PGZ-95 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010701": [
+        "PLA CTL-181 loitering munition launcher AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010715": [
+        "PLA AFT-10 AbilitiesJson",
+        2009175,
+        "PLA PGZ-09 AbilitiesJson"
+      ],
+      "2010717": [
+        "PLA AFT-10 AbilitiesJson",
+        60,
+        "Radar SHORAD"
+      ],
+      "2010757": [
+        "PLA CS/VN3C MG AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2010771": [
+        "PLA CSK-181 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010785": [
+        "PLA PTL-02 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010871": [
+        "PLA Type 63 APC — older base AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2010911": [
+        "PLA Type 89 AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2010925": [
+        "PLA Type 89A AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2010939": [
+        "PLA VN17 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2010965": [
+        "PLA VN20 AbilitiesJson",
+        2000215,
+        "Abilities T15 Barbaris "
+      ],
+      "2010991": [
+        "PLA VN20-B AbilitiesJson",
+        2000215,
+        "Abilities T15 Barbaris "
+      ],
+      "2011017": [
+        "PLA VN22 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011081": [
+        "PLA VT-4 / Al-Hyder AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011109": [
+        "PLA WZ-1224 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011159": [
+        "PLA ZBD-04 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011161": [
+        "PLA ZBD-04 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011163": [
+        "PLA ZBD-04 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011189": [
+        "PLA ZBD-05 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011215": [
+        "PLA ZBL-09 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011241": [
+        "PLA ZBL19 — seller name AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011267": [
+        "PLA ZSL-92 family AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2011293": [
+        "PLA ZTL-191 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011349": [
+        "PLA ZTZ-96A AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011377": [
+        "PLA ZTZ-99 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2011405": [
+        "PLA AR-2000 AbilitiesJson",
+        10,
+        "Laser Veh Default"
+      ],
+      "2011419": [
+        "PLA CR-500 AbilitiesJson",
+        10,
+        "Laser Veh Default"
+      ],
+      "2011433": [
+        "PLA CR-500B AbilitiesJson",
+        10,
+        "Laser Veh Default"
+      ],
+      "2011607": [
+        "PLA Z-6B UAV AbilitiesJson",
+        10,
+        "Laser Veh Default"
+      ],
+      "2011635": [
+        "PLA Z-9 AbilitiesJson",
+        2011621,
+        "PLA Z-8L AbilitiesJson"
+      ],
+      "2011687": [
+        "PLA Z-10 Recon AbilitiesJson",
+        2011655,
+        "PLA Z-10K Recon AbilitiesJson"
+      ],
+      "2011829": [
+        "PLA Airborne Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2011884": [
+        "PLA Airborne Close-Assault Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2011916": [
+        "PLA Airborne PF-98 Fire Support AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2011946": [
+        "PLA Airborne QLU-11 Precision Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2011969": [
+        "PLA Airborne QJZ-171 Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2011995": [
+        "PLA Airborne Pathfinders AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2012021": [
+        "PLA Thunder Gods — Airborne Recon (雷神) AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012051": [
+        "PLA Airborne Snipers AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2012078": [
+        "PLA Airborne HN-6 Patrol AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012105": [
+        "PLA Air Assault Raiders AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012128": [
+        "PLA Airborne Assault Engineers AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2012154": [
+        "PLA Airborne QLZ-87 Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012177": [
+        "PLA Airborne Target Observers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012232": [
+        "PLA Mechanized Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012261": [
+        "PLA Mechanized HJ-8E Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012285": [
+        "PLA Mechanized QW-2 Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012309": [
+        "PLA Mechanized QLZ-04 Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2012333": [
+        "PLA Mechanized PF-98 Tank Hunters AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012355": [
+        "PLA Mechanized Combat Engineers AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2012384": [
+        "PLA Mechanized QJZ-89 Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2012408": [
+        "PLA Mechanized GPMG Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012437": [
+        "PLA Mechanized Guided-AT Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012466": [
+        "PLA Armored Scouts AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2012492": [
+        "PLA Armored Sniper Pair AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2012512": [
+        "PLA Mechanized Thermobaric Breachers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012541": [
+        "PLA Mechanized Close-AT Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012570": [
+        "PLA Armored Forward Observers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012591": [
+        "PLA Recon HJ-8E Ambush Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012615": [
+        "PLA Conscripts — No AT AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012640": [
+        "PLA Reserve Riflemen — HJ-73D AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012674": [
+        "PLA Reserve HJ-73D Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012703": [
+        "PLA Reserve HN-6 Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012732": [
+        "PLA Reserve QJZ-89 Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012761": [
+        "PLA Reserve QLZ-87 Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012790": [
+        "PLA Reserve PF-98 Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012818": [
+        "PLA Malyutka Recon Ambush Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012853": [
+        "PLA Sharp Blades — Missile-Site Recon (利刃) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2012888": [
+        "PLA Missile-Site Security — HJ-73D AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012921": [
+        "PLA Missile-Site Counter-Raid Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2012958": [
+        "PLA Reserve Thermobaric Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2012989": [
+        "PLA Reserve Heavy HJ-8E Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2013021": [
+        "PLA Rocket Convoy Escort — HJ-73D AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013054": [
+        "PLA FHJ-02 Incendiary Team AbilitiesJson",
+        2012202,
+        "PLA Airborne Reserve Riflemen AbilitiesJson"
+      ],
+      "2013084": [
+        "PLA Eastern Sword — Digital Assault (东方神剑) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013121": [
+        "PLA Whistling Arrows — Breachers (响箭) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013189": [
+        "PLA Sky Wolves — QLU / Sniper Recon (天狼) AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013220": [
+        "PLA Southern Sharp Swords — Fire Support (南国利剑) AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013253": [
+        "PLA Plateau Snow Leopards — Mountain Team (高原雪豹) AbilitiesJson",
+        2000198,
+        "Sprint Smoke"
+      ],
+      "2013284": [
+        "PLA Blue Sword — Beijing CQC (蓝剑) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013311": [
+        "PLA Falcon — Counter-Terror Assault (猎鹰) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013346": [
+        "PLA PAP Snow Leopards — Raid Team (雪豹) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013379": [
+        "PLA Jiaolong — Marine Assault (蛟龙) AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013408": [
+        "PLA Jiaolong — Maritime Recon (蛟龙) AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013439": [
+        "PLA Marine Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013469": [
+        "PLA Marine HJ-12 Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2013498": [
+        "PLA Marine HN-6 Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013527": [
+        "PLA Marine Thermobaric Engineers AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013560": [
+        "PLA Motorized Line Infantry AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013587": [
+        "PLA Motorized Troopers — AA AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013614": [
+        "PLA Motorized Troopers — HJ-12 AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013641": [
+        "PLA Motorized Weapons Squad AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2013672": [
+        "PLA Motorized PF-98 Fire Support AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013700": [
+        "PLA Motorized Recon Patrol AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2013731": [
+        "PLA Motorized Snipers AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2013759": [
+        "PLA Taishan Eagles — Deep Recon (泰山雄鹰) AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013792": [
+        "PLA Motorized CQC Engineers AbilitiesJson",
+        81,
+        "Sprint30 Smoke x4"
+      ],
+      "2013822": [
+        "PLA Motorized Light-AT Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013849": [
+        "PLA Motorized Air-Defense Scouts AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2013879": [
+        "PLA Motorized PF-98 Tank Hunters AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013907": [
+        "PLA Motorized QLZ-04 Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2013934": [
+        "PLA Motorized Thermobaric Assault AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013965": [
+        "PLA Motorized CAAT — HJ-8E / QLU-11 AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2013998": [
+        "PLA Test — Export Riflemen AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014029": [
+        "PLA Test — SMG Assault AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014056": [
+        "PLA Test — Suppressed Scouts AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014085": [
+        "PLA Test — LG5 Precision Grenadiers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014113": [
+        "PLA Test — LG5s Mobile Grenadiers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014143": [
+        "PLA Test — LG6 CQC Grenadiers AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014174": [
+        "PLA Test — LG4 Revolver Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014205": [
+        "PLA Test — LG3 Heavy AGL AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014233": [
+        "PLA Test — QN-202 Guided Support AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014261": [
+        "PLA Test — TL-4 Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014289": [
+        "PLA Test — GAM-102LR Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2014317": [
+        "PLA Test — HJ-12E Team AbilitiesJson",
+        2011861,
+        "PLA Airborne HJ-12 Team AbilitiesJson"
+      ],
+      "2014345": [
+        "PLA Test — QW-2 Escort AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014373": [
+        "PLA Test — QTS Recon Cell AbilitiesJson",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2014403": [
+        "PLA Test — FHJ-02 Smoke Team AbilitiesJson",
+        11,
+        "Sprint Smoke"
+      ],
+      "2014529": [
+        "PLA HQ-9 AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2014544": [
+        "PLA HQ-9 AbilitiesJson",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2014567": [
+        "Radar LongRange Static",
+        59,
+        "Radar LongRange Static"
+      ],
+      "2014601": [
+        "Supply Med  Default",
+        116,
+        "Supply Med  Default"
+      ],
+      "2014610": [
+        "PLA CSK-131 Mengshi AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2014619": [
+        "PLA CSK-181 AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2014635": [
+        "PLA ZSL-92 family AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2015986": [
+        "PLA Z-20 AbilitiesJson",
+        2009257,
+        "PLA Z-20 AbilitiesJson"
+      ],
+      "2016007": [
+        "ECM Plane 00 Default",
+        44,
+        "ECM Plane 00 Default"
+      ],
+      "2016063": [
+        "PLA ZTQ-15 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2016107": [
+        "ECM Plane 15 Not Default FA 0.75",
+        2001412,
+        "ECM Plane 10 Not Default FA 0.75"
+      ],
+      "2016186": [
+        "PLA Z-20 AbilitiesJson",
+        2009257,
+        "PLA Z-20 AbilitiesJson"
+      ],
+      "2016196": [
+        "PLA Z-20 AbilitiesJson",
+        2009257,
+        "PLA Z-20 AbilitiesJson"
+      ],
+      "2016218": [
+        "PLA Z-20 AbilitiesJson",
+        2009257,
+        "PLA Z-20 AbilitiesJson"
+      ],
+      "2016272": [
+        "PLA Type 89 AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2018104": [
+        "PLA Type 89A AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2018115": [
+        "PLA Type 89A AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2018125": [
+        "PLA Type 89A AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2018187": [
+        "PLA ZBD-03 / ZLC-2000 Supply Default",
+        2018185,
+        "PLA ZBD-86 Supply Default"
+      ],
+      "2018189": [
+        "PLA VP4 Supply Default",
+        2018185,
+        "PLA ZBD-86 Supply Default"
+      ],
+      "2018363": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018365": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018367": [
+        "PLA ZBD-04A AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018381": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018383": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018385": [
+        "PLA ZBD-20 AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018387": [
+        "APS IronFist NoModel",
+        82,
+        "APS IronFist NoModel"
+      ],
+      "2018401": [
+        "PLA ZBD-03 / ZLC-2000 Supply Default",
+        2018185,
+        "PLA ZBD-86 Supply Default"
+      ],
+      "2018414": [
+        "PLA ZBD-86 Supply Default",
+        2018185,
+        "PLA ZBD-86 Supply Default"
+      ],
+      "2018429": [
+        "PLA ZBD-86 Supply Default",
+        2018185,
+        "PLA ZBD-86 Supply Default"
+      ],
+      "2018568": [
+        "PLA ECM 40 percent Default",
+        2001969,
+        "Su47 intrinsic ECM 40 percent"
+      ],
+      "2018569": [
+        "PLA J-16D ECM 50 percent Default",
+        2001398,
+        "ECM Plane 20 Default FA 0.5"
+      ],
+      "2018639": [
+        "PLA VT-5 AbilitiesJson",
+        2000202,
+        "Abilities T14 Armata"
+      ],
+      "2018655": [
+        "PLA VT-5 Recon AbilitiesJson",
+        2000202,
+        "Abilities T14 Armata"
+      ],
+      "2018716": [
+        "PLA Catalogue Z-8L AbilitiesJson",
+        22,
+        "ECM Heli 10 Default"
+      ],
+      "2018723": [
+        "PLA Catalogue WZ-7 AbilitiesJson",
+        45,
+        "Laser plane Default"
+      ],
+      "2018734": [
+        "PLA ZTL-191 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2018811": [
+        "PLA CSK-131 Mengshi AbilitiesJson",
+        2000212,
+        "Smoke x1 Supply Light  Default"
+      ],
+      "2018893": [
+        "PLA CSK-181 AbilitiesJson",
+        2000214,
+        "Smoke x1 Supply Medium Default"
+      ],
+      "2019003": [
+        "PLA ZTQ-15 AbilitiesJson",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2019108": [
+        "PLA VT-5 AbilitiesJson no APS",
+        2000197,
+        "Smoke x1 NoModel Default"
+      ],
+      "2019302": [
+        "Sprint30 Smoke x1 Laser Green Berets Flash",
+        28,
+        "Sprint Smoke Laser"
+      ],
+      "2019411": [
+        "ECM Plane pods FA 0.7",
+        2001401,
+        "ECM Plane 10 Not Default FA 0.7"
+      ],
+      "2019413": [
+        "ECM Plane pods FA 0.55",
+        2019305,
+        "ECM Plane EA-18G FA 0.55"
+      ],
+      "2019417": [
+        "ECM Plane pods FA 0.65",
+        2001427,
+        "ECM Plane 15 Not Default FA 0.65"
+      ],
+      "2019419": [
+        "ECM Plane pods FA 0.65",
+        2001427,
+        "ECM Plane 15 Not Default FA 0.65"
+      ],
+      "2019421": [
+        "ECM Plane pods FA 0.65",
+        2019415,
+        "ECM Plane pods FA 0.65"
+      ],
+      "2019423": [
+        "ECM Plane pods FA 0.8",
+        46,
+        "ECM Plane 20 Not Default"
+      ],
+      "2019425": [
+        "ECM Plane pods FA 0.7",
+        2001401,
+        "ECM Plane 10 Not Default FA 0.7"
+      ],
+      "2019427": [
+        "ECM Plane pods FA 0.65",
+        2001427,
+        "ECM Plane 15 Not Default FA 0.65"
+      ],
+      "2019433": [
+        "ECM Plane Default FA 0.9",
+        30,
+        "ECM Plane 10 Default"
+      ],
+      "2019434": [
+        "ECM Plane no pods FA 0.8",
+        46,
+        "ECM Plane 20 Not Default"
+      ],
+      "2019436": [
+        "ECM Plane Default FA 0.8",
+        29,
+        "ECM Plane 20 Default"
+      ],
+      "2019458": [
+        "ECM Plane YF-23 Default FA 0.55",
+        2019452,
+        "ECM Plane F-22 Default FA 0.55"
+      ],
+      "2019470": [
+        "Sprint Smoke Laser no laser (FA cheap recon)",
+        11,
+        "Sprint Smoke"
+      ]
+    },
+    "duplicate_links_removed": [
+      [
+        571,
+        3,
+        2000195
+      ],
+      [
+        2011162,
+        1075,
+        2000212
+      ],
+      [
+        2011164,
+        1075,
+        2000212
+      ],
+      [
+        2019424,
+        377,
+        46
+      ]
+    ],
+    "removed_unused": {
+      "2000216": "Smoke x2 Supply Heavy Default",
+      "2014663": "PLA ZBD-251 laser designator"
+    },
+    "to_vanilla": 160,
+    "verified": "data checks only"
+  },
+  "version": "0.9.1-dev.4",
+  "base": "0.9.1-dev.3",
+  "base_sha256": "d6052a60af479dae680888b439315e2739c654a7bca95bec9562456480a6b9fe",
+  "checks": 95,
+  "verified": "data checks only"
+}

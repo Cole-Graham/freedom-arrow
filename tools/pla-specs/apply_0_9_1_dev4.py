@@ -94,6 +94,8 @@ for s in _cn:
     if s!=21:g.add('SpecializationAvailabilitiesJson',_sa[0],{'SpecializationId':s})
 ok(sorted(r['SpecializationId'] for r in SA.values() if r['UnitId']==1265)==_cn and all(r['MaxAvailabilityXp0']==4 for r in SA.values() if r['UnitId']==1265),'1265 in every China spec')
 ok(assign['assignments'].get('1265')==[21],'assignment metadata 1265');assign['assignments']['1265']=_cn
+# verify_roster_revision.py allows a card in several specs only when shared_transports lists it (like 1230, 1266 and 1269).
+ok('1265' not in assign['shared_transports'],'1265 not yet shared');assign['shared_transports']['1265']=_cn
 rec['csk131_recon']={'unit':1265,'optics':['Very Good 3','Good 1'],'specs':_cn,'cards':4,'cost':'30 (unchanged, already 30)'}
 # ---------- 3-8. Optics (same message). A unit's optics are its SensorUnitsJson links; a loadout option picks one with MainSensorId. Each change re-points
 # the link and the option to the shared tier row of the same kind (plain rows 2 Medium, 23 Medium Plus, 1 Good, 3 Very Good; NonDefault rows 28 Medium
