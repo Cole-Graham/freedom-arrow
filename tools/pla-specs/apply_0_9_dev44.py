@@ -174,6 +174,22 @@ _r=[r for r in _SU2.values() if r.get('UnitId')==1245 and r.get('SensorId')==_z2
 g.put('SensorUnitsJson',_r[0]['Id'],{'SensorId':_z20t})
 ok(_SE2[_SU2[_r[0]['Id']]['SensorId']]['OpticsGround']==2300 and _SE2[_z20]['OpticsGround']==1650,'Z-20 1650, Z-20T 2300')
 rec['china_vehicle_optics_role_median']={'rows':{str(k):list(v) for k,v in _OPTV.items()},'z20':[_z20,1650],'z20t_new_row':_z20t}
+# ---------- RPGs 10 damage; VT-5 front HEAT 700 (Osama 18 Nov 2026 23:5x PST, thread 1567745029781454889: "VT-5 should have 700mm front HEAT. I think all
+# the RPGs also need 10 damage too now", after the shot-log review). 26 unguided infantry anti-tank HEAT rockets (the FA rows infantry actually use: RPG-7
+# PG-7VR/VL/VS/VM, RPG-16/22/26/27/28/29/30/32, M72, AT4, AT4 tandem, Carl Gustaf CGM2/3/4, SMAW HEAA, China PF-89, PF-98, PF-98A, PF-98 tripod) 9 -> 10.
+# Not changed: thermobaric/HE/HEDP/incendiary/smoke rounds, the dual-purpose C90-CR-BK and DZJ-08, the SPG-9 recoilless gun (7), the PF-97 prototype.
+_RPG=[2000128,2000129,2000130,2000131,2000132,2000133,2000134,2000135,2000136,2000137,2000138,2000139,2000140,2000141,2000142,2000143,2000145,2000146,
+      2000453,2001502,2004971,2011833,2011888,2011920,2013158,2016260]
+for _i in _RPG:
+    ok(_A[_i].get('Damage')==9.0 and not _A[_i].get('Seeker') and _A[_i].get('ArmorTargeted')==2,(_i,_A[_i]['Name'],'unguided HEAT rocket at 9'))
+    g.put('AmmunitionsJson',_i,{'Damage':10.0})
+ok(all(_A[_i]['Damage']==10.0 for _i in _RPG),'RPGs 10 damage')
+# VT-5 (unit 1261, 160 pts): own armour row, HEAT front 1000 -> 700 (sides 700, rear 60 unchanged)
+_v5=[r['ArmorId'] for r in _UA.values() if r.get('UnitId')==1261]
+ok(len(_v5)==1 and [r['UnitId'] for r in _UA.values() if r.get('ArmorId')==_v5[0]]==[1261] and _AR[_v5[0]]['HeatArmorFront']==1000,'VT-5 own armour row at HEAT front 1000')
+g.put('ArmorsJson',_v5[0],{'HeatArmorFront':700})
+ok(_AR[_v5[0]]['HeatArmorFront']==700,'VT-5 HEAT front 700')
+rec['rpg_damage_10_vt5_heat']={'rpg_rows':_RPG,'damage':[9,10],'vt5_armour_row':_v5[0],'heat_front':[1000,700]}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

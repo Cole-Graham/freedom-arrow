@@ -60,3 +60,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   tracks (USA, Russia x2 same file, China, Black Hawk Down) cut at leading silence + 2.0 s (2.26-2.78 s), 0.75 s fade-in, 256 kbps, loudness unchanged
   (-11.8 to -12.2 LUFS). Files are third-party music, kept OUT of the repo: work/music-end-trim-20261118/out (sha256.txt). BUILD: pass the 8 lines of
   work/music-end-trim-20261118/asset-args.txt to package_0_8_next.py (--asset KEY=FILE); this goes into the new Assets version dev.44 already needs.
+- 18 Nov 2026 23:5x PST, thread 1567745029781454889 (Osama "VT-5 should have 700mm front HEAT. I think all the RPGs also need 10 damage too now"):
+  26 unguided infantry AT HEAT rockets 9 -> 10 damage (RPG-7 PG-7VR/VL/VS/VM, RPG-16/22/26/27/28/29/30/32, M72, AT4, AT4 tandem, CGM2/3/4, SMAW HEAA, PF-89,
+  PF-98, PF-98A, PF-98 tripod). Excluded: thermobaric/HE/HEDP/incendiary/smoke, C90-CR-BK + DZJ-08 dual purpose, SPG-9 (7), PF-97 prototype.
+  VT-5 (1261) own armour row HEAT front 1000 -> 700 (sides 700 unchanged, pending Osama). 232 checks.
