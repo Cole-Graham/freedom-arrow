@@ -1,0 +1,202 @@
+{
+  "original_cost_zero": {
+    "907": {
+      "name": "PLZ-05",
+      "OriginalCost": [
+        260,
+        0
+      ],
+      "Cost": 260,
+      "price_change": null
+    },
+    "1035": {
+      "name": "PHL-16",
+      "OriginalCost": [
+        350,
+        0
+      ],
+      "Cost": 350,
+      "price_change": null
+    },
+    "1036": {
+      "name": "PHL-191 Ballistic",
+      "OriginalCost": [
+        225,
+        0
+      ],
+      "Cost": 225,
+      "price_change": null
+    },
+    "1051": {
+      "name": "PGZ-88",
+      "OriginalCost": [
+        80,
+        0
+      ],
+      "Cost": 90,
+      "price_change": [
+        80,
+        90
+      ]
+    },
+    "1065": {
+      "name": "ZSD-89A",
+      "OriginalCost": [
+        25,
+        0
+      ],
+      "Cost": 40,
+      "price_change": [
+        25,
+        40
+      ]
+    },
+    "1248": {
+      "name": "ZSD-89A",
+      "OriginalCost": [
+        25,
+        0
+      ],
+      "Cost": 40,
+      "price_change": [
+        25,
+        40
+      ]
+    },
+    "1249": {
+      "name": "ZSD-89A",
+      "OriginalCost": [
+        25,
+        0
+      ],
+      "Cost": 40,
+      "price_change": [
+        25,
+        40
+      ]
+    },
+    "1250": {
+      "name": "ZSD-89A",
+      "OriginalCost": [
+        25,
+        0
+      ],
+      "Cost": 40,
+      "price_change": [
+        25,
+        40
+      ]
+    },
+    "1252": {
+      "name": "WZ-8",
+      "OriginalCost": [
+        300,
+        0
+      ],
+      "Cost": 300,
+      "price_change": null
+    },
+    "1258": {
+      "name": "ZBD-86 Recon",
+      "OriginalCost": [
+        15,
+        0
+      ],
+      "Cost": 40,
+      "price_change": [
+        15,
+        40
+      ]
+    },
+    "1260": {
+      "name": "ZTZ-59D1",
+      "OriginalCost": [
+        65,
+        0
+      ],
+      "Cost": 65,
+      "price_change": null
+    },
+    "1261": {
+      "name": "VT-5",
+      "OriginalCost": [
+        140,
+        0
+      ],
+      "Cost": 160,
+      "price_change": [
+        140,
+        160
+      ]
+    },
+    "1262": {
+      "name": "VT-5 Recon",
+      "OriginalCost": [
+        145,
+        0
+      ],
+      "Cost": 220,
+      "price_change": [
+        145,
+        220
+      ]
+    },
+    "1263": {
+      "name": "ZTL-191 Recon",
+      "OriginalCost": [
+        120,
+        0
+      ],
+      "Cost": 180,
+      "price_change": [
+        120,
+        180
+      ]
+    },
+    "1264": {
+      "name": "ZTZ-85-II",
+      "OriginalCost": [
+        85,
+        0
+      ],
+      "Cost": 85,
+      "price_change": null
+    },
+    "1265": {
+      "name": "CSK-131 Recon",
+      "OriginalCost": [
+        5,
+        0
+      ],
+      "Cost": 30,
+      "price_change": [
+        5,
+        30
+      ]
+    },
+    "1267": {
+      "name": "PHL-191 Cruise",
+      "OriginalCost": [
+        225,
+        0
+      ],
+      "Cost": 225,
+      "price_change": null
+    },
+    "1269": {
+      "name": "SX2190",
+      "OriginalCost": [
+        50,
+        0
+      ],
+      "Cost": 50,
+      "price_change": null
+    }
+  },
+  "original_cost_zero_verified": "data checks only",
+  "version": "0.9.1-dev.5",
+  "base": "0.9.1-dev.4",
+  "base_sha256": "cc78ff7c240d4c582e8f16c7a1dab679fa6c80cbacf04c7325a364d1fbbe922d",
+  "checks": 4,
+  "verified": "data checks only"
+}

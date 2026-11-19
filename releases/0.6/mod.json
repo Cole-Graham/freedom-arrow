@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.1-dev.4",
+  "version": "0.9.1-dev.5",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.1-dev.4 (19 Nov): release candidate for the 0.9.1 playtest. MANPAD teams cheaper (one launcher -15%, two -10%; China QW-2 Team 65, Marine QW-2 Team 70, AA Troopers 55, FN-6 Team 60, QW-12 Patrol 60; AT Troopers 80); no smoke on QW-2, Marine QW-2, AA Troopers and QW-12 Patrol; Marine QW-2 and FN-6 carry 6 MANPAD missiles; CSK-131 Recon Good optics in every China spec; better optics on LAV-25, Humvee RWS, M-ATV (35 pts), M-ATV Javelin, Typhoon VDV, BTR-90 and Tigr BRShM. Includes everything in 0.9.1-dev.3. Needs Freedom Arrow — Models and Music 0.2.47.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.1-dev.5 (19 Nov): release candidate for the 0.9.1 playtest. Prices that never took effect now apply: PGZ-88 90, ZSD-89A 40, ZBD-86 Recon 40, VT-5 160, ZTL-191 Recon 180, CSK-131 Recon 30. Includes everything in 0.9.1-dev.4. Needs Freedom Arrow — Models and Music 0.2.47.",
   "repo": "Cole-Graham/freedom-arrow"
 }
