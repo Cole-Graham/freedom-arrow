@@ -40,7 +40,12 @@
 
   <PropertyGroup Condition="'$(PinnedFreedomArrow)' == 'true'">
     <DefineConstants>$(DefineConstants);FA_DEV45</DefineConstants>
-    <Version>1.1.7</Version>
+    <!-- Lateralus 19 Nov 2026: the Freedom Arrow launcher is FreedomArrow.exe with the FA patch icon -->
+    <AssemblyName>FreedomArrow</AssemblyName>
+    <Product>Freedom Arrow Launcher</Product>
+    <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
+    <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
+    <Version>1.1.8</Version>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
@@ -61,7 +66,8 @@
   <ItemGroup>
     <!-- Inter (SIL Open Font License) - the typeface Broken Arrow's UI uses -->
     <EmbeddedResource Include="Fonts\*.ttf" LogicalName="Fonts.%(Filename)%(Extension)" />
-    <EmbeddedResource Include="Assets\BAModManager.ico" LogicalName="Assets.icon.ico" />
+    <EmbeddedResource Include="Assets\BAModManager.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' != 'true'" />
+    <EmbeddedResource Include="Assets\FreedomArrow.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' == 'true'" />
     <EmbeddedResource Include="Assets\logo.png" LogicalName="Assets.logo.png" />
     <EmbeddedResource Include="Assets\default_preview.png" LogicalName="Assets.default_preview.png" />
     <EmbeddedResource Include="Assets\gear_body.png" LogicalName="Assets.gear_body.png" />
