@@ -12,3 +12,8 @@
 - package_0_8_next.py RENAMED_DLLS (from 0.9.1-dev.2): Mods/ArrowQueue.dll -> FAArrowQueue.dll, BALocalSkirmish -> FABALocalSkirmish, FlatIncomeMod -> FAFlatIncomeMod, HudQuick -> FAHudQuick, TeamVoice -> FATeamVoice (same bytes; old paths leave the package and both manifests; final assert fails if an old name is left). FAModels/FAMusic/FreedomArrow.Runtime unchanged.
 - releases/0.8/.../FAConquestPrototype/compatibility.json pin key -> Mods/FABALocalSkirmish.dll (same hash). ThirdPartyGuard.cs adds FATeamVoice.dll/FAHudQuick.dll to ArrowQueue's cosmetic list. REBUILD THE RUNTIME DLL.
 - Build code changes for everyone (file names are hashed). Launcher/BAModManager update removes the old files (ModService.RemovePackageFiles). Check in game: Latest.log loads the 5 FA names and no old names; conquest "compatibility_verified"; Local AI Skirmish opens; lobby list works.
+- 19 Nov 2026 11:1x PST, thread 1572407822849810463 (Osama: "Add the first five. The vehicle ones look good. Remove Conscripts. For Russia remove all the
+  Infantry except T-90M and Su-57. For US only add easting Abrams and then the F-22"): loading/ goes 24 -> 12 pictures. Added China 13 Gobi artillery +
+  DF-ZF, 19 DF-ZF centred, 02 J-20 sunrise, 04 Z-10 karst, 07 HQ-9 night (work/china-loading-art-20261118/approved). Removed China 33 conscripts, Russia
+  01/02/03/05/08/09/10, US 02/04/05/06/07/08/09/10/15. Kept: China 03/08/09, Russia 04 T-90M + 06 Su-57, US 01 73 Easting Abrams + 03 F-22. The packager drops
+  loading pictures not in source (dev.43 rule). Art only.
