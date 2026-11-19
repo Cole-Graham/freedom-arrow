@@ -83,3 +83,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 ## ZBD-20 armour = XM30 profile (Osama 19 Nov 2026, thread 1567745029781454889)
 - ZBD-20 row 2009807 (both HJ-16 options) copies XM30 row 2001818: KE 500/150/100/80 -> 300/100/60/60, HEAT 650/500/100/80 -> 600/500/60/60 (front/side/rear/top).
 - HP stays 12 like other FA IFVs (XM30 has 14, role Tank). Checks 275. Data only, not seen in game.
+- 19 Nov 2026 00:0x PST, thread 1572407822849810463 (Osama: splash "version A", "clean up the guys with the flag", "real life kit ... real guns",
+  "zoomed out a bit more and move more with the paralax", "more to the left a bit"): menu-art base.png + hill.png replaced (work/main-menu-20261118/v3:
+  new distant battle with Abrams/ZTZ-99A, flag team re-rendered with real SF kit at 80%, moved left 170 px, full foreground in the hill layer);
+  menu-art.json stones limit [-26,12] -> [-40,18]. Art + JSON only, no code. Check in game: start screen at both parallax extremes, no gaps.
