@@ -48,8 +48,10 @@ def apply(t,g,ok):
 def check(T):
     """T(table) -> merged rows of the finished package. Returns a list of problems."""
     AB,UAB,SM,WA,U=T('AbilitiesJson'),T('UnitAbilitiesJson'),T('SquadMembersJson'),T('WeaponAmmunitionsJson'),T('Units')
-    bad=[f'ability {a} smoke {AB.get(a,{}).get("SmokeAmmunitionQuantity")} (want 1)' for a in SMOKE if AB.get(a,{}).get('SmokeAmmunitionQuantity')!=1]
-    if AB.get(2013253,{}).get('IsInfantrySprint'):bad.append('Mountain Leopards still sprint')
+    # By unit, not by ability row: from 0.9.1-dev.4 the squads link shared rows with the same values (ability row cleanup, Lateralus 19 Nov 2026).
+    def smoke(u):return [AB.get(x['AbilityId'],{}).get('SmokeAmmunitionQuantity') for x in UAB.values() if x.get('UnitId')==u and AB.get(x['AbilityId'],{}).get('IsSmoke')]
+    bad=[f'unit {u} smoke {smoke(u)} (want [1])' for u in SMOKE.values() if smoke(u)!=[1]]
+    if any(AB.get(x['AbilityId'],{}).get('IsInfantrySprint') for x in UAB.values() if x.get('UnitId')==1186):bad.append('Mountain Leopards still sprint')
     if [r['Id'] for r in SM.values() if r.get('UnitId')==1186 and r.get('SpecialWeaponId')==HJ12['weapon']]!=[HJ12['keep']]:bad.append('Mountain Leopards HJ-12 carriers != 1')
     if WA.get(HJ12['ammo_row'],{}).get('Quantity')!=3:bad.append('HJ-12 rounds != 3')
     # 4 PF-89 rounds in the squad: 1 carrier x 4 (dev.33) or, from dev.44 (Osama "4 disposable AT weapons"), 4 carriers x 1 like vanilla disposables

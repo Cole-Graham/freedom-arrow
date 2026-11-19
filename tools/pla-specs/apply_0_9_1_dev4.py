@@ -120,6 +120,65 @@ for u,h,sus,opts,cost in _OPT:
     _orec[str(u)]={'name':h.strip(),'sensor_links':{str(k):[_tier[v[0]],_tier[v[1]]] for k,v in sus.items()},'options':{str(k):[_tier[v[0]],_tier[v[1]]] for k,v in opts.items()},**({'cost':list(cost)} if cost else {})}
 ok(not [o for o in O.values() if o.get('ReplaceUnitId')==467],'no swap rows on M-ATV')
 rec['vehicle_optics']=_orec
+# ---------- 9. Ability row cleanup (Lateralus 19 Nov 2026 13:14 PST, thread 1572962048705429598: "The only new rows we should have created are for unique
+# combinations of abilities... Do you think you can clean this up without screwing up the patch or any of our intended unit configurations").
+# Ability rows are shared objects: units link them through UnitAbilitiesJson.AbilityId, options through OptionsJson.Ability1Id/2Id/3Id; no other
+# table refers to them. The game reads only the field values (ActiveAbilities and its Is* flags), not the Id or Name. Every FA-created row whose fields,
+# Id and Name aside, equal another row is relinked to one canonical row: the lowest-id vanilla row with those values if one exists, else the lowest-id
+# FA row. FA rows left with no link are removed (this includes the rows that had no link before). lateralus/china_sf_recon.py check() (run at packaging
+# by queued_checks.py) named five smoke rows and the Mountain Leopards row by number; it now checks the units' linked rows instead. A unit that ends with two links to the same row keeps the first link only: BMP-3 3 (rows
+# 2000195/2000200, same values), EA-6B 377 (46 and FA 2019423, both ECM 0.8) and ZBD-04 1075 (three identical default rows). Vanilla has no unit with two
+# links to one row. Check: every unit's distinct linked ability values (in link order) and every option's slot values are unchanged.
+sys.path.insert(0,str(Path(__file__).parent/'lateralus'))
+import china_sf_recon as _CSR,mshorad_laser_slot as _MLS
+AB=t['AbilitiesJson'];UA=t['UnitAbilitiesJson'];_van=native['AbilitiesJson']
+def _sig(i):return json.dumps({k:v for k,v in AB[i].items() if k not in ('Id','Name')},sort_keys=True)
+def _state():
+    ua={};[ua.setdefault(r['UnitId'],{}).setdefault(_sig(r['AbilityId'])) for r in sorted(UA.values(),key=lambda r:r['Id'])]
+    ua={u:list(v) for u,v in ua.items()}
+    op={o['Id']:[_sig(o[f'Ability{k}Id']) if o.get(f'Ability{k}Id') else None for k in (1,2,3)] for o in O.values()}
+    return ua,op,_MLS.slot_collisions(U,M,O,AB,{r.get('UnitId') for r in SA.values()})
+ok(all(r['AbilityId'] in AB for r in UA.values()) and all(o.get(f'Ability{k}Id') in AB for o in O.values() for k in (1,2,3) if o.get(f'Ability{k}Id')),'every ability link resolves')
+_before=_state()
+_fa=sorted(i for i in AB if i not in _van);_used={r['AbilityId'] for r in UA.values()}|{o.get(f'Ability{k}Id') for o in O.values() for k in (1,2,3)}
+_canon={}
+for i in sorted(AB):_canon.setdefault(_sig(i),i)   # vanilla ids are all below the FA ids, so a vanilla row wins
+_map={i:_canon[_sig(i)] for i in _fa if _canon[_sig(i)]!=i}
+ok(_CSR.check(lambda tab:t[tab])==[],'china_sf_recon check passes before the cleanup')
+for r in list(UA.values()):
+    if r['AbilityId'] in _map:g.put('UnitAbilitiesJson',r['Id'],{'AbilityId':_map[r['AbilityId']]})
+for o in list(O.values()):
+    _ch={f'Ability{k}Id':_map[o[f'Ability{k}Id']] for k in (1,2,3) if o.get(f'Ability{k}Id') in _map}
+    if _ch:g.put('OptionsJson',o['Id'],_ch)
+_seen=set();_dup=[]
+for r in sorted(UA.values(),key=lambda r:r['Id']):
+    k=(r['UnitId'],r['AbilityId'])
+    if k in _seen:_dup.append([r['Id'],*k])
+    else:_seen.add(k)
+for i,_,_ in _dup:g.remove('UnitAbilitiesJson',i)
+ok(sorted({u for _,u,_ in _dup})==[3,377,1075] and len(_dup)==4,('duplicate links after relinking',_dup))
+_used2={r['AbilityId'] for r in UA.values()}|{o.get(f'Ability{k}Id') for o in O.values() for k in (1,2,3)}
+_drop=sorted(i for i in _fa if i not in _used2)
+_names={i:AB[i]['Name'] for i in _drop}
+for i in _drop:g.remove('AbilitiesJson',i)
+ok(_state()==_before,'every unit and option keeps the same ability values, link order and slot collisions')
+ok(set(_map)<=set(_drop) and not [i for i in _fa if i in AB and _sig(i)!=_sig(_canon[_sig(i)])],'merged rows removed')
+_left=[i for i in AB if i not in _van]
+ok(len({_sig(i) for i in _left})==len(_left),'no two kept FA rows share a value set')
+ok(not {_sig(i) for i in _left}&{_sig(i) for i in _van},'no kept FA row equals a vanilla row')
+_tov=sum(1 for v in _map.values() if v in _van)
+# Re-check after the cleanup that sections 1-8 still hold (Lateralus 13:2x: "lock in everything I told you recently about changes to MANPAD prices, and
+# any smoke/sprint adjustments, and ammo adjustments").
+ok(all(U[i]['Cost']==c for i,c in _new.items()) and U[1198]['Cost']==80 and all(O[k]['Cost']==v[1] for k,v in _opt.items()),'MANPAD and AT Troopers prices hold')
+ok({i:U[i]['Cost'] for i in _SET}==_SET and U[134]['Cost']==60,'Lateralus set prices hold (QW-2 65, Marine QW-2 70, AA Troopers 55, FN-6 60, Verba 60, QW-12 Patrol 60)')
+ok(all(not AB[r['AbilityId']].get('IsSmoke') for r in UA.values() if r['UnitId'] in (1153,1194,1197,1145,1169)),'no smoke on QW-2, Marine QW-2, AA Troopers, QW-12 Patrol, FN-6')
+ok([r['AbilityId'] for r in UA.values() if r['UnitId'] in (1153,1194,1197,1145)]==[90]*4,'the four smoke-off teams link Sprint 90')
+ok(_WA[2015442]['Quantity']==3 and _WA[2015171]['Quantity']==3,'Marine QW-2 and FN-6 MANPAD 3 per launcher (6)')
+ok(_CSR.check(lambda tab:t[tab])==[],('china_sf_recon check',_CSR.check(lambda tab:t[tab])))
+rec['ability_row_cleanup']={'fa_rows':[len(_fa),len(_left)],'merged':{str(k):[_names[k],v,AB[v]['Name']] for k,v in sorted(_map.items())},
+  'duplicate_links_removed':_dup,'removed_unused':{str(i):_names[i] for i in _drop if i not in _map and i not in _used},
+  'to_vanilla':_tov,'verified':'data checks only'}
+print('ability cleanup: FA rows',len(_fa),'->',len(_left),'| merged',len(_map),'(into vanilla',_tov,') | removed',len(_drop),'| unused before',sum(1 for i in _fa if i not in _used))
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
