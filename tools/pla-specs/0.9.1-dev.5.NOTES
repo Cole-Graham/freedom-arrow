@@ -1,0 +1,2 @@
+0.9.1-dev.5 batch notes (append; one line per change). Builder: read these before building 0.9.1-dev.5. Data: tools/pla-specs/apply_0_9_1_dev5.py over out/local-091dev4 (--vanilla ../lateralus-infantry-20261110/vanilla). Build numbers: 229 = 0.9.1-dev.4; use 230+.
+- CSK-131 Recon 1265 showed 5 points (Lateralus 13:4x): OriginalCost 5 -> 0 (vanilla value); card = OriginalCost + options, so it shows Cost 30.
