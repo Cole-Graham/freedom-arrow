@@ -112,6 +112,25 @@ How long a line stays in the layer depends on the geometry. Take an AA eye about
 
 This is the "extra margin above the trees": the forest blocks sight as if it were 15 world units (30 m) tall and grows denser the deeper the line goes into it. The tree models are not used.
 
+### 3e. What the step's height is measured from, and the in-game LoS tool
+
+The 15 units are added to the **map pixel height** (`MapPixel.Height`). The game does not use the rendered terrain. Pixels come from a baked map texture (`MapMetaData.ConvertPixel`, RVA `0x3CE610`). Each pixel holds a height and a terrain type (code).
+
+That pixel height is not always the ground:
+
+- Building pixels hold the roof height. The game has a separate "landscape" height that skips building pixels (`MapMetaData.GetInterpolatedTerrainHeight(..., includeBuildings, ...)` RVA `0x3CE880`; `FOWToolService.GetLandscapeHeightAt` RVA `0x6BC7C0`) (code).
+- **Whether forest pixels hold the ground or the treetops is not verified.**
+
+The in-game LoS tool (`FOWToolService.Filter`, RVA `0x6BBFB0`) runs the same model:
+
+- the same `Height` / `Opacity` / `Multiplier` per terrain type;
+- extra forest multipliers for drawing (`FOWToolConfig.MainLineForestVisibleMultiplier` `0xE0` and `GreenLineForestVisibleMultiplier` `0xE4`);
+- `h` measured from the same pixel height (code).
+
+Lateralus's screenshot (19 November) shows the tool's forest layer top at about two thirds of an 81 m helicopter height, about 27 world units above the ground. That is more than 15. If the tool draws its sticks from the landscape height to the pixel height + 15, the forest pixels would be about 12 units (24 m) above the ground, which is roughly treetop height. The forest layer would then reach about 15 units (30 m) **above the treetops**. This fits the observation but is **not verified**. Measuring pixel height against terrain height at forest points in a game would settle it.
+
+The eye point (`UnitColliderCenter`) is read only by the vision code (`FogOfWarHelper.TryGetEntityEyePoint`, called from `FogOfWarUnit.AddFilterTasks` and `PreUpdate` and a debug drawer) and by the LoS tool (`FOWToolScript.InitializeUnitOptics` reads its height). No aiming, damage or hitbox code was found using it. This is from a scan of every function that fetches `FogOfWarComponent`; a whole-struct copy elsewhere cannot be ruled out entirely (code).
+
 ## 4. Firing: a stricter rule than seeing
 
 `FogOfWarHelper.IsTargetShootable(FilterTask task, bool unitCheck)` (RVA `0x69EB30`) decides whether a unit may fire at a target (code):
@@ -164,4 +183,5 @@ Ways to make AA placement easier (not implemented, not tested):
 ## Document change log
 
 - 2026-11-19 09:2x PST (America/Los_Angeles) — New doc: low altitude, air optics and line of sight (Lateralus's request).
+- 2026-11-19 09:5x PST (America/Los_Angeles) — Added pixel-height base, LoS tool model and the UnitColliderCenter reader scan.
 - 2026-11-19 09:3x PST (America/Los_Angeles) — Traced the firing rule (IsTargetShootable: own line visible, or team-spotted with ≤45 forest-layer steps and no smoke); added the line-height example.
