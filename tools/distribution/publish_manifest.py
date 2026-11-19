@@ -2,7 +2,8 @@
 """Publish verified package references to the stable manifest; obey the live playtest lock.
 Osama 14 Nov 2026 20:38 PST: "please use cloudflare from now on instead of google drive". New packages must be on R2
 (https://freedomarrow.app/..., uploaded with bin/ba-r2-put). The manifest goes to R2 (manifest/live.json) and, until every
-player has a launcher that reads R2, also to its old Drive file, which launchers up to 1.1.4 read."""
+player has a launcher that reads R2, also to its old Drive file, which launchers up to 1.1.4 read.
+Lateralus 19 Nov 2026: fa_manifest.publish also signs it (manifest/live.signed.json), the only list launchers from 1.1.9 accept."""
 from pathlib import Path
 import argparse,datetime,hashlib,json,re,subprocess,sys,tempfile,urllib.parse,urllib.request,zipfile
 RCLONE='/nix/store/42rnb5c0v5pjzhlcx46ww02jpa917f23-rclone-1.74.4/bin/rclone';RCONF=str(Path.home()/'.config/ba-codex/r2-rclone.conf')
@@ -39,14 +40,6 @@ if (index:=assets_index(assets)):assets['index']=index
 new={'version':a.version,'gameplay':game,'assets':assets};by_version={r['version']:r for r in old['releases']};by_version[a.version]=new
 latest=sorted(by_version,key=lambda v:tuple(map(int,re.findall(r'\d+',v))),reverse=True)[:2];protected={a.version,state.get('locked')};keep=set(latest)|protected
 manifest={'schema':1,'channel':'live','current':a.version,'locked_version':state.get('locked'),'releases':[by_version[v] for v in sorted(by_version,key=lambda v:tuple(map(int,re.findall(r'\d+',v))),reverse=True) if v in keep]}
-data=(json.dumps(manifest,indent=2)+'\n').encode()
-req=urllib.request.Request('https://www.googleapis.com/upload/drive/v3/files/'+file_id+'?uploadType=media',data=data,method='PATCH',headers={'Authorization':'Bearer '+access_token(),'Content-Type':'application/json'})
-with urllib.request.urlopen(req,timeout=60) as response:response.read()
-url='https://drive.google.com/uc?export=download&id='+file_id+'&revision='+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d%H%M%S')
-with urllib.request.urlopen(url,timeout=60) as response:readback=json.load(response)
-assert readback==manifest
-with tempfile.TemporaryDirectory() as tmp:
- (Path(tmp)/'live.json').write_bytes(data);rc('copyto',str(Path(tmp)/'live.json'),'r2:freedomarrow/manifest/live.json','--header-upload','Cache-Control: no-cache')
-with urllib.request.urlopen(urllib.request.Request('https://freedomarrow.app/manifest/live.json?t='+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d%H%M%S'),headers={'User-Agent':'ba-publish-manifest'}),timeout=60) as response:assert json.load(response)==manifest,'R2 manifest readback differs'
-path.with_suffix('.json.tmp').write_bytes(data);path.with_suffix('.json.tmp').replace(path)
-print('Live version manifest published and read back (R2 manifest/live.json and the Drive file for launchers up to 1.1.4):',a.version,'assets',assets['version'])
+from fa_manifest import publish
+manifest=publish(manifest,file_id)
+print('Live version manifest published, signed and read back (R2 live.signed.json for 1.1.9+, live.json, Drive file for <=1.1.4):',a.version,'assets',assets['version'],'serial',manifest['serial'])

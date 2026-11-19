@@ -19,16 +19,7 @@ Reject(()=>HostedDistribution.Parse(source.Replace("33323fc1c760acabcc87cc1e237e
 var root=Path.Combine(Path.GetTempPath(),"fa-manifest-test-"+Guid.NewGuid().ToString("N"));Directory.CreateDirectory(root);
 try{
  var cachedManifest=Path.Combine(root,"manifest.json");File.WriteAllText(cachedManifest,source);
- using(var offline=new HttpClient(new DelegateHandler(_=>throw new HttpRequestException("offline"))))
- {
-  var fallback=await HostedDistribution.ReadManifestAsync(offline,"https://example.test/manifest",cachedManifest,null,CancellationToken.None);
-  Check(HostedDistribution.Select(fallback).Version=="0.7.0-dev.45","offline cached manifest retains locked release");
- }
- using(var invalid=new HttpClient(new DelegateHandler(req=>new HttpResponseMessage(HttpStatusCode.OK){RequestMessage=req,Content=new StringContent("{}",System.Text.Encoding.UTF8,"application/json")})))
- {
-  bool bad=false;try{await HostedDistribution.ReadManifestAsync(invalid,"https://example.test/manifest",cachedManifest,null,CancellationToken.None);}catch(InvalidDataException){bad=true;}
-  Check(bad,"invalid online manifest blocks instead of silently falling back");
- }
+ // Signed-list reading (offline cache, refusing bad lists) moved to tools/launcher-update-tests in 1.1.9.
  var bytes=Enumerable.Range(0,4096).Select(x=>(byte)(x%251)).ToArray();
  var p=new DistributionPackage("freedomarrow.gameplay","fixture","fixture.bamod","https://drive.google.com/uc?id=fixture",bytes.Length,Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant());
  var handler=new FixtureHandler(bytes);using var http=new HttpClient(handler);

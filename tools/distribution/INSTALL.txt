@@ -14,6 +14,10 @@ The version it installs is the one named in #build-install.
    First use downloads several GB of mod packages, plus MelonLoader if needed.
 7. Wait for the game to start. Check the Freedom Arrow version at the menu.
 
+From version 1.1.9 the launcher updates itself when it starts. It only accepts
+updates signed by the Freedom Arrow team and checks every download by SHA-256.
+Keep the launcher in a folder you can write to (not Program Files).
+
 No separate BAModManager import is needed. Subsequent PLAY checks the live
 version manifest and reuses matching cached packages. Partial package downloads
 can resume. A checksum failure blocks installation. Existing skins, model
@@ -34,3 +38,4 @@ Inter font license included. Freedom Arrow manifest support by BA Codex.
 Document change log
 2026-11-10 19:32:34 PST (America/Los_Angeles) — Added manifest-based automatic gameplay/model/music/voice downloads, cache reuse and locked-version instructions.
 2026-11-19 05:00 PST (America/Los_Angeles) — Launcher is FreedomArrow.exe (Lateralus); hosting is freedomarrow.app; removed the stale dev.45 version and size.
+2026-11-19 05:30 PST (America/Los_Angeles) — Launcher 1.1.9 updates itself from the signed version list (Lateralus).

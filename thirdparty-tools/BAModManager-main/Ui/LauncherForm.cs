@@ -179,6 +179,7 @@ internal sealed class LauncherForm : Form
 
     private async Task OnFirstShown()
     {
+        if (PinnedFreedomArrow.Enabled && await UpdateLauncher()) return;
         SetStatus(T("Looking for Broken Arrow…"));
         var saved = AppSettings.LoadGamePath();
         var steamFolder = _cfg.SteamFolderName;
@@ -195,6 +196,34 @@ internal sealed class LauncherForm : Form
         // Double-clicked .bamod files (if the player turned that on in Settings)
         SingleInstance.StartServer(OnFilesFromExplorer);
         if (_startupFiles.Length > 0) await InstallPackFile(_startupFiles[0]);
+    }
+
+    /// <summary>1.1.9 (Lateralus 19 Nov 2026): replace this exe with the newer launcher named in the signed version list, then restart.
+    /// Any failure keeps the current launcher and is shown; it never blocks PLAY.</summary>
+    private async Task<bool> UpdateLauncher()
+    {
+        var exe = Environment.ProcessPath;
+        if (exe == null || !exe.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) return false;
+        SelfUpdate.CleanUp(exe);
+        try
+        {
+            SetStatus("Checking for a launcher update…");
+            Directory.CreateDirectory(HostedDistribution.CacheRoot);
+            using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+            var progress = new Progress<LaunchProgress>(p => { SetStatus(p.Text); });
+            var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
+            if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { SetStatus(""); return false; }
+            Log("Launcher updated to " + manifest.Launcher!.Version + ".");
+            Process.Start(new ProcessStartInfo(exe, Loc.RestartArg) { UseShellExecute = false })?.Dispose();
+            Close();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Log("Launcher update skipped: " + ex.Message);
+            SetStatus("Launcher update skipped: " + ex.Message);
+            return false;
+        }
     }
 
     private void OnFilesFromExplorer(string[] files)

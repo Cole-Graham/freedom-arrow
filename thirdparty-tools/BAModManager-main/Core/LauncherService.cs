@@ -313,7 +313,15 @@ public sealed class LauncherService
     {
         progress.Report(new LaunchProgress(T("Checking MelonLoader…")));
         ReleaseInfo? latest = null;
-        try
+        // 1.1.9 (Lateralus 19 Nov 2026): the Freedom Arrow launcher installs only the MelonLoader named in the signed version list,
+        // checked by SHA-256 below. No unsigned mirror file and no GitHub "latest" release.
+        var signed = PinnedFreedomArrow.Enabled ? HostedDistribution.Verified?.MelonLoader : null;
+        if (PinnedFreedomArrow.Enabled)
+        {
+            if (signed != null) latest = new ReleaseInfo(signed.Tag, signed.Asset, signed.Url);
+            else log("The signed version list names no MelonLoader; it is not downloaded.");
+        }
+        else try
         {
             using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
             cts.CancelAfter(CheckTimeout);
@@ -352,6 +360,8 @@ public sealed class LauncherService
             var label = installed ? T("Updating MelonLoader to {0}…", latest.Tag) : T("Downloading MelonLoader {0}…", latest.Tag);
             progress.Report(new LaunchProgress(label, 0));
             await _ml.DownloadAsync(latest.Url, zip, new Progress<double>(f => progress.Report(new LaunchProgress(label, f))), ct);
+            if (signed != null && !HostedDistribution.Matches(zip, signed.Size, signed.Sha256))
+                throw new InvalidDataException("The MelonLoader download failed its checksum, so it was not installed.");
             progress.Report(new LaunchProgress(T("Installing MelonLoader…")));
             await Task.Run(() => _ml.Install(gameDir, zip, latest.Tag, manifest, log), ct);
             TryDelete(ParkedProxy); // a parked copy would be the old version now

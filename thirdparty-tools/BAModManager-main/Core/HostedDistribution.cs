@@ -11,7 +11,13 @@ public sealed record DistributionPackage(string Id, string Version, string Filen
 /// <summary>Per-file Assets list (Lateralus 17 Nov 2026): launchers from 1.1.5 download only missing or changed files. Older launchers ignore it.</summary>
 public sealed record DistributionIndex(string Url, long Size, string Sha256);
 public sealed record DistributionRelease(string Version, DistributionPackage Gameplay, DistributionPackage Assets);
-public sealed record DistributionManifest(int Schema, string Channel, string Current, [property: JsonPropertyName("locked_version")] string? LockedVersion, List<DistributionRelease> Releases);
+/// <summary>1.1.9 (Lateralus 19 Nov 2026): the launcher replaces itself with this exe when its version is newer than the running one.</summary>
+public sealed record LauncherRelease(string Version, string Url, long Size, string Sha256);
+/// <summary>1.1.9: the MelonLoader zip the Freedom Arrow builds are made for, checked by SHA-256 before it is installed.</summary>
+public sealed record MelonLoaderRelease(string Tag, string Asset, string Url, long Size, string Sha256);
+/// <summary>Serial: signing time; a launcher never accepts a list older than the one it has already accepted.</summary>
+public sealed record DistributionManifest(int Schema, string Channel, string Current, [property: JsonPropertyName("locked_version")] string? LockedVersion, List<DistributionRelease> Releases,
+    long Serial = 0, LauncherRelease? Launcher = null, MelonLoaderRelease? MelonLoader = null);
 
 /// <summary>Public HTTPS manifest, verified atomic package cache and Drive confirmation handling.</summary>
 public static class HostedDistribution
@@ -19,8 +25,8 @@ public static class HostedDistribution
     // 1.1.7 (Osama 19 Nov 2026, Chinese playtesters: "The mod launcher is easy to use but totally broke in China, due to GFW"): Google Drive is
     // blocked in mainland China, and the manifest was the one file still read from Drive (packages already come from freedomarrow.app, R2).
     // ba-publish-manifest writes the same manifest to both places; the R2 copy is read first, Drive only if R2 does not answer.
-    public const string ManifestUrl = "https://freedomarrow.app/manifest/live.json";
-    public const string ManifestFallbackUrl = "https://drive.google.com/uc?export=download&id=1NvdXaFJrqkuOeZAceTo9s8iSyedAfRqE";
+    // 1.1.9 (Lateralus 19 Nov 2026): only the signed list is read (SignedManifest). The unsigned live.json and its Drive copy stay for
+    // launchers up to 1.1.8; this launcher no longer reads them.
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromMinutes(20) };
     private static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true };
     public static DistributionRelease Active { get; private set; } = new("0.7.0-dev.45",
@@ -46,6 +52,10 @@ public static class HostedDistribution
         }
         if(!m.Releases.Any(r=>r.Version==m.Current) || !m.Releases.Any(r=>r.Version==(m.LockedVersion??m.Current)))
             throw new InvalidDataException("The current or locked release is missing.");
+        if(m.Launcher is {} l && (!System.Version.TryParse(l.Version,out _) || !Hosted(l.Url) || l.Size<=0 || l.Size>MaxLauncherSize || !Sha(l.Sha256)))
+            throw new InvalidDataException("Invalid launcher in version manifest.");
+        if(m.MelonLoader is {} ml && (string.IsNullOrWhiteSpace(ml.Tag) || string.IsNullOrWhiteSpace(ml.Asset) || !Hosted(ml.Url) || ml.Size<=0 || ml.Size>MaxLauncherSize || !Sha(ml.Sha256)))
+            throw new InvalidDataException("Invalid MelonLoader in version manifest.");
         return m;
     }
     private static void Validate(DistributionPackage p,string id)
@@ -57,6 +67,19 @@ public static class HostedDistribution
             !Uri.TryCreate(p.Index.Url,UriKind.Absolute,out var index) || index.Scheme!="https"))throw new InvalidDataException("Invalid file list in version manifest.");
     }
     public const long MaxIndexSize=16<<20;
+    public const long MaxLauncherSize=512L<<20;
+    static bool Sha(string? s)=>Regex.IsMatch(s??"","^[a-fA-F0-9]{64}$");
+    // Launcher and MelonLoader downloads come only from our own host.
+    static bool Hosted(string? link)=>Uri.TryCreate(link,UriKind.Absolute,out var u) && u.Scheme=="https" && u.Host=="freedomarrow.app";
+    /// <summary>True when the file has exactly this size and SHA-256.</summary>
+    public static bool Matches(string file,long size,string sha256)
+    {
+        if(!File.Exists(file) || new FileInfo(file).Length!=size)return false;
+        using var src=File.OpenRead(file);
+        return Convert.ToHexString(SHA256.HashData(src)).Equals(sha256,StringComparison.OrdinalIgnoreCase);
+    }
+    /// <summary>The signed manifest the launcher accepted in this session (null before PLAY or the start-up update check).</summary>
+    public static DistributionManifest? Verified { get; private set; }
     internal static HttpClient Client => Http;
     /// <summary>The verified cached file list of a package, or null when the manifest has none (full-package mode).</summary>
     public static string? IndexPath(DistributionPackage p)
@@ -86,14 +109,9 @@ public static class HostedDistribution
         }
     }
     public static DistributionRelease Select(DistributionManifest m)=>m.Releases.Single(r=>r.Version==(m.LockedVersion??m.Current));
-    public static bool ValidFile(string file,DistributionPackage p)
-    {
-        if(!File.Exists(file) || new FileInfo(file).Length!=p.Size)return false;
-        using var src=File.OpenRead(file);
-        return Convert.ToHexString(SHA256.HashData(src)).Equals(p.Sha256,StringComparison.OrdinalIgnoreCase);
-    }
+    public static bool ValidFile(string file,DistributionPackage p)=>Matches(file,p.Size,p.Sha256);
 
-    private static async Task<HttpResponseMessage> OpenAsync(HttpClient client,string url,long offset,CancellationToken ct)
+    internal static async Task<HttpResponseMessage> OpenAsync(HttpClient client,string url,long offset,CancellationToken ct)
     {
         async Task<HttpResponseMessage> Get(string link)
         {
@@ -178,37 +196,46 @@ public static class HostedDistribution
         throw new IOException("Package could not be downloaded.");
     }
 
-    public static async Task<DistributionManifest> ReadManifestAsync(HttpClient client,string url,string? manifestFile,IProgress<LaunchProgress>? progress,CancellationToken ct)
+    /// <summary>Reads and verifies the signed list; offline it uses the last verified cached one. Unsigned, damaged or older lists are refused.</summary>
+    public static async Task<(DistributionManifest Manifest,byte[] Envelope)> ReadManifestAsync(HttpClient client,string url,string? manifestFile,IProgress<LaunchProgress>? progress,CancellationToken ct)
     {
-        DistributionManifest manifest;
+        DistributionManifest? cached=null;byte[]? cachedBytes=null;
+        if(manifestFile!=null && File.Exists(manifestFile))
+        {
+            try{cachedBytes=await File.ReadAllBytesAsync(manifestFile,ct);cached=Parse(SignedManifest.Open(cachedBytes));}
+            catch(InvalidDataException){cached=null;cachedBytes=null;}
+        }
+        DistributionManifest manifest;byte[] bytes;
         try
         {
             using var request=new CancellationTokenSource(TimeSpan.FromSeconds(20));using var linked=CancellationTokenSource.CreateLinkedTokenSource(ct,request.Token);
             using var response=await OpenAsync(client,url,0,linked.Token);
-            var text=await response.Content.ReadAsStringAsync(linked.Token);
-            if(text.Length>65536)throw new InvalidDataException("Version manifest is too large.");
-            manifest=Parse(text);
+            if(response.Content.Headers.ContentLength>SignedManifest.MaxSize)throw new InvalidDataException("The version list is too large.");
+            bytes=await response.Content.ReadAsByteArrayAsync(linked.Token);
+            manifest=Parse(SignedManifest.Open(bytes));
         }
-        catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested) && manifestFile!=null && File.Exists(manifestFile))
-        { manifest=Parse(await File.ReadAllTextAsync(manifestFile,ct));progress?.Report(new("Offline: using the last verified version manifest.")); }
-        return manifest;
+        catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested) && cached!=null)
+        { manifest=cached;bytes=cachedBytes!;progress?.Report(new("Offline: using the last verified version manifest.")); }
+        if(cached!=null && manifest.Serial<cached.Serial)
+            throw new InvalidDataException("The version list is older than the one this launcher already accepted, so it is refused.");
+        Verified=manifest;
+        return (manifest,bytes);
     }
 
+    /// <summary>The last verified signed list, kept byte for byte so its signature is checked again when it is read.</summary>
+    public static string ManifestFile => Path.Combine(CacheRoot,"live-manifest.signed.json");
     public static async Task PrepareAsync(IProgress<LaunchProgress> progress,CancellationToken ct)
     {
         progress.Report(new("Checking Freedom Arrow version manifest…"));
-        Directory.CreateDirectory(CacheRoot);var manifestFile=Path.Combine(CacheRoot,"live-manifest.json");
-        DistributionManifest manifest;
-        try{manifest=await ReadManifestAsync(Http,ManifestUrl,null,progress,ct);}
-        catch(Exception ex) when(ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested)
-        {progress.Report(new("freedomarrow.app did not answer; trying the Google Drive copy of the version manifest…"));manifest=await ReadManifestAsync(Http,ManifestFallbackUrl,manifestFile,progress,ct);}
+        Directory.CreateDirectory(CacheRoot);
+        var (manifest,envelope)=await ReadManifestAsync(Http,SignedManifest.Url,ManifestFile,progress,ct);
         var selected=Select(manifest);
         await EnsurePackageAsync(selected.Gameplay,Http,CacheRoot,progress,ct);
         // With a file list the Assets files are fetched one by one during install (AssetsIndexInstall); the full pack is not downloaded.
         if(selected.Assets.Index!=null)await EnsureIndexAsync(selected.Assets,Http,CacheRoot,progress,ct);
         else await EnsurePackageAsync(selected.Assets,Http,CacheRoot,progress,ct);
         // Commit the new manifest only once both referenced packages have verified successfully.
-        await File.WriteAllTextAsync(manifestFile+".tmp",JsonSerializer.Serialize(manifest,Json),ct);File.Move(manifestFile+".tmp",manifestFile,true);
+        await File.WriteAllBytesAsync(ManifestFile+".tmp",envelope,ct);File.Move(ManifestFile+".tmp",ManifestFile,true);
         Active=selected;
     }
 }
