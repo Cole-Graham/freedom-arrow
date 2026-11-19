@@ -2,3 +2,4 @@
 - CSK-131 Recon 1265 showed 5 points (Lateralus 13:4x): OriginalCost 5 -> 0 (vanilla value); card = OriginalCost + options, so it shows Cost 30.
 - Lateralus 13:5x "set them all to 0": the section now sets OriginalCost 0 on all 18 China rows that had one (pinned list). Cost checked against Osama's latest requests; 7 cards change price in game: PGZ-88 80->90, ZSD-89A x4 25->40, ZBD-86 Recon 15->40, VT-5 140->160 (+60 APS), VT-5 Recon 145->220 (hidden), ZTL-191 Recon 120->180, CSK-131 Recon 5->30. 11 unchanged. queued_checks.py fails a 0.9.1-dev.5+ package with any non-zero OriginalCost.
 - BUILT 19 Nov 14:1x PST as build 230 (Lateralus "ok build dev.5").
+- RELEASED as 0.9.1 (build 231, same data) 19 Nov 14:3x PST (Lateralus "release dev.5 as 0.9.1").
