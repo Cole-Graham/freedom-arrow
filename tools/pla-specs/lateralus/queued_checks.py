@@ -100,5 +100,11 @@ if _ge(9,36):
     if gc.get('StressRecoveryMultiplier')!=0.33:bad.append(f"game-config StressRecoveryMultiplier {gc.get('StressRecoveryMultiplier')} (want 0.33)")
     for s in ('FREEDOM_ARROW_STRESS_RECOVERY','local [FA] maps not in this package','still_shown','icon_left_modified'):
         if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
+# From 0.9.1-dev.4 (Lateralus 19 Nov 2026 13:2x PST: "only create new rows when we ask for a unique combination of abilities"; "that also goes for
+# when we are making new units"): no FA ability row has the same values (all fields except Id and Name) as another row. Link the existing row instead.
+if m>=key('0.9.1-dev.4'):
+    _vab={r['Id'] for r in json.loads((van/'AbilitiesJson.json').read_text())}
+    _sig={};[_sig.setdefault(json.dumps({k:v for k,v in r.items() if k not in ('Id','Name')},sort_keys=True),[]).append(i) for i,r in sorted(At.items())]
+    bad+=[f'ability rows {ids} have the same values: link {ids[0]} instead of adding a row' for ids in _sig.values() if len(ids)>1 and any(i not in _vab for i in ids)]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
