@@ -27,33 +27,58 @@ def ok(c,l):
     assert c,l;checks+=1
 def r5(x):return int((Decimal(str(x))/5).quantize(Decimal(1),rounding=ROUND_HALF_UP))*5
 # ---------- 1. Infantry MANPAD teams cheaper (Lateralus 19 Nov 2026 12:2x PST, thread 1572962048705429598: "Lower the price of infantry MANPAD teams which
-# only carry 1 launcher by 15%, and ... 2 launchers by 10% (rounded to the nearest 5)"). The teams are the infantry rows with Role 34 (AA infantry) in the
-# Arsenal; launchers = squad members carrying a guided air-target weapon (SquadMembers Primary/Special). Halves round up (67.5 -> 70). Loadout swap rows
-# (OptionsJson.ReplaceUnitId) get their own new price, and the swap option costs follow so that swap row = base + option (audit_swap_prices rule).
-# Left out: BARS Igla 613 (Role 30, 8-man squad with one Igla), Sea Dragons 1191 (Role 36 recon SF with one QW-12), Test QW-2 Escort 1223 (test spec).
+# only carry 1 launcher by 15%, and ... 2 launchers by 10% (rounded to the nearest 5)"; 12:4x: "You also forgot some infantry, like QW-12 Patrol, STT,
+# Spetsnaz GRU, and maybe some more"). The teams are every infantry card in the Arsenal (rows with squad members, Infantry and Recon tabs) whose members
+# carry a guided air-target weapon; launchers = members carrying one (SquadMembers Primary/Special). Halves round up (67.5 -> 70). Test QW-2 Escort 1223 and
+# the hidden HN-6 MANPADS Team 1024 are left out. Lateralus 12:4x sets five China prices directly ("Osama underpriced the Chinese MANPAD teams"):
+# QW-2 Team 65, Marine QW-2 Team 70, AA Troopers 55 (like US Troopers AA), FN-6 Team 60; AT Troopers 70 -> 80 (not a MANPAD team).
+# Loadout swap rows (OptionsJson.ReplaceUnitId) get their own new price and the swap option costs follow, so that swap row = base + option
+# (audit_swap_prices rule). A swap row whose base card is not a MANPAD team cannot drop below that base: STT (Pararescue 60 + Stinger option) 65 -> 60,
+# option +5 -> +0. Spetsnaz GRU AT 346 (no MANPAD) keeps 100, so its option on GRU Mix goes +15 -> +30.
 _A=t['AmmunitionsJson'];_WA=t['WeaponAmmunitionsJson'];_SM=t['SquadMembersJson']
-_mp={r['WeaponId'] for r in _WA.values() if U.get(r['UnitId'],{}).get('CategoryType')==1 and (_A[r['AmmunitionId']].get('Seeker') or 0)>0 and (_A[r['AmmunitionId']].get('TargetType') or 0)&24}
-_teams={i:sum(1 for m in _SM.values() if m['UnitId']==i and (m.get('PrimaryWeaponId') in _mp or m.get('SpecialWeaponId') in _mp))
-        for i,u in U.items() if u.get('CategoryType')==1 and u.get('DisplayInArmory') and u.get('Role')==34 and i!=1223}
+_inf={m['UnitId'] for m in _SM.values()}
+_mp={r['WeaponId'] for r in _WA.values() if r['UnitId'] in _inf and (_A[r['AmmunitionId']].get('Seeker') or 0)>0 and (_A[r['AmmunitionId']].get('TargetType') or 0)&24}
+_teams={i:n for i,u in U.items() if i in _inf and u.get('DisplayInArmory') and i!=1223
+        for n in [sum(1 for m in _SM.values() if m['UnitId']==i and (m.get('PrimaryWeaponId') in _mp or m.get('SpecialWeaponId') in _mp))] if n}
 _EXPECT={69:(2,75,70),73:(2,85,75),109:(1,60,50),120:(2,65,60),134:(1,60,50),356:(2,75,70),371:(1,50,45),404:(1,60,50),413:(1,65,55),440:(1,75,65),
- 522:(1,60,50),523:(2,65,60),524:(1,60,50),704:(1,60,50),705:(1,60,50),706:(1,65,55),1145:(1,65,55),1153:(2,65,60),1169:(2,65,60),1194:(2,65,60),1197:(1,60,50)}
+ 522:(1,60,50),523:(2,65,60),524:(1,60,50),613:(1,60,50),704:(1,60,50),705:(1,60,50),706:(1,65,55),
+ 125:(1,85,70),417:(2,85,75),342:(1,65,60),1145:(1,65,55),1191:(1,65,55),1206:(1,60,50),
+ 1153:(2,65,65),1194:(2,65,70),1197:(1,60,55),1169:(2,65,60)}
+_SET={1153:65,1194:70,1197:55,1169:60}
 ok(set(_teams)==set(_EXPECT),('MANPAD teams',sorted(set(_teams)^set(_EXPECT))))
 _new={}
 for i,n in _teams.items():
     ok(n in (1,2) and (n,U[i]['Cost'])==_EXPECT[i][:2],(i,U[i]['HUDName'],'launchers/cost',n,U[i]['Cost']))
-    _new[i]=r5(U[i]['Cost']*(Decimal('0.85') if n==1 else Decimal('0.9')));ok(_new[i]==_EXPECT[i][2],(i,'new price',_new[i]))
+    _new[i]=_SET.get(i) or r5(U[i]['Cost']*(Decimal('0.85') if n==1 else Decimal('0.9')))
+_own={o['ReplaceUnitId']:M[o['ModificationId']]['UnitId'] for o in O.values() if o.get('ReplaceUnitId') and M[o['ModificationId']]['UnitId']!=o['ReplaceUnitId']}
+for i in list(_new):
+    b=_own.get(i)
+    if b is not None and b not in _new:_new[i]=max(_new[i],U[b]['Cost'])
+ok({i:_new[i] for i in _new}=={i:v[2] for i,v in _EXPECT.items()},('new prices',{i:_new[i] for i in _new if _new[i]!=_EXPECT[i][2]}))
 _old={i:U[i]['Cost'] for i in _teams}
 for i,c in _new.items():g.put('Units',i,{'Cost':c})
+ok(U[1198]['HUDName']=='AT Troopers 反坦克组' and U[1198]['Cost']==70 and 1198 not in _own,'AT Troopers 1198 at 70, no swap rows')
+g.put('Units',1198,{'Cost':80})
 _opt={}
 for o in list(O.values()):
-    s=o.get('ReplaceUnitId')
-    if s in _new:
-        own=M[o['ModificationId']]['UnitId'];ok(own in _new,('swap owner is a team',o['Id'],own))
-        c=_new[s]-_new[own];ok(c>=0,('swap option cost',o['Id'],c))
-        if (o.get('Cost') or 0)!=c:_opt[o['Id']]=[o.get('Cost'),c];g.put('OptionsJson',o['Id'],{'Cost':c})
-ok(_opt=={3332:[10,5],2151:[5,10]},('swap option costs that move',_opt))
-rec['manpad_team_prices']={'cost':{str(i):[_old[i],_new[i],_teams[i]] for i in sorted(_new)},'swap_option_cost':{str(k):v for k,v in _opt.items()},
-    'left_out':{'613':'BARS Igla, Role 30','1191':'Sea Dragons, Role 36','1223':'test unit'},'verified':'data checks only'}
+    s=o.get('ReplaceUnitId');own=M[o['ModificationId']]['UnitId'] if o.get('ModificationId') in M else None
+    if not s or s==own or (s not in _new and own not in _new):continue
+    c=U[s]['Cost']-U[own]['Cost'];ok(c>=0,('swap option cost',o['Id'],c))
+    if (o.get('Cost') or 0)!=c:_opt[o['Id']]=[o.get('Cost'),c];g.put('OptionsJson',o['Id'],{'Cost':c})
+ok(_opt=={3332:[10,5],2151:[5,10],1857:[0,5],1497:[15,30],1489:[5,0]},('swap option costs that move',_opt))
+# Smoke off on QW-2 Team, Marine QW-2 Team and AA Troopers (Lateralus 12:4x "Remove smoke from QW-2 and Marine QW-2 teams and AA Troopers"): each used its
+# own ability row (sprint + smoke ammo 276); their link goes to the vanilla Sprint ability 90, the one US Troopers AA and Stinger teams use.
+AB=t['AbilitiesJson'];UAB=t['UnitAbilitiesJson']
+ok(AB[90]['Name']=='Sprint' and not AB[90].get('SmokeAmmunitionId'),'vanilla Sprint 90 has no smoke')
+for u,ab in ((1153,2012285),(1194,2013498),(1197,2013587)):
+    rr=[r for r in UAB.values() if r['UnitId']==u];ok(len(rr)==1 and rr[0]['AbilityId']==ab and AB[ab].get('SmokeAmmunitionId')==276,(u,'one sprint+smoke ability'))
+    ok([r['UnitId'] for r in UAB.values() if r['AbilityId']==ab]==[u],(u,'ability used by this unit only'));g.put('UnitAbilitiesJson',rr[0]['Id'],{'AbilityId':90})
+# MANPAD rounds per launcher 4 -> 3 on Marine QW-2 Team and FN-6 Team (two launchers each: 8 -> 6 in the Arsenal).
+for u,row,w in ((1194,2015442,'QW-2'),(1169,2015171,'FN-6')):
+    ok(_WA[row]['UnitId']==u and t['WeaponsJson'][_WA[row]['WeaponId']]['HUDName']==w and _WA[row]['Quantity']==4,(u,'MANPAD ammo row',row));g.put('WeaponAmmunitionsJson',row,{'Quantity':3})
+rec['manpad_team_prices']={'cost':{str(i):[_old[i],_new[i],_teams[i]] for i in sorted(_new)},'set_by_lateralus':{str(k):v for k,v in _SET.items()},
+    'at_troopers_1198':[70,80],'swap_option_cost':{str(k):v for k,v in _opt.items()},'smoke_removed':[1153,1194,1197],'ammo_per_launcher_4_to_3':[1194,1169],
+    'left_out':{'1223':'test unit','1024':'hidden HN-6 MANPADS Team'},'verified':'data checks only'}
 # ---------- 2. CSK-131 Recon (Lateralus, same message: "Price 5 -> 30, optics Very Good -> Good, and make it available in every other China specs (similar
 # to how USMC Scouts are available in other specs)"). Unit 1265: Cost is already 30 in 0.9.0-dev.41..0.9.1-dev.3 (unchanged here; "5" is not in the data).
 # Its one sensor link (Very Good, sensor 3) -> Good (sensor 1). USMC Scouts 726 have one row per US spec with the same cards; 1265 has 4 cards in PLAGF
