@@ -60,7 +60,30 @@ public sealed class MelonLoaderService
         return null;
     }
 
+    // 1.1.7 (Osama 19 Nov 2026, China / GFW): GitHub is slow or blocked in mainland China. freedomarrow.app/launcher/melonloader.json names the
+    // MelonLoader the Freedom Arrow builds are made for ({"tag":"v0.7.3","asset":"MelonLoader.x64.zip","url":...}), a copy of the GitHub release
+    // asset on R2. GitHub's "latest release" is only asked when that file cannot be read.
+    public const string MirrorUrl = "https://freedomarrow.app/launcher/melonloader.json";
     public async Task<ReleaseInfo> GetLatestReleaseAsync(CancellationToken ct)
+    {
+        try
+        {
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct); cts.CancelAfter(TimeSpan.FromSeconds(20));
+            using var mresp = await Http.GetAsync(MirrorUrl, cts.Token);
+            if (mresp.IsSuccessStatusCode)
+            {
+                using var mdoc = JsonDocument.Parse(await mresp.Content.ReadAsStringAsync(cts.Token));
+                var m = mdoc.RootElement;
+                var mtag = m.GetProperty("tag").GetString(); var murl = m.GetProperty("url").GetString(); var masset = m.GetProperty("asset").GetString();
+                if (!string.IsNullOrEmpty(mtag) && !string.IsNullOrEmpty(murl) && string.Equals(masset, _cfg.MelonLoaderAsset, StringComparison.OrdinalIgnoreCase))
+                    return new ReleaseInfo(mtag, masset!, murl);
+            }
+        }
+        catch (Exception) when (!ct.IsCancellationRequested) { }
+        return await GetGitHubReleaseAsync(ct);
+    }
+
+    async Task<ReleaseInfo> GetGitHubReleaseAsync(CancellationToken ct)
     {
         var url = $"https://api.github.com/repos/{_cfg.MelonLoaderRepo}/releases/latest";
         using var req = new HttpRequestMessage(HttpMethod.Get, url);

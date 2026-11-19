@@ -16,7 +16,11 @@ public sealed record DistributionManifest(int Schema, string Channel, string Cur
 /// <summary>Public HTTPS manifest, verified atomic package cache and Drive confirmation handling.</summary>
 public static class HostedDistribution
 {
-    public const string ManifestUrl = "https://drive.google.com/uc?export=download&id=1NvdXaFJrqkuOeZAceTo9s8iSyedAfRqE";
+    // 1.1.7 (Osama 19 Nov 2026, Chinese playtesters: "The mod launcher is easy to use but totally broke in China, due to GFW"): Google Drive is
+    // blocked in mainland China, and the manifest was the one file still read from Drive (packages already come from freedomarrow.app, R2).
+    // ba-publish-manifest writes the same manifest to both places; the R2 copy is read first, Drive only if R2 does not answer.
+    public const string ManifestUrl = "https://freedomarrow.app/manifest/live.json";
+    public const string ManifestFallbackUrl = "https://drive.google.com/uc?export=download&id=1NvdXaFJrqkuOeZAceTo9s8iSyedAfRqE";
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromMinutes(20) };
     private static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true };
     public static DistributionRelease Active { get; private set; } = new("0.7.0-dev.45",
@@ -174,7 +178,7 @@ public static class HostedDistribution
         throw new IOException("Package could not be downloaded.");
     }
 
-    public static async Task<DistributionManifest> ReadManifestAsync(HttpClient client,string url,string manifestFile,IProgress<LaunchProgress>? progress,CancellationToken ct)
+    public static async Task<DistributionManifest> ReadManifestAsync(HttpClient client,string url,string? manifestFile,IProgress<LaunchProgress>? progress,CancellationToken ct)
     {
         DistributionManifest manifest;
         try
@@ -185,7 +189,7 @@ public static class HostedDistribution
             if(text.Length>65536)throw new InvalidDataException("Version manifest is too large.");
             manifest=Parse(text);
         }
-        catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested) && File.Exists(manifestFile))
+        catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested) && manifestFile!=null && File.Exists(manifestFile))
         { manifest=Parse(await File.ReadAllTextAsync(manifestFile,ct));progress?.Report(new("Offline: using the last verified version manifest.")); }
         return manifest;
     }
@@ -194,7 +198,10 @@ public static class HostedDistribution
     {
         progress.Report(new("Checking Freedom Arrow version manifest…"));
         Directory.CreateDirectory(CacheRoot);var manifestFile=Path.Combine(CacheRoot,"live-manifest.json");
-        var manifest=await ReadManifestAsync(Http,ManifestUrl,manifestFile,progress,ct);
+        DistributionManifest manifest;
+        try{manifest=await ReadManifestAsync(Http,ManifestUrl,null,progress,ct);}
+        catch(Exception ex) when(ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested)
+        {progress.Report(new("freedomarrow.app did not answer; trying the Google Drive copy of the version manifest…"));manifest=await ReadManifestAsync(Http,ManifestFallbackUrl,manifestFile,progress,ct);}
         var selected=Select(manifest);
         await EnsurePackageAsync(selected.Gameplay,Http,CacheRoot,progress,ct);
         // With a file list the Assets files are fetched one by one during install (AssetsIndexInstall); the full pack is not downloaded.

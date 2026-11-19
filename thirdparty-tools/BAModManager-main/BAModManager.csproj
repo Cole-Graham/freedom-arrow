@@ -40,7 +40,7 @@
 
   <PropertyGroup Condition="'$(PinnedFreedomArrow)' == 'true'">
     <DefineConstants>$(DefineConstants);FA_DEV45</DefineConstants>
-    <Version>1.1.6</Version>
+    <Version>1.1.7</Version>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
