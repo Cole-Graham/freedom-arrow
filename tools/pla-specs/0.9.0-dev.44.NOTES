@@ -41,3 +41,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   intercept-capable anti-air missiles?"): spaag-weapons.json sameUnitClaimWeapons + HHQ-10 launcher 2019357 (58 -> 59). It was the only multi-target
   missile interceptor left out (added after the dev.13 list). Launch pause 0.8-1.2 s already comes from the MML copy above; InterceptLead is guns only.
   Check in the package: spaag-weapons.json lists 2019357; log same_unit_claim_installed weapons=59.
+- 18 Nov 2026 20:4x PST, thread 1567745029781454889 (Osama "all tanks sabot should be 10 damage ... ztz 100 front armor 750 ... ammo 475 to 525 ... Ztz 99a
+  should go to 850 k e armor and a 550 to 500 penetration"): 9 China tank AP rows 8.5 -> 10 damage (ZTQ-15, ZTD-05, ZTL-11, VT-5, PTL-02, Type 59,
+  Type 59D, ZTL-191, ZTZ-80; RU MT-12 towed AT gun stays 8.5). ZTZ-100 armour 2010183 KE front 700 -> 750, APFSDS 2010195 550/500 -> 525/475.
+  ZTZ-99A armour 2009063 KE front 800 -> 850 (AP already 550/500). Own rows only (checked). Prices unchanged pending Osama. 135 checks.

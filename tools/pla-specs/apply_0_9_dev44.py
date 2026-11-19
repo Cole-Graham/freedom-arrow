@@ -59,6 +59,26 @@ for _i in _CNHE:
     g.put('AmmunitionsJson',_i,{'IgnoreCover':0.25})
 ok(all(_A[_i]['IgnoreCover']==0.25 for _i in _CNHE),'China tank HE IgnoreCover 0.25')
 rec['china_tank_he_like_russia']={'rows':_CNHE,'ignore_cover':[0.3,0.25],'reference':243}
+# ---------- China tank sabots 10 damage; ZTZ-100 and ZTZ-99A (Osama 18 Nov 2026 20:4x PST, thread 1567745029781454889: "please fix the ztq 15 all tanks
+# sabot should be 10 damage. Anyways let's make the ztz 100 front armor 750 and then I'll make the ammo 475 to 525 mm penetration. Ztz 99a should go to
+# 850 k e armor and a 550 to 500 penetration"). US/RU tank sabots are all 10; nine China tank AP rows were 8.5 (vanilla RU MT-12 towed AT gun keeps 8.5).
+_AR=t['ArmorsJson'];_UA=t['UnitArmorsJson']
+_SABOT=[2009131,2009517,2009669,2009967,2010793,2010821,2010849,2011301,2011327]
+for _i in _SABOT:
+    ok(_A[_i].get('Damage')==8.5 and all(U[r['UnitId']].get('CountryId')==4 for r in _WA.values() if r.get('AmmunitionId')==_i),(_i,_A[_i]['Name'],'China tank AP at 8.5'))
+    g.put('AmmunitionsJson',_i,{'Damage':10.0})
+ok(all(_A[_i]['Damage']==10.0 for _i in _SABOT),'China tank sabots 10 damage')
+# ZTZ-100 (unit 968): own armour row 2010183 KE front 700 -> 750; APFSDS 2010195 penetration 550/500 -> 525 (min range) / 475 (max range)
+ok([r['ArmorId'] for r in _UA.values() if r.get('UnitId')==968]==[2010183] and [r['UnitId'] for r in _UA.values() if r.get('ArmorId')==2010183]==[968] and _AR[2010183]['KinArmorFront']==700,'ZTZ-100 own armour row')
+g.put('ArmorsJson',2010183,{'KinArmorFront':750})
+ok(_A[2010195]['PenetrationAtMinRange']==550 and _A[2010195]['PenetrationAtGroundRange']==500 and {r['UnitId'] for r in _WA.values() if r.get('AmmunitionId')==2010195}=={968},'ZTZ-100 APFSDS own row')
+g.put('AmmunitionsJson',2010195,{'PenetrationAtMinRange':525.0,'PenetrationAtGroundRange':475.0})
+# ZTZ-99A (unit 904): own armour row 2009063 KE front 800 -> 850; APFSDS 2009075 already 550/500
+ok([r['ArmorId'] for r in _UA.values() if r.get('UnitId')==904]==[2009063] and [r['UnitId'] for r in _UA.values() if r.get('ArmorId')==2009063]==[904] and _AR[2009063]['KinArmorFront']==800,'ZTZ-99A own armour row')
+g.put('ArmorsJson',2009063,{'KinArmorFront':850})
+ok(_A[2009075]['PenetrationAtMinRange']==550 and _A[2009075]['PenetrationAtGroundRange']==500,'ZTZ-99A APFSDS already 550/500')
+ok(_AR[2010183]['KinArmorFront']==750 and _AR[2009063]['KinArmorFront']==850 and _A[2010195]['PenetrationAtMinRange']==525,'ZTZ-100/99A applied')
+rec['china_tanks_20261118']={'sabot_damage_10':_SABOT,'ztz100':{'armour_row':2010183,'ke_front':[700,750],'apfsds':2010195,'pen':[[550,500],[525,475]]},'ztz99a':{'armour_row':2009063,'ke_front':[800,850]},'prices':'unchanged (ZTZ-100 340, ZTZ-99A 230); awaiting Osama'}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

@@ -68,6 +68,45 @@
     ],
     "reference": 243
   },
+  "china_tanks_20261118": {
+    "sabot_damage_10": [
+      2009131,
+      2009517,
+      2009669,
+      2009967,
+      2010793,
+      2010821,
+      2010849,
+      2011301,
+      2011327
+    ],
+    "ztz100": {
+      "armour_row": 2010183,
+      "ke_front": [
+        700,
+        750
+      ],
+      "apfsds": 2010195,
+      "pen": [
+        [
+          550,
+          500
+        ],
+        [
+          525,
+          475
+        ]
+      ]
+    },
+    "ztz99a": {
+      "armour_row": 2009063,
+      "ke_front": [
+        800,
+        850
+      ]
+    },
+    "prices": "unchanged (ZTZ-100 340, ZTZ-99A 230); awaiting Osama"
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -398,6 +437,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 120,
+  "checks": 135,
   "verified": "data checks only"
 }
