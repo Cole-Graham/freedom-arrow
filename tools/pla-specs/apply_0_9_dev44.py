@@ -233,6 +233,16 @@ for _i in _B500:
 ok(max(_AR[_i].get('HeatArmorSides') or 0 for _i in _hrows)==500,'no vehicle row above 500 side HEAT')
 rec['builtin_kit_side_heat']={'rule':'side HEAT ceiling 500 on every vehicle row','changed':_bchg}
 print('built-in kit side HEAT rows',len(_bchg))
+# ---------- ZBD-20 armour = XM30 profile (Osama 19 Nov 2026 00:2x PST, thread 1567745029781454889: "ZBD-20 should be like an XM-30 profile basically").
+# ZBD-20 row 2009807 (both HJ-16 options use it) takes the XM30 row 2001818 KE and HEAT on all four faces, read after the cap and kit changes above:
+# KE 500/150/100/80 -> 300/100/60/60, HEAT 650/500/100/80 -> 600/500/60/60. HP stays 12 like the other FA IFVs (XM30 has 14, role Tank).
+_ZF=['KinArmorFront','KinArmorSides','KinArmorRear','KinArmorTop','HeatArmorFront','HeatArmorSides','HeatArmorRear','HeatArmorTop']
+ok([_AR[2009807][f] for f in _ZF]==[500,150,100,80,650,500,100,80],('ZBD-20 armour before',[_AR[2009807][f] for f in _ZF]))
+ok([_AR[2001818][f] for f in _ZF]==[300,100,60,60,600,500,60,60],('XM30 armour',[_AR[2001818][f] for f in _ZF]))
+_zold=[_AR[2009807][f] for f in _ZF]
+g.put('ArmorsJson',2009807,{f:_AR[2001818][f] for f in _ZF})
+ok([_AR[2009807][f] for f in _ZF]==[_AR[2001818][f] for f in _ZF] and _AR[2009807]['MaxHealthPoints']==12,'ZBD-20 = XM30 armour, HP 12')
+rec['zbd20_xm30_armour']={'row':2009807,'from':dict(zip(_ZF,_zold)),'to':{f:_AR[2001818][f] for f in _ZF},'hp':12,'source_row':2001818}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

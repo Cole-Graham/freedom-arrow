@@ -1463,6 +1463,31 @@
       ]
     }
   },
+  "zbd20_xm30_armour": {
+    "row": 2009807,
+    "from": {
+      "KinArmorFront": 500,
+      "KinArmorSides": 150,
+      "KinArmorRear": 100,
+      "KinArmorTop": 80,
+      "HeatArmorFront": 650,
+      "HeatArmorSides": 500,
+      "HeatArmorRear": 100,
+      "HeatArmorTop": 80
+    },
+    "to": {
+      "KinArmorFront": 300,
+      "KinArmorSides": 100,
+      "KinArmorRear": 60,
+      "KinArmorTop": 60,
+      "HeatArmorFront": 600,
+      "HeatArmorSides": 500,
+      "HeatArmorRear": 60,
+      "HeatArmorTop": 60
+    },
+    "hp": 12,
+    "source_row": 2001818
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -1793,6 +1818,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 272,
+  "checks": 275,
   "verified": "data checks only"
 }

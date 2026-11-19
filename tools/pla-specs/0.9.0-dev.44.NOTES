@@ -77,5 +77,9 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 
 ## Built-in kits on China hulls and IFVs (Osama 19 Nov 2026, thread 1567745029781454889)
 - China hulls have their kits built in, so they follow the kit rule: side HEAT 700 -> 500 on ZTZ-96B, ZTZ-100, VT-5, VT-5 Recon and ZBD-20 (IFV).
-- US XM30 base row (IFV) 700 -> 500 too: it was the only other vehicle row above 500. No vehicle row now has side HEAT above 500.
+- US XM30 base row 700 -> 500 too (role Tank in the data, listed with tanks): it was the only other vehicle row above 500. No vehicle row now has side HEAT above 500.
 - Checks 272. Data only, not seen in game.
+
+## ZBD-20 armour = XM30 profile (Osama 19 Nov 2026, thread 1567745029781454889)
+- ZBD-20 row 2009807 (both HJ-16 options) copies XM30 row 2001818: KE 500/150/100/80 -> 300/100/60/60, HEAT 650/500/100/80 -> 600/500/60/60 (front/side/rear/top).
+- HP stays 12 like other FA IFVs (XM30 has 14, role Tank). Checks 275. Data only, not seen in game.
