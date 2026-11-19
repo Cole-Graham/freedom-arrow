@@ -6,6 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
 using Il2CppBrokenArrow.Client.Ecs.Configs;
 using Il2CppBrokenArrow.Client.Ecs.Controllers;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar.Systems;
+using Il2CppBrokenArrow.Shared.Ecs.Enums;
 using MelonLoader;
 namespace FreedomArrow;
 // Writes FogOfWarConfig values before the battle systems copy them, whenever the tables applied.
@@ -39,6 +40,12 @@ static class DetectionConfig
     // 0.36/0.02, Panicked 0.10/0.10). 1/0 on all three levels makes g 1: full damage whatever the stress and squad size.
     static float openFloor,openPerSoldier;
     static (float floor,float perSoldier)[] originalOpen;
+    // Forest vision layer height (Lateralus 19 Nov 2026, thread 1572724406642286692: test builds "with the forest height at 5"). Forest
+    // VisibleTerrainType.Height, vanilla 15 world units above the map pixel height: a sight line below it pays the forest vision cost and
+    // counts toward MaxShootableForestDistance (docs/engine/low-altitude-and-air-sight.md 3c-4). FogOfWarSystem.GenerateVisionData copies it
+    // into the static TerrainsData table that FogOfWarFilter.FilterCore reads, when InitBattleSequentialSystem builds the system; After reads it back.
+    static float forestHeight;
+    static float? originalForestHeight;
     static void WriteBuildings()
     {
         var b=GameConfig.Instance?.BuildingsConfig??throw new InvalidDataException("Buildings config missing");
@@ -91,6 +98,8 @@ static class DetectionConfig
         if(!(stressRecovery>0&&stressRecovery<=5))throw new InvalidDataException("StressRecoveryMultiplier out of range");
         openFloor=game["InfantryOpenDamageFloor"].GetValue<float>();openPerSoldier=game["InfantryOpenDamagePerSoldier"].GetValue<float>();
         if(!(openFloor>=0&&openFloor<=1&&openPerSoldier>=0&&openPerSoldier<=0.2f))throw new InvalidDataException("Infantry open damage settings out of range");
+        forestHeight=game["ForestVisionHeight"].GetValue<float>();
+        if(!(forestHeight>=0&&forestHeight<=50))throw new InvalidDataException("ForestVisionHeight out of range");
         harmony.Patch(AccessTools.Method(typeof(ScenarioController),"LoadTeamsAndPlayers"),prefix:new HarmonyMethod(typeof(DetectionConfig),nameof(BeforePlayers)));
         Log("installed",new{target,startingPoints,status="invocation unproved until a before line appears"});
     }
@@ -136,15 +145,20 @@ static class DetectionConfig
             bool apply=Runtime.IsApplied;
             var before=Read(cfg);
             var want=apply?target:vanilla;
+            var forest=Terrain(cfg,Forest);
+            originalForestHeight??=forest.Height;
+            float heightBefore=forest.Height,wantHeight=apply?forestHeight:originalForestHeight.Value;
             Write(cfg,want);
+            forest.Height=wantHeight;
             var after=Read(cfg);
-            if(!after.Same(want))throw new InvalidDataException("Read-back mismatch");
+            if(!after.Same(want)||Terrain(cfg,Forest).Height!=wantHeight)throw new InvalidDataException("Read-back mismatch");
             Log("before",new{apply,before,after});
+            MelonLogger.Msg($"FREEDOM_ARROW_FOREST_HEIGHT config {heightBefore:g} -> {Terrain(cfg,Forest).Height:g} (vanilla {originalForestHeight:g})");
             WriteBuildings();
         }
         catch(Exception e)
         {
-            if(cfg!=null&&vanilla!=null)try{Write(cfg,vanilla);}catch{}
+            if(cfg!=null&&vanilla!=null)try{Write(cfg,vanilla);if(originalForestHeight!=null)Terrain(cfg,Forest).Height=originalForestHeight.Value;}catch{}
             MelonLogger.Error("FREEDOM_ARROW_DETECTION_FAILED: vanilla config kept. "+e.Message);
         }
     }
@@ -155,6 +169,15 @@ static class DetectionConfig
             var cfg=GameConfig.Instance?.FogOfWarConfig;
             Log("after",new{game=cfg?.Pointer.ToInt64(),fog=FogOfWarSystem.Instance?._config?.Pointer.ToInt64(),shooting=ShootingSystem._fogOfWarConfig?.Pointer.ToInt64(),
                 current=cfg==null?null:Read(cfg)});
+            // The table the vision filter uses, indexed by terrain type.
+            var table=FogOfWarSystem.TerrainsData;
+            if(table==null){MelonLogger.Error("FREEDOM_ARROW_FOREST_HEIGHT_FAILED: FogOfWarSystem.TerrainsData is null after the battle systems were built");return;}
+            var rows=new List<string>();
+            for(int i=0;i<table.Length;i++){var t=table[i];rows.Add($"{(TerrainType)i}={t.Height:g}/{t.Opacity:g}/{t.Multiplay:g}");}
+            float want=cfg==null?float.NaN:Terrain(cfg,Forest).Height;
+            bool match=table.Length>Forest&&table[Forest].Height==want;
+            string line=$"FREEDOM_ARROW_FOREST_HEIGHT vision table forest {(table.Length>Forest?table[Forest].Height:float.NaN):g}, config {want:g}, {(match?"match":"MISMATCH")}; height/opacity/multiplier "+string.Join(" ",rows);
+            if(match)MelonLogger.Msg(line);else MelonLogger.Error(line);
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_DETECTION_FAILED: after check. "+e.Message);}
     }

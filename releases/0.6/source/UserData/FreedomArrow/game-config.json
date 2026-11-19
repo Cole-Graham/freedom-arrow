@@ -11,5 +11,7 @@
   "InfantryOpenDamageFloor": 1,
   "InfantryOpenDamagePerSoldier": 0,
   "AaCooldownEnabled": true,
-  "AaCooldownShadowOnly": false
+  "AaCooldownShadowOnly": false,
+  "ForestVisionHeight": 15,
+  "AaEyeHeight": 0
 }

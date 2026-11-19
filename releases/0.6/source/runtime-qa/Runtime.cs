@@ -72,6 +72,7 @@ public class Runtime : MelonMod
         GroundAaLog.LateUpdate();
         GroundAaLog.Flush();
         SupplyStealth.LateUpdate();
+        AaEyeHeight.LateUpdate();
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
@@ -81,6 +82,7 @@ public class Runtime : MelonMod
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
         try { LogUpload.SceneLoaded(sceneName); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD scene: "+e.Message); }
         GroundAaLog.SceneChanged();
+        AaEyeHeight.SceneChanged();
         InterceptLead.SceneChanged();
         SeadOverkill.SceneChanged();
         SeadRetarget.SceneChanged();
@@ -208,6 +210,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPAAG_WEAPONS_FAILED: not installed; vanilla card DPS and bursts. "+e.Message); }
         try { ChinaVoice.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CHINA_VOICE_FAILED: not installed; China units use their preset voices. "+e.Message); }
+        try { AaEyeHeight.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_EYE_FAILED: not installed; vanilla eye points. "+e.Message); }
         try { GroundAaLog.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_AA_LOG_FAILED: not installed; gameplay unchanged. "+e.Message); }
         try { InterceptLead.Install(); }
