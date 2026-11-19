@@ -56,6 +56,62 @@ Stored `HealthAOERadius` 40 (80 m on the card), `Damage` 12, penetration 50, top
 
 Stress uses the same shape with `StressAOERadius`, written to `StressAOEDamageModifier`. That fraction scales the ammunition `StressDamage` only. `BattleSystemHelpers.CalculateStressDamage` then adds `MaxStress × (healthLoss / maxHealth)` as well. The levels, the shocked and panicked modifiers, and the recovery clock are in [Stress](stress.md). A unit outside the health radius and inside the stress radius takes the blast term and no health share.
 
+## Infantry squads
+
+An explosive applies one health fraction to the whole squad. How many soldiers are still alive changes that fraction inside a building, and it changes how large a target the squad is in the open.
+
+The horizontal length, in the same world units as `distance`, is:
+
+```text
+squadSize = BaseSquadSize + 0.5 × livingSoldiers
+```
+
+`InfantryConfig.BaseSquadSize` is 1. `InitInfantry` computes it when the squad is created. `HealSquad` and `KillSquadSolders` compute it again from the soldiers still alive, so each soldier added or killed changes the length by 0.5. `InfantryUnitComponent` stores it, and the squad collider is set to `(squadSize, height, squadSize)`.
+
+`HitDetectionSystem.GetUnitBox` uses that length for the width and the depth. The vertical size is `Units.Height`. A shell hits the squad when it meets that box. Seven living soldiers make a box 4.5 world units on a side, 9 m on the card scale. One living soldier is 1.5 world units, 3 m on the card. A blast that reaches the larger box misses a smaller squad.
+
+For a squad already inside the blast, `DealAOEDamage` measures one distance and applies one health fraction to the squad's health pool (`Armors.MaxHealthPoints`).
+
+The distance that enters the fraction is the 3D distance from the detonation to the squad center, minus the radius stored on that unit. A negative result becomes 0. Distance 0 makes the health fraction 1, so the armor formula receives the full raw `Damage`.
+
+The squad in the rows below is seven living soldiers on the `Armor Infantry 7Men` row. Its health pool is 35, which is 5 per soldier. `GetArmorBySideAndType` returns `ArmorValue` whenever that value is above 0, and this row's `ArmorValue` is 6, so every face is armor 6. Its target box is 4.5 wide, 2.0 tall, and 4.5 deep: `1 + 0.5 × 7` on the two horizontal axes and `Units.Height` on the vertical. On the card that is 9 m × 4 m × 9 m. The radius subtracted from the center distance in these rows is 4.
+
+The blast is the one above: `HealthAOERadius` 40, `Damage` 12, penetration 50.
+
+| Center distance | Card-scale center | Distance used | Health fraction | Base damage | Health loss | Pool left of 35 |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 3 | 6 m | 0 | 1.00 | 12.0 | 11.83 | 23.17 |
+| 14 | 28 m | 10 | 0.75 | 9.0 | 8.87 | 26.13 |
+| 24 | 48 m | 20 | 0.50 | 6.0 | 5.91 | 29.09 |
+| 44 | 88 m | 40 | 0 | 0 | 0 | 35 |
+
+`14 - 4 = 10`, and `1 - 10/40 = 0.75`. `3 - 4` is negative, so the distance used is 0 and the armor formula receives all 12. Health loss is `baseDamage × 50² / (50² + 6²)`. The "Distance used" column is the "World distance" column of the table above.
+
+A two-soldier squad on `Armor Infantry 2Men` has a health pool of 10 and a box 2.0 wide, 2.0 tall, and 2.0 deep (4 m × 4 m × 4 m on the card). Its armor is also 6. At the same center, with the same stored radius, the first row removes the same 11.83 from that pool of 10.
+
 ## Buildings
 
-`ShellHitSystem.DamageBuilding` is a separate call. It multiplies raw damage and `DoTModifier`, then the building cover share. It does not divide by `HealthAOERadius`. Infantry inside a building keep full raw damage into that cover share. The share itself is `Damage × (floor + (1 - floor) × IgnoreCover)`, with the floor and per-soldier term from the building config.
+`ShellHitSystem.DamageBuilding` is a separate call. It multiplies raw damage and `DoTModifier`, then one building cover share. It does not divide by `HealthAOERadius`. Infantry inside a building keep full raw damage into that share.
+
+Inside a building the soldier count changes the damage taken. The blast keeps its full raw damage, and a larger squad keeps a larger share of it. When the squad is created, health per soldier is stored from the armor record and the squad roster:
+
+```text
+healthPerSoldier = Armors.MaxHealthPoints / squadMemberCount
+```
+
+For each squad in the building, `DamageBuilding` turns current health back into a soldier count, rounded to the nearest integer and capped at the soldiers still on that squad:
+
+```text
+soldiers = round(currentHealth / healthPerSoldier)
+```
+
+Those counts are added together, and that sum is the `soldiers` in the share:
+
+```text
+M = clamp(DamageModifierFloor + DamageModifierPerSoldier × soldiers, 0, 1)
+share = M + (1 - M) × clamp(IgnoreCover, 0, 1)
+```
+
+The shipped `BuildingsConfig` has a floor of 0.18 and 0.02 per soldier. A building holding 7 soldiers and a weapon with `IgnoreCover` 0 keeps `0.18 + 0.02 × 7 = 0.32` of the raw damage. Two soldiers keep `0.22`. On the worked blast above (`Damage` 12), that is 3.84 before armor for 7 soldiers and 2.64 for 2 soldiers. `IgnoreCover` 1 keeps all 12.
+
+Freedom Arrow's `game-config.json` leaves the floor at 0.18 and sets `BuildingDamagePerSoldier` to 0, so `M` stays 0.18 for every squad size.
