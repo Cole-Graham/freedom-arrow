@@ -23,7 +23,8 @@ def ok(c,l):
     global checks
     assert c,l;checks+=1
 # ---------- Infantry 步兵 50 -> 35 (Lateralus 19 Nov 2026 08:1x PST, thread 1572962048705429598: "lower Infantry 步兵 price from 50 -> 35").
-# Unit 1175 (PLA Designer 47 Missile-Site Security, HJ-73D). No loadout options and no swap rows (OptionsJson.ReplaceUnitId) point at it.
+# Unit 1175: 7 men, 4 QBZ-95, 2 QBB-95, 1 QBU-88, 6 single-shot PF-89 (its internal Name "PLA Designer 47 Missile-Site Security — HJ-73D" is a
+# stale squad-designer label; it carries no HJ-73D). No loadout options and no swap rows (OptionsJson.ReplaceUnitId) point at it.
 ok(U[1175]['HUDName']=='Infantry 步兵' and U[1175]['Cost']==50,'Infantry 步兵 1175 at 50')
 _mods={i for i,m in t['ModificationsJson'].items() if m['UnitId']==1175}
 ok(not [o for o in t['OptionsJson'].values() if o.get('ModificationId') in _mods or o.get('ReplaceUnitId')==1175],'no options or swap rows on 1175')
