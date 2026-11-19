@@ -3,3 +3,5 @@
 - Unit 1175 (7 men: 4 QBZ-95, 2 QBB-95, 1 QBU-88, 6 PF-89; internal Name still says "Missile-Site Security — HJ-73D", stale) Cost 50 -> 35. No options or swap rows. 3 checks; one field changes.
 ## China card cleanup (Lateralus 19 Nov 2026 08:39 PST, thread 1572962048705429598: "yeah queue up that cleanup")
 - 63 China Arsenal cards: internal Name "PLA Designer N ..." -> "PLA <card name>" (+ " (unit id)" where two cards share a card name, e.g. Snipers 狙击组, QJZ-89 Team). 230 China Arsenal cards: design-note Description -> None (vanilla has no unit descriptions). Card names, stats and hidden rows unchanged. Internal only: nothing for the patch notes.
+## Build numbers 225 and 226 are taken (19 Nov 2026 10:0x PST, thread 1572724406642286692)
+- Lateralus line-of-sight tests: 0.9.1-dev.1-test1 = build 225 (forest vision height 5), 0.9.1-dev.1-test2 = build 226 (forest 5 + ground AA eye 8). Code on codex/batch/lateralus/forest-eye, NOT in this batch. Build 0.9.1-dev.2 with --build 227 or higher.
