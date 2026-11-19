@@ -106,5 +106,9 @@ if m>=key('0.9.1-dev.4'):
     _vab={r['Id'] for r in json.loads((van/'AbilitiesJson.json').read_text())}
     _sig={};[_sig.setdefault(json.dumps({k:v for k,v in r.items() if k not in ('Id','Name')},sort_keys=True),[]).append(i) for i,r in sorted(At.items())]
     bad+=[f'ability rows {ids} have the same values: link {ids[0]} instead of adding a row' for ids in _sig.values() if len(ids)>1 and any(i not in _vab for i in ids)]
+# From 0.9.1-dev.5 (Lateralus 19 Nov 2026 13:5x PST: "we should never have OriginalCost anything except 0"): a non-zero Units.OriginalCost replaces
+# Cost at load (LoadUnits.PrepareForMods), so the card shows the old price. Vanilla has 0 on every unit.
+if m>=key('0.9.1-dev.5'):
+    bad+=[f'unit {i} {u.get("HUDName")} OriginalCost {u["OriginalCost"]} (want 0; Cost {u.get("Cost")} is the price)' for i,u in sorted(Ut.items()) if u.get('OriginalCost')]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
