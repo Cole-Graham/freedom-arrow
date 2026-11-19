@@ -1,0 +1,52 @@
+{
+  "version": "0.9.1-dev.2",
+  "build": 227,
+  "previous": "0.9.1-dev.1",
+  "assets_version": "0.2.47",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.47.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-dev44/FreedomArrow-Assets-0.2.47.bamod",
+    "sha256": "b8e1c0ba22ba65b2de7ceabbd5c539748649b1b5e6f1d3d340b086750d7d4c84",
+    "size": 6479366348,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.1-dev.2-complete.bamod",
+    "sha256": "7ae2e083d20a58aee129a214b0284b96ae55994c7cbfdbf98d8eabb54e298641",
+    "size": 6627817688,
+    "files": 12765
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.1-dev.2.bamod",
+    "sha256": "f9e94ce0f4500884d5d9978ed733984ef49dbb9917a438d9ea12a9fd4cdb92bd",
+    "size": 148451923,
+    "files": 1770
+  },
+  "changed_paths": [
+    "Mods/FAArrowQueue.dll",
+    "Mods/FABALocalSkirmish.dll",
+    "Mods/FAFlatIncomeMod.dll",
+    "Mods/FAHudQuick.dll",
+    "Mods/FATeamVoice.dll",
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FAConquestPrototype/compatibility.json",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/constants/sensors.json",
+    "UserData/FreedomArrow/constants/units.json",
+    "UserData/FreedomArrow/loading/FA_CN_LOADING_02_j20_sunrise.png",
+    "UserData/FreedomArrow/loading/FA_CN_LOADING_04_z10_karst.png",
+    "UserData/FreedomArrow/loading/FA_CN_LOADING_07_hq9_night.png",
+    "UserData/FreedomArrow/loading/FA_CN_LOADING_13_artillery_dfzf_gobi.png",
+    "UserData/FreedomArrow/loading/FA_CN_LOADING_19_dfzf_centred.png",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.1-dev.2.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}

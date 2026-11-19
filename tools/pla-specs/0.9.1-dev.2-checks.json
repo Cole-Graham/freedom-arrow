@@ -1,0 +1,653 @@
+{
+  "infantry_1175_price": {
+    "unit": 1175,
+    "cost": [
+      50,
+      35
+    ],
+    "verified": "data checks only"
+  },
+  "china_card_cleanup": {
+    "renamed": {
+      "1136": [
+        "PLA Designer 8 Airborne Riflemen",
+        "PLA Airborne 空降兵"
+      ],
+      "1137": [
+        "PLA Designer 9 Airborne HJ-12 Team",
+        "PLA HJ-12 Team"
+      ],
+      "1139": [
+        "PLA Designer 11 Airborne PF-98 Fire Support",
+        "PLA Tank Hunters 坦克杀手"
+      ],
+      "1140": [
+        "PLA Designer 12 Airborne QLU-11 Precision Team",
+        "PLA QLU-11 Team"
+      ],
+      "1142": [
+        "PLA Designer 14 Airborne Pathfinders",
+        "PLA Pathfinders 先遣队"
+      ],
+      "1143": [
+        "PLA Designer 15 Thunder Gods — Airborne Recon (雷神)",
+        "PLA Thunder Gods 雷神"
+      ],
+      "1144": [
+        "PLA Designer 16 Airborne Snipers",
+        "PLA Snipers 狙击组 (1144)"
+      ],
+      "1145": [
+        "PLA Designer 17 Airborne HN-6 Patrol",
+        "PLA QW-12 Patrol 防空巡逻"
+      ],
+      "1146": [
+        "PLA Designer 18 Air Assault Raiders",
+        "PLA Assault Raiders 突击队"
+      ],
+      "1149": [
+        "PLA Designer 21 Airborne Target Observers",
+        "PLA Recon 侦察组"
+      ],
+      "1152": [
+        "PLA Designer 24 Mechanized HJ-8E Team",
+        "PLA HJ-8E Team"
+      ],
+      "1153": [
+        "PLA Designer 25 Mechanized QW-2 Team",
+        "PLA QW-2 Team"
+      ],
+      "1154": [
+        "PLA Designer 26 Mechanized QLZ-04 Team",
+        "PLA QLZ-04 Team"
+      ],
+      "1155": [
+        "PLA Designer 27 Mechanized PF-98 Tank Hunters",
+        "PLA PF-98 Tank Hunters"
+      ],
+      "1156": [
+        "PLA Designer 28 Mechanized Combat Engineers",
+        "PLA Combat Engineers 工兵班"
+      ],
+      "1157": [
+        "PLA Designer 29 Mechanized QJZ-89 Team",
+        "PLA QJZ-89 Team (1157)"
+      ],
+      "1160": [
+        "PLA Designer 32 Armored Scouts",
+        "PLA Armored Scouts 装甲侦察"
+      ],
+      "1161": [
+        "PLA Designer 33 Armored Sniper Pair",
+        "PLA Armored Sniper Pair 狙击组"
+      ],
+      "1162": [
+        "PLA Designer 34 Mechanized Thermobaric Breachers",
+        "PLA Thermobaric Breachers 温压工兵"
+      ],
+      "1163": [
+        "PLA Designer 35 Mechanized Close-AT Riflemen",
+        "PLA Mech. Rifles 机步班"
+      ],
+      "1164": [
+        "PLA Designer 36 Armored Forward Observers",
+        "PLA Forward Observers 前观组"
+      ],
+      "1166": [
+        "PLA Designer 38 Conscripts — No AT",
+        "PLA Conscripts 义务兵"
+      ],
+      "1168": [
+        "PLA Designer 40 Reserve HJ-73D Team",
+        "PLA HJ-73D Team"
+      ],
+      "1169": [
+        "PLA Designer 41 Reserve HN-6 Team",
+        "PLA FN-6 Team"
+      ],
+      "1170": [
+        "PLA Designer 42 Reserve QJZ-89 Team",
+        "PLA QJZ-89 Team (1170)"
+      ],
+      "1171": [
+        "PLA Designer 43 Reserve QLZ-87 Team",
+        "PLA QLZ-87 Team"
+      ],
+      "1172": [
+        "PLA Designer 44 Reserve PF-98 Team",
+        "PLA PF-98 Team"
+      ],
+      "1173": [
+        "PLA Designer 45 Malyutka Recon Ambush Team",
+        "PLA Ambush Team 伏击组"
+      ],
+      "1174": [
+        "PLA Designer 46 Sharp Blades — Missile-Site Recon (利刃)",
+        "PLA Sharp Swords 利剑"
+      ],
+      "1175": [
+        "PLA Designer 47 Missile-Site Security — HJ-73D",
+        "PLA Infantry 步兵"
+      ],
+      "1176": [
+        "PLA Designer 48 Missile-Site Counter-Raid Team",
+        "PLA Counter-Raid Team 反袭击队"
+      ],
+      "1177": [
+        "PLA Designer 49 Reserve Thermobaric Team",
+        "PLA Thermobaric Team"
+      ],
+      "1181": [
+        "PLA Designer 53 Eastern Sword — Digital Assault (东方神剑)",
+        "PLA Godswords 东方神剑"
+      ],
+      "1182": [
+        "PLA Designer 54 Whistling Arrows — Breachers (响箭)",
+        "PLA PAP Snow Leopards 雪豹"
+      ],
+      "1183": [
+        "PLA Designer 55 Blood Wolves — Shock Team (血狼)",
+        "PLA Blood Wolves 朱日和之狼"
+      ],
+      "1184": [
+        "PLA Designer 56 Sky Wolves — QLU / Sniper Recon (天狼)",
+        "PLA Whistling Arrows 响箭"
+      ],
+      "1185": [
+        "PLA Designer 57 Southern Sharp Swords — Fire Support (南国利剑)",
+        "PLA Falcons 猎鹰"
+      ],
+      "1186": [
+        "PLA Designer 58 Plateau Snow Leopards — Mountain Team (高原雪豹)",
+        "PLA Mountain Leopards 高原雪豹"
+      ],
+      "1187": [
+        "PLA Designer 59 Blue Sword — Beijing CQC (蓝剑)",
+        "PLA Beijing Swords 蓝剑"
+      ],
+      "1191": [
+        "PLA Designer 63 Jiaolong — Maritime Recon (蛟龙)",
+        "PLA Sea Dragons 蛟龙"
+      ],
+      "1192": [
+        "PLA Designer 64 Marine Riflemen",
+        "PLA Marines 陆战队"
+      ],
+      "1193": [
+        "PLA Designer 65 Marine HJ-12 Team",
+        "PLA Marine HJ-8H Team"
+      ],
+      "1194": [
+        "PLA Designer 66 Marine HN-6 Team",
+        "PLA Marine QW-2 Team"
+      ],
+      "1196": [
+        "PLA Designer 68 Motorized Line Infantry",
+        "PLA Moto. Riflemen 摩步班"
+      ],
+      "1197": [
+        "PLA Designer 69 Motorized Troopers — AA",
+        "PLA AA Troopers 防空班"
+      ],
+      "1198": [
+        "PLA Designer 70 Motorized Troopers — HJ-12",
+        "PLA AT Troopers 反坦克组"
+      ],
+      "1199": [
+        "PLA Designer 71 Motorized Weapons Squad",
+        "PLA Weapons Squad 火力班"
+      ],
+      "1201": [
+        "PLA Designer 73 Motorized Recon Patrol",
+        "PLA Recon Patrol 侦察班"
+      ],
+      "1202": [
+        "PLA Designer 74 Motorized Snipers",
+        "PLA Snipers 狙击组 (1202)"
+      ],
+      "1203": [
+        "PLA Designer 75 Taishan Eagles — Deep Recon (泰山雄鹰)",
+        "PLA Taishan Eagles 泰山雄鹰"
+      ],
+      "1205": [
+        "PLA Designer 77 Motorized Light-AT Riflemen",
+        "PLA Light Riflemen 轻步兵"
+      ],
+      "1206": [
+        "PLA Designer 78 Motorized Air-Defense Scouts",
+        "PLA Air Defense Scouts 防空侦察"
+      ],
+      "1209": [
+        "PLA Designer 81 Motorized Thermobaric Assault",
+        "PLA Thermobaric Assault 温压突击"
+      ],
+      "1211": [
+        "PLA Designer 83 Test — Export Riflemen",
+        "PLA Test Export Riflemen 出口步枪"
+      ],
+      "1212": [
+        "PLA Designer 84 Test — SMG Assault",
+        "PLA Test SMG Assault 冲锋枪组"
+      ],
+      "1213": [
+        "PLA Designer 85 Test — Suppressed Scouts",
+        "PLA Conscript Recon"
+      ],
+      "1219": [
+        "PLA Designer 91 Test — QN-202 Guided Support",
+        "PLA Test QN-202 Guided Support"
+      ],
+      "1220": [
+        "PLA Designer 92 Test — TL-4 Team",
+        "PLA Test TL-4 Team"
+      ],
+      "1221": [
+        "PLA Designer 93 Test — GAM-102LR Team",
+        "PLA GAM-102LR Team"
+      ],
+      "1222": [
+        "PLA Designer 94 Test — HJ-12E Team",
+        "PLA Test HJ-12E Team"
+      ],
+      "1223": [
+        "PLA Designer 95 Test — QW-2 Escort",
+        "PLA Test QW-2 Escort"
+      ],
+      "1224": [
+        "PLA Designer 96 Test — QTS Recon Cell",
+        "PLA Marine Recon"
+      ],
+      "1225": [
+        "PLA Designer 97 Test — FHJ-02 Smoke Team",
+        "PLA Test FHJ-02 Smoke Team"
+      ]
+    },
+    "description_cleared": [
+      902,
+      903,
+      904,
+      905,
+      906,
+      907,
+      908,
+      909,
+      910,
+      911,
+      913,
+      914,
+      915,
+      916,
+      917,
+      919,
+      920,
+      921,
+      923,
+      924,
+      925,
+      926,
+      928,
+      929,
+      931,
+      934,
+      935,
+      936,
+      937,
+      938,
+      940,
+      941,
+      942,
+      943,
+      945,
+      946,
+      947,
+      949,
+      951,
+      952,
+      954,
+      955,
+      966,
+      967,
+      968,
+      974,
+      975,
+      976,
+      977,
+      979,
+      986,
+      987,
+      988,
+      989,
+      990,
+      991,
+      992,
+      993,
+      994,
+      995,
+      996,
+      997,
+      998,
+      999,
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1028,
+      1029,
+      1030,
+      1032,
+      1033,
+      1034,
+      1035,
+      1036,
+      1037,
+      1039,
+      1040,
+      1041,
+      1042,
+      1043,
+      1045,
+      1046,
+      1047,
+      1048,
+      1049,
+      1051,
+      1052,
+      1053,
+      1054,
+      1056,
+      1057,
+      1059,
+      1060,
+      1061,
+      1064,
+      1065,
+      1074,
+      1076,
+      1079,
+      1080,
+      1082,
+      1083,
+      1084,
+      1089,
+      1091,
+      1092,
+      1095,
+      1096,
+      1097,
+      1100,
+      1102,
+      1103,
+      1104,
+      1105,
+      1106,
+      1107,
+      1108,
+      1109,
+      1129,
+      1133,
+      1134,
+      1135,
+      1136,
+      1137,
+      1139,
+      1140,
+      1142,
+      1143,
+      1144,
+      1145,
+      1146,
+      1149,
+      1152,
+      1153,
+      1154,
+      1155,
+      1156,
+      1157,
+      1160,
+      1161,
+      1162,
+      1163,
+      1164,
+      1166,
+      1168,
+      1169,
+      1170,
+      1171,
+      1172,
+      1173,
+      1174,
+      1175,
+      1176,
+      1177,
+      1181,
+      1182,
+      1183,
+      1184,
+      1185,
+      1186,
+      1187,
+      1191,
+      1192,
+      1193,
+      1194,
+      1196,
+      1197,
+      1198,
+      1199,
+      1201,
+      1202,
+      1203,
+      1205,
+      1206,
+      1209,
+      1211,
+      1212,
+      1213,
+      1219,
+      1220,
+      1221,
+      1222,
+      1223,
+      1224,
+      1225,
+      1226,
+      1227,
+      1228,
+      1230,
+      1233,
+      1235,
+      1236,
+      1237,
+      1238,
+      1239,
+      1240,
+      1241,
+      1242,
+      1243,
+      1244,
+      1245,
+      1247,
+      1248,
+      1249,
+      1250,
+      1251,
+      1252,
+      1253,
+      1254,
+      1255,
+      1257,
+      1258,
+      1260,
+      1261,
+      1263,
+      1264,
+      1265,
+      1266,
+      1267,
+      1268,
+      1270,
+      1271
+    ],
+    "verified": "data checks only"
+  },
+  "long_range_sam_low_optics": {
+    "units": [
+      156,
+      163,
+      192,
+      225,
+      227,
+      231,
+      251,
+      448,
+      466,
+      545,
+      911,
+      1045,
+      1046,
+      1047,
+      1048,
+      1233,
+      1234
+    ],
+    "sensors": {
+      "2010595": {
+        "users": [
+          1047
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "2014531": {
+        "users": [
+          1233
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "2014565": {
+        "users": [
+          911
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2650.0,
+          2650.0
+        ]
+      },
+      "2010567": {
+        "users": [
+          1045
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "8": {
+        "users": [
+          156,
+          163,
+          225,
+          227,
+          231,
+          251,
+          448,
+          466,
+          545
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2650.0,
+          2650.0
+        ]
+      },
+      "2010609": {
+        "users": [
+          1048
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "2014546": {
+        "users": [
+          1234
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "2010581": {
+        "users": [
+          1046
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2000.0,
+          2650.0
+        ]
+      },
+      "27": {
+        "users": [
+          192
+        ],
+        "low": [
+          2000.0,
+          2650.0
+        ],
+        "high": [
+          2650.0,
+          2650.0
+        ]
+      }
+    },
+    "verified": "data checks only"
+  },
+  "version": "0.9.1-dev.2",
+  "base": "0.9.1-dev.1",
+  "base_sha256": "43977c262f66891bd101c70491e718a0fb7cedcd33205dbc257b4fabced70236",
+  "checks": 15,
+  "verified": "data checks only"
+}

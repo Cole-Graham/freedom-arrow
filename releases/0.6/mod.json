@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.1-dev.1",
+  "version": "0.9.1-dev.2",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.1-dev.1 (19 Nov): first build of the 0.9.1 playtest line. Nukes cost about a third more (MiG-31K (S) 2000, B-2/B-21 B61 1850, B-1B B61 and Tu-160 Kh-102 1350, DF-31A 1350); AMRAAM-class missiles burn 4.5 s, B-21 JATM = AIM-260 motor, R-37 accuracy 1.0; JRVG-1 HE no longer hits tank roofs; mod lobby list connects through freedomarrow.app (works from mainland China). Includes everything in 0.9.0-dev.44. Needs Freedom Arrow — Models and Music 0.2.47.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.1-dev.2 (19 Nov): release candidate for the 0.9.1 playtest. Long-range SAMs (Patriot, Buk, IRIS-T, S-300/350/400, HQ-9/9A/9B/16/11/12/6A) see 5300 m at low and high altitude; China Infantry 步兵 35 points; loading screens 24 -> 12 (five new China vehicle scenes); our third-party mod DLLs now carry an FA prefix (build code changes once). Includes everything in 0.9.1-dev.1. Needs Freedom Arrow — Models and Music 0.2.47.",
   "repo": "Cole-Graham/freedom-arrow"
 }
