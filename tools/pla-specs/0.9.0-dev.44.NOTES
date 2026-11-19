@@ -37,3 +37,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
 - 18 Nov 2026 16:4x PST, thread 1567745029781454889 (Osama "Chinese tanks should have the same he as Russian tanks" / "please normalize it"): 13 China
   tank HE rows (VT-1A, VT-4, WZ-1224 x2, ZTZ-100, ZTZ-20, ZTZ-96/96A/96B, ZTZ-99/99A/99A2/99G) IgnoreCover 0.3 -> 0.25 = Russian 125 mm HE (243).
   Damage 13, pen 125, blast 12, stress already equal; per-gun GroundRange kept. ZTZ-85-III was already 0.25. 120 checks. HE x1.5/x2 NOT applied (undecided).
+- 18 Nov 2026 17:2x PST, thread 1572724406642286692 (Lateralus "did the HHQ-10 get all the prediction, overkill, and shot reload buffs as the other
+  intercept-capable anti-air missiles?"): spaag-weapons.json sameUnitClaimWeapons + HHQ-10 launcher 2019357 (58 -> 59). It was the only multi-target
+  missile interceptor left out (added after the dev.13 list). Launch pause 0.8-1.2 s already comes from the MML copy above; InterceptLead is guns only.
+  Check in the package: spaag-weapons.json lists 2019357; log same_unit_claim_installed weapons=59.
