@@ -1,0 +1,3 @@
+0.9.1-dev.2 batch notes (append; one line per change). Builder: read these before building 0.9.1-dev.2. Data: tools/pla-specs/apply_0_9_1_dev2.py over out/local-091dev1 (--vanilla ../lateralus-infantry-20261110/vanilla).
+## Infantry 步兵 50 -> 35 (Lateralus 19 Nov 2026 08:1x PST, thread 1572962048705429598)
+- Unit 1175 (Missile-Site Security, HJ-73D) Cost 50 -> 35. No options or swap rows. 3 checks; one field changes.
