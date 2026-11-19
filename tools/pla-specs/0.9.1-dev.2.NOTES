@@ -5,3 +5,5 @@
 - 63 China Arsenal cards: internal Name "PLA Designer N ..." -> "PLA <card name>" (+ " (unit id)" where two cards share a card name, e.g. Snipers 狙击组, QJZ-89 Team). 230 China Arsenal cards: design-note Description -> None (vanilla has no unit descriptions). Card names, stats and hidden rows unchanged. Internal only: nothing for the patch notes.
 ## Build numbers 225 and 226 are taken (19 Nov 2026 10:0x PST, thread 1572724406642286692)
 - Lateralus line-of-sight tests: 0.9.1-dev.1-test1 = build 225 (forest vision height 5), 0.9.1-dev.1-test2 = build 226 (forest 5 + ground AA eye 8). Code on codex/batch/lateralus/forest-eye, NOT in this batch. Build 0.9.1-dev.2 with --build 227 or higher.
+## Long-range SAM low-altitude optics = high (Lateralus 19 Nov 2026 10:5x PST, thread 1572724406642286692: "queue it up")
+- 17 long-range SAMs (static radar, low-altitude radar x1.0). Sensors 8 (Patriot PAC-2/3/MSE, Buk M2, IRIS-T SLM, S-300PM/V4, S-350, S-400), 27 (Buk M3) and 2014565 (HQ-9): low 2000 -> 2650 raw (card 4000 -> 5300 m). HQ-6A/11/12/16/9A/9B already 2000/2000: unchanged. apply_0_9_1_dev2.py, 14 checks.
