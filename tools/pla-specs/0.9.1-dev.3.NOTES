@@ -1,0 +1,5 @@
+0.9.1-dev.3 batch notes (append; one line per change). Builder: read these before building dev.3.
+- 19 Nov 2026 11:3x PST, thread 1572407822849810463 (Osama: "Let's make vehicle specific loading screens ... su-47, Abrams X, Armata ifv and tanks,
+  F-35" / "much better lock them in"): loading/ 12 -> 17. Added FA_RU_LOADING_11_su47_berkut, 12_t14_armata, 13_t15_armata_ifv, FA_US_LOADING_11_abramsx,
+  12_f35a (locked in work/vehicle-loading-20261119/approved, SHA256SUMS). Built around Wikimedia Commons photos; credits and licences in
+  docs/credits/loading-screens.md (two are CC BY-SA / GFDL share-alike). Art only.
