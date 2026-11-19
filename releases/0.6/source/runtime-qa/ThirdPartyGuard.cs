@@ -20,6 +20,16 @@ static class ThirdPartyGuard
         if(field==null){MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY: FlatIncomeMod forest cover not found; it may double the forest cut");return;}
         field.SetValue(null,true);
         MelonLogger.Msg($"FREEDOM_ARROW_THIRD_PARTY: FlatIncomeMod forest cover off (FA forest rule only): {field.GetValue(null)}");
+        // 0.9 dev.44 batch (Osama 19 Nov 2026 00:1x PST, Chinese playtester SteelPlate: "Desync when a veh been killed - the infantry it contains
+        // some times died normally but usually just left over, and cause the desync"). FlatIncomeMod.CargoDeath polls every 0.1 s and kills the
+        // squads of a destroyed transport on each PC itself. 18-19 Nov logs: 41 kills, 25 of them "health 0 didn't kill the squad within 1 s -
+        // death mark set (fallback)", a mark that exists on that PC only, so the squad lives on for everyone else. Its Update returns at once while
+        // _broken is set (same switch as ForestCover). Passengers still die with the transport through the game's own rule, which DetectionConfig
+        // sets to 100% (GameConfig OnTransportDeathCargoKillFloor/HLFloor), so every PC agrees.
+        var cargo=asm.GetType("FlatIncomeMod.CargoDeath")?.GetField("_broken",BindingFlags.Static|BindingFlags.NonPublic);
+        if(cargo==null){MelonLogger.Error("FREEDOM_ARROW_THIRD_PARTY: FlatIncomeMod CargoDeath not found; its local passenger kill may desync");return;}
+        cargo.SetValue(null,true);
+        MelonLogger.Msg($"FREEDOM_ARROW_THIRD_PARTY: FlatIncomeMod local passenger kill off (game rule kills them on every PC): {cargo.GetValue(null)}");
     }
 
     // 0.6 dev.10 (Osama, 7 November 2026): ArrowQueue (unchanged, ActualArrow) runs the Mod game tab against our own
