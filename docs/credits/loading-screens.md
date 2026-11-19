@@ -8,7 +8,10 @@ Some Freedom Arrow loading screens are AI re-paintings built around real photogr
 - **Su-47 Berkut** (FA_RU_LOADING_11_su47_berkut): "Sukhoi Su-47 in formation, 2005.jpg" by Sergey Krivchikov, GFDL 1.2.
 - **F-35A** (FA_US_LOADING_12_f35a): newly generated; USAF public-domain photos and the F-35A three-view drawing on Commons were used as shape references only.
 
+Each photo-based screen also shows its credit in the bottom-left corner (Osama, 19 Nov 2026).
+
 The images derived from CC BY-SA 4.0 and GFDL 1.2 photos are offered under the same licence as their source.
 
 ## Document change log
 - 2026-11-19 11:3x PST (America/Los_Angeles) — Created with the five vehicle loading screens (0.9.1-dev.3 batch).
+- 2026-11-19 11:4x PST (America/Los_Angeles) — Credits are now also drawn on the images, bottom-left.
