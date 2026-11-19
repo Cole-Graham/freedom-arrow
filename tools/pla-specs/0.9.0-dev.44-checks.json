@@ -1271,6 +1271,163 @@
       ]
     }
   },
+  "kit_side_heat": {
+    "rule": "kit sides 700 -> 500, TUSK I 400 -> 350",
+    "changed": {
+      "2000481": [
+        "Armor M1A2 TUSK2",
+        700,
+        500
+      ],
+      "2000405": [
+        "Armor M1A2C TUSK2",
+        700,
+        500
+      ],
+      "2000406": [
+        "Armor M1A2C TUSK2 Trophy",
+        700,
+        500
+      ],
+      "2000416": [
+        "Armor M1A2SEP1 TUSK2",
+        700,
+        500
+      ],
+      "2000412": [
+        "Armor M1A2SEP2 TUSK2",
+        700,
+        500
+      ],
+      "2000413": [
+        "Armor M1A2SEP2 TUSK2 Trophy",
+        700,
+        500
+      ],
+      "2000235": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000237": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000239": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000380": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000381": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000382": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000384": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000386": [
+        "Armor Stryker SRAT",
+        700,
+        500
+      ],
+      "2000236": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000238": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000240": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000383": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000385": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000387": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        500
+      ],
+      "2000522": [
+        "Armor M8AGS ERA",
+        700,
+        500
+      ],
+      "2000445": [
+        "Armor BMP3 Armored",
+        700,
+        500
+      ],
+      "2000401": [
+        "Armor M1A1FEP TUSK",
+        400,
+        350
+      ],
+      "2000478": [
+        "Armor M1A1HC TUSK",
+        400,
+        350
+      ],
+      "2000480": [
+        "Armor M1A2 TUSK1",
+        400,
+        350
+      ],
+      "2000403": [
+        "Armor M1A2C TUSK1",
+        400,
+        350
+      ],
+      "2000404": [
+        "Armor M1A2C TUSK1 Trophy",
+        400,
+        350
+      ],
+      "2000415": [
+        "Armor M1A2SEP1 TUSK1",
+        400,
+        350
+      ],
+      "2000410": [
+        "Armor M1A2SEP2 TUSK1",
+        400,
+        350
+      ],
+      "2000411": [
+        "Armor M1A2SEP2 TUSK1 Trophy",
+        400,
+        350
+      ]
+    },
+    "no_srat1": "FA has no SRAT I option",
+    "not_changed": "base hulls ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30 (700 sides)"
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -1601,6 +1758,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 234,
+  "checks": 265,
   "verified": "data checks only"
 }

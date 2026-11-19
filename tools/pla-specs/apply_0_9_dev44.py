@@ -1,7 +1,7 @@
 """Freedom Arrow 0.9.0-dev.44 data over exact 0.9.0-dev.43 (18 Nov 2026). Opened by BA Codex thread 1567745029781454889 (Osama, HHQ-10 = MML AIM-9).
 Batch only: build when Osama or Lateralus say the batch is ready. Other threads: add your sections, keep the checks.
 """
-import argparse,hashlib,json,sys,zipfile
+import argparse,hashlib,json,re,sys,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent)]
 from pipeline.tables import FIELD_TO_FILE
@@ -205,6 +205,22 @@ ok(max(_AR[_i].get('HeatArmorFront') or 0 for _i in _hrows)==1200,'front HEAT ca
 ok(len(_hchg)>=100,('front HEAT rows compressed',len(_hchg)))
 rec['front_heat_cap_1200']={'rule':'round(front*1200/1400, step 50) for front>=150, vehicle rows only','changed':_hchg}
 print('front HEAT rows compressed',len(_hchg))
+# ---------- Side HEAT of armour kits (Osama 19 Nov 2026 thread 1567745029781454889: "some SRAT 2 and TUSK and side armor kits went up to around 600 and
+# 700 ... bring them down to 500 and the SRAT I and TUSK I to 350"; "those changes look good"). Every kit row at side HEAT 700 -> 500: TUSK II (M1A2,
+# SEP, SEP v2, SEP v3/Abrams X, with Trophy), Stryker SRAT II (all 8 variants, with Trophy), M8 Thunderbolt ERA, BRM-3K reactive armour. TUSK I rows
+# 400 -> 350. FA has no SRAT I option (every Stryker kit is SRAT2). Vanilla sides were TUSK II 500/450, TUSK I 400, SRAT 200, M8 ERA 250, BMP-3 kit 400.
+# Base hulls with 700 sides (ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30) are not kits and are not changed here. Front, rear, top and KE unchanged.
+_K500=[2000481,2000405,2000406,2000416,2000412,2000413,2000235,2000237,2000239,2000380,2000381,2000382,2000384,2000386,
+       2000236,2000238,2000240,2000383,2000385,2000387,2000522,2000445]
+_K350=[2000401,2000478,2000480,2000403,2000404,2000415,2000410,2000411]
+_kchg={}
+for _ids,_was,_to in ((_K500,700,500),(_K350,400,350)):
+    for _i in _ids:
+        ok(_AR[_i].get('HeatArmorSides')==_was,('kit side HEAT',_i,_AR[_i].get('Name'),_was))
+        g.put('ArmorsJson',_i,{'HeatArmorSides':_to});_kchg[str(_i)]=[_AR[_i].get('Name').strip(),_was,_to]
+ok(not any((_AR[_i].get('HeatArmorSides') or 0)>500 and re.search('TUSK|SRAT|BUSK|ERA|Armored',_AR[_i].get('Name','')) for _i in _hrows),'no kit row above 500 sides')
+rec['kit_side_heat']={'rule':'kit sides 700 -> 500, TUSK I 400 -> 350','changed':_kchg,'no_srat1':'FA has no SRAT I option','not_changed':'base hulls ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30 (700 sides)'}
+print('kit side HEAT rows',len(_kchg))
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

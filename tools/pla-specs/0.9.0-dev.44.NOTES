@@ -68,3 +68,9 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   of 50)"): 161 vehicle armour rows, HeatArmorFront >= 150 -> round(front x 1200/1400, step 50): 1400->1200, 1300->1100, 1000->850, 700->600, 400->350,
   200->150. Under 150 unchanged; side/rear/top HEAT and all KE unchanged; infantry rows untouched. 234 checks. Per-row list in pla-0.9.0-dev.44.json
   front_heat_cap_1200.
+
+## Kit side HEAT (Osama 19 Nov 2026, thread 1567745029781454889)
+- Side HEAT 700 -> 500 on 22 kit rows: TUSK II (M1A2, SEP, SEP v2, SEP v3 / Abrams X, with Trophy), Stryker SRAT II (ICV, MGS, ESV, RV, ATGM, M-SHORAD, MC, SPH, with Trophy), M8 Thunderbolt ERA, BRM-3K reactive armour.
+- TUSK I side HEAT 400 -> 350 on 8 rows (M1A1 HC, M1A1 FEP, M1A2, SEP, SEP v2, SEP v3 / Abrams X, with Trophy).
+- FA has no SRAT I option; every Stryker kit is SRAT2. Base hulls with 700 sides (ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30) not changed.
+- Checks 265. Data only, not seen in game.
