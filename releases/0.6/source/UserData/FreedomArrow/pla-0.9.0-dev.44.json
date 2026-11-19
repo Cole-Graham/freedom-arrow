@@ -107,6 +107,25 @@
     },
     "prices": "unchanged (ZTZ-100 340, ZTZ-99A 230); awaiting Osama"
   },
+  "china_mbt_optics_like_t14": {
+    "units": [
+      904,
+      939,
+      948,
+      968
+    ],
+    "sensor_rows": [
+      2009069,
+      2009691,
+      2009877,
+      2010189
+    ],
+    "optics": [
+      1650.0,
+      1100.0,
+      1000.0
+    ]
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -437,6 +456,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 135,
+  "checks": 141,
   "verified": "data checks only"
 }

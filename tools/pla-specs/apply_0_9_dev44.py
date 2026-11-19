@@ -79,6 +79,17 @@ g.put('ArmorsJson',2009063,{'KinArmorFront':850})
 ok(_A[2009075]['PenetrationAtMinRange']==550 and _A[2009075]['PenetrationAtGroundRange']==500,'ZTZ-99A APFSDS already 550/500')
 ok(_AR[2010183]['KinArmorFront']==750 and _AR[2009063]['KinArmorFront']==850 and _A[2010195]['PenetrationAtMinRange']==525,'ZTZ-100/99A applied')
 rec['china_tanks_20261118']={'sabot_damage_10':_SABOT,'ztz100':{'armour_row':2010183,'ke_front':[700,750],'apfsds':2010195,'pen':[[550,500],[525,475]]},'ztz99a':{'armour_row':2009063,'ke_front':[800,850]},'prices':'unchanged (ZTZ-100 340, ZTZ-99A 230); awaiting Osama'}
+# ---------- Modern China MBT optics = T-14 / M1A2 SEP v3 (Osama 18 Nov 2026 20:5x PST, thread 1567745029781454889: "the Optics and stuff like that should be
+# pretty much similar to the T14 in the Abrams"). T-14 (13) and SEP v3 (191) use vanilla sensor 1 "Good Optics" 1650 ground / 1100 low / 1000 high. ZTZ-99A,
+# ZTZ-99A2, ZTZ-99G and ZTZ-100 each have their own sensor row (700 or 875 ground); those rows take sensor 1's optics. Names and models kept.
+_SE=t['SensorsJson'];_SU=t['SensorUnitsJson'];_G=_SE[1];_of=('OpticsGround','OpticsLowAltitude','OpticsHighAltitude')
+ok(_G['Name']=='Good Optics' and _G['OpticsGround']==1650 and [r['SensorId'] for r in _SU.values() if r.get('UnitId') in (13,191)]==[1,1],'T-14 / SEP v3 on Good Optics 1650')
+_OPT={904:2009069,939:2009691,948:2009877,968:2010189}
+for _u,_s in _OPT.items():
+    ok([r['SensorId'] for r in _SU.values() if r.get('UnitId')==_u]==[_s] and [r['UnitId'] for r in _SU.values() if r.get('SensorId')==_s]==[_u],(_u,U[_u]['HUDName'],'own sensor row'))
+    g.put('SensorsJson',_s,{f:_G[f] for f in _of})
+ok(all(all(_SE[_s][f]==_G[f] for f in _of) for _s in _OPT.values()),'modern China MBT optics 1650/1100/1000')
+rec['china_mbt_optics_like_t14']={'units':list(_OPT),'sensor_rows':list(_OPT.values()),'optics':[_G[f] for f in _of]}
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

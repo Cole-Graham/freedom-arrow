@@ -45,3 +45,6 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   should go to 850 k e armor and a 550 to 500 penetration"): 9 China tank AP rows 8.5 -> 10 damage (ZTQ-15, ZTD-05, ZTL-11, VT-5, PTL-02, Type 59,
   Type 59D, ZTL-191, ZTZ-80; RU MT-12 towed AT gun stays 8.5). ZTZ-100 armour 2010183 KE front 700 -> 750, APFSDS 2010195 550/500 -> 525/475.
   ZTZ-99A armour 2009063 KE front 800 -> 850 (AP already 550/500). Own rows only (checked). Prices unchanged pending Osama. 135 checks.
+- 18 Nov 2026 20:5x PST, thread 1567745029781454889 (Osama "the Optics and stuff like that should be pretty much similar to the T14 in the Abrams"): own
+  sensor rows of ZTZ-99A (2009069), ZTZ-99A2 (2009691), ZTZ-99G (2009877), ZTZ-100 (2010189) take vanilla sensor 1 "Good Optics" (T-14, M1A2 SEP v3):
+  ground 700/875 -> 1650, low 900/1100 -> 1100, high 1000. ZTZ-99 / ZTZ-96B (700) unchanged pending Osama. 141 checks.
