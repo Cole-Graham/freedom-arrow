@@ -112,9 +112,33 @@ How long a line stays in the layer depends on the geometry. Take an AA eye about
 
 This is the "extra margin above the trees": the forest blocks sight as if it were 15 world units (30 m) tall and grows denser the deeper the line goes into it. The tree models are not used.
 
-## 4. Firing
+## 4. Firing: a stricter rule than seeing
 
-The observer's shootable set (`FogOfWarComponent.Shootable`, `0x40`) is kept next to the visible set, and `FogOfWarHelper.IsTargetShootable` (RVA `0x69EB30`) takes a `FilterTask`. That suggests firing at air targets runs through the same filter result. Its exact rule is **not traced**.
+`FogOfWarHelper.IsTargetShootable(FilterTask task, bool unitCheck)` (RVA `0x69EB30`) decides whether a unit may fire at a target (code):
+
+1. If the unit's own sight line passed (`TargetVisible`, task `0x44`), it may fire.
+2. Otherwise, when the target is seen by someone else on the team (the unit's visible set is not empty), it may fire only if:
+   - its own line crosses **no smoke** (`SmokeTerrainDistance` ≤ 0.5, task `0x4C`); and
+   - its own line has **at most `MaxShootableForestDistance` = 45 steps inside the forest layer** (`ForestTerrainSteps`, task `0x48`).
+3. Otherwise it may not fire.
+
+So a radar or another spotter can put an aircraft on the map, but a launcher whose own line runs through more than 45 world units (90 m on the card) of the forest layer still holds fire. The forest layer here is the same 15 units above the ground as in 3c. This rule ignores the target's height entirely. Only the stretch of the line that is low over trees counts (code; calculated meaning).
+
+### Why the target's height is not the margin (calculated)
+
+The forest layer is measured at every step of the line, from the ground under that step. The line starts at the launcher's eye, about 1–2 units up, and climbs slowly toward a distant aircraft. So a high aircraft far away still gives a line that is low over the trees near the launcher.
+
+On flat ground, with the eye 1.5 units up and the target `H` above the launcher's ground at distance `D`, the line is inside the 15-unit layer for its first `13.5 × D / (H − 1.5)` units. Example: a forest belt starts 100 units in front of a Patriot and is 200 wide. Take a jet 100 units up (200 m on the card, the plane "low" order height):
+
+| Jet distance | Line still in the layer up to | Forest steps | Fire at a team-spotted jet? |
+| ---: | ---: | ---: | --- |
+| 3,000 | 411 | 200 | no |
+| 2,000 | 274 | 174 | no |
+| 1,500 | 206 | 106 | no |
+| 1,100 | 151 | 51 | no |
+| 1,000 | 137 | 37 | yes |
+
+In this example the Patriot can only fire once the jet is within about 1,050 units, even though the jet is 100 units up the whole time. A valley that puts the jet lower than the launcher's ground makes this worse. The physics ray in 3b also blocks a jet that is below a cliff edge.
 
 ## 5. Where the mod changes this
 
@@ -124,6 +148,7 @@ Ways to make AA placement easier (not implemented, not tested):
 
 - **Lower the forest `Height`** (15 → e.g. 8–10) in the same `DetectionConfig` write, before `GenerateVisionData` copies the settings into `TerrainVisionData`. This moves the layer top closer to the visible treetops. It also changes ground vision through and over woods, for every unit.
 - **Soften forest growth**: a smaller `Multiplier` (0.75) or a higher start (`Opacity` −15 → e.g. −30 gives 41 free steps). This also affects ground units.
+- **Firing through woods**: raise `MaxShootableForestDistance` (45) in the same config write. Only units whose target is already spotted are affected, and this applies to every weapon.
 - **Air-only rule**: a hook on `FogOfWarFilter.FilterCore` that uses a lower forest height when the target is a helicopter or plane. Ground vision stays unchanged. This needs code and a performance check, because the filter runs for every observer–target pair.
 - **Plane altitude band**: `PlanesConfig.LowAltitude` / `HighAltitude` (100 / 400). This changes when planes count as Low, not the forest problem.
 
@@ -139,3 +164,4 @@ Ways to make AA placement easier (not implemented, not tested):
 ## Document change log
 
 - 2026-11-19 09:2x PST (America/Los_Angeles) — New doc: low altitude, air optics and line of sight (Lateralus's request).
+- 2026-11-19 09:3x PST (America/Los_Angeles) — Traced the firing rule (IsTargetShootable: own line visible, or team-spotted with ≤45 forest-layer steps and no smoke); added the line-height example.
