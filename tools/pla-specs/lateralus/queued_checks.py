@@ -11,8 +11,10 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
 import spaag_sead_data as S,sead_prices as SP,ecm_pods as EP,mshorad as MS
 pkg,V,van=sys.argv[1],sys.argv[2],Path(sys.argv[3])
-m=re.match(r'0\.(\d+)\.0-dev\.(\d+)',V)
-if not m or (int(m.group(1)),int(m.group(2)))<(9,25):print('queued_checks: not required before 0.9.0-dev.25');sys.exit(0)
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]));from fa_version import key   # 0.9.1-dev.N and 0.9.1 too (Lateralus 19 Nov)
+m=key(V)
+def _ge(minor,dev):return m>=key(f'0.{minor}.0-dev.{dev}')
+if not _ge(9,25):print('queued_checks: not required before 0.9.0-dev.25');sys.exit(0)
 z=zipfile.ZipFile(pkg);bad=[]
 def merged(tab,fn):
     t={r['Id']:dict(r) for r in json.loads((van/tab).read_text())}
@@ -30,9 +32,9 @@ LATER={929:(((9,32),355),((9,43),415)),921:(((9,35),255),),966:(((9,35),255),),1
 # 0.9.0-dev.35 (Osama 16 Nov 20:5x PST: "All 5th gen fighters are 2x availability and shouldn't have been touched by any SEAD point buffs"): these
 # 5th/6th-gen options are back at their pre-SEAD price and the four fighters back at 2 cards.
 FIFTH_OPTIONS=(1888,1889,24653,24654,24656,24657,24659,24660,24664,20191,20198,20234);FIFTH_ROWS={2008203,2014507,2008260,2014513}
-after35=(int(m.group(1)),int(m.group(2)))>=(9,35)
+after35=_ge(9,35)
 def _want(i,new):
-    v=(int(m.group(1)),int(m.group(2)));return ([p for s,p in LATER.get(i,()) if v>=s] or [new])[-1]
+    return ([p for s,p in LATER.get(i,()) if _ge(*s)] or [new])[-1]
 bad+=[f'unit {i} {n} cost {Ut.get(i,{}).get("Cost")} (want {_want(i,new)})' for i,(n,old,new) in SP.UNITS.items() if Ut.get(i,{}).get('Cost')!=_want(i,new)]
 bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {old if after35 and i in FIFTH_OPTIONS else new})' for i,(u,n,old,new) in SP.OPTIONS.items() if (Ot.get(i,{}).get('Cost') or 0)!=(old if after35 and i in FIFTH_OPTIONS else new)]
 for i,want in EP.EXPECT.items():
@@ -47,7 +49,7 @@ for name,want in EP.EXPECT_DEFAULT.items():
     got=[At.get(x.get('AbilityId'),{}) for x in UAt.values() if uid and x.get('UnitId')==uid[0]]
     if not any(a.get('IsDefault') and a.get('ECMAccuracyMultiplier') is not None and abs(a['ECMAccuracyMultiplier']-want)<1e-6 for a in got):bad.append(f'{name} default ECM is not {want}')
 bad+=[f'M-SHORAD option {i} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(n,old,new) in MS.PRICES.items() if Ot.get(i,{}).get('Cost')!=new]
-if (int(m.group(1)),int(m.group(2)))<(9,26):
+if not _ge(9,26):
     if Ot.get(1937,{}).get('Ability1Id')!=MS.LASER:bad.append('M-SHORAD APKWS option has no laser')
 else:   # dev.26+: laser in slot 2, and no unit loses an ability to a slot collision (mshorad_laser_slot.py)
     import mshorad_laser_slot as MLS
@@ -61,12 +63,12 @@ for s in ('plane_sale_installed','server_money_set'):
 # Lateralus 16 Nov 2026 ("These builds do not have the yellow altitude changing indicator ... Was there anything else you forgot to keep?"):
 # altitude intent, SEAD overkill 0.33 and SEAD re-target were in the sead3-sead5 test builds only. From dev.26 the package must have them,
 # and the other dev.26 runtime work.
-if (int(m.group(1)),int(m.group(2)))>=(9,26):
+if _ge(9,26):
     for s in ('altitude_intent_installed','sead_overkill_installed','sead_retarget_installed','FREEDOM_ARROW_LOBBY_TABS installed','online_room_status','overlay_hidden_for_menu','leaving_match','FREEDOM_ARROW_LOBBY_SLOTS installed','same name in two places','deployment_in_clock'):
         if s.encode('utf-16-le') not in dll and s.encode() not in dll:bad.append(f'runtime DLL lacks {s}')
     if 'UserData/FreedomArrow/sead-overkill.json' not in z.namelist():bad.append('sead-overkill.json missing')
 # From dev.33: the SEAD availability change (lateralus/sead_availability.py).
-if (int(m.group(1)),int(m.group(2)))>=(9,33):
+if _ge(9,33):
     import sead_availability as SAV
     SAt=merged('SpecializationAvailabilitiesJson.json','specialization_availabilities.json')
     bad+=[f'{n} deck row {row}: {SAt.get(row,{}).get("MaxAvailabilityXp0")} cards (want {new})' for u,(n,row,old,new) in SAV.ROWS.items() if SAt.get(row,{}).get('MaxAvailabilityXp0')!=(old if after35 and row in FIFTH_ROWS else new)]
@@ -77,7 +79,7 @@ if (int(m.group(1)),int(m.group(2)))>=(9,33):
 # From dev.36: the six [FA] [PvE] maps ship, and every China wave in them names units and options that exist in this package (Osama 17 Nov
 # 13:2x PST: "do units update when we update the armory": the maps store only unit and option ids, so stats follow the armory, but a removed
 # or renumbered unit/option would break a wave).
-if (int(m.group(1)),int(m.group(2)))>=(9,36):
+if _ge(9,36):
     sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'releases/0.8/scenarios'))
     import common as SC,pve as PVE
     Mt=merged('ModificationsJson.json','modifications.json')
@@ -93,7 +95,7 @@ if (int(m.group(1)),int(m.group(2)))>=(9,36):
                 for it in u['items']:
                     if Mt.get(it['mod'],{}).get('UnitId')!=u['unitId'] or Ot.get(it['opt'],{}).get('ModificationId')!=it['mod']:bad.append(f'{name}: unit {u["unitId"]} option {it} not in the package')
 # From dev.36: stress recovery 0.33 (Lateralus 17 Nov 12:35 PST "queue it"), the lobby list of packaged maps only and the altitude arrow traces.
-if (int(m.group(1)),int(m.group(2)))>=(9,36):
+if _ge(9,36):
     gc=json.loads(z.read('UserData/FreedomArrow/game-config.json'))
     if gc.get('StressRecoveryMultiplier')!=0.33:bad.append(f"game-config StressRecoveryMultiplier {gc.get('StressRecoveryMultiplier')} (want 0.33)")
     for s in ('FREEDOM_ARROW_STRESS_RECOVERY','local [FA] maps not in this package','still_shown','icon_left_modified'):

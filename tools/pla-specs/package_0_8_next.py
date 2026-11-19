@@ -27,7 +27,10 @@ prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());asser
 # Osama 13 Nov 12:39 ("make sure the model fixes land with your other thread"): two threads build on this branch. Stack every
 # build on the newest receipt, and refuse a package that drops the dev.35-38 model/camo/data fixes (check_model_carry.py).
 # 0.9 (Osama 14 Nov 2026 11:05 PST, "launch this as 0.9"): 0.9.0-dev.N builds continue in out/0.8 after 0.8.0-dev.105.
-newest=max(((int(m.group(1)),int(m.group(2))),f'0.{m.group(1)}.0-dev.{m.group(2)}') for f in (REL/'out/0.8').glob('FreedomArrow-0.*.0-dev.*.json') if (m:=re.search(r'FreedomArrow-0\.([89])\.0-dev\.(\d+)\.json$',f.name)))
+# Lateralus 19 Nov 2026: playtests are 0.9.1, 0.9.2, ...; dev builds toward them 0.9.1-dev.N. fa_version orders all of them.
+sys.path.insert(0,str(Path(__file__).resolve().parent));from fa_version import PATTERN as _VP,key as _vkey
+_receipts=[(m[1],f) for f in (REL/'out/0.8').glob('FreedomArrow-0.*.json') if (m:=re.fullmatch(r'FreedomArrow-('+_VP+r')\.json',f.name))]
+newest=max(((_vkey(v),v) for v,f in _receipts))
 assert a.prev==newest[1],f'--prev {a.prev} is not the newest build {newest[1]}; build on it so other threads\' fixes are kept'
 # Osama 14 Nov 2026 15:39 PST ("make sure dev builds we aren't skipping"): the #build-install dev-build post fell behind from 0.8.0-dev.82
 # to 0.9.0-dev.2. The next build may start only after the previous one is on that post (work/build-install/devpost.py).
@@ -141,7 +144,7 @@ AV,mismatch=differ(assets)
 assert vt(AV)>=vt(prev['assets_version']),f'--assets {AV} is older than {prev["assets_version"]} of {a.prev}'
 made=None
 if mismatch:
-    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in (REL/'out/0.8').glob('FreedomArrow-0.[89].0-dev.*.json')]
+    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for v,f in _receipts]
     x=max([AV,*known],key=vt).split('.');NV='.'.join(x[:-1]+[str(int(x[-1])+1)])
     print(f'Model files differ from assets {AV} ({len(mismatch)}: {mismatch[:5]}). Making assets {NV}.',flush=True)
     assets=out/f'FreedomArrow-Assets-{NV}.bamod';made=make_assets.build(complete,paired,NV,V,assets,a.zip)

@@ -1,0 +1,97 @@
+{
+  "jrvg1_he_no_overpressure": {
+    "ammo": 2009953,
+    "unit": 952,
+    "OverpressureRadius": [
+      4.5,
+      0.0
+    ],
+    "why": "direct hits with OP > 0 always use roof armour",
+    "verified": "data checks only; not seen in game"
+  },
+  "aam_motor_match_range": {
+    "burn_4_to_4_5": [
+      89,
+      159,
+      920,
+      2016380,
+      2016390,
+      2011459,
+      2011471,
+      2016398,
+      2017953
+    ],
+    "b21_jatm_2001658": {
+      "Acceleration": [
+        200.0,
+        300.0
+      ],
+      "BurnTime": [
+        4.0,
+        5.0
+      ]
+    },
+    "unchanged": {
+      "2011537": "PL-12, range 3500, catches at 3694"
+    },
+    "r37_accuracy": {
+      "312": [
+        0.9,
+        1.0
+      ],
+      "921": [
+        0.9,
+        1.0
+      ]
+    },
+    "catch_at_225": {
+      "amraam_before": 3694,
+      "amraam_after": 4688,
+      "jatm_after": 6013
+    },
+    "verified": "data checks only; calculated, not seen in game"
+  },
+  "nuke_prices": {
+    "totals": {
+      "MiG-31K (S)": [
+        1500,
+        2000
+      ],
+      "DF-31A Nuclear": [
+        1000,
+        1350
+      ],
+      "B-2 Spirit": [
+        1400,
+        1850
+      ],
+      "B-21 Raider": [
+        1400,
+        1850
+      ],
+      "B-1B Lancer": [
+        1000,
+        1350
+      ],
+      "Tu-160": [
+        1000,
+        1350
+      ]
+    },
+    "units": [
+      702,
+      1032
+    ],
+    "options": [
+      1083,
+      20177,
+      1026,
+      1740
+    ]
+  },
+  "version": "0.9.1-dev.1",
+  "base": "0.9.0-dev.44",
+  "base_sha256": "63c83577309fe42492fd1baa600bfac727670a9c2e80a17e81ad8675ce90b33c",
+  "checks": 37,
+  "verified": "data checks only"
+}

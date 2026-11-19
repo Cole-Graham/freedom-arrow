@@ -6,6 +6,11 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 
 ## Permanent branches
 
+**Update, 19 November 2026 (Lateralus): 0.9.1 is the main development line; playtests get plain numbers.** Lateralus, 06:2x PST: "create a 0.9.1 development branch and move the latest dev build along with any queued changes into a 0.9.1-dev.1 build". Playtests are released as 0.9.1, 0.9.2, 0.9.3; the dev builds toward a playtest are 0.9.1-dev.N (order: 0.9.0-dev.44 < 0.9.1-dev.1 < 0.9.1 < 0.9.2-dev.1, `tools/pla-specs/fa_version.py`).
+
+- `codex/0.9.1-development`: **the one integration branch for main development**, created at `bc085f2d` (0.9.0-dev.44 plus the queued dev.45 batch). Dev builds keep `gameplay/0.9.1-dev.N` tags.
+- `codex/0.9-development`: **frozen** at `bc085f2d`. History only; the pre-push hook refuses it.
+
 **Update, 14 November 2026 (Osama): 0.9 is the main development line.** Osama, 11:05 PST: "let's launch this as 0.9. Remember from now on we need to batch our changes because the file is big." `0.9.0-dev.1` is 0.8.0-dev.105's content (Osama's 14 Nov batches plus Lateralus's 0.8 batch) under the 0.9 identity.
 
 - `codex/0.9-development`: **the one integration branch for main development from 0.9 on**, created at `007e2ce` (0.8.0-dev.105). New dev builds advance this branch; snapshots keep their `gameplay/0.9.0-dev.N` tags.
@@ -72,3 +77,4 @@ The expected first-stage remote count would be 52: 131 current + four maintained
 - 2026-11-11 22:48:48 PST (America/Los_Angeles) — Activated the approved branch workflow after installation permission acceptance; retained the newer pinned PLA28 source and original cleanup scope.
 - 2026-11-12 23:43:01 PST (America/Los_Angeles) — 0.8 designated: `codex/0.8-development` created at `be49cdd`; `codex/0.7-development` frozen at dev.58 (tag `gameplay/0.7.0-dev.58`); `codex/pla-development` retired as an alias (Lateralus approval, 12 Nov).
 - 2026-11-14 11:10:26 PST (America/Los_Angeles) — 0.9 designated: `codex/0.9-development` created at `007e2ce` (0.8.0-dev.105); `codex/0.8-development` frozen; batch-only builds (Osama, 14 Nov 11:05).
+- 2026-11-19 06:4x PST (America/Los_Angeles) — 0.9.1 designated: `codex/0.9.1-development` created at `bc085f2d`; `codex/0.9-development` frozen; playtests 0.9.1, 0.9.2, … and dev builds 0.9.1-dev.N (Lateralus).
