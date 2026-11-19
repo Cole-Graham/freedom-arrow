@@ -36,8 +36,12 @@ static class ThirdPartyGuard
     // matchmaking hub on Sam's deck, not ActualArrow's server. Its match statistics go there too.
     // ArrowQueue keeps these in UserData/ArrowQueue.cfg, which ActualArrow also reads, so the old values are put back
     // when the game closes (MelonLoader runs the quit events before it saves the preferences).
-    const string Hub="https://cyberdeck.tailf7ad82.ts.net/hubs/game";
-    const string Stats="https://cyberdeck.tailf7ad82.ts.net/hubs/stats";
+    // 0.9 dev.44 batch (Osama 19 Nov 2026, Chinese playtesters: "can't see others online or other mod lobbies"): mainland China cannot reach the
+    // deck's Tailscale address (*.ts.net); SteelPlate's CN sessions timed out every 60 s, his Hong Kong (VPN) session connected. The hub now goes
+    // through freedomarrow.app (Cloudflare Worker fa-site, /hubs/* passed through to the same hub, WebSocket included).
+    const string Hub="https://freedomarrow.app/hubs/game";
+    const string Stats="https://freedomarrow.app/hubs/stats";
+    static readonly string[] OldHubs={"https://cyberdeck.tailf7ad82.ts.net/hubs/game","https://cyberdeck.tailf7ad82.ts.net/hubs/stats"};
     // ArrowQueue's own ban guard blocks the game's Skirmish button, which is how Freedom Arrow opens its offline Local AI
     // Skirmish. BALocalSkirmish already refuses every non-scenario online lobby (create, list, invite, quick search),
     // so ArrowQueue's guard is off while Freedom Arrow runs.
@@ -54,7 +58,7 @@ static class ThirdPartyGuard
             var e=MelonPreferences.GetEntry<string>("ArrowQueue",id);
             if(e==null){MelonLogger.Error($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue setting {id} not found");continue;}
             // A value that is already ours (left by a crash) goes back to ArrowQueue's own default ("").
-            changed.Add((e,e.Value==url?"":e.Value));
+            changed.Add((e,e.Value==url||Array.IndexOf(OldHubs,e.Value)>=0?"":e.Value));
             e.Value=url;
         }
         MelonLogger.Msg($"FREEDOM_ARROW_MATCHMAKING: ArrowQueue uses {Hub}; its ban guard is off (Freedom Arrow's lobby rules apply)");

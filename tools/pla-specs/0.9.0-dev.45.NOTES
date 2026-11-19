@@ -1,0 +1,5 @@
+dev.45 batch notes (append; one line per change). Builder: read these before building dev.45.
+## Mod lobby hub through freedomarrow.app (Osama 19 Nov 2026 00:3x PST, thread 1571014792016171120; Chinese playtesters "can't see others online or other mod lobbies")
+- Mainland China cannot reach the deck hub at cyberdeck.tailf7ad82.ts.net (Tailscale Funnel): SteelPlate's CN sessions logged 73x "Queue server: TaskCanceledException ... again in 60 s"; his Hong Kong (VPN) session connected.
+- Cloudflare Worker fa-site now passes https://freedomarrow.app/hubs/* through to the same hub (route freedomarrow.app/hubs/* added 19 Nov 00:37 PST; negotiate 200 and WebSocket 101 verified from the deck). Old address keeps working, so dev.44 and older clients are unaffected.
+- runtime-qa/ThirdPartyGuard.cs: ArrowQueue Server/StatsServer = freedomarrow.app/hubs/game and /hubs/stats. REBUILD THE RUNTIME DLL. Check in game: log "Queue server: connected to https://freedomarrow.app/hubs/game." and Mod lobbies / Who is online filled.
