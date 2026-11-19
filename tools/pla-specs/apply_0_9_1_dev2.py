@@ -30,6 +30,28 @@ _mods={i for i,m in t['ModificationsJson'].items() if m['UnitId']==1175}
 ok(not [o for o in t['OptionsJson'].values() if o.get('ModificationId') in _mods or o.get('ReplaceUnitId')==1175],'no options or swap rows on 1175')
 g.put('Units',1175,{'Cost':35});ok(U[1175]['Cost']==35,'Infantry 步兵 35')
 rec['infantry_1175_price']={'unit':1175,'cost':[50,35],'verified':'data checks only'}
+# ---------- China card cleanup: stale squad-designer Names and design-note Descriptions (Lateralus 19 Nov 2026 08:39 PST, thread 1572962048705429598:
+# "yeah queue up that cleanup"). The internal Name of 63 China cards in the Arsenal is still the squad-designer label ("PLA Designer 47 Missile-Site
+# Security — HJ-73D" on a squad with no HJ-73D). It becomes "PLA " + the card name (HUDName), with the unit id added where two cards share a card
+# name. 230 China cards in the Arsenal carry design notes in Description ("Fixed PLA armament draft", "Named model-list stand-in. Donor ...",
+# "Sheet row 47", ...). Vanilla has no unit Description (535 None, 10 empty), so these become None. Card names (HUDName), stats and hidden rows are
+# unchanged. Nothing in the repo looks units up by these Names (git grep "PLA Designer": only the old pla_designer_infantry.py generator).
+_cn=[i for i,u in U.items() if u.get('CountryId')==4 and u.get('DisplayInArmory')]
+_ren=sorted(i for i in _cn if (U[i].get('Name') or '').startswith('PLA Designer '))
+ok(len(_cn)==236 and len(_ren)==63,('China Arsenal cards / designer names',len(_cn),len(_ren)))
+_hn={};[_hn.setdefault(U[i]['HUDName'].strip(),[]).append(i) for i in _ren]
+_names={}
+for i in _ren:
+    _h=U[i]['HUDName'].strip();_names[i]=f'PLA {_h}'+(f' ({i})' if len(_hn[_h])>1 else '')
+ok(len(set(_names.values()))==63 and not set(_names.values())&{u.get('Name') for j,u in U.items() if j not in _names},'new names unique')
+_old={i:U[i]['Name'] for i in _ren}
+for i,n in _names.items():g.put('Units',i,{'Name':n})
+_desc=sorted(i for i in _cn if U[i].get('Description'))
+ok(len(_desc)==230,('China Arsenal cards with a Description',len(_desc)))
+for i in _desc:g.put('Units',i,{'Description':None})
+ok(all(U[i]['Name']==_names[i] for i in _ren) and not any(U[i].get('Description') for i in _cn),'names and descriptions set')
+ok(U[1175]['Name']=='PLA Infantry 步兵','1175 renamed')
+rec['china_card_cleanup']={'renamed':{str(i):[_old[i],_names[i]] for i in _ren},'description_cleared':_desc,'verified':'data checks only'}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
