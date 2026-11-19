@@ -6,3 +6,4 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - [Overpressure](overpressure.md) forces that already scaled hit onto top armor inside `OverpressureRadius`.
 - [Stress](stress.md) adds blast stress and a share of the health lost, then Shocked and Panicked scale the unit until the bar recovers.
 - [Target and ammunition selection](target-and-ammo-selection.md) scores each round and each target, and shows why a weapon fires at a target it can barely damage.
+- [Missile flight](missile-flight.md) explains how start speed, burn time, acceleration, top speed and the 30% death speed set a missile's real reach, and how that compares with its table range.
