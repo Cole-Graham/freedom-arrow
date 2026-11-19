@@ -1428,6 +1428,41 @@
     "no_srat1": "FA has no SRAT I option",
     "not_changed": "base hulls ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30 (700 sides)"
   },
+  "builtin_kit_side_heat": {
+    "rule": "side HEAT ceiling 500 on every vehicle row",
+    "changed": {
+      "2009091": [
+        "PLA ZTZ-96B ArmorsJson",
+        700,
+        500
+      ],
+      "2010183": [
+        "PLA ZTZ-100 ArmorsJson",
+        700,
+        500
+      ],
+      "2018635": [
+        "PLA VT-5 ArmorsJson",
+        700,
+        500
+      ],
+      "2018651": [
+        "PLA VT-5 Recon ArmorsJson",
+        700,
+        500
+      ],
+      "2009807": [
+        "PLA ZBD-20 ArmorsJson",
+        700,
+        500
+      ],
+      "2001818": [
+        "Armor XM30 Booker base",
+        700,
+        500
+      ]
+    }
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -1758,6 +1793,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 265,
+  "checks": 272,
   "verified": "data checks only"
 }

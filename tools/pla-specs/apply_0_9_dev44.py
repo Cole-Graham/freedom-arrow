@@ -221,6 +221,18 @@ for _ids,_was,_to in ((_K500,700,500),(_K350,400,350)):
 ok(not any((_AR[_i].get('HeatArmorSides') or 0)>500 and re.search('TUSK|SRAT|BUSK|ERA|Armored',_AR[_i].get('Name','')) for _i in _hrows),'no kit row above 500 sides')
 rec['kit_side_heat']={'rule':'kit sides 700 -> 500, TUSK I 400 -> 350','changed':_kchg,'no_srat1':'FA has no SRAT I option','not_changed':'base hulls ZTZ-100, ZTZ-96B, ZBD-20, VT-5, XM30 (700 sides)'}
 print('kit side HEAT rows',len(_kchg))
+# ---------- Built-in kits on China hulls and IFVs (Osama 19 Nov 2026 00:3x PST, thread 1567745029781454889: "yes the Chinese hulls have the kits baked
+# into them, so please adjust accordingly as if they had the kits. IFVs are affected by these changes too"). Same ceiling as the kit change above: no
+# vehicle armour row keeps side HEAT above 500. Rows at 700 -> 500: ZTZ-96B, ZTZ-100, VT-5, VT-5 Recon, ZBD-20 (IFV) and the US XM30 base row (IFV,
+# the only non-China hull above 500). Front, rear, top and KE unchanged.
+_B500=[2009091,2010183,2018635,2018651,2009807,2001818]
+_bchg={}
+for _i in _B500:
+    ok(_AR[_i].get('HeatArmorSides')==700,('built-in kit side HEAT 700',_i,_AR[_i].get('Name')))
+    g.put('ArmorsJson',_i,{'HeatArmorSides':500});_bchg[str(_i)]=[_AR[_i].get('Name').strip(),700,500]
+ok(max(_AR[_i].get('HeatArmorSides') or 0 for _i in _hrows)==500,'no vehicle row above 500 side HEAT')
+rec['builtin_kit_side_heat']={'rule':'side HEAT ceiling 500 on every vehicle row','changed':_bchg}
+print('built-in kit side HEAT rows',len(_bchg))
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the
