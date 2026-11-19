@@ -64,3 +64,7 @@ dev.44 batch notes (append; one line per change). Builder: read these before bui
   26 unguided infantry AT HEAT rockets 9 -> 10 damage (RPG-7 PG-7VR/VL/VS/VM, RPG-16/22/26/27/28/29/30/32, M72, AT4, AT4 tandem, CGM2/3/4, SMAW HEAA, PF-89,
   PF-98, PF-98A, PF-98 tripod). Excluded: thermobaric/HE/HEDP/incendiary/smoke, C90-CR-BK + DZJ-08 dual purpose, SPG-9 (7), PF-97 prototype.
   VT-5 (1261) own armour row HEAT front 1000 -> 700 (sides 700 unchanged, pending Osama). 232 checks.
+- 19 Nov 2026 00:1x PST, thread 1567745029781454889 (Osama "let's shrink the cap to 1200 for the time being. everything goes down proportionally (in steps
+  of 50)"): 161 vehicle armour rows, HeatArmorFront >= 150 -> round(front x 1200/1400, step 50): 1400->1200, 1300->1100, 1000->850, 700->600, 400->350,
+  200->150. Under 150 unchanged; side/rear/top HEAT and all KE unchanged; infantry rows untouched. 234 checks. Per-row list in pla-0.9.0-dev.44.json
+  front_heat_cap_1200.

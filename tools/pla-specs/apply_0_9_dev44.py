@@ -190,6 +190,21 @@ ok(len(_v5)==1 and [r['UnitId'] for r in _UA.values() if r.get('ArmorId')==_v5[0
 g.put('ArmorsJson',_v5[0],{'HeatArmorFront':700})
 ok(_AR[_v5[0]]['HeatArmorFront']==700,'VT-5 HEAT front 700')
 rec['rpg_damage_10_vt5_heat']={'rpg_rows':_RPG,'damage':[9,10],'vt5_armour_row':_v5[0],'heat_front':[1000,700]}
+# ---------- Front HEAT armour compressed: cap 1400 -> 1200 (Osama 19 Nov 2026 00:1x PST, thread 1567745029781454889: "let's shrink the cap to 1200 for the time
+# being. everything goes down proportionally (in steps of 50)"). Every armour row used by a vehicle (not infantry): HeatArmorFront >= 150 becomes
+# round(front x 1200/1400 to the nearest 50): 1400->1200, 1300->1100, 1200->1050, 1100->950, 1000->850, 900->750, 800->700, 700->600, 500->450, 400->350,
+# 300->250, 200->150. Values under 150 stay. Side/rear/top HEAT and all KE armour unchanged. Runs after the VT-5 700 change (VT-5 -> 600).
+_hrows=sorted({r['ArmorId'] for r in _UA.values() if r.get('UnitId') in U and U[r['UnitId']].get('Type')!=2 and r.get('ArmorId') in _AR})
+_hchg={}
+for _i in _hrows:
+    _f=_AR[_i].get('HeatArmorFront') or 0
+    if _f>=150:
+        _n=int(round(_f*1200/1400/50)*50)
+        if _n!=_f:g.put('ArmorsJson',_i,{'HeatArmorFront':_n});_hchg[str(_i)]=[_AR[_i].get('Name'),_f,_n]
+ok(max(_AR[_i].get('HeatArmorFront') or 0 for _i in _hrows)==1200,'front HEAT cap 1200')
+ok(len(_hchg)>=100,('front HEAT rows compressed',len(_hchg)))
+rec['front_heat_cap_1200']={'rule':'round(front*1200/1400, step 50) for front>=150, vehicle rows only','changed':_hchg}
+print('front HEAT rows compressed',len(_hchg))
 # ---------- Autocannon HE IgnoreCover 0.25, like FA tank HE (Osama 18 Nov 2026 16:3x PST, thread 1567745029781454889: "let's give Auto cannons the
 # same 25% ignore cover as tank cannons have"). FA tank HE rounds are 0.25 (dev.43). Scope as the parked cb7f185c change: 20-57 mm HE/HEI/HEDP/MP rounds
 # (penetration <= 150) on any unit, China included; AP rounds stay as they are (tank AP is 0 too). Excluded: grenade launchers (QLB-06, QLZ-87) and the

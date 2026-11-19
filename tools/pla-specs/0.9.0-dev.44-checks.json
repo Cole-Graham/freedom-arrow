@@ -461,6 +461,816 @@
       700
     ]
   },
+  "front_heat_cap_1200": {
+    "rule": "round(front*1200/1400, step 50) for front>=150, vehicle rows only",
+    "changed": {
+      "47": [
+        "Armor Bradley BUSK",
+        400,
+        350
+      ],
+      "60": [
+        "Armor AMPV MC BUSK",
+        400,
+        350
+      ],
+      "149": [
+        "Armor M113A3 SLAT",
+        160,
+        150
+      ],
+      "160": [
+        "Armor TOS1 Base",
+        700,
+        600
+      ],
+      "161": [
+        "Armor TOS1 Armored",
+        800,
+        700
+      ],
+      "288": [
+        "Armor Bradley BUSK3",
+        700,
+        600
+      ],
+      "318": [
+        "Armor Armata Training Target",
+        1300,
+        1100
+      ],
+      "322": [
+        "Armor AMPV MC BUSK APS",
+        400,
+        350
+      ],
+      "336": [
+        "Armor FV107 Scimitar Armored",
+        180,
+        150
+      ],
+      "2000004": [
+        "Armor BMP3 Armored",
+        400,
+        350
+      ],
+      "2000011": [
+        "Armor M60A1 ERA Base",
+        500,
+        450
+      ],
+      "2000012": [
+        "Armor M60A1 M728",
+        300,
+        250
+      ],
+      "2000014": [
+        "Armor Bradley BUSK",
+        400,
+        350
+      ],
+      "2000015": [
+        "Armor Bradley BUSK3",
+        700,
+        600
+      ],
+      "2000018": [
+        "Armor Stryker SRAT Trophy",
+        250,
+        200
+      ],
+      "2000026": [
+        "Armor AMPV BUSK",
+        700,
+        600
+      ],
+      "2000027": [
+        "Armor AMPV ArmoredAPS",
+        700,
+        600
+      ],
+      "2000037": [
+        "Armor BMD4M Armored",
+        180,
+        150
+      ],
+      "2000052": [
+        "Armor ACV Armored",
+        400,
+        350
+      ],
+      "2000053": [
+        "Armor M8AGS ERA",
+        300,
+        250
+      ],
+      "2000057": [
+        "Armor M113A3 SLAT",
+        160,
+        150
+      ],
+      "2000069": [
+        "Armor BMP2 SLAT",
+        180,
+        150
+      ],
+      "2000076": [
+        "Armor T90M Base",
+        1300,
+        1100
+      ],
+      "2000077": [
+        "Armor T90M Armored",
+        1300,
+        1100
+      ],
+      "2000078": [
+        "Armor T90M Base Arena",
+        1300,
+        1100
+      ],
+      "2000079": [
+        "Armor T90M Armored Arena",
+        1300,
+        1100
+      ],
+      "2000089": [
+        "Armor M1A2SEP2",
+        1300,
+        1100
+      ],
+      "2000102": [
+        "Armor BMP1 Armored",
+        180,
+        150
+      ],
+      "2000104": [
+        "Armor BTR90 Armored",
+        180,
+        150
+      ],
+      "2000108": [
+        "Armor M10Booker",
+        500,
+        450
+      ],
+      "2000109": [
+        "Armor M1ABV",
+        1200,
+        1050
+      ],
+      "2000110": [
+        "Armor M1ABV Armored",
+        1400,
+        1200
+      ],
+      "2000114": [
+        "Armor CV9035 Armored",
+        500,
+        450
+      ],
+      "2000116": [
+        "Armor FV107 Scimitar Armored",
+        180,
+        150
+      ],
+      "2000119": [
+        "Armor Leopard2A8",
+        1400,
+        1200
+      ],
+      "2000120": [
+        "Armor Leopard2A8 PSO",
+        1400,
+        1200
+      ],
+      "2000121": [
+        "Armor Leopard2A8 Trophy",
+        1400,
+        1200
+      ],
+      "2000220": [
+        "Armor BMD4M Armored",
+        400,
+        350
+      ],
+      "2000227": [
+        "Armor Kurganets B10",
+        400,
+        350
+      ],
+      "2000235": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000236": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000237": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000238": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000239": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000240": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000380": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000381": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000382": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000383": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000384": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000385": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000386": [
+        "Armor Stryker SRAT",
+        700,
+        600
+      ],
+      "2000387": [
+        "Armor Stryker SRAT Trophy",
+        700,
+        600
+      ],
+      "2000394": [
+        "Armor AAVP7A1 SU",
+        400,
+        350
+      ],
+      "2000397": [
+        "Armor M1A2SEP2 TUA",
+        1300,
+        1100
+      ],
+      "2000400": [
+        "Armor M1A1FEP Base",
+        1300,
+        1100
+      ],
+      "2000401": [
+        "Armor M1A1FEP TUSK",
+        1300,
+        1100
+      ],
+      "2000402": [
+        "Armor M1A2C",
+        1400,
+        1200
+      ],
+      "2000403": [
+        "Armor M1A2C TUSK1",
+        1400,
+        1200
+      ],
+      "2000404": [
+        "Armor M1A2C TUSK1 Trophy",
+        1400,
+        1200
+      ],
+      "2000405": [
+        "Armor M1A2C TUSK2",
+        1400,
+        1200
+      ],
+      "2000406": [
+        "Armor M1A2C TUSK2 Trophy",
+        1400,
+        1200
+      ],
+      "2000407": [
+        "Armor M1A2C Trophy",
+        1400,
+        1200
+      ],
+      "2000408": [
+        "Armor M1A2SEP2",
+        1300,
+        1100
+      ],
+      "2000409": [
+        "Armor M1A2SEP2 Trophy",
+        1300,
+        1100
+      ],
+      "2000410": [
+        "Armor M1A2SEP2 TUSK1",
+        1300,
+        1100
+      ],
+      "2000411": [
+        "Armor M1A2SEP2 TUSK1 Trophy",
+        1300,
+        1100
+      ],
+      "2000412": [
+        "Armor M1A2SEP2 TUSK2 ",
+        1300,
+        1100
+      ],
+      "2000413": [
+        "Armor M1A2SEP2 TUSK2 Trophy",
+        1300,
+        1100
+      ],
+      "2000414": [
+        "Armor M1A2SEP1",
+        1300,
+        1100
+      ],
+      "2000415": [
+        "Armor M1A2SEP1 TUSK1",
+        1300,
+        1100
+      ],
+      "2000416": [
+        "Armor M1A2SEP1 TUSK2 ",
+        1300,
+        1100
+      ],
+      "2000420": [
+        "Armor T80BV",
+        600,
+        500
+      ],
+      "2000422": [
+        "Armor Armata T14 Base",
+        1300,
+        1100
+      ],
+      "2000423": [
+        "Armor Armata T14 21",
+        1400,
+        1200
+      ],
+      "2000435": [
+        "Armor BMPT Armored ",
+        1200,
+        1050
+      ],
+      "2000436": [
+        "Armor BMPT Base ",
+        1200,
+        1050
+      ],
+      "2000437": [
+        "Armor Armata T14 Base",
+        1300,
+        1100
+      ],
+      "2000438": [
+        "Armor BMOT Base",
+        700,
+        600
+      ],
+      "2000439": [
+        "Armor BMOT ERA",
+        700,
+        600
+      ],
+      "2000441": [
+        "Armor BMP3 Armored",
+        400,
+        350
+      ],
+      "2000445": [
+        "Armor BMP3 Armored",
+        700,
+        600
+      ],
+      "2000447": [
+        "Armor BMP3 Armored",
+        400,
+        350
+      ],
+      "2000451": [
+        "Armor Bumerang K16 Armored",
+        400,
+        350
+      ],
+      "2000452": [
+        "Armor Bumerang K16 Armored APS",
+        400,
+        350
+      ],
+      "2000455": [
+        "Armor M60A1 ERA Base",
+        600,
+        500
+      ],
+      "2000461": [
+        "Armor T72A",
+        600,
+        500
+      ],
+      "2000462": [
+        "Armor T72AV ",
+        650,
+        550
+      ],
+      "2000463": [
+        "Armor T72B ",
+        650,
+        550
+      ],
+      "2000464": [
+        "Armor T72BA",
+        750,
+        650
+      ],
+      "2000466": [
+        "Armor T72B3AM Obr16 Arena",
+        900,
+        750
+      ],
+      "2000467": [
+        "Armor T72B3AM Obr16 ERA Arena",
+        900,
+        750
+      ],
+      "2000468": [
+        "Armor T72B3",
+        750,
+        650
+      ],
+      "2000469": [
+        "Armor T72B3M Obr16",
+        900,
+        750
+      ],
+      "2000470": [
+        "Armor T72B3M Obr16 ERA",
+        900,
+        750
+      ],
+      "2000471": [
+        "Armor T72B3AM Obr16 Arena",
+        900,
+        750
+      ],
+      "2000472": [
+        "Armor T72B3AM Obr16 ERA Arena",
+        900,
+        750
+      ],
+      "2000473": [
+        "Armor T90",
+        750,
+        650
+      ],
+      "2000474": [
+        "Armor T90A",
+        900,
+        750
+      ],
+      "2000475": [
+        "Armor T80U",
+        800,
+        700
+      ],
+      "2000476": [
+        "Armor T80UA",
+        900,
+        750
+      ],
+      "2000477": [
+        "Armor M1A1HC Base",
+        900,
+        750
+      ],
+      "2000478": [
+        "Armor M1A1HC TUSK",
+        900,
+        750
+      ],
+      "2000479": [
+        "Armor M1A2",
+        900,
+        750
+      ],
+      "2000480": [
+        "Armor M1A2 TUSK1 ",
+        900,
+        750
+      ],
+      "2000481": [
+        "Armor M1A2 TUSK2",
+        900,
+        750
+      ],
+      "2000482": [
+        "Armor T90AK",
+        950,
+        800
+      ],
+      "2000483": [
+        "Armor T80BVM 2017",
+        950,
+        800
+      ],
+      "2000484": [
+        "Armor T80BVM 2018",
+        950,
+        800
+      ],
+      "2000485": [
+        "Armor T80BVM 2018 ERA",
+        950,
+        800
+      ],
+      "2000486": [
+        "Armor T80BVM 2017",
+        950,
+        800
+      ],
+      "2000488": [
+        "Armor T80BVM 2018 ERA",
+        1100,
+        950
+      ],
+      "2000522": [
+        "Armor M8AGS ERA",
+        700,
+        600
+      ],
+      "2000523": [
+        "Armor M8AGS Applique",
+        400,
+        350
+      ],
+      "2000549": [
+        "Armor T62M",
+        600,
+        500
+      ],
+      "2000550": [
+        "Armor T62MV",
+        600,
+        500
+      ],
+      "2000551": [
+        "Armor T62MV 22",
+        650,
+        550
+      ],
+      "2000552": [
+        "Armor T72A",
+        700,
+        600
+      ],
+      "2000553": [
+        "Armor T72AV ",
+        750,
+        650
+      ],
+      "2000555": [
+        "Armor Sprut Armored",
+        400,
+        350
+      ],
+      "2001818": [
+        "Armor XM30 Booker base",
+        700,
+        600
+      ],
+      "2002031": [
+        "Armor Black Eagle obr2018 baseline",
+        1300,
+        1100
+      ],
+      "2009007": [
+        "PLA ZBD-04A ArmorsJson",
+        400,
+        350
+      ],
+      "2009037": [
+        "PLA ZBL-08 ArmorsJson",
+        250,
+        200
+      ],
+      "2009063": [
+        "PLA ZTZ-99A ArmorsJson",
+        1300,
+        1100
+      ],
+      "2009091": [
+        "PLA ZTZ-96B ArmorsJson",
+        1000,
+        850
+      ],
+      "2009119": [
+        "PLA ZTQ-15 ArmorsJson",
+        500,
+        450
+      ],
+      "2009465": [
+        "PLA ZTZ-20 ArmorsJson",
+        1300,
+        1100
+      ],
+      "2009625": [
+        "PLA QN-506 ArmorsJson",
+        600,
+        500
+      ],
+      "2009657": [
+        "PLA ZTL-11 ArmorsJson",
+        250,
+        200
+      ],
+      "2009685": [
+        "PLA ZTZ-99A2 ArmorsJson",
+        1300,
+        1100
+      ],
+      "2009807": [
+        "PLA ZBD-20 ArmorsJson",
+        750,
+        650
+      ],
+      "2009871": [
+        "PLA ZTZ-99G ArmorsJson",
+        1300,
+        1100
+      ],
+      "2009899": [
+        "PLA ZTZ-96 ArmorsJson",
+        650,
+        550
+      ],
+      "2009955": [
+        "PLA VT-5 ArmorsJson",
+        500,
+        450
+      ],
+      "2010015": [
+        "PLA ZTZ-85-III ArmorsJson",
+        650,
+        550
+      ],
+      "2010183": [
+        "PLA ZTZ-100 ArmorsJson",
+        1200,
+        1050
+      ],
+      "2010315": [
+        "PLA ZBL-191 ArmorsJson",
+        500,
+        450
+      ],
+      "2010651": [
+        "PLA PGZ-88 ArmorsJson",
+        600,
+        500
+      ],
+      "2010811": [
+        "PLA Type 59 — FlashPoint ArmorsJson",
+        300,
+        250
+      ],
+      "2010839": [
+        "PLA Type 59D ArmorsJson",
+        600,
+        500
+      ],
+      "2010961": [
+        "PLA VN20 ArmorsJson",
+        1300,
+        1100
+      ],
+      "2010987": [
+        "PLA VN20-B ArmorsJson",
+        1300,
+        1100
+      ],
+      "2011051": [
+        "PLA VT-1A / MBT-2000 ArmorsJson",
+        650,
+        550
+      ],
+      "2011077": [
+        "PLA VT-4 / Al-Hyder ArmorsJson",
+        1300,
+        1100
+      ],
+      "2011105": [
+        "PLA WZ-1224 ArmorsJson",
+        750,
+        650
+      ],
+      "2011289": [
+        "PLA ZTL-191 ArmorsJson",
+        500,
+        450
+      ],
+      "2011317": [
+        "PLA ZTZ-80 / Type 80 ArmorsJson",
+        600,
+        500
+      ],
+      "2011345": [
+        "PLA ZTZ-96A ArmorsJson",
+        700,
+        600
+      ],
+      "2011373": [
+        "PLA ZTZ-99 ArmorsJson",
+        1000,
+        850
+      ],
+      "2016059": [
+        "PLA ZTQ-15 ArmorsJson",
+        500,
+        450
+      ],
+      "2018359": [
+        "PLA ZBD-04A ArmorsJson",
+        400,
+        350
+      ],
+      "2018377": [
+        "PLA ZBD-20 ArmorsJson",
+        750,
+        650
+      ],
+      "2018621": [
+        "PLA Type 59D ArmorsJson",
+        600,
+        500
+      ],
+      "2018635": [
+        "PLA VT-5 ArmorsJson",
+        700,
+        600
+      ],
+      "2018651": [
+        "PLA VT-5 Recon ArmorsJson",
+        1000,
+        850
+      ],
+      "2018730": [
+        "PLA ZTL-191 ArmorsJson",
+        500,
+        450
+      ],
+      "2018788": [
+        "PLA ZTZ-85-III ArmorsJson",
+        600,
+        500
+      ],
+      "2018999": [
+        "PLA ZTQ-15 Light ArmorsJson",
+        300,
+        250
+      ],
+      "2019333": [
+        "PLA WZ1224 ArmorsJson",
+        650,
+        550
+      ],
+      "2019365": [
+        "PLA VN20 ArmorsJson",
+        1300,
+        1100
+      ]
+    }
+  },
   "autocannon_he_ignore_cover": {
     "ignore_cover": 0.25,
     "basis": "same as FA tank HE (0.25)",
@@ -791,6 +1601,6 @@
   "version": "0.9.0-dev.44",
   "base": "0.9.0-dev.43",
   "base_sha256": "7921255a75212a1bf7b28cf8fb8c9a6920a85f6ef29937d0630e550bb44ee50a",
-  "checks": 232,
+  "checks": 234,
   "verified": "data checks only"
 }
