@@ -197,5 +197,7 @@ subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py')
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_mount_weapons.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.2-dev.1 (Osama 19 Nov 2026, QQ bug FA-003): every infantry squad has 5 HP per soldier, like vanilla.
 subprocess.run([sys.executable,str(Path(__file__).parent/'check_squad_hp.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+# 0.9.2-dev.2 (Osama 19 Nov 2026): China airborne/marine/engineer/SF cards keep at least their vanilla counterparts' armour.
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_infantry_armor.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # Lateralus 16 Nov 2026: the dev.13 SPAAG/SAM data never reached a package; fail if queued changes are missing (lateralus/queued_checks.py).
 subprocess.run([sys.executable,str(Path(__file__).parent/'lateralus/queued_checks.py'),str(complete),V,'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)

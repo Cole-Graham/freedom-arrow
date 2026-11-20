@@ -58,6 +58,22 @@ ok(not any(o and 2011621 in (o.get('Ability1Id'),o.get('Ability2Id'),o.get('Abil
 g.put('UnitAbilitiesJson',_z9[0]['Id'],{'AbilityId':23});g.remove('AbilitiesJson',2011621)
 rec['china_helo_rebalance']={'sheet':'1zRtOuP5XgN2DhuBMwaTY-8nbdPV5hf7oaCSSglrRkrw','units':len(_HU),'options':len(_HO),
     'missiles_12':[2017053,2017071,2017077,2019088],'ty90_high_alt_500':[2016167,2017083],'z9_ability':[2011621,23]}
+# ---------- China infantry armour = vanilla counterparts (Osama 19 Nov 2026 19:4x PST, thread 1571014792016171120: "make sure Chinese infantry
+# armor matches other factions"; 19:45 "Yeah we need to up these", "These armor changes are fine"). Vanilla: line squads 6; airborne / marine
+# line infantry and their recon and weapon teams 8 (Airborne, Rangers, Force Recon, Desantniki, Morskaya pekhota, VDV teams); SF and engineers
+# 10 (Delta, Spetsnaz, Combat Engineers, Ingenery-Shturmoviki). Each card now links the vanilla armour row with the target ArmorValue and the
+# same HP and HEAT/KE values (5 HP per soldier kept), instead of its own FA row (lateralus ability-row-reuse rule, applied to armour).
+_ARM={1136:('Airborne 空降兵',6,8,277),1192:('Marines 陆战队',6,8,291),1224:('Marine Recon',6,8,276),1142:('Pathfinders 先遣队',6,8,278),
+      1194:('Marine QW-2 Team',6,8,289),1193:('Marine HJ-8H Team',6,8,289),1199:('Weapons Squad 火力班',6,8,291),1156:('Combat Engineers 工兵班',8,10,273)}
+UA=t['UnitArmorsJson'];AR=t['ArmorsJson'];rec['infantry_armour']={}
+_HF=('MaxHealthPoints','HeatArmorFront','HeatArmorRear','HeatArmorSides','HeatArmorTop','KinArmorFront','KinArmorRear','KinArmorSides','KinArmorTop')
+for uid,(name,a0,a1,vid) in _ARM.items():
+    rows=[r for r in UA.values() if r['UnitId']==uid];ok(len(rows)==1 and U[uid]['HUDName']==name,(name,len(rows)))
+    old=AR[rows[0]['ArmorId']];ok(old['ArmorValue']==a0,(name,'ArmorValue',old['ArmorValue']))
+    ok(vid in native['ArmorsJson'] and AR[vid]['ArmorValue']==a1 and all(AR[vid].get(f)==old.get(f) for f in _HF),(name,'vanilla row',vid))
+    g.put('UnitArmorsJson',rows[0]['Id'],{'ArmorId':vid});ok(UA[rows[0]['Id']]['ArmorId']==vid,name)
+    rec['infantry_armour'][str(uid)]={'name':name,'ArmorValue':[a0,a1],'armour_row':[old['Id'],vid],'HP':old['MaxHealthPoints']}
+rec['infantry_armour_verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
