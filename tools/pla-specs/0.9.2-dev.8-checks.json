@@ -1,0 +1,179 @@
+{
+  "community_cards": {
+    "1109": {
+      "name": "QJY-201",
+      "before": "DLC3/HMG_KORD/HMG_KORD",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1136": {
+      "name": "Airborne 空降兵",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1137": {
+      "name": "HJ-12 Team",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_HJ12-Portrait"
+    },
+    "1139": {
+      "name": "Tank Hunters 坦克杀手",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1142": {
+      "name": "Pathfinders 先遣队",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1143": {
+      "name": "Thunder Gods 雷神",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_SOF-Portrait"
+    },
+    "1144": {
+      "name": "Snipers 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1145": {
+      "name": "QW-12 Patrol 防空巡逻",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1146": {
+      "name": "Assault Raiders 突击队",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1149": {
+      "name": "Recon 侦察组",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1152": {
+      "name": "HJ-8E Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_HJ73-Portrait"
+    },
+    "1153": {
+      "name": "QW-2 Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1157": {
+      "name": "QJZ-89 Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1160": {
+      "name": "Armored Scouts 装甲侦察",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1161": {
+      "name": "Armored Sniper Pair 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1163": {
+      "name": "Mech. Rifles 机步班",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1168": {
+      "name": "HJ-73D Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_HJ73-Portrait"
+    },
+    "1169": {
+      "name": "FN-6 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1170": {
+      "name": "QJZ-89 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1172": {
+      "name": "PF-98 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1175": {
+      "name": "Infantry 步兵",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1176": {
+      "name": "Counter-Raid Team 反袭击队",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_PAP-Portrait"
+    },
+    "1182": {
+      "name": "PAP Snow Leopards 雪豹",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_PAP-Portrait"
+    },
+    "1191": {
+      "name": "Sea Dragons 蛟龙",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_JIAO_LONG-Portrait"
+    },
+    "1192": {
+      "name": "Marines 陆战队",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MARINE_JUNGLE-Portrait"
+    },
+    "1193": {
+      "name": "Marine HJ-8H Team",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MARINE_JUNGLE-Portrait"
+    },
+    "1194": {
+      "name": "Marine QW-2 Team",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1196": {
+      "name": "Moto. Riflemen 摩步班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1197": {
+      "name": "AA Troopers 防空班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1198": {
+      "name": "AT Troopers 反坦克组",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1199": {
+      "name": "Weapons Squad 火力班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1202": {
+      "name": "Snipers 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1206": {
+      "name": "Air Defense Scouts 防空侦察",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1224": {
+      "name": "Marine Recon",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_JIAO_LONG-Portrait"
+    }
+  },
+  "version": "0.9.2-dev.8",
+  "base": "0.9.2-dev.7",
+  "base_sha256": "1a0b66f6167df9f76374213b13cc69087072c1f658d2206ce4eb31d02cd11af7",
+  "checks": 149,
+  "verified": "data checks only"
+}
