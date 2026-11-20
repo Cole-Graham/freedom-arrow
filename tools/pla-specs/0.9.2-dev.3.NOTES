@@ -16,3 +16,4 @@ Other threads: add one line per change here.
   base-game ground transport (vanilla cargo format; TRANSPORT in pve.py); opener = waves 1+2 mounted + 2 attack helicopters per player; purchases start at
   20 s (FIRST_BUY 45 -> 20) so planes arrive early; AI money unlimited (FA_UNLIMITED); names "[FA] PvE <N>P <CN|US|RU> <map> 0.2" (LobbyMapTabs.cs: PvE tab
   matches "[FA] PvE "). Random whole-faction decks held back (conservative). 18 maps built; luac -p OK.
+- BUILT 19 Nov 2026 22:50 PST as build 234 (Osama 22:5x "build it and install it locally on my system"); installed on Vengeance 22:55 (hashes verified). Not seen in game.
