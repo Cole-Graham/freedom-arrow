@@ -234,7 +234,9 @@ def opening(waves,cards=None):
     for _,c in waves[:2]:
         for u,n in c.items():merged[u]=merged.get(u,0)+n
     if cards:merged[cards['ch1'][3]]=merged.get(cards['ch1'][3],0)+2
-    return [(1,merged)]
+    # Osama 20 Nov 2026 00:0x: "Can we make it so units spawn at start of game I don't know why you made it one minute delay": minute 0, and the
+    # online flavor hooks it to the script start, so the opening force spawns during deployment like the players' units.
+    return [(0,merged)]
 
 # ---- Lua decision AI (Osama 13:2x PST: "we should be using real AI", "Plug it into all of them but make sure they fast move and use roads").
 # BrokenArrowAI (seaborndan/BrokenArrowAI 4e4e6450, the pinned checkout on the deck; NOT copied into this repo, see LICENSE NOTE) commands the
@@ -453,7 +455,7 @@ def add_waves(nodes,objects,players,after,waves,orders=True):
     def node(key,props,x,y):
         nonlocal nid;nid+=1;nodes['b'].append({'v':0,'nnKey':key,'px':x,'py':y,'id':nid,'rtpt':True,'props_v2':props});return nid
     def wire(a,c,b,d):nodes['c'].append({'a':a,'b':b,'c':c,'d':d,'e':b})
-    def delay(sec,x,y):return node('delay',[p('Time',str(sec),1),p('igGmSp','False',1)],x,y)
+    def delay(sec,x,y,real=False):return node('delay',[p('Time',str(sec),1),p('igGmSp','True' if real else 'False',1)],x,y)
     def capture(group,x,y):
         return node('captureObj',[p('tgz2','c-2',1),p('AggressiveRadius2','600:0:0',1),p('forUnit2','c0'),p('forGroup2',group),p('pathf','Fast'),
                                   p('moveAttack','True'),p('lt','60'),p('bl','True')],x,y)
@@ -470,8 +472,9 @@ def add_waves(nodes,objects,players,after,waves,orders=True):
     prev,prev_port,t=after[0],after[1],0
     for i,(minute,counts) in enumerate(waves):
         y=4300.0+i*1200.0;g=f'FAPVE{i+1}'
-        wait=delay((minute-t)*60,-3000.0,y);t=minute;wire(wait,'in2',prev,prev_port)
-        go=delay(1,-2700.0,y);wire(go,'in2',wait,'out2')
+        real=minute==0   # a minute-0 wave runs in real time, so it also spawns while the deployment pause holds game time
+        wait=delay((minute-t)*60,-3000.0,y,real);t=minute;wire(wait,'in2',prev,prev_port)
+        go=delay(1,-2700.0,y,real);wire(go,'in2',wait,'out2')
         roles={}
         for u,n in counts.items():roles.setdefault(role(u),{})[u]=n
         tag=node('getTag',[p('val',f'c{tags[i%len(tags)]}')],-2400.0,y-150)
@@ -558,7 +561,8 @@ def build(game,out):
                 # Waves start when the deployment pause ends: the delay that unpauses the game.
                 off=[b['id'] for b in n['b'] if b['nnKey']=='pauseGame' and any(q['k']=='val' and q['v']=='False' for q in b['props_v2'])];assert len(off)==1,off
                 wait=[c['b'] for c in n['c'] if c['a']==off[0] and c['d']=='out2'];assert len(wait)==1,wait
-                waves=add_waves(n,o,players,(wait[0],'out2'),opening(WAVES[title],AI_CARDS[title]) if ai else WAVES[title],orders=not ai)
+                st=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(st)==1
+                waves=add_waves(n,o,players,(st[0],'flow') if ai else (wait[0],'out2'),opening(WAVES[title],AI_CARDS[title]) if ai else WAVES[title],orders=not ai)
                 if ai:add_ai(n,h['map']);add_purchase(n,o,h['map'],players,AI_CARDS[title])
                 configure_slots(o,m,players)
             C.check_spawns(flavor,h,o)

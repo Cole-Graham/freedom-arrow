@@ -1,0 +1,1 @@
+- 20 Nov 2026 00:1x PST (Osama: "Can we make it so units spawn at start of game ... Make the change, build and upload"): the PvE AI opening force spawns at the script start in real time (delay 0, ignore game speed), i.e. during the deployment pause, instead of 1 minute after it ends. Online and Skirmish flavors.
