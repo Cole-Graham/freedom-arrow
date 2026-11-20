@@ -16,3 +16,7 @@
 - game-config.json ForestDamageTaken 0.7 -> 0.55: infantry in woods take 55% + 45% x Ignore Cover (rifles 55%, tank/autocannon HE IC 0.25 66%, 155 mm IC 0.36 71%, IC 1 100%). Wargame community figure: 60%. Log line FREEDOM_ARROW_COVER_DAMAGE installed forest 0.55.
 - FS-70A (2017197) and FS-90 (2018819): damage 8/9 -> 3.5, penetration 400 -> 60, stress 160 -> 140, blast 0 -> 14 m, stress AOE 16 -> 14 (equal to vanilla APKWS 45 in every field but the name).
 - Checks 72. Not seen in game.
+
+## TY-90 damage 8; Z-19 / Z-19G +40 (Osama 19 Nov 2026, thread 1567745029781454889)
+- TY-90 (2016167 Z-20KA/Z-20T; 2017083 Z-10/Z-10K/Z-10U/Z-19/Z-19G): damage 13 -> 8, like Stinger/Verba/Igla-N/Mistral-3. Range and speed unchanged.
+- Z-19 (1103; unlisted copy 940) and Z-19G (1236): 75 -> 115. Recon cards unchanged.

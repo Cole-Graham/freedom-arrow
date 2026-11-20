@@ -103,6 +103,16 @@ for _i in (2017197,2018819):
     _old={f:_A[_i].get(f) for f in _F};g.put('AmmunitionsJson',_i,{f:_A[45][f] for f in _F})
     ok(all(_A[_i].get(k)==_A[45].get(k) for k in _A[45] if k not in('Id','Name','HUDName')),(_i,'equal to APKWS 45'))
     rec['fs_rockets_like_apkws'][_A[_i]['HUDName']]={'ammo':_i,'from':_old,'to':{f:_A[45][f] for f in _F}}
+# ---------- TY-90 damage 8; Z-19 / Z-19G +40 (Osama 19 Nov 2026 16:5x PST, thread 1567745029781454889: "TY-90 to 8 damage to match similar weapons.
+# Z-19 (both variants +40 pts)"). TY-90 rows 2016167 (Z-20KA, Z-20T) and 2017083 (Z-10, Z-10K, Z-10U, Z-19, Z-19G): damage 13 -> 8, like
+# Stinger, Verba, Igla-N and Mistral-3 (8). Range 1050/775 m and speed 600 unchanged. Z-19 (1103, and the unlisted Air Force copy 940) and
+# Z-19G (1236): base 75 -> 115; their loadout options are added on top and have no swap rows. Z-19 Recon / Z-19G Recon cards unchanged.
+for _i in (2016167,2017083):
+    ok(_A[_i]['HUDName']=='TY-90' and _A[_i]['Damage']==13.0,(_i,'TY-90 13'));g.put('AmmunitionsJson',_i,{'Damage':8.0})
+for _u in (940,1103,1236):
+    ok(U[_u]['HUDName'] in ('Z-19','Z-19G') and U[_u]['Cost']==75 and not U[_u].get('OriginalCost'),(_u,'Z-19 75'));g.put('Units',_u,{'Cost':115})
+    ok(not any(o.get('ReplaceUnitId')==_u for o in t['OptionsJson'].values()),(_u,'swap row'))
+rec['ty90_damage_8']={'ammo':[2016167,2017083],'Damage':[13,8]};rec['z19_plus_40']={'units':[940,1103,1236],'Cost':[75,115]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

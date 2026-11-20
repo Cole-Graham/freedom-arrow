@@ -219,9 +219,30 @@
       }
     }
   },
+  "ty90_damage_8": {
+    "ammo": [
+      2016167,
+      2017083
+    ],
+    "Damage": [
+      13,
+      8
+    ]
+  },
+  "z19_plus_40": {
+    "units": [
+      940,
+      1103,
+      1236
+    ],
+    "Cost": [
+      75,
+      115
+    ]
+  },
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 72,
+  "checks": 80,
   "verified": "data checks only"
 }
