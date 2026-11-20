@@ -14,7 +14,6 @@ namespace FreedomArrow;
 // Aircraft portraits use the supplied PNGs verbatim; numeric card fields remain native.
 // Portrait, _BASIC and _HOVER aliases share one Sprite/Texture per resource.
 // PLA infantry portraits (Osama, 13 Nov 2026): conscripts and sniper pair are original generated art; the other six are Osama's supplied images.
-// 12 more PLA infantry portraits (Osama, 20 Nov 2026): Chinese community art with the BROKEN ARROW mark removed (work/osama-art-20261120).
 static class CardIcons
 {
     static readonly (string address,string resource)[] Icons=
@@ -109,42 +108,6 @@ static class CardIcons
         ("FA_CN_INF_MOTORIZED-Portrait","FA_CN_INF_MOTORIZED-Portrait.png"),
         ("FA_CN_INF_MOTORIZED-Portrait_BASIC","FA_CN_INF_MOTORIZED-Portrait.png"),
         ("FA_CN_INF_MOTORIZED-Portrait_HOVER","FA_CN_INF_MOTORIZED-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_HELO-Portrait","FA_CN_INF_AIRBORNE_HELO-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_HELO-Portrait_BASIC","FA_CN_INF_AIRBORNE_HELO-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_HELO-Portrait_HOVER","FA_CN_INF_AIRBORNE_HELO-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_SOF-Portrait","FA_CN_INF_AIRBORNE_SOF-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_SOF-Portrait_BASIC","FA_CN_INF_AIRBORNE_SOF-Portrait.png"),
-        ("FA_CN_INF_AIRBORNE_SOF-Portrait_HOVER","FA_CN_INF_AIRBORNE_SOF-Portrait.png"),
-        ("FA_CN_INF_HJ12-Portrait","FA_CN_INF_HJ12-Portrait.png"),
-        ("FA_CN_INF_HJ12-Portrait_BASIC","FA_CN_INF_HJ12-Portrait.png"),
-        ("FA_CN_INF_HJ12-Portrait_HOVER","FA_CN_INF_HJ12-Portrait.png"),
-        ("FA_CN_INF_HJ73-Portrait","FA_CN_INF_HJ73-Portrait.png"),
-        ("FA_CN_INF_HJ73-Portrait_BASIC","FA_CN_INF_HJ73-Portrait.png"),
-        ("FA_CN_INF_HJ73-Portrait_HOVER","FA_CN_INF_HJ73-Portrait.png"),
-        ("FA_CN_INF_MANPAD-Portrait","FA_CN_INF_MANPAD-Portrait.png"),
-        ("FA_CN_INF_MANPAD-Portrait_BASIC","FA_CN_INF_MANPAD-Portrait.png"),
-        ("FA_CN_INF_MANPAD-Portrait_HOVER","FA_CN_INF_MANPAD-Portrait.png"),
-        ("FA_CN_INF_MARINE_JUNGLE-Portrait","FA_CN_INF_MARINE_JUNGLE-Portrait.png"),
-        ("FA_CN_INF_MARINE_JUNGLE-Portrait_BASIC","FA_CN_INF_MARINE_JUNGLE-Portrait.png"),
-        ("FA_CN_INF_MARINE_JUNGLE-Portrait_HOVER","FA_CN_INF_MARINE_JUNGLE-Portrait.png"),
-        ("FA_CN_INF_JIAO_LONG-Portrait","FA_CN_INF_JIAO_LONG-Portrait.png"),
-        ("FA_CN_INF_JIAO_LONG-Portrait_BASIC","FA_CN_INF_JIAO_LONG-Portrait.png"),
-        ("FA_CN_INF_JIAO_LONG-Portrait_HOVER","FA_CN_INF_JIAO_LONG-Portrait.png"),
-        ("FA_CN_INF_MECH_INF-Portrait","FA_CN_INF_MECH_INF-Portrait.png"),
-        ("FA_CN_INF_MECH_INF-Portrait_BASIC","FA_CN_INF_MECH_INF-Portrait.png"),
-        ("FA_CN_INF_MECH_INF-Portrait_HOVER","FA_CN_INF_MECH_INF-Portrait.png"),
-        ("FA_CN_INF_PF98-Portrait","FA_CN_INF_PF98-Portrait.png"),
-        ("FA_CN_INF_PF98-Portrait_BASIC","FA_CN_INF_PF98-Portrait.png"),
-        ("FA_CN_INF_PF98-Portrait_HOVER","FA_CN_INF_PF98-Portrait.png"),
-        ("FA_CN_INF_QJZ171-Portrait","FA_CN_INF_QJZ171-Portrait.png"),
-        ("FA_CN_INF_QJZ171-Portrait_BASIC","FA_CN_INF_QJZ171-Portrait.png"),
-        ("FA_CN_INF_QJZ171-Portrait_HOVER","FA_CN_INF_QJZ171-Portrait.png"),
-        ("FA_CN_INF_SCOUT_SNIPER-Portrait","FA_CN_INF_SCOUT_SNIPER-Portrait.png"),
-        ("FA_CN_INF_SCOUT_SNIPER-Portrait_BASIC","FA_CN_INF_SCOUT_SNIPER-Portrait.png"),
-        ("FA_CN_INF_SCOUT_SNIPER-Portrait_HOVER","FA_CN_INF_SCOUT_SNIPER-Portrait.png"),
-        ("FA_CN_INF_PAP-Portrait","FA_CN_INF_PAP-Portrait.png"),
-        ("FA_CN_INF_PAP-Portrait_BASIC","FA_CN_INF_PAP-Portrait.png"),
-        ("FA_CN_INF_PAP-Portrait_HOVER","FA_CN_INF_PAP-Portrait.png"),
         ("outline\\FA_BLACK_EAGLE-Label","FA_BLACK_EAGLE-Label.png"),
         // A distinct address avoids a native UI item retaining the previous gray sprite.
         ("FA_BLACK_EAGLE_WHITE-Label","FA_BLACK_EAGLE-Label.png"),
