@@ -1,0 +1,8 @@
+{
+ "version": "0.9.2-dev.6",
+ "base": "0.9.2-dev.5",
+ "base_sha256": "15c39565239bfb162987ef5b369d6fcc4a19fe0b7458983203180b596a1ee00a",
+ "no_data_change": "7 new loading screens only (Osama 19 Nov 2026 23:4x: \"perfect add these next build\")",
+ "checks": 0,
+ "verified": "data unchanged from 0.9.2-dev.5"
+}

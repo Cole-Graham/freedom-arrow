@@ -4,3 +4,4 @@
   (locked in work/vehicle-loading-20261120/approved, SHA256SUMS). Each is built around a real image (Commons photos or Osama's references); credits and licences
   in docs/credits/loading-screens.md (Su-75 and T-80BVM are CC BY-SA share-alike). Art only: if dev.6 has no data changes, write the pla-0.9.2-dev.6.json no-data receipt.
 - Moved here from 0.9.2-dev.5.NOTES by thread 1567745029781454889 (dev.5 was already built as build 236 without these screens).
+- BUILT 20 Nov 2026 00:0x PST as build 237 (7 loading screens; data = dev.5). Osama: "we will release it as 9.2".

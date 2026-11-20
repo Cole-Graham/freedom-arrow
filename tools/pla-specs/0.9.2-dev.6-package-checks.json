@@ -1,0 +1,46 @@
+{
+  "version": "0.9.2-dev.6",
+  "build": 237,
+  "previous": "0.9.2-dev.5",
+  "assets_version": "0.2.48",
+  "assets": {
+    "file": "FreedomArrow-Assets-0.2.48.bamod",
+    "path": "/home/sam/tars/work/ba-dev/replicas/codex/work/pla-hotfix39-worktree/releases/0.6/out/local-092dev1/FreedomArrow-Assets-0.2.48.bamod",
+    "sha256": "1af2d2c9cf6d612d823cd18318e04edc9cbefa62d0aede32f468a252c67516be",
+    "size": 6479366376,
+    "files": 10997,
+    "new_in_this_build": false
+  },
+  "assets_compatible": true,
+  "complete": {
+    "file": "FreedomArrow-0.9.2-dev.6-complete.bamod",
+    "sha256": "5ab1e2ac9300fcf6f4959d468f85487482f89f1abe0612ab42878fa0298ccb9f",
+    "size": 6660702641,
+    "files": 12811
+  },
+  "gameplay": {
+    "file": "FreedomArrow-0.9.2-dev.6.bamod",
+    "sha256": "e9665adb7cbd50db2573c8b5d4d08165af8c6d8279842cad55615358091b7b40",
+    "size": 181336847,
+    "files": 1816
+  },
+  "changed_paths": [
+    "Mods/FreedomArrow.Runtime.dll",
+    "README.md",
+    "UserData/FreedomArrow/channel.json",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_14_black_eagle.png",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_15_su75_checkmate.png",
+    "UserData/FreedomArrow/loading/FA_RU_LOADING_16_t80bvm.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_13_xm30_m10.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_14_b21_raider.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_15_yf23_f22.png",
+    "UserData/FreedomArrow/loading/FA_US_LOADING_16_m10_booker.png",
+    "UserData/FreedomArrow/payload-manifest.json",
+    "UserData/FreedomArrow/pla-0.9.2-dev.6.json",
+    "UserData/FreedomArrow/pla-build.json",
+    "UserData/FreedomArrow/pla-package-manifest.json",
+    "UserData/FreedomArrow/pla-spec-assignments.json",
+    "mod.json"
+  ],
+  "native_verified": false
+}
