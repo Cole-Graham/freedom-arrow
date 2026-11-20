@@ -3,3 +3,9 @@
   tools/pla-specs/apply_0_9_4_dev1.py over out/local-093r242 (--vanilla ../lateralus-infantry-20261110/vanilla), 8 checks. Spetsnaz Alpha stand-off
   loadout (option 1511 -> unit 354): RPG-30 carriers 4 -> 6 (members 587 and 589, AK-107 riflemen, get SpecialWeaponId 169; 1 round each, the
   vanilla disposable pattern). Squad stays 14 men; option cost (+5) and the close-quarters loadout (unit 131) unchanged. Not yet seen in game.
+- 2026-11-20 14:2x PST, thread 1567745029781454889 (Osama: "I liked how Tanks and IFV damage was before we removed the cover ... a % damage reduction for IFVs and
+  etc across the board", "no no hook ... change all the values", "like tank cannon and autocannons"). DATA: section 2 of apply_0_9_4_dev1.py (batch now 14 checks).
+  Damage x0.55 on the 47 HE/frag/MP rounds (TargetType infantry, PenetrationAtMinRange < 150, not plane-capable) of main guns (Type 110) and autocannons (114) on
+  84 deck ground-vehicle weapon rows (Units.Type 4, artillery/MLRS/mortar/loitering roles left out). E.g. 125 mm HE 13 -> 7.15, 120 mm HE 12 -> 6.6, 100 mm HE
+  10 -> 5.5, 30 mm HE 3 -> 1.65, 25 mm HEI-T 2.5 -> 1.375. AP/APFSDS/HEAT, ATGMs, MGs, AGLs and AA guns unchanged; no round is shared with other users, so no copies.
+  Side effect (accepted): these rounds also do 45 % less to light vehicles and, for autocannons, helicopters. Not yet seen in game.
