@@ -4,3 +4,6 @@
   If the 0.9.2 release package is rebuilt before dev.8, it is dev.7 data and does NOT include this unless Osama says so.
 - 2026-11-20 00:56 PST (Osama: "Don't replace the unit cards yet I'll figure out which should be used where"): the community card commit 357c2e52 is reverted, so
   dev.8 has NO card changes and no data (art only again). The 12 logo-free card PNGs and the mapping draft stay in work/osama-art-20261120 (cards/, apply in git history at 357c2e52).
+- 2026-11-20 09:0x PST, thread 1572962048705429598 (Lateralus: "remove the "Resupply Cost" row from weapons on planes so players don't get confused ... Queue it"):
+  runtime-qa/PlaneResupplyCostRow.cs, postfix on AmmoInfoExpansionPanel.SetMainAmmoStats hides the "Resupply cost" line when isAircraft (planes only,
+  Units.Type 16; helicopters and ground keep it). UI only, no data change. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.
