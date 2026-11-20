@@ -9,3 +9,10 @@
   84 deck ground-vehicle weapon rows (Units.Type 4, artillery/MLRS/mortar/loitering roles left out). E.g. 125 mm HE 13 -> 7.15, 120 mm HE 12 -> 6.6, 100 mm HE
   10 -> 5.5, 30 mm HE 3 -> 1.65, 25 mm HEI-T 2.5 -> 1.375. AP/APFSDS/HEAT, ATGMs, MGs, AGLs and AA guns unchanged; no round is shared with other users, so no copies.
   Side effect (accepted): these rounds also do 45 % less to light vehicles and, for autocannons, helicopters. Not yet seen in game.
+- 2026-11-20 15:xx PST, thread 1567745029781454889 (Osama: "PLAAF Snipers have SF cqc kit, they need 8 armor and only 1 smoke like other sniper teams. Godswords,
+  BloodWolvse, Falcons, Sea dragons 8 armor 1 smoke. Troopers and light riflement and moto riflemen need 8 armor."). DATA: section 3 of apply_0_9_4_dev1.py
+  (batch now 39 checks). ArmorValue -> 8: Snipers 1144 (10), Blood Wolves 1183 (10), Falcons 1185 (10), Sea Dragons 1191 (10) on their own rows; Moto. Riflemen
+  1196, Light Riflemen 1205, AA Troopers 1197, AT Troopers 1198 (all 6, spec 21) on their own rows; Godswords 1181 relinked from shared vanilla row 283 (Elite,
+  AV10) to existing vanilla row 314 (Shock 12Men, same values with AV8). HP unchanged. Smoke 4 -> 1: Snipers and Godswords relinked from ability 81 (Sprint30
+  Smoke x4) to existing row 103 (Sprint30 Smoke, identical but 1 smoke); the other three SF already had 1. check_infantry_armor.py floors for 1144/1181/1183/
+  1185/1191 lowered 10 -> 8 to match. "Troopers" read as the China spec 21 AA/AT Troopers, not the US Troopers. Not yet seen in game.

@@ -77,6 +77,34 @@ ok(all((A[_copies.get(i,i)].get('PenetrationAtMinRange') or 0)<150 and not (A[_c
 ok(not any(_q(wa) and wa['AmmunitionId'] in _copies for wa in WA.values()),'vehicle rows now point at the copies')
 rec['vehicle_anti_infantry_x055']={'factor':_F,'rounds':len(_ids),'in_place':len(_inplace),'vehicle_copies':{str(k):v for k,v in _copies.items()},'weapon_rows':len(_rows),
   'examples':{A[i]['HUDName']:[_before[i],A[_copies.get(i,i)]['Damage']] for i in _ids[:12]}}
+# ---------- 3. China special forces and line infantry armour (Osama 20 Nov 2026 15:xx PST, thread 1567745029781454889: "PLAAF Snipers have SF cqc kit,
+# they need 8 armor and only 1 smoke like other sniper teams. Godswords, BloodWolvse, Falcons, Sea dragons 8 armor 1 smoke. Troopers and light riflement and
+# moto riflemen need 8 armor."). ArmorValue 10 -> 8 (SF) and 6 -> 8 (spec 21 line infantry: Moto. Riflemen, Light Riflemen, AA and AT Troopers); HP stays.
+# Own armour rows change in place. Godswords use vanilla row 283 (Elite 12Men, shared with units 113 and 150), so they link the existing vanilla row 314
+# (Shock 12Men: the same row with ArmorValue 8). Snipers and Godswords use ability 81 (Sprint30 Smoke x4); they link the existing row 103 (Sprint30 Smoke:
+# the same row with 1 smoke). Blood Wolves, Falcons and Sea Dragons already have 1 smoke.
+AR=t['ArmorsJson'];UA=t['UnitArmorsJson'];AB=t['AbilitiesJson'];UAB=t['UnitAbilitiesJson']
+_arm=lambda u:[r for r in UA.values() if r.get('UnitId')==u]
+_abl=lambda u:[r for r in UAB.values() if r.get('UnitId')==u]
+_same=lambda x,y,skip:all(x.get(k)==y.get(k) for k in set(x)|set(y) if k not in skip)
+_OWN={1144:(2012047,10),1183:(2013150,10),1185:(2013216,10),1191:(2013404,10),1196:(2013556,6),1205:(2013818,6),1197:(2013583,6),1198:(2013610,6)}
+_names={1144:'Snipers',1181:'Godswords',1183:'Blood Wolves',1185:'Falcons',1191:'Sea Dragons',1196:'Moto. Riflemen',1205:'Light Riflemen',1197:'AA Troopers',1198:'AT Troopers'}
+for u,n in _names.items():ok(U[u]['HUDName'].startswith(n) and U[u].get('CountryId')==4 and len(_arm(u))==1,(u,n,'China infantry with one armour row'))
+_hp={u:AR[_arm(u)[0]['ArmorId']].get('MaxHealthPoints') for u in _names}
+for u,(aid,av) in _OWN.items():
+    ok(_arm(u)[0]['ArmorId']==aid and AR[aid].get('ArmorValue')==av and sum(1 for r in UA.values() if r.get('ArmorId')==aid)==1,(u,'own armour row',aid,av))
+    g.put('ArmorsJson',aid,{'ArmorValue':8})
+ok(_arm(1181)[0]['ArmorId']==283 and _same(AR[283],AR[314],{'Id','Name','ArmorValue','IsDefault'}) and AR[314].get('ArmorValue')==8,'Godswords: row 314 = row 283 with ArmorValue 8')
+g.put('UnitArmorsJson',_arm(1181)[0]['Id'],{'ArmorId':314})
+ok(_same(AB[81],AB[103],{'Id','Name','SmokeAmmunitionQuantity'}) and (AB[81]['SmokeAmmunitionQuantity'],AB[103]['SmokeAmmunitionQuantity'])==(4,1),'ability 103 = ability 81 with 1 smoke')
+for u in (1144,1181):
+    r=[x for x in _abl(u) if x.get('AbilityId')==81];ok(len(r)==1,(u,'one Sprint30 Smoke x4 row'));g.put('UnitAbilitiesJson',r[0]['Id'],{'AbilityId':103})
+ok(all(AR[_arm(u)[0]['ArmorId']].get('ArmorValue')==8 for u in _names),'all nine units ArmorValue 8')
+ok(all(AR[_arm(u)[0]['ArmorId']].get('MaxHealthPoints')==_hp[u] for u in _names),'health points unchanged')
+_smk=lambda u:sum(AB[x['AbilityId']].get('SmokeAmmunitionQuantity') or 0 for x in _abl(u))
+ok(all(_smk(u)==1 for u in (1144,1181,1183,1185,1191)),'SF and Snipers: 1 smoke')
+ok(AR[283].get('ArmorValue')==10 and sorted(r['UnitId'] for r in UA.values() if r.get('ArmorId')==283)==[113,150],'vanilla row 283 unchanged for units 113 and 150')
+rec['china_infantry_armor_8']={'units':{str(u):_names[u] for u in _names},'armor_value':8,'godswords_armor_row':[283,314],'smoke_1_ability_row':[81,103],'linked_ability_units':[1144,1181]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
