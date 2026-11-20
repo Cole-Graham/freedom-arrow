@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.1",
+  "version": "0.9.2-dev.1",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.1 (19 Nov): playtest release, the same game data as 0.9.1-dev.5. See the 0.9.1 patch notes for every change since the 0.9.0-dev.41 playtest. Needs Freedom Arrow — Models and Music 0.2.47.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.2-dev.1 (19 Nov): first dev build toward the 0.9.2 playtest, over 0.9.1. Woods 55% damage taken; squad HP 5 per soldier; Tank Hunters 8 men; ZTQ-15 and VT-5 prices; JRVG-1 speed; ZTZ-100 105 mm names; helicopter changes (DAP laser, no supplies on gunships, Z-20 family, Z-19 115, FS-70A/FS-90 = APKWS, TY-90 8); QN-506/ZBD-86/ZBD-05/FK-2000 spawn fix; online PvE maps use AI bot slots; Z-9 clear glass. Needs Freedom Arrow — Models and Music 0.2.48.",
   "repo": "Cole-Graham/freedom-arrow"
 }

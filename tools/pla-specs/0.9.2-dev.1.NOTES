@@ -52,3 +52,4 @@
   Checked: built all 6 maps, slot readback, luac -p on the 3 Lua chunks, Lua mock of the owner rotation (8 9 8 9; no bots -> Bravo Player 1).
   NOT tested: whether a private lobby with 1-3 humans + these bots starts online (12 Nov: 1 human + AI said "Not enough players"), and the AI
   fighting online. ArrowQueue will show its "AI bot in the lobby" warning on these maps (Osama chose the TEST YOUR DECK pattern knowing this).
+- BUILT 19 Nov 2026 19:42 PST as build 232 (thread 1567745029781454889, Osama 19:38 "Push it into the dev build for testing"): base out/local-091, Assets 0.2.48 (Z-9 clear glass), 212,964 regression checks; check_model_carry.py updated to require clear glass (not the US_UH-1Y_Glass donor) on the 6 Z-9 material files. Not seen in game.
