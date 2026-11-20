@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.3-dev.1",
+  "version": "0.9.3",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.3-dev.1 (20 Nov): plane return curve, ground cruise/ballistic resupply -50% time -25% cost, no Resupply cost line on plane weapons, [3v3] Bay of Winds, NEW/UPDATED map tags. Includes everything in 0.9.2. Needs Freedom Arrow — Models and Music 0.2.48.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.3 (20 Nov): playtest release, the same game data as 0.9.3-dev.1. See the 0.9.3 patch notes for every change since 0.9.2. Needs Freedom Arrow — Models and Music 0.2.48.",
   "repo": "Cole-Graham/freedom-arrow"
 }

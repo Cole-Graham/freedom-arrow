@@ -1,0 +1,8 @@
+{
+ "version": "0.9.3",
+ "base": "0.9.3-dev.1",
+ "base_sha256": "6188cf690bc0e5a67a2c274988b72b1be1706fe981265e90aa4922cb7b2b641b",
+ "no_data_change": "0.9.3 is the playtest release of 0.9.3-dev.1 (Lateralus 20 Nov 2026: \"ok its ready release it\"); constants are the 0.9.3-dev.1 state",
+ "checks": 0,
+ "verified": "data unchanged from 0.9.3-dev.1"
+}
