@@ -113,6 +113,11 @@ for _u in (940,1103,1236):
     ok(U[_u]['HUDName'] in ('Z-19','Z-19G') and U[_u]['Cost']==75 and not U[_u].get('OriginalCost'),(_u,'Z-19 75'));g.put('Units',_u,{'Cost':115})
     ok(not any(o.get('ReplaceUnitId')==_u for o in t['OptionsJson'].values()),(_u,'swap row'))
 rec['ty90_damage_8']={'ammo':[2016167,2017083],'Damage':[13,8]};rec['z19_plus_40']={'units':[940,1103,1236],'Cost':[75,115]}
+# ---------- JRVG-1 speed (Osama 19 Nov 2026 16:59 PST, thread 1567745029781454889: "JRVG speed to 60 forward 20 reverse"). Its own mobility row
+# 2009941 (used by no other unit or option): road 65 -> 60, reverse 25 -> 20. Off-road stays 55 (already under 60).
+_MO=t['MobilityJson'];ok(_MO[2009941]['MaxSpeedRoad']==65.0 and _MO[2009941]['MaxSpeedReverse']==25.0,'JRVG-1 mobility before')
+ok([r['UnitId'] for r in t['UnitPropulsionsJson'].values() if r['MobilityId']==2009941]==[952] and not any(o.get('MobilityId')==2009941 for o in t['OptionsJson'].values()),'JRVG mobility not shared')
+g.put('MobilityJson',2009941,{'MaxSpeedRoad':60.0,'MaxSpeedReverse':20.0});rec['jrvg1_speed']={'mobility':2009941,'road':[65,60],'reverse':[25,20],'offroad':55}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
