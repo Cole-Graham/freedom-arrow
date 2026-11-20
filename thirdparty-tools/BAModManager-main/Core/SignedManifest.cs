@@ -22,6 +22,24 @@ public static class SignedManifest
         "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEldksEagvrwoKFGwmy7XDip3JEB+AeHFQTn52LcUVl2BPxjwreE5BcR4DiIMlh0rfVicCMZXGfCBe+ZSKV5J5ew==",
     };
 
+    /// <summary>Tests only: skip the system ECDSA, as on Proton/Wine.</summary>
+    internal static bool ForceManagedVerify;
+
+    /// <summary>System ECDSA (Windows); 1.1.12: the plain C# P-256 check when the system has no working ECDSA (Proton/Wine, 0x80090029).
+    /// A "no" from the system is final; only a CryptographicException falls back.</summary>
+    static bool Verify(byte[] spki, byte[] signed, byte[] signature)
+    {
+        if (!ForceManagedVerify)
+            try
+            {
+                using var ec = ECDsa.Create();
+                ec.ImportSubjectPublicKeyInfo(spki, out _);
+                return ec.VerifyData(signed, signature, HashAlgorithmName.SHA256, DSASignatureFormat.Rfc3279DerSequence);
+            }
+            catch (CryptographicException) { }
+        return P256Verify.Verify(spki, signed, signature);
+    }
+
     /// <summary>The manifest text inside a signed envelope {"manifest": base64, "signature": base64 DER}, or InvalidDataException.</summary>
     public static string Open(byte[] envelope)
     {
@@ -39,12 +57,8 @@ public static class SignedManifest
         }
         var signed = Encoding.UTF8.GetBytes(Context).Concat(body).ToArray();
         foreach (var key in TrustedKeys)
-        {
-            using var ec = ECDsa.Create();
-            ec.ImportSubjectPublicKeyInfo(Convert.FromBase64String(key), out _);
-            if (ec.VerifyData(signed, signature, HashAlgorithmName.SHA256, DSASignatureFormat.Rfc3279DerSequence))
+            if (Verify(Convert.FromBase64String(key), signed, signature))
                 return Encoding.UTF8.GetString(body);
-        }
         throw new InvalidDataException("The version list's signature is not valid, so the launcher will not use it. Ask in the Freedom Arrow Discord.");
     }
 }

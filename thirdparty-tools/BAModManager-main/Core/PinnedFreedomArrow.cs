@@ -165,8 +165,6 @@ public static class PinnedFreedomArrow
         progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
         VerifyArchive(ArchivePath);
         VerifyAssets();
-        EnsureAssets(gameDir, log, ct, progress);
-        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
         var pack = launcher.FindPack(Manifest.Load(gameDir));
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
         {
@@ -180,6 +178,13 @@ public static class PinnedFreedomArrow
         pack = launcher.FindPack(manifest) ?? throw new InvalidDataException("dev.45 installation record is missing.");
         launcher.Activate(gameDir, manifest, pack, log);
         manifest.Save(gameDir);
+        // 1.1.12: Models + Music/Voices after the gameplay package. Replacing a gameplay package that was installed from a complete package
+        // (PC installer, older launchers) removes that package's model and music files; checked first, they were gone when the game started
+        // (measured on Vengeance 20 Nov 2026: 0.9.2-dev.7 complete -> 0.9.2 left no UserData/FAModels, FAMusic or FAAssets).
+        EnsureAssets(gameDir, log, ct, progress);
+        manifest = Manifest.Load(gameDir);
+        pack = launcher.FindPack(manifest) ?? throw new InvalidDataException("dev.45 installation record is missing.");
+        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
         if (pack.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
             throw new InvalidDataException("dev.45 payload verification failed. The game will not start.");
         log("Verified Freedom Arrow " + Version + " with Models + Music/Voices.");
