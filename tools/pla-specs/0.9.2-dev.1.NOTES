@@ -40,3 +40,7 @@
 - 19 Nov 2026 17:3x PST, thread 1572407822849810463 (Osama: "z-20S is recon but it shouldnt have supplies, Z-11WB should be modeled after other helos, not a
   drone ... Make the rest of the changes"): Z-20 family ability 2009257 -> vanilla-equal FA row 2000767 (15 flares instead of 10); Z-20S supply 4000 -> 0;
   Z-11WB drone row 10 -> heli row 84 (Mi-24K/Ka-50: 5% ECM, 15 flares, laser); Z-20 and Z-20J 65 -> 80 (UH-60M), Z-20T 65 -> 95. 133 checks.
+- 19 Nov 2026 17:4x PST, thread 1572407822849810463 (Osama: "Z-9WA the glass has metal textures on it" / "same as the other Z-9"): the six Z-9 material files
+  (m_z9, m_z9n = Z-9WA, m_z9t; hi and lo) no longer borrow US_UH-1Y_Glass (it drew the UH-1Y's panel texture on the windows); their glass uses FAModels' clear
+  glass (opacity 0.025, BLEND, the F-14 canopy values). JSON only, no DLL change. BUILD: pass the 6 lines of work/z9wa-glass-20261119/asset-args.txt to
+  package_0_8_next.py (--asset); this makes a new Assets version. Check in game: Z-9WA, Z-9 and Catalogue Z-9 windows clear, no panels.
