@@ -67,11 +67,11 @@ public static class PinnedFreedomArrow
     private static readonly HashSet<string> Preferences = new(StringComparer.OrdinalIgnoreCase)
         { "UserData/FAMusic/voice-presets.txt", "UserData/FAMusic/music-history.txt" };
 
-    private static void EnsureAssets(string gameDir, Action<string> log, CancellationToken ct)
+    private static void EnsureAssets(string gameDir, Action<string> log, CancellationToken ct, IProgress<LaunchProgress>? progress = null)
     {
         if (HostedDistribution.Active.Assets.Index != null)
         {
-            AssetsIndexInstall.Ensure(gameDir, AssetsIndexPath!, HostedDistribution.Active.Assets, Preferences, log, ct);
+            AssetsIndexInstall.Ensure(gameDir, AssetsIndexPath!, HostedDistribution.Active.Assets, Preferences, log, ct, progress);
             return;
         }
         var mods = new ModService(new ManagerConfig());
@@ -160,15 +160,18 @@ public static class PinnedFreedomArrow
         return true;
     }
 
-    public static void Ensure(LauncherService launcher, string gameDir, Action<string> log, CancellationToken ct)
+    public static void Ensure(LauncherService launcher, string gameDir, Action<string> log, CancellationToken ct, IProgress<LaunchProgress>? progress = null)
     {
+        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
         VerifyArchive(ArchivePath);
         VerifyAssets();
-        EnsureAssets(gameDir, log, ct);
+        EnsureAssets(gameDir, log, ct, progress);
+        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
         var pack = launcher.FindPack(Manifest.Load(gameDir));
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
         {
             ct.ThrowIfCancellationRequested();
+            progress?.Report(new LaunchProgress(Loc.T("Installing Freedom Arrow {0}…", Version)));
             log("Installing Freedom Arrow " + Version + ".");
             if (!launcher.InstallPackFile(gameDir, ArchivePath, log))
                 throw new InvalidDataException("The included dev.45 package was not accepted.");

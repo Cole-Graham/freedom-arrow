@@ -294,7 +294,7 @@ public sealed class LauncherService
             var loaderManifest = LoadManifest(gameDir);
             try { await EnsureMelonLoaderAsync(gameDir, loaderManifest, progress, log, ct); }
             finally { loaderManifest.Save(gameDir); }
-            await Task.Run(() => PinnedFreedomArrow.Ensure(this, gameDir, log, ct), ct);
+            await Task.Run(() => PinnedFreedomArrow.Ensure(this, gameDir, log, ct, progress), ct);
             HideConsole(gameDir, log);
             return;
         }

@@ -2,6 +2,7 @@ using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static BAModManager.Core.Loc;
 
 namespace BAModManager.Core;
 
@@ -85,27 +86,41 @@ public static class AssetsIndexInstall
         File.Move(StateFile + ".tmp", StateFile, true);
     }
 
-    private static async Task DownloadAsync(AssetsIndex index, AssetsIndexFile f, string path, CancellationToken ct)
+    // 1.1.11 (Osama 20 Nov 2026, Chinese players "stuck" on PLAY): a body read that gets no data for StallTimeout is retried.
+    // HttpClient.Timeout does not cover body reads after ResponseHeadersRead, so a stalled connection could wait forever.
+    internal static TimeSpan StallTimeout = TimeSpan.FromSeconds(60);
+    private const int Attempts = 6;
+
+    private static async Task DownloadAsync(AssetsIndex index, AssetsIndexFile f, string path, CancellationToken ct, Action<long>? onBytes = null)
     {
         var url = index.FilesBase + f.Sha256.ToLowerInvariant() + ".gz";
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         var temp = path + ".fa-install-" + Guid.NewGuid().ToString("N");
+        long done = 0;
         for (int attempt = 0; ; attempt++)
         {
+            if (done > 0) { onBytes?.Invoke(-done); done = 0; }   // a retry starts the file again
             try
             {
                 using var req = new HttpRequestMessage(HttpMethod.Get, url);
                 req.Headers.UserAgent.ParseAdd("FreedomArrowLauncher/3");
-                using var r = await Client.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, ct);
+                using var stall = CancellationTokenSource.CreateLinkedTokenSource(ct);
+                stall.CancelAfter(StallTimeout);
+                using var r = await Client.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, stall.Token);
                 r.EnsureSuccessStatusCode();
                 using var sha = SHA256.Create();
-                await using (var src = new GZipStream(await r.Content.ReadAsStreamAsync(ct), CompressionMode.Decompress))
+                await using (var src = new GZipStream(await r.Content.ReadAsStreamAsync(stall.Token), CompressionMode.Decompress))
                 await using (var dst = new FileStream(temp, FileMode.CreateNew, FileAccess.Write, FileShare.None, 131072, true))
                 {
-                    var buffer = new byte[131072]; long done = 0; int read;
-                    while ((read = await src.ReadAsync(buffer, ct)) > 0)
+                    var buffer = new byte[131072]; int read;
+                    while (true)
                     {
-                        done += read;
+                        stall.CancelAfter(StallTimeout);   // restart the stall clock for every read
+                        try { read = await src.ReadAsync(buffer, stall.Token); }
+                        catch (OperationCanceledException) when (!ct.IsCancellationRequested)
+                        { throw new IOException("No data for " + StallTimeout.TotalSeconds + " s: " + f.Path); }
+                        if (read <= 0) break;
+                        done += read; onBytes?.Invoke(read);
                         if (done > f.Size) throw new InvalidDataException("Asset file is larger than its list entry: " + f.Path);
                         sha.TransformBlock(buffer, 0, read, null, 0);
                         await dst.WriteAsync(buffer.AsMemory(0, read), ct);
@@ -117,13 +132,15 @@ public static class AssetsIndexInstall
                 File.Move(temp, path, overwrite: true);
                 return;
             }
-            catch (Exception ex) when ((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException) && !ct.IsCancellationRequested && attempt < 2)
-            { await Task.Delay(TimeSpan.FromSeconds(attempt + 1), ct); }
+            catch (Exception ex) when ((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException ||
+                                        ex is OperationCanceledException) && !ct.IsCancellationRequested && attempt < Attempts - 1)
+            { await Task.Delay(TimeSpan.FromSeconds(Math.Min(2 * (attempt + 1), 10)), ct); }
             finally { if (File.Exists(temp)) File.Delete(temp); }
         }
     }
 
-    public static void Ensure(string gameDir, string indexFile, DistributionPackage p, IReadOnlySet<string> preferences, Action<string> log, CancellationToken ct)
+    public static void Ensure(string gameDir, string indexFile, DistributionPackage p, IReadOnlySet<string> preferences, Action<string> log, CancellationToken ct,
+        IProgress<LaunchProgress>? progress = null)
     {
         var index = Load(indexFile, p);
         var info = ModInfo.Parse(index.ModJson);
@@ -133,10 +150,17 @@ public static class AssetsIndexInstall
         bool newer = pack?.Info?.Version != null && ModVersion.Compare(pack.Info.Version, p.Version) > 0;
         var state = LoadState(gameDir);
         var need = new List<(AssetsIndexFile File, string Path)>();
-        int retained = 0;
+        int retained = 0, checkedFiles = 0; var shown = DateTime.MinValue;
         foreach (var f in index.Files)
         {
             ct.ThrowIfCancellationRequested();
+            if (progress != null && (DateTime.UtcNow - shown).TotalMilliseconds >= 250)
+            {
+                shown = DateTime.UtcNow;
+                progress.Report(new LaunchProgress(T("Checking models and music… {0} / {1} files", checkedFiles, index.Files.Count),
+                    (double)checkedFiles / Math.Max(1, index.Files.Count)));
+            }
+            checkedFiles++;
             var path = PathUtil.ToFull(gameDir, f.Path);
             if (!File.Exists(path) && File.Exists(path + PathUtil.DisabledSuffix))
                 File.Move(path + PathUtil.DisabledSuffix, path);
@@ -152,10 +176,25 @@ public static class AssetsIndexInstall
             var groups = need.GroupBy(n => n.File.Sha256, StringComparer.OrdinalIgnoreCase).ToList();
             long total = groups.Sum(g => g.First().File.Size), done = 0; int files = 0; var last = DateTime.MinValue;
             log($"Models + Music/Voices {p.Version}: downloading {need.Count} changed or missing files ({groups.Count} different, {total / 1048576.0:0} MB); {retained} files already up to date.");
+            long bytes = 0; var reported = DateTime.MinValue;
+            void Show()
+            {
+                var b = Math.Max(0, Interlocked.Read(ref bytes));
+                progress?.Report(new LaunchProgress(T("Downloading models and music… {0} / {1} MB", (b / 1048576.0).ToString("0"), (total / 1048576.0).ToString("0")),
+                    Math.Min(1.0, (double)b / Math.Max(1, total))));
+            }
+            void OnBytes(long n)
+            {
+                Interlocked.Add(ref bytes, n);
+                if (progress == null) return;
+                lock (need) { if ((DateTime.UtcNow - reported).TotalMilliseconds < 250) return; reported = DateTime.UtcNow; }
+                Show();
+            }
+            Show();
             Parallel.ForEachAsync(groups, new ParallelOptions { MaxDegreeOfParallelism = 8, CancellationToken = ct }, async (g, token) =>
             {
                 var first = g.First();
-                await DownloadAsync(index, first.File, first.Path, token);
+                await DownloadAsync(index, first.File, first.Path, token, OnBytes);
                 HashCached(state, first.File.Path, first.Path);
                 foreach (var other in g.Skip(1))
                 {
@@ -170,6 +209,7 @@ public static class AssetsIndexInstall
                     if ((DateTime.UtcNow - last).TotalSeconds >= 2 || c == groups.Count)
                     { last = DateTime.UtcNow; log($"Downloaded {c}/{groups.Count} files ({d / 1048576.0:0}/{total / 1048576.0:0} MB)."); }
             }).GetAwaiter().GetResult();
+            Show();   // the throttled reports can skip the last one
         }
         // Files the previous list installed and this list dropped: removed only if still exactly as installed.
         var keep = new HashSet<string>(index.Files.Select(f => f.Path), StringComparer.OrdinalIgnoreCase);
