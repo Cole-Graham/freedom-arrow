@@ -139,6 +139,20 @@ for _u,(_c0,_c1) in {1261:(160,195),1262:(220,225)}.items():
     ok(U[_u]['HUDName'].startswith('VT-5') and U[_u]['Cost']==_c0 and not U[_u].get('OriginalCost'),(_u,'VT-5 before'))
     ok(not any(o.get('ReplaceUnitId')==_u for o in t['OptionsJson'].values()),(_u,'swap row'));g.put('Units',_u,{'Cost':_c1})
 rec['vt5_plus_35']={'1261':[160,195],'1262':[220,225]}
+# ---------- FS-90 loadouts +10 (Osama 19 Nov 2026 17:1x PST, thread 1572407822849810463: "FS-90 loadouts across the board should be increased by 10
+# points"). Every loadout option that mounts a turret carrying an FS-90 weapon (turrets found from TurretWeaponsJson, not hard-coded): 15 options on
+# Z-10, Z-10K, Air Force Z-10, Z-10U, Catalogue Z-21, Recon Z-21, Z-20, Z-20T, Recon Z-19, SF Recon Z-19, Z-19E, Catalogue Z-19, SF Z-19. Options are
+# priced on top of the card, no swap rows. FS-70A loadouts unchanged.
+_W=t['WeaponsJson'];_TW=t['TurretWeaponsJson'];_O=t['OptionsJson']
+_fsw={w for w,r in _W.items() if r and r.get('HUDName')=='FS-90'};_fst={r['TurretId'] for r in _TW.values() if r and r.get('WeaponId') in _fsw}
+_fso=sorted(i for i,o in _O.items() if o and any(o.get(f'Turret{k}Id') in _fst for k in range(40)))
+ok(len(_fsw)==11 and len(_fst)==11,('FS-90 weapons/turrets',len(_fsw),len(_fst)))
+ok(_fso==[24498,24504,24510,24514,24562,24566,24581,24583,24587,31067,31068,31090,31095,31096,31097],('FS-90 loadout options',_fso))
+ok(not any(_O[i].get('ReplaceUnitId') for i in _fso),'FS-90 options are not swap rows')
+rec['fs90_loadouts_plus_10']={}
+for _i in _fso:
+    _c=_O[_i]['Cost'];g.put('OptionsJson',_i,{'Cost':_c+10});ok(_O[_i]['Cost']==_c+10,(_i,'FS-90 option +10'))
+    rec['fs90_loadouts_plus_10'][str(_i)]={'option':_O[_i].get('UIName') or _O[_i].get('Name'),'Cost':[_c,_c+10]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

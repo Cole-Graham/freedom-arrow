@@ -284,9 +284,116 @@
       225
     ]
   },
+  "fs90_loadouts_plus_10": {
+    "24498": {
+      "option": "Multirole (8x HJ-10, 14x FS-90)",
+      "Cost": [
+        90,
+        100
+      ]
+    },
+    "24504": {
+      "option": "Multirole (HJ-10)",
+      "Cost": [
+        90,
+        100
+      ]
+    },
+    "24510": {
+      "option": "Multirole (HJ-10)",
+      "Cost": [
+        90,
+        100
+      ]
+    },
+    "24514": {
+      "option": "Multirole (8x HJ-10, 14x FS-90)",
+      "Cost": [
+        90,
+        100
+      ]
+    },
+    "24562": {
+      "option": "32x FS-90",
+      "Cost": [
+        45,
+        55
+      ]
+    },
+    "24566": {
+      "option": "16x FS-90",
+      "Cost": [
+        20,
+        30
+      ]
+    },
+    "24581": {
+      "option": "Fire support (FS-90)",
+      "Cost": [
+        10,
+        20
+      ]
+    },
+    "24583": {
+      "option": "Fire support (FS-90)",
+      "Cost": [
+        10,
+        20
+      ]
+    },
+    "24587": {
+      "option": "Fire support (FS-90)",
+      "Cost": [
+        10,
+        20
+      ]
+    },
+    "31067": {
+      "option": "32x FS-90",
+      "Cost": [
+        45,
+        55
+      ]
+    },
+    "31068": {
+      "option": "16x FS-90",
+      "Cost": [
+        20,
+        30
+      ]
+    },
+    "31090": {
+      "option": "Multirole (HJ-10)",
+      "Cost": [
+        90,
+        100
+      ]
+    },
+    "31095": {
+      "option": "Escort (8x TY-90, 14x FS-90)",
+      "Cost": [
+        75,
+        85
+      ]
+    },
+    "31096": {
+      "option": "Escort (8x TY-90, 14x FS-90)",
+      "Cost": [
+        75,
+        85
+      ]
+    },
+    "31097": {
+      "option": "Escort (8x TY-90, 14x FS-90)",
+      "Cost": [
+        75,
+        85
+      ]
+    }
+  },
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 93,
+  "checks": 111,
   "verified": "data checks only"
 }

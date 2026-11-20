@@ -29,3 +29,6 @@
 
 ## VT-5 +35 (Osama 19 Nov 2026)
 - VT-5 (1261) 160 -> 195; VT-5 Recon (1262) 220 -> 225 (Osama 17:06: "VT-5 recon we make 225"). Unlisted row 953 unchanged.
+- 19 Nov 2026 17:1x PST, thread 1572407822849810463 (Osama: "FS-90 loadouts across the board should be increased by 10 points"): apply_0_9_2_dev1.py
+  +10 on the 15 loadout options that mount an FS-90 turret (Z-10, Z-10K, Air Force Z-10, Z-10U, Catalogue Z-21, Recon Z-21, Z-20 x2, Z-20T x2, Recon Z-19,
+  SF Recon Z-19, Z-19E, Catalogue Z-19, SF Z-19). FS-70A loadouts unchanged. 111 checks.
