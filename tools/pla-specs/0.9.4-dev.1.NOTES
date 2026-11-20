@@ -1,0 +1,5 @@
+0.9.4-dev.1 batch notes (next dev build after the 0.9.3 playtest, build 242). Builder: read these before building. Base: 0.9.3 (build 242, out/local-093r242).
+- 2026-11-20 13:2x PST, thread 1567745029781454889 (Osama: "Next patch, we need to give 6 rpg -30 to spets alpha stand off loadout"). DATA:
+  tools/pla-specs/apply_0_9_4_dev1.py over out/local-093r242 (--vanilla ../lateralus-infantry-20261110/vanilla), 8 checks. Spetsnaz Alpha stand-off
+  loadout (option 1511 -> unit 354): RPG-30 carriers 4 -> 6 (members 587 and 589, AK-107 riflemen, get SpecialWeaponId 169; 1 round each, the
+  vanilla disposable pattern). Squad stays 14 men; option cost (+5) and the close-quarters loadout (unit 131) unchanged. Not yet seen in game.
