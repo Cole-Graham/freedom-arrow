@@ -2,12 +2,13 @@
 playing PVE against the Bots ... everyone joins one team", "it's a preset scenario", "option 1 add a section to our map selection that is PVE",
 "make an AI PVE 1v1 2v2 and 3v3 scenario? Fighting China".
 
-Each PvE map is an existing FA map: 1, 2 or 3 open human slots on Alpha, every other slot locked, no bot slots (so the lobby has no bot and
-ArrowQueue's "AI bot in the lobby" warning does not apply). The map script spawns China waves for Bravo Player 1 at Bravo's ground spawns and
+Each PvE map is an existing FA map: 1, 2 or 3 open human slots on Alpha and, from 0.9.2-dev.1, the same number of AI bot slots on Bravo
+(the Workshop scenario "TEST YOUR DECK" pattern; ArrowQueue shows its "AI bot in the lobby" warning for these), every other slot locked. The map script spawns China waves for Bravo Player 1 at Bravo's ground spawns and
 sends each wave to capture zones on roads, again and again; waves grow with time and with the number of players. Scoring is the normal FA
 conquest. Script shape copied from vanilla Dam_Skirmish: node_player -> spawnMultiUnits.PlayerOwner, getSpMultUnData -> UnitInfo,
 getTag (a type-6 tag object) -> TargetTag, then captureObj (tgz2 c-2, pathf Fast, moveAttack) for the wave's UnitGroup.
-Open question, to be tested: whether units can be spawned for a locked, empty Bravo slot in an online lobby. The Skirmish flavor (offline
+Answered by the dev.41 player logs: an empty, locked Bravo slot is not a player online, so units bought for it went to an empty Alpha slot
+and stood idle. Hence the bot slots. Still untested: that the online bot slots start with 1-3 humans. The Skirmish flavor (offline
 test) has bots as in every FA Skirmish flavor; offline, LocalSkirmish may swap the units spawned for a bot that has an AI deck (BALocalSkirmish.dll is carried unchanged).
 """
 import copy, json, shutil, tempfile, uuid
@@ -75,7 +76,7 @@ def opening(waves):
 # capture/escort orders are left out when the AI is in, so two commanders never fight over one unit. Terrain (cover, chokepoints, overwatch)
 # comes from pve_terrain/ba_terrain_<scene>.lua, baked from the game's Navigation files by its tools/bake_terrain.py.
 # Changes to the pinned source, applied here so the checkout stays pristine:
-# - commanders: the Bravo players (the empty, locked Bravo slots online; Bravo bots offline), instead of IsBot only;
+# - commanders: the Bravo players (AI bot slots online from 0.9.2-dev.1, and offline), instead of IsBot only;
 # - FAST_MOVE_MIN 700 -> 400 m, so more moves use the roads.
 # LICENSE NOTE: the repository has no licence file; ask the author before shipping it outside the team.
 import os
@@ -89,7 +90,7 @@ def ai_code(scene):
     parts+=[(AI_SRC/'ai'/f).read_text(encoding='utf-8') for f in AI_FILES]
     code='\n'.join(parts)
     old_cond="    if safe(function() return p.IsBot end, false) then\n      local uid = safe(function() return p.UID end)"
-    # The Bravo players: online they are empty, locked slots (IsBot false, no human), offline they are bots. LuaPlayer.TeamName is the team
+    # The Bravo players: AI bot slots online (from 0.9.2-dev.1) and offline. LuaPlayer.TeamName is the team
     # object's name ("Bravo team" in every FA map); TeamID 1 = TeamSide.Bravo is the fallback.
     new_cond=("    local fa_bravo = string.find(tostring(safe(function() return p.TeamName end, '')), 'Bravo', 1, true) ~= nil\n"
               "                     or safe(function() return p.TeamID end, -1) == 1\n"
@@ -139,20 +140,31 @@ function FA_HUMAN_MONEY()
   end
   return best
 end
--- The owner of the spawned units: "Bravo Player 1" (the map's spawn nodes use it), else the lowest Bravo UID.
+-- The owner of the bought units: the Bravo AI players in turn (online they are bot slots, as in "TEST YOUR DECK"), so each bot in a
+-- 2v2 or 3v3 gets its share. If no Bravo player is a bot, "Bravo Player 1", else the lowest Bravo UID.
+local fa_turn = 0
 function FA_BRAVO_UID()
   local ok, ps = pcall(function() return API.GetAllPlayers() end)
   if not ok or ps == nil then return nil end
-  local best = nil
+  local bots, first, best = {{}}, nil, nil
   for _, p in pairs(ps) do
     if fa_isbravo(p) then
       local ok2, u = pcall(function() return p.UID end)
       local ok3, nm = pcall(function() return p.PlayerName end)
-      if ok3 and nm == 'Bravo Player 1' and ok2 then return u end
-      if ok2 and u ~= nil and (best == nil or u < best) then best = u end
+      local ok4, b = pcall(function() return p.IsBot end)
+      if ok2 and u ~= nil then
+        if ok4 and b then bots[#bots + 1] = u end
+        if ok3 and nm == 'Bravo Player 1' then first = u end
+        if best == nil or u < best then best = u end
+      end
     end
   end
-  return best
+  if #bots > 0 then
+    table.sort(bots)
+    fa_turn = fa_turn % #bots + 1
+    return bots[fa_turn]
+  end
+  return first or best
 end
 '''
 PURCHASE_FILES=['ba_tactics.lua','ba_roles.lua','ba_doctrine.lua','ba_field.lua','ba_mind.lua','ba_purchase.lua']
@@ -311,14 +323,25 @@ def add_waves(nodes,objects,players,after,waves,orders=True):
     return len(waves),len(tags)
 
 def configure_slots(objects,meta,players):
-    """Alpha: the first `players` slots open; all others locked. No bots anywhere (the waves are the enemy)."""
+    """Online lobby, as in the Workshop scenario "TEST YOUR DECK" (Osama 19 Nov 2026 19:26 PST: "Test your deck scenario is what we should
+    copy"): Alpha's first `players` slots are open for humans; Bravo's first `players` slots are AI bot slots (meta bot=True, botId = the
+    player object's _uid, player object isBot=True); all other slots locked. Until 0.9.2-dev.1 Bravo had no bot, and online the units bought
+    for the empty Bravo slot went to an empty Alpha slot and stood idle (dev.41 player logs)."""
+    uid={o['_dname']:o['_uid'] for o in objects if o.get('_type')==13}
     for t in meta['teams']:
         for i,s in enumerate(t['slots']):
-            s['bot']=False;s['lock']=not(t['teamName']=='Alpha team' and i<players)
-    open_names={s['playerName'] for t in meta['teams'] for s in t['slots'] if not s['lock']}
+            s.pop('botId',None)
+            human=t['teamName']=='Alpha team' and i<players
+            bot=t['teamName']=='Bravo team' and i<players
+            s['bot']=bot;s['lock']=not(human or bot)
+            if bot:s['botId']=uid[s['playerName']]
+    slots={s['playerName']:s for t in meta['teams'] for s in t['slots']}
     for o in objects:
-        if o.get('_type')==13:o['isBot']=False;o['lock']=o['_dname'] not in open_names
-    assert len(open_names)==players,open_names
+        if o.get('_type')==13 and o['_dname'] in slots:
+            s=slots[o['_dname']];o['isBot']=s['bot'];o['lock']=s['lock']
+    humans=[n for n,s in slots.items() if not s['lock'] and not s['bot']];bots=[n for n,s in slots.items() if s['bot']]
+    assert len(humans)==players and len(bots)==players and 'Bravo Player 1' in bots,(humans,bots)
+    assert all(n.startswith('Alpha') for n in humans) and all(n.startswith('Bravo') for n in bots),(humans,bots)
 
 def build(game,out):
     settings=C.settings();ai=(AI_SRC/'ai'/'ba_brain.lua').exists()
@@ -329,7 +352,7 @@ def build(game,out):
         with tempfile.TemporaryDirectory() as tmp:
             mod.build(game,Path(tmp))
             base={k:C.read_bascr(Path(tmp)/nm,nm) for k,nm in ((2,base_name),(3,mod.SKIRMISH_NAME))}
-        desc=(f'Freedom Arrow PvE: {players} player{"s" if players>1 else ""} on Alpha against China waves ({enemy}; map script AI, no bots in the lobby). '
+        desc=(f'Freedom Arrow PvE: {players} player{"s" if players>1 else ""} on Alpha against China waves ({enemy}; AI bots on Bravo). '
               +base[2][0]['desc'])
         for flavor,kind in ((name,2),(skirmish,3)):
             h,n,o,m=copy.deepcopy(base[kind])

@@ -44,3 +44,11 @@
   (m_z9, m_z9n = Z-9WA, m_z9t; hi and lo) no longer borrow US_UH-1Y_Glass (it drew the UH-1Y's panel texture on the windows); their glass uses FAModels' clear
   glass (opacity 0.025, BLEND, the F-14 canopy values). JSON only, no DLL change. BUILD: pass the 6 lines of work/z9wa-glass-20261119/asset-args.txt to
   package_0_8_next.py (--asset); this makes a new Assets version. Check in game: Z-9WA, Z-9 and Catalogue Z-9 windows clear, no panels.
+- 19 Nov 2026 19:26 PST, thread 1567745029781454889 (Osama: "Test your deck scenario is what we should copy for implementation. Let's make a 1v1 2 and
+  3s map"): the 3 online [FA] [PvE] maps (Dead Center 1P, Highway 2P, Dam 3P = 1v1, 2v2, 3v3 vs China AI) now use the Workshop scenario "TEST YOUR DECK"
+  lobby pattern: Bravo's first N slots are AI bot slots (meta bot=True + botId = player object _uid, object isBot=True), N = human slots; all other slots
+  locked. Before, Bravo had no bot, and online the AI's units went to an empty Alpha slot and stood idle (dev.41 logs). Purchases rotate across the Bravo
+  bots (FA_BRAVO_UID), so each bot owns a share; the opening deployment stays with Bravo Player 1. Map names/GUIDs unchanged. Skirmish flavors unchanged.
+  Checked: built all 6 maps, slot readback, luac -p on the 3 Lua chunks, Lua mock of the owner rotation (8 9 8 9; no bots -> Bravo Player 1).
+  NOT tested: whether a private lobby with 1-3 humans + these bots starts online (12 Nov: 1 human + AI said "Not enough players"), and the AI
+  fighting online. ArrowQueue will show its "AI bot in the lobby" warning on these maps (Osama chose the TEST YOUR DECK pattern knowing this).
