@@ -238,7 +238,7 @@ def opening(waves,cards=None):
 # comes from pve_terrain/ba_terrain_<scene>.lua, baked from the game's Navigation files by its tools/bake_terrain.py.
 # Changes to the pinned source, applied here so the checkout stays pristine:
 # - commanders: the Bravo players (AI bot slots online from 0.9.2-dev.1, and offline), instead of IsBot only;
-# - FAST_MOVE_MIN 700 -> 200 m; a unit's first order after it is called in, and any non-attack move beyond 100 m, use the roads (Osama 19 Nov 2026:
+# - FAST_MOVE_MIN 700 -> 150 m; a unit's first order after it is called in, and any non-attack move beyond 100 m, use the roads (Osama 19 Nov 2026:
 #   "sometimes when it calls in a new unit they don't use the roads").
 # LICENSE NOTE: the repository has no licence file; ask the author before shipping it outside the team.
 import os
@@ -258,14 +258,24 @@ def ai_code(scene):
               "                     or safe(function() return p.TeamID end, -1) == 1\n"
               "    if (BA_FA_PVE and fa_bravo) or (not BA_FA_PVE and safe(function() return p.IsBot end, false)) then\n"
               "      local uid = safe(function() return p.UID end)")
-    for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 200,'),
+    for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 150,'),
                 ("    far = (dx * dx + dz * dz) > (CFG.FAST_MOVE_MIN * CFG.FAST_MOVE_MIN)\n",
                  "    local d2 = dx * dx + dz * dz\n"
                  "    local uid0 = safe(function() return u.UID end)\n"
                  "    BA.faFirst = BA.faFirst or {}\n"
                  "    local first = uid0 ~= nil and not BA.faFirst[uid0]\n"
                  "    if uid0 ~= nil then BA.faFirst[uid0] = true end\n"
-                 "    far = d2 > (CFG.FAST_MOVE_MIN * CFG.FAST_MOVE_MIN) or (first and d2 > 2500) or (not attack and d2 > 10000)\n")):
+                 "    far = d2 > (CFG.FAST_MOVE_MIN * CFG.FAST_MOVE_MIN) or (first and d2 > 2500) or (not attack and d2 > 10000)\n"
+                 "    BA.faD = math.sqrt(d2)\n"),
+                # Move log (Osama 19 Nov 2026 23:1x "they dont fast move"): the first 80 orders and the fast-move count, so a test log shows
+                # which command each unit got.
+                ("  if ok and far then BA.stats.fastMoves = (BA.stats.fastMoves or 0) + 1 end\n",
+                 "  if ok and far then BA.stats.fastMoves = (BA.stats.fastMoves or 0) + 1 end\n"
+                 "  BA.faLog = (BA.faLog or 0) + 1\n"
+                 "  if BA.faLog <= 80 then say(string.format(\"[MOVE] %s fast=%s d=%.0f attack=%s kind=%s ok=%s\", tostring(safe(function() return u.Name end)), tostring(far), BA.faD or -1, tostring(attack), tostring(kind), tostring(ok))) end\n"),
+                ('      BA.stats.orders, BA.stats.latched, BA.stats.fires, BA.stats.withdraws,',
+                 '      BA.stats.orders .. " fast=" .. tostring(BA.stats.fastMoves or 0), BA.stats.latched, BA.stats.fires, BA.stats.withdraws,'),
+                ('"orders=%d latched=%d','"orders=%s latched=%d')):
         assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
     return code
 def pve_header(objects,players):
