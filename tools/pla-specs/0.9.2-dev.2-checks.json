@@ -1,0 +1,26 @@
+{
+  "china_helo_rebalance": {
+    "sheet": "1zRtOuP5XgN2DhuBMwaTY-8nbdPV5hf7oaCSSglrRkrw",
+    "units": 10,
+    "options": 42,
+    "missiles_12": [
+      2017053,
+      2017071,
+      2017077,
+      2019088
+    ],
+    "ty90_high_alt_500": [
+      2016167,
+      2017083
+    ],
+    "z9_ability": [
+      2011621,
+      23
+    ]
+  },
+  "version": "0.9.2-dev.2",
+  "base": "0.9.2-dev.1",
+  "base_sha256": "755e4bcd1a4f3243f564612ed8ff0e83c63a137573446d7f992323e550c10eed",
+  "checks": 169,
+  "verified": "data checks only"
+}
