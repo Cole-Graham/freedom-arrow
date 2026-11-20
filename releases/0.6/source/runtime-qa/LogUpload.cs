@@ -99,6 +99,22 @@ static class LogUpload
         return list.ToArray();
     }
 
+    // Up to 50 lines containing `text` from this session's game log (the newest Gamelog__*.log); none when it cannot be read.
+    static List<string> GameLogLines(string text)
+    {
+        var found=new List<string>();
+        try
+        {
+            var dir=new DirectoryInfo(Path.Combine(MelonEnvironment.GameRootDirectory,"GameLogs"));
+            var f=dir.Exists?dir.GetFiles("Gamelog__*.log").OrderByDescending(x=>x.LastWriteTimeUtc).FirstOrDefault():null;
+            if(f==null)return found;
+            using var s=new StreamReader(new FileStream(f.FullName,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete));
+            for(string l;(l=s.ReadLine())!=null&&found.Count<50;)if(l.Contains(text))found.Add(l);
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD game log not read: "+e.Message);}
+        return found;
+    }
+
     static void Upload(string kind,bool quit)
     {
         if(session.Length==0)return;
@@ -123,6 +139,10 @@ static class LogUpload
                 using var snap=new FileStream(MatchLog.File,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);
                 snap.CopyTo(gz);
             }
+            // Spawn failures from the game's own log (Osama 19 Nov 2026: keep an eye on QN-506 / Type 86): "CombatSystem initialization for
+            // unit=... failed" is written only to GameLogs/Gamelog__*.log, not to MelonLoader's log.
+            var fails=GameLogLines("CombatSystem initialization for unit=");
+            if(fails.Count>0)gz.Write(Encoding.UTF8.GetBytes("\n---- game log spawn failures (GameLogs) ----\n"+string.Join("\n",fails)+"\n"));
         }
         var req=new HttpRequestMessage(HttpMethod.Post,Url){Content=new ByteArrayContent(body.ToArray())};
         void H(string n,string v)=>req.Headers.TryAddWithoutValidation("X-FA-"+n,Uri.EscapeDataString(v??""));

@@ -49,6 +49,16 @@
         2,
         1
       ]
+    },
+    {
+      "turret": 2009634,
+      "weapon": 2009653,
+      "row": 2009654,
+      "name": "QN-506 mount 0 QN-201",
+      "Order": [
+        1,
+        2
+      ]
     }
   ],
   "hull_slot_weapon_order_verified": "data checks only",
@@ -409,6 +419,6 @@
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 122,
+  "checks": 125,
   "verified": "data checks only"
 }

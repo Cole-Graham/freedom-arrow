@@ -37,7 +37,11 @@ _FIX=[  # (turret, weapon, unit names, Order before, Order after)
     (2009648,2009647,'QN-506 mount 2 QN-502',2,0),
     (2010896,2010895,'ZBD-86 / ZBD-86 Recon x2 mount 1 Type 86 7.62 mm',1,0),
     (2011202,2011201,'ZBD-05 mount 1 Type 86 7.62 mm',1,0),
-    (2009600,2009605,'FK-2000 mount 0 FK-2000 SAM',2,1)]
+    (2009600,2009605,'FK-2000 mount 0 FK-2000 SAM',2,1),
+    # Osama 17:1x PST "move it to position 3": the QN-201 shared mount 0 position 2, the BMPT turret's PKT spot, which is normally
+    # coaxial with the cannon (UnitPrefabTurretInfo.IsCoaxial: same gun transform). Position 3 is the BMPT's Ataka launcher spot (vanilla
+    # BMPT turrets carry 3 weapons, so it exists). Leaves a null at position 2: battles skip nulls; the card's resupply-time stat may not show.
+    (2009634,2009653,'QN-506 mount 0 QN-201',1,2)]
 TW=t['TurretWeaponsJson'];rec['hull_slot_weapon_order']=[]
 for tid,wid,name,o0,o1 in _FIX:
     rows=[r for r in TW.values() if r['TurretId']==tid]
