@@ -24,3 +24,11 @@
   (new name = New; same name minus the version number = Updated). Preview now: Bay of Winds 0.1 = New, against 0.9.2. RUNTIME: MapLabels.cs, postfix on
   ArrowQueue Panels.Card / RowItem (0ab2455b): green NEW / blue UPDATED tag top right of the picture, or at the right end of a text row.
   queued_checks fails the package without the map, the labels file or the hook. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.
+- 2026-11-20 12:4x PST, thread 1573418243715113213 (Osama: "Type 10 and 90 we give them 4 second reload. Can you start building these units? ... sneak this
+  into live build so we don't need to worry about merging builds"). DATA: section 3 of apply_0_9_2_dev8.py (23 checks; batch now 73). Blue Dragon Type 10 and
+  Type 90 = copies of the M1A2 SEP v2 TUA (2): own main turret + re-parented cupolas, own gun with 4.0 s reload (AutoLoaded), Type 10 APFSDS 525/475,
+  JM33 425/375, shared JM12A1 HEAT 600, 16+16 rounds; armour KE 600/100/100/60 HEAT 800/200/100/100 (Type 10), KE 500/120/100/60 HEAT 600/200/100/100
+  (Type 90), HP 14, 70/55, Very Good optics, Laser Smoke x2. Values: War Thunder converted to FA scale (work/blue-dragon-wt-20261120/REPORT.md).
+  HIDDEN (DisplayInArmory False, no deck card) until Osama picks a spec: set BD_SPECS. Costs 190/140 are placeholders. No model: TUA stand-in.
+  Gates run on a constants-only test package: audit_mp_equipment, check_slot_weapons, audit_swap_prices, check_mount_weapons, check_squad_hp,
+  check_infantry_armor, check_field_types all pass; queued_checks needs the full package (dev.8 runtime). Not seen in game.

@@ -64,6 +64,61 @@ for aid,h in _GROUND.items():
     rec['ground_missiles'][str(aid)]={'name':h,'users':sorted(users),'ResupplyTime':[old[0],A[aid]['ResupplyTime']],'SupplyCost':[old[1],A[aid]['SupplyCost']]}
 for aid,h in _KEEP.items():ok(h in {U[r['UnitId']]['HUDName'].strip() for r in WA.values() if r['AmmunitionId']==aid and r['UnitId'] in U},(aid,h,'exception user'))
 rec['ground_missiles_unchanged']={str(k):v for k,v in _KEEP.items()}
+# ---------- 3. Blue Dragon: Type 10 and Type 90 (Osama 20 Nov 2026 12:18 PST, thread 1573418243715113213: "Type 10 and 90 we give them 4 second
+# reload. Can you start building these units? I'm wondering if we can sneak this into live build so we don't need to worry about merging builds").
+# Stats = War Thunder values converted to FA scale (work/blue-dragon-wt-20261120/REPORT.md): KE pen = WT 10 m x FA/WT of the same-calibre FA round
+# (M829A3 633 -> 550), far = close - 50; HEAT shell x1.25; front KE ~ WT turret-cheek KE; front HEAT ~ 0.9 x WT CE.
+# Parent: M1A2 SEP v2 TUA (2): base game (Leopard 2A8 is Baltic DLC), no loadout options, M256 + M2 and M240 cupolas, Laser Smoke x2 (LWS + smoke),
+# Very Good optics, 70/55 tracks. Each card gets its own main turret (cupolas re-parented) so its gun can have its own reload.
+# No model yet (C5 models not bought): the TUA model shows as a stand-in. HIDDEN until Osama picks the spec: DisplayInArmory False, no deck card.
+# Costs are placeholders (not given); set BD_SPECS to place the cards.
+TJ=t['TurretsJson'];TU=t['TurretUnitsJson'];TW=t['TurretWeaponsJson'];W=t['WeaponsJson'];AR=t['ArmorsJson'];MOB=t['MobilityJson']
+def _rows(tab,**kw):return sorted([r for r in t[tab].values() if all(r.get(k)==v for k,v in kw.items())],key=lambda r:r['Id'])
+BD_SPECS=[]  # e.g. [(4,2)] = US Armored Brigade, 2 cards; empty = hidden
+ok(U[2]['HUDName']=='M1A2 SEP v2 TUA' and U[2]['CountryId']==2 and U[2]['ContentMembership']==-1 and not _rows('ModificationsJson',UnitId=2),'TUA: base-game US card, no options')
+ok([(r['TurretId'],r['Order']) for r in _rows('TurretUnitsJson',UnitId=2)]==[(436,0),(440,0),(441,0)] and TJ[440]['ParentTurretId']==436 and TJ[441]['ParentTurretId']==436,'TUA turrets 436 + cupolas 440/441')
+ok([(r['WeaponId'],r['AmmunitionId'],r['Quantity']) for r in _rows('WeaponAmmunitionsJson',UnitId=2)]==[(266,254,16),(266,251,24),(18,19,200),(27,27,1140)],'TUA ammunition rows')
+ok((W[266]['MagazineSize'],W[266]['MagazineReloadTimeMin'],W[266]['MagazineReloadTimeMax'])==(1,6.0,7.0),'M256 one round, 6-7 s')
+ok((A[254]['HUDName'].strip(),A[254]['PenetrationAtMinRange'],A[254]['PenetrationAtGroundRange'])==('M829A3 APFSDS',550.0,500.0) and (A[253]['HUDName'].strip(),A[253]['PenetrationAtMinRange'])==('M830 HEAT',600.0),'FA M829A3 550/500, M830 600')
+_jm12=g.add('AmmunitionsJson',A[253],{'Name':'Round 120 JM12A1 HEAT BlueDragon','HUDName':'JM12A1 HEAT','GroundRange':700.0})
+rec['blue_dragon']={'parent':'M1A2 SEP v2 TUA (2)','visible':bool(BD_SPECS),'specs':BD_SPECS,'model':'stand-in (TUA); C5 model not bought','cards':{}}
+for nm,gun,ap,pen,armour,cost in (('Type 10','MainGun 120 Type 10 TKG autoloader','Type 10 APFSDS',(525.0,475.0),((600,100,100,60),(800,200,100,100)),190),
+                                  ('Type 90','MainGun 120 Type 90 L44 autoloader','JM33 APFSDS',(425.0,375.0),((500,120,100,60),(600,200,100,100)),140)):
+    ok(not any(u.get('Name')==nm or u.get('HUDName')==nm for u in U.values()),nm+' name free')
+    d=dict(U[2]);d.pop('Id');d.update({'Name':nm,'HUDName':nm,'Cost':cost,'OriginalCost':0,'Description':None,'OriginalName':None,'DisplayInArmory':bool(BD_SPECS)})
+    uid=g.put('Units',max(U)+1,d)
+    for r in _rows('SensorUnitsJson',UnitId=2):g.add('SensorUnitsJson',r,{'UnitId':uid})
+    for r in _rows('UnitAbilitiesJson',UnitId=2):g.add('UnitAbilitiesJson',r,{'UnitId':uid})
+    _ua=_rows('UnitArmorsJson',UnitId=2);ok(len(_ua)==1 and _ua[0]['ArmorId']==2000397,'TUA one armour row')
+    (kf,ks,kr,kt),(hf,hs,hr,ht)=armour
+    arm=g.add('ArmorsJson',AR[2000397],{'Name':f'Armor {nm} BlueDragon','KinArmorFront':kf,'KinArmorSides':ks,'KinArmorRear':kr,'KinArmorTop':kt,
+        'HeatArmorFront':hf,'HeatArmorSides':hs,'HeatArmorRear':hr,'HeatArmorTop':ht,'MaxHealthPoints':14})
+    g.add('UnitArmorsJson',_ua[0],{'UnitId':uid,'ArmorId':arm})
+    _up=_rows('UnitPropulsionsJson',UnitId=2);ok(len(_up)==1 and (MOB[_up[0]['MobilityId']]['MaxSpeedRoad'],MOB[_up[0]['MobilityId']]['MaxCrossCountrySpeed'])==(70.0,55.0),'TUA one mobility 70/55')
+    g.add('UnitPropulsionsJson',_up[0],{'UnitId':uid,'MobilityId':g.add('MobilityJson',MOB[_up[0]['MobilityId']],{'Name':f'Tracks {nm} BlueDragon 70kph'})})
+    w=g.add('WeaponsJson',W[266],{'Name':gun,'HUDName':'120mm '+nm,'AutoLoaded':True,'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
+    apr=g.add('AmmunitionsJson',A[254],{'Name':f'Round 120 {ap} BlueDragon','HUDName':ap,'PenetrationAtMinRange':pen[0],'PenetrationAtGroundRange':pen[1]})
+    main=g.add('TurretsJson',TJ[436]);tmap={436:main}
+    for c in (440,441):tmap[c]=g.add('TurretsJson',TJ[c],{'ParentTurretId':main})
+    for old,new in tmap.items():
+        for r in _rows('TurretWeaponsJson',TurretId=old):g.add('TurretWeaponsJson',r,{'TurretId':new,'WeaponId':w if r['WeaponId']==266 else r['WeaponId']})
+    for r in _rows('TurretUnitsJson',UnitId=2):g.add('TurretUnitsJson',r,{'UnitId':uid,'TurretId':tmap[r['TurretId']]})
+    for r in _rows('WeaponAmmunitionsJson',UnitId=2):
+        if r['WeaponId']==266:g.add('WeaponAmmunitionsJson',r,{'UnitId':uid,'WeaponId':w,'AmmunitionId':apr if r['AmmunitionId']==254 else _jm12,'Quantity':16})
+        else:g.add('WeaponAmmunitionsJson',r,{'UnitId':uid})
+    for sp,n in BD_SPECS:
+        src=_rows('SpecializationAvailabilitiesJson',UnitId=2)[0];g.add('SpecializationAvailabilitiesJson',src,{'UnitId':uid,'SpecializationId':sp,'MaxAvailabilityXp0':n})
+    # checks on the finished card
+    ok([(TJ[r['TurretId']]['Name'],r['Order']) for r in _rows('TurretUnitsJson',UnitId=uid)]==[(TJ[x]['Name'],o) for x,o in ((436,0),(440,0),(441,0))],nm+' turret links mirror the TUA')
+    ok(all(TJ[tmap[c]]['ParentTurretId']==main for c in (440,441)) and [x['WeaponId'] for x in _rows('TurretWeaponsJson',TurretId=main)]==[w if x['WeaponId']==266 else x['WeaponId'] for x in _rows('TurretWeaponsJson',TurretId=436)],nm+' main turret: new gun, same order')
+    ok((W[w]['MagazineReloadTimeMin'],W[w]['MagazineReloadTimeMax'],W[w]['MagazineSize'])==(4.0,4.0,1),nm+' 4 s reload')
+    ok(sorted((r['WeaponId'],A[r['AmmunitionId']]['HUDName'],A[r['AmmunitionId']]['PenetrationAtMinRange'],A[r['AmmunitionId']]['PenetrationAtGroundRange'],r['Quantity']) for r in _rows('WeaponAmmunitionsJson',UnitId=uid) if r['WeaponId']==w)
+       ==sorted([(w,ap,pen[0],pen[1],16),(w,'JM12A1 HEAT',600.0,600.0,16)]),nm+' rounds')
+    _a=AR[[r['ArmorId'] for r in _rows('UnitArmorsJson',UnitId=uid)][0]]
+    ok(tuple(_a[k] for k in ('KinArmorFront','KinArmorSides','KinArmorRear','KinArmorTop','HeatArmorFront','HeatArmorSides','HeatArmorRear','HeatArmorTop','MaxHealthPoints'))==(*armour[0],*armour[1],14),nm+' armour')
+    ok([r['SpecializationId'] for r in _rows('SpecializationAvailabilitiesJson',UnitId=uid)]==[s for s,_ in BD_SPECS] and U[uid]['DisplayInArmory']==bool(BD_SPECS),nm+' visibility')
+    rec['blue_dragon']['cards'][nm]={'unit':uid,'cost':cost,'gun':w,'reload_s':4.0,'ap':[ap,apr,*pen],'heat':['JM12A1 HEAT',_jm12,600.0],'turret':main,'armour_row':arm,
+        'KE':list(armour[0]),'HEAT':list(armour[1]),'HP':14,'road_xc':[70,55]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
