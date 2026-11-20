@@ -18,3 +18,9 @@
   Don't forget to add the cameras ... remove the humvees and 4 waypoints. A B C D - 2 points, E F I J - 3 points, G H K L - 4 points ... queue it up").
   releases/0.8/scenarios/bay_of_winds_3v3 (his file, Parnu), Chernyakhovsky pattern: FA conquest graft, 2 team cameras, 8 Humvees + 4 waypoints removed,
   zones 30-41 in settings.json MapZoneWeights. Scenario test build: 46 flavors; sliders, pblOpt and script identical to Chernyakhovsky's. Not yet seen in game.
+- New / Updated tags on the Create a lobby map cards (Lateralus 20 Nov 2026, same thread: "showed "New" and "Updated" when we add new maps or update the
+  existing maps (with version change) ... overlaid on the map picture or near it"). BUILD: tools/pla-specs/map_labels.py, run by package_0_8_next.py from this
+  version, writes UserData/FreedomArrow/map-labels.json: each lobby map against the current playtest release on work/build-install/live-manifest.json
+  (new name = New; same name minus the version number = Updated). Preview now: Bay of Winds 0.1 = New, against 0.9.2. RUNTIME: MapLabels.cs, postfix on
+  ArrowQueue Panels.Card / RowItem (0ab2455b): green NEW / blue UPDATED tag top right of the picture, or at the right end of a text row.
+  queued_checks fails the package without the map, the labels file or the hook. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.

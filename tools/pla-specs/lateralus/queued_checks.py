@@ -110,5 +110,15 @@ if m>=key('0.9.1-dev.4'):
 # Cost at load (LoadUnits.PrepareForMods), so the card shows the old price. Vanilla has 0 on every unit.
 if m>=key('0.9.1-dev.5'):
     bad+=[f'unit {i} {u.get("HUDName")} OriginalCost {u["OriginalCost"]} (want 0; Cost {u.get("Cost")} is the price)' for i,u in sorted(Ut.items()) if u.get('OriginalCost')]
+# From 0.9.2-dev.8 (Lateralus 20 Nov 2026, thread 1572962048705429598): the [3v3] Bay of Winds map ships, and the Create a lobby cards carry
+# New / Updated tags: map-labels.json is the comparison with the current playtest release, and the runtime draws it (MapLabels.cs).
+if m>=key('0.9.2-dev.8'):
+    for f in ('[FA] [3v3] Bay of Winds 0.1','[FA] [3v3] Bay of Winds Skirmish 0.1'):
+        if f'UserData/FreedomArrow/scenarios/{f}/{f}.bascr' not in z.namelist():bad.append(f'map missing: {f}')
+    import map_labels as ML
+    if 'UserData/FreedomArrow/map-labels.json' not in z.namelist():bad.append('map-labels.json missing')
+    elif z.read('UserData/FreedomArrow/map-labels.json')!=ML.labels(V,z)[1]:bad.append('map-labels.json differs from the comparison with the current playtest release')
+    dll=z.read('Mods/FreedomArrow.Runtime.dll')
+    if 'FREEDOM_ARROW_MAP_LABELS'.encode('utf-16-le') not in dll:bad.append('runtime DLL lacks FREEDOM_ARROW_MAP_LABELS')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

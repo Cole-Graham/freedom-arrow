@@ -65,6 +65,11 @@ with zipfile.ZipFile(base) as z:
         built={'UserData/FreedomArrow/scenarios/'+f.relative_to(built_dir).as_posix():f.read_bytes() for f in Path(built_dir).rglob('*') if f.is_file()}
     for k,b in built.items():
         if k not in z.namelist() or z.read(k)!=b:override[k]=b
+    # Lateralus 20 Nov 2026: New / Updated tags on the Create a lobby map cards, against the current playtest release (map_labels.py, MapLabels.cs).
+    if _vkey(V)>=_vkey('0.9.2-dev.8'):
+        import map_labels;_since,_labels=map_labels.labels(V,built);k='UserData/FreedomArrow/map-labels.json'
+        if k not in z.namelist() or z.read(k)!=_labels:override[k]=_labels
+        print(f'map labels against {_since}:',json.loads(_labels)['maps'])
     retired_scenarios=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and not n.endswith('/') and n not in built]
     # 0.9.0-dev.43 (Osama 18 Nov: Delta loading screen 'third hand'): the loading folder is exact, so a replaced picture leaves the package.
     retired_scenarios+=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/loading/') and not n.endswith('/') and not (SRC/n).is_file()]

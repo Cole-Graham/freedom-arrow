@@ -84,6 +84,7 @@ static class ThirdPartyGuard
         NoActualArrowLabel(h,game);
         OnlyFaMaps(h,game);
         LobbyMapTabs.Install(h);
+        try{MapLabels.Install(h);}catch(Exception x){MelonLogger.Error("FREEDOM_ARROW_MAP_LABELS_FAILED: not installed. "+x.Message);}
     }
 
     // 0.6 dev.16 (Osama, 7 November 2026): players on the same FA build saw different build codes. ArrowQueue hashes every
