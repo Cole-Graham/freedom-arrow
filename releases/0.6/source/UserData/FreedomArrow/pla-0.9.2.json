@@ -1,0 +1,8 @@
+{
+ "version": "0.9.2",
+ "base": "0.9.2-dev.6",
+ "base_sha256": "5ab1e2ac9300fcf6f4959d468f85487482f89f1abe0612ab42878fa0298ccb9f",
+ "no_data_change": "0.9.2 is the playtest release of 0.9.2-dev.6 (Osama 20 Nov 2026: \"we will release it as 9.2\"); constants are the 0.9.2-dev.6 state",
+ "checks": 0,
+ "verified": "data unchanged from 0.9.2-dev.6"
+}

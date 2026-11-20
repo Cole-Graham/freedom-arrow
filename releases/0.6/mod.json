@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.2-dev.6",
+  "version": "0.9.2",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.2-dev.6 (20 Nov): 7 new loading screens (Black Eagle, Su-75, T-80BVM, XM30 + M10, B-21, YF-23 + F-22A, M10).  co-op PvE against China, USA or Russia on 9 maps (1-3 players, AI bot slots), AI infantry arrive in transports, helicopters in the AI opener, AI takes the roads. Includes everything in 0.9.2-dev.5. Needs Freedom Arrow — Models and Music 0.2.48.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.2 (20 Nov): playtest release, the same game data as 0.9.2-dev.6. See the 0.9.2 patch notes for every change since 0.9.1. Needs Freedom Arrow — Models and Music 0.2.48.",
   "repo": "Cole-Graham/freedom-arrow"
 }
