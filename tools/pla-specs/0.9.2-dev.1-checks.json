@@ -179,9 +179,49 @@
       195
     ]
   },
+  "fs_rockets_like_apkws": {
+    "FS-70A": {
+      "ammo": 2017197,
+      "from": {
+        "Damage": 8.0,
+        "StressDamage": 160.0,
+        "PenetrationAtMinRange": 400.0,
+        "PenetrationAtGroundRange": 400.0,
+        "HealthAOERadius": 0.0,
+        "StressAOERadius": 16.0
+      },
+      "to": {
+        "Damage": 3.5,
+        "StressDamage": 140.0,
+        "PenetrationAtMinRange": 60.0,
+        "PenetrationAtGroundRange": 60.0,
+        "HealthAOERadius": 14.0,
+        "StressAOERadius": 14.0
+      }
+    },
+    "FS-90": {
+      "ammo": 2018819,
+      "from": {
+        "Damage": 9,
+        "StressDamage": 160.0,
+        "PenetrationAtMinRange": 400.0,
+        "PenetrationAtGroundRange": 400.0,
+        "HealthAOERadius": 0.0,
+        "StressAOERadius": 16.0
+      },
+      "to": {
+        "Damage": 3.5,
+        "StressDamage": 140.0,
+        "PenetrationAtMinRange": 60.0,
+        "PenetrationAtGroundRange": 60.0,
+        "HealthAOERadius": 14.0,
+        "StressAOERadius": 14.0
+      }
+    }
+  },
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 68,
+  "checks": 72,
   "verified": "data checks only"
 }

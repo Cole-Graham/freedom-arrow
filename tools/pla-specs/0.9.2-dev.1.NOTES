@@ -11,3 +11,8 @@
 - Tank Hunters 坦克杀手 (1139): 4 -> 8 soldiers (4 more QBZ-191 riflemen, rows copied from rifleman 2014882), HP 20 -> 40 (vanilla 84 'Armor Infantry 8Men'), 50 -> 75 pts. Still one PF-98A launcher with 6 PF-98A + 6 DZT-98. All its transports carry 8+.
 - ZTQ-15 Light 140 -> 155, ZTQ-15 130 -> 175, ZTQ-15 Recon 145 -> 195.
 - Checks 68. Data only, not seen in game.
+
+## Forest 55%; FS-70A / FS-90 = APKWS (Osama 19 Nov 2026, thread 1567745029781454889)
+- game-config.json ForestDamageTaken 0.7 -> 0.55: infantry in woods take 55% + 45% x Ignore Cover (rifles 55%, tank/autocannon HE IC 0.25 66%, 155 mm IC 0.36 71%, IC 1 100%). Wargame community figure: 60%. Log line FREEDOM_ARROW_COVER_DAMAGE installed forest 0.55.
+- FS-70A (2017197) and FS-90 (2018819): damage 8/9 -> 3.5, penetration 400 -> 60, stress 160 -> 140, blast 0 -> 14 m, stress AOE 16 -> 14 (equal to vanilla APKWS 45 in every field but the name).
+- Checks 72. Not seen in game.

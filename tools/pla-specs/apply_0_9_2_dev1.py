@@ -92,6 +92,17 @@ _bad=[(r['UnitId'],AR[r['ArmorId']].get('MaxHealthPoints')) for r in UA.values()
 ok(not _bad,('squads off after Tank Hunters',_bad))
 rec['tank_hunters_8_men']={'unit':1139,'soldiers':[4,8],'new_SquadMembers':_new,'template':2014882,'ArmorId':[80,84],'HP':[20,40],'Cost':[50,75],'launchers':1}
 rec['ztq15_prices']={str(k):list(v) for k,v in _PR.items() if k!=1139}
+# ---------- FS-70A / FS-90 = APKWS (Osama 19 Nov 2026 16:5x PST, thread 1567745029781454889: "FS-90 and 70 have way more penetration compared to
+# apkws it should be the same"). Both China laser-guided 70 mm rockets were vanilla helicopter APKWS (ammo 45) copies with AT values: damage 8 / 9,
+# penetration 400, no blast, stress 160 / AOE 16. They now take APKWS's damage 3.5, penetration 60/60, stress 140, health and stress AOE 14 m.
+# Range, guidance, Ignore Cover 0.6, dispersion and supply cost were already the same.
+_A=t['AmmunitionsJson'];_F=['Damage','StressDamage','PenetrationAtMinRange','PenetrationAtGroundRange','HealthAOERadius','StressAOERadius']
+rec['fs_rockets_like_apkws']={}
+for _i in (2017197,2018819):
+    ok(_A[_i]['HUDName'] in ('FS-70A','FS-90') and _A[_i]['PenetrationAtGroundRange']==400.0,(_i,'FS rocket before'))
+    _old={f:_A[_i].get(f) for f in _F};g.put('AmmunitionsJson',_i,{f:_A[45][f] for f in _F})
+    ok(all(_A[_i].get(k)==_A[45].get(k) for k in _A[45] if k not in('Id','Name','HUDName')),(_i,'equal to APKWS 45'))
+    rec['fs_rockets_like_apkws'][_A[_i]['HUDName']]={'ammo':_i,'from':_old,'to':{f:_A[45][f] for f in _F}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
