@@ -1,4 +1,4 @@
-"""Freedom Arrow 0.9.2-dev.8 data over exact 0.9.2-dev.7 (build 239). Data opened by BA Codex thread 1572962048705429598 (Lateralus, plane return time and ground missile resupply).
+"""Freedom Arrow 0.9.3-dev.1 (opened as the 0.9.2-dev.8 batch) data over exact 0.9.2-dev.7 (build 239; 0.9.2 = the same data). Data opened by BA Codex thread 1572962048705429598 (Lateralus, plane return time and ground missile resupply).
 Batch only: build when Osama or Lateralus say the batch is ready. Other threads: add your sections before the check-mode exit, keep the checks.
 """
 import argparse,hashlib,json,sys,zipfile
@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent)]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.2-dev.8';PREV='0.9.2-dev.7'
+V='0.9.3-dev.1';PREV='0.9.2-dev.7'   # opened as the 0.9.2-dev.8 batch; built as 0.9.3-dev.1 after the 0.9.2 release (Lateralus 20 Nov: "build")
 # 0.9.2-dev.7 (build 239) was built in out/local-092dev7.
 BASE=json.loads((REL/f'out/local-092dev7/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()

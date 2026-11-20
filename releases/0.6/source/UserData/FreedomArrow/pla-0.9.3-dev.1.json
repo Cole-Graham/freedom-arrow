@@ -1,0 +1,462 @@
+{
+  "plane_return_base": {
+    "unit 702": {
+      "name": "MiG-31K (S)",
+      "base": [
+        1400.0,
+        2310
+      ]
+    },
+    "option 1740": {
+      "card": "Tu-160",
+      "loadout": "Custom_Option_Kh102_nuke",
+      "base": [
+        1400.0,
+        2310
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 1026": {
+      "card": "B-1B Lancer",
+      "loadout": "Custom_Option_B61_Nuke",
+      "base": [
+        2000.0,
+        2490
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 1083": {
+      "card": "B-2 Spirit",
+      "loadout": "Custom_Option_B61_Nuke",
+      "base": [
+        2000.0,
+        2490
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 20177": {
+      "card": "B-21 Raider",
+      "loadout": "Custom_Option_B61_Nuke",
+      "base": [
+        2000.0,
+        2490
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 1746": {
+      "card": "MiG-31K",
+      "loadout": "Custom_Option_HE_warhead",
+      "base": [
+        0.0,
+        532
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 1747": {
+      "card": "MiG-31K",
+      "loadout": "Custom_Option_Cluster_warhead",
+      "base": [
+        0.0,
+        532
+      ],
+      "missiles": 1,
+      "shared_by_slots": 1
+    },
+    "option 20203": {
+      "card": "B-21 Raider",
+      "loadout": "2x AGM-183A ARRW",
+      "base": [
+        0.0,
+        521
+      ],
+      "missiles": 2,
+      "shared_by_slots": 1
+    },
+    "option 24478": {
+      "card": "H-6K",
+      "loadout": "Anti-ship (YJ-21)",
+      "base": [
+        0.0,
+        521
+      ],
+      "missiles": 2,
+      "shared_by_slots": 1
+    },
+    "option 20157": {
+      "card": "B-52H Stratofortress",
+      "loadout": "2x AGM-183A ARRW",
+      "base": [
+        0.0,
+        230
+      ],
+      "missiles": 4,
+      "shared_by_slots": 2
+    },
+    "option 20158": {
+      "card": "B-52H Stratofortress",
+      "loadout": "2x AGM-183A ARRW",
+      "base": [
+        0.0,
+        230
+      ],
+      "missiles": 4,
+      "shared_by_slots": 2
+    },
+    "option 31000": {
+      "card": "F-22 Raptor",
+      "loadout": "1x MAKO",
+      "base": [
+        0.0,
+        261
+      ],
+      "missiles": 2,
+      "shared_by_slots": 2
+    },
+    "option 31001": {
+      "card": "F-22 Raptor",
+      "loadout": "1x MAKO",
+      "base": [
+        0.0,
+        261
+      ],
+      "missiles": 2,
+      "shared_by_slots": 2
+    }
+  },
+  "plane_return_curve": {
+    "PlanesRefundAmmoCoeff_K": [
+      1,
+      0.3
+    ],
+    "PlanesRefundAmmoCoeff_P": [
+      5,
+      1.6
+    ],
+    "where": "game-config.json + runtime PlaneReturnCurve.cs"
+  },
+  "ground_missiles": {
+    "34": {
+      "name": "ATACMS",
+      "users": [
+        "M142 HIMARS",
+        "M270A1 MLRS",
+        "M270A2 GMLRS"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "218": {
+      "name": "9M723-1F",
+      "users": [
+        "9K720 Iskander"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "219": {
+      "name": "9M728",
+      "users": [
+        "9K720 Iskander"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "427": {
+      "name": "400mm HE PrSM",
+      "users": [
+        "M142 HIMARS"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        700.0,
+        525.0
+      ]
+    },
+    "439": {
+      "name": "9M79-1F",
+      "users": [
+        "Tochka-U"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "440": {
+      "name": "9M79-1K",
+      "users": [
+        "Tochka-U"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "566": {
+      "name": "9M723-1K5",
+      "users": [
+        "9K720 Iskander"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "752": {
+      "name": "9M728",
+      "users": [
+        "9K720 Iskander"
+      ],
+      "ResupplyTime": [
+        100.0,
+        50.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "903": {
+      "name": "400mm HE PrSM",
+      "users": [
+        "M270A2 GMLRS"
+      ],
+      "ResupplyTime": [
+        100.0,
+        50.0
+      ],
+      "SupplyCost": [
+        700.0,
+        525.0
+      ]
+    },
+    "2010363": {
+      "name": "DF-15 conventional test missile ammunition",
+      "users": [
+        "DF-15"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "2010375": {
+      "name": "DF-21 conventional test missile ammunition",
+      "users": [
+        "DF-21"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "2011649": {
+      "name": "YJ-18",
+      "users": [
+        "YJ-18"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "2017443": {
+      "name": "Fire Dragon 480",
+      "users": [
+        "PHL-16",
+        "PHL-191 Ballistic"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "2017462": {
+      "name": "Fire Dragon 300",
+      "users": [
+        "SR-5"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        1000.0,
+        750.0
+      ]
+    },
+    "2017463": {
+      "name": "Fire Dragon 480",
+      "users": [
+        "SR-5"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        700.0,
+        525.0
+      ]
+    },
+    "2018727": {
+      "name": "Fire Dragon 280A",
+      "users": [
+        "PHL-191 Ballistic"
+      ],
+      "ResupplyTime": [
+        120.0,
+        60.0
+      ],
+      "SupplyCost": [
+        700.0,
+        525.0
+      ]
+    }
+  },
+  "ground_missiles_unchanged": {
+    "2010351": "DF-17/ZF",
+    "2010399": "DF-31A Nuclear",
+    "2018321": "CTL-181 NLOS",
+    "2018448": "Blood Wolves 朱日和之狼"
+  },
+  "blue_dragon": {
+    "parent": "M1A2 SEP v2 TUA (2)",
+    "visible": false,
+    "specs": [],
+    "model": "stand-in (TUA); C5 model not bought",
+    "cards": {
+      "Type 10": {
+        "unit": 1276,
+        "cost": 190,
+        "gun": 2019499,
+        "reload_s": 4.0,
+        "ap": [
+          "Type 10 APFSDS",
+          2019500,
+          525.0,
+          475.0
+        ],
+        "heat": [
+          "JM12A1 HEAT",
+          2019492,
+          600.0
+        ],
+        "turret": 2019501,
+        "armour_row": 2019495,
+        "KE": [
+          600,
+          100,
+          100,
+          60
+        ],
+        "HEAT": [
+          800,
+          200,
+          100,
+          100
+        ],
+        "HP": 14,
+        "road_xc": [
+          70,
+          55
+        ]
+      },
+      "Type 90": {
+        "unit": 1277,
+        "cost": 140,
+        "gun": 2019521,
+        "reload_s": 4.0,
+        "ap": [
+          "JM33 APFSDS",
+          2019522,
+          425.0,
+          375.0
+        ],
+        "heat": [
+          "JM12A1 HEAT",
+          2019492,
+          600.0
+        ],
+        "turret": 2019523,
+        "armour_row": 2019517,
+        "KE": [
+          500,
+          120,
+          100,
+          60
+        ],
+        "HEAT": [
+          600,
+          200,
+          100,
+          100
+        ],
+        "HP": 14,
+        "road_xc": [
+          70,
+          55
+        ]
+      }
+    }
+  },
+  "verified": "data checks only",
+  "version": "0.9.3-dev.1",
+  "base": "0.9.2-dev.7",
+  "base_sha256": "1a0b66f6167df9f76374213b13cc69087072c1f658d2206ce4eb31d02cd11af7",
+  "checks": 73
+}
