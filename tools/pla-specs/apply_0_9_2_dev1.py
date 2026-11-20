@@ -118,6 +118,20 @@ rec['ty90_damage_8']={'ammo':[2016167,2017083],'Damage':[13,8]};rec['z19_plus_40
 _MO=t['MobilityJson'];ok(_MO[2009941]['MaxSpeedRoad']==65.0 and _MO[2009941]['MaxSpeedReverse']==25.0,'JRVG-1 mobility before')
 ok([r['UnitId'] for r in t['UnitPropulsionsJson'].values() if r['MobilityId']==2009941]==[952] and not any(o.get('MobilityId')==2009941 for o in t['OptionsJson'].values()),'JRVG mobility not shared')
 g.put('MobilityJson',2009941,{'MaxSpeedRoad':60.0,'MaxSpeedReverse':20.0});rec['jrvg1_speed']={'mobility':2009941,'road':[65,60],'reverse':[25,20],'offroad':55}
+# ---------- ZTZ-100 gun named 105 mm (Osama 19 Nov 2026 17:0x PST, thread 1567745029781454889: "ZTZ-100 rename to 105mm not 125mm"). Names only
+# (Name and HUDName): gun 2010191, its APFSDS/HE/HEAT 2010195/2010197/2010199 "Prototype 125 mm" -> "Prototype 105 mm", and its gun-launched missile
+# 2017420 "GP125 gun-launched missile" -> "105 mm gun-launched missile" (the ZTL-11's 105 mm missile name). Stats, icons, sounds, effects unchanged.
+_REN={2010191:('WeaponsJson','PLA ZTZ-100 Prototype 105 mm gun','Prototype 105 mm gun'),
+      2010195:('AmmunitionsJson','PLA ZTZ-100 Prototype 105 mm gun APFSDS','Prototype 105 mm gun APFSDS'),
+      2010197:('AmmunitionsJson','PLA ZTZ-100 Prototype 105 mm gun HE','Prototype 105 mm gun HE'),
+      2010199:('AmmunitionsJson','PLA ZTZ-100 Prototype 105 mm gun HEAT','Prototype 105 mm gun HEAT'),
+      2017420:('AmmunitionsJson','PLA 105 mm gun-launched missile 968','105 mm gun-launched missile')}
+rec['ztz100_105mm_names']={}
+for _i,(_tab,_n,_h) in _REN.items():
+    _r=t[_tab][_i];ok('125' in _r['HUDName'],(_i,'125 before'));rec['ztz100_105mm_names'][str(_i)]=[_r['HUDName'],_h]
+    g.put(_tab,_i,{'Name':_n,'HUDName':_h})
+ok(not any('125' in (t[tb][i].get('HUDName') or '') for tb,ids in (('WeaponsJson',[r['WeaponId'] for r in t['TurretWeaponsJson'].values() if r['TurretId'] in {x['TurretId'] for x in t['TurretUnitsJson'].values() if x['UnitId']==968}]),) for i in ids),'no 125 on ZTZ-100 weapons')
+ok(not any('125' in (t['AmmunitionsJson'][w['AmmunitionId']].get('HUDName') or '') for w in t['WeaponAmmunitionsJson'].values() if w['WeaponId']==2010191),'no 125 on ZTZ-100 gun ammo')
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
