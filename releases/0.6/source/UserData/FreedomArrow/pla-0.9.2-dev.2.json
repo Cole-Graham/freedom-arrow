@@ -18,9 +18,108 @@
       23
     ]
   },
+  "infantry_armour": {
+    "1136": {
+      "name": "Airborne 空降兵",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2011825,
+        277
+      ],
+      "HP": 45
+    },
+    "1192": {
+      "name": "Marines 陆战队",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2013435,
+        291
+      ],
+      "HP": 40
+    },
+    "1224": {
+      "name": "Marine Recon",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2014369,
+        276
+      ],
+      "HP": 20
+    },
+    "1142": {
+      "name": "Pathfinders 先遣队",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2011991,
+        278
+      ],
+      "HP": 35
+    },
+    "1194": {
+      "name": "Marine QW-2 Team",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2013494,
+        289
+      ],
+      "HP": 30
+    },
+    "1193": {
+      "name": "Marine HJ-8H Team",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2013465,
+        289
+      ],
+      "HP": 30
+    },
+    "1199": {
+      "name": "Weapons Squad 火力班",
+      "ArmorValue": [
+        6,
+        8
+      ],
+      "armour_row": [
+        2013637,
+        291
+      ],
+      "HP": 40
+    },
+    "1156": {
+      "name": "Combat Engineers 工兵班",
+      "ArmorValue": [
+        8,
+        10
+      ],
+      "armour_row": [
+        2012351,
+        273
+      ],
+      "HP": 35
+    }
+  },
+  "infantry_armour_verified": "data checks only",
   "version": "0.9.2-dev.2",
   "base": "0.9.2-dev.1",
   "base_sha256": "755e4bcd1a4f3243f564612ed8ff0e83c63a137573446d7f992323e550c10eed",
-  "checks": 169,
+  "checks": 201,
   "verified": "data checks only"
 }
