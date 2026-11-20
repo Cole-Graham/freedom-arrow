@@ -70,6 +70,28 @@ import collections as _c
 _men=_c.Counter(r['UnitId'] for r in SM.values());_live={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}
 _bad=[(r['UnitId'],AR[r['ArmorId']].get('MaxHealthPoints')) for r in UA.values() if U.get(r['UnitId'],{}).get('Type')==2 and r['UnitId'] in _live and _men[r['UnitId']] and AR[r['ArmorId']].get('MaxHealthPoints')!=5*_men[r['UnitId']]]
 ok(not _bad,('squads still off',_bad))
+# ---------- Tank Hunters 8 men, ZTQ-15 prices (Osama 19 Nov 2026 16:4x PST, thread 1567745029781454889: "Tank hunters to 8 man (and HP) and 75 pts";
+# "ZTQ-15 light 155 points, ZTQ-15 (base) 175 points, ZTQ-15 Recon 195"). Tank Hunters 坦克杀手 (1139): 4 -> 8 soldiers. The 4 new soldiers copy
+# rifleman 2014882 (QBZ-191, no launcher), so the squad keeps one PF-98A launcher and its 6 PF-98A + 6 DZT-98 rounds (one launcher per team).
+# Bodies and rifles come from FAModels' per-unit maps (soldierIndex -1), so no model rows change. Armour: vanilla 84 'Armor Infantry 8Men' (HP 40;
+# same fields as 80 apart from HP). Every transport offered with it carries 8 or more (Z-20KA 13, Z-9 8, ZBD-251 9, Lynx ATV 9, ZSD-89A 12, CSK-131 12).
+# Price 50 -> 75. ZTQ-15 Light (1268) 140 -> 155, ZTQ-15 (906) 130 -> 175, ZTQ-15 Recon (1240) 145 -> 195; none has a loadout or swap row.
+_th=[r for r in SM.values() if r['UnitId']==1139];ok(len(_th)==4 and sum(1 for r in _th if r.get('SpecialWeaponId'))==1,'Tank Hunters 4 men, 1 launcher')
+_rif=SM[2014882];ok(_rif['UnitId']==1139 and not _rif.get('SpecialWeaponId'),'rifleman template')
+_new=[g.add('SquadMembersJson',_rif) for _ in range(4)]
+ok(sum(1 for r in SM.values() if r['UnitId']==1139)==8 and all(set(SM[i])==set(_rif) for i in _new),'Tank Hunters 8 men, rows like the template')
+ok(UA[2011913]['UnitId']==1139 and UA[2011913]['ArmorId']==80,'Tank Hunters armour 4Men');ok(AR[84].get('MaxHealthPoints')==40 and all(AR[84].get(k)==AR[80].get(k) for k in AR[80] if k not in('Id','Name','MaxHealthPoints')),'vanilla 84 = 80 but HP 40')
+g.put('UnitArmorsJson',2011913,{'ArmorId':84})
+_slots=[U[r['UnitId']].get('InfantrySlots') for r in t['TransportAvailabilitiesJson'].values() if r['SpecializationAvailabilityId'] in {x['Id'] for x in t['SpecializationAvailabilitiesJson'].values() if x['UnitId']==1139}]
+ok(_slots and min(_slots)>=8,('transports carry 8',_slots))
+_PR={1139:(50,75),1268:(140,155),906:(130,175),1240:(145,195)}
+for uid,(c0,c1) in _PR.items():
+    ok(U[uid]['Cost']==c0 and not U[uid].get('OriginalCost'),(uid,'price before'));g.put('Units',uid,{'Cost':c1})
+    ok(not any(o.get('ReplaceUnitId')==uid for o in t['OptionsJson'].values()),(uid,'swap row'))
+_bad=[(r['UnitId'],AR[r['ArmorId']].get('MaxHealthPoints')) for r in UA.values() if U.get(r['UnitId'],{}).get('Type')==2 and r['UnitId'] in _live and AR[r['ArmorId']].get('MaxHealthPoints')!=5*sum(1 for x in SM.values() if x['UnitId']==r['UnitId'])]
+ok(not _bad,('squads off after Tank Hunters',_bad))
+rec['tank_hunters_8_men']={'unit':1139,'soldiers':[4,8],'new_SquadMembers':_new,'template':2014882,'ArmorId':[80,84],'HP':[20,40],'Cost':[50,75],'launchers':1}
+rec['ztq15_prices']={str(k):list(v) for k,v in _PR.items() if k!=1139}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

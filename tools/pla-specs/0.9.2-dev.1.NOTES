@@ -6,3 +6,8 @@
 - Each now links the vanilla armour row for its size (80 'Armor Infantry 4Men', 283 'Armor Infantry Elite 12Men'); the FA rows differed only in HP.
 - Every other squad (US, Russia, China) already had 5 HP per soldier. New build check tools/pla-specs/check_squad_hp.py (run by the packager); 0.9.1 fails it on these 6, the batch passes.
 - Data checks only, not seen in game.
+
+## Tank Hunters 8 men; ZTQ-15 prices (Osama 19 Nov 2026, thread 1567745029781454889)
+- Tank Hunters 坦克杀手 (1139): 4 -> 8 soldiers (4 more QBZ-191 riflemen, rows copied from rifleman 2014882), HP 20 -> 40 (vanilla 84 'Armor Infantry 8Men'), 50 -> 75 pts. Still one PF-98A launcher with 6 PF-98A + 6 DZT-98. All its transports carry 8+.
+- ZTQ-15 Light 140 -> 155, ZTQ-15 130 -> 175, ZTQ-15 Recon 145 -> 195.
+- Checks 68. Data only, not seen in game.
