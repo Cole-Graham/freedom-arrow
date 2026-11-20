@@ -14,3 +14,7 @@
   MiG-31K Kinzhal 532, B-21 ARRW 521, H-6K YJ-21 521, B-52H ARRW 230+230, F-22 MAKO 261+261) and 16 ground missile ammo rows ResupplyTime x0.5, SupplyCost x0.75.
   RUNTIME: PlaneReturnCurve.cs sets GameConfig PlanesRefundAmmoCoeff_K 0.3 / _P 1.6 from game-config.json (vanilla 1 / 5) before each unit card and battle.
   REBUILD THE RUNTIME DLL. Compiles; not yet seen in game. This batch is no longer art only.
+- New map [FA] [3v3] Bay of Winds 0.1 + Skirmish (Lateralus 20 Nov 2026, thread 1572962048705429598: "add this map to the mod, using these zone values.
+  Don't forget to add the cameras ... remove the humvees and 4 waypoints. A B C D - 2 points, E F I J - 3 points, G H K L - 4 points ... queue it up").
+  releases/0.8/scenarios/bay_of_winds_3v3 (his file, Parnu), Chernyakhovsky pattern: FA conquest graft, 2 team cameras, 8 Humvees + 4 waypoints removed,
+  zones 30-41 in settings.json MapZoneWeights. Scenario test build: 46 flavors; sliders, pblOpt and script identical to Chernyakhovsky's. Not yet seen in game.
