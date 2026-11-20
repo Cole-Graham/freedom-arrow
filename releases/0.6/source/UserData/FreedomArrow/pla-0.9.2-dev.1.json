@@ -416,9 +416,37 @@
       95
     ]
   },
+  "helo_pass_2": {
+    "z20_family_ability": [
+      2009257,
+      2000767
+    ],
+    "z20s_supply": [
+      4000,
+      0
+    ],
+    "z11wb_ability": [
+      10,
+      84
+    ],
+    "cost": {
+      "1244": [
+        65,
+        80
+      ],
+      "1238": [
+        65,
+        80
+      ],
+      "1245": [
+        65,
+        95
+      ]
+    }
+  },
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 125,
+  "checks": 133,
   "verified": "data checks only"
 }

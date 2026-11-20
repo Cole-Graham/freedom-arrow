@@ -37,3 +37,6 @@
   Z-9WA / Z-9WA Recon (new mobility row copied from Dauphin 258 with 0; Dauphin keeps 1500); Z-20KA base 65 -> 95 (32x FS-90 + 4x TY-90 card = 200). 122 checks.
 - QN-506 QN-201 on mount 0 position 2 -> 3 (Osama 17:1x "move it to position 3"): position 2 is the BMPT turret's PKT spot, likely coaxial with the 30 mm; 3 is the Ataka launcher spot. Leaves a null at position 2 (battle skips it; the card's resupply-time stat may be missing). Watch it in the Skirmish test.
 - Runtime DLL changed (rebuild it, bump MelonInfo): LogUpload.cs adds up to 50 "CombatSystem initialization for unit=" lines from the session's GameLogs/Gamelog__*.log to every log upload. Scan with bin/ba-crash-scan --spawn-fails.
+- 19 Nov 2026 17:3x PST, thread 1572407822849810463 (Osama: "z-20S is recon but it shouldnt have supplies, Z-11WB should be modeled after other helos, not a
+  drone ... Make the rest of the changes"): Z-20 family ability 2009257 -> vanilla-equal FA row 2000767 (15 flares instead of 10); Z-20S supply 4000 -> 0;
+  Z-11WB drone row 10 -> heli row 84 (Mi-24K/Ka-50: 5% ECM, 15 flares, laser); Z-20 and Z-20J 65 -> 80 (UH-60M), Z-20T 65 -> 95. 133 checks.

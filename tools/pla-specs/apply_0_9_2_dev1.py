@@ -178,6 +178,27 @@ ok(all(_MO[r['MobilityId']]['HeavyLiftWeight']==0 for r in _UP.values() if r and
 ok(U[914]['HUDName']=='Z-20KA' and U[914]['Cost']==65 and not U[914].get('OriginalCost') and not any(o.get('ReplaceUnitId')==914 for o in _O.values() if o),'Z-20KA 65');g.put('Units',914,{'Cost':95})
 ok(95+_O[24562]['Cost']+_O[24567]['Cost']==200,('Z-20KA 32x FS-90 + 4x TY-90',_O[24562]['Cost'],_O[24567]['Cost']))
 rec['helo_pass_1']={'dap_ability':[21,2000773],'no_supply':{'914':2009255,'1245':2016216,'941/1133':_z9m},'z20ka_cost':[65,95]}
+# ---------- Helicopter sanity pass, part 2 (Osama 19 Nov 2026 17:3x PST, thread 1572407822849810463: "z-20S is recon but it shouldnt have supplies,
+# Z-11WB should be modeled after other helos, not a drone ... Make the rest of the changes though, we should make sure we should be using other US and
+# Russian units as a point of balance"). Balance points: UH-60M (80, 13 seats, 4000 supply, 15 flares), MH-60M DAP, Mi-24K / Ka-50.
+#  - Z-20 family (Z-20, Z-20J, Z-20KA, Z-20S, Z-20T) ability 2009257 -> 2000767: identical except 15 flares instead of 10 (every US/RU helicopter has 15).
+#  - Z-20S (recon, 0 seats): supply 4000 -> 0 (own mobility 2016184).
+#  - Z-11WB: drone ability row 10 (100% ECM, no flares) -> vanilla helicopter row 84 (Mi-24K, Ka-50: 5% ECM, 15 flares, laser 1500 m).
+#  - Z-20 and Z-20J transports 65 -> 80 (UH-60M); Z-20T gunship 65 -> 95 (same weapons and price base as the Z-20KA).
+_AB=t['AbilitiesJson'];_UA=t['UnitAbilitiesJson'];_MO=t['MobilityJson'];_UP=t['UnitPropulsionsJson'];_O=t['OptionsJson']
+_st=lambda r:{k:v for k,v in r.items() if k not in('Id','Name')}
+ok(_st(_AB[2000767])==dict(_st(_AB[2009257]),DecoyQuantity=15),'2000767 = Z-20 row with 15 flares')
+_z20=[r for r in _UA.values() if r and r.get('AbilityId')==2009257]
+ok(sorted(r['UnitId'] for r in _z20)==[914,1238,1243,1244,1245],('Z-20 family ability users',sorted(r['UnitId'] for r in _z20)))
+for r in _z20:g.put('UnitAbilitiesJson',r['Id'],{'AbilityId':2000767})
+ok([r['UnitId'] for r in _UP.values() if r and r.get('MobilityId')==2016184]==[1243] and _MO[2016184]['HeavyLiftWeight']==4000,'Z-20S own mobility 4000')
+g.put('MobilityJson',2016184,{'HeavyLiftWeight':0})
+_w=[r for r in _UA.values() if r and r.get('UnitId')==942]
+ok(len(_w)==1 and _w[0]['AbilityId']==10 and U[942]['HUDName']=='Z-11WB','Z-11WB drone row 10');g.put('UnitAbilitiesJson',_w[0]['Id'],{'AbilityId':84})
+ok(_AB[84]['DecoyQuantity']==15 and _AB[84].get('IsLaserDesignator') and abs(_AB[84]['ECMAccuracyMultiplier']-0.95)<1e-6,'row 84 heli')
+for _u,_c in ((1244,80),(1238,80),(1245,95)):
+    ok(U[_u]['Cost']==65 and not U[_u].get('OriginalCost') and not any(o.get('ReplaceUnitId')==_u for o in _O.values() if o),(_u,'65, no swap'));g.put('Units',_u,{'Cost':_c})
+rec['helo_pass_2']={'z20_family_ability':[2009257,2000767],'z20s_supply':[4000,0],'z11wb_ability':[10,84],'cost':{'1244':[65,80],'1238':[65,80],'1245':[65,95]}}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
