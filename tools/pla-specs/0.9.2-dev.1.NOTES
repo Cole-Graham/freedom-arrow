@@ -32,3 +32,6 @@
 - 19 Nov 2026 17:1x PST, thread 1572407822849810463 (Osama: "FS-90 loadouts across the board should be increased by 10 points"): apply_0_9_2_dev1.py
   +10 on the 15 loadout options that mount an FS-90 turret (Z-10, Z-10K, Air Force Z-10, Z-10U, Catalogue Z-21, Recon Z-21, Z-20 x2, Z-20T x2, Recon Z-19,
   SF Recon Z-19, Z-19E, Catalogue Z-19, SF Z-19). FS-70A loadouts unchanged. 111 checks.
+- 19 Nov 2026 17:2x PST, thread 1572407822849810463 (Osama: "DAP should get laser. Z-20KA and similar gunship transports shouldn't get supplies. Z-20KA
+  should be 200 points in this configuration"): MH-60M DAP ability 21 -> 2000773 (same + laser 1500 m); supply 0 on Z-20KA (2009255), Z-20T (2016216) and
+  Z-9WA / Z-9WA Recon (new mobility row copied from Dauphin 258 with 0; Dauphin keeps 1500); Z-20KA base 65 -> 95 (32x FS-90 + 4x TY-90 card = 200). 122 checks.

@@ -153,6 +153,27 @@ rec['fs90_loadouts_plus_10']={}
 for _i in _fso:
     _c=_O[_i]['Cost'];g.put('OptionsJson',_i,{'Cost':_c+10});ok(_O[_i]['Cost']==_c+10,(_i,'FS-90 option +10'))
     rec['fs90_loadouts_plus_10'][str(_i)]={'option':_O[_i].get('UIName') or _O[_i].get('Name'),'Cost':[_c,_c+10]}
+# ---------- Helicopter sanity pass, part 1 (Osama 19 Nov 2026 17:1x PST, thread 1572407822849810463: "DAP should get laser. Z-20KA and similar
+# gunship transports shouldn't get supplies. Z-20KA should be 200 points in this configuration"; his card shows Z-20KA 32x FS-90 + 4x TY-90).
+#  - MH-60M DAP (272): ability row 21 -> 2000773 (row 21 + laser designator 1500 m usable on the move; MH-60M SOAR and Ka-52 already use it).
+#  - Armed helicopters carry no supply (DAP and every US/RU gunship have 0): Z-20KA (own mobility 2009255) and Z-20T (own 2016216) 4000 -> 0;
+#    Z-9WA and Z-9WA Recon shared row 258 with the US AS-365 Dauphin (1500), so they get a copy of 258 with 0. Z-20, Z-20J, Z-20S and Z-9 transports keep supply.
+#  - Z-20KA base 65 -> 95: with 32x FS-90 (55 after the FS-90 +10 above) and 4x TY-90 (50) the card is 200, like the MH-60M DAP's 200.
+_AB=t['AbilitiesJson'];_UA=t['UnitAbilitiesJson'];_MO=t['MobilityJson'];_UP=t['UnitPropulsionsJson'];_O=t['OptionsJson']
+ok({k:v for k,v in _AB[21].items() if k not in('Id','Name','IsLaserDesignator','LaserMaxRange','LaserUsableInMove')}=={k:v for k,v in _AB[2000773].items() if k not in('Id','Name','IsLaserDesignator','LaserMaxRange','LaserUsableInMove')} and _AB[2000773].get('IsLaserDesignator'),'2000773 = 21 + laser')
+_dap=[r for r in _UA.values() if r and r.get('UnitId')==272]
+ok(len(_dap)==1 and _dap[0]['AbilityId']==21 and U[272]['HUDName']=='MH-60M DAP','DAP ability row 21');g.put('UnitAbilitiesJson',_dap[0]['Id'],{'AbilityId':2000773})
+ok(not any(o.get('MobilityId') for o in _O.values() if o and t['ModificationsJson'].get(o.get('ModificationId'),{}).get('UnitId') in (914,1245,941,1133)),'no option mobility overrides')
+for _u,_m in ((914,2009255),(1245,2016216)):
+    ok([r['MobilityId'] for r in _UP.values() if r and r.get('UnitId')==_u]==[_m] and [r['UnitId'] for r in _UP.values() if r and r.get('MobilityId')==_m]==[_u],(_u,'own mobility row'))
+    ok(_MO[_m]['HeavyLiftWeight']==4000,(_u,'supply 4000'));g.put('MobilityJson',_m,{'HeavyLiftWeight':0})
+ok(sorted(r['UnitId'] for r in _UP.values() if r and r.get('MobilityId')==258)==[532,738,941,1133] and _MO[258]['HeavyLiftWeight']==1500,'258 shared with Dauphin')
+_z9m=g.add('MobilityJson',_MO[258],{'Name':'PLA Z-9WA MobilityJson','HeavyLiftWeight':0})
+for r in [r for r in _UP.values() if r and r.get('UnitId') in (941,1133)]:g.put('UnitPropulsionsJson',r['Id'],{'MobilityId':_z9m})
+ok(all(_MO[r['MobilityId']]['HeavyLiftWeight']==0 for r in _UP.values() if r and r.get('UnitId') in (914,1245,941,1133)),'gunships no supply')
+ok(U[914]['HUDName']=='Z-20KA' and U[914]['Cost']==65 and not U[914].get('OriginalCost') and not any(o.get('ReplaceUnitId')==914 for o in _O.values() if o),'Z-20KA 65');g.put('Units',914,{'Cost':95})
+ok(95+_O[24562]['Cost']+_O[24567]['Cost']==200,('Z-20KA 32x FS-90 + 4x TY-90',_O[24562]['Cost'],_O[24567]['Cost']))
+rec['helo_pass_1']={'dap_ability':[21,2000773],'no_supply':{'914':2009255,'1245':2016216,'941/1133':_z9m},'z20ka_cost':[65,95]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

@@ -391,9 +391,24 @@
       ]
     }
   },
+  "helo_pass_1": {
+    "dap_ability": [
+      21,
+      2000773
+    ],
+    "no_supply": {
+      "914": 2009255,
+      "1245": 2016216,
+      "941/1133": 2019491
+    },
+    "z20ka_cost": [
+      65,
+      95
+    ]
+  },
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 111,
+  "checks": 122,
   "verified": "data checks only"
 }
