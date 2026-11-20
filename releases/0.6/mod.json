@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.2",
+  "version": "0.9.2-dev.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.2 (20 Nov): playtest release, the same game data as 0.9.2-dev.6. See the 0.9.2 patch notes for every change since 0.9.1. Needs Freedom Arrow — Models and Music 0.2.48.",
+  "description": "Freedom Arrow 0.9: China (PLA) on the full 0.7.0-dev.58 game. 0.9.2-dev.7 (20 Nov): the PvE AI's opening force spawns at the start of the match. Includes everything in 0.9.2-dev.6. Needs Freedom Arrow — Models and Music 0.2.48.",
   "repo": "Cole-Graham/freedom-arrow"
 }
