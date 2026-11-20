@@ -7,3 +7,10 @@
 - 2026-11-20 09:0x PST, thread 1572962048705429598 (Lateralus: "remove the "Resupply Cost" row from weapons on planes so players don't get confused ... Queue it"):
   runtime-qa/PlaneResupplyCostRow.cs, postfix on AmmoInfoExpansionPanel.SetMainAmmoStats hides the "Resupply cost" line when isAircraft (planes only,
   Units.Type 16; helicopters and ground keep it). UI only, no data change. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.
+- 2026-11-20 10:5x PST, thread 1572962048705429598 (Lateralus: "Yes go with option 1 and compensate the nukes, and add base times for the other heavy hitters
+  with no base time. Also, for ground launched cruise and ballistic missiles I want to reduce the resupply time per missile by 50% and supply costs by 25%,
+  with the following exceptions ... DF-17/ZF, DF-31A Nuclear, CTL-181 NLOS, CH-901"). DATA: tools/pla-specs/apply_0_9_2_dev8.py over out/local-092dev7
+  (--vanilla ../lateralus-infantry-20261110/vanilla), 50 checks: nuke/heavy-hitter TimeModifierRefund (MiG-31K (S) 2310, Tu-160 Kh-102 2310, B61 x3 2490,
+  MiG-31K Kinzhal 532, B-21 ARRW 521, H-6K YJ-21 521, B-52H ARRW 230+230, F-22 MAKO 261+261) and 16 ground missile ammo rows ResupplyTime x0.5, SupplyCost x0.75.
+  RUNTIME: PlaneReturnCurve.cs sets GameConfig PlanesRefundAmmoCoeff_K 0.3 / _P 1.6 from game-config.json (vanilla 1 / 5) before each unit card and battle.
+  REBUILD THE RUNTIME DLL. Compiles; not yet seen in game. This batch is no longer art only.

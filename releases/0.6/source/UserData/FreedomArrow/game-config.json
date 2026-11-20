@@ -11,5 +11,7 @@
   "InfantryOpenDamageFloor": 1,
   "InfantryOpenDamagePerSoldier": 0,
   "AaCooldownEnabled": true,
-  "AaCooldownShadowOnly": false
+  "AaCooldownShadowOnly": false,
+  "PlanesRefundAmmoCoeff_K": 0.3,
+  "PlanesRefundAmmoCoeff_P": 1.6
 }
