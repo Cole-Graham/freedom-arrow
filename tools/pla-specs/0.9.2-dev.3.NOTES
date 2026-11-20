@@ -1,0 +1,12 @@
+0.9.2-dev.3 batch (over exact 0.9.2-dev.2, build 233). Build only when Osama or Lateralus say the batch is ready. Use build 234+.
+Other threads: add one line per change here.
+
+- 19 Nov 2026 22:3x-22:5x PST, thread 1567745029781454889 (Osama: "Can you make US versions and different maps? And Russia so people can play against
+  their faction of choice and make sure the AI works"; "sometimes when it calls in a new unit they don't use the roads"; "the names ... are too long, early on
+  you need to say (1p) (2p) (3p)"): releases/0.8/scenarios/pve.py now builds 9 online co-op maps (+9 Skirmish flavors), names "[FA] [PvE] (NP) <map> vs <faction> 0.2":
+  China: Dead Center 1P, Highway of Death 2P, Dam 3P; USA: Klaipeda 1P (USMC), Chkalovsk Airbase 2P (Stryker + Armored), Baltiisk 3P (Airborne + SOF);
+  Russia: Jelgava 1P (VDV), Dead Center 2v2 2P (Motorized + Mechanized), Airport 5v5 3P (Guard Tank + Coastal). US/RU cards are base-game units only, each with
+  the default option of every modification (vanilla Skirmish wave format). New AI terrain bakes in pve_terrain/ (Klaipeda, Jelgava, Airbase, Baltiisk, Airport).
+  AI road use: FAST_MOVE_MIN 400 -> 200 m; a unit's first order after it is called in (beyond 50 m) and any non-attack move beyond 100 m use MoveToFast.
+  The six old 0.1 PvE maps are retired by GUID in runtime-qa Runtime.cs RetiredScenarios (REBUILD THE RUNTIME DLL). settings.json MapZoneWeights follow the renames.
+  Checked: all 18 maps built from baseline-vengeance, slot readback (N humans on Alpha, N bots on Bravo), luac -p on the Lua chunks. Not seen in game.

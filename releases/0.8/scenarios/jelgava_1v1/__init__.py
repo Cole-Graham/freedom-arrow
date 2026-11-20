@@ -3,3 +3,4 @@ See common.prepare_end: End's script replaced by the FA graft; A B C 2, D E 4 (L
 import common as C
 SPEC=C.end_spec(__file__,'Jelgava','Jelgava','3832138779')
 def build(game,out):C.build_pair(game,out,SPEC)
+NAME,SKIRMISH_NAME=[f['name'] for f in SPEC['flavors']]

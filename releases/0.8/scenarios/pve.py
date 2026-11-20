@@ -14,16 +14,26 @@ test) has bots as in every FA Skirmish flavor; offline, LocalSkirmish may swap t
 import copy, json, shutil, tempfile, uuid
 from pathlib import Path
 import common as C
-import dead_center_1v1, highway_2v2, dam_3v3
+import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, baltiisk_3v3, jelgava_1v1, dead_center_2v2, airport_5v5
 
 # (players, base module, online base name, title, enemy specializations). Osama 13:2x PST: "I want to make sure as many specs are played in these
 # scenarios. Dead center should be SF rocket". Every China specialization fights on at least one map. The base's zone weights are copied to the
 # PvE names (settings.json MapZoneWeights).
-BASES=[(1,dead_center_1v1,dead_center_1v1.NAME,'Dead Center','PLAN Special Forces + PLARF Rocket Conscript Force'),
-       (2,highway_2v2,highway_2v2.NAME,'Highway of Death','PLAGF Motorized + PLAGF Armored Force'),
-       (3,dam_3v3,dam_3v3.NAME,'Dam','PLAAF Air Force (airborne) + PLAGF Armored Force')]
+# Osama 19 Nov 2026 22:3x PST (thread 1567745029781454889): "Can you make US versions and different maps? And Russia so people can play against
+# their faction of choice"; names lead with the player count ("early on you need to say (1p) (2p) (3p)"). The title is the WAVES/AI_CARDS key.
+BASES=[(1,dead_center_1v1,dead_center_1v1.NAME,'Dead Center vs China','PLAN Special Forces + PLARF Rocket Conscript Force'),
+       (2,highway_2v2,highway_2v2.NAME,'Highway of Death vs China','PLAGF Motorized + PLAGF Armored Force'),
+       (3,dam_3v3,dam_3v3.NAME,'Dam vs China','PLAAF Air Force (airborne) + PLAGF Armored Force'),
+       (1,klaipeda_1v1,klaipeda_1v1.NAME,'Klaipeda vs USA','USMC'),
+       (2,chkalovsk_2v2,chkalovsk_2v2.NAME,'Chkalovsk Airbase vs USA','Stryker Cavalry regiment + Armored Brigade'),
+       (3,baltiisk_3v3,baltiisk_3v3.NAME,'Baltiisk vs USA','Airborne infantry + Special Operations Forces'),
+       (1,jelgava_1v1,jelgava_1v1.NAME,'Jelgava vs Russia','VDV Brigade'),
+       (2,dead_center_2v2,dead_center_2v2.NAME,'Dead Center vs Russia','Motorized Infantry + Mechanized Infantry'),
+       (3,airport_5v5,airport_5v5.NAME,'Airport vs Russia','Guard Tank Brigade + Coastal Troops')]
 def names(players,title):
-    n=f'[FA] [PvE] {title} vs China ({players}P) 0.1';return n,n.replace(' 0.1',' Skirmish 0.1')
+    n=f'[FA] [PvE] ({players}P) {title} 0.2';return n,n.replace(' 0.2',' Skirmish 0.2')
+# Retired with the 0.2 names (bot slots on Bravo): runtime-qa Runtime.cs RetiredScenarios lists their GUIDs.
+OLD_NAMES=[f'[FA] [PvE] {t} vs China ({p}P){x} 0.1' for p,t in ((1,'Dead Center'),(2,'Highway of Death'),(3,'Dam')) for x in ('',' Skirmish')]
 ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]
 
 # China units of those specializations, default options (0.9.0-dev.36 data): unitId -> (ucat = CategoryType, [(modification, option)]).
@@ -37,30 +47,151 @@ UNITS={1166:(1,[]),1175:(1,[]),1172:(1,[]),1183:(1,[]),1192:(1,[]),1181:(1,[]),1
        943:(6,[(2016862,24458)]),975:(6,[(2016971,24479)]),1092:(6,[(2016997,24483)]),1270:(5,[(2019263,31085)]),1041:(3,[]),
        917:(6,[(2016532,24398)]),955:(6,[(2016601,24406)]),1242:(6,[(2016697,24420)]),1103:(5,[(2017279,24523)]),1033:(3,[]),
        923:(6,[(2016794,24442)]),916:(6,[(2016642,24412)]),924:(6,[(2016825,24450)]),913:(5,[(2017056,24493)]),1040:(3,[])}
+# USA and Russia (Osama 19 Nov 2026 22:3x PST): base-game cards only (no DLC units), default option of each modification.
+UNITS.update({4:(3,[(386, 1434)]),
+       8:(5,[(128, 348), (129, 347)]),
+       9:(2,[(237, 1449), (238, 624), (239, 626)]),
+       10:(3,[(25, 65), (26, 67)]),
+       14:(2,[(532, 1904), (575, 2041)]),
+       20:(3,[(545, 1936), (33, 69)]),
+       25:(2,[(424, 1528), (17, 43)]),
+       27:(3,[(6, 16), (21, 55), (556, 1966)]),
+       30:(2,[(9, 22), (8, 20)]),
+       31:(3,[(136, 371)]),
+       34:(3,[(573, 2037), (11, 26)]),
+       35:(0,[(12, 28)]),
+       46:(5,[(75, 208), (76, 211), (77, 213)]),
+       50:(3,[(440, 1583), (36, 86)]),
+       53:(2,[(46, 116), (398, 1470)]),
+       54:(2,[(47, 118), (397, 1468)]),
+       57:(1,[]),
+       60:(1,[]),
+       61:(0,[(401, 1477)]),
+       62:(1,[]),
+       63:(1,[(399, 1472)]),
+       65:(0,[]),
+       66:(1,[]),
+       70:(1,[(423, 1520)]),
+       72:(1,[]),
+       86:(5,[(57, 166), (58, 169), (59, 171)]),
+       92:(3,[(445, 1605)]),
+       94:(3,[(478, 1737)]),
+       99:(0,[(68, 192)]),
+       108:(1,[(743, 3128)]),
+       109:(1,[]),
+       110:(1,[(417, 1508)]),
+       111:(1,[]),
+       114:(0,[]),
+       116:(0,[(414, 1502)]),
+       117:(1,[(571, 2030)]),
+       123:(0,[]),
+       126:(1,[]),
+       132:(1,[(551, 1955)]),
+       133:(1,[]),
+       134:(1,[]),
+       144:(2,[(94, 260), (562, 1985)]),
+       150:(1,[(518, 1849)]),
+       151:(2,[(100, 275), (589, 2089)]),
+       152:(0,[(101, 277)]),
+       157:(2,[(240, 628), (241, 633)]),
+       158:(2,[(217, 563)]),
+       168:(6,[(346, 1164), (345, 1155), (344, 1140), (120, 1137)]),
+       169:(6,[(343, 1999), (342, 1125), (121, 1119)]),
+       182:(2,[(451, 1620)]),
+       183:(2,[(140, 380), (141, 382)]),
+       207:(3,[(175, 467)]),
+       209:(0,[(180, 478), (470, 1709)]),
+       211:(3,[(182, 482)]),
+       213:(2,[(185, 489), (390, 1450)]),
+       215:(0,[(471, 1711), (188, 496)]),
+       217:(0,[(192, 506), (193, 508)]),
+       233:(3,[(209, 546)]),
+       236:(2,[(212, 553)]),
+       238:(2,[(215, 559), (216, 561)]),
+       239:(2,[(218, 567)]),
+       240:(2,[(219, 572), (220, 574)]),
+       243:(2,[(225, 588)]),
+       244:(2,[(226, 594)]),
+       245:(2,[(227, 597)]),
+       247:(3,[(444, 1601)]),
+       249:(0,[(230, 606), (231, 608), (559, 1972)]),
+       256:(5,[(248, 649), (249, 653), (395, 1463)]),
+       270:(5,[(263, 700), (264, 705), (265, 707)]),
+       271:(5,[(267, 712), (268, 715)]),
+       277:(0,[]),
+       280:(6,[(379, 1391), (378, 1388), (377, 1387)]),
+       283:(6,[(293, 831), (292, 824), (294, 834)]),
+       285:(6,[(301, 868), (300, 865), (299, 856), (302, 872)]),
+       286:(6,[(304, 882), (303, 877)]),
+       287:(6,[(308, 900), (307, 897), (306, 891), (305, 884), (543, 1929)]),
+       288:(6,[(312, 951), (311, 945), (310, 939), (309, 934)]),
+       291:(6,[(320, 992), (319, 989), (318, 982)]),
+       292:(6,[(538, 1921), (324, 1018), (323, 1788), (322, 1864)]),
+       293:(6,[(325, 1024)]),
+       300:(6,[(336, 1085), (337, 1094), (541, 1925)]),
+       306:(6,[(349, 1192), (348, 1182), (347, 1172)]),
+       307:(6,[(353, 1225), (352, 1218), (351, 1215), (350, 1203)]),
+       310:(6,[(361, 1277), (360, 1269), (359, 1266)]),
+       312:(6,[(368, 1324), (367, 1319), (366, 1312), (365, 1304)]),
+       317:(6,[(380, 1398)]),
+       319:(6,[(384, 1424), (383, 1417), (382, 1412), (381, 1408)]),
+       350:(0,[(742, 3126)]),
+       351:(1,[]),
+       372:(1,[(452, 1622)]),
+       398:(1,[]),
+       401:(1,[]),
+       407:(1,[(514, 1842)]),
+       408:(1,[]),
+       416:(1,[]),
+       449:(1,[]),
+       452:(3,[(591, 2099), (547, 1945)]),
+       453:(2,[(548, 1948), (549, 1950)]),
+       459:(1,[(560, 1975)]),
+       701:(1,[]),
+       703:(2,[(806, 3323), (807, 3324)]),
+       714:(0,[(2000250, 2049), (2000251, 20000)]),
+       716:(2,[(2000294, 564)]),
+       719:(2,[(2000351, 381), (2000352, 20008)]),
+       722:(2,[(2000575, 261), (2000576, 20013)])})
 # Waves for one player (unitId: count); counts are multiplied by the number of players. Minute = after the deployment pause. The last wave
 # repeats every REPEAT_MINUTES.
 WAVES={
- 'Dead Center':[(1,{1166:2,1258:1}),                                   # Conscripts, ZBD-86 Recon
+ 'Dead Center vs China':[(1,{1166:2,1258:1}),                                   # Conscripts, ZBD-86 Recon
                 (4,{1175:2,1172:1,1060:1}),                            # Infantry, PF-98 Team, ZTZ-59
                 (7,{1192:2,1061:2,1051:1}),                            # Marines, ZTZ-80, PGZ-88
                 (10,{1183:1,1181:1,1261:1,1272:1,909:1})],             # Blood Wolves, Godswords, VT-5, WZ1224, PGZ-09
- 'Highway of Death':[(1,{1205:2,1201:1,1059:1}),                       # Light Riflemen, Recon Patrol, PTL-02
+ 'Highway of Death vs China':[(1,{1205:2,1201:1,1059:1}),                       # Light Riflemen, Recon Patrol, PTL-02
                      (4,{1196:2,1163:1,938:1}),                        # Moto. Riflemen, Mech. Rifles, ZTL-11
                      (7,{1082:2,1080:1,1052:1}),                       # ZTZ-96A, ZTL-191, PGZ-95
                      (10,{904:1,905:1,1198:2,1049:1})],                # ZTZ-99A, ZTZ-96B, AT Troopers, HQ-17A
- 'Dam':[(1,{1136:1,1146:1,1257:1}),                                    # Airborne, Assault Raiders, ZBD-03 Recon
+ 'Dam vs China':[(1,{1136:1,1146:1,1257:1}),                                    # Airborne, Assault Raiders, ZBD-03 Recon
         (4,{1163:2,1139:1,1268:1}),                                    # Mech. Rifles, Tank Hunters, ZTQ-15 Light
         (7,{1082:1,1083:1,1143:1,925:1}),                              # ZTZ-96A, ZTZ-99, Thunder Gods, HQ-7B
         (10,{904:1,905:1,906:1,1137:1,1052:1})]}                       # ZTZ-99A, ZTZ-96B, ZTQ-15, HJ-12 Team, PGZ-95
+WAVES.update({
+ 'Klaipeda vs USA':[(1, {407: 2, 99: 1}), (4, {63: 2, 30: 1, 14: 1}), (7, {70: 1, 408: 1, 53: 2, 34: 1}), (10, {54: 1, 61: 1, 63: 2, 53: 1})],
+ 'Chkalovsk Airbase vs USA':[(1, {701: 2, 277: 1, 35: 1}), (4, {57: 2, 25: 1, 453: 1}), (7, {245: 2, 62: 1, 20: 1}), (10, {243: 1, 244: 1, 449: 2, 27: 1})],
+ 'Baltiisk vs USA':[(1, {351: 1, 72: 1, 249: 1}), (4, {66: 1, 416: 1, 183: 1, 350: 1}), (7, {182: 2, 150: 1, 10: 1}), (10, {719: 2, 150: 1, 714: 1})],
+ 'Jelgava vs Russia':[(1, {111: 2, 152: 1}), (4, {132: 1, 108: 1, 144: 1}), (7, {111: 2, 722: 1, 109: 1, 114: 1}), (10, {151: 1, 116: 1, 722: 1, 110: 1})],
+ 'Dead Center vs Russia':[(1, {60: 2, 217: 1}), (4, {398: 2, 215: 1, 9: 1}), (7, {157: 2, 459: 1, 94: 1}), (10, {703: 1, 213: 1, 401: 2, 233: 1})],
+ 'Airport vs Russia':[(1, {133: 1, 126: 1, 209: 1}), (4, {158: 1, 240: 1, 117: 1}), (7, {236: 1, 239: 1, 134: 1, 31: 1}), (10, {238: 1, 716: 1, 372: 1, 211: 1})]})
 REPEAT_MINUTES=3
 # With the Lua AI: only the first wave is fixed (the opening deployment); after that the AI buys its own units. Cards it can buy, one per
 # kind, each purchase = that card x number of players. ba_purchase.lua channel 1 (inputs 1-5): fighter, strike, bomber, attack helicopter,
 # ground seed (rebuild when wiped out); channel 2: air defence, artillery, infantry, recon, main armour, picked by BA_MIND.scorePurchase
 # from what the enemy fields and what it already has. Card cooldowns as a player's; at most AI_MAX_UNITS x players live units.
 AI_CARDS={
- 'Dead Center':dict(ch1=[943,975,1092,1270,1175],ch2=[1051,1041,1192,1258,1061]),   # J-15, J-8D, J-7, Z-10U, Infantry | PGZ-88, PLZ-83, Marines, ZBD-86 Recon, ZTZ-80
- 'Highway of Death':dict(ch1=[917,955,1242,1103,1196],ch2=[1052,1033,1196,1201,1082]),  # J-10C, J-10S, J-11D, Z-19, Moto. Riflemen | PGZ-95, PCL-09, Moto. Riflemen, Recon Patrol, ZTZ-96A
- 'Dam':dict(ch1=[923,916,924,913,1136],ch2=[925,1040,1136,1257,1083])}              # J-11BS, J-16, Su-30MKK, Z-10K, Airborne | HQ-7B, PLZ-70, Airborne, ZBD-03 Recon, ZTZ-99
+ 'Dead Center vs China':dict(ch1=[943,975,1092,1270,1175],ch2=[1051,1041,1192,1258,1061]),   # J-15, J-8D, J-7, Z-10U, Infantry | PGZ-88, PLZ-83, Marines, ZBD-86 Recon, ZTZ-80
+ 'Highway of Death vs China':dict(ch1=[917,955,1242,1103,1196],ch2=[1052,1033,1196,1201,1082]),  # J-10C, J-10S, J-11D, Z-19, Moto. Riflemen | PGZ-95, PCL-09, Moto. Riflemen, Recon Patrol, ZTZ-96A
+ 'Dam vs China':dict(ch1=[923,916,924,913,1136],ch2=[925,1040,1136,1257,1083])}              # J-11BS, J-16, Su-30MKK, Z-10K, Airborne | HQ-7B, PLZ-70, Airborne, ZBD-03 Recon, ZTZ-99
+# ch1 fighter, strike, bomber, attack helicopter, ground seed | ch2 AA, artillery, infantry, recon, main armour (as the China cards).
+AI_CARDS.update({
+ 'Klaipeda vs USA':dict(ch1=[291, 288, 292, 86, 407],ch2=[34, 247, 407, 61, 54]),
+ 'Chkalovsk Airbase vs USA':dict(ch1=[285, 286, 300, 8, 701],ch2=[20, 452, 701, 65, 244]),
+ 'Baltiisk vs USA':dict(ch1=[283, 287, 293, 270, 351],ch2=[10, 50, 351, 350, 719]),
+ 'Jelgava vs Russia':dict(ch1=[169, 168, 317, 46, 111],ch2=[109, 207, 111, 114, 722]),
+ 'Dead Center vs Russia':dict(ch1=[310, 307, 306, 256, 60],ch2=[233, 92, 398, 123, 157]),
+ 'Airport vs Russia':dict(ch1=[319, 312, 280, 271, 133],ch2=[31, 4, 133, 209, 238])})
 AI_MAX_UNITS=14
 def opening(waves):
     """The AI's opening deployment, as a player's first buy: waves 1 and 2 together, 1 minute after the deployment pause."""
@@ -77,7 +208,8 @@ def opening(waves):
 # comes from pve_terrain/ba_terrain_<scene>.lua, baked from the game's Navigation files by its tools/bake_terrain.py.
 # Changes to the pinned source, applied here so the checkout stays pristine:
 # - commanders: the Bravo players (AI bot slots online from 0.9.2-dev.1, and offline), instead of IsBot only;
-# - FAST_MOVE_MIN 700 -> 400 m, so more moves use the roads.
+# - FAST_MOVE_MIN 700 -> 200 m; a unit's first order after it is called in, and any non-attack move beyond 100 m, use the roads (Osama 19 Nov 2026:
+#   "sometimes when it calls in a new unit they don't use the roads").
 # LICENSE NOTE: the repository has no licence file; ask the author before shipping it outside the team.
 import os
 AI_SRC=Path(os.environ.get('FA_PVE_AI_SRC','/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/toolkit/sources/BrokenArrowAI'))
@@ -96,7 +228,14 @@ def ai_code(scene):
               "                     or safe(function() return p.TeamID end, -1) == 1\n"
               "    if (BA_FA_PVE and fa_bravo) or (not BA_FA_PVE and safe(function() return p.IsBot end, false)) then\n"
               "      local uid = safe(function() return p.UID end)")
-    for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 400,')):
+    for a,b in ((old_cond,new_cond),('  FAST_MOVE_MIN   = 700,','  FAST_MOVE_MIN   = 200,'),
+                ("    far = (dx * dx + dz * dz) > (CFG.FAST_MOVE_MIN * CFG.FAST_MOVE_MIN)\n",
+                 "    local d2 = dx * dx + dz * dz\n"
+                 "    local uid0 = safe(function() return u.UID end)\n"
+                 "    BA.faFirst = BA.faFirst or {}\n"
+                 "    local first = uid0 ~= nil and not BA.faFirst[uid0]\n"
+                 "    if uid0 ~= nil then BA.faFirst[uid0] = true end\n"
+                 "    far = d2 > (CFG.FAST_MOVE_MIN * CFG.FAST_MOVE_MIN) or (first and d2 > 2500) or (not attack and d2 > 10000)\n")):
         assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
     return code
 def pve_header(objects,players):
@@ -352,7 +491,7 @@ def build(game,out):
         with tempfile.TemporaryDirectory() as tmp:
             mod.build(game,Path(tmp))
             base={k:C.read_bascr(Path(tmp)/nm,nm) for k,nm in ((2,base_name),(3,mod.SKIRMISH_NAME))}
-        desc=(f'Freedom Arrow PvE: {players} player{"s" if players>1 else ""} on Alpha against China waves ({enemy}; AI bots on Bravo). '
+        desc=(f'Freedom Arrow PvE: {players} player{"s" if players>1 else ""} on Alpha against {title.split(" vs ")[1]} ({enemy}; AI bots on Bravo). '
               +base[2][0]['desc'])
         for flavor,kind in ((name,2),(skirmish,3)):
             h,n,o,m=copy.deepcopy(base[kind])
