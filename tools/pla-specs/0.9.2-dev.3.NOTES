@@ -10,3 +10,9 @@ Other threads: add one line per change here.
   AI road use: FAST_MOVE_MIN 400 -> 200 m; a unit's first order after it is called in (beyond 50 m) and any non-attack move beyond 100 m use MoveToFast.
   The six old 0.1 PvE maps are retired by GUID in runtime-qa Runtime.cs RetiredScenarios (REBUILD THE RUNTIME DLL). settings.json MapZoneWeights follow the renames.
   Checked: all 18 maps built from baseline-vengeance, slot readback (N humans on Alpha, N bots on Bravo), luac -p on the Lua chunks. Not seen in game.
+- 19 Nov 2026 22:4x-23:0x PST, thread 1567745029781454889, after Osama's Dam 3P online test of dev.2 (AI worked: 3 bots found, orders and buys in the log;
+  "infantry on foot", "on the road but not fast moving", "On the opener there's no planes or helos", "opening should be moto, helo and air heavy",
+  "be conservative with the decks", "the scenario name ... gets cut off after about 20 characters"): infantry in waves and AI purchases ride their cheapest
+  base-game ground transport (vanilla cargo format; TRANSPORT in pve.py); opener = waves 1+2 mounted + 2 attack helicopters per player; purchases start at
+  20 s (FIRST_BUY 45 -> 20) so planes arrive early; AI money unlimited (FA_UNLIMITED); names "[FA] PvE <N>P <CN|US|RU> <map> 0.2" (LobbyMapTabs.cs: PvE tab
+  matches "[FA] PvE "). Random whole-faction decks held back (conservative). 18 maps built; luac -p OK.

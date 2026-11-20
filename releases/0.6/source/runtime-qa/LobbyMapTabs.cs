@@ -32,6 +32,8 @@ static class LobbyMapTabs
     static string SizeOf(object m)
     {
         var name=m?.GetType().GetProperty("Name")?.GetValue(m) as string??"";
+        // 0.9.2-dev.3: short PvE names ("[FA] PvE 3P CN Dam 0.2", Osama 19 Nov 2026: lobby names cut off after about 20 characters).
+        if(name.StartsWith("[FA] PvE "))return "PvE";
         return Sizes.FirstOrDefault(s=>name.Contains("["+s+"]"));
     }
     static int Count(string size){int n=0;foreach(var m in full)if(SizeOf(m) is var s&&(s==null||s==size))n++;return n;}

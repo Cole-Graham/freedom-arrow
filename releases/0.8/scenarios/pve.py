@@ -22,16 +22,20 @@ import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, balti
 # Osama 19 Nov 2026 22:3x PST (thread 1567745029781454889): "Can you make US versions and different maps? And Russia so people can play against
 # their faction of choice"; names lead with the player count ("early on you need to say (1p) (2p) (3p)"). The title is the WAVES/AI_CARDS key.
 BASES=[(1,dead_center_1v1,dead_center_1v1.NAME,'Dead Center vs China','PLAN Special Forces + PLARF Rocket Conscript Force'),
-       (2,highway_2v2,highway_2v2.NAME,'Highway of Death vs China','PLAGF Motorized + PLAGF Armored Force'),
+       (2,highway_2v2,highway_2v2.NAME,'Highway vs China','PLAGF Motorized + PLAGF Armored Force'),
        (3,dam_3v3,dam_3v3.NAME,'Dam vs China','PLAAF Air Force (airborne) + PLAGF Armored Force'),
        (1,klaipeda_1v1,klaipeda_1v1.NAME,'Klaipeda vs USA','USMC'),
-       (2,chkalovsk_2v2,chkalovsk_2v2.NAME,'Chkalovsk Airbase vs USA','Stryker Cavalry regiment + Armored Brigade'),
+       (2,chkalovsk_2v2,chkalovsk_2v2.NAME,'Chkalovsk vs USA','Stryker Cavalry regiment + Armored Brigade'),
        (3,baltiisk_3v3,baltiisk_3v3.NAME,'Baltiisk vs USA','Airborne infantry + Special Operations Forces'),
        (1,jelgava_1v1,jelgava_1v1.NAME,'Jelgava vs Russia','VDV Brigade'),
        (2,dead_center_2v2,dead_center_2v2.NAME,'Dead Center vs Russia','Motorized Infantry + Mechanized Infantry'),
        (3,airport_5v5,airport_5v5.NAME,'Airport vs Russia','Guard Tank Brigade + Coastal Troops')]
+# Osama 19 Nov 2026 23:0x: "the scenario name ... gets cut off after about 20 characters": player count and enemy first, then the map.
+# "[FA]" is kept (ThirdPartyGuard lists only [FA] maps); the lobby's PvE tab matches "[FA] PvE " (LobbyMapTabs.cs).
+FACTION_CODE={'China':'CN','USA':'US','Russia':'RU'}
 def names(players,title):
-    n=f'[FA] [PvE] ({players}P) {title} 0.2';return n,n.replace(' 0.2',' Skirmish 0.2')
+    where,enemy=title.split(' vs ')
+    n=f'[FA] PvE {players}P {FACTION_CODE[enemy]} {where} 0.2';return n,n.replace(' 0.2',' Skirmish 0.2')
 # Retired with the 0.2 names (bot slots on Bravo): runtime-qa Runtime.cs RetiredScenarios lists their GUIDs.
 OLD_NAMES=[f'[FA] [PvE] {t} vs China ({p}P){x} 0.1' for p,t in ((1,'Dead Center'),(2,'Highway of Death'),(3,'Dam')) for x in ('',' Skirmish')]
 ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]
@@ -160,7 +164,7 @@ WAVES={
                 (4,{1175:2,1172:1,1060:1}),                            # Infantry, PF-98 Team, ZTZ-59
                 (7,{1192:2,1061:2,1051:1}),                            # Marines, ZTZ-80, PGZ-88
                 (10,{1183:1,1181:1,1261:1,1272:1,909:1})],             # Blood Wolves, Godswords, VT-5, WZ1224, PGZ-09
- 'Highway of Death vs China':[(1,{1205:2,1201:1,1059:1}),                       # Light Riflemen, Recon Patrol, PTL-02
+ 'Highway vs China':[(1,{1205:2,1201:1,1059:1}),                       # Light Riflemen, Recon Patrol, PTL-02
                      (4,{1196:2,1163:1,938:1}),                        # Moto. Riflemen, Mech. Rifles, ZTL-11
                      (7,{1082:2,1080:1,1052:1}),                       # ZTZ-96A, ZTL-191, PGZ-95
                      (10,{904:1,905:1,1198:2,1049:1})],                # ZTZ-99A, ZTZ-96B, AT Troopers, HQ-17A
@@ -170,7 +174,7 @@ WAVES={
         (10,{904:1,905:1,906:1,1137:1,1052:1})]}                       # ZTZ-99A, ZTZ-96B, ZTQ-15, HJ-12 Team, PGZ-95
 WAVES.update({
  'Klaipeda vs USA':[(1, {407: 2, 99: 1}), (4, {63: 2, 30: 1, 14: 1}), (7, {70: 1, 408: 1, 53: 2, 34: 1}), (10, {54: 1, 61: 1, 63: 2, 53: 1})],
- 'Chkalovsk Airbase vs USA':[(1, {701: 2, 277: 1, 35: 1}), (4, {57: 2, 25: 1, 453: 1}), (7, {245: 2, 62: 1, 20: 1}), (10, {243: 1, 244: 1, 449: 2, 27: 1})],
+ 'Chkalovsk vs USA':[(1, {701: 2, 277: 1, 35: 1}), (4, {57: 2, 25: 1, 453: 1}), (7, {245: 2, 62: 1, 20: 1}), (10, {243: 1, 244: 1, 449: 2, 27: 1})],
  'Baltiisk vs USA':[(1, {351: 1, 72: 1, 249: 1}), (4, {66: 1, 416: 1, 183: 1, 350: 1}), (7, {182: 2, 150: 1, 10: 1}), (10, {719: 2, 150: 1, 714: 1})],
  'Jelgava vs Russia':[(1, {111: 2, 152: 1}), (4, {132: 1, 108: 1, 144: 1}), (7, {111: 2, 722: 1, 109: 1, 114: 1}), (10, {151: 1, 116: 1, 722: 1, 110: 1})],
  'Dead Center vs Russia':[(1, {60: 2, 217: 1}), (4, {398: 2, 215: 1, 9: 1}), (7, {157: 2, 459: 1, 94: 1}), (10, {703: 1, 213: 1, 401: 2, 233: 1})],
@@ -182,22 +186,48 @@ REPEAT_MINUTES=3
 # from what the enemy fields and what it already has. Card cooldowns as a player's; at most AI_MAX_UNITS x players live units.
 AI_CARDS={
  'Dead Center vs China':dict(ch1=[943,975,1092,1270,1175],ch2=[1051,1041,1192,1258,1061]),   # J-15, J-8D, J-7, Z-10U, Infantry | PGZ-88, PLZ-83, Marines, ZBD-86 Recon, ZTZ-80
- 'Highway of Death vs China':dict(ch1=[917,955,1242,1103,1196],ch2=[1052,1033,1196,1201,1082]),  # J-10C, J-10S, J-11D, Z-19, Moto. Riflemen | PGZ-95, PCL-09, Moto. Riflemen, Recon Patrol, ZTZ-96A
+ 'Highway vs China':dict(ch1=[917,955,1242,1103,1196],ch2=[1052,1033,1196,1201,1082]),  # J-10C, J-10S, J-11D, Z-19, Moto. Riflemen | PGZ-95, PCL-09, Moto. Riflemen, Recon Patrol, ZTZ-96A
  'Dam vs China':dict(ch1=[923,916,924,913,1136],ch2=[925,1040,1136,1257,1083])}              # J-11BS, J-16, Su-30MKK, Z-10K, Airborne | HQ-7B, PLZ-70, Airborne, ZBD-03 Recon, ZTZ-99
 # ch1 fighter, strike, bomber, attack helicopter, ground seed | ch2 AA, artillery, infantry, recon, main armour (as the China cards).
 AI_CARDS.update({
  'Klaipeda vs USA':dict(ch1=[291, 288, 292, 86, 407],ch2=[34, 247, 407, 61, 54]),
- 'Chkalovsk Airbase vs USA':dict(ch1=[285, 286, 300, 8, 701],ch2=[20, 452, 701, 65, 244]),
+ 'Chkalovsk vs USA':dict(ch1=[285, 286, 300, 8, 701],ch2=[20, 452, 701, 65, 244]),
  'Baltiisk vs USA':dict(ch1=[283, 287, 293, 270, 351],ch2=[10, 50, 351, 350, 719]),
  'Jelgava vs Russia':dict(ch1=[169, 168, 317, 46, 111],ch2=[109, 207, 111, 114, 722]),
  'Dead Center vs Russia':dict(ch1=[310, 307, 306, 256, 60],ch2=[233, 92, 398, 123, 157]),
  'Airport vs Russia':dict(ch1=[319, 312, 280, 271, 133],ch2=[31, 4, 133, 209, 238])})
 AI_MAX_UNITS=14
-def opening(waves):
-    """The AI's opening deployment, as a player's first buy: waves 1 and 2 together, 1 minute after the deployment pause."""
+# AI money is unlimited (Osama 19 Nov 2026 22:4x: "the AI gets access to everything ... no cap for points"); the live-unit cap and purchase
+# intervals still apply. Random whole-faction decks were asked for too, but held back for now (Osama 22:5x: "be conservative with the decks").
+TRANSPORT={57:41,60:253,62:22,63:180,66:82,70:180,72:392,75:184,108:141,109:142,110:141,111:141,112:141,117:254,119:212,122:216,126:212,127:365,130:253,132:141,133:254,134:254,146:41,150:392,351:82,353:254,370:41,372:212,398:365,399:365,401:365,407:180,408:180,416:184,419:212,449:33,459:253,701:22,1136:1228,1137:1228,1139:1228,1143:1228,1146:1228,1154:1248,1157:1248,1163:1248,1166:1230,1172:1064,1175:1064,1176:1064,1181:1230,1182:1076,1183:1076,1185:1076,1192:1076,1196:1079,1198:1079,1205:1079}
+UNITS.update({22:(2,[(4, 9), (3, 7)]),
+       33:(2,[(13, 31), (16, 41)]),
+       41:(2,[(24, 61), (23, 59)]),
+       82:(2,[(279, 754)]),
+       141:(2,[(88, 244)]),
+       142:(2,[(385, 1430), (590, 2091)]),
+       180:(2,[(139, 377), (552, 1957)]),
+       184:(0,[(142, 384)]),
+       212:(2,[(183, 484), (184, 487)]),
+       216:(2,[(189, 498)]),
+       253:(2,[(242, 635), (244, 639)]),
+       254:(2,[(245, 641), (246, 644)]),
+       365:(2,[(448, 1612), (449, 1616)]),
+       392:(2,[(503, 1809)]),
+       1064:(2,[]),
+       1076:(2,[(2018994, 31061)]),
+       1079:(2,[]),
+       1228:(2,[(2016080, 24360)]),
+       1230:(2,[]),
+       1248:(2,[])})
+def opening(waves,cards=None):
+    """The AI's opening deployment, as a player's first buy: waves 1 and 2 together (infantry mounted), 1 minute after the deployment pause.
+    Osama 19 Nov 2026 22:4x: "opening should be moto, helo and air heavy": plus 2 attack helicopters per player; fixed-wing aircraft come from the
+    purchase channel, which starts buying at 20 s (FIRST_BUY 45 -> 20)."""
     merged={}
     for _,c in waves[:2]:
         for u,n in c.items():merged[u]=merged.get(u,0)+n
+    if cards:merged[cards['ch1'][3]]=merged.get(cards['ch1'][3],0)+2
     return [(1,merged)]
 
 # ---- Lua decision AI (Osama 13:2x PST: "we should be using real AI", "Plug it into all of them but make sure they fast move and use roads").
@@ -244,6 +274,7 @@ def pve_header(objects,players):
     spawns=', '.join(f"{{x={q['X']:.1f}, y={q['Y']:.1f}, z={q['Z']:.1f}}}" for q in sp)
     return f'''BA_FA_PVE = true   -- Freedom Arrow PvE: the AI commands and buys for the Bravo players
 BA_FA_MAX_UNITS = {AI_MAX_UNITS*players}
+FA_UNLIMITED = true   -- AI money unlimited (Osama 19 Nov 2026)
 BA_FA_SPAWNS = {{ {spawns} }}   -- Bravo ground spawns: purchases arrive here, as a player's do
 local fa_pick = 0
 function FA_SPAWN()
@@ -316,6 +347,7 @@ def purchase_code(scene,header):
                 ('local function ownerUID(slot)\n','local function ownerUID(slot)\n  if BA_FA_PVE then return FA_BRAVO_UID() end\n'),
                 ('local function isBotUID(uid)\n','local function isBotUID(uid)\n  if BA_FA_PVE then return FA_IS_BRAVO(uid) end\n'),
                 ('  MAX_UNITS   = 26,','  MAX_UNITS   = BA_FA_MAX_UNITS or 26,'),
+                ('  FIRST_BUY   = 45.0,','  FIRST_BUY   = 20.0,'),
                 # Upstream bug: tick() calls situation() before its `local function` line, so with ba_field/ba_mind loaded (the deploy
                 # order its README uses) channel 1 hit a nil global and never bought. Measured with its own test_purchase.lua: 9 of 24 fail
                 # with field+mind loaded, all 24 pass with this forward declaration.
@@ -324,7 +356,7 @@ def purchase_code(scene,header):
                 # Budget parity (the toolkit's own principle): the empty Bravo slot has no money, so channel 2 would rate every card
                 # unaffordable. In PvE it is rated against the richest human's money instead; spending is still capped by the purchase
                 # interval, card cooldowns and BA_FA_MAX_UNITS.
-                ('  ctx.money = (type(money) == "number") and money or 0','  ctx.money = (type(money) == "number") and money or 0\n  if BA_FA_PVE then ctx.money = FA_HUMAN_MONEY() end')):
+                ('  ctx.money = (type(money) == "number") and money or 0','  ctx.money = (type(money) == "number") and money or 0\n  if BA_FA_PVE then ctx.money = FA_UNLIMITED and 1000000000 or FA_HUMAN_MONEY() end')):
         assert code.count(a)==1,('BrokenArrowAI ba_purchase changed: '+a[:40]);code=code.replace(a,b)
     return code
 def add_purchase(nodes,objects,scene,players,cards):
@@ -359,13 +391,15 @@ def add_ai(nodes,scene):
     nodes['c'].append({'a':nid,'b':nid,'c':'in','d':'error','e':nid})
     return nid
 
+def _unit(uid,cargos=()):
+    ucat,items=UNITS[uid]
+    return {'unitId':uid,'ucat':ucat,'items':[{'mod':m,'opt':o} for m,o in items],'skin':0,
+            'cargo':{'totals':0,'taken':0,'totalHL':0,'takenHL':0,'cargos':list(cargos),'supply':0}}
 def payload(counts,players):
     units=[]
     for uid,n in counts.items():
-        ucat,items=UNITS[uid]
         for _ in range(n*players):
-            units.append({'unitId':uid,'ucat':ucat,'items':[{'mod':m,'opt':o} for m,o in items],'skin':0,
-                          'cargo':{'totals':0,'taken':0,'totalHL':0,'takenHL':0,'cargos':[],'supply':0}})
+            units.append(_unit(TRANSPORT[uid],[_unit(uid)]) if uid in TRANSPORT else _unit(uid))
     return json.dumps({'Units':units,'TotalUnitsCount':len(units)},separators=(',',':')).replace('"','¨')
 
 def p(k,v,t=3):return {'k':k,'v':v,'t':t}
@@ -381,7 +415,7 @@ HOLD_SECONDS=120
 INF_RECON={1201}   # Recon Patrol: infantry that scouts, moves with the infantry group
 def role(uid):
     ucat=UNITS[uid][0]
-    return 'I' if ucat==1 or uid in INF_RECON else {0:'R',2:'A',3:'S'}[ucat]
+    return 'I' if ucat==1 or uid in INF_RECON else {0:'R',2:'A',3:'S',5:'A',6:'A'}[ucat]   # helicopters in the opener (22:5x) go with the armour
 
 def add_waves(nodes,objects,players,after,waves,orders=True):
     """after = (node id, out port) that fires when the deployment pause ends."""
@@ -497,13 +531,13 @@ def build(game,out):
             h,n,o,m=copy.deepcopy(base[kind])
             if kind==3:
                 start=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(start)==1
-                waves=add_waves(n,o,players,(start[0],'flow'),opening(WAVES[title]) if ai else WAVES[title],orders=not ai)
+                waves=add_waves(n,o,players,(start[0],'flow'),opening(WAVES[title],AI_CARDS[title]) if ai else WAVES[title],orders=not ai)
                 if ai:add_ai(n,h['map']);add_purchase(n,o,h['map'],players,AI_CARDS[title])   # the base Skirmish flavor: bots, no deployment pause
             else:
                 # Waves start when the deployment pause ends: the delay that unpauses the game.
                 off=[b['id'] for b in n['b'] if b['nnKey']=='pauseGame' and any(q['k']=='val' and q['v']=='False' for q in b['props_v2'])];assert len(off)==1,off
                 wait=[c['b'] for c in n['c'] if c['a']==off[0] and c['d']=='out2'];assert len(wait)==1,wait
-                waves=add_waves(n,o,players,(wait[0],'out2'),opening(WAVES[title]) if ai else WAVES[title],orders=not ai)
+                waves=add_waves(n,o,players,(wait[0],'out2'),opening(WAVES[title],AI_CARDS[title]) if ai else WAVES[title],orders=not ai)
                 if ai:add_ai(n,h['map']);add_purchase(n,o,h['map'],players,AI_CARDS[title])
                 configure_slots(o,m,players)
             C.check_spawns(flavor,h,o)
