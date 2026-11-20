@@ -47,6 +47,29 @@ for tid,wid,name,o0,o1 in _FIX:
     rec['hull_slot_weapon_order'].append({'turret':tid,'weapon':wid,'row':rid,'name':name,'Order':[o0,o1]})
 ok(sorted(r['UnitId'] for r in t['TurretUnitsJson'].values() if r['TurretId']==2010896)==[1063,1258,1259],'Type 86 mount 1 is on the 3 ZBD-86 cards')
 rec['hull_slot_weapon_order_verified']='data checks only'
+# ---------- Squad health = 5 HP per soldier (Osama 19 Nov 2026 16:42 PST, thread 1567745029781454889: "Yeah can we fix these? and make sure other
+# units have same health matching their man power", after QQ bug FA-003 "godswords东方神剑的血量应该为60而不是30"). Every vanilla squad has
+# MaxHealthPoints = 5 x soldiers (4 men 20, 12 men 60). In 0.9.1 six China squads were off. Each was alone on its own FA armour row, identical to
+# a vanilla row except for HP, so the unit's UnitArmors row now links that vanilla row (one row per combination, no new rows):
+# 4 men -> vanilla 80 'Armor Infantry 4Men' (HP 20); 12 men -> vanilla 283 'Armor Infantry Elite 12Men' (HP 60). Every other infantry squad
+# that a specialization offers (US, Russia, China) already matched. Build check: check_squad_hp.py (packager).
+AR=t['ArmorsJson'];UA=t['UnitArmorsJson'];SM=t['SquadMembersJson']
+_HP=[  # (unit, UnitArmors row, FA armour row, HP before, soldiers, vanilla row)
+    (1137,2011858,2011857,25,4,80),(1139,2011913,2011912,30,4,80),(1140,2011943,2011942,25,4,80),
+    (1145,2012075,2012074,25,4,80),(1181,2013081,2013080,30,12,283),(1213,2014053,2014052,30,4,80)]
+rec['squad_hp_5_per_soldier']=[]
+for uid,uar,old,hp0,n,van in _HP:
+    ok(UA[uar]['UnitId']==uid and UA[uar]['ArmorId']==old and AR[old].get('MaxHealthPoints')==hp0,(uid,'0.9.1 armour'))
+    ok(sum(1 for r in SM.values() if r['UnitId']==uid)==n,(uid,'soldiers',n))
+    ok(sum(1 for r in UA.values() if r['ArmorId']==old)==1,(uid,'FA row shared'))
+    ok(van in native['ArmorsJson'] and AR[van].get('MaxHealthPoints')==5*n,(uid,'vanilla row',van))
+    ok(all(AR[van].get(k)==AR[old].get(k) for k in AR[old] if k not in('Id','Name','MaxHealthPoints')),(uid,'only HP differs',van))
+    g.put('UnitArmorsJson',uar,{'ArmorId':van});ok(UA[uar]['ArmorId']==van,uid)
+    rec['squad_hp_5_per_soldier'].append({'unit':uid,'name':U[uid]['HUDName'],'soldiers':n,'HP':[hp0,5*n],'UnitArmors':uar,'ArmorId':[old,van]})
+import collections as _c
+_men=_c.Counter(r['UnitId'] for r in SM.values());_live={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}
+_bad=[(r['UnitId'],AR[r['ArmorId']].get('MaxHealthPoints')) for r in UA.values() if U.get(r['UnitId'],{}).get('Type')==2 and r['UnitId'] in _live and _men[r['UnitId']] and AR[r['ArmorId']].get('MaxHealthPoints')!=5*_men[r['UnitId']]]
+ok(not _bad,('squads still off',_bad))
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())

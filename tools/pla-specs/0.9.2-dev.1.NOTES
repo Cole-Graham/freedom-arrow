@@ -1,2 +1,8 @@
 0.9.2-dev.1 batch notes (append; one line per change). Builder: read these before building 0.9.2-dev.1. Data: tools/pla-specs/apply_0_9_2_dev1.py over out/local-091 (0.9.1, --vanilla ../lateralus-infantry-20261110/vanilla). Build numbers: 231 = 0.9.1; use 232+.
 - QN-506 / Type 86 spawn failure (Osama 19 Nov 16:3x, End's 0.9.1 log "CombatSystem initialization ... failed"): weapon positions on body hull slots. QN-506 7.62 mm 1->0 and QN-502 2->0, ZBD-86 (3 cards) 7.62 mm 1->0, ZBD-05 7.62 mm 1->0, FK-2000 SAM 2->1. check_slot_weapons.py now fails any weapon whose padded index is past the vanilla hull slot's weapon points (0.9.1 fails it with exactly these 7 mounts; the batch passes).
+
+## Squad health = 5 HP per soldier (Osama 19 Nov 2026, thread 1567745029781454889, QQ bug FA-003)
+- Godswords 东方神剑 (12 men) 30 -> 60; HJ-12 Team 25 -> 20; Tank Hunters 坦克杀手 30 -> 20; QLU-11 Team 25 -> 20; QW-12 Patrol 防空巡逻 25 -> 20; Conscript Recon 30 -> 20.
+- Each now links the vanilla armour row for its size (80 'Armor Infantry 4Men', 283 'Armor Infantry Elite 12Men'); the FA rows differed only in HP.
+- Every other squad (US, Russia, China) already had 5 HP per soldier. New build check tools/pla-specs/check_squad_hp.py (run by the packager); 0.9.1 fails it on these 6, the batch passes.
+- Data checks only, not seen in game.

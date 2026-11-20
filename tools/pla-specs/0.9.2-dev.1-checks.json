@@ -52,9 +52,95 @@
     }
   ],
   "hull_slot_weapon_order_verified": "data checks only",
+  "squad_hp_5_per_soldier": [
+    {
+      "unit": 1137,
+      "name": "HJ-12 Team",
+      "soldiers": 4,
+      "HP": [
+        25,
+        20
+      ],
+      "UnitArmors": 2011858,
+      "ArmorId": [
+        2011857,
+        80
+      ]
+    },
+    {
+      "unit": 1139,
+      "name": "Tank Hunters 坦克杀手",
+      "soldiers": 4,
+      "HP": [
+        30,
+        20
+      ],
+      "UnitArmors": 2011913,
+      "ArmorId": [
+        2011912,
+        80
+      ]
+    },
+    {
+      "unit": 1140,
+      "name": "QLU-11 Team",
+      "soldiers": 4,
+      "HP": [
+        25,
+        20
+      ],
+      "UnitArmors": 2011943,
+      "ArmorId": [
+        2011942,
+        80
+      ]
+    },
+    {
+      "unit": 1145,
+      "name": "QW-12 Patrol 防空巡逻",
+      "soldiers": 4,
+      "HP": [
+        25,
+        20
+      ],
+      "UnitArmors": 2012075,
+      "ArmorId": [
+        2012074,
+        80
+      ]
+    },
+    {
+      "unit": 1181,
+      "name": "Godswords 东方神剑",
+      "soldiers": 12,
+      "HP": [
+        30,
+        60
+      ],
+      "UnitArmors": 2013081,
+      "ArmorId": [
+        2013080,
+        283
+      ]
+    },
+    {
+      "unit": 1213,
+      "name": "Conscript Recon",
+      "soldiers": 4,
+      "HP": [
+        30,
+        20
+      ],
+      "UnitArmors": 2014053,
+      "ArmorId": [
+        2014052,
+        80
+      ]
+    }
+  ],
   "version": "0.9.2-dev.1",
   "base": "0.9.1",
   "base_sha256": "e147ebd90d8364d6adde2c457873528506b5c9ddbfd28ac0ae1fda510be25245",
-  "checks": 16,
+  "checks": 53,
   "verified": "data checks only"
 }
