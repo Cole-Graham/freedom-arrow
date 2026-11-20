@@ -1,0 +1,8 @@
+{
+ "version": "0.9.2-dev.4",
+ "base": "0.9.2-dev.3",
+ "base_sha256": "75d3795778c0cee33bbdd85bede9a8886aa5ec8844515e2a6aedc6851128fe76",
+ "no_data_change": "PvE AI move log and fast-move distance only (Osama 19 Nov 2026)",
+ "checks": 0,
+ "verified": "data unchanged from 0.9.2-dev.3"
+}
