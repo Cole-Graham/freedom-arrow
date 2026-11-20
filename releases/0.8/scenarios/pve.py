@@ -197,6 +197,12 @@ AI_CARDS.update({
  'Dead Center vs Russia':dict(ch1=[310, 307, 306, 256, 60],ch2=[233, 92, 398, 123, 157]),
  'Airport vs Russia':dict(ch1=[319, 312, 280, 271, 133],ch2=[31, 4, 133, 209, 238])})
 AI_MAX_UNITS=14
+
+# Opening ASF (Osama 19 Nov 2026 23:3x): the fighter card (AI_CARDS ch1[0]) flies an air-to-air loadout. These cards are used only in that slot.
+UNITS.update({291:(6,[(320,992),(319,987),(318,982)]),   # F/A-18E: 2 + 4 + 4 AIM-120
+              285:(6,[(299,857),(300,860),(301,867),(302,872)]),   # F-16C: 4 + 2 AIM-120, fuel, default ECM slot
+              319:(6,[(384,1422),(383,1416),(382,1411),(381,1407)])})   # Su-30SM: 4 + 2 + 2 R-77, 4 R-73
+AI_CARDS['Dead Center vs China']['ch1'][0]=923   # J-11BS Light CAP instead of the J-15 (its default is CAS rockets)
 # AI money is unlimited (Osama 19 Nov 2026 22:4x: "the AI gets access to everything ... no cap for points"); the live-unit cap and purchase
 # intervals still apply. Random whole-faction decks were asked for too, but held back for now (Osama 22:5x: "be conservative with the decks").
 TRANSPORT={57:41,60:253,62:22,63:180,66:82,70:180,72:392,75:184,108:141,109:142,110:141,111:141,112:141,117:254,119:212,122:216,126:212,127:365,130:253,132:141,133:254,134:254,146:41,150:392,351:82,353:254,370:41,372:212,398:365,399:365,401:365,407:180,408:180,416:184,419:212,449:33,459:253,701:22,1136:1228,1137:1228,1139:1228,1143:1228,1146:1228,1154:1248,1157:1248,1163:1248,1166:1230,1172:1064,1175:1064,1176:1064,1181:1230,1182:1076,1183:1076,1185:1076,1192:1076,1196:1079,1198:1079,1205:1079}
@@ -358,6 +364,11 @@ def purchase_code(scene,header):
                 ('local function isBotUID(uid)\n','local function isBotUID(uid)\n  if BA_FA_PVE then return FA_IS_BRAVO(uid) end\n'),
                 ('  MAX_UNITS   = 26,','  MAX_UNITS   = BA_FA_MAX_UNITS or 26,'),
                 ('  FIRST_BUY   = 45.0,','  FIRST_BUY   = 20.0,'),
+                # Osama 19 Nov 2026 23:3x: "force the AI to buy ASF at the start", "at least 1 per player": the first channel-1 purchase is the
+                # fighter pin (input_1, 1 x players), without waiting for an enemy-air mission; later air buys stay mission-driven.
+                ('  local kind = CYCLE[((BUY.slot[slot].step - 1) % #CYCLE) + 1]\n',
+                 '  local kind = CYCLE[((BUY.slot[slot].step - 1) % #CYCLE) + 1]\n'
+                 '  if BA_FA_PVE and not BUY.slot[slot].faAsf then BUY.slot[slot].faAsf = true; kind = "fighter"; say(slot .. ": opening ASF (forced)") end\n'),
                 # Upstream bug: tick() calls situation() before its `local function` line, so with ba_field/ba_mind loaded (the deploy
                 # order its README uses) channel 1 hit a nil global and never bought. Measured with its own test_purchase.lua: 9 of 24 fail
                 # with field+mind loaded, all 24 pass with this forward declaration.
