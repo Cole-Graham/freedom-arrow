@@ -134,10 +134,11 @@ ok(not any('125' in (t[tb][i].get('HUDName') or '') for tb,ids in (('WeaponsJson
 ok(not any('125' in (t['AmmunitionsJson'][w['AmmunitionId']].get('HUDName') or '') for w in t['WeaponAmmunitionsJson'].values() if w['WeaponId']==2010191),'no 125 on ZTZ-100 gun ammo')
 # ---------- VT-5 +35 (Osama 19 Nov 2026 17:02 PST, thread 1567745029781454889: "VT-5 and all variants increase by 35 points"). The two VT-5 cards in
 # specs: VT-5 (1261) 160 -> 195, VT-5 Recon (1262) 220 -> 255. Neither has a loadout or swap row. The unlisted catalogue row 953 (no spec) is left.
-for _u,(_c0,_c1) in {1261:(160,195),1262:(220,255)}.items():
+# Osama 17:06 PST: "VT-5 recon we make 225" (instead of 255).
+for _u,(_c0,_c1) in {1261:(160,195),1262:(220,225)}.items():
     ok(U[_u]['HUDName'].startswith('VT-5') and U[_u]['Cost']==_c0 and not U[_u].get('OriginalCost'),(_u,'VT-5 before'))
     ok(not any(o.get('ReplaceUnitId')==_u for o in t['OptionsJson'].values()),(_u,'swap row'));g.put('Units',_u,{'Cost':_c1})
-rec['vt5_plus_35']={'1261':[160,195],'1262':[220,255]}
+rec['vt5_plus_35']={'1261':[160,195],'1262':[220,225]}
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
