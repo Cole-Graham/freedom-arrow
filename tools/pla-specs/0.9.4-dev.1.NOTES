@@ -150,3 +150,9 @@
   Not in build 248. Not seen in game.
 - Long-range radar rows 59/123: helicopter optics multiplier 2.0 -> 1.25, the same as the helicopter range multiplier (Lateralus 21 Nov 15:1x PST). Data only
   (helicopter-range.json). Patriot missiles cannot target helicopters; the Patriots count as helicopter-capable only through their M2/M240 machine guns.
+- 2026-11-21 15:1x PST, thread 1567745029781454889 (Osama: "BVM base stays modern, QN-506 autocannon keeps helo range. Top attack yes to 2 hit. Other parked, hold for now";
+  "All long range missiles R-37, JATM, PL-17, AIM-260, P-21 all need more flash so that a J-36 gets detected always"). DATA: section 17 (batch 837 checks).
+  (a) Top-attack ATGM rounds Javelin, Spike LR, TOW-2B, HJ-12, HJ-12E, HJ-16, HJ-16 IIR, GAM-102LR, KSTAM: damage 10.5 -> 11; HJ-12 penetration 130 -> 140. 2 hits on
+  top armour 60-100 (14 HP); side effect: 10 HP top-40 vehicles (XA-180, ZTZ-59) die in 1. RBS 56 / Sokol-V unchanged. (b) FlashPerShot 1.0 -> 3.5 on R-37 (437),
+  JATM/AIM-260 (675, 2001659), PL-17 (2016472, 2016482, 2016509, 2017635) and PL-21 (2016476): one shot reaches the 4.5 flash cap. The air-detection use of WeaponFlash
+  is not verified in code: check in game that a J-36 firing a PL-17 gets spotted. T-80BVM base, QN-506 30 mm helicopter range unchanged. Not in build 248.

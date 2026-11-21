@@ -510,6 +510,28 @@ for o in (60,2082):g.put('OptionsJson',o,{'MobilityId':_am})
 ok((MBJ[_am]['MaxSpeedRoad'],MBJ[_am]['MaxCrossCountrySpeed'],MBJ[_am]['MaxSpeedReverse'])==(65.0,45.0,MBJ[206]['MaxSpeedReverse']),'AMPV armoured 65 / 45')
 ok(all(O[o]['MobilityId']==0 for o in (1753,1759,1764,1773)),'Bradley BUSK 3 keeps its speed')
 rec['ifv_700_class']={'rows_700':list(_700),'xm30_ke':[300,200],'t80u_profile_to':{'2000437':255,'2019365':1274},'costs':{str(o):list(v) for o,v in _COST.items()},'stryker_speed':[[100,50],[90,40]],'ampv_mobility':_am}
+# ---------- 17. Top-attack ATGMs kill top-end tanks in 2 hits; long-range AAMs give the shooter away (Osama 21 Nov 2026 15:1x PST, thread
+# 1567745029781454889: "Top attack yes to 2 hit"; "All long range missiles R-37, JATM, PL-17, AIM-260, P-21 all need more flash so that a J-36 gets detected always
+# and isn't invisible anymore"; "BVM base stays modern, QN-506 autocannon keeps helo range ... Other parked, hold for now").
+# (a) The 140-penetration top-attack ATGMs (Javelin, Spike LR, TOW-2B, HJ-16, HJ-16 IIR, HJ-12E, GAM-102LR, Blue Dragon KSTAM) 10.5 -> 11 damage, and HJ-12 also 130 -> 140 penetration:
+#     11 x 140^2 / (140^2 + 100^2) = 7.28 per hit, 2 hits = 14.6 > 14 HP on top armour 100. RBS 56 and Sokol-V already kill in 2 and keep 10.5.
+# (b) FlashPerShot 1.0 -> 3.5 on every long-range AAM launcher (R-37, JATM / AIM-260, PL-17, PL-21): one shot takes the shooter's WeaponFlash from 1 to the
+#     FogOfWarConfig cap 4.5 (it decays 0.15 per second). Whether and how far air detection uses WeaponFlash is not verified in code: check in game.
+_TA=[i for i,a_ in A.items() if a_ and a_.get('IsTopArmorArmorAttack') and a_.get('Seeker') and a_.get('ArmorTargeted')==2 and a_.get('Damage')==10.5
+     and a_.get('PenetrationAtMinRange') in (130.0,140.0) and any(r.get('AmmunitionId')==i and U.get(r.get('UnitId'),{}).get('DisplayInArmory') for r in WA.values())]
+_tan=sorted({(A[i].get('HUDName') or '').strip() for i in _TA})
+ok(_tan==['GAM-102LR ammunition','HJ-12 ammunition','HJ-12E ammunition','HJ-16','HJ-16 IIR','Javelin','KSTAM','Spike LR','TOW-2B'],('top-attack ATGM rounds (KSTAM = Blue Dragon K2 gun missile)',_tan))
+for i in _TA:
+    f={'Damage':11.0}
+    if A[i]['PenetrationAtMinRange']==130.0:f.update(PenetrationAtMinRange=140.0,PenetrationAtGroundRange=140.0)
+    g.put('AmmunitionsJson',i,f)
+ok(all(A[i]['Damage']==11.0 and A[i]['PenetrationAtMinRange']==A[i]['PenetrationAtGroundRange']==140.0 for i in _TA),'top-attack ATGMs 11 damage, 140 penetration')
+ok(all(math.ceil(14/(11*140**2/(140**2+a_**2))-1e-9)==2 for a_ in (60,80,100)),'2 hits on every tank top')
+ok(A[572]['Damage']==10.5 and A[2000161]['Damage']==10.5,'RBS 56 and Sokol-V unchanged')
+_LR={437:'R-37',675:'JATM',2001659:'JATM',2016472:'PL-17',2016476:'PL-21',2016482:'PL-17',2016509:'PL-17',2017635:'PL-17'}
+for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':3.5})
+ok(not [w_ for w_,x in W.items() if x and (x.get('HUDName') or '') in ('R-37','JATM','PL-17','PL-21','AIM-260') and w_ not in _LR],'every long-range AAM launcher covered')
+rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,3.5] for k in _LR}}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
