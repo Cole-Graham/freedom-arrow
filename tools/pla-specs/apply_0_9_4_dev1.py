@@ -442,6 +442,34 @@ ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 in nlos.jso
 # Osama 21 Nov 14:35: "lets just keep the hooks so we don't break anything": nlos.json stays as it is (HJ-10 keeps both the fire hook and the keep-lock).
 ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 keeps both NLOS hooks')
 rec['qn506_ch901_hj10_laser']={'qn502_weapon':_QW,'qn502_round':_QA,'clone_of':[_CHW,_CHA],'hj10_round':_HJA,'hj10_ability':[2009175,_nab],'nlos_keep_lock':_nlos['ammunition']}
+# ---------- 15. Tank front HEAT tiers (Osama 21 Nov 2026, thread 1567745029781454889: "top end tanks should die in 4 shots" (PF-98 and Kornet-M);
+# "There needs to be step between the mid-high and mid tanks. 950 ... SEPV2, SEP, and BVM"; "SEPV2 TUA same as others. ZTZ-100 top end, BMPT and M1150 keep them
+# in the mid-high tier HEAT armor. FEP will be mid-high tier"; 15:00 "I didn't see these tank armor changes on the patch you just pushed?"). Only HeatArmorFront
+# changes; KE, sides, rear, top and HP stay. Tiers: top end 1075 (PF-98 4 frontal hits, Kornet-M 4), mid-high 950 (PF-98 4, Kornet-M 3); modern/mid/old unchanged.
+# T-80BVM: its obr. 2018+ option is already 950; its base (800) stays until Osama decides. T-15 / VN20 (heavy IFV class) are not in this section.
+_TOP={964:'Abrams X',503:'Leopard 2A8',191:'M1A2 SEP v3',13:'T-14 Armata',238:'T-90M',237:'T-90M Razvedchik',985:'Object 640',904:'ZTZ-99A',968:'ZTZ-100'}
+_MH={243:'M1A2 SEP v2',2:'M1A2 SEP v2 TUA',244:'M1A2 SEP',54:'M1A1 FEP',240:'BMPT Terminator',457:'M1150 Assault Breacher'}
+UAJ=t['UnitArmorsJson'];ARJ=t['ArmorsJson']
+_users={}
+for r in UAJ.values():_users.setdefault(r['ArmorId'],set()).add(r['UnitId'])
+_tiers={};_before={}
+for tier,units,val,allowed in (('top',_TOP,1075,(1100,1200,1050)),('mid-high',_MH,950,(1100,1200,1050))):
+    for uid,name in units.items():
+        ok(U[uid]['HUDName'].strip().startswith(name.split()[0]),(name,uid,U[uid]['HUDName']))
+        for r in [r for r in UAJ.values() if r.get('UnitId')==uid]:
+            aid=r['ArmorId'];ok(ARJ[aid]['HeatArmorFront'] in allowed,(name,aid,ARJ[aid]['HeatArmorFront']))
+            ok(_users[aid]<=set(units),(name,aid,'row shared outside its tier',sorted(_users[aid]-set(units))))
+            _before.setdefault(aid,ARJ[aid]['HeatArmorFront']);_tiers[aid]=(tier,val)
+_snap={i:dict(r) for i,r in ARJ.items() if r and i not in _tiers}
+for aid,(tier,val) in sorted(_tiers.items()):g.put('ArmorsJson',aid,{'HeatArmorFront':val})
+ok(len(_tiers)==34,('34 armour rows (Abrams X shares the SEP v3 rows, Razvedchik shares T-90M base)',len(_tiers)))
+ok(all(ARJ[a]['HeatArmorFront']==v for a,(tr,v) in _tiers.items()),'every tier row at its value')
+ok(all(ARJ[i]==r for i,r in _snap.items()),'no other armour row changed')
+ok(ARJ[2010183]['HeatArmorFront']==1075 and ARJ[2010183]['KinArmorFront']==700,'ZTZ-100: HEAT 1075, KE 700 (section 8)')
+import math
+_hits=lambda B,P,A,hp=14:math.ceil(hp/(B*P*P/(P*P+A*A))-1e-9)
+ok((_hits(10,800,1075),_hits(10.5,950,1075),_hits(10,800,950),_hits(10.5,950,950))==(4,4,4,3),'PF-98 / Kornet-M: top 4 / 4, mid-high 4 / 3')
+rec['tank_heat_tiers']={'top_1075':{str(a):_before[a] for a,(tr,v) in _tiers.items() if tr=='top'},'mid_high_950':{str(a):_before[a] for a,(tr,v) in _tiers.items() if tr=='mid-high'}}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

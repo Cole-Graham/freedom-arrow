@@ -136,3 +136,8 @@
   (d) UserData/FreedomArrow/nlos.json: HJ-10 round removed from the keep-lock list (NLOS shots need a laser on the target); HJ-10 stays a fire unit.
   HJ-10 launcher stays weapon Type 81 (CH-901/CTL-181 use 82). Not seen in game: check the HJ-10 lases, fires NLOS only at lased targets, and that a cruise
   round on a Type 81 launcher flies correctly; check the QN-506 card shows the CH-901-style missile.
+- 2026-11-21 15:0x PST, thread 1567745029781454889 (Osama: "I didn't see these tank armor changes on the patch you just pushed?"; tiers decided 13:4x-14:03). DATA: section 15
+  (batch 773 checks). Tank HeatArmorFront only: top end -> 1075 on Abrams X / M1A2 SEP v3 (shared M1A2C rows), Leopard 2A8, T-14 (both), T-90M (4 rows, base shared with
+  Razvedchik), Object 640, ZTZ-99A, ZTZ-100 (1050 -> 1075); mid-high -> 950 on M1A2 SEP v2 (6 rows), SEP v2 TUA, M1A2 SEP (3), M1A1 FEP (2), BMPT (2), M1150 (2).
+  34 rows, none shared outside its tier. T-80BVM base 800 unchanged (open); obr. 2018+ already 950. T-15 / VN20 and the IFV 700 class are not in this batch yet.
+  NOT in build 248 (0.9.4-dev.1); needs the next build. Not seen in game.
