@@ -16,3 +16,9 @@
   AV10) to existing vanilla row 314 (Shock 12Men, same values with AV8). HP unchanged. Smoke 4 -> 1: Snipers and Godswords relinked from ability 81 (Sprint30
   Smoke x4) to existing row 103 (Sprint30 Smoke, identical but 1 smoke); the other three SF already had 1. check_infantry_armor.py floors for 1144/1181/1183/
   1185/1191 lowered 10 -> 8 to match. "Troopers" read as the China spec 21 AA/AT Troopers, not the US Troopers. Not yet seen in game.
+- 2026-11-20 16:49 PST, thread 1567745029781454889 (Osama: "all AT launchers not atgms should get 0.2 second aim time only on their AT munition"; list approved
+  "Yes add it to the next build"). DATA: section 4 of apply_0_9_4_dev1.py (batch now 63 checks). Ammunitions.AimTimeMinOverride/MaxOverride 0 -> 0.2 on the 20
+  anti-tank rounds (TargetType 45) of the 37 infantry launcher weapon rows (Weapons.Type 62/63): RPG-7V PG-7VL/VS/VM, RPG-7D3, RPG-29, SMAW anti-tank, M3 and
+  M3E1 MAAWS, RAWS, PF-98, PF-98A (2 rows), PF-98 tripod, AT4CS-RS/HP, RPG-22/26/27/28, PF-89. HE/thermobaric/incendiary/smoke rounds keep the weapon's
+  1-2 s. Not included until decided: SMAW-D HEDP, C90-CR-AM, M72A7 HEDP, DZJ-08, SPG-9M PG-9V. Carl Gustaf M3/M4 and RPG-7V2 rows share three rounds and
+  also get 0.2 s. Override behaviour read from vanilla data use (tank ATGMs, 2S1 HEAT), not from game code; not yet seen in game.

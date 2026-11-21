@@ -105,6 +105,26 @@ _smk=lambda u:sum(AB[x['AbilityId']].get('SmokeAmmunitionQuantity') or 0 for x i
 ok(all(_smk(u)==1 for u in (1144,1181,1183,1185,1191)),'SF and Snipers: 1 smoke')
 ok(AR[283].get('ArmorValue')==10 and sorted(r['UnitId'] for r in UA.values() if r.get('ArmorId')==283)==[113,150],'vanilla row 283 unchanged for units 113 and 150')
 rec['china_infantry_armor_8']={'units':{str(u):_names[u] for u in _names},'armor_value':8,'godswords_armor_row':[283,314],'smoke_1_ability_row':[81,103],'linked_ability_units':[1144,1181]}
+# ---------- 4. Infantry AT launchers aim their anti-tank round in 0.2 s (Osama 20 Nov 2026 16:3x PST, thread 1567745029781454889: "all AT launchers not atgms
+# should get 0.2 second aim time only on their AT munition"; list approved 16:49 "Yes add it to the next build"). Launchers = Weapons.Type 62 (reloadable) and 63
+# (disposable) carried by deck infantry; AT munition = TargetType 45 (vehicles only, no infantry bit), all HEAT/tandem. Ammunitions.AimTimeMin/MaxOverride 0 -> 0.2
+# (the per-round fields vanilla uses for gun-launched ATGMs and direct-fire HEAT; the weapon's 1-2 s stays for HE, thermobaric, incendiary and smoke rounds).
+# Left out until decided: dual-purpose rounds (SMAW-D HEDP, C90-CR-AM, M72A7 HEDP, DZJ-08) and SPG-9M PG-9V. Every user of a changed round must be a launcher on an
+# infantry card (Carl Gustaf M3/M4 and RPG-7V2 rows on other cards share three rounds and get 0.2 s too), else the build stops.
+_AIM=0.2;_LT={62,63}
+_dinf={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values() if U.get(r['UnitId'],{}).get('Type')==2}
+_lw={m[k] for m in SM.values() if m.get('UnitId') in _dinf for k in ('PrimaryWeaponId','SpecialWeaponId') if m.get(k) and W.get(m[k],{}).get('Type') in _LT}
+_at=sorted({wa['AmmunitionId'] for wa in WA.values() if wa.get('WeaponId') in _lw and wa.get('UnitId') in _dinf and A[wa['AmmunitionId']].get('TargetType')==45})
+ok(len(_at)==20 and len(_lw)==37,('scope: 20 AT rounds on 37 launcher rows',len(_at),len(_lw)))
+ok(all(not A[i].get('AimTimeMinOverride') and not A[i].get('AimTimeMaxOverride') for i in _at),'no override set before')
+for i in _at:
+    users=[wa for wa in WA.values() if wa.get('AmmunitionId')==i]
+    ok(all(W.get(wa.get('WeaponId'),{}).get('Type') in _LT and U.get(wa.get('UnitId'),{}).get('Type')==2 for wa in users),(i,A[i].get('HUDName'),'only infantry launchers fire it'))
+    g.put('AmmunitionsJson',i,{'AimTimeMinOverride':_AIM,'AimTimeMaxOverride':_AIM})
+ok(all((A[i]['AimTimeMinOverride'],A[i]['AimTimeMaxOverride'])==(_AIM,_AIM) for i in _at),'20 AT rounds aim 0.2 s')
+_lr=[a for a in {wa['AmmunitionId'] for wa in WA.values() if wa.get('WeaponId') in _lw} if a not in _at]
+ok(all(not A[a].get('AimTimeMinOverride') for a in _lr),'other launcher rounds keep the weapon aim time')
+rec['launcher_at_aim_0_2']={'aim_s':_AIM,'rounds':{str(i):A[i]['HUDName'] for i in _at},'launchers':len(_lw)}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
