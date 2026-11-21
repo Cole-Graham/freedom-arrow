@@ -13,7 +13,7 @@ using MelonLoader;
 using UnityEngine;
 namespace FreedomArrow;
 // Helicopter range on the cards and range tool (Lateralus 21 Nov 2026; Lateralus 0.9 Changelog, "Helicopter range" tab, rows 7, 8, 14, 18, 20).
-// - Weapon ammo panel (AmmoInfoExpansionPanel.SetMainAmmoStats): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
+// - Weapon ammo panel (AmmoInfoExpansionPanel.Init, after the game has placed every line): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
 // - Radar tooltip (UnitInfoCard.SetTraitItem, the text built in SetUnitAbilities): "Helicopter Range: x N" for units with a helicopter-capable
 //   weapon, and "Helicopter Optics: x N" for every radar unit, from the unit's radar row group in helicopter-range.json.
@@ -32,7 +32,7 @@ static class HeliRangeCard
     public static void Install(HarmonyLib.Harmony h)
     {
         if(HeliRange.ammoRange.Count==0&&HeliRange.radar.Count==0){MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD not installed: no helicopter data");return;}
-        h.Patch(AccessTools.Method(typeof(AmmoInfoExpansionPanel),"SetMainAmmoStats"),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoAfter)));
+        h.Patch(AccessTools.Method(typeof(AmmoInfoExpansionPanel),"Init"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoAfter)));
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitAbilities"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)));
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetTraitItem"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(TraitBefore)));
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(StatsAfter)));
@@ -51,13 +51,32 @@ static class HeliRangeCard
     // The same text with its last number replaced, so "200 - 2200 m" keeps its minimum range and unit.
     static string WithLast(string text,float value)=>LastNumber.Replace(text??"",$"{MathF.Round(value):0}",1);
     static bool CanHitHeli(Ammunitions a)=>a!=null&&(((long)a.TargetType)&8)!=0;
+    // Init places some lines by position after SetMainAmmoStats (Dispersion = SetStatisticLine(..., siblingIndex 4) at 0x53E4B9, Guidance = 1),
+    // so the line goes in after Init, and the old line leaves the container before Init runs: Destroy() waits for the end of the frame, and a
+    // line still in the container shifted Dispersion (Lateralus 21 Nov, Centurion C-RAM).
+    static void RemoveLine(AmmoInfoExpansionPanel panel)
+    {
+        var box=panel?._ammoStatsContainer;
+        if(box==null)return;
+        for(int i=box.childCount-1;i>=0;i--)
+        {
+            var c=box.GetChild(i);
+            if(c==null||c.name!=LineName)continue;
+            c.gameObject.SetActive(false);c.SetParent(null,false);UnityEngine.Object.Destroy(c.gameObject);
+        }
+    }
+    public static void AmmoBefore(AmmoInfoExpansionPanel __instance)
+    {
+        if(ammoBroken)return;
+        try{RemoveLine(__instance);}
+        catch(Exception e){ammoBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: ammo line off. "+e.Message);}
+    }
     public static void AmmoAfter(AmmoInfoExpansionPanel __instance,Ammunitions __1)
     {
         if(ammoBroken||__instance==null)return;
         try
         {
-            var box=__instance._ammoStatsContainer;
-            if(box!=null)for(int i=box.childCount-1;i>=0;i--){var c=box.GetChild(i);if(c!=null&&c.name==LineName)UnityEngine.Object.Destroy(c.gameObject);}
+            RemoveLine(__instance);
             if(!CanHitHeli(__1)||!HeliRange.ammoRange.TryGetValue(__1.Id,out float heli))return;
             string low=InfoCardLocalization.TextAmmoRangeLowAlt;
             var items=__instance._activeStatisticItems;
