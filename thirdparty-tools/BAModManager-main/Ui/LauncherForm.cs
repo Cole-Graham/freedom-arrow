@@ -260,6 +260,32 @@ internal sealed class LauncherForm : Form
         return false;
     }
 
+    private bool _gcFixAsked;
+    /// <summary>
+    /// Linux crash fix (Core/LinuxGcFix): needed only when kernel.yama.ptrace_scope is 1 or 2. Puts fa_ptracer.so in place, then
+    /// asks once per session for the launch line (copied to the clipboard). Never blocks PLAY when something can't be read.
+    /// </summary>
+    private bool LinuxGcFixReady(string dir)
+    {
+        var scope = LinuxGcFix.PtraceScope();
+        if (scope is null or 0) return true;
+        if (scope == 3) { Log(T("Linux: kernel.yama.ptrace_scope is 3, so the \"Fatal error in GC\" crash fix cannot work on this PC.")); return true; }
+        var appId = GameLocator.FindSteamAppId(dir) ?? ManagerConfig.SteamAppId;
+        var roots = LinuxSteam.SteamRoots().ToList();
+        string unix;
+        try { unix = LinuxGcFix.Install(LinuxGcFix.Folder(roots, appId) ?? throw new IOException("no Linux home folder")); }
+        catch (Exception ex) { Log(T("Linux crash fix not installed: {0}", ex.Message)); return true; }
+        if (LinuxGcFix.Active(roots, appId) != false) { Log(T("Linux crash fix: active.")); return true; }
+        if (_gcFixAsked) return true;
+        _gcFixAsked = true;
+        var line = LinuxGcFix.LaunchLine(unix);
+        try { Clipboard.SetText(line); } catch { /* no clipboard */ }
+        var msg = T("Linux: Proton can crash Broken Arrow with \"Fatal error in GC\". The launcher installed a small fix; it needs this Steam launch option (copied to the clipboard):\n\n{0}\n\nIn Steam: right-click Broken Arrow > Properties > General > Launch Options, replace the line with it, then press PLAY again.\n\nIt only lets Proton inspect Broken Arrow while the game runs; no system setting changes. Press Cancel to play without it this time.", line);
+        if (MessageBox.Show(this, msg, T("Linux crash fix"), MessageBoxButtons.OKCancel, MessageBoxIcon.Information) != DialogResult.OK) return true;
+        SetStatus(T("Set Broken Arrow's Steam launch option first."));
+        return false;
+    }
+
     private void RefreshCard()
     {
         DeckGuard.GameDir = _gameDir;
@@ -405,6 +431,7 @@ internal sealed class LauncherForm : Form
         }
 
         if (LinuxSteam.IsWine && !LinuxLaunchOptionSet(dir)) return;
+        if (LinuxSteam.IsWine && !LinuxGcFixReady(dir)) return;
         DeckNote(DeckGuard.BeforeLaunch(true, Log));
         SetBusy(true);
         try

@@ -287,10 +287,14 @@ public sealed class LauncherService
         {
             await HostedDistribution.PrepareAsync(progress, ct);
             progress.Report(new LaunchProgress("Verifying gameplay, models, music and voices…"));
-            await Task.Run(() => {
-                PinnedFreedomArrow.VerifyArchive(PinnedFreedomArrow.ArchivePath);
-                PinnedFreedomArrow.VerifyAssets();
-            }, ct);
+            try { await Task.Run(PinnedFreedomArrow.VerifyAssets, ct); }
+            catch (AssetsIndexInstall.DamagedListException ex)
+            {
+                log(ex.Message);   // the damaged list was deleted: download it again once
+                await HostedDistribution.PrepareAsync(progress, ct);
+                await Task.Run(PinnedFreedomArrow.VerifyAssets, ct);
+            }
+            await Task.Run(() => PinnedFreedomArrow.VerifyArchive(PinnedFreedomArrow.ArchivePath), ct);
             var loaderManifest = LoadManifest(gameDir);
             try { await EnsureMelonLoaderAsync(gameDir, loaderManifest, progress, log, ct); }
             finally { loaderManifest.Save(gameDir); }

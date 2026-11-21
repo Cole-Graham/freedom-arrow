@@ -34,9 +34,21 @@ public static class AssetsIndexInstall
     }
     private static string StateFile => Path.Combine(HostedDistribution.CacheRoot, "assets-state.json");
 
+    /// <summary>The cached file list failed its checksum and was deleted; the next PrepareAsync downloads it again.</summary>
+    public sealed class DamagedListException(string message) : IOException(message);
+
     public static AssetsIndex Load(string file, DistributionPackage p)
     {
-        var index = JsonSerializer.Deserialize<AssetsIndex>(File.ReadAllText(file), Json) ?? throw new InvalidDataException("Empty Assets file list.");
+        // 1.1.13 (Beep 20 Nov 2026, Linux: "I have to delete the relevant file every time I launch the game"; 0x00 bytes in the list at
+        // byte 1,156,664): parse exactly the bytes that pass the signed-list checksum. A damaged copy is deleted so it is downloaded again.
+        var bytes = File.ReadAllBytes(file);
+        if (p.Index != null && (bytes.LongLength != p.Index.Size ||
+            !Convert.ToHexString(SHA256.HashData(bytes)).Equals(p.Index.Sha256, StringComparison.OrdinalIgnoreCase)))
+        {
+            try { File.Delete(file); } catch (IOException) { /* in use */ }
+            throw new DamagedListException("The Models + Music/Voices file list on disk was damaged; it was removed and is downloaded again.");
+        }
+        var index = JsonSerializer.Deserialize<AssetsIndex>(bytes, Json) ?? throw new InvalidDataException("Empty Assets file list.");
         if (index.Schema != 1 || index.Id != p.Id || index.Version != p.Version || index.Files == null || index.Files.Count == 0 ||
             !Uri.TryCreate(index.FilesBase, UriKind.Absolute, out var b) || b.Scheme != "https" || !index.FilesBase.EndsWith('/'))
             throw new InvalidDataException("The Assets file list does not match the version manifest.");

@@ -102,7 +102,11 @@ public static class HostedDistribution
                 if(r.Content.Headers.ContentLength>MaxIndexSize)throw new InvalidDataException("File list is too large.");
                 var bytes=await r.Content.ReadAsByteArrayAsync(ct);
                 if(!Valid(bytes))throw new InvalidDataException("File list checksum failed; the game will not start.");
-                await File.WriteAllBytesAsync(dest+".part",bytes,ct);File.Move(dest+".part",dest,true);return;
+                // 1.1.13: written with write-through, flushed and read back before it replaces the cached copy (Beep 20 Nov 2026, Linux:
+                // the cached list had 0x00 bytes on every later launch).
+                using(var fs=new FileStream(dest+".part",FileMode.Create,FileAccess.Write,FileShare.None,1<<16,FileOptions.WriteThrough)){fs.Write(bytes);fs.Flush(true);}
+                if(!Valid(await File.ReadAllBytesAsync(dest+".part",ct)))throw new IOException("The file list did not read back correctly.");
+                File.Move(dest+".part",dest,true);return;
             }
             catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException) && !ct.IsCancellationRequested && attempt<2)
             { await Task.Delay(TimeSpan.FromSeconds(attempt+1),ct); }

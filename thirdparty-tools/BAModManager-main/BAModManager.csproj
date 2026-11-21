@@ -45,7 +45,7 @@
     <Product>Freedom Arrow Launcher</Product>
     <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
     <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
-    <Version>1.1.12</Version>
+    <Version>1.1.13</Version>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
@@ -69,6 +69,7 @@
     <EmbeddedResource Include="Assets\BAModManager.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' != 'true'" />
     <EmbeddedResource Include="Assets\FreedomArrow.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' == 'true'" />
     <EmbeddedResource Include="Assets\logo.png" LogicalName="Assets.logo.png" />
+    <EmbeddedResource Include="Assets\Linux\fa_ptracer.so" LogicalName="Linux.fa_ptracer.so" />
     <EmbeddedResource Include="Assets\default_preview.png" LogicalName="Assets.default_preview.png" />
     <EmbeddedResource Include="Assets\gear_body.png" LogicalName="Assets.gear_body.png" />
     <EmbeddedResource Include="Assets\gear_emblem.png" LogicalName="Assets.gear_emblem.png" />
