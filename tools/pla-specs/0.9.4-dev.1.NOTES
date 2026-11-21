@@ -29,3 +29,6 @@
   portraits embedded). Not yet seen in game: check the cards in the Arsenal after the build.
 - 2026-11-20 17:2x PST, thread 1567745029781454889 (Osama: "dual purpose rounds no, leave them at normal vanilal aim time"). Section 4 decided: SMAW-D HEDP,
   C90-CR-AM, M72A7 HEDP, DZJ-08 and SPG-9M PG-9V keep the vanilla launcher aim time (1-2 s; SPG-9M 2-3 s). New check pins this (batch now 213 checks with the other threads' sections).
+- 2026-11-20 17:2x PST, thread 1567745029781454889 (Osama: "we are not pushing the tank and autocannon HE nerfs right? that's just a proposal?"). Section 2 (vehicle
+  HE x0.55) PARKED: _HE_NERF=False in apply_0_9_4_dev1.py, so it changes nothing in this batch; the code and its 6 checks stay for a later yes. Batch: 207 checks.
+  Vehicle HE damage is the 0.9.3 value. Removed from the 0.9.4 patch-notes draft.

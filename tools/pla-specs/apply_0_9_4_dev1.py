@@ -49,34 +49,38 @@ rec['spetsnaz_alpha_standoff_rpg30']={'unit':354,'option':1511,'carriers':[4,6],
 # ZU-23, 57 mm Derivatsiya, JRVG-1 76 mm). Damage is one value for every target, so these
 # rounds also do 45 % less to light vehicles and (autocannons) helicopters: accepted by Osama. A round also fired by anything else (infantry, helicopters,
 # planes, MG/AGL/AA weapons, artillery) gets a vehicle copy so the other users keep their damage.
-_F=0.55;_WT={110,114};_ART={130,131,132,133}
-_deck={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}|{t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['UnitId'] for r in t['TransportAvailabilitiesJson'].values() if r.get('SpecializationAvailabilityId') in t['SpecializationAvailabilitiesJson']}
-_veh=lambda u:u is not None and u.get('Type')==4 and u.get('Role') not in _ART
-_q=lambda wa:_veh(U.get(wa.get('UnitId'))) and W.get(wa.get('WeaponId'),{}).get('Type') in _WT
+# PARKED, not in the batch (Osama 20 Nov 2026 17:24 PST: "we are not pushing the tank and autocannon HE nerfs right? that's just a proposal?").
+# Set _HE_NERF=True only when Osama or Lateralus approve it for a build.
+_HE_NERF=False
 A=t['AmmunitionsJson']
-_sel=lambda a:a is not None and (a.get('TargetType') or 0)&2 and not (a.get('TargetType') or 0)&16 and (a.get('PenetrationAtMinRange') or 0)<150   # plane-capable (AA gun) rounds keep their damage
-_rows=[wa for wa in WA.values() if wa.get('UnitId') in _deck and _q(wa) and _sel(A.get(wa.get('AmmunitionId')))]
-_ids=sorted({wa['AmmunitionId'] for wa in _rows})
-_users={}
-for wa in WA.values():_users.setdefault(wa.get('AmmunitionId'),[]).append(wa)
-_before={i:A[i].get('Damage') for i in _ids};_copies={};_inplace=[]
-for i in _ids:
-    other=[wa for wa in _users[i] if not _q(wa)]
-    nd=round((A[i].get('Damage') or 0)*_F,3)
-    if other:
-        c=g.add('AmmunitionsJson',A[i],{'Name':(A[i].get('Name') or '')+' FA vehicle','Damage':nd});_copies[i]=c
-        for wa in _users[i]:
-            if _q(wa):g.put('WeaponAmmunitionsJson',wa['Id'],{'AmmunitionId':c})
-    else:
-        g.put('AmmunitionsJson',i,{'Damage':nd});_inplace.append(i)
-ok((len(_ids),len(_rows),len(_copies))==(47,84,0),('scope: 47 rounds on 84 vehicle weapon rows, no copies',len(_ids),len(_rows),len(_copies)))
-ok(all(abs((A[_copies.get(i,i)].get('Damage') or 0)-round((_before[i] or 0)*_F,3))<1e-9 for i in _ids),'every selected round x0.55')
-ok(all(A[i].get('Damage')==_before[i] for i in _copies),'shared originals keep their damage for the other users')
-ok(all(A[wa['AmmunitionId']].get('Damage')==_before.get(wa['AmmunitionId'],A[wa['AmmunitionId']].get('Damage')) for wa in WA.values() if not _q(wa)),'no non-vehicle weapon row changed')
-ok(all((A[_copies.get(i,i)].get('PenetrationAtMinRange') or 0)<150 and not (A[_copies.get(i,i)].get('TargetType') or 0)&16 for i in _ids),'no AP/HEAT or AA round touched')
-ok(not any(_q(wa) and wa['AmmunitionId'] in _copies for wa in WA.values()),'vehicle rows now point at the copies')
-rec['vehicle_anti_infantry_x055']={'factor':_F,'rounds':len(_ids),'in_place':len(_inplace),'vehicle_copies':{str(k):v for k,v in _copies.items()},'weapon_rows':len(_rows),
-  'examples':{A[i]['HUDName']:[_before[i],A[_copies.get(i,i)]['Damage']] for i in _ids[:12]}}
+if _HE_NERF:
+    _F=0.55;_WT={110,114};_ART={130,131,132,133}
+    _deck={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}|{t['SpecializationAvailabilitiesJson'][r['SpecializationAvailabilityId']]['UnitId'] for r in t['TransportAvailabilitiesJson'].values() if r.get('SpecializationAvailabilityId') in t['SpecializationAvailabilitiesJson']}
+    _veh=lambda u:u is not None and u.get('Type')==4 and u.get('Role') not in _ART
+    _q=lambda wa:_veh(U.get(wa.get('UnitId'))) and W.get(wa.get('WeaponId'),{}).get('Type') in _WT
+    _sel=lambda a:a is not None and (a.get('TargetType') or 0)&2 and not (a.get('TargetType') or 0)&16 and (a.get('PenetrationAtMinRange') or 0)<150   # plane-capable (AA gun) rounds keep their damage
+    _rows=[wa for wa in WA.values() if wa.get('UnitId') in _deck and _q(wa) and _sel(A.get(wa.get('AmmunitionId')))]
+    _ids=sorted({wa['AmmunitionId'] for wa in _rows})
+    _users={}
+    for wa in WA.values():_users.setdefault(wa.get('AmmunitionId'),[]).append(wa)
+    _before={i:A[i].get('Damage') for i in _ids};_copies={};_inplace=[]
+    for i in _ids:
+        other=[wa for wa in _users[i] if not _q(wa)]
+        nd=round((A[i].get('Damage') or 0)*_F,3)
+        if other:
+            c=g.add('AmmunitionsJson',A[i],{'Name':(A[i].get('Name') or '')+' FA vehicle','Damage':nd});_copies[i]=c
+            for wa in _users[i]:
+                if _q(wa):g.put('WeaponAmmunitionsJson',wa['Id'],{'AmmunitionId':c})
+        else:
+            g.put('AmmunitionsJson',i,{'Damage':nd});_inplace.append(i)
+    ok((len(_ids),len(_rows),len(_copies))==(47,84,0),('scope: 47 rounds on 84 vehicle weapon rows, no copies',len(_ids),len(_rows),len(_copies)))
+    ok(all(abs((A[_copies.get(i,i)].get('Damage') or 0)-round((_before[i] or 0)*_F,3))<1e-9 for i in _ids),'every selected round x0.55')
+    ok(all(A[i].get('Damage')==_before[i] for i in _copies),'shared originals keep their damage for the other users')
+    ok(all(A[wa['AmmunitionId']].get('Damage')==_before.get(wa['AmmunitionId'],A[wa['AmmunitionId']].get('Damage')) for wa in WA.values() if not _q(wa)),'no non-vehicle weapon row changed')
+    ok(all((A[_copies.get(i,i)].get('PenetrationAtMinRange') or 0)<150 and not (A[_copies.get(i,i)].get('TargetType') or 0)&16 for i in _ids),'no AP/HEAT or AA round touched')
+    ok(not any(_q(wa) and wa['AmmunitionId'] in _copies for wa in WA.values()),'vehicle rows now point at the copies')
+    rec['vehicle_anti_infantry_x055']={'factor':_F,'rounds':len(_ids),'in_place':len(_inplace),'vehicle_copies':{str(k):v for k,v in _copies.items()},'weapon_rows':len(_rows),
+      'examples':{A[i]['HUDName']:[_before[i],A[_copies.get(i,i)]['Damage']] for i in _ids[:12]}}
 # ---------- 3. China special forces and line infantry armour (Osama 20 Nov 2026 15:xx PST, thread 1567745029781454889: "PLAAF Snipers have SF cqc kit,
 # they need 8 armor and only 1 smoke like other sniper teams. Godswords, BloodWolvse, Falcons, Sea dragons 8 armor 1 smoke. Troopers and light riflement and
 # moto riflemen need 8 armor."). ArmorValue 10 -> 8 (SF) and 6 -> 8 (spec 21 line infantry: Moto. Riflemen, Light Riflemen, AA and AT Troopers); HP stays.
