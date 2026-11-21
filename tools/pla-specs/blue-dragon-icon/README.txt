@@ -1,3 +1,3 @@
-FA_US_BLUE_DRAGON spec icon v3.1 (Osama 21 Nov 14:4x: "needs more contrast"): twin dragons, unsharp + hard curve (lo 40, hi 150). alt-dragon-head-128.png = the single-head option.
-Source: reference-twin-dragons.png (Osama). whitescale.py: alpha = luminance inside the dragon mask, colour white; 128 px.
-FA_US_BLUE_DRAGON.svg = earlier hand-drawn v2 (superseded).
+FA_US_BLUE_DRAGON spec icon v4 (Osama 21 Nov 15:14 "use the one on the left for now"): single dragon head, white-scale.
+Source reference-dragon-head-full.png; head2.py args 30 96 1.35 0.05 (hand-traced silhouette, hole fill, ribbon/badge removed, percentile contrast, eyes white); 128 px.
+Earlier: twin dragons (whitescale.py, reference-twin-dragons.png), hand-drawn v2 (FA_US_BLUE_DRAGON.svg).

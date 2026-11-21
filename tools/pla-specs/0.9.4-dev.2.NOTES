@@ -10,3 +10,4 @@
   frame) or when Game.InLobby. Missing ArrowQueue methods -> native tab (BALocalSkirmish refusals stay). NEEDS the runtime DLL rebuild; compiled clean
   on the deck (game-1.2.2.1). Not seen in game: check Play opens Mod Lobbies, joining/creating a mod lobby still shows the lobby screen, and the
   log line FREEDOM_ARROW_PLAY_MENU. Note: offline Local AI Skirmish was reached through the native Play tab; F8 (LocalSkirmish setup hotkey) stays.
+- 2026-11-21 15:1x PST, thread 1573418243715113213 (Osama: "use the one on the left for now"): RUNTIME icons/FA_US_BLUE_DRAGON.png = single dragon head v4 (white-scale, 128 px; was the twin dragons). Source + script in tools/pla-specs/blue-dragon-icon. REBUILD THE RUNTIME DLL. Not seen in game.
