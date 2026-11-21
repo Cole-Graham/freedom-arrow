@@ -131,5 +131,33 @@ def apply(t, g, ok, rec):
         u = one('Units', Name=nm); su = rows('SensorUnitsJson', UnitId=u['Id']); ok(len(su) == 1 and su[0]['SensorId'] == 3, nm + ' Very Good optics before')
         g.put('SensorUnitsJson', su[0]['Id'], {'SensorId': s}); out[nm] = {'unit': u['Id'], 'sensor': [3, s]}
     ok(all(not U[v['unit']]['DisplayInArmory'] for v in out.values()) and not any(r and r['UnitId'] in {v['unit'] for v in out.values()} for r in t['SpecializationAvailabilitiesJson'].values()),
-       'all Blue Dragon cards hidden, no deck cards')
+       'all Blue Dragon cards hidden, no deck cards (add_spec shows them in spec 23)')
     rec['blue_dragon_tank_tab'] = out
+
+
+# ---- Blue Dragon spec (Osama 21 Nov 2026 14:0x PST: "we can add the blue dragons spec in the next build but it needs to have (testing preview)
+# next to it with the units"; 14:1x "WAPC won't make it since its just a armored spec"). US spec 23, a copy of Armored Brigade (4): same slots and
+# points. Cards = the hidden Blue Dragon tank tab, now shown. Icon FA_US_BLUE_DRAGON (runtime-qa/icons, seeded by ChinaUi like the China icons).
+SPEC = 23
+CARDS = {'K2 Black Panther': 2, 'Type 10': 2, 'K1A1': 3, 'Type 90': 3, 'T-80U (ROK)': 2, 'K1': 4, 'Type 74 STB-2': 4, 'Type 16 MCV': 3, 'M48A5K': 4}
+
+
+def add_spec(t, g, ok, rec):
+    U, S, SA = t['Units'], t['SpecializationsJson'], t['SpecializationAvailabilitiesJson']
+    ok(SPEC not in S and S[4]['Name'] == 'Armored Brigade' and S[4]['CountryId'] == 2, 'spec 23 free; Armored Brigade template')
+    g.put('SpecializationsJson', SPEC, {**{k: v for k, v in S[4].items() if k != 'Id'}, 'Name': 'US Blue Dragon',
+        'UIName': 'Blue Dragon (Testing Preview)',
+        'UIDescription': 'TESTING PREVIEW. Korean and Japanese armour fighting alongside the US. Models are stand-ins and stats and prices '
+                         'will change. Japanese tanks reload faster; Korean tanks hit harder.',
+        'Icon': 'FA_US_BLUE_DRAGON', 'ShowInHangar': True, 'ContentMembership': -1})
+    tpl = next(r for r in SA.values() if r and r['UnitId'] == 2 and r['SpecializationId'] == 4)
+    out = {}
+    for name, n in CARDS.items():
+        u = [x for x in U.values() if x and x.get('Name') == name]; ok(len(u) == 1 and u[0]['CountryId'] == 2 and not u[0]['DisplayInArmory'], (name, 'hidden US card'))
+        uid = u[0]['Id']
+        ok(not any(r and r['UnitId'] == uid for r in SA.values()), (name, 'no deck card yet'))
+        g.add('SpecializationAvailabilitiesJson', tpl, {'UnitId': uid, 'SpecializationId': SPEC, 'MaxAvailabilityXp0': n})
+        g.put('Units', uid, {'DisplayInArmory': True})
+        out[name] = {'unit': uid, 'cards': n, 'cost': U[uid]['Cost']}
+    ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == SPEC) == sorted(v['unit'] for v in out.values()), 'spec 23 = the 9 Blue Dragon cards')
+    rec['blue_dragon_spec'] = {'spec': SPEC, 'name': S[SPEC]['UIName'], 'icon': S[SPEC]['Icon'], 'template': 'Armored Brigade (4)', 'cards': out}
