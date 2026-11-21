@@ -72,3 +72,9 @@
   postfix on FogOfWarUnit.__c__DisplayClass43_0 ground-point raycast callback: SmokeTerrainDistance > 0.5 -> groundPoint.IsShootable false, so Fire at position
   no longer shoots through smoke (unit targets were already refused by the game). Port of ActualArrow's SmokeGroundPatch (FlatIncomeMod 0.9.17; we ship 0.9.16
   without it; report work/aa-smoke-20261121). queued_checks requires FREEDOM_ARROW_SMOKE_GROUND in the DLL. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.
+- 2026-11-21 12:5x PST, thread 1572407822849810463 (Osama: "can you make sure all Chinese vehicles have ammunition icons here? I'm sure all of them can use some
+  icon from Vanilla"). DATA: section 10 of apply_0_9_4_dev1.py. All 279 China non-infantry rounds that used our placeholder FA_PLA_AMMO_* icons (CANNON/MG/
+  AUTOCANNON are three plain bullets) now point at vanilla HUDIcon addresses: tank guns by calibre/kind (125 -> AMMO_RU_TANK_125_*, 120/105 -> AMMO_US_TANK_*,
+  100/85 -> AMMO_RU_TANK_115_*), artillery by calibre, ATGM/SAM/AAM/ballistic/rockets to the closest vanilla type, MG/autocannon/AA/aircraft guns
+  AMMO_BULLET_SHORT (vanilla convention). HUDIcon only; China-only rounds (HJ-12 also on the HJ-12 Team). row-tests no longer require FA_PLA_AMMO_ prefixes
+  (not run by 0.9 builds). Map + scripts: work/ammo-icons-20261121. Not yet seen in game.

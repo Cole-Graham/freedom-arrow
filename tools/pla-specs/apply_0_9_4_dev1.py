@@ -235,6 +235,51 @@ ok(not any(o.get(f'Ability{i}Id') for o in O.values() if o and o.get('Modificati
 g.put('UnitAbilitiesJson',2010702,{'AbilityId':4})
 ok([r['AbilityId'] for r in UAb.values() if r and r.get('UnitId')==1054]==[4] and AB[2000197]['IsSmoke'] is True,'CTL-181 links the empty row; shared smoke row unchanged')
 rec['ctl181_no_smoke']={'unit':1054,'unit_ability':2010702,'ability':[2000197,4]}
+# ---------- 10. China vehicle ammunition gets vanilla icons (Osama 21 Nov 2026 12:4x PST, thread 1572407822849810463: "can you make sure all Chinese vehicles
+# have ammunition icons here? I'm sure all of them can use some icon from Vanilla"). China non-infantry rounds used our placeholder addresses FA_PLA_AMMO_*
+# (CANNON/MG/AUTOCANNON draw three plain bullets in the unit panel). Each round now points at the vanilla HUDIcon of the matching vanilla round: tank guns by
+# calibre and kind, artillery by calibre, missiles/rockets by their closest vanilla type, MGs/autocannons/AA and aircraft guns AMMO_BULLET_SHORT (as vanilla).
+# HUDIcon only; every round touched is used by China units only (HJ-12 is also the HJ-12 Team's round and gets the Javelin icon there too).
+import re
+# HUDIcon for a China non-infantry round, from what the round is. Vanilla convention: MGs, autocannons, AA guns and aircraft guns all use AMMO_BULLET_SHORT.
+NAMED=[ # (regex on HUDName, icon); first match wins
+ (r'gun-launched missile','AMMO_RU_TANK_125_ATGM'),(r'^76 mm','AMMO_RU_TANK_125_HE'),(r'^73 mm','AMMO_SMAW_HEAA'),
+ (r'^HJ-8','AMMO_TOW_2A'),(r'^HJ-9','AMMO_KORNET'),(r'^HJ-10','AMMO_HELLFIRE_2'),(r'^HJ-12','AMMO_JAVELIN'),(r'^HJ-16','AMMO_JAVELIN'),(r'^HJ-73','AMMO_KONKURS_M'),
+ (r'^ABZ-13','AMMO_KORNET'),(r'^NLOS missile','AMMO_JAGM'),(r'^QN-502','AMMO_HERMES_A'),(r'^QN-201','AMMO_GRIFFIN'),(r'^UAV guided missile','AMMO_GRIFFIN'),
+ (r'^HQ-7','AMMO_OSA_AKM'),(r'^FK-2000','AMMO_PANCIR_S1'),(r'^(FB-10|QW-)','AMMO_STINGER'),(r'^HQ-6','AMMO_BUK_M2'),(r'^HQ-11','AMMO_TOR_M2'),
+ (r'^HQ-1[26]','AMMO_BUK_M3'),(r'^HQ-9','AMMO_S300'),(r'^PL-(2|8|10)\b','AMMO_AIM9M'),(r'^PL-1[25]\b','AMMO_AMRAAM'),
+ (r'^DF-','AMMO_ISKANDER_M'),(r'^SY-400','AMMO_ATCAMS'),(r'^BRE','AMMO_SMERCH'),(r'^PHL-(11|81) 122','AMMO_GRAD'),(r'^90 mm unguided rockets','AMMO_S8'),
+ (r'^LG3','AMMO_GRENADES'),(r'^120 mm gun-mortar','AMMO_RU_MORTAR_120'),
+]
+GUN={('125','AP'):'AMMO_RU_TANK_125_AP',('125','HE'):'AMMO_RU_TANK_125_HE',('125','HEAT'):'AMMO_RU_TANK_125_HEAT',
+     ('120','AP'):'AMMO_US_TANK_120_AP',('120','HE'):'AMMO_US_TANK_120_HE',('120','HEAT'):'AMMO_US_TANK_120_HEAT',
+     ('105','AP'):'AMMO_US_TANK_120_AP',('105','HE'):'AMMO_US_TANK_105_HE',('105','HEAT'):'AMMO_US_TANK_120_HEAT',
+     ('100','AP'):'AMMO_RU_TANK_115_AP',('100','HE'):'AMMO_RU_TANK_115_HE',
+     ('85','HE'):'AMMO_RU_TANK_115_HE',('85','HEAT'):'AMMO_RU_TANK_115_HEAT'}
+ART={'122':'AMMO_RU_ARTILLERY_122','152':'AMMO_RU_ARTILLERY_152mm','155':'AMMO_US_ARTILLERY_155'}
+def icon(a):
+    k,n=a['HUDIcon'],(a.get('HUDName') or '').strip()
+    if n.startswith('100 mm gun / HJ-9'):return 'AMMO_RU_BMP_100_ATGM' if (a.get('PenetrationAtMinRange') or 0)>=300 else 'AMMO_RU_BMP_100_HE'
+    for p,ic in NAMED:
+        if re.search(p,n):return ic
+    if k in('FA_PLA_AMMO_MG','FA_PLA_AMMO_AUTOCANNON'):return 'AMMO_BULLET_SHORT'
+    if k in('FA_PLA_AMMO_HOWITZER','FA_PLA_AMMO_MORTAR'):return ART[re.search(r'(\d{3}) mm',n).group(1)]
+    if k=='FA_PLA_AMMO_CANNON':
+        cal=re.search(r'(\d{2,3}) mm',n).group(1);kind='AP' if re.search(r'APFSDS|\bAP\b',n) else 'HEAT' if 'HEAT' in n else 'HE' if re.search(r'\bHE\b',n) else None
+        return GUN[(cal,kind)]
+    raise KeyError((a['Id'],k,n))
+_vic={A[i].get('HUDIcon') for i in native['AmmunitionsJson'] if i in A}
+_cnv={i for i,u in U.items() if u and u.get('CountryId')==4 and u.get('Type')!=2}
+_ar={wa['AmmunitionId'] for wa in WA.values() if wa and wa.get('UnitId') in _cnv and wa.get('AmmunitionId') in A and A[wa['AmmunitionId']].get('HUDIcon') not in _vic}
+ok(len(_ar)==279 and all(A[i]['HUDIcon'].startswith('FA_PLA_AMMO_') for i in _ar),('279 China non-infantry rounds on placeholder icons',len(_ar)))
+ok(all(U.get(wa.get('UnitId'),{}).get('CountryId')==4 for wa in WA.values() if wa and wa.get('AmmunitionId') in _ar),'only China units fire these rounds')
+_ic={}
+for i in sorted(_ar):
+    _ic[i]=(A[i]['HUDIcon'],icon(A[i]));ok(_ic[i][1] in _vic,(i,_ic[i]))
+    g.put('AmmunitionsJson',i,{'HUDIcon':_ic[i][1]})
+ok(not any(A[wa['AmmunitionId']].get('HUDIcon') not in _vic for wa in WA.values() if wa and wa.get('UnitId') in _cnv and wa.get('AmmunitionId') in A),'every China vehicle round has a vanilla icon')
+ok(A[2010195]['HUDIcon']=='AMMO_US_TANK_120_AP' and A[2010197]['HUDIcon']=='AMMO_US_TANK_105_HE' and A[2010199]['HUDIcon']=='AMMO_US_TANK_120_HEAT','ZTZ-100 gun rows')
+rec['china_vehicle_ammo_icons']={str(i):{'name':A[i].get('HUDName'),'before':b,'after':n} for i,(b,n) in _ic.items()}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
