@@ -280,6 +280,45 @@ for i in sorted(_ar):
 ok(not any(A[wa['AmmunitionId']].get('HUDIcon') not in _vic for wa in WA.values() if wa and wa.get('UnitId') in _cnv and wa.get('AmmunitionId') in A),'every China vehicle round has a vanilla icon')
 ok(A[2010195]['HUDIcon']=='AMMO_US_TANK_120_AP' and A[2010197]['HUDIcon']=='AMMO_US_TANK_105_HE' and A[2010199]['HUDIcon']=='AMMO_US_TANK_120_HEAT','ZTZ-100 gun rows')
 rec['china_vehicle_ammo_icons']={str(i):{'name':A[i].get('HUDName'),'before':b,'after':n} for i,(b,n) in _ic.items()}
+# ---------- 11. Dedicated tank-hunter teams fire 15 rounds per minute; Tank Hunters 6 men (Osama 21 Nov 2026 13:16 PST, thread 1567745029781454889:
+# "dedicate tank hunter teams should have 15 RPM on their AT weapons ... Rangers MAAWS and Tank hunters (which by the way should be 6 man). Long range fire
+# support like SPG and PF-98 tripod are not included"; 13:2x "yes make sure line infantry get seperate weapons from fire support"). Reloadable launchers
+# reload 6 s (10 rounds/min); these teams get 4 s (15/min). A launcher row shared with any other squad is copied for the team, so line infantry and fire
+# support keep 10/min. PF-98 Tank Hunters (1155) is in no specialization (Osama: "There are no PF-98 tank hunters anymore"): left out.
+SW=t['SquadWeaponsJson'];AR=t['ArmorsJson'];UA=t['UnitArmorsJson']
+_TH={74:('Rangers RAWS',(202,787)),410:('Rangers MAAWS',(505,788)),127:('RPG-29 Vampyr',(172,)),1139:('Tank Hunters',(2011919,))}
+_sw_users=lambda w:{r['UnitId'] for r in SW.values() if r.get('WeaponId')==w}|{m['UnitId'] for m in SM.values() if w in (m.get('PrimaryWeaponId'),m.get('SpecialWeaponId'))}|{r['UnitId'] for r in WA.values() if r.get('WeaponId')==w}
+_th={}
+for _u,(_n,_ws) in _TH.items():
+    ok(U[_u]['HUDName'].strip().startswith(_n),(_n,_u))
+    for _w in _ws:
+        ok(W[_w]['Type']==62 and W[_w]['MagazineSize']==1 and (W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0),(_n,_w,'reloadable launcher, 6 s'))
+        _others=_sw_users(_w)-{_u}
+        if _others:
+            _c=g.add('WeaponsJson',W[_w],{'Name':(W[_w].get('Name') or '')+' FA tank hunter','MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
+            for r in [r for r in SW.values() if r.get('UnitId')==_u and r.get('WeaponId')==_w]:g.put('SquadWeaponsJson',r['Id'],{'WeaponId':_c})
+            for r in [r for r in WA.values() if r.get('UnitId')==_u and r.get('WeaponId')==_w]:g.put('WeaponAmmunitionsJson',r['Id'],{'WeaponId':_c})
+            for m in [m for m in SM.values() if m.get('UnitId')==_u]:
+                for k in ('PrimaryWeaponId','SpecialWeaponId'):
+                    if m.get(k)==_w:g.put('SquadMembersJson',m['Id'],{k:_c})
+            ok(_u not in _sw_users(_w) and _sw_users(_c)=={_u},(_n,_w,'team moved to its own copy'))
+            ok(all((W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0) for _ in [0]),(_n,_w,'shared original stays 6 s for',sorted(_others)))
+            _th.setdefault(f'{_u} {_n}',[]).append({'weapon':_w,'copy':_c,'others_keep_10_per_min':sorted(U[o]['HUDName'].strip() for o in _others if U.get(o))})
+        else:
+            g.put('WeaponsJson',_w,{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
+            _th.setdefault(f'{_u} {_n}',[]).append({'weapon':_w,'in_place':True})
+    _tw=[r['WeaponId'] for r in SW.values() if r.get('UnitId')==_u and W.get(r['WeaponId'],{}).get('Type')==62]
+    ok(_tw and all((W[w]['MagazineReloadTimeMin'],W[w]['MagazineReloadTimeMax'])==(4.0,4.0) for w in _tw),(_n,'every launcher 4 s',_tw))
+ok((W[2016259]['HUDName'],W[2016259]['MagazineReloadTimeMin'],W[2016259]['MagazineReloadTimeMax'])==('PF-98 (tripod)',6.0,6.0),'PF-98 Team tripod launcher untouched (fire support)')
+# Tank Hunters 1139: 8 -> 6 men. Two plain QBZ-191 riflemen out (newest first); the PF-98A gunner stays; armour 8Men (84) -> vanilla 6Men (82), same AV 6.
+_ms=[m for m in SM.values() if m.get('UnitId')==1139];_rf=[m for m in _ms if m.get('PrimaryWeaponId')==2003998 and not m.get('SpecialWeaponId')]
+ok(len(_ms)==8 and len(_rf)==7,('Tank Hunters 8 men, 7 riflemen',len(_ms),len(_rf)))
+for m in sorted(_rf,key=lambda m:m['Id'])[-2:]:g.remove('SquadMembersJson',m['Id'])
+_ua=[r for r in UA.values() if r.get('UnitId')==1139];ok(len(_ua)==1 and _ua[0]['ArmorId']==84 and AR[82]['Name']=='Armor Infantry 6Men' and AR[82]['ArmorValue']==AR[84]['ArmorValue']==6,('Tank Hunters armour row',_ua))
+g.put('UnitArmorsJson',_ua[0]['Id'],{'ArmorId':82})
+_ms=[m for m in SM.values() if m.get('UnitId')==1139]
+ok(len(_ms)==6 and sum(1 for m in _ms if m.get('SpecialWeaponId'))==1 and AR[82]['MaxHealthPoints']==30,'Tank Hunters 6 men, 1 PF-98A, 30 HP')
+rec['tank_hunter_15_per_min']={'reload_s':[6.0,4.0],'teams':_th,'tank_hunters_men':[8,6],'tank_hunters_armor':[84,82]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

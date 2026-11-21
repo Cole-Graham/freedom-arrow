@@ -82,3 +82,10 @@
   to our music"). RUNTIME (rebuild the runtime DLL): MusicVolumeOnLaunch.cs, postfix on SettingsService.Initialize -> ChangeSettings(VolumeMusic, 70,
   applyInstantly) at every start (the game's own path: applies FMOD Volume_Music and saves the settings). Only VolumeMusic; the player can still change it
   for the session. Compiles clean; not yet seen in game (check the log line FREEDOM_ARROW_MUSIC_ON_LAUNCH music slider X -> 70 and the Settings slider).
+- 2026-11-21 13:2x PST, thread 1567745029781454889 (Osama: "dedicate tank hunter teams should have 15 RPM on their AT weapons ... Rangers MAAWS and Tank hunters
+  (which by the way should be 6 man). Long range fire support like SPG and PF-98 tripod are not included"; "yes make sure line infantry get seperate weapons from fire
+  support"; "There are no PF-98 tank hunters anymore"). DATA: section 11 of apply_0_9_4_dev1.py (batch 595 checks). Launcher reload 6 s -> 4 s (10 -> 15 per minute) for
+  Rangers RAWS (202 copied, 787 in place), Rangers MAAWS (505 copied, 788 in place), RPG-29 Vampyr (172 copied), Tank Hunters 1139 (PF-98A 2011919 copied; the
+  original stays with PF-98 Fire Support). Shared originals keep 6 s for Rangers, Airborne NGSW/Recce, AB Recce NGSW, Rangers RRC, Marine Raiders, Jegeris, Chernye
+  Berety. Tank Hunters 8 -> 6 men (two QBZ-191 riflemen out, PF-98A gunner stays), armour row 84 (8Men) -> vanilla 82 (6Men, AV 6, 30 HP); cost 75 unchanged. PF-98
+  Team (tripod) and SPG-9 untouched; PF-98 Tank Hunters (1155) left out (in no specialization). Not seen in game.
