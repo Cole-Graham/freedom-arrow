@@ -532,6 +532,18 @@ _LR={437:'R-37',675:'JATM',2001659:'JATM',2016472:'PL-17',2016476:'PL-21',201648
 for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':3.5})
 ok(not [w_ for w_,x in W.items() if x and (x.get('HUDName') or '') in ('R-37','JATM','PL-17','PL-21','AIM-260') and w_ not in _LR],'every long-range AAM launcher covered')
 rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,3.5] for k in _LR}}
+# ---------- 18. Split-loadout cards show in the Arsenal again (Osama 21 Nov 2026 15:3x PST: "we lost our American Airborne, not the NGSW. We need both in US
+# air"). 0.9.0-dev.11 turned the Rangers / Airborne / Mech. Riflemen squad-loadout swaps into separate cards (new specialization rows), but the variant units kept
+# Units.IsUnitModification = True, the flag for "reached only through a loadout option". With the options gone, those cards were hidden. Clear the flag on every
+# unit that has its own card and is no longer the target of any option: Airborne (64), Rangers CQC (409), Mech. Riflemen MAAWS (707).
+SAJ_=t['SpecializationAvailabilitiesJson']
+_rep={o['ReplaceUnitId'] for o in O.values() if o and o.get('ReplaceUnitId')}
+_lost=sorted({a_['UnitId'] for a_ in SAJ_.values() if a_ and U.get(a_.get('UnitId'),{}).get('IsUnitModification') and a_['UnitId'] not in _rep})
+ok(_lost==[64,409,707],('hidden split cards',_lost,[U[x]['HUDName'] for x in _lost]))
+for x in _lost:g.put('Units',x,{'IsUnitModification':False})
+ok(not [a_ for a_ in SAJ_.values() if a_ and U.get(a_.get('UnitId'),{}).get('IsUnitModification') and a_['UnitId'] not in _rep],'no card left on a loadout-only unit')
+ok(len([a_ for a_ in SAJ_.values() if a_ and a_.get('UnitId') in (64,351) and a_.get('SpecializationId')==5])==2,'US Airborne infantry has both Airborne and Airborne NGSW')
+rec['split_cards_visible']={str(x):U[x]['HUDName'].strip() for x in _lost}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

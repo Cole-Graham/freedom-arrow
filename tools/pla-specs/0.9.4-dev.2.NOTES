@@ -18,3 +18,7 @@
   is in a lobby, the list is closed with its own back button (_backToPlayTabButton) and ArrowQueue ModTab.Open runs the next frame. PlayTab.Initialize
   postfix logs the Play buttons once ("FREEDOM_ARROW_PLAY_MENU buttons: ..."). NEEDS the runtime DLL rebuild; compiled clean (game-1.2.2.1). Not seen in game:
   confirm Multiplayer is the button that opens LobbyList (else move the hook), Skirmish/Scenarios/Campaign unchanged, mod lobby join/create still shows the lobby.
+- 2026-11-21 15:3x PST, thread 1567745029781454889 (Osama: "we lost our American Airborne, not the NGSW. We need both in US air"). DATA: section 18 of apply_0_9_4_dev1.py
+  (batch 840 checks). 0.9.0-dev.11 split the Airborne / Rangers / Mech. Riflemen loadout swaps into separate cards but left the variant units flagged
+  IsUnitModification (loadout-only), so their cards were hidden. Airborne (64), Rangers CQC (409) and Mech. Riflemen MAAWS (707) now IsUnitModification False.
+  US Airborne infantry lists both Airborne and Airborne NGSW. Not seen in game: check the three cards in the Arsenal.
