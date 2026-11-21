@@ -148,3 +148,5 @@
   45 -> 55, MC/SPH 50 -> 65, ICV 65). Speed: Stryker SRAT rows 189/238 road 100 -> 90, cross-country 50 -> 40; AMPV armour options on a new mobility row 65 / 45 (was 70 / 50).
   Bradley speed unchanged. Defaults (Osama had not answered): no cost/speed penalty on XM30 and ZBD-20 (700 is their base armour); speed = road and cross-country.
   Not in build 248. Not seen in game.
+- Long-range radar rows 59/123: helicopter optics multiplier 2.0 -> 1.25, the same as the helicopter range multiplier (Lateralus 21 Nov 15:1x PST). Data only
+  (helicopter-range.json). Patriot missiles cannot target helicopters; the Patriots count as helicopter-capable only through their M2/M240 machine guns.

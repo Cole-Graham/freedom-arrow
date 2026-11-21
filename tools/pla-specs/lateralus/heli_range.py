@@ -21,9 +21,10 @@ FILE='UserData/FreedomArrow/helicopter-range.json'
 AMMO={}  # ammo id: helicopter range (game units) that differs from its LowAltRange; others start at LowAltRange
 # ability row: {'helicopterRangeMultiplier': x, 'helicopterOpticsMultiplier': y}; rows not listed start at today's low-altitude values.
 # Lateralus 21 Nov 2026 13:2x PST: "set Helicopter Range multipliers on long range SAM's to 1.25". Long-range radar rows 59 "Radar LongRange Static"
-# and 123 "Radar LongRange Static NonDefault" (one group): helicopter range x1.25 instead of the low-altitude x2.0. Only units with a
-# helicopter-capable weapon are affected: Patriot PAC-2, PAC-3, PAC-3 MSE (row 59) and NASAMS (row 123). Helicopter optics stay x2.0.
-EDIT={59:{'helicopterRangeMultiplier':1.25},123:{'helicopterRangeMultiplier':1.25}}
+# and 123 "Radar LongRange Static NonDefault" (one group): helicopter range x1.25 instead of the low-altitude x2.0. The range multiplier matters only for units with a
+# helicopter-capable weapon: NASAMS (row 123; AMRAAM and AIM-9) and the Patriot PAC-2/PAC-3/PAC-3 MSE through their M2 and M240 machine guns (their missiles cannot target helicopters).
+# Lateralus 21 Nov 2026 15:1x PST: radar against helicopters "should only be increased by 25% (1.25)" for optics too (was left at the low-altitude x2.0).
+EDIT={59:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25},123:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25}}
 def radar_rows(AB):return {i:a for i,a in AB.items() if a and a.get('IsRadar')}
 def key(a):return (float(a['RadarLowAltOpticsModifier']),float(a['RadarHighAltOpticsModifier']),float(a['RadarLowAltWeaponRangeModifier']),
                    float(a['RadarHighAltWeaponRangeModifier']),float(a['RadarSwitchCooldown']),bool(a['IsRadarStatic']))
