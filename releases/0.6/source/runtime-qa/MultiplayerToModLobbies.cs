@@ -2,43 +2,55 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using HarmonyLib;
-using Il2CppBrokenArrow.Client.Ecs.UI.MainMenu;
+using Il2CppBrokenArrow.Client.Ecs.UI;
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Network.Lobby;
 using MelonLoader;
 namespace FreedomArrow;
-// 0.9.4 (Osama, 21 November 2026, thread 1573561286803980289): "make the play button open up the current Mod Lobbies section of the menu.
-// Keep it simple and clean. So there's no way to play online skirmish or normal lobby."
-// The main menu's Play tab is the MainMenuButton whose content holds the game's LobbyScreen (ArrowQueue finds it the same way,
-// ModTab.ShowLobbyTab). A player's click on it opens ArrowQueue's Mod Lobbies page (ModTab.Open) instead of the native play tab.
-// The native tab still opens when ArrowQueue itself selects it (it shows a joined mod lobby there) and while the player is in a lobby.
-// ArrowQueue's own postfix on the same click (GameTabClicked) hides its page, so the page is opened one frame later.
-// If ArrowQueue's methods are missing, the click goes to the native tab; BALocalSkirmish still refuses every non-scenario online lobby.
-static class PlayToModLobbies
+// 0.9.4 (Osama, 21 November 2026, thread 1573561286803980289): "let's change it so the mod lobbies opens when you press the Multiplayer button
+// in the Play section. Not the play button itself" / "so they can play the other modes in play". Play keeps its own tab (Skirmish vs AI,
+// Scenarios, Campaign). Multiplayer opens the game's online lobby list (LobbyList, child of NetworkScreen); when that list opens because of
+// the player, it is closed with its own back button (_backToPlayTabButton) and ArrowQueue's Mod Lobbies page (ModTab.Open) opens one frame
+// later. The list still opens when ArrowQueue opens it (stack has an ArrowQueue frame) or while the player is in a lobby (Game.InLobby).
+// If ArrowQueue's methods are missing, the list opens as before; BALocalSkirmish still refuses every non-scenario online lobby.
+// The first run logs the Play section's buttons (FREEDOM_ARROW_PLAY_MENU buttons: ...) so the in-game test can confirm which is Multiplayer.
+static class MultiplayerToModLobbies
 {
     static MethodInfo open, inLobby;
-    static bool pending;
+    static bool pending, logged;
     public static void Install(HarmonyLib.Harmony h)
     {
         open=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.ModTab"),"Open");
         var game=AccessTools.TypeByName("ArrowQueue.Game");
         inLobby=game==null?null:AccessTools.PropertyGetter(game,"InLobby");
-        if(open==null||inLobby==null){MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU: ArrowQueue ModTab.Open or Game.InLobby not found; Play keeps the game's own tab");return;}
-        h.Patch(AccessTools.Method(typeof(MainMenuButtonControling),"OnMainMenuButtonClick"),prefix:new HarmonyMethod(typeof(PlayToModLobbies),nameof(Before)){priority=Priority.First});
-        MelonLogger.Msg("FREEDOM_ARROW_PLAY_MENU: Play opens Mod Lobbies");
+        h.Patch(AccessTools.Method(typeof(PlayTab),nameof(PlayTab.Initialize)),postfix:new HarmonyMethod(typeof(MultiplayerToModLobbies),nameof(LogButtons)));
+        if(open==null||inLobby==null){MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU: ArrowQueue ModTab.Open or Game.InLobby not found; Multiplayer keeps the game's lobby list");return;}
+        h.Patch(AccessTools.Method(typeof(LobbyList),"OnEnable"),postfix:new HarmonyMethod(typeof(MultiplayerToModLobbies),nameof(Opened)));
+        MelonLogger.Msg("FREEDOM_ARROW_PLAY_MENU: Multiplayer opens Mod Lobbies");
     }
-    static bool Before(MainMenuButton __0)
+    static void LogButtons(PlayTab __instance)
+    {
+        if(logged)return;
+        try
+        {
+            var c=__instance._buttonsContainer;if(c==null)return;logged=true;
+            var names=new System.Collections.Generic.List<string>();
+            for(int i=0;i<c.transform.childCount;i++){var t=c.transform.GetChild(i);names.Add(t.name+(t.gameObject.activeSelf?"":" (hidden)"));}
+            MelonLogger.Msg("FREEDOM_ARROW_PLAY_MENU buttons: "+string.Join(", ",names));
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_MENU: "+e.Message);}
+    }
+    static void Opened(LobbyList __instance)
     {
         try
         {
-            var content=__0?._showTargetContent;
-            if(content==null||content.GetComponentInChildren<LobbyScreen>(true)==null)return true;   // not the Play tab
-            if(FromArrowQueue())return true;                                                            // ArrowQueue showing a mod lobby
-            if(inLobby.Invoke(null,null) is true)return true;                                          // already in a lobby: show it
+            if(FromArrowQueue()||inLobby.Invoke(null,null) is true)return;
+            var back=__instance._backToPlayTabButton;
+            if(back==null){MelonLogger.Warning("FREEDOM_ARROW_PLAY_MENU: lobby list has no back button; list left open");return;}
+            back.onClick.Invoke();
             pending=true;
-            MelonLogger.Msg("FREEDOM_ARROW_PLAY_MENU: Play -> Mod Lobbies");
-            return false;
+            MelonLogger.Msg("FREEDOM_ARROW_PLAY_MENU: Multiplayer -> Mod Lobbies");
         }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_MENU: "+e.Message);return true;}
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_MENU: "+e.Message);}
     }
     static bool FromArrowQueue()
     {

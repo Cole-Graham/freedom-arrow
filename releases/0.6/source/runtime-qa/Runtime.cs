@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); PlayToModLobbies.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -274,7 +274,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: "+e.Message); }
         try { ThirdPartyGuard.NameArrowQueue(HarmonyInstance,PackageVersion); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: names "+e.Message); }
-        try { PlayToModLobbies.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Play opens Mod Lobbies
+        try { MultiplayerToModLobbies.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Multiplayer opens Mod Lobbies
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU_FAILED: "+e.Message); }
     }
     public override void OnApplicationQuit()
