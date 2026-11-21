@@ -11,7 +11,9 @@ namespace FreedomArrow;
 // to our website ... by default it should be on ... If they want to opt out, they'd need to go into the Mod Game settings", "we do want names so we can log
 // for cheaters", "whenever someone plays the game, we see the logs uploaded", "It's also an anti cheat purpose").
 // The MelonLoader log goes to https://freedomarrow.app/logs/upload with the player's Steam name and ID, the mod version and the SHA-256 of every DLL in
-// Mods and Plugins. One file per game session on the site, replaced by each newer copy: after every match, every 5 minutes while the log grows, and at quit.
+// Mods and Plugins. One file per game session on the site, replaced by each newer copy: after every match, every minute in battle and every 5 minutes in
+// the menus while the log grows, and at quit (Osama 20 Nov 2026 21:20 PST, thread 1567745029781454889: "yeah 1 minute is better" after a host crash lost
+// its last 1 min 45 s).
 // MelonLoader stopped keeping old logs on Osama's PC after 9 Nov and the shutdown bundle only appears on a clean quit, so a crash or Alt-F4 still leaves
 // the last 5-minute copy. No opt-out (Osama 17 Nov 2026 12:1x PST: "We will just put a warning on the announcement then no opt out. By downloading and
 // playing they agree"). Also the SHA-256 of GameAssembly.dll and global-metadata.dat, so a patched game binary shows up next to the mod DLL list.
@@ -37,7 +39,7 @@ static class LogUpload
     public static void SceneLoaded(string name)
     {
         string before=scene;scene=name;
-        if(Array.IndexOf(MenuScenes,name)<0){lastMap=name;return;}
+        if(Array.IndexOf(MenuScenes,name)<0){lastMap=name;if(identityTried){var soon=DateTime.UtcNow.AddMinutes(1);if(soon<nextPeriodic)nextPeriodic=soon;}return;}
         if(name!="Hangar_Scene")return;
         if(!identityTried){identityTried=true;ReadIdentity();nextPeriodic=DateTime.UtcNow.AddMinutes(1);}
         if(before.Length>0&&Array.IndexOf(MenuScenes,before)<0)Send("match end");
@@ -46,7 +48,8 @@ static class LogUpload
     public static void Tick()
     {
         if(DateTime.UtcNow<nextPeriodic)return;
-        nextPeriodic=DateTime.UtcNow.AddMinutes(5);Send("every 5 min");
+        bool battle=scene.Length>0&&Array.IndexOf(MenuScenes,scene)<0;
+        nextPeriodic=DateTime.UtcNow.AddMinutes(battle?1:5);Send(battle?"every 1 min":"every 5 min");
     }
 
     public static void Quit()
@@ -122,7 +125,7 @@ static class LogUpload
         if(!File.Exists(log))return;
         long length=new FileInfo(log).Length;
         long snapLength=MatchLog.File.Length>0&&File.Exists(MatchLog.File)?new FileInfo(MatchLog.File).Length:0;
-        if(kind=="every 5 min"&&length+snapLength==lastLength)return;
+        if(kind.StartsWith("every ")&&length+snapLength==lastLength)return;
         var header=new{session,started,version,player,steamId,kind,lastMap,match=MatchLog.FightId,uploadedUtc=DateTime.UtcNow.ToString("u"),mods};
         using var body=new MemoryStream();
         using(var gz=new GZipStream(body,CompressionLevel.Optimal,true))
