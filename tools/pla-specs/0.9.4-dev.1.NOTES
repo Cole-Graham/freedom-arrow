@@ -41,3 +41,6 @@
   maybe?"). RUNTIME: LogUpload.cs uploads the game log every 1 minute in battle (was 5) and keeps 5 minutes in the menus; entering a battle brings the next upload
   to within 1 minute. The upload at a clean close (LogUpload.Quit) already existed and is unchanged; a crash cannot upload, so at most ~1 minute is lost. Needs the
   runtime DLL rebuild in the build. Compiles (dotnet build, 0 errors). Not yet seen in game.
+- 2026-11-21 01:1x PST, thread 1573418243715113213 (Osama: "lets do 4-5 seconds not flat 4" - Japan's tank specialty). DATA: hidden Blue Dragon Type 10 and Type 90 guns
+  (MainGun 120 Type 10 TKG autoloader / Type 90 L44 autoloader) reload 4.0/4.0 -> 4.0/5.0 s; found by name; 4 checks. Cards stay hidden. Draft rule: Japanese tanks
+  (Type 10, Type 90, Type 74 STB-2) = 4-5 s; Korean K2/K1A1/K1 = 5-6 s. Not seen in game.

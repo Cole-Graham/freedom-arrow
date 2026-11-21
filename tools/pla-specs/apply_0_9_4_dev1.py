@@ -185,6 +185,14 @@ for _tab,_f in (('WeaponsJson',('HUDName',)),('AmmunitionsJson',('HUDName',)),('
 ok(len(_ren)==24,('FS-90 renames',len(_ren)))
 ok(not any(isinstance(r.get(k),str) and _fs.search(r[k]) for tb,k in (('WeaponsJson','HUDName'),('AmmunitionsJson','HUDName'),('OptionsJson','UIName')) for r in t[tb].values() if r),'no FS-90 left')
 rec['qq_bug_sheet']={'zbd05_option_turret_not_default':2018991,'fs90a_renames':_ren}
+# ---------- Blue Dragon Japanese tanks: 4-5 s reload (Osama 21 Nov 2026 01:12 PST, thread 1573418243715113213: "lets do 4-5 seconds not flat 4";
+# Japan's tank specialty). The hidden 0.9.3 Type 10 / Type 90 guns (flat 4.0 s since 0.9.3-dev.1) become 4.0-5.0 s. Found by name, not id.
+_bd={}
+for _gn in ('MainGun 120 Type 10 TKG autoloader','MainGun 120 Type 90 L44 autoloader'):
+    _w=[i for i,r in W.items() if r and r.get('Name')==_gn];ok(len(_w)==1 and (W[_w[0]]['MagazineReloadTimeMin'],W[_w[0]]['MagazineReloadTimeMax'])==(4.0,4.0),(_gn,'one gun, flat 4 s'))
+    g.put('WeaponsJson',_w[0],{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':5.0});ok((W[_w[0]]['MagazineReloadTimeMin'],W[_w[0]]['MagazineReloadTimeMax'])==(4.0,5.0),_gn+' 4-5 s')
+    _bd[_gn]={'weapon':_w[0],'reload_s':[[4.0,4.0],[4.0,5.0]]}
+rec['blue_dragon_japan_reload']=_bd
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
