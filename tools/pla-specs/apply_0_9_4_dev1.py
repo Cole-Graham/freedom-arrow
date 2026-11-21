@@ -136,7 +136,9 @@ rec['launcher_at_aim_0_2']={'aim_s':_AIM,'rounds':{str(i):A[i]['HUDName'] for i 
 # 12 images, BROKEN ARROW mark removed (work/osama-art-20261120; PAP support-hand finger fixed), 816x549 with the vanilla bottom fade -> releases/0.6/source/
 # runtime-qa/icons/FA_CN_INF_<CARD>-Portrait.png, registered in CardIcons.cs (needs the runtime DLL rebuild). PortraitFileName only.
 _CARDS={
- 'AIRBORNE_HELO':['Airborne 空降兵','Assault Raiders 突击队','Pathfinders 先遣队','Recon 侦察组'],
+ # Airborne and Assault Raiders keep their old portrait (Osama 21 Nov 2026 14:2x PST: "Chinese airborne unit icon should use the old one on the Airborne
+ # and Assault Raiders units").
+ 'AIRBORNE_HELO':['Pathfinders 先遣队','Recon 侦察组'],
  'AIRBORNE_SOF':['Thunder Gods 雷神'],
  'HJ12':['HJ-12 Team'],
  'HJ73':['HJ-73D Team','HJ-8E Team'],
@@ -162,7 +164,9 @@ for _c,_names in _CARDS.items():
         for _i in _ids:
             ok(_i not in _done,(_i,'one card per unit'));_done[_i]=(_n,U[_i].get('PortraitFileName'),_p)
             g.put('Units',_i,{'PortraitFileName':_p});ok(U[_i]['PortraitFileName']==_p,_i)
-ok(len(_done)==34,('34 cards (Snipers and QJZ-89 Team are two cards each)',len(_done)))
+_keep=[i for i in _cn if U[i]['HUDName'] in ('Airborne 空降兵','Assault Raiders 突击队')]
+ok(_keep and all(i not in _done and U[i]['PortraitFileName']=='FA_CN_INF_AIRBORNE-Portrait' for i in _keep),('Airborne and Assault Raiders keep the old airborne portrait',[(i,U[i]['PortraitFileName']) for i in _keep]))
+ok(len(_done)==34-len(_keep),('community cards (Snipers and QJZ-89 Team are two cards each)',len(_done),len(_keep)))
 rec['community_cards']={str(i):{'name':n,'before':b,'after':a} for i,(n,b,a) in sorted(_done.items())}
 # ---------- 6. Chinese community bug sheet (QQ "Freedom Arrow Bug反馈及意见收集表", Osama 20 Nov 2026 20:5x PST, thread 1573561286803980289: "bug fixes",
 # "this is the Chinese community's ongoing bug fix"). Only clear data errors; balance and content requests wait for Osama.
