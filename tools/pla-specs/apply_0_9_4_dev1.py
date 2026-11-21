@@ -193,6 +193,9 @@ for _gn in ('MainGun 120 Type 10 TKG autoloader','MainGun 120 Type 90 L44 autolo
     g.put('WeaponsJson',_w[0],{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':5.0});ok((W[_w[0]]['MagazineReloadTimeMin'],W[_w[0]]['MagazineReloadTimeMax'])==(4.0,5.0),_gn+' 4-5 s')
     _bd[_gn]={'weapon':_w[0],'reload_s':[[4.0,4.0],[4.0,5.0]]}
 rec['blue_dragon_japan_reload']=_bd
+# ---------- Blue Dragon tank tab, hidden (Osama 21 Nov 2026 01:1x PST, thread 1573418243715113213: "lets build it all make sure their optics values
+# are similar to the US values. I think KSTAM needs to be SA"): K2 (+KSTAM), K1A1, K1, Type 74 STB-2, T-80U (ROK), Type 16 MCV; Type 10/90 optics to US level.
+import blue_dragon_tanks;blue_dragon_tanks.apply(t,g,ok,rec)
 # ---------- 7. 105 mm tank guns: reload 5-6 s, ZTZ-100 4-5 s (Osama 21 Nov 2026 01:12 PST, thread 1567745029781454889: "I need this to start with all the
 # 105 guns going to 5-6 second reload. Except ZTZ-100, that becomes 4-5 seconds"; the flat 4 s is now reserved for Japan's Type 10/90/74). Weapons.
 # MagazineReloadTime Min/Max on the 105 mm main guns (Type 110, one round per load). Already 5-6 s: M68E1 (M60A1, M728), M35 (M8 AGS/Thunderbolt, M10

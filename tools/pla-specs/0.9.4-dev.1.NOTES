@@ -53,3 +53,12 @@
   ZTZ-100 (968) own armour row 2010183: KinArmorFront 750 -> 700. HEAT front 1050, sides 180/500, rear 100/100, top 80/100 unchanged. Not yet seen in game.
 - 2026-11-21 01:19 PST, thread 1567745029781454889 (Osama: "Stryker is not part of this change"). Section 7: Stryker MGS (M68A2, weapon 24) removed from the 105 mm
   reload change and kept at 6-7 s; a check pins it. Batch 233 checks.
+- 2026-11-21 01:3x PST, thread 1573418243715113213 (Osama: "lets build it all make sure their optics values are similar to the US values. I think KSTAM needs to
+  be SA"). DATA: tools/pla-specs/blue_dragon_tanks.py, called from apply_0_9_4_dev1.py after the Type 10/90 reload section (58 checks; batch 276). New HIDDEN cards
+  (DisplayInArmory False, no deck card, no models - parent model stand-ins): K2 Black Panther (TUA copy, own CN08 gun 5-6 s, K279 525/475, K280 HEAT-MP 600, KSTAM x4 =
+  Sokol-V copy with Invar-M semi-active guidance + Javelin top-attack 140, range 800), K1A1 (TUA turrets + M256 6-7 s, K276 500/450, K277 600), K1 (TUA turrets with M68
+  5-6 s, K270 350/300, KM456A2 HEAT 500), Type 74 STB-2 (TUA turrets, own M68 copy 4-5 s, Type 93 300/250, Type 91 HEAT 500, M60A1 tracks 50/45/15), T-80U (ROK)
+  (Russian T-80U obr. 90 configuration without options, CountryId 2), Type 16 MCV (Stryker MGS base config; shares the Stryker M68A2, 6-7 s). Optics = matching US tank:
+  K2/Type 10 Good, Type 90/K1A1/T-80U (ROK)/Type 16 Medium Plus, K1/Type 74 Medium (Type 10/90 were Very Good). Smoke = existing 'Smoke x1 NoModel Default'.
+  Gates on a constants-only test package: audit_mp_equipment, check_slot_weapons, audit_swap_prices, check_mount_weapons, check_squad_hp, check_infantry_armor,
+  check_field_types pass. Not seen in game.
