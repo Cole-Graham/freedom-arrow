@@ -16,8 +16,8 @@ namespace FreedomArrow;
 // Helicopter range on the cards and range tool (Lateralus 21 Nov 2026; Lateralus 0.9 Changelog, "Helicopter range" tab, rows 7, 8, 14, 18, 20).
 // - Weapon ammo panel (AmmoInfoExpansionPanel.Init, after the game has placed every line): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
-// - Radar tooltip (UnitInfoCard.SetTraitItem, the text built in SetUnitAbilities): "Helicopter Range: x N" for units with a helicopter-capable
-//   weapon, and "Helicopter Optics: x N" for every radar unit, from the unit's radar row group in helicopter-range.json.
+// - Radar tooltip (edited after SetUnitAbilities): "Helicopter Range: x N" above "Low Alt. Range: x N" for units with a helicopter-capable
+//   weapon, from the unit's radar row group in helicopter-range.json. Range multipliers only, no optics line.
 // - Optics stat tooltip: a "Helicopter Range: N m" line above "Low Alt. Range" for every unit with sensors (Lateralus 21 Nov: always show,
 //   tooltip only).
 // - Range tool (FOWToolScript.SetWeaponRanges): an orange circle at the helicopter range of each helicopter-capable weapon of the selected unit,
@@ -108,10 +108,11 @@ static class HeliRangeCard
     }
     // Radar tooltip. SetUnitAbilities builds it with SetTraitItem inlined (0x55E048 onwards: no call to 0x55D4D0), so a SetTraitItem hook never
     // ran (Lateralus 21 Nov, test3). The postfix edits the finished tooltip: "Helicopter Range: x N" above "Low Alt. Range: x N" for units with a
-    // helicopter-capable weapon, and "Helicopter Optics: x N" at the end. Shown for every radar unit, also when equal to the low-altitude value.
+    // helicopter-capable weapon, also when equal to the low-altitude value. No optics line: the tooltip lists range multipliers only, as in
+    // vanilla, even when the helicopter optics multiplier differs (Lateralus 21 Nov).
     public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {
-        if(traitBroken||__instance==null||__0==null||!RadarGroup(__0.ActiveAbilities,out var m))return;
+        if(traitBroken||__instance==null||__0==null||!HeliRange.heliUnits.Contains(__0.Id)||!RadarGroup(__0.ActiveAbilities,out var m))return;
         try
         {
             string low=InfoCardLocalization.TextAmmoRangeLowAlt;if(string.IsNullOrEmpty(low))return;
@@ -124,8 +125,7 @@ static class HeliRangeCard
                 var lines=text.Split('\n').ToList();
                 int at=lines.FindIndex(x=>x.TrimStart().StartsWith(low)&&x.Contains(" x "));
                 if(at<0)continue;
-                if(HeliRange.heliUnits.Contains(__0.Id))lines.Insert(at,$"Helicopter Range: x {m.range:0.##}");
-                lines.Add($"Helicopter Optics: x {m.optics:0.##}");
+                lines.Insert(at,$"Helicopter Range: x {m.range:0.##}");
                 data.TextLocKey=string.Join("\n",lines);tip.Data=data;found=true;
                 Log($"radar tooltip {__0.HUDName}: {data.TextLocKey.Replace("\n"," | ")}");
             }
