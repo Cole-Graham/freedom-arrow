@@ -101,3 +101,9 @@
   Compiles; not yet seen in a match.
 - Z-10K ground optics 3200 -> 2800 (Lateralus 21 Nov 13:4x PST): apply section 13. 3200 had no spotting-caps.json entry, so the Z-10K was never capped
   (saw ground targets at 3200 raw; Optics tooltip 6400 m). 2800 caps at 1200 raw (2400 m). Sensor 2019482 (Z-10K only); low/high 1250/1000 unchanged. Data only.
+- 2026-11-21 14:3x PST, thread 1573418243715113213 (Osama: "we can add the blue dragons spec in the next build but it needs to have (testing preview) next to it with the units";
+  "create a spec icon based on this image ... same style where its just cutouts"). DATA: blue_dragon_tanks.add_spec: US spec 23 "Blue Dragon (Testing Preview)" (Name 'US Blue
+  Dragon'), a copy of Armored Brigade (4) slots/points, Icon FA_US_BLUE_DRAGON; the 9 Blue Dragon tank cards become visible in it (K2 2, Type 10 2, K1A1 3, Type 90 3,
+  T-80U (ROK) 2, K1 4, Type 74 STB-2 4, Type 16 MCV 3, M48A5K 4 cards; placeholder prices). RUNTIME: icons/FA_US_BLUE_DRAGON.png (128 px white cut-out dragon traced from
+  Osama's UT1491 reference, work/blue-dragon-spec-icon/trace3.py) seeded by ChinaUi.Addresses like the China spec icons. REBUILD THE RUNTIME DLL. Compiles (0 errors,
+  icon embedded). Gates pass on a test package. Not seen in game: a 7th US spec in the deck popup/Arsenal row is untested; stand-in models (no Assets change).
