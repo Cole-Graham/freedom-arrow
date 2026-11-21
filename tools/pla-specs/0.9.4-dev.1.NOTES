@@ -66,3 +66,5 @@
   adds HIDDEN "M48A5K" = M60A1 base configuration without options (turret 12 + M85 cupola, M68 5-6 s, M60A1 tracks 50/45/15), KE 250/100/60/60, HEAT 300/150/60/60, HP 14,
   K270 350/300 x20 + KM456A2 HEAT 500 x20, Medium optics, smoke, 50 pts (placeholder). Model: cgmodel 896549 (seller 看场子的, ¥350 game licence, not bought), added to the
   master model sheet Korea tab; M60A1 model as stand-in. 5 more checks (batch 281); same data gates pass on a test package. Not seen in game.
+- 2026-11-21 01:4x PST, thread 1573561286803980289 (Osama: "CTL NLOS remove its smoke"). DATA: section 9 of apply_0_9_4_dev1.py (batch now 286 checks). CTL-181 NLOS (1054)
+  UnitAbilities 2010702 -> vanilla row 4 "Empty ability" (was shared row 2000197 Smoke x1, 57 users, unchanged). No smoke on the card or in battle. Not yet seen in game.

@@ -223,6 +223,18 @@ _zb={k:v for k,v in _ZA[2010183].items() if k!='KinArmorFront'}
 g.put('ArmorsJson',2010183,{'KinArmorFront':700})
 ok(_ZA[2010183]['KinArmorFront']==700 and {k:v for k,v in _ZA[2010183].items() if k!='KinArmorFront'}==_zb,'KE front 700, nothing else changed')
 rec['ztz100_ke_front']=[750,700]
+# ---------- 9. CTL-181 NLOS has no smoke (Osama 21 Nov 2026 01:38 PST, thread 1573561286803980289: "CTL NLOS remove its smoke"). Its only ability link
+# (UnitAbilities 2010702) points at row 2000197 "Smoke x1 NoModel Default", shared by 57 units, so the row stays and the link moves to vanilla row 4
+# "Empty ability" (93 vanilla users, no flags), per the ability-row-reuse rule. No option of the CTL-181 sets an ability.
+UAb=t['UnitAbilitiesJson'];AB=t['AbilitiesJson']
+ok(U[1054]['HUDName'].strip()=='CTL-181 NLOS','unit 1054 is the CTL-181 NLOS')
+ok(sorted((r['Id'],r['AbilityId']) for r in UAb.values() if r and r.get('UnitId')==1054)==[(2010702,2000197)] and AB[2000197]['IsSmoke'] is True,'CTL-181 smoke link')
+ok(AB[4]['Name']=='Empty ability' and not any(v for k,v in AB[4].items() if k.startswith('Is')),'row 4 has no ability')
+_mods={m['Id'] for m in t['ModificationsJson'].values() if m and m.get('UnitId')==1054}
+ok(not any(o.get(f'Ability{i}Id') for o in O.values() if o and o.get('ModificationId') in _mods for i in (1,2,3)),'no CTL-181 option sets an ability')
+g.put('UnitAbilitiesJson',2010702,{'AbilityId':4})
+ok([r['AbilityId'] for r in UAb.values() if r and r.get('UnitId')==1054]==[4] and AB[2000197]['IsSmoke'] is True,'CTL-181 links the empty row; shared smoke row unchanged')
+rec['ctl181_no_smoke']={'unit':1054,'unit_ability':2010702,'ability':[2000197,4]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
