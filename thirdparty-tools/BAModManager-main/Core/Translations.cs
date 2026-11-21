@@ -527,5 +527,11 @@ public static partial class Loc
         ["OPEN ALPHA"] = new[] { "OPEN ALPHA", "OPEN ALPHA", "OPEN ALPHA", "公开 ALPHA" },
         ["LAUNCHER {0}"] = new[] { "LAUNCHER {0}", "LANCEUR {0}", "ЛАУНЧЕР {0}", "启动器 {0}" },
         ["Press PLAY: the launcher checks and updates Freedom Arrow, shows every step here, then starts the game."] = new[] { "Drücke SPIELEN: Der Launcher prüft und aktualisiert Freedom Arrow, zeigt hier jeden Schritt und startet dann das Spiel.", "Appuie sur JOUER : le lanceur vérifie et met à jour Freedom Arrow, affiche chaque étape ici, puis lance le jeu.", "Нажмите ИГРАТЬ: лаунчер проверит и обновит Freedom Arrow, покажет здесь каждый шаг и запустит игру.", "点击开始游戏：启动器会检查并更新自由之箭，在这里显示每一步，然后启动游戏。" },
+        ["Deck backups"] = new[] { "Deck-Sicherungen", "Sauvegardes de decks", "Резервные копии колод", "卡组备份" },
+        ["Help me install"] = new[] { "Hilfe bei der Installation", "Aide à l'installation", "Помощь с установкой", "安装帮助" },
+        ["Downloads all mod content on PLAY"] = new[] { "Lädt beim SPIELEN alle Mod-Inhalte herunter", "Télécharge tout le contenu du mod en appuyant sur JOUER", "Загружает всё содержимое мода при нажатии ИГРАТЬ", "点击开始游戏时下载全部模组内容" },
+        ["Launcher {0}"] = new[] { "Launcher {0}", "Lanceur {0}", "Лаунчер {0}", "启动器 {0}" },
+        ["Mod {0}"] = new[] { "Mod {0}", "Mod {0}", "Мод {0}", "模组 {0}" },
+        ["Models & music {0}"] = new[] { "Modelle & Musik {0}", "Modèles & musique {0}", "Модели и музыка {0}", "模型和音乐 {0}" },
     };
 }

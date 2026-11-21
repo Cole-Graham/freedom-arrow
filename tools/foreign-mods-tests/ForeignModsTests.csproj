@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 1.1.14 (Osama 21 Nov 2026): Freedom Arrow and other mods' DLLs kept apart (park, switch off, switch back on). dotnet run -->
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <Core>../../thirdparty-tools/BAModManager-main/Core</Core></PropertyGroup>
+  <ItemGroup><Compile Include="$(Core)/ForeignMods.cs;$(Core)/PathUtil.cs" /></ItemGroup>
+</Project>

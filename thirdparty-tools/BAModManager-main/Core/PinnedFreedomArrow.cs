@@ -165,6 +165,8 @@ public static class PinnedFreedomArrow
         progress?.Report(new LaunchProgress(Loc.T("Checking mod files…"), Stage: LaunchStage.Mod));
         VerifyArchive(ArchivePath);
         VerifyAssets();
+        // 1.1.14: switch Freedom Arrow's DLLs back on if "Play vanilla" switched them off (the payload check accepts .disabled files).
+        ForeignMods.EnableOwn(gameDir, (launcher.FindPack(Manifest.Load(gameDir))?.Files ?? new List<string>()).Concat(AssetsGamePaths()), log);
         var pack = launcher.FindPack(Manifest.Load(gameDir));
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
         {

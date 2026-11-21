@@ -231,7 +231,9 @@ internal sealed class LaunchProgressPanel : Control
                     TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
             }
             var text = StepName(Steps[i]).ToUpperInvariant();
-            TextRenderer.DrawText(g, text, label, new Rectangle((int)(seg * i), (int)(cy + r + S(3)), (int)seg, S(18)),
+            // A label wider than its step (MelonLoader in Chinese fonts) gets a smaller font instead of "…".
+            using var small = TextRenderer.MeasureText(g, text, label).Width > seg - S(4) ? Theme.Head(8f, semi: true) : null;
+            TextRenderer.DrawText(g, text, small ?? label, new Rectangle((int)(seg * i), (int)(cy + r + S(3)), (int)seg, S(18)),
                 done || now ? Theme.Text : Theme.TextMuted, TextFormatFlags.HorizontalCenter | TextFormatFlags.Top | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
         }
     }

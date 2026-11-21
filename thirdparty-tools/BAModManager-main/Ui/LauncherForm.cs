@@ -22,6 +22,7 @@ internal sealed class LauncherForm : Form
     private readonly Label _packVersion;
     private readonly Label _modsState;
     private readonly LaunchProgressPanel _panel;
+    private readonly Button? _lang;
     private readonly Button _play;
     private readonly Button _vanilla;
     private readonly Button _settings;
@@ -58,6 +59,19 @@ internal sealed class LauncherForm : Form
         ClientSize = new Size(560, 700);
         Padding = new Padding(0);
         var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 220 };
+        // 中文 / English switch, like the button on freedomarrow.app (Osama 21 Nov 2026: "Make sure there's a Chinese switch").
+        _lang = Theme.MakeButton(Loc.IsChinese ? "English" : "中文", ButtonKind.Secondary);
+        _lang.AutoSize = false;
+        _lang.Size = new Size(72, 25);
+        _lang.MinimumSize = new Size(0, 0);
+        _lang.Padding = new Padding(0);
+        _lang.Margin = new Padding(0);
+        _lang.Location = new Point(560 - 72 - 14, 9);
+        _lang.Font = Loc.IsChinese ? Theme.Head(10.5f, semi: true) : new Font("Microsoft YaHei UI", 9f, FontStyle.Bold);
+        _lang.BackColor = Theme.Background;
+        _lang.Click += (_, _) => ToggleChinese();
+        header.RightInset = 72 + 8;
+        header.Controls.Add(_lang);
         var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 4, 28, 14) };
 #else
         ClientSize = new Size(460, 640);
@@ -347,8 +361,8 @@ internal sealed class LauncherForm : Form
             // Lateralus 14 Nov 2026: show the installed mod and launcher versions.
             var assets = manifest?.Packages.FirstOrDefault(p => p.Info?.Id == PinnedFreedomArrow.AssetsId)?.Info?.Version;
             _packVersion.Text = pack?.Info?.Version is string installed
-                ? "Mod " + installed + (assets != null ? "  ·  Assets " + assets : "")
-                : "Downloads all mod content on PLAY";
+                ? T("Mod {0}", installed) + (assets != null ? "  ·  " + T("Models & music {0}", assets) : "")
+                : T("Downloads all mod content on PLAY");
         }
         if (!PinnedFreedomArrow.Enabled && pack != null && LauncherService.InstalledFromOtherRepo())
             _packVersion.Text = T("{0}: installed on next PLAY", T(LauncherService.ActiveChannel));
@@ -364,7 +378,7 @@ internal sealed class LauncherForm : Form
         RefreshChannels();
 
         _modsState.ForeColor = on ? Theme.Good : Theme.TextMuted;
-        _modsState.Text = PinnedFreedomArrow.Enabled ? "Launcher " + (typeof(LauncherForm).Assembly.GetName().Version?.ToString(3) ?? "?") : on
+        _modsState.Text = PinnedFreedomArrow.Enabled ? T("Launcher {0}", typeof(LauncherForm).Assembly.GetName().Version?.ToString(3) ?? "?") : on
             ? "●  " + T("Mods are on")
             : "○  " + T("Mods are off - the game starts normally with Anti-Cheat");
     }
@@ -693,6 +707,7 @@ internal sealed class LauncherForm : Form
     {
         _play.Enabled = _vanilla.Enabled = !_busy && !_gameRunning;
         _settings.Enabled = _setUp.Enabled = !_busy;
+        if (_lang != null) _lang.Enabled = !_busy;
         foreach (Control c in _channels.Controls) c.Enabled = !_busy && !_gameRunning;
     }
 
@@ -713,6 +728,7 @@ internal sealed class LauncherForm : Form
     private const string PreviewArg = "--progress-preview";
     private async Task ProgressPreview()
     {
+        RefreshCard();
         SetBusy(true);
         const long mb = 1048576;
         async Task Download(string text, LaunchStage stage, long from, long to, long total, double mbPerSecond, string? note = null)
@@ -746,6 +762,21 @@ internal sealed class LauncherForm : Form
         await Task.Delay(2000);
         _panel.Finish(true, T("Preview finished: nothing was installed or started."));
         SetBusy(false);
+    }
+
+    /// <summary>One click between 中文 and English: saves the choice and restarts the launcher (as Settings > Language does).</summary>
+    private void ToggleChinese()
+    {
+        if (_busy) return;
+        var data = AppSettings.Load();
+        data.Language = Loc.IsChinese ? "en" : "zh";
+        if (!AppSettings.Save(data)) return;
+        try
+        {
+            Process.Start(new ProcessStartInfo(Environment.ProcessPath!, Loc.RestartArg) { UseShellExecute = false })?.Dispose();
+            Close();
+        }
+        catch (Exception ex) { SetStatus(T("Couldn't restart: ") + ex.Message); }
     }
 
     private string _statusText = "";

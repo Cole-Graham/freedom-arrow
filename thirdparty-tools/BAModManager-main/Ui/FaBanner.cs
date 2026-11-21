@@ -15,6 +15,9 @@ internal sealed class FaBanner : Control
     private const float DesignWidth = 560f;
     private readonly Image? _art;
 
+    /// <summary>Space kept free at the top right (design pixels) for the language button.</summary>
+    public int RightInset { get; set; }
+
     public FaBanner(Image? art)
     {
         _art = art;
@@ -54,7 +57,7 @@ internal sealed class FaBanner : Control
         using (var f = Theme.Head(9f, semi: true))
         {
             var size = TextRenderer.MeasureText(g, version, f, Size.Empty, TextFormatFlags.NoPadding);
-            var r = new RectangleF(Width - size.Width - 26 * k, 12 * k, size.Width + 14 * k, 19 * k);
+            var r = new RectangleF(Width - size.Width - (26 + RightInset) * k, 12 * k, size.Width + 14 * k, 19 * k);
             using (var p = Theme.RoundRect(r, 3 * k))
             using (var b = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
             using (var edge = new Pen(Color.FromArgb(40, 255, 255, 255)))
