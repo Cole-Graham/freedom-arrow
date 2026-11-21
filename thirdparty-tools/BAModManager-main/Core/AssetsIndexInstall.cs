@@ -103,7 +103,8 @@ public static class AssetsIndexInstall
     internal static TimeSpan StallTimeout = TimeSpan.FromSeconds(60);
     private const int Attempts = 6;
 
-    private static async Task DownloadAsync(AssetsIndex index, AssetsIndexFile f, string path, CancellationToken ct, Action<long>? onBytes = null)
+    private static async Task DownloadAsync(AssetsIndex index, AssetsIndexFile f, string path, CancellationToken ct, Action<long>? onBytes = null,
+        Action<int, Exception>? onRetry = null)
     {
         var url = index.FilesBase + f.Sha256.ToLowerInvariant() + ".gz";
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -146,7 +147,7 @@ public static class AssetsIndexInstall
             }
             catch (Exception ex) when ((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException ||
                                         ex is OperationCanceledException) && !ct.IsCancellationRequested && attempt < Attempts - 1)
-            { await Task.Delay(TimeSpan.FromSeconds(Math.Min(2 * (attempt + 1), 10)), ct); }
+            { onRetry?.Invoke(attempt, ex); await Task.Delay(TimeSpan.FromSeconds(Math.Min(2 * (attempt + 1), 10)), ct); }
             finally { if (File.Exists(temp)) File.Delete(temp); }
         }
     }
@@ -170,7 +171,7 @@ public static class AssetsIndexInstall
             {
                 shown = DateTime.UtcNow;
                 progress.Report(new LaunchProgress(T("Checking models and music… {0} / {1} files", checkedFiles, index.Files.Count),
-                    (double)checkedFiles / Math.Max(1, index.Files.Count)));
+                    (double)checkedFiles / Math.Max(1, index.Files.Count), LaunchStage.Assets));
             }
             checkedFiles++;
             var path = PathUtil.ToFull(gameDir, f.Path);
@@ -192,8 +193,8 @@ public static class AssetsIndexInstall
             void Show()
             {
                 var b = Math.Max(0, Interlocked.Read(ref bytes));
-                progress?.Report(new LaunchProgress(T("Downloading models and music… {0} / {1} MB", (b / 1048576.0).ToString("0"), (total / 1048576.0).ToString("0")),
-                    Math.Min(1.0, (double)b / Math.Max(1, total))));
+                progress?.Report(new LaunchProgress(T("Downloading models and music… {0} / {1} files", Interlocked.CompareExchange(ref files, 0, 0), groups.Count),
+                    Math.Min(1.0, (double)b / Math.Max(1, total)), LaunchStage.Assets, b, total));
             }
             void OnBytes(long n)
             {
@@ -206,7 +207,10 @@ public static class AssetsIndexInstall
             Parallel.ForEachAsync(groups, new ParallelOptions { MaxDegreeOfParallelism = 8, CancellationToken = ct }, async (g, token) =>
             {
                 var first = g.First();
-                await DownloadAsync(index, first.File, first.Path, token, OnBytes);
+                await DownloadAsync(index, first.File, first.Path, token, OnBytes, (attempt, ex) => progress?.Report(new LaunchProgress(
+                    T("Downloading models and music… {0} / {1} files", Interlocked.CompareExchange(ref files, 0, 0), groups.Count),
+                    Math.Min(1.0, (double)Math.Max(0, Interlocked.Read(ref bytes)) / Math.Max(1, total)), LaunchStage.Assets, Math.Max(0, Interlocked.Read(ref bytes)), total,
+                    T("A file download was interrupted ({0}). Trying again ({1} of {2})…", ex.Message, attempt + 2, Attempts))));
                 HashCached(state, first.File.Path, first.Path);
                 foreach (var other in g.Skip(1))
                 {

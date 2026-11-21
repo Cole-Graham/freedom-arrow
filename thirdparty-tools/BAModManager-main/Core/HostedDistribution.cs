@@ -28,6 +28,8 @@ public static class HostedDistribution
     // 1.1.9 (Lateralus 19 Nov 2026): only the signed list is read (SignedManifest). The unsigned live.json and its Drive copy stay for
     // launchers up to 1.1.8; this launcher no longer reads them.
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromMinutes(20) };
+    /// <summary>1.1.14: a package body read with no data for this long is retried (same 60 s as AssetsIndexInstall.StallTimeout).</summary>
+    internal static TimeSpan StallTimeout = TimeSpan.FromSeconds(60);
     private static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true };
     public static DistributionRelease Active { get; private set; } = new("0.7.0-dev.45",
         new("freedomarrow.gameplay", "0.7.0-dev.45", "FreedomArrow-0.7.0-dev.45.bamod", "https://drive.google.com/uc?export=download&id=1Ks7wj3aT5WPL0vA8RH9tg0PtApi8wuQK",121358977,"33323fc1c760acabcc87cc1e237e99251d2d2495a14c858977791b0cf7d2ab5d"),
@@ -92,8 +94,8 @@ public static class HostedDistribution
     {
         var dest=Path.Combine(cache,p.Index!.Sha256.ToLowerInvariant()+"-"+Path.GetFileNameWithoutExtension(p.Filename)+".files.json");
         bool Valid(byte[] b)=>b.LongLength==p.Index.Size && Convert.ToHexString(SHA256.HashData(b)).Equals(p.Index.Sha256,StringComparison.OrdinalIgnoreCase);
-        if(File.Exists(dest) && Valid(await File.ReadAllBytesAsync(dest,ct))){progress?.Report(new("Using cached file list for "+p.Filename));return;}
-        progress?.Report(new("Downloading the file list for "+p.Filename));
+        if(File.Exists(dest) && Valid(await File.ReadAllBytesAsync(dest,ct))){progress?.Report(new(Loc.T("Using the saved file list for {0}",p.Filename),Stage:LaunchStage.Mod));return;}
+        progress?.Report(new(Loc.T("Downloading the file list for {0}",p.Filename),Stage:LaunchStage.Mod));
         for(int attempt=0;;attempt++)
         {
             try
@@ -162,14 +164,17 @@ public static class HostedDistribution
     {
         Validate(p,p.Id);Directory.CreateDirectory(cache);
         var dest=Path.Combine(cache,p.Sha256.ToLowerInvariant()+"-"+p.Filename);
-        if(ValidFile(dest,p)){progress?.Report(new("Using cached "+p.Filename));return dest;}
+        if(ValidFile(dest,p)){progress?.Report(new(Loc.T("Using the saved {0}",p.Filename),Stage:LaunchStage.Mod));return dest;}
         var bundled=Path.Combine(AppContext.BaseDirectory,p.Filename);
         if(ValidFile(bundled,p))
         {
             File.Copy(bundled,dest+".part",true);File.Move(dest+".part",dest,true);return dest;
         }
         var part=dest+".part";
-        for(int attempt=0;attempt<3;attempt++)
+        // 1.1.14 (Osama 21 Nov 2026, players unsure whether PLAY "is downloading something or stalling"): a body read with no data for
+        // StallTimeout (60 s) gives up and resumes from the .part file; 6 attempts, like the models and music files.
+        const int attempts=6;
+        for(int attempt=0;attempt<attempts;attempt++)
         {
             try
             {
@@ -183,19 +188,30 @@ public static class HostedDistribution
                 await using(var dst=new FileStream(part,resume?FileMode.Append:FileMode.Create,FileAccess.Write,FileShare.None,131072,true))
                 {
                     var buffer=new byte[131072];long done=offset;int read;var last=DateTime.MinValue;
-                    while((read=await src.ReadAsync(buffer,ct))>0)
+                    using var stall=CancellationTokenSource.CreateLinkedTokenSource(ct);
+                    while(true)
                     {
+                        stall.CancelAfter(StallTimeout);   // restarts the stall clock for every read
+                        try{read=await src.ReadAsync(buffer,stall.Token);}
+                        catch(OperationCanceledException) when(!ct.IsCancellationRequested)
+                        {throw new IOException(Loc.T("no data for {0} s",(int)StallTimeout.TotalSeconds));}
+                        if(read<=0)break;
                         done+=read;if(done>p.Size)throw new InvalidDataException("Package is larger than its manifest size.");
                         await dst.WriteAsync(buffer.AsMemory(0,read),ct);
-                        if((DateTime.UtcNow-last).TotalMilliseconds>250){progress?.Report(new("Downloading "+p.Filename,(double)done/p.Size));last=DateTime.UtcNow;}
+                        if((DateTime.UtcNow-last).TotalMilliseconds>250){progress?.Report(new(Loc.T("Downloading {0}",p.Filename),(double)done/p.Size,LaunchStage.Mod,done,p.Size));last=DateTime.UtcNow;}
                     }
                 }
                 if(new FileInfo(part).Length!=p.Size)throw new IOException("Incomplete package download.");
                 if(!ValidFile(part,p)){File.Delete(part);throw new InvalidDataException("Package checksum failed; the game will not start.");}
                 File.Move(part,dest,true);return dest;
             }
-            catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException) && !ct.IsCancellationRequested && attempt<2)
-            { await Task.Delay(TimeSpan.FromSeconds(attempt+1),ct); }
+            catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException) && !ct.IsCancellationRequested && attempt<attempts-1)
+            {
+                long have=File.Exists(part)?new FileInfo(part).Length:0;
+                progress?.Report(new(Loc.T("Downloading {0}",p.Filename),(double)have/p.Size,LaunchStage.Mod,have,p.Size,
+                    Note:Loc.T("The download was interrupted ({0}). Trying again ({1} of {2})…",ex.Message,attempt+2,attempts)));
+                await Task.Delay(TimeSpan.FromSeconds(Math.Min(2*(attempt+1),10)),ct);
+            }
         }
         throw new IOException("Package could not be downloaded.");
     }
@@ -219,7 +235,7 @@ public static class HostedDistribution
             manifest=Parse(SignedManifest.Open(bytes));
         }
         catch(Exception ex) when((ex is HttpRequestException || ex is IOException && ex is not InvalidDataException || ex is OperationCanceledException && !ct.IsCancellationRequested) && cached!=null)
-        { manifest=cached;bytes=cachedBytes!;progress?.Report(new("Offline: using the last verified version manifest.")); }
+        { manifest=cached;bytes=cachedBytes!;progress?.Report(new(Loc.T("Offline: using the last verified version list."),Stage:LaunchStage.Mod)); }
         if(cached!=null && manifest.Serial<cached.Serial)
             throw new InvalidDataException("The version list is older than the one this launcher already accepted, so it is refused.");
         Verified=manifest;
@@ -230,7 +246,7 @@ public static class HostedDistribution
     public static string ManifestFile => Path.Combine(CacheRoot,"live-manifest.signed.json");
     public static async Task PrepareAsync(IProgress<LaunchProgress> progress,CancellationToken ct)
     {
-        progress.Report(new("Checking Freedom Arrow version manifest…"));
+        progress.Report(new(Loc.T("Checking the Freedom Arrow version list…"),Stage:LaunchStage.Mod));
         Directory.CreateDirectory(CacheRoot);
         var (manifest,envelope)=await ReadManifestAsync(Http,SignedManifest.Url,ManifestFile,progress,ct);
         var selected=Select(manifest);

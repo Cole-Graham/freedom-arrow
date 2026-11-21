@@ -13,6 +13,8 @@ internal static class AppFonts
     public const string Medium = "Inter Medium";
     public const string SemiBold = "Inter SemiBold";
     public const string ExtraBold = "Inter ExtraBold";
+    public const string Condensed = "Barlow Condensed";
+    public const string CondensedSemiBold = "Barlow Condensed SemiBold";
 
     // Inter has a taller x-height than Segoe UI; this keeps sizes visually the same.
     private const float SizeScale = 0.94f;
@@ -62,7 +64,7 @@ internal static class AppFonts
         // (except Latin-only text such as the brand, which keeps Inter)
         if (Core.Loc.IsChinese && !latinOnly)
         {
-            var cjk = family is SemiBold or ExtraBold ? style | FontStyle.Bold : style;
+            var cjk = family is SemiBold or ExtraBold or CondensedSemiBold ? style | FontStyle.Bold : style;
             return new Font("Microsoft YaHei UI", size * 0.95f, cjk);
         }
 
@@ -72,7 +74,7 @@ internal static class AppFonts
         // Weight missing: use Inter Regular/Bold instead
         if (InterLoaded && Families.TryGetValue(Regular, out var inter))
         {
-            var heavy = family is SemiBold or ExtraBold ? FontStyle.Bold : FontStyle.Regular;
+            var heavy = family is SemiBold or ExtraBold or Condensed or CondensedSemiBold ? FontStyle.Bold : FontStyle.Regular;
             var s = style | heavy;
             if (inter.IsStyleAvailable(s)) return new Font(inter, size * SizeScale, s);
         }

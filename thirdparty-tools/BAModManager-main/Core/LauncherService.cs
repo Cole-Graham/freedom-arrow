@@ -5,8 +5,13 @@ using static BAModManager.Core.Loc;
 
 namespace BAModManager.Core;
 
-/// <summary>A step of getting the game ready, for the launcher's status line.</summary>
-public sealed record LaunchProgress(string Text, double? Fraction = null);
+/// <summary>The launcher's PLAY steps, in order; the launcher window shows them as a step list.</summary>
+public enum LaunchStage { Launcher, Mod, Loader, Assets, Verify, Start }
+
+/// <summary>A step of getting the game ready, for the launcher's status line. 1.1.14 (Osama 21 Nov 2026, "People don't know if it's
+/// downloading something or stalling"): <paramref name="Stage"/> for the step list, <paramref name="Done"/>/<paramref name="Total"/> bytes for
+/// MB, speed and time left, and <paramref name="Note"/> for a retry the player should see.</summary>
+public sealed record LaunchProgress(string Text, double? Fraction = null, LaunchStage? Stage = null, long? Done = null, long? Total = null, string? Note = null);
 
 /// <summary>
 /// The one-button launcher: installs/updates MelonLoader and the mod pack, starts the game without
@@ -286,7 +291,7 @@ public sealed class LauncherService
         if (PinnedFreedomArrow.Enabled)
         {
             await HostedDistribution.PrepareAsync(progress, ct);
-            progress.Report(new LaunchProgress("Verifying gameplay, models, music and voices…"));
+            progress.Report(new LaunchProgress(T("Verifying gameplay, models, music and voices…"), Stage: LaunchStage.Mod));
             try { await Task.Run(PinnedFreedomArrow.VerifyAssets, ct); }
             catch (AssetsIndexInstall.DamagedListException ex)
             {
@@ -315,7 +320,7 @@ public sealed class LauncherService
 
     private async Task EnsureMelonLoaderAsync(string gameDir, Manifest manifest, IProgress<LaunchProgress> progress, Action<string> log, CancellationToken ct)
     {
-        progress.Report(new LaunchProgress(T("Checking MelonLoader…")));
+        progress.Report(new LaunchProgress(T("Checking MelonLoader…"), Stage: LaunchStage.Loader));
         ReleaseInfo? latest = null;
         // 1.1.9 (Lateralus 19 Nov 2026): the Freedom Arrow launcher installs only the MelonLoader named in the signed version list,
         // checked by SHA-256 below. No unsigned mirror file and no GitHub "latest" release.
@@ -362,11 +367,13 @@ public sealed class LauncherService
         try
         {
             var label = installed ? T("Updating MelonLoader to {0}…", latest.Tag) : T("Downloading MelonLoader {0}…", latest.Tag);
-            progress.Report(new LaunchProgress(label, 0));
-            await _ml.DownloadAsync(latest.Url, zip, new Progress<double>(f => progress.Report(new LaunchProgress(label, f))), ct);
+            progress.Report(new LaunchProgress(label, 0, LaunchStage.Loader));
+            long? mlSize = signed?.Size;
+            await _ml.DownloadAsync(latest.Url, zip, new Progress<double>(f => progress.Report(
+                new LaunchProgress(label, f, LaunchStage.Loader, mlSize is long n ? (long)(f * n) : null, mlSize))), ct);
             if (signed != null && !HostedDistribution.Matches(zip, signed.Size, signed.Sha256))
                 throw new InvalidDataException("The MelonLoader download failed its checksum, so it was not installed.");
-            progress.Report(new LaunchProgress(T("Installing MelonLoader…")));
+            progress.Report(new LaunchProgress(T("Installing MelonLoader…"), Stage: LaunchStage.Loader));
             await Task.Run(() => _ml.Install(gameDir, zip, latest.Tag, manifest, log), ct);
             TryDelete(ParkedProxy); // a parked copy would be the old version now
             log(T("MelonLoader {0} installed.", latest.Tag));
@@ -381,7 +388,7 @@ public sealed class LauncherService
         bool mustDownload = false)
     {
         var repo = ActiveRepo()!;
-        progress.Report(new LaunchProgress(T("Checking the mod pack for updates…")));
+        progress.Report(new LaunchProgress(T("Checking the mod pack for updates…"), Stage: LaunchStage.Mod));
 
         ReleaseInfo? release = null;
         try
@@ -428,10 +435,10 @@ public sealed class LauncherService
             var label = pack == null || !sameRepo
                 ? T("Downloading the mod pack ({0})…", release.Tag)
                 : T("Updating the mod pack to {0}…", release.Tag);
-            progress.Report(new LaunchProgress(label, 0));
-            await DownloadAsync(release.Url, file, new Progress<double>(f => progress.Report(new LaunchProgress(label, f))), ct);
+            progress.Report(new LaunchProgress(label, 0, LaunchStage.Mod));
+            await DownloadAsync(release.Url, file, new Progress<double>(f => progress.Report(new LaunchProgress(label, f, LaunchStage.Mod))), ct);
 
-            progress.Report(new LaunchProgress(T("Installing the mod pack…")));
+            progress.Report(new LaunchProgress(T("Installing the mod pack…"), Stage: LaunchStage.Mod));
             var name = await Task.Run(() =>
             {
                 using var plan = _mods.BuildPlan(file, _ => null)

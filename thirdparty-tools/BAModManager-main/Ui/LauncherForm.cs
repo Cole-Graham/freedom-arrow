@@ -21,8 +21,7 @@ internal sealed class LauncherForm : Form
     private readonly Label _packName;
     private readonly Label _packVersion;
     private readonly Label _modsState;
-    private readonly Label _status;
-    private readonly ThinProgress _progress;
+    private readonly LaunchProgressPanel _panel;
     private readonly Button _play;
     private readonly Button _vanilla;
     private readonly Button _settings;
@@ -53,11 +52,20 @@ internal sealed class LauncherForm : Form
         FormBorderStyle = FormBorderStyle.FixedSingle;
         MaximizeBox = false;
         StartPosition = FormStartPosition.CenterScreen;
-        ClientSize = new Size(460, 624);
+#if FA_DEV45
+        // 1.1.14 (Osama 21 Nov 2026): freedomarrow.app look - menu-art header with the title logo, red/black colours,
+        // condensed headings, and a progress panel that shows steps, MB, speed, time left and when data last arrived.
+        ClientSize = new Size(560, 700);
+        Padding = new Padding(0);
+        var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 220 };
+        var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 4, 28, 14) };
+#else
+        ClientSize = new Size(460, 640);
         Padding = new Padding(28, 22, 28, 18);
+        var body = this;
 
         // ── brand ──
-        var brand = new Panel { Dock = DockStyle.Top, Height = 70, BackColor = Theme.Background };
+        var header = new Panel { Dock = DockStyle.Top, Height = 70, BackColor = Theme.Background };
         var logoBox = new PictureBox
         {
             Image = _logo,
@@ -68,37 +76,46 @@ internal sealed class LauncherForm : Form
         };
         var brandSmall = new Label { Text = "BROKEN ARROW", AutoSize = true, Font = Theme.BrandSmall(8.5f), ForeColor = Theme.Accent, Location = new Point(62, 8) };
         var brandBig = new Label { Text = AppInfo.ShortName, AutoSize = true, Font = Theme.BrandLarge(16f), ForeColor = Theme.Text, Location = new Point(60, 24) };
-        brand.Controls.AddRange(new Control[] { logoBox, brandSmall, brandBig });
+        header.Controls.AddRange(new Control[] { logoBox, brandSmall, brandBig });
+#endif
 
         // ── mod pack card ──
-        var card = new Panel { Dock = DockStyle.Top, Height = 150, BackColor = Theme.Panel, Padding = new Padding(16) };
-        var cardLabel = new Label { Text = T("MODPACK"), AutoSize = true, Location = new Point(151, 14), Font = Theme.Semibold(8.5f), ForeColor = Theme.TextMuted };
-        _packPicture = new PictureBox { SizeMode = PictureBoxSizeMode.Zoom, Size = new Size(118, 118), Location = new Point(16, 16), BackColor = Theme.Panel };
-        _packName = new Label { AutoSize = false, Location = new Point(150, 28), Size = new Size(250, 30), Font = Theme.Heading(15f), ForeColor = Theme.Text, AutoEllipsis = true };
-        _packVersion = new Label { AutoSize = false, Location = new Point(151, 58), Size = new Size(250, 22), ForeColor = Theme.TextMuted, AutoEllipsis = true };
-        _modsState = new Label { AutoSize = false, Location = new Point(151, 78), Size = new Size(250, 22), ForeColor = Theme.TextMuted };
+        var card = new Panel { Dock = DockStyle.Top, Height = 116, BackColor = Theme.Panel, Padding = new Padding(16) };
+        card.Paint += (_, e) =>
+        {
+            // freedomarrow.app card: thin outline and the red left edge of its section headings
+            using var edge = new Pen(Theme.Border);
+            e.Graphics.DrawRectangle(edge, 0, 0, card.Width - 1, card.Height - 1);
+            using var strip = new SolidBrush(Theme.Accent);
+            e.Graphics.FillRectangle(strip, 0, 0, Math.Max(3, card.LogicalToDeviceUnits(4)), card.Height);
+        };
+        var cardLabel = new Label { Text = T("MODPACK"), AutoSize = true, Location = new Point(119, 12), Font = Theme.Head(9.5f, semi: true), ForeColor = Theme.Accent, BackColor = Theme.Panel };
+        _packPicture = new PictureBox { SizeMode = PictureBoxSizeMode.Zoom, Size = new Size(86, 86), Location = new Point(18, 15), BackColor = Theme.Panel };
+        _packName = new Label { AutoSize = false, Location = new Point(118, 30), Size = new Size(370, 30), Font = Theme.Head(19f), ForeColor = Theme.Text, AutoEllipsis = true, BackColor = Theme.Panel };
+        _packVersion = new Label { AutoSize = false, Location = new Point(119, 61), Size = new Size(370, 20), ForeColor = Theme.TextMuted, AutoEllipsis = true, BackColor = Theme.Panel };
+        _modsState = new Label { AutoSize = false, Location = new Point(119, 81), Size = new Size(370, 20), ForeColor = Theme.TextMuted, BackColor = Theme.Panel };
         // Only shown before a modder has set the modpack up
         _setUp = Theme.MakeButton(T("Set up modpack (for modders)…"));
-        _setUp.Location = new Point(151, 100);
+        _setUp.Location = new Point(119, 76);
         // Stable / Testing - only when the modder offers a testing channel
-        _channels = new FlowLayoutPanel { Location = new Point(151, 102), Size = new Size(250, 32), WrapContents = false, BackColor = Theme.Panel, Visible = false };
+        _channels = new FlowLayoutPanel { Location = new Point(119, 78), Size = new Size(300, 32), WrapContents = false, BackColor = Theme.Panel, Visible = false };
         card.Controls.AddRange(new Control[] { cardLabel, _packPicture, _packName, _packVersion, _modsState, _setUp, _channels });
 
+        // ── progress ──
+        _panel = new LaunchProgressPanel { Dock = DockStyle.Top, Height = 146 };
+
         // ── buttons ──
-        _play = Theme.MakeButton("▶   " + T("PLAY"), ButtonKind.Primary);
+        _play = Theme.MakeButton(T("PLAY"), ButtonKind.Primary);
         _play.AutoSize = false;
         _play.Dock = DockStyle.Top;
         _play.Height = 58;
-        _play.Font = Theme.Heading(14f);
+        _play.Font = Theme.Head(22f);
         _play.Margin = new Padding(0);
 
         _vanilla = Theme.MakeButton(T("Play vanilla with no mods"));
         _vanilla.AutoSize = false;
         _vanilla.Dock = DockStyle.Top;
         _vanilla.Height = 40;
-
-        _status = new Label { Dock = DockStyle.Top, Height = 40, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Theme.TextMuted, AutoEllipsis = true };
-        _progress = new ThinProgress { Dock = DockStyle.Top, Visible = false };
 
         // ── footer ──
         var footer = new Panel { Dock = DockStyle.Bottom, Height = 36, BackColor = Theme.Background };
@@ -130,17 +147,19 @@ internal sealed class LauncherForm : Form
         }
 
         // Docked top controls are added bottom-up
-        Controls.Add(_vanilla);
-        Controls.Add(Spacer(10));
-        Controls.Add(_play);
-        Controls.Add(Spacer(12));
-        Controls.Add(_progress);
-        Controls.Add(_status);
-        Controls.Add(Spacer(4));
-        Controls.Add(card);
-        Controls.Add(Spacer(18));
-        Controls.Add(brand);
-        Controls.Add(footer);
+        body.Controls.Add(_vanilla);
+        body.Controls.Add(Spacer(10));
+        body.Controls.Add(_play);
+        body.Controls.Add(Spacer(10));
+        body.Controls.Add(_panel);
+        body.Controls.Add(Spacer(16));
+        body.Controls.Add(card);
+        body.Controls.Add(Spacer(12));
+        body.Controls.Add(footer);
+#if FA_DEV45
+        Controls.Add(body);
+#endif
+        Controls.Add(header);
 
         _play.Click += async (_, _) => await PlayModded();
         _vanilla.Click += (_, _) => PlayVanilla();
@@ -179,6 +198,7 @@ internal sealed class LauncherForm : Form
 
     private async Task OnFirstShown()
     {
+        if (Environment.GetCommandLineArgs().Contains(PreviewArg)) { await ProgressPreview(); return; }
         if (PinnedFreedomArrow.Enabled && await UpdateLauncher()) return;
         SetStatus(T("Looking for Broken Arrow…"));
         var saved = AppSettings.LoadGamePath();
@@ -207,12 +227,12 @@ internal sealed class LauncherForm : Form
         SelfUpdate.CleanUp(exe);
         try
         {
-            SetStatus("Checking for a launcher update…");
+            SetStatus(T("Checking for a launcher update…"));
             Directory.CreateDirectory(HostedDistribution.CacheRoot);
             using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
-            var progress = new Progress<LaunchProgress>(p => { SetStatus(p.Text); });
+            var progress = new Progress<LaunchProgress>(ShowProgress);
             var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
-            if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { SetStatus(""); return false; }
+            if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { _panel.Finish(true, ""); SetStatus(""); return false; }
             Log("Launcher updated to " + manifest.Launcher!.Version + ".");
             Process.Start(new ProcessStartInfo(exe, Loc.RestartArg) { UseShellExecute = false })?.Dispose();
             Close();
@@ -221,7 +241,8 @@ internal sealed class LauncherForm : Form
         catch (Exception ex)
         {
             Log("Launcher update skipped: " + ex.Message);
-            SetStatus("Launcher update skipped: " + ex.Message);
+            _panel.Finish(false, T("Launcher update skipped: {0}", ex.Message));
+            SetStatus(T("Launcher update skipped: {0}", ex.Message));
             return false;
         }
     }
@@ -434,27 +455,23 @@ internal sealed class LauncherForm : Form
         if (LinuxSteam.IsWine && !LinuxGcFixReady(dir)) return;
         DeckNote(DeckGuard.BeforeLaunch(true, Log));
         SetBusy(true);
+        _panel.Begin(LaunchStage.Mod, T("Getting ready…"));
         try
         {
-            var progress = new Progress<LaunchProgress>(p =>
-            {
-                SetStatus(p.Text);
-                _progress.Visible = true;
-                _progress.Marquee = p.Fraction == null;
-                if (p.Fraction != null) _progress.Value = (float)p.Fraction.Value;
-            });
+            var progress = new Progress<LaunchProgress>(ShowProgress);
             await _launcher.PrepareModsAsync(dir, progress, Log, CancellationToken.None);
             RefreshCard();
 
-            SetStatus(T("Starting {0}…", _cfg.GameName));
+            ShowProgress(new LaunchProgress(T("Starting {0}…", _cfg.GameName), Stage: LaunchStage.Start));
             var game = _launcher.StartModded(dir);
             _gameRunning = false;
+            _panel.Finish(true, game != null ? T("{0} is starting.", _cfg.GameName) : T("Steam is starting {0}: choose \"Play Anti-Cheat Disabled\".", _cfg.GameName));
             if (game != null) ShowLoadingScreen(game, dir);
-            else SetStatus(T("Steam is starting {0}: choose \"Play Anti-Cheat Disabled\".", _cfg.GameName));
         }
         catch (Exception ex)
         {
             Log(ex.Message);
+            _panel.Finish(false, T("Couldn't start the game: ") + ex.Message);
             SetStatus(T("Couldn't start the game: ") + ex.Message);
             MessageBox.Show(this, ex.Message, T("Couldn't start the game"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
@@ -533,15 +550,14 @@ internal sealed class LauncherForm : Form
         bool accepted = false;
         try
         {
-            SetStatus(T("Installing the mod pack…"));
-            _progress.Visible = true;
-            _progress.Marquee = true;
+            _panel.Begin(LaunchStage.Mod, T("Installing the mod pack…"));
             accepted = await Task.Run(() => _launcher.InstallPackFile(dir, path, Log));
-            SetStatus(accepted ? T("Installed {0}.", Path.GetFileName(path)) : "");
+            _panel.Finish(accepted, accepted ? T("Installed {0}.", Path.GetFileName(path)) : "");
         }
         catch (Exception ex)
         {
             Log(ex.Message);
+            _panel.Finish(false, ex.Message);
             SetStatus(ex.Message);
             MessageBox.Show(this, ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
@@ -636,7 +652,7 @@ internal sealed class LauncherForm : Form
         }
         if (dlg.GameDir != null) _gameDir = dlg.GameDir;
         RefreshCard();
-        if (_gameDir != null && _status.Text.StartsWith(T("Broken Arrow wasn't found."), StringComparison.Ordinal)) SetStatus("");
+        if (_gameDir != null && _statusText.StartsWith(T("Broken Arrow wasn't found."), StringComparison.Ordinal)) SetStatus("");
         UpdateGameRunning();
     }
 
@@ -687,14 +703,64 @@ internal sealed class LauncherForm : Form
         _busy = busy;
         ApplyEnabled();
         UseWaitCursor = busy;
-        if (!busy)
-        {
-            _progress.Marquee = false;
-            _progress.Visible = false;
-        }
+        if (!busy) Text = AppInfo.FullName;
     }
 
-    private void SetStatus(string text) => _status.Text = text;
+    /// <summary>
+    /// "FreedomArrow.exe --progress-preview": plays a made-up PLAY run on the progress panel (download, a 25 s stall, a retry,
+    /// checks, start) so the look can be checked without a game. Touches no files and no network.
+    /// </summary>
+    private const string PreviewArg = "--progress-preview";
+    private async Task ProgressPreview()
+    {
+        SetBusy(true);
+        const long mb = 1048576;
+        async Task Download(string text, LaunchStage stage, long from, long to, long total, double mbPerSecond, string? note = null)
+        {
+            for (long done = from; ; done = Math.Min(to, done + (long)(mbPerSecond * mb / 4)))
+            {
+                ShowProgress(new LaunchProgress(text, (double)done / total, stage, done, total, done == from ? note : null));
+                if (done >= to) return;
+                await Task.Delay(250);
+            }
+        }
+        _panel.Begin(LaunchStage.Mod, T("Getting ready…"));
+        ShowProgress(new LaunchProgress(T("Checking the Freedom Arrow version list…"), Stage: LaunchStage.Mod));
+        await Task.Delay(1500);
+        await Download(T("Downloading {0}", "FreedomArrow-0.9.4.bamod"), LaunchStage.Mod, 0, 104 * mb, 104 * mb, 16);
+        ShowProgress(new LaunchProgress(T("Checking MelonLoader…"), Stage: LaunchStage.Loader));
+        await Task.Delay(1500);
+        for (int f = 0; f <= 10995; f += 700)
+        {
+            ShowProgress(new LaunchProgress(T("Checking models and music… {0} / {1} files", f, 10995), f / 10995.0, LaunchStage.Assets));
+            await Task.Delay(250);
+        }
+        string files = T("Downloading models and music… {0} / {1} files", 37, 126);
+        await Download(files, LaunchStage.Assets, 0, 410 * mb, 1520 * mb, 24);
+        await Task.Delay(26000);   // no data: the live line turns amber
+        await Download(T("Downloading models and music… {0} / {1} files", 38, 126), LaunchStage.Assets, 410 * mb, 1520 * mb, 1520 * mb, 90,
+            T("A file download was interrupted ({0}). Trying again ({1} of {2})…", T("no data for {0} s", 60), 2, 6));
+        ShowProgress(new LaunchProgress(T("Checking mod files…"), Stage: LaunchStage.Verify));
+        await Task.Delay(3000);
+        ShowProgress(new LaunchProgress(T("Starting {0}…", _cfg.GameName), Stage: LaunchStage.Start));
+        await Task.Delay(2000);
+        _panel.Finish(true, T("Preview finished: nothing was installed or started."));
+        SetBusy(false);
+    }
+
+    private string _statusText = "";
+    private void SetStatus(string text)
+    {
+        _statusText = text;
+        _panel.SetMessage(text);
+    }
+
+    /// <summary>One PLAY progress report: the panel, and the percentage in the window title (visible on the taskbar).</summary>
+    private void ShowProgress(LaunchProgress p)
+    {
+        _panel.Report(p);
+        Text = _panel.Percent is int pct ? $"{pct}% · {AppInfo.FullName}" : AppInfo.FullName;
+    }
 
     private void Log(string message)
     {

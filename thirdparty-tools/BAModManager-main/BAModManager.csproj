@@ -45,7 +45,7 @@
     <Product>Freedom Arrow Launcher</Product>
     <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
     <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
-    <Version>1.1.13</Version>
+    <Version>1.1.14</Version>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
@@ -69,10 +69,17 @@
     <EmbeddedResource Include="Assets\BAModManager.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' != 'true'" />
     <EmbeddedResource Include="Assets\FreedomArrow.ico" LogicalName="Assets.icon.ico" Condition="'$(PinnedFreedomArrow)' == 'true'" />
     <EmbeddedResource Include="Assets\logo.png" LogicalName="Assets.logo.png" />
+    <!-- 1.1.14: launcher header = 0.9.3 menu art + approved title logo (freedomarrow.app hero) -->
+    <EmbeddedResource Include="Assets\fa_banner.jpg" LogicalName="Assets.fa_banner.jpg" Condition="'$(PinnedFreedomArrow)' == 'true'" />
     <EmbeddedResource Include="Assets\Linux\fa_ptracer.so" LogicalName="Linux.fa_ptracer.so" />
     <EmbeddedResource Include="Assets\default_preview.png" LogicalName="Assets.default_preview.png" />
     <EmbeddedResource Include="Assets\gear_body.png" LogicalName="Assets.gear_body.png" />
     <EmbeddedResource Include="Assets\gear_emblem.png" LogicalName="Assets.gear_emblem.png" />
+    <None Update="Fonts\BarlowCondensed-LICENSE.txt"
+          Link="BarlowCondensed-LICENSE.txt"
+          CopyToOutputDirectory="PreserveNewest"
+          CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
     <None Update="Fonts\Inter-LICENSE.txt"
           Link="Inter-LICENSE.txt"
           CopyToOutputDirectory="PreserveNewest"

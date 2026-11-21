@@ -8,6 +8,24 @@ internal enum ButtonKind { Primary, Secondary, Danger, Ghost }
 /// <summary>Colours, fonts and small drawing helpers for the dark mod-manager look.</summary>
 internal static class Theme
 {
+#if FA_DEV45
+    // 1.1.14 (Osama 21 Nov 2026, "make the launcher fit our website art style"): freedomarrow.app colours (site/app.css v12 :root).
+    public static readonly Color Sidebar = Color.FromArgb(0x07, 0x08, 0x0A);
+    public static readonly Color Background = Color.FromArgb(0x0A, 0x0B, 0x0D);      // --bg
+    public static readonly Color Panel = Color.FromArgb(0x12, 0x15, 0x19);           // --card
+    public static readonly Color Surface = Color.FromArgb(0x17, 0x1B, 0x21);         // --card-2
+    public static readonly Color SurfaceHover = Color.FromArgb(0x22, 0x27, 0x2F);
+    public static readonly Color Border = Color.FromArgb(0x2C, 0x32, 0x39);          // --axis
+    public static readonly Color Text = Color.FromArgb(0xF2, 0xEF, 0xE8);            // --ink
+    public static readonly Color TextMuted = Color.FromArgb(0x9A, 0xA0, 0xA6);       // between --ink-2 and --mute, readable on --card
+    public static readonly Color Accent = Color.FromArgb(0xE2, 0x36, 0x3E);          // --accent
+    public static readonly Color AccentHover = Color.FromArgb(0xF0, 0x4A, 0x52);
+    public static readonly Color AccentText = Color.White;
+    public static readonly Color Good = Color.FromArgb(0x3C, 0xC4, 0x7A);            // --good
+    public static readonly Color Bad = Color.FromArgb(0xFF, 0x6B, 0x70);             // --bad
+    public static readonly Color Warn = Color.FromArgb(0xE8, 0xB5, 0x47);
+    public static readonly Color ToggleOff = Color.FromArgb(0x3A, 0x3F, 0x47);
+#else
     public static readonly Color Sidebar = Color.FromArgb(0x15, 0x16, 0x19);
     public static readonly Color Background = Color.FromArgb(0x1D, 0x1F, 0x23);
     public static readonly Color Panel = Color.FromArgb(0x23, 0x25, 0x2A);
@@ -21,7 +39,9 @@ internal static class Theme
     public static readonly Color AccentText = Color.FromArgb(0x1B, 0x14, 0x07);
     public static readonly Color Good = Color.FromArgb(0x4C, 0xC2, 0x6E);
     public static readonly Color Bad = Color.FromArgb(0xE5, 0x5B, 0x52);
+    public static readonly Color Warn = Color.FromArgb(0xE8, 0xB5, 0x47);
     public static readonly Color ToggleOff = Color.FromArgb(0x4A, 0x4D, 0x56);
+#endif
 
     public const string IconFont = "Segoe MDL2 Assets";
 
@@ -49,6 +69,11 @@ internal static class Theme
     public static Font BrandSmall(float size) => AppFonts.Get(AppFonts.SemiBold, size, latinOnly: true);
     public static Font BrandLarge(float size) => AppFonts.Get(AppFonts.Regular, size, FontStyle.Bold, latinOnly: true);
     public static Font Icons(float size) => new(IconFont, size);
+
+    /// <summary>Condensed uppercase headings like freedomarrow.app (Barlow Condensed, SIL OFL; Chinese text uses the Chinese UI font).</summary>
+    public static Font Head(float size, bool semi = false) => semi
+        ? AppFonts.Get(AppFonts.CondensedSemiBold, size)
+        : AppFonts.Get(AppFonts.Condensed, size, FontStyle.Bold);
 
     public static Button MakeButton(string text, ButtonKind kind = ButtonKind.Secondary)
     {

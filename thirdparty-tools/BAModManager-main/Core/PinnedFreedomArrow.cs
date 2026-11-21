@@ -162,14 +162,14 @@ public static class PinnedFreedomArrow
 
     public static void Ensure(LauncherService launcher, string gameDir, Action<string> log, CancellationToken ct, IProgress<LaunchProgress>? progress = null)
     {
-        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
+        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…"), Stage: LaunchStage.Mod));
         VerifyArchive(ArchivePath);
         VerifyAssets();
         var pack = launcher.FindPack(Manifest.Load(gameDir));
         if (pack?.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
         {
             ct.ThrowIfCancellationRequested();
-            progress?.Report(new LaunchProgress(Loc.T("Installing Freedom Arrow {0}…", Version)));
+            progress?.Report(new LaunchProgress(Loc.T("Installing Freedom Arrow {0}…", Version), Stage: LaunchStage.Mod));
             log("Installing Freedom Arrow " + Version + ".");
             if (!launcher.InstallPackFile(gameDir, ArchivePath, log))
                 throw new InvalidDataException("The included dev.45 package was not accepted.");
@@ -184,7 +184,7 @@ public static class PinnedFreedomArrow
         EnsureAssets(gameDir, log, ct, progress);
         manifest = Manifest.Load(gameDir);
         pack = launcher.FindPack(manifest) ?? throw new InvalidDataException("dev.45 installation record is missing.");
-        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…")));
+        progress?.Report(new LaunchProgress(Loc.T("Checking mod files…"), Stage: LaunchStage.Verify));
         if (pack.Info?.Version != Version || !PayloadMatches(gameDir, ArchivePath, ct))
             throw new InvalidDataException("dev.45 payload verification failed. The game will not start.");
         log("Verified Freedom Arrow " + Version + " with Models + Music/Voices.");
