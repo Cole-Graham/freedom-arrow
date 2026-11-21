@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><mask id="cut"><rect width="512" height="512" fill="#fff"/>
+  <path d="M200 192 Q226 168 260 182 Q232 206 200 192Z" fill="#000"/>
+  <path d="M194 168 Q232 140 276 160" stroke="#000" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M300 196 Q330 226 322 262" stroke="#000" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M84 206 Q92 196 104 200" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <g stroke="#000" stroke-width="9" stroke-linecap="round">
+    <path d="M372 318 L414 300"/><path d="M372 374 L414 384"/><path d="M332 418 L346 458"/><path d="M270 428 L262 470"/>
+  </g>
+</mask></defs>
+<g fill="#fff" mask="url(#cut)">
+  <!-- neck / body coil (behind head) -->
+  <path d="M330 250 Q420 290 396 380 Q372 460 280 462 Q226 462 200 432" stroke="#fff" stroke-width="58" fill="none" stroke-linecap="butt"/>
+  <path d="M178 452 Q200 446 222 410 Q190 418 168 396 Q186 392 200 380 Q170 376 150 352 Q190 352 214 372 Q240 392 232 420 Q226 448 178 452Z"/>
+  <!-- mane flames along neck -->
+  <path d="M340 168 Q380 128 430 128 Q400 146 392 162 Q440 150 478 170 Q436 180 414 194 Q460 204 486 236 Q440 232 418 240 Q458 262 470 300 Q434 284 412 286 Z"/>
+  <!-- upper head + snout -->
+  <path d="M62 196 Q66 178 86 180 Q120 168 160 176 Q206 146 258 146 Q318 144 352 180 Q380 212 370 256 Q360 284 330 280 L290 262
+           Q206 240 120 236 Q84 236 70 222 Q60 212 62 196Z"/>
+  <!-- lower jaw (open) -->
+  <path d="M290 262 L330 280 Q318 308 280 310 Q220 312 168 304 Q128 300 108 290 Q96 282 100 272 Q160 268 222 266 Q260 264 290 262Z"/>
+  <!-- fangs -->
+  <path d="M132 234 L144 258 L152 236Z M176 237 L184 254 L192 238Z M156 270 L166 250 L176 270Z"/>
+  <!-- horns -->
+  <path d="M246 150 Q300 90 380 52 Q420 34 466 34 Q426 48 398 66 Q440 64 470 80 Q424 84 390 98 Q330 124 300 160Z"/>
+  <path d="M206 152 Q222 112 262 86 Q250 112 248 140Z"/>
+  <!-- whisker -->
+  <path d="M78 214 Q48 238 54 286 Q60 330 30 362" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- beard flames -->
+  <path d="M190 302 Q182 336 160 356 Q192 350 208 326 Q210 352 200 376 Q232 358 240 322 Q252 340 252 366 Q272 336 262 304Z"/>
+</g>
+</svg>
