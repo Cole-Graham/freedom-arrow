@@ -89,3 +89,7 @@
   original stays with PF-98 Fire Support). Shared originals keep 6 s for Rangers, Airborne NGSW/Recce, AB Recce NGSW, Rangers RRC, Marine Raiders, Jegeris, Chernye
   Berety. Tank Hunters 8 -> 6 men (two QBZ-191 riflemen out, PF-98A gunner stays), armour row 84 (8Men) -> vanilla 82 (6Men, AV 6, 30 HP); cost 75 unchanged. PF-98
   Team (tripod) and SPG-9 untouched; PF-98 Tank Hunters (1155) left out (in no specialization). Not seen in game.
+- 2026-11-21 13:2x PST, thread 1567745029781454889 (Osama: "for Assaultmen SMAW we do want the increase in ROF. however, we reduce their thermobaric damage to
+  compensate so their DPS is the same ... Also give them 9 thermobaric ammo"; Mech. Riflemen MAAWS: "line infantry so no"; other borderline teams: "we leave it"). DATA: section
+  11b (batch 615 checks with the helicopter range section). Assaultmen SMAW (63): SMAW (61, own row) reload 6 -> 4 s; 84mm Thermobaric (41, own row) damage 4.0 -> 2.667 (same damage per second), rounds 6 -> 9
+  (same total, 24). Anti-tank round 10 damage unchanged. Stress damage per round unchanged (42), so thermobaric stress per minute rises x1.5. Not seen in game.

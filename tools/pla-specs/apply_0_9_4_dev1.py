@@ -327,6 +327,22 @@ import heli_range as _HR
 _HR.apply(t,g,ok);_heli=_HR.contract(t)
 ok(len(_heli['radar'])>0 and not _HR.check(lambda tab:t[tab]),'helicopter range contract and radar row 59')
 rec['heli_range']={'radar_low_optics':{str(k):list(v) for k,v in _HR.FIX.items()},'radar_groups':len(_heli['radar']),'ammo':len(_heli['ammo'])}
+# ---------- 11b. Assaultmen SMAW (Osama 21 Nov 2026 13:2x PST: "for Assaultmen SMAW we do want the increase in ROF. however, we reduce their thermobaric
+# damage to compensate so their DPS is the same as before the rof change. Also give them 9 thermobaric ammo"; Mech. Riflemen MAAWS stays: "line infantry so no").
+# SMAW (61) and its thermobaric round (41) are used only by Assaultmen SMAW (63), so both change in place. Reload 6 -> 4 s; thermobaric damage x4/6 = 4.0 -> 2.667
+# (same damage per second); thermobaric rounds 6 -> 9 (same total damage, 24). The anti-tank round keeps 10 damage and gets the faster reload.
+_SMAW,_TB,_AS=61,41,63
+ok(W[_SMAW]['HUDName']=='SMAW' and (W[_SMAW]['MagazineReloadTimeMin'],W[_SMAW]['MagazineReloadTimeMax'],W[_SMAW]['MagazineSize'])==(6.0,6.0,1),'SMAW reloads 6 s')
+ok(_sw_users(_SMAW)=={_AS},('SMAW only on Assaultmen SMAW',_sw_users(_SMAW)))
+_tbwa=[r for r in WA.values() if r.get('AmmunitionId')==_TB]
+ok(len(_tbwa)==1 and _tbwa[0]['UnitId']==_AS and _tbwa[0]['WeaponId']==_SMAW and _tbwa[0]['Quantity']==6 and A[_TB]['Damage']==4.0,('thermobaric round only on Assaultmen SMAW, 6 rounds, 4 damage',_tbwa))
+g.put('WeaponsJson',_SMAW,{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
+g.put('AmmunitionsJson',_TB,{'Damage':round(4.0*4/6,3)})
+g.put('WeaponAmmunitionsJson',_tbwa[0]['Id'],{'Quantity':9})
+ok(abs(A[_TB]['Damage']/4.0-4.0/6.0)<1e-3 and abs(A[_TB]['Damage']*9-24)<0.01,('thermobaric DPS and total damage unchanged',A[_TB]['Damage']))
+ok(all(A[r['AmmunitionId']]['Damage']==10.0 for r in WA.values() if r.get('UnitId')==_AS and r.get('WeaponId')==_SMAW and r.get('AmmunitionId')!=_TB),'SMAW anti-tank round keeps 10 damage')
+ok(not any(m.get('UnitId')==707 and W.get(m.get('SpecialWeaponId'),{}).get('MagazineReloadTimeMin')==4.0 for m in SM.values()),'Mech. Riflemen MAAWS (line infantry) unchanged')
+rec['assaultmen_smaw']={'unit':_AS,'weapon':_SMAW,'reload_s':[6.0,4.0],'thermobaric':_TB,'damage':[4.0,A[_TB]['Damage']],'rounds':[6,9]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
