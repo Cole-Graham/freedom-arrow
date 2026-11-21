@@ -141,3 +141,10 @@
   Razvedchik), Object 640, ZTZ-99A, ZTZ-100 (1050 -> 1075); mid-high -> 950 on M1A2 SEP v2 (6 rows), SEP v2 TUA, M1A2 SEP (3), M1A1 FEP (2), BMPT (2), M1150 (2).
   34 rows, none shared outside its tier. T-80BVM base 800 unchanged (open); obr. 2018+ already 950. T-15 / VN20 and the IFV 700 class are not in this batch yet.
   NOT in build 248 (0.9.4-dev.1); needs the next build. Not seen in game.
+- 2026-11-21 15:0x PST, thread 1567745029781454889 (Osama: "No just apply them"). DATA: section 16 (batch 824 checks). High-end IFV class: front HEAT 600 -> 700 on Bradley BUSK3
+  (2000015: M2A3, M2A3 ESV, M3A3 CFV, M7 BFIST), AMPV reactive (2000026) and reactive+APS (2000027), XM30 (2001818, also KE front 300 -> 200), Stryker SRAT II (14 rows,
+  ICV/MGS/ESV/RV/ATGM/M-SHORAD/MC/SPH) and ZBD-20 (2009807). T-15 (2000437) and VN20 (2019365) take the T-80U base profile (KE 650/150/100/80, HEAT 700/400/100/100,
+  HP 14). Upgrade cost 25 (M3A3/M7 BUSK3 20, AMPV 15, Stryker ATGM/MC/SPH 10, RV 20, M-SHORAD 15 -> 25); armour+APS keep their APS share (AMPV 55 -> 65, M-SHORAD
+  45 -> 55, MC/SPH 50 -> 65, ICV 65). Speed: Stryker SRAT rows 189/238 road 100 -> 90, cross-country 50 -> 40; AMPV armour options on a new mobility row 65 / 45 (was 70 / 50).
+  Bradley speed unchanged. Defaults (Osama had not answered): no cost/speed penalty on XM30 and ZBD-20 (700 is their base armour); speed = road and cross-country.
+  Not in build 248. Not seen in game.

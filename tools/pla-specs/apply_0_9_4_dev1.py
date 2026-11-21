@@ -470,6 +470,46 @@ import math
 _hits=lambda B,P,A,hp=14:math.ceil(hp/(B*P*P/(P*P+A*A))-1e-9)
 ok((_hits(10,800,1075),_hits(10.5,950,1075),_hits(10,800,950),_hits(10.5,950,950))==(4,4,4,3),'PF-98 / Kornet-M: top 4 / 4, mid-high 4 / 3')
 rec['tank_heat_tiers']={'top_1075':{str(a):_before[a] for a,(tr,v) in _tiers.items() if tr=='top'},'mid_high_950':{str(a):_before[a] for a,(tr,v) in _tiers.items() if tr=='mid-high'}}
+# ---------- 16. High-end IFV class (Osama 21 Nov 2026, thread 1567745029781454889: "700mm will be the high end IFV armor then, reserved for AMPV Reactive armor,
+# Bradley variants with BUSK 3 and the XM 30 (it should have 200 KE). T15 barbaris should be adjust to the (current) T-80U armor profile ... Stryker SRAT II armor
+# also gets 700mm (but they keep lower KE). For China, only ZBD -20 gets it and the VN-20 get's the same T-80U armor profile as the T-15"; "the 700mm upgrades are
+# +25 points and knock out 5 move speed for tracked vehicles and 10 move speed for wheeled vehicles"; "leave the bradley for now its slow anyways"; 15:04 "No just
+# apply them"). Defaults taken where he had not answered: the +25 / speed rule applies to the 700 upgrades only (XM30 and ZBD-20 have 700 as base armour, no
+# penalty); speed means road and cross-country, reverse unchanged. Bradley BUSK 3 keeps its speed. Stryker row 2000018 ("SRAT Trophy", HEAT 200) is used by no option.
+_SRAT=(2000235,2000236,2000237,2000238,2000239,2000240,2000380,2000381,2000382,2000383,2000384,2000385,2000386,2000387)
+_700=(2000015,2000026,2000027,2001818,2009807)+_SRAT
+for a_ in _700:ok(ARJ[a_]['HeatArmorFront']==600,(a_,ARJ[a_]['Name'],'front HEAT 600'))
+for a_ in _700:g.put('ArmorsJson',a_,{'HeatArmorFront':700})
+ok(ARJ[2001818]['KinArmorFront']==300 and U[983]['HUDName'].strip()=='XM30','XM30 KE front 300');g.put('ArmorsJson',2001818,{'KinArmorFront':200})
+_us={}
+for r in UAJ.values():_us.setdefault(r['ArmorId'],set()).add(r['UnitId'])
+ok(_us[2000015]=={16,26,37,28} and _us[2000026]==_us[2000027]=={41} and _us[2001818]=={983} and _us[2009807]=={945} and all(len(_us[x])==1 for x in _SRAT),'700 rows used only by their vehicles')
+_T80=[r['ArmorId'] for r in UAJ.values() if r.get('UnitId')==239 and ARJ[r['ArmorId']].get('IsDefault')]
+ok(_T80==[2000475],('T-80U base armour row',_T80))
+_prof={k:ARJ[2000475][k] for k in ('KinArmorFront','KinArmorSides','KinArmorRear','KinArmorTop','HeatArmorFront','HeatArmorSides','HeatArmorRear','HeatArmorTop','MaxHealthPoints')}
+for a_,uid in ((2000437,255),(2019365,1274)):
+    ok(_us[a_]=={uid} and ARJ[a_]['HeatArmorFront']==1100,(a_,uid,'T-15 / VN20 own row'));g.put('ArmorsJson',a_,_prof)
+    ok(all(ARJ[a_][k]==v for k,v in _prof.items()),(uid,'= T-80U profile'))
+# costs: every 700 upgrade costs 25; armour+APS options keep their APS share
+_COST={1764:(20,25),1773:(20,25),1753:(25,25),1759:(25,25),60:(15,25),2082:(55,65),44:(10,25),50:(20,25),70:(15,25),1943:(10,25),1946:(10,25),8:(25,25),25:(25,25),42:(25,25),1934:(45,55),1944:(50,65),1947:(50,65),1894:(65,65)}
+for o,(b,n) in _COST.items():
+    ok(O[o]['Cost']==b and O[o]['ArmorId'] in _700,(o,O[o].get('UIName'),O[o]['Cost'],O[o]['ArmorId']))
+    if b!=n:g.put('OptionsJson',o,{'Cost':n})
+_unp=sorted((o['Id'],o.get('UIName'),o['ArmorId']) for o in O.values() if o and o.get('ArmorId') in _700 and o['Id'] not in _COST)
+ok(all(x[2] in (2001818,2009807) for x in _unp),('every 700 upgrade option is priced; only XM30/ZBD-20 base-armour options left',_unp))
+# speed: wheeled Strykers -10 (their SRAT rows 189/238 are used only by Stryker armour options); tracked AMPV -5 on a new row (206 is shared with the M1287 MCV)
+MBJ=t['MobilityJson']
+ok({o['MobilityId'] for o in O.values() if o and o.get('MobilityId') in (189,238)}=={189,238} and not [r for r in t['UnitPropulsionsJson'].values() if r.get('MobilityId') in (189,238) and r.get('UnitId') not in (5,20,21,22,24,25,33,452)],'Stryker armour speed rows only on Strykers')
+for m in (189,238):
+    ok((MBJ[m]['MaxSpeedRoad'],MBJ[m]['MaxCrossCountrySpeed'])==(100.0,50.0),(m,'100 / 50'));g.put('MobilityJson',m,{'MaxSpeedRoad':90.0,'MaxCrossCountrySpeed':40.0})
+ok((MBJ[206]['MaxSpeedRoad'],MBJ[206]['MaxCrossCountrySpeed'])==(70.0,50.0) and O[60]['MobilityId']==0 and O[2082]['MobilityId']==0,'AMPV 70 / 50, armour options keep the base speed')
+_am=g.add('MobilityJson',MBJ[206],{'Name':'Tracks AMPV armoured','MaxSpeedRoad':65.0,'MaxCrossCountrySpeed':45.0})
+_amp=[r for r in t['UnitPropulsionsJson'].values() if r.get('UnitId')==41]
+if not any(r.get('MobilityId')==_am for r in _amp):g.add('UnitPropulsionsJson',_amp[0],{'MobilityId':_am})
+for o in (60,2082):g.put('OptionsJson',o,{'MobilityId':_am})
+ok((MBJ[_am]['MaxSpeedRoad'],MBJ[_am]['MaxCrossCountrySpeed'],MBJ[_am]['MaxSpeedReverse'])==(65.0,45.0,MBJ[206]['MaxSpeedReverse']),'AMPV armoured 65 / 45')
+ok(all(O[o]['MobilityId']==0 for o in (1753,1759,1764,1773)),'Bradley BUSK 3 keeps its speed')
+rec['ifv_700_class']={'rows_700':list(_700),'xm30_ke':[300,200],'t80u_profile_to':{'2000437':255,'2019365':1274},'costs':{str(o):list(v) for o,v in _COST.items()},'stryker_speed':[[100,50],[90,40]],'ampv_mobility':_am}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
