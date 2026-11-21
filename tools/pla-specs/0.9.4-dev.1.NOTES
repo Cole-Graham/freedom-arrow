@@ -111,3 +111,12 @@
   ZTZ-59, ZTZ-80, PTL-02, ZTZ-96A 1450 -> 1300 and Z-9 1650 -> 1300 (own rows); ZTZ-59D1, VT-5 Recon, ZTQ-15 Recon, ZTL-191 Recon, ZBD-03 Recon, ZBD-86 Recon
   2300 -> 1650 (relinked to vanilla row 1); ZBD-04A Recon and Z-20S 2800 -> 2300 (relinked to vanilla row 3). WZ1224 stays 1450. helicopter-range contract
   recomputed after sections 13-14.
+- 2026-11-21 14:2x PST, thread 1572962048705429598 (Lateralus: "queue both" -> the 0-0 native victory point map change and the Major/Minor result screen; "we want a
+  Major victory be a conquest lead great than 30%"). MAPS: scenarios/common.py native_goals_out_of_reach on every flavor (PvE inherits): setConquestMode goal1-3
+  1000000, isDestructionEnabled False, deathByScore False. The unmodded server then never awards a native victory point, so a 45:00 time-out with no FA winner
+  (FA sends nothing) is a server draw (equal victory points). Scenario test build: 46 flavors, 66 setConquestMode nodes all set. RUNTIME: conquest/ResultLevel.cs,
+  postfix on BattleEndScreenModel(TeamSide, FightStatistic, bool) (1 direct caller): keeps the server's winner and this player's side, sets Major when the
+  final FA leader has > MajorVictoryMarginPercent (30, Settings default) % more points, else Minor; draws/total/technical untouched; display only (the server
+  keeps its own stored level, which has been Minor for every FA win). Final score kept at OnServerEndGameMessage / StopGameMode. Logs result_level.
+  queued_checks: every packaged setConquestMode has the out-of-reach goals, and the DLL has result_level. REBUILD THE RUNTIME DLL. Compiles; not seen in a match.
+  Open: what level the server stores for a host-declared win at 0-0 victory points.

@@ -270,8 +270,23 @@ def check_spawns(name,head,objects):
         lx=dx*math.cos(ang)-dz*math.sin(ang);lz=dx*math.sin(ang)+dz*math.cos(ang)
         if abs(lx)>pz['scale']['X']/2 or abs(lz)>pz['scale']['Z']/2:out.append((s['_uid'],s['spawnType2'],round(s['pos']['X']),round(s['pos']['Z'])))
     assert not out,(name,'ground spawns outside the playable zone',out)
+# Lateralus 21 Nov 2026 ("queue both"): online the unmodded server decides a 45:00 time-out by the map's native War Goals victory points
+# (a phase point per capture goal 200/400/600 and per destruction goal 100/200/300, all zones equal), not by the FA score (Highway 20 Nov:
+# FA 277-154 Bravo, server 9-4 Alpha). The FA host now sends its winner 5 s before time up (conquest ModeControls). With the goals out of
+# reach and destruction off neither team earns a victory point, so when FA scores a draw and sends nothing the server's tie rule
+# (ConquestMode.GetWinner: equal victory points) gives a draw instead of a winner. Offline the FA ledger already decides (Mod.cs Winner).
+NATIVE_GOAL=1000000
+def native_goals_out_of_reach(name,nodes):
+    modes=[b for b in nodes['b'] if b['nnKey']=='setConquestMode'];assert modes,(name,'no setConquestMode')
+    for sc in modes:
+        wired={c['c'] for c in nodes['c'] if c['a']==sc['id']}
+        props={p['k']:p for p in sc['props_v2']}
+        for k,v in (('goal1',NATIVE_GOAL),('goal2',NATIVE_GOAL),('goal3',NATIVE_GOAL),('isDestructionEnabled','False'),('deathByScore','False')):
+            assert k in props and k not in wired,(name,k,'missing or wired')
+            props[k]['v']=str(v)
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
+    native_goals_out_of_reach(flavor['name'],nodes)
     check_spawns(flavor['name'],head,objects)
     if flavor['kind']==2:conquest_during_deployment(nodes)
     check_limit(flavor['name'],spec['desc'])

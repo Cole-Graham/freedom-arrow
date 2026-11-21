@@ -128,5 +128,20 @@ if m>=key('0.9.4-dev.1'):
 # 5 s before time up (ModeControls.QueueScoreLimitEnding; it logs "online_early_end").
 if m>=key('0.9.4-dev.1'):
     if 'online_early_end'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the online early time-up end (online_early_end)')
+# From 0.9.4-dev.1 (Lateralus 21 Nov 2026: "queue both"): every packaged FA map's native War Goals can never award a victory point (capture
+# goals 1000000, destruction off, no sudden death; scenarios/common.py native_goals_out_of_reach), so a time-out without an FA winner is a
+# server draw; and the result screen shows Major/Minor from the FA score (conquest/ResultLevel.cs, logs "result_level").
+if m>=key('0.9.4-dev.1'):
+    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'releases/0.8/scenarios'))
+    import common as SC2
+    _modes=0
+    for f in [n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and n.endswith('.bascr')]:
+        for b in SC2.load(SC2.dec(zipfile.ZipFile(z.open(f)).read('nodes.bam')))['b']:
+            if b['nnKey']!='setConquestMode':continue
+            _modes+=1;q={x['k']:x['v'] for x in b['props_v2']}
+            if (q.get('goal1'),q.get('goal2'),q.get('goal3'),q.get('isDestructionEnabled'),q.get('deathByScore'))!=('1000000','1000000','1000000','False','False'):
+                bad.append(f'{f}: native War Goals can still award victory points {q.get("goal1")}/{q.get("goal2")}/{q.get("goal3")} destruction {q.get("isDestructionEnabled")}')
+    if _modes==0:bad.append('no setConquestMode found in the packaged maps')
+    if 'result_level'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the result-screen level hook (result_level)')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

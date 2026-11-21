@@ -91,6 +91,7 @@ public sealed partial class Prototype
             foreach(var leave in new[]{"ReturnToHangar","LeaveMatch","Quit"})
                 try{Patch(typeof(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu),leave,nameof(LeavingMatch),null);}
                 catch(Exception e){MelonLogger.Warning($"FREEDOM_ARROW_LEAVE_HOOK_MISSING: {leave}: "+e.Message);}
+            try{InstallResultLevel();}catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_RESULT_LEVEL_FAILED: not installed. "+e.Message);}
             InitializeEconomy();
             try { InstallCombatHooks(); }
             catch (Exception e) { StopCombat(e); }
@@ -341,7 +342,7 @@ public sealed partial class Prototype
     }
     public static bool WarWinner(WarGoalsMode __instance, bool timeEnd, ref TeamSide __result) => Winner(new View(__instance), timeEnd, ref __result);
     public static bool ConquestWinner(ConquestMode __instance, bool timeEnd, ref TeamSide __result) => Winner(new View(__instance), timeEnd, ref __result);
-    public static void ServerEndGame() { try{HideLabels("server end game");Log("server_end_game",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed});}catch(Exception e){Fail(e);} }
+    public static void ServerEndGame() { try{RecordFinal();HideLabels("server end game");Log("server_end_game",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed});}catch(Exception e){Fail(e);} }
     public static void Stopped(GameModeService __instance)
     {
         ClearLabelMode();
@@ -349,6 +350,7 @@ public sealed partial class Prototype
         EndSetup("match stopped");
         CloseStateLog();
         retiredModePointer=view.Pointer;
+        RecordFinal();
         try{Log("match_stopped",new{alpha=ledger?.Alpha,bravo=ledger?.Bravo,elapsed=ledger?.Elapsed,invalid=faulted,
             winnerEvaluations,winnerFoundCalls,stoppedCalls=++stoppedCalls});}
         catch(Exception e){Fail(e);}
