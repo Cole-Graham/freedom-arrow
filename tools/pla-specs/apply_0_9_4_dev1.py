@@ -382,6 +382,19 @@ _SAv=t['SpecializationAvailabilitiesJson'];_av={r['UnitId'] for r in _SAv.values
 ok(all(SN[r['SensorId']]['OpticsGround'] in _caps for r in SUt.values() if r and r.get('UnitId') in _av and U.get(r['UnitId'],{}).get('CountryId')==4),'every China sensor in a deck has a spotting cap')
 rec['china_optics']=_cn
 _heli=_HR.contract(t)  # sensor groups after sections 13-14
+# ---------- 13. QN-506 to the Vehicles tab with BMPT optics (Osama 21 Nov 2026 14:2x PST, thread 1567745029781454889: "Move QN-506 to Vehicle tab and give
+# it the same optics as BMPT"). Units.CategoryType 0 (Recon tab) -> 2 (Vehicles, BMPT's tab). Its own sensor row 2009631 already had the BMPT values
+# (1450 / 900 / 1000); the unit now links BMPT's vanilla row 23 "Medium Plus Optics", so both always match.
+_QN,_BMPT=937,240;SUJ=t['SensorUnitsJson'];SJ=t['SensorsJson']
+ok(U[_QN]['HUDName'].strip()=='QN-506' and U[_QN]['CategoryType']==0 and U[_BMPT]['CategoryType']==2,('QN-506 in Recon, BMPT in Vehicles',U[_QN]['CategoryType']))
+g.put('Units',_QN,{'CategoryType':U[_BMPT]['CategoryType']})
+_qs=[r for r in SUJ.values() if r.get('UnitId')==_QN];_bs=[r for r in SUJ.values() if r.get('UnitId')==_BMPT]
+ok(len(_qs)==1 and len(_bs)==1 and _bs[0]['SensorId']==23,('one sensor each, BMPT on row 23',_qs,_bs))
+_old=_qs[0]['SensorId'];g.put('SensorUnitsJson',_qs[0]['Id'],{'SensorId':_bs[0]['SensorId']})
+_k=('OpticsGround','OpticsLowAltitude','OpticsHighAltitude')
+ok([SJ[[r for r in SUJ.values() if r.get('UnitId')==_QN][0]['SensorId']][k] for k in _k]==[SJ[23][k] for k in _k],'QN-506 optics = BMPT optics')
+ok(not any(o.get('MainSensorId') or o.get('ExtraSensorId') for o in O.values() if o and t['ModificationsJson'].get(o.get('ModificationId'),{}).get('UnitId')==_QN),'no QN-506 loadout swaps its sensor')
+rec['qn506_vehicle_tab']={'unit':_QN,'category':[0,2],'sensor':[_old,23],'optics':[SJ[23][k] for k in _k]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

@@ -120,3 +120,6 @@
   keeps its own stored level, which has been Minor for every FA win). Final score kept at OnServerEndGameMessage / StopGameMode. Logs result_level.
   queued_checks: every packaged setConquestMode has the out-of-reach goals, and the DLL has result_level. REBUILD THE RUNTIME DLL. Compiles; not seen in a match.
   Open: what level the server stores for a host-declared win at 0-0 victory points.
+- 2026-11-21 14:2x PST, thread 1567745029781454889 (Osama: "Move QN-506 to Vehicle tab and give it the same optics as BMPT"). DATA: section 13 (batch 661 checks).
+  QN-506 (937) Units.CategoryType 0 (Recon) -> 2 (Vehicles, BMPT's tab); its sensor link moves from its own row 2009631 to BMPT's vanilla row 23 "Medium Plus Optics"
+  (same values, 1450 / 900 / 1000). Not seen in game: check the QN-506 card sits in the Vehicles tab.
