@@ -399,10 +399,54 @@ _k=('OpticsGround','OpticsLowAltitude','OpticsHighAltitude')
 ok([SJ[[r for r in SUJ.values() if r.get('UnitId')==_QN][0]['SensorId']][k] for k in _k]==[SJ[23][k] for k in _k],'QN-506 optics = BMPT optics')
 ok(not any(o.get('MainSensorId') or o.get('ExtraSensorId') for o in O.values() if o and t['ModificationsJson'].get(o.get('ModificationId'),{}).get('UnitId')==_QN),'no QN-506 loadout swaps its sensor')
 rec['qn506_vehicle_tab']={'unit':_QN,'category':[0,2],'sensor':[_old,23],'optics':[SJ[23][k] for k in _k]}
+# ---------- 14. QN-506 missile = CH-901 clone; HJ-10 laser-guided cruise missile with its own designator (Osama 21 Nov 2026 14:2x PST, thread
+# 1567745029781454889: "QN-506 should just be a clone of the CH-901. Reworked. HJ-10 should also be reworked. HJ-10 is a cruise missile (NOT interceptable)
+# like the CH-901. But it retains its current ATGM stats in terms of penetration and damage. HJ-10 gets its own laser designator. That way for the NLOS feature
+# to work, it needs to be lazed"; earlier "QN-502 should be 30mm penetration", "QN-506 should not be able to hit aircraft").
+# (a) QN-506's QN-502 launcher (2009647) and round (2009651) take every field of the Blood Wolves' CH-901 launcher (2018447) and round (2018448) except
+#     Id/Name/HUDName: loitering, laser-guided, cruise path (TrajectoryType 200), not interceptable, 15 damage, 30 penetration, ground targets only (so no
+#     helicopters). QN-506 keeps its 4 rounds and its own laser (ability "Laser Smoke x2").
+# (b) HJ-10 (936) round 2009623: CH-901 flight (cruise path, not interceptable, laser-guided, speed/burn/turn/seeker of the CH-901) with its own ATGM numbers
+#     kept: 13 damage, 90 penetration, 800 range, vehicle/ship targets, 25 m splash, top attack, stress 360, supply 75. Seeker distance = its 800 range.
+# (c) HJ-10 gets a laser designator: a new ability row = its shared radar+smoke row 2009175 (PGZ-09, AFT-10 keep it) + vanilla "Laser Veh Default" laser
+#     (1500, usable on the move). No existing row has radar + smoke + laser (ability-row-reuse rule: new row only for a unique combination).
+# (d) nlos.json: the HJ-10 round leaves the "keep seeker lock without laser" list, so an NLOS shot needs a laser on the target; HJ-10 stays a fire unit.
+SKIP_F={'Id','Name','HUDName'}
+_CHW,_CHA,_QW,_QA,_HJ,_HJA=2018447,2018448,2009647,2009651,936,2009623
+ok(W[_CHW]['HUDName']=='CH-901' and A[_CHA]['HUDName']=='CH-901' and W[_QW]['HUDName'].startswith('QN-502') and A[_QA]['HUDName'].startswith('QN-502'),'CH-901 and QN-502 rows')
+ok({r['UnitId'] for r in WA.values() if r.get('AmmunitionId')==_QA}=={937} and {r['UnitId'] for r in WA.values() if r.get('WeaponId')==_QW}=={937},'QN-502 rows only on QN-506')
+_qnq=[r['Quantity'] for r in WA.values() if r.get('AmmunitionId')==_QA]
+g.put('WeaponsJson',_QW,{k:v for k,v in W[_CHW].items() if k not in SKIP_F})
+_qicon=A[_QA]['HUDIcon'];g.put('AmmunitionsJson',_QA,{k:v for k,v in A[_CHA].items() if k not in SKIP_F|{'HUDIcon'}})
+ok(A[_QA]['HUDIcon']==_qicon and _qicon in _vic,('QN-502 round keeps its vanilla icon from section 10',_qicon))
+ok(all(W[_QW].get(k)==W[_CHW].get(k) for k in W[_CHW] if k not in SKIP_F) and all(A[_QA].get(k)==A[_CHA].get(k) for k in A[_CHA] if k not in SKIP_F|{'HUDIcon'}),'QN-502 = CH-901 clone')
+ok(A[_QA]['PenetrationAtMinRange']==30 and A[_QA]['CanBeIntercepted'] is False and not (int(A[_QA]['TargetType'])&(8|16)),'QN-502: 30 penetration, not interceptable, no helicopters or planes')
+ok([r['Quantity'] for r in WA.values() if r.get('AmmunitionId')==_QA]==_qnq==[4],'QN-506 keeps 4 rounds')
+ok(any(AB_.get('IsLaserDesignator') for AB_ in [t['AbilitiesJson'][r['AbilityId']] for r in t['UnitAbilitiesJson'].values() if r.get('UnitId')==937]),'QN-506 has its own laser')
+ok({r['UnitId'] for r in WA.values() if r.get('AmmunitionId')==_HJA}=={_HJ} and A[_HJA]['HUDName']=='HJ-10 guided missile','HJ-10 round only on HJ-10 (936)')
+_keep={k:A[_HJA][k] for k in ('Damage','PenetrationAtMinRange','PenetrationAtGroundRange','GroundRange','MinimalRange','TargetType','HealthAOERadius','IsTopArmorArmorAttack','TopArmorAttack','StressDamage','SupplyCost','ResupplyTime','ArmorTargeted')}
+_fly=('TrajectoryType','CanBeIntercepted','CanBeTargeted','LaserGuided','Seeker','MaxSpeed','Acceleration','MuzzleVelocity','BurnTime','RotationSpeed','PreEgnitionRotationSpeed','SeekerAngle','CanReaquire','MainEngineIgnitionDelay','AimStartDelay','LoftAngle','LoftHeight','OverflyHeight')
+g.put('AmmunitionsJson',_HJA,{**{k:A[_CHA][k] for k in _fly},'MaxSeekerDistance':_keep['GroundRange']})
+ok(all(A[_HJA][k]==v for k,v in _keep.items()),'HJ-10 keeps its ATGM damage, penetration, range and targets')
+ok(A[_HJA]['CanBeIntercepted'] is False and A[_HJA]['TrajectoryType']==200 and A[_HJA]['LaserGuided'] is True,'HJ-10: cruise path, not interceptable, laser-guided')
+AB=t['AbilitiesJson'];UAB=t['UnitAbilitiesJson']
+_hjab=[r for r in UAB.values() if r.get('UnitId')==_HJ]
+ok(len(_hjab)==1 and _hjab[0]['AbilityId']==2009175 and AB[10]['Name']=='Laser Veh Default' and AB[10]['IsLaserDesignator'],('HJ-10 ability row',_hjab))
+_las={k:AB[10][k] for k in ('IsLaserDesignator','LaserMaxRange','LaserUsableInMove')}
+_nab=g.add('AbilitiesJson',AB[2009175],{'Name':'PLA HJ-10 radar smoke laser',**_las})
+g.put('UnitAbilitiesJson',_hjab[0]['Id'],{'AbilityId':_nab})
+ok(AB[_nab]['IsRadar'] and AB[_nab]['IsSmoke'] and AB[_nab]['IsLaserDesignator'] and AB[_nab]['LaserMaxRange']==1500,'HJ-10 ability: radar + smoke + laser')
+ok(sorted(U[r['UnitId']]['HUDName'] for r in UAB.values() if r.get('AbilityId')==2009175 and U.get(r['UnitId']))==['AFT-10','PGZ-09'],'PGZ-09 and AFT-10 keep the shared row')
+_nlos=json.loads(z.read('UserData/FreedomArrow/nlos.json'))
+ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 in nlos.json')
+_nlos['ammunition']=[x for x in _nlos['ammunition'] if x!=_HJA]
+_nlos['note']=_nlos['note']+' 0.9.4-dev.1: the HJ-10 round is laser-guided and left the keep-lock list, so its NLOS shots need a laser on the target (Osama 21 Nov).'
+ok(_HJA not in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 NLOS needs a laser')
+rec['qn506_ch901_hj10_laser']={'qn502_weapon':_QW,'qn502_round':_QA,'clone_of':[_CHW,_CHA],'hj10_round':_HJA,'hj10_ability':[2009175,_nab],'nlos_keep_lock':_nlos['ammunition']}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
-(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
+save('UserData/FreedomArrow/nlos.json',_nlos);(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks)

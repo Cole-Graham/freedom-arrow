@@ -126,3 +126,13 @@
 - 2026-11-21 14:3x PST, thread 1572407822849810463 (Osama: "Chinese airborne unit icon should use the old one on the Airborne and Assault Raiders units").
   Section 5: Airborne (1136) and Assault Raiders (1146) removed from the community AIRBORNE_HELO picture; they keep FA_CN_INF_AIRBORNE-Portrait (0.9.3).
   Community art now on 32 cards (Pathfinders and Recon keep AIRBORNE_HELO). Check enforces both. Batch 656 checks.
+- 2026-11-21 14:3x PST, thread 1567745029781454889 (Osama: "QN-506 should just be a clone of the CH-901. Reworked. HJ-10 ... is a cruise missile (NOT interceptable)
+  like the CH-901. But it retains its current ATGM stats ... HJ-10 gets its own laser designator. That way for the NLOS feature to work, it needs to be lazed").
+  DATA: section 14 (batch 671 checks). (a) QN-506 QN-502 launcher 2009647 and round 2009651 = CH-901 (2018447 / 2018448) on every field except Id/Name/HUDName
+  (round keeps its section-10 vanilla icon): laser-guided loitering cruise path, not interceptable, 15 damage, 30 penetration, ground targets only (no helicopters),
+  1 round per salvo, 8-10 s reload; QN-506 keeps 4 rounds and its own laser. (b) HJ-10 (936) round 2009623: CH-901 flight fields (TrajectoryType 200, not
+  interceptable, LaserGuided, speed/burn/turn/seeker angle), keeps 13 damage, 90 penetration, 800 range, vehicle/ship targets, 25 m splash; seeker distance 800.
+  (c) HJ-10 ability: new row = shared radar+smoke row 2009175 + vanilla Laser Veh Default laser (1500 m, on the move); PGZ-09 and AFT-10 keep 2009175.
+  (d) UserData/FreedomArrow/nlos.json: HJ-10 round removed from the keep-lock list (NLOS shots need a laser on the target); HJ-10 stays a fire unit.
+  HJ-10 launcher stays weapon Type 81 (CH-901/CTL-181 use 82). Not seen in game: check the HJ-10 lases, fires NLOS only at lased targets, and that a cruise
+  round on a Type 81 launcher flies correctly; check the QN-506 card shows the CH-901-style missile.
