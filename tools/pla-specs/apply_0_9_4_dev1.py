@@ -410,7 +410,7 @@ rec['qn506_vehicle_tab']={'unit':_QN,'category':[0,2],'sensor':[_old,23],'optics
 #     kept: 13 damage, 90 penetration, 800 range, vehicle/ship targets, 25 m splash, top attack, stress 360, supply 75. Seeker distance = its 800 range.
 # (c) HJ-10 gets a laser designator: a new ability row = its shared radar+smoke row 2009175 (PGZ-09, AFT-10 keep it) + vanilla "Laser Veh Default" laser
 #     (1500, usable on the move). No existing row has radar + smoke + laser (ability-row-reuse rule: new row only for a unique combination).
-# (d) nlos.json: the HJ-10 round leaves the "keep seeker lock without laser" list, so an NLOS shot needs a laser on the target; HJ-10 stays a fire unit.
+# (d) nlos.json unchanged (Osama 14:35 "keep the hooks so we don't break anything"): HJ-10 keeps the NLOS fire hook and the keep-lock.
 SKIP_F={'Id','Name','HUDName'}
 _CHW,_CHA,_QW,_QA,_HJ,_HJA=2018447,2018448,2009647,2009651,936,2009623
 ok(W[_CHW]['HUDName']=='CH-901' and A[_CHA]['HUDName']=='CH-901' and W[_QW]['HUDName'].startswith('QN-502') and A[_QA]['HUDName'].startswith('QN-502'),'CH-901 and QN-502 rows')
@@ -439,14 +439,13 @@ ok(AB[_nab]['IsRadar'] and AB[_nab]['IsSmoke'] and AB[_nab]['IsLaserDesignator']
 ok(sorted(U[r['UnitId']]['HUDName'] for r in UAB.values() if r.get('AbilityId')==2009175 and U.get(r['UnitId']))==['AFT-10','PGZ-09'],'PGZ-09 and AFT-10 keep the shared row')
 _nlos=json.loads(z.read('UserData/FreedomArrow/nlos.json'))
 ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 in nlos.json')
-_nlos['ammunition']=[x for x in _nlos['ammunition'] if x!=_HJA]
-_nlos['note']=_nlos['note']+' 0.9.4-dev.1: the HJ-10 round is laser-guided and left the keep-lock list, so its NLOS shots need a laser on the target (Osama 21 Nov).'
-ok(_HJA not in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 NLOS needs a laser')
+# Osama 21 Nov 14:35: "lets just keep the hooks so we don't break anything": nlos.json stays as it is (HJ-10 keeps both the fire hook and the keep-lock).
+ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 keeps both NLOS hooks')
 rec['qn506_ch901_hj10_laser']={'qn502_weapon':_QW,'qn502_round':_QA,'clone_of':[_CHW,_CHA],'hj10_round':_HJA,'hj10_ability':[2009175,_nab],'nlos_keep_lock':_nlos['ammunition']}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
-save('UserData/FreedomArrow/nlos.json',_nlos);(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
+(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks)
