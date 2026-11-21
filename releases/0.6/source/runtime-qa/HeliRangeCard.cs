@@ -17,7 +17,8 @@ namespace FreedomArrow;
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
 // - Radar tooltip (UnitInfoCard.SetTraitItem, the text built in SetUnitAbilities): "Helicopter Range: x N" for units with a helicopter-capable
 //   weapon, and "Helicopter Optics: x N" for every radar unit, from the unit's radar row group in helicopter-range.json.
-// - Optics stat: a second small line "Heli N m" under the optics value for every unit with sensors (Lateralus 21 Nov: always show).
+// - Optics stat tooltip: a "Helicopter Range: N m" line above "Low Alt. Range" for every unit with sensors (Lateralus 21 Nov: always show,
+//   tooltip only).
 // - Range tool (FOWToolScript.SetWeaponRanges): an orange circle at the helicopter range of each helicopter-capable weapon of the selected unit,
 //   x the radar helicopter multiplier while the radar is on. Placed only when the weapon's own low-altitude circle is found, so the scale is
 //   the game's own.
@@ -38,7 +39,7 @@ static class HeliRangeCard
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(StatsAfter)));
         try { h.Patch(AccessTools.Method(typeof(FOWToolScript),"SetWeaponRanges"),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(CirclesAfter))); }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: range tool circle not installed. "+e.Message);}
-        MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD installed: weapon Helicopter Range line, radar tooltip lines, optics note, range tool circle");
+        MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD installed: weapon Helicopter Range line, radar tooltip lines, optics tooltip line, range tool circle");
     }
     static void Log(string m){if(Interlocked.Increment(ref logged)<=40)MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD "+m);}
     // The last number in a card value ("200 - 2200 m" -> 2200; "1000 m" -> 1000). Test2 joined every digit ("2002200").
@@ -129,12 +130,22 @@ static class HeliRangeCard
             if(l<=0)return;
             if(!HeliRange.sensorOptics.TryGetValue((g,l,hi),out float heli))heli=l;  // Lateralus 21 Nov: always show, also when equal to low optics
             var sprite=__instance._infocardConfig?.Optics;if(sprite==null)return;
+            string low=InfoCardLocalization.TextAmmoRangeLowAlt;if(string.IsNullOrEmpty(low))return;
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))
             {
-                if(item?.Icon?.sprite==null||item.Icon.sprite.Pointer!=sprite.Pointer||item.Text==null||item.Text.text.Contains("Heli"))continue;
-                float shown=Number(item.Text.text);bool heliUnit=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Helicopters;
-                float scale=shown>0?shown/(heliUnit?l:g):2f;
-                item.Text.text+=$"\n<size=75%>Heli {MathF.Round(heli*scale):0} m</size>";
+                if(item?.Icon?.sprite==null||item.Icon.sprite.Pointer!=sprite.Pointer)continue;
+                // The game writes the optics tooltip text straight into TooltipData.TextLocKey (SetStatData 0x562EF0: tooltip+0x48), one line per
+                // altitude ("Low Alt. Range: 3200 m"). The helicopter line goes above the low-altitude line, in the same card metres
+                // (Lateralus 21 Nov: tooltip only, not on the stat bar; test3 scaled from the ground value and showed 1778 m instead of 3200 m).
+                var tip=item.Tooltip;if(tip==null)continue;
+                var data=tip.Data;string text=data.TextLocKey;
+                if(string.IsNullOrEmpty(text)||text.Contains("Helicopter Range"))continue;
+                var lines=text.Split('\n').ToList();int at=lines.FindIndex(x=>x.TrimStart().StartsWith(low));
+                if(at<0){Log($"optics tooltip {__0.HUDName}: no '{low}' line in '{text.Replace("\n"," | ")}'");continue;}
+                float shown=Number(lines[at]);float scale=shown>0?shown/l:2f;
+                lines.Insert(at,$"Helicopter Range: {MathF.Round(heli*scale):0} m");
+                data.TextLocKey=string.Join("\n",lines);tip.Data=data;
+                Log($"optics tooltip {__0.HUDName}: {data.TextLocKey.Replace("\n"," | ")}");
             }
         }
         catch(Exception e){opticsBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: optics note off. "+e.Message);}
