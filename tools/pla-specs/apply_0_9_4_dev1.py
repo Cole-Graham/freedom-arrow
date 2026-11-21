@@ -343,6 +343,16 @@ ok(abs(A[_TB]['Damage']/4.0-4.0/6.0)<1e-3 and abs(A[_TB]['Damage']*9-24)<0.01,('
 ok(all(A[r['AmmunitionId']]['Damage']==10.0 for r in WA.values() if r.get('UnitId')==_AS and r.get('WeaponId')==_SMAW and r.get('AmmunitionId')!=_TB),'SMAW anti-tank round keeps 10 damage')
 ok(not any(m.get('UnitId')==707 and W.get(m.get('SpecialWeaponId'),{}).get('MagazineReloadTimeMin')==4.0 for m in SM.values()),'Mech. Riflemen MAAWS (line infantry) unchanged')
 rec['assaultmen_smaw']={'unit':_AS,'weapon':_SMAW,'reload_s':[6.0,4.0],'thermobaric':_TB,'damage':[4.0,A[_TB]['Damage']],'rounds':[6,9]}
+# ---------- 13. Z-10K ground optics 3200 -> 2800 (Lateralus 21 Nov 2026 13:4x PST, thread 1568104480459722894: "lower the Z-10K to 2800"). 3200 (dev.44, Osama)
+# is not a key in spotting-caps.json, so SpottingCap left the Z-10K uncapped: it saw ground targets at 3200 raw and the Optics tooltip showed 6400 m. 2800 is the
+# Exceptional tier: capped at 1200 raw (2400 m). Its own sensor copy (2019482, used only by the Z-10K) changes in place; low/high stay 1250/1000 (card 2500 m).
+SN,SUt=t['SensorsJson'],t['SensorUnitsJson']
+_caps={float(k):v for k,v in json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps'].items()}
+_z10=[r['UnitId'] for r in SUt.values() if r.get('SensorId')==2019482]
+ok(SN[2019482]['Name']=='Optics Z-10K 3200' and SN[2019482]['OpticsGround']==3200.0 and len(_z10)==1 and U[_z10[0]]['HUDName'].strip()=='Z-10K',('Z-10K sensor',_z10))
+g.put('SensorsJson',2019482,{'Name':'Optics Z-10K 2800','OpticsGround':2800.0})
+ok(_caps.get(2800.0)==1200.0 and (SN[2019482]['OpticsLowAltitude'],SN[2019482]['OpticsHighAltitude'])==(1250.0,1000.0),'Z-10K 2800 has a spotting cap (1200 raw)')
+rec['z10k_optics']={'sensor':2019482,'ground':[3200.0,2800.0],'cap_raw':_caps[2800.0]}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

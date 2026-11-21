@@ -99,3 +99,5 @@
   points; our 45:00 send lost by ~0.1 s (Highway 20 Nov, 277-154 shown as a loss). Last scoring tick stays 44:30. Offline unchanged. A lead under 10% still sends
   nothing (FA draw), so the server's native result stands there. Ledger.CurrentWinner added. Logs online_early_end; queued_checks requires that string in the DLL. REBUILD THE RUNTIME DLL.
   Compiles; not yet seen in a match.
+- Z-10K ground optics 3200 -> 2800 (Lateralus 21 Nov 13:4x PST): apply section 13. 3200 had no spotting-caps.json entry, so the Z-10K was never capped
+  (saw ground targets at 3200 raw; Optics tooltip 6400 m). 2800 caps at 1200 raw (2400 m). Sensor 2019482 (Z-10K only); low/high 1250/1000 unchanged. Data only.
