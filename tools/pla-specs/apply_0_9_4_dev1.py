@@ -286,13 +286,15 @@ for i in sorted(_ar):
 ok(not any(A[wa['AmmunitionId']].get('HUDIcon') not in _vic for wa in WA.values() if wa and wa.get('UnitId') in _cnv and wa.get('AmmunitionId') in A),'every China vehicle round has a vanilla icon')
 ok(A[2010195]['HUDIcon']=='AMMO_US_TANK_120_AP' and A[2010197]['HUDIcon']=='AMMO_US_TANK_105_HE' and A[2010199]['HUDIcon']=='AMMO_US_TANK_120_HEAT','ZTZ-100 gun rows')
 rec['china_vehicle_ammo_icons']={str(i):{'name':A[i].get('HUDName'),'before':b,'after':n} for i,(b,n) in _ic.items()}
-# ---------- 11. Dedicated tank-hunter teams fire 15 rounds per minute; Tank Hunters 6 men (Osama 21 Nov 2026 13:16 PST, thread 1567745029781454889:
-# "dedicate tank hunter teams should have 15 RPM on their AT weapons ... Rangers MAAWS and Tank hunters (which by the way should be 6 man). Long range fire
-# support like SPG and PF-98 tripod are not included"; 13:2x "yes make sure line infantry get seperate weapons from fire support"). Reloadable launchers
-# reload 6 s (10 rounds/min); these teams get 4 s (15/min). A launcher row shared with any other squad is copied for the team, so line infantry and fire
-# support keep 10/min. PF-98 Tank Hunters (1155) is in no specialization (Osama: "There are no PF-98 tank hunters anymore"): left out.
+# ---------- 11. Rangers MAAWS 15 rounds per minute; Tank Hunters 6 men (Osama 21 Nov 2026 13:16 PST, thread 1567745029781454889: "dedicate tank hunter
+# teams should have 15 RPM ... Tank hunters (which by the way should be 6 man)"; 13:2x "yes make sure line infantry get seperate weapons from fire support").
+# CUT BACK 21 Nov 2026 15:4x PST (Osama, same thread: "revert all the RPG 15 rof changes like SMAW and Tank hunters and others"; then "Only Rangers MAAWS M4
+# loadout keeps the 15 rof"). Rangers MAAWS (410) is the "M4 Carl Gustaf" loadout of Rangers RAWS (option 1848). It alone reloads in 4 s (15/min); its
+# launcher 505 is shared with other squads, so it gets its own copy and the others keep 6 s; 788 (MAAWS FST) is only on 410 and changes in place.
+# Rangers RAWS (74), RPG-29 Vampyr (127) and Tank Hunters (1139) go back to the 0.9.3 reload of 6 s (10/min); they had 4 s in 0.9.4-dev.1 (build 248).
 SW=t['SquadWeaponsJson'];AR=t['ArmorsJson'];UA=t['UnitArmorsJson']
-_TH={74:('Rangers RAWS',(202,787)),410:('Rangers MAAWS',(505,788)),127:('RPG-29 Vampyr',(172,)),1139:('Tank Hunters',(2011919,))}
+ok(O[1848]['UIName']=='M4 Carl Gustaf' and O[1848]['ReplaceUnitId']==410,'Rangers MAAWS 410 = the M4 Carl Gustaf loadout (option 1848)')
+_TH={410:('Rangers MAAWS',(505,788))}
 _sw_users=lambda w:{r['UnitId'] for r in SW.values() if r.get('WeaponId')==w}|{m['UnitId'] for m in SM.values() if w in (m.get('PrimaryWeaponId'),m.get('SpecialWeaponId'))}|{r['UnitId'] for r in WA.values() if r.get('WeaponId')==w}
 _th={}
 for _u,(_n,_ws) in _TH.items():
@@ -315,7 +317,8 @@ for _u,(_n,_ws) in _TH.items():
             _th.setdefault(f'{_u} {_n}',[]).append({'weapon':_w,'in_place':True})
     _tw=[r['WeaponId'] for r in SW.values() if r.get('UnitId')==_u and W.get(r['WeaponId'],{}).get('Type')==62]
     ok(_tw and all((W[w]['MagazineReloadTimeMin'],W[w]['MagazineReloadTimeMax'])==(4.0,4.0) for w in _tw),(_n,'every launcher 4 s',_tw))
-ok((W[2016259]['HUDName'],W[2016259]['MagazineReloadTimeMin'],W[2016259]['MagazineReloadTimeMax'])==('PF-98 (tripod)',6.0,6.0),'PF-98 Team tripod launcher untouched (fire support)')
+for _w in (202,787,172,2011919,2016259,61):
+    ok(W[_w]['Type']==62 and (W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0),(_w,W[_w]['HUDName'],'launcher reload stays 6 s (15/min reverted)'))
 # Tank Hunters 1139: 8 -> 6 men. Two plain QBZ-191 riflemen out (newest first); the PF-98A gunner stays; armour 8Men (84) -> vanilla 6Men (82), same AV 6.
 _ms=[m for m in SM.values() if m.get('UnitId')==1139];_rf=[m for m in _ms if m.get('PrimaryWeaponId')==2003998 and not m.get('SpecialWeaponId')]
 ok(len(_ms)==8 and len(_rf)==7,('Tank Hunters 8 men, 7 riflemen',len(_ms),len(_rf)))
@@ -324,7 +327,8 @@ _ua=[r for r in UA.values() if r.get('UnitId')==1139];ok(len(_ua)==1 and _ua[0][
 g.put('UnitArmorsJson',_ua[0]['Id'],{'ArmorId':82})
 _ms=[m for m in SM.values() if m.get('UnitId')==1139]
 ok(len(_ms)==6 and sum(1 for m in _ms if m.get('SpecialWeaponId'))==1 and AR[82]['MaxHealthPoints']==30,'Tank Hunters 6 men, 1 PF-98A, 30 HP')
-rec['tank_hunter_15_per_min']={'reload_s':[6.0,4.0],'teams':_th,'tank_hunters_men':[8,6],'tank_hunters_armor':[84,82]}
+rec['rangers_maaws_15_per_min']={'reload_s':[6.0,4.0],'teams':_th,'others_reverted':[74,127,1139,63]}
+rec['tank_hunters_6_men']={'men':[8,6],'armor':[84,82]}
 # ---------- 12. Helicopter range and optics (Lateralus 21 Nov 2026, thread 1568104480459722894; proposal in the Lateralus 0.9 Changelog, "Helicopter range"
 # tab; tested in 0.9.4-dev.1-test1..test4 from codex/batch/lateralus/heli-range; 13:2x PST "queue up all of the proposal for the next 0.9.4 dev build").
 # lateralus/heli_range.py: radar row 59 low-altitude optics 1.0 -> 2.0; long-range SAM sensor low optics 2650 -> 2000; long-range radar helicopter range x1.25;
@@ -333,22 +337,11 @@ import heli_range as _HR
 _HR.apply(t,g,ok);_heli=_HR.contract(t)
 ok(len(_heli['radar'])>0 and not _HR.check(lambda tab:t[tab]),'helicopter range contract and radar row 59')
 rec['heli_range']={'radar_low_optics':{str(k):list(v) for k,v in _HR.FIX.items()},'radar_groups':len(_heli['radar']),'ammo':len(_heli['ammo'])}
-# ---------- 11b. Assaultmen SMAW (Osama 21 Nov 2026 13:2x PST: "for Assaultmen SMAW we do want the increase in ROF. however, we reduce their thermobaric
-# damage to compensate so their DPS is the same as before the rof change. Also give them 9 thermobaric ammo"; Mech. Riflemen MAAWS stays: "line infantry so no").
-# SMAW (61) and its thermobaric round (41) are used only by Assaultmen SMAW (63), so both change in place. Reload 6 -> 4 s; thermobaric damage x4/6 = 4.0 -> 2.667
-# (same damage per second); thermobaric rounds 6 -> 9 (same total damage, 24). The anti-tank round keeps 10 damage and gets the faster reload.
-_SMAW,_TB,_AS=61,41,63
-ok(W[_SMAW]['HUDName']=='SMAW' and (W[_SMAW]['MagazineReloadTimeMin'],W[_SMAW]['MagazineReloadTimeMax'],W[_SMAW]['MagazineSize'])==(6.0,6.0,1),'SMAW reloads 6 s')
-ok(_sw_users(_SMAW)=={_AS},('SMAW only on Assaultmen SMAW',_sw_users(_SMAW)))
-_tbwa=[r for r in WA.values() if r.get('AmmunitionId')==_TB]
-ok(len(_tbwa)==1 and _tbwa[0]['UnitId']==_AS and _tbwa[0]['WeaponId']==_SMAW and _tbwa[0]['Quantity']==6 and A[_TB]['Damage']==4.0,('thermobaric round only on Assaultmen SMAW, 6 rounds, 4 damage',_tbwa))
-g.put('WeaponsJson',_SMAW,{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
-g.put('AmmunitionsJson',_TB,{'Damage':round(4.0*4/6,3)})
-g.put('WeaponAmmunitionsJson',_tbwa[0]['Id'],{'Quantity':9})
-ok(abs(A[_TB]['Damage']/4.0-4.0/6.0)<1e-3 and abs(A[_TB]['Damage']*9-24)<0.01,('thermobaric DPS and total damage unchanged',A[_TB]['Damage']))
-ok(all(A[r['AmmunitionId']]['Damage']==10.0 for r in WA.values() if r.get('UnitId')==_AS and r.get('WeaponId')==_SMAW and r.get('AmmunitionId')!=_TB),'SMAW anti-tank round keeps 10 damage')
-ok(not any(m.get('UnitId')==707 and W.get(m.get('SpecialWeaponId'),{}).get('MagazineReloadTimeMin')==4.0 for m in SM.values()),'Mech. Riflemen MAAWS (line infantry) unchanged')
-rec['assaultmen_smaw']={'unit':_AS,'weapon':_SMAW,'reload_s':[6.0,4.0],'thermobaric':_TB,'damage':[4.0,A[_TB]['Damage']],'rounds':[6,9]}
+# ---------- 11b. Assaultmen SMAW 4 s reload, thermobaric 2.667 damage and 9 rounds: REVERTED 21 Nov 2026 15:4x PST (Osama: "revert all the RPG 15 rof
+# changes like SMAW and Tank hunters and others"). The 9 rounds and lower damage only kept the total and per-second damage the same with the faster reload, so
+# all three go back to 0.9.3: reload 6 s, thermobaric 4.0 damage, 6 rounds (shipped changed in 0.9.4-dev.1, build 248).
+_tbwa=[r for r in WA.values() if r.get('AmmunitionId')==41]
+ok(t['AmmunitionsJson'][41]['Damage']==4.0 and len(_tbwa)==1 and _tbwa[0]['Quantity']==6 and _tbwa[0]['UnitId']==63,'Assaultmen SMAW thermobaric: 4.0 damage, 6 rounds (0.9.3)')
 # ---------- 13. Z-10K ground optics 3200 -> 2800 (Lateralus 21 Nov 2026 13:4x PST, thread 1568104480459722894: "lower the Z-10K to 2800"). 3200 (dev.44, Osama)
 # is not a key in spotting-caps.json, so SpottingCap left the Z-10K uncapped: it saw ground targets at 3200 raw and the Optics tooltip showed 6400 m. 2800 is the
 # Exceptional tier: capped at 1200 raw (2400 m). Its own sensor copy (2019482, used only by the Z-10K) changes in place; low/high stay 1250/1000 (card 2500 m).

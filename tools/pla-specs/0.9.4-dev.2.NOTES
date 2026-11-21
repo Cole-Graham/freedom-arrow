@@ -22,3 +22,8 @@
   (batch 840 checks). 0.9.0-dev.11 split the Airborne / Rangers / Mech. Riflemen loadout swaps into separate cards but left the variant units flagged
   IsUnitModification (loadout-only), so their cards were hidden. Airborne (64), Rangers CQC (409) and Mech. Riflemen MAAWS (707) now IsUnitModification False.
   US Airborne infantry lists both Airborne and Airborne NGSW. Not seen in game: check the three cards in the Arsenal.
+- 2026-11-21 15:4x PST, thread 1567745029781454889 (Osama: "revert all the RPG 15 rof changes like SMAW and Tank hunters and others"; then "Only Rangers MAAWS M4
+  loadout keeps the 15 rof"). DATA: sections 11 and 11b of apply_0_9_4_dev1.py (batch 825 checks). Reverted to 0.9.3 (they changed in 0.9.4-dev.1, build 248):
+  Rangers RAWS (74), RPG-29 Vampyr (127) and Tank Hunters (1139) launchers reload 6 s again (10/min), and their weapon copies are gone. Assaultmen SMAW (63):
+  SMAW reload 6 s, 84mm Thermobaric (41) damage 4.0, 6 rounds. Kept: Rangers MAAWS (410, the "M4 Carl Gustaf" loadout of Rangers RAWS, option 1848) reloads
+  4 s (15/min), 505 on its own copy (other squads keep 6 s), 788 in place. Kept: Tank Hunters 6 men (separate request). Not seen in game.
