@@ -1,0 +1,5 @@
+0.9.4-dev.2 batch notes (append; one line per change). Builder: read these before building dev.2. Base: 0.9.4-dev.1 (build 248, out/local-094dev1).
+- 2026-11-21 15:0x PST, thread 1573418243715113213 (Osama: "make sure their tanks follow our new HEAT rules"; "add a Type 74G that's the normal real loader
+  option"). DATA: apply_0_9_4_dev2.py section 1 -> blue_dragon_dev2.py (14 checks): K2 Black Panther front HEAT 1100 -> 1075 (top tier; other Blue Dragon tanks
+  already inside the proposed bands); new card "Type 74 (G)" = Type 74 STB-2 copy with the plain M68 (weapon 11, 5-6 s, hand-loaded) instead of the 4-5 s
+  loading aid, spec 23, 4 cards, 55 pts (placeholder). Gates pass on a constants test package. Not seen in game.
