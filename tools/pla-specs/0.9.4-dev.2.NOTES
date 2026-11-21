@@ -3,3 +3,10 @@
   option"). DATA: apply_0_9_4_dev2.py section 1 -> blue_dragon_dev2.py (14 checks): K2 Black Panther front HEAT 1100 -> 1075 (top tier; other Blue Dragon tanks
   already inside the proposed bands); new card "Type 74 (G)" = Type 74 STB-2 copy with the plain M68 (weapon 11, 5-6 s, hand-loaded) instead of the 4-5 s
   loading aid, spec 23, 4 cards, 55 pts (placeholder). Gates pass on a constants test package. Not seen in game.
+- 2026-11-21 15:1x PST, thread 1573561286803980289 (Osama: "make the play button open up the current Mod Lobbies section of the menu. Keep it simple and clean.
+  So there's no way to play online skirmish or normal lobby"). RUNTIME: runtime-qa/PlayToModLobbies.cs + Runtime.cs (install after NameArrowQueue, Tick in OnUpdate).
+  Prefix on MainMenuButtonControling.OnMainMenuButtonClick: the tab whose content holds LobbyScreen (Play) opens ArrowQueue ModTab.Open one frame later
+  (ArrowQueue's GameTabClicked postfix hides its page in the same click). Native tab still opens when ArrowQueue selects it (stack has an ArrowQueue
+  frame) or when Game.InLobby. Missing ArrowQueue methods -> native tab (BALocalSkirmish refusals stay). NEEDS the runtime DLL rebuild; compiled clean
+  on the deck (game-1.2.2.1). Not seen in game: check Play opens Mod Lobbies, joining/creating a mod lobby still shows the lobby screen, and the
+  log line FREEDOM_ARROW_PLAY_MENU. Note: offline Local AI Skirmish was reached through the native Play tab; F8 (LocalSkirmish setup hotkey) stays.
