@@ -120,5 +120,9 @@ if m>=key('0.9.2-dev.8'):
     elif z.read('UserData/FreedomArrow/map-labels.json')!=ML.labels(V,z)[1]:bad.append('map-labels.json differs from the comparison with the current playtest release')
     dll=z.read('Mods/FreedomArrow.Runtime.dll')
     if 'FREEDOM_ARROW_MAP_LABELS'.encode('utf-16-le') not in dll:bad.append('runtime DLL lacks FREEDOM_ARROW_MAP_LABELS')
+# From 0.9.4-dev.1 (Lateralus 21 Nov 2026: "queue up the fix for force firing through smoke for 0.9.4"): Fire at position does not shoot
+# through smoke (SmokeGroundFire.cs, ActualArrow's SmokeGroundPatch).
+if m>=key('0.9.4-dev.1'):
+    if 'FREEDOM_ARROW_SMOKE_GROUND'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks FREEDOM_ARROW_SMOKE_GROUND')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

@@ -68,3 +68,7 @@
   master model sheet Korea tab; M60A1 model as stand-in. 5 more checks (batch 281); same data gates pass on a test package. Not seen in game.
 - 2026-11-21 01:4x PST, thread 1573561286803980289 (Osama: "CTL NLOS remove its smoke"). DATA: section 9 of apply_0_9_4_dev1.py (batch now 286 checks). CTL-181 NLOS (1054)
   UnitAbilities 2010702 -> vanilla row 4 "Empty ability" (was shared row 2000197 Smoke x1, 57 users, unchanged). No smoke on the card or in battle. Not yet seen in game.
+- 2026-11-21 11:4x PST, thread 1572962048705429598 (Lateralus: "queue up the fix for force firing through smoke for 0.9.4"). RUNTIME: runtime-qa/SmokeGroundFire.cs,
+  postfix on FogOfWarUnit.__c__DisplayClass43_0 ground-point raycast callback: SmokeTerrainDistance > 0.5 -> groundPoint.IsShootable false, so Fire at position
+  no longer shoots through smoke (unit targets were already refused by the game). Port of ActualArrow's SmokeGroundPatch (FlatIncomeMod 0.9.17; we ship 0.9.16
+  without it; report work/aa-smoke-20261121). queued_checks requires FREEDOM_ARROW_SMOKE_GROUND in the DLL. REBUILD THE RUNTIME DLL. Compiles; not yet seen in game.

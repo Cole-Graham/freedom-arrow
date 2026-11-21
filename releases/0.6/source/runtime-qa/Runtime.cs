@@ -176,6 +176,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_RETURN_FAILED: not installed; vanilla plane return times. "+e.Message); }
         try { PlaneResupplyCostRow.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLANE_RESUPPLY_COST_FAILED: not installed; the line stays visible. "+e.Message); }
+        try { SmokeGroundFire.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SMOKE_GROUND_FAILED: not installed; Fire at position still shoots through smoke. "+e.Message); }
         try { MissileHitChance.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MISSILE_CHANCE_FAILED: not installed; vanilla missile hit chance. "+e.Message); }
         try { NlosTrait.Install(HarmonyInstance,Root); }
