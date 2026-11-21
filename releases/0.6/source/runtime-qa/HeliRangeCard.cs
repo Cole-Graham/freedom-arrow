@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Systems;
@@ -11,11 +13,11 @@ using MelonLoader;
 using UnityEngine;
 namespace FreedomArrow;
 // Helicopter range on the cards and range tool (Lateralus 21 Nov 2026; Lateralus 0.9 Changelog, "Helicopter range" tab, rows 7, 8, 14, 18, 20).
-// - Weapon ammo panel (AmmoInfoExpansionPanel.SetMainAmmoStats): a "Helicopter Range" line under "Low Alt. Range", only for ammo that can target
+// - Weapon ammo panel (AmmoInfoExpansionPanel.SetMainAmmoStats): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
 // - Radar tooltip (UnitInfoCard.SetTraitItem, the text built in SetUnitAbilities): "Helicopter Range: x N" for units with a helicopter-capable
 //   weapon, and "Helicopter Optics: x N" for every radar unit, from the unit's radar row group in helicopter-range.json.
-// - Optics stat: "(helicopters N m)" after the optics value, only when the unit's sensor helicopter optics differ from its low-altitude optics.
+// - Optics stat: a second small line "Heli N m" under the optics value for every unit with sensors (Lateralus 21 Nov: always show).
 // - Range tool (FOWToolScript.SetWeaponRanges): an orange circle at the helicopter range of each helicopter-capable weapon of the selected unit,
 //   x the radar helicopter multiplier while the radar is on. Placed only when the weapon's own low-altitude circle is found, so the scale is
 //   the game's own.
@@ -39,11 +41,15 @@ static class HeliRangeCard
         MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD installed: weapon Helicopter Range line, radar tooltip lines, optics note, range tool circle");
     }
     static void Log(string m){if(Interlocked.Increment(ref logged)<=40)MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD "+m);}
+    // The last number in a card value ("200 - 2200 m" -> 2200; "1000 m" -> 1000). Test2 joined every digit ("2002200").
+    static readonly Regex LastNumber=new(@"\d+(?:\.\d+)?(?=\D*$)");
     static float Number(string text)
     {
-        var digits=new string((text??"").TakeWhile(c=>!char.IsLetter(c)).Where(char.IsDigit).ToArray());
-        return float.TryParse(digits,out float v)?v:0;
+        var m=LastNumber.Match(text??"");
+        return m.Success&&float.TryParse(m.Value,NumberStyles.Float,CultureInfo.InvariantCulture,out float v)?v:0;
     }
+    // The same text with its last number replaced, so "200 - 2200 m" keeps its minimum range and unit.
+    static string WithLast(string text,float value)=>LastNumber.Replace(text??"",$"{MathF.Round(value):0}",1);
     static bool CanHitHeli(Ammunitions a)=>a!=null&&(((long)a.TargetType)&8)!=0;
     public static void AmmoAfter(AmmoInfoExpansionPanel __instance,Ammunitions __1)
     {
@@ -63,9 +69,9 @@ static class HeliRangeCard
                 float shown=Number(item.ValueText?.text),raw=__1.LowAltRange>0?__1.LowAltRange:__1.GroundRange;
                 float scale=shown>0&&raw>0?shown/raw:2f;
                 var go=UnityEngine.Object.Instantiate(item.gameObject,item.transform.parent);
-                go.name=LineName;go.transform.SetSiblingIndex(item.transform.GetSiblingIndex()+1);go.SetActive(true);
+                go.name=LineName;go.transform.SetSiblingIndex(item.transform.GetSiblingIndex());go.SetActive(true);
                 var line=go.GetComponent<StatisticItem>();
-                line.TitleText.text="Helicopter Range";line.ValueText.text=$"{MathF.Round(heli*scale):0} m";
+                line.TitleText.text="Helicopter Range";line.ValueText.text=shown>0?WithLast(item.ValueText.text,heli*scale):$"{MathF.Round(heli*scale):0} m";
                 Log($"ammo line {__1.Name}: Helicopter Range {line.ValueText.text} (Low Alt. Range {item.ValueText?.text})");
                 return;
             }
@@ -101,14 +107,15 @@ static class HeliRangeCard
         {
             float g=0,l=0,hi=0;
             for(int i=0;i<__0.Sensors.Count;i++){var s=__0.Sensors[i];g=Math.Max(g,s.OpticsGround);l=Math.Max(l,s.OpticsLowAltitude);hi=Math.Max(hi,s.OpticsHighAltitude);}
-            if(!HeliRange.sensorOptics.TryGetValue((g,l,hi),out float heli)||heli==l||l<=0)return;
+            if(l<=0)return;
+            if(!HeliRange.sensorOptics.TryGetValue((g,l,hi),out float heli))heli=l;  // Lateralus 21 Nov: always show, also when equal to low optics
             var sprite=__instance._infocardConfig?.Optics;if(sprite==null)return;
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))
             {
-                if(item?.Icon?.sprite==null||item.Icon.sprite.Pointer!=sprite.Pointer||item.Text==null||item.Text.text.Contains("helicopters"))continue;
+                if(item?.Icon?.sprite==null||item.Icon.sprite.Pointer!=sprite.Pointer||item.Text==null||item.Text.text.Contains("Heli"))continue;
                 float shown=Number(item.Text.text);bool heliUnit=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Helicopters;
                 float scale=shown>0?shown/(heliUnit?l:g):2f;
-                item.Text.text+=$" (helicopters {MathF.Round(heli*scale):0} m)";
+                item.Text.text+=$"\n<size=75%>Heli {MathF.Round(heli*scale):0} m</size>";
             }
         }
         catch(Exception e){opticsBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: optics note off. "+e.Message);}
