@@ -44,3 +44,8 @@
 - 2026-11-21 01:1x PST, thread 1573418243715113213 (Osama: "lets do 4-5 seconds not flat 4" - Japan's tank specialty). DATA: hidden Blue Dragon Type 10 and Type 90 guns
   (MainGun 120 Type 10 TKG autoloader / Type 90 L44 autoloader) reload 4.0/4.0 -> 4.0/5.0 s; found by name; 4 checks. Cards stay hidden. Draft rule: Japanese tanks
   (Type 10, Type 90, Type 74 STB-2) = 4-5 s; Korean K2/K1A1/K1 = 5-6 s. Not seen in game.
+- 2026-11-21 01:12 PST, thread 1567745029781454889 (Osama: "I need this to start with all the 105 guns going to 5-6 second reload. Except ZTZ-100, that
+  becomes 4-5 seconds"; 4 s flat is reserved for Japan's Type 10/90/74). DATA: section 7 of apply_0_9_4_dev1.py (batch 231 checks). Weapons reload
+  (MagazineReloadTime): M68A2 / Stryker MGS 6-7 -> 5-6; ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light, VT-5, VT-5 Recon gun 4-4 -> 5-6; ZTL-11 6-7 -> 5-6; ZTL-191 and
+  ZTL-191 Recon 4-5 -> 5-6; ZTZ-100 prototype 105 mm 4-4 -> 4-5. Already 5-6: M60A1/M728, M8 AGS/Thunderbolt, M10 Booker, ZTZ-80/59D1. AC-130 M102 left out.
+  Not yet seen in game.

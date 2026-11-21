@@ -193,6 +193,22 @@ for _gn in ('MainGun 120 Type 10 TKG autoloader','MainGun 120 Type 90 L44 autolo
     g.put('WeaponsJson',_w[0],{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':5.0});ok((W[_w[0]]['MagazineReloadTimeMin'],W[_w[0]]['MagazineReloadTimeMax'])==(4.0,5.0),_gn+' 4-5 s')
     _bd[_gn]={'weapon':_w[0],'reload_s':[[4.0,4.0],[4.0,5.0]]}
 rec['blue_dragon_japan_reload']=_bd
+# ---------- 7. 105 mm tank guns: reload 5-6 s, ZTZ-100 4-5 s (Osama 21 Nov 2026 01:12 PST, thread 1567745029781454889: "I need this to start with all the
+# 105 guns going to 5-6 second reload. Except ZTZ-100, that becomes 4-5 seconds"; the flat 4 s is now reserved for Japan's Type 10/90/74). Weapons.
+# MagazineReloadTime Min/Max on the 105 mm main guns (Type 110, one round per load). Already 5-6 s: M68E1 (M60A1, M728), M35 (M8 AGS/Thunderbolt, M10
+# Booker), ZTZ-80/59D1 gun. The AC-130's M102 is an aircraft howitzer and is left out.
+_R105={24:('M68A2 105mm',(6.0,7.0),(5.0,6.0)),2009127:('105 mm high-pressure rifled gun',(4.0,4.0),(5.0,6.0)),2009665:('105 mm rifled gun',(6.0,7.0),(5.0,6.0)),
+       2011297:('105 mm high-pressure rifled gun',(4.0,5.0),(5.0,6.0)),2010191:('Prototype 105 mm gun',(4.0,4.0),(4.0,5.0))}
+_r=lambda w:(W[w].get('MagazineReloadTimeMin'),W[w].get('MagazineReloadTimeMax'))
+for w,(n,old,new) in _R105.items():
+    ok(W[w]['HUDName'].strip()==n and W[w].get('Type')==110 and W[w].get('MagazineSize')==1 and _r(w)==old,(w,n,'old reload',_r(w),old))
+    g.put('WeaponsJson',w,{'MagazineReloadTimeMin':new[0],'MagazineReloadTimeMax':new[1]})
+    ok(_r(w)==new,(w,'new reload',_r(w)))
+ok(all(_r(w)==(5.0,6.0) for w in (11,258,657,2010845)),'other 105 mm tank guns already 5-6 s')
+ok(_r(81)==(6.0,8.0),'AC-130 M102 unchanged')
+_zw={wa['WeaponId'] for wa in WA.values() if wa.get('UnitId')==968}
+ok(2010191 in _zw and U[968]['HUDName'].strip()=='ZTZ-100','ZTZ-100 (968) fires the prototype 105 mm gun')
+rec['reload_105mm']={str(w):{'name':n,'old':list(o),'new':list(nw)} for w,(n,o,nw) in _R105.items()}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
