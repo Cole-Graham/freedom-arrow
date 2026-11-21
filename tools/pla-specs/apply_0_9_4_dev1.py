@@ -197,7 +197,8 @@ rec['blue_dragon_japan_reload']=_bd
 # 105 guns going to 5-6 second reload. Except ZTZ-100, that becomes 4-5 seconds"; the flat 4 s is now reserved for Japan's Type 10/90/74). Weapons.
 # MagazineReloadTime Min/Max on the 105 mm main guns (Type 110, one round per load). Already 5-6 s: M68E1 (M60A1, M728), M35 (M8 AGS/Thunderbolt, M10
 # Booker), ZTZ-80/59D1 gun. The AC-130's M102 is an aircraft howitzer and is left out.
-_R105={24:('M68A2 105mm',(6.0,7.0),(5.0,6.0)),2009127:('105 mm high-pressure rifled gun',(4.0,4.0),(5.0,6.0)),2009665:('105 mm rifled gun',(6.0,7.0),(5.0,6.0)),
+# Stryker MGS (M68A2, 6-7 s) excluded (Osama 21 Nov 01:19 PST: "Stryker is not part of this change").
+_R105={2009127:('105 mm high-pressure rifled gun',(4.0,4.0),(5.0,6.0)),2009665:('105 mm rifled gun',(6.0,7.0),(5.0,6.0)),
        2011297:('105 mm high-pressure rifled gun',(4.0,5.0),(5.0,6.0)),2010191:('Prototype 105 mm gun',(4.0,4.0),(4.0,5.0))}
 _r=lambda w:(W[w].get('MagazineReloadTimeMin'),W[w].get('MagazineReloadTimeMax'))
 for w,(n,old,new) in _R105.items():
@@ -206,9 +207,19 @@ for w,(n,old,new) in _R105.items():
     ok(_r(w)==new,(w,'new reload',_r(w)))
 ok(all(_r(w)==(5.0,6.0) for w in (11,258,657,2010845)),'other 105 mm tank guns already 5-6 s')
 ok(_r(81)==(6.0,8.0),'AC-130 M102 unchanged')
+ok(_r(24)==(6.0,7.0),'Stryker MGS M68A2 stays 6-7 s (Osama 01:19: "Stryker is not part of this change")')
 _zw={wa['WeaponId'] for wa in WA.values() if wa.get('UnitId')==968}
 ok(2010191 in _zw and U[968]['HUDName'].strip()=='ZTZ-100','ZTZ-100 (968) fires the prototype 105 mm gun')
 rec['reload_105mm']={str(w):{'name':n,'old':list(o),'new':list(nw)} for w,(n,o,nw) in _R105.items()}
+# ---------- 8. ZTZ-100 front KE armour 750 -> 700 (Osama 21 Nov 2026 01:18 PST, thread 1567745029781454889: "ZTZ-100 to 700 front armor KE").
+# Its own armour row 2010183 (only unit 968); HEAT front 1050 and the other faces unchanged.
+_ZA=t['ArmorsJson'];_ZUA=[r for r in t['UnitArmorsJson'].values() if r.get('UnitId')==968]
+ok(len(_ZUA)==1 and _ZUA[0]['ArmorId']==2010183 and _ZA[2010183].get('KinArmorFront')==750,'ZTZ-100 armour row 2010183, KE front 750')
+ok([r['UnitId'] for r in t['UnitArmorsJson'].values() if r.get('ArmorId')==2010183]==[968],'row used only by the ZTZ-100')
+_zb={k:v for k,v in _ZA[2010183].items() if k!='KinArmorFront'}
+g.put('ArmorsJson',2010183,{'KinArmorFront':700})
+ok(_ZA[2010183]['KinArmorFront']==700 and {k:v for k,v in _ZA[2010183].items() if k!='KinArmorFront'}==_zb,'KE front 700, nothing else changed')
+rec['ztz100_ke_front']=[750,700]
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

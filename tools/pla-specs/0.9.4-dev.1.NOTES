@@ -49,3 +49,7 @@
   (MagazineReloadTime): M68A2 / Stryker MGS 6-7 -> 5-6; ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light, VT-5, VT-5 Recon gun 4-4 -> 5-6; ZTL-11 6-7 -> 5-6; ZTL-191 and
   ZTL-191 Recon 4-5 -> 5-6; ZTZ-100 prototype 105 mm 4-4 -> 4-5. Already 5-6: M60A1/M728, M8 AGS/Thunderbolt, M10 Booker, ZTZ-80/59D1. AC-130 M102 left out.
   Not yet seen in game.
+- 2026-11-21 01:18 PST, thread 1567745029781454889 (Osama: "ZTZ-100 to 700 front armor KE"). DATA: section 8 of apply_0_9_4_dev1.py (batch 234 checks; 233 after the Stryker removal).
+  ZTZ-100 (968) own armour row 2010183: KinArmorFront 750 -> 700. HEAT front 1050, sides 180/500, rear 100/100, top 80/100 unchanged. Not yet seen in game.
+- 2026-11-21 01:19 PST, thread 1567745029781454889 (Osama: "Stryker is not part of this change"). Section 7: Stryker MGS (M68A2, weapon 24) removed from the 105 mm
+  reload change and kept at 6-7 s; a check pins it. Batch 233 checks.
