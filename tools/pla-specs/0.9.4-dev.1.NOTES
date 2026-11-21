@@ -27,3 +27,5 @@
   as runtime-qa/icons/FA_CN_INF_{AIRBORNE_HELO,AIRBORNE_SOF,HJ12,HJ73,JIAO_LONG,MANPAD,MARINE_JUNGLE,MECH_INF,PAP,PF98,QJZ171,SCOUT_SNIPER}-Portrait.png +
   CardIcons.cs aliases; PortraitFileName on 34 cards (all names found in 0.9.3 data). NEEDS the runtime DLL rebuild (compiled clean on the deck, 20 China
   portraits embedded). Not yet seen in game: check the cards in the Arsenal after the build.
+- 2026-11-20 17:2x PST, thread 1567745029781454889 (Osama: "dual purpose rounds no, leave them at normal vanilal aim time"). Section 4 decided: SMAW-D HEDP,
+  C90-CR-AM, M72A7 HEDP, DZJ-08 and SPG-9M PG-9V keep the vanilla launcher aim time (1-2 s; SPG-9M 2-3 s). New check pins this (batch now 213 checks with the other threads' sections).

@@ -109,7 +109,7 @@ rec['china_infantry_armor_8']={'units':{str(u):_names[u] for u in _names},'armor
 # should get 0.2 second aim time only on their AT munition"; list approved 16:49 "Yes add it to the next build"). Launchers = Weapons.Type 62 (reloadable) and 63
 # (disposable) carried by deck infantry; AT munition = TargetType 45 (vehicles only, no infantry bit), all HEAT/tandem. Ammunitions.AimTimeMin/MaxOverride 0 -> 0.2
 # (the per-round fields vanilla uses for gun-launched ATGMs and direct-fire HEAT; the weapon's 1-2 s stays for HE, thermobaric, incendiary and smoke rounds).
-# Left out until decided: dual-purpose rounds (SMAW-D HEDP, C90-CR-AM, M72A7 HEDP, DZJ-08) and SPG-9M PG-9V. Every user of a changed round must be a launcher on an
+# Kept at vanilla aim (Osama 17:2x: "dual purpose rounds no, leave them at normal vanilal aim time"): SMAW-D HEDP, C90-CR-AM, M72A7 HEDP, DZJ-08, SPG-9M PG-9V. Every user of a changed round must be a launcher on an
 # infantry card (Carl Gustaf M3/M4 and RPG-7V2 rows on other cards share three rounds and get 0.2 s too), else the build stops.
 _AIM=0.2;_LT={62,63}
 _dinf={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values() if U.get(r['UnitId'],{}).get('Type')==2}
@@ -124,6 +124,8 @@ for i in _at:
 ok(all((A[i]['AimTimeMinOverride'],A[i]['AimTimeMaxOverride'])==(_AIM,_AIM) for i in _at),'20 AT rounds aim 0.2 s')
 _lr=[a for a in {wa['AmmunitionId'] for wa in WA.values() if wa.get('WeaponId') in _lw} if a not in _at]
 ok(all(not A[a].get('AimTimeMinOverride') for a in _lr),'other launcher rounds keep the weapon aim time')
+_DP={128:'84mm HEDP',593:'90mm dual purpose',2001500:'66mm HEDP',2012025:'DZJ-08 ammunition',105:'PG-9V'}
+ok(all(A[i]['HUDName']==n and i not in _at and not A[i].get('AimTimeMinOverride') and not A[i].get('AimTimeMaxOverride') for i,n in _DP.items()),'dual-purpose rounds and PG-9V keep vanilla aim')
 rec['launcher_at_aim_0_2']={'aim_s':_AIM,'rounds':{str(i):A[i]['HUDName'] for i in _at},'launchers':len(_lw)}
 # ---------- 5. China infantry cards from community art (Osama 20 Nov 2026 00:4x PST, thread 1572407822849810463: "Let's remove the broken arrow logo and use them
 # for unit cards and art"; held 00:5x "Don't replace the unit cards yet"; released 16:50 "yes add them" to the earlier name-match mapping of 357c2e52).
