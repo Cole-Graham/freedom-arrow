@@ -124,5 +124,9 @@ if m>=key('0.9.2-dev.8'):
 # through smoke (SmokeGroundFire.cs, ActualArrow's SmokeGroundPatch).
 if m>=key('0.9.4-dev.1'):
     if 'FREEDOM_ARROW_SMOKE_GROUND'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks FREEDOM_ARROW_SMOKE_GROUND')
+# From 0.9.4-dev.1 (Lateralus 21 Nov 2026: "queue up the fix but at 5 seconds before the match ends"): online, the host sends the FA winner
+# 5 s before time up (ModeControls.QueueScoreLimitEnding; its score_limit_queued log gains "timeEnd").
+if m>=key('0.9.4-dev.1'):
+    if b'timeEnd' not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the online early time-up end (timeEnd)')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

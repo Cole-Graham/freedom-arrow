@@ -193,7 +193,9 @@ public sealed class Ledger
     public bool TimeUp => Elapsed >= Duration;
     // At time up: a side at the score limit wins; otherwise the leader wins with at least TimeWinMarginPercent more points
     // than the other side (any lead over 0 points); else a draw (null).
-    public int? TimeWinner => !TimeUp ? null : ScoreLimitWinner ?? MarginWinner(Alpha, Bravo, Config.TimeWinMarginPercent);
+    public int? TimeWinner => !TimeUp ? null : CurrentWinner;
+    // The winner if time ran out now (online early end, ModeControls.QueueScoreLimitEnding).
+    public int? CurrentWinner => ScoreLimitWinner ?? MarginWinner(Alpha, Bravo, Config.TimeWinMarginPercent);
     public static int? MarginWinner(int alpha, int bravo, int percent) => alpha != bravo &&
         (long)Math.Max(alpha, bravo) * 100 >= (long)Math.Min(alpha, bravo) * (100 + percent) ? (alpha > bravo ? 0 : 1) : null;
     bool observed;

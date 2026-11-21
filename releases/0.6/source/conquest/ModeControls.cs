@@ -118,19 +118,25 @@ public sealed partial class Prototype
         return false;
     }
 
+    const double OnlineEarlyEndSeconds=5;
     static void QueueScoreLimitEnding()
     {
         if(terminalStarted||pendingEnding!=null||ledger==null||view==null)return;
         int side;
         // Online the server ends the match at time up without the FA ledger, so the margin winner is sent the same way as a
         // score-limit win. Offline, GetWinner(timeEnd) returns it (Winner in Mod.cs).
-        if(ledger.TimeUp){if(!view.Service._isOnline||ledger.TimeWinner is not int timeSide)return;side=timeSide;}
+        // Lateralus 21 Nov 2026 ("queue up the fix but at 5 seconds before the match ends"): the server ends the match at its own 45:00 and
+        // then decides by the map's native victory points. Sent at 45:00, our result lost that race by about 0.1 s (Highway 20 Nov, ledger
+        // 277-154, server gave the win to the 154 side). Online, the host now sends it 5 s before time up; the last scoring tick is 44:30.
+        bool online=view.Service._isOnline;
+        bool timeEnd=ledger.TimeUp||online&&ledger.Elapsed>=ledger.Duration-OnlineEarlyEndSeconds;
+        if(timeEnd){if(!online||ledger.CurrentWinner is not int timeSide)return;side=timeSide;}
         else if(config.Ending!="score_or_time"||ledger.ScoreLimitWinner is not int limitSide)return;
         else side=limitSide;
         if(view.Conquest==null)throw new InvalidOperationException("Score-limit dispatch requires audited ConquestMode");
         pendingEnding=new PendingEnding {View=view,Epoch=ledgerEpoch,Winner=(TeamSide)side,
             Alpha=ledger.Alpha,Bravo=ledger.Bravo,Elapsed=ledger.Elapsed,Synthetic=fixtureUsedThisMatch};
-        Log("score_limit_queued",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,ledger.ScoreLimit,timeUp=ledger.TimeUp,config.TimeWinMarginPercent,epoch=ledgerEpoch,synthetic=fixtureUsedThisMatch});
+        Log("score_limit_queued",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,ledger.ScoreLimit,timeUp=ledger.TimeUp,timeEnd,config.TimeWinMarginPercent,epoch=ledgerEpoch,synthetic=fixtureUsedThisMatch});
     }
     static void DispatchPendingEnding()
     {

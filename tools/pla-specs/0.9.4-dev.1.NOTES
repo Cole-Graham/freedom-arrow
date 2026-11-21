@@ -93,3 +93,9 @@
   compensate so their DPS is the same ... Also give them 9 thermobaric ammo"; Mech. Riflemen MAAWS: "line infantry so no"; other borderline teams: "we leave it"). DATA: section
   11b (batch 615 checks with the helicopter range section). Assaultmen SMAW (63): SMAW (61, own row) reload 6 -> 4 s; 84mm Thermobaric (41, own row) damage 4.0 -> 2.667 (same damage per second), rounds 6 -> 9
   (same total, 24). Anti-tank round 10 damage unchanged. Stress damage per round unchanged (42), so thermobaric stress per minute rises x1.5. Not seen in game.
+- 2026-11-21 13:5x PST, thread 1572962048705429598 (Lateralus: "I have seen it end at 300, queue up the fix but at 5 seconds before the match ends instead of 30").
+  RUNTIME (conquest code in FreedomArrow.Runtime.dll): online, ModeControls.QueueScoreLimitEnding sends the FA winner (score limit, else the 10% margin leader)
+  with SendEndGame once ledger.Elapsed >= Duration - 5 s, instead of at time up. Cause: the server ends at its own 45:00 and decides by the map's native victory
+  points; our 45:00 send lost by ~0.1 s (Highway 20 Nov, 277-154 shown as a loss). Last scoring tick stays 44:30. Offline unchanged. A lead under 10% still sends
+  nothing (FA draw), so the server's native result stands there. Ledger.CurrentWinner added. queued_checks requires "timeEnd" in the DLL. REBUILD THE RUNTIME DLL.
+  Compiles; not yet seen in a match.
