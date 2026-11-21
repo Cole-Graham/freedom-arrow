@@ -97,5 +97,5 @@
   RUNTIME (conquest code in FreedomArrow.Runtime.dll): online, ModeControls.QueueScoreLimitEnding sends the FA winner (score limit, else the 10% margin leader)
   with SendEndGame once ledger.Elapsed >= Duration - 5 s, instead of at time up. Cause: the server ends at its own 45:00 and decides by the map's native victory
   points; our 45:00 send lost by ~0.1 s (Highway 20 Nov, 277-154 shown as a loss). Last scoring tick stays 44:30. Offline unchanged. A lead under 10% still sends
-  nothing (FA draw), so the server's native result stands there. Ledger.CurrentWinner added. queued_checks requires "timeEnd" in the DLL. REBUILD THE RUNTIME DLL.
+  nothing (FA draw), so the server's native result stands there. Ledger.CurrentWinner added. Logs online_early_end; queued_checks requires that string in the DLL. REBUILD THE RUNTIME DLL.
   Compiles; not yet seen in a match.

@@ -136,6 +136,7 @@ public sealed partial class Prototype
         if(view.Conquest==null)throw new InvalidOperationException("Score-limit dispatch requires audited ConquestMode");
         pendingEnding=new PendingEnding {View=view,Epoch=ledgerEpoch,Winner=(TeamSide)side,
             Alpha=ledger.Alpha,Bravo=ledger.Bravo,Elapsed=ledger.Elapsed,Synthetic=fixtureUsedThisMatch};
+        if(timeEnd&&!ledger.TimeUp)Log("online_early_end",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,ledger.Duration,lead=OnlineEarlyEndSeconds});
         Log("score_limit_queued",new{winner=side,ledger.Alpha,ledger.Bravo,ledger.Elapsed,ledger.ScoreLimit,timeUp=ledger.TimeUp,timeEnd,config.TimeWinMarginPercent,epoch=ledgerEpoch,synthetic=fixtureUsedThisMatch});
     }
     static void DispatchPendingEnding()
