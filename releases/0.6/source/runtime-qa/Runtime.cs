@@ -170,6 +170,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_COVER_DAMAGE_FAILED: not installed. "+e.Message); }
         try { SpottingCap.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
+        try { HeliRange.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_RANGE_FAILED: not installed. "+e.Message); }
         try { CardStatFit.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_STAT_FIT_FAILED: not installed; vanilla wrapping. "+e.Message); }
         try { PlaneReturnCurve.Install(HarmonyInstance,Root); }
