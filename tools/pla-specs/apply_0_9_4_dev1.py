@@ -125,6 +125,39 @@ ok(all((A[i]['AimTimeMinOverride'],A[i]['AimTimeMaxOverride'])==(_AIM,_AIM) for 
 _lr=[a for a in {wa['AmmunitionId'] for wa in WA.values() if wa.get('WeaponId') in _lw} if a not in _at]
 ok(all(not A[a].get('AimTimeMinOverride') for a in _lr),'other launcher rounds keep the weapon aim time')
 rec['launcher_at_aim_0_2']={'aim_s':_AIM,'rounds':{str(i):A[i]['HUDName'] for i in _at},'launchers':len(_lw)}
+# ---------- 5. China infantry cards from community art (Osama 20 Nov 2026 00:4x PST, thread 1572407822849810463: "Let's remove the broken arrow logo and use them
+# for unit cards and art"; held 00:5x "Don't replace the unit cards yet"; released 16:50 "yes add them" to the earlier name-match mapping of 357c2e52).
+# 12 images, BROKEN ARROW mark removed (work/osama-art-20261120; PAP support-hand finger fixed), 816x549 with the vanilla bottom fade -> releases/0.6/source/
+# runtime-qa/icons/FA_CN_INF_<CARD>-Portrait.png, registered in CardIcons.cs (needs the runtime DLL rebuild). PortraitFileName only.
+_CARDS={
+ 'AIRBORNE_HELO':['Airborne 空降兵','Assault Raiders 突击队','Pathfinders 先遣队','Recon 侦察组'],
+ 'AIRBORNE_SOF':['Thunder Gods 雷神'],
+ 'HJ12':['HJ-12 Team'],
+ 'HJ73':['HJ-73D Team','HJ-8E Team'],
+ 'MANPAD':['QW-2 Team','Marine QW-2 Team','FN-6 Team','QW-12 Patrol 防空巡逻','AA Troopers 防空班','Air Defense Scouts 防空侦察'],
+ 'MARINE_JUNGLE':['Marines 陆战队','Marine HJ-8H Team'],
+ 'JIAO_LONG':['Sea Dragons 蛟龙','Marine Recon'],
+ 'MECH_INF':['Mech. Rifles 机步班','Armored Scouts 装甲侦察','Moto. Riflemen 摩步班','Infantry 步兵'],
+ 'PF98':['PF-98 Team','Tank Hunters 坦克杀手','AT Troopers 反坦克组'],
+ 'QJZ171':['QJZ-89 Team','Weapons Squad 火力班','QJY-201'],
+ 'SCOUT_SNIPER':['Snipers 狙击组','Armored Sniper Pair 狙击组'],
+ 'PAP':['PAP Snow Leopards 雪豹','Counter-Raid Team 反袭击队'],
+}
+_inspec={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values() if r}
+_cn=[i for i,u in U.items() if u and u.get('CountryId')==4 and u.get('Type')==2 and i in _inspec]
+_icons=SRC/'runtime-qa/icons';_cs=(SRC/'runtime-qa/CardIcons.cs').read_text()
+_done={}
+for _c,_names in _CARDS.items():
+    _p=f'FA_CN_INF_{_c}-Portrait'
+    ok((_icons/(_p+'.png')).is_file(),(_p,'icon file'))
+    for _x in ('','_BASIC','_HOVER'):ok(f'("{_p}{_x}","{_p}.png")' in _cs,(_p,_x,'CardIcons alias'))
+    for _n in _names:
+        _ids=[i for i in _cn if U[i]['HUDName']==_n];ok(_ids,(_n,'card exists'))
+        for _i in _ids:
+            ok(_i not in _done,(_i,'one card per unit'));_done[_i]=(_n,U[_i].get('PortraitFileName'),_p)
+            g.put('Units',_i,{'PortraitFileName':_p});ok(U[_i]['PortraitFileName']==_p,_i)
+ok(len(_done)==34,('34 cards (Snipers and QJZ-89 Team are two cards each)',len(_done)))
+rec['community_cards']={str(i):{'name':n,'before':b,'after':a} for i,(n,b,a) in sorted(_done.items())}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
