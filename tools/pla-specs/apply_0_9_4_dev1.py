@@ -164,6 +164,27 @@ for _c,_names in _CARDS.items():
             g.put('Units',_i,{'PortraitFileName':_p});ok(U[_i]['PortraitFileName']==_p,_i)
 ok(len(_done)==34,('34 cards (Snipers and QJZ-89 Team are two cards each)',len(_done)))
 rec['community_cards']={str(i):{'name':n,'before':b,'after':a} for i,(n,b,a) in sorted(_done.items())}
+# ---------- 6. Chinese community bug sheet (QQ "Freedom Arrow Bug反馈及意见收集表", Osama 20 Nov 2026 20:5x PST, thread 1573561286803980289: "bug fixes",
+# "this is the Chinese community's ongoing bug fix"). Only clear data errors; balance and content requests wait for Osama.
+# 6a. FA-005/FA-009 ZBD-05 shows two 30 mm cannons: turret 2018991 (mount 0 "no ATGM", only used by option 31062) is IsDefault True beside the real
+# mount 0 turret 2011194, so the unit gets both. Vanilla option turrets are IsDefault False (3,032 of 3,180 option turrets). 2018991 -> False.
+TT=t['TurretsJson'];TUn=t['TurretUnitsJson']
+ok(TT[2018991]['Name']=='PLA ZBD-05 mount 0 no ATGM' and TT[2018991]['IsDefault'] is True and TT[2011194]['IsDefault'] is True,'ZBD-05 two default mount-0 turrets')
+ok(sorted(r['TurretId'] for r in TUn.values() if r and r.get('UnitId')==1076)==[2011194,2011202,2018991],'ZBD-05 turret links')
+ok([o['Id'] for o in O.values() if o and any(o.get(f'Turret{i}Id')==2018991 for i in range(21))]==[31062],'only the No ATGM option uses 2018991')
+g.put('TurretsJson',2018991,{'IsDefault':False});ok(TT[2018991]['IsDefault'] is False,'no ATGM turret is option-only')
+_def=sorted(r['TurretId'] for r in TUn.values() if r and r.get('UnitId')==1076 and TT[r['TurretId']].get('IsDefault'));ok(_def==[2011194,2011202],('ZBD-05 defaults',_def))
+# 6b. FA-023 the guided 90 mm rocket is FS-90A, not FS-90 (display names only: 11 weapons, 1 round, 12 loadout names; stats unchanged).
+import re as _re
+_fs=_re.compile(r'FS-90(?!A)');_ren={}
+for _tab,_f in (('WeaponsJson',('HUDName',)),('AmmunitionsJson',('HUDName',)),('OptionsJson',('UIName',))):
+    for _i,_r in list(t[_tab].items()):
+        if not _r:continue
+        _d={k:_fs.sub('FS-90A',_r[k]) for k in _f if isinstance(_r.get(k),str) and _fs.search(_r[k])}
+        if _d:g.put(_tab,_i,_d);_ren[f'{_tab}:{_i}']=_d
+ok(len(_ren)==24,('FS-90 renames',len(_ren)))
+ok(not any(isinstance(r.get(k),str) and _fs.search(r[k]) for tb,k in (('WeaponsJson','HUDName'),('AmmunitionsJson','HUDName'),('OptionsJson','UIName')) for r in t[tb].values() if r),'no FS-90 left')
+rec['qq_bug_sheet']={'zbd05_option_turret_not_default':2018991,'fs90a_renames':_ren}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

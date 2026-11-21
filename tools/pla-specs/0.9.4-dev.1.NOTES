@@ -33,3 +33,7 @@
   HE x0.55) PARKED: _HE_NERF=False in apply_0_9_4_dev1.py, so it changes nothing in this batch; the code and its 6 checks stay for a later yes. Batch: 207 checks.
   Vehicle HE damage is the 0.9.3 value. Removed from the 0.9.4 patch-notes draft.
 - 2026-11-20 20:4x PST, thread 1573505321010331651 (Osama: "in the main menu we should say open alpha on the main menu", "in this same style" = the freedomarrow.app badge). Main-menu title layer: red OPEN ALPHA badge baked under the Freedom Arrow logo (menu-art/title.png 712x800 -> 712x960, logo pixels unchanged; source work/main-menu-20261118/open_alpha.py, Montserrat ExtraBold, #e2363e box, soft glow). menu-art.json logo h 400 -> 480, y 120 -> 80 (same top edge, same scale). Data files only; no code change. Check in game: badge under the logo on the Press any key screen.
+- 2026-11-20 21:2x PST, thread 1573561286803980289 (Osama: "bug fixes", QQ community bug sheet "Freedom Arrow Bug反馈及意见收集表"). DATA: section 6 of apply_0_9_4_dev1.py (batch now 214 checks).
+  6a FA-005/FA-009: ZBD-05 (1076) showed two 30 mm cannons because its "No ATGM" loadout turret 2018991 was IsDefault True beside mount 0 (2011194); now False,
+  so only option 31062 uses it (vanilla option-turret pattern). 6b FA-023: FS-90 -> FS-90A in display names only (11 weapons, 1 round, 12 loadout names);
+  FS-90A and FS-70A keep the same APKWS stats (Osama 0.9.2-dev.1). Not yet seen in game: check the ZBD-05 card shows one 30 mm and the No ATGM loadout still works.
