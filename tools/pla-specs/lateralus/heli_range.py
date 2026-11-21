@@ -11,6 +11,12 @@ The runtime (runtime-qa/HeliRange.cs) finds a unit's radar row by the values the
 same values must have the same helicopter multipliers (checked here).
 apply(t, g, ok) checks the old values first; contract(t) returns helicopter-range.json; check(merged) lists what is missing in a package."""
 FIX={59:(1.0,2.0)}  # ability row: (old, new) RadarLowAltOpticsModifier
+# Lateralus 21 Nov 2026 13:13 PST: "I want the low altitude optics changed back to vanilla value for long-range SAMs (4000m), but keep the 5,300m
+# for high altitude." Long-range SAM sensors: OpticsLowAltitude 2650 -> 2000 raw (vanilla, 4000 m on the card), OpticsHighAltitude stays 2650
+# (5300 m). Undoes the low half of 0.9.1-dev.2 (c3a0fd3b, 48f6d248). Sensor 8 (PAC-2/3/MSE, S-300PM/V4, S-350, S-400, Buk M2, IRIS-T SLM), 27
+# (Buk M3) and the China copies (HQ-6A, HQ-11, HQ-12, HQ-16, HQ-9A, HQ-9B, HQ-9C). Each is used only by long-range SAMs. NASAMS (sensors 7 and 36)
+# is already at vanilla low and is not changed.
+LR_LOW=(2650.0,2000.0)
 FILE='UserData/FreedomArrow/helicopter-range.json'
 AMMO={}  # ammo id: helicopter range (game units) that differs from its LowAltRange; others start at LowAltRange
 EDIT={}  # ability row: {'helicopterRangeMultiplier': x, 'helicopterOpticsMultiplier': y}; empty = start at today's values
@@ -22,6 +28,16 @@ def apply(t,g,ok):
     for i,(old,new) in FIX.items():
         a=AB[i];ok(a['IsRadar'] and a['RadarLowAltOpticsModifier']==old and a['RadarLowAltWeaponRangeModifier']==new,(i,'radar low optics',a['RadarLowAltOpticsModifier']))
         g.put('AbilitiesJson',i,{'RadarLowAltOpticsModifier':new})
+    lr={r['UnitId'] for r in t['UnitAbilitiesJson'].values() if r and (a:=AB.get(r['AbilityId'])) and a.get('IsRadar') and a.get('IsRadarStatic')
+        and a.get('RadarLowAltWeaponRangeModifier')==2.0 and r['UnitId'] in t['Units']}
+    SU,S=t['SensorUnitsJson'],t['SensorsJson']
+    sens={r['SensorId'] for r in SU.values() if r and r['UnitId'] in lr and S[r['SensorId']]['OpticsLowAltitude']==LR_LOW[0]}
+    ok(len(sens)==9 and {8,27}<=sens,('long-range SAM sensors at 2650 low',sorted(sens)))
+    for sid in sorted(sens):
+        users={r['UnitId'] for r in SU.values() if r and r['SensorId']==sid}
+        ok(users<=lr and S[sid]['OpticsHighAltitude']==2650.0,(sid,'long-range SAM sensor used only by long-range SAMs, high 2650',sorted(users-lr)))
+        g.put('SensorsJson',sid,{'OpticsLowAltitude':LR_LOW[1]})
+    ok(all(S[r['SensorId']]['OpticsLowAltitude']<=LR_LOW[1] for r in SU.values() if r and r['UnitId'] in lr),'every long-range SAM sensor low <= 2000 raw')
     rows=radar_rows(AB)
     ok(all(a['RadarLowAltOpticsModifier']==a['RadarLowAltWeaponRangeModifier'] for a in rows.values()),'every radar row: low optics = low range multiplier')
     A=t['AmmunitionsJson']
@@ -58,6 +74,8 @@ def contract(t):
             'ammo':ammo,'radar':radar,'sensors':sensors,'heliUnits':heli_units,'perfLogSeconds':60}
 def check(get):
     AB=get('AbilitiesJson');miss=[]
+    S=get('SensorsJson')
+    if S.get(8,{}).get('OpticsLowAltitude')!=LR_LOW[1]:miss.append(f'sensor 8 OpticsLowAltitude {LR_LOW[1]}')
     for i,(old,new) in FIX.items():
         if AB.get(i,{}).get('RadarLowAltOpticsModifier')!=new:miss.append(f'ability {i} RadarLowAltOpticsModifier {new}')
     return miss
