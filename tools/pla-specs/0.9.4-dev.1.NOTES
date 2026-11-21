@@ -107,3 +107,7 @@
   T-80U (ROK) 2, K1 4, Type 74 STB-2 4, Type 16 MCV 3, M48A5K 4 cards; placeholder prices). RUNTIME: icons/FA_US_BLUE_DRAGON.png (128 px white cut-out dragon traced from
   Osama's UT1491 reference, work/blue-dragon-spec-icon/trace3.py) seeded by ChinaUi.Addresses like the China spec icons. REBUILD THE RUNTIME DLL. Compiles (0 errors,
   icon embedded). Gates pass on a test package. Not seen in game: a 7th US spec in the deck popup/Arsenal row is untested; stand-in models (no Assets change).
+- China optics in line with US/RU (Lateralus 21 Nov 14:1x PST "queue up all the fixes"): apply section 14, data only. Ground optics raw:
+  ZTZ-59, ZTZ-80, PTL-02, ZTZ-96A 1450 -> 1300 and Z-9 1650 -> 1300 (own rows); ZTZ-59D1, VT-5 Recon, ZTQ-15 Recon, ZTL-191 Recon, ZBD-03 Recon, ZBD-86 Recon
+  2300 -> 1650 (relinked to vanilla row 1); ZBD-04A Recon and Z-20S 2800 -> 2300 (relinked to vanilla row 3). WZ1224 stays 1450. helicopter-range contract
+  recomputed after sections 13-14.

@@ -355,6 +355,33 @@ ok(SN[2019482]['Name']=='Optics Z-10K 3200' and SN[2019482]['OpticsGround']==320
 g.put('SensorsJson',2019482,{'Name':'Optics Z-10K 2800','OpticsGround':2800.0})
 ok(_caps.get(2800.0)==1200.0 and (SN[2019482]['OpticsLowAltitude'],SN[2019482]['OpticsHighAltitude'])==(1250.0,1000.0),'Z-10K 2800 has a spotting cap (1200 raw)')
 rec['z10k_optics']={'sensor':2019482,'ground':[3200.0,2800.0],'cap_raw':_caps[2800.0]}
+# ---------- 14. China optics in line with the US and Russia (Lateralus 21 Nov 2026 13:43 PST, thread 1568104480459722894: "Chinese tank optics are way too strong,
+# compare them to US and Russian tank optics and come up with a proposed fix. Also look at other chinese vehicles"; 14:1x "ok queue up all the fixes").
+# US/RU: older tanks 1300, modernised 1450, top end 1650; recon tanks one each (240+ pts); armed recon IFVs 1650-2300. Ground optics only, raw.
+# - Old/cheap line tanks 1450 -> 1300 (T-72A, T-62M, Sprut-SD level), own rows edited in place: ZTZ-59, ZTZ-80, PTL-02, ZTZ-96A. WZ1224 left at 1450 (open question).
+# - Recon tanks 2300 -> 1650 (T-90M Razvedchik level): ZTZ-59D1, VT-5 Recon, ZTQ-15 Recon, ZTL-191 Recon -> vanilla row 1 "Good Optics" (1650/1100/1000).
+# - ZBD-04A Recon 2800 -> 2300 (M3A3 CFV level) -> vanilla row 3 "Very Good Optics"; ZBD-03 Recon, ZBD-86 Recon 2300 -> 1650 -> row 1.
+# - Z-9 1650 -> 1300 (AS-365 Dauphin); Z-20S recon 2800 -> 2300 (US/RU recon utility helicopters) -> row 3.
+# Shared vanilla rows 3 and 5 are not edited: the China units are relinked (SensorUnits) to the existing vanilla row of the target tier.
+SN,SUt=t['SensorsJson'],t['SensorUnitsJson']
+_su=lambda u:[r for r in SUt.values() if r and r.get('UnitId')==u]
+_cn={}
+for _u,_n,_sid in ((1060,'ZTZ-59',2010815),(1061,'ZTZ-80',2010843),(1059,'PTL-02',2010787),(1082,'ZTZ-96A',2011351),(1107,'Z-9',2011637)):
+    _r=_su(_u);_to=1300.0
+    ok(U[_u]['HUDName'].strip()==_n and U[_u]['CountryId']==4 and len(_r)==1 and _r[0]['SensorId']==_sid and SN[_sid]['OpticsGround']==(1650.0 if _n=='Z-9' else 1450.0),(_n,'own sensor row'))
+    ok({r['UnitId'] for r in SUt.values() if r and r.get('SensorId')==_sid}=={_u},(_n,'sensor row used only by this unit'))
+    _cn[_n]={'sensor':_sid,'ground':[SN[_sid]['OpticsGround'],_to]};g.put('SensorsJson',_sid,{'OpticsGround':_to})
+for _u,_n,_old,_new in ((1260,'ZTZ-59D1',3,1),(1262,'VT-5 Recon',3,1),(1240,'ZTQ-15 Recon',3,1),(1263,'ZTL-191 Recon',3,1),(1255,'ZBD-04A Recon',5,3),
+                        (1257,'ZBD-03 Recon',3,1),(1258,'ZBD-86 Recon',3,1),(1243,'Z-20S',5,3)):
+    _r=_su(_u)
+    ok(U[_u]['HUDName'].strip()==_n and U[_u]['CountryId']==4 and len(_r)==1 and _r[0]['SensorId']==_old,(_n,'on vanilla sensor',_old))
+    g.put('SensorUnitsJson',_r[0]['Id'],{'SensorId':_new});_cn[_n]={'sensor':[_old,_new],'ground':[SN[_old]['OpticsGround'],SN[_new]['OpticsGround']]}
+ok((SN[1]['Name'],SN[1]['OpticsGround'],SN[3]['Name'],SN[3]['OpticsGround'],SN[5]['OpticsGround'])==('Good Optics',1650.0,'Very Good Optics',2300.0,2800.0),'vanilla tier rows unchanged')
+_caps=_caps if '_caps' in dir() else {float(k):v for k,v in json.loads(z.read('UserData/FreedomArrow/spotting-caps.json'))['OpticsGroundCaps'].items()}
+_SAv=t['SpecializationAvailabilitiesJson'];_av={r['UnitId'] for r in _SAv.values() if r}|{r['UnitId'] for r in t['TransportAvailabilitiesJson'].values() if r and r.get('SpecializationAvailabilityId') in _SAv}
+ok(all(SN[r['SensorId']]['OpticsGround'] in _caps for r in SUt.values() if r and r.get('UnitId') in _av and U.get(r['UnitId'],{}).get('CountryId')==4),'every China sensor in a deck has a spotting cap')
+rec['china_optics']=_cn
+_heli=_HR.contract(t)  # sensor groups after sections 13-14
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
