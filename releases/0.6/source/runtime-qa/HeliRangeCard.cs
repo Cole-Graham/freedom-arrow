@@ -7,6 +7,7 @@ using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppBrokenArrow.Client.Ecs.FogOfWar.VisualTools;
 using Il2Cpp;
 using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Arsenal.InfoCard;
+using Il2CppBrokenArrow.Client.Ecs.UI.BaseElements.Tooltip;
 using Il2CppBrokenArrow.DataBase.Models;
 using Il2CppDefaultEcs;
 using MelonLoader;
@@ -34,8 +35,7 @@ static class HeliRangeCard
     {
         if(HeliRange.ammoRange.Count==0&&HeliRange.radar.Count==0){MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD not installed: no helicopter data");return;}
         h.Patch(AccessTools.Method(typeof(AmmoInfoExpansionPanel),"Init"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoAfter)));
-        h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitAbilities"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)));
-        h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetTraitItem"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(TraitBefore)));
+        h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitAbilities"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AbilitiesAfter)));
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(StatsAfter)));
         try { h.Patch(AccessTools.Method(typeof(FOWToolScript),"SetWeaponRanges"),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(CirclesAfter))); }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: range tool circle not installed. "+e.Message);}
@@ -106,17 +106,30 @@ static class HeliRangeCard
         return HeliRange.radar.TryGetValue((a.RadarLowAltOpticsModifier,a.RadarHighAltOpticsModifier,a.RadarLowAltWeaponRangeModifier,
             a.RadarHighAltWeaponRangeModifier,a.RadarSwitchCooldown,a.IsRadarStatic),out m);
     }
-    public static void TraitBefore(ref string __1)
+    // Radar tooltip. SetUnitAbilities builds it with SetTraitItem inlined (0x55E048 onwards: no call to 0x55D4D0), so a SetTraitItem hook never
+    // ran (Lateralus 21 Nov, test3). The postfix edits the finished tooltip: "Helicopter Range: x N" above "Low Alt. Range: x N" for units with a
+    // helicopter-capable weapon, and "Helicopter Optics: x N" at the end. Shown for every radar unit, also when equal to the low-altitude value.
+    public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {
-        if(traitBroken||current==null||string.IsNullOrEmpty(__1))return;
+        if(traitBroken||__instance==null||__0==null||!RadarGroup(__0.ActiveAbilities,out var m))return;
         try
         {
-            string low=InfoCardLocalization.TextAmmoRangeLowAlt,radarTitle=InfoCardLocalization.TextAbilityRadar;
-            if(!((!string.IsNullOrEmpty(radarTitle)&&__1.Contains(radarTitle))||(!string.IsNullOrEmpty(low)&&__1.Contains(low))))return;
-            if(__1.Contains("Helicopter Optics")||!RadarGroup(current.ActiveAbilities,out var m))return;
-            string add=(HeliRange.heliUnits.Contains(current.Id)?$"\nHelicopter Range: x {m.range:0.##}":"")+$"\nHelicopter Optics: x {m.optics:0.##}";
-            __1+=add;
-            Log($"radar tooltip {current.HUDName}: +{add.Replace("\n"," | ")}");
+            string low=InfoCardLocalization.TextAmmoRangeLowAlt;if(string.IsNullOrEmpty(low))return;
+            bool found=false;
+            foreach(var tip in __instance.GetComponentsInChildren<UiTooltip>(true))
+            {
+                if(tip==null)continue;
+                var data=tip.Data;string text=data.TextLocKey;
+                if(string.IsNullOrEmpty(text)||text.Contains("Helicopter"))continue;
+                var lines=text.Split('\n').ToList();
+                int at=lines.FindIndex(x=>x.TrimStart().StartsWith(low)&&x.Contains(" x "));
+                if(at<0)continue;
+                if(HeliRange.heliUnits.Contains(__0.Id))lines.Insert(at,$"Helicopter Range: x {m.range:0.##}");
+                lines.Add($"Helicopter Optics: x {m.optics:0.##}");
+                data.TextLocKey=string.Join("\n",lines);tip.Data=data;found=true;
+                Log($"radar tooltip {__0.HUDName}: {data.TextLocKey.Replace("\n"," | ")}");
+            }
+            if(!found)Log($"radar tooltip {__0.HUDName}: no tooltip with a '{low}: x' line");
         }
         catch(Exception e){traitBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: radar tooltip lines off. "+e.Message);}
     }
