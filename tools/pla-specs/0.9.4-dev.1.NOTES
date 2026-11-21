@@ -78,3 +78,7 @@
   100/85 -> AMMO_RU_TANK_115_*), artillery by calibre, ATGM/SAM/AAM/ballistic/rockets to the closest vanilla type, MG/autocannon/AA/aircraft guns
   AMMO_BULLET_SHORT (vanilla convention). HUDIcon only; China-only rounds (HJ-12 also on the HJ-12 Team). row-tests no longer require FA_PLA_AMMO_ prefixes
   (not run by 0.9 builds). Map + scripts: work/ammo-icons-20261121. Not yet seen in game.
+- 2026-11-21 13:1x PST, thread 1572407822849810463 (Osama: "when people launch our game, we must turn music to the default 70%, people will be forced to listen
+  to our music"). RUNTIME (rebuild the runtime DLL): MusicVolumeOnLaunch.cs, postfix on SettingsService.Initialize -> ChangeSettings(VolumeMusic, 70,
+  applyInstantly) at every start (the game's own path: applies FMOD Volume_Music and saves the settings). Only VolumeMusic; the player can still change it
+  for the session. Compiles clean; not yet seen in game (check the log line FREEDOM_ARROW_MUSIC_ON_LAUNCH music slider X -> 70 and the Settings slider).
