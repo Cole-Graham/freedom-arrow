@@ -27,3 +27,6 @@
   Rangers RAWS (74), RPG-29 Vampyr (127) and Tank Hunters (1139) launchers reload 6 s again (10/min), and their weapon copies are gone. Assaultmen SMAW (63):
   SMAW reload 6 s, 84mm Thermobaric (41) damage 4.0, 6 rounds. Kept: Rangers MAAWS (410, the "M4 Carl Gustaf" loadout of Rangers RAWS, option 1848) reloads
   4 s (15/min), 505 on its own copy (other squads keep 6 s), 788 in place. Kept: Tank Hunters 6 men (separate request). Not seen in game.
+- 2026-11-21 15:50 PST, thread 1567745029781454889 (Osama: "we revert the MAAWS rof, all launcher ROF changes reverted"). DATA: section 11 of
+  apply_0_9_4_dev1.py (batch 821 checks). Rangers MAAWS (410) also goes back to 6 s (10/min); its copy of 505 is gone and 788 stays 6 s. No infantry
+  launcher reload changes are left in the batch (the 0.2 s anti-tank aim time of section 4 is not a reload change and stays). Tank Hunters 6 men stays.

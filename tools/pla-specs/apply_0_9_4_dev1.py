@@ -286,39 +286,14 @@ for i in sorted(_ar):
 ok(not any(A[wa['AmmunitionId']].get('HUDIcon') not in _vic for wa in WA.values() if wa and wa.get('UnitId') in _cnv and wa.get('AmmunitionId') in A),'every China vehicle round has a vanilla icon')
 ok(A[2010195]['HUDIcon']=='AMMO_US_TANK_120_AP' and A[2010197]['HUDIcon']=='AMMO_US_TANK_105_HE' and A[2010199]['HUDIcon']=='AMMO_US_TANK_120_HEAT','ZTZ-100 gun rows')
 rec['china_vehicle_ammo_icons']={str(i):{'name':A[i].get('HUDName'),'before':b,'after':n} for i,(b,n) in _ic.items()}
-# ---------- 11. Rangers MAAWS 15 rounds per minute; Tank Hunters 6 men (Osama 21 Nov 2026 13:16 PST, thread 1567745029781454889: "dedicate tank hunter
-# teams should have 15 RPM ... Tank hunters (which by the way should be 6 man)"; 13:2x "yes make sure line infantry get seperate weapons from fire support").
-# CUT BACK 21 Nov 2026 15:4x PST (Osama, same thread: "revert all the RPG 15 rof changes like SMAW and Tank hunters and others"; then "Only Rangers MAAWS M4
-# loadout keeps the 15 rof"). Rangers MAAWS (410) is the "M4 Carl Gustaf" loadout of Rangers RAWS (option 1848). It alone reloads in 4 s (15/min); its
-# launcher 505 is shared with other squads, so it gets its own copy and the others keep 6 s; 788 (MAAWS FST) is only on 410 and changes in place.
-# Rangers RAWS (74), RPG-29 Vampyr (127) and Tank Hunters (1139) go back to the 0.9.3 reload of 6 s (10/min); they had 4 s in 0.9.4-dev.1 (build 248).
+# ---------- 11. Tank Hunters 6 men (Osama 21 Nov 2026 13:16 PST, thread 1567745029781454889: "Tank hunters (which by the way should be 6 man)").
+# The 15-per-minute launcher reload of this section is REVERTED (Osama 21 Nov 2026 15:4x PST, same thread: "revert all the RPG 15 rof changes like SMAW and
+# Tank hunters and others"; 15:50 "we revert the MAAWS rof, all launcher ROF changes reverted"). Rangers RAWS (74), Rangers MAAWS (410), RPG-29 Vampyr (127)
+# and Tank Hunters (1139) had 4 s in 0.9.4-dev.1 (build 248); all go back to the 0.9.3 reload of 6 s (10/min) and their weapon copies are gone.
 SW=t['SquadWeaponsJson'];AR=t['ArmorsJson'];UA=t['UnitArmorsJson']
-ok(O[1848]['UIName']=='M4 Carl Gustaf' and O[1848]['ReplaceUnitId']==410,'Rangers MAAWS 410 = the M4 Carl Gustaf loadout (option 1848)')
-_TH={410:('Rangers MAAWS',(505,788))}
-_sw_users=lambda w:{r['UnitId'] for r in SW.values() if r.get('WeaponId')==w}|{m['UnitId'] for m in SM.values() if w in (m.get('PrimaryWeaponId'),m.get('SpecialWeaponId'))}|{r['UnitId'] for r in WA.values() if r.get('WeaponId')==w}
-_th={}
-for _u,(_n,_ws) in _TH.items():
-    ok(U[_u]['HUDName'].strip().startswith(_n),(_n,_u))
-    for _w in _ws:
-        ok(W[_w]['Type']==62 and W[_w]['MagazineSize']==1 and (W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0),(_n,_w,'reloadable launcher, 6 s'))
-        _others=_sw_users(_w)-{_u}
-        if _others:
-            _c=g.add('WeaponsJson',W[_w],{'Name':(W[_w].get('Name') or '')+' FA tank hunter','MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
-            for r in [r for r in SW.values() if r.get('UnitId')==_u and r.get('WeaponId')==_w]:g.put('SquadWeaponsJson',r['Id'],{'WeaponId':_c})
-            for r in [r for r in WA.values() if r.get('UnitId')==_u and r.get('WeaponId')==_w]:g.put('WeaponAmmunitionsJson',r['Id'],{'WeaponId':_c})
-            for m in [m for m in SM.values() if m.get('UnitId')==_u]:
-                for k in ('PrimaryWeaponId','SpecialWeaponId'):
-                    if m.get(k)==_w:g.put('SquadMembersJson',m['Id'],{k:_c})
-            ok(_u not in _sw_users(_w) and _sw_users(_c)=={_u},(_n,_w,'team moved to its own copy'))
-            ok(all((W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0) for _ in [0]),(_n,_w,'shared original stays 6 s for',sorted(_others)))
-            _th.setdefault(f'{_u} {_n}',[]).append({'weapon':_w,'copy':_c,'others_keep_10_per_min':sorted(U[o]['HUDName'].strip() for o in _others if U.get(o))})
-        else:
-            g.put('WeaponsJson',_w,{'MagazineReloadTimeMin':4.0,'MagazineReloadTimeMax':4.0})
-            _th.setdefault(f'{_u} {_n}',[]).append({'weapon':_w,'in_place':True})
-    _tw=[r['WeaponId'] for r in SW.values() if r.get('UnitId')==_u and W.get(r['WeaponId'],{}).get('Type')==62]
-    ok(_tw and all((W[w]['MagazineReloadTimeMin'],W[w]['MagazineReloadTimeMax'])==(4.0,4.0) for w in _tw),(_n,'every launcher 4 s',_tw))
-for _w in (202,787,172,2011919,2016259,61):
+for _w in (202,787,505,788,172,2011919,2016259,61):
     ok(W[_w]['Type']==62 and (W[_w]['MagazineReloadTimeMin'],W[_w]['MagazineReloadTimeMax'])==(6.0,6.0),(_w,W[_w]['HUDName'],'launcher reload stays 6 s (15/min reverted)'))
+ok(not any(w.get('MagazineReloadTimeMin')==4.0 and w.get('Type') in (62,63) and 'FA tank hunter' in (w.get('Name') or '') for w in W.values()),'no tank-hunter launcher copies')
 # Tank Hunters 1139: 8 -> 6 men. Two plain QBZ-191 riflemen out (newest first); the PF-98A gunner stays; armour 8Men (84) -> vanilla 6Men (82), same AV 6.
 _ms=[m for m in SM.values() if m.get('UnitId')==1139];_rf=[m for m in _ms if m.get('PrimaryWeaponId')==2003998 and not m.get('SpecialWeaponId')]
 ok(len(_ms)==8 and len(_rf)==7,('Tank Hunters 8 men, 7 riflemen',len(_ms),len(_rf)))
@@ -327,7 +302,6 @@ _ua=[r for r in UA.values() if r.get('UnitId')==1139];ok(len(_ua)==1 and _ua[0][
 g.put('UnitArmorsJson',_ua[0]['Id'],{'ArmorId':82})
 _ms=[m for m in SM.values() if m.get('UnitId')==1139]
 ok(len(_ms)==6 and sum(1 for m in _ms if m.get('SpecialWeaponId'))==1 and AR[82]['MaxHealthPoints']==30,'Tank Hunters 6 men, 1 PF-98A, 30 HP')
-rec['rangers_maaws_15_per_min']={'reload_s':[6.0,4.0],'teams':_th,'others_reverted':[74,127,1139,63]}
 rec['tank_hunters_6_men']={'men':[8,6],'armor':[84,82]}
 # ---------- 12. Helicopter range and optics (Lateralus 21 Nov 2026, thread 1568104480459722894; proposal in the Lateralus 0.9 Changelog, "Helicopter range"
 # tab; tested in 0.9.4-dev.1-test1..test4 from codex/batch/lateralus/heli-range; 13:2x PST "queue up all of the proposal for the next 0.9.4 dev build").
@@ -337,7 +311,7 @@ import heli_range as _HR
 _HR.apply(t,g,ok);_heli=_HR.contract(t)
 ok(len(_heli['radar'])>0 and not _HR.check(lambda tab:t[tab]),'helicopter range contract and radar row 59')
 rec['heli_range']={'radar_low_optics':{str(k):list(v) for k,v in _HR.FIX.items()},'radar_groups':len(_heli['radar']),'ammo':len(_heli['ammo'])}
-# ---------- 11b. Assaultmen SMAW 4 s reload, thermobaric 2.667 damage and 9 rounds: REVERTED 21 Nov 2026 15:4x PST (Osama: "revert all the RPG 15 rof
+# ---------- 11b. Assaultmen SMAW 4 s reload, thermobaric 2.667 damage and 9 rounds: REVERTED 21 Nov 2026 15:4x PST (all launcher ROF changes reverted) (Osama: "revert all the RPG 15 rof
 # changes like SMAW and Tank hunters and others"). The 9 rounds and lower damage only kept the total and per-second damage the same with the faster reload, so
 # all three go back to 0.9.3: reload 6 s, thermobaric 4.0 damage, 6 rounds (shipped changed in 0.9.4-dev.1, build 248).
 _tbwa=[r for r in WA.values() if r.get('AmmunitionId')==41]
