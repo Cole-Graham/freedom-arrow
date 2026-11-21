@@ -62,3 +62,7 @@
   K2/Type 10 Good, Type 90/K1A1/T-80U (ROK)/Type 16 Medium Plus, K1/Type 74 Medium (Type 10/90 were Very Good). Smoke = existing 'Smoke x1 NoModel Default'.
   Gates on a constants-only test package: audit_mp_equipment, check_slot_weapons, audit_swap_prices, check_mount_weapons, check_squad_hp, check_infantry_armor,
   check_field_types pass. Not seen in game.
+- 2026-11-21 01:2x PST, thread 1573418243715113213 (Osama: "we have the M48 also for Korea, add it to our models list and build this out for our tank tab"). DATA: blue_dragon_tanks.py
+  adds HIDDEN "M48A5K" = M60A1 base configuration without options (turret 12 + M85 cupola, M68 5-6 s, M60A1 tracks 50/45/15), KE 250/100/60/60, HEAT 300/150/60/60, HP 14,
+  K270 350/300 x20 + KM456A2 HEAT 500 x20, Medium optics, smoke, 50 pts (placeholder). Model: cgmodel 896549 (seller 看场子的, ¥350 game licence, not bought), added to the
+  master model sheet Korea tab; M60A1 model as stand-in. 5 more checks (batch 281); same data gates pass on a test package. Not seen in game.

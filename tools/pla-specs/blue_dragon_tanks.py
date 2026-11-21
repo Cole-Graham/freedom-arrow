@@ -109,6 +109,11 @@ def apply(t, g, ok, rec):
          turrets=[(436, {}, False, True), (440, {}, False, False), (441, {}, False, False)], ammo=[(266, k276, 16, 0), (266, k277, 24, 1)], mg_rows=tua_mg)
     card('K1', 2, 95, sensor=MEDIUM, armour=(2000397, kv(500, 120, 100, 60, 650, 200, 100, 100)), mob=(1, {'MaxSpeedRoad': 65.0, 'MaxCrossCountrySpeed': 50.0}),
          turrets=tua_turrets(11), ammo=[(11, k270, 20, 0), (11, km456, 20, 1)], mg_rows=tua_mg)
+    # M48A5K (Osama 21 Nov 01:2x: "we have the M48 also for Korea ... build this out for our tank tab"; model cgmodel 896549, not bought).
+    # M60A1 base configuration (turret 12 + M85 cupola 110, M68 5-6 s, M60A1 tracks 50/45/15) without its options; thinner cast armour, no ERA.
+    ok(U[14]['HUDName'] == 'M60A1' and [r['TurretId'] for r in rows('TurretUnitsJson', UnitId=14)] == [12, 110] and TJ[12]['IsDefault'], 'M60A1 parent turrets')
+    card('M48A5K', 14, 50, sensor=MEDIUM, armour=(2000455, kv(250, 100, 60, 60, 300, 150, 60, 60)), mob=(9, {}),
+         turrets=[(12, {}, False, True), (110, {}, False, False)], ammo=[(11, k270, 20, 0), (11, km456, 20, 1)], mg_rows=[(83, 19, 120, 0), (27, 27, 800, 0)])
     card('Type 74 STB-2', 2, 65, sensor=MEDIUM, armour=(2000397, kv(250, 100, 60, 60, 400, 250, 60, 80)), mob=(9, {}),
          turrets=tua_turrets(stbgun), ammo=[(stbgun, t93, 20, 0), (stbgun, t91, 20, 1)], mg_rows=tua_mg)
     # T-80U (ROK): South Korea received T-80U/UK from Russia in the 1990s. Russian T-80U obr. 90 configuration without options, US side.
