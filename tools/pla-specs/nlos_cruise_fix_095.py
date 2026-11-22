@@ -16,7 +16,8 @@ edge of the map").
   they reach targets without line of sight. LaserGuided is back to True on all four (as in 0.9.4); only the HJ-10 launch fixes stay. The
   off-map flight after lasing is still open: NlosTrait traces these four rounds (FREEDOM_ARROW_NLOS_TRACE) to show where they aim.
 - dev.4 still no HJ-10 launch: 7,311 WeaponForceFire (fire at a point) calls; its round TargetType 36 lacks Ground (1). Now 37, as the CTL-181.
-- dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius 0.1 on the three top-attack rounds -> roof hits.
+- dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius on the three top-attack rounds -> roof hits
+  (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -50,6 +51,9 @@ def apply(t, g, ok, rec):
     # splash part only reaches units within 0.1 m of the struck one. CTL-181 is not top-attack (as in 0.9.3) and stays 0.
     TOP = (2009623, 2009651, 2018448)
     ok(all(A[i].get('IsTopArmorArmorAttack') is True and not A[i].get('OverpressureRadius') for i in TOP) and A[2018321].get('IsTopArmorArmorAttack') is False, 'top-attack NLOS rounds before')
-    for i in TOP: g.put('AmmunitionsJson', i, {'OverpressureRadius': 0.1})
-    ok(all(A[i]['OverpressureRadius'] == 0.1 for i in TOP), 'top-attack NLOS rounds strike the roof on a direct hit')
+    # dev.9 (Osama 22 Nov 00:4x "you can maybe make it a bit bigger for leeway?", "especially for the HJ-10 that should have big leeway"): the
+    # struck unit gets the roof at any radius above 0; a near miss gives units within OverpressureRadius - unit radius a roof-armor splash (DealAOEDamage).
+    OP = {2009623: 5.0, 2009651: 2.0, 2018448: 2.0}
+    for i in TOP: g.put('AmmunitionsJson', i, {'OverpressureRadius': OP[i]})
+    ok(all(A[i]['OverpressureRadius'] == OP[i] for i in TOP), 'top-attack NLOS rounds strike the roof on a direct hit; near-miss leeway')
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
