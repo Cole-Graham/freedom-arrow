@@ -30,13 +30,5 @@
 - 2026-11-21 15:50 PST, thread 1567745029781454889 (Osama: "we revert the MAAWS rof, all launcher ROF changes reverted"). DATA: section 11 of
   apply_0_9_4_dev1.py (batch 821 checks). Rangers MAAWS (410) also goes back to 6 s (10/min); its copy of 505 is gone and 788 stays 6 s. No infantry
   launcher reload changes are left in the batch (the 0.2 s anti-tank aim time of section 4 is not a reload change and stays). Tank Hunters 6 men stays.
-- 2026-11-21 16:1x PST, thread 1572407822849810463 (Osama: "add variants of all the units we have multiple textures for as a paint option", "for our Chinese
-  and new models, remove the default skins", "Armory quality", "do it for all the models we have packs now", "add it in this one"). ASSETS + FAModels 0.3.36:
-  PaintSchemes.cs. Pack colour sets (plain / desert / desert camo / mix / yellow / green / digital) for 31 units (PLZ-05, PLZ-45A4/70/83/85/89, PCL-09,
-  PLL-09, PGZ-88, PGZ-09, PGL-625, PTL-02, ZTL-11, ZTL-191 (+Recon), ZTZ-96/96A, ZBL-09/08, Z-21 (+Recon), DF-21/21D, DF-31A, AFT-10/HJ-10, HQ-17/17A,
-  HQ-7/7B, LY-1) as <texture>@<Scheme>.fat at the default texture's exact size/mips (BC7), + paint-schemes.json + paint/ button swatches.
-  Arsenal paint menu on those units = Default + pack schemes (donor vanilla skins removed); choice is LOCAL (UserData/FAModels-paint-choices.json),
-  never in the deck or sent to the server; shows in the Arsenal and the player's battles. BUILD: --famodels <FAModels.dll built from
-  experimental-model-loader> and the 307 --asset lines of work/paint-variants-20261121/asset-args.txt (files under work/, not in git: purchased-pack
-  textures). New Assets version (+360 MB; launcher per-file update). Pipeline: work/paint-variants-20261121 (build_variants.py, to_fat.py strict match
-  err<=2, stage.py). Not yet seen in game: check the paint menu on PLZ-05 and a scheme in Skirmish. Navy sets (KJ-500, Z-8L, Z-9) not done yet.
+- 2026-11-21 16:1x PST, thread 1572407822849810463: paint schemes (FAModels 0.3.36) were NOT in build 249 (Assets stayed 0.2.48);
+  moved to 0.9.4-dev.3.NOTES (Osama 16:48 "load to the next build please").
