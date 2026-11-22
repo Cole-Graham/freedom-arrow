@@ -107,6 +107,10 @@ def apply(t, g, ok, rec):
     ok(len(bp) == 1 and bp[0]['UIName'] == 'Custom_Slot_Protection_system', 'Bradley protection slot')
     pm = g.add('ModificationsJson', bp[0], {'UnitId': uid, 'Name': 'PLA ZBD-100 protection', 'Order': 1})
     bo = {o['UIName']: o for o in rows('OptionsJson', ModificationId=bp[0]['Id'])}
+    # option abilities need a (unit, ability) UnitAbilities link for multiplayer (audit_mp_equipment.py; the Bradley links 88 the same way); the
+    # CH-901 swap row gets one too, since it is the unit that spawns with that loadout
+    for u in units.values():
+        g.add('UnitAbilitiesJson', tpl_ua, {'UnitId': u, 'AbilityId': APS})
     for n, (src, ui, cost, ab) in enumerate((('Custom_Option_None', 'Custom_Option_None', 0, 0), ('Custom_Option_IronFist_APS', 'GL-5 APS', 40, APS))):
         g.add('OptionsJson', bo[src], {'ModificationId': pm, 'Name': 'PLA ZBD-100 protection ' + ('APS' if ab else 'none'), 'UIName': ui, 'Order': n,
                                        'Cost': cost, 'Turret0Id': 0, 'Ability1Id': ab, 'Ability2Id': 0, 'Ability3Id': 0, 'ReplaceUnitId': 0})
@@ -143,9 +147,10 @@ def apply(t, g, ok, rec):
     ok(all(U[o['ReplaceUnitId']]['Cost'] == U[uid]['Cost'] + o['Cost'] for o in opts), 'swap rows cost = 80 + option (audit_swap_prices rule)')
     for key, u in units.items():
         tu = rows('TurretUnitsJson', UnitId=u)
-        ok(len(tu) == 1 and len(rows('UnitAbilitiesJson', UnitId=u)) == 1 and not rows('ModificationsJson', UnitId=u) or u == uid, (key, 'one turret, one default ability'))
+        ok(len(tu) == 1 and [AB[r['AbilityId']]['IsDefault'] for r in rows('UnitAbilitiesJson', UnitId=u)] == [True, False] and not rows('ModificationsJson', UnitId=u) or u == uid, (key, 'one turret, one default ability'))
         ok({w['WeaponId'] for w in rows('TurretWeaponsJson', TurretId=tu[0]['TurretId'])} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=u)}, (key, 'mount weapons == ammo weapons'))
         abr = AB[rows('UnitAbilitiesJson', UnitId=u)[0]['AbilityId']]
+        ok(rows('UnitAbilitiesJson', UnitId=u)[1]['AbilityId'] == APS, (key, 'APS option ability linked'))
         ok(abr['IsDefault'] and abr['IsSmoke'] and abr['IsLaserDesignator'] and not abr['IsAPS'], (key, 'smoke + laser, APS only from the protection slot'))
     ok(W[chl]['ModelFileName'] is None and all(W[chl][k] == W[CHW][k] for k in W[CHW] if k not in ('Id', 'Name', 'ModelFileName')), 'vehicle CH-901 launcher = Blood Wolves launcher without the Javelin model')
     ok(len(rows('TransportAvailabilitiesJson', UnitId=uid)) == len(fit) > 0, ('transport cards', fit, 'too big', big))
