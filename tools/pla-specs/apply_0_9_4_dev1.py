@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.4-dev.2';PREV='0.9.3'
+V='0.9.4-dev.3';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/local-093r242/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -202,6 +202,10 @@ rec['blue_dragon_japan_reload']=_bd
 import blue_dragon_tanks;blue_dragon_tanks.apply(t,g,ok,rec)
 # Blue Dragon spec 23 'Blue Dragon (Testing Preview)' with those 9 cards (Osama 21 Nov 14:0x: "we can add the blue dragons spec in the next build").
 blue_dragon_tanks.add_spec(t,g,ok,rec)
+# Blue Dragon 0.9.4-dev.2 items (Osama 21 Nov 2026 14:5x PST, thread 1573418243715113213): K2 front HEAT 1100 -> 1075 and the Type 74 (G) hand-loaded card.
+# They were written as a separate apply_0_9_4_dev2.py over the dev.1 package, which no build ran (not in build 249). Folded in here for 0.9.4-dev.3
+# (Osama 21 Nov 18:08 "combine all the threads today and build the final build"); apply_0_9_4_dev2.py is retired.
+import blue_dragon_dev2;blue_dragon_dev2.apply(t,g,ok,rec)
 # ---------- 7. 105 mm tank guns: reload 5-6 s, ZTZ-100 4-5 s (Osama 21 Nov 2026 01:12 PST, thread 1567745029781454889: "I need this to start with all the
 # 105 guns going to 5-6 second reload. Except ZTZ-100, that becomes 4-5 seconds"; the flat 4 s is now reserved for Japan's Type 10/90/74). Weapons.
 # MagazineReloadTime Min/Max on the 105 mm main guns (Type 110, one round per load). Already 5-6 s: M68E1 (M60A1, M728), M35 (M8 AGS/Thunderbolt, M10

@@ -2,6 +2,7 @@
 Batch only: build when Osama or Lateralus say the batch is ready. Other threads: add your sections before the check-mode exit, keep the checks.
 """
 import argparse,hashlib,json,sys,zipfile
+raise SystemExit("RETIRED 21 Nov 2026: blue_dragon_dev2.apply now runs inside apply_0_9_4_dev1.py (the one cumulative 0.9.4 batch over 0.9.3). Run that instead.")
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
