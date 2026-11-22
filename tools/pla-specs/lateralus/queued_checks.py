@@ -152,5 +152,18 @@ if m>=key('0.9.4-dev.1'):
                 bad.append(f'{f}: native War Goals can still award victory points {q.get("goal1")}/{q.get("goal2")}/{q.get("goal3")} destruction {q.get("isDestructionEnabled")}')
     if _modes==0:bad.append('no setConquestMode found in the packaged maps')
     if 'result_level'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the result-screen level hook (result_level)')
+# From 0.9.4-dev.5 (Osama 21 Nov 2026 19:08-19:51 PST, thread 1573561286803980289, "you can push this into the build"): infantry cover and damage.
+# Buildings take 30 % (game-config BuildingDamageFloor 0.3); tank-gun, autocannon and HMG anti-infantry rounds x0.8, tank HEAT = HE, Ignore Cover 0
+# (cover_damage_094.py); SPAAG main guns keep their values; the BMOP Toros fires a cut copy of 57x348mm HE (491 stays 4.3 for the Ural ZU-23).
+if m>=key('0.9.4-dev.5'):
+    import cover_damage_094 as CD
+    gc=json.loads(z.read('UserData/FreedomArrow/game-config.json'))
+    if (gc.get('BuildingDamageFloor'),gc.get('BuildingDamagePerSoldier'),gc.get('ForestDamageTaken'))!=(0.3,0,0.55):bad.append(f"game-config buildings/woods {gc.get('BuildingDamageFloor')}/{gc.get('BuildingDamagePerSoldier')}/{gc.get('ForestDamageTaken')} (want 0.3/0/0.55)")
+    Am=merged('AmmunitionsJson.json','ammunitions.json');WAm=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
+    for i,(c,n,b,a) in list(CD.DAMAGE.items())+list(CD.HEAT.items()):
+        if i!=CD.SHARED and Am.get(i,{}).get('Damage')!=a:bad.append(f'ammo {i} {n} Damage {Am.get(i,{}).get("Damage")} (want {a})')
+    bad+=[f'ammo {i} {n} IgnoreCover {Am.get(i,{}).get("IgnoreCover")} (want 0)' for i,(n,b) in CD.IGNORE_COVER.items() if i!=CD.SHARED and Am.get(i,{}).get('IgnoreCover')]
+    _t=[r['AmmunitionId'] for r in WAm.values() if r and r.get('UnitId')==CD.SHARED_CUT and Am.get(r['AmmunitionId'],{}).get('HUDName')==Am[CD.SHARED].get('HUDName') and Am[r['AmmunitionId']].get('Damage')!=2.9]
+    if (Am[CD.SHARED].get('Damage'),Am[CD.SHARED].get('IgnoreCover'))!=(4.3,0.25) or len(_t)!=1 or _t[0]==CD.SHARED or (Am[_t[0]].get('Damage'),Am[_t[0]].get('IgnoreCover'))!=(3.4,0):bad.append(f'57x348mm HE: Ural 491 must stay 4.3/0.25 and the Toros fire a 3.4/0 copy ({_t})')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

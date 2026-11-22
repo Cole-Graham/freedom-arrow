@@ -26,3 +26,11 @@
   Arsenal-only: ShowInHangar/ContentMembership also drive the Arsenal and DLC ownership). Compiled clean on the deck. Not seen in game: check the
   New deck popup (US) has no Blue Dragon button and the Arsenal still shows the spec and its 10 cards; log line FREEDOM_ARROW_ARSENAL_ONLY_SPECS.
   Decks already made with spec 23 are not removed.
+- 2026-11-21 19:51 PST, thread 1573561286803980289 "bug fixes" (Osama 19:08-19:43 decisions, then "you can push this into the build"). Infantry cover and damage.
+  DATA: section 22 -> cover_damage_094.py (batch 2222 checks). Tank guns (110), autocannons (114), HMGs (28): 79 anti-infantry rounds x0.8 (40 tank HE/HESH
+  in 0.5 steps, 17 autocannon in 0.2 steps incl. JRVG-1 76 mm 8 -> 6.4, 22 HMG in 0.1 steps on every unit incl. SPAAG HMGs and heli door guns); 26 tank
+  HEAT = same gun's HE after the cut (125 mm 11 -> 10.5, US 120 mm -> 9.5, 105 M68 -> 9, no-HE guns take same-calibre HE); Ignore Cover -> 0 on 66 rounds.
+  SPAAG main guns unchanged (Derivatsiya 211, M6 Linebacker 27, Unimog 538, Ural ZU-23 222); 57x348mm HE 491 stays with the Ural, BMOP Toros (450) gets a
+  new cut copy (3.4 / IC 0) with 491's helicopter-range entry. Heli rotary cannons (GAU-19B, YakB) untouched. CONFIG: game-config.json
+  BuildingDamageFloor 0.18 -> 0.3 (buildings take 30 %), woods 0.55 unchanged. queued_checks.py checks all of it from 0.9.4-dev.5. Side effect
+  (calculated): 120/105/115 mm HEAT no longer one-shots 10 HP vehicles. Not seen in game. Doc: Balance notes 1if0iWzQ, cover proposal section.

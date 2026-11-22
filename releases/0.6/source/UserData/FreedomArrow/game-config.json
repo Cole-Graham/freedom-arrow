@@ -1,7 +1,7 @@
 {
   "DefaultPlayerMoney": 1500,
   "ForestDamageTaken": 0.55,
-  "BuildingDamageFloor": 0.18,
+  "BuildingDamageFloor": 0.3,
   "BuildingDamagePerSoldier": 0,
   "MinorMobilityMultiplier": 0.4,
   "ShockedMoveSpeed": 0.7,

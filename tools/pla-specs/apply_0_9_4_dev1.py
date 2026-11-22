@@ -51,6 +51,7 @@ rec['spetsnaz_alpha_standoff_rpg30']={'unit':354,'option':1511,'carriers':[4,6],
 # planes, MG/AGL/AA weapons, artillery) gets a vehicle copy so the other users keep their damage.
 # PARKED, not in the batch (Osama 20 Nov 2026 17:24 PST: "we are not pushing the tank and autocannon HE nerfs right? that's just a proposal?").
 # Set _HE_NERF=True only when Osama or Lateralus approve it for a build.
+# Superseded 21 Nov 2026 19:51 PST by section 22 (cover_damage_094.py, x0.8 with Ignore Cover 0): leave _HE_NERF False.
 _HE_NERF=False
 A=t['AmmunitionsJson']
 if _HE_NERF:
@@ -528,6 +529,10 @@ import heli_launchers_094;heli_launchers_094.apply(t,g,ok,rec)
 # ---------- 21. Z-19 family and armed Z-9WAs on the AH-1W SuperCobra stand-in (Osama 21 Nov 2026 19:3x PST, thread 1567745029781454889: "Z-19 should
 # just use the Cobra as its standin", "Z-9 and Z-19 that way we have more pylons, but just don't change the stats"). See donor_cobra_094.py.
 import donor_cobra_094;donor_cobra_094.apply(t,g,ok,rec)
+# ---------- 22. Infantry cover and damage (Osama 21 Nov 2026 19:08-19:43 PST, thread 1573561286803980289, "you can push this into the build" 19:51): tank
+# guns, autocannons and HMGs x0.8 on anti-infantry rounds (0.5 / 0.2 / 0.1 steps), Ignore Cover 0, tank HEAT = HE, SPAAG main guns kept except JRVG-1.
+# Buildings 30 % = game-config.json BuildingDamageFloor 0.3. See cover_damage_094.py and the Balance notes Doc 1if0iWzQ.
+import cover_damage_094;cover_damage_094.apply(t,g,ok,rec,_heli)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
