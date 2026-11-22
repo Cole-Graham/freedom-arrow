@@ -37,15 +37,16 @@ def apply(t, g, ok, rec):
     tm = rows('ModificationsJson', Id=WING_LOONG_LOADOUT)[0]
     mod = g.add('ModificationsJson', tm, {'UnitId': AR, 'Name': 'PLA loadout AR-2000', 'Order': 0})
     to = rows('OptionsJson', ModificationId=WING_LOONG_LOADOUT, IsDefault=True)[0]
-    slots = {f'Turret{i}Id': None for i in range(21)}
+    # 0 = "no change" in every id / override field, as in vanilla options (None fails check_field_types; build 285 first try).
+    slots = {f'Turret{i}Id': 0 for i in range(21)}
     slots.update(Turret0Id=PYLON, Turret1Id=PYLON)
     opt = g.add('OptionsJson', to, {'ModificationId': mod, 'Name': 'PLA loadout AR-2000 0', 'UIName': 'Anti-armor (AKD-11)', 'Order': 0, 'IsDefault': True,
-                                    'Cost': 0, 'ReplaceUnitId': None, 'ReplaceUnitName': None, 'MobilityId': None, 'ArmorId': None, 'MainSensorId': None,
-                                    'ExtraSensorId': None, 'StealthOverride': None, 'Ability1Id': None, 'Ability2Id': None, 'Ability3Id': None, **slots})
+                                    'Cost': 0, 'ReplaceUnitId': 0, 'ReplaceUnitName': None, 'MobilityId': 0, 'ArmorId': 0, 'MainSensorId': 0,
+                                    'ExtraSensorId': 0, 'StealthOverride': 0.0, 'Ability1Id': 0, 'Ability2Id': 0, 'Ability3Id': 0, **slots})
 
     o = O[opt]
     ok(U[AR]['ModelFileName'] == 'US_OH58Kiowa' and U[AR]['Cost'] == 120 and U[AR]['Stealth'] == u['Stealth'], 'AR-2000 on the Kiowa body, price and stealth kept')
-    ok(o['IsDefault'] is True and o['Cost'] == 0 and (o['Turret0Id'], o['Turret1Id']) == (PYLON, PYLON) and all(o.get(f'Turret{i}Id') is None for i in range(2, 21)), 'AKD-11 on both pylon slots')
+    ok(o['IsDefault'] is True and o['Cost'] == 0 and (o['Turret0Id'], o['Turret1Id']) == (PYLON, PYLON) and all(o.get(f'Turret{i}Id') == 0 for i in range(2, 21)), 'AKD-11 on both pylon slots')
     ok(T[PYLON]['IsDefault'] is False and [r['TurretId'] for r in rows('TurretUnitsJson', UnitId=AR)] == [PYLON], 'pylon linked, not a default hull turret')
     ok(WA[AMMO_ROW]['Quantity'] * 2 == 8 and (W[LAUNCHER]['TimeBetweenBurstsMin'] / 2, W[LAUNCHER]['TimeBetweenBurstsMax'] / 2) == (24.0, 32.0), '8 rounds, 24-32 s after the pylon merge')
     rec['ar2000_heli'] = {'unit': AR, 'stand_in': 'US_OH58Kiowa (was DLC3_MDP01_Termit)', 'pylon': PYLON, 'option': opt, 'modification': mod,
