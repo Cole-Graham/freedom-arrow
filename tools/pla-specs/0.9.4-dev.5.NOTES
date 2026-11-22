@@ -110,3 +110,9 @@
   (89) = Assets 0.2.51 + these 5 units. MERGE NOTE: both JSON files are full copies; merge with any other queued models.json/paint-schemes.json.
   Not needed for the 0.9.4.1 hotfix; harmless if a hotfix build includes the data (cards show the Bradley/Tunguska/Avenger stand-ins until the
   Assets ship). Not seen in game.
+- 2026-11-22 00:1x PST, thread 1573418243715113213 (Osama: "please add these units to the Blue dragons on my local test build"). LOCAL TEST BUILD
+  0.9.5-dev.90 (build no. 260 reused, not a hotfix step; dev.90 only because fa_version refuses a suffix): clean worktree work/bd-test-wt at 764e3402
+  (= hotfix dev.5) + section 27, apply 2267 checks, roster 216,580 passed, slot/mount/carry 0; Assets 0.2.52 = 0.2.51 + the 144 Blue Dragon files
+  (local only, not published). out/local-095d90-bd. Queued on Vengeance AFTER the build-260 install (watcher /tmp/bd90-watch.sh): gameplay + a
+  145-file assets delta, installer ~/Games/FreedomArrow-095d90-bd-20261122/install-095d90.py. It contains every dev.5 fix, so hotfix testing goes on
+  with it; Vengeance logs will say 0.9.5-dev.90. The next hotfix step stays 0.9.5-dev.6.
