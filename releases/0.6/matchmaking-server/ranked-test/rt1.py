@@ -1,6 +1,6 @@
-import sys,time,json;sys.path.insert(0,'/tmp/heli3')
+import sys,time,json;import os;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from rt_client import C,stats
-B='http://127.0.0.1:8652'
+B='http://127.0.0.1:8652/hubs/test'
 a=C(B,'100','Alice');b=C(B,'200','Bob')
 print('find a',a.call('FindMatch','r1v1'));print('find b',b.call('FindMatch','r1v1'))
 time.sleep(2.5)

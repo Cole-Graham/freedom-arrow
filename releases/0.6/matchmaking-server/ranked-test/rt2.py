@@ -1,6 +1,6 @@
-import sys,time,json;sys.path.insert(0,'/tmp/heli3')
+import sys,time,json;import os;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from rt_client import C,stats
-B='http://127.0.0.1:8652'
+B='http://127.0.0.1:8652/hubs/test'
 def party(leader,members):
     for m in members:
         print(' invite',m.name,leader.call('PartyAction','invite',m.steam,None) and 'ok')
@@ -9,11 +9,11 @@ def party(leader,members):
         pid=inc[0]['partyId'];m.call('PartyAction','accept',None,pid)
 # 5-stack
 P=[C(B,f'5{i}',f'Stack{i}') for i in range(5)];party(P[0],P[1:])
-print('5-stack r3v3 ->',P[0].call('FindMatch','r3v3'))
+print('5-stack rteam ->',P[0].call('FindMatch','rteam'))
 print('5-stack r1v1 ->',P[0].call('FindMatch','r1v1'))
-print('5-stack r5v5 ->',P[0].call('FindMatch','r5v5'))
+print('5-stack rteam again ->',P[0].call('FindMatch','rteam'))
 S=[C(B,f'6{i}',f'Solo{i}') for i in range(5)]
-for s in S:s.call('FindMatch','r5v5')
+for s in S:s.call('FindMatch','rteam')
 time.sleep(2.5)
 mf=[x.got('MatchFound') for x in P+S]
 teams={}
@@ -23,8 +23,8 @@ print('5v5 teams',teams)
 # 3v3: party of 2 + 4 solos
 Q=[C(B,f'7{i}',f'Duo{i}') for i in range(2)];party(Q[0],Q[1:])
 R=[C(B,f'8{i}',f'Three{i}') for i in range(4)]
-print('duo r3v3 ->',Q[0].call('FindMatch','r3v3'))
-for r in R:r.call('FindMatch','r3v3')
+print('duo rteam ->',Q[0].call('FindMatch','rteam'))
+for r in R:r.call('FindMatch','rteam')
 time.sleep(2.5)
 teams={}
 for x in Q+R:

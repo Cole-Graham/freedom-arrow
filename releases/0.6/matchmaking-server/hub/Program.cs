@@ -10,11 +10,13 @@ b.Services.AddSignalR(o => { o.EnableDetailedErrors = false; o.MaximumReceiveMes
 b.Logging.AddSimpleConsole(o => { o.SingleLine = true; o.TimestampFormat = "HH:mm:ss "; });
 var app = b.Build();
 app.UseWebSockets();
+// FAQUEUE_PREFIX: the test hub runs under /hubs/test (Lateralus 22 Nov: "implement the test server"); the live hub keeps /hubs.
+var pre = Environment.GetEnvironmentVariable("FAQUEUE_PREFIX") ?? "/hubs";
 app.MapGet("/health", () => Results.Json(Store.Health()));
-app.MapHub<GameHub>("/hubs/game");
+app.MapHub<GameHub>(pre + "/game");
 // ArrowQueue posts end-of-match statistics here (Freedom Arrow points its StatsServer at /hubs/stats). Kept on the deck only.
 var statsFile = Path.Combine(AppContext.BaseDirectory, "..", "match-stats.jsonl");
-app.MapPost("/hubs/stats/v1/match", async (HttpRequest r) =>
+app.MapPost(pre + "/stats/v1/match", async (HttpRequest r) =>
 {
     using var sr = new StreamReader(r.Body); var body = await sr.ReadToEndAsync();
     if (body.Length > 512 * 1024) return Results.StatusCode(413);
@@ -26,7 +28,10 @@ app.MapPost("/hubs/stats/v1/match", async (HttpRequest r) =>
 // Ranked (Lateralus 22 Nov 2026, docs/ranked/RANKED-PROPOSAL.md): ratings and ledger in ../ranked (FAQUEUE_RANKED_DIR overrides).
 Ranked.Init(app.Services.GetRequiredService<IHubContext<GameHub>>(), app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("Ranked"),
     Environment.GetEnvironmentVariable("FAQUEUE_RANKED_DIR") ?? Path.Combine(AppContext.BaseDirectory, "..", "ranked"));
-app.MapGet("/hubs/ranked/leaderboard/{ladder}", (string ladder) => { lock (Store.Lock) return ladder is "1v1" or "team" ? Results.Json(Ranked.Board(ladder)) : Results.NotFound(); });
+Ranked.AllRanked = Environment.GetEnvironmentVariable("FAQUEUE_RANKED_ALL") == "1";
+app.MapGet(pre + "/ranked/leaderboard/{ladder}", (string ladder) => { lock (Store.Lock) return ladder is "1v1" or "team" ? Results.Json(Ranked.Board(ladder)) : Results.NotFound(); });
+// Public ranked profile (the same numbers the leaderboard shows) for the in-game Ranked menu and the website.
+app.MapGet(pre + "/ranked/player/{steamId}", (string steamId) => { lock (Store.Lock) return steamId.Length is > 0 and <= 20 && steamId.All(char.IsDigit) ? Results.Json(new { season = Ranked.Season, steamId, me = Ranked.Me(steamId), searching = Ranked.QueueInfo() }) : Results.NotFound(); });
 var url = Environment.GetEnvironmentVariable("FAQUEUE_URL") ?? "http://127.0.0.1:8651";
 app.Run(url);
 
@@ -253,7 +258,7 @@ sealed class GameHub : Hub
     }
 
     // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
-    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)) }; } }
+    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId) }; } }
     public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }
 
     public object GetOnlinePlayers() { lock (Store.Lock) return Store.BySteam.Values.Select(p => p.Online()).ToArray(); }
@@ -279,9 +284,9 @@ sealed class GameHub : Hub
         {
             var p = Me();
             if (p.LobbyId != null) throw new HubException("leave_lobby_first");
-            if (Ranked.IsRanked(mode))
+            if (Ranked.QueueFor(mode) is string queue)
             {
-                var err = Ranked.Enqueue(p, mode);
+                var err = Ranked.Enqueue(p, queue);
                 if (err != null) throw new HubException(err);
                 goto done;
             }

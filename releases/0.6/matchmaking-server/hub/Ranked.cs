@@ -1,5 +1,8 @@
 // Freedom Arrow ranked (Lateralus 22 Nov 2026; docs/ranked/RANKED-PROPOSAL.md, docs/simple-elo.md).
-// Modes r1v1 / r3v3 / r5v5 through the normal FindMatch call. Ladders: "1v1" and "team" (3v3 + 5v5 share one).
+// Two queues through the normal FindMatch call (Lateralus 22 Nov: "1v1 should be a completely different queue"):
+//   r1v1  = solo players only, 1v1 matches, ladder "1v1";
+//   rteam = solos and parties, 3v3 or 5v5 matches (never 1v1), ladder "team". A party of 4-5 gets only 5v5.
+// The match format (1v1 / 3v3 / 5v5) is chosen when the match forms.
 // The queue matches whole parties, creates a closed lobby with fixed teams and sends MatchFound, so the ArrowQueue client
 // runs its normal host/join flow. Results come from the clients' end-of-match stats posts (who = sha256("arrow-stats|"+steamId)).
 // A match is rated only when both sides report the same winner, or when every player of the silent side is a deserter.
@@ -19,6 +22,18 @@ sealed class RankedRating
     public int Losses { get; set; }
     public double Best { get; set; } = Ranked.Start;
     public DateTime Last { get; set; }
+    public List<RankedRecent> Recent { get; set; } = new();   // newest first, at most 10 (ranked menu "recent matches")
+}
+
+sealed class RankedRecent
+{
+    public DateTime T { get; set; }
+    public string Format { get; set; } = "";
+    public string Map { get; set; } = "";
+    public string Vs { get; set; } = "";
+    public bool Win { get; set; }
+    public double Change { get; set; }
+    public double VsRating { get; set; }
 }
 
 sealed class RankedEntry   // one queued unit: a solo player or a whole party
@@ -32,7 +47,7 @@ sealed class RankedEntry   // one queued unit: a solo player or a whole party
 
 sealed class RankedMatch
 {
-    public string Id = "", Mode = "", Ladder = "", LobbyId = "", Map = "";
+    public string Id = "", Mode = "", Format = "", Ladder = "", LobbyId = "", Map = "";
     public List<string>[] Teams = { new(), new() };
     public DateTime Created = DateTime.UtcNow;
     public DateTime? Started;
@@ -46,12 +61,15 @@ static class Ranked
     public const double Start = 1000, K = 40, Div = 400, Floor = 600, BonusTarget = 1700, DeadZone = 200;
     // 20 ranks: 1-18 by Elo band, 19 = places 2-3 and 20 = place 1 among players at 2170+ (RANKED-PROPOSAL.md, section 1)
     static readonly int[] BandStart = { 0, 1001, 1028, 1059, 1093, 1132, 1175, 1223, 1277, 1337, 1405, 1481, 1566, 1661, 1767, 1887, 2020, 2170 };
-    public static readonly Dictionary<string, (int size, string ladder, string[] pool)> Modes = new()
+    public static readonly Dictionary<string, (int size, string ladder, string[] pool)> Formats = new()
     {
-        ["r1v1"] = (1, "1v1", new[] { "Dead Center", "Kadaga", "Jelgava", "Klaipeda", "Chernyakhovsky" }),
-        ["r3v3"] = (3, "team", new[] { "Baltiisk", "Bay of Winds", "Dam" }),
-        ["r5v5"] = (5, "team", new[] { "Airport", "Oil Rush", "Cold Harbor" }),
+        ["5v5"] = (5, "team", new[] { "Airport", "Oil Rush", "Cold Harbor" }),
+        ["3v3"] = (3, "team", new[] { "Baltiisk", "Bay of Winds", "Dam" }),
+        ["1v1"] = (1, "1v1", new[] { "Dead Center", "Kadaga", "Jelgava", "Klaipeda", "Chernyakhovsky" }),
     };
+    public static readonly string[] Queues = { "r1v1", "rteam" };
+    // Test hub only (FAQUEUE_RANKED_ALL=1): the unchanged client's 1v1 search joins r1v1, and 2v2-5v5 searches join rteam.
+    public static bool AllRanked;
     const double PartySpread = 500, OneSidedWaitMin = 30;
 
     public static int Season = 1;
@@ -66,7 +84,11 @@ static class Ranked
     static bool _dirty;
     static DateTime _lastExport = DateTime.MinValue;
 
-    public static bool IsRanked(string? mode) => mode != null && Modes.ContainsKey(mode);
+    public static bool IsRanked(string? mode) => mode is "r1v1" or "rteam";
+    public static string? QueueFor(string mode) => IsRanked(mode) ? mode : !AllRanked ? null : mode == "1v1" ? "r1v1" : mode is "2v2" or "3v3" or "4v4" or "5v5" ? "rteam" : null;
+    static string LadderOf(string queue) => queue == "r1v1" ? "1v1" : "team";
+    // Formats an entry can play: 1v1 queue -> 1v1; team queue -> 5v5 or 3v3, and only 5v5 for a party of 4-5.
+    static bool Fits(RankedEntry e, int size) => e.Mode == "r1v1" ? size == 1 : size == 5 || (size == 3 && e.Members.Count <= 3);
 
     public static void Init(IHubContext<GameHub> ctx, ILogger log, string dir)
     {
@@ -110,16 +132,15 @@ static class Ranked
     static int Place(string ladder, string steamId) { var s = Sorted(ladder); var i = s.FindIndex(r => r.SteamId == steamId); return i < 0 ? 0 : i + 1; }
 
     // ---------- queue ----------
-    // Called from FindMatch for r1v1/r3v3/r5v5. Returns an error code or null.
+    // Called from FindMatch for r1v1/rteam. Returns an error code or null.
     public static string? Enqueue(Player p, string mode)
     {
-        var (size, ladder, _) = Modes[mode];
+        var ladder = LadderOf(mode);
         Party? pt = p.PartyId != null && Store.Parties.TryGetValue(p.PartyId, out var x) ? x : null;
         if (pt != null && pt.Leader != p.SteamId) return "not_leader";
         var ids = pt?.Members.ToList() ?? new List<string> { p.SteamId };
-        // Party size decides the modes: 1v1 solo only; 4-5 players only 5v5; never more than a team.
-        if (ids.Count > size || (size == 1 && ids.Count > 1)) return "party_too_big";
-        if (ids.Count >= 4 && size != 5) return "party_needs_5v5";
+        // 1v1 is solo only; a team party is at most 5.
+        if (ids.Count > (mode == "r1v1" ? 1 : 5)) return "party_too_big";
         foreach (var id in ids)
         {
             if (!Store.BySteam.TryGetValue(id, out var q)) return "member_offline";
@@ -142,9 +163,8 @@ static class Ranked
         foreach (var id in e.Members) if (Store.BySteam.TryGetValue(id, out var q) && q.LobbyId == null) { q.SearchMode = null; Status(q, "menu"); }
         return true;
     }
-    static double Window(RankedEntry e)
+    static double Window(RankedEntry e, int size)
     {
-        var (size, _, _) = Modes[e.Mode];
         var t = e.WaitSec;
         if (t >= 180) return double.MaxValue;                     // any rating after 3 minutes
         var b = size == 5 ? 150 : 100;
@@ -157,7 +177,7 @@ static class Ranked
         {
             lock (Store.Lock)
             {
-                foreach (var mode in Modes.Keys) while (TryMatch(mode)) { }
+                foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 5v5 first, so a full 10 is not split into 3v3 + 4 waiting
                 ResolveTimeouts();
                 if (_dirty) Save();
                 if ((DateTime.UtcNow - _lastExport).TotalSeconds >= 60) Export();
@@ -167,18 +187,18 @@ static class Ranked
         catch (Exception e) { _log?.LogError("ranked tick: {e}", e); }
     }
 
-    static bool TryMatch(string mode)
+    static bool TryMatch(string format)
     {
-        var (size, ladder, pool) = Modes[mode];
-        foreach (var anchor in Queue.Where(e => e.Mode == mode).OrderBy(e => e.Since).ToList())
+        var (size, ladder, pool) = Formats[format];
+        foreach (var anchor in Queue.Where(e => Fits(e, size)).OrderBy(e => e.Since).ToList())
         {
-            var w = Window(anchor);
-            var cand = Queue.Where(e => e.Mode == mode && e.Build == anchor.Build && e != anchor && Math.Abs(e.Rating - anchor.Rating) <= Math.Max(w, Window(e)))
+            var w = Window(anchor, size);
+            var cand = Queue.Where(e => Fits(e, size) && e.Build == anchor.Build && e != anchor && Math.Abs(e.Rating - anchor.Rating) <= Math.Max(w, Window(e, size)))
                 .OrderBy(e => e.Since).Take(11).Prepend(anchor).ToList();
             if (cand.Sum(e => e.Members.Count) < 2 * size) continue;
             var best = BestSplit(cand, size, anchor.WaitSec >= 180);
             if (best == null) continue;
-            Create(mode, ladder, pool, best.Value.a, best.Value.b);
+            Create(anchor.Mode, format, ladder, pool, best.Value.a, best.Value.b);
             return true;
         }
         return false;
@@ -216,13 +236,13 @@ static class Ranked
         return s / k;
     }
 
-    static void Create(string mode, string ladder, string[] pool, List<RankedEntry> a, List<RankedEntry> b)
+    static void Create(string mode, string format, string ladder, string[] pool, List<RankedEntry> a, List<RankedEntry> b)
     {
         foreach (var e in a.Concat(b)) Queue.Remove(e);
         var host = Store.BySteam[a[0].Leader];
         var map = pool[Random.Shared.Next(pool.Length)];
-        var l = new Lobby { Id = Guid.NewGuid().ToString("N")[..16], Mode = mode, Size = 2 * Modes[mode].size, Build = host.Build, HostId = host.SteamId, HostName = host.Name, Open = false };
-        var m = new RankedMatch { Id = l.Id, Mode = mode, Ladder = ladder, LobbyId = l.Id, Map = map };
+        var l = new Lobby { Id = Guid.NewGuid().ToString("N")[..16], Mode = mode, Size = 2 * Formats[format].size, Build = host.Build, HostId = host.SteamId, HostName = host.Name, Open = false };
+        var m = new RankedMatch { Id = l.Id, Mode = mode, Format = format, Ladder = ladder, LobbyId = l.Id, Map = map };
         Store.Lobbies[l.Id] = l; Matches[m.Id] = m;
         int team = 0;
         foreach (var side in new[] { a, b })
@@ -238,9 +258,9 @@ static class Ranked
         }
         l.State = "full";
         foreach (var id in m.Teams.SelectMany(t => t))
-            Send(Store.BySteam[id], "MatchFound", new { lobbyId = l.Id, mode, ranked = true, scenario = map, team = m.Teams[0].Contains(id) ? 0 : 1, host = host.SteamId });
-        Append("match", new { id = m.Id, mode, ladder, map, teams = m.Teams, ratingA = a.Average(e => e.Rating), ratingB = b.Average(e => e.Rating) });
-        _log?.LogInformation("ranked match {id} {mode} on {map}: {a} vs {b}", m.Id, mode, map, string.Join(",", m.Teams[0].Select(Name)), string.Join(",", m.Teams[1].Select(Name)));
+            Send(Store.BySteam[id], "MatchFound", new { lobbyId = l.Id, mode, format, ranked = true, scenario = map, team = m.Teams[0].Contains(id) ? 0 : 1, host = host.SteamId });
+        Append("match", new { id = m.Id, mode, format, ladder, map, teams = m.Teams, ratingA = a.Average(e => e.Rating), ratingB = b.Average(e => e.Rating) });
+        _log?.LogInformation("ranked match {id} {format} on {map}: {a} vs {b}", m.Id, format, map, string.Join(",", m.Teams[0].Select(Name)), string.Join(",", m.Teams[1].Select(Name)));
     }
     static string Name(string id) => Store.BySteam.TryGetValue(id, out var q) ? q.Name : id;
 
@@ -249,7 +269,7 @@ static class Ranked
     {
         if (!Matches.TryGetValue(l.Id, out var m) || m.State != "lobby") return;
         m.State = "battle"; m.Started = DateTime.UtcNow;
-        if (!m.Map.Equals(MapName(l.Scenario), StringComparison.OrdinalIgnoreCase) && !Modes[m.Mode].pool.Contains(MapName(l.Scenario), StringComparer.OrdinalIgnoreCase))
+        if (!m.Map.Equals(MapName(l.Scenario), StringComparison.OrdinalIgnoreCase) && !Formats[m.Format].pool.Contains(MapName(l.Scenario), StringComparer.OrdinalIgnoreCase))
         { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_not_in_pool", scenario = l.Scenario }); }
         Append("started", new { id = m.Id, scenario = l.Scenario });
     }
@@ -318,8 +338,16 @@ static class Ranked
         double rw = W.Average(r => r.Rating), rl = L.Average(r => r.Rating);
         double baseChange = K * (1 - Expected(rw, rl));
         var changes = new Dictionary<string, double>();
+        void Note(RankedRating r, bool win, List<RankedRating> other, double c)
+        {
+            var top = other.OrderByDescending(o => o.Rating).First();
+            r.Recent.Insert(0, new RankedRecent { T = DateTime.UtcNow, Format = m.Format, Map = m.Map, Vs = other.Count == 1 ? top.Name : top.Name + " +" + (other.Count - 1), VsRating = Math.Round(other.Average(o => o.Rating), 1), Win = win, Change = Math.Round(c, 2) });
+            if (r.Recent.Count > 10) r.Recent.RemoveRange(10, r.Recent.Count - 10);
+        }
         foreach (var r in W) { var c = baseChange * (1 + Bonus(r.Rating)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c; }
         foreach (var r in L) { var before = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - before; }
+        foreach (var r in W) Note(r, true, L, changes[r.SteamId]);
+        foreach (var r in L) Note(r, false, W, changes[r.SteamId]);
         _dirty = true;
         Close(m, "rated", new { winTeam, deserted, avgW = rw, avgL = rl, baseChange, changes });
         foreach (var (id, c) in changes)
@@ -328,15 +356,17 @@ static class Ranked
     static void Close(RankedMatch m, string state, object detail)
     {
         m.State = state; Matches.Remove(m.Id);
-        Append(state, new { id = m.Id, mode = m.Mode, detail });
+        Append(state, new { id = m.Id, mode = m.Mode, format = m.Format, detail });
         _log?.LogInformation("ranked match {id}: {state}", m.Id, state);
     }
 
     // ---------- views ----------
     public static object Me(string steamId) => Ladders.Keys.ToDictionary(lad => lad, lad =>
     {
-        var r = Get(lad, steamId); var place = Place(lad, steamId);
-        return (object)new { rating = Math.Round(r.Rating, 2), level = Level(lad, r.Rating, place), place, wins = r.Wins, losses = r.Losses, best = Math.Round(r.Best, 2) };
+        var r = Ladders[lad].TryGetValue(steamId, out var x) ? x : new RankedRating { SteamId = steamId };   // a lookup never adds a player
+        var place = Place(lad, steamId);
+        return (object)new { rating = Math.Round(r.Rating, 2), level = Level(lad, r.Rating, place), place, wins = r.Wins, losses = r.Losses, best = Math.Round(r.Best, 2),
+            recent = r.Recent.Select(x => new { t = x.T, format = x.Format, map = x.Map, vs = x.Vs, vsRating = x.VsRating, win = x.Win, change = x.Change }) };
     });
     public static object Board(string ladder, int top = 200)
     {
@@ -347,7 +377,13 @@ static class Ranked
             rows = s.Take(top).Select((r, i) => new { place = i + 1, steamId = r.SteamId, name = r.Name, rating = Math.Round(r.Rating, 1), level = Level(ladder, r.Rating, i + 1), wins = r.Wins, losses = r.Losses }).ToArray(),
         };
     }
-    public static object QueueInfo() => Modes.Keys.ToDictionary(k => k, k => Queue.Where(e => e.Mode == k).Sum(e => e.Members.Count));
+    public static object QueueInfo() => Queues.ToDictionary(k => k, k => Queue.Where(e => e.Mode == k).Sum(e => e.Members.Count));
+    // The player's open ranked match (for the FA client: the host loads this map), or null.
+    public static object? MatchOf(string steamId)
+    {
+        var m = Matches.Values.FirstOrDefault(x => x.State is "lobby" or "battle" && x.Teams.Any(t => t.Contains(steamId)));
+        return m == null ? null : new { id = m.Id, lobbyId = m.LobbyId, mode = m.Mode, format = m.Format, ladder = m.Ladder, map = m.Map, state = m.State, team = m.Teams[0].Contains(steamId) ? 0 : 1 };
+    }
 
     // ---------- storage ----------
     static void Save()

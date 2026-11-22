@@ -71,7 +71,10 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - **Modes at launch (Lateralus, 22 Nov):** 1v1, 3v3 and 5v5. No 2v2.
 - **Ladders (Lateralus: agreed):** a 1v1 ladder and one team ladder shared by 3v3 and 5v5, with a rating per player on each ladder.
 - **Queueing as a party (Lateralus, 22 Nov):** players can queue together, using the parties FAQueue already has (the leader's search brings the members along).
-  - **Party size decides the modes:** solo → 1v1, 3v3 or 5v5; 2–3 players → 3v3 or 5v5; 4–5 players → 5v5 only. A party of 5 is always a full 5v5 team. 1v1 is solo only.
+  - **Two separate queues (Lateralus, 22 Nov: "1v1 should be a completely different queue"):**
+    - **1v1 queue:** solo players only, 1v1 matches only, own 1v1 ladder.
+    - **Team queue:** solos and parties. It forms a 3v3 or a 5v5, never a 1v1. A solo in the team queue never gets a 1v1. Parties of 4–5 get only 5v5. The matcher tries 5v5 first, so 10 waiting players make one 5v5 and not a 3v3 with 4 left over.
+    - Measured on the test hub, 22 Nov: 2 team solos + 2 1v1 players → only the 1v1 pair is matched; 6 team solos → 3v3; 10 team solos → 5v5; a party of 2 in the 1v1 queue is refused.
   - **Matching:** the matchmaker fills each side with whole parties, never splitting one. It first looks for opponents with similar party sizes (a 5-stack against a 5-stack or a 4+1); after 3 minutes it accepts any mix. The two sides are balanced by average rating.
   - **Party rating:** the party's average rating is used for matching. Each member's own rating changes after the match, using the team averages (as above).
   - **Boost limit:** party members must be within 500 Elo of each other in ranked, so a high player cannot carry a new account up the ladder.
@@ -153,6 +156,7 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - Season length: 2 months.
 - One shared team ladder for 3v3 and 5v5.
 - Players can queue as a party; a party of 5 always plays 5v5.
+- 1v1 is its own solo queue; the team queue only makes 3v3 or 5v5.
 
 ## Still open
 
@@ -163,3 +167,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
 - 2026-11-22 08:01 PST (America/Los_Angeles) — Lateralus decisions: launch 1v1/3v3/5v5, seasons yes, PLA officers at rank 10, default set = vanilla epaulet. Map pools, 5v5 queue widening, season rules added.
 - 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
+- 2026-11-22 08:38 PST (America/Los_Angeles) — Lateralus: 1v1 is a separate solo queue; the team queue (solo or party) only makes 3v3/5v5. Test hub at freedomarrow.app/hubs/test.
