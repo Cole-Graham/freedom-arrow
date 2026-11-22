@@ -87,7 +87,7 @@ static partial class RankedMenu
     static void HidePage(string why,bool backToPlay)
     {
         if(!pageShown)return;
-        pageShown=false;picking=false;pickingDeck=false;ShowPreview(null);
+        pageShown=false;picking=false;pickingDeck=false;ShowPreview(null);HideDeckDrop();
         if(Alive(page))page.SetActive(false);
         MelonLogger.Msg("FREEDOM_ARROW_RANKED_PAGE hidden: "+why);
         if(backToPlay&&Alive(playButton)){reselecting=true;try{playButton.InvokeClick();}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE back to Play: "+e.Message);}reselecting=false;}
@@ -161,7 +161,7 @@ static partial class RankedMenu
 
     static void Build(float now)
     {
-        for(int i=root.childCount-1;i>=0;i--){var c=root.GetChild(i).gameObject;if(Alive(deckPrev)&&c.Pointer==deckPrev.Pointer)continue;UnityEngine.Object.Destroy(c);}
+        for(int i=root.childCount-1;i>=0;i--){var c=root.GetChild(i).gameObject;if(Alive(deckPrev)&&c.Pointer==deckPrev.Pointer)continue;if(DeckDropReady&&c.Pointer==deckDrop.gameObject.Pointer)continue;UnityEngine.Object.Destroy(c);}
         keep.Clear();cur=root;deckRows.Clear();
         JsonElement me=default;bool have=false;
         try{if(meJson.Length>0){me=JsonDocument.Parse(meJson).RootElement;have=true;}}catch{}
@@ -176,7 +176,7 @@ static partial class RankedMenu
             tx+=w+20;
         }
         if(TestHub)Txt(600,14,520,24,"TEST SERVER · ratings here are test ratings",14,new Color(1f,0.75f,0.3f),true,TextAlignmentOptions.MidlineRight);
-        if(tab==0)RankedBody(me,have,now);else BoardBody(me,have);
+        if(tab==0)RankedBody(me,have,now);else{HideDeckDrop();BoardBody(me,have);}
         if(error.Length>0)Txt(0,778,900,24,error,15,new Color(1f,0.55f,0.5f));
         Frm(700,812,30,20,new Color(0.75f,0.75f,0.75f));Txt(700,812,30,20,"esc",12,new Color(0.75f,0.75f,0.75f),false,TextAlignmentOptions.Center);
         Txt(738,806,90,32,"BACK",20,Color.white,true);
@@ -216,11 +216,12 @@ static partial class RankedMenu
         try{var r=JsonDocument.Parse(meJson).RootElement;if(r.TryGetProperty("groupDecks",out var g)&&g.TryGetProperty(id,out var e))return e.GetProperty("ok").GetBoolean();}catch{}
         return true;   // unknown yet: no warning
     }
+    static int CooldownSec(JsonElement me,bool have){try{if(have&&me.TryGetProperty("extra",out var x))return Math.Max(0,x.GetProperty("cooldownSec").GetInt32()-(int)(DateTime.UtcNow-askedAt).TotalSeconds);}catch{}return 0;}
     static bool pickingDeck;static int deckTop;
     // Default deck list with the lobby's deck preview on hover (Lateralus 22 Nov: "similar to how it works in the lobbies, where a preview
     // of the deck pops up when you mouse over each deck in the dropdown"). The lobby's TeamPanelPlayerInfo does this with the game's
     // DeckPreview (OnDeckDropdownHoverEnter); here a copy of that same DeckPreview sits right of the list and DeckPreview.Init fills it.
-    const float ListX=20,PrevX=580;
+    const float ListX=20,PrevX=560;
     static void DeckPicker()
     {
         var dim=new Color(0.75f,0.75f,0.75f);
@@ -319,10 +320,18 @@ static partial class RankedMenu
         // default deck (Lateralus 22 Nov): needed before searching; used when no deck is picked in the lobby's 60 s
         var dd=DefaultDeck();
         Txt(0,258,150,36,"Default deck",16,dim);
-        var dbg=Img(150,262,320,28,new Color(0,0,0,0.55f),true);Frm(150,262,320,28,dd!=null?new Color(1,1,1,0.25f):Red);
-        Txt(158,262,280,28,dd!=null?dd.Name:deckName.Length>0?deckName+" (not valid)":"Choose a deck",15,dd!=null?Color.white:new Color(1f,0.6f,0.55f),dd!=null,TextAlignmentOptions.MidlineLeft);
-        Txt(440,262,26,28,"v",14,dim,true,TextAlignmentOptions.Center);
-        Click(150,262,320,28,()=>{pickingDeck=true;deckTop=0;},dbg);
+        // the game's lobby deck dropdown (flag + spec emblems + name; preview on hover); the old list only if it cannot be copied
+        if(PlaceDeckDrop(150,258,320,36))
+        {
+            if(dd==null)Txt(150,296,320,16,deckName.Length>0?deckName+" is not a valid deck":"Choose a valid deck",12,new Color(1f,0.6f,0.55f),true);
+        }
+        else
+        {
+            var dbg=Img(150,262,320,28,new Color(0,0,0,0.55f),true);Frm(150,262,320,28,dd!=null?new Color(1,1,1,0.25f):Red);
+            Txt(158,262,280,28,dd!=null?dd.Name:deckName.Length>0?deckName+" (not valid)":"Choose a deck",15,dd!=null?Color.white:new Color(1f,0.6f,0.55f),dd!=null,TextAlignmentOptions.MidlineLeft);
+            Txt(440,262,26,28,"v",14,dim,true,TextAlignmentOptions.Center);
+            Click(150,262,320,28,()=>{pickingDeck=true;deckTop=0;},dbg);
+        }
         HLine(0,296,470);
         int party=1;string leader="";
         try{var pr=fPartyNews?.GetValue(null);var pv=pr==null?null:Traverse.Create(pr).Property("party").GetValue();if(pv!=null){party=Math.Max(1,(Traverse.Create(pv).Property("members").GetValue() as Array)?.Length??1);leader=Traverse.Create(pv).Property("leader").GetValue<string>()??"";}}catch{}
@@ -340,6 +349,7 @@ static partial class RankedMenu
             string why=null;
             if(party>1&&leader!=MySteam())why="Only the group leader can start the search";
             else if(dd==null)why="Choose a valid default deck first";
+            else if(CooldownSec(me,have) is int cd&&cd>0)why=$"Ranked cooldown: {cd/3600}:{cd/60%60:00}:{cd%60:00} left (you left a ranked match)";
             else foreach(var (gid,ok,gname) in GroupDeckState(me,have))if(!ok){why=$"{gname} has no valid default deck";break;}
             var b=Img(0,312,470,64,why==null?Red:new Color(0.25f,0.25f,0.27f,0.95f),why==null);
             if(why==null)Img(0,312,470,28,new Color(1,1,1,0.07f));

@@ -82,6 +82,8 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - **What counts as a result:** the mod already reports each match (players, teams, map, winner, length) to FAQueue (`match-stats.jsonl`). A ranked result counts only when at least one report from each side agrees on the winner and the player list. If they disagree, the match is marked disputed, nothing changes and it is logged for admins.
 - **Leavers:** a player who leaves before the end loses their own rating, as a loss. The rest of the match is scored normally.
 - **Draws** (Freedom Arrow lead under 10% at time-out): no change.
+- **Leave cooldowns (Lateralus, 22 Nov):** leaving or disconnecting from a ranked lobby before the launch phase, not joining it within 90 seconds, or being flagged Deserter by the game at the end counts as an offence. First offence: 5 minutes without ranked; second: 1 hour; third and later: 24 hours. Every player's count returns to 0 at the same time every day (00:00 UTC = 16:00 PST, set by `FAQUEUE_RANKED_RESET_UTC`); a cooldown that is already running keeps running. A group cannot search while any member is cooling down.
+- **End screen (Lateralus, 22 Nov):** after a ranked match the end screen shows every player's rating before and after and the change; an unrated match says why (for example a draw).
 - **Ranked rules are fixed:** FA conquest 300, 45 min, a ranked map pool per size, and the same FA build on every client. The server checks this before it starts the match. Starting pools are the FA maps played online so far:
   - [1v1] Dead Center, Kadaga, Jelgava, Klaipeda, Chernyakhovsky
   - [3v3] Baltiisk, Bay of Winds, Dam
@@ -181,3 +183,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 13:0x PST (America/Los_Angeles) — Lateralus: ranked match flow (default deck, 60 s hidden deck pick, reveal, automatic launch) added and built.
 - 2026-11-22 13:4x PST (America/Los_Angeles) — Lateralus: win bonus scaled by the ladder average, so the ladder settles at 1500.
 - 2026-11-22 14:0x PST (America/Los_Angeles) — Lateralus: option C per-player split for team games built (test hub).
+- 2026-11-22 15:3x PST (America/Los_Angeles) — Lateralus test 22 Nov: leave cooldowns (5 min / 1 h / 24 h, daily reset), end-screen Elo per player; lobby: enemy flag hidden, Launch/Ready automatic.
