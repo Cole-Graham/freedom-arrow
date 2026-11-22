@@ -64,24 +64,39 @@ static class WebsiteButton
     static string hiddenWhy="";
 
     // Same rule as the music pack selector: menu scene + Home tab button selected. The Home button is looked up at most every 2 s.
-    static float nextHomeScan;
+    // Osama 22 Nov 14:4x (dev.32): "I don't see the fucking website button in the main menu ... it just doesn't appear at all". The log had
+    // "title screen over" and then no "shown": the first lookup now runs only after the title, and the first "Home" MainMenuButton found can be
+    // a hidden copy; once held it was kept for the whole session. Now an active Home button is preferred, a held button that is not active is
+    // looked up again (every 2 s), and the reason the banner is not drawn on the menu is logged once per change (FREEDOM_ARROW_WEBSITE_BUTTON wait: ...).
+    static float nextHomeScan;static string waitWhy="";
+    static void Wait(string why){if(why!=waitWhy){waitWhy=why;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON wait: "+why);}}
     static bool HomeSelected()
     {
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){home=null;return false;}
-        if(home==null||home.WasCollected)
+        var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if(scene!="Hangar_Scene"){home=null;Wait("active scene "+scene);return false;}
+        bool held=home!=null&&!home.WasCollected;
+        if(!held||!home.isActiveAndEnabled)
         {
-            home=null;
-            if(Time.unscaledTime<nextHomeScan)return false;
-            nextHomeScan=Time.unscaledTime+2f;
-            foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
+            if(Time.unscaledTime>=nextHomeScan)
             {
-                if(!b.gameObject.scene.IsValid()||b._buttonText==null)continue;
-                if(!b._buttonText.text.Trim().Equals("Home",StringComparison.OrdinalIgnoreCase))continue;
-                home=b;break;
+                nextHomeScan=Time.unscaledTime+2f;
+                MainMenuButton first=null,live=null;int n=0;
+                foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
+                {
+                    if(!b.gameObject.scene.IsValid()||b._buttonText==null)continue;
+                    if(!b._buttonText.text.Trim().Equals("Home",StringComparison.OrdinalIgnoreCase))continue;
+                    n++;first??=b;
+                    if(live==null&&b.isActiveAndEnabled)live=b;
+                }
+                home=live??first;
+                if(home==null){Wait("no Home button found");return false;}
+                if(n>1)Wait($"{n} Home buttons, using an {(live!=null?"active":"inactive")} one");
             }
-            if(home==null)return false;
+            else if(!held){home=null;return false;}
         }
-        return home.isActiveAndEnabled&&home.Selected;
+        if(!home.isActiveAndEnabled){Wait("Home button not active");return false;}
+        if(!home.Selected){Wait("Home tab not selected");return false;}
+        return true;
     }
 
     // Osama 22 Nov 13:2x (dev.29): "The website banner please fix it now" - it drew over the "Press any key" title screen. The Home menu is
