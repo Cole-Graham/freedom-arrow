@@ -51,7 +51,10 @@ sealed class RankedMatch
     public List<string>[] Teams = { new(), new() };
     public DateTime Created = DateTime.UtcNow;
     public DateTime? Started, FirstVote;
-    public string State = "lobby";   // lobby | battle | rated | disputed | cancelled | unrated
+    public string State = "lobby";
+    // Lobby phases (Lateralus 22 Nov): join (everyone enters the game lobby, 90 s) -> deck (60 s, enemy decks hidden) -> reveal (5 s) -> launch.
+    public string Phase = "join";
+    public DateTime PhaseUntil = DateTime.UtcNow.AddSeconds(Ranked.JoinSec);   // lobby | battle | rated | disputed | cancelled | unrated
     public readonly Dictionary<string, (string side, string winner, string key, JsonNode report)> Votes = new();
 }
 
@@ -70,6 +73,7 @@ static class Ranked
     public static readonly string[] Queues = { "r1v1", "rteam" };
     // Test hub only (FAQUEUE_RANKED_ALL=1): the unchanged client's 1v1 search joins r1v1, and 2v2-5v5 searches join rteam.
     public static bool AllRanked;
+    public const double JoinSec = 90, DeckSec = 60, RevealSec = 5;
     const double PartySpread = 500, OneSidedWaitMin = 30;
 
     public static int Season = 1;
@@ -149,6 +153,8 @@ static class Ranked
         }
         var ratings = ids.Select(id => Get(ladder, id, Store.BySteam[id].Name).Rating).ToList();
         if (ratings.Max() - ratings.Min() > PartySpread) return "party_spread_over_500";
+        // every member needs a valid ranked default deck (Lateralus 22 Nov); the FA client reports it with SetRankedDeck
+        foreach (var id in ids) if (!Store.BySteam[id].RankedDeckOk) return "deck_invalid:" + Store.BySteam[id].Name;
         Dequeue(p.SteamId);
         Queue.Add(new RankedEntry { Mode = mode, Ladder = ladder, Build = p.Build, Leader = p.SteamId, Members = ids, Rating = ratings.Average() });
         foreach (var id in ids) { var q = Store.BySteam[id]; q.SearchMode = mode; Status(q, "searching"); }
@@ -179,6 +185,7 @@ static class Ranked
             {
                 foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 5v5 first, so a full 10 is not split into 3v3 + 4 waiting
                 ResolveTimeouts();
+                Phases();
                 if (_dirty || _metDirty) Save();
                 if ((DateTime.UtcNow - _lastExport).TotalSeconds >= 60) Export();
             }
@@ -431,7 +438,35 @@ static class Ranked
     public static object? MatchOf(string steamId)
     {
         var m = Matches.Values.FirstOrDefault(x => x.State is "lobby" or "battle" && x.Teams.Any(t => t.Contains(steamId)));
-        return m == null ? null : new { id = m.Id, lobbyId = m.LobbyId, mode = m.Mode, format = m.Format, ladder = m.Ladder, map = m.Map, state = m.State, team = m.Teams[0].Contains(steamId) ? 0 : 1 };
+        return m == null ? null : new { id = m.Id, lobbyId = m.LobbyId, mode = m.Mode, format = m.Format, ladder = m.Ladder, map = m.Map, state = m.State, team = m.Teams[0].Contains(steamId) ? 0 : 1,
+            phase = m.Phase, phaseLeftMs = Math.Max(0, (int)(m.PhaseUntil - DateTime.UtcNow).TotalMilliseconds), host = Store.Lobbies.TryGetValue(m.LobbyId, out var l) ? l.HostId : "" };
+    }
+    public static object GroupDecks(Player p)
+    {
+        var ids = p.PartyId != null && Store.Parties.TryGetValue(p.PartyId, out var pt) ? pt.Members.ToList() : new List<string> { p.SteamId };
+        return ids.ToDictionary(id => id, id => Store.BySteam.TryGetValue(id, out var q) ? (object)new { ok = q.RankedDeckOk, deck = q.RankedDeck } : new { ok = false, deck = "" });
+    }
+    // join -> deck when the host's game lobby exists and every other player confirmed joining; deck -> reveal -> launch on the clock.
+    // A join that is not complete in 90 s cancels the match (no rating); the players go back to the menu.
+    static void Phases()
+    {
+        foreach (var m in Matches.Values.Where(x => x.State == "lobby").ToList())
+        {
+            if (!Store.Lobbies.TryGetValue(m.LobbyId, out var l)) continue;
+            var now = DateTime.UtcNow;
+            if (m.Phase == "join")
+            {
+                if (l.Invite != null && l.Members.All(x => x.Host || x.Joined)) { m.Phase = "deck"; m.PhaseUntil = now.AddSeconds(DeckSec); Append("phase", new { id = m.Id, phase = m.Phase }); }
+                else if (now > m.PhaseUntil)
+                {
+                    Append("cancelled", new { id = m.Id, reason = "join_timeout", missing = l.Members.Where(x => !x.Host && !x.Joined).Select(x => x.SteamId) });
+                    foreach (var x in l.Members) if (Store.BySteam.TryGetValue(x.SteamId, out var q)) { Send(q, "MatchFailed", new { lobbyId = l.Id, reason = "ranked_join_timeout" }); Send(q, "LobbyClosed", new { lobbyId = l.Id }); q.LobbyId = null; Status(q, "menu"); }
+                    l.State = "closed"; l.Members.Clear(); Store.Lobbies.Remove(l.Id); Matches.Remove(m.Id);
+                }
+            }
+            else if (m.Phase == "deck" && now > m.PhaseUntil) { m.Phase = "reveal"; m.PhaseUntil = now.AddSeconds(RevealSec); Append("phase", new { id = m.Id, phase = m.Phase }); }
+            else if (m.Phase == "reveal" && now > m.PhaseUntil) { m.Phase = "launch"; m.PhaseUntil = now; Append("phase", new { id = m.Id, phase = m.Phase }); }
+        }
     }
 
     // ---------- storage ----------

@@ -2,13 +2,14 @@
 import json,threading,time,urllib.request,websocket,hashlib
 RS='\x1e'
 class C:
-    def __init__(s,base,steam,name,build='b1'):
+    def __init__(s,base,steam,name,build='b1',deck=True):
         s.base=base;s.steam=steam;s.name=name;s.msgs=[];s.res={};s.n=0
         r=json.load(urllib.request.urlopen(urllib.request.Request(base+'/game/negotiate?negotiateVersion=1',data=b'',method='POST')))
         s.ws=websocket.create_connection(base.replace('http','ws')+'/game?id='+r['connectionToken'])
         s.ws.send(json.dumps({'protocol':'json','version':1})+RS);s.ws.recv()
         threading.Thread(target=s.loop,daemon=True).start()
         s.call('HelloKeyed',steam,name,build,'0.10.31','FA 0.9.5','k')
+        if deck: s.call('SetRankedDeck',True,'test deck')
     def loop(s):
         buf=''
         while True:

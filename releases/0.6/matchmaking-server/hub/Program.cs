@@ -41,6 +41,7 @@ sealed class Player
     public string Status = "menu";      // menu | searching | lobby | battle
     public string? LobbyId, SearchMode, PartyId;
     public bool Dir;                     // subscribed to directory updates
+    public bool RankedDeckOk; public string RankedDeck = "";   // ranked default deck, reported by the FA client (Lateralus 22 Nov)
     public DateTime Since = DateTime.UtcNow;
     // Freedom Arrow sends "FA <version>" as its pack label; the menu shows "v<version> · <pack> · <build code>",
     // so FA players show "vFA-version · build code" instead of ArrowQueue's own version and "no ActualArrow".
@@ -258,8 +259,10 @@ sealed class GameHub : Hub
     }
 
     // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
+    public object? SetRankedDeck(bool ok, string name) { lock (Store.Lock) { var p = Me(); p.RankedDeckOk = ok; p.RankedDeck = Clip(name ?? "", 64); } return null; }
     public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
-        pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId) }; } }
+        pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId),
+        groupDecks = Ranked.GroupDecks(p) }; } }
     public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }
 
     public object GetOnlinePlayers() { lock (Store.Lock) return Store.BySteam.Values.Select(p => p.Online()).ToArray(); }

@@ -162,9 +162,20 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 
 - Nothing in the rules. Next step on your word: build the server side (FAQueue ranked queue) first, then the in-game menus.
 
+## Ranked match flow (Lateralus 22 Nov: "go")
+
+1. **Default deck.** Chosen in the ranked menu. The game reports to the lobby server whether it is a complete, valid deck. FIND MATCH is disabled (with the reason) until every group member has one; the group slots show a warning on members without one. Only the group leader can start the search; the server checks the decks too.
+2. **Match found.** The normal Mod game flow: the host's game creates a private Scenario lobby with the server's map, everyone joins, and each player is moved to their team.
+3. **Map revealed** in the lobby.
+4. **Deck pick, 60 s** (server clock). Each player's default deck is selected at the start. Enemy deck info is hidden in the lobby. At the end, a player with no deck gets their default deck and is set ready.
+5. **Reveal, 5 s**, then the host's game launches the match with the vanilla start call (`ChangeLobbyStatus(Launching)`) once everyone is ready.
+- If not everyone has joined the game lobby within 90 s, the match is cancelled with no rating change.
+- 1v1 works the same with one player per side.
+
 ## Document change log
 
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
 - 2026-11-22 08:01 PST (America/Los_Angeles) — Lateralus decisions: launch 1v1/3v3/5v5, seasons yes, PLA officers at rank 10, default set = vanilla epaulet. Map pools, 5v5 queue widening, season rules added.
 - 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
 - 2026-11-22 08:38 PST (America/Los_Angeles) — Lateralus: 1v1 is a separate solo queue; the team queue (solo or party) only makes 3v3/5v5. Test hub at freedomarrow.app/hubs/test.
+- 2026-11-22 13:0x PST (America/Los_Angeles) — Lateralus: ranked match flow (default deck, 60 s hidden deck pick, reveal, automatic launch) added and built.
