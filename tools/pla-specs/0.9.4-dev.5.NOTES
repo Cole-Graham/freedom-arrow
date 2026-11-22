@@ -52,3 +52,10 @@
   creator coat groups, only the Abrams X matched no live texture (the other unmatched groups are duplicate copies of matched packs).
   BUILD: --famodels <FAModels.dll 0.3.38 from experimental-model-loader> and the 22 --asset lines of work/paint-variants-20261121/abramsx/asset-args.txt
   (on top of Assets 0.2.50; new Assets version; run publish_assets_index.py). Compiled clean on the deck. Not seen in game.
+- 2026-11-21 20:4x PST, thread 1567745029781454889 (Osama: "Z-20 we have tons of schemes no?", "add the Z-20 and upload it to the live build", "ZSD-89A needs
+  its schemes too", "ZBD-251 missing its paint schemes"). ASSETS (work/paint-variants-20261121/z20 and zsd89, make.py each; not in git): the in-game coats
+  are shared across models with one UV layout. Z-20: Army green (m_z20a, m_z20n, m_z20na) and Navy grey (m_z20naw, m_z20nw) tex0, re-encoded at each
+  model's live size -> PLAGF Z-20 / Z-20S / PLA Z-20 get Navy, Z-20T / SF Z-20 get Army. ZSD-89A: m_zsd89a <-> m_zsd89ad tex0/tex1 (same size, copied
+  byte for byte) -> Type 89A Dust, Type 89A PLAAF Green; Type 89 and PLAN ZSD-89 (m_zsd89) Dust from the unused m_zsd89d. paint-schemes.json 84 units.
+  ZBD-251: one coat in the game and no creator source on the deck, so no schemes. BUILT in 0.9.4 build 255 with the Abrams X schemes and FAModels
+  0.3.38 (Assets 0.2.51).
