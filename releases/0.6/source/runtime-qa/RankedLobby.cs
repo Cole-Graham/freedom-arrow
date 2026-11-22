@@ -60,8 +60,7 @@ static partial class RankedMenu
         // Lateralus 22 Nov test: launch and ready are automatic in a ranked lobby; a player who un-readied stopped the auto launch
         h.Patch(AccessTools.Method(typeof(NetworkStatusTopPanel),"OnButtonClick"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(RankedBlocks)));
         h.Patch(AccessTools.Method(typeof(TeamPanelPlayerInfo),"OnReadyButtonSelected"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(RankedBlocks)));
-    
-    // ArrowQueue's lobby card ("EVERYONE IS HERE · CLOSE THE SEARCH") becomes the ranked status card in a ranked lobby
+        // ArrowQueue's lobby card ("EVERYONE IS HERE · CLOSE THE SEARCH") becomes the ranked status card in a ranked lobby
         var pump=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.LobbyCard"),"Pump");
         if(pump!=null)h.Patch(pump,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(CardPumped)));else MelonLogger.Warning("FREEDOM_ARROW_RANKED_LOBBY no ArrowQueue LobbyCard.Pump: the banner is used");
     }
