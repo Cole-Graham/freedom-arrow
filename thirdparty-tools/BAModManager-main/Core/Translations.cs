@@ -164,6 +164,7 @@ public static partial class Loc
         ["Couldn't find the game's .exe."] = new[] { "Die .exe des Spiels wurde nicht gefunden.", "Impossible de trouver le .exe du jeu.", "Не удалось найти .exe игры.", "找不到游戏的 .exe。" },
         ["Launching {0}…"] = new[] { "{0} wird gestartet…", "Lancement de {0}…", "Запуск {0}…", "正在启动 {0}…" },
         ["Couldn't start the game: "] = new[] { "Das Spiel konnte nicht gestartet werden: ", "Impossible de lancer le jeu : ", "Не удалось запустить игру: ", "无法启动游戏：" },
+        ["Details are saved in {0}"] = new[] { "Details sind gespeichert in {0}", "Les détails sont enregistrés dans {0}", "Подробности сохранены в {0}", "详细信息已保存到 {0}" },
         ["Couldn't start the game"] = new[] { "Das Spiel konnte nicht gestartet werden", "Impossible de lancer le jeu", "Не удалось запустить игру", "无法启动游戏" },
         ["This doesn't exist yet:\n{0}"] = new[] { "Das existiert noch nicht:\n{0}", "Ceci n'existe pas encore :\n{0}", "Этого пока нет:\n{0}", "此项尚不存在：\n{0}" },
         ["Couldn't open: "] = new[] { "Konnte nicht geöffnet werden: ", "Impossible d'ouvrir : ", "Не удалось открыть: ", "无法打开：" },

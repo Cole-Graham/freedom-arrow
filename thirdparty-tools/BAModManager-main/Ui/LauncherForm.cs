@@ -629,10 +629,22 @@ internal sealed class LauncherForm : Form
         }
         catch (Exception ex)
         {
-            Log(ex.Message);
-            _panel.Finish(false, T("Couldn't start the game: ") + ex.Message);
-            SetStatus(T("Couldn't start the game: ") + ex.Message);
-            MessageBox.Show(this, ex.Message, T("Couldn't start the game"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            // 1.1.16: show the whole reason, not just "see inner exception"; for a secure-connection failure also show what
+            // this PC receives from freedomarrow.app (NetDiagnostics), and keep it all in launcher.log.
+            var reason = NetDiagnostics.Describe(ex);
+            NetDiagnostics.Append($"{AppInfo.FullName}: PLAY failed: {ex}");
+            Log(reason);
+            _panel.Finish(false, T("Couldn't start the game: ") + reason);
+            SetStatus(T("Couldn't start the game: ") + reason);
+            var details = reason;
+            if (NetDiagnostics.IsSecureConnectionFailure(ex))
+            {
+                var probe = await NetDiagnostics.ProbeAsync();
+                NetDiagnostics.Append("Connection check:" + Environment.NewLine + probe);
+                details += Environment.NewLine + Environment.NewLine + probe;
+            }
+            details += Environment.NewLine + Environment.NewLine + T("Details are saved in {0}", NetDiagnostics.LogPath);
+            MessageBox.Show(this, details, T("Couldn't start the game"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         finally
         {
@@ -942,5 +954,6 @@ internal sealed class LauncherForm : Form
     {
         _log.Add($"[{DateTime.Now:HH:mm:ss}] {message}");
         Debug.WriteLine(message);
+        NetDiagnostics.Append(message);
     }
 }

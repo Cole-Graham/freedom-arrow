@@ -45,7 +45,7 @@
     <Product>Freedom Arrow Launcher</Product>
     <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
     <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
-    <Version>1.1.15</Version>
+    <Version>1.1.16</Version>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
