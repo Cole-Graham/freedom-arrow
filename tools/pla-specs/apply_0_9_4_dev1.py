@@ -559,7 +559,7 @@ import blue_dragon_jp2;blue_dragon_jp2.apply(t,g,ok,rec)
 # model (FAModels models.json variants). See ztz99b_095.py.
 import ztz99b_095;ztz99b_095.apply(t,g,ok,rec)
 # ---------- ZBD-100 (Osama 22 Nov 2026, thread 1572407822849810463): new China unit, Type 100 model on a Bradley stand-in, ZBD-20 armour and
-# drive (ZBD-20 no longer amphibious), 35 mm gun, 80 pts, APS +40, 8x CH-901 loadout. Next patch (batch codex/batch/osama/zbd100). See zbd100.py.
+# drive (ZBD-20 no longer amphibious), 35 mm gun, 80 pts, APS +40, 8x CH-901 loadout. Merged for 0.9.5-dev.19 (Osama 22 Nov 02:50 "please add it"). See zbd100.py.
 import zbd100;zbd100.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
