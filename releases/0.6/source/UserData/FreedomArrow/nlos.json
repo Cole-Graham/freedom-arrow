@@ -1,11 +1,12 @@
 {
   "trait": "NLOS",
   "version": "0.9.0-dev.29",
-  "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs).",
+  "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs). 0.9.5-dev.5: the Blood Wolves' CH-901 round 2018448 joins the ammunition list, and a round with no target locks on the enemy unit at its laser spot.",
   "ammunition": [
     2009623,
     2009651,
-    2018321
+    2018321,
+    2018448
   ],
   "fire_weapons": [
     2009619,

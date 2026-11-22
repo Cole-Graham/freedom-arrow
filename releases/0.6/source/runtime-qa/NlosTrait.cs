@@ -198,6 +198,22 @@ static class NlosTrait
         MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: vanilla seeker behaviour for this session. "+e);
         DiagnosticLog.Write("nlos_failed",new{error=e.ToString()});
     }
+    const float LaserSpotRadius=60f;
+    static EntitySet unitSet;static World unitWorld;
+    // The live unit nearest p within r, not on side notSide (the shooter's side, when known).
+    static Entity UnitNear(Vector3 p,float r,TeamSide? notSide)
+    {
+        var world=ShootingSystem._gameContext;if(world==null)return default;
+        if(unitSet==null||unitWorld==null||unitWorld.Pointer!=world.Pointer){unitWorld=world;unitSet=world.GetEntities().With<UnitComponent>().AsSet();}
+        var arr=unitSet._entities;int n=Math.Min(unitSet.Count,arr?.Length??0);Entity best=default;float bd=r;
+        for(int i=0;i<n;i++)
+        {
+            var e=arr![i];if(!e.IsAlive||!e.Has<ViewComponent>())continue;
+            if(notSide!=null&&NativeEcs.Read<UnitComponent>(e).Owner?.TeamSide==notSide)continue;
+            float d=Vector3.Distance(Position(e),p);if(d<bd){bd=d;best=e;}
+        }
+        return best;
+    }
     static bool SeekerTarget(Entity missile,out Entity target)
     {
         target=default;
@@ -233,12 +249,17 @@ static class NlosTrait
             if(original.IsAlive){target=original;from="original target";}
         }
         // 0.8.0-dev.7 game log (Osama, 12 Nov 14:53): a ground HJ-10 missile had neither, so take the launcher's own target.
-        string weaponState="no shooter weapon";
+        string weaponState="no shooter weapon";TeamSide? side=null;
         if(!target.IsAlive)
         {
             // 0.8.0-dev.11 log (15:09): MissileGuidanceInfoComponent.ShooterWeapon was empty on every HJ-10 missile, so also try the warhead's.
             var weapon=NativeEcs.Field<MissileGuidanceInfoComponent,Entity>(missile,"ShooterWeapon");string via="guidance";
             if(!weapon.IsAlive&&missile.Has<WarheadComponent>()){weapon=NativeEcs.Field<WarheadComponent,Entity>(missile,"ShooterWeapon");via="warhead";}
+            if(weapon.IsAlive&&weapon.Has<WeaponComponent>())
+            {
+                var su=NativeEcs.Read<WeaponComponent>(weapon)?.GetUnitEntity()??default;
+                if(su.IsAlive&&su.Has<UnitComponent>())side=NativeEcs.Read<UnitComponent>(su).Owner?.TeamSide;
+            }
             if(!weapon.IsAlive)weaponState="shooter weapon not found (guidance and warhead links empty)";
             else if(weapon.Has<TargetComponent>())
             {
@@ -247,6 +268,19 @@ static class NlosTrait
                 else weaponState="shooter weapon target dead (via "+via+")";
             }
             else weaponState=(weapon.Has<GroundTargetComponent>()?"shooter weapon is firing at a ground position, not a unit":"shooter weapon has no target component")+" (via "+via+")";
+        }
+        // 0.9.5-dev.5 (Osama 22 Nov 2026 00:0x PST: "all the other laser guided cruise missiles are broken"). dev.4 flight trace: a cruise round fired
+        // at a lased tank has no seeker target, only LastTargetPosition = the lased tank, and the cruise path then flies straight north and never
+        // turns (CH-901 2687, CTL-181 2762, QN-502 2761 at 00:01:11-21). Lock it on the enemy unit nearest that laser spot.
+        if(!target.IsAlive&&missile.Has<SeekerComponent>())
+        {
+            var spot=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
+            if(spot!=Vector3.zero)
+            {
+                var u=UnitNear(spot,LaserSpotRadius,side);
+                if(u.IsAlive){target=u;from=$"unit {Vector3.Distance(Position(u),spot):0} from the laser spot";}
+                else weaponState+=$"; no enemy unit within {LaserSpotRadius:0} of the laser spot ({spot.x:0},{spot.z:0})";
+            }
         }
         if(!target.IsAlive)
         {

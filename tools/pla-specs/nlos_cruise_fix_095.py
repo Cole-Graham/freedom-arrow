@@ -15,6 +15,7 @@ edge of the map").
 - 0.9.5-dev.3 had LaserGuided False on all four: Osama 23:5x "the QN, blood wolves, and CTL-181 lost their NLOS ability", so the laser is how
   they reach targets without line of sight. LaserGuided is back to True on all four (as in 0.9.4); only the HJ-10 launch fixes stay. The
   off-map flight after lasing is still open: NlosTrait traces these four rounds (FREEDOM_ARROW_NLOS_TRACE) to show where they aim.
+- dev.4 still no HJ-10 launch: 7,311 WeaponForceFire (fire at a point) calls; its round TargetType 36 lacks Ground (1). Now 37, as the CTL-181.
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -36,4 +37,9 @@ def apply(t, g, ok, rec):
            'LongGroundAttackBurst': ch['LongGroundAttackBurst']}
     g.put('WeaponsJson', HJ10_LAUNCHER, new)
     ok(all(W[HJ10_LAUNCHER][k] == v for k, v in new.items()) and W[HJ10_LAUNCHER]['MagazineSize'] == 8, 'HJ-10 cruise launcher')
+    # dev.5 (Osama 22 Nov 00:0x "HJ-10 can't fire"; dev.4 log: 7,311 WeaponForceFire calls, no missile): firing at a laser spot / position needs
+    # the Ground bit (1) in the round's TargetType; HJ-10 had 36 (vehicle + ship). 37 as the CTL-181 (16 Nov fix); QN-502 / CH-901 have 1.
+    ok(A[2009623]['TargetType'] == 36 and A[2018321]['TargetType'] == 37, 'HJ-10 target type before')
+    g.put('AmmunitionsJson', 2009623, {'TargetType': 37})
+    ok(A[2009623]['TargetType'] == 37, 'HJ-10 may fire at ground points (laser spot)')
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
