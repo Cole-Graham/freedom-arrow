@@ -29,7 +29,9 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
   ZBD-20's spec-18 squads whose squad fits 6 seats."""
 
 CH_COST = 40
-BASE = 120
+BASE = 145
+T15 = 255   # vanilla 'T-15 Barbaris'
+PROFILE = ('KinArmorFront', 'KinArmorSides', 'KinArmorRear', 'KinArmorTop', 'HeatArmorFront', 'HeatArmorSides', 'HeatArmorRear', 'HeatArmorTop', 'MaxHealthPoints')
 NAME = 'ZBD-100'
 
 
@@ -61,9 +63,12 @@ def apply(t, g, ok, rec):
     d.update({k: U[BR][k] for k in ('ModelFileName', 'PortraitFileName', 'ThumbnailFileName', 'Length', 'Width', 'Height', 'WaterDiveOffset', 'AudioPreset')})
     d.update({'Name': 'PLA ' + NAME, 'HUDName': NAME, 'Cost': BASE, 'OriginalCost': 0, 'InfantrySlots': 6, 'Description': None, 'OriginalName': None})
     uid = g.put('Units', max(U) + 1, d)
-    arm = g.add('ArmorsJson', t['ArmorsJson'][ARM], {'Name': 'PLA Type 100 CSV', 'KinArmorFront': 650, 'KinArmorSides': 180, 'KinArmorRear': 60,
-                                                    'KinArmorTop': 60, 'HeatArmorFront': 900, 'HeatArmorSides': 500, 'HeatArmorRear': 60,
-                                                    'HeatArmorTop': 60, 'MaxHealthPoints': 12})
+    # Osama 22 Nov 14:3x: "make Type 100 CSV armor profile same as T-15 barabris, and make it 145 points": the KE / HEAT values and HP of the
+    # T-15's own armour row (read from the current table, not typed in); the hit box fields stay the VN-17 copy's.
+    t15 = [r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=T15)]
+    ok(U[T15]['Name'] == 'T-15 Barbaris' and len(t15) == 1, ('T-15 Barbaris has one armour row', t15))
+    T15A = t['ArmorsJson'][t15[0]]
+    arm = g.add('ArmorsJson', t['ArmorsJson'][ARM], {'Name': 'PLA Type 100 CSV', **{k: T15A[k] for k in PROFILE}})
     g.add('UnitArmorsJson', rows('UnitArmorsJson', UnitId=Z)[0], {'UnitId': uid, 'ArmorId': arm})
     g.add('UnitPropulsionsJson', rows('UnitPropulsionsJson', UnitId=Z)[0], {'UnitId': uid})
     g.add('SensorUnitsJson', rows('SensorUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'SensorId': VG})
@@ -141,10 +146,11 @@ def apply(t, g, ok, rec):
 
     # checks
     ok(t['MobilityJson'][MOB]['IsAmphibious'] is False, 'ZBD-20 / ZBD-100 drive row not amphibious')
+    ok(all(t['ArmorsJson'][arm][k] == T15A[k] for k in PROFILE), ('Type 100 armour = T-15 Barbaris', {k: T15A[k] for k in PROFILE}))
     ok(all([r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=u)] == [arm] and [r['MobilityId'] for r in rows('UnitPropulsionsJson', UnitId=u)] == [MOB] for u in units.values()), 'Type 100 own armour row, ZBD-20 drive row')
     ok([r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=Z)] == [ARM] and all(t['ArmorsJson'][arm][k] == t['ArmorsJson'][ARM][k] for k in ('IsDefault', 'ModelFileName', 'ArmorValue')), 'VN-17 keeps its armour row; Type 100 row = copy')
     ok(all(A[cha][k] == A[CHA][k] for k in A[CHA] if k not in ('Id', 'Name', 'PenetrationAtMinRange', 'PenetrationAtGroundRange')) and (A[cha]['PenetrationAtMinRange'], A[cha]['PenetrationAtGroundRange'], A[CHA]['PenetrationAtGroundRange']) == (60.0, 60.0, 30.0), 'Type 100 CH-901 round: penetration 60, Blood Wolves round unchanged')
-    ok((U[uid]['Cost'], U[uid]['InfantrySlots'], U[uid]['ModelFileName'], U[uid]['CountryId'], U[uid]['WaterDiveOffset']) == (BASE, 6, 'US_M2A3', 4, U[BR]['WaterDiveOffset']), 'ZBD-100 card: 120, 6 seats, Bradley model and dive offset, China')
+    ok((U[uid]['Cost'], U[uid]['InfantrySlots'], U[uid]['ModelFileName'], U[uid]['CountryId'], U[uid]['WaterDiveOffset']) == (BASE, 6, 'US_M2A3', 4, U[BR]['WaterDiveOffset']), 'ZBD-100 card: 145, 6 seats, Bradley model and dive offset, China')
     ok([r['SensorId'] for r in rows('SensorUnitsJson', UnitId=uid)] == [VG], 'ZBD-100 Very Good Optics (card 2000 m)')
     ok(all(W[gun][k] == W[GUN][k] for k in W[GUN] if k not in ('Id', 'Name', 'HUDName')), '35 mm gun = ZBD-20 gun (fire rate)')
     ok(abs(A[ke]['Damage'] / A[KE]['Damage'] * 1.55 - 2.0) < 0.01, ('KE card DPS 1.55 -> 2.0', round(A[ke]['Damage'] / A[KE]['Damage'] * 1.55, 3)))
@@ -169,4 +175,5 @@ def apply(t, g, ok, rec):
     ok(len(card) == 1 and card[0]['SpecializationId'] == ARMD and U[uid]['CategoryType'] == 0, ('ZBD-100 Recon card in Armored', card))
     rec['zbd100'] = {'armored_recon_card': {k: card[0].get(k) for k in card[0] if k.startswith('Max') or k == 'SpecializationId'}, 'unit': uid, 'swap_units': units, 'gun': gun, 'ke': ke, 'he': he, 'mounts': [base, chm], 'options': [o['Id'] for o in opts], 'protection_options': [o['Id'] for o in popts], 'armor': arm, 'ch901_round': cha, 'ch901_cost': CH_COST,
                      'transport_for': fit, 'not_fitting': big, 'zbd20_amphibious': [True, False]}
+    rec['zbd100']['armour_t15'] = {k: T15A[k] for k in PROFILE}
     print('ZBD100', rec['zbd100'])
