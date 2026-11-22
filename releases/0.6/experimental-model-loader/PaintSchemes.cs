@@ -8,6 +8,8 @@ using Il2CppBrokenArrow.Client.Ecs.Configs.UserItems;
 namespace FAModels;
 // 0.3.36 paint schemes (Osama 21 Nov 2026, thread 1572407822849810463: "add variants of all the units we have multiple textures for as a paint
 // option ... Mainly for Arsenal", "for our Chinese and new models, remove the default skins", "make sure they're Armory quality").
+// 0.3.37 (21 Nov 19:3x, "every model from that one chinese creator should have paint schemes"): 73 units, and every FAModels unit without
+// schemes hides the donor's vanilla skins.
 // The extra colour sets that came with the model packs are shipped as <texture>@<Scheme>.fat next to the default texture, at the same size.
 // paint-schemes.json lists the schemes of each unit. On those units the Arsenal paint menu shows "Default" and the pack schemes instead of
 // the donor's vanilla skins (which never showed on our models). The choice is local (paint-choices.json, per unit): it never goes into the
@@ -21,9 +23,10 @@ public partial class Mod
     const int PaintIdBase = 970000;                                     // button ids: base + index (0 = Default); never sent anywhere
     static readonly Dictionary<string, string> PaintNames = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["Plain"] = "Plain green", ["Dust"] = "Desert", ["DustCamo"] = "Desert camo", ["DustMix"] = "Desert mix", ["Camo"] = "Woodland camo",
+        ["Plain"] = "Plain", ["Dust"] = "Desert", ["DustCamo"] = "Desert camo", ["DustMix"] = "Desert mix", ["Camo"] = "Woodland camo",
         ["Mix"] = "Mixed camo", ["dig"] = "Digital", ["Yellow"] = "Yellow", ["YellowMix"] = "Yellow mix", ["Yellowmix"] = "Yellow mix",
-        ["Green"] = "Green", ["Navy"] = "Navy grey", ["Black"] = "Black",
+        ["Green"] = "Green", ["Navy"] = "Navy grey", ["Black"] = "Black", ["Army"] = "Army green", ["Grey"] = "Grey", ["GreenMix"] = "Green mix",
+        ["Camo1"] = "Camo 1", ["Camo2"] = "Camo 2", ["Mix1"] = "Mix 1", ["Mix2"] = "Mix 2",
     };
     static string PaintLabel(string s) => s == "" ? "Default" : PaintNames.TryGetValue(s, out var n) ? n : s;
     static string ChoicesFile => Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FAModels-paint-choices.json");
@@ -76,10 +79,22 @@ public partial class Mod
     {
         try
         {
-            var unit = __instance._unit; if (unit == null || !paintSchemes.TryGetValue(unit.Name, out var list) || list.Length == 0) return;
+            var unit = __instance._unit; if (unit == null) return;
+            paintSchemes.TryGetValue(unit.Name, out var list);
+            bool ours = map.ContainsKey(unit.Name);
+            if (!ours && (list == null || list.Length == 0)) return;          // vanilla model: vanilla skins
             var buttons = __instance._activeSkinButtons;
             foreach (var b in buttons) if (b != null) b.gameObject.SetActive(false);
             buttons.Clear();
+            if (list == null || list.Length == 0)
+            {
+                // 0.3.37 (Osama 21 Nov: the Z-10 card showed the donor's vanilla skins). Our model with one colour set: the donor's skins never
+                // showed on it, so the paint menu is hidden.
+                if (__instance._skinMenuButton != null) __instance._skinMenuButton.gameObject.SetActive(false);
+                if (__instance._selectedSkinName != null) __instance._selectedSkinName.text = PaintLabel("");
+                if (__instance._selectedSkinDescription != null) __instance._selectedSkinDescription.text = "This model came with one paint scheme.";
+                return;
+            }
             var schemes = new[] { "" }.Concat(list).ToArray();
             paintChoices.TryGetValue(unit.Name, out var cur); cur ??= "";
             string name = unit.Name;

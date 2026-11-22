@@ -34,3 +34,13 @@
   new cut copy (3.4 / IC 0) with 491's helicopter-range entry. Heli rotary cannons (GAU-19B, YakB) untouched. CONFIG: game-config.json
   BuildingDamageFloor 0.18 -> 0.3 (buildings take 30 %), woods 0.55 unchanged. queued_checks.py checks all of it from 0.9.4-dev.5. Side effect
   (calculated): 120/105/115 mm HEAT no longer one-shots 10 HP vehicles. Not seen in game. Doc: Balance notes 1if0iWzQ, cover proposal section.
+- 2026-11-21 19:5x PST, thread 1572407822849810463 (Osama: "but we have so many colors for the Z-10 how come it's not a paint scheme", "please implement it for
+  all the units we have extra creator sourced textures", "I mean every model from that one chinese creator should have paint schemes"). ASSETS + FAModels 0.3.37.
+  The 0.2.49 scan missed the first paid batch (Z-10, ZBD-04, ZBL-191, ZTQ-15, ZTZ-96B, ZTZ-99A), ZTZ-100, the osama-20261113b packs (PGZ-95, Z-19, Z-20/Z-18,
+  Z-9, VT-5, PLZ-07, VN17 = ZBD-20, HQ-16, ZTZ-99), Z-6B, Z-8L navy, J-20 and J-36. work/paint-variants-20261121/sib/to_fat3.py matches every live colour
+  texture to the creator coat library (52 coat groups, 200 images, 64x64 error <= 2, no near misses) and writes the other coats at the live size: 181 new
+  .fat, 43 more units (74 in total), 167 swatches, merged paint-schemes.json; 0.2.49 files unchanged. PaintSchemes.cs 0.3.37: an FAModels unit without schemes
+  hides the donor's vanilla skins and the paint button (the Z-10 card showed AH-1 skins); default coat label "Plain" (was "Plain green"); labels for Army,
+  Grey, Green mix, Camo 1/2, Mix 1/2. BUILD: --famodels <FAModels.dll 0.3.37 built from experimental-model-loader> and the 349 --asset lines of
+  work/paint-variants-20261121/sib/asset-args2.txt (506 MB; new Assets version; run publish_assets_index.py). Compiled clean on the deck. Not seen in game:
+  check the Z-10 card (Default + Camo, Dust, Navy, Plain), a non-scheme FAModels unit (no paint button) and a vanilla unit (vanilla skins).
