@@ -18,7 +18,7 @@ static class MemoryCleanup
     static float due = -1;
     static string reason = "";
     static AsyncOperation pending;
-    static long beforeMb;
+    static string before;
     static float started;
 
     public static void SceneChanged(string scene)
@@ -37,12 +37,12 @@ static class MemoryCleanup
                 if (!pending.isDone) return;
                 pending = null;
                 Collect();
-                MelonLogger.Msg($"FREEDOM_ARROW_MEMORY_CLEANUP {reason}: private {beforeMb} -> {PrivateMb()} MB, working set {WorkingSetMb()} MB, {Time.realtimeSinceStartup - started:0.0} s");
+                MelonLogger.Msg($"FREEDOM_ARROW_MEMORY_CLEANUP {reason}: before [{before}] after [{Snapshot()}], {Time.realtimeSinceStartup - started:0.0} s");
                 return;
             }
             if (due < 0 || Time.realtimeSinceStartup < due) return;
             due = -1;
-            beforeMb = PrivateMb();
+            before = Snapshot();
             started = Time.realtimeSinceStartup;
             Collect();
             pending = Resources.UnloadUnusedAssets();
@@ -61,6 +61,16 @@ static class MemoryCleanup
         Il2CppSystem.GC.Collect();
     }
 
-    static long PrivateMb() => System.Diagnostics.Process.GetCurrentProcess().PrivateMemorySize64 >> 20;
-    static long WorkingSetMb() => System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 >> 20;
+    // 22 Nov 01:4x: Osama's Linux PC reports private 0, so the first test could not show what a pass frees. Log before and after:
+    // process private / working set, Unity's own allocated and reserved memory (works under Proton too) and the IL2CPP GC heap.
+    static string Snapshot()
+    {
+        var p = System.Diagnostics.Process.GetCurrentProcess();
+        string unity;
+        try { unity = $"unity alloc {UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong() >> 20} MB, reserved {UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong() >> 20} MB"; }
+        catch { unity = "unity n/a"; }
+        string heap;
+        try { heap = $"il2cpp heap {Il2CppSystem.GC.GetTotalMemory(false) >> 20} MB"; } catch { heap = "il2cpp heap n/a"; }
+        return $"private {p.PrivateMemorySize64 >> 20} MB, working set {p.WorkingSet64 >> 20} MB, {unity}, {heap}";
+    }
 }
