@@ -75,17 +75,11 @@ static class PartySizeWarning
         catch(Exception e){failed=true;active=null;MelonLogger.Error("FREEDOM_ARROW_PARTY_SIZE_FAILED: warning off. "+e.Message);}
     }
 
-    static int Recommended()
-    {
-        foreach(var (_,n) in Sizes)if(n>=party)return n;
-        return Sizes[^1].Size;
-    }
-
     public static void OnGUI()
     {
         if(!Showing)return;
         float k=Screen.height/1080f;
-        float w=Mathf.Min(980*k,Screen.width-20),h=420*k;
+        float w=Mathf.Min(1200*k,Screen.width-20),h=470*k;
         float cx=Screen.width/2f,top=30*k;
         try
         {
@@ -97,22 +91,22 @@ static class PartySizeWarning
         }
         catch{readyButton=null;}
         var r=new Rect(Mathf.Clamp(cx-w/2,10,Screen.width-w-10),Mathf.Clamp(top,0,Screen.height-h),w,h);
-        int fs=Mathf.Max(12,Mathf.RoundToInt(22*k));
+        int fs=Mathf.Max(12,Mathf.RoundToInt(25*k));
         if(titleStyle==null||bodyStyle.fontSize!=fs)
         {
-            titleStyle=new GUIStyle(GUI.skin.label){fontSize=Mathf.RoundToInt(fs*1.45f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=true};
-            bodyStyle=new GUIStyle(GUI.skin.label){fontSize=fs,alignment=TextAnchor.UpperCenter,wordWrap=true};
+            titleStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=Mathf.RoundToInt(fs*1.45f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=true};
+            bodyStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=fs,alignment=TextAnchor.UpperCenter,wordWrap=true};
             buttonStyle=new GUIStyle(GUI.skin.button){fontSize=Mathf.RoundToInt(fs*1.1f),fontStyle=FontStyle.Bold};
         }
         var old=GUI.color;
-        GUI.color=new Color(0.89f,0.21f,0.24f,1f);GUI.DrawTexture(new Rect(r.x-4,r.y-4,r.width+8,r.height+8),Texture2D.whiteTexture);
-        GUI.color=new Color(0.05f,0.05f,0.06f,0.97f);GUI.DrawTexture(r,Texture2D.whiteTexture);
+        // Large red panel (Osama 22 Nov 00:52): bright red border, solid red body, white text.
+        GUI.color=new Color(1f,0.42f,0.42f,1f);GUI.DrawTexture(new Rect(r.x-5,r.y-5,r.width+10,r.height+10),Texture2D.whiteTexture);
+        GUI.color=new Color(0.70f,0.06f,0.08f,0.98f);GUI.DrawTexture(r,Texture2D.whiteTexture);
         GUI.color=old;
-        int rec=Recommended();
-        GUI.Label(new Rect(r.x+20,r.y+12*k,r.width-40,60*k),"WARNING: TOO MANY PLAYERS FOR THIS MAP\n警告：玩家人数超过地图设计",titleStyle);
-        GUI.Label(new Rect(r.x+30,r.y+95*k,r.width-60,230*k),
-            $"This is a {mapSize}v{mapSize} map, but a team has {party} players. Playing with more players than a map is made for causes balance problems: crowded front lines, too many units for the space and scoring tuned for {mapSize}v{mapSize}. Pick a {rec}v{rec} map, or dismiss this warning to play anyway.\n\n"+
-            $"这是一张 {mapSize}v{mapSize} 地图，但有一方有 {party} 名玩家。玩家人数超过地图设计会导致平衡问题：前线拥挤、单位过多、计分按 {mapSize}v{mapSize} 设计。请选择 {rec}v{rec} 地图，或关闭此警告后继续。",bodyStyle);
+        GUI.Label(new Rect(r.x+20,r.y+14*k,r.width-40,80*k),"WARNING: TOO MANY PLAYERS FOR THIS MAP\n警告：玩家人数超过地图设计",titleStyle);
+        GUI.Label(new Rect(r.x+40,r.y+110*k,r.width-80,260*k),
+            $"This is a {mapSize}v{mapSize} map, but a team has {party} players. Playing with more players than a map is made for causes balance problems: crowded front lines, too many units for the space and scoring tuned for {mapSize}v{mapSize}. We encourage playing maps at their recommended size. Dismiss this warning to play anyway.\n\n"+
+            $"这是一张 {mapSize}v{mapSize} 地图，但有一方有 {party} 名玩家。玩家人数超过地图设计会导致平衡问题：前线拥挤、单位过多、计分按 {mapSize}v{mapSize} 设计。我们鼓励按地图推荐的人数进行游戏。关闭此警告即可继续。",bodyStyle);
         if(GUI.Button(new Rect(r.x+r.width/2-230*k,r.y+r.height-70*k,460*k,52*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
         {
             dismissed=active;
