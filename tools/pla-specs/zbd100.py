@@ -12,10 +12,10 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
   shows 2000 m), the ZBD-20 Recon row. Cost 80. APS +40: ability 82 (GL-5 / Iron Fist, 2 charges, 10 s), as the ZBD-20.
 - Loadout: 35 mm only (default) or 35 mm + 8x CH-901 (the Blood Wolves launcher 2018447 / round 2018448, CH-901 on mount Order 1). The CH-901 is
   laser-guided, so that option also gives the vanilla vehicle laser (row 8 "Laser Veh", 1500, usable on the move, the row the ZBD-20 links; ability slot 3, which no other ZBD-100 option uses).
-  CH_COST is not from Osama.
+  CH_COST +40 (Osama 22 Nov 03:0x: "CH-901 adds +40 points to the vehicle").
 - Availability: transport for the ZBD-20's spec-18 squads whose squad fits 6 seats (Osama did not say where it goes)."""
 
-CH_COST = 30
+CH_COST = 40
 NAME = 'ZBD-100'
 
 
