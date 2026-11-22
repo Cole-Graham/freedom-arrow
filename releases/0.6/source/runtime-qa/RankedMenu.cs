@@ -47,7 +47,8 @@ static class RankedMenu
     static Type tFlow,tUi,tApi,tGame,tSignal;
     static MethodInfo mBegin,mCanStart,mStop,mPicked,mSupported;
     static PropertyInfo pActive,pCurrent,pMySteam,pInLobby;
-    static FieldInfo fLink,fPartyNews;
+    static FieldInfo fLink,fPartyNews,fPartyCurrent,fIncoming,fOnline,fOnlineList;
+    static MethodInfo mInvite,mAccept,mDecline,mLeave,mKick;
 
     public static void Install(HarmonyLib.Harmony h)
     {
@@ -63,6 +64,11 @@ static class RankedMenu
         pActive=AccessTools.Property(tApi,"Active");pCurrent=AccessTools.Property(tApi,"Current");
         pMySteam=AccessTools.Property(tGame,"MySteamId");pInLobby=AccessTools.Property(tGame,"InLobby");
         fLink=AccessTools.Field(tSignal,"_link");fPartyNews=AccessTools.Field(tApi,"PartyNews");
+        var tParty=AccessTools.TypeByName("ArrowQueue.Party");   // ArrowQueue's own party calls (invite, accept, decline, leave, kick)
+        fPartyCurrent=AccessTools.Field(tParty,"Current");fIncoming=AccessTools.Field(tParty,"Incoming");
+        fOnline=AccessTools.Field(tApi,"Online");fOnlineList=AccessTools.Field(tApi,"OnlineList");
+        mInvite=AccessTools.Method(tParty,"Invite");mAccept=AccessTools.Method(tParty,"Accept");mDecline=AccessTools.Method(tParty,"Decline");
+        mLeave=AccessTools.Method(tParty,"Leave");mKick=AccessTools.Method(tParty,"Kick");
         foreach(var (n,o) in new (string,object)[]{("Flow.Begin",mBegin),("Flow.Picked",mPicked),("Ui.CanStart",mCanStart),("Api.Stop",mStop),("Game.SupportedScenarios",mSupported),
             ("Api.Active",pActive),("Api.Current",pCurrent),("Game.MySteamId",pMySteam),("Game.InLobby",pInLobby),("Signal._link",fLink)})
             if(o==null)throw new InvalidOperationException("ArrowQueue "+n+" not found");
@@ -228,11 +234,31 @@ static class RankedMenu
         if(rects.Count<2&&c.transform.childCount>0)for(int i=0;i<c.transform.childCount&&rects.Count<2;i++)rects=Cards(c.transform.GetChild(i));
         if(rects.Count<2)return No($"found {rects.Count} card rects under {c.name} ({c.transform.childCount} children)");
         rects.Sort((a,b)=>a.x.CompareTo(b.x));
-        last=rects[^1];pitch=rects[^1].x-rects[^2].x;
+        // Vanilla cards grow in place on hover (Lateralus 22 Nov: hovering Multiplayer pushed the Ranked card right; hovering
+        // Skirmish grew both). The card is placed from the cards' rest layout (all the same width), kept per screen size;
+        // a hovered vanilla card gives the hover scale and anchor that the Ranked card copies.
+        bool rest=rects.All(r=>Math.Abs(r.width-rects[0].width)<1f);
+        int key=Screen.width*100000+Screen.height;
+        if(rest){baseCards=rects;baseKey=key;}
+        else if(baseCards!=null&&baseKey==key&&baseCards.Count==rects.Count)
+            for(int i=0;i<rects.Count;i++)
+            {
+                var b0=baseCards[i];var h0=rects[i];float gi=h0.width/b0.width;
+                if(gi<=measured+0.004f)continue;   // the hover grows over a few frames: keep the largest size seen
+                measured=gi;grow=gi;
+                growAx=Mathf.Clamp01((b0.x-h0.x)/Math.Max(1f,h0.width-b0.width));
+                growAy=Mathf.Clamp01((b0.y-h0.y)/Math.Max(1f,h0.height-b0.height));
+                if(gi>=loggedGrow+0.02f){loggedGrow=gi;MelonLogger.Msg($"FREEDOM_ARROW_RANKED vanilla hover: x{grow:0.000}, anchor {growAx:0.00},{growAy:0.00} ({b0} -> {h0})");}
+            }
+        var use=baseCards!=null&&baseKey==key&&baseCards.Count==rects.Count?baseCards:rects;
+        last=use[^1];pitch=use[^1].x-use[^2].x;
         if(!(last.width>20f&&pitch>last.width*0.5f))return No($"odd card layout: last {last}, pitch {pitch}");
         if(why!="shown"){why="shown";MelonLogger.Msg($"FREEDOM_ARROW_RANKED cards: {string.Join(" ",rects)}");}
         return true;
     }
+    static List<Rect> baseCards;static int baseKey;
+    // Default from a Vengeance screenshot (Multiplayer card 245 -> 269 px wide when hovered); replaced by the measured vanilla hover.
+    static float grow=1.098f,growAx=0.5f,growAy=0.4f,hoverT,measured=1f,loggedGrow=1f;
     static List<Rect> Cards(Transform t)
     {
         var l=new List<Rect>();
@@ -283,9 +309,13 @@ static class RankedMenu
             if(card==null||!PlayCards(out var last,out var pitch))return;
             var r=new Rect(last.x+pitch,last.y,last.width,last.height);
             if(!loggedCard){loggedCard=true;MelonLogger.Msg($"FREEDOM_ARROW_RANKED card at {r} (last game card {last}, screen {Screen.width}x{Screen.height})");}
-            GUI.DrawTexture(r,card,ScaleMode.ScaleAndCrop);
             var e=Event.current;
-            if(r.Contains(e.mousePosition)){Fill(r,new Color(1,1,1,0.10f));Fill(new Rect(r.x,r.yMax-4,r.width,4),Red);}
+            bool hover=r.Contains(e.mousePosition);
+            if(e.type==EventType.Repaint)hoverT=Mathf.MoveTowards(hoverT,hover?1f:0f,Time.unscaledDeltaTime*8f);
+            float g=1f+(grow-1f)*hoverT;   // grow like the vanilla cards, with their measured anchor
+            var d=new Rect(r.x-(r.width*(g-1f))*growAx,r.y-(r.height*(g-1f))*growAy,r.width*g,r.height*g);
+            GUI.DrawTexture(d,card,ScaleMode.StretchToFill);
+            if(hover)Fill(new Rect(d.x,d.yMax-4*S0(),d.width,4*S0()),Red);
             if(GUI.Button(r,GUIContent.none,GUIStyle.none))Open();
         }
         catch(Exception ex){MelonLogger.Warning("FREEDOM_ARROW_RANKED: "+ex.Message);Close("error");play=null;}
@@ -294,6 +324,7 @@ static class RankedMenu
     // ---------- drawing ----------
     static readonly Color Red=new(0.886f,0.212f,0.243f),Green=new(0.42f,0.8f,0.38f),Dim=new(0.75f,0.75f,0.75f),Panel=new(0,0,0,0.45f);
     static float S,X0;   // scale (design height 900) and left offset (design width 1600, centred)
+    static float S0()=>Screen.height/1080f;
     static Rect R(float x,float y,float w,float h)=>new(X0+x*S,y*S,w*S,h*S);
     static void Fill(Rect r,Color c){var o=GUI.color;GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=o;}
     static GUIStyle St(int size,Color c,FontStyle f=FontStyle.Normal,TextAnchor a=TextAnchor.MiddleLeft)
@@ -335,7 +366,8 @@ static class RankedMenu
         if(tab==1&&now>=nextBoard){nextBoard=now+30f;AskBoards();}
         Fill(new Rect(0,0,Screen.width,Screen.height),new Color(0.02f,0.03f,0.04f,0.97f));
         var e=Event.current;
-        if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){Close("Esc");e.Use();return;}
+        if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){if(picking)picking=false;else Close("Esc");e.Use();return;}
+        if(picking){InvitePicker(now);return;}   // modal: nothing under it takes clicks
         // Two tabs (Lateralus 22 Nov: "Leaderboard and Rank Ladder are redundant"); the leaderboard has 1v1 and Team sub-menus.
         string[] tabs={"Ranked","Leaderboard"};float[] tw={152,232};
         float tx=58;
@@ -431,6 +463,7 @@ static class RankedMenu
         try{if(have)searching=me.GetProperty("searching").GetProperty(queue).GetInt32();}catch{}
         T(58,468,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",13,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
         if(now<noteUntil)T(58,494,470,40,note,13,new Color(1f,0.75f,0.3f),FontStyle.Normal,TextAnchor.MiddleCenter);
+        if(queue=="rteam")PartyPanel(now);
 
         // middle: your rank
         var lad=Ladder(queue);var m=Mine(me,have,lad);int s=Set;
@@ -492,6 +525,72 @@ static class RankedMenu
         }
     }
     static float searchFrom;
+
+    // Party for the Team queue (Lateralus 22 Nov: "a way to create a party/group to queue up for team games"). Uses ArrowQueue's
+    // own party (the hub's PartyAction): invite online players on the same build, accept/decline invites, kick, leave.
+    static bool picking;static int pickTop;
+    static object[] Arr(FieldInfo f){try{return (f?.GetValue(null) as Array)?.Cast<object>().ToArray()??Array.Empty<object>();}catch{return Array.Empty<object>();}}
+    static string P(object o,string prop){try{return Traverse.Create(o).Property(prop).GetValue()?.ToString()??"";}catch{return "";}}
+    static void PartyPanel(float now)
+    {
+        var cur=fPartyCurrent?.GetValue(null);
+        var members=cur==null?Array.Empty<object>():(Traverse.Create(cur).Property("members").GetValue() as Array)?.Cast<object>().ToArray()??Array.Empty<object>();
+        string leader=cur==null?"":P(cur,"leader");bool lead=members.Length==0||leader==MySteam();
+        // Compact, so it fits above the rank ladder strip: one row of member chips, one row of buttons.
+        var inc=Arr(fIncoming);
+        if(inc.Length>0)
+        {
+            var i=inc[0];
+            Fill(R(58,528,470,34),new Color(0.1f,0.25f,0.4f,0.85f));
+            T(68,528,240,34,$"{P(i,"fromName")} invited you to a party",13,Color.white,FontStyle.Bold);
+            if(Choice(318,531,100,28,"Accept",false,13)){try{mAccept.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+            if(Choice(424,531,100,28,"Decline",false,13)){try{mDecline.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+        }
+        else H(58,530,470,$"YOUR PARTY · {Math.Max(1,members.Length)}/5"+(members.Length>=4?" · plays 5v5":""));
+        if(members.Length==0)T(58,566,470,30,"Just you. Invite players to queue together (up to 5).",13,Dim);
+        else for(int k=0;k<Math.Min(5,members.Length);k++)
+        {
+            var m=members[k];string id=P(m,"steamId");bool isLead=id==leader,isMe=id==MySteam();
+            var cr=R(58+k*94,566,90,30);
+            Fill(cr,isMe?new Color(0.42f,0.8f,0.38f,0.18f):new Color(0,0,0,0.5f));Frame(cr,isLead?new Color(1f,0.8f,0.3f,0.7f):new Color(1,1,1,0.15f),1);
+            GUI.Label(new Rect(cr.x+6*S,cr.y,cr.width-(lead&&!isMe?26:8)*S,cr.height),(isLead?"★ ":"")+P(m,"name"),St(12,Color.white,isLead?FontStyle.Bold:FontStyle.Normal));
+            if(lead&&!isMe)
+            {
+                var kr=new Rect(cr.xMax-22*S,cr.y+5*S,18*S,20*S);
+                GUI.Label(kr,"X",St(12,kr.Contains(Event.current.mousePosition)?Red:Dim,FontStyle.Bold,TextAnchor.MiddleCenter));
+                if(GUI.Button(kr,GUIContent.none,GUIStyle.none)){try{mKick.Invoke(null,new object[]{id});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+            }
+        }
+        if(lead&&members.Length<5&&Choice(58,602,230,30,"+ INVITE PLAYERS",false,13)){picking=true;pickTop=0;}
+        if(members.Length>1&&Choice(298,602,230,30,lead?"DISBAND PARTY":"LEAVE PARTY",false,13)){try{mLeave.Invoke(null,null);}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+    }
+    static void InvitePicker(float now)
+    {
+        var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);
+        var all=info==null?Array.Empty<object>():(Traverse.Create(info).Property("players").GetValue() as Array)?.Cast<object>().ToArray()??Array.Empty<object>();
+        var list=all.Where(p=>P(p,"steamId")!=MySteam()&&P(p,"sameBuild")=="True"&&P(p,"inParty")!="True").OrderBy(p=>P(p,"name"),StringComparer.OrdinalIgnoreCase).ToList();
+        var box=R(560,110,520,690);
+        Fill(box,new Color(0.06f,0.07f,0.08f,0.99f));Frame(box,new Color(1,1,1,0.2f),1);
+        H(584,124,400,"INVITE TO YOUR PARTY");
+        T(584,154,470,22,$"{list.Count} online on your Freedom Arrow build",13,Dim);
+        const int Vis=13;var area=R(584,184,470,Vis*42);var ev=Event.current;
+        try{if(ev.type==EventType.ScrollWheel&&area.Contains(ev.mousePosition)){pickTop=Math.Clamp(pickTop+(ev.delta.y>0?3:-3),0,Math.Max(0,list.Count-Vis));ev.Use();}}catch{}
+        pickTop=Math.Clamp(pickTop,0,Math.Max(0,list.Count-Vis));
+        if(list.Count==0)T(584,190,470,30,"Nobody else is online on this build right now.",14,Dim);
+        for(int i=pickTop;i<Math.Min(list.Count,pickTop+Vis);i++)
+        {
+            var p=list[i];float y=184+(i-pickTop)*42;
+            Fill(R(584,y,470,38),new Color(0,0,0,0.5f));
+            T(596,y,300,38,P(p,"name"),15,Color.white,FontStyle.Bold);
+            T(860,y,80,38,P(p,"state"),12,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
+            if(Choice(950,y+5,96,28,"Invite",false,13))
+            {
+                try{mInvite.Invoke(null,new object[]{p,now});note="Invitation sent to "+P(p,"name")+".";noteUntil=now+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED party invite "+P(p,"name"));}
+                catch(Exception e){error=e.InnerException?.Message??e.Message;}
+            }
+        }
+        if(Choice(700,756,240,34,"CLOSE",false,14))picking=false;
+    }
     static void Stat(float x,float y,string label,string val){Fill(R(x,y,140,62),Box);T(x+10,y+4,130,30,val,20,Color.white,FontStyle.Bold);T(x+10,y+34,130,22,label,12,Dim);}
     static string Ord(int n)=>n+(n%100 is 11 or 12 or 13?"th":(n%10) switch{1=>"st",2=>"nd",3=>"rd",_=>"th"});
 
