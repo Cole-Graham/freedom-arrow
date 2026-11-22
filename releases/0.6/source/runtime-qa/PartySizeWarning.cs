@@ -107,7 +107,7 @@ static class PartySizeWarning
         GUI.Label(new Rect(r.x+30,r.y+140*k,r.width-60,170*k),
             "Oversized teams cause balance issues. We encourage playing maps at their recommended size.\n"+
             "超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。",bodyStyle);
-        if(GUI.Button(new Rect(r.x+r.width/2-330*k,r.y+r.height-80*k,660*k,66*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
+        if(GUI.Button(new Rect(r.x+r.width/2-420*k,r.y+r.height-80*k,840*k,66*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
         {
             dismissed=active;
             MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE dismissed ({map}, {party} per team)");
