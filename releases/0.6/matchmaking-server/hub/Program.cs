@@ -228,6 +228,7 @@ sealed class GameHub : Hub
             else
             {
                 var p = new Player { Conn = Context.ConnectionId, SteamId = steamId, Name = Clip(name, 64), Build = Clip(compat, 128), Version = Clip(version, 32), Pack = Clip(pack, 64) };
+                if (Ranked.Decks.TryGetValue(steamId, out var dk)) { p.RankedDeckOk = dk.ok; p.RankedDeck = dk.name; }   // ArrowQueue reconnects: keep the reported ranked deck
                 Store.ByConn[p.Conn] = p; Store.BySteam[steamId] = p;
                 Dir("player.upsert", steamId, p.Online());
             }
@@ -259,7 +260,7 @@ sealed class GameHub : Hub
     }
 
     // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
-    public object? SetRankedDeck(bool ok, string name) { lock (Store.Lock) { var p = Me(); p.RankedDeckOk = ok; p.RankedDeck = Clip(name ?? "", 64); } return null; }
+    public object? SetRankedDeck(bool ok, string name) { lock (Store.Lock) { var p = Me(); p.RankedDeckOk = ok; p.RankedDeck = Clip(name ?? "", 64); Ranked.Decks[p.SteamId] = (ok, p.RankedDeck); } return null; }
     public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
         pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId),
         groupDecks = Ranked.GroupDecks(p) }; } }

@@ -332,9 +332,44 @@ static partial class RankedMenu
         return new Rect(a.x,Screen.height-b.y,b.x-a.x,b.y-a.y);
     }
 
+
+    // ArrowQueue 0.10.31 rotates its queue-server connection once it has received 6000 bytes (Signal.RotateBytes; the link's RotateAt
+    // completes link.Full, the connect loop then closes it and reconnects). The hub treats the drop as leaving: the search is dropped and
+    // an open ranked lobby is closed ("lobby ... closed (left)"; Lateralus and Osama, 22 Nov 2026 14:22: both ranked11-quick matches
+    // closed 1-2 s after MatchFound). While the ranked page is open, a ranked search runs or a ranked match/lobby is open, the limit is
+    // lifted on the static and on the current link (only before link.Full has fired: the loop re-checks the static every second and
+    // would spin on an already completed Full). Restored when none applies, so the normal idle rotation still happens.
+    static FieldInfo fRotate;static int rotateOrig=-1;static bool rotateHeld;static object heldLink;
+    static void HoldRotation()
+    {
+        if(fRotate==null){fRotate=AccessTools.Field(tSignal,"RotateBytes");if(fRotate==null)return;rotateOrig=(int)fRotate.GetValue(null);}
+        bool active=false;try{active=pActive.GetValue(null) is true;}catch{}
+        bool inMatch=meJson.Contains("\"match\":{");
+        bool want=pageShown||active||inMatch||lobbyMatch.Length>0;
+        var link=fLink?.GetValue(null);
+        if(want)
+        {
+            if(link==null)return;
+            if(rotateHeld&&ReferenceEquals(link,heldLink))return;
+            var full=AccessTools.Property(link.GetType(),"Full")?.GetValue(link) as System.Threading.Tasks.Task;
+            if(full!=null&&full.IsCompleted)return;   // already rotating: hold the next link instead
+            fRotate.SetValue(null,int.MaxValue);
+            AccessTools.Field(link.GetType(),"RotateAt")?.SetValue(link,long.MaxValue);
+            if(!rotateHeld)MelonLogger.Msg("FREEDOM_ARROW_RANKED queue connection: ArrowQueue's 6 KB reconnect held for ranked");
+            rotateHeld=true;heldLink=link;lastDeckReport="";   // a new link is a new hub session: report the deck again
+        }
+        else if(rotateHeld)
+        {
+            fRotate.SetValue(null,rotateOrig);rotateHeld=false;heldLink=null;
+            MelonLogger.Msg("FREEDOM_ARROW_RANKED queue connection: ArrowQueue's reconnect limit restored ("+rotateOrig+" bytes)");
+        }
+    }
+    static object lastLink;
+    // a reconnect is a new hub session: send the deck at once (the hub keeps it per player since 22 Nov, but older hubs did not)
+    static void DeckAfterReconnect(){var l=fLink?.GetValue(null);if(l!=null&&!ReferenceEquals(l,lastLink)){lastLink=l;lastDeckReport="";}}
     public static void Tick()
     {
-        try{var t=Time.unscaledTime;LobbyTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
+        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
         PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}

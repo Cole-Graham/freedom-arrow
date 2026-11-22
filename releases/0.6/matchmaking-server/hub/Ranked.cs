@@ -77,6 +77,8 @@ static class Ranked
     const double PartySpread = 500, OneSidedWaitMin = 30;
 
     public static int Season = 1;
+    // last ranked deck each player reported (SetRankedDeck); a new hub session after a reconnect starts from it (Lateralus 22 Nov: 'deck invalid' after ArrowQueue's reconnect)
+    public static readonly Dictionary<string, (bool ok, string name)> Decks = new();
     static string _dir = "";
     static IHubContext<GameHub>? _ctx;
     static ILogger? _log;
