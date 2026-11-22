@@ -24,7 +24,8 @@ static class RankedMenu
 {
     // TEST BUILD: ranked runs on the test hub (faqueue-test.service, /hubs/test). ThirdPartyGuard points ArrowQueue here while this is set.
     public const bool TestHub=true;
-    public const string TestHubRoot="https://freedomarrow.app/hubs/test";
+    // ArrowQueue only uses its SignalR hub when the address ends in /hubs/game (Signal.On); otherwise it falls back to its old REST API.
+    public const string TestHubRoot="https://freedomarrow.app/hubs/test/hubs";
 
     static readonly int[] BandStart={0,1001,1028,1059,1093,1132,1175,1223,1277,1337,1405,1481,1566,1661,1767,1887,2020,2170};
     static readonly string[] UsNames={"Private","Private first class","Sergeant","Staff sergeant","Sergeant first class","Master sergeant","First sergeant","Sergeant major",
@@ -38,8 +39,6 @@ static class RankedMenu
 
     static string dir="",settingsFile="";
     static Texture2D card;
-    static readonly Dictionary<string,Sprite> sprites=new();
-    static float nextSpriteScan;
     static int set=-1;              // chosen set; -1 = follow the vanilla pick
     static int vanillaSet=-1;       // from the game's profile epaulet
     static string mySteam="";
@@ -204,30 +203,43 @@ static class RankedMenu
     }
 
     // The Play tab's cards are showing: PlayTab active, its buttons visible and the Scenarios sub-tab closed.
+    static string why="";
+    static bool No(string reason){if(reason!=why){why=reason;MelonLogger.Msg("FREEDOM_ARROW_RANKED card hidden: "+reason);}return false;}
     static bool PlayCards(out Rect last,out float pitch)
     {
         last=default;pitch=0;
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){play=null;return false;}
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){play=null;return No("not the menu scene");}
         if(play==null||play.WasCollected)
         {
             play=null;
             if(Time.unscaledTime<nextPlayScan)return false;
             nextPlayScan=Time.unscaledTime+1f;
             play=UnityEngine.Object.FindObjectOfType<PlayTab>();
-            if(play==null)return false;
+            if(play==null)return No("no active PlayTab");
         }
-        if(!play.isActiveAndEnabled||play.IsScenarioTabActive)return false;
-        var c=play._buttonsContainer;if(c==null||!c.activeInHierarchy)return false;
-        Rect? prev=null;Rect? cur=null;
-        for(int i=0;i<c.transform.childCount;i++)
+        if(!play.isActiveAndEnabled)return No("PlayTab not active");
+        if(play.IsScenarioTabActive)return No("Scenarios sub-tab open");
+        var c=play._buttonsContainer;if(c==null||!c.activeInHierarchy)return No("Play buttons hidden");
+        // The game's cards: active children of the buttons container (or of its first level, if the cards sit one level deeper), left to right.
+        var rects=Cards(c.transform);
+        if(rects.Count<2&&c.transform.childCount>0)for(int i=0;i<c.transform.childCount&&rects.Count<2;i++)rects=Cards(c.transform.GetChild(i));
+        if(rects.Count<2)return No($"found {rects.Count} card rects under {c.name} ({c.transform.childCount} children)");
+        rects.Sort((a,b)=>a.x.CompareTo(b.x));
+        last=rects[^1];pitch=rects[^1].x-rects[^2].x;
+        if(!(last.width>20f&&pitch>last.width*0.5f))return No($"odd card layout: last {last}, pitch {pitch}");
+        if(why!="shown"){why="shown";MelonLogger.Msg($"FREEDOM_ARROW_RANKED cards: {string.Join(" ",rects)}");}
+        return true;
+    }
+    static List<Rect> Cards(Transform t)
+    {
+        var l=new List<Rect>();
+        for(int i=0;i<t.childCount;i++)
         {
-            var t=c.transform.GetChild(i);if(!t.gameObject.activeInHierarchy)continue;
-            var rt=t.GetComponent<RectTransform>();if(rt==null)continue;
-            prev=cur;cur=ScreenRect(rt);
+            var ch=t.GetChild(i);if(!ch.gameObject.activeInHierarchy)continue;
+            var rt=ch.GetComponent<RectTransform>();if(rt==null)continue;
+            var r=ScreenRect(rt);if(r.width>20f&&r.height>20f)l.Add(r);
         }
-        if(cur==null||prev==null)return false;
-        last=cur.Value;pitch=cur.Value.x-prev.Value.x;
-        return last.width>20f&&pitch>last.width*0.5f;
+        return l;
     }
     static Rect ScreenRect(RectTransform rt)
     {
@@ -281,25 +293,21 @@ static class RankedMenu
         GUI.Label(r,label,St(size,Color.white,FontStyle.Bold,TextAnchor.MiddleCenter));
         return GUI.Button(r,GUIContent.none,GUIStyle.none);
     }
-    static Sprite Ep(int s,int lv)
+    // Epaulets: UserData/FreedomArrow/ranked/ep/<Epaulet_...>_<rank>.png (the game's own 72x128 icons, exported once). Drawing the game's
+    // atlas sprites directly (GUI.DrawTextureWithTexCoords on Sprite.texture) is the likely reason the game closed right after the first sprite lookup (Vengeance 22 Nov 09:09).
+    static readonly Dictionary<string,Texture2D> eps=new();
+    static Texture2D Ep(int s,int lv)
     {
         if(s<0||s>3)return null;
-        if(sprites.Count<80&&Time.unscaledTime>=nextSpriteScan)
-        {
-            nextSpriteScan=Time.unscaledTime+10f;
-            foreach(var sp in Resources.FindObjectsOfTypeAll<Sprite>())if(sp!=null&&sp.name.StartsWith("Epaulet_"))sprites[sp.name]=sp;
-            MelonLogger.Msg($"FREEDOM_ARROW_RANKED epaulet sprites found: {sprites.Count} (expected 80)");
-        }
-        return sprites.TryGetValue(SetPrefix[s]+lv,out var x)?x:null;
+        var name=SetPrefix[s]+lv;
+        if(!eps.TryGetValue(name,out var t)){t=Load(Path.Combine(dir,"ep",name+".png"),"FA_ranked_"+name);eps[name]=t;if(t==null)MelonLogger.Warning("FREEDOM_ARROW_RANKED missing epaulet "+name);}
+        return t;
     }
     static void DrawEp(Rect r,int s,int lv)
     {
-        var sp=Ep(s,lv);
-        if(sp==null||sp.texture==null){if(s==4)GUI.Label(r,"★",St(18,new Color(1f,0.8f,0.2f),FontStyle.Bold,TextAnchor.MiddleCenter));return;}
-        var tr=sp.textureRect;var tex=sp.texture;
-        float aspect=tr.width/tr.height;var d=r;
-        if(r.width/r.height>aspect){d.width=r.height*aspect;d.x+=(r.width-d.width)/2;}else{d.height=r.width/aspect;d.y+=(r.height-d.height)/2;}
-        GUI.DrawTextureWithTexCoords(d,tex,new Rect(tr.x/tex.width,tr.y/tex.height,tr.width/tex.width,tr.height/tex.height));
+        var t=Ep(s,lv);
+        if(t==null){if(s==4)GUI.Label(r,"★",St(18,new Color(1f,0.8f,0.2f),FontStyle.Bold,TextAnchor.MiddleCenter));return;}
+        GUI.DrawTexture(r,t,ScaleMode.ScaleToFit);
     }
 
     static void Menu()
@@ -308,7 +316,7 @@ static class RankedMenu
         var now=Time.unscaledTime;
         if(now>=nextAsk){nextAsk=now+5f;Ask();}
         if(tab==1&&now>=nextBoard){nextBoard=now+30f;AskBoards();}
-        Fill(new Rect(0,0,Screen.width,Screen.height),new Color(0.02f,0.03f,0.04f,0.88f));
+        Fill(new Rect(0,0,Screen.width,Screen.height),new Color(0.02f,0.03f,0.04f,0.97f));
         var e=Event.current;
         if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){Close("Esc");e.Use();return;}
         string[] tabs={"Ranked","Leaderboard","Rank ladder"};
@@ -328,7 +336,9 @@ static class RankedMenu
         if(error.Length>0)T(58,820,900,24,error,14,new Color(1f,0.55f,0.5f));
         if(Btn(740,850,120,36,"BACK",false,16))Close("Back");
         T(560,880,480,18,"Freedom Arrow ranked · Esc to go back",12,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+        if(!drawnOnce&&e.type==EventType.Repaint){drawnOnce=true;MelonLogger.Msg($"FREEDOM_ARROW_RANKED menu drawn (tab {tab}, {Screen.width}x{Screen.height})");}
     }
+    static bool drawnOnce;
 
     static (double rating,int level,int place,int wins,int losses,double best,JsonElement recent) Mine(JsonElement me,bool have,string ladder)
     {
