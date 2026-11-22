@@ -49,11 +49,12 @@ static partial class RankedMenu
         var corners=new Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<Vector3>(4);
         anyButton.transform.parent.GetComponent<RectTransform>().GetWorldCorners(corners);
         var tl=prt.InverseTransformPoint(corners[0]);var r=prt.rect;
-        float left=Mathf.Max(r.xMin+40,tl.x),top=Mathf.Min(r.yMax-40,tl.y-30),right=r.xMax-60,bottom=r.yMin+50;
-        // dark backdrop under the tab row only, so the top bar and the top-right block stay as they are
+        float left=Mathf.Max(r.xMin+40,tl.x),top=Mathf.Min(r.yMax-40,tl.y-64),right=r.xMax-60,bottom=r.yMin+40;
+        // Dark backdrop from 40 units under the tab row (Lateralus 22 Nov: "pulled down to this green line"), so the top bar and the
+        // top-right block stay as they are; the body starts 24 units lower again for padding.
         var bg=new GameObject("Backdrop");var brt=bg.AddComponent<RectTransform>();brt.SetParent(prt,false);
         brt.anchorMin=brt.anchorMax=new Vector2(0,1);brt.pivot=new Vector2(0,1);
-        brt.anchoredPosition=new Vector2(0,top+20-r.yMax);brt.sizeDelta=new Vector2(r.width,top+20-r.yMin);
+        brt.anchoredPosition=new Vector2(0,top+24-r.yMax);brt.sizeDelta=new Vector2(r.width,top+24-r.yMin);
         var bgi=bg.AddComponent<Image>();bgi.color=new Color(0.02f,0.03f,0.04f,0.86f);bgi.raycastTarget=true;
         var go=new GameObject("Body");root=go.AddComponent<RectTransform>();root.SetParent(prt,false);
         root.anchorMin=root.anchorMax=new Vector2(0,1);root.pivot=new Vector2(0,1);
@@ -111,7 +112,7 @@ static partial class RankedMenu
         string party=cur==null?"":string.Join(",",((Traverse.Create(cur).Property("members").GetValue() as Array)?.Cast<object>()??Array.Empty<object>()).Select(m=>P(m,"steamId")+P(m,"state")))+"/"+P(cur,"leader");
         string inc=string.Join(",",Arr(fIncoming).Select(i=>P(i,"partyId")));
         int online=0;try{var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);online=(info==null?null:Traverse.Create(info).Property("players").GetValue() as Array)?.Length??0;}catch{}
-        return $"{tab}|{queue}|{boardLadder}|{selRow}|{boardTop}|{set}|{vanillaSet}|{meJson.GetHashCode()}|{board1.GetHashCode()}|{boardT.GetHashCode()}|{party}|{inc}|{active}|{(active?(int)(now-searchFrom):0)}|{picking}|{pickTop}|{online}|{(now<noteUntil?note:"")}|{error}";
+        return $"{tab}|{queue}|{boardLadder}|{selRow}|{boardTop}|{set}|{vanillaSet}|{meJson.GetHashCode()}|{board1.GetHashCode()}|{boardT.GetHashCode()}|{party}|{inc}|{active}|{(active?(int)(now-searchFrom):0)}|{picking}|{pickTop}|{pickTab}|{online}|{(now<noteUntil?note:"")}|{error}";
     }
 
     // ---------- uGUI kit (design units, origin top-left of the body) ----------
@@ -164,21 +165,27 @@ static partial class RankedMenu
         string[] tabs={"Ranked","Leaderboard"};float tx=0;
         for(int i=0;i<2;i++)
         {
-            bool on=i==tab;float w=i==0?150:230;int k=i;
-            Txt(tx,0,w,52,tabs[i],34,on?Color.white:new Color(0.75f,0.75f,0.75f),on);
+            bool on=i==tab;float w=i==0?170:310;int k=i;
+            Txt(tx,0,w,52,tabs[i],34,on?Color.white:new Color(0.75f,0.75f,0.75f),on).overflowMode=TextOverflowModes.Overflow;
             Img(tx,56,w-26,on?3:2,on?Color.white:new Color(1,1,1,0.28f));
             Click(tx,0,w,60,()=>{tab=k;selRow=-1;nextBoard=-100f;});
             tx+=w+20;
         }
-        if(TestHub)Txt(560,14,560,24,"TEST SERVER · ratings here are test ratings",14,new Color(1f,0.75f,0.3f),true,TextAlignmentOptions.MidlineRight);
+        if(TestHub)Txt(600,14,520,24,"TEST SERVER · ratings here are test ratings",14,new Color(1f,0.75f,0.3f),true,TextAlignmentOptions.MidlineRight);
         if(tab==0)RankedBody(me,have,now);else BoardBody(me,have);
         if(error.Length>0)Txt(0,778,900,24,error,15,new Color(1f,0.55f,0.5f));
         Frm(700,812,30,20,new Color(0.75f,0.75f,0.75f));Txt(700,812,30,20,"esc",12,new Color(0.75f,0.75f,0.75f),false,TextAlignmentOptions.Center);
         Txt(738,806,90,32,"BACK",20,Color.white,true);
         Click(690,804,150,36,()=>HidePage("Back",true));
-        if(picking)Picker(now);
+        if(picking)Picker(now,me,have);
     }
 
+    static string[] PoolFor(JsonElement me,bool have,string f)
+    {
+        try{if(have&&me.TryGetProperty("pools",out var p)&&p.TryGetProperty(f,out var a))return a.EnumerateArray().Select(x=>x.GetString()??"").ToArray();}catch{}
+        var q=f=="1v1"?Pools["r1v1"]:Pools["rteam"].Split('\n').FirstOrDefault(l=>l.StartsWith(f))?.Substring(5)??"";
+        return q.Split('·',StringSplitOptions.TrimEntries|StringSplitOptions.RemoveEmptyEntries);
+    }
     static void RankedBody(JsonElement me,bool have,float now)
     {
         var dim=new Color(0.75f,0.75f,0.75f);
@@ -188,29 +195,28 @@ static partial class RankedMenu
         Choice(240,126,230,42,"Team · 3v3 / 5v5",queue=="rteam",18,()=>{if(!(pActive.GetValue(null) is true))queue="rteam";});
         void Row(float y,float h,string l,string v){Txt(0,y,150,h,l,16,dim);Txt(142,y,328,h,v,15,Color.white,false,TextAlignmentOptions.MidlineRight,true);HLine(0,y+h,470);}
         Row(182,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or group · 3v3 or 5v5 · team ladder");
-        Row(220,48,"Map pool",Pools[queue]);
-        Row(270,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
-        Row(308,36,"Map","picked by the server");
+        Row(220,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
+        Row(258,36,"Map","picked by the server from the pool");
         int party=1;string leader="";
         try{var pr=fPartyNews?.GetValue(null);var pv=pr==null?null:Traverse.Create(pr).Property("party").GetValue();if(pv!=null){party=Math.Max(1,(Traverse.Create(pv).Property("members").GetValue() as Array)?.Length??1);leader=Traverse.Create(pv).Property("leader").GetValue<string>()??"";}}catch{}
         // FIND MATCH with the FA patch
         if(active)
         {
-            var b=Img(0,362,470,64,new Color(0.22f,0.22f,0.24f,0.95f),true);Frm(0,362,470,64,new Color(1,1,1,0.25f));
+            var b=Img(0,312,470,64,new Color(0.22f,0.22f,0.24f,0.95f),true);Frm(0,312,470,64,new Color(1,1,1,0.25f));
             var secs=(int)Math.Max(0,now-searchFrom);
-            Txt(0,362,470,64,$"SEARCHING  {secs/60}:{secs%60:00}   ·   CANCEL",24,Color.white,true,TextAlignmentOptions.Center);
-            Click(0,362,470,64,()=>{mStop.Invoke(null,new object[]{true,false});MelonLogger.Msg("FREEDOM_ARROW_RANKED search cancelled");},b);
+            Txt(0,312,470,64,$"SEARCHING  {secs/60}:{secs%60:00}   ·   CANCEL",24,Color.white,true,TextAlignmentOptions.Center);
+            Click(0,312,470,64,()=>{mStop.Invoke(null,new object[]{true,false});MelonLogger.Msg("FREEDOM_ARROW_RANKED search cancelled");},b);
         }
         else
         {
-            var b=Img(0,362,470,64,Red,true);Img(0,362,470,28,new Color(1,1,1,0.07f));Frm(0,362,470,64,new Color(1f,0.55f,0.55f,0.6f));
-            Pic(118,373,42,42,patch);
-            Txt(176,362,290,64,"FIND MATCH",30,Color.white,true);
-            Click(0,362,470,64,()=>{searchFrom=Time.unscaledTime;Find(party,leader,Time.unscaledTime);},b);
+            var b=Img(0,312,470,64,Red,true);Img(0,312,470,28,new Color(1,1,1,0.07f));Frm(0,312,470,64,new Color(1f,0.55f,0.55f,0.6f));
+            Pic(118,323,42,42,patch);
+            Txt(176,312,290,64,"FIND MATCH",30,Color.white,true);
+            Click(0,312,470,64,()=>{searchFrom=Time.unscaledTime;Find(party,leader,Time.unscaledTime);},b);
         }
         int searching=0;try{if(have)searching=me.GetProperty("searching").GetProperty(queue).GetInt32();}catch{}
-        Txt(0,432,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",14,dim,false,TextAlignmentOptions.Center);
-        if(now<noteUntil)Txt(0,456,470,30,note,14,new Color(1f,0.75f,0.3f),false,TextAlignmentOptions.Center,true);
+        Txt(0,382,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",14,dim,false,TextAlignmentOptions.Center);
+        if(now<noteUntil)Txt(0,406,470,30,note,14,new Color(1f,0.75f,0.3f),false,TextAlignmentOptions.Center,true);
         if(queue=="rteam")GroupBody();
 
         // your rank
@@ -240,14 +246,26 @@ static partial class RankedMenu
         }
         Txt(532,556,440,36,set<0?$"Following your vanilla epaulet ({SetNames[s]}). The set only changes how your rank looks.":"The epaulet set only changes how your rank looks; the rank is the same.",13,dim,false,TextAlignmentOptions.TopLeft,true);
 
+        // map pool (Lateralus 22 Nov: up to 12 maps per size, so up to 24 for Team): 3 columns x 4 rows per size, names from the hub
+        Head(1032,86,460,"MAP POOL");
+        float py=120;
+        foreach(var f in queue=="r1v1"?new[]{"1v1"}:new[]{"3v3","5v5"})
+        {
+            var maps=PoolFor(me,have,f);
+            if(queue!="r1v1"){Txt(1032,py,455,20,f,14,Green,true);py+=20;}
+            for(int i=0;i<Math.Min(12,maps.Length);i++)Txt(1032+(i%3)*152,py+(i/3)*22,148,22,maps[i],15,Color.white);
+            py+=Math.Max(1,(Math.Min(12,maps.Length)+2)/3)*22+8;
+        }
+        HLine(1032,py,455);
         // recent matches
-        Head(1032,86,460,"RECENT RANKED MATCHES");
+        float ry=Math.Max(py+16,queue=="r1v1"?244f:352f);
+        Head(1032,ry,460,"RECENT RANKED MATCHES");
         int row=0;
         if(m.recent.ValueKind==JsonValueKind.Array)
             foreach(var x in m.recent.EnumerateArray())
             {
-                if(row>=10)break;
-                float y=125+row*39;bool win=x.GetProperty("win").GetBoolean();var ch=x.GetProperty("change").GetDouble();
+                if(row>=(queue=="r1v1"?6:4))break;
+                float y=ry+38+row*38;bool win=x.GetProperty("win").GetBoolean();var ch=x.GetProperty("change").GetDouble();
                 double vr=x.TryGetProperty("vsRating",out var v)?v.GetDouble():1000;
                 Txt(1038,y,24,38,win?"W":"L",16,win?Green:Red,true);
                 Txt(1080,y,170,38,$"[{x.GetProperty("format").GetString()}] {x.GetProperty("map").GetString()}",15,Color.white);
@@ -257,8 +275,8 @@ static partial class RankedMenu
                 Txt(1404,y,82,38,(ch>=0?"+":"-")+Math.Abs(ch).ToString("0.0"),15,ch>=0?Green:Red,true,TextAlignmentOptions.MidlineRight);
                 HLine(1032,y+38,455);row++;
             }
-        if(row==0){Txt(1038,125,450,38,"No ranked matches yet this season.",15,dim);HLine(1032,163,455);}
-        Txt(1032,136+Math.Max(row,1)*39,460,24,"A result counts only when both sides' game reports agree. A leaver loses.",13,dim);
+        if(row==0){Txt(1038,ry+38,450,38,"No ranked matches yet this season.",15,dim);HLine(1032,ry+76,455);}
+        Txt(1032,ry+48+Math.Max(row,1)*38,460,24,"A result counts only when both sides' game reports agree. A leaver loses.",13,dim);
 
         // rank ladder strip
         Head(0,616,1100,$"RANK LADDER ({SetNames[s].ToUpperInvariant()} SET) · ELO WHERE EACH RANK STARTS");
@@ -281,19 +299,19 @@ static partial class RankedMenu
         if(inc.Length>0)
         {
             var i=inc[0];
-            Img(0,490,470,30,new Color(0.1f,0.25f,0.4f,0.85f));
-            Txt(8,490,250,30,$"{P(i,"fromName")} invited you to a group",14,Color.white,true);
-            Choice(260,492,100,26,"Accept",false,13,()=>mAccept.Invoke(null,new[]{i}));
-            Choice(366,492,100,26,"Decline",false,13,()=>mDecline.Invoke(null,new[]{i}));
+            Img(0,440,470,30,new Color(0.1f,0.25f,0.4f,0.85f));
+            Txt(8,440,250,30,$"{P(i,"fromName")} invited you to a group",14,Color.white,true);
+            Choice(260,442,100,26,"Accept",false,13,()=>mAccept.Invoke(null,new[]{i}));
+            Choice(366,442,100,26,"Decline",false,13,()=>mDecline.Invoke(null,new[]{i}));
         }
         else
         {
-            Head(0,490,300,"GROUP"+(members.Length>=4?" · plays 5v5":""));
-            if(members.Length>1){Txt(350,490,120,30,lead?"DISBAND":"LEAVE",13,new Color(0.75f,0.75f,0.75f),true,TextAlignmentOptions.MidlineRight);Click(350,490,120,30,()=>mLeave.Invoke(null,null));}
+            Head(0,440,300,"GROUP"+(members.Length>=4?" · plays 5v5":""));
+            if(members.Length>1){Txt(350,440,120,30,lead?"DISBAND":"LEAVE",13,new Color(0.75f,0.75f,0.75f),true,TextAlignmentOptions.MidlineRight);Click(350,440,120,30,()=>mLeave.Invoke(null,null));}
         }
         for(int k=0;k<5;k++)
         {
-            float x=k*99.5f,y=526;
+            float x=k*99.5f,y=476;
             if(k<members.Length||(k==0&&members.Length==0))
             {
                 string id=k<members.Length?P(members[k],"steamId"):MySteam();string name=k<members.Length?P(members[k],"name"):"You";
@@ -316,31 +334,68 @@ static partial class RankedMenu
         }
     }
 
-    static void Picker(float now)
+    // Invite list (Lateralus 22 Nov): two tabs, Steam friends and players recently played with (from the hub). Only players online on
+    // the same Freedom Arrow build can be invited; the others are listed with their status.
+    static int pickTab;
+    static List<(string id,string name)> friends=new();static float friendsAt=-100f;
+    static List<(string id,string name)> SteamFriends()
     {
+        if(Time.unscaledTime-friendsAt<20f)return friends;
+        friendsAt=Time.unscaledTime;var list=new List<(string,string)>();
+        try
+        {
+            var sf=AccessTools.TypeByName("Il2CppSteamworks.SteamFriends");var ff=AccessTools.TypeByName("Il2CppSteamworks.EFriendFlags");
+            var flags=Enum.ToObject(ff,4);   // k_EFriendFlagImmediate
+            int n=(int)AccessTools.Method(sf,"GetFriendCount").Invoke(null,new[]{flags});
+            var byIndex=AccessTools.Method(sf,"GetFriendByIndex");var nameOf=AccessTools.Method(sf,"GetFriendPersonaName");
+            for(int i=0;i<n&&i<500;i++)
+            {
+                var id=byIndex.Invoke(null,new object[]{i,flags});
+                var raw=Traverse.Create(id).Field("m_SteamID").GetValue();
+                list.Add((raw?.ToString()??"",nameOf.Invoke(null,new[]{id})?.ToString()??"?"));
+            }
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE Steam friends: "+(e.InnerException?.Message??e.Message));}
+        friends=list.Where(x=>x.Item1.Length>0).OrderBy(x=>x.Item2,StringComparer.OrdinalIgnoreCase).ToList();
+        return friends;
+    }
+    static void Picker(float now,JsonElement me,bool have)
+    {
+        var dim=new Color(0.75f,0.75f,0.75f);
         var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);
         var all=info==null?Array.Empty<object>():(Traverse.Create(info).Property("players").GetValue() as Array)?.Cast<object>().ToArray()??Array.Empty<object>();
-        var list=all.Where(p=>P(p,"steamId")!=MySteam()&&P(p,"sameBuild")=="True"&&P(p,"inParty")!="True").OrderBy(p=>P(p,"name"),StringComparer.OrdinalIgnoreCase).ToList();
+        var online=new Dictionary<string,object>();foreach(var p in all){var k=P(p,"steamId");if(!online.ContainsKey(k))online[k]=p;}
+        var rows=new List<(string id,string name)>();
+        if(pickTab==0)rows=SteamFriends();
+        else try{if(have&&me.TryGetProperty("recentPlayers",out var rp))foreach(var x in rp.EnumerateArray())rows.Add((x.GetProperty("steamId").GetString()??"",x.GetProperty("name").GetString()??"?"));}catch{}
+        rows=rows.Where(r=>r.id!=MySteam()).ToList();
+        // online on the same build first
+        rows=rows.OrderBy(r=>online.TryGetValue(r.id,out var o)&&P(o,"sameBuild")=="True"?0:online.ContainsKey(r.id)?1:2).ToList();
         Img(-200,-200,DW+400,DH+400,new Color(0,0,0,0.5f),true);   // blocks the page under the list
-        Img(540,60,520,700,new Color(0.06f,0.07f,0.08f,0.99f),true);Frm(540,60,520,700,new Color(1,1,1,0.2f));
-        Head(564,74,400,"INVITE TO YOUR GROUP");
-        Txt(564,104,470,22,$"{list.Count} online on your Freedom Arrow build",14,new Color(0.75f,0.75f,0.75f));
-        const int Vis=12;pickTop=Math.Clamp(pickTop,0,Math.Max(0,list.Count-Vis));
-        if(list.Count==0)Txt(564,140,470,30,"Nobody else is online on this build right now.",15,new Color(0.75f,0.75f,0.75f));
-        for(int i=pickTop;i<Math.Min(list.Count,pickTop+Vis);i++)
+        Img(540,40,520,740,new Color(0.06f,0.07f,0.08f,0.99f),true);Frm(540,40,520,740,new Color(1,1,1,0.2f));
+        Head(564,52,400,"INVITE TO YOUR GROUP");
+        Choice(564,90,230,34,"Steam friends",pickTab==0,15,()=>{pickTab=0;pickTop=0;});
+        Choice(804,90,230,34,"Recently played",pickTab==1,15,()=>{pickTab=1;pickTop=0;});
+        int inv=rows.Count(r=>online.TryGetValue(r.id,out var o)&&P(o,"sameBuild")=="True");
+        Txt(564,130,470,22,$"{rows.Count} players · {inv} online on your Freedom Arrow build",14,dim);
+        const int Vis=11;pickTop=Math.Clamp(pickTop,0,Math.Max(0,rows.Count-Vis));
+        if(rows.Count==0)Txt(564,160,470,30,pickTab==0?"No Steam friends found.":"Nobody yet. Players you meet in mod lobbies show up here.",15,dim,false,TextAlignmentOptions.MidlineLeft,true);
+        for(int i=pickTop;i<Math.Min(rows.Count,pickTop+Vis);i++)
         {
-            var p=list[i];float y=134+(i-pickTop)*46;
+            var (id,name)=rows[i];float y=158+(i-pickTop)*46;
+            online.TryGetValue(id,out var o);bool same=o!=null&&P(o,"sameBuild")=="True",inParty=o!=null&&P(o,"inParty")=="True";
             Img(564,y,470,40,new Color(0,0,0,0.5f));
-            Txt(576,y,300,40,P(p,"name"),16,Color.white,true);
-            Txt(840,y,80,40,P(p,"state"),13,new Color(0.75f,0.75f,0.75f),false,TextAlignmentOptions.MidlineRight);
-            Choice(930,y+6,96,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{p,Time.unscaledTime});note="Invitation sent to "+P(p,"name")+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite "+P(p,"name"));});
+            var pic=SteamPic(id);if(pic!=null)Pic(566,y+2,36,36,pic,false);
+            Txt(610,y,250,40,name,16,Color.white,true);
+            Txt(800,y,124,40,o==null?"not in FA":!same?"other FA build":inParty?"in a group":P(o,"state"),13,o!=null&&same?Green:dim,false,TextAlignmentOptions.MidlineRight);
+            if(same&&!inParty)Choice(930,y+6,96,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite "+name);});
         }
-        if(list.Count>Vis)
+        if(rows.Count>Vis)
         {
-            Choice(564,690,60,30,"Prev",false,14,()=>pickTop-=Vis);Choice(974,690,60,30,"Next",false,14,()=>pickTop+=Vis);
-            Txt(630,690,340,30,$"{pickTop+1}-{Math.Min(list.Count,pickTop+Vis)} of {list.Count}",13,new Color(0.75f,0.75f,0.75f),false,TextAlignmentOptions.Center);
+            Choice(564,670,60,30,"Prev",false,14,()=>pickTop-=Vis);Choice(974,670,60,30,"Next",false,14,()=>pickTop+=Vis);
+            Txt(630,670,340,30,$"{pickTop+1}-{Math.Min(rows.Count,pickTop+Vis)} of {rows.Count}",13,dim,false,TextAlignmentOptions.Center);
         }
-        Choice(680,722,240,30,"CLOSE",false,15,()=>picking=false);
+        Choice(680,736,240,32,"CLOSE",false,15,()=>picking=false);
     }
 
     static void BoardBody(JsonElement me,bool have)
