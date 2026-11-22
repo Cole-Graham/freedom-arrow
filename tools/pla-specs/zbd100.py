@@ -64,19 +64,21 @@ def apply(t, g, ok, rec):
     wa = rows('WeaponAmmunitionsJson', UnitId=Z)
     g.add('WeaponAmmunitionsJson', wa[0], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': ke})
     g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': he})
-    g.add('WeaponAmmunitionsJson', wa[2], {'UnitId': uid})   # coaxial Type 86 7.62 mm, as the ZBD-20 (800 rounds)
-    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': CHW, 'AmmunitionId': CHA, 'Order': 3, 'Quantity': 8})
+
 
     T, TW = t['TurretsJson'], rows('TurretWeaponsJson', TurretId=53)
     base = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0'})
     chm = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0 CH-901'})
-    # dev.20 fix (22 Nov 03:2x, measured on Osama's PC in dev.19): with only the gun on the Bradley turret (and the CH-901 in the M240 slot) the
-    # Arsenal could not build the unit: GameLogs 'Couldn't load unit: PLA ZBD-100', AnimatorConnect duplicate trigger 'Shot'. The Type 89 FV on the
-    # same body loads. The mounts now follow the Bradley slots: 0 = 35 mm, 1 = coaxial MG (the ZBD-20's Type 86 7.62 mm), 2 = CH-901 (TOW slot).
+    # dev.19/dev.20 (22 Nov 03:0x-03:3x, measured on Osama's PC): the Arsenal could not build the unit (GameLogs "Couldn't load unit: PLA ZBD-100",
+    # AnimatorConnect.InitTriggerDictionary duplicate key 'Shot'). Not the FAModels swap (same error with the models.json entry removed) and not
+    # the Bradley slot layout (dev.20 had gun / coax / CH-901 like the Type 89 FV, same error). The Blood Wolves launcher row 2018447 carries
+    # the infantry 'Javelin' weapon model; vanilla vehicle weapons almost never do (6 of 561 turret weapons). The ZBD-100 gets its own launcher
+    # row, a copy of 2018447 with no weapon model. The round stays 2018448 (in nlos.json).
+    chl = g.add('WeaponsJson', W[CHW], {'Name': 'PLA ZBD-100 CH-901 launcher', 'ModelFileName': None})
     for tur in (base, chm):
         g.add('TurretWeaponsJson', TW[0], {'TurretId': tur, 'WeaponId': gun})
-        g.add('TurretWeaponsJson', TW[1], {'TurretId': tur, 'WeaponId': MG})
-    g.add('TurretWeaponsJson', TW[2], {'TurretId': chm, 'WeaponId': CHW})
+    g.add('TurretWeaponsJson', TW[1], {'TurretId': chm, 'WeaponId': chl})
+    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': chl, 'AmmunitionId': CHA, 'Order': 2, 'Quantity': 8})
     for tur in (base, chm):
         g.add('TurretUnitsJson', rows('TurretUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'TurretId': tur})
 
@@ -123,7 +125,8 @@ def apply(t, g, ok, rec):
     linked = {r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)}
     ok(all(o.get(f'Ability{k}Id', 0) in linked | {0} for o in opts for k in (1, 2, 3)), 'every option ability linked')
     tw = {tur: [(w['Order'], w['WeaponId']) for w in rows('TurretWeaponsJson', TurretId=tur)] for tur in (base, chm)}
-    ok(tw == {base: [(0, gun), (1, MG)], chm: [(0, gun), (1, MG), (2, CHW)]}, ('mounts = Bradley slots', tw))
+    ok(tw == {base: [(0, gun)], chm: [(0, gun), (1, chl)]}, ('mounts', tw))
+    ok(W[chl]['ModelFileName'] is None and all(W[chl][k] == W[CHW][k] for k in W[CHW] if k not in ('Id', 'Name', 'ModelFileName')), 'vehicle CH-901 launcher = Blood Wolves launcher without the Javelin model')
     ok({w for v in tw.values() for _, w in v} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)}, 'mount weapons == ammo weapons')
     ok(len(rows('TransportAvailabilitiesJson', UnitId=uid)) == len(fit) > 0, ('transport cards', fit, 'too big', big))
     card = [r for r in SA.values() if r and r['UnitId'] == uid]
