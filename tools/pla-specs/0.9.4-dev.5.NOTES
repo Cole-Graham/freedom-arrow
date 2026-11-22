@@ -2,3 +2,7 @@
 - 2026-11-21 18:5x PST, thread 1567745029781454889 (Osama: "remove rifles is good", "J-31 HEavy SEAD I meant the overall price should be +55", "PHL-16 looks good").
   DATA: china_balance_094.py (section 19): J-31 Heavy SEAD option 24659 cost 210 -> 55 (it was 155 before dev.4). queued_checks.py expects 210 only for
   0.9.4-dev.4 and 55 from dev.5. "Remove the rifles" and the PHL-16 pricing/blast readings confirmed as built. Not seen in game.
+- 2026-11-21 18:5x PST, thread 1567745029781454889 (Osama: "Z-9WA it should be the +70 point 57mm rocket loadout ... from +70 to +20", "CSK-131 make it 8 seats",
+  "HJ-10 as long as it behaves like the other mini-non-interceptable cruise missiles we're fine"). china_balance_094.py: Z-9WA 36x 57 mm option 24647 +70 -> +20;
+  72x 57 mm option 24545 back to +50 (dev.4 had +20 by mistake). CSK-131 (1266, the transport) InfantrySlots 12 -> 8. HJ-10: no change (cruise 200 /
+  semi-active laser 100 / not interceptable, same fields as the CH-901). Not seen in game.

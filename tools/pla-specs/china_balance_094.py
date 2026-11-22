@@ -148,8 +148,12 @@ def apply(t, g, ok, rec):
     rr = one('TurretUnitsJson', UnitId=1265)[0]; ok(U[1265]['ModelFileName'] == U[1266]['ModelFileName'] == 'DLC3_Tigr' and rr['TurretId'] == 2009002, 'same Tigr model, recon RWS turret')
     g.put('TurretUnitsJson', r[0]['Id'], {'TurretId': 2009002})
     g.add('WeaponAmmunitionsJson', one('WeaponAmmunitionsJson', UnitId=1265, WeaponId=2009001)[0], {'UnitId': 1266})
+    # Osama 18:5x: "CSK-131 make it 8 seats" (12 -> 8)
+    ok(U[1266]['InfantrySlots'] == 12, 'CSK-131 12 seats'); g.put('Units', 1266, {'InfantrySlots': 8})
     # --- helicopters and air
-    opt_cost(24545, '72x 57 mm', 50, 20)
+    # Osama 18:5x: "Z-9WA it should be the +70 point 57mm rocket loadout" -> the 36x 57 mm option 24647 (+70 -> +20); the 72x option 24545 stays +50 (dev.4 had set it to +20)
+    opt_cost(24647, '36x 57 mm', 70, 20)
+    ok(O[24545]['Cost'] == 50, 'Z-9WA 72x 57 mm stays +50')
     s = [r for r in SA.values() if r and r.get('UnitId') == 1252]; ok(len(s) == 1 and s[0]['MaxAvailabilityXp0'] == 4, 'WZ-8 4 cards'); g.put('SpecializationAvailabilitiesJson', s[0]['Id'], {'MaxAvailabilityXp0': 2})
     cost(1104, 'Z-21', 110, 140)
     cost(936, 'HJ-10', 170, 140)
