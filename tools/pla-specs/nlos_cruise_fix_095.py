@@ -18,6 +18,7 @@ edge of the map").
 - dev.4 still no HJ-10 launch: 7,311 WeaponForceFire (fire at a point) calls; its round TargetType 36 lacks Ground (1). Now 37, as the CTL-181.
 - dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius on the three top-attack rounds -> roof hits
   (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
+- dev.10: HJ-10 penetration 90 -> 130 (Osama): 2 hits instead of 3 on roof-100 tanks.
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -56,4 +57,9 @@ def apply(t, g, ok, rec):
     OP = {2009623: 5.0, 2009651: 2.0, 2018448: 2.0}
     for i in TOP: g.put('AmmunitionsJson', i, {'OverpressureRadius': OP[i]})
     ok(all(A[i]['OverpressureRadius'] == OP[i] for i in TOP), 'top-attack NLOS rounds strike the roof on a direct hit; near-miss leeway')
+    # dev.10 (Osama 22 Nov 00:5x "HJ-10 needs more penetration, about 130"). dev.9 shot log: roof hits work (forceTop, side Top); damage =
+    # base x pen^2 / (pen^2 + armour^2): pen 90 on roof 100 (ZTZ-100, M1A2 SEP ...) 5.82 a hit, 3 to kill 14 HP; pen 130 8.17, 2 hits; roof 60 10.72.
+    ok(A[2009623]['PenetrationAtGroundRange'] == 90.0 and A[2009623]['PenetrationAtMinRange'] == 90.0, 'HJ-10 penetration before')
+    g.put('AmmunitionsJson', 2009623, {'PenetrationAtGroundRange': 130.0, 'PenetrationAtMinRange': 130.0})
+    ok(A[2009623]['PenetrationAtGroundRange'] == 130.0 and A[2009623]['PenetrationAtMinRange'] == 130.0, 'HJ-10 penetration 130')
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
