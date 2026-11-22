@@ -63,8 +63,8 @@ def apply(t, g, ok, rec):
     # dev.12 (Osama 22 Nov 01:0x "give the HJ-10 a 0.2 second aim time"; "a terminal guidance mode that turns the missiles into a FNF. And another
     # that uses the current mode that's NLOS"; "penetration and damage match the Tow-2b"; "so the FNF version has a long aim time but the NLOS is
     # 2000 range and 0.2 aim time (and +20)"). Aim time belongs to the launcher, so the two modes are two launchers on a loadout option, built like
-    # the vanilla BTR-D weapon package (mod 88): both turrets linked at TurretUnits Order 1, Turrets.IsDefault picks the default, each option
-    # sets Turret1Id. The existing launcher 2009619 / turret 2009620 / round 2009623 become the NLOS option (+20, aim 0.2 s, 2000 m), so nlos.json
+    # the vanilla BTR-D weapon package (mod 88) and the vanilla M6 options (Turret0Id only): both turrets linked at TurretUnits Order 0,
+    # Turrets.IsDefault picks the default, each option sets Turret0Id and clears the other slots. The existing launcher 2009619 / turret 2009620 / round 2009623 become the NLOS option (+20, aim 0.2 s, 2000 m), so nlos.json
     # stays as it is; a new launcher + turret + FNF round (Seeker 50 terminal guidance as the Javelin, no laser, units only) are the default
     # (aim 3-4 s, 0 points). Both rounds TOW-2B damage / penetration (ammo 52: 11 / 140), roof hits (OverpressureRadius 5), not interceptable.
     T, TU, TW, M, O = t['TurretsJson'], t['TurretUnitsJson'], t['TurretWeaponsJson'], t['ModificationsJson'], t['OptionsJson']
@@ -80,24 +80,25 @@ def apply(t, g, ok, rec):
     g.put('AmmunitionsJson', 2009623, {**STATS, 'GroundRange': 2000.0, 'HUDName': 'HJ-10 NLOS'})
     g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 0.2, 'AimTimeMax': 0.2, 'HUDName': 'HJ-10 NLOS'})
     g.put('TurretsJson', 2009620, {'IsDefault': False})
-    g.put('TurretUnitsJson', hj()[0]['Id'], {'Order': 1})
     # FNF default: new round, launcher and turret.
     fnf = g.add('AmmunitionsJson', A[2009623], {**STATS, 'GroundRange': 800.0, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF', 'LaserGuided': False, 'Seeker': 50, 'TargetType': 36})
     fw = g.add('WeaponsJson', W[HJ10_LAUNCHER], {'Name': 'PLA HJ-10 HJ-10 FNF', 'HUDName': 'HJ-10 FNF', 'AimTimeMin': 3.0, 'AimTimeMax': 4.0})
     ft = g.add('TurretsJson', T[2009620], {'Name': 'PLA HJ-10 mount FNF', 'IsDefault': True})
     g.add('TurretWeaponsJson', [r for r in TW.values() if r and r.get('TurretId') == 2009620][0], {'TurretId': ft, 'WeaponId': fw})
-    g.add('TurretUnitsJson', hj()[0], {'TurretId': ft, 'Order': 1})
+    g.add('TurretUnitsJson', hj()[0], {'TurretId': ft, 'Order': 0})
     wa = [r for r in WA.values() if r and r.get('WeaponId') == HJ10_LAUNCHER]
     ok(len(wa) == 1 and wa[0]['UnitId'] == 936 and wa[0]['Quantity'] == 8, 'HJ-10 ammo row before')
     g.add('WeaponAmmunitionsJson', wa[0], {'WeaponId': fw, 'AmmunitionId': fnf, 'Quantity': 8})
     mod = g.add('ModificationsJson', M[88], {'UnitId': 936, 'Name': 'PLA loadout HJ-10', 'UIName': 'Custom_Slot_Weapon_package', 'Order': 0})
-    o_f = g.add('OptionsJson', O[244], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret1Id': ft, 'OptionPicture': 'JAVELIN'})
-    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, 'Turret1Id': 2009620, 'OptionPicture': 'HELLFIRE_X4'})
+    CLEAR = {f'Turret{i}Id': 0 for i in range(21) if f'Turret{i}Id' in O[244]}
+    o_f = g.add('OptionsJson', O[244], {**CLEAR, 'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret0Id': ft, 'OptionPicture': 'JAVELIN'})
+    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'HELLFIRE_X4'})
     ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 200 and A[fnf]['OverpressureRadius'] == 5.0 and A[fnf]['CanBeIntercepted'] is False
        and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 2000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
        and A[2009623]['PenetrationAtGroundRange'] == A[fnf]['PenetrationAtGroundRange'] == 140.0, 'HJ-10 FNF / NLOS rounds')
-    ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 1), (ft, 1)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
+    ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 0), (ft, 0)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
        and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin']) == (3.0, 4.0, 0.2)
-       and sorted((O[o]['Cost'], O[o]['Turret1Id']) for o in (o_f, o_n)) == sorted([(0, ft), (20, 2009620)]), 'HJ-10 loadout: FNF default, NLOS +20')
+       and sorted((O[o]['Cost'], O[o]['Turret0Id']) for o in (o_f, o_n)) == sorted([(0, ft), (20, 2009620)])
+       and all(not O[o][k] for o in (o_f, o_n) for k in CLEAR if k != 'Turret0Id'), 'HJ-10 loadout: FNF default, NLOS +20, slot 0 only (vanilla M6 options)')
     rec['hj10_modes'] = {'fnf': {'round': fnf, 'weapon': fw, 'turret': ft, 'option': o_f}, 'nlos': {'round': 2009623, 'weapon': HJ10_LAUNCHER, 'turret': 2009620, 'option': o_n, 'cost': 20}, 'stats': STATS}
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
