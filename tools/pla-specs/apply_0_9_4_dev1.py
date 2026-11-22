@@ -573,6 +573,9 @@ import rename_1122;rename_1122.apply(t,g,ok,rec)
 # ---------- AR-2000 on a helicopter stand-in (Osama 22 Nov 2026 13:2x PST, thread 1573561286803980289; QQ sheet FA-041): Kiowa body, AKD-11 on the
 # left and right pylons through a default loadout option, stats kept (launch refused and retried every frame on the Termit pylon). See ar2000_heli_095.py.
 import ar2000_heli_095;ar2000_heli_095.apply(t,g,ok,rec)
+# ---------- HQ-9 rework (Osama 22 Nov 2026 15:2x PST): HQ-9C card -> HQ-9B with a 4x HQ-9B / 8x HQ-9C (+50, PAC-3 MSE round at 1175) slot; HQ-9B card
+# -> HQ-9A, semi-active. See hq9_rework_1122.py.
+import hq9_rework_1122;hq9_rework_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
