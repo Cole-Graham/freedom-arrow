@@ -550,6 +550,10 @@ import nlos_cruise_fix_095;nlos_cruise_fix_095.apply(t,g,ok,rec)
 # can you please add them to the units in our armory"): Type 89 FV, Type 87 AW, Type 93 Kin-SAM cards in spec 23 (Arsenal only). Their models and the
 # Type 10 / Type 90 models + paint schemes are ASSETS (work/blue-dragon-models-20261122). See blue_dragon_jp.py.
 import blue_dragon_jp;blue_dragon_jp.apply(t,g,ok,rec)
+# ---------- 28. Blue Dragon: the rest of Shawn's folder as units (Osama 22 Nov 2026 00:3x PST, thread 1573418243715113213: "all of these models should
+# be made into units"): F-2A, KF-21 Boramae, F-35B (JASDF), F-35B (ROKN), Type 19 in spec 23 (Arsenal only), copies of F-16C / F-16V / F-35B /
+# PCL-181 with their loadout options. See blue_dragon_jp2.py.
+import blue_dragon_jp2;blue_dragon_jp2.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

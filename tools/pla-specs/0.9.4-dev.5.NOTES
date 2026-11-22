@@ -122,3 +122,10 @@
   adds 3 Arsenal-only spec-23 cards (19 checks; gates 0). The Blue Dragon models are already on Vengeance (Assets delta from 0.9.5-dev.90,
   UserData/FAModels written 00:14:55; gameplay-only hotfix installs leave them). Bridge: 0.9.5-dev.91 = dev.7 (c665773a) + section 27, queued after
   the b261/b262 watchers.
+- 2026-11-22 01:0x PST, thread 1573418243715113213 (Osama: "all of these models should be made into units", about Shawn's "Blue Dragon Models"
+  folder). DATA: section 28 -> blue_dragon_jp2.py (batch 2306 checks; all 7 package gates 0 on a constants-only package): spec 23 cards F-2A
+  (F-16C copy), KF-21 Boramae (F-16V copy; F-16 model until Shawn exports the .max to FBX), F-35B (JASDF) and F-35B (ROKN) (F-35B copies, vanilla
+  bay loadouts only: the FA wingtip AIM-9 test modification 2001435 is left out, it fails check_mount_weapons on copies), Type 19 (PCL-181 copy, US).
+  Full copies with their loadout options; placeholder prices. ASSETS: work/blue-dragon-models-20261122 (K2, Type 16, Type 74, Type 19, F-2, both
+  F-35Bs; tanks at higher resolution per Osama "the tanks all are" important: armory 4096 / battle 2048 textures, battle ~68.6k tris, LOD1 60% /
+  LOD2 35%). Not seen in game.
