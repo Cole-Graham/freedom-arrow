@@ -533,6 +533,9 @@ import donor_cobra_094;donor_cobra_094.apply(t,g,ok,rec)
 # guns, autocannons and HMGs x0.8 on anti-infantry rounds (0.5 / 0.2 / 0.1 steps), Ignore Cover 0, tank HEAT = HE, SPAAG main guns kept except JRVG-1.
 # Buildings 30 % = game-config.json BuildingDamageFloor 0.3. See cover_damage_094.py and the Balance notes Doc 1if0iWzQ.
 import cover_damage_094;cover_damage_094.apply(t,g,ok,rec,_heli)
+# ---------- 23. China truck names (Osama 21 Nov 2026 20:57 PST, thread 1572407822849810463: "Let's make these recommended changes to the names of the cargo
+# trucks"): Shaanxi SX2121 4x4 / SX2220 6x6 / SX2306 8x8 by the model each card shows; shown name only. See truck_names_094.py.
+import truck_names_094;truck_names_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

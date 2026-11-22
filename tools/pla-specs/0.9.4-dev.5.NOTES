@@ -59,3 +59,9 @@
   byte for byte) -> Type 89A Dust, Type 89A PLAAF Green; Type 89 and PLAN ZSD-89 (m_zsd89) Dust from the unused m_zsd89d. paint-schemes.json 84 units.
   ZBD-251: one coat in the game and no creator source on the deck, so no schemes. BUILT in 0.9.4 build 255 with the Abrams X schemes and FAModels
   0.3.38 (Assets 0.2.51).
+- 2026-11-21 21:0x PST, thread 1572407822849810463 (Osama, quoting a Chinese player: "4x4型号为SX2121 6x6型号为SX2220 8x8型号为SX2306 10X10型号为SX2553 ...
+  对应LVSR", "Let's make these recommended changes to the names of the cargo trucks"). NOT IN BUILD 253: for the next 0.9.4 rebuild. DATA: section 23 ->
+  truck_names_094.py, shown name (HUDName) only, by the wheel count of the model each card shows: 912 Shaanxi SX2190 -> Shaanxi SX2220 (SX2220 6x6 model),
+  1231 Shaanxi Troop Truck -> Shaanxi SX2220 Troop Truck, 1235 Shaanxi HMV3 -> Shaanxi SX2306 (HEMTT 8x8), 1247 Shaanxi HMV3 Cargo -> Shaanxi SX2306
+  Cargo, 1269 SX2190 -> Shaanxi SX2121 (LMTV 4x4). Internal Name unchanged (FAModels, paint and decks key on it). No 10x10/LVSR China card; PHL-11 kept.
+  Batch checks 2228 pass. Not seen in game.
