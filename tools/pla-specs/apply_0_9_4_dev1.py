@@ -558,6 +558,9 @@ import blue_dragon_jp2;blue_dragon_jp2.apply(t,g,ok,rec)
 # slot gets GL-6 APS +70 and LSDW + GL-6 APS +120 (APS row 82 overrides the LSDW defence, LSDW weapon kept); the two APS options show the ZTZ-99B
 # model (FAModels models.json variants). See ztz99b_095.py.
 import ztz99b_095;ztz99b_095.apply(t,g,ok,rec)
+# ---------- ZBD-100 (Osama 22 Nov 2026, thread 1572407822849810463): new China unit, Type 100 model on a Bradley stand-in, ZBD-20 armour and
+# drive (ZBD-20 no longer amphibious), 35 mm gun, 80 pts, APS +40, 8x CH-901 loadout. Next patch (batch codex/batch/osama/zbd100). See zbd100.py.
+import zbd100;zbd100.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
