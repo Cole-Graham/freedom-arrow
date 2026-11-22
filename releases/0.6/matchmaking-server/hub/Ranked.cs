@@ -376,18 +376,37 @@ static class Ranked
         // Deserters (Lateralus 22 Nov; vanilla 1.1 counts a player still disconnected at the end as a deserter, and 1.0.10 stopped
         // deserters gaining Elo): a player the game itself flags as Deserter never gains - on the winning team he takes the loss.
         var deserters = Deserters(m);
+        // Per-player split, option C (Lateralus 22 Nov): each player's share comes from his own rating against the enemy team's average
+        // (a favourite gains little and loses much, an underdog the reverse); each side's shares are then scaled so the side's total is
+        // the team pot, baseChange x players. So the match moves the same total as before and adds no points. 1v1 is unchanged.
+        var share = Shares(W, rl, L, rw, baseChange);
         foreach (var r in W)
         {
-            if (deserters.Contains(r.SteamId)) { var b0 = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - b0; continue; }
-            var c = baseChange * (1 + Bonus(r.Rating, mean)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c;
+            // a deserter on the winning team takes the loss he would have taken had his team lost: his own expected score x K
+            if (deserters.Contains(r.SteamId)) { var b0 = r.Rating; r.Rating = Math.Max(Floor, r.Rating - K * Expected(r.Rating, rl)); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - b0; continue; }
+            var c = share[r.SteamId] * (1 + Bonus(r.Rating, mean)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c;
         }
-        foreach (var r in L) { var before = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - before; }
+        foreach (var r in L) { var before = r.Rating; r.Rating = Math.Max(Floor, r.Rating - share[r.SteamId]); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - before; }
         foreach (var r in W) Note(r, !deserters.Contains(r.SteamId), L, changes[r.SteamId]);
         foreach (var r in L) Note(r, false, W, changes[r.SteamId]);
         _dirty = true;
-        Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, ladderMean = mean, bonusGate = gate, changes });
+        Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, ladderMean = mean, bonusGate = gate, shares = share, changes });
         foreach (var (id, c) in changes)
             if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) && !deserters.Contains(id) });
+    }
+    // Option C shares (before any change of this match): winner i raw = K(1 - E(r_i, loser avg)), loser j raw = K E(r_j, winner avg),
+    // each side scaled to baseChange x its player count.
+    public static Dictionary<string, double> Shares(List<RankedRating> W, double rl, List<RankedRating> L, double rw, double baseChange)
+    {
+        var res = new Dictionary<string, double>();
+        void Side(List<RankedRating> side, Func<RankedRating, double> raw)
+        {
+            var v = side.Select(raw).ToList(); double sum = v.Sum(), pot = baseChange * side.Count;
+            for (int i = 0; i < side.Count; i++) res[side[i].SteamId] = sum > 0 ? v[i] * pot / sum : baseChange;
+        }
+        Side(W, r => K * (1 - Expected(r.Rating, rl)));
+        Side(L, r => K * Expected(r.Rating, rw));
+        return res;
     }
     // Hub players flagged Deserter by the game's end-of-match statistics. Reports name players only by in-match uid; a reporter's own
     // uid is myUid. So: on each side, the silent players (no report) are deserters when the reports flag at least that many non-reporting,
