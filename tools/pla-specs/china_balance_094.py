@@ -168,7 +168,7 @@ def apply(t, g, ok, rec):
     ld = [r for r in WA.values() if r and r.get('UnitId') == 929 and wn(r['WeaponId']) == 'LD-8A']
     ok(len(ld) == 1 and ld[0]['Quantity'] == 3, ('J-36 LD-8A 3 per pylon x2', ld)); g.put('WeaponAmmunitionsJson', ld[0]['Id'], {'Quantity': 2})
     cost(929, 'J-36', 415, 445)
-    opt_cost(24659, 'Heavy SEAD', 155, 210)  # "J-31 Heavy SEAD +55" read as +55 on its price, like "Z-21 +30 points" and "HQ-9C +25 pts"
+    opt_cost(24659, 'Heavy SEAD', 155, 55)  # Osama 18:5x: "J-31 Heavy SEAD I meant the overall price should be +55" (dev.4 had +210)
     # PHL-16: 300 mm loadout = 300 points (base 350 -> 300; 370 mm +0 -> +50, Fire Dragon +30 -> +80, so those stay 350 / 380); BRE3 48 -> 33 damage, AOE 82.5 -> 75 raw (150 m)
     cost(1035, 'PHL-16', 350, 300); opt_cost(24552, 'BRE6', 0, 50); opt_cost(24553, 'Fire Dragon', 30, 80)
     ok(O[24551]['Cost'] == 0 and users('WeaponAmmunitionsJson', 'AmmunitionId', 2017442) == {1035} and A[2017442]['Damage'] == 48.0 and A[2017442]['HealthAOERadius'] == 82.5, 'BRE3 own round 48 / 82.5')

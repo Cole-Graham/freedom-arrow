@@ -33,8 +33,8 @@ LATER={929:(((9,32),355),((9,43),415)),921:(((9,35),255),),966:(((9,35),255),),1
 # 5th/6th-gen options are back at their pre-SEAD price and the four fighters back at 2 cards.
 FIFTH_OPTIONS=(1888,1889,24653,24654,24656,24657,24659,24660,24664,20191,20198,20234);FIFTH_ROWS={2008203,2014507,2008260,2014513}
 after35=_ge(9,35)
-# 0.9.4-dev.4 (Osama 21 Nov 2026 18:2x PST, Doc "China changes 9.4"): "J-36 base price increased by +30pts" 415 -> 445; "J-31 Heavy SEAD +55" 155 -> 210.
-after094d4=m>=key('0.9.4-dev.4');LATER_094={929:445};LATER_094_OPT={24659:210}
+# 0.9.4-dev.4 (Osama 21 Nov 2026 18:2x PST, Doc "China changes 9.4"): "J-36 base price increased by +30pts" 415 -> 445; "J-31 Heavy SEAD +55" 155 -> 210 in dev.4 only; from dev.5 the option costs 55 ("I meant the overall price should be +55").
+after094d4=m>=key('0.9.4-dev.4');LATER_094={929:445};LATER_094_OPT={24659:210 if m==key('0.9.4-dev.4') else 55}  # dev.5+: 'the overall price should be +55' (Osama 21 Nov 18:5x)
 def _want(i,new):
     if after094d4 and i in LATER_094:return LATER_094[i]
     return ([p for s,p in LATER.get(i,()) if _ge(*s)] or [new])[-1]

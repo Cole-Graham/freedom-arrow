@@ -1,0 +1,4 @@
+0.9.4-dev.5 batch notes (append; one line per change). Builder: read these before building. Base: 0.9.4-dev.4 (build 251, out/local-094dev4); Assets 0.2.49.
+- 2026-11-21 18:5x PST, thread 1567745029781454889 (Osama: "remove rifles is good", "J-31 HEavy SEAD I meant the overall price should be +55", "PHL-16 looks good").
+  DATA: china_balance_094.py (section 19): J-31 Heavy SEAD option 24659 cost 210 -> 55 (it was 155 before dev.4). queued_checks.py expects 210 only for
+  0.9.4-dev.4 and 55 from dev.5. "Remove the rifles" and the PHL-16 pricing/blast readings confirmed as built. Not seen in game.
