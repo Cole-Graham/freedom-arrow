@@ -144,8 +144,11 @@ public class Runtime : MelonMod
             // 0.9.0-dev.13: FAModels 0.3.30 adds battle copies (X_b.fat, X_b_n.fat) of the 29 infantry texture pairs. They are verified
             // with the rest but not counted, so the count still checks the armory set.
             int battleCopies=infantryHashes.Count(e=>e.Key.EndsWith("_b.fat",StringComparison.Ordinal)||e.Key.EndsWith("_b_n.fat",StringComparison.Ordinal));
-            if(battleCopies!=0&&battleCopies!=58)throw new InvalidDataException($"Expected 0 or 58 infantry battle texture copies, found {battleCopies}");
-            if(infantryHashes.Count-battleCopies!=257)throw new InvalidDataException("Expected 27 infantry configurations 2 backpack and 2 plate-carrier atlases with 3 LODs each, diffuse and normal textures, plus loader and rules");
+            // 0.9.5-dev.30 (Osama 22 Nov 2026: "Pla recon snipers use this model"): the recon frog-shirt body adds 9 files (3 LODs, diffuse +
+            // normal) and 2 battle copies. Packages with the older Assets keep 257 + 0 or 58.
+            int armorySet=infantryHashes.Count-battleCopies;
+            if(!(armorySet==257&&(battleCopies==0||battleCopies==58)) && !(armorySet==266&&(battleCopies==0||battleCopies==60)))
+                throw new InvalidDataException($"Expected 257 infantry files with 0 or 58 battle copies, or 266 with 0 or 60 (with the recon frog-shirt body); found {armorySet} with {battleCopies}");
             int infantryFiles=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,infantryHashes);
             DisplayLabel=label;
             File.WriteAllText(Path.Combine(Root,"loaded-build.json"),JsonSerializer.Serialize(new { label,version=PackageVersion,process_id=Environment.ProcessId,loaded_at_utc=DateTime.UtcNow,core_files=files,infantry_files=infantryFiles },new JsonSerializerOptions { WriteIndented=true }));
