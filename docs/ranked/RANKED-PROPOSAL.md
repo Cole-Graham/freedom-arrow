@@ -53,14 +53,14 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 
 - These are the current PLA ranks: 2 enlisted ranks, 7 NCO ranks (the 2022 names: 下士, 中士, 上士, then 四级 to 一级军士长) and 10 officer ranks from 少尉 to 上将. Rank 20 is 元帅 (Marshal), a historical rank (1955), used like vanilla's Marshal and General of the armies.
 - Because the PLA has 9 enlisted/NCO ranks where vanilla has 8, PLA officers start at rank 10 instead of 9. So the average player (rank 12) is 上尉 Captain in this set. The top three ranks line up exactly with `simple-elo.md`: 中将 Lieutenant general at 2170, 上将 General for places 2–3, 元帅 Marshal for place 1.
-- If you want officers to start at rank 9 instead, we can drop one 军士长 grade.
+- Lateralus accepted officers starting at rank 10 (22 Nov).
 - **Icons:** 20 new 72×128 sprites in the same flat style as `Epaulet_*_N` (the 2007-pattern PLA shoulder boards: NCO chevrons, officer stripes and stars, general pine branches). They are not drawn yet, and they must be checked against the official insignia before release.
 
 ### Vanilla assets used
 
 - Icons: `Epaulet_USA_base_1..20` (US Army), `Epaulet_USA_1..20` (US Marines), `Epaulet_RUS_base_1..20` (Russian Army), `Epaulet_RUS_1..20` (Russian VDV), 72×128 each, from the game's sprite atlas. They were already extracted on the deck (asset ripper export, 7 Nov).
 - The game has an `EpauletType` enum: UsaBase 1, UsaUSMC 2, RusBase 50, RusVDV 51, RusVMF 52 (unused). Each `EpauletData` is a sprite plus a rank-name key.
-- **Not decided:** whether to default each player's FA set to the vanilla epaulet they picked. Vanilla unlocks Marines and VDV through campaign missions; we propose all five sets are free in FA ranked.
+- **Default set (Lateralus: yes):** a player's FA epaulet set starts as the one they chose in vanilla: UsaBase → US Army, UsaUSMC → US Marines, RusBase → Russian Army, RusVDV → Russian VDV, and RusVMF (unused) → Russian Army. The PLA set has no vanilla equivalent, so players pick it themselves. Vanilla unlocks Marines and VDV through campaign missions; in FA ranked all five sets are free.
 
 ---
 
@@ -68,13 +68,18 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 
 `simple-elo.md` as written, with these choices for our game:
 
-- **Separate ladders:** 1v1, and one team ladder for 2v2, 3v3 and 5v5. A rating per player per ladder.
+- **Modes at launch (Lateralus, 22 Nov):** 1v1, 3v3 and 5v5. No 2v2.
+- **Ladders:** a 1v1 ladder and one team ladder shared by 3v3 and 5v5, with a rating per player on each ladder. Splitting 3v3 and 5v5 into separate ladders is possible, but it halves the matches each one gets.
 - **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Every player on the team gets the team's change. The win bonus is computed from each winner's own rating before the match.
 - **What counts as a result:** the mod already reports each match (players, teams, map, winner, length) to FAQueue (`match-stats.jsonl`). A ranked result counts only when at least one report from each side agrees on the winner and the player list. If they disagree, the match is marked disputed, nothing changes and it is logged for admins.
 - **Leavers:** a player who leaves before the end loses their own rating, as a loss. The rest of the match is scored normally.
 - **Draws** (Freedom Arrow lead under 10% at time-out): no change.
-- **Ranked rules are fixed:** FA conquest 300, 45 min, a ranked map pool per size (e.g. [1v1] Dead Center, Kadaga, Jelgava, Klaipeda, Chernyakhovsky), and the same FA build on every client. The server checks this before it starts the match.
-- **Seasons (optional):** reset everyone to 1000 at the start of a season and keep the old leaderboard.
+- **Ranked rules are fixed:** FA conquest 300, 45 min, a ranked map pool per size, and the same FA build on every client. The server checks this before it starts the match. Starting pools are the FA maps played online so far:
+  - [1v1] Dead Center, Kadaga, Jelgava, Klaipeda, Chernyakhovsky
+  - [3v3] Baltiisk, Bay of Winds, Dam
+  - [5v5] Airport, Oil Rush, Cold Harbor
+- **Queue size for 5v5:** a 5v5 needs 10 players searching at the same time. With 30–70 players online, the Elo window has to widen faster for 5v5. Proposal: ±150 at first, any rating after 3 minutes, and teams balanced by total rating.
+- **Seasons (Lateralus: yes):** each season keeps its final leaderboard and gives every player a badge with their best rank of that season. At the start of the next season everyone goes back to 1000. Proposed length: 2 months, to be confirmed.
 
 ---
 
@@ -115,7 +120,7 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
   - Text: "Test your skill against other players".
   - A small season tag. Mock-up: `docs/ranked/mock-1-play-card.jpg`.
 - **Ranked menu**, with tabs **Ranked · Leaderboard · Rank ladder**. Mock-up: `mock-2-ranked-menu.jpg`.
-  - **Find a ranked match:** mode (1v1 / 2v2 / 3v3 / 5v5), map pool, deck, region, a big FIND MATCH button with the patch, and the number searching.
+  - **Find a ranked match:** mode (1v1 / 3v3 / 5v5), map pool, deck, region, a big FIND MATCH button with the patch, and the number searching.
   - **Your rank:** large epaulet, rank name, Elo, progress bar to the next rank, matches, win rate and best Elo, plus the epaulet set picker (US Army, US Marines, Russian Army, Russian VDV, PLA).
   - **Recent ranked matches:** W/L, map, opponent with their epaulet, Elo change.
   - **Rank ladder strip:** all 20 ranks with the Elo where each starts.
@@ -133,13 +138,19 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 4. **Website:** leaderboard page on freedomarrow.app (it reads the same R2 file). About half a day.
 5. **Closed test:** team members only, ratings reset before public launch.
 
-## Open questions
+## Decisions (Lateralus, 22 November 2026)
 
-- 1v1 only at launch, or the team ladder too?
-- Seasons: yes or no, and how long?
-- Keep the PLA ladder with officers starting at rank 10, or drop one 军士长 grade?
-- Default FA epaulet set = the player's vanilla choice?
+- Modes at launch: 1v1, 3v3 and 5v5.
+- Rank seasons: yes.
+- PLA officers start at rank 10: accepted.
+- The FA epaulet set defaults to the player's vanilla choice.
+
+## Still open
+
+- Season length (proposed: 2 months).
+- One team ladder for 3v3 + 5v5 (proposed), or separate ladders.
 
 ## Document change log
 
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
+- 2026-11-22 08:01 PST (America/Los_Angeles) — Lateralus decisions: launch 1v1/3v3/5v5, seasons yes, PLA officers at rank 10, default set = vanilla epaulet. Map pools, 5v5 queue widening, season rules added.
