@@ -546,5 +546,12 @@ public static partial class Loc
         ["in the mod lobby"] = new[] { "in der Mod-Lobby", "dans le salon du mod", "в лобби мода", "在模组大厅" },
         ["players in game"] = new[] { "Spieler im Spiel", "joueurs en jeu", "игроков в игре", "游戏中玩家" },
         ["all time"] = new[] { "insgesamt", "au total", "за всё время", "累计" },
+        ["LINUX / STEAM DECK"] = new[] { "LINUX / STEAM DECK", "LINUX / STEAM DECK", "LINUX / STEAM DECK", "LINUX / STEAM DECK" },
+        ["Set Broken Arrow's Steam launch options before you play."] = new[] { "Setze vor dem Spielen die Steam-Startoptionen von Broken Arrow.", "Règle les options de lancement Steam de Broken Arrow avant de jouer.", "Перед игрой задайте параметры запуска Broken Arrow в Steam.", "游玩前请先设置 Broken Arrow 的 Steam 启动选项。" },
+        ["✓ Steam launch options are set."] = new[] { "✓ Steam-Startoptionen sind gesetzt.", "✓ Les options de lancement Steam sont réglées.", "✓ Параметры запуска Steam заданы.", "✓ Steam 启动选项已设置。" },
+        ["Copy launch options"] = new[] { "Startoptionen kopieren", "Copier les options", "Копировать параметры", "复制启动选项" },
+        ["Steam launch options"] = new[] { "Steam-Startoptionen", "Options de lancement Steam", "Параметры запуска Steam", "Steam 启动选项" },
+        ["Copied to the clipboard:\n\n{0}\n\nIn Steam: right-click Broken Arrow > Properties > General > Launch Options, replace the line with it, then press PLAY here."] = new[] { "In die Zwischenablage kopiert:\n\n{0}\n\nIn Steam: Rechtsklick auf Broken Arrow > Eigenschaften > Allgemein > Startoptionen, die Zeile damit ersetzen, dann hier SPIELEN drücken.", "Copié dans le presse-papiers :\n\n{0}\n\nDans Steam : clic droit sur Broken Arrow > Propriétés > Général > Options de lancement, remplace la ligne par celle-ci, puis appuie sur JOUER ici.", "Скопировано в буфер обмена:\n\n{0}\n\nВ Steam: правый клик по Broken Arrow > Свойства > Общие > Параметры запуска, замените строку этой, затем нажмите ИГРАТЬ здесь.", "已复制到剪贴板：\n\n{0}\n\n在 Steam 中：右键 Broken Arrow > 属性 > 通用 > 启动选项，用它替换原有内容，然后回到这里点击开始游戏。" },
+        ["VISIT FREEDOMARROW.APP"] = new[] { "FREEDOMARROW.APP BESUCHEN", "VISITER FREEDOMARROW.APP", "ПЕРЕЙТИ НА FREEDOMARROW.APP", "访问官网 FREEDOMARROW.APP" },
     };
 }

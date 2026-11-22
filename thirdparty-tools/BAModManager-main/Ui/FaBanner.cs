@@ -7,12 +7,13 @@ namespace BAModManager.Ui;
 /// <summary>
 /// 1.1.14 (Osama 21 Nov 2026, "make the launcher fit our website art style"): the launcher header, like the freedomarrow.app hero.
 /// Assets/fa_banner.jpg is the 0.9.3 in-game menu art with the approved title logo (site/menu-bg.jpg + site/title.webp), drawn at
-/// 1120x440 for a 560x220 header at 200 % scale. The OPEN ALPHA badge and the launcher version are drawn here so they stay sharp
+/// 1120x440 for a 560x220 header at 200 % scale. 1.1.15 (Osama 22 Nov 2026, "make the launcher bigger so more of it is art"):
+/// a full-width 1180x280 header (2360x560, tools/distribution/make_launcher_banner.py): the art right-aligned, the logo on the left. The OPEN ALPHA badge and the launcher version are drawn here so they stay sharp
 /// and follow the language.
 /// </summary>
 internal sealed class FaBanner : Control
 {
-    private const float DesignWidth = 560f;
+    private const float DesignWidth = 1180f;
     private readonly Image? _art;
 
     /// <summary>Space kept free at the top right (design pixels) for the language button.</summary>
@@ -32,19 +33,25 @@ internal sealed class FaBanner : Control
         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
         g.SmoothingMode = SmoothingMode.AntiAlias;
         float k = Width / DesignWidth;
+        // The art keeps its shape: full width, or (header made shorter for a small screen) scaled to the height and right-aligned.
+        float s = k, x0 = 0;
         if (_art != null)
         {
-            // Cover: fill the width, keep the art's top edge.
             float h = Width * _art.Height / (float)_art.Width;
-            g.DrawImage(_art, new RectangleF(0, 0, Width, Math.Max(h, Height)));
+            if (Height < h - 1)
+            {
+                s = k * Height / h;
+                x0 = Width - Width * Height / h;
+            }
+            g.DrawImage(_art, new RectangleF(x0, 0, Width - x0, Math.Min(h, Height)));
         }
 
-        // OPEN ALPHA badge centred under the logo (logo box 29..172 x 11..171 at design size).
+        // OPEN ALPHA badge centred under the logo (logo box 52..247 x 16..234 at design size).
         var badge = T("OPEN ALPHA");
         using (var f = Theme.Head(10.5f))
         {
             var size = TextRenderer.MeasureText(g, badge, f, Size.Empty, TextFormatFlags.NoPadding);
-            float bw = size.Width + 16 * k, bh = 21 * k, bx = 100.5f * k - bw / 2, by = 180 * k;
+            float bw = size.Width + 18 * s, bh = 23 * s, bx = x0 + 149.5f * s - bw / 2, by = 243 * s;
             using (var p = Theme.RoundRect(new RectangleF(bx, by, bw, bh), 3 * k))
             using (var b = new SolidBrush(Theme.Accent))
                 g.FillPath(b, p);

@@ -24,6 +24,8 @@ internal sealed class LauncherForm : Form
     private readonly LaunchProgressPanel _panel;
     private readonly Button? _lang;
     private readonly NewsPanel? _news;
+    private readonly Label? _linuxState;
+    private readonly Control? _header;
     private readonly Button _play;
     private readonly Button _vanilla;
     private readonly Button _settings;
@@ -58,10 +60,13 @@ internal sealed class LauncherForm : Form
         // 1.1.14 (Osama 21 Nov 2026): freedomarrow.app look - menu-art header with the title logo, red/black colours,
         // condensed headings, and a progress panel that shows steps, MB, speed, time left and when data last arrived.
         // 1.1.15 (Osama 22 Nov 2026): a News column on the right with the Battlefield report and the patch notes.
-        _news = new NewsPanel { Dock = DockStyle.Right, Width = 390 };
-        ClientSize = new Size(560 + _news.Width, 700);
+        // Osama 22 Nov 2026: "make the launcher bigger so more of it is art", "or just more space, its very cramped":
+        // a full-width 1180x280 header and a wider News column. On a short screen (Steam Deck, 800 px) the header gives up
+        // height first (FitScreen).
+        _news = new NewsPanel { Dock = DockStyle.Right, Width = 520 };
+        ClientSize = new Size(1180, 820);
         Padding = new Padding(0);
-        var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 220 };
+        var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 280 };
         // 中文 / English switch, like the button on freedomarrow.app (Osama 21 Nov 2026: "Make sure there's a Chinese switch").
         _lang = Theme.MakeButton(Loc.IsChinese ? "English" : "中文", ButtonKind.Secondary);
         _lang.AutoSize = false;
@@ -69,13 +74,13 @@ internal sealed class LauncherForm : Form
         _lang.MinimumSize = new Size(0, 0);
         _lang.Padding = new Padding(0);
         _lang.Margin = new Padding(0);
-        _lang.Location = new Point(560 - 72 - 14, 9);
+        _lang.Location = new Point(1180 - 72 - 14, 9);
         _lang.Font = Loc.IsChinese ? Theme.Head(10.5f, semi: true) : new Font("Microsoft YaHei UI", 9f, FontStyle.Bold);
         _lang.BackColor = Theme.Background;
         _lang.Click += (_, _) => ToggleChinese();
         header.RightInset = 72 + 8;
         header.Controls.Add(_lang);
-        var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 4, 28, 14) };
+        var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(36, 14, 36, 12) };
 #else
         ClientSize = new Size(460, 640);
         Padding = new Padding(28, 22, 28, 18);
@@ -169,16 +174,28 @@ internal sealed class LauncherForm : Form
         body.Controls.Add(_play);
         body.Controls.Add(Spacer(10));
         body.Controls.Add(_panel);
+#if FA_DEV45
+        // Linux / Steam Deck (Osama 22 Nov 2026: "on the launcher remind linux players to do the launch options")
+        if (LinuxSteam.IsWine)
+        {
+            body.Controls.Add(Spacer(12));
+            body.Controls.Add(LinuxStrip(out _linuxState));
+            body.Controls.Add(Spacer(10));
+        }
+        else body.Controls.Add(Spacer(16));
+#else
         body.Controls.Add(Spacer(16));
+#endif
         body.Controls.Add(card);
         body.Controls.Add(Spacer(12));
         body.Controls.Add(footer);
 #if FA_DEV45
         Controls.Add(body);
+        Controls.Add(_news);
 #endif
-        Controls.Add(header);
+        Controls.Add(header);   // added last so it docks first: the art spans the full width
 #if FA_DEV45
-        Controls.Add(_news);   // added last so it docks first: full height on the right, the header stays 560 wide
+        _header = header;
 #endif
 
         _play.Click += async (_, _) => await PlayModded();
@@ -206,7 +223,81 @@ internal sealed class LauncherForm : Form
         };
     }
 
+    /// <summary>Linux reminder: the Steam launch options Freedom Arrow needs, with a button that copies them.</summary>
+    private Control LinuxStrip(out Label state)
+    {
+        var strip = new Panel { Dock = DockStyle.Top, Height = 54, BackColor = Theme.Surface };
+        strip.Paint += (_, e) =>
+        {
+            using var edge = new Pen(Theme.Border);
+            e.Graphics.DrawRectangle(edge, 0, 0, strip.Width - 1, strip.Height - 1);
+            using var bar = new SolidBrush(Theme.Warn);
+            e.Graphics.FillRectangle(bar, 0, 0, Math.Max(3, strip.LogicalToDeviceUnits(4)), strip.Height);
+        };
+        var title = new Label { Text = T("LINUX / STEAM DECK"), AutoSize = true, Location = new Point(16, 7), Font = Theme.Head(10.5f, semi: true), ForeColor = Theme.Warn, BackColor = Theme.Surface };
+        state = new Label { Text = T("Set Broken Arrow's Steam launch options before you play."), AutoSize = false, AutoEllipsis = true, Location = new Point(16, 27), Size = new Size(380, 20), ForeColor = Theme.Text, BackColor = Theme.Surface };
+        var copy = Theme.MakeButton(T("Copy launch options"));
+        copy.AutoSize = false;
+        copy.Width = 190;
+        copy.Dock = DockStyle.Right;
+        strip.Padding = new Padding(0, 10, 10, 10);
+        copy.Click += (_, _) => CopyLinuxLaunchOptions();
+        strip.Controls.AddRange(new Control[] { title, state, copy });
+        return strip;
+    }
+
+    /// <summary>The line PLAY would ask for: with the crash-fix helper when this PC needs it (see LinuxGcFixReady).</summary>
+    private void CopyLinuxLaunchOptions()
+    {
+        var line = LinuxSteam.LaunchOption;
+        var scope = LinuxGcFix.PtraceScope();
+        if (scope is 1 or 2)
+        {
+            var appId = (_gameDir != null ? GameLocator.FindSteamAppId(_gameDir) : null) ?? ManagerConfig.SteamAppId;
+            try { line = LinuxGcFix.LaunchLine(LinuxGcFix.Install(LinuxGcFix.Folder(LinuxSteam.SteamRoots().ToList(), appId) ?? throw new IOException("no Linux home folder"))); }
+            catch (Exception ex) { Log(T("Linux crash fix not installed: {0}", ex.Message)); }
+        }
+        try { Clipboard.SetText(line); } catch { /* no clipboard */ }
+        MessageBox.Show(this, T("Copied to the clipboard:\n\n{0}\n\nIn Steam: right-click Broken Arrow > Properties > General > Launch Options, replace the line with it, then press PLAY here.", line),
+            T("Steam launch options"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        UpdateLinuxState();
+    }
+
+    private void UpdateLinuxState()
+    {
+        if (_linuxState == null) return;
+        var appId = (_gameDir != null ? GameLocator.FindSteamAppId(_gameDir) : null) ?? ManagerConfig.SteamAppId;
+        var roots = LinuxSteam.SteamRoots().ToList();
+        bool? set = LinuxSteam.HasLaunchOption(roots, appId);
+        if (set == true && LinuxGcFix.PtraceScope() is 1 or 2) set = LinuxGcFix.Active(roots, appId);
+        _linuxState.Text = set == true ? T("✓ Steam launch options are set.") : T("Set Broken Arrow's Steam launch options before you play.");
+        _linuxState.ForeColor = set == true ? Theme.Good : Theme.Text;
+    }
+
     private static Control Spacer(int height) => new Panel { Dock = DockStyle.Top, Height = height, BackColor = Theme.Background };
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        FitScreen();
+    }
+
+    /// <summary>The window taller than the screen (Steam Deck 1280x800): shrink the header art, never the controls.</summary>
+    private void FitScreen()
+    {
+        if (_header == null) return;
+        // Sizes as designed: Wine/Proton already clamps the window to the screen, so ClientSize may be smaller here.
+        int want = LogicalToDeviceUnits(820), header = LogicalToDeviceUnits(280), frame = Height - ClientSize.Height;
+        // Wine/Proton: + room for a title bar it doesn't count
+        var area = Screen.FromControl(this).WorkingArea;
+        var over = want + frame + (LinuxSteam.IsWine ? LogicalToDeviceUnits(40) : 0) - area.Height;
+        if (over <= 0) return;
+        var cut = Math.Min(over, header - LogicalToDeviceUnits(190));
+        _header.Height = header - cut;
+        ClientSize = new Size(ClientSize.Width, want - cut);
+        StartPosition = FormStartPosition.Manual;
+        Location = new Point(area.Left + Math.Max(0, (area.Width - Width) / 2), area.Top);
+    }
 
     protected override void OnHandleCreated(EventArgs e)
     {
@@ -331,6 +422,7 @@ internal sealed class LauncherForm : Form
     private void RefreshCard()
     {
         DeckGuard.GameDir = _gameDir;
+        try { UpdateLinuxState(); } catch { /* Steam's files unreadable: keep the reminder */ }
         Manifest? manifest = null;
         InstalledPackage? pack = null;
         string? preview = null;

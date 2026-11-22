@@ -11,7 +11,7 @@ namespace BAModManager.Ui;
 /// </summary>
 internal sealed class NewsPanel : Panel
 {
-    private readonly StatTiles _tiles = new() { Dock = DockStyle.Top, Height = 156 };
+    private readonly StatTiles _tiles = new() { Dock = DockStyle.Top, Height = 78 };
     private readonly RichTextBox _notes;
     private readonly Button _more;
     private string _link = LauncherNews.Site;
@@ -19,7 +19,7 @@ internal sealed class NewsPanel : Panel
     public NewsPanel()
     {
         BackColor = Theme.Panel;
-        Padding = new Padding(20, 16, 18, 14);
+        Padding = new Padding(24, 18, 24, 16);
         _notes = new RichTextBox
         {
             Dock = DockStyle.Fill,
@@ -41,6 +41,13 @@ internal sealed class NewsPanel : Panel
         _more.AutoSize = false;
         _more.Height = 34;
         _more.Click += (_, _) => LauncherNews.Open(_link);
+        // Osama 22 Nov 2026: "make sure there's a big button to visit our website"
+        var site = Theme.MakeButton(T("VISIT FREEDOMARROW.APP"), ButtonKind.Secondary);
+        site.Dock = DockStyle.Bottom;
+        site.AutoSize = false;
+        site.Height = 52;
+        site.Font = Theme.Head(18f);
+        site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
 
         // Docked top controls are added bottom-up
         Controls.Add(_notes);
@@ -49,6 +56,8 @@ internal sealed class NewsPanel : Panel
         Controls.Add(_tiles);
         Controls.Add(Title(T("BATTLEFIELD REPORT")));
         Controls.Add(_more);
+        Controls.Add(Gap(6, DockStyle.Bottom));
+        Controls.Add(site);   // added last: the very bottom of the column
         ShowText(T("Loading news…"));
     }
 
@@ -156,7 +165,7 @@ internal sealed class NewsPanel : Panel
 
     private static Font Body() => BodyFont;
 
-    private static Control Gap(int h) => new Panel { Dock = DockStyle.Top, Height = h, BackColor = Theme.Panel };
+    private static Control Gap(int h, DockStyle dock = DockStyle.Top) => new Panel { Dock = dock, Height = h, BackColor = Theme.Panel };
 
     private static Control Title(string text) => new Label
     {
@@ -170,7 +179,7 @@ internal sealed class NewsPanel : Panel
         UseMnemonic = false,
     };
 
-    /// <summary>2 x 2 tiles like the front page's Battlefield report.</summary>
+    /// <summary>4 tiles in a row, like the front page's Battlefield report.</summary>
     private sealed class StatTiles : Control
     {
         private LauncherNews.Stats? _s;
@@ -195,13 +204,13 @@ internal sealed class NewsPanel : Panel
                 (T("MATCHES"), _s?.Matches, T("all time")),
             };
             int gap = LogicalToDeviceUnits(8);
-            int w = (Width - gap) / 2, h = (Height - gap) / 2;
+            int w = (Width - 3 * gap) / 4, h = Height;   // one row of 4
             using var label = Theme.Head(9.5f, semi: true);
             using var value = Theme.Head(21f);
             using var sub = Theme.Ui(8.25f);
             for (int i = 0; i < items.Length; i++)
             {
-                var r = new Rectangle(i % 2 * (w + gap), i / 2 * (h + gap), w, h);
+                var r = new Rectangle(i * (w + gap), 0, w, h);
                 using (var fill = new SolidBrush(Theme.Surface)) g.FillRectangle(fill, r);
                 using (var edge = new Pen(Theme.Border)) g.DrawRectangle(edge, r.X, r.Y, r.Width - 1, r.Height - 1);
                 using (var strip = new SolidBrush(i == 0 ? Theme.Accent : Theme.Border))
