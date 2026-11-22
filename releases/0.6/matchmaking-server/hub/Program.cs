@@ -258,7 +258,8 @@ sealed class GameHub : Hub
     }
 
     // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
-    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId) }; } }
+    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
+        pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId) }; } }
     public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }
 
     public object GetOnlinePlayers() { lock (Store.Lock) return Store.BySteam.Values.Select(p => p.Online()).ToArray(); }
@@ -419,6 +420,7 @@ sealed class GameHub : Hub
             {
                 l.State = "starting";
                 Ranked.OnStarted(l);
+                Ranked.NotePlayed(l);
                 ToLobby(l, "MatchStarted", new { lobbyId = l.Id });
                 foreach (var m in l.Members) if (Store.BySteam.TryGetValue(m.SteamId, out var q)) { q.LobbyId = null; SetStatus(q, "battle"); }
                 Store.Lobbies.Remove(l.Id);

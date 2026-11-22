@@ -179,7 +179,7 @@ static class Ranked
             {
                 foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 5v5 first, so a full 10 is not split into 3v3 + 4 waiting
                 ResolveTimeouts();
-                if (_dirty) Save();
+                if (_dirty || _metDirty) Save();
                 if ((DateTime.UtcNow - _lastExport).TotalSeconds >= 60) Export();
             }
             Flush();
@@ -435,8 +435,39 @@ static class Ranked
     }
 
     // ---------- storage ----------
+    // "Recently played with" for the ranked group invite list (Lateralus 22 Nov): the last 30 players met in any started hub lobby.
+    sealed class Met { public string Id { get; set; } = ""; public string Name { get; set; } = ""; public DateTime T { get; set; } }
+    static Dictionary<string, List<Met>>? _met;
+    static string MetFile => Path.Combine(_dir, "recent-players.json");
+    static Dictionary<string, List<Met>> MetAll()
+    {
+        if (_met != null) return _met;
+        try { _met = File.Exists(MetFile) ? JsonSerializer.Deserialize<Dictionary<string, List<Met>>>(File.ReadAllText(MetFile)) : null; } catch { }
+        return _met ??= new();
+    }
+    static bool _metDirty;
+    public static void NotePlayed(Lobby l)
+    {
+        var ids = l.Members.Select(m => (m.SteamId, m.Name)).ToList();
+        var all = MetAll();
+        foreach (var (a, _) in ids)
+        {
+            if (!all.TryGetValue(a, out var list)) all[a] = list = new();
+            foreach (var (b, name) in ids.Where(x => x.SteamId != a))
+            {
+                list.RemoveAll(m => m.Id == b);
+                list.Insert(0, new Met { Id = b, Name = name, T = DateTime.UtcNow });
+            }
+            if (list.Count > 30) list.RemoveRange(30, list.Count - 30);
+        }
+        _metDirty = true;
+    }
+    public static object RecentPlayers(string steamId) =>
+        (MetAll().TryGetValue(steamId, out var list) ? list : new()).Select(m => new { steamId = m.Id, name = Store.BySteam.TryGetValue(m.Id, out var q) ? q.Name : m.Name, t = m.T, online = Store.BySteam.ContainsKey(m.Id) }).ToArray();
+
     static void Save()
     {
+        if (_metDirty) { try { var tmp = MetFile + ".tmp"; File.WriteAllText(tmp, JsonSerializer.Serialize(MetAll())); File.Move(tmp, MetFile, true); _metDirty = false; } catch (Exception e) { _log?.LogWarning("recent players: {e}", e.Message); } }
         foreach (var (lad, d) in Ladders)
         {
             var f = RatingsFile(lad); var tmp = f + ".tmp";
