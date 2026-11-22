@@ -9,6 +9,9 @@ edge of the map").
 - HJ-10 launcher 2009619 was still an ATGM-HE launcher (Type 81, not vertical, no ground-attack bursts) firing a cruise round: test log
   23:26 "HJ-10 guided missile: shots 886, hits 0, mean gap 0.01 s" and no missile launched. Type 82 (CruiseMissile), vertical launch and the
   CH-901 / CTL-181 vertical angle and ground-attack bursts, like both working cruise launchers. Magazine, reload and range stay.
+- HJ-10 still did not fire in 0.9.5-dev.3 (log 23:49: 14,719 shots, 0 hits, one per frame): its round kept LaunchMarginAngle 30 from the
+  Hellfire path. A vertical launcher points up, so no target is ever within 30 degrees and every launch is refused. Every vanilla round on a
+  vertical launcher (22) and the three working NLOS rounds use 180; set 180 on all four (no change for the other three).
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -19,8 +22,8 @@ def apply(t, g, ok, rec):
     for i, name in ROUNDS.items():
         a = A[i]
         ok(a.get('TrajectoryType') == 200 and a.get('LaserGuided') is True and a.get('CanBeIntercepted') is False, (name, 'cruise + laser before', i))
-        g.put('AmmunitionsJson', i, {'LaserGuided': False})
-        ok(A[i]['LaserGuided'] is False and A[i]['TrajectoryType'] == 200, (name, 'cruise without laser', i))
+        g.put('AmmunitionsJson', i, {'LaserGuided': False, 'LaunchMarginAngle': 180.0})
+        ok(A[i]['LaserGuided'] is False and A[i]['TrajectoryType'] == 200 and A[i]['LaunchMarginAngle'] == 180.0, (name, 'cruise without laser', i))
     w = W[HJ10_LAUNCHER]
     ok(w.get('HUDName') == 'HJ-10' and w.get('Type') == 81 and w.get('IsVerticalLauncher') is False, ('HJ-10 launcher before', w.get('Type')))
     ok(sorted({r['AmmunitionId'] for r in WA.values() if r and r.get('WeaponId') == HJ10_LAUNCHER}) == [2009623], 'HJ-10 launcher fires only the HJ-10 round')
