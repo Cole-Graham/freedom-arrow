@@ -179,4 +179,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
 - 2026-11-22 08:38 PST (America/Los_Angeles) — Lateralus: 1v1 is a separate solo queue; the team queue (solo or party) only makes 3v3/5v5. Test hub at freedomarrow.app/hubs/test.
 - 2026-11-22 13:0x PST (America/Los_Angeles) — Lateralus: ranked match flow (default deck, 60 s hidden deck pick, reveal, automatic launch) added and built.
-- 2026-11-22 13:5x PST (America/Los_Angeles) — Lateralus: win bonus scaled by the ladder average, so the ladder settles at 1500.
+- 2026-11-22 13:4x PST (America/Los_Angeles) — Lateralus: win bonus scaled by the ladder average, so the ladder settles at 1500.

@@ -99,4 +99,4 @@ At 2170 and above, leaderboard place replaces the grade for the top three. Place
 
 ## Document change log
 
-- 2026-11-22 13:5x PST (America/Los_Angeles) — Lateralus: the win bonus is scaled by the ladder average (full at 1400 or lower, 0 at 1500), because the per-winner bonus alone keeps adding points past an average of 1500.
+- 2026-11-22 13:4x PST (America/Los_Angeles) — Lateralus: the win bonus is scaled by the ladder average (full at 1400 or lower, 0 at 1500), because the per-winner bonus alone keeps adding points past an average of 1500.
