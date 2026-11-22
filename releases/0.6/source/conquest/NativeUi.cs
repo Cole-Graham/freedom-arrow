@@ -137,12 +137,14 @@ public sealed partial class Prototype
     // connect, 10 (RoomStatus.DeploymentPhase) on that preview screen, and 20 (InProcess) once the battle runs. Our deployment is the
     // scenario script's pause inside the battle, so the banner runs only at InProcess.
     static string lastRoomStatus;
+    // Set on the "BATTLE STARTS IN" preview screen; the online deployment hold starts only after it (not for a player who rejoins mid-match).
+    static bool sawPreview;
     static bool BattleRunning()
     {
         Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Client.Ecs.GameMode.GameModeService>(out var service,false);
         var status=service?._networkRoomService?.State?.Status;
         string state=status?.ToString()??"none";
-        if(state!=lastRoomStatus){lastRoomStatus=state;Log("online_room_status",new{status=state,t=Time.unscaledTime});if(status==RoomStatus.DeploymentPhase)leaving=false;}
+        if(state!=lastRoomStatus){lastRoomStatus=state;Log("online_room_status",new{status=state,t=Time.unscaledTime});if(status==RoomStatus.DeploymentPhase){leaving=false;sawPreview=true;}}
         return status==RoomStatus.InProcess;
     }
     // Seconds of the online deployment pause left, or null. From 16 Nov 2026 the conquest mode starts with the pause (scenarios/common.py
@@ -267,9 +269,64 @@ public sealed partial class Prototype
         }
         catch(Exception e){setupEnds=-1;MelonLogger.Error("FREEDOM_ARROW_SETUP_FAILED: setup phase off. "+e.Message);}
     }
+    // Online deployment hold (Osama 22 Nov 2026: "we had a person spawn before the game started"). Every online FA map's script pauses
+    // each player's own game for OnlineDeploySeconds at battle start (scenarios/common.py add_deployment: pauseGame true, delay,
+    // pauseGame false); Skirmish copies have no pause. The pause is local (GameSessionContext.IsPaused, game speed 0 on this PC only), so
+    // a client whose pause does not hold keeps its purchase timers and income running while the others wait. R2 logs 21-22 Nov 2026:
+    // 11 matches had one or two such players (0.9.3 and 0.9.4); in match 9851894 TNTScientist's first unit was on the map 12 s into the
+    // pause, he had 19 units and +733 points at the end of it, the other five players none and +0. This holds the pause on this client
+    // from its first battle frame until HoldMargin before the window ends; the script's own pauseGame(false) then ends deployment. If this
+    // hold had to restore the pause and the game is still paused HoldMargin after the window, the hold releases it itself. A player who
+    // rejoins a running match (no preview screen first) gets no hold.
+    const double HoldMargin=5;
+    static float onlineHoldStart=-1;
+    static IntPtr onlineHoldSession;
+    static int onlineHoldRestores;
+    static bool onlineHoldDone,onlineHoldFailed;
+    static bool OnlineDeployMap(string name)=>name!=null&&config.MapZoneWeights.ContainsKey(name)&&!name.Contains(" Skirmish ");
+    static void OnlineDeployFrame()
+    {
+        if(onlineHoldFailed)return;
+        try
+        {
+            var session=GameController.Instance?.GameSession;
+            if(session==null||economyOnlineGuard?.Invoke()!=true
+                ||!OnlineDeployMap(Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name)||!BattleRunning())
+            {
+                onlineHoldStart=-1;onlineHoldDone=false;onlineHoldRestores=0;return;
+            }
+            if(onlineHoldStart<0||session.Pointer!=onlineHoldSession)
+            {
+                if(!sawPreview){onlineHoldDone=true;onlineHoldStart=Time.unscaledTime;onlineHoldSession=session.Pointer;return;}
+                sawPreview=false;
+                onlineHoldStart=Time.unscaledTime;onlineHoldSession=session.Pointer;onlineHoldRestores=0;onlineHoldDone=false;
+                Log("online_deploy_hold_started",new{paused=session.IsPaused,config.OnlineDeploySeconds});
+                MelonLogger.Msg($"FREEDOM_ARROW_DEPLOY_HOLD started: {config.OnlineDeploySeconds} s, game paused {session.IsPaused}");
+            }
+            if(onlineHoldDone)return;
+            double left=config.OnlineDeploySeconds-(Time.unscaledTime-onlineHoldStart);
+            if(left>HoldMargin)
+            {
+                if(!session.IsPaused)
+                {
+                    session.IsPaused=true;
+                    if(++onlineHoldRestores==1)MelonLogger.Warning($"FREEDOM_ARROW_DEPLOY_HOLD this game was not paused {Time.unscaledTime-onlineHoldStart:0.0} s into deployment; pause restored");
+                }
+                return;
+            }
+            if(left>-HoldMargin)return;
+            onlineHoldDone=true;
+            bool released=onlineHoldRestores>0&&session.IsPaused;
+            if(released)session.IsPaused=false;
+            Log("online_deploy_hold_ended",new{restores=onlineHoldRestores,released});
+            MelonLogger.Msg($"FREEDOM_ARROW_DEPLOY_HOLD ended: pause restored {onlineHoldRestores} time(s){(released?", released by the hold":"")}");
+        }
+        catch(Exception e){onlineHoldFailed=true;MelonLogger.Error("FREEDOM_ARROW_DEPLOY_HOLD_FAILED: off for this session. "+e.Message);}
+    }
     public void OnUpdate()
     {
         SetupFrame();
+        OnlineDeployFrame();
         StateFrame();
         CombatFrame();
         EconomyFrame();
