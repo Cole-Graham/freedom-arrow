@@ -10,10 +10,13 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
   (card 1200 m). KE keeps the ZBD-20 range (550, card 1100 m). Same round counts as the ZBD-20 (100 KE, 234 HE).
 - Smoke + light supply: the ZBD-20 ability row 2000212. InfantrySlots 6. Optics: vanilla row 3 "Very Good Optics" (raw 2300, spotting cap 1000, the card
   shows 2000 m), the ZBD-20 Recon row. Cost 80. APS +40: ability 82 (GL-5 / Iron Fist, 2 charges, 10 s), as the ZBD-20.
-- Loadout: 35 mm only (default) or 35 mm + 8x CH-901 (the Blood Wolves launcher 2018447 / round 2018448, CH-901 on mount Order 1). The CH-901 is
-  laser-guided. Every ZBD-100 has the vanilla vehicle laser (Osama 22 Nov 02:39 "does it have a laser designator?" ... "it should"): row 8 "Laser Veh",
-  1500, usable on the move, the row the ZBD-20 links, in ability slot 3 of BOTH loadout options (slot 3 is used by no other ZBD-100 modification).
-  CH_COST +40 (Osama 22 Nov 03:0x: "CH-901 adds +40 points to the vehicle").
+- Loadout (one slot, vanilla unit-swap pattern as Buk-M2 -> Buk-M3): 35 mm (this card, 80) / GL-5 APS (+40) / 8x CH-901 (+40) / both (+80). Each
+  choice is its own unit row with ONE turret (IsUnitModification, swap row Cost = 80 + option). The CH-901 launcher is a copy of the Blood Wolves
+  launcher 2018447 without its infantry Javelin model; round 2018448 (laser-guided, in nlos.json). Every ZBD-100 has the vanilla vehicle laser (Osama
+  22 Nov 02:39 "it should"): 1500, usable on the move, built into the default ability row with smoke + light supply (+ APS on the APS rows).
+  Why not turret-swapping options (dev.19-26, measured on Osama's PC, GameLogs "Couldn't load unit", AnimatorConnect duplicate trigger 'Shot'): on the
+  Bradley body two turret rows only work when each fills the three Bradley weapon slots, as vanilla (dev.27: our two turrets fail even without options,
+  the vanilla rows 53/52 work, one turret + an APS-only slot works). The ZBD-20 pattern works on its BMP-3 body only.
 - Availability: a Recon-tab card in spec 18 PLAGF Armored Force (Osama 22 Nov 02:4x: "you put it in armored spec right?", "in the recon tab?"):
   Units.CategoryType 0 and a SpecializationAvailabilities row copied from the ZBD-04A Recon's spec-18 card (same card count). Also a transport for the
   ZBD-20's spec-18 squads whose squad fits 6 seats."""
@@ -53,46 +56,51 @@ def apply(t, g, ok, rec):
     g.add('UnitArmorsJson', rows('UnitArmorsJson', UnitId=Z)[0], {'UnitId': uid})
     g.add('UnitPropulsionsJson', rows('UnitPropulsionsJson', UnitId=Z)[0], {'UnitId': uid})
     g.add('SensorUnitsJson', rows('SensorUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'SensorId': VG})
-    tpl_ua = rows('UnitAbilitiesJson', UnitId=Z)[0]
-    for ab in (SMOKE, 4, APS, LASER):
-        g.add('UnitAbilitiesJson', tpl_ua, {'UnitId': uid, 'AbilityId': ab})
-
     gun = g.add('WeaponsJson', W[GUN], {'Name': 'PLA ZBD-100 35 mm', 'HUDName': '35 mm CT'})
     ke = g.add('AmmunitionsJson', A[KE], {'Name': 'PLA ZBD-100 35 mm APFSDS', 'HUDName': '35 mm CT APFSDS', 'Damage': 1.94,
                                           'PenetrationAtMinRange': 180.0, 'PenetrationAtGroundRange': 100.0})
     he = g.add('AmmunitionsJson', A[HE], {'Name': 'PLA ZBD-100 35 mm HE', 'HUDName': '35 mm CT HE', 'GroundRange': 600.0})
-    wa = rows('WeaponAmmunitionsJson', UnitId=Z)
-    g.add('WeaponAmmunitionsJson', wa[0], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': ke})
-    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': he})
-
-
+    chl = g.add('WeaponsJson', W[CHW], {'Name': 'PLA ZBD-100 CH-901 launcher', 'ModelFileName': None})
     T, TW = t['TurretsJson'], rows('TurretWeaponsJson', TurretId=53)
     base = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0'})
     chm = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0 CH-901'})
-    # dev.19/dev.20 (22 Nov 03:0x-03:3x, measured on Osama's PC): the Arsenal could not build the unit (GameLogs "Couldn't load unit: PLA ZBD-100",
-    # AnimatorConnect.InitTriggerDictionary duplicate key 'Shot'). Not the FAModels swap (same error with the models.json entry removed) and not
-    # the Bradley slot layout (dev.20 had gun / coax / CH-901 like the Type 89 FV, same error). The Blood Wolves launcher row 2018447 carries
-    # the infantry 'Javelin' weapon model; vanilla vehicle weapons almost never do (6 of 561 turret weapons). The ZBD-100 gets its own launcher
-    # row, a copy of 2018447 with no weapon model. The round stays 2018448 (in nlos.json).
-    chl = g.add('WeaponsJson', W[CHW], {'Name': 'PLA ZBD-100 CH-901 launcher', 'ModelFileName': None})
-    for tur in (base, chm):
-        g.add('TurretWeaponsJson', TW[0], {'TurretId': tur, 'WeaponId': gun})
+    g.add('TurretWeaponsJson', TW[0], {'TurretId': base, 'WeaponId': gun})
+    g.add('TurretWeaponsJson', TW[0], {'TurretId': chm, 'WeaponId': gun})
     g.add('TurretWeaponsJson', TW[1], {'TurretId': chm, 'WeaponId': chl})
-    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': chl, 'AmmunitionId': CHA, 'Order': 2, 'Quantity': 8})
-    for tur in (base, chm):
-        g.add('TurretUnitsJson', rows('TurretUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'TurretId': tur})
-
+    # default ability rows (one per unit, IsDefault): smoke + light supply (2000212) + laser (row 8 fields), and the same + APS (row 82 fields)
+    las = {k: AB[LASER][k] for k in ('IsLaserDesignator', 'LaserMaxRange', 'LaserUsableInMove')}
+    aps = {k: AB[APS][k] for k in AB[APS] if k.startswith('APS') or k == 'IsAPS'}
+    def ability(name, extra):   # ability-row reuse rule: link an existing row with exactly these values, add one only for a new combination
+        want = dict(AB[SMOKE], **extra)
+        same = [i for i, r in AB.items() if r and all(r.get(k) == v for k, v in want.items() if k not in ('Id', 'Name'))]
+        return same[0] if same else g.add('AbilitiesJson', AB[SMOKE], {'Name': name, **extra})
+    ab_l = ability('PLA ZBD-100 smoke supply laser', las)
+    ab_la = ability('PLA ZBD-100 smoke supply laser APS', {**las, **aps})
+    wa, tpl_ua, tpl_tu = rows('WeaponAmmunitionsJson', UnitId=Z), rows('UnitAbilitiesJson', UnitId=Z)[0], rows('TurretUnitsJson', UnitId=Z)[0]
+    units = {}
+    for key, cost, tur, ab in (('', 80, base, ab_l), (' APS', 120, base, ab_la), (' CH-901', 80 + CH_COST, chm, ab_l), (' CH-901 APS', 120 + CH_COST, chm, ab_la)):
+        e = dict(d, Name='PLA ' + NAME + key, Cost=cost, IsUnitModification=bool(key))
+        u = uid if not key else g.put('Units', max(U) + 1, e)
+        units[key] = u
+        if key:
+            g.add('UnitArmorsJson', rows('UnitArmorsJson', UnitId=Z)[0], {'UnitId': u})
+            g.add('UnitPropulsionsJson', rows('UnitPropulsionsJson', UnitId=Z)[0], {'UnitId': u})
+            g.add('SensorUnitsJson', rows('SensorUnitsJson', UnitId=Z)[0], {'UnitId': u, 'SensorId': VG})
+        g.add('UnitAbilitiesJson', tpl_ua, {'UnitId': u, 'AbilityId': ab})
+        g.add('TurretUnitsJson', tpl_tu, {'UnitId': u, 'TurretId': tur})
+        g.add('WeaponAmmunitionsJson', wa[0], {'UnitId': u, 'WeaponId': gun, 'AmmunitionId': ke})
+        g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': u, 'WeaponId': gun, 'AmmunitionId': he})
+        if tur == chm:
+            g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': u, 'WeaponId': chl, 'AmmunitionId': CHA, 'Order': 2, 'Quantity': 8})
     zm = {m['Type']: m for m in rows('ModificationsJson', UnitId=Z)}
     lm = g.add('ModificationsJson', zm[3], {'UnitId': uid, 'Name': 'PLA ZBD-100 loadout', 'Order': 0})
-    lo = rows('OptionsJson', ModificationId=zm[3]['Id'])
-    g.add('OptionsJson', lo[0], {'ModificationId': lm, 'Name': 'PLA ZBD-100 35 mm', 'UIName': '35 mm CT', 'OptionPicture': 'EMPTY',
-                                 'Turret0Id': base, 'Ability3Id': LASER})
-    g.add('OptionsJson', lo[1], {'ModificationId': lm, 'Name': 'PLA ZBD-100 CH-901', 'UIName': '8x CH-901', 'Cost': CH_COST,
-                                 'Turret0Id': chm, 'Ability3Id': LASER})
-    am = g.add('ModificationsJson', zm[6], {'UnitId': uid, 'Name': 'PLA ZBD-100 APS', 'Order': 1})
-    ao = {o['Ability2Id']: o for o in rows('OptionsJson', ModificationId=zm[6]['Id'])}
-    g.add('OptionsJson', ao[4], {'ModificationId': am, 'Name': 'PLA ZBD-100 No APS'})
-    g.add('OptionsJson', ao[APS], {'ModificationId': am, 'Name': 'PLA ZBD-100 GL-5 APS', 'Cost': 40, 'Order': 1})
+    tpl_o = rows('OptionsJson', ModificationId=zm[3]['Id'])[0]
+    for n, (key, ui, pic) in enumerate(((' ', '35 mm CT', 'EMPTY'), (' APS', 'GL-5 APS', 'APS'), (' CH-901', '8x CH-901', 'VEH_SPIKE_LR'),
+                                        (' CH-901 APS', '8x CH-901 + GL-5 APS', 'APS'))):
+        r = units[key.rstrip()]
+        g.add('OptionsJson', tpl_o, {'ModificationId': lm, 'Name': 'PLA ZBD-100 loadout' + key.rstrip(), 'UIName': ui, 'OptionPicture': pic, 'Order': n,
+                                     'IsDefault': False, 'Cost': U[r]['Cost'] - 80, 'ReplaceUnitId': r, 'ReplaceUnitName': None if r == uid else NAME,
+                                     'Turret0Id': 0, 'Ability1Id': 0, 'Ability2Id': 0, 'Ability3Id': 0, 'ArmorId': 0})
 
     SA, TA = t['SpecializationAvailabilitiesJson'], t['TransportAvailabilitiesJson']
     ARMD = 18
@@ -117,20 +125,19 @@ def apply(t, g, ok, rec):
     ok(all(W[gun][k] == W[GUN][k] for k in W[GUN] if k not in ('Id', 'Name', 'HUDName')), '35 mm gun = ZBD-20 gun (fire rate)')
     ok(abs(A[ke]['Damage'] / A[KE]['Damage'] * 1.55 - 2.0) < 0.01, ('KE card DPS 1.55 -> 2.0', round(A[ke]['Damage'] / A[KE]['Damage'] * 1.55, 3)))
     ok(all(A[he][k] == A[HE][k] for k in A[HE] if k not in ('Id', 'Name', 'HUDName', 'GroundRange')) and A[he]['GroundRange'] * 2 == 1200, 'HE = ZBD-20 HE, card 1200 m')
-    opts = [o for m in rows('ModificationsJson', UnitId=uid) for o in rows('OptionsJson', ModificationId=m['Id'])]
-    for k in (1, 2, 3):
-        used = {m['Id'] for m in rows('ModificationsJson', UnitId=uid) for o in rows('OptionsJson', ModificationId=m['Id']) if o.get(f'Ability{k}Id')}
-        ok(len(used) <= 1, (NAME, f'ability slot {k} used by one modification', used))
-    ok(sorted(o['Ability3Id'] for o in opts if o['ModificationId'] == lm) == [LASER, LASER], 'laser on both loadouts')
-    linked = {r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)}
-    ok(all(o.get(f'Ability{k}Id', 0) in linked | {0} for o in opts for k in (1, 2, 3)), 'every option ability linked')
-    tw = {tur: [(w['Order'], w['WeaponId']) for w in rows('TurretWeaponsJson', TurretId=tur)] for tur in (base, chm)}
-    ok(tw == {base: [(0, gun)], chm: [(0, gun), (1, chl)]}, ('mounts', tw))
+    opts = rows('OptionsJson', ModificationId=lm)
+    ok(len(rows('ModificationsJson', UnitId=uid)) == 1 and [(o['Cost'], o['ReplaceUnitId']) for o in opts] == [(0, uid), (40, units[' APS']), (CH_COST, units[' CH-901']), (CH_COST + 40, units[' CH-901 APS'])], 'one loadout slot: 35 mm / APS / CH-901 / both')
+    ok(all(U[o['ReplaceUnitId']]['Cost'] == U[uid]['Cost'] + o['Cost'] for o in opts), 'swap rows cost = 80 + option (audit_swap_prices rule)')
+    for key, u in units.items():
+        tu = rows('TurretUnitsJson', UnitId=u)
+        ok(len(tu) == 1 and len(rows('UnitAbilitiesJson', UnitId=u)) == 1 and not rows('ModificationsJson', UnitId=u) or u == uid, (key, 'one turret, one default ability'))
+        ok({w['WeaponId'] for w in rows('TurretWeaponsJson', TurretId=tu[0]['TurretId'])} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=u)}, (key, 'mount weapons == ammo weapons'))
+        abr = AB[rows('UnitAbilitiesJson', UnitId=u)[0]['AbilityId']]
+        ok(abr['IsDefault'] and abr['IsSmoke'] and abr['IsLaserDesignator'] and bool(abr['IsAPS']) == ('APS' in key) and (abr['APSQuantity'] == 2 if 'APS' in key else True), (key, 'smoke + laser (+ APS)'))
     ok(W[chl]['ModelFileName'] is None and all(W[chl][k] == W[CHW][k] for k in W[CHW] if k not in ('Id', 'Name', 'ModelFileName')), 'vehicle CH-901 launcher = Blood Wolves launcher without the Javelin model')
-    ok({w for v in tw.values() for _, w in v} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)}, 'mount weapons == ammo weapons')
     ok(len(rows('TransportAvailabilitiesJson', UnitId=uid)) == len(fit) > 0, ('transport cards', fit, 'too big', big))
     card = [r for r in SA.values() if r and r['UnitId'] == uid]
     ok(len(card) == 1 and card[0]['SpecializationId'] == ARMD and U[uid]['CategoryType'] == 0, ('ZBD-100 Recon card in Armored', card))
-    rec['zbd100'] = {'armored_recon_card': {k: card[0].get(k) for k in card[0] if k.startswith('Max') or k == 'SpecializationId'}, 'unit': uid, 'gun': gun, 'ke': ke, 'he': he, 'mounts': [base, chm], 'options': [o['Id'] for o in opts], 'ch901_cost': CH_COST,
+    rec['zbd100'] = {'armored_recon_card': {k: card[0].get(k) for k in card[0] if k.startswith('Max') or k == 'SpecializationId'}, 'unit': uid, 'swap_units': units, 'gun': gun, 'ke': ke, 'he': he, 'mounts': [base, chm], 'options': [o['Id'] for o in opts], 'ch901_cost': CH_COST,
                      'transport_for': fit, 'not_fitting': big, 'zbd20_amphibious': [True, False]}
     print('ZBD100', rec['zbd100'])
