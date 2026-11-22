@@ -542,6 +542,10 @@ import reserve_names_094;reserve_names_094.apply(t,g,ok,rec)
 # ---------- 25. ZBD-251 air-droppable (Osama 21 Nov 2026 21:3x PST, thread 1572407822849810463: "ZBD-251 next patch should be air droppable"): its own
 # mobility row IsAirDroppable True, as the BMD-4M / ZBD-03. See zbd251_airdrop_094.py.
 import zbd251_airdrop_094;zbd251_airdrop_094.apply(t,g,ok,rec)
+# ---------- 26. NLOS cruise missiles (Osama 21 Nov 2026 23:3x PST, thread 1567745029781454889, testing 0.9.5-dev.1: "The HJ-10 still doesn't fire",
+# "the blood wolves NLOS still goes haywire after lazing"): HJ-10, QN-502, CTL-181 and CH-901 rounds LaserGuided False on the cruise path (the
+# 13 Nov 0.8.0-dev.25 CTL-181 fix); HJ-10 launcher Type 81 -> 82 cruise launcher, vertical. See nlos_cruise_fix_095.py.
+import nlos_cruise_fix_095;nlos_cruise_fix_095.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

@@ -1,0 +1,33 @@
+"""NLOS cruise missiles without laser guidance; HJ-10 on a cruise-missile launcher (Osama 21 Nov 2026 23:3x PST, thread 1567745029781454889, testing
+0.9.5-dev.1: "The HJ-10 still doesn't fire", "the blood wolves NLOS still goes haywire after lazing", "they seem to be chasing something off the
+edge of the map").
+- No vanilla round combines the cruise path (TrajectoryType 200) with LaserGuided: every vanilla laser-guided missile flies the Hellfire path (110).
+  On 13 Nov (0.8.0-dev.25) the CTL-181 round on the cruise path went haywire when lased and LaserGuided False fixed it (Osama). 0.9.0-dev.35 put it
+  back on the cruise path with LaserGuided still True; 0.9.4 section 14 gave the HJ-10 and QN-502 rounds the same mix (copied from the Blood
+  Wolves' CH-901, which has had it since 0.8.0-dev.21). LaserGuided False on all four, as on 13 Nov. Path, seeker, speed, damage and
+  interception are unchanged; the NLOS hook still fires them at spotted enemies and keeps the seeker on a moving target.
+- HJ-10 launcher 2009619 was still an ATGM-HE launcher (Type 81, not vertical, no ground-attack bursts) firing a cruise round: test log
+  23:26 "HJ-10 guided missile: shots 886, hits 0, mean gap 0.01 s" and no missile launched. Type 82 (CruiseMissile), vertical launch and the
+  CH-901 / CTL-181 vertical angle and ground-attack bursts, like both working cruise launchers. Magazine, reload and range stay.
+Called from apply_0_9_4_dev1.py."""
+ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
+HJ10_LAUNCHER = 2009619
+
+
+def apply(t, g, ok, rec):
+    A, W, WA = t['AmmunitionsJson'], t['WeaponsJson'], t['WeaponAmmunitionsJson']
+    for i, name in ROUNDS.items():
+        a = A[i]
+        ok(a.get('TrajectoryType') == 200 and a.get('LaserGuided') is True and a.get('CanBeIntercepted') is False, (name, 'cruise + laser before', i))
+        g.put('AmmunitionsJson', i, {'LaserGuided': False})
+        ok(A[i]['LaserGuided'] is False and A[i]['TrajectoryType'] == 200, (name, 'cruise without laser', i))
+    w = W[HJ10_LAUNCHER]
+    ok(w.get('HUDName') == 'HJ-10' and w.get('Type') == 81 and w.get('IsVerticalLauncher') is False, ('HJ-10 launcher before', w.get('Type')))
+    ok(sorted({r['AmmunitionId'] for r in WA.values() if r and r.get('WeaponId') == HJ10_LAUNCHER}) == [2009623], 'HJ-10 launcher fires only the HJ-10 round')
+    ch = W[2018447]
+    new = {'Type': 82, 'IsVerticalLauncher': True, 'LowerVerticalAngle': ch['LowerVerticalAngle'],
+           'ShortGroundAttackBurst': ch['ShortGroundAttackBurst'], 'NormalGroundAttackBurst': ch['NormalGroundAttackBurst'],
+           'LongGroundAttackBurst': ch['LongGroundAttackBurst']}
+    g.put('WeaponsJson', HJ10_LAUNCHER, new)
+    ok(all(W[HJ10_LAUNCHER][k] == v for k, v in new.items()) and W[HJ10_LAUNCHER]['MagazineSize'] == 8, 'HJ-10 cruise launcher')
+    rec['nlos_cruise_fix'] = {'laser_guided_off': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
