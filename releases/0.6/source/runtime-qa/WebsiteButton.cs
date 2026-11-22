@@ -54,15 +54,23 @@ static class WebsiteButton
     // to 0.324), Server status left edge 0.725, tile tops at 0.122. Any click outside the banner hides it; it comes back the next time the
     // Home news panel opens (a return to the Home tab or a new menu scene).
     static bool dismissed,wasActive;
+    // Osama 22 Nov 02:11: "the website button showed up in our loading screen and then dissappeared before going into the main menu".
+    // The Home menu (and its news panel) is built behind the loading screen, and IMGUI draws over it; a click during loading then
+    // counted as "clicked elsewhere". So the banner waits until the news panel has been active for 2 s with no loading hitch
+    // (a frame over 0.25 s), and only clicks after it is on screen can dismiss it.
+    const float SettleSeconds=2f,HitchSeconds=0.25f;
+    static float settledFrom=-1f;
     public static void OnGUI()
     {
         if(failed||art==null||news==null)return;
         try
         {
             bool active=!news.WasCollected&&news.gameObject.activeInHierarchy;
-            if(active&&!wasActive)dismissed=false;
+            if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
             wasActive=active;
             if(!active||dismissed)return;
+            if(Time.unscaledDeltaTime>HitchSeconds)settledFrom=Time.realtimeSinceStartup;   // still loading
+            if(Time.realtimeSinceStartup-settledFrom<SettleSeconds)return;
             bool warn=launcherOld&&!updateDismissed&&updateArt!=null;
             var tex=warn?updateArt:art;
             float left=Screen.width*0.335f,right=Screen.width*0.715f;
