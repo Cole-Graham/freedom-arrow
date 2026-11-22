@@ -86,15 +86,41 @@ static class WebsiteButton
 
     // Osama 22 Nov 13:2x (dev.29): "The website banner please fix it now" - it drew over the "Press any key" title screen. The Home menu is
     // built (Home tab selected) behind the title, and this banner is IMGUI, which draws over everything; the music pack selector is native
-    // UI under the title, so it never showed there. The title is the active "Parallax Keyart" object (MenuArt.cs); checked at most twice a second.
-    static float nextTitleCheck;static bool titleUp;
+    // UI under the title, so it never showed there. The title is "Parallax Keyart" (MenuArt.cs).
+    // Osama 22 Nov 13:4x: "it's just straight up gone" - the first fix (Keyart activeInHierarchy) never let the banner show: that object stays
+    // active under the Home menu after the key press. Now the title counts as up only while Keyart is active, no Canvas above it is switched
+    // off and the CanvasGroup alpha above it is over 0.02. When it goes from up to gone, the title is over for this session. If it still reads
+    // up 3 s after a key press or click on a settled screen (no frame over 0.25 s for 2 s), it is treated as over too (it may be hidden in a
+    // way this check does not see). Every state change is logged (FREEDOM_ARROW_WEBSITE_BUTTON title: ...). Checked at most twice a second.
+    static float nextTitleCheck,titleInputAt=-1f,lastHitch;static bool titleUp,titleDone;static string titleState="";
     static bool TitleScreenUp()
     {
+        if(titleDone)return false;
+        float now=Time.realtimeSinceStartup;
+        if(Time.unscaledDeltaTime>HitchSeconds)lastHitch=now;
+        var e=Event.current;
+        if(titleUp&&titleInputAt<0f&&now-lastHitch>SettleSeconds&&e!=null&&(e.type==EventType.KeyDown||e.type==EventType.MouseDown))titleInputAt=now;
         if(Time.unscaledTime<nextTitleCheck)return titleUp;
         nextTitleCheck=Time.unscaledTime+0.5f;
-        var g=GameObject.Find("Parallax Keyart");
-        titleUp=g!=null&&g.activeInHierarchy;
+        var why=TitleHidden(GameObject.Find("Parallax Keyart"));
+        bool up=why==null;
+        if((why??"visible")!=titleState){titleState=why??"visible";MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title: "+titleState);}
+        if(titleUp&&!up){titleDone=true;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title screen over: "+why);}
+        else if(up&&titleInputAt>=0f&&now-titleInputAt>3f){titleDone=true;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title screen over: still reads visible 3 s after a key press or click");}
+        titleUp=up&&!titleDone;
         return titleUp;
+    }
+    static string TitleHidden(GameObject g)
+    {
+        if(g==null)return "no Parallax Keyart";
+        if(!g.activeInHierarchy)return "Parallax Keyart inactive";
+        float a=1f;
+        for(var t=g.transform;t!=null;t=t.parent)
+        {
+            var c=t.GetComponent<Canvas>();if(c!=null&&!c.enabled)return "Canvas off on "+t.name;
+            var cg=t.GetComponent<CanvasGroup>();if(cg!=null)a*=cg.alpha;
+        }
+        return a<0.02f?$"faded out (alpha {a:0.00})":null;
     }
 
     static void Hide(string why)
