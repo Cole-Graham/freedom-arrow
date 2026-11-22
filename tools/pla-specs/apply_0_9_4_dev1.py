@@ -561,6 +561,10 @@ import ztz99b_095;ztz99b_095.apply(t,g,ok,rec)
 # ---------- ZBD-100 (Osama 22 Nov 2026, thread 1572407822849810463): new China unit, Type 100 model on a Bradley stand-in, ZBD-20 armour and
 # drive (ZBD-20 no longer amphibious), 35 mm gun, 80 pts, APS +40, 8x CH-901 loadout. Merged for 0.9.5-dev.19 (Osama 22 Nov 02:50 "please add it"). See zbd100.py.
 import zbd100;zbd100.apply(t,g,ok,rec)
+# ---------- Turret weapon Order <= weapon count (Osama 22 Nov 2026 03:2x PST, thread 1567745029781454889: "Fix and test all of these issues"):
+# the ZTZ-99A / ZTZ-99 Arsenal cards threw in RefundSystem.GetAmmoResupplyTime because the 12.7 mm 'mount 1' had its only weapon at Order 2.
+# 30 turrets on 35 China units, Order 2 -> 1. See turret_order_0941.py.
+import turret_order_0941;turret_order_0941.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

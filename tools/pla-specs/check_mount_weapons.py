@@ -76,7 +76,9 @@ def slots(t,v):
 def holes(t):
     o={}
     for r in t['TurretWeaponsJson'].values():o.setdefault(r['TurretId'],[]).append(r['Order'])
-    return sorted((k,t['TurretsJson'][k]['Name'],sorted(v)) for k,v in o.items() if t['TurretsJson'].get(k,{}).get('ParentTurretId') and sorted(v)!=list(range(len(v))))
+    # child turrets: orders 0..n-1 (dev.23 LSDW crash); every turret: no Order above its weapon count (0.9.4.1: card NRE in
+    # RefundSystem.GetAmmoResupplyTime from the ZTZ 12.7 mm mount at [2] with one weapon; LoadWeapons pads Order - rows empty slots)
+    return sorted((k,t['TurretsJson'].get(k,{}).get('Name'),sorted(v)) for k,v in o.items() if (t['TurretsJson'].get(k,{}).get('ParentTurretId') and sorted(v)!=list(range(len(v)))) or max(v)>len(v))
 if __name__=='__main__':
     van=Path(sys.argv[2]);t,v=tables(van,zipfile.ZipFile(sys.argv[1])),tables(van);bad=over(t,v);bs=slots(t,v);hs=holes(t)
     for k,n,mf,c,lim,us in bad:print(f'{k} {n}: {c} weapons on model {mf} (vanilla most {lim}); units {", ".join(us)}')
