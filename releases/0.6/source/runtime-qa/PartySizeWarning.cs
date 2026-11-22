@@ -77,6 +77,8 @@ static class PartySizeWarning
 
     const string TitleEn="WARNING: TOO MANY PLAYERS FOR THIS MAP",TitleZh="警告：玩家人数超过地图设计",
         Body="Oversized teams cause balance issues. We encourage playing maps at their recommended size.\n超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。";
+    // Osama 22 Nov 15:3x: "make the warning a little bit smaller it takes up a massive portion of the screen": about two thirds of the
+    // approved size (860 px wide, body 24 px, title 34 px, button 560x46 at 1080p); wording and colours unchanged.
     // Seen in game 22 Nov 15:22 (1920x1080): the 53 px English title wrapped to two lines, so the title block overflowed the fixed 128 px row and
     // its top was cut off at the screen edge. The panel is now sized to its text: the English title shrinks (not below the body size) until it
     // fits one line, and every row's height is measured (GUIStyle.CalcHeight) before the panel is placed.
@@ -84,8 +86,8 @@ static class PartySizeWarning
     {
         if(!Showing)return;
         float k=Screen.height/1080f;
-        float w=Mathf.Min(1300*k,Screen.width-20),pad=22*k;
-        int fs=Mathf.Max(14,Mathf.RoundToInt(38*k));
+        float w=Mathf.Min(860*k,Screen.width-20),pad=16*k;
+        int fs=Mathf.Max(12,Mathf.RoundToInt(24*k));
         if(titleStyle==null||bodyStyle.fontSize!=fs)
         {
             titleStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=Mathf.RoundToInt(fs*1.4f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false};
@@ -95,15 +97,15 @@ static class PartySizeWarning
             while(titleStyle.fontSize>fs&&titleStyle.CalcSize(en).x>w-2*pad)titleStyle.fontSize--;
         }
         float tw=w-2*pad,hEn=titleStyle.CalcHeight(new GUIContent(TitleEn),tw),hZh=titleStyle.CalcHeight(new GUIContent(TitleZh),tw),
-            hBody=bodyStyle.CalcHeight(new GUIContent(Body),tw),hBtn=66*k;
-        float h=pad+hEn+hZh+14*k+hBody+18*k+hBtn+pad;
+            hBody=bodyStyle.CalcHeight(new GUIContent(Body),tw),hBtn=46*k;
+        float h=pad+hEn+hZh+8*k+hBody+12*k+hBtn+pad;
         float cx=Screen.width/2f,top=30*k;
         try
         {
             if(readyButton!=null&&readyButton.gameObject.activeInHierarchy)
             {
                 var p=readyButton.position;   // screen-space overlay canvas: position is in screen pixels
-                cx=p.x;top=Screen.height-p.y-90*k;
+                cx=p.x;top=Screen.height-p.y-60*k;
             }
         }
         catch{readyButton=null;}
@@ -115,9 +117,9 @@ static class PartySizeWarning
         GUI.color=old;
         float y=r.y+pad;
         GUI.Label(new Rect(r.x+pad,y,tw,hEn),TitleEn,titleStyle);y+=hEn;
-        GUI.Label(new Rect(r.x+pad,y,tw,hZh),TitleZh,titleStyle);y+=hZh+14*k;
-        GUI.Label(new Rect(r.x+pad,y,tw,hBody),Body,bodyStyle);y+=hBody+18*k;
-        if(GUI.Button(new Rect(r.x+r.width/2-420*k,y,840*k,hBtn),"Dismiss and play anyway / 关闭并继续",buttonStyle))
+        GUI.Label(new Rect(r.x+pad,y,tw,hZh),TitleZh,titleStyle);y+=hZh+8*k;
+        GUI.Label(new Rect(r.x+pad,y,tw,hBody),Body,bodyStyle);y+=hBody+12*k;
+        if(GUI.Button(new Rect(r.x+r.width/2-280*k,y,560*k,hBtn),"Dismiss and play anyway / 关闭并继续",buttonStyle))
         {
             dismissed=active;
             MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE dismissed ({map}, {party} per team)");
