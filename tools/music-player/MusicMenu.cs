@@ -17,7 +17,7 @@ internal static class MusicMenu
     static TextMeshProUGUI label;
     static Image flag;
     static Button button;
-    static float nextScan;
+    static float nextScan, nextHomeScan;
     static string shown;
     static bool visible, failed;
     static readonly Dictionary<string, Sprite> sprites = new();
@@ -35,21 +35,29 @@ internal static class MusicMenu
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Hangar_Scene")
             {
                 if (visible) { visible = false; if (root != null) root.SetActive(false); MelonLogger.Msg("FA_MUSIC_UI visible=False (left the menu)"); }
+                home = null;
                 nextScan = Time.unscaledTime + 2f; return;
             }
+            // 1.5.5 (Osama 22 Nov 2026 14:4x, dev.32 log: visible=True under the title at 14:27:52, visible=False at 14:28:02 one second after
+            // "Press any key", then never again): the Home button found under the title is replaced when the menu opens, and the held copy stayed
+            // hidden for the rest of the session. A held button that is gone or hidden is looked up again (every 2 s), and an active one is preferred.
+            if (home != null && (home.WasCollected || !home.isActiveAndEnabled) && Time.unscaledTime >= nextHomeScan) home = null;
             if (home == null)
             {
                 // 1.5.3 (Osama 17 Nov 2026, 5v5 FPS test): FindObjectsOfTypeAll walks every loaded object. In a battle the Home button does not
                 // exist, so this ran 5 times a second for the whole match and cost about 0.5 ms per frame with 5-20 ms spikes. Search only in
                 // the menu scene, and at most once every 2 s there.
                 if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Hangar_Scene") { nextScan = Time.unscaledTime + 2f; return; }
-                nextScan = Time.unscaledTime + 2f;
+                nextScan = Time.unscaledTime + 2f; nextHomeScan = Time.unscaledTime + 2f;
+                MainMenuButton first = null;
                 foreach (var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
                 {
                     if (!b.gameObject.scene.IsValid() || b._buttonText == null) continue;
                     if (!b._buttonText.text.Trim().Equals("Home", StringComparison.OrdinalIgnoreCase)) continue;
-                    home = b; break;
+                    first ??= b;
+                    if (b.isActiveAndEnabled) { home = b; break; }
                 }
+                home ??= first;
                 if (home == null) return;
             }
             if (root == null) Create();

@@ -99,6 +99,23 @@ static class WebsiteButton
         return true;
     }
 
+    // Osama 22 Nov 14:4x: "just fucking tie it to the same logic as the music player button" / "why don't you just put it under the same hook as
+    // the music player?". The banner now shows exactly while the FA Music pack selector is visible: it reads FAMusic.MusicMenu.visible, which
+    // MusicMenu.Update sets (Hangar_Scene + Home tab selected, FA Music 1.5.5 also re-finds a replaced Home button). Only the title check stays
+    // on top, because the selector is native UI behind "Press any key" and this banner is IMGUI. Without FA Music, its own Home check is used.
+    static System.Reflection.FieldInfo musicVisible;static bool musicLooked;
+    static bool MusicSelectorVisible()
+    {
+        if(!musicLooked)
+        {
+            musicLooked=true;
+            var t=AccessTools.TypeByName("FAMusic.MusicMenu");
+            musicVisible=t==null?null:AccessTools.Field(t,"visible");
+            MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON follows "+(musicVisible!=null?"the FA Music pack selector (FAMusic.MusicMenu.visible)":"its own Home tab check (FA Music not loaded)"));
+        }
+        return musicVisible!=null?(bool)musicVisible.GetValue(null):HomeSelected();
+    }
+
     // Osama 22 Nov 13:2x (dev.29): "The website banner please fix it now" - it drew over the "Press any key" title screen. The Home menu is
     // built (Home tab selected) behind the title, and this banner is IMGUI, which draws over everything; the music pack selector is native
     // UI under the title, so it never showed there. The title is "Parallax Keyart" (MenuArt.cs).
@@ -150,8 +167,8 @@ static class WebsiteButton
         try
         {
             bool title=TitleScreenUp();
-            bool active=!title&&HomeSelected();
-            if(!active)Hide(title?"title screen (Press any key)":"not on the Home tab");
+            bool active=!title&&MusicSelectorVisible();
+            if(!active)Hide(title?"title screen (Press any key)":"music pack selector hidden");
             if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
             wasActive=active;
             if(!active||dismissed)return;
