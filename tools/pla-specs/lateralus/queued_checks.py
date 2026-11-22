@@ -48,7 +48,10 @@ for name,want in EP.EXPECT_DEFAULT.items():
     uid=[k for k,v in Ut.items() if v.get('Name')==name]
     got=[At.get(x.get('AbilityId'),{}) for x in UAt.values() if uid and x.get('UnitId')==uid[0]]
     if not any(a.get('IsDefault') and a.get('ECMAccuracyMultiplier') is not None and abs(a['ECMAccuracyMultiplier']-want)<1e-6 for a in got):bad.append(f'{name} default ECM is not {want}')
-bad+=[f'M-SHORAD option {i} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,(n,old,new) in MS.PRICES.items() if Ot.get(i,{}).get('Cost')!=new]
+# From 0.9.4-dev.2 the SRAT II / APS option (1934) costs 55: Osama 21 Nov 2026, every 700 front-HEAT upgrade +25, armour+APS options keep their APS share
+# (apply_0_9_4_dev1.py section 16). That later decision replaces Lateralus's 45 for this one option only.
+_msp={i:(55 if i==1934 and m>=key('0.9.4-dev.2') else new) for i,(n,old,new) in MS.PRICES.items()}
+bad+=[f'M-SHORAD option {i} cost {Ot.get(i,{}).get("Cost")} (want {new})' for i,new in _msp.items() if Ot.get(i,{}).get('Cost')!=new]
 if not _ge(9,26):
     if Ot.get(1937,{}).get('Ability1Id')!=MS.LASER:bad.append('M-SHORAD APKWS option has no laser')
 else:   # dev.26+: laser in slot 2, and no unit loses an ability to a slot collision (mshorad_laser_slot.py)
