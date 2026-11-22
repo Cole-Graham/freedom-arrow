@@ -52,6 +52,19 @@ bonus = 1 - e ^ (-distance / 100)                      otherwise
 | 1500 | 0 | 20 | +20 | −20 |
 | 1700 | 0 | 20 | +20 | −20 |
 
+### Ladder-average scale (Lateralus, 22 November 2026)
+
+The bonus above stops for each winner at 1500, but not for the ladder: about half the players are always below 1500, so their wins keep adding points. In a simulation of 300 players (all starting at 1000), the ladder average was 1579, 1674, 1732 and 1779 after 100, 200, 300 and 400 matches per player. This is calculated, not measured on a real ladder.
+
+So the bonus is also scaled by the ladder average before the match. The ladder average is the mean rating of every player with at least one rated match this season (1000 when the ladder is empty).
+
+```text
+gate = clamp((1500 - ladderAverage) / 100, 0, 1)
+winnerChange = base × (1 + bonus × gate)
+```
+
+The bonus is full while the ladder average is 1400 or lower. It falls to 0 when the average reaches 1500. In the same simulation, the average stayed at 1500 from about 100 matches per player to 400. The 1v1 and team ladders each use their own average.
+
 Unequal ratings use the same rule. A team at 1400 that beats a team at 1500 has expected score 0.360, so the base is 25.60. The bonus at 1400 is 0.950, and the winner gains `25.60 × 1.950 = 49.93`. The loser drops 25.60. A team at 1600 that beats a team at 1500 has no bonus: expected score 0.640, base 14.40, winner +14.40, loser −14.40.
 
 ## Grades
@@ -83,3 +96,7 @@ Private is every rating through 1000, so a new team is a Private. Each later gra
 | Lieutenant-General | 2170 | 2170 and above |
 
 At 2170 and above, leaderboard place replaces the grade for the top three. Place 1 is Field Marshal. Places 2 and 3 are General. Every other team at that rating stays Lieutenant-General.
+
+## Document change log
+
+- 2026-11-22 13:5x PST (America/Los_Angeles) — Lateralus: the win bonus is scaled by the ladder average (full at 1400 or lower, 0 at 1500), because the per-winner bonus alone keeps adding points past an average of 1500.

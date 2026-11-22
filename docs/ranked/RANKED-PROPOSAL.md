@@ -78,7 +78,7 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
   - **Matching:** the matchmaker fills each side with whole parties, never splitting one. It first looks for opponents with similar party sizes (a 5-stack against a 5-stack or a 4+1); after 3 minutes it accepts any mix. The two sides are balanced by average rating.
   - **Party rating:** the party's average rating is used for matching. Each member's own rating changes after the match, using the team averages (as above).
   - **Boost limit:** party members must be within 500 Elo of each other in ranked, so a high player cannot carry a new account up the ladder.
-- **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Every player on the team gets the team's change. The win bonus is computed from each winner's own rating before the match.
+- **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Every player on the team gets the team's change. The win bonus is computed from each winner's own rating before the match. The bonus is also scaled by the ladder average (full at 1400 or lower, 0 at 1500; `simple-elo.md`, Ladder-average scale).
 - **What counts as a result:** the mod already reports each match (players, teams, map, winner, length) to FAQueue (`match-stats.jsonl`). A ranked result counts only when at least one report from each side agrees on the winner and the player list. If they disagree, the match is marked disputed, nothing changes and it is logged for admins.
 - **Leavers:** a player who leaves before the end loses their own rating, as a loss. The rest of the match is scored normally.
 - **Draws** (Freedom Arrow lead under 10% at time-out): no change.
@@ -179,3 +179,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
 - 2026-11-22 08:38 PST (America/Los_Angeles) — Lateralus: 1v1 is a separate solo queue; the team queue (solo or party) only makes 3v3/5v5. Test hub at freedomarrow.app/hubs/test.
 - 2026-11-22 13:0x PST (America/Los_Angeles) — Lateralus: ranked match flow (default deck, 60 s hidden deck pick, reveal, automatic launch) added and built.
+- 2026-11-22 13:5x PST (America/Los_Angeles) — Lateralus: win bonus scaled by the ladder average, so the ladder settles at 1500.

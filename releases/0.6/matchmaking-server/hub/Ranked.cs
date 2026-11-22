@@ -118,10 +118,22 @@ static class Ranked
         if (name != "") r.Name = name;
         return r;
     }
-    public static double Bonus(double winnerRating)
+    // Ladder-average gate (Lateralus 22 Nov): the bonus is meant to lift the field to an average of 1500. Per winner alone it never
+    // stops (half the field is always under 1500, simulated mean 1779 after 400 matches each), so it is scaled by how far the ladder
+    // average is under 1500: full while the average is at or below 1400, falling to 0 at 1500.
+    public const double GateFull = 1400, GateEnd = 1500;
+    public static double Bonus(double winnerRating, double ladderMean)
     {
         var d = BonusTarget - winnerRating;
-        return d <= DeadZone ? 0 : 1 - Math.Exp(-d / (DeadZone / 2));
+        var b = d <= DeadZone ? 0 : 1 - Math.Exp(-d / (DeadZone / 2));
+        return b * Gate(ladderMean);
+    }
+    public static double Gate(double ladderMean) => Math.Clamp((GateEnd - ladderMean) / (GateEnd - GateFull), 0, 1);
+    // average rating of every player with at least one rated match this season (1000 = start while the ladder is empty)
+    public static double LadderMean(string ladder)
+    {
+        var rated = Ladders[ladder].Values.Where(r => r.Wins + r.Losses > 0).ToList();
+        return rated.Count == 0 ? Start : rated.Average(r => r.Rating);
     }
     public static double Expected(double a, double b) => 1 / (1 + Math.Pow(10, (b - a) / Div));
     public static int Level(string ladder, double rating, int place)
@@ -353,6 +365,7 @@ static class Ranked
         var L = m.Teams[1 - winTeam].Select(id => Get(lad, id, Name(id))).ToList();
         double rw = W.Average(r => r.Rating), rl = L.Average(r => r.Rating);
         double baseChange = K * (1 - Expected(rw, rl));
+        double mean = LadderMean(lad), gate = Gate(mean);   // before this match's changes
         var changes = new Dictionary<string, double>();
         void Note(RankedRating r, bool win, List<RankedRating> other, double c)
         {
@@ -366,13 +379,13 @@ static class Ranked
         foreach (var r in W)
         {
             if (deserters.Contains(r.SteamId)) { var b0 = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - b0; continue; }
-            var c = baseChange * (1 + Bonus(r.Rating)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c;
+            var c = baseChange * (1 + Bonus(r.Rating, mean)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c;
         }
         foreach (var r in L) { var before = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - before; }
         foreach (var r in W) Note(r, !deserters.Contains(r.SteamId), L, changes[r.SteamId]);
         foreach (var r in L) Note(r, false, W, changes[r.SteamId]);
         _dirty = true;
-        Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, changes });
+        Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, ladderMean = mean, bonusGate = gate, changes });
         foreach (var (id, c) in changes)
             if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) && !deserters.Contains(id) });
     }
