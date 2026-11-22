@@ -15,3 +15,7 @@
   fbx2glb LOCALID='^ZTZ96A_MG$', error 6e-5) applied to whole connected hatch pieces in the shipped armory/battle/l1/l2 files. 96B: armory + battle =
   the 19 Nov rebuild (ztz96-hatch-20261119), l1/l2 patched per piece (2 transforms). BUILD: the 8 --asset lines of
   work/ztz96-hatch-20261121/asset-args.txt (new Assets version). Renders in that folder. Far LOD (l2) shows small decimation marks. Not seen in game.
+- 2026-11-21 17:2x PST, thread 1567745029781454889 (Osama: "yeah lets keep Lateralus's point distribution", "for this unit only"). DATA: section 16 of
+  apply_0_9_4_dev1.py (batch 822 checks). Stryker M-SHORAD (unit 20) armour options back to Lateralus's prices: SRAT II (70) 25 -> 15, SRAT II / APS
+  (1934) 55 -> 45 (they were 25/55 in 0.9.4-dev.2, build 249). Their 700 front HEAT and -10 speed stay. Every other 700 upgrade keeps the +25 pricing.
+  queued_checks.py expects 1934 = 55 only for 0.9.4-dev.2.

@@ -457,11 +457,14 @@ _prof={k:ARJ[2000475][k] for k in ('KinArmorFront','KinArmorSides','KinArmorRear
 for a_,uid in ((2000437,255),(2019365,1274)):
     ok(_us[a_]=={uid} and ARJ[a_]['HeatArmorFront']==1100,(a_,uid,'T-15 / VN20 own row'));g.put('ArmorsJson',a_,_prof)
     ok(all(ARJ[a_][k]==v for k,v in _prof.items()),(uid,'= T-80U profile'))
-# costs: every 700 upgrade costs 25; armour+APS options keep their APS share
-_COST={1764:(20,25),1773:(20,25),1753:(25,25),1759:(25,25),60:(15,25),2082:(55,65),44:(10,25),50:(20,25),70:(15,25),1943:(10,25),1946:(10,25),8:(25,25),25:(25,25),42:(25,25),1934:(45,55),1944:(50,65),1947:(50,65),1894:(65,65)}
+# costs: every 700 upgrade costs 25; armour+APS options keep their APS share. Exception, Stryker M-SHORAD only: its armour options keep
+# Lateralus's point distribution, SRAT II 15 (70) and SRAT II / APS 45 (1934) (Osama 21 Nov 2026 17:27 PST, thread 1567745029781454889: "yeah lets keep
+# Lateralus's point distribution", "for this unit only"; they were 25 and 55 in 0.9.4-dev.2, build 249). Its 700 armour and -10 speed stay.
+_COST={1764:(20,25),1773:(20,25),1753:(25,25),1759:(25,25),60:(15,25),2082:(55,65),44:(10,25),50:(20,25),70:(15,15),1943:(10,25),1946:(10,25),8:(25,25),25:(25,25),42:(25,25),1934:(45,45),1944:(50,65),1947:(50,65),1894:(65,65)}
 for o,(b,n) in _COST.items():
     ok(O[o]['Cost']==b and O[o]['ArmorId'] in _700,(o,O[o].get('UIName'),O[o]['Cost'],O[o]['ArmorId']))
     if b!=n:g.put('OptionsJson',o,{'Cost':n})
+ok((O[70]['Cost'],O[1934]['Cost'])==(15,45) and O[70]['ArmorId'] in _700 and O[1934]['ArmorId'] in _700,'Stryker M-SHORAD keeps Lateralus prices 15/45 with 700 armour')
 _unp=sorted((o['Id'],o.get('UIName'),o['ArmorId']) for o in O.values() if o and o.get('ArmorId') in _700 and o['Id'] not in _COST)
 ok(all(x[2] in (2001818,2009807) for x in _unp),('every 700 upgrade option is priced; only XM30/ZBD-20 base-armour options left',_unp))
 # speed: wheeled Strykers -10 (their SRAT rows 189/238 are used only by Stryker armour options); tracked AMPV -5 on a new row (206 is shared with the M1287 MCV)
