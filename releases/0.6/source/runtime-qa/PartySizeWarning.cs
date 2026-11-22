@@ -49,6 +49,11 @@ static class PartySizeWarning
 
     static bool BlockReady(bool __1)=>!(__1&&Showing);
 
+    // TEST BUILD ONLY (branch codex/batch/osama/party-size-test, 22 Nov 2026): online lobbies have no AI bots and a solo tester cannot fill a
+    // second slot, so with UserData/FreedomArrow/party-size-test.flag present an open (Free) slot counts as a player. Not for release.
+    static bool? testOpen;
+    static bool TestOpenSlots=>testOpen??=File.Exists(Path.Combine(MelonLoader.Utils.MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","party-size-test.flag"));
+
     public static void Tick()
     {
         if(!inMenu||failed||Time.frameCount%15!=0)return;
@@ -65,7 +70,7 @@ static class PartySizeWarning
             {
                 if(!st.Teams.TryGetValue(side,out var team)||team?.Slots==null)continue;
                 int n=0;
-                foreach(var s in team.Slots)if(s!=null&&(s.Status==LobbySlotStatus.Occupied||s.Status==LobbySlotStatus.OccupiedByBot))n++;
+                foreach(var s in team.Slots)if(s!=null&&(s.Status==LobbySlotStatus.Occupied||s.Status==LobbySlotStatus.OccupiedByBot||(TestOpenSlots&&s.Status==LobbySlotStatus.Free)))n++;
                 party=Math.Max(party,n);
             }
             var key=party>mapSize?$"{lobby.LobbyId}|{map}|{party}":null;
