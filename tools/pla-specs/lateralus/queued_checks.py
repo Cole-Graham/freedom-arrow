@@ -203,5 +203,13 @@ if m>=key('0.9.5-dev.19'):
 # hiding; the banner shows exactly while the music pack selector would (Home tab selected).
 if m>=key('0.9.5-dev.20'):
     if 'click outside the banner'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL still hides the website banner on a click outside it')
+# From 0.9.5-dev.30 (Osama 22 Nov 2026 13:2x PST, thread 1573561286803980289, QQ sheet FA-041): the AR-2000 on the Kiowa helicopter stand-in with
+# the AKD-11 on both pylon slots, stats kept (ar2000_heli_095.py). On the Termit pylon the launch was refused and retried every frame.
+if m>=key('0.9.5-dev.30'):
+    _Tt=merged('TurretsJson.json','turrets.json');_Wt=merged('WeaponsJson.json','weapons.json');_WAt=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
+    _o=[o for o in Ot.values() if o and o.get('Name')=='PLA loadout AR-2000 0']
+    if Ut.get(1084,{}).get('ModelFileName')!='US_OH58Kiowa':bad.append('AR-2000 (1084) is not on the Kiowa stand-in (ar2000_heli_095.py)')
+    elif not _o or (_o[0].get('Turret0Id'),_o[0].get('Turret1Id'),_o[0].get('IsDefault'))!=(2019089,2019089,True):bad.append('AR-2000 default loadout without the AKD-11 on both pylons')
+    elif _Tt[2019089].get('IsDefault') or _WAt[2019096].get('Quantity')!=4 or (_Wt[2019087].get('TimeBetweenBurstsMin'),_Wt[2019087].get('TimeBetweenBurstsMax'))!=(48.0,64.0):bad.append('AR-2000 pylon / ammo / launcher pause not as ar2000_heli_095.py')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
