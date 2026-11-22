@@ -89,7 +89,7 @@ with zipfile.ZipFile(a.package) as z:
   ok(all(n[f]==k[f] for f in ['Damage','FXPreset','AudioPreset']+blast) and n['TrajectoryType']==300,'DF31 nuclear Kinzhal warhead, ballistic flight')
   if build>=118:ok((n['HealthAOERadius'],n['StressAOERadius'],n['OverpressureRadius'])==(250.0,286,125),'DF31 500 m displayed blast')
  if build>=34:
-  hmv=t['Units'][1235];ok(hmv['HUDName']=='Shaanxi HMV3' and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
+  hmv=t['Units'][1235];ok(hmv['HUDName']==('Shaanxi SX2306' if build>=256 else 'Shaanxi HMV3') and hmv['ModelFileName']=='US_HEMTT' and hmv['CountryId']==4,'HMV3 identity')
   ok(sorted(r['SpecializationId'] for r in t['SpecializationAvailabilitiesJson'].values() if r['UnitId']==1235)==([18,19,21] if build<46 or build>=177 else [17,18,19,20,21]),'HMV3 specs')  # 0.9.0-dev.4 (build 177): SX2190 replaces the HMV3 in PLAAF and PLAN SOF  # Build46: every spec
   if build<46:ok(not ammo(1235) and not any(r['UnitId']==1235 for r in t['TurretUnitsJson'].values()),'HMV3 unarmed')  # Build46: HEMTT mounts/options so the model draws
  if build>=32:

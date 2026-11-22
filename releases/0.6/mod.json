@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.4",
+  "version": "0.9.5-dev.1",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.4: China (PLA) on the full 0.7.0-dev.58 game. Infantry cover and damage rework (buildings 30%, tank/autocannon/HMG anti-infantry x0.8, HEAT = HE, Ignore Cover only on special rounds), tank HEAT tiers and high-end IFV class, China balance patch, Blue Dragon testing preview (Arsenal only), creator paint schemes on 84 units (Abrams X, Z-20 family and ZSD-89/89A included), Z-19/Z-9WA 4 pylons, Multiplayer opens Mod Lobbies, helicopter range stat, match results by FA score. Includes everything in 0.9.3. Needs Freedom Arrow — Models and Music 0.2.51.",
+  "description": "Freedom Arrow 0.9.5-dev.1 (hotfix test, not released): 0.9.4 plus HJ-10 / QN-506 guidance fix, online deployment pause held, exit watchdog, main-menu out-of-date notice, China truck names, Reservists, Z-21 Air escort +50, ZBD-251 air-droppable. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.51.",
   "repo": "Cole-Graham/freedom-arrow"
 }
