@@ -256,8 +256,40 @@ static class RankedMenu
         var use=baseCards!=null&&baseKey==key&&baseCards.Count==rects.Count?baseCards:rects;
         last=use[^1];pitch=use[^1].x-use[^2].x;
         if(!(last.width>20f&&pitch>last.width*0.5f))return No($"odd card layout: last {last}, pitch {pitch}");
-        if(why!="shown"){why="shown";MelonLogger.Msg($"FREEDOM_ARROW_RANKED cards: {string.Join(" ",rects)}");}
+        // Something drawn over the Play cards (the profile screen opened from the top-right block keeps the Play tab selected):
+        // the game's own topmost UI under the last card's centre must belong to the Play tab (Lateralus 22 Nov).
+        if(Covered(use[^1]))return No("another screen is over the Play cards");
+        if(why!="shown"){why="shown";MelonLogger.Msg($"FREEDOM_ARROW_RANKED cards: {string.Join(" ",rects)}");if(!dumped){dumped=true;Dump(play.transform,0);}}
         return true;
+    }
+    static bool dumped,covered;static float nextCover;
+    static bool Covered(Rect guiRect)
+    {
+        if(Time.unscaledTime<nextCover)return covered;
+        nextCover=Time.unscaledTime+0.25f;covered=false;
+        try
+        {
+            var evs=UnityEngine.EventSystems.EventSystem.current;if(evs==null||play==null)return false;
+            var ped=new UnityEngine.EventSystems.PointerEventData(evs){position=new Vector2(guiRect.center.x,Screen.height-guiRect.center.y)};
+            var hits=new Il2CppSystem.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+            evs.RaycastAll(ped,hits);
+            if(hits.Count>0){var top=hits[0].gameObject;covered=top!=null&&!top.transform.IsChildOf(play.transform);}
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED cover check: "+e.Message);nextCover=Time.unscaledTime+30f;}
+        return covered;
+    }
+    // One-time log of the Play tab's UI tree (names, components, texts): input for building the Ranked page in the game's own UI.
+    static void Dump(Transform t,int depth)
+    {
+        if(depth>5)return;
+        try
+        {
+            var comps=string.Join(",",t.GetComponents<Component>().Select(c=>c==null?"?":c.GetIl2CppType().Name));
+            var tmp=t.GetComponent<Il2CppTMPro.TextMeshProUGUI>();var rt=t.GetComponent<RectTransform>();
+            MelonLogger.Msg($"FREEDOM_ARROW_RANKED tree {new string('.',depth*2)}{t.name}{(t.gameObject.activeSelf?"":" (off)")} [{comps}]"+(rt!=null?$" {rt.rect.width:0}x{rt.rect.height:0}":"")+(tmp!=null?$" \"{tmp.text}\"":""));
+            for(int i=0;i<t.childCount;i++)Dump(t.GetChild(i),depth+1);
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tree: "+e.Message);}
     }
     static List<Rect> baseCards;static int baseKey;
     // Default from a Vengeance screenshot (Multiplayer card 245 -> 269 px wide when hovered); replaced by the measured vanilla hover.
