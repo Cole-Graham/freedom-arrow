@@ -568,6 +568,8 @@ import turret_order_0941;turret_order_0941.apply(t,g,ok,rec)
 # ---------- New cards for new models (Osama 22 Nov 2026 11:xx PST, thread 1572407822849810463): ZTZ-59D in the Rocket Force Vehicles tab; Korea:
 # K263 Vulcan (M163) and K200 KIFV (M113). See new_cards_1122.py.
 import new_cards_1122;new_cards_1122.apply(t,g,ok,rec)
+# ---------- Card names (Osama 22 Nov 2026 12:1x PST): ZBD-100 -> Type 100 CSV, ZBD-20 -> VN-17 (HUDName only). See rename_1122.py.
+import rename_1122;rename_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
