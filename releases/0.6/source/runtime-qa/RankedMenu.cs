@@ -168,11 +168,12 @@ static partial class RankedMenu
         if(r.IsFaulted){var ex=r.Exception;error=ex==null||ex.InnerException==null?"error":ex.InnerException.Message;return;}
         error="";done(r.Result.GetRawText());
     }
+    static DateTime askedAt=DateTime.UtcNow;
     static void Ask()
     {
         Call("GetRanked",j=>
         {
-            meJson=j;
+            meJson=j;askedAt=DateTime.UtcNow;
             try{var m=JsonDocument.Parse(j).RootElement.GetProperty("match");if(m.ValueKind==JsonValueKind.Object){rankedLobby=m.GetProperty("lobbyId").GetString();rankedMap=m.GetProperty("map").GetString();}}catch{}
         });
     }
@@ -369,7 +370,7 @@ static partial class RankedMenu
     static void DeckAfterReconnect(){var l=fLink?.GetValue(null);if(l!=null&&!ReferenceEquals(l,lastLink)){lastLink=l;lastDeckReport="";}}
     public static void Tick()
     {
-        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
+        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ResultTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
         PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}

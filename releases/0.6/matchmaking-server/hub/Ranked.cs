@@ -169,6 +169,8 @@ static class Ranked
         if (ratings.Max() - ratings.Min() > PartySpread) return "party_spread_over_500";
         // every member needs a valid ranked default deck (Lateralus 22 Nov); the FA client reports it with SetRankedDeck
         foreach (var id in ids) if (!Store.BySteam[id].RankedDeckOk) return "deck_invalid:" + Store.BySteam[id].Name;
+        // leave cooldown (Lateralus 22 Nov): any member still cooling down blocks the search
+        foreach (var id in ids) { var left = CooldownLeft(id); if (left > 0) return "cooldown:" + Store.BySteam[id].Name + ":" + (int)Math.Ceiling(left); }
         Dequeue(p.SteamId);
         Queue.Add(new RankedEntry { Mode = mode, Ladder = ladder, Build = p.Build, Leader = p.SteamId, Members = ids, Rating = ratings.Average() });
         foreach (var id in ids) { var q = Store.BySteam[id]; q.SearchMode = mode; Status(q, "searching"); }
@@ -378,6 +380,7 @@ static class Ranked
         // Deserters (Lateralus 22 Nov; vanilla 1.1 counts a player still disconnected at the end as a deserter, and 1.0.10 stopped
         // deserters gaining Elo): a player the game itself flags as Deserter never gains - on the winning team he takes the loss.
         var deserters = Deserters(m);
+        var pre = W.Concat(L).ToDictionary(r => r.SteamId, r => r.Rating);
         // Per-player split, option C (Lateralus 22 Nov): each player's share comes from his own rating against the enemy team's average
         // (a favourite gains little and loses much, an underdog the reverse); each side's shares are then scaled so the side's total is
         // the team pot, baseChange x players. So the match moves the same total as before and adds no points. 1v1 is unchanged.
@@ -392,6 +395,8 @@ static class Ranked
         foreach (var r in W) Note(r, !deserters.Contains(r.SteamId), L, changes[r.SteamId]);
         foreach (var r in L) Note(r, false, W, changes[r.SteamId]);
         _dirty = true;
+        _rateNumbers = W.Concat(L).ToDictionary(r => r.SteamId, r => (pre[r.SteamId], r.Rating));
+        foreach (var d in deserters) Offend(d, "deserted");
         Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, ladderMean = mean, bonusGate = gate, shares = share, changes });
         foreach (var (id, c) in changes)
             if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) && !deserters.Contains(id) });
@@ -442,15 +447,30 @@ static class Ranked
         }
         return res;
     }
+    // Per-player result of each player's latest ranked match, for the end screen (Lateralus 22 Nov: "end of match screens don't show any
+    // ELO gain or loss for each player"). Unrated/disputed/cancelled matches list the players with no change and the reason.
+    public static readonly Dictionary<string, object> LastResult = new();
+    static Dictionary<string, (double before, double after)>? _rateNumbers;
     static void Close(RankedMatch m, string state, object detail)
     {
+        var nums = _rateNumbers; _rateNumbers = null;
+        var players = m.Teams.SelectMany((t, ti) => t.Select(id => (id, ti))).Select(x =>
+        {
+            var r = Ladders[m.Ladder].GetValueOrDefault(x.id);
+            var n = nums != null && nums.TryGetValue(x.id, out var v) ? v : ((double before, double after)?)null;
+            return new { steamId = x.id, name = r?.Name ?? Name(x.id), team = x.ti, before = Math.Round(n?.before ?? r?.Rating ?? Start, 1), after = Math.Round(n?.after ?? r?.Rating ?? Start, 1), change = n == null ? 0 : Math.Round(n.Value.after - n.Value.before, 1) };
+        }).ToList();
+        var res = new { matchId = m.Id, ladder = m.Ladder, format = m.Format, map = m.Map, outcome = state, detail = state == "rated" ? null : detail, at = DateTime.UtcNow, players };
+        foreach (var t in m.Teams) foreach (var id in t) LastResult[id] = res;
         m.State = state; Matches.Remove(m.Id);
         Append(state, new { id = m.Id, mode = m.Mode, format = m.Format, detail });
         _log?.LogInformation("ranked match {id}: {state}", m.Id, state);
     }
 
     // ---------- views ----------
-    public static object Me(string steamId) => Ladders.Keys.ToDictionary(lad => lad, lad =>
+    public static object Me(string steamId) => MeLadders(steamId);
+    public static object Extra(string steamId) { PenaltyReset(); var pe = Penalties().GetValueOrDefault(steamId); return new { cooldownSec = (int)Math.Ceiling(CooldownLeft(steamId)), offences = pe?.Count ?? 0, lastOffence = pe?.Why.LastOrDefault() ?? "", nextReset = NextReset(), lastResult = LastResult.GetValueOrDefault(steamId) }; }
+    static Dictionary<string, object> MeLadders(string steamId) => Ladders.Keys.ToDictionary(lad => lad, lad =>
     {
         var r = Ladders[lad].TryGetValue(steamId, out var x) ? x : new RankedRating { SteamId = steamId };   // a lookup never adds a player
         var place = Place(lad, steamId);
@@ -494,6 +514,7 @@ static class Ranked
                 else if (now > m.PhaseUntil)
                 {
                     Append("cancelled", new { id = m.Id, reason = "join_timeout", missing = l.Members.Where(x => !x.Host && !x.Joined).Select(x => x.SteamId) });
+                    foreach (var x in l.Members.Where(x => !x.Host && !x.Joined).ToList()) Offend(x.SteamId, "did_not_join");
                     foreach (var x in l.Members) if (Store.BySteam.TryGetValue(x.SteamId, out var q)) { Send(q, "MatchFailed", new { lobbyId = l.Id, reason = "ranked_join_timeout" }); Send(q, "LobbyClosed", new { lobbyId = l.Id }); q.LobbyId = null; Status(q, "menu"); }
                     l.State = "closed"; l.Members.Clear(); Store.Lobbies.Remove(l.Id); Matches.Remove(m.Id);
                 }
@@ -501,6 +522,50 @@ static class Ranked
             else if (m.Phase == "deck" && now > m.PhaseUntil) { m.Phase = "reveal"; m.PhaseUntil = now.AddSeconds(RevealSec); Append("phase", new { id = m.Id, phase = m.Phase }); }
             else if (m.Phase == "reveal" && now > m.PhaseUntil) { m.Phase = "launch"; m.PhaseUntil = now; Append("phase", new { id = m.Id, phase = m.Phase }); }
         }
+    }
+
+    // ---------- leave cooldowns (Lateralus 22 Nov) ----------
+    // Leaving or disconnecting from a ranked lobby before launch, not joining it within 90 s, or being flagged Deserter by the game
+    // at the end: 1st time 5 minutes, 2nd 1 hour, 3rd and later 24 hours without ranked. Every player's count goes back to 0 at the
+    // same time every day (FAQUEUE_RANKED_RESET_UTC, hour in UTC, default 0 = 16:00 PST); a cooldown that is running keeps running.
+    public sealed class Penalty { public int Count { get; set; } public DateTime Until { get; set; } public List<string> Why { get; set; } = new(); }
+    static Dictionary<string, Penalty>? _pen; static DateTime _penEpoch;
+    static string PenFile => Path.Combine(_dir, "penalties.json");
+    static int ResetHour => int.TryParse(Environment.GetEnvironmentVariable("FAQUEUE_RANKED_RESET_UTC"), out var h) && h is >= 0 and < 24 ? h : 0;
+    static DateTime LastReset(DateTime now) { var t = now.Date.AddHours(ResetHour); return now >= t ? t : t.AddDays(-1); }
+    public static DateTime NextReset() => LastReset(DateTime.UtcNow).AddDays(1);
+    static Dictionary<string, Penalty> Penalties()
+    {
+        if (_pen != null) return _pen;
+        try { if (File.Exists(PenFile)) { var j = JsonNode.Parse(File.ReadAllText(PenFile)); _penEpoch = (DateTime?)j?["epoch"] ?? default; _pen = j?["players"].Deserialize<Dictionary<string, Penalty>>(); } } catch { }
+        return _pen ??= new();
+    }
+    static void SavePenalties() { try { File.WriteAllText(PenFile, JsonSerializer.Serialize(new { epoch = _penEpoch, resetHourUtc = ResetHour, players = Penalties() })); } catch (Exception e) { _log?.LogError("penalties save: {e}", e.Message); } }
+    static void PenaltyReset()
+    {
+        var all = Penalties(); var last = LastReset(DateTime.UtcNow);
+        if (_penEpoch >= last) return;
+        foreach (var p in all.Values) { p.Count = 0; p.Why.Clear(); }
+        foreach (var k in all.Where(x => x.Value.Until < DateTime.UtcNow).Select(x => x.Key).ToList()) all.Remove(k);
+        _penEpoch = last; SavePenalties();
+    }
+    public static double CooldownLeft(string id) { PenaltyReset(); return Penalties().TryGetValue(id, out var p) ? Math.Max(0, (p.Until - DateTime.UtcNow).TotalSeconds) : 0; }
+    public static void Offend(string id, string why)
+    {
+        PenaltyReset();
+        var all = Penalties(); if (!all.TryGetValue(id, out var p)) all[id] = p = new Penalty();
+        p.Count++; p.Why.Add(why);
+        var d = p.Count == 1 ? TimeSpan.FromMinutes(5) : p.Count == 2 ? TimeSpan.FromHours(1) : TimeSpan.FromHours(24);
+        var until = DateTime.UtcNow + d; if (until > p.Until) p.Until = until;
+        SavePenalties();
+        Append("penalty", new { id, why, count = p.Count, until = p.Until });
+        _log?.LogInformation("ranked cooldown {id}: {why}, offence {n}, until {u:u}", id, why, p.Count, p.Until);
+        if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedCooldown", new { why, offences = p.Count, until = p.Until, seconds = (int)d.TotalSeconds });
+    }
+    // a player left (or dropped out of) a ranked lobby: an offence only before the launch phase (after it the game itself runs the match)
+    public static void OnRankedLeave(Lobby l, string id)
+    {
+        if (Matches.TryGetValue(l.Id, out var m) && m.State == "lobby" && m.Phase is "join" or "deck" or "reveal") Offend(id, "left_lobby_" + m.Phase);
     }
 
     // ---------- storage ----------
