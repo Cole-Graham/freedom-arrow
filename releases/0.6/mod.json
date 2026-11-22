@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.5-dev.7",
+  "version": "0.9.5-dev.8",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.5-dev.7 (hotfix test, not released): 0.9.4 plus NLOS launch-distance fix, match memory cleanup, NLOS laser-spot lock, HJ-10 ground targets, NLOS flight trace, HJ-10 launch angle, native exit watchdog, NLOS cruise missiles without laser guidance and HJ-10 cruise launcher, HJ-10 / QN-506 guidance fix, online deployment pause held, memory cleanup before and after every match, exit watchdog, main-menu out-of-date notice, China truck names, Reservists, Z-21 Air escort +50, ZBD-251 air-droppable. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.51.",
+  "description": "Freedom Arrow 0.9.5-dev.8 (hotfix test, not released): 0.9.4 plus NLOS roof hits, Blue Dragon Japanese cards (Arsenal only), NLOS launch-distance fix, match memory cleanup, NLOS laser-spot lock, HJ-10 ground targets, NLOS flight trace, HJ-10 launch angle, native exit watchdog, NLOS cruise missiles without laser guidance and HJ-10 cruise launcher, HJ-10 / QN-506 guidance fix, online deployment pause held, memory cleanup before and after every match, exit watchdog, main-menu out-of-date notice, China truck names, Reservists, Z-21 Air escort +50, ZBD-251 air-droppable. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.51.",
   "repo": "Cole-Graham/freedom-arrow"
 }
