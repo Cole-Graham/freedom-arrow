@@ -84,8 +84,10 @@
 - 2026-11-21 21:5x PST, thread 1573561286803980289 (Osama: "we had a person spawn before the game started"). NOT IN BUILD 255. RUNTIME (rebuild the
   runtime DLL): conquest/NativeUi.cs OnlineDeployFrame. Cause from R2 logs: the online FA maps' 180 s deployment pause is local to each PC (script
   pauseGame -> GameSessionContext.IsPaused). In match 9851894 (Bay of Winds 3v3, 22 Nov 05:42 UTC) TNTScientist's pause never held: his first unit was
-  on the map 12 s in, 19 units and +733 points by the end, while the other 5 players had no units and +0 income until the pause ended. 11 matches on
-  21-22 Nov (0.9.3 and 0.9.4) show one or two such players. All 23 online FA maps carry the pause; no Skirmish copy does. Fix: after the "BATTLE
+  on the map 12 s in, 19 units and +733 points by the end, while the other 5 players had no units and +0 income until the pause ended. 3 matches on
+  21-22 Nov show one such player (9835965, 9842400 on 0.9.3; 9851894 on 0.9.4); an earlier count of 11 wrongly included late joiners (Osama in
+  9833665 joined 236 s after the others, when deployment was over). Not the Escape menu (it pauses/unpauses only when NetworkStatus is
+  NotConnected). Candidate, not proven: TimeSpeedSystem.Update's pause toggle (IsPaused = !IsPaused) if it is enabled online. All 23 online FA maps carry the pause; no Skirmish copy does. Fix: after the "BATTLE
   STARTS IN" preview, on an online FA map, the runtime keeps the game paused until 5 s before the 180 s window ends (the script's own unpause then ends
   it); if it had to restore the pause and the game is still paused 5 s after the window, it releases it. Rejoining mid-match (no preview) gets no hold.
   Logs FREEDOM_ARROW_DEPLOY_HOLD started / "was not paused ... pause restored" / ended. Compiled clean on the deck. Root cause of the lost pause not

@@ -273,7 +273,7 @@ public sealed partial class Prototype
     // each player's own game for OnlineDeploySeconds at battle start (scenarios/common.py add_deployment: pauseGame true, delay,
     // pauseGame false); Skirmish copies have no pause. The pause is local (GameSessionContext.IsPaused, game speed 0 on this PC only), so
     // a client whose pause does not hold keeps its purchase timers and income running while the others wait. R2 logs 21-22 Nov 2026:
-    // 11 matches had one or two such players (0.9.3 and 0.9.4); in match 9851894 TNTScientist's first unit was on the map 12 s into the
+    // 3 matches had one such player (9835965, 9842400 on 0.9.3; 9851894 on 0.9.4); in 9851894 TNTScientist's first unit was on the map 12 s into the
     // pause, he had 19 units and +733 points at the end of it, the other five players none and +0. This holds the pause on this client
     // from its first battle frame until HoldMargin before the window ends; the script's own pauseGame(false) then ends deployment. If this
     // hold had to restore the pause and the game is still paused HoldMargin after the window, the hold releases it itself. A player who
