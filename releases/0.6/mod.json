@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.5-dev.1",
+  "version": "0.9.5-dev.2",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.5-dev.1 (hotfix test, not released): 0.9.4 plus HJ-10 / QN-506 guidance fix, online deployment pause held, exit watchdog, main-menu out-of-date notice, China truck names, Reservists, Z-21 Air escort +50, ZBD-251 air-droppable. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.51.",
+  "description": "Freedom Arrow 0.9.5-dev.2 (hotfix test, not released): 0.9.4 plus NLOS cruise missiles without laser guidance and HJ-10 cruise launcher, HJ-10 / QN-506 guidance fix, online deployment pause held, exit watchdog, main-menu out-of-date notice, China truck names, Reservists, Z-21 Air escort +50, ZBD-251 air-droppable. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.51.",
   "repo": "Cole-Graham/freedom-arrow"
 }
