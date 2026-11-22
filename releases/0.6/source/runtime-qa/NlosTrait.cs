@@ -167,7 +167,9 @@ static class NlosTrait
                 var list=new List<Entity>();
                 var ammoInfo=NativeEcs.Read<WeaponComponent>(weapon).SelectedAmmunition;
                 var side=NativeEcs.Read<UnitComponent>(unit).Owner?.TeamSide;
-                if(ammoInfo!=null&&side!=null&&__0!=null)
+                // 0.9.5-dev.11 (Osama 22 Nov 2026): the HJ-10 has an NLOS round and an FNF round; only the NLOS round (nlos.json ammunition) may
+                // shoot without line of sight.
+                if(ammoInfo!=null&&ammo.Contains(ammoInfo.Id)&&side!=null&&__0!=null)
                 {
                     var here=Position(unit);
                     foreach(var t in __0)

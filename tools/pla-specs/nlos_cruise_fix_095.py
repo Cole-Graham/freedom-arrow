@@ -18,7 +18,7 @@ edge of the map").
 - dev.4 still no HJ-10 launch: 7,311 WeaponForceFire (fire at a point) calls; its round TargetType 36 lacks Ground (1). Now 37, as the CTL-181.
 - dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius on the three top-attack rounds -> roof hits
   (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
-- dev.10: HJ-10 penetration 90 -> 130 (Osama): 2 hits instead of 3 on roof-100 tanks.
+- dev.10: HJ-10 penetration 90 -> 130 (Osama). dev.11: TOW-2B stats (11 / 140) instead, NLOS + FNF modes (4 + 4), aim 0.2 s (Osama).
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -59,7 +59,23 @@ def apply(t, g, ok, rec):
     ok(all(A[i]['OverpressureRadius'] == OP[i] for i in TOP), 'top-attack NLOS rounds strike the roof on a direct hit; near-miss leeway')
     # dev.10 (Osama 22 Nov 00:5x "HJ-10 needs more penetration, about 130"). dev.9 shot log: roof hits work (forceTop, side Top); damage =
     # base x pen^2 / (pen^2 + armour^2): pen 90 on roof 100 (ZTZ-100, M1A2 SEP ...) 5.82 a hit, 3 to kill 14 HP; pen 130 8.17, 2 hits; roof 60 10.72.
-    ok(A[2009623]['PenetrationAtGroundRange'] == 90.0 and A[2009623]['PenetrationAtMinRange'] == 90.0, 'HJ-10 penetration before')
-    g.put('AmmunitionsJson', 2009623, {'PenetrationAtGroundRange': 130.0, 'PenetrationAtMinRange': 130.0})
-    ok(A[2009623]['PenetrationAtGroundRange'] == 130.0 and A[2009623]['PenetrationAtMinRange'] == 130.0, 'HJ-10 penetration 130')
+    # dev.11 (Osama 22 Nov 01:0x "give the HJ-10 a 0.2 second aim time"; "a terminal guidance mode that turns the missiles into a FNF. And another
+    # that uses the current mode that's NLOS"; "penetration and damage match the Tow-2b"): TOW-2B (ammo 52) is 11 damage / 140 penetration
+    # (replaces dev.10's 130). Two rounds on the one launcher, 4 + 4 of the 8: 2009623 'HJ-10 NLOS' (laser, NLOS hook, unchanged flight) and a new
+    # 'HJ-10 FNF' (same flight, LaserGuided False, Seeker 50 terminal guidance as the Javelin, units only: TargetType 36). The NLOS firing hook
+    # only adds no-line-of-sight targets while the NLOS round is selected (NlosTrait.cs); the FNF round is not on nlos.json.
+    T2B = A[52]
+    ok((T2B.get('Name'), T2B['Damage'], T2B['PenetrationAtGroundRange'], T2B['PenetrationAtMinRange']) == ('Missile AT TOW2B', 11.0, 140.0, 140.0), 'TOW-2B stats')
+    ok(A[2009623]['PenetrationAtGroundRange'] == 90.0 and A[2009623]['Damage'] == 13.0, 'HJ-10 damage / penetration before')
+    STATS = {'Damage': T2B['Damage'], 'PenetrationAtGroundRange': T2B['PenetrationAtGroundRange'], 'PenetrationAtMinRange': T2B['PenetrationAtMinRange']}
+    g.put('AmmunitionsJson', 2009623, {**STATS, 'HUDName': 'HJ-10 NLOS'})
+    fnf = g.add('AmmunitionsJson', A[2009623], {**STATS, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF', 'LaserGuided': False, 'Seeker': 50, 'TargetType': 36})
+    ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 200 and A[fnf]['OverpressureRadius'] == 5.0 and A[fnf]['CanBeIntercepted'] is False, 'HJ-10 FNF round')
+    WAh = [r for r in WA.values() if r and r.get('WeaponId') == HJ10_LAUNCHER]
+    ok(len(WAh) == 1 and WAh[0]['UnitId'] == 936 and WAh[0]['Quantity'] == 8, 'HJ-10 launcher ammo row before')
+    g.put('WeaponAmmunitionsJson', WAh[0]['Id'], {'Quantity': 4})
+    g.add('WeaponAmmunitionsJson', WAh[0], {'AmmunitionId': fnf, 'Order': 1, 'Quantity': 4})
+    ok(sorted((r['AmmunitionId'], r['Quantity']) for r in WA.values() if r and r.get('WeaponId') == HJ10_LAUNCHER) == sorted([(2009623, 4), (fnf, 4)]), 'HJ-10 NLOS 4 + FNF 4')
+    g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 0.2, 'AimTimeMax': 0.2})
+    ok(W[HJ10_LAUNCHER]['AimTimeMin'] == 0.2 and W[HJ10_LAUNCHER]['AimTimeMax'] == 0.2, 'HJ-10 aim 0.2 s')
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
