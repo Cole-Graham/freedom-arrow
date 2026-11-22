@@ -546,6 +546,10 @@ import zbd251_airdrop_094;zbd251_airdrop_094.apply(t,g,ok,rec)
 # "the blood wolves NLOS still goes haywire after lazing"): HJ-10, QN-502, CTL-181 and CH-901 rounds LaserGuided False on the cruise path (the
 # 13 Nov 0.8.0-dev.25 CTL-181 fix); HJ-10 launcher Type 81 -> 82 cruise launcher, vertical. See nlos_cruise_fix_095.py.
 import nlos_cruise_fix_095;nlos_cruise_fix_095.apply(t,g,ok,rec)
+# ---------- 27. Blue Dragon Japanese vehicles (Osama 21 Nov 2026 23:4x PST, thread 1573418243715113213: "I just installed a bunch of Japanese units,
+# can you please add them to the units in our armory"): Type 89 FV, Type 87 AW, Type 93 Kin-SAM cards in spec 23 (Arsenal only). Their models and the
+# Type 10 / Type 90 models + paint schemes are ASSETS (work/blue-dragon-models-20261122). See blue_dragon_jp.py.
+import blue_dragon_jp;blue_dragon_jp.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

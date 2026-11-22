@@ -99,3 +99,14 @@
   (kernel32 TerminateProcess). Evidence (Vengeance journal + Steam log, 21 Nov): all 5 exits hung 1-3.5 min after "Preferences Saved!" until
   KWin's force-quit helper killed the game (crash handler at 22:57:35). A normal exit ends before the timer (background thread). Compiled clean.
   Not seen in game: after install, quit and check the game is gone within ~15 s and the watchdog log line exists.
+- 2026-11-22 00:2x PST, thread 1573418243715113213 "blue dragons" (Osama 21 Nov 23:4x: "I just installed a bunch of Japanese units, can you please add
+  them to the units in our armory"; 22 Nov 00:0x: "please make armory models for these and paint schemes with the various textures they loaded").
+  DATA: section 27 -> blue_dragon_jp.py (batch 2265 checks; all 7 package gates 0 on a constants-only package): new spec 23 cards (Arsenal only)
+  Type 89 FV (M2A3 Bradley base, 35 mm KDE = M242 copy with the CV-9035 35 mm rounds, Type 79 Jyu-MAT = TOW-2A copy pen 500, 65 pts x4),
+  Type 87 AW (PGZ-09 rows, US side, 120 x2), Type 93 Kin-SAM (Avenger twin-pod turret, Type 91 = Stinger copy, 100 x4). Placeholder stats/prices.
+  ASSETS (new Assets version over 0.2.51; run publish_assets_index.py): the 144 --asset lines of work/blue-dragon-models-20261122/asset-args.txt
+  (276 MB): Shawn's CGTrader models for Type 10, Type 90, Type 89 FV, Type 87 AW, Type 93 Kin-SAM (armory 2048 + battle cut to the role median
+  + LOD1/LOD2, seller JGSDF camo default), the "Plain" olive paint scheme (<tex>@Plain.fat + swatches), and models.json (205) / paint-schemes.json
+  (89) = Assets 0.2.51 + these 5 units. MERGE NOTE: both JSON files are full copies; merge with any other queued models.json/paint-schemes.json.
+  Not needed for the 0.9.4.1 hotfix; harmless if a hotfix build includes the data (cards show the Bradley/Tunguska/Avenger stand-ins until the
+  Assets ship). Not seen in game.
