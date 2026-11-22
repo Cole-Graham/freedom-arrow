@@ -96,7 +96,7 @@ with zipfile.ZipFile(base) as z:
     for spec in a.asset:
         k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f)
     drops=sorted({l.strip() for l in Path(a.drop_assets).read_text().splitlines() if l.strip()}) if a.drop_assets else []
-    assert all(n.startswith('UserData/FAModels/') and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels files of the base package only'
+    assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
         for k in override:
