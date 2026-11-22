@@ -262,9 +262,43 @@ static class NlosTrait
             new{ammo=info.Id,missile=Id(missile),target=Id(target),distance=Distance(missile,target),from});
         return true;
     }
+    // Flight trace (Osama 21 Nov 2026 23:5x PST, thread 1567745029781454889: lased NLOS missiles "chasing something off the edge of the map").
+    // The four NLOS cruise rounds (HJ-10, QN-502, CTL-181 and the Blood Wolves' CH-901, which is not on the keep-lock list) log position, seeker
+    // target, last target position and line of sight every TraceStep s for their first TraceLines steps; at most TraceMissiles missiles a session.
+    static readonly HashSet<int> traceAmmo=new(){2009623,2009651,2018321,2018448};
+    static readonly Dictionary<ulong,(int ammo,float start,float next,int n)> traces=new();
+    const int TraceLines=40,TraceMissiles=40;const float TraceStep=0.5f;
+    static int tracedMissiles;static bool traceBroken;
+    static void Trace(Entity missile)
+    {
+        if(traceBroken)return;
+        try
+        {
+            ulong key=Key(missile);float now=Time.time;
+            if(!traces.TryGetValue(key,out var tr))
+            {
+                if(traces.Count>Prune)foreach(var k in traces.Keys.ToList())if(!FromKey(k).IsAlive)traces.Remove(k);
+                int id=0;
+                if(missile.Has<MissileGuidanceInfoComponent>()){var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;if(info!=null)id=info.Id;}
+                if(!traceAmmo.Contains(id)||tracedMissiles>=TraceMissiles){traces[key]=(0,0,0,0);return;}
+                tracedMissiles++;tr=(id,now,now,0);
+            }
+            if(tr.ammo==0||now<tr.next||tr.n>=TraceLines||!missile.Has<SeekerComponent>())return;
+            string tgt="none";float tdist=-1;
+            if(SeekerTarget(missile,out var t)&&t.IsAlive){tgt=Id(t).ToString();tdist=Distance(missile,t);}
+            var last=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
+            bool los=NativeEcs.Field<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget");
+            var pos=missile.Has<ViewComponent>()?Position(missile):Vector3.zero;
+            MelonLogger.Msg($"FREEDOM_ARROW_NLOS_TRACE ammo {tr.ammo} missile {Id(missile)} t+{now-tr.start:0.0}s pos ({pos.x:0},{pos.y:0},{pos.z:0}) seeker target {tgt} at {tdist:0} last target pos ({last.x:0},{last.y:0},{last.z:0}) los {los}");
+            DiagnosticLog.Write("nlos_trace",new{ammo=tr.ammo,missile=Id(missile),t=now-tr.start,x=pos.x,y=pos.y,z=pos.z,target=tgt,tdist,lx=last.x,ly=last.y,lz=last.z,los});
+            traces[key]=(tr.ammo,tr.start,now+TraceStep,tr.n+1);
+        }
+        catch(Exception e){traceBroken=true;MelonLogger.Warning("FREEDOM_ARROW_NLOS_TRACE off: "+e.Message);}
+    }
     public static void UpdateBefore(in Entity __0)
     {
         if(broken||!Runtime.IsApplied)return;
+        Trace(__0);
         try
         {
             var missile=__0;
