@@ -525,6 +525,9 @@ import china_balance_094;china_balance_094.apply(t,g,ok,rec)
 # launchers (but 8 missiles) ... see if there are any launcher oddities"). Z-10 family Fire support and Z-21 Heavy anti-armor: same missiles, fewer and even
 # launchers. Z-19 / Z-9WA (2-pylon Dauphin body) not changed: asked. See heli_launchers_094.py.
 import heli_launchers_094;heli_launchers_094.apply(t,g,ok,rec)
+# ---------- 21. Z-19 family and armed Z-9WAs on the AH-1W SuperCobra stand-in (Osama 21 Nov 2026 19:3x PST, thread 1567745029781454889: "Z-19 should
+# just use the Cobra as its standin", "Z-9 and Z-19 that way we have more pylons, but just don't change the stats"). See donor_cobra_094.py.
+import donor_cobra_094;donor_cobra_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

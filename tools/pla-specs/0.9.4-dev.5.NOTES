@@ -13,3 +13,10 @@
   Audit (work/balance-0.9.4-20261121/launcher_audit.txt): Z-19 / Z-19G / Z-9WA are on the 2-pylon AS-365 body; their 8-missile single pylons (TY-90,
   HJ-8, HJ-10, AKD-9) can only become 2 launchers by dropping the other pylon's weapon -> asked, not changed. Z-20 / Z-21 left/right mirrored weapon rows
   are the vanilla left/right pylon pattern, not a fault. Not seen in game.
+- 2026-11-21 19:3x PST, thread 1567745029781454889 (Osama: "Z-19 should just use the Cobra as its standin", "Z-9 and Z-19 that way we have more pylons, but
+  just don't change the stats"). DATA: section 21 -> donor_cobra_094.py (batch 1049 checks). Z-19 (940, 1103), Z-19 Recon (1132, 1134), Z-19G (1236),
+  Z-19G Recon (1237), Z-9WA (941), Z-9WA Recon (1133): ModelFileName DLC2_AS365_Dauphin -> US_AH-1W Super_Cobra (4 pylons). Loadouts: same pylon on both
+  Dauphin slots -> AH-1W inner 1-2 (rounds per launcher unchanged); two different pylons -> slot 0 to inner 1-2 and slot 1 to outer 3-4 with half the
+  rounds per launcher (WA Quantity /2), so every weapon has 2 launchers and every total is unchanged (checked per loadout). Turret0 (AH-1W chin) empty.
+  Units stats/prices/mobility unchanged. Z-9 transport (1107, 8 seats) stays on the Dauphin. The package gates (slot/mount) run at the dev.5 build.
+  NEEDS a look in game: weapon pylons sit on the Cobra's points under the FAModels Z-19/Z-9 model.
