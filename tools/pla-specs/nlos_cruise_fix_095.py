@@ -19,7 +19,7 @@ edge of the map").
 - dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius on the three top-attack rounds -> roof hits
   (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
 - dev.10: HJ-10 penetration 90 -> 130 (Osama). dev.12: TOW-2B stats (11 / 140) instead; FNF default launcher (aim 3-4 s) and NLOS option (+20, aim
-  0.2 s, 2000 m) on a loadout option (Osama).
+  0.2 s, 2000 m Arsenal range = GroundRange 1000) on a loadout option (Osama).
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -77,7 +77,8 @@ def apply(t, g, ok, rec):
        and [(r['WeaponId'], r['Order']) for r in TW.values() if r and r.get('TurretId') == 2009620] == [(2009619, 0)] and T[2009620]['IsDefault'] is True
        and (W[HJ10_LAUNCHER]['AimTimeMin'], W[HJ10_LAUNCHER]['AimTimeMax']) == (3.0, 4.0), 'HJ-10 single launcher, no options, before')
     # NLOS option: the existing launcher, turret and round.
-    g.put('AmmunitionsJson', 2009623, {**STATS, 'GroundRange': 2000.0, 'HUDName': 'HJ-10 NLOS'})
+    # 'when I say 2000m range, I mean 2000m armory range' (Osama 01:1x): the Arsenal shows GroundRange x 2, so 1000 (FNF 800 = 1600 m as before).
+    g.put('AmmunitionsJson', 2009623, {**STATS, 'GroundRange': 1000.0, 'HUDName': 'HJ-10 NLOS'})
     g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 0.2, 'AimTimeMax': 0.2, 'HUDName': 'HJ-10 NLOS'})
     g.put('TurretsJson', 2009620, {'IsDefault': False})
     # FNF default: new round, launcher and turret.
@@ -94,7 +95,7 @@ def apply(t, g, ok, rec):
     o_f = g.add('OptionsJson', O[244], {**CLEAR, 'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret0Id': ft, 'OptionPicture': 'JAVELIN'})
     o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'HELLFIRE_X4'})
     ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 200 and A[fnf]['OverpressureRadius'] == 5.0 and A[fnf]['CanBeIntercepted'] is False
-       and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 2000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
+       and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 1000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
        and A[2009623]['PenetrationAtGroundRange'] == A[fnf]['PenetrationAtGroundRange'] == 140.0, 'HJ-10 FNF / NLOS rounds')
     ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 0), (ft, 0)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
        and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin']) == (3.0, 4.0, 0.2)
