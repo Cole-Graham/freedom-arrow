@@ -533,5 +533,18 @@ public static partial class Loc
         ["Launcher {0}"] = new[] { "Launcher {0}", "Lanceur {0}", "Лаунчер {0}", "启动器 {0}" },
         ["Mod {0}"] = new[] { "Mod {0}", "Mod {0}", "Мод {0}", "模组 {0}" },
         ["Models & music {0}"] = new[] { "Modelle & Musik {0}", "Modèles & musique {0}", "Модели и музыка {0}", "模型和音乐 {0}" },
+        // 1.1.15 News panel
+        ["Full patch notes and statistics →"] = new[] { "Vollständige Patchnotes und Statistiken →", "Notes de patch complètes et statistiques →", "Полные патчноуты и статистика →", "完整补丁说明和统计 →" },
+        ["PATCH NOTES"] = new[] { "PATCHNOTES", "NOTES DE PATCH", "ПАТЧНОУТЫ", "补丁说明" },
+        ["BATTLEFIELD REPORT"] = new[] { "LAGEBERICHT", "RAPPORT DU CHAMP DE BATAILLE", "СВОДКА С ПОЛЯ БОЯ", "战场报告" },
+        ["Loading news…"] = new[] { "Neuigkeiten werden geladen…", "Chargement des nouvelles…", "Загрузка новостей…", "正在加载新闻…" },
+        ["News is unavailable right now. It doesn't affect PLAY."] = new[] { "Neuigkeiten sind gerade nicht verfügbar. SPIELEN funktioniert trotzdem.", "Les nouvelles ne sont pas disponibles pour l'instant. Cela n'affecte pas JOUER.", "Новости сейчас недоступны. На кнопку ИГРАТЬ это не влияет.", "新闻暂时无法加载，不影响开始游戏。" },
+        ["ONLINE NOW"] = new[] { "JETZT ONLINE", "EN LIGNE", "СЕЙЧАС ОНЛАЙН", "当前在线" },
+        ["PEAK, 24 H"] = new[] { "SPITZE, 24 H", "PIC, 24 H", "ПИК ЗА 24 Ч", "24 小时峰值" },
+        ["PLAYERS"] = new[] { "SPIELER", "JOUEURS", "ИГРОКИ", "玩家" },
+        ["MATCHES"] = new[] { "MATCHES", "PARTIES", "МАТЧИ", "对局" },
+        ["in the mod lobby"] = new[] { "in der Mod-Lobby", "dans le salon du mod", "в лобби мода", "在模组大厅" },
+        ["players in game"] = new[] { "Spieler im Spiel", "joueurs en jeu", "игроков в игре", "游戏中玩家" },
+        ["all time"] = new[] { "insgesamt", "au total", "за всё время", "累计" },
     };
 }

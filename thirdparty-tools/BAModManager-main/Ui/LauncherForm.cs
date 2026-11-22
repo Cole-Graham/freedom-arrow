@@ -23,6 +23,7 @@ internal sealed class LauncherForm : Form
     private readonly Label _modsState;
     private readonly LaunchProgressPanel _panel;
     private readonly Button? _lang;
+    private readonly NewsPanel? _news;
     private readonly Button _play;
     private readonly Button _vanilla;
     private readonly Button _settings;
@@ -56,7 +57,9 @@ internal sealed class LauncherForm : Form
 #if FA_DEV45
         // 1.1.14 (Osama 21 Nov 2026): freedomarrow.app look - menu-art header with the title logo, red/black colours,
         // condensed headings, and a progress panel that shows steps, MB, speed, time left and when data last arrived.
-        ClientSize = new Size(560, 700);
+        // 1.1.15 (Osama 22 Nov 2026): a News column on the right with the Battlefield report and the patch notes.
+        _news = new NewsPanel { Dock = DockStyle.Right, Width = 390 };
+        ClientSize = new Size(560 + _news.Width, 700);
         Padding = new Padding(0);
         var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 220 };
         // 中文 / English switch, like the button on freedomarrow.app (Osama 21 Nov 2026: "Make sure there's a Chinese switch").
@@ -174,6 +177,9 @@ internal sealed class LauncherForm : Form
         Controls.Add(body);
 #endif
         Controls.Add(header);
+#if FA_DEV45
+        Controls.Add(_news);   // added last so it docks first: full height on the right, the header stays 560 wide
+#endif
 
         _play.Click += async (_, _) => await PlayModded();
         _vanilla.Click += (_, _) => PlayVanilla();
@@ -213,6 +219,7 @@ internal sealed class LauncherForm : Form
     private async Task OnFirstShown()
     {
         if (Environment.GetCommandLineArgs().Contains(PreviewArg)) { await ProgressPreview(); return; }
+        if (_news != null) _ = _news.LoadAsync();   // in the background; PLAY never waits for it
         if (PinnedFreedomArrow.Enabled && await UpdateLauncher()) return;
         SetStatus(T("Looking for Broken Arrow…"));
         var saved = AppSettings.LoadGamePath();
