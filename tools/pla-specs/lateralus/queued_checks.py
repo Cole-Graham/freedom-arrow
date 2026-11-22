@@ -182,5 +182,20 @@ if m>=key('0.9.5-dev.17'):
 # follows the music pack selector's rule (Home tab selected) - WebsiteButton.cs 087971bf, log reason 'not on the Home tab'.
 if m>=key('0.9.5-dev.19'):
     if 'not on the Home tab'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL has the old website banner, not the Home-tab rule (WebsiteButton.cs 087971bf)')
+# From 0.9.5-dev.19 (Osama 22 Nov 2026 02:50 PST, thread 1572407822849810463: "please add it"): the ZBD-100 (zbd100.py, merge e57b6cc1) and its
+# Type 100 model (work/type100-model-20261122: stage/ files + merge_models.py entry and Dust/Plain paint), and the ZTZ-99B variant of the ZTZ-99A APS
+# loadouts (work/ztz99b-20261122/merge_models.py) are in the complete package. Until dev.18 the 99B models.json entry only reached Osama's PC by a
+# separate installer, never a package.
+if m>=key('0.9.5-dev.19'):
+    _zb=[u for u in Ut.values() if u and u.get('Name')=='PLA ZBD-100']
+    if not _zb:bad.append('no PLA ZBD-100 unit (zbd100.py)')
+    _fm=json.loads(z.read('UserData/FAModels/models.json'));_ps=json.loads(z.read('UserData/FAModels/paint-schemes.json'));_n=set(z.namelist())
+    _e=_fm.get('PLA ZBD-100')
+    if not _e:bad.append('models.json has no PLA ZBD-100 entry (type100-model-20261122/merge_models.py)')
+    else:bad+=[f'ZBD-100 model file {f} missing' for f in [_e['file'],_e['battle'],*_e.get('lods',[])] if 'UserData/FAModels/'+f not in _n]
+    if sorted(_ps.get('PLA ZBD-100',[]))!=['Dust','Plain']:bad.append('paint-schemes.json: PLA ZBD-100 should be Dust + Plain')
+    _v=(_fm.get('PLA ZTZ-99A') or {}).get('variants') or []
+    if not any(x.get('file')=='m_ztz99b_static.fam' for x in _v):bad.append('models.json: PLA ZTZ-99A has no ZTZ-99B variant (ztz99b-20261122/merge_models.py)')
+    elif not all('UserData/FAModels/'+f in _n for x in _v for f in [x['file'],x['battle'],*x.get('lods',[])]):bad.append('ZTZ-99B variant files missing')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
