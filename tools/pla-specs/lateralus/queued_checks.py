@@ -194,6 +194,8 @@ if m>=key('0.9.5-dev.19'):
     if not _e:bad.append('models.json has no PLA ZBD-100 entry (type100-model-20261122/merge_models.py)')
     else:bad+=[f'ZBD-100 model file {f} missing' for f in [_e['file'],_e['battle'],*_e.get('lods',[])] if 'UserData/FAModels/'+f not in _n]
     if sorted(_ps.get('PLA ZBD-100',[]))!=['Dust','Plain']:bad.append('paint-schemes.json: PLA ZBD-100 should be Dust + Plain')
+    # dev.28: the CH-901 / APS loadouts are unit swap rows; FAModels keys by unit Name, so every PLA ZBD-100* row needs its own entry
+    bad+=[f'models.json has no entry for loadout row {u["Name"]}' for u in Ut.values() if u and (u.get('Name') or '').startswith('PLA ZBD-100') and u['Name'] not in _fm]
     _v=(_fm.get('PLA ZTZ-99A') or {}).get('variants') or []
     if not any(x.get('file')=='m_ztz99b_static.fam' for x in _v):bad.append('models.json: PLA ZTZ-99A has no ZTZ-99B variant (ztz99b-20261122/merge_models.py)')
     elif not all('UserData/FAModels/'+f in _n for x in _v for f in [x['file'],x['battle'],*x.get('lods',[])]):bad.append('ZTZ-99B variant files missing')
