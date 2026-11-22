@@ -55,7 +55,7 @@ static partial class RankedMenu
         dir=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","ranked");
         settingsFile=Path.Combine(dir,"settings.json");
         card=Load(Path.Combine(dir,"card.png"),"FA_ranked_card");patch=Load(Path.Combine(dir,"patch.png"),"FA_ranked_patch");
-        try{var s=JsonDocument.Parse(File.ReadAllText(settingsFile)).RootElement;if(s.TryGetProperty("set",out var v))set=Array.IndexOf(SetNames,v.GetString());}catch{}
+        try{var s=JsonDocument.Parse(File.ReadAllText(settingsFile)).RootElement;if(s.TryGetProperty("set",out var v))set=Array.IndexOf(SetNames,v.GetString());if(s.TryGetProperty("deck",out var dk))deckName=dk.GetString()??"";}catch{}
         tFlow=AccessTools.TypeByName("ArrowQueue.Flow");tUi=AccessTools.TypeByName("ArrowQueue.Ui");tApi=AccessTools.TypeByName("ArrowQueue.Api");
         tGame=AccessTools.TypeByName("ArrowQueue.Game");tSignal=AccessTools.TypeByName("ArrowQueue.Signal");
         if(tFlow==null||tUi==null||tApi==null||tGame==null||tSignal==null)throw new InvalidOperationException("ArrowQueue types not found");
@@ -74,6 +74,7 @@ static partial class RankedMenu
             if(o==null)throw new InvalidOperationException("ArrowQueue "+n+" not found");
         h.Patch(AccessTools.Method(tFlow,"PickMap"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(PickMap)));
         InstallPage(h);
+        InstallLobby(h);
         var mode=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.Text"),"Mode");
         if(mode!=null)h.Patch(mode,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(ModeName)));
         try
@@ -90,7 +91,7 @@ static partial class RankedMenu
         var t=new Texture2D(2,2,TextureFormat.RGBA32,false){name=name,hideFlags=HideFlags.DontUnloadUnusedAsset};
         return ImageConversion.LoadImage(t,File.ReadAllBytes(file),true)?t:null;
     }
-    static void SaveSettings(){try{Directory.CreateDirectory(dir);File.WriteAllText(settingsFile,JsonSerializer.Serialize(new{set=set<0?"":SetNames[set]}));}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED settings: "+e.Message);}}
+    static void SaveSettings(){try{Directory.CreateDirectory(dir);File.WriteAllText(settingsFile,JsonSerializer.Serialize(new{set=set<0?"":SetNames[set],deck=deckName}));}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED settings: "+e.Message);}}
 
     // ---------- hooks ----------
     static void ModeName(string m,ref string __result){if(m=="r1v1")__result="Ranked 1v1";else if(m=="rteam")__result="Ranked team";}
@@ -333,6 +334,7 @@ static partial class RankedMenu
 
     public static void Tick()
     {
+        try{var t=Time.unscaledTime;LobbyTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
         PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}
@@ -343,6 +345,7 @@ static partial class RankedMenu
     {
         try
         {
+            LobbyBanner();
             if(open){Menu();return;}
             if(pageShown){var ev=Event.current;if(ev.type==EventType.KeyDown&&ev.keyCode==KeyCode.Escape){HidePage("Esc",true);ev.Use();}return;}
             if(card==null||!PlayCards(out var last,out var pitch))return;

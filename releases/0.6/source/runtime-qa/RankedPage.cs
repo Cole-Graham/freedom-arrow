@@ -112,7 +112,7 @@ static partial class RankedMenu
         string party=cur==null?"":string.Join(",",((Traverse.Create(cur).Property("members").GetValue() as Array)?.Cast<object>()??Array.Empty<object>()).Select(m=>P(m,"steamId")+P(m,"state")))+"/"+P(cur,"leader");
         string inc=string.Join(",",Arr(fIncoming).Select(i=>P(i,"partyId")));
         int online=0;try{var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);online=(info==null?null:Traverse.Create(info).Property("players").GetValue() as Array)?.Length??0;}catch{}
-        return $"{tab}|{queue}|{boardLadder}|{selRow}|{boardTop}|{set}|{vanillaSet}|{meJson.GetHashCode()}|{board1.GetHashCode()}|{boardT.GetHashCode()}|{party}|{inc}|{active}|{(active?(int)(now-searchFrom):0)}|{picking}|{pickTop}|{pickTab}|{online}|{(now<noteUntil?note:"")}|{error}";
+        return $"{tab}|{queue}|{boardLadder}|{selRow}|{boardTop}|{set}|{vanillaSet}|{meJson.GetHashCode()}|{board1.GetHashCode()}|{boardT.GetHashCode()}|{party}|{inc}|{active}|{(active?(int)(now-searchFrom):0)}|{picking}|{pickTop}|{pickTab}|{pickingDeck}|{deckTop}|{deckName}|{online}|{(now<noteUntil?note:"")}|{error}";
     }
 
     // ---------- uGUI kit (design units, origin top-left of the body) ----------
@@ -178,6 +178,7 @@ static partial class RankedMenu
         Txt(738,806,90,32,"BACK",20,Color.white,true);
         Click(690,804,150,36,()=>HidePage("Back",true));
         if(picking)Picker(now,me,have);
+        if(pickingDeck)DeckPicker();
     }
 
     static string[] PoolFor(JsonElement me,bool have,string f)
@@ -185,6 +186,57 @@ static partial class RankedMenu
         try{if(have&&me.TryGetProperty("pools",out var p)&&p.TryGetProperty(f,out var a))return a.EnumerateArray().Select(x=>x.GetString()??"").ToArray();}catch{}
         var q=f=="1v1"?Pools["r1v1"]:Pools["rteam"].Split('\n').FirstOrDefault(l=>l.StartsWith(f))?.Substring(5)??"";
         return q.Split('·',StringSplitOptions.TrimEntries|StringSplitOptions.RemoveEmptyEntries);
+    }
+    // group members' deck state from the hub (GetRanked.groupDecks); me from my own deck
+    static List<(string id,bool ok,string name)> GroupDeckState(JsonElement me,bool have)
+    {
+        var res=new List<(string,bool,string)>();
+        try
+        {
+            if(!have||!me.TryGetProperty("groupDecks",out var g))return res;
+            var curP=fPartyCurrent?.GetValue(null);
+            var names=new Dictionary<string,string>();
+            if(curP!=null)foreach(var m in (Traverse.Create(curP).Property("members").GetValue() as Array)?.Cast<object>()??Array.Empty<object>())names[P(m,"steamId")]=P(m,"name");
+            foreach(var e in g.EnumerateObject())
+            {
+                bool ok=e.Name==MySteam()?DefaultDeck()!=null:e.Value.GetProperty("ok").GetBoolean();
+                res.Add((e.Name,ok,names.TryGetValue(e.Name,out var n)?n:e.Name));
+            }
+        }
+        catch{}
+        return res;
+    }
+    static bool DeckOkFor(string id)
+    {
+        if(id==MySteam())return DefaultDeck()!=null;
+        try{var r=JsonDocument.Parse(meJson).RootElement;if(r.TryGetProperty("groupDecks",out var g)&&g.TryGetProperty(id,out var e))return e.GetProperty("ok").GetBoolean();}catch{}
+        return true;   // unknown yet: no warning
+    }
+    static bool pickingDeck;static int deckTop;
+    static void DeckPicker()
+    {
+        var dim=new Color(0.75f,0.75f,0.75f);
+        var decks=ValidDecks();
+        Img(-200,-200,DW+400,DH+400,new Color(0,0,0,0.5f),true);
+        Img(540,40,520,740,new Color(0.06f,0.07f,0.08f,0.99f),true);Frm(540,40,520,740,new Color(1,1,1,0.2f));
+        Head(564,52,440,"DEFAULT DECK");
+        Txt(564,84,470,44,"Used when you don't pick a deck in the ranked lobby's 60 seconds. Only complete, valid decks are listed.",14,dim,false,TextAlignmentOptions.TopLeft,true);
+        const int Vis=12;deckTop=Math.Clamp(deckTop,0,Math.Max(0,decks.Count-Vis));
+        if(decks.Count==0)Txt(564,140,470,30,"No valid decks. Build one in the Arsenal.",15,dim);
+        for(int i=deckTop;i<Math.Min(decks.Count,deckTop+Vis);i++)
+        {
+            var d=decks[i];float y=134+(i-deckTop)*44;bool on=d.Name==deckName;var name=d.Name;
+            var bg=Img(564,y,470,38,on?new Color(0.42f,0.8f,0.38f,0.18f):new Color(0,0,0,0.5f),true);
+            if(on)Frm(564,y,470,38,Green);
+            Txt(576,y,440,38,name,16,Color.white,on);
+            Click(564,y,470,38,()=>{deckName=name;SaveSettings();pickingDeck=false;nextDeckReport=0;MelonLogger.Msg("FREEDOM_ARROW_RANKED default deck "+name);},bg);
+        }
+        if(decks.Count>Vis)
+        {
+            Choice(564,670,60,30,"Prev",false,14,()=>deckTop-=Vis);Choice(974,670,60,30,"Next",false,14,()=>deckTop+=Vis);
+            Txt(630,670,340,30,$"{deckTop+1}-{Math.Min(decks.Count,deckTop+Vis)} of {decks.Count}",13,dim,false,TextAlignmentOptions.Center);
+        }
+        Choice(680,736,240,32,"CLOSE",false,15,()=>pickingDeck=false);
     }
     static void RankedBody(JsonElement me,bool have,float now)
     {
@@ -196,7 +248,14 @@ static partial class RankedMenu
         void Row(float y,float h,string l,string v){Txt(0,y,150,h,l,16,dim);Txt(142,y,328,h,v,15,Color.white,false,TextAlignmentOptions.MidlineRight,true);HLine(0,y+h,470);}
         Row(182,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or group · 3v3 or 5v5 · team ladder");
         Row(220,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
-        Row(258,36,"Map","picked by the server from the pool");
+        // default deck (Lateralus 22 Nov): needed before searching; used when no deck is picked in the lobby's 60 s
+        var dd=DefaultDeck();
+        Txt(0,258,150,36,"Default deck",16,dim);
+        var dbg=Img(150,262,320,28,new Color(0,0,0,0.55f),true);Frm(150,262,320,28,dd!=null?new Color(1,1,1,0.25f):Red);
+        Txt(158,262,280,28,dd!=null?dd.Name:deckName.Length>0?deckName+" (not valid)":"Choose a deck",15,dd!=null?Color.white:new Color(1f,0.6f,0.55f),dd!=null,TextAlignmentOptions.MidlineLeft);
+        Txt(440,262,26,28,"v",14,dim,true,TextAlignmentOptions.Center);
+        Click(150,262,320,28,()=>{pickingDeck=true;deckTop=0;},dbg);
+        HLine(0,296,470);
         int party=1;string leader="";
         try{var pr=fPartyNews?.GetValue(null);var pv=pr==null?null:Traverse.Create(pr).Property("party").GetValue();if(pv!=null){party=Math.Max(1,(Traverse.Create(pv).Property("members").GetValue() as Array)?.Length??1);leader=Traverse.Create(pv).Property("leader").GetValue<string>()??"";}}catch{}
         // FIND MATCH with the FA patch
@@ -209,10 +268,18 @@ static partial class RankedMenu
         }
         else
         {
-            var b=Img(0,312,470,64,Red,true);Img(0,312,470,28,new Color(1,1,1,0.07f));Frm(0,312,470,64,new Color(1f,0.55f,0.55f,0.6f));
+            // disabled (grey, with the reason) unless I lead (or am solo) and every group member has a valid default deck
+            string why=null;
+            if(party>1&&leader!=MySteam())why="Only the group leader can start the search";
+            else if(dd==null)why="Choose a valid default deck first";
+            else foreach(var (gid,ok,gname) in GroupDeckState(me,have))if(!ok){why=$"{gname} has no valid default deck";break;}
+            var b=Img(0,312,470,64,why==null?Red:new Color(0.25f,0.25f,0.27f,0.95f),why==null);
+            if(why==null)Img(0,312,470,28,new Color(1,1,1,0.07f));
+            Frm(0,312,470,64,why==null?new Color(1f,0.55f,0.55f,0.6f):new Color(1,1,1,0.15f));
             Pic(118,323,42,42,patch);
-            Txt(176,312,290,64,"FIND MATCH",30,Color.white,true);
-            Click(0,312,470,64,()=>{searchFrom=Time.unscaledTime;Find(party,leader,Time.unscaledTime);},b);
+            Txt(176,312,290,64,"FIND MATCH",30,why==null?Color.white:new Color(0.6f,0.6f,0.6f),true);
+            if(why==null)Click(0,312,470,64,()=>{searchFrom=Time.unscaledTime;Find(party,leader,Time.unscaledTime);},b);
+            else Txt(0,382+24,470,24,why,14,new Color(1f,0.6f,0.55f),true,TextAlignmentOptions.Center);
         }
         int searching=0;try{if(have)searching=me.GetProperty("searching").GetProperty(queue).GetInt32();}catch{}
         Txt(0,382,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",14,dim,false,TextAlignmentOptions.Center);
@@ -321,6 +388,7 @@ static partial class RankedMenu
                 if(av!=null)Pic(x+2,y+2,68,68,av,false);
                 else{var ini=name.FirstOrDefault(char.IsLetterOrDigit);Txt(x,y,72,72,ini==default(char)?"?":char.ToUpperInvariant(ini).ToString(),28,new Color(0.75f,0.75f,0.75f),true,TextAlignmentOptions.Center);}
                 Frm(x,y,72,72,isMe?new Color(0.42f,0.8f,0.38f,0.8f):new Color(1,1,1,0.45f));
+                if(!DeckOkFor(id)){Img(x+44,y+44,26,26,new Color(0.9f,0.6f,0.1f,0.95f));Txt(x+44,y+44,26,26,"!",18,Color.black,true,TextAlignmentOptions.Center);}   // no valid default deck
                 if(isLead&&members.Length>1)Frm(x,y,72,72,new Color(1f,0.8f,0.3f,0.9f),2);   // leader: gold frame
                 Txt(x-14,y+74,100,18,name,13,new Color(0.85f,0.85f,0.85f),true,TextAlignmentOptions.Center);
                 if(lead&&!isMe&&k<members.Length){Img(x+52,y+2,18,18,new Color(0,0,0,0.7f));Txt(x+52,y+2,18,18,"X",13,Color.white,true,TextAlignmentOptions.Center);Click(x+52,y+2,18,18,()=>mKick.Invoke(null,new object[]{id}));}
