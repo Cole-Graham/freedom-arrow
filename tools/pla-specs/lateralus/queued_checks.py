@@ -193,7 +193,8 @@ if m>=key('0.9.5-dev.19'):
     _e=_fm.get('PLA ZBD-100')
     if not _e:bad.append('models.json has no PLA ZBD-100 entry (type100-model-20261122/merge_models.py)')
     else:bad+=[f'ZBD-100 model file {f} missing' for f in [_e['file'],_e['battle'],*_e.get('lods',[])] if 'UserData/FAModels/'+f not in _n]
-    if sorted(_ps.get('PLA ZBD-100',[]))!=['Dust','Plain']:bad.append('paint-schemes.json: PLA ZBD-100 should be Dust + Plain')
+    # 22 Nov 13:4x (Osama "default Type 100 CSV should be the desert camo"): desert is the base texture, the creator's green the Green scheme.
+    if _ps.get('PLA ZBD-100')!=['Green']:bad.append('paint-schemes.json: PLA ZBD-100 should be Green (desert default)')
     # dev.28: the CH-901 / APS loadouts are unit swap rows; FAModels keys by unit Name, so every PLA ZBD-100* row needs its own entry
     bad+=[f'models.json has no entry for loadout row {u["Name"]}' for u in Ut.values() if u and (u.get('Name') or '').startswith('PLA ZBD-100') and u['Name'] not in _fm]
     _v=(_fm.get('PLA ZTZ-99A') or {}).get('variants') or []

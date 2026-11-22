@@ -4,7 +4,7 @@ def apply(t, g, ok, rec):
     U, O = t['Units'], t['OptionsJson']
     zb = [i for i, u in U.items() if u and (u.get('Name') or '').startswith('PLA ZBD-100')]
     z20 = [i for i, u in U.items() if u and u.get('Name') == 'PLA ZBD-20']
-    ok(len(zb) == 4 and len(z20) == 1 and U[z20[0]]['HUDName'].strip() == 'ZBD-20', ('ZBD-100 rows', zb, 'ZBD-20', z20))
+    ok(len(zb) == 2 and len(z20) == 1 and U[z20[0]]['HUDName'].strip() == 'ZBD-20', ('ZBD-100 rows', zb, 'ZBD-20', z20))
     for i in zb:
         g.put('Units', i, {'HUDName': 'Type 100 CSV'})
     g.put('Units', z20[0], {'HUDName': 'VN-17'})
