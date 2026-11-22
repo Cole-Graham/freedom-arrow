@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.38", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.39", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -17,7 +17,7 @@ namespace FAModels;
 // Parts named for a bone (for example turret_0) are reparented to that bone, so they turn with it.
 public partial class Mod : MelonMod
 {
-    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); }
+    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); public Variant[] variants { get; set; } = Array.Empty<Variant>(); }
     static Dictionary<string, Entry> map = new();
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
@@ -58,7 +58,10 @@ public partial class Mod : MelonMod
             if (e.file == "" && e.hide != "") { HideMatching(unitModel.PrefabRootScript.gameObject, e.hide, unitData.Name); queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 1)); return; }
             // In a battle, use the entry's low-res copy (smaller textures and mesh; aircraft with the gear up) when it has one.
             // The armory keeps the full-fidelity file, except on Potato or Low models quality (LowSettings.cs, 0.3.28).
-            if (e.battle != "" && (LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null))
+            bool battle = LowModels || scope?.TryCast<Il2CppBrokenArrow.Client.Ecs.Controllers.BattleLifetime>() != null;
+            // 0.3.39: loadout variants (OptionVariants.cs) pick other files; the view is re-checked while it lives.
+            if (e.variants.Length > 0) { int vi = VariantIndex(e, unitData); variantViews.Add((unitModel.PrefabRootScript.gameObject, unitData, e, unitData.Name, battle, vi)); e = Resolve(e, vi, battle); }
+            else if (e.battle != "" && battle)
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, lods = e.lods };
             // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
@@ -221,6 +224,7 @@ public partial class Mod : MelonMod
         t = Mark(3, t);
         if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
         t = Mark(4, t);
+        try { TickVariants(); } catch (Exception ex) { MelonLogger.Error("FAMODELS variants: " + ex.Message); }
         try { UpdateRest(); } finally { t = Mark(7, t); SlowUpdateLog(start, t); }
     }
     static void SlowUpdateLog(long start, long end)
