@@ -84,6 +84,19 @@ static class WebsiteButton
         return home.isActiveAndEnabled&&home.Selected;
     }
 
+    // Osama 22 Nov 13:2x (dev.29): "The website banner please fix it now" - it drew over the "Press any key" title screen. The Home menu is
+    // built (Home tab selected) behind the title, and this banner is IMGUI, which draws over everything; the music pack selector is native
+    // UI under the title, so it never showed there. The title is the active "Parallax Keyart" object (MenuArt.cs); checked at most twice a second.
+    static float nextTitleCheck;static bool titleUp;
+    static bool TitleScreenUp()
+    {
+        if(Time.unscaledTime<nextTitleCheck)return titleUp;
+        nextTitleCheck=Time.unscaledTime+0.5f;
+        var g=GameObject.Find("Parallax Keyart");
+        titleUp=g!=null&&g.activeInHierarchy;
+        return titleUp;
+    }
+
     static void Hide(string why)
     {
         if(shownAt>=0f&&why!=hiddenWhy)MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON hidden: "+why);
@@ -95,8 +108,9 @@ static class WebsiteButton
         if(failed||art==null)return;
         try
         {
-            bool active=HomeSelected();
-            if(!active)Hide("not on the Home tab");
+            bool title=TitleScreenUp();
+            bool active=!title&&HomeSelected();
+            if(!active)Hide(title?"title screen (Press any key)":"not on the Home tab");
             if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
             wasActive=active;
             if(!active||dismissed)return;
