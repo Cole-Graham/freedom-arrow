@@ -18,3 +18,5 @@
 - 2026-11-22 01:5x PST (Osama: battle preview "looks broken"): battle LODs redone at a higher budget with lod2.py from the full armory model: battle 128k
   tris, LOD1 79k, LOD2 48k (the 73k/44k/33k set had reduction damage on the front plate, gun and turret rear). Decal materials BLEND -> MASK (cutoff 0.5),
   as build_jp.py. The earlier smeared-camo previews were my preview tool (UV flip), not the files. Restaged in work/ztz99b-20261122/stage.
+- 2026-11-22 01:5x PST (Osama: "we can go low with LOD 1 and 2 for performance and battle"): LOD1 79k -> 29k, LOD2 48k -> 18k (lod2.py, looser cull;
+  18k is the floor of the tool here). Battle model stays 128k for close-up. Restaged.
