@@ -276,6 +276,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MATCHMAKING_FAILED: names "+e.Message); }
         try { MultiplayerToModLobbies.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Multiplayer opens Mod Lobbies
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU_FAILED: "+e.Message); }
+        try { ArsenalOnlySpecs.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Blue Dragon in the Arsenal only, not in deck creation
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ARSENAL_ONLY_SPECS_FAILED: not installed; Blue Dragon can be picked in deck creation. "+e.Message); }
     }
     public override void OnApplicationQuit()
     {

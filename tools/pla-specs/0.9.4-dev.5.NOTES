@@ -20,3 +20,9 @@
   rounds per launcher (WA Quantity /2), so every weapon has 2 launchers and every total is unchanged (checked per loadout). Turret0 (AH-1W chin) empty.
   Units stats/prices/mobility unchanged. Z-9 transport (1107, 8 seats) stays on the Dauphin. The package gates (slot/mount) run at the dev.5 build.
   NEEDS a look in game: weapon pylons sit on the Cobra's points under the FAModels Z-19/Z-9 model.
+- 2026-11-21 19:5x PST, thread 1567745029781454889 (Osama: "Make sure blue dragons is not playable in the deck creation but shows in the armory").
+  RUNTIME (rebuild the runtime DLL): runtime-qa/ArsenalOnlySpecs.cs, postfix on DeckCreationPopup.RenderSpecs hides spec 23 (Blue Dragon (Testing
+  Preview)) buttons; installed in Runtime.cs after MultiplayerToModLobbies. Arsenal spec filter, unit cards and data unchanged (no data field is
+  Arsenal-only: ShowInHangar/ContentMembership also drive the Arsenal and DLC ownership). Compiled clean on the deck. Not seen in game: check the
+  New deck popup (US) has no Blue Dragon button and the Arsenal still shows the spec and its 10 cards; log line FREEDOM_ARROW_ARSENAL_ONLY_SPECS.
+  Decks already made with spec 23 are not removed.
