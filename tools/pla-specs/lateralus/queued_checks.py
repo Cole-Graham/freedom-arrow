@@ -169,10 +169,5 @@ if m>=key('0.9.4-dev.5'):
 # GC + Resources.UnloadUnusedAssets on Void (between menu and map, both ways) and back in Hangar_Scene (MemoryCleanup.cs).
 if m>=key('0.9.5-dev.6'):
     if 'FREEDOM_ARROW_MEMORY_CLEANUP'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the match memory cleanup (FREEDOM_ARROW_MEMORY_CLEANUP)')
-# From 0.9.5-dev.6 (Osama 22 Nov 2026 00:1x PST, thread 1572407822849810463: "one of the US infantry voice lines is literally like a dude grunting 10
-# times in a row"): the 5 grunt-only C&C hurt/panicked clips are dropped (tools/pla-specs/voice-grunt-drops.txt, packager --drop-assets).
-if m>=key('0.9.5-dev.6') and 'UserData/FAAssets/manifest.json' in z.namelist():
-    _fa=json.loads(z.read('UserData/FAAssets/manifest.json'))['files'];_gd=[l.strip() for l in open(Path(__file__).resolve().parents[1]/'voice-grunt-drops.txt') if l.strip()]
-    bad+=[f'grunt voice clip still shipped: {n}' for n in _gd if n in z.namelist() or n in _fa]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

@@ -96,6 +96,10 @@ with zipfile.ZipFile(base) as z:
     for spec in a.asset:
         k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f)
     drops=sorted({l.strip() for l in Path(a.drop_assets).read_text().splitlines() if l.strip()}) if a.drop_assets else []
+    # Osama 22 Nov 2026 00:4x PST ("wait until next model asset update"): the grunt-only C&C voice clips leave with the next Assets
+    # version, i.e. any build that changes models (--famodels / --asset). Gameplay-only hotfixes keep the current Assets untouched.
+    _gd=Path(__file__).with_name('voice-grunt-drops.txt')
+    if (a.famodels or a.asset) and _gd.exists():drops=sorted(set(drops)|{l.strip() for l in _gd.read_text().splitlines() if l.strip() and l.strip() in z.namelist()})
     assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
