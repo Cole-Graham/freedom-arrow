@@ -49,7 +49,7 @@ static partial class RankedMenu
     }
 
     // ---------- in the ranked lobby ----------
-    static string lobbyMatch="",phase="";static float phaseEndAt,launchTry,readyTry;static bool deckApplied,finalized,launched,hidingDecks;
+    static string lobbyMatch="",phase="";static float phaseEndAt,launchTry,readyTry,deckTry,deckFirst=-1f;static bool deckApplied,finalized,launched,hidingDecks;
     static TeamSide myTeam=TeamSide.Alpha;
     static PropertyInfo pGameMe;
     static int MyClientId(){try{pGameMe??=AccessTools.Property(tGame,"Me");var me=pGameMe?.GetValue(null);return me==null?-1:Traverse.Create(me).Property("Id").GetValue<int>();}catch{return -1;}}
@@ -60,7 +60,8 @@ static partial class RankedMenu
         // Lateralus 22 Nov test: launch and ready are automatic in a ranked lobby; a player who un-readied stopped the auto launch
         h.Patch(AccessTools.Method(typeof(NetworkStatusTopPanel),"OnButtonClick"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(RankedBlocks)));
         h.Patch(AccessTools.Method(typeof(TeamPanelPlayerInfo),"OnReadyButtonSelected"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(RankedBlocks)));
-        // ArrowQueue's lobby card ("EVERYONE IS HERE · CLOSE THE SEARCH") becomes the ranked status card in a ranked lobby
+    
+    // ArrowQueue's lobby card ("EVERYONE IS HERE · CLOSE THE SEARCH") becomes the ranked status card in a ranked lobby
         var pump=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.LobbyCard"),"Pump");
         if(pump!=null)h.Patch(pump,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(CardPumped)));else MelonLogger.Warning("FREEDOM_ARROW_RANKED_LOBBY no ArrowQueue LobbyCard.Pump: the banner is used");
     }
@@ -132,7 +133,7 @@ static partial class RankedMenu
             lobbyMatch="";phase="";return;
         }
         var id=m.GetProperty("id").GetString()??"";
-        if(id!=lobbyMatch){lobbyMatch=id;deckApplied=finalized=launched=false;launchTry=readyTry=0;try{rankedFormat=m.GetProperty("format").GetString()??"1v1";}catch{}MelonLogger.Msg($"FREEDOM_ARROW_RANKED_LOBBY {id} on {m.GetProperty("map").GetString()}");}
+        if(id!=lobbyMatch){lobbyMatch=id;deckApplied=finalized=launched=false;launchTry=readyTry=deckTry=0;deckFirst=-1f;try{rankedFormat=m.GetProperty("format").GetString()??"1v1";}catch{}MelonLogger.Msg($"FREEDOM_ARROW_RANKED_LOBBY {id} on {m.GetProperty("map").GetString()}");}
         var ph=m.GetProperty("phase").GetString()??"";
         // Lateralus 22 Nov: the countdown went 17, 16, 17, 16 - each reply arrives with a different delay. Within a phase the end time
         // only moves earlier, so the shown seconds never go up.
@@ -149,15 +150,31 @@ static partial class RankedMenu
         else if(hide)RefreshPanels(false);
         try
         {
-            if(phase=="deck"&&!deckApplied&&ci!=null&&lobby!=null)
+            // Default deck as soon as my own player card is in the lobby (Lateralus 22 Nov: "the selected default decks should be chosen
+            // by default when the players load into the lobby"). Picked through the card's own deck dropdown, like a click, so the
+            // card, the dropdown and the lobby server agree. The game may set its own last-used deck while the card initialises, so the
+            // choice is checked again for the first 4 s; after that the player's own picks are left alone.
+            if(phase is "join" or "deck"&&!deckApplied&&ci!=null)
             {
-                deckApplied=true;var d=DefaultDeck();
-                if(d!=null){lobby.ChangeClientDeck(d);MelonLogger.Msg("FREEDOM_ARROW_RANKED_LOBBY default deck "+d.Name);}
+                var card=MyCard(meId);var d=DefaultDeck();
+                if(d==null){deckApplied=true;MelonLogger.Msg("FREEDOM_ARROW_RANKED_LOBBY no valid default deck to select");}
+                else if(card!=null&&card._deckList!=null&&card._deckList.Count>0&&now>=deckTry)
+                {
+                    if(deckFirst<0)deckFirst=now;
+                    deckTry=now+1f;
+                    if(SelectedName(card)!=d.Name)SelectDeck(card,d.Name,lobby,"default deck");
+                    else if(now-deckFirst>=4f){deckApplied=true;MelonLogger.Msg("FREEDOM_ARROW_RANKED_LOBBY default deck selected: "+d.Name);}
+                }
             }
+            // End of the 60 s: no deck, an unknown one or an invalid one -> the default deck (checked on the real selection, not just "any")
             if(phase is "reveal" or "launch"&&!finalized&&ci!=null&&lobby!=null)
             {
                 finalized=true;
-                if(ci.ShortDeck==null){var d=DefaultDeck();if(d!=null){lobby.ChangeClientDeck(d);MelonLogger.Msg("FREEDOM_ARROW_RANKED_LOBBY no deck at the end: default "+d.Name);}}
+                var card=MyCard(meId);var sel=card!=null?SelectedDeck(card):null;var d=DefaultDeck();
+                string why=ci.ShortDeck==null?"no deck":sel==null?"selection unknown":!DeckValid(sel)?"invalid deck "+SelectedName(card):null;
+                if(why!=null&&d!=null){SelectDeck(card,d.Name,lobby,$"{why} at the end of the deck pick: default");}
+                else if(why!=null)MelonLogger.Warning("FREEDOM_ARROW_RANKED_LOBBY "+why+" and no valid default deck");
+                else MelonLogger.Msg("FREEDOM_ARROW_RANKED_LOBBY deck kept: "+SelectedName(card));
             }
             // ready, and again if anything un-readied (checked every 3 s so a slow status echo is never toggled twice)
             if(phase is "reveal" or "launch"&&ci!=null&&lobby!=null&&!lobby.IsHost&&ci.Status!=ClientLobbyStatus.Ready&&now>=readyTry)
@@ -183,5 +200,30 @@ static partial class RankedMenu
         GUI.color=phase=="deck"?Red:Green;GUI.DrawTexture(new Rect(r.x,r.yMax-3,r.width,3),Texture2D.whiteTexture);GUI.color=o;
         var s=new GUIStyle(GUI.skin.label){fontSize=Mathf.RoundToInt(h*0.42f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};s.normal.textColor=Color.white;
         GUI.Label(r,text,s);
+    }
+    static TeamPanelPlayerInfo MyCard(int meId)
+    {
+        if(meId<0)return null;
+        foreach(var p in UnityEngine.Object.FindObjectsOfType<TeamPanelPlayerInfo>())try{if(p._clientInfo!=null&&p._clientInfo.Id==meId)return p;}catch{}
+        return null;
+    }
+    static IDeckDataModel SelectedDeck(TeamPanelPlayerInfo card)
+    {
+        try{var l=card._deckList;int i=card.SelectedDeckListID;return l!=null&&i>=0&&i<l.Count?l[i]:null;}catch{return null;}
+    }
+    static string SelectedName(TeamPanelPlayerInfo card){try{return SelectedDeck(card)?.TryCast<DeckDataModel>()?.Name??"";}catch{return "";}}
+    static bool DeckValid(IDeckDataModel d){try{var ds=DeckSvc();return ds!=null&&ds.ValidateDeck(d,out bool nonFull);}catch{return false;}}
+    // select by name through the card's dropdown (as a click: card, dropdown and lobby server all follow); fallback: the lobby call
+    static void SelectDeck(TeamPanelPlayerInfo card,string name,NetworkLobbyService lobby,string why)
+    {
+        try
+        {
+            var l=card?._deckList;int idx=-1;
+            for(int i=0;l!=null&&i<l.Count;i++)if(l[i]?.TryCast<DeckDataModel>()?.Name==name){idx=i;break;}
+            if(idx>=0&&card._decksDropdown!=null){card._decksDropdown.SetValue(idx,false);MelonLogger.Msg($"FREEDOM_ARROW_RANKED_LOBBY {why}: {name} (dropdown item {idx})");return;}
+            if(idx>=0){card.OnDeckSelected(idx);MelonLogger.Msg($"FREEDOM_ARROW_RANKED_LOBBY {why}: {name} (card item {idx})");return;}
+            var d=DefaultDeck();if(d!=null&&lobby!=null){lobby.ChangeClientDeck(d);MelonLogger.Msg($"FREEDOM_ARROW_RANKED_LOBBY {why}: {name} (lobby call; not in the card's list)");}
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_LOBBY select deck: "+e.Message);}
     }
 }

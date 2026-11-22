@@ -20,6 +20,7 @@ sealed class RankedRating
     public double Rating { get; set; } = Ranked.Start;
     public int Wins { get; set; }
     public int Losses { get; set; }
+    public int Draws { get; set; }
     public double Best { get; set; } = Ranked.Start;
     public DateTime Last { get; set; }
     public List<RankedRecent> Recent { get; set; } = new();   // newest first, at most 10 (ranked menu "recent matches")
@@ -32,6 +33,7 @@ sealed class RankedRecent
     public string Map { get; set; } = "";
     public string Vs { get; set; } = "";
     public bool Win { get; set; }
+    public bool Draw { get; set; }
     public double Change { get; set; }
     public double VsRating { get; set; }
 }
@@ -346,7 +348,13 @@ static class Ranked
         if (sa == "?" || sb == "?" || (sa != null && sa == sb) || winners.Count > 1)
         { Close(m, "disputed", new { sa, sb, winners }); return; }
         var w = winners[0];
-        if (w is not ("Alpha" or "Bravo")) { Close(m, "unrated", new { reason = "draw", winner = w }); return; }
+        // Draw (Lateralus 22 Nov: "use your draw proposal"): rated like half a win when both sides reported; else unrated as before.
+        if (w is not ("Alpha" or "Bravo"))
+        {
+            if (sa != null && sb != null) { if (!settle && Unmatched(m)) return; RateDraw(m); return; }
+            if (!timedOut) return;
+            Close(m, "unrated", new { reason = "draw_one_side_reported", winner = w }); return;
+        }
         if (sa != null && sb != null)
         {
             // Wait for more reports while the game flags deserters we cannot yet tell apart from players whose report is still coming.
@@ -401,6 +409,41 @@ static class Ranked
         foreach (var (id, c) in changes)
             if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) && !deserters.Contains(id) });
     }
+    // Draw = score 0.5 (standard Elo): raw_i = K (0.5 - E(r_i, enemy average)), a favourite loses a little and an underdog gains a
+    // little; each side is then shifted (not scaled: raws can have both signs) so its total is the team-average draw change x players,
+    // so the match adds no points. Equal teams of equal players: 0. No win bonus. A deserter takes his loss (K E(own, enemy avg)).
+    static void RateDraw(RankedMatch m)
+    {
+        var lad = m.Ladder;
+        var T = m.Teams.Select(t => t.Select(id => Get(lad, id, Name(id))).ToList()).ToList();
+        var avg = T.Select(t => t.Average(r => r.Rating)).ToList();
+        var deserters = Deserters(m);
+        var pre = T.SelectMany(t => t).ToDictionary(r => r.SteamId, r => r.Rating);
+        var change = new Dictionary<string, double>();
+        for (int i = 0; i < 2; i++)
+        {
+            double oe = avg[1 - i], pot = T[i].Count * K * (0.5 - Expected(avg[i], oe));
+            var raw = T[i].Select(r => K * (0.5 - Expected(r.Rating, oe))).ToList();
+            double shift = (raw.Sum() - pot) / T[i].Count;
+            for (int j = 0; j < T[i].Count; j++) change[T[i][j].SteamId] = deserters.Contains(T[i][j].SteamId) ? -K * Expected(T[i][j].Rating, oe) : raw[j] - shift;
+        }
+        for (int i = 0; i < 2; i++)
+            foreach (var r in T[i])
+            {
+                var b0 = r.Rating; r.Rating = Math.Max(Floor, r.Rating + change[r.SteamId]); change[r.SteamId] = r.Rating - b0;
+                if (deserters.Contains(r.SteamId)) r.Losses++; else r.Draws++;
+                r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow;
+                var other = T[1 - i]; var top = other.OrderByDescending(o => o.Rating).First();
+                r.Recent.Insert(0, new RankedRecent { T = DateTime.UtcNow, Format = m.Format, Map = m.Map, Vs = other.Count == 1 ? top.Name : top.Name + " +" + (other.Count - 1), VsRating = Math.Round(avg[1 - i], 1), Win = false, Draw = !deserters.Contains(r.SteamId), Change = Math.Round(change[r.SteamId], 2) });
+                if (r.Recent.Count > 10) r.Recent.RemoveRange(10, r.Recent.Count - 10);
+            }
+        _dirty = true;
+        _rateNumbers = pre.ToDictionary(k => k.Key, k => (k.Value, k.Value + change[k.Key])); _isDraw = true;
+        foreach (var d in deserters) Offend(d, "deserted");
+        Close(m, "rated", new { draw = true, deserters, avgA = avg[0], avgB = avg[1], changes = change });
+        foreach (var (id, c) in change)
+            if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = false, draw = !deserters.Contains(id) });
+    }
     // Option C shares (before any change of this match): winner i raw = K(1 - E(r_i, loser avg)), loser j raw = K E(r_j, winner avg),
     // each side scaled to baseChange x its player count.
     public static Dictionary<string, double> Shares(List<RankedRating> W, double rl, List<RankedRating> L, double rw, double baseChange)
@@ -450,17 +493,17 @@ static class Ranked
     // Per-player result of each player's latest ranked match, for the end screen (Lateralus 22 Nov: "end of match screens don't show any
     // ELO gain or loss for each player"). Unrated/disputed/cancelled matches list the players with no change and the reason.
     public static readonly Dictionary<string, object> LastResult = new();
-    static Dictionary<string, (double before, double after)>? _rateNumbers;
+    static Dictionary<string, (double before, double after)>? _rateNumbers; static bool _isDraw;
     static void Close(RankedMatch m, string state, object detail)
     {
-        var nums = _rateNumbers; _rateNumbers = null;
+        var nums = _rateNumbers; _rateNumbers = null; var draw = _isDraw; _isDraw = false;
         var players = m.Teams.SelectMany((t, ti) => t.Select(id => (id, ti))).Select(x =>
         {
             var r = Ladders[m.Ladder].GetValueOrDefault(x.id);
             var n = nums != null && nums.TryGetValue(x.id, out var v) ? v : ((double before, double after)?)null;
             return new { steamId = x.id, name = r?.Name ?? Name(x.id), team = x.ti, before = Math.Round(n?.before ?? r?.Rating ?? Start, 1), after = Math.Round(n?.after ?? r?.Rating ?? Start, 1), change = n == null ? 0 : Math.Round(n.Value.after - n.Value.before, 1) };
         }).ToList();
-        var res = new { matchId = m.Id, ladder = m.Ladder, format = m.Format, map = m.Map, outcome = state, detail = state == "rated" ? null : detail, at = DateTime.UtcNow, players };
+        var res = new { matchId = m.Id, ladder = m.Ladder, format = m.Format, map = m.Map, outcome = state, draw, detail = state == "rated" ? null : detail, at = DateTime.UtcNow, players };
         foreach (var t in m.Teams) foreach (var id in t) LastResult[id] = res;
         m.State = state; Matches.Remove(m.Id);
         Append(state, new { id = m.Id, mode = m.Mode, format = m.Format, detail });
@@ -475,7 +518,7 @@ static class Ranked
         var r = Ladders[lad].TryGetValue(steamId, out var x) ? x : new RankedRating { SteamId = steamId };   // a lookup never adds a player
         var place = Place(lad, steamId);
         return (object)new { rating = Math.Round(r.Rating, 2), level = Level(lad, r.Rating, place), place, wins = r.Wins, losses = r.Losses, best = Math.Round(r.Best, 2),
-            recent = r.Recent.Select(x => new { t = x.T, format = x.Format, map = x.Map, vs = x.Vs, vsRating = x.VsRating, win = x.Win, change = x.Change }) };
+            draws = r.Draws, recent = r.Recent.Select(x => new { t = x.T, format = x.Format, map = x.Map, vs = x.Vs, vsRating = x.VsRating, win = x.Win, draw = x.Draw, change = x.Change }) };
     });
     public static object Board(string ladder, int top = 200)
     {
