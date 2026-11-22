@@ -70,6 +70,9 @@ public partial class Mod
         m = new Material(orig) { name = orig.name + "@" + scheme };
         m.hideFlags |= HideFlags.DontUnloadUnusedAsset;
         m.SetTexture("_BaseColorMap", Tex(alt, false));
+        // 0.3.38 (Abrams X): a scheme may bring its own surface map, <texture>@<Scheme>_mask, when the default's is a custom finish (silver).
+        var mask = Path.ChangeExtension(png, null) + "@" + scheme + "_mask.png";
+        if (TexExists(mask)) { m.SetTexture("_MaskMap", Tex(mask, true)); m.EnableKeyword("_MASKMAP"); }
         paintMats[key] = m;
         return m;
     }

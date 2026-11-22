@@ -44,3 +44,11 @@
   Grey, Green mix, Camo 1/2, Mix 1/2. BUILD: --famodels <FAModels.dll 0.3.37 built from experimental-model-loader> and the 349 --asset lines of
   work/paint-variants-20261121/sib/asset-args2.txt (506 MB; new Assets version; run publish_assets_index.py). Compiled clean on the deck. Not seen in game:
   check the Z-10 card (Default + Camo, Dust, Navy, Plain), a non-scheme FAModels unit (no paint button) and a vanilla unit (vanilla skins).
+- 2026-11-21 20:3x PST, thread 1572407822849810463 (Osama: "you forgot the Abrams X paint schemes"). NOT IN BUILD 253: for the next 0.9.4 rebuild.
+  ASSETS + FAModels 0.3.38. The Abrams X default is our silver finish (brightened, shiny copy of the creator grey), so to_fat3.py found no coat; the
+  hull UV layout is the creator's. work/paint-variants-20261121/abramsx/make.py writes m_abramsx_{cg,lo}_tex0@{Grey,Camo,Dust,Green}.fat at the live
+  size plus @<Scheme>_mask.fat from the creator Metallic/Roughness (famconv rule) so the coats are not shiny, 5 swatches, and paint-schemes.json =
+  Assets 0.2.50's 74 units + "Abrams X". PaintSchemes.cs 0.3.38: a scheme's own <texture>@<Scheme>_mask is used when present. Re-check: of the 52
+  creator coat groups, only the Abrams X matched no live texture (the other unmatched groups are duplicate copies of matched packs).
+  BUILD: --famodels <FAModels.dll 0.3.38 from experimental-model-loader> and the 22 --asset lines of work/paint-variants-20261121/abramsx/asset-args.txt
+  (on top of Assets 0.2.50; new Assets version; run publish_assets_index.py). Compiled clean on the deck. Not seen in game.
