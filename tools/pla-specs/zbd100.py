@@ -29,14 +29,14 @@ def apply(t, g, ok, rec):
         return sorted([r for r in t[tab].values() if r and all(r.get(k) == v for k, v in kw.items())], key=lambda r: r['Id'])
 
     Z, BR = 945, 16
-    GUN, KE, HE, CHW, CHA = 2009827, 2009829, 2009831, 2018447, 2018448
+    GUN, KE, HE, CHW, CHA, MG = 2009827, 2009829, 2009831, 2018447, 2018448, 2009833
     ARM, MOB, SMOKE, APS, VG, LASER = 2009807, 2009809, 2000212, 82, 3, 8
     ok((U[Z]['HUDName'], U[BR]['HUDName']) == ('ZBD-20', 'M2A3 Bradley'), 'ZBD-20 and Bradley rows')
     ok(not any(u and NAME in (u.get('HUDName') or '') for u in U.values()), NAME + ' name free')
     ok([r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=Z)] == [ARM] and [r['MobilityId'] for r in rows('UnitPropulsionsJson', UnitId=Z)] == [MOB], 'ZBD-20 armour / drive rows')
     ok({r['UnitId'] for r in rows('UnitPropulsionsJson', MobilityId=MOB)} == {Z} and t['MobilityJson'][MOB]['IsAmphibious'] is True, 'drive row only on ZBD-20, amphibious')
     ok(not any(o.get('MobilityId') == MOB for o in t['OptionsJson'].values() if o), 'no option swaps in the ZBD-20 drive row')
-    ok([(r['WeaponId'], r['AmmunitionId'], r['Quantity']) for r in rows('WeaponAmmunitionsJson', UnitId=Z)][:2] == [(GUN, KE, 100), (GUN, HE, 234)], 'ZBD-20 gun rounds')
+    ok([(r['WeaponId'], r['AmmunitionId'], r['Quantity']) for r in rows('WeaponAmmunitionsJson', UnitId=Z)][:3] == [(GUN, KE, 100), (GUN, HE, 234), (MG, 2009835, 800)], 'ZBD-20 gun + coax rounds')
     ok((A[KE]['Damage'], A[KE]['PenetrationAtMinRange'], A[KE]['PenetrationAtGroundRange'], A[HE]['GroundRange']) == (1.5, 150.0, 75.0, 550.0), 'ZBD-20 KE 1.5 / 150-75, HE 550')
     ok((W[CHW]['HUDName'], A[CHA]['HUDName'], A[CHA]['LaserGuided']) == ('CH-901', 'CH-901', True), 'CH-901 rows')
     ok(t['SensorsJson'][VG]['Name'] == 'Very Good Optics' and t['SensorsJson'][VG]['OpticsGround'] == 2300.0, 'Very Good Optics 2300')
@@ -45,7 +45,9 @@ def apply(t, g, ok, rec):
     g.put('MobilityJson', MOB, {'IsAmphibious': False})
 
     d = dict(U[Z]); d.pop('Id')
-    d.update({k: U[BR][k] for k in ('ModelFileName', 'PortraitFileName', 'ThumbnailFileName', 'Length', 'Width', 'Height')})
+    # Body values of the stand-in, not the amphibious BMP-3 of the ZBD-20: WaterDiveOffset 0 (the ZBD-20's 1.23 came along in dev.19) and the
+    # Bradley sound preset.
+    d.update({k: U[BR][k] for k in ('ModelFileName', 'PortraitFileName', 'ThumbnailFileName', 'Length', 'Width', 'Height', 'WaterDiveOffset', 'AudioPreset')})
     d.update({'Name': 'PLA ' + NAME, 'HUDName': NAME, 'Cost': 80, 'OriginalCost': 0, 'InfantrySlots': 6, 'Description': None, 'OriginalName': None})
     uid = g.put('Units', max(U) + 1, d)
     g.add('UnitArmorsJson', rows('UnitArmorsJson', UnitId=Z)[0], {'UnitId': uid})
@@ -62,14 +64,19 @@ def apply(t, g, ok, rec):
     wa = rows('WeaponAmmunitionsJson', UnitId=Z)
     g.add('WeaponAmmunitionsJson', wa[0], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': ke})
     g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': gun, 'AmmunitionId': he})
-    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': CHW, 'AmmunitionId': CHA, 'Order': 2, 'Quantity': 8})
+    g.add('WeaponAmmunitionsJson', wa[2], {'UnitId': uid})   # coaxial Type 86 7.62 mm, as the ZBD-20 (800 rounds)
+    g.add('WeaponAmmunitionsJson', wa[1], {'UnitId': uid, 'WeaponId': CHW, 'AmmunitionId': CHA, 'Order': 3, 'Quantity': 8})
 
     T, TW = t['TurretsJson'], rows('TurretWeaponsJson', TurretId=53)
     base = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0'})
     chm = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0 CH-901'})
+    # dev.20 fix (22 Nov 03:2x, measured on Osama's PC in dev.19): with only the gun on the Bradley turret (and the CH-901 in the M240 slot) the
+    # Arsenal could not build the unit: GameLogs 'Couldn't load unit: PLA ZBD-100', AnimatorConnect duplicate trigger 'Shot'. The Type 89 FV on the
+    # same body loads. The mounts now follow the Bradley slots: 0 = 35 mm, 1 = coaxial MG (the ZBD-20's Type 86 7.62 mm), 2 = CH-901 (TOW slot).
     for tur in (base, chm):
         g.add('TurretWeaponsJson', TW[0], {'TurretId': tur, 'WeaponId': gun})
-    g.add('TurretWeaponsJson', TW[1], {'TurretId': chm, 'WeaponId': CHW})
+        g.add('TurretWeaponsJson', TW[1], {'TurretId': tur, 'WeaponId': MG})
+    g.add('TurretWeaponsJson', TW[2], {'TurretId': chm, 'WeaponId': CHW})
     for tur in (base, chm):
         g.add('TurretUnitsJson', rows('TurretUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'TurretId': tur})
 
@@ -103,7 +110,7 @@ def apply(t, g, ok, rec):
     # checks
     ok(t['MobilityJson'][MOB]['IsAmphibious'] is False, 'ZBD-20 / ZBD-100 drive row not amphibious')
     ok([r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=uid)] == [ARM] and [r['MobilityId'] for r in rows('UnitPropulsionsJson', UnitId=uid)] == [MOB], 'ZBD-100 = ZBD-20 armour and drive rows')
-    ok((U[uid]['Cost'], U[uid]['InfantrySlots'], U[uid]['ModelFileName'], U[uid]['CountryId']) == (80, 6, 'US_M2A3', 4), 'ZBD-100 card: 80, 6 seats, Bradley model, China')
+    ok((U[uid]['Cost'], U[uid]['InfantrySlots'], U[uid]['ModelFileName'], U[uid]['CountryId'], U[uid]['WaterDiveOffset']) == (80, 6, 'US_M2A3', 4, U[BR]['WaterDiveOffset']), 'ZBD-100 card: 80, 6 seats, Bradley model and dive offset, China')
     ok([r['SensorId'] for r in rows('SensorUnitsJson', UnitId=uid)] == [VG], 'ZBD-100 Very Good Optics (card 2000 m)')
     ok(all(W[gun][k] == W[GUN][k] for k in W[GUN] if k not in ('Id', 'Name', 'HUDName')), '35 mm gun = ZBD-20 gun (fire rate)')
     ok(abs(A[ke]['Damage'] / A[KE]['Damage'] * 1.55 - 2.0) < 0.01, ('KE card DPS 1.55 -> 2.0', round(A[ke]['Damage'] / A[KE]['Damage'] * 1.55, 3)))
@@ -116,7 +123,7 @@ def apply(t, g, ok, rec):
     linked = {r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)}
     ok(all(o.get(f'Ability{k}Id', 0) in linked | {0} for o in opts for k in (1, 2, 3)), 'every option ability linked')
     tw = {tur: [(w['Order'], w['WeaponId']) for w in rows('TurretWeaponsJson', TurretId=tur)] for tur in (base, chm)}
-    ok(tw == {base: [(0, gun)], chm: [(0, gun), (1, CHW)]}, ('mounts', tw))
+    ok(tw == {base: [(0, gun), (1, MG)], chm: [(0, gun), (1, MG), (2, CHW)]}, ('mounts = Bradley slots', tw))
     ok({w for v in tw.values() for _, w in v} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)}, 'mount weapons == ammo weapons')
     ok(len(rows('TransportAvailabilitiesJson', UnitId=uid)) == len(fit) > 0, ('transport cards', fit, 'too big', big))
     card = [r for r in SA.values() if r and r['UnitId'] == uid]
