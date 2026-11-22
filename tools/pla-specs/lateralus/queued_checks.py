@@ -174,5 +174,9 @@ if m>=key('0.9.5-dev.6'):
 if m>=key('0.9.5-dev.16'):
     if 'FREEDOM_ARROW_WEBSITE_BUTTON'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the website button (FREEDOM_ARROW_WEBSITE_BUTTON)')
     if 'UserData/FreedomArrow/menu-art/website-button.png' not in z.namelist():bad.append('menu-art/website-button.png missing')
+# From 0.9.5-dev.17 (Osama 22 Nov 2026, thread 1573505321010331651): out-of-date banner for launchers older than 1.1.9 (WebsiteButton.cs).
+if m>=key('0.9.5-dev.17'):
+    if 'FREEDOM_ARROW_LAUNCHER_NOTICE'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the old-launcher banner (FREEDOM_ARROW_LAUNCHER_NOTICE)')
+    if 'UserData/FreedomArrow/menu-art/launcher-update.png' not in z.namelist():bad.append('menu-art/launcher-update.png missing')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
