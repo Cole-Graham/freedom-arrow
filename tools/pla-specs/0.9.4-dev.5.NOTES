@@ -73,3 +73,11 @@
 - 2026-11-21 21:3x PST, thread 1572407822849810463 (Osama: "ZBD-251 next patch should be air droppable"). NOT IN BUILD 255. DATA: section 25 ->
   zbd251_airdrop_094.py: ZBD-251 (1056) own mobility row 2010729 IsAirDroppable False -> True (same flag as BMD-4M / ZBD-03). Nothing else changes.
   Batch checks 2235 pass. Not seen in game: check the ZBD-251 can be air-dropped in a spec with a transport plane.
+- 2026-11-21 21:4x PST, thread 1572407822849810463 (Osama: "many bug reports with the HJ-10 and other loitering munitions. Guiding them makes them go
+  erratic", "we had the other NLOS like the CTL 181 NLOS working before"). NOT IN BUILD 255. RUNTIME (rebuild the runtime DLL): NlosTrait.cs. Player
+  logs 19-22 Nov (R2): HJ-10 (ammo 2009623) and QN-502 (2009651) about 3 forced restores per launch and 1 in 7 missiles restored 20 frames in a row
+  (pattern: launcher loses its target -> game drops the seeker target, reason Unspecified -> hook puts it back next frame -> dropped again); CTL-181
+  (2018321) 442 launches on 0.9.3 with no restores. Fix: an allowed drop hands the missile to the game for good (no more restores), and a seeker that
+  switches to another live target keeps it (player re-guide). Kept reasons (no LOS / vision / distance / angle / shooter without target / laser)
+  still hold the lock. Compiled clean on the deck. Not seen in game: after the build, check R2 logs for nlos_drop_allowed "vanilla guidance from
+  here" and no "restored 20 times", and guide an HJ-10 / QN-502 in Skirmish.

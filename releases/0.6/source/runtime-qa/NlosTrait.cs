@@ -30,7 +30,8 @@ namespace FreedomArrow;
 // - SeekerSystem.InternalUpdate prefix: the seeker keeps the original target, with line of sight and vision set and the last
 //   target position set to where the target is now, so the missile follows a moving target with no laser.
 // - SeekerSystem.DropCurrentTarget prefix: drops for no line of sight, not visible, too far, beyond seeker angles, shooter
-//   without target and no laser spot are skipped. Target dead or a target switch drop as in vanilla.
+//   without target and no laser spot are skipped. Target dead or a target switch drop as in vanilla. 0.9.4 batch: any other drop
+//   hands the missile to the game for good, and a seeker that switches to another live target keeps it (player guidance).
 // Both patched methods take only Entity, bool and enum parameters (no ref non-blittable struct; see MissileHitChance.cs).
 // Every action is logged (FREEDOM_ARROW_NLOS lines, capped) and written to the diagnostic log.
 static class NlosTrait
@@ -275,7 +276,18 @@ static class NlosTrait
                 Log("nlos_target_dead",$"missile {Id(missile)}: target {Id(target)} gone; vanilla behaviour from here",new{missile=Id(missile),target=Id(target)});
                 return;
             }
-            if(!SeekerTarget(missile,out var current)||Key(current)!=Key(target))
+            bool hasCurrent=SeekerTarget(missile,out var current);
+            if(hasCurrent&&current.IsAlive&&Key(current)!=Key(target))
+            {
+                // 0.9.4 batch (Osama 21 Nov 2026 21:3x PST, thread 1572407822849810463: "many bug reports with the HJ-10 and other loitering munitions.
+                // Guiding them makes them go erratic"). Player logs 19-22 Nov: HJ-10 and QN-502 missiles were snapped back to their first target
+                // about 3 times each and 1 in 7 hit the 20-restore limit, while the CTL-181 had none. A seeker that has switched to another live target
+                // (the player re-guided it, or a new laser spot) now keeps that target, and it becomes the target the trait holds.
+                missiles[key]=Key(current);restores.Remove(key);
+                Log("nlos_retarget",$"missile {Id(missile)}: seeker switched from {Id(target)} to {Id(current)}; the new target is kept",new{missile=Id(missile),from=Id(target),to=Id(current)});
+                target=current;
+            }
+            else if(!hasCurrent||Key(current)!=Key(target))
             {
                 // The seeker lost or switched its target: put the original target back, at most MaxRestore times per missile.
                 restores.TryGetValue(key,out int n);
@@ -306,7 +318,11 @@ static class NlosTrait
             if(!missile.IsAlive||!NlosTarget(missile,out var target))return true;
             if(!target.IsAlive||Array.IndexOf(KeptReasons,reason)<0)
             {
-                Log("nlos_drop_allowed",$"missile {Id(missile)}: drop reason {__3} ({reason}) allowed",new{missile=Id(missile),reason,targetAlive=target.IsAlive});
+                // 0.9.4 batch (Osama 21 Nov 2026 21:3x PST: "Guiding them makes them go erratic"). An allowed drop now hands the missile to the
+                // game for good. Before, the seeker update put the old target back on the next frame and the game dropped it again: player logs
+                // show HJ-10 / QN-502 missiles pulled back and forth 20 frames in a row (drop reason Unspecified after the launcher's target changed).
+                missiles[Key(missile)]=0;
+                Log("nlos_drop_allowed",$"missile {Id(missile)}: drop reason {__3} ({reason}) allowed; vanilla guidance from here",new{missile=Id(missile),reason,targetAlive=target.IsAlive});
                 return true;
             }
             kept++;
