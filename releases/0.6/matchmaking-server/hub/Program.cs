@@ -19,9 +19,14 @@ app.MapPost("/hubs/stats/v1/match", async (HttpRequest r) =>
     using var sr = new StreamReader(r.Body); var body = await sr.ReadToEndAsync();
     if (body.Length > 512 * 1024) return Results.StatusCode(413);
     try { JsonDocument.Parse(body); } catch { return Results.BadRequest(); }
-    lock (Store.Lock) File.AppendAllText(statsFile, body.ReplaceLineEndings(" ") + "\n");
+    lock (Store.Lock) { File.AppendAllText(statsFile, body.ReplaceLineEndings(" ") + "\n"); Ranked.OnStats(body); }
+    Ranked.Flush();
     return Results.Json(new { ok = true });
 });
+// Ranked (Lateralus 22 Nov 2026, docs/ranked/RANKED-PROPOSAL.md): ratings and ledger in ../ranked (FAQUEUE_RANKED_DIR overrides).
+Ranked.Init(app.Services.GetRequiredService<IHubContext<GameHub>>(), app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("Ranked"),
+    Environment.GetEnvironmentVariable("FAQUEUE_RANKED_DIR") ?? Path.Combine(AppContext.BaseDirectory, "..", "ranked"));
+app.MapGet("/hubs/ranked/leaderboard/{ladder}", (string ladder) => { lock (Store.Lock) return ladder is "1v1" or "team" ? Results.Json(Ranked.Board(ladder)) : Results.NotFound(); });
 var url = Environment.GetEnvironmentVariable("FAQUEUE_URL") ?? "http://127.0.0.1:8651";
 app.Run(url);
 
@@ -91,7 +96,7 @@ sealed class GameHub : Hub
 {
     readonly IHubContext<GameHub> _ctx;
     readonly ILogger<GameHub> _log;
-    public GameHub(IHubContext<GameHub> ctx, ILogger<GameHub> log) { _ctx = ctx; _log = log; }
+    public GameHub(IHubContext<GameHub> ctx, ILogger<GameHub> log) { _ctx = ctx; _log = log; InviteLog ??= log; }
 
     // ---------- helpers (call under Store.Lock) ----------
     Player Me() => Store.ByConn.TryGetValue(Context.ConnectionId, out var p) ? p : throw new HubException("Call Hello before using this method.");
@@ -129,10 +134,12 @@ sealed class GameHub : Hub
         l.Members.Remove(m);
         p.LobbyId = null;
         SetStatus(p, "menu");
-        if (m.Host || l.Members.Count == 0)
+        bool ranked = Ranked.Matches.ContainsKey(l.Id);
+        if (m.Host || l.Members.Count == 0 || ranked)
         {
             l.State = "closed";
-            ToLobby(l, "MatchFailed", new { lobbyId = l.Id, reason = m.Host ? "host_left" : reason });
+            Ranked.OnLobbyClosed(l);
+            ToLobby(l, "MatchFailed", new { lobbyId = l.Id, reason = m.Host ? "host_left" : ranked ? "ranked_player_left" : reason });
             ToLobby(l, "LobbyClosed", new { lobbyId = l.Id });
             foreach (var x in l.Members) if (Store.BySteam.TryGetValue(x.SteamId, out var xp)) { xp.LobbyId = null; SetStatus(xp, "menu"); }
             l.Members.Clear();
@@ -195,6 +202,7 @@ sealed class GameHub : Hub
         {
             if (Store.ByConn.Remove(Context.ConnectionId, out var p) && Store.BySteam.TryGetValue(p.SteamId, out var cur) && cur == p)
             {
+                Ranked.Dequeue(p.SteamId);
                 if (p.LobbyId != null && Store.Lobbies.TryGetValue(p.LobbyId, out var l) && l.State != "starting") Remove(p, l, "left");
                 Store.BySteam.Remove(p.SteamId);
                 Dir("player.removed", p.SteamId);
@@ -244,6 +252,10 @@ sealed class GameHub : Hub
         }
     }
 
+    // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
+    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)) }; } }
+    public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }
+
     public object GetOnlinePlayers() { lock (Store.Lock) return Store.BySteam.Values.Select(p => p.Online()).ToArray(); }
 
     public object GetLobbyList(string compat)
@@ -267,6 +279,12 @@ sealed class GameHub : Hub
         {
             var p = Me();
             if (p.LobbyId != null) throw new HubException("leave_lobby_first");
+            if (Ranked.IsRanked(mode))
+            {
+                var err = Ranked.Enqueue(p, mode);
+                if (err != null) throw new HubException(err);
+                goto done;
+            }
             p.SearchMode = mode;
             SetStatus(p, "searching");
             var l = Store.Lobbies.Values.Where(x => x.Open && x.State == "gathering" && !x.Full && x.Mode == mode && x.Build == p.Build && !x.Banned.Contains(p.SteamId))
@@ -281,13 +299,14 @@ sealed class GameHub : Hub
                     if (Store.BySteam.TryGetValue(id, out var q) && q.LobbyId == null && !l.Full) { Join(q, l, false); To(q, "MatchFound", new { lobbyId = l.Id, mode = l.Mode }); }
             _log.LogInformation("find {name} {mode}: {what} {id}", p.Name, mode, host ? "hosts" : "joins", l.Id);
         }
-        await Flush(); return null;
+        done:
+        await Flush(); Ranked.Flush(); return null;
     }
 
     public async Task<object?> CancelFind()
     {
-        lock (Store.Lock) { var p = Me(); p.SearchMode = null; if (p.LobbyId == null) SetStatus(p, "menu"); }
-        await Flush(); return null;
+        lock (Store.Lock) { var p = Me(); Ranked.Dequeue(p.SteamId); p.SearchMode = null; if (p.LobbyId == null) SetStatus(p, "menu"); }
+        await Flush(); Ranked.Flush(); return null;
     }
 
     public async Task<object?> JoinOpenLobby(string lobbyId)
@@ -323,10 +342,18 @@ sealed class GameHub : Hub
         await Flush(); return id;
     }
 
+    // Osama 19 Nov 2026: the #looking-for-game post links the game's own join link (share.brokenarrowgame.tech/invite/...). ba-lfg-watch
+    // reads the host's native invite from this journal line; it is the same invite every joiner already receives through JoinGameServer.
+    public static ILogger? InviteLog;
     static void ApplyReport(Lobby l, JsonElement r)
     {
         if (r.ValueKind != JsonValueKind.Object) return;
-        if (r.TryGetProperty("invite", out var inv) && inv.ValueKind == JsonValueKind.Object) l.Invite = inv.Clone();
+        if (r.TryGetProperty("invite", out var inv) && inv.ValueKind == JsonValueKind.Object)
+        {
+            var changed = l.Invite == null || l.Invite.Value.GetRawText() != inv.GetRawText();
+            l.Invite = inv.Clone();
+            if (changed) InviteLog?.LogInformation("invite lobby {id} {invite}", l.Id, inv.GetRawText());
+        }
         if (r.TryGetProperty("scenario", out var s) && s.ValueKind == JsonValueKind.String) l.Scenario = Clip(s.GetString(), 128);
         if (r.TryGetProperty("playerCount", out var c) && c.TryGetInt32(out var ci)) l.PlayerCount = ci;
         if (r.TryGetProperty("slotsA", out var a) && a.TryGetInt32(out var ai)) l.SlotsA = ai;
@@ -386,6 +413,7 @@ sealed class GameHub : Hub
             if (Store.Lobbies.TryGetValue(lobbyId ?? "", out var l))
             {
                 l.State = "starting";
+                Ranked.OnStarted(l);
                 ToLobby(l, "MatchStarted", new { lobbyId = l.Id });
                 foreach (var m in l.Members) if (Store.BySteam.TryGetValue(m.SteamId, out var q)) { q.LobbyId = null; SetStatus(q, "battle"); }
                 Store.Lobbies.Remove(l.Id);
@@ -466,7 +494,17 @@ sealed class GameHub : Hub
                 case "accept":
                     if (partyId == null || !Store.Parties.TryGetValue(partyId, out var ap) || !ap.Invites.Remove(p.SteamId)) throw new HubException("no_invite");
                     if (pt != null && pt != ap) Leave(p, pt);
-                    ap.Members.Add(p.SteamId); p.PartyId = ap.Id; PartyNews(ap); break;
+                    ap.Members.Add(p.SteamId); p.PartyId = ap.Id; PartyNews(ap);
+                    // Osama 21 Nov 2026: "when we invite people, let's not invite them to our group, we just invite them to our lobby". When the
+                    // inviter is in a gathering lobby, accepting sends the guest that lobby as a MatchFound; ArrowQueue's client already follows its
+                    // party leader into a MatchFound lobby (Signal.Matched -> FollowLater -> Flow.BeginFollow -> JoinLobby), so no client update is needed.
+                    if (Store.BySteam.TryGetValue(ap.Leader, out var lead) && lead.LobbyId != null && Store.Lobbies.TryGetValue(lead.LobbyId, out var ll)
+                        && ll.State == "gathering" && !ll.Full && !ll.Banned.Contains(p.SteamId) && ll.Members.All(m => m.SteamId != p.SteamId))
+                    {
+                        To(p, "MatchFound", new { lobbyId = ll.Id, mode = ll.Mode });
+                        _log.LogInformation("lobby invite {name} -> lobby {id} of {host}", p.Name, ll.Id, lead.Name);
+                    }
+                    break;
                 case "decline":
                     if (partyId != null && Store.Parties.TryGetValue(partyId, out var dp)) { dp.Invites.Remove(p.SteamId); PartyNews(dp); }
                     break;
