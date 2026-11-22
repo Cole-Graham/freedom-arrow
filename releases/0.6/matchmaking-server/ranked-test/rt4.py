@@ -1,7 +1,7 @@
 # Queue separation (Lateralus 22 Nov): 1v1 is its own solo queue; the team queue only makes 3v3 or 5v5.
 import sys,os,time,json,urllib.request;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from rt_client import C,stats
-B='http://127.0.0.1:8652/hubs/test'
+B='http://127.0.0.1:8652/hubs/test/hubs'
 def fmt(xs):
     out={}
     for x in xs:

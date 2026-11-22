@@ -50,7 +50,7 @@ sealed class RankedMatch
     public string Id = "", Mode = "", Format = "", Ladder = "", LobbyId = "", Map = "";
     public List<string>[] Teams = { new(), new() };
     public DateTime Created = DateTime.UtcNow;
-    public DateTime? Started;
+    public DateTime? Started, FirstVote;
     public string State = "lobby";   // lobby | battle | rated | disputed | cancelled | unrated
     public readonly Dictionary<string, (string side, string winner, string key, JsonNode report)> Votes = new();
 }
@@ -300,6 +300,7 @@ static class Ranked
         if (m == null) return;
         var steam = m.Teams.SelectMany(t => t).First(id => Who(id) == who);
         m.Votes[steam] = (side, winner, key ?? "", r!);
+        m.FirstVote ??= DateTime.UtcNow;
         Append("report", new { id = m.Id, steam, side, winner, key });
         TryResolve(m, false);
     }
@@ -307,10 +308,13 @@ static class Ranked
     {
         foreach (var m in Matches.Values.Where(x => x.State == "battle" && x.Votes.Count > 0).ToList())
             if ((DateTime.UtcNow - m.Started!.Value).TotalMinutes > 45 + OneSidedWaitMin) TryResolve(m, true);
+            // both sides reported but a flagged deserter could not be matched yet: settle 10 minutes after the first report
+            else if (m.FirstVote is DateTime f && (DateTime.UtcNow - f).TotalMinutes > ReportWaitMin) TryResolve(m, false, settle: true);
         foreach (var m in Matches.Values.Where(x => x.State == "battle" && x.Votes.Count == 0 && (DateTime.UtcNow - x.Started!.Value).TotalHours > 3).ToList())
         { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "no_reports" }); Matches.Remove(m.Id); }
     }
-    static void TryResolve(RankedMatch m, bool timedOut)
+    const double ReportWaitMin = 10;
+    static void TryResolve(RankedMatch m, bool timedOut, bool settle = false)
     {
         // Each hub team must report one native side (Alpha/Bravo) consistently.
         string? SideOf(int t) { var s = m.Teams[t].Where(m.Votes.ContainsKey).Select(id => m.Votes[id].side).Distinct().ToList(); return s.Count == 1 ? s[0] : s.Count == 0 ? null : "?"; }
@@ -320,7 +324,12 @@ static class Ranked
         { Close(m, "disputed", new { sa, sb, winners }); return; }
         var w = winners[0];
         if (w is not ("Alpha" or "Bravo")) { Close(m, "unrated", new { reason = "draw", winner = w }); return; }
-        if (sa != null && sb != null) { Rate(m, sa == w ? 0 : 1); return; }
+        if (sa != null && sb != null)
+        {
+            // Wait for more reports while the game flags deserters we cannot yet tell apart from players whose report is still coming.
+            if (!settle && Unmatched(m)) return;
+            Rate(m, sa == w ? 0 : 1); return;
+        }
         if (!timedOut) return;
         // One side silent: rate only if every silent-side player is a deserter in the reporting side's own report.
         var reported = sa != null ? 0 : 1; var repSide = sa ?? sb!;
@@ -344,14 +353,53 @@ static class Ranked
             r.Recent.Insert(0, new RankedRecent { T = DateTime.UtcNow, Format = m.Format, Map = m.Map, Vs = other.Count == 1 ? top.Name : top.Name + " +" + (other.Count - 1), VsRating = Math.Round(other.Average(o => o.Rating), 1), Win = win, Change = Math.Round(c, 2) });
             if (r.Recent.Count > 10) r.Recent.RemoveRange(10, r.Recent.Count - 10);
         }
-        foreach (var r in W) { var c = baseChange * (1 + Bonus(r.Rating)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c; }
+        // Deserters (Lateralus 22 Nov; vanilla 1.1 counts a player still disconnected at the end as a deserter, and 1.0.10 stopped
+        // deserters gaining Elo): a player the game itself flags as Deserter never gains - on the winning team he takes the loss.
+        var deserters = Deserters(m);
+        foreach (var r in W)
+        {
+            if (deserters.Contains(r.SteamId)) { var b0 = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - b0; continue; }
+            var c = baseChange * (1 + Bonus(r.Rating)); r.Rating += c; r.Wins++; r.Best = Math.Max(r.Best, r.Rating); r.Last = DateTime.UtcNow; changes[r.SteamId] = c;
+        }
         foreach (var r in L) { var before = r.Rating; r.Rating = Math.Max(Floor, r.Rating - baseChange); r.Losses++; r.Last = DateTime.UtcNow; changes[r.SteamId] = r.Rating - before; }
-        foreach (var r in W) Note(r, true, L, changes[r.SteamId]);
+        foreach (var r in W) Note(r, !deserters.Contains(r.SteamId), L, changes[r.SteamId]);
         foreach (var r in L) Note(r, false, W, changes[r.SteamId]);
         _dirty = true;
-        Close(m, "rated", new { winTeam, deserted, avgW = rw, avgL = rl, baseChange, changes });
+        Close(m, "rated", new { winTeam, deserted, deserters, avgW = rw, avgL = rl, baseChange, changes });
         foreach (var (id, c) in changes)
-            if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) });
+            if (Store.BySteam.TryGetValue(id, out var q)) Send(q, "RankedResult", new { matchId = m.Id, ladder = lad, change = Math.Round(c, 2), rating = Math.Round(Get(lad, id).Rating, 2), win = m.Teams[winTeam].Contains(id) && !deserters.Contains(id) });
+    }
+    // Hub players flagged Deserter by the game's end-of-match statistics. Reports name players only by in-match uid; a reporter's own
+    // uid is myUid. So: on each side, the silent players (no report) are deserters when the reports flag at least that many non-reporting,
+    // non-bot players of that side as Deserter. A reporter flagged Deserter (left, then reported) is matched by uid directly.
+    static bool Unmatched(RankedMatch m)
+    {
+        var mine = new HashSet<int>(m.Votes.Values.Select(v => (int?)v.report["myUid"] ?? -1));
+        bool flagged = m.Votes.Values.Any(v => (v.report["players"]?.AsArray() ?? new JsonArray()).Any(p => p != null && (bool?)p["Deserter"] == true && !((bool?)p["bot"] ?? false) && !mine.Contains((int?)p["uid"] ?? -1)));
+        return flagged && m.Teams.Sum(t => t.Count(id => !m.Votes.ContainsKey(id))) > Deserters(m).Count;
+    }
+    static HashSet<string> Deserters(RankedMatch m)
+    {
+        var res = new HashSet<string>();
+        var reporterUid = new Dictionary<int, string>();
+        foreach (var (steam, v) in m.Votes) if (v.report["myUid"]?.GetValue<int>() is int u) reporterUid[u] = steam;
+        var flagged = new Dictionary<string, HashSet<int>>();   // side -> uids flagged Deserter that did not report
+        foreach (var v in m.Votes.Values)
+            foreach (var p in v.report["players"]?.AsArray() ?? new JsonArray())
+            {
+                if (p == null || (bool?)p["Deserter"] != true || ((bool?)p["bot"] ?? false)) continue;
+                int uid = (int?)p["uid"] ?? -1; string side = (string?)p["team"] ?? "";
+                if (reporterUid.TryGetValue(uid, out var st)) { res.Add(st); continue; }
+                (flagged.TryGetValue(side, out var set) ? set : flagged[side] = new HashSet<int>()).Add(uid);
+            }
+        for (int t = 0; t < 2; t++)
+        {
+            var side = m.Teams[t].Where(m.Votes.ContainsKey).Select(id => m.Votes[id].side).FirstOrDefault()
+                       ?? (m.Teams[1 - t].Where(m.Votes.ContainsKey).Select(id => m.Votes[id].side).FirstOrDefault() is string o ? (o == "Alpha" ? "Bravo" : "Alpha") : null);
+            var silent = m.Teams[t].Where(id => !m.Votes.ContainsKey(id)).ToList();
+            if (side != null && silent.Count > 0 && flagged.TryGetValue(side, out var f) && f.Count >= silent.Count) res.UnionWith(silent);
+        }
+        return res;
     }
     static void Close(RankedMatch m, string state, object detail)
     {
