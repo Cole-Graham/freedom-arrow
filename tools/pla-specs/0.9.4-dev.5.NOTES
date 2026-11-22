@@ -129,3 +129,11 @@
   Full copies with their loadout options; placeholder prices. ASSETS: work/blue-dragon-models-20261122 (K2, Type 16, Type 74, Type 19, F-2, both
   F-35Bs; tanks at higher resolution per Osama "the tanks all are" important: armory 4096 / battle 2048 textures, battle ~68.6k tris, LOD1 60% /
   LOD2 35%). Not seen in game.
+- 2026-11-22 02:0x PST, thread 1573418243715113213 (Osama: "just try building the KF-21", "make sure all of these make it to the test build",
+  "K-2 should be 10% bigger", "F-2 needs a vanilla cockpit transplant", "Korean F-35 doesn't have its gears"). ASSETS ONLY (no data change):
+  work/blue-dragon-models-20261122/asset-args.txt = 504 --asset lines (1.36 GB): all 13 Blue Dragon models incl. KF-21 (Shawn's 3ds Max 2022 file
+  read with the Blender add-on io_scene_max 1.9.2, map channel 1; 4 seller liveries -> default + BlueTiger/Prototype/YellowTiger schemes, the last
+  with its own _mask), K2 models.json scale 1.1, F-2 canopy cockpitDonor US_F16_Glass, ROKN F-35 gear from the JASDF F-35B, 3ds Max/LightWave
+  metallic-1.0 materials -> 0.15 (F-35B JASDF, F-35B ROKN, Type 16). models.json (214) / paint-schemes.json (90) are full copies over Assets
+  0.2.51: merge with other queued copies (e.g. ZTZ-99B batch). On Vengeance as UserData/FAModels deltas (bd2 432 files, bd3 92 files), not a
+  published Assets version. Not seen in game: Type 19 and F-35B (JASDF) reported "didn't come out right" (cause not seen yet).

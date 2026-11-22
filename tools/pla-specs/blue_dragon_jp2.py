@@ -1,6 +1,6 @@
 """Blue Dragon cards for the rest of Shawn's "Blue Dragon Models" folder (Osama 22 Nov 2026 00:3x PST, thread 1573418243715113213: "all of these
 models should be made into units"). Full copies of base-game parents WITH their armory options (loadouts), placeholder stats/prices, spec 23:
-- F-2A: F-16C Fighting Falcon (285).            - KF-21 Boramae: F-16V Viper (284); F-16 model until Shawn exports the .max to FBX.
+- F-2A: F-16C Fighting Falcon (285).            - KF-21 Boramae: F-16V Viper (284); own model read from the .max with io_scene_max.
 - F-35B (JASDF) and F-35B (ROKN): F-35B (295).   - Type 19: PCL-181 / SH-15 (1034, wheeled 155 mm), US side.
 Models (F-2, both F-35Bs, Type 19) are Assets in work/blue-dragon-models-20261122. K2 / Type 16 / Type 74 cards exist (blue_dragon_tanks.py)."""
 
