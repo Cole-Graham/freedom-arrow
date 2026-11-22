@@ -79,7 +79,7 @@ static class PartySizeWarning
     {
         if(!Showing)return;
         float k=Screen.height/1080f;
-        float w=Mathf.Min(1200*k,Screen.width-20),h=320*k;
+        float w=Mathf.Min(1400*k,Screen.width-20),h=430*k;
         float cx=Screen.width/2f,top=30*k;
         try
         {
@@ -91,10 +91,10 @@ static class PartySizeWarning
         }
         catch{readyButton=null;}
         var r=new Rect(Mathf.Clamp(cx-w/2,10,Screen.width-w-10),Mathf.Clamp(top,0,Screen.height-h),w,h);
-        int fs=Mathf.Max(12,Mathf.RoundToInt(25*k));
+        int fs=Mathf.Max(14,Mathf.RoundToInt(34*k));
         if(titleStyle==null||bodyStyle.fontSize!=fs)
         {
-            titleStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=Mathf.RoundToInt(fs*1.45f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=true};
+            titleStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=Mathf.RoundToInt(fs*1.4f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=true};
             bodyStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=fs,alignment=TextAnchor.UpperCenter,wordWrap=true};
             buttonStyle=new GUIStyle(GUI.skin.button){fontSize=Mathf.RoundToInt(fs*1.1f),fontStyle=FontStyle.Bold};
         }
@@ -103,11 +103,11 @@ static class PartySizeWarning
         GUI.color=new Color(1f,0.42f,0.42f,1f);GUI.DrawTexture(new Rect(r.x-5,r.y-5,r.width+10,r.height+10),Texture2D.whiteTexture);
         GUI.color=new Color(0.70f,0.06f,0.08f,0.98f);GUI.DrawTexture(r,Texture2D.whiteTexture);
         GUI.color=old;
-        GUI.Label(new Rect(r.x+20,r.y+14*k,r.width-40,80*k),"WARNING: TOO MANY PLAYERS FOR THIS MAP\n警告：玩家人数超过地图设计",titleStyle);
-        GUI.Label(new Rect(r.x+40,r.y+110*k,r.width-80,150*k),
+        GUI.Label(new Rect(r.x+20,r.y+16*k,r.width-40,120*k),"WARNING: TOO MANY PLAYERS FOR THIS MAP\n警告：玩家人数超过地图设计",titleStyle);
+        GUI.Label(new Rect(r.x+40,r.y+150*k,r.width-80,180*k),
             "Oversized teams cause balance issues. We encourage playing maps at their recommended size.\n\n"+
             "超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。",bodyStyle);
-        if(GUI.Button(new Rect(r.x+r.width/2-230*k,r.y+r.height-70*k,460*k,52*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
+        if(GUI.Button(new Rect(r.x+r.width/2-320*k,r.y+r.height-84*k,640*k,66*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
         {
             dismissed=active;
             MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE dismissed ({map}, {party} per team)");
