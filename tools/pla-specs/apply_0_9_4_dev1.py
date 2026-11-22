@@ -518,6 +518,9 @@ for x in _lost:g.put('Units',x,{'IsUnitModification':False})
 ok(not [a_ for a_ in SAJ_.values() if a_ and U.get(a_.get('UnitId'),{}).get('IsUnitModification') and a_['UnitId'] not in _rep],'no card left on a loadout-only unit')
 ok(len([a_ for a_ in SAJ_.values() if a_ and a_.get('UnitId') in (64,351) and a_.get('SpecializationId')==5])==2,'US Airborne infantry has both Airborne and Airborne NGSW')
 rec['split_cards_visible']={str(x):U[x]['HUDName'].strip() for x in _lost}
+# ---------- 19. China balance patch (Osama 21 Nov 2026 18:2x PST, thread 1567745029781454889: Doc "China changes 9.4" 1uhNb7jt, "I have a list of new
+# changes for you", "Balance patch"). All 37 lines; HJ-10 = 140 points (18:3x). Readings and rows: china_balance_094.py.
+import china_balance_094;china_balance_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

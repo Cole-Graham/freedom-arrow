@@ -1,0 +1,8 @@
+0.9.4-dev.4 batch notes (append; one line per change). Builder: read these before building. Base: 0.9.4-dev.3 (build 250, out/local-094dev3); Assets 0.2.49.
+- 2026-11-21 18:3x PST, thread 1567745029781454889 (Osama: Doc "China changes 9.4" 1uhNb7jt0RmhXCnNYMXUrVSoZHo05R1eOnTTv_vRxEX4, "Balance patch";
+  "HJ-10 ... 140 points"). DATA: section 19 of apply_0_9_4_dev1.py -> china_balance_094.py (batch 926 checks). All 37 lines. Readings to confirm with
+  Osama: "remove the rifles" = drop plain riflemen to the stated size (crew weapons stay); "1400 optics, medium +" = sensor row 23 (Stryker MGS row);
+  infantry armour 8 keeps 5 HP/man; PHL-16 base 350 -> 300 with 370 mm +50 and Fire Dragon +80 (their totals stay 350/380); BRE3 blast "150m" read as
+  card metres (raw 82.5 -> 75); Z-9WA "57mm loadout" = the 72x 57 mm option 24545 (the 36x 57 mm 24647 at +70 and Z-9WA Recon 57 mm 24584 at +50 unchanged);
+  CSK-131 transport = unit 1266 (the 21 transport rows), QJZ-89 RWS turret of the CSK-131 Recon (same Tigr model), price 35 unchanged; H-6K gets its own
+  mobility copy without afterburner (row 128 is shared with the Tu-22M3). Not seen in game.
