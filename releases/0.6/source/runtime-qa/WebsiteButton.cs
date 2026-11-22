@@ -1,13 +1,14 @@
 using HarmonyLib;
-using Il2CppBrokenArrow.BrokenArrow.Client.Ecs.UI.Menu.News;
+using Il2CppBrokenArrow.Client.Ecs.UI.MainMenu;
 using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 namespace FreedomArrow;
 // Website button (Osama 22 Nov 2026 01:42 PST, thread 1573561286803980289: "in this new version in the main menu we need a button with our art
 // that opens our website"). A banner (UserData/FreedomArrow/menu-art/website-button.png: approved FA patch, menu art, "freedomarrow.app",
-// "WEBSITE · 访问官网") drawn on the Home tab in the top centre, between the Quick match tile and Server status. It shows only while the
-// Home tab's news panel (NewsWindow) is on screen, hides after any other click, and a click on it opens https://freedomarrow.app/.
+// "WEBSITE · 访问官网") drawn on the Home tab in the top centre, between the Quick match tile and Server status, and a click on it opens
+// https://freedomarrow.app/. Osama 22 Nov 02:37 ("just tie it with the music pack selector"): it uses the music pack selector's rule
+// (tools/music-player/MusicMenu.cs) - shown while the menu scene is Hangar_Scene and the Home tab button is selected, hidden otherwise.
 //
 // Old-launcher warning (Osama 22 Nov 2026 02:0x PST, thread 1573505321010331651: "an in game warning that their launcher is out of date should
 // pop up on the main menu and disappear after dismissal, it should link to our website. make it a art based button"). Launchers older than
@@ -20,7 +21,7 @@ static class WebsiteButton
 {
     const string Url="https://freedomarrow.app/";
     const string InstallUrl="https://freedomarrow.app/#install";
-    static NewsWindow news;
+    static MainMenuButton home;
     static Texture2D art,updateArt;
     static bool failed,launcherOld,updateDismissed;
 
@@ -42,39 +43,46 @@ static class WebsiteButton
                 (launcherOld?(updateArt!=null?"old launcher (no signed version list): out-of-date banner shown":"old launcher, art missing: no banner"):"no notice"));
         }
         catch(Exception ex){launcherOld=false;MelonLogger.Msg("FREEDOM_ARROW_LAUNCHER_NOTICE off: "+ex.GetType().Name);}
-        h.Patch(AccessTools.Method(typeof(NewsWindow),"Start")??throw new MissingMethodException("NewsWindow.Start"),
-            postfix:new HarmonyMethod(typeof(WebsiteButton),nameof(Started)));
         MelonLogger.Msg($"FREEDOM_ARROW_WEBSITE_BUTTON installed ({art.width}x{art.height}): Home tab banner opens {Url}");
     }
 
-    static void Started(NewsWindow __instance)=>news=__instance;
 
     // Osama 22 Nov 01:56: "take the top and central area between quick match and server status, it goes away after someone clicks play,
     // arsenal, editor, mod game, settings and etc". Measured on a 1568x882 Home screenshot: Quick match tile right edge 0.304 (its gear icon
     // to 0.324), Server status left edge 0.725, tile tops at 0.122. Any click outside the banner hides it; it comes back the next time the
-    // Home news panel opens (a return to the Home tab or a new menu scene).
+    // Home tab is selected again (a return to the Home tab or a new menu scene).
     static bool dismissed,wasActive;
     // Osama 22 Nov 02:11: "the website button showed up in our loading screen and then dissappeared before going into the main menu".
-    // The Home menu (and its news panel) is built behind the loading screen, and IMGUI draws over it; a click during loading then
-    // counted as "clicked elsewhere". So the banner waits until the news panel has been active for 2 s with no loading hitch
+    // The Home menu is built behind the loading screen, and IMGUI draws over it; a click during loading then
+    // counted as "clicked elsewhere". So the banner waits until the Home tab has been selected for 2 s with no loading hitch
     // (a frame over 0.25 s), and only clicks after it is on screen can dismiss it.
     const float SettleSeconds=2f,HitchSeconds=0.25f;
     static float settledFrom=-1f;
-    // Osama 22 Nov 02:28 (dev.17): "website button only shows in the loading screen not main menu". The news panel seen at NewsWindow.Start
-    // may not be the one on the Home tab, so the active one is looked up again (at most once a second, only while none is active), and
-    // every show/hide is logged (FREEDOM_ARROW_WEBSITE_BUTTON shown / hidden: reason) so the next test says why.
-    const float ScanSeconds=1f,ClickGraceSeconds=0.75f;
-    static float nextScan,shownAt=-1f;
+    // Osama 22 Nov 02:28 (dev.17): "website button only shows in the loading screen not main menu". Every show/hide is logged
+    // (FREEDOM_ARROW_WEBSITE_BUTTON shown / hidden: reason), and clicks in its first 0.75 s on screen don't hide it.
+    const float ClickGraceSeconds=0.75f;
+    static float shownAt=-1f;
     static string hiddenWhy="";
 
-    static bool Active(NewsWindow n)=>n!=null&&!n.WasCollected&&n.gameObject.activeInHierarchy;
-
-    static void Find()
+    // Same rule as the music pack selector: menu scene + Home tab button selected. The Home button is looked up at most every 2 s.
+    static float nextHomeScan;
+    static bool HomeSelected()
     {
-        if(Active(news)||Time.realtimeSinceStartup<nextScan)return;
-        nextScan=Time.realtimeSinceStartup+ScanSeconds;
-        foreach(var n in UnityEngine.Object.FindObjectsOfType<NewsWindow>())
-            if(Active(n)){news=n;return;}
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){home=null;return false;}
+        if(home==null||home.WasCollected)
+        {
+            home=null;
+            if(Time.unscaledTime<nextHomeScan)return false;
+            nextHomeScan=Time.unscaledTime+2f;
+            foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
+            {
+                if(!b.gameObject.scene.IsValid()||b._buttonText==null)continue;
+                if(!b._buttonText.text.Trim().Equals("Home",StringComparison.OrdinalIgnoreCase))continue;
+                home=b;break;
+            }
+            if(home==null)return false;
+        }
+        return home.isActiveAndEnabled&&home.Selected;
     }
 
     static void Hide(string why)
@@ -88,9 +96,8 @@ static class WebsiteButton
         if(failed||art==null)return;
         try
         {
-            if(Event.current.type==EventType.Layout)Find();
-            bool active=Active(news);
-            if(!active)Hide("news panel closed");
+            bool active=HomeSelected();
+            if(!active)Hide("not on the Home tab");
             if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
             wasActive=active;
             if(!active||dismissed)return;
@@ -133,6 +140,6 @@ static class WebsiteButton
                 MelonLogger.Msg((warn?"FREEDOM_ARROW_LAUNCHER_NOTICE":"FREEDOM_ARROW_WEBSITE_BUTTON")+" opened "+url);
             }
         }
-        catch(Exception ex){news=null;MelonLogger.Warning("FREEDOM_ARROW_WEBSITE_BUTTON hidden until the Home tab reopens: "+ex.Message);}
+        catch(Exception ex){home=null;MelonLogger.Warning("FREEDOM_ARROW_WEBSITE_BUTTON hidden until the Home tab reopens: "+ex.Message);}
     }
 }
