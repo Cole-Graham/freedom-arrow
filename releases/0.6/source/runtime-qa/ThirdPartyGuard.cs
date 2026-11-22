@@ -213,6 +213,8 @@ static class ThirdPartyGuard
 
     public static void RestoreArrowQueue()
     {
+        // ArrowQueue's settings live in FA's own copy (ThirdPartyCfg): nothing of ActualArrow's to put back.
+        if(ThirdPartyCfg.Moved("ArrowQueue")){changed.Clear();guard=null;return;}
         foreach(var (e,old) in changed)e.Value=old;
         if(guard is {} g){g.e.Value=g.old;guard=null;}
         if(changed.Count>0)MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: ArrowQueue settings restored for ActualArrow");
