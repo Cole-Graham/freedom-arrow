@@ -553,6 +553,6 @@ public static partial class Loc
         ["Steam launch options"] = new[] { "Steam-Startoptionen", "Options de lancement Steam", "Параметры запуска Steam", "Steam 启动选项" },
         ["Copied to the clipboard:\n\n{0}\n\nIn Steam: right-click Broken Arrow > Properties > General > Launch Options, replace the line with it, then press PLAY here."] = new[] { "In die Zwischenablage kopiert:\n\n{0}\n\nIn Steam: Rechtsklick auf Broken Arrow > Eigenschaften > Allgemein > Startoptionen, die Zeile damit ersetzen, dann hier SPIELEN drücken.", "Copié dans le presse-papiers :\n\n{0}\n\nDans Steam : clic droit sur Broken Arrow > Propriétés > Général > Options de lancement, remplace la ligne par celle-ci, puis appuie sur JOUER ici.", "Скопировано в буфер обмена:\n\n{0}\n\nВ Steam: правый клик по Broken Arrow > Свойства > Общие > Параметры запуска, замените строку этой, затем нажмите ИГРАТЬ здесь.", "已复制到剪贴板：\n\n{0}\n\n在 Steam 中：右键 Broken Arrow > 属性 > 通用 > 启动选项，用它替换原有内容，然后回到这里点击开始游戏。" },
         ["NEW FEATURES"] = new[] { "NEUE FUNKTIONEN", "NOUVEAUTÉS", "НОВЫЕ ФУНКЦИИ", "新功能" },
-        ["VISIT FREEDOMARROW.APP"] = new[] { "FREEDOMARROW.APP BESUCHEN", "VISITER FREEDOMARROW.APP", "ПЕРЕЙТИ НА FREEDOMARROW.APP", "访问官网 FREEDOMARROW.APP" },
+        ["VISIT FREEDOMARROW.APP"] = new[] { "WEBSITE BESUCHEN", "VISITER LE SITE", "ПЕРЕЙТИ НА САЙТ", "访问官网" },
     };
 }

@@ -37,6 +37,7 @@ internal sealed class LauncherForm : Form
     private readonly List<string> _log = new();
     private readonly System.Windows.Forms.Timer _gameWatch = new() { Interval = 1000 };
     private bool _gameRunning;
+    private readonly System.Windows.Forms.Timer _updateCheck = new() { Interval = 20 * 60 * 1000 };
 
     public LauncherForm(ManagerConfig cfg, string[]? startupFiles = null)
     {
@@ -63,7 +64,7 @@ internal sealed class LauncherForm : Form
         // Osama 22 Nov 2026: "make the launcher bigger so more of it is art", "or just more space, its very cramped":
         // a full-width 1180x280 header and a wider News column. On a short screen (Steam Deck, 800 px) the header gives up
         // height first (FitScreen).
-        _news = new NewsPanel { Dock = DockStyle.Right, Width = 520 };
+        _news = new NewsPanel { Dock = DockStyle.Right, Width = 700 };   // features and patch notes side by side
         ClientSize = new Size(1180, 820);
         Padding = new Padding(0);
         var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 280 };
@@ -80,7 +81,17 @@ internal sealed class LauncherForm : Form
         _lang.Click += (_, _) => ToggleChinese();
         header.RightInset = 72 + 8;
         header.Controls.Add(_lang);
-        var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(36, 14, 36, 12) };
+        // Osama 22 Nov 2026: "make sure there's a big button to visit our website" / "our website button should be on the top"
+        var site = Theme.MakeButton(T("VISIT FREEDOMARROW.APP"), ButtonKind.Primary);
+        site.AutoSize = false;
+        site.Size = new Size(270, 46);
+        site.MinimumSize = new Size(0, 0);
+        site.Margin = new Padding(0);
+        site.Font = Theme.Head(16f);
+        site.Location = new Point(1180 - 270 - 14, 44);
+        site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
+        header.Controls.Add(site);
+        var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 14, 28, 12) };
 #else
         ClientSize = new Size(460, 640);
         Padding = new Padding(28, 22, 28, 18);
@@ -211,6 +222,12 @@ internal sealed class LauncherForm : Form
             if (e.Data?.GetData(DataFormats.FileDrop) is string[] files && files.Length > 0) await InstallPackFile(files[0]);
         };
         Shown += async (_, _) => await OnFirstShown();
+#if FA_DEV45
+        // ... and every 20 minutes while the launcher sits open and idle
+        _updateCheck.Tick += async (_, _) => { if (!_busy && !_gameRunning && await UpdateLauncher(quiet: true)) _updateCheck.Stop(); };
+        Shown += (_, _) => _updateCheck.Start();
+        FormClosed += (_, _) => _updateCheck.Dispose();
+#endif
         // Only look for the game while the launcher is the active window: a program that keeps checking
         // other processes in the background is one more thing antivirus behaviour monitors hold against it.
         _gameWatch.Tick += (_, _) => UpdateGameRunning();
@@ -226,7 +243,7 @@ internal sealed class LauncherForm : Form
     /// <summary>Linux reminder: the Steam launch options Freedom Arrow needs, with a button that copies them.</summary>
     private Control LinuxStrip(out Label state)
     {
-        var strip = new Panel { Dock = DockStyle.Top, Height = 54, BackColor = Theme.Surface };
+        var strip = new Panel { Dock = DockStyle.Top, Height = 68, BackColor = Theme.Surface };
         strip.Paint += (_, e) =>
         {
             using var edge = new Pen(Theme.Border);
@@ -235,12 +252,12 @@ internal sealed class LauncherForm : Form
             e.Graphics.FillRectangle(bar, 0, 0, Math.Max(3, strip.LogicalToDeviceUnits(4)), strip.Height);
         };
         var title = new Label { Text = T("LINUX / STEAM DECK"), AutoSize = true, Location = new Point(16, 7), Font = Theme.Head(10.5f, semi: true), ForeColor = Theme.Warn, BackColor = Theme.Surface };
-        state = new Label { Text = T("Set Broken Arrow's Steam launch options before you play."), AutoSize = false, AutoEllipsis = true, Location = new Point(16, 27), Size = new Size(380, 20), ForeColor = Theme.Text, BackColor = Theme.Surface };
+        state = new Label { Text = T("Set Broken Arrow's Steam launch options before you play."), AutoSize = false, AutoEllipsis = true, Location = new Point(16, 24), Size = new Size(214, 40), ForeColor = Theme.Text, BackColor = Theme.Surface };
         var copy = Theme.MakeButton(T("Copy launch options"));
         copy.AutoSize = false;
-        copy.Width = 190;
+        copy.Width = 180;
         copy.Dock = DockStyle.Right;
-        strip.Padding = new Padding(0, 10, 10, 10);
+        strip.Padding = new Padding(0, 13, 10, 13);
         copy.Click += (_, _) => CopyLinuxLaunchOptions();
         strip.Controls.AddRange(new Control[] { title, state, copy });
         return strip;
@@ -332,19 +349,20 @@ internal sealed class LauncherForm : Form
 
     /// <summary>1.1.9 (Lateralus 19 Nov 2026): replace this exe with the newer launcher named in the signed version list, then restart.
     /// Any failure keeps the current launcher and is shown; it never blocks PLAY.</summary>
-    private async Task<bool> UpdateLauncher()
+    /// <param name="quiet">The 20-minute check: nothing on screen unless a new launcher is actually being installed.</param>
+    private async Task<bool> UpdateLauncher(bool quiet = false)
     {
         var exe = Environment.ProcessPath;
         if (exe == null || !exe.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) return false;
         SelfUpdate.CleanUp(exe);
         try
         {
-            SetStatus(T("Checking for a launcher update…"));
+            if (!quiet) SetStatus(T("Checking for a launcher update…"));
             Directory.CreateDirectory(HostedDistribution.CacheRoot);
             using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
             var progress = new Progress<LaunchProgress>(ShowProgress);
             var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
-            if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { _panel.Finish(true, ""); SetStatus(""); return false; }
+            if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { if (!quiet) { _panel.Finish(true, ""); SetStatus(""); } return false; }
             Log("Launcher updated to " + manifest.Launcher!.Version + ".");
             Process.Start(new ProcessStartInfo(exe, Loc.RestartArg) { UseShellExecute = false })?.Dispose();
             Close();
@@ -353,6 +371,7 @@ internal sealed class LauncherForm : Form
         catch (Exception ex)
         {
             Log("Launcher update skipped: " + ex.Message);
+            if (quiet) return false;
             _panel.Finish(false, T("Launcher update skipped: {0}", ex.Message));
             SetStatus(T("Launcher update skipped: {0}", ex.Message));
             return false;
@@ -556,6 +575,9 @@ internal sealed class LauncherForm : Form
     private async Task PlayModded()
     {
         if (_busy || !CheckGame()) return;
+        // Osama 22 Nov 2026: "the launcher should detect a new launcher version". It checked only at start; a launcher left open
+        // for hours missed a release. Check again here: a newer signed launcher is installed and this window restarts.
+        if (PinnedFreedomArrow.Enabled && await UpdateLauncher()) return;
         var dir = _gameDir!;
 
         if (!LauncherService.EnsureSteam())
