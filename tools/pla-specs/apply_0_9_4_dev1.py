@@ -554,6 +554,10 @@ import blue_dragon_jp;blue_dragon_jp.apply(t,g,ok,rec)
 # be made into units"): F-2A, KF-21 Boramae, F-35B (JASDF), F-35B (ROKN), Type 19 in spec 23 (Arsenal only), copies of F-16C / F-16V / F-35B /
 # PCL-181 with their loadout options. See blue_dragon_jp2.py.
 import blue_dragon_jp2;blue_dragon_jp2.apply(t,g,ok,rec)
+# ---------- ZTZ-99B (next patch, batch codex/batch/osama/ztz99b; Osama 22 Nov 2026 01:0x PST, thread 1572407822849810463): ZTZ-99A protection
+# slot gets GL-6 APS +70 and LSDW + GL-6 APS +120 (APS row 82 overrides the LSDW defence, LSDW weapon kept); the two APS options show the ZTZ-99B
+# model (FAModels models.json variants). See ztz99b_095.py.
+import ztz99b_095;ztz99b_095.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

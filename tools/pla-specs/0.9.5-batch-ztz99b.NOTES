@@ -1,0 +1,12 @@
+0.9.5 batch: ZTZ-99B on the ZTZ-99A card (branch codex/batch/osama/ztz99b; next patch, NOT the 0.9.5-dev hotfixes). Promote when Osama says.
+- 2026-11-22 01:0x PST, thread 1572407822849810463 (Osama: "Shawn uploaded the ZTZ-99B, this is an upgrade variant of the ZTZ-99A, when someone gets the
+  APS option, they get this model. so there's Jammer for +20, APS for +70, LSDW for +100 and the LSDW+APS for +120. When combined LSDW and APS, the APS
+  overrides (you get the two charges and normal cd) the LSDW but you get the LSDW weapon also"; "next patch, not for the hotfix"; "this is a tank, we can
+  have way more polygons on the armory").
+  DATA: ztz99b_095.py (apply_0_9_4_dev1.py section): unit 904 protection slot None 0 / JD-3 jammer +20 / GL-6 APS +70 (new) / LSDW +100 / LSDW + GL-6 APS
+  +120 (new). APS = existing row 82 (2 charges, 10 s cooldown, the ZBD-20 / US option row), linked to 904; the combined option keeps the LSDW turret
+  2019389 and puts 82 in ability slot 2 instead of the LSDW defence 2019386. Batch checks 2320 pass.
+  FAModels 0.3.39 (OptionVariants.cs): models.json "variants" pick other files by loadout option; re-checked every 0.25 s so Arsenal option changes rebuild.
+  ASSETS: work/ztz99b-20261122: Shawn's ZTZ99B+APS.fbx (Drive "PLA New Models/ZTZ99B-Shawn Modified"), armory = full 740k tris with Shawn's normals
+  (2048 px textures, 12 materials), battle + LOD1/LOD2 from lod2.py; creator green (Lv/Cong) default, desert (Sha) as the card's "Yellow" paint scheme
+  (<tex>@Yellow.fat). models.json: run work/ztz99b-20261122/merge_models.py on the base Assets to add the ZTZ-99A variants entry. Not seen in game.
