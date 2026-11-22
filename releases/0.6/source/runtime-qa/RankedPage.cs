@@ -1,10 +1,13 @@
 using System.Text.Json;
 using HarmonyLib;
+using Il2CppBrokenArrow.Client.Ecs.Decks.Models;
 using Il2CppBrokenArrow.Client.Ecs.UI.MainMenu;
+using Il2CppBrokenArrow.Client.Ecs.UI.Menu.Arsenal.ArmyBuilder;
 using Il2CppInterop.Runtime;
 using Il2CppTMPro;
 using MelonLoader;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 namespace FreedomArrow;
 // Ranked menu in the game's own UI (Lateralus 22 Nov 2026: "it should be worked into the vanilla menu designs, similar to how the mod's
@@ -84,7 +87,7 @@ static partial class RankedMenu
     static void HidePage(string why,bool backToPlay)
     {
         if(!pageShown)return;
-        pageShown=false;picking=false;
+        pageShown=false;picking=false;pickingDeck=false;ShowPreview(null);
         if(Alive(page))page.SetActive(false);
         MelonLogger.Msg("FREEDOM_ARROW_RANKED_PAGE hidden: "+why);
         if(backToPlay&&Alive(playButton)){reselecting=true;try{playButton.InvokeClick();}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE back to Play: "+e.Message);}reselecting=false;}
@@ -96,6 +99,7 @@ static partial class RankedMenu
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){HidePage("menu scene left",false);return;}
         try{if(pInLobby.GetValue(null) is true){HidePage("joined a lobby",false);return;}}catch{}
         try{var mt=AccessTools.TypeByName("ArrowQueue.ModTab");if(mt!=null&&AccessTools.Property(mt,"Shown")?.GetValue(null) is true){HidePage("Mod game page opened",false);return;}}catch{}
+        PreviewTick();
         var now=Time.unscaledTime;
         if(now>=nextAsk){nextAsk=now+5f;Ask();}
         if(tab==1&&now>=nextBoard){nextBoard=now+30f;AskBoards();}
@@ -157,8 +161,8 @@ static partial class RankedMenu
 
     static void Build(float now)
     {
-        for(int i=root.childCount-1;i>=0;i--)UnityEngine.Object.Destroy(root.GetChild(i).gameObject);
-        keep.Clear();cur=root;
+        for(int i=root.childCount-1;i>=0;i--){var c=root.GetChild(i).gameObject;if(Alive(deckPrev)&&c.Pointer==deckPrev.Pointer)continue;UnityEngine.Object.Destroy(c);}
+        keep.Clear();cur=root;deckRows.Clear();
         JsonElement me=default;bool have=false;
         try{if(meJson.Length>0){me=JsonDocument.Parse(meJson).RootElement;have=true;}}catch{}
         // sub-tabs
@@ -213,30 +217,94 @@ static partial class RankedMenu
         return true;   // unknown yet: no warning
     }
     static bool pickingDeck;static int deckTop;
+    // Default deck list with the lobby's deck preview on hover (Lateralus 22 Nov: "similar to how it works in the lobbies, where a preview
+    // of the deck pops up when you mouse over each deck in the dropdown"). The lobby's TeamPanelPlayerInfo does this with the game's
+    // DeckPreview (OnDeckDropdownHoverEnter); here a copy of that same DeckPreview sits right of the list and DeckPreview.Init fills it.
+    const float ListX=20,PrevX=580;
     static void DeckPicker()
     {
         var dim=new Color(0.75f,0.75f,0.75f);
         var decks=ValidDecks();
         Img(-200,-200,DW+400,DH+400,new Color(0,0,0,0.5f),true);
-        Img(540,40,520,740,new Color(0.06f,0.07f,0.08f,0.99f),true);Frm(540,40,520,740,new Color(1,1,1,0.2f));
-        Head(564,52,440,"DEFAULT DECK");
-        Txt(564,84,470,44,"Used when you don't pick a deck in the ranked lobby's 60 seconds. Only complete, valid decks are listed.",14,dim,false,TextAlignmentOptions.TopLeft,true);
+        Img(ListX,40,520,740,new Color(0.06f,0.07f,0.08f,0.99f),true);Frm(ListX,40,520,740,new Color(1,1,1,0.2f));
+        Head(ListX+24,52,440,"DEFAULT DECK");
+        Txt(ListX+24,84,470,44,"Used when you don't pick a deck in the ranked lobby's 60 seconds. Only complete, valid decks are listed. Point at a deck to preview it.",14,dim,false,TextAlignmentOptions.TopLeft,true);
         const int Vis=12;deckTop=Math.Clamp(deckTop,0,Math.Max(0,decks.Count-Vis));
-        if(decks.Count==0)Txt(564,140,470,30,"No valid decks. Build one in the Arsenal.",15,dim);
+        if(decks.Count==0)Txt(ListX+24,140,470,30,"No valid decks. Build one in the Arsenal.",15,dim);
         for(int i=deckTop;i<Math.Min(decks.Count,deckTop+Vis);i++)
         {
             var d=decks[i];float y=134+(i-deckTop)*44;bool on=d.Name==deckName;var name=d.Name;
-            var bg=Img(564,y,470,38,on?new Color(0.42f,0.8f,0.38f,0.18f):new Color(0,0,0,0.5f),true);
-            if(on)Frm(564,y,470,38,Green);
-            Txt(576,y,440,38,name,16,Color.white,on);
-            Click(564,y,470,38,()=>{deckName=name;SaveSettings();pickingDeck=false;nextDeckReport=0;MelonLogger.Msg("FREEDOM_ARROW_RANKED default deck "+name);},bg);
+            var bg=Img(ListX+24,y,470,38,on?new Color(0.42f,0.8f,0.38f,0.18f):new Color(0,0,0,0.5f),true);
+            if(on)Frm(ListX+24,y,470,38,Green);
+            Txt(ListX+36,y,440,38,name,16,Color.white,on);
+            Click(ListX+24,y,470,38,()=>{deckName=name;SaveSettings();pickingDeck=false;ShowPreview(null);nextDeckReport=0;MelonLogger.Msg("FREEDOM_ARROW_RANKED default deck "+name);},bg);
+            deckRows.Add((bg.rectTransform,d));
         }
         if(decks.Count>Vis)
         {
-            Choice(564,670,60,30,"Prev",false,14,()=>deckTop-=Vis);Choice(974,670,60,30,"Next",false,14,()=>deckTop+=Vis);
-            Txt(630,670,340,30,$"{deckTop+1}-{Math.Min(decks.Count,deckTop+Vis)} of {decks.Count}",13,dim,false,TextAlignmentOptions.Center);
+            Choice(ListX+24,670,60,30,"Prev",false,14,()=>deckTop-=Vis);Choice(ListX+434,670,60,30,"Next",false,14,()=>deckTop+=Vis);
+            Txt(ListX+90,670,340,30,$"{deckTop+1}-{Math.Min(decks.Count,deckTop+Vis)} of {decks.Count}",13,dim,false,TextAlignmentOptions.Center);
         }
-        Choice(680,736,240,32,"CLOSE",false,15,()=>pickingDeck=false);
+        Choice(ListX+140,736,240,32,"CLOSE",false,15,()=>{pickingDeck=false;ShowPreview(null);});
+        if(Alive(deckPrev))deckPrev.transform.SetAsLastSibling();
+    }
+    static readonly List<(RectTransform rt,DeckDataModel d)> deckRows=new();
+    static GameObject deckPrev;static DeckPreview deckPrevC;static bool deckPrevFailed;static IntPtr shownDeck;
+    static void PreviewTick()
+    {
+        if(!pickingDeck||deckRows.Count==0){if(shownDeck!=IntPtr.Zero)ShowPreview(null);return;}
+        try
+        {
+            var mouse=Mouse.current;if(mouse==null)return;
+            var pos=mouse.position.ReadValue();
+            var canvas=root.GetComponentInParent<Canvas>();
+            var cam=canvas==null||canvas.renderMode==RenderMode.ScreenSpaceOverlay?null:canvas.worldCamera;
+            DeckDataModel hit=null;
+            foreach(var (rt,d) in deckRows)if(Alive(rt)&&RectTransformUtility.RectangleContainsScreenPoint(rt,pos,cam)){hit=d;break;}
+            if(hit!=null)ShowPreview(hit);   // keep the last preview while the pointer is between rows, like the lobby list
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE deck hover: "+e.Message);deckRows.Clear();}
+    }
+    static void ShowPreview(DeckDataModel d)
+    {
+        var id=d==null?IntPtr.Zero:d.Pointer;
+        if(id==shownDeck)return;shownDeck=id;
+        if(d==null){if(Alive(deckPrev))deckPrev.SetActive(false);return;}
+        if(!MakePreview())return;
+        try{deckPrev.SetActive(true);deckPrevC.Init(d,true,true,false,false);deckPrev.transform.SetAsLastSibling();}
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE deck preview: "+e.Message);deckPrev.SetActive(false);}
+    }
+    // A copy of the game's own DeckPreview: the lobby team panel's if one is loaded, else any other (Arsenal / scenario panels).
+    static bool MakePreview()
+    {
+        if(Alive(deckPrev)&&deckPrevC!=null)return true;
+        if(deckPrevFailed||!Alive(root))return false;
+        try
+        {
+            DeckPreview best=null;int bestScore=-1;var seen=new List<string>();
+            foreach(var o in Resources.FindObjectsOfTypeAll(Il2CppType.Of<DeckPreview>()))
+            {
+                var p=o.TryCast<DeckPreview>();if(p==null)continue;
+                string path="";for(var t=p.transform;t!=null;t=t.parent)path=t.name+"/"+path;
+                int score=path.Contains("TeamPanel")?3:path.Contains("Lobby")?2:p.gameObject.scene.IsValid()?1:0;
+                seen.Add(score+":"+path);
+                if(score>bestScore){best=p;bestScore=score;}
+            }
+            MelonLogger.Msg("FREEDOM_ARROW_RANKED_PAGE deck previews found: "+(seen.Count==0?"none":string.Join(" | ",seen.Take(8))));
+            if(best==null){deckPrevFailed=true;return false;}
+            var tr=best.GetComponent<RectTransform>();float tw=tr!=null?tr.rect.width:0,th=tr!=null?tr.rect.height:0;
+            if(tw<200||th<200){tw=1130;th=690;}
+            deckPrev=UnityEngine.Object.Instantiate(best.gameObject,root,false);deckPrev.name="FA_RankedDeckPreview";
+            deckPrevC=deckPrev.GetComponent<DeckPreview>();
+            var rt=deckPrev.GetComponent<RectTransform>();
+            rt.anchorMin=rt.anchorMax=new Vector2(0,1);rt.pivot=new Vector2(0,1);rt.sizeDelta=new Vector2(tw,th);
+            float k=Mathf.Min(1f,(DW-PrevX)/tw,740f/th);rt.localScale=new Vector3(k,k,1);rt.anchoredPosition=new Vector2(PrevX,-40);
+            foreach(var g in deckPrev.GetComponentsInChildren<Graphic>(true))g.raycastTarget=false;   // the list keeps the pointer
+            deckPrev.SetActive(false);
+            MelonLogger.Msg($"FREEDOM_ARROW_RANKED_PAGE deck preview copied from '{best.name}' ({tw:0}x{th:0}, scale {k:0.00})");
+            return deckPrevC!=null;
+        }
+        catch(Exception e){deckPrevFailed=true;MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE no deck preview: "+e);return false;}
     }
     static void RankedBody(JsonElement me,bool have,float now)
     {
