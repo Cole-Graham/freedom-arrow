@@ -6,6 +6,14 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 
 ## Permanent branches
 
+**Update, 22 November 2026 (Lateralus): one version-free development branch; versions are tags.** Lateralus, 07:2x PST, asked whether every version needs its own branch, then "switch it" to the trunk-and-tags layout.
+
+- `codex/development`: **the one integration branch for main development**, from now on and for every later version. Created at `8e13eb31` (the head of `codex/0.9.1-development`, which by then carried 0.9.2, 0.9.3, 0.9.4 and the 0.9.5 batch). Every dev build advances it.
+- **A version is a tag, not a branch:** `gameplay/<version>` for every dev build and release (for example `gameplay/0.9.4`, `gameplay/0.9.5-dev.3`). Do not create a new development branch per version.
+- **Release branch only for a fix to an old release while development moves on:** `codex/release/<version>`, created from that release's tag (for example `codex/release/0.9.4` for 0.9.4.1). Merge or cherry-pick the fix back into `codex/development`.
+- `codex/0.9.1-development`: **frozen** at `8e13eb31`. History only; the pre-push hook refuses it.
+- Batches keep `codex/batch/<person>/<topic>`, based on `codex/development`.
+
 **Update, 19 November 2026 (Lateralus): 0.9.1 is the main development line; playtests get plain numbers.** Lateralus, 06:2x PST: "create a 0.9.1 development branch and move the latest dev build along with any queued changes into a 0.9.1-dev.1 build". Playtests are released as 0.9.1, 0.9.2, 0.9.3; the dev builds toward a playtest are 0.9.1-dev.N (order: 0.9.0-dev.44 < 0.9.1-dev.1 < 0.9.1 < 0.9.2-dev.1, `tools/pla-specs/fa_version.py`).
 
 - `codex/0.9.1-development`: **the one integration branch for main development**, created at `bc085f2d` (0.9.0-dev.44 plus the queued dev.45 batch). Dev builds keep `gameplay/0.9.1-dev.N` tags.
@@ -27,7 +35,7 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 - `codex/assets-development`: shared model/music/voice add-on source. A gameplay build that needs newer model files than the published assets version must ship a new assets version (or say "complete package only"); see the 13 November note in the build-install workflow.
 - `codex/launcher-development`: launcher and manifest client source; initially `e3b7ada`. The manifest controls player versions independently of this source branch.
 
-A pre-push hook in the deck's shared repository refuses pushes to the frozen and retired names.
+A pre-push hook in the deck's shared repository refuses pushes to the frozen and retired names (`codex/0.7-development`, `codex/pla-development`, `codex/0.8-development`, `codex/0.9-development`, `codex/0.9.1-development`).
 
 These are the maintained branch names. Package source commits remain the immutable identity of existing builds; a documentation commit on a maintained branch does not rebuild a package.
 
