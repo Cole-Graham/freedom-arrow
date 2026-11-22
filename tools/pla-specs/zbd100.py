@@ -11,7 +11,8 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
 - Smoke + light supply: the ZBD-20 ability row 2000212. InfantrySlots 6. Optics: vanilla row 3 "Very Good Optics" (raw 2300, spotting cap 1000, the card
   shows 2000 m), the ZBD-20 Recon row. Cost 80. APS +40: ability 82 (GL-5 / Iron Fist, 2 charges, 10 s), as the ZBD-20.
 - Loadout: 35 mm only (default) or 35 mm + 8x CH-901 (the Blood Wolves launcher 2018447 / round 2018448, CH-901 on mount Order 1). The CH-901 is
-  laser-guided, so that option also gives the vanilla vehicle laser (row 8 "Laser Veh", 1500, usable on the move, the row the ZBD-20 links; ability slot 3, which no other ZBD-100 option uses).
+  laser-guided. Every ZBD-100 has the vanilla vehicle laser (Osama 22 Nov 02:39 "does it have a laser designator?" ... "it should"): row 8 "Laser Veh",
+  1500, usable on the move, the row the ZBD-20 links, in ability slot 3 of BOTH loadout options (slot 3 is used by no other ZBD-100 modification).
   CH_COST +40 (Osama 22 Nov 03:0x: "CH-901 adds +40 points to the vehicle").
 - Availability: transport for the ZBD-20's spec-18 squads whose squad fits 6 seats (Osama did not say where it goes)."""
 
@@ -74,7 +75,7 @@ def apply(t, g, ok, rec):
     lm = g.add('ModificationsJson', zm[3], {'UnitId': uid, 'Name': 'PLA ZBD-100 loadout', 'Order': 0})
     lo = rows('OptionsJson', ModificationId=zm[3]['Id'])
     g.add('OptionsJson', lo[0], {'ModificationId': lm, 'Name': 'PLA ZBD-100 35 mm', 'UIName': '35 mm CT', 'OptionPicture': 'EMPTY',
-                                 'Turret0Id': base, 'Ability3Id': 0})
+                                 'Turret0Id': base, 'Ability3Id': LASER})
     g.add('OptionsJson', lo[1], {'ModificationId': lm, 'Name': 'PLA ZBD-100 CH-901', 'UIName': '8x CH-901', 'Cost': CH_COST,
                                  'Turret0Id': chm, 'Ability3Id': LASER})
     am = g.add('ModificationsJson', zm[6], {'UnitId': uid, 'Name': 'PLA ZBD-100 APS', 'Order': 1})
@@ -103,6 +104,7 @@ def apply(t, g, ok, rec):
     for k in (1, 2, 3):
         used = {m['Id'] for m in rows('ModificationsJson', UnitId=uid) for o in rows('OptionsJson', ModificationId=m['Id']) if o.get(f'Ability{k}Id')}
         ok(len(used) <= 1, (NAME, f'ability slot {k} used by one modification', used))
+    ok(sorted(o['Ability3Id'] for o in opts if o['ModificationId'] == lm) == [LASER, LASER], 'laser on both loadouts')
     linked = {r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)}
     ok(all(o.get(f'Ability{k}Id', 0) in linked | {0} for o in opts for k in (1, 2, 3)), 'every option ability linked')
     tw = {tur: [(w['Order'], w['WeaponId']) for w in rows('TurretWeaponsJson', TurretId=tur)] for tur in (base, chm)}
