@@ -16,6 +16,7 @@ edge of the map").
   they reach targets without line of sight. LaserGuided is back to True on all four (as in 0.9.4); only the HJ-10 launch fixes stay. The
   off-map flight after lasing is still open: NlosTrait traces these four rounds (FREEDOM_ARROW_NLOS_TRACE) to show where they aim.
 - dev.4 still no HJ-10 launch: 7,311 WeaponForceFire (fire at a point) calls; its round TargetType 36 lacks Ground (1). Now 37, as the CTL-181.
+- dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius 0.1 on the three top-attack rounds -> roof hits.
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -42,4 +43,13 @@ def apply(t, g, ok, rec):
     ok(A[2009623]['TargetType'] == 36 and A[2018321]['TargetType'] == 37, 'HJ-10 target type before')
     g.put('AmmunitionsJson', 2009623, {'TargetType': 37})
     ok(A[2009623]['TargetType'] == 37, 'HJ-10 may fire at ground points (laser spot)')
+    # dev.8 (Osama 22 Nov 00:3x "now they fly right but it doesn't seem to do damage?"; dev.7 shot log: every hit on the ZTZ-100 counted as
+    # Front, HEAT 1075 vs penetration 30-90, 0.01-0.09 damage, forceTop false). IsTopArmorArmorAttack only works on the Hellfire path (110), as for
+    # every vanilla top-attack missile; on the cruise path the side comes from the direction. Native rule (ShellHitSystem, 19 Nov): a direct hit by a
+    # round with OverpressureRadius > 0 strikes the roof, with no distance check for the struck unit. 0.1 m on the three top-attack rounds; the
+    # splash part only reaches units within 0.1 m of the struck one. CTL-181 is not top-attack (as in 0.9.3) and stays 0.
+    TOP = (2009623, 2009651, 2018448)
+    ok(all(A[i].get('IsTopArmorArmorAttack') is True and not A[i].get('OverpressureRadius') for i in TOP) and A[2018321].get('IsTopArmorArmorAttack') is False, 'top-attack NLOS rounds before')
+    for i in TOP: g.put('AmmunitionsJson', i, {'OverpressureRadius': 0.1})
+    ok(all(A[i]['OverpressureRadius'] == 0.1 for i in TOP), 'top-attack NLOS rounds strike the roof on a direct hit')
     rec['nlos_cruise_fix'] = {'launch_margin_180': ROUNDS, 'hj10_launcher': {'id': HJ10_LAUNCHER, 'before': {'Type': 81, 'IsVerticalLauncher': False}, 'after': new}}
