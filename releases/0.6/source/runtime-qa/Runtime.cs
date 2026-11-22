@@ -115,6 +115,7 @@ public class Runtime : MelonMod
     }
     public override void OnInitializeMelon()
     {
+        ThirdPartyCfg.Redirect();   // ActualArrow mods' settings in UserData/FreedomArrow/ThirdParty (Lateralus 22 Nov 2026)
         StartConquest();
         Directory.CreateDirectory(Root);
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
@@ -256,6 +257,7 @@ public class Runtime : MelonMod
     }
     public override void OnLateInitializeMelon()
     {
+        ThirdPartyCfg.Redirect();   // the rest of the ActualArrow categories, before FA changes any of their values
         try { NuclearLaunchWarning.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("PLA_NUCLEAR_WARNING_FAILED: "+e.Message); }
         try { AlertSounds.Install(HarmonyInstance,Root); }
