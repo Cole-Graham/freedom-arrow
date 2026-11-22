@@ -15,3 +15,6 @@
   lod2.py (whole pieces kept; Blender collapse shredded the turret ERA). Textures: 12 materials, armory 2048 px, battle 1024 px (battle ~50 MB of .fat,
   vs a few MB for the 99A: drop to 512 if memory matters). Desert = 18 <tex>@Yellow.fat. models.json in the stage = Assets 0.2.52 + variants (re-run
   merge_models.py on whatever Assets the next patch builds from). BUILD: --famodels <FAModels.dll 0.3.39 from this branch> + asset-args.txt lines.
+- 2026-11-22 01:5x PST (Osama: battle preview "looks broken"): battle LODs redone at a higher budget with lod2.py from the full armory model: battle 128k
+  tris, LOD1 79k, LOD2 48k (the 73k/44k/33k set had reduction damage on the front plate, gun and turret rear). Decal materials BLEND -> MASK (cutoff 0.5),
+  as build_jp.py. The earlier smeared-camo previews were my preview tool (UV flip), not the files. Restaged in work/ztz99b-20261122/stage.
