@@ -70,3 +70,6 @@
 - 2026-11-21 21:2x PST, thread 1572407822849810463 (Osama, a Chinese player: "这个义务兵我们称之为预备役"; "yeah we should update it"). NOT IN BUILD 255.
   DATA: section 24 -> reserve_names_094.py, shown name only: 1166 Conscripts 义务兵 -> Reservists 预备役, 1213 Conscript Recon -> Reservist Recon. Internal
   Name unchanged. Batch checks 2232 pass. Not seen in game. Not changed (not asked): spec "PLARF Rocket Conscript Force 火箭军".
+- 2026-11-21 21:3x PST, thread 1572407822849810463 (Osama: "ZBD-251 next patch should be air droppable"). NOT IN BUILD 255. DATA: section 25 ->
+  zbd251_airdrop_094.py: ZBD-251 (1056) own mobility row 2010729 IsAirDroppable False -> True (same flag as BMD-4M / ZBD-03). Nothing else changes.
+  Batch checks 2235 pass. Not seen in game: check the ZBD-251 can be air-dropped in a spec with a transport plane.

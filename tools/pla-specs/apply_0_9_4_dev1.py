@@ -539,6 +539,9 @@ import truck_names_094;truck_names_094.apply(t,g,ok,rec)
 # ---------- 24. Reservists (Osama 21 Nov 2026 21:2x PST, thread 1572407822849810463, a Chinese player: "这个义务兵我们称之为预备役"; "yeah we should
 # update it"): 1166 Conscripts 义务兵 -> Reservists 预备役, 1213 Conscript Recon -> Reservist Recon; shown name only. See reserve_names_094.py.
 import reserve_names_094;reserve_names_094.apply(t,g,ok,rec)
+# ---------- 25. ZBD-251 air-droppable (Osama 21 Nov 2026 21:3x PST, thread 1572407822849810463: "ZBD-251 next patch should be air droppable"): its own
+# mobility row IsAirDroppable True, as the BMD-4M / ZBD-03. See zbd251_airdrop_094.py.
+import zbd251_airdrop_094;zbd251_airdrop_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
