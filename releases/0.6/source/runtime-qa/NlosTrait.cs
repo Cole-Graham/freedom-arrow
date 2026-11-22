@@ -278,7 +278,16 @@ static class NlosTrait
             if(spot!=Vector3.zero)
             {
                 var u=UnitNear(spot,LaserSpotRadius,side);
-                if(u.IsAlive){target=u;from=$"unit {Vector3.Distance(Position(u),spot):0} from the laser spot";}
+                if(u.IsAlive)
+                {
+                    target=u;from=$"unit {Vector3.Distance(Position(u),spot):0} from the laser spot";
+                    // dev.5 trace (00:21:47-55): locked on the lased tank, the rounds climbed, turned, then froze in the air at cruise height. The
+                    // cruise path plans with LaunchHorizontalDistance, set at launch from the target; fired at a laser spot it has none. Give it
+                    // the real horizontal distance when it is missing.
+                    var lhd=NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance");
+                    var mp=Position(missile);var tp=Position(u);float hd=new Vector2(tp.x-mp.x,tp.z-mp.z).magnitude;
+                    if(!(lhd>1f)){NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd);from+=$", launch distance {lhd:0.#} -> {hd:0}";}
+                }
                 else weaponState+=$"; no enemy unit within {LaserSpotRadius:0} of the laser spot ({spot.x:0},{spot.z:0})";
             }
         }
@@ -323,7 +332,10 @@ static class NlosTrait
             var last=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
             bool los=NativeEcs.Field<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget");
             var pos=missile.Has<ViewComponent>()?Position(missile):Vector3.zero;
-            MelonLogger.Msg($"FREEDOM_ARROW_NLOS_TRACE ammo {tr.ammo} missile {Id(missile)} t+{now-tr.start:0.0}s pos ({pos.x:0},{pos.y:0},{pos.z:0}) seeker target {tgt} at {tdist:0} last target pos ({last.x:0},{last.y:0},{last.z:0}) los {los}");
+            string g="";
+            if(missile.Has<MissileGuidanceInfoComponent>())
+                g=$" | launch dist {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance"):0.#} lofting {NativeEcs.Field<MissileGuidanceInfoComponent,bool>(missile,"CurrentlyLofting")} dive at {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"DiveStartDistance"):0.#} loft start {NativeEcs.Field<MissileGuidanceInfoComponent,Vector3>(missile,"LoftStartPosition")}";
+            MelonLogger.Msg($"FREEDOM_ARROW_NLOS_TRACE ammo {tr.ammo} missile {Id(missile)} t+{now-tr.start:0.0}s pos ({pos.x:0},{pos.y:0},{pos.z:0}) seeker target {tgt} at {tdist:0} last target pos ({last.x:0},{last.y:0},{last.z:0}) los {los}{g}");
             DiagnosticLog.Write("nlos_trace",new{ammo=tr.ammo,missile=Id(missile),t=now-tr.start,x=pos.x,y=pos.y,z=pos.z,target=tgt,tdist,lx=last.x,ly=last.y,lz=last.z,los});
             traces[key]=(tr.ammo,tr.start,now+TraceStep,tr.n+1);
         }
