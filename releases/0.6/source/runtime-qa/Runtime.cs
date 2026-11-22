@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); RankedMenu.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -75,7 +75,7 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
-    public override void OnGUI() => conquest?.OnGUI();
+    public override void OnGUI() { conquest?.OnGUI(); RankedMenu.OnGUI(); }
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
@@ -280,6 +280,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU_FAILED: "+e.Message); }
         try { ArsenalOnlySpecs.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Blue Dragon in the Arsenal only, not in deck creation
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ARSENAL_ONLY_SPECS_FAILED: not installed; Blue Dragon can be picked in deck creation. "+e.Message); }
+        try { RankedMenu.Install(HarmonyInstance); }   // Lateralus 22 Nov 2026: Ranked card, ranked menu and leaderboard
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RANKED_FAILED: no ranked menu. "+e.Message); }
     }
     public override void OnApplicationQuit()
     {
