@@ -122,6 +122,7 @@ public class Runtime : MelonMod
         try { PackageVersion=JsonNode.Parse(File.ReadAllText(Path.Combine(Root,"channel.json")))["package_version"].GetValue<string>(); } catch { }
         DiagnosticLog.Start(Root,PackageVersion);
         try { LogUpload.Start(PackageVersion); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD off: "+e.Message); }
+        try { UpdateNotice.Start(PackageVersion); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_UPDATE_NOTICE off: "+e.Message); }
         // 0.9.0-dev.3: before the payload check, so even a refused package never loads or rewrites vanilla decks.
         try { DeckFolder.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_FOLDER_FAILED: decks use the vanilla folder. "+e.Message); }
