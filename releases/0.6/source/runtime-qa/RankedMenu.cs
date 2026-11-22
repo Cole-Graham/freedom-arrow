@@ -200,6 +200,9 @@ static class RankedMenu
         if(es!=null)es.enabled=false;   // the game's menu must not take the clicks meant for this one
         MelonLogger.Msg("FREEDOM_ARROW_RANKED menu opened");
     }
+    // Anchored to the top-right corner and scaled with the screen height, like the game's own block (measured on Vengeance: about
+    // 0.47 x height wide, 0.10 x height tall at 3840x2160).
+    static Rect TopRight(){float w=Screen.height*0.47f,h=Screen.height*0.10f;return new Rect(Screen.width-w,0,w,h);}
     static void Close(string why)
     {
         if(!open)return;
@@ -364,8 +367,14 @@ static class RankedMenu
         var now=Time.unscaledTime;
         if(now>=nextAsk){nextAsk=now+5f;Ask();}
         if(tab==1&&now>=nextBoard){nextBoard=now+30f;AskBoards();}
-        Fill(new Rect(0,0,Screen.width,Screen.height),new Color(0.02f,0.03f,0.04f,0.97f));
+        // The game's top-right block (profile, bug report, settings, quit) is never covered (Lateralus 22 Nov). The background leaves
+        // it out; while the pointer is over it the game's UI input is on, so its buttons work; a click there closes this menu.
+        var tr=TopRight();var bg=new Color(0.02f,0.03f,0.04f,0.97f);
+        Fill(new Rect(0,0,tr.x,Screen.height),bg);Fill(new Rect(tr.x,tr.yMax,Screen.width-tr.x,Screen.height-tr.yMax),bg);
         var e=Event.current;
+        bool overTr=tr.Contains(e.mousePosition);
+        if(es!=null&&!es.WasCollected&&es.enabled!=overTr)es.enabled=overTr;
+        if(overTr&&e.type==EventType.MouseDown){Close("top-right game menu used");return;}
         if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){if(picking)picking=false;else Close("Esc");e.Use();return;}
         if(picking){InvitePicker(now);return;}   // modal: nothing under it takes clicks
         // Two tabs (Lateralus 22 Nov: "Leaderboard and Rank Ladder are redundant"); the leaderboard has 1v1 and Team sub-menus.
@@ -379,7 +388,7 @@ static class RankedMenu
             if(GUI.Button(R(tx,14,tw[i],62),GUIContent.none,GUIStyle.none)){tab=i;selRow=-1;nextBoard=-100f;}
             tx+=tw[i]+20;
         }
-        if(TestHub)T(1180,26,380,24,"TEST SERVER · ratings here are test ratings",13,new Color(1f,0.75f,0.3f),FontStyle.Bold,TextAnchor.MiddleRight);
+        if(TestHub)T(520,30,560,24,"TEST SERVER · ratings here are test ratings",13,new Color(1f,0.75f,0.3f),FontStyle.Bold,TextAnchor.MiddleRight);
         JsonElement me=default;bool haveMe=false;
         try{if(meJson.Length>0){me=JsonDocument.Parse(meJson).RootElement;haveMe=true;}}catch{}
         if(tab==0)RankedTab(me,haveMe,now);else BoardTab(me,haveMe);
@@ -536,33 +545,67 @@ static class RankedMenu
         var cur=fPartyCurrent?.GetValue(null);
         var members=cur==null?Array.Empty<object>():(Traverse.Create(cur).Property("members").GetValue() as Array)?.Cast<object>().ToArray()??Array.Empty<object>();
         string leader=cur==null?"":P(cur,"leader");bool lead=members.Length==0||leader==MySteam();
-        // Compact, so it fits above the rank ladder strip: one row of member chips, one row of buttons.
+        // Looks like the game's own GROUP block (Lateralus 22 Nov): five square slots, a member's Steam picture and name, "+" on open slots.
         var inc=Arr(fIncoming);
         if(inc.Length>0)
         {
             var i=inc[0];
-            Fill(R(58,528,470,34),new Color(0.1f,0.25f,0.4f,0.85f));
-            T(68,528,240,34,$"{P(i,"fromName")} invited you to a party",13,Color.white,FontStyle.Bold);
-            if(Choice(318,531,100,28,"Accept",false,13)){try{mAccept.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
-            if(Choice(424,531,100,28,"Decline",false,13)){try{mDecline.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+            Fill(R(58,520,470,30),new Color(0.1f,0.25f,0.4f,0.85f));
+            T(66,520,250,30,$"{P(i,"fromName")} invited you to a group",13,Color.white,FontStyle.Bold);
+            if(Choice(318,522,100,26,"Accept",false,12)){try{mAccept.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+            if(Choice(424,522,100,26,"Decline",false,12)){try{mDecline.Invoke(null,new[]{i});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
         }
-        else H(58,530,470,$"YOUR PARTY · {Math.Max(1,members.Length)}/5"+(members.Length>=4?" · plays 5v5":""));
-        if(members.Length==0)T(58,566,470,30,"Just you. Invite players to queue together (up to 5).",13,Dim);
-        else for(int k=0;k<Math.Min(5,members.Length);k++)
+        else
         {
-            var m=members[k];string id=P(m,"steamId");bool isLead=id==leader,isMe=id==MySteam();
-            var cr=R(58+k*94,566,90,30);
-            Fill(cr,isMe?new Color(0.42f,0.8f,0.38f,0.18f):new Color(0,0,0,0.5f));Frame(cr,isLead?new Color(1f,0.8f,0.3f,0.7f):new Color(1,1,1,0.15f),1);
-            GUI.Label(new Rect(cr.x+6*S,cr.y,cr.width-(lead&&!isMe?26:8)*S,cr.height),(isLead?"★ ":"")+P(m,"name"),St(12,Color.white,isLead?FontStyle.Bold:FontStyle.Normal));
-            if(lead&&!isMe)
+            H(58,520,300,"GROUP"+(members.Length>=4?" · plays 5v5":""));
+            if(members.Length>1)
             {
-                var kr=new Rect(cr.xMax-22*S,cr.y+5*S,18*S,20*S);
-                GUI.Label(kr,"X",St(12,kr.Contains(Event.current.mousePosition)?Red:Dim,FontStyle.Bold,TextAnchor.MiddleCenter));
-                if(GUI.Button(kr,GUIContent.none,GUIStyle.none)){try{mKick.Invoke(null,new object[]{id});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+                var lr=R(408,522,120,26);bool hl=lr.Contains(Event.current.mousePosition);
+                GUI.Label(lr,lead?"DISBAND":"LEAVE",St(12,hl?Red:Dim,FontStyle.Bold,TextAnchor.MiddleRight));
+                if(GUI.Button(lr,GUIContent.none,GUIStyle.none)){try{mLeave.Invoke(null,null);}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
             }
         }
-        if(lead&&members.Length<5&&Choice(58,602,230,30,"+ INVITE PLAYERS",false,13)){picking=true;pickTop=0;}
-        if(members.Length>1&&Choice(298,602,230,30,lead?"DISBAND PARTY":"LEAVE PARTY",false,13)){try{mLeave.Invoke(null,null);}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+        var list=members.Length>0?members:Array.Empty<object>();
+        for(int k=0;k<5;k++)
+        {
+            var sr=R(58+k*99.5f,554,72,72);bool hov=sr.Contains(Event.current.mousePosition);
+            if(k<list.Length||(k==0&&list.Length==0))
+            {
+                string id=k<list.Length?P(list[k],"steamId"):MySteam();string name=k<list.Length?P(list[k],"name"):"You";
+                bool isLead=k<list.Length&&id==leader,isMe=id==MySteam();
+                Fill(sr,new Color(0.1f,0.11f,0.12f,0.95f));
+                var av=SteamPic(id);
+                if(av!=null)GUI.DrawTexture(new Rect(sr.x+2,sr.y+2,sr.width-4,sr.height-4),av,ScaleMode.ScaleAndCrop);
+                else{var ini=name.FirstOrDefault(char.IsLetterOrDigit);GUI.Label(sr,ini==default(char)?"?":char.ToUpperInvariant(ini).ToString(),St(26,Dim,FontStyle.Bold,TextAnchor.MiddleCenter));}
+                Frame(sr,isMe?new Color(0.42f,0.8f,0.38f,0.8f):new Color(1,1,1,0.45f),1);
+                if(isLead&&list.Length>1)GUI.Label(new Rect(sr.x+3*S,sr.y+1*S,20*S,18*S),"★",St(13,new Color(1f,0.8f,0.3f),FontStyle.Bold));
+                GUI.Label(R(58+k*99.5f-14,626,100,16),name,St(12,new Color(0.85f,0.85f,0.85f),FontStyle.Bold,TextAnchor.MiddleCenter));
+                if(lead&&!isMe&&k<list.Length&&hov)
+                {
+                    var kr=new Rect(sr.xMax-20*S,sr.y+2*S,18*S,18*S);Fill(kr,new Color(0,0,0,0.7f));
+                    GUI.Label(kr,"X",St(12,kr.Contains(Event.current.mousePosition)?Red:Color.white,FontStyle.Bold,TextAnchor.MiddleCenter));
+                    if(GUI.Button(kr,GUIContent.none,GUIStyle.none)){try{mKick.Invoke(null,new object[]{id});}catch(Exception e){error=e.InnerException?.Message??e.Message;}}
+                }
+            }
+            else
+            {
+                Fill(sr,new Color(0.1f,0.13f,0.14f,hov&&lead?0.95f:0.8f));Frame(sr,new Color(1,1,1,hov&&lead?0.6f:0.35f),1);
+                GUI.Label(sr,"+",St(30,new Color(0.8f,0.8f,0.8f,lead?1f:0.4f),FontStyle.Bold,TextAnchor.MiddleCenter));
+                if(lead&&GUI.Button(sr,GUIContent.none,GUIStyle.none)){picking=true;pickTop=0;}
+            }
+        }
+    }
+    // Steam profile pictures through ArrowQueue's own avatar cache (Avatars.Get returns a Sprite made from the whole picture).
+    static MethodInfo mAvatar;static bool avatarTried;
+    static Texture2D SteamPic(string steamId)
+    {
+        try
+        {
+            if(!avatarTried){avatarTried=true;mAvatar=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.Avatars"),"Get",new[]{typeof(string)});}
+            if(mAvatar==null||string.IsNullOrEmpty(steamId))return null;
+            return (mAvatar.Invoke(null,new object[]{steamId}) as Sprite)?.texture;
+        }
+        catch{return null;}
     }
     static void InvitePicker(float now)
     {
