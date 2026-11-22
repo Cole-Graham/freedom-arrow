@@ -116,3 +116,9 @@
   (local only, not published). out/local-095d90-bd. Queued on Vengeance AFTER the build-260 install (watcher /tmp/bd90-watch.sh): gameplay + a
   145-file assets delta, installer ~/Games/FreedomArrow-095d90-bd-20261122/install-095d90.py. It contains every dev.5 fix, so hotfix testing goes on
   with it; Vengeance logs will say 0.9.5-dev.90. The next hotfix step stays 0.9.5-dev.6.
+- 2026-11-22 00:3x PST, thread 1573418243715113213 — HOTFIX BUILDERS PLEASE READ. Osama 22 Nov 00:1x: "please add these units to the Blue dragons
+  on my local test build". The 0.9.5-dev.N hotfix tests use apply_b26N_nosec27.py, so each install on Vengeance removes the Blue Dragon cards again
+  (dev.5 went back on 4 s after 0.9.5-dev.90 at 00:14:59). From the next hotfix test on, build with section 27 (plain apply_0_9_4_dev1.py): it only
+  adds 3 Arsenal-only spec-23 cards (19 checks; gates 0). The Blue Dragon models are already on Vengeance (Assets delta from 0.9.5-dev.90,
+  UserData/FAModels written 00:14:55; gameplay-only hotfix installs leave them). Bridge: 0.9.5-dev.91 = dev.7 (c665773a) + section 27, queued after
+  the b261/b262 watchers.
