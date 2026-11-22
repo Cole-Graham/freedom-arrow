@@ -14,7 +14,9 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
   laser-guided. Every ZBD-100 has the vanilla vehicle laser (Osama 22 Nov 02:39 "does it have a laser designator?" ... "it should"): row 8 "Laser Veh",
   1500, usable on the move, the row the ZBD-20 links, in ability slot 3 of BOTH loadout options (slot 3 is used by no other ZBD-100 modification).
   CH_COST +40 (Osama 22 Nov 03:0x: "CH-901 adds +40 points to the vehicle").
-- Availability: transport for the ZBD-20's spec-18 squads whose squad fits 6 seats (Osama did not say where it goes)."""
+- Availability: a Recon-tab card in spec 18 PLAGF Armored Force (Osama 22 Nov 02:4x: "you put it in armored spec right?", "in the recon tab?"):
+  Units.CategoryType 0 and a SpecializationAvailabilities row copied from the ZBD-04A Recon's spec-18 card (same card count). Also a transport for the
+  ZBD-20's spec-18 squads whose squad fits 6 seats."""
 
 CH_COST = 40
 NAME = 'ZBD-100'
@@ -84,6 +86,12 @@ def apply(t, g, ok, rec):
     g.add('OptionsJson', ao[APS], {'ModificationId': am, 'Name': 'PLA ZBD-100 GL-5 APS', 'Cost': 40, 'Order': 1})
 
     SA, TA = t['SpecializationAvailabilitiesJson'], t['TransportAvailabilitiesJson']
+    ARMD = 18
+    ok(t['SpecializationsJson'][ARMD]['Name'] == 'PLA PLAGF Armored Force', 'spec 18 = Armored Force')
+    r04 = [r for r in SA.values() if r and r['SpecializationId'] == ARMD and U[r['UnitId']]['HUDName'].strip() == 'ZBD-04A Recon']
+    ok(len(r04) == 1 and U[r04[0]['UnitId']]['CategoryType'] == 0, ('ZBD-04A Recon: one Recon-tab card in Armored', r04))
+    g.put('Units', uid, {'CategoryType': 0})
+    g.add('SpecializationAvailabilitiesJson', r04[0], {'UnitId': uid})
     men = lambda u: len(rows('SquadMembersJson', UnitId=u))
     fit, big = [], []
     for r in rows('TransportAvailabilitiesJson', UnitId=Z):
@@ -111,6 +119,8 @@ def apply(t, g, ok, rec):
     ok(tw == {base: [(0, gun)], chm: [(0, gun), (1, CHW)]}, ('mounts', tw))
     ok({w for v in tw.values() for _, w in v} == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)}, 'mount weapons == ammo weapons')
     ok(len(rows('TransportAvailabilitiesJson', UnitId=uid)) == len(fit) > 0, ('transport cards', fit, 'too big', big))
-    rec['zbd100'] = {'unit': uid, 'gun': gun, 'ke': ke, 'he': he, 'mounts': [base, chm], 'options': [o['Id'] for o in opts], 'ch901_cost': CH_COST,
+    card = [r for r in SA.values() if r and r['UnitId'] == uid]
+    ok(len(card) == 1 and card[0]['SpecializationId'] == ARMD and U[uid]['CategoryType'] == 0, ('ZBD-100 Recon card in Armored', card))
+    rec['zbd100'] = {'armored_recon_card': {k: card[0].get(k) for k in card[0] if k.startswith('Max') or k == 'SpecializationId'}, 'unit': uid, 'gun': gun, 'ke': ke, 'he': he, 'mounts': [base, chm], 'options': [o['Id'] for o in opts], 'ch901_cost': CH_COST,
                      'transport_for': fit, 'not_fitting': big, 'zbd20_amphibious': [True, False]}
     print('ZBD100', rec['zbd100'])
