@@ -521,6 +521,10 @@ rec['split_cards_visible']={str(x):U[x]['HUDName'].strip() for x in _lost}
 # ---------- 19. China balance patch (Osama 21 Nov 2026 18:2x PST, thread 1567745029781454889: Doc "China changes 9.4" 1uhNb7jt, "I have a list of new
 # changes for you", "Balance patch"). All 37 lines; HJ-10 = 140 points (18:3x). Readings and rows: china_balance_094.py.
 import china_balance_094;china_balance_094.apply(t,g,ok,rec)
+# ---------- 20. Helicopter launcher layouts (Osama 21 Nov 2026 19:1x PST, thread 1567745029781454889: "Z-10 Fire support TY-90's should only have 2
+# launchers (but 8 missiles) ... see if there are any launcher oddities"). Z-10 family Fire support and Z-21 Heavy anti-armor: same missiles, fewer and even
+# launchers. Z-19 / Z-9WA (2-pylon Dauphin body) not changed: asked. See heli_launchers_094.py.
+import heli_launchers_094;heli_launchers_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

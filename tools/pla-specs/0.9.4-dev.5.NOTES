@@ -6,3 +6,10 @@
   "HJ-10 as long as it behaves like the other mini-non-interceptable cruise missiles we're fine"). china_balance_094.py: Z-9WA 36x 57 mm option 24647 +70 -> +20;
   72x 57 mm option 24545 back to +50 (dev.4 had +20 by mistake). CSK-131 (1266, the transport) InfantrySlots 12 -> 8. HJ-10: no change (cruise 200 /
   semi-active laser 100 / not interceptable, same fields as the CH-901). Not seen in game.
+- 2026-11-21 19:1x PST, thread 1567745029781454889 (Osama: "Z-10 Fire support TY-90's should only have 2 launchers (but 8 missiles) ... Z-19 ... should have
+  2 launchers. Please double check and see if there are any launcher oddities"). DATA: section 20 -> heli_launchers_094.py (batch 941 checks). Z-10 (978,
+  1239), Z-10U (1270), Z-10K (913) Fire support: TY-90 5 launchers (4x1 + 1x4) -> 2 launchers x4 on slots 1-2 (TY-90 x4 turret 2019128 / 2019122),
+  slots 3/4/6 empty, rocket pod on slot 5 unchanged. Z-21 Heavy anti-armor (8x HJ-10): HJ-10 1x8 -> 2x4 (turret 2017898), TY-90 2+1+1 -> 2x2 (2019155).
+  Audit (work/balance-0.9.4-20261121/launcher_audit.txt): Z-19 / Z-19G / Z-9WA are on the 2-pylon AS-365 body; their 8-missile single pylons (TY-90,
+  HJ-8, HJ-10, AKD-9) can only become 2 launchers by dropping the other pylon's weapon -> asked, not changed. Z-20 / Z-21 left/right mirrored weapon rows
+  are the vanilla left/right pylon pattern, not a fault. Not seen in game.
