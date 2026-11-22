@@ -20,7 +20,7 @@ namespace FreedomArrow;
 // - Epaulets are the game's own sprites (Epaulet_USA_base_N US Army, Epaulet_USA_N US Marines, Epaulet_RUS_base_N Russian Army,
 //   Epaulet_RUS_N Russian VDV), found by name at run time. Default set = the player's vanilla pick, read from the sprite the game's
 //   ProfileUtils.GetEpauletData returns for the local player. The PLA set is not drawn yet.
-static class RankedMenu
+static partial class RankedMenu
 {
     // TEST BUILD: ranked runs on the test hub (faqueue-test.service, /hubs/test). ThirdPartyGuard points ArrowQueue here while this is set.
     public const bool TestHub=true;
@@ -73,6 +73,7 @@ static class RankedMenu
             ("Api.Active",pActive),("Api.Current",pCurrent),("Game.MySteamId",pMySteam),("Game.InLobby",pInLobby),("Signal._link",fLink)})
             if(o==null)throw new InvalidOperationException("ArrowQueue "+n+" not found");
         h.Patch(AccessTools.Method(tFlow,"PickMap"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(PickMap)));
+        InstallPage(h);
         var mode=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.Text"),"Mode");
         if(mode!=null)h.Patch(mode,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(ModeName)));
         try
@@ -195,6 +196,7 @@ static class RankedMenu
 
     static void Open()
     {
+        if(ShowPage())return;   // the page in the game's own UI (RankedPage.cs); the overlay below is the fallback
         open=true;tab=0;selRow=-1;nextAsk=nextBoard=-100f;
         es=UnityEngine.EventSystems.EventSystem.current;
         if(es!=null)es.enabled=false;   // the game's menu must not take the clicks meant for this one
@@ -331,6 +333,7 @@ static class RankedMenu
 
     public static void Tick()
     {
+        PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}
     }
@@ -341,6 +344,7 @@ static class RankedMenu
         try
         {
             if(open){Menu();return;}
+            if(pageShown){var ev=Event.current;if(ev.type==EventType.KeyDown&&ev.keyCode==KeyCode.Escape){HidePage("Esc",true);ev.Use();}return;}
             if(card==null||!PlayCards(out var last,out var pitch))return;
             var r=new Rect(last.x+pitch,last.y,last.width,last.height);
             if(!loggedCard){loggedCard=true;MelonLogger.Msg($"FREEDOM_ARROW_RANKED card at {r} (last game card {last}, screen {Screen.width}x{Screen.height})");}
