@@ -60,17 +60,43 @@ static class WebsiteButton
     // (a frame over 0.25 s), and only clicks after it is on screen can dismiss it.
     const float SettleSeconds=2f,HitchSeconds=0.25f;
     static float settledFrom=-1f;
+    // Osama 22 Nov 02:28 (dev.17): "website button only shows in the loading screen not main menu". The news panel seen at NewsWindow.Start
+    // may not be the one on the Home tab, so the active one is looked up again (at most once a second, only while none is active), and
+    // every show/hide is logged (FREEDOM_ARROW_WEBSITE_BUTTON shown / hidden: reason) so the next test says why.
+    const float ScanSeconds=1f,ClickGraceSeconds=0.75f;
+    static float nextScan,shownAt=-1f;
+    static string hiddenWhy="";
+
+    static bool Active(NewsWindow n)=>n!=null&&!n.WasCollected&&n.gameObject.activeInHierarchy;
+
+    static void Find()
+    {
+        if(Active(news)||Time.realtimeSinceStartup<nextScan)return;
+        nextScan=Time.realtimeSinceStartup+ScanSeconds;
+        foreach(var n in UnityEngine.Object.FindObjectsOfType<NewsWindow>())
+            if(Active(n)){news=n;return;}
+    }
+
+    static void Hide(string why)
+    {
+        if(shownAt>=0f&&why!=hiddenWhy)MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON hidden: "+why);
+        shownAt=-1f;hiddenWhy=why;
+    }
+
     public static void OnGUI()
     {
-        if(failed||art==null||news==null)return;
+        if(failed||art==null)return;
         try
         {
-            bool active=!news.WasCollected&&news.gameObject.activeInHierarchy;
+            if(Event.current.type==EventType.Layout)Find();
+            bool active=Active(news);
+            if(!active)Hide("news panel closed");
             if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
             wasActive=active;
             if(!active||dismissed)return;
             if(Time.unscaledDeltaTime>HitchSeconds)settledFrom=Time.realtimeSinceStartup;   // still loading
             if(Time.realtimeSinceStartup-settledFrom<SettleSeconds)return;
+            if(shownAt<0f){shownAt=Time.realtimeSinceStartup;hiddenWhy="";MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON shown on the Home tab");}
             bool warn=launcherOld&&!updateDismissed&&updateArt!=null;
             var tex=warn?updateArt:art;
             float left=Screen.width*0.335f,right=Screen.width*0.715f;
@@ -79,7 +105,8 @@ static class WebsiteButton
             float cs=Mathf.Max(22f,h*0.13f);
             var close=new Rect(r.xMax-cs-h*0.03f,r.y+h*0.05f,cs,cs);   // the warning's dismiss ✕, top right
             var e=Event.current;
-            if(e.type==EventType.MouseDown&&!r.Contains(e.mousePosition)){dismissed=true;return;}
+            if(e.type==EventType.MouseDown&&!r.Contains(e.mousePosition)&&Time.realtimeSinceStartup-shownAt>=ClickGraceSeconds)
+            {dismissed=true;Hide("click outside the banner");return;}
             GUI.DrawTexture(r,tex,ScaleMode.StretchToFill);
             if(r.Contains(e.mousePosition)&&!(warn&&close.Contains(e.mousePosition)))
             {
