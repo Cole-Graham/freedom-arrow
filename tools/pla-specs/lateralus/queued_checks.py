@@ -33,10 +33,16 @@ LATER={929:(((9,32),355),((9,43),415)),921:(((9,35),255),),966:(((9,35),255),),1
 # 5th/6th-gen options are back at their pre-SEAD price and the four fighters back at 2 cards.
 FIFTH_OPTIONS=(1888,1889,24653,24654,24656,24657,24659,24660,24664,20191,20198,20234);FIFTH_ROWS={2008203,2014507,2008260,2014513}
 after35=_ge(9,35)
+# 0.9.4-dev.4 (Osama 21 Nov 2026 18:2x PST, Doc "China changes 9.4"): "J-36 base price increased by +30pts" 415 -> 445; "J-31 Heavy SEAD +55" 155 -> 210.
+after094d4=m>=key('0.9.4-dev.4');LATER_094={929:445};LATER_094_OPT={24659:210}
 def _want(i,new):
+    if after094d4 and i in LATER_094:return LATER_094[i]
     return ([p for s,p in LATER.get(i,()) if _ge(*s)] or [new])[-1]
+def _wopt(i,old,new):
+    if after094d4 and i in LATER_094_OPT:return LATER_094_OPT[i]
+    return old if after35 and i in FIFTH_OPTIONS else new
 bad+=[f'unit {i} {n} cost {Ut.get(i,{}).get("Cost")} (want {_want(i,new)})' for i,(n,old,new) in SP.UNITS.items() if Ut.get(i,{}).get('Cost')!=_want(i,new)]
-bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {old if after35 and i in FIFTH_OPTIONS else new})' for i,(u,n,old,new) in SP.OPTIONS.items() if (Ot.get(i,{}).get('Cost') or 0)!=(old if after35 and i in FIFTH_OPTIONS else new)]
+bad+=[f'option {i} {n} cost {Ot.get(i,{}).get("Cost")} (want {_wopt(i,old,new)})' for i,(u,n,old,new) in SP.OPTIONS.items() if (Ot.get(i,{}).get('Cost') or 0)!=_wopt(i,old,new)]
 for i,want in EP.EXPECT.items():
     got=[At.get(Ot.get(i,{}).get(f'Ability{k}Id'),{}).get('ECMAccuracyMultiplier') for k in (1,2,3)]
     if not any(g is not None and abs(g-want)<1e-6 for g in got):bad.append(f'ECM option {i} multipliers {got} (want {want})')

@@ -21,6 +21,12 @@ def apply(t, g, ok, rec):
     def cost(u, name, old, new):
         ok(hud(u).startswith(name) and U[u]['Cost'] == old, (u, name, 'cost', U[u]['Cost'], old))
         g.put('Units', u, {'Cost': new}); out.setdefault(name, {})['cost'] = [old, new]
+        # loadout swap rows cost base + option (audit_swap_prices.py), so they move with the base price
+        for o in [o for o in O.values() if o and o.get('ReplaceUnitId') and t['ModificationsJson'].get(o.get('ModificationId'), {}).get('UnitId') == u]:
+            r = o['ReplaceUnitId']
+            if r != u:
+                ok(U[r]['Cost'] == old + (o.get('Cost') or 0), (name, 'swap row', r, U[r]['Cost'], old, o.get('Cost')))
+                g.put('Units', r, {'Cost': new + (o.get('Cost') or 0)}); out[name].setdefault('swap_rows', {})[r] = U[r]['Cost']
 
     def drop_men(u, pred, n, why):
         ms = [m for m in men(u) if pred(m)]
@@ -147,6 +153,11 @@ def apply(t, g, ok, rec):
     s = [r for r in SA.values() if r and r.get('UnitId') == 1252]; ok(len(s) == 1 and s[0]['MaxAvailabilityXp0'] == 4, 'WZ-8 4 cards'); g.put('SpecializationAvailabilitiesJson', s[0]['Id'], {'MaxAvailabilityXp0': 2})
     cost(1104, 'Z-21', 110, 140)
     cost(936, 'HJ-10', 170, 140)
+    # HJ-10 smoke and radar removed (Osama 18:4x: "HJ-10 remove its smoke", "HJ-10 remove radar"): its own radar+smoke+laser row 2019696 ->
+    # vanilla 'Laser Veh Default' 10, the laser it was built from (same 1500 m laser); the NLOS laser stays.
+    r = one('UnitAbilitiesJson', UnitId=936); ok(len(r) == 1 and r[0]['AbilityId'] == 2019696 and AB[2019696]['IsRadar'] and AB[2019696]['IsSmoke'], 'HJ-10 radar+smoke+laser row')
+    ok(AB[10]['IsLaserDesignator'] and not AB[10]['IsRadar'] and not AB[10]['IsSmoke'] and AB[10]['LaserMaxRange'] == AB[2019696]['LaserMaxRange'], 'row 10 = same laser only')
+    g.put('UnitAbilitiesJson', r[0]['Id'], {'AbilityId': 10})
     cost(911, 'HQ-9C', 300, 325)
     # H-6K: shares mobility 128 'Plane TU22M3' with the Tu-22M3 -> own copy without afterburner
     p = one('UnitPropulsionsJson', UnitId=919); ok(len(p) == 1 and p[0]['MobilityId'] == 128 and MO[128]['IsAfterburner'], 'H-6K on Tu-22M3 mobility')
@@ -157,7 +168,7 @@ def apply(t, g, ok, rec):
     ld = [r for r in WA.values() if r and r.get('UnitId') == 929 and wn(r['WeaponId']) == 'LD-8A']
     ok(len(ld) == 1 and ld[0]['Quantity'] == 3, ('J-36 LD-8A 3 per pylon x2', ld)); g.put('WeaponAmmunitionsJson', ld[0]['Id'], {'Quantity': 2})
     cost(929, 'J-36', 415, 445)
-    opt_cost(24659, 'Heavy SEAD', 155, 55)
+    opt_cost(24659, 'Heavy SEAD', 155, 210)  # "J-31 Heavy SEAD +55" read as +55 on its price, like "Z-21 +30 points" and "HQ-9C +25 pts"
     # PHL-16: 300 mm loadout = 300 points (base 350 -> 300; 370 mm +0 -> +50, Fire Dragon +30 -> +80, so those stay 350 / 380); BRE3 48 -> 33 damage, AOE 82.5 -> 75 raw (150 m)
     cost(1035, 'PHL-16', 350, 300); opt_cost(24552, 'BRE6', 0, 50); opt_cost(24553, 'Fire Dragon', 30, 80)
     ok(O[24551]['Cost'] == 0 and users('WeaponAmmunitionsJson', 'AmmunitionId', 2017442) == {1035} and A[2017442]['Damage'] == 48.0 and A[2017442]['HealthAOERadius'] == 82.5, 'BRE3 own round 48 / 82.5')

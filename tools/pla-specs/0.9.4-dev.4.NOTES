@@ -6,3 +6,8 @@
   card metres (raw 82.5 -> 75); Z-9WA "57mm loadout" = the 72x 57 mm option 24545 (the 36x 57 mm 24647 at +70 and Z-9WA Recon 57 mm 24584 at +50 unchanged);
   CSK-131 transport = unit 1266 (the 21 transport rows), QJZ-89 RWS turret of the CSK-131 Recon (same Tigr model), price 35 unchanged; H-6K gets its own
   mobility copy without afterburner (row 128 is shared with the Tu-22M3). Not seen in game.
+- 2026-11-21 18:4x PST, thread 1567745029781454889 (Osama: "HJ-10 remove its smoke", "HJ-10 remove radar"). china_balance_094.py: HJ-10 (936) ability 2019696
+  (radar + smoke + laser, own row) -> vanilla 10 "Laser Veh Default" (same 1500 m laser; NLOS laser kept). Not seen in game.
+- Build gates updated for these decisions (21 Nov 18:5x): audit_swap_prices -> base price changes move their loadout swap rows (Rosgvardia stand-off 65 -> 70);
+  check_infantry_armor floor Mountain Leopards 10 -> 8; check_model_carry PHL-16 300 from 0.9.4-dev.4; lateralus/queued_checks J-36 445 and J-31 Heavy SEAD
+  option 24659 = 210 from 0.9.4-dev.4 ("J-31 Heavy SEAD +55" read as +55 on its 155, like "Z-21 +30 points").
