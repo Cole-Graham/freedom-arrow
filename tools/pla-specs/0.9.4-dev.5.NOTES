@@ -65,3 +65,5 @@
   1231 Shaanxi Troop Truck -> Shaanxi SX2220 Troop Truck, 1235 Shaanxi HMV3 -> Shaanxi SX2306 (HEMTT 8x8), 1247 Shaanxi HMV3 Cargo -> Shaanxi SX2306
   Cargo, 1269 SX2190 -> Shaanxi SX2121 (LMTV 4x4). Internal Name unchanged (FAModels, paint and decks key on it). No 10x10/LVSR China card; PHL-11 kept.
   Batch checks 2228 pass. Not seen in game.
+- 2026-11-21 21:1x PST, thread 1567745029781454889 (Osama: "S-21 air escort loadout should be +50 not +150" = Z-21). AFTER LIVE BUILD 255: for the next build.
+  china_balance_094.py: Z-21 (1104) Air escort option 24513 cost 150 -> 50 (batch 2229 checks). Not seen in game.

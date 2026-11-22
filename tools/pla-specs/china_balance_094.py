@@ -156,6 +156,7 @@ def apply(t, g, ok, rec):
     ok(O[24545]['Cost'] == 50, 'Z-9WA 72x 57 mm stays +50')
     s = [r for r in SA.values() if r and r.get('UnitId') == 1252]; ok(len(s) == 1 and s[0]['MaxAvailabilityXp0'] == 4, 'WZ-8 4 cards'); g.put('SpecializationAvailabilitiesJson', s[0]['Id'], {'MaxAvailabilityXp0': 2})
     cost(1104, 'Z-21', 110, 140)
+    opt_cost(24513, 'Air escort', 150, 50)  # Osama 21 Nov 21:1x: "Z-21 air escort loadout should be +50 not +150"
     cost(936, 'HJ-10', 170, 140)
     # HJ-10 smoke and radar removed (Osama 18:4x: "HJ-10 remove its smoke", "HJ-10 remove radar"): its own radar+smoke+laser row 2019696 ->
     # vanilla 'Laser Veh Default' 10, the laser it was built from (same 1500 m laser); the NLOS laser stays.
