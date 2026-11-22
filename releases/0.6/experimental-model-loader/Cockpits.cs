@@ -25,7 +25,10 @@ public partial class Mod
         ["US_OH58Kiowa_glass"] = "oh58kiowa",
         // 0.3.33 (Osama 16 Nov 2026: "HHQ-10 needs vanilla glass transplant from another truck"): the Centurion C-RAM truck cab glass.
         // The HHQ-10 is built on the C-RAM unit, so its stand-in prefab (US_CRAM) and this material are loaded wherever it is.
-        ["US_CRAM_GLASS"] = "uscram"
+        ["US_CRAM_GLASS"] = "uscram",
+        // Osama 22 Nov 2026: "KF-21 needs landing gear and glass transplant from vanilla F-35". Material name read from the vanilla unit bundle
+        // (US_F35A_Glass); the token picks the US_F35A prefab.
+        ["US_F35A_Glass"] = "usf35a"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

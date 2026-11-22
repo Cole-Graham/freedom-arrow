@@ -142,3 +142,8 @@
   0.2.51). For the next dev test add the 504 --asset lines of work/blue-dragon-models-20261122/asset-args.txt (1.36 GB; its models.json and
   paint-schemes.json = 0.2.51/0.2.52 + the 14 Blue Dragon entries, so they are safe supersets today; re-merge if another batch edits either file).
   Vengeance already has the same files from the bd2/bd3 overlays, so an install of that build changes nothing on his PC except the Assets version.
+- 2026-11-22 02:2x PST, thread 1573418243715113213 (Osama: "KF-21 needs landing gear and glass tranpslant from vanilla F-35"). FAMODELS (rebuild the
+  DLL for the next dev test, --famodels): Cockpits.cs donor token "US_F35A_Glass" -> "usf35a" (material name read from the vanilla unit bundle). Compiles
+  clean (/tmp/famodels-f35glass). Until a build carries it, FAModels' existing fallback shows clear glass (unknown donor = InvalidDataException,
+  caught). ASSETS: KF-21 glass mat.json cockpitDonor US_F35A_Glass; landing gear = the JASDF F-35B gear from Shawn's pack fitted to the KF-21 (the
+  vanilla F-35 gear is inside the 2.6 GB unit bundle; not extracted). Staged in work/blue-dragon-models-20261122 (asset-args.txt). Not seen in game.
