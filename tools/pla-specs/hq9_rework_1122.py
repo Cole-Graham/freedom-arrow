@@ -3,9 +3,9 @@ ammo option where you can switch from four missiles to eight missiles. When you 
 missiles of course with the 1,175 range and this should Cost Plus 50. The current hq9b should be renamed hq9a and changed to semi active ... for the new
 hq9c can you please find an existing unit that has a similar role perhaps the PAC-3 MSE?"
 - Card 911 ('PLA HQ-9', Motorized): shown as HQ-9B. Its missile row (active seeker 50, range 1300, damage 20) stays as the HQ-9B missile. New weapon
-  package slot, as the vanilla PAC-3 MSE (mod 533): 4x HQ-9B (default, the existing launcher/turret) or 8x HQ-9C (+50, a copy of that launcher with an
+  package slot, as the vanilla PAC-3 MSE (mod 533): 4x HQ-9B (default, the existing launcher/turret) or 8x HQ-9C (+0 since 15:5x, was +50; a copy of that launcher with an
   8-round magazine and its own turret). The HQ-9C missile is the vanilla PAC-3 MSE round (497: damage 16, seeker 50, acceleration 400, burn 3 s, blast
-  32.5, fuse 26, supply 200 / 10 s) with range 1175 and the HQ-9's own missile model and icon. FAModels: HQ-9B model, HQ-9C model on the 8x option.
+  32.5, fuse 26, supply 200 / 10 s) with range 1200 (Osama 15:5x: "1200 range and +0"; first pass 1175, +50) and the HQ-9's own missile model and icon. FAModels: HQ-9B model, HQ-9C model on the 8x option.
 - Card 1233 ('PLA HQ-9B', Rocket Conscript Force): shown as HQ-9A; its missile becomes semi-active (Seeker 100, as the vanilla PAC-2 GEM+ / 48N6 /
   9M83M); other numbers unchanged. Card 1234 ('PLA HQ-9A') is in no division (unused) and is left alone.
 Numbers are a first pass; Osama expects balance changes, especially after Lateralus's AA rework.
@@ -40,7 +40,7 @@ def apply(t, g, ok, rec):
     g.put('WeaponsJson', WPN, {'HUDName': 'HQ-9B missile'})
     g.put('AmmunitionsJson', AMO, {'HUDName': 'HQ-9B missile'})
     keep = {k: A[AMO][k] for k in ('ModelFileName', 'HUDIcon')}
-    c_am = g.add('AmmunitionsJson', A[MSE], {'Name': 'PLA HQ-9C missile', 'HUDName': 'HQ-9C missile', 'LowAltRange': 1175.0, 'HighAltRange': 1175.0, **keep})
+    c_am = g.add('AmmunitionsJson', A[MSE], {'Name': 'PLA HQ-9C missile', 'HUDName': 'HQ-9C missile', 'LowAltRange': 1200.0, 'HighAltRange': 1200.0, **keep})
     c_w = g.add('WeaponsJson', W[WPN], {'Name': 'PLA HQ-9C launcher x8', 'HUDName': 'HQ-9C missile', 'MagazineSize': 8})
     c_t = g.add('TurretsJson', T[TUR], {'Name': 'PLA HQ-9C mount x8', 'IsDefault': False})
     g.add('TurretWeaponsJson', rows('TurretWeaponsJson', TurretId=TUR)[0], {'TurretId': c_t, 'WeaponId': c_w})
@@ -50,7 +50,7 @@ def apply(t, g, ok, rec):
     mo = {o['UIName']: o for o in rows('OptionsJson', ModificationId=MSE_MOD)}
     o4 = g.add('OptionsJson', mo['Custom_Option_4xMissiles'], {'ModificationId': mod, 'Name': 'PLA HQ-9 4x HQ-9B', 'UIName': '4x HQ-9B', 'Order': 0, 'Cost': 0,
                                                                 'Turret0Id': TUR, 'OptionPicture': W[WPN]['HUDIcon']})
-    o8 = g.add('OptionsJson', mo['Custom_Option_8xMissiles'], {'ModificationId': mod, 'Name': NAME_8X, 'UIName': '8x HQ-9C', 'Order': 1, 'Cost': 50,
+    o8 = g.add('OptionsJson', mo['Custom_Option_8xMissiles'], {'ModificationId': mod, 'Name': NAME_8X, 'UIName': '8x HQ-9C', 'Order': 1, 'Cost': 0,
                                                                 'Turret0Id': c_t, 'OptionPicture': W[WPN]['HUDIcon']})
 
     # 1233 -> HQ-9A, semi-active
@@ -97,10 +97,10 @@ def apply(t, g, ok, rec):
     ok(same(W[w2], W[238], ('AudioPreset',)) or all(W[w2][k] == W[238][k] for k in ('Type', 'AimTimeMin', 'AimTimeMax', 'MagazineSize')), 'HQ-9A 2x launcher = PAC-2 x2 launcher')
     ok(U[HQ9]['HUDName'] == 'HQ-9B' and U[HQ9]['Cost'] == 325 and A[AMO]['LowAltRange'] == 1300.0 and A[AMO]['Seeker'] == 50, 'HQ-9B card: 325, active, 1300')
     ok(all(A[c_am][k] == A[MSE][k] for k in A[MSE] if k not in ('Id', 'Name', 'HUDName', 'LowAltRange', 'HighAltRange', 'ModelFileName', 'HUDIcon'))
-       and (A[c_am]['LowAltRange'], A[c_am]['HighAltRange'], A[c_am]['Seeker']) == (1175.0, 1175.0, 50), 'HQ-9C missile = PAC-3 MSE round at 1175')
+       and (A[c_am]['LowAltRange'], A[c_am]['HighAltRange'], A[c_am]['Seeker']) == (1200.0, 1200.0, 50), 'HQ-9C missile = PAC-3 MSE round at 1200')
     ok(W[c_w]['MagazineSize'] == 8 and all(W[c_w][k] == W[WPN][k] for k in W[WPN] if k not in ('Id', 'Name', 'HUDName', 'MagazineSize')), 'HQ-9C launcher = HQ-9 launcher, 8 rounds')
     ok([(r['TurretId'], T[r['TurretId']]['IsDefault']) for r in rows('TurretUnitsJson', UnitId=HQ9)] == [(TUR, True), (c_t, False)], '4x default, 8x turret linked')
-    ok([(O[o]['Cost'], O[o]['Turret0Id']) for o in (o4, o8)] == [(0, TUR), (50, c_t)] and all(not O[o].get(f'Turret{i}Id') for o in (o4, o8) for i in range(1, 21)), 'weapon slot: 4x / 8x +50')
+    ok([(O[o]['Cost'], O[o]['Turret0Id']) for o in (o4, o8)] == [(0, TUR), (0, c_t)] and all(not O[o].get(f'Turret{i}Id') for o in (o4, o8) for i in range(1, 21)), 'weapon slot: 4x / 8x, both +0')
     ok(U[HQ9A_CARD]['HUDName'] == 'HQ-9A' and A[a9['AmmunitionId']]['Seeker'] == 100 and A[a9['AmmunitionId']]['LowAltRange'] == 1175.0, 'HQ-9A card: semi-active')
     rec['hq9_rework_1122'] = {'hq9b_card': HQ9, 'hq9a_card': HQ9A_CARD, 'hq9c_missile': c_am, 'hq9c_launcher': c_w, 'hq9c_turret': c_t, 'options': [o4, o8],
                               'option_8x_name': NAME_8X}
