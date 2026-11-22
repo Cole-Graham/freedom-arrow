@@ -8,6 +8,17 @@ internal static class Program
     [STAThread]
     private static void Main(string[] args)
     {
+#if LAUNCHER
+        // 1.1.16: under Proton/Wine, use the Linux desktop scale (WineDpi); Wine reads the DPI at start-up, so restart once after setting it.
+        if (!args.Contains(Loc.RestartArg) && WineDpi.Apply())
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo(Environment.ProcessPath!) { UseShellExecute = false };
+            foreach (var a in args) psi.ArgumentList.Add(a);
+            psi.ArgumentList.Add(Loc.RestartArg);
+            System.Diagnostics.Process.Start(psi)?.Dispose();
+            return;
+        }
+#endif
         // Files passed on the command line, e.g. when a .bamod is double-clicked
         var files = args.Where(a => File.Exists(a) || Directory.Exists(a)).ToArray();
 

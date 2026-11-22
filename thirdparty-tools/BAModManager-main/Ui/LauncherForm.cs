@@ -23,6 +23,7 @@ internal sealed class LauncherForm : Form
     private readonly Label _modsState;
     private readonly LaunchProgressPanel _panel;
     private readonly Button? _lang;
+    private Action? _placeHeaderButtons;
     private readonly NewsPanel? _news;
     private readonly Label? _linuxState;
     private readonly Control? _header;
@@ -91,11 +92,12 @@ internal sealed class LauncherForm : Form
         site.Font = Theme.Head(16f);
         site.Location = new Point(DesignWidth - 270 - 14, 44);
         // keep both buttons at the top right when the window is narrowed for a small screen (FitScreen)
-        header.Resize += (_, _) =>
+        _placeHeaderButtons = () =>
         {
             _lang.Left = header.Width - _lang.Width - header.LogicalToDeviceUnits(14);
             site.Left = header.Width - site.Width - header.LogicalToDeviceUnits(14);
         };
+        header.Resize += (_, _) => _placeHeaderButtons();
         site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
         header.Controls.Add(site);
         var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 14, 28, 12) };
@@ -303,7 +305,37 @@ internal sealed class LauncherForm : Form
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
+        ScaleForDpi();
         FitScreen();
+    }
+
+    /// <summary>
+    /// 1.1.16 (Osama 22 Nov 2026, 4K under Proton): with Wine's DPI raised to the desktop scale (WineDpi), the fonts grew but the window and
+    /// its panels stayed at 100 % sizes, so the text was cut off. When the layout was not scaled by WinForms, scale it here by DeviceDpi / 96
+    /// (fonts are left alone: they already follow the DPI) and centre the window again.
+    /// </summary>
+    private static IEnumerable<Control> AllControls(Control root)
+    {
+        foreach (Control c in root.Controls) { yield return c; foreach (var d in AllControls(c)) yield return d; }
+    }
+
+    private void ScaleForDpi()
+    {
+        float f = DeviceDpi / 96f;
+        if (f < 1.05f || ClientSize.Width >= LogicalToDeviceUnits(DesignWidth) * 0.9f) return;
+        Scale(new SizeF(f, f));
+        // AutoSize buttons (the footer) kept a doubled or stale width: size them to their text at this DPI.
+        foreach (var b in AllControls(this).OfType<Button>().Where(b => b.AutoSize).ToList())
+        {
+            b.AutoSize = false;
+            b.Width = TextRenderer.MeasureText(b.Text, b.Font).Width + b.Padding.Horizontal + LogicalToDeviceUnits(8);
+        }
+        _placeHeaderButtons?.Invoke();
+        PerformLayout();
+        var area = Screen.FromControl(this).WorkingArea;
+        StartPosition = FormStartPosition.Manual;
+        Location = new Point(area.Left + Math.Max(0, (area.Width - Width) / 2), area.Top + Math.Max(0, (area.Height - Height) / 2));
+        NetDiagnostics.Append($"Window scaled x{f:0.##} for {DeviceDpi} DPI: {ClientSize.Width}x{ClientSize.Height}");
     }
 
     /// <summary>The window taller than the screen (Steam Deck 1280x800): shrink the header art, never the controls.</summary>
