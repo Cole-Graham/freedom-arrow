@@ -570,6 +570,9 @@ import turret_order_0941;turret_order_0941.apply(t,g,ok,rec)
 import new_cards_1122;new_cards_1122.apply(t,g,ok,rec)
 # ---------- Card names (Osama 22 Nov 2026 12:1x PST): ZBD-100 -> Type 100 CSV, ZBD-20 -> VN-17 (HUDName only). See rename_1122.py.
 import rename_1122;rename_1122.apply(t,g,ok,rec)
+# ---------- AR-2000 on a helicopter stand-in (Osama 22 Nov 2026 13:2x PST, thread 1573561286803980289; QQ sheet FA-041): Kiowa body, AKD-11 on the
+# left and right pylons through a default loadout option, stats kept (launch refused and retried every frame on the Termit pylon). See ar2000_heli_095.py.
+import ar2000_heli_095;ar2000_heli_095.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
