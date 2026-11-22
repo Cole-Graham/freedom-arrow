@@ -93,3 +93,9 @@
   Logs FREEDOM_ARROW_DEPLOY_HOLD started / "was not paused ... pause restored" / ended. Compiled clean on the deck. Root cause of the lost pause not
   found (not the connection-health pause: GameSessionContext combines both flags correctly). Not seen in game: after the build, check R2 logs for
   "pause restored" lines and that no player's income runs during deployment.
+- 2026-11-21 23:1x PST, thread 1573561286803980289 (Osama: "my game never closes cleanly", "can we just have a simple task killer"). NOT IN BUILD 255.
+  RUNTIME (rebuild the runtime DLL): new ExitWatchdog.cs, started at the end of Runtime.OnDeinitializeMelon (after the quit log upload and the
+  test-log bundle). If the process is still alive 10 s later it writes MelonLoader/Logs/FreedomArrow-exit-watchdog.log and ends itself
+  (kernel32 TerminateProcess). Evidence (Vengeance journal + Steam log, 21 Nov): all 5 exits hung 1-3.5 min after "Preferences Saved!" until
+  KWin's force-quit helper killed the game (crash handler at 22:57:35). A normal exit ends before the timer (background thread). Compiled clean.
+  Not seen in game: after install, quit and check the game is gone within ~15 s and the watchdog log line exists.

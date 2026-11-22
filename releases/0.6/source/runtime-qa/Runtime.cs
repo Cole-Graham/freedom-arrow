@@ -111,6 +111,8 @@ public class Runtime : MelonMod
                 MelonLogger.Msg("FREEDOM_ARROW_TEST_LOG_BUNDLE "+bundle);
             }
             catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_TEST_LOG_BUNDLE_FAILED: "+e.Message);}
+            // Osama 21 Nov 2026: the game hung for minutes after quit on Linux; end the process if it is still alive 10 s after this.
+            try { ExitWatchdog.Start(); } catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_EXIT_WATCHDOG_FAILED: "+e.Message);}
         }
     }
     public override void OnInitializeMelon()
