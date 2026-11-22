@@ -79,7 +79,7 @@ static class PartySizeWarning
     {
         if(!Showing)return;
         float k=Screen.height/1080f;
-        float w=Mathf.Min(1200*k,Screen.width-20),h=470*k;
+        float w=Mathf.Min(1200*k,Screen.width-20),h=360*k;
         float cx=Screen.width/2f,top=30*k;
         try
         {
@@ -104,9 +104,9 @@ static class PartySizeWarning
         GUI.color=new Color(0.70f,0.06f,0.08f,0.98f);GUI.DrawTexture(r,Texture2D.whiteTexture);
         GUI.color=old;
         GUI.Label(new Rect(r.x+20,r.y+14*k,r.width-40,80*k),"WARNING: TOO MANY PLAYERS FOR THIS MAP\n警告：玩家人数超过地图设计",titleStyle);
-        GUI.Label(new Rect(r.x+40,r.y+110*k,r.width-80,260*k),
-            $"This is a {mapSize}v{mapSize} map, but a team has {party} players. Playing with more players than a map is made for causes balance problems: crowded front lines, too many units for the space and scoring tuned for {mapSize}v{mapSize}. We encourage playing maps at their recommended size. Dismiss this warning to play anyway.\n\n"+
-            $"这是一张 {mapSize}v{mapSize} 地图，但有一方有 {party} 名玩家。玩家人数超过地图设计会导致平衡问题：前线拥挤、单位过多、计分按 {mapSize}v{mapSize} 设计。我们鼓励按地图推荐的人数进行游戏。关闭此警告即可继续。",bodyStyle);
+        GUI.Label(new Rect(r.x+40,r.y+110*k,r.width-80,150*k),
+            $"This is a {mapSize}v{mapSize} map, but a team has {party} players. Oversized teams cause balance issues. We encourage playing maps at their recommended size.\n\n"+
+            $"这是一张 {mapSize}v{mapSize} 地图，但有一方有 {party} 名玩家。超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。",bodyStyle);
         if(GUI.Button(new Rect(r.x+r.width/2-230*k,r.y+r.height-70*k,460*k,52*k),"Dismiss and play anyway / 关闭并继续",buttonStyle))
         {
             dismissed=active;
