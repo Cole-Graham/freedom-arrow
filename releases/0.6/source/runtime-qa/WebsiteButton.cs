@@ -49,7 +49,7 @@ static class WebsiteButton
 
     // Osama 22 Nov 01:56: "take the top and central area between quick match and server status, it goes away after someone clicks play,
     // arsenal, editor, mod game, settings and etc". Measured on a 1568x882 Home screenshot: Quick match tile right edge 0.304 (its gear icon
-    // to 0.324), Server status left edge 0.725, tile tops at 0.122. Any click outside the banner hides it; it comes back the next time the
+    // to 0.324), Server status left edge 0.725, tile tops at 0.122. It hides when another tab is selected and comes back the next time the
     // Home tab is selected again (a return to the Home tab or a new menu scene).
     static bool dismissed,wasActive;
     // Osama 22 Nov 02:11: "the website button showed up in our loading screen and then dissappeared before going into the main menu".
@@ -60,7 +60,6 @@ static class WebsiteButton
     static float settledFrom=-1f;
     // Osama 22 Nov 02:28 (dev.17): "website button only shows in the loading screen not main menu". Every show/hide is logged
     // (FREEDOM_ARROW_WEBSITE_BUTTON shown / hidden: reason), and clicks in its first 0.75 s on screen don't hide it.
-    const float ClickGraceSeconds=0.75f;
     static float shownAt=-1f;
     static string hiddenWhy="";
 
@@ -112,8 +111,8 @@ static class WebsiteButton
             float cs=Mathf.Max(22f,h*0.13f);
             var close=new Rect(r.xMax-cs-h*0.03f,r.y+h*0.05f,cs,cs);   // the warning's dismiss ✕, top right
             var e=Event.current;
-            if(e.type==EventType.MouseDown&&!r.Contains(e.mousePosition)&&Time.realtimeSinceStartup-shownAt>=ClickGraceSeconds)
-            {dismissed=true;Hide("click outside the banner");return;}
+            // Osama 22 Nov 03:07: "the website button dissappears when you click anywhere on the menu ... let its presence be tied to the
+            // same logic that has the music pack button". No click-outside hiding: it shows exactly while the music pack selector would.
             GUI.DrawTexture(r,tex,ScaleMode.StretchToFill);
             if(r.Contains(e.mousePosition)&&!(warn&&close.Contains(e.mousePosition)))
             {

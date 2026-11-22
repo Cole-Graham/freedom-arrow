@@ -197,5 +197,9 @@ if m>=key('0.9.5-dev.19'):
     _v=(_fm.get('PLA ZTZ-99A') or {}).get('variants') or []
     if not any(x.get('file')=='m_ztz99b_static.fam' for x in _v):bad.append('models.json: PLA ZTZ-99A has no ZTZ-99B variant (ztz99b-20261122/merge_models.py)')
     elif not all('UserData/FAModels/'+f in _n for x in _v for f in [x['file'],x['battle'],*x.get('lods',[])]):bad.append('ZTZ-99B variant files missing')
+# From 0.9.5-dev.20 (Osama 22 Nov 2026 03:07 PST: "the website button dissappears when you click anywhere on the menu"): no click-outside
+# hiding; the banner shows exactly while the music pack selector would (Home tab selected).
+if m>=key('0.9.5-dev.20'):
+    if 'click outside the banner'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL still hides the website banner on a click outside it')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
