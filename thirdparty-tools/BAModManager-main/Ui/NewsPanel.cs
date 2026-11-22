@@ -11,7 +11,7 @@ namespace BAModManager.Ui;
 /// </summary>
 internal sealed class NewsPanel : Panel
 {
-    private readonly StatTiles _tiles = new() { Dock = DockStyle.Top, Height = 78 };
+    private readonly StatTiles _tiles = new() { Dock = DockStyle.Top, Height = 68 };
     private readonly RichTextBox _notes;
     private readonly Button _more;
     private string _link = LauncherNews.Site;
@@ -43,15 +43,16 @@ internal sealed class NewsPanel : Panel
         };
         // Windows 10/11 dark scroll bar, like the rest of the launcher (ignored where the theme doesn't exist)
         _notes.HandleCreated += (_, _) => { try { SetWindowTheme(_notes.Handle, "DarkMode_Explorer", null); } catch (Exception) { } };
-        _more = Theme.MakeButton(T("Full patch notes and statistics →"), ButtonKind.Ghost);
-        _more.Dock = DockStyle.Bottom;
-        _more.AutoSize = false;
-        _more.Height = 34;
+        _more = Theme.MakeButton(T("Full notes →"), ButtonKind.Ghost);
+        _more.Dock = DockStyle.Right;   // beside the PATCH NOTES heading, so the notes get the height
+        _more.AutoSize = true;
         _more.Click += (_, _) => LauncherNews.Open(_link);
 
         _featureTitle = new Label { Dock = DockStyle.Top, Height = 28, Font = Theme.Head(15f), ForeColor = Theme.Text, BackColor = Theme.Panel, UseMnemonic = false };
-        _featureText = new Label { Dock = DockStyle.Top, Height = 62, ForeColor = Theme.TextMuted, BackColor = Theme.Panel, UseMnemonic = false };
-        _featureImage = new PictureBox { Dock = DockStyle.Fill, SizeMode = PictureBoxSizeMode.Zoom, BackColor = Theme.Panel, Cursor = Cursors.Hand };
+        _featureText = new Label { Dock = DockStyle.Top, Height = 48, ForeColor = Theme.TextMuted, BackColor = Theme.Panel, UseMnemonic = false };
+        // full column width, its own height: the picture sits right under the text
+        _featureImage = new PictureBox { Dock = DockStyle.Top, SizeMode = PictureBoxSizeMode.Zoom, BackColor = Theme.Panel, Cursor = Cursors.Hand, Height = 0 };
+        _featureImage.Resize += (_, _) => FitImage();
         _featureImage.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
         _feature = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Panel, Margin = new Padding(0, 0, 14, 0) };
         _feature.Controls.Add(_featureImage);
@@ -60,9 +61,13 @@ internal sealed class NewsPanel : Panel
         _feature.Controls.Add(_featureTitle);
         _feature.Controls.Add(Title(T("NEW FEATURES")));
         var notes = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Panel, Margin = new Padding(14, 0, 0, 0) };
+        var notesHead = new Panel { Dock = DockStyle.Top, Height = 30, BackColor = Theme.Panel };
+        var notesTitle = Title(T("PATCH NOTES"));
+        notesTitle.Dock = DockStyle.Fill;
+        notesHead.Controls.Add(notesTitle);
+        notesHead.Controls.Add(_more);
         notes.Controls.Add(_notes);
-        notes.Controls.Add(Title(T("PATCH NOTES")));
-        notes.Controls.Add(_more);
+        notes.Controls.Add(notesHead);
         _cols = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Theme.Panel, ColumnCount = 2, RowCount = 1, Margin = Padding.Empty, Padding = Padding.Empty };
         _cols.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 0));   // the features column opens when a feature arrives
         _cols.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
@@ -72,7 +77,7 @@ internal sealed class NewsPanel : Panel
 
         // Docked top controls are added bottom-up
         Controls.Add(_cols);
-        Controls.Add(Gap(14));
+        Controls.Add(Gap(12));
         Controls.Add(_tiles);
         Controls.Add(Title(T("BATTLEFIELD REPORT")));
         ShowText(T("Loading news…"));
@@ -111,8 +116,16 @@ internal sealed class NewsPanel : Panel
         {
             _imageData = new MemoryStream(bytes);
             _featureImage.Image = Image.FromStream(_imageData);   // PictureBox plays an animated GIF by itself
+            FitImage();
         }
         catch (Exception) { _imageData = null; }
+    }
+
+    private void FitImage()
+    {
+        if (_featureImage.Image is not Image img || img.Width == 0) return;
+        var h = _featureImage.Width * img.Height / img.Width;
+        if (_featureImage.Height != h) _featureImage.Height = h;
     }
 
     private void ShowText(string text)
@@ -242,7 +255,7 @@ internal sealed class NewsPanel : Panel
             int gap = LogicalToDeviceUnits(8);
             int w = (Width - 3 * gap) / 4, h = Height;   // one row of 4
             using var label = Theme.Head(9.5f, semi: true);
-            using var value = Theme.Head(21f);
+            using var value = Theme.Head(19f);
             using var sub = Theme.Ui(8.25f);
             for (int i = 0; i < items.Length; i++)
             {
@@ -254,8 +267,8 @@ internal sealed class NewsPanel : Panel
                 int pad = LogicalToDeviceUnits(10);
                 var f = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis;
                 TextRenderer.DrawText(g, items[i].Label, label, new Rectangle(r.X + pad, r.Y + LogicalToDeviceUnits(8), r.Width - 2 * pad, LogicalToDeviceUnits(16)), Theme.TextMuted, f);
-                TextRenderer.DrawText(g, items[i].Value?.ToString("N0") ?? "—", value, new Rectangle(r.X + pad, r.Y + LogicalToDeviceUnits(24), r.Width - 2 * pad, LogicalToDeviceUnits(32)), Theme.Text, f);
-                TextRenderer.DrawText(g, items[i].Sub, sub, new Rectangle(r.X + pad, r.Bottom - LogicalToDeviceUnits(19), r.Width - 2 * pad, LogicalToDeviceUnits(15)), Theme.TextMuted, f);
+                TextRenderer.DrawText(g, items[i].Value?.ToString("N0") ?? "—", value, new Rectangle(r.X + pad, r.Y + LogicalToDeviceUnits(21), r.Width - 2 * pad, LogicalToDeviceUnits(28)), Theme.Text, f);
+                TextRenderer.DrawText(g, items[i].Sub, sub, new Rectangle(r.X + pad, r.Bottom - LogicalToDeviceUnits(18), r.Width - 2 * pad, LogicalToDeviceUnits(15)), Theme.TextMuted, f);
             }
         }
     }

@@ -62,12 +62,13 @@ internal sealed class LauncherForm : Form
         // condensed headings, and a progress panel that shows steps, MB, speed, time left and when data last arrived.
         // 1.1.15 (Osama 22 Nov 2026): a News column on the right with the Battlefield report and the patch notes.
         // Osama 22 Nov 2026: "make the launcher bigger so more of it is art", "or just more space, its very cramped":
-        // a full-width 1180x280 header and a wider News column. On a short screen (Steam Deck, 800 px) the header gives up
+        // a full-width 1440x320 header and a wide News column. On a smaller screen the window shrinks to fit: the header gives up
         // height first (FitScreen).
-        _news = new NewsPanel { Dock = DockStyle.Right, Width = 700 };   // features and patch notes side by side
-        ClientSize = new Size(1180, 820);
+        // Osama 22 Nov 2026: "news and patch notes should be able to get more room", "no one is playing on steam deck"
+        _news = new NewsPanel { Dock = DockStyle.Right, Width = DesignNewsWidth };   // features and patch notes side by side
+        ClientSize = new Size(DesignWidth, DesignHeight);
         Padding = new Padding(0);
-        var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = 280 };
+        var header = new FaBanner(MainForm.LoadEmbeddedImage("Assets.fa_banner.jpg")) { Dock = DockStyle.Top, Height = DesignHeaderHeight };
         // 中文 / English switch, like the button on freedomarrow.app (Osama 21 Nov 2026: "Make sure there's a Chinese switch").
         _lang = Theme.MakeButton(Loc.IsChinese ? "English" : "中文", ButtonKind.Secondary);
         _lang.AutoSize = false;
@@ -75,7 +76,7 @@ internal sealed class LauncherForm : Form
         _lang.MinimumSize = new Size(0, 0);
         _lang.Padding = new Padding(0);
         _lang.Margin = new Padding(0);
-        _lang.Location = new Point(1180 - 72 - 14, 9);
+        _lang.Location = new Point(DesignWidth - 72 - 14, 9);
         _lang.Font = Loc.IsChinese ? Theme.Head(10.5f, semi: true) : new Font("Microsoft YaHei UI", 9f, FontStyle.Bold);
         _lang.BackColor = Theme.Background;
         _lang.Click += (_, _) => ToggleChinese();
@@ -88,7 +89,13 @@ internal sealed class LauncherForm : Form
         site.MinimumSize = new Size(0, 0);
         site.Margin = new Padding(0);
         site.Font = Theme.Head(16f);
-        site.Location = new Point(1180 - 270 - 14, 44);
+        site.Location = new Point(DesignWidth - 270 - 14, 44);
+        // keep both buttons at the top right when the window is narrowed for a small screen (FitScreen)
+        header.Resize += (_, _) =>
+        {
+            _lang.Left = header.Width - _lang.Width - header.LogicalToDeviceUnits(14);
+            site.Left = header.Width - site.Width - header.LogicalToDeviceUnits(14);
+        };
         site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
         header.Controls.Add(site);
         var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 14, 28, 12) };
@@ -300,20 +307,37 @@ internal sealed class LauncherForm : Form
     }
 
     /// <summary>The window taller than the screen (Steam Deck 1280x800): shrink the header art, never the controls.</summary>
+    private const int DesignWidth = 1440, DesignHeight = 960, DesignHeaderHeight = 320, DesignNewsWidth = 960;
+
     private void FitScreen()
     {
-        if (_header == null) return;
+        if (_header == null || _news == null) return;
         // Sizes as designed: Wine/Proton already clamps the window to the screen, so ClientSize may be smaller here.
-        int want = LogicalToDeviceUnits(820), header = LogicalToDeviceUnits(280), frame = Height - ClientSize.Height;
-        // Wine/Proton: + room for a title bar it doesn't count
+        int want = LogicalToDeviceUnits(DesignHeight), header = LogicalToDeviceUnits(DesignHeaderHeight), minHeader = LogicalToDeviceUnits(190),
+            minBody = LogicalToDeviceUnits(540), frameH = Height - ClientSize.Height, frameW = Width - ClientSize.Width;
         var area = Screen.FromControl(this).WorkingArea;
-        var over = want + frame + (LinuxSteam.IsWine ? LogicalToDeviceUnits(40) : 0) - area.Height;
-        if (over <= 0) return;
-        var cut = Math.Min(over, header - LogicalToDeviceUnits(190));
-        _header.Height = header - cut;
-        ClientSize = new Size(ClientSize.Width, want - cut);
+        // Wine/Proton: + room for a title bar it doesn't count
+        var over = want + frameH + (LinuxSteam.IsWine ? LogicalToDeviceUnits(40) : 0) - area.Height;
+        // Too wide (e.g. a 1366x768 laptop): the News column gets narrower, never below 520.
+        var overW = LogicalToDeviceUnits(DesignWidth) + frameW - area.Width;
+        int width = LogicalToDeviceUnits(DesignWidth);
+        if (overW > 0)
+        {
+            var cutW = Math.Min(overW, LogicalToDeviceUnits(DesignNewsWidth - 520));
+            _news.Width = LogicalToDeviceUnits(DesignNewsWidth) - cutW;
+            width -= cutW;
+        }
+        if (over <= 0 && overW <= 0) return;
+        if (over > 0)
+        {
+            // The News column gives up its extra height first, then the header art shrinks; the PLAY column never does.
+            var headerCut = Math.Clamp(over - (want - header - minBody), 0, header - minHeader);
+            _header.Height = header - headerCut;
+            want = Math.Max(want - over, _header.Height + minBody);
+        }
+        ClientSize = new Size(width, want);
         StartPosition = FormStartPosition.Manual;
-        Location = new Point(area.Left + Math.Max(0, (area.Width - Width) / 2), area.Top);
+        Location = new Point(area.Left + Math.Max(0, (area.Width - Width) / 2), area.Top + Math.Max(0, (area.Height - Height) / 2));
     }
 
     protected override void OnHandleCreated(EventArgs e)

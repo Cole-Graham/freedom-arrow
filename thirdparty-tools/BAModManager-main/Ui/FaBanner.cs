@@ -8,12 +8,12 @@ namespace BAModManager.Ui;
 /// 1.1.14 (Osama 21 Nov 2026, "make the launcher fit our website art style"): the launcher header, like the freedomarrow.app hero.
 /// Assets/fa_banner.jpg is the 0.9.3 in-game menu art with the approved title logo (site/menu-bg.jpg + site/title.webp), drawn at
 /// 1120x440 for a 560x220 header at 200 % scale. 1.1.15 (Osama 22 Nov 2026, "make the launcher bigger so more of it is art"):
-/// a full-width 1180x280 header (2360x560, tools/distribution/make_launcher_banner.py): the art right-aligned, the logo on the left. The OPEN ALPHA badge and the launcher version are drawn here so they stay sharp
+/// a full-width 1440x320 header (2880x640, tools/distribution/make_launcher_banner.py): the art right-aligned, the logo on the left. The OPEN ALPHA badge and the launcher version are drawn here so they stay sharp
 /// and follow the language.
 /// </summary>
 internal sealed class FaBanner : Control
 {
-    private const float DesignWidth = 1180f;
+    private const float DesignWidth = 1440f;
     private readonly Image? _art;
 
     /// <summary>Space kept free at the top right (design pixels) for the language button.</summary>
@@ -46,12 +46,12 @@ internal sealed class FaBanner : Control
             g.DrawImage(_art, new RectangleF(x0, 0, Width - x0, Math.Min(h, Height)));
         }
 
-        // OPEN ALPHA badge centred under the logo (logo box 52..247 x 16..234 at design size).
+        // OPEN ALPHA badge centred under the logo (logo box 52..275 x 16..266 at design size).
         var badge = T("OPEN ALPHA");
         using (var f = Theme.Head(10.5f))
         {
             var size = TextRenderer.MeasureText(g, badge, f, Size.Empty, TextFormatFlags.NoPadding);
-            float bw = size.Width + 18 * s, bh = 23 * s, bx = x0 + 149.5f * s - bw / 2, by = 243 * s;
+            float bw = size.Width + 18 * s, bh = 23 * s, bx = x0 + 163.5f * s - bw / 2, by = 274 * s;
             using (var p = Theme.RoundRect(new RectangleF(bx, by, bw, bh), 3 * k))
             using (var b = new SolidBrush(Theme.Accent))
                 g.FillPath(b, p);
@@ -64,7 +64,7 @@ internal sealed class FaBanner : Control
         using (var f = Theme.Head(9f, semi: true))
         {
             var size = TextRenderer.MeasureText(g, version, f, Size.Empty, TextFormatFlags.NoPadding);
-            var r = new RectangleF(Width - size.Width - (26 + RightInset) * k, 12 * k, size.Width + 14 * k, 19 * k);
+            var r = new RectangleF(Width - size.Width - LogicalToDeviceUnits(26 + RightInset), LogicalToDeviceUnits(12), size.Width + LogicalToDeviceUnits(14), LogicalToDeviceUnits(19));   // fixed to the language button, whatever the width
             using (var p = Theme.RoundRect(r, 3 * k))
             using (var b = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
             using (var edge = new Pen(Color.FromArgb(40, 255, 255, 255)))

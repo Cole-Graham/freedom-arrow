@@ -534,7 +534,7 @@ public static partial class Loc
         ["Mod {0}"] = new[] { "Mod {0}", "Mod {0}", "Мод {0}", "模组 {0}" },
         ["Models & music {0}"] = new[] { "Modelle & Musik {0}", "Modèles & musique {0}", "Модели и музыка {0}", "模型和音乐 {0}" },
         // 1.1.15 News panel
-        ["Full patch notes and statistics →"] = new[] { "Vollständige Patchnotes und Statistiken →", "Notes de patch complètes et statistiques →", "Полные патчноуты и статистика →", "完整补丁说明和统计 →" },
+        ["Full notes →"] = new[] { "Alle Notizen →", "Notes complètes →", "Полностью →", "完整说明 →" },
         ["PATCH NOTES"] = new[] { "PATCHNOTES", "NOTES DE PATCH", "ПАТЧНОУТЫ", "补丁说明" },
         ["BATTLEFIELD REPORT"] = new[] { "LAGEBERICHT", "RAPPORT DU CHAMP DE BATAILLE", "СВОДКА С ПОЛЯ БОЯ", "战场报告" },
         ["Loading news…"] = new[] { "Neuigkeiten werden geladen…", "Chargement des nouvelles…", "Загрузка новостей…", "正在加载新闻…" },
