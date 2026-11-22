@@ -90,8 +90,13 @@ def apply(t, g, ok, rec):
     J, JW = A[44], W[62]
     ok((J['Name'], J['TrajectoryType'], J['Seeker'], J['IsTopArmorArmorAttack'], JW['Name'], JW['Type'], JW['IsVerticalLauncher']) ==
        ('Missile AT Javelin', 110, 50, True, 'ATGM Javelin Infantry', 80, False), 'vanilla Javelin rows')
-    fnf = g.add('AmmunitionsJson', J, {**STATS, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF'})
-    fw = g.add('WeaponsJson', JW, {'Name': 'PLA HJ-10 HJ-10 FNF', 'HUDName': 'HJ-10 FNF'})
+    # dev.16 (Osama 22 Nov 01:46 "The HJ-10 lost its unit icon, what is the reload time in between shots? It needs to be long like Javelin, also we
+    # need a 2 second aim time on it"): the Javelin launcher brought the infantry icon INF_JAVELIN and the infantry tube model 'Javelin'; the
+    # HJ-10's own icons and models are back. Aim 2.0 s (FA Javelin 3-4 s). Reload stays the Javelin's: 1-round magazine, 8-10 s after every shot.
+    HJR, HJW = A[2009623], W[HJ10_LAUNCHER]
+    fnf = g.add('AmmunitionsJson', J, {**STATS, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF', 'HUDIcon': HJR['HUDIcon'], 'ModelFileName': HJR['ModelFileName']})
+    fw = g.add('WeaponsJson', JW, {'Name': 'PLA HJ-10 HJ-10 FNF', 'HUDName': 'HJ-10 FNF', 'HUDIcon': HJW['HUDIcon'], 'ModelFileName': HJW['ModelFileName'],
+        'AimTimeMin': 2.0, 'AimTimeMax': 2.0})
     ft = g.add('TurretsJson', T[2009620], {'Name': 'PLA HJ-10 mount FNF', 'IsDefault': True})
     g.add('TurretWeaponsJson', [r for r in TW.values() if r and r.get('TurretId') == 2009620][0], {'TurretId': ft, 'WeaponId': fw})
     g.add('TurretUnitsJson', hj()[0], {'TurretId': ft, 'Order': 0})
@@ -104,13 +109,14 @@ def apply(t, g, ok, rec):
     o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'HELLFIRE_X4'})
     ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 110 and A[fnf]['IsTopArmorArmorAttack'] is True
        and A[fnf]['OverpressureRadius'] == 0.0 and A[fnf]['TargetType'] == 36 and A[fnf]['LaunchMarginAngle'] == J['LaunchMarginAngle']
-       and W[fw]['Type'] == 80 and W[fw]['IsVerticalLauncher'] is False and all(W[fw][k] == JW[k] for k in JW if k not in ('Id', 'Name', 'HUDName'))
-       and all(A[fnf][k] == J[k] for k in J if k not in ('Id', 'Name', 'HUDName', *STATS))
+       and W[fw]['Type'] == 80 and W[fw]['IsVerticalLauncher'] is False and all(W[fw][k] == JW[k] for k in JW if k not in ('Id', 'Name', 'HUDName', 'HUDIcon', 'ModelFileName', 'AimTimeMin', 'AimTimeMax'))
+       and all(A[fnf][k] == J[k] for k in J if k not in ('Id', 'Name', 'HUDName', 'HUDIcon', 'ModelFileName', *STATS))
+       and (W[fw]['HUDIcon'], W[fw]['ModelFileName'], A[fnf]['HUDIcon'], W[fw]['MagazineSize'], W[fw]['MagazineReloadTimeMin'], W[fw]['MagazineReloadTimeMax']) == ('FA_PLA_HJ10', None, 'AMMO_HELLFIRE_2', 1, 8.0, 10.0)
        and A[fnf]['CanBeIntercepted'] is True and A[2009623]['CanBeIntercepted'] is False
        and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 1000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
        and A[2009623]['PenetrationAtGroundRange'] == A[fnf]['PenetrationAtGroundRange'] == 140.0, 'HJ-10 FNF / NLOS rounds')
     ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 0), (ft, 0)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
-       and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin']) == (3.0, 4.0, 0.2)
+       and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin']) == (2.0, 2.0, 0.2)
        and sorted((O[o]['Cost'], O[o]['Turret0Id']) for o in (o_f, o_n)) == sorted([(0, ft), (20, 2009620)])
        and all(not O[o][k] for o in (o_f, o_n) for k in CLEAR if k != 'Turret0Id'), 'HJ-10 loadout: FNF default, NLOS +20, slot 0 only (vanilla M6 options)')
     rec['hj10_modes'] = {'fnf': {'round': fnf, 'weapon': fw, 'turret': ft, 'option': o_f}, 'nlos': {'round': 2009623, 'weapon': HJ10_LAUNCHER, 'turret': 2009620, 'option': o_n, 'cost': 20}, 'stats': STATS}
