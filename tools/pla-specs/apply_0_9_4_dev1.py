@@ -565,6 +565,9 @@ import zbd100;zbd100.apply(t,g,ok,rec)
 # the ZTZ-99A / ZTZ-99 Arsenal cards threw in RefundSystem.GetAmmoResupplyTime because the 12.7 mm 'mount 1' had its only weapon at Order 2.
 # 30 turrets on 35 China units, Order 2 -> 1. See turret_order_0941.py.
 import turret_order_0941;turret_order_0941.apply(t,g,ok,rec)
+# ---------- New cards for new models (Osama 22 Nov 2026 11:xx PST, thread 1572407822849810463): ZTZ-59D in the Rocket Force Vehicles tab; Korea:
+# K263 Vulcan (M163) and K200 KIFV (M113). See new_cards_1122.py.
+import new_cards_1122;new_cards_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
