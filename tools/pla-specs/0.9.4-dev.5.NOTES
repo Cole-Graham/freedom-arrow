@@ -137,3 +137,8 @@
   metallic-1.0 materials -> 0.15 (F-35B JASDF, F-35B ROKN, Type 16). models.json (214) / paint-schemes.json (90) are full copies over Assets
   0.2.51: merge with other queued copies (e.g. ZTZ-99B batch). On Vengeance as UserData/FAModels deltas (bd2 432 files, bd3 92 files), not a
   published Assets version. Not seen in game: Type 19 and F-35B (JASDF) reported "didn't come out right" (cause not seen yet).
+- 2026-11-22 02:1x PST, thread 1573418243715113213 — HOTFIX BUILDERS PLEASE READ. Osama: "did you upload this to the next dev test?" (the Blue
+  Dragon models). They are NOT in any built Assets yet: 0.9.5-dev.17's Assets 0.2.52 changed only Mods/FAModels.dll (models.json identical to
+  0.2.51). For the next dev test add the 504 --asset lines of work/blue-dragon-models-20261122/asset-args.txt (1.36 GB; its models.json and
+  paint-schemes.json = 0.2.51/0.2.52 + the 14 Blue Dragon entries, so they are safe supersets today; re-merge if another batch edits either file).
+  Vengeance already has the same files from the bd2/bd3 overlays, so an install of that build changes nothing on his PC except the Assets version.
