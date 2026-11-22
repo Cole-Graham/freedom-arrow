@@ -374,7 +374,8 @@ static class Ranked
         return new
         {
             season = Season, ladder, updated = DateTime.UtcNow, players = s.Count,
-            rows = s.Take(top).Select((r, i) => new { place = i + 1, steamId = r.SteamId, name = r.Name, rating = Math.Round(r.Rating, 1), level = Level(ladder, r.Rating, i + 1), wins = r.Wins, losses = r.Losses }).ToArray(),
+            rows = s.Take(top).Select((r, i) => new { place = i + 1, steamId = r.SteamId, name = r.Name, rating = Math.Round(r.Rating, 1), level = Level(ladder, r.Rating, i + 1), wins = r.Wins, losses = r.Losses,
+                best = Math.Round(r.Best, 1), last = string.Concat(r.Recent.Take(10).Select(x => x.Win ? 'W' : 'L')) }).ToArray(),
         };
     }
     public static object QueueInfo() => Queues.ToDictionary(k => k, k => Queue.Where(e => e.Mode == k).Sum(e => e.Members.Count));

@@ -38,7 +38,7 @@ static class RankedMenu
         ["rteam"]="3v3: Baltiisk · Bay of Winds · Dam\n5v5: Airport · Oil Rush · Cold Harbor"};
 
     static string dir="",settingsFile="";
-    static Texture2D card;
+    static Texture2D card,patch;
     static int set=-1;              // chosen set; -1 = follow the vanilla pick
     static int vanillaSet=-1;       // from the game's profile epaulet
     static string mySteam="";
@@ -53,7 +53,7 @@ static class RankedMenu
     {
         dir=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","ranked");
         settingsFile=Path.Combine(dir,"settings.json");
-        card=Load(Path.Combine(dir,"card.png"),"FA_ranked_card");
+        card=Load(Path.Combine(dir,"card.png"),"FA_ranked_card");patch=Load(Path.Combine(dir,"patch.png"),"FA_ranked_patch");
         try{var s=JsonDocument.Parse(File.ReadAllText(settingsFile)).RootElement;if(s.TryGetProperty("set",out var v))set=Array.IndexOf(SetNames,v.GetString());}catch{}
         tFlow=AccessTools.TypeByName("ArrowQueue.Flow");tUi=AccessTools.TypeByName("ArrowQueue.Ui");tApi=AccessTools.TypeByName("ArrowQueue.Api");
         tGame=AccessTools.TypeByName("ArrowQueue.Game");tSignal=AccessTools.TypeByName("ArrowQueue.Signal");
@@ -177,7 +177,7 @@ static class RankedMenu
     static string boardLadder="1v1";
     static int selRow=-1;
     static string note="";static float noteUntil;
-    static Vector2 boardScroll;
+    static int boardTop;
     static Il2CppSystem.Object esWas;
     static UnityEngine.EventSystems.EventSystem es;
     static PlayTab play;static float nextPlayScan;
@@ -218,6 +218,9 @@ static class RankedMenu
             if(play==null)return No("no active PlayTab");
         }
         if(!play.isActiveAndEnabled)return No("PlayTab not active");
+        // The Play tab's own button must be selected: Campaign and other sub-screens keep PlayTab active (card was drawn over the
+        // Campaign map on Vengeance 22 Nov 09:31), but hide the top tabs.
+        if(!PlaySelected())return No("Play tab button not selected");
         if(play.IsScenarioTabActive)return No("Scenarios sub-tab open");
         var c=play._buttonsContainer;if(c==null||!c.activeInHierarchy)return No("Play buttons hidden");
         // The game's cards: active children of the buttons container (or of its first level, if the cards sit one level deeper), left to right.
@@ -240,6 +243,20 @@ static class RankedMenu
             var r=ScreenRect(rt);if(r.width>20f&&r.height>20f)l.Add(r);
         }
         return l;
+    }
+    static MainMenuButton playButton;static float nextButtonScan;
+    static bool PlaySelected()
+    {
+        if(playButton==null||playButton.WasCollected)
+        {
+            playButton=null;
+            if(Time.unscaledTime<nextButtonScan)return false;
+            nextButtonScan=Time.unscaledTime+2f;
+            foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
+                if(b.gameObject.scene.IsValid()&&b._buttonText!=null&&b._buttonText.text.Trim().Equals("Play",StringComparison.OrdinalIgnoreCase)){playButton=b;break;}
+            if(playButton==null)return false;
+        }
+        return playButton.isActiveAndEnabled&&playButton.Selected;
     }
     static Rect ScreenRect(RectTransform rt)
     {
@@ -319,26 +336,53 @@ static class RankedMenu
         Fill(new Rect(0,0,Screen.width,Screen.height),new Color(0.02f,0.03f,0.04f,0.97f));
         var e=Event.current;
         if(e.type==EventType.KeyDown&&e.keyCode==KeyCode.Escape){Close("Esc");e.Use();return;}
-        string[] tabs={"Ranked","Leaderboard","Rank ladder"};
+        // Two tabs (Lateralus 22 Nov: "Leaderboard and Rank Ladder are redundant"); the leaderboard has 1v1 and Team sub-menus.
+        string[] tabs={"Ranked","Leaderboard"};float[] tw={152,232};
         float tx=58;
-        for(int i=0;i<3;i++)
+        for(int i=0;i<2;i++)
         {
-            var w=i==0?150:i==1?230:215;
-            T(tx,18,w,52,tabs[i],34,i==tab?Color.white:Dim,i==tab?FontStyle.Bold:FontStyle.Normal);
-            Fill(R(tx,72,w-25,i==tab?4:2),i==tab?Color.white:new Color(1,1,1,0.25f));
-            if(GUI.Button(R(tx,18,w,58),GUIContent.none,GUIStyle.none)){tab=i;selRow=-1;nextBoard=-100f;}
-            tx+=w+20;
+            bool on=i==tab;
+            T(tx,14,tw[i],56,tabs[i],34,on?Color.white:Dim,on?FontStyle.Bold:FontStyle.Normal);
+            Fill(R(tx,72,tw[i]-26,on?3:2),on?Color.white:new Color(1,1,1,0.28f));
+            if(GUI.Button(R(tx,14,tw[i],62),GUIContent.none,GUIStyle.none)){tab=i;selRow=-1;nextBoard=-100f;}
+            tx+=tw[i]+20;
         }
-        if(TestHub)T(1180,22,380,24,"TEST SERVER · ratings here are test ratings",13,new Color(1f,0.75f,0.3f),FontStyle.Bold,TextAnchor.MiddleRight);
+        if(TestHub)T(1180,26,380,24,"TEST SERVER · ratings here are test ratings",13,new Color(1f,0.75f,0.3f),FontStyle.Bold,TextAnchor.MiddleRight);
         JsonElement me=default;bool haveMe=false;
         try{if(meJson.Length>0){me=JsonDocument.Parse(meJson).RootElement;haveMe=true;}}catch{}
-        if(tab==0)RankedTab(me,haveMe,now);else if(tab==1)BoardTab(me,haveMe);else LadderTab();
-        if(error.Length>0)T(58,820,900,24,error,14,new Color(1f,0.55f,0.5f));
-        if(Btn(740,850,120,36,"BACK",false,16))Close("Back");
-        T(560,880,480,18,"Freedom Arrow ranked · Esc to go back",12,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+        if(tab==0)RankedTab(me,haveMe,now);else BoardTab(me,haveMe);
+        if(error.Length>0)T(58,806,900,24,error,14,new Color(1f,0.55f,0.5f));
+        // esc BACK, as in the mock-up
+        var back=R(756,846,110,30);bool hb=back.Contains(e.mousePosition);
+        Frame(R(760,853,28,19),hb?Color.white:Dim,1);T(760,853,28,19,"esc",11,hb?Color.white:Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+        T(794,846,80,30,"BACK",18,hb?Color.white:new Color(0.92f,0.92f,0.92f),FontStyle.Bold);
+        if(GUI.Button(back,GUIContent.none,GUIStyle.none))Close("Back");
+        T(560,874,480,20,"Freedom Arrow "+Runtime.DiagnosticPackageVersion,13,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
         if(!drawnOnce&&e.type==EventType.Repaint){drawnOnce=true;MelonLogger.Msg($"FREEDOM_ARROW_RANKED menu drawn (tab {tab}, {Screen.width}x{Screen.height})");}
     }
     static bool drawnOnce;
+    static readonly Color Line=new(1,1,1,0.10f),Box=new(0,0,0,0.42f);
+    static void Frame(Rect r,Color c,float t){t=Mathf.Max(1f,t*S);Fill(new Rect(r.x,r.y,r.width,t),c);Fill(new Rect(r.x,r.yMax-t,r.width,t),c);Fill(new Rect(r.x,r.y,t,r.height),c);Fill(new Rect(r.xMax-t,r.y,t,r.height),c);}
+    static void H(float x,float y,float w,string s)=>T(x,y,w,30,s,17,Color.white,FontStyle.Bold);
+    static bool Choice(float x,float y,float w,float h,string label,bool on,int size=17)
+    {
+        var r=R(x,y,w,h);bool hover=r.Contains(Event.current.mousePosition);
+        Fill(r,on?new Color(0.36f,0.06f,0.08f,0.95f):new Color(0,0,0,hover?0.8f:0.6f));
+        Frame(r,on?Red:hover?new Color(1,1,1,0.45f):new Color(1,1,1,0.18f),1);
+        GUI.Label(r,label,St(size,Color.white,on?FontStyle.Bold:FontStyle.Normal,TextAnchor.MiddleCenter));
+        return GUI.Button(r,GUIContent.none,GUIStyle.none);
+    }
+    static void Row(float y,float h,string label,string value)
+    {
+        T(58,y,150,h,label,15,Dim);T(200,y,328,h,value,14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);
+        Fill(R(58,y+h,470,1),Line);
+    }
+    static (int lv,double from,double to,int next) Band(double rating,int lv)
+    {
+        int b=Math.Min(18,lv);double from=BandStart[b-1];
+        return lv>=18?(lv,2170,2170,lv):(lv,from,BandStart[b],b+1);
+    }
+    static string Ago(JsonElement t){try{var d=DateTime.UtcNow-t.GetDateTime().ToUniversalTime();return d.TotalMinutes<60?$"{(int)d.TotalMinutes}m":d.TotalHours<24?$"{(int)d.TotalHours}h":$"{(int)d.TotalDays}d";}catch{return "";}}
 
     static (double rating,int level,int place,int wins,int losses,double best,JsonElement recent) Mine(JsonElement me,bool have,string ladder)
     {
@@ -354,88 +398,101 @@ static class RankedMenu
 
     static void RankedTab(JsonElement me,bool have,float now)
     {
-        // left: find a match
-        T(58,110,470,30,"FIND A RANKED MATCH",17,Color.white,FontStyle.Bold);
-        bool active=false;string state="";
-        try{active=pActive.GetValue(null) is true;var v=pCurrent.GetValue(null);if(v!=null)state=Traverse.Create(v).Property("state").GetValue<string>()??"";}catch{}
-        if(Btn(58,150,230,46,"1v1",queue=="r1v1")&&!active)queue="r1v1";
-        if(Btn(298,150,230,46,"Team · 3v3 / 5v5",queue=="rteam")&&!active)queue="rteam";
-        T(58,204,470,40,queue=="r1v1"?"Solo only. Its own ladder.":"Solo or with your party. You get a 3v3 or a 5v5, never a 1v1. A party of 4-5 plays 5v5.",13,Dim);
-        T(58,246,90,44,"Map pool",15,Dim);T(150,246,378,56,Pools[queue],14,Color.white);
-        Fill(R(58,306,470,1),new Color(1,1,1,0.12f));
-        T(58,310,140,32,"Rules",15,Dim);T(200,310,328,32,"Freedom Arrow "+Runtime.DiagnosticPackageVersion+" · conquest 300",14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);
-        Fill(R(58,344,470,1),new Color(1,1,1,0.12f));
-        T(58,348,140,32,"Map",15,Dim);T(200,348,328,32,"picked by the server",14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);
+        // left: find a match (mock-up docs/ranked/mock-2-ranked-menu.jpg)
+        H(58,116,470,"FIND A RANKED MATCH");
+        bool active=false;
+        try{active=pActive.GetValue(null) is true;}catch{}
+        if(Choice(58,156,230,42,"1v1",queue=="r1v1")&&!active)queue="r1v1";
+        if(Choice(298,156,230,42,"Team · 3v3 / 5v5",queue=="rteam")&&!active)queue="rteam";
+        Row(212,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or party · 3v3 or 5v5 · team ladder");
+        T(58,250,90,48,"Map pool",15,Dim);T(150,250,378,48,Pools[queue],14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);Fill(R(58,298,470,1),Line);
+        Row(300,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
+        Row(338,36,"Map","picked by the server");
         int party=1;string leader="";
         try{var pr=fPartyNews?.GetValue(null);var pv=pr==null?null:Traverse.Create(pr).Property("party").GetValue();if(pv!=null){party=Math.Max(1,(Traverse.Create(pv).Property("members").GetValue() as Array)?.Length??1);leader=Traverse.Create(pv).Property("leader").GetValue<string>()??"";}}catch{}
-        if(party>1){Fill(R(58,382,470,1),new Color(1,1,1,0.12f));T(58,386,470,30,$"Party of {party}"+(leader==MySteam()?" · you lead":" · the leader starts the search"),14,new Color(0.6f,0.85f,1f));}
+        if(party>1)T(58,374,470,20,$"Party of {party}"+(leader==MySteam()?" · you lead the search":" · the leader starts the search"),13,new Color(0.6f,0.85f,1f));
+        // FIND MATCH with the FA patch (Lateralus 22 Nov: "the patch logo on the find match button")
+        var fb=R(58,398,470,64);bool hf=fb.Contains(Event.current.mousePosition);
         if(active)
         {
-            if(Btn(58,430,470,64,"SEARCHING… CANCEL",true,24,new Color(0.3f,0.3f,0.3f,0.9f))){try{mStop.Invoke(null,new object[]{true,false});}catch(Exception ex){error=ex.Message;}}
-            T(58,498,470,24,"Status: "+(state.Length>0?state:"searching"),13,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+            Fill(fb,new Color(0.22f,0.22f,0.24f,0.95f));Frame(fb,new Color(1,1,1,0.25f),1);
+            var secs=(int)Math.Max(0,now-searchFrom);
+            GUI.Label(fb,$"SEARCHING  {secs/60}:{secs%60:00}   ·   CANCEL",St(22,Color.white,FontStyle.Bold,TextAnchor.MiddleCenter));
+            if(GUI.Button(fb,GUIContent.none,GUIStyle.none)){try{mStop.Invoke(null,new object[]{true,false});MelonLogger.Msg("FREEDOM_ARROW_RANKED search cancelled");}catch(Exception ex){error=ex.Message;}}
         }
-        else if(Btn(58,430,470,64,"FIND MATCH",false,26,Red))Find(party,leader,now);
+        else
+        {
+            Fill(fb,hf?new Color(0.93f,0.25f,0.28f):Red);Fill(new Rect(fb.x,fb.y,fb.width,fb.height*0.45f),new Color(1,1,1,0.07f));Frame(fb,new Color(1f,0.55f,0.55f,0.6f),1);
+            if(patch!=null)GUI.DrawTexture(R(176,409,42,42),patch,ScaleMode.ScaleToFit);
+            T(234,398,290,64,"FIND MATCH",28,Color.white,FontStyle.Bold);
+            if(GUI.Button(fb,GUIContent.none,GUIStyle.none)){searchFrom=now;Find(party,leader,now);}
+        }
         int searching=0;
         try{if(have)searching=me.GetProperty("searching").GetProperty(queue).GetInt32();}catch{}
-        T(58,520,470,24,$"{searching} players searching {(queue=="r1v1"?"1v1":"team games")}",13,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
-        if(now<noteUntil)T(58,546,470,44,note,13,new Color(1f,0.75f,0.3f),FontStyle.Normal,TextAnchor.MiddleCenter);
+        T(58,468,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",13,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+        if(now<noteUntil)T(58,494,470,40,note,13,new Color(1f,0.75f,0.3f),FontStyle.Normal,TextAnchor.MiddleCenter);
 
         // middle: your rank
         var lad=Ladder(queue);var m=Mine(me,have,lad);int s=Set;
         int season=1;try{if(have)season=me.GetProperty("season").GetInt32();}catch{}
-        T(590,110,440,30,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · SEASON {season}",17,Color.white,FontStyle.Bold);
-        Fill(R(590,150,440,190),Panel);
-        DrawEp(R(605,160,100,170),s,m.level);
-        T(720,175,300,46,RankName(m.level,s),32,Color.white,FontStyle.Bold);
-        T(720,222,300,32,$"Elo {m.rating:0}",22,Green);
-        T(720,258,300,40,$"Rank {m.level} of 20"+(m.place>0?$" · {Ord(m.place)} on the leaderboard":" · not placed yet (play a match)"),13,Dim);
-        int nextLv=Math.Min(18,m.level+1);double from=BandStart[Math.Min(17,m.level-1)],to=m.level>=18?from:BandStart[nextLv-1];
-        float frac=m.level>=18?1f:(float)Math.Clamp((m.rating-from)/Math.Max(1,to-from),0,1);
-        Fill(R(590,352,440,8),new Color(1,1,1,0.15f));Fill(R(590,352,440*frac,8),Color.white);
-        T(590,364,220,22,$"{RankName(m.level,s)} {from:0}",12,Dim);
-        T(810,364,220,22,m.level>=18?"top band":$"{to-m.rating:0} to {RankName(nextLv,s)} ({to:0})",12,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
+        H(590,116,440,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · SEASON {season}");
+        Fill(R(590,157,440,186),new Color(0,0,0,0.5f));Frame(R(590,157,440,186),new Color(1,1,1,0.08f),1);
+        DrawEp(R(608,170,86,160),s,m.level);
+        T(716,186,300,48,RankName(m.level,s),32,Color.white,FontStyle.Bold);
+        T(716,236,44,30,"Elo",21,Green);T(758,236,200,30,$"{m.rating:0}",21,new Color(0.92f,0.92f,0.92f));
+        T(716,272,300,24,$"Rank {m.level} of 20 · "+(m.place>0?$"{Ord(m.place)} on the leaderboard":"not placed yet"),13,Dim);
+        var bd=Band(m.rating,m.level);float frac=m.level>=18?1f:(float)Math.Clamp((m.rating-bd.from)/Math.Max(1,bd.to-bd.from),0,1);
+        Fill(R(590,360,440,8),new Color(1,1,1,0.15f));Fill(R(590,360,440*frac,8),Color.white);
+        T(590,372,220,22,$"{RankName(m.level,s)} {bd.from:0}",13,Dim);
+        T(810,372,220,22,m.level>=18?"top band":$"{bd.to-m.rating:0} to {RankName(bd.next,s)} ({bd.to:0})",13,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
         int games=m.wins+m.losses;
-        Stat(590,398,"Ranked matches",games.ToString());Stat(740,398,"Win rate",games>0?$"{100.0*m.wins/games:0}%":"-");Stat(890,398,"Best Elo",$"{m.best:0}");
-        // epaulet set picker
+        Stat(590,409,"Ranked matches",games.ToString());Stat(740,409,"Win rate",games>0?$"{100.0*m.wins/games:0}%":"-");Stat(890,409,"Best Elo",$"{m.best:0}");
+        // epaulet set picker: the chosen set has a green border (mock-up)
         for(int i=0;i<5;i++)
         {
-            var r=R(590+i*89,480,82,90);bool on=i==s;
-            Fill(r,new Color(0,0,0,on?0.7f:0.45f));
-            if(on){Fill(new Rect(r.x,r.y,r.width,2),Green);Fill(new Rect(r.x,r.yMax-2,r.width,2),Green);}
-            DrawEp(new Rect(r.x+r.width*0.3f,r.y+6*S,r.width*0.4f,50*S),i,Math.Max(1,m.level));
-            GUI.Label(new Rect(r.x,r.yMax-30*S,r.width,26*S),SetNames[i]+(i==4?" (soon)":""),St(11,i==4?Dim:Color.white,FontStyle.Normal,TextAnchor.MiddleCenter));
+            var r=R(590+i*89.5f,490,82,90);bool on=i==s,hov=r.Contains(Event.current.mousePosition)&&i<4;
+            Fill(r,new Color(0,0,0,on?0.62f:hov?0.6f:0.42f));
+            Frame(r,on?Green:hov?new Color(1,1,1,0.35f):new Color(1,1,1,0.1f),on?2:1);
+            DrawEp(new Rect(r.x+r.width*0.32f,r.y+8*S,r.width*0.36f,50*S),i,Math.Max(1,m.level));
+            GUI.Label(new Rect(r.x,r.yMax-28*S,r.width,22*S),SetNames[i]+(i==4?" (soon)":""),St(11,i==4?Dim:Color.white,FontStyle.Normal,TextAnchor.MiddleCenter));
             if(i<4&&GUI.Button(r,GUIContent.none,GUIStyle.none)){set=i;SaveSettings();MelonLogger.Msg("FREEDOM_ARROW_RANKED set "+SetNames[i]);}
         }
-        T(590,574,440,40,(set<0?$"Following your vanilla epaulet ({SetNames[s]}). ":"")+"The set only changes how your rank looks.",12,Dim);
+        T(590,584,440,36,set<0?$"Following your vanilla epaulet ({SetNames[s]}). The set only changes how your rank looks.":"The epaulet set only changes how your rank looks; the rank is the same.",12,Dim);
 
-        // right: recent matches
-        T(1090,110,460,30,"RECENT RANKED MATCHES",17,Color.white,FontStyle.Bold);
+        // right: recent matches, opponent epaulet before the name
+        H(1090,116,460,"RECENT RANKED MATCHES");
         int row=0;
         if(m.recent.ValueKind==JsonValueKind.Array)
             foreach(var x in m.recent.EnumerateArray())
             {
-                if(row>=8)break;
-                float y=150+row*40;bool win=x.GetProperty("win").GetBoolean();var ch=x.GetProperty("change").GetDouble();
-                T(1095,y,24,36,win?"W":"L",16,win?Green:Red,FontStyle.Bold);
-                T(1125,y,300,36,$"[{x.GetProperty("format").GetString()}] {x.GetProperty("map").GetString()} · vs {x.GetProperty("vs").GetString()}",14,Color.white);
-                T(1425,y,120,36,(ch>=0?"+":"−")+Math.Abs(ch).ToString("0.0"),15,ch>=0?Green:Red,FontStyle.Bold,TextAnchor.MiddleRight);
-                Fill(R(1090,y+38,455,1),new Color(1,1,1,0.1f));
+                if(row>=10)break;
+                float y=155+row*39;bool win=x.GetProperty("win").GetBoolean();var ch=x.GetProperty("change").GetDouble();
+                double vr=x.TryGetProperty("vsRating",out var v)?v.GetDouble():1000;
+                T(1096,y,24,38,win?"W":"L",15,win?Green:Red,FontStyle.Bold);
+                T(1140,y,170,38,$"[{x.GetProperty("format").GetString()}] {x.GetProperty("map").GetString()}",14,Color.white);
+                T(1306,y,28,38,"vs",13,Dim);
+                DrawEp(R(1330,y+8,14,22),s,Level(vr,0));
+                T(1350,y,62,38,x.GetProperty("vs").GetString()??"",14,Color.white);
+                T(1412,y,40,38,Ago(x.GetProperty("t")),13,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
+                T(1462,y,82,38,(ch>=0?"+":"−")+Math.Abs(ch).ToString("0.0"),14,ch>=0?Green:Red,FontStyle.Bold,TextAnchor.MiddleRight);
+                Fill(R(1090,y+38,455,1),Line);
                 row++;
             }
-        if(row==0)T(1095,150,450,36,"No ranked matches yet this season.",14,Dim);
-        T(1090,160+Math.Max(row,1)*40,460,44,"A result counts only when both sides' game reports agree. A leaver loses.",12,Dim);
+        if(row==0){T(1096,155,450,38,"No ranked matches yet this season.",14,Dim);Fill(R(1090,193,455,1),Line);}
+        T(1090,166+Math.Max(row,1)*39,460,24,"A result counts only when both sides' game reports agree. A leaver loses.",12,Dim);
 
-        // bottom: ladder strip
-        T(58,640,1000,30,$"RANK LADDER ({SetNames[s].ToUpperInvariant()} SET) · ELO WHERE EACH RANK STARTS",17,Color.white,FontStyle.Bold);
+        // bottom: rank ladder strip
+        H(58,640,1100,$"RANK LADDER ({SetNames[s].ToUpperInvariant()} SET) · ELO WHERE EACH RANK STARTS");
         for(int i=0;i<20;i++)
         {
-            float x=58+i*74.5f;bool cur=i+1==m.level;
-            if(cur)Fill(R(x-4,676,70,92),new Color(0.42f,0.8f,0.38f,0.18f));
-            DrawEp(R(x+12,680,40,62),s,i+1);
-            T(x-4,746,70,20,i<18?BandStart[i].ToString():i==18?"#2-3":"#1",12,cur?Green:Dim,cur?FontStyle.Bold:FontStyle.Normal,TextAnchor.MiddleCenter);
+            float x=58+i*74.6f;bool cur=i+1==m.level;
+            if(cur){Fill(R(x+8,676,48,70),new Color(0.42f,0.8f,0.38f,0.16f));Frame(R(x+8,676,48,70),new Color(0.42f,0.8f,0.38f,0.6f),1);}
+            DrawEp(R(x+16,680,32,62),s,i+1);
+            T(x-4,746,72,20,i<18?BandStart[i].ToString():i==18?"#2–3":"#1",12,cur?Green:Dim,cur?FontStyle.Bold:FontStyle.Normal,TextAnchor.MiddleCenter);
         }
     }
-    static void Stat(float x,float y,string label,string val){Fill(R(x,y,140,62),Panel);T(x+10,y+4,130,30,val,20,Color.white,FontStyle.Bold);T(x+10,y+34,130,22,label,12,Dim);}
+    static float searchFrom;
+    static void Stat(float x,float y,string label,string val){Fill(R(x,y,140,62),Box);T(x+10,y+4,130,30,val,20,Color.white,FontStyle.Bold);T(x+10,y+34,130,22,label,12,Dim);}
     static string Ord(int n)=>n+(n%100 is 11 or 12 or 13?"th":(n%10) switch{1=>"st",2=>"nd",3=>"rd",_=>"th"});
 
     static void Find(int party,string leader,float now)
@@ -448,72 +505,84 @@ static class RankedMenu
             if(mCanStart.Invoke(null,args) is not true){note="ArrowQueue refused the search (see its message at the top).";noteUntil=now+6f;return;}
             mBegin.Invoke(null,new object[]{(string)args[1],now,null,queue});
             MelonLogger.Msg($"FREEDOM_ARROW_RANKED search {queue} (party {party})");
-            note="Searching. The lobby opens by itself when a match is found.";noteUntil=now+8f;
+            note="The lobby opens by itself when a match is found.";noteUntil=now+8f;
         }
         catch(Exception e){error="Search failed: "+(e.InnerException?.Message??e.Message);}
     }
 
+    static readonly Color[] Avatar={new(0.55f,0.25f,0.27f),new(0.25f,0.35f,0.5f),new(0.3f,0.45f,0.3f),new(0.45f,0.4f,0.25f),new(0.4f,0.3f,0.5f),new(0.25f,0.45f,0.45f)};
     static void BoardTab(JsonElement me,bool have)
     {
-        if(Btn(58,100,140,36,"1v1",boardLadder=="1v1",15)){boardLadder="1v1";selRow=-1;}
-        if(Btn(206,100,140,36,"Team",boardLadder=="team",15)){boardLadder="team";selRow=-1;}
+        // Sub-menus 1v1 / Team (Lateralus 22 Nov): each shows its own leaderboard and statistics.
+        if(Choice(58,100,140,38,"1v1",boardLadder=="1v1",16)){boardLadder="1v1";selRow=-1;boardTop=0;}
+        if(Choice(206,100,140,38,"Team",boardLadder=="team",16)){boardLadder="team";selRow=-1;boardTop=0;}
         var json=boardLadder=="1v1"?board1:boardT;
         var mine=Mine(me,have,boardLadder);int s=Set;
-        T(360,100,170,36,mine.place>0?$"YOU · {Ord(mine.place)}":"YOU · not placed",13,Green,FontStyle.Bold,TextAnchor.MiddleRight);
-        if(json.Length==0){T(58,150,470,30,"Loading…",14,Dim);return;}
+        T(58,146,300,26,$"Updated every 30 s · {(boardLadder=="1v1"?"1v1":"Team (3v3 + 5v5)")}",14,Color.white);
+        DrawEp(R(360,148,14,22),s,mine.level);
+        T(378,146,130,26,mine.place>0?$"YOUR RANK · {Ord(mine.place)}":"YOUR RANK · —",13,Green,FontStyle.Bold,TextAnchor.MiddleRight);
+        Fill(R(528,110,1,680),new Color(1,1,1,0.12f));
+        if(json.Length==0){T(58,180,470,30,"Loading…",14,Dim);return;}
         JsonElement b;try{b=JsonDocument.Parse(json).RootElement;}catch{return;}
         var rows=b.GetProperty("rows");int n=rows.GetArrayLength();
-        T(58,138,470,22,$"{b.GetProperty("players").GetInt32()} rated players · season {b.GetProperty("season").GetInt32()} · updates every 30 s",12,Dim);
-        if(n==0){T(58,170,470,30,"Nobody is rated yet. Win a ranked match to be first.",14,Dim);return;}
-        var view=R(58,166,470,620);var content=new Rect(0,0,view.width-16*S,n*42*S);
-        boardScroll=GUI.BeginScrollView(view,boardScroll,content);
-        float sx=X0;X0=0;var y0=0f;
-        int i=0;
-        foreach(var r in rows.EnumerateArray())
+        if(n==0){T(58,180,470,30,"Nobody is rated yet. Win a ranked match to be first.",14,Dim);}
+        else
         {
-            var rr=new Rect(0,y0+i*42*S,content.width,40*S);
-            bool me2=r.GetProperty("steamId").GetString()==MySteam();
-            Fill(rr,i==selRow?new Color(1,1,1,0.18f):me2?new Color(0.42f,0.8f,0.38f,0.15f):new Color(0,0,0,0.45f));
-            var name=r.GetProperty("name").GetString()??"?";
-            Fill(new Rect(rr.x,rr.y,36*S,rr.height),new Color(0.35f,0.4f,0.45f,0.8f));
-            GUI.Label(new Rect(rr.x,rr.y,36*S,rr.height),name.Length>0?name[..1].ToUpperInvariant():"?",St(15,Color.white,FontStyle.Bold,TextAnchor.MiddleCenter));
-            GUI.Label(new Rect(rr.x+44*S,rr.y,260*S,rr.height),name,St(15,Color.white,FontStyle.Bold));
-            GUI.Label(new Rect(rr.x+300*S,rr.y,70*S,rr.height),r.GetProperty("rating").GetDouble().ToString("0"),St(13,Dim,FontStyle.Normal,TextAnchor.MiddleRight));
-            DrawEp(new Rect(rr.x+382*S,rr.y+3*S,30*S,rr.height-6*S),s,r.GetProperty("level").GetInt32());   // the epaulet replaces #1, #2, #3
-            if(GUI.Button(rr,GUIContent.none,GUIStyle.none))selRow=i;
-            i++;
+            // Manual scrolling: GUI.BeginScrollView is stripped from this game ("Method unstripping failed", Vengeance 22 Nov 09:31).
+            const int Visible=14;
+            var view=R(58,176,470,Visible*42);var ev=Event.current;
+            try{if(ev.type==EventType.ScrollWheel&&view.Contains(ev.mousePosition)){boardTop=Math.Clamp(boardTop+(ev.delta.y>0?3:-3),0,Math.Max(0,n-Visible));ev.Use();}}catch{}
+            boardTop=Math.Clamp(boardTop,0,Math.Max(0,n-Visible));
+            if(n>Visible)T(58,176+Visible*42,470,22,$"{boardTop+1}–{Math.Min(n,boardTop+Visible)} of {n} · mouse wheel to scroll",12,Dim,FontStyle.Normal,TextAnchor.MiddleCenter);
+            int i=0;
+            foreach(var r in rows.EnumerateArray())
+            {
+                if(i<boardTop||i>=boardTop+Visible){i++;continue;}
+                var rr=R(58,176+(i-boardTop)*42,450,40);
+                bool me2=r.GetProperty("steamId").GetString()==MySteam();bool hov=rr.Contains(Event.current.mousePosition);
+                Fill(rr,i==selRow?new Color(1,1,1,0.2f):me2?new Color(0.42f,0.8f,0.38f,0.14f):new Color(0,0,0,hov?0.62f:0.45f));
+                var name=r.GetProperty("name").GetString()??"?";
+                Fill(new Rect(rr.x,rr.y,36*S,rr.height),Avatar[(name.Length>0?name[0]:0)%Avatar.Length]);
+                var ini=name.FirstOrDefault(char.IsLetterOrDigit);
+                GUI.Label(new Rect(rr.x,rr.y,36*S,rr.height),ini==default(char)?"?":char.ToUpperInvariant(ini).ToString(),St(16,Color.white,FontStyle.Bold,TextAnchor.MiddleCenter));
+                GUI.Label(new Rect(rr.x+44*S,rr.y,300*S,rr.height),name,St(15,Color.white,FontStyle.Bold));
+                GUI.Label(new Rect(rr.x+330*S,rr.y,74*S,rr.height),r.GetProperty("rating").GetDouble().ToString("0"),St(13,Dim,FontStyle.Normal,TextAnchor.MiddleRight));
+                DrawEp(new Rect(rr.x+416*S,rr.y+3*S,22*S,rr.height-6*S),s,r.GetProperty("level").GetInt32());   // the epaulet replaces #1, #2, #3
+                if(GUI.Button(rr,GUIContent.none,GUIStyle.none))selRow=i;
+                i++;
+            }
         }
-        X0=sx;
-        GUI.EndScrollView();
-        Fill(R(548,110,1,680),new Color(1,1,1,0.12f));
-        T(580,100,400,30,"PROFILE",17,Color.white,FontStyle.Bold);
+        // profile of the selected player (or you)
+        H(580,108,400,"PROFILE");
         JsonElement p=default;bool sel=false;
         if(selRow>=0&&selRow<n){p=rows[selRow];sel=true;}
         else foreach(var r in rows.EnumerateArray())if(r.GetProperty("steamId").GetString()==MySteam()){p=r;sel=true;break;}
-        if(!sel){T(580,140,600,30,"Pick a player on the left.",14,Dim);return;}
-        int lv=p.GetProperty("level").GetInt32();double rating=p.GetProperty("rating").GetDouble();int w=p.GetProperty("wins").GetInt32(),l=p.GetProperty("losses").GetInt32();
-        DrawEp(R(590,145,100,170),s,lv);
-        T(705,160,600,46,p.GetProperty("name").GetString()??"?",32,Color.white,FontStyle.Bold);
-        T(705,208,600,30,$"{RankName(lv,s)} · Elo {rating:0}",20,Green);
-        T(705,240,700,26,$"{Ord(p.GetProperty("place").GetInt32())} on the {(boardLadder=="1v1"?"1v1":"team")} ladder · shown in your {SetNames[s]} set",13,Dim);
-        T(580,340,600,30,"RANKED STATISTICS · SEASON "+b.GetProperty("season").GetInt32(),17,Color.white,FontStyle.Bold);
-        Stat(580,380,"Ranked matches",(w+l).ToString());Stat(730,380,"Wins",w.ToString());Stat(880,380,"Win rate",w+l>0?$"{100.0*w/(w+l):0}%":"-");
-        T(580,760,960,40,"Instead of #1, #2, #3 every row shows the player's rank epaulet. Place 1 wears rank 20, places 2-3 rank 19 (only at 2170 Elo or more); everyone else wears the rank of their Elo band.",12,Dim);
-    }
-
-    static void LadderTab()
-    {
-        int s=Set;
-        T(58,100,1000,30,"RANKS AND THE ELO WHERE EACH STARTS · "+SetNames[s].ToUpperInvariant()+" SET",17,Color.white,FontStyle.Bold);
-        for(int i=0;i<20;i++)
+        string pname;int lv,place,w,l;double rating,best;string last;
+        if(sel){pname=p.GetProperty("name").GetString()??"?";lv=p.GetProperty("level").GetInt32();place=p.GetProperty("place").GetInt32();rating=p.GetProperty("rating").GetDouble();
+            w=p.GetProperty("wins").GetInt32();l=p.GetProperty("losses").GetInt32();best=p.TryGetProperty("best",out var bb)?bb.GetDouble():rating;last=p.TryGetProperty("last",out var ll)?ll.GetString()??"":"";}
+        else{pname="You";lv=mine.level;place=mine.place;rating=mine.rating;w=mine.wins;l=mine.losses;best=mine.best;last="";
+            if(mine.recent.ValueKind==JsonValueKind.Array)foreach(var x in mine.recent.EnumerateArray())last+=x.GetProperty("win").GetBoolean()?"W":"L";}
+        DrawEp(R(584,148,90,166),s,lv);
+        T(700,160,700,48,pname,32,Color.white,FontStyle.Bold);
+        T(700,208,180,30,RankName(lv,s),20,new Color(0.92f,0.92f,0.92f));
+        T(700+Math.Min(180,RankName(lv,s).Length*10.5f),208,200,30,$"· Elo {rating:0}",20,Green);
+        T(700,240,700,24,(place>0?$"{Ord(place)} · ":"not placed · ")+$"{SetNames[s]} epaulets"+(lv>=18?" · 2170+ is the top band; places 1–3 above it":""),13,Dim);
+        var bd=Band(rating,lv);float frac=lv>=18?1f:(float)Math.Clamp((rating-bd.from)/Math.Max(1,bd.to-bd.from),0,1);
+        Fill(R(700,268,520,8),new Color(1,1,1,0.15f));Fill(R(700,268,520*frac,8),Color.white);
+        T(700,280,260,22,$"{RankName(lv,s)} {bd.from:0}",13,Dim);
+        T(960,280,260,22,lv>=18?"top band":$"{bd.to-rating:0} to {RankName(bd.next,s)} ({bd.to:0})",13,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
+        H(580,350,700,$"RANKED STATISTICS · {(boardLadder=="1v1"?"1V1":"TEAM")} · SEASON {(have?me.GetProperty("season").GetInt32():1)}");
+        int g=w+l;
+        Big(580,398,g.ToString(),"Ranked matches");Big(712,398,g>0?$"{100.0*w/g:0}%":"-","Win rate");Big(812,398,$"{best:0}","Best Elo");Big(914,398,$"{w}–{l}","Wins–losses");
+        H(580,486,400,"LAST 10 RESULTS");
+        if(last.Length==0)T(580,522,500,28,"No results yet.",14,Dim);
+        for(int k=0;k<Math.Min(10,last.Length);k++)
         {
-            int col=i/10,rowi=i%10;float x=58+col*760,y=145+rowi*66;
-            Fill(R(x,y,720,60),Panel);
-            DrawEp(R(x+10,y+4,30,52),s,i+1);
-            T(x+60,y,60,60,(i+1).ToString(),18,Dim,FontStyle.Bold);
-            T(x+110,y,380,60,RankName(i+1,s),18,Color.white,FontStyle.Bold);
-            T(x+480,y,230,60,i<17?$"{BandStart[i]}–{BandStart[i+1]-1}":i==17?"2170 and above":i==18?"2170+ and places 2-3":"2170+ and place 1",15,Green,FontStyle.Normal,TextAnchor.MiddleRight);
+            bool win=last[k]=='W';var r=R(580+k*32,522,26,26);
+            Fill(r,win?new Color(0.25f,0.5f,0.25f):new Color(0.5f,0.15f,0.15f));
+            GUI.Label(r,win?"W":"L",St(12,win?new Color(0.75f,1f,0.7f):new Color(1f,0.6f,0.6f),FontStyle.Bold,TextAnchor.MiddleCenter));
         }
-        T(58,815,1500,24,"New players start at 1000 (rank 1). Win against stronger teams to climb faster; a loss never takes you below 600.",13,Dim);
+        T(580,752,960,40,"Instead of #1, #2, #3 every row shows the player's rank epaulet. Place 1 wears rank 20, places 2–3 rank 19 (only at 2170 Elo or more); everyone else wears the rank of their Elo band.",12,Dim);
     }
+    static void Big(float x,float y,string val,string label){T(x,y,130,34,val,22,Color.white,FontStyle.Bold);T(x,y+34,130,22,label,13,Dim);}
 }
