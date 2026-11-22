@@ -19,7 +19,7 @@ edge of the map").
 - dev.7 hits counted as Front (top-attack flag only works on the Hellfire path): OverpressureRadius on the three top-attack rounds -> roof hits
   (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
 - dev.10: HJ-10 penetration 90 -> 130 (Osama). dev.12: TOW-2B stats (11 / 140) instead; FNF default launcher (aim 3-4 s) and NLOS option (+20, aim
-  0.2 s, 2000 m Arsenal range = GroundRange 1000) on a loadout option (Osama).
+  0.2 s, 2000 m Arsenal range = GroundRange 1000) on a loadout option (Osama). dev.15: FNF = vanilla Javelin launcher + round (stand-in).
 Called from apply_0_9_4_dev1.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
@@ -83,8 +83,15 @@ def apply(t, g, ok, rec):
     g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 0.2, 'AimTimeMax': 0.2, 'HUDName': 'HJ-10 NLOS'})
     g.put('TurretsJson', 2009620, {'IsDefault': False})
     # FNF default: new round, launcher and turret.
-    fnf = g.add('AmmunitionsJson', A[2009623], {**STATS, 'GroundRange': 800.0, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF', 'LaserGuided': False, 'Seeker': 50, 'TargetType': 36, 'CanBeIntercepted': True})
-    fw = g.add('WeaponsJson', W[HJ10_LAUNCHER], {'Name': 'PLA HJ-10 HJ-10 FNF', 'HUDName': 'HJ-10 FNF', 'AimTimeMin': 3.0, 'AimTimeMax': 4.0})
+    # dev.15 (Osama 22 Nov 02:0x "HJ-10 FNF doesn't behave like a javelin, it still requires fire pos. I told you to literally just make it a javelin";
+    # "just make it a javelin stand in and work from there"): dev.12-14 cloned the cruise launcher (Type 82, vertical) and the cruise round (Traj 200),
+    # which fire only on a fire-position order. The FNF is now the vanilla Javelin: launcher = weapon 62 (Type 80 ATGM, 1-round magazine, aim 3-4 s),
+    # round = ammo 44 (Traj 110 top attack, Seeker 50, units only, interceptable, range 650). Changed: names, and TOW-2B damage / penetration.
+    J, JW = A[44], W[62]
+    ok((J['Name'], J['TrajectoryType'], J['Seeker'], J['IsTopArmorArmorAttack'], JW['Name'], JW['Type'], JW['IsVerticalLauncher']) ==
+       ('Missile AT Javelin', 110, 50, True, 'ATGM Javelin Infantry', 80, False), 'vanilla Javelin rows')
+    fnf = g.add('AmmunitionsJson', J, {**STATS, 'Name': 'PLA HJ-10 HJ-10 FNF missile', 'HUDName': 'HJ-10 FNF'})
+    fw = g.add('WeaponsJson', JW, {'Name': 'PLA HJ-10 HJ-10 FNF', 'HUDName': 'HJ-10 FNF'})
     ft = g.add('TurretsJson', T[2009620], {'Name': 'PLA HJ-10 mount FNF', 'IsDefault': True})
     g.add('TurretWeaponsJson', [r for r in TW.values() if r and r.get('TurretId') == 2009620][0], {'TurretId': ft, 'WeaponId': fw})
     g.add('TurretUnitsJson', hj()[0], {'TurretId': ft, 'Order': 0})
@@ -95,7 +102,11 @@ def apply(t, g, ok, rec):
     CLEAR = {f'Turret{i}Id': 0 for i in range(21) if f'Turret{i}Id' in O[244]}
     o_f = g.add('OptionsJson', O[244], {**CLEAR, 'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret0Id': ft, 'OptionPicture': 'JAVELIN'})
     o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'HELLFIRE_X4'})
-    ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 200 and A[fnf]['OverpressureRadius'] == 5.0 and A[fnf]['CanBeIntercepted'] is True and A[2009623]['CanBeIntercepted'] is False
+    ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 110 and A[fnf]['IsTopArmorArmorAttack'] is True
+       and A[fnf]['OverpressureRadius'] == 0.0 and A[fnf]['TargetType'] == 36 and A[fnf]['LaunchMarginAngle'] == J['LaunchMarginAngle']
+       and W[fw]['Type'] == 80 and W[fw]['IsVerticalLauncher'] is False and all(W[fw][k] == JW[k] for k in JW if k not in ('Id', 'Name', 'HUDName'))
+       and all(A[fnf][k] == J[k] for k in J if k not in ('Id', 'Name', 'HUDName', *STATS))
+       and A[fnf]['CanBeIntercepted'] is True and A[2009623]['CanBeIntercepted'] is False
        and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 1000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
        and A[2009623]['PenetrationAtGroundRange'] == A[fnf]['PenetrationAtGroundRange'] == 140.0, 'HJ-10 FNF / NLOS rounds')
     ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 0), (ft, 0)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
