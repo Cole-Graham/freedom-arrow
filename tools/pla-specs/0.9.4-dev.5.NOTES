@@ -67,3 +67,6 @@
   Batch checks 2228 pass. Not seen in game.
 - 2026-11-21 21:1x PST, thread 1567745029781454889 (Osama: "S-21 air escort loadout should be +50 not +150" = Z-21). AFTER LIVE BUILD 255: for the next build.
   china_balance_094.py: Z-21 (1104) Air escort option 24513 cost 150 -> 50 (batch 2229 checks). Not seen in game.
+- 2026-11-21 21:2x PST, thread 1572407822849810463 (Osama, a Chinese player: "这个义务兵我们称之为预备役"; "yeah we should update it"). NOT IN BUILD 255.
+  DATA: section 24 -> reserve_names_094.py, shown name only: 1166 Conscripts 义务兵 -> Reservists 预备役, 1213 Conscript Recon -> Reservist Recon. Internal
+  Name unchanged. Batch checks 2232 pass. Not seen in game. Not changed (not asked): spec "PLARF Rocket Conscript Force 火箭军".

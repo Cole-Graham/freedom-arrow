@@ -536,6 +536,9 @@ import cover_damage_094;cover_damage_094.apply(t,g,ok,rec,_heli)
 # ---------- 23. China truck names (Osama 21 Nov 2026 20:57 PST, thread 1572407822849810463: "Let's make these recommended changes to the names of the cargo
 # trucks"): Shaanxi SX2121 4x4 / SX2220 6x6 / SX2306 8x8 by the model each card shows; shown name only. See truck_names_094.py.
 import truck_names_094;truck_names_094.apply(t,g,ok,rec)
+# ---------- 24. Reservists (Osama 21 Nov 2026 21:2x PST, thread 1572407822849810463, a Chinese player: "这个义务兵我们称之为预备役"; "yeah we should
+# update it"): 1166 Conscripts 义务兵 -> Reservists 预备役, 1213 Conscript Recon -> Reservist Recon; shown name only. See reserve_names_094.py.
+import reserve_names_094;reserve_names_094.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
