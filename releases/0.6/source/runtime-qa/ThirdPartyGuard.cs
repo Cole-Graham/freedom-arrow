@@ -39,9 +39,11 @@ static class ThirdPartyGuard
     // 0.9 dev.44 batch (Osama 19 Nov 2026, Chinese playtesters: "can't see others online or other mod lobbies"): mainland China cannot reach the
     // deck's Tailscale address (*.ts.net); SteelPlate's CN sessions timed out every 60 s, his Hong Kong (VPN) session connected. The hub now goes
     // through freedomarrow.app (Cloudflare Worker fa-site, /hubs/* passed through to the same hub, WebSocket included).
-    const string Hub="https://freedomarrow.app/hubs/game";
-    const string Stats="https://freedomarrow.app/hubs/stats";
-    static readonly string[] OldHubs={"https://cyberdeck.tailf7ad82.ts.net/hubs/game","https://cyberdeck.tailf7ad82.ts.net/hubs/stats"};
+    // Ranked test build (Lateralus 22 Nov 2026): RankedMenu.TestHub points ArrowQueue at the ranked test hub (/hubs/test) instead.
+    static readonly string Hub=RankedMenu.TestHub?RankedMenu.TestHubRoot+"/game":"https://freedomarrow.app/hubs/game";
+    static readonly string Stats=RankedMenu.TestHub?RankedMenu.TestHubRoot+"/stats":"https://freedomarrow.app/hubs/stats";
+    static readonly string[] OldHubs={"https://cyberdeck.tailf7ad82.ts.net/hubs/game","https://cyberdeck.tailf7ad82.ts.net/hubs/stats",
+        "https://freedomarrow.app/hubs/game","https://freedomarrow.app/hubs/stats","https://freedomarrow.app/hubs/test/game","https://freedomarrow.app/hubs/test/stats"};
     // ArrowQueue's own ban guard blocks the game's Skirmish button, which is how Freedom Arrow opens its offline Local AI
     // Skirmish. BALocalSkirmish already refuses every non-scenario online lobby (create, list, invite, quick search),
     // so ArrowQueue's guard is off while Freedom Arrow runs.
@@ -213,6 +215,8 @@ static class ThirdPartyGuard
 
     public static void RestoreArrowQueue()
     {
+        // ArrowQueue's settings live in FA's own copy (ThirdPartyCfg): nothing of ActualArrow's to put back.
+        if(ThirdPartyCfg.Moved("ArrowQueue")){changed.Clear();guard=null;return;}
         foreach(var (e,old) in changed)e.Value=old;
         if(guard is {} g){g.e.Value=g.old;guard=null;}
         if(changed.Count>0)MelonLogger.Msg("FREEDOM_ARROW_MATCHMAKING: ArrowQueue settings restored for ActualArrow");
