@@ -175,7 +175,12 @@ static class NlosTrait
                     foreach(var t in __0)
                     {
                         var e=t?.UnitEntity??default;
-                        if(!e.IsAlive||!e.Has<ViewComponent>())continue;
+                        if(!e.IsAlive||!e.Has<ViewComponent>()||!e.Has<UnitComponent>())continue;
+                        // 0.9.5-dev.15 (Osama 22 Nov 2026 02:1x: "QN-506 QN-201 tries to fire even though it has no line of sight"). Shootable
+                        // is the whole unit's list, so every weapon of the unit may shoot what is added here. Add only units the NLOS round
+                        // itself can target: the QN-502 and the Blood Wolves' CH-901 rounds (TargetType 1, Ground) fire only at points and the
+                        // laser spot, so their units' QN-201, 30 mm, Type 86, rifles and PF-89 got targets without line of sight.
+                        if((((long)ammoInfo.TargetType)&(int)NativeEcs.Read<UnitComponent>(e).UnitData.Type)==0)continue;
                         float range=BattleSystemHelpers.GetAmmoShootingDistance(unit,e,ammoInfo);
                         float dist=Vector3.Distance(here,Position(e));
                         if(dist>range||!Spotted(e,side.Value))continue;
