@@ -169,5 +169,10 @@ if m>=key('0.9.4-dev.5'):
 # GC + Resources.UnloadUnusedAssets on Void (between menu and map, both ways) and back in Hangar_Scene (MemoryCleanup.cs).
 if m>=key('0.9.5-dev.6'):
     if 'FREEDOM_ARROW_MEMORY_CLEANUP'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the match memory cleanup (FREEDOM_ARROW_MEMORY_CLEANUP)')
+# From 0.9.5-dev.16 (Osama 22 Nov 2026 01:42 PST, thread 1573561286803980289: "in the main menu we need a button with our art that opens our
+# website"): Home tab banner (WebsiteButton.cs) and its art.
+if m>=key('0.9.5-dev.16'):
+    if 'FREEDOM_ARROW_WEBSITE_BUTTON'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the website button (FREEDOM_ARROW_WEBSITE_BUTTON)')
+    if 'UserData/FreedomArrow/menu-art/website-button.png' not in z.namelist():bad.append('menu-art/website-button.png missing')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

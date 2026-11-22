@@ -75,7 +75,7 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
-    public override void OnGUI() => conquest?.OnGUI();
+    public override void OnGUI() { conquest?.OnGUI(); WebsiteButton.OnGUI(); }
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
@@ -282,6 +282,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU_FAILED: "+e.Message); }
         try { ArsenalOnlySpecs.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Blue Dragon in the Arsenal only, not in deck creation
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ARSENAL_ONLY_SPECS_FAILED: not installed; Blue Dragon can be picked in deck creation. "+e.Message); }
+        try { WebsiteButton.Install(HarmonyInstance); }   // Osama 22 Nov 2026: Home tab banner that opens freedomarrow.app
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_WEBSITE_BUTTON_FAILED: no website button. "+e.Message); }
     }
     public override void OnApplicationQuit()
     {
