@@ -165,5 +165,9 @@ if m>=key('0.9.4-dev.5'):
     bad+=[f'ammo {i} {n} IgnoreCover {Am.get(i,{}).get("IgnoreCover")} (want 0)' for i,(n,b) in CD.IGNORE_COVER.items() if i!=CD.SHARED and Am.get(i,{}).get('IgnoreCover')]
     _t=[r['AmmunitionId'] for r in WAm.values() if r and r.get('UnitId')==CD.SHARED_CUT and Am.get(r['AmmunitionId'],{}).get('HUDName')==Am[CD.SHARED].get('HUDName') and Am[r['AmmunitionId']].get('Damage')!=2.9]
     if (Am[CD.SHARED].get('Damage'),Am[CD.SHARED].get('IgnoreCover'))!=(4.3,0.25) or len(_t)!=1 or _t[0]==CD.SHARED or (Am[_t[0]].get('Damage'),Am[_t[0]].get('IgnoreCover'))!=(3.4,0):bad.append(f'57x348mm HE: Ural 491 must stay 4.3/0.25 and the Toros fire a 3.4/0 copy ({_t})')
+# From 0.9.5-dev.6 (Osama 22 Nov 2026 00:05 PST, thread 1573561286803980289: "we need to clear the memory before and after every match"):
+# GC + Resources.UnloadUnusedAssets on Void (between menu and map, both ways) and back in Hangar_Scene (MemoryCleanup.cs).
+if m>=key('0.9.5-dev.6'):
+    if 'FREEDOM_ARROW_MEMORY_CLEANUP'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL lacks the match memory cleanup (FREEDOM_ARROW_MEMORY_CLEANUP)')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
