@@ -38,6 +38,7 @@ static class MemoryCleanup
                 pending = null;
                 Collect();
                 MelonLogger.Msg($"FREEDOM_ARROW_MEMORY_CLEANUP {reason}: before [{before}] after [{Snapshot()}], {Time.realtimeSinceStartup - started:0.0} s");
+                MemoryProbe.Log(reason);
                 return;
             }
             if (due < 0 || Time.realtimeSinceStartup < due) return;
