@@ -10,3 +10,8 @@
   ASSETS: work/ztz99b-20261122: Shawn's ZTZ99B+APS.fbx (Drive "PLA New Models/ZTZ99B-Shawn Modified"), armory = full 740k tris with Shawn's normals
   (2048 px textures, 12 materials), battle + LOD1/LOD2 from lod2.py; creator green (Lv/Cong) default, desert (Sha) as the card's "Yellow" paint scheme
   (<tex>@Yellow.fat). models.json: run work/ztz99b-20261122/merge_models.py on the base Assets to add the ZTZ-99A variants entry. Not seen in game.
+- 2026-11-22 01:3x PST: model files staged in work/ztz99b-20261122/stage (85 files, 295 MB; asset-args.txt). Armory m_ztz99b_static.fam = Shawn's full
+  740k tris (864k verts, 35 MB) with his normals (the first 184k decimation gave the "balloon" look, Osama). Battle 73k tris, LOD1 44k, LOD2 33k via
+  lod2.py (whole pieces kept; Blender collapse shredded the turret ERA). Textures: 12 materials, armory 2048 px, battle 1024 px (battle ~50 MB of .fat,
+  vs a few MB for the 99A: drop to 512 if memory matters). Desert = 18 <tex>@Yellow.fat. models.json in the stage = Assets 0.2.52 + variants (re-run
+  merge_models.py on whatever Assets the next patch builds from). BUILD: --famodels <FAModels.dll 0.3.39 from this branch> + asset-args.txt lines.
