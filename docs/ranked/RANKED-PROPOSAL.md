@@ -69,7 +69,12 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 `simple-elo.md` as written, with these choices for our game:
 
 - **Modes at launch (Lateralus, 22 Nov):** 1v1, 3v3 and 5v5. No 2v2.
-- **Ladders:** a 1v1 ladder and one team ladder shared by 3v3 and 5v5, with a rating per player on each ladder. Splitting 3v3 and 5v5 into separate ladders is possible, but it halves the matches each one gets.
+- **Ladders (Lateralus: agreed):** a 1v1 ladder and one team ladder shared by 3v3 and 5v5, with a rating per player on each ladder.
+- **Queueing as a party (Lateralus, 22 Nov):** players can queue together, using the parties FAQueue already has (the leader's search brings the members along).
+  - **Party size decides the modes:** solo → 1v1, 3v3 or 5v5; 2–3 players → 3v3 or 5v5; 4–5 players → 5v5 only. A party of 5 is always a full 5v5 team. 1v1 is solo only.
+  - **Matching:** the matchmaker fills each side with whole parties, never splitting one. It first looks for opponents with similar party sizes (a 5-stack against a 5-stack or a 4+1); after 3 minutes it accepts any mix. The two sides are balanced by average rating.
+  - **Party rating:** the party's average rating is used for matching. Each member's own rating changes after the match, using the team averages (as above).
+  - **Boost limit:** party members must be within 500 Elo of each other in ranked, so a high player cannot carry a new account up the ladder.
 - **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Every player on the team gets the team's change. The win bonus is computed from each winner's own rating before the match.
 - **What counts as a result:** the mod already reports each match (players, teams, map, winner, length) to FAQueue (`match-stats.jsonl`). A ranked result counts only when at least one report from each side agrees on the winner and the player list. If they disagree, the match is marked disputed, nothing changes and it is logged for admins.
 - **Leavers:** a player who leaves before the end loses their own rating, as a loss. The rest of the match is scored normally.
@@ -79,7 +84,7 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
   - [3v3] Baltiisk, Bay of Winds, Dam
   - [5v5] Airport, Oil Rush, Cold Harbor
 - **Queue size for 5v5:** a 5v5 needs 10 players searching at the same time. With 30–70 players online, the Elo window has to widen faster for 5v5. Proposal: ±150 at first, any rating after 3 minutes, and teams balanced by total rating.
-- **Seasons (Lateralus: yes):** each season keeps its final leaderboard and gives every player a badge with their best rank of that season. At the start of the next season everyone goes back to 1000. Proposed length: 2 months, to be confirmed.
+- **Seasons (Lateralus: yes):** each season keeps its final leaderboard and gives every player a badge with their best rank of that season. At the start of the next season everyone goes back to 1000. Length: 2 months (Lateralus, 22 Nov).
 
 ---
 
@@ -145,12 +150,16 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - PLA officers start at rank 10: accepted.
 - The FA epaulet set defaults to the player's vanilla choice.
 
+- Season length: 2 months.
+- One shared team ladder for 3v3 and 5v5.
+- Players can queue as a party; a party of 5 always plays 5v5.
+
 ## Still open
 
-- Season length (proposed: 2 months).
-- One team ladder for 3v3 + 5v5 (proposed), or separate ladders.
+- Nothing in the rules. Next step on your word: build the server side (FAQueue ranked queue) first, then the in-game menus.
 
 ## Document change log
 
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
 - 2026-11-22 08:01 PST (America/Los_Angeles) — Lateralus decisions: launch 1v1/3v3/5v5, seasons yes, PLA officers at rank 10, default set = vanilla epaulet. Map pools, 5v5 queue widening, season rules added.
+- 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
