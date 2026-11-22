@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.35", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.36", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -36,6 +36,7 @@ public partial class Mod : MelonMod
         LoadBodyRules();
         Verbose = File.Exists(Path.Combine(dir, "verbose.txt"));
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
+        try { InstallPaintSchemes(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS_PAINT not installed; models keep their default colours: " + ex.Message); }
         try { InstallLowSettings(); } catch (Exception ex) { MelonLogger.Error("FAMODELS low-settings switch not installed; armory keeps full models: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
         HarmonyInstance.Patch(m, postfix: new HarmonyMethod(typeof(Mod), nameof(After)));
@@ -456,6 +457,7 @@ public partial class Mod : MelonMod
         int hidden = Hide(root);
         holder.SetActive(true);
         live.Add((root, unit));
+        try { ApplyPaint(root, unit); } catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT apply: " + ex.Message); }
         modelSwapsThisFrame++;
         // 0.3.35 (Unload.cs): remember which units use which files; in the menu, free all but the most recent unused models.
         foreach (var lf in levels.Count > 1 ? e.lods.Where(x => x != "").Prepend(e.file) : new[] { e.file }) NoteUse(lf, root);
