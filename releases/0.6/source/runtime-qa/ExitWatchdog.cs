@@ -8,6 +8,11 @@ namespace FreedomArrow;
 // calls kernel32 TerminateProcess(current process) WaitSeconds after the end of our shutdown; it needs no managed code when it fires.
 // The callback is called as callback(parameter, TRUE), i.e. TerminateProcess(GetCurrentProcess() pseudo-handle -1, exit code 1).
 // A game that exits normally is gone before the timer fires.
+// 22 Nov 2026 02:0x (Osama: "how come linux still doesn't close"): the native timer never fired either. 01:58:47 armed, the window stayed until
+// KWin killed it at 01:59:31. When the game calls ExitProcess, Windows/Wine first ends every other thread of the process (the timer thread
+// included) and then hangs in DLL detach, so nothing inside the process can end it. Now a separate process does it: cmd.exe waits
+// WaitSeconds (ping to localhost) and runs taskkill /F on our PID. It is a child process, so it outlives our threads; if the game is already
+// gone, taskkill finds nothing. Works the same under Proton (Wine ships cmd, ping and taskkill). The native timer stays as a second try.
 static class ExitWatchdog
 {
     const uint WaitSeconds=10,WT_EXECUTEINTIMERTHREAD=0x20,WT_EXECUTEONLYONCE=0x8;
@@ -15,8 +20,22 @@ static class ExitWatchdog
     [DllImport("kernel32.dll",CharSet=CharSet.Ansi)] static extern IntPtr GetProcAddress(IntPtr module,string name);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool CreateTimerQueueTimer(out IntPtr timer,IntPtr queue,IntPtr callback,IntPtr parameter,uint dueMs,uint periodMs,uint flags);
     static IntPtr timer;
+    static bool external;
     public static void Start()
     {
+        if(!external)
+        {
+            external=true;
+            try
+            {
+                int pid=Environment.ProcessId;
+                var psi=new System.Diagnostics.ProcessStartInfo("cmd.exe",$"/c ping -n {WaitSeconds+1} 127.0.0.1 >nul & taskkill /F /PID {pid} >nul 2>&1")
+                    {CreateNoWindow=true,UseShellExecute=false,WindowStyle=System.Diagnostics.ProcessWindowStyle.Hidden};
+                var p=System.Diagnostics.Process.Start(psi);
+                MelonLoader.MelonLogger.Msg($"FREEDOM_ARROW_EXIT_WATCHDOG external killer started (pid {p?.Id}): ends game pid {pid} in {WaitSeconds} s if it is still running");
+            }
+            catch(Exception e){MelonLoader.MelonLogger.Warning("FREEDOM_ARROW_EXIT_WATCHDOG external killer failed: "+e.Message);}
+        }
         if(timer!=IntPtr.Zero)return;
         var terminate=GetProcAddress(GetModuleHandleA("kernel32.dll"),"TerminateProcess");
         bool ok=terminate!=IntPtr.Zero&&CreateTimerQueueTimer(out timer,IntPtr.Zero,terminate,new IntPtr(-1),WaitSeconds*1000,0,WT_EXECUTEINTIMERTHREAD|WT_EXECUTEONLYONCE);
