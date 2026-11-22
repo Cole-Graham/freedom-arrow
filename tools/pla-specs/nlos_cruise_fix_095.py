@@ -80,7 +80,8 @@ def apply(t, g, ok, rec):
     # NLOS option: the existing launcher, turret and round.
     # 'when I say 2000m range, I mean 2000m armory range' (Osama 01:1x): the Arsenal shows GroundRange x 2, so 1000 (FNF 800 = 1600 m as before).
     g.put('AmmunitionsJson', 2009623, {**STATS, 'GroundRange': 1000.0, 'HUDName': 'HJ-10 NLOS'})
-    g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 0.2, 'AimTimeMax': 0.2, 'HUDName': 'HJ-10 NLOS'})
+    # Osama 22 Nov 14:3x (thread 1572407822849810463): "its NLOS aim time should be 1 second" (was 0.2).
+    g.put('WeaponsJson', HJ10_LAUNCHER, {'AimTimeMin': 1.0, 'AimTimeMax': 1.0, 'HUDName': 'HJ-10 NLOS'})
     g.put('TurretsJson', 2009620, {'IsDefault': False})
     # FNF default: new round, launcher and turret.
     # dev.15 (Osama 22 Nov 02:0x "HJ-10 FNF doesn't behave like a javelin, it still requires fire pos. I told you to literally just make it a javelin";
@@ -108,7 +109,9 @@ def apply(t, g, ok, rec):
     mod = g.add('ModificationsJson', M[88], {'UnitId': 936, 'Name': 'PLA loadout HJ-10', 'UIName': 'Custom_Slot_Weapon_package', 'Order': 0})
     CLEAR = {f'Turret{i}Id': 0 for i in range(21) if f'Turret{i}Id' in O[244]}
     o_f = g.add('OptionsJson', O[244], {**CLEAR, 'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret0Id': ft, 'OptionPicture': 'JAVELIN'})
-    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'HELLFIRE_X4'})
+    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'FA_PLA_HJ10'})
+    # Osama 22 Nov 14:3x: "HJ-10 in NLOS loadout has the wrong unit card": HELLFIRE_X4 is the helicopter 4-Hellfire rack; the NLOS option shows the
+    # HJ-10's own launcher picture (FA_PLA_HJ10, the icon its weapon card already uses; FA_PLA_* names work as option pictures, e.g. PL-17).
     ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 110 and A[fnf]['IsTopArmorArmorAttack'] is True
        and A[fnf]['OverpressureRadius'] == 0.0 and A[fnf]['TargetType'] == 36 and A[fnf]['LaunchMarginAngle'] == J['LaunchMarginAngle']
        and W[fw]['Type'] == 80 and W[fw]['IsVerticalLauncher'] is False and all(W[fw][k] == JW[k] for k in JW if k not in ('Id', 'Name', 'HUDName', 'HUDIcon', 'ModelFileName', 'AimTimeMin', 'AimTimeMax'))
@@ -119,7 +122,7 @@ def apply(t, g, ok, rec):
        and A[2009623]['LaserGuided'] is True and A[2009623]['GroundRange'] == 1000.0 and A[2009623]['Damage'] == A[fnf]['Damage'] == 11.0
        and A[2009623]['PenetrationAtGroundRange'] == A[fnf]['PenetrationAtGroundRange'] == 140.0, 'HJ-10 FNF / NLOS rounds')
     ok(sorted((r['TurretId'], r['Order']) for r in hj()) == sorted([(2009620, 0), (ft, 0)]) and T[ft]['IsDefault'] is True and T[2009620]['IsDefault'] is False
-       and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin']) == (2.0, 2.0, 0.2)
+       and (W[fw]['AimTimeMin'], W[fw]['AimTimeMax'], W[HJ10_LAUNCHER]['AimTimeMin'], W[HJ10_LAUNCHER]['AimTimeMax'], O[o_n]['OptionPicture']) == (2.0, 2.0, 1.0, 1.0, 'FA_PLA_HJ10')
        and sorted((O[o]['Cost'], O[o]['Turret0Id']) for o in (o_f, o_n)) == sorted([(0, ft), (20, 2009620)])
        and all(not O[o][k] for o in (o_f, o_n) for k in CLEAR if k != 'Turret0Id'), 'HJ-10 loadout: FNF default, NLOS +20, slot 0 only (vanilla M6 options)')
     rec['hj10_modes'] = {'fnf': {'round': fnf, 'weapon': fw, 'turret': ft, 'option': o_f}, 'nlos': {'round': 2009623, 'weapon': HJ10_LAUNCHER, 'turret': 2009620, 'option': o_n, 'cost': 20}, 'stats': STATS}
