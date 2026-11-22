@@ -15,6 +15,13 @@ internal sealed class NewsPanel : Panel
     private readonly RichTextBox _notes;
     private readonly Button _more;
     private string _link = LauncherNews.Site;
+    // NEW FEATURES / PATCH NOTES tabs (Osama 22 Nov 2026: "add the gif with changing the paint scheme in the launcher under a
+    // new feature category")
+    private readonly Tab _featuresTab, _notesTab;
+    private readonly Panel _feature;
+    private readonly Label _featureTitle, _featureText;
+    private readonly PictureBox _featureImage;
+    private MemoryStream? _imageData;   // an animated GIF needs its stream for as long as it plays
 
     public NewsPanel()
     {
@@ -49,9 +56,30 @@ internal sealed class NewsPanel : Panel
         site.Font = Theme.Head(18f);
         site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
 
+        _featureTitle = new Label { Dock = DockStyle.Top, Height = 28, Font = Theme.Head(15f), ForeColor = Theme.Text, BackColor = Theme.Panel, UseMnemonic = false };
+        _featureText = new Label { Dock = DockStyle.Top, Height = 44, ForeColor = Theme.TextMuted, BackColor = Theme.Panel, UseMnemonic = false };
+        _featureImage = new PictureBox { Dock = DockStyle.Fill, SizeMode = PictureBoxSizeMode.Zoom, BackColor = Theme.Panel, Cursor = Cursors.Hand };
+        _featureImage.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
+        _feature = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Panel, Visible = false };
+        _feature.Controls.Add(_featureImage);
+        _feature.Controls.Add(Gap(4));
+        _feature.Controls.Add(_featureText);
+        _feature.Controls.Add(_featureTitle);
+        var content = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Panel };
+        content.Controls.Add(_notes);
+        content.Controls.Add(_feature);
+        _featuresTab = new Tab(T("NEW FEATURES")) { Visible = false };
+        _notesTab = new Tab(T("PATCH NOTES")) { Selected = true };
+        _featuresTab.Click += (_, _) => ShowTab(features: true);
+        _notesTab.Click += (_, _) => ShowTab(features: false);
+        var tabs = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 34, BackColor = Theme.Panel, WrapContents = false, Margin = Padding.Empty };
+        tabs.Controls.Add(_featuresTab);
+        tabs.Controls.Add(_notesTab);
+
         // Docked top controls are added bottom-up
-        Controls.Add(_notes);
-        Controls.Add(Title(T("PATCH NOTES")));
+        Controls.Add(content);
+        Controls.Add(Gap(6));
+        Controls.Add(tabs);
         Controls.Add(Gap(14));
         Controls.Add(_tiles);
         Controls.Add(Title(T("BATTLEFIELD REPORT")));
@@ -77,6 +105,34 @@ internal sealed class NewsPanel : Panel
         _tiles.Set(news.Stats);
         if (news.Notes.Count > 0) _link = news.Notes[0].Link;
         Render(news.Notes);
+        if (news.Features.Count > 0) await ShowFeature(news.Features[0]);
+    }
+
+    /// <summary>The newest feature, shown first: title, a line of text and its animated picture.</summary>
+    private async Task ShowFeature(LauncherNews.Feature f)
+    {
+        _featureTitle.Text = Loc.IsChinese && f.TitleZh.Length > 0 ? f.TitleZh : f.Title;
+        _featureText.Text = Loc.IsChinese && f.TextZh.Length > 0 ? f.TextZh : f.Text;
+        _featuresTab.Visible = true;
+        ShowTab(features: true);
+        if (f.Image.Length == 0) return;
+        var bytes = await LauncherNews.LoadImageAsync(f.Image);
+        if (bytes == null || IsDisposed) return;
+        try
+        {
+            _imageData = new MemoryStream(bytes);
+            _featureImage.Image = Image.FromStream(_imageData);   // PictureBox plays an animated GIF by itself
+        }
+        catch (Exception) { _imageData = null; }
+    }
+
+    private void ShowTab(bool features)
+    {
+        _feature.Visible = features;
+        _notes.Visible = !features;
+        _featuresTab.Selected = features;
+        _notesTab.Selected = !features;
+        _more.Visible = !features;   // the patch-notes link; the feature picture gets its room
     }
 
     private void ShowText(string text)
@@ -178,6 +234,35 @@ internal sealed class NewsPanel : Panel
         TextAlign = ContentAlignment.TopLeft,
         UseMnemonic = false,
     };
+
+    /// <summary>A heading that works as a tab: white with the red line under it when selected, grey otherwise.</summary>
+    private sealed class Tab : Control
+    {
+        private bool _selected;
+        public bool Selected { get => _selected; set { _selected = value; Invalidate(); } }
+
+        public Tab(string text)
+        {
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+            Text = text;
+            Font = Theme.Head(13f);
+            BackColor = Theme.Panel;
+            Cursor = Cursors.Hand;
+            Margin = new Padding(0, 0, 22, 0);
+            Height = 32;
+            Width = TextRenderer.MeasureText(text, Font).Width + 4;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            e.Graphics.Clear(BackColor);
+            TextRenderer.DrawText(e.Graphics, Text, Font, new Rectangle(0, 2, Width, Height - 8), _selected ? Theme.Text : Theme.TextMuted,
+                TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
+            if (!_selected) return;
+            using var line = new SolidBrush(Theme.Accent);
+            e.Graphics.FillRectangle(line, 0, Height - Math.Max(2, LogicalToDeviceUnits(3)), Width - 4, Math.Max(2, LogicalToDeviceUnits(3)));
+        }
+    }
 
     /// <summary>4 tiles in a row, like the front page's Battlefield report.</summary>
     private sealed class StatTiles : Control

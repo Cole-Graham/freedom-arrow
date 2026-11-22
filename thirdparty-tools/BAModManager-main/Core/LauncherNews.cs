@@ -20,7 +20,46 @@ public static class LauncherNews
 
     public sealed record Stats(int? Online, int? Peak24, int? Players, int? Matches);
     public sealed record Note(string Version, string Date, string English, string Chinese, string Link);
-    public sealed record News(Stats Stats, IReadOnlyList<Note> Notes);
+    public sealed record Feature(string Title, string TitleZh, string Text, string TextZh, string Image);
+    public sealed record News(Stats Stats, IReadOnlyList<Note> Notes, IReadOnlyList<Feature> Features);
+
+    private const int MaxImageBytes = 12 * 1024 * 1024;
+
+    /// <summary>A feature's picture (an animated GIF): downloaded once from freedomarrow.app, then read from the launcher's
+    /// AppData folder (the address carries a ?v= number, so a new picture is a new file).</summary>
+    public static async Task<byte[]?> LoadImageAsync(string url, CancellationToken ct = default)
+    {
+        if (!IsSiteLink(url)) return null;
+        try
+        {
+            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), AppInfo.Id, "news");
+            var file = Path.Combine(dir, Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(url)))[..16] + ".img");
+            if (File.Exists(file)) return await File.ReadAllBytesAsync(file, ct).ConfigureAwait(false);
+            using var resp = await Http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
+            if (!resp.IsSuccessStatusCode || resp.Content.Headers.ContentLength > MaxImageBytes) return null;
+            var bytes = await ReadCapped(resp, MaxImageBytes, ct).ConfigureAwait(false);
+            if (bytes == null) return null;
+            Directory.CreateDirectory(dir);
+            await File.WriteAllBytesAsync(file + ".part", bytes, ct).ConfigureAwait(false);
+            File.Move(file + ".part", file, true);
+            return bytes;
+        }
+        catch (Exception) { return null; }
+    }
+
+    private static async Task<byte[]?> ReadCapped(HttpResponseMessage resp, int max, CancellationToken ct)
+    {
+        await using var s = await resp.Content.ReadAsStreamAsync(ct).ConfigureAwait(false);
+        using var buf = new MemoryStream();
+        var chunk = new byte[65536];
+        int n;
+        while ((n = await s.ReadAsync(chunk, ct).ConfigureAwait(false)) > 0)
+        {
+            if (buf.Length + n > max) return null;
+            buf.Write(chunk, 0, n);
+        }
+        return buf.ToArray();
+    }
 
     public static async Task<News?> LoadAsync(CancellationToken ct = default)
     {
@@ -29,16 +68,8 @@ public static class LauncherNews
             using var resp = await Http.GetAsync(Url, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
             if (!resp.IsSuccessStatusCode) return null;
             if (resp.Content.Headers.ContentLength > MaxBytes) return null;
-            await using var s = await resp.Content.ReadAsStreamAsync(ct).ConfigureAwait(false);
-            using var buf = new MemoryStream();
-            var chunk = new byte[16384];
-            int n;
-            while ((n = await s.ReadAsync(chunk, ct).ConfigureAwait(false)) > 0)
-            {
-                if (buf.Length + n > MaxBytes) return null;
-                buf.Write(chunk, 0, n);
-            }
-            return Parse(buf.ToArray());
+            var bytes = await ReadCapped(resp, MaxBytes, ct).ConfigureAwait(false);
+            return bytes == null ? null : Parse(bytes);
         }
         catch (Exception) { return null; }
     }
@@ -58,7 +89,11 @@ public static class LauncherNews
                     var link = Str(e, "url");
                     notes.Add(new Note(Str(e, "version"), Str(e, "date"), Str(e, "en"), Str(e, "zh"), IsSiteLink(link) ? link : Site));
                 }
-            return new News(stats, notes);
+            var features = new List<Feature>();
+            if (root.TryGetProperty("features", out var fa) && fa.ValueKind == JsonValueKind.Array)
+                foreach (var e in fa.EnumerateArray().Take(5))
+                    features.Add(new Feature(Str(e, "title"), Str(e, "title_zh"), Str(e, "text"), Str(e, "text_zh"), IsSiteLink(Str(e, "image")) ? Str(e, "image") : ""));
+            return new News(stats, notes, features);
         }
         catch (Exception) { return null; }
     }
