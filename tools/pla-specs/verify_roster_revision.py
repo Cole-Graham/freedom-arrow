@@ -50,7 +50,8 @@ with zipfile.ZipFile(a.package) as z:
   # Osama 16 Nov 03:1x PST (0.9.0-dev.21, build 194): every carded tank KE round 50 mm between close and max range.
   elif build>=194:ok(ke['PenetrationAtMinRange']==ke['PenetrationAtGroundRange']+50,'KE close bonus 50')
   else:ok(ke['PenetrationAtMinRange']==ke['PenetrationAtGroundRange']+25,'KE close bonus')
- ok(ammo(1233)[0]['Seeker']==50,'HQ9B FNF');ok(ammo(1234)[0]['Seeker']==100,'HQ9A SA')
+ # 0.9.5-dev.33 (build 288, Osama 22 Nov 15:2x "The current hq9b should be renamed hq9a and changed to semi active"): card 1233 is the HQ-9A (semi-active).
+ ok(ammo(1233)[0]['Seeker']==(100 if build>=288 else 50),'HQ9B FNF / HQ-9A SA (1233)');ok(ammo(1234)[0]['Seeker']==100,'HQ9A SA')
  for uid in [1233,1234]:ok(ammo(uid)[0]['LowAltRange']==t['AmmunitionsJson'][154]['LowAltRange'] and ammo(uid)[0]['HighAltRange']==t['AmmunitionsJson'][154]['HighAltRange'],'GEM+ ranges')
  ok(ammo(911)[0]['Seeker']==50 and ammo(911)[0]['HighAltRange']==t['AmmunitionsJson'][220]['HighAltRange'],'S400 profile')
  missiles=[(am['HUDName'],r['Quantity']) for r in t['WeaponAmmunitionsJson'].values() if r['UnitId']==1056 for am in [t['AmmunitionsJson'][r['AmmunitionId']]] if am['HUDName'] in ['HJ-10','HJ-16','ABZ-13 anti-personnel']]
