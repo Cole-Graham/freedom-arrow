@@ -179,7 +179,7 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 1. `RankedMenu.TestHub` (runtime-qa/RankedMenu.cs) is `true` in dev builds: it points ArrowQueue at the ranked TEST hub (freedomarrow.app/hubs/test). Set it to `false` in the release build, or players search on the test hub.
 2. Deploy the ranked hub to the live FAQueue (`sh ba-dev/faqueue/deploy-ranked.sh`, staged in `app-next`). A restart drops connected players for a few seconds; it needs Osama or Lateralus's OK at release time.
 3. The quick test mode (1 min deployment, 3 min match) is only in packages made with `work/ranked-20261122/quick.py`; normal builds are not changed.
-4. Play menu art: `UserData/FreedomArrow/ranked/menu/*.png` must be in the gameplay package (the packager copies `UserData/FreedomArrow`; check it at the first build).
+4. Ranked art (`UserData/FreedomArrow/ranked/**/*.png`: card, patch, 80 epaulets, Play menu art) is copied into the gameplay package by `package_0_8_next.py` (added 22 Nov); check it is there at the first build.
 
 ## Document change log
 
