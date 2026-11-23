@@ -1,0 +1,11 @@
+0.9.6-dev.90 (build 303): 0.9.6 model rework TEST build for Osama (23 Nov 2026 00:4x PST, thread 1572407822849810463: "lets make the 9.6 model rework a
+seperate build from the main dev branch, can you please apply the new fixes" / "and it includes france"). Not a main-dev build: branch
+codex/batch/osama/model-rework-096 from gameplay/0.9.5; codex/development is untouched.
+Gameplay = 0.9.5 + France (Testing Preview) spec 24 (france_preview.py, 14 Arsenal-only cards, US placeholder stats). 4348 data checks.
+Models = Assets 0.2.66, staged by work/model-rework-096/stage.py over work/model-update-1122/stage (= the 0.9.5 Assets 0.2.65 models):
+- ZBD-03 rebuilt: 6.0 m (was 8.82), seller-OBJ UVs (turret/skirt/roof camo), LZ407 hull number back, camo box-projected (work/china-new-20261122).
+- Type 19 LOD1/LOD2 27.7k/16.5k (had none); 99A LOD2 17.0k (was 21.9k = LOD1).
+- LOD re-cuts toward 55%/25% of battle: Type 10 L1, Type 90 L1+L2, Type 74 L1, Type 16 L1, Type 87, Type 89, Type 93; torn cuts rejected
+  (K2, ZTZ-59D, Type 10/74/16 L2 keep the 0.9.5 LODs). work/model-rework-096/run_lods.sh.
+- Battle-only textures over 15 MB: top mips dropped (no re-encode) until <= 15 MB, min 512 px. Armory models and textures untouched.
+- France: focolate's SCORPION models as installed on Vengeance 22 Nov 22:15 (french-assets-20261122/fix4) + 14 'FR ' models.json entries.

@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.5';PREV='0.9.3'
+V='0.9.6-dev.90';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/local-093r242/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -600,6 +600,10 @@ rec.pop('_native_icons')
 # ---------- Helicopter flares 10 -> 15 on Z-10K Recon, Z-10 Recon and Mi-8 Cargo (Lateralus 22 Nov 2026 19:4x PST, thread 1568104480459722894):
 # their links move to the matching 15-flare rows; guard: every helicopter with flares has 15. See heli_flares_1122.py.
 import heli_flares_1122;heli_flares_1122.apply(t,g,ok,rec)
+# ---------- 0.9.6 model rework TEST build only (Osama 23 Nov 2026 00:4x PST, thread 1572407822849810463: "lets make the 9.6 model rework a seperate
+# build from the main dev branch" / "and it includes france"): France (Testing Preview) spec 24 with focolate's SCORPION models, Arsenal view only.
+# Branch codex/batch/osama/model-rework-096 (from gameplay/0.9.5), not codex/development. See france_preview.py.
+import france_preview;france_preview.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
