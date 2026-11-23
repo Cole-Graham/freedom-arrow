@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.5b-dev.3",
+  "version": "0.9.5b-dev.4",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.5b-dev.3 (0.9.5b hotfix candidate): ZTZ-99B loadouts use the normal 2-charge APS (no LSDW laser APS). 0.9.5b-dev.2: the website banner as a native part of the Home page (it no longer shows over the main-menu loading screen). 0.9.5b-dev.1: Play and Home tabs found by their pages, not English labels (Ranked card, website banner and FA Music selector in every language), conquest zone values and setup banner hidden under the scoreboard, PL-15C replaced by PL-15 (duplicate loadouts removed), PLARF J-5 / J-6W drones and J-7IIH names, F-35A/C 1x MAKO per bay, ZBD-251 with the 40 mm CT gun (90 pts), AKF-98A / KD-88 names swapped, Type 100 gun shown as 40 mm CT. Includes everything in 0.9.5. Needs Freedom Arrow — Models and Music 0.2.72.",
+  "description": "Freedom Arrow 0.9.5b-dev.4 (0.9.5b hotfix candidate): ZTZ-99B LSDW + GL-6 APS loadout +120 -> +150 with the standard APS picture. 0.9.5b-dev.3: ZTZ-99B loadouts use the normal 2-charge APS (no LSDW laser APS). 0.9.5b-dev.2: the website banner as a native part of the Home page (it no longer shows over the main-menu loading screen). 0.9.5b-dev.1: Play and Home tabs found by their pages, not English labels (Ranked card, website banner and FA Music selector in every language), conquest zone values and setup banner hidden under the scoreboard, PL-15C replaced by PL-15 (duplicate loadouts removed), PLARF J-5 / J-6W drones and J-7IIH names, F-35A/C 1x MAKO per bay, ZBD-251 with the 40 mm CT gun (90 pts), AKF-98A / KD-88 names swapped, Type 100 gun shown as 40 mm CT. Includes everything in 0.9.5. Needs Freedom Arrow — Models and Music 0.2.72.",
   "repo": "Cole-Graham/freedom-arrow"
 }
