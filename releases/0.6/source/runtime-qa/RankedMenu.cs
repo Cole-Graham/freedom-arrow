@@ -109,7 +109,7 @@ static partial class RankedMenu
         }
         catch{}
     }
-    static string rankedMap="",rankedLobby="";static float pickWaitFrom=-1f,lastAsk;
+    static string rankedMap="",rankedLobby="",rankedFmt="";static float pickWaitFrom=-1f,lastAsk;
     // Host of a ranked match: load the hub's map. Ranked lobbies have mode r1v1/rteam (the hub sends the queue as the lobby mode).
     static bool PickMap(object v,float now,ref bool __result)
     {
@@ -121,17 +121,20 @@ static partial class RankedMenu
             if(pickWaitFrom<0f)pickWaitFrom=now;
             if(rankedLobby==lobby&&rankedMap.Length>0)
             {
-                object best=null;string bestName="";
+                // Lateralus 22 Nov 2026 20:1x ("queue it"): Dead Center is installed as [FA] [1v1] and [FA] [2v2]; the highest name won, so a 1v1
+                // match loaded the 2v2 map. A map with the match's size tag ([1v1] / [3v3] / [5v5]) now comes first; the newest version wins within that.
+                object best=null;string bestName="";bool bestTag=false;var tag="["+rankedFmt+"]";
                 foreach(var s in (IEnumerable)mSupported.Invoke(null,null))
                 {
                     var name=Traverse.Create(s).Property("Name").GetValue<string>()??"";
                     if(!MapName(name).Equals(rankedMap,StringComparison.OrdinalIgnoreCase))continue;
-                    if(best==null||string.CompareOrdinal(name,bestName)>0){best=s;bestName=name;}
+                    bool hasTag=rankedFmt.Length>0&&name.Contains(tag,StringComparison.OrdinalIgnoreCase);
+                    if(best==null||(hasTag&&!bestTag)||(hasTag==bestTag&&string.CompareOrdinal(name,bestName)>0)){best=s;bestName=name;bestTag=hasTag;}
                 }
                 if(best!=null)
                 {
                     mPicked.Invoke(null,new[]{lobby,best});pickWaitFrom=-1f;__result=true;
-                    MelonLogger.Msg($"FREEDOM_ARROW_RANKED host map {bestName} (hub pick {rankedMap}, lobby {lobby})");
+                    MelonLogger.Msg($"FREEDOM_ARROW_RANKED host map {bestName} (hub pick {rankedMap} {rankedFmt}, lobby {lobby})");
                     return false;
                 }
                 MelonLogger.Warning($"FREEDOM_ARROW_RANKED hub map {rankedMap} is not installed; the normal map choice opens (the match will be unrated)");
@@ -175,7 +178,7 @@ static partial class RankedMenu
         Call("GetRanked",j=>
         {
             meJson=j;askedAt=DateTime.UtcNow;
-            try{var m=JsonDocument.Parse(j).RootElement.GetProperty("match");if(m.ValueKind==JsonValueKind.Object){rankedLobby=m.GetProperty("lobbyId").GetString();rankedMap=m.GetProperty("map").GetString();}}catch{}
+            try{var m=JsonDocument.Parse(j).RootElement.GetProperty("match");if(m.ValueKind==JsonValueKind.Object){rankedLobby=m.GetProperty("lobbyId").GetString();rankedMap=m.GetProperty("map").GetString();rankedFmt=m.TryGetProperty("format",out var f)?f.GetString()??"":"";}}catch{}
         });
     }
     static void AskBoards(){Call("GetRankedLeaderboard",j=>board1=j,"1v1");Call("GetRankedLeaderboard",j=>boardT=j,"team");}
