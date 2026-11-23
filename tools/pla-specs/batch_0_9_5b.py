@@ -611,6 +611,8 @@ import rocket_drones_1123;rocket_drones_1123.apply(t,g,ok,rec)
 # ---------- PL-15C removed: all become PL-15, +5 pts per swapped missile, "Heavy CAP (PL-15)", MD-22/FH-97A duplicates removed (Osama 23 Nov 2026 01:5x-02:0x PST,
 # thread 1567745029781454889; Doc 1kNAPyBk0vK8DRY8JY3JhS3VXlJvAuWzoZUQKojZlgPA). See pl15c_to_pl15_1123.py.
 import pl15c_to_pl15_1123;pl15c_to_pl15_1123.apply(t,g,ok,rec)
+# ---------- J-8D health 20 -> 10, the same as J-7IIH, J-6W and J-5 (Osama 23 Nov 2026 12:5x PST, thread 1567745029781454889). See j8_health_1123.py.
+import j8_health_1123;j8_health_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
