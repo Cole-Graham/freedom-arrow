@@ -52,8 +52,12 @@ internal static class MusicMenu
                 MainMenuButton first = null;
                 foreach (var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
                 {
-                    if (!b.gameObject.scene.IsValid() || b._buttonText == null) continue;
-                    if (!b._buttonText.text.Trim().Equals("Home", StringComparison.OrdinalIgnoreCase)) continue;
+                    if (!b.gameObject.scene.IsValid()) continue;
+                    // Osama 23 Nov 2026: in Chinese the label "Home" is translated, so the selector never showed. The Home tab is also
+                    // recognised by its page, "Home menu content", which has the same name in every language.
+                    var page = b._showTargetContent;
+                    bool byPage = page != null && (page.name == "Home menu content" || page.GetComponentsInChildren<Transform>(true).Any(t => t.name == "Home menu content"));
+                    if (!byPage && (b._buttonText == null || !b._buttonText.text.Trim().Equals("Home", StringComparison.OrdinalIgnoreCase))) continue;
                     first ??= b;
                     if (b.isActiveAndEnabled) { home = b; break; }
                 }

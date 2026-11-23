@@ -207,6 +207,10 @@ if m>=key('0.9.5-dev.19'):
 # hiding; the banner shows exactly while the music pack selector would (Home tab selected).
 if m>=key('0.9.5-dev.20'):
     if 'click outside the banner'.encode('utf-16-le') in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL still hides the website banner on a click outside it')
+# From 0.9.5-dev.46 (Osama 23 Nov 2026 04:4x PST, thread 1573505321010331651: "chinese players are reporting no ranked button"): the Play and Home
+# tabs are found by their pages, not by the English labels "Play" / "Home" (RankedMenu.cs, WebsiteButton.cs); log 'Play tab found by its'.
+if m>=key('0.9.5-dev.46'):
+    if 'Play tab found by its'.encode('utf-16-le') not in z.read('Mods/FreedomArrow.Runtime.dll'):bad.append('runtime DLL still finds the Play tab only by the English label "Play" (no Ranked card in Chinese)')
 # From 0.9.5-dev.30 (Osama 22 Nov 2026 13:2x PST, thread 1573561286803980289, QQ sheet FA-041): the AR-2000 on the Kiowa helicopter stand-in with
 # the AKD-11 on both pylon slots, stats kept (ar2000_heli_095.py). On the Termit pylon the launch was refused and retried every frame.
 if m>=key('0.9.5-dev.30'):

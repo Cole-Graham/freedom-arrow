@@ -321,11 +321,24 @@ static partial class RankedMenu
             playButton=null;
             if(Time.unscaledTime<nextButtonScan)return false;
             nextButtonScan=Time.unscaledTime+2f;
+            // Osama 23 Nov 2026: Chinese players had no Ranked card. The tab was found by its English label "Play", which is
+            // translated in other languages. Now the tab is the one whose page holds the Multiplayer card (same in every language).
             foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
-                if(b.gameObject.scene.IsValid()&&b._buttonText!=null&&b._buttonText.text.Trim().Equals("Play",StringComparison.OrdinalIgnoreCase)){playButton=b;break;}
+            {
+                if(!b.gameObject.scene.IsValid())continue;
+                bool byPage=HasChild(b._showTargetContent,"Menu Picture Button - Multiplayer");
+                if(byPage||(b._buttonText!=null&&b._buttonText.text.Trim().Equals("Play",StringComparison.OrdinalIgnoreCase)))
+                {playButton=b;MelonLogger.Msg($"FREEDOM_ARROW_RANKED Play tab found by its {(byPage?"page (Multiplayer card)":"English label")}");break;}
+            }
             if(playButton==null)return false;
         }
         return playButton.isActiveAndEnabled&&playButton.Selected;
+    }
+    internal static bool HasChild(GameObject root,string name)
+    {
+        if(root==null)return false;
+        foreach(var t in root.GetComponentsInChildren<Transform>(true))if(t.name==name)return true;
+        return false;
     }
     static Rect ScreenRect(RectTransform rt)
     {
