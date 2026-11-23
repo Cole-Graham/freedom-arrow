@@ -1,14 +1,23 @@
 using HarmonyLib;
+using Il2CppInterop.Runtime;
 using Il2CppBrokenArrow.Client.Ecs.UI.MainMenu;
 using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 namespace FreedomArrow;
 // Website button (Osama 22 Nov 2026 01:42 PST, thread 1573561286803980289: "in this new version in the main menu we need a button with our art
 // that opens our website"). A banner (UserData/FreedomArrow/menu-art/website-button.png: approved FA patch, menu art, "freedomarrow.app",
 // "WEBSITE · 访问官网") drawn on the Home tab in the top centre, between the Quick match tile and Server status, and a click on it opens
-// https://freedomarrow.app/. Osama 22 Nov 02:37 ("just tie it with the music pack selector"): it uses the music pack selector's rule
-// (tools/music-player/MusicMenu.cs) - shown while the menu scene is Hangar_Scene and the Home tab button is selected, hidden otherwise.
+// https://freedomarrow.app/.
+//
+// Native UI (Lateralus 23 Nov 2026, thread 1573505321010331651: "include the website banner fix, make sure its display follows the vanilla
+// menu asset design architecture"). Until 0.9.5b-dev.1 the banner was IMGUI, drawn over everything, so it needed its own show rules (Home
+// tab button selected, title-screen check, 2 s settle, FA Music selector state) and still drew over the main-menu loading screen. Now it is
+// an Image + Button inside the game's own Home page, "Home menu content" (1920x1080, no layout group; ArrowQueue's server status copy sits in
+// the same page). The page is found by its object name, which is the same in every language; no label text, scene name or timer is read.
+// The game shows and hides it with the Home page, fades it with the page's CanvasGroups, scales it with the menu's CanvasScaler, and the
+// title and loading screens cover it the same way they cover the vanilla Home tiles.
 //
 // Old-launcher warning (Osama 22 Nov 2026 02:0x PST, thread 1573505321010331651: "an in game warning that their launcher is out of date should
 // pop up on the main menu and disappear after dismissal, it should link to our website. make it a art based button"). Launchers older than
@@ -21,9 +30,8 @@ static class WebsiteButton
 {
     const string Url="https://freedomarrow.app/";
     const string InstallUrl="https://freedomarrow.app/#install";
-    static MainMenuButton home;
     static Texture2D art,updateArt;
-    static bool failed,launcherOld,updateDismissed;
+    static bool launcherOld,updateDismissed;
 
     public static void Install(HarmonyLib.Harmony h)
     {
@@ -47,174 +55,102 @@ static class WebsiteButton
     }
 
 
-    // Osama 22 Nov 01:56: "take the top and central area between quick match and server status, it goes away after someone clicks play,
-    // arsenal, editor, mod game, settings and etc". Measured on a 1568x882 Home screenshot: Quick match tile right edge 0.304 (its gear icon
-    // to 0.324), Server status left edge 0.725, tile tops at 0.122. It hides when another tab is selected and comes back the next time the
-    // Home tab is selected again (a return to the Home tab or a new menu scene).
-    static bool dismissed,wasActive;
-    // Osama 22 Nov 02:11: "the website button showed up in our loading screen and then dissappeared before going into the main menu".
-    // The Home menu is built behind the loading screen, and IMGUI draws over it; a click during loading then
-    // counted as "clicked elsewhere". So the banner waits until the Home tab has been selected for 2 s with no loading hitch
-    // (a frame over 0.25 s), and only clicks after it is on screen can dismiss it.
-    const float SettleSeconds=2f,HitchSeconds=0.25f;
-    static float settledFrom=-1f;
-    // Osama 22 Nov 02:28 (dev.17): "website button only shows in the loading screen not main menu". Every show/hide is logged
-    // (FREEDOM_ARROW_WEBSITE_BUTTON shown / hidden: reason), and clicks in its first 0.75 s on screen don't hide it.
-    static float shownAt=-1f;
-    static string hiddenWhy="";
-
-    // Same rule as the music pack selector: menu scene + Home tab button selected. The Home button is looked up at most every 2 s.
-    // Osama 22 Nov 14:4x (dev.32): "I don't see the fucking website button in the main menu ... it just doesn't appear at all". The log had
-    // "title screen over" and then no "shown": the first lookup now runs only after the title, and the first "Home" MainMenuButton found can be
-    // a hidden copy; once held it was kept for the whole session. Now an active Home button is preferred, a held button that is not active is
-    // looked up again (every 2 s), and the reason the banner is not drawn on the menu is logged once per change (FREEDOM_ARROW_WEBSITE_BUTTON wait: ...).
-    static float nextHomeScan;static string waitWhy="";
+    // Osama 22 Nov 01:56: "take the top and central area between quick match and server status". Measured on a 1568x882 Home screenshot:
+    // Quick match tile right edge 0.304 (gear icon to 0.324), Server status left edge 0.725, tile tops at 0.122. As anchors in the page:
+    // x 0.335-0.715, top edge 0.122 below the page top; the height follows the art's aspect ratio.
+    const float Left=0.335f,Right=0.715f,Top=0.122f;
+    static GameObject banner;static Image image,closeImage;static Sprite siteSprite,updateSprite;
+    static readonly List<UnityEngine.Events.UnityAction> keep=new();
+    static float nextScan;static string waitWhy="";
     static void Wait(string why){if(why!=waitWhy){waitWhy=why;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON wait: "+why);}}
-    static bool HomeSelected()
-    {
-        var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        if(scene!="Hangar_Scene"){home=null;Wait("active scene "+scene);return false;}
-        bool held=home!=null&&!home.WasCollected;
-        if(!held||!home.isActiveAndEnabled)
-        {
-            if(Time.unscaledTime>=nextHomeScan)
-            {
-                nextHomeScan=Time.unscaledTime+2f;
-                MainMenuButton first=null,live=null;int n=0;
-                foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
-                {
-                    if(!b.gameObject.scene.IsValid())continue;
-                    // Osama 23 Nov 2026 (Chinese players had no Ranked card for the same reason): the label "Home" is translated, so the
-                    // Home tab is also recognised by its page, "Home menu content", which has the same name in every language.
-                    var page=b._showTargetContent;
-                    bool byPage=page!=null&&(page.name=="Home menu content"||RankedMenu.HasChild(page,"Home menu content"));
-                    if(!byPage&&(b._buttonText==null||!b._buttonText.text.Trim().Equals("Home",StringComparison.OrdinalIgnoreCase)))continue;
-                    n++;first??=b;
-                    if(live==null&&b.isActiveAndEnabled)live=b;
-                }
-                home=live??first;
-                if(home==null){Wait("no Home button found");return false;}
-                if(n>1)Wait($"{n} Home buttons, using an {(live!=null?"active":"inactive")} one");
-            }
-            else if(!held){home=null;return false;}
-        }
-        if(!home.isActiveAndEnabled){Wait("Home button not active");return false;}
-        if(!home.Selected){Wait("Home tab not selected");return false;}
-        return true;
-    }
 
-    // Osama 22 Nov 14:4x: "just fucking tie it to the same logic as the music player button" / "why don't you just put it under the same hook as
-    // the music player?". The banner now shows exactly while the FA Music pack selector is visible: it reads FAMusic.MusicMenu.visible, which
-    // MusicMenu.Update sets (Hangar_Scene + Home tab selected, FA Music 1.5.5 also re-finds a replaced Home button). Only the title check stays
-    // on top, because the selector is native UI behind "Press any key" and this banner is IMGUI. Without FA Music, its own Home check is used.
-    static System.Reflection.FieldInfo musicVisible;static bool musicLooked;
-    static bool MusicSelectorVisible()
+    // Called every frame from Runtime.OnUpdate. While the banner exists this is one null check; when the menu is rebuilt (a new Hangar
+    // scene) the old page and banner are destroyed with it, and the next scan (at most every 2 s) builds a new one.
+    public static void Tick()
     {
-        if(!musicLooked)
-        {
-            musicLooked=true;
-            var t=AccessTools.TypeByName("FAMusic.MusicMenu");
-            musicVisible=t==null?null:AccessTools.Field(t,"visible");
-            MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON follows "+(musicVisible!=null?"the FA Music pack selector (FAMusic.MusicMenu.visible)":"its own Home tab check (FA Music not loaded)"));
-        }
-        return musicVisible!=null?(bool)musicVisible.GetValue(null):HomeSelected();
-    }
-
-    // Osama 22 Nov 13:2x (dev.29): "The website banner please fix it now" - it drew over the "Press any key" title screen. The Home menu is
-    // built (Home tab selected) behind the title, and this banner is IMGUI, which draws over everything; the music pack selector is native
-    // UI under the title, so it never showed there. The title is "Parallax Keyart" (MenuArt.cs).
-    // Osama 22 Nov 13:4x: "it's just straight up gone" - the first fix (Keyart activeInHierarchy) never let the banner show: that object stays
-    // active under the Home menu after the key press. Now the title counts as up only while Keyart is active, no Canvas above it is switched
-    // off and the CanvasGroup alpha above it is over 0.02. When it goes from up to gone, the title is over for this session. If it still reads
-    // up 3 s after a key press or click on a settled screen (no frame over 0.25 s for 2 s), it is treated as over too (it may be hidden in a
-    // way this check does not see). Every state change is logged (FREEDOM_ARROW_WEBSITE_BUTTON title: ...). Checked at most twice a second.
-    static float nextTitleCheck,titleInputAt=-1f,lastHitch;static bool titleUp,titleDone;static string titleState="";
-    static bool TitleScreenUp()
-    {
-        if(titleDone)return false;
-        float now=Time.realtimeSinceStartup;
-        if(Time.unscaledDeltaTime>HitchSeconds)lastHitch=now;
-        var e=Event.current;
-        if(titleUp&&titleInputAt<0f&&now-lastHitch>SettleSeconds&&e!=null&&(e.type==EventType.KeyDown||e.type==EventType.MouseDown))titleInputAt=now;
-        if(Time.unscaledTime<nextTitleCheck)return titleUp;
-        nextTitleCheck=Time.unscaledTime+0.5f;
-        var why=TitleHidden(GameObject.Find("Parallax Keyart"));
-        bool up=why==null;
-        if((why??"visible")!=titleState){titleState=why??"visible";MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title: "+titleState);}
-        if(titleUp&&!up){titleDone=true;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title screen over: "+why);}
-        else if(up&&titleInputAt>=0f&&now-titleInputAt>3f){titleDone=true;MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON title screen over: still reads visible 3 s after a key press or click");}
-        titleUp=up&&!titleDone;
-        return titleUp;
-    }
-    static string TitleHidden(GameObject g)
-    {
-        if(g==null)return "no Parallax Keyart";
-        if(!g.activeInHierarchy)return "Parallax Keyart inactive";
-        float a=1f;
-        for(var t=g.transform;t!=null;t=t.parent)
-        {
-            var c=t.GetComponent<Canvas>();if(c!=null&&!c.enabled)return "Canvas off on "+t.name;
-            var cg=t.GetComponent<CanvasGroup>();if(cg!=null)a*=cg.alpha;
-        }
-        return a<0.02f?$"faded out (alpha {a:0.00})":null;
-    }
-
-    static void Hide(string why)
-    {
-        if(shownAt>=0f&&why!=hiddenWhy)MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON hidden: "+why);
-        shownAt=-1f;hiddenWhy=why;
-    }
-
-    public static void OnGUI()
-    {
-        if(failed||art==null)return;
+        if(art==null)return;
+        if(banner!=null&&!banner.WasCollected)return;
+        banner=null;
+        if(Time.unscaledTime<nextScan)return;
+        nextScan=Time.unscaledTime+2f;
         try
         {
-            bool title=TitleScreenUp();
-            bool active=!title&&MusicSelectorVisible();
-            if(!active)Hide(title?"title screen (Press any key)":"music pack selector hidden");
-            if(active&&!wasActive){dismissed=false;settledFrom=Time.realtimeSinceStartup;}
-            wasActive=active;
-            if(!active||dismissed)return;
-            if(Time.unscaledDeltaTime>HitchSeconds)settledFrom=Time.realtimeSinceStartup;   // still loading
-            if(Time.realtimeSinceStartup-settledFrom<SettleSeconds)return;
-            if(shownAt<0f){shownAt=Time.realtimeSinceStartup;hiddenWhy="";MelonLogger.Msg("FREEDOM_ARROW_WEBSITE_BUTTON shown on the Home tab");}
-            bool warn=launcherOld&&!updateDismissed&&updateArt!=null;
-            var tex=warn?updateArt:art;
-            float left=Screen.width*0.335f,right=Screen.width*0.715f;
-            float w=right-left,h=w*tex.height/tex.width;
-            var r=new Rect(left,Screen.height*0.122f,w,h);
-            float cs=Mathf.Max(22f,h*0.13f);
-            var close=new Rect(r.xMax-cs-h*0.03f,r.y+h*0.05f,cs,cs);   // the warning's dismiss ✕, top right
-            var e=Event.current;
-            // Osama 22 Nov 03:07: "the website button dissappears when you click anywhere on the menu ... let its presence be tied to the
-            // same logic that has the music pack button". No click-outside hiding: it shows exactly while the music pack selector would.
-            GUI.DrawTexture(r,tex,ScaleMode.StretchToFill);
-            if(r.Contains(e.mousePosition)&&!(warn&&close.Contains(e.mousePosition)))
-            {
-                var old=GUI.color;GUI.color=new Color(1f,1f,1f,0.12f);GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=old;
-            }
-            if(warn)
-            {
-                var old=GUI.color;GUI.color=close.Contains(e.mousePosition)?new Color(0.89f,0.21f,0.24f,0.95f):new Color(0f,0f,0f,0.6f);
-                GUI.DrawTexture(close,Texture2D.whiteTexture);GUI.color=old;
-                var st=new GUIStyle(GUI.skin.label){alignment=TextAnchor.MiddleCenter,fontSize=Mathf.RoundToInt(cs*0.62f),fontStyle=FontStyle.Bold};
-                st.normal.textColor=Color.white;
-                GUI.Label(close,"X",st);
-                if(GUI.Button(close,GUIContent.none,GUIStyle.none))
-                {
-                    updateDismissed=true;
-                    MelonLogger.Msg("FREEDOM_ARROW_LAUNCHER_NOTICE dismissed");
-                    return;
-                }
-            }
-            if(GUI.Button(r,GUIContent.none,GUIStyle.none))
-            {
-                var url=warn?InstallUrl:Url;
-                Application.OpenURL(url);
-                MelonLogger.Msg((warn?"FREEDOM_ARROW_LAUNCHER_NOTICE":"FREEDOM_ARROW_WEBSITE_BUTTON")+" opened "+url);
-            }
+            var page=HomePage();
+            if(page==null){Wait("no Home menu content page");return;}
+            Build(page);
         }
-        catch(Exception ex){home=null;MelonLogger.Warning("FREEDOM_ARROW_WEBSITE_BUTTON hidden until the Home tab reopens: "+ex.Message);}
+        catch(Exception ex){banner=null;MelonLogger.Warning("FREEDOM_ARROW_WEBSITE_BUTTON not built: "+ex.Message);}
+    }
+
+    // The Home tab's page: the MainMenuButton whose target page is, or holds, "Home menu content". Inactive objects count (the Home page
+    // is built while another page or the loading screen is up).
+    static Transform HomePage()
+    {
+        foreach(var b in Resources.FindObjectsOfTypeAll<MainMenuButton>())
+        {
+            if(b==null||!b.gameObject.scene.IsValid())continue;
+            var p=b._showTargetContent;if(p==null)continue;
+            if(p.name=="Home menu content")return p.transform;
+            foreach(var t in p.GetComponentsInChildren<Transform>(true))if(t.name=="Home menu content")return t;
+        }
+        return null;
+    }
+
+    static Sprite Spr(Texture2D t){var s=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(0.5f,0.5f),100f);s.name=t.name;s.hideFlags=HideFlags.DontUnloadUnusedAsset;return s;}
+    static RectTransform Node(string name,Transform parent)
+    {
+        var g=new GameObject(name);g.layer=parent.gameObject.layer;
+        var rt=g.AddComponent<RectTransform>();rt.SetParent(parent,false);return rt;
+    }
+    static void OnClick(Button b,Action a)
+    {
+        var ua=DelegateSupport.ConvertDelegate<UnityEngine.Events.UnityAction>(new Action(()=>{try{a();}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_WEBSITE_BUTTON click: "+e.Message);}}));
+        keep.Add(ua);b.onClick.AddListener(ua);
+    }
+    static void Tint(Button b,Graphic g)
+    {
+        b.targetGraphic=g;b.transition=Selectable.Transition.ColorTint;
+        var cb=b.colors;cb.normalColor=Color.white;cb.highlightedColor=new Color(1.25f,1.25f,1.25f,1f);cb.pressedColor=new Color(0.8f,0.8f,0.8f,1f);
+        cb.selectedColor=Color.white;cb.fadeDuration=0.1f;b.colors=cb;
+        var nav=b.navigation;nav.mode=Navigation.Mode.None;b.navigation=nav;   // no keyboard/gamepad focus taken from the vanilla menu
+    }
+
+    static void Build(Transform page)
+    {
+        siteSprite??=Spr(art);
+        if(launcherOld&&updateArt!=null)updateSprite??=Spr(updateArt);
+        var rt=Node("FA Website Banner",page);
+        rt.anchorMin=new Vector2(Left,1f-Top);rt.anchorMax=new Vector2(Right,1f-Top);rt.pivot=new Vector2(0.5f,1f);
+        rt.anchoredPosition=Vector2.zero;rt.sizeDelta=Vector2.zero;
+        rt.gameObject.AddComponent<LayoutElement>().ignoreLayout=true;
+        image=rt.gameObject.AddComponent<Image>();image.raycastTarget=true;image.preserveAspect=true;
+        var fit=rt.gameObject.AddComponent<AspectRatioFitter>();fit.aspectMode=AspectRatioFitter.AspectMode.WidthControlsHeight;
+        var btn=rt.gameObject.AddComponent<Button>();Tint(btn,image);
+        OnClick(btn,()=>{var url=Warning()?InstallUrl:Url;Application.OpenURL(url);MelonLogger.Msg((Warning()?"FREEDOM_ARROW_LAUNCHER_NOTICE":"FREEDOM_ARROW_WEBSITE_BUTTON")+" opened "+url);});
+        // The old-launcher warning's dismiss X, top right of the banner (same place as before).
+        var x=Node("FA Launcher Notice Close",rt);
+        x.anchorMin=x.anchorMax=new Vector2(1f,1f);x.pivot=new Vector2(1f,1f);
+        x.anchoredPosition=new Vector2(-6f,-6f);x.sizeDelta=new Vector2(30f,30f);
+        closeImage=x.gameObject.AddComponent<Image>();closeImage.color=new Color(0f,0f,0f,0.6f);closeImage.raycastTarget=true;
+        var xt=Node("X",x);xt.anchorMin=Vector2.zero;xt.anchorMax=Vector2.one;xt.sizeDelta=Vector2.zero;
+        var label=xt.gameObject.AddComponent<Il2CppTMPro.TextMeshProUGUI>();
+        var vf=page.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true);if(vf!=null&&vf.font!=null)label.font=vf.font;   // the Home page's own font
+        label.text="X";label.fontSize=20;label.fontStyle=Il2CppTMPro.FontStyles.Bold;
+        label.alignment=Il2CppTMPro.TextAlignmentOptions.Center;label.color=Color.white;label.raycastTarget=false;
+        var xb=x.gameObject.AddComponent<Button>();Tint(xb,closeImage);
+        var cb=xb.colors;cb.highlightedColor=new Color(0.89f,0.21f,0.24f,0.95f)*1.6f;xb.colors=cb;
+        OnClick(xb,()=>{updateDismissed=true;MelonLogger.Msg("FREEDOM_ARROW_LAUNCHER_NOTICE dismissed");Show();});
+        banner=rt.gameObject;
+        Show();
+        var prt=page.GetComponent<RectTransform>();
+        MelonLogger.Msg($"FREEDOM_ARROW_WEBSITE_BUTTON built in '{page.name}' ({(prt!=null?$"{prt.rect.width:0}x{prt.rect.height:0}":"no RectTransform")}, active {page.gameObject.activeInHierarchy}): {(Warning()?"launcher warning":"website")} art, anchors x {Left}-{Right}, top {Top}");
+        waitWhy="";
+    }
+    static bool Warning()=>launcherOld&&!updateDismissed&&updateSprite!=null;
+    static void Show()
+    {
+        var w=Warning();var sp=w?updateSprite:siteSprite;
+        image.sprite=sp;image.GetComponent<AspectRatioFitter>().aspectRatio=(float)sp.texture.width/sp.texture.height;
+        closeImage.gameObject.SetActive(w);
     }
 }

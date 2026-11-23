@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); PartySizeWarning.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -75,7 +75,7 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
-    public override void OnGUI() { conquest?.OnGUI(); WebsiteButton.OnGUI(); RankedMenu.OnGUI(); PartySizeWarning.OnGUI(); }
+    public override void OnGUI() { conquest?.OnGUI(); RankedMenu.OnGUI(); PartySizeWarning.OnGUI(); }
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
