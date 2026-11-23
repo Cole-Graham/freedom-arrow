@@ -322,8 +322,12 @@ internal sealed class LauncherForm : Form
     private void ScaleForDpi()
     {
         float f = DeviceDpi / 96f;
-        if (f < 1.05f || ClientSize.Width >= LogicalToDeviceUnits(DesignWidth) * 0.9f) return;
-        Scale(new SizeF(f, f));
+        if (f < 1.05f || _news == null || _news.Width >= LogicalToDeviceUnits(DesignNewsWidth) * 0.9f) return;
+        // Windows (SteelPlate, Windows 11, 2560x1440, 22 Nov 2026) scales the window itself but not the panels in it: the News column stayed
+        // 960 px in a 2160 px window and the 100 % rows cut their 150 % text. Then only the panels are scaled; under Wine, the whole form.
+        bool windowScaled = ClientSize.Width >= LogicalToDeviceUnits(DesignWidth) * 0.9f;
+        if (windowScaled) foreach (Control c in Controls) c.Scale(new SizeF(f, f));
+        else Scale(new SizeF(f, f));
         // AutoSize buttons (the footer) kept a doubled or stale width: size them to their text at this DPI.
         foreach (var b in AllControls(this).OfType<Button>().Where(b => b.AutoSize).ToList())
         {
@@ -335,7 +339,7 @@ internal sealed class LauncherForm : Form
         var area = Screen.FromControl(this).WorkingArea;
         StartPosition = FormStartPosition.Manual;
         Location = new Point(area.Left + Math.Max(0, (area.Width - Width) / 2), area.Top + Math.Max(0, (area.Height - Height) / 2));
-        NetDiagnostics.Append($"Window scaled x{f:0.##} for {DeviceDpi} DPI: {ClientSize.Width}x{ClientSize.Height}");
+        NetDiagnostics.Append($"{(windowScaled ? "Panels" : "Window")} scaled x{f:0.##} for {DeviceDpi} DPI: {ClientSize.Width}x{ClientSize.Height}");
     }
 
     /// <summary>The window taller than the screen (Steam Deck 1280x800): shrink the header art, never the controls.</summary>
