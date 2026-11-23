@@ -259,7 +259,7 @@ static class NlosTrait
         }
         if(missiles.Count>Prune)
         {
-            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);tries.Remove(k);spotOnly.Remove(k);}
+            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);tries.Remove(k);spotOnly.Remove(k);heldLogged.Remove(k);}
         }
         if(!missile.Has<MissileGuidanceInfoComponent>()||!missile.Has<SeekerComponent>()){missiles[key]=0;return false;}
         var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;
@@ -395,6 +395,7 @@ static class NlosTrait
     {
         if(broken||!Runtime.IsApplied)return;
         Trace(__0);
+        if(spotOnly.Count>0)try{var m0=__0;ulong k0=Key(m0);if(spotOnly.Contains(k0)&&m0.IsAlive&&m0.Has<MissileGuidanceInfoComponent>()&&m0.Has<SeekerComponent>()&&!(SeekerTarget(m0,out var t0)&&t0.IsAlive))HoldCruise(m0,k0);}catch(Exception e){Fail(e);}
         try
         {
             var missile=__0;
@@ -439,6 +440,19 @@ static class NlosTrait
         }
         catch(Exception e){Fail(e);}
     }
+    // dev.44 log (Osama 22 Nov 23:14-23:16, 21 flights): every empty-spot round switched itself about 3 s after launch from the cruise path (200,
+    // seeker None 0) to the game's laser-missile path (TrajectoryType LaserMissile 600, SeekerType Laser 300), the handover for LaserGuided rounds,
+    // and with no laser target entity it flew straight and climbed. The dev.43 rounds that hit never switched (dev.43: 119 trace lines with no
+    // target on path 600, all on flights that flew off). Locked rounds that switch still hit (target held). So an empty-spot round is held on the cruise path.
+    static readonly HashSet<ulong> heldLogged=new();
+    static void HoldCruise(Entity missile,ulong key)
+    {
+        int path=NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType");
+        if(path==200)return;
+        NativeEcs.WriteField<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType",200);
+        int st=NativeEcs.Field<SeekerComponent,int>(missile,"Type");if(st!=0)NativeEcs.WriteField<SeekerComponent,int>(missile,"Type",0);
+        if(heldLogged.Add(key))Log("nlos_cruise_held",$"missile {Id(missile)}: laser handover (path {path}, seeker {st}) with no target undone; cruise path to the spot kept",new{missile=Id(missile),path,seeker=st});
+    }
     public static void UpdateAfter(in Entity __0)
     {
         if(broken||spotOnly.Count==0)return;
@@ -450,6 +464,7 @@ static class NlosTrait
             if(SeekerTarget(missile,out var t)&&t.IsAlive){spotOnly.Remove(key);return;}   // the seeker found a real target: game guidance
             NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget",false);
             NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget",false);
+            HoldCruise(missile,key);
         }
         catch(Exception e){Fail(e);}
     }
