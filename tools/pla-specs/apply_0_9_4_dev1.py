@@ -8,7 +8,7 @@ from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
 V='0.9.5b-dev.1';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
-BASE=json.loads((REL/f'out/local-093r242/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']
+BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
 base=REL/f'out/local-093r242/FreedomArrow-{PREV}-complete.bamod'
 with base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==BASE
