@@ -168,7 +168,10 @@ AV,mismatch=differ(assets)
 assert vt(AV)>=vt(prev['assets_version']),f'--assets {AV} is older than {prev["assets_version"]} of {a.prev}'
 made=None
 if mismatch:
-    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for v,f in _receipts]
+    # Lateralus 22 Nov 2026: "two different models files should never have the same version number". 0.9.5-dev.10 to dev.34 were built with
+    # --prev 0.9.4 and their receipts stayed in their own out/local-* folders, so out/0.8 alone always gave 0.2.51 + 1 and eleven different
+    # files were all named 0.2.52. The next number now counts every receipt under out/ (out/0.8 and every out/local-*).
+    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in REL.glob('out/**/FreedomArrow-0.*.json') if re.fullmatch(r'FreedomArrow-('+_VP+r')\.json',f.name)]
     x=max([AV,*known],key=vt).split('.');NV='.'.join(x[:-1]+[str(int(x[-1])+1)])
     print(f'Model files differ from assets {AV} ({len(mismatch)}: {mismatch[:5]}). Making assets {NV}.',flush=True)
     assets=out/f'FreedomArrow-Assets-{NV}.bamod';made=make_assets.build(complete,paired,NV,V,assets,a.zip)
