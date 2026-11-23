@@ -114,4 +114,24 @@ share = M + (1 - M) × clamp(IgnoreCover, 0, 1)
 
 The shipped `BuildingsConfig` has a floor of 0.18 and 0.02 per soldier. A building holding 7 soldiers and a weapon with `IgnoreCover` 0 keeps `0.18 + 0.02 × 7 = 0.32` of the raw damage. Two soldiers keep `0.22`. On the worked blast above (`Damage` 12), that is 3.84 before armor for 7 soldiers and 2.64 for 2 soldiers. `IgnoreCover` 1 keeps all 12.
 
-Freedom Arrow's `game-config.json` leaves the floor at 0.18 and sets `BuildingDamagePerSoldier` to 0, so `M` stays 0.18 for every squad size.
+Freedom Arrow's `game-config.json` sets the floor to 0.3 (`BuildingDamageFloor`, from 0.9.4-dev.5; 0.18 before) and `BuildingDamagePerSoldier` to 0, so `M` stays 0.3 for every squad size.
+
+## Woods and open ground (Freedom Arrow)
+
+Vanilla has no terrain factor. Freedom Arrow's `CoverDamage` hook multiplies the result of `CalculateHitDamage` (after the blast fraction and armor) for infantry standing on `TerrainType.Forest`:
+
+```text
+share = 1 - (1 - ForestDamageTaken) × (1 - IgnoreCover)
+```
+
+`ForestDamageTaken` is 0.55 in `game-config.json`. In the open, `InfantryOpenDamageFloor` 1 and `InfantryOpenDamagePerSoldier` 0 switch off vanilla's stress-based damage reduction, so infantry in the open take full damage at every stress level.
+
+## Worked example: 155 mm HE on an 8-man squad
+
+Every 152/155 mm howitzer HE round in 0.9.5b has `Damage` 12, penetration 45, `HealthAOERadius` 45 (90 m on the card) and `IgnoreCover` 0.357. Infantry armor is 6 (Elite 10); each soldier is 5 health. Penetration 45 against armor 6 keeps `45² / (45² + 6²)` = 98.3% of the base damage. Theoretical, from the code and data; not measured in a game.
+
+| Where | Share | Direct hit | 22.5 world (45 m card) from the impact |
+| --- | ---: | ---: | ---: |
+| Open | 1 | 11.8 health (2.4 soldiers) | 5.9 (1.2) |
+| Woods | 0.711 | 8.4 (1.7) | 4.2 (0.8) |
+| Building | 0.3 + 0.7 × 0.357 = 0.550 | 6.5 (1.3) | 6.5 (1.3), no falloff |
