@@ -69,14 +69,34 @@ static class PartySizeWarning
                 party=Math.Max(party,n);
             }
             var key=party>mapSize?$"{lobby.LobbyId}|{map}|{party}":null;
-            if(key!=null&&key!=active)MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE warning: {map} is {mapSize}v{mapSize}, a team has {party}");
+            if(key!=null&&key!=active){PickLanguage();MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE warning: {map} is {mapSize}v{mapSize}, a team has {party}");}
             active=key;
         }
         catch(Exception e){failed=true;active=null;MelonLogger.Error("FREEDOM_ARROW_PARTY_SIZE_FAILED: warning off. "+e.Message);}
     }
 
-    const string TitleEn="WARNING: TOO MANY PLAYERS FOR THIS MAP",TitleZh="警告：玩家人数超过地图设计",
-        Body="Oversized teams cause balance issues. We encourage playing maps at their recommended size.\n超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。";
+    // Osama 22 Nov 16:1x: "Can we make the warning message change based on language selection" / "So we don't have Chinese and English in the
+    // same pop up": one language, from the game's own language setting (LocalizationService.CurrentLanguage, as ArrowQueue and HudQuick read it).
+    // A Chinese setting (code starting "zh" or containing "chin") shows Chinese; every other language shows English. Read each time the warning
+    // appears; the code is logged once per change.
+    static readonly string[] En={"WARNING: TOO MANY PLAYERS FOR THIS MAP","Oversized teams cause balance issues. We encourage playing maps at their recommended size.","Dismiss and play anyway"};
+    static readonly string[] Zh={"警告：玩家人数超过地图设计","超出人数会导致平衡问题。我们鼓励按地图推荐人数进行游戏。","关闭并继续"};
+    static string lang="";static string[] text=En;
+    static void PickLanguage()
+    {
+        string code="";
+        try
+        {
+            Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Shared.Ecs.Localization.LocalizationService>(out var loc,false);
+            code=loc?.CurrentLanguage??"";
+        }
+        catch{code="";}
+        if(code==lang)return;
+        lang=code;var c=code.Trim().ToLowerInvariant();
+        text=c.StartsWith("zh")||c.Contains("chin")?Zh:En;
+        titleStyle=null;   // the title size is fitted to this language's title
+        MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE language '{code}': {(text==Zh?"Chinese":"English")}");
+    }
     // Osama 22 Nov 15:3x: "make the warning a little bit smaller it takes up a massive portion of the screen": about two thirds of the
     // approved size (860 px wide, body 24 px, title 34 px, button 560x46 at 1080p); wording and colours unchanged.
     // Seen in game 22 Nov 15:22 (1920x1080): the 53 px English title wrapped to two lines, so the title block overflowed the fixed 128 px row and
@@ -93,12 +113,12 @@ static class PartySizeWarning
             titleStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=Mathf.RoundToInt(fs*1.4f),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false};
             bodyStyle=new GUIStyle(GUI.skin.label){normal={textColor=Color.white},fontSize=fs,alignment=TextAnchor.UpperCenter,wordWrap=true};
             buttonStyle=new GUIStyle(GUI.skin.button){fontSize=Mathf.RoundToInt(fs*1.1f),fontStyle=FontStyle.Bold};
-            var en=new GUIContent(TitleEn);
+            var en=new GUIContent(text[0]);
             while(titleStyle.fontSize>fs&&titleStyle.CalcSize(en).x>w-2*pad)titleStyle.fontSize--;
         }
-        float tw=w-2*pad,hEn=titleStyle.CalcHeight(new GUIContent(TitleEn),tw),hZh=titleStyle.CalcHeight(new GUIContent(TitleZh),tw),
-            hBody=bodyStyle.CalcHeight(new GUIContent(Body),tw),hBtn=46*k;
-        float h=pad+hEn+hZh+8*k+hBody+12*k+hBtn+pad;
+        float tw=w-2*pad,hEn=titleStyle.CalcHeight(new GUIContent(text[0]),tw),
+            hBody=bodyStyle.CalcHeight(new GUIContent(text[1]),tw),hBtn=46*k;
+        float h=pad+hEn+8*k+hBody+12*k+hBtn+pad;
         float cx=Screen.width/2f,top=30*k;
         try
         {
@@ -116,10 +136,9 @@ static class PartySizeWarning
         GUI.color=new Color(0.70f,0.06f,0.08f,0.98f);GUI.DrawTexture(r,Texture2D.whiteTexture);
         GUI.color=old;
         float y=r.y+pad;
-        GUI.Label(new Rect(r.x+pad,y,tw,hEn),TitleEn,titleStyle);y+=hEn;
-        GUI.Label(new Rect(r.x+pad,y,tw,hZh),TitleZh,titleStyle);y+=hZh+8*k;
-        GUI.Label(new Rect(r.x+pad,y,tw,hBody),Body,bodyStyle);y+=hBody+12*k;
-        if(GUI.Button(new Rect(r.x+r.width/2-280*k,y,560*k,hBtn),"Dismiss and play anyway / 关闭并继续",buttonStyle))
+        GUI.Label(new Rect(r.x+pad,y,tw,hEn),text[0],titleStyle);y+=hEn+8*k;
+        GUI.Label(new Rect(r.x+pad,y,tw,hBody),text[1],bodyStyle);y+=hBody+12*k;
+        if(GUI.Button(new Rect(r.x+r.width/2-280*k,y,560*k,hBtn),text[2],buttonStyle))
         {
             dismissed=active;
             MelonLogger.Msg($"FREEDOM_ARROW_PARTY_SIZE dismissed ({map}, {party} per team)");
