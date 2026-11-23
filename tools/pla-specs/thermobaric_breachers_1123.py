@@ -8,7 +8,9 @@ Thermobaric Breachers 温压工兵. Changes on 1162, reusing existing rows (abil
 - Armour/HP: armour link 2012509 row 2012508 (ArmorValue 8, MaxHealthPoints 40, used by 1162 only) -> vanilla row 273 "Armor Infantry Elite
   7Men" (10 / 35), the same row except those two values (Combat Engineers' own). Row 2012508 stays in the table, unused.
 - Men 8 -> 7 and QBZ-191 5 -> 4: squad member 2015093 (QBZ-191 + PF-97, death priority 3) is removed. Each QBZ-191 man also carries a PF-97, so the
-  squad's PF-97 launchers (and rockets, 1 each) go 5 -> 4 as well. The keeper (2015089, priority 1) and the three HAWK 97-2 men stay.
+  squad's PF-97 launchers would go 5 -> 4. Lateralus 23 Nov 15:3x: "Yes give the 5th PF-97 to one of the HAWK soldiers": HAWK 97-2 man 2015086
+  (priority 2) gets the PF-97 as his special weapon, like the Multipurpose loadout's HAWK + DZJ-08 leader, so PF-97 stays 5 (1 rocket each).
+  The keeper (2015089, priority 1) and the HAWK men stay.
 Price unchanged (1162 = 60 = Combat Engineers 50 + option 10)."""
 
 
@@ -36,8 +38,11 @@ def apply(t, g, ok, rec):
     rifle = gone['PrimaryWeaponId'];n_rifle = sum(1 for m in men if m.get('PrimaryWeaponId') == rifle)
     ok(n_rifle == 5, ('5 QBZ-191 men before', n_rifle))
     g.remove('SquadMembersJson', 2015093)
+    hawk = SM[2015086]
+    ok(hawk['UnitId'] == 1162 and hawk['DeathPriority'] == 2 and hawk['PrimaryWeaponId'] != rifle and not hawk.get('SpecialWeaponId'), ('2015086 is a HAWK man without a special weapon', hawk))
+    g.put('SquadMembersJson', 2015086, {'SpecialWeaponId': 2012515})
     men = [m for m in SM.values() if m and m.get('UnitId') == 1162]
-    ok(len(men) == 7 and sum(1 for m in men if m.get('PrimaryWeaponId') == rifle) == 4 and sum(1 for m in men if m.get('SpecialWeaponId') == 2012515) == 4
-       and any(m.get('DeathPriority') == 1 for m in men), '7 men, 4 QBZ-191, 4 PF-97, keeper kept')
+    ok(len(men) == 7 and sum(1 for m in men if m.get('PrimaryWeaponId') == rifle) == 4 and sum(1 for m in men if m.get('SpecialWeaponId') == 2012515) == 5
+       and any(m.get('DeathPriority') == 1 for m in men), '7 men, 4 QBZ-191, 5 PF-97 (one on a HAWK man), keeper kept')
     ok(U[1162]['Cost'] == U[1156]['Cost'] + O[24354]['Cost'], 'swap price = base + option')
-    rec['thermobaric_breachers_1123'] = {'unit': 1162, 'smoke_1156': [81, 11], 'smoke_1162': 11, 'armor': [2012508, 273], 'men': [8, 7], 'qbz191': [5, 4], 'pf97': [5, 4], 'removed_member': 2015093}
+    rec['thermobaric_breachers_1123'] = {'unit': 1162, 'smoke_1156': [81, 11], 'smoke_1162': 11, 'armor': [2012508, 273], 'men': [8, 7], 'qbz191': [5, 4], 'pf97': [5, 5], 'removed_member': 2015093, 'hawk_pf97': 2015086}
