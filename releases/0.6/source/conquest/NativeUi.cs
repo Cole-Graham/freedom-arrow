@@ -185,6 +185,9 @@ public sealed partial class Prototype
     {
         float now=Time.unscaledTime;
         if(Il2CppBrokenArrow.Client.Ecs.UI.Menu.Profile.EscapeMenu.IsActive){escapeSeenAt=now;return true;}
+        // Lateralus 23 Nov 2026: the zone values and the setup banner also showed over the scoreboard (Tab). The scoreboard is
+        // PlayersListPanel; IsOpened is the game's own static flag, set while it is open.
+        if(Il2CppBrokenArrow.Client.Ecs.UI.HUD.PlayersListPanel.IsOpened)return true;
         if(settingsScreen!=null&&settingsScreen.WasCollected)settingsScreen=null;
         if(settingsScreen!=null){settingsOpen=settingsScreen.gameObject.activeInHierarchy;return settingsOpen;}
         if(!settingsOpen&&now-escapeSeenAt>10f)return false;
