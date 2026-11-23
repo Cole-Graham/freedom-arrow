@@ -393,8 +393,10 @@ static partial class RankedMenu
             if(e.type==EventType.Repaint)hoverT=Mathf.MoveTowards(hoverT,hover?1f:0f,Time.unscaledDeltaTime*8f);
             float g=1f+(grow-1f)*hoverT;   // grow like the vanilla cards, with their measured anchor
             var d=new Rect(r.x-(r.width*(g-1f))*growAx,r.y-(r.height*(g-1f))*growAy,r.width*g,r.height*g);
+            var oc=GUI.color;float fa=CardAlpha();GUI.color=new Color(oc.r,oc.g,oc.b,oc.a*fa);   // fade in with the vanilla cards
             GUI.DrawTexture(d,card,ScaleMode.StretchToFill);
-            if(hover)Fill(new Rect(d.x,d.yMax-4*S0(),d.width,4*S0()),Red);
+            if(hover)Fill(new Rect(d.x,d.yMax-4*S0(),d.width,4*S0()),new Color(Red.r,Red.g,Red.b,fa));
+            GUI.color=oc;
             if(GUI.Button(r,GUIContent.none,GUIStyle.none))Open();
         }
         catch(Exception ex){MelonLogger.Warning("FREEDOM_ARROW_RANKED: "+ex.Message);Close("error");play=null;}

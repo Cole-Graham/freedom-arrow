@@ -11,7 +11,27 @@ namespace FreedomArrow;
 static partial class RankedMenu
 {
     static float nextPlayLayout;static Sprite artMp,artSk;static bool artLoaded,loggedLayout;
-    static RectTransform rowContent;static Vector2 rowAnchorMin,rowAnchorMax,rowPivot,rowPos;static bool rowSaved;
+    static RectTransform rowContent;static int rowPad;static Transform fadeCard;
+    // left edge and width of a card in its row's parent space (world corners: the hover grow may scale the card instead of resizing it)
+    static (float left,float width) InParent(RectTransform r,RectTransform parent)
+    {
+        var c=new Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<Vector3>(4);r.GetWorldCorners(c);
+        float l=parent.InverseTransformPoint(c[0]).x,rr=parent.InverseTransformPoint(c[3]).x;
+        return (l-parent.rect.xMin,rr-l);
+    }
+    // The vanilla cards fade in through their CanvasGroups (GalaxyUiBase); the Ranked card (drawn with IMGUI) copies Skirmish's
+    // effective alpha (Lateralus 22 Nov 2026: Ranked appeared at once while Multiplayer and Skirmish faded in).
+    public static float CardAlpha()
+    {
+        try
+        {
+            if(fadeCard==null||fadeCard.WasCollected)return 1f;
+            float a=1f;var t=fadeCard;
+            while(t!=null){var g=t.GetComponent<CanvasGroup>();if(g!=null){a*=g.alpha;if(g.ignoreParentGroups)break;}t=t.parent;}
+            return Mathf.Clamp01(a);
+        }
+        catch{return 1f;}
+    }
     static Sprite ArtSprite(string file)
     {
         var t=Load(Path.Combine(dir,"menu",file),"FA_play_"+file);if(t==null){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB missing "+file);return null;}
@@ -36,15 +56,25 @@ static partial class RankedMenu
             if(scen!=null&&scen.gameObject.activeSelf)scen.gameObject.SetActive(false);
             if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");}
             SetArt(mp,artMp);SetArt(sk,artSk);
-            // centre the row: Multiplayer, Skirmish and the Ranked card drawn one card pitch right of Skirmish
+            fadeCard=sk;
+            // Centre the row (Multiplayer, Skirmish and the Ranked card drawn one pitch right of Skirmish) with the layout's left padding.
+            // Lateralus 22 Nov 2026 (dev.34): hovering a card sometimes threw the whole row to the right, Ranked partly off screen. The
+            // first version moved the Content's anchors, pivot and position every 0.5 s and measured the card width while the vanilla
+            // hover tween was growing it, which fought the game's own layout. Now the Content keeps the game's anchors and pivot; only
+            // HorizontalLayoutGroup.padding.left changes, measured only at rest (both cards the same width, nothing hovered).
             var content=mp.parent.GetComponent<RectTransform>();var hlg=content.GetComponent<HorizontalLayoutGroup>();
-            float pitch=mp.GetComponent<RectTransform>().rect.width+(hlg!=null?hlg.spacing:0);
-            if(rowContent==null||rowContent.WasCollected||rowContent.Pointer!=content.Pointer){rowContent=content;rowAnchorMin=content.anchorMin;rowAnchorMax=content.anchorMax;rowPivot=content.pivot;rowPos=content.anchoredPosition;rowSaved=true;}
-            var want=new Vector2(-pitch/2f,content.anchoredPosition.y);
-            if(content.anchorMin.x!=0.5f||content.anchorMax.x!=0.5f||content.pivot.x!=0.5f||Mathf.Abs(content.anchoredPosition.x-want.x)>0.5f)
+            var parent=content.parent as RectTransform;if(hlg==null||parent==null)return;
+            if(rowContent==null||rowContent.WasCollected||rowContent.Pointer!=content.Pointer){rowContent=content;rowPad=hlg.padding.left;}
+            var mr=mp.GetComponent<RectTransform>();var sr=sk.GetComponent<RectTransform>();
+            var (firstLeft,w)=InParent(mr,parent);var (_,ws)=InParent(sr,parent);
+            if(w<20f||Mathf.Abs(ws-w)>0.5f)return;   // a card is hovered (it grows alone): keep the padding
+            float rowW=3f*w+2f*hlg.spacing;
+            float want=hlg.padding.left+((parent.rect.width-rowW)/2f-firstLeft);
+            int pad=Mathf.Max(0,Mathf.RoundToInt(want));
+            if(Mathf.Abs(pad-hlg.padding.left)>1)
             {
-                content.anchorMin=new Vector2(0.5f,content.anchorMin.y);content.anchorMax=new Vector2(0.5f,content.anchorMax.y);content.pivot=new Vector2(0.5f,content.pivot.y);content.anchoredPosition=want;
-                if(!loggedLayout){loggedLayout=true;MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB Campaign/Scenarios hidden, row centred (pitch {pitch:0}, was anchors {rowAnchorMin}-{rowAnchorMax} pivot {rowPivot} pos {rowPos}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");}
+                hlg.padding.left=pad;LayoutRebuilder.MarkLayoutForRebuild(content);
+                if(!loggedLayout){loggedLayout=true;MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB Campaign/Scenarios hidden, row centred by padding {rowPad} -> {pad} (card {w:0}, spacing {hlg.spacing:0}, parent {parent.rect.width:0}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");}
             }
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB: "+e.Message);nextPlayLayout=now+10f;}
