@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.4",
+  "version": "0.9.6-dev.5",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.4 (dev build for Osama): 0.9.6-dev.3 plus a material layer on the ZBD-03 (matte paint, grain, scratches and grime as normal + mask maps like the other new models, textured tracks/steel/rubber), and the unused French model files removed from the Assets package. Needs Freedom Arrow — Models and Music 0.2.78.",
+  "description": "Freedom Arrow 0.9.6-dev.5 (dev build for Osama): 0.9.6-dev.4 plus the PLA ZTZ-98 (Shawn's model, new camo and material layer) and the ZBD-04 in the PLARF Rocket Conscript Force, and the queued Lateralus infantry fixes (Thermobaric Assault, Combat Engineers, Taishan Eagles, Whistling Arrows), the Lateralus title-screen fix and the new Ranked card art. Needs Freedom Arrow — Models and Music 0.2.80.",
   "repo": "Cole-Graham/freedom-arrow"
 }
