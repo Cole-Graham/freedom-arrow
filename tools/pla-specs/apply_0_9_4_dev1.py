@@ -602,6 +602,8 @@ rec.pop('_native_icons')
 import heli_flares_1122;heli_flares_1122.apply(t,g,ok,rec)
 # ---------- AKF-98A <-> KD-88 names swapped (Osama 23 Nov 2026; QQ FA-002/032). See akf98_kd88_names_1123.py.
 import akf98_kd88_names_1123;akf98_kd88_names_1123.apply(t,g,ok,rec)
+# ---------- ZBD-251: Type 100 CSV 40 mm CT gun, 75 -> 90 pts (Osama 23 Nov 2026). See zbd251_gun_1123.py.
+import zbd251_gun_1123;zbd251_gun_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
