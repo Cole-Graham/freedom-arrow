@@ -184,7 +184,12 @@ if m>=key('0.9.5-dev.19'):
     # 795a7323 (Osama 22 Nov 14:4x "put it under the same hook as the music player"): the rule became "shown while the FA Music pack selector
     # is visible" (log reason 'music pack selector hidden'); either string proves the banner is not the old always-on one.
     _rt=z.read('Mods/FreedomArrow.Runtime.dll')
-    if not any(x.encode('utf-16-le') in _rt for x in ('not on the Home tab','music pack selector hidden')):bad.append('runtime DLL has the old website banner, not the Home-tab / music-selector rule (WebsiteButton.cs 087971bf, 795a7323)')
+    if m<key('0.9.5b-dev.2') and not any(x.encode('utf-16-le') in _rt for x in ('not on the Home tab','music pack selector hidden')):bad.append('runtime DLL has the old website banner, not the Home-tab / music-selector rule (WebsiteButton.cs 087971bf, 795a7323)')
+# From 0.9.5b-dev.2 (Lateralus 23 Nov 2026: "make sure its display follows the vanilla menu asset design architecture"): the banner is a native
+# Image + Button inside the Home page "Home menu content" (WebsiteButton.cs a65a7f1c), not IMGUI. The old IMGUI show rules must be gone.
+if m>=key('0.9.5b-dev.2'):
+    if 'FA Website Banner'.encode('utf-16-le') not in _rt:bad.append('runtime DLL lacks the native website banner (FA Website Banner in Home menu content, WebsiteButton.cs a65a7f1c)')
+    if 'title screen (Press any key)'.encode('utf-16-le') in _rt:bad.append('runtime DLL still has the IMGUI website banner rules (title screen check)')
 # From 0.9.5-dev.19 (Osama 22 Nov 2026 02:50 PST, thread 1572407822849810463: "please add it"): the ZBD-100 (zbd100.py, merge e57b6cc1) and its
 # Type 100 model (work/type100-model-20261122: stage/ files + merge_models.py entry and Dust/Plain paint), and the ZTZ-99B variant of the ZTZ-99A APS
 # loadouts (work/ztz99b-20261122/merge_models.py) are in the complete package. Until dev.18 the 99B models.json entry only reached Osama's PC by a
