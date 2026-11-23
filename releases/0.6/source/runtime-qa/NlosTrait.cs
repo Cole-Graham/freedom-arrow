@@ -317,15 +317,20 @@ static class NlosTrait
                     // every one dived and hit). Handed back to the game with LaunchHorizontalDistance 0, the cruise path never reaches its dive point
                     // and climbed from 100 to 1434 over 18 s. On the last check, give the cruise path the distance to the laser spot, so it dives
                     // on the spot the laser marks (the laser keeps LastTargetPosition on it) instead of climbing away.
-                    // dev.40 (Lateralus and Osama 22 Nov 22:0x-22:3x): the distance alone did not help, the rounds still climbed away. Osama's log:
-                    // Fire Position at the ground with no unit within 150. GameAssembly 1.2.2.1 MissileGuidanceSystem.InternalUpdate (0x806E90) reads
-                    // the flight path from this missile's MissileGuidanceInfoComponent.TrajectoryType every frame (0x807321: 200 = cruise branch, which
-                    // dives only on a target unit). With no unit at the spot, this one missile is switched to the Hellfire path (110), the path every
-                    // vanilla laser missile flies to a lased or ground point. The round data stays cruise (200), so locked shots are unchanged.
+                    // dev.40/41 (Lateralus and Osama 22 Nov 22:0x-22:4x, Fire Position at empty ground). dev.40 gave the cruise path the distance: it still
+                    // flew past the spot and climbed. dev.41 switched the missile to the Hellfire path (110): it went straight up (trace 22:45, path 110,
+                    // no seeker target, no steering). Both paths steer on the seeker's target, and these rounds have a semi-active seeker
+                    // (SeekerType 100), which needs a target held by the shooter; a Fire Position shot has none. Vanilla cruise missiles fired at
+                    // ground points (Iskander-K 9M728: path 200, SeekerType None 0) fly to the point and dive. So, with no unit at the spot, this
+                    // one missile's seeker becomes None (SeekerComponent.Type), it keeps the cruise path, and it gets the distance to the spot.
                     if(tries.TryGetValue(key,out int done)&&done+1>=MaxTries)
                     {
-                        int traj=NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType");
-                        if(traj==200){NativeEcs.WriteField<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType",110);weaponState+="; no unit at the spot: this missile flies the Hellfire path (200 -> 110) to the spot";}
+                        int st=NativeEcs.Field<SeekerComponent,int>(missile,"Type");
+                        NativeEcs.WriteField<SeekerComponent,int>(missile,"Type",0);
+                        var lhd=NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance");
+                        var mp=Position(missile);float hd=new Vector2(spot.x-mp.x,spot.z-mp.z).magnitude;
+                        if(!(lhd>1f)&&hd>1f)NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd);
+                        weaponState+=$"; no unit at the spot: this missile flies to the spot as an unguided cruise missile (seeker {st} -> 0, launch distance {lhd:0.#} -> {hd:0})";
                         weaponState+=$"; near the spot: {UnitsNear(spot,150f)}";
                     }
                 }
@@ -374,7 +379,7 @@ static class NlosTrait
             var pos=missile.Has<ViewComponent>()?Position(missile):Vector3.zero;
             string g="";
             if(missile.Has<MissileGuidanceInfoComponent>())
-                g=$" | path {NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType")} launch dist {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance"):0.#} lofting {NativeEcs.Field<MissileGuidanceInfoComponent,bool>(missile,"CurrentlyLofting")} dive at {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"DiveStartDistance"):0.#} loft start {NativeEcs.Field<MissileGuidanceInfoComponent,Vector3>(missile,"LoftStartPosition")}";
+                g=$" | path {NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType")} seeker {NativeEcs.Field<SeekerComponent,int>(missile,"Type")} launch dist {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance"):0.#} lofting {NativeEcs.Field<MissileGuidanceInfoComponent,bool>(missile,"CurrentlyLofting")} dive at {NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"DiveStartDistance"):0.#} loft start {NativeEcs.Field<MissileGuidanceInfoComponent,Vector3>(missile,"LoftStartPosition")}";
             MelonLogger.Msg($"FREEDOM_ARROW_NLOS_TRACE ammo {tr.ammo} missile {Id(missile)} t+{now-tr.start:0.0}s pos ({pos.x:0},{pos.y:0},{pos.z:0}) seeker target {tgt} at {tdist:0} last target pos ({last.x:0},{last.y:0},{last.z:0}) los {los}{g}");
             DiagnosticLog.Write("nlos_trace",new{ammo=tr.ammo,missile=Id(missile),t=now-tr.start,x=pos.x,y=pos.y,z=pos.z,target=tgt,tdist,lx=last.x,ly=last.y,lz=last.z,los});
             traces[key]=(tr.ammo,tr.start,now+TraceStep,tr.n+1);
