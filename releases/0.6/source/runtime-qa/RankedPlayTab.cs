@@ -64,7 +64,7 @@ static partial class RankedMenu
                 if(camp!=null)camp.SetParent(holder.transform,false);
                 if(scen!=null)scen.SetParent(holder.transform,false);
                 if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");}
-                cContent=content;cHlg=hlg;cMp=mp;cSk=sk;restL=-1f;origPad=hlg.padding.left;fadeCard=sk;
+                cContent=content;cHlg=hlg;cMp=mp;cSk=sk;restL=-1f;origPad=hlg.padding.left;fadeCard=sk;padL=float.NaN;placed=false;flyMp=flySk=null;wasOpen=false;fixes=0;
                 MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB prepared ({(p.isActiveAndEnabled?"open":"closed")}): Campaign/Scenarios moved to a hidden holder ({camp!=null}/{scen!=null}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");
             }
             SetArt(cMp,artMp);SetArt(cSk,artSk);
@@ -78,36 +78,50 @@ static partial class RankedMenu
         if(le!=null&&le.preferredWidth>0f)return le.preferredWidth;
         return card.GetComponent<RectTransform>().rect.width;
     }
-    // Lateralus 22 Nov 2026 20:5x (dev.37, 2560x1440): "they are starting halfway off the left side of the screen and then suddenly pop into
-    // the center ... every time I go in and out of the play menu". Cause (il2cpp dump): each card's GalaxyUiBase plays a FlyFadeIn on enable,
-    // which places the card at its remembered _startPosition + _startValue and flies it to _startPosition. That position is the card's slot in
-    // the vanilla 4-card row, so layout padding never moved the cards (dev.35/36), and dev.37's fix (moving the whole Content left by 258
-    // units) moved the fly-in start half off the screen as well. Now the Content stays where the game puts it; once the cards are at rest,
-    // the two cards themselves (localPosition) and their FlyFadeIn target (_startPosition) move by the measured offset, so every later
-    // opening flies straight to the centred slots. The row is measured on the screen (ScreenRect) only when both cards have the same width
-    // (nothing hovered), have fully faded in and have not moved for 0.3 s.
-    static float stableX=float.NaN,stableSince;static float contentX0=float.NaN;
-    static void Centre()
+    // Lateralus 22 Nov 2026 21:0x (dev.38): "THEY STILL START LEFT ALIGNED AND THEN SUDDENLY POP INTO THE MIDDLE ... actually investigate".
+    // Cause, read from GameAssembly 1.2.2.1 (FlyFadeIn RVA 0x5B20/0x5BC0/0x5AC0, GalaxyUiAnimation.PlayAnimation 0x49D050): on every
+    // opening each card's GalaxyUiBase.OnEnable plays a FlyFadeIn.
+    //   OnPreStart (at once, in OnEnable, before the layout runs): _startPosition = card.anchoredPosition.
+    //   OnStart (after the random Delay, so after the HorizontalLayoutGroup has re-laid the row): flies from the layout's position minus
+    //     _startValue to the layout's position (_currentPosition).
+    //   OnComplete: card.anchoredPosition = _startPosition, the position from before the layout.
+    // So the card flies to where the layout puts it, then snaps back to where it was before. With the vanilla prefab the two agree. With
+    // Campaign/Scenarios gone, padding alone (dev.35/36) only moved the flight: the snap kept returning the cards to their prefab slots
+    // (measured: padding 0 -> 406, cards still at x 1472 px of 3840). dev.37 moved the whole Content, dev.38 moved only the resting
+    // position: in both the layout still said left, so the cards flew left and popped to the centre at the end.
+    // Now both agree, set while the Play tab is still closed: the layout padding puts the 3-card row (Multiplayer, Skirmish, our Ranked)
+    // in the centre, and each card's resting anchoredPosition is set to the position that layout gives it. The fly-in then lands where
+    // it started and there is nothing to snap. Each opening is checked once at rest (flight target vs resting position vs the screen
+    // centre) and logged; if they still disagree the card is put on the layout position once (logged), so a wrong guess costs one pop,
+    // not one per opening.
+    static List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> flyMp,flySk;static bool wasOpen,checkedOpen;static int openings,fixes;
+    static float padL=float.NaN;static bool placed;
+    static void Place()
     {
-        if(!cContent.gameObject.activeInHierarchy||CardAlpha()<0.99f){stableX=float.NaN;return;}
-        if(float.IsNaN(contentX0))contentX0=cContent.anchoredPosition.x;
-        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();
-        var rm=ScreenRect(mr);var rs=ScreenRect(sr);
-        if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||mr.rect.width<1f){stableX=float.NaN;return;}   // a card is hovered or not laid out
-        float now=Time.unscaledTime;
-        if(float.IsNaN(stableX)||Mathf.Abs(rm.x-stableX)>1f){stableX=rm.x;stableSince=now;return;}
-        if(now-stableSince<0.3f)return;
-        float unitsPerPx=mr.rect.width/rm.width;
-        float rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx;
-        float dx=((Screen.width-rowWpx)/2f-rm.x)*unitsPerPx;
-        if(Mathf.Abs(dx)<=1f)return;
-        int flies=MoveCard(cMp,dx)+MoveCard(cSk,dx);stableX=float.NaN;
-        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB cards centred: moved {dx:0} units, {flies} fly-in target(s) moved (card {rm.width:0} px at x {rm.x:0}, row {rowWpx:0} px, screen {Screen.width}, Content x {cContent.anchoredPosition.x:0})");
+        placed=true;
+        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();var par=cContent.parent?.GetComponent<RectTransform>();
+        if(par==null)return;
+        float w=LayoutWidth(cMp),sp=cHlg.spacing,W=par.rect.width;
+        float ax=cContent.anchorMin.x;
+        float left=Mathf.Abs(cContent.anchorMax.x-ax)<1e-4f?ax*W+cContent.anchoredPosition.x-cContent.pivot.x*cContent.rect.width:float.NaN;
+        if(float.IsNaN(left)){MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB Content has stretched anchors {cContent.anchorMin}-{cContent.anchorMax}: cards left where the game puts them");return;}
+        if(float.IsNaN(padL))padL=Mathf.Round((W-(3f*w+2f*sp))/2f-left);
+        cHlg.padding.left=(int)padL;
+        bool mpFirst=cMp.GetSiblingIndex()<cSk.GetSiblingIndex();
+        SetRest(mr,padL+(mpFirst?0f:w+sp),w);SetRest(sr,padL+(mpFirst?w+sp:0f),w);
+        LayoutRebuilder.MarkLayoutForRebuild(cContent);
+        flyMp=Flies(cMp,mr);flySk=Flies(cSk,sr);
+        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row placed: padding {origPad} -> {padL:0}, Multiplayer x {mr.anchoredPosition.x:0}, Skirmish x {sr.anchoredPosition.x:0} (card {w:0}, spacing {sp:0}, parent {W:0}, Content left {left:0}, align {cHlg.childAlignment}, fly-ins {flyMp.Count}/{flySk.Count})");
     }
-    static int MoveCard(Transform card,float dx)
+    // the position HorizontalLayoutGroup gives a child at inset x from the Content's left edge (SetInsetAndSizeFromParentEdge, Left)
+    static void SetRest(RectTransform rt,float x,float w)
     {
-        var lp=card.localPosition;card.localPosition=new Vector3(lp.x+dx,lp.y,lp.z);
-        int n=0;
+        rt.anchorMin=new Vector2(0f,rt.anchorMin.y);rt.anchorMax=new Vector2(0f,rt.anchorMax.y);
+        var ap=rt.anchoredPosition;rt.anchoredPosition=new Vector2(x+w*rt.pivot.x,ap.y);
+    }
+    static List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> Flies(Transform card,RectTransform rt)
+    {
+        var l=new List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn>();
         try
         {
             var gb=card.GetComponent<Il2CppBrokenArrow.Client.Ecs.UI.Galaxy.GalaxyUiBase>();
@@ -119,12 +133,42 @@ static partial class RankedMenu
                 var pc=a.TryCast<Il2CppPlugins.GalaxyUI.Runtime.Animations.ParallelCollection>();
                 if(pc?._collection!=null){foreach(var c in pc._collection)if(c!=null)stack.Add(c);continue;}
                 var f=a.TryCast<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn>();
-                if(f!=null){var sp=f._startPosition;f._startPosition=new Vector3(sp.x+dx,sp.y,sp.z);n++;}
+                if(f!=null&&f._target!=null&&f._target.Pointer==rt.Pointer)l.Add(f);
             }
         }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB fly-in target: "+e.Message);}
-        return n;
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB fly-in: "+e.Message);}
+        return l;
     }
+    static void Centre()
+    {
+        if(!placed)Place();
+        if(flyMp==null)return;
+        bool open=cContent.gameObject.activeInHierarchy;
+        if(open&&!wasOpen){openings++;checkedOpen=false;}
+        wasOpen=open;
+        if(!open||checkedOpen||CardAlpha()<0.99f)return;
+        if(!Done(flyMp)||!Done(flySk))return;
+        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();
+        var rm=ScreenRect(mr);var rs=ScreenRect(sr);
+        if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||mr.rect.width<1f)return;   // a card is hovered or not laid out
+        checkedOpen=true;
+        float flewMp=Target(flyMp,mr),flewSk=Target(flySk,sr);
+        float unitsPerPx=mr.rect.width/rm.width,rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx,want=(Screen.width-rowWpx)/2f;
+        string msg=$"opening {openings}: Multiplayer flew to x {flewMp:0} and rests at x {mr.anchoredPosition.x:0}, Skirmish flew to x {flewSk:0} and rests at x {sr.anchoredPosition.x:0}; row starts at {rm.x:0} px, centre {want:0} px, screen {Screen.width}";
+        bool snap=Mathf.Abs(flewMp-mr.anchoredPosition.x)>1f||Mathf.Abs(flewSk-sr.anchoredPosition.x)>1f;
+        float off=(want-rm.x)*unitsPerPx;
+        if(fixes<2&&(snap||Mathf.Abs(off)>2f))
+        {
+            fixes++;
+            if(snap){SetRestX(mr,flewMp);SetRestX(sr,flewSk);}
+            if(Mathf.Abs(off)>2f){padL+=Mathf.Round(off);Place();}
+            MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB {msg}: corrected ({(snap?"rest put on the flight target":"")}{(snap&&Mathf.Abs(off)>2f?", ":"")}{(Mathf.Abs(off)>2f?$"padding moved {off:0} units":"")})");
+        }
+        else MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB {msg}");
+    }
+    static bool Done(List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> l){foreach(var f in l)if(!f.Completed)return false;return true;}
+    static float Target(List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> l,RectTransform rt)=>l.Count>0?l[0]._currentPosition.x:rt.anchoredPosition.x;
+    static void SetRestX(RectTransform rt,float x){var ap=rt.anchoredPosition;rt.anchoredPosition=new Vector2(x,ap.y);}
     static void SetArt(Transform card,Sprite s)
     {
         if(s==null)return;
