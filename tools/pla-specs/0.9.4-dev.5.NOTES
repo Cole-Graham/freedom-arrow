@@ -165,3 +165,5 @@
   are missing their laser (or ... icon ... or both)"). DATA: recon_sniper_1122.py: 1240 / 1263 SensorUnits -> vanilla row 3 "Very Good Optics" (2300 ground;
   section 14 had put them on row 1, 1650). Snipers 1144: both laser and icon were missing (card and battle read the same ability row); UnitAbilities 103
   (Sprint30 Smoke) -> vanilla 28 (Sprint Smoke Laser = 103 + 1200 m laser, every US/RU sniper team and China 1161/1202). 4193 checks; queued_checks guard. Not seen in game.
+- 2026-11-22 17:5x PST, thread 1572962048705429598 (Lateralus: "PRP-5G 35 -> 60 points"). DATA: prices_1122.py: Units 715 Cost 35 -> 60 (OriginalCost 0, no swap rows;
+  Kaktus option stays +20). 4195 checks; queued_checks guard. Not seen in game.

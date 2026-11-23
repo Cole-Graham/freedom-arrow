@@ -589,6 +589,8 @@ import infantry_1122b;infantry_1122b.apply(t,g,ok,rec)
 # ---------- ZTQ-15 Recon / ZTL-191 Recon optics Good -> Very Good; PLAAF Snipers (1144) laser (Lateralus 22 Nov 2026 17:4x PST,
 # thread 1572962048705429598). See recon_sniper_1122.py.
 import recon_sniper_1122;recon_sniper_1122.apply(t,g,ok,rec)
+# ---------- PRP-5G 35 -> 60 points (Lateralus 22 Nov 2026 17:5x PST, thread 1572962048705429598). See prices_1122.py.
+import prices_1122;prices_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
