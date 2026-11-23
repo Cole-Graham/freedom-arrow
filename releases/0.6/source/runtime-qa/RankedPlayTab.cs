@@ -78,16 +78,19 @@ static partial class RankedMenu
         if(le!=null&&le.preferredWidth>0f)return le.preferredWidth;
         return card.GetComponent<RectTransform>().rect.width;
     }
-    // Osama 22 Nov 2026 20:0x (dev.36 live check, 3840x2160): the row still sat right of centre. Measured in game: Multiplayer at screen
-    // x 1472 (of 3840) with the Content at anchoredPosition.x 72, anchor/pivot 0; changing the HorizontalLayoutGroup padding (0 -> 406 with
-    // the layout formula, or a +/-258 left/right pair) did not move the cards at all. Moving the Content itself does: the row is measured on
-    // the screen (ScreenRect) and the Content shifted by the difference (Content x 72 -> -186 at 4K, then centred). It is measured only when
-    // both cards have the same width (nothing hovered) and their position has held for 0.3 s after the cards have fully faded in (measured in game: during the
-    // opening animation the cards sit elsewhere, x 144 or -372 at 4K, and correcting there made the row jump twice per opening).
-    static float stableX=float.NaN,stableSince;
+    // Lateralus 22 Nov 2026 20:5x (dev.37, 2560x1440): "they are starting halfway off the left side of the screen and then suddenly pop into
+    // the center ... every time I go in and out of the play menu". Cause (il2cpp dump): each card's GalaxyUiBase plays a FlyFadeIn on enable,
+    // which places the card at its remembered _startPosition + _startValue and flies it to _startPosition. That position is the card's slot in
+    // the vanilla 4-card row, so layout padding never moved the cards (dev.35/36), and dev.37's fix (moving the whole Content left by 258
+    // units) moved the fly-in start half off the screen as well. Now the Content stays where the game puts it; once the cards are at rest,
+    // the two cards themselves (localPosition) and their FlyFadeIn target (_startPosition) move by the measured offset, so every later
+    // opening flies straight to the centred slots. The row is measured on the screen (ScreenRect) only when both cards have the same width
+    // (nothing hovered), have fully faded in and have not moved for 0.3 s.
+    static float stableX=float.NaN,stableSince;static float contentX0=float.NaN;
     static void Centre()
     {
-        if(!cContent.gameObject.activeInHierarchy||CardAlpha()<0.99f){stableX=float.NaN;return;}   // closed or still fading in (cards move during the opening animation)
+        if(!cContent.gameObject.activeInHierarchy||CardAlpha()<0.99f){stableX=float.NaN;return;}
+        if(float.IsNaN(contentX0))contentX0=cContent.anchoredPosition.x;
         var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();
         var rm=ScreenRect(mr);var rs=ScreenRect(sr);
         if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||mr.rect.width<1f){stableX=float.NaN;return;}   // a card is hovered or not laid out
@@ -96,10 +99,31 @@ static partial class RankedMenu
         if(now-stableSince<0.3f)return;
         float unitsPerPx=mr.rect.width/rm.width;
         float rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx;
-        int sh=Mathf.RoundToInt(((Screen.width-rowWpx)/2f-rm.x)*unitsPerPx);
-        if(Mathf.Abs(sh)<=1)return;
-        var ap=cContent.anchoredPosition;cContent.anchoredPosition=new Vector2(ap.x+sh,ap.y);stableX=float.NaN;
-        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row centred on screen: Content x {ap.x:0} -> {ap.x+sh:0} (card {rm.width:0} px at x {rm.x:0}, row {rowWpx:0} px, screen {Screen.width})");
+        float dx=((Screen.width-rowWpx)/2f-rm.x)*unitsPerPx;
+        if(Mathf.Abs(dx)<=1f)return;
+        int flies=MoveCard(cMp,dx)+MoveCard(cSk,dx);stableX=float.NaN;
+        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB cards centred: moved {dx:0} units, {flies} fly-in target(s) moved (card {rm.width:0} px at x {rm.x:0}, row {rowWpx:0} px, screen {Screen.width}, Content x {cContent.anchoredPosition.x:0})");
+    }
+    static int MoveCard(Transform card,float dx)
+    {
+        var lp=card.localPosition;card.localPosition=new Vector3(lp.x+dx,lp.y,lp.z);
+        int n=0;
+        try
+        {
+            var gb=card.GetComponent<Il2CppBrokenArrow.Client.Ecs.UI.Galaxy.GalaxyUiBase>();
+            var stack=new List<Il2CppBrokenArrow.Client.Ecs.UI.Galaxy.GalaxyUiAnimation>();
+            if(gb?._onEnabled?.Animation!=null)stack.Add(gb._onEnabled.Animation);
+            while(stack.Count>0)
+            {
+                var a=stack[stack.Count-1];stack.RemoveAt(stack.Count-1);
+                var pc=a.TryCast<Il2CppPlugins.GalaxyUI.Runtime.Animations.ParallelCollection>();
+                if(pc?._collection!=null){foreach(var c in pc._collection)if(c!=null)stack.Add(c);continue;}
+                var f=a.TryCast<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn>();
+                if(f!=null){var sp=f._startPosition;f._startPosition=new Vector3(sp.x+dx,sp.y,sp.z);n++;}
+            }
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB fly-in target: "+e.Message);}
+        return n;
     }
     static void SetArt(Transform card,Sprite s)
     {
