@@ -230,5 +230,9 @@ if m>=key('0.9.5-dev.34'):
     _sm=merged('SquadMembersJson.json','squad_members.json');_w=merged('WeaponsJson.json','weapons.json')
     if sum(1 for r in _sm.values() if r and r.get('UnitId')==1205 and r.get('SpecialWeaponId')==2011887)!=5:bad.append('Light Riflemen (1205) do not have 5 PF-89 carriers (infantry_1122b.py)')
     if (_w[526]['TimeBetweenBurstsMin'],_w[526]['TimeBetweenBurstsMax'],_w[927]['TimeBetweenBurstsMin'],_w[927]['TimeBetweenBurstsMax'])!=(11.0,12.0,7.375,9.375):bad.append('DXL-4 / OSV-96 burst intervals not swapped (infantry_1122b.py)')
+    # Lateralus 22 Nov 17:4x: ZTQ-15 / ZTL-191 Recon on sensor row 3; Snipers 1144 on ability row 28 (recon_sniper_1122.py).
+    _su=merged('SensorUnitsJson.json','sensor_units.json');_ua=merged('UnitAbilitiesJson.json','unit_abilities.json')
+    bad+=[f'unit {u} not on sensor row 3 (recon_sniper_1122.py)' for u in (1240,1263) if [r['SensorId'] for r in _su.values() if r and r.get('UnitId')==u]!=[3]]
+    if [r['AbilityId'] for r in _ua.values() if r and r.get('UnitId')==1144]!=[28]:bad.append('Snipers 1144 not on ability row 28 (laser) (recon_sniper_1122.py)')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

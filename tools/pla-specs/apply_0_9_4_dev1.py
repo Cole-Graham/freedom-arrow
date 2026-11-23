@@ -586,6 +586,9 @@ import infantry_ammo_1122;infantry_ammo_1122.apply(t,g,ok,rec)
 # ---------- Light Riflemen 5 PF-89; DXL-4 rate of fire 8 -> 6, OSV-96 6 -> 8 (Lateralus 22 Nov 2026 17:2x PST, thread 1572962048705429598).
 # See infantry_1122b.py.
 import infantry_1122b;infantry_1122b.apply(t,g,ok,rec)
+# ---------- ZTQ-15 Recon / ZTL-191 Recon optics Good -> Very Good; PLAAF Snipers (1144) laser (Lateralus 22 Nov 2026 17:4x PST,
+# thread 1572962048705429598). See recon_sniper_1122.py.
+import recon_sniper_1122;recon_sniper_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
