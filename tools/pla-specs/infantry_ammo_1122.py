@@ -1,6 +1,7 @@
 """China infantry ammunition (Lateralus 22 Nov 2026 17:1x PST, thread 1572962048705429598: "QCW-05 is a Submachine gun and it only has 120 rounds,
 it should have the same amount of ammunition as the MP5SD6", "QBU-191 should be increased from 60 -> 100 rounds").
-WeaponAmmunitions.Quantity is the per-soldier amount (vanilla rifles keep one value for 1-7 carriers; FA doubled the vanilla infantry rows).
+WeaponAmmunitions.Quantity is the amount per carrier: the squad pool is Quantity x carriers and the card shows that x Ammunitions.HUDMultiplier
+(docs/engine/infantry-ammo.md; QCW-05 and MP5SD6 ammo both 3, so Beijing Swords 20 x 2 x 3 = the x120 Lateralus saw). FA doubled the vanilla infantry rows.
 The MP5SD6 on the only fielded card that carries it (528 DLC2 KNT) is 160 (vanilla 80 x 2); the QCW-05 rows (weapon 2013349, 6 units) were 20,
 the vanilla pilot/crew MP5SD6 value. QBU-191 (weapon 2004000, 43 rows) 60 -> 100. Called from apply_0_9_4_dev1.py."""
 
