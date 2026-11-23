@@ -13,7 +13,7 @@
   "china_infantry_units": 136,
   "fielded": 91,
   "squad_members_rows": 828,
-  "rows_changed": 498,
+  "rows_changed": 496,
   "units_changed": 133,
   "fielded_units_changed": 91,
   "rule_vs_vanilla": {
@@ -12746,28 +12746,30 @@
      "model": "RU_Motostrelki_officer",
      "primary": "QBZ-191",
      "primary_id": 2003998,
-     "special": null,
-     "special_id": 0,
-     "member_class": "rifle only",
-     "tier": "D",
-     "tier_text": "plain rifleman: dies first",
+     "special": "PF-89",
+     "special_id": 2011887,
+     "member_class": "rifle + disposable AT",
+     "tier": "C",
+     "tier_text": "grenadier or rifleman with disposable AT",
      "current": 3,
-     "proposed": 4,
-     "changes": true
+     "proposed": 3,
+     "changes": false,
+     "note": "Lateralus 22 Nov 17:2x: Light Riflemen get 5 PF-89; this rifleman carries a PF-89 from infantry_1122b.py, so he joins tier C (3, unchanged)"
     },
     {
      "squad_members_row_id": 2015576,
      "model": "RU_Motostrelki_officer",
      "primary": "QBZ-191",
      "primary_id": 2003998,
-     "special": null,
-     "special_id": 0,
-     "member_class": "rifle only",
-     "tier": "D",
-     "tier_text": "plain rifleman: dies first",
+     "special": "PF-89",
+     "special_id": 2011887,
+     "member_class": "rifle + disposable AT",
+     "tier": "C",
+     "tier_text": "grenadier or rifleman with disposable AT",
      "current": 3,
-     "proposed": 4,
-     "changes": true
+     "proposed": 3,
+     "changes": false,
+     "note": "Lateralus 22 Nov 17:2x: Light Riflemen get 5 PF-89; this rifleman carries a PF-89 from infantry_1122b.py, so he joins tier C (3, unchanged)"
     }
    ],
    "flags": [
@@ -16124,12 +16126,6 @@
   },
   "2015571": {
    "DeathPriority": 1
-  },
-  "2015575": {
-   "DeathPriority": 4
-  },
-  "2015576": {
-   "DeathPriority": 4
   },
   "2015594": {
    "DeathPriority": 1

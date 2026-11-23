@@ -156,3 +156,8 @@
   "QCW-05 ... should have the same amount of ammunition as the MP5SD6", "QBU-191 should be increased from 60 -> 100 rounds"). DATA: infantry_ammo_1122.py:
   QCW-05 (2013349) WeaponAmmunitions.Quantity 20 -> 160 on 6 rows (= MP5SD6 on 528 KNT, vanilla 80 x FA 2); QBU-191 (2004000) 60 -> 100 on 43 rows.
   4177 batch checks pass; queued_checks.py (from dev.34) also checks the 49 rows (dev.33 package as dev.34: 999 = 950 + 49 missing). Not seen in game.
+- 2026-11-22 17:2x PST, thread 1572962048705429598 (Lateralus: "Keep as queued" = QCW-05 160 per carrier; "chinese Light Riflemen should have 5 PF-89",
+  "DXL-4 rate of fire 8 -> 6", "OSV-96 rate of fire 6 -> 8"). DATA: infantry_1122b.py: Light Riflemen (1205) riflemen 2015575/2015576 carry the PF-89
+  (3 -> 5 carriers, 1 round each; their DeathPriority stays 3, proposal JSON updated: 496 DeathPriority rows now). DXL-4 (526) and OSV-96 (927) swap
+  TimeBetweenBursts (DXL-4 11-12 s, OSV-96 7.375-9.375 s): card rate 6.0 / 8.0 by WeaponHelper.RateOfFireSecond (calculated; vanilla Russian rows,
+  FSB Snaipery 345/623). 4186 checks pass; queued_checks guard updated. Not seen in game.

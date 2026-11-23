@@ -583,6 +583,9 @@ import infantry_order_1122;infantry_order_1122.apply(t,g,ok,rec)
 # ---------- China infantry ammunition (Lateralus 22 Nov 2026 17:1x PST, thread 1572962048705429598): QCW-05 SMG 20 -> 160 per soldier, the MP5SD6
 # value (KNT); QBU-191 60 -> 100. See infantry_ammo_1122.py.
 import infantry_ammo_1122;infantry_ammo_1122.apply(t,g,ok,rec)
+# ---------- Light Riflemen 5 PF-89; DXL-4 rate of fire 8 -> 6, OSV-96 6 -> 8 (Lateralus 22 Nov 2026 17:2x PST, thread 1572962048705429598).
+# See infantry_1122b.py.
+import infantry_1122b;infantry_1122b.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

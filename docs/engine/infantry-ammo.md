@@ -18,6 +18,13 @@
   - Equal `Quantity` means equal ammo per carrier. Card numbers are equal only when the carrier count and the HUDMultiplier are also equal.
   - Not checked: whether the in-battle HUD also multiplies by `HUDMultiplier`, and how many rounds one ammo unit fires.
 
+## Rate of fire on the card
+
+- **Formula (code).** `WeaponHelper.RateOfFireSecond` (`0x2BCE50`) gives rounds per second. The card shows it × 60. Calculate a cycle time for the minimum values and one for the maximum values, then use the average of the two: `MagazineSize ÷ ShotsPerBurstMax − 1` gaps × `TimeBetweenBursts` + `(MagazineSize − MagazineSize ÷ ShotsPerBurstMax)` × `TimeBetweenShotsInBurst` + `MagazineReloadTime`. The rate is `MagazineSize ÷` that average cycle.
+- **Infantry cards (data + card).** Rifles show that rate × the ammunition's `HUDMultiplier`. The MP5SD6 is 15 × 3 = 45, and the QCW-05 card showed the same 45. The FA runtime (`CardLauncherRof`) changes only launcher cards.
+- **Examples (calculated).** 5 rounds, 1 per burst, 4 s reload: DXL-4 (bursts 7.375–9.375 s) is 8.0 per minute, OSV-96 (11–12 s) is 6.0. Lateralus 22 Nov: the two swap their burst intervals, so the DXL-4 becomes 6 and the OSV-96 becomes 8 (`infantry_1122b.py`).
+
 ## Document change log
 
 - 2026-11-22 17:4x PST (America/Los_Angeles) — New doc (Lateralus asked whether ammo is per soldier or per weapon). Battle pool, card formula and HUDMultiplier, with RVAs.
+- 2026-11-22 17:5x PST (America/Los_Angeles) — Added the card rate-of-fire formula (Lateralus: DXL-4 / OSV-96 rate of fire).

@@ -23,7 +23,7 @@ def apply(t, g, ok, rec):
             ok(m and m['UnitId'] == u['unit_id'] and m.get('DeathPriority') == r['current'],
                ('SquadMembers row as proposed over dev.33', r['squad_members_row_id'], m and m.get('DeathPriority'), r['current']))
             if r['changes']:g.put('SquadMembersJson', m['Id'], {'DeathPriority': r['proposed']});n += 1
-    ok(n == len(dp['apply_as_squad_members_overrides']) == 498, ('DeathPriority rows changed', n))
+    ok(n == len(dp["apply_as_squad_members_overrides"]) == 496, ('DeathPriority rows changed', n))
     k = 0
     for u in wo['units']:
         ok(U.get(u['unit_id']) and U[u['unit_id']]['Name'].startswith('PLA'), ('Order unit is a China unit', u['unit_id']))

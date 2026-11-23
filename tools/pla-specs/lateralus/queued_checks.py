@@ -226,5 +226,9 @@ if m>=key('0.9.5-dev.34'):
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
     bad+=[f'WeaponAmmunitions {r["Id"]} weapon {r["WeaponId"]} Quantity {r["Quantity"]} (want {q}, infantry_ammo_1122.py)' for r in _wa.values() if r for w,q in ((2013349,160),(2004000,100)) if r['WeaponId']==w and r['Quantity']!=q]
+    # Lateralus 22 Nov 17:2x: Light Riflemen 5 PF-89; DXL-4 / OSV-96 burst intervals swapped (infantry_1122b.py).
+    _sm=merged('SquadMembersJson.json','squad_members.json');_w=merged('WeaponsJson.json','weapons.json')
+    if sum(1 for r in _sm.values() if r and r.get('UnitId')==1205 and r.get('SpecialWeaponId')==2011887)!=5:bad.append('Light Riflemen (1205) do not have 5 PF-89 carriers (infantry_1122b.py)')
+    if (_w[526]['TimeBetweenBurstsMin'],_w[526]['TimeBetweenBurstsMax'],_w[927]['TimeBetweenBurstsMin'],_w[927]['TimeBetweenBurstsMax'])!=(11.0,12.0,7.375,9.375):bad.append('DXL-4 / OSV-96 burst intervals not swapped (infantry_1122b.py)')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')
