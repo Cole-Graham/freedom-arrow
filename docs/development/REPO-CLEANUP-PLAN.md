@@ -20,7 +20,7 @@ On 22 November, 11 different models files were all named Assets 0.2.52. The pack
 - No force-push. Do the work on `codex/batch/<person>/repo-cleanup` and merge it when the build gates pass.
 - Before a step deletes or moves anything outside git (for example the files in `out/`), list it and ask for a yes.
 
-## Status (23 November 2026, branch `codex/batch/lateralus/repo-cleanup`, not merged)
+## Status (23 November 2026, done on `codex/batch/lateralus/repo-cleanup` and merged into `codex/development`)
 
 - **Step 1 done:** `out/receipts` is the one record of builds. `package.py` reads its base, the newest-build check and the next Assets number only there, and writes its receipt only there. A build's base is the newest build *older* than it, so parallel lines (0.9.5b, the 0.9.6 model rework) each stack correctly. `receipts_import.py` copied the 213 old receipts; rerun it just before the merge.
 - **Step 2 done:** `package_0_8_next.py` → `package.py` (the old Build5 PLA packager that had that name is archived); `apply_0_9_4_dev1.py` → `batch_0_9_5b.py`. Lateralus chose option A for the folder names: the 0.1–0.2 pipeline tree that was `mod/` is now `archive/mod-0.1-0.2/` (`pipeline/` reads it there through `config.LEGACY_MOD`), `releases/0.6` is now `mod/` and `releases/0.8` is now `maps/`. Scripts that found the repo root by folder depth were changed with it.
