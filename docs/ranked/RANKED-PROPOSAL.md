@@ -71,14 +71,19 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - **Modes at launch (Lateralus, 22 Nov):** 1v1, 3v3 and 5v5. No 2v2.
 - **Ladders (Lateralus: agreed):** a 1v1 ladder and one team ladder shared by 3v3 and 5v5, with a rating per player on each ladder.
 - **Queueing as a party (Lateralus, 22 Nov):** players can queue together, using the parties FAQueue already has (the leader's search brings the members along).
-  - **Party size decides the modes:** solo → 1v1, 3v3 or 5v5; 2–3 players → 3v3 or 5v5; 4–5 players → 5v5 only. A party of 5 is always a full 5v5 team. 1v1 is solo only.
+  - **Two separate queues (Lateralus, 22 Nov: "1v1 should be a completely different queue"):**
+    - **1v1 queue:** solo players only, 1v1 matches only, own 1v1 ladder.
+    - **Team queue:** solos and parties. It forms a 3v3 or a 5v5, never a 1v1. A solo in the team queue never gets a 1v1. Parties of 4–5 get only 5v5. The matcher tries 5v5 first, so 10 waiting players make one 5v5 and not a 3v3 with 4 left over.
+    - Measured on the test hub, 22 Nov: 2 team solos + 2 1v1 players → only the 1v1 pair is matched; 6 team solos → 3v3; 10 team solos → 5v5; a party of 2 in the 1v1 queue is refused.
   - **Matching:** the matchmaker fills each side with whole parties, never splitting one. It first looks for opponents with similar party sizes (a 5-stack against a 5-stack or a 4+1); after 3 minutes it accepts any mix. The two sides are balanced by average rating.
   - **Party rating:** the party's average rating is used for matching. Each member's own rating changes after the match, using the team averages (as above).
   - **Boost limit:** party members must be within 500 Elo of each other in ranked, so a high player cannot carry a new account up the ladder.
-- **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Every player on the team gets the team's change. The win bonus is computed from each winner's own rating before the match.
+- **Team games:** the `simple-elo.md` "team rating" is the average of the players' ratings. Each player's change is split by their own rating (option C, Lateralus 22 Nov): a winner's share is K × (1 − expected score of their rating against the losers' average), a loser's share is K × (expected score against the winners' average), and each side's shares are scaled so the side's total equals the old same-for-all change × players. Favourites gain less and lose more; underdogs the reverse; the match adds no points. 1v1 is unchanged. A deserter on the winning team loses K × his expected score against the losers' average. The win bonus is computed from each winner's own rating before the match. The bonus is also scaled by the ladder average (full at 1400 or lower, 0 at 1500; `simple-elo.md`, Ladder-average scale).
 - **What counts as a result:** the mod already reports each match (players, teams, map, winner, length) to FAQueue (`match-stats.jsonl`). A ranked result counts only when at least one report from each side agrees on the winner and the player list. If they disagree, the match is marked disputed, nothing changes and it is logged for admins.
 - **Leavers:** a player who leaves before the end loses their own rating, as a loss. The rest of the match is scored normally.
-- **Draws** (Freedom Arrow lead under 10% at time-out): no change.
+- **Draws** (Freedom Arrow lead under 10% at time-out; Lateralus 22 Nov): rated as half a win. Each player's change is K × (0.5 − expected score of their rating against the enemy team's average), and each side is then shifted so its total equals the team-average draw change × players, so the match adds no points. A favourite loses a little and an underdog gains a little (1v1 1400 vs 1600: +10.4 / −10.4); equal ratings: no change. No win bonus. A deserter takes his loss. Both sides must report; otherwise unrated.
+- **Leave cooldowns (Lateralus, 22 Nov):** leaving or disconnecting from a ranked lobby before the launch phase, not joining it within 90 seconds, or being flagged Deserter by the game at the end counts as an offence. First offence: 5 minutes without ranked; second: 1 hour; third and later: 24 hours. Every player's count returns to 0 at the same time every day (00:00 UTC = 16:00 PST, set by `FAQUEUE_RANKED_RESET_UTC`); a cooldown that is already running keeps running. A group cannot search while any member is cooling down.
+- **End screen (Lateralus, 22 Nov):** after a ranked match the end screen shows every player's rating before and after and the change; an unrated match says why (for example a draw).
 - **Ranked rules are fixed:** FA conquest 300, 45 min, a ranked map pool per size, and the same FA build on every client. The server checks this before it starts the match. Starting pools are the FA maps played online so far:
   - [1v1] Dead Center, Kadaga, Jelgava, Klaipeda, Chernyakhovsky
   - [3v3] Baltiisk, Bay of Winds, Dam
@@ -153,13 +158,30 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - Season length: 2 months.
 - One shared team ladder for 3v3 and 5v5.
 - Players can queue as a party; a party of 5 always plays 5v5.
+- 1v1 is its own solo queue; the team queue only makes 3v3 or 5v5.
 
 ## Still open
 
 - Nothing in the rules. Next step on your word: build the server side (FAQueue ranked queue) first, then the in-game menus.
+
+## Ranked match flow (Lateralus 22 Nov: "go")
+
+1. **Default deck.** Chosen in the ranked menu. The game reports to the lobby server whether it is a complete, valid deck. FIND MATCH is disabled (with the reason) until every group member has one; the group slots show a warning on members without one. Only the group leader can start the search; the server checks the decks too.
+2. **Match found.** The normal Mod game flow: the host's game creates a private Scenario lobby with the server's map, everyone joins, and each player is moved to their team.
+3. **Map revealed** in the lobby.
+4. **Deck pick, 60 s** (server clock). Each player's default deck is selected at the start. Enemy deck info is hidden in the lobby. At the end, a player with no deck gets their default deck and is set ready.
+5. **Reveal, 5 s**, then the host's game launches the match with the vanilla start call (`ChangeLobbyStatus(Launching)`) once everyone is ready.
+- If not everyone has joined the game lobby within 90 s, the match is cancelled with no rating change.
+- 1v1 works the same with one player per side.
 
 ## Document change log
 
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
 - 2026-11-22 08:01 PST (America/Los_Angeles) — Lateralus decisions: launch 1v1/3v3/5v5, seasons yes, PLA officers at rank 10, default set = vanilla epaulet. Map pools, 5v5 queue widening, season rules added.
 - 2026-11-22 08:06 PST (America/Los_Angeles) — Lateralus: seasons 2 months, one team ladder for 3v3+5v5, party queueing (party size decides modes; 5-stack = 5v5; whole parties per side; 500 Elo boost limit).
+- 2026-11-22 08:38 PST (America/Los_Angeles) — Lateralus: 1v1 is a separate solo queue; the team queue (solo or party) only makes 3v3/5v5. Test hub at freedomarrow.app/hubs/test.
+- 2026-11-22 13:0x PST (America/Los_Angeles) — Lateralus: ranked match flow (default deck, 60 s hidden deck pick, reveal, automatic launch) added and built.
+- 2026-11-22 13:4x PST (America/Los_Angeles) — Lateralus: win bonus scaled by the ladder average, so the ladder settles at 1500.
+- 2026-11-22 14:0x PST (America/Los_Angeles) — Lateralus: option C per-player split for team games built (test hub).
+- 2026-11-22 15:3x PST (America/Los_Angeles) — Lateralus test 22 Nov: leave cooldowns (5 min / 1 h / 24 h, daily reset), end-screen Elo per player; lobby: enemy flag hidden, Launch/Ready automatic.
+- 2026-11-22 15:5x PST (America/Los_Angeles) — Lateralus: draw rule (half a win, per player, zero-sum shift); default deck selected on joining the lobby.
