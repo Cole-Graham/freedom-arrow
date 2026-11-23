@@ -31,3 +31,8 @@ spec 5, scale 1.4, offset 0.6 m, same metallic remap. Assets 0.2.69. 4384 data c
 
 0.9.6-dev.94 (build 307, Osama 23 Nov 04:4x "use the material skin from the F-35B ROKN ... apply it to the valkyrie"): XQ-58A colour map moved to the
 F-35B ROKN blue-grey (work/xq58-skin-1123/skin.py) and material set like the F-35B ROKN (metallic 0, smoothness 0.40-0.50). Assets 0.2.70.
+
+0.9.6-dev.95 (build 308, Osama 23 Nov 04:5x "the tires are way too shiney ... a certain haze", "it looks too clean, not dirty"): LRHW materials
+(work/lrhw-20261123/fix_mats.py): V-Ray bump maps that had been read as normal maps on the wheels and red glass dropped; paint/rubber/plastic
+non-metallic, smoothness 0.1-0.4 (seller 0.8-0.92 with metal 0.2-0.7); PBR sheets capped at smoothness 0.45; dirty wheel texture on all wheels;
+dust/grime pass on the painted maps. Assets 0.2.71. The install moves the 4 stale m_lrhw_*_n.fat out of the game folder (kept in backup/).
