@@ -79,6 +79,8 @@ static class Ranked
     const double PartySpread = 500, OneSidedWaitMin = 30;
 
     public static int Season = 1;
+    // Season name shown in game (Lateralus 22 Nov 2026: "set the season to Season Alpha instead of Season Test"); config.json "name"
+    public static string SeasonName = "Alpha";
     // last ranked deck each player reported (SetRankedDeck); a new hub session after a reconnect starts from it (Lateralus 22 Nov: 'deck invalid' after ArrowQueue's reconnect)
     public static readonly Dictionary<string, (bool ok, string name)> Decks = new();
     static string _dir = "";
@@ -102,14 +104,14 @@ static class Ranked
     {
         _ctx = ctx; _log = log; _dir = dir; Directory.CreateDirectory(dir);
         var cfg = Path.Combine(dir, "config.json");
-        if (File.Exists(cfg)) Season = JsonNode.Parse(File.ReadAllText(cfg))?["season"]?.GetValue<int>() ?? 1;
-        else File.WriteAllText(cfg, JsonSerializer.Serialize(new { season = Season, length = "2 months (Lateralus 22 Nov 2026)" }));
+        if (File.Exists(cfg)) { var c = JsonNode.Parse(File.ReadAllText(cfg)); Season = c?["season"]?.GetValue<int>() ?? 1; SeasonName = c?["name"]?.GetValue<string>() ?? SeasonName; }
+        else File.WriteAllText(cfg, JsonSerializer.Serialize(new { season = Season, name = SeasonName, length = "2 months (Lateralus 22 Nov 2026)" }));
         foreach (var lad in Ladders.Keys.ToArray())
         {
             var f = RatingsFile(lad);
             if (File.Exists(f)) foreach (var r in JsonSerializer.Deserialize<List<RankedRating>>(File.ReadAllText(f)) ?? new()) Ladders[lad][r.SteamId] = r;
         }
-        _log.LogInformation("ranked season {s}: {a} 1v1 and {b} team ratings loaded from {d}", Season, Ladders["1v1"].Count, Ladders["team"].Count, dir);
+        _log.LogInformation("ranked season {s} ({n}): {a} 1v1 and {b} team ratings loaded from {d}", Season, SeasonName, Ladders["1v1"].Count, Ladders["team"].Count, dir);
         _timer = new Timer(_ => Tick(), null, 1000, 1000);
     }
     static string RatingsFile(string ladder) => Path.Combine(_dir, $"season-{Season}-{ladder}.json");
@@ -525,7 +527,7 @@ static class Ranked
         var s = Sorted(ladder);
         return new
         {
-            season = Season, ladder, updated = DateTime.UtcNow, players = s.Count,
+            season = Season, seasonName = SeasonName, ladder, updated = DateTime.UtcNow, players = s.Count,
             rows = s.Take(top).Select((r, i) => new { place = i + 1, steamId = r.SteamId, name = r.Name, rating = Math.Round(r.Rating, 1), level = Level(ladder, r.Rating, i + 1), wins = r.Wins, losses = r.Losses,
                 best = Math.Round(r.Best, 1), last = string.Concat(r.Recent.Take(10).Select(x => x.Win ? 'W' : 'L')) }).ToArray(),
         };

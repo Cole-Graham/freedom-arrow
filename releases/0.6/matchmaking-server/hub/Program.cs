@@ -31,7 +31,7 @@ Ranked.Init(app.Services.GetRequiredService<IHubContext<GameHub>>(), app.Service
 Ranked.AllRanked = Environment.GetEnvironmentVariable("FAQUEUE_RANKED_ALL") == "1";
 app.MapGet(pre + "/ranked/leaderboard/{ladder}", (string ladder) => { lock (Store.Lock) return ladder is "1v1" or "team" ? Results.Json(Ranked.Board(ladder)) : Results.NotFound(); });
 // Public ranked profile (the same numbers the leaderboard shows) for the in-game Ranked menu and the website.
-app.MapGet(pre + "/ranked/player/{steamId}", (string steamId) => { lock (Store.Lock) return steamId.Length is > 0 and <= 20 && steamId.All(char.IsDigit) ? Results.Json(new { season = Ranked.Season, steamId, me = Ranked.Me(steamId), searching = Ranked.QueueInfo() }) : Results.NotFound(); });
+app.MapGet(pre + "/ranked/player/{steamId}", (string steamId) => { lock (Store.Lock) return steamId.Length is > 0 and <= 20 && steamId.All(char.IsDigit) ? Results.Json(new { season = Ranked.Season, seasonName = Ranked.SeasonName, steamId, me = Ranked.Me(steamId), searching = Ranked.QueueInfo() }) : Results.NotFound(); });
 var url = Environment.GetEnvironmentVariable("FAQUEUE_URL") ?? "http://127.0.0.1:8651";
 app.Run(url);
 
@@ -262,7 +262,7 @@ sealed class GameHub : Hub
 
     // Ranked view for the FA ranked menu: own ratings/levels on both ladders, players searching per mode, the season.
     public object? SetRankedDeck(bool ok, string name) { lock (Store.Lock) { var p = Me(); p.RankedDeckOk = ok; p.RankedDeck = Clip(name ?? "", 64); Ranked.Decks[p.SteamId] = (ok, p.RankedDeck); } return null; }
-    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
+    public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, seasonName = Ranked.SeasonName, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
         pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId),
         groupDecks = Ranked.GroupDecks(p), extra = Ranked.Extra(p.SteamId), search = Ranked.SearchInfo(p.SteamId) }; } }
     public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }

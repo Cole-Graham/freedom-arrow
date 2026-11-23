@@ -389,8 +389,7 @@ static partial class RankedMenu
 
         // your rank
         var lad=Ladder(queue);var m=Mine(me,have,lad);int s=Set;
-        int season=1;try{if(have)season=me.GetProperty("season").GetInt32();}catch{}
-        Head(532,86,440,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · SEASON {season}");
+        Head(532,86,440,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · {SeasonLabel(me,have)}");
         Img(532,127,440,186,new Color(0,0,0,0.5f));Frm(532,127,440,186,new Color(1,1,1,0.08f));
         EpImg(550,140,86,160,s,m.level);
         Txt(658,156,300,48,RankName(m.level,s),34,Color.white,true);
@@ -618,8 +617,7 @@ static partial class RankedMenu
         Img(642,238,520,8,new Color(1,1,1,0.15f));if(frac>0)Img(642,238,520*frac,8,Color.white);
         Txt(642,250,260,22,$"{RankName(lv,s)} {bd.from:0}",14,dim);
         Txt(902,250,260,22,lv>=18?"top band":$"{bd.to-rating:0} to {RankName(bd.next,s)} ({bd.to:0})",14,dim,false,TextAlignmentOptions.MidlineRight);
-        int season=1;try{if(have)season=me.GetProperty("season").GetInt32();}catch{}
-        Head(522,320,700,$"RANKED STATISTICS · {(boardLadder=="1v1"?"1V1":"TEAM")} · SEASON {season}");
+        Head(522,320,700,$"RANKED STATISTICS · {(boardLadder=="1v1"?"1V1":"TEAM")} · {SeasonLabel(me,have)}");
         int g=w+l;
         void Big(float x,string v,string lab){Txt(x,366,130,34,v,24,Color.white,true);Txt(x,400,130,22,lab,14,dim);}
         Big(522,g.ToString(),"Ranked matches");Big(662,g>0?$"{100.0*w/g:0}%":"-","Win rate");Big(772,$"{best:0}","Best Elo");Big(884,$"{w}-{l}","Wins-losses");

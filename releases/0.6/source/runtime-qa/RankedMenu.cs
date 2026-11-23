@@ -23,7 +23,7 @@ namespace FreedomArrow;
 static partial class RankedMenu
 {
     // TEST BUILD: ranked runs on the test hub (faqueue-test.service, /hubs/test). ThirdPartyGuard points ArrowQueue here while this is set.
-    public const bool TestHub=true;
+    public const bool TestHub=false;   // Lateralus 22 Nov 2026 19:4x: "for the next dev build, it should be the real server not the test server anymore"
     // ArrowQueue only uses its SignalR hub when the address ends in /hubs/game (Signal.On); otherwise it falls back to its old REST API.
     public const string TestHubRoot="https://freedomarrow.app/hubs/test/hubs";
 
@@ -503,6 +503,17 @@ static partial class RankedMenu
     }
     static string Ago(JsonElement t){try{var d=DateTime.UtcNow-t.GetDateTime().ToUniversalTime();return d.TotalMinutes<60?$"{(int)d.TotalMinutes}m":d.TotalHours<24?$"{(int)d.TotalHours}h":$"{(int)d.TotalDays}d";}catch{return "";}}
 
+    // "SEASON ALPHA" from the hub's seasonName (Lateralus 22 Nov 2026); hubs without it give the season number
+    static string SeasonLabel(JsonElement root,bool have)
+    {
+        try
+        {
+            if(have&&root.TryGetProperty("seasonName",out var n)&&n.ValueKind==JsonValueKind.String&&n.GetString()!="")return "SEASON "+n.GetString().ToUpperInvariant();
+            if(have&&root.TryGetProperty("season",out var v))return "SEASON "+v.GetInt32();
+        }
+        catch{}
+        return "SEASON";
+    }
     static (double rating,int level,int place,int wins,int losses,double best,JsonElement recent) Mine(JsonElement me,bool have,string ladder)
     {
         if(!have)return (1000,1,0,0,0,1000,default);
@@ -554,8 +565,7 @@ static partial class RankedMenu
 
         // middle: your rank
         var lad=Ladder(queue);var m=Mine(me,have,lad);int s=Set;
-        int season=1;try{if(have)season=me.GetProperty("season").GetInt32();}catch{}
-        H(590,116,440,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · SEASON {season}");
+        H(590,116,440,$"YOUR RANK · {(lad=="1v1"?"1V1":"TEAM")} · {SeasonLabel(me,have)}");
         Fill(R(590,157,440,186),new Color(0,0,0,0.5f));Frame(R(590,157,440,186),new Color(1,1,1,0.08f),1);
         DrawEp(R(608,170,86,160),s,m.level);
         T(716,186,300,48,RankName(m.level,s),32,Color.white,FontStyle.Bold);
@@ -791,7 +801,7 @@ static partial class RankedMenu
         Fill(R(700,268,520,8),new Color(1,1,1,0.15f));Fill(R(700,268,520*frac,8),Color.white);
         T(700,280,260,22,$"{RankName(lv,s)} {bd.from:0}",13,Dim);
         T(960,280,260,22,lv>=18?"top band":$"{bd.to-rating:0} to {RankName(bd.next,s)} ({bd.to:0})",13,Dim,FontStyle.Normal,TextAnchor.MiddleRight);
-        H(580,350,700,$"RANKED STATISTICS · {(boardLadder=="1v1"?"1V1":"TEAM")} · SEASON {(have?me.GetProperty("season").GetInt32():1)}");
+        H(580,350,700,$"RANKED STATISTICS · {(boardLadder=="1v1"?"1V1":"TEAM")} · {SeasonLabel(me,have)}");
         int g=w+l;
         Big(580,398,g.ToString(),"Ranked matches");Big(712,398,g>0?$"{100.0*w/g:0}%":"-","Win rate");Big(812,398,$"{best:0}","Best Elo");Big(914,398,$"{w}–{l}","Wins–losses");
         H(580,486,400,"LAST 10 RESULTS");
