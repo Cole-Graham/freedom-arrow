@@ -638,6 +638,9 @@ import sf_recon_armor_1123;sf_recon_armor_1123.apply(t,g,ok,rec)
 import zbd04_rf_1123;zbd04_rf_1123.apply(t,g,ok,rec)
 # ---------- PLA ZTZ-98 (Osama 23 Nov 2026 15:0x: Shawn's model, "we'll give it to the rocket force"): ZTZ-99 copy in spec 19. See ztz98_1123.py.
 import ztz98_1123;ztz98_1123.apply(t,g,ok,rec)
+# ---------- Rangers RRC Standoff +0 -> +5; laser for Taishan Eagles, Whistling Arrows, Sharp Swords, Mountain Leopards (Beijing Swords already has it)
+# (Lateralus 23 Nov 2026 15:2x PST, thread 1568104480459722894). Existing rows only. See sf_laser_rangers_1123.py.
+import sf_laser_rangers_1123;sf_laser_rangers_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
