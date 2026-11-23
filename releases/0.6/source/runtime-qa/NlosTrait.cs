@@ -221,6 +221,20 @@ static class NlosTrait
         }
         return best;
     }
+    // 0.9.5-dev.40 diagnosis: every unit entity within r of p (id, side, type, distance), for the log when no enemy is at a laser spot.
+    static string UnitsNear(Vector3 p,float r)
+    {
+        if(unitSet==null)return "no unit list";
+        var arr=unitSet._entities;int n=Math.Min(unitSet.Count,arr?.Length??0);var l=new List<string>();
+        for(int i=0;i<n&&l.Count<8;i++)
+        {
+            var e=arr![i];if(!e.IsAlive||!e.Has<ViewComponent>())continue;
+            float d=Vector3.Distance(Position(e),p);if(d>r)continue;
+            var u=NativeEcs.Read<UnitComponent>(e);
+            l.Add($"{Id(e)} {u.UnitData?.Name} side {u.Owner?.TeamSide} type {(int)u.UnitData.Type} at {d:0}");
+        }
+        return l.Count==0?$"no unit within {r:0} of {n} units":string.Join("; ",l);
+    }
     static bool SeekerTarget(Entity missile,out Entity target)
     {
         target=default;
@@ -295,7 +309,22 @@ static class NlosTrait
                     var mp=Position(missile);var tp=Position(u);float hd=new Vector2(tp.x-mp.x,tp.z-mp.z).magnitude;
                     if(!(lhd>1f)){NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd);from+=$", launch distance {lhd:0.#} -> {hd:0}";}
                 }
-                else weaponState+=$"; no enemy unit within {LaserSpotRadius:0} of the laser spot ({spot.x:0},{spot.z:0})";
+                else
+                {
+                    weaponState+=$"; no enemy unit within {LaserSpotRadius:0} of the laser spot ({spot.x:0},{spot.z:0})";
+                    // 0.9.5-dev.40 (Lateralus 22 Nov 2026 21:3x PST, dev.39: "the missiles start flying straight forever"). His log: 4 NLOS rounds
+                    // (3 CTL-181, 1 HJ-10) fired at laser spots with no enemy unit within 60 (dev.7/9/15/32 spots were 0-7 from the lased vehicle and
+                    // every one dived and hit). Handed back to the game with LaunchHorizontalDistance 0, the cruise path never reaches its dive point
+                    // and climbed from 100 to 1434 over 18 s. On the last check, give the cruise path the distance to the laser spot, so it dives
+                    // on the spot the laser marks (the laser keeps LastTargetPosition on it) instead of climbing away.
+                    if(tries.TryGetValue(key,out int done)&&done+1>=MaxTries)
+                    {
+                        var lhd=NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance");
+                        var mp=Position(missile);float hd=new Vector2(spot.x-mp.x,spot.z-mp.z).magnitude;
+                        if(!(lhd>1f)&&hd>1f){NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd);weaponState+=$"; dives on the laser spot: launch distance {lhd:0.#} -> {hd:0}";}
+                        weaponState+=$"; near the spot: {UnitsNear(spot,150f)}";
+                    }
+                }
             }
         }
         if(!target.IsAlive)

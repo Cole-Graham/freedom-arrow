@@ -156,13 +156,13 @@ static partial class RankedMenu
         float unitsPerPx=mr.rect.width/rm.width,rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx,want=(Screen.width-rowWpx)/2f;
         string msg=$"opening {openings}: Multiplayer flew to x {flewMp:0} and rests at x {mr.anchoredPosition.x:0}, Skirmish flew to x {flewSk:0} and rests at x {sr.anchoredPosition.x:0}; row starts at {rm.x:0} px, centre {want:0} px, screen {Screen.width}";
         bool snap=Mathf.Abs(flewMp-mr.anchoredPosition.x)>1f||Mathf.Abs(flewSk-sr.anchoredPosition.x)>1f;
-        float off=(want-rm.x)*unitsPerPx;
-        if(fixes<2&&(snap||Mathf.Abs(off)>2f))
+        // dev.39 logs (Lateralus 22 Nov, 2560 px): the layout values put the row at 637 px, the exact centre, but the screen check measured the
+        // centre as 626 and 607 px (a card still slightly scaled), moved the padding 6 and 15 units and so made a small jump. The screen check
+        // now only logs; only a flight target / resting spot mismatch is corrected (once).
+        if(fixes<1&&snap)
         {
-            fixes++;
-            if(snap){SetRestX(mr,flewMp);SetRestX(sr,flewSk);}
-            if(Mathf.Abs(off)>2f){padL+=Mathf.Round(off);Place();}
-            MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB {msg}: corrected ({(snap?"rest put on the flight target":"")}{(snap&&Mathf.Abs(off)>2f?", ":"")}{(Mathf.Abs(off)>2f?$"padding moved {off:0} units":"")})");
+            fixes++;SetRestX(mr,flewMp);SetRestX(sr,flewSk);
+            MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB {msg}: corrected (rest put on the flight target)");
         }
         else MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB {msg}");
     }
