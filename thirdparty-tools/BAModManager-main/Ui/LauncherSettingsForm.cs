@@ -62,7 +62,7 @@ internal sealed class LauncherSettingsForm : Form
         foreach (var (code, name) in Languages)
         {
             var b = Theme.MakeButton(name, code == Current ? ButtonKind.Primary : ButtonKind.Secondary);
-            if (code == "zh") b.Font = new Font("Microsoft YaHei UI", b.Font.Size, FontStyle.Bold);
+            if (code == "zh") b.Font = AppFonts.Chinese(b.Font.Size, FontStyle.Bold);
             b.Margin = new Padding(0, 0, 6, 6);
             b.Click += (_, _) => SwitchLanguage(code);
             langRow.Controls.Add(b);

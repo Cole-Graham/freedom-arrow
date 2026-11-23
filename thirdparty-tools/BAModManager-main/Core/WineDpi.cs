@@ -8,7 +8,8 @@ namespace BAModManager.Core;
 /// the user's zoom level?"). On Windows the launcher already follows the display zoom (PerMonitorV2, AutoScaleMode.Dpi). Under Proton/Wine the
 /// prefix always reports 100 % (LogPixels 96), whatever the Linux desktop scale is: on his 4K screen KDE has [Xwayland] Scale=2 (X programs scale
 /// themselves), so the 1440x960 window came out half size. At start-up the launcher reads the desktop scale and sets the same DPI in its own Wine
-/// prefix (HKCU\Control Panel\Desktop LogPixels), then restarts once, because Wine reads it when a program starts.
+/// prefix (HKCU\Control Panel\Desktop LogPixels). Wine reads it when its session starts, so it is used from the next start: restarting the
+/// launcher inside the same Wine session made a 2x window with most labels at the old size (tested 22 Nov on his 4K KDE desktop).
 /// Scale, first found: FA_LAUNCHER_SCALE (override, e.g. 1.5), GDK_SCALE, QT_SCALE_FACTOR, KDE kwinrc [Xwayland] Scale, else a 4K-sized screen = 2
 /// (1500+ px high = 1.5). A LogPixels the player set themselves is left alone, and so is the game's own prefix (Steam app 1604270).
 /// </summary>
@@ -16,7 +17,7 @@ public static class WineDpi
 {
     private const string DesktopKey = @"Control Panel\Desktop", MarkKey = @"Software\FreedomArrowLauncher", MarkValue = "AutoLogPixels";
 
-    /// <summary>True when the prefix DPI was changed and the launcher should restart to use it.</summary>
+    /// <summary>True when the prefix DPI was changed (used from the next start).</summary>
     public static bool Apply()
     {
         if (!LinuxSteam.IsWine) return false;
@@ -34,7 +35,7 @@ public static class WineDpi
             if (want == current) return false;
             desktop.SetValue("LogPixels", want, RegistryValueKind.DWord);
             mark.SetValue(MarkValue, want, RegistryValueKind.DWord);
-            NetDiagnostics.Append($"Display scale {scale.ToString("0.##", CultureInfo.InvariantCulture)} ({source}): Wine LogPixels {current} -> {want}, restarting");
+            NetDiagnostics.Append($"Display scale {scale.ToString("0.##", CultureInfo.InvariantCulture)} ({source}): Wine LogPixels {current} -> {want}, used from the next start");
             return true;
         }
         catch (Exception ex)

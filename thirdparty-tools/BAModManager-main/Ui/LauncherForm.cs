@@ -78,7 +78,7 @@ internal sealed class LauncherForm : Form
         _lang.Padding = new Padding(0);
         _lang.Margin = new Padding(0);
         _lang.Location = new Point(DesignWidth - 72 - 14, 9);
-        _lang.Font = Loc.IsChinese ? Theme.Head(10.5f, semi: true) : new Font("Microsoft YaHei UI", 9f, FontStyle.Bold);
+        _lang.Font = Loc.IsChinese ? Theme.Head(10.5f, semi: true) : AppFonts.Chinese(9f, FontStyle.Bold);
         _lang.BackColor = Theme.Background;
         _lang.Click += (_, _) => ToggleChinese();
         header.RightInset = 72 + 8;

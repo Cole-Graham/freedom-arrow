@@ -24,6 +24,21 @@ internal static class AppFonts
 
     public static bool InterLoaded { get; private set; }
 
+    // Chinese: "Microsoft YaHei UI" where it is installed (Windows). Proton has only "Microsoft YaHei" (msyh.ttf): the notes box
+    // (RichTextBox) does not substitute a missing face and showed boxes. GB2312 character set so the Chinese glyphs are used.
+    public static Font Chinese(float size, FontStyle style = FontStyle.Regular) => new(CjkFace.Value, size, style, GraphicsUnit.Point, 134);
+
+    private static readonly Lazy<string> CjkFace = new(() =>
+    {
+        try
+        {
+            using var installed = new InstalledFontCollection();
+            var names = installed.Families.Select(f => f.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            return names.Contains("Microsoft YaHei UI") || !names.Contains("Microsoft YaHei") ? "Microsoft YaHei UI" : "Microsoft YaHei";
+        }
+        catch (Exception) { return "Microsoft YaHei UI"; }
+    });
+
     // GDI (TextRenderer, used by labels, buttons, the grid) only sees private fonts registered here.
     [DllImport("gdi32.dll")]
     private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, out uint pcFonts);
@@ -65,7 +80,7 @@ internal static class AppFonts
         if (Core.Loc.IsChinese && !latinOnly)
         {
             var cjk = family is SemiBold or ExtraBold or CondensedSemiBold ? style | FontStyle.Bold : style;
-            return new Font("Microsoft YaHei UI", size * 0.95f, cjk);
+            return Chinese(size * 0.95f, cjk);
         }
 
         if (Families.TryGetValue(family, out var ff) && ff.IsStyleAvailable(style))
