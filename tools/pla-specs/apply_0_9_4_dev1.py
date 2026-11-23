@@ -576,6 +576,10 @@ import ar2000_heli_095;ar2000_heli_095.apply(t,g,ok,rec)
 # ---------- HQ-9 rework (Osama 22 Nov 2026 15:2x PST): HQ-9C card -> HQ-9B with a 4x HQ-9B / 8x HQ-9C (+50, PAC-3 MSE round at 1175) slot; HQ-9B card
 # -> HQ-9A, semi-active. See hq9_rework_1122.py.
 import hq9_rework_1122;hq9_rework_1122.apply(t,g,ok,rec)
+# ---------- China infantry casualty order + weapon list order (Lateralus 22 Nov 2026 16:4x PST, thread 1572962048705429598: "queue both"):
+# SquadMembers.DeathPriority (highest dies first; one keeper per squad at 1) on 498 rows and SquadWeapons.Order (card/HUD list only) on 452 rows,
+# 136 China infantry units. See infantry_order_1122.py and docs/engine/infantry-casualty-and-weapon-order.md.
+import infantry_order_1122;infantry_order_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

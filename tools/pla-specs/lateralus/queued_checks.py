@@ -215,5 +215,13 @@ if m>=key('0.9.5-dev.30'):
     if Ut.get(1084,{}).get('ModelFileName')!='US_OH58Kiowa':bad.append('AR-2000 (1084) is not on the Kiowa stand-in (ar2000_heli_095.py)')
     elif not _o or (_o[0].get('Turret0Id'),_o[0].get('Turret1Id'),_o[0].get('IsDefault'))!=(2019089,2019089,True):bad.append('AR-2000 default loadout without the AKD-11 on both pylons')
     elif _Tt[2019089].get('IsDefault') or _WAt[2019096].get('Quantity')!=4 or (_Wt[2019087].get('TimeBetweenBurstsMin'),_Wt[2019087].get('TimeBetweenBurstsMax'))!=(48.0,64.0):bad.append('AR-2000 pylon / ammo / launcher pause not as ar2000_heli_095.py')
+# From 0.9.5-dev.34 (Lateralus 22 Nov 2026 16:4x PST, thread 1572962048705429598: "queue both"): China infantry DeathPriority (498 rows) and
+# SquadWeapons Order (452 rows) from docs/engine/infantry-order (infantry_order_1122.py).
+if m>=key('0.9.5-dev.34'):
+    _io=Path(__file__).resolve().parents[3]/'docs/engine/infantry-order'
+    for _tab,_fn,_pf,_key in (('SquadMembersJson.json','squad_members.json','death_priority_proposal.json','apply_as_squad_members_overrides'),
+                              ('SquadWeaponsJson.json','squad_weapons.json','weapon_order_proposal.json','apply_as_squad_weapons_overrides')):
+        _t=merged(_tab,_fn);_want=json.loads((_io/_pf).read_text())[_key]
+        bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

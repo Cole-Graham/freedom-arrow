@@ -147,3 +147,8 @@
   clean (/tmp/famodels-f35glass). Until a build carries it, FAModels' existing fallback shows clear glass (unknown donor = InvalidDataException,
   caught). ASSETS: KF-21 glass mat.json cockpitDonor US_F35A_Glass; landing gear = the JASDF F-35B gear from Shawn's pack fitted to the KF-21 (the
   vanilla F-35 gear is inside the 2.6 GB unit bundle; not extracted). Staged in work/blue-dragon-models-20261122 (asset-args.txt). Not seen in game.
+- 2026-11-22 16:5x PST, thread 1572962048705429598 (Lateralus: "queue both", after the casualty-order investigation). DATA: infantry_order_1122.py
+  (last section of apply_0_9_4_dev1.py) sets SquadMembers.DeathPriority on 498 rows (highest dies first; one keeper per squad at 1, plain riflemen
+  last) and SquadWeapons.Order on 452 rows (card/HUD weapon list only) on 136 China infantry units, from docs/engine/infantry-order/*_proposal.json.
+  Each row is checked against its dev.33 value (check run: 4172 checks pass). GUARD: lateralus/queued_checks.py from 0.9.5-dev.34 fails the package
+  if any of the 950 values is missing (tested: dev.33 package as dev.34 lists exactly 950). Uncertain choices are in a Sheet for Lateralus. Not seen in game.
