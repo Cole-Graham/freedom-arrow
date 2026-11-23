@@ -49,4 +49,4 @@ WA=finish(contrast_alpha(lum,body,32,150,1.1,0.0),'CA')
 big=I.new('RGBA',(1100,720),(40,46,52,255))
 for i,f in enumerate((WA,WB)):
     big.alpha_composite(f[512],(i*550,4));big.alpha_composite(f[128],(i*550+60,570));big.alpha_composite(f[128].resize((64,64),I.LANCZOS),(i*550+220,600))
-mo=I.open('../../091-wt/releases/0.6/source/runtime-qa/icons/FA_CHINA_MOTORIZED.png').convert('RGBA');big.alpha_composite(mo,(400,570));big.save('prev_contrast.png')
+mo=I.open('../../091-wt/mod/source/runtime-qa/icons/FA_CHINA_MOTORIZED.png').convert('RGBA');big.alpha_composite(mo,(400,570));big.save('prev_contrast.png')

@@ -10,7 +10,7 @@ with the gameplay package.
 from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys,tempfile,zipfile
 sys.path.insert(0,str(Path(__file__).parent));import make_assets
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 enc=lambda x:(json.dumps(x,indent=2,ensure_ascii=False)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def digest(p):
@@ -65,10 +65,10 @@ with zipfile.ZipFile(base) as z:
     for f in sorted([*(SRC/'UserData/FreedomArrow/loading').glob('*.png'),*(SRC/'UserData/FreedomArrow/menu-art').glob('*.png'),*(SRC/'UserData/FreedomArrow/ranked').rglob('*.png'),SRC/'UserData/FreedomArrow/menu-art/menu-art.json',SRC/'UserData/FreedomArrow/china-voices.json',*(SRC/'UserData/FreedomArrow/ChinaVoice').rglob('*.mp3'),*(SRC/'UserData/FreedomArrow/audio').glob('*.mp3'),*(SRC/'UserData/FreedomArrow/audio').glob('*.ogg')]):
         k=f.relative_to(SRC).as_posix()
         if f.is_file() and (k not in z.namelist() or f.read_bytes()!=z.read(k)):override[k]=f.read_bytes()
-    # Lateralus 13 Nov 2026: maps live in releases/0.8/scenarios (moved from the frozen 0.7 branch) and their zone values in
-    # releases/0.8/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
+    # Lateralus 13 Nov 2026: maps live in maps/scenarios (moved from the frozen 0.7 branch) and their zone values in
+    # maps/source/UserData/FAConquestPrototype/settings.json. Rebuild every scenario from source on each build.
     with tempfile.TemporaryDirectory() as built_dir:
-        subprocess.run([sys.executable,str(ROOT/'releases/0.8/scenarios/make_scenario.py'),'--game-dir',a.game_dir,'--out',built_dir],check=True)
+        subprocess.run([sys.executable,str(ROOT/'maps/scenarios/make_scenario.py'),'--game-dir',a.game_dir,'--out',built_dir],check=True)
         built={'UserData/FreedomArrow/scenarios/'+f.relative_to(built_dir).as_posix():f.read_bytes() for f in Path(built_dir).rglob('*') if f.is_file()}
     for k,b in built.items():
         if k not in z.namelist() or z.read(k)!=b:override[k]=b
@@ -80,7 +80,7 @@ with zipfile.ZipFile(base) as z:
     retired_scenarios=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and not n.endswith('/') and n not in built]
     # 0.9.0-dev.43 (Osama 18 Nov: Delta loading screen 'third hand'): the loading folder is exact, so a replaced picture leaves the package.
     retired_scenarios+=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/loading/') and not n.endswith('/') and not (SRC/n).is_file()]
-    conquest=ROOT/'releases/0.8/source/UserData/FAConquestPrototype'
+    conquest=ROOT/'maps/source/UserData/FAConquestPrototype'
     settings=(conquest/'settings.json').read_bytes();compat=json.loads((conquest/'compatibility.json').read_text())
     compat['UserData/FAConquestPrototype/settings.json']=sha(settings);compat=enc(compat)
     for k,b in (('UserData/FAConquestPrototype/settings.json',settings),('UserData/FAConquestPrototype/compatibility.json',compat)):

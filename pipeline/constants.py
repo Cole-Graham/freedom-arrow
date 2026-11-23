@@ -1,4 +1,4 @@
-"""Load mod/constants into id-keyed field overrides."""
+"""Load archive/mod-0.1-0.2/constants into id-keyed field overrides."""
 
 from __future__ import annotations
 

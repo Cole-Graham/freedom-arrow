@@ -1,7 +1,7 @@
 """Package the weapon HUD revision over pinned Build22; preserve every other gameplay/model payload."""
 import argparse,hashlib,json,subprocess,tempfile,zipfile
 from pathlib import Path
-root=Path(__file__).resolve().parents[2];rel=root/'releases/0.6';p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',default='zip');a=p.parse_args();c=json.loads((rel/'pla-specializations-contract.json').read_text());src=rel/'source'
+root=Path(__file__).resolve().parents[2];rel=root/'mod';p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',default='zip');a=p.parse_args();c=json.loads((rel/'pla-specializations-contract.json').read_text());src=rel/'source'
 def digest(path):
  with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def sha(data):return hashlib.sha256(data).hexdigest()

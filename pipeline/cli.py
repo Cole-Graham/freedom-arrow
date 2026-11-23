@@ -18,7 +18,7 @@ def _channel_argument(parser: argparse.ArgumentParser) -> None:
         "--channel",
         default="stable",
         choices=("stable", "testing"),
-        help="stable uses mod/constants; testing uses mod/testing/constants (default: stable)",
+        help="stable uses archive/mod-0.1-0.2/constants; testing uses archive/mod-0.1-0.2/testing/constants (default: stable)",
     )
 
 

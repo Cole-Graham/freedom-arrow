@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from pipeline.config import LEGACY_MOD
 from pipeline.errors import PipelineError
 from pipeline.formulas import validate_formula
 
@@ -45,8 +46,8 @@ class FormulaTests(unittest.TestCase):
     def test_committed_formula_directories_exist(self):
         repo = Path(__file__).resolve().parents[2]
         for relative in (
-            Path("mod") / "formulas",
-            Path("mod") / "testing" / "formulas",
+            LEGACY_MOD / "formulas",
+            LEGACY_MOD / "testing" / "formulas",
         ):
             self.assertTrue((repo / relative).is_dir())
 

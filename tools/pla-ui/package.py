@@ -1,7 +1,7 @@
 """One complete PLA Build5 candidate from Build4: preserve all assets, replace only checked UI data/runtime."""
 from pathlib import Path
 import argparse,hashlib,json,sys,zipfile
-ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6'
+ROOT=Path(__file__).resolve().parents[2];R=ROOT/'mod'
 sys.path.insert(0,str(ROOT));from pipeline.tables import FIELD_TO_FILE
 ap=argparse.ArgumentParser();ap.add_argument('--base',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);a=ap.parse_args()
 def sha(b):return hashlib.sha256(b).hexdigest()

@@ -1,7 +1,7 @@
 """Package the exact PLA32-based single-spec correction, retaining all approved assets."""
 from pathlib import Path
 import argparse, hashlib, json, subprocess, tempfile, zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 BASE='8f537832f6d8a0e52c20ac83d6faf486d4a71af1148c7e3f7fba27dda1e09024'
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

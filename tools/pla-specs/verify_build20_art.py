@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json
 from PIL import Image
-root=Path(__file__).resolve().parents[2];task=root.parent/'pla-sf-emblems-20261111';before=json.loads((task/'baseline19.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'releases/0.6/source';identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
+root=Path(__file__).resolve().parents[2];task=root.parent/'pla-sf-emblems-20261111';before=json.loads((task/'baseline19.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'mod/source';identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
 assert set(before)==set(after)
 for table,rows in before.items():
  assert set(rows)==set(after[table]),table

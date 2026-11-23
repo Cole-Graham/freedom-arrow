@@ -10,7 +10,7 @@ Every file of the complete package is in exactly one of the two launcher package
 """
 from pathlib import Path
 import argparse,hashlib,json,re,subprocess,tempfile,zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 V='0.8.0-dev.1';AV='0.2.0';B=69
 BASE=json.loads((REL/'out/PLA-TEST-Build-68.json').read_text())['sha256']
 enc=lambda x:(json.dumps(x,indent=2,ensure_ascii=False)+'\n').encode()

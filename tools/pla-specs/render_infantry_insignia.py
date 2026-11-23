@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,json,math,subprocess,hashlib,tempfile
 from PIL import Image
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--renderer',required=True);a=p.parse_args();root=Path(__file__).resolve().parents[2];out=root/'tools/pla-specs/infantry-insignia-vectors';out.mkdir(exist_ok=True);icons=root/'releases/0.6/source/runtime-qa/icons';ivory='#e7f7e4';dark='#26332d'
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--renderer',required=True);a=p.parse_args();root=Path(__file__).resolve().parents[2];out=root/'tools/pla-specs/infantry-insignia-vectors';out.mkdir(exist_ok=True);icons=root/'mod/source/runtime-qa/icons';ivory='#e7f7e4';dark='#26332d'
 def path(d,fill=ivory,**attrs):return '<path d="'+d+'" fill="'+fill+'" '+ ' '.join(k.replace('_','-')+'="'+str(v)+'"' for k,v in attrs.items())+'/>'
 def star(cx,cy,r,inner=None):
  inner=inner or r*.4;points=[(cx+math.sin(i*math.pi/5)*(r if i%2==0 else inner),cy-math.cos(i*math.pi/5)*(r if i%2==0 else inner)) for i in range(10)];return path('M'+'L'.join(f'{x:.2f},{y:.2f}' for x,y in points)+'Z')

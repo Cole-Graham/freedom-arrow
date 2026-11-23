@@ -16,7 +16,7 @@ from pathlib import Path
 from pipeline.apply import validate_applied
 from pipeline.bundle import identify_bundle
 from pipeline.channels import channel_dir, constants_dir, formulas_dir, parse_channel
-from pipeline.config import Config
+from pipeline.config import LEGACY_MOD, Config
 from pipeline.constants import load_constants
 from pipeline.errors import PipelineError
 from pipeline.formulas import formulas_in, validate_formula
@@ -25,7 +25,7 @@ from pipeline.tables import FIELD_TO_FILE
 
 PLUGIN_DLL = Path("runtime") / "FreedomArrow" / "bin" / "Release" / "net6.0" / "FreedomArrow.dll"
 
-MODPACK_PATH = Path("mod") / "modpack.json"
+MODPACK_PATH = LEGACY_MOD / "modpack.json"
 USERDATA_ROOT = "UserData/FreedomArrow"
 
 
@@ -47,7 +47,7 @@ def package(cfg: Config, channel: str) -> Path:
     else:
         print(
             f"warning: {channel} mod.json has no repo. "
-            "BAModLauncher cannot check GitHub for updates until mod/modpack.json sets one.",
+            "BAModLauncher cannot check GitHub for updates until archive/mod-0.1-0.2/modpack.json sets one.",
             flush=True,
         )
 
@@ -130,7 +130,7 @@ def _plugin_bytes(repo: Path) -> bytes:
 
 
 def _check_channel(cfg: Config, channel: str) -> None:
-    mod = cfg.repo_root / "mod"
+    mod = cfg.repo_root / LEGACY_MOD
     configs = (mod if channel == "stable" else mod / "testing") / "configs"
     unsupported = sorted(path for path in configs.rglob("*") if path.is_file() and path.suffix.lower() == ".json")
     if unsupported:

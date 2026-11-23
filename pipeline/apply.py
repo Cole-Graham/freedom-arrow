@@ -1,4 +1,4 @@
-"""Merge mod/constants onto a vanilla snapshot and rebuild the object."""
+"""Merge archive/mod-0.1-0.2/constants onto a vanilla snapshot and rebuild the object."""
 
 from __future__ import annotations
 

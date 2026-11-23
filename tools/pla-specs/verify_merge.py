@@ -1,7 +1,7 @@
 """Verify the complete Build9/Build10 union from archive bytes and loader source."""
 from pathlib import Path
 import argparse,hashlib,json,subprocess,zipfile
-r=Path(__file__).resolve().parents[2];c=json.loads((r/'releases/0.6/pla-specializations-contract.json').read_text())
+r=Path(__file__).resolve().parents[2];c=json.loads((r/'mod/pla-specializations-contract.json').read_text())
 p=argparse.ArgumentParser();p.add_argument('--branches',type=Path,required=True);p.add_argument('--transition',type=Path,required=True);p.add_argument('--merged',type=Path,required=True);a=p.parse_args()
 for version,path in [('9',a.branches),('10',a.transition)]:
  with path.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==c['merged_from'][version]['sha256']
@@ -21,6 +21,6 @@ with zipfile.ZipFile(a.branches) as b9,zipfile.ZipFile(a.transition) as b10,zipf
   assert b10.read(n)==merged.read(n),('Build10 asset lost',n)
  provenance=json.loads(merged.read('UserData/FreedomArrow/merge-provenance.json'));assert provenance['parents']==c['merged_from']
 # Build10's complete loader hook/failure-restoration source differs only in the version label.
-source=r/'releases/0.6/experimental-model-loader/FAModels.cs';s=source.read_text();prior=subprocess.check_output(['git','show',c['merged_from']['10']['source']+':releases/0.6/experimental-model-loader/FAModels.cs'],cwd=r,text=True)
+source=r/'mod/experimental-model-loader/FAModels.cs';s=source.read_text();prior=subprocess.check_output(['git','show',c['merged_from']['10']['source']+':mod/experimental-model-loader/FAModels.cs'],cwd=r,text=True)
 assert s.replace('"0.3.11"','"0.3.10"')==prior
 print(json.dumps({'build9_payloads_byte_identical_except_explicit_revision_files':checked,'all_build9_constants_and_repaired_assets_retained':True,'build10_static_model_cockpit_and_music_assets_retained':True,'build10_immediate_hide_and_failure_restore_source_exact_except_version':True,'native_verified':False},indent=2))

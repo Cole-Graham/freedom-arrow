@@ -1,6 +1,6 @@
 # NLOS missiles (HJ-10, CTL-181, QN-502, CH-901)
 
-**Short answer.** NLOS needs two things. The data makes the missile fly a cruise path from a vertical launcher. The runtime hook `releases/0.6/source/runtime-qa/NlosTrait.cs` does the rest, driven by `UserData/FreedomArrow/nlos.json`. It lets the launcher fire at enemies that a friendly unit has spotted, with no line of sight of its own. It also keeps the missile locked on the target after the launcher loses sight of it. Data alone cannot do this: the game drops the lock when the missile has no line of sight.
+**Short answer.** NLOS needs two things. The data makes the missile fly a cruise path from a vertical launcher. The runtime hook `mod/source/runtime-qa/NlosTrait.cs` does the rest, driven by `UserData/FreedomArrow/nlos.json`. It lets the launcher fire at enemies that a friendly unit has spotted, with no line of sight of its own. It also keeps the missile locked on the target after the launcher loses sight of it. Data alone cannot do this: the game drops the lock when the missile has no line of sight.
 
 - Read from: Freedom Arrow 0.9.5 (`gameplay/0.9.5`, `2f71d133`), Broken Arrow 1.2.2.1.
 - A standalone copy of this code (a sample MelonLoader mod with stubs) and the full unit rows were prepared for focolate on 23 Nov 2026 (Osama's request): `work/nlos-for-focolate-20261123` on the deck.

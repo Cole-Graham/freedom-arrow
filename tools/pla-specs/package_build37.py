@@ -1,7 +1,7 @@
 """Package the exact PLA36-based J-10A neutral grey livery (Build37), retaining all approved assets."""
 from pathlib import Path
 import argparse, hashlib, json, subprocess, tempfile, zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 BASE=json.loads((REL/'out/PLA-TEST-Build-36.json').read_text())['sha256']
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

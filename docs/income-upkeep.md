@@ -1,6 +1,6 @@
 # Proposal: subtle income upkeep
 
-**Status: undecided.** Current locked Freedom Arrow economy is still 1500 start, flat 200/min, no upkeep (`releases/0.3/GAME-MODE.md`). This document is a design proposal, not a change to that lock.
+**Status: undecided.** Current locked Freedom Arrow economy is still 1500 start, flat 200/min, no upkeep (`archive/releases/0.3/GAME-MODE.md`). This document is a design proposal, not a change to that lock.
 
 The goal is a small living-force tax that feels like Wargame: Red Dragon’s command-vehicle opportunity cost, not like vanilla Broken Arrow’s wipe-to-rich curve. Target average income in real games is **210/min**. The input is **nominal living battlefield value**, never deck ratio.
 

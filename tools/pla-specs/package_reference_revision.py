@@ -1,7 +1,7 @@
 """Package reference-card assignments and conscript capabilities over pinned Build28."""
 from pathlib import Path
 import argparse,json,hashlib,subprocess,tempfile,zipfile
-root=Path(__file__).resolve().parents[2];rel=root/'releases/0.6';src=rel/'source'
+root=Path(__file__).resolve().parents[2];rel=root/'mod';src=rel/'source'
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',default='zip');a=p.parse_args();c=json.loads((rel/'pla-specializations-contract.json').read_text());assert c['build']==29 and c['test_spec']==22
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode();sha=lambda b:hashlib.sha256(b).hexdigest()
 def digest(p):

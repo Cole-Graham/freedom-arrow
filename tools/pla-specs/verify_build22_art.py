@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import Counter
 import json,hashlib
 from PIL import Image
-root=Path(__file__).resolve().parents[2];task=root.parent/'pla-refined-animal-emblems-20261111';before=json.loads((task/'baseline21.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'releases/0.6/source';c=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
+root=Path(__file__).resolve().parents[2];task=root.parent/'pla-refined-animal-emblems-20261111';before=json.loads((task/'baseline21.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'mod/source';c=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
 assert set(before)==set(after)
 for table,rows in before.items():
  assert set(rows)==set(after[table]),table
@@ -41,7 +41,7 @@ provenance={e['profile']:e for e in json.loads((vectors/'provenance.json').read_
 for e in rules.values():
  if e['icon_kind']=='sf_emblem':assert not provenance[e['profile']]['wreath']
 # Prior weaponHUD resources are byte-identical: only the unit-card layer is being changed here.
-old=root.parent/'pla-detailed-infantry-icons-build21/releases/0.6/source/runtime-qa/icons'
+old=root.parent/'pla-detailed-infantry-icons-build21/mod/source/runtime-qa/icons'
 for name in hud['resources']:assert (src/'runtime-qa/icons'/(name+'.png')).read_bytes()==(old/(name+'.png')).read_bytes()
 changed=[]
 for name in identity['resources']:

@@ -1,7 +1,7 @@
 """Render code-native white silhouettes for PLA weapon/ammunition HUD addresses."""
 from pathlib import Path
 import json,subprocess,argparse
-ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6';out=R/'source/runtime-qa/icons'
+ROOT=Path(__file__).resolve().parents[2];R=ROOT/'mod';out=R/'source/runtime-qa/icons'
 p=argparse.ArgumentParser();p.add_argument('--renderer',required=True);a=p.parse_args()
 shapes={
  'CANNON':'<path d="M24 75h48l16-20h45l15 12h89v12H138l-13 15H75l-14 16H24z"/><path d="M91 95h10v27H88z"/>',

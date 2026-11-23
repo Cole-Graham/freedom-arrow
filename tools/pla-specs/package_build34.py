@@ -1,7 +1,7 @@
 """Package the exact PLA33-based Shaanxi HMV3 addition, retaining all approved assets."""
 from pathlib import Path
 import argparse, hashlib, json, subprocess, tempfile, zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 BASE='329c54858cfac03ef5712f6e42334180a696e5872b293e682bb163db99f7f41c'
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

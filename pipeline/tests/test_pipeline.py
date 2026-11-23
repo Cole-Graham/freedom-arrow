@@ -14,7 +14,7 @@ from pathlib import Path
 from pipeline.apply import apply_overrides, build_object
 from pipeline.bundle import FoundObject, _select_database, read_unity_version
 from pipeline.bundle_stream import extract_file, pack_files, read_index, write_bundle
-from pipeline.config import load_config
+from pipeline.config import LEGACY_MOD, load_config
 from pipeline.constants import load_constants
 from pipeline.crypto import MARKER, aes_decrypt, aes_encrypt
 from pipeline.database import parse_database, rebuild
@@ -480,7 +480,7 @@ class HangarTests(unittest.TestCase):
 class ManifestTests(unittest.TestCase):
     def test_write_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "mod" / "manifest.json"
+            path = Path(tmp) / LEGACY_MOD / "manifest.json"
             write_manifest(path, "6000.3.24f1-abc")
             self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["build_id"], "6000.3.24f1-abc")
 

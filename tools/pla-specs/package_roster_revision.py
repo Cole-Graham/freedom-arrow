@@ -1,7 +1,7 @@
 """Package the exact PLA30-based roster revision, retaining all approved assets."""
 from pathlib import Path
 import argparse, hashlib, json, subprocess, tempfile, zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 BASE='809660cb5ec20c47bc24dff240badf23fa70fcb8f95160805193378ebdc5459a'
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

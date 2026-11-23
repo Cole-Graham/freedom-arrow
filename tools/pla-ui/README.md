@@ -34,7 +34,7 @@ Lateralus's thread1568104480459722894 is independently preparing the dedicated d
 
 ## Reproduce
 
-Use the repository's Python environment with Pillow for `tools/pla-ui/make_icons.py`. Run `tools/pla-ui/prepare.py --base PLA-TEST-Build-4.bamod --vanilla PINNED_B64_DIRECTORY`; this verifies the exact Build4 SHA and preserves its comparison rows. Build `releases/0.6/source/runtime-qa/FreedomArrow.Runtime.csproj` against the generated MelonLoader assemblies. Then run `tools/pla-ui/package.py --base PLA-TEST-Build-4.bamod --out PLA-TEST-Build-5.bamod` and `releases/0.6/verify.py`.
+Use the repository's Python environment with Pillow for `tools/pla-ui/make_icons.py`. Run `tools/pla-ui/prepare.py --base PLA-TEST-Build-4.bamod --vanilla PINNED_B64_DIRECTORY`; this verifies the exact Build4 SHA and preserves its comparison rows. Build `mod/source/runtime-qa/FreedomArrow.Runtime.csproj` against the generated MelonLoader assemblies. Then run `tools/pla-ui/package.py --base PLA-TEST-Build-4.bamod --out PLA-TEST-Build-5.bamod` and `mod/verify.py`.
 
 Do not use the historical `build_constants.py` to reconstruct this candidate: it predates the25 comparison cards. The pinned-pack preparation script is the reproduction path. No live install is required.
 

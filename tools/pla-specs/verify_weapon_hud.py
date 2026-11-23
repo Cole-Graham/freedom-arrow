@@ -12,7 +12,7 @@ for table,rows in before.items():
   for field,value in row.items():
    if other[field]!=value:changes.append({'table':table,'id':int(uid),'field':field,'before':value,'after':other[field]})
 assert changes and all(x['table']=='WeaponsJson' and x['field']=='HUDIcon' for x in changes),changes[:8]
-source=root/'releases/0.6/source';receipt=json.loads((source/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());ids={e['weapon'] for e in receipt['entries']};assert len(ids)==351 and {x['id'] for x in changes}<=ids
+source=root/'mod/source';receipt=json.loads((source/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());ids={e['weapon'] for e in receipt['entries']};assert len(ids)==351 and {x['id'] for x in changes}<=ids
 native={n.casefold() for n in json.loads((root/'tools/pla-specs/native-weapon-art-index.json').read_text())['textures']}
 for e in receipt['entries']:
  assert after['WeaponsJson'][str(e['weapon'])]['HUDIcon']==e['address']

@@ -1,7 +1,7 @@
 """Apply only China UI fields to the pinned complete Build4; retain every approved infantry row."""
 from pathlib import Path
 import argparse,copy,hashlib,json,sys,zipfile
-ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6';sys.path[:0]=[str(ROOT),str(R)]
+ROOT=Path(__file__).resolve().parents[2];R=ROOT/'mod';sys.path[:0]=[str(ROOT),str(R)]
 from pipeline.tables import FIELD_TO_FILE
 from pipeline.crypto import aes_decrypt
 from china_ui import apply

@@ -4,7 +4,7 @@ Shared PLA units retain all database memberships. The native Arsenal groups by t
 
 Run the pure policy checks with `dotnet run --project tools/pla-specs/spec-group-tests/SpecGroupTests.csproj -c Release -- tools/pla-specs/spec-group-tests/build15-memberships.json`. Native UI validation remains separate. Log markers identify applied selections and failures.
 
-Build17 is a runtime-only overlay over the exact complete Build16 archive. `package_ui.py` preserves all constant tables, FAModels, models and music, including Build16 weapon-family HUD resources. See the root build contract for the base SHA256 and `releases/0.6/verify.py` for full package checks. Country-selector order remains unchanged pending user clarification.
+Build17 is a runtime-only overlay over the exact complete Build16 archive. `package_ui.py` preserves all constant tables, FAModels, models and music, including Build16 weapon-family HUD resources. See the root build contract for the base SHA256 and `mod/verify.py` for full package checks. Country-selector order remains unchanged pending user clarification.
 
 ## Document change log
 

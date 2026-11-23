@@ -8,7 +8,7 @@ leaves a null in the list and Turrets.CloneWithClonedWeaponsAndTurrets throws (u
 Usage: check_mount_weapons.py PACKAGE.bamod VANILLA_DIR   (exit 1 and list the mounts when any are over)"""
 import json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
+ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'mod')]
 from pipeline.tables import FIELD_TO_FILE
 TABS=('Units','TurretsJson','TurretUnitsJson','TurretWeaponsJson','WeaponsJson','OptionsJson','ModificationsJson','SpecializationAvailabilitiesJson')
 def tables(van,z=None):

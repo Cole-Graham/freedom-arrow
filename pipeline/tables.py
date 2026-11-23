@@ -1,7 +1,7 @@
 """The 24 DataBaseCompiled string fields and their constants filenames.
 
 Field order matches thirdparty-tools/BodkinToolkit/extractor/crypto.py.
-Filenames are the authored files under mod/constants/.
+Filenames are the authored files under archive/mod-0.1-0.2/constants/.
 """
 
 from __future__ import annotations

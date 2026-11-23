@@ -8,7 +8,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from pipeline.config import Config
+from pipeline.config import LEGACY_MOD, Config
 from pipeline.errors import PipelineError
 from pipeline.package import package
 
@@ -25,8 +25,8 @@ def _cfg(root: Path) -> Config:
         game_root=root / "game",
         cache_dir=root / "cache",
         dist_dir=root / "dist",
-        constants_dir=root / "mod" / "constants",
-        manifest_path=root / "mod" / "manifest.json",
+        constants_dir=root / LEGACY_MOD / "constants",
+        manifest_path=root / LEGACY_MOD / "manifest.json",
         write_game_bundle=False,
         backup_dir=root / "cache" / "backups",
         game_exe=None,
@@ -38,14 +38,14 @@ class PackageTests(unittest.TestCase):
     def test_bamod_keeps_changed_constants_and_skips_empty_ones(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            stable = root / "mod" / "constants"
-            testing = root / "mod" / "testing" / "constants"
+            stable = root / LEGACY_MOD / "constants"
+            testing = root / LEGACY_MOD / "testing" / "constants"
             stable.mkdir(parents=True)
             testing.mkdir(parents=True)
             (stable / "units.json").write_text('{\n  "1": { "Cost": 40 }\n}\n', encoding="utf-8")
             (stable / "weapons.json").write_text("{}\n", encoding="utf-8")
             (testing / "units.json").write_text('{\n  "2": { "Cost": 10 }\n}\n', encoding="utf-8")
-            (root / "mod" / "modpack.json").write_text(
+            (root / LEGACY_MOD / "modpack.json").write_text(
                 json.dumps(
                     {
                         "id": "freedomarrow.gameplay",
@@ -63,7 +63,7 @@ class PackageTests(unittest.TestCase):
                 "change": "after",
                 "parameters": {"scale": 1},
             }
-            formula_path = root / "mod" / "formulas" / "OtherClass" / "OtherMethod.json"
+            formula_path = root / LEGACY_MOD / "formulas" / "OtherClass" / "OtherMethod.json"
             formula_path.parent.mkdir(parents=True)
             formula_path.write_text(json.dumps(formula), encoding="utf-8")
             _plant_plugin(root)
@@ -109,8 +109,8 @@ class PackageTests(unittest.TestCase):
     def test_modpack_requires_id_name_and_version(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            (root / "mod").mkdir()
-            (root / "mod" / "modpack.json").write_text("{}\n", encoding="utf-8")
+            (root / LEGACY_MOD).mkdir(parents=True)
+            (root / LEGACY_MOD / "modpack.json").write_text("{}\n", encoding="utf-8")
             with self.assertRaises(PipelineError):
                 package(_cfg(root), "stable")
 
@@ -119,7 +119,7 @@ class PackageTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            config = root / "mod" / "configs" / "nested" / "FOWToolConfig.JSON"
+            config = root / LEGACY_MOD / "configs" / "nested" / "FOWToolConfig.JSON"
             config.parent.mkdir(parents=True)
             config.write_text('{"FontSize": 18}', encoding="utf-8")
             _check_channel(_cfg(root), "testing")
@@ -127,7 +127,7 @@ class PackageTests(unittest.TestCase):
                 _check_channel(_cfg(root), "stable")
             config.unlink()
             _check_channel(_cfg(root), "stable")
-            testing = root / "mod" / "testing" / "configs" / "FOWToolConfig.json"
+            testing = root / LEGACY_MOD / "testing" / "configs" / "FOWToolConfig.json"
             testing.parent.mkdir(parents=True)
             testing.write_text("{}", encoding="utf-8")
             _check_channel(_cfg(root), "stable")

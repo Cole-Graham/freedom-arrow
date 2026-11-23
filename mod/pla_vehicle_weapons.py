@@ -3,7 +3,7 @@ import copy,json,math,re,collections
 from pla_graph import Graph
 
 def apply(root,t,patches,native_ids,vanilla,models):
- g=Graph(t,patches,native_ids);baseline=copy.deepcopy(t);pol=json.loads((root.parents[1]/'tools/pla-specs/vehicle-armament-contract.json').read_text())
+ g=Graph(t,patches,native_ids);baseline=copy.deepcopy(t);pol=json.loads((root.parent/'tools/pla-specs/vehicle-armament-contract.json').read_text())
  entries=[];icon_keys=set()
  def links(src,tab,uid):return [r for r in src[tab].values() if r.get('UnitId')==uid]
  def icon(kind,ammo=False):

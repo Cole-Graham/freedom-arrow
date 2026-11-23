@@ -1,7 +1,7 @@
 """Package the exact PLA66-based Build67 (rocket force/artillery/JRVG batch) plus the JRVG-1 texture files (net hidden, metal mask maps)."""
 from pathlib import Path
 import argparse, hashlib, json, re, subprocess, tempfile, zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 B=67;BASE=json.loads((REL/f'out/PLA-TEST-Build-{B-1}.json').read_text())['sha256']
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

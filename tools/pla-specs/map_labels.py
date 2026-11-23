@@ -23,7 +23,7 @@ def release(version):
     v=m['current']
     if v==version:v=max((r for r in rel if key(r)<key(version)),key=key)
     g=rel[v]
-    for f in [CACHE/g['filename'],*WORK.glob('*/releases/0.6/out/*/'+g['filename'])]:
+    for f in [CACHE/g['filename'],*WORK.glob('*/mod/out/*/'+g['filename'])]:
         if f.is_file() and f.stat().st_size==g['size'] and hashlib.sha256(f.read_bytes()).hexdigest()==g['sha256']:return v,zipfile.ZipFile(f)
     CACHE.mkdir(parents=True,exist_ok=True);f=CACHE/g['filename'];tmp=f.with_suffix('.part')
     with urllib.request.urlopen(g['url'],timeout=600) as r,open(tmp,'wb') as w:

@@ -2,7 +2,7 @@
 import argparse,base64,html,json
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-root=Path(__file__).resolve().parents[2];work=root.parent;icons=root/'releases/0.6/source/runtime-qa/icons';oldroot=work/'pla-five-specs-repo/releases/0.6/source/runtime-qa/icons';old=json.loads((work/'pla-five-specs-repo/releases/0.6/source/UserData/FreedomArrow/pla-weapon-hud.json').read_text());lookup={e['name']:e['address'] for e in old['entries']}
+root=Path(__file__).resolve().parents[2];work=root.parent;icons=root/'mod/source/runtime-qa/icons';oldroot=work/'pla-five-specs-repo/mod/source/runtime-qa/icons';old=json.loads((work/'pla-five-specs-repo/mod/source/UserData/FreedomArrow/pla-weapon-hud.json').read_text());lookup={e['name']:e['address'] for e in old['entries']}
 def uri(p):return 'data:image/png;base64,'+base64.b64encode(p.read_bytes()).decode()
 def image(p,cls='large'):return f'<div class="{cls}"><img src="{uri(p)}"></div>'
 native=uri(work/'vengeance-armory-20261102/12-su34-stats.png');rows=''

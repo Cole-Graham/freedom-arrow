@@ -2,7 +2,7 @@
 import copy,json,re
 
 def apply(root,t,patches,bodies,weapons,models):
- entries=json.loads((root.parents[1]/'tools/pla-specs/model-sheet-entries.json').read_text());before=copy.deepcopy(t);nextrow=max(i for rs in t.values() for i in rs)+1;nextunit=max(t['Units'])+1;nextoption=max(t['OptionsJson'])+1
+ entries=json.loads((root.parent/'tools/pla-specs/model-sheet-entries.json').read_text());before=copy.deepcopy(t);nextrow=max(i for rs in t.values() for i in rs)+1;nextunit=max(t['Units'])+1;nextoption=max(t['OptionsJson'])+1
  def put(table,uid,fields):t[table].setdefault(uid,{'Id':uid}).update(fields);patches[table].setdefault(str(uid),{}).update(fields)
  def clone(table,rid,fields):
   nonlocal nextrow,nextoption

@@ -4,7 +4,7 @@ default texture on 9 Nov; the saved pre-navy textures are that default. Only the
 normal and mask maps, canopy and cockpit textures are shared. .fam references are renamed in place (same length)."""
 import argparse,io,json,zipfile,hashlib
 from pathlib import Path
-OUT=Path(__file__).resolve().parents[2]/'releases/0.6/source/UserData/FAModels'
+OUT=Path(__file__).resolve().parents[2]/'mod/source/UserData/FAModels'
 PAIRS=[('m_j35n_fixed','m_j31_lowvis','m_j35n_fixed_tex0','m_j31_lowvis_tex0'),('m_j35n_fixed_lo','m_j31_lowvis_lo','m_j35n_fixed_lo_tex0','m_j31_lowvis_lo_tex0')]
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--pre-navy',type=Path,required=True);a=p.parse_args()
 z=zipfile.ZipFile(a.base);M='UserData/FAModels/';rec=[]

@@ -1,12 +1,12 @@
 from pathlib import Path
 import json
 import argparse
-a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);args=a.parse_args();p=args.out;p.mkdir(parents=True,exist_ok=True);r=Path(__file__).resolve().parents[2];t=json.loads((r/'tools/pla-specs/effective-preview.json').read_text());catalogue=json.loads((r/'releases/0.6/source/UserData/FreedomArrow/pla-model-catalogue.json').read_text());models=json.loads((r/'releases/0.6/source/UserData/FAModels/models.json').read_text());bodies={v['unitId']:v for v in json.loads((r/'releases/0.6/source/UserData/FAModels/infantry-bodies.json').read_text())};units=t['Units'];specs={i:t['SpecializationsJson'][str(i)]['UIName'] for i in range(17,23)};pool={};source={}
+a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);args=a.parse_args();p=args.out;p.mkdir(parents=True,exist_ok=True);r=Path(__file__).resolve().parents[2];t=json.loads((r/'tools/pla-specs/effective-preview.json').read_text());catalogue=json.loads((r/'mod/source/UserData/FreedomArrow/pla-model-catalogue.json').read_text());models=json.loads((r/'mod/source/UserData/FAModels/models.json').read_text());bodies={v['unitId']:v for v in json.loads((r/'mod/source/UserData/FAModels/infantry-bodies.json').read_text())};units=t['Units'];specs={i:t['SpecializationsJson'][str(i)]['UIName'] for i in range(17,23)};pool={};source={}
 for row in t['SpecializationAvailabilitiesJson'].values():
  if row['SpecializationId'] in specs:pool.setdefault(row['UnitId'],set()).add(row['SpecializationId'])
 for e in catalogue['entries']:source.setdefault(e['unit'],[]).append(e)
 classes={0:'Recon',1:'Infantry',2:'Vehicles',3:'Support',4:'Logistics',5:'Helicopters',6:'Aircraft'};order=['Recon','Infantry','Vehicles','Support','Logistics','Helicopters','Aircraft','Naval'];records=[]
-assignment_path=r/'releases/0.6/source/UserData/FreedomArrow/pla-spec-assignments.json';implemented_recon={x['parent'] for x in json.loads(assignment_path.read_text())['recon_variants']} if assignment_path.exists() else set()
+assignment_path=r/'mod/source/UserData/FreedomArrow/pla-spec-assignments.json';implemented_recon={x['parent'] for x in json.loads(assignment_path.read_text())['recon_variants']} if assignment_path.exists() else set()
 for uid,u in units.items():
  uid=int(uid)
  if u['CountryId']!=4 or not u['DisplayInArmory'] or u['Type']==2:continue

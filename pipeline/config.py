@@ -13,6 +13,9 @@ import yaml
 
 from pipeline.errors import PipelineError
 
+# The 0.1-0.2 data tree this pipeline reads. It was mod/ until the 23 Nov 2026 repo cleanup made mod/ the current mod.
+LEGACY_MOD = Path("archive") / "mod-0.1-0.2"
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE_NAME = "config.template.YAML"
 CONFIG_NAME = "config.YAML"
@@ -77,8 +80,8 @@ def load_config(path: Path | None = None) -> Config:
         game_root=Path(game_root_text),
         cache_dir=_resolve(repo_root, loaded, "cache_dir", "cache"),
         dist_dir=_resolve(repo_root, loaded, "dist_dir", "dist"),
-        constants_dir=_resolve(repo_root, loaded, "constants_dir", "mod/constants"),
-        manifest_path=_resolve(repo_root, loaded, "manifest_path", "mod/manifest.json"),
+        constants_dir=_resolve(repo_root, loaded, "constants_dir", f"{LEGACY_MOD}/constants"),
+        manifest_path=_resolve(repo_root, loaded, "manifest_path", f"{LEGACY_MOD}/manifest.json"),
         write_game_bundle=write_game,
         backup_dir=_resolve(repo_root, loaded, "backup_dir", "cache/backups"),
         game_exe=Path(game_exe_text) if game_exe_text else None,

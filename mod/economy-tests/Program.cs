@@ -100,7 +100,7 @@ for(int t=30;t<=270;t+=30)oneMap.Advance(t,held);Check(oneMap.ScoreLimit==100&&o
 oneMap.Advance(300,held);Check(oneMap.Alpha==100&&oneMap.ScoreLimitWinner==0,"a 1v1 match ends at 100");
 Check(new Ledger(perMap,"two",2700).ScoreLimit==300,"maps without their own limit keep 300");
 Throws(()=>new Settings{Ending="score_or_time",ScoreLimit=300,MapScoreLimits=new(){["one"]=0}}.Validate(),"per-map limit must be at least 1");
-var packaged=JsonSerializer.Deserialize<Settings>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"../../../../../0.8/source/UserData/FAConquestPrototype/settings.json")),new JsonSerializerOptions{PropertyNameCaseInsensitive=true})!;packaged.Validate();
+var packaged=JsonSerializer.Deserialize<Settings>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"../../../../../maps/source/UserData/FAConquestPrototype/settings.json")),new JsonSerializerOptions{PropertyNameCaseInsensitive=true})!;packaged.Validate();
 var oneVsOne=packaged.MapZoneWeights.Keys.Where(m=>m.Contains("[1v1]")).ToList();
 Check(oneVsOne.Count>=4&&oneVsOne.All(m=>packaged.ScoreLimitFor(m)==100)&&packaged.ScoreLimitFor("[FA] [2v2] Dead Center 0.1")==300,"packaged: every 1v1 map ends at 100, others at 300");
 Console.WriteLine($"PASS: {checks} host policy/configuration checks. No native hook, HUD, credit or upkeep measurement.");

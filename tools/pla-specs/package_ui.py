@@ -2,7 +2,7 @@
 import argparse,hashlib,json,subprocess,tempfile,zipfile
 from pathlib import Path
 
-root=Path(__file__).resolve().parents[2];rel=root/'releases/0.6'
+root=Path(__file__).resolve().parents[2];rel=root/'mod'
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True)
 p.add_argument('--zip',default='zip')

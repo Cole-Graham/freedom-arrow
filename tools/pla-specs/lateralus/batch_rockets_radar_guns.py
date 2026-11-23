@@ -2,7 +2,7 @@
 (Lateralus 13 Nov 2026 23:02 PST, thread 1568104480459722894, message 1571057794273124364).
 
 Applies over any 0.8 complete package (--base). Each change first checks the value it replaces, so a later dev build that
-changed the same field stops this script instead of being overwritten. Writes the constants into releases/0.6/source and
+changed the same field stops this script instead of being overwritten. Writes the constants into mod/source and
 tools/pla-specs/lateralus/batch-rockets-radar-guns-checks.json. A dev build then packages them as usual.
 
 Radar guns: the mod's prediction (InterceptLead, called CramPrediction before 16 Nov 2026) and overkill gate (AaCooldown) select guns by data (weapon Type 115, or
@@ -12,7 +12,7 @@ Chinese rounds were still at the vanilla 805.
 """
 import argparse,json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[3];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
+ROOT=Path(__file__).resolve().parents[3];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--base',type=Path,required=True);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--gun-speed',type=float,default=1000.0,help='every projectile-defence gun round at this MuzzleVelocity (Lateralus 14 Nov 04:28 PST: 1000 for the main build; test variants 800/1000/1200)');a=p.parse_args()

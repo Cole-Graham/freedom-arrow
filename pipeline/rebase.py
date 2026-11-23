@@ -1,4 +1,4 @@
-"""Three-way merge of an old vanilla snapshot, a new one, and mod/constants."""
+"""Three-way merge of an old vanilla snapshot, a new one, and archive/mod-0.1-0.2/constants."""
 
 from __future__ import annotations
 

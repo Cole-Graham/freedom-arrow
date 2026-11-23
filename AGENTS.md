@@ -4,7 +4,7 @@ Read this before editing freedom-arrow. Human setup, command list, and the gamep
 
 ## What this repo is
 
-A Python 3.11+ pipeline, a MelonLoader plugin in `runtime/FreedomArrow/`, and the gameplay constants it applies. The game database is the `DataBaseCompiled` MonoBehaviour in `BrokenArrow_Data/data.unity3d`: 24 AES-encrypted JSON tables. Stable table edits are `mod/constants/*.json`. Testing table edits are `mod/testing/constants/*.json`. Empty `{}` means no change. Injected formulas are `mod/formulas/` and `mod/testing/formulas/`.
+A Python 3.11+ pipeline, a MelonLoader plugin in `runtime/FreedomArrow/`, and the gameplay constants it applies. The game database is the `DataBaseCompiled` MonoBehaviour in `BrokenArrow_Data/data.unity3d`: 24 AES-encrypted JSON tables. Stable table edits are `archive/mod-0.1-0.2/constants/*.json`. Testing table edits are `archive/mod-0.1-0.2/testing/constants/*.json`. Empty `{}` means no change. Injected formulas are `archive/mod-0.1-0.2/formulas/` and `archive/mod-0.1-0.2/testing/formulas/`.
 
 Run Python from the repo root so `import pipeline` works.
 
@@ -20,17 +20,17 @@ Unit tests use temp directories and stub executables. They do not need the 7 GB 
 
 1. If `config.YAML` is missing, copy `config.template.YAML` and set `game_root` to a directory that contains `BrokenArrow_Data/data.unity3d`. The repo's own gitignored `BrokenArrow_Data/` is valid when `game_root` is the repo root.
 2. Leave `write_game_bundle` false unless the user explicitly asked to install a bundle or launch the game.
-3. Read `pipeline/cli.py` and `pipeline/channels.py` before adding commands. Stable follows `constants_dir` / `manifest_path` from config. Testing is always `mod/testing/constants` and `mod/testing/manifest.json`.
+3. Read `pipeline/cli.py` and `pipeline/channels.py` before adding commands. Stable follows `constants_dir` / `manifest_path` from config. Testing is always `archive/mod-0.1-0.2/testing/constants` and `archive/mod-0.1-0.2/testing/manifest.json`.
 
 ## Where to change things
 
 | Task | Edit |
 | --- | --- |
-| A table value the game already stores | `mod/constants/<table>.json` or `mod/testing/constants/<table>.json` |
+| A table value the game already stores | `archive/mod-0.1-0.2/constants/<table>.json` or `archive/mod-0.1-0.2/testing/constants/<table>.json` |
 | Inspect a ScriptableObject field | Use `dump.cs` / decoded configs; applying config edits is not implemented |
-| Code run at a game method | `mod/formulas/<Class>/<Method>.json` or `mod/testing/formulas/<Class>/<Method>.json` |
+| Code run at a game method | `archive/mod-0.1-0.2/formulas/<Class>/<Method>.json` or `archive/mod-0.1-0.2/testing/formulas/<Class>/<Method>.json` |
 | Extract, encrypt, inject, rebase, package, the plugin | `pipeline/` and `runtime/FreedomArrow/` |
-| Modpack id, version, GitHub repos | `mod/modpack.json` |
+| Modpack id, version, GitHub repos | `archive/mod-0.1-0.2/modpack.json` |
 | Player install and Play vanilla | Do not reimplement. Use `thirdparty-tools/BAModManager-main` |
 | Developer paths | `config.template.YAML` only. Never commit `config.YAML` |
 
@@ -38,7 +38,7 @@ A constant file and the code that reads it name the place the change is actually
 
 A table file modifies existing rows. It is keyed by `Id`. Values are the game's PascalCase fields. Example: `{ "1": { "Cost": 40 } }`.
 
-ScriptableObject config edits are not implemented. The proposed `mod/configs/` and `mod/testing/configs/` trees are rejected by `package`; installed config JSON also stops plugin startup before hooks are installed. Implement and verify a config application path before authoring those files. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
+ScriptableObject config edits are not implemented. The proposed `archive/mod-0.1-0.2/configs/` and `archive/mod-0.1-0.2/testing/configs/` trees are rejected by `package`; installed config JSON also stops plugin startup before hooks are installed. Implement and verify a config application path before authoring those files. Do not author the mod as Bodkin YAML. `thirdparty-tools/BodkinToolkit/import/translate.py` drops unknown fields. The committed source of truth is the constants JSON.
 
 A formula file names the game method a hook runs at. Every file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is implemented. `package` rejects the others. `parameters` holds the numbers and strings that hook reads. Register the hook class with `FormulaHost`. Do not add that hook's keys to `pipeline/formulas.py`.
 
@@ -83,7 +83,7 @@ Ask before running these. They are slow or they write into the game directory:
 
 Do not set `write_game_bundle` to true yourself.
 
-There is no launcher in this repo. Players use BAModLauncher from `thirdparty-tools/BAModManager-main`. Do not add a second Play / Play vanilla window. Stable and Testing are two GitHub repos in `mod/modpack.json` (`repo` and `testingRepo`), packaged as two `.bamod` files. Do not edit BAModManager unless the user asked for a change to that program.
+There is no launcher in this repo. Players use BAModLauncher from `thirdparty-tools/BAModManager-main`. Do not add a second Play / Play vanilla window. Stable and Testing are two GitHub repos in `archive/mod-0.1-0.2/modpack.json` (`repo` and `testingRepo`), packaged as two `.bamod` files. Do not edit BAModManager unless the user asked for a change to that program.
 
 `rebase` writes `cache/rebase-conflicts-<channel>.json` and does not move the manifest when there are conflicts. Do not pass `--accept` unless the user has reviewed that report and told you to keep the constants.
 
@@ -106,15 +106,15 @@ Do not commit decrypted tables, `data.unity3d`, bundle hashes of a local install
 - `dotnet run --project runtime/FreedomArrow.Tests/FreedomArrow.Tests.csproj -c Release` passes after runtime changes. These console checks execute the real DLL without starting the game; native hooks still need in-game verification.
 - A change to constants or inject paths still round-trips an empty constants directory to the original MonoBehaviour bytes. That test is `IdentityTests` and `ApplyTests.test_empty_constants_round_trip_on_disk`.
 - A change to packaging still produces a zip whose `mod.json` has `"type": "modpack"` and whose changed constants live under `UserData/FreedomArrow/constants/`. That test is `pipeline/tests/test_package.py`.
-- You did not leave a one-off cost or probe script in `mod/constants/` or `mod/testing/constants/`. Those trees are the mod.
+- You did not leave a one-off cost or probe script in `archive/mod-0.1-0.2/constants/` or `archive/mod-0.1-0.2/testing/constants/`. Those trees are the mod.
 
 ## Offline play
 
 Day-to-day play goes through BAModManager or BAModLauncher. PLAY starts the game with Anti-Cheat disabled. **Play vanilla with no mods** is that program's button. It removes `version.dll`. Do not add a second implementation of that button. `hangar` remains only for trying `dist/stable/data.unity3d` locally.
 
-To make a 0.3 test version, follow `releases/0.3/TESTING.md`. 0.2 stays on `codex/0.2-development`.
+To make a 0.3 test version, follow `archive/releases/0.3/TESTING.md`. 0.2 stays on `codex/0.2-development`.
 
-To make a 0.4 test version, follow `releases/0.4/TESTING.md`. Do not set the 0.4 dev version yourself. `build_constants.py` keeps it until that version has been built and its inputs changed, then moves to the next number. Commit `releases/0.4/builds.json` with the version.
+To make a 0.4 test version, follow `archive/releases/0.4/TESTING.md`. Do not set the 0.4 dev version yourself. `build_constants.py` keeps it until that version has been built and its inputs changed, then moves to the next number. Commit `archive/releases/0.4/builds.json` with the version.
 
 ## Maintained branches and isolated batches
 

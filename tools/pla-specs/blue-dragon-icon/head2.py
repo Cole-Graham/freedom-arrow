@@ -43,5 +43,5 @@ for sz in (512,128):
 big=I.new('RGBA',(560+330,540),(40,46,52,255));big.alpha_composite(I.open('H512.png'),(10,10))
 s=I.open('H128.png');big.alpha_composite(s,(590,40));big.alpha_composite(s.resize((64,64),I.LANCZOS),(622,190))
 for i,n in enumerate(['FA_CHINA_MOTORIZED','FA_CHINA_ARMORED']):
-    big.alpha_composite(I.open('../../091-wt/releases/0.6/source/runtime-qa/icons/'+n+'.png').convert('RGBA'),(740,40+i*140))
+    big.alpha_composite(I.open('../../091-wt/mod/source/runtime-qa/icons/'+n+'.png').convert('RGBA'),(740,40+i*140))
 big.save('prevH2.png');print('lo/hi',lo,hi,'bbox',bb)

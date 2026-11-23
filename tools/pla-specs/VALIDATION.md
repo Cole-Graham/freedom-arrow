@@ -57,7 +57,7 @@
 
 ## Reproduction
 
-Use the SHA-pinned base in pla-specializations-contract.json. Run prepare.py with that archive and the pinned vanilla table snapshot. Run tools/pla-infantry/rig_configs.py against the supplied Type 21 source directory and BA_US_Ranger_Rifle1.glb donor, then atlas.py and stage_arm_payload.py. Compile Runtime 9 and FAModels 0.3.10, run row-tests and identity-tests, package with package.py, and verify with releases/0.6/verify.py. Assets remain external to source Git.
+Use the SHA-pinned base in pla-specializations-contract.json. Run prepare.py with that archive and the pinned vanilla table snapshot. Run tools/pla-infantry/rig_configs.py against the supplied Type 21 source directory and BA_US_Ranger_Rifle1.glb donor, then atlas.py and stage_arm_payload.py. Compile Runtime 9 and FAModels 0.3.10, run row-tests and identity-tests, package with package.py, and verify with mod/verify.py. Assets remain external to source Git.
 
 ## Merge and install boundary
 
@@ -81,7 +81,7 @@ The linked upstream LauncherService/ModService installed the full package into a
 
 ## Reproduce
 
-Prepare from the SHA-pinned complete Build5 with tools/pla-specs/prepare.py. Compile the runtime against the generated MelonLoader assemblies,run releases/0.6/row-tests/Tests.csproj against the pinned vanilla JSON and prepared source folder,then use tools/pla-specs/package.py with the complete Build5 archive and an available zip executable. Verify the output with releases/0.6/verify.py. Do not run the historical build_constants.py:it predates the approved comparison squads.
+Prepare from the SHA-pinned complete Build5 with tools/pla-specs/prepare.py. Compile the runtime against the generated MelonLoader assemblies,run mod/row-tests/Tests.csproj against the pinned vanilla JSON and prepared source folder,then use tools/pla-specs/package.py with the complete Build5 archive and an available zip executable. Verify the output with mod/verify.py. Do not run the historical build_constants.py:it predates the approved comparison squads.
 
 ## Installation boundary
 

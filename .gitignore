@@ -248,10 +248,10 @@ thirdparty-tools/BAModManager-main/obj/
 thirdparty-tools/BAModManager-main/publish/
 thirdparty-tools/BAModManager-main/release/
 # Locally rebuilt PLA mesh/atlas payloads; large assets stay outside source Git.
-/releases/0.6/source/UserData/FAModels/*.fas
-/releases/0.6/source/UserData/FAModels/*.png
+/mod/source/UserData/FAModels/*.fas
+/mod/source/UserData/FAModels/*.png
 
 /tools/pla-specs/effective-preview.json
 
 # J-10A variants are reproduced from the pinned base pack by apply_roster_revision.py.
-/releases/0.6/source/UserData/FAModels/m_j10a_grey*.fam
+/mod/source/UserData/FAModels/m_j10a_grey*.fam

@@ -20,8 +20,8 @@ cache_dir: cache
 dist_dir: dist
 
 # Authored modifications and the rebase manifest.
-constants_dir: mod/constants
-manifest_path: mod/manifest.json
+constants_dir: archive/mod-0.1-0.2/constants
+manifest_path: archive/mod-0.1-0.2/manifest.json
 
 # false: never modify files inside game_root.
 # true: the hangar check may replace BrokenArrow_Data/data.unity3d, and only

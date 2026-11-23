@@ -4,7 +4,7 @@ the Arsenal shows the swap row's own Cost (12the12, #bug-report 14 Nov 2026: Spe
 Usage: audit_swap_prices.py PACKAGE.bamod VANILLA_DIR   (exit 1 and list the rows when any differ)"""
 import json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
+ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'mod')]
 from pipeline.tables import FIELD_TO_FILE
 def mismatches(U,O,M):
     bad=[]

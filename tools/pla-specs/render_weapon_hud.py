@@ -2,7 +2,7 @@
 import argparse,json,subprocess
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--renderer',required=True);a=p.parse_args()
-root=Path(__file__).resolve().parents[2];source=root/'releases/0.6/source';out=source/'runtime-qa/icons';receipt=json.loads((source/'UserData/FreedomArrow/pla-weapon-hud.json').read_text())
+root=Path(__file__).resolve().parents[2];source=root/'mod/source';out=source/'runtime-qa/icons';receipt=json.loads((source/'UserData/FreedomArrow/pla-weapon-hud.json').read_text())
 for address in receipt['resources']:
  choices=[root/'tools/pla-specs'/folder/(address+'.svg') for folder in ['hud-style-overrides','hud-photo-vectors','hud-model-vectors','hud-reference-vectors']];found=[p for p in choices if p.exists()];assert found,(address,found)
  subprocess.run([a.renderer,'-w','1160','-o',str(out/(address+'.png')),str(found[0])],check=True)

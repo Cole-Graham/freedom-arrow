@@ -13,5 +13,5 @@ class RebaseConflictError(PipelineError):
         self.conflicts = conflicts
         super().__init__(
             f"{len(conflicts)} rebase conflict(s). Report: {report_path}. "
-            "Edit mod/constants, or re-run with --accept after reviewing the report."
+            "Edit archive/mod-0.1-0.2/constants, or re-run with --accept after reviewing the report."
         )

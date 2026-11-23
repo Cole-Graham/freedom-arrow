@@ -3,7 +3,7 @@ Batch only: build when Osama or Lateralus say the batch is ready. Other threads:
 """
 import argparse,hashlib,json,sys,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
 V='0.9.5b-dev.1';PREV='0.9.3'
@@ -134,7 +134,7 @@ ok(all(A[i]['HUDName']==n and i not in _at and not A[i].get('AimTimeMinOverride'
 rec['launcher_at_aim_0_2']={'aim_s':_AIM,'rounds':{str(i):A[i]['HUDName'] for i in _at},'launchers':len(_lw)}
 # ---------- 5. China infantry cards from community art (Osama 20 Nov 2026 00:4x PST, thread 1572407822849810463: "Let's remove the broken arrow logo and use them
 # for unit cards and art"; held 00:5x "Don't replace the unit cards yet"; released 16:50 "yes add them" to the earlier name-match mapping of 357c2e52).
-# 12 images, BROKEN ARROW mark removed (work/osama-art-20261120; PAP support-hand finger fixed), 816x549 with the vanilla bottom fade -> releases/0.6/source/
+# 12 images, BROKEN ARROW mark removed (work/osama-art-20261120; PAP support-hand finger fixed), 816x549 with the vanilla bottom fade -> mod/source/
 # runtime-qa/icons/FA_CN_INF_<CARD>-Portrait.png, registered in CardIcons.cs (needs the runtime DLL rebuild). PortraitFileName only.
 _CARDS={
  # Airborne and Assault Raiders keep their old portrait (Osama 21 Nov 2026 14:2x PST: "Chinese airborne unit icon should use the old one on the Airborne

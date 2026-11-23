@@ -237,10 +237,10 @@ https://docs.google.com/document/d/1zt3iMn8IcSJSLRl4PBCugvVbTkp1HEA_TM6GPADWwOo/
 From this checkout:
 
 ```bash
-python3 releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
-python3 releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
-python3 releases/0.5/verify.py releases/0.5/out/FreedomArrow-1.bamod
-dotnet run --project releases/0.5/economy-tests/Tests.csproj -c Release
+python3 archive/releases/0.5/build_constants.py --vanilla-dir "/path/to/pinned/vanilla/build"
+python3 archive/releases/0.5/build.py --game-dir "/path/to/Broken Arrow" --dotnet "/path/to/dotnet"
+python3 archive/releases/0.5/verify.py archive/releases/0.5/out/FreedomArrow-1.bamod
+dotnet run --project archive/releases/0.5/economy-tests/Tests.csproj -c Release
 ```
 
 `build_constants.py` picks the dev version: it changes only when the current one is in `builds.json` and its inputs have changed since. See TESTING.md.

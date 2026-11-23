@@ -1,6 +1,6 @@
 from pathlib import Path
 import argparse,json,hashlib,zipfile,subprocess,tempfile
-root=Path(__file__).resolve().parents[2] if 'tools/pla-specs' in str(Path(__file__)) else Path('/home/sam/tars/work/ba-dev/replicas/codex/work/pla-sheet-reconcile-source');rel=root/'releases/0.6';src=rel/'source';p=argparse.ArgumentParser();p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',required=True);a=p.parse_args();enc=lambda d:(json.dumps(d,indent=2)+'\n').encode();sha=lambda b:hashlib.sha256(b).hexdigest()
+root=Path(__file__).resolve().parents[2] if 'tools/pla-specs' in str(Path(__file__)) else Path('/home/sam/tars/work/ba-dev/replicas/codex/work/pla-sheet-reconcile-source');rel=root/'mod';src=rel/'source';p=argparse.ArgumentParser();p.add_argument('--base',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--zip',required=True);a=p.parse_args();enc=lambda d:(json.dumps(d,indent=2)+'\n').encode();sha=lambda b:hashlib.sha256(b).hexdigest()
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()=='6474690619db697d6daadbb6343bb86ebb37c321cd8615bcd1195b6b905e0009'
 with zipfile.ZipFile(a.base) as z:
  whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['build']==31;oldpins=whole['sha256'].copy();core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'));assets=json.loads(z.read('UserData/FAAssets/manifest.json'))

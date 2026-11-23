@@ -1,7 +1,7 @@
 """Display policy: named SF keep central emblems; specialist teams show their weapon."""
 import json,hashlib
 from pathlib import Path
-root=Path(__file__).resolve().parents[2];path=root/'tools/pla-specs/infantry-identity-contract.json';c=json.loads(path.read_text());designer=json.loads((root.parent/'pla-infantry-insignia-build19/releases/0.6/source/UserData/FreedomArrow/pla-infantry-designer.json').read_text());native_path=root.parent/'black-widow-turn-20261110/vanilla/Units.json';native={u['Id']:u for u in json.loads(native_path.read_text())};decisions=[]
+root=Path(__file__).resolve().parents[2];path=root/'tools/pla-specs/infantry-identity-contract.json';c=json.loads(path.read_text());designer=json.loads((root.parent/'pla-infantry-insignia-build19/mod/source/UserData/FreedomArrow/pla-infantry-designer.json').read_text());native_path=root.parent/'black-widow-turn-20261110/vanilla/Units.json';native={u['Id']:u for u in json.loads(native_path.read_text())};decisions=[]
 for e in designer['entries']:
  r=c['units'][str(e['unit'])];name=r['display_name'];lo=name.lower();donor=None;custom=None;why=None
  if r['identity_type']=='named formation':r['icon_kind']='sf_emblem';continue

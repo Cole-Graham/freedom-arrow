@@ -2,7 +2,7 @@
 import copy,json
 
 def apply(root,t,patches,models,native_ids):
- c=json.loads((root.parents[1]/'tools/pla-specs/spec-assignment-contract.json').read_text())
+ c=json.loads((root.parent/'tools/pla-specs/spec-assignment-contract.json').read_text())
  nextrow=max(i for rs in t.values() for i in rs)+1;nextoption=max(t['OptionsJson'])+1
  def put(table,uid,fields):
   t[table].setdefault(uid,{'Id':uid}).update(fields);patches[table].setdefault(str(uid),{}).update(fields)

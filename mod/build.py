@@ -41,7 +41,7 @@ def main():
 # Every player in a lobby needs byte-identical scenario files, so copy this build's maps to the install named in config.YAML.
 # The mod also copies its packaged maps to Mods/Scenarios at each launch. An older installed package would put its own maps back.
 def copy_scenarios(payload,version):
- sys.path.insert(0,str(R.parents[1]))
+ sys.path.insert(0,str(R.parent))
  from pipeline.config import load_config
  from pipeline.errors import PipelineError
  try:root=load_config().game_root

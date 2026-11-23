@@ -89,7 +89,7 @@ if _ge(9,33):
 # 13:2x PST: "do units update when we update the armory": the maps store only unit and option ids, so stats follow the armory, but a removed
 # or renumbered unit/option would break a wave).
 if _ge(9,36):
-    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'releases/0.8/scenarios'))
+    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'maps/scenarios'))
     import common as SC,pve as PVE
     Mt=merged('ModificationsJson.json','modifications.json')
     for name in PVE.ALL_NAMES:
@@ -141,7 +141,7 @@ if m>=key('0.9.4-dev.1'):
 # goals 1000000, destruction off, no sudden death; scenarios/common.py native_goals_out_of_reach), so a time-out without an FA winner is a
 # server draw; and the result screen shows Major/Minor from the FA score (conquest/ResultLevel.cs, logs "result_level").
 if m>=key('0.9.4-dev.1'):
-    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'releases/0.8/scenarios'))
+    sys.path.insert(0,str(Path(__file__).resolve().parents[3]/'maps/scenarios'))
     import common as SC2
     _modes=0
     for f in [n for n in z.namelist() if n.startswith('UserData/FreedomArrow/scenarios/') and n.endswith('.bascr')]:

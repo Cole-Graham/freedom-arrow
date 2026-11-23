@@ -4,7 +4,7 @@ branch merges, to pick up builds made meanwhile by threads still on the old pack
 import hashlib,json,re,shutil,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent));from fa_version import PATTERN
-OUT=Path(__file__).resolve().parents[2]/'releases/0.6/out';R=OUT/'receipts';R.mkdir(exist_ok=True)
+OUT=Path(__file__).resolve().parents[2]/'mod/out';R=OUT/'receipts';R.mkdir(exist_ok=True)
 seen={}
 for f in sorted(OUT.glob('*/FreedomArrow-0.*.json')):
     if f.parent==R or not re.fullmatch(r'FreedomArrow-('+PATTERN+r'(?:-[a-z0-9-]+)?)\.json',f.name):continue

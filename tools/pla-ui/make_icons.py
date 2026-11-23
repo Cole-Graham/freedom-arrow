@@ -3,7 +3,7 @@ from pathlib import Path
 import math,json
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'releases/0.6/source/runtime-qa/icons';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'mod/source/runtime-qa/icons';OUT.mkdir(parents=True,exist_ok=True)
 def star(cx,cy,r,angle=-math.pi/2):
  return [(cx+math.cos(angle+i*math.pi/5)*r*(1 if i%2==0 else .382),cy+math.sin(angle+i*math.pi/5)*r*(1 if i%2==0 else .382)) for i in range(10)]
 im=Image.new('RGBA',(768,512),'#de2910');d=ImageDraw.Draw(im)

@@ -5,7 +5,7 @@ Run identity-tests and compile the runtime before using this packaging recipe.
 """
 from pathlib import Path
 import argparse,hashlib,json,shutil,subprocess,tempfile,zipfile
-ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6'
+ROOT=Path(__file__).resolve().parents[2];R=ROOT/'mod'
 def digest(p):
  with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def enc(j):return (json.dumps(j,indent=2)+'\n').encode()

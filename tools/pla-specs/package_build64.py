@@ -2,12 +2,12 @@
 
 Starts from the exact latest PLA package (all models, music and China files) and replaces the
 gameplay layer: merged constants and option migration (merge_dev58.py), the 0.7 runtime with the
-China UI (built from releases/0.6/source/runtime-qa), FAModels with the moved Type21 fixture ID,
+China UI (built from mod/source/runtime-qa), FAModels with the moved Type21 fixture ID,
 and main dev's skirmish mod, conquest settings, game config, squad reload and scenarios.
 """
 from pathlib import Path
 import argparse,hashlib,json,re,subprocess,tempfile,zipfile
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source'
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source'
 BUILD=64
 enc=lambda x:(json.dumps(x,indent=2)+'\n').encode()
 sha=lambda b:hashlib.sha256(b).hexdigest()

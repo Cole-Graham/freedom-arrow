@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,csv
 from PIL import Image
-root=Path(__file__).resolve().parents[2];base=root.parent/'pla-art-music-merge-build23';src=root/'releases/0.6/source';before=base/'releases/0.6/source';art=json.loads((src/'UserData/FreedomArrow/pla-approved-art.json').read_text());assert art['build']==24 and art['approved_count']==13
+root=Path(__file__).resolve().parents[2];base=root.parent/'pla-art-music-merge-build23';src=root/'mod/source';before=base/'mod/source';art=json.loads((src/'UserData/FreedomArrow/pla-approved-art.json').read_text());assert art['build']==24 and art['approved_count']==13
 sha=lambda f:hashlib.sha256(f.read_bytes()).hexdigest();icons=src/'runtime-qa/icons'
 for key,r in art['profiles'].items():
  assert sha(root/r['approved_master'])==r['sha256'],key
@@ -22,7 +22,7 @@ for name in ['FA_CHINA_AIR_SF','FA_CHINA_ARMORED','FA_CHINA_ROCKET','FA_CHINA_NA
  im=Image.open(icons/(name+'.png'));assert im.mode=='RGBA' and im.size==(128,128);lo,hi=im.getchannel('A').getextrema();assert lo==0 and hi>=250,(name,lo,hi)
 assert (icons/'FA_CHINA_FLAG.png').read_bytes()==(before/'runtime-qa/icons/FA_CHINA_FLAG.png').read_bytes()
 expected=(set(art['profiles'])-{'XIANGJIAN'})|{'DONGFANG'};actual={n.removeprefix('FA_PLA_INF_').removesuffix('_OUTLINE') for n in changed};assert actual==expected,(actual,expected);assert len(changed)==26
-c=json.loads((root/'releases/0.6/pla-specializations-contract.json').read_text());assert c['build']==24 and c['test_spec']==22
+c=json.loads((root/'mod/pla-specializations-contract.json').read_text());assert c['build']==24 and c['test_spec']==22
 # Native spec addresses remain as previously wired; no unit assignment or order is changed.
 effective=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());specs={r['Id']:r for r in effective['SpecializationsJson'].values()} if isinstance(effective['SpecializationsJson'],dict) else {r['Id']:r for r in effective['SpecializationsJson']}
 for uid,address in [(17,'FA_CHINA_AIR_SF'),(18,'FA_CHINA_ARMORED'),(19,'FA_CHINA_ROCKET'),(20,'FA_CHINA_NAVAL'),(21,'FA_CHINA_MOTORIZED')]:assert specs[uid]['Icon']==address

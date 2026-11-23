@@ -1,7 +1,7 @@
 """Stage rebuilt infantry LODs and only atlases changed by new LOD UV bounds."""
 import argparse,hashlib,json,shutil,zipfile
 from pathlib import Path
-R=Path(__file__).resolve().parents[2]/'releases/0.6'
+R=Path(__file__).resolve().parents[2]/'mod'
 p=argparse.ArgumentParser();p.add_argument('--base',type=Path,required=True);p.add_argument('--payload',type=Path,required=True);a=p.parse_args()
 c=json.loads((R/'pla-specializations-contract.json').read_text())
 with a.base.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==c['base_sha256']

@@ -5,7 +5,7 @@ The older historical generator is not required to reproduce the published pack.
 """
 from pathlib import Path
 import argparse,copy,hashlib,json,sys,zipfile
-ROOT=Path(__file__).resolve().parents[2];R=ROOT/'releases/0.6';sys.path.insert(0,str(ROOT));sys.path.insert(0,str(R))
+ROOT=Path(__file__).resolve().parents[2];R=ROOT/'mod';sys.path.insert(0,str(ROOT));sys.path.insert(0,str(R))
 from pipeline.tables import FIELD_TO_FILE
 from pipeline.crypto import aes_decrypt
 from pla_configs import apply

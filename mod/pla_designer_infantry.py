@@ -3,7 +3,7 @@ import copy,json,math
 from pla_graph import Graph
 
 def apply(root,t,patches,native_ids,bodies,weapon_rules,assignments):
- c=json.loads((root.parents[1]/'tools/pla-specs/infantry-designer-contract.json').read_text());g=Graph(t,patches,native_ids)
+ c=json.loads((root.parent/'tools/pla-specs/infantry-designer-contract.json').read_text());g=Graph(t,patches,native_ids)
  specs={'Airforce / Airborne':17,'Ground Force / Armored':18,'Rocket Force / Conscripts':19,'Marines / SF':20,'Motorized':21,'Test':22}
  proto=json.loads((root/'source/UserData/FreedomArrow/pla-build.json').read_text())['infantry']['weapons']
  # Native performance analogs, not claims that differently named weapons are identical.

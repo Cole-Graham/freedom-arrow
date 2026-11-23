@@ -6,7 +6,7 @@ Usage: check_squad_hp.py PACKAGE.bamod VANILLA_DIR  |  check_squad_hp.py --const
 import json,sys,zipfile
 from collections import Counter
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
+ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'mod')]
 from pipeline.tables import FIELD_TO_FILE
 TABS=('Units','ArmorsJson','UnitArmorsJson','SquadMembersJson','SpecializationAvailabilitiesJson')
 def tables(van,read):

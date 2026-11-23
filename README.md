@@ -1334,15 +1334,15 @@ The following material is retained as historical context from the Build5 source.
 
 ## freedom-arrow
 
-**Unreleased 0.6 development — ActualArrow features:** [build instructions and changes](releases/0.6/README.md) on `codex/0.6-development`. 0.5 stays on `codex/0.5-development` (accuracy, [changes](releases/0.5/README.md)); 0.4 stays on `codex/0.4-development`.
+**Unreleased 0.6 development — ActualArrow features:** [build instructions and changes](mod/README.md) on `codex/0.6-development`. 0.5 stays on `codex/0.5-development` (accuracy, [changes](archive/releases/0.5/README.md)); 0.4 stays on `codex/0.4-development`.
 
-**Unreleased 0.4 development:** [build instructions and changes](releases/0.4/README.md) on `codex/0.4-development`. 0.3 stays on `codex/0.3-development`.
+**Unreleased 0.4 development:** [build instructions and changes](archive/releases/0.4/README.md) on `codex/0.4-development`. 0.3 stays on `codex/0.3-development`.
 
-**Unreleased 0.3 development:** [build instructions and changes](releases/0.3/README.md). 0.2 stays on `codex/0.2-development`.
+**Unreleased 0.3 development:** [build instructions and changes](archive/releases/0.3/README.md). 0.2 stays on `codex/0.2-development`.
 
-**0.2 development:** [build instructions, included changes and held work](releases/0.2/README.md). The dev.38 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
+**0.2 development:** [build instructions, included changes and held work](archive/releases/0.2/README.md). The dev.38 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `archive/releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
 
-**Prepared 0.1 candidate:** [download, scope and source](releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
+**Prepared 0.1 candidate:** [download, scope and source](archive/releases/0.1/README.md) · [Linux deployment](docs/archive/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
 
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
@@ -1356,13 +1356,13 @@ Do not play ranked or quick match while MelonLoader is installed.
 | --- | --- |
 | `pipeline/` | Extract, patch, inject, rebase, and pack a `.bamod` |
 | `runtime/FreedomArrow/` | MelonLoader plugin that applies constants and formulas |
-| `mod/constants/` | Stable gameplay changes to the 24 tables |
-| `mod/manifest.json` | Game build the stable constants were last reconciled with |
-| `mod/formulas/` | Stable injected formulas, one file per game method |
-| `mod/testing/constants/` | Testing gameplay changes |
-| `mod/testing/formulas/` | Testing injected formulas |
-| `mod/testing/manifest.json` | Game build the testing constants were last reconciled with |
-| `mod/modpack.json` | Modpack id, version, and GitHub repos for Stable and Testing |
+| `archive/mod-0.1-0.2/constants/` | Stable gameplay changes to the 24 tables |
+| `archive/mod-0.1-0.2/manifest.json` | Game build the stable constants were last reconciled with |
+| `archive/mod-0.1-0.2/formulas/` | Stable injected formulas, one file per game method |
+| `archive/mod-0.1-0.2/testing/constants/` | Testing gameplay changes |
+| `archive/mod-0.1-0.2/testing/formulas/` | Testing injected formulas |
+| `archive/mod-0.1-0.2/testing/manifest.json` | Game build the testing constants were last reconciled with |
+| `archive/mod-0.1-0.2/modpack.json` | Modpack id, version, and GitHub repos for Stable and Testing |
 | `config.template.YAML` | Committed config template |
 | `thirdparty-tools/BAModManager-main/` | BAModManager and BAModLauncher source |
 | `thirdparty-tools/` | Also vendors Bodkin, MelonLoader, Il2CppDumper, and ILSpy |
@@ -1415,7 +1415,7 @@ This section is the authoring shape. The cost object is an example of that shape
 
 A constant file names the place the game or the plugin actually applies the change. A number is a new literal. A string names something that already exists: a field, a return value, a component, or an enum. Do not add a key the game or the hook does not have.
 
-**Existing table data.** `mod/constants/<table>.json` is one of the 24 database tables. An empty object changes nothing. The example sets one field on one row:
+**Existing table data.** `archive/mod-0.1-0.2/constants/<table>.json` is one of the 24 database tables. An empty object changes nothing. The example sets one field on one row:
 
 ```json
 {
@@ -1425,9 +1425,9 @@ A constant file names the place the game or the plugin actually applies the chan
 
 A list of rows with an `Id` field is also accepted. The pipeline rejects an unknown file, a missing `Id`, a type change, and a foreign key that does not point at a row. Rows you do not mention stay as the original ciphertext, so an empty constants directory round-trips to the original object bytes.
 
-**Serialized config edits are not implemented.** `mod/configs/<ClassName>.json` and `mod/testing/configs/<ClassName>.json` are reserved for a future ScriptableObject application path. Packaging rejects JSON files there. If JSON files are already installed under `UserData/FreedomArrow/configs`, plugin startup reports the unsupported input and leaves gameplay hooks uninstalled. Reading fields from `dump.cs` or decoding a config asset does not apply edits to that asset.
+**Serialized config edits are not implemented.** `archive/mod-0.1-0.2/configs/<ClassName>.json` and `archive/mod-0.1-0.2/testing/configs/<ClassName>.json` are reserved for a future ScriptableObject application path. Packaging rejects JSON files there. If JSON files are already installed under `UserData/FreedomArrow/configs`, plugin startup reports the unsupported input and leaves gameplay hooks uninstalled. Reading fields from `dump.cs` or decoding a config asset does not apply edits to that asset.
 
-**Code at a method.** `mod/formulas/<Class>/<Method>.json` names a game method and the parameters its hook reads. The file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is accepted today. The other three are rejected until a hook implements them.
+**Code at a method.** `archive/mod-0.1-0.2/formulas/<Class>/<Method>.json` names a game method and the parameters its hook reads. The file has `method`, `change`, and `parameters`. `change` is `after`, `before`, `inside`, or `instead`. Only `after` is accepted today. The other three are rejected until a hook implements them.
 
 This file shape is one `after` hook. No hook is registered until a class is added to `FormulaHost`.
 
@@ -1463,7 +1463,7 @@ build.bat
 build_launcher.bat owner/freedom-arrow owner/freedom-arrow-testing
 ```
 
-`build.bat` writes the Mod Manager zip. `build_launcher.bat` with two `owner/repo` arguments writes a launcher whose Stable and Testing buttons follow those repos. Fill `repo` and `testingRepo` in [mod/modpack.json](mod/modpack.json) with the same names before you publish.
+`build.bat` writes the Mod Manager zip. `build_launcher.bat` with two `owner/repo` arguments writes a launcher whose Stable and Testing buttons follow those repos. Fill `repo` and `testingRepo` in [archive/mod-0.1-0.2/modpack.json](archive/mod-0.1-0.2/modpack.json) with the same names before you publish.
 
 Pack the mod for either channel:
 
@@ -1472,13 +1472,13 @@ python -m pipeline package --channel stable
 python -m pipeline package --channel testing
 ```
 
-Each command writes `dist/<channel>/FreedomArrow-<version>.bamod`. The zip contains `mod.json` (`"type": "modpack"`), `Mods/FreedomArrow.dll`, the non-empty constant files under `UserData/FreedomArrow/constants/`, and formula files under `UserData/FreedomArrow/formulas/`. BAModManager installs those paths. The patched `data.unity3d` is not inside the package: it is several gigabytes, and the manager does not replace `BrokenArrow_Data`. When `mod/modpack.json` has repos, packaging also writes `dist/launcher.json`:
+Each command writes `dist/<channel>/FreedomArrow-<version>.bamod`. The zip contains `mod.json` (`"type": "modpack"`), `Mods/FreedomArrow.dll`, the non-empty constant files under `UserData/FreedomArrow/constants/`, and formula files under `UserData/FreedomArrow/formulas/`. BAModManager installs those paths. The patched `data.unity3d` is not inside the package: it is several gigabytes, and the manager does not replace `BrokenArrow_Data`. When `archive/mod-0.1-0.2/modpack.json` has repos, packaging also writes `dist/launcher.json`:
 
 ```json
 { "modpack": "owner/freedom-arrow", "testing": "owner/freedom-arrow-testing" }
 ```
 
-Put that file next to `BAModLauncher.exe` if you are using the generic launcher instead of `build_launcher.bat`. Publish each `.bamod` as a GitHub release asset. The tag must match `version` in `mod/modpack.json` (`v0.1.0` for version `0.1.0`). PLAY downloads a newer release when the tag is newer than the installed modpack. Keep `id` unchanged across versions.
+Put that file next to `BAModLauncher.exe` if you are using the generic launcher instead of `build_launcher.bat`. Publish each `.bamod` as a GitHub release asset. The tag must match `version` in `archive/mod-0.1-0.2/modpack.json` (`v0.1.0` for version `0.1.0`). PLAY downloads a newer release when the tag is newer than the installed modpack. Keep `id` unchanged across versions.
 
 Drag the `.bamod` onto BAModManager to confirm it installs before you publish it. PLAY in either program starts the game with Anti-Cheat disabled. **Play vanilla with no mods** removes `version.dll` and starts the normal game.
 

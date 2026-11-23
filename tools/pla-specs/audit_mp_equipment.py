@@ -4,7 +4,7 @@ vanilla does not already have; exits 1 if there are any. package.py runs it on e
 usage: audit_mp_equipment.py PACKAGE.bamod VANILLA_DIR"""
 import json,sys,zipfile,collections
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
+ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'mod')]
 from pipeline.tables import FIELD_TO_FILE
 pkg,van=sys.argv[1],Path(sys.argv[2])
 def load(patched):

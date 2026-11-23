@@ -8,7 +8,7 @@ J-10C files are not touched. The .fam references are renamed in place (same leng
 import argparse,io,json,zipfile
 from pathlib import Path
 from PIL import Image,ImageChops
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'releases/0.6/source/UserData/FAModels'
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'mod/source/UserData/FAModels'
 PAIRS=[('m_j10c_cg','m_j10a_grey','m_j10c_cg_tex1','m_j10a_gr_tex1'),('m_j10c_lo2','m_j10a_grey_lo','m_j10c_lo2_tex1','m_j10a_lo2_tex1')]
 LIFT,OFFSET,CAP=1.12,8,225
 

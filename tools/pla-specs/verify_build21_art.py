@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import Counter
 import json,hashlib
 from PIL import Image
-root=Path(__file__).resolve().parents[2];task=root.parent/'pla-detailed-infantry-icons-20261111';before=json.loads((task/'baseline20.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'releases/0.6/source';c=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
+root=Path(__file__).resolve().parents[2];task=root.parent/'pla-detailed-infantry-icons-20261111';before=json.loads((task/'baseline20.json').read_text());after=json.loads((root/'tools/pla-specs/effective-preview.json').read_text());src=root/'mod/source';c=json.loads((root/'tools/pla-specs/infantry-identity-contract.json').read_text());identity=json.loads((src/'UserData/FreedomArrow/pla-infantry-identity.json').read_text());hud=json.loads((src/'UserData/FreedomArrow/pla-weapon-hud.json').read_text());rules={e['unit']:e for e in identity['units']};changes=[]
 assert set(before)==set(after)
 for table,rows in before.items():
  assert set(rows)==set(after[table]),table
@@ -41,6 +41,6 @@ provenance={e['profile']:e for e in json.loads((vectors/'provenance.json').read_
 for e in rules.values():
  if e['icon_kind']=='sf_emblem':assert not provenance[e['profile']]['wreath']
 # Prior weaponHUD resources are byte-identical: only the unit-card layer is being changed here.
-old=root.parent/'pla-sf-emblems-weapon-teams-build20/releases/0.6/source/runtime-qa/icons'
+old=root.parent/'pla-sf-emblems-weapon-teams-build20/mod/source/runtime-qa/icons'
 for name in hud['resources']:assert (src/'runtime-qa/icons'/(name+'.png')).read_bytes()==(old/(name+'.png')).read_bytes()
 result={'passed':True,'counts':dict(counts),'display_name_changes':14,'thumbnail_changes':22,'tables_checked':len(before),'all_other_effective_fields_identical':True,'weapon_hud_sprites_byte_identical':True,'custom_sprites':len(images),'real_alpha_cutout_masks':True,'brigade_evidence_limit':c['line_patch_policy']['brigade_evidence_limit'],'png_sha256':images,'alpha_bounds':bounds,'changes':changes,'native_verified':False};(root/'tools/pla-specs/build21-art-checks.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ['png_sha256','alpha_bounds','changes']}))

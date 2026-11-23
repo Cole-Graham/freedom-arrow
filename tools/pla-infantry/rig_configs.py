@@ -12,7 +12,7 @@ from arm_fit import ArmFit
 
 ap=argparse.ArgumentParser();ap.add_argument('--source',type=Path,required=True);ap.add_argument('--donor',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--resume',action='store_true');ap.add_argument('--no-previews',action='store_true');ap.add_argument('--only',nargs='*')
 a=ap.parse_args(sys.argv[sys.argv.index('--')+1:]);a.source=a.source.resolve();a.out=a.out.resolve();a.out.mkdir(parents=True,exist_ok=True)
-configs=json.loads((Path(__file__).resolve().parents[2]/'releases/0.6/pla-configurations-contract.json').read_text())
+configs=json.loads((Path(__file__).resolve().parents[2]/'mod/pla-configurations-contract.json').read_text())
 if a.only:configs=[c for c in configs if c['key'] in a.only]
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=str(a.source/'regular/PLA_21_CongLin.fbx'))

@@ -11,7 +11,7 @@ Usage: check_slot_weapons.py PACKAGE.bamod VANILLA_DIR   (exit 1 and list the mo
 import json,sys,zipfile
 from collections import defaultdict
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'releases/0.6')]
+ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'mod')]
 from pipeline.tables import FIELD_TO_FILE
 TABS=('Units','TurretsJson','TurretUnitsJson','TurretWeaponsJson')
 def tables(van,z=None):

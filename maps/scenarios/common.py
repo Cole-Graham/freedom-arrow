@@ -2,7 +2,7 @@
 from pathlib import Path
 import copy, hashlib, json, shutil, sys, uuid, zipfile
 from Crypto.Cipher import AES
-ROOT=Path(__file__).resolve().parent.parent;REPO=ROOT.parent.parent
+ROOT=Path(__file__).resolve().parent.parent;REPO=ROOT.parent
 sys.path.insert(0,str(REPO))
 from pipeline.crypto import AES_KEY
 MARKER=b'fhk3s0g3'

@@ -5,18 +5,18 @@ build inputs. A version is used once only:
 - not in builds.json: never built, so keep it, whatever has changed;
 - in builds.json with the same inputs: a rebuild of the same version, so keep it;
 - in builds.json with other inputs: already built, so move to the next unused dev number.
-build_constants.py runs this first. Run it alone to see the decision: python releases/0.6/dev_version.py"""
+build_constants.py runs this first. Run it alone to see the decision: python mod/dev_version.py"""
 from pathlib import Path
 from datetime import datetime, timezone
 import hashlib, json, re, subprocess
 from bump_version import bump, current
 R=Path(__file__).resolve().parent
-ROOT=R.parents[1]
+ROOT=R.parent
 LEDGER=R/'builds.json'
 # Everything build_constants.py and build.py read from the repository.
-INPUTS=['releases/0.6','releases/0.1/source','pipeline','tools/pla-infantry']
+INPUTS=['mod','archive/releases/0.1/source','pipeline','tools/pla-infantry']
 # Tracked, but not read by the build and not packaged.
-SKIP=re.compile(r'^releases/0\.6/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|pla-build-\d+-package\.json|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests)/)|^pipeline/tests/')
+SKIP=re.compile(r'^mod/(builds\.json|dev_version\.py|bump_version\.py|verify\.py|pla-build-\d+-package\.json|EVIDENCE\.md|TESTING\.md|GAME-MODE\.md|(evidence|row-tests|economy-tests|fingerprint-tests)/)|^pipeline/tests/')
 def ledger():return json.loads(LEDGER.read_text(encoding='utf-8')) if LEDGER.is_file() else {}
 def inputs_sha256(version):
     """Hash of the build inputs, with the version itself written as {VERSION} and Windows line ends as Unix ones."""

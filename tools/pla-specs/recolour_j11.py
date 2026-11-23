@@ -5,7 +5,7 @@ markings, roundels, cockpit and very dark parts keep their pixels. J-16/J-16D fi
 import argparse,io,json,zipfile
 from pathlib import Path
 from PIL import Image,ImageChops
-OUT=Path(__file__).resolve().parents[2]/'releases/0.6/source/UserData/FAModels'
+OUT=Path(__file__).resolve().parents[2]/'mod/source/UserData/FAModels'
 PAIRS=[('m_j16_cg','m_j11_cg','m_j16_cg_tex0','m_j11_cg_tex0'),('m_j16_lo2','m_j11_lo2','m_j16_lo2_tex0','m_j11_lo2_tex0'),
        ('m_j16d_cg','m_j11d_cg','m_j16d_cg_tex0','m_j11d_cg_tex0'),('m_j16d_lo','m_j11d_lo','m_j16d_lo_tex0','m_j11d_lo_tex0')]
 GAIN,OFFSET,CAP=0.9,60,205

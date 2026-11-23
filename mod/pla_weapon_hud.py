@@ -2,7 +2,7 @@
 import json
 
 def apply(root,t,patches,vanilla):
- tools=root.parents[1]/'tools/pla-specs'; source=root/'source/UserData/FreedomArrow'
+ tools=root.parent/'tools/pla-specs'; source=root/'source/UserData/FreedomArrow'
  vehicles=json.loads((source/'pla-vehicle-armament.json').read_text()); designers=json.loads((source/'pla-infantry-designer.json').read_text())
  equipment={w['weapon']:w['native_weapon'] for u in vehicles['entries'] for w in u['weapons']}
  designer_ids={u['unit'] for u in designers['entries']}

@@ -75,6 +75,6 @@ At 10, base damage is 9 and the roof formula is `9 × 50² / (50² + 20²) = 7.7
 
 ## Where the mod changes this
 
-`OverpressureRadius` is an ammunition field. Setting it to 0 leaves `IsTargetOverpressured` clear for that round, so a near miss keeps the geometric face. In 0.6 dev.49 that is what unguided bombs (Mk 82/83/84, FAB, OFAB) do. `releases/0.6/source/conquest/BombRoof.cs` also clears a leftover `forceTop` on those bombs inside `CalculateHitDamage`, and leaves a geometric roof hit in place when the impact is steeper than 30°.
+`OverpressureRadius` is an ammunition field. Setting it to 0 leaves `IsTargetOverpressured` clear for that round, so a near miss keeps the geometric face. In 0.6 dev.49 that is what unguided bombs (Mk 82/83/84, FAB, OFAB) do. `mod/source/conquest/BombRoof.cs` also clears a leftover `forceTop` on those bombs inside `CalculateHitDamage`, and leaves a geometric roof hit in place when the impact is steeper than 30°.
 
 In 0.9 dev.45 the JRVG-1 76 mm proximity HE (ammo 2009953) goes from 4.5 to 0. Build 68 copied it from the Mark 45 127 mm naval HE, but the round kept direct fire and vehicle targets. Each direct hit on a tank therefore used the roof: `8 × 60² / (60² + 100²) = 2.12` health per hit on a main battle tank roof, against `0.66` on a 200 side.

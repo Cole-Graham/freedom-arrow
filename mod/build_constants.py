@@ -8,7 +8,7 @@ import argparse, copy, hashlib, json, math, re, sys
 R=Path(__file__).resolve().parent
 # Saved decks hold this option ID. A failure here means a clone moved above it.
 XM913_APS_OPTION=2000379
-sys.path.insert(0,str(R.parents[1]))
+sys.path.insert(0,str(R.parent))
 from pipeline.crypto import aes_decrypt
 from pipeline.tables import FIELD_TO_FILE
 import dev_version
@@ -18,7 +18,7 @@ def main():
     ap.add_argument('--vanilla-dir',required=True,type=Path)
     args=ap.parse_args()
     dev_version.ensure()
-    base=R.parent/'0.1/source/UserData/FreedomArrow'
+    base=R.parent/'archive/releases/0.1/source/UserData/FreedomArrow'
     out=R/'source/UserData/FreedomArrow/constants'
     pins=json.loads((base/'compatibility.json').read_text())
     original, effective, patches, frozen = {}, {}, {}, {}

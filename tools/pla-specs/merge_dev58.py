@@ -19,7 +19,7 @@ Writes the 24 constant patch files (diff against vanilla) and option-id-migratio
 """
 import argparse,copy,hashlib,json,sys,zipfile,collections
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
+ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL)]
 from pipeline.tables import FIELD_TO_FILE
 RENUMBER={971:1251,972:1252,973:1253,985:1254}
 CHINA=4

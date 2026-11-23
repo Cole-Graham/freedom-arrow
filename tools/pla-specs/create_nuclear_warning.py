@@ -8,7 +8,7 @@ import argparse, array, hashlib, json, math, pathlib, subprocess, tempfile, wave
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--espeak',default='espeak-ng');a=p.parse_args()
 root=pathlib.Path(__file__).resolve().parents[2]
-out=root/'releases/0.6/source/UserData/FreedomArrow/audio/df31-nuclear-warning.wav'
+out=root/'mod/source/UserData/FreedomArrow/audio/df31-nuclear-warning.wav'
 rate=22050
 with tempfile.TemporaryDirectory() as tmp:
     voice=pathlib.Path(tmp)/'voice.wav'

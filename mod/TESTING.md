@@ -4,15 +4,15 @@
 
 ## What to edit
 
-- `releases/0.4/detection-contract.json`: table values.
+- `archive/releases/0.4/detection-contract.json`: table values.
   - `optics_ground_tiers`: vanilla ground optics to new value. Six tiers: 500, 600, 700, 875, 1000, 1200.
   - `optics_ground_drones`: drone sensor rows 32, 33, 34. They do not follow the tiers, so change them yourself.
   - `stealth`: raw value per class. Raw is 1 / UI value, so UI 2.0 is 0.5.
   - `stealth_unit_values`: per-unit raw values that replace the class value.
   - `stealth_override_options`: per-option raw values.
-- `releases/0.4/source/UserData/FreedomArrow/game-config.json`: starting points, forest damage taken, and the building damage floor and per-soldier values. Log lines: `FREEDOM_ARROW_START_POINTS`, `FREEDOM_ARROW_COVER_DAMAGE`, `FREEDOM_ARROW_BUILDING_DAMAGE`.
-- `releases/0.4/source/UserData/FreedomArrow/detection-config.json`: config values, written when a battle loads. Each must be 1 to 10.
-- `releases/0.4/vehicle-contract.json`: prices.
+- `archive/releases/0.4/source/UserData/FreedomArrow/game-config.json`: starting points, forest damage taken, and the building damage floor and per-soldier values. Log lines: `FREEDOM_ARROW_START_POINTS`, `FREEDOM_ARROW_COVER_DAMAGE`, `FREEDOM_ARROW_BUILDING_DAMAGE`.
+- `archive/releases/0.4/source/UserData/FreedomArrow/detection-config.json`: config values, written when a battle loads. Each must be 1 to 10.
+- `archive/releases/0.4/vehicle-contract.json`: prices.
 
 The verifier and row tests read these files, so tuning these values needs no test edit. A new kind of edit needs a matching change in `build_constants.py`, and usually in `verify.py` and `row-tests/Program.cs`.
 
@@ -30,7 +30,7 @@ Copy-Item config.template.YAML config.YAML   # then set game_root in config.YAML
 
 `decrypt` writes `cache/vanilla/<build-id>/`. If a complete snapshot already exists for that build, `decrypt` keeps it and does not read the game again. A snapshot from an older pipeline can hold the wrong database copy.
 
-The generator stops if any table differs from the 24 pins in `releases/0.1/source/UserData/FreedomArrow/compatibility.json`. If it stops:
+The generator stops if any table differs from the 24 pins in `archive/releases/0.1/source/UserData/FreedomArrow/compatibility.json`. If it stops:
 
 1. Delete the snapshot and decrypt again. The cache is git-ignored and is rebuilt from the game.
 
@@ -48,14 +48,14 @@ The generator stops if any table differs from the 24 pins in `releases/0.1/sourc
 $env:PYTHONUTF8 = "1"
 $GAME = "C:/Program Files (x86)/Steam/steamapps/common/broken_arrow"
 $VANILLA = (Get-ChildItem cache/vanilla -Directory | Select-Object -First 1).FullName
-.venv\Scripts\python releases/0.4/build_constants.py --vanilla-dir $VANILLA
-.venv\Scripts\python releases/0.4/build.py --game-dir $GAME --dotnet dotnet
-.venv\Scripts\python releases/0.4/verify.py
+.venv\Scripts\python archive/releases/0.4/build_constants.py --vanilla-dir $VANILLA
+.venv\Scripts\python archive/releases/0.4/build.py --game-dir $GAME --dotnet dotnet
+.venv\Scripts\python archive/releases/0.4/verify.py
 ```
 
 `build_constants.py` writes `constant-audit.json`, `source/UserData/FreedomArrow/constants/` and `deck-migration.json`. Git ignores them, so run it after every pull and every edit. `build.py` stops if the data is missing or for another version.
 
-The archive is `releases/0.4/out/FreedomArrow-<version>.bamod`. It is git-ignored. Import it with the mod manager as usual, and do not copy it into `Mods`.
+The archive is `archive/releases/0.4/out/FreedomArrow-<version>.bamod`. It is git-ignored. Import it with the mod manager as usual, and do not copy it into `Mods`.
 
 ### The version is set for you
 
@@ -65,9 +65,9 @@ Do not set the dev version by hand. `build_constants.py` decides it first, with 
 - **Built, nothing changed since:** the current version stays. A rebuild gives the same version.
 - **Built, then changed:** the next dev number. The script prints the old and new version and updates every file that states it.
 
-`build.py` adds each new version to `releases/0.4/builds.json` with a hash of its inputs and the `.bamod` SHA-256. Commit `builds.json` with the version, so the other build machines know it was built. To see the decision without building, run `python releases/0.4/dev_version.py`. Run it before you write the change notes, so the notes name the right version.
+`build.py` adds each new version to `archive/releases/0.4/builds.json` with a hash of its inputs and the `.bamod` SHA-256. Commit `builds.json` with the version, so the other build machines know it was built. To see the decision without building, run `python archive/releases/0.4/dev_version.py`. Run it before you write the change notes, so the notes name the right version.
 
-- **What counts as a change:** every tracked or new file under `releases/0.4`, `releases/0.1/source` and `pipeline` that the build reads, or that goes into the package. That includes `README.md`.
+- **What counts as a change:** every tracked or new file under `archive/releases/0.4`, `archive/releases/0.1/source` and `pipeline` that the build reads, or that goes into the package. That includes `README.md`.
 - **Not a change:** tests, evidence, `TESTING.md`, `EVIDENCE.md`, `GAME-MODE.md`, `verify.py`, Windows line endings, and the version number itself.
 - **Two machines, one number:** if two people each build a new dev.N from different edits, Git reports a conflict in `builds.json` and `mod.json` when they merge. Keep one and rebuild the other; it then gets the next number.
 - `bump_version.py VERSION` still sets a version by hand. Use it only to correct a mistake.
@@ -75,12 +75,12 @@ Do not set the dev version by hand. `build_constants.py` decides it first, with 
 ## Run the tests
 
 ```powershell
-dotnet run --project releases/0.4/row-tests/Tests.csproj -c Release -- $VANILLA <payload>
-dotnet run --project releases/0.4/economy-tests/Tests.csproj -c Release
+dotnet run --project archive/releases/0.4/row-tests/Tests.csproj -c Release -- $VANILLA <payload>
+dotnet run --project archive/releases/0.4/economy-tests/Tests.csproj -c Release
 .venv\Scripts\python -m unittest discover -s pipeline/tests
 ```
 
-For `<payload>`, use `releases/0.4/build/payload/UserData/FreedomArrow`.
+For `<payload>`, use `archive/releases/0.4/build/payload/UserData/FreedomArrow`.
 
 ## Check that it worked in game
 

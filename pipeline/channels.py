@@ -1,7 +1,7 @@
 """Stable and Testing outputs.
 
 Stable constants stay in the configured mod directory. Testing is a second
-tree under mod/testing/ so a development bundle can be built without
+tree under archive/mod-0.1-0.2/testing/ so a development bundle can be built without
 replacing the stable one.
 """
 
@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from pipeline.config import Config
+from pipeline.config import LEGACY_MOD, Config
 from pipeline.errors import PipelineError
 
 STABLE = "stable"
@@ -27,21 +27,21 @@ def constants_dir(cfg: Config, channel: str) -> Path:
     channel = parse_channel(channel)
     if channel == STABLE:
         return cfg.constants_dir
-    return cfg.repo_root / "mod" / "testing" / "constants"
+    return cfg.repo_root / LEGACY_MOD / "testing" / "constants"
 
 
 def formulas_dir(cfg: Config, channel: str) -> Path:
     channel = parse_channel(channel)
     if channel == STABLE:
-        return cfg.repo_root / "mod" / "formulas"
-    return cfg.repo_root / "mod" / "testing" / "formulas"
+        return cfg.repo_root / LEGACY_MOD / "formulas"
+    return cfg.repo_root / LEGACY_MOD / "testing" / "formulas"
 
 
 def manifest_path(cfg: Config, channel: str) -> Path:
     channel = parse_channel(channel)
     if channel == STABLE:
         return cfg.manifest_path
-    return cfg.repo_root / "mod" / "testing" / "manifest.json"
+    return cfg.repo_root / LEGACY_MOD / "testing" / "manifest.json"
 
 
 def channel_dir(cfg: Config, channel: str) -> Path:
