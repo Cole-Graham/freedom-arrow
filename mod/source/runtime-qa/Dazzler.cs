@@ -152,7 +152,9 @@ static unsafe class Dazzler
     {
         try
         {
-            if(__0==null||!unitIds.Contains(__0.Id))return;
+            // Only the LSDW loadout (999 charges). The ZTZ-99B options (GL-6 APS, LSDW + GL-6 APS) are the same unit 904 with the normal 2-charge APS
+            // and keep the native APS icon and count (Osama 23 Nov 2026 11:3x).
+            if(__0==null||!unitIds.Contains(__0.Id)||(__0.ActiveAbilities?.APSQuantity??0)<HudCharges)return;
             Sprite icon=null;var cache=Il2CppBrokenArrow.Client.Ecs.UI.IconsLoader._sprites;
             if(cache==null||!cache.TryGetValue(cardIcon,out icon)){ChinaUi.Seed();cache=Il2CppBrokenArrow.Client.Ecs.UI.IconsLoader._sprites;if(cache==null||!cache.TryGetValue(cardIcon,out icon))return;}
             var items=__instance._activeAbilitiesItems;if(items==null)return;
@@ -250,6 +252,10 @@ static unsafe class Dazzler
                 {
                     var e=ua[i];if(!e.IsAlive||!e.Has<UnitComponent>())continue;
                     var d=NativeEcs.Read<UnitComponent>(e).UnitData;if(d==null||!unitIds.Contains(d.Id))continue;
+                    // A listed unit is a laser unit only while its APS holds LSDW charges (999). Osama 23 Nov 2026 11:3x: the ZTZ-99B loadouts
+                    // (GL-6 APS, LSDW + GL-6 APS) use the normal APS: 2 charges, 10 s, native 2x hit box reach, RPGs intercepted. Before this they
+                    // got the 200 m laser reach and the RPG pass because the unit ID is 904 for every loadout.
+                    if(NativeEcs.EncodedInt<CounterMeasuresComponent>(e,"APSCount")<HudCharges)continue;
                     listed.Add((e,Key(e)));keys.Add(Key(e));
                 }
                 listedKeys=keys;
