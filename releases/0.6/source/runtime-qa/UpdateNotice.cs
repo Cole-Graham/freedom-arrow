@@ -32,12 +32,17 @@ public static class UpdateNotice
             catch(Exception e){MelonLogger.Msg("FREEDOM_ARROW_UPDATE_NOTICE live version not read: "+e.GetType().Name);}
         }
     }
-    // "0.9.4" or "0.9.4.1"; anything with a suffix (0.9.4-dev.3, -test10) is not compared.
+    // "0.9.4", "0.9.4.1" or a lettered hotfix "0.9.4b" (Lateralus 22 Nov 2026: hotfixes are 0.9.4b, 0.9.4c, ...; the letter is compared as
+    // one more number, b = 1, c = 2, so 0.9.4 < 0.9.4b < 0.9.4c < 0.9.5). Anything else (0.9.4-dev.3, -test10) is not compared.
     static int[] Parse(string v)
     {
         if(string.IsNullOrEmpty(v))return null;
-        var parts=v.Split('.');var n=new int[parts.Length];
+        var parts=v.Split('.');int letter=0;
+        var last=parts[^1];
+        if(last.Length>1&&last[^1]>='b'&&last[^1]<='z'&&char.IsDigit(last[^2])){letter=last[^1]-'a';parts[^1]=last[..^1];}
+        var n=new int[parts.Length+(letter>0?1:0)];
         for(int i=0;i<parts.Length;i++)if(!int.TryParse(parts[i],out n[i]))return null;
+        if(letter>0)n[^1]=letter;
         return n;
     }
     static bool Newer(int[] a,int[] b)
