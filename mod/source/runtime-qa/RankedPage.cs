@@ -103,6 +103,7 @@ static partial class RankedMenu
         var now=Time.unscaledTime;
         if(now>=nextAsk){nextAsk=now+5f;Ask();}
         if(tab==1&&now>=nextBoard){nextBoard=now+30f;AskBoards();}
+        if(tab==2&&now>=nextOnline){nextOnline=now+5f;FetchOnline();}
         if(now<nextSig)return;nextSig=now+0.25f;
         var s=Signature(now);
         if(s==sig)return;
@@ -115,7 +116,8 @@ static partial class RankedMenu
         var cur=fPartyCurrent?.GetValue(null);
         string party=cur==null?"":string.Join(",",((Traverse.Create(cur).Property("members").GetValue() as Array)?.Cast<object>()??Array.Empty<object>()).Select(m=>P(m,"steamId")+P(m,"state")))+"/"+P(cur,"leader");
         string inc=string.Join(",",Arr(fIncoming).Select(i=>P(i,"partyId")));
-        int online=0;try{var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);online=(info==null?null:Traverse.Create(info).Property("players").GetValue() as Array)?.Length??0;}catch{}
+        // the Who is online tab redraws when anyone's state changes; the other tabs only need the count
+        string online="";try{var ps=OnlinePlayers();online=tab==2?string.Join(",",ps.Select(o=>P(o,"steamId")+P(o,"state")+P(o,"inParty")+P(o,"sameBuild")))+"|"+onlineTop:ps.Length.ToString();}catch{}
         return $"{tab}|{queue}|{boardLadder}|{selRow}|{boardTop}|{set}|{vanillaSet}|{meJson.GetHashCode()}|{board1.GetHashCode()}|{boardT.GetHashCode()}|{party}|{inc}|{active}|{(active?(int)(now-searchFrom):0)}|{picking}|{pickTop}|{pickTab}|{pickingDeck}|{deckTop}|{deckName}|{online}|{(now<noteUntil?note:"")}|{error}";
     }
 
@@ -166,17 +168,19 @@ static partial class RankedMenu
         JsonElement me=default;bool have=false;
         try{if(meJson.Length>0){me=JsonDocument.Parse(meJson).RootElement;have=true;}}catch{}
         // sub-tabs
-        string[] tabs={"Ranked","Leaderboard"};float tx=0;
-        for(int i=0;i<2;i++)
+        // Lateralus 23 Nov 2026: "can we add a 'Who is online' tab to the ranked menu, similar to the menu of the same name that exists in the
+        // mod lobbies menu". Same data as the mod lobbies' list (ArrowQueue Api.Online, refreshed every 5 s while the tab is open).
+        string[] tabs={"Ranked","Leaderboard","Who is online"};float[] widths={170,310,330};float tx=0;
+        for(int i=0;i<tabs.Length;i++)
         {
-            bool on=i==tab;float w=i==0?170:310;int k=i;
+            bool on=i==tab;float w=widths[i];int k=i;
             Txt(tx,0,w,52,tabs[i],34,on?Color.white:new Color(0.75f,0.75f,0.75f),on).overflowMode=TextOverflowModes.Overflow;
             Img(tx,56,w-26,on?3:2,on?Color.white:new Color(1,1,1,0.28f));
-            Click(tx,0,w,60,()=>{tab=k;selRow=-1;nextBoard=-100f;});
+            Click(tx,0,w,60,()=>{tab=k;selRow=-1;nextBoard=-100f;nextOnline=-100f;onlineTop=0;});
             tx+=w+20;
         }
-        if(TestHub)Txt(600,14,520,24,"TEST SERVER · ratings here are test ratings",14,new Color(1f,0.75f,0.3f),true,TextAlignmentOptions.MidlineRight);
-        if(tab==0)RankedBody(me,have,now);else{HideDeckDrop();BoardBody(me,have);}
+        if(TestHub)Txt(980,14,520,24,"TEST SERVER · ratings here are test ratings",14,new Color(1f,0.75f,0.3f),true,TextAlignmentOptions.MidlineRight);
+        if(tab==0)RankedBody(me,have,now);else if(tab==1){HideDeckDrop();BoardBody(me,have);}else{HideDeckDrop();OnlineBody();}
         if(error.Length>0)Txt(0,778,900,24,error,15,new Color(1f,0.55f,0.5f));
         Frm(700,812,30,20,new Color(0.75f,0.75f,0.75f));Txt(700,812,30,20,"esc",12,new Color(0.75f,0.75f,0.75f),false,TextAlignmentOptions.Center);
         Txt(738,806,90,32,"BACK",20,Color.white,true);
@@ -563,6 +567,60 @@ static partial class RankedMenu
             Txt(630,670,340,30,$"{pickTop+1}-{Math.Min(rows.Count,pickTop+Vis)} of {rows.Count}",13,dim,false,TextAlignmentOptions.Center);
         }
         Choice(680,736,240,32,"CLOSE",false,15,()=>picking=false);
+    }
+
+    // ---------- Who is online ----------
+    static int onlineTop;static float nextOnline=-100f;static System.Reflection.MethodInfo mFetchOnline,mCompat;
+    static object[] OnlinePlayers()
+    {
+        var info=fOnline?.GetValue(null)??fOnlineList?.GetValue(null);
+        return info==null?Array.Empty<object>():(Traverse.Create(info).Property("players").GetValue() as Array)?.Cast<object>().Where(o=>o!=null).ToArray()??Array.Empty<object>();
+    }
+    static void FetchOnline()
+    {
+        try
+        {
+            mFetchOnline??=AccessTools.Method(tApi,"FetchOnline");mCompat??=AccessTools.Method(tGame,"Compat");
+            mFetchOnline?.Invoke(null,new[]{mCompat?.Invoke(null,null)});
+        }
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED_PAGE online list: "+(e.InnerException?.Message??e.Message));}
+    }
+    // Two columns of players like the mod lobbies' Who is online: friends first, then your build, then by name; state, build line, Invite.
+    static void OnlineBody()
+    {
+        var dim=new Color(0.75f,0.75f,0.75f);var me=MySteam();
+        var friendIds=new HashSet<string>(SteamFriends().Select(f=>f.id));
+        var all=OnlinePlayers().GroupBy(o=>P(o,"steamId")).Select(g=>g.First())
+            .OrderBy(o=>P(o,"steamId")==me?0:friendIds.Contains(P(o,"steamId"))?1:2).ThenBy(o=>P(o,"sameBuild")=="True"?0:1).ThenBy(o=>P(o,"name"),StringComparer.OrdinalIgnoreCase).ToList();
+        int same=all.Count(o=>P(o,"sameBuild")=="True");
+        Txt(0,76,900,30,$"{all.Count} players online with the mod · {same} on your Freedom Arrow build",16,Color.white);
+        Txt(0,104,1200,24,"Invite: into your group. Grey: another build, ranked search will not match you.",14,dim);
+        const int PerCol=12;const float ColW=740,RowH=50;int vis=PerCol*2;
+        onlineTop=Math.Clamp(onlineTop,0,Math.Max(0,(all.Count-1)/vis*vis));
+        if(all.Count==0)Txt(0,140,900,30,"Nobody yet.",16,dim);
+        for(int i=onlineTop;i<Math.Min(all.Count,onlineTop+vis);i++)
+        {
+            var o=all[i];int k=i-onlineTop;float x=(k/PerCol)*(ColW+20),y=138+(k%PerCol)*RowH;
+            string id=P(o,"steamId"),name=P(o,"name"),st=P(o,"state");bool sb=P(o,"sameBuild")=="True",inParty=P(o,"inParty")=="True",friend=friendIds.Contains(id);
+            var stText=st switch{"searching"=>"searching","lobby"=>"in a lobby","battle"=>"in battle",_=>"in the menu"};
+            var stColor=st switch{"searching"=>new Color(0.45f,0.75f,1f),"lobby"=>new Color(1f,0.8f,0.3f),"battle"=>new Color(1f,0.45f,0.4f),_=>Green};
+            Img(x,y,ColW,RowH-6,new Color(0,0,0,0.5f));
+            var pic=SteamPic(id);var ini=name.FirstOrDefault(char.IsLetterOrDigit);
+            Img(x,y,44,44,Avatar[(ini==default(char)?0:ini)%Avatar.Length]);
+            if(pic!=null)Pic(x,y,44,44,pic,false);else Txt(x,y,44,44,ini==default(char)?"?":char.ToUpperInvariant(ini).ToString(),18,Color.white,true,TextAlignmentOptions.Center);
+            Img(x+54,y+10,8,8,stColor);
+            Txt(x+68,y+1,420,24,name+(id==me?" (you)":"")+(friend?"  <size=12><color=#E8BE55>friend</color></size>":"")+$"  <size=13><color=#{ColorUtility.ToHtmlStringRGB(stColor)}>{stText}</color></size>",16,sb?Color.white:dim,true);
+            var sub=string.Join(" · ",new[]{P(o,"ver").Length>0?"v"+P(o,"ver"):"",P(o,"pack"),P(o,"code")}.Where(t=>t.Length>0));
+            Txt(x+68,y+23,480,18,sb?sub:sub+" · other build",13,sb?Green:new Color(1f,0.48f,0.42f));
+            if(id!=me&&sb&&!inParty)Choice(x+ColW-110,y+8,100,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite (online tab) "+name);});
+            else if(id!=me&&inParty)Txt(x+ColW-130,y,120,44,"in a group",13,dim,false,TextAlignmentOptions.MidlineRight);
+        }
+        if(all.Count>vis)
+        {
+            float py=138+PerCol*RowH+6;
+            Choice(0,py,70,30,"Prev",false,14,()=>onlineTop-=vis);Choice(1430,py,70,30,"Next",false,14,()=>onlineTop+=vis);
+            Txt(80,py,1340,30,$"{onlineTop+1}-{Math.Min(all.Count,onlineTop+vis)} of {all.Count}",13,dim,false,TextAlignmentOptions.Center);
+        }
     }
 
     static void BoardBody(JsonElement me,bool have)
