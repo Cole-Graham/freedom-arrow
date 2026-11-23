@@ -246,5 +246,10 @@ if m>=key('0.9.5-dev.34'):
     bad+=[f'option {i} Cost {Ot[i].get("Cost")}, want {c} (prices_1122.py)' for i,c in ((425,0),(20003,10)) if Ot[i].get('Cost')!=c]   # Tigr BRShM optronic, PRP-5G Kaktus
     if Ut[715].get('Cost')!=60:bad.append(f'PRP-5G (715) costs {Ut[715].get("Cost")}, want 60 (prices_1122.py)')   # Lateralus 22 Nov 17:5x
     _Ah=merged('AmmunitionsJson.json','ammunitions.json');bad+=[f'HJ-16 round {i} TargetType {_Ah[i].get("TargetType")} LowAltRange {_Ah[i].get("LowAltRange")}, want 36 / 0 (hj16_ground_1122.py)' for i in (2019312,2019313,2014656) if (_Ah[i].get('TargetType'),_Ah[i].get('LowAltRange'))!=(36,0.0)]   # Osama 22 Nov 17:5x
+# Osama 23 Nov 2026 12:5x: the launcher card picture must be the FA logo, not a guessed texture (BAModManager falls back to an image beside a
+# package file, which picked an F-22 texture). From the build after 0.9.5b the package root carries preview.png = mod/preview.png (FA-patch-v2-square-512).
+if m>key('0.9.5b'):
+    _pv=(Path(__file__).resolve().parents[3]/'mod/preview.png').read_bytes()
+    if 'preview.png' not in z.namelist() or z.read('preview.png')!=_pv:bad.append('preview.png (FA logo for the launcher card) missing or different at the package root')
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

@@ -48,7 +48,9 @@ complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.
 with zipfile.ZipFile(base) as z:
     whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='Freedom Arrow '+a.prev
     core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
-    override={'mod.json':(REL/'mod.json').read_bytes(),'README.md':(ROOT/'README.md').read_bytes(),'Mods/FreedomArrow.Runtime.dll':(SRC/'runtime-qa/bin/Release/net6.0/FreedomArrow.Runtime.dll').read_bytes()}
+    # preview.png (Osama 23 Nov 2026: the launcher card showed an F-22 texture): BAModManager stores a root preview.* as the pack's picture
+    # (ModService, PreviewNames) and installs nothing into the game for it, so it stays out of the payload lists below.
+    override={'mod.json':(REL/'mod.json').read_bytes(),'README.md':(ROOT/'README.md').read_bytes(),'preview.png':(REL/'preview.png').read_bytes(),'Mods/FreedomArrow.Runtime.dll':(SRC/'runtime-qa/bin/Release/net6.0/FreedomArrow.Runtime.dll').read_bytes()}
     dll=override['Mods/FreedomArrow.Runtime.dll'];assert [dll[m.end():m.end()+m.group(1)[0]].decode() for m in re.finditer(rb'\x0dFreedom Arrow(.)',dll)]==[V]
     for f in (SRC/'UserData/FreedomArrow/constants').glob('*.json'):
         k=f.relative_to(SRC).as_posix()
@@ -129,7 +131,7 @@ with zipfile.ZipFile(base) as z:
     override['UserData/FreedomArrow/payload-manifest.json']=enc(core)
     whole.update(build=a.build,label='Freedom Arrow '+V)
     for n,b in override.items():
-        if n not in ['mod.json','README.md']:whole['sha256'][n]=H(b)
+        if n not in ['mod.json','README.md','preview.png']:whole['sha256'][n]=H(b)
     whole['core_paths']=sorted(set(whole['core_paths'])|{n for n in override if n.startswith('UserData/FreedomArrow/')})
     # The runtime refuses the payload unless this set is exactly 257 files plus 0 or 58 battle copies (Runtime.cs;
     # 0.9.0-dev.13 first failed in game with 315). Keep this in step with that check.
