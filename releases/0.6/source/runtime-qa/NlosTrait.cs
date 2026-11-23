@@ -42,6 +42,7 @@ static class NlosTrait
     // Missile -> original target (0 = not an NLOS missile).
     static readonly Dictionary<ulong,ulong> missiles=new();
     static readonly HashSet<ulong> tracked=new();
+    static readonly HashSet<ulong> spotOnly=new();
     static readonly Dictionary<ulong,int> restores=new();
     static readonly Dictionary<ulong,int> tries=new();
     static readonly HashSet<(ulong,int)> keptLogged=new();
@@ -67,7 +68,7 @@ static class NlosTrait
         if(ammo.Count==0){MelonLogger.Msg("FREEDOM_ARROW_NLOS not installed: empty ammunition list");return;}
         var update=AccessTools.Method(typeof(SeekerSystem),"InternalUpdate")??throw new InvalidOperationException("SeekerSystem.InternalUpdate not found");
         var drop=AccessTools.Method(typeof(SeekerSystem),nameof(SeekerSystem.DropCurrentTarget))??throw new InvalidOperationException("SeekerSystem.DropCurrentTarget not found");
-        harmony.Patch(update,prefix:new HarmonyMethod(typeof(NlosTrait),nameof(UpdateBefore)));
+        harmony.Patch(update,prefix:new HarmonyMethod(typeof(NlosTrait),nameof(UpdateBefore)),postfix:new HarmonyMethod(typeof(NlosTrait),nameof(UpdateAfter)));
         harmony.Patch(drop,prefix:new HarmonyMethod(typeof(NlosTrait),nameof(DropBefore)));
         var cfg=JsonNode.Parse(File.ReadAllText(path))!;
         foreach(var n in cfg["fire_weapons"]?.AsArray()??new JsonArray())fireWeapons.Add(n!.GetValue<int>());
@@ -258,7 +259,7 @@ static class NlosTrait
         }
         if(missiles.Count>Prune)
         {
-            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);tries.Remove(k);}
+            foreach(var k in missiles.Keys.ToList())if(!FromKey(k).IsAlive){missiles.Remove(k);tracked.Remove(k);restores.Remove(k);tries.Remove(k);spotOnly.Remove(k);}
         }
         if(!missile.Has<MissileGuidanceInfoComponent>()||!missile.Has<SeekerComponent>()){missiles[key]=0;return false;}
         var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;
@@ -317,20 +318,18 @@ static class NlosTrait
                     // every one dived and hit). Handed back to the game with LaunchHorizontalDistance 0, the cruise path never reaches its dive point
                     // and climbed from 100 to 1434 over 18 s. On the last check, give the cruise path the distance to the laser spot, so it dives
                     // on the spot the laser marks (the laser keeps LastTargetPosition on it) instead of climbing away.
-                    // dev.40/41 (Lateralus and Osama 22 Nov 22:0x-22:4x, Fire Position at empty ground). dev.40 gave the cruise path the distance: it still
-                    // flew past the spot and climbed. dev.41 switched the missile to the Hellfire path (110): it went straight up (trace 22:45, path 110,
-                    // no seeker target, no steering). Both paths steer on the seeker's target, and these rounds have a semi-active seeker
-                    // (SeekerType 100), which needs a target held by the shooter; a Fire Position shot has none. Vanilla cruise missiles fired at
-                    // ground points (Iskander-K 9M728: path 200, SeekerType None 0) fly to the point and dive. So, with no unit at the spot, this
-                    // one missile's seeker becomes None (SeekerComponent.Type), it keeps the cruise path, and it gets the distance to the spot.
+                    // dev.43 log (Osama 22 Nov 23:03, Airport, 27 flights): the empty-spot rounds whose seeker never reported line of sight to the
+                    // spot (HasLOSOnCurrentTarget false) dived and hit within 20 of it once LaunchHorizontalDistance was set (3 rounds at 23:02:41). The
+                    // ones whose seeker reported line of sight with no target entity (23:03:25-28, and Lateralus's dev.39/40 traces at t+3 s) stopped
+                    // diving and climbed to 2000+. (Their SeekerComponent.Type was already 0, so dev.43's seeker change did nothing.) So with no unit at the
+                    // spot: set the distance, and keep line of sight and vision off on this missile after every seeker update (UpdateAfter).
                     if(tries.TryGetValue(key,out int done)&&done+1>=MaxTries)
                     {
-                        int st=NativeEcs.Field<SeekerComponent,int>(missile,"Type");
-                        NativeEcs.WriteField<SeekerComponent,int>(missile,"Type",0);
                         var lhd=NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance");
                         var mp=Position(missile);float hd=new Vector2(spot.x-mp.x,spot.z-mp.z).magnitude;
                         if(!(lhd>1f)&&hd>1f)NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd);
-                        weaponState+=$"; no unit at the spot: this missile flies to the spot as an unguided cruise missile (seeker {st} -> 0, launch distance {lhd:0.#} -> {hd:0})";
+                        spotOnly.Add(key);
+                        weaponState+=$"; no unit at the spot: flies to the spot (launch distance {lhd:0.#} -> {hd:0}, seeker line of sight held off)";
                         weaponState+=$"; near the spot: {UnitsNear(spot,150f)}";
                     }
                 }
@@ -346,6 +345,12 @@ static class NlosTrait
             return false;
         }
         tries.Remove(key);missiles[key]=Key(target);
+        // dev.43 log 23:02:52: an HJ-10 locked from its seeker kept LaunchHorizontalDistance 0, flew level past the target and off the map.
+        if(target.Has<ViewComponent>()&&!(NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance")>1f))
+        {
+            var mp0=Position(missile);var tp0=Position(target);float hd0=new Vector2(tp0.x-mp0.x,tp0.z-mp0.z).magnitude;
+            if(hd0>1f){NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",hd0);from+=$", launch distance 0 -> {hd0:0}";}
+        }
         Log("nlos_launch",$"launch ammo {info.Id} missile {Id(missile)} target {Id(target)} at {Distance(missile,target):0} world units; target from {from}",
             new{ammo=info.Id,missile=Id(missile),target=Id(target),distance=Distance(missile,target),from});
         return true;
@@ -431,6 +436,20 @@ static class NlosTrait
             if(target.Has<ViewComponent>())NativeEcs.WriteField<SeekerComponent,Vector3>(missile,"LastTargetPosition",Position(target));
             updates++;
             if(tracked.Add(key))Log("nlos_tracking",$"missile {Id(missile)}: tracking target {Id(target)} (line of sight and vision held by the NLOS trait)",new{missile=Id(missile),target=Id(target)});
+        }
+        catch(Exception e){Fail(e);}
+    }
+    public static void UpdateAfter(in Entity __0)
+    {
+        if(broken||spotOnly.Count==0)return;
+        try
+        {
+            var missile=__0;ulong key=Key(missile);
+            if(!spotOnly.Contains(key))return;
+            if(!missile.IsAlive||!missile.Has<SeekerComponent>()){spotOnly.Remove(key);return;}
+            if(SeekerTarget(missile,out var t)&&t.IsAlive){spotOnly.Remove(key);return;}   // the seeker found a real target: game guidance
+            NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget",false);
+            NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget",false);
         }
         catch(Exception e){Fail(e);}
     }
