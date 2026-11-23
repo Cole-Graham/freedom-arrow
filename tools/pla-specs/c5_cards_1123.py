@@ -5,7 +5,7 @@
   model build". Copy of PLA FH-97A (1253): same body, price (185), cards (2) and option prices; each PLA pylon gets an own US copy whose weapon is a copy of
   the US launcher (MagazineSize as the PLA launcher) firing the US round. The PLA rows are stat clones of US rows: LS-6 500kg / LT-2 = GBU-55 1000lb,
   LS-6 1000kg = GBU-56 2000lb, PL-15C = AMRAAM; PL-12 -> AMRAAM (PLA damage 17, US 16); PL-15 / PL-16 -> AIM-260 JATM (the US next-generation long-range
-  missile: range 5500 vs 4500). Spec USMC (3): the Marine Corps is the XQ-58 operator. Card art: X-47B (no XQ-58 art yet)."""
+  missile: range 5500 vs 4500). Spec Air Naval (5; was USMC 3 until Osama 04:3x "XQ-58A goes to Air tab for Air naval"). Card art: X-47B (no XQ-58 art yet)."""
 KF, XQ = 'KF-21 Block 1', 'US XQ-58A Valkyrie'
 # PLA weapon -> (US launcher to copy, US round, label)
 XQ_W = {2018505: (231, 89, 'AMRAAM'), 2018510: (675, 531, 'AIM-260 JATM'), 2018528: (231, 89, 'AMRAAM'), 2018539: (675, 531, 'AIM-260 JATM'),
@@ -47,7 +47,7 @@ def apply(t, g, ok, rec):
     ok(sum(len(rows('OptionsJson', ModificationId=m['Id'])) for m in rows('ModificationsJson', UnitId=kf)) == 21, 'KF-21 Block 1: 21 options')
 
     # XQ-58A = FH-97A with US pylons
-    ok(U[1253]['Name'] == 'PLA FH-97A' and S[3]['Name'] == 'USMC' and S[3]['CountryId'] == 2 and U[969]['Name'] == 'X-47B', 'FH-97A 1253, USMC spec 3, X-47B art')
+    ok(U[1253]['Name'] == 'PLA FH-97A' and S[5]['UIName'] == 'Air Naval' and S[5]['CountryId'] == 2 and U[969]['Name'] == 'X-47B', 'FH-97A 1253, Air Naval spec 5, X-47B art')
     xq = copy_unit(1253, XQ, {'HUDName': 'XQ-58A Valkyrie', 'CountryId': 2, 'ThumbnailFileName': U[969]['ThumbnailFileName'], 'PortraitFileName': U[969]['PortraitFileName']})
     wmap, tmap = {}, {160: 160}
     for wa in rows('WeaponAmmunitionsJson', UnitId=1253):
@@ -69,7 +69,7 @@ def apply(t, g, ok, rec):
             g.add('OptionsJson', o, {'ModificationId': nm, 'Name': o['Name'].replace('PLA loadout FH-97A', 'US loadout XQ-58'), 'UIName': ui, 'OptionPicture': pic,
                                      'Turret0Id': tmap[o['Turret0Id']], 'Turret1Id': tmap[o['Turret1Id']]})
     (tpl,) = rows('SpecializationAvailabilitiesJson', UnitId=1253)
-    g.add('SpecializationAvailabilitiesJson', tpl, {'UnitId': xq, 'SpecializationId': 3})
+    g.add('SpecializationAvailabilitiesJson', tpl, {'UnitId': xq, 'SpecializationId': 5})   # Osama 23 Nov 04:3x: "XQ-58A goes to Air tab for Air naval"
     for tab in ('UnitAbilitiesJson', 'SensorUnitsJson', 'UnitArmorsJson', 'UnitPropulsionsJson', 'TurretUnitsJson', 'WeaponAmmunitionsJson', 'ModificationsJson'):
         ok(len(rows(tab, UnitId=xq)) == len(rows(tab, UnitId=1253)), (XQ, tab, 'copied'))
     xo = [o for m in rows('ModificationsJson', UnitId=xq) for o in rows('OptionsJson', ModificationId=m['Id'])]

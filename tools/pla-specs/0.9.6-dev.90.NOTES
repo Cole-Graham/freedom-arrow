@@ -23,3 +23,8 @@ to the model build" / "the KF-21 and XQ-58"). c5_cards_1123.py:
   of US launchers with the FH-97A magazine sizes; rounds AMRAAM (for PL-12, PL-15C), AIM-260 JATM (PL-15, PL-16), GBU-55 (LS-6 500kg, LT-2),
   GBU-56 (LS-6 1000kg). X-47B card art. Model C5 351580 m_xq58_* (LODs 3.7k/3.0k).
 Assets 0.2.68. 4384 data checks, 234365 package checks.
+
+0.9.6-dev.93 (build 306, Osama 23 Nov 04:2x-04:3x): LRHW model fixes ("faces seem off? normals and textures", "took a long time to load"): the seller's
+custom split normals are cleared after decimation (battle 7.6% -> 0% triangles facing against their normals, armory 0.7% -> 0.09%); armory textures 4K -> 2K
+(fat 419 -> 146 MB). X-47B back on the old m_x47b with mask remap metallic 0.6..1 / smoothness 0.5..0.9 (was 0..0.5 / 0.35..0.82). XQ-58A: Air Naval
+spec 5, scale 1.4, offset 0.6 m, same metallic remap. Assets 0.2.69. 4384 data checks, 234365 package checks.

@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.92",
+  "version": "0.9.6-dev.93",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.92 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.91 plus the C5 models: X-47B model replacement, new KF-21 Block 1 card (copy of KF-21 Boramae, C5 model, 3 liveries) and new US XQ-58A Valkyrie card (USMC; FH-97A copy, same price 185, US munitions AMRAAM / AIM-260 JATM / GBU-55 / GBU-56). 0.9.6-dev.91 = 0.9.6-dev.90 plus the US LRHW Dark Eagle. 0.9.6-dev.90 = 0.9.5 gameplay plus the 0.9.6 model rework (ZBD-03 rebuild, Type 19 / 99A LODs, Blue Dragon LOD re-cuts, battle textures capped at 15 MB) and the France (Testing Preview) spec. Needs Freedom Arrow — Models and Music 0.2.68.",
+  "description": "Freedom Arrow 0.9.6-dev.93 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.92 plus LRHW Dark Eagle model fixes (normals reset, no wrong-facing triangles; armory textures 2K for load time), X-47B back on its old model with a more metallic skin, and XQ-58A in Air Naval, 40% bigger, raised 0.6 m and metallic. Needs Freedom Arrow — Models and Music 0.2.69.",
   "repo": "Cole-Graham/freedom-arrow"
 }
