@@ -81,6 +81,8 @@ internal sealed class NewsPanel : Panel
         Controls.Add(_tiles);
         Controls.Add(Title(T("BATTLEFIELD REPORT")));
         ShowText(T("Loading news…"));
+        _refresh.Tick += async (_, _) => await RefreshAsync();
+        Disposed += (_, _) => _refresh.Dispose();
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -93,13 +95,28 @@ internal sealed class NewsPanel : Panel
 
     public async Task LoadAsync()
     {
+        _refresh.Start();
         var news = await LauncherNews.LoadAsync();
         if (IsDisposed) return;
         if (news == null) { ShowText(T("News is unavailable right now. It doesn't affect PLAY.")); return; }
+        _loaded = true;
         _tiles.Set(news.Stats);
         if (news.Notes.Count > 0) _link = news.Notes[0].Link;
         Render(news.Notes);
         if (news.Features.Count > 0) await ShowFeature(news.Features[0]);
+    }
+
+    // Osama 23 Nov 2026: "the launcher's online now never updates, this should poll information every 5 minutes".
+    // Every 5 minutes the battlefield numbers are read again (the site writes news.json every 5 minutes); the notes stay as they are,
+    // so the reader's scroll position is kept. If the first read failed, the whole news is tried again.
+    private readonly System.Windows.Forms.Timer _refresh = new() { Interval = 5 * 60 * 1000 };
+    private bool _loaded;
+
+    private async Task RefreshAsync()
+    {
+        if (!_loaded) { await LoadAsync(); return; }
+        var news = await LauncherNews.LoadAsync();
+        if (news != null && !IsDisposed) _tiles.Set(news.Stats);
     }
 
     /// <summary>The newest feature, shown first: title, a line of text and its animated picture.</summary>

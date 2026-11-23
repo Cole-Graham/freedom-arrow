@@ -5,7 +5,7 @@ namespace BAModManager.Core;
 
 /// <summary>
 /// 1.1.15 (Osama 22 Nov 2026, "can we add a news section on the launcher? like the battle stats and patch notes?"):
-/// the News panel's data. freedomarrow.app/site/data/news.json is written every 10 minutes by the site's stats job
+/// the News panel's data. freedomarrow.app/site/data/news.json is written every 5 minutes by the site's stats job
 /// (team-site/stats/build_news.py): the front page's Battlefield report numbers and the short release announcements.
 /// Display only: it is shown as plain text, never runs anything, and links open only on freedomarrow.app.
 /// A failed or slow read just leaves the panel saying the news is unavailable; it never holds up PLAY.
