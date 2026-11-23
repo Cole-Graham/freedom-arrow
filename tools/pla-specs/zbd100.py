@@ -72,10 +72,11 @@ def apply(t, g, ok, rec):
     g.add('UnitArmorsJson', rows('UnitArmorsJson', UnitId=Z)[0], {'UnitId': uid, 'ArmorId': arm})
     g.add('UnitPropulsionsJson', rows('UnitPropulsionsJson', UnitId=Z)[0], {'UnitId': uid})
     g.add('SensorUnitsJson', rows('SensorUnitsJson', UnitId=Z)[0], {'UnitId': uid, 'SensorId': VG})
-    gun = g.add('WeaponsJson', W[GUN], {'Name': 'PLA ZBD-100 35 mm', 'HUDName': '35 mm CT'})
-    ke = g.add('AmmunitionsJson', A[KE], {'Name': 'PLA ZBD-100 35 mm APFSDS', 'HUDName': '35 mm CT APFSDS', 'Damage': 1.94,
+    # Osama 23 Nov 00:0x: "the Type 100 CSV should have a 40mm telescoped gun not 35" - names only (40 mm CT); stats as set on 22 Nov.
+    gun = g.add('WeaponsJson', W[GUN], {'Name': 'PLA ZBD-100 40 mm', 'HUDName': '40 mm CT'})
+    ke = g.add('AmmunitionsJson', A[KE], {'Name': 'PLA ZBD-100 40 mm APFSDS', 'HUDName': '40 mm CT APFSDS', 'Damage': 1.94,
                                           'PenetrationAtMinRange': 180.0, 'PenetrationAtGroundRange': 100.0})
-    he = g.add('AmmunitionsJson', A[HE], {'Name': 'PLA ZBD-100 35 mm HE', 'HUDName': '35 mm CT HE', 'GroundRange': 600.0, 'LowAltRange': 600.0})
+    he = g.add('AmmunitionsJson', A[HE], {'Name': 'PLA ZBD-100 40 mm HE', 'HUDName': '40 mm CT HE', 'GroundRange': 600.0, 'LowAltRange': 600.0})
     chl = g.add('WeaponsJson', W[CHW], {'Name': 'PLA ZBD-100 CH-901 launcher', 'ModelFileName': None})
     T, TW = t['TurretsJson'], rows('TurretWeaponsJson', TurretId=53)
     base = g.add('TurretsJson', T[53], {'Name': 'PLA ZBD-100 mount 0'})
@@ -110,7 +111,7 @@ def apply(t, g, ok, rec):
     zm = {m['Type']: m for m in rows('ModificationsJson', UnitId=Z)}
     lm = g.add('ModificationsJson', zm[3], {'UnitId': uid, 'Name': 'PLA ZBD-100 loadout', 'Order': 0})
     tpl_o = rows('OptionsJson', ModificationId=zm[3]['Id'])[0]
-    for n, (key, ui, pic) in enumerate(((' ', '35 mm CT', 'EMPTY'), (' CH-901', '9x CH-901', 'VEH_SPIKE_LR'))):
+    for n, (key, ui, pic) in enumerate(((' ', '40 mm CT', 'EMPTY'), (' CH-901', '9x CH-901', 'VEH_SPIKE_LR'))):
         r = units[key.rstrip()]
         g.add('OptionsJson', tpl_o, {'ModificationId': lm, 'Name': 'PLA ZBD-100 loadout' + key.rstrip(), 'UIName': ui, 'OptionPicture': pic, 'Order': n,
                                      'IsDefault': False, 'Cost': U[r]['Cost'] - BASE, 'ReplaceUnitId': r, 'ReplaceUnitName': None if r == uid else NAME,
@@ -152,11 +153,11 @@ def apply(t, g, ok, rec):
     ok(all(A[cha][k] == A[CHA][k] for k in A[CHA] if k not in ('Id', 'Name', 'PenetrationAtMinRange', 'PenetrationAtGroundRange')) and (A[cha]['PenetrationAtMinRange'], A[cha]['PenetrationAtGroundRange'], A[CHA]['PenetrationAtGroundRange']) == (60.0, 60.0, 30.0), 'Type 100 CH-901 round: penetration 60, Blood Wolves round unchanged')
     ok((U[uid]['Cost'], U[uid]['InfantrySlots'], U[uid]['ModelFileName'], U[uid]['CountryId'], U[uid]['WaterDiveOffset']) == (BASE, 6, 'US_M2A3', 4, U[BR]['WaterDiveOffset']), 'ZBD-100 card: 145, 6 seats, Bradley model and dive offset, China')
     ok([r['SensorId'] for r in rows('SensorUnitsJson', UnitId=uid)] == [VG], 'ZBD-100 Very Good Optics (card 2000 m)')
-    ok(all(W[gun][k] == W[GUN][k] for k in W[GUN] if k not in ('Id', 'Name', 'HUDName')), '35 mm gun = ZBD-20 gun (fire rate)')
+    ok(all(W[gun][k] == W[GUN][k] for k in W[GUN] if k not in ('Id', 'Name', 'HUDName')), '40 mm gun = ZBD-20 gun (fire rate)')
     ok(abs(A[ke]['Damage'] / A[KE]['Damage'] * 1.55 - 2.0) < 0.01, ('KE card DPS 1.55 -> 2.0', round(A[ke]['Damage'] / A[KE]['Damage'] * 1.55, 3)))
     ok(all(A[he][k] == A[HE][k] for k in A[HE] if k not in ('Id', 'Name', 'HUDName', 'GroundRange', 'LowAltRange')) and A[he]['GroundRange'] * 2 == 1200, 'HE = ZBD-20 HE, card 1200 m')
     opts = rows('OptionsJson', ModificationId=lm)
-    ok(len(rows('ModificationsJson', UnitId=uid)) == 2 and [(o['Cost'], o['ReplaceUnitId'], o['UIName']) for o in opts] == [(0, uid, '35 mm CT'), (CH_COST, units[' CH-901'], '9x CH-901')], 'weapon slot: 35 mm / 9x CH-901')
+    ok(len(rows('ModificationsJson', UnitId=uid)) == 2 and [(o['Cost'], o['ReplaceUnitId'], o['UIName']) for o in opts] == [(0, uid, '40 mm CT'), (CH_COST, units[' CH-901'], '9x CH-901')], 'weapon slot: 35 mm / 9x CH-901')
     popts = rows('OptionsJson', ModificationId=pm)
     ok(t['ModificationsJson'][pm]['Type'] == 6 and [(o['Cost'], o['Ability1Id'], o['Ability2Id'], o['Ability3Id'], o['ReplaceUnitId'], o['Turret0Id']) for o in popts] == [(0, 0, 0, 0, 0, 0), (40, APS, 0, 0, 0, 0)], 'protection slot: none / GL-5 APS +40')
     ok(not AB[APS]['IsDefault'], 'APS option ability is not a default ability (AddAbility skips defaults)')
