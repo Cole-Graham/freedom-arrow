@@ -234,6 +234,7 @@ if m>=key('0.9.5-dev.34'):
     _su=merged('SensorUnitsJson.json','sensor_units.json');_ua=merged('UnitAbilitiesJson.json','unit_abilities.json')
     bad+=[f'unit {u} not on sensor row 3 (recon_sniper_1122.py)' for u in (1240,1263) if [r['SensorId'] for r in _su.values() if r and r.get('UnitId')==u]!=[3]]
     if [r['AbilityId'] for r in _ua.values() if r and r.get('UnitId')==1144]!=[28]:bad.append('Snipers 1144 not on ability row 28 (laser) (recon_sniper_1122.py)')
+    bad+=[f'option {i} Cost {Ot[i].get("Cost")}, want {c} (prices_1122.py)' for i,c in ((425,0),(20003,10)) if Ot[i].get('Cost')!=c]   # Tigr BRShM optronic, PRP-5G Kaktus
     if Ut[715].get('Cost')!=60:bad.append(f'PRP-5G (715) costs {Ut[715].get("Cost")}, want 60 (prices_1122.py)')   # Lateralus 22 Nov 17:5x
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

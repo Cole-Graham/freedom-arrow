@@ -167,3 +167,6 @@
   (Sprint30 Smoke) -> vanilla 28 (Sprint Smoke Laser = 103 + 1200 m laser, every US/RU sniper team and China 1161/1202). 4193 checks; queued_checks guard. Not seen in game.
 - 2026-11-22 17:5x PST, thread 1572962048705429598 (Lateralus: "PRP-5G 35 -> 60 points"). DATA: prices_1122.py: Units 715 Cost 35 -> 60 (OriginalCost 0, no swap rows;
   Kaktus option stays +20). 4195 checks; queued_checks guard. Not seen in game.
+- 2026-11-22 17:5x PST, thread 1572962048705429598 (Lateralus: "Tigr BRShM optronic loadout +10 -> +0", "PRP-5G Reactive Armor loadout +20 -> +10"). DATA:
+  prices_1122.py: option 425 (Tigr BRShM 195, Optronic system) Cost 10 -> 0; option 20003 (PRP-5G 715, Kaktus) 20 -> 10. Own rows, no swap units. 4198 checks;
+  queued_checks guard. Not seen in game.
