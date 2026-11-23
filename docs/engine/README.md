@@ -8,3 +8,4 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - [Target and ammunition selection](target-and-ammo-selection.md) scores each round and each target, and shows why a weapon fires at a target it can barely damage.
 - [Missile flight](missile-flight.md) explains how start speed, burn time, acceleration, top speed and the 30% death speed set a missile's real reach, and how that compares with its table range.
 - [Low altitude and air sight](low-altitude-and-air-sight.md) explains the Ground / Low / High states, which optics an air target is checked against, and the 15-unit forest layer that blocks sight lines above the visible trees.
+- [Infantry casualty and weapon order](infantry-casualty-and-weapon-order.md) explains which soldier dies first (`SquadMembers.DeathPriority`, highest first, ties random) and what `SquadWeapons.Order`, `WeaponChannel` and `WeaponPriority` do for infantry (list order only; no fire priority).
