@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); PartySizeWarning.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -75,7 +75,7 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
-    public override void OnGUI() { conquest?.OnGUI(); WebsiteButton.OnGUI(); RankedMenu.OnGUI(); }
+    public override void OnGUI() { conquest?.OnGUI(); WebsiteButton.OnGUI(); RankedMenu.OnGUI(); PartySizeWarning.OnGUI(); }
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
@@ -94,6 +94,7 @@ public class Runtime : MelonMod
         PlayableBorders.SceneChanged();
         MenuArt.SceneChanged();
         MemoryCleanup.SceneChanged(sceneName);
+        PartySizeWarning.SceneChanged(sceneName);
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -291,6 +292,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_WEBSITE_BUTTON_FAILED: no website button. "+e.Message); }
         try { RankedMenu.Install(HarmonyInstance); }   // Lateralus 22 Nov 2026: Ranked card, ranked menu and leaderboard
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RANKED_FAILED: no ranked menu. "+e.Message); }
+        try { PartySizeWarning.Install(HarmonyInstance); }   // Osama 22 Nov 2026: warning over Ready when a team is larger than the [NvN] map (0.9.5)
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PARTY_SIZE_FAILED: not installed; no oversized-party warning. "+e.Message); }
     }
     public override void OnApplicationQuit()
     {
