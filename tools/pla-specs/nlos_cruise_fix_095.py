@@ -20,7 +20,7 @@ edge of the map").
   (dev.8 0.1 m; dev.9 HJ-10 5 m, QN-502 and CH-901 2 m for near-miss leeway, Osama).
 - dev.10: HJ-10 penetration 90 -> 130 (Osama). dev.12: TOW-2B stats (11 / 140) instead; FNF default launcher (aim 3-4 s) and NLOS option (+20, aim
   0.2 s, 2000 m Arsenal range = GroundRange 1000) on a loadout option (Osama). dev.15: FNF = vanilla Javelin launcher + round (stand-in).
-Called from apply_0_9_4_dev1.py."""
+Called from batch_0_9_5b.py."""
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901'}
 HJ10_LAUNCHER = 2009619
 

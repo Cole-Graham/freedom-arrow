@@ -6,7 +6,7 @@ missile is the Hellfire SHORAD on dedicated AA units. Three HJ-16 rounds still c
     (Osama 16 Nov "ZBD-20 gets 1300 low alt range"), 550 since 0.9.0-dev.32;
   2014656 ZBD-251 HJ-16 (row named 'PLA HJ-10', HJ-10 stats): on the ZBD-251 (1056) since 0.8.0-dev.55, low altitude 1000.
 Each gets the ground-only target set of the ZBL-191 HJ-16 (TargetType 36, LowAltRange 0, HighAltRange 0). Everything else stays.
-The AFT-10's HJ-10 (2010725, also 44 / 1000) is not an HJ-16 and is left as it is. Called from apply_0_9_4_dev1.py."""
+The AFT-10's HJ-10 (2010725, also 44 / 1000) is not an HJ-16 and is left as it is. Called from batch_0_9_5b.py."""
 
 ROUNDS = (2019312, 2019313, 2014656)
 

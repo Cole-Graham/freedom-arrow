@@ -4,7 +4,7 @@ When combined LSDW and APS, the APS overrides (you get the two charges and norma
 the hotfix"). Protection slot of unit 904 (modification 2019383): None 0, JD-3 jammer +20, GL-6 APS +70 (new), LSDW +100, LSDW + GL-6 APS +120 (new).
 APS = existing ability row 82 "APS IronFist NoModel" (2 charges, the normal 10 s cooldown; the ZBD-20 / US option row), linked, not a new row.
 The combined option keeps the LSDW turret 2019389 (the LSDW weapon) with ability 82 in slot 2 instead of the LSDW laser defence 2019386.
-The two APS options rename the card ZTZ-99B (ReplaceUnitName, Osama 22 Nov 02:1x). The 99B model for the two APS options is chosen by FAModels from models.json "variants" (FAModels 0.3.39). Called from apply_0_9_4_dev1.py."""
+The two APS options rename the card ZTZ-99B (ReplaceUnitName, Osama 22 Nov 02:1x). The 99B model for the two APS options is chosen by FAModels from models.json "variants" (FAModels 0.3.39). Called from batch_0_9_5b.py."""
 def apply(t,g,ok,rec):
     U,M,O,AB,UA=t['Units'],t['ModificationsJson'],t['OptionsJson'],t['AbilitiesJson'],t['UnitAbilitiesJson']
     ok((U[904].get('HUDName') or '').strip()=='ZTZ-99A' and M[2019383]['UnitId']==904,'ZTZ-99A protection slot')

@@ -1,6 +1,6 @@
 """Armory vs multiplayer equipment audit (Osama 13 Nov 22:58 PST, thread 1567745029781454889).
 Runs the 0.7 SP/MP guards (memory sp-mp-build-guards; releases/0.7/build_constants.py) on a 0.8 package and reports faults that
-vanilla does not already have; exits 1 if there are any. package_0_8_next.py runs it on every build.
+vanilla does not already have; exits 1 if there are any. package.py runs it on every build.
 usage: audit_mp_equipment.py PACKAGE.bamod VANILLA_DIR"""
 import json,sys,zipfile,collections
 from pathlib import Path

@@ -1,5 +1,5 @@
 """Lateralus 22 Nov 2026 17:4x PST, thread 1572962048705429598: "ZTQ-15 Recon optics Good -> Very Good", "ZTL-191 Recon optics Good -> Very Good",
-"Snipers (PLAAF) are missing their laser (or missing their laser ability icon on the card? or both..)". Called from apply_0_9_4_dev1.py.
+"Snipers (PLAAF) are missing their laser (or missing their laser ability icon on the card? or both..)". Called from batch_0_9_5b.py.
 - ZTQ-15 Recon (1240) and ZTL-191 Recon (1263): section 14 linked them to vanilla sensor row 1 "Good Optics" (1650 ground); they now link
   vanilla row 3 "Very Good Optics" (2300 ground, the ZBD-04A Recon / M3A3 CFV level). Shared vanilla rows are not edited.
 - Snipers 狙击组 (1144, the PLAAF card): both. The card icons and the battle read the same ability row (docs: ability-card-vs-battle), and

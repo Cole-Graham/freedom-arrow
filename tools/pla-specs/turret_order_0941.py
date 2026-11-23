@@ -4,7 +4,7 @@ and ZTZ-99 Arsenal cards). LoadUnits.LoadWeapons puts (Order - weapon rows on th
 weapon has Order 2 gets [empty, weapon]; the card's purchase-time stat (AddTurretWeaponsAmmoTime) then reads the empty slot and throws, and the
 stat is missing. Battles were not affected. Vanilla has no turret with an Order above its row count; the FA rows had 30, all the model-less
 12.7 mm "mount 1" pattern [2] with one row, on 35 China units. Order 2 -> 1 (the highest Order the game accepts with one row). See
-child-turret-weapon-order notes. Called from apply_0_9_4_dev1.py."""
+child-turret-weapon-order notes. Called from batch_0_9_5b.py."""
 import collections
 
 

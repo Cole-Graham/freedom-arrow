@@ -2,7 +2,7 @@
 10X10型号为SX2553 ... 对应LVSR", "Let's make these recommended changes to the names of the cargo trucks"). Shaanxi series by wheel count of the model
 the card shows: SX2220 FAModels model (6x6) on the KamAZ-6560 cards, HEMTT 8x8 on the HMV3 cards, LMTV 4x4 on the SX2190 (1269) card. Only the shown name
 (HUDName) changes; the internal Name stays, because FAModels, paint schemes and decks key on it. No China card uses a 10x10 (LVSR) truck, so SX2553 is unused.
-PHL-11 (SX2190 chassis rocket launcher) is not a cargo truck and keeps its name. Called from apply_0_9_4_dev1.py."""
+PHL-11 (SX2190 chassis rocket launcher) is not a cargo truck and keeps its name. Called from batch_0_9_5b.py."""
 NEW = {  # card id: (old shown name, new shown name, model shown)
     912: ('Shaanxi SX2190', 'Shaanxi SX2220', 'm_sx2220 6x6'),
     1231: ('Shaanxi Troop Truck', 'Shaanxi SX2220 Troop Truck', 'm_sx2220 6x6'),

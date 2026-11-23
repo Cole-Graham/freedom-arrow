@@ -1,5 +1,5 @@
 """China balance patch for 0.9.4 (Osama 21 Nov 2026 18:2x PST, thread 1567745029781454889, Doc "China changes 9.4"
-1uhNb7jt0RmhXCnNYMXUrVSoZHo05R1eOnTTv_vRxEX4: "I have a list of new changes for you", "Balance patch"). Called from apply_0_9_4_dev1.py.
+1uhNb7jt0RmhXCnNYMXUrVSoZHo05R1eOnTTv_vRxEX4: "I have a list of new changes for you", "Balance patch"). Called from batch_0_9_5b.py.
 Readings used (tell Osama): "remove the rifles" = drop the plain riflemen until the squad has the stated size (the crew weapons stay);
 "1400 optics (armory stat, medium +)" = vanilla sensor row 23 Medium Plus (the Stryker MGS row); infantry armour 8 keeps 5 HP per man;
 PHL-16 "300mm loadout ... be 300 points" = base 350 -> 300 with the 370 mm (+50) and Fire Dragon (+80) loadouts priced so their totals stay 350/380;

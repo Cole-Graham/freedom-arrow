@@ -1,6 +1,6 @@
 """Infantry cover and damage (Osama 21 Nov 2026, thread 1573561286803980289 "bug fixes"; decided 19:08-19:43 PST, "you can push this into the build"
 19:51). Proposal and full before/after list: Doc "Balance notes and calculations" 1if0iWzQ, section "Infantry cover and damage proposal (21 November)".
-Called from apply_0_9_4_dev1.py (section 22). Buildings 30 % is game-config.json (BuildingDamageFloor 0.18 -> 0.3), not a table row.
+Called from batch_0_9_5b.py (section 22). Buildings 30 % is game-config.json (BuildingDamageFloor 0.18 -> 0.3), not a table row.
 - Tank guns (Weapons.Type 110), autocannons (114) and HMGs (28) only. Anti-infantry rounds x0.8: tank guns to the nearest 0.5, autocannons 0.2, HMGs 0.1
   ("20% reduction ... for those 3 classes", 19:08; 0.1 HMG 19:19; 0.2 autocannon 19:24). Every HMG on every unit, SPAAGs and helicopter door guns
   included ("Every HMG needs to be changed across the board", 19:43). Helicopter rotary cannons (GAU-19B, YakB) are not HMGs here (19:28).

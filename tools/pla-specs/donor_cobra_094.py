@@ -1,5 +1,5 @@
 """Z-19 and armed Z-9 on the AH-1W SuperCobra stand-in (Osama 21 Nov 2026 19:3x PST, thread 1567745029781454889: "Z-19 should just use the Cobra as
-its standin", "Z-9 and Z-19 that way we have more pylons, but just don't change the stats"). Called from apply_0_9_4_dev1.py (section 21).
+its standin", "Z-9 and Z-19 that way we have more pylons, but just don't change the stats"). Called from batch_0_9_5b.py (section 21).
 The AS-365 Dauphin body has 2 pylons (slots 0, 1); the AH-1W has 4 (inner 1-2, outer 3-4; slot 0 is its chin turret, left empty because these
 units have no gun). Only Units.ModelFileName and the loadout pylon layout change: every unit stat, price and every missile/rocket total stays.
 - A loadout with the same pylon on both Dauphin slots keeps it on the inner pylons 1-2 (same rounds per launcher).

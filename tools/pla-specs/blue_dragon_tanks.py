@@ -1,5 +1,5 @@
 """Blue Dragon tank tab (Osama, thread 1573418243715113213, 21 Nov 2026 01:1x PST: "lets build it all make sure their optics values are similar
-to the US values. I think KSTAM needs to be SA"). Called from apply_0_9_4_dev1.py; all cards stay HIDDEN (DisplayInArmory False, no deck card)
+to the US values. I think KSTAM needs to be SA"). Called from batch_0_9_5b.py; all cards stay HIDDEN (DisplayInArmory False, no deck card)
 until a spec is chosen. Stats: War Thunder converted to FA scale (work/blue-dragon-wt-20261120/REPORT.md) plus the thread's decisions:
 Japan 4-5 s reload (Type 10, Type 90, Type 74 STB-2); Korea 5-6 s (K2) / 6-7 s (K1A1, hand-loaded like M1A1 HC); 105 mm guns 5-6 s.
 Optics = the matching US tank: SEP v3 Good, SEP v2/FEP/Stryker MGS Medium Plus, M1A1 HC/M60A1 Medium. Prices are placeholders.

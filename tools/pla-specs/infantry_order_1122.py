@@ -4,7 +4,7 @@ constants, 657d31e1). SquadMembers.DeathPriority: the alive soldier with the HIG
 proposal gives each squad one keeper at 1 (vanilla specialist pattern), other specialists next, grenadiers / disposable-AT riflemen next, plain
 riflemen last (highest). SquadWeapons.Order: Arsenal card and HUD weapon list order only (it does not change which weapon fires). China rows only;
 every row is checked against the value the proposal was made from, so a squad edited after dev.33 stops the build instead of taking a stale value.
-Uncertain choices: the Google Sheet in the BA Reports folder (see the 0.9.5 NOTES). Called from apply_0_9_4_dev1.py."""
+Uncertain choices: the Google Sheet in the BA Reports folder (see the 0.9.5 NOTES). Called from batch_0_9_5b.py."""
 import json
 from pathlib import Path
 

@@ -1,5 +1,5 @@
 """Lateralus 22 Nov 2026 17:2x PST, thread 1572962048705429598: "chinese Light Riflemen should have 5 PF-89, the only have 3 currently",
-"DXL-4 rate of fire 8 -> 6", "OSV-96 rate of fire 6 -> 8". Called from apply_0_9_4_dev1.py after infantry_order_1122.py.
+"DXL-4 rate of fire 8 -> 6", "OSV-96 rate of fire 6 -> 8". Called from batch_0_9_5b.py after infantry_order_1122.py.
 - Light Riflemen (1205): the two riflemen without a special weapon (2015575, 2015576) carry the PF-89 too. A disposable is one round per
   carrier (WeaponAmmunitions.Quantity 1, the vanilla pattern), so 5 carriers = 5 PF-89. Their DeathPriority stays 3 (rifle + disposable AT;
   death_priority_proposal.json updated).

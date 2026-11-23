@@ -1,5 +1,5 @@
 """Repo cleanup step 1 (Lateralus 22 Nov 2026): copy the build receipts from out/0.8 and every out/local-* folder into out/receipts, the
-one record of builds that package_0_8_next.py reads and writes. Copies only; nothing is moved or deleted. Run again before the cleanup
+one record of builds that package.py reads and writes. Copies only; nothing is moved or deleted. Run again before the cleanup
 branch merges, to pick up builds made meanwhile by threads still on the old packager. Stops if one version has two different receipts."""
 import hashlib,json,re,shutil,sys
 from pathlib import Path

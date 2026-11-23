@@ -1,6 +1,6 @@
 """Helicopter launcher layout fixes (Osama 21 Nov 2026 19:1x PST, thread 1567745029781454889: "Z-10 Fire support TY-90's should only have 2 launchers
 (but 8 missiles). Several Z-19 Ty-90 loadouts have 1 launcher and 8 missiles, they should have 2 launchers. Please double check and see if there are any
-launcher oddities"). Same missile totals; only the number of launchers changes. Called from apply_0_9_4_dev1.py (section 20).
+launcher oddities"). Same missile totals; only the number of launchers changes. Called from batch_0_9_5b.py (section 20).
 - Z-10 / Z-10U / Z-10K Fire support (AH-1Z body, slots 1-6): TY-90 was 4 single rails (1 each) + 1 turret standing for 2 pylons (4) = 5 launchers.
   Now slots 1 and 2 carry the TY-90 x4 turret (2 launchers x 4 = 8); slots 3, 4 and 6 empty; the rocket pod on slot 5 unchanged.
 - Z-21 Heavy anti-armor (8x HJ-10) (AH-64 body, slots 1-4): HJ-10 was 1 launcher x 8, TY-90 3 launchers (2 + 1 + 1). Now HJ-10 x4 on slots 1-2 and

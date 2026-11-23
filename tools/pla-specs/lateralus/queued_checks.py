@@ -1,6 +1,6 @@
 """Fail a build whose finished package is missing queued Lateralus changes (16 Nov 2026, thread 1571554273639006392).
 Why: the SPAAG/SAM data queued for 0.9.0-dev.13 was in the commit but never in any package dev.13-dev.24 (its data step ran without the
-section), and nothing noticed. From 0.9.0-dev.25 on, package_0_8_next.py runs this on the complete package:
+section), and nothing noticed. From 0.9.0-dev.25 on, package.py runs this on the complete package:
 - every SPAAG/SAM value in spaag_sead_data.py is in the merged weapon and ammo tables;
 - the plane sale ships: UserData/FreedomArrow/plane-refund.json and the plane_sale / server_money hooks in the runtime DLL;
 - from 0.9.0-dev.26: the M-SHORAD APKWS laser is in ability slot 2, no unit has two modifications filling one ability slot, and the runtime has

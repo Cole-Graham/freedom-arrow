@@ -1,6 +1,6 @@
 # Freedom Arrow 0.8 — maps and conquest settings
 
-**Map sources and zone values for 0.8 live here. `tools/pla-specs/package_0_8_next.py` rebuilds every map from them on each 0.8 build.**
+**Map sources and zone values for 0.8 live here. `tools/pla-specs/package.py` rebuilds every map from them on each 0.8 build.**
 
 - `scenarios/`: one package per map (layout, script changes, zone values), moved from the frozen `codex/0.7-development` at 0.7.0-dev.58 on 13 November 2026. `make_scenario.py` builds them all. The 16 maps that already existed build byte-identical to the 0.8.0-dev.31 package.
 - `source/UserData/FAConquestPrototype/settings.json`: the conquest settings shipped in 0.8, including `MapZoneWeights`. The packager copies it and updates its hash pin in `compatibility.json`.

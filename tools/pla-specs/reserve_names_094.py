@@ -1,6 +1,6 @@
 """China reserve names (Osama 21 Nov 2026 21:2x PST, thread 1572407822849810463: a Chinese player wrote "这个义务兵我们称之为预备役"; Osama: "yeah we
 should update it"). In the PLA 义务兵 are active-duty two-year servicemen, the ordinary rank and file; the cheap low-tier squad is reserve troops, 预备役.
-Shown name (HUDName) only; the internal Name stays (decks, FAModels and card art key on it). Called from apply_0_9_4_dev1.py."""
+Shown name (HUDName) only; the internal Name stays (decks, FAModels and card art key on it). Called from batch_0_9_5b.py."""
 NEW = {1166: ('Conscripts 义务兵', 'Reservists 预备役'), 1213: ('Conscript Recon', 'Reservist Recon')}
 def apply(t, g, ok, rec):
     U = t['Units'];out = {}

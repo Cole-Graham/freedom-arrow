@@ -11,7 +11,7 @@ the Drone then the AR 2000 let's try that out and make sure we Mount things like
   round value. Helicopters merge identical pylons into one launcher (UnitBuilder.CombinePylonsOnAircraft: magazines summed, seeker-round
   TimeBetweenBursts divided by the pylon count; [[sead-pylon-merge]]), so the launcher row gets 48-64 s: 24-32 s between shots in battle, as now.
 - FAModels hides every stand-in renderer and draws m_ar2000 by the unit Name ('PLA Catalogue AR-2000', unchanged): no asset change.
-Called from apply_0_9_4_dev1.py."""
+Called from batch_0_9_5b.py."""
 AR, LAUNCHER, ROUND, PYLON, AMMO_ROW, TU_ROW = 1084, 2019087, 2019088, 2019089, 2019096, 2019095
 KIOWA, KIOWA_HELLFIRE_PYLON, WING_LOONG_LOADOUT = 267, 157, 2017049
 

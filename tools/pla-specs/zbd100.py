@@ -20,7 +20,7 @@ optics, 80 points with +40 for APS option. and it has loadout option that adds 8
 - 22 Nov 13:5x (Osama: "yeah lets run those armor values, probably make the vehicle 120 points base. Give its CH-901 60mm penetration"): own armour
   row (source: ~700 mm RHAe KE front, more vs HEAT, sides proof against 30 mm): KE front 650 / sides 180 / rear 60 / top 60, HEAT front 900 /
   sides 500 / rear 60 / top 60, HP 12; the VN-17 (ZBD-20) keeps row 2009807. Base 120 (CH-901 row 160). Own CH-901 round (penetration 60 / 60,
-  the Blood Wolves round stays 30), added to nlos.json ammunition by apply_0_9_4_dev1.py so it keeps the NLOS lock.
+  the Blood Wolves round stays 30), added to nlos.json ammunition by batch_0_9_5b.py so it keeps the NLOS lock.
   Why not turret-swapping options (dev.19-26, measured on Osama's PC, GameLogs "Couldn't load unit", AnimatorConnect duplicate trigger 'Shot'): on the
   Bradley body two turret rows only work when each fills the three Bradley weapon slots, as vanilla (dev.27: our two turrets fail even without options,
   the vanilla rows 53/52 work, one turret + an APS-only slot works). The ZBD-20 pattern works on its BMP-3 body only.

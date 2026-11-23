@@ -1,5 +1,5 @@
 """Lateralus 22 Nov 2026 19:4x PST, thread 1568104480459722894: "queue the fix for helicopters that only have 10 flares intead of 15".
-Called from apply_0_9_4_dev1.py.
+Called from batch_0_9_5b.py.
 Freedom Arrow gives helicopter flare rows 15 decoys (vanilla 10). Three helicopters still linked FA copies that kept 10:
 - Z-10K Recon (1130) and Z-10 Recon (1131): row 2011655 "PLA Z-10K Recon AbilitiesJson".
 - Mi-8 Cargo (1227): row 2014588 "ECM Heli 10 Default".

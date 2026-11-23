@@ -1,5 +1,5 @@
 """Lateralus 22 Nov 2026 17:5x PST, thread 1572962048705429598: "PRP-5G 35 -> 60 points"; 17:5x "Tigr BRShM optronic loadout +10 -> +0",
-"PRP-5G Reactive Armor loadout +20 -> +10". Called from apply_0_9_4_dev1.py.
+"PRP-5G Reactive Armor loadout +20 -> +10". Called from batch_0_9_5b.py.
 Option rows 425 (Tigr BRShM 195, Optronic system) and 20003 (PRP-5G 715, Kaktus reactive armour) belong to one unit each (own Modification).
 PRP-5G (715, Russian FA card, BRM-3K base): Units.Cost 35 -> 60. OriginalCost is 0, so the card price is Cost + options (docs: unit-originalcost).
 It has no loadout swap rows (its options are a turret and the Kaktus +20 armour option, no ReplaceUnitId), so no swap row price moves."""
