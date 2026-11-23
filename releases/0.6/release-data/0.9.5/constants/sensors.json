@@ -1,0 +1,1109 @@
+{
+  "1": {
+    "OpticsGround": 1650.0
+  },
+  "2": {
+    "OpticsGround": 1300.0
+  },
+  "3": {
+    "OpticsGround": 2300.0
+  },
+  "4": {
+    "OpticsGround": 900.0
+  },
+  "5": {
+    "OpticsGround": 2800.0
+  },
+  "6": {
+    "OpticsHighAltitude": 8000.0
+  },
+  "7": {
+    "OpticsGround": 900.0
+  },
+  "8": {
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0
+  },
+  "10": {
+    "OpticsGround": 1300.0
+  },
+  "12": {
+    "OpticsGround": 1650.0
+  },
+  "13": {
+    "OpticsGround": 1650.0
+  },
+  "14": {
+    "OpticsGround": 2300.0
+  },
+  "15": {
+    "OpticsGround": 2800.0
+  },
+  "17": {
+    "OpticsGround": 1300.0
+  },
+  "18": {
+    "OpticsGround": 1300.0
+  },
+  "19": {
+    "OpticsGround": 900.0
+  },
+  "20": {
+    "OpticsGround": 2800.0
+  },
+  "22": {
+    "OpticsGround": 2800.0
+  },
+  "23": {
+    "OpticsGround": 1450.0
+  },
+  "24": {
+    "OpticsGround": 1300.0
+  },
+  "26": {
+    "OpticsGround": 2300.0
+  },
+  "27": {
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0
+  },
+  "28": {
+    "OpticsGround": 1450.0
+  },
+  "29": {
+    "OpticsGround": 1450.0
+  },
+  "30": {
+    "OpticsGround": 1300.0
+  },
+  "31": {
+    "OpticsGround": 1450.0
+  },
+  "32": {
+    "OpticsGround": 6400.0
+  },
+  "33": {
+    "OpticsGround": 5250.0
+  },
+  "34": {
+    "OpticsGround": 4650.0
+  },
+  "35": {
+    "OpticsGround": 1300.0
+  },
+  "36": {
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0
+  },
+  "41": {
+    "OpticsGround": 1450.0
+  },
+  "42": {
+    "OpticsGround": 1450.0
+  },
+  "43": {
+    "OpticsGround": 1650.0
+  },
+  "2001445": {
+    "Name": "Optics SHORAD +Bad",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1500.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2001446": {
+    "Name": "Optics SHORAD +Med ND Model",
+    "IsDefault": false,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1500.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": "Optics"
+  },
+  "2001447": {
+    "Name": "Optics SHORAD +Med ",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1500.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2008999": {
+    "Name": "PLA CSK-131 Mengshi optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009017": {
+    "Name": "PLA ZBD-04A optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009043": {
+    "Name": "PLA ZBL-08 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009069": {
+    "Name": "PLA ZTZ-99A optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2009097": {
+    "Name": "PLA ZTZ-96B optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009125": {
+    "Name": "PLA ZTQ-15 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009151": {
+    "Name": "PLA PLZ-05 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009163": {
+    "Name": "PLA PHL-03 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009179": {
+    "Name": "PLA PGZ-09 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009193": {
+    "Name": "PLA HQ-17 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009219": {
+    "Name": "PLA Shaanxi SX2190 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009259": {
+    "Name": "PLA Z-20 optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009363": {
+    "Name": "PLA PGL-625 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1500.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009391": {
+    "Name": "PLA PHL-11 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009443": {
+    "Name": "PLA HQ-7B optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009457": {
+    "Name": "PLA PLL-05 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009471": {
+    "Name": "PLA ZTZ-20 optics",
+    "IsDefault": true,
+    "OpticsGround": 875.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2009511": {
+    "Name": "PLA ZTD-05 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009539": {
+    "Name": "PLA PLZ-07B optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009553": {
+    "Name": "PLA PGZ-04A optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009571": {
+    "Name": "PLA SH-16 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009597": {
+    "Name": "PLA FK-2000 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009617": {
+    "Name": "PLA HJ-10 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009631": {
+    "Name": "PLA QN-506 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009663": {
+    "Name": "PLA ZTL-11 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009691": {
+    "Name": "PLA ZTZ-99A2 optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2009769": {
+    "Name": "PLA Z-11WB optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2009817": {
+    "Name": "PLA ZBD-20 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009849": {
+    "Name": "PLA PTZ-89 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009877": {
+    "Name": "PLA ZTZ-99G optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2009905": {
+    "Name": "PLA ZTZ-96 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009931": {
+    "Name": "PLA HJ-8 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2009945": {
+    "Name": "PLA JRVG-1 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2009961": {
+    "Name": "PLA VT-5 optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2009989": {
+    "Name": "PLA ZFB-05 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010019": {
+    "Name": "PLA ZTZ-85-III optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010047": {
+    "Name": "PLA WZ-701 optics",
+    "IsDefault": true,
+    "OpticsGround": 875.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2010063": {
+    "Name": "PLA ZTQ-62-I optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010089": {
+    "Name": "PLA ZSD-90 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010103": {
+    "Name": "PLA ZSD-63C optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010119": {
+    "Name": "PLA HQ-7 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010133": {
+    "Name": "PLA WZ-551 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010157": {
+    "Name": "PLA PHL-81 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010189": {
+    "Name": "PLA ZTZ-100 optics",
+    "IsDefault": true,
+    "OpticsGround": 1650.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1100.0,
+    "ModelFileName": null
+  },
+  "2010321": {
+    "Name": "PLA ZBL-191 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010345": {
+    "Name": "PLA DF-17 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010357": {
+    "Name": "PLA DF-15 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010369": {
+    "Name": "PLA DF-21 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010381": {
+    "Name": "PLA DF-21D optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010393": {
+    "Name": "PLA DF-31A optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010407": {
+    "Name": "PLA PCL-09 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010421": {
+    "Name": "PLA PCL-181 / SH-15 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010433": {
+    "Name": "PLA PHL-16 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010445": {
+    "Name": "PLA PHL-191 / AR3 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010459": {
+    "Name": "PLA PLL-09 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010473": {
+    "Name": "PLA PLZ-07 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010485": {
+    "Name": "PLA PLZ-45A4 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010499": {
+    "Name": "PLA PLZ-70 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010513": {
+    "Name": "PLA PLZ-83 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010527": {
+    "Name": "PLA PLZ-85 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010541": {
+    "Name": "PLA PLZ-89 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010553": {
+    "Name": "PLA SY-400 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2010567": {
+    "Name": "PLA HQ-6A optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2010581": {
+    "Name": "PLA HQ-11 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2010595": {
+    "Name": "PLA HQ-12 / KS-1 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2010609": {
+    "Name": "PLA HQ-16 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2010623": {
+    "Name": "PLA HQ-17A optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010637": {
+    "Name": "PLA PGZ-04 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010657": {
+    "Name": "PLA PGZ-88 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010671": {
+    "Name": "PLA PGZ-95 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010689": {
+    "Name": "PLA AFT-09 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010703": {
+    "Name": "PLA CTL-181 loitering munition launcher optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010719": {
+    "Name": "PLA AFT-10 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1600.0,
+    "ModelFileName": null
+  },
+  "2010733": {
+    "Name": "PLA ZBD-251 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2010759": {
+    "Name": "PLA CS/VN3C MG optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010773": {
+    "Name": "PLA CSK-181 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010787": {
+    "Name": "PLA PTL-02 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2010815": {
+    "Name": "PLA Type 59 — FlashPoint optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010843": {
+    "Name": "PLA Type 59D optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010873": {
+    "Name": "PLA Type 63 APC — older base optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010885": {
+    "Name": "PLA Type 86 — original turret optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010913": {
+    "Name": "PLA Type 89 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010927": {
+    "Name": "PLA Type 89A optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2010941": {
+    "Name": "PLA VN17 optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2010967": {
+    "Name": "PLA VN20 optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2010993": {
+    "Name": "PLA VN20-B optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011019": {
+    "Name": "PLA VN22 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011043": {
+    "Name": "PLA VP4 optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011055": {
+    "Name": "PLA VT-1A / MBT-2000 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011083": {
+    "Name": "PLA VT-4 / Al-Hyder optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011111": {
+    "Name": "PLA WZ-1224 optics",
+    "IsDefault": true,
+    "OpticsGround": 700.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011137": {
+    "Name": "PLA ZBD-03 / ZLC-2000 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011165": {
+    "Name": "PLA ZBD-04 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011191": {
+    "Name": "PLA ZBD-05 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011217": {
+    "Name": "PLA ZBL-09 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011243": {
+    "Name": "PLA ZBL19 — seller name optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011269": {
+    "Name": "PLA ZSL-92 family optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011295": {
+    "Name": "PLA ZTL-191 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011321": {
+    "Name": "PLA ZTZ-80 / Type 80 optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011351": {
+    "Name": "PLA ZTZ-96A optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011379": {
+    "Name": "PLA ZTZ-99 optics",
+    "IsDefault": true,
+    "OpticsGround": 1450.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 900.0,
+    "ModelFileName": null
+  },
+  "2011407": {
+    "Name": "PLA AR-2000 optics",
+    "IsDefault": true,
+    "OpticsGround": 1000.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2011435": {
+    "Name": "PLA CR-500B optics",
+    "IsDefault": true,
+    "OpticsGround": 1000.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2011609": {
+    "Name": "PLA Z-6B UAV optics",
+    "IsDefault": true,
+    "OpticsGround": 1000.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2011623": {
+    "Name": "PLA Z-8L optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2011637": {
+    "Name": "PLA Z-9 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2011643": {
+    "Name": "PLA YJ-18 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2011657": {
+    "Name": "PLA Z-10K Recon optics",
+    "IsDefault": true,
+    "OpticsGround": 1000.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2011689": {
+    "Name": "PLA Z-10 Recon optics",
+    "IsDefault": true,
+    "OpticsGround": 1000.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2014531": {
+    "Name": "PLA HQ-9 optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2014546": {
+    "Name": "PLA HQ-9 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2014565": {
+    "Name": "Optics SAM HA + Bad",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 2650.0,
+    "OpticsLowAltitude": 2000.0,
+    "ModelFileName": null
+  },
+  "2014590": {
+    "Name": "Medium Optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2014603": {
+    "Name": "Medium Optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2014612": {
+    "Name": "PLA CSK-131 Mengshi optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2014621": {
+    "Name": "PLA CSK-181 optics",
+    "IsDefault": true,
+    "OpticsGround": 1300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2014628": {
+    "Name": "PLA Shaanxi SX2190 optics",
+    "IsDefault": true,
+    "OpticsGround": 500.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2014637": {
+    "Name": "PLA ZSL-92 family optics",
+    "IsDefault": true,
+    "OpticsGround": 600.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 800.0,
+    "ModelFileName": null
+  },
+  "2014653": {
+    "Name": "Very Good Optics",
+    "IsDefault": true,
+    "OpticsGround": 2300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2015814": {
+    "Name": "Bad Optics",
+    "IsDefault": true,
+    "OpticsGround": 900.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 700.0,
+    "ModelFileName": null
+  },
+  "2019481": {
+    "Name": "PLA Z-20T recon optics",
+    "IsDefault": true,
+    "OpticsGround": 2300.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  },
+  "2019482": {
+    "Name": "Optics Z-10K 2800",
+    "IsDefault": false,
+    "OpticsGround": 2800.0,
+    "OpticsHighAltitude": 1000.0,
+    "OpticsLowAltitude": 1250.0,
+    "ModelFileName": null
+  }
+}

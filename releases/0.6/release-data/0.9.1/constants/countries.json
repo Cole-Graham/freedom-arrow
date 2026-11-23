@@ -1,0 +1,10 @@
+{
+  "4": {
+    "Name": "China",
+    "UIName": "China",
+    "FlagFileName": "FA_CHINA_FLAG",
+    "MaxPoints": 10000,
+    "Hidden": false,
+    "ContentMembership": -1
+  }
+}

@@ -1,0 +1,2507 @@
+{
+  "1": {
+    "AbilityId": 2000195
+  },
+  "2": {
+    "AbilityId": 2000195
+  },
+  "4": {
+    "AbilityId": 2000195
+  },
+  "7": {
+    "AbilityId": 82
+  },
+  "12": {
+    "AbilityId": 2000195
+  },
+  "15": {
+    "AbilityId": 2000195
+  },
+  "21": {
+    "AbilityId": 2000195
+  },
+  "27": {
+    "AbilityId": 2000195
+  },
+  "36": {
+    "AbilityId": 2000195
+  },
+  "52": {
+    "AbilityId": 2000197
+  },
+  "54": {
+    "AbilityId": 2000197
+  },
+  "68": {
+    "AbilityId": 2000198
+  },
+  "72": {
+    "AbilityId": 2000198
+  },
+  "76": null,
+  "86": {
+    "AbilityId": 2000197
+  },
+  "93": {
+    "AbilityId": 2000195
+  },
+  "94": {
+    "AbilityId": 82
+  },
+  "95": {
+    "AbilityId": 2000197
+  },
+  "96": {
+    "AbilityId": 2000197
+  },
+  "97": {
+    "AbilityId": 2000195
+  },
+  "103": {
+    "AbilityId": 2000201
+  },
+  "104": {
+    "AbilityId": 2000197
+  },
+  "122": {
+    "AbilityId": 28
+  },
+  "123": {
+    "AbilityId": 28
+  },
+  "124": {
+    "AbilityId": 2000210
+  },
+  "132": {
+    "AbilityId": 28
+  },
+  "134": {
+    "AbilityId": 28
+  },
+  "147": {
+    "AbilityId": 2000195
+  },
+  "153": {
+    "AbilityId": 2000195
+  },
+  "158": {
+    "AbilityId": 2000195
+  },
+  "160": {
+    "AbilityId": 2000195
+  },
+  "163": {
+    "AbilityId": 2000197
+  },
+  "166": {
+    "AbilityId": 2000195
+  },
+  "179": {
+    "AbilityId": 2000197
+  },
+  "183": {
+    "AbilityId": 2000197
+  },
+  "185": {
+    "AbilityId": 2000195
+  },
+  "195": {
+    "AbilityId": 2000195
+  },
+  "196": {
+    "AbilityId": 2000202
+  },
+  "197": null,
+  "369": null,
+  "392": {
+    "AbilityId": 2000195
+  },
+  "393": {
+    "AbilityId": 2000195
+  },
+  "398": {
+    "AbilityId": 28
+  },
+  "406": {
+    "AbilityId": 28
+  },
+  "415": {
+    "AbilityId": 2000201
+  },
+  "459": {
+    "AbilityId": 2000195
+  },
+  "461": {
+    "AbilityId": 2000195
+  },
+  "508": {
+    "AbilityId": 2001409
+  },
+  "539": {
+    "AbilityId": 2001426
+  },
+  "543": {
+    "AbilityId": 2001409
+  },
+  "545": {
+    "AbilityId": 2001409
+  },
+  "546": {
+    "AbilityId": 2001409
+  },
+  "552": {
+    "AbilityId": 29
+  },
+  "557": {
+    "AbilityId": 2000204
+  },
+  "560": {
+    "AbilityId": 2000197
+  },
+  "563": null,
+  "564": {
+    "AbilityId": 28
+  },
+  "570": {
+    "AbilityId": 2000195
+  },
+  "571": null,
+  "583": {
+    "AbilityId": 82
+  },
+  "593": {
+    "AbilityId": 2000198
+  },
+  "595": {
+    "AbilityId": 2000198
+  },
+  "602": {
+    "AbilityId": 2000195
+  },
+  "627": {
+    "AbilityId": 2001426
+  },
+  "628": {
+    "AbilityId": 2001427
+  },
+  "657": {
+    "AbilityId": 2001420
+  },
+  "665": {
+    "AbilityId": 28
+  },
+  "669": {
+    "AbilityId": 2000195
+  },
+  "671": {
+    "AbilityId": 2000195
+  },
+  "673": {
+    "AbilityId": 2000195
+  },
+  "678": {
+    "AbilityId": 2000195
+  },
+  "681": {
+    "AbilityId": 28
+  },
+  "685": {
+    "AbilityId": 2000195
+  },
+  "686": {
+    "AbilityId": 2000206
+  },
+  "719": {
+    "AbilityId": 2000207
+  },
+  "734": {
+    "AbilityId": 2000198
+  },
+  "738": {
+    "AbilityId": 28
+  },
+  "742": {
+    "AbilityId": 2000197
+  },
+  "746": {
+    "AbilityId": 2000611
+  },
+  "748": {
+    "AbilityId": 28
+  },
+  "757": {
+    "AbilityId": 2000197
+  },
+  "760": {
+    "AbilityId": 2000197
+  },
+  "766": {
+    "AbilityId": 2000197
+  },
+  "767": {
+    "AbilityId": 2000197
+  },
+  "770": null,
+  "771": {
+    "AbilityId": 2000198
+  },
+  "774": {
+    "AbilityId": 2000195
+  },
+  "777": {
+    "AbilityId": 2000195
+  },
+  "778": {
+    "AbilityId": 2000201
+  },
+  "781": {
+    "AbilityId": 2000201
+  },
+  "786": {
+    "AbilityId": 2001399
+  },
+  "788": {
+    "AbilityId": 2001409
+  },
+  "789": {
+    "AbilityId": 2001404
+  },
+  "790": {
+    "AbilityId": 2001409
+  },
+  "791": {
+    "AbilityId": 2001401
+  },
+  "792": {
+    "AbilityId": 2001404
+  },
+  "793": {
+    "AbilityId": 2001400
+  },
+  "794": {
+    "AbilityId": 2001409
+  },
+  "795": {
+    "AbilityId": 30
+  },
+  "796": {
+    "AbilityId": 2001404
+  },
+  "798": {
+    "AbilityId": 2001409
+  },
+  "800": {
+    "AbilityId": 2001420
+  },
+  "803": {
+    "AbilityId": 2001409
+  },
+  "804": {
+    "AbilityId": 2001412
+  },
+  "805": {
+    "AbilityId": 2001409
+  },
+  "806": {
+    "AbilityId": 2001399
+  },
+  "807": {
+    "AbilityId": 2001399
+  },
+  "809": {
+    "AbilityId": 2019452
+  },
+  "810": {
+    "AbilityId": 2001400
+  },
+  "812": {
+    "AbilityId": 2001412
+  },
+  "831": {
+    "AbilityId": 2001404
+  },
+  "835": {
+    "AbilityId": 2000195
+  },
+  "839": {
+    "AbilityId": 2001401
+  },
+  "848": {
+    "AbilityId": 52
+  },
+  "851": {
+    "AbilityId": 2000201
+  },
+  "856": {
+    "AbilityId": 2000201
+  },
+  "865": {
+    "AbilityId": 2000195
+  },
+  "870": {
+    "AbilityId": 2000773
+  },
+  "875": {
+    "AbilityId": 2000769
+  },
+  "876": {
+    "AbilityId": 2000767
+  },
+  "883": {
+    "AbilityId": 2000770
+  },
+  "884": {
+    "AbilityId": 2000767
+  },
+  "885": {
+    "AbilityId": 2000767
+  },
+  "886": {
+    "AbilityId": 2000767
+  },
+  "897": {
+    "AbilityId": 2000773
+  },
+  "901": {
+    "AbilityId": 2000769
+  },
+  "902": {
+    "AbilityId": 2000769
+  },
+  "905": {
+    "AbilityId": 2000768
+  },
+  "907": {
+    "AbilityId": 2000208
+  },
+  "908": {
+    "AbilityId": 52
+  },
+  "918": {
+    "AbilityId": 2000197
+  },
+  "920": {
+    "AbilityId": 2000209
+  },
+  "924": {
+    "AbilityId": 2000198
+  },
+  "927": {
+    "AbilityId": 2000208
+  },
+  "930": {
+    "AbilityId": 2000208
+  },
+  "931": {
+    "AbilityId": 2000208
+  },
+  "932": {
+    "AbilityId": 2000208
+  },
+  "933": {
+    "AbilityId": 2000208
+  },
+  "936": {
+    "AbilityId": 2000208
+  },
+  "937": {
+    "AbilityId": 2000208
+  },
+  "938": {
+    "AbilityId": 2000208
+  },
+  "941": {
+    "AbilityId": 2000208
+  },
+  "942": {
+    "AbilityId": 2000208
+  },
+  "943": {
+    "AbilityId": 2000208
+  },
+  "946": {
+    "AbilityId": 2000208
+  },
+  "947": {
+    "AbilityId": 2000208
+  },
+  "948": {
+    "AbilityId": 2000208
+  },
+  "949": {
+    "AbilityId": 2000208
+  },
+  "950": {
+    "AbilityId": 2000208
+  },
+  "951": {
+    "AbilityId": 2000208
+  },
+  "955": {
+    "AbilityId": 2000208
+  },
+  "956": {
+    "AbilityId": 2000208
+  },
+  "959": {
+    "AbilityId": 2000208
+  },
+  "960": {
+    "AbilityId": 2000208
+  },
+  "961": {
+    "AbilityId": 2000208
+  },
+  "962": {
+    "AbilityId": 2000208
+  },
+  "963": {
+    "AbilityId": 2000208
+  },
+  "964": {
+    "AbilityId": 2000208
+  },
+  "965": {
+    "AbilityId": 2000198
+  },
+  "966": {
+    "AbilityId": 2000208
+  },
+  "967": {
+    "AbilityId": 2000208
+  },
+  "969": {
+    "AbilityId": 2000209
+  },
+  "972": {
+    "AbilityId": 2000209
+  },
+  "973": {
+    "AbilityId": 2001412
+  },
+  "974": {
+    "AbilityId": 2001409
+  },
+  "975": {
+    "AbilityId": 2001412
+  },
+  "984": {
+    "AbilityId": 2000197
+  },
+  "986": {
+    "AbilityId": 2000197
+  },
+  "987": {
+    "AbilityId": 28
+  },
+  "989": {
+    "AbilityId": 2000210
+  },
+  "992": null,
+  "997": {
+    "AbilityId": 2000204
+  },
+  "1000": {
+    "AbilityId": 2000198
+  },
+  "1001": {
+    "AbilityId": 2000208
+  },
+  "1004": {
+    "AbilityId": 28
+  },
+  "1010": {
+    "AbilityId": 2001401
+  },
+  "1011": {
+    "AbilityId": 2001404
+  },
+  "1013": {
+    "AbilityId": 28
+  },
+  "1016": {
+    "AbilityId": 28
+  },
+  "1019": {
+    "AbilityId": 28
+  },
+  "1020": {
+    "AbilityId": 28
+  },
+  "1021": {
+    "AbilityId": 28
+  },
+  "1036": {
+    "AbilityId": 2001416
+  },
+  "1037": {
+    "AbilityId": 2001417
+  },
+  "1038": {
+    "AbilityId": 2001418
+  },
+  "1039": {
+    "AbilityId": 2001416
+  },
+  "1040": {
+    "AbilityId": 2001417
+  },
+  "1042": {
+    "AbilityId": 2001424
+  },
+  "1043": {
+    "AbilityId": 2001416
+  },
+  "1044": {
+    "AbilityId": 2001416
+  },
+  "1045": {
+    "AbilityId": 2000197
+  },
+  "1047": null,
+  "1049": null,
+  "1050": {
+    "AbilityId": 2000197
+  },
+  "1061": {
+    "AbilityId": 2000197
+  },
+  "1062": {
+    "AbilityId": 2000207
+  },
+  "1065": {
+    "AbilityId": 2000212
+  },
+  "1068": {
+    "AbilityId": 2001409
+  },
+  "1069": {
+    "AbilityId": 2000195
+  },
+  "1072": {
+    "AbilityId": 2000195
+  },
+  "1074": {
+    "AbilityId": 2000198
+  },
+  "1076": {
+    "AbilityId": 2000212
+  },
+  "1080": {
+    "AbilityId": 2000208
+  },
+  "1081": {
+    "AbilityId": 2000208
+  },
+  "1082": {
+    "AbilityId": 2000208
+  },
+  "1086": {
+    "AbilityId": 2000197
+  },
+  "1087": {
+    "AbilityId": 2000210
+  },
+  "1088": {
+    "AbilityId": 2000214
+  },
+  "1089": {
+    "AbilityId": 2000214
+  },
+  "1090": {
+    "AbilityId": 28
+  },
+  "1095": {
+    "AbilityId": 2000208
+  },
+  "1096": {
+    "AbilityId": 2000208
+  },
+  "1102": {
+    "AbilityId": 2000195
+  },
+  "1110": {
+    "AbilityId": 2000197
+  },
+  "1111": {
+    "AbilityId": 2000215
+  },
+  "1113": {
+    "AbilityId": 2000611
+  },
+  "1114": {
+    "AbilityId": 28
+  },
+  "1115": {
+    "AbilityId": 2000208
+  },
+  "1155": {
+    "AbilityId": 2000212
+  },
+  "1156": {
+    "AbilityId": 2000212
+  },
+  "1167": {
+    "AbilityId": 2000214
+  },
+  "1172": {
+    "AbilityId": 2000212
+  },
+  "1175": {
+    "AbilityId": 2000214
+  },
+  "1176": {
+    "AbilityId": 2000212
+  },
+  "1186": {
+    "AbilityId": 2000212
+  },
+  "1187": {
+    "AbilityId": 2000212
+  },
+  "1188": null,
+  "1189": null,
+  "1190": {
+    "AbilityId": 2000197
+  },
+  "1196": {
+    "AbilityId": 2000212
+  },
+  "1208": {
+    "AbilityId": 2000212
+  },
+  "1214": {
+    "AbilityId": 2000214
+  },
+  "1215": {
+    "AbilityId": 2000214
+  },
+  "1401": null,
+  "1454": {
+    "AbilityId": 2000198
+  },
+  "1457": {
+    "AbilityId": 2000197
+  },
+  "1475": {
+    "AbilityId": 2000197
+  },
+  "1485": {
+    "AbilityId": 2001415
+  },
+  "1495": {
+    "AbilityId": 2000198
+  },
+  "1496": {
+    "AbilityId": 2000198
+  },
+  "1509": {
+    "AbilityId": 2000197
+  },
+  "1804": {
+    "AbilityId": 2000195
+  },
+  "1807": {
+    "AbilityId": 2000611
+  },
+  "1817": {
+    "AbilityId": 2000195
+  },
+  "1820": {
+    "AbilityId": 2000208
+  },
+  "1821": {
+    "AbilityId": 2000208
+  },
+  "1824": {
+    "AbilityId": 84
+  },
+  "1825": {
+    "AbilityId": 2000772
+  },
+  "1832": {
+    "AbilityId": 2000209
+  },
+  "1835": {
+    "AbilityId": 2000217
+  },
+  "2000268": {
+    "UnitId": 715,
+    "AbilityId": 2000195
+  },
+  "2000269": {
+    "UnitId": 715,
+    "AbilityId": 8
+  },
+  "2000270": {
+    "UnitId": 715,
+    "AbilityId": 4
+  },
+  "2000293": {
+    "UnitId": 716,
+    "AbilityId": 2000197
+  },
+  "2000348": {
+    "UnitId": 719,
+    "AbilityId": 4
+  },
+  "2000349": {
+    "UnitId": 719,
+    "AbilityId": 2000201
+  },
+  "2000367": {
+    "UnitId": 720,
+    "AbilityId": 2000195
+  },
+  "2000368": {
+    "UnitId": 720,
+    "AbilityId": 4
+  },
+  "2000369": {
+    "UnitId": 720,
+    "AbilityId": 88
+  },
+  "2000539": {
+    "UnitId": 721,
+    "AbilityId": 2000198
+  },
+  "2000568": {
+    "UnitId": 722,
+    "AbilityId": 2000197
+  },
+  "2000581": {
+    "UnitId": 54,
+    "AbilityId": 93
+  },
+  "2000583": {
+    "UnitId": 703,
+    "AbilityId": 14
+  },
+  "2000592": {
+    "UnitId": 723,
+    "AbilityId": 2000195
+  },
+  "2000593": {
+    "UnitId": 723,
+    "AbilityId": 4
+  },
+  "2000775": {
+    "UnitId": 725,
+    "AbilityId": 11
+  },
+  "2000808": {
+    "UnitId": 726,
+    "AbilityId": 11
+  },
+  "2000840": {
+    "UnitId": 727,
+    "AbilityId": 24
+  },
+  "2000865": {
+    "UnitId": 729,
+    "AbilityId": 23
+  },
+  "2000889": {
+    "UnitId": 730,
+    "AbilityId": 84
+  },
+  "2000912": {
+    "UnitId": 731,
+    "AbilityId": 25
+  },
+  "2000913": {
+    "UnitId": 731,
+    "AbilityId": 86
+  },
+  "2000945": {
+    "UnitId": 747,
+    "AbilityId": 2000767
+  },
+  "2000972": {
+    "UnitId": 748,
+    "AbilityId": 21
+  },
+  "2001004": {
+    "UnitId": 732,
+    "AbilityId": 2000769
+  },
+  "2001023": {
+    "UnitId": 733,
+    "AbilityId": 8
+  },
+  "2001024": {
+    "UnitId": 733,
+    "AbilityId": 4
+  },
+  "2001025": {
+    "UnitId": 733,
+    "AbilityId": 26
+  },
+  "2001039": {
+    "UnitId": 734,
+    "AbilityId": 4
+  },
+  "2001040": {
+    "UnitId": 734,
+    "AbilityId": 26
+  },
+  "2001054": {
+    "UnitId": 735,
+    "AbilityId": 2000773
+  },
+  "2001080": {
+    "UnitId": 737,
+    "AbilityId": 2000769
+  },
+  "2001104": {
+    "UnitId": 738,
+    "AbilityId": 23
+  },
+  "2001128": {
+    "UnitId": 745,
+    "AbilityId": 2000770
+  },
+  "2001156": {
+    "UnitId": 746,
+    "AbilityId": 2000767
+  },
+  "2001179": {
+    "UnitId": 740,
+    "AbilityId": 2001409
+  },
+  "2001180": {
+    "UnitId": 740,
+    "AbilityId": 2001412
+  },
+  "2001213": {
+    "UnitId": 741,
+    "AbilityId": 2001399
+  },
+  "2001250": {
+    "UnitId": 742,
+    "AbilityId": 100
+  },
+  "2001251": {
+    "UnitId": 742,
+    "AbilityId": 4
+  },
+  "2001252": {
+    "UnitId": 742,
+    "AbilityId": 2019305
+  },
+  "2001290": {
+    "UnitId": 743,
+    "AbilityId": 30
+  },
+  "2001291": {
+    "UnitId": 743,
+    "AbilityId": 201
+  },
+  "2001338": {
+    "UnitId": 744,
+    "AbilityId": 30
+  },
+  "2001503": {
+    "UnitId": 964,
+    "AbilityId": 2000202
+  },
+  "2001504": {
+    "UnitId": 964,
+    "AbilityId": 2000195
+  },
+  "2001528": {
+    "UnitId": 901,
+    "AbilityId": 11
+  },
+  "2001534": {
+    "UnitId": 965,
+    "AbilityId": 29
+  },
+  "2001565": {
+    "UnitId": 969,
+    "AbilityId": 45
+  },
+  "2001602": {
+    "UnitId": 970,
+    "AbilityId": 2001399
+  },
+  "2001676": {
+    "UnitId": 971,
+    "AbilityId": 2001675
+  },
+  "2001719": {
+    "UnitId": 972,
+    "AbilityId": 2001718
+  },
+  "2001760": {
+    "UnitId": 950,
+    "AbilityId": 2001399
+  },
+  "2001813": {
+    "UnitId": 973,
+    "AbilityId": 1
+  },
+  "2001815": {
+    "UnitId": 973,
+    "AbilityId": 2001814
+  },
+  "2001821": {
+    "UnitId": 983,
+    "AbilityId": 2001820
+  },
+  "2001848": {
+    "UnitId": 983,
+    "AbilityId": 4
+  },
+  "2001850": {
+    "UnitId": 980,
+    "AbilityId": 2001969
+  },
+  "2001887": {
+    "UnitId": 916,
+    "AbilityId": 2001404
+  },
+  "2001933": {
+    "UnitId": 982,
+    "AbilityId": 2019452
+  },
+  "2001964": {
+    "UnitId": 214,
+    "AbilityId": 2000195
+  },
+  "2001965": {
+    "UnitId": 9,
+    "AbilityId": 2000195
+  },
+  "2001966": {
+    "UnitId": 90,
+    "AbilityId": 2000209
+  },
+  "2001974": {
+    "UnitId": 981,
+    "AbilityId": 2001969
+  },
+  "2001997": {
+    "UnitId": 918,
+    "AbilityId": 2001401
+  },
+  "2001998": {
+    "UnitId": 918,
+    "AbilityId": 2001404
+  },
+  "2002037": {
+    "UnitId": 985,
+    "AbilityId": 2000197
+  },
+  "2002200": {
+    "UnitId": 923,
+    "AbilityId": 2001412
+  },
+  "2002250": {
+    "UnitId": 924,
+    "AbilityId": 2001404
+  },
+  "2002702": {
+    "UnitId": 943,
+    "AbilityId": 2001412
+  },
+  "2002828": {
+    "UnitId": 946,
+    "AbilityId": 45
+  },
+  "2003422": {
+    "UnitId": 1252,
+    "AbilityId": 45
+  },
+  "2003464": {
+    "UnitId": 974,
+    "AbilityId": 2001412
+  },
+  "2003566": {
+    "UnitId": 976,
+    "AbilityId": 2019218
+  },
+  "2003594": {
+    "UnitId": 977,
+    "AbilityId": 2001412
+  },
+  "2003994": {
+    "UnitId": 928,
+    "AbilityId": 44
+  },
+  "2004068": {
+    "UnitId": 1254,
+    "AbilityId": 11
+  },
+  "2004094": {
+    "UnitId": 986,
+    "AbilityId": 11
+  },
+  "2004120": {
+    "UnitId": 987,
+    "AbilityId": 11
+  },
+  "2004146": {
+    "UnitId": 988,
+    "AbilityId": 11
+  },
+  "2004172": {
+    "UnitId": 989,
+    "AbilityId": 11
+  },
+  "2004198": {
+    "UnitId": 990,
+    "AbilityId": 11
+  },
+  "2004224": {
+    "UnitId": 991,
+    "AbilityId": 11
+  },
+  "2004250": {
+    "UnitId": 992,
+    "AbilityId": 11
+  },
+  "2004276": {
+    "UnitId": 993,
+    "AbilityId": 11
+  },
+  "2004302": {
+    "UnitId": 994,
+    "AbilityId": 11
+  },
+  "2004328": {
+    "UnitId": 995,
+    "AbilityId": 11
+  },
+  "2004354": {
+    "UnitId": 996,
+    "AbilityId": 11
+  },
+  "2004380": {
+    "UnitId": 997,
+    "AbilityId": 11
+  },
+  "2004406": {
+    "UnitId": 998,
+    "AbilityId": 11
+  },
+  "2004432": {
+    "UnitId": 999,
+    "AbilityId": 11
+  },
+  "2004458": {
+    "UnitId": 1000,
+    "AbilityId": 11
+  },
+  "2004484": {
+    "UnitId": 1001,
+    "AbilityId": 11
+  },
+  "2004510": {
+    "UnitId": 1002,
+    "AbilityId": 11
+  },
+  "2004536": {
+    "UnitId": 1003,
+    "AbilityId": 11
+  },
+  "2004562": {
+    "UnitId": 1004,
+    "AbilityId": 11
+  },
+  "2004588": {
+    "UnitId": 1005,
+    "AbilityId": 11
+  },
+  "2004614": {
+    "UnitId": 1006,
+    "AbilityId": 11
+  },
+  "2004640": {
+    "UnitId": 1007,
+    "AbilityId": 11
+  },
+  "2004666": {
+    "UnitId": 1008,
+    "AbilityId": 11
+  },
+  "2004692": {
+    "UnitId": 1009,
+    "AbilityId": 11
+  },
+  "2004722": {
+    "UnitId": 1010,
+    "AbilityId": 11
+  },
+  "2004742": {
+    "UnitId": 1011,
+    "AbilityId": 11
+  },
+  "2004765": {
+    "UnitId": 1012,
+    "AbilityId": 81
+  },
+  "2004790": {
+    "UnitId": 1013,
+    "AbilityId": 28
+  },
+  "2004808": {
+    "UnitId": 1014,
+    "AbilityId": 11
+  },
+  "2004822": {
+    "UnitId": 1015,
+    "AbilityId": 11
+  },
+  "2004842": {
+    "UnitId": 1016,
+    "AbilityId": 90
+  },
+  "2004862": {
+    "UnitId": 1017,
+    "AbilityId": 11
+  },
+  "2004874": {
+    "UnitId": 1018,
+    "AbilityId": 11
+  },
+  "2004891": {
+    "UnitId": 1019,
+    "AbilityId": 2000208
+  },
+  "2004908": {
+    "UnitId": 1020,
+    "AbilityId": 2000208
+  },
+  "2004926": {
+    "UnitId": 1021,
+    "AbilityId": 2000208
+  },
+  "2004943": {
+    "UnitId": 1022,
+    "AbilityId": 2000208
+  },
+  "2004960": {
+    "UnitId": 1023,
+    "AbilityId": 2000198
+  },
+  "2004978": {
+    "UnitId": 1024,
+    "AbilityId": 90
+  },
+  "2004995": {
+    "UnitId": 1025,
+    "AbilityId": 2000208
+  },
+  "2005016": {
+    "UnitId": 1026,
+    "AbilityId": 28
+  },
+  "2005031": {
+    "UnitId": 1027,
+    "AbilityId": 11
+  },
+  "2006991": {
+    "UnitId": 1087,
+    "AbilityId": 2001409
+  },
+  "2007029": {
+    "UnitId": 1088,
+    "AbilityId": 2001409
+  },
+  "2007105": {
+    "UnitId": 1090,
+    "AbilityId": 2001409
+  },
+  "2007293": {
+    "UnitId": 1095,
+    "AbilityId": 10
+  },
+  "2007307": {
+    "UnitId": 1096,
+    "AbilityId": 44
+  },
+  "2007316": {
+    "UnitId": 1097,
+    "AbilityId": 44
+  },
+  "2007327": {
+    "UnitId": 1098,
+    "AbilityId": 2001409
+  },
+  "2007365": {
+    "UnitId": 1099,
+    "AbilityId": 2001409
+  },
+  "2007415": {
+    "UnitId": 1101,
+    "AbilityId": 44
+  },
+  "2007533": {
+    "UnitId": 1108,
+    "AbilityId": 11
+  },
+  "2007559": {
+    "UnitId": 1109,
+    "AbilityId": 2000208
+  },
+  "2007585": {
+    "UnitId": 1110,
+    "AbilityId": 70
+  },
+  "2007606": {
+    "UnitId": 1111,
+    "AbilityId": 70
+  },
+  "2007627": {
+    "UnitId": 1112,
+    "AbilityId": 70
+  },
+  "2007648": {
+    "UnitId": 1113,
+    "AbilityId": 70
+  },
+  "2007669": {
+    "UnitId": 1114,
+    "AbilityId": 70
+  },
+  "2007690": {
+    "UnitId": 1115,
+    "AbilityId": 70
+  },
+  "2007711": {
+    "UnitId": 1116,
+    "AbilityId": 70
+  },
+  "2007732": {
+    "UnitId": 1117,
+    "AbilityId": 70
+  },
+  "2007753": {
+    "UnitId": 1118,
+    "AbilityId": 70
+  },
+  "2007774": {
+    "UnitId": 1119,
+    "AbilityId": 70
+  },
+  "2007795": {
+    "UnitId": 1120,
+    "AbilityId": 70
+  },
+  "2007816": {
+    "UnitId": 1121,
+    "AbilityId": 70
+  },
+  "2007837": {
+    "UnitId": 1122,
+    "AbilityId": 70
+  },
+  "2007858": {
+    "UnitId": 1123,
+    "AbilityId": 70
+  },
+  "2007879": {
+    "UnitId": 1124,
+    "AbilityId": 70
+  },
+  "2007900": {
+    "UnitId": 1125,
+    "AbilityId": 70
+  },
+  "2007921": {
+    "UnitId": 1126,
+    "AbilityId": 70
+  },
+  "2007942": {
+    "UnitId": 1127,
+    "AbilityId": 70
+  },
+  "2007963": {
+    "UnitId": 1128,
+    "AbilityId": 70
+  },
+  "2008998": {
+    "UnitId": 900,
+    "AbilityId": 2000212
+  },
+  "2009012": {
+    "UnitId": 902,
+    "AbilityId": 2000212
+  },
+  "2009042": {
+    "UnitId": 903,
+    "AbilityId": 2000212
+  },
+  "2009068": {
+    "UnitId": 904,
+    "AbilityId": 2000197
+  },
+  "2009096": {
+    "UnitId": 905,
+    "AbilityId": 2000197
+  },
+  "2009124": {
+    "UnitId": 906,
+    "AbilityId": 2000197
+  },
+  "2009176": {
+    "UnitId": 909,
+    "AbilityId": 2009175
+  },
+  "2009192": {
+    "UnitId": 910,
+    "AbilityId": 60
+  },
+  "2009258": {
+    "UnitId": 914,
+    "AbilityId": 2000767
+  },
+  "2009362": {
+    "UnitId": 920,
+    "AbilityId": 60
+  },
+  "2009440": {
+    "UnitId": 925,
+    "AbilityId": 60
+  },
+  "2009456": {
+    "UnitId": 926,
+    "AbilityId": 5
+  },
+  "2009470": {
+    "UnitId": 927,
+    "AbilityId": 2000202
+  },
+  "2009510": {
+    "UnitId": 930,
+    "AbilityId": 2000197
+  },
+  "2009538": {
+    "UnitId": 931,
+    "AbilityId": 5
+  },
+  "2009552": {
+    "UnitId": 932,
+    "AbilityId": 60
+  },
+  "2009596": {
+    "UnitId": 935,
+    "AbilityId": 60
+  },
+  "2009614": {
+    "UnitId": 936,
+    "AbilityId": 10
+  },
+  "2009630": {
+    "UnitId": 937,
+    "AbilityId": 2000204
+  },
+  "2009662": {
+    "UnitId": 938,
+    "AbilityId": 2000197
+  },
+  "2009690": {
+    "UnitId": 939,
+    "AbilityId": 2000197
+  },
+  "2009812": {
+    "UnitId": 945,
+    "AbilityId": 2000212
+  },
+  "2009848": {
+    "UnitId": 947,
+    "AbilityId": 2000197
+  },
+  "2009876": {
+    "UnitId": 948,
+    "AbilityId": 2000197
+  },
+  "2009904": {
+    "UnitId": 949,
+    "AbilityId": 2000197
+  },
+  "2009944": {
+    "UnitId": 952,
+    "AbilityId": 2009943
+  },
+  "2009960": {
+    "UnitId": 953,
+    "AbilityId": 2000197
+  },
+  "2009988": {
+    "UnitId": 954,
+    "AbilityId": 2000212
+  },
+  "2010046": {
+    "UnitId": 957,
+    "AbilityId": 2000212
+  },
+  "2010088": {
+    "UnitId": 959,
+    "AbilityId": 2000214
+  },
+  "2010102": {
+    "UnitId": 960,
+    "AbilityId": 2000214
+  },
+  "2010116": {
+    "UnitId": 961,
+    "AbilityId": 60
+  },
+  "2010132": {
+    "UnitId": 962,
+    "AbilityId": 2000212
+  },
+  "2010188": {
+    "UnitId": 968,
+    "AbilityId": 2010187
+  },
+  "2010320": {
+    "UnitId": 979,
+    "AbilityId": 2000212
+  },
+  "2010406": {
+    "UnitId": 1033,
+    "AbilityId": 5
+  },
+  "2010420": {
+    "UnitId": 1034,
+    "AbilityId": 5
+  },
+  "2010458": {
+    "UnitId": 1037,
+    "AbilityId": 5
+  },
+  "2010472": {
+    "UnitId": 1038,
+    "AbilityId": 5
+  },
+  "2010498": {
+    "UnitId": 1040,
+    "AbilityId": 5
+  },
+  "2010512": {
+    "UnitId": 1041,
+    "AbilityId": 5
+  },
+  "2010526": {
+    "UnitId": 1042,
+    "AbilityId": 5
+  },
+  "2010540": {
+    "UnitId": 1043,
+    "AbilityId": 5
+  },
+  "2010566": {
+    "UnitId": 1045,
+    "AbilityId": 59
+  },
+  "2010580": {
+    "UnitId": 1046,
+    "AbilityId": 59
+  },
+  "2010594": {
+    "UnitId": 1047,
+    "AbilityId": 59
+  },
+  "2010608": {
+    "UnitId": 1048,
+    "AbilityId": 59
+  },
+  "2010622": {
+    "UnitId": 1049,
+    "AbilityId": 60
+  },
+  "2010636": {
+    "UnitId": 1050,
+    "AbilityId": 60
+  },
+  "2010656": {
+    "UnitId": 1051,
+    "AbilityId": 60
+  },
+  "2010670": {
+    "UnitId": 1052,
+    "AbilityId": 60
+  },
+  "2010702": {
+    "UnitId": 1054,
+    "AbilityId": 4
+  },
+  "2010716": {
+    "UnitId": 1055,
+    "AbilityId": 2009175
+  },
+  "2010732": {
+    "UnitId": 1056,
+    "AbilityId": 2010731
+  },
+  "2010758": {
+    "UnitId": 1057,
+    "AbilityId": 2000212
+  },
+  "2010772": {
+    "UnitId": 1058,
+    "AbilityId": 2000197
+  },
+  "2010786": {
+    "UnitId": 1059,
+    "AbilityId": 2000197
+  },
+  "2010872": {
+    "UnitId": 1062,
+    "AbilityId": 2000214
+  },
+  "2010912": {
+    "UnitId": 1064,
+    "AbilityId": 2000214
+  },
+  "2010926": {
+    "UnitId": 1065,
+    "AbilityId": 2000214
+  },
+  "2010940": {
+    "UnitId": 1066,
+    "AbilityId": 2000197
+  },
+  "2010966": {
+    "UnitId": 1067,
+    "AbilityId": 2000215
+  },
+  "2010992": {
+    "UnitId": 1068,
+    "AbilityId": 2000215
+  },
+  "2011018": {
+    "UnitId": 1069,
+    "AbilityId": 2000197
+  },
+  "2011082": {
+    "UnitId": 1072,
+    "AbilityId": 2000197
+  },
+  "2011110": {
+    "UnitId": 1073,
+    "AbilityId": 2000197
+  },
+  "2011160": {
+    "UnitId": 1075,
+    "AbilityId": 2000212
+  },
+  "2011190": {
+    "UnitId": 1076,
+    "AbilityId": 2000212
+  },
+  "2011216": {
+    "UnitId": 1077,
+    "AbilityId": 2000212
+  },
+  "2011242": {
+    "UnitId": 1078,
+    "AbilityId": 2000197
+  },
+  "2011268": {
+    "UnitId": 1079,
+    "AbilityId": 2000212
+  },
+  "2011294": {
+    "UnitId": 1080,
+    "AbilityId": 2000197
+  },
+  "2011350": {
+    "UnitId": 1082,
+    "AbilityId": 2000197
+  },
+  "2011378": {
+    "UnitId": 1083,
+    "AbilityId": 2000197
+  },
+  "2011420": {
+    "UnitId": 1085,
+    "AbilityId": 10
+  },
+  "2011434": {
+    "UnitId": 1086,
+    "AbilityId": 10
+  },
+  "2011636": {
+    "UnitId": 1107,
+    "AbilityId": 23
+  },
+  "2011656": {
+    "UnitId": 1130,
+    "AbilityId": 2011655
+  },
+  "2011688": {
+    "UnitId": 1131,
+    "AbilityId": 2011655
+  },
+  "2011830": {
+    "UnitId": 1136,
+    "AbilityId": 11
+  },
+  "2011862": {
+    "UnitId": 1137,
+    "AbilityId": 2011861
+  },
+  "2011885": {
+    "UnitId": 1138,
+    "AbilityId": 11
+  },
+  "2011917": {
+    "UnitId": 1139,
+    "AbilityId": 11
+  },
+  "2011947": {
+    "UnitId": 1140,
+    "AbilityId": 2011861
+  },
+  "2011970": {
+    "UnitId": 1141,
+    "AbilityId": 11
+  },
+  "2011996": {
+    "UnitId": 1142,
+    "AbilityId": 28
+  },
+  "2012022": {
+    "UnitId": 1143,
+    "AbilityId": 11
+  },
+  "2012052": {
+    "UnitId": 1144,
+    "AbilityId": 103
+  },
+  "2012079": {
+    "UnitId": 1145,
+    "AbilityId": 90
+  },
+  "2012106": {
+    "UnitId": 1146,
+    "AbilityId": 11
+  },
+  "2012129": {
+    "UnitId": 1147,
+    "AbilityId": 81
+  },
+  "2012155": {
+    "UnitId": 1148,
+    "AbilityId": 11
+  },
+  "2012178": {
+    "UnitId": 1149,
+    "AbilityId": 11
+  },
+  "2012203": {
+    "UnitId": 1150,
+    "AbilityId": 2012202
+  },
+  "2012233": {
+    "UnitId": 1151,
+    "AbilityId": 11
+  },
+  "2012262": {
+    "UnitId": 1152,
+    "AbilityId": 11
+  },
+  "2012286": {
+    "UnitId": 1153,
+    "AbilityId": 90
+  },
+  "2012310": {
+    "UnitId": 1154,
+    "AbilityId": 2011861
+  },
+  "2012334": {
+    "UnitId": 1155,
+    "AbilityId": 11
+  },
+  "2012356": {
+    "UnitId": 1156,
+    "AbilityId": 81
+  },
+  "2012385": {
+    "UnitId": 1157,
+    "AbilityId": 2011861
+  },
+  "2012409": {
+    "UnitId": 1158,
+    "AbilityId": 11
+  },
+  "2012438": {
+    "UnitId": 1159,
+    "AbilityId": 11
+  },
+  "2012467": {
+    "UnitId": 1160,
+    "AbilityId": 28
+  },
+  "2012493": {
+    "UnitId": 1161,
+    "AbilityId": 28
+  },
+  "2012513": {
+    "UnitId": 1162,
+    "AbilityId": 11
+  },
+  "2012542": {
+    "UnitId": 1163,
+    "AbilityId": 11
+  },
+  "2012571": {
+    "UnitId": 1164,
+    "AbilityId": 11
+  },
+  "2012592": {
+    "UnitId": 1165,
+    "AbilityId": 11
+  },
+  "2012616": {
+    "UnitId": 1166,
+    "AbilityId": 2012202
+  },
+  "2012641": {
+    "UnitId": 1167,
+    "AbilityId": 2012202
+  },
+  "2012675": {
+    "UnitId": 1168,
+    "AbilityId": 2012202
+  },
+  "2012704": {
+    "UnitId": 1169,
+    "AbilityId": 2012202
+  },
+  "2012733": {
+    "UnitId": 1170,
+    "AbilityId": 2012202
+  },
+  "2012762": {
+    "UnitId": 1171,
+    "AbilityId": 2012202
+  },
+  "2012791": {
+    "UnitId": 1172,
+    "AbilityId": 2012202
+  },
+  "2012819": {
+    "UnitId": 1173,
+    "AbilityId": 2012202
+  },
+  "2012854": {
+    "UnitId": 1174,
+    "AbilityId": 81
+  },
+  "2012889": {
+    "UnitId": 1175,
+    "AbilityId": 2012202
+  },
+  "2012922": {
+    "UnitId": 1176,
+    "AbilityId": 11
+  },
+  "2012959": {
+    "UnitId": 1177,
+    "AbilityId": 2012202
+  },
+  "2012990": {
+    "UnitId": 1178,
+    "AbilityId": 2012202
+  },
+  "2013022": {
+    "UnitId": 1179,
+    "AbilityId": 11
+  },
+  "2013055": {
+    "UnitId": 1180,
+    "AbilityId": 2012202
+  },
+  "2013085": {
+    "UnitId": 1181,
+    "AbilityId": 103
+  },
+  "2013122": {
+    "UnitId": 1182,
+    "AbilityId": 81
+  },
+  "2013155": {
+    "UnitId": 1183,
+    "AbilityId": 2013154
+  },
+  "2013190": {
+    "UnitId": 1184,
+    "AbilityId": 11
+  },
+  "2013221": {
+    "UnitId": 1185,
+    "AbilityId": 11
+  },
+  "2013254": {
+    "UnitId": 1186,
+    "AbilityId": 2000198
+  },
+  "2013285": {
+    "UnitId": 1187,
+    "AbilityId": 2000611
+  },
+  "2013312": {
+    "UnitId": 1188,
+    "AbilityId": 81
+  },
+  "2013347": {
+    "UnitId": 1189,
+    "AbilityId": 81
+  },
+  "2013380": {
+    "UnitId": 1190,
+    "AbilityId": 11
+  },
+  "2013409": {
+    "UnitId": 1191,
+    "AbilityId": 11
+  },
+  "2013440": {
+    "UnitId": 1192,
+    "AbilityId": 11
+  },
+  "2013470": {
+    "UnitId": 1193,
+    "AbilityId": 2011861
+  },
+  "2013499": {
+    "UnitId": 1194,
+    "AbilityId": 90
+  },
+  "2013528": {
+    "UnitId": 1195,
+    "AbilityId": 81
+  },
+  "2013561": {
+    "UnitId": 1196,
+    "AbilityId": 11
+  },
+  "2013588": {
+    "UnitId": 1197,
+    "AbilityId": 90
+  },
+  "2013615": {
+    "UnitId": 1198,
+    "AbilityId": 11
+  },
+  "2013642": {
+    "UnitId": 1199,
+    "AbilityId": 2011861
+  },
+  "2013673": {
+    "UnitId": 1200,
+    "AbilityId": 11
+  },
+  "2013701": {
+    "UnitId": 1201,
+    "AbilityId": 28
+  },
+  "2013732": {
+    "UnitId": 1202,
+    "AbilityId": 28
+  },
+  "2013760": {
+    "UnitId": 1203,
+    "AbilityId": 81
+  },
+  "2013793": {
+    "UnitId": 1204,
+    "AbilityId": 81
+  },
+  "2013823": {
+    "UnitId": 1205,
+    "AbilityId": 11
+  },
+  "2013850": {
+    "UnitId": 1206,
+    "AbilityId": 28
+  },
+  "2013880": {
+    "UnitId": 1207,
+    "AbilityId": 11
+  },
+  "2013908": {
+    "UnitId": 1208,
+    "AbilityId": 2011861
+  },
+  "2013935": {
+    "UnitId": 1209,
+    "AbilityId": 11
+  },
+  "2013966": {
+    "UnitId": 1210,
+    "AbilityId": 11
+  },
+  "2013999": {
+    "UnitId": 1211,
+    "AbilityId": 11
+  },
+  "2014030": {
+    "UnitId": 1212,
+    "AbilityId": 11
+  },
+  "2014057": {
+    "UnitId": 1213,
+    "AbilityId": 11
+  },
+  "2014086": {
+    "UnitId": 1214,
+    "AbilityId": 11
+  },
+  "2014114": {
+    "UnitId": 1215,
+    "AbilityId": 11
+  },
+  "2014144": {
+    "UnitId": 1216,
+    "AbilityId": 11
+  },
+  "2014175": {
+    "UnitId": 1217,
+    "AbilityId": 11
+  },
+  "2014206": {
+    "UnitId": 1218,
+    "AbilityId": 11
+  },
+  "2014234": {
+    "UnitId": 1219,
+    "AbilityId": 11
+  },
+  "2014262": {
+    "UnitId": 1220,
+    "AbilityId": 11
+  },
+  "2014290": {
+    "UnitId": 1221,
+    "AbilityId": 2011861
+  },
+  "2014318": {
+    "UnitId": 1222,
+    "AbilityId": 2011861
+  },
+  "2014346": {
+    "UnitId": 1223,
+    "AbilityId": 11
+  },
+  "2014374": {
+    "UnitId": 1224,
+    "AbilityId": 28
+  },
+  "2014404": {
+    "UnitId": 1225,
+    "AbilityId": 11
+  },
+  "2014530": {
+    "UnitId": 1233,
+    "AbilityId": 59
+  },
+  "2014545": {
+    "UnitId": 1234,
+    "AbilityId": 59
+  },
+  "2014568": {
+    "UnitId": 911,
+    "AbilityId": 59
+  },
+  "2014589": {
+    "UnitId": 1227,
+    "AbilityId": 2014588
+  },
+  "2014602": {
+    "UnitId": 1228,
+    "AbilityId": 116
+  },
+  "2014611": {
+    "UnitId": 1229,
+    "AbilityId": 2000212
+  },
+  "2014620": {
+    "UnitId": 1230,
+    "AbilityId": 2000214
+  },
+  "2014636": {
+    "UnitId": 1232,
+    "AbilityId": 2000212
+  },
+  "2015987": {
+    "UnitId": 1238,
+    "AbilityId": 2000767
+  },
+  "2016008": {
+    "UnitId": 1102,
+    "AbilityId": 44
+  },
+  "2016064": {
+    "UnitId": 1240,
+    "AbilityId": 2000197
+  },
+  "2016099": {
+    "UnitId": 1241,
+    "AbilityId": 2001404
+  },
+  "2016108": {
+    "UnitId": 1242,
+    "AbilityId": 2001412
+  },
+  "2016187": {
+    "UnitId": 1243,
+    "AbilityId": 2000767
+  },
+  "2016197": {
+    "UnitId": 1244,
+    "AbilityId": 2000767
+  },
+  "2016219": {
+    "UnitId": 1245,
+    "AbilityId": 2000767
+  },
+  "2016266": {
+    "UnitId": 1253,
+    "AbilityId": 2019218
+  },
+  "2016273": {
+    "UnitId": 1246,
+    "AbilityId": 2000214
+  },
+  "2016421": {
+    "UnitId": 915,
+    "AbilityId": 2001399
+  },
+  "2016440": {
+    "UnitId": 966,
+    "AbilityId": 2001399
+  },
+  "2016454": {
+    "UnitId": 921,
+    "AbilityId": 2001399
+  },
+  "2016468": {
+    "UnitId": 1251,
+    "AbilityId": 2001399
+  },
+  "2016497": {
+    "UnitId": 929,
+    "AbilityId": 2019221
+  },
+  "2016531": {
+    "UnitId": 944,
+    "AbilityId": 2001398
+  },
+  "2016696": {
+    "UnitId": 916,
+    "AbilityId": 2001969
+  },
+  "2016724": {
+    "UnitId": 1242,
+    "AbilityId": 2001400
+  },
+  "2016750": {
+    "UnitId": 1241,
+    "AbilityId": 2001400
+  },
+  "2016760": {
+    "UnitId": 974,
+    "AbilityId": 2001400
+  },
+  "2016770": {
+    "UnitId": 977,
+    "AbilityId": 2001398
+  },
+  "2016793": {
+    "UnitId": 1226,
+    "AbilityId": 2001409
+  },
+  "2016824": {
+    "UnitId": 923,
+    "AbilityId": 2001409
+  },
+  "2016861": {
+    "UnitId": 924,
+    "AbilityId": 2001409
+  },
+  "2016890": {
+    "UnitId": 943,
+    "AbilityId": 2001409
+  },
+  "2016929": {
+    "UnitId": 918,
+    "AbilityId": 2001409
+  },
+  "2016970": {
+    "UnitId": 919,
+    "AbilityId": 53
+  },
+  "2017048": {
+    "UnitId": 967,
+    "AbilityId": 45
+  },
+  "2017123": {
+    "UnitId": 913,
+    "AbilityId": 2000767
+  },
+  "2017163": {
+    "UnitId": 978,
+    "AbilityId": 84
+  },
+  "2017192": {
+    "UnitId": 1239,
+    "AbilityId": 84
+  },
+  "2017221": {
+    "UnitId": 1104,
+    "AbilityId": 2000767
+  },
+  "2017240": {
+    "UnitId": 1135,
+    "AbilityId": 2000767
+  },
+  "2017278": {
+    "UnitId": 940,
+    "AbilityId": 2000770
+  },
+  "2017299": {
+    "UnitId": 1103,
+    "AbilityId": 2000770
+  },
+  "2017320": {
+    "UnitId": 1236,
+    "AbilityId": 2000770
+  },
+  "2017341": {
+    "UnitId": 1132,
+    "AbilityId": 2000770
+  },
+  "2017362": {
+    "UnitId": 1134,
+    "AbilityId": 2000770
+  },
+  "2017383": {
+    "UnitId": 1237,
+    "AbilityId": 2000770
+  },
+  "2017401": {
+    "UnitId": 941,
+    "AbilityId": 23
+  },
+  "2017415": {
+    "UnitId": 1133,
+    "AbilityId": 84
+  },
+  "2018105": {
+    "UnitId": 1248,
+    "AbilityId": 2000214
+  },
+  "2018116": {
+    "UnitId": 1249,
+    "AbilityId": 2000214
+  },
+  "2018126": {
+    "UnitId": 1250,
+    "AbilityId": 2000214
+  },
+  "2018186": {
+    "UnitId": 1063,
+    "AbilityId": 2018185
+  },
+  "2018188": {
+    "UnitId": 1074,
+    "AbilityId": 2018185
+  },
+  "2018190": {
+    "UnitId": 1070,
+    "AbilityId": 2018185
+  },
+  "2018358": {
+    "UnitId": 945,
+    "AbilityId": 82
+  },
+  "2018364": {
+    "UnitId": 1255,
+    "AbilityId": 2000212
+  },
+  "2018382": {
+    "UnitId": 1256,
+    "AbilityId": 2000212
+  },
+  "2018388": {
+    "UnitId": 1256,
+    "AbilityId": 82
+  },
+  "2018402": {
+    "UnitId": 1257,
+    "AbilityId": 2018185
+  },
+  "2018415": {
+    "UnitId": 1258,
+    "AbilityId": 2018185
+  },
+  "2018430": {
+    "UnitId": 1259,
+    "AbilityId": 2018185
+  },
+  "2018445": {
+    "UnitId": 945,
+    "AbilityId": 8
+  },
+  "2018446": {
+    "UnitId": 1256,
+    "AbilityId": 8
+  },
+  "2018616": {
+    "UnitId": 979,
+    "AbilityId": 82
+  },
+  "2018640": {
+    "UnitId": 1261,
+    "AbilityId": 2000197
+  },
+  "2018656": {
+    "UnitId": 1262,
+    "AbilityId": 2000202
+  },
+  "2018717": {
+    "UnitId": 1106,
+    "AbilityId": 22
+  },
+  "2018724": {
+    "UnitId": 1100,
+    "AbilityId": 45
+  },
+  "2018735": {
+    "UnitId": 1263,
+    "AbilityId": 2000197
+  },
+  "2018746": {
+    "UnitId": 1056,
+    "AbilityId": 88
+  },
+  "2018747": {
+    "UnitId": 907,
+    "AbilityId": 5
+  },
+  "2018805": {
+    "UnitId": 1264,
+    "AbilityId": 2000197
+  },
+  "2018806": {
+    "UnitId": 942,
+    "AbilityId": 84
+  },
+  "2018812": {
+    "UnitId": 1265,
+    "AbilityId": 2000212
+  },
+  "2018894": {
+    "UnitId": 1266,
+    "AbilityId": 2000214
+  },
+  "2018986": {
+    "UnitId": 917,
+    "AbilityId": 2001409
+  },
+  "2018987": {
+    "UnitId": 955,
+    "AbilityId": 2001409
+  },
+  "2019004": {
+    "UnitId": 1268,
+    "AbilityId": 2000197
+  },
+  "2019017": {
+    "UnitId": 945,
+    "AbilityId": 4
+  },
+  "2019076": {
+    "UnitId": 1105,
+    "AbilityId": 10
+  },
+  "2019091": {
+    "UnitId": 1084,
+    "AbilityId": 10
+  },
+  "2019212": {
+    "UnitId": 1080,
+    "AbilityId": 4
+  },
+  "2019213": {
+    "UnitId": 1080,
+    "AbilityId": 80
+  },
+  "2019215": {
+    "UnitId": 979,
+    "AbilityId": 4
+  },
+  "2019216": {
+    "UnitId": 979,
+    "AbilityId": 80
+  },
+  "2019232": {
+    "UnitId": 1270,
+    "AbilityId": 2000767
+  },
+  "2019267": {
+    "UnitId": 1271,
+    "AbilityId": 22
+  },
+  "2019278": {
+    "UnitId": 1263,
+    "AbilityId": 4
+  },
+  "2019279": {
+    "UnitId": 1263,
+    "AbilityId": 80
+  },
+  "2019309": {
+    "UnitId": 467,
+    "AbilityId": 2000195
+  },
+  "2019310": {
+    "UnitId": 714,
+    "AbilityId": 2000195
+  },
+  "2019314": {
+    "UnitId": 945,
+    "AbilityId": 80
+  },
+  "2019337": {
+    "UnitId": 1272,
+    "AbilityId": 2000197
+  },
+  "2019356": {
+    "UnitId": 1273,
+    "AbilityId": 60
+  },
+  "2019370": {
+    "UnitId": 1274,
+    "AbilityId": 2019369
+  },
+  "2019384": {
+    "UnitId": 904,
+    "AbilityId": 4
+  },
+  "2019385": {
+    "UnitId": 904,
+    "AbilityId": 80
+  },
+  "2019394": {
+    "UnitId": 904,
+    "AbilityId": 2019386
+  },
+  "2019400": {
+    "UnitId": 1083,
+    "AbilityId": 2019386
+  },
+  "2019402": {
+    "UnitId": 1083,
+    "AbilityId": 4
+  },
+  "2019412": {
+    "UnitId": 169,
+    "AbilityId": 2001401
+  },
+  "2019414": {
+    "UnitId": 286,
+    "AbilityId": 2019305
+  },
+  "2019416": {
+    "UnitId": 307,
+    "AbilityId": 2019415
+  },
+  "2019418": {
+    "UnitId": 312,
+    "AbilityId": 2001427
+  },
+  "2019420": {
+    "UnitId": 314,
+    "AbilityId": 2001427
+  },
+  "2019422": {
+    "UnitId": 374,
+    "AbilityId": 2019415
+  },
+  "2019426": {
+    "UnitId": 377,
+    "AbilityId": 2001401
+  },
+  "2019428": {
+    "UnitId": 465,
+    "AbilityId": 2001427
+  },
+  "2019430": {
+    "UnitId": 315,
+    "AbilityId": 2019429
+  },
+  "2019432": {
+    "UnitId": 743,
+    "AbilityId": 2019431
+  },
+  "2019435": {
+    "UnitId": 168,
+    "AbilityId": 46
+  },
+  "2019437": {
+    "UnitId": 20,
+    "AbilityId": 8
+  },
+  "2019444": {
+    "UnitId": 1275,
+    "AbilityId": 2019443
+  },
+  "2019454": {
+    "UnitId": 297,
+    "AbilityId": 2019453
+  },
+  "2019459": {
+    "UnitId": 1083,
+    "AbilityId": 80
+  },
+  "896": {
+    "AbilityId": 2000773
+  },
+  "2019494": {
+    "UnitId": 1276,
+    "AbilityId": 2000204
+  },
+  "2019516": {
+    "UnitId": 1277,
+    "AbilityId": 2000204
+  },
+  "2019550": {
+    "UnitId": 1278,
+    "AbilityId": 2000197
+  },
+  "2019571": {
+    "UnitId": 1279,
+    "AbilityId": 2000197
+  },
+  "2019584": {
+    "UnitId": 1280,
+    "AbilityId": 2000197
+  },
+  "2019604": {
+    "UnitId": 1281,
+    "AbilityId": 2000197
+  },
+  "2019616": {
+    "UnitId": 1282,
+    "AbilityId": 2000197
+  },
+  "2019636": {
+    "UnitId": 1283,
+    "AbilityId": 2000197
+  },
+  "2019655": {
+    "UnitId": 1284,
+    "AbilityId": 2000197
+  },
+  "2019677": {
+    "UnitId": 1285,
+    "AbilityId": 2000197
+  }
+}

@@ -1,0 +1,2646 @@
+{
+  "32": {
+    "WeaponId": 631
+  },
+  "33": {
+    "WeaponId": 2002020
+  },
+  "43": null,
+  "99": null,
+  "156": null,
+  "345": null,
+  "421": null,
+  "498": {
+    "WeaponId": 2002020
+  },
+  "561": null,
+  "621": null,
+  "623": null,
+  "758": null,
+  "759": null,
+  "843": null,
+  "1050": {
+    "WeaponId": 185
+  },
+  "1100": {
+    "WeaponId": 2001501
+  },
+  "1111": {
+    "WeaponId": 2001501
+  },
+  "1350": null,
+  "1381": {
+    "WeaponId": 2002020
+  },
+  "2000532": {
+    "WeaponId": 959,
+    "Order": 0,
+    "UnitId": 721
+  },
+  "2000533": {
+    "WeaponId": 144,
+    "Order": 0,
+    "UnitId": 721
+  },
+  "2000534": {
+    "WeaponId": 29,
+    "Order": 0,
+    "UnitId": 721
+  },
+  "2000782": {
+    "WeaponId": 29,
+    "Order": 0,
+    "UnitId": 725
+  },
+  "2000784": {
+    "WeaponId": 2001501,
+    "Order": 1,
+    "UnitId": 725
+  },
+  "2000815": {
+    "WeaponId": 362,
+    "Order": 0,
+    "UnitId": 726
+  },
+  "2000817": {
+    "WeaponId": 1019,
+    "Order": 1,
+    "UnitId": 726
+  },
+  "2004008": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 901
+  },
+  "2004010": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 901
+  },
+  "2004012": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 901
+  },
+  "2004014": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 901
+  },
+  "2004016": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 901
+  },
+  "2004018": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 901
+  },
+  "2004020": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 901
+  },
+  "2004078": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1254
+  },
+  "2004079": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1254
+  },
+  "2004080": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1254
+  },
+  "2004081": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1254
+  },
+  "2004082": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1254
+  },
+  "2004083": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1254
+  },
+  "2004084": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1254
+  },
+  "2004104": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 986
+  },
+  "2004105": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 986
+  },
+  "2004106": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 986
+  },
+  "2004107": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 986
+  },
+  "2004108": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 986
+  },
+  "2004109": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 986
+  },
+  "2004110": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 986
+  },
+  "2004130": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 987
+  },
+  "2004131": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 987
+  },
+  "2004132": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 987
+  },
+  "2004133": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 987
+  },
+  "2004134": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 987
+  },
+  "2004135": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 987
+  },
+  "2004136": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 987
+  },
+  "2004156": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 988
+  },
+  "2004157": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 988
+  },
+  "2004158": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 988
+  },
+  "2004159": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 988
+  },
+  "2004160": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 988
+  },
+  "2004161": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 988
+  },
+  "2004162": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 988
+  },
+  "2004182": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 989
+  },
+  "2004183": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 989
+  },
+  "2004184": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 989
+  },
+  "2004185": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 989
+  },
+  "2004186": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 989
+  },
+  "2004187": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 989
+  },
+  "2004188": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 989
+  },
+  "2004208": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 990
+  },
+  "2004209": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 990
+  },
+  "2004210": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 990
+  },
+  "2004211": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 990
+  },
+  "2004212": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 990
+  },
+  "2004213": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 990
+  },
+  "2004214": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 990
+  },
+  "2004234": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 991
+  },
+  "2004235": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 991
+  },
+  "2004236": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 991
+  },
+  "2004237": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 991
+  },
+  "2004238": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 991
+  },
+  "2004239": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 991
+  },
+  "2004240": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 991
+  },
+  "2004260": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 992
+  },
+  "2004261": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 992
+  },
+  "2004262": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 992
+  },
+  "2004263": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 992
+  },
+  "2004264": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 992
+  },
+  "2004265": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 992
+  },
+  "2004266": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 992
+  },
+  "2004286": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 993
+  },
+  "2004287": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 993
+  },
+  "2004288": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 993
+  },
+  "2004289": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 993
+  },
+  "2004290": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 993
+  },
+  "2004291": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 993
+  },
+  "2004292": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 993
+  },
+  "2004312": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 994
+  },
+  "2004313": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 994
+  },
+  "2004314": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 994
+  },
+  "2004315": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 994
+  },
+  "2004316": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 994
+  },
+  "2004317": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 994
+  },
+  "2004318": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 994
+  },
+  "2004338": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 995
+  },
+  "2004339": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 995
+  },
+  "2004340": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 995
+  },
+  "2004341": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 995
+  },
+  "2004342": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 995
+  },
+  "2004343": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 995
+  },
+  "2004344": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 995
+  },
+  "2004364": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 996
+  },
+  "2004365": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 996
+  },
+  "2004366": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 996
+  },
+  "2004367": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 996
+  },
+  "2004368": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 996
+  },
+  "2004369": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 996
+  },
+  "2004370": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 996
+  },
+  "2004390": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 997
+  },
+  "2004391": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 997
+  },
+  "2004392": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 997
+  },
+  "2004393": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 997
+  },
+  "2004394": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 997
+  },
+  "2004395": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 997
+  },
+  "2004396": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 997
+  },
+  "2004416": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 998
+  },
+  "2004417": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 998
+  },
+  "2004418": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 998
+  },
+  "2004419": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 998
+  },
+  "2004420": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 998
+  },
+  "2004421": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 998
+  },
+  "2004422": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 998
+  },
+  "2004442": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 999
+  },
+  "2004443": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 999
+  },
+  "2004444": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 999
+  },
+  "2004445": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 999
+  },
+  "2004446": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 999
+  },
+  "2004447": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 999
+  },
+  "2004448": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 999
+  },
+  "2004468": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1000
+  },
+  "2004469": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1000
+  },
+  "2004470": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1000
+  },
+  "2004471": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1000
+  },
+  "2004472": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1000
+  },
+  "2004473": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1000
+  },
+  "2004474": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1000
+  },
+  "2004494": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1001
+  },
+  "2004495": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1001
+  },
+  "2004496": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1001
+  },
+  "2004497": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1001
+  },
+  "2004498": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1001
+  },
+  "2004499": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1001
+  },
+  "2004500": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1001
+  },
+  "2004520": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1002
+  },
+  "2004521": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1002
+  },
+  "2004522": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1002
+  },
+  "2004523": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1002
+  },
+  "2004524": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1002
+  },
+  "2004525": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1002
+  },
+  "2004526": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1002
+  },
+  "2004546": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1003
+  },
+  "2004547": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1003
+  },
+  "2004548": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1003
+  },
+  "2004549": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1003
+  },
+  "2004550": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1003
+  },
+  "2004551": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1003
+  },
+  "2004552": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1003
+  },
+  "2004572": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1004
+  },
+  "2004573": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1004
+  },
+  "2004574": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1004
+  },
+  "2004575": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1004
+  },
+  "2004576": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1004
+  },
+  "2004577": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1004
+  },
+  "2004578": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1004
+  },
+  "2004598": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1005
+  },
+  "2004599": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1005
+  },
+  "2004600": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1005
+  },
+  "2004601": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1005
+  },
+  "2004602": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1005
+  },
+  "2004603": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1005
+  },
+  "2004604": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1005
+  },
+  "2004624": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1006
+  },
+  "2004625": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1006
+  },
+  "2004626": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1006
+  },
+  "2004627": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1006
+  },
+  "2004628": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1006
+  },
+  "2004629": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1006
+  },
+  "2004630": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1006
+  },
+  "2004650": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1007
+  },
+  "2004651": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1007
+  },
+  "2004652": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1007
+  },
+  "2004653": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1007
+  },
+  "2004654": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1007
+  },
+  "2004655": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1007
+  },
+  "2004656": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1007
+  },
+  "2004676": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1008
+  },
+  "2004677": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1008
+  },
+  "2004678": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1008
+  },
+  "2004679": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1008
+  },
+  "2004680": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1008
+  },
+  "2004681": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1008
+  },
+  "2004682": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1008
+  },
+  "2004702": {
+    "WeaponId": 14,
+    "Order": 0,
+    "UnitId": 1009
+  },
+  "2004703": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1009
+  },
+  "2004704": {
+    "WeaponId": 2003998,
+    "Order": 2,
+    "UnitId": 1009
+  },
+  "2004705": {
+    "WeaponId": 2004000,
+    "Order": 3,
+    "UnitId": 1009
+  },
+  "2004706": {
+    "WeaponId": 2004002,
+    "Order": 4,
+    "UnitId": 1009
+  },
+  "2004707": {
+    "WeaponId": 2004004,
+    "Order": 5,
+    "UnitId": 1009
+  },
+  "2004708": {
+    "WeaponId": 2019270,
+    "Order": 6,
+    "UnitId": 1009
+  },
+  "2004731": {
+    "WeaponId": 14,
+    "Order": 2,
+    "UnitId": 1010
+  },
+  "2004733": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1010
+  },
+  "2004735": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1010
+  },
+  "2004754": {
+    "WeaponId": 32,
+    "Order": 1,
+    "UnitId": 1011
+  },
+  "2004756": {
+    "WeaponId": 125,
+    "Order": 2,
+    "UnitId": 1011
+  },
+  "2004758": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1011
+  },
+  "2004775": {
+    "WeaponId": 132,
+    "Order": 2,
+    "UnitId": 1012
+  },
+  "2004777": {
+    "WeaponId": 155,
+    "Order": 1,
+    "UnitId": 1012
+  },
+  "2004779": {
+    "WeaponId": 161,
+    "Order": 3,
+    "UnitId": 1012
+  },
+  "2004781": {
+    "WeaponId": 590,
+    "Order": 4,
+    "UnitId": 1012
+  },
+  "2004783": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1012
+  },
+  "2004797": {
+    "WeaponId": 132,
+    "Order": 2,
+    "UnitId": 1013
+  },
+  "2004799": {
+    "WeaponId": 155,
+    "Order": 1,
+    "UnitId": 1013
+  },
+  "2004801": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1013
+  },
+  "2004813": {
+    "WeaponId": 2004004,
+    "Order": 0,
+    "UnitId": 1014
+  },
+  "2004815": {
+    "WeaponId": 2019270,
+    "Order": 1,
+    "UnitId": 1014
+  },
+  "2004831": {
+    "WeaponId": 129,
+    "Order": 2,
+    "UnitId": 1015
+  },
+  "2004833": {
+    "WeaponId": 171,
+    "Order": 1,
+    "UnitId": 1015
+  },
+  "2004835": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1015
+  },
+  "2004849": {
+    "WeaponId": 156,
+    "Order": 0,
+    "UnitId": 1016
+  },
+  "2004851": {
+    "WeaponId": 157,
+    "Order": 3,
+    "UnitId": 1016
+  },
+  "2004853": {
+    "WeaponId": 158,
+    "Order": 2,
+    "UnitId": 1016
+  },
+  "2004855": {
+    "WeaponId": 933,
+    "Order": 1,
+    "UnitId": 1016
+  },
+  "2004867": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1017
+  },
+  "2004881": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1018
+  },
+  "2004883": {
+    "WeaponId": 2004876,
+    "Order": 1,
+    "UnitId": 1018
+  },
+  "2004899": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1019
+  },
+  "2004901": {
+    "WeaponId": 2004002,
+    "Order": 1,
+    "UnitId": 1019
+  },
+  "2004916": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1020
+  },
+  "2004918": {
+    "WeaponId": 2004910,
+    "Order": 1,
+    "UnitId": 1020
+  },
+  "2004933": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1021
+  },
+  "2004935": {
+    "WeaponId": 2004928,
+    "Order": 1,
+    "UnitId": 1021
+  },
+  "2004950": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1022
+  },
+  "2004952": {
+    "WeaponId": 2004945,
+    "Order": 1,
+    "UnitId": 1022
+  },
+  "2004968": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1023
+  },
+  "2004970": {
+    "WeaponId": 2004962,
+    "Order": 1,
+    "UnitId": 1023
+  },
+  "2004985": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1024
+  },
+  "2004987": {
+    "WeaponId": 2004980,
+    "Order": 1,
+    "UnitId": 1024
+  },
+  "2005003": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1025
+  },
+  "2005005": {
+    "WeaponId": 2004997,
+    "Order": 1,
+    "UnitId": 1025
+  },
+  "2005008": {
+    "WeaponId": 2004998,
+    "Order": 2,
+    "UnitId": 1025
+  },
+  "2005021": {
+    "WeaponId": 2004000,
+    "Order": 0,
+    "UnitId": 1026
+  },
+  "2005023": {
+    "WeaponId": 2005018,
+    "Order": 1,
+    "UnitId": 1026
+  },
+  "2005036": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1027
+  },
+  "2005038": {
+    "WeaponId": 2004000,
+    "Order": 1,
+    "UnitId": 1027
+  },
+  "2007545": {
+    "WeaponId": 14,
+    "Order": 2,
+    "UnitId": 1108
+  },
+  "2007546": {
+    "WeaponId": 168,
+    "Order": 1,
+    "UnitId": 1108
+  },
+  "2007547": {
+    "WeaponId": 2014500,
+    "Order": 0,
+    "UnitId": 1108
+  },
+  "2007568": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1109
+  },
+  "2007569": {
+    "WeaponId": 2004997,
+    "Order": 1,
+    "UnitId": 1109
+  },
+  "2007570": {
+    "WeaponId": 2004998,
+    "Order": 2,
+    "UnitId": 1109
+  },
+  "2011899": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1138
+  },
+  "2011901": {
+    "WeaponId": 2011834,
+    "Order": 2,
+    "UnitId": 1138
+  },
+  "2011903": {
+    "WeaponId": 2011887,
+    "Order": 1,
+    "UnitId": 1138
+  },
+  "2011905": {
+    "WeaponId": 2011889,
+    "Order": 3,
+    "UnitId": 1138
+  },
+  "2011978": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1141
+  },
+  "2011980": {
+    "WeaponId": 2011972,
+    "Order": 1,
+    "UnitId": 1141
+  },
+  "2012139": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1147
+  },
+  "2012141": {
+    "WeaponId": 2012024,
+    "Order": 1,
+    "UnitId": 1147
+  },
+  "2012143": {
+    "WeaponId": 2012131,
+    "Order": 2,
+    "UnitId": 1147
+  },
+  "2012164": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1148
+  },
+  "2012166": {
+    "WeaponId": 2012157,
+    "Order": 1,
+    "UnitId": 1148
+  },
+  "2012217": {
+    "WeaponId": 2011887,
+    "Order": 1,
+    "UnitId": 1150
+  },
+  "2012219": {
+    "WeaponId": 2014501,
+    "Order": 0,
+    "UnitId": 1150
+  },
+  "2012221": {
+    "WeaponId": 2012207,
+    "Order": 2,
+    "UnitId": 1150
+  },
+  "2012447": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1159
+  },
+  "2012449": {
+    "WeaponId": 2011834,
+    "Order": 2,
+    "UnitId": 1159
+  },
+  "2012451": {
+    "WeaponId": 2011889,
+    "Order": 3,
+    "UnitId": 1159
+  },
+  "2012453": {
+    "WeaponId": 2012264,
+    "Order": 1,
+    "UnitId": 1159
+  },
+  "2012654": {
+    "WeaponId": 2011889,
+    "Order": 3,
+    "UnitId": 1167
+  },
+  "2012656": {
+    "WeaponId": 2014501,
+    "Order": 0,
+    "UnitId": 1167
+  },
+  "2012658": {
+    "WeaponId": 2012207,
+    "Order": 2,
+    "UnitId": 1167
+  },
+  "2012660": {
+    "WeaponId": 2012643,
+    "Order": 1,
+    "UnitId": 1167
+  },
+  "2012999": {
+    "WeaponId": 2014501,
+    "Order": 0,
+    "UnitId": 1178
+  },
+  "2013001": {
+    "WeaponId": 2012264,
+    "Order": 1,
+    "UnitId": 1178
+  },
+  "2013003": {
+    "WeaponId": 2012411,
+    "Order": 2,
+    "UnitId": 1178
+  },
+  "2013032": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1179
+  },
+  "2013034": {
+    "WeaponId": 2011834,
+    "Order": 2,
+    "UnitId": 1179
+  },
+  "2013036": {
+    "WeaponId": 2012643,
+    "Order": 1,
+    "UnitId": 1179
+  },
+  "2013322": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1188
+  },
+  "2013324": {
+    "WeaponId": 2004004,
+    "Order": 2,
+    "UnitId": 1188
+  },
+  "2013326": {
+    "WeaponId": 2019270,
+    "Order": 3,
+    "UnitId": 1188
+  },
+  "2013328": {
+    "WeaponId": 2012024,
+    "Order": 1,
+    "UnitId": 1188
+  },
+  "2013330": {
+    "WeaponId": 2012131,
+    "Order": 4,
+    "UnitId": 1188
+  },
+  "2013357": {
+    "WeaponId": 2003998,
+    "Order": 1,
+    "UnitId": 1189
+  },
+  "2013359": {
+    "WeaponId": 2004002,
+    "Order": 2,
+    "UnitId": 1189
+  },
+  "2013361": {
+    "WeaponId": 2012131,
+    "Order": 3,
+    "UnitId": 1189
+  },
+  "2013363": {
+    "WeaponId": 2013349,
+    "Order": 0,
+    "UnitId": 1189
+  },
+  "2013392": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1190
+  },
+  "2013394": {
+    "WeaponId": 2011889,
+    "Order": 3,
+    "UnitId": 1190
+  },
+  "2013396": {
+    "WeaponId": 2011922,
+    "Order": 2,
+    "UnitId": 1190
+  },
+  "2013398": {
+    "WeaponId": 2013157,
+    "Order": 1,
+    "UnitId": 1190
+  },
+  "2013538": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1195
+  },
+  "2013540": {
+    "WeaponId": 2011922,
+    "Order": 2,
+    "UnitId": 1195
+  },
+  "2013542": {
+    "WeaponId": 2012131,
+    "Order": 3,
+    "UnitId": 1195
+  },
+  "2013544": {
+    "WeaponId": 2012515,
+    "Order": 1,
+    "UnitId": 1195
+  },
+  "2013679": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1200
+  },
+  "2013681": {
+    "WeaponId": 2011919,
+    "Order": 1,
+    "UnitId": 1200
+  },
+  "2013802": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1204
+  },
+  "2013804": {
+    "WeaponId": 2012024,
+    "Order": 1,
+    "UnitId": 1204
+  },
+  "2013806": {
+    "WeaponId": 2012131,
+    "Order": 2,
+    "UnitId": 1204
+  },
+  "2013914": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1208
+  },
+  "2013916": {
+    "WeaponId": 2012312,
+    "Order": 1,
+    "UnitId": 1208
+  },
+  "2013976": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1210
+  },
+  "2013978": {
+    "WeaponId": 2004002,
+    "Order": 3,
+    "UnitId": 1210
+  },
+  "2013980": {
+    "WeaponId": 2012264,
+    "Order": 1,
+    "UnitId": 1210
+  },
+  "2013982": {
+    "WeaponId": 2012411,
+    "Order": 2,
+    "UnitId": 1210
+  },
+  "2014865": {
+    "WeaponId": 2019300,
+    "UnitId": 1136,
+    "Order": 0
+  },
+  "2014867": {
+    "WeaponId": 2004000,
+    "UnitId": 1136,
+    "Order": 3
+  },
+  "2014869": {
+    "WeaponId": 2011832,
+    "UnitId": 1136,
+    "Order": 1
+  },
+  "2014871": {
+    "WeaponId": 2012411,
+    "UnitId": 1136,
+    "Order": 2
+  },
+  "2014878": {
+    "WeaponId": 2003998,
+    "UnitId": 1137,
+    "Order": 0
+  },
+  "2014880": {
+    "WeaponId": 2011864,
+    "UnitId": 1137,
+    "Order": 1
+  },
+  "2014888": {
+    "WeaponId": 2003998,
+    "UnitId": 1139,
+    "Order": 0
+  },
+  "2014890": {
+    "WeaponId": 2011919,
+    "UnitId": 1139,
+    "Order": 1
+  },
+  "2014900": {
+    "WeaponId": 2019300,
+    "UnitId": 1140,
+    "Order": 1
+  },
+  "2014902": {
+    "WeaponId": 2004000,
+    "UnitId": 1140,
+    "Order": 2
+  },
+  "2014904": {
+    "WeaponId": 2004002,
+    "UnitId": 1140,
+    "Order": 0
+  },
+  "2014913": {
+    "WeaponId": 2019300,
+    "UnitId": 1142,
+    "Order": 0
+  },
+  "2014915": {
+    "WeaponId": 2004000,
+    "UnitId": 1142,
+    "Order": 2
+  },
+  "2014917": {
+    "WeaponId": 2013157,
+    "UnitId": 1142,
+    "Order": 1
+  },
+  "2014928": {
+    "WeaponId": 2013087,
+    "UnitId": 1143,
+    "Order": 0
+  },
+  "2014930": {
+    "WeaponId": 2004004,
+    "UnitId": 1143,
+    "Order": 2
+  },
+  "2014932": {
+    "WeaponId": 2019270,
+    "UnitId": 1143,
+    "Order": 3
+  },
+  "2014934": {
+    "WeaponId": 2013057,
+    "UnitId": 1143,
+    "Order": 1
+  },
+  "2014936": {
+    "WeaponId": 2013349,
+    "UnitId": 1143,
+    "Order": 4
+  },
+  "2014941": {
+    "WeaponId": 2019300,
+    "UnitId": 1144,
+    "Order": 1
+  },
+  "2014943": {
+    "WeaponId": 2004000,
+    "UnitId": 1144,
+    "Order": 0
+  },
+  "2014945": {
+    "WeaponId": 2012054,
+    "UnitId": 1144,
+    "Order": 2
+  },
+  "2014952": {
+    "WeaponId": 2003998,
+    "UnitId": 1145,
+    "Order": 0
+  },
+  "2014954": {
+    "WeaponId": 2011889,
+    "UnitId": 1145,
+    "Order": 2
+  },
+  "2014956": {
+    "WeaponId": 2011922,
+    "UnitId": 1145,
+    "Order": 1
+  },
+  "2014958": {
+    "WeaponId": 2016056,
+    "UnitId": 1145,
+    "Order": 3
+  },
+  "2014969": {
+    "WeaponId": 2011887,
+    "UnitId": 1146,
+    "Order": 1
+  },
+  "2014971": {
+    "WeaponId": 2011922,
+    "UnitId": 1146,
+    "Order": 2
+  },
+  "2014973": {
+    "WeaponId": 2019300,
+    "UnitId": 1146,
+    "Order": 0
+  },
+  "2014978": {
+    "WeaponId": 2004000,
+    "UnitId": 1149,
+    "Order": 1
+  },
+  "2014980": {
+    "WeaponId": 2011889,
+    "UnitId": 1149,
+    "Order": 2
+  },
+  "2014982": {
+    "WeaponId": 2014500,
+    "UnitId": 1149,
+    "Order": 0
+  },
+  "2014991": {
+    "WeaponId": 2003998,
+    "UnitId": 1151,
+    "Order": 0
+  },
+  "2014993": {
+    "WeaponId": 2011832,
+    "UnitId": 1151,
+    "Order": 1
+  },
+  "2014995": {
+    "WeaponId": 2011889,
+    "UnitId": 1151,
+    "Order": 3
+  },
+  "2014997": {
+    "WeaponId": 2012411,
+    "UnitId": 1151,
+    "Order": 2
+  },
+  "2015003": {
+    "WeaponId": 2003998,
+    "UnitId": 1152,
+    "Order": 0
+  },
+  "2015005": {
+    "WeaponId": 2012264,
+    "UnitId": 1152,
+    "Order": 1
+  },
+  "2015011": {
+    "WeaponId": 2003998,
+    "UnitId": 1153,
+    "Order": 0
+  },
+  "2015013": {
+    "WeaponId": 2012288,
+    "UnitId": 1153,
+    "Order": 1
+  },
+  "2015019": {
+    "WeaponId": 2003998,
+    "UnitId": 1154,
+    "Order": 0
+  },
+  "2015021": {
+    "WeaponId": 2012312,
+    "UnitId": 1154,
+    "Order": 1
+  },
+  "2015027": {
+    "WeaponId": 2003998,
+    "UnitId": 1155,
+    "Order": 0
+  },
+  "2015029": {
+    "WeaponId": 2011832,
+    "UnitId": 1155,
+    "Order": 1
+  },
+  "2015039": {
+    "WeaponId": 2003998,
+    "UnitId": 1156,
+    "Order": 0
+  },
+  "2015041": {
+    "WeaponId": 2011834,
+    "UnitId": 1156,
+    "Order": 2
+  },
+  "2015043": {
+    "WeaponId": 2012024,
+    "UnitId": 1156,
+    "Order": 1
+  },
+  "2015045": {
+    "WeaponId": 2019292,
+    "UnitId": 1156,
+    "Order": 3
+  },
+  "2015051": {
+    "WeaponId": 2003998,
+    "UnitId": 1157,
+    "Order": 0
+  },
+  "2015053": {
+    "WeaponId": 2012387,
+    "UnitId": 1157,
+    "Order": 1
+  },
+  "2015062": {
+    "WeaponId": 2003998,
+    "UnitId": 1158,
+    "Order": 0
+  },
+  "2015064": {
+    "WeaponId": 2011887,
+    "UnitId": 1158,
+    "Order": 1
+  },
+  "2015066": {
+    "WeaponId": 2012411,
+    "UnitId": 1158,
+    "Order": 2
+  },
+  "2015072": {
+    "WeaponId": 2003998,
+    "UnitId": 1160,
+    "Order": 0
+  },
+  "2015074": {
+    "WeaponId": 2004000,
+    "UnitId": 1160,
+    "Order": 3
+  },
+  "2015076": {
+    "WeaponId": 2011887,
+    "UnitId": 1160,
+    "Order": 1
+  },
+  "2015078": {
+    "WeaponId": 2012411,
+    "UnitId": 1160,
+    "Order": 2
+  },
+  "2015082": {
+    "WeaponId": 2004000,
+    "UnitId": 1161,
+    "Order": 0
+  },
+  "2015084": {
+    "WeaponId": 2012054,
+    "UnitId": 1161,
+    "Order": 1
+  },
+  "2015094": {
+    "WeaponId": 2003998,
+    "UnitId": 1162,
+    "Order": 0
+  },
+  "2015096": {
+    "WeaponId": 2019292,
+    "UnitId": 1162,
+    "Order": 2
+  },
+  "2015098": {
+    "WeaponId": 2012515,
+    "UnitId": 1162,
+    "Order": 1
+  },
+  "2015107": {
+    "WeaponId": 2003998,
+    "UnitId": 1163,
+    "Order": 0
+  },
+  "2015109": {
+    "WeaponId": 2011834,
+    "UnitId": 1163,
+    "Order": 2
+  },
+  "2015111": {
+    "WeaponId": 2011887,
+    "UnitId": 1163,
+    "Order": 1
+  },
+  "2015113": {
+    "WeaponId": 2011889,
+    "UnitId": 1163,
+    "Order": 3
+  },
+  "2015118": {
+    "WeaponId": 2004000,
+    "UnitId": 1164,
+    "Order": 1
+  },
+  "2015120": {
+    "WeaponId": 2014500,
+    "UnitId": 1164,
+    "Order": 0
+  },
+  "2015126": {
+    "WeaponId": 2003998,
+    "UnitId": 1165,
+    "Order": 0
+  },
+  "2015128": {
+    "WeaponId": 2004000,
+    "UnitId": 1165,
+    "Order": 2
+  },
+  "2015130": {
+    "WeaponId": 2012264,
+    "UnitId": 1165,
+    "Order": 1
+  },
+  "2015170": {
+    "WeaponId": 2016054,
+    "UnitId": 1169,
+    "Order": 1
+  },
+  "2015172": {
+    "WeaponId": 2012205,
+    "UnitId": 1169,
+    "Order": 0
+  },
+  "2015209": {
+    "WeaponId": 2016259,
+    "UnitId": 1172,
+    "Order": 1
+  },
+  "2015211": {
+    "WeaponId": 2012205,
+    "UnitId": 1172,
+    "Order": 0
+  },
+  "2015217": {
+    "WeaponId": 2012207,
+    "UnitId": 1173,
+    "Order": 2
+  },
+  "2015219": {
+    "WeaponId": 2012643,
+    "UnitId": 1173,
+    "Order": 1
+  },
+  "2015221": {
+    "WeaponId": 2012821,
+    "UnitId": 1173,
+    "Order": 3
+  },
+  "2015223": {
+    "WeaponId": 2012205,
+    "UnitId": 1173,
+    "Order": 0
+  },
+  "2015233": {
+    "WeaponId": 2012131,
+    "UnitId": 1174,
+    "Order": 1
+  },
+  "2015235": {
+    "WeaponId": 2013349,
+    "UnitId": 1174,
+    "Order": 2
+  },
+  "2015237": {
+    "WeaponId": 2014177,
+    "UnitId": 1174,
+    "Order": 0
+  },
+  "2015263": {
+    "WeaponId": 2012205,
+    "UnitId": 1176,
+    "Order": 0
+  },
+  "2015265": {
+    "WeaponId": 2011922,
+    "UnitId": 1176,
+    "Order": 1
+  },
+  "2015267": {
+    "WeaponId": 2012131,
+    "UnitId": 1176,
+    "Order": 2
+  },
+  "2015269": {
+    "WeaponId": 2013349,
+    "UnitId": 1176,
+    "Order": 3
+  },
+  "2015286": {
+    "WeaponId": 2013057,
+    "UnitId": 1180,
+    "Order": 1
+  },
+  "2015288": {
+    "WeaponId": 2014501,
+    "UnitId": 1180,
+    "Order": 0
+  },
+  "2015300": {
+    "WeaponId": 2004004,
+    "UnitId": 1181,
+    "Order": 0
+  },
+  "2015312": {
+    "WeaponId": 2012024,
+    "UnitId": 1182,
+    "Order": 1
+  },
+  "2015314": {
+    "WeaponId": 2012131,
+    "UnitId": 1182,
+    "Order": 2
+  },
+  "2015316": {
+    "WeaponId": 2013349,
+    "UnitId": 1182,
+    "Order": 0
+  },
+  "2015318": {
+    "WeaponId": 2014177,
+    "UnitId": 1182,
+    "Order": 3
+  },
+  "2015367": {
+    "WeaponId": 2011864,
+    "UnitId": 1186,
+    "Order": 1
+  },
+  "2015369": {
+    "WeaponId": 2013087,
+    "UnitId": 1186,
+    "Order": 0
+  },
+  "2015379": {
+    "WeaponId": 2012131,
+    "UnitId": 1187,
+    "Order": 1
+  },
+  "2015381": {
+    "WeaponId": 2013349,
+    "UnitId": 1187,
+    "Order": 2
+  },
+  "2015383": {
+    "WeaponId": 2014177,
+    "UnitId": 1187,
+    "Order": 0
+  },
+  "2015393": {
+    "WeaponId": 2004000,
+    "UnitId": 1191,
+    "Order": 2
+  },
+  "2015395": {
+    "WeaponId": 2011832,
+    "UnitId": 1191,
+    "Order": 1
+  },
+  "2015397": {
+    "WeaponId": 2016056,
+    "UnitId": 1191,
+    "Order": 3
+  },
+  "2015399": {
+    "WeaponId": 2013087,
+    "UnitId": 1191,
+    "Order": 0
+  },
+  "2015427": {
+    "WeaponId": 2003998,
+    "UnitId": 1193,
+    "Order": 0
+  },
+  "2015429": {
+    "WeaponId": 2018801,
+    "UnitId": 1193,
+    "Order": 1
+  },
+  "2015431": {
+    "WeaponId": 2012411,
+    "UnitId": 1193,
+    "Order": 2
+  },
+  "2015439": {
+    "WeaponId": 2003998,
+    "UnitId": 1194,
+    "Order": 0
+  },
+  "2015441": {
+    "WeaponId": 2012288,
+    "UnitId": 1194,
+    "Order": 2
+  },
+  "2015443": {
+    "WeaponId": 2012411,
+    "UnitId": 1194,
+    "Order": 1
+  },
+  "2015453": {
+    "WeaponId": 2003998,
+    "UnitId": 1196,
+    "Order": 0
+  },
+  "2015455": {
+    "WeaponId": 2004002,
+    "UnitId": 1196,
+    "Order": 3
+  },
+  "2015457": {
+    "WeaponId": 2011832,
+    "UnitId": 1196,
+    "Order": 1
+  },
+  "2015459": {
+    "WeaponId": 2012411,
+    "UnitId": 1196,
+    "Order": 2
+  },
+  "2015476": {
+    "WeaponId": 2003998,
+    "UnitId": 1197,
+    "Order": 0
+  },
+  "2015478": {
+    "WeaponId": 2011889,
+    "UnitId": 1197,
+    "Order": 2
+  },
+  "2015480": {
+    "WeaponId": 2012081,
+    "UnitId": 1197,
+    "Order": 3
+  },
+  "2015482": {
+    "WeaponId": 2012411,
+    "UnitId": 1197,
+    "Order": 1
+  },
+  "2015499": {
+    "WeaponId": 2003998,
+    "UnitId": 1198,
+    "Order": 0
+  },
+  "2015501": {
+    "WeaponId": 2011864,
+    "UnitId": 1198,
+    "Order": 1
+  },
+  "2015503": {
+    "WeaponId": 2011887,
+    "UnitId": 1198,
+    "Order": 2
+  },
+  "2015505": {
+    "WeaponId": 2012411,
+    "UnitId": 1198,
+    "Order": 3
+  },
+  "2015522": {
+    "WeaponId": 2003998,
+    "UnitId": 1199,
+    "Order": 0
+  },
+  "2015524": {
+    "WeaponId": 2004002,
+    "UnitId": 1199,
+    "Order": 2
+  },
+  "2015526": {
+    "WeaponId": 2011972,
+    "UnitId": 1199,
+    "Order": 1
+  },
+  "2015528": {
+    "WeaponId": 2012054,
+    "UnitId": 1199,
+    "Order": 3
+  },
+  "2015536": {
+    "WeaponId": 2003998,
+    "UnitId": 1201,
+    "Order": 0
+  },
+  "2015538": {
+    "WeaponId": 2004000,
+    "UnitId": 1201,
+    "Order": 3
+  },
+  "2015540": {
+    "WeaponId": 2011887,
+    "UnitId": 1201,
+    "Order": 1
+  },
+  "2015542": {
+    "WeaponId": 2012411,
+    "UnitId": 1201,
+    "Order": 2
+  },
+  "2015547": {
+    "WeaponId": 2019300,
+    "UnitId": 1202,
+    "Order": 1
+  },
+  "2015549": {
+    "WeaponId": 2004000,
+    "UnitId": 1202,
+    "Order": 0
+  },
+  "2015551": {
+    "WeaponId": 2012054,
+    "UnitId": 1202,
+    "Order": 2
+  },
+  "2015559": {
+    "WeaponId": 2013087,
+    "UnitId": 1203,
+    "Order": 0
+  },
+  "2015561": {
+    "WeaponId": 2004000,
+    "UnitId": 1203,
+    "Order": 2
+  },
+  "2015563": {
+    "WeaponId": 2004004,
+    "UnitId": 1203,
+    "Order": 3
+  },
+  "2015565": {
+    "WeaponId": 2019270,
+    "UnitId": 1203,
+    "Order": 4
+  },
+  "2015567": {
+    "WeaponId": 2011887,
+    "UnitId": 1203,
+    "Order": 1
+  },
+  "2015577": {
+    "WeaponId": 2003998,
+    "UnitId": 1205,
+    "Order": 0
+  },
+  "2015579": {
+    "WeaponId": 2011834,
+    "UnitId": 1205,
+    "Order": 2
+  },
+  "2015581": {
+    "WeaponId": 2011887,
+    "UnitId": 1205,
+    "Order": 1
+  },
+  "2015583": {
+    "WeaponId": 2011889,
+    "UnitId": 1205,
+    "Order": 3
+  },
+  "2015597": {
+    "WeaponId": 2003998,
+    "UnitId": 1206,
+    "Order": 0
+  },
+  "2015599": {
+    "WeaponId": 2004000,
+    "UnitId": 1206,
+    "Order": 2
+  },
+  "2015601": {
+    "WeaponId": 2012081,
+    "UnitId": 1206,
+    "Order": 3
+  },
+  "2015603": {
+    "WeaponId": 2012411,
+    "UnitId": 1206,
+    "Order": 1
+  },
+  "2015610": {
+    "WeaponId": 2003998,
+    "UnitId": 1207,
+    "Order": 0
+  },
+  "2015612": {
+    "WeaponId": 2012411,
+    "UnitId": 1207,
+    "Order": 2
+  },
+  "2015614": {
+    "WeaponId": 2013157,
+    "UnitId": 1207,
+    "Order": 1
+  },
+  "2015625": {
+    "WeaponId": 2003998,
+    "UnitId": 1209,
+    "Order": 0
+  },
+  "2015627": {
+    "WeaponId": 2012131,
+    "UnitId": 1209,
+    "Order": 2
+  },
+  "2015629": {
+    "WeaponId": 2012515,
+    "UnitId": 1209,
+    "Order": 1
+  },
+  "2015639": {
+    "WeaponId": 2011887,
+    "UnitId": 1211,
+    "Order": 1
+  },
+  "2015641": {
+    "WeaponId": 2012411,
+    "UnitId": 1211,
+    "Order": 2
+  },
+  "2015643": {
+    "WeaponId": 2014001,
+    "UnitId": 1211,
+    "Order": 0
+  },
+  "2015653": {
+    "WeaponId": 2012131,
+    "UnitId": 1212,
+    "Order": 1
+  },
+  "2015655": {
+    "WeaponId": 2012924,
+    "UnitId": 1212,
+    "Order": 0
+  },
+  "2015665": {
+    "WeaponId": 2012821,
+    "UnitId": 1213,
+    "Order": 1
+  },
+  "2015667": {
+    "WeaponId": 2012205,
+    "UnitId": 1213,
+    "Order": 0
+  },
+  "2015673": {
+    "WeaponId": 2003998,
+    "UnitId": 1214,
+    "Order": 1
+  },
+  "2015675": {
+    "WeaponId": 2014088,
+    "UnitId": 1214,
+    "Order": 0
+  },
+  "2015681": {
+    "WeaponId": 2003998,
+    "UnitId": 1215,
+    "Order": 0
+  },
+  "2015683": {
+    "WeaponId": 2011889,
+    "UnitId": 1215,
+    "Order": 1
+  },
+  "2015685": {
+    "WeaponId": 2014116,
+    "UnitId": 1215,
+    "Order": 2
+  },
+  "2015693": {
+    "WeaponId": 2003998,
+    "UnitId": 1216,
+    "Order": 1
+  },
+  "2015695": {
+    "WeaponId": 2012131,
+    "UnitId": 1216,
+    "Order": 2
+  },
+  "2015697": {
+    "WeaponId": 2014146,
+    "UnitId": 1216,
+    "Order": 0
+  },
+  "2015705": {
+    "WeaponId": 2003998,
+    "UnitId": 1217,
+    "Order": 0
+  },
+  "2015707": {
+    "WeaponId": 2011834,
+    "UnitId": 1217,
+    "Order": 1
+  },
+  "2015709": {
+    "WeaponId": 2014177,
+    "UnitId": 1217,
+    "Order": 2
+  },
+  "2015715": {
+    "WeaponId": 2003998,
+    "UnitId": 1218,
+    "Order": 0
+  },
+  "2015717": {
+    "WeaponId": 2014208,
+    "UnitId": 1218,
+    "Order": 1
+  },
+  "2015723": {
+    "WeaponId": 2003998,
+    "UnitId": 1219,
+    "Order": 0
+  },
+  "2015725": {
+    "WeaponId": 2014236,
+    "UnitId": 1219,
+    "Order": 1
+  },
+  "2015731": {
+    "WeaponId": 2003998,
+    "UnitId": 1220,
+    "Order": 0
+  },
+  "2015733": {
+    "WeaponId": 2014264,
+    "UnitId": 1220,
+    "Order": 1
+  },
+  "2015739": {
+    "WeaponId": 2003998,
+    "UnitId": 1221,
+    "Order": 0
+  },
+  "2015741": {
+    "WeaponId": 2014292,
+    "UnitId": 1221,
+    "Order": 1
+  },
+  "2015747": {
+    "WeaponId": 2003998,
+    "UnitId": 1222,
+    "Order": 0
+  },
+  "2015749": {
+    "WeaponId": 2014320,
+    "UnitId": 1222,
+    "Order": 1
+  },
+  "2015756": {
+    "WeaponId": 2003998,
+    "UnitId": 1223,
+    "Order": 0
+  },
+  "2015758": {
+    "WeaponId": 2012288,
+    "UnitId": 1223,
+    "Order": 2
+  },
+  "2015760": {
+    "WeaponId": 2012411,
+    "UnitId": 1223,
+    "Order": 1
+  },
+  "2015766": {
+    "WeaponId": 2013087,
+    "UnitId": 1224,
+    "Order": 1
+  },
+  "2015768": {
+    "WeaponId": 2004000,
+    "UnitId": 1224,
+    "Order": 2
+  },
+  "2015770": {
+    "WeaponId": 2004004,
+    "UnitId": 1224,
+    "Order": 0
+  },
+  "2015772": {
+    "WeaponId": 2019270,
+    "UnitId": 1224,
+    "Order": 3
+  },
+  "2015777": {
+    "WeaponId": 2003998,
+    "UnitId": 1225,
+    "Order": 0
+  },
+  "2015779": {
+    "WeaponId": 2014406,
+    "UnitId": 1225,
+    "Order": 1
+  },
+  "2015828": {
+    "WeaponId": 2012643,
+    "Order": 1,
+    "UnitId": 1168
+  },
+  "2015830": {
+    "WeaponId": 2012205,
+    "Order": 0,
+    "UnitId": 1168
+  },
+  "2015844": {
+    "WeaponId": 2012387,
+    "Order": 1,
+    "UnitId": 1170
+  },
+  "2015846": {
+    "WeaponId": 2012205,
+    "Order": 0,
+    "UnitId": 1170
+  },
+  "2015860": {
+    "WeaponId": 2012157,
+    "Order": 1,
+    "UnitId": 1171
+  },
+  "2015862": {
+    "WeaponId": 2012205,
+    "Order": 0,
+    "UnitId": 1171
+  },
+  "2015876": {
+    "WeaponId": 2012207,
+    "Order": 2,
+    "UnitId": 1177
+  },
+  "2015878": {
+    "WeaponId": 2013057,
+    "Order": 1,
+    "UnitId": 1177
+  },
+  "2015880": {
+    "WeaponId": 2012205,
+    "Order": 0,
+    "UnitId": 1177
+  },
+  "2015890": {
+    "WeaponId": 2003998,
+    "Order": 0,
+    "UnitId": 1192
+  },
+  "2015892": {
+    "WeaponId": 2011887,
+    "Order": 1,
+    "UnitId": 1192
+  },
+  "2015894": {
+    "WeaponId": 2011889,
+    "Order": 3,
+    "UnitId": 1192
+  },
+  "2015896": {
+    "WeaponId": 2011922,
+    "Order": 2,
+    "UnitId": 1192
+  },
+  "2015911": {
+    "WeaponId": 2012207,
+    "Order": 1,
+    "UnitId": 1166
+  },
+  "2015913": {
+    "WeaponId": 2012821,
+    "Order": 2,
+    "UnitId": 1166
+  },
+  "2015915": {
+    "WeaponId": 2019303,
+    "Order": 0,
+    "UnitId": 1166
+  },
+  "2015927": {
+    "WeaponId": 2012207,
+    "Order": 2,
+    "UnitId": 1175
+  },
+  "2015931": {
+    "WeaponId": 2012821,
+    "Order": 3,
+    "UnitId": 1175
+  },
+  "2015933": {
+    "WeaponId": 2012205,
+    "Order": 0,
+    "UnitId": 1175
+  },
+  "2015939": {
+    "WeaponId": 2004002,
+    "Order": 2,
+    "UnitId": 1184
+  },
+  "2015943": {
+    "WeaponId": 2013087,
+    "Order": 0,
+    "UnitId": 1184
+  },
+  "2015945": {
+    "WeaponId": 2014236,
+    "Order": 1,
+    "UnitId": 1184
+  },
+  "2016052": {
+    "WeaponId": 2016050,
+    "UnitId": 1146,
+    "Order": 3
+  },
+  "2016253": {
+    "WeaponId": 2012054,
+    "UnitId": 1136,
+    "Order": 4
+  },
+  "2016255": {
+    "WeaponId": 2012054,
+    "UnitId": 1186,
+    "Order": 2
+  },
+  "2016257": {
+    "WeaponId": 2019270,
+    "UnitId": 1181,
+    "Order": 1
+  },
+  "2018055": {
+    "WeaponId": 2013087,
+    "UnitId": 1183,
+    "Order": 0
+  },
+  "2018056": {
+    "WeaponId": 2018447,
+    "UnitId": 1183,
+    "Order": 1
+  },
+  "2018057": {
+    "WeaponId": 2011887,
+    "UnitId": 1183,
+    "Order": 2
+  },
+  "2018058": {
+    "WeaponId": 2012054,
+    "UnitId": 1183,
+    "Order": 3
+  },
+  "2018062": {
+    "WeaponId": 2019300,
+    "UnitId": 1185,
+    "Order": 0
+  },
+  "2018063": {
+    "WeaponId": 2011832,
+    "UnitId": 1185,
+    "Order": 1
+  },
+  "2018064": {
+    "WeaponId": 2011972,
+    "UnitId": 1185,
+    "Order": 2
+  },
+  "2018065": {
+    "WeaponId": 2004002,
+    "UnitId": 1185,
+    "Order": 3
+  },
+  "2018066": {
+    "WeaponId": 2012054,
+    "UnitId": 1185,
+    "Order": 4
+  },
+  "2018074": {
+    "WeaponId": 2011887,
+    "Order": 1,
+    "UnitId": 1175
+  },
+  "1404": {
+    "WeaponId": 2002020
+  },
+  "590": {
+    "WeaponId": 2002020
+  },
+  "2019316": {
+    "WeaponId": 2011887,
+    "Order": 1,
+    "UnitId": 1224
+  },
+  "2019699": {
+    "WeaponId": 590,
+    "Order": 4,
+    "UnitId": 1187
+  }
+}

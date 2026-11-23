@@ -1,0 +1,1528 @@
+{
+  "515": null,
+  "714": null,
+  "804": null,
+  "2000250": {
+    "UnitId": 714,
+    "Name": "Weapons MATV",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000251": {
+    "UnitId": 714,
+    "Name": "Armor MATV",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000271": {
+    "UnitId": 715,
+    "Name": "Weapons BRM3K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000272": {
+    "UnitId": 715,
+    "Name": "Armory BRM3K",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000294": {
+    "UnitId": 716,
+    "Name": "UnitVariant T80BV",
+    "Type": 1,
+    "UIName": "Custom_Slot_Modernization",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000312": {
+    "UnitId": 717,
+    "Name": "Weapons T72A ",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000313": {
+    "UnitId": 717,
+    "Name": "Armory T72A",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000328": {
+    "UnitId": 718,
+    "Name": "UnitVariant M60",
+    "Type": 1,
+    "UIName": "Custom_Slot_Unit_variant",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000329": {
+    "UnitId": 718,
+    "Name": "Engine M60A1",
+    "Type": 2,
+    "UIName": "Custom_Slot_Engine",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000351": {
+    "UnitId": 719,
+    "Name": "Weapons M8 AGS",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000352": {
+    "UnitId": 719,
+    "Name": "Armory M8 AGS",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000370": {
+    "UnitId": 720,
+    "Name": "Weapons M10Booker",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000371": {
+    "UnitId": 720,
+    "Name": "Ability M10Booker",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000499": {
+    "UnitId": 520,
+    "Name": "Squad Milan",
+    "Type": 7,
+    "UIName": "ui_arsenal_column_nation",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000575": {
+    "UnitId": 722,
+    "Name": "Variant Sprut",
+    "Type": 1,
+    "UIName": "Custom_Slot_Modernization",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000576": {
+    "UnitId": 722,
+    "Name": "Armory Sprut",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000600": {
+    "UnitId": 723,
+    "Name": "Weapons Tigr Kornet",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000601": {
+    "UnitId": 723,
+    "Name": "Armory Tigr Kornet",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000604": {
+    "UnitId": 723,
+    "Name": "Engine TigrKornet",
+    "Type": 2,
+    "UIName": "Custom_Slot_Engine",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000625": {
+    "UnitId": 724,
+    "Name": "Weapons TGB1111",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000845": {
+    "UnitId": 727,
+    "Name": "Weapons KA60",
+    "Type": 3,
+    "UIName": "Custom_Slot_Rear_Pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000869": {
+    "UnitId": 729,
+    "Name": "Weapons Ka29 Hull",
+    "Type": 3,
+    "UIName": "Custom_Slot_Fuselage",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000872": {
+    "UnitId": 729,
+    "Name": "Weapons InnerPylons KA29",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000875": {
+    "UnitId": 729,
+    "Name": "Weapons OuterPylons KA29",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000893": {
+    "UnitId": 730,
+    "Name": "Weapons InnerPylons MI24K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000896": {
+    "UnitId": 730,
+    "Name": "Weapons OuterPylons MI24K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000917": {
+    "UnitId": 731,
+    "Name": "Weapons InnerPylons MI8AMTSH",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000921": {
+    "UnitId": 731,
+    "Name": "Weapons MiddlePylons MI8AMTSH",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000925": {
+    "UnitId": 731,
+    "Name": "Weapons OuterPylons MI8AMTSH",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000927": {
+    "UnitId": 731,
+    "Name": "Ability Mi8AMTSh",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000949": {
+    "UnitId": 747,
+    "Name": "Weapons InnerPylons Mi28NM",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000952": {
+    "UnitId": 747,
+    "Name": "Weapons OuterPylons Mi28NM",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000976": {
+    "UnitId": 748,
+    "Name": "Weapons InnerPylons Ka52K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2000980": {
+    "UnitId": 748,
+    "Name": "Weapons OuterPylons Ka52K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001008": {
+    "UnitId": 732,
+    "Name": "Weapons UH1Y PintleTurrets",
+    "Type": 3,
+    "UIName": "Custom_Slot_Door_guns",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001012": {
+    "UnitId": 732,
+    "Name": "Weapons UH1Y Pylon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Rear_Pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001030": {
+    "UnitId": 733,
+    "Name": "Weapons Kiowa LeftPylon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Portside_pylon",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001033": {
+    "UnitId": 733,
+    "Name": "Weapons Kiowa RightPylon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Starboard_pylon",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001036": {
+    "UnitId": 733,
+    "Name": "Optics Kiowa",
+    "Type": 4,
+    "UIName": "Custom_Slot_Sensors",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001058": {
+    "UnitId": 735,
+    "Name": "Weapons MH60M",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001067": {
+    "UnitId": 736,
+    "Name": "Optics MH6",
+    "Type": 4,
+    "UIName": "Custom_Slot_Sensors",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001085": {
+    "UnitId": 737,
+    "Name": "Weapons InnerPylons RAH66",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001088": {
+    "UnitId": 737,
+    "Name": "Weapons MiddlePylons RAH66",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001091": {
+    "UnitId": 737,
+    "Name": "Weapons OuterPylons RAH66",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001094": {
+    "UnitId": 737,
+    "Name": "Optics RAH66",
+    "Type": 4,
+    "UIName": "Custom_Slot_Sensors",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001109": {
+    "UnitId": 738,
+    "Name": "Weapons AS365Dauphine Loadout",
+    "Type": 3,
+    "UIName": "Custom_Slot_Rear_Pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001132": {
+    "UnitId": 745,
+    "Name": "Weapons Viper InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": "",
+    "Order": 0
+  },
+  "2001135": {
+    "UnitId": 745,
+    "Name": "Weapons Viper OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001139": {
+    "UnitId": 745,
+    "Name": "Weapons Viper WingtipPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Wingtips",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001161": {
+    "UnitId": 746,
+    "Name": "Weapons InnerPylons Longbow",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001164": {
+    "UnitId": 746,
+    "Name": "Weapons OuterPylons Longbow",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001185": {
+    "UnitId": 740,
+    "Name": "Weapons F16 BLK52 OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001187": {
+    "UnitId": 740,
+    "Name": "Weapons F16 BLK52 MiddlePylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001189": {
+    "UnitId": 740,
+    "Name": "Weapons F16 BLK52 InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001191": {
+    "UnitId": 740,
+    "Name": "ECM F16 BLK52",
+    "Type": 6,
+    "UIName": "Custom_Slot_ECM",
+    "ThumbnailFileName": null,
+    "Order": 3
+  },
+  "2001217": {
+    "UnitId": 741,
+    "Name": "Weapons F35A LeftBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Portside_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001226": {
+    "UnitId": 741,
+    "Name": "Weapons F35A RightPylon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Starboard_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001259": {
+    "UnitId": 742,
+    "Name": "Weapons FA18D OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 3
+  },
+  "2001261": {
+    "UnitId": 742,
+    "Name": "Weapons FA18D InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001263": {
+    "UnitId": 742,
+    "Name": "Weapons FA18D Fuselage",
+    "Type": 3,
+    "UIName": "Custom_Slot_Fuselage",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001267": {
+    "UnitId": 742,
+    "Name": "Ability FA18D ",
+    "Type": 6,
+    "UIName": "Custom_Slot_Centerline",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001295": {
+    "UnitId": 743,
+    "Name": "Weapons MIG31BM OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001300": {
+    "UnitId": 743,
+    "Name": "Weapons MIG31BM MiddlePylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001309": {
+    "UnitId": 743,
+    "Name": "Weapons MIG31BM Fuselage",
+    "Type": 3,
+    "UIName": "Custom_Slot_Fuselage",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001315": {
+    "UnitId": 743,
+    "Name": "Weapons MIG31BM Wingtips",
+    "Type": 3,
+    "UIName": "Custom_Slot_Wingtips",
+    "ThumbnailFileName": null,
+    "Order": 3
+  },
+  "2001343": {
+    "UnitId": 744,
+    "Name": "Weapons MIG29K OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001349": {
+    "UnitId": 744,
+    "Name": "Weapons MIG29K MiddlePylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001354": {
+    "UnitId": 744,
+    "Name": "Weapons MIG29K InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001388": {
+    "UnitId": 739,
+    "Name": "Armor KAMAZ6560",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001430": {
+    "UnitId": 294,
+    "Name": "F-35A Wingtips",
+    "Type": 3,
+    "UIName": "Custom_Slot_Wingtips",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001435": {
+    "UnitId": 295,
+    "Name": "F-35B Wingtips",
+    "Type": 3,
+    "UIName": "Custom_Slot_Wingtips",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001440": {
+    "UnitId": 741,
+    "Name": "FA F-35C Wingtips",
+    "Type": 3,
+    "UIName": "Custom_Slot_Wingtips",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001492": {
+    "UnitId": 749,
+    "Name": "Weapons M109A7",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001494": {
+    "UnitId": 749,
+    "Name": "Armor M109A7",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001526": {
+    "UnitId": 964,
+    "Name": "Armory M1A2C",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001556": {
+    "UnitId": 965,
+    "Name": "Weapons B2 Loadout",
+    "Type": 3,
+    "UIName": "Custom_Slot_Bomb_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001579": {
+    "UnitId": 969,
+    "Name": "Weapons S70 LeftBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Portside_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001585": {
+    "UnitId": 969,
+    "Name": "Weapons S70 RightBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Starboard_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001627": {
+    "UnitId": 970,
+    "Name": "Weapons SU57 ForwardBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Forward_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001635": {
+    "UnitId": 970,
+    "Name": "Weapons SU57RearBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Rear_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001698": {
+    "UnitId": 971,
+    "Name": "Weapons F22 LeftBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Portside_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001705": {
+    "UnitId": 971,
+    "Name": "Weapons F22 RightBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Starboard_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001741": {
+    "UnitId": 972,
+    "Name": "Weapons MIG29K OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001747": {
+    "UnitId": 972,
+    "Name": "Weapons MIG29K MiddlePylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001752": {
+    "UnitId": 972,
+    "Name": "Weapons MIG29K InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001781": {
+    "UnitId": 950,
+    "Name": "Weapons SU57RearBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Rear_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001822": {
+    "UnitId": 983,
+    "Name": "Weapons XM30",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001873": {
+    "UnitId": 980,
+    "Name": "Weapons SU35S OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2001881": {
+    "UnitId": 980,
+    "Name": "Weapons SU35S InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2001888": {
+    "UnitId": 980,
+    "Name": "Weapons SU35S Fuselage",
+    "Type": 3,
+    "UIName": "Custom_Slot_Fuselage",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001957": {
+    "UnitId": 982,
+    "Name": "Weapons F22 LeftBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Portside_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2001960": {
+    "UnitId": 982,
+    "Name": "Weapons F22 RightBay",
+    "Type": 3,
+    "UIName": "Custom_Slot_Starboard_bay",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2002001": {
+    "UnitId": 981,
+    "Name": "Weapons F21 OuterPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2002002": {
+    "UnitId": 981,
+    "Name": "Weapons F21 InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2002003": {
+    "UnitId": 981,
+    "Name": "Weapons F21 Fuselage",
+    "Type": 3,
+    "UIName": "Custom_Slot_Fuselage",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2007392": {
+    "UnitId": 1099,
+    "Name": "Weapons MIG29SMT OuterPylons ",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 2
+  },
+  "2007393": {
+    "UnitId": 1099,
+    "Name": "Weapons MIG29SMT MiddlePylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Middle_pylons",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2007394": {
+    "UnitId": 1099,
+    "Name": "Weapons MIG29SMT InnerPylons",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007597": {
+    "UnitId": 1110,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007618": {
+    "UnitId": 1111,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007639": {
+    "UnitId": 1112,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007660": {
+    "UnitId": 1113,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007681": {
+    "UnitId": 1114,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007702": {
+    "UnitId": 1115,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007723": {
+    "UnitId": 1116,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007744": {
+    "UnitId": 1117,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007765": {
+    "UnitId": 1118,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007786": {
+    "UnitId": 1119,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007807": {
+    "UnitId": 1120,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007828": {
+    "UnitId": 1121,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007849": {
+    "UnitId": 1122,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007870": {
+    "UnitId": 1123,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007891": {
+    "UnitId": 1124,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007912": {
+    "UnitId": 1125,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007933": {
+    "UnitId": 1126,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007954": {
+    "UnitId": 1127,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2007975": {
+    "UnitId": 1128,
+    "Name": "ArleighBurke Mobility",
+    "Type": 2,
+    "UIName": "Custom_Slot_ArleighBurke_mobility",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2015781": {
+    "UnitId": 1156,
+    "Name": "PLA Engineer fixed loadouts",
+    "Type": 7,
+    "UIName": "Custom_Slot_Squad_loadout",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016080": {
+    "UnitId": 1228,
+    "Name": "Weapons M1297 AGMV",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016297": {
+    "UnitId": 1235,
+    "Name": "Weapons HEMMT",
+    "Type": 3,
+    "UIName": "Custom_Slot_Selfdefence_weapon",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016298": {
+    "UnitId": 1235,
+    "Name": "Armory HEMMT ",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016312": {
+    "UnitId": 1247,
+    "Name": "Weapons HEMMT",
+    "Type": 3,
+    "UIName": "Custom_Slot_Selfdefence_weapon",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016313": {
+    "UnitId": 1247,
+    "Name": "Armory HEMMT ",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016374": {
+    "UnitId": 915,
+    "Name": "PLA loadout J-20",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016422": {
+    "UnitId": 966,
+    "Name": "PLA loadout J-20S",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016441": {
+    "UnitId": 921,
+    "Name": "PLA loadout J-35",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016455": {
+    "UnitId": 1251,
+    "Name": "PLA loadout J-31",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016469": {
+    "UnitId": 929,
+    "Name": "PLA loadout J-36",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016498": {
+    "UnitId": 944,
+    "Name": "PLA loadout J-50",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016532": {
+    "UnitId": 917,
+    "Name": "PLA loadout J-10C",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016601": {
+    "UnitId": 955,
+    "Name": "PLA loadout J-10S",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016642": {
+    "UnitId": 916,
+    "Name": "PLA loadout J-16",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016697": {
+    "UnitId": 1242,
+    "Name": "PLA loadout J-11D",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016725": {
+    "UnitId": 1241,
+    "Name": "PLA loadout J-11BHG",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016751": {
+    "UnitId": 974,
+    "Name": "PLA loadout J-15D",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016761": {
+    "UnitId": 977,
+    "Name": "PLA loadout J-16D",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016771": {
+    "UnitId": 1226,
+    "Name": "PLA loadout J-10A",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016794": {
+    "UnitId": 923,
+    "Name": "PLA loadout J-11BS",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016825": {
+    "UnitId": 924,
+    "Name": "PLA loadout Su-30MKK",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016862": {
+    "UnitId": 943,
+    "Name": "PLA loadout J-15",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016891": {
+    "UnitId": 918,
+    "Name": "PLA loadout JH-7A",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016930": {
+    "UnitId": 919,
+    "Name": "PLA loadout H-6K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016971": {
+    "UnitId": 975,
+    "Name": "PLA loadout J-8D",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2016997": {
+    "UnitId": 1092,
+    "Name": "PLA loadout J-7",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017020": {
+    "UnitId": 1091,
+    "Name": "PLA loadout J-6W",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017040": {
+    "UnitId": 967,
+    "Name": "PLA loadout GJ-11",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017049": {
+    "UnitId": 946,
+    "Name": "PLA loadout Wing Loong",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017056": {
+    "UnitId": 913,
+    "Name": "PLA loadout Z-10K",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017124": {
+    "UnitId": 978,
+    "Name": "PLA loadout Z-10",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017164": {
+    "UnitId": 1239,
+    "Name": "PLA loadout Z-10",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017193": {
+    "UnitId": 1104,
+    "Name": "PLA loadout Z-21",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017222": {
+    "UnitId": 1135,
+    "Name": "PLA loadout Z-21 Recon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017241": {
+    "UnitId": 940,
+    "Name": "PLA loadout Z-19",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017279": {
+    "UnitId": 1103,
+    "Name": "PLA loadout Z-19",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017300": {
+    "UnitId": 1236,
+    "Name": "PLA loadout Z-19",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017321": {
+    "UnitId": 1132,
+    "Name": "PLA loadout Z-19 Recon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017342": {
+    "UnitId": 1134,
+    "Name": "PLA loadout Z-19 Recon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017363": {
+    "UnitId": 1237,
+    "Name": "PLA loadout Z-19 Recon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017384": {
+    "UnitId": 941,
+    "Name": "PLA loadout Z-9WA",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017402": {
+    "UnitId": 1133,
+    "Name": "PLA loadout Z-9WA Recon",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017444": {
+    "UnitId": 1035,
+    "Name": "Weapons PHL-16",
+    "Type": 3,
+    "UIName": "Custom_Slot_Ammunition",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017483": {
+    "UnitId": 934,
+    "Name": "Armor HIMARS",
+    "Type": 5,
+    "UIName": "Custom_Slot_Armor",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2017484": {
+    "UnitId": 934,
+    "Name": "Weapons HIMARS",
+    "Type": 3,
+    "UIName": "Custom_Slot_Ammunition",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017485": {
+    "UnitId": 914,
+    "Name": "Weapons InnerPylons MH60M DAP PLA Z-20",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017504": {
+    "UnitId": 914,
+    "Name": "Weapons OuterPylons MH60M DAP PLA Z-20",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017548": {
+    "UnitId": 1245,
+    "Name": "Weapons InnerPylons MH60M DAP PLA Z-20",
+    "Type": 3,
+    "UIName": "Custom_Slot_Inner_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017567": {
+    "UnitId": 1245,
+    "Name": "Weapons OuterPylons MH60M DAP PLA Z-20",
+    "Type": 3,
+    "UIName": "Custom_Slot_Outer_pylons",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2017816": {
+    "UnitId": 1089,
+    "Name": "PLA loadout J-5",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018225": {
+    "UnitId": 976,
+    "Name": "PLA loadout MD-22",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018334": {
+    "UnitId": 908,
+    "Name": "PLA PHL-03 Weapons 9K58 Smerch",
+    "Type": 3,
+    "UIName": "Custom_Slot_Ammunition",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018346": {
+    "UnitId": 1034,
+    "Name": "PLA PCL-181 Weapons Koalitsiya",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018503": {
+    "UnitId": 1253,
+    "Name": "PLA loadout FH-97A",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018676": {
+    "UnitId": 1036,
+    "Name": "Weapons PHL-191",
+    "Type": 3,
+    "UIName": "Custom_Slot_Ammunition",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018745": {
+    "UnitId": 1056,
+    "Name": "Ability ZBD-251",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018771": {
+    "UnitId": 907,
+    "Name": "PLA PLZ-05 Weapons Koalitsiya",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018877": {
+    "UnitId": 979,
+    "Name": "PLA HJ-16 package 979",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018880": {
+    "UnitId": 945,
+    "Name": "PLA HJ-16 package 945",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018883": {
+    "UnitId": 1256,
+    "Name": "PLA HJ-16 package 1256",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018888": {
+    "UnitId": 1258,
+    "Name": "PLA ZBD-86 Recon ATGM",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018955": {
+    "UnitId": 1267,
+    "Name": "Weapons PHL-191",
+    "Type": 3,
+    "UIName": "Custom_Slot_Ammunition",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2018994": {
+    "UnitId": 1076,
+    "Name": "PLA ZBD-05 ATGM",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019016": {
+    "UnitId": 945,
+    "Name": "PLA ZBD-20 APS",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 1
+  },
+  "2019086": {
+    "UnitId": 903,
+    "Name": "PLA ZBL-08 ATGM",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019214": {
+    "UnitId": 1080,
+    "Name": "PLA ZTL-191 Jammer",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019217": {
+    "UnitId": 979,
+    "Name": "PLA ZBL-191 Jammer",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019263": {
+    "UnitId": 1270,
+    "Name": "PLA loadout Z-10",
+    "Type": 3,
+    "UIName": "Custom_Slot_Weapon_package",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019280": {
+    "UnitId": 1263,
+    "Name": "PLA ZTL-191 Recon Jammer",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "516": null,
+  "583": null,
+  "814": null,
+  "2019383": {
+    "UnitId": 904,
+    "Name": "PLA ZTZ-99A protection",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019401": {
+    "UnitId": 1083,
+    "Name": "PLA ZTZ-99 protection",
+    "Type": 6,
+    "UIName": "Custom_Slot_Protection_system",
+    "ThumbnailFileName": null,
+    "Order": 0
+  },
+  "2019455": {
+    "UnitId": 297,
+    "Name": "F22 stealth coating",
+    "Type": 6,
+    "UIName": "Stealth coating",
+    "ThumbnailFileName": null,
+    "Order": 0
+  }
+}

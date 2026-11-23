@@ -1,0 +1,3935 @@
+{
+  "505": {
+    "WeaponId": 2000608
+  },
+  "506": {
+    "WeaponId": 2000608
+  },
+  "2001367": {
+    "WeaponId": 2001365,
+    "TurretId": 2001366,
+    "Order": 0,
+    "WeaponChannel": 1,
+    "WeaponPriority": 0
+  },
+  "2001373": {
+    "WeaponId": 2001371,
+    "TurretId": 2001372,
+    "Order": 0,
+    "WeaponChannel": 1,
+    "WeaponPriority": 0
+  },
+  "2001647": {
+    "WeaponId": 2001849,
+    "TurretId": 2001646,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001648": {
+    "WeaponId": 27,
+    "TurretId": 2001646,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2001651": {
+    "WeaponId": 23,
+    "TurretId": 2001650,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001656": {
+    "WeaponId": 27,
+    "TurretId": 2001655,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001661": {
+    "WeaponId": 2001659,
+    "TurretId": 2001660,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001666": {
+    "WeaponId": 2001365,
+    "TurretId": 2001665,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001826": {
+    "WeaponId": 658,
+    "TurretId": 2001824,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001828": {
+    "WeaponId": 2001823,
+    "TurretId": 2001824,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2001834": {
+    "WeaponId": 658,
+    "TurretId": 2001832,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001836": {
+    "WeaponId": 2001831,
+    "TurretId": 2001832,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2001979": {
+    "WeaponId": 2001977,
+    "TurretId": 2001978,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001982": {
+    "WeaponId": 2001980,
+    "TurretId": 2001981,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2001985": {
+    "WeaponId": 2001983,
+    "TurretId": 2001984,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2002016": {
+    "WeaponId": 2002014,
+    "TurretId": 2002015,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2002027": {
+    "WeaponId": 2002025,
+    "TurretId": 2002026,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2002041": {
+    "WeaponId": 222,
+    "TurretId": 2002038,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2002042": {
+    "WeaponId": 7,
+    "TurretId": 2002038,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2002044": {
+    "WeaponId": 97,
+    "TurretId": 2002039,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009004": {
+    "WeaponId": 2009001,
+    "TurretId": 2009002,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009022": {
+    "WeaponId": 2009019,
+    "TurretId": 2009020,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009028": {
+    "WeaponId": 2009027,
+    "TurretId": 2009020,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009034": {
+    "WeaponId": 2009033,
+    "TurretId": 2009020,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2009048": {
+    "WeaponId": 2009045,
+    "TurretId": 2009046,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009056": {
+    "WeaponId": 2009053,
+    "TurretId": 2009054,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009074": {
+    "WeaponId": 2009071,
+    "TurretId": 2009072,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009082": {
+    "WeaponId": 2009081,
+    "TurretId": 2009072,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009088": {
+    "WeaponId": 2009085,
+    "TurretId": 2009086,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009102": {
+    "WeaponId": 2009099,
+    "TurretId": 2009100,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009110": {
+    "WeaponId": 2009109,
+    "TurretId": 2009100,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009116": {
+    "WeaponId": 2009113,
+    "TurretId": 2009114,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009156": {
+    "WeaponId": 2009153,
+    "TurretId": 2009154,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009168": {
+    "WeaponId": 2009165,
+    "TurretId": 2009166,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009184": {
+    "WeaponId": 2009181,
+    "TurretId": 2009182,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009198": {
+    "WeaponId": 2009195,
+    "TurretId": 2009196,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009232": {
+    "WeaponId": 2009229,
+    "TurretId": 2009230,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009264": {
+    "WeaponId": 2009261,
+    "TurretId": 2009262,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009282": {
+    "WeaponId": 2009279,
+    "TurretId": 2009280,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009300": {
+    "WeaponId": 2009297,
+    "TurretId": 2009298,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009318": {
+    "WeaponId": 2009315,
+    "TurretId": 2009316,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009354": {
+    "WeaponId": 2009351,
+    "TurretId": 2009352,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009368": {
+    "WeaponId": 2009365,
+    "TurretId": 2009366,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009372": {
+    "WeaponId": 2009371,
+    "TurretId": 2009366,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009396": {
+    "WeaponId": 2009393,
+    "TurretId": 2009394,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009402": {
+    "WeaponId": 2009399,
+    "TurretId": 2009400,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009420": {
+    "WeaponId": 2009417,
+    "TurretId": 2009418,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009448": {
+    "WeaponId": 2009445,
+    "TurretId": 2009446,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009462": {
+    "WeaponId": 2009459,
+    "TurretId": 2009460,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009476": {
+    "WeaponId": 2009473,
+    "TurretId": 2009474,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009484": {
+    "WeaponId": 2009483,
+    "TurretId": 2009474,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009490": {
+    "WeaponId": 2009487,
+    "TurretId": 2009488,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009516": {
+    "WeaponId": 2009513,
+    "TurretId": 2009514,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009524": {
+    "WeaponId": 2009521,
+    "TurretId": 2009522,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009530": {
+    "WeaponId": 2009527,
+    "TurretId": 2009528,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009544": {
+    "WeaponId": 2009541,
+    "TurretId": 2009542,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009558": {
+    "WeaponId": 2009555,
+    "TurretId": 2009556,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009564": {
+    "WeaponId": 2009561,
+    "TurretId": 2009562,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009576": {
+    "WeaponId": 2009573,
+    "TurretId": 2009574,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009602": {
+    "WeaponId": 2009599,
+    "TurretId": 2009600,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009606": {
+    "WeaponId": 2009605,
+    "TurretId": 2009600,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009622": {
+    "WeaponId": 2009619,
+    "TurretId": 2009620,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2009636": {
+    "WeaponId": 2009633,
+    "TurretId": 2009634,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009644": {
+    "WeaponId": 2009641,
+    "TurretId": 2009642,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009650": {
+    "WeaponId": 2009647,
+    "TurretId": 2009648,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 1
+  },
+  "2009654": {
+    "WeaponId": 2009653,
+    "TurretId": 2009634,
+    "Order": 1,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2009668": {
+    "WeaponId": 2009665,
+    "TurretId": 2009666,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009676": {
+    "WeaponId": 2009673,
+    "TurretId": 2009674,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009682": {
+    "WeaponId": 2009679,
+    "TurretId": 2009680,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009696": {
+    "WeaponId": 2009693,
+    "TurretId": 2009694,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009704": {
+    "WeaponId": 2009703,
+    "TurretId": 2009694,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009710": {
+    "WeaponId": 2009707,
+    "TurretId": 2009708,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009774": {
+    "WeaponId": 2009771,
+    "TurretId": 2009772,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009780": {
+    "WeaponId": 2009777,
+    "TurretId": 2009778,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009828": {
+    "WeaponId": 2009827,
+    "TurretId": 2009820,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009834": {
+    "WeaponId": 2009833,
+    "TurretId": 2009820,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2009854": {
+    "WeaponId": 2009851,
+    "TurretId": 2009852,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009862": {
+    "WeaponId": 2009859,
+    "TurretId": 2009860,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009868": {
+    "WeaponId": 2009865,
+    "TurretId": 2009866,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009882": {
+    "WeaponId": 2009879,
+    "TurretId": 2009880,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009890": {
+    "WeaponId": 2009889,
+    "TurretId": 2009880,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009896": {
+    "WeaponId": 2009893,
+    "TurretId": 2009894,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009910": {
+    "WeaponId": 2009907,
+    "TurretId": 2009908,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009918": {
+    "WeaponId": 2009917,
+    "TurretId": 2009908,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009924": {
+    "WeaponId": 2009921,
+    "TurretId": 2009922,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009936": {
+    "WeaponId": 2009933,
+    "TurretId": 2009934,
+    "Order": 0,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2009950": {
+    "WeaponId": 2009947,
+    "TurretId": 2009948,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009966": {
+    "WeaponId": 2009963,
+    "TurretId": 2009964,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009974": {
+    "WeaponId": 2009971,
+    "TurretId": 2009972,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2009980": {
+    "WeaponId": 2009977,
+    "TurretId": 2009978,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2009994": {
+    "WeaponId": 2009991,
+    "TurretId": 2009992,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010000": {
+    "WeaponId": 2009997,
+    "TurretId": 2009998,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010024": {
+    "WeaponId": 2010021,
+    "TurretId": 2010022,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010032": {
+    "WeaponId": 2010031,
+    "TurretId": 2010022,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010038": {
+    "WeaponId": 2010035,
+    "TurretId": 2010036,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010052": {
+    "WeaponId": 2010049,
+    "TurretId": 2010050,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010056": {
+    "WeaponId": 2010055,
+    "TurretId": 2010050,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010068": {
+    "WeaponId": 2010065,
+    "TurretId": 2010066,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010074": {
+    "WeaponId": 2010073,
+    "TurretId": 2010066,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010080": {
+    "WeaponId": 2010077,
+    "TurretId": 2010078,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010094": {
+    "WeaponId": 2010091,
+    "TurretId": 2010092,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010108": {
+    "WeaponId": 2010105,
+    "TurretId": 2010106,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010124": {
+    "WeaponId": 2010121,
+    "TurretId": 2010122,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010138": {
+    "WeaponId": 2010135,
+    "TurretId": 2010136,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010146": {
+    "WeaponId": 2010143,
+    "TurretId": 2010144,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010150": {
+    "WeaponId": 2010149,
+    "TurretId": 2010136,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2010162": {
+    "WeaponId": 2010159,
+    "TurretId": 2010160,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010194": {
+    "WeaponId": 2010191,
+    "TurretId": 2010192,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010202": {
+    "WeaponId": 2010201,
+    "TurretId": 2010192,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010208": {
+    "WeaponId": 2010205,
+    "TurretId": 2010206,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010226": {
+    "WeaponId": 2016267,
+    "TurretId": 2010224,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010262": {
+    "WeaponId": 2010259,
+    "TurretId": 2010260,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010294": {
+    "WeaponId": 2010291,
+    "TurretId": 2010292,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010326": {
+    "WeaponId": 2010323,
+    "TurretId": 2010324,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010334": {
+    "WeaponId": 2010331,
+    "TurretId": 2010332,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010338": {
+    "WeaponId": 2018803,
+    "TurretId": 2010324,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2010350": {
+    "WeaponId": 2010347,
+    "TurretId": 2010348,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010362": {
+    "WeaponId": 2010359,
+    "TurretId": 2010360,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010374": {
+    "WeaponId": 2010371,
+    "TurretId": 2010372,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010386": {
+    "WeaponId": 2010383,
+    "TurretId": 2010384,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010398": {
+    "WeaponId": 2010395,
+    "TurretId": 2010396,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010412": {
+    "WeaponId": 2010409,
+    "TurretId": 2010410,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010426": {
+    "WeaponId": 2018335,
+    "TurretId": 2010424,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010450": {
+    "WeaponId": 2010447,
+    "TurretId": 2010448,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010464": {
+    "WeaponId": 2010461,
+    "TurretId": 2010462,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010478": {
+    "WeaponId": 2010475,
+    "TurretId": 2010476,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010490": {
+    "WeaponId": 2010487,
+    "TurretId": 2010488,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010504": {
+    "WeaponId": 2010501,
+    "TurretId": 2010502,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010518": {
+    "WeaponId": 2010515,
+    "TurretId": 2010516,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010532": {
+    "WeaponId": 2010529,
+    "TurretId": 2010530,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010546": {
+    "WeaponId": 2010543,
+    "TurretId": 2010544,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010558": {
+    "WeaponId": 2010555,
+    "TurretId": 2010556,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010572": {
+    "WeaponId": 2010569,
+    "TurretId": 2010570,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010586": {
+    "WeaponId": 2010583,
+    "TurretId": 2010584,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010600": {
+    "WeaponId": 2010597,
+    "TurretId": 2010598,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010614": {
+    "WeaponId": 2010611,
+    "TurretId": 2010612,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010628": {
+    "WeaponId": 2010625,
+    "TurretId": 2010626,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010642": {
+    "WeaponId": 2010639,
+    "TurretId": 2010640,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010648": {
+    "WeaponId": 2010645,
+    "TurretId": 2010646,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010662": {
+    "WeaponId": 2010659,
+    "TurretId": 2010660,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010676": {
+    "WeaponId": 2010673,
+    "TurretId": 2010674,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010682": {
+    "WeaponId": 2010679,
+    "TurretId": 2010680,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010694": {
+    "WeaponId": 2010691,
+    "TurretId": 2010692,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010708": {
+    "WeaponId": 2018322,
+    "TurretId": 2010706,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2010724": {
+    "WeaponId": 2010721,
+    "TurretId": 2010722,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2010738": {
+    "WeaponId": 2010735,
+    "TurretId": 2010736,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010746": {
+    "WeaponId": 2010743,
+    "TurretId": 2010744,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010764": {
+    "WeaponId": 2010761,
+    "TurretId": 2010762,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010778": {
+    "WeaponId": 2010775,
+    "TurretId": 2010776,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010792": {
+    "WeaponId": 2010789,
+    "TurretId": 2010790,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010802": {
+    "WeaponId": 2010799,
+    "TurretId": 2010800,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010808": {
+    "WeaponId": 2010805,
+    "TurretId": 2010806,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010820": {
+    "WeaponId": 2010817,
+    "TurretId": 2010818,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010830": {
+    "WeaponId": 2010827,
+    "TurretId": 2010828,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010836": {
+    "WeaponId": 2010833,
+    "TurretId": 2010834,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010848": {
+    "WeaponId": 2010845,
+    "TurretId": 2010846,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010858": {
+    "WeaponId": 2010855,
+    "TurretId": 2010856,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010864": {
+    "WeaponId": 2010861,
+    "TurretId": 2010862,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010878": {
+    "WeaponId": 2010875,
+    "TurretId": 2010876,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010890": {
+    "WeaponId": 2010887,
+    "TurretId": 2010888,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010898": {
+    "WeaponId": 2010895,
+    "TurretId": 2010896,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010904": {
+    "WeaponId": 2010901,
+    "TurretId": 2010902,
+    "Order": 2,
+    "WeaponChannel": 1,
+    "WeaponPriority": 3
+  },
+  "2010918": {
+    "WeaponId": 2010915,
+    "TurretId": 2010916,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010932": {
+    "WeaponId": 2010929,
+    "TurretId": 2010930,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010946": {
+    "WeaponId": 2010943,
+    "TurretId": 2010944,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010954": {
+    "WeaponId": 2010951,
+    "TurretId": 2010952,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010958": {
+    "WeaponId": 2010957,
+    "TurretId": 2010944,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2010972": {
+    "WeaponId": 2010969,
+    "TurretId": 2010970,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2010980": {
+    "WeaponId": 2010977,
+    "TurretId": 2010978,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2010984": {
+    "WeaponId": 2010983,
+    "TurretId": 2010970,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2010998": {
+    "WeaponId": 2010995,
+    "TurretId": 2010996,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011006": {
+    "WeaponId": 2011003,
+    "TurretId": 2011004,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011010": {
+    "WeaponId": 2011009,
+    "TurretId": 2010996,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011024": {
+    "WeaponId": 2011021,
+    "TurretId": 2011022,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011032": {
+    "WeaponId": 2011029,
+    "TurretId": 2011030,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011036": {
+    "WeaponId": 2011035,
+    "TurretId": 2011022,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011048": {
+    "WeaponId": 2011045,
+    "TurretId": 2011046,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011060": {
+    "WeaponId": 2011057,
+    "TurretId": 2011058,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011068": {
+    "WeaponId": 2011067,
+    "TurretId": 2011058,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011074": {
+    "WeaponId": 2011071,
+    "TurretId": 2011072,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011088": {
+    "WeaponId": 2011085,
+    "TurretId": 2011086,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011096": {
+    "WeaponId": 2011095,
+    "TurretId": 2011086,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011102": {
+    "WeaponId": 2011099,
+    "TurretId": 2011100,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011116": {
+    "WeaponId": 2011113,
+    "TurretId": 2011114,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011124": {
+    "WeaponId": 2011123,
+    "TurretId": 2011114,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011130": {
+    "WeaponId": 2011127,
+    "TurretId": 2011128,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011142": {
+    "WeaponId": 2011139,
+    "TurretId": 2011140,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011148": {
+    "WeaponId": 2011147,
+    "TurretId": 2011140,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011152": {
+    "WeaponId": 2011151,
+    "TurretId": 2011140,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011170": {
+    "WeaponId": 2011167,
+    "TurretId": 2011168,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011176": {
+    "WeaponId": 2011175,
+    "TurretId": 2011168,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011182": {
+    "WeaponId": 2011181,
+    "TurretId": 2011168,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2011196": {
+    "WeaponId": 2011193,
+    "TurretId": 2011194,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011204": {
+    "WeaponId": 2011201,
+    "TurretId": 2011202,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2011208": {
+    "WeaponId": 2011207,
+    "TurretId": 2011194,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011222": {
+    "WeaponId": 2011219,
+    "TurretId": 2011220,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011230": {
+    "WeaponId": 2011227,
+    "TurretId": 2011228,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011234": {
+    "WeaponId": 2011233,
+    "TurretId": 2011220,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011248": {
+    "WeaponId": 2011245,
+    "TurretId": 2011246,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011256": {
+    "WeaponId": 2011253,
+    "TurretId": 2011254,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011260": {
+    "WeaponId": 2011259,
+    "TurretId": 2011246,
+    "Order": 2,
+    "WeaponChannel": 4,
+    "WeaponPriority": 2
+  },
+  "2011274": {
+    "WeaponId": 2011271,
+    "TurretId": 2011272,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011282": {
+    "WeaponId": 2011279,
+    "TurretId": 2011280,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011300": {
+    "WeaponId": 2011297,
+    "TurretId": 2011298,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011308": {
+    "WeaponId": 2011305,
+    "TurretId": 2011306,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011314": {
+    "WeaponId": 2011311,
+    "TurretId": 2011312,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011326": {
+    "WeaponId": 2011323,
+    "TurretId": 2011324,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011336": {
+    "WeaponId": 2011333,
+    "TurretId": 2011334,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011342": {
+    "WeaponId": 2011339,
+    "TurretId": 2011340,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011356": {
+    "WeaponId": 2011353,
+    "TurretId": 2011354,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011364": {
+    "WeaponId": 2011363,
+    "TurretId": 2011354,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011370": {
+    "WeaponId": 2011367,
+    "TurretId": 2011368,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011384": {
+    "WeaponId": 2011381,
+    "TurretId": 2011382,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011392": {
+    "WeaponId": 2011391,
+    "TurretId": 2011382,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2011398": {
+    "WeaponId": 2011395,
+    "TurretId": 2011396,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011412": {
+    "WeaponId": 2011409,
+    "TurretId": 2011410,
+    "Order": 0,
+    "WeaponChannel": 1,
+    "WeaponPriority": 0
+  },
+  "2011440": {
+    "WeaponId": 2011437,
+    "TurretId": 2011438,
+    "Order": 0,
+    "WeaponChannel": 1,
+    "WeaponPriority": 0
+  },
+  "2011446": {
+    "WeaponId": 2011443,
+    "TurretId": 2011444,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011452": {
+    "WeaponId": 2011449,
+    "TurretId": 2011450,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011458": {
+    "WeaponId": 2011455,
+    "TurretId": 2011456,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011464": {
+    "WeaponId": 2011461,
+    "TurretId": 2011462,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011470": {
+    "WeaponId": 2011467,
+    "TurretId": 2011468,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011482": {
+    "WeaponId": 2011479,
+    "TurretId": 2011480,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011512": {
+    "WeaponId": 2011509,
+    "TurretId": 2011510,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011518": {
+    "WeaponId": 2011515,
+    "TurretId": 2011516,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011524": {
+    "WeaponId": 2011521,
+    "TurretId": 2011522,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011530": {
+    "WeaponId": 2011527,
+    "TurretId": 2011528,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011536": {
+    "WeaponId": 2011533,
+    "TurretId": 2011534,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011542": {
+    "WeaponId": 2011539,
+    "TurretId": 2011540,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011582": {
+    "WeaponId": 2011579,
+    "TurretId": 2011580,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011614": {
+    "WeaponId": 2011611,
+    "TurretId": 2011612,
+    "Order": 0,
+    "WeaponChannel": 1,
+    "WeaponPriority": 0
+  },
+  "2011628": {
+    "WeaponId": 2011625,
+    "TurretId": 2011626,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011648": {
+    "WeaponId": 2011645,
+    "TurretId": 2011646,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011662": {
+    "WeaponId": 2011659,
+    "TurretId": 2011660,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011674": {
+    "WeaponId": 2011671,
+    "TurretId": 2011672,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011694": {
+    "WeaponId": 2011691,
+    "TurretId": 2011692,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011706": {
+    "WeaponId": 2011703,
+    "TurretId": 2011704,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2011804": {
+    "WeaponId": 2011801,
+    "TurretId": 2011802,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014538": {
+    "WeaponId": 2014534,
+    "TurretId": 2014536,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014553": {
+    "WeaponId": 2014549,
+    "TurretId": 2014551,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014559": {
+    "WeaponId": 2014555,
+    "TurretId": 2014557,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014647": {
+    "WeaponId": 2014643,
+    "TurretId": 2014645,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014657": {
+    "WeaponId": 2014655,
+    "TurretId": 2010736,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2014661": {
+    "WeaponId": 2014659,
+    "TurretId": 2010736,
+    "Order": 3,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016377": {
+    "WeaponId": 2016376,
+    "TurretId": 2016375,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016383": {
+    "WeaponId": 2016376,
+    "TurretId": 2016382,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016385": {
+    "WeaponId": 2016376,
+    "TurretId": 2016384,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016388": {
+    "WeaponId": 2016387,
+    "TurretId": 2016386,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016389": {
+    "WeaponId": 2016378,
+    "TurretId": 2016386,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016392": {
+    "WeaponId": 2016387,
+    "TurretId": 2016391,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016394": {
+    "WeaponId": 2016387,
+    "TurretId": 2016393,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016397": {
+    "WeaponId": 2016396,
+    "TurretId": 2016395,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016400": {
+    "WeaponId": 2016396,
+    "TurretId": 2016399,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016403": {
+    "WeaponId": 2016402,
+    "TurretId": 2016401,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016471": {
+    "WeaponId": 2016387,
+    "TurretId": 2016470,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016473": {
+    "WeaponId": 2016472,
+    "TurretId": 2016470,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016477": {
+    "WeaponId": 2016476,
+    "TurretId": 2016475,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016480": {
+    "WeaponId": 2016476,
+    "TurretId": 2016479,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016483": {
+    "WeaponId": 2016482,
+    "TurretId": 2016481,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016501": {
+    "WeaponId": 2016500,
+    "TurretId": 2016499,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016504": {
+    "WeaponId": 2016500,
+    "TurretId": 2016503,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016506": {
+    "WeaponId": 2016476,
+    "TurretId": 2016505,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016510": {
+    "WeaponId": 2016509,
+    "TurretId": 2016508,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016512": {
+    "WeaponId": 2016509,
+    "TurretId": 2016511,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016534": {
+    "WeaponId": 2016396,
+    "TurretId": 2016533,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016536": {
+    "WeaponId": 2016396,
+    "TurretId": 2016535,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016538": {
+    "WeaponId": 2016402,
+    "TurretId": 2016537,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016540": {
+    "WeaponId": 2016376,
+    "TurretId": 2016539,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016543": {
+    "WeaponId": 2016542,
+    "TurretId": 2016541,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016547": {
+    "WeaponId": 2016546,
+    "TurretId": 2016545,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016551": {
+    "WeaponId": 2016550,
+    "TurretId": 2016549,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016554": {
+    "WeaponId": 2016402,
+    "TurretId": 2016553,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016557": {
+    "WeaponId": 2016556,
+    "TurretId": 2016555,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016561": {
+    "WeaponId": 2016560,
+    "TurretId": 2016559,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016564": {
+    "WeaponId": 2016509,
+    "TurretId": 2016563,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016567": {
+    "WeaponId": 2016566,
+    "TurretId": 2016565,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016571": {
+    "WeaponId": 2016570,
+    "TurretId": 2016569,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016603": {
+    "WeaponId": 2016546,
+    "TurretId": 2016602,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016606": {
+    "WeaponId": 2016605,
+    "TurretId": 2016604,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016610": {
+    "WeaponId": 2016609,
+    "TurretId": 2016608,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016614": {
+    "WeaponId": 2016613,
+    "TurretId": 2016612,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016617": {
+    "WeaponId": 2016616,
+    "TurretId": 2016615,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016644": {
+    "WeaponId": 2016402,
+    "TurretId": 2016643,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016646": {
+    "WeaponId": 2016546,
+    "TurretId": 2016645,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016649": {
+    "WeaponId": 2016648,
+    "TurretId": 2016647,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016653": {
+    "WeaponId": 2016652,
+    "TurretId": 2016651,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016657": {
+    "WeaponId": 2016656,
+    "TurretId": 2016655,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016660": {
+    "WeaponId": 2016659,
+    "TurretId": 2016658,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016664": {
+    "WeaponId": 2016663,
+    "TurretId": 2016662,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016700": {
+    "WeaponId": 2016699,
+    "TurretId": 2016698,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016728": {
+    "WeaponId": 2016727,
+    "TurretId": 2016726,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016797": {
+    "WeaponId": 2016796,
+    "TurretId": 2016795,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016800": {
+    "WeaponId": 2016799,
+    "TurretId": 2016798,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016827": {
+    "WeaponId": 2016376,
+    "TurretId": 2016826,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016830": {
+    "WeaponId": 2016829,
+    "TurretId": 2016828,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016834": {
+    "WeaponId": 2016833,
+    "TurretId": 2016832,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016865": {
+    "WeaponId": 2016864,
+    "TurretId": 2016863,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016894": {
+    "WeaponId": 2016893,
+    "TurretId": 2016892,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016898": {
+    "WeaponId": 2016897,
+    "TurretId": 2016896,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016901": {
+    "WeaponId": 2016897,
+    "TurretId": 2016900,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016904": {
+    "WeaponId": 2016903,
+    "TurretId": 2016902,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016933": {
+    "WeaponId": 2016932,
+    "TurretId": 2016931,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016937": {
+    "WeaponId": 2016936,
+    "TurretId": 2016935,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016941": {
+    "WeaponId": 2016940,
+    "TurretId": 2016939,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016944": {
+    "WeaponId": 2016943,
+    "TurretId": 2016942,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016947": {
+    "WeaponId": 2016946,
+    "TurretId": 2016945,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016951": {
+    "WeaponId": 2016950,
+    "TurretId": 2016949,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016974": {
+    "WeaponId": 2016973,
+    "TurretId": 2016972,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016978": {
+    "WeaponId": 2016977,
+    "TurretId": 2016976,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2016981": {
+    "WeaponId": 2016980,
+    "TurretId": 2016979,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017000": {
+    "WeaponId": 2016999,
+    "TurretId": 2016998,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017003": {
+    "WeaponId": 2017002,
+    "TurretId": 2017001,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017023": {
+    "WeaponId": 2017022,
+    "TurretId": 2017021,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017042": {
+    "WeaponId": 2016560,
+    "TurretId": 2017041,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017052": {
+    "WeaponId": 2017051,
+    "TurretId": 2017050,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017059": {
+    "WeaponId": 2017058,
+    "TurretId": 2017057,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017063": {
+    "WeaponId": 2017062,
+    "TurretId": 2017061,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017066": {
+    "WeaponId": 2017065,
+    "TurretId": 2017064,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017070": {
+    "WeaponId": 2017069,
+    "TurretId": 2017068,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017073": {
+    "WeaponId": 2016973,
+    "TurretId": 2017072,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017076": {
+    "WeaponId": 2017075,
+    "TurretId": 2017074,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017082": {
+    "WeaponId": 2017081,
+    "TurretId": 2017078,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017086": {
+    "WeaponId": 2017079,
+    "TurretId": 2017085,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017089": {
+    "WeaponId": 2017088,
+    "TurretId": 2017087,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017092": {
+    "WeaponId": 2017091,
+    "TurretId": 2017090,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017096": {
+    "WeaponId": 2017095,
+    "TurretId": 2017094,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017131": {
+    "WeaponId": 2017130,
+    "TurretId": 2017129,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017135": {
+    "WeaponId": 2017134,
+    "TurretId": 2017132,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017196": {
+    "WeaponId": 2017195,
+    "TurretId": 2017194,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017199": {
+    "WeaponId": 2016973,
+    "TurretId": 2017198,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017201": {
+    "WeaponId": 2016378,
+    "TurretId": 2017200,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017203": {
+    "WeaponId": 2016402,
+    "TurretId": 2017202,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017243": {
+    "WeaponId": 2017062,
+    "TurretId": 2017242,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017244": {
+    "WeaponId": 2017081,
+    "TurretId": 2017242,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017248": {
+    "WeaponId": 2017247,
+    "TurretId": 2017245,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017253": {
+    "WeaponId": 2017252,
+    "TurretId": 2017249,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017255": {
+    "WeaponId": 2017250,
+    "TurretId": 2017254,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017257": {
+    "WeaponId": 2017126,
+    "TurretId": 2017256,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017258": {
+    "WeaponId": 2017081,
+    "TurretId": 2017256,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017386": {
+    "WeaponId": 2017081,
+    "TurretId": 2017385,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017388": {
+    "WeaponId": 2017247,
+    "TurretId": 2017387,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017447": {
+    "WeaponId": 2017445,
+    "TurretId": 2017446,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017452": {
+    "WeaponId": 2017450,
+    "TurretId": 2017451,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017457": {
+    "WeaponId": 2017455,
+    "TurretId": 2017456,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017488": {
+    "WeaponId": 2017487,
+    "TurretId": 2017486,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017491": {
+    "WeaponId": 2017490,
+    "TurretId": 2017489,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017494": {
+    "WeaponId": 2017493,
+    "TurretId": 2017492,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017497": {
+    "WeaponId": 2017496,
+    "TurretId": 2017495,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017500": {
+    "WeaponId": 2017499,
+    "TurretId": 2017498,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017503": {
+    "WeaponId": 2017502,
+    "TurretId": 2017501,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017507": {
+    "WeaponId": 2017506,
+    "TurretId": 2017505,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017510": {
+    "WeaponId": 2017509,
+    "TurretId": 2017508,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017513": {
+    "WeaponId": 2017512,
+    "TurretId": 2017511,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017516": {
+    "WeaponId": 2017515,
+    "TurretId": 2017514,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017519": {
+    "WeaponId": 2017518,
+    "TurretId": 2017517,
+    "Order": 0,
+    "WeaponChannel": 6,
+    "WeaponPriority": 0
+  },
+  "2017522": {
+    "WeaponId": 2017521,
+    "TurretId": 2017520,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017551": {
+    "WeaponId": 2017550,
+    "TurretId": 2017549,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017554": {
+    "WeaponId": 2017553,
+    "TurretId": 2017552,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017557": {
+    "WeaponId": 2017556,
+    "TurretId": 2017555,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017566": {
+    "WeaponId": 2017565,
+    "TurretId": 2017564,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017570": {
+    "WeaponId": 2017569,
+    "TurretId": 2017568,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017573": {
+    "WeaponId": 2017572,
+    "TurretId": 2017571,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2017582": {
+    "WeaponId": 2017581,
+    "TurretId": 2017580,
+    "Order": 0,
+    "WeaponChannel": 6,
+    "WeaponPriority": 0
+  },
+  "2017585": {
+    "WeaponId": 2017584,
+    "TurretId": 2017583,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017619": {
+    "WeaponId": 2017618,
+    "TurretId": 2017617,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017622": {
+    "WeaponId": 2017621,
+    "TurretId": 2017620,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017625": {
+    "WeaponId": 2017624,
+    "TurretId": 2017623,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017627": {
+    "WeaponId": 2017621,
+    "TurretId": 2017626,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017630": {
+    "WeaponId": 2017629,
+    "TurretId": 2017628,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017633": {
+    "WeaponId": 2017632,
+    "TurretId": 2017631,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017636": {
+    "WeaponId": 2017635,
+    "TurretId": 2017634,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017638": {
+    "WeaponId": 2017618,
+    "TurretId": 2017637,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017669": {
+    "WeaponId": 2017668,
+    "TurretId": 2017667,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017672": {
+    "WeaponId": 2017671,
+    "TurretId": 2017670,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017675": {
+    "WeaponId": 2017674,
+    "TurretId": 2017673,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017677": {
+    "WeaponId": 2017674,
+    "TurretId": 2017676,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017706": {
+    "WeaponId": 2017705,
+    "TurretId": 2017704,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017709": {
+    "WeaponId": 2017708,
+    "TurretId": 2017707,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017712": {
+    "WeaponId": 2017711,
+    "TurretId": 2017710,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017715": {
+    "WeaponId": 2017714,
+    "TurretId": 2017713,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017730": {
+    "WeaponId": 2017674,
+    "TurretId": 2017729,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017733": {
+    "WeaponId": 2017674,
+    "TurretId": 2017732,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017734": {
+    "WeaponId": 2017705,
+    "TurretId": 2017732,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017747": {
+    "WeaponId": 2017618,
+    "TurretId": 2017746,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017749": {
+    "WeaponId": 2017632,
+    "TurretId": 2017748,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017751": {
+    "WeaponId": 2017621,
+    "TurretId": 2017750,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017754": {
+    "WeaponId": 2017753,
+    "TurretId": 2017752,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017757": {
+    "WeaponId": 2017756,
+    "TurretId": 2017755,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017770": {
+    "WeaponId": 2017769,
+    "TurretId": 2017768,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017783": {
+    "WeaponId": 2017782,
+    "TurretId": 2017781,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017785": {
+    "WeaponId": 2017769,
+    "TurretId": 2017784,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017795": {
+    "WeaponId": 2017624,
+    "TurretId": 2017794,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017798": {
+    "WeaponId": 2017797,
+    "TurretId": 2017796,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017800": {
+    "WeaponId": 2017671,
+    "TurretId": 2017799,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017803": {
+    "WeaponId": 2017802,
+    "TurretId": 2017801,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017805": {
+    "WeaponId": 2017668,
+    "TurretId": 2017804,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017819": {
+    "WeaponId": 2017818,
+    "TurretId": 2017817,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017822": {
+    "WeaponId": 2017821,
+    "TurretId": 2017820,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017825": {
+    "WeaponId": 2017824,
+    "TurretId": 2017823,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017828": {
+    "WeaponId": 2017827,
+    "TurretId": 2017826,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017831": {
+    "WeaponId": 2017830,
+    "TurretId": 2017829,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017844": {
+    "WeaponId": 2017843,
+    "TurretId": 2017842,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017851": {
+    "WeaponId": 2017850,
+    "TurretId": 2017849,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017859": {
+    "WeaponId": 2017753,
+    "TurretId": 2017858,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017861": {
+    "WeaponId": 2017621,
+    "TurretId": 2017860,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017871": {
+    "WeaponId": 2017870,
+    "TurretId": 2017869,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017873": {
+    "WeaponId": 2017870,
+    "TurretId": 2017872,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017881": {
+    "WeaponId": 2017880,
+    "TurretId": 2017879,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017884": {
+    "WeaponId": 2017883,
+    "TurretId": 2017882,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017895": {
+    "WeaponId": 2017894,
+    "TurretId": 2017891,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017897": {
+    "WeaponId": 2017892,
+    "TurretId": 2017896,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017900": {
+    "WeaponId": 2017899,
+    "TurretId": 2017898,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017903": {
+    "WeaponId": 2017902,
+    "TurretId": 2017901,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017906": {
+    "WeaponId": 2017905,
+    "TurretId": 2017904,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017921": {
+    "WeaponId": 2017920,
+    "TurretId": 2017917,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017923": {
+    "WeaponId": 2017918,
+    "TurretId": 2017922,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017927": {
+    "WeaponId": 2017920,
+    "TurretId": 2017924,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017929": {
+    "WeaponId": 2017925,
+    "TurretId": 2017928,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017934": {
+    "WeaponId": 2017933,
+    "TurretId": 2017930,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017936": {
+    "WeaponId": 2017931,
+    "TurretId": 2017935,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017950": {
+    "WeaponId": 2017949,
+    "TurretId": 2017948,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017955": {
+    "WeaponId": 2017949,
+    "TurretId": 2017954,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017957": {
+    "WeaponId": 2017949,
+    "TurretId": 2017956,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017960": {
+    "WeaponId": 2017959,
+    "TurretId": 2017958,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017963": {
+    "WeaponId": 2017962,
+    "TurretId": 2017961,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017967": {
+    "WeaponId": 2017966,
+    "TurretId": 2017965,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2017969": {
+    "WeaponId": 2017959,
+    "TurretId": 2017968,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018019": {
+    "WeaponId": 2018018,
+    "TurretId": 2018017,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018020": {
+    "WeaponId": 2017951,
+    "TurretId": 2018017,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018022": {
+    "WeaponId": 2018018,
+    "TurretId": 2018021,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018025": {
+    "WeaponId": 2018024,
+    "TurretId": 2018023,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018027": {
+    "WeaponId": 2018024,
+    "TurretId": 2018026,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018030": {
+    "WeaponId": 2018029,
+    "TurretId": 2018028,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018043": {
+    "WeaponId": 2017966,
+    "TurretId": 2018042,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018045": {
+    "WeaponId": 2017959,
+    "TurretId": 2018044,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018048": {
+    "WeaponId": 2018047,
+    "TurretId": 2018046,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018193": {
+    "WeaponId": 2018192,
+    "TurretId": 2018191,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018198": {
+    "WeaponId": 2018197,
+    "TurretId": 2018196,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018202": {
+    "WeaponId": 2018197,
+    "TurretId": 2018201,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018207": {
+    "WeaponId": 2018206,
+    "TurretId": 2018205,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018212": {
+    "WeaponId": 2018192,
+    "TurretId": 2018211,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018216": {
+    "WeaponId": 2018197,
+    "TurretId": 2018215,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018221": {
+    "WeaponId": 2018220,
+    "TurretId": 2018219,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018228": {
+    "WeaponId": 2018227,
+    "TurretId": 2018226,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018233": {
+    "WeaponId": 2018232,
+    "TurretId": 2018231,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018238": {
+    "WeaponId": 2018237,
+    "TurretId": 2018236,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018242": {
+    "WeaponId": 2018192,
+    "TurretId": 2018241,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018244": {
+    "WeaponId": 2018243,
+    "TurretId": 2018241,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018249": {
+    "WeaponId": 2018192,
+    "TurretId": 2018248,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018253": {
+    "WeaponId": 2018252,
+    "TurretId": 2018251,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018258": {
+    "WeaponId": 2018257,
+    "TurretId": 2018256,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018265": {
+    "WeaponId": 2018257,
+    "TurretId": 2018264,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018269": {
+    "WeaponId": 2018268,
+    "TurretId": 2018267,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018274": {
+    "WeaponId": 2018273,
+    "TurretId": 2018272,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018278": {
+    "WeaponId": 2018192,
+    "TurretId": 2018277,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018279": {
+    "WeaponId": 2018273,
+    "TurretId": 2018277,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018341": {
+    "WeaponId": 2018336,
+    "TurretId": 2018340,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018442": {
+    "WeaponId": 2018803,
+    "TurretId": 2009820,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018451": {
+    "WeaponId": 2018450,
+    "TurretId": 2018449,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018456": {
+    "WeaponId": 2018455,
+    "TurretId": 2018454,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018461": {
+    "WeaponId": 2018460,
+    "TurretId": 2018459,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018466": {
+    "WeaponId": 2018465,
+    "TurretId": 2018464,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018472": {
+    "WeaponId": 2018471,
+    "TurretId": 2018470,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018482": {
+    "WeaponId": 2018471,
+    "TurretId": 2018481,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018484": {
+    "WeaponId": 2018483,
+    "TurretId": 2018481,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018489": {
+    "WeaponId": 2018471,
+    "TurretId": 2018488,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018493": {
+    "WeaponId": 2018492,
+    "TurretId": 2018491,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018497": {
+    "WeaponId": 2018492,
+    "TurretId": 2018496,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018500": {
+    "WeaponId": 2018483,
+    "TurretId": 2018499,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018506": {
+    "WeaponId": 2018505,
+    "TurretId": 2018504,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018511": {
+    "WeaponId": 2018510,
+    "TurretId": 2018509,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018515": {
+    "WeaponId": 2018471,
+    "TurretId": 2018514,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018517": {
+    "WeaponId": 2018516,
+    "TurretId": 2018514,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018524": {
+    "WeaponId": 2018523,
+    "TurretId": 2018522,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018529": {
+    "WeaponId": 2018528,
+    "TurretId": 2018527,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018536": {
+    "WeaponId": 2018528,
+    "TurretId": 2018535,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018540": {
+    "WeaponId": 2018539,
+    "TurretId": 2018538,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018545": {
+    "WeaponId": 2018544,
+    "TurretId": 2018543,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018549": {
+    "WeaponId": 2018471,
+    "TurretId": 2018548,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018550": {
+    "WeaponId": 2018544,
+    "TurretId": 2018548,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018611": {
+    "WeaponId": 2018607,
+    "TurretId": 2018610,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018613": {
+    "WeaponId": 2018608,
+    "TurretId": 2018612,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018615": {
+    "WeaponId": 2018609,
+    "TurretId": 2018614,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018619": {
+    "WeaponId": 2018483,
+    "TurretId": 2018618,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018668": {
+    "WeaponId": 2018667,
+    "TurretId": 2018666,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018673": {
+    "WeaponId": 2018672,
+    "TurretId": 2018671,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018678": {
+    "WeaponId": 2018516,
+    "TurretId": 2018677,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018680": {
+    "WeaponId": 2018483,
+    "TurretId": 2018679,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018686": {
+    "WeaponId": 2018684,
+    "TurretId": 2018685,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018697": {
+    "WeaponId": 2018695,
+    "TurretId": 2018696,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018701": {
+    "WeaponId": 2018699,
+    "TurretId": 2018700,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018706": {
+    "WeaponId": 2018704,
+    "TurretId": 2018705,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018710": {
+    "WeaponId": 2018708,
+    "TurretId": 2018709,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018759": {
+    "WeaponId": 2018748,
+    "TurretId": 2018755,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018761": {
+    "WeaponId": 2018749,
+    "TurretId": 2018756,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018763": {
+    "WeaponId": 2018753,
+    "TurretId": 2018757,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018765": {
+    "WeaponId": 2018753,
+    "TurretId": 2018758,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018775": {
+    "WeaponId": 2018773,
+    "TurretId": 2018774,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018778": {
+    "WeaponId": 2018776,
+    "TurretId": 2018777,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018781": {
+    "WeaponId": 2018779,
+    "TurretId": 2018780,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018784": {
+    "WeaponId": 2018782,
+    "TurretId": 2018783,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018786": {
+    "WeaponId": 2018243,
+    "TurretId": 2018785,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018824": {
+    "WeaponId": 2018820,
+    "TurretId": 2018823,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018826": {
+    "WeaponId": 2018821,
+    "TurretId": 2018825,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018828": {
+    "WeaponId": 2018822,
+    "TurretId": 2018827,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018831": {
+    "WeaponId": 2018822,
+    "TurretId": 2018829,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018834": {
+    "WeaponId": 2018822,
+    "TurretId": 2018832,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018869": {
+    "WeaponId": 2009827,
+    "TurretId": 2018868,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018870": {
+    "WeaponId": 2009833,
+    "TurretId": 2018868,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018871": {
+    "WeaponId": 2018866,
+    "TurretId": 2018868,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018873": {
+    "WeaponId": 2010323,
+    "TurretId": 2018872,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018874": {
+    "WeaponId": 2018866,
+    "TurretId": 2018872,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2018886": {
+    "WeaponId": 2010901,
+    "TurretId": 2018885,
+    "Order": 2,
+    "WeaponChannel": 1,
+    "WeaponPriority": 3
+  },
+  "2018992": {
+    "WeaponId": 2011193,
+    "TurretId": 2018991,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019020": {
+    "WeaponId": 2019018,
+    "TurretId": 2019019,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019025": {
+    "WeaponId": 2019023,
+    "TurretId": 2019024,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019030": {
+    "WeaponId": 2019028,
+    "TurretId": 2019029,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2019035": {
+    "WeaponId": 2019033,
+    "TurretId": 2019034,
+    "Order": 0,
+    "WeaponChannel": 12,
+    "WeaponPriority": 0
+  },
+  "2019082": {
+    "WeaponId": 2011151,
+    "TurretId": 2019081,
+    "Order": 2,
+    "WeaponChannel": 1,
+    "WeaponPriority": 3
+  },
+  "2019090": {
+    "WeaponId": 2019087,
+    "TurretId": 2019089,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019102": {
+    "WeaponId": 2019100,
+    "TurretId": 2019101,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019105": {
+    "WeaponId": 2019103,
+    "TurretId": 2019104,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019116": {
+    "WeaponId": 2016378,
+    "TurretId": 2019115,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019123": {
+    "WeaponId": 2019120,
+    "TurretId": 2019122,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019129": {
+    "WeaponId": 2019125,
+    "TurretId": 2019128,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019137": {
+    "WeaponId": 2019132,
+    "TurretId": 2019136,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019146": {
+    "WeaponId": 2019141,
+    "TurretId": 2019145,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019151": {
+    "WeaponId": 2017671,
+    "TurretId": 2019150,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019156": {
+    "WeaponId": 2019153,
+    "TurretId": 2019155,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019161": {
+    "WeaponId": 2019158,
+    "TurretId": 2019160,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019166": {
+    "WeaponId": 2019163,
+    "TurretId": 2019165,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019171": {
+    "WeaponId": 2019168,
+    "TurretId": 2019170,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019174": {
+    "WeaponId": 2017951,
+    "TurretId": 2019173,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019183": {
+    "WeaponId": 2019178,
+    "TurretId": 2019182,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019197": {
+    "WeaponId": 2010895,
+    "TurretId": 2019196,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019198": {
+    "WeaponId": 2010901,
+    "TurretId": 2019196,
+    "Order": 1,
+    "WeaponChannel": 1,
+    "WeaponPriority": 3
+  },
+  "2019201": {
+    "WeaponId": 2009045,
+    "TurretId": 2019200,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019202": {
+    "WeaponId": 2011151,
+    "TurretId": 2019200,
+    "Order": 1,
+    "WeaponChannel": 1,
+    "WeaponPriority": 3
+  },
+  "2019297": {
+    "WeaponId": 2019295,
+    "TurretId": 2019296,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019308": {
+    "WeaponId": 2019306,
+    "TurretId": 2019307,
+    "Order": 0,
+    "WeaponChannel": 10,
+    "WeaponPriority": 0
+  },
+  "2019325": {
+    "WeaponId": 2019323,
+    "TurretId": 2019324,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019340": {
+    "WeaponId": 2019338,
+    "TurretId": 2019339,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019341": {
+    "WeaponId": 2009917,
+    "TurretId": 2019339,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019360": {
+    "WeaponId": 2019357,
+    "TurretId": 2019359,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019372": {
+    "WeaponId": 294,
+    "TurretId": 2019371,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019373": {
+    "WeaponId": 6,
+    "TurretId": 2019371,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019374": {
+    "WeaponId": 2011864,
+    "TurretId": 2019371,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2019390": {
+    "WeaponId": 2009071,
+    "TurretId": 2019389,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019396": {
+    "WeaponId": 2011381,
+    "TurretId": 2019395,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019403": {
+    "WeaponId": 2009081,
+    "TurretId": 2019389,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019405": {
+    "WeaponId": 2019388,
+    "TurretId": 2019404,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019407": {
+    "WeaponId": 2011391,
+    "TurretId": 2019395,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019409": {
+    "WeaponId": 2019388,
+    "TurretId": 2019408,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019448": {
+    "WeaponId": 2019445,
+    "TurretId": 2019447,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019472": {
+    "WeaponId": 2009127,
+    "TurretId": 2019471,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019473": {
+    "WeaponId": 2009135,
+    "TurretId": 2019471,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019474": {
+    "WeaponId": 2009141,
+    "TurretId": 2019471,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  },
+  "2019475": {
+    "WeaponId": 2018995,
+    "TurretId": 2019471,
+    "Order": 3,
+    "WeaponChannel": 0,
+    "WeaponPriority": 3
+  },
+  "2019477": {
+    "WeaponId": 2009127,
+    "TurretId": 2019476,
+    "Order": 0,
+    "WeaponChannel": 0,
+    "WeaponPriority": 0
+  },
+  "2019478": {
+    "WeaponId": 2009135,
+    "TurretId": 2019476,
+    "Order": 1,
+    "WeaponChannel": 0,
+    "WeaponPriority": 1
+  },
+  "2019479": {
+    "WeaponId": 2009141,
+    "TurretId": 2019476,
+    "Order": 2,
+    "WeaponChannel": 0,
+    "WeaponPriority": 2
+  }
+}
