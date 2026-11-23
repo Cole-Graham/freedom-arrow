@@ -627,6 +627,9 @@ import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault PF-97 ammo corrected 3 -> 6 (Lateralus 23 Nov 2026 14:4x PST, thread 1568104480459722894): 3 carriers x 2.
 # See thermobaric_pf97_1123.py.
 import thermobaric_pf97_1123;thermobaric_pf97_1123.apply(t,g,ok,rec)
+# ---------- Combat Engineers: Thermobaric Rocket loadout (unit 1162) armour 8 -> 10, 8 -> 7 men, HP 40 -> 35, QBZ-191 5 -> 4; smoke 1 on both loadouts (1156 4 -> 1)
+# (Lateralus 23 Nov 2026 14:5x PST, thread 1568104480459722894). See thermobaric_breachers_1123.py.
+import thermobaric_breachers_1123;thermobaric_breachers_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
