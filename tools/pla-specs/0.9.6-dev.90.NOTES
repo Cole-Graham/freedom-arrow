@@ -39,3 +39,6 @@ dust/grime pass on the painted maps. Assets 0.2.71. The install moves the 4 stal
 
 0.9.6-dev.96 (build 314, Osama 23 Nov 10:5x "upscale it with AI"): X-47B colour map Real-ESRGAN x4plus, 4096 armory / 1024 battle (work/x47b-up-1123).
 Built on 0.9.5 (--prev 0.9.5, base local-095r302) because out/0.8 now holds the 0.9.5 receipt; receipt copied to out/receipts for package.py. Assets 0.2.73.
+
+0.9.6-dev.97 (build 315, Osama 23 Nov 13:0x "it should have been English OR chinese not both"): runtime LangNames.cs (bilingual names from our
+constants shown in English OR Chinese by game language). Assets 0.2.74 = same model content as 0.2.73 (packager makes a new number per build).

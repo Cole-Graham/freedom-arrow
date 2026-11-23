@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.96",
+  "version": "0.9.6-dev.97",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.96 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.95 plus the X-47B colour map AI-upscaled (Real-ESRGAN x4plus) to 4096 armory / 1024 battle. Needs Freedom Arrow — Models and Music 0.2.73.",
+  "description": "Freedom Arrow 0.9.6-dev.97 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.96 plus bilingual names (specs, units) shown in English OR Chinese by the game language. Needs Freedom Arrow — Models and Music 0.2.74.",
   "repo": "Cole-Graham/freedom-arrow"
 }
