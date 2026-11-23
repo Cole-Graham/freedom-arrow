@@ -28,3 +28,6 @@ Assets 0.2.68. 4384 data checks, 234365 package checks.
 custom split normals are cleared after decimation (battle 7.6% -> 0% triangles facing against their normals, armory 0.7% -> 0.09%); armory textures 4K -> 2K
 (fat 419 -> 146 MB). X-47B back on the old m_x47b with mask remap metallic 0.6..1 / smoothness 0.5..0.9 (was 0..0.5 / 0.35..0.82). XQ-58A: Air Naval
 spec 5, scale 1.4, offset 0.6 m, same metallic remap. Assets 0.2.69. 4384 data checks, 234365 package checks.
+
+0.9.6-dev.94 (build 307, Osama 23 Nov 04:4x "use the material skin from the F-35B ROKN ... apply it to the valkyrie"): XQ-58A colour map moved to the
+F-35B ROKN blue-grey (work/xq58-skin-1123/skin.py) and material set like the F-35B ROKN (metallic 0, smoothness 0.40-0.50). Assets 0.2.70.
