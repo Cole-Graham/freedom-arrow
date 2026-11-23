@@ -70,6 +70,12 @@ with zipfile.ZipFile(base) as z:
     with tempfile.TemporaryDirectory() as built_dir:
         subprocess.run([sys.executable,str(ROOT/'maps/scenarios/make_scenario.py'),'--game-dir',a.game_dir,'--out',built_dir],check=True)
         built={'UserData/FreedomArrow/scenarios/'+f.relative_to(built_dir).as_posix():f.read_bytes() for f in Path(built_dir).rglob('*') if f.is_file()}
+    # Lateralus 23 Nov 2026 (0.9.6): the map list (exact names, IDs, size, ranked pool) from maps/maps.json, checked by make_scenario.py.
+    # The game (MapSizes.cs) and the ranked hub read it instead of the [NvN] tag in the name.
+    k='UserData/FreedomArrow/maps.json';built_registry=built.pop('UserData/FreedomArrow/scenarios/_maps.json',None)
+    if _vkey(V)>=_vkey('0.9.6-dev.1'):
+        assert built_registry,'make_scenario.py wrote no map list'
+        if k not in z.namelist() or z.read(k)!=built_registry:override[k]=built_registry
     for k,b in built.items():
         if k not in z.namelist() or z.read(k)!=b:override[k]=b
     # Lateralus 20 Nov 2026: New / Updated tags on the Create a lobby map cards, against the current playtest release (map_labels.py, MapLabels.cs).

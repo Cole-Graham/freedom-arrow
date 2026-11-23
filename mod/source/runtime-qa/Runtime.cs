@@ -328,7 +328,12 @@ public class Runtime : MelonMod
         ("[FA] [2v2] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c003"),("[FA] [2v2] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c004"),
         ("[FA] [1v1] Dead Center 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c005"),("[FA] [1v1] Dead Center Skirmish 0.1","6fa0c3d4-5b1e-4e0a-9b7c-0f4a3e21c006"),
         // Osama 19 Nov 2026: PvE maps renamed (player count first) and given AI bot slots; the 0.2 names replace these.
-        ("[FA] [PvE] Dead Center vs China (1P) 0.1","b001c57c-c600-5d77-981e-8e6543a08721"),("[FA] [PvE] Dead Center vs China (1P) Skirmish 0.1","d06dc805-8e31-5d46-908b-5bee0258b1db"),("[FA] [PvE] Highway of Death vs China (2P) 0.1","da056b8c-dffc-5c53-9500-0e9de20ee17f"),("[FA] [PvE] Highway of Death vs China (2P) Skirmish 0.1","6b2691fa-d73c-5b8f-8393-5736cd401b54"),("[FA] [PvE] Dam vs China (3P) 0.1","22f35646-50ca-5140-8e33-3954ab147582"),("[FA] [PvE] Dam vs China (3P) Skirmish 0.1","c40aedda-5a93-54cc-9223-827508f2d853")};
+        ("[FA] [PvE] Dead Center vs China (1P) 0.1","b001c57c-c600-5d77-981e-8e6543a08721"),("[FA] [PvE] Dead Center vs China (1P) Skirmish 0.1","d06dc805-8e31-5d46-908b-5bee0258b1db"),("[FA] [PvE] Highway of Death vs China (2P) 0.1","da056b8c-dffc-5c53-9500-0e9de20ee17f"),("[FA] [PvE] Highway of Death vs China (2P) Skirmish 0.1","6b2691fa-d73c-5b8f-8393-5736cd401b54"),("[FA] [PvE] Dam vs China (3P) 0.1","22f35646-50ca-5140-8e33-3954ab147582"),("[FA] [PvE] Dam vs China (3P) Skirmish 0.1","c40aedda-5a93-54cc-9223-827508f2d853"),
+        // Lateralus 23 Nov 2026 (0.9.6): the three [5v5] maps are now [4v4] (same layout and zone values, new name and GUID).
+        ("[FA] [5v5] Airport 0.2","b28f9451-d7cc-56a4-b536-7cbc89a2fd38"),("[FA] [5v5] Airport Skirmish 0.2","99dd9bc5-dff6-5356-b7e3-8f83a979133d"),
+        ("[FA] [5v5] Oil Rush 0.2","7c9c5eb7-37b7-56ce-b33f-c5390ea6e9e0"),("[FA] [5v5] Oil Rush Skirmish 0.2","c9e53f60-a3da-5359-ad6a-058247cac84b"),
+        ("[FA] [5v5] Cold Harbor 0.2","1fef0897-64e8-5238-bc01-66687b1598c1"),("[FA] [5v5] Cold Harbor Skirmish 0.2","8ae843b6-d6e9-5271-a308-c4cd1098089c"),
+    };
     static void RemoveRetiredScenarios()
     {
         foreach(var (folder,guid) in RetiredScenarios)

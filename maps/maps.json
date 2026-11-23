@@ -1,0 +1,19 @@
+{
+  "_about": "THE list of Freedom Arrow maps and their game size (Lateralus 23 Nov 2026: 'its super important the game can clearly keep track of which version belongs to which game size'). One entry per map folder in scenarios/. size decides the lobby slots, the Create a lobby tab, the oversized-team warning and the ranked pool; ranked puts the map in that size's ranked pool. make_scenario.py checks every map against this list and writes the shipped UserData/FreedomArrow/maps.json (exact names and IDs) from it. A map name's [NvN] tag is display text only and must equal size.",
+  "maps": {
+    "dead_center_1v1":    {"size": "1v1", "base": "Dead Center",       "ranked": true},
+    "kadaga_1v1":         {"size": "1v1", "base": "Kadaga",            "ranked": true},
+    "jelgava_1v1":        {"size": "1v1", "base": "Jelgava",           "ranked": true},
+    "klaipeda_1v1":       {"size": "1v1", "base": "Klaipeda",          "ranked": true},
+    "chernyakhovsky_1v1": {"size": "1v1", "base": "Chernyakhovsky",    "ranked": true},
+    "dead_center_2v2":    {"size": "2v2", "base": "Dead Center",       "ranked": true},
+    "chkalovsk_2v2":      {"size": "2v2", "base": "Chkalovsk Airbase", "ranked": true},
+    "highway_2v2":        {"size": "2v2", "base": "Highway of Death",  "ranked": true},
+    "baltiisk_3v3":       {"size": "3v3", "base": "Baltiisk",          "ranked": true},
+    "bay_of_winds_3v3":   {"size": "3v3", "base": "Bay of Winds",      "ranked": true},
+    "dam_3v3":            {"size": "3v3", "base": "Dam",               "ranked": true},
+    "airport_4v4":        {"size": "4v4", "base": "Airport",           "ranked": true},
+    "oil_rush_4v4":       {"size": "4v4", "base": "Oil Rush",          "ranked": true},
+    "cold_harbor_4v4":    {"size": "4v4", "base": "Cold Harbor",       "ranked": true}
+  }
+}

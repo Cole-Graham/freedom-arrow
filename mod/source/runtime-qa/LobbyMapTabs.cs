@@ -13,9 +13,13 @@ namespace FreedomArrow;
 // a negative height). The search window (create == false) is not changed.
 // 0.9.0-dev.36 (Osama 17 Nov 2026 13:1x PST, thread 1571014792016171120: "add a section to our map selection that is PVE"): a fifth tab, PvE, for maps
 // tagged "[PvE]" (humans on one team against the map script's AI, with no bot in the lobby).
+// 0.9.6 (Lateralus 23 Nov 2026): a map's size comes from the map list (MapSizes.cs, UserData/FreedomArrow/maps.json), not from its name.
+// The [5v5] maps are now [4v4], and their tab reads "4v4/5v5" ("We will not have separate 4v4 and 5v5 map designs").
 static class LobbyMapTabs
 {
-    static readonly string[] Sizes={"1v1","2v2","3v3","5v5","PvE"};
+    static readonly string[] Sizes={"1v1","2v2","3v3","4v4","PvE"};
+    static string Label(string size)=>size=="4v4"?"4v4/5v5":size;
+    static float Width(string size)=>size=="4v4"?96f:64f;
     static MethodInfo show,button;static FieldInfo win,openToSearch,orange,dim;static MethodInfo showOpen;
     static IList full;static object def,onPick,onCancel;static string mode,tab;static bool again,broken;
     public static void Install(HarmonyLib.Harmony h)
@@ -27,14 +31,12 @@ static class LobbyMapTabs
         if(show==null||button==null||win==null||openToSearch==null||showOpen==null||orange==null||dim==null||show.GetParameters().Length!=6)
         {MelonLogger.Error("FREEDOM_ARROW_LOBBY_TABS: ArrowQueue map window not found; Create a lobby shows every map in one list");return;}
         h.Patch(show,prefix:new HarmonyMethod(typeof(LobbyMapTabs),nameof(Before)),postfix:new HarmonyMethod(typeof(LobbyMapTabs),nameof(After)));
-        MelonLogger.Msg("FREEDOM_ARROW_LOBBY_TABS installed: Create a lobby has 1v1 / 2v2 / 3v3 / 5v5 tabs");
+        MelonLogger.Msg("FREEDOM_ARROW_LOBBY_TABS installed: Create a lobby has 1v1 / 2v2 / 3v3 / 4v4/5v5 / PvE tabs");
     }
     static string SizeOf(object m)
     {
         var name=m?.GetType().GetProperty("Name")?.GetValue(m) as string??"";
-        // 0.9.2-dev.3: short PvE names ("[FA] PvE 3P CN Dam 0.2", Osama 19 Nov 2026: lobby names cut off after about 20 characters).
-        if(name.StartsWith("[FA] PvE "))return "PvE";
-        return Sizes.FirstOrDefault(s=>name.Contains("["+s+"]"));
+        return MapSizes.SizeOf(name) is string s&&Sizes.Contains(s)?s:null;   // a map that is not in the list is in every tab
     }
     static int Count(string size){int n=0;foreach(var m in full)if(SizeOf(m) is var s&&(s==null||s==size))n++;return n;}
     static void Before(object[] __args)
@@ -61,14 +63,16 @@ static class LobbyMapTabs
         try
         {
             if(win.GetValue(null) is not GameObject w||w==null)return;
-            for(int i=0;i<Sizes.Length;i++)
+            float x=-82f;   // right edge of the PvE tab, as before; tabs go right to left with an 8 px gap
+            for(int i=Sizes.Length-1;i>=0;i--)
             {
-                string size=Sizes[i];int n=Count(size);
+                string size=Sizes[i];int n=Count(size);float wdt=Width(size);
                 var color=size==tab?(Color)orange.GetValue(null)!:n>0?(Color)dim.GetValue(null)!:new Color(1f,1f,1f,0.25f);
                 Action click=()=>Switch(size);
                 // Right to left from the close button (x -26, 40 wide): PvE nearest it.
-                button.Invoke(null,new object[]{w.transform,"FaSize"+size,new Vector2(1f,1f),new Vector2(-82f-(Sizes.Length-1-i)*72f,-28f),new Vector2(64f,30f),
-                    size,18f,color,click,Enum.ToObject(button.GetParameters()[9].ParameterType,514)});   // 514 = centre, as ArrowQueue's default
+                button.Invoke(null,new object[]{w.transform,"FaSize"+size,new Vector2(1f,1f),new Vector2(x-(wdt-64f)/2f,-28f),new Vector2(wdt,30f),
+                    Label(size),18f,color,click,Enum.ToObject(button.GetParameters()[9].ParameterType,514)});   // 514 = centre, as ArrowQueue's default
+                x-=wdt+8f;
             }
         }
         catch(Exception x){broken=true;MelonLogger.Error("FREEDOM_ARROW_LOBBY_TABS_FAILED: tabs not drawn. "+x.Message);}

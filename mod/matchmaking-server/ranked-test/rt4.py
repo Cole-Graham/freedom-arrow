@@ -1,3 +1,4 @@
+# Before 0.9.6 (3v3/5v5 team queue). The 0.9.6 2v2/3v3/4v4 queue is tested in rt14.py.
 # Queue separation (Lateralus 22 Nov): 1v1 is its own solo queue; the team queue only makes 3v3 or 5v5.
 import sys,os,time,json,urllib.request;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from rt_client import C,stats

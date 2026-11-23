@@ -1,8 +1,8 @@
 // Freedom Arrow ranked (Lateralus 22 Nov 2026; docs/ranked/RANKED-PROPOSAL.md, docs/simple-elo.md).
 // Two queues through the normal FindMatch call (Lateralus 22 Nov: "1v1 should be a completely different queue"):
 //   r1v1  = solo players only, 1v1 matches, ladder "1v1";
-//   rteam = solos and parties, 3v3 or 5v5 matches (never 1v1), ladder "team". A party of 4-5 gets only 5v5.
-// The match format (1v1 / 3v3 / 5v5) is chosen when the match forms.
+//   rteam = solos and parties of up to 4, 2v2, 3v3 or 4v4 matches (never 1v1), ladder "team" (0.9.6, Lateralus 23 Nov 2026; was 3v3/5v5).
+// The match format (1v1 / 2v2 / 3v3 / 4v4) is chosen when the match forms. The map pools come from the map list maps.json (see LoadMaps).
 // The queue matches whole parties, creates a closed lobby with fixed teams and sends MatchFound, so the ArrowQueue client
 // runs its normal host/join flow. Results come from the clients' end-of-match stats posts (who = sha256("arrow-stats|"+steamId)).
 // A match is rated only when both sides report the same winner, or when every player of the silent side is a deserter.
@@ -66,12 +66,22 @@ static class Ranked
     public const double Start = 1000, K = 40, Div = 400, Floor = 600, BonusTarget = 1700, DeadZone = 200;
     // 20 ranks: 1-18 by Elo band, 19 = places 2-3 and 20 = place 1 among players at 2170+ (RANKED-PROPOSAL.md, section 1)
     static readonly int[] BandStart = { 0, 1001, 1028, 1059, 1093, 1132, 1175, 1223, 1277, 1337, 1405, 1481, 1566, 1661, 1767, 1887, 2020, 2170 };
+    // Largest first: Tick tries them in this order, so 8 searching players make one 4v4, not a 3v3 plus 2 waiting.
+    // These pools are the fallback for a hub without maps.json; LoadMaps replaces them from the list.
     public static readonly Dictionary<string, (int size, string ladder, string[] pool)> Formats = new()
     {
-        ["5v5"] = (5, "team", new[] { "Airport", "Oil Rush", "Cold Harbor" }),
+        ["4v4"] = (4, "team", new[] { "Airport", "Oil Rush", "Cold Harbor" }),
         ["3v3"] = (3, "team", new[] { "Baltiisk", "Bay of Winds", "Dam" }),
+        ["2v2"] = (2, "team", new[] { "Dead Center", "Chkalovsk Airbase", "Highway of Death" }),
         ["1v1"] = (1, "1v1", new[] { "Dead Center", "Kadaga", "Jelgava", "Klaipeda", "Chernyakhovsky" }),
     };
+    // Lateralus 23 Nov 2026: map size from data, not the [NvN] tag ("its super important the game can clearly keep track of which version
+    // belongs to which game size"). maps.json is the file the build ships as UserData/FreedomArrow/maps.json (copy it to the ranked dir or
+    // set FAQUEUE_MAPS when the hub is deployed). Exact scenario name -> (size, base) for every multiplayer map, ranked or not.
+    static readonly Dictionary<string, (string size, string bas)> MapList = new(StringComparer.Ordinal);
+    // Team formats smaller than the largest wait this long for more players (Lateralus 23 Nov 2026: "the 20 s gather time is ok").
+    public const double GatherSec = 20;
+    const int MaxTeam = 4;
     public static readonly string[] Queues = { "r1v1", "rteam" };
     // Test hub only (FAQUEUE_RANKED_ALL=1): the unchanged client's 1v1 search joins r1v1, and 2v2-5v5 searches join rteam.
     public static bool AllRanked;
@@ -97,8 +107,31 @@ static class Ranked
     public static bool IsRanked(string? mode) => mode is "r1v1" or "rteam";
     public static string? QueueFor(string mode) => IsRanked(mode) ? mode : !AllRanked ? null : mode == "1v1" ? "r1v1" : mode is "2v2" or "3v3" or "4v4" or "5v5" ? "rteam" : null;
     static string LadderOf(string queue) => queue == "r1v1" ? "1v1" : "team";
-    // Formats an entry can play: 1v1 queue -> 1v1; team queue -> 5v5 or 3v3, and only 5v5 for a party of 4-5.
-    static bool Fits(RankedEntry e, int size) => e.Mode == "r1v1" ? size == 1 : size == 5 || (size == 3 && e.Members.Count <= 3);
+    // Formats an entry can play: 1v1 queue -> 1v1; team queue -> 2v2, 3v3 or 4v4 with room for the whole party (a party of 4 plays 4v4 only).
+    static bool Fits(RankedEntry e, int size) => e.Mode == "r1v1" ? size == 1 : size > 1 && e.Members.Count <= size;
+    public static void LoadMaps(string path)
+    {
+        try
+        {
+            if (!File.Exists(path)) { _log?.LogWarning("ranked maps: {p} not found; built-in pools, map size from the name tag", path); return; }
+            var rows = JsonNode.Parse(File.ReadAllText(path))!["maps"]!.AsArray();
+            var pools = new Dictionary<string, List<string>>();
+            foreach (var r in rows)
+            {
+                if (r!["skirmish"]!.GetValue<bool>()) continue;
+                string name = r["name"]!.GetValue<string>(), size = r["size"]!.GetValue<string>(), bas = r["base"]!.GetValue<string>();
+                MapList[name] = (size, bas);
+                if (r["ranked"]!.GetValue<bool>()) (pools.TryGetValue(size, out var l) ? l : pools[size] = new()).Add(bas);
+            }
+            foreach (var f in Formats.Keys.ToArray())
+                if (pools.TryGetValue(f, out var p) && p.Count > 0) Formats[f] = (Formats[f].size, Formats[f].ladder, p.ToArray());
+                else _log?.LogWarning("ranked maps: no {f} map in {p}; built-in pool kept", f, path);
+            _log?.LogInformation("ranked maps: {n} maps from {p}; pools {pools}", MapList.Count, path, string.Join("; ", Formats.Select(f => f.Key + ": " + string.Join(", ", f.Value.pool))));
+        }
+        catch (Exception e) { MapList.Clear(); _log?.LogError("ranked maps: {p} unreadable ({e}); built-in pools", path, e.Message); }
+    }
+    // The exact multiplayer scenario of a format and base map from maps.json, or null (the client then matches by name).
+    static string? ScenarioFor(string format, string bas) => MapList.FirstOrDefault(x => x.Value.size == format && x.Value.bas.Equals(bas, StringComparison.OrdinalIgnoreCase)).Key;
 
     public static void Init(IHubContext<GameHub> ctx, ILogger log, string dir)
     {
@@ -112,6 +145,7 @@ static class Ranked
             if (File.Exists(f)) foreach (var r in JsonSerializer.Deserialize<List<RankedRating>>(File.ReadAllText(f)) ?? new()) Ladders[lad][r.SteamId] = r;
         }
         _log.LogInformation("ranked season {s} ({n}): {a} 1v1 and {b} team ratings loaded from {d}", Season, SeasonName, Ladders["1v1"].Count, Ladders["team"].Count, dir);
+        LoadMaps(Environment.GetEnvironmentVariable("FAQUEUE_MAPS") is { Length: > 0 } mp ? mp : Path.Combine(dir, "maps.json"));
         _timer = new Timer(_ => Tick(), null, 1000, 1000);
     }
     static string RatingsFile(string ladder) => Path.Combine(_dir, $"season-{Season}-{ladder}.json");
@@ -161,8 +195,8 @@ static class Ranked
         Party? pt = p.PartyId != null && Store.Parties.TryGetValue(p.PartyId, out var x) ? x : null;
         if (pt != null && pt.Leader != p.SteamId) return "not_leader";
         var ids = pt?.Members.ToList() ?? new List<string> { p.SteamId };
-        // 1v1 is solo only; a team party is at most 5.
-        if (ids.Count > (mode == "r1v1" ? 1 : 5)) return "party_too_big";
+        // 1v1 is solo only; a team party is at most 4 (the largest team format, 4v4).
+        if (ids.Count > (mode == "r1v1" ? 1 : MaxTeam)) return "party_too_big";
         foreach (var id in ids)
         {
             if (!Store.BySteam.TryGetValue(id, out var q)) return "member_offline";
@@ -193,7 +227,7 @@ static class Ranked
     {
         var t = e.WaitSec;
         if (t >= 180) return double.MaxValue;                     // any rating after 3 minutes
-        var b = size == 5 ? 150 : 100;
+        var b = size == 4 ? 150 : 100;
         return b * (1 + t / 60);
     }
 
@@ -203,7 +237,7 @@ static class Ranked
         {
             lock (Store.Lock)
             {
-                foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 5v5 first, so a full 10 is not split into 3v3 + 4 waiting
+                foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 4v4 first, so a full 8 is not split into 3v3 + 2 waiting
                 ResolveTimeouts();
                 Phases();
                 if (_dirty || _metDirty) Save();
@@ -219,6 +253,7 @@ static class Ranked
         var (size, ladder, pool) = Formats[format];
         foreach (var anchor in Queue.Where(e => Fits(e, size)).OrderBy(e => e.Since).ToList())
         {
+            if (size > 1 && size < MaxTeam && anchor.WaitSec < GatherSec) continue;   // give a bigger team game the first 20 s
             var w = Window(anchor, size);
             var cand = Queue.Where(e => Fits(e, size) && e.Build == anchor.Build && e != anchor && Math.Abs(e.Rating - anchor.Rating) <= Math.Max(w, Window(e, size)))
                 .OrderBy(e => e.Since).Take(11).Prepend(anchor).ToList();
@@ -285,7 +320,7 @@ static class Ranked
         }
         l.State = "full";
         foreach (var id in m.Teams.SelectMany(t => t))
-            Send(Store.BySteam[id], "MatchFound", new { lobbyId = l.Id, mode, format, ranked = true, scenario = map, team = m.Teams[0].Contains(id) ? 0 : 1, host = host.SteamId });
+            Send(Store.BySteam[id], "MatchFound", new { lobbyId = l.Id, mode, format, ranked = true, scenario = map, scenarioName = ScenarioFor(format, map), team = m.Teams[0].Contains(id) ? 0 : 1, host = host.SteamId });
         Append("match", new { id = m.Id, mode, format, ladder, map, teams = m.Teams, ratingA = a.Average(e => e.Rating), ratingB = b.Average(e => e.Rating) });
         _log?.LogInformation("ranked match {id} {format} on {map}: {a} vs {b}", m.Id, format, map, string.Join(",", m.Teams[0].Select(Name)), string.Join(",", m.Teams[1].Select(Name)));
     }
@@ -296,11 +331,17 @@ static class Ranked
     {
         if (!Matches.TryGetValue(l.Id, out var m) || m.State != "lobby") return;
         m.State = "battle"; m.Started = DateTime.UtcNow;
-        if (!m.Map.Equals(MapName(l.Scenario), StringComparison.OrdinalIgnoreCase) && !Formats[m.Format].pool.Contains(MapName(l.Scenario), StringComparer.OrdinalIgnoreCase))
+        // 0.9.6: a map in maps.json must be of the match's size and in its pool; any other map keeps the name rule below.
+        if (MapList.TryGetValue(l.Scenario ?? "", out var listed))
+        {
+            if (listed.size != m.Format) { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_wrong_size", scenario = l.Scenario, format = m.Format, size = listed.size }); }
+            else if (!Formats[m.Format].pool.Contains(listed.bas, StringComparer.OrdinalIgnoreCase)) { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_not_in_pool", scenario = l.Scenario }); }
+        }
+        else if (!m.Map.Equals(MapName(l.Scenario), StringComparison.OrdinalIgnoreCase) && !Formats[m.Format].pool.Contains(MapName(l.Scenario), StringComparer.OrdinalIgnoreCase))
         { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_not_in_pool", scenario = l.Scenario }); }
         // Lateralus 22 Nov 2026 20:1x: Dead Center is installed as [1v1] and [2v2]; MapName drops the size tag, so a 1v1 on the 2v2 map was rated.
         // A map whose size tag is not the match format is unrated (maps without a tag keep the old rule).
-        else if (SizeTag(l.Scenario) is string tag && !tag.Equals(m.Format, StringComparison.OrdinalIgnoreCase))
+        else if (SizeTag(l.Scenario) is string tag && !(tag == "5v5" ? "4v4" : tag).Equals(m.Format, StringComparison.OrdinalIgnoreCase))   // 0.9.5b clients still have [5v5] maps
         { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_wrong_size", scenario = l.Scenario, format = m.Format }); }
         Append("started", new { id = m.Id, scenario = l.Scenario });
     }
@@ -556,7 +597,7 @@ static class Ranked
     public static object? MatchOf(string steamId)
     {
         var m = Matches.Values.FirstOrDefault(x => x.State is "lobby" or "battle" && x.Teams.Any(t => t.Contains(steamId)));
-        return m == null ? null : new { id = m.Id, lobbyId = m.LobbyId, mode = m.Mode, format = m.Format, ladder = m.Ladder, map = m.Map, state = m.State, team = m.Teams[0].Contains(steamId) ? 0 : 1,
+        return m == null ? null : new { id = m.Id, lobbyId = m.LobbyId, mode = m.Mode, format = m.Format, ladder = m.Ladder, map = m.Map, scenarioName = ScenarioFor(m.Format, m.Map), state = m.State, team = m.Teams[0].Contains(steamId) ? 0 : 1,
             phase = m.Phase, phaseLeftMs = Math.Max(0, (int)(m.PhaseUntil - DateTime.UtcNow).TotalMilliseconds), host = Store.Lobbies.TryGetValue(m.LobbyId, out var l) ? l.HostId : "" };
     }
     public static object GroupDecks(Player p)

@@ -148,6 +148,21 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 4. **Website:** leaderboard page on freedomarrow.app (it reads the same R2 file). About half a day.
 5. **Closed test:** team members only, ratings reset before public launch.
 
+## 0.9.6: team queue 2v2 / 3v3 / 4v4 and map sizes from data (Lateralus, 23 November 2026)
+
+**Summary:** the team queue makes 2v2, 3v3 or 4v4 (no more 5v5); the [5v5] maps are now [4v4]; every map's size and ranked pool comes from one list, `maps/maps.json`, not from the [NvN] tag in its name. This supersedes the 3v3 / 5v5 lines above. Queued for 0.9.6; tested on a local hub only.
+
+---
+
+- **Why a list:** every FA map file has 5 slots per team and no size field (read from the dev.35 package), so the file itself cannot say which size a map is. Lateralus: "its super important the game can clearly keep track of which version belongs to which game size (e.g. we could eventually have a size for every map, e.g. Dam 1v1, Dam 2v2, Dam 3v3, and Dam 4v4)".
+- **One home:** `maps/maps.json` has one entry per map folder (size, base name, ranked). `make_scenario.py` fails the build if a map is missing from it, a name tag or base does not match it, or a ranked size has no map, and writes the shipped `UserData/FreedomArrow/maps.json` (exact names, GUIDs, size, ranked) from it. A new size version of a map is a new folder and a new entry.
+- **Readers:** lobby slots (`LobbySlotDefaults`), Create a lobby tabs (`LobbyMapTabs`, tab "4v4/5v5"), the oversized-team warning (`PartySizeWarning`), the ranked host's map pick and the pool text (`RankedMenu`, `RankedPage`, through `MapSizes.cs`), and the hub (`Ranked.LoadMaps`: pools, `scenarioName` in MatchFound/GetRanked, the size check at start).
+- **Queue:** one team queue; the hub tries 4v4, then 3v3, then 2v2, and a 2v2 or 3v3 forms only after the longest-waiting entry has searched 20 s (`GatherSec`). Groups of up to 4; a group fits a format with room for it (4 → 4v4 only, 3 → 3v3 or 4v4). Rating window ±100 (2v2, 3v3) and ±150 (4v4), widening, any rating after 180 s. One shared team ladder.
+- **Pools (Lateralus: "the three pools are right"):** 2v2 Dead Center, Chkalovsk Airbase, Highway of Death; 3v3 Baltiisk, Bay of Winds, Dam; 4v4 Airport, Oil Rush, Cold Harbor; 1v1 unchanged.
+- **[4v4] maps:** same layout, script and zone values ("Yes the renamed 4v4 maps should keep their current zone values"); mod lobbies open 5 slots per team ("the default number of slots open should be 10 for these maps"); the [5v5] 0.2 names are retired by GUID in `Runtime.cs`.
+- **Tests (local hub, 23 Nov):** `ranked-test/rt14.py` all pass: 8 solos → 4v4 at once; 4 solos → nothing at 5 s, 2v2 after the gather; 6 solos → 3v3; 2v2 on the [4v4] Airport map → unrated `map_wrong_size`; 3v3 on its own map → rated; party of 5 refused; party of 4 + 4 solos → 4v4. rt10, rt12 and rt13 still pass.
+- **Release day:** copy the release's `UserData/FreedomArrow/maps.json` to the live hub's `ranked/maps.json` (or set `FAQUEUE_MAPS`) and restart the hub with the 0.9.6 build. Without the file the hub keeps its built-in pools and the name rule. Players on 0.9.5b only meet each other (same-build matching); their [5v5] maps count as 4v4.
+
 ## Decisions (Lateralus, 22 November 2026)
 
 - Modes at launch: 1v1, 3v3 and 5v5.
@@ -193,3 +208,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 15:3x PST (America/Los_Angeles) — Lateralus test 22 Nov: leave cooldowns (5 min / 1 h / 24 h, daily reset), end-screen Elo per player; lobby: enemy flag hidden, Launch/Ready automatic.
 - 2026-11-22 15:5x PST (America/Los_Angeles) — Lateralus: draw rule (half a win, per player, zero-sum shift); default deck selected on joining the lobby.
 - 2026-11-22 16:2x PST (America/Los_Angeles) — Lateralus: ranked system and Play menu queued for the next patch (merged into codex/development); release checklist added.
+- 2026-11-23 12:5x PST (America/Los_Angeles) — 0.9.6 team queue 2v2/3v3/4v4, [5v5] → [4v4], map sizes from maps/maps.json (Lateralus); rt14 tests.

@@ -1,10 +1,12 @@
-"""[FA] [5v5] Cold Harbor: Lateralus's Tallinn Harbour layout (13 November 2026), with FA conquest and a camera per team.
+"""[FA] [4v4] Cold Harbor: Lateralus's Tallinn Harbour layout (13 November 2026), with FA conquest and a camera per team.
 His spawn facings are kept.
 0.2 (Lateralus 14 Nov 2026): Charlie removed; Delta larger and moved. The other zone values are unchanged."""
+# Lateralus 23 Nov 2026 (0.9.6): [5v5] -> [4v4] (ranked team queue 2v2/3v3/4v4; mod lobbies still open 5 slots per team).
+# Same layout, script and zone values; the new name is a new map ID, so the [5v5] 0.2 names are retired in Runtime.cs.
 import uuid
 import common as C
-NAME='[FA] [5v5] Cold Harbor 0.2'
-SKIRMISH_NAME='[FA] [5v5] Cold Harbor Skirmish 0.2'
+NAME='[FA] [4v4] Cold Harbor 0.2'
+SKIRMISH_NAME='[FA] [4v4] Cold Harbor Skirmish 0.2'
 # Lateralus 2026-11-13; 0.2 removes Charlie (2026-11-14).
 VALUES=dict(Alpha=3,Bravo=3,Delta=2,Echo=3,Foxtrot=3,Golf=3,Hotel=3,India=2,Juliett=2)
 LETTERS={n:(n,v) for n,v in VALUES.items()}

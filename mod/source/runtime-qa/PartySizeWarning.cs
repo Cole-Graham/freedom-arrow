@@ -13,7 +13,6 @@ namespace FreedomArrow;
 // again if the map changes or the party grows. Other players' lobbies and maps without an [NvN] tag are not affected.
 static class PartySizeWarning
 {
-    static readonly (string Tag,int Size)[] Sizes={("[1v1]",1),("[2v2]",2),("[3v3]",3),("[5v5]",5)};
     static bool inMenu;
     static string active,dismissed,map;
     static int mapSize,party;
@@ -58,7 +57,8 @@ static class PartySizeWarning
             var st=lobby?.State;
             if(lobby==null||lobby.LobbyId==0||st?.Teams==null){active=null;return;}
             map=st.ScenarioMeta?.Name??"";mapSize=0;
-            foreach(var (tag,n) in Sizes)if(map.StartsWith("[FA]")&&map.Contains(tag))mapSize=n;
+            // 0.9.6: size from the map list (MapSizes.cs); a [4v4] map is made for up to 5 per team.
+            if(MapSizes.SizeOf(map) is string size&&MapSizes.PlayersPerTeam(size) is int per&&per>0)mapSize=per;
             if(mapSize==0){active=null;return;}
             party=0;
             foreach(var side in new[]{TeamSide.Alpha,TeamSide.Bravo})

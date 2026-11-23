@@ -13,18 +13,18 @@ namespace FreedomArrow;
 // them again. Map changes inside the lobby are left alone.
 static class LobbySlotDefaults
 {
-    static readonly (string Tag,int Open)[] Sizes={("[1v1]",1),("[2v2]",2),("[3v3]",3),("[5v5]",5)};
     static int open=-1,doneLobby;static float since;static string map;
     public static void Install(HarmonyLib.Harmony h)
     {
         var m=AccessTools.Method(typeof(NetworkLobbyService),nameof(NetworkLobbyService.CreateLobby))??throw new MissingMethodException("NetworkLobbyService.CreateLobby");
         h.Patch(m,postfix:new HarmonyMethod(typeof(LobbySlotDefaults),nameof(Created)));
-        MelonLogger.Msg("FREEDOM_ARROW_LOBBY_SLOTS installed: a new [FA] lobby opens 1/2/3/5 slots per team for 1v1/2v2/3v3/5v5");
+        MelonLogger.Msg("FREEDOM_ARROW_LOBBY_SLOTS installed: a new FA lobby opens 1/2/3/5 slots per team for 1v1/2v2/3v3/4v4 maps (maps.json)");
     }
     static void Created(ScenarioSource initScenario)
     {
         map=initScenario?.Name??"";open=-1;
-        foreach(var (tag,n) in Sizes)if(map.StartsWith("[FA]")&&map.Contains(tag))open=n;
+        // 0.9.6 (Lateralus 23 Nov 2026): the size comes from the map list (MapSizes.cs), not the [NvN] tag; [4v4] maps open 5 per team.
+        if(MapSizes.SizeOf(map) is string size)open=MapSizes.PlayersPerTeam(size);
         since=Time.unscaledTime;
         if(open>0)DiagnosticLog.Write("lobby_slots_pending",new{map,open});
     }

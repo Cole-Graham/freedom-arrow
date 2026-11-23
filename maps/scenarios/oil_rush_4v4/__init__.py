@@ -1,11 +1,13 @@
-"""[FA] [5v5] Oil Rush: Lateralus's Oil refinery layout (12 November 2026), with FA conquest and a camera for each team.
+"""[FA] [4v4] Oil Rush: Lateralus's Oil refinery layout (12 November 2026), with FA conquest and a camera for each team.
 His spawn facings are kept. The export had seven HMMWVs owned by Alpha Player 1 parked on Bravo's spawn points (an editor
 test); the build removes all placed units, so neither side starts with units.
 0.2 (Lateralus 14 Nov 2026): zone values only. Echo 3 -> 4, Foxtrot 3 -> 4, Hotel 2 -> 3."""
+# Lateralus 23 Nov 2026 (0.9.6): [5v5] -> [4v4] (ranked team queue 2v2/3v3/4v4; mod lobbies still open 5 slots per team).
+# Same layout, script and zone values; the new name is a new map ID, so the [5v5] 0.2 names are retired in Runtime.cs.
 import uuid
 import common as C
-NAME='[FA] [5v5] Oil Rush 0.2'
-SKIRMISH_NAME='[FA] [5v5] Oil Rush Skirmish 0.2'
+NAME='[FA] [4v4] Oil Rush 0.2'
+SKIRMISH_NAME='[FA] [4v4] Oil Rush Skirmish 0.2'
 # Lateralus 2026-11-12; 0.2 values 2026-11-14.
 VALUES=dict(Alpha=2,Bravo=3,Charlie=3,Delta=2,Echo=4,Foxtrot=4,Golf=2,Hotel=3,India=2,Juliett=3,Kilo=3)
 LETTERS={n:(n,v) for n,v in VALUES.items()}

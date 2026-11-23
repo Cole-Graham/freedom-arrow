@@ -14,7 +14,7 @@ test) has bots as in every FA Skirmish flavor; offline, LocalSkirmish may swap t
 import copy, json, shutil, tempfile, uuid
 from pathlib import Path
 import common as C
-import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, baltiisk_3v3, jelgava_1v1, dead_center_2v2, airport_5v5
+import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, baltiisk_3v3, jelgava_1v1, dead_center_2v2, airport_4v4
 
 # (players, base module, online base name, title, enemy specializations). Osama 13:2x PST: "I want to make sure as many specs are played in these
 # scenarios. Dead center should be SF rocket". Every China specialization fights on at least one map. The base's zone weights are copied to the
@@ -29,7 +29,7 @@ BASES=[(1,dead_center_1v1,dead_center_1v1.NAME,'Dead Center vs China','PLAN Spec
        (3,baltiisk_3v3,baltiisk_3v3.NAME,'Baltiisk vs USA','Airborne infantry + Special Operations Forces'),
        (1,jelgava_1v1,jelgava_1v1.NAME,'Jelgava vs Russia','VDV Brigade'),
        (2,dead_center_2v2,dead_center_2v2.NAME,'Dead Center vs Russia','Motorized Infantry + Mechanized Infantry'),
-       (3,airport_5v5,airport_5v5.NAME,'Airport vs Russia','Guard Tank Brigade + Coastal Troops')]
+       (3,airport_4v4,airport_4v4.NAME,'Airport vs Russia','Guard Tank Brigade + Coastal Troops')]
 # Osama 19 Nov 2026 23:0x: "the scenario name ... gets cut off after about 20 characters": player count and enemy first, then the map.
 # "[FA]" is kept (ThirdPartyGuard lists only [FA] maps); the lobby's PvE tab matches "[FA] PvE " (LobbyMapTabs.cs).
 FACTION_CODE={'China':'CN','USA':'US','Russia':'RU'}

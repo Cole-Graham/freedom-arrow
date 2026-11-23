@@ -12,7 +12,7 @@ namespace FreedomArrow;
 // design docs/ranked/RANKED-PROPOSAL.md, mock-ups docs/ranked/mock-*.jpg).
 // - Play tab: a 5th card "Ranked" (UserData/FreedomArrow/ranked/card.png) right of the game's own cards, placed from PlayTab._buttonsContainer.
 // - Ranked menu (IMGUI, full screen, the game's UI input is off while it is open): tabs Ranked / Leaderboard / Rank ladder.
-//   Ranked: two queues (Lateralus 22 Nov: "1v1 should be a completely different queue"): 1v1 (solo) and Team (3v3 or 5v5, solo or party);
+//   Ranked: two queues (Lateralus 22 Nov: "1v1 should be a completely different queue"): 1v1 (solo) and Team (2v2, 3v3 or 4v4 from 0.9.6, solo or party);
 //   your rank in the selected ladder, recent results, the epaulet set picker and the rank ladder strip.
 // - Searches go through ArrowQueue (unchanged): Flow.Begin(compat, now, null, "r1v1"|"rteam"). The hub picks the map; for the host,
 //   Flow.PickMap is answered with the hub's map from GetRanked (ArrowQueue normally lets the host choose).
@@ -34,8 +34,8 @@ static partial class RankedMenu
         "Mladshij lejtenant","Lejtenant","Kapitan","Major","Podpolkovnik","Polkovnik","General-major","General-lejtenant","General-polkovnik","General armii","Marshal","Marshal"};
     static readonly string[] SetNames={"US Army","US Marines","Russian Army","Russian VDV","PLA"};
     static readonly string[] SetPrefix={"Epaulet_USA_base_","Epaulet_USA_","Epaulet_RUS_base_","Epaulet_RUS_",""};
-    static readonly Dictionary<string,string> Pools=new(){["r1v1"]="Dead Center · Kadaga · Jelgava · Klaipeda · Chernyakhovsky",
-        ["rteam"]="3v3: Baltiisk · Bay of Winds · Dam\n5v5: Airport · Oil Rush · Cold Harbor"};
+    // 0.9.6 (Lateralus 23 Nov 2026): the ranked pools come from the map list (MapSizes.cs), the same list the hub uses; team = 2v2 / 3v3 / 4v4.
+    static string Pool(string queue)=>string.Join("\n",(queue=="r1v1"?new[]{"1v1"}:new[]{"2v2","3v3","4v4"}).Select(f=>(queue=="r1v1"?"":f+": ")+string.Join(" · ",MapSizes.RankedBases(f))));
 
     static string dir="",settingsFile="";
     static Texture2D card,patch;
@@ -109,7 +109,7 @@ static partial class RankedMenu
         }
         catch{}
     }
-    static string rankedMap="",rankedLobby="",rankedFmt="";static float pickWaitFrom=-1f,lastAsk;
+    static string rankedMap="",rankedLobby="",rankedFmt="",rankedScenario="";static float pickWaitFrom=-1f,lastAsk;
     // Host of a ranked match: load the hub's map. Ranked lobbies have mode r1v1/rteam (the hub sends the queue as the lobby mode).
     static bool PickMap(object v,float now,ref bool __result)
     {
@@ -121,6 +121,16 @@ static partial class RankedMenu
             if(pickWaitFrom<0f)pickWaitFrom=now;
             if(rankedLobby==lobby&&rankedMap.Length>0)
             {
+                // 0.9.6 (Lateralus 23 Nov 2026): the exact map of the match's size from the map list (the hub sends it as scenarioName);
+                // the name match below stays for a hub or map list without it.
+                var exact=rankedScenario.Length>0?rankedScenario:MapSizes.Ranked(rankedFmt,rankedMap)?.Name;
+                if(exact!=null)foreach(var s in (IEnumerable)mSupported.Invoke(null,null))
+                {
+                    if(Traverse.Create(s).Property("Name").GetValue<string>()!=exact)continue;
+                    mPicked.Invoke(null,new[]{lobby,s});pickWaitFrom=-1f;__result=true;
+                    MelonLogger.Msg($"FREEDOM_ARROW_RANKED host map {exact} (hub pick {rankedMap} {rankedFmt}, map list, lobby {lobby})");
+                    return false;
+                }
                 // Lateralus 22 Nov 2026 20:1x ("queue it"): Dead Center is installed as [FA] [1v1] and [FA] [2v2]; the highest name won, so a 1v1
                 // match loaded the 2v2 map. A map with the match's size tag ([1v1] / [3v3] / [5v5]) now comes first; the newest version wins within that.
                 object best=null;string bestName="";bool bestTag=false;var tag="["+rankedFmt+"]";
@@ -178,7 +188,7 @@ static partial class RankedMenu
         Call("GetRanked",j=>
         {
             meJson=j;askedAt=DateTime.UtcNow;
-            try{var m=JsonDocument.Parse(j).RootElement.GetProperty("match");if(m.ValueKind==JsonValueKind.Object){rankedLobby=m.GetProperty("lobbyId").GetString();rankedMap=m.GetProperty("map").GetString();rankedFmt=m.TryGetProperty("format",out var f)?f.GetString()??"":"";}}catch{}
+            try{var m=JsonDocument.Parse(j).RootElement.GetProperty("match");if(m.ValueKind==JsonValueKind.Object){rankedLobby=m.GetProperty("lobbyId").GetString();rankedMap=m.GetProperty("map").GetString();rankedFmt=m.TryGetProperty("format",out var f)?f.GetString()??"":"";rankedScenario=m.TryGetProperty("scenarioName",out var sn)?sn.GetString()??"":"";}}catch{}
         });
     }
     static void AskBoards(){Call("GetRankedLeaderboard",j=>board1=j,"1v1");Call("GetRankedLeaderboard",j=>boardT=j,"team");}
@@ -549,9 +559,9 @@ static partial class RankedMenu
         bool active=false;
         try{active=pActive.GetValue(null) is true;}catch{}
         if(Choice(58,156,230,42,"1v1",queue=="r1v1")&&!active)queue="r1v1";
-        if(Choice(298,156,230,42,"Team · 3v3 / 5v5",queue=="rteam")&&!active)queue="rteam";
-        Row(212,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or party · 3v3 or 5v5 · team ladder");
-        T(58,250,90,48,"Map pool",15,Dim);T(150,250,378,48,Pools[queue],14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);Fill(R(58,298,470,1),Line);
+        if(Choice(298,156,230,42,"Team · 2v2 / 3v3 / 4v4",queue=="rteam")&&!active)queue="rteam";
+        Row(212,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or party · 2v2, 3v3 or 4v4 · team ladder");
+        T(58,250,90,48,"Map pool",15,Dim);T(150,250,378,48,Pool(queue),14,Color.white,FontStyle.Normal,TextAnchor.MiddleRight);Fill(R(58,298,470,1),Line);
         Row(300,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
         Row(338,36,"Map","picked by the server");
         int party=1;string leader="";
@@ -661,7 +671,7 @@ static partial class RankedMenu
         }
         else
         {
-            H(58,520,300,"GROUP"+(members.Length>=4?" · plays 5v5":""));
+            H(58,520,300,"GROUP"+(members.Length>=4?" · plays 4v4":""));
             if(members.Length>1)
             {
                 var lr=R(408,522,120,26);bool hl=lr.Contains(Event.current.mousePosition);
@@ -764,7 +774,7 @@ static partial class RankedMenu
         if(Choice(206,100,140,38,"Team",boardLadder=="team",16)){boardLadder="team";selRow=-1;boardTop=0;}
         var json=boardLadder=="1v1"?board1:boardT;
         var mine=Mine(me,have,boardLadder);int s=Set;
-        T(58,146,300,26,$"Updated every 30 s · {(boardLadder=="1v1"?"1v1":"Team (3v3 + 5v5)")}",14,Color.white);
+        T(58,146,300,26,$"Updated every 30 s · {(boardLadder=="1v1"?"1v1":"Team (2v2 + 3v3 + 4v4)")}",14,Color.white);
         DrawEp(R(360,148,14,22),s,mine.level);
         T(378,146,130,26,mine.place>0?$"YOUR RANK · {Ord(mine.place)}":"YOUR RANK · —",13,Green,FontStyle.Bold,TextAnchor.MiddleRight);
         Fill(R(528,110,1,680),new Color(1,1,1,0.12f));

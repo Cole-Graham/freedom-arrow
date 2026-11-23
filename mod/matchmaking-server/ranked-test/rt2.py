@@ -1,3 +1,4 @@
+# Before 0.9.6 (3v3/5v5 team queue). The 0.9.6 2v2/3v3/4v4 queue is tested in rt14.py.
 import sys,time,json;import os;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from rt_client import C,stats
 B='http://127.0.0.1:8652/hubs/test/hubs'

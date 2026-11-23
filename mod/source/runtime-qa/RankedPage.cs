@@ -188,8 +188,7 @@ static partial class RankedMenu
     static string[] PoolFor(JsonElement me,bool have,string f)
     {
         try{if(have&&me.TryGetProperty("pools",out var p)&&p.TryGetProperty(f,out var a))return a.EnumerateArray().Select(x=>x.GetString()??"").ToArray();}catch{}
-        var q=f=="1v1"?Pools["r1v1"]:Pools["rteam"].Split('\n').FirstOrDefault(l=>l.StartsWith(f))?.Substring(5)??"";
-        return q.Split('·',StringSplitOptions.TrimEntries|StringSplitOptions.RemoveEmptyEntries);
+        return MapSizes.RankedBases(f).ToArray();   // 0.9.6: the map list (MapSizes.cs) when the hub sends no pools
     }
     // group members' deck state from the hub (GetRanked.groupDecks); me from my own deck
     static List<(string id,bool ok,string name)> GroupDeckState(JsonElement me,bool have)
@@ -218,7 +217,7 @@ static partial class RankedMenu
     }
     static int CooldownSec(JsonElement me,bool have){try{if(have&&me.TryGetProperty("extra",out var x))return Math.Max(0,x.GetProperty("cooldownSec").GetInt32()-(int)(DateTime.UtcNow-askedAt).TotalSeconds);}catch{}return 0;}
     // Search status under FIND MATCH (Lateralus 22 Nov: "show various messages each time the matchmaker is widening the gap"). The hub
-    // sends the seconds waited and the rating gap it allows now per format (GetRanked.search; widens from +-100, +-150 for 5v5, every
+    // sends the seconds waited and the rating gap it allows now per format (GetRanked.search; widens from +-100, +-150 for 4v4, every
     // second, any rating after 3 minutes). The wording changes at each 30 s step so a widening is visible.
     static readonly string[] Widening={"Expanding search","Widening the rating range","Looking further afield","Expanding search further","Widening the range again"};
     static string SearchStatus(JsonElement me,bool have)
@@ -334,9 +333,9 @@ static partial class RankedMenu
         bool active=false;try{active=pActive.GetValue(null) is true;}catch{}
         Head(0,86,470,"FIND A RANKED MATCH");
         Choice(0,126,230,42,"1v1",queue=="r1v1",18,()=>{if(!(pActive.GetValue(null) is true))queue="r1v1";});
-        Choice(240,126,230,42,"Team · 3v3 / 5v5",queue=="rteam",18,()=>{if(!(pActive.GetValue(null) is true))queue="rteam";});
+        Choice(240,126,230,42,"Team · 2v2 / 3v3 / 4v4",queue=="rteam",18,()=>{if(!(pActive.GetValue(null) is true))queue="rteam";});
         void Row(float y,float h,string l,string v){Txt(0,y,150,h,l,16,dim);Txt(142,y,328,h,v,15,Color.white,false,TextAlignmentOptions.MidlineRight,true);HLine(0,y+h,470);}
-        Row(182,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or group · 3v3 or 5v5 · team ladder");
+        Row(182,36,"Queue",queue=="r1v1"?"Solo only · 1v1 ladder":"Solo or group · 2v2, 3v3 or 4v4 · team ladder");
         Row(220,36,"Rules","FA "+Runtime.DiagnosticPackageVersion+" · conquest 300");
         // default deck (Lateralus 22 Nov): needed before searching; used when no deck is picked in the lobby's 60 s
         var dd=DefaultDeck();
@@ -416,7 +415,7 @@ static partial class RankedMenu
         // map pool (Lateralus 22 Nov: up to 12 maps per size, so up to 24 for Team): 3 columns x 4 rows per size, names from the hub
         Head(1032,86,460,"MAP POOL");
         float py=120;
-        foreach(var f in queue=="r1v1"?new[]{"1v1"}:new[]{"3v3","5v5"})
+        foreach(var f in queue=="r1v1"?new[]{"1v1"}:new[]{"2v2","3v3","4v4"})
         {
             var maps=PoolFor(me,have,f);
             if(queue!="r1v1"){Txt(1032,py,455,20,f,14,Green,true);py+=20;}
@@ -473,7 +472,7 @@ static partial class RankedMenu
         }
         else
         {
-            Head(0,440,300,"GROUP"+(members.Length>=4?" · plays 5v5":""));
+            Head(0,440,300,"GROUP"+(members.Length>=4?" · plays 4v4":""));
             if(members.Length>1){Txt(350,440,120,30,lead?"DISBAND":"LEAVE",13,new Color(0.75f,0.75f,0.75f),true,TextAlignmentOptions.MidlineRight);Click(350,440,120,30,()=>mLeave.Invoke(null,null));}
         }
         for(int k=0;k<5;k++)
@@ -572,7 +571,7 @@ static partial class RankedMenu
         Choice(0,76,140,38,"1v1",boardLadder=="1v1",17,()=>{boardLadder="1v1";selRow=-1;boardTop=0;});
         Choice(148,76,140,38,"Team",boardLadder=="team",17,()=>{boardLadder="team";selRow=-1;boardTop=0;});
         var json=boardLadder=="1v1"?board1:boardT;var mine=Mine(me,have,boardLadder);int s=Set;
-        Txt(0,120,300,26,$"Updated every 30 s · {(boardLadder=="1v1"?"1v1":"Team (3v3 + 5v5)")}",15,Color.white);
+        Txt(0,120,300,26,$"Updated every 30 s · {(boardLadder=="1v1"?"1v1":"Team (2v2 + 3v3 + 4v4)")}",15,Color.white);
         EpImg(302,122,14,22,s,mine.level);
         Txt(320,120,130,26,mine.place>0?$"YOUR RANK · {Ord(mine.place)}":"YOUR RANK · —",14,Green,true,TextAlignmentOptions.MidlineRight);
         Img(470,86,1,680,new Color(1,1,1,0.12f));
