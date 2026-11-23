@@ -36,3 +36,6 @@ F-35B ROKN blue-grey (work/xq58-skin-1123/skin.py) and material set like the F-3
 (work/lrhw-20261123/fix_mats.py): V-Ray bump maps that had been read as normal maps on the wheels and red glass dropped; paint/rubber/plastic
 non-metallic, smoothness 0.1-0.4 (seller 0.8-0.92 with metal 0.2-0.7); PBR sheets capped at smoothness 0.45; dirty wheel texture on all wheels;
 dust/grime pass on the painted maps. Assets 0.2.71. The install moves the 4 stale m_lrhw_*_n.fat out of the game folder (kept in backup/).
+
+0.9.6-dev.96 (build 314, Osama 23 Nov 10:5x "upscale it with AI"): X-47B colour map Real-ESRGAN x4plus, 4096 armory / 1024 battle (work/x47b-up-1123).
+Built on 0.9.5 (--prev 0.9.5, base local-095r302) because out/0.8 now holds the 0.9.5 receipt; receipt copied to out/receipts for package.py. Assets 0.2.73.

@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.95",
+  "version": "0.9.6-dev.96",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.95 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.94 plus LRHW materials: no more bump maps read as normal maps on the wheels and red glass, non-metallic duller paint/rubber/plastic (no shiny tyres or haze), dirty wheels and a dust pass on the paint. Needs Freedom Arrow — Models and Music 0.2.71.",
+  "description": "Freedom Arrow 0.9.6-dev.96 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.95 plus the X-47B colour map AI-upscaled (Real-ESRGAN x4plus) to 4096 armory / 1024 battle. Needs Freedom Arrow — Models and Music 0.2.73.",
   "repo": "Cole-Graham/freedom-arrow"
 }
