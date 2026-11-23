@@ -19,10 +19,12 @@ def apply(t,g,ok,rec):
     aps=g.add('OptionsJson',O[31099],{'Name':'PLA ZTZ-99A GL-6 APS (ZTZ-99B)','UIName':'GL-6 APS','Order':2,'Cost':70,'Ability2Id':82,'OptionPicture':pic,'IsDefault':False,'ReplaceUnitName':'ZTZ-99B'})
     g.put('OptionsJson',31100,{'Order':3})
     # Osama 23 Nov 2026 11:4x (thread 1573561286803980289): "LSDW + GL-6 APS +120 loadout (which should be +150)".
-    both=g.add('OptionsJson',O[31100],{'Name':'PLA ZTZ-99A LSDW + GL-6 APS (ZTZ-99B)','UIName':'LSDW + GL-6 APS','Order':4,'Cost':150,'Ability2Id':82,'IsDefault':False,'ReplaceUnitName':'ZTZ-99B'})
+    # 11:5x: "you need to make that change for the +150 loadout": its loadout picture is the standard APS one (as GL-6 APS), not the LSDW picture.
+    both=g.add('OptionsJson',O[31100],{'Name':'PLA ZTZ-99A LSDW + GL-6 APS (ZTZ-99B)','UIName':'LSDW + GL-6 APS','Order':4,'Cost':150,'Ability2Id':82,'OptionPicture':pic,'IsDefault':False,'ReplaceUnitName':'ZTZ-99B'})
     ua={r['AbilityId']:r for r in UA.values() if r and r.get('UnitId')==904}
     ok(80 in ua and 2019386 in ua and 82 not in ua,('ZTZ-99A ability links',sorted(ua)))
     g.add('UnitAbilitiesJson',ua[80],{'AbilityId':82})
+    ok(O[both]['OptionPicture']==O[aps]['OptionPicture']==pic and O[31100]['OptionPicture']=='FA_PLA_WP_LSDW_DAZZLER','APS picture on both 99B loadouts, LSDW picture on LSDW')
     ok(O[both]['Turret0Id']==2019389 and O[aps]['Turret0Id']==2009072 and O[both]['Ability1Id']==O[aps]['Ability1Id']==2000197,'turrets and smoke kept')
     # Osama 22 Nov 02:1x: "When the ZTZ-99A equips the GL-6 APS loadout or the LSDW+GL-6 APS upgrade, it should be called ZTZ-99B". Native rename,
     # as the vanilla options that swap the unit name (Stryker Dragoon 15 'M1296 Dragoon', Paladin 305 'M1299 IronThunder'): ReplaceUnitName only (ConcatenateWithUnitName is a text suffix, left empty).
