@@ -134,7 +134,7 @@ internal sealed class LauncherForm : Form
         var cardLabel = new Label { Text = T("MODPACK"), AutoSize = true, Location = new Point(119, 12), Font = Theme.Head(9.5f, semi: true), ForeColor = Theme.Accent, BackColor = Theme.Panel };
         _packPicture = new PictureBox { SizeMode = PictureBoxSizeMode.Zoom, Size = new Size(86, 86), Location = new Point(18, 15), BackColor = Theme.Panel };
         _packName = new Label { AutoSize = false, Location = new Point(118, 30), Size = new Size(370, 30), Font = Theme.Head(19f), ForeColor = Theme.Text, AutoEllipsis = true, BackColor = Theme.Panel };
-        _packVersion = new Label { AutoSize = false, Location = new Point(119, 61), Size = new Size(370, 20), ForeColor = Theme.TextMuted, AutoEllipsis = true, BackColor = Theme.Panel };
+        _packVersion = new Label { AutoSize = false, Location = new Point(119, 61), Size = new Size(370, 20), ForeColor = Theme.TextMuted, AutoEllipsis = true, BackColor = Theme.Panel, UseMnemonic = false };   // "Models & music": no & shortcut
         _modsState = new Label { AutoSize = false, Location = new Point(119, 81), Size = new Size(370, 20), ForeColor = Theme.TextMuted, BackColor = Theme.Panel };
         // Only shown before a modder has set the modpack up
         _setUp = Theme.MakeButton(T("Set up modpack (for modders)…"));
