@@ -636,6 +636,8 @@ import sf_recon_armor_1123;sf_recon_armor_1123.apply(t,g,ok,rec)
 # ---------- ZBD-04 for the PLARF Rocket Conscript Force: ZBD-04A copy with BMP-3 base armour, transport for the 12 PLARF infantry cards
 # (Osama 23 Nov 2026 15:1x PST, thread "blue dragons"). See zbd04_rf_1123.py.
 import zbd04_rf_1123;zbd04_rf_1123.apply(t,g,ok,rec)
+# ---------- PLA ZTZ-98 (Osama 23 Nov 2026 15:0x: Shawn's model, "we'll give it to the rocket force"): ZTZ-99 copy in spec 19. See ztz98_1123.py.
+import ztz98_1123;ztz98_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
