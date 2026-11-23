@@ -615,6 +615,8 @@ import pl15c_to_pl15_1123;pl15c_to_pl15_1123.apply(t,g,ok,rec)
 import j8_health_1123;j8_health_1123.apply(t,g,ok,rec)
 # ---------- MD-22: no stray 2x PL-12 in the gun slot; empty default mount + bay slots 3-4 empty on every loadout (Osama 23 Nov 2026 13:0x PST, thread 1567745029781454889). See md22_slots_1123.py.
 import md22_slots_1123;md22_slots_1123.apply(t,g,ok,rec)
+# ---------- J-10A card renamed J-10B (Osama 23 Nov 2026 14:2x PST, thread 1567745029781454889). See j10b_name_1123.py.
+import j10b_name_1123;j10b_name_1123.apply(t,g,ok,rec)
 # ---------- 0.9.6 model rework data, merged into main development (Osama 23 Nov 2026 13:1x: "I need you to give me the dev build with models");
 # from branch codex/batch/osama/model-rework-096: France (Testing Preview) spec 24 (france_preview.py), US LRHW Dark Eagle (lrhw_1123.py),
 # KF-21 Block 1 and US XQ-58A Valkyrie (c5_cards_1123.py). Their models come from work/model-rework-096/stage (asset args).
