@@ -1342,7 +1342,7 @@ The following material is retained as historical context from the Build5 source.
 
 **0.2 development:** [build instructions, included changes and held work](archive/releases/0.2/README.md). The dev.38 data candidate is built offline; recon and card splits remain incomplete, and in-game acceptance is pending. Its release build uses `archive/releases/0.2/build.py`, not the generic channel package command. Lateralus's optics/stealth/noise cleanup is preserved.
 
-**Prepared 0.1 candidate:** [download, scope and source](archive/releases/0.1/README.md) · [Linux deployment](docs/archive/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
+**Prepared 0.1 candidate:** [download, scope and source](archive/releases/0.1/README.md) · [Linux deployment](docs/releases/0.1-linux.md). This review branch keeps detection, stealth and concealment vanilla; revised live acceptance and multiplayer remain unverified.
 
 Tools and data for a Broken Arrow gameplay mod. Gameplay changes live in JSON constants. A MelonLoader plugin inside the `.bamod` applies those constants when the game loads. Players install and launch the mod with [BAModManager](thirdparty-tools/BAModManager-main/README.md): the Mod Manager for development, and BAModLauncher for release.
 
