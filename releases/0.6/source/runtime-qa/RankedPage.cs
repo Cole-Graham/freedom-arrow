@@ -217,6 +217,27 @@ static partial class RankedMenu
         return true;   // unknown yet: no warning
     }
     static int CooldownSec(JsonElement me,bool have){try{if(have&&me.TryGetProperty("extra",out var x))return Math.Max(0,x.GetProperty("cooldownSec").GetInt32()-(int)(DateTime.UtcNow-askedAt).TotalSeconds);}catch{}return 0;}
+    // Search status under FIND MATCH (Lateralus 22 Nov: "show various messages each time the matchmaker is widening the gap"). The hub
+    // sends the seconds waited and the rating gap it allows now per format (GetRanked.search; widens from +-100, +-150 for 5v5, every
+    // second, any rating after 3 minutes). The wording changes at each 30 s step so a widening is visible.
+    static readonly string[] Widening={"Expanding search","Widening the rating range","Looking further afield","Expanding search further","Widening the range again"};
+    static string SearchStatus(JsonElement me,bool have)
+    {
+        try
+        {
+            if(!have||!me.TryGetProperty("search",out var s)||s.ValueKind!=JsonValueKind.Object)return null;
+            int w=s.GetProperty("waitSec").GetInt32()+(int)(DateTime.UtcNow-askedAt).TotalSeconds,any=s.GetProperty("anyAfterSec").GetInt32();
+            if(w>=any)return "Searching all ratings: the next players who search will be matched with you";
+            var parts=new List<string>();
+            foreach(var g in s.GetProperty("gaps").EnumerateObject())
+                parts.Add((g.Value.ValueKind==JsonValueKind.Number?"+/-"+g.Value.GetInt32():"any rating")+(queue=="rteam"?" ("+g.Name+")":""));
+            var range=string.Join(" · ",parts);
+            if(w<20)return "Looking for players near your rating: "+range;
+            var step=Math.Min(Widening.Length-1,(w-20)/30);
+            return $"{Widening[step]}... now {range} · all ratings in {(any-w)/60}:{(any-w)%60:00}";
+        }
+        catch{return null;}
+    }
     static bool pickingDeck;static int deckTop;
     // Default deck list with the lobby's deck preview on hover (Lateralus 22 Nov: "similar to how it works in the lobbies, where a preview
     // of the deck pops up when you mouse over each deck in the dropdown"). The lobby's TeamPanelPlayerInfo does this with the game's
@@ -361,7 +382,9 @@ static partial class RankedMenu
         }
         int searching=0;try{if(have)searching=me.GetProperty("searching").GetProperty(queue).GetInt32();}catch{}
         Txt(0,382,470,24,$"{searching} {(searching==1?"player":"players")} searching {(queue=="r1v1"?"1v1":"team games")}",14,dim,false,TextAlignmentOptions.Center);
+        // a fresh note (invite sent, refusal) takes the line for its few seconds; otherwise the search status (two lines at most, above GROUP at 440)
         if(now<noteUntil)Txt(0,406,470,30,note,14,new Color(1f,0.75f,0.3f),false,TextAlignmentOptions.Center,true);
+        else if(active){var st=SearchStatus(me,have);if(st!=null)Txt(0,404,470,34,st,13,new Color(1f,0.82f,0.45f),true,TextAlignmentOptions.Top,true);}
         if(queue=="rteam")GroupBody();
 
         // your rank

@@ -530,6 +530,15 @@ static class Ranked
                 best = Math.Round(r.Best, 1), last = string.Concat(r.Recent.Take(10).Select(x => x.Win ? 'W' : 'L')) }).ToArray(),
         };
     }
+    // The player's own search, for the ranked page's status line (Lateralus 22 Nov: show when the matchmaker widens the rating gap):
+    // seconds waited and, per format the search can still make, the allowed rating gap now (null = any rating, after 3 minutes).
+    public static object? SearchInfo(string steamId)
+    {
+        var e = Queue.FirstOrDefault(x => x.Members.Contains(steamId));
+        if (e == null) return null;
+        var gaps = Formats.Where(f => Fits(e, f.Value.size)).ToDictionary(f => f.Key, f => { var w = Window(e, f.Value.size); return w == double.MaxValue ? (int?)null : (int)Math.Round(w); });
+        return new { waitSec = (int)e.WaitSec, anyAfterSec = 180, gaps };
+    }
     public static object QueueInfo() => Queues.ToDictionary(k => k, k => Queue.Where(e => e.Mode == k).Sum(e => e.Members.Count));
     // The player's open ranked match (for the FA client: the host loads this map), or null.
     public static object? MatchOf(string steamId)

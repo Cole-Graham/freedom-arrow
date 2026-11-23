@@ -264,7 +264,7 @@ sealed class GameHub : Hub
     public object? SetRankedDeck(bool ok, string name) { lock (Store.Lock) { var p = Me(); p.RankedDeckOk = ok; p.RankedDeck = Clip(name ?? "", 64); Ranked.Decks[p.SteamId] = (ok, p.RankedDeck); } return null; }
     public object GetRanked() { lock (Store.Lock) { var p = Me(); return new { season = Ranked.Season, me = Ranked.Me(p.SteamId), searching = Ranked.QueueInfo(), inQueue = Ranked.Queue.Any(e => e.Members.Contains(p.SteamId)), match = Ranked.MatchOf(p.SteamId),
         pools = Ranked.Formats.ToDictionary(f => f.Key, f => f.Value.pool), recentPlayers = Ranked.RecentPlayers(p.SteamId),
-        groupDecks = Ranked.GroupDecks(p), extra = Ranked.Extra(p.SteamId) }; } }
+        groupDecks = Ranked.GroupDecks(p), extra = Ranked.Extra(p.SteamId), search = Ranked.SearchInfo(p.SteamId) }; } }
     public object GetRankedLeaderboard(string ladder) { lock (Store.Lock) return ladder is "1v1" or "team" ? Ranked.Board(ladder) : throw new HubException("bad_ladder"); }
 
     public object GetOnlinePlayers() { lock (Store.Lock) return Store.BySteam.Values.Select(p => p.Online()).ToArray(); }
