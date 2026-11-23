@@ -606,7 +606,7 @@ import akf98_kd88_names_1123;akf98_kd88_names_1123.apply(t,g,ok,rec)
 import zbd251_gun_1123;zbd251_gun_1123.apply(t,g,ok,rec)
 # ---------- F-35A and F-35C: 1x MAKO per weapon bay, exactly like the F-22 (Osama 23 Nov 2026 00:1x PST, thread 1567745029781454889). See mako_f35_1123.py.
 import mako_f35_1123;mako_f35_1123.apply(t,g,ok,rec)
-# ---------- PLARF planes renamed as drones: "J-x Drone 歼-x无人机", J-8D stays manned (Osama 23 Nov 2026 00:2x/00:5x PST, thread 1567745029781454889). See rocket_drones_1123.py.
+# ---------- PLARF planes renamed as drones: "J-x Drone 歼-x无人机", J-8D stays manned, J-7 -> J-7IIH (Osama 23 Nov 2026 00:2x-01:0x PST, thread 1567745029781454889). See rocket_drones_1123.py.
 import rocket_drones_1123;rocket_drones_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
