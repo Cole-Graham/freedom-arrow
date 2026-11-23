@@ -600,6 +600,8 @@ rec.pop('_native_icons')
 # ---------- Helicopter flares 10 -> 15 on Z-10K Recon, Z-10 Recon and Mi-8 Cargo (Lateralus 22 Nov 2026 19:4x PST, thread 1568104480459722894):
 # their links move to the matching 15-flare rows; guard: every helicopter with flares has 15. See heli_flares_1122.py.
 import heli_flares_1122;heli_flares_1122.apply(t,g,ok,rec)
+# ---------- AKF-98A <-> KD-88 names swapped (Osama 23 Nov 2026; QQ FA-002/032). See akf98_kd88_names_1123.py.
+import akf98_kd88_names_1123;akf98_kd88_names_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
