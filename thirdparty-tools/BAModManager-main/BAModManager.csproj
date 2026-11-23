@@ -46,6 +46,10 @@
     <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
     <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
     <Version>1.1.16</Version>
+    <!-- 1.1.16 (Lateralus/SteelPlate 22 Nov 2026, Windows 1440p at 150 %): per-monitor DPI changes after the window opened left the
+         stat tiles at 100 %, reset the patch-notes formatting and skipped the fit to the screen. System-aware: the layout is scaled once
+         at start-up for the sign-in DPI; Windows stretches the window if the scale is changed later or it is moved to another screen. -->
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
