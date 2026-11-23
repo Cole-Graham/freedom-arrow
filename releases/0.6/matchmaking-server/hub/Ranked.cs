@@ -298,11 +298,21 @@ static class Ranked
         m.State = "battle"; m.Started = DateTime.UtcNow;
         if (!m.Map.Equals(MapName(l.Scenario), StringComparison.OrdinalIgnoreCase) && !Formats[m.Format].pool.Contains(MapName(l.Scenario), StringComparer.OrdinalIgnoreCase))
         { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_not_in_pool", scenario = l.Scenario }); }
+        // Lateralus 22 Nov 2026 20:1x: Dead Center is installed as [1v1] and [2v2]; MapName drops the size tag, so a 1v1 on the 2v2 map was rated.
+        // A map whose size tag is not the match format is unrated (maps without a tag keep the old rule).
+        else if (SizeTag(l.Scenario) is string tag && !tag.Equals(m.Format, StringComparison.OrdinalIgnoreCase))
+        { m.State = "unrated"; Append("unrated", new { id = m.Id, reason = "map_wrong_size", scenario = l.Scenario, format = m.Format }); }
         Append("started", new { id = m.Id, scenario = l.Scenario });
     }
     public static void OnLobbyClosed(Lobby l)
     {
         if (Matches.TryGetValue(l.Id, out var m) && m.State == "lobby") { m.State = "cancelled"; Append("cancelled", new { id = m.Id }); Matches.Remove(m.Id); }
+    }
+    // "[FA] [2v2] Dead Center 0.2" -> "2v2"; null when the name has no size tag
+    public static string? SizeTag(string? scen)
+    {
+        var x = System.Text.RegularExpressions.Regex.Match(scen ?? "", @"\[(\dv\d)\]");
+        return x.Success ? x.Groups[1].Value : null;
     }
     // "[FA] [1v1] Dead Center 0.2" -> "Dead Center"
     public static string MapName(string? scen)
