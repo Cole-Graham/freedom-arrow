@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'releases/0.6';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.6-dev.91';PREV='0.9.3'
+V='0.9.6-dev.92';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/local-093r242/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -607,6 +607,9 @@ import france_preview;france_preview.apply(t,g,ok,rec)
 # ---------- US LRHW Dark Eagle (Osama 23 Nov 2026 01:2x PST: "I added the US LRHW, can we add it to the US? It's basically a double DF-17"):
 # DF-17 copy for the US with 2 missiles, Armored Brigade. See lrhw_1123.py.
 import lrhw_1123;lrhw_1123.apply(t,g,ok,rec)
+# ---------- KF-21 Block 1 and XQ-58A Valkyrie cards for the C5 models (Osama 23 Nov 2026: "don't replace the current KF-21 by the way, the other one is
+# the Block 1 for now"; "we're adding the XQ-58 as a FH-97A clone same price just replace the munitions with US equivalents"). See c5_cards_1123.py.
+import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

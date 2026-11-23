@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.91",
+  "version": "0.9.6-dev.92",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.91 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.90 plus the US LRHW Dark Eagle (Stryker Cavalry, 350, 1 card, 2x CHGB, DF-17 copy) with its own model. 0.9.6-dev.90 = 0.9.5 gameplay plus the 0.9.6 model rework (ZBD-03 rebuild, Type 19 / 99A LODs, Blue Dragon LOD re-cuts, battle textures capped at 15 MB) and the France (Testing Preview) spec. Needs Freedom Arrow — Models and Music 0.2.67.",
+  "description": "Freedom Arrow 0.9.6-dev.92 (model rework TEST build for Osama, not released; branch codex/batch/osama/model-rework-096): 0.9.6-dev.91 plus the C5 models: X-47B model replacement, new KF-21 Block 1 card (copy of KF-21 Boramae, C5 model, 3 liveries) and new US XQ-58A Valkyrie card (USMC; FH-97A copy, same price 185, US munitions AMRAAM / AIM-260 JATM / GBU-55 / GBU-56). 0.9.6-dev.91 = 0.9.6-dev.90 plus the US LRHW Dark Eagle. 0.9.6-dev.90 = 0.9.5 gameplay plus the 0.9.6 model rework (ZBD-03 rebuild, Type 19 / 99A LODs, Blue Dragon LOD re-cuts, battle textures capped at 15 MB) and the France (Testing Preview) spec. Needs Freedom Arrow — Models and Music 0.2.68.",
   "repo": "Cole-Graham/freedom-arrow"
 }

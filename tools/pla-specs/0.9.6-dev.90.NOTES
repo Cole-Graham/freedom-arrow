@@ -13,3 +13,13 @@ Models = Assets 0.2.66, staged by work/model-rework-096/stage.py over work/model
 0.9.6-dev.91 (build 304): dev.90 + US LRHW Dark Eagle (Osama 23 Nov 01:2x-01:4x): DF-17 copy, 2x CHGB, 350, 1 card, Stryker Cavalry, DF-21 card art
 (lrhw_1123.py). Model from the seller's 'Military Missile Hauler with Hypersonic TEL' (work/lrhw-20261123): armory 453k, battle 50.4k, LOD1 28.5k,
 LOD2 20.5k. Assets 0.2.67. 4354 data checks, 232106 package checks.
+
+0.9.6-dev.92 (build 305): dev.91 + the C5 models (Osama 23 Nov 02:4x "X-47 is already in the game it's just a model replacement"; 04:2x "just add them
+to the model build" / "the KF-21 and XQ-58"). c5_cards_1123.py:
+- X-47B: model only (C5 353177, m_xb47_*: 12.8k tris, LODs 5.3k/4.5k); card unchanged.
+- KF-21 Block 1 (unit 1314): full copy of KF-21 Boramae 1290 (160, 2 cards, Blue Dragon, all 21 options); C5 KF-21 model m_kf21c5 (14.5k, LODs
+  8.7k/5.1k, F-35A glass donor) with BlueTiger/Prototype/YellowTiger baked onto its UVs. KF-21 Boramae keeps m_kf21.
+- US XQ-58A Valkyrie (unit 1315): FH-97A 1253 copy for the US, USMC spec 3, 185, 2 cards, same 7 option prices; own US pylons; launchers are copies
+  of US launchers with the FH-97A magazine sizes; rounds AMRAAM (for PL-12, PL-15C), AIM-260 JATM (PL-15, PL-16), GBU-55 (LS-6 500kg, LT-2),
+  GBU-56 (LS-6 1000kg). X-47B card art. Model C5 351580 m_xq58_* (LODs 3.7k/3.0k).
+Assets 0.2.68. 4384 data checks, 234365 package checks.
