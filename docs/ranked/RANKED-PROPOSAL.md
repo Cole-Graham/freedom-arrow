@@ -174,6 +174,13 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - If not everyone has joined the game lobby within 90 s, the match is cancelled with no rating change.
 - 1v1 works the same with one player per side.
 
+## Release checklist (queued for the next patch, Lateralus 22 Nov 2026)
+
+1. `RankedMenu.TestHub` (runtime-qa/RankedMenu.cs) is `true` in dev builds: it points ArrowQueue at the ranked TEST hub (freedomarrow.app/hubs/test). Set it to `false` in the release build, or players search on the test hub.
+2. Deploy the ranked hub to the live FAQueue (`sh ba-dev/faqueue/deploy-ranked.sh`, staged in `app-next`). A restart drops connected players for a few seconds; it needs Osama or Lateralus's OK at release time.
+3. The quick test mode (1 min deployment, 3 min match) is only in packages made with `work/ranked-20261122/quick.py`; normal builds are not changed.
+4. Play menu art: `UserData/FreedomArrow/ranked/menu/*.png` must be in the gameplay package (the packager copies `UserData/FreedomArrow`; check it at the first build).
+
 ## Document change log
 
 - 2026-11-22 07:56 PST (America/Los_Angeles) — Proposal written for Lateralus: rank ladder (5 sets, 18 Elo bands + top 3), rating rules, hosting on FAQueue with measured load, client UI, mock-ups, work plan.
@@ -185,3 +192,4 @@ US Army and US Marines use the same vanilla names (`ui_rankname_lvlN_eng_base`);
 - 2026-11-22 14:0x PST (America/Los_Angeles) — Lateralus: option C per-player split for team games built (test hub).
 - 2026-11-22 15:3x PST (America/Los_Angeles) — Lateralus test 22 Nov: leave cooldowns (5 min / 1 h / 24 h, daily reset), end-screen Elo per player; lobby: enemy flag hidden, Launch/Ready automatic.
 - 2026-11-22 15:5x PST (America/Los_Angeles) — Lateralus: draw rule (half a win, per player, zero-sum shift); default deck selected on joining the lobby.
+- 2026-11-22 16:2x PST (America/Los_Angeles) — Lateralus: ranked system and Play menu queued for the next patch (merged into codex/development); release checklist added.
