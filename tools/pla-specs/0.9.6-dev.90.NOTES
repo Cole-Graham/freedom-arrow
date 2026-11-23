@@ -9,3 +9,7 @@ Models = Assets 0.2.66, staged by work/model-rework-096/stage.py over work/model
   (K2, ZTZ-59D, Type 10/74/16 L2 keep the 0.9.5 LODs). work/model-rework-096/run_lods.sh.
 - Battle-only textures over 15 MB: top mips dropped (no re-encode) until <= 15 MB, min 512 px. Armory models and textures untouched.
 - France: focolate's SCORPION models as installed on Vengeance 22 Nov 22:15 (french-assets-20261122/fix4) + 14 'FR ' models.json entries.
+
+0.9.6-dev.91 (build 304): dev.90 + US LRHW Dark Eagle (Osama 23 Nov 01:2x-01:4x): DF-17 copy, 2x CHGB, 350, 1 card, Stryker Cavalry, DF-21 card art
+(lrhw_1123.py). Model from the seller's 'Military Missile Hauler with Hypersonic TEL' (work/lrhw-20261123): armory 453k, battle 50.4k, LOD1 28.5k,
+LOD2 20.5k. Assets 0.2.67. 4354 data checks, 232106 package checks.
