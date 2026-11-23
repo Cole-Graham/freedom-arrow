@@ -43,6 +43,11 @@ namespace FreedomArrow;
 // the strike (docs/engine/low-altitude-and-air-sight.md, 1b). He kept the 16 Nov momentum arrow, so the rule is: while a plane has
 // PrecisionStrikeComponent no arrow shows, and the start of a strike ends the order. An order given during the strike counts again
 // once the strike is over.
+// Lateralus 22 Nov 2026 19:2x: "It should apply to all cases where a plane is forced to change altitude to fire the weapon". Strafe and
+// bombing runs (AirstrikeCommand) and plane attack orders (AttackCommand) set AirAttackComponent {StartAttackAltitude, ReturnPosition}
+// for the run and remove it at the end (Entity.Set/Remove<AirAttackComponent> callers); they move the plane between bands as well. So
+// the rule covers any attack: PrecisionStrikeComponent or AirAttackComponent. An altitude change still pending when the attack ends
+// (the game flies to it: GetTargetAltitude) counts as an order again.
 static class AltitudeIntent
 {
     const byte PlaneLow=1,HeliLow=1;
@@ -117,13 +122,18 @@ static class AltitudeIntent
                 Log((plane?"plane":"heli")+"_order_"+(orderedLow!=actualLow?(orderedLow?"down":"up"):"none"),new{order,actualLow,pending});
                 Trace("order",new{unit=k,plane,order,orderedLow,actualLow,pending});
             }
-            // A precision strike flies high whatever the hotkey says: its start ends the order, and no arrow shows while it lasts.
-            bool strike=plane&&e.Has<PrecisionStrikeComponent>();
+            // An attack run (precision strike, strafe, bombing, attack order) sets its own altitude whatever the hotkey says: its start ends the
+            // order, and no arrow shows while it lasts.
+            bool strike=plane&&(e.Has<PrecisionStrikeComponent>()||e.Has<AirAttackComponent>());
             if(strike!=t.Strike)
             {
                 t.Strike=strike;
                 if(strike&&t.Ordered){t.Ordered=false;Trace("strike_ends_order",new{unit=k,order,orderedLow,actualLow,pending,level=Level(e)});}
-                else Trace(strike?"strike_start":"strike_end",new{unit=k,order,orderedLow,actualLow,pending,level=Level(e)});
+                else
+                {
+                    if(!strike&&pending)t.Ordered=true;   // a change the game is still flying to after the attack
+                    Trace(strike?"strike_start":"strike_end",new{unit=k,order,orderedLow,actualLow,pending,precision=e.Has<PrecisionStrikeComponent>(),level=Level(e)});
+                }
             }
             sbyte before=t.Intent;
             // Lateralus 16 Nov 2026 (dev.26): a climb cancelled while still low showed the orange icon (ordered low, is low), then momentum
