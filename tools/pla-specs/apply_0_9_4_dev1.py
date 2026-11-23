@@ -593,6 +593,8 @@ import recon_sniper_1122;recon_sniper_1122.apply(t,g,ok,rec)
 import prices_1122;prices_1122.apply(t,g,ok,rec)
 # ---------- HJ-16 ground only (Osama 22 Nov 2026 17:5x PST, thread 1567745029781454889: "They should all be ground only"). See hj16_ground_1122.py.
 import hj16_ground_1122;hj16_ground_1122.apply(t,g,ok,rec)
+# ---------- Vanilla icons on the HQ-9 cards and the HJ-10 NLOS loadout picture (Osama 22 Nov 2026 17:5x PST). See vanilla_icons_1122.py.
+import vanilla_icons_1122;vanilla_icons_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
