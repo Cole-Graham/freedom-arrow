@@ -18,7 +18,7 @@ public static class LauncherNews
 
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(15) };
 
-    public sealed record Stats(int? Online, int? Peak24, int? Players, int? Matches);
+    public sealed record Stats(int? Online, int? PeakAllTime, int? Players, int? Matches);
     public sealed record Note(string Version, string Date, string English, string Chinese, string Link);
     public sealed record Feature(string Title, string TitleZh, string Text, string TextZh, string Image);
     public sealed record News(Stats Stats, IReadOnlyList<Note> Notes, IReadOnlyList<Feature> Features);
@@ -81,7 +81,7 @@ public static class LauncherNews
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
             var st = root.TryGetProperty("stats", out var x) && x.ValueKind == JsonValueKind.Object ? x : default;
-            var stats = new Stats(Int(st, "online"), Int(st, "peak24"), Int(st, "players"), Int(st, "matches"));
+            var stats = new Stats(Int(st, "online"), Int(st, "record"), Int(st, "players"), Int(st, "matches"));   // Osama 23 Nov 2026: "peak should be peak all time"
             var notes = new List<Note>();
             if (root.TryGetProperty("notes", out var arr) && arr.ValueKind == JsonValueKind.Array)
                 foreach (var e in arr.EnumerateArray().Take(5))

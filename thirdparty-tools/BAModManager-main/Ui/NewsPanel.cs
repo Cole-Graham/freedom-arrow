@@ -265,7 +265,7 @@ internal sealed class NewsPanel : Panel
             var items = new (string Label, int? Value, string Sub)[]
             {
                 (T("ONLINE NOW"), _s?.Online, T("in the mod lobby")),
-                (T("PEAK, 24 H"), _s?.Peak24, T("players in game")),
+                (T("PEAK, ALL TIME"), _s?.PeakAllTime, T("players in game")),
                 (T("PLAYERS"), _s?.Players, T("all time")),
                 (T("MATCHES"), _s?.Matches, T("all time")),
             };
