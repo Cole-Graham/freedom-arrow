@@ -644,6 +644,9 @@ import sf_laser_rangers_1123;sf_laser_rangers_1123.apply(t,g,ok,rec)
 # ---------- Blue Dragon K9 Thunder (K9 Kõu stats on the non-DLC M109A6 body) and K21 KNIFV (M2A3 copy) cards for Shawn's 23 Nov models
 # (Osama 23 Nov 2026 15:3x PST, thread "blue dragons"). See blue_dragon_k9_k21_1123.py.
 import blue_dragon_k9_k21_1123;blue_dragon_k9_k21_1123.apply(t,g,ok,rec)
+# ---------- Thermobaric Assault (1209): QBS-09 2 -> 3, QBZ-191 7 -> 6, armour 6 -> 8, price 60 -> 70 (Lateralus 23 Nov 2026 15:3x PST,
+# thread 1568104480459722894). See thermobaric_assault_1123.py.
+import thermobaric_assault_1123;thermobaric_assault_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')

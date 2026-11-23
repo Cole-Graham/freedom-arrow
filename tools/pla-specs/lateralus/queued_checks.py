@@ -231,6 +231,9 @@ if m>=key('0.9.5-dev.34'):
     for _tab,_fn,_pf,_key in (('SquadMembersJson.json','squad_members.json','death_priority_proposal.json','apply_as_squad_members_overrides'),
                               ('SquadWeaponsJson.json','squad_weapons.json','weapon_order_proposal.json','apply_as_squad_weapons_overrides')):
         _t=merged(_tab,_fn);_want=json.loads((_io/_pf).read_text())[_key]
+        # Later, deliberate squad changes over the 22 Nov list (Lateralus 23 Nov 2026): Thermobaric Breachers rifleman 2015093 removed
+        # (thermobaric_breachers_1123.py); Thermobaric Assault rifleman 2015624 now a QBS-09 shotgunner, priority 2 (thermobaric_assault_1123.py).
+        if _tab=='SquadMembersJson.json':_want={**{i:f for i,f in _want.items() if i!='2015093'},'2015624':{'DeathPriority':2}}
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
