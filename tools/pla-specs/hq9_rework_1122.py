@@ -51,7 +51,9 @@ def apply(t, g, ok, rec):
     o4 = g.add('OptionsJson', mo['Custom_Option_4xMissiles'], {'ModificationId': mod, 'Name': 'PLA HQ-9 4x HQ-9B', 'UIName': '4x HQ-9B', 'Order': 0, 'Cost': 0,
                                                                 'Turret0Id': TUR, 'OptionPicture': W[WPN]['HUDIcon']})
     o8 = g.add('OptionsJson', mo['Custom_Option_8xMissiles'], {'ModificationId': mod, 'Name': NAME_8X, 'UIName': '8x HQ-9C', 'Order': 1, 'Cost': 0,
-                                                                'Turret0Id': c_t, 'OptionPicture': W[WPN]['HUDIcon']})
+                                                                'Turret0Id': c_t, 'OptionPicture': W[WPN]['HUDIcon'], 'ReplaceUnitName': 'HQ-9C'})
+    # Osama 22 Nov 19:4x (dev.36 live check): "Hq-9C unit should change its name after choosing the load out": the 8x option renames the card
+    # HQ-9C (ReplaceUnitName, as the ZTZ-99A APS loadouts -> ZTZ-99B); the 4x default keeps HQ-9B.
 
     # 1233 -> HQ-9A, semi-active
     a9 = w9a[0]
@@ -100,6 +102,7 @@ def apply(t, g, ok, rec):
        and (A[c_am]['LowAltRange'], A[c_am]['HighAltRange'], A[c_am]['Seeker']) == (1200.0, 1200.0, 50), 'HQ-9C missile = PAC-3 MSE round at 1200')
     ok(W[c_w]['MagazineSize'] == 8 and all(W[c_w][k] == W[WPN][k] for k in W[WPN] if k not in ('Id', 'Name', 'HUDName', 'MagazineSize')), 'HQ-9C launcher = HQ-9 launcher, 8 rounds')
     ok([(r['TurretId'], T[r['TurretId']]['IsDefault']) for r in rows('TurretUnitsJson', UnitId=HQ9)] == [(TUR, True), (c_t, False)], '4x default, 8x turret linked')
+    ok(O[o8].get('ReplaceUnitName') == 'HQ-9C' and not O[o8].get('ConcatenateWithUnitName') and not O[o4].get('ReplaceUnitName'), '8x HQ-9C renames the card HQ-9C, 4x stays HQ-9B')
     ok([(O[o]['Cost'], O[o]['Turret0Id']) for o in (o4, o8)] == [(0, TUR), (0, c_t)] and all(not O[o].get(f'Turret{i}Id') for o in (o4, o8) for i in range(1, 21)), 'weapon slot: 4x / 8x, both +0')
     ok(U[HQ9A_CARD]['HUDName'] == 'HQ-9A' and A[a9['AmmunitionId']]['Seeker'] == 100 and A[a9['AmmunitionId']]['LowAltRange'] == 1175.0, 'HQ-9A card: semi-active')
     rec['hq9_rework_1122'] = {'hq9b_card': HQ9, 'hq9a_card': HQ9A_CARD, 'hq9c_missile': c_am, 'hq9c_launcher': c_w, 'hq9c_turret': c_t, 'options': [o4, o8],
