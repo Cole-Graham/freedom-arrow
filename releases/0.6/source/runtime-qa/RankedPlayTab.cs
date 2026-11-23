@@ -78,22 +78,28 @@ static partial class RankedMenu
         if(le!=null&&le.preferredWidth>0f)return le.preferredWidth;
         return card.GetComponent<RectTransform>().rect.width;
     }
-    // first card's left edge in the parent = ax*W + pos.x + scale*(P - pivot.x*contentWidth), contentWidth = P + padR + 2L + spacing
-    // (ContentSizeFitter); solve for the left padding P that puts the 3-card row (Ranked drawn one pitch right) in the middle.
+    // Osama 22 Nov 2026 20:0x (dev.36 live check, 3840x2160): the row still sat right of centre. Measured in game: Multiplayer at screen
+    // x 1472 (of 3840) with the Content at anchoredPosition.x 72, anchor/pivot 0; changing the HorizontalLayoutGroup padding (0 -> 406 with
+    // the layout formula, or a +/-258 left/right pair) did not move the cards at all. Moving the Content itself does: the row is measured on
+    // the screen (ScreenRect) and the Content shifted by the difference (Content x 72 -> -186 at 4K, then centred). It is measured only when
+    // both cards have the same width (nothing hovered) and their position has held for 0.3 s after the cards have fully faded in (measured in game: during the
+    // opening animation the cards sit elsewhere, x 144 or -372 at 4K, and correcting there made the row jump twice per opening).
+    static float stableX=float.NaN,stableSince;
     static void Centre()
     {
-        var parent=cContent.parent as RectTransform;if(parent==null)return;
-        float l=Math.Min(LayoutWidth(cMp),LayoutWidth(cSk));if(l<20f)return;
-        if(restL<0f||l<restL)restL=l;   // a hovered card grows; keep the rest width
-        float L=restL,W=parent.rect.width,sp=cHlg.spacing,ax=cContent.anchorMin.x,px=cContent.pivot.x,sc=cContent.localScale.x,pos=cContent.anchoredPosition.x;
-        if(Mathf.Abs(cContent.anchorMax.x-ax)>0.001f){if(!loggedFormula){loggedFormula=true;MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB row not centred: stretched anchors {cContent.anchorMin}-{cContent.anchorMax}");}return;}
-        float denom=sc*(1f-px);if(denom<0.01f)return;
-        float target=(W-(3f*L+2f*sp))/2f;
-        float P=(target-ax*W-pos+sc*px*(cHlg.padding.right+2f*L+sp))/denom;
-        int pad=Mathf.Max(0,Mathf.RoundToInt(P));
-        if(pad==cHlg.padding.left)return;
-        cHlg.padding.left=pad;LayoutRebuilder.MarkLayoutForRebuild(cContent);
-        if(!loggedFormula){loggedFormula=true;MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row centred: padding {origPad} -> {pad} (card {L:0}, spacing {sp:0}, parent {W:0}, anchor {ax:0.00}, pivot {px:0.00}, pos {pos:0}, scale {sc:0.00})");}
+        if(!cContent.gameObject.activeInHierarchy||CardAlpha()<0.99f){stableX=float.NaN;return;}   // closed or still fading in (cards move during the opening animation)
+        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();
+        var rm=ScreenRect(mr);var rs=ScreenRect(sr);
+        if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||mr.rect.width<1f){stableX=float.NaN;return;}   // a card is hovered or not laid out
+        float now=Time.unscaledTime;
+        if(float.IsNaN(stableX)||Mathf.Abs(rm.x-stableX)>1f){stableX=rm.x;stableSince=now;return;}
+        if(now-stableSince<0.3f)return;
+        float unitsPerPx=mr.rect.width/rm.width;
+        float rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx;
+        int sh=Mathf.RoundToInt(((Screen.width-rowWpx)/2f-rm.x)*unitsPerPx);
+        if(Mathf.Abs(sh)<=1)return;
+        var ap=cContent.anchoredPosition;cContent.anchoredPosition=new Vector2(ap.x+sh,ap.y);stableX=float.NaN;
+        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row centred on screen: Content x {ap.x:0} -> {ap.x+sh:0} (card {rm.width:0} px at x {rm.x:0}, row {rowWpx:0} px, screen {Screen.width})");
     }
     static void SetArt(Transform card,Sprite s)
     {
