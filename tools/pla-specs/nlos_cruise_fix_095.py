@@ -109,7 +109,12 @@ def apply(t, g, ok, rec):
     mod = g.add('ModificationsJson', M[88], {'UnitId': 936, 'Name': 'PLA loadout HJ-10', 'UIName': 'Custom_Slot_Weapon_package', 'Order': 0})
     CLEAR = {f'Turret{i}Id': 0 for i in range(21) if f'Turret{i}Id' in O[244]}
     o_f = g.add('OptionsJson', O[244], {**CLEAR, 'ModificationId': mod, 'Name': 'PLA loadout HJ-10 FNF', 'UIName': 'HJ-10 FNF', 'Order': 0, 'Cost': 0, 'Turret0Id': ft, 'OptionPicture': 'JAVELIN'})
-    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'FA_PLA_HJ10'})
+    o_n = g.add('OptionsJson', O[245], {'ModificationId': mod, 'Name': 'PLA loadout HJ-10 NLOS', 'UIName': 'HJ-10 NLOS (laser, 2000 m)', 'Order': 1, 'Cost': 20, **{**CLEAR, 'Turret0Id': 2009620}, 'OptionPicture': 'FA_PLA_HJ10',
+                                         'ThumbnailOverride': None, 'PortraitOverride': None})
+    # Osama 22 Nov 23:28 ("how many times do I have to say you fucked up the unit icon on the HJ-10 in its NLOS loadout", "it's correct in the fnf
+    # version"): the NLOS option was copied from vanilla option 245, which carries ThumbnailOverride 'RU_BTRD_KORD-Label', so picking NLOS swapped the
+    # HJ-10's unit icon for the BTR-D Kord one. Cleared like the FNF option (copied from 244, no override): the unit keeps FA_PLA_VEH_HJ10.
+    ok(O[o_n]['ThumbnailOverride'] is None and O[o_n]['PortraitOverride'] is None and O[o_f]['ThumbnailOverride'] is None, 'HJ-10 NLOS option keeps the HJ-10 unit icon')
     # Osama 22 Nov 14:3x: "HJ-10 in NLOS loadout has the wrong unit card": HELLFIRE_X4 is the helicopter 4-Hellfire rack; the NLOS option shows the
     # HJ-10's own launcher picture (FA_PLA_HJ10, the icon its weapon card already uses; FA_PLA_* names work as option pictures, e.g. PL-17).
     ok(A[fnf]['Seeker'] == 50 and A[fnf]['LaserGuided'] is False and A[fnf]['TrajectoryType'] == 110 and A[fnf]['IsTopArmorArmorAttack'] is True
