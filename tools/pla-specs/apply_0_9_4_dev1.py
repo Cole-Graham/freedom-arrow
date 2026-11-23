@@ -608,6 +608,9 @@ import zbd251_gun_1123;zbd251_gun_1123.apply(t,g,ok,rec)
 import mako_f35_1123;mako_f35_1123.apply(t,g,ok,rec)
 # ---------- PLARF planes renamed as drones: "J-x Drone 歼-x无人机", J-8D stays manned, J-7 -> J-7IIH (Osama 23 Nov 2026 00:2x-01:0x PST, thread 1567745029781454889). See rocket_drones_1123.py.
 import rocket_drones_1123;rocket_drones_1123.apply(t,g,ok,rec)
+# ---------- PL-15C removed: all become PL-15, +5 pts per swapped missile, "Heavy CAP (PL-15)", MD-22/FH-97A duplicates removed (Osama 23 Nov 2026 01:5x-02:0x PST,
+# thread 1567745029781454889; Doc 1kNAPyBk0vK8DRY8JY3JhS3VXlJvAuWzoZUQKojZlgPA). See pl15c_to_pl15_1123.py.
+import pl15c_to_pl15_1123;pl15c_to_pl15_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
