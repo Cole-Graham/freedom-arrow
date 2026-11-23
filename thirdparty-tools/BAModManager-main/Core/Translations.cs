@@ -542,6 +542,7 @@ public static partial class Loc
         ["News is unavailable right now. It doesn't affect PLAY."] = new[] { "Neuigkeiten sind gerade nicht verfügbar. SPIELEN funktioniert trotzdem.", "Les nouvelles ne sont pas disponibles pour l'instant. Cela n'affecte pas JOUER.", "Новости сейчас недоступны. На кнопку ИГРАТЬ это не влияет.", "新闻暂时无法加载，不影响开始游戏。" },
         ["ONLINE NOW"] = new[] { "JETZT ONLINE", "EN LIGNE", "СЕЙЧАС ОНЛАЙН", "当前在线" },
         ["PEAK, ALL TIME"] = new[] { "SPITZE, GESAMT", "PIC, RECORD", "ПИК ЗА ВСЁ ВРЕМЯ", "历史峰值" },
+        ["PLAYERS IN GAME · LAST 7 DAYS"] = new[] { "SPIELER IM SPIEL · LETZTE 7 TAGE", "JOUEURS EN JEU · 7 DERNIERS JOURS", "ИГРОКОВ В ИГРЕ · ЗА 7 ДНЕЙ", "游戏中玩家 · 最近 7 天" },
         ["PLAYERS"] = new[] { "SPIELER", "JOUEURS", "ИГРОКИ", "玩家" },
         ["MATCHES"] = new[] { "MATCHES", "PARTIES", "МАТЧИ", "对局" },
         ["in the mod lobby"] = new[] { "in der Mod-Lobby", "dans le salon du mod", "в лобби мода", "在模组大厅" },

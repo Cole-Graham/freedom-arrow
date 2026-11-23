@@ -21,7 +21,9 @@ public static class LauncherNews
     public sealed record Stats(int? Online, int? PeakAllTime, int? Players, int? Matches);
     public sealed record Note(string Version, string Date, string English, string Chinese, string Link);
     public sealed record Feature(string Title, string TitleZh, string Text, string TextZh, string Image);
-    public sealed record News(Stats Stats, IReadOnlyList<Note> Notes, IReadOnlyList<Feature> Features);
+    /// <summary>One point of the front page's Players in game series: players with the mod running in that 30-minute slot.</summary>
+    public sealed record OnlinePoint(DateTimeOffset Time, int Players);
+    public sealed record News(Stats Stats, IReadOnlyList<Note> Notes, IReadOnlyList<Feature> Features, IReadOnlyList<OnlinePoint> Online);
 
     private const int MaxImageBytes = 12 * 1024 * 1024;
 
@@ -93,7 +95,13 @@ public static class LauncherNews
             if (root.TryGetProperty("features", out var fa) && fa.ValueKind == JsonValueKind.Array)
                 foreach (var e in fa.EnumerateArray().Take(5))
                     features.Add(new Feature(Str(e, "title"), Str(e, "title_zh"), Str(e, "text"), Str(e, "text_zh"), IsSiteLink(Str(e, "image")) ? Str(e, "image") : ""));
-            return new News(stats, notes, features);
+            // Osama 23 Nov 2026: "add the players in game graph to the launcher" - the last 7 days, [unix seconds, players].
+            var online = new List<OnlinePoint>();
+            if (root.TryGetProperty("online", out var on) && on.ValueKind == JsonValueKind.Array)
+                foreach (var e in on.EnumerateArray().Take(400))
+                    if (e.ValueKind == JsonValueKind.Array && e.GetArrayLength() >= 2 && e[0].TryGetInt64(out var t) && e[1].TryGetInt32(out var n) && n >= 0)
+                        online.Add(new OnlinePoint(DateTimeOffset.FromUnixTimeSeconds(t), n));
+            return new News(stats, notes, features, online);
         }
         catch (Exception) { return null; }
     }

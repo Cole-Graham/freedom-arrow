@@ -16,6 +16,11 @@ internal sealed class FaBanner : Control
     private const float DesignWidth = 1440f;
     private readonly Image? _art;
 
+    private IReadOnlyList<LauncherNews.OnlinePoint> _online = Array.Empty<LauncherNews.OnlinePoint>();
+
+    /// <summary>The 7-day players-in-game series from the News panel (every 5 minutes).</summary>
+    public void SetOnline(IReadOnlyList<LauncherNews.OnlinePoint> p) { _online = p; Invalidate(); }
+
     /// <summary>Space kept free at the top right (design pixels) for the language button.</summary>
     public int RightInset { get; set; }
 
@@ -75,6 +80,10 @@ internal sealed class FaBanner : Control
             TextRenderer.DrawText(g, version, f, Rectangle.Round(r), Theme.TextMuted,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
         }
+
+        // Players in game chart (1.1.18) in the dark sky between the title and the flag-raising art, above the Battlefield report
+        // column: design box 480..950 x 64..292 of the 1440x320 header, moved and scaled with the art like the badge.
+        OnlineChart.Draw(g, new RectangleF(x0 + 480 * s, 64 * s, 470 * s, 228 * s), _online, s);
 
         // The site's red line under the hero.
         using var line = new SolidBrush(Color.FromArgb(160, Theme.Accent));
