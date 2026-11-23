@@ -75,6 +75,7 @@ static partial class RankedMenu
         h.Patch(AccessTools.Method(tFlow,"PickMap"),prefix:new HarmonyMethod(typeof(RankedMenu),nameof(PickMap)));
         InstallPage(h);
         InstallLobby(h);
+        InstallPlayTab(h);
         var mode=AccessTools.Method(AccessTools.TypeByName("ArrowQueue.Text"),"Mode");
         if(mode!=null)h.Patch(mode,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(ModeName)));
         try
@@ -370,7 +371,7 @@ static partial class RankedMenu
     static void DeckAfterReconnect(){var l=fLink?.GetValue(null);if(l!=null&&!ReferenceEquals(l,lastLink)){lastLink=l;lastDeckReport="";}}
     public static void Tick()
     {
-        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ResultTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
+        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ResultTick(t);PlayLayoutTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
         PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}
