@@ -3,6 +3,7 @@ using MelonLoader;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using Il2CppBrokenArrow.Client.Ecs.UI;
 namespace FreedomArrow;
 // Play tab layout (Lateralus 22 Nov 2026, picked from the previews): Campaign and Scenarios hidden; the row (Multiplayer, Skirmish and
 // our Ranked card) centred; Multiplayer art = PLA flag raising (FA_CN_LOADING_33), Skirmish art = Russian assault troops
@@ -10,15 +11,8 @@ namespace FreedomArrow;
 // header tab is hidden outside lobbies (the Multiplayer card opens the same page); ArrowQueue still shows it in a lobby.
 static partial class RankedMenu
 {
-    static float nextPlayLayout;static Sprite artMp,artSk;static bool artLoaded,loggedLayout;
-    static RectTransform rowContent;static int rowPad;static Transform fadeCard;
-    // left edge and width of a card in its row's parent space (world corners: the hover grow may scale the card instead of resizing it)
-    static (float left,float width) InParent(RectTransform r,RectTransform parent)
-    {
-        var c=new Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<Vector3>(4);r.GetWorldCorners(c);
-        float l=parent.InverseTransformPoint(c[0]).x,rr=parent.InverseTransformPoint(c[3]).x;
-        return (l-parent.rect.xMin,rr-l);
-    }
+    static Sprite artMp,artSk;static bool artLoaded;
+    static Transform fadeCard;
     // The vanilla cards fade in through their CanvasGroups (GalaxyUiBase); the Ranked card (drawn with IMGUI) copies Skirmish's
     // effective alpha (Lateralus 22 Nov 2026: Ranked appeared at once while Multiplayer and Skirmish faded in).
     public static float CardAlpha()
@@ -37,47 +31,69 @@ static partial class RankedMenu
         var t=Load(Path.Combine(dir,"menu",file),"FA_play_"+file);if(t==null){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB missing "+file);return null;}
         var s=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(0.5f,0.5f));s.hideFlags=HideFlags.DontUnloadUnusedAsset;return s;
     }
+    // Lateralus 22 Nov 2026 (dev.35): at the first opening the vanilla cards (Campaign, Scenarios, old art) showed before ours, the row
+    // ended off centre, and on every re-opening it started left and slid right while flashing. Causes: the fix-up ran every 0.5 s and the
+    // game re-enables Campaign/Scenarios each time the tab opens; the centring measured cards during the game's opening animation.
+    // Now: the Play tab is prepared while it is still closed (FindObjectsOfTypeAll) and checked every frame; Campaign and Scenarios move
+    // into an inactive holder (the game can switch them on, they stay invisible and out of the layout); the centring padding is
+    // computed from the layout values (card LayoutElement width, spacing, the Content's anchor/pivot/position), not from card positions.
+    static RectTransform cContent;static HorizontalLayoutGroup cHlg;static Transform cMp,cSk;static float nextLayoutScan,restL=-1f;static int origPad;
+    static bool loggedFormula;
     static void PlayLayoutTick(float now)
     {
-        if(now<nextPlayLayout)return;nextPlayLayout=now+0.5f;
         try
         {
-            if(play==null||play.WasCollected||!play.isActiveAndEnabled)return;
-            var c=play._buttonsContainer;if(c==null)return;
-            Transform mp=null,sk=null,camp=null,scen=null;
-            foreach(var t in c.GetComponentsInChildren<Transform>(true))
+            if(cContent==null||cContent.WasCollected||cMp==null||cMp.WasCollected||cSk==null||cSk.WasCollected||cHlg==null||cHlg.WasCollected)
             {
-                var n=t.name;
-                if(n=="Menu Picture Button - Multiplayer")mp=t;else if(n=="Menu Picture Button - Skirmish")sk=t;
-                else if(n=="Menu Picture Button - Campaign")camp=t;else if(n=="Menu Picture Button - Scenarios")scen=t;
+                cContent=null;
+                if(now<nextLayoutScan)return;nextLayoutScan=now+0.25f;
+                if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene")return;
+                PlayTab p=null;foreach(var x in Resources.FindObjectsOfTypeAll<PlayTab>())if(x!=null&&x.gameObject.scene.IsValid()){p=x;break;}
+                if(p==null)return;
+                var c=p._buttonsContainer;if(c==null)return;
+                Transform mp=null,sk=null,camp=null,scen=null;
+                foreach(var t in c.GetComponentsInChildren<Transform>(true))
+                {
+                    var n=t.name;
+                    if(n=="Menu Picture Button - Multiplayer")mp=t;else if(n=="Menu Picture Button - Skirmish")sk=t;
+                    else if(n=="Menu Picture Button - Campaign")camp=t;else if(n=="Menu Picture Button - Scenarios")scen=t;
+                }
+                if(mp==null||sk==null)return;
+                var content=mp.parent.GetComponent<RectTransform>();var hlg=content==null?null:content.GetComponent<HorizontalLayoutGroup>();if(hlg==null)return;
+                var holder=new GameObject("FA hidden play cards");holder.SetActive(false);holder.transform.SetParent(p.transform,false);
+                if(camp!=null)camp.SetParent(holder.transform,false);
+                if(scen!=null)scen.SetParent(holder.transform,false);
+                if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");}
+                cContent=content;cHlg=hlg;cMp=mp;cSk=sk;restL=-1f;origPad=hlg.padding.left;fadeCard=sk;
+                MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB prepared ({(p.isActiveAndEnabled?"open":"closed")}): Campaign/Scenarios moved to a hidden holder ({camp!=null}/{scen!=null}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");
             }
-            if(mp==null||sk==null)return;
-            if(camp!=null&&camp.gameObject.activeSelf)camp.gameObject.SetActive(false);
-            if(scen!=null&&scen.gameObject.activeSelf)scen.gameObject.SetActive(false);
-            if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");}
-            SetArt(mp,artMp);SetArt(sk,artSk);
-            fadeCard=sk;
-            // Centre the row (Multiplayer, Skirmish and the Ranked card drawn one pitch right of Skirmish) with the layout's left padding.
-            // Lateralus 22 Nov 2026 (dev.34): hovering a card sometimes threw the whole row to the right, Ranked partly off screen. The
-            // first version moved the Content's anchors, pivot and position every 0.5 s and measured the card width while the vanilla
-            // hover tween was growing it, which fought the game's own layout. Now the Content keeps the game's anchors and pivot; only
-            // HorizontalLayoutGroup.padding.left changes, measured only at rest (both cards the same width, nothing hovered).
-            var content=mp.parent.GetComponent<RectTransform>();var hlg=content.GetComponent<HorizontalLayoutGroup>();
-            var parent=content.parent as RectTransform;if(hlg==null||parent==null)return;
-            if(rowContent==null||rowContent.WasCollected||rowContent.Pointer!=content.Pointer){rowContent=content;rowPad=hlg.padding.left;}
-            var mr=mp.GetComponent<RectTransform>();var sr=sk.GetComponent<RectTransform>();
-            var (firstLeft,w)=InParent(mr,parent);var (_,ws)=InParent(sr,parent);
-            if(w<20f||Mathf.Abs(ws-w)>0.5f)return;   // a card is hovered (it grows alone): keep the padding
-            float rowW=3f*w+2f*hlg.spacing;
-            float want=hlg.padding.left+((parent.rect.width-rowW)/2f-firstLeft);
-            int pad=Mathf.Max(0,Mathf.RoundToInt(want));
-            if(Mathf.Abs(pad-hlg.padding.left)>1)
-            {
-                hlg.padding.left=pad;LayoutRebuilder.MarkLayoutForRebuild(content);
-                if(!loggedLayout){loggedLayout=true;MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB Campaign/Scenarios hidden, row centred by padding {rowPad} -> {pad} (card {w:0}, spacing {hlg.spacing:0}, parent {parent.rect.width:0}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");}
-            }
+            SetArt(cMp,artMp);SetArt(cSk,artSk);
+            Centre();
         }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB: "+e.Message);nextPlayLayout=now+10f;}
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB: "+e.Message);cContent=null;nextLayoutScan=now+10f;}
+    }
+    static float LayoutWidth(Transform card)
+    {
+        var le=card.GetComponent<LayoutElement>();
+        if(le!=null&&le.preferredWidth>0f)return le.preferredWidth;
+        return card.GetComponent<RectTransform>().rect.width;
+    }
+    // first card's left edge in the parent = ax*W + pos.x + scale*(P - pivot.x*contentWidth), contentWidth = P + padR + 2L + spacing
+    // (ContentSizeFitter); solve for the left padding P that puts the 3-card row (Ranked drawn one pitch right) in the middle.
+    static void Centre()
+    {
+        var parent=cContent.parent as RectTransform;if(parent==null)return;
+        float l=Math.Min(LayoutWidth(cMp),LayoutWidth(cSk));if(l<20f)return;
+        if(restL<0f||l<restL)restL=l;   // a hovered card grows; keep the rest width
+        float L=restL,W=parent.rect.width,sp=cHlg.spacing,ax=cContent.anchorMin.x,px=cContent.pivot.x,sc=cContent.localScale.x,pos=cContent.anchoredPosition.x;
+        if(Mathf.Abs(cContent.anchorMax.x-ax)>0.001f){if(!loggedFormula){loggedFormula=true;MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB row not centred: stretched anchors {cContent.anchorMin}-{cContent.anchorMax}");}return;}
+        float denom=sc*(1f-px);if(denom<0.01f)return;
+        float target=(W-(3f*L+2f*sp))/2f;
+        float P=(target-ax*W-pos+sc*px*(cHlg.padding.right+2f*L+sp))/denom;
+        int pad=Mathf.Max(0,Mathf.RoundToInt(P));
+        if(pad==cHlg.padding.left)return;
+        cHlg.padding.left=pad;LayoutRebuilder.MarkLayoutForRebuild(cContent);
+        if(!loggedFormula){loggedFormula=true;MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row centred: padding {origPad} -> {pad} (card {L:0}, spacing {sp:0}, parent {W:0}, anchor {ax:0.00}, pivot {px:0.00}, pos {pos:0}, scale {sc:0.00})");}
     }
     static void SetArt(Transform card,Sprite s)
     {
