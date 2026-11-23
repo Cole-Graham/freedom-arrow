@@ -39,6 +39,19 @@ A plane ordered low (100) is Low. A plane ordered high (400) is High once it has
 
 `LabelDataComponent.IsLowAltitude` (`0x16`) and the label's low-altitude icon are the display side of the same state (code, field names only).
 
+## 1b. Who sets a plane's flight altitude
+
+**Summary:** the low/high hotkey only steers a plane while its change is pending. After that the plane holds the band it is in. A precision strike (cruise missiles) always flies its firing point at high altitude, whatever the hotkey says, so the plane climbs and then holds High (code, game 1.2.2.1).
+
+---
+
+- **Hotkey:** `AltitudeChangeAbilitySystem.ChangeAltitudeForPlane` writes `PlaneAltitudeSwitchComponent {IsChangePending = (GlobalAltitudeLevel != target), TargetAltitude = target}`. `GetTargetAltitude` (RVA `0x3C4C80`) returns `TargetAltitude` only while `IsChangePending`; otherwise it returns the current `GlobalAltitudeLevel` (code).
+- **Normal flight:** `AircraftHelper.GetCurrentAltitude` (RVA `0x3A66B0`) gives `PlanesConfig.LowAltitude` (100) when the level is Low, else `AltitudeComponent.PlaneHighAltOverride` (`Nullable<float>`, `0xC`) if set, else `PlanesConfig.HighAltitude` (400). It is read by `FlyToPoint`, airstrike, airdrop and move-cancel code (code, direct callers).
+- **Precision weapons:** `UnitBuilder.PlaneManeuverWeapons` (RVA `0x350A80`) sorts a plane's weapons into strafe, direct-fire, precision and bomb groups, using `Weapons.IsLowAltDirectWeapon` (`0x4E`) and `IsHighAltDirectWeapon` (`0x4F`). Cruise missiles (for example AGM-84 SLAM-ER and YJ-15, ammo `TrajectoryType` 200) have neither flag (data, 0.9.4 package; the exact sort rule is not traced).
+- **The climb:** `PrecisionStrikeCommand.UpdateSteeringPoint` (RVA `0x77BDB0`) builds the firing `WaypointSinglePoint` at `PlaneHighAltOverride` if set, else `PlanesConfig.HighAltitude`. It does not read the hotkey. The strike lasts while the plane has `PrecisionStrikeComponent`. `CompleteStrike` (RVA `0x77A420`) then calls `FlyToPoint`, which uses the level-based altitude above, so a plane that is High after the strike stays High (code).
+- **Measured:** in Lateralus's ranked13 test logs (23 Nov 02:08–02:30 UTC) all 7 climbs out of the low band after an ordered descent came right after AGM-84 or YJ-15 launches, with `IsChangePending` false.
+- **Not traced:** what brings some planes back to Low 7–12 s after a strike (6 of those 7 did), and who writes `PlaneHighAltOverride`.
+
 ## 2. Which optics an air target is checked against
 
 The unit's sensor row (`Sensors`) has three ranges: `OpticsGround`, `OpticsLowAltitude` and `OpticsHighAltitude` (data). Each observer's `FogOfWarComponent` keeps three matching vision distances: `DistanceGround` (`0x0`), `DistanceLowAlt` (`0x4`) and `DistanceHighAlt` (`0x8`) (code, field layout).
@@ -185,3 +198,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-19 09:2x PST (America/Los_Angeles) — New doc: low altitude, air optics and line of sight (Lateralus's request).
 - 2026-11-19 09:5x PST (America/Los_Angeles) — Added pixel-height base, LoS tool model and the UnitColliderCenter reader scan.
 - 2026-11-19 09:3x PST (America/Los_Angeles) — Traced the firing rule (IsTargetShootable: own line visible, or team-spotted with ≤45 forest-layer steps and no smoke); added the line-height example.
+- 2026-11-22 18:5x PST (America/Los_Angeles) — Added section 1b: who sets a plane's flight altitude (hotkey pending rule, precision-strike climb to HighAltitude), from the altitude-arrow investigation.
