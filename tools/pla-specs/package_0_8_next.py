@@ -24,15 +24,22 @@ for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=
 p.add_argument('--drop-assets',help='file listing asset paths to remove from the package (0.9.0-dev.4: PNGs replaced by FAModels 0.3.26 .fat textures)');p.add_argument('--assets',help='assets .bamod that the gameplay package pairs with (default: the one in the previous receipt)');p.add_argument('--complete-only',action='store_true',help=argparse.SUPPRESS);p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
 if a.complete_only:raise SystemExit('--complete-only is retired (Lateralus 13 Nov 2026: gameplay and assets are always available separately). A new assets version is made automatically.')
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
-prev=json.loads((REL/'out/0.8'/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
+# Repo cleanup step 1 (Lateralus 22 Nov 2026, docs/development/REPO-CLEANUP-PLAN.md): out/receipts is the one record of builds. It replaced
+# out/0.8 plus the receipts left in out/local-* (which let eleven different models files be called Assets 0.2.52). Every build reads and
+# writes its receipt only there.
+RCPT=REL/'out/receipts'
+prev=json.loads((RCPT/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
 # Osama 13 Nov 12:39 ("make sure the model fixes land with your other thread"): two threads build on this branch. Stack every
 # build on the newest receipt, and refuse a package that drops the dev.35-38 model/camo/data fixes (check_model_carry.py).
 # 0.9 (Osama 14 Nov 2026 11:05 PST, "launch this as 0.9"): 0.9.0-dev.N builds continue in out/0.8 after 0.8.0-dev.105.
 # Lateralus 19 Nov 2026: playtests are 0.9.1, 0.9.2, ...; dev builds toward them 0.9.1-dev.N. fa_version orders all of them.
 sys.path.insert(0,str(Path(__file__).resolve().parent));from fa_version import PATTERN as _VP,key as _vkey
-_receipts=[(m[1],f) for f in (REL/'out/0.8').glob('FreedomArrow-0.*.json') if (m:=re.fullmatch(r'FreedomArrow-('+_VP+r')\.json',f.name))]
-newest=max(((_vkey(v),v) for v,f in _receipts))
-assert a.prev==newest[1],f'--prev {a.prev} is not the newest build {newest[1]}; build on it so other threads\' fixes are kept'
+_receipts=[(m[1],f) for f in RCPT.glob('FreedomArrow-0.*.json') if (m:=re.fullmatch(r'FreedomArrow-('+_VP+r')\.json',f.name))]
+# The record holds every line (main development, hotfixes, the model rework batch), so the base must be the newest build OLDER than
+# the one being made: 0.9.5b-dev.2 builds on 0.9.5b-dev.1 even when a 0.9.6-dev.95 test build exists.
+_vV=_vkey(re.match(_VP,V)[0])   # a test build such as 0.9.4-dev.1-test1 sorts as 0.9.4-dev.1
+newest=max(((_vkey(v),v) for v,f in _receipts if _vkey(v)<_vV))
+assert a.prev==newest[1],f'--prev {a.prev} is not the newest build before {V} ({newest[1]}); build on it so other threads\' fixes are kept'
 # Osama 14 Nov 2026 15:39 PST ("make sure dev builds we aren't skipping"): the #build-install dev-build post fell behind from 0.8.0-dev.82
 # to 0.9.0-dev.2. The next build may start only after the previous one is on that post (work/build-install/devpost.py).
 _st=json.loads(Path('/home/sam/tars/work/ba-dev/replicas/codex/work/build-install/state.json').read_text()).get('dev_build',{}).get('version')
@@ -170,8 +177,8 @@ made=None
 if mismatch:
     # Lateralus 22 Nov 2026: "two different models files should never have the same version number". 0.9.5-dev.10 to dev.34 were built with
     # --prev 0.9.4 and their receipts stayed in their own out/local-* folders, so out/0.8 alone always gave 0.2.51 + 1 and eleven different
-    # files were all named 0.2.52. The next number now counts every receipt under out/ (out/0.8 and every out/local-*).
-    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in REL.glob('out/**/FreedomArrow-0.*.json') if re.fullmatch(r'FreedomArrow-('+_VP+r')\.json',f.name)]
+    # files were all named 0.2.52. The next number counts every build in the one record, out/receipts (repo cleanup step 1).
+    known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in RCPT.glob('FreedomArrow-0.*.json')]
     x=max([AV,*known],key=vt).split('.');NV='.'.join(x[:-1]+[str(int(x[-1])+1)])
     print(f'Model files differ from assets {AV} ({len(mismatch)}: {mismatch[:5]}). Making assets {NV}.',flush=True)
     assets=out/f'FreedomArrow-Assets-{NV}.bamod';made=make_assets.build(complete,paired,NV,V,assets,a.zip)
@@ -191,7 +198,7 @@ receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':AV,
  'complete':{'file':complete.name,'sha256':digest(complete),'size':complete.stat().st_size,'files':len(names)},
  'gameplay':{'file':gameplay.name,'sha256':digest(gameplay),'size':gameplay.stat().st_size,'files':len(set(names)-set(asset_names))},
  'changed_paths':sorted(override),'native_verified':False}
-(out/f'FreedomArrow-{V}.json').write_bytes(enc(receipt));(ROOT/f'tools/pla-specs/{V}-package-checks.json').write_bytes(enc(receipt))
+(RCPT/f'FreedomArrow-{V}.json').write_bytes(enc(receipt));(ROOT/f'tools/pla-specs/{V}-package-checks.json').write_bytes(enc(receipt))
 print(json.dumps({k:v for k,v in receipt.items() if k!='changed_paths'},indent=2))
 carry=ROOT.parent/'pla-audit-20261112/check_model_carry.py'
 if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check=True)   # dev.35-38 fixes still present
