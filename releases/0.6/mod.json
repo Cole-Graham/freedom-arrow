@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.5",
+  "version": "0.9.5b-dev.1",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.5 (playtest release): 0.9.5-dev.45 plus the HJ-10 NLOS loadout keeps the HJ-10 unit icon; 0.9.5-dev.45 = 0.9.5-dev.44 plus NLOS empty-spot rounds held on the cruise path; 0.9.5-dev.40 = 0.9.5-dev.39 plus NLOS laser-spot distance; 0.9.5-dev.39 = 0.9.5-dev.38 plus Play cards: layout and resting spots agree, no pop (FlyFadeIn snap-back); 0.9.5-dev.38 = 0.9.5-dev.37 plus Play-card fly-in target; 0.9.5-dev.37 = 0.9.5-dev.36 plus live ranked server (Season Alpha), ranked host map by size tag, Mod Lobbies page without group/search, helicopter flares 15 on Z-10K Recon/Z-10 Recon/Mi-8 Cargo, 8x HQ-9C renames the card, Play row centred on screen; 0.9.5-dev.36 = dev.35 plus altitude arrow during strafe/bombing/attack runs; 0.9.5-dev.35 = vanilla icons on the HQ-9 cards, the HJ-10 NLOS loadout and 54 China rounds that still showed placeholders, ZSL-92 MG icon, ranked search status (Expanding search), Play menu fade and centring fixes, altitude arrow hidden during precision strikes. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.65.",
+  "description": "Freedom Arrow 0.9.5b-dev.1 (0.9.5b hotfix candidate): 0.9.5 plus the Play and Home tabs found by their pages, not English labels (Ranked card, website banner and FA Music selector now show in Chinese and every other language), conquest zone values and setup banner hidden under the scoreboard, PL-15C replaced by PL-15 (duplicate loadouts removed), PLARF J-5 / J-6W drones and J-7IIH names, F-35A/C 1x MAKO per bay, ZBD-251 with the 40 mm CT gun (90 pts), AKF-98A / KD-88 names swapped, Type 100 gun shown as 40 mm CT. Includes everything in 0.9.5. Needs Freedom Arrow — Models and Music 0.2.72.",
   "repo": "Cole-Graham/freedom-arrow"
 }
