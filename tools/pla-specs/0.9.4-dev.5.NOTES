@@ -152,3 +152,7 @@
   last) and SquadWeapons.Order on 452 rows (card/HUD weapon list only) on 136 China infantry units, from docs/engine/infantry-order/*_proposal.json.
   Each row is checked against its dev.33 value (check run: 4172 checks pass). GUARD: lateralus/queued_checks.py from 0.9.5-dev.34 fails the package
   if any of the 950 values is missing (tested: dev.33 package as dev.34 lists exactly 950). Uncertain choices are in a Sheet for Lateralus. Not seen in game.
+- 2026-11-22 17:1x PST, thread 1572962048705429598 (Lateralus: "A for both" = the queued keepers for 1156 Combat Engineers and 1187 Beijing Swords stay;
+  "QCW-05 ... should have the same amount of ammunition as the MP5SD6", "QBU-191 should be increased from 60 -> 100 rounds"). DATA: infantry_ammo_1122.py:
+  QCW-05 (2013349) WeaponAmmunitions.Quantity 20 -> 160 on 6 rows (= MP5SD6 on 528 KNT, vanilla 80 x FA 2); QBU-191 (2004000) 60 -> 100 on 43 rows.
+  4177 batch checks pass; queued_checks.py (from dev.34) also checks the 49 rows (dev.33 package as dev.34: 999 = 950 + 49 missing). Not seen in game.

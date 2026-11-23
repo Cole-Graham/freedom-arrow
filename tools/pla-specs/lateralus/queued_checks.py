@@ -223,5 +223,8 @@ if m>=key('0.9.5-dev.34'):
                               ('SquadWeaponsJson.json','squad_weapons.json','weapon_order_proposal.json','apply_as_squad_weapons_overrides')):
         _t=merged(_tab,_fn);_want=json.loads((_io/_pf).read_text())[_key]
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
+    # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
+    _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
+    bad+=[f'WeaponAmmunitions {r["Id"]} weapon {r["WeaponId"]} Quantity {r["Quantity"]} (want {q}, infantry_ammo_1122.py)' for r in _wa.values() if r for w,q in ((2013349,160),(2004000,100)) if r['WeaponId']==w and r['Quantity']!=q]
 if bad:sys.exit('QUEUED LATERALUS CHANGES MISSING FROM THE PACKAGE ('+str(len(bad))+'):\n'+'\n'.join(bad[:30]))
 print(f'queued_checks: {sum(len(f) for f in S.SPW.values())+len(S.SPA)} SPAAG/SAM values, {len(SP.UNITS)+len(SP.OPTIONS)} SEAD prices, {len(EP.EXPECT)} ECM pod options and the plane sale are in {Path(pkg).name}')

@@ -580,6 +580,9 @@ import hq9_rework_1122;hq9_rework_1122.apply(t,g,ok,rec)
 # SquadMembers.DeathPriority (highest dies first; one keeper per squad at 1) on 498 rows and SquadWeapons.Order (card/HUD list only) on 452 rows,
 # 136 China infantry units. See infantry_order_1122.py and docs/engine/infantry-casualty-and-weapon-order.md.
 import infantry_order_1122;infantry_order_1122.apply(t,g,ok,rec)
+# ---------- China infantry ammunition (Lateralus 22 Nov 2026 17:1x PST, thread 1572962048705429598): QCW-05 SMG 20 -> 160 per soldier, the MP5SD6
+# value (KNT); QBU-191 60 -> 100. See infantry_ammo_1122.py.
+import infantry_ammo_1122;infantry_ammo_1122.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
