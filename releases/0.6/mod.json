@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.5-dev.34",
+  "version": "0.9.5-dev.35",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.5-dev.34 (test, not released): 0.9.5-dev.33 plus the ranked system and Play menu (test hub), party-size warning, lettered hotfix versions, China infantry casualty order and weapon list order, QCW-05 / QBU-191 ammunition, Light Riflemen 5 PF-89, DXL-4 / OSV-96 rate of fire, ZTQ-15 / ZTL-191 Recon optics, PLAAF Snipers laser, PRP-5G and Tigr BRShM prices, ActualArrow settings folder. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.52.",
+  "description": "Freedom Arrow 0.9.5-dev.35 (test, not released): 0.9.5-dev.34 plus vanilla icons on the HQ-9 cards, the HJ-10 NLOS loadout and 54 China rounds that still showed placeholders, ZSL-92 MG icon, ranked search status (Expanding search), Play menu fade and centring fixes, altitude arrow hidden during precision strikes. Includes everything in 0.9.4. Needs Freedom Arrow — Models and Music 0.2.53.",
   "repo": "Cole-Graham/freedom-arrow"
 }
