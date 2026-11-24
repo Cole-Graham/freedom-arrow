@@ -789,9 +789,11 @@ import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
 import card_portraits_1124;card_portraits_1124.apply(t,g,ok,rec)
 # ---------- (Unit cards English only + guard, 8add5fcd, withdrawn 24 Nov 01:0x: Osama "English and Chinese are fine" about the 42 bilingual
 # China infantry cards. They keep "English 中文" as since 0.9.4. The J-5 / J-6W drone cards stay English only, rocket_drones_1123.py.)
-# ---------- PLA ZZC-06 (ZSD-89 recon) replaces the ZBD-04A Recon in the Heavy Combined Arms Brigade (Osama 24 Nov 2026 01:1x PST, thread
-# "China cosmetic work"). See zzc06_recon_1124.py.
+# ---------- PLA ZZC-06 (ZBD-04A Recon copy without the 100 mm gun, 45 pts) replaces the ZBD-04A Recon in the Heavy Combined Arms Brigade
+# (Osama 24 Nov 2026 01:1x-01:23 PST, threads "China cosmetic work" + "blue dragons"). See zzc06_recon_1124.py.
 import zzc06_recon_1124;zzc06_recon_1124.apply(t,g,ok,rec)
+# ---------- ZTZ-96B front armour = ZTZ-96A, 220 -> 195 pts (Osama 24 Nov 2026 01:25 PST, thread "blue dragons": "ztz-99B ..."). See ztz96b_1124.py.
+import ztz96b_1124;ztz96b_1124.apply(t,g,ok,rec)
 # ---------- VN-3 air-droppable (Osama 24 Nov 2026 01:2x PST, thread "China cosmetic work"). See vn3_airdrop_1124.py.
 import vn3_airdrop_1124;vn3_airdrop_1124.apply(t,g,ok,rec)
 # ---------- China vehicle unit icons (card silhouettes) rendered from their own models (Osama 24 Nov 2026 01:1x PST, thread "China cosmetic
