@@ -675,6 +675,22 @@ import roster_1123b;roster_1123b.apply(t,g,ok,rec)
 # ---------- QBZ-95 -> 'QBZ-95-1', QBZ-03 -> 'QBZ-95' (icon), QJZ-89 Team (Armored) hidden (Osama 23 Nov 2026 18:2x-18:3x PST, thread
 # 1567745029781454889). See qbz95_qjz89_1123.py.
 import qbz95_qjz89_1123;qbz95_qjz89_1123.apply(t,g,ok,rec)
+# ---------- China specialization names and explanations (Osama 23 Nov 2026 18:2x PST, bugs thread 1573561286803980289: "PLAGF Heavy Combined Arms
+# Brigade", "PLARF Rocket/Reservist Force (should be Rocket force combined with Reservist Foce)", "PLAN Naval/Special Forces (PLAN AND SOF merged together.
+# This does NOT mean PLAN special forces)", "PLAGF Medium Combined Arms Brigade (motorized)"; then "can you update the brigade explanation with these new
+# explanations"). Only the English half of UIName and the UIDescription change; the internal Name stays (other scripts check it) and the Chinese half
+# stays as it is until the QQ poll on the Chinese names (LangNames.cs shows one half per game language).
+_SP=t['SpecializationsJson']
+_specs={17:('PLAAF Air Force 空军','PLAAF Air Force 空军',None),
+ 18:('PLAGF Armored Force 陆军装甲兵','PLAGF Heavy Combined Arms Brigade 陆军装甲兵',"A heavy combined arms brigade of the PLA Ground Force: China's heaviest tanks and tracked infantry fighting vehicles, backed by self-propelled artillery and mobile air defense. This firepower comes at the cost of having no fixed-wing aircraft."),
+ 19:('PLARF Rocket Conscript Force 火箭军','PLARF Rocket/Reservist Force 火箭军',"The PLA Rocket Force and the reservist force combined in one specialization. Reservist infantry and older tanks hold the line while the Rocket Force's ballistic missiles and long-range artillery strike deep into enemy territory. An aging fleet of jets provides the air cover."),
+ 20:('PLAN Special Forces 海军特种部队','PLAN Naval/Special Forces 海军特种部队',"The PLA Navy and the special operations forces combined in one specialization (not the Navy's own special forces). Marines and elite special forces, supported by carrier aviation and long-range drones, strike from the sea and the air deep behind enemy lines."),
+ 21:('PLAGF Motorized 陆军摩托化部队','PLAGF Medium Combined Arms Brigade 陆军摩托化部队',"A medium combined arms brigade of the PLA Ground Force: fast wheeled vehicles carry a large infantry force, supported by mobile rocket artillery and air defense, to hit hard and keep moving.")}
+for _i,(_old,_new,_desc) in _specs.items():
+    ok(_SP[_i]['UIName']==_old,('spec name before',_i,_SP[_i]['UIName']))
+    if _new!=_old or _desc:g.put('SpecializationsJson',_i,{'UIName':_new,**({'UIDescription':_desc} if _desc else {})})
+    ok(_SP[_i]['UIName']==_new and (not _desc or _SP[_i]['UIDescription']==_desc),('spec name after',_i))
+rec['china_spec_names']={i:_SP[i]['UIName'] for i in _specs}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
