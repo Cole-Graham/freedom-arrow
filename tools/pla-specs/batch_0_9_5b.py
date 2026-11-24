@@ -715,6 +715,9 @@ import mech_mmg_sprint_1123;mech_mmg_sprint_1123.apply(t,g,ok,rec)
 import hq17_removed_1124;hq17_removed_1124.apply(t,g,ok,rec)
 # ---------- ZTL-191 Recon hidden, not the ZTL-191 (Osama 24 Nov 2026 02:1x PST, thread 1567745029781454889). Before the test spec. See ztl191_recon_removed_1124.py.
 import ztl191_recon_removed_1124;ztl191_recon_removed_1124.apply(t,g,ok,rec)
+# ---------- Base ZTZ-96 removed (its model can't ship; the ZTZ-96A stays) (Osama 24 Nov 2026 03:0x PST, thread 1567745029781454889). Before the
+# test spec. See ztz96_removed_1124.py.
+import ztz96_removed_1124;ztz96_removed_1124.apply(t,g,ok,rec)
 # ---------- China hidden-units test spec 26, off unless UserData/FreedomArrow/test-spec.json switches it on (Osama 23 Nov 2026 18:5x PST,
 # thread 1567745029781454889). See test_specs_1123.py and runtime-qa/TestSpec.cs.
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)
@@ -738,9 +741,6 @@ import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
 import qbz_58_ammo_1123;qbz_58_ammo_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
-# ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 21:4x; withdrawn 24 Nov 01:0x for the wrong model; back 24 Nov 01:5x "It's correct now",
-# thread 1567745029781454889). See ztz96_rocket_force_1123.py.
-import ztz96_rocket_force_1123;ztz96_rocket_force_1123.apply(t,g,ok,rec)
 # ---------- Rafale C (France preview) + Eurofighter Typhoon (Germany preview) set-piece jets (Osama 23 Nov 2026 20:1x PST, thread "China cosmetic
 # work"). Last, so their new unit ids follow every existing card. See euro_jets_1123.py.
 import euro_jets_1123;euro_jets_1123.apply(t,g,ok,rec)
