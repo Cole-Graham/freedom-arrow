@@ -2,9 +2,10 @@
 import uuid
 import common as C
 # 0.2 (Lateralus 16 Nov 2026): his zone and spawn edits (work/maps-02-20261116/merge.py); his spawn facings are kept.
-NAME='[FA] [2v2] Highway of Death 0.2'
-SKIRMISH_NAME='[FA] [2v2] Highway of Death Skirmish 0.2'
-VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=6,Echo=6,Foxtrot=3,Golf=2)
+NAME='[FA] [2v2] Highway of Death 0.3'
+SKIRMISH_NAME='[FA] [2v2] Highway of Death Skirmish 0.3'
+# 0.3 (Lateralus 23 Nov 2026): "B C - 3 points, D E - 8 points" (were 2 and 6). Same layout.
+VALUES=dict(Alpha=2,Bravo=3,Charlie=3,Delta=8,Echo=8,Foxtrot=3,Golf=2)
 LETTERS={n:(n,v) for n,v in VALUES.items()}
 def prepare(game,spec):
     head,nodes,objects,meta=C.read_layout(__file__)

@@ -9,6 +9,7 @@
     "dead_center_2v2":    {"size": "2v2", "base": "Dead Center",       "ranked": true},
     "chkalovsk_2v2":      {"size": "2v2", "base": "Chkalovsk Airbase", "ranked": true},
     "highway_2v2":        {"size": "2v2", "base": "Highway of Death",  "ranked": true},
+    "coal_mountain_2v2":  {"size": "2v2", "base": "Coal Mountain",     "ranked": true},
     "baltiisk_3v3":       {"size": "3v3", "base": "Baltiisk",          "ranked": true},
     "bay_of_winds_3v3":   {"size": "3v3", "base": "Bay of Winds",      "ranked": true},
     "dam_3v3":            {"size": "3v3", "base": "Dam",               "ranked": true},

@@ -284,8 +284,87 @@ def native_goals_out_of_reach(name,nodes):
         for k,v in (('goal1',NATIVE_GOAL),('goal2',NATIVE_GOAL),('goal3',NATIVE_GOAL),('isDestructionEnabled','False'),('deathByScore','False')):
             assert k in props and k not in wired,(name,k,'missing or wired')
             props[k]['v']=str(v)
+# Lateralus 23 Nov 2026 (Coal Mountain): "Make sure all the zones can neutralize, have the right capture times, spawns are facing the right
+# way, there are spawn cameras, spawns on each side of the map belong to the right teams, zone icons match ... Is it possible to
+# automatically make sure all maps I ask you to add, always check all these things". Every online and Skirmish flavor of every PvP map
+# goes through check_layout on every build; a new map that breaks a rule stops the build. Neutralize (forceNeutral) and capture time
+# (CAPTURE_SECONDS) are set on every zone in write and write_flavor; slots, play area, native goals and the score limit have their own
+# checks. The exceptions below are maps that shipped before these checks; each is kept as authored until it is changed on purpose.
+SPAWN_FACING_LIMIT=45   # degrees between a spawn's facing and the direction to the centre of the zones
+SPAWN_FACING_KEPT={'[FA] [1v1] Kadaga','[FA] [1v1] Klaipeda','[FA] [1v1] Jelgava',   # End's layouts: every spawn at 0 degrees
+    '[FA] [2v2] Highway of Death','[FA] [2v2] Chkalovsk Airbase','[FA] [4v4] Airport','[FA] [4v4] Cold Harbor'}   # Lateralus's facings, 47-79 degrees
+ZONE_ICON_KEPT={'[FA] [2v2] Chkalovsk Airbase'}   # Foxtrot shows icon 8 (H) since 0.1; reported 23 Nov 2026
+WAYPOINTS_KEPT={'[FA] [2v2] Chkalovsk Airbase'}   # three native waypoints, no unit uses them
+def base_name(name):return name.rsplit(' ',1)[0].replace(' Skirmish','')
+def letter_icon(zone):return ord((zone.get('hudText') or zone['_dname'])[0])-ord('A')+1
+def spawn_offset(spawn,centre):
+    import math
+    yaw=math.degrees(2*math.atan2(spawn['rotate']['Y'],spawn['rotate']['W']))
+    want=math.degrees(math.atan2(centre[0]-spawn['pos']['X'],centre[1]-spawn['pos']['Z']))
+    return (yaw-want+180)%360-180
+def zone_centre(objects):
+    zones=[o['pos'] for o in objects if o.get('_type')==15]
+    return sum(p['X'] for p in zones)/len(zones),sum(p['Z'] for p in zones)/len(zones)
+def face_spawn_outliers(objects,limit=SPAWN_FACING_LIMIT):
+    """Turn only the spawns that face more than limit degrees away from the centre of the zones; keep the author's other facings."""
+    import math
+    cx,cz=zone_centre(objects);turned={}
+    for o in objects:
+        if o.get('_type')==10 and abs(spawn_offset(o,(cx,cz)))>limit:
+            before=round(spawn_offset(o,(cx,cz)))
+            half=math.atan2(cx-o['pos']['X'],cz-o['pos']['Z'])/2
+            o['rotate']=dict(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half));turned[o['_dname']]=before
+    return turned
+def remove_units_and_waypoints(objects,units,waypoints):
+    """Editor test units (type 1) and waypoints (type 19) out of the map. The counts guard against a changed upload."""
+    gone={(o['_uid'],o['_type']) for o in objects if o.get('_type') in (1,19)}
+    got=(sum(1 for u,t in gone if t==1),sum(1 for u,t in gone if t==19));assert got==(units,waypoints),('units, waypoints',got)
+    objects[:]=[o for o in objects if (o['_uid'],o.get('_type')) not in gone]
+    def walk(v):
+        if isinstance(v,dict):
+            assert not (set(v)=={'id','type'} and (v['id'],v['type']) in gone),('still linked to a removed object',v)
+            for x in v.values():walk(x)
+        elif isinstance(v,list):
+            for x in v:walk(x)
+    walk(objects)
+def check_layout(name,head,objects):
+    base=base_name(name)
+    teams={o['_uid']:o['_dname'] for o in objects if o.get('_type')==3}
+    zones=[o for o in objects if o.get('_type')==15]
+    # zone values: one value for every zone, no value for a zone that is not there
+    assert sorted(str(o['_uid']) for o in zones)==sorted(weights(name)),(name,'zones and MapZoneWeights differ')
+    # zone icons: Alpha shows A (1), Bravo B (2) ...
+    if base not in ZONE_ICON_KEPT:
+        bad=[(o.get('hudText'),o.get('ZoneIcon')) for o in zones if o.get('ZoneIcon')!=letter_icon(o)];assert not bad,(name,'zone icon does not match its letter',bad)
+    # zones capturable by Alpha and Bravo only, inside the active play area
+    for o in zones:assert sorted(teams[c['id']] for c in o['capturableBy'])==['Alpha team','Bravo team'],(name,o.get('hudText'),'capturable by')
+    import math
+    pz=next(o for o in objects if o.get('_type')==7 and o['_uid']==head['spz']);q=pz.get('rotate',{'Y':0.0,'W':1.0});ang=2*math.atan2(q['Y'],q['W'])
+    def inside(p):
+        dx=p['X']-pz['pos']['X'];dz=p['Z']-pz['pos']['Z']
+        return abs(dx*math.cos(ang)-dz*math.sin(ang))<=pz['scale']['X']/2 and abs(dx*math.sin(ang)+dz*math.cos(ang))<=pz['scale']['Z']/2
+    assert all(inside(o['pos']) for o in zones),(name,'zone outside the play area')
+    # no editor test units; no waypoints
+    assert not [o for o in objects if o.get('_type')==1],(name,'units on the map')
+    if base not in WAYPOINTS_KEPT:assert not [o for o in objects if o.get('_type')==19],(name,'waypoints on the map')
+    # one start camera per team, starting on its own
+    cams=sorted(teams[o['team']['id']] for o in objects if o.get('_type')==18 and o.get('actOnStart'))
+    assert cams==['Alpha team','Bravo team'],(name,'one start camera per team',cams)
+    # spawns: each team's spawns on its own side of the line halfway between the two teams' spawns
+    sp=[o for o in objects if o.get('_type')==10];cen={}
+    for t in ('Alpha team','Bravo team'):
+        ps=[o['pos'] for o in sp if teams[o['team']['id']]==t];assert ps,(name,t,'no spawns')
+        cen[t]=(sum(p['X'] for p in ps)/len(ps),sum(p['Z'] for p in ps)/len(ps))
+    (ax,az),(bx,bz)=cen['Alpha team'],cen['Bravo team'];mx,mz=(ax+bx)/2,(az+bz)/2
+    wrong=[(o['_dname'],teams[o['team']['id']]) for o in sp if (((o['pos']['X']-mx)*(ax-mx)+(o['pos']['Z']-mz)*(az-mz))>0)!=(teams[o['team']['id']]=='Alpha team')]
+    assert not wrong,(name,'spawns on the other team\'s side',wrong)
+    # spawns face the zones
+    if base not in SPAWN_FACING_KEPT:
+        c=zone_centre(objects);off=[(o['_dname'],round(spawn_offset(o,c))) for o in sp if abs(spawn_offset(o,c))>SPAWN_FACING_LIMIT]
+        assert not off,(name,f'spawns facing more than {SPAWN_FACING_LIMIT} degrees away from the zones (C.face_spawn_outliers turns them)',off)
 def write_flavor(out,spec,flavor,head,objects,nodes,meta):
     check_slots(flavor['name'],objects,meta)
+    check_layout(flavor['name'],head,objects)
     native_goals_out_of_reach(flavor['name'],nodes)
     check_spawns(flavor['name'],head,objects)
     if flavor['kind']==2:conquest_during_deployment(nodes)
