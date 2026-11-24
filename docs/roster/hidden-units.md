@@ -25,6 +25,11 @@ Add every new hidden or removed card here in the same commit as the data change.
 | Z-19G Recon | 1237 | PLAN Special Forces, 2 cards | `roster_1123b.py` | same |
 | F-35B (JASDF) | 1291 | Blue Dragon (Arsenal-only preview), 2 cards | `roster_1123b.py` | Osama 23 Nov 18:4x "F-35 JASDF, let's hide this for now" |
 | QJZ-89 Team (Armored) | 1157 | PLAGF Armored Force, 4 cards (the PLARF QJZ-89 Team 1170 stays) | `qbz95_qjz89_1123.py` | Osama 23 Nov 18:3x "QJZ-89 PLAGF Armored Force ... hidden" |
+| OH-58D Recon Optronic | 733 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the OH-58D Recon Optronic from the mod (or just disable it/hide it from the menu)" |
+| MH-6 Little Bird Recon | 736 | Special Operations Forces, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the MH-6 Little Bird Recon" |
+| AH-64D Longbow Recon | 746 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the AH-64D Longbow Recon" |
+| Ka-226T Razvedchik | 728 | Defense Forces, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-226T, hide it from the mod" |
+| Ka-52K Razvedchik | 748 | Coastal Troops, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-52K Razvedchik, hide it from the mod" |
 
 ## Model build only (`codex/batch/osama/models-096`)
 
@@ -32,6 +37,16 @@ Add every new hidden or removed card here in the same commit as the data change.
 |---|---|---|---|---|
 | ZTZ-98 | 'PLA ZTZ-98' (1309 in 0.9.6-dev.12) | PLARF Rocket Conscript Force | `roster_1123b.py` | Osama 23 Nov 18:1x |
 | Type 19 | see `type19_removed_1123.py` | Blue Dragon | `type19_removed_1123.py` | Osama 23 Nov 18:0x (blue dragons thread) |
+
+## China test spec (spec 26, off by default)
+
+Osama 23 Nov 18:5x: "a hidden toggle for a China test spec", "just units we removed just now", and the old Test spec 22 stays hidden.
+Spec 26 "Test: Hidden Units" holds every **China** card in the lists above (YJ-18 is removed, not hidden, so it is not there), with its old card
+count and transports. VN-17 and ZSL-92 were transports only and get 2 cards each. These units have `DisplayInArmory` true again, but spec 26 has
+`ShowInHangar` false, so the normal Armory and deck creation still do not show them.
+
+To switch it on for one PC, create `UserData/FreedomArrow/test-spec.json` with `{"show": true}` and restart the game (`runtime-qa/TestSpec.cs`).
+Delete the file or set `false` to switch it off. Section: `china_test_spec_1123.py`. Add new hidden China cards to it when Osama asks.
 
 ## Moved (not hidden)
 
@@ -46,3 +61,6 @@ Add every new hidden or removed card here in the same commit as the data change.
 - 2026-11-23 18:35 PST (America/Los_Angeles): QJZ-89 Team (Armored) added.
 - 2026-11-23 18:40 PST (America/Los_Angeles): Z-10, Z-19G and Z-19G Recon added; the Z-10K/Z-10U name swap was undone (no list change).
 - 2026-11-23 18:42 PST (America/Los_Angeles): F-35B (JASDF) added.
+- 2026-11-23 18:5x PST (America/Los_Angeles): OH-58D Recon Optronic, MH-6 Little Bird Recon and AH-64D Longbow Recon added (Lateralus).
+- 2026-11-23 18:56 PST (America/Los_Angeles): China test spec 26 (toggle) added with the 13 hidden China cards.
+- 2026-11-23 19:0x PST (America/Los_Angeles): Ka-226T Razvedchik and Ka-52K Razvedchik added (Lateralus).

@@ -89,6 +89,7 @@ Osama asked for "Shaanxi HMV3 cargo should be 15000 max cargo" on 14 Nov 2026 ([
 2. **Decide which of those rows should change.** Usually that is the row of the default (flatbed) option and the unit's own propulsion row. A different value for the armored option is a separate decision.
 3. **Check whether other units share the row.** Search `UnitPropulsionsJson` and `OptionsJson` for the same `MobilityId`.
    - **Not shared:** set `HeavyLiftWeight` on it.
+   - **Names (Lateralus 23 Nov: follow vanilla):** a row shared by several airframes is named after them, `Heli KA50 52`; a variant's own row is named after the variant, `Heli MI8AMTSh-VN`; vanilla marks the cargo version of a pair with `Supply` (`Heli UH60M` 0 / `Heli UH60M Supply` 4000). FA rows made this way: `Heli UH1Y KA60`, `Heli Z19 AS365`, `Heli KA29 Razvedchik`.
    - **Shared, and the others must not change:** add a copy of the row with the new `HeavyLiftWeight` (`g.add('MobilityJson', MB[row], {'Name': ..., 'HeavyLiftWeight': N})`). Point only this unit's propulsion row and options at the copy. New rows must match the vanilla fields exactly (see the PLA RowPlanner rule).
 4. **Or keep the unit's own row:** set the options' `MobilityId` to 0. That was the HMV3 Cargo fix.
 5. **To remove cargo** (for example on gunship helicopters): use a copy of the mobility row with `HeavyLiftWeight` 0. Examples: Z-19 "PLA Heli Z-19 no cargo" 2018990 (0.8.0-dev.101 / 0.9.0-dev.14), Z-9WA and Z-20S (0.9.2-dev.1).
@@ -136,3 +137,4 @@ Recipe: `work/cargo-doc-20261123/survey.py <gameplay .bamod> <vanilla tables> <o
 
 - 2026-11-23 17:1x PST (America/Los_Angeles) — New doc (Lateralus asked why Osama had trouble changing cargo capacity and how it is configured). Why the HMV3 Cargo change failed, the 1.2.2.1 code path with RVAs, how to change it, shared rows and the Shaanxi SX2306 trap, current values.
 - 2026-11-23 17:0x PST (America/Los_Angeles) — Added "Passengers (seats)" (Lateralus asked whether passengers are part of the mobility row: no, `Units.InfantrySlots`). Corrected the weight that carried units use: `Units.Weight`, not `MobilityJson.Weight`.
+- 2026-11-23 19:0x PST (America/Los_Angeles) — Added the vanilla naming convention for shared and variant mobility rows (Lateralus, recon helicopters).
