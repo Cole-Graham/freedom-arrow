@@ -720,6 +720,8 @@ import ucav_fh97_xq58_1123;ucav_fh97_xq58_1123.apply(t,g,ok,rec)
 import x47b_marines_1123;x47b_marines_1123.apply(t,g,ok,rec)
 # ---------- UCAVs get flares (Osama 23 Nov 2026 20:4x PST, thread 1567745029781454889). See ucav_flares_1123.py.
 import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
+# ---------- X-47B: Air tab, plane optics, ECM 45% + flares (Osama 23 Nov 2026 22:0x PST, thread 1567745029781454889). See x47b_air_tab_1123.py.
+import x47b_air_tab_1123;x47b_air_tab_1123.apply(t,g,ok,rec)
 # ---------- VN-3 (airborne, Kord clone) and ZSL-191 (motorized, ZSL-92 family clone) transports for the MarkII_ China models (Osama 23 Nov 2026
 # 20:4x PST, thread "blue dragons"). MODEL BUILD ONLY. See mk_china_1123.py.
 import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
