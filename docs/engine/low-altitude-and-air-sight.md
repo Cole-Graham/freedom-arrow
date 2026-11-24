@@ -197,6 +197,16 @@ Ways to make AA placement easier (not implemented, not tested):
 - China radar units (23 Nov 2026, codex/development 7e436b0f): SHORAD row 60 (HQ-7, HQ-7B, HQ-17, HQ-17A, HHQ-10, FK-2000, PGL-625, PGZ-04/04A/88/95); own rows in the SHORAD group (PGZ-09 and AFT-10 2009175, JRVG-1 2009943, LY-1 2019443); long-range row 59 (list above); ships row 70 `Radar LHA6`.
 - Code: `HeliRangeCard.cs` `RadarGroup()` and the `SetUnitAbilities` postfix (the tooltip is built with `SetTraitItem` inlined).
 
+### 5c. Which optics value is the big number on the unit card
+
+**Short answer.** The vanilla card shows **ground** optics for every unit except planes, which show **high-altitude** optics. Helicopter cards are no exception. Until 0.9.6 the FA card code showed **low-altitude** optics on helicopter cards, so a helicopter showed a higher number than the recon copy of the same helicopter with the same sensor. For example, the AH-64D Longbow showed 3200 m and the AH-64D Longbow Recon 2400 m (Lateralus, 23 Nov 2026). Fixed for the next build: the FA card now follows the vanilla rule. Helicopters show ground, planes show high altitude, and drones show whatever their category gets.
+
+- **Vanilla (code, 1.2.2.1).** `UnitInfoCard.SetUnitStatistic` (`0x55F870`) takes the best sensor value with three selectors: ground (`Sensors +0x24`), low altitude (`+0x2C`) and high altitude (`+0x28`). The tooltip lists all three. The big number is the ground value, but high altitude when `CategoryType == Aircrafts (6)` (`cmp [unit+0x80], 6` at `0x5603C6`).
+- **FA (`SpottingCap.CardAfter`).** It rewrites the number with the spotting cap on the ground value. From 0.4 dev.19 (`c10711a7`) it used the low-altitude value for `CategoryType == Helicopters (5)`. The comment there assumed that vanilla did the same; the code above shows that it does not. Recon helicopters are `CategoryType` Recon (0), so they always showed ground.
+- **The tooltip was right before and after:** ground (capped), helicopter, low altitude and high altitude.
+- **Planes (fixed the same day, Lateralus).** `CardAfter` also wrote the ground value on plane cards, so a plane with ground optics 0 showed "0 m" (for example the Mirage 2000D in the 23 Nov log). Plane cards (`CategoryType` Aircrafts) now show high-altitude optics, uncapped, as vanilla does. Example: the Mirage 2000D raw high 8000 shows 16000 m.
+- **Drones (data, 0.9.6-dev.8).** 15 drones are `CategoryType` Recon (0), for example the MQ-9, RQ-4, Orion, Wing Loong, GJ-11, X-47B and Z-6B. They show ground optics like vanilla. FA raised their raw ground optics, and the spotting cap brings the card number back to the vanilla value: the MQ-9 has raw 5250, cap 2250, and shows 4500 m, the same as vanilla's 2250 × 2. 4 drones are `CategoryType` Aircrafts: the J-5 Drone, J-6W Drone, FH-97A and XQ-58A. They show high altitude, like planes.
+
 ## 6. Not verified
 
 - **Optics selection:** the exact code that picks `DistanceLowAlt` / `DistanceHighAlt` from the target's state, and any stealth, flash or spotted multipliers on it, is inferred, not traced.
@@ -216,3 +226,5 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-23 16:3x PST (America/Los_Angeles) — Added section 5b: helicopter range radar groups and when the card shows the radar line (Lateralus asked about the HQ-11 tooltip).
 - 2026-11-23 16:2x PST (America/Los_Angeles) — Section 5b: radar line for every radar unit; optics = range build check and the pending rows.
 - 2026-11-23 16:4x PST (America/Los_Angeles) — Section 5b: tooltip shows range and optics per altitude; optics = range build check withdrawn.
+- 2026-11-23 18:4x PST (America/Los_Angeles) — Added section 5c: card optics headline (vanilla ground, planes high; FA helicopter branch removed), from Lateralus's AH-64D / Recon screenshots.
+- 2026-11-23 18:5x PST (America/Los_Angeles) — Section 5c: planes show high-altitude optics (Lateralus); drone categories and values.
