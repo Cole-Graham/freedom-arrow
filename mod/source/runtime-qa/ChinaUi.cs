@@ -84,7 +84,7 @@ static class ChinaUi
     }
     public static void Capacity(HangarUnitFilter __instance)
     {
-        if(Ready)__instance._maxCountryGroupsCount=Math.Max(3,__instance._maxCountryGroupsCount);
+        if(Ready)__instance._maxCountryGroupsCount=Math.Max(8,__instance._maxCountryGroupsCount);   // native cap on Arsenal nation groups; room for Eurocorp (Osama 23 Nov 2026)
     }
     public static void FilterReady(HangarUnitFilter __instance)
     {
