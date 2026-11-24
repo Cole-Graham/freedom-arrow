@@ -718,6 +718,9 @@ import ztl191_recon_removed_1124;ztl191_recon_removed_1124.apply(t,g,ok,rec)
 # ---------- Base ZTZ-96 removed (its model can't ship; the ZTZ-96A stays) (Osama 24 Nov 2026 03:0x PST, thread 1567745029781454889). Before the
 # test spec. See ztz96_removed_1124.py.
 import ztz96_removed_1124;ztz96_removed_1124.apply(t,g,ok,rec)
+# ---------- ZBD-04 out of the Rocket Force: its 12 PLARF transport links go, unit hidden (Osama 24 Nov 2026 03:1x PST, thread 1567745029781454889).
+# Before the test spec. See zbd04_rf_removed_1124.py.
+import zbd04_rf_removed_1124;zbd04_rf_removed_1124.apply(t,g,ok,rec)
 # ---------- China hidden-units test spec 26, off unless UserData/FreedomArrow/test-spec.json switches it on (Osama 23 Nov 2026 18:5x PST,
 # thread 1567745029781454889). See test_specs_1123.py and runtime-qa/TestSpec.cs.
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)

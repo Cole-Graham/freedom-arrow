@@ -13,7 +13,7 @@ toggle for a China test spec", "just leave it as a toggle", "that old spec I thi
   loads its database (restart to change). No file = off. The packaged data is the same for every player."""
 TEMPLATE = 22
 SPECS = {4: (26, 'PLA Test Hidden', 'FA_CHINA_FLAG'), 2: (27, 'US Test Hidden', 'SPEC_US_Marines'), 1: (28, 'RU Test Hidden', 'SPEC_RU_VDV')}
-NO_CARD = {945: 'VN-17', 1079: 'ZSL-92'}   # transports only: no old card
+NO_CARD = {945: 'VN-17', 1079: 'ZSL-92', 1308: 'ZBD-04 Rocket Force'}   # transports only: no old card (ZBD-04 RF: 24 Nov 03:1x)
 CARD_TEMPLATE = 1274                       # VN20
 
 
