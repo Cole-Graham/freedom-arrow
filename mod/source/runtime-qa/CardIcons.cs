@@ -14,6 +14,7 @@ namespace FreedomArrow;
 // Aircraft portraits use the supplied PNGs verbatim; numeric card fields remain native.
 // Portrait, _BASIC and _HOVER aliases share one Sprite/Texture per resource.
 // PLA infantry portraits (Osama, 13 Nov 2026): conscripts and sniper pair are original generated art; the other six are Osama's supplied images.
+// China vehicle portraits (Osama, 24 Nov 2026): his Armory side shots, card-shaped by work/mk-card-art-1124/make.py (vehicle pixels unchanged).
 // 12 more PLA infantry portraits (Osama, 20 Nov 2026): Chinese community art with the BROKEN ARROW mark removed (work/osama-art-20261120).
 static class CardIcons
 {
@@ -55,6 +56,21 @@ static class CardIcons
         ("FA_KARATEL-Portrait_HOVER","FA_KARATEL-Portrait.png"),
         ("FA_KARATEL-Label","FA_KARATEL-Label.png"),
         ("outline\\FA_KARATEL-Label","FA_KARATEL-Label.png"),
+        ("FA_CN_ZTD05-Portrait","FA_CN_ZTD05-Portrait.png"),
+        ("FA_CN_ZTD05-Portrait_BASIC","FA_CN_ZTD05-Portrait.png"),
+        ("FA_CN_ZTD05-Portrait_HOVER","FA_CN_ZTD05-Portrait.png"),
+        ("FA_CN_ZSD05-Portrait","FA_CN_ZSD05-Portrait.png"),
+        ("FA_CN_ZSD05-Portrait_BASIC","FA_CN_ZSD05-Portrait.png"),
+        ("FA_CN_ZSD05-Portrait_HOVER","FA_CN_ZSD05-Portrait.png"),
+        ("FA_CN_ZRZ100-Portrait","FA_CN_ZRZ100-Portrait.png"),
+        ("FA_CN_ZRZ100-Portrait_BASIC","FA_CN_ZRZ100-Portrait.png"),
+        ("FA_CN_ZRZ100-Portrait_HOVER","FA_CN_ZRZ100-Portrait.png"),
+        ("FA_CN_ZBD05-Portrait","FA_CN_ZBD05-Portrait.png"),
+        ("FA_CN_ZBD05-Portrait_BASIC","FA_CN_ZBD05-Portrait.png"),
+        ("FA_CN_ZBD05-Portrait_HOVER","FA_CN_ZBD05-Portrait.png"),
+        ("FA_CN_VN3-Portrait","FA_CN_VN3-Portrait.png"),
+        ("FA_CN_VN3-Portrait_BASIC","FA_CN_VN3-Portrait.png"),
+        ("FA_CN_VN3-Portrait_HOVER","FA_CN_VN3-Portrait.png"),
         ("FA_XM30-Portrait","FA_XM30-Portrait.png"),
         ("FA_XM30-Portrait_BASIC","FA_XM30-Portrait.png"),
         ("FA_XM30-Portrait_HOVER","FA_XM30-Portrait.png"),
