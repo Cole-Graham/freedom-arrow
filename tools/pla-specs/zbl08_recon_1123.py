@@ -7,6 +7,7 @@ BASE, NAME, HUD, COST, SPEC, CARDS = 903, 'PLA ZBL-08 Recon', 'ZBL-08 Recon', 50
 KEEP_TURRETS = (2009046, 2009054)   # PLA ZBL-08 mount 0 (30 mm) and mount 1 (Type 86 7.62 mm)
 VGO = 3                             # vanilla sensor row "Very Good Optics", as ZBD-04A / ZTL-191 / ZTQ-15 Recon
 LASER = 10                          # vanilla ability row "Laser Veh Default"
+COMBINED = 2010731                  # smoke x1 + light supply + vehicle laser (the ZBD-251 row)
 
 
 def apply(t, g, ok, rec):
@@ -27,11 +28,14 @@ def apply(t, g, ok, rec):
     for tab, field, target in (('UnitArmorsJson', 'ArmorId', 'ArmorsJson'), ('UnitPropulsionsJson', 'MobilityId', 'MobilityJson')):
         for r in rows(tab, UnitId=BASE):
             g.add(tab, r, {'UnitId': uid, field: g.add(target, t[target][r[field]], {'Name': f'{t[target][r[field]]["Name"]} ZBL-08 Recon'})})
-    for r in rows('UnitAbilitiesJson', UnitId=BASE): g.add('UnitAbilitiesJson', r, {'UnitId': uid})
-    # Osama 21:5x "make sure it can laser designate": vanilla row 10 "Laser Veh Default" (1500 m, usable on the move) as its own ability link beside
-    # the smoke/supply row, as the M981 FISTV and Humvee LRAS3 carry it. Existing row reused, no new ability row.
-    ok(t['AbilitiesJson'][LASER]['Name'] == 'Laser Veh Default' and t['AbilitiesJson'][LASER]['IsLaserDesignator'], 'row 10 = vehicle laser')
-    g.add('UnitAbilitiesJson', rows('UnitAbilitiesJson', UnitId=BASE)[0], {'UnitId': uid, 'AbilityId': LASER})
+    # Osama 21:5x "make sure it can laser designate". Only the FIRST default ability row loads (0.9.6-dev.17 audit_mp_equipment: a second link to
+    # row 10 'Laser Veh Default' was dropped), so the unit links ONE existing row that is the ZBL-08's 'Smoke x1 Supply Light Default' (2000212)
+    # plus the vehicle laser of row 10 (1500 m, usable on the move): 2010731 'PLA ZBD-251 AbilitiesJson'. Existing row reused, no new row.
+    (b0,) = rows('UnitAbilitiesJson', UnitId=BASE)
+    A_ = t['AbilitiesJson'];sm, cmb = A_[b0['AbilityId']], A_[COMBINED]
+    ok(b0['AbilityId'] == 2000212 and all(cmb[k] == (A_[LASER][k] if k in ('IsLaserDesignator', 'LaserMaxRange', 'LaserUsableInMove') else sm[k]) for k in sm if k not in ('Id', 'Name')),
+       'row 2010731 = ZBL-08 smoke/supply row + row 10 laser')
+    g.add('UnitAbilitiesJson', b0, {'UnitId': uid, 'AbilityId': COMBINED})
     kept_w = {w['WeaponId'] for tid in KEEP_TURRETS for w in rows('TurretWeaponsJson', TurretId=tid)}
     for r in rows('WeaponAmmunitionsJson', UnitId=BASE):
         if r['WeaponId'] in kept_w: g.add('WeaponAmmunitionsJson', r, {'UnitId': uid})   # HJ-73D ammo stays with the ZBL-08
@@ -42,7 +46,7 @@ def apply(t, g, ok, rec):
     ok(not rows('ModificationsJson', UnitId=uid), 'no ATGM option')
     ok(sorted(r['TurretId'] for r in rows('TurretUnitsJson', UnitId=uid)) == sorted(KEEP_TURRETS), 'recon mounts = 30 mm + MG only')
     ok([r['SensorId'] for r in rows('SensorUnitsJson', UnitId=uid)] == [VGO], 'Very Good Optics')
-    ok(sorted(r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)) == [LASER, 2000212], 'smoke/supply + laser designator')
+    ok([r['AbilityId'] for r in rows('UnitAbilitiesJson', UnitId=uid)] == [COMBINED], 'one default ability: smoke/supply + laser designator')
     ok({r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)} == kept_w, 'ammo only for 30 mm + MG')
     print('ZBL-08 RECON ammo', [(r['WeaponId'], t['AmmunitionsJson'][r['AmmunitionId']]['Name'], r.get('Quantity')) for r in rows('WeaponAmmunitionsJson', UnitId=uid)])
     rec['zbl08_recon'] = {'unit': uid, 'cost': COST, 'spec': SPEC, 'cards': CARDS, 'turrets': list(KEEP_TURRETS), 'sensor': VGO, 'abilities': [2000212, LASER]}
