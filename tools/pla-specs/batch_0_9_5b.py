@@ -659,6 +659,9 @@ import recon_stealth_1123;recon_stealth_1123.apply(t,g,ok,rec)
 # ---------- Blue Dragon test infantry: Korean and Japanese rifle squads, copies of US Mech. Riflemen with the rigged seller bodies (Osama 23 Nov 2026
 # 17:3x PST, thread 1567745029781454889). See blue_dragon_infantry_1123.py; bodies work/bd-inf-20261123.
 import blue_dragon_infantry_1123;blue_dragon_infantry_1123.apply(t,g,ok,rec)
+# ---------- YJ-18 removed from the game: out of its spec and hidden in the Armory (Osama 23 Nov 2026 17:4x PST, thread 1567745029781454889).
+# See yj18_removed_1123.py.
+import yj18_removed_1123;yj18_removed_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
