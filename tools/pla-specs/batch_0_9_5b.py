@@ -671,6 +671,8 @@ ok(W[2014500]['HUDIcon']==W[2014501]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN','iron-
 g.put('WeaponsJson',2003998,{'HUDIcon':'FA_PLA_WP_QBZ191_PLAIN'})
 ok(W[2003998]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN' and W[2019300]['HUDIcon']=='FA_PLA_WP_QBZ191','baseline QBZ-191 plain icon, QMK optic icon')
 rec['qbz191_plain_icon']={'weapon':2003998,'icon':'FA_PLA_WP_QBZ191_PLAIN','qmk_keeps':'FA_PLA_WP_QBZ191'}
+# ---------- Type 19 removed (Osama 23 Nov 2026 18:0x PST, thread "blue dragons": "and remove the Type 19"). See type19_removed_1123.py.
+import type19_removed_1123;type19_removed_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
