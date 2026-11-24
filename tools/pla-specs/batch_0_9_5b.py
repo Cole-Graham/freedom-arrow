@@ -720,8 +720,6 @@ import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
 import x47b_air_tab_1123;x47b_air_tab_1123.apply(t,g,ok,rec)
 # ---------- X-47B bay prices: AIM-120 +15, AIM-260 +40 per bay (Osama 23 Nov 2026 22:1x PST, thread 1567745029781454889). See x47b_bay_prices_1123.py.
 import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
-# ---------- ZTQ-15 Light Chinese name ZTQ-15空降型 (Osama 23 Nov 2026 21:0x PST, thread 1567745029781454889). See ztq15_light_cn_name_1123.py.
-import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 # ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 2026 21:4x PST, thread 1567745029781454889). See ztz96_rocket_force_1123.py.
