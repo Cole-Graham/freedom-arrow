@@ -747,6 +747,9 @@ import zsl191_stats_1123;zsl191_stats_1123.apply(t,g,ok,rec)
 # ---------- PLZ-10 (Armored Force): PLA PLZ-25 (Vena clone) copy, after plz25_navy_1123 (Osama 23 Nov 2026 22:1x PST, thread "blue dragons").
 # MODEL BUILD ONLY. See mk_mortars_1123.py.
 import mk_mortars_1123;mk_mortars_1123.apply(t,g,ok,rec)
+# ---------- PLA ZRZ-100 UGV in PLAN Special Forces: Uran-9 copy with QJC-88 12.7 mm, 2x HJ-16, 2x ABZ-13 (Osama 23 Nov 2026 22:2x PST, thread
+# "blue dragons"). MODEL BUILD ONLY. See zrz100_1123.py.
+import zrz100_1123;zrz100_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
