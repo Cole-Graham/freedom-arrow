@@ -716,6 +716,8 @@ import ucav_fh97_xq58_1123;ucav_fh97_xq58_1123.apply(t,g,ok,rec)
 import x47b_marines_1123;x47b_marines_1123.apply(t,g,ok,rec)
 # ---------- UCAVs get flares (Osama 23 Nov 2026 20:4x PST, thread 1567745029781454889). See ucav_flares_1123.py.
 import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
+# ---------- X-47B: Air tab, plane optics, ECM 45% + flares (Osama 23 Nov 2026 22:0x PST, thread 1567745029781454889). See x47b_air_tab_1123.py.
+import x47b_air_tab_1123;x47b_air_tab_1123.apply(t,g,ok,rec)
 # ---------- ZTQ-15 Light Chinese name ZTQ-15空降型 (Osama 23 Nov 2026 21:0x PST, thread 1567745029781454889). See ztq15_light_cn_name_1123.py.
 import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
