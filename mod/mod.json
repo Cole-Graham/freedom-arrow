@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.12",
+  "version": "0.9.6-dev.13",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.12 (combined model dev build for Osama): dev.11 plus the China roster changes (VN20, VN-17, VT-5, ZTZ-59, ZTZ-98, PCL-181, HQ-6A, ZSL-92, PLZ-70, QJZ-89 Armored hidden; ZTQ-15 to Motorized; PLL-05 to airborne), Z-10K/Z-10U names swapped, QBZ-95-1 / QBZ-95, Type 19 removed, and the Z-19G naval paint by default (FAModels 0.3.42). Needs Freedom Arrow — Models and Music 0.2.86.",
+  "description": "Freedom Arrow 0.9.6-dev.13 (combined model dev build for Osama): dev.12 plus Marine HJ-12 Team / Motorized HJ-8H Team, new China spec names, the Z-10K/Z-10U swap undone, and Z-10, Z-19G, Z-19G Recon and F-35B (JASDF) hidden. Needs Freedom Arrow — Models and Music 0.2.86.",
   "repo": "Cole-Graham/freedom-arrow"
 }
