@@ -191,7 +191,19 @@ public sealed partial class Prototype
         }
         catch (Exception e) { Fail(e); }
     }
-    static string MapName(View candidate)=>config.ResolveMap(ScenariosService.ActiveScenario?.Name ?? (candidate.Service._isOnline ? Settings.OnlineUnknownMap : throw new InvalidOperationException("No active local scenario")),candidate.ZoneIds());
+    static string mapByZonesLogged;
+    static string MapName(View candidate)
+    {
+        string native=ScenariosService.ActiveScenario?.Name;
+        if(native==null&&!candidate.Service._isOnline)throw new InvalidOperationException("No active local scenario");
+        var ids=candidate.ZoneIds();
+        string map=config.ResolveMap(native??Settings.OnlineUnknownMap,ids);
+        // Lateralus 23 Nov 2026 ("queue 2"): the game gave no scenario name online, so the map was looked up by its zone IDs. Written once
+        // per result to MelonLoader's log (uploaded with the player logs) so we can see whether this ever happens and on which map.
+        string line=native!=null?null:"zones "+string.Join(",",ids.OrderBy(i=>i))+" -> "+(map==Settings.OnlineUnknownMap?"not identified: default zone values":map);
+        if(line!=null&&line!=mapByZonesLogged){mapByZonesLogged=line;MelonLogger.Warning("FREEDOM_ARROW_MAP_BY_ZONES: no scenario name online; "+line);}
+        return map;
+    }
     static bool Prepare(View candidate)
     {
         if(dispatching||candidate.Pointer==retiredModePointer||candidate.Pointer==endingModePointer)return false;

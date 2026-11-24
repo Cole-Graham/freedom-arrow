@@ -115,7 +115,13 @@ public sealed class Settings
         if (maps.Count == 1) return maps[0];
         // Network and Skirmish flavors of the same authored map share zone IDs. Online joiners get the network name.
         var network = maps.Where(m => m.IndexOf("Skirmish", StringComparison.Ordinal) < 0).ToList();
-        return network.Count == 1 ? network[0] : name;
+        if (network.Count == 1) return network[0];
+        // Lateralus 23 Nov 2026 ("queue 1"): a PvE copy has its base map's zone IDs and the same values (the map build requires it,
+        // maps/scenarios/make_scenario.py registry). When every match scores the same, any of them gives the right values.
+        var same = network.Count > 0 ? network : maps;
+        if (same.Count > 1 && same.Select(m => string.Join(",", MapZoneWeights[m].OrderBy(z => z.Key, StringComparer.Ordinal).Select(z => z.Key + "=" + z.Value))).Distinct().Count() == 1)
+            return same.OrderBy(m => m.Contains(" PvE ") ? 1 : 0).ThenBy(m => m, StringComparer.Ordinal).First();   // the PvP name, for clearer logs
+        return name;
     }
     public const string OnlineUnknownMap = "online scenario";
     const int RoundAnnouncementSeconds = 8;
