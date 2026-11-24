@@ -15,6 +15,8 @@ internal sealed class NewsPanel : Panel
     /// <summary>Osama 23 Nov 2026: "add the players in game graph to the launcher", "above the battlefield report area": the series is
     /// handed to the header (FaBanner), which draws the chart in the dark space of the art above this column.</summary>
     public event Action<IReadOnlyList<LauncherNews.OnlinePoint>>? OnlineLoaded;
+    /// <summary>The roadmap, also drawn in the header (FaBanner).</summary>
+    public event Action<LauncherNews.Roadmap?>? RoadmapLoaded;
     private readonly RichTextBox _notes;
     private readonly Button _more;
     private string _link = LauncherNews.Site;
@@ -105,6 +107,7 @@ internal sealed class NewsPanel : Panel
         _loaded = true;
         _tiles.Set(news.Stats);
         OnlineLoaded?.Invoke(news.Online);
+        RoadmapLoaded?.Invoke(news.Roadmap);
         if (news.Notes.Count > 0) _link = news.Notes[0].Link;
         Render(news.Notes);
         if (news.Features.Count > 0) await ShowFeature(news.Features[0]);
@@ -120,7 +123,7 @@ internal sealed class NewsPanel : Panel
     {
         if (!_loaded) { await LoadAsync(); return; }
         var news = await LauncherNews.LoadAsync();
-        if (news != null && !IsDisposed) { _tiles.Set(news.Stats); OnlineLoaded?.Invoke(news.Online); }
+        if (news != null && !IsDisposed) { _tiles.Set(news.Stats); OnlineLoaded?.Invoke(news.Online); RoadmapLoaded?.Invoke(news.Roadmap); }
     }
 
     /// <summary>The newest feature, shown first: title, a line of text and its animated picture.</summary>

@@ -43,10 +43,14 @@ internal static class OnlineChart
                 g.DrawLine(grid, left, Y(v), right, Y(v));
                 TextRenderer.DrawText(g, v.ToString(), small, Rectangle.Round(new RectangleF(box.X, Y(v) - 7 * u, left - box.X - 6 * u, 14 * u)), Theme.TextMuted, f | TextFormatFlags.Right);
             }
-            for (var d = DateTimeOffset.FromUnixTimeSeconds(t0).ToLocalTime().Date.AddDays(1); d <= p[^1].Time.ToLocalTime().DateTime; d = d.AddDays(1))
+            // one label per day, or every other day when the box is too narrow for them (1.1.18 header, roadmap beside it)
+            float perDay = (right - left) / 7f, need = (Loc.IsChinese ? 62 : 50) * u;
+            int every = perDay >= need ? 1 : 2, n = 0;
+            for (var d = DateTimeOffset.FromUnixTimeSeconds(t0).ToLocalTime().Date.AddDays(1); d <= p[^1].Time.ToLocalTime().DateTime; d = d.AddDays(1), n++)
             {
                 var x = X(new DateTimeOffset(d));
                 g.DrawLine(grid, x, top, x, bottom);
+                if (n % every != 0) continue;
                 var txt = Loc.IsChinese ? $"{d.Month}月{d.Day}日" : d.ToString("MMM d", System.Globalization.CultureInfo.InvariantCulture);
                 TextRenderer.DrawText(g, txt, small, Rectangle.Round(new RectangleF(x - 32 * u, bottom + 4 * u, 64 * u, 14 * u)), Theme.TextMuted, f | TextFormatFlags.HorizontalCenter);
             }
