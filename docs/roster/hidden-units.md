@@ -19,6 +19,7 @@ Add every new hidden or removed card here in the same commit as the data change.
 | PCL-181 | 1034 | PLAGF Motorized, 3 cards | `roster_1123b.py` | Osama 23 Nov 18:1x "PCL-181 hide from armory" |
 | HQ-6A | 1045 | PLAGF Motorized, 4 cards | `roster_1123b.py` | Osama 23 Nov 18:1x "HQ-6A hide from armory" |
 | ZSL-92 | 1079 | transport only, 10 transport links | `roster_1123b.py` | Osama 23 Nov 18:1x "ZSL-92 removed too" |
+| PLZ-70 | 1040 | PLAAF Air Force, 3 cards | `roster_1123b.py` | Osama 23 Nov 18:2x "PLZ-70 removed" |
 
 ## Model build only (`codex/batch/osama/models-096`)
 
@@ -34,3 +35,4 @@ Add every new hidden or removed card here in the same commit as the data change.
 ## Document change log
 
 - 2026-11-23 18:20 PST (America/Los_Angeles): First version: YJ-18, VN20, VN-17, VT-5 (+Recon), ZTZ-59, PCL-181, HQ-6A, ZSL-92, ZTZ-98 and Type 19; ZTQ-15 move.
+- 2026-11-23 18:24 PST (America/Los_Angeles): PLZ-70 added.
