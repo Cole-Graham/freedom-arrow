@@ -3223,6 +3223,16 @@
       "basis": "Osama-supplied QBU-10 photo (24 Nov 2026), work/qbu10-icon/make_icon.py; replaces the INF_ASVK stand-in"
     },
     {
+      "weapon": 2020833,
+      "name": "QBU-201",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QBU201",
+      "address": "FA_PLA_WP_QBU201",
+      "native_weapon": 64,
+      "basis": "Osama-supplied QBU-201 image (24 Nov 2026), work/qbu201-icon/make_icon.py; M40A5 stat clone on the Falcons"
+    },
+    {
       "weapon": 2012081,
       "name": "HN-6",
       "scope": "INFANTRY",
@@ -3544,7 +3554,7 @@
     }
   ],
   "vehicle_weapons": 307,
-  "infantry_weapons": 46,
+  "infantry_weapons": 47,
   "profiles": [
     "QBB95",
     "QBU191",

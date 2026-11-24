@@ -792,6 +792,9 @@ import type100_2a91_1124;type100_2a91_1124.apply(t,g,ok,rec)
 import plaaf_para_1124;plaaf_para_1124.apply(t,g,ok,rec)
 # ---------- Chinese bug sheet FA-081/082/084/085 answers (Osama 23 Nov 2026 23:2x PST, bugs thread 1573561286803980289). See qq_sheet_fixes_1123.py.
 import qq_sheet_fixes_1123;qq_sheet_fixes_1123.apply(t,g,ok,rec)
+# ---------- Falcons: QJZ-171 -> QJY-201, QBU-10 -> QBU-201 (M40A5 stat clone, own icon) (Osama 24 Nov 2026 02:2x PST, thread 1567745029781454889).
+# See falcons_weapons_1124.py.
+import falcons_weapons_1124;falcons_weapons_1124.apply(t,g,ok,rec)
 # ---------- Blue Dragon + Euro preview weapons and rounds marked '[TEST] ' (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work"). LAST.
 # See test_weapon_names_1123.py.
 import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
