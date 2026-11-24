@@ -1,7 +1,7 @@
 """Thunder Gods 雷神 (1143) kit (Osama 24 Nov 2026 02:4x PST, thread "China cosmetic work": "Thunder gods QTS both replaced with QCW (now the
 qcq-171) for total 3 QCQ-171. 2x QBZ-192 turns into 2xQJS-161"; 02:5x after the DPM comparison: "we should give them only 1 mg then"). The two
 QTS-11 + QTS-11 grenade launcher men carry the QCQ-171 (no special weapon), one plain QBZ-192 rifleman carries the QJS-161 (400 rounds each, as on Sea Dragons / Marines / Assault Raiders). Card order (02:5x "rifles 1, smg spot 2 and lmg spot 3")
-QBZ-192, QCQ-171, QJS-161, FHJ-02. Death priorities and the 80 pts are unchanged."""
+QBZ-192, QCQ-171, QJS-161, FHJ-02. 80 pts unchanged; death priority FHJ-02 1, QJS-161 2, riflemen/SMG 3."""
 UID = 1143
 QBZ, QTS, GL, QCQ, QJS, FHJ = 2013087, 2004004, 2019270, 2013349, 2011922, 2013057
 QJS_AMMO = 2011923
@@ -17,6 +17,10 @@ def apply(t, g, ok, rec):
     ok([W[w]['HUDName'] for w in (QCQ, QJS)] == ['QCQ-171', 'QJS-161'], 'QCQ-171 / QJS-161 weapon rows')
     for i in TO_QCQ: g.put('SquadMembersJson', i, {'PrimaryWeaponId': QCQ, 'SpecialWeaponId': 0})
     for i in TO_QJS: g.put('SquadMembersJson', i, {'PrimaryWeaponId': QJS})
+    # Death priority (02:5x 'please set death priority correctly'), the vanilla tiers of docs/engine/infantry-casualty-and-weapon-order.md
+    # (highest dies first): 1 = keeper, the FHJ-02 man (6 reloadable rockets); 2 = machine gunner (QJS-161); 3 = riflemen and SMG gunners.
+    DP = {2014922: 1, 2014923: 2}
+    for r in rows('SquadMembersJson'): g.put('SquadMembersJson', r['Id'], {'DeathPriority': DP.get(r['Id'], 3)})
     sw = {r['WeaponId']: r for r in rows('SquadWeaponsJson')}
     tpl = sw[QTS]
     for w in (QTS, GL): g.remove('SquadWeaponsJson', sw[w]['Id'])
@@ -31,5 +35,7 @@ def apply(t, g, ok, rec):
        ('Thunder Gods 3 QCQ-171, 1 QJS-161, 5 QBZ-192', kit))
     ok({r['WeaponId'] for r in rows('SquadWeaponsJson')} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson')}, 'card + ammo = carried weapons')
     ok([W[r['WeaponId']]['HUDName'] for r in sorted(rows('SquadWeaponsJson'), key=lambda r: r['Order'])] == ['QBZ-192', 'QCQ-171', 'QJS-161', 'FHJ-02'], 'card order')
+    ok(sorted((m['DeathPriority'], W[m['PrimaryWeaponId']]['HUDName'], bool(m['SpecialWeaponId'])) for m in men) == [(1, 'QBZ-192', True), (2, 'QJS-161', False)] + [(3, 'QBZ-192', False)] * 4 + [(3, 'QCQ-171', False)] * 3,
+       'death priority: FHJ-02 1, QJS-161 2, rest 3')
     rec['thunder_gods_1124'] = {'kit': kit}
     print('THUNDER GODS', kit)
