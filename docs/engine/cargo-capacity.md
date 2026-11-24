@@ -36,7 +36,7 @@ Osama asked for "Shaanxi HMV3 cargo should be 15000 max cargo" on 14 Nov 2026 ([
 
 - **`MobilityJson`**
   - `HeavyLiftWeight`: the cargo capacity. 0 means no cargo.
-  - `Weight`: the unit's own weight when something else carries it.
+  - `Weight`: a different number (vanilla values 0–4000). The shop does not use it for cargo; see `Units.Weight` below.
   - Other fields are speeds, turn rate and so on. One mobility row can serve many units.
 - **`UnitPropulsionsJson`** (`Id`, `UnitId`, `MobilityId`): the mobility rows a unit can use. Most trucks have two, a flatbed row and an armored row. For example, HEMTT 242 has 108 (9000) and 231 (4500).
 - **`OptionsJson.MobilityId`** (armory option, through `ModificationsJson` → `UnitId`):
@@ -56,8 +56,8 @@ Osama asked for "Shaanxi HMV3 cargo should be 15000 max cargo" on 14 Nov 2026 ([
   - The supply added is `min(requested, left)` (`IntClampMax`).
   - `HeavyLiftLimit.Current` grows by that amount.
 - **`OrderedUnit.TryAddCargo((slot, Units))`** (`0x3713A0`):
-  - **Infantry:** it checks the squad size against `InfSlotLimit` (`+0x38` / `+0x3C`).
-  - **Vehicles:** if `HeavyLiftLimit.Max` > 0, it refuses the vehicle when `carried.Weight` (`Units +0x94`) + `Current` > `Max`. Otherwise it adds the weight to `Current`.
+  - **Seats:** for an infantry passenger (see Passengers below), it refuses the squad when its soldier count (`SquadMembers`) + `InfSlotLimit.Current` > `InfSlotLimit.Max` (`+0x38` / `+0x3C`).
+  - **Weight, for every passenger:** if `HeavyLiftLimit.Max` > 0, it refuses the unit when `carried.Weight` (`Units.Weight`, `+0x94`, the `Weight` column of the `Units` table) + `Current` > `Max`. Otherwise it adds the weight to `Current`. Vanilla vehicles weigh 1000–27000 (HEMTT 21000, BTR-82 15000, Humvee 4000). Every vanilla infantry squad weighs 1.
   - So supply and carried vehicles take from **one** weight budget. A helicopter with a vehicle on board has less room for supply.
 - The 1.2.2 build had the same logic at `0x2A3670` / `0x371DE0` / `0x371A50` / `0x371C40`. The addresses moved in 1.2.2.1; the method names did not.
 
@@ -66,6 +66,18 @@ Osama asked for "Shaanxi HMV3 cargo should be 15000 max cargo" on 14 Nov 2026 ([
 - **From the data and the HMV3 fix:** an option with `MobilityId` ≠ 0 decides the mobility row. If every chosen option has `MobilityId` 0, the unit keeps its own row (the HMV3 Cargo after dev.101).
 - **Not traced in code:** exactly which row becomes `CurrentMobility` when none of a unit's options sets a mobility and the unit has more than one propulsion row. In vanilla, the flatbed rows have `IsDefault` = true. This doc does not prove whether the game always uses that flag.
 - **Not checked:** whether an option's `MobilityId` must also be one of the unit's `UnitPropulsionsJson` rows. Vanilla always lists it. The FA Shaanxi SX2306 (below) does not.
+
+---
+
+## Passengers (seats) are not on the mobility row
+
+**Short answer.** Seats are `Units.InfantrySlots`, a column of the transport's own `Units` row. The mobility row and the armory options do not change them. A squad needs one seat per soldier. Read from the 1.2.2.1 code and the vanilla tables; not measured in a game for this doc.
+
+- **Data.** `UnitsJson.InfantrySlots`. Vanilla examples: HEMTT 27, KamAZ-6560 32, Ural-5323 24, MTVR 21, MTV 18, Ural-4320 16, LMTV 14, LVSR and M1075A1 PLS 0, CH-47 32, Mi-8MTV-5 21, Mi-26 85. `MobilityJson` and `OptionsJson` have no seat field, so a truck's Flatbed and Armored options have the same seats.
+- **Code.** `Units.GetInfantrySlots` (`0x2A2520`) returns `InfantrySlots` (`Units +0x9C`). It returns 0 when the unit is itself infantry: `Type` Infantry (2), or `CategoryType` Infantry (1), or `CategoryType` Recon (0) with squad members. The shop sets `InfSlotLimit.Max` from it (`OrderedUnit..ctor`).
+- **Which passengers use seats.** `TryAddCargo` checks seats for the same three cases (infantry type, infantry category, recon with squad members). It counts the squad's `SquadMembers` rows, one per soldier.
+- **Passengers also use a little weight.** Each passenger also adds its `Units.Weight` to the heavy-lift budget when the transport has one. Infantry weighs 1, so a full truck of infantry uses about 1 of thousands.
+- **To change seats:** edit `InfantrySlots` on the transport's `Units` row. Unlike mobility rows, a `Units` row belongs to one card. Copies made from it (for example the FA KamAZ-6560 Cargo, 0 seats) have their own value.
 
 ---
 
@@ -123,3 +135,4 @@ Recipe: `work/cargo-doc-20261123/survey.py <gameplay .bamod> <vanilla tables> <o
 ## Document change log
 
 - 2026-11-23 17:1x PST (America/Los_Angeles) — New doc (Lateralus asked why Osama had trouble changing cargo capacity and how it is configured). Why the HMV3 Cargo change failed, the 1.2.2.1 code path with RVAs, how to change it, shared rows and the Shaanxi SX2306 trap, current values.
+- 2026-11-23 17:0x PST (America/Los_Angeles) — Added "Passengers (seats)" (Lateralus asked whether passengers are part of the mobility row: no, `Units.InfantrySlots`). Corrected the weight that carried units use: `Units.Weight`, not `MobilityJson.Weight`.
