@@ -727,8 +727,6 @@ import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
 import qbz_58_ammo_1123;qbz_58_ammo_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
-# ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 2026 21:4x PST, thread 1567745029781454889). See ztz96_rocket_force_1123.py.
-import ztz96_rocket_force_1123;ztz96_rocket_force_1123.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # ---------- Chinese bug sheet FA-081/082/084/085 answers (Osama 23 Nov 2026 23:2x PST, bugs thread 1573561286803980289). See qq_sheet_fixes_1123.py.
