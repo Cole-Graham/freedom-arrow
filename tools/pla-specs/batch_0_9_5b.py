@@ -720,6 +720,9 @@ import ucav_fh97_xq58_1123;ucav_fh97_xq58_1123.apply(t,g,ok,rec)
 import x47b_marines_1123;x47b_marines_1123.apply(t,g,ok,rec)
 # ---------- UCAVs get flares (Osama 23 Nov 2026 20:4x PST, thread 1567745029781454889). See ucav_flares_1123.py.
 import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
+# ---------- VN-3 (airborne, Kord clone) and ZSL-191 (motorized, ZSL-92 family clone) transports for the MarkII_ China models (Osama 23 Nov 2026
+# 20:4x PST, thread "blue dragons"). MODEL BUILD ONLY. See mk_china_1123.py.
+import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
