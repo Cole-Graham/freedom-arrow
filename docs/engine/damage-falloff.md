@@ -52,6 +52,23 @@ Stored `HealthAOERadius` 40 (80 m on the card), `Damage` 12, penetration 50, top
 
 `10.34 = 12 × 50² / (50² + 20²)`.
 
+## Penetration over range
+
+**Short answer:** only kinetic rounds lose penetration with range. HEAT rounds always use `PenetrationAtGroundRange`, at any distance. Rounds that target no armor have unlimited penetration.
+
+*Details (read from GameAssembly 1.2.2.1, `GetPenetrationForAmmunition` 0x7D70B0 and `GetPenetrationForShell` 0x7D71D0; not measured in a game):*
+
+```text
+ArmorTargeted 0 (none):     penetration = float.MaxValue
+ArmorTargeted 1 (Kinetic):  penetration = PenAtMin - (PenAtMin - PenAtGround) × distance / (refRange - MinimalRange)
+ArmorTargeted 2 (HEAT):     penetration = PenetrationAtGroundRange
+then clamped to >= 0
+refRange = GetDispersionReferenceRange(): GroundRange, else LowAltRange, else HighAltRange, else 1000 (cached)
+```
+
+- 21 HEAT rounds in 0.9.6 have a different `PenetrationAtMinRange`, mostly aircraft cannons (GAU-8 150 → 75, GAU-12 120 → 60, most 30 mm plane guns 40 → 20). The game uses only their ground-range value.
+- The DPM visualizer (Lateralus's `dev-tools/dpm_visualizer/calculations.py` `penetration_at_range` and the web copy `dpm-core.js` `DPM.pen`) interpolates every round from min-range to ground-range penetration, HEAT included, over `distance / GroundRange`. It differs from the game for those 21 HEAT rounds, and slightly for the 40 kinetic rounds with `MinimalRange` > 0 (the game divides by `GroundRange - MinimalRange`).
+
 ## Stress
 
 Stress uses the same shape with `StressAOERadius`, written to `StressAOEDamageModifier`. That fraction scales the ammunition `StressDamage` only. `BattleSystemHelpers.CalculateStressDamage` then adds `MaxStress × (healthLoss / maxHealth)` as well. The levels, the shocked and panicked modifiers, and the recovery clock are in [Stress](stress.md). A unit outside the health radius and inside the stress radius takes the blast term and no health share.
