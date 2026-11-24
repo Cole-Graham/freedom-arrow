@@ -1,4 +1,4 @@
-"""Rafale C (France preview, spec 24) and Eurofighter Typhoon (Germany preview, spec 25) cards for Osama's two set-piece jets
+"""Rafale C (France preview, spec 24), Eurofighter Typhoon and Leopard 2A7 (Germany preview, spec 25) cards for Osama's two set-piece jets
 (23 Nov 2026 20:1x PST, thread "China cosmetic work": "I downloaded the Typhoon and Rafale, again these are set pieces so make sure they look
 good. you can put it on the next build"; 20:1x "prep these two planes for the one after that"). Same pattern as the Mirage 2000D RMV card
 (france_preview.py): a full copy of the F-16C (285) WITH its options; stats, weapons and prices are placeholders. Runs LAST in the batch so
@@ -8,6 +8,9 @@ FRANCE, GERMANY, EURO = 24, 25, 5
 CARDS = {
     'FR Rafale C': ('Rafale C', FRANCE, 285, 'F-16C Fighting Falcon', 145, 3),
     'DE Eurofighter Typhoon': ('Eurofighter Typhoon', GERMANY, 285, 'F-16C Fighting Falcon', 145, 3),
+    # Osama 23 Nov 2026 21:0x: "I just downloaded a Leopard 2a6 (let's call it Leopard 2A7) and add it to the armory preview" (copy of the M1A2 SEP v3,
+    # as the DE Leopard 2A6 card; model work/leo2a7-1123)
+    'DE Leopard 2A7': ('Leopard 2A7', GERMANY, 191, 'M1A2 SEP v3', 260, 2),
 }
 
 
