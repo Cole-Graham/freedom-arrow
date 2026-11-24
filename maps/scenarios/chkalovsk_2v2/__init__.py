@@ -38,6 +38,8 @@ def prepare(game,spec):
     play['rotate']=dict(X=0.0,Y=0.0,Z=0.0,W=1.0);head['spz']=play['_uid']
     C.strip_editor_teams(objects,meta)
     C.letter_zones(objects,LETTERS,[fl['name'] for fl in spec['flavors']])
+    # Lateralus 23 Nov 2026 "Chkalovsk: Change to F": the renamed Hotel kept Hotel's icon (8, H) until 0.9.6.
+    fox=next(o for o in objects if o.get('_type')==15 and o['hudText']=='Foxtrot');assert fox['ZoneIcon']==8;fox['ZoneIcon']=6
     add_start_cameras(objects)
     return C.extract_layout(objects),(head,nodes,objects,meta)
 SPEC=dict(
