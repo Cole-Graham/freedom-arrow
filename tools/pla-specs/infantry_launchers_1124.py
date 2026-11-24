@@ -6,8 +6,8 @@ Quarters loadout +10 -> +0. USA 'Combat Engineers': Make sure this unit's death 
 - Rounds (each row is the weapon's only round; every user follows): SRAW MPV 140mm blast-frag 392 GroundRange 300 -> 350 world (600 -> 700 card m),
   IgnoreCover 0.25 -> 0.5, penetration 75 -> 300 (min and ground). DZJ-08 2012025, SMAW-D 84mm HEDP 128 (vanilla 0), C90-CR-AM 593: IgnoreCover -> 0.
   Bur 62mm Thermobaric 103: Damage 2.5 -> 4.0, IgnoreCover 1.0 -> 0.75 (also VDV Spetsnaz, SSO, SF Assault, SF Recon).
-- Thermobaric Assault 1209: rifleman 2015623 (QBZ-191 + PF-97, priority 3) removed, so QBZ-191 6 -> 5 and PF-97 6 -> 5 (one per carrier,
-  disposable_launchers_1123.py); armour 277 'Shock 9Men' 8/45 -> vanilla 291 'Shock 8Men' 8/40 (same row except HP); Cost 70 -> 60.
+- Thermobaric Assault 1209: rifleman 2015623 (QBZ-191 + PF-97, priority 3) removed, so QBZ-191 6 -> 5; shotgunner 2015616 gets that PF-97
+  (Lateralus 11:4x "give the 6th to a QBS-09 man"), so PF-97 stays 6, one per carrier (disposable_launchers_1123.py); armour 277 'Shock 9Men' 8/45 -> vanilla 291 'Shock 8Men' 8/40 (same row except HP); Cost 70 -> 60.
 - Loadouts +10 -> +0: China Combat Engineers 1156 option 24354 (Thermobaric launcher -> 1162 Thermobaric Breachers 60 -> 50) and US Mech. Engineers
   146 option 3348 (Close quarters -> 708 Mech. Engineers CQC 55 -> 45). Swap row price = base + option (audit_swap_prices).
 - US Combat Engineers 449: weapon order already the vanilla pattern (M4A1, M-25 CDTE, M590A1, M249E3, SMAW-D HIT: rifle first, AT last); unchanged.
@@ -37,7 +37,11 @@ def apply(t, g, ok, rec):
        and cnt('SpecialWeaponId', 2012515) == 6 and cnt('PrimaryWeaponId', 2012131) == 3, ('1209 before', U[1209]['Cost'], men()))
     r = SM[2015623];ok(r['UnitId'] == 1209 and r['PrimaryWeaponId'] == 2003998 and r['SpecialWeaponId'] == 2012515 and r['DeathPriority'] == 3, ('2015623', r))
     g.remove('SquadMembersJson', 2015623)
-    ok(len(men()) == 8 and cnt('PrimaryWeaponId', 2003998) == 5 and cnt('SpecialWeaponId', 2012515) == 5, '1209: 8 men, QBZ-191 x5, PF-97 x5')
+    # Lateralus 24 Nov 11:4x "yes give the 6th to a QBS-09 man": PF-97 stays 6 (one per carrier); shotgunner 2015616 keeps priority 2 (tier B),
+    # as the Thermobaric Breachers' HAWK man with the 5th PF-97.
+    q = SM[2015616];ok(q['UnitId'] == 1209 and q['PrimaryWeaponId'] == 2012131 and not q.get('SpecialWeaponId') and q['DeathPriority'] == 2, ('2015616', q))
+    g.put('SquadMembersJson', 2015616, {'SpecialWeaponId': 2012515})
+    ok(len(men()) == 8 and cnt('PrimaryWeaponId', 2003998) == 5 and cnt('SpecialWeaponId', 2012515) == 6, '1209: 8 men, QBZ-191 x5, PF-97 x6')
     ua = [x for x in UA.values() if x and x['UnitId'] == 1209];ok(len(ua) == 1 and ua[0]['ArmorId'] == 277, ('1209 armour row', ua))
     ok(DIFF(AR[277], AR[291]) == {'MaxHealthPoints'} and (AR[291]['ArmorValue'], AR[291]['MaxHealthPoints']) == (8, 40), 'row 291 = 277 with 40 HP')
     g.put('UnitArmorsJson', ua[0]['Id'], {'ArmorId': 291});g.put('Units', 1209, {'Cost': 60})
@@ -55,7 +59,7 @@ def apply(t, g, ok, rec):
     # Shturmoviki
     ok(U[401]['HUDName'].strip() == 'Shturmoviki' and U[401]['Cost'] == 40 and not [o for o in O.values() if o and o.get('ReplaceUnitId') == 401], 'Shturmoviki 40')
     g.put('Units', 401, {'Cost': 50})
-    rec['infantry_launchers_1124'] = {'rounds': out, 'thermobaric_assault': {'cost': [70, 60], 'men': [9, 8], 'hp': [45, 40], 'qbz191': [6, 5], 'pf97': [6, 5]},
+    rec['infantry_launchers_1124'] = {'rounds': out, 'thermobaric_assault': {'cost': [70, 60], 'men': [9, 8], 'hp': [45, 40], 'qbz191': [6, 5], 'pf97': [6, 6], 'pf97_to_qbs09': 2015616},
         'loadouts': {'China Combat Engineers Thermobaric launcher': [10, 0], 'Mech. Engineers Close quarters': [10, 0]},
         'us_combat_engineers_priority': {934: [4, 3], 941: [4, 3]}, 'shturmoviki': [40, 50]}
     print('INFANTRY LAUNCHERS', rec['infantry_launchers_1124'])
