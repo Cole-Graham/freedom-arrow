@@ -98,19 +98,33 @@ def face_armor(armor: dict[str, Any], face: str, armor_targeted: int) -> float:
     return float(armor.get(kin_field) or 0)
 
 
+def penetration_reference_range(ammo: dict[str, Any]) -> float:
+    """Ammunitions.GetDispersionReferenceRange (GameAssembly 1.2.2.1 0x279570): GroundRange, else LowAltRange, else HighAltRange, else 1000."""
+    for key in ("GroundRange", "LowAltRange", "HighAltRange"):
+        value = float(ammo.get(key) or 0)
+        if value > 0:
+            return value
+    return 1000.0
+
+
 def penetration_at_range(ammo: dict[str, Any], world_m: float) -> float:
-    """Linear falloff from point-blank to GroundRange. Min range is a fire gate, not the curve."""
+    """Penetration at a world distance, as GetPenetrationForAmmunition / GetPenetrationForShell (GameAssembly 1.2.2.1 0x7D70B0 / 0x7D71D0).
+
+    Kinetic: PenetrationAtMinRange minus (min - ground) x distance / (reference range - MinimalRange), clamped at 0.
+    HEAT: PenetrationAtGroundRange at every distance (no falloff). No armor targeted: unlimited (math.inf).
+    docs/engine/damage-falloff.md, "Penetration over range" (Lateralus 24 Nov 2026: HEAT has no penetration scaling over range).
+    """
+    targeted = int(ammo.get("ArmorTargeted") or 0)
+    if targeted == ARMOR_IGNORE:
+        return math.inf
     pen_min = float(ammo.get("PenetrationAtMinRange") or 0)
     pen_ground = float(ammo.get("PenetrationAtGroundRange") or 0)
-    ground = float(ammo.get("GroundRange") or 0)
-    if ground <= 0:
-        return pen_ground
-    if world_m <= 0:
-        return pen_min
-    if world_m >= ground:
-        return pen_ground
-    t = world_m / ground
-    return pen_min + t * (pen_ground - pen_min)
+    if targeted != ARMOR_KINETIC:
+        return max(0.0, pen_ground)
+    span = penetration_reference_range(ammo) - float(ammo.get("MinimalRange") or 0)
+    if span <= 0:
+        return max(0.0, pen_ground)
+    return max(0.0, pen_min - (pen_min - pen_ground) * max(0.0, world_m) / span)
 
 
 def hit_damage(

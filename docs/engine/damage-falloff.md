@@ -67,7 +67,7 @@ refRange = GetDispersionReferenceRange(): GroundRange, else LowAltRange, else Hi
 ```
 
 - 21 HEAT rounds in 0.9.6 have a different `PenetrationAtMinRange`, mostly aircraft cannons (GAU-8 150 → 75, GAU-12 120 → 60, most 30 mm plane guns 40 → 20). The game uses only their ground-range value.
-- The DPM visualizer (Lateralus's `dev-tools/dpm_visualizer/calculations.py` `penetration_at_range` and the web copy `dpm-core.js` `DPM.pen`) interpolates every round from min-range to ground-range penetration, HEAT included, over `distance / GroundRange`. It differs from the game for those 21 HEAT rounds, and slightly for the 40 kinetic rounds with `MinimalRange` > 0 (the game divides by `GroundRange - MinimalRange`).
+- The DPM visualizer (`dev-tools/dpm_visualizer/calculations.py` `penetration_at_range` and the web copy `dpm-core.js` `DPM.pen`) follows this rule from 24 Nov 2026 (Lateralus). Before, it interpolated every round, HEAT included, over `distance / GroundRange`; that was wrong for those 21 HEAT rounds and slightly for the 40 kinetic rounds with `MinimalRange` > 0.
 
 ## Stress
 
@@ -156,3 +156,4 @@ Every 152/155 mm howitzer HE round in 0.9.5b has `Damage` 12, penetration 45, `H
 ## Document change log
 
 - 2026-11-24 10:5x PST (America/Los_Angeles) — Added "Penetration over range": kinetic falloff formula, HEAT fixed at ground-range value, and the DPM visualizer difference (Lateralus).
+- 2026-11-24 11:0x PST (America/Los_Angeles) — DPM visualizer (Python and web) now uses the game rule.

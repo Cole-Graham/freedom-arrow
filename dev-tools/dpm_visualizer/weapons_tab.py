@@ -129,6 +129,9 @@ class WeaponsTab:
         ttk.Combobox(grid, textvariable=self.targeted, values=["0", "1", "2"], width=6, state="readonly").grid(
             row=4, column=1, sticky=tk.W
         )
+        ttk.Label(grid, text="0 no armor (pen unused) · 1 KE: Pen min → Pen ground over range · 2 HEAT: Pen ground at every range (Pen min unused)").grid(
+            row=4, column=2, columnspan=6, sticky=tk.W, padx=4
+        )
         ttk.Button(custom, text="Create / edit custom weapon", command=self.save_custom_weapon).pack(anchor=tk.W)
         self.preview = ttk.Label(custom, text="Live preview: load a weapon")
         self.preview.pack(anchor=tk.W, pady=4)
@@ -382,6 +385,9 @@ class WeaponsTab:
             "DispersionVerticalRadius": ammo.get("DispersionVerticalRadius") or 0,
             "DispersionMinimal": ammo.get("DispersionMinimal") or 0,
             "Seeker": ammo.get("Seeker") or 0,
+            # reference range for kinetic falloff when GroundRange is 0 (calculations.penetration_reference_range)
+            "LowAltRange": ammo.get("LowAltRange") or 0,
+            "HighAltRange": ammo.get("HighAltRange") or 0,
         }
         for key, value in mapping.items():
             self.fields[key].delete(0, tk.END)
