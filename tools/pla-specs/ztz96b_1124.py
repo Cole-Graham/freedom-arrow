@@ -1,6 +1,5 @@
-"""ZTZ-96B front armour and price (Osama 24 Nov 2026 01:25 PST, thread "blue dragons": "ztz-99B should have the same front armor as the ZTZ-96A
-and be lowered to 195 points"). Read as the ZTZ-96B (unit 905, 220 pts): there is no ZTZ-99B card (the 99B is the GL-6 APS loadout of the
-ZTZ-99A 904, 250 pts base, which is not lowered to 195), and only the 96B has more front armour than the 96A. To be confirmed by Osama.
+"""ZTZ-96B front armour and price (Osama 24 Nov 2026 01:25 PST, thread "blue dragons"; he wrote "ztz-99B" and confirmed 01:3x "96B not 99B"):
+same front armour as the ZTZ-96A and lowered to 195 points. The ZTZ-99A (904) and its 99B APS loadouts are not changed.
 - ZTZ-96B armour row 2009091 (905 only): front KE 650 -> 600, HEAT 850 -> 600 = ZTZ-96A (1082, row 2011345). Sides, rear, top unchanged.
 - ZTZ-96B 220 -> 195 pts."""
 UID, ROW, REF, REFROW, COST = 905, 2009091, 1082, 2011345, 195

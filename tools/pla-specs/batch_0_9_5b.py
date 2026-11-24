@@ -792,7 +792,7 @@ import card_portraits_1124;card_portraits_1124.apply(t,g,ok,rec)
 # ---------- PLA ZZC-06 (ZBD-04A Recon copy without the 100 mm gun, 45 pts) replaces the ZBD-04A Recon in the Heavy Combined Arms Brigade
 # (Osama 24 Nov 2026 01:1x-01:23 PST, threads "China cosmetic work" + "blue dragons"). See zzc06_recon_1124.py.
 import zzc06_recon_1124;zzc06_recon_1124.apply(t,g,ok,rec)
-# ---------- ZTZ-96B front armour = ZTZ-96A, 220 -> 195 pts (Osama 24 Nov 2026 01:25 PST, thread "blue dragons": "ztz-99B ..."). See ztz96b_1124.py.
+# ---------- ZTZ-96B front armour = ZTZ-96A, 220 -> 195 pts (Osama 24 Nov 2026 01:25 PST, thread "blue dragons", "96B not 99B"). See ztz96b_1124.py.
 import ztz96b_1124;ztz96b_1124.apply(t,g,ok,rec)
 # ---------- VN-3 air-droppable (Osama 24 Nov 2026 01:2x PST, thread "China cosmetic work"). See vn3_airdrop_1124.py.
 import vn3_airdrop_1124;vn3_airdrop_1124.apply(t,g,ok,rec)
