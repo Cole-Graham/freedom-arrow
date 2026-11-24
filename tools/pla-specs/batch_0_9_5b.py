@@ -767,6 +767,9 @@ import zbd05_ifv_1123;zbd05_ifv_1123.apply(t,g,ok,rec)
 # ---------- Chinese weapon / round / loadout names on ZTD-05, ZSD-05, ZBD-05, VN-3 (Osama 23 Nov 2026 22:4x PST, thread 1567745029781454889).
 # MODEL BUILD ONLY. See sinicize_1123.py.
 import sinicize_1123;sinicize_1123.apply(t,g,ok,rec)
+# ---------- No HJ-12 / APS / reactive armour loadouts on ZSD-05, ZBD-05, ZTD-05 (Osama 23 Nov 2026 22:4x PST, thread 1567745029781454889).
+# MODEL BUILD ONLY. See plan_trim_options_1123.py.
+import plan_trim_options_1123;plan_trim_options_1123.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'
