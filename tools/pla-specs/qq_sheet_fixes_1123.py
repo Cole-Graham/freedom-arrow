@@ -5,7 +5,7 @@
 - FA-085 "Z-20T ... should both have seats, so lets give it seats": Z-20T (1245) InfantrySlots 0 -> 8, like the armed Black Hawk MH-60M DAP and
   the Mi-24 family (8 each). It stays an attack helicopter, not a transport option on infantry cards (as those vanilla units).
 - FA-081 "we should reduce the overpressure range to somewhere more normal with large missiles (let's take JAGM for example)": HJ-10 NLOS round
-  2009623 OverpressureRadius 5.0 -> 0.0, the JAGM / Hellfire value. Overpressure > 0 also forces roof armour on a direct hit
+  2009623 OverpressureRadius 5.0 -> 0.5 (JAGM / Hellfire are 0; Osama 23:3x "give it a tiny bit of leeway, like just a hair"). Overpressure > 0 also forces roof armour on a direct hit
   (docs: overpressure-direct-hit), so this ends top-armour hits from the HJ-10.
 - FA-082 "FB-10 should be IIR which is fnf": PGL-625 FB-10 round 2009373 Seeker 100 (semi-active) -> 10, the vanilla IR fire-and-forget seeker
   of the Stinger / Igla / Mistral rows. Seeker angle and distance unchanged."""
@@ -29,9 +29,9 @@ def apply(t, g, ok, rec):
     ok(W[2009619]['HUDName'] == 'HJ-10 NLOS' and (W[2009619]['AimTimeMin'], W[2009619]['AimTimeMax']) == (1.0, 1.0), 'HJ-10 NLOS aim before')
     g.put('WeaponsJson', 2009619, {'AimTimeMin': 2.0, 'AimTimeMax': 2.0})
     ok((W[2009619]['AimTimeMin'], W[2009619]['AimTimeMax']) == (2.0, 2.0), 'HJ-10 NLOS aim 2 s')
-    g.put('AmmunitionsJson', HJ10, {'OverpressureRadius': 0.0})
+    g.put('AmmunitionsJson', HJ10, {'OverpressureRadius': 0.5})   # Osama 23:3x "give it a tiny bit of leeway, like just a hair"
     g.put('AmmunitionsJson', FB10, {'Seeker': 10})
     ok(A[RESERVIST_AMMO]['HUDName'] == QBZ95_AMMO_NAME and A[RESERVIST_AMMO]['Damage'] == 0.36 and U[Z20T]['InfantrySlots'] == 8
-       and A[HJ10]['OverpressureRadius'] == 0.0 and A[FB10]['Seeker'] == 10, 'after')
+       and A[HJ10]['OverpressureRadius'] == 0.5 and A[FB10]['Seeker'] == 10, 'after')
     rec['qq_sheet_fixes_1123'] = {'reservist_round_already': [RESERVIST_AMMO, QBZ95_AMMO_NAME], 'z20t_seats': [0, 8],
-                                  'hj10_overpressure': [5.0, 0.0], 'fb10_seeker': [100, 10], 'hj10_nlos_aim_s': [1.0, 2.0]}
+                                  'hj10_overpressure': [5.0, 0.5], 'fb10_seeker': [100, 10], 'hj10_nlos_aim_s': [1.0, 2.0]}
