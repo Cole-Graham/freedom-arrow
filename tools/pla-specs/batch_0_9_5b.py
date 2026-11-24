@@ -727,8 +727,6 @@ import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
 # ---------- VN-3 (airborne, Kord clone) and ZSL-191 (motorized, ZSL-92 family clone) transports for the MarkII_ China models (Osama 23 Nov 2026
 # 20:4x PST, thread "blue dragons"). MODEL BUILD ONLY. See mk_china_1123.py.
 import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
-# ---------- ZTQ-15 Light Chinese name ZTQ-15空降型 (Osama 23 Nov 2026 21:0x PST, thread 1567745029781454889). See ztq15_light_cn_name_1123.py.
-import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 # ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 2026 21:4x PST, thread 1567745029781454889). See ztz96_rocket_force_1123.py.
