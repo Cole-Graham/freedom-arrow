@@ -1,13 +1,15 @@
 """China roster changes (Osama 23 Nov 2026 18:0x-18:1x PST, thread 1567745029781454889): "Hide VN-20 and VN-17 from the armory, ZTQ-15 from Armored
 forces goes to motorized, hide VT-5 from the armory selection. VN-20, VN-17 and VT-5 should still be kept in the game just not useable right now",
-"also hide ZTZ-98 and ZTZ-59", "Z-10K and Z-10U should swap names".
+"also hide ZTZ-98 and ZTZ-59", "Z-10K and Z-10U should swap names", 18:1x "HQ-6A hide from armory, PCL-181 hide from armory (we need to keep a
+running list of units we're hiding and moving off the main build) ZSL-92 removed too". The running list is docs/roster/hidden-units.md.
 - Hidden (rows kept, so nothing that points to them breaks): out of every spec, off every transport list, DisplayInArmory False.
   VN20 (1274, Armored), VN-17 (945: the ZBD-20 used only as a transport, 8 transport links), VT-5 (1261, Motorized + PLAN SF) and VT-5 Recon
-  (1262, Motorized), ZTZ-59 (1060 'PLA Catalogue Type 59', PLARF), ZTZ-98 ('PLA ZTZ-98', PLARF; only in the model build).
+  (1262, Motorized), ZTZ-59 (1060 'PLA Catalogue Type 59', PLARF), ZTZ-98 ('PLA ZTZ-98', PLARF; only in the model build),
+  PCL-181 (1034, Motorized), HQ-6A (1045, Motorized), ZSL-92 (1079: used only as a transport, 10 transport links).
 - ZTQ-15 (906): its Armored Force card (row 2008168, 6 cards) moves to PLAGF Motorized. ZTQ-15 Recon / Light unchanged.
 - Z-10K (913, PLAAF) and Z-10U (1270, PLAN SF) swap card names."""
 
-HIDE = {1274: 'VN20', 945: 'VN-17', 1261: 'VT-5', 1262: 'VT-5 Recon', 1060: 'ZTZ-59'}
+HIDE = {1274: 'VN20', 945: 'VN-17', 1261: 'VT-5', 1262: 'VT-5 Recon', 1060: 'ZTZ-59', 1034: 'PCL-181', 1045: 'HQ-6A', 1079: 'ZSL-92'}
 ZTQ15, ZTQ15_ROW, ARMORED, MOTORIZED = 906, 2008168, 18, 21
 Z10K, Z10U = 913, 1270
 
