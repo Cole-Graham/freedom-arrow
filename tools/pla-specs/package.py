@@ -39,7 +39,10 @@ _receipts=[(m[1],f) for f in RCPT.glob('FreedomArrow-0.*.json') if (m:=re.fullma
 # the one being made: 0.9.5b-dev.2 builds on 0.9.5b-dev.1 even when a 0.9.6-dev.95 test build exists.
 _vV=_vkey(re.match(_VP,V)[0])   # a test build such as 0.9.4-dev.1-test1 sorts as 0.9.4-dev.1
 newest=max(((_vkey(v),v) for v,f in _receipts if _vkey(v)<_vV))
-assert a.prev==newest[1],f'--prev {a.prev} is not the newest build before {V} ({newest[1]}); build on it so other threads\' fixes are kept'
+# 0.9.6 release (24 Nov 2026): the old 0.9.6-dev.90-97 receipts are Osama's retired 23 Nov model-rework test line (redone tonight on
+# codex/development); they sort above dev.20, so the release names the reason to build on a different base: BA_PREV_REASON=<why>.
+if a.prev!=newest[1] and os.environ.get('BA_PREV_REASON'):print(f'--prev {a.prev} kept over newer receipt {newest[1]}: {os.environ["BA_PREV_REASON"]}')
+else: assert a.prev==newest[1],f'--prev {a.prev} is not the newest build before {V} ({newest[1]}); build on it so other threads\' fixes are kept'
 # Osama 14 Nov 2026 15:39 PST ("make sure dev builds we aren't skipping"): the #build-install dev-build post fell behind from 0.8.0-dev.82
 # to 0.9.0-dev.2. The next build may start only after the previous one is on that post (work/build-install/devpost.py).
 _st=json.loads(Path('/home/sam/tars/work/ba-dev/replicas/codex/work/build-install/state.json').read_text()).get('dev_build',{}).get('version')

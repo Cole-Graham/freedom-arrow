@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.20",
+  "version": "0.9.6",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.20 (live-ready build for Osama): dev.19 plus everything pushed to codex/development to 77a0014f: green tones on the new China models, Create Deck flag size, France/Germany battlegroup size 0, ZTZ-96 back in PLARF, X-47B normals, XQ-58A card, QCQ-171 / QBU-201 / QJB-201 / QBU-10 icons, Falcons and Marine Recon kits, Thunder Gods kit, ZTL-191 Recon to test spec. Needs Freedom Arrow — Models and Music 0.2.93.",
+  "description": "Freedom Arrow 0.9.6 (playtest release, Osama 24 Nov 2026): the 0.9.6 China model rework (ZTD-05/ZSD-05/ZBD-05, ZZC-06/07, PLZ-10/25, ZRZ-100, VN-3, ZSL-191 and more), US LRHW and XQ-58A, Blue Dragon and Eurocorp previews, China kit and balance changes, planes with gear up in battle, new China greens. Full notes: patch notes 0.9.6. Needs Freedom Arrow — Models and Music 0.2.94.",
   "repo": "Cole-Graham/freedom-arrow"
 }
