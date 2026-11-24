@@ -1,10 +1,11 @@
 """Unit icons (card silhouettes) for the new China vehicles (Osama 24 Nov 2026 01:1x PST, thread "China cosmetic work": "where are the unit
 icons"). White side-view labels rendered from each card's own model (dev.18 battle mesh) by work/pla-unit-icons-20261114/do_icon2.py
 (sil.py + style.py, the 14 Nov China icon style): mod/source/runtime-qa/icons/FA_PLA_VEH_<KEY>.png + _OUTLINE.png, registered by
-ChinaUi (every FA_PLA_* resource). Sets ThumbnailFileName on the card and its own loadout rows (Name = card name + ' ...')."""
+ChinaUi (every FA_PLA_* resource). ZZC-06 rendered from work/c5-cn-1123/out3 (not in dev.18). Sets ThumbnailFileName on the card and its own loadout rows (Name = card name + ' ...')."""
 import os
 ICONS = {'PLA ZTD-05': 'ZTD05', 'PLA ZSD-05': 'ZSD05', 'PLA ZRZ-100': 'ZRZ100', 'PLA ZBD-05': 'ZBD05', 'PLA VN-3': 'VN3', 'PLA PLZ-25': 'PLZ25',
-         'PLA PLZ-10': 'PLZ10', 'PLA ZBL-08 Recon': 'ZBL08R', 'PLA ZSL-191': 'ZSL191', 'PLA PLL-05': 'PLL05'}
+         'PLA PLZ-10': 'PLZ10', 'PLA ZBL-08 Recon': 'ZBL08R', 'PLA ZSL-191': 'ZSL191', 'PLA PLL-05': 'PLL05',
+         'PLA ZZC-06': 'ZZC06'}
 DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'mod', 'source', 'runtime-qa', 'icons')
 
 
