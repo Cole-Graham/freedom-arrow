@@ -27,6 +27,7 @@ def apply(t, g, ok, rec):
     for uid, hud in HIDE.items():
         rows = [r['Id'] for r in SA.values() if r and r['UnitId'] == uid]
         links = [r['Id'] for r in TA.values() if r and (r['UnitId'] == uid or r['SpecializationAvailabilityId'] in rows)]
+        rec.setdefault('hidden_rows', {})[uid] = ([dict(SA[i]) for i in rows], [dict(TA[i]) for i in links])   # for test_specs_1123.py
         for i in links: g.remove('TransportAvailabilitiesJson', i)
         for i in rows: g.remove('SpecializationAvailabilitiesJson', i)
         g.put('Units', uid, {'DisplayInArmory': False})

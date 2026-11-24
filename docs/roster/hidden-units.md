@@ -38,15 +38,17 @@ Add every new hidden or removed card here in the same commit as the data change.
 | ZTZ-98 | 'PLA ZTZ-98' (1309 in 0.9.6-dev.12) | PLARF Rocket Conscript Force | `roster_1123b.py` | Osama 23 Nov 18:1x |
 | Type 19 | see `type19_removed_1123.py` | Blue Dragon | `type19_removed_1123.py` | Osama 23 Nov 18:0x (blue dragons thread) |
 
-## China test spec (spec 26, off by default)
+## Test specs (specs 26 China, 27 USA, 28 Russia; off by default)
 
-Osama 23 Nov 18:5x: "a hidden toggle for a China test spec", "just units we removed just now", and the old Test spec 22 stays hidden.
-Spec 26 "Test: Hidden Units" holds every **China** card in the lists above (YJ-18 is removed, not hidden, so it is not there), with its old card
-count and transports. VN-17 and ZSL-92 were transports only and get 2 cards each. These units have `DisplayInArmory` true again, but spec 26 has
-`ShowInHangar` false, so the normal Armory and deck creation still do not show them.
+Osama 23 Nov 18:5x: "a hidden toggle for a China test spec", and the old Test spec 22 stays hidden. 19:3x: "you can put all the hidden units here".
+Each nation has one "Test: Hidden Units" spec that holds **every card in the lists above** for that nation, with its old card count (YJ-18 too).
+VN-17 and ZSL-92 were transports only and get 2 cards each. The test specs have **no transports**: the Armory shows a spec's transports as cards,
+so the QJZ-89 Team's ZBD-04A, ZSD-89A and Type 100 CSV had shown up in it. These units have `DisplayInArmory` true again, but the test specs
+have `ShowInHangar` false, so the normal Armory and deck creation still do not show them.
 
-To switch it on for one PC, create `UserData/FreedomArrow/test-spec.json` with `{"show": true}` and restart the game (`runtime-qa/TestSpec.cs`).
-Delete the file or set `false` to switch it off. Section: `china_test_spec_1123.py`. Add new hidden China cards to it when Osama asks.
+To switch them on for one PC, create `UserData/FreedomArrow/test-spec.json` with `{"show": true}` and restart the game (`runtime-qa/TestSpec.cs`).
+Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`. A section that hides a card records its old rows in
+`rec['hidden_rows']`, and the card then goes into its nation's test spec automatically.
 
 ## Moved (not hidden)
 
@@ -64,3 +66,4 @@ Delete the file or set `false` to switch it off. Section: `china_test_spec_1123.
 - 2026-11-23 18:5x PST (America/Los_Angeles): OH-58D Recon Optronic, MH-6 Little Bird Recon and AH-64D Longbow Recon added (Lateralus).
 - 2026-11-23 18:56 PST (America/Los_Angeles): China test spec 26 (toggle) added with the 13 hidden China cards.
 - 2026-11-23 19:0x PST (America/Los_Angeles): Ka-226T Razvedchik and Ka-52K Razvedchik added (Lateralus).
+- 2026-11-23 19:45 PST (America/Los_Angeles): Test specs for every nation (27 USA, 28 Russia) with all hidden cards incl. YJ-18; no transports in test specs.

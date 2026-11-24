@@ -12,6 +12,7 @@ def apply(t, g, ok, rec):
     ok([r['Id'] for r in SA.values() if r and r['UnitId'] == YJ18] == [AVAIL] and not any(r and r['SpecializationAvailabilityId'] == AVAIL for r in TA.values()),
        'one availability row, no transport links')
     ok([u['HUDName'] for u in U.values() if u and 'YJ-18' in (u.get('HUDName') or '')] == ['YJ-18'], 'only one YJ-18 card')
+    rec.setdefault('hidden_rows', {})[YJ18] = ([dict(SA[AVAIL])], [])   # for test_specs_1123.py
     g.remove('SpecializationAvailabilitiesJson', AVAIL)
     g.put('Units', YJ18, {'DisplayInArmory': False})
     ok(not any(r and r['UnitId'] == YJ18 for r in SA.values()) and U[YJ18]['DisplayInArmory'] is False, 'YJ-18 in no spec, hidden in the Armory')

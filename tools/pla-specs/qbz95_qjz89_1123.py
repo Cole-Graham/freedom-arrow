@@ -18,7 +18,7 @@ def apply(t, g, ok, rec):
     rows = [r['Id'] for r in SA.values() if r and r['UnitId'] == QJZ89]
     ok(U[QJZ89]['HUDName'] == 'QJZ-89 Team' and len(rows) == 1 and SA[rows[0]]['SpecializationId'] == 18, 'QJZ-89 Team Armored Force card')
     links = [r['Id'] for r in TA.values() if r and (r['UnitId'] == QJZ89 or r['SpecializationAvailabilityId'] in rows)]
-    rec.setdefault('hidden_rows', {})[QJZ89] = ([dict(SA[i]) for i in rows], [dict(TA[i]) for i in links])   # for china_test_spec_1123.py
+    rec.setdefault('hidden_rows', {})[QJZ89] = ([dict(SA[i]) for i in rows], [dict(TA[i]) for i in links])   # for test_specs_1123.py
     for i in links: g.remove('TransportAvailabilitiesJson', i)
     for i in rows: g.remove('SpecializationAvailabilitiesJson', i)
     g.put('Units', QJZ89, {'DisplayInArmory': False})
