@@ -105,10 +105,15 @@ static class NationLayout
             LayoutRebuilder.ForceRebuildLayoutImmediate(bar);
             var h1=bar.GetComponent<HorizontalLayoutGroup>();var h2=row2.GetComponent<HorizontalLayoutGroup>();
             Transform us=first.Count>0?first[0]:null;
-            if(h1!=null&&h2!=null&&us!=null)
+            int pad=-1;
+            if(h1!=null&&h2!=null&&us!=null&&us.parent==bar)
             {
-                var ur=us.GetComponent<RectTransform>();
-                h2.padding=new RectOffset(Mathf.RoundToInt(ur.localPosition.x-ur.pivot.x*ur.rect.width-bar.rect.xMin),h1.padding.right,h1.padding.top,h1.padding.bottom);
+                // The width of everything left of the US flag in row 1 (the ALL button), from preferred widths, so it does not depend on whether
+                // the bar has been laid out yet (Osama 23 Nov 18:0x: in dev.10 China sat under ALL, "the Chinese flag is right under the US").
+                float x=h1.padding.left;
+                for(int i=0;i<us.GetSiblingIndex();i++){var c=bar.GetChild(i).GetComponent<RectTransform>();if(c!=null&&c.gameObject.activeSelf)x+=LayoutUtility.GetPreferredWidth(c)+h1.spacing;}
+                pad=Mathf.RoundToInt(x);
+                h2.padding=new RectOffset(pad,h1.padding.right,h1.padding.top,h1.padding.bottom);
             }
             // Move the bar up just enough for a second row above the search line, and put row 2 under it.
             var lift=LiftTarget(bar,__instance);
@@ -123,7 +128,7 @@ static class NationLayout
             row2.localPosition=bar.localPosition-new Vector3(0,rowH+gap,0);
             LayoutRebuilder.ForceRebuildLayoutImmediate(row2);
             MelonLogger.Msg($"FREEDOM_ARROW_NATION_LAYOUT arsenal: groups {groups.Count}, row 1 {first.Count} nation(s) + ALL{(firstIndex>0&&firstIndex!=int.MaxValue?" inside the bar":" outside the bar")}, "+
-                $"row 2 China={(china!=null)} Russia={(russia!=null)}; row {rowH:0.#} high, gap {gap:0.#}, room below {room:0.#}, moved up {up:0.#} ({lift.name}); "+
+                $"row 2 China={(china!=null)} Russia={(russia!=null)} starts at {pad}; row {rowH:0.#} high, gap {gap:0.#}, room below {room:0.#}, moved up {up:0.#} ({lift.name}); "+
                 $"bar parent layout={(parent.GetComponent<LayoutGroup>()?.GetType().Name??"none")}, bar layout={(h1!=null?"HLG":"none")}");
         }
         catch(Exception e){Fail(e);}
