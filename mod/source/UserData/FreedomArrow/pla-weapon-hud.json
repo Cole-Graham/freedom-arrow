@@ -8,9 +8,9 @@
       "scope": "INFANTRY",
       "mode": "custom",
       "profile": "QBZ191",
-      "address": "FA_PLA_WP_QBZ191",
+      "address": "FA_PLA_WP_QBZ191_PLAIN",
       "native_weapon": 2003998,
-      "basis": "Sam-supplied optic-equipped QBZ191 CAD image, measured source edges"
+      "basis": "Iron-sight icon since 0.9.6 (Osama 23 Nov 2026: baseline QBZ-191 without the optic); the optic icon FA_PLA_WP_QBZ191 stays on the QMK"
     },
     {
       "weapon": 2004000,

@@ -660,6 +660,15 @@ import recon_stealth_1123;recon_stealth_1123.apply(t,g,ok,rec)
 # ---------- YJ-18 removed from the game: out of its spec and hidden in the Armory (Osama 23 Nov 2026 17:4x PST, thread 1567745029781454889).
 # See yj18_removed_1123.py.
 import yj18_removed_1123;yj18_removed_1123.apply(t,g,ok,rec)
+# ---------- Baseline QBZ-191 uses the iron-sight icon (Osama 23 Nov 2026 17:5x PST, bugs thread 1573561286803980289: "we do have a qbz 191
+# icone without the optic right? can we use that one for the baseline QBZ-191?"). After the KIAyuyu video review: the QBZ-191 (1.2 damage) and the
+# QMK (1.5 damage, the scoped rifle) showed the same optic icon. QBZ-191 2003998 -> FA_PLA_WP_QBZ191_PLAIN (already used by the iron-sight rows
+# 2014500/2014501); QMK 2019300 keeps FA_PLA_WP_QBZ191 (optic).
+ok(W[2003998]['HUDName']=='QBZ-191' and W[2003998]['HUDIcon']=='FA_PLA_WP_QBZ191' and W[2019300]['HUDName']=='QMK' and W[2019300]['HUDIcon']=='FA_PLA_WP_QBZ191','QBZ-191 and QMK share the optic icon before')
+ok(W[2014500]['HUDIcon']==W[2014501]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN','iron-sight icon exists in the data')
+g.put('WeaponsJson',2003998,{'HUDIcon':'FA_PLA_WP_QBZ191_PLAIN'})
+ok(W[2003998]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN' and W[2019300]['HUDIcon']=='FA_PLA_WP_QBZ191','baseline QBZ-191 plain icon, QMK optic icon')
+rec['qbz191_plain_icon']={'weapon':2003998,'icon':'FA_PLA_WP_QBZ191_PLAIN','qmk_keeps':'FA_PLA_WP_QBZ191'}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
