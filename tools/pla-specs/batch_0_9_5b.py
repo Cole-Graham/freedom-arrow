@@ -778,6 +778,8 @@ rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.van
 # ---------- Type 100 CSV loadouts: one four-way swap slot (APS kept with CH-901) and own rows for the transport copies (Osama 24 Nov 2026 00:1x PST,
 # bugs thread 1573561286803980289, "make the fix"; MODEL BUILD: needs the 6 new models.json names from work/model-rework-096/stage.py). See type100_fix_1124.py.
 import type100_fix_1124;type100_fix_1124.apply(t,g,ok,rec)
+# ---------- Chinese bug sheet FA-081/082/084/085 answers (Osama 23 Nov 2026 23:2x PST, bugs thread 1573561286803980289). See qq_sheet_fixes_1123.py.
+import qq_sheet_fixes_1123;qq_sheet_fixes_1123.apply(t,g,ok,rec)
 # ---------- Blue Dragon + Euro preview weapons and rounds marked '[TEST] ' (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work"). LAST.
 # See test_weapon_names_1123.py.
 import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
