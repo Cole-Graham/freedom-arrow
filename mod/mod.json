@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.7",
+  "version": "0.9.6-dev.8",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.7 (dev build for Osama): 0.9.6-dev.6 plus France (Testing Preview) back with the fleur-de-lis icon (EBRC Jaguar, Mirage 2000D with 9 liveries; Leclerc model pending), the M48A5K model, and gentler LODs (55% / 25%) on the K21, QN-506 and K9. Needs Freedom Arrow — Models and Music 0.2.83.",
+  "description": "Freedom Arrow 0.9.6-dev.8 (dev build for Osama): 0.9.6-dev.7 plus Eurocorp (Preview) as a 4th nation with France (Preview) and Germany (Preview), the 4-nation Create Deck and two-row Arsenal layout, and the current model stage (rebuilt ZTZ-98, ZBD-03 and ZTZ-99G fixes). Needs Freedom Arrow — Models and Music 0.2.84.",
   "repo": "Cole-Graham/freedom-arrow"
 }
