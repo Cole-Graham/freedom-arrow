@@ -725,6 +725,9 @@ import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
 import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
 # ---------- ZTQ-15 Light Chinese name ZTQ-15空降型 (Osama 23 Nov 2026 21:0x PST, thread 1567745029781454889). See ztq15_light_cn_name_1123.py.
 import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
+# ---------- Rafale C (France preview) + Eurofighter Typhoon (Germany preview) set-piece jets (Osama 23 Nov 2026 20:1x PST, thread "China cosmetic
+# work"). Last, so their new unit ids follow every existing card. See euro_jets_1123.py.
+import euro_jets_1123;euro_jets_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
