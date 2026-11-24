@@ -784,6 +784,9 @@ import plan_trim_options_1123;plan_trim_options_1123.apply(t,g,ok,rec)
 # ---------- ZRZ-100: turret via a default loadout option (it had no weapons), QJY-201 + 2x ABZ-13 + 2x HJ-16, 45 pts, 90 road / 20 reverse
 # (Osama 24 Nov 2026 00:5x PST, thread 1567745029781454889). MODEL BUILD ONLY. See zrz100_fix_1123.py.
 import zrz100_fix_1123;zrz100_fix_1123.apply(t,g,ok,rec)
+# ---------- Infantry launcher batch: SRAW MPV, hybrid ignore cover, Bur, Thermobaric Assault, engineer loadouts, Shturmoviki (Lateralus 24 Nov 2026
+# 11:3x PST, thread 1572962048705429598). See infantry_launchers_1124.py.
+import infantry_launchers_1124;infantry_launchers_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # ---------- Type 100 CSV loadouts: one four-way swap slot (APS kept with CH-901) and own rows for the transport copies (Osama 24 Nov 2026 00:1x PST,
