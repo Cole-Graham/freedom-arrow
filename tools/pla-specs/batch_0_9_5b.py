@@ -694,6 +694,8 @@ rec['china_spec_names']={i:_SP[i]['UIName'] for i in _specs}
 # ---------- Marine HJ-8H Team -> Marine HJ-12 Team (HJ-12 x4, 105 pts); Motorized GAM-102LR Team -> HJ-8H Team (HJ-8H x6, 65 pts) (Osama 23 Nov
 # 2026 18:2x PST, thread 1567745029781454889). See hj_teams_1123.py.
 import hj_teams_1123;hj_teams_1123.apply(t,g,ok,rec)
+# ---------- US recon helicopters (Lateralus 23 Nov 2026 18:3x PST, thread 1572962048705429598). See recon_helis_us_1123.py.
+import recon_helis_us_1123;recon_helis_us_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
