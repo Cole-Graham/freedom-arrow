@@ -185,6 +185,16 @@ Ways to make AA placement easier (not implemented, not tested):
 - **Air-only rule**: a hook on `FogOfWarFilter.FilterCore` that uses a lower forest height when the target is a helicopter or plane. Ground vision stays unchanged. This needs code and a performance check, because the filter runs for every observer–target pair.
 - **Plane altitude band**: `PlanesConfig.LowAltitude` / `HighAltitude` (100 / 400). This changes when planes count as Low, not the forest problem.
 
+### 5b. Helicopter range and optics, and when the card shows the radar line
+
+**Short answer:** each radar ability row is matched to a group in `UserData/FreedomArrow/helicopter-range.json`. While the radar is on, the group's `helicopterRangeMultiplier` replaces the low-altitude range multiplier against a helicopter (every group is x1.25 today, Lateralus 21 Nov 2026). The unit card's radar tooltip shows "Helicopter Range: x N" only for a unit with at least one weapon that can target helicopters (`heliUnits`), because the multiplier changes nothing for the other units (Lateralus's display rule, 21 Nov 2026).
+
+*Details (read from data and code, 23 Nov 2026; not checked in game):*
+- `tools/pla-specs/lateralus/heli_range.py` `contract()` groups **every** row with `IsRadar` by the values the game copies into `RadarAbilityComponent`, so a new radar row gets a group by itself (rows with equal values must share multipliers; the build asserts this). `HeliRange.cs` finds the group from the live component.
+- "Can target helicopters" = an ammunition used by the unit with `TargetType` flag `8`. Long-range SAM missiles have `TargetType` 1936 (no flag 8): S-300PM/V4, S-350, S-400, Buk M2/M3, IRIS-T SLM, and the China HQ-6A, HQ-9A, HQ-9B, HQ-11, HQ-12 and HQ-16. These units have the `Radar LongRange Static` row (59) and no tooltip line. The Patriots show the line only because of their M2 and M240 machine guns.
+- China radar units (23 Nov 2026, codex/development 7e436b0f): SHORAD row 60 (HQ-7, HQ-7B, HQ-17, HQ-17A, HHQ-10, FK-2000, PGL-625, PGZ-04/04A/88/95); own rows in the SHORAD group (PGZ-09 and AFT-10 2009175, JRVG-1 2009943, LY-1 2019443); long-range row 59 (list above); ships row 70 `Radar LHA6`.
+- Code: `HeliRangeCard.cs` `RadarGroup()` and the `SetUnitAbilities` postfix (the tooltip is built with `SetTraitItem` inlined).
+
 ## 6. Not verified
 
 - **Optics selection:** the exact code that picks `DistanceLowAlt` / `DistanceHighAlt` from the target's state, and any stealth, flash or spotted multipliers on it, is inferred, not traced.
@@ -201,3 +211,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-19 09:3x PST (America/Los_Angeles) — Traced the firing rule (IsTargetShootable: own line visible, or team-spotted with ≤45 forest-layer steps and no smoke); added the line-height example.
 - 2026-11-22 18:5x PST (America/Los_Angeles) — Added section 1b: who sets a plane's flight altitude (hotkey pending rule, precision-strike climb to HighAltitude), from the altitude-arrow investigation.
 - 2026-11-22 19:2x PST (America/Los_Angeles) — Section 1b: strafe, bombing and attack-order runs (`AirAttackComponent`) added beside precision strikes.
+- 2026-11-23 16:3x PST (America/Los_Angeles) — Added section 5b: helicopter range radar groups and when the card shows the radar line (Lateralus asked about the HQ-11 tooltip).
