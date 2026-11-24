@@ -728,6 +728,8 @@ import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
 # ---------- Rafale C (France preview) + Eurofighter Typhoon (Germany preview) set-piece jets (Osama 23 Nov 2026 20:1x PST, thread "China cosmetic
 # work"). Last, so their new unit ids follow every existing card. See euro_jets_1123.py.
 import euro_jets_1123;euro_jets_1123.apply(t,g,ok,rec)
+# ---------- PLA ZBL-08 Recon (ZZC-07), MarkII_ model (Osama 23 Nov 2026 21:3x PST, thread "China cosmetic work"). See zbl08_recon_1123.py.
+import zbl08_recon_1123;zbl08_recon_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
