@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.14",
+  "version": "0.9.6-dev.15",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.14 (combined model dev build for Osama): dev.13 plus the US, Russia and China recon helicopter changes, the hidden China test spec (off unless test-spec.json), the Leclerc XLR, the X-47B gear-down set piece, the XQ-58A gear-up battle model, the KF-21 Boramae frame fix and FAModels 0.3.43 canopy donor. Needs Freedom Arrow — Models and Music 0.2.87.",
+  "description": "Freedom Arrow 0.9.6-dev.15 (combined model dev build for Osama): dev.14 plus hidden-units test specs for every nation, ZTQ-15 Light paradrop, HJ team icons and one-language names, Mech. Riflemen MMG sprint, Z-21 window panes, J-20 closed canopy, X-47B smoothing and XQ-58A texture fixes; Type 19 removed. Needs Freedom Arrow — Models and Music 0.2.88.",
   "repo": "Cole-Graham/freedom-arrow"
 }
