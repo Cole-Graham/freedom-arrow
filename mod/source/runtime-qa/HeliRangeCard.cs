@@ -16,10 +16,8 @@ namespace FreedomArrow;
 // Helicopter range on the cards and range tool (Lateralus 21 Nov 2026; Lateralus 0.9 Changelog, "Helicopter range" tab, rows 7, 8, 14, 18, 20).
 // - Weapon ammo panel (AmmoInfoExpansionPanel.Init, after the game has placed every line): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
-// - Radar tooltip (edited after SetUnitAbilities): "Helicopter Range: x N" above "Low Alt. Range: x N" for every unit with a radar, from the
-//   unit's radar row group in helicopter-range.json (Lateralus 23 Nov 2026: "show it for all radar units because its not only about extending
-//   their weapon range but also their optics range"). The batch checks that each radar row's optics and range multipliers are equal at each
-//   altitude (lateralus/heli_range.py), so the one line stands for both.
+// - Radar tooltip (edited after SetUnitAbilities), for every unit with a radar (Lateralus 23 Nov 2026): helicopter, low-altitude and
+//   high-altitude blocks, each with its range and optics multiplier, so no optics multiplier is hidden.
 // - Optics stat tooltip: a "Helicopter Range: N m" line above "Low Alt. Range" for every unit with sensors (Lateralus 21 Nov: always show,
 //   tooltip only).
 // - Range tool (FOWToolScript.SetWeaponRanges): an orange circle at the helicopter range of each helicopter-capable weapon of the selected unit,
@@ -109,26 +107,49 @@ static class HeliRangeCard
             a.RadarHighAltWeaponRangeModifier,a.RadarSwitchCooldown,a.IsRadarStatic),out m);
     }
     // Radar tooltip. SetUnitAbilities builds it with SetTraitItem inlined (0x55E048 onwards: no call to 0x55D4D0), so a SetTraitItem hook never
-    // ran (Lateralus 21 Nov, test3). The postfix edits the finished tooltip: "Helicopter Range: x N" above "Low Alt. Range: x N" for every unit
-    // with a radar, also when equal to the low-altitude value (Lateralus 23 Nov: the radar also gives the detection bonus). No separate optics
-    // line: the batch keeps optics = range for every radar row.
+    // ran (Lateralus 21 Nov, test3). The postfix rewrites the finished tooltip for every unit with a radar (Lateralus 23 Nov 2026: the radar also
+    // gives the detection bonus, and "make the tool tip show both so the differences aren't hidden anymore ... space the formatting of the
+    // tooltip out like this"): three blocks split by a blank line, helicopter, low altitude, high altitude, each with its range and its optics
+    // multiplier. Vanilla lists the range multipliers only, so an optics multiplier that differs (vanilla SHORAD high altitude x2.0 optics /
+    // x1.0 range, long-range x2.0 / x3.0) was hidden. Range lines keep the game's own labels; the other labels are English, or Chinese when the
+    // game language is Chinese (as PartySizeWarning picks its text). Lines the game adds besides its two range lines are kept below the blocks.
+    static string tipLang="\0";static bool tipChinese;
+    static bool Chinese()
+    {
+        string code="";
+        try{Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Shared.Ecs.Localization.LocalizationService>(out var loc,false);code=loc?.CurrentLanguage??"";}
+        catch{code="";}
+        if(code!=tipLang){tipLang=code;var c=code.Trim().ToLowerInvariant();tipChinese=c.StartsWith("zh")||c.Contains("chin");}
+        return tipChinese;
+    }
+    static string X(float v)=>"x "+v.ToString("0.0#",CultureInfo.InvariantCulture);
     public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {
-        if(traitBroken||__instance==null||__0==null||!RadarGroup(__0.ActiveAbilities,out var m))return;
+        if(traitBroken||__instance==null||__0==null)return;
+        var a=__0.ActiveAbilities;
+        if(!RadarGroup(a,out var m))return;
         try
         {
-            string low=InfoCardLocalization.TextAmmoRangeLowAlt;if(string.IsNullOrEmpty(low))return;
-            bool found=false;
+            string low=InfoCardLocalization.TextAmmoRangeLowAlt,high=InfoCardLocalization.TextAmmoRangeHighAlt;
+            if(string.IsNullOrEmpty(low)||string.IsNullOrEmpty(high))return;
+            bool zh=Chinese(),found=false;
+            string heliRange=zh?"直升机射程":"Helicopter Range",heliOptics=zh?"直升机光学":"Helicopter Optics",
+                   lowOptics=zh?"低空光学":"Low Alt. Optics",highOptics=zh?"高空光学":"High Alt. Optics";
             foreach(var tip in __instance.GetComponentsInChildren<UiTooltip>(true))
             {
                 if(tip==null)continue;
                 var data=tip.Data;string text=data.TextLocKey;
-                if(string.IsNullOrEmpty(text)||text.Contains("Helicopter"))continue;
+                if(string.IsNullOrEmpty(text)||text.Contains(heliRange))continue;
                 var lines=text.Split('\n').ToList();
-                int at=lines.FindIndex(x=>x.TrimStart().StartsWith(low)&&x.Contains(" x "));
-                if(at<0)continue;
-                lines.Insert(at,$"Helicopter Range: x {m.range:0.##}");
-                data.TextLocKey=string.Join("\n",lines);tip.Data=data;found=true;
+                bool Range(string x,string label)=>x.TrimStart().StartsWith(label)&&x.Contains(" x ");
+                if(!lines.Any(x=>Range(x,low)))continue;
+                var rest=lines.Where(x=>!Range(x,low)&&!Range(x,high)&&x.Trim().Length>0).ToList();
+                var block=new List<string>{
+                    $"{heliRange}: {X(m.range)}",$"{heliOptics}: {X(m.optics)}","",
+                    $"{low}: {X(a.RadarLowAltWeaponRangeModifier)}",$"{lowOptics}: {X(a.RadarLowAltOpticsModifier)}","",
+                    $"{high}: {X(a.RadarHighAltWeaponRangeModifier)}",$"{highOptics}: {X(a.RadarHighAltOpticsModifier)}"};
+                if(rest.Count>0){block.Add("");block.AddRange(rest);}
+                data.TextLocKey=string.Join("\n",block);tip.Data=data;found=true;
                 Log($"radar tooltip {__0.HUDName}: {data.TextLocKey.Replace("\n"," | ")}");
             }
             if(!found)Log($"radar tooltip {__0.HUDName}: no tooltip with a '{low}: x' line");

@@ -25,26 +25,9 @@ AMMO={}  # ammo id: helicopter range (game units) that differs from its LowAltRa
 # helicopter-capable weapon: NASAMS (row 123; AMRAAM and AIM-9) and the Patriot PAC-2/PAC-3/PAC-3 MSE through their M2 and M240 machine guns (their missiles cannot target helicopters).
 # Lateralus 21 Nov 2026 15:1x PST: radar against helicopters "should only be increased by 25% (1.25)" for optics too (was left at the low-altitude x2.0).
 EDIT={59:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25},123:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25}}
-# Lateralus 23 Nov 2026 16:2x PST: "vanilla had some instances where radar abilities had weapon range modifiers but not the detection range
-# modifier. The mod wants to remove that completely, because its a hidden stat from the player ... add a build check to make sure that no radar
-# ability has different multiplier values for the range and optics on a single altitude target type". The card tooltip lists the range
-# multipliers only, so an optics multiplier that differs is hidden. Per row: low optics = low range, high optics = high range, helicopter optics =
-# helicopter range (helicopter-range.json).
-# PENDING: rows that still differ, with their (optics, range) values, until Lateralus picks the value. The check fails on any other row, and if
-# a pending row changes without this list being updated.
-PENDING={58:{'high':(2.0,1.0)},59:{'high':(2.0,3.0)},123:{'high':(2.0,3.0)},60:{'high':(2.0,1.0)},62:{'high':(2.0,1.0)},
-         2009175:{'high':(2.0,1.0)},2009943:{'high':(2.0,1.0)},2019443:{'high':(2.0,1.0)},2019696:{'high':(2.0,1.0)}}
-def optics_range_mismatch(AB):
-    """{ability id: {altitude: (optics, range)}} for every radar row whose optics and range multipliers differ at one altitude."""
-    out={}
-    for i,a in radar_rows(AB).items():
-        v=EDIT.get(i,{})
-        alt={'low':(float(a['RadarLowAltOpticsModifier']),float(a['RadarLowAltWeaponRangeModifier'])),
-             'high':(float(a['RadarHighAltOpticsModifier']),float(a['RadarHighAltWeaponRangeModifier'])),
-             'helicopter':(float(v.get('helicopterOpticsMultiplier',a['RadarLowAltOpticsModifier'])),float(v.get('helicopterRangeMultiplier',a['RadarLowAltWeaponRangeModifier'])))}
-        bad={k:o_r for k,o_r in alt.items() if o_r[0]!=o_r[1]}
-        if bad:out[i]=bad
-    return out
+# Lateralus 23 Nov 2026 16:3x PST: radar optics and range multipliers may differ; the card's radar tooltip shows both at every altitude
+# (runtime-qa/HeliRangeCard.cs), so none is hidden. This replaces the optics = range build check of 16:2x (Lateralus: "In that case just make the
+# tool tip show both so the differences aren't hidden anymore").
 def radar_rows(AB):return {i:a for i,a in AB.items() if a and a.get('IsRadar')}
 def key(a):return (float(a['RadarLowAltOpticsModifier']),float(a['RadarHighAltOpticsModifier']),float(a['RadarLowAltWeaponRangeModifier']),
                    float(a['RadarHighAltWeaponRangeModifier']),float(a['RadarSwitchCooldown']),bool(a['IsRadarStatic']))

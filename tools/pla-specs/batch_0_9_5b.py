@@ -651,12 +651,6 @@ import thermobaric_assault_1123;thermobaric_assault_1123.apply(t,g,ok,rec)
 # ---------- China recon infantry stealth: card 2.5 at minimum, sniper teams (2-3 men with a QBU-10) card 3.0 (Lateralus 23 Nov 2026,
 # thread 1568104480459722894). See recon_stealth_1123.py.
 import recon_stealth_1123;recon_stealth_1123.apply(t,g,ok,rec)
-# ---------- Build check: no radar row has different optics and range multipliers at one altitude (Lateralus 23 Nov 2026 16:2x PST, thread
-# 1568104480459722894). Runs after every section, so radar rows added by any module are covered. See lateralus/heli_range.py PENDING.
-_mm=_HR.optics_range_mismatch(t['AbilitiesJson'])
-ok(_mm==_HR.PENDING,('radar rows with different optics and range multipliers at one altitude (not in PENDING, or PENDING out of date)',
-    {i:v for i,v in _mm.items() if _HR.PENDING.get(i)!=v},{i:v for i,v in _HR.PENDING.items() if _mm.get(i)!=v}))
-rec['radar_optics_range']={'pending':{str(i):v for i,v in _mm.items()}}
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
