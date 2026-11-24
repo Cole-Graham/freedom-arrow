@@ -4,9 +4,10 @@
   (2009369, used only by the PGL-625): Damage 4.9 -> 3.5.
   Penetration, rate of fire and range unchanged. The FK-2000 is not changed.
 - FA-098 "the ZTZ-99 laser suppression system uses kinetic penetration, so it only attacks targets below 10 KE ... change it to HEAT":
-  "Ztz-99a this is a good change." LSDW laser pulse (2019387; ZTZ-99A, ZTZ-99, ZTZ-98): ArmorTargeted 1 (kinetic) -> 2 (HEAT). HEAT uses
-  PenetrationAtGroundRange (10) at every range and always does a little damage (pen^2 / (pen^2 + armour^2)), where kinetic did 0 against
-  armour >= 2 x pen. Stress from the blast term does not use armour (docs/engine/stress.md)."""
+  "Ztz-99a this is a good change.", then 10:5x "Can we make the laser APS ignore armor". LSDW laser pulse (2019387; ZTZ-99A, ZTZ-99, ZTZ-98):
+  ArmorTargeted 1 (kinetic) -> 0 (no armour: the game gives it unlimited penetration), so every pulse does its full 0.08 damage and 80 stress
+  to any target. Kinetic did 0 against armour >= 2 x pen (20 -> 10), so the AI never chose it against vehicles; HEAT (first version) would have
+  done ~0.0008-0.002 per pulse to IFVs and less to tanks, too little for the AI's target score. Against infantry 0.059 -> 0.08 per pulse."""
 PGL, LSDW = 2009369, 2019387
 
 
@@ -17,7 +18,7 @@ def apply(t, g, ok, rec):
        ('PGL-625 round, only on the PGL-625 gun', users(PGL)))
     ok(A[LSDW]['HUDName'] == 'LSDW laser pulse' and A[LSDW]['ArmorTargeted'] == 1 and users(LSDW) == ['LSDW'], ('LSDW pulse, kinetic', users(LSDW)))
     g.put('AmmunitionsJson', PGL, {'Damage': 3.5})
-    g.put('AmmunitionsJson', LSDW, {'ArmorTargeted': 2})
-    ok(A[PGL]['Damage'] == 3.5 and A[LSDW]['ArmorTargeted'] == 2, 'PGL-625 3.5 damage; LSDW HEAT')
-    rec['pgl625_lsdw_1124'] = {'pgl625_damage': [4.9, 3.5], 'lsdw_armor_targeted': [1, 2]}
+    g.put('AmmunitionsJson', LSDW, {'ArmorTargeted': 0})
+    ok(A[PGL]['Damage'] == 3.5 and A[LSDW]['ArmorTargeted'] == 0, 'PGL-625 3.5 damage; LSDW ignores armour')
+    rec['pgl625_lsdw_1124'] = {'pgl625_damage': [4.9, 3.5], 'lsdw_armor_targeted': [1, 0]}
     print('PGL-625 / LSDW', rec['pgl625_lsdw_1124'])
