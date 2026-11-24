@@ -291,9 +291,9 @@ def native_goals_out_of_reach(name,nodes):
 # (CAPTURE_SECONDS) are set on every zone in write and write_flavor; slots, play area, native goals and the score limit have their own
 # checks. The exceptions below are maps that shipped before these checks; each is kept as authored until it is changed on purpose.
 SPAWN_FACING_LIMIT=45   # degrees between a spawn's facing and the direction to the centre of the zones
-SPAWN_FACING_KEPT={'[FA] [1v1] Kadaga','[FA] [1v1] Klaipeda','[FA] [1v1] Jelgava',   # End's layouts: every spawn at 0 degrees
+SPAWN_FACING_KEPT={'[FA] [1v1] Jelgava',   # Lateralus 23 Nov: Bravo faces south; two ground spawns stay 59-62 degrees off the zones
     '[FA] [2v2] Highway of Death','[FA] [2v2] Chkalovsk Airbase','[FA] [4v4] Airport','[FA] [4v4] Cold Harbor'}   # Lateralus's facings, 47-79 degrees
-ZONE_ICON_KEPT={'[FA] [2v2] Chkalovsk Airbase'}   # Foxtrot shows icon 8 (H) since 0.1; reported 23 Nov 2026
+ZONE_ICON_KEPT=set()   # Chkalovsk Foxtrot showed icon 8 (H) until 0.9.6 (fixed in chkalovsk_2v2, Lateralus 23 Nov 2026)
 WAYPOINTS_KEPT={'[FA] [2v2] Chkalovsk Airbase'}   # three native waypoints, no unit uses them
 def base_name(name):return name.rsplit(' ',1)[0].replace(' Skirmish','')
 def letter_icon(zone):return ord((zone.get('hudText') or zone['_dname'])[0])-ord('A')+1
@@ -395,7 +395,8 @@ def build_template_flavor(game,out,spec,flavor,template):
 # designs"; Runtime.cs RetiredScenarios deletes the installed copies by GUID). Chernyakhovsky is now Lateralus's own design (chernyakhovsky_1v1).
 END_SCRIPT=sorted(['start','delay','pauseGame','pauseGame','setConquestMode'])
 END_VALUES=dict(Alpha=2,Bravo=2,Charlie=2,Delta=4,Echo=4)
-def prepare_end(mod_file,scene,spec):
+def prepare_end(mod_file,scene,spec,facing=None):
+    """facing: team name -> compass yaw in degrees (0 north, 90 east) for all that team's spawns; End left every spawn at 0."""
     head,nodes,objects,meta=read_layout(mod_file)
     assert head['map']==scene and head['author']=='End' and meta['gameVersion'] in SOURCE_VERSIONS,(head['map'],head['author'])
     assert not [o for o in objects if o.get('_type') in (1,18)],'authored map has units or cameras now. Check this merge.'
@@ -408,17 +409,24 @@ def prepare_end(mod_file,scene,spec):
     for o in objects:
         if o.get('_type')==15:assert o['ZoneIcon']==ord(o['_dname'][0])-ord('A')+1,o['_dname']
     letter_zones(objects,{n:(n,v) for n,v in END_VALUES.items()},[f['name'] for f in spec['flavors']])
+    import math
+    teams={o['_uid']:o['_dname'] for o in objects if o.get('_type')==3}
+    for team,deg in (facing or {}).items():
+        sp=[o for o in objects if o.get('_type')==10 and teams[o['team']['id']]==team];assert sp,(scene,team)
+        for o in sp:
+            assert identity(o['rotate']),(scene,o['_dname'],'End changed this facing. Check this merge.')
+            o['rotate']=dict(X=0.0,Y=math.sin(math.radians(deg)/2),Z=0.0,W=math.cos(math.radians(deg)/2))
     pz=[o['_uid'] for o in objects if o.get('_type')==7];assert len(pz)==1 and head['spz'] in (0,pz[0])
     head['spz']=pz[0]   # some of End's files leave the active play area unset; the other FA maps name their one play area
     add_team_cameras(objects)
     return extract_layout(objects),(head,nodes,objects,meta)
-def end_spec(mod_file,title,scene,steam_id):
+def end_spec(mod_file,title,scene,steam_id,facing=None):
     import uuid
     name=f'[FA] [1v1] {title} 0.1';skirmish=f'[FA] [1v1] {title} Skirmish 0.1'
     spec=dict(author='End',desc=describe(END_VALUES)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
         dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
         dict(name=skirmish,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish)),kind=3,public=False)])
-    spec['prepare']=lambda game,sp:prepare_end(mod_file,scene,sp)
+    spec['prepare']=lambda game,sp:prepare_end(mod_file,scene,sp,facing)
     spec['asset_dir']=Path(mod_file).resolve().parent
     return spec
 # Files beside layout.bascr, such as .png previews, go into every built flavor folder.
