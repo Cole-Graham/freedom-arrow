@@ -669,6 +669,9 @@ ok(W[2014500]['HUDIcon']==W[2014501]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN','iron-
 g.put('WeaponsJson',2003998,{'HUDIcon':'FA_PLA_WP_QBZ191_PLAIN'})
 ok(W[2003998]['HUDIcon']=='FA_PLA_WP_QBZ191_PLAIN' and W[2019300]['HUDIcon']=='FA_PLA_WP_QBZ191','baseline QBZ-191 plain icon, QMK optic icon')
 rec['qbz191_plain_icon']={'weapon':2003998,'icon':'FA_PLA_WP_QBZ191_PLAIN','qmk_keeps':'FA_PLA_WP_QBZ191'}
+# ---------- China roster: VN20, VN-17, VT-5 (+Recon), ZTZ-59 and ZTZ-98 hidden but kept; ZTQ-15 Armored -> Motorized; Z-10K / Z-10U names swapped
+# (Osama 23 Nov 2026 18:0x-18:1x PST, thread 1567745029781454889). See roster_1123b.py.
+import roster_1123b;roster_1123b.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
