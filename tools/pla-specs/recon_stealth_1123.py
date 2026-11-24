@@ -5,12 +5,15 @@ Units.Stealth and Units.CurrentStealth hold the reciprocal of the card value: ca
 infantry, Role 32, is 0.4; vanilla sniper teams, Role 33, are 0.333).
 - Recon infantry = China infantry with Role 32 or 33. Seven had 0.5 (card 2.0); they go to 0.4 (card 2.5).
 - Sniper team = 2 or 3 men with at least one sniper rifle. The only China sniper rifle is the QBU-10 (Weapons.Type 4, the type of M107/ASVK);
-  the QBU-191 and QBU-88 are marksman rifles (Type 2, the type of M110/SVD). Five units match; they go to 0.333 (card 3.0).
+  the QBU-191 and QBU-88 are marksman rifles (Type 2, the type of M110/SVD). Five units match. Four go to 0.333 (card 3.0); Mountain Leopards
+  (1186, 3 men, one QBU-10) is a special-forces recon squad and stays at 0.4 (card 2.5) (Lateralus 23 Nov 2026 16:1x PST: "Mountian leopard
+  should have 2.5").
 No loadout option of these units replaces the unit, so the unit rows are the whole change. Role is not changed."""
 
 SNIPER_TYPE = 4
 RECON = 0.4
 SNIPER = 0.333
+NOT_SNIPER = {1186}   # Mountain Leopards: card 2.5 (Lateralus)
 
 
 def apply(t, g, ok, rec):
@@ -24,6 +27,7 @@ def apply(t, g, ok, rec):
     recon = sorted(i for i, u in U.items() if u and u.get('CountryId') in china and u.get('Role') in (32, 33) and men.get(i))
     sniper = [i for i in recon if 2 <= len(men[i]) <= 3 and any(W.get(m.get('PrimaryWeaponId'), {}).get('Type') == SNIPER_TYPE for m in men[i])]
     ok(sniper == [1026, 1144, 1161, 1186, 1202], ('sniper teams', sniper))
+    sniper = [i for i in sniper if i not in NOT_SNIPER]
     before = {i: U[i]['Stealth'] for i in recon}
     ok(sorted(i for i, s in before.items() if s > RECON) == [1144, 1173, 1174, 1184, 1186, 1187, 1203], ('recon below card 2.5', before))
     ok(all(U[i]['Stealth'] == U[i]['CurrentStealth'] for i in recon), 'Stealth = CurrentStealth')
