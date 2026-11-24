@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.18",
+  "version": "0.9.6-dev.19",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.18 (model dev build for Osama): dev.17 plus the Type 100 CSV fix: one four-way loadout slot (40 mm CT, 40 mm CT + GL-5 APS, 9x CH-901, 9x CH-901 + GL-5 APS) and separate transport rows so the infantry transports no longer share the recon card units. Needs Freedom Arrow — Models and Music 0.2.91.",
+  "description": "Freedom Arrow 0.9.6-dev.19 (dev build for Osama, pre-live): everything from 24 Nov 00:3x-01:4x on codex/development: China vehicle icons and card pictures, ZZC-06 recon, VN-3 loadout/air-drop, [TEST] Blue Dragon/Euro weapons, Type 100 CSV transport only, HQ-17 and ZTZ-59D1 removed, ZTZ-96B front/price, PLAAF paratroopers, Type 100 57 mm sound, Arsenal flag row, lighter China IFV Arsenal models, J-20 cockpit floor. Needs Freedom Arrow — Models and Music 0.2.92.",
   "repo": "Cole-Graham/freedom-arrow"
 }
