@@ -114,7 +114,7 @@ static class HeliRangeCard
     // x1.0 range, long-range x2.0 / x3.0) was hidden. Range lines keep the game's own labels; the other labels are English, or Chinese when the
     // game language is Chinese (as PartySizeWarning picks its text). Lines the game adds besides its two range lines are kept below the blocks.
     static string tipLang="\0";static bool tipChinese;
-    static bool Chinese()
+    internal static bool Chinese()
     {
         string code="";
         try{Il2CppBrokenArrow.Shared.Ecs.Services.Session.TryGetService<Il2CppBrokenArrow.Shared.Ecs.Localization.LocalizationService>(out var loc,false);code=loc?.CurrentLanguage??"";}

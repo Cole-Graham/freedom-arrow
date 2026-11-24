@@ -11,20 +11,42 @@ namespace FreedomArrow;
 // header tab is hidden outside lobbies (the Multiplayer card opens the same page); ArrowQueue still shows it in a lobby.
 static partial class RankedMenu
 {
-    static Sprite artMp,artSk;static bool artLoaded;
-    static Transform fadeCard;
-    // The vanilla cards fade in through their CanvasGroups (GalaxyUiBase); the Ranked card (drawn with IMGUI) copies Skirmish's
-    // effective alpha (Lateralus 22 Nov 2026: Ranked appeared at once while Multiplayer and Skirmish faded in).
-    public static float CardAlpha()
+    static Sprite artMp,artSk,artRk;static bool artLoaded;
+    // Native Ranked card (Lateralus 24 Nov 2026, thread 1568104480459722894: proposal A, "queue it"). It replaces the IMGUI card, which was drawn
+    // over the menu and copied the vanilla cards' fade, position and hover: it showed up late (Play tab and Play button searches every 1-2 s, a
+    // cover check cached for 0.25 s) and snapped to the hovered size when the pointer crossed from Multiplayer to Skirmish. Now the Ranked card
+    // is a copy of the Skirmish card inside the same HorizontalLayoutGroup, made while the Play tab is still closed, so the game's own GalaxyUiBase
+    // plays its fade/fly-in and hover, AudioUiEffect its sounds, and the layout places it. The copy loses PlayTabSkirmishButton (it adds the
+    // Skirmish click listener in its Start, which never runs on the copy) and the two TextTarget components (each re-reads its localization key
+    // at Start and on every language change, so the copy would say "Skirmish"; see docs/engine/ui-fly-in-animation.md). Its button gets a new
+    // click event that opens the Ranked page; its title and description are set here (English, or Chinese when the game is in Chinese) at every
+    // opening of the Play tab.
+    const string RankedCardName="Menu Picture Button - Ranked";
+    static readonly List<UnityEngine.Events.UnityAction> rankedClick=new();
+    static Transform MakeRanked(Transform sk)
     {
-        try
+        var content=sk.parent;
+        for(int i=0;i<content.childCount;i++)if(content.GetChild(i).name==RankedCardName)return content.GetChild(i);
+        var go=UnityEngine.Object.Instantiate(sk.gameObject,content,false);go.name=RankedCardName;
+        var skb=go.GetComponent<Il2CppBrokenArrow.BrokenArrow.Client.Ecs.UI.Menu.PlayTabSkirmishButton>();if(skb!=null)UnityEngine.Object.DestroyImmediate(skb);
+        foreach(var tt in go.GetComponentsInChildren<Il2CppBrokenArrow.Shared.Ecs.Localization.TextTarget>(true))UnityEngine.Object.DestroyImmediate(tt);
+        var b=go.GetComponent<Button>();
+        b.onClick=new Button.ButtonClickedEvent();
+        var ua=Il2CppInterop.Runtime.DelegateSupport.ConvertDelegate<UnityEngine.Events.UnityAction>(new Action(()=>
         {
-            if(fadeCard==null||fadeCard.WasCollected)return 1f;
-            float a=1f;var t=fadeCard;
-            while(t!=null){var g=t.GetComponent<CanvasGroup>();if(g!=null){a*=g.alpha;if(g.ignoreParentGroups)break;}t=t.parent;}
-            return Mathf.Clamp01(a);
-        }
-        catch{return 1f;}
+            try{PlaySelected();Open();}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB Ranked click: "+e.Message);}
+        }));
+        rankedClick.Add(ua);b.onClick.AddListener(ua);
+        go.transform.SetSiblingIndex(sk.GetSiblingIndex()+1);
+        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB native Ranked card made from Skirmish: Skirmish click script {(skb!=null?"removed":"not found")}, text sources removed, sibling {go.transform.GetSiblingIndex()}");
+        return go.transform;
+    }
+    static void RankedTexts()
+    {
+        bool zh=HeliRangeCard.Chinese();
+        var title=cRk.Find("Title")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();var desc=cRk.Find("Description")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();
+        if(title!=null)title.text=zh?"排位赛":"Ranked";
+        if(desc!=null)desc.text=zh?"与其他玩家较量，检验你的实力":"Test your skill against other players";
     }
     static Sprite ArtSprite(string file)
     {
@@ -37,13 +59,13 @@ static partial class RankedMenu
     // Now: the Play tab is prepared while it is still closed (FindObjectsOfTypeAll) and checked every frame; Campaign and Scenarios move
     // into an inactive holder (the game can switch them on, they stay invisible and out of the layout); the centring padding is
     // computed from the layout values (card LayoutElement width, spacing, the Content's anchor/pivot/position), not from card positions.
-    static RectTransform cContent;static HorizontalLayoutGroup cHlg;static Transform cMp,cSk;static float nextLayoutScan,restL=-1f;static int origPad;
+    static RectTransform cContent;static HorizontalLayoutGroup cHlg;static Transform cMp,cSk,cRk;static float nextLayoutScan,restL=-1f;static int origPad;
     static bool loggedFormula;
     static void PlayLayoutTick(float now)
     {
         try
         {
-            if(cContent==null||cContent.WasCollected||cMp==null||cMp.WasCollected||cSk==null||cSk.WasCollected||cHlg==null||cHlg.WasCollected)
+            if(cContent==null||cContent.WasCollected||cMp==null||cMp.WasCollected||cSk==null||cSk.WasCollected||cRk==null||cRk.WasCollected||cHlg==null||cHlg.WasCollected)
             {
                 cContent=null;
                 if(now<nextLayoutScan)return;nextLayoutScan=now+0.25f;
@@ -63,11 +85,13 @@ static partial class RankedMenu
                 var holder=new GameObject("FA hidden play cards");holder.SetActive(false);holder.transform.SetParent(p.transform,false);
                 if(camp!=null)camp.SetParent(holder.transform,false);
                 if(scen!=null)scen.SetParent(holder.transform,false);
-                if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");}
-                cContent=content;cHlg=hlg;cMp=mp;cSk=sk;restL=-1f;origPad=hlg.padding.left;fadeCard=sk;padL=float.NaN;placed=false;flyMp=flySk=null;wasOpen=false;fixes=0;
+                if(!artLoaded){artLoaded=true;artMp=ArtSprite("multiplayer.png");artSk=ArtSprite("skirmish.png");artRk=ArtSprite("ranked.png");}
+                var rk=MakeRanked(sk);
+                cContent=content;cHlg=hlg;cMp=mp;cSk=sk;cRk=rk;restL=-1f;origPad=hlg.padding.left;padL=float.NaN;placed=false;flyMp=flySk=flyRk=null;wasOpen=false;fixes=0;
+                RankedTexts();
                 MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB prepared ({(p.isActiveAndEnabled?"open":"closed")}): Campaign/Scenarios moved to a hidden holder ({camp!=null}/{scen!=null}), art {(artMp!=null?"MP ok":"MP missing")} {(artSk!=null?"Skirmish ok":"Skirmish missing")}");
             }
-            SetArt(cMp,artMp);SetArt(cSk,artSk);
+            SetArt(cMp,artMp);SetArt(cSk,artSk);SetArt(cRk,artRk);
             Centre();
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_PLAY_TAB: "+e.Message);cContent=null;nextLayoutScan=now+10f;}
@@ -94,12 +118,12 @@ static partial class RankedMenu
     // it started and there is nothing to snap. Each opening is checked once at rest (flight target vs resting position vs the screen
     // centre) and logged; if they still disagree the card is put on the layout position once (logged), so a wrong guess costs one pop,
     // not one per opening.
-    static List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> flyMp,flySk;static bool wasOpen,checkedOpen;static int openings,fixes;
+    static List<Il2CppPlugins.GalaxyUI.Runtime.Animations.FlyFadeIn> flyMp,flySk,flyRk;static bool wasOpen,checkedOpen;static int openings,fixes;
     static float padL=float.NaN;static bool placed;
     static void Place()
     {
         placed=true;
-        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();var par=cContent.parent?.GetComponent<RectTransform>();
+        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();var kr=cRk.GetComponent<RectTransform>();var par=cContent.parent?.GetComponent<RectTransform>();
         if(par==null)return;
         float w=LayoutWidth(cMp),sp=cHlg.spacing,W=par.rect.width;
         float ax=cContent.anchorMin.x;
@@ -107,10 +131,11 @@ static partial class RankedMenu
         if(float.IsNaN(left)){MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB Content has stretched anchors {cContent.anchorMin}-{cContent.anchorMax}: cards left where the game puts them");return;}
         if(float.IsNaN(padL))padL=Mathf.Round((W-(3f*w+2f*sp))/2f-left);
         cHlg.padding.left=(int)padL;
-        bool mpFirst=cMp.GetSiblingIndex()<cSk.GetSiblingIndex();
-        SetRest(mr,padL+(mpFirst?0f:w+sp),w);SetRest(sr,padL+(mpFirst?w+sp:0f),w);
+        var order=new[]{cMp,cSk,cRk}.OrderBy(t=>t.GetSiblingIndex()).ToList();   // the layout's order: Multiplayer, Skirmish, Ranked
+        foreach(var t in order)SetRest(t.GetComponent<RectTransform>(),padL+order.IndexOf(t)*(w+sp),w);
         LayoutRebuilder.MarkLayoutForRebuild(cContent);
-        flyMp=Flies(cMp,mr);flySk=Flies(cSk,sr);
+        flyMp=Flies(cMp,mr);flySk=Flies(cSk,sr);flyRk=Flies(cRk,kr);
+        MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB Ranked card x {kr.anchoredPosition.x:0}, fly-ins on its own card: {flyRk.Count}");
         MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB row placed: padding {origPad} -> {padL:0}, Multiplayer x {mr.anchoredPosition.x:0}, Skirmish x {sr.anchoredPosition.x:0} (card {w:0}, spacing {sp:0}, parent {W:0}, Content left {left:0}, align {cHlg.childAlignment}, fly-ins {flyMp.Count}/{flySk.Count})");
     }
     // the position HorizontalLayoutGroup gives a child at inset x from the Content's left edge (SetInsetAndSizeFromParentEdge, Left)
@@ -144,24 +169,24 @@ static partial class RankedMenu
         if(!placed)Place();
         if(flyMp==null)return;
         bool open=cContent.gameObject.activeInHierarchy;
-        if(open&&!wasOpen){openings++;checkedOpen=false;}
+        if(open&&!wasOpen){openings++;checkedOpen=false;RankedTexts();}
         wasOpen=open;
-        if(!open||checkedOpen||CardAlpha()<0.99f)return;
-        if(!Done(flyMp)||!Done(flySk))return;
-        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();
-        var rm=ScreenRect(mr);var rs=ScreenRect(sr);
-        if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||mr.rect.width<1f)return;   // a card is hovered or not laid out
+        if(!open||checkedOpen)return;
+        if(!Done(flyMp)||!Done(flySk)||!Done(flyRk))return;
+        var mr=cMp.GetComponent<RectTransform>();var sr=cSk.GetComponent<RectTransform>();var kr=cRk.GetComponent<RectTransform>();
+        var rm=ScreenRect(mr);var rs=ScreenRect(sr);var rk=ScreenRect(kr);
+        if(rm.width<20f||Mathf.Abs(rs.width-rm.width)>1f||Mathf.Abs(rk.width-rm.width)>1f||mr.rect.width<1f)return;   // a card is hovered or not laid out
         checkedOpen=true;
-        float flewMp=Target(flyMp,mr),flewSk=Target(flySk,sr);
+        float flewMp=Target(flyMp,mr),flewSk=Target(flySk,sr),flewRk=Target(flyRk,kr);
         float unitsPerPx=mr.rect.width/rm.width,rowWpx=3f*rm.width+2f*cHlg.spacing/unitsPerPx,want=(Screen.width-rowWpx)/2f;
-        string msg=$"opening {openings}: Multiplayer flew to x {flewMp:0} and rests at x {mr.anchoredPosition.x:0}, Skirmish flew to x {flewSk:0} and rests at x {sr.anchoredPosition.x:0}; row starts at {rm.x:0} px, centre {want:0} px, screen {Screen.width}";
-        bool snap=Mathf.Abs(flewMp-mr.anchoredPosition.x)>1f||Mathf.Abs(flewSk-sr.anchoredPosition.x)>1f;
+        string msg=$"opening {openings}: Multiplayer flew to x {flewMp:0} and rests at x {mr.anchoredPosition.x:0}, Skirmish flew to x {flewSk:0} and rests at x {sr.anchoredPosition.x:0}, Ranked flew to x {flewRk:0} and rests at x {kr.anchoredPosition.x:0}; row starts at {rm.x:0} px, centre {want:0} px, screen {Screen.width}";
+        bool snap=Mathf.Abs(flewMp-mr.anchoredPosition.x)>1f||Mathf.Abs(flewSk-sr.anchoredPosition.x)>1f||Mathf.Abs(flewRk-kr.anchoredPosition.x)>1f;
         // dev.39 logs (Lateralus 22 Nov, 2560 px): the layout values put the row at 637 px, the exact centre, but the screen check measured the
         // centre as 626 and 607 px (a card still slightly scaled), moved the padding 6 and 15 units and so made a small jump. The screen check
         // now only logs; only a flight target / resting spot mismatch is corrected (once).
         if(fixes<1&&snap)
         {
-            fixes++;SetRestX(mr,flewMp);SetRestX(sr,flewSk);
+            fixes++;SetRestX(mr,flewMp);SetRestX(sr,flewSk);SetRestX(kr,flewRk);
             MelonLogger.Warning($"FREEDOM_ARROW_PLAY_TAB {msg}: corrected (rest put on the flight target)");
         }
         else MelonLogger.Msg($"FREEDOM_ARROW_PLAY_TAB {msg}");

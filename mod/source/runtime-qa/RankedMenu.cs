@@ -10,7 +10,7 @@ using UnityEngine;
 namespace FreedomArrow;
 // Ranked menus (Lateralus 22 Nov 2026, thread 1568104480459722894: "implement the test server, and build the in-game ranked screens";
 // design docs/ranked/RANKED-PROPOSAL.md, mock-ups docs/ranked/mock-*.jpg).
-// - Play tab: a 5th card "Ranked" (UserData/FreedomArrow/ranked/card.png) right of the game's own cards, placed from PlayTab._buttonsContainer.
+// - Play tab: a native "Ranked" card, a copy of the Skirmish card in the same row (RankedPlayTab.cs, from 24 Nov 2026; was an IMGUI card).
 // - Ranked menu (IMGUI, full screen, the game's UI input is off while it is open): tabs Ranked / Leaderboard / Rank ladder.
 //   Ranked: two queues (Lateralus 22 Nov: "1v1 should be a completely different queue"): 1v1 (solo) and Team (2v2, 3v3 or 4v4 from 0.9.6, solo or party);
 //   your rank in the selected ladder, recent results, the epaulet set picker and the rank ladder strip.
@@ -38,7 +38,7 @@ static partial class RankedMenu
     static string Pool(string queue)=>string.Join("\n",(queue=="r1v1"?new[]{"1v1"}:new[]{"2v2","3v3","4v4"}).Select(f=>(queue=="r1v1"?"":f+": ")+string.Join(" · ",MapSizes.RankedBases(f))));
 
     static string dir="",settingsFile="";
-    static Texture2D card,patch;
+    static Texture2D patch;
     static int set=-1;              // chosen set; -1 = follow the vanilla pick
     static int vanillaSet=-1;       // from the game's profile epaulet
     static string mySteam="";
@@ -54,7 +54,7 @@ static partial class RankedMenu
     {
         dir=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","ranked");
         settingsFile=Path.Combine(dir,"settings.json");
-        card=Load(Path.Combine(dir,"card.png"),"FA_ranked_card");patch=Load(Path.Combine(dir,"patch.png"),"FA_ranked_patch");
+        patch=Load(Path.Combine(dir,"patch.png"),"FA_ranked_patch");
         try{var s=JsonDocument.Parse(File.ReadAllText(settingsFile)).RootElement;if(s.TryGetProperty("set",out var v))set=Array.IndexOf(SetNames,v.GetString());if(s.TryGetProperty("deck",out var dk))deckName=dk.GetString()??"";}catch{}
         tFlow=AccessTools.TypeByName("ArrowQueue.Flow");tUi=AccessTools.TypeByName("ArrowQueue.Ui");tApi=AccessTools.TypeByName("ArrowQueue.Api");
         tGame=AccessTools.TypeByName("ArrowQueue.Game");tSignal=AccessTools.TypeByName("ArrowQueue.Signal");
@@ -84,7 +84,7 @@ static partial class RankedMenu
             h.Patch(gep,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(Epaulet)));
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED: vanilla epaulet pick not read ("+e.Message+"); default set US Army");}
-        MelonLogger.Msg($"FREEDOM_ARROW_RANKED installed: card {(card!=null?$"{card.width}x{card.height}":"missing")}, saved set {(set<0?"vanilla pick":SetNames[set])}, hub {(TestHub?TestHubRoot:"live")}");
+        MelonLogger.Msg($"FREEDOM_ARROW_RANKED installed: saved set {(set<0?"vanilla pick":SetNames[set])}, hub {(TestHub?TestHubRoot:"live")}");
     }
     static Texture2D Load(string file,string name)
     {
@@ -203,7 +203,6 @@ static partial class RankedMenu
     static int boardTop;
     static Il2CppSystem.Object esWas;
     static UnityEngine.EventSystems.EventSystem es;
-    static PlayTab play;static float nextPlayScan;
 
     static int Set=>set>=0?set:vanillaSet>=0?vanillaSet:0;
     static string Ladder(string q)=>q=="r1v1"?"1v1":"team";
@@ -229,100 +228,6 @@ static partial class RankedMenu
         MelonLogger.Msg("FREEDOM_ARROW_RANKED menu closed: "+why);
     }
 
-    // The Play tab's cards are showing: PlayTab active, its buttons visible and the Scenarios sub-tab closed.
-    static string why="";
-    static bool No(string reason){if(reason!=why){why=reason;MelonLogger.Msg("FREEDOM_ARROW_RANKED card hidden: "+reason);}return false;}
-    static bool PlayCards(out Rect last,out float pitch)
-    {
-        last=default;pitch=0;
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"){play=null;return No("not the menu scene");}
-        if(play==null||play.WasCollected)
-        {
-            play=null;
-            if(Time.unscaledTime<nextPlayScan)return false;
-            nextPlayScan=Time.unscaledTime+1f;
-            play=UnityEngine.Object.FindObjectOfType<PlayTab>();
-            if(play==null)return No("no active PlayTab");
-        }
-        if(!play.isActiveAndEnabled)return No("PlayTab not active");
-        // The Play tab's own button must be selected: Campaign and other sub-screens keep PlayTab active (card was drawn over the
-        // Campaign map on Vengeance 22 Nov 09:31), but hide the top tabs.
-        if(!PlaySelected())return No("Play tab button not selected");
-        if(play.IsScenarioTabActive)return No("Scenarios sub-tab open");
-        var c=play._buttonsContainer;if(c==null||!c.activeInHierarchy)return No("Play buttons hidden");
-        // The game's cards: active children of the buttons container (or of its first level, if the cards sit one level deeper), left to right.
-        var rects=Cards(c.transform);
-        if(rects.Count<2&&c.transform.childCount>0)for(int i=0;i<c.transform.childCount&&rects.Count<2;i++)rects=Cards(c.transform.GetChild(i));
-        if(rects.Count<2)return No($"found {rects.Count} card rects under {c.name} ({c.transform.childCount} children)");
-        rects.Sort((a,b)=>a.x.CompareTo(b.x));
-        // Vanilla cards grow in place on hover (Lateralus 22 Nov: hovering Multiplayer pushed the Ranked card right; hovering
-        // Skirmish grew both). The card is placed from the cards' rest layout (all the same width), kept per screen size;
-        // a hovered vanilla card gives the hover scale and anchor that the Ranked card copies.
-        bool rest=rects.All(r=>Math.Abs(r.width-rects[0].width)<1f);
-        int key=Screen.width*100000+Screen.height;
-        if(rest){baseCards=rects;baseKey=key;}
-        else if(baseCards!=null&&baseKey==key&&baseCards.Count==rects.Count)
-            for(int i=0;i<rects.Count;i++)
-            {
-                var b0=baseCards[i];var h0=rects[i];float gi=h0.width/b0.width;
-                if(gi<=measured+0.004f)continue;   // the hover grows over a few frames: keep the largest size seen
-                measured=gi;grow=gi;
-                growAx=Mathf.Clamp01((b0.x-h0.x)/Math.Max(1f,h0.width-b0.width));
-                growAy=Mathf.Clamp01((b0.y-h0.y)/Math.Max(1f,h0.height-b0.height));
-                if(gi>=loggedGrow+0.02f){loggedGrow=gi;MelonLogger.Msg($"FREEDOM_ARROW_RANKED vanilla hover: x{grow:0.000}, anchor {growAx:0.00},{growAy:0.00} ({b0} -> {h0})");}
-            }
-        var use=baseCards!=null&&baseKey==key&&baseCards.Count==rects.Count?baseCards:rects;
-        last=use[^1];pitch=use[^1].x-use[^2].x;
-        if(!(last.width>20f&&pitch>last.width*0.5f))return No($"odd card layout: last {last}, pitch {pitch}");
-        // Something drawn over the Play cards (the profile screen opened from the top-right block keeps the Play tab selected):
-        // the game's own topmost UI under the last card's centre must belong to the Play tab (Lateralus 22 Nov).
-        if(Covered(use[^1]))return No("another screen is over the Play cards");
-        if(why!="shown"){why="shown";MelonLogger.Msg($"FREEDOM_ARROW_RANKED cards: {string.Join(" ",rects)}");if(!dumped){dumped=true;Dump(play.transform,0);}}
-        return true;
-    }
-    static bool dumped,covered;static float nextCover;
-    static bool Covered(Rect guiRect)
-    {
-        if(Time.unscaledTime<nextCover)return covered;
-        nextCover=Time.unscaledTime+0.25f;covered=false;
-        try
-        {
-            var evs=UnityEngine.EventSystems.EventSystem.current;if(evs==null||play==null)return false;
-            var ped=new UnityEngine.EventSystems.PointerEventData(evs){position=new Vector2(guiRect.center.x,Screen.height-guiRect.center.y)};
-            var hits=new Il2CppSystem.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
-            evs.RaycastAll(ped,hits);
-            if(hits.Count>0){var top=hits[0].gameObject;covered=top!=null&&!top.transform.IsChildOf(play.transform);}
-        }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED cover check: "+e.Message);nextCover=Time.unscaledTime+30f;}
-        return covered;
-    }
-    // One-time log of the Play tab's UI tree (names, components, texts): input for building the Ranked page in the game's own UI.
-    static void Dump(Transform t,int depth)
-    {
-        if(depth>5)return;
-        try
-        {
-            var comps=string.Join(",",t.GetComponents<Component>().Select(c=>c==null?"?":c.GetIl2CppType().Name));
-            var tmp=t.GetComponent<Il2CppTMPro.TextMeshProUGUI>();var rt=t.GetComponent<RectTransform>();
-            MelonLogger.Msg($"FREEDOM_ARROW_RANKED tree {new string('.',depth*2)}{t.name}{(t.gameObject.activeSelf?"":" (off)")} [{comps}]"+(rt!=null?$" {rt.rect.width:0}x{rt.rect.height:0}":"")+(tmp!=null?$" \"{tmp.text}\"":""));
-            for(int i=0;i<t.childCount;i++)Dump(t.GetChild(i),depth+1);
-        }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tree: "+e.Message);}
-    }
-    static List<Rect> baseCards;static int baseKey;
-    // Default from a Vengeance screenshot (Multiplayer card 245 -> 269 px wide when hovered); replaced by the measured vanilla hover.
-    static float grow=1.098f,growAx=0.5f,growAy=0.4f,hoverT,measured=1f,loggedGrow=1f;
-    static List<Rect> Cards(Transform t)
-    {
-        var l=new List<Rect>();
-        for(int i=0;i<t.childCount;i++)
-        {
-            var ch=t.GetChild(i);if(!ch.gameObject.activeInHierarchy)continue;
-            var rt=ch.GetComponent<RectTransform>();if(rt==null)continue;
-            var r=ScreenRect(rt);if(r.width>20f&&r.height>20f)l.Add(r);
-        }
-        return l;
-    }
     static MainMenuButton playButton;static float nextButtonScan;
     static bool PlaySelected()
     {
@@ -403,7 +308,6 @@ static partial class RankedMenu
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}
     }
 
-    static bool loggedCard;
     public static void OnGUI()
     {
         try
@@ -411,21 +315,8 @@ static partial class RankedMenu
             LobbyBanner();
             if(open){Menu();return;}
             if(pageShown){var ev=Event.current;if(ev.type==EventType.KeyDown&&ev.keyCode==KeyCode.Escape){HidePage("Esc",true);ev.Use();}return;}
-            if(card==null||!PlayCards(out var last,out var pitch))return;
-            var r=new Rect(last.x+pitch,last.y,last.width,last.height);
-            if(!loggedCard){loggedCard=true;MelonLogger.Msg($"FREEDOM_ARROW_RANKED card at {r} (last game card {last}, screen {Screen.width}x{Screen.height})");}
-            var e=Event.current;
-            bool hover=r.Contains(e.mousePosition);
-            if(e.type==EventType.Repaint)hoverT=Mathf.MoveTowards(hoverT,hover?1f:0f,Time.unscaledDeltaTime*8f);
-            float g=1f+(grow-1f)*hoverT;   // grow like the vanilla cards, with their measured anchor
-            var d=new Rect(r.x-(r.width*(g-1f))*growAx,r.y-(r.height*(g-1f))*growAy,r.width*g,r.height*g);
-            var oc=GUI.color;float fa=CardAlpha();GUI.color=new Color(oc.r,oc.g,oc.b,oc.a*fa);   // fade in with the vanilla cards
-            GUI.DrawTexture(d,card,ScaleMode.StretchToFill);
-            if(hover)Fill(new Rect(d.x,d.yMax-4*S0(),d.width,4*S0()),new Color(Red.r,Red.g,Red.b,fa));
-            GUI.color=oc;
-            if(GUI.Button(r,GUIContent.none,GUIStyle.none))Open();
         }
-        catch(Exception ex){MelonLogger.Warning("FREEDOM_ARROW_RANKED: "+ex.Message);Close("error");play=null;}
+        catch(Exception ex){MelonLogger.Warning("FREEDOM_ARROW_RANKED: "+ex.Message);Close("error");}
     }
 
     // ---------- drawing ----------
