@@ -25,6 +25,9 @@ static class NationLayout
     static readonly Dictionary<IntPtr,(Vector2 Pivot,Vector2 Pos)> deckOriginal=new();
     static readonly Dictionary<IntPtr,Vector2> liftOriginal=new();
     static bool failed;
+    // Row 2 alignment is re-checked for a few frames after the bar is made: on a second Arsenal visit (Osama 24 Nov 01:2x) ALL was not sized yet at
+    // Initialize, so the measured offset was 24 instead of 109 and China sat next to ALL. The check moves China's left edge to the US flag's.
+    static RectTransform alignRow2,alignUs,alignChina;static int alignFrames;
     static bool Ready=>!failed&&Runtime.IsApplied;
 
     public static void Install(HarmonyLib.Harmony harmony)
@@ -111,7 +114,7 @@ static class NationLayout
                 // The width of everything left of the US flag in row 1 (the ALL button), from preferred widths, so it does not depend on whether
                 // the bar has been laid out yet (Osama 23 Nov 18:0x: in dev.10 China sat under ALL, "the Chinese flag is right under the US").
                 float x=h1.padding.left;
-                for(int i=0;i<us.GetSiblingIndex();i++){var c=bar.GetChild(i).GetComponent<RectTransform>();if(c!=null&&c.gameObject.activeSelf)x+=LayoutUtility.GetPreferredWidth(c)+h1.spacing;}
+                for(int i=0;i<us.GetSiblingIndex();i++){var c=bar.GetChild(i).GetComponent<RectTransform>();if(c!=null&&c.gameObject.activeSelf)x+=Mathf.Max(LayoutUtility.GetPreferredWidth(c),c.rect.width)+h1.spacing;}
                 pad=Mathf.RoundToInt(x);
                 h2.padding=new RectOffset(pad,h1.padding.right,h1.padding.top,h1.padding.bottom);
             }
@@ -127,11 +130,35 @@ static class NationLayout
             row2.anchorMin=bar.anchorMin;row2.anchorMax=bar.anchorMax;row2.pivot=bar.pivot;row2.sizeDelta=bar.sizeDelta;
             row2.localPosition=bar.localPosition-new Vector3(0,rowH+gap,0);
             LayoutRebuilder.ForceRebuildLayoutImmediate(row2);
+            if(us!=null&&china!=null){alignRow2=row2;alignUs=us.GetComponent<RectTransform>();alignChina=china.GetComponent<RectTransform>();alignFrames=60;Align(false);}
             MelonLogger.Msg($"FREEDOM_ARROW_NATION_LAYOUT arsenal: groups {groups.Count}, row 1 {first.Count} nation(s) + ALL{(firstIndex>0&&firstIndex!=int.MaxValue?" inside the bar":" outside the bar")}, "+
                 $"row 2 China={(china!=null)} Russia={(russia!=null)} starts at {pad}; row {rowH:0.#} high, gap {gap:0.#}, room below {room:0.#}, moved up {up:0.#} ({lift.name}); "+
                 $"bar parent layout={(parent.GetComponent<LayoutGroup>()?.GetType().Name??"none")}, bar layout={(h1!=null?"HLG":"none")}");
         }
         catch(Exception e){Fail(e);}
+    }
+
+    // Called every frame (Runtime.OnUpdate); works only for 60 frames after the Arsenal bar is built.
+    public static void Tick()
+    {
+        if(alignFrames<=0||failed)return;
+        alignFrames--;
+        try{Align(alignFrames==0);}
+        catch(Exception e){alignFrames=0;MelonLogger.Warning("FREEDOM_ARROW_NATION_LAYOUT align stopped: "+e.Message);}
+    }
+    // Put China's left edge under the US flag's left edge (world space -> row 2 padding).
+    static void Align(bool last)
+    {
+        if(alignRow2==null||alignUs==null||alignChina==null||!alignUs.gameObject.activeInHierarchy||!alignChina.gameObject.activeInHierarchy){alignFrames=0;return;}
+        var h2=alignRow2.GetComponent<HorizontalLayoutGroup>();if(h2==null){alignFrames=0;return;}
+        var a=new Vector3[4];var b=new Vector3[4];alignUs.GetWorldCorners(a);alignChina.GetWorldCorners(b);
+        if(a[2].x-a[0].x<1e-4f)return;                                   // US flag not laid out yet
+        float d=alignRow2.InverseTransformVector(new Vector3(a[0].x-b[0].x,0,0)).x;
+        if(Mathf.Abs(d)<0.5f)return;
+        int pad=Mathf.Max(0,h2.padding.left+Mathf.RoundToInt(d));
+        h2.padding=new RectOffset(pad,h2.padding.right,h2.padding.top,h2.padding.bottom);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(alignRow2);
+        MelonLogger.Msg($"FREEDOM_ARROW_NATION_LAYOUT arsenal: row 2 aligned to the US flag, start {pad} (moved {d:0.#}, frame {60-alignFrames})");
     }
 
     // Before the native release, China and Russia go back into the native bar, so the game releases its groups as it made them.
