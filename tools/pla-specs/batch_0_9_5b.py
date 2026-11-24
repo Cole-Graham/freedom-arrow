@@ -653,6 +653,9 @@ import blue_dragon_k9_k21_1123;blue_dragon_k9_k21_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault (1209): QBS-09 2 -> 3, QBZ-191 7 -> 6, armour 6 -> 8, price 60 -> 70 (Lateralus 23 Nov 2026 15:3x PST,
 # thread 1568104480459722894). See thermobaric_assault_1123.py.
 import thermobaric_assault_1123;thermobaric_assault_1123.apply(t,g,ok,rec)
+# ---------- Disposable launchers one per round: Thermobaric Assault 6 PF-97 = 6 carriers x 1 (Lateralus 23 Nov 2026 22:4x PST, thread
+# 1572962048705429598). See disposable_launchers_1123.py; its check runs at the end.
+import disposable_launchers_1123;disposable_launchers_1123.apply(t,g,ok,rec)
 # ---------- China recon infantry stealth: card 2.5 at minimum, sniper teams (2-3 men with a QBU-10) card 3.0 (Lateralus 23 Nov 2026,
 # thread 1568104480459722894). See recon_stealth_1123.py.
 import recon_stealth_1123;recon_stealth_1123.apply(t,g,ok,rec)
@@ -727,6 +730,8 @@ import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
 # ---------- VN-3 (airborne, Kord clone) and ZSL-191 (motorized, ZSL-92 family clone) transports for the MarkII_ China models (Osama 23 Nov 2026
 # 20:4x PST, thread "blue dragons"). MODEL BUILD ONLY. See mk_china_1123.py.
 import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
+# ---------- QBZ rounds read '5.8 mm ammunition' (Osama 23 Nov 2026 22:4x PST, thread 1567745029781454889). See qbz_58_ammo_1123.py.
+import qbz_58_ammo_1123;qbz_58_ammo_1123.apply(t,g,ok,rec)
 # ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 # ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 2026 21:4x PST, thread 1567745029781454889). See ztz96_rocket_force_1123.py.
@@ -762,6 +767,8 @@ import zbd05_ifv_1123;zbd05_ifv_1123.apply(t,g,ok,rec)
 # ---------- Chinese weapon / round / loadout names on ZTD-05, ZSD-05, ZBD-05, VN-3 (Osama 23 Nov 2026 22:4x PST, thread 1567745029781454889).
 # MODEL BUILD ONLY. See sinicize_1123.py.
 import sinicize_1123;sinicize_1123.apply(t,g,ok,rec)
+# Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
+rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
