@@ -16,13 +16,13 @@ internal sealed class FaBanner : Control
     private const float DesignWidth = 1440f;
     private readonly Image? _art;
 
-    private IReadOnlyList<LauncherNews.OnlinePoint> _online = Array.Empty<LauncherNews.OnlinePoint>();
-
-    private LauncherNews.Roadmap? _roadmap;
+    private Image? _roadmap;
+    private string _roadmapUrl = LauncherNews.Site;
     private RectangleF _roadmapBox;
 
-    /// <summary>The roadmap from the News panel; drawn left of the players chart, a click opens its page.</summary>
-    public void SetRoadmap(LauncherNews.Roadmap? r) { _roadmap = r; Invalidate(); }
+    /// <summary>1.1.18 (Osama 23 Nov 2026, "I want the full graphic" in the header, "a lot of dead space between our logo and the american
+    /// flag"): the roadmap picture, drawn in that space; a click opens its page.</summary>
+    public void SetRoadmap(Image? img, string url) { _roadmap = img; _roadmapUrl = url; Invalidate(); }
 
     protected override void OnMouseMove(MouseEventArgs e)
     {
@@ -33,11 +33,8 @@ internal sealed class FaBanner : Control
     protected override void OnMouseClick(MouseEventArgs e)
     {
         base.OnMouseClick(e);
-        if (_roadmap != null && _roadmapBox.Contains(e.Location)) LauncherNews.Open(_roadmap.Url);
+        if (_roadmap != null && _roadmapBox.Contains(e.Location)) LauncherNews.Open(_roadmapUrl);
     }
-
-    /// <summary>The 7-day players-in-game series from the News panel (every 5 minutes).</summary>
-    public void SetOnline(IReadOnlyList<LauncherNews.OnlinePoint> p) { _online = p; Invalidate(); }
 
     /// <summary>Space kept free at the top right (design pixels) for the language button.</summary>
     public int RightInset { get; set; }
@@ -101,11 +98,18 @@ internal sealed class FaBanner : Control
 
         // Players in game chart (1.1.18) in the dark sky between the title and the flag-raising art, above the Battlefield report
         // column: design box 480..950 x 64..292 of the 1440x320 header, moved and scaled with the art like the badge.
-        // 1.1.18 (Osama 23 Nov 2026): roadmap list then players chart, side by side in the dark sky between the title (ends ~290) and the
-        // flag-raising art (starts ~960), design 300..950 x 64..292 of the 1440x320 header, moved and scaled with the art like the badge.
-        _roadmapBox = new RectangleF(x0 + 300 * s, 64 * s, 330 * s, 228 * s);
-        RoadmapBox.Draw(g, _roadmapBox, _roadmap, s);
-        OnlineChart.Draw(g, new RectangleF(x0 + 642 * s, 64 * s, 308 * s, 228 * s), _online, s);
+        // 1.1.18: the roadmap picture in the dark sky between the title (ends ~290) and the flag-raising art (starts ~960): the largest
+        // rectangle of its shape inside design 300..960 x 12..308 of the 1440x320 header, moved and scaled with the art like the badge.
+        _roadmapBox = RectangleF.Empty;
+        if (_roadmap != null && _roadmap.Width > 0)
+        {
+            float bw = 660 * s, bh = 296 * s, a = _roadmap.Width / (float)_roadmap.Height;
+            float w = Math.Min(bw, bh * a), h = w / a;
+            _roadmapBox = new RectangleF(x0 + 300 * s + (bw - w) / 2, 12 * s + (bh - h) / 2, w, h);
+            g.DrawImage(_roadmap, _roadmapBox);
+            using var edge = new Pen(Color.FromArgb(50, 255, 255, 255));
+            g.DrawRectangle(edge, _roadmapBox.X, _roadmapBox.Y, _roadmapBox.Width - 1, _roadmapBox.Height - 1);
+        }
 
         // The site's red line under the hero.
         using var line = new SolidBrush(Color.FromArgb(160, Theme.Accent));

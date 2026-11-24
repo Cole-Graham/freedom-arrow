@@ -12,11 +12,11 @@ namespace BAModManager.Ui;
 internal sealed class NewsPanel : Panel
 {
     private readonly StatTiles _tiles = new() { Dock = DockStyle.Top, Height = 68 };
-    /// <summary>Osama 23 Nov 2026: "add the players in game graph to the launcher", "above the battlefield report area": the series is
-    /// handed to the header (FaBanner), which draws the chart in the dark space of the art above this column.</summary>
-    public event Action<IReadOnlyList<LauncherNews.OnlinePoint>>? OnlineLoaded;
-    /// <summary>The roadmap, also drawn in the header (FaBanner).</summary>
-    public event Action<LauncherNews.Roadmap?>? RoadmapLoaded;
+    /// <summary>Osama 23 Nov 2026: "add the players in game graph to the launcher", then "player graph can be fit above the patch notes
+    /// section, like share a space": the 7-day chart heads the PATCH NOTES column.</summary>
+    private readonly ChartBox _chart = new() { Dock = DockStyle.Top, Height = 132 };
+    /// <summary>The roadmap picture (downloaded once, cached) for the header (FaBanner), with the page a click opens.</summary>
+    public event Action<Image?, string>? RoadmapLoaded;
     private readonly RichTextBox _notes;
     private readonly Button _more;
     private string _link = LauncherNews.Site;
@@ -73,6 +73,8 @@ internal sealed class NewsPanel : Panel
         notesHead.Controls.Add(_more);
         notes.Controls.Add(_notes);
         notes.Controls.Add(notesHead);
+        notes.Controls.Add(Gap(10));
+        notes.Controls.Add(_chart);
         _cols = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = Theme.Panel, ColumnCount = 2, RowCount = 1, Margin = Padding.Empty, Padding = Padding.Empty };
         _cols.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 0));   // the features column opens when a feature arrives
         _cols.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
@@ -106,8 +108,8 @@ internal sealed class NewsPanel : Panel
         if (news == null) { ShowText(T("News is unavailable right now. It doesn't affect PLAY.")); return; }
         _loaded = true;
         _tiles.Set(news.Stats);
-        OnlineLoaded?.Invoke(news.Online);
-        RoadmapLoaded?.Invoke(news.Roadmap);
+        _chart.Set(news.Online);
+        await ShowRoadmap(news.Roadmap);
         if (news.Notes.Count > 0) _link = news.Notes[0].Link;
         Render(news.Notes);
         if (news.Features.Count > 0) await ShowFeature(news.Features[0]);
@@ -123,7 +125,46 @@ internal sealed class NewsPanel : Panel
     {
         if (!_loaded) { await LoadAsync(); return; }
         var news = await LauncherNews.LoadAsync();
-        if (news != null && !IsDisposed) { _tiles.Set(news.Stats); OnlineLoaded?.Invoke(news.Online); RoadmapLoaded?.Invoke(news.Roadmap); }
+        if (news != null && !IsDisposed) { _tiles.Set(news.Stats); _chart.Set(news.Online); await ShowRoadmap(news.Roadmap); }
+    }
+
+    private string _roadmapImage = "";
+    private MemoryStream? _roadmapData;
+
+    /// <summary>Loads the roadmap picture when its address changes (a new ?v= is a new picture) and hands it to the header.</summary>
+    private async Task ShowRoadmap(LauncherNews.Roadmap? r)
+    {
+        if (r == null || r.Image == _roadmapImage) return;
+        var bytes = await LauncherNews.LoadImageAsync(r.Image);
+        if (bytes == null || IsDisposed) return;
+        try
+        {
+            _roadmapData = new MemoryStream(bytes);
+            var img = Image.FromStream(_roadmapData);
+            _roadmapImage = r.Image;
+            RoadmapLoaded?.Invoke(img, r.Url);
+        }
+        catch (Exception) { _roadmapData = null; }
+    }
+
+    /// <summary>The players-in-game chart (OnlineChart) as a docked block of the PATCH NOTES column.</summary>
+    private sealed class ChartBox : Control
+    {
+        private IReadOnlyList<LauncherNews.OnlinePoint> _p = Array.Empty<LauncherNews.OnlinePoint>();
+
+        public ChartBox()
+        {
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+            BackColor = Theme.Panel;
+        }
+
+        public void Set(IReadOnlyList<LauncherNews.OnlinePoint> p) { _p = p; Invalidate(); }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            e.Graphics.Clear(BackColor);
+            OnlineChart.Draw(e.Graphics, new RectangleF(0, 0, Width - 1, Height - 1), _p, DeviceDpi / 96f);
+        }
     }
 
     /// <summary>The newest feature, shown first: title, a line of text and its animated picture.</summary>

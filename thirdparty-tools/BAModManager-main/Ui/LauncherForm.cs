@@ -216,8 +216,7 @@ internal sealed class LauncherForm : Form
         Controls.Add(header);   // added last so it docks first: the art spans the full width
 #if FA_DEV45
         _header = header;
-        if (_news != null) _news.OnlineLoaded += p => header.SetOnline(p);   // 1.1.18: players-in-game chart in the header art
-        if (_news != null) _news.RoadmapLoaded += r => header.SetRoadmap(r);   // 1.1.18: roadmap list in the header art
+        if (_news != null) _news.RoadmapLoaded += (img, url) => header.SetRoadmap(img, url);   // 1.1.18: roadmap picture in the header art
 #endif
 
         _play.Click += async (_, _) => await PlayModded();

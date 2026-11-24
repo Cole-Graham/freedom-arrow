@@ -23,11 +23,9 @@ public static class LauncherNews
     public sealed record Feature(string Title, string TitleZh, string Text, string TextZh, string Image);
     /// <summary>One point of the front page's Players in game series: players with the mod running in that 30-minute slot.</summary>
     public sealed record OnlinePoint(DateTimeOffset Time, int Players);
-    /// <summary>One roadmap step for the header: its title and tag ("now", "milestone", "after" or none), with the tag's label.</summary>
-    public sealed record RoadmapStep(string Title, string Tag, string TagLabel);
-    /// <summary>The roadmap (Osama 23 Nov 2026, in the header "between our logo and the american flag"), in the launcher's language.
+    /// <summary>The roadmap picture for the header (Osama 23 Nov 2026: "I want the full graphic"), in the launcher's language.
     /// One home: team-site/roadmap.json, sent in news.json. A click opens Url.</summary>
-    public sealed record Roadmap(string Url, IReadOnlyList<RoadmapStep> Steps);
+    public sealed record Roadmap(string Url, string Image);
     public sealed record News(Stats Stats, IReadOnlyList<Note> Notes, IReadOnlyList<Feature> Features, IReadOnlyList<OnlinePoint> Online, Roadmap? Roadmap = null);
 
     private const int MaxImageBytes = 12 * 1024 * 1024;
@@ -108,18 +106,12 @@ public static class LauncherNews
                         online.Add(new OnlinePoint(DateTimeOffset.FromUnixTimeSeconds(t), n));
             Roadmap? roadmap = null;
             if (root.TryGetProperty("roadmap", out var rm) && rm.ValueKind == JsonValueKind.Object
-                && rm.TryGetProperty(Loc.IsChinese ? "zh" : "en", out var rl) && rl.ValueKind == JsonValueKind.Object
-                && rl.TryGetProperty("steps", out var rs) && rs.ValueKind == JsonValueKind.Array)
+                && rm.TryGetProperty("image", out var ri) && ri.ValueKind == JsonValueKind.Object)
             {
-                var labels = rl.TryGetProperty("labels", out var lb) ? lb : default;
-                var steps = new List<RoadmapStep>();
-                foreach (var e in rs.EnumerateArray().Take(10))
-                {
-                    var tag = Str(e, "tag");
-                    steps.Add(new RoadmapStep(Str(e, "title"), tag, tag.Length > 0 ? Str(labels, tag) : ""));
-                }
+                var img = Str(ri, Loc.IsChinese ? "zh" : "en");
+                if (img.Length == 0) img = Str(ri, "en");
                 var url = Str(rm, "url");
-                if (steps.Count > 0) roadmap = new Roadmap(IsSiteLink(url) ? url : Site, steps);
+                if (IsSiteLink(img)) roadmap = new Roadmap(IsSiteLink(url) ? url : Site, img);
             }
             return new News(stats, notes, features, online, roadmap);
         }
