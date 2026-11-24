@@ -106,8 +106,8 @@ class WeaponsTab:
         specs = [
             ("Damage", "damage"),
             ("Stress", "stress"),
-            ("Pen min", "pen_min"),
-            ("Pen ground", "pen_ground"),
+            ("Pen at min range", "pen_min"),
+            ("Pen at max ground range", "pen_ground"),
             ("Min range", "min_range"),
             ("Ground range", "ground_range"),
             ("Mag", "mag"),
@@ -129,7 +129,7 @@ class WeaponsTab:
         ttk.Combobox(grid, textvariable=self.targeted, values=["0", "1", "2"], width=6, state="readonly").grid(
             row=4, column=1, sticky=tk.W
         )
-        ttk.Label(grid, text="0 no armor (pen unused) · 1 KE: Pen min → Pen ground over range · 2 HEAT: Pen ground at every range (Pen min unused)").grid(
+        ttk.Label(grid, text="0 no armor (pen unused) · 1 KE: Pen at min range → Pen at max ground range, falling with distance · 2 HEAT: Pen at max ground range at every distance (Pen at min range unused)").grid(
             row=4, column=2, columnspan=6, sticky=tk.W, padx=4
         )
         ttk.Button(custom, text="Create / edit custom weapon", command=self.save_custom_weapon).pack(anchor=tk.W)
