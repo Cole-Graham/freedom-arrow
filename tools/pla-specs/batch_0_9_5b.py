@@ -705,6 +705,8 @@ import recon_helis_cn_1123;recon_helis_cn_1123.apply(t,g,ok,rec)
 # ---------- China hidden-units test spec 26, off unless UserData/FreedomArrow/test-spec.json switches it on (Osama 23 Nov 2026 18:5x PST,
 # thread 1567745029781454889). See test_specs_1123.py and runtime-qa/TestSpec.cs.
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)
+# ---------- ZTQ-15 Light air-droppable (Osama 23 Nov 2026 19:5x PST, thread 1567745029781454889). See ztq15_light_airdrop_1123.py.
+import ztq15_light_airdrop_1123;ztq15_light_airdrop_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
