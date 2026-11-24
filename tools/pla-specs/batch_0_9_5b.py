@@ -789,6 +789,9 @@ import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
 import card_portraits_1124;card_portraits_1124.apply(t,g,ok,rec)
 # ---------- (Unit cards English only + guard, 8add5fcd, withdrawn 24 Nov 01:0x: Osama "English and Chinese are fine" about the 42 bilingual
 # China infantry cards. They keep "English 中文" as since 0.9.4. The J-5 / J-6W drone cards stay English only, rocket_drones_1123.py.)
+# ---------- China vehicle unit icons (card silhouettes) rendered from their own models (Osama 24 Nov 2026 01:1x PST, thread "China cosmetic
+# work": "where are the unit icons"). See card_icons_1124.py.
+import card_icons_1124;card_icons_1124.apply(t,g,ok,rec)
 # ---------- ZTZ-59D1 removed (Osama 24 Nov 2026 01:1x PST, thread "blue dragons"). Last, after the test-spec section. See ztz59d1_removed_1124.py.
 import ztz59d1_removed_1124;ztz59d1_removed_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'
