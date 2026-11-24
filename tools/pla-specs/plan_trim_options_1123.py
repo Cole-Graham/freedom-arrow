@@ -3,10 +3,11 @@ HJ-12 or aps or reactive armor loadout"). MODEL BUILD ONLY. After sinicize_1123.
 - ZSD-05: removes '30 mm autocannon + HJ-12' (with its turret link and HJ-12 ammunition), 'Reactive armor' and 'Reactive armour + GL-5 APS'.
 - ZBD-05: removes 'Reactive armor' and 'Reactive armour + GL-5 APS'.
 - ZTD-05: removes 'GL-5 APS'.
+24 Nov 01:0x "zsd-05 shoud NOT have an autocannon option": the ZSD-05 also loses '30 mm autocannon' (keeps QJC-88 +0 and QLZ-87 AGL +5).
 The armour slot keeps only its default option (smoke, supply); the weapon options are unchanged otherwise.
 22:5x "non of these get aps options or reactive armor": their copied APS abilities (Iron Fist 82 / APS US Light 88) leave UnitAbilities too, and
 the ZSD-05 / ZBD-05 lose the AMPV's second ('armoured', reactive-armour) mobility row, which no option uses any more."""
-DROP = {'PLA ZSD-05': ('30 mm autocannon + HJ-12', 'Custom_Option_Reactive_armor', 'Reactive armour + GL-5 APS'),
+DROP = {'PLA ZSD-05': ('30 mm autocannon + HJ-12', '30 mm autocannon', 'Custom_Option_Reactive_armor', 'Reactive armour + GL-5 APS'),
         'PLA ZBD-05': ('Custom_Option_Reactive_armor', 'Reactive armour + GL-5 APS'),
         'PLA ZTD-05': ('GL-5 APS',)}
 
