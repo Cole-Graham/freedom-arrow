@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.42", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.43", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -520,7 +520,7 @@ public partial class Mod : MelonMod
     }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; }
+    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; public MatP fallback { get; set; } }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
@@ -535,7 +535,12 @@ public partial class Mod : MelonMod
                 // 0.3.23 (Osama 13 Nov): the 0.3 fallback read as frosted white on every jet that uses the F-16 glass. Use the clear
                 // value the good-looking canopies use, and upgrade these materials to the donor in place once it loads (UpgradeFallbacks).
                 fallbackDonor = p.cockpitDonor;
-                p = new MatP { clearGlass = true, opacity = 0.025f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
+                // 0.3.43 (Osama 23 Nov 18:4x: KF-21s / F-35B ROKN "should all have the vanilla F-35 canopy textures"): a .mat.json entry may
+                // give its own "fallback" look for the time the donor is not loaded (the KF-21s sit on the F-16 body, so the F-35 glass is
+                // only in memory once an F-35 has been shown); without one, the clear glass as before. Upgraded to the donor in place later.
+                p = p.fallback != null ? new MatP { metallic = p.fallback.metallic, smoothness = p.fallback.smoothness, alpha = p.fallback.alpha, cutoff = p.fallback.cutoff,
+                        colorScale = p.fallback.colorScale, clearGlass = p.fallback.clearGlass, opacity = p.fallback.opacity, emissive = p.fallback.emissive ?? new float[3] }
+                    : new MatP { clearGlass = true, opacity = 0.025f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
             }
         }
         // Canopy policy is opt-in. Its effective texture/colour also belong in the cache key.

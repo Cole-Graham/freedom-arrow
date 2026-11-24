@@ -28,7 +28,9 @@ public partial class Mod
         ["US_CRAM_GLASS"] = "uscram",
         // Osama 22 Nov 2026: "KF-21 needs landing gear and glass transplant from vanilla F-35". Material name read from the vanilla unit bundle
         // (US_F35A_Glass); the token picks the US_F35A prefab.
-        ["US_F35A_Glass"] = "usf35a"
+        ["US_F35A_Glass"] = "usf35a",
+        // 0.3.43 (Osama 23 Nov): the F-35B canopy, loaded with the US_F35B body the F-35B (ROKN/JASDF) cards stand on.
+        ["US_F35B_Glass"] = "usf35b"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()
