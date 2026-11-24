@@ -27,8 +27,10 @@ def apply(t, g, ok, rec):
     for r in [r for r in TW.values() if r and r['TurretId'] == T_ATGM]:
         g.add('TurretWeaponsJson', r, {'TurretId': tid, 'WeaponId': {W_2A42: W_2A72, W_KONKURS: W_HJ73D}.get(r['WeaponId'], r['WeaponId'])})
     atgm = opts[SPITSA_ATGM]
-    g.put('OptionsJson', atgm['Id'], {'Turret0Id': tid, 'Cost': 10, 'UIName': '2A72 + HJ-73D (4x)', 'Ability1Id': opts[A2A72]['Ability1Id']})
-    g.put('OptionsJson', opts[A2A72]['Id'], {'Cost': 0})
+    # Osama 24 Nov 01:2x 'vn-3 is bugged and doesn't show its weapon': removing the Kord option (Order 0, the BPM-97's default) left the VN-3
+    # with options at Order 1 and 3 and none at 0. The 2A72 option becomes Order 0 + IsDefault (as ar2000_heli_095.py), the HJ-73D option Order 1.
+    g.put('OptionsJson', atgm['Id'], {'Turret0Id': tid, 'Cost': 10, 'UIName': '2A72 + HJ-73D (4x)', 'Ability1Id': opts[A2A72]['Ability1Id'], 'Order': 1})
+    g.put('OptionsJson', opts[A2A72]['Id'], {'Cost': 0, 'Order': 0, 'IsDefault': True})
     g.put('Units', vn, {'Cost': 30})
     for k in (KORD, AGS): g.remove('OptionsJson', opts[k]['Id'])
     for r in [r for r in TU.values() if r and r['UnitId'] == vn]:
@@ -41,6 +43,7 @@ def apply(t, g, ok, rec):
     g.add('WeaponAmmunitionsJson', tpl, {'UnitId': vn})
     opts2 = sorted(((o['UIName'], o['Cost'], o['Turret0Id']) for o in O.values() if o and o['ModificationId'] in mods), key=lambda x: x[1])
     ok(opts2 == [(A2A72, 0, T_2A72), ('2A72 + HJ-73D (4x)', 10, tid)] and U[vn]['Cost'] == 30, ('VN-3: 30 pts with 2A72, +10 HJ-73D', opts2))
+    ok(sorted((o['Order'], o['IsDefault'], o['Cost']) for o in O.values() if o and o['ModificationId'] in mods) == [(0, True, 0), (1, False, 10)], 'VN-3 default option = 2A72 at Order 0')
     ok(sorted(r['TurretId'] for r in TU.values() if r and r['UnitId'] == vn) == sorted([T_2A72, tid]), 'VN-3 turret links = its two options')
     weapons = {w['WeaponId'] for x in (T_2A72, tid) for w in TW.values() if w and w['TurretId'] == x}
     has = {(r['WeaponId'], r['Quantity']) for r in WA.values() if r and r['UnitId'] == vn}
