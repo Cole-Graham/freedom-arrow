@@ -59,9 +59,18 @@ static class NationLayout
             var hlg=rt.GetComponent<HorizontalLayoutGroup>();
             float left=rt.rect.xMin+(hlg!=null?hlg.padding.left:0),width=rt.rect.width-(hlg!=null?hlg.padding.horizontal:0);
             var (xl,xr,yt)=Bounds(rt,kids);float need=xr-xl;
+            // dev.19 (Osama 24 Nov 02:0x screenshot, log "row 102 wide, flags need 520 ... scaled x0.196"): the row is not laid out yet when
+            // RenderCountries runs, so its own width is no measure of the room. Use the first ancestor wider than the flags need (the popup
+            // panel), keeping the same margin on the right as on the left; only shrink when the flags really do not fit, never below 0.5.
+            for(var a=rt.parent as RectTransform;a!=null;a=a.parent as RectTransform)
+            {
+                var c=new Vector3[4];a.GetWorldCorners(c);
+                float al=rt.InverseTransformPoint(c[0]).x,ar=rt.InverseTransformPoint(c[2]).x;
+                if(ar-al>need){left=xl;width=Mathf.Max(width,(ar-al)-2*Mathf.Max(0,xl-al));break;}
+            }
             string state=$"flags {kids.Count}, row {width:0.#} wide, flags need {need:0.#}, spacing {(hlg!=null?hlg.spacing:-1):0.#}";
             if(kids.Count<=3||need<=width+0.5f){MelonLogger.Msg("FREEDOM_ARROW_NATION_LAYOUT deck: "+state+"; unchanged");return;}
-            float k=width/need;
+            float k=Mathf.Max(0.5f,width/need);
             // Scale about the point that keeps the flags' left edge at the row's left edge and their top edge in place.
             float px=(left-k*xl)/(1-k);
             SetPivot(rt,new Vector2((px-rt.rect.xMin)/rt.rect.width,(yt-rt.rect.yMin)/rt.rect.height));
