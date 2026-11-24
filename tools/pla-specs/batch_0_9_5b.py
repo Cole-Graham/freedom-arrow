@@ -702,6 +702,8 @@ import recon_helis_us_1123;recon_helis_us_1123.apply(t,g,ok,rec)
 import recon_helis_ru_1123;recon_helis_ru_1123.apply(t,g,ok,rec)
 # ---------- China recon helicopters (Lateralus 23 Nov 2026 19:0x PST, thread 1572962048705429598). See recon_helis_cn_1123.py.
 import recon_helis_cn_1123;recon_helis_cn_1123.apply(t,g,ok,rec)
+# Lateralus 23 Nov 19:5x: 'Mech. Riflemen MMG should get sprint back, everything else is fine'
+import mech_mmg_sprint_1123;mech_mmg_sprint_1123.apply(t,g,ok,rec)
 # ---------- China hidden-units test spec 26, off unless UserData/FreedomArrow/test-spec.json switches it on (Osama 23 Nov 2026 18:5x PST,
 # thread 1567745029781454889). See test_specs_1123.py and runtime-qa/TestSpec.cs.
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)
