@@ -681,11 +681,11 @@ import qbz95_qjz89_1123;qbz95_qjz89_1123.apply(t,g,ok,rec)
 # explanations"). Only the English half of UIName and the UIDescription change; the internal Name stays (other scripts check it) and the Chinese half
 # stays as it is until the QQ poll on the Chinese names (LangNames.cs shows one half per game language).
 # QQ poll 23 Nov 18:3x (8 voters, work/qq-spec-names-20261123/tally.md); Osama 18:4x: 1 B 解放军空军, 2 A 陆军重型合成旅, 4 B 海军与特战部队 (Navy AND
-# special operations forces), 5 A 陆军中型合成旅. 3 (Rocket/Reservist) still 火箭军 until Osama picks.
+# special operations forces), 5 A 陆军中型合成旅. 18:4x: 3 B 火箭军与预备役部队 (Rocket Force AND reserve forces).
 _SP=t['SpecializationsJson']
 _specs={17:('PLAAF Air Force 空军','PLAAF Air Force 解放军空军',None),
  18:('PLAGF Armored Force 陆军装甲兵','PLAGF Heavy Combined Arms Brigade 陆军重型合成旅',"A heavy combined arms brigade of the PLA Ground Force: China's heaviest tanks and tracked infantry fighting vehicles, backed by self-propelled artillery and mobile air defense. This firepower comes at the cost of having no fixed-wing aircraft."),
- 19:('PLARF Rocket Conscript Force 火箭军','PLARF Rocket/Reservist Force 火箭军',"The PLA Rocket Force and the reservist force combined in one specialization. Reservist infantry and older tanks hold the line while the Rocket Force's ballistic missiles and long-range artillery strike deep into enemy territory. An aging fleet of jets provides the air cover."),
+ 19:('PLARF Rocket Conscript Force 火箭军','PLARF Rocket/Reservist Force 火箭军与预备役部队',"The PLA Rocket Force and the reservist force combined in one specialization. Reservist infantry and older tanks hold the line while the Rocket Force's ballistic missiles and long-range artillery strike deep into enemy territory. An aging fleet of jets provides the air cover."),
  20:('PLAN Special Forces 海军特种部队','PLAN Naval/Special Forces 海军与特战部队',"The PLA Navy and the special operations forces combined in one specialization (not the Navy's own special forces). Marines and elite special forces, supported by carrier aviation and long-range drones, strike from the sea and the air deep behind enemy lines."),
  21:('PLAGF Motorized 陆军摩托化部队','PLAGF Medium Combined Arms Brigade 陆军中型合成旅',"A medium combined arms brigade of the PLA Ground Force: fast wheeled vehicles carry a large infantry force, supported by mobile rocket artillery and air defense, to hit hard and keep moving.")}
 for _i,(_old,_new,_desc) in _specs.items():
