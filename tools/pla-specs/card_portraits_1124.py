@@ -5,7 +5,8 @@ on its own loadout rows (Name = card name + ' ...'); the small card label (Thumb
 import os
 CARDS = {'PLA ZTD-05': 'FA_CN_ZTD05', 'PLA ZSD-05': 'FA_CN_ZSD05', 'PLA ZRZ-100': 'FA_CN_ZRZ100', 'PLA ZBD-05': 'FA_CN_ZBD05', 'PLA VN-3': 'FA_CN_VN3',
          'PLA ZBL-08 Recon': 'FA_CN_ZBL08R', 'PLA ZSL-191': 'FA_CN_ZSL191',
-         'US XQ-58A Valkyrie': 'FA_US_XQ58A'}   # 02:1x thread blue dragons: "Valkyrie new icon, make na icon out of this" (Armory shot)
+         'US XQ-58A Valkyrie': 'FA_US_XQ58A',
+         'PLA ZZC-06': 'FA_CN_ZZC06'}   # 03:1x thread 1567745029781454889: "make an ew card for the ZZC-06" (Armory shot); runs after zzc06_recon_1124   # 02:1x thread blue dragons: "Valkyrie new icon, make na icon out of this" (Armory shot)
 ICONS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'mod', 'source', 'runtime-qa', 'icons')
 CS = os.path.join(ICONS, '..', 'CardIcons.cs')
 
