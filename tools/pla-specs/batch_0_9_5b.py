@@ -813,6 +813,8 @@ import card_icons_1124;card_icons_1124.apply(t,g,ok,rec)
 import ztz59d1_removed_1124;ztz59d1_removed_1124.apply(t,g,ok,rec)
 # ---------- QBU-10 weapon icon from Osama's photo (24 Nov 2026 02:0x PST, thread "blue dragons"). See qbu10_icon_1124.py.
 import qbu10_icon_1124;qbu10_icon_1124.apply(t,g,ok,rec)
+# ---------- QCW-05 -> QCQ-171, cosmetic only: name, icon, 9x19 mm round name (Osama 24 Nov 2026 02:1x PST, thread "blue dragons"). See qcq171_1124.py.
+import qcq171_1124;qcq171_1124.apply(t,g,ok,rec)
 # ---------- France / Germany preview specs: battlegroup size 0 (Osama 24 Nov 2026 02:0x PST, thread "China cosmetic work"). See euro_bg_zero_1124.py.
 import euro_bg_zero_1124;euro_bg_zero_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'

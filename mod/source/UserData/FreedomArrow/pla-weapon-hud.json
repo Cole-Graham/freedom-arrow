@@ -3394,13 +3394,13 @@
     },
     {
       "weapon": 2013349,
-      "name": "QCW-05",
+      "name": "QCQ-171",
       "scope": "INFANTRY",
       "mode": "custom",
-      "profile": "QCW05",
-      "address": "FA_PLA_WP_QCW05",
+      "profile": "QCQ171",
+      "address": "FA_PLA_WP_QCQ171",
       "native_weapon": 508,
-      "basis": "Sam-supplied suppressed QCW05 bullpup image, measured source edges"
+      "basis": "Osama-supplied QCQ-171 render (24 Nov 2026), work/qcq171-icon/make_icon.py; cosmetic replacement of the QCW-05"
     },
     {
       "weapon": 2014001,
@@ -3597,7 +3597,9 @@
     "FA_PLA_WP_PF98T",
     "FA_PLA_WP_PF98T_OUTLINE",
     "FA_PLA_WP_QBU10",
-    "FA_PLA_WP_QBU10_OUTLINE"
+    "FA_PLA_WP_QBU10_OUTLINE",
+    "FA_PLA_WP_QCQ171",
+    "FA_PLA_WP_QCQ171_OUTLINE"
   ],
   "native_icon_entries": 334,
   "custom_icon_entries": 20,
