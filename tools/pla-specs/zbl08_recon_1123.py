@@ -3,7 +3,9 @@ recon, this is a recon variant with no missiles"). Made the way the existing Chi
 a copy of the PLA ZBL-08 (903) in the recon tab (CategoryType 0), vanilla "Very Good Optics" (sensor 3), its own armour and mobility rows, +10 pts
 (40 -> 50), 4 cards in PLAGF Medium Combined Arms Brigade (21, wheeled, as ZTL-191 Recon). No missiles: only the 30 mm and Type 86 mounts are
 copied; the ZBL-08's HJ-73D option (modification 2019086 and its option turrets) is not. Runs last; model work/c5-cn-1123 (models.json key = Name)."""
-BASE, NAME, HUD, COST, SPEC, CARDS = 903, 'PLA ZBL-08 Recon', 'ZBL-08 Recon', 50, 21, 4
+# HUD name ZZC-07 (Osama 24 Nov 01:1x, thread blue dragons: 'zbl-08 recon changed to zzc-07'). The internal Name stays: models.json and the card
+# picture are keyed on it.
+BASE, NAME, HUD, COST, SPEC, CARDS = 903, 'PLA ZBL-08 Recon', 'ZZC-07', 50, 21, 4
 KEEP_TURRETS = (2009046, 2009054)   # PLA ZBL-08 mount 0 (30 mm) and mount 1 (Type 86 7.62 mm)
 VGO = 3                             # vanilla sensor row "Very Good Optics", as ZBD-04A / ZTL-191 / ZTQ-15 Recon
 LASER = 10                          # vanilla ability row "Laser Veh Default"
