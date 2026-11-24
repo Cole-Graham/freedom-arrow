@@ -718,6 +718,8 @@ import x47b_marines_1123;x47b_marines_1123.apply(t,g,ok,rec)
 import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
 # ---------- ZTQ-15 Light Chinese name ZTQ-15空降型 (Osama 23 Nov 2026 21:0x PST, thread 1567745029781454889). See ztq15_light_cn_name_1123.py.
 import ztq15_light_cn_name_1123;ztq15_light_cn_name_1123.apply(t,g,ok,rec)
+# ---------- Weapons Squad 火力班: one QJZ-171, 45 -> 60 pts (Osama 23 Nov 2026 21:3x PST, thread 1567745029781454889). See weapons_squad_1123.py.
+import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
