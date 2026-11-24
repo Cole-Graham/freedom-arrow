@@ -255,8 +255,7 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_ICONS_FAILED: not installed; vanilla card icons. "+e.Message); }
         try { ChinaUi.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("PLA_CHINA_UI_FAILED: "+e.Message); }
-        try { NationLayout.Install(HarmonyInstance); }
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_NATION_LAYOUT_FAILED: native layout kept. "+e.Message); }
+        // NationLayout (4-nation Create Deck / two-row Arsenal for Eurocorp) runs only in the model build, branch codex/batch/osama/models-096.
         try { SupportSlots.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SUPPORT_SLOTS_FAILED: SUP tab keeps 7 slots. "+e.Message); }
         try { ThirdPartyGuard.Ensure(); }

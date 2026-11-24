@@ -611,6 +611,9 @@ import rocket_drones_1123;rocket_drones_1123.apply(t,g,ok,rec)
 # ---------- PL-15C removed: all become PL-15, +5 pts per swapped missile, "Heavy CAP (PL-15)", MD-22/FH-97A duplicates removed (Osama 23 Nov 2026 01:5x-02:0x PST,
 # thread 1567745029781454889; Doc 1kNAPyBk0vK8DRY8JY3JhS3VXlJvAuWzoZUQKojZlgPA). See pl15c_to_pl15_1123.py.
 import pl15c_to_pl15_1123;pl15c_to_pl15_1123.apply(t,g,ok,rec)
+# ---------- Model work is separate from main development (Osama 23 Nov 2026 17:1x, thread 1567745029781454889: "seperate them now please").
+# The model/preview sections below are switched off here and stay on in branch codex/batch/osama/models-096 (France/Eurocorp preview, LRHW,
+# KF-21 Block 1, XQ-58A, ZTZ-98 and ZBD-04 Rocket Force, K9/K21). Main-dev builds use the 0.9.5b Assets list, not work/model-rework-096/stage.
 # ---------- J-8D health 20 -> 10, the same as J-7IIH, J-6W and J-5 (Osama 23 Nov 2026 12:5x PST, thread 1567745029781454889). See j8_health_1123.py.
 import j8_health_1123;j8_health_1123.apply(t,g,ok,rec)
 # ---------- MD-22: no stray 2x PL-12 in the gun slot; empty default mount + bay slots 3-4 empty on every loadout (Osama 23 Nov 2026 13:0x PST, thread 1567745029781454889). See md22_slots_1123.py.
@@ -622,12 +625,12 @@ import j10b_name_1123;j10b_name_1123.apply(t,g,ok,rec)
 # KF-21 Block 1 and US XQ-58A Valkyrie (c5_cards_1123.py). Their models come from work/model-rework-096/stage (asset args).
 # France (Testing Preview) unloaded for now (Osama 23 Nov 14:0x: "please unload all the french models for now and lets keep the model build focused on blue dragons").
 # France back (Osama 23 Nov 16:2x): EBRC Jaguar, Mirage 2000D, Leclerc XLR only, FA_FRANCE icon.
-import france_preview;france_preview.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import france_preview;france_preview.apply(t,g,ok,rec)
 # ---------- Eurocorp (preview): country 5 with France (spec 24, moved from the USA) and Germany (spec 25, no cards yet) (Osama 23 Nov 2026 16:4x PST,
 # thread 1567745029781454889). See eurocorp_1123.py; layout runtime-qa/NationLayout.cs.
-import eurocorp_1123;eurocorp_1123.apply(t,g,ok,rec)
-import lrhw_1123;lrhw_1123.apply(t,g,ok,rec)
-import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import eurocorp_1123;eurocorp_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import lrhw_1123;lrhw_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault PF-97 ammo corrected 3 -> 6 (Lateralus 23 Nov 2026 14:4x PST, thread 1568104480459722894): 3 carriers x 2.
 # See thermobaric_pf97_1123.py.
 import thermobaric_pf97_1123;thermobaric_pf97_1123.apply(t,g,ok,rec)
@@ -639,15 +642,15 @@ import thermobaric_breachers_1123;thermobaric_breachers_1123.apply(t,g,ok,rec)
 import sf_recon_armor_1123;sf_recon_armor_1123.apply(t,g,ok,rec)
 # ---------- ZBD-04 for the PLARF Rocket Conscript Force: ZBD-04A copy with BMP-3 base armour, transport for the 12 PLARF infantry cards
 # (Osama 23 Nov 2026 15:1x PST, thread "blue dragons"). See zbd04_rf_1123.py.
-import zbd04_rf_1123;zbd04_rf_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import zbd04_rf_1123;zbd04_rf_1123.apply(t,g,ok,rec)
 # ---------- PLA ZTZ-98 (Osama 23 Nov 2026 15:0x: Shawn's model, "we'll give it to the rocket force"): ZTZ-99 copy in spec 19. See ztz98_1123.py.
-import ztz98_1123;ztz98_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import ztz98_1123;ztz98_1123.apply(t,g,ok,rec)
 # ---------- Rangers RRC Standoff +0 -> +5; laser for Taishan Eagles, Whistling Arrows, Sharp Swords, Mountain Leopards (Beijing Swords already has it)
 # (Lateralus 23 Nov 2026 15:2x PST, thread 1568104480459722894). Existing rows only. See sf_laser_rangers_1123.py.
 import sf_laser_rangers_1123;sf_laser_rangers_1123.apply(t,g,ok,rec)
 # ---------- Blue Dragon K9 Thunder (K9 Kõu stats on the non-DLC M109A6 body) and K21 KNIFV (M2A3 copy) cards for Shawn's 23 Nov models
 # (Osama 23 Nov 2026 15:3x PST, thread "blue dragons"). See blue_dragon_k9_k21_1123.py.
-import blue_dragon_k9_k21_1123;blue_dragon_k9_k21_1123.apply(t,g,ok,rec)
+# MODEL BUILD ONLY (branch codex/batch/osama/models-096): import blue_dragon_k9_k21_1123;blue_dragon_k9_k21_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault (1209): QBS-09 2 -> 3, QBZ-191 7 -> 6, armour 6 -> 8, price 60 -> 70 (Lateralus 23 Nov 2026 15:3x PST,
 # thread 1568104480459722894). See thermobaric_assault_1123.py.
 import thermobaric_assault_1123;thermobaric_assault_1123.apply(t,g,ok,rec)
