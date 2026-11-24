@@ -9,19 +9,11 @@ SPEC = 24
 CARDS = {
     'FR Leclerc XLR': ('Leclerc XLR', 191, 'M1A2 SEP v3', 260, 2),
     'FR EBRC Jaguar': ('EBRC Jaguar', 29, 'LAV-25', 145, 4),
-    'FR VBCI Mk2 RCT40': ('VBCI Mk2 RCT40', 22, 'Stryker ICV', 95, 4),
-    'FR VBCI VCI 25': ('VBCI VCI 25', 29, 'LAV-25', 70, 4),
-    'FR Griffon VTT': ('Griffon VTT', 22, 'Stryker ICV', 50, 4),
-    'FR VBL MILAN': ('VBL MILAN', 6, 'Humvee TOW-2', 65, 3),
-    'FR CAESAR Mk II': ('CAESAR Mk II', 452, 'Stryker SPH', 190, 2),  # Brutus (388) has turret weapons without ammo rows (audit_mp_equipment)
-    'FR SAMP/T NG': ('SAMP/T NG', 251, 'Patriot PAC-3', 250, 2),
-    'FR Rafale C F3-R': ('Rafale C F3-R', 284, 'F-16V Viper', 180, 2),
     'FR Mirage 2000D RMV': ('Mirage 2000D RMV', 285, 'F-16C Fighting Falcon', 145, 3),
-    'FR Tigre HAD': ('EC665 Tigre HAD', 270, 'AH-64E Guardian', 100, 2),
-    'FR NH90': ('NH90', 81, 'UH-60M Blackhawk', 95, 4),
-    'FR H160M': ('H160M Guepard', 159, 'UH-1Y Venom', 65, 4),
-    'FR Gazelle': ('SA342M1 Gazelle Viviane', 267, 'OH-58D Kiowa Warrior', 70, 4),
 }
+# Osama 23 Nov 2026 16:2x (thread "blue dragons"): "you can add France back, make this attached image the icon. Let's just use the new french EBRC
+# (the recon wheeled vehicle) from the previous build, and the new units we just downloaded" = EBRC Jaguar (SCORPION model) + the C5 Mirage 2000
+# (cgmodel 366145) and Leclerc (cgmodel 756105). The other 11 SCORPION cards are left out. Icon FA_FRANCE (white fleur-de-lis, runtime-qa/icons).
 
 
 def apply(t, g, ok, rec):
@@ -32,8 +24,8 @@ def apply(t, g, ok, rec):
 
     ok(SPEC not in S and S[4]['Name'] == 'Armored Brigade' and S[4]['CountryId'] == 2, 'spec 24 free; Armored Brigade template')
     g.put('SpecializationsJson', SPEC, {**{k: v for k, v in S[4].items() if k != 'Id'}, 'Name': 'US France Preview',
-        'UIName': 'France (Testing Preview)',
-        'UIDescription': 'TESTING PREVIEW. French models by focolate (SCORPION). Every card is a copy of a US unit: stats, weapons and prices are placeholders.',
+        'UIName': 'France (Testing Preview)', 'Icon': 'FA_FRANCE',
+        'UIDescription': 'TESTING PREVIEW. Every card is a copy of a US unit: stats, weapons and prices are placeholders.',
         'ShowInHangar': True, 'ContentMembership': -1})
     tpl = next(r for r in SA.values() if r and r['UnitId'] == 2 and r['SpecializationId'] == 4)
     res = {}

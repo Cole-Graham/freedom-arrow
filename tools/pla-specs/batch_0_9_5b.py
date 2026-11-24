@@ -621,7 +621,8 @@ import j10b_name_1123;j10b_name_1123.apply(t,g,ok,rec)
 # from branch codex/batch/osama/model-rework-096: France (Testing Preview) spec 24 (france_preview.py), US LRHW Dark Eagle (lrhw_1123.py),
 # KF-21 Block 1 and US XQ-58A Valkyrie (c5_cards_1123.py). Their models come from work/model-rework-096/stage (asset args).
 # France (Testing Preview) unloaded for now (Osama 23 Nov 14:0x: "please unload all the french models for now and lets keep the model build focused on blue dragons").
-# import france_preview;france_preview.apply(t,g,ok,rec)
+# France back (Osama 23 Nov 16:2x): EBRC Jaguar, Mirage 2000D, Leclerc XLR only, FA_FRANCE icon.
+import france_preview;france_preview.apply(t,g,ok,rec)
 import lrhw_1123;lrhw_1123.apply(t,g,ok,rec)
 import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault PF-97 ammo corrected 3 -> 6 (Lateralus 23 Nov 2026 14:4x PST, thread 1568104480459722894): 3 carriers x 2.
