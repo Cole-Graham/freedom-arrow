@@ -1,5 +1,5 @@
 """QBU-10 weapon HUD icon (Osama 24 Nov 2026 02:0x PST, thread "blue dragons": "can we make this the QBU-10 icon", with a side photo of the rifle).
-FA_PLA_WP_QBU10 (+ _OUTLINE) in mod/source/runtime-qa/icons, made by work/qbu10-icon/make_icon.py from that photo in the QBU-191/QBU-88 style.
+FA_PLA_WP_QBU10 (+ _OUTLINE) in mod/source/runtime-qa/icons, made by work/qbu10-icon/make_icon.py from that photo in the QBU-191/QBU-88 style, muzzle pointing right (Osama 02:1x).
 It replaces the native stand-in INF_ASVK on both QBU-10 weapon rows (infantry 2012054, prototype 2005018)."""
 import os
 ICON, IDS = 'FA_PLA_WP_QBU10', (2012054, 2005018)
