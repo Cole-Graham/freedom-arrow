@@ -1,10 +1,11 @@
 """Card pictures for the new China vehicles from Osama's Armory side shots (Osama 24 Nov 2026 00:5x PST, thread "China cosmetic work":
-"Make units cards starting with this ZTD-05", then ZSD-05, ZRZ-100, ZBD-05, VN-3; 01:2x ZBL-08 Recon, ZSL-191). Images: work/mk-card-art-1124 (make.py) ->
+"Make units cards starting with this ZTD-05", then ZSD-05, ZRZ-100, ZBD-05, VN-3; 01:2x ZBL-08 Recon, ZSL-191; 02:1x US XQ-58A Valkyrie, thread "blue dragons"). Images: work/mk-card-art-1124 (make.py) ->
 mod/source/runtime-qa/icons/FA_CN_<X>-Portrait.png, embedded by CardIcons.cs (Portrait/_BASIC/_HOVER). Sets PortraitFileName on the card and
 on its own loadout rows (Name = card name + ' ...'); the small card label (ThumbnailFileName) stays as it is. Add a line to CARDS for the next one."""
 import os
 CARDS = {'PLA ZTD-05': 'FA_CN_ZTD05', 'PLA ZSD-05': 'FA_CN_ZSD05', 'PLA ZRZ-100': 'FA_CN_ZRZ100', 'PLA ZBD-05': 'FA_CN_ZBD05', 'PLA VN-3': 'FA_CN_VN3',
-         'PLA ZBL-08 Recon': 'FA_CN_ZBL08R', 'PLA ZSL-191': 'FA_CN_ZSL191'}
+         'PLA ZBL-08 Recon': 'FA_CN_ZBL08R', 'PLA ZSL-191': 'FA_CN_ZSL191',
+         'US XQ-58A Valkyrie': 'FA_US_XQ58A'}   # 02:1x thread blue dragons: "Valkyrie new icon, make na icon out of this" (Armory shot)
 ICONS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'mod', 'source', 'runtime-qa', 'icons')
 CS = os.path.join(ICONS, '..', 'CardIcons.cs')
 
