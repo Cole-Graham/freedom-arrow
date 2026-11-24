@@ -130,15 +130,16 @@ static class SpottingCap
             // Same cap the hook uses: the vanilla ground optics of this unit's tier; unknown or zero tiers are not capped.
             float cap=capTable.TryGetValue(ground,out float c)&&c>0?c:float.MaxValue;
             float groundShown=Math.Min(ground,cap);
-            // Main value = ground optics for every unit, helicopters included (Lateralus 23 Nov 2026: helicopter cards showed the low-altitude value,
-            // recon helicopters the ground value). Native SetUnitStatistic (1.2.2.1 0x55F870) shows ground optics, high-altitude only for
-            // CategoryType Aircrafts (6); the 0.4 dev.19 helicopter branch here had wrongly assumed low-altitude for helicopters.
+            // Main value = the native rule (SetUnitStatistic, 1.2.2.1 0x55F870): high-altitude optics for CategoryType Aircrafts (6), ground
+            // optics (capped) for every other unit, helicopters and recon drones included (Lateralus 23 Nov 2026: helicopter cards showed the
+            // low-altitude value, planes the ground value - 0 m on fighters; the 0.4 dev.19 code had assumed low-altitude for helicopters).
+            bool plane=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Aircrafts;
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))
             {
                 var icon=item.Icon;
                 if(icon==null||icon.sprite==null||icon.sprite.Pointer!=sprite.Pointer)continue;
-                float scale=CardScale(item.Text.text,ground);
-                string main=M(groundShown,scale);
+                float scale=CardScale(item.Text.text,plane?high:ground);
+                string main=plane?M(high,scale):M(groundShown,scale);
                 string[] lines={M(groundShown,scale),M(low,scale),M(high,scale)};
                 item.Text.text=main;
                 var tooltip=item.Tooltip;
