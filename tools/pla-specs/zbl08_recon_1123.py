@@ -23,7 +23,9 @@ def apply(t, g, ok, rec):
     ok(t['SensorsJson'][VGO]['Name'] == 'Very Good Optics', 'sensor 3 = Very Good Optics')
     ok(sorted(r['TurretId'] for r in rows('TurretUnitsJson', UnitId=BASE) if r['TurretId'] in KEEP_TURRETS) == sorted(KEEP_TURRETS), 'ZBL-08 base mounts')
     ok(S[SPEC]['UIName'].startswith('PLAGF Medium Combined Arms Brigade'), 'spec 21')
-    tpl = next(r for r in rows('SpecializationAvailabilitiesJson', SpecializationId=SPEC) if U[r['UnitId']]['Name'] == 'PLA ZTL-191 Recon')
+    # template = the ZTL-191 Recon's Motorized row; since 24 Nov 02:1x that card is hidden (ztl191_recon_removed_1124.py), so use its saved row
+    tpl = next((r for r in rows('SpecializationAvailabilitiesJson', SpecializationId=SPEC) if U[r['UnitId']]['Name'] == 'PLA ZTL-191 Recon'), None) \
+        or next(r[0] for u, (r, _) in rec.get('hidden_rows', {}).items() if U[u]['Name'] == 'PLA ZTL-191 Recon' and r and r[0]['SpecializationId'] == SPEC)
     d = dict(U[BASE]); d.pop('Id'); d.update({'Name': NAME, 'HUDName': HUD, 'Cost': COST, 'OriginalCost': 0, 'CategoryType': 0, 'DisplayInArmory': True,
                                               'Description': None, 'OriginalName': None})
     uid = g.put('Units', max(U) + 1, d)
