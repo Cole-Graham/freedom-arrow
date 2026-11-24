@@ -13,6 +13,7 @@ public partial class Mod
     static Dictionary<int, string> unitNames = new();
     static readonly Queue<string> preload = new();
     static readonly HashSet<string> preloadSeen = new();
+    static readonly Queue<string> preloadHeavy = new();   // 0.3.46: heavier detail levels, built during deployment after the burst
     static void InstallPreload()
     {
         // Unit id -> Name for the mapped units, from the Freedom Arrow constants (models.json is keyed by Name).
@@ -35,7 +36,7 @@ public partial class Mod
         try
         {
             float now = Time.realtimeSinceStartup;
-            if (now - lastSetDeck > 30f) { preloadSeen.Clear(); MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
+            if (now - lastSetDeck > 30f) { preloadSeen.Clear(); preloadHeavy.Clear(); heavyBuilt = 0; MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
             lastSetDeck = now; burst = true;
             int added = 0, readOnly = 0;
             foreach (var slots in deck.GetSlots.Values)
@@ -45,14 +46,16 @@ public partial class Mod
                         if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
                         {
                             // 0.3.31: the file is read and prepared on a background thread right away (Background.cs Prefetch).
-                            // 0.3.46 (Osama 24 Nov 2026: "load the lowest load and let the engine logic handle the rest"): of a battle model
-                            // with detail levels only the lightest is built here. The heavier levels are only read in the background; the spawn
-                            // adds them one per unit per frame within the 6 ms budget (LodStreaming.cs). The levels are the ones Apply uses.
+                            // 0.3.46 (Osama 24 Nov 2026: "load the lowest load and let the engine logic handle the rest"; "Shouldn't we
+                            // preload during deployment?"): of a battle model with detail levels only the lightest is built in the burst. The
+                            // heavier levels are read in the background and then built during the deployment pause, within the 6 ms frame
+                            // budget (TickPreloadHeavy). A unit that spawns before its heavier levels are built shows the lightest and gets the
+                            // rest over later frames (LodStreaming.cs). The levels are the ones Apply uses.
                             var levels = new List<string> { e.battle != "" ? e.battle : e.file };
                             if (e.battle != "") levels.AddRange(e.lods.Where(lf => lf != "" && File.Exists(Path.Combine(dir, lf))));
                             var light = levels[levels.Count - 1];
                             if (preloadSeen.Add(light)) { preload.Enqueue(light); Prefetch(light); added++; }
-                            foreach (var lf in levels.Take(levels.Count - 1)) if (preloadSeen.Add(lf)) { Prefetch(lf); readOnly++; }
+                            foreach (var lf in levels.Take(levels.Count - 1).Reverse()) if (preloadSeen.Add(lf)) { preloadHeavy.Enqueue(lf); Prefetch(lf); readOnly++; }
                         }
                         // 0.3.29 (Osama 15 Nov: "we should build it all before the match"): infantry bodies, their GPU textures and
                         // their battle weapon models are built here too, so the first squad of a type does no file work in battle.
@@ -60,7 +63,7 @@ public partial class Mod
                         foreach (var r in weaponRules.Where(r => r.unitId == id))
                         { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; } }
                     }
-            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) read in the background only");
+            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) to build during deployment");
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
     }
@@ -92,5 +95,26 @@ public partial class Mod
             if (Verbose || preload.Count == 0 || sw.Elapsed.TotalMilliseconds > 50) MelonLogger.Msg($"FAMODELS preloaded {f} in {sw.Elapsed.TotalMilliseconds:F0} ms{(kept ? " (already kept)" : "")}, {preload.Count} left");
         }
         catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload {f}: {ex.Message}"); }
+    }
+
+    // 0.3.46: after the burst, the heavier detail levels are built one at a time while the frame has budget left, lightest first. Runs
+    // after the spawn queue and the level upgrades (UpdateRest), so units being swapped come first. A file whose background read is
+    // still running goes to the back of the queue. Levels a spawn already built are skipped.
+    static int heavyBuilt; static float heavyT;
+    static void TickPreloadHeavy(long budgetStart)
+    {
+        if (burst || preloadHeavy.Count == 0) return;
+        if (heavyBuilt == 0) heavyT = Time.realtimeSinceStartup;
+        for (int tries = preloadHeavy.Count; tries > 0 && preloadHeavy.Count > 0; tries--)
+        {
+            if (SinceMs(budgetStart) > ModelBudgetMs) return;
+            var f = preloadHeavy.Dequeue();
+            if (KeptFam(f)) continue;
+            if (!StreamReady(f)) { preloadHeavy.Enqueue(f); continue; }
+            try { LoadFam(f, out _); heavyBuilt++; }
+            catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload level {f}: {ex.Message}"); }
+            if (preloadHeavy.Count == 0) MelonLogger.Msg($"FAMODELS preload: {heavyBuilt} heavier detail level(s) built in {Time.realtimeSinceStartup - heavyT:F1} s after the burst");
+            return;   // at most one level per frame
+        }
     }
 }

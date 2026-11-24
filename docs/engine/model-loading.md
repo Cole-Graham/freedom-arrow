@@ -46,11 +46,12 @@ Log lines:
 
 Osama, 24 Nov 2026: "load the lowest load and let the engine logic handle the rest". Up to 0.3.45 the preload built every level of every battle model in one burst at match start.
 
-- **Preload now:** for a battle model with detail levels, only the lightest level is built (meshes, materials and textures). The heavier levels are only read and prepared on a background thread (`Prefetch`); no Unity object is made for them.
-- **At the spawn:** the model's levels are not all built, so `Apply` takes the 0.3.45 path. The unit shows its lightest level at once, and `TickLodUpgrades` adds the heavier levels over later frames within the 6 ms budget.
+- **Burst:** for a battle model with detail levels, only the lightest level is built in the match-start burst (meshes, materials and textures). The heavier levels are read and prepared on a background thread (`Prefetch`).
+- **Rest of deployment** (Osama: "Shouldn't we preload during deployment?"): `TickPreloadHeavy` builds the heavier levels during the deployment pause, at most one per frame and only while the frame's 6 ms model budget has room. It runs after the spawn queue and the level upgrades, so units being swapped come first. Lighter levels are built before heavier ones.
+- **A unit that spawns before its heavier levels are built** (early spawn, or a rejoin that skips deployment) shows its lightest level at once, and `TickLodUpgrades` adds the rest over later frames.
 - **Same unit type again:** once one unit has built a level, the next unit of that type reuses the kept level. Only the parts are made for it.
 - **Unchanged:** models without detail levels, infantry bodies and infantry weapons are still built in full by the preload.
-- **Log line:** `FAMODELS preload deck of player N: A lightest battle level(s), bodies and infantry weapons queued; B heavier level(s) read in the background only`.
+- **Log line:** `FAMODELS preload deck of player N: A lightest battle level(s), bodies and infantry weapons queued; B heavier level(s) to build during deployment`, then `FAMODELS preload: N heavier detail level(s) built in X s after the burst`.
 - **Order checked in a log** (Osama's PC, 0.9.6, 24 Nov 12:49): the scene-load free (`freed 3 unused model(s) ... (scene Void)`) runs before the decks are set, and the preload burst follows 11 s later. The preload is not freed straight after it is built in that log.
 
 ## Limits
@@ -64,3 +65,4 @@ Osama, 24 Nov 2026: "load the lowest load and let the engine logic handle the re
 
 - 2026-11-24 13:50 PST (America/Los_Angeles) — New page: swap timing, detail levels, and the 0.3.45 lightest-level-first loading (End's rejoin freezes).
 - 2026-11-24 15:35 PST (America/Los_Angeles) — Added 0.3.46: the match-start preload builds only the lightest level; heavier levels stream after the spawn (Osama).
+- 2026-11-24 15:45 PST (America/Los_Angeles) — 0.3.46: heavier levels are built during the deployment pause within the 6 ms budget (Osama).

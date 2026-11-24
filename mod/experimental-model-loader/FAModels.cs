@@ -262,6 +262,7 @@ public partial class Mod : MelonMod
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
         try { TickLodUpgrades(budgetStart); } catch (Exception ex) { MelonLogger.Error("FAMODELS detail levels: " + ex.Message); }
+        try { TickPreloadHeavy(budgetStart); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload levels: " + ex.Message); }
     }
 
     // 0.3.27 (Osama 14 Nov: "make sure the standin models never pop up"): the game spawns turrets, gunners and LOD children
@@ -403,8 +404,8 @@ public partial class Mod : MelonMod
     // frames with worse LOD are fine, just prevent blocking and crowding the GPU"). His rejoin log had 20 model files read on the main thread
     // (1,872 ms) and up to 78 swaps in one frame. From the spawn queue, a model whose levels are not all built yet has them read in the
     // background, builds only its lightest level once that file is ready, and gets the other levels in later frames (LodStreaming.cs).
-    // Models already built still build every level at once. 0.3.46: the match-start preload builds only the lightest level, so a
-    // preloaded unit also gets its heavier levels over later frames.
+    // Models already built still build every level at once. 0.3.46: the match-start burst builds only the lightest level and the
+    // heavier levels follow during deployment (TickPreloadHeavy); a unit that spawns before that gets them over later frames.
     static bool Apply(GameObject root, Entry e, string unit, bool build, float age, bool stream = false)
     {
         // Hide-only entries: turrets, gunners and LOD children can be spawned after InitView, so re-check every pass.
