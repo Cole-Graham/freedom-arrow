@@ -787,8 +787,6 @@ import zrz100_fix_1123;zrz100_fix_1123.apply(t,g,ok,rec)
 # ---------- Infantry launcher batch: SRAW MPV, hybrid ignore cover, Bur, Thermobaric Assault, engineer loadouts, Shturmoviki (Lateralus 24 Nov 2026
 # 11:3x PST, thread 1572962048705429598). See infantry_launchers_1124.py.
 import infantry_launchers_1124;infantry_launchers_1124.apply(t,g,ok,rec)
-# Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
-rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # ---------- Type 100 CSV loadouts: one four-way swap slot (APS kept with CH-901) and own rows for the transport copies (Osama 24 Nov 2026 00:1x PST,
 # bugs thread 1573561286803980289, "make the fix"; MODEL BUILD: needs the 6 new models.json names from work/model-rework-096/stage.py). See type100_fix_1124.py.
 import type100_fix_1124;type100_fix_1124.apply(t,g,ok,rec)
@@ -851,6 +849,12 @@ import qjb201_icon_1124;qjb201_icon_1124.apply(t,g,ok,rec)
 import thunder_gods_1124;thunder_gods_1124.apply(t,g,ok,rec)
 # ---------- Euro set 2 (Osama 24 Nov 2026 11:1x PST, thread "blue dragons"): 7 Germany + 2 France preview cards, US MaxxPro MRAP transport. Last. See euro_set_1124.py.
 import euro_set_1124;euro_set_1124.apply(t,g,ok,rec)
+# Assaultmen SRAW A creates new unit/weapon/round/option rows: keep it LAST so no row created above changes its id (saved decks keep units by id).
+# ---------- Assaultmen SRAW A (new anti-tank SRAW, 140mm HEAT top attack) / B (SRAW MPV) card; Assaultmen SMAW loses its loadout slot
+# (Lateralus 24 Nov 2026 12:5x/13:2x, thread 1572962048705429598). See sraw_split_1124.py.
+import sraw_split_1124;sraw_split_1124.apply(t,g,ok,rec)
+# Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
+rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
