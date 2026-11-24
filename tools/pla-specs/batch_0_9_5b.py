@@ -707,6 +707,8 @@ import recon_helis_ru_1123;recon_helis_ru_1123.apply(t,g,ok,rec)
 import recon_helis_cn_1123;recon_helis_cn_1123.apply(t,g,ok,rec)
 # Lateralus 23 Nov 19:5x: 'Mech. Riflemen MMG should get sprint back, everything else is fine'
 import mech_mmg_sprint_1123;mech_mmg_sprint_1123.apply(t,g,ok,rec)
+# ---------- HQ-17 hidden, not the HQ-17A (Osama 24 Nov 2026 01:1x PST, thread 1567745029781454889). Before the test spec. See hq17_removed_1124.py.
+import hq17_removed_1124;hq17_removed_1124.apply(t,g,ok,rec)
 # ---------- China hidden-units test spec 26, off unless UserData/FreedomArrow/test-spec.json switches it on (Osama 23 Nov 2026 18:5x PST,
 # thread 1567745029781454889). See test_specs_1123.py and runtime-qa/TestSpec.cs.
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)
