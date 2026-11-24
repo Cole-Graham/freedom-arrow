@@ -23,6 +23,7 @@ Add every new hidden or removed card here in the same commit as the data change.
 | Z-10 | 1239 | PLAAF Air Force, 2 cards | `roster_1123b.py` | Osama 23 Nov 18:3x "Z-10 removed (hidden)" |
 | Z-19G | 1236 | PLAN Special Forces, 2 cards | `roster_1123b.py` | Osama 23 Nov 18:3x "Z-19G (and the recon) removed/hidden" |
 | Z-19G Recon | 1237 | PLAN Special Forces, 2 cards | `roster_1123b.py` | same |
+| F-35B (JASDF) | 1291 | Blue Dragon (Arsenal-only preview), 2 cards | `roster_1123b.py` | Osama 23 Nov 18:4x "F-35 JASDF, let's hide this for now" |
 | QJZ-89 Team (Armored) | 1157 | PLAGF Armored Force, 4 cards (the PLARF QJZ-89 Team 1170 stays) | `qbz95_qjz89_1123.py` | Osama 23 Nov 18:3x "QJZ-89 PLAGF Armored Force ... hidden" |
 
 ## Model build only (`codex/batch/osama/models-096`)
@@ -44,3 +45,4 @@ Add every new hidden or removed card here in the same commit as the data change.
 - 2026-11-23 18:27 PST (America/Los_Angeles): PLL-05 move added.
 - 2026-11-23 18:35 PST (America/Los_Angeles): QJZ-89 Team (Armored) added.
 - 2026-11-23 18:40 PST (America/Los_Angeles): Z-10, Z-19G and Z-19G Recon added; the Z-10K/Z-10U name swap was undone (no list change).
+- 2026-11-23 18:42 PST (America/Los_Angeles): F-35B (JASDF) added.
