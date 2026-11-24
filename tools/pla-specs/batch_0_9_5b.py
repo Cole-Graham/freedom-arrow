@@ -626,6 +626,8 @@ import france_preview;france_preview.apply(t,g,ok,rec)
 # ---------- Eurocorp (preview): country 5 with France (spec 24, moved from the USA) and Germany (spec 25, no cards yet) (Osama 23 Nov 2026 16:4x PST,
 # thread 1567745029781454889). See eurocorp_1123.py; layout runtime-qa/NationLayout.cs.
 import eurocorp_1123;eurocorp_1123.apply(t,g,ok,rec)
+# ---------- Germany (Preview) cards: Leopard 2A6, Puma, Marder 1A3 (Osama 23 Nov 2026 16:5x PST, thread "blue dragons"). See germany_cards_1123.py.
+import germany_cards_1123;germany_cards_1123.apply(t,g,ok,rec)
 import lrhw_1123;lrhw_1123.apply(t,g,ok,rec)
 import c5_cards_1123;c5_cards_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault PF-97 ammo corrected 3 -> 6 (Lateralus 23 Nov 2026 14:4x PST, thread 1568104480459722894): 3 carriers x 2.
