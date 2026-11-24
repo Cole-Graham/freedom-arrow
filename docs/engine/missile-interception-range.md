@@ -38,7 +38,7 @@ if target Units.Type & 0x780 (projectile / SEAD / cruise / ballistic):
 
 Callers include the target evaluation, shell selection, missile spawn and `IsKinematicallyAbleToInterceptTarget` (RVA `0x7D8DA0`, which calls it after `GetPredictedShootParametersToTarget`).
 
-**Data in 0.9.6:** no round sets either override (0 everywhere), and the settings multipliers are 1.0 / 1.0 (13 Nov decode of BattleSystemSettings), so `range = base × m` = level range × m².
+**Data in 0.9.6:** no round sets `NonSeadProjectileRangeOverride`. Two rounds set `SeadProjectileRangeOverride` = 1100 (an absolute range against SEAD missiles): vanilla ammo 465 `Missile AA AIM9 Ground` (SLAMRAAM 389, MML 393, NASAMS 508; FA does not change it) and FA ammo 2019358 `PLA HHQ-10 missile` (HHQ-10 1273, copied from 465). Every other round uses the settings multipliers 1.0 / 1.0 (13 Nov decode of BattleSystemSettings), so `range = base × m` = level range × m². Read from the released `FreedomArrow-0.9.6.bamod` (sha256 `98e0e962…`) merged over the 10 Nov vanilla tables.
 
 ## 3. The search radius
 
@@ -48,6 +48,7 @@ Callers include the target evaluation, shell selection, missile spawn and `IsKin
 
 - Long-range radar row 59 (Patriot, S-400, Buk, HQ-9, HQ-16, IRIS-T SLM): m = 2.0 low, 3.0 high. PAC-3 (Low/High 975): ballistic (High) 975 × 9 = 8775, search radius 2925 → about **2925** (5850 card m); SEAD or Low cruise 975 × 4 = 3900 → about **2925**. Radar off: 975 either way.
 - SHORAD radar row 60 (Pantsir, Tor, FK-2000, HQ-17): m = 1.25 low, 1.0 high. Tor 9M331 (Low 1100, High 675): SEAD / Low cruise 1100 × 1.5625 = 1719, search 1375 → about **1375**; ballistic / Kinzhal / ARRW (High) **675**.
+- AIM-9 ground round (ammo 465 / HHQ-10 2019358, Low 1050, High 775, SEAD override 1100) on SHORAD radar row 58/60 (m = 1.25 low): SEAD missile 1100 × 1.25 = 1375, search radius 1050 × 1.25 = 1312.5 → about **1312** (2625 card m); radar off 1100, search 1050 → about **1050**. Without the override it would be 1050 × 1.5625 = 1641, also cut to 1312, so the override changes little if the search radius applies. Cruise and ballistic missiles use the normal 1.0 path.
 - Which missile types a SAM may shoot at all is its round's `TargetType` bits: 256 SEAD, 512 cruise, 1024 ballistic (`IsAntiProjectileSAM`, RVA `0x7D8920`).
 
 ## 5. Not verified
@@ -60,3 +61,4 @@ Callers include the target evaluation, shell selection, missile spawn and `IsKin
 ## Document change log
 
 - 2026-11-24 14:4x PST (America/Los_Angeles) — New: missile altitude levels, the anti-missile range formula and the search radius (Lateralus asked whether High or Low range is used).
+- 2026-11-24 15:0x PST (America/Los_Angeles) — Corrected: two rounds do set `SeadProjectileRangeOverride` (1100: vanilla AIM-9 ground on SLAMRAAM/MML/NASAMS, FA HHQ-10); added their worked example (Lateralus asked for a unit with a factor other than 1.0).
