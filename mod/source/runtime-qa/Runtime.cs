@@ -337,6 +337,9 @@ public class Runtime : MelonMod
         ("[FA] [5v5] Airport 0.2","b28f9451-d7cc-56a4-b536-7cbc89a2fd38"),("[FA] [5v5] Airport Skirmish 0.2","99dd9bc5-dff6-5356-b7e3-8f83a979133d"),
         ("[FA] [5v5] Oil Rush 0.2","7c9c5eb7-37b7-56ce-b33f-c5390ea6e9e0"),("[FA] [5v5] Oil Rush Skirmish 0.2","c9e53f60-a3da-5359-ad6a-058247cac84b"),
         ("[FA] [5v5] Cold Harbor 0.2","1fef0897-64e8-5238-bc01-66687b1598c1"),("[FA] [5v5] Cold Harbor Skirmish 0.2","8ae843b6-d6e9-5271-a308-c4cd1098089c"),
+        // Lateralus 23 Nov 2026 (0.9.6): new zone values; the 0.3 versions replace these.
+        ("[FA] [2v2] Highway of Death 0.2","32e238bc-e2df-5aed-93ca-a74b406e292d"),("[FA] [2v2] Highway of Death Skirmish 0.2","f22e8f35-e2bc-5b70-b6f3-893705babf14"),
+        ("[FA] [1v1] Dead Center 0.2","a8726371-f049-5a03-8bfa-5ad4867936ad"),("[FA] [1v1] Dead Center Skirmish 0.2","fc9a8f06-f10e-5f7c-a829-c0a962eff198"),
     };
     static void RemoveRetiredScenarios()
     {

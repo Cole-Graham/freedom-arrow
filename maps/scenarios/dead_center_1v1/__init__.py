@@ -3,11 +3,12 @@ import common as C
 import uuid
 # 0.2 (Lateralus 16 Nov 2026): his spawn and playable-zone edits, four new spawns; his spawn facings are kept. 0.1 used fixed GUIDs
 # ...c005/c006 (retired in Runtime.cs).
-NAME='[FA] [1v1] Dead Center 0.2';GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,NAME))
-SKIRMISH_NAME='[FA] [1v1] Dead Center Skirmish 0.2';SKIRMISH_GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,SKIRMISH_NAME))
+NAME='[FA] [1v1] Dead Center 0.3';GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,NAME))
+SKIRMISH_NAME='[FA] [1v1] Dead Center Skirmish 0.3';SKIRMISH_GUID=str(uuid.uuid5(uuid.NAMESPACE_URL,SKIRMISH_NAME))
 DESC=('Freedom Arrow conquest. Requires the Freedom Arrow mod on every player. Each 30 seconds, after a 5 minute Round 1 with no scoring, '
-      'the side with the higher zone value scores the difference. First to 300 wins. A B C are worth 2, D E are worth 3. Flat 200 income, no upkeep.')
-LETTERS=dict(A=('Alpha',2),B=('Bravo',2),C=('Charlie',2),D=('Delta',3),E=('Echo',3))
+      'the side with the higher zone value scores the difference. First to 300 wins. A B C are worth 2, D E are worth 4. Flat 200 income, no upkeep.')
+# 0.3 (Lateralus 23 Nov 2026): "D E - 4 points" (were 3). Same layout.
+LETTERS=dict(A=('Alpha',2),B=('Bravo',2),C=('Charlie',2),D=('Delta',4),E=('Echo',4))
 CONQUEST_NODE=136
 def add_start_cameras(game,objects):
     C.add_team_cameras(objects)
