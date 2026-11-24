@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.6",
+  "version": "0.9.6-dev.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.6 (dev build for Osama): 0.9.6-dev.5 plus the models from Shawn's 23 Nov drop: K21 KNIFV (Blue Dragon, ROK camo + Plain), the C5 QN-506 with its rocket pods (PLA camo + Plain + Dust) and the J-8II on both J-8 cards (vanilla F-16 glass); ZSD-89A 20% smaller; paint buttons for KF-21 Block 1 and ZBD-04 Rocket Force. Needs Freedom Arrow — Models and Music 0.2.82.",
+  "description": "Freedom Arrow 0.9.6-dev.7 (dev build for Osama): 0.9.6-dev.6 plus France (Testing Preview) back with the fleur-de-lis icon (EBRC Jaguar, Mirage 2000D with 9 liveries; Leclerc model pending), the M48A5K model, and gentler LODs (55% / 25%) on the K21, QN-506 and K9. Needs Freedom Arrow — Models and Music 0.2.83.",
   "repo": "Cole-Graham/freedom-arrow"
 }
