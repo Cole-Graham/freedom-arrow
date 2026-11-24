@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.45", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.46", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -403,7 +403,8 @@ public partial class Mod : MelonMod
     // frames with worse LOD are fine, just prevent blocking and crowding the GPU"). His rejoin log had 20 model files read on the main thread
     // (1,872 ms) and up to 78 swaps in one frame. From the spawn queue, a model whose levels are not all built yet has them read in the
     // background, builds only its lightest level once that file is ready, and gets the other levels in later frames (LodStreaming.cs).
-    // Models already built (the match-start preload) still build every level at once, as before.
+    // Models already built still build every level at once. 0.3.46: the match-start preload builds only the lightest level, so a
+    // preloaded unit also gets its heavier levels over later frames.
     static bool Apply(GameObject root, Entry e, string unit, bool build, float age, bool stream = false)
     {
         // Hide-only entries: turrets, gunners and LOD children can be spawned after InitView, so re-check every pass.

@@ -10,7 +10,8 @@ namespace FAModels;
 // - a unit whose levels are not all built gets only its lightest level first; the other levels are added one per unit per frame,
 //   lightest first, each as soon as its file is ready;
 // - model swaps and added levels stop for the frame after ModelBudgetMs (infantry bodies already stop after 6 ms, InfantryBodies.cs).
-// Models the preload already built still build all levels at once. Infantry weapons (InfantryWeapons.cs) keep building at once.
+// Models already built still build all levels at once. 0.3.46: the match-start preload (Preload.cs) builds only the lightest
+// level and reads the heavier ones in the background, so preloaded units stream their heavier levels too. Infantry weapons (InfantryWeapons.cs) keep building at once.
 public partial class Mod
 {
     const double ModelBudgetMs = 6;

@@ -37,17 +37,22 @@ public partial class Mod
             float now = Time.realtimeSinceStartup;
             if (now - lastSetDeck > 30f) { preloadSeen.Clear(); MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
             lastSetDeck = now; burst = true;
-            int added = 0;
+            int added = 0, readOnly = 0;
             foreach (var slots in deck.GetSlots.Values)
                 foreach (var s in slots)
                     foreach (var id in new[] { s.UnitID, s.TransportID })
                     {
                         if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
                         {
-                            var f = e.battle != "" ? e.battle : e.file;
                             // 0.3.31: the file is read and prepared on a background thread right away (Background.cs Prefetch).
-                            if (preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; }
-                            if (e.battle != "") foreach (var lf in e.lods) if (lf != "" && preloadSeen.Add(lf)) { preload.Enqueue(lf); Prefetch(lf); added++; }
+                            // 0.3.46 (Osama 24 Nov 2026: "load the lowest load and let the engine logic handle the rest"): of a battle model
+                            // with detail levels only the lightest is built here. The heavier levels are only read in the background; the spawn
+                            // adds them one per unit per frame within the 6 ms budget (LodStreaming.cs). The levels are the ones Apply uses.
+                            var levels = new List<string> { e.battle != "" ? e.battle : e.file };
+                            if (e.battle != "") levels.AddRange(e.lods.Where(lf => lf != "" && File.Exists(Path.Combine(dir, lf))));
+                            var light = levels[levels.Count - 1];
+                            if (preloadSeen.Add(light)) { preload.Enqueue(light); Prefetch(light); added++; }
+                            foreach (var lf in levels.Take(levels.Count - 1)) if (preloadSeen.Add(lf)) { Prefetch(lf); readOnly++; }
                         }
                         // 0.3.29 (Osama 15 Nov: "we should build it all before the match"): infantry bodies, their GPU textures and
                         // their battle weapon models are built here too, so the first squad of a type does no file work in battle.
@@ -55,7 +60,7 @@ public partial class Mod
                         foreach (var r in weaponRules.Where(r => r.unitId == id))
                         { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; } }
                     }
-            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} battle model(s), bodies and infantry weapons queued");
+            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) read in the background only");
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
     }

@@ -2,7 +2,7 @@
 
 **Summary.** FAModels replaces a unit's model when the game spawns the unit's view, not when the camera comes close. Vehicles get static `MeshRenderer` parts on the stand-in's bones and a new `LODGroup` with the stand-in's switch heights. China infantry get a new mesh on each native `SkinnedMeshRenderer`. From 0.3.45, a vehicle model that is not built yet is read on a background thread. Its lightest detail level is built first and the other levels follow in later frames. Swaps stop for the frame after 6 ms.
 
-Basis: read from `mod/experimental-model-loader` on `codex/development` (FAModels 0.3.44) and the 0.3.45 change. The 0.3.45 behaviour is theoretical, not yet proven in a game.
+Basis: read from `mod/experimental-model-loader` on `codex/development` (FAModels 0.3.44) and the 0.3.45 and 0.3.46 changes. The 0.3.45 and 0.3.46 behaviour is theoretical, not yet proven in a game.
 
 ---
 
@@ -19,7 +19,7 @@ Basis: read from `mod/experimental-model-loader` on `codex/development` (FAModel
 1. A postfix on `UnitBuilder.InitView` queues the unit (`After`). Infantry bodies and weapons are queued from the same postfix and from `InitInfantryView`.
 2. `LateHide` hides the stand-in's renderers every frame (`forceRenderingOff`) while the unit waits and for 5 s after the swap.
 3. `UpdateRest` builds queued units on the next frame. `Apply` waits up to 0.5 s for a missing turret bone.
-4. The match-start preload (`Preload.cs`) builds every mapped model in the match's decks during the deployment pause, so a normal spawn reuses a built model ("kept model").
+4. The match-start preload (`Preload.cs`) builds the mapped models in the match's decks during the deployment pause, so a normal spawn reuses a built model ("kept model"). From 0.3.46 it builds only the lightest level of each battle model (see below).
 
 ## 0.3.45: lightest level first, no file work on the main thread
 
@@ -42,12 +42,25 @@ Log lines:
 - `FAMODELS <unit>: all N detail levels in X s after its lightest`
 - `FAMODELS hitch ...: previous frame FAModels did A model swap(s), B later detail level(s), C deferred, ...`
 
+## 0.3.46: the preload builds only the lightest level
+
+Osama, 24 Nov 2026: "load the lowest load and let the engine logic handle the rest". Up to 0.3.45 the preload built every level of every battle model in one burst at match start.
+
+- **Preload now:** for a battle model with detail levels, only the lightest level is built (meshes, materials and textures). The heavier levels are only read and prepared on a background thread (`Prefetch`); no Unity object is made for them.
+- **At the spawn:** the model's levels are not all built, so `Apply` takes the 0.3.45 path. The unit shows its lightest level at once, and `TickLodUpgrades` adds the heavier levels over later frames within the 6 ms budget.
+- **Same unit type again:** once one unit has built a level, the next unit of that type reuses the kept level. Only the parts are made for it.
+- **Unchanged:** models without detail levels, infantry bodies and infantry weapons are still built in full by the preload.
+- **Log line:** `FAMODELS preload deck of player N: A lightest battle level(s), bodies and infantry weapons queued; B heavier level(s) read in the background only`.
+- **Order checked in a log** (Osama's PC, 0.9.6, 24 Nov 12:49): the scene-load free (`freed 3 unused model(s) ... (scene Void)`) runs before the decks are set, and the preload burst follows 11 s later. The preload is not freed straight after it is built in that log.
+
 ## Limits
 
 - Building a level still runs on the main thread: Unity allows Mesh and Texture creation only there. One large level 0 can take more than 6 ms by itself.
 - A unit that waits for its file is not drawn until its lightest level is built.
 - Why the rejoin preload built only 3 models is not checked yet.
+- Up close, a unit can show its lightest level for a few frames until its heavier levels are added.
 
 ## Document change log
 
 - 2026-11-24 13:50 PST (America/Los_Angeles) — New page: swap timing, detail levels, and the 0.3.45 lightest-level-first loading (End's rejoin freezes).
+- 2026-11-24 15:35 PST (America/Los_Angeles) — Added 0.3.46: the match-start preload builds only the lightest level; heavier levels stream after the spawn (Osama).
