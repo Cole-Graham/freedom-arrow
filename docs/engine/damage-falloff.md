@@ -152,3 +152,7 @@ Every 152/155 mm howitzer HE round in 0.9.5b has `Damage` 12, penetration 45, `H
 | Open | 1 | 11.8 health (2.4 soldiers) | 5.9 (1.2) |
 | Woods | 0.711 | 8.4 (1.7) | 4.2 (0.8) |
 | Building | 0.3 + 0.7 × 0.357 = 0.550 | 6.5 (1.3) | 6.5 (1.3), no falloff |
+
+## Document change log
+
+- 2026-11-24 10:5x PST (America/Los_Angeles) — Added "Penetration over range": kinetic falloff formula, HEAT fixed at ground-range value, and the DPM visualizer difference (Lateralus).
