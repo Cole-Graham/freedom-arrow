@@ -700,6 +700,9 @@ for _i,(_old,_new,_desc) in _specs.items():
     if _new!=_old or _desc:g.put('SpecializationsJson',_i,{'UIName':_new,**({'UIDescription':_desc} if _desc else {})})
     ok(_SP[_i]['UIName']==_new and (not _desc or _SP[_i]['UIDescription']==_desc),('spec name after',_i))
 rec['china_spec_names']={i:_SP[i]['UIName'] for i in _specs}
+# ---------- Chinese descriptions for the 5 China specs + 海军参谋部远域特种作战大队 (Osama 24 Nov 2026 11:0x PST, thread 1567745029781454889,
+# community file work/loc-096-1124/0.9.6.txt). See china_spec_zh_1124.py.
+import china_spec_zh_1124;china_spec_zh_1124.apply(t,g,ok,rec)
 # ---------- Marine HJ-8H Team -> Marine HJ-12 Team (HJ-12 x4, 105 pts); Motorized GAM-102LR Team -> HJ-8H Team (HJ-8H x6, 65 pts) (Osama 23 Nov
 # 2026 18:2x PST, thread 1567745029781454889). See hj_teams_1123.py.
 import hj_teams_1123;hj_teams_1123.apply(t,g,ok,rec)
