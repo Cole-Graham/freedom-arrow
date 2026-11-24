@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.11",
+  "version": "0.9.6-dev.12",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.11 (combined model dev build for Osama): dev.10 plus the Arsenal second row lined up under the US flag and the baseline QBZ-191 iron-sight icon. Needs Freedom Arrow — Models and Music 0.2.85.",
+  "description": "Freedom Arrow 0.9.6-dev.12 (combined model dev build for Osama): dev.11 plus the China roster changes (VN20, VN-17, VT-5, ZTZ-59, ZTZ-98, PCL-181, HQ-6A, ZSL-92, PLZ-70, QJZ-89 Armored hidden; ZTQ-15 to Motorized; PLL-05 to airborne), Z-10K/Z-10U names swapped, QBZ-95-1 / QBZ-95, Type 19 removed, and the Z-19G naval paint by default (FAModels 0.3.42). Needs Freedom Arrow — Models and Music 0.2.86.",
   "repo": "Cole-Graham/freedom-arrow"
 }
