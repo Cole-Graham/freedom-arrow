@@ -807,6 +807,8 @@ import marine_recon_1124;marine_recon_1124.apply(t,g,ok,rec)
 # ---------- After 0.9.6: PGL-625 gun damage 4.9 -> 3.5 (QQ FA-101) and the LSDW laser pulse ignores armour (QQ FA-098) (Osama 24 Nov 2026 10:5x PST,
 # thread 1567745029781454889). See pgl625_lsdw_1124.py.
 import pgl625_lsdw_1124;pgl625_lsdw_1124.apply(t,g,ok,rec)
+# ---------- J-5 Drone and J-6W Drone +20 pts (Osama 24 Nov 2026 11:3x PST, thread 1567745029781454889). See j5_j6_price_1124.py.
+import j5_j6_price_1124;j5_j6_price_1124.apply(t,g,ok,rec)
 # ---------- Blue Dragon + Euro preview weapons and rounds marked '[TEST] ' (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work"). LAST.
 # See test_weapon_names_1123.py.
 import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
