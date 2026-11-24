@@ -22,9 +22,16 @@ def apply(t, g, ok, rec):
     ok(A[HJ10]['HUDName'] == 'HJ-10 NLOS' and A[HJ10]['OverpressureRadius'] == 5.0 and A[456]['OverpressureRadius'] == 0.0, 'HJ-10 OP 5, JAGM 0')
     ok(A[FB10]['HUDName'] == 'FB-10 ammunition' and A[FB10]['Seeker'] == 100 and A[18]['Seeker'] == 10, 'FB-10 semi-active, Stinger IR')
     g.put('Units', Z20T, {'InfantrySlots': 8})
+    # Osama 23 Nov 23:3x: "the HJ-10 should have a 2 second aim time again": HJ-10 NLOS launcher 2009619 aim 1.0 -> 2.0 s (the HJ-10 FNF
+    # launcher is reported, not changed).
+    fnf = sorted({r['WeaponId'] for r in WA.values() if r and r['AmmunitionId'] == 2019706})
+    print('HJ-10 aim: NLOS', W[2009619]['AimTimeMin'], W[2009619]['AimTimeMax'], 'FNF', [(i, W[i]['AimTimeMin'], W[i]['AimTimeMax']) for i in fnf])
+    ok(W[2009619]['HUDName'] == 'HJ-10 NLOS' and (W[2009619]['AimTimeMin'], W[2009619]['AimTimeMax']) == (1.0, 1.0), 'HJ-10 NLOS aim before')
+    g.put('WeaponsJson', 2009619, {'AimTimeMin': 2.0, 'AimTimeMax': 2.0})
+    ok((W[2009619]['AimTimeMin'], W[2009619]['AimTimeMax']) == (2.0, 2.0), 'HJ-10 NLOS aim 2 s')
     g.put('AmmunitionsJson', HJ10, {'OverpressureRadius': 0.0})
     g.put('AmmunitionsJson', FB10, {'Seeker': 10})
     ok(A[RESERVIST_AMMO]['HUDName'] == QBZ95_AMMO_NAME and A[RESERVIST_AMMO]['Damage'] == 0.36 and U[Z20T]['InfantrySlots'] == 8
        and A[HJ10]['OverpressureRadius'] == 0.0 and A[FB10]['Seeker'] == 10, 'after')
     rec['qq_sheet_fixes_1123'] = {'reservist_round_already': [RESERVIST_AMMO, QBZ95_AMMO_NAME], 'z20t_seats': [0, 8],
-                                  'hj10_overpressure': [5.0, 0.0], 'fb10_seeker': [100, 10]}
+                                  'hj10_overpressure': [5.0, 0.0], 'fb10_seeker': [100, 10], 'hj10_nlos_aim_s': [1.0, 2.0]}
