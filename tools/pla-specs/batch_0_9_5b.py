@@ -756,6 +756,9 @@ import ztd05_booker_1123;ztd05_booker_1123.apply(t,g,ok,rec)
 # ---------- ZSD-05 = amphibious 8-seat AMPV transport for PLAN infantry (Osama 23 Nov 2026 22:3x PST, thread 1567745029781454889). MODEL BUILD ONLY.
 # Last, so its new unit id follows every existing card. See zsd05_ampv_1123.py.
 import zsd05_ampv_1123;zsd05_ampv_1123.apply(t,g,ok,rec)
+# ---------- ZBD-05 = ZSD-05 with the autocannon, +10 HJ-73D (Osama 23 Nov 2026 22:3x PST, thread 1567745029781454889). MODEL BUILD ONLY.
+# See zbd05_ifv_1123.py.
+import zbd05_ifv_1123;zbd05_ifv_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
