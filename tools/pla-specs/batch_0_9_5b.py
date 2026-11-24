@@ -731,8 +731,8 @@ import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # ---------- Chinese bug sheet FA-081/082/084/085 answers (Osama 23 Nov 2026 23:2x PST, bugs thread 1573561286803980289). See qq_sheet_fixes_1123.py.
 import qq_sheet_fixes_1123;qq_sheet_fixes_1123.apply(t,g,ok,rec)
-# ---------- Unit cards English only + guard (Osama 24 Nov 2026 01:0x PST, "what the fuck is this localization?"). LAST. See card_names_english_1124.py.
-import card_names_english_1124;card_names_english_1124.apply(t,g,ok,rec)
+# ---------- (Unit cards English only + guard, 8add5fcd, withdrawn 24 Nov 01:0x: Osama "English and Chinese are fine" about the 42 bilingual
+# China infantry cards. They keep "English 中文" as since 0.9.4. The J-5 / J-6W drone cards stay English only, rocket_drones_1123.py.)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
