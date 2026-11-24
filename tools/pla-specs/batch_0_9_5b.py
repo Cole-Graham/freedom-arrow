@@ -783,6 +783,8 @@ import type100_transport_only_1124;type100_transport_only_1124.apply(t,g,ok,rec)
 # ---------- Type 100 CSV 40 mm CT: 2A91 57 mm sound, effects and rate of fire, own damage/pen/range (Osama 24 Nov 2026 01:3x PST, bugs thread
 # 1573561286803980289). See type100_2a91_1124.py.
 import type100_2a91_1124;type100_2a91_1124.apply(t,g,ok,rec)
+# ---------- PLAAF infantry air-droppable (SmallWD report, Osama 24 Nov 2026 01:3x PST, bugs thread 1573561286803980289). See plaaf_para_1124.py.
+import plaaf_para_1124;plaaf_para_1124.apply(t,g,ok,rec)
 # ---------- Chinese bug sheet FA-081/082/084/085 answers (Osama 23 Nov 2026 23:2x PST, bugs thread 1573561286803980289). See qq_sheet_fixes_1123.py.
 import qq_sheet_fixes_1123;qq_sheet_fixes_1123.apply(t,g,ok,rec)
 # ---------- Blue Dragon + Euro preview weapons and rounds marked '[TEST] ' (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work"). LAST.
