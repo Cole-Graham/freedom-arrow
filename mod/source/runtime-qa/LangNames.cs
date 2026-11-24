@@ -23,6 +23,11 @@ static class LangNames
         foreach(var s in Bilingual){var p=Halves(s);if(p!=null)Split[s]=p.Value;}
         h.Patch(AccessTools.Method(typeof(LocalizationService),nameof(LocalizationService.GetLocalizedStringPart))??throw new MissingMethodException("LocalizationService.GetLocalizedStringPart"),
             postfix:new HarmonyMethod(typeof(LangNames),nameof(Post)));
+        // dev.14 log (Osama's PC, 23 Nov 19:35): installed with 120 names, but GetLocalizedStringPart never returned one of them (no "language"
+        // line), and the cards still showed both halves. Our names are not localization keys, so the game asks TryResolveSimpleKey, gets false
+        // and shows the raw string. A postfix answers with the half for the game language instead (not for network text, netCode true).
+        h.Patch(AccessTools.Method(typeof(LocalizationService),nameof(LocalizationService.TryResolveSimpleKey))??throw new MissingMethodException("LocalizationService.TryResolveSimpleKey"),
+            postfix:new HarmonyMethod(typeof(LangNames),nameof(Resolve)));
         MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES installed: {Split.Count} bilingual names shown in the game language");
     }
     static void Collect(JsonElement e)
@@ -50,8 +55,20 @@ static class LangNames
     static void Post(LocalizationService __instance,ref string __result)
     {
         if(__result==null||!Split.TryGetValue(__result,out var p))return;
-        string code="";try{code=__instance?.CurrentLanguage??"";}catch{}
+        __result=Pick(__instance,p,"part");
+    }
+    static void Resolve(LocalizationService __instance,string __0,ref string __1,bool __2,ref bool __result)
+    {
+        if(__result||__2||__0==null||!Split.TryGetValue(__0,out var p))return;
+        __1=Pick(__instance,p,"key");__result=true;
+    }
+    static bool loggedKey,loggedPart;
+    static string Pick(LocalizationService s,(string en,string zh) p,string via)
+    {
+        string code="";try{code=s?.CurrentLanguage??"";}catch{}
         if(code!=lang){lang=code;var c=code.Trim().ToLowerInvariant();chinese=c.StartsWith("zh")||c.Contains("chin");MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES language '{code}': {(chinese?"Chinese":"English")}");}
-        __result=chinese?p.zh:p.en;
+        if(via=="key"&&!loggedKey){loggedKey=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via TryResolveSimpleKey: '{p.en}'");}
+        if(via=="part"&&!loggedPart){loggedPart=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via GetLocalizedStringPart: '{p.en}'");}
+        return chinese?p.zh:p.en;
     }
 }
