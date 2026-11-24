@@ -759,6 +759,9 @@ import zsd05_ampv_1123;zsd05_ampv_1123.apply(t,g,ok,rec)
 # ---------- ZBD-05 = ZSD-05 with the autocannon, +10 HJ-73D (Osama 23 Nov 2026 22:3x PST, thread 1567745029781454889). MODEL BUILD ONLY.
 # See zbd05_ifv_1123.py.
 import zbd05_ifv_1123;zbd05_ifv_1123.apply(t,g,ok,rec)
+# ---------- Chinese weapon / round / loadout names on ZTD-05, ZSD-05, ZBD-05, VN-3 (Osama 23 Nov 2026 22:4x PST, thread 1567745029781454889).
+# MODEL BUILD ONLY. See sinicize_1123.py.
+import sinicize_1123;sinicize_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
