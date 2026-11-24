@@ -372,6 +372,7 @@ static partial class RankedMenu
             // disabled (grey, with the reason) unless I lead (or am solo) and every group member has a valid default deck
             string why=null;
             if(party>1&&leader!=MySteam())why="Only the group leader can start the search";
+            else if(queue=="rteam"&&party>MaxGroup)why=$"Ranked groups are up to {MaxGroup} players (largest game 4v4)";
             else if(dd==null)why="Choose a valid default deck first";
             else if(CooldownSec(me,have) is int cd&&cd>0)why=$"Ranked cooldown: {cd/3600}:{cd/60%60:00}:{cd%60:00} left (you left a ranked match)";
             else foreach(var (gid,ok,gname) in GroupDeckState(me,have))if(!ok){why=$"{gname} has no valid default deck";break;}
@@ -459,7 +460,12 @@ static partial class RankedMenu
         }
     }
 
-    // GROUP, like the game's own block: five square slots, Steam picture + name, "+" on open slots.
+    // Lateralus 24 Nov 2026: "the ranked queue still allows 5 people to queue together even though we changed the largest game size to only 4v4".
+    // The team queue makes 2v2/3v3/4v4 and the hub refuses a group of 5 (party_too_big), so the page offers 4 slots, no Invite once 4 are in, and
+    // FIND MATCH is grey for a bigger group (one made outside this page).
+    const int MaxGroup=4;
+    static int GroupCount(){try{var c=fPartyCurrent?.GetValue(null);return c==null?1:Math.Max(1,(Traverse.Create(c).Property("members").GetValue() as Array)?.Length??1);}catch{return 1;}}
+    // GROUP, like the game's own block: four square slots (MaxGroup), Steam picture + name, "+" on open slots.
     static void GroupBody()
     {
         var curP=fPartyCurrent?.GetValue(null);
@@ -479,7 +485,7 @@ static partial class RankedMenu
             Head(0,440,300,"GROUP"+(members.Length>=4?" · plays 4v4":""));
             if(members.Length>1){Txt(350,440,120,30,lead?"DISBAND":"LEAVE",13,new Color(0.75f,0.75f,0.75f),true,TextAlignmentOptions.MidlineRight);Click(350,440,120,30,()=>mLeave.Invoke(null,null));}
         }
-        for(int k=0;k<5;k++)
+        for(int k=0;k<MaxGroup;k++)
         {
             float x=k*99.5f,y=476;
             if(k<members.Length||(k==0&&members.Length==0))
@@ -559,7 +565,7 @@ static partial class RankedMenu
             var pic=SteamPic(id);if(pic!=null)Pic(566,y+2,36,36,pic,false);
             Txt(610,y,250,40,name,16,Color.white,true);
             Txt(800,y,124,40,o==null?"not in FA":!same?"other FA build":inParty?"in a group":P(o,"state"),13,o!=null&&same?Green:dim,false,TextAlignmentOptions.MidlineRight);
-            if(same&&!inParty)Choice(930,y+6,96,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite "+name);});
+            if(same&&!inParty&&GroupCount()<MaxGroup)Choice(930,y+6,96,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite "+name);});
         }
         if(rows.Count>Vis)
         {
@@ -612,7 +618,7 @@ static partial class RankedMenu
             Txt(x+68,y+1,420,24,name+(id==me?" (you)":"")+(friend?"  <size=12><color=#E8BE55>friend</color></size>":"")+$"  <size=13><color=#{ColorUtility.ToHtmlStringRGB(stColor)}>{stText}</color></size>",16,sb?Color.white:dim,true);
             var sub=string.Join(" · ",new[]{P(o,"ver").Length>0?"v"+P(o,"ver"):"",P(o,"pack"),P(o,"code")}.Where(t=>t.Length>0));
             Txt(x+68,y+23,480,18,sb?sub:sub+" · other build",13,sb?Green:new Color(1f,0.48f,0.42f));
-            if(id!=me&&sb&&!inParty)Choice(x+ColW-110,y+8,100,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite (online tab) "+name);});
+            if(id!=me&&sb&&!inParty&&GroupCount()<MaxGroup)Choice(x+ColW-110,y+8,100,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite (online tab) "+name);});
             else if(id!=me&&inParty)Txt(x+ColW-130,y,120,44,"in a group",13,dim,false,TextAlignmentOptions.MidlineRight);
         }
         if(all.Count>vis)
