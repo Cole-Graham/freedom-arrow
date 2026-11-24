@@ -713,6 +713,9 @@ import mech_mmg_sprint_1123;mech_mmg_sprint_1123.apply(t,g,ok,rec)
 import test_specs_1123;test_specs_1123.apply(t,g,ok,rec)
 # ---------- ZTQ-15 Light air-droppable (Osama 23 Nov 2026 19:5x PST, thread 1567745029781454889). See ztq15_light_airdrop_1123.py.
 import ztq15_light_airdrop_1123;ztq15_light_airdrop_1123.apply(t,g,ok,rec)
+# ---------- FH-97A (and the model build's XQ-58A) as UCAVs: 10 HP, no afterburner (Osama 23 Nov 2026 20:3x PST, thread 1567745029781454889).
+# See ucav_fh97_xq58_1123.py.
+import ucav_fh97_xq58_1123;ucav_fh97_xq58_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
