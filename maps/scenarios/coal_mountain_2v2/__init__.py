@@ -3,7 +3,7 @@
 Lateralus 23 Nov 2026: "add this map to the mod, remove the humvees and waypoints ... A B - 2 points, C - 3 points, D E F G - 4 points".
 - His eight test Humvees and their three waypoints are removed.
 - Bravo's Spawn point 9 faced 50 degrees away from the zones (west); it now faces them. His other facings (2-29 degrees off) are kept.
-- The map needs the game's DLC 3, as Kadaga and Oil Rush need DLC 2 (head and meta 'dlc')."""
+- The map file lists DLC 3 (head and meta 'dlc'), as Kadaga and Oil Rush list DLC 2. Not checked in game: whether a player without it can join."""
 import uuid
 import common as C
 NAME='[FA] [2v2] Coal Mountain 0.1'

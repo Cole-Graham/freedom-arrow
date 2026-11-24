@@ -40,9 +40,18 @@
 
 Maps that shipped before these checks and break one are listed by name in `common.py` (`SPAWN_FACING_KEPT`, `ZONE_ICON_KEPT`, `WAYPOINTS_KEPT`). Do not add a new map to those lists; fix the map instead.
 
+## 🗺️ Map overviews on the website
+
+**The FA maps page (<https://freedomarrow.app/tools/maps.html>) draws every map's play area, zones with their values, and spawns with their facing over the game's own map image.** It is rebuilt from the released package by `bin/ba-site-data` at each release, so a new map appears there when it ships.
+
+- Layout: `team-site/build_maps.py` reads each online scenario's `.bascr` from the package (play area, zones, spawns).
+- Background: `team-site/map_scenes.json` names one image per game scene: the tactical minimap from the scene's `mapsettings_assets_*.bundle`, or the lobby preview when the tactical one is not in the bundle (Coal Mountain, from the DLC 3 bundle). Each image covers the whole map (`MapSize` in the map settings): world X 0 to size left to right, Z 0 to size bottom to top. This was checked on 23 Nov 2026 by overlaying the Highway of Death and Dam zones.
+- A map on a new game scene needs its image added to `map_scenes.json` (extraction scripts: `work/map-overviews-20261123`). Read only the map-settings objects from a bundle; never load `data.unity3d`.
+
 ## Document change log
 
 - 2026-11-13 02:46:43 PST (America/Los_Angeles) — Created: map sources moved from 0.7 dev.58, plus [5v5] Cold Harbor 0.1 (Lateralus).
 - 2026-11-13 23:53:44 PST (America/Los_Angeles) — Lateralus batch: [5v5] Oil Rush, Airport and Cold Harbor 0.2 (new values; new Airport zones; Cold Harbor without Charlie). The 0.1 folders are retired by GUID.
 - 2026-11-23 12:5x PST (America/Los_Angeles) — [5v5] Airport, Oil Rush, Cold Harbor renamed [4v4]; maps.json map list added (Lateralus).
 - 2026-11-23 21:3x PST (America/Los_Angeles) — [2v2] Coal Mountain 0.1 added; [2v2] Highway of Death 0.3 and [1v1] Dead Center 0.3 (new zone values); "Adding a map" checklist and the build checks behind it (Lateralus).
+- 2026-11-23 21:2x PST (America/Los_Angeles) — Map overviews on the website: where the layout and background images come from.
