@@ -654,6 +654,9 @@ import sf_laser_rangers_1123;sf_laser_rangers_1123.apply(t,g,ok,rec)
 # ---------- Thermobaric Assault (1209): QBS-09 2 -> 3, QBZ-191 7 -> 6, armour 6 -> 8, price 60 -> 70 (Lateralus 23 Nov 2026 15:3x PST,
 # thread 1568104480459722894). See thermobaric_assault_1123.py.
 import thermobaric_assault_1123;thermobaric_assault_1123.apply(t,g,ok,rec)
+# ---------- Disposable launchers one per round: Thermobaric Assault 6 PF-97 = 6 carriers x 1 (Lateralus 23 Nov 2026 22:4x PST, thread
+# 1572962048705429598). See disposable_launchers_1123.py; its check runs at the end.
+import disposable_launchers_1123;disposable_launchers_1123.apply(t,g,ok,rec)
 # ---------- China recon infantry stealth: card 2.5 at minimum, sniper teams (2-3 men with a QBU-10) card 3.0 (Lateralus 23 Nov 2026,
 # thread 1568104480459722894). See recon_stealth_1123.py.
 import recon_stealth_1123;recon_stealth_1123.apply(t,g,ok,rec)
@@ -724,6 +727,8 @@ import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
 import weapons_squad_1123;weapons_squad_1123.apply(t,g,ok,rec)
 # ---------- ZTZ-96 back in PLARF, 6 cards (Osama 23 Nov 2026 21:4x PST, thread 1567745029781454889). See ztz96_rocket_force_1123.py.
 import ztz96_rocket_force_1123;ztz96_rocket_force_1123.apply(t,g,ok,rec)
+# Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Runs after all sections.
+rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
