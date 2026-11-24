@@ -817,6 +817,8 @@ import df31a_resupply_1124;df31a_resupply_1124.apply(t,g,ok,rec)
 # ---------- PF-98 Team (PLARF): HE ignore cover 25% -> 0, AT round range 800 -> 600 m (Osama 24 Nov 2026 11:4x PST, thread
 # 1567745029781454889). See pf98_team_1124.py.
 import pf98_team_1124;pf98_team_1124.apply(t,g,ok,rec)
+# ---------- J-11BHG gets the J-16's Heavy CAP loadout, 175 pts (Osama 24 Nov 2026 11:5x PST, thread 1567745029781454889). See j11bhg_heavy_cap_1124.py.
+import j11bhg_heavy_cap_1124;j11bhg_heavy_cap_1124.apply(t,g,ok,rec)
 # ---------- Blue Dragon + Euro preview weapons and rounds marked '[TEST] ' (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work"). LAST.
 # See test_weapon_names_1123.py.
 import test_weapon_names_1123;test_weapon_names_1123.apply(t,g,ok,rec)
