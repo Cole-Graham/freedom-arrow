@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.6-dev.9",
+  "version": "0.9.6-dev.10",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.6-dev.9 (model dev build for Osama): the model branch with Korean and Japanese test rifle squads (Blue Dragon), Germany (Preview) cards (Leopard 2A6, Puma, Marder 1A3), spec icons in vanilla colours and FAModels 0.3.41. Needs Freedom Arrow — Models and Music 0.2.85.",
+  "description": "Freedom Arrow 0.9.6-dev.10 (combined model dev build for Osama): main development (Lateralus queue, YJ-18 removed) plus all model work: Eurocorp with France/Germany (Preview), Blue Dragon models and Korean/Japanese test rifle squads, China model fixes, 4-nation layout, vanilla-colour spec icons, FAModels 0.3.41. Needs Freedom Arrow — Models and Music 0.2.85.",
   "repo": "Cole-Graham/freedom-arrow"
 }
