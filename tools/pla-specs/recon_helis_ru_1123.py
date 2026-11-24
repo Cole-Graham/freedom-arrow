@@ -9,6 +9,8 @@ Ka-226T, hide it from the mod / Ka-29 Razvedchik, keep current optics / Mi-8AMTS
   - Ka-29 Razvedchik 729: 125 'Heli KA29' (3000, shared with the Ka-29) has no 0-cargo twin -> new row 'Heli KA29 Razvedchik', a copy of 125
     with HeavyLiftWeight 0 (last resort; vanilla names variant rows by the variant, e.g. 'Heli MI8AMTSh-VN').
 - Optics of every recon card unchanged. Mi-24K and Mi-28NM Razvedchik unchanged.
+- Ka-60 Razvedchik 727 also in Mechanized Infantry (15), 4 cards like its Defense Forces row (Lateralus 23 Nov 18:5x "Make the Ka-60 Razvedchik a
+  shared unit with Mechanized Infantry").
 """
 HIDE = {728: 'Ka-226T Razvedchik', 748: 'Ka-52K Razvedchik'}
 SAME = lambda a, b: {k for k in set(a) | set(b) if k not in ('Id', 'Name', 'HeavyLiftWeight') and a.get(k) != b.get(k)}
@@ -50,5 +52,11 @@ def apply(t, g, ok, rec):
     for vid, mid in ((257, 118), (145, 62), (273, 125)):
         ok(prop(vid)['MobilityId'] == mid and MB[mid]['HeavyLiftWeight'] > 0, (U[vid]['HUDName'], 'keeps its cargo'))
     ok(sensors == {u: sorted(r['SensorId'] for r in SU.values() if r and r['UnitId'] == u) for u in RU}, 'recon optics unchanged')
-    rec['recon_helis_ru_1123'] = {'hidden': hidden, 'cargo': cargo}
+    S = t['SpecializationsJson']
+    ok(S[15]['Name'] == 'Mechanized Infantry' and S[15]['CountryId'] == 1, 'spec 15 = Mechanized Infantry')
+    ka60 = [r for r in SA.values() if r and r['UnitId'] == 727]
+    ok([(r['SpecializationId'], r['MaxAvailabilityXp0']) for r in ka60] == [(12, 4)], ('Ka-60 Razvedchik in Defense Forces only, 4 cards', ka60))
+    mech = g.add('SpecializationAvailabilitiesJson', ka60[0], {'SpecializationId': 15})
+    ok(sorted(r['SpecializationId'] for r in SA.values() if r and r['UnitId'] == 727) == [12, 15], 'Ka-60 Razvedchik shared: Defense Forces + Mechanized Infantry')
+    rec['recon_helis_ru_1123'] = {'hidden': hidden, 'cargo': cargo, 'ka60_mechanized_row': mech}
     print('RECON HELIS RU', rec['recon_helis_ru_1123'])
