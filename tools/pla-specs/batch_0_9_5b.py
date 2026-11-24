@@ -837,6 +837,8 @@ import euro_bg_zero_1124;euro_bg_zero_1124.apply(t,g,ok,rec)
 import qjb201_icon_1124;qjb201_icon_1124.apply(t,g,ok,rec)
 # ---------- Thunder Gods kit: 3 QCQ-171, 1 QJS-161 (Osama 24 Nov 2026 02:4x PST, thread "China cosmetic work"). See thunder_gods_1124.py.
 import thunder_gods_1124;thunder_gods_1124.apply(t,g,ok,rec)
+# ---------- Euro set 2 (Osama 24 Nov 2026 11:1x PST, thread "blue dragons"): 7 Germany + 2 France preview cards, US MaxxPro MRAP transport. Last. See euro_set_1124.py.
+import euro_set_1124;euro_set_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
