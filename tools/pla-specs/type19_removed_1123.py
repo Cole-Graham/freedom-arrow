@@ -12,7 +12,7 @@ def apply(t, g, ok, rec):
     av = [r['Id'] for r in sorted(SA.values(), key=lambda r: r['Id']) if r and r['UnitId'] == T19]
     ok(len(av) >= 1 and not any(r and r.get('SpecializationAvailabilityId') in av for r in TA.values()), ('availability rows, no transport links', av))
     ok(not any(r and r.get('UnitId') == T19 for r in TA.values()), 'Type 19 is nobody\'s transport')
-    rec.setdefault('hidden_rows', {})[T19] = ([dict(SA[a]) for a in av], [])   # for test_specs_1123.py
+    # Not in the US test spec (Osama 23 Nov 19:5x "I want the type 19 gone entirely"); its models leave the model stage too.
     for a in av: g.remove('SpecializationAvailabilitiesJson', a)
     g.put('Units', T19, {'DisplayInArmory': False})
     ok(not any(r and r['UnitId'] == T19 for r in SA.values()) and U[T19]['DisplayInArmory'] is False, 'Type 19 in no spec, hidden in the Armory')

@@ -36,7 +36,7 @@ Add every new hidden or removed card here in the same commit as the data change.
 | Card | Unit | Was in | Section | Requested |
 |---|---|---|---|---|
 | ZTZ-98 | 'PLA ZTZ-98' (1309 in 0.9.6-dev.12) | PLARF Rocket Conscript Force | `roster_1123b.py` | Osama 23 Nov 18:1x |
-| Type 19 | see `type19_removed_1123.py` | Blue Dragon | `type19_removed_1123.py` | Osama 23 Nov 18:0x (blue dragons thread) |
+| Type 19 | see `type19_removed_1123.py` | Blue Dragon | `type19_removed_1123.py` | Osama 23 Nov 18:0x (blue dragons thread) ; 19:5x "I want the type 19 gone entirely": not in the test spec, models removed from the model stage |
 
 ## Test specs (specs 26 China, 27 USA, 28 Russia; off by default)
 
@@ -67,3 +67,4 @@ Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`
 - 2026-11-23 18:56 PST (America/Los_Angeles): China test spec 26 (toggle) added with the 13 hidden China cards.
 - 2026-11-23 19:0x PST (America/Los_Angeles): Ka-226T Razvedchik and Ka-52K Razvedchik added (Lateralus).
 - 2026-11-23 19:45 PST (America/Los_Angeles): Test specs for every nation (27 USA, 28 Russia) with all hidden cards incl. YJ-18; no transports in test specs.
+- 2026-11-23 19:58 PST (America/Los_Angeles): Type 19 gone entirely on the model build (no test-spec card, no models in the stage).
