@@ -31,8 +31,10 @@ Add every new hidden or removed card here in the same commit as the data change.
 ## Moved (not hidden)
 
 - ZTQ-15 (906): PLAGF Armored Force -> PLAGF Motorized, 6 cards (Osama 23 Nov 18:0x). `roster_1123b.py`.
+- PLL-05 (926): PLARF Rocket Conscript Force -> PLAAF Air Force (airborne), 3 cards (Osama 23 Nov 18:2x "PLL-05 moved to airborne"). `roster_1123b.py`.
 
 ## Document change log
 
 - 2026-11-23 18:20 PST (America/Los_Angeles): First version: YJ-18, VN20, VN-17, VT-5 (+Recon), ZTZ-59, PCL-181, HQ-6A, ZSL-92, ZTZ-98 and Type 19; ZTQ-15 move.
 - 2026-11-23 18:24 PST (America/Los_Angeles): PLZ-70 added.
+- 2026-11-23 18:27 PST (America/Los_Angeles): PLL-05 move added.
