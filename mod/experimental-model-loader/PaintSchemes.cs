@@ -18,6 +18,10 @@ public partial class Mod
 {
     static Dictionary<string, string[]> paintSchemes = new();
     static Dictionary<string, string> paintChoices = new();
+    // 0.3.42 (Osama 23 Nov 2026 18:1x "Z-19G should have its naval skin as default"): paint-defaults.json (unit Name -> scheme) sets the scheme
+    // a unit shows until the player picks one; picking "Default" still shows the pack's base colours.
+    static Dictionary<string, string> paintDefaults = new();
+    static string CurrentPaint(string unit) => paintChoices.TryGetValue(unit, out var c) && c != null ? c : paintDefaults.TryGetValue(unit, out var d) && d != null ? d : "";
     static readonly Dictionary<int, Material> paintOrig = new();        // renderer -> its default (shared) material
     static readonly Dictionary<string, Material> paintMats = new();     // default material + scheme -> scheme copy
     const int PaintIdBase = 970000;                                     // button ids: base + index (0 = Default); never sent anywhere
@@ -36,17 +40,20 @@ public partial class Mod
         var f = Path.Combine(dir, "paint-schemes.json");
         if (!File.Exists(f)) { MelonLogger.Msg("FAMODELS_PAINT off: no paint-schemes.json"); return; }
         paintSchemes = JsonSerializer.Deserialize<Dictionary<string, string[]>>(File.ReadAllText(f)) ?? new();
+        var df = Path.Combine(dir, "paint-defaults.json");
+        try { if (File.Exists(df)) paintDefaults = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(df)) ?? new(); }
+        catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT defaults unreadable, base colours: " + ex.Message); }
         try { if (File.Exists(ChoicesFile)) paintChoices = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(ChoicesFile)) ?? new(); }
         catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT choices unreadable, all default: " + ex.Message); }
         h.Patch(AccessTools.Method(typeof(UnitInfoCard), "SetUnitSkins"), postfix: new HarmonyMethod(typeof(Mod), nameof(AfterSetUnitSkins)));
-        MelonLogger.Msg($"FAMODELS_PAINT ready: {paintSchemes.Count} unit(s) with pack paint schemes, {paintChoices.Count} saved choice(s)");
+        MelonLogger.Msg($"FAMODELS_PAINT ready: {paintSchemes.Count} unit(s) with pack paint schemes, {paintDefaults.Count} default(s), {paintChoices.Count} saved choice(s)");
     }
 
     // Called after a model is built for a unit (Apply) and when the player picks a scheme.
     static void ApplyPaint(GameObject root, string unit)
     {
         if (root == null || !paintSchemes.ContainsKey(unit)) return;
-        paintChoices.TryGetValue(unit, out var scheme); scheme ??= "";
+        var scheme = CurrentPaint(unit);
         foreach (var r in root.GetComponentsInChildren<MeshRenderer>(true))
         {
             int id = r.GetInstanceID();
@@ -99,7 +106,7 @@ public partial class Mod
                 return;
             }
             var schemes = new[] { "" }.Concat(list).ToArray();
-            paintChoices.TryGetValue(unit.Name, out var cur); cur ??= "";
+            var cur = CurrentPaint(unit.Name);
             string name = unit.Name;
             for (int i = 0; i < schemes.Length; i++)
             {
