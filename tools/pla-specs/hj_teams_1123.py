@@ -27,5 +27,12 @@ def apply(t, g, ok, rec):
         ok(U[uid]['HUDName'] == new and U[uid]['Cost'] == c1 and not any(r and r['UnitId'] == uid and r['WeaponId'] == w0 for r in list(WA.values()) + list(SW.values()))
            and [(r['AmmunitionId'], r['Quantity']) for r in WA.values() if r and r['UnitId'] == uid and r['WeaponId'] == w1] == [(a1, qty)], (new, 'after'))
         out[new] = {'unit': uid, 'was': old, 'launcher': W[w1]['HUDName'], 'rounds': qty, 'cost': [c0, c1]}
+    # Osama 23 Nov 2026 19:5x (thread 1573561286803980289): "change the icon of the Marine HJ-12 team to a javelin, and the new HJ-8H in medium cab to
+    # a kornet". Card label icon (ThumbnailFileName) = the vanilla Javelin team / Kornet team label.
+    for uid, (before, after) in {1193: ('RU_KORNET-Label', 'US_JAVELIN-Label'), 1221: ('DLC2_SPIKE_LR-label', 'RU_KORNET-Label')}.items():
+        ok(U[uid].get('ThumbnailFileName') == before, (uid, 'label icon before', U[uid].get('ThumbnailFileName')))
+        g.put('Units', uid, {'ThumbnailFileName': after})
+        ok(U[uid]['ThumbnailFileName'] == after, (uid, 'label icon after'))
+        out[U[uid]['HUDName']]['label_icon'] = [before, after]
     rec['hj_teams_1123'] = out
     print('HJ TEAMS', out)
