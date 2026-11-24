@@ -3216,11 +3216,11 @@
       "weapon": 2012054,
       "name": "QBU-10",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_ASVK",
+      "mode": "custom",
+      "profile": "QBU10",
+      "address": "FA_PLA_WP_QBU10",
       "native_weapon": 523,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied QBU-10 photo (24 Nov 2026), work/qbu10-icon/make_icon.py; replaces the INF_ASVK stand-in"
     },
     {
       "weapon": 2012081,
@@ -3595,7 +3595,9 @@
     "FA_PLA_WP_PF98",
     "FA_PLA_WP_PF98_OUTLINE",
     "FA_PLA_WP_PF98T",
-    "FA_PLA_WP_PF98T_OUTLINE"
+    "FA_PLA_WP_PF98T_OUTLINE",
+    "FA_PLA_WP_QBU10",
+    "FA_PLA_WP_QBU10_OUTLINE"
   ],
   "native_icon_entries": 334,
   "custom_icon_entries": 20,

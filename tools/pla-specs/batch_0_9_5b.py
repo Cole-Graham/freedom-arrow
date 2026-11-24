@@ -809,6 +809,8 @@ import vn3_airdrop_1124;vn3_airdrop_1124.apply(t,g,ok,rec)
 import card_icons_1124;card_icons_1124.apply(t,g,ok,rec)
 # ---------- ZTZ-59D1 removed (Osama 24 Nov 2026 01:1x PST, thread "blue dragons"). Last, after the test-spec section. See ztz59d1_removed_1124.py.
 import ztz59d1_removed_1124;ztz59d1_removed_1124.apply(t,g,ok,rec)
+# ---------- QBU-10 weapon icon from Osama's photo (24 Nov 2026 02:0x PST, thread "blue dragons"). See qbu10_icon_1124.py.
+import qbu10_icon_1124;qbu10_icon_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
