@@ -722,6 +722,8 @@ import x47b_marines_1123;x47b_marines_1123.apply(t,g,ok,rec)
 import ucav_flares_1123;ucav_flares_1123.apply(t,g,ok,rec)
 # ---------- X-47B: Air tab, plane optics, ECM 45% + flares (Osama 23 Nov 2026 22:0x PST, thread 1567745029781454889). See x47b_air_tab_1123.py.
 import x47b_air_tab_1123;x47b_air_tab_1123.apply(t,g,ok,rec)
+# ---------- X-47B bay prices: AIM-120 +15, AIM-260 +40 per bay (Osama 23 Nov 2026 22:1x PST, thread 1567745029781454889). See x47b_bay_prices_1123.py.
+import x47b_bay_prices_1123;x47b_bay_prices_1123.apply(t,g,ok,rec)
 # ---------- VN-3 (airborne, Kord clone) and ZSL-191 (motorized, ZSL-92 family clone) transports for the MarkII_ China models (Osama 23 Nov 2026
 # 20:4x PST, thread "blue dragons"). MODEL BUILD ONLY. See mk_china_1123.py.
 import mk_china_1123;mk_china_1123.apply(t,g,ok,rec)
