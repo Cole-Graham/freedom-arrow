@@ -236,6 +236,12 @@ if m>=key('0.9.5-dev.34'):
         # Lateralus 23 Nov 22:4x ('Thermobaric Assault only has 3 launchers for their 6 disposable ammo', disposable_launchers_1123.py): riflemen
         # 2015621-2015623 now carry the PF-97 at priority 3, as the other carriers.
         if _tab=='SquadMembersJson.json':_want={**{i:f for i,f in _want.items() if i!='2015093'},'2015624':{'DeathPriority':2},**{str(i):{'DeathPriority':3} for i in (2015621,2015622,2015623)}}
+        # Osama 24 Nov 2026 02:3x-02:5x re-kitted two squads, each with its own death priority / card order checked by its own script:
+        # Marine Recon 1224 (marine_recon_1124.py, mirrors Force Recon) and Thunder Gods 1143 (thunder_gods_1124.py). Their 22 Nov rows no longer apply.
+        if m>=key('0.9.6-dev.20'):
+            _rekit={2014919,2014920,2014921,2014922,2014923,2014924,2014925,2014926,2014927,2015762,2015763,2015764,2015765,2019701,2019702,
+                    2014928,2014930,2014932,2014934,2014936,2015766,2015768,2015770,2015772,2019316}
+            _want={i:f for i,f in _want.items() if int(i) not in _rekit}
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
