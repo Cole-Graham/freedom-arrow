@@ -737,6 +737,9 @@ import zbl08_recon_1123;zbl08_recon_1123.apply(t,g,ok,rec)
 # ---------- VN-3: 30 pts with the 2A72, +10 HJ-73D option; Kord and Spitsa options removed (Osama 23 Nov 2026 21:4x PST, thread
 # 1567745029781454889). MODEL BUILD ONLY (the VN-3 is from mk_china_1123.py). See vn3_loadout_1123.py.
 import vn3_loadout_1123;vn3_loadout_1123.apply(t,g,ok,rec)
+# ---------- ZSL-191: 30 pts, ZBL-191 armour (12 HP), MG only (Osama 23 Nov 2026 21:5x PST, thread 1567745029781454889). MODEL BUILD ONLY.
+# See zsl191_stats_1123.py.
+import zsl191_stats_1123;zsl191_stats_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
