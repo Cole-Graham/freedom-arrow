@@ -849,6 +849,9 @@ import qjb201_icon_1124;qjb201_icon_1124.apply(t,g,ok,rec)
 import thunder_gods_1124;thunder_gods_1124.apply(t,g,ok,rec)
 # ---------- Euro set 2 (Osama 24 Nov 2026 11:1x PST, thread "blue dragons"): 7 Germany + 2 France preview cards, US MaxxPro MRAP transport. Last. See euro_set_1124.py.
 import euro_set_1124;euro_set_1124.apply(t,g,ok,rec)
+# ---------- Delta Force: base 95, Close Quarters default +0, Standoff +5 = 100 (Lateralus 24 Nov 2026 14:5x PST, thread 1572962048705429598).
+# See delta_force_1124.py.
+import delta_force_1124;delta_force_1124.apply(t,g,ok,rec)
 # Assaultmen SRAW A creates new unit/weapon/round/option rows: keep it LAST so no row created above changes its id (saved decks keep units by id).
 # ---------- Assaultmen SRAW A (new anti-tank SRAW, 140mm HEAT top attack) / B (SRAW MPV) card; Assaultmen SMAW loses its loadout slot
 # (Lateralus 24 Nov 2026 12:5x/13:2x, thread 1572962048705429598). See sraw_split_1124.py.
