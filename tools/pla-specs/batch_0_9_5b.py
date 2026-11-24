@@ -825,6 +825,8 @@ import qcq171_1124;qcq171_1124.apply(t,g,ok,rec)
 import euro_bg_zero_1124;euro_bg_zero_1124.apply(t,g,ok,rec)
 # ---------- QJB-201 weapon icon from Osama's photo (24 Nov 2026 02:3x PST, thread "China cosmetic work"). See qjb201_icon_1124.py.
 import qjb201_icon_1124;qjb201_icon_1124.apply(t,g,ok,rec)
+# ---------- Thunder Gods kit: 3 QCQ-171, 2 QJS-161 (Osama 24 Nov 2026 02:4x PST, thread "China cosmetic work"). See thunder_gods_1124.py.
+import thunder_gods_1124;thunder_gods_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
