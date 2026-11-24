@@ -676,6 +676,9 @@ import type19_removed_1123;type19_removed_1123.apply(t,g,ok,rec)
 # ---------- China roster: VN20, VN-17, VT-5 (+Recon), ZTZ-59 and ZTZ-98 hidden but kept; ZTQ-15 Armored -> Motorized; Z-10K / Z-10U names swapped
 # (Osama 23 Nov 2026 18:0x-18:1x PST, thread 1567745029781454889). See roster_1123b.py.
 import roster_1123b;roster_1123b.apply(t,g,ok,rec)
+# ---------- QBZ-95 -> 'QBZ-95-1', QBZ-03 -> 'QBZ-95' (icon), QJZ-89 Team (Armored) hidden (Osama 23 Nov 2026 18:2x-18:3x PST, thread
+# 1567745029781454889). See qbz95_qjz89_1123.py.
+import qbz95_qjz89_1123;qbz95_qjz89_1123.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
