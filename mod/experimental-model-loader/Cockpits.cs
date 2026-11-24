@@ -105,6 +105,9 @@ public partial class Mod
         var clone = new Material(source) { name = "FAM_COCKPIT_" + name, hideFlags = HideFlags.DontUnloadUnusedAsset };
         cockpitMaterials[name] = clone;
         MelonLogger.Msg($"FAMODELS_COCKPIT donor={name}; shader={clone.shader.name}; source={source.GetInstanceID()}; clone={clone.GetInstanceID()}; textures={string.Join(",", clone.GetTexturePropertyNames())}");
+        // 0.3.44 (Osama 23 Nov 21:5x "borame we went backwards, now the canopy is white"): the F-35B glass arrived at 21:50:46, after the
+        // scene's 3 periodic upgrade tries were spent, so the KF-21 stand-ins stayed white. Upgrade waiting stand-ins as soon as the donor exists.
+        if (fallbackMats.ContainsKey(name)) UpgradeFallbacks(false);
         return clone;
     }
 }

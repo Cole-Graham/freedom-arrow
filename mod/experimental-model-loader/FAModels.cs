@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.43", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.44", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -603,7 +603,8 @@ public partial class Mod : MelonMod
         // Without it, TAA smears the model with the background and it looks see-through. Run HDRP's own validation.
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
-        if (fallbackDonor != null) { if (!fallbackMats.TryGetValue(fallbackDonor, out var fl)) fallbackMats[fallbackDonor] = fl = new List<Material>(); fl.Add(m); fallbackDonor = null; }
+        // 0.3.44: every new stand-in gets the periodic tries again (an AH-1Z stand-in at 21:39 had used up the scene's 3 before the KF-21s at 21:49).
+        if (fallbackDonor != null) { if (!fallbackMats.TryGetValue(fallbackDonor, out var fl)) fallbackMats[fallbackDonor] = fl = new List<Material>(); fl.Add(m); fallbackDonor = null; upgradeTries = 0; upgradeGap = 10f; }
         MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} sourceCanopy={p.sourceCanopy} preserveSpecular={m.GetFloat("_EnableBlendModePreserveSpecularLighting"):F0} effectiveMetallic={m.GetFloat("_Metallic"):F2} smoothRange={m.GetFloat("_SmoothnessRemapMin"):F2}..{m.GetFloat("_SmoothnessRemapMax"):F2} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }
