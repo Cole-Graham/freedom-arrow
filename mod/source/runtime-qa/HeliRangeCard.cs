@@ -16,8 +16,10 @@ namespace FreedomArrow;
 // Helicopter range on the cards and range tool (Lateralus 21 Nov 2026; Lateralus 0.9 Changelog, "Helicopter range" tab, rows 7, 8, 14, 18, 20).
 // - Weapon ammo panel (AmmoInfoExpansionPanel.Init, after the game has placed every line): a "Helicopter Range" line above "Low Alt. Range" (Lateralus 21 Nov), only for ammo that can target
 //   helicopters (TargetType flag 8) and has a helicopter range; same card metres as the low-altitude line.
-// - Radar tooltip (edited after SetUnitAbilities): "Helicopter Range: x N" above "Low Alt. Range: x N" for units with a helicopter-capable
-//   weapon, from the unit's radar row group in helicopter-range.json. Range multipliers only, no optics line.
+// - Radar tooltip (edited after SetUnitAbilities): "Helicopter Range: x N" above "Low Alt. Range: x N" for every unit with a radar, from the
+//   unit's radar row group in helicopter-range.json (Lateralus 23 Nov 2026: "show it for all radar units because its not only about extending
+//   their weapon range but also their optics range"). The batch checks that each radar row's optics and range multipliers are equal at each
+//   altitude (lateralus/heli_range.py), so the one line stands for both.
 // - Optics stat tooltip: a "Helicopter Range: N m" line above "Low Alt. Range" for every unit with sensors (Lateralus 21 Nov: always show,
 //   tooltip only).
 // - Range tool (FOWToolScript.SetWeaponRanges): an orange circle at the helicopter range of each helicopter-capable weapon of the selected unit,
@@ -107,12 +109,12 @@ static class HeliRangeCard
             a.RadarHighAltWeaponRangeModifier,a.RadarSwitchCooldown,a.IsRadarStatic),out m);
     }
     // Radar tooltip. SetUnitAbilities builds it with SetTraitItem inlined (0x55E048 onwards: no call to 0x55D4D0), so a SetTraitItem hook never
-    // ran (Lateralus 21 Nov, test3). The postfix edits the finished tooltip: "Helicopter Range: x N" above "Low Alt. Range: x N" for units with a
-    // helicopter-capable weapon, also when equal to the low-altitude value. No optics line: the tooltip lists range multipliers only, as in
-    // vanilla, even when the helicopter optics multiplier differs (Lateralus 21 Nov).
+    // ran (Lateralus 21 Nov, test3). The postfix edits the finished tooltip: "Helicopter Range: x N" above "Low Alt. Range: x N" for every unit
+    // with a radar, also when equal to the low-altitude value (Lateralus 23 Nov: the radar also gives the detection bonus). No separate optics
+    // line: the batch keeps optics = range for every radar row.
     public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {
-        if(traitBroken||__instance==null||__0==null||!HeliRange.heliUnits.Contains(__0.Id)||!RadarGroup(__0.ActiveAbilities,out var m))return;
+        if(traitBroken||__instance==null||__0==null||!RadarGroup(__0.ActiveAbilities,out var m))return;
         try
         {
             string low=InfoCardLocalization.TextAmmoRangeLowAlt;if(string.IsNullOrEmpty(low))return;
