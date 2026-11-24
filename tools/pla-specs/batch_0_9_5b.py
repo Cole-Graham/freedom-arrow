@@ -823,6 +823,8 @@ import qbu10_icon_1124;qbu10_icon_1124.apply(t,g,ok,rec)
 import qcq171_1124;qcq171_1124.apply(t,g,ok,rec)
 # ---------- France / Germany preview specs: battlegroup size 0 (Osama 24 Nov 2026 02:0x PST, thread "China cosmetic work"). See euro_bg_zero_1124.py.
 import euro_bg_zero_1124;euro_bg_zero_1124.apply(t,g,ok,rec)
+# ---------- QJB-201 weapon icon from Osama's photo (24 Nov 2026 02:3x PST, thread "China cosmetic work"). See qjb201_icon_1124.py.
+import qjb201_icon_1124;qjb201_icon_1124.apply(t,g,ok,rec)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
