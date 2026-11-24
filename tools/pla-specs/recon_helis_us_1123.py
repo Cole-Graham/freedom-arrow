@@ -12,9 +12,11 @@ Bird Recon ... remove the AH-64D Longbow Recon".
   optics unchanged (Very Good), cost 55, no laser. Specs: Air Naval (5, as before) and Armored Brigade (4), 4 cards each.
 - Cargo 0, seats unchanged:
   - MH-60M SOAR Recon 735: mobility 28 'Heli UH60M Supply' (4000, shared with the UH-60M cards) -> vanilla 217 'Heli UH60M' (0; same fields).
-  - AS-365 Dauphin Recon 738: 258 'Heli AS365' (1500, shared with the AS-365 Dauphin) -> 2018990 (0; the AS365 row without cargo, used by the Z-19s).
+  - AS-365 Dauphin Recon 738: 258 'Heli AS365' (1500, shared with the AS-365 Dauphin) -> 2018990 (0; the AS365 row without cargo, used by the Z-19s),
+    renamed 'PLA Heli Z-19 no cargo' -> 'Heli Z19 AS365' in the vanilla style for shared rows (Lateralus 23 Nov 18:5x).
   - UH-1Y Venom Recon 732: 57 'Heli UH1Y' (2500, shared with the vanilla UH-1Y) has no 0-cargo twin -> new row, a copy of 57 with
-    HeavyLiftWeight 0 (last resort; the nearest 0-cargo row, 34 AH1Z, is faster: 300 vs 290).
+    HeavyLiftWeight 0 (last resort; the nearest 0-cargo row, 34 AH1Z, is faster: 300 vs 290). Named 'Heli UH1Y KA60' in the vanilla
+    style for shared rows ('Heli KA50 52'): the Ka-60 Razvedchik uses it too (recon_helis_ru_1123.py, Lateralus 23 Nov 18:5x).
 - Unchanged: optics of every recon card, the RAH-66 Comanche Recon's built-in radar, MH-60M SOAR Recon and AH-1Z Viper Recon.
 """
 HIDE = {733: 'OH-58D Recon Optronic', 736: 'MH-6 Little Bird Recon', 746: 'AH-64D Longbow Recon'}
@@ -77,8 +79,10 @@ def apply(t, g, ok, rec):
         r = prop(uid)
         ok(r['MobilityId'] == old, (uid, 'mobility before', r['MobilityId']))
         if new is None:
-            new = g.add('MobilityJson', MB[57], {'Name': 'FA Heli UH1Y no cargo', 'HeavyLiftWeight': 0})
+            new = g.add('MobilityJson', MB[57], {'Name': 'Heli UH1Y KA60', 'HeavyLiftWeight': 0})
         g.put('UnitPropulsionsJson', r['Id'], {'MobilityId': new})
+        if new == 2018990:  # now shared by the Z-19s and the Dauphin Recon: vanilla names a shared row after its airframes ('Heli KA50 52')
+            ok(MB[2018990]['Name'] == 'PLA Heli Z-19 no cargo', '2018990 name before'); g.put('MobilityJson', 2018990, {'Name': 'Heli Z19 AS365'})
         ok(not any(o and o.get('MobilityId') for o in O.values() if o and M.get(o.get('ModificationId'), {}).get('UnitId') == uid), (uid, 'no option changes mobility'))
         cargo[U[uid]['HUDName']] = {'unit': uid, 'mobility': [old, new], 'cargo': [MB[old]['HeavyLiftWeight'], MB[new]['HeavyLiftWeight']]}
     ok(all(MB[prop(u)['MobilityId']]['HeavyLiftWeight'] == 0 for u in (732, 733, 734, 735, 736, 737, 738, 745, 746)), 'every US recon helicopter: cargo 0')

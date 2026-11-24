@@ -28,6 +28,8 @@ Add every new hidden or removed card here in the same commit as the data change.
 | OH-58D Recon Optronic | 733 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the OH-58D Recon Optronic from the mod (or just disable it/hide it from the menu)" |
 | MH-6 Little Bird Recon | 736 | Special Operations Forces, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the MH-6 Little Bird Recon" |
 | AH-64D Longbow Recon | 746 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the AH-64D Longbow Recon" |
+| Ka-226T Razvedchik | 728 | Defense Forces, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-226T, hide it from the mod" |
+| Ka-52K Razvedchik | 748 | Coastal Troops, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-52K Razvedchik, hide it from the mod" |
 
 ## Model build only (`codex/batch/osama/models-096`)
 
@@ -50,3 +52,4 @@ Add every new hidden or removed card here in the same commit as the data change.
 - 2026-11-23 18:40 PST (America/Los_Angeles): Z-10, Z-19G and Z-19G Recon added; the Z-10K/Z-10U name swap was undone (no list change).
 - 2026-11-23 18:42 PST (America/Los_Angeles): F-35B (JASDF) added.
 - 2026-11-23 18:5x PST (America/Los_Angeles): OH-58D Recon Optronic, MH-6 Little Bird Recon and AH-64D Longbow Recon added (Lateralus).
+- 2026-11-23 19:0x PST (America/Los_Angeles): Ka-226T Razvedchik and Ka-52K Razvedchik added (Lateralus).
