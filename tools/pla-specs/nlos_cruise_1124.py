@@ -19,7 +19,8 @@ Vanilla laser (Osama 21:4x "is that how lasers work in vanilla?"): no. In the ga
 laser-guided round looks for allied laser spots (LaserDesignatorSystem.LaserSpots) inside its own seeker cone: half-angle SeekerAngle x 0.5, reach
 MaxSeekerDistance (GroundRange when Seeker != 0), then ActivateLaserSeeker. The Iskander-K copy had SeekerAngle 0 / MaxSeekerDistance 0 = blind.
 So each round keeps its own pre-change seeker cone (HJ-10 90 deg / 800, QN-502 and CH-901 90 / 700, CTL-181 90 / 900) and laser_hold and the
-custom lock code are gone: pure vanilla laser guidance."""
+custom lock code are gone: pure vanilla laser guidance.
+Agility (Osama 21:5x "can we increase missile agility?"): RotationSpeed 45 -> 120 deg/s, the vanilla Hellfire 164 value."""
 import json
 from pathlib import Path
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901 (Blood Wolves)', 2019891: 'CH-901 (Type 100)'}
@@ -36,6 +37,9 @@ def apply(t, g, ok, rec):
     want = {k: v[k] for k in GUIDANCE}
     ok({k: want[k] for k in ('Seeker', 'LaserGuided', 'TargetType', 'MaxSpeed', 'CanReaquire')} == {'Seeker': 0, 'LaserGuided': False, 'TargetType': 1, 'MaxSpeed': 300.0, 'CanReaquire': False}, ('Iskander-K cruise guidance', want))
     want['LaserGuided'] = True   # follows a friendly laser (laser_hold in nlos.json keeps the cruise path when nothing is lased)
+    # turn rate (Osama 24 Nov 21:5x "can we increase missile agility? it seems to lock but it doesn't follow"): the Iskander-K 45 deg/s turns a
+    # 300 u/s round on a ~380 u radius, but the laser lock comes at ~400-600 u. 120 = the vanilla Hellfire 164 laser missile.
+    want['RotationSpeed'] = 120.0
     W = t['WeaponsJson']; WA = t['WeaponAmmunitionsJson']
     for wid, name in LAUNCHERS.items():
         ok({r['AmmunitionId'] for r in WA.values() if r and r['WeaponId'] == wid} <= set(ROUNDS) and W[wid]['Type'] == 82, (name, wid, 'NLOS launcher, cruise type 82'))
