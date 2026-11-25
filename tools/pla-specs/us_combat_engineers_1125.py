@@ -3,8 +3,7 @@ Price 75 -> 70, queue it up").
 - M-25 CDTE 2 -> 1: member 934 (M4A1 + M-25) loses the M-25 and keeps his M4A1; member 933 keeps the M-25. The M-25 ammo row stays 120 per carrier, so
   the squad's M-25 pool is 240 -> 120. Head count 9 and HP unchanged.
 - Price 75 -> 70.
-- M4A1 5 -> 6 is NOT applied here: the 5 M4A1 already include both M-25 men (933, 934 carry M4A1 + M-25), so a 6th M4A1 needs another man's
-  weapon changed (asked in the thread)."""
+- M4A1 stays 5: the 5 M4A1 already include both M-25 men (933, 934 carry M4A1 + M-25). Lateralus 11:5x: "leave it at 5"."""
 UNIT, KEEP, DROP, M25, M4 = 449, 933, 934, 2002020, 50
 
 
