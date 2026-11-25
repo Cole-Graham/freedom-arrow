@@ -9,9 +9,8 @@
 - IR SHORAD: every other user of 58/60/62 (guns and/or heat-seeking missiles only) moves to a copy of its row with Low range 1.25 (unchanged)
   and Low optics 1.5. The China gun rows 2009175 (PGZ-09, Type 87 AW, AFT-10; also holds their smoke), 2009943 (JRVG-1) and 2019443 (LY-1)
   take the same values (or are relinked to the IR copy when that makes them identical to it: no duplicate ability rows, Lateralus 19 Nov).
-- The game applies a radar unit's bonus to every weapon on it (GetAmmoShootingDistance 0x7D6330 reads only the round's five range fields),
-  so the heat-seeking rounds of SA units (SLAMRAAM/NASAMS AIM-9, M-SHORAD Stinger) get copies whose LowAltRange (and an absolute SEAD/non-SEAD
-  override) is x1.25/1.5: with the x1.5 radar they reach what they reach today. Their helicopter range keeps today's value.
+- The game applies a radar unit's bonus to every weapon on it (GetAmmoShootingDistance 0x7D6330 reads only the round's five range fields).
+  The compensated AIM-9 / Stinger copies for SA units were withdrawn (Lateralus 22:0x "Undo the seperate rounds").
 - Option B burn time: every radar-guided round of an SA unit burns longer so its catch range against a jet flying away at 225 grows by the same
   20% as the range (work/shorad-15-20261124/burn.py). Each round is used by SA units only (checked).
 - Helicopters keep x1.25 range and optics on every SHORAD row (heli_range.EDIT); labels for the radar icon on the card (heli_range.LABEL).
@@ -93,22 +92,10 @@ def apply(t, g, ok, rec, HR, heli):
     for a in rows:
         if a['Id'] in set(new.values()) | set(SA_ROWS) | {k for k, v in china.items() if v[0] == 'IR values'}:
             ok(not any(b['Id'] != a['Id'] and _same(a, b) for b in rows), (a['Id'], a['Name'], 'radar row has no identical twin'))
-    # heat-seeking rounds on SA units: copies that do not gain from the x1.5 radar
+    # Lateralus 24 Nov 2026 22:0x: "Undo the seperate rounds, I want to find out a better solution": no compensated AIM-9 / Stinger copies any
+    # more (they were made 16:12-16:42, built in 0.9.7-dev.1 to dev.5). SLAMRAAM / NASAMS / Stryker M-SHORAD fire the shared rounds again, so
+    # their AIM-9 and Stinger take the x1.5 SA radar like everything else on those units until a per-weapon radar rule exists.
     copies, heli_ammo = {}, {}
-    for u in sa:
-        for r in [r for r in WA.values() if r and r.get('UnitId') == u]:
-            a = A[r['AmmunitionId']]
-            if not (int(a.get('TargetType') or 0) & 16 and a.get('Seeker') == 10):continue
-            if a['Id'] not in copies:
-                f = {'Name': a['Name'] + ' SA-radar unit', 'LowAltRange': round(a['LowAltRange'] * IR_SCALE, 2)}
-                for k in ('SeadProjectileRangeOverride', 'NonSeadProjectileRangeOverride'):
-                    if (a.get(k) or 0) >= 100:f[k] = round(a[k] * IR_SCALE, 2)
-                ok(a.get('LowAltRange', 0) > 0, (a['Id'], 'IR round has a Low range'))
-                c = g.add('AmmunitionsJson', a, f);copies[a['Id']] = c
-                heli_ammo[c] = heli['ammo'].get(str(a['Id']), a['LowAltRange'])
-                HR.AMMO[c] = heli_ammo[c]
-            g.put('WeaponAmmunitionsJson', r['Id'], {'AmmunitionId': copies[a['Id']]})
-    ok(set(copies) == {465, 18}, ('IR rounds on SA units', sorted(copies)))
     # option B burn times
     burned = {}
     for u in sa:
