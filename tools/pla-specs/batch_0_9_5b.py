@@ -950,6 +950,9 @@ import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 # ---------- QQ sheet fixes: QBU-203 name, ZBD-86 Recon card out, CSK-181 transport = CTL-181 with a QJZ-89 RWS (Osama 25 Nov 2026 03:4x PST,
 # bugs thread 1573561286803980289). See qq_fixes_1125.py.
 import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
+# ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
+# 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
+import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
