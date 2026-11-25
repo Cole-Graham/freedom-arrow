@@ -948,6 +948,8 @@ import lynx_m81_1125;lynx_m81_1125.apply(t,g,ok,rec)
 import lynx_mrl_1125;lynx_mrl_1125.apply(t,g,ok,rec)
 # ---------- ZBD-251 for every Airborne team (Osama 25 Nov 2026 10:0x PST). See zbd251_airborne_1125.py.
 import zbd251_airborne_1125;zbd251_airborne_1125.apply(t,g,ok,rec)
+# ---------- FK-3000 into the hidden China test spec 26 (Osama 25 Nov 2026 11:4x PST). See fk3000_hidden_1125.py.
+import fk3000_hidden_1125;fk3000_hidden_1125.apply(t,g,ok,rec)
 # ---------- No shown card in the hidden test specs: PCL-181 out of spec 26 (Osama 25 Nov 2026 03:0x PST). See test_spec_visible_1125.py.
 import test_spec_visible_1125;test_spec_visible_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
