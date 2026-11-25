@@ -68,6 +68,6 @@ public partial class Mod
         long tex = texBytes.Values.Sum(), mesh = 0; int verts = 0;
         foreach (var parts in famCache.Values) foreach (var part in parts) foreach (var s in part.subs) if (s.mesh != null) { verts += s.mesh.vertexCount; mesh += MeshBytes(s.mesh); }
         var proc = System.Diagnostics.Process.GetCurrentProcess();
-        MelonLogger.Msg($"FAMODELS memory: process {proc.WorkingSet64 >> 20} MB working set, {proc.PrivateMemorySize64 >> 20} MB private; cache {famCache.Count} model(s), {verts} vertices, ~{mesh >> 20} MB meshes, ~{tex >> 20} MB textures; {freedModels} freed so far; detail levels on demand: {lodBuilt} built, {lodUnloaded} removed, {lodFilesFreed} files freed (~{lodBytesFreed >> 20} MB); {(inMenu ? "menu" : "battle")}");
+        MelonLogger.Msg($"FAMODELS memory: process {proc.WorkingSet64 >> 20} MB working set, {proc.PrivateMemorySize64 >> 20} MB private; cache {famCache.Count} model(s), {verts} vertices, ~{mesh >> 20} MB meshes, ~{tex >> 20} MB textures; {freedModels} freed so far; {(inMenu ? "menu" : "battle")}");
     }
 }
