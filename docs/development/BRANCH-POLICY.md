@@ -6,6 +6,13 @@ Approval: https://discord.com/channels/1566969627743879208/1570305472982941727/1
 
 ## Permanent branches
 
+**Update, 24 November 2026 (Osama): two streams, gameplay and models.** Osama, 19:42 PST: "from now on we should have 2 different branches, gameplay and models. This way we don't have to do massive redownloads for models every time we want to test something." Lateralus asked for the same at 19:18 ("my dev builds require only code changes").
+
+- **Gameplay: `codex/development`.** Unit data, cards, prices, weapons, scenarios, the Freedom Arrow runtime DLLs. A dev build from it ships the gameplay package only (about 200 MB) and keeps the current Models & music version; it never re-stages models. New cards whose model is not in that Models & music version show their stand-in body until the next model build.
+- **Models: `codex/models`.** Everything that only changes the Models & music package: FAModels source (`mod/experimental-model-loader`), model and texture pipeline scripts, models.json changes. The model files themselves stay in the deck's model stage (outside git). A new Models & music version is built only when Osama asks for a model build; the launcher then downloads only the changed files.
+- **Flow:** card data for a new model goes to `codex/development` (it is gameplay data). When Osama approves a model build for the next patch, `codex/models` is merged into `codex/development` and that build pins the new Models & music version. Model-only fixes never block or slow a gameplay dev build.
+- `codex/assets-development` (11 Nov) is superseded by `codex/models` and is no longer advanced.
+
 **Update, 22 November 2026 (Lateralus): one version-free development branch; versions are tags.** Lateralus, 07:2x PST, asked whether every version needs its own branch, then "switch it" to the trunk-and-tags layout.
 
 - `codex/development`: **the one integration branch for main development**, from now on and for every later version. Created at `8e13eb31` (the head of `codex/0.9.1-development`, which by then carried 0.9.2, 0.9.3, 0.9.4 and the 0.9.5 batch). Every dev build advances it.
@@ -86,3 +93,4 @@ The expected first-stage remote count would be 52: 131 current + four maintained
 - 2026-11-12 23:43:01 PST (America/Los_Angeles) — 0.8 designated: `codex/0.8-development` created at `be49cdd`; `codex/0.7-development` frozen at dev.58 (tag `gameplay/0.7.0-dev.58`); `codex/pla-development` retired as an alias (Lateralus approval, 12 Nov).
 - 2026-11-14 11:10:26 PST (America/Los_Angeles) — 0.9 designated: `codex/0.9-development` created at `007e2ce` (0.8.0-dev.105); `codex/0.8-development` frozen; batch-only builds (Osama, 14 Nov 11:05).
 - 2026-11-19 06:4x PST (America/Los_Angeles) — 0.9.1 designated: `codex/0.9.1-development` created at `bc085f2d`; `codex/0.9-development` frozen; playtests 0.9.1, 0.9.2, … and dev builds 0.9.1-dev.N (Lateralus).
+- 2026-11-24 19:5x PST (America/Los_Angeles) — Two streams (Osama 19:42): gameplay = `codex/development`, models = `codex/models` (created at `f285615d`); `codex/assets-development` superseded.
