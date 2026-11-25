@@ -237,8 +237,9 @@ with zipfile.ZipFile(base) as z:
     bc=sum(n.endswith(('_b.fat','_b_n.fat')) for n in inf)
     # 0.9.5-dev.30: or 266 + 0 or 60 with the recon frog-shirt body (Osama 22 Nov "Pla recon snipers use this model").
     # 0.9.7: or 287 + 0 or 66 with the SF NVG gear atlas too (woodland + desert, 3 LODs x diffuse + normal, 2 battle copies each).
+    # 0.9.7: or 290 + 0 or 66 with the no-NVG goggles-up desert body for the Medium CAB (3 meshes, existing textures; Osama 25 Nov).
     # 0.9.7: or 275 + 0 or 62 with the Fictional 1 airborne body (Osama 25 Nov "Fictional 1 soldier body no?", "please apply this model to all the PLAAF").
-    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60),(275,0),(275,62),(287,0),(287,66)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, 266 + 0 or 60, 275 + 0 or 62, or 287 + 0 or 66'
+    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60),(275,0),(275,62),(287,0),(287,66),(290,0),(290,66)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, 266 + 0 or 60, 275 + 0 or 62, 287 + 0 or 66, or 290 + 0 or 66'
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(target.resolve())],check=True)
     if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(target.resolve()),*retired_scenarios],check=True)
