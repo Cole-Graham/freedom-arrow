@@ -999,6 +999,8 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 # ---------- ROC specialization and reserved IDs (Osama 25 Nov 2026 00:5x PST, thread 1575071006240931931). Loads tools/roc/roc.py only on its branch
 # (codex/batch/shawn/roc) and runs the two checks above again on its rows; on other branches it adds nothing. Fails if any row uses a reserved ID that its
 # owner did not make (mod/id-reservations.json), or if a section after this line makes rows. New sections go above the disposable-launcher check.
+# ---------- Back-pocket China weapons, no squad yet: QJY-88, QBZ-192 MLOK, VQX191, QBU-202 (Osama 25 Nov 13:3x). See backpocket_weapons_1125.py.
+import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)

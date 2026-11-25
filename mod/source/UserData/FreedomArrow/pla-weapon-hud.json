@@ -3233,6 +3233,36 @@
       "basis": "Osama-supplied QBU-201 image (24 Nov 2026), work/qbu201-icon/make_icon.py; M40A5 stat clone on the Falcons"
     },
     {
+      "weapon": 2021543,
+      "name": "QJY-88",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QJY88",
+      "address": "FA_PLA_WP_QJY88",
+      "native_weapon": 158,
+      "basis": "Osama-supplied QJY-88 photo (25 Nov 2026), work/qjy88-icon/make_qjy88.py; PKM T1 stat clone, back pocket (no squad)"
+    },
+    {
+      "weapon": 2021544,
+      "name": "QBZ-192 MLOK",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QBZ192MLOK",
+      "address": "FA_PLA_WP_QBZ192_MLOK",
+      "native_weapon": 767,
+      "basis": "Osama-supplied QBZ-192 MLOK photo (25 Nov 2026), work/qbz192-mlok-icon/make_mlok.py on the approved QBZ191 outline; HK416A5 stat clone (T4 placeholder), back pocket"
+    },
+    {
+      "weapon": 2021545,
+      "name": "VQX191",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "VQX191",
+      "address": "FA_PLA_WP_VQX191",
+      "native_weapon": 210,
+      "basis": "Approved FA_PLA_WP_QBZ192 icon with a short suppressor (25 Nov 2026), work/vqx191-icon/make_vqx191.py; HK416 D10RS stat clone, back pocket"
+    },
+    {
       "weapon": 2012081,
       "name": "HN-6",
       "scope": "INFANTRY",
@@ -3554,7 +3584,7 @@
     }
   ],
   "vehicle_weapons": 307,
-  "infantry_weapons": 47,
+  "infantry_weapons": 50,
   "profiles": [
     "QBB95",
     "QBU191",
