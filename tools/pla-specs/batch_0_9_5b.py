@@ -852,6 +852,9 @@ import euro_set_1124;euro_set_1124.apply(t,g,ok,rec)
 # ---------- Delta Force: base 95, Close Quarters default +0, Standoff +5 = 100 (Lateralus 24 Nov 2026 14:5x PST, thread 1572962048705429598).
 # See delta_force_1124.py.
 import delta_force_1124;delta_force_1124.apply(t,g,ok,rec)
+# ---------- Air-launched HJ-10 shown as AKD-10 on helicopters + Wing Loong (Osama 24 Nov 2026 16:0x PST, thread "China cosmetic work").
+# Names only. See akd10_names_1124.py.
+import akd10_names_1124;akd10_names_1124.apply(t,g,ok,rec)
 # Assaultmen SRAW A creates new unit/weapon/round/option rows: keep it LAST so no row created above changes its id (saved decks keep units by id).
 # ---------- Assaultmen SRAW A (new anti-tank SRAW, 140mm HEAT top attack) / B (SRAW MPV) card; Assaultmen SMAW loses its loadout slot
 # (Lateralus 24 Nov 2026 12:5x/13:2x, thread 1572962048705429598). See sraw_split_1124.py.
