@@ -1,8 +1,11 @@
 """Package the next Freedom Arrow 0.8/0.9 gameplay version over the exact previous complete package.
 
-Usage: package.py --prev VERSION --version VERSION --build N --base PREV_COMPLETE --outdir DIR [--assets ASSETS.bamod].
-Changed constants, identity files and the version receipt go in. Writes the complete package (Vengeance switcher) and the
-launcher gameplay package. The gameplay package pairs with the assets package of the previous build's receipt (or --assets).
+Usage: package.py --prev VERSION --version VERSION --build N --base PREV_GAMEPLAY_OR_COMPLETE --outdir DIR [--assets ASSETS.bamod].
+Changed constants, identity files and the version receipt go in.
+Lateralus 24 Nov 2026 21:4x ("I don't think we need the complete file anymore right?", "yes ok get rid of it"): a gameplay build
+(no --famodels / --asset / --drop-assets) starts from the previous GAMEPLAY package and writes only the gameplay package; the models
+and music stay in the previous assets package, and the checks read GAMEPLAY+ASSETS (pkgview.py). Only a model build still makes the
+complete package (from the previous complete, or from previous gameplay + assets when no complete exists) and the next assets version. The gameplay package pairs with the assets package of the previous build's receipt (or --assets).
 Lateralus 13 Nov 2026: gameplay and assets are ALWAYS available separately. When the complete package's model files differ
 from that assets package, this script makes the next assets version (make_assets.py) and the receipt names it; publish it
 with the gameplay package.
@@ -37,7 +40,21 @@ base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.v
 # out/0.8 plus the receipts left in out/local-* (which let eleven different models files be called Assets 0.2.52). Every build reads and
 # writes its receipt only there.
 RCPT=REL/'out/receipts'
-prev=json.loads((RCPT/f'FreedomArrow-{a.prev}.json').read_text());assert digest(base)==prev['complete']['sha256']
+prev=json.loads((RCPT/f'FreedomArrow-{a.prev}.json').read_text());_bd=digest(base)
+MODEL_BUILD=bool(a.famodels or a.asset or a.drop_assets)
+if prev.get('complete') and _bd==prev['complete']['sha256']:BASE_KIND='complete'
+else:assert _bd==prev['gameplay']['sha256'],f'--base is neither the {a.prev} gameplay nor its complete package';BASE_KIND='gameplay'
+PREV_ASSETS=Path(a.assets or prev['assets'].get('path') or sys.exit(f'{a.prev} receipt names no assets path; pass --assets'))
+if MODEL_BUILD and BASE_KIND=='gameplay':
+    # A model build needs every file: rebuild the previous complete from its gameplay + assets packages (made once, deleted after the build).
+    merged=out/f'.base-{a.prev}-complete.bamod'
+    subprocess.run(['cp','--reflink=auto',str(PREV_ASSETS.resolve()),str(merged.resolve())],check=True)
+    with tempfile.TemporaryDirectory() as tmp, zipfile.ZipFile(base) as gz0:
+        names0=[n for n in gz0.namelist() if not n.endswith('/')];gz0.extractall(tmp,names0)
+        subprocess.run([a.zip,'-q','-nw',str(merged.resolve()),*names0],cwd=tmp,check=True)
+    base=merged;BASE_KIND='complete'
+GAMEPLAY_ONLY=BASE_KIND=='gameplay'
+print('package mode:','gameplay only (no complete package)' if GAMEPLAY_ONLY else 'complete + gameplay (model build)',flush=True)
 # Osama 13 Nov 12:39 ("make sure the model fixes land with your other thread"): two threads build on this branch. Stack every
 # build on the newest receipt, and refuse a package that drops the dev.35-38 model/camo/data fixes (check_model_carry.py).
 # 0.9 (Osama 14 Nov 2026 11:05 PST, "launch this as 0.9"): 0.9.0-dev.N builds continue in out/0.8 after 0.8.0-dev.105.
@@ -57,6 +74,7 @@ else: assert a.prev==newest[1],f'--prev {a.prev} is not the newest build before 
 _st=json.loads(Path('/home/sam/tars/work/ba-dev/replicas/codex/work/build-install/state.json').read_text()).get('dev_build',{}).get('version')
 if _st!=a.prev and not os.environ.get('BA_DEVPOST_SKIP'):raise SystemExit(f'The #build-install dev-build post shows {_st}, not {a.prev}. Upload {a.prev} (gameplay, assets, complete) and run work/build-install/devpost.py first, or set BA_DEVPOST_SKIP=<reason>.')
 complete,gameplay=out/f'FreedomArrow-{V}-complete.bamod',out/f'FreedomArrow-{V}.bamod'
+target=gameplay if GAMEPLAY_ONLY else complete   # the package the changes are written into
 with zipfile.ZipFile(base) as z:
     whole=json.loads(z.read('UserData/FreedomArrow/pla-package-manifest.json'));assert whole['label']=='Freedom Arrow '+a.prev
     core=json.loads(z.read('UserData/FreedomArrow/payload-manifest.json'))
@@ -152,34 +170,52 @@ with zipfile.ZipFile(base) as z:
     # 0.9.5-dev.30: or 266 + 0 or 60 with the recon frog-shirt body (Osama 22 Nov "Pla recon snipers use this model").
     assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, or 266 + 0 or 60'
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
-    subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(complete.resolve())],check=True)
-    if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(complete.resolve()),*retired_scenarios],check=True)
+    subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(target.resolve())],check=True)
+    if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(target.resolve()),*retired_scenarios],check=True)
     if drops:
         with tempfile.NamedTemporaryFile('w',delete=False) as dl:dl.write('\n'.join(drops)+'\n')
-        subprocess.run(f'{a.zip} -q -nw -d {complete.resolve()} -@ < {dl.name}',shell=True,check=True)   # -nw: map names contain [ ], which zip reads as wildcards
+        subprocess.run(f'{a.zip} -q -nw -d {target.resolve()} -@ < {dl.name}',shell=True,check=True)   # -nw: map names contain [ ], which zip reads as wildcards
     with tempfile.TemporaryDirectory() as tmp:
         stage=Path(tmp)
         for n,b in override.items():
             f=stage/n;f.parent.mkdir(parents=True,exist_ok=True)
             if isinstance(b,Path):os.link(b,f) if os.stat(b).st_dev==os.stat(stage).st_dev else f.write_bytes(b.read_bytes())
             else:f.write_bytes(b)
-        subprocess.run([a.zip,'-q','-nw',str(complete.resolve()),*sorted(override)],cwd=stage,check=True)
+        subprocess.run([a.zip,'-q','-nw',str(target.resolve()),*sorted(override)],cwd=stage,check=True)
 override_assets={n for n in override if n.startswith(ASSET)}
-with zipfile.ZipFile(complete) as c:names=c.namelist()
-asset_names=[n for n in names if n.startswith(ASSET)]
-subprocess.run(['cp','--reflink=auto',str(complete.resolve()),str(gameplay.resolve())],check=True)
-with tempfile.NamedTemporaryFile('w',delete=False) as lst:lst.write('\n'.join(asset_names)+'\n');lp=lst.name
-subprocess.run(f'{a.zip} -q -nw -d {gameplay.resolve()} -@ < {lp}',shell=True,check=True)
-with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipFile(base) as bz:
-    for n,pin in whole['sha256'].items():assert sha(c.read(n))==pin,n
-    # The runtime checks these core pins at start; every one must be in the package with its hash.
-    for n,pin in json.loads(c.read('UserData/FreedomArrow/payload-manifest.json'))['sha256'].items():assert n in names and sha(c.read(n))==pin,('core pin',n)
-    for n in [x for x in asset_names if x in bz.namelist()]:assert c.getinfo(n).CRC==bz.getinfo(n).CRC or n in override_assets,n
-    assert set(gz.namelist())==set(names)-set(asset_names)
-    for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
-    assert not [n for n in drops if n in names],'a dropped asset is still in the package'
-    assert json.loads(gz.read('mod.json'))['version']==V
-    if _vkey(V)>=_vkey('0.9.1-dev.2'):assert not set(RENAMED_DLLS)&set(names) and set(RENAMED_DLLS.values())<=set(gz.namelist()),'old DLL names left or FA names missing'
+if GAMEPLAY_ONLY:
+    assert not override_assets,'a gameplay build changes no model or music file'
+    with zipfile.ZipFile(gameplay) as g0,zipfile.ZipFile(PREV_ASSETS) as a0:
+        assert not [n for n in g0.namelist() if n.startswith(ASSET)],'model/music files in the gameplay package'
+        asset_names=[n for n in a0.namelist() if n.startswith(ASSET)];names=g0.namelist()+asset_names
+    # Checks below read the data and the models together: GAMEPLAY+ASSETS (pkgview.py).
+    view=f'{gameplay.resolve()}+{PREV_ASSETS.resolve()}'
+    with zipfile.ZipFile(gameplay) as gz,zipfile.ZipFile(base) as bz,zipfile.ZipFile(PREV_ASSETS) as az:
+        pinned=lambda n:az if n.startswith(ASSET) else gz
+        # UserData/FAAssets/manifest.json: the assets package carries its own copy (its version line differs); differ() ignored it the same way.
+        for n,pin in whole['sha256'].items():assert n=='UserData/FAAssets/manifest.json' or sha(pinned(n).read(n))==pin,n
+        for n,pin in json.loads(gz.read('UserData/FreedomArrow/payload-manifest.json'))['sha256'].items():assert sha(pinned(n).read(n))==pin,('core pin',n)
+        assert set(gz.namelist())==(set(bz.namelist())-set(retired_scenarios))|set(override),'gameplay package = previous gameplay - retired + changed'
+        for n in gz.namelist():assert n in override or gz.getinfo(n).CRC==bz.getinfo(n).CRC,n
+        assert json.loads(gz.read('mod.json'))['version']==V
+        if _vkey(V)>=_vkey('0.9.1-dev.2'):assert not set(RENAMED_DLLS)&set(gz.namelist()) and set(RENAMED_DLLS.values())<=set(gz.namelist()),'old DLL names left or FA names missing'
+else:
+  view=str(complete)
+  with zipfile.ZipFile(complete) as c:names=c.namelist()
+  asset_names=[n for n in names if n.startswith(ASSET)]
+  subprocess.run(['cp','--reflink=auto',str(complete.resolve()),str(gameplay.resolve())],check=True)
+  with tempfile.NamedTemporaryFile('w',delete=False) as lst:lst.write('\n'.join(asset_names)+'\n');lp=lst.name
+  subprocess.run(f'{a.zip} -q -nw -d {gameplay.resolve()} -@ < {lp}',shell=True,check=True)
+  with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz,zipfile.ZipFile(base) as bz:
+      for n,pin in whole['sha256'].items():assert sha(c.read(n))==pin,n
+      # The runtime checks these core pins at start; every one must be in the package with its hash.
+      for n,pin in json.loads(c.read('UserData/FreedomArrow/payload-manifest.json'))['sha256'].items():assert n in names and sha(c.read(n))==pin,('core pin',n)
+      for n in [x for x in asset_names if x in bz.namelist()]:assert c.getinfo(n).CRC==bz.getinfo(n).CRC or n in override_assets,n
+      assert set(gz.namelist())==set(names)-set(asset_names)
+      for n in gz.namelist():assert gz.getinfo(n).CRC==c.getinfo(n).CRC,n
+      assert not [n for n in drops if n in names],'a dropped asset is still in the package'
+      assert json.loads(gz.read('mod.json'))['version']==V
+      if _vkey(V)>=_vkey('0.9.1-dev.2'):assert not set(RENAMED_DLLS)&set(names) and set(RENAMED_DLLS.values())<=set(gz.namelist()),'old DLL names left or FA names missing'
 # Lateralus 13 Nov 2026: dev.18-20 changed FAModels.dll and ZSL-92 textures in the complete package only, but the receipt
 # kept saying assets 0.2.0, so "gameplay + assets 0.2.0" failed the runtime's hash check. Check the real assets package.
 vt=lambda v:tuple(int(x) for x in v.split('.'))
@@ -191,7 +227,7 @@ def differ(assets):
         mismatch+=[n for n,pin in whole['sha256'].items() if n.startswith(ASSET) and n not in mismatch and (n not in an or sha(az.read(n))!=pin)]
         mismatch=[n for n in mismatch if n!='UserData/FAAssets/manifest.json' or json.loads(az.read(n))['files']!=json.loads(c.read(n))['files']]
     return amod['version'],mismatch
-AV,mismatch=differ(assets)
+AV,mismatch=(json.loads(zipfile.ZipFile(assets).read('mod.json'))['version'],[]) if GAMEPLAY_ONLY else differ(assets)   # gameplay only: asset pins checked above
 assert vt(AV)>=vt(prev['assets_version']),f'--assets {AV} is older than {prev["assets_version"]} of {a.prev}'
 made=None
 if mismatch:
@@ -210,34 +246,38 @@ if d!=m['description']:
     m['description']=d;(REL/'mod.json').write_bytes(enc(m))
     with tempfile.TemporaryDirectory() as tmp:
         (Path(tmp)/'mod.json').write_bytes(enc(m))
-        for pkg in (complete,gameplay):subprocess.run([a.zip,'-q','-nw',str(pkg.resolve()),'mod.json'],cwd=tmp,check=True)
-with zipfile.ZipFile(complete) as c,zipfile.ZipFile(gameplay) as gz:assert c.read('mod.json')==gz.read('mod.json')==enc(m)
+        for pkg in ((gameplay,) if GAMEPLAY_ONLY else (complete,gameplay)):subprocess.run([a.zip,'-q','-nw',str(pkg.resolve()),'mod.json'],cwd=tmp,check=True)
+for pkg in ((gameplay,) if GAMEPLAY_ONLY else (complete,gameplay)):
+    with zipfile.ZipFile(pkg) as c:assert c.read('mod.json')==enc(m),pkg.name
 receipt={'version':V,'build':a.build,'previous':a.prev,'assets_version':AV,
  'assets':{'file':assets.name,'path':str(assets.resolve()),'sha256':digest(assets),'size':assets.stat().st_size,'files':len(zipfile.ZipFile(assets).namelist()),'new_in_this_build':made is not None},
  'assets_compatible':True,
- 'complete':{'file':complete.name,'sha256':digest(complete),'size':complete.stat().st_size,'files':len(names)},
+ 'complete':None if GAMEPLAY_ONLY else {'file':complete.name,'sha256':digest(complete),'size':complete.stat().st_size,'files':len(names)},
  'gameplay':{'file':gameplay.name,'sha256':digest(gameplay),'size':gameplay.stat().st_size,'files':len(set(names)-set(asset_names))},
  'changed_paths':sorted(override),'native_verified':False}
 (RCPT/f'FreedomArrow-{V}.json').write_bytes(enc(receipt));(ROOT/f'tools/pla-specs/{V}-package-checks.json').write_bytes(enc(receipt))
 print(json.dumps({k:v for k,v in receipt.items() if k!='changed_paths'},indent=2))
 carry=ROOT.parent/'pla-audit-20261112/check_model_carry.py'
-if carry.exists():subprocess.run([sys.executable,str(carry),str(complete)],check=True)   # dev.35-38 fixes still present
+_pp={**os.environ,'PYTHONPATH':str(Path(__file__).parent)+os.pathsep+os.environ.get('PYTHONPATH','')}   # pkgview for GAMEPLAY+ASSETS
+if carry.exists():subprocess.run([sys.executable,str(carry),view],check=True,env=_pp)   # dev.35-38 fixes still present
 # dev.93 (Osama 13 Nov 22:58): no armory-vs-multiplayer equipment fault that vanilla does not have (lost default abilities,
 # unlinked option abilities, child turrets without parents, weapons without ammo, option ids above 32767).
-subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'audit_mp_equipment.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.0-dev.3 (12the12 bug report, Osama 14 Nov 14:58): a loadout swap row costs base + option, or the Arsenal overview and editor disagree.
 # 0.9.0-dev.4 (Osama 14 Nov 16:28): every battle model at most 60,000 triangles.
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_battle_tris.py'),str(complete)],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_battle_tris.py'),view],check=True)
 # 0.9.0-dev.7: a mount may not carry more weapons than its body slot holds in vanilla (QN-506 stall, J-20 freeze).
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_slot_weapons.py'),str(complete),str(a.vanilla) if getattr(a,'vanilla',None) else '/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_slot_weapons.py'),str(gameplay),str(a.vanilla) if getattr(a,'vanilla',None) else '/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.0-dev.5 (Osama's PC 14 Nov 18:56 PST: dev.4 refused its constants, "Field type mismatch OriginalName"): the runtime's field-type
 # rule runs at build time, so a package the game would refuse can't be built.
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_field_types.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True,env={**os.environ,'PYTHONPATH':str(ROOT)+os.pathsep+os.environ.get('PYTHONPATH','')})
-subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_mount_weapons.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_field_types.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True,env={**os.environ,'PYTHONPATH':str(ROOT)+os.pathsep+os.environ.get('PYTHONPATH','')})
+subprocess.run([sys.executable,str(Path(__file__).parent/'audit_swap_prices.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_mount_weapons.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.2-dev.1 (Osama 19 Nov 2026, QQ bug FA-003): every infantry squad has 5 HP per soldier, like vanilla.
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_squad_hp.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_squad_hp.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # 0.9.2-dev.2 (Osama 19 Nov 2026): China airborne/marine/engineer/SF cards keep at least their vanilla counterparts' armour.
-subprocess.run([sys.executable,str(Path(__file__).parent/'check_infantry_armor.py'),str(complete),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'check_infantry_armor.py'),str(gameplay),'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
 # Lateralus 16 Nov 2026: the dev.13 SPAAG/SAM data never reached a package; fail if queued changes are missing (lateralus/queued_checks.py).
-subprocess.run([sys.executable,str(Path(__file__).parent/'lateralus/queued_checks.py'),str(complete),V,'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+subprocess.run([sys.executable,str(Path(__file__).parent/'lateralus/queued_checks.py'),view,V,'/home/sam/tars/work/ba-dev/replicas/codex/work/lateralus-infantry-20261110/vanilla'],check=True)
+# The temporary complete base of a model build made from gameplay + assets (above) is this build's own scratch.
+if (_m:=out/f'.base-{a.prev}-complete.bamod').exists():_m.unlink()

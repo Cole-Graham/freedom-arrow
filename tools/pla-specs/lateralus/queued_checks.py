@@ -15,7 +15,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]));from fa_version impo
 m=key(V)
 def _ge(minor,dev):return m>=key(f'0.{minor}.0-dev.{dev}')
 if not _ge(9,25):print('queued_checks: not required before 0.9.0-dev.25');sys.exit(0)
-z=zipfile.ZipFile(pkg);bad=[]
+import pkgview;z=pkgview.open_package(pkg);bad=[]
 def merged(tab,fn):
     t={r['Id']:dict(r) for r in json.loads((van/tab).read_text())}
     for k,v in json.loads(z.read('UserData/FreedomArrow/constants/'+fn)).items():

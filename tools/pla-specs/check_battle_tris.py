@@ -13,7 +13,7 @@ def tris(d):
     assert o==len(d);return n
 # 0.9.0-dev.4 (Osama 14 Nov 18:25 PST): meshes still being redone, named in BA_BATTLE_TRIS_PENDING, are reported but allowed.
 import os;PENDING=set(filter(None,os.environ.get('BA_BATTLE_TRIS_PENDING','').split(',')))
-z=zipfile.ZipFile(sys.argv[1]);m=json.loads(z.read('UserData/FAModels/models.json'));N=set(z.namelist());seen={};bad=[]
+import pkgview;z=pkgview.open_package(sys.argv[1]);m=json.loads(z.read('UserData/FAModels/models.json'));N=set(z.namelist());seen={};bad=[]
 for k,v in m.items():
     f=v.get('battle') or v.get('file')
     if not f:continue
