@@ -861,6 +861,13 @@ import akd10_names_1124;akd10_names_1124.apply(t,g,ok,rec)
 # ---------- Assaultmen SRAW A (new anti-tank SRAW, 140mm HEAT top attack) / B (SRAW MPV) card; Assaultmen SMAW loses its loadout slot
 # (Lateralus 24 Nov 2026 12:5x/13:2x, thread 1572962048705429598). See sraw_split_1124.py.
 import sraw_split_1124;sraw_split_1124.apply(t,g,ok,rec)
+# ---------- SHORAD radar split (Lateralus 24 Nov 2026 15:5x-16:4x PST, thread 1568104480459722894): SA SHORAD rows 58/60/62 Low range + optics
+# 1.25 -> 1.5; gun/IR units on new IR SHORAD rows (range 1.25, optics 1.5); IR rounds of SA units get compensated copies; option B burn times;
+# helicopters stay x1.25; radar icon labels. Adds ability/ammo rows: after the SRAW A unit so its ids stay. See lateralus/shorad_radar_1124.py.
+import shorad_radar_1124;_sr=shorad_radar_1124.apply(t,g,ok,rec,_HR,_heli)
+_heli['radar']=_HR.contract(t)['radar'];_heli['ammo'].update({str(k):v for k,v in _sr['heli_ammo'].items()})
+ok(sum(1 for r in _heli['radar'] if r.get('label'))>=3,'radar groups with an icon label')
+print('SHORAD RADAR',{k:_sr[k] for k in ('ir_rows','china_rows','ir_round_copies','heli_ammo')},[(r['abilities'],r.get('label'),r['lowAltRange'],r['lowAltOptics'],r['helicopterRangeMultiplier'],r['helicopterOpticsMultiplier']) for r in _heli['radar']])
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'

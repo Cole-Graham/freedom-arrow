@@ -24,6 +24,8 @@ static class HeliRange
     const int MaxLog=12;
     internal static readonly Dictionary<int,float> ammoRange=new();
     internal static readonly Dictionary<(float,float,float,float,float,bool),(float range,float optics)> radar=new();
+    // Radar icon label per radar group (SA SHORAD / IR SHORAD / LR SAM; Lateralus 24 Nov 2026), from helicopter-range.json "label"/"labelZh".
+    internal static readonly Dictionary<(float,float,float,float,float,bool),(string en,string zh)> radarLabel=new();
     // Helicopter optics per sensor, matched by the observer's ground/low/high optics (FogOfWarComponent.DistanceGround/LowAlt/HighAlt).
     internal static readonly Dictionary<(float,float,float),float> sensorOptics=new();
     internal static readonly HashSet<int> heliUnits=new();
@@ -42,8 +44,13 @@ static class HeliRange
         var j=JsonNode.Parse(File.ReadAllText(path));
         foreach(var (k,v) in j["ammo"].AsObject())ammoRange[int.Parse(k)]=v.GetValue<float>();
         foreach(var r in j["radar"].AsArray())
-            radar[(r["lowAltOptics"].GetValue<float>(),r["highAltOptics"].GetValue<float>(),r["lowAltRange"].GetValue<float>(),r["highAltRange"].GetValue<float>(),
-                   r["switchCooldown"].GetValue<float>(),r["static"].GetValue<bool>())]=(r["helicopterRangeMultiplier"].GetValue<float>(),r["helicopterOpticsMultiplier"].GetValue<float>());
+        {
+            var key=(r["lowAltOptics"].GetValue<float>(),r["highAltOptics"].GetValue<float>(),r["lowAltRange"].GetValue<float>(),r["highAltRange"].GetValue<float>(),
+                     r["switchCooldown"].GetValue<float>(),r["static"].GetValue<bool>());
+            radar[key]=(r["helicopterRangeMultiplier"].GetValue<float>(),r["helicopterOpticsMultiplier"].GetValue<float>());
+            var label=r["label"]?.GetValue<string>();
+            if(!string.IsNullOrEmpty(label))radarLabel[key]=(label,r["labelZh"]?.GetValue<string>()??label);
+        }
         foreach(var r in j["sensors"]?.AsArray()??new JsonArray())
             sensorOptics[(r["ground"].GetValue<float>(),r["low"].GetValue<float>(),r["high"].GetValue<float>())]=r["helicopterOptics"].GetValue<float>();
         foreach(var u in j["heliUnits"]?.AsArray()??new JsonArray())heliUnits.Add(u.GetValue<int>());

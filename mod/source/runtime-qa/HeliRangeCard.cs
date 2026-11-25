@@ -123,8 +123,47 @@ static class HeliRangeCard
         return tipChinese;
     }
     static string X(float v)=>"x "+v.ToString("0.0#",CultureInfo.InvariantCulture);
+    // Radar icon label (Lateralus 24 Nov 2026 16:2x, thread 1568104480459722894: "come up separate radar ability icons that have labels under
+    // them, e.g. 'IR SHORAD' 'SA SHORAD'"; 16:37 IR SHORAD also on gun-only units). Ability rows have no icon field: the card shows the one
+    // InfocardConfig.Radar sprite for every IsRadar unit (as Dazzler.cs swaps the APS icon for the LSDW laser). This adds a text line under the
+    // radar icon, picked by the radar group's values (helicopter-range.json "label"). Ability items are pooled: labels are hidden first.
+    static readonly List<GameObject> radarLabels=new();static bool labelBroken,labelLogged;
+    static void RadarLabel(UnitInfoCard card,Units u)
+    {
+        if(labelBroken)return;
+        try
+        {
+            foreach(var l in radarLabels)if(l!=null)l.SetActive(false);
+            var a=u?.ActiveAbilities;if(a==null||!a.IsRadar)return;
+            if(!HeliRange.radarLabel.TryGetValue((a.RadarLowAltOpticsModifier,a.RadarHighAltOpticsModifier,a.RadarLowAltWeaponRangeModifier,
+                a.RadarHighAltWeaponRangeModifier,a.RadarSwitchCooldown,a.IsRadarStatic),out var lab))return;
+            var sprite=card._infocardConfig?.Radar;var items=card._activeAbilitiesItems;if(sprite==null||items==null)return;
+            for(int i=0;i<items.Count;i++)
+            {
+                var it=items[i];var img=it?.Icon;if(img==null||img.sprite==null||img.sprite.Pointer!=sprite.Pointer)continue;
+                var tr=img.transform.Find("FA_RadarLabel");GameObject go;Il2CppTMPro.TextMeshProUGUI t;
+                if(tr==null)
+                {
+                    go=new GameObject("FA_RadarLabel");go.transform.SetParent(img.transform,false);
+                    var rt=go.AddComponent<RectTransform>();
+                    rt.anchorMin=new Vector2(0.5f,0f);rt.anchorMax=new Vector2(0.5f,0f);rt.pivot=new Vector2(0.5f,1f);rt.anchoredPosition=new Vector2(0f,-1f);rt.sizeDelta=new Vector2(140f,18f);
+                    t=go.AddComponent<Il2CppTMPro.TextMeshProUGUI>();
+                    var src=it.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true)??card.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true);
+                    if(src!=null){t.font=src.font;t.color=src.color;t.fontSize=Mathf.Clamp(src.fontSize*0.75f,10f,14f);}else t.fontSize=12f;
+                    t.alignment=Il2CppTMPro.TextAlignmentOptions.Top;t.enableWordWrapping=false;t.overflowMode=Il2CppTMPro.TextOverflowModes.Overflow;
+                    t.raycastTarget=false;t.fontStyle=Il2CppTMPro.FontStyles.Bold;
+                    radarLabels.Add(go);
+                }
+                else{go=tr.gameObject;t=go.GetComponent<Il2CppTMPro.TextMeshProUGUI>();}
+                t.text=Chinese()?lab.zh:lab.en;go.SetActive(true);
+                if(!labelLogged){labelLogged=true;Log($"radar label {u.HUDName}: {t.text} (font {t.fontSize:0.#})");}
+            }
+        }
+        catch(Exception e){labelBroken=true;MelonLogger.Error("FREEDOM_ARROW_RADAR_LABEL_FAILED: radar icon without a label. "+e.Message);}
+    }
     public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {
+        if(__instance!=null)RadarLabel(__instance,__0);
         if(traitBroken||__instance==null||__0==null)return;
         var a=__0.ActiveAbilities;
         if(!RadarGroup(a,out var m))return;

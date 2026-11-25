@@ -197,6 +197,19 @@ Ways to make AA placement easier (not implemented, not tested):
 - China radar units (23 Nov 2026, codex/development 7e436b0f): SHORAD row 60 (HQ-7, HQ-7B, HQ-17, HQ-17A, HHQ-10, FK-2000, PGL-625, PGZ-04/04A/88/95); own rows in the SHORAD group (PGZ-09 and AFT-10 2009175, JRVG-1 2009943, LY-1 2019443); long-range row 59 (list above); ships row 70 `Radar LHA6`.
 - Code: `HeliRangeCard.cs` `RadarGroup()` and the `SetUnitAbilities` postfix (the tooltip is built with `SetTraitItem` inlined).
 
+### 5d. SA SHORAD, IR SHORAD and the radar icon label (Lateralus, 24 November 2026)
+
+**Short answer:** radar-guided SAMs (a missile with `Seeker` 50 or 100 that can target planes) use rows 58/60/62 with low-altitude range and optics ×1.5. Units with only guns and/or heat-seeking missiles use their own "IR SHORAD" rows (range ×1.25, optics ×1.5). Helicopters stay ×1.25 on both. The card shows a label under the radar icon.
+
+---
+
+**Details** (`tools/pla-specs/lateralus/shorad_radar_1124.py`):
+- **Why separate rows:** the game applies a unit's radar bonus to every weapon on the unit. `GetAmmoShootingDistance` (0x7D6330) and the search radius (`GetAmmoMaxShootingDistance`, 0x7D60C0) read only the round's five range fields, never its seeker. So a heat-seeking missile on a radar unit gets the bonus too. Read from the 1.2.2.1 code.
+- **IR rounds on SA units** (AIM-9 on SLAMRAAM/NASAMS, Stinger on the Stryker M-SHORAD) are copies with `LowAltRange` × 1.25/1.5 and an absolute SEAD override scaled the same, so with the ×1.5 radar they reach what they reached before. Their helicopter range keeps the original value (`heli_range.AMMO`).
+- **Burn time:** the radar-guided rounds of SA units burn longer so the catch range against a jet flying away at 225 grows by the same 20% as the range (calculated with the motor rules in `missile-flight.md`; not measured in a game).
+- **Label:** `helicopter-range.json` radar groups carry `label` / `labelZh` (`heli_range.LABEL`). `HeliRangeCard.RadarLabel` adds a text line `FA_RadarLabel` under the card's radar icon (`InfocardConfig.Radar` sprite), picked by the radar values in `ActiveAbilities`. Ability rows have no icon field; the LSDW laser icon is done the same way (`Dazzler.cs`). The battle order button has no label yet.
+- **Not verified in a game:** the label's position on the card, and all ranges above.
+
 ### 5c. Which optics value is the big number on the unit card
 
 **Short answer.** The vanilla card shows **ground** optics for every unit except planes, which show **high-altitude** optics. Helicopter cards are no exception. Until 0.9.6 the FA card code showed **low-altitude** optics on helicopter cards, so a helicopter showed a higher number than the recon copy of the same helicopter with the same sensor. For example, the AH-64D Longbow showed 3200 m and the AH-64D Longbow Recon 2400 m (Lateralus, 23 Nov 2026). Fixed for the next build: the FA card now follows the vanilla rule. Helicopters show ground, planes show high altitude, and drones show whatever their category gets.
@@ -228,3 +241,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-23 16:4x PST (America/Los_Angeles) — Section 5b: tooltip shows range and optics per altitude; optics = range build check withdrawn.
 - 2026-11-23 18:4x PST (America/Los_Angeles) — Added section 5c: card optics headline (vanilla ground, planes high; FA helicopter branch removed), from Lateralus's AH-64D / Recon screenshots.
 - 2026-11-23 18:5x PST (America/Los_Angeles) — Section 5c: planes show high-altitude optics (Lateralus); drone categories and values.
+- 2026-11-24 17:0x PST (America/Los_Angeles) — Added section 5d: SA / IR SHORAD radar rows, IR round copies, burn times and the card radar label (Lateralus).

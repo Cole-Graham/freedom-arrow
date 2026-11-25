@@ -28,6 +28,10 @@ EDIT={59:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25},12
 # Lateralus 23 Nov 2026 16:3x PST: radar optics and range multipliers may differ; the card's radar tooltip shows both at every altitude
 # (runtime-qa/HeliRangeCard.cs), so none is hidden. This replaces the optics = range build check of 16:2x (Lateralus: "In that case just make the
 # tool tip show both so the differences aren't hidden anymore").
+# Radar icon label on the card (Lateralus 24 Nov 2026, thread 1568104480459722894: "separate radar ability icons that have labels under them, e.g.
+# 'IR SHORAD' 'SA SHORAD'"). Filled by shorad_radar_1124.py: ability row -> label; rows with the same values must have the same label.
+LABEL={}
+LABEL_ZH={'SA SHORAD':'雷达制导近防','IR SHORAD':'红外/火炮近防','LR SAM':'远程防空'}
 def radar_rows(AB):return {i:a for i,a in AB.items() if a and a.get('IsRadar')}
 def key(a):return (float(a['RadarLowAltOpticsModifier']),float(a['RadarHighAltOpticsModifier']),float(a['RadarLowAltWeaponRangeModifier']),
                    float(a['RadarHighAltWeaponRangeModifier']),float(a['RadarSwitchCooldown']),bool(a['IsRadarStatic']))
@@ -60,11 +64,15 @@ def contract(t):
         k=key(a);v=EDIT.get(i,{})
         m=(float(v.get('helicopterRangeMultiplier',a['RadarLowAltWeaponRangeModifier'])),float(v.get('helicopterOpticsMultiplier',a['RadarLowAltOpticsModifier'])))
         assert m[0]>0 and m[1]>0,(i,m)
-        gr=groups.setdefault(k,{'abilities':[],'names':[],'multipliers':m})
+        gr=groups.setdefault(k,{'abilities':[],'names':[],'multipliers':m,'label':LABEL.get(i)})
         assert gr['multipliers']==m,(i,'radar rows with the same values need the same helicopter multipliers',gr['abilities'])
+        if LABEL.get(i):
+            assert gr['label'] in (None,LABEL[i]),(i,'radar rows with the same values need the same icon label',gr['abilities'],gr['label'])
+            gr['label']=LABEL[i]
         gr['abilities'].append(i);gr['names'].append(a.get('Name'))
     radar=[{'abilities':gr['abilities'],'names':gr['names'],'lowAltOptics':k[0],'highAltOptics':k[1],'lowAltRange':k[2],'highAltRange':k[3],
-            'switchCooldown':k[4],'static':k[5],'helicopterRangeMultiplier':gr['multipliers'][0],'helicopterOpticsMultiplier':gr['multipliers'][1]}
+            'switchCooldown':k[4],'static':k[5],'helicopterRangeMultiplier':gr['multipliers'][0],'helicopterOpticsMultiplier':gr['multipliers'][1],
+            **({'label':gr['label'],'labelZh':LABEL_ZH.get(gr['label'],gr['label'])} if gr['label'] else {})}
            for k,gr in groups.items()]
     A,WA,S=t['AmmunitionsJson'],t['WeaponAmmunitionsJson'],t['SensorsJson']
     used={r['AmmunitionId'] for r in WA.values() if r}
