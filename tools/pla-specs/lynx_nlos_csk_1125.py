@@ -1,6 +1,8 @@
 """Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST, thread 1567745029781454889).
 - "we need to remove CSK-131 from Airborne": the CSK-131 transport (1266, 'PLA CSK-181 4x4') loses its 10 transport links to the PLAAF Air Force
   (Airborne, spec 17) squads; every one of those squads keeps Z-20KA, VN-3 and the Lynx Troop Carrier. The Motorized (21) links stay.
+  01:5x (Osama again "CSK-131 removed from airborne", after being asked about the recon card): the CSK-131 Recon card (1265) leaves spec 17 too;
+  it stays in the other four China specs.
 - "CS/VP17 we just call it Lynx NLOS. It's the same as the CTL-181 NLOS but 10 rounds. only 60 pts, no optics but yes laser": the Swarm Launcher
   (1441) is shown as 'Lynx NLOS'; its CH-901 mount and ammo row get the CTL-181's launcher (2018322) and NLOS missile (2018321), 10 rounds;
   150 -> 60 pts; optics Very Good -> Bad (sensor 4, the lowest ground optics); its laser designator ability stays. 01:5x "NLOS goes to VEH
@@ -24,6 +26,11 @@ def apply(t, g, ok, rec):
     squads = sorted(SA[r['SpecializationAvailabilityId']]['UnitId'] for r in air)
     ok(all(any(r['UnitId'] == TC and SA[r['SpecializationAvailabilityId']]['UnitId'] == q for r in TA.values() if r) for q in squads)
        and not any(SA[r['SpecializationAvailabilityId']]['SpecializationId'] == 17 for r in rows('TransportAvailabilitiesJson', UnitId=CSK)), 'Airborne squads keep the Troop Carrier, no CSK-131')
+    rec_sa = [r for r in rows('SpecializationAvailabilitiesJson', UnitId=1265) if r['SpecializationId'] == 17]
+    ok(U[1265]['HUDName'] == 'CSK-131 Recon' and len(rec_sa) == 1 and len(rows('SpecializationAvailabilitiesJson', UnitId=1265)) == 5, ('CSK-131 Recon in spec 17', rec_sa))
+    ok(not any(r and r['SpecializationAvailabilityId'] == rec_sa[0]['Id'] for r in TA.values()), 'nothing hangs on the Recon card availability')
+    g.remove('SpecializationAvailabilitiesJson', rec_sa[0]['Id'])
+    ok(sorted(r['SpecializationId'] for r in rows('SpecializationAvailabilitiesJson', UnitId=1265)) == [18, 19, 20, 21], 'CSK-131 Recon: specs 18-21 only')
     # Lynx NLOS
     (ctw,) = [x for m in rows('TurretUnitsJson', UnitId=CTL) for x in rows('TurretWeaponsJson', TurretId=m['TurretId'])]
     (cwa,) = rows('WeaponAmmunitionsJson', UnitId=CTL)
@@ -43,5 +50,5 @@ def apply(t, g, ok, rec):
     d = json.load(open(DAZ, encoding='utf-8'))
     ok(LASER in d['units'] and 1275 in d['units'] and U[1275]['HUDName'] == 'LY-1' and '50 kW laser' in d['laserWeaponNames']
        and any(W[r['WeaponId']]['HUDName'] == '50 kW laser' for r in rows('WeaponAmmunitionsJson', UnitId=LASER)), ('dazzler.json: Lynx Laser + LY-1', d['units'], d['laserWeaponNames']))
-    rec['lynx_nlos_csk_1125'] = {'csk_airborne_links_removed': [r['Id'] for r in air], 'squads': squads, 'nlos': {'unit': SWARM, 'weapon': ctw['WeaponId'], 'ammo': cwa['AmmunitionId'], 'rounds': 10, 'cost': 60, 'sensor': 4, 'category': 2}}
+    rec['lynx_nlos_csk_1125'] = {'csk_airborne_links_removed': [r['Id'] for r in air], 'csk_recon_spec17_removed': rec_sa[0]['Id'], 'squads': squads, 'nlos': {'unit': SWARM, 'weapon': ctw['WeaponId'], 'ammo': cwa['AmmunitionId'], 'rounds': 10, 'cost': 60, 'sensor': 4, 'category': 2}}
     print('LYNX NLOS / CSK', rec['lynx_nlos_csk_1125'])

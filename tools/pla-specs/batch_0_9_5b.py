@@ -930,6 +930,8 @@ import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
 import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
 # ---------- ZSD-89A out of PLAN Naval/Special Forces (Osama 25 Nov 2026 01:5x PST). See zsd89a_plan_removed_1125.py.
 import zsd89a_plan_removed_1125;zsd89a_plan_removed_1125.apply(t,g,ok,rec)
+# ---------- VN-3 30 -> 35 pts (Osama 25 Nov 2026 01:5x PST). See vn3_cost_1125.py.
+import vn3_cost_1125;vn3_cost_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
 import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
