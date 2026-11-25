@@ -1,6 +1,6 @@
 # FAModels model loading and detail levels
 
-**Summary.** FAModels replaces a unit's model when the game spawns the unit's view, not when the camera comes close. Vehicles get static `MeshRenderer` parts on the stand-in's bones and a new `LODGroup` with the stand-in's switch heights. China infantry get a new mesh on each native `SkinnedMeshRenderer`. From 0.3.45, a vehicle model that is not built yet is read on a background thread. Its lightest detail level is built first and the other levels follow in later frames. Swaps stop for the frame after 6 ms.
+**Summary.** FAModels replaces a unit's model when the game spawns the unit's view, not when the camera comes close. Vehicles get static `MeshRenderer` parts on the stand-in's bones and a new `LODGroup` with the stand-in's switch heights. China infantry get a new mesh on each native `SkinnedMeshRenderer`. From 0.3.45, a vehicle model that is not built yet is read on a background thread and its lightest detail level is built first. From 0.3.47, a heavier level is built only when the camera is close enough to need it and is removed again 30 s after it stops being needed. Swaps stop for the frame after 6 ms.
 
 Basis: read from `mod/experimental-model-loader` on `codex/development` (FAModels 0.3.44) and the 0.3.45 and 0.3.46 changes. The 0.3.45 and 0.3.46 behaviour is theoretical, not yet proven in a game.
 
@@ -54,6 +54,20 @@ Osama, 24 Nov 2026: "load the lowest load and let the engine logic handle the re
 - **Log line:** `FAMODELS preload deck of player N: A lightest battle level(s), bodies and infantry weapons queued; B heavier level(s) to build during deployment`, then `FAMODELS preload: N heavier detail level(s) built in X s after the burst`.
 - **Order checked in a log** (Osama's PC, 0.9.6, 24 Nov 12:49): the scene-load free (`freed 3 unused model(s) ... (scene Void)`) runs before the decks are set, and the preload burst follows 11 s later. The preload is not freed straight after it is built in that log.
 
+## 0.3.47: heavier levels only when needed, removed when not
+
+End asked (25 Nov 2026) to load a level only when the engine asks for it, and to unload it the same way.
+
+- **Unity has no hook for this.** A `LODGroup` only picks which loaded renderers to draw. The pick happens inside the native engine (`UnityPlayer`), with no callback and no public current-level getter. Harmony cannot patch it.
+- **So FAModels works the level out itself,** every 0.25 s per unit, with Unity's formula: screen share = `LODGroup.size` × scale × `QualitySettings.lodBias` / (2 × distance × tan(FOV / 2)). It uses the camera `Camera.main` (or the highest-depth camera) and multiplies the share by 1.25, so a level is ready a little before the switch.
+- **Build:** every unit starts on its lightest level. A heavier level is built only when the camera needs it, within the 6 ms frame limit. `QualitySettings.maximumLODLevel` is respected.
+- **Unload:** a heavier level that the unit has not needed for 30 s has its parts removed. A level file that no unit has built for 30 s has its meshes destroyed (`FreeUnusedLevels`); the file is read again in the background when a unit needs it. Materials and textures stay, because all levels of a model share them (measured on the 0.9.6 model stage: 270 battle entries with levels, 0 textures used only by LOD1/LOD2).
+- **Deployment:** the heavier levels are only read in the background during deployment; they are not built on the GPU. `UserData/FAModels/lod-preload-build.txt` brings back the 0.3.46 behaviour (build them all during deployment, never free them in battle).
+- **Texture leak fixed:** the background read of a heavier level read its textures again although they were already on the GPU, and nothing freed those bytes. `texMade` now skips them.
+- The memory line every 60 s counts levels built on demand, levels removed, and files freed.
+
+Not proven in a game: the formula's match with HDRP's own LOD bias (HDRP frame settings can scale or replace `QualitySettings.lodBias`), the VRAM saved, and any hitch when a heavier level is built while zooming in.
+
 ## Limits
 
 - Building a level still runs on the main thread: Unity allows Mesh and Texture creation only there. One large level 0 can take more than 6 ms by itself.
@@ -66,3 +80,4 @@ Osama, 24 Nov 2026: "load the lowest load and let the engine logic handle the re
 - 2026-11-24 13:50 PST (America/Los_Angeles) — New page: swap timing, detail levels, and the 0.3.45 lightest-level-first loading (End's rejoin freezes).
 - 2026-11-24 15:35 PST (America/Los_Angeles) — Added 0.3.46: the match-start preload builds only the lightest level; heavier levels stream after the spawn (Osama).
 - 2026-11-24 15:45 PST (America/Los_Angeles) — 0.3.46: heavier levels are built during the deployment pause within the 6 ms budget (Osama).
+- 2026-11-25 09:55 PST (America/Los_Angeles) — Added 0.3.47: on-demand heavier levels, unloading, read-only deployment preload switch and the texture re-read leak fix.

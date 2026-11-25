@@ -48,7 +48,7 @@ public partial class Mod
                 if (sub.mat == null || keptMats.Contains(sub.mat.Pointer) || !sub.mat.name.StartsWith("FAM_") || sub.mat.name.StartsWith("FAM_COCKPIT_")) continue;
                 foreach (var prop in new[] { "_BaseColorMap", "_NormalMap", "_MaskMap" })
                     if (sub.mat.HasProperty(prop) && sub.mat.GetTexture(prop) is Texture t && t != null && t.name.StartsWith("FAM_"))
-                    { bytes += texBytes.TryGetValue(t.name, out var b) ? b : 0; texBytes.Remove(t.name); UnityEngine.Object.Destroy(t); }
+                    { bytes += texBytes.TryGetValue(t.name, out var b) ? b : 0; texBytes.Remove(t.name); texMade.TryRemove(Path.Combine(dir, Path.ChangeExtension(t.name.Substring(4), ".fat")), out _); UnityEngine.Object.Destroy(t); }
                 foreach (var k in mats.Where(kv => kv.Value == sub.mat).Select(kv => kv.Key).ToList()) mats.Remove(k);
                 foreach (var l in fallbackMats.Values) l.Remove(sub.mat);
                 UnityEngine.Object.Destroy(sub.mat);
@@ -68,6 +68,6 @@ public partial class Mod
         long tex = texBytes.Values.Sum(), mesh = 0; int verts = 0;
         foreach (var parts in famCache.Values) foreach (var part in parts) foreach (var s in part.subs) if (s.mesh != null) { verts += s.mesh.vertexCount; mesh += MeshBytes(s.mesh); }
         var proc = System.Diagnostics.Process.GetCurrentProcess();
-        MelonLogger.Msg($"FAMODELS memory: process {proc.WorkingSet64 >> 20} MB working set, {proc.PrivateMemorySize64 >> 20} MB private; cache {famCache.Count} model(s), {verts} vertices, ~{mesh >> 20} MB meshes, ~{tex >> 20} MB textures; {freedModels} freed so far; {(inMenu ? "menu" : "battle")}");
+        MelonLogger.Msg($"FAMODELS memory: process {proc.WorkingSet64 >> 20} MB working set, {proc.PrivateMemorySize64 >> 20} MB private; cache {famCache.Count} model(s), {verts} vertices, ~{mesh >> 20} MB meshes, ~{tex >> 20} MB textures; {freedModels} freed so far; detail levels on demand: {lodBuilt} built, {lodUnloaded} removed, {lodFilesFreed} files freed (~{lodBytesFreed >> 20} MB); {(inMenu ? "menu" : "battle")}");
     }
 }

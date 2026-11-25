@@ -15,6 +15,9 @@ public partial class Mod
     sealed class FatData { public int w, h, fmt, mips; public bool lin; public byte[] data = Array.Empty<byte>(); }
     static readonly ConcurrentDictionary<string, Task<List<FamPartData>>> famJobs = new();
     static readonly ConcurrentDictionary<string, FatData> fatReady = new();
+    // 0.3.47: .fat files already on the GPU (Tex). A heavier level shares the lightest level's textures; its background read re-read them
+    // into fatReady, where nothing took them again, so each such read held a model's texture bytes in RAM for the rest of the session.
+    static readonly ConcurrentDictionary<string, byte> texMade = new();
 
     // Start reading and preparing a model (and its textures) on a background thread. Safe to call more than once.
     static void Prefetch(string file)
@@ -122,7 +125,7 @@ public partial class Mod
         foreach (var name in new[] { stem + ".fat", stem + "_n.fat", stem + "_mask.fat" })
         {
             var path = Path.Combine(dir, name);
-            if (fatReady.ContainsKey(path) || !File.Exists(path)) continue;
+            if (fatReady.ContainsKey(path) || texMade.ContainsKey(path) || !File.Exists(path)) continue;
             try
             {
                 using var r = new BinaryReader(File.OpenRead(path));
