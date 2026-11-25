@@ -955,6 +955,8 @@ import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 # ---------- QQ sheet fixes: QBU-203 name, ZBD-86 Recon card out, CSK-181 transport = CTL-181 with a QJZ-89 RWS (Osama 25 Nov 2026 03:4x PST,
 # bugs thread 1573561286803980289). See qq_fixes_1125.py.
 import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
+# ---------- HJ-10 NLOS range = HJ-10 FNF (1600 m) (Osama 25 Nov 2026 10:1x PST, bugs thread). See hj10_nlos_range_1125.py.
+import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
 # 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
 import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
