@@ -1,33 +1,10 @@
 {
   "trait": "NLOS",
-  "version": "0.9.0-dev.29",
-  "note": "fire_units carrying fire_weapons may shoot enemies their side has spotted without own line of sight; missiles in ammunition keep their seeker lock without line of sight (runtime NlosTrait.cs). 0.9.5-dev.5: the Blood Wolves' CH-901 round 2018448 joins the ammunition list, and a round with no target locks on the enemy unit at its laser spot.",
-  "ammunition": [
-    2009623,
-    2009651,
-    2018321,
-    2018448,
-    2019891
-  ],
-  "fire_weapons": [
-    2009619,
-    2009647,
-    2018322
-  ],
-  "fire_units": [
-    936,
-    937,
-    1054
-  ],
-  "weapons": [
-    2009619,
-    2009647,
-    2018322
-  ],
-  "units": {
-    "936": "HJ-10",
-    "937": "QN-506",
-    "1054": "CTL-181 NLOS"
-  },
-  "type100_ch901": 2019891
+  "version": "0.9.7",
+  "note": "0.9.7 (Osama 24 Nov 2026 \"it should just act like a cruise missile\"): no NLOS rounds or units. The HJ-10, QN-502, CTL-181 and CH-901 rounds use vanilla cruise guidance (tools/pla-specs/nlos_cruise_1124.py); with an empty list NlosTrait.cs installs no hooks.",
+  "ammunition": [],
+  "fire_weapons": [],
+  "fire_units": [],
+  "weapons": [],
+  "units": {}
 }

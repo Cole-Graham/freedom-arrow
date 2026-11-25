@@ -1,5 +1,11 @@
 # NLOS missiles (HJ-10, CTL-181, QN-502, CH-901)
 
+> **Changed for 0.9.7 (Osama, 24 Nov 2026): the NLOS missiles now act like vanilla cruise missiles, and the NLOS code is off.**
+> - **Why:** in 0.9.6 every NLOS launch in Osama's log (20 launches, 17:08-17:13) was aimed at a ground spot. The code then locked each missile on the enemy nearest that spot (1-58 away) without checking that anyone saw it, and held the lock. To players, the launcher seemed to find and track targets nobody could see.
+> - **Now:** the rounds use the vanilla Iskander-K cruise guidance (round 219): `Seeker` 0, `SeekerAngle` 0, `MaxSeekerDistance` 0, `CanReaquire` false, `LaserGuided` false, `TargetType` 1 (ground position only). They fire only on Fire Position orders, fly to the spot and dive. There is no automatic fire and no tracking. Damage, penetration, range and flight values did not change. The script is `tools/pla-specs/nlos_cruise_1124.py`.
+> - `nlos.json` lists no rounds, so `NlosTrait.cs` installs no hooks. The rest of this page describes 0.9.5-0.9.6 and is kept as history.
+> - Not seen in game yet.
+
 **Short answer.** NLOS needs two things. The data makes the missile fly a cruise path from a vertical launcher. The runtime hook `mod/source/runtime-qa/NlosTrait.cs` does the rest, driven by `UserData/FreedomArrow/nlos.json`. It lets the launcher fire at enemies that a friendly unit has spotted, with no line of sight of its own. It also keeps the missile locked on the target after the launcher loses sight of it. Data alone cannot do this: the game drops the lock when the missile has no line of sight.
 
 - Read from: Freedom Arrow 0.9.5 (`gameplay/0.9.5`, `2f71d133`), Broken Arrow 1.2.2.1.
@@ -89,3 +95,4 @@ The CTL-181 (unit 1054, launcher 2018322, round 2018321) and QN-502 (unit 937, l
 ## Document change log
 
 - 2026-11-23 04:3x PST (America/Los_Angeles): first version, from 0.9.5 code and data and the 0.9.4-0.9.5 NLOS bug history.
+- 2026-11-24 17:3x PST (America/Los_Angeles): 0.9.7 change at the top: NLOS rounds use vanilla cruise guidance and the NLOS code is off.

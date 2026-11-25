@@ -410,9 +410,8 @@ g.put('UnitAbilitiesJson',_hjab[0]['Id'],{'AbilityId':_nab})
 ok(AB[_nab]['IsRadar'] and AB[_nab]['IsSmoke'] and AB[_nab]['IsLaserDesignator'] and AB[_nab]['LaserMaxRange']==1500,'HJ-10 ability: radar + smoke + laser')
 ok(sorted(U[r['UnitId']]['HUDName'] for r in UAB.values() if r.get('AbilityId')==2009175 and U.get(r['UnitId']))==['AFT-10','PGZ-09'],'PGZ-09 and AFT-10 keep the shared row')
 _nlos=json.loads(z.read('UserData/FreedomArrow/nlos.json'))
-ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 in nlos.json')
+# (Superseded 24 Nov 2026 by nlos_cruise_1124.py: nlos.json lists no rounds; the two nlos.json checks here were removed.)
 # Osama 21 Nov 14:35: "lets just keep the hooks so we don't break anything": nlos.json stays as it is (HJ-10 keeps both the fire hook and the keep-lock).
-ok(_HJA in _nlos['ammunition'] and _HJ in _nlos['fire_units'],'HJ-10 keeps both NLOS hooks')
 rec['qn506_ch901_hj10_laser']={'qn502_weapon':_QW,'qn502_round':_QA,'clone_of':[_CHW,_CHA],'hj10_round':_HJA,'hj10_ability':[2009175,_nab],'nlos_keep_lock':_nlos['ammunition']}
 # ---------- 15. Tank front HEAT tiers (Osama 21 Nov 2026, thread 1567745029781454889: "top end tanks should die in 4 shots" (PF-98 and Kornet-M);
 # "There needs to be step between the mid-high and mid tanks. 950 ... SEPV2, SEP, and BVM"; "SEPV2 TUA same as others. ZTZ-100 top end, BMPT and M1150 keep them
@@ -860,6 +859,8 @@ import akd10_names_1124;akd10_names_1124.apply(t,g,ok,rec)
 # Assaultmen SRAW A creates new unit/weapon/round/option rows: keep it LAST so no row created above changes its id (saved decks keep units by id).
 # ---------- Assaultmen SRAW A (new anti-tank SRAW, 140mm HEAT top attack) / B (SRAW MPV) card; Assaultmen SMAW loses its loadout slot
 # (Lateralus 24 Nov 2026 12:5x/13:2x, thread 1572962048705429598). See sraw_split_1124.py.
+# ---------- NLOS missiles act like vanilla cruise missiles (Osama 24 Nov 2026 17:2x PST, bugs thread 1573561286803980289). See nlos_cruise_1124.py.
+import nlos_cruise_1124;nlos_cruise_1124.apply(t,g,ok,rec)
 import sraw_split_1124;sraw_split_1124.apply(t,g,ok,rec)
 # ---------- SHORAD radar split (Lateralus 24 Nov 2026 15:5x-16:4x PST, thread 1568104480459722894): SA SHORAD rows 58/60/62 Low range + optics
 # 1.25 -> 1.5; gun/IR units on new IR SHORAD rows (range 1.25, optics 1.5); IR rounds of SA units get compensated copies; option B burn times;
