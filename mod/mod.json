@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.3",
+  "version": "0.9.7-dev.4",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.3 (dev build, Lateralus 24 Nov 2026): 0.9.7-dev.2 with the Freedom Arrow data loading again (the Assaultmen SRAW A copy had a squad weapon without ammo, so dev.1 and dev.2 loaded no FA data) plus the FK-3000 and PCL-181 cards. Includes the NLOS change, the Lynx models and 1.5x Arsenal textures. Needs Freedom Arrow — Models and Music 0.2.97.",
+  "description": "Freedom Arrow 0.9.7-dev.4 (dev build, Lateralus 24 Nov 2026): 0.9.7-dev.3 plus SA / IR / LR radar tags and tooltip titles, FB-10 as an AMRAAM clone with PGL-625 and Lynx 66 SPAAG on SA SHORAD, and the model stage as of now (Lynx texture fixes, FK-3000 / PCL-181 models). Needs Freedom Arrow — Models and Music 0.2.98.",
   "repo": "Cole-Graham/freedom-arrow"
 }
