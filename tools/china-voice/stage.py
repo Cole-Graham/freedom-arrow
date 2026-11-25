@@ -44,6 +44,15 @@ for d in sorted(p for p in F.iterdir() if p.is_dir()) if F.exists() else []:
     for i,f in enumerate(sorted(d.glob('*.mp3')),k+1):put(f,out/f'{i:02d}.mp3')
 # DF-31A (Osama 16 Nov 22:2x: "a lot of unique voice lines for the DF-31 nuclear ... calm ... old chinese phrases"): its own full set, df31/listen.
 for f in sorted((V/'df31/listen').glob('*/*.mp3')):put(f,root/'Special/DF31'/f.parent.name/f.name)
+# Lynx airborne vehicles (Osama 25 Nov 2026 11:2x PST, thread 1572407822849810463: "approve, make them", "a couple more unit specific ones"):
+# lynx/listen (Kang, same recipe and word-for-word check). Sets Vehicle/LynxAirborne and Artillery/LynxAirborne, 5 selection lines per card.
+L=V/'lynx/listen'
+for f in sorted(L.glob('*/LynxAirborne/*/*.mp3')):
+    cat,_,t,name=f.relative_to(L).parts;put(f,root/cat/'LynxAirborne'/trig(t)/(name[:2]+'.mp3'))
+for f in sorted((L/'Units').glob('*/*/*.mp3')):
+    cat,unit,name=f.relative_to(L/'Units').parts;put(f,root/'Units'/unit/'Selection'/(re.search(r'_(\d\d)_',name)[1]+'.mp3'))
+LYNX={'Lynx Troop Carrier':'Vehicle','Lynx ATV':'Vehicle','Lynx Cargo':'Vehicle','Lynx IFV':'Vehicle','Lynx Recon':'Vehicle','Lynx NLOS':'Vehicle',
+      'Lynx SPAAG':'Vehicle','Lynx Laser':'Vehicle','Lynx 81mm Mortar':'Artillery','Lynx 120mm Mortar':'Artillery','Lynx Howitzer':'Artillery','Lynx MRL':'Artillery'}
 # unit -> set. Names in v2/unit_map.json are the card names (HUDName) when the map was written; Blood Wolves was renamed in dev.34.
 M=json.loads((V/'v2/unit_map.json').read_text());byname={}
 for i,u in U.items():
@@ -64,6 +73,9 @@ for cat,sty,hud,_ in M:
         if hud.startswith(('Blood Wolves','Godswords')):e={'set':'Infantry/English','unit':('Blood_Wolves' if hud.startswith('Blood') else 'Godswords')+'_EN'}
         elif f:e['unit']=f
         units[str(i)]=e
+for hud,cat in LYNX.items():
+    assert byname.get(hud),('Lynx card not found',hud)
+    for i in byname[hud]:units[str(i)]={'set':f'{cat}/LynxAirborne','unit':hud.replace(' ','_')}
 for i,u in U.items():
     if u.get('CountryId')==4 and (u.get('HUDName') or '').startswith('DF-31'):units[str(i)]={'set':'Special/DF31'}
 cfg={'note':'FreedomArrow ChinaVoice.cs (dev.34). set = ChinaVoice/<set>/<Trigger>; unit = extra ChinaVoice/Units/<unit>/<Trigger> lines. Unmapped China units use fallback by Type, or Type:CategoryType.',
