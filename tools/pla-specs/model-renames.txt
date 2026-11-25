@@ -1,0 +1,22 @@
+# Model file names that pointed at where a model came from (Osama 25 Nov 2026 00:2x PST, thread 1567745029781454889:
+# "lets not encrypt but lets rename at least", so people who download the mod cannot find the source from the files).
+# One line per model: OLD_STEM NEW_STEM. package.py renames every UserData/FAModels file of the model (OLD_STEM_... and OLD_STEM.*)
+# in each model build, and rewrites the names inside the .fam files, the .mat.json files and the other FAModels .json files.
+# The model stage keeps the old names; only the packages carry the new ones.
+# Seller model numbers (cgmodel.com/model/<number>):
+m_315224 m_lynx_cargo
+m_479577 m_lynx_recon
+m_486065 m_lynx_m81
+m_607410 m_lynx_vp16b
+m_608845 m_lynx_m120
+m_609427 m_lynx_swarm
+m_609673 m_lynx_rfg
+m_612547 m_lynx_drone
+m_626798 m_lynx_vp16bm
+m_796017 m_lynx_laser
+# Seller tags (c5 = the C5 shop; mw):
+m_k2c5 m_k2bp
+m_kf21c5 m_kf21b1
+m_qn506c5 m_qn506b
+m_type16c5 m_type16b
+m_xq58mw m_xq58v

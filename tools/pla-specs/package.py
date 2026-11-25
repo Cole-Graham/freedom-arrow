@@ -165,6 +165,54 @@ with zipfile.ZipFile(base) as z:
         for _e in _mj.values():
             for _x in [_e,*_e.get('variants',[])]:_use|={'UserData/FAModels/'+f for f in [_x.get('file'),_x.get('battle'),*_x.get('lods',[])] if f}
         assert not _use&set(drops),('models.json uses a dropped leftover model',sorted(_use&set(drops))[:5])
+    # Osama 25 Nov 2026 00:2x ("lets not encrypt but lets rename at least"): model files named after a seller's model number or tag get our own
+    # names in every model build (model-renames.txt). The renamed files go in, the old names leave, and the names inside the .fam files
+    # (int32 length + UTF-8) and the FAModels .json files are rewritten. The launcher downloads the renamed files once.
+    _rn=Path(__file__).with_name('model-renames.txt')
+    if (a.famodels or a.asset) and _rn.exists():
+        _map=dict(l.split() for l in _rn.read_text().splitlines() if l.strip() and not l.startswith('#'))
+        _pat=re.compile(r'(?<![A-Za-z0-9_])('+'|'.join(map(re.escape,sorted(_map,key=len,reverse=True)))+r')(?=[_.])')
+        _rb=re.compile(_pat.pattern.encode())
+        def _fam(b):
+            out,i=bytearray(),0
+            for m in _rb.finditer(b):
+                p0=m.start();n=int.from_bytes(b[p0-4:p0],'little');s0=b[p0:p0+n]
+                assert 0<n<=512 and s0.startswith(m.group(1)) and s0.isascii(),('a model name in a .fam that is not a length-prefixed string',s0[:40])
+                new=_pat.sub(lambda x:_map[x.group(1)],s0.decode()).encode()
+                out+=b[i:p0-4]+len(new).to_bytes(4,'little')+new;i=p0+n
+            return bytes(out+b[i:])
+        _tmp=Path(tempfile.mkdtemp(prefix='renamed-models-',dir=out));import atexit,shutil;atexit.register(shutil.rmtree,_tmp,True)
+        _names=set(z.namelist())|set(override);_done=0
+        for n in sorted(_names):
+            if not n.startswith('UserData/FAModels/') or n in drops:continue
+            src=override.get(n)
+            b=None
+            if _pat.match(n.rsplit('/',1)[1]):
+                d0,b0=n.rsplit('/',1);new=d0+'/'+_pat.sub(lambda x:_map[x.group(1)],b0,count=1)
+                assert new not in _names,('renamed model file already exists',new)
+                b=(src.read_bytes() if isinstance(src,Path) else src) if src is not None else z.read(n)
+                if n.endswith('.fam'):b=_fam(b)
+                elif n.endswith(('.json','.txt')):b=_pat.sub(lambda x:_map[x.group(1)],b.decode()).encode()
+                f=_tmp/new;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b);override[new]=f;_done+=1
+                if n in override:del override[n]
+                if n in z.namelist():drops.append(n)
+            elif n.endswith(('.json','.txt')):
+                t=(src.read_bytes() if isinstance(src,Path) else src) if src is not None else z.read(n)
+                if _rb.search(t):override[n]=_pat.sub(lambda x:_map[x.group(1)],t.decode()).encode()
+        drops=sorted(set(drops))
+        # Guard: no old name is left in a file name or inside a model or .json file, and every file models.json names is in the package.
+        _final={n for n in (set(z.namelist())|set(override))-set(drops) if n.startswith('UserData/FAModels/')}
+        assert not [n for n in _final if _pat.match(n.rsplit('/',1)[1])],'an old model name is still a file name'
+        for n in _final:
+            if n.endswith(('.fam','.json','.txt')):
+                v=override.get(n);v=(v.read_bytes() if isinstance(v,Path) else v) if v is not None else z.read(n)
+                assert not _rb.search(v),('an old model name is still inside',n)
+        _mj=override.get('UserData/FAModels/models.json') or z.read('UserData/FAModels/models.json')
+        _mj=json.loads(_mj.read_bytes() if isinstance(_mj,Path) else _mj)
+        for _e in _mj.values():
+            for _x in [_e,*_e.get('variants',[])]:
+                for f in [_x.get('file'),_x.get('battle'),*_x.get('lods',[])]:assert not f or 'UserData/FAModels/'+f in _final,('models.json names a missing file',f)
+        print(f'Renamed {_done} model files of {len(_map)} models (model-renames.txt).',flush=True)
     assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
