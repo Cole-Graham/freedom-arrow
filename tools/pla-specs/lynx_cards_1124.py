@@ -113,8 +113,9 @@ def apply(t, g, ok, rec):
                 elif kind == 'AGL':
                     g.add('TurretWeaponsJson', tw0[0], {'TurretId': mount, 'WeaponId': AGL, 'Order': 0})
                     for r in rows('WeaponAmmunitionsJson', UnitId=AGL_UNIT, WeaponId=AGL): g.add('WeaponAmmunitionsJson', r, {'UnitId': uid})
+                # OptionPicture must be text (check_field_types.py: the game refuses a None). Picture names from vanilla options (0.9.7-dev.1 build fix).
                 g.add('OptionsJson', vopt, {'ModificationId': mod, 'Name': f'{name} {ui}', 'UIName': ui, 'Order': o, 'Cost': extra, 'IsDefault': o == 0,
-                                            'ConcatenateWithUnitName': None if o == 0 else f' {kind}', 'OptionPicture': None, 'ThumbnailOverride': None,
+                                            'ConcatenateWithUnitName': None if o == 0 else f' {kind}', 'OptionPicture': {None: 'EMPTY', 'HMG': 'Kord', 'AGL': 'AGS30_VEH'}[kind], 'ThumbnailOverride': None,
                                             'MainSensorId': sensor, 'Ability1Id': 0, 'Turret0Id': mount})
             opts = rows('OptionsJson', ModificationId=mod)
             ok([(x['UIName'], x['Cost'], x['IsDefault']) for x in opts] == [('Unarmed', 0, True), ('QJZ-89 12.7 mm', 5, False), ('QLZ-87 35 mm AGL', 5, False)]

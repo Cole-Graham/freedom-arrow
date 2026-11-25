@@ -424,7 +424,9 @@
     "2019358": 1050.0,
     "2019387": 600.0,
     "2019446": 750.0,
-    "2019705": 700.0
+    "2019705": 700.0,
+    "2021430": 1000.0,
+    "2021431": 1050.0
   },
   "radar": [
     {
@@ -434,14 +436,16 @@
       "names": [
         "Radar SHORAD Static"
       ],
-      "lowAltOptics": 1.25,
+      "lowAltOptics": 1.5,
       "highAltOptics": 2.0,
-      "lowAltRange": 1.25,
+      "lowAltRange": 1.5,
       "highAltRange": 1.0,
       "switchCooldown": 5.0,
       "static": true,
       "helicopterRangeMultiplier": 1.25,
-      "helicopterOpticsMultiplier": 1.25
+      "helicopterOpticsMultiplier": 1.25,
+      "label": "SA SHORAD",
+      "labelZh": "\u96f7\u8fbe\u5236\u5bfc\u8fd1\u9632"
     },
     {
       "abilities": [
@@ -459,31 +463,29 @@
       "switchCooldown": 5.0,
       "static": true,
       "helicopterRangeMultiplier": 1.25,
-      "helicopterOpticsMultiplier": 1.25
+      "helicopterOpticsMultiplier": 1.25,
+      "label": "LR SAM",
+      "labelZh": "\u8fdc\u7a0b\u9632\u7a7a"
     },
     {
       "abilities": [
         60,
-        62,
-        2009175,
-        2009943,
-        2019443
+        62
       ],
       "names": [
         "Radar SHORAD",
-        "Radar SHORAD Not Default",
-        "PLA PGZ-09 AbilitiesJson",
-        "PLA JRVG-1 AbilitiesJson",
-        "PLA LY-1 laser defense"
+        "Radar SHORAD Not Default"
       ],
-      "lowAltOptics": 1.25,
+      "lowAltOptics": 1.5,
       "highAltOptics": 2.0,
-      "lowAltRange": 1.25,
+      "lowAltRange": 1.5,
       "highAltRange": 1.0,
       "switchCooldown": 5.0,
       "static": false,
       "helicopterRangeMultiplier": 1.25,
-      "helicopterOpticsMultiplier": 1.25
+      "helicopterOpticsMultiplier": 1.25,
+      "label": "SA SHORAD",
+      "labelZh": "\u96f7\u8fbe\u5236\u5bfc\u8fd1\u9632"
     },
     {
       "abilities": [
@@ -502,6 +504,66 @@
       "static": false,
       "helicopterRangeMultiplier": 1.25,
       "helicopterOpticsMultiplier": 1.25
+    },
+    {
+      "abilities": [
+        2009175,
+        2009943,
+        2019443,
+        2021428,
+        2021429
+      ],
+      "names": [
+        "PLA PGZ-09 AbilitiesJson",
+        "PLA JRVG-1 AbilitiesJson",
+        "PLA LY-1 laser defense",
+        "Radar IR SHORAD",
+        "Radar IR SHORAD Not Default"
+      ],
+      "lowAltOptics": 1.5,
+      "highAltOptics": 2.0,
+      "lowAltRange": 1.25,
+      "highAltRange": 1.0,
+      "switchCooldown": 5.0,
+      "static": false,
+      "helicopterRangeMultiplier": 1.25,
+      "helicopterOpticsMultiplier": 1.25,
+      "label": "IR SHORAD",
+      "labelZh": "\u7ea2\u5916/\u706b\u70ae\u8fd1\u9632"
+    },
+    {
+      "abilities": [
+        2019696
+      ],
+      "names": [
+        "PLA HJ-10 radar smoke laser"
+      ],
+      "lowAltOptics": 1.25,
+      "highAltOptics": 2.0,
+      "lowAltRange": 1.25,
+      "highAltRange": 1.0,
+      "switchCooldown": 5.0,
+      "static": false,
+      "helicopterRangeMultiplier": 1.25,
+      "helicopterOpticsMultiplier": 1.25
+    },
+    {
+      "abilities": [
+        2021427
+      ],
+      "names": [
+        "Radar IR SHORAD Static"
+      ],
+      "lowAltOptics": 1.5,
+      "highAltOptics": 2.0,
+      "lowAltRange": 1.25,
+      "highAltRange": 1.0,
+      "switchCooldown": 5.0,
+      "static": true,
+      "helicopterRangeMultiplier": 1.25,
+      "helicopterOpticsMultiplier": 1.25,
+      "label": "IR SHORAD",
+      "labelZh": "\u7ea2\u5916/\u706b\u70ae\u8fd1\u9632"
     }
   ],
   "sensors": [

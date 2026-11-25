@@ -22,9 +22,12 @@ def merged(tab,fn):
         if v is None:t.pop(int(k),None)
         else:t.setdefault(int(k),{'Id':int(k)}).update(v)
     return t
+# Later decisions over the SPAAG list, from the version that made them: Osama 24 Nov 2026 (QQ feedback FA-101, pgl625_lsdw_1124.py 6ed18eb4):
+# PGL-625 gun round 2009369 damage 4.9 -> 3.5 from 0.9.7-dev.1.
+_SPA_LATER={('2009369','Damage'):3.5} if m>=key('0.9.7-dev.1') else {}
 for tab,fn,spec in (('WeaponsJson.json','weapons.json',S.SPW),('AmmunitionsJson.json','ammunitions.json',S.SPA)):
     t=merged(tab,fn)
-    bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {n})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=n]
+    bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {_SPA_LATER.get((i,k),n)})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=_SPA_LATER.get((i,k),n)]
 Ut=merged('Units.json','units.json');Ot=merged('OptionsJson.json','options.json');At=merged('AbilitiesJson.json','abilities.json')
 # Later decisions that supersede a queued price, from the version that made them (0.9.0-dev.32, Osama 16 Nov 14:4x PST: "J-36 ... price increased
 # by 50 points": 305 -> 355; 0.9.0-dev.43, Osama 18 Nov 11:5x PST: "J-36 increase price by 60": 355 -> 415). The latest stage reached applies.
@@ -242,6 +245,8 @@ if m>=key('0.9.5-dev.34'):
             _rekit={2014919,2014920,2014921,2014922,2014923,2014924,2014925,2014926,2014927,2015762,2015763,2015764,2015765,2019701,2019702,
                     2014928,2014930,2014932,2014934,2014936,2015766,2015768,2015770,2015772,2019316}
             _want={i:f for i,f in _want.items() if int(i) not in _rekit}
+        # Lateralus 24 Nov 2026 (infantry_launchers_1124.py b3de3d66, Thermobaric Assault 9 -> 8 men): rifleman 2015623 removed from 0.9.7-dev.1.
+        if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.1'):_want.pop('2015623',None)
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
