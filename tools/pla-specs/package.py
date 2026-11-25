@@ -189,7 +189,9 @@ with zipfile.ZipFile(base) as z:
             b=None
             if _pat.match(n.rsplit('/',1)[1]):
                 d0,b0=n.rsplit('/',1);new=d0+'/'+_pat.sub(lambda x:_map[x.group(1)],b0,count=1)
-                assert new not in _names,('renamed model file already exists',new)
+                # 0.9.7-dev.18: a later model build stages the seller-named file again while the base Assets already holds the renamed one
+                # (dev.11 renamed them): the newly staged file replaces the base copy. Two staged files that map to one name still stop the build.
+                assert new not in override and not (new in _names and new not in z.namelist()),('renamed model file already exists',new)
                 b=(src.read_bytes() if isinstance(src,Path) else src) if src is not None else z.read(n)
                 if n.endswith('.fam'):b=_fam(b)
                 elif n.endswith(('.json','.txt')):b=_pat.sub(lambda x:_map[x.group(1)],b.decode()).encode()
