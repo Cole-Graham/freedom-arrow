@@ -970,6 +970,9 @@ radar_loadouts_1125.check(t,ok,rec,_heli['radarWeapons'])
 # ---------- SAM ranges brought into line + AMRAAM burn 3.35 (Lateralus 25 Nov 2026 11:0x PST, thread 1568104480459722894: "1.-6. agreed", "AMRAAM: yes
 # increase the burn", "queue it all"). Data only, existing rows. See lateralus/sam_ranges_1125.py.
 import sam_ranges_1125;print('SAM RANGES',sam_ranges_1125.apply(t,g,ok,rec,_heli))
+# ---------- FB-10 = HQ-17A missile stat clone instead of AMRAAM (Lateralus 25 Nov 2026 11:1x PST, "ok queue it"). Existing row only; after sam_ranges.
+# See lateralus/fb10_hq17a_1125.py.
+import fb10_hq17a_1125;print('FB-10 HQ-17A',fb10_hq17a_1125.apply(t,g,ok,rec,_heli))
 # ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
 # the tripod based weapons"). See crew_weapons_1125.py.
 import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
