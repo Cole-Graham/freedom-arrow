@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.6",
+  "version": "0.9.7-dev.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.6 (gameplay dev build, Lateralus 24 Nov 2026): dev.5 plus per-weapon radar use (IR missiles except AIM-9, and the Fletcher, get no radar range bonus; radar trait on weapons that use it), AIM-9/Stinger copies removed, NLOS laser lock and 120 deg/s turn, YJ-21 600 and F-22 MAKO, Blue Dragon / Eurocorp preview cards, leftover models out of model builds. Models & music unchanged (0.2.98). Needs Freedom Arrow — Models and Music 0.2.98.",
+  "description": "Freedom Arrow 0.9.7-dev.7 (dev build with models, Osama 24 Nov 2026): 0.9.7-dev.6 plus the current model stage (Lynx family, FK-3000, PCL-181 and SR-5 rebaked without stretched textures) and 1,400 leftover model files removed. Needs Freedom Arrow — Models and Music 0.2.99.",
   "repo": "Cole-Graham/freedom-arrow"
 }
