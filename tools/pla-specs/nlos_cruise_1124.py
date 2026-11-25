@@ -11,7 +11,10 @@ burn 8 s) and the launchers become Type 83 (ballistic; a Type 82 launcher does n
 Fire Position lands on the spot; a friendly laser on a target near it adds homing, as for the Iskander-M, GMLRS and guided shells.
 Back to cruise (Osama 24 Nov 21:2x: "You made the NLOS missiles the Iskander ballistc missiles....not the cruise"): the rounds take the vanilla
 Iskander-K cruise round 219 guidance and flight (path 200, no seeker, no laser, TargetType 1; speed/burn/turn equal the old HJ-10 values) and the
-launchers stay Type 82 (cruise). No laser homing: no vanilla cruise round is laser guided."""
+launchers stay Type 82 (cruise). No laser homing: no vanilla cruise round is laser guided.
+Laser (Osama 21:3x "this is fine but now the missile doesn't follow the laser"): LaserGuided True on top of the Iskander-K guidance, and nlos.json
+laser_hold lists the rounds: NlosTrait.LaserHoldAfter puts a round back on the cruise path when the game's laser handover (path 600) finds no
+laser target, so Fire Position still dives on the spot and a lased unit is followed. No fire hook, no target picking."""
 import json
 from pathlib import Path
 ROUNDS = {2009623: 'HJ-10', 2009651: 'QN-502', 2018321: 'CTL-181', 2018448: 'CH-901 (Blood Wolves)', 2019891: 'CH-901 (Type 100)'}
@@ -27,6 +30,7 @@ def apply(t, g, ok, rec):
     ok(v['Name'] == 'Missile Cruise IskanderK HE Guided' and v['TrajectoryType'] == 200 and v['LaserGuided'] is False, 'vanilla Iskander-K cruise round 219')
     want = {k: v[k] for k in GUIDANCE}
     ok({k: want[k] for k in ('Seeker', 'LaserGuided', 'TargetType', 'MaxSpeed', 'CanReaquire')} == {'Seeker': 0, 'LaserGuided': False, 'TargetType': 1, 'MaxSpeed': 300.0, 'CanReaquire': False}, ('Iskander-K cruise guidance', want))
+    want['LaserGuided'] = True   # follows a friendly laser (laser_hold in nlos.json keeps the cruise path when nothing is lased)
     W = t['WeaponsJson']; WA = t['WeaponAmmunitionsJson']
     for wid, name in LAUNCHERS.items():
         ok({r['AmmunitionId'] for r in WA.values() if r and r['WeaponId'] == wid} <= set(ROUNDS) and W[wid]['Type'] == 82, (name, wid, 'NLOS launcher, cruise type 82'))
@@ -47,6 +51,12 @@ def apply(t, g, ok, rec):
                       'CH-901 rounds use vanilla Iskander-K cruise guidance (Fire Position only) (tools/pla-specs/nlos_cruise_1124.py); with an empty list NlosTrait.cs installs no hooks.')
         n.pop('type100_ch901', None)
         NLOS.write_text(json.dumps(n, indent=2, ensure_ascii=False) + '\n')
-    ok(json.loads(NLOS.read_text())['ammunition'] == [] and json.loads(NLOS.read_text())['fire_units'] == [], 'nlos.json empty')
+    n = json.loads(NLOS.read_text())
+    if sorted(n.get('laser_hold', [])) != sorted(ROUNDS):
+        n['laser_hold'] = sorted(ROUNDS)
+        n['note'] += ' 21:3x: laser_hold = these rounds (LaserGuided; NlosTrait.LaserHoldAfter keeps the cruise path when no laser target is locked).'
+        NLOS.write_text(json.dumps(n, indent=2, ensure_ascii=False) + '\n')
+    n = json.loads(NLOS.read_text())
+    ok(n['ammunition'] == [] and n['fire_units'] == [] and sorted(n['laser_hold']) == sorted(ROUNDS), 'nlos.json: no NLOS rounds, laser_hold = the 5 rounds')
     rec['nlos_cruise_1124'] = {'rounds': ROUNDS, 'before': before, 'guidance': want}
     print('NLOS ISKANDER-K CRUISE', {r: before[r] for r in ROUNDS})
