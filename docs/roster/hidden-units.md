@@ -50,6 +50,14 @@ To switch them on for one PC, create `UserData/FreedomArrow/test-spec.json` with
 Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`. A section that hides a card records its old rows in
 `rec['hidden_rows']`, and the card then goes into its nation's test spec automatically.
 
+## Previews only in test mode (Blue Dragon, Eurocorp; off by default)
+
+Osama 24 Nov 21:0x: "can we make it so that the BD and Eurocorp units don't show unit cards when selected?", "or hidden if the test mode is off".
+Specs 23 Blue Dragon (Testing Preview, 23 cards), 24 France (Preview, 6 cards) and 25 Germany (Preview, 12 cards) have `ShowInHangar` false,
+and the Eurocorp country (5) has `Hidden` true, the vanilla switch that hides the Editor country. These cards are in no other spec, so the
+Armory shows none of them. The same `test-spec.json` file as above turns all of them back on (`TestSpec.cs`). Deck creation still hides
+spec 23, and France and Germany keep battlegroup size 0. Section: `test_mode_previews_1124.py`.
+
 ## Moved (not hidden)
 
 - ZTQ-15 (906): PLAGF Armored Force -> PLAGF Motorized, 6 cards (Osama 23 Nov 18:0x). `roster_1123b.py`.
@@ -68,3 +76,4 @@ Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`
 - 2026-11-23 19:0x PST (America/Los_Angeles): Ka-226T Razvedchik and Ka-52K Razvedchik added (Lateralus).
 - 2026-11-23 19:45 PST (America/Los_Angeles): Test specs for every nation (27 USA, 28 Russia) with all hidden cards incl. YJ-18; no transports in test specs.
 - 2026-11-23 19:58 PST (America/Los_Angeles): Type 19 gone entirely on the model build (no test-spec card, no models in the stage).
+- 2026-11-24 21:13 PST (America/Los_Angeles): Blue Dragon (23), France (24), Germany (25) and the Eurocorp country only in test mode.

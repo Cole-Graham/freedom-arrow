@@ -884,6 +884,9 @@ import engineer_icon_1124;engineer_icon_1124.apply(t,g,ok,rec)
 # SPAAG without radar (QW-2), Rapid-Fire Gun HJ-8H, Recon optics, Troop Carrier 9 seats. Creates rows: after every other row-creating section, so no
 # earlier id moves. See lynx_rework_1124.py.
 import lynx_rework_1124;lynx_rework_1124.apply(t,g,ok,rec)
+# ---------- Blue Dragon and Eurocorp only in test mode (Osama 24 Nov 2026 21:0x PST: "or hidden if the test mode is off"): specs 23-25 off, Eurocorp
+# country hidden; test-spec.json turns them on (TestSpec.cs). Changes rows only. See test_mode_previews_1124.py.
+import test_mode_previews_1124;test_mode_previews_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data

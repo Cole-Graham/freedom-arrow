@@ -451,6 +451,7 @@ public class Runtime : MelonMod
                     compatibility["allow_new_rows"]?.GetValue<bool>()==true,
                     (id,field,before,after,added)=>receipt.Add(new {table=table.Key,id,field,before,after,action=added?"add_row":"edit"}));
                 if(table.Key=="SpecializationsJson")TestSpec.Apply(rows,Root);   // Osama 23 Nov 2026: hidden test spec toggle
+                if(table.Key=="CountriesJson")TestSpec.ApplyCountries(rows,Root);   // Osama 24 Nov 2026: Eurocorp only in test mode
                 prospective[table.Key]=rows;
                 patchedTables[table.Key]=overrides;
                 original[property]=cipher;
