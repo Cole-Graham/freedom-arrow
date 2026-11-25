@@ -44,11 +44,17 @@ def apply(t, g, ok, rec):
     for tab in ('UnitAbilitiesJson', 'SensorUnitsJson', 'UnitArmorsJson', 'UnitPropulsionsJson'):
         for r in rows(tab, UnitId=SRAW):g.add(tab, r, {'UnitId': ua})
     for r in rows('SquadMembersJson', UnitId=SRAW):g.add('SquadMembersJson', r, {'UnitId': ua, **({'SpecialWeaponId': nw} if r.get('SpecialWeaponId') == MPV_W else {})})
-    for r in rows('SquadWeaponsJson', UnitId=SRAW):g.add('SquadWeaponsJson', r, {'UnitId': ua, **({'WeaponId': nw} if r['WeaponId'] == MPV_W else {})})
+    # Only the squad weapons 332 has rounds for: vanilla row 277 (M27 IAR, weapon 51) has no ammo row and no carrier. As a new row the game's
+    # WeaponCoverage check refuses it and with it ALL Freedom Arrow data (0.9.7-dev.1, Lateralus 24 Nov 18:0x: "all the gameplay modifications are missing").
+    used = {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=SRAW)}
+    for r in rows('SquadWeaponsJson', UnitId=SRAW):
+        if r['WeaponId'] in used:g.add('SquadWeaponsJson', r, {'UnitId': ua, **({'WeaponId': nw} if r['WeaponId'] == MPV_W else {})})
     for r in rows('WeaponAmmunitionsJson', UnitId=SRAW):
         g.add('WeaponAmmunitionsJson', r, {'UnitId': ua, **({'WeaponId': nw, 'AmmunitionId': na} if r['WeaponId'] == MPV_W else {})})
-    for tab in ('UnitAbilitiesJson', 'SensorUnitsJson', 'UnitArmorsJson', 'UnitPropulsionsJson', 'SquadMembersJson', 'SquadWeaponsJson', 'WeaponAmmunitionsJson'):
+    for tab in ('UnitAbilitiesJson', 'SensorUnitsJson', 'UnitArmorsJson', 'UnitPropulsionsJson', 'SquadMembersJson', 'WeaponAmmunitionsJson'):
         ok(len(rows(tab, UnitId=ua)) == len(rows(tab, UnitId=SRAW)), (A_NAME, tab, 'copied'))
+    ok(sorted(r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=ua)) == sorted([nw if w == MPV_W else w for w in used]) and 51 not in {r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=ua)},
+       (A_NAME, 'squad weapons = the weapons with rounds (no M27 IAR row)'))
     ok(sum(1 for m in rows('SquadMembersJson', UnitId=ua) if m.get('SpecialWeaponId') == nw) == 8 and not any(m.get('SpecialWeaponId') == MPV_W for m in rows('SquadMembersJson', UnitId=ua)),
        'A: 8 SRAW carriers, no SRAW MPV')
     # 3. B = 332 renamed

@@ -877,6 +877,9 @@ print('SHORAD RADAR',{k:_sr[k] for k in ('ir_rows','china_rows','ir_round_copies
 import fk3000_pcl181_1124;fk3000_pcl181_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
+# The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
+# (0.9.7-dev.1 / SRAW A, Lateralus 24 Nov 18:0x). See weapon_coverage_check.py.
+import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.check(t,patches,ok)
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
