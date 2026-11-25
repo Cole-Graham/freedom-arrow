@@ -239,8 +239,9 @@ def conquest_during_deployment(nodes):
 # limit (lobby Timer + 3 with the game's calc3 node, as in the native network missions), so 45:00 is left when deployment ends. The
 # runtime (conquest/Mod.cs) holds the shown clock and the FA ledger at 0 elapsed for the deployment.
 def deployment_in_time_limit(nodes):
-    assert deploy_seconds()%60==0,'OnlineDeploySeconds must be whole minutes'
-    extra=deploy_seconds()//60
+    # Lateralus 25 Nov 2026 12:4x ("deployment time from 3:00 -> 2:30"): the limit takes whole minutes, so a part minute is rounded up (2:30 -> +3);
+    # the runtime ledger leaves out only the real deployment (Mod.cs deployInClock = OnlineDeploySeconds), so the match after deployment is 30 s longer.
+    extra=-(-deploy_seconds()//60)
     for sc in [b for b in nodes['b'] if b['nnKey']=='setConquestMode']:
         limit=[c for c in nodes['c'] if c['a']==sc['id'] and c['c']=='TimeLimitMin']
         if not limit:
@@ -473,7 +474,8 @@ def deployment(nodes):
     on,off=pause['True'],pause['False']
     wait=[c['b'] for c in nodes['c'] if c['a']==off and byid[c['b']]['nnKey']=='delay'];assert len(wait)==1,wait
     assert {(c['a'],c['b']) for c in nodes['c'] if c['b']==start[0]}>={(on,start[0]),(wait[0],start[0])}
-    assert val(byid[wait[0]],'Time')==str(deploy_seconds())
+    # Authored source files (teammates' editor maps) still carry the 3:00 pause; the deployment is OnlineDeploySeconds (2:30 since 25 Nov 2026).
+    tp=next(p for p in byid[wait[0]]['props_v2'] if p['k']=='Time');assert tp['v'] in (str(deploy_seconds()),'180'),tp;tp['v']=str(deploy_seconds())
     after=[c for c in nodes['c'] if c['b']==off];assert len(after)==1,after
     return start[0],on,wait[0],off,after[0]
 def build_authored(out,spec,base):

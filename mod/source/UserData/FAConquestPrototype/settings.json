@@ -9,7 +9,7 @@
   "FrontArcDegrees": 60,
   "PilotRescue": true,
   "SetupSeconds": 180,
-  "OnlineDeploySeconds": 180,
+  "OnlineDeploySeconds": 150,
   "OpeningDelaySeconds": 300,
   "DefaultZoneWeight": 1,
   "Scoring": "advantage",
