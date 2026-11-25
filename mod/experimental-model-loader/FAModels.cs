@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.44", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.46", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -195,9 +195,9 @@ public partial class Mod : MelonMod
         {
             hitchCount++;
             if (Time.realtimeSinceStartup - hitchLogT > 0.5f || dt > 0.2f)
-            { hitchLogT = Time.realtimeSinceStartup; MelonLogger.Msg($"FAMODELS hitch {dt * 1000f:F0} ms (#{hitchCount}): previous frame FAModels did {modelSwapsThisFrame} model swap(s), {bodySwapsThisFrame} body swap(s), {preload.Count} preload(s) left"); }
+            { hitchLogT = Time.realtimeSinceStartup; MelonLogger.Msg($"FAMODELS hitch {dt * 1000f:F0} ms (#{hitchCount}): previous frame FAModels did {modelSwapsThisFrame} model swap(s), {lodLevelsThisFrame} later detail level(s), {modelsDeferredThisFrame} deferred, {bodySwapsThisFrame} body swap(s), {preload.Count} preload(s) left"); }
         }
-        bodySwapsThisFrame = 0; modelSwapsThisFrame = 0;
+        bodySwapsThisFrame = 0; modelSwapsThisFrame = 0; lodLevelsThisFrame = 0; modelsDeferredThisFrame = 0;
         if (lodLevels.Count > 4000) lodLevels.Clear();
     }
 
@@ -243,6 +243,7 @@ public partial class Mod : MelonMod
         if (Verbose && Time.realtimeSinceStartup - yawT > 2f) { yawT = Time.realtimeSinceStartup; try { YawLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS yaw: " + ex.Message); } }
         try { CamTick(); } catch (Exception ex) { MelonLogger.Error("FAMODELS cam: " + ex.Message); camWant = "off"; }
         if (fallbackMats.Count > 0 && upgradeTries < 3 && Time.realtimeSinceStartup - upgradeT > upgradeGap) { upgradeT = Time.realtimeSinceStartup; upgradeGap = Math.Min(upgradeGap * 2f, 320f); upgradeTries++; try { UpgradeFallbacks(false); } catch (Exception ex) { MelonLogger.Error("FAMODELS cockpit upgrade: " + ex.Message); } }
+        long budgetStart = System.Diagnostics.Stopwatch.GetTimestamp();
         for (int i = queue.Count - 1; i >= 0; i--)
         {
             var q = queue[i];
@@ -254,10 +255,14 @@ public partial class Mod : MelonMod
             // only while a turret bone the model needs is not there yet. The 1 s re-hide pass for late renderers stays.
             float wait = q.pass == 0 ? 0f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
-            try { if (!Apply(q.root, q.e, q.unit, q.pass == 0, Time.realtimeSinceStartup - q.t)) continue; }
+            // 0.3.45: swaps stop for this frame after ModelBudgetMs (LodStreaming.cs); the rest wait hidden, as during the bone wait.
+            if (q.pass == 0 && q.e.file != "" && SinceMs(budgetStart) > ModelBudgetMs) { modelsDeferredThisFrame++; continue; }
+            try { if (!Apply(q.root, q.e, q.unit, q.pass == 0, Time.realtimeSinceStartup - q.t, stream: true)) continue; }
             catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
         }
+        try { TickLodUpgrades(budgetStart); } catch (Exception ex) { MelonLogger.Error("FAMODELS detail levels: " + ex.Message); }
+        try { TickPreloadHeavy(budgetStart); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload levels: " + ex.Message); }
     }
 
     // 0.3.27 (Osama 14 Nov: "make sure the standin models never pop up"): the game spawns turrets, gunners and LOD children
@@ -374,33 +379,52 @@ public partial class Mod : MelonMod
     // Without a stand-in LODGroup: 0.10 / 0.04 / 0.005 of the screen height, the values the vanilla stand-ins use (dev.13 run F log:
     // ZBD-20, Type 59). The earlier 0.25 / 0.10 / 0.02 culled a unit under 2% of the screen height, which is a tank seen from far up.
     // Past the last level the model is culled, as vanilla's is.
+    // 0.3.45: levels not built yet (null, LodStreaming.cs) are covered by the next lighter level that is built, so a unit with only its
+    // lightest level shows it at every distance and is culled where the full set would be.
     static int lodLogged;
-    static void AddLods(GameObject root, GameObject holder, List<List<Renderer>> levelRenderers, string unit)
+    static void SetLevels(GameObject root, GameObject holder, List<Renderer>[] byLevel, string unit)
     {
         float[] h = { 0.10f, 0.04f, 0.005f };
         var native = root.GetComponentsInChildren<LODGroup>(true).FirstOrDefault(g => g.gameObject != holder);
         if (native != null) { var nl = native.GetLODs(); for (int i = 0; i < Math.Min(nl.Length, h.Length); i++) h[i] = nl[i].screenRelativeTransitionHeight; }
-        int n = levelRenderers.Count; var lods = new Il2CppReferenceArray<LOD>(n);
-        for (int i = 0; i < n; i++) lods[i] = new LOD(i < h.Length ? h[i] : h[h.Length - 1] * 0.5f, new Il2CppReferenceArray<Renderer>(levelRenderers[i].ToArray()));
-        var g = holder.AddComponent<LODGroup>(); g.SetLODs(lods); g.RecalculateBounds();
+        int n = byLevel.Length; float H(int i) => i < h.Length ? h[i] : h[h.Length - 1] * 0.5f;
+        var built = Enumerable.Range(0, n).Where(i => byLevel[i] != null).ToList();
+        var lods = new Il2CppReferenceArray<LOD>(built.Count);
+        for (int k = 0; k < built.Count; k++) lods[k] = new LOD(H(k + 1 < built.Count ? built[k + 1] - 1 : n - 1), new Il2CppReferenceArray<Renderer>(byLevel[built[k]].ToArray()));
+        var g = holder.GetComponent<LODGroup>(); if (g == null) g = holder.AddComponent<LODGroup>();
+        g.SetLODs(lods); g.RecalculateBounds();
         // dev.13 LOD test (Osama 15 Nov: "make sure ... the lod models we added actually helped"): the first 20 always, the rest with verbose.
-        if (Verbose || ++lodLogged <= 20) MelonLogger.Msg($"FAMODELS {unit}: {n} detail levels at {string.Join("/", h.Take(n).Select(x => x.ToString("F3")))} of the screen ({(native != null ? "stand-in's" : "default")})");
+        if (built.Count == n && (Verbose || ++lodLogged <= 20)) MelonLogger.Msg($"FAMODELS {unit}: {n} detail levels at {string.Join("/", h.Take(n).Select(x => x.ToString("F3")))} of the screen ({(native != null ? "stand-in's" : "default")})");
     }
     static float[] Floats(BinaryReader f, int n) { var b = f.ReadBytes(n * 4); var r = new float[n]; Buffer.BlockCopy(b, 0, r, 0, b.Length); return r; }
 
-    // Returns false to try again next frame (pass 0 only, while a needed turret bone is not spawned yet, at most 0.5 s).
-    static bool Apply(GameObject root, Entry e, string unit, bool build, float age)
+    // Returns false to try again next frame (pass 0 only): while a needed turret bone is not spawned yet (at most 0.5 s) or, from the
+    // spawn queue (stream), while the model file is still being read on a background thread.
+    // 0.3.45 (End 24 Nov, rejoin freezes: "it should start loading the lowest LOD first and use that until other LODs finished loading. a few
+    // frames with worse LOD are fine, just prevent blocking and crowding the GPU"). His rejoin log had 20 model files read on the main thread
+    // (1,872 ms) and up to 78 swaps in one frame. From the spawn queue, a model whose levels are not all built yet has them read in the
+    // background, builds only its lightest level once that file is ready, and gets the other levels in later frames (LodStreaming.cs).
+    // Models already built still build every level at once. 0.3.46: the match-start burst builds only the lightest level and the
+    // heavier levels follow during deployment (TickPreloadHeavy); a unit that spawns before that gets them over later frames.
+    static bool Apply(GameObject root, Entry e, string unit, bool build, float age, bool stream = false)
     {
         // Hide-only entries: turrets, gunners and LOD children can be spawned after InitView, so re-check every pass.
         if (e.file == "") { if (e.hide != "") HideMatching(root, e.hide, unit); return true; }
         if (!build) { int late = Hide(root); if (late > 0) MelonLogger.Msg($"FAMODELS {unit}: re-hid {late} late renderer(s) on {root.name}"); return true; }
         var sw = System.Diagnostics.Stopwatch.StartNew();
-        var fam = LoadFam(e.file, out bool kept);
+        // 0.3.31: distance detail levels like vanilla's LOD groups. A battle entry may name lighter copies ("lods": [l1, l2]); each level
+        // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (SetLevels). Level 0 is e.file.
+        var files = new List<string> { e.file };
+        foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) files.Add(lf);
+        bool streamed = stream && !files.All(KeptFam);
+        if (streamed) { bool lightReady = false; for (int i = 0; i < files.Count; i++) { bool r = StreamReady(files[i]); if (i == files.Count - 1) lightReady = r; } if (!lightReady) return false; }
+        var buildNow = streamed ? new List<int> { files.Count - 1 } : Enumerable.Range(0, files.Count).ToList();
+        var fam = LoadFam(files[buildNow[0]], out bool kept);
         float loadMs = (float)sw.Elapsed.TotalMilliseconds;
         if (age < 0.5f && fam.Any(p => p.bone != "root" && Find(root.transform, p.bone) == null)) return false;
         var holder = new GameObject("FAM_holder");
         holder.SetActive(false);
-        var pending = new List<(GameObject, string)>();
+        var made = new List<(GameObject part, string bone)>();
         try
         {
         holder.transform.SetParent(root.transform, false);
@@ -408,48 +432,37 @@ public partial class Mod : MelonMod
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
         int verts = 0, parts = 0;
-        // 0.3.31: distance detail levels like vanilla's LOD groups. A battle entry may name lighter copies ("lods": [l1, l2]); each level
-        // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (below). Level 0 is the model above.
-        var levels = new List<List<FamPart>> { fam };
-        foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) levels.Add(LoadFam(lf, out _));
-        var levelRenderers = levels.Select(_ => new List<Renderer>()).ToList();
-        for (int L = 0; L < levels.Count; L++)
-        foreach (var fp in levels[L])
+        var byLevel = new List<Renderer>[files.Count];
+        for (int k = 0; k < buildNow.Count; k++)
         {
-            string bone = fp.bone;
-            var part = new GameObject(L == 0 ? "FAM_" + bone : $"FAM_{bone}_L{L}");
-            part.transform.SetParent(holder.transform, false);
-            for (int s = 0; s < fp.subs.Count; s++)
-            {
-                var go = new GameObject(L == 0 ? $"FAM_{bone}_{s}" : $"FAM_{bone}_{s}_L{L}");
-                go.transform.SetParent(part.transform, false);
-                go.AddComponent<MeshFilter>().sharedMesh = fp.subs[s].mesh;
-                var mr = go.AddComponent<MeshRenderer>(); mr.sharedMaterial = fp.subs[s].mat; levelRenderers[L].Add(mr);
-                if (L == 0) verts += fp.subs[s].mesh.vertexCount;
-            }
-            if (bone != "root") pending.Add((part, bone));
-            if (L == 0) parts++;
+            int v = 0, L = buildNow[k];
+            byLevel[L] = BuildLevel(holder, k == 0 ? fam : LoadFam(files[L], out _), L, made, ref v);
+            if (k == 0) { verts = v; parts = made.Count; }
         }
         // Line the turret up with the stand-in's turret bone (x/z), so it turns about its own ring; then reparent.
         bool aligned = false;
-        foreach (var (part, bone) in pending)
+        foreach (var (part, bone) in made)
         {
+            if (bone == "root") continue;
             var b = Find(root.transform, bone);
             if (b == null) { MelonLogger.Warning($"FAMODELS {unit}: bone {bone} not found; part stays on the hull"); continue; }
             if (!aligned && e.align)
             {
-                var mfs = part.GetComponentsInChildren<MeshFilter>();
-                if (mfs.Length > 0)
+                // 0.3.45: the shift is the same for every copy of a unit type, so it is worked out once (it copied every turret vertex at each spawn).
+                string ak = $"{unit}|{e.file}|{e.offset[0]},{e.offset[1]},{e.offset[2]}|{e.yaw}|{e.scale}";
+                bool have = alignCache.TryGetValue(ak, out var d);
+                var mfs = have ? null : part.GetComponentsInChildren<MeshFilter>();
+                if (!have && mfs.Length > 0)
                 {
                     // Turret ring centre: mean x/z of the turret's lowest 0.35 m, in root space (a long barrel would skew a box centre).
                     float minY = float.MaxValue; var pts = new List<Vector3>();
                     foreach (var mf in mfs) { var vs = mf.sharedMesh.vertices; for (int k = 0; k < vs.Length; k += 7) { var w = root.transform.InverseTransformPoint(mf.transform.TransformPoint(vs[k])); pts.Add(w); if (w.y < minY) minY = w.y; } }
                     double sx = 0, sz = 0; int n = 0; foreach (var w in pts) if (w.y < minY + 0.35f) { sx += w.x; sz += w.z; n++; }
                     var c = new Vector3((float)(sx / n), 0, (float)(sz / n)); var bp = root.transform.InverseTransformPoint(b.position);
-                    var d = new Vector3(bp.x - c.x, 0, bp.z - c.z);
-                    holder.transform.localPosition += d;
+                    d = new Vector3(bp.x - c.x, 0, bp.z - c.z); alignCache[ak] = d; have = true;
                     MelonLogger.Msg($"FAMODELS {unit}: moved model ({d.x:F2}, {d.z:F2}) m to put the turret on {bone}");
                 }
+                if (have) holder.transform.localPosition += d;
                 aligned = true;
             }
             part.transform.SetParent(b, true);
@@ -457,23 +470,24 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
-        if (levels.Count > 1) AddLods(root, holder, levelRenderers, unit);
+        if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
         int hidden = Hide(root);
         holder.SetActive(true);
         live.Add((root, unit));
+        if (buildNow.Count < files.Count) QueueLodUpgrade(root, holder, unit, files, byLevel, made);
         try { ApplyPaint(root, unit); } catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT apply: " + ex.Message); }
         modelSwapsThisFrame++;
         // 0.3.35 (Unload.cs): remember which units use which files; in the menu, free all but the most recent unused models.
-        foreach (var lf in levels.Count > 1 ? e.lods.Where(x => x != "").Prepend(e.file) : new[] { e.file }) NoteUse(lf, root);
+        foreach (int L in buildNow) NoteUse(files[L], root);
         if (!kept && inMenu) FreeUnused(MenuKeep, "menu");
         // 0.3.29: infantry weapon swaps log only with UserData/FAModels/verbose.txt (they were ~1,600 lines a session).
-        if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {e.file} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s)");
+        if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {files[buildNow[0]]} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s){(buildNow.Count < files.Count ? $"; lightest of {files.Count} detail levels first, the others follow" : "")}");
         return true;
         }
         catch
         {
             // Parts may already have been reparented to native bones. Remove those too.
-            foreach (var (part, _) in pending) if (part != null) { part.SetActive(false); UnityEngine.Object.Destroy(part); }
+            foreach (var (part, _) in made) if (part != null) { part.SetActive(false); UnityEngine.Object.Destroy(part); }
             holder.SetActive(false);
             UnityEngine.Object.Destroy(holder);
             if (origs.TryGetValue(root.GetInstanceID(), out var original))
