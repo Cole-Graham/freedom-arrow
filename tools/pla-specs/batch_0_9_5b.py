@@ -963,6 +963,8 @@ import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
 import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
 # ---------- Every APS 2 charges (Osama 25 Nov 2026 12:1x PST, bugs thread; replaces the FEP-only fep_aps_1125.py). See aps_two_charges_1125.py.
 import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
+# ---------- ZTZ-99 LSDW +60; LSDW pulse stress 80 -> 70 (Osama 25 Nov 2026 12:2x PST, bugs thread). See ztz99_lsdw_1125.py.
+import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
