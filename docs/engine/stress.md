@@ -138,3 +138,15 @@ Freedom Arrow's `game-config.json` sets `StressRecoveryMultiplier` to 0.33 from 
 | 75 | 0 | Calm |
 
 A bar that starts at 800 is empty on second 67. A bar that starts at 500 is empty on second 52.
+
+## Exempting plane missiles from stress (feasibility, Lateralus 25 Nov 2026)
+
+Proposal checked: remove the shocked/panicked missile accuracy, reload, time-between-bursts and aim-time debuffs for planes, only for Fire-and-forget (Seeker 10) and Terminal-guidance (Seeker 50) missiles. Read from code (1.2.2.1), not tested.
+
+- **Where the debuffs live.** `BuffDebuffSystem.SetStressModifiers` (0x7EB380) writes one set of multipliers per unit into `BuffComponent` (`AimTimeModifier` 0x0, `TimeBetweenBurstsStressModifier` 0x8, `MagazineReloadTimeStressModifier` 0x10, `MissileAccuracyMultiplier` 0x38; obfuscated `GFloat`/`GAFloat`). Every weapon on the unit uses the same values, so a config change alone (the plane columns of `StressModifiers`) would also free guns, bombs, rockets, semi-active and SEAD missiles.
+- **Missile accuracy: easy.** FA's `MissileHitChance.Chance` prefix already receives the round and the shooter's stress multiplier (`CalculateMissileHitChance`, 0x7D4130); it can use 1 instead for listed rounds. In 0.9.7-dev.15 data planes fire 38 Seeker 10/50 rounds; 3 of them (2016381, 2016975, 2017060) are also fired by non-plane units and need a shooter check or plane-only copies.
+- **Aim time, bursts, reload: harder.** The per-weapon timer functions (`WeaponComponent.GenerateRandomAimTime` 0x82D520, `GenerateRandomTimeBetweenBursts` 0x82D9A0, `GenerateRandomMagazineReloadTime` 0x82D720, `GetAimTime` 0x82DAA0) have no direct callers (inlined), so they cannot be patched. Option: in FA's existing `ShootingSystem.InternalUpdate` hook (one weapon at a time), set the plane's three modifiers to 1 for a listed weapon and put them back afterwards, using the game's own `GFloat` conversion. Needs a trace that those modifiers are read only inside that update, and an in-game timing test.
+- **Online.** Only the firing unit's own PC uses these values; the shots it then fires are sent as usual, so the other PCs stay in step.
+
+## Document change log
+- 2026-11-25 15:0x PST (America/Los_Angeles) — Added: feasibility of exempting plane fire-and-forget / terminal-guidance missiles from stress debuffs (Lateralus).
