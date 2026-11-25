@@ -593,6 +593,54 @@
   },
   "1259": {
    "set": "Vehicle/Regular"
+  },
+  "1431": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_Troop_Carrier"
+  },
+  "1432": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_Cargo"
+  },
+  "1433": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_IFV"
+  },
+  "1434": {
+   "set": "Artillery/LynxAirborne",
+   "unit": "Lynx_81mm_Mortar"
+  },
+  "1435": {
+   "set": "Artillery/LynxAirborne",
+   "unit": "Lynx_120mm_Mortar"
+  },
+  "1436": {
+   "set": "Artillery/LynxAirborne",
+   "unit": "Lynx_Howitzer"
+  },
+  "1437": {
+   "set": "Artillery/LynxAirborne",
+   "unit": "Lynx_MRL"
+  },
+  "1439": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_SPAAG"
+  },
+  "1441": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_NLOS"
+  },
+  "1443": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_Recon"
+  },
+  "1446": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_Laser"
+  },
+  "1448": {
+   "set": "Vehicle/LynxAirborne",
+   "unit": "Lynx_ATV"
   }
  },
  "fallback": {

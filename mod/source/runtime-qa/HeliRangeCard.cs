@@ -68,9 +68,15 @@ static class HeliRangeCard
             c.gameObject.SetActive(false);c.SetParent(null,false);UnityEngine.Object.Destroy(c.gameObject);
         }
     }
+    // Osama 25 Nov 2026 02:5x ("Lynx Laser remove the high alt range"): a round with no high-altitude range and no Aircraft target flag (16)
+    // cannot fire at planes, but the native ammo panel still shows a "High Alt. Range" line (the Lynx Laser pulse, high 0, showed 800 m =
+    // its ground range). That line is hidden for such rounds; the panel's lines are pooled, so the hidden ones are shown again first.
+    static readonly List<GameObject> hiddenHigh=new();
     public static void AmmoBefore(AmmoInfoExpansionPanel __instance)
     {
         if(ammoBroken)return;
+        foreach(var g in hiddenHigh)if(g!=null)g.SetActive(true);
+        hiddenHigh.Clear();
         try{RemoveLine(__instance);}
         catch(Exception e){ammoBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: ammo line off. "+e.Message);}
     }
@@ -80,6 +86,12 @@ static class HeliRangeCard
         try
         {
             RemoveLine(__instance);
+            if(__1!=null&&__1.HighAltRange<=0&&(((long)__1.TargetType)&16)==0&&__instance._activeStatisticItems!=null)
+            {
+                string highTitle=InfoCardLocalization.TextAmmoRangeHighAlt;
+                foreach(var item in __instance._activeStatisticItems)
+                    if(item?.TitleText!=null&&item.TitleText.text==highTitle&&item.gameObject.activeSelf){item.gameObject.SetActive(false);hiddenHigh.Add(item.gameObject);Log($"ammo {__1.Name}: High Alt. Range line hidden (no high-altitude range)");}
+            }
             if(!CanHitHeli(__1)||!HeliRange.ammoRange.TryGetValue(__1.Id,out float heli))return;
             string low=InfoCardLocalization.TextAmmoRangeLowAlt;
             var items=__instance._activeStatisticItems;
@@ -160,34 +172,35 @@ static class HeliRangeCard
     // Radar trait on the selected weapon (Lateralus 24 Nov 2026 22:0x: "indicate that a weapon benefits from radar with the icon in this location ...
     // next to the indicator that tells a player a unit has to remain static in order to fire"; 22:1x "plain radar icon is fine"). OnWeaponButtonSelected
     // (0x55B140) builds the selected weapon's trait row with SetTraitItem (0x55D4D0); this postfix adds one more trait the same way when the unit has a
-    // radar and the weapon carries a round in radarAmmo (rounds in radarExempt, e.g. Stinger, get none).
+    // radar and the weapon is in radarWeapons (helicopter-range.json, radar_weapons_1124.py).
+    // dev.14 (Lateralus 25 Nov 07:3x, 96 of 168 weapons wrong in dev.13): (1) the game shows the row (_selectedWeaponTraits, 0x1A0) only when the
+    // weapon has a native trait (0x55B3F0-0x55B43E: autoloader / silent / CQC / radar dependent / must stop to fire), so the icon was hidden on weapons
+    // that fire on the move: the row is switched on here. (2) Decided per weapon id: WeaponListButton.TotalAmmoCount is reused across cards and held
+    // other weapons' rounds (Fletcher and the MML Stinger showed the icon). (3) Every early exit is logged (dev.13 went silent after one card).
     static bool weaponBroken;static int traitLogs;
+    static void TraitLog(string m){if(traitLogs<80){traitLogs++;Log("radar trait "+m);}}
     public static void WeaponTraitAfter(UnitInfoCard __instance,GameObject __0)
     {
-        if(weaponBroken||__instance==null||__0==null)return;
+        if(weaponBroken)return;
+        if(__instance==null||__0==null){TraitLog("no card or no clicked object");return;}
         try
         {
-            // dev.6 (Lateralus 24 Nov 22:3x): the card's own unit (_unit, 0x228), not the last unit the ability/stat hooks saw: the weapon list can be
-            // built before those run, which left M-SHORAD / Linebacker guns without the icon.
             var unit=__instance._unit??current;var a=unit?.ActiveAbilities;
-            if(a==null||!a.IsRadar){if(traitLogs<60){traitLogs++;Log($"radar trait {unit?.HUDName}: no radar on the unit");}return;}
-            var btns=__instance._activeWeaponListButtons;if(btns==null)return;
-            WeaponListButton sel=null;
-            for(int i=0;i<btns.Count;i++){var b=btns[i];if(b==null)continue;if(b.gameObject.Pointer==__0.Pointer||(b.Button!=null&&b.Button.gameObject.Pointer==__0.Pointer)){sel=b;break;}}
-            if(sel==null)return;
-            // Only rounds this loadout carries (count > 0): one launcher can list several rounds (MML: Stinger, AIM-9, Hellfire), and a Stinger loadout
-            // showed the icon because of the AIM-9 / Hellfire entries (Lateralus 22:3x "some stingers were showing radar-capability").
-            bool uses=false;var ids=new List<string>();
-            var cnt=sel.TotalAmmoCount;
-            if(cnt!=null)foreach(var kv in cnt){ids.Add($"{kv.Key}:{kv.Value}");if(kv.Value>0&&HeliRange.radarAmmo.Contains((int)kv.Key))uses=true;}
-            if(traitLogs<60){traitLogs++;Log($"radar trait {unit.HUDName} / {sel.Weapon?.HUDName}: rounds [{string.Join(",",ids)}] uses radar {uses}");}
+            if(a==null||!a.IsRadar)return;   // not logged: dev.14 spent all 80 lines on infantry cards
+            WeaponListButton sel=null;var btns=__instance._activeWeaponListButtons;
+            if(btns!=null)for(int i=0;i<btns.Count;i++){var b=btns[i];if(b==null)continue;if(b.gameObject.Pointer==__0.Pointer||(b.Button!=null&&b.Button.gameObject.Pointer==__0.Pointer)){sel=b;break;}}
+            if(sel==null)sel=__0.GetComponentInParent<WeaponListButton>();
+            if(sel==null||sel.Weapon==null){TraitLog($"{unit.HUDName}: clicked object {__0.name} is not a weapon button ({btns?.Count ?? -1} buttons)");return;}
+            bool uses=HeliRange.radarWeapons.Contains(sel.Weapon.Id);
+            TraitLog($"{unit.HUDName} / {sel.Weapon.HUDName} (weapon {sel.Weapon.Id}): uses radar {uses}");
             if(!uses)return;
-            var sprite=__instance._infocardConfig?.Radar;if(sprite==null)return;
+            var sprite=__instance._infocardConfig?.Radar;if(sprite==null){TraitLog("no radar sprite");return;}
             RadarGroup(a,out var m);float heli=m.range>0?m.range:a.RadarLowAltWeaponRangeModifier;
             string tip=Chinese()
                 ?$"使用雷达：雷达开启时，射程 低空 {X(a.RadarLowAltWeaponRangeModifier)}，高空 {X(a.RadarHighAltWeaponRangeModifier)}，直升机 {X(heli)}"
                 :$"Uses the radar: while the radar is on, range against low-altitude targets {X(a.RadarLowAltWeaponRangeModifier)}, high-altitude {X(a.RadarHighAltWeaponRangeModifier)}, helicopters {X(heli)}";
             __instance.SetTraitItem(sprite,tip);
+            var row=__instance._selectedWeaponTraits;if(row!=null&&!row.gameObject.activeSelf)row.gameObject.SetActive(true);
         }
         catch(Exception e){weaponBroken=true;MelonLogger.Error("FREEDOM_ARROW_RADAR_TRAIT_FAILED: radar trait icon off. "+e.Message);}
     }

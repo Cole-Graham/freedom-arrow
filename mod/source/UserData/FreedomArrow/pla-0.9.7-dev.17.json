@@ -1,0 +1,9326 @@
+{
+  "spetsnaz_alpha_standoff_rpg30": {
+    "unit": 354,
+    "option": 1511,
+    "carriers": [
+      4,
+      6
+    ],
+    "new_carriers": [
+      587,
+      589
+    ],
+    "rounds_per_carrier": 1,
+    "cost_unchanged": 5
+  },
+  "china_infantry_armor_8": {
+    "units": {
+      "1144": "Snipers",
+      "1181": "Godswords",
+      "1183": "Blood Wolves",
+      "1185": "Falcons",
+      "1191": "Sea Dragons",
+      "1196": "Moto. Riflemen",
+      "1205": "Light Riflemen",
+      "1197": "AA Troopers",
+      "1198": "AT Troopers"
+    },
+    "armor_value": 8,
+    "godswords_armor_row": [
+      283,
+      314
+    ],
+    "smoke_1_ability_row": [
+      81,
+      103
+    ],
+    "linked_ability_units": [
+      1144,
+      1181
+    ]
+  },
+  "launcher_at_aim_0_2": {
+    "aim_s": 0.2,
+    "rounds": {
+      "2000128": "105mm HEAT",
+      "2000129": "84mm HEAT",
+      "2000130": "84mm anti-tank",
+      "2000131": "84mm HEAT",
+      "2000132": "PG-7VL",
+      "2000133": "73mm HEAT",
+      "2000135": "105mm HEAT",
+      "2000136": "105mm HEAT",
+      "2000137": "125mm HEAT",
+      "2000138": "84mm Tandem",
+      "2000139": "84mm Tandem",
+      "2000143": "PG-7VS",
+      "2000145": "PG-7VM",
+      "2000453": "84mm HEAT",
+      "2001502": "72.5mm HEAT",
+      "2011833": "PF-98 ammunition",
+      "2011888": "PF-89 ammunition",
+      "2011920": "PF-98A ammunition",
+      "2013158": "PF-98A ammunition",
+      "2016260": "PF-98 ammunition"
+    },
+    "launchers": 37
+  },
+  "community_cards": {
+    "1109": {
+      "name": "QJY-201",
+      "before": "DLC3/HMG_KORD/HMG_KORD",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1137": {
+      "name": "HJ-12 Team",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_HJ12-Portrait"
+    },
+    "1139": {
+      "name": "Tank Hunters 坦克杀手",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1142": {
+      "name": "Pathfinders 先遣队",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1143": {
+      "name": "Thunder Gods 雷神",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_SOF-Portrait"
+    },
+    "1144": {
+      "name": "Snipers 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1145": {
+      "name": "QW-12 Patrol 防空巡逻",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1149": {
+      "name": "Recon 侦察组",
+      "before": "FA_CN_INF_AIRBORNE-Portrait",
+      "after": "FA_CN_INF_AIRBORNE_HELO-Portrait"
+    },
+    "1152": {
+      "name": "HJ-8E Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_HJ73-Portrait"
+    },
+    "1153": {
+      "name": "QW-2 Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1157": {
+      "name": "QJZ-89 Team",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1160": {
+      "name": "Armored Scouts 装甲侦察",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1161": {
+      "name": "Armored Sniper Pair 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1163": {
+      "name": "Mech. Rifles 机步班",
+      "before": "FA_CN_INF_SF_JUNGLE-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1168": {
+      "name": "HJ-73D Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_HJ73-Portrait"
+    },
+    "1169": {
+      "name": "FN-6 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1170": {
+      "name": "QJZ-89 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1172": {
+      "name": "PF-98 Team",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1175": {
+      "name": "Infantry 步兵",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1176": {
+      "name": "Counter-Raid Team 反袭击队",
+      "before": "FA_CN_INF_CONSCRIPTS-Portrait",
+      "after": "FA_CN_INF_PAP-Portrait"
+    },
+    "1182": {
+      "name": "PAP Snow Leopards 雪豹",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_PAP-Portrait"
+    },
+    "1191": {
+      "name": "Sea Dragons 蛟龙",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_JIAO_LONG-Portrait"
+    },
+    "1192": {
+      "name": "Marines 陆战队",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MARINE_JUNGLE-Portrait"
+    },
+    "1193": {
+      "name": "Marine HJ-8H Team",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MARINE_JUNGLE-Portrait"
+    },
+    "1194": {
+      "name": "Marine QW-2 Team",
+      "before": "FA_CN_INF_MARINES-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1196": {
+      "name": "Moto. Riflemen 摩步班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MECH_INF-Portrait"
+    },
+    "1197": {
+      "name": "AA Troopers 防空班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1198": {
+      "name": "AT Troopers 反坦克组",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_PF98-Portrait"
+    },
+    "1199": {
+      "name": "Weapons Squad 火力班",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_QJZ171-Portrait"
+    },
+    "1202": {
+      "name": "Snipers 狙击组",
+      "before": "FA_CN_INF_SNIPER_PAIR-Portrait",
+      "after": "FA_CN_INF_SCOUT_SNIPER-Portrait"
+    },
+    "1206": {
+      "name": "Air Defense Scouts 防空侦察",
+      "before": "FA_CN_INF_MOTORIZED-Portrait",
+      "after": "FA_CN_INF_MANPAD-Portrait"
+    },
+    "1224": {
+      "name": "Marine Recon",
+      "before": "FA_CN_INF_SF_CQC-Portrait",
+      "after": "FA_CN_INF_JIAO_LONG-Portrait"
+    }
+  },
+  "qq_bug_sheet": {
+    "zbd05_option_turret_not_default": 2018991,
+    "fs90a_renames": {
+      "WeaponsJson:2017496": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2017499": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2017512": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2017515": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2018820": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2018821": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2019018": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2019023": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2019028": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2019033": {
+        "HUDName": "FS-90A"
+      },
+      "WeaponsJson:2019323": {
+        "HUDName": "FS-90A"
+      },
+      "AmmunitionsJson:2018819": {
+        "HUDName": "FS-90A"
+      },
+      "OptionsJson:24498": {
+        "UIName": "Multirole (8x HJ-10, 14x FS-90A)"
+      },
+      "OptionsJson:24514": {
+        "UIName": "Multirole (8x HJ-10, 14x FS-90A)"
+      },
+      "OptionsJson:24562": {
+        "UIName": "32x FS-90A"
+      },
+      "OptionsJson:24566": {
+        "UIName": "16x FS-90A"
+      },
+      "OptionsJson:24581": {
+        "UIName": "Fire support (FS-90A)"
+      },
+      "OptionsJson:24583": {
+        "UIName": "Fire support (FS-90A)"
+      },
+      "OptionsJson:24587": {
+        "UIName": "Fire support (FS-90A)"
+      },
+      "OptionsJson:31067": {
+        "UIName": "32x FS-90A"
+      },
+      "OptionsJson:31068": {
+        "UIName": "16x FS-90A"
+      },
+      "OptionsJson:31095": {
+        "UIName": "Escort (8x TY-90, 14x FS-90A)"
+      },
+      "OptionsJson:31096": {
+        "UIName": "Escort (8x TY-90, 14x FS-90A)"
+      },
+      "OptionsJson:31097": {
+        "UIName": "Escort (8x TY-90, 14x FS-90A)"
+      }
+    }
+  },
+  "blue_dragon_japan_reload": {
+    "MainGun 120 Type 10 TKG autoloader": {
+      "weapon": 2019499,
+      "reload_s": [
+        [
+          4.0,
+          4.0
+        ],
+        [
+          4.0,
+          5.0
+        ]
+      ]
+    },
+    "MainGun 120 Type 90 L44 autoloader": {
+      "weapon": 2019521,
+      "reload_s": [
+        [
+          4.0,
+          4.0
+        ],
+        [
+          4.0,
+          5.0
+        ]
+      ]
+    }
+  },
+  "blue_dragon_tank_tab": {
+    "K2 Black Panther": {
+      "unit": 1278,
+      "parent": "M1A2 SEP v2 TUA",
+      "cost": 255,
+      "sensor": 1,
+      "turrets": [
+        2019555,
+        2019558,
+        2019560
+      ],
+      "KE": [
+        850,
+        120,
+        100,
+        80
+      ],
+      "HEAT": [
+        1100,
+        200,
+        100,
+        100
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        70.0,
+        55.0,
+        35.0
+      ],
+      "rounds": [
+        [
+          "K279 APFSDS",
+          525.0,
+          475.0,
+          16,
+          [
+            5.0,
+            6.0
+          ]
+        ],
+        [
+          "K280 HEAT-MP",
+          600.0,
+          600.0,
+          12,
+          [
+            5.0,
+            6.0
+          ]
+        ],
+        [
+          "KSTAM",
+          140.0,
+          140.0,
+          4,
+          [
+            5.0,
+            6.0
+          ]
+        ]
+      ]
+    },
+    "K1A1": {
+      "unit": 1279,
+      "parent": "M1A2 SEP v2 TUA",
+      "cost": 155,
+      "sensor": 23,
+      "turrets": [
+        436,
+        440,
+        441
+      ],
+      "KE": [
+        650,
+        120,
+        100,
+        60
+      ],
+      "HEAT": [
+        750,
+        200,
+        100,
+        100
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        65.0,
+        50.0,
+        35.0
+      ],
+      "rounds": [
+        [
+          "K276 APFSDS",
+          500.0,
+          450.0,
+          16,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "K277 HEAT-MP",
+          600.0,
+          600.0,
+          24,
+          [
+            6.0,
+            7.0
+          ]
+        ]
+      ]
+    },
+    "K1": {
+      "unit": 1280,
+      "parent": "M1A2 SEP v2 TUA",
+      "cost": 95,
+      "sensor": 2,
+      "turrets": [
+        2019589,
+        2019592,
+        2019594
+      ],
+      "KE": [
+        500,
+        120,
+        100,
+        60
+      ],
+      "HEAT": [
+        650,
+        200,
+        100,
+        100
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        65.0,
+        50.0,
+        35.0
+      ],
+      "rounds": [
+        [
+          "K270 APFSDS",
+          350.0,
+          300.0,
+          20,
+          [
+            5.0,
+            6.0
+          ]
+        ],
+        [
+          "KM456A2 HEAT",
+          500.0,
+          500.0,
+          20,
+          [
+            5.0,
+            6.0
+          ]
+        ]
+      ]
+    },
+    "M48A5K": {
+      "unit": 1281,
+      "parent": "M60A1",
+      "cost": 50,
+      "sensor": 2,
+      "turrets": [
+        12,
+        110
+      ],
+      "KE": [
+        250,
+        100,
+        60,
+        60
+      ],
+      "HEAT": [
+        300,
+        150,
+        60,
+        60
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        50.0,
+        45.0,
+        15.0
+      ],
+      "rounds": [
+        [
+          "K270 APFSDS",
+          350.0,
+          300.0,
+          20,
+          [
+            5.0,
+            6.0
+          ]
+        ],
+        [
+          "KM456A2 HEAT",
+          500.0,
+          500.0,
+          20,
+          [
+            5.0,
+            6.0
+          ]
+        ]
+      ]
+    },
+    "Type 74 STB-2": {
+      "unit": 1282,
+      "parent": "M1A2 SEP v2 TUA",
+      "cost": 65,
+      "sensor": 2,
+      "turrets": [
+        2019621,
+        2019624,
+        2019626
+      ],
+      "KE": [
+        250,
+        100,
+        60,
+        60
+      ],
+      "HEAT": [
+        400,
+        250,
+        60,
+        80
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        50.0,
+        45.0,
+        15.0
+      ],
+      "rounds": [
+        [
+          "Type 93 APFSDS",
+          300.0,
+          250.0,
+          20,
+          [
+            4.0,
+            5.0
+          ]
+        ],
+        [
+          "Type 91 HEAT",
+          500.0,
+          500.0,
+          20,
+          [
+            4.0,
+            5.0
+          ]
+        ]
+      ]
+    },
+    "T-80U (ROK)": {
+      "unit": 1283,
+      "parent": "T-80U",
+      "cost": 135,
+      "sensor": 23,
+      "turrets": [
+        2019641,
+        2019644
+      ],
+      "KE": [
+        650,
+        150,
+        100,
+        80
+      ],
+      "HEAT": [
+        700,
+        400,
+        100,
+        100
+      ],
+      "HP": 14,
+      "road_xc_rev": [
+        80.0,
+        60.0,
+        25.0
+      ],
+      "rounds": [
+        [
+          "125mm AP Vant",
+          400.0,
+          350.0,
+          14,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "125mm HE",
+          125.0,
+          125.0,
+          22,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "Invar-M 9M119M",
+          600.0,
+          600.0,
+          3,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "125mm HEAT",
+          750.0,
+          750.0,
+          6,
+          [
+            6.0,
+            7.0
+          ]
+        ]
+      ]
+    },
+    "Type 16 MCV": {
+      "unit": 1284,
+      "parent": "Stryker MGS",
+      "cost": 75,
+      "sensor": 23,
+      "turrets": [
+        30,
+        108
+      ],
+      "KE": [
+        60,
+        40,
+        30,
+        20
+      ],
+      "HEAT": [
+        60,
+        40,
+        30,
+        20
+      ],
+      "HP": 12,
+      "road_xc_rev": [
+        100.0,
+        50.0,
+        25.0
+      ],
+      "rounds": [
+        [
+          "Type 93 APFSDS",
+          300.0,
+          250.0,
+          12,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "Type 91 HEAT",
+          500.0,
+          500.0,
+          8,
+          [
+            6.0,
+            7.0
+          ]
+        ],
+        [
+          "Type 75 HESH",
+          200.0,
+          200.0,
+          8,
+          [
+            6.0,
+            7.0
+          ]
+        ]
+      ]
+    },
+    "Type 10": {
+      "unit": 1276,
+      "sensor": [
+        3,
+        1
+      ]
+    },
+    "Type 90": {
+      "unit": 1277,
+      "sensor": [
+        3,
+        23
+      ]
+    }
+  },
+  "blue_dragon_spec": {
+    "spec": 23,
+    "name": "Blue Dragon (Testing Preview)",
+    "icon": "FA_US_BLUE_DRAGON",
+    "template": "Armored Brigade (4)",
+    "cards": {
+      "K2 Black Panther": {
+        "unit": 1278,
+        "cards": 2,
+        "cost": 255
+      },
+      "Type 10": {
+        "unit": 1276,
+        "cards": 2,
+        "cost": 190
+      },
+      "K1A1": {
+        "unit": 1279,
+        "cards": 3,
+        "cost": 155
+      },
+      "Type 90": {
+        "unit": 1277,
+        "cards": 3,
+        "cost": 140
+      },
+      "T-80U (ROK)": {
+        "unit": 1283,
+        "cards": 2,
+        "cost": 135
+      },
+      "K1": {
+        "unit": 1280,
+        "cards": 4,
+        "cost": 95
+      },
+      "Type 74 STB-2": {
+        "unit": 1282,
+        "cards": 4,
+        "cost": 65
+      },
+      "Type 16 MCV": {
+        "unit": 1284,
+        "cards": 3,
+        "cost": 75
+      },
+      "M48A5K": {
+        "unit": 1281,
+        "cards": 4,
+        "cost": 50
+      }
+    }
+  },
+  "blue_dragon_dev2": {
+    "K2 Black Panther": {
+      "unit": 1278,
+      "armour_row": 2019551,
+      "HeatArmorFront": [
+        1100,
+        1075
+      ]
+    },
+    "Type 74 (G)": {
+      "unit": 1285,
+      "from": "Type 74 STB-2",
+      "gun": "M68 (weapon 11) 5-6 s",
+      "cost": 55,
+      "cards": 4,
+      "turrets": [
+        2019681,
+        2019684,
+        2019686
+      ]
+    }
+  },
+  "reload_105mm": {
+    "2009127": {
+      "name": "105 mm high-pressure rifled gun",
+      "old": [
+        4.0,
+        4.0
+      ],
+      "new": [
+        5.0,
+        6.0
+      ]
+    },
+    "2009665": {
+      "name": "105 mm rifled gun",
+      "old": [
+        6.0,
+        7.0
+      ],
+      "new": [
+        5.0,
+        6.0
+      ]
+    },
+    "2011297": {
+      "name": "105 mm high-pressure rifled gun",
+      "old": [
+        4.0,
+        5.0
+      ],
+      "new": [
+        5.0,
+        6.0
+      ]
+    },
+    "2010191": {
+      "name": "Prototype 105 mm gun",
+      "old": [
+        4.0,
+        4.0
+      ],
+      "new": [
+        4.0,
+        5.0
+      ]
+    }
+  },
+  "ztz100_ke_front": [
+    750,
+    700
+  ],
+  "ctl181_no_smoke": {
+    "unit": 1054,
+    "unit_ability": 2010702,
+    "ability": [
+      2000197,
+      4
+    ]
+  },
+  "china_vehicle_ammo_icons": {
+    "2009005": {
+      "name": "QJZ-89 12.7 mm RWS ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009023": {
+      "name": "100 mm gun / HJ-9 launcher HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_BMP_100_HE"
+    },
+    "2009025": {
+      "name": "100 mm gun / HJ-9 launcher HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_BMP_100_ATGM"
+    },
+    "2009029": {
+      "name": "ZPT-99 30 mm AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009031": {
+      "name": "ZPT-99 30 mm HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009035": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009049": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009051": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009057": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009075": {
+      "name": "ZPT-98 125 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009077": {
+      "name": "ZPT-98 125 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009079": {
+      "name": "ZPT-98 125 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009083": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009089": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009103": {
+      "name": "125 mm tank gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009105": {
+      "name": "125 mm tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009107": {
+      "name": "125 mm tank gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009111": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009117": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009131": {
+      "name": "105 mm DU APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2009133": {
+      "name": "105 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2009139": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009145": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009185": {
+      "name": "PG99 twin 35 mm guns ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009233": {
+      "name": "23 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009265": {
+      "name": "QJY-201 door guns ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009283": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009301": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009319": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009355": {
+      "name": "23 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009369": {
+      "name": "625 six-barrel 25 mm gun ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009373": {
+      "name": "FB-10 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_STINGER"
+    },
+    "2009397": {
+      "name": "PHL-11 122 mm rockets ammunition",
+      "before": "FA_PLA_AMMO_ROCKET",
+      "after": "AMMO_GRAD"
+    },
+    "2009403": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009421": {
+      "name": "GSh-30-1 ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009449": {
+      "name": "HQ-7 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_OSA_AKM"
+    },
+    "2009463": {
+      "name": "120 mm gun-mortar ammunition",
+      "before": "FA_PLA_AMMO_MORTAR",
+      "after": "AMMO_RU_MORTAR_120"
+    },
+    "2009477": {
+      "name": "Prototype 125 mm gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009479": {
+      "name": "Prototype 125 mm gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009481": {
+      "name": "Prototype 125 mm gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009485": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009491": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009517": {
+      "name": "105 mm rifled gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2009519": {
+      "name": "105 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2009525": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009531": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009545": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2009559": {
+      "name": "Four 25 mm AA guns ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009565": {
+      "name": "QW-2 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_STINGER"
+    },
+    "2009577": {
+      "name": "155 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_US_ARTILLERY_155"
+    },
+    "2009603": {
+      "name": "30 mm AA gun ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009607": {
+      "name": "FK-2000 SAM ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_PANCIR_S1"
+    },
+    "2009623": {
+      "name": "HJ-10 guided missile",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_HELLFIRE_2"
+    },
+    "2009637": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009639": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009645": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009651": {
+      "name": "QN-502 guided missile ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_HERMES_A"
+    },
+    "2009655": {
+      "name": "QN-201 guided support missile ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_GRIFFIN"
+    },
+    "2009669": {
+      "name": "105 mm rifled gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2009671": {
+      "name": "105 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2009677": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009683": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009697": {
+      "name": "ZPT-98 125 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009699": {
+      "name": "ZPT-98 125 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009701": {
+      "name": "ZPT-98 125 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009705": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009711": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009775": {
+      "name": "7.62 mm cabin gun ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009781": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009829": {
+      "name": "ZPT-99 30 mm AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009831": {
+      "name": "ZPT-99 30 mm HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009835": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009855": {
+      "name": "120 mm smoothbore gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2009857": {
+      "name": "120 mm smoothbore gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HEAT"
+    },
+    "2009863": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009869": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009883": {
+      "name": "ZPT-98 125 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009885": {
+      "name": "ZPT-98 125 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009887": {
+      "name": "ZPT-98 125 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009891": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009897": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009911": {
+      "name": "125 mm tank gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2009913": {
+      "name": "125 mm tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009915": {
+      "name": "125 mm tank gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2009919": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009925": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009937": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2009951": {
+      "name": "76 mm radar-assisted AA gun HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2009967": {
+      "name": "105 mm rifled gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2009969": {
+      "name": "105 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2009975": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009981": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2009995": {
+      "name": "QJZ-89 12.7 mm RWS ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010001": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010025": {
+      "name": "125 mm tank gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2010027": {
+      "name": "125 mm tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2010029": {
+      "name": "125 mm tank gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2010033": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010039": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010053": {
+      "name": "14.5 mm HMG ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010057": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010069": {
+      "name": "85 mm rifled gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_HEAT"
+    },
+    "2010071": {
+      "name": "85 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_HE"
+    },
+    "2010075": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010081": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010095": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010109": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010125": {
+      "name": "HQ-7 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_OSA_AKM"
+    },
+    "2010139": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010141": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010147": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010151": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2010163": {
+      "name": "PHL-81 122 mm rockets ammunition",
+      "before": "FA_PLA_AMMO_ROCKET",
+      "after": "AMMO_GRAD"
+    },
+    "2010195": {
+      "name": "Prototype 105 mm gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2010197": {
+      "name": "Prototype 105 mm gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2010199": {
+      "name": "Prototype 105 mm gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HEAT"
+    },
+    "2010203": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010209": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010295": {
+      "name": "23 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010327": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010329": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010335": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010351": {
+      "name": "DF-17 conventional test missile ammunition",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ISKANDER_M"
+    },
+    "2010363": {
+      "name": "DF-15 conventional test missile ammunition",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ISKANDER_M"
+    },
+    "2010375": {
+      "name": "DF-21 conventional test missile ammunition",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ISKANDER_M"
+    },
+    "2010387": {
+      "name": "DF-21D conventional test missile ammunition",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ISKANDER_M"
+    },
+    "2010399": {
+      "name": "DF-31A nuclear warhead",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ISKANDER_M"
+    },
+    "2010413": {
+      "name": "122 mm truck howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010439": {
+      "name": "BRE6/BRE8 370 mm rocket",
+      "before": "FA_PLA_AMMO_ROCKET",
+      "after": "AMMO_SMERCH"
+    },
+    "2010465": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_MORTAR",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010479": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010491": {
+      "name": "155 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_US_ARTILLERY_155"
+    },
+    "2010505": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010519": {
+      "name": "152 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_152mm"
+    },
+    "2010533": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010547": {
+      "name": "122 mm howitzer ammunition",
+      "before": "FA_PLA_AMMO_HOWITZER",
+      "after": "AMMO_RU_ARTILLERY_122"
+    },
+    "2010559": {
+      "name": "SY-400 guided rockets ammunition",
+      "before": "FA_PLA_AMMO_MISSILE",
+      "after": "AMMO_ATCAMS"
+    },
+    "2010573": {
+      "name": "HQ-6A ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_BUK_M2"
+    },
+    "2010587": {
+      "name": "HQ-11 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_TOR_M2"
+    },
+    "2010601": {
+      "name": "HQ-12 / KS-1 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_BUK_M3"
+    },
+    "2010615": {
+      "name": "HQ-16 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_BUK_M3"
+    },
+    "2010643": {
+      "name": "Four 25 mm AA guns ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010649": {
+      "name": "QW-2 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_STINGER"
+    },
+    "2010663": {
+      "name": "Twin 37 mm AA guns ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010677": {
+      "name": "Four 25 mm AA guns ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010683": {
+      "name": "QW-2 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_STINGER"
+    },
+    "2010695": {
+      "name": "HJ-9 ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_KORNET"
+    },
+    "2010725": {
+      "name": "HJ-10 guided missile",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_HELLFIRE_2"
+    },
+    "2010739": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010741": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010747": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010765": {
+      "name": "QJZ-89 12.7 mm RWS ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010779": {
+      "name": "QJZ-89 12.7 mm RWS ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010793": {
+      "name": "100 mm rifled gun AP",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_AP"
+    },
+    "2010797": {
+      "name": "100 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_HE"
+    },
+    "2010803": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010809": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010821": {
+      "name": "100 mm rifled tank gun AP",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_AP"
+    },
+    "2010825": {
+      "name": "100 mm rifled tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_HE"
+    },
+    "2010831": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010837": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010849": {
+      "name": "105 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2010853": {
+      "name": "105 mm rifled tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2010859": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010865": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010879": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010891": {
+      "name": "73 mm low-pressure gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_SMAW_HEAA"
+    },
+    "2010893": {
+      "name": "73 mm low-pressure gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_SMAW_HEAA"
+    },
+    "2010899": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010905": {
+      "name": "HJ-73 ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_KONKURS_M"
+    },
+    "2010919": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010947": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010949": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010955": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010959": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2010973": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010975": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010981": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2010985": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2010999": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011001": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011007": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011011": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2011025": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011027": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011033": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011037": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2011049": {
+      "name": "QJY-201 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011061": {
+      "name": "125 mm tank gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2011063": {
+      "name": "125 mm tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2011065": {
+      "name": "125 mm tank gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2011069": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011075": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011089": {
+      "name": "VT-4 125 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2011091": {
+      "name": "VT-4 125 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2011093": {
+      "name": "VT-4 125 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2011097": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011103": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011117": {
+      "name": "Prototype 120 mm smoothbore APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2011119": {
+      "name": "Prototype 120 mm smoothbore HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HE"
+    },
+    "2011121": {
+      "name": "Prototype 120 mm smoothbore HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HEAT"
+    },
+    "2011125": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011131": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011143": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011145": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011149": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011153": {
+      "name": "HJ-73D ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_KONKURS_M"
+    },
+    "2011171": {
+      "name": "100 mm gun / HJ-9 launcher HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_BMP_100_HE"
+    },
+    "2011173": {
+      "name": "100 mm gun / HJ-9 launcher HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_BMP_100_ATGM"
+    },
+    "2011177": {
+      "name": "ZPT-99 30 mm AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011179": {
+      "name": "ZPT-99 30 mm HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011183": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011197": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011199": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011205": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011209": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2011223": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011225": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011231": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011235": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2011249": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011251": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011257": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011261": {
+      "name": "HJ-8E ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_TOW_2A"
+    },
+    "2011275": {
+      "name": "30 mm autocannon AP",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011277": {
+      "name": "30 mm autocannon HE",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011283": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011301": {
+      "name": "105 mm DU APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2011303": {
+      "name": "105 mm rifled gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_105_HE"
+    },
+    "2011309": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011315": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011327": {
+      "name": "100 mm rifled tank gun AP",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_AP"
+    },
+    "2011331": {
+      "name": "100 mm rifled tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_115_HE"
+    },
+    "2011337": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011343": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011357": {
+      "name": "125 mm tank gun APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2011359": {
+      "name": "125 mm tank gun HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2011361": {
+      "name": "125 mm tank gun HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2011365": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011371": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011385": {
+      "name": "ZPT-98 125 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_AP"
+    },
+    "2011387": {
+      "name": "ZPT-98 125 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HE"
+    },
+    "2011389": {
+      "name": "ZPT-98 125 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_HEAT"
+    },
+    "2011393": {
+      "name": "Type 86 7.62 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011399": {
+      "name": "QJC-88 12.7 mm ammunition",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011441": {
+      "name": "UAV guided missile ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_GRIFFIN"
+    },
+    "2011447": {
+      "name": "30 mm aircraft cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011453": {
+      "name": "PL-10 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AIM9M"
+    },
+    "2011459": {
+      "name": "PL-15 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AMRAAM"
+    },
+    "2011465": {
+      "name": "PL-10 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AIM9M"
+    },
+    "2011471": {
+      "name": "PL-15 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AMRAAM"
+    },
+    "2011483": {
+      "name": "Type 23 cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011513": {
+      "name": "Type 23 cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011519": {
+      "name": "PL-2 short-range missile (analog) ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AIM9M"
+    },
+    "2011525": {
+      "name": "Type 23 cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011531": {
+      "name": "PL-8 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AIM9M"
+    },
+    "2011537": {
+      "name": "PL-12 ammunition",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_AMRAAM"
+    },
+    "2011543": {
+      "name": "Type 23 cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011583": {
+      "name": "30 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011663": {
+      "name": "23 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011675": {
+      "name": "90 mm unguided rockets ammunition",
+      "before": "FA_PLA_AMMO_ROCKET",
+      "after": "AMMO_S8"
+    },
+    "2011695": {
+      "name": "23 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011707": {
+      "name": "90 mm unguided rockets ammunition",
+      "before": "FA_PLA_AMMO_ROCKET",
+      "after": "AMMO_S8"
+    },
+    "2011805": {
+      "name": "30 mm chin cannon ammunition",
+      "before": "FA_PLA_AMMO_AUTOCANNON",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2011865": {
+      "name": "HJ-12 ammunition",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_JAVELIN"
+    },
+    "2014535": {
+      "name": "HQ-9B missile",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_S300"
+    },
+    "2014550": {
+      "name": "HQ-9A missile",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_S300"
+    },
+    "2014556": {
+      "name": "HQ-9C missile",
+      "before": "FA_PLA_AMMO_SAM",
+      "after": "AMMO_S300"
+    },
+    "2014644": {
+      "name": "QJC-88 12.7 mm",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2014656": {
+      "name": "HJ-16",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_JAVELIN"
+    },
+    "2014660": {
+      "name": "ABZ-13 anti-personnel",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_KORNET"
+    },
+    "2018321": {
+      "name": "NLOS missile",
+      "before": "FA_PLA_AMMO_ATGM",
+      "after": "AMMO_JAGM"
+    },
+    "2018996": {
+      "name": "LG3 40 mm ammunition",
+      "before": "FA_PLA_AMMO_GRENADE",
+      "after": "AMMO_GRENADES"
+    },
+    "2019038": {
+      "name": "105 mm gun-launched missile",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_RU_TANK_125_ATGM"
+    },
+    "2019344": {
+      "name": "120 mm APFSDS",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_AP"
+    },
+    "2019387": {
+      "name": "LSDW laser pulse",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2019446": {
+      "name": "LY-1 laser pulse",
+      "before": "FA_PLA_AMMO_MG",
+      "after": "AMMO_BULLET_SHORT"
+    },
+    "2019460": {
+      "name": "120 mm HE",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HE"
+    },
+    "2019461": {
+      "name": "120 mm HEAT",
+      "before": "FA_PLA_AMMO_CANNON",
+      "after": "AMMO_US_TANK_120_HEAT"
+    }
+  },
+  "tank_hunters_6_men": {
+    "men": [
+      8,
+      6
+    ],
+    "armor": [
+      84,
+      82
+    ]
+  },
+  "heli_range": {
+    "radar_low_optics": {
+      "59": [
+        1.0,
+        2.0
+      ]
+    },
+    "radar_groups": 4,
+    "ammo": 423
+  },
+  "z10k_optics": {
+    "sensor": 2019482,
+    "ground": [
+      3200.0,
+      2800.0
+    ],
+    "cap_raw": 1200.0
+  },
+  "china_optics": {
+    "ZTZ-59": {
+      "sensor": 2010815,
+      "ground": [
+        1450.0,
+        1300.0
+      ]
+    },
+    "ZTZ-80": {
+      "sensor": 2010843,
+      "ground": [
+        1450.0,
+        1300.0
+      ]
+    },
+    "PTL-02": {
+      "sensor": 2010787,
+      "ground": [
+        1450.0,
+        1300.0
+      ]
+    },
+    "ZTZ-96A": {
+      "sensor": 2011351,
+      "ground": [
+        1450.0,
+        1300.0
+      ]
+    },
+    "Z-9": {
+      "sensor": 2011637,
+      "ground": [
+        1650.0,
+        1300.0
+      ]
+    },
+    "ZTZ-59D1": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "VT-5 Recon": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "ZTQ-15 Recon": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "ZTL-191 Recon": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "ZBD-04A Recon": {
+      "sensor": [
+        5,
+        3
+      ],
+      "ground": [
+        2800.0,
+        2300.0
+      ]
+    },
+    "ZBD-03 Recon": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "ZBD-86 Recon": {
+      "sensor": [
+        3,
+        1
+      ],
+      "ground": [
+        2300.0,
+        1650.0
+      ]
+    },
+    "Z-20S": {
+      "sensor": [
+        5,
+        3
+      ],
+      "ground": [
+        2800.0,
+        2300.0
+      ]
+    }
+  },
+  "qn506_vehicle_tab": {
+    "unit": 937,
+    "category": [
+      0,
+      2
+    ],
+    "sensor": [
+      2009631,
+      23
+    ],
+    "optics": [
+      1450.0,
+      900.0,
+      1000.0
+    ]
+  },
+  "qn506_ch901_hj10_laser": {
+    "qn502_weapon": 2009647,
+    "qn502_round": 2009651,
+    "clone_of": [
+      2018447,
+      2018448
+    ],
+    "hj10_round": 2009623,
+    "hj10_ability": [
+      2009175,
+      2019696
+    ],
+    "nlos_keep_lock": [
+      2009623,
+      2009651,
+      2018321
+    ]
+  },
+  "tank_heat_tiers": {
+    "top_1075": {
+      "2000402": 1200,
+      "2000403": 1200,
+      "2000404": 1200,
+      "2000405": 1200,
+      "2000406": 1200,
+      "2000407": 1200,
+      "2000119": 1200,
+      "2000120": 1200,
+      "2000121": 1200,
+      "2000422": 1100,
+      "2000423": 1200,
+      "2000076": 1100,
+      "2000077": 1100,
+      "2000078": 1100,
+      "2000079": 1100,
+      "2002031": 1100,
+      "2009063": 1100,
+      "2010183": 1050
+    },
+    "mid_high_950": {
+      "2000408": 1100,
+      "2000409": 1100,
+      "2000410": 1100,
+      "2000411": 1100,
+      "2000412": 1100,
+      "2000413": 1100,
+      "2000397": 1100,
+      "2000414": 1100,
+      "2000415": 1100,
+      "2000416": 1100,
+      "2000400": 1100,
+      "2000401": 1100,
+      "2000435": 1050,
+      "2000436": 1050,
+      "2000109": 1050,
+      "2000110": 1200
+    }
+  },
+  "ifv_700_class": {
+    "rows_700": [
+      2000015,
+      2000026,
+      2000027,
+      2001818,
+      2009807,
+      2000235,
+      2000236,
+      2000237,
+      2000238,
+      2000239,
+      2000240,
+      2000380,
+      2000381,
+      2000382,
+      2000383,
+      2000384,
+      2000385,
+      2000386,
+      2000387
+    ],
+    "xm30_ke": [
+      300,
+      200
+    ],
+    "t80u_profile_to": {
+      "2000437": 255,
+      "2019365": 1274
+    },
+    "costs": {
+      "1764": [
+        20,
+        25
+      ],
+      "1773": [
+        20,
+        25
+      ],
+      "1753": [
+        25,
+        25
+      ],
+      "1759": [
+        25,
+        25
+      ],
+      "60": [
+        15,
+        25
+      ],
+      "2082": [
+        55,
+        65
+      ],
+      "44": [
+        10,
+        25
+      ],
+      "50": [
+        20,
+        25
+      ],
+      "70": [
+        15,
+        15
+      ],
+      "1943": [
+        10,
+        25
+      ],
+      "1946": [
+        10,
+        25
+      ],
+      "8": [
+        25,
+        25
+      ],
+      "25": [
+        25,
+        25
+      ],
+      "42": [
+        25,
+        25
+      ],
+      "1934": [
+        45,
+        45
+      ],
+      "1944": [
+        50,
+        65
+      ],
+      "1947": [
+        50,
+        65
+      ],
+      "1894": [
+        65,
+        65
+      ]
+    },
+    "stryker_speed": [
+      [
+        100,
+        50
+      ],
+      [
+        90,
+        40
+      ]
+    ],
+    "ampv_mobility": 2019697
+  },
+  "top_attack_and_aam_flash": {
+    "top_attack_rounds": [
+      52,
+      2000149,
+      2000174,
+      2000177,
+      2011865,
+      2014293,
+      2014321,
+      2018804,
+      2018867,
+      2019312,
+      2019313,
+      2019546
+    ],
+    "damage": [
+      10.5,
+      11.0
+    ],
+    "hj12_pen": [
+      130,
+      140
+    ],
+    "aam_flash": {
+      "437": [
+        1.0,
+        3.5
+      ],
+      "675": [
+        1.0,
+        3.5
+      ],
+      "2001659": [
+        1.0,
+        3.5
+      ],
+      "2016472": [
+        1.0,
+        3.5
+      ],
+      "2016476": [
+        1.0,
+        3.5
+      ],
+      "2016482": [
+        1.0,
+        3.5
+      ],
+      "2016509": [
+        1.0,
+        3.5
+      ],
+      "2017635": [
+        1.0,
+        3.5
+      ]
+    }
+  },
+  "split_cards_visible": {
+    "64": "Airborne",
+    "409": "Rangers CQC",
+    "707": "Mech. Riflemen MAAWS"
+  },
+  "china_balance_094": {
+    "Airborne 空降兵": {
+      "men": 8
+    },
+    "Airborne": {
+      "cost": [
+        70,
+        80
+      ]
+    },
+    "QLU-11 Team": {
+      "men": 3
+    },
+    "QJZ-89 Team": {
+      "men": 6
+    },
+    "PF-98 Team": {
+      "men": 5,
+      "cost": [
+        55,
+        45
+      ]
+    },
+    "QLZ-87 Team": {
+      "men": 6
+    },
+    "Whistling Arrows 响箭": {
+      "men": 3
+    },
+    "Beijing Swords": {
+      "cost": [
+        70,
+        55
+      ]
+    },
+    "Marine Recon": {
+      "cost": [
+        45,
+        60
+      ]
+    },
+    "Counter-Raid Team": {
+      "cost": [
+        55,
+        45
+      ]
+    },
+    "Rosgvardia": {
+      "cost": [
+        50,
+        55
+      ],
+      "swap_rows": {
+        "610": 70
+      }
+    },
+    "ZTZ-100": {
+      "cost": [
+        340,
+        355
+      ]
+    },
+    "VN20": {
+      "cost": [
+        250,
+        220
+      ]
+    },
+    "ZTQ-15": {
+      "cost": [
+        175,
+        185
+      ]
+    },
+    "ZTQ-15 Light": {
+      "cost": [
+        155,
+        170
+      ]
+    },
+    "ZTZ-99A": {
+      "cost": [
+        230,
+        250
+      ]
+    },
+    "CTL-181 NLOS": {
+      "cost": [
+        180,
+        160
+      ]
+    },
+    "ZTL-191": {
+      "cost": [
+        160,
+        140
+      ]
+    },
+    "ZTL-191 Recon": {
+      "cost": [
+        180,
+        160
+      ]
+    },
+    "KamAZ-6560 Cargo": {
+      "cost": [
+        50,
+        40
+      ]
+    },
+    "Z-21": {
+      "cost": [
+        110,
+        140
+      ]
+    },
+    "HJ-10": {
+      "cost": [
+        170,
+        140
+      ]
+    },
+    "HQ-9C": {
+      "cost": [
+        300,
+        325
+      ]
+    },
+    "MiG-31K": {
+      "cost": [
+        400,
+        300
+      ]
+    },
+    "J-36": {
+      "cost": [
+        415,
+        445
+      ]
+    },
+    "PHL-16": {
+      "cost": [
+        350,
+        300
+      ]
+    }
+  },
+  "heli_launchers_094": {
+    "Z-10K (913) 24496": {
+      "TY-90 missiles/launchers": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    "Z-10 (978) 24503": {
+      "TY-90 missiles/launchers": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    "Z-10 (1239) 24509": {
+      "TY-90 missiles/launchers": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    "Z-10U (1270) 31089": {
+      "TY-90 missiles/launchers": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    "Z-21 (1104) 24643": {
+      "HJ-10": [
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          2
+        ]
+      ],
+      "TY-90": [
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    }
+  },
+  "donor_cobra_094": {
+    "Z-19 (940)": {
+      "Multirole (HJ-10)": {
+        "FS-70A": "14 on 1 -> 2 launchers",
+        "HJ-10": "8 on 1 -> 2 launchers"
+      },
+      "Multirole (AKD-9)": {
+        "90 mm rocket": "14 on 1 -> 2 launchers",
+        "AKD-9": "8 on 1 -> 2 launchers"
+      },
+      "Heavy anti-armor": {
+        "HJ-8": "8 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      },
+      "Escort (8x TY-90, 14x FS-90A)": {
+        "FS-90A": "14 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      }
+    },
+    "Z-19 (1103)": {
+      "Multirole (HJ-10)": {
+        "FS-70A": "14 on 1 -> 2 launchers",
+        "HJ-10": "8 on 1 -> 2 launchers"
+      },
+      "Multirole (AKD-9)": {
+        "90 mm rocket": "14 on 1 -> 2 launchers",
+        "AKD-9": "8 on 1 -> 2 launchers"
+      },
+      "Heavy anti-armor": {
+        "HJ-8": "8 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      },
+      "Escort (8x TY-90, 14x FS-90A)": {
+        "FS-90A": "14 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      }
+    },
+    "Z-19 Recon (1132)": {
+      "Fire support (57 mm rocket)": {
+        "57 mm rocket": "36 on 1 -> 2 launchers"
+      },
+      "Fire support (90 mm rocket)": {
+        "90 mm rocket": "14 on 1 -> 2 launchers"
+      }
+    },
+    "Z-19 Recon (1134)": {
+      "Fire support (FS-70A)": {
+        "FS-70A": "28 on 1 -> 2 launchers"
+      },
+      "Fire support (FS-90A)": {
+        "FS-90A": "28 on 1 -> 2 launchers"
+      },
+      "Empty": {}
+    },
+    "Z-19G (1236)": {
+      "Multirole (HJ-10)": {
+        "FS-70A": "14 on 1 -> 2 launchers",
+        "HJ-10": "8 on 1 -> 2 launchers"
+      },
+      "Multirole (AKD-9)": {
+        "90 mm rocket": "14 on 1 -> 2 launchers",
+        "AKD-9": "8 on 1 -> 2 launchers"
+      },
+      "Heavy anti-armor": {
+        "HJ-8": "8 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      },
+      "Escort (8x TY-90, 14x FS-90A)": {
+        "FS-90A": "14 on 1 -> 2 launchers",
+        "TY-90": "8 on 1 -> 2 launchers"
+      }
+    },
+    "Z-19G Recon (1237)": {
+      "Fire support (FS-70A)": {
+        "FS-70A": "28 on 1 -> 2 launchers"
+      },
+      "Fire support (FS-90A)": {
+        "FS-90A": "28 on 1 -> 2 launchers"
+      },
+      "Empty": {}
+    },
+    "Z-9WA (941)": {
+      "Heavy anti-armor": {
+        "HJ-8": "8 on 2 -> 2 launchers"
+      },
+      "Air escort": {
+        "TY-90": "8 on 2 -> 2 launchers"
+      },
+      "Fire support (72x 57 mm rocket)": {
+        "57 mm rocket": "72 on 2 -> 2 launchers"
+      },
+      "Fire support (90 mm rocket)": {
+        "90 mm rocket": "28 on 2 -> 2 launchers"
+      },
+      "Multirole (HJ-8)": {
+        "57 mm rocket": "36 on 1 -> 2 launchers",
+        "HJ-8": "4 on 1 -> 2 launchers"
+      },
+      "Fire support (36x 57 mm rocket)": {
+        "57 mm rocket": "36 on 1 -> 2 launchers",
+        "TY-90": "4 on 1 -> 2 launchers"
+      },
+      "Multirole (AKD-9)": {
+        "57 mm rocket": "18 on 1 -> 2 launchers",
+        "AKD-9": "4 on 1 -> 2 launchers"
+      }
+    },
+    "Z-9WA Recon (1133)": {
+      "Fire support (57 mm rocket)": {
+        "57 mm rocket": "72 on 2 -> 2 launchers"
+      },
+      "Fire support (90 mm rocket)": {
+        "90 mm rocket": "28 on 2 -> 2 launchers"
+      },
+      "Empty": {}
+    }
+  },
+  "cover_damage_094": {
+    "building_damage_floor": [
+      0.18,
+      0.3
+    ],
+    "damage": {
+      "7": [
+        10.0,
+        8.0
+      ],
+      "19": [
+        1.0,
+        0.8
+      ],
+      "24": [
+        11.0,
+        9.0
+      ],
+      "36": [
+        2.25,
+        1.8
+      ],
+      "49": [
+        13.0,
+        10.5
+      ],
+      "53": [
+        3.0,
+        2.4
+      ],
+      "54": [
+        13.0,
+        10.5
+      ],
+      "70": [
+        1.0,
+        0.8
+      ],
+      "126": [
+        13.0,
+        10.5
+      ],
+      "140": [
+        13.0,
+        10.5
+      ],
+      "142": [
+        13.0,
+        10.5
+      ],
+      "161": [
+        1.75,
+        1.4
+      ],
+      "163": [
+        1.25,
+        1.0
+      ],
+      "169": [
+        15.0,
+        12.0
+      ],
+      "171": [
+        11.0,
+        9.0
+      ],
+      "177": [
+        3.0,
+        2.4
+      ],
+      "204": [
+        3.0,
+        2.4
+      ],
+      "207": [
+        3.0,
+        2.4
+      ],
+      "222": [
+        4.3,
+        3.4
+      ],
+      "224": [
+        8.0,
+        6.5
+      ],
+      "240": [
+        13.0,
+        10.5
+      ],
+      "241": [
+        13.0,
+        10.5
+      ],
+      "243": [
+        13.0,
+        10.5
+      ],
+      "247": [
+        13.0,
+        10.5
+      ],
+      "249": [
+        13.0,
+        10.5
+      ],
+      "259": [
+        12.0,
+        9.5
+      ],
+      "265": [
+        13.0,
+        10.5
+      ],
+      "267": [
+        4.3,
+        3.4
+      ],
+      "277": [
+        2.5,
+        2.0
+      ],
+      "436": [
+        7.5,
+        6.0
+      ],
+      "488": [
+        1.0,
+        0.8
+      ],
+      "491": [
+        4.3,
+        3.4
+      ],
+      "493": [
+        17.0,
+        13.5
+      ],
+      "500": [
+        10.0,
+        8.0
+      ],
+      "504": [
+        11.0,
+        9.0
+      ],
+      "507": [
+        3.8,
+        3.0
+      ],
+      "540": [
+        12.0,
+        9.5
+      ],
+      "546": [
+        4.5,
+        3.6
+      ],
+      "567": [
+        3.0,
+        2.4
+      ],
+      "576": [
+        12.0,
+        9.5
+      ],
+      "577": [
+        11.0,
+        9.0
+      ],
+      "716": [
+        12.0,
+        9.5
+      ],
+      "717": [
+        12.0,
+        9.5
+      ],
+      "2005006": [
+        1.0,
+        0.8
+      ],
+      "2005009": [
+        1.0,
+        0.8
+      ],
+      "2009005": [
+        1.0,
+        0.8
+      ],
+      "2009023": [
+        10.0,
+        8.0
+      ],
+      "2009031": [
+        3.0,
+        2.4
+      ],
+      "2009077": [
+        13.0,
+        10.5
+      ],
+      "2009089": [
+        1.0,
+        0.8
+      ],
+      "2009105": [
+        13.0,
+        10.5
+      ],
+      "2009117": [
+        1.0,
+        0.8
+      ],
+      "2009133": [
+        11.0,
+        9.0
+      ],
+      "2009145": [
+        1.0,
+        0.8
+      ],
+      "2009639": [
+        3.0,
+        2.4
+      ],
+      "2009671": [
+        11.0,
+        9.0
+      ],
+      "2009683": [
+        1.0,
+        0.8
+      ],
+      "2009925": [
+        1.0,
+        0.8
+      ],
+      "2009953": [
+        8.0,
+        6.4
+      ],
+      "2010197": [
+        13.0,
+        10.5
+      ],
+      "2010209": [
+        1.0,
+        0.8
+      ],
+      "2010797": [
+        10.0,
+        8.0
+      ],
+      "2010809": [
+        1.0,
+        0.8
+      ],
+      "2010825": [
+        10.0,
+        8.0
+      ],
+      "2010837": [
+        1.0,
+        0.8
+      ],
+      "2010853": [
+        10.0,
+        8.0
+      ],
+      "2010865": [
+        1.0,
+        0.8
+      ],
+      "2011145": [
+        3.0,
+        2.4
+      ],
+      "2011303": [
+        11.0,
+        9.0
+      ],
+      "2011315": [
+        1.0,
+        0.8
+      ],
+      "2011359": [
+        13.0,
+        10.5
+      ],
+      "2011371": [
+        1.0,
+        0.8
+      ],
+      "2011387": [
+        13.0,
+        10.5
+      ],
+      "2011399": [
+        1.0,
+        0.8
+      ],
+      "2011973": [
+        1.0,
+        0.8
+      ],
+      "2012388": [
+        1.0,
+        0.8
+      ],
+      "2018754": [
+        1.0,
+        0.8
+      ],
+      "2019460": [
+        13.0,
+        10.5
+      ],
+      "2019545": [
+        11.0,
+        9.0
+      ]
+    },
+    "heat": {
+      "2": [
+        11.5,
+        9.5
+      ],
+      "170": [
+        14.0,
+        12.0
+      ],
+      "173": [
+        11.5,
+        9.5
+      ],
+      "244": [
+        11.0,
+        10.5
+      ],
+      "251": [
+        11.5,
+        9.5
+      ],
+      "252": [
+        11.5,
+        9.5
+      ],
+      "253": [
+        11.0,
+        9.5
+      ],
+      "260": [
+        11.0,
+        9.5
+      ],
+      "356": [
+        11.0,
+        10.5
+      ],
+      "435": [
+        7.0,
+        6.0
+      ],
+      "499": [
+        9.5,
+        8.0
+      ],
+      "532": [
+        11.0,
+        10.5
+      ],
+      "541": [
+        11.0,
+        10.5
+      ],
+      "714": [
+        10.0,
+        9.5
+      ],
+      "715": [
+        10.0,
+        9.5
+      ],
+      "2009079": [
+        11.0,
+        10.5
+      ],
+      "2009107": [
+        11.0,
+        10.5
+      ],
+      "2010199": [
+        11.0,
+        10.5
+      ],
+      "2011361": [
+        11.0,
+        10.5
+      ],
+      "2011389": [
+        11.0,
+        10.5
+      ],
+      "2019461": [
+        11.0,
+        10.5
+      ],
+      "2019492": [
+        11.0,
+        9.5
+      ],
+      "2019539": [
+        11.0,
+        9.5
+      ],
+      "2019540": [
+        11.0,
+        9.5
+      ],
+      "2019542": [
+        11.0,
+        9.0
+      ],
+      "2019544": [
+        11.0,
+        9.0
+      ]
+    },
+    "ignore_cover_to_0": [
+      2,
+      7,
+      24,
+      36,
+      49,
+      53,
+      54,
+      126,
+      140,
+      142,
+      169,
+      171,
+      173,
+      177,
+      204,
+      207,
+      222,
+      240,
+      241,
+      243,
+      247,
+      249,
+      251,
+      252,
+      253,
+      259,
+      260,
+      265,
+      267,
+      277,
+      491,
+      493,
+      499,
+      500,
+      504,
+      507,
+      540,
+      546,
+      567,
+      576,
+      577,
+      716,
+      717,
+      2009023,
+      2009031,
+      2009077,
+      2009105,
+      2009133,
+      2009639,
+      2009671,
+      2009953,
+      2010197,
+      2010797,
+      2010825,
+      2010853,
+      2011145,
+      2011303,
+      2011359,
+      2011387,
+      2019460,
+      2019492,
+      2019539,
+      2019540,
+      2019542,
+      2019544,
+      2019545
+    ],
+    "toros_57mm_copy": 2019705,
+    "spaag_main_unchanged": [
+      211,
+      27,
+      538,
+      222
+    ]
+  },
+  "truck_names": {
+    "912": {
+      "from": "Shaanxi SX2190",
+      "to": "Shaanxi SX2220",
+      "model": "m_sx2220 6x6",
+      "rows": [
+        912
+      ]
+    },
+    "1231": {
+      "from": "Shaanxi Troop Truck",
+      "to": "Shaanxi SX2220 Troop Truck",
+      "model": "m_sx2220 6x6",
+      "rows": [
+        1231
+      ]
+    },
+    "1235": {
+      "from": "Shaanxi HMV3",
+      "to": "Shaanxi SX2306",
+      "model": "US_HEMTT 8x8",
+      "rows": [
+        1235
+      ]
+    },
+    "1247": {
+      "from": "Shaanxi HMV3 Cargo",
+      "to": "Shaanxi SX2306 Cargo",
+      "model": "US_HEMTT 8x8",
+      "rows": [
+        1247
+      ]
+    },
+    "1269": {
+      "from": "SX2190",
+      "to": "Shaanxi SX2121",
+      "model": "US_LMTV 4x4",
+      "rows": [
+        1269
+      ]
+    }
+  },
+  "reserve_names": {
+    "1166": {
+      "from": "Conscripts 义务兵",
+      "to": "Reservists 预备役",
+      "rows": [
+        1166
+      ]
+    },
+    "1213": {
+      "from": "Conscript Recon",
+      "to": "Reservist Recon",
+      "rows": [
+        1213
+      ]
+    }
+  },
+  "zbd251_airdrop": {
+    "unit": 1056,
+    "mobility": 2010729,
+    "IsAirDroppable": [
+      false,
+      true
+    ]
+  },
+  "hj10_modes": {
+    "fnf": {
+      "round": 2019706,
+      "weapon": 2019707,
+      "turret": 2019708,
+      "option": 31106
+    },
+    "nlos": {
+      "round": 2009623,
+      "weapon": 2009619,
+      "turret": 2009620,
+      "option": 31107,
+      "cost": 20
+    },
+    "stats": {
+      "Damage": 11.0,
+      "PenetrationAtGroundRange": 140.0,
+      "PenetrationAtMinRange": 140.0
+    }
+  },
+  "nlos_cruise_fix": {
+    "launch_margin_180": {
+      "2009623": "HJ-10",
+      "2009651": "QN-502",
+      "2018321": "CTL-181",
+      "2018448": "CH-901"
+    },
+    "hj10_launcher": {
+      "id": 2009619,
+      "before": {
+        "Type": 81,
+        "IsVerticalLauncher": false
+      },
+      "after": {
+        "Type": 82,
+        "IsVerticalLauncher": true,
+        "LowerVerticalAngle": -85,
+        "ShortGroundAttackBurst": 1,
+        "NormalGroundAttackBurst": 2,
+        "LongGroundAttackBurst": 2
+      }
+    }
+  },
+  "blue_dragon_jp": {
+    "Type 89 FV": {
+      "unit": 1286,
+      "cost": 65,
+      "cards": 4,
+      "country": 2,
+      "rounds": [
+        [
+          "35x228mm API",
+          35,
+          170.0
+        ],
+        [
+          "35x228mm HEI-T",
+          70,
+          35.0
+        ],
+        [
+          "Type 79 Jyu-MAT",
+          4,
+          500.0
+        ],
+        [
+          "7.62x51mm",
+          400,
+          20.0
+        ]
+      ]
+    },
+    "Type 87 AW": {
+      "unit": 1287,
+      "cost": 120,
+      "cards": 2,
+      "country": 2,
+      "rounds": [
+        [
+          "PG99 twin 35 mm guns ammunition",
+          133,
+          30.0
+        ]
+      ]
+    },
+    "Type 93 Kin-SAM": {
+      "unit": 1288,
+      "cost": 100,
+      "cards": 4,
+      "country": 2,
+      "rounds": [
+        [
+          "Type 91 Kin-SAM",
+          16,
+          80.0
+        ],
+        [
+          "12.7x99mm",
+          50,
+          40.0
+        ]
+      ]
+    }
+  },
+  "blue_dragon_jp2": {
+    "F-2A": {
+      "unit": 1289,
+      "parent": "F-16C Fighting Falcon (285)",
+      "cost": 120,
+      "cards": 2,
+      "options": 21
+    },
+    "KF-21 Boramae": {
+      "unit": 1290,
+      "parent": "F-16V Viper (284)",
+      "cost": 160,
+      "cards": 2,
+      "options": 21
+    },
+    "F-35B (JASDF)": {
+      "unit": 1291,
+      "parent": "F-35B (295)",
+      "cost": 265,
+      "cards": 2,
+      "options": 10
+    },
+    "F-35B (ROKN)": {
+      "unit": 1292,
+      "parent": "F-35B (295)",
+      "cost": 265,
+      "cards": 2,
+      "options": 10
+    },
+    "Type 19": {
+      "unit": 1293,
+      "parent": "PCL-181 (1034)",
+      "cost": 175,
+      "cards": 2,
+      "options": 2
+    }
+  },
+  "ztz99b": {
+    "unit": 904,
+    "options": {
+      "GL-6 APS": [
+        31172,
+        70
+      ],
+      "LSDW + GL-6 APS": [
+        31173,
+        150
+      ]
+    },
+    "order": [
+      "None",
+      "JD-3 jammer +20",
+      "GL-6 APS +70",
+      "LSDW +100",
+      "LSDW + GL-6 APS +150"
+    ],
+    "aps_ability": 82,
+    "option_picture": "APS"
+  },
+  "zbd100": {
+    "armored_recon_card": {
+      "SpecializationId": 18,
+      "MaxAvailabilityXp0": 4,
+      "MaxAvailabilityXp1": 0,
+      "MaxAvailabilityXp2": 0,
+      "MaxAvailabilityXp3": 0
+    },
+    "unit": 1294,
+    "swap_units": {
+      "": 1294,
+      " CH-901": 1295
+    },
+    "gun": 2019882,
+    "ke": 2019883,
+    "he": 2019884,
+    "mounts": [
+      2019886,
+      2019887
+    ],
+    "options": [
+      31174,
+      31175
+    ],
+    "protection_options": [
+      31176,
+      31177
+    ],
+    "armor": 2019878,
+    "ch901_round": 2019891,
+    "ch901_cost": 40,
+    "transport_for": [
+      [
+        1152,
+        "HJ-8E Team",
+        4
+      ],
+      [
+        1153,
+        "QW-2 Team",
+        4
+      ],
+      [
+        1154,
+        "QLZ-04 Team",
+        4
+      ],
+      [
+        1157,
+        "QJZ-89 Team",
+        2
+      ],
+      [
+        1160,
+        "Armored Scouts 装甲侦察",
+        4
+      ],
+      [
+        1161,
+        "Armored Sniper Pair 狙击组",
+        2
+      ],
+      [
+        1164,
+        "Forward Observers 前观组",
+        3
+      ]
+    ],
+    "not_fitting": [
+      [
+        1163,
+        "Mech. Rifles 机步班",
+        7
+      ]
+    ],
+    "zbd20_amphibious": [
+      true,
+      false
+    ],
+    "armour_t15": {
+      "KinArmorFront": 650,
+      "KinArmorSides": 150,
+      "KinArmorRear": 100,
+      "KinArmorTop": 80,
+      "HeatArmorFront": 700,
+      "HeatArmorSides": 400,
+      "HeatArmorRear": 100,
+      "HeatArmorTop": 100,
+      "MaxHealthPoints": 14
+    }
+  },
+  "turret_order_fix": {
+    "turrets": [
+      2009086,
+      2009114,
+      2009488,
+      2009528,
+      2009680,
+      2009708,
+      2009866,
+      2009894,
+      2009922,
+      2009978,
+      2010036,
+      2010078,
+      2010206,
+      2010806,
+      2010834,
+      2010862,
+      2010902,
+      2011072,
+      2011100,
+      2011128,
+      2011312,
+      2011340,
+      2011368,
+      2011396,
+      2011456,
+      2011534,
+      2011672,
+      2011704,
+      2018885,
+      2019081
+    ],
+    "order": "2 -> 1"
+  },
+  "new_cards_1122": {
+    "ZTZ-59D": 1296,
+    "K263 Vulcan": 1297,
+    "K200 KIFV": 1298
+  },
+  "rename_1122": {
+    "Type 100 CSV": [
+      1294,
+      1295
+    ],
+    "VN-17": [
+      945
+    ],
+    "swap_names": [
+      31175
+    ]
+  },
+  "ar2000_heli": {
+    "unit": 1084,
+    "stand_in": "US_OH58Kiowa (was DLC3_MDP01_Termit)",
+    "pylon": 2019089,
+    "option": 31184,
+    "modification": 2019952,
+    "rounds_per_pylon": 4,
+    "launcher_pause_s": [
+      48.0,
+      64.0
+    ],
+    "pause_after_merge_s": [
+      24.0,
+      32.0
+    ]
+  },
+  "hq9_rework_1122": {
+    "hq9b_card": 911,
+    "hq9a_card": 1233,
+    "hq9c_missile": 2019953,
+    "hq9c_launcher": 2019954,
+    "hq9c_turret": 2019955,
+    "options": [
+      31185,
+      31186
+    ],
+    "option_8x_name": "PLA HQ-9 8x HQ-9C"
+  },
+  "infantry_order": {
+    "death_priority_rows": 496,
+    "weapon_order_rows": 452,
+    "units": 136
+  },
+  "infantry_ammo_1122": {
+    "QCW-05": {
+      "rows": 6,
+      "quantity": [
+        20,
+        160
+      ]
+    },
+    "QBU-191": {
+      "rows": 43,
+      "quantity": [
+        60,
+        100
+      ]
+    }
+  },
+  "infantry_1122b": {
+    "light_riflemen_pf89_carriers": [
+      2015571,
+      2015572,
+      2015573,
+      2015575,
+      2015576
+    ],
+    "DXL-4": {
+      "TimeBetweenBurstsMin": 11.0,
+      "TimeBetweenBurstsMax": 12.0
+    },
+    "OSV-96": {
+      "TimeBetweenBurstsMin": 7.375,
+      "TimeBetweenBurstsMax": 9.375
+    }
+  },
+  "recon_sniper_1122": {
+    "optics": {
+      "ZTQ-15 Recon": [
+        1,
+        3
+      ],
+      "ZTL-191 Recon": [
+        1,
+        3
+      ]
+    },
+    "snipers_1144_ability": [
+      103,
+      28
+    ]
+  },
+  "prices_1122": {
+    "PRP-5G": [
+      35,
+      60
+    ],
+    "Tigr BRShM optronic option 425": [
+      10,
+      0
+    ],
+    "PRP-5G reactive armour option 20003": [
+      20,
+      10
+    ]
+  },
+  "hj16_ground": {
+    "rounds": [
+      2019312,
+      2019313,
+      2014656
+    ],
+    "TargetType": [
+      44,
+      36
+    ],
+    "LowAltRange": "to 0"
+  },
+  "vanilla_icons_1122": {
+    "weapons": {
+      "2014534": "PAC2_X4",
+      "2014549": "PAC2_X4",
+      "2014555": "S300_FAVORIT",
+      "2019954": "MSE_X8",
+      "2019963": "PAC2_X2",
+      "2014643": "Kord"
+    },
+    "options": {
+      "31185": "MOD_S400_X4",
+      "31186": "MSE_X8-OptIcon",
+      "31189": "PAC2_X2-OptIcon",
+      "31190": "PAC2_X4-OptIcon",
+      "31107": "VEH_SPIKE_LR"
+    },
+    "ammo": {
+      "2011833": {
+        "name": "PF-98 ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_CG_M3"
+      },
+      "2011835": {
+        "name": "5.8 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2011888": {
+        "name": "PF-89 ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_AT4"
+      },
+      "2011890": {
+        "name": "35 mm HE-fragmentation",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2011920": {
+        "name": "PF-98A ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_CG_M3"
+      },
+      "2011921": {
+        "name": "DZT-98 thermobaric (analog)",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_TBG"
+      },
+      "2011923": {
+        "name": "5.8 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2011973": {
+        "name": "12.7 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012025": {
+        "name": "DZJ-08 ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_SMAW_HEDP"
+      },
+      "2012055": {
+        "name": "12.7 mm precision ammunition",
+        "before": "FA_PLA_AMMO_SNIPER",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012082": {
+        "name": "HN-6 ammunition",
+        "before": "FA_PLA_AMMO_SAM",
+        "after": "AMMO_STINGER"
+      },
+      "2012132": {
+        "name": "QBS-09 ammunition",
+        "before": "FA_PLA_AMMO_SHOTGUN",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012158": {
+        "name": "35 mm HE-fragmentation",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2012206": {
+        "name": "5.8 mm ammunition",
+        "before": "FA_PLA_AMMO_RIFLE",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012208": {
+        "name": "5.8 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012289": {
+        "name": "QW-2 ammunition",
+        "before": "FA_PLA_AMMO_SAM",
+        "after": "AMMO_STINGER"
+      },
+      "2012313": {
+        "name": "35 mm HE-fragmentation",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2012388": {
+        "name": "12.7 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012412": {
+        "name": "7.62 mm ammunition",
+        "before": "FA_PLA_AMMO_MG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012516": {
+        "name": "PF-97 thermobaric rocket",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_RPO"
+      },
+      "2012822": {
+        "name": "5.8 mm ammunition",
+        "before": "FA_PLA_AMMO_SNIPER",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2012925": {
+        "name": "5.8 mm SMG ammunition",
+        "before": "FA_PLA_AMMO_SMG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2013058": {
+        "name": "FHJ-02 incendiary rocket",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_RPO"
+      },
+      "2013088": {
+        "name": "QBZ-192 ammunition",
+        "before": "FA_PLA_AMMO_RIFLE",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2013158": {
+        "name": "PF-98A ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_CG_M3"
+      },
+      "2013350": {
+        "name": "5.8 mm SMG ammunition",
+        "before": "FA_PLA_AMMO_SMG",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2014002": {
+        "name": "QBZ-97 ammunition",
+        "before": "FA_PLA_AMMO_RIFLE",
+        "after": "AMMO_BULLET_SHORT"
+      },
+      "2014089": {
+        "name": "LG5 ammunition",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2014117": {
+        "name": "LG5s ammunition",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2014147": {
+        "name": "LG6 ammunition",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2014178": {
+        "name": "LG4 ammunition",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2014209": {
+        "name": "LG3 ammunition",
+        "before": "FA_PLA_AMMO_GRENADE",
+        "after": "AMMO_GRENADES"
+      },
+      "2014237": {
+        "name": "QN-202 anti-personnel missile",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_GRIFFIN"
+      },
+      "2014265": {
+        "name": "TL-4 ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_METIS_M"
+      },
+      "2014293": {
+        "name": "GAM-102LR ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_JAVELIN"
+      },
+      "2014321": {
+        "name": "HJ-12E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_JAVELIN"
+      },
+      "2014407": {
+        "name": "FHJ-02 smoke rocket",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_RPO"
+      },
+      "2016055": {
+        "name": "FN-6",
+        "before": "FA_PLA_AMMO_SAM",
+        "after": "AMMO_STINGER"
+      },
+      "2016057": {
+        "name": "QW-12",
+        "before": "FA_PLA_AMMO_SAM",
+        "after": "AMMO_STINGER"
+      },
+      "2016058": {
+        "name": "DZT-98 thermobaric (analog)",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_TBG"
+      },
+      "2016260": {
+        "name": "PF-98 ammunition",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_CG_M3"
+      },
+      "2017426": {
+        "name": "PF-97 thermobaric rocket",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_RPO"
+      },
+      "2017427": {
+        "name": "PF-97 thermobaric rocket",
+        "before": "FA_PLA_AMMO_ROCKET",
+        "after": "AMMO_RPO"
+      },
+      "2017428": {
+        "name": "HJ-8E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_TOW_2A"
+      },
+      "2017429": {
+        "name": "HJ-8E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_TOW_2A"
+      },
+      "2017430": {
+        "name": "HJ-8E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_TOW_2A"
+      },
+      "2017431": {
+        "name": "HJ-8E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_TOW_2A"
+      },
+      "2017432": {
+        "name": "HJ-8E ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_TOW_2A"
+      },
+      "2017433": {
+        "name": "HJ-73D ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_KONKURS_M"
+      },
+      "2017434": {
+        "name": "HJ-73D ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_KONKURS_M"
+      },
+      "2017435": {
+        "name": "HJ-73D ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_KONKURS_M"
+      },
+      "2017436": {
+        "name": "HJ-73D ammunition",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_KONKURS_M"
+      },
+      "2018448": {
+        "name": "CH-901",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_GRIFFIN"
+      },
+      "2019891": {
+        "name": "CH-901",
+        "before": "FA_PLA_AMMO_ATGM",
+        "after": "AMMO_GRIFFIN"
+      }
+    }
+  },
+  "heli_flares_1122": {
+    "Z-10K Recon 1130, Z-10 Recon 1131": [
+      2011655,
+      2000770
+    ],
+    "Mi-8 Cargo 1227": [
+      2014588,
+      22
+    ],
+    "flares": [
+      10,
+      15
+    ]
+  },
+  "akf98_kd88_names": {
+    "weapons": {
+      "2016550": "AKF-98A",
+      "2016659": "KD-88",
+      "2017708": "AKF-98A",
+      "2017769": "AKF-98A"
+    },
+    "rounds": {
+      "2016552": "AKF-98A",
+      "2016661": "KD-88"
+    },
+    "options": {
+      "24417": "Light strike (KD-88)",
+      "24606": "Standoff strike (4x PL-16, 4x PL-17, 4x AKF-98A)",
+      "24635": "Standoff strike (AKF-98A)",
+      "31081": "Mixed strike (6x KD-88, 2x PL-10)",
+      "31082": "Mixed strike (4x KD-88, 2x PL-10)",
+      "31083": "Mixed strike (4x KD-88)",
+      "31084": "Mixed strike (4x KD-88)"
+    }
+  },
+  "zbd251_gun": {
+    "unit": 1056,
+    "gun": 2019882,
+    "rounds": {
+      "2019883": 100,
+      "2019884": 234
+    },
+    "cost": [
+      75,
+      90
+    ]
+  },
+  "mako_f35": {
+    "options": {
+      "F-35A": [
+        31191,
+        31192
+      ],
+      "F-35C": [
+        31193,
+        31194
+      ]
+    },
+    "mount": 2002026,
+    "weapon": 2002025,
+    "cost": 80
+  },
+  "rocket_drones": {
+    "names": {
+      "1089": "J-5 Drone",
+      "1091": "J-6W Drone"
+    },
+    "en": {
+      "1089": "J-5 Drone",
+      "1091": "J-6W Drone"
+    },
+    "zh": {
+      "1089": "歼-5无人机",
+      "1091": "歼-6W无人机"
+    }
+  },
+  "pl15c_to_pl15": {
+    "rows": 11,
+    "weapons": [
+      2016387,
+      2016500,
+      2017674,
+      2018024,
+      2018257,
+      2018492,
+      2018528
+    ],
+    "prices": {
+      "24599": [
+        105,
+        125
+      ],
+      "24603": [
+        105,
+        125
+      ],
+      "24608": [
+        0,
+        20
+      ],
+      "31028": [
+        55,
+        75
+      ],
+      "24395": [
+        170,
+        210
+      ],
+      "24611": [
+        125,
+        135
+      ],
+      "24609": [
+        135,
+        155
+      ]
+    },
+    "renamed": {
+      "24599": "Heavy CAP (PL-15)",
+      "24603": "Heavy CAP (PL-15)",
+      "24395": "Heavy CAP (PL-15)"
+    },
+    "removed": {
+      "31012": [
+        976,
+        31009
+      ],
+      "31033": [
+        1253,
+        31030
+      ]
+    }
+  },
+  "j8_health": {
+    "unit": 975,
+    "armour": [
+      238,
+      2019311
+    ],
+    "hp": [
+      20,
+      10
+    ]
+  },
+  "md22_slots": {
+    "unit": 976,
+    "default_mount": 2018554,
+    "options": [
+      31008,
+      31009,
+      31013,
+      31011,
+      31027,
+      31010
+    ],
+    "slots_3_4": 160
+  },
+  "j10b_name": {
+    "unit": 1226,
+    "name": [
+      "J-10A",
+      "J-10B"
+    ]
+  },
+  "france_preview": {
+    "spec": 24,
+    "cards": {
+      "FR Leclerc XLR": {
+        "unit": 1299,
+        "hud": "Leclerc XLR",
+        "parent": "M1A2 SEP v3 (191)",
+        "cost": 260,
+        "cards": 2,
+        "options": 6
+      },
+      "FR EBRC Jaguar": {
+        "unit": 1300,
+        "hud": "EBRC Jaguar",
+        "parent": "LAV-25 (29)",
+        "cost": 145,
+        "cards": 4,
+        "options": 2
+      },
+      "FR Mirage 2000D RMV": {
+        "unit": 1301,
+        "hud": "Mirage 2000D RMV",
+        "parent": "F-16C Fighting Falcon (285)",
+        "cost": 145,
+        "cards": 3,
+        "options": 21
+      }
+    }
+  },
+  "eurocorp": {
+    "country": 5,
+    "specs": {
+      "24": "France (Preview)",
+      "25": "Germany (Preview)"
+    },
+    "france_cards": [
+      1299,
+      1300,
+      1301
+    ]
+  },
+  "germany_cards": {
+    "spec": 25,
+    "cards": {
+      "DE Leopard 2A6": {
+        "unit": 1302,
+        "hud": "Leopard 2A6",
+        "parent": "M1A2 SEP v3 (191)",
+        "cost": 260,
+        "cards": 2,
+        "options": 6
+      },
+      "DE Puma": {
+        "unit": 1303,
+        "hud": "Puma",
+        "parent": "M2A3 Bradley (16)",
+        "cost": 65,
+        "cards": 4,
+        "options": 7
+      },
+      "DE Marder 1A3": {
+        "unit": 1304,
+        "hud": "Marder 1A3",
+        "parent": "M2A2 Bradley (15)",
+        "cost": 50,
+        "cards": 4,
+        "options": 4
+      }
+    }
+  },
+  "lrhw": {
+    "unit": 1305,
+    "name": "US LRHW Dark Eagle",
+    "cost": 350,
+    "spec": 6,
+    "cards": 1,
+    "weapon": 2020149,
+    "ammo": 2020150,
+    "turret": 2020151,
+    "missiles": 2
+  },
+  "c5_cards": {
+    "kf21_block1": {
+      "unit": 1306,
+      "parent": 1290,
+      "cost": 160,
+      "spec": 23
+    },
+    "xq58": {
+      "unit": 1307,
+      "parent": 1253,
+      "cost": 185,
+      "spec": 3,
+      "weapons": {
+        "2018505": 2020200,
+        "2018510": 2020202,
+        "2018516": 2020204,
+        "2018523": 2020206,
+        "2018528": 2020208,
+        "2018539": 2020210,
+        "2018483": 2020212
+      },
+      "turrets": {
+        "160": 160,
+        "2018504": 2020214,
+        "2018509": 2020217,
+        "2018522": 2020220,
+        "2018527": 2020223,
+        "2018535": 2020226,
+        "2018538": 2020229,
+        "2018677": 2020233,
+        "2018679": 2020236
+      },
+      "options": [
+        [
+          "Light CAP (2x AIM-120 AMRAAM)",
+          70
+        ],
+        [
+          "Light CAP (2x AIM-260 JATM)",
+          90
+        ],
+        [
+          "Light strike (2x GBU-55 LJDAM 1000lb)",
+          75
+        ],
+        [
+          "Light strike (4x GBU-55 LJDAM 1000lb)",
+          60
+        ],
+        [
+          "Heavy CAP (3x AIM-260 JATM)",
+          135
+        ],
+        [
+          "Light strike (2x GBU-56 LJDAM 2000lb)",
+          105
+        ]
+      ]
+    }
+  },
+  "thermobaric_pf97_1123": {
+    "unit": 1209,
+    "weapon_ammo_row": 2015630,
+    "quantity": [
+      1,
+      2
+    ],
+    "pool": [
+      3,
+      6
+    ]
+  },
+  "thermobaric_breachers_1123": {
+    "unit": 1162,
+    "smoke_1156": [
+      81,
+      11
+    ],
+    "smoke_1162": 11,
+    "armor": [
+      2012508,
+      273
+    ],
+    "men": [
+      8,
+      7
+    ],
+    "qbz191": [
+      5,
+      4
+    ],
+    "pf97": [
+      5,
+      5
+    ],
+    "removed_member": 2015093,
+    "hawk_pf97": 2015086
+  },
+  "sf_recon_armor_1123": {
+    "Taishan Eagles 1203": {
+      "smoke": [
+        4,
+        1
+      ],
+      "armor": [
+        10,
+        8
+      ],
+      "rows": [
+        [
+          81,
+          11
+        ],
+        [
+          2013755,
+          289
+        ]
+      ]
+    },
+    "Whistling Arrows 1184": {
+      "armor": [
+        10,
+        8
+      ],
+      "rows": [
+        2013185,
+        279
+      ]
+    }
+  },
+  "zbd04_rocket_force": {
+    "unit": 1308,
+    "parent": 902,
+    "cost": 65,
+    "armor": 2000440,
+    "spec": 19,
+    "infantry_cards": [
+      "Reservists 预备役",
+      "HJ-73D Team",
+      "FN-6 Team",
+      "QJZ-89 Team",
+      "QLZ-87 Team",
+      "PF-98 Team",
+      "Ambush Team 伏击组",
+      "Sharp Swords 利剑",
+      "Infantry 步兵",
+      "Counter-Raid Team 反袭击队",
+      "Thermobaric Team",
+      "Reservist Recon"
+    ]
+  },
+  "ztz98": {
+    "unit": 1309,
+    "name": "PLA ZTZ-98",
+    "cost": 200,
+    "spec": 19,
+    "cards": [
+      [
+        19,
+        4
+      ]
+    ]
+  },
+  "sf_laser_rangers_1123": {
+    "rangers_rrc_standoff": [
+      0,
+      5
+    ],
+    "unit_338": [
+      65,
+      70
+    ],
+    "laser_rows": {
+      "Taishan Eagles 泰山雄鹰": [
+        11,
+        28
+      ],
+      "Whistling Arrows 响箭": [
+        11,
+        28
+      ],
+      "Sharp Swords 利剑": [
+        81,
+        2000611
+      ],
+      "Mountain Leopards 高原雪豹": [
+        2000198,
+        2000210
+      ]
+    },
+    "beijing_swords": "already 2000611"
+  },
+  "blue_dragon_k9_k21": {
+    "K9 Thunder": {
+      "unit": 1310,
+      "parent": 539,
+      "cost": 230,
+      "cards": 2,
+      "options": 2,
+      "body": "US_M109A6"
+    },
+    "K21 KNIFV": {
+      "unit": 1311,
+      "parent": 16,
+      "cost": 65,
+      "cards": 4,
+      "options": 7,
+      "body": "US_M2A3"
+    }
+  },
+  "thermobaric_assault_1123": {
+    "unit": 1209,
+    "qbs09": [
+      2,
+      3
+    ],
+    "qbz191": [
+      7,
+      6
+    ],
+    "member_2015624": [
+      "QBZ-191 p4",
+      "QBS-09 p2"
+    ],
+    "armor": [
+      2013930,
+      277
+    ],
+    "cost": [
+      60,
+      70
+    ]
+  },
+  "disposable_launchers_1123": {
+    "unit": 1209,
+    "pf97_carriers": [
+      3,
+      6
+    ],
+    "quantity_per_carrier": [
+      2,
+      1
+    ],
+    "rounds": 6,
+    "new_carriers": [
+      2015621,
+      2015622,
+      2015623
+    ]
+  },
+  "recon_stealth_1123": {
+    "card": {
+      "1144": [
+        "Snipers 狙击组",
+        2.0,
+        3.0
+      ],
+      "1161": [
+        "Armored Sniper Pair 狙击组",
+        2.5,
+        3.0
+      ],
+      "1173": [
+        "Ambush Team 伏击组",
+        2.0,
+        2.5
+      ],
+      "1174": [
+        "Sharp Swords 利剑",
+        2.0,
+        2.5
+      ],
+      "1184": [
+        "Whistling Arrows 响箭",
+        2.0,
+        2.5
+      ],
+      "1186": [
+        "Mountain Leopards 高原雪豹",
+        2.0,
+        2.5
+      ],
+      "1187": [
+        "Beijing Swords 蓝剑",
+        2.0,
+        2.5
+      ],
+      "1202": [
+        "Snipers 狙击组",
+        2.5,
+        3.0
+      ],
+      "1203": [
+        "Taishan Eagles 泰山雄鹰",
+        2.0,
+        2.5
+      ]
+    },
+    "sniper_teams": [
+      1026,
+      1144,
+      1161,
+      1202
+    ]
+  },
+  "blue_dragon_infantry": {
+    "Korean Riflemen (Test)": {
+      "unit": 1400,
+      "name": "BD Korean Riflemen",
+      "men": 6,
+      "cost": 40,
+      "cards": 4
+    },
+    "Japanese Riflemen (Test)": {
+      "unit": 1401,
+      "name": "BD Japanese Riflemen",
+      "men": 6,
+      "cost": 40,
+      "cards": 4
+    }
+  },
+  "hidden_rows": {
+    "1129": [
+      [
+        {
+          "Id": 2008984,
+          "SpecializationId": 17,
+          "UnitId": 1129,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1274": [
+      [
+        {
+          "Id": 2019380,
+          "SpecializationId": 18,
+          "UnitId": 1274,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "945": [
+      [],
+      [
+        {
+          "Id": 2018967,
+          "SpecializationAvailabilityId": 2012274,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018968,
+          "SpecializationAvailabilityId": 2012298,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018969,
+          "SpecializationAvailabilityId": 2012322,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018971,
+          "SpecializationAvailabilityId": 2012397,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018972,
+          "SpecializationAvailabilityId": 2012481,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018973,
+          "SpecializationAvailabilityId": 2012501,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018974,
+          "SpecializationAvailabilityId": 2012559,
+          "UnitId": 945
+        },
+        {
+          "Id": 2018975,
+          "SpecializationAvailabilityId": 2012580,
+          "UnitId": 945
+        }
+      ]
+    ],
+    "1261": [
+      [
+        {
+          "Id": 2018649,
+          "SpecializationId": 21,
+          "UnitId": 1261,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        },
+        {
+          "Id": 2018650,
+          "SpecializationId": 20,
+          "UnitId": 1261,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1262": [
+      [
+        {
+          "Id": 2018665,
+          "SpecializationId": 21,
+          "UnitId": 1262,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1060": [
+      [
+        {
+          "Id": 2018884,
+          "SpecializationId": 19,
+          "UnitId": 1060,
+          "MaxAvailabilityXp0": 6,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1034": [
+      [
+        {
+          "Id": 2008879,
+          "SpecializationId": 21,
+          "UnitId": 1034,
+          "MaxAvailabilityXp0": 3,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1045": [
+      [
+        {
+          "Id": 2008890,
+          "SpecializationId": 21,
+          "UnitId": 1045,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1079": [
+      [],
+      [
+        {
+          "Id": 2013664,
+          "SpecializationAvailabilityId": 2013658,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2013723,
+          "SpecializationAvailabilityId": 2013717,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2013749,
+          "SpecializationAvailabilityId": 2013743,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2013784,
+          "SpecializationAvailabilityId": 2013778,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2013871,
+          "SpecializationAvailabilityId": 2013865,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2015465,
+          "SpecializationAvailabilityId": 2013580,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2015488,
+          "SpecializationAvailabilityId": 2013607,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2015511,
+          "SpecializationAvailabilityId": 2013634,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2015589,
+          "SpecializationAvailabilityId": 2013842,
+          "UnitId": 1079
+        },
+        {
+          "Id": 2015951,
+          "SpecializationAvailabilityId": 2014302,
+          "UnitId": 1079
+        }
+      ]
+    ],
+    "1040": [
+      [
+        {
+          "Id": 2008885,
+          "SpecializationId": 17,
+          "UnitId": 1040,
+          "MaxAvailabilityXp0": 3,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1239": [
+      [
+        {
+          "Id": 2016049,
+          "SpecializationId": 17,
+          "UnitId": 1239,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1236": [
+      [
+        {
+          "Id": 2015967,
+          "SpecializationId": 20,
+          "UnitId": 1236,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1237": [
+      [
+        {
+          "Id": 2015981,
+          "SpecializationId": 20,
+          "UnitId": 1237,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1291": [
+      [
+        {
+          "Id": 2019844,
+          "SpecializationId": 23,
+          "UnitId": 1291,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1309": [
+      [
+        {
+          "Id": 2020285,
+          "SpecializationId": 19,
+          "UnitId": 1309,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1157": [
+      [
+        {
+          "Id": 2012397,
+          "SpecializationId": 18,
+          "UnitId": 1157,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      [
+        {
+          "Id": 2012398,
+          "SpecializationAvailabilityId": 2012397,
+          "UnitId": 902
+        },
+        {
+          "Id": 2018140,
+          "SpecializationAvailabilityId": 2012397,
+          "UnitId": 1248
+        },
+        {
+          "Id": 2019912,
+          "SpecializationAvailabilityId": 2012397,
+          "UnitId": 1294
+        }
+      ]
+    ],
+    "733": [
+      [
+        {
+          "Id": 2001038,
+          "SpecializationId": 5,
+          "UnitId": 733,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "736": [
+      [
+        {
+          "Id": 2001069,
+          "SpecializationId": 13,
+          "UnitId": 736,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "746": [
+      [
+        {
+          "Id": 2001169,
+          "SpecializationId": 5,
+          "UnitId": 746,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "728": [
+      [
+        {
+          "Id": 2000851,
+          "SpecializationId": 12,
+          "UnitId": 728,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "748": [
+      [
+        {
+          "Id": 2000985,
+          "SpecializationId": 10,
+          "UnitId": 748,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "910": [
+      [
+        {
+          "Id": 2014502,
+          "SpecializationId": 18,
+          "UnitId": 910,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1263": [
+      [
+        {
+          "Id": 2018744,
+          "SpecializationId": 21,
+          "UnitId": 1263,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "949": [
+      [
+        {
+          "Id": 2008936,
+          "SpecializationId": 19,
+          "UnitId": 949,
+          "MaxAvailabilityXp0": 6,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      ],
+      []
+    ],
+    "1308": [
+      [],
+      [
+        {
+          "Id": 2020252,
+          "SpecializationAvailabilityId": 2012634,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020253,
+          "SpecializationAvailabilityId": 2012685,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020254,
+          "SpecializationAvailabilityId": 2012714,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020255,
+          "SpecializationAvailabilityId": 2012743,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020256,
+          "SpecializationAvailabilityId": 2012772,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020257,
+          "SpecializationAvailabilityId": 2012802,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020258,
+          "SpecializationAvailabilityId": 2012837,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020259,
+          "SpecializationAvailabilityId": 2012870,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020260,
+          "SpecializationAvailabilityId": 2012909,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020261,
+          "SpecializationAvailabilityId": 2012942,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020262,
+          "SpecializationAvailabilityId": 2012973,
+          "UnitId": 1308
+        },
+        {
+          "Id": 2020263,
+          "SpecializationAvailabilityId": 2014071,
+          "UnitId": 1308
+        }
+      ]
+    ]
+  },
+  "yj18_removed": {
+    "unit": 1129,
+    "availability_removed": 2008984
+  },
+  "qbz191_plain_icon": {
+    "weapon": 2003998,
+    "icon": "FA_PLA_WP_QBZ191_PLAIN",
+    "qmk_keeps": "FA_PLA_WP_QBZ191"
+  },
+  "type19_removed": {
+    "unit": 1293,
+    "availability_removed": [
+      2019876
+    ]
+  },
+  "roster_1123b": {
+    "hidden": {
+      "VN20": {
+        "unit": 1274,
+        "spec_rows": [
+          2019380
+        ],
+        "transport_links": []
+      },
+      "VN-17": {
+        "unit": 945,
+        "spec_rows": [],
+        "transport_links": [
+          2018967,
+          2018968,
+          2018969,
+          2018971,
+          2018972,
+          2018973,
+          2018974,
+          2018975
+        ]
+      },
+      "VT-5": {
+        "unit": 1261,
+        "spec_rows": [
+          2018649,
+          2018650
+        ],
+        "transport_links": []
+      },
+      "VT-5 Recon": {
+        "unit": 1262,
+        "spec_rows": [
+          2018665
+        ],
+        "transport_links": []
+      },
+      "ZTZ-59": {
+        "unit": 1060,
+        "spec_rows": [
+          2018884
+        ],
+        "transport_links": []
+      },
+      "PCL-181": {
+        "unit": 1034,
+        "spec_rows": [
+          2008879
+        ],
+        "transport_links": []
+      },
+      "HQ-6A": {
+        "unit": 1045,
+        "spec_rows": [
+          2008890
+        ],
+        "transport_links": []
+      },
+      "ZSL-92": {
+        "unit": 1079,
+        "spec_rows": [],
+        "transport_links": [
+          2013664,
+          2013723,
+          2013749,
+          2013784,
+          2013871,
+          2015465,
+          2015488,
+          2015511,
+          2015589,
+          2015951
+        ]
+      },
+      "PLZ-70": {
+        "unit": 1040,
+        "spec_rows": [
+          2008885
+        ],
+        "transport_links": []
+      },
+      "Z-10": {
+        "unit": 1239,
+        "spec_rows": [
+          2016049
+        ],
+        "transport_links": []
+      },
+      "Z-19G": {
+        "unit": 1236,
+        "spec_rows": [
+          2015967
+        ],
+        "transport_links": []
+      },
+      "Z-19G Recon": {
+        "unit": 1237,
+        "spec_rows": [
+          2015981
+        ],
+        "transport_links": []
+      },
+      "F-35B (JASDF)": {
+        "unit": 1291,
+        "spec_rows": [
+          2019844
+        ],
+        "transport_links": []
+      },
+      "ZTZ-98": {
+        "unit": 1309,
+        "spec_rows": [
+          2020285
+        ],
+        "transport_links": []
+      }
+    },
+    "ztq15": [
+      18,
+      21
+    ],
+    "pll05": [
+      19,
+      17
+    ],
+    "z10_names_kept": [
+      913,
+      1270
+    ]
+  },
+  "qbz95_qjz89": {
+    "qbz95_1": 2012205,
+    "qbz95_ex_qbz03": 2019303,
+    "qjz89_hidden": {
+      "unit": 1157,
+      "spec_rows": [
+        2012397
+      ],
+      "transport_links": [
+        2012398,
+        2018140,
+        2019912
+      ]
+    }
+  },
+  "china_spec_names": {
+    "17": "PLAAF Air Force 解放军空军",
+    "18": "PLAGF Heavy Combined Arms Brigade 陆军重型合成旅",
+    "19": "PLARF Rocket/Reservist Force 火箭军与预备役部队",
+    "20": "PLAN Naval/Special Forces 海军与特战部队",
+    "21": "PLAGF Medium Combined Arms Brigade 陆军中型合成旅"
+  },
+  "china_spec_zh_1124": {
+    "17": {
+      "name": "PLAAF Air Force 解放军空军",
+      "old_zh_name": "解放军空军"
+    },
+    "18": {
+      "name": "PLAGF Heavy Combined Arms Brigade 陆军重型合成旅",
+      "old_zh_name": "陆军重型合成旅"
+    },
+    "19": {
+      "name": "PLARF Rocket/Reservist Force 火箭军与预备役部队",
+      "old_zh_name": "火箭军与预备役部队"
+    },
+    "20": {
+      "name": "PLAN Naval/Special Forces 海军参谋部远域特种作战大队",
+      "old_zh_name": "海军与特战部队"
+    },
+    "21": {
+      "name": "PLAGF Medium Combined Arms Brigade 陆军中型合成旅",
+      "old_zh_name": "陆军中型合成旅"
+    }
+  },
+  "hj_teams_1123": {
+    "Marine HJ-12 Team": {
+      "unit": 1193,
+      "was": "Marine HJ-8H Team",
+      "launcher": "HJ-12",
+      "rounds": 4,
+      "cost": [
+        85,
+        105
+      ],
+      "label_icon": [
+        "RU_KORNET-Label",
+        "US_JAVELIN-Label"
+      ]
+    },
+    "HJ-8H Team": {
+      "unit": 1221,
+      "was": "GAM-102LR Team",
+      "launcher": "HJ-8H",
+      "rounds": 6,
+      "cost": [
+        110,
+        65
+      ],
+      "label_icon": [
+        "DLC2_SPIKE_LR-label",
+        "RU_KORNET-Label"
+      ]
+    }
+  },
+  "recon_helis_us_1123": {
+    "hidden": {
+      "OH-58D Recon Optronic": {
+        "unit": 733,
+        "spec_rows": [
+          2001038
+        ],
+        "transport_links": []
+      },
+      "MH-6 Little Bird Recon": {
+        "unit": 736,
+        "spec_rows": [
+          2001069
+        ],
+        "transport_links": []
+      },
+      "AH-64D Longbow Recon": {
+        "unit": 746,
+        "spec_rows": [
+          2001169
+        ],
+        "transport_links": []
+      }
+    },
+    "oh58d_recon": {
+      "options": {
+        "31280": [
+          "Custom_Option_GAU21_HMG",
+          0
+        ],
+        "31281": [
+          "Custom_Option_7xHydra",
+          5
+        ],
+        "31282": [
+          "Custom_Option_GAU21_HMG",
+          0
+        ],
+        "31283": [
+          "Custom_Option_7xHydra",
+          5
+        ]
+      },
+      "armored_row": 2020378
+    },
+    "cargo": {
+      "MH-60M SOAR Recon": {
+        "unit": 735,
+        "mobility": [
+          28,
+          217
+        ],
+        "cargo": [
+          4000,
+          0
+        ]
+      },
+      "AS-365 Dauphin Recon": {
+        "unit": 738,
+        "mobility": [
+          258,
+          2018990
+        ],
+        "cargo": [
+          1500,
+          0
+        ]
+      },
+      "UH-1Y Venom Recon": {
+        "unit": 732,
+        "mobility": [
+          57,
+          2020379
+        ],
+        "cargo": [
+          2500,
+          0
+        ]
+      }
+    }
+  },
+  "recon_helis_ru_1123": {
+    "hidden": {
+      "Ka-226T Razvedchik": {
+        "unit": 728,
+        "spec_rows": [
+          2000851
+        ],
+        "transport_links": []
+      },
+      "Ka-52K Razvedchik": {
+        "unit": 748,
+        "spec_rows": [
+          2000985
+        ],
+        "transport_links": []
+      }
+    },
+    "cargo": {
+      "Ka-60 Razvedchik": {
+        "unit": 727,
+        "mobility": [
+          118,
+          2020379
+        ],
+        "cargo": [
+          2000,
+          0
+        ]
+      },
+      "Mi-8AMTSh Razvedchik": {
+        "unit": 731,
+        "mobility": [
+          62,
+          401
+        ],
+        "cargo": [
+          3000,
+          0
+        ]
+      },
+      "Ka-29 Razvedchik": {
+        "unit": 729,
+        "mobility": [
+          125,
+          2020380
+        ],
+        "cargo": [
+          3000,
+          0
+        ]
+      }
+    },
+    "ka60_mechanized_row": 2020381
+  },
+  "recon_helis_cn_1123": {
+    "z9wa_recon": [
+      2,
+      3
+    ],
+    "z11wb": {
+      "optics": [
+        2009769,
+        3
+      ],
+      "removed_sensor": 2009769,
+      "armored_row": 2020382
+    },
+    "pla_z20_optics_kept": "no identical vanilla row"
+  },
+  "mech_mmg_sprint_1123": {
+    "unit": 370,
+    "unit_ability_row": 595,
+    "ability": [
+      2000198,
+      11
+    ],
+    "other_2000198_units": [
+      62,
+      74,
+      108,
+      127,
+      402,
+      406,
+      419,
+      468,
+      513,
+      612,
+      638,
+      639,
+      721,
+      1023
+    ]
+  },
+  "hq17_removed": {
+    "unit": 910,
+    "availability_removed": 2014502,
+    "hq17a_rows": [
+      2018728
+    ]
+  },
+  "ztl191_recon_removed": {
+    "unit": 1263,
+    "availability_removed": 2018744,
+    "ztl191_rows": [
+      2008934
+    ]
+  },
+  "ztz96_removed": {
+    "unit": 949,
+    "ztz96a_row": 2008936
+  },
+  "zbd04_rf_removed": {
+    "unit": 1308,
+    "links_removed": 12
+  },
+  "test_specs": {
+    "specs": {
+      "PLA Test Hidden": 26,
+      "US Test Hidden": 27,
+      "RU Test Hidden": 28
+    },
+    "cards": {
+      "PLA Test Hidden": {
+        "HQ-17": {
+          "unit": 910,
+          "cards": 4
+        },
+        "VN-17": {
+          "unit": 945,
+          "cards": 2
+        },
+        "ZTZ-96": {
+          "unit": 949,
+          "cards": 6
+        },
+        "PCL-181": {
+          "unit": 1034,
+          "cards": 3
+        },
+        "PLZ-70": {
+          "unit": 1040,
+          "cards": 3
+        },
+        "HQ-6A": {
+          "unit": 1045,
+          "cards": 4
+        },
+        "ZTZ-59": {
+          "unit": 1060,
+          "cards": 6
+        },
+        "ZSL-92": {
+          "unit": 1079,
+          "cards": 2
+        },
+        "YJ-18": {
+          "unit": 1129,
+          "cards": 2
+        },
+        "QJZ-89 Team": {
+          "unit": 1157,
+          "cards": 4
+        },
+        "Z-19G": {
+          "unit": 1236,
+          "cards": 2
+        },
+        "Z-19G Recon": {
+          "unit": 1237,
+          "cards": 2
+        },
+        "Z-10": {
+          "unit": 1239,
+          "cards": 2
+        },
+        "VT-5": {
+          "unit": 1261,
+          "cards": 4
+        },
+        "VT-5 Recon": {
+          "unit": 1262,
+          "cards": 2
+        },
+        "ZTL-191 Recon": {
+          "unit": 1263,
+          "cards": 2
+        },
+        "VN20": {
+          "unit": 1274,
+          "cards": 2
+        },
+        "ZBD-04": {
+          "unit": 1308,
+          "cards": 2
+        },
+        "ZTZ-98": {
+          "unit": 1309,
+          "cards": 4
+        }
+      },
+      "US Test Hidden": {
+        "OH-58D Recon Optronic": {
+          "unit": 733,
+          "cards": 4
+        },
+        "MH-6 Little Bird Recon": {
+          "unit": 736,
+          "cards": 4
+        },
+        "AH-64D Longbow Recon": {
+          "unit": 746,
+          "cards": 4
+        },
+        "F-35B (JASDF)": {
+          "unit": 1291,
+          "cards": 2
+        }
+      },
+      "RU Test Hidden": {
+        "Ka-226T Razvedchik": {
+          "unit": 728,
+          "cards": 4
+        },
+        "Ka-52K Razvedchik": {
+          "unit": 748,
+          "cards": 4
+        }
+      }
+    }
+  },
+  "ztq15_light_airdrop": {
+    "unit": 1268,
+    "mobility": 2019001
+  },
+  "ucav_fh97_xq58": {
+    "FH-97A": {
+      "armor": [
+        230,
+        429
+      ],
+      "mobility": [
+        2019220,
+        2019220
+      ]
+    },
+    "XQ-58A Valkyrie": {
+      "armor": [
+        2020194,
+        429
+      ],
+      "mobility": [
+        2020196,
+        2019220
+      ]
+    },
+    "cap_prices": {
+      "FH-97A": {
+        "Light CAP (PL-12)": [
+          70,
+          50
+        ],
+        "Light CAP (PL-15)": [
+          90,
+          70
+        ],
+        "Heavy CAP (PL-16)": [
+          135,
+          115
+        ]
+      },
+      "XQ-58A Valkyrie": {
+        "Light CAP (2x AIM-120 AMRAAM)": [
+          70,
+          50
+        ],
+        "Light CAP (2x AIM-260 JATM)": [
+          90,
+          70
+        ],
+        "Heavy CAP (3x AIM-260 JATM)": [
+          135,
+          115
+        ]
+      }
+    }
+  },
+  "x47b_marines": {
+    "unit": 969,
+    "row": 2001591,
+    "spec": [
+      5,
+      3
+    ],
+    "cards": 2
+  },
+  "ucav_flares": {
+    "abilities": {
+      "S-70 Okhotnik": [
+        45,
+        2020408
+      ],
+      "GJ-11": [
+        45,
+        2020408
+      ],
+      "X-47B": [
+        45,
+        2020408
+      ],
+      "MD-22": [
+        2019218,
+        2001399
+      ],
+      "FH-97A": [
+        2019218,
+        2001399
+      ],
+      "XQ-58A Valkyrie": [
+        2019218,
+        2001399
+      ]
+    },
+    "new_row": 2020408
+  },
+  "x47b_air_tab": {
+    "unit": 969,
+    "category": [
+      0,
+      6
+    ],
+    "role": [
+      100,
+      164
+    ],
+    "sensor": [
+      33,
+      6
+    ],
+    "ability": [
+      2020408,
+      2001399
+    ]
+  },
+  "x47b_bay_prices": {
+    "20178": [
+      "2x AIM-120 AMRAAM",
+      35,
+      15
+    ],
+    "20179": [
+      "2x AIM-260 JATM",
+      60,
+      40
+    ],
+    "20183": [
+      "2x AIM-120 AMRAAM",
+      35,
+      15
+    ],
+    "20184": [
+      "2x AIM-260 JATM",
+      60,
+      40
+    ]
+  },
+  "mk_china_1123": {
+    "PLA VN-3": {
+      "unit": 1402,
+      "parent": 219,
+      "cost": 20,
+      "spec": 17,
+      "options": 4,
+      "content": 3,
+      "infantry_cards": [
+        "Airborne 空降兵",
+        "HJ-12 Team",
+        "Tank Hunters 坦克杀手",
+        "QLU-11 Team",
+        "Pathfinders 先遣队",
+        "Thunder Gods 雷神",
+        "Snipers 狙击组",
+        "QW-12 Patrol 防空巡逻",
+        "Assault Raiders 突击队",
+        "Recon 侦察组"
+      ]
+    },
+    "PLA ZSL-191": {
+      "unit": 1403,
+      "parent": 1079,
+      "cost": 35,
+      "spec": 21,
+      "options": 0,
+      "content": -1,
+      "infantry_cards": [
+        "Moto. Riflemen 摩步班",
+        "AA Troopers 防空班",
+        "AT Troopers 反坦克组",
+        "Weapons Squad 火力班",
+        "Recon Patrol 侦察班",
+        "Snipers 狙击组",
+        "Taishan Eagles 泰山雄鹰",
+        "Light Riflemen 轻步兵",
+        "Air Defense Scouts 防空侦察",
+        "Thermobaric Assault 温压突击",
+        "HJ-8H Team"
+      ]
+    }
+  },
+  "qbz_58_ammo": {
+    "2003999": [
+      "QBZ-191 ammo (test)",
+      "5.8 mm ammunition"
+    ],
+    "2013088": [
+      "QBZ-192 ammunition",
+      "5.8 mm ammunition"
+    ],
+    "2014002": [
+      "QBZ-97 ammunition",
+      "5.8 mm ammunition"
+    ],
+    "2019304": [
+      "5.45x39mm",
+      "5.8 mm ammunition"
+    ]
+  },
+  "weapons_squad": {
+    "unit": 1199,
+    "qjz171_carriers": [
+      2,
+      1
+    ],
+    "cost": [
+      45,
+      60
+    ]
+  },
+  "euro_jets": {
+    "FR Rafale C": {
+      "unit": 1404,
+      "hud": "Rafale C",
+      "spec": 24,
+      "parent": "F-16C Fighting Falcon (285)",
+      "cost": 145,
+      "cards": 3,
+      "options": 21
+    },
+    "DE Eurofighter Typhoon": {
+      "unit": 1405,
+      "hud": "Eurofighter Typhoon",
+      "spec": 25,
+      "parent": "F-16C Fighting Falcon (285)",
+      "cost": 145,
+      "cards": 3,
+      "options": 21
+    },
+    "DE Leopard 2A7": {
+      "unit": 1406,
+      "hud": "Leopard 2A7",
+      "spec": 25,
+      "parent": "M1A2 SEP v3 (191)",
+      "cost": 260,
+      "cards": 2,
+      "options": 6
+    }
+  },
+  "zbl08_recon": {
+    "unit": 1407,
+    "cost": 50,
+    "spec": 21,
+    "cards": 4,
+    "turrets": [
+      2009046,
+      2009054
+    ],
+    "sensor": 3,
+    "abilities": [
+      2000212,
+      10
+    ]
+  },
+  "plz25": {
+    "unit": 1408,
+    "cost": 100,
+    "spec": 20,
+    "cards": 3,
+    "options": 2,
+    "weapons_ammo_shown": [
+      "120 mm HE",
+      "120 mm HEAT",
+      "120 mm gun-mortar",
+      "120 mm laser-guided",
+      "120 mm smoke",
+      "7.62x54mm",
+      "Type 86 7.62 mm"
+    ]
+  },
+  "vn3_loadout": {
+    "unit": 1402,
+    "cost": [
+      20,
+      30
+    ],
+    "options": [
+      [
+        "Custom_Option_2A72",
+        0,
+        369
+      ],
+      [
+        "2A72 + HJ-73D (4x)",
+        10,
+        2020621
+      ]
+    ],
+    "turret": 2020621,
+    "removed": [
+      "Custom_Option_Kord",
+      "dlc_3_Custom_Option_Spitsa_AGS_module",
+      "Spitsa ATGM (Konkurs-M)"
+    ]
+  },
+  "zsl191_stats": {
+    "unit": 1403,
+    "cost": [
+      35,
+      30
+    ],
+    "armor": [
+      2020441,
+      2010315
+    ],
+    "turret": 2020626,
+    "weapons": [
+      [
+        "Type 86 7.62 mm",
+        400
+      ]
+    ]
+  },
+  "mk_mortars_1123": {
+    "PLA PLZ-10": {
+      "unit": 1409,
+      "cost": 100,
+      "spec": 18,
+      "cards": 3,
+      "options": 2
+    }
+  },
+  "zrz100_1123": {
+    "unit": 1410,
+    "cost": 25,
+    "spec": 20,
+    "cards": 6,
+    "turret": 2020658,
+    "loadout": [
+      [
+        "ABZ-13 anti-personnel",
+        2
+      ],
+      [
+        "HJ-16",
+        2
+      ],
+      [
+        "QJC-88 12.7 mm",
+        100
+      ]
+    ],
+    "content": 3
+  },
+  "ztd05_booker": {
+    "unit": 1411,
+    "cost": 100,
+    "spec": 20,
+    "cards": 4,
+    "options": 3,
+    "mobility": 2020669,
+    "content": -1,
+    "old_card": 930
+  },
+  "zsd05_ampv": {
+    "unit": 1412,
+    "cost": 25,
+    "seats": 8,
+    "mobility": {
+      "206": 2020692,
+      "2019697": 2020694
+    },
+    "options": 7,
+    "infantry_cards": [
+      "Godswords 东方神剑",
+      "PAP Snow Leopards 雪豹",
+      "Blood Wolves 朱日和之狼",
+      "Whistling Arrows 响箭",
+      "Falcons 猎鹰",
+      "Mountain Leopards 高原雪豹",
+      "Beijing Swords 蓝剑",
+      "Sea Dragons 蛟龙",
+      "Marines 陆战队",
+      "Marine HJ-12 Team",
+      "Marine QW-2 Team",
+      "Marine Recon"
+    ]
+  },
+  "zbd05_ifv": {
+    "unit": 1413,
+    "cost": 35,
+    "weapon_options": [
+      [
+        "Autocannon + HJ-73D (4x)",
+        10
+      ],
+      [
+        "Custom_Option_Bushmaster2_autocannon",
+        0
+      ]
+    ],
+    "ammo": [
+      [
+        "Bushmaster II",
+        50
+      ],
+      [
+        "Bushmaster II",
+        100
+      ],
+      [
+        "HJ-73D",
+        4
+      ],
+      [
+        "M240",
+        800
+      ]
+    ],
+    "turret": 2020735,
+    "transport_for": 11,
+    "old": 1076
+  },
+  "sinicize": {
+    "weapons": 8,
+    "rounds": 11,
+    "turrets": 7,
+    "shown": {
+      "PLA ZTD-05": [
+        "105 mm APFSDS",
+        "105 mm HESH",
+        "105 mm rifled gun",
+        "12.7 mm",
+        "7.62 mm",
+        "Custom_Option_None",
+        "GL-5 APS",
+        "QJC-88 12.7 mm",
+        "Type 86 7.62 mm"
+      ],
+      "PLA ZSD-05": [
+        "12.7 mm",
+        "30 mm AP",
+        "30 mm HE",
+        "30 mm autocannon",
+        "30 mm autocannon + HJ-12",
+        "35 mm HE grenade",
+        "7.62 mm",
+        "Custom_Option_Default",
+        "Custom_Option_Reactive_armor",
+        "HJ-12",
+        "QJC-88 12.7 mm",
+        "QLZ-87 35 mm AGL",
+        "Reactive armour + GL-5 APS",
+        "Type 86 7.62 mm"
+      ],
+      "PLA ZBD-05": [
+        "30 mm AP",
+        "30 mm HE",
+        "30 mm autocannon",
+        "30 mm autocannon + HJ-73D (4x)",
+        "7.62 mm",
+        "Custom_Option_Default",
+        "Custom_Option_Reactive_armor",
+        "HJ-73D",
+        "HJ-73D ammunition",
+        "Reactive armour + GL-5 APS",
+        "Type 86 7.62 mm"
+      ],
+      "PLA VN-3": [
+        "30 mm AP",
+        "30 mm HE",
+        "30 mm autocannon",
+        "30 mm autocannon + HJ-73D (4x)",
+        "7.62 mm",
+        "HJ-73D",
+        "HJ-73D ammunition",
+        "Type 86 7.62 mm"
+      ]
+    }
+  },
+  "plan_trim_options": {
+    "PLA ZSD-05": {
+      "removed": [
+        "30 mm autocannon + HJ-12",
+        "30 mm autocannon",
+        "Custom_Option_Reactive_armor",
+        "Reactive armour + GL-5 APS"
+      ],
+      "options": [
+        "Custom_Option_Default",
+        "QJC-88 12.7 mm",
+        "QLZ-87 35 mm AGL"
+      ],
+      "weapons": [
+        "QJC-88 12.7 mm",
+        "QLZ-87 35 mm AGL"
+      ]
+    },
+    "PLA ZBD-05": {
+      "removed": [
+        "Custom_Option_Reactive_armor",
+        "Reactive armour + GL-5 APS"
+      ],
+      "options": [
+        "30 mm autocannon",
+        "30 mm autocannon + HJ-73D (4x)",
+        "Custom_Option_Default"
+      ],
+      "weapons": [
+        "30 mm autocannon",
+        "HJ-73D",
+        "Type 86 7.62 mm"
+      ]
+    },
+    "PLA ZTD-05": {
+      "removed": [
+        "GL-5 APS"
+      ],
+      "options": [
+        "105 mm rifled gun",
+        "Custom_Option_None"
+      ],
+      "weapons": [
+        "105 mm rifled gun",
+        "QJC-88 12.7 mm",
+        "Type 86 7.62 mm"
+      ]
+    }
+  },
+  "zrz100_fix": {
+    "unit": 1410,
+    "cost": [
+      25,
+      45
+    ],
+    "loadout": [
+      [
+        "ABZ-13 anti-personnel",
+        2
+      ],
+      [
+        "HJ-16",
+        2
+      ],
+      [
+        "QJY-201 7.62 mm",
+        200
+      ]
+    ],
+    "option_slot": 2020786,
+    "speed": {
+      "road": [
+        50,
+        90
+      ],
+      "reverse": [
+        15,
+        20
+      ]
+    }
+  },
+  "infantry_launchers_1124": {
+    "rounds": {
+      "140mm blast-frag": {
+        "GroundRange": [
+          300.0,
+          350.0
+        ],
+        "IgnoreCover": [
+          0.25,
+          0.5
+        ],
+        "PenetrationAtMinRange": [
+          75.0,
+          300.0
+        ],
+        "PenetrationAtGroundRange": [
+          75.0,
+          300.0
+        ]
+      },
+      "DZJ-08 ammunition": {
+        "IgnoreCover": [
+          0.25,
+          0.0
+        ]
+      },
+      "84mm HEDP": {
+        "IgnoreCover": [
+          0.25,
+          0.0
+        ]
+      },
+      "90mm dual purpose": {
+        "IgnoreCover": [
+          0.2,
+          0.0
+        ]
+      },
+      "62mm Thermobaric": {
+        "Damage": [
+          2.5,
+          4.0
+        ],
+        "IgnoreCover": [
+          1.0,
+          0.75
+        ]
+      }
+    },
+    "thermobaric_assault": {
+      "cost": [
+        70,
+        60
+      ],
+      "men": [
+        9,
+        8
+      ],
+      "hp": [
+        45,
+        40
+      ],
+      "qbz191": [
+        6,
+        5
+      ],
+      "pf97": [
+        6,
+        6
+      ],
+      "pf97_to_qbs09": 2015616
+    },
+    "loadouts": {
+      "China Combat Engineers Thermobaric launcher": [
+        10,
+        0
+      ],
+      "Mech. Engineers Close quarters": [
+        10,
+        0
+      ]
+    },
+    "us_combat_engineers_priority": {
+      "934": [
+        4,
+        3
+      ],
+      "941": [
+        4,
+        3
+      ]
+    },
+    "shturmoviki": [
+      40,
+      50
+    ]
+  },
+  "type100_fix_1124": {
+    "card_units": [
+      1294,
+      1414,
+      1295,
+      1415
+    ],
+    "transport_units": [
+      1416,
+      1417,
+      1418,
+      1419
+    ],
+    "aps_ability": 2020787,
+    "new_models_json_names": {
+      "PLA ZBD-100 APS": "PLA ZBD-100",
+      "PLA ZBD-100 CH-901 APS": "PLA ZBD-100 CH-901",
+      "PLA ZBD-100 transport": "PLA ZBD-100",
+      "PLA ZBD-100 transport APS": "PLA ZBD-100",
+      "PLA ZBD-100 CH-901 transport": "PLA ZBD-100 CH-901",
+      "PLA ZBD-100 CH-901 transport APS": "PLA ZBD-100 CH-901"
+    }
+  },
+  "type100_transport_only": {
+    "removed_card": [
+      2019908
+    ],
+    "transport_unit": 1416,
+    "transport_links": 6
+  },
+  "type100_2a91_1124": {
+    "weapon": 2019882,
+    "rounds": [
+      2019883,
+      2019884
+    ],
+    "units_using_gun": [
+      1056,
+      1294,
+      1295,
+      1414,
+      1415,
+      1416,
+      1417,
+      1418,
+      1419
+    ]
+  },
+  "type100_cat_price_1124": {
+    "PLA ZBD-100": {
+      "before": [
+        [
+          "40 mm CT",
+          0,
+          0,
+          145
+        ],
+        [
+          "40 mm CT + GL-5 APS",
+          40,
+          0,
+          185
+        ],
+        [
+          "9x CH-901",
+          40,
+          2,
+          185
+        ],
+        [
+          "9x CH-901 + GL-5 APS",
+          80,
+          2,
+          225
+        ]
+      ],
+      "after": [
+        [
+          "40 mm CT",
+          0,
+          0,
+          145
+        ],
+        [
+          "40 mm CT + GL-5 APS",
+          40,
+          0,
+          185
+        ],
+        [
+          "9x CH-901",
+          60,
+          0,
+          205
+        ],
+        [
+          "9x CH-901 + GL-5 APS",
+          100,
+          0,
+          245
+        ]
+      ]
+    },
+    "PLA ZBD-100 transport": {
+      "before": [
+        [
+          "40 mm CT",
+          0,
+          0,
+          145
+        ],
+        [
+          "40 mm CT + GL-5 APS",
+          40,
+          0,
+          185
+        ],
+        [
+          "9x CH-901",
+          40,
+          2,
+          185
+        ],
+        [
+          "9x CH-901 + GL-5 APS",
+          80,
+          2,
+          225
+        ]
+      ],
+      "after": [
+        [
+          "40 mm CT",
+          0,
+          0,
+          145
+        ],
+        [
+          "40 mm CT + GL-5 APS",
+          40,
+          0,
+          185
+        ],
+        [
+          "9x CH-901",
+          60,
+          0,
+          205
+        ],
+        [
+          "9x CH-901 + GL-5 APS",
+          100,
+          0,
+          245
+        ]
+      ]
+    },
+    "armour": {
+      "row": 2019878,
+      "KinArmorFront": [
+        650,
+        500
+      ],
+      "row_now": {
+        "ArmorValue": 0,
+        "MaxHealthPoints": 14,
+        "HeatArmorFront": 700,
+        "HeatArmorRear": 100,
+        "HeatArmorSides": 400,
+        "HeatArmorTop": 100,
+        "KinArmorFront": 500,
+        "KinArmorRear": 100,
+        "KinArmorSides": 150,
+        "KinArmorTop": 80
+      }
+    }
+  },
+  "plaaf_para_1124": {
+    "2011827": 1136,
+    "2011859": 1137,
+    "2011914": 1139,
+    "2011944": 1140,
+    "2012076": 1145,
+    "2012103": 1146
+  },
+  "qq_sheet_fixes_1123": {
+    "reservist_round_already": [
+      2019304,
+      "5.8 mm ammunition"
+    ],
+    "z20t_seats": [
+      0,
+      8
+    ],
+    "hj10_overpressure": [
+      5.0,
+      0.5
+    ],
+    "fb10_seeker": [
+      100,
+      10
+    ],
+    "hj10_nlos_aim_s": [
+      1.0,
+      2.0
+    ]
+  },
+  "falcons_weapons_1124": {
+    "qbu201_weapon": 2020834,
+    "qbu201_ammo": 2020835,
+    "loadout": [
+      [
+        "PF-98",
+        "PF-98 ammunition",
+        6
+      ],
+      [
+        "QBU-201",
+        "7.62 mm precision ammunition",
+        60
+      ],
+      [
+        "QJY-201",
+        "7.62 mm ammunition",
+        400
+      ],
+      [
+        "QLU-11",
+        "QLU-11 ammo (test)",
+        120
+      ],
+      [
+        "QMK",
+        "QMK ammunition",
+        160
+      ]
+    ]
+  },
+  "marine_recon_1124": {
+    "was": [
+      [
+        "QTS-11",
+        "QTS-11 grenade launcher",
+        3
+      ],
+      [
+        "QTS-11",
+        "QTS-11 grenade launcher",
+        3
+      ],
+      [
+        "QBU-191",
+        "PF-89",
+        2
+      ],
+      [
+        "QBZ-192",
+        "PF-89",
+        1
+      ],
+      [
+        "QBZ-192",
+        "PF-89",
+        3
+      ],
+      [
+        "QBZ-192",
+        "PF-89",
+        3
+      ]
+    ],
+    "now": [
+      [
+        "QBU-191",
+        "PF-89",
+        2
+      ],
+      [
+        "QBU-191",
+        "PF-89",
+        2
+      ],
+      [
+        "QBZ-192",
+        "PF-89",
+        1
+      ],
+      [
+        "QBZ-192",
+        "PF-89",
+        3
+      ],
+      [
+        "QBZ-192",
+        "QLG-10A",
+        2
+      ],
+      [
+        "QBZ-192",
+        "QLG-10A",
+        3
+      ]
+    ],
+    "order": [
+      "QBZ-192",
+      "QLG-10A",
+      "QBU-191",
+      "PF-89"
+    ]
+  },
+  "pgl625_lsdw_1124": {
+    "pgl625_damage": [
+      4.9,
+      3.5
+    ],
+    "lsdw_armor_targeted": [
+      1,
+      0
+    ]
+  },
+  "j5_j6_price_1124": {
+    "J-5 Drone": [
+      45,
+      65
+    ],
+    "J-6W Drone": [
+      50,
+      70
+    ]
+  },
+  "df31a_resupply_1124": {
+    "resupply_time": [
+      600.0,
+      6000.0
+    ]
+  },
+  "pf98_team_1124": {
+    "he_ignore_cover": [
+      0.25,
+      0.0
+    ],
+    "at_card_range_m": [
+      800,
+      600
+    ]
+  },
+  "j11bhg_heavy_cap_1124": {
+    "option": 31364,
+    "cost": 175,
+    "turrets_added": [
+      2016535,
+      2016537,
+      2016563
+    ]
+  },
+  "test_weapon_names": {
+    "units": 32,
+    "w_renamed": 5,
+    "w_copied": 40,
+    "a_renamed": 15,
+    "a_copied": 43,
+    "t_copied": 48,
+    "weapons_shown": 45,
+    "rounds_shown": 58
+  },
+  "zzc06_recon": {
+    "unit": 1420,
+    "replaces": 1255,
+    "spec": 18,
+    "cost": 45,
+    "mount": 2021035,
+    "loadout": [
+      [
+        0,
+        "ZPT-99 30 mm"
+      ],
+      [
+        1,
+        "Type 86 7.62 mm"
+      ]
+    ],
+    "ammo": [
+      [
+        "ZPT-99 30 mm",
+        50
+      ],
+      [
+        "ZPT-99 30 mm",
+        117
+      ],
+      [
+        "Type 86 7.62 mm",
+        400
+      ]
+    ],
+    "sensors": [
+      3
+    ],
+    "abilities": [
+      2000212
+    ],
+    "slots": 0
+  },
+  "card_portraits_1124": {
+    "PLA ZTD-05": 1,
+    "PLA ZSD-05": 1,
+    "PLA ZRZ-100": 1,
+    "PLA ZBD-05": 1,
+    "PLA VN-3": 1,
+    "PLA ZBL-08 Recon": 1,
+    "PLA ZSL-191": 1,
+    "US XQ-58A Valkyrie": 1,
+    "PLA ZZC-06": 1
+  },
+  "ztz96b_1124": {
+    "unit": 905,
+    "front_before": {
+      "KinArmorFront": 650,
+      "HeatArmorFront": 850
+    },
+    "front_after": {
+      "KinArmorFront": 600,
+      "HeatArmorFront": 600
+    },
+    "cost": [
+      220,
+      195
+    ]
+  },
+  "vn3_airdrop": {
+    "units": [
+      1402
+    ],
+    "mobility_before": {
+      "2020411": false
+    }
+  },
+  "card_icons_1124": {
+    "PLA ZTD-05": {
+      "1411": "RU_SPRUT_SD-Label"
+    },
+    "PLA ZSD-05": {
+      "1412": "US_AMPV-Label"
+    },
+    "PLA ZRZ-100": {
+      "1410": "DLC3_URAN9-Label"
+    },
+    "PLA ZBD-05": {
+      "1413": "US_AMPV-Label"
+    },
+    "PLA VN-3": {
+      "1402": "DLC3_BPM97_KORD-Label"
+    },
+    "PLA PLZ-25": {
+      "1408": "RU_VENA-Label"
+    },
+    "PLA PLZ-10": {
+      "1409": "RU_VENA-Label"
+    },
+    "PLA ZBL-08 Recon": {
+      "1407": "FA_PLA_VEH_ZBL08"
+    },
+    "PLA ZSL-191": {
+      "1403": "FA_PLA_VEH_ZBL191"
+    },
+    "PLA PLL-05": {
+      "926": "RU_NONA_SVK-Label"
+    },
+    "PLA ZZC-06": {
+      "1420": "FA_PLA_VEH_ZBD04"
+    }
+  },
+  "ztz59d1_removed": {
+    "unit": 1260,
+    "availability_removed": [
+      2018634
+    ]
+  },
+  "qbu10_icon_1124": {
+    "icon": "FA_PLA_WP_QBU10",
+    "before": {
+      "2012054": "INF_ASVK",
+      "2005018": "INF_ASVK"
+    }
+  },
+  "qcq171_1124": {
+    "before": [
+      "QCW-05",
+      "FA_PLA_WP_QCW05",
+      "5.8 mm SMG ammunition"
+    ],
+    "after": [
+      "QCQ-171",
+      "FA_PLA_WP_QCQ171",
+      "9x19 mm SMG ammunition"
+    ]
+  },
+  "euro_bg_zero": {
+    "24": {
+      "ReconSlots": 4,
+      "InfantrySlots": 4,
+      "CombatSlots": 6,
+      "SupportSlots": 7,
+      "LogisticsSlots": 0,
+      "HelicoptersSlots": 0,
+      "AirSlots": 0,
+      "MaxSlots": 21,
+      "ReconPoints": 1000,
+      "InfantryPoints": 1000,
+      "CombatPoints": 1750,
+      "SupportPoints": 1250,
+      "LogisticsPoints": 0,
+      "HelicoptersPoints": 0,
+      "AirPoints": 0
+    },
+    "25": {
+      "ReconSlots": 4,
+      "InfantrySlots": 4,
+      "CombatSlots": 6,
+      "SupportSlots": 7,
+      "LogisticsSlots": 0,
+      "HelicoptersSlots": 0,
+      "AirSlots": 0,
+      "MaxSlots": 21,
+      "ReconPoints": 1000,
+      "InfantryPoints": 1000,
+      "CombatPoints": 1750,
+      "SupportPoints": 1250,
+      "LogisticsPoints": 0,
+      "HelicoptersPoints": 0,
+      "AirPoints": 0
+    }
+  },
+  "qjb201_icon_1124": {
+    "icon": "FA_PLA_WP_QJB201",
+    "before": {
+      "2011834": "INF_Mk46"
+    },
+    "squads": [
+      "Airborne Close-Assault Riflemen",
+      "Combat Engineers 工兵班",
+      "Guided-AT Riflemen",
+      "Light Riflemen 轻步兵",
+      "Mech. Rifles 机步班",
+      "Rocket Convoy Escort — HJ-73D",
+      "Test LG4 Revolver Team"
+    ]
+  },
+  "thunder_gods_1124": {
+    "kit": [
+      [
+        "QBZ-192",
+        ""
+      ],
+      [
+        "QBZ-192",
+        ""
+      ],
+      [
+        "QBZ-192",
+        ""
+      ],
+      [
+        "QBZ-192",
+        ""
+      ],
+      [
+        "QBZ-192",
+        "FHJ-02"
+      ],
+      [
+        "QCQ-171",
+        ""
+      ],
+      [
+        "QCQ-171",
+        ""
+      ],
+      [
+        "QCQ-171",
+        ""
+      ],
+      [
+        "QJS-161",
+        ""
+      ]
+    ]
+  },
+  "euro_set_1124": {
+    "DE KF51 Panther": {
+      "unit": 1421,
+      "spec": 25,
+      "parent": "M1A2 SEP v3 (191)",
+      "cost": 260,
+      "cards": 2,
+      "options": 6
+    },
+    "DE KF41 Lynx": {
+      "unit": 1422,
+      "spec": 25,
+      "parent": "M2A3 Bradley (16)",
+      "cost": 65,
+      "cards": 4,
+      "options": 7
+    },
+    "DE Wiesel AWC": {
+      "unit": 1423,
+      "spec": 25,
+      "parent": "LAV-25 (29)",
+      "cost": 40,
+      "cards": 4,
+      "options": 2
+    },
+    "DE TPz Fuchs": {
+      "unit": 1424,
+      "spec": 25,
+      "parent": "Stryker ICV (22)",
+      "cost": 30,
+      "cards": 4,
+      "options": 8
+    },
+    "DE PzH 2000": {
+      "unit": 1425,
+      "spec": 25,
+      "parent": "M109A7 Paladin (162)",
+      "cost": 270,
+      "cards": 2,
+      "options": 3
+    },
+    "DE Flakpanzer Gepard": {
+      "unit": 1426,
+      "spec": 25,
+      "parent": "M163 PIVADS (188)",
+      "cost": 80,
+      "cards": 2,
+      "options": 2
+    },
+    "DE MAN HX77": {
+      "unit": 1427,
+      "spec": 25,
+      "parent": "HEMTT (242)",
+      "cost": 50,
+      "cards": 4,
+      "options": 6
+    },
+    "FR VAB": {
+      "unit": 1428,
+      "spec": 24,
+      "parent": "Stryker ICV (22)",
+      "cost": 30,
+      "cards": 4,
+      "options": 8
+    },
+    "FR Panhard GD": {
+      "unit": 1429,
+      "spec": 24,
+      "parent": "M-ATV (467)",
+      "cost": 35,
+      "cards": 4,
+      "options": 4
+    },
+    "US MaxxPro MRAP": {
+      "unit": 1430,
+      "parent": "Humvee GMV (48)",
+      "cost": 30,
+      "options": 4,
+      "infantry_cards": [
+        "Force Recon",
+        "Scout Snipers",
+        "Scouts"
+      ]
+    }
+  },
+  "lynx_cards_1124": {
+    "PLA Lynx CS/VP16B": {
+      "transport_for": 10,
+      "unit": 1431,
+      "hud": "CS/VP16B",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 20,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [
+        [
+          0,
+          "QJZ-89 12.7 mm RWS"
+        ],
+        [
+          0,
+          "QLZ-87 35 mm AGL"
+        ]
+      ],
+      "ammo": [
+        [
+          "QJZ-89 12.7 mm RWS",
+          "QJZ-89 12.7 mm RWS ammunition",
+          100
+        ],
+        [
+          "QLZ-87 35 mm AGL",
+          "35 mm HE grenade",
+          320
+        ]
+      ]
+    },
+    "PLA Lynx Cargo": {
+      "transport_for": 0,
+      "unit": 1432,
+      "hud": "Lynx Cargo",
+      "parent": "Shaanxi SX2121 (1269)",
+      "cost": 25,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [],
+      "ammo": []
+    },
+    "PLA Lynx CS/VP17 Rapid-Fire Gun": {
+      "transport_for": 0,
+      "unit": 1433,
+      "hud": "CS/VP17 Rapid-Fire Gun",
+      "parent": "ZSL-92 (1079)",
+      "cost": 45,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [
+        [
+          0,
+          "30 mm autocannon"
+        ],
+        [
+          1,
+          "Type 86 7.62 mm"
+        ]
+      ],
+      "ammo": [
+        [
+          "30 mm autocannon",
+          "30 mm autocannon AP",
+          38
+        ],
+        [
+          "30 mm autocannon",
+          "30 mm autocannon HE",
+          88
+        ],
+        [
+          "Type 86 7.62 mm",
+          "Type 86 7.62 mm ammunition",
+          400
+        ]
+      ]
+    },
+    "PLA Lynx CS-SM8 81 mm Mortar": {
+      "transport_for": 0,
+      "unit": 1434,
+      "hud": "CS-SM8 81 mm Mortar",
+      "parent": "PLL-05 (926)",
+      "cost": 50,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "81 mm rapid-fire mortar"
+        ]
+      ],
+      "ammo": [
+        [
+          "81 mm rapid-fire mortar",
+          "82mm HE",
+          80
+        ],
+        [
+          "81 mm rapid-fire mortar",
+          "82mm HEAT",
+          24
+        ],
+        [
+          "81 mm rapid-fire mortar",
+          "82mm smoke",
+          25
+        ]
+      ]
+    },
+    "PLA Lynx CS/VP17 120 mm Mortar": {
+      "transport_for": 0,
+      "unit": 1435,
+      "hud": "CS/VP17 120 mm Mortar",
+      "parent": "PLL-05 (926)",
+      "cost": 70,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "120 mm mortar"
+        ]
+      ],
+      "ammo": [
+        [
+          "120 mm mortar",
+          "120mm HE",
+          60
+        ],
+        [
+          "120 mm mortar",
+          "120mm smoke",
+          15
+        ]
+      ]
+    },
+    "PLA Lynx 66 120 mm Mortar-Howitzer": {
+      "transport_for": 0,
+      "unit": 1436,
+      "hud": "Lynx 66 120 mm Mortar-Howitzer",
+      "parent": "PLL-05 (926)",
+      "cost": 80,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "120 mm gun-mortar"
+        ]
+      ],
+      "ammo": [
+        [
+          "120 mm gun-mortar",
+          "120 mm gun-mortar ammunition",
+          36
+        ],
+        [
+          "120 mm gun-mortar",
+          "120 mm smoke",
+          20
+        ]
+      ]
+    },
+    "PLA Lynx 66 107 mm MRL": {
+      "transport_for": 0,
+      "unit": 1437,
+      "hud": "Lynx 66 107 mm MRL",
+      "parent": "PHL-81 (963)",
+      "cost": 60,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "107 mm rockets"
+        ]
+      ],
+      "ammo": [
+        [
+          "107 mm rockets",
+          "107 mm rockets ammunition",
+          12
+        ]
+      ]
+    },
+    "PLA Lynx 8x8 107 mm MRL": {
+      "transport_for": 0,
+      "unit": 1438,
+      "hud": "Lynx 8x8 107 mm MRL",
+      "parent": "PHL-81 (963)",
+      "cost": 110,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "107 mm rockets"
+        ]
+      ],
+      "ammo": [
+        [
+          "107 mm rockets",
+          "107 mm rockets ammunition",
+          36
+        ]
+      ]
+    },
+    "PLA Lynx 66 SPAAG": {
+      "transport_for": 0,
+      "unit": 1439,
+      "hud": "Lynx 66 SPAAG",
+      "parent": "PGL-625 (920)",
+      "cost": 120,
+      "cards": 4,
+      "abilities": [
+        60
+      ],
+      "weapons": [
+        [
+          0,
+          "625 six-barrel 25 mm gun"
+        ],
+        [
+          1,
+          "FB-10"
+        ]
+      ],
+      "ammo": [
+        [
+          "625 six-barrel 25 mm gun",
+          "625 six-barrel 25 mm gun ammunition",
+          133
+        ],
+        [
+          "FB-10",
+          "FB-10 ammunition",
+          4
+        ]
+      ]
+    },
+    "PLA Lynx CS/VP17 Command": {
+      "transport_for": 0,
+      "unit": 1440,
+      "hud": "CS/VP17 Command",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 30,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [],
+      "ammo": []
+    },
+    "PLA Lynx CS/VP17 Swarm Launcher": {
+      "transport_for": 0,
+      "unit": 1441,
+      "hud": "CS/VP17 Swarm Launcher",
+      "parent": "Type 100 CSV (1295)",
+      "cost": 150,
+      "cards": 4,
+      "abilities": [
+        2021396
+      ],
+      "weapons": [
+        [
+          0,
+          "CH-901"
+        ]
+      ],
+      "ammo": [
+        [
+          "CH-901",
+          "CH-901",
+          9
+        ]
+      ]
+    }
+  },
+  "delta_force_1124": {
+    "base": [
+      85,
+      95
+    ],
+    "close_quarters": {
+      "option": [
+        10,
+        0
+      ],
+      "default": true,
+      "total": [
+        95,
+        95
+      ]
+    },
+    "standoff": {
+      "option": [
+        0,
+        5
+      ],
+      "total": [
+        85,
+        100
+      ]
+    }
+  },
+  "akd10_names_1124": {
+    "weapons": [
+      2017051,
+      2017062,
+      2017502,
+      2017521,
+      2017565,
+      2017584,
+      2017797,
+      2017894,
+      2017899,
+      2019178
+    ],
+    "round": [
+      2017053
+    ],
+    "units": [
+      [
+        913,
+        "PLA Z-10K"
+      ],
+      [
+        914,
+        "PLA Z-20"
+      ],
+      [
+        940,
+        "PLA Z-19E"
+      ],
+      [
+        946,
+        "PLA Wing Loong"
+      ],
+      [
+        978,
+        "PLA Z-10"
+      ],
+      [
+        1103,
+        "PLA Catalogue Z-19"
+      ],
+      [
+        1104,
+        "PLA Catalogue Z-21"
+      ],
+      [
+        1236,
+        "PLA SF Z-19"
+      ],
+      [
+        1239,
+        "PLA Air Force Z-10"
+      ],
+      [
+        1245,
+        "PLA Z-20T"
+      ],
+      [
+        1270,
+        "PLA Z-10U"
+      ]
+    ]
+  },
+  "nlos_cruise_1124": {
+    "rounds": {
+      "2009623": "HJ-10",
+      "2009651": "QN-502",
+      "2018321": "CTL-181",
+      "2018448": "CH-901 (Blood Wolves)",
+      "2019891": "CH-901 (Type 100)"
+    },
+    "before": {
+      "2009623": {
+        "TrajectoryType": 200,
+        "Seeker": 100,
+        "SeekerAngle": 90.0,
+        "MaxSeekerDistance": 800.0,
+        "CanReaquire": true,
+        "LaserGuided": true,
+        "TargetType": 37,
+        "MuzzleVelocity": 50.0,
+        "MaxSpeed": 300.0,
+        "Acceleration": 50.0,
+        "BurnTime": 20.0,
+        "RotationSpeed": 45.0,
+        "MainEngineIgnitionDelay": 1.0
+      },
+      "2009651": {
+        "TrajectoryType": 200,
+        "Seeker": 100,
+        "SeekerAngle": 90.0,
+        "MaxSeekerDistance": 700.0,
+        "CanReaquire": true,
+        "LaserGuided": true,
+        "TargetType": 1,
+        "MuzzleVelocity": 50.0,
+        "MaxSpeed": 300.0,
+        "Acceleration": 50.0,
+        "BurnTime": 20.0,
+        "RotationSpeed": 45.0,
+        "MainEngineIgnitionDelay": 1.0
+      },
+      "2018321": {
+        "TrajectoryType": 200,
+        "Seeker": 100,
+        "SeekerAngle": 90.0,
+        "MaxSeekerDistance": 900.0,
+        "CanReaquire": true,
+        "LaserGuided": true,
+        "TargetType": 37,
+        "MuzzleVelocity": 50.0,
+        "MaxSpeed": 300.0,
+        "Acceleration": 50.0,
+        "BurnTime": 20.0,
+        "RotationSpeed": 45.0,
+        "MainEngineIgnitionDelay": 1.0
+      },
+      "2018448": {
+        "TrajectoryType": 200,
+        "Seeker": 100,
+        "SeekerAngle": 90.0,
+        "MaxSeekerDistance": 700.0,
+        "CanReaquire": true,
+        "LaserGuided": true,
+        "TargetType": 1,
+        "MuzzleVelocity": 50.0,
+        "MaxSpeed": 300.0,
+        "Acceleration": 50.0,
+        "BurnTime": 20.0,
+        "RotationSpeed": 45.0,
+        "MainEngineIgnitionDelay": 1.0
+      },
+      "2019891": {
+        "TrajectoryType": 200,
+        "Seeker": 100,
+        "SeekerAngle": 90.0,
+        "MaxSeekerDistance": 700.0,
+        "CanReaquire": true,
+        "LaserGuided": true,
+        "TargetType": 1,
+        "MuzzleVelocity": 50.0,
+        "MaxSpeed": 300.0,
+        "Acceleration": 50.0,
+        "BurnTime": 20.0,
+        "RotationSpeed": 45.0,
+        "MainEngineIgnitionDelay": 1.0
+      }
+    },
+    "guidance": {
+      "TrajectoryType": 200,
+      "Seeker": 0,
+      "SeekerAngle": 0.0,
+      "MaxSeekerDistance": 0.0,
+      "CanReaquire": false,
+      "LaserGuided": true,
+      "TargetType": 1,
+      "MuzzleVelocity": 50.0,
+      "MaxSpeed": 300.0,
+      "Acceleration": 50.0,
+      "BurnTime": 20.0,
+      "RotationSpeed": 120.0,
+      "MainEngineIgnitionDelay": 1.0
+    }
+  },
+  "sraw_split_1124": {
+    "unit_a": 1442,
+    "unit_b": 332,
+    "weapon_sraw": 2021405,
+    "round_140mm_heat": 2021404,
+    "slot": 2021425,
+    "options": {
+      "A": 31418,
+      "B": 31419
+    },
+    "usmc_cards": 4,
+    "transports": [
+      "ACV",
+      "AAVP-7A1"
+    ],
+    "smaw_slot_removed": [
+      399,
+      1472,
+      1473
+    ]
+  },
+  "lynx_cards_extra_1124": {
+    "PLA Lynx CS/VP16B Recon": {
+      "transport_for": 0,
+      "unit": 1443,
+      "hud": "CS/VP16B Recon",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 25,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [],
+      "ammo": []
+    },
+    "PLA Lynx CS/VP17 Drone Carrier": {
+      "transport_for": 0,
+      "unit": 1444,
+      "hud": "CS/VP17 Drone Carrier",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 30,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [],
+      "ammo": []
+    },
+    "PLA Lynx CS/VP16B Mortar": {
+      "transport_for": 0,
+      "unit": 1445,
+      "hud": "CS/VP16B Mortar",
+      "parent": "PLL-05 (926)",
+      "cost": 50,
+      "cards": 4,
+      "abilities": [],
+      "weapons": [
+        [
+          0,
+          "81 mm mortar"
+        ]
+      ],
+      "ammo": [
+        [
+          "81 mm mortar",
+          "82mm HE",
+          80
+        ],
+        [
+          "81 mm mortar",
+          "82mm HEAT",
+          24
+        ],
+        [
+          "81 mm mortar",
+          "82mm smoke",
+          25
+        ]
+      ]
+    },
+    "PLA Lynx 6x6 Laser Weapon": {
+      "transport_for": 0,
+      "unit": 1446,
+      "hud": "6x6 Laser Weapon",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 60,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [],
+      "ammo": []
+    }
+  },
+  "fb10_amraam_1124": {
+    "round": 2009373,
+    "from": 464,
+    "changed": {
+      "SupplyCost": [
+        100.0,
+        125.0
+      ],
+      "ResupplyTime": [
+        5.0,
+        10.0
+      ],
+      "StressDamage": [
+        180.0,
+        360.0
+      ],
+      "PenetrationAtMinRange": [
+        165.0,
+        160.0
+      ],
+      "PenetrationAtGroundRange": [
+        165.0,
+        160.0
+      ],
+      "HealthAOERadius": [
+        17.5,
+        15.0
+      ],
+      "StressAOERadius": [
+        17.5,
+        15.0
+      ],
+      "RadioFuseDistance": [
+        14.0,
+        12.0
+      ],
+      "GroundRange": [
+        600.0,
+        0.0
+      ],
+      "LowAltRange": [
+        1200.0,
+        1100.0
+      ],
+      "HighAltRange": [
+        1200.0,
+        900.0
+      ],
+      "MaxSpeed": [
+        700.0,
+        600.0
+      ],
+      "Acceleration": [
+        350.0,
+        300.0
+      ],
+      "Seeker": [
+        10,
+        50
+      ],
+      "SeekerAngle": [
+        120.0,
+        140.0
+      ],
+      "MaxSeekerDistance": [
+        1400.0,
+        700.0
+      ],
+      "PreEgnitionRotationSpeed": [
+        150.0,
+        0.0
+      ]
+    },
+    "users": {
+      "920": "PGL-625",
+      "1439": "Lynx 66 SPAAG"
+    }
+  },
+  "shorad_radar_1124": {
+    "sa_units": {
+      "12": "Pantsir S1",
+      "20": "Stryker M-SHORAD",
+      "31": "Tor",
+      "94": "Osa-AKM",
+      "233": "2K22M Tunguska-M",
+      "389": "SLAMRAAM",
+      "394": "DT-30AA",
+      "508": "NASAMS",
+      "634": "Tor-M2KM",
+      "910": "HQ-17",
+      "920": "PGL-625",
+      "925": "HQ-7B",
+      "935": "FK-2000",
+      "961": "HQ-7",
+      "1049": "HQ-17A",
+      "1439": "Lynx 66 SPAAG"
+    },
+    "ir_units": {
+      "27": "M6 Linebacker",
+      "188": "M163 PIVADS",
+      "221": "ZSU-23-4 Shilka",
+      "250": "Centurion C-RAM",
+      "393": "MML",
+      "932": "PGZ-04A",
+      "1050": "PGZ-04",
+      "1051": "PGZ-88",
+      "1052": "PGZ-95",
+      "1273": "HHQ-10",
+      "1297": "K263 Vulcan",
+      "1426": "Flakpanzer Gepard"
+    },
+    "ir_rows": {
+      "58": 2021460,
+      "60": 2021461,
+      "62": 2021462
+    },
+    "moved": [
+      [
+        27,
+        "UnitAbilitiesJson",
+        418,
+        62,
+        2021462
+      ],
+      [
+        27,
+        "OptionsJson",
+        17,
+        62,
+        2021462
+      ],
+      [
+        27,
+        "OptionsJson",
+        1782,
+        62,
+        2021462
+      ],
+      [
+        188,
+        "UnitAbilitiesJson",
+        337,
+        60,
+        2021461
+      ],
+      [
+        221,
+        "UnitAbilitiesJson",
+        338,
+        62,
+        2021462
+      ],
+      [
+        221,
+        "OptionsJson",
+        519,
+        62,
+        2021462
+      ],
+      [
+        221,
+        "OptionsJson",
+        520,
+        62,
+        2021462
+      ],
+      [
+        250,
+        "UnitAbilitiesJson",
+        1035,
+        60,
+        2021461
+      ],
+      [
+        393,
+        "UnitAbilitiesJson",
+        723,
+        58,
+        2021460
+      ],
+      [
+        932,
+        "UnitAbilitiesJson",
+        2009552,
+        60,
+        2021461
+      ],
+      [
+        1050,
+        "UnitAbilitiesJson",
+        2010636,
+        60,
+        2021461
+      ],
+      [
+        1051,
+        "UnitAbilitiesJson",
+        2010656,
+        60,
+        2021461
+      ],
+      [
+        1052,
+        "UnitAbilitiesJson",
+        2010670,
+        60,
+        2021461
+      ],
+      [
+        1273,
+        "UnitAbilitiesJson",
+        2019356,
+        60,
+        2021461
+      ],
+      [
+        1297,
+        "UnitAbilitiesJson",
+        2019932,
+        60,
+        2021461
+      ],
+      [
+        1426,
+        "UnitAbilitiesJson",
+        2021179,
+        60,
+        2021461
+      ]
+    ],
+    "china_rows": {
+      "2009175": [
+        "IR values",
+        2009175,
+        [
+          909,
+          1055,
+          1287
+        ]
+      ],
+      "2009943": [
+        "IR values",
+        2009943,
+        [
+          952
+        ]
+      ],
+      "2019443": [
+        "IR values",
+        2019443,
+        [
+          1275
+        ]
+      ]
+    },
+    "ir_round_copies": {},
+    "heli_ammo": {},
+    "burn": {
+      "20": 2.7,
+      "28": 2.65,
+      "69": 2.5,
+      "77": 2.7,
+      "232": 2.65,
+      "233": 2.65,
+      "234": 2.7,
+      "452": 2.55,
+      "464": 2.65,
+      "603": 2.7,
+      "2009199": 2.65,
+      "2009449": 2.5,
+      "2009607": 2.7,
+      "2010125": 2.5,
+      "2010629": 2.7,
+      "2009373": 2.65
+    }
+  },
+  "radar_weapons_1124": {
+    "exempt": {
+      "18": "Missile AA Stinger Vehicles",
+      "19": "Bullet 12.7x99",
+      "27": "Bullet 7.62x51 MG ",
+      "127": "Missile AA IglaS",
+      "501": "Missile AA 70 Hydra Fletcher",
+      "2009565": "PLA PGZ-04A QW-2 ammunition",
+      "2010649": "PLA PGZ-04 QW-2 ammunition",
+      "2010683": "PLA PGZ-95 QW-2 ammunition"
+    },
+    "radar_units": 72,
+    "radar_rounds": 65,
+    "radar_weapons": 79
+  },
+  "fk3000_pcl181_1124": {
+    "fk3000": 1447,
+    "copy_of": 935,
+    "cost": 250,
+    "weapons": [
+      [
+        0,
+        2009599
+      ],
+      [
+        1,
+        2009605
+      ]
+    ],
+    "pcl181_specs": [
+      [
+        21,
+        2
+      ],
+      [
+        26,
+        3
+      ]
+    ]
+  },
+  "engineer_icon_1124": {
+    "icon": "FA_PLA_INF_ENGINEER",
+    "before": {
+      "1156": "RU_SAPERI-Label"
+    }
+  },
+  "lynx_rework_1124": {
+    "hidden": {
+      "PLA Lynx CS/VP16B Mortar": {
+        "unit": 1445,
+        "availability_removed": [
+          2021452
+        ]
+      },
+      "PLA Lynx CS/VP17 Command": {
+        "unit": 1440,
+        "availability_removed": [
+          2021391
+        ]
+      },
+      "PLA Lynx CS/VP17 Drone Carrier": {
+        "unit": 1444,
+        "availability_removed": [
+          2021439
+        ]
+      },
+      "PLA Lynx 8x8 107 mm MRL": {
+        "unit": 1438,
+        "availability_removed": [
+          2021374
+        ]
+      }
+    },
+    "changed": {
+      "PLA Lynx CS/VP17 120 mm Mortar": {
+        "unit": 1435,
+        "hud": "Lynx 120mm Mortar",
+        "cost": 70,
+        "seats": 0,
+        "cat": 3,
+        "weapons": [
+          [
+            0,
+            "120 mm mortar"
+          ]
+        ],
+        "ammo": [
+          [
+            "120 mm mortar",
+            "120mm HE",
+            20
+          ],
+          [
+            "120 mm mortar",
+            "120mm smoke",
+            5
+          ]
+        ],
+        "abilities": []
+      },
+      "PLA Lynx 66 120 mm Mortar-Howitzer": {
+        "unit": 1436,
+        "hud": "Lynx Howitzer",
+        "cost": 60,
+        "seats": 0,
+        "cat": 3,
+        "weapons": [
+          [
+            0,
+            "120 mm gun-mortar"
+          ]
+        ],
+        "ammo": [
+          [
+            "120 mm gun-mortar",
+            "120 mm gun-mortar ammunition",
+            18
+          ],
+          [
+            "120 mm gun-mortar",
+            "120 mm smoke",
+            10
+          ]
+        ],
+        "abilities": []
+      },
+      "PLA Lynx CS-SM8 81 mm Mortar": {
+        "unit": 1434,
+        "hud": "Lynx 81mm Mortar",
+        "cost": 50,
+        "seats": 0,
+        "cat": 3,
+        "weapons": [
+          [
+            0,
+            "81 mm rapid-fire mortar"
+          ]
+        ],
+        "ammo": [
+          [
+            "81 mm rapid-fire mortar",
+            "82mm HE",
+            20
+          ],
+          [
+            "81 mm rapid-fire mortar",
+            "82mm HEAT",
+            6
+          ],
+          [
+            "81 mm rapid-fire mortar",
+            "82mm smoke",
+            6
+          ]
+        ],
+        "abilities": []
+      },
+      "PLA Lynx 66 SPAAG": {
+        "unit": 1439,
+        "hud": "Lynx SPAAG",
+        "cost": 80,
+        "seats": 0,
+        "cat": 3,
+        "weapons": [
+          [
+            0,
+            "625 six-barrel 25 mm gun"
+          ],
+          [
+            1,
+            "QW-2"
+          ]
+        ],
+        "ammo": [
+          [
+            "625 six-barrel 25 mm gun",
+            "625 six-barrel 25 mm gun ammunition",
+            133
+          ],
+          [
+            "QW-2",
+            "QW-2 ammunition",
+            4
+          ]
+        ],
+        "abilities": []
+      },
+      "PLA Lynx CS/VP17 Rapid-Fire Gun": {
+        "unit": 1433,
+        "hud": "Lynx Rapid-Fire Gun",
+        "cost": 35,
+        "seats": 0,
+        "cat": 2,
+        "weapons": [
+          [
+            0,
+            "30 mm autocannon"
+          ],
+          [
+            2,
+            "HJ-8H"
+          ],
+          [
+            1,
+            "Type 86 7.62 mm"
+          ]
+        ],
+        "ammo": [
+          [
+            "30 mm autocannon",
+            "30 mm autocannon AP",
+            38
+          ],
+          [
+            "30 mm autocannon",
+            "30 mm autocannon HE",
+            88
+          ],
+          [
+            "Type 86 7.62 mm",
+            "Type 86 7.62 mm ammunition",
+            400
+          ],
+          [
+            "HJ-8H",
+            "HJ-8H",
+            2
+          ]
+        ],
+        "abilities": [
+          "Supply Light  Default NoSmoke"
+        ]
+      },
+      "PLA Lynx 6x6 Laser Weapon": {
+        "unit": 1446,
+        "hud": "Lynx Laser",
+        "cost": 60,
+        "seats": 0,
+        "cat": 3,
+        "weapons": [
+          [
+            0,
+            "LY-1 laser"
+          ]
+        ],
+        "ammo": [
+          [
+            "LY-1 laser",
+            "LY-1 laser pulse",
+            1000
+          ]
+        ],
+        "abilities": [
+          "Supply Light  Default NoSmoke + LY-1 laser APS"
+        ]
+      },
+      "PLA Lynx CS/VP16B": {
+        "unit": 1431,
+        "hud": "Lynx Troop Carrier",
+        "cost": 20,
+        "seats": 9,
+        "cat": 2,
+        "weapons": [
+          [
+            0,
+            "QJZ-89 12.7 mm RWS"
+          ],
+          [
+            0,
+            "QLZ-87 35 mm AGL"
+          ]
+        ],
+        "ammo": [
+          [
+            "QJZ-89 12.7 mm RWS",
+            "QJZ-89 12.7 mm RWS ammunition",
+            100
+          ],
+          [
+            "QLZ-87 35 mm AGL",
+            "35 mm HE grenade",
+            320
+          ]
+        ],
+        "abilities": [
+          "Supply Light  Default NoSmoke"
+        ]
+      },
+      "PLA Lynx CS/VP16B Recon": {
+        "unit": 1443,
+        "hud": "Lynx Recon",
+        "cost": 25,
+        "seats": 0,
+        "cat": 0,
+        "weapons": [],
+        "ammo": [],
+        "abilities": [
+          "Supply Light  Default NoSmoke"
+        ]
+      }
+    },
+    "laser_pulse": 2021488,
+    "laser_aps": 2021493,
+    "spaag_gun_rounds": {
+      "2009369": 2021487
+    },
+    "hj8h_weapon": 2021477
+  },
+  "preview_specs": {
+    "test_only_units": 27,
+    "k1_to_test_spec": {
+      "K1A1": 1279,
+      "K1": 1280,
+      "K9 Thunder": 1310
+    },
+    "bd_cards": 20
+  },
+  "air_hypersonic_600": {
+    "speed": 600.0,
+    "rounds": [
+      340,
+      455,
+      919,
+      2001364,
+      2002024,
+      2016948,
+      2016952
+    ],
+    "mig31k": 220,
+    "cluster": 60,
+    "b52_arrw_each": 250,
+    "f35_mako": 60
+  },
+  "zbd03_zsd89a_hidden_1124": {
+    "hidden": [
+      1074,
+      1257,
+      1249
+    ],
+    "sa_removed": [
+      2018409
+    ],
+    "ta_removed": [
+      2012069,
+      2012193,
+      2018156,
+      2018157,
+      2018158,
+      2018159,
+      2018160,
+      2018161,
+      2018162,
+      2018163,
+      2018164,
+      2018165
+    ],
+    "squad_transports_left": {
+      "Airborne 空降兵": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA"
+      ],
+      "HJ-12 Team": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "Tank Hunters 坦克杀手": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "QLU-11 Team": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "Pathfinders 先遣队": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "Thunder Gods 雷神": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA"
+      ],
+      "Snipers 狙击组": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "QW-12 Patrol 防空巡逻": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ],
+      "Assault Raiders 突击队": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA"
+      ],
+      "Recon 侦察组": [
+        "CSK-131",
+        "Lynx ATV",
+        "Lynx Troop Carrier",
+        "VN-3",
+        "Z-20KA",
+        "Z-9",
+        "ZBD-251"
+      ]
+    }
+  },
+  "lynx_spaag_dps_1124": {
+    "round": 2021487,
+    "weapon": 2009365,
+    "shots_per_s": 2.9715,
+    "damage": [
+      3.5,
+      2.019
+    ],
+    "dps": [
+      10.4,
+      6.0
+    ]
+  },
+  "qts11_underbarrel": {
+    "rows": [
+      2004006,
+      2019270
+    ],
+    "changed": [
+      2004006,
+      2019270
+    ],
+    "names": [
+      "PLA Test Underbarrel QTS11",
+      "PLA infantry QTS-11 grenade launcher"
+    ]
+  },
+  "lynx_icons_1125": {
+    "icons_before": {
+      "1436": "FA_PLA_VEH_PLL05",
+      "1446": "DLC3_TIGR_AGS-Label",
+      "1228": "US_M1297-Label"
+    },
+    "laser_weapon": 2021494,
+    "pulse": 2021488,
+    "ly1_users_kept": [
+      1275
+    ]
+  },
+  "lynx_atv_1125": {
+    "PLA Lynx ATV": {
+      "transport_for": 10,
+      "unit": 1448,
+      "hud": "Lynx ATV",
+      "parent": "CS/VN3C MG (1057)",
+      "cost": 20,
+      "cards": 4,
+      "abilities": [
+        2021276
+      ],
+      "weapons": [
+        [
+          0,
+          "QJZ-89 12.7 mm RWS"
+        ],
+        [
+          0,
+          "QLZ-87 35 mm AGL"
+        ]
+      ],
+      "ammo": [
+        [
+          "QJZ-89 12.7 mm RWS",
+          "QJZ-89 12.7 mm RWS ammunition",
+          100
+        ],
+        [
+          "QLZ-87 35 mm AGL",
+          "35 mm HE grenade",
+          320
+        ]
+      ]
+    }
+  },
+  "lynx_ifv_atv_1125": {
+    "ifv": [
+      [
+        "40 mm CT",
+        "40 mm CT APFSDS",
+        100
+      ],
+      [
+        "40 mm CT",
+        "40 mm CT HE",
+        234
+      ],
+      [
+        "Type 86 7.62 mm",
+        "Type 86 7.62 mm ammunition",
+        400
+      ],
+      [
+        "HJ-8H",
+        "HJ-8H",
+        2
+      ]
+    ],
+    "old_atv_transports_removed": [
+      2014666,
+      2014670,
+      2014677,
+      2014681,
+      2014691,
+      2014697,
+      2014701,
+      2014707,
+      2014711,
+      2014723
+    ],
+    "atv": 1448,
+    "icons_before": {
+      "1431": "DLC3_TIGR_AGS-Label",
+      "1433": "FA_PLA_VEH_ZSL92",
+      "1443": "DLC3_TIGR_AGS-Label",
+      "1439": "FA_PLA_VEH_PGL625",
+      "1435": "FA_PLA_VEH_PLL05",
+      "1434": "FA_PLA_VEH_PLL05",
+      "1437": "RU_BM_21-Label",
+      "1448": "DLC3_TIGR_AGS-Label"
+    }
+  },
+  "pf98_tripod_spg9": {
+    "weapon": 2016259,
+    "model": [
+      "RPG29",
+      "SPG9"
+    ]
+  },
+  "medcab_moves_1125": {
+    "HQ-7B": [
+      [
+        21,
+        4
+      ]
+    ],
+    "PLL-05": [
+      [
+        21,
+        3
+      ]
+    ],
+    "CSK-131 seats": [
+      8,
+      9
+    ]
+  },
+  "qn202_javelin": {
+    "before": {
+      "model": "Konkurs",
+      "damage": 18.0,
+      "pen": {
+        "PenetrationAtGroundRange": 20.0,
+        "PenetrationAtMinRange": 20.0
+      },
+      "rounds": [
+        6,
+        12
+      ]
+    },
+    "units_rows": 2,
+    "pen_fields": [
+      "PenetrationAtGroundRange",
+      "PenetrationAtMinRange"
+    ]
+  },
+  "ztd05_glatgm_1125": {
+    "unit": 1411,
+    "weapon": 2020748,
+    "row": 2021522,
+    "round": 2019038,
+    "quantity": 8
+  },
+  "option_icon_overrides_1125": {
+    "before": {
+      "31353": "US_AMPV_BUSHMASTER-Label",
+      "31354": "US_AMPV_BUSHMASTER-Label",
+      "31285": "DLC3_BPM97_2A72-Label",
+      "31287": "DLC3_BPM97_SPITSA_ATGM-Label"
+    }
+  },
+  "lynx_tc_unarmed_1125": {
+    "armed_option_cost_before": {
+      "31416": 5,
+      "31417": 5
+    },
+    "armed_options_kept": [
+      31416,
+      31417
+    ],
+    "tc_armed_weapons": [
+      2010761,
+      2020762
+    ],
+    "atv_transport_links_removed": [
+      2021512,
+      2021513,
+      2021514,
+      2021515,
+      2021516,
+      2021517,
+      2021518,
+      2021519,
+      2021520,
+      2021521
+    ],
+    "tc_squads": [
+      1136,
+      1137,
+      1139,
+      1140,
+      1142,
+      1143,
+      1144,
+      1145,
+      1146,
+      1149
+    ]
+  },
+  "lynx_nlos_csk_1125": {
+    "csk_airborne_links_removed": [
+      2018574,
+      2018575,
+      2018576,
+      2018577,
+      2018578,
+      2018579,
+      2018580,
+      2018581,
+      2018582,
+      2018583
+    ],
+    "csk_recon_spec17_removed": 2019483,
+    "squads": [
+      1136,
+      1137,
+      1139,
+      1140,
+      1142,
+      1143,
+      1144,
+      1145,
+      1146,
+      1149
+    ],
+    "nlos": {
+      "unit": 1441,
+      "weapon": 2018322,
+      "ammo": 2018321,
+      "rounds": 10,
+      "cost": 60,
+      "sensor": 4,
+      "category": 2
+    }
+  },
+  "lynx_nlos_body_1125": {
+    "nlos_body": "DLC3_Tigr",
+    "nlos_mount": 2010706,
+    "cargo_supply": [
+      3000,
+      2500
+    ]
+  },
+  "lynx_cargo_icon_1125": {
+    "unit": 1432,
+    "icon_before": "US_LMTV-Label",
+    "icon": "FA_PLA_VEH_LYNXCARGO"
+  },
+  "zsd89a_plan_removed_1125": {
+    "unit": 1250,
+    "links_removed": [
+      2018166,
+      2018167,
+      2018168,
+      2018169,
+      2018170,
+      2018171,
+      2018172,
+      2018173,
+      2018174,
+      2018175,
+      2018176,
+      2019059
+    ],
+    "squads": [
+      1181,
+      1182,
+      1183,
+      1184,
+      1185,
+      1186,
+      1187,
+      1191,
+      1192,
+      1193,
+      1194,
+      1224
+    ]
+  },
+  "vn3_cost_1125": {
+    "unit": 1402,
+    "cost": [
+      30,
+      35
+    ],
+    "options": [
+      [
+        "30 mm autocannon",
+        0
+      ],
+      [
+        "30 mm autocannon + HJ-73D (4x)",
+        10
+      ]
+    ]
+  },
+  "falcons_qjy_1125": {
+    "before": [
+      [
+        2015348,
+        2019300,
+        2012411
+      ],
+      [
+        2015349,
+        2004002,
+        0
+      ],
+      [
+        2015350,
+        2019300,
+        0
+      ],
+      [
+        2015351,
+        2020834,
+        0
+      ],
+      [
+        2015352,
+        2019300,
+        2011832
+      ],
+      [
+        2015353,
+        2019300,
+        0
+      ],
+      [
+        2015354,
+        2019300,
+        0
+      ],
+      [
+        2015355,
+        2019300,
+        0
+      ]
+    ],
+    "after": [
+      [
+        2015348,
+        2012411,
+        0
+      ],
+      [
+        2015349,
+        2004002,
+        0
+      ],
+      [
+        2015350,
+        2019300,
+        0
+      ],
+      [
+        2015351,
+        2020834,
+        0
+      ],
+      [
+        2015352,
+        2019300,
+        2011832
+      ],
+      [
+        2015353,
+        2019300,
+        0
+      ],
+      [
+        2015354,
+        2019300,
+        0
+      ],
+      [
+        2015355,
+        2012411,
+        0
+      ]
+    ]
+  },
+  "lynx_arty_1125": {
+    "howitzer": {
+      "cost": [
+        60,
+        80
+      ],
+      "rounds": {
+        "2009463": 2021523,
+        "2018957": 2021524
+      }
+    },
+    "mortar": {
+      "cost": [
+        70,
+        65
+      ],
+      "smoke_row": 2021340,
+      "smoke": [
+        5,
+        8
+      ]
+    }
+  },
+  "lynx_m81_1125": {
+    "unit": 1434,
+    "cost": [
+      50,
+      60
+    ],
+    "rounds": {
+      "410": 2021525,
+      "136": 2021526
+    }
+  },
+  "lynx_mrl_1125": {
+    "unit": 1437,
+    "he": 2021527,
+    "smoke": 2021528,
+    "smoke_weapon": 2021529,
+    "smoke_mount": 2021530,
+    "modification": 2021534,
+    "options": [
+      31423,
+      31424
+    ],
+    "salvo": {
+      "MagazineSize": 12,
+      "ShortGroundAttackBurst": 0,
+      "NormalGroundAttackBurst": 12,
+      "LongGroundAttackBurst": 0
+    }
+  },
+  "zbd251_airborne_1125": {
+    "squads": [
+      1136,
+      1143,
+      1146
+    ],
+    "links": [
+      2021535,
+      2021536,
+      2021537
+    ]
+  },
+  "test_spec_visible_1125": [
+    {
+      "unit": 1034,
+      "name": "PLA Catalogue PCL-181 / SH-15",
+      "test_spec": 26,
+      "other_specs": [
+        21
+      ]
+    }
+  ],
+  "zbd05_swim_1125": {
+    "units": [
+      [
+        1408,
+        "PLA PLZ-25"
+      ],
+      [
+        1411,
+        "PLA ZTD-05"
+      ],
+      [
+        1412,
+        "PLA ZSD-05"
+      ],
+      [
+        1413,
+        "PLA ZBD-05"
+      ]
+    ],
+    "water_before": {
+      "2020589": 20.0,
+      "2020669": 20.0,
+      "2020692": 25.0
+    },
+    "copied_rows": {}
+  },
+  "qq_fixes_1125": {
+    "qbu": 2020834,
+    "removed_cards": [
+      2018424
+    ],
+    "ctl181_unit": 1230
+  },
+  "hj10_nlos_range_1125": {
+    "GroundRange": [
+      1000.0,
+      800.0
+    ],
+    "option": 31107,
+    "cost": [
+      20,
+      40
+    ],
+    "swap_row": 0,
+    "base_cost": 140
+  },
+  "plane_guns_aa_1125": {
+    "weapons": 30,
+    "rounds": 24,
+    "china_planes": [
+      "H-6K",
+      "J-10B",
+      "J-10C",
+      "J-10CE",
+      "J-10S",
+      "J-11BHG",
+      "J-11BS",
+      "J-15",
+      "J-16",
+      "J-2",
+      "J-5 Drone",
+      "J-6W Drone",
+      "J-7E / J-7G",
+      "J-7IIH",
+      "J-8D",
+      "J-8II / J-8F",
+      "JH-7A",
+      "JJ-5",
+      "Su-30MKK"
+    ]
+  },
+  "radar_loadouts_1125": {
+    "units": {
+      "20": "Stryker M-SHORAD: Stinger pod / Fletcher / Hellfire: SA radar (62); M2 + Stinger: none",
+      "250": "Centurion C-RAM: Phalanx: IR radar (2021462); SeaRAM: SA radar (62)",
+      "393": "MML: AIM-9 / Hellfire: IR static radar (2021540); Stinger: none",
+      "1273": "HHQ-10: SA radar (60)"
+    },
+    "new_ability": 2021540
+  },
+  "radar_loadout_check": {
+    "radar_loadouts_without_radar_weapon": 0
+  },
+  "sam_ranges_1125": {
+    "20": [
+      "Missile AA 57Eh6E Pantsir",
+      [
+        1200,
+        1200
+      ],
+      [
+        1100,
+        900
+      ],
+      true
+    ],
+    "234": [
+      "Missile AA 57Eh6E PantsirSV",
+      [
+        1200,
+        1200
+      ],
+      [
+        1100,
+        900
+      ],
+      true
+    ],
+    "2009607": [
+      "PLA FK-2000 FK-2000 SAM ammunition",
+      [
+        1200,
+        1200
+      ],
+      [
+        1100,
+        900
+      ],
+      true
+    ],
+    "2010573": [
+      "PLA HQ-6A HQ-6A ammunition",
+      [
+        925,
+        925
+      ],
+      [
+        800,
+        600
+      ],
+      false
+    ],
+    "216": [
+      "Missile AA S350 9M96",
+      [
+        975,
+        975
+      ],
+      [
+        900,
+        900
+      ],
+      false
+    ],
+    "2009449": [
+      "PLA HQ-7B HQ-7 ammunition",
+      [
+        1050,
+        675
+      ],
+      [
+        1100,
+        675
+      ],
+      true
+    ],
+    "452": [
+      "Missile AA OsaAKM1",
+      [
+        1100,
+        675
+      ],
+      [
+        1050,
+        675
+      ],
+      true
+    ],
+    "464": [
+      "Missile AA AMRAAM Ground",
+      "BurnTime",
+      2.65,
+      3.35
+    ]
+  },
+  "fb10_hq17a_1125": {
+    "round": 2009373,
+    "from": 2010629,
+    "changed": {
+      "SupplyCost": [
+        125.0,
+        100.0
+      ],
+      "ResupplyTime": [
+        10.0,
+        5.0
+      ],
+      "Damage": [
+        15.0,
+        14.0
+      ],
+      "StressDamage": [
+        360.0,
+        470.0
+      ],
+      "PenetrationAtMinRange": [
+        160.0,
+        150.0
+      ],
+      "PenetrationAtGroundRange": [
+        160.0,
+        150.0
+      ],
+      "HealthAOERadius": [
+        15.0,
+        30.0
+      ],
+      "StressAOERadius": [
+        15.0,
+        30.0
+      ],
+      "RadioFuseDistance": [
+        12.0,
+        24.0
+      ],
+      "MuzzleVelocity": [
+        50.0,
+        75.0
+      ],
+      "MaxSpeed": [
+        600.0,
+        700.0
+      ],
+      "Acceleration": [
+        300.0,
+        350.0
+      ],
+      "Seeker": [
+        50,
+        100
+      ],
+      "SeekerAngle": [
+        140.0,
+        120.0
+      ],
+      "MaxSeekerDistance": [
+        700.0,
+        1600.0
+      ],
+      "MainEngineIgnitionDelay": [
+        0.0,
+        0.15
+      ],
+      "BurnTime": [
+        2.65,
+        2.7
+      ]
+    }
+  },
+  "crew_weapons_1125": {
+    "members": 30,
+    "units": [
+      [
+        1141,
+        "Airborne QJZ-171 Team"
+      ],
+      [
+        1148,
+        "Airborne QLZ-87 Team"
+      ],
+      [
+        1152,
+        "HJ-8E Team"
+      ],
+      [
+        1154,
+        "QLZ-04 Team"
+      ],
+      [
+        1157,
+        "QJZ-89 Team"
+      ],
+      [
+        1159,
+        "Guided-AT Riflemen"
+      ],
+      [
+        1165,
+        "Recon HJ-8E Ambush Team"
+      ],
+      [
+        1167,
+        "Reserve Riflemen — HJ-73D"
+      ],
+      [
+        1168,
+        "HJ-73D Team"
+      ],
+      [
+        1170,
+        "QJZ-89 Team"
+      ],
+      [
+        1171,
+        "QLZ-87 Team"
+      ],
+      [
+        1172,
+        "PF-98 Team"
+      ],
+      [
+        1173,
+        "Ambush Team 伏击组"
+      ],
+      [
+        1178,
+        "Reserve Heavy HJ-8E Team"
+      ],
+      [
+        1179,
+        "Rocket Convoy Escort — HJ-73D"
+      ],
+      [
+        1199,
+        "Weapons Squad 火力班"
+      ],
+      [
+        1208,
+        "QLZ-04 Team"
+      ],
+      [
+        1210,
+        "CAAT — HJ-8E / QLU-11"
+      ],
+      [
+        1218,
+        "Test LG3 Heavy AGL"
+      ],
+      [
+        1220,
+        "Test TL-4 Team"
+      ],
+      [
+        1221,
+        "HJ-8H Team"
+      ]
+    ],
+    "hmg_model": "M2_TRIPOD"
+  },
+  "disposable_vanilla_multi_round": [
+    [
+      358,
+      "Ognemetchiki ",
+      "RPO-M",
+      2,
+      4
+    ],
+    [
+      122,
+      "Ognemetchiki",
+      "MRO-Z",
+      4,
+      2
+    ]
+  ],
+  "weapon_coverage_rows": 1253,
+  "reserved_ids": {
+    "roc_loaded": false,
+    "rows": 0
+  },
+  "verified": "data checks only",
+  "version": "0.9.7-dev.17",
+  "base": "0.9.3",
+  "base_sha256": "c94e0681f853c845db5bbd0a387a49e45c41e8068c07665b26f46876121d27b0",
+  "checks": 5940
+}

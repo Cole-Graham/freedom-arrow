@@ -52,6 +52,10 @@ static unsafe class Dazzler
     static readonly Dictionary<ulong,int> lastCount=new();
     static readonly Dictionary<ulong,(Vector3 P,float T,int Ammo)> lastHit=new();
     static readonly ConcurrentQueue<(ulong Unit,float X,float Y,float Z)> nativeBoxes=new();
+    // dev.17 (Osama 25 Nov 2026 11:0x: "lynx laser doesn't have the laser effect (red laser)"): the scan of ShotsMade / AmmoInMagazine saw none of the
+    // Lynx Laser's pulses (dev.16 Skirmish: 10 pulses by FIRE_STATS, laserBeams 0), so each laser pulse now comes from the game's own fire call
+    // (ShootingSystem.WeaponForceFire postfix, the same call FIRE_STATS counts) and the scan only draws when that hook is not installed.
+    static readonly ConcurrentQueue<Entity> laserFired=new();static bool fireHook;static int laserNoTarget;
     static readonly HashSet<ulong> boxLogged=new();
     static int grown,fires,beams,passes;
     static Ammunitions restore,restoreDamage;static float savedDamage;static HashSet<int> laserAmmo=new();static int laserHits;
@@ -107,6 +111,9 @@ static unsafe class Dazzler
         harmony.Patch(box,postfix:new HarmonyMethod(typeof(Dazzler),nameof(BoxAfter)));
         harmony.Patch(hit,prefix:new HarmonyMethod(typeof(Dazzler),nameof(HitBefore)),postfix:new HarmonyMethod(typeof(Dazzler),nameof(HitAfter)));
         enabled=true;
+        if(stressOk&&(laserIds.Count>0||laserNames.Count>0))
+            try{harmony.Patch(AccessTools.Method(typeof(ShootingSystem),"WeaponForceFire")??throw new MissingMethodException("ShootingSystem.WeaponForceFire"),postfix:new HarmonyMethod(typeof(Dazzler),nameof(LaserFired)));fireHook=true;}
+            catch(Exception x){DiagnosticLog.Write("dazzler_fire_hook_failed",new{error=x.ToString()});MelonLogger.Warning("FREEDOM_ARROW_DAZZLER laser fire hook off, beams from the scan only: "+x.Message);}
         DiagnosticLog.Write("dazzler_installed",new{units=unitIds.ToArray(),lasers=laserIds.ToArray(),laserNames=laserNames.ToArray(),cardIcon,canBeInterceptedOffset=CanBeInterceptedOffset,seekerOffset=SeekerOffset,boxSize,beamSeconds,core=new[]{core.r,core.g,core.b,core.a},glow=new[]{glow.r,glow.g,glow.b,glow.a}});
         MelonLogger.Msg($"FREEDOM_ARROW_DAZZLER installed: units {string.Join(",",unitIds)}, guided missiles stopped at {boxSize/2:0} m, unguided rounds pass");
     }
@@ -232,7 +239,7 @@ static unsafe class Dazzler
     {
         Volatile.Write(ref ready,new HashSet<ulong>());listedKeys=new();
         try{if(world!=null&&!world._isDisposed){unitSet?.Dispose();weaponSet?.Dispose();}}catch{}
-        world=null;unitSet=null;weaponSet=null;lasers.Clear();laserShots.Clear();laserMags.Clear();listed.Clear();lastCount.Clear();lastHit.Clear();boxLogged.Clear();next=nextScan=0;
+        world=null;unitSet=null;weaponSet=null;lasers.Clear();laserFired.Clear();laserShots.Clear();laserMags.Clear();listed.Clear();lastCount.Clear();lastHit.Clear();boxLogged.Clear();next=nextScan=0;
         foreach(var b in live)Drop(b);live.Clear();
     }
     public static void LateUpdate()
@@ -297,26 +304,14 @@ static unsafe class Dazzler
                 // scan, so that pulse showed no beam. A drop in AmmoInMagazine is also a shot (a reload only raises it).
                 bool rose=laserShots.TryGetValue(k,out var was)&&made>was,spent=laserMags.TryGetValue(k,out var mWas)&&mag<mWas;
                 laserMags[k]=mag;
-                if((rose||spent)&&e.Has<TargetComponent>())
-                {
-                    var t=NativeEcs.Field<TargetComponent,Entity>(e,"Target");
-                    if(t.IsAlive&&t.Has<TransformComponent>())
-                    {
-                        var head=NativeEcs.Property<TransformComponent,Vector3>(u,"Position")+Vector3.up*headHeight;
-                        var at=NativeEcs.Property<TransformComponent,Vector3>(t,"CenterPosition");
-                        Beam(head,at,laserBeamSeconds);laserBeams++;
-                        if(laserLogs++<3000)
-                        try
-                        {
-                            bool hs=t.Has<StressComponent>();
-                            DiagnosticLog.Write("dazzler_laser_shot",new{t=now,unit=uk.ToString("X16"),target=Key(t).ToString("X16"),
-                                targetType=t.Has<UnitComponent>()?(int)NativeEcs.Read<UnitComponent>(t).UnitData.Type:-1,distance=Vector3.Distance(head,at),
-                                stress=hs?NativeEcs.Field<StressComponent,float>(t,"CurrentStressValue"):-1f,level=hs?(int)NativeEcs.Field<StressComponent,byte>(t,"CurrentStressLevel"):-1});
-                        }
-                        catch(Exception x){if(laserLogErrors++<5)DiagnosticLog.Write("dazzler_laser_log_failed",new{error=x.Message});}
-                    }
-                }
+                if(!fireHook&&(rose||spent))LaserBeam(e,u,uk,now);
                 laserShots[k]=made;
+            }
+            for(int q=0;q<32&&laserFired.TryDequeue(out var fe);q++)
+            {
+                if(!fe.IsAlive||!fe.Has<WeaponComponent>())continue;
+                var fu=NativeEcs.Read<WeaponComponent>(fe).GetUnitEntity();if(!fu.IsAlive||!fu.Has<TransformComponent>())continue;
+                LaserBeam(fe,fu,Key(fu),now);
             }
 
             int flushed=0;
@@ -325,6 +320,35 @@ static unsafe class Dazzler
             if(now>=nextMetrics){nextMetrics=now+10;DiagnosticLog.Write("dazzler_metrics",new{t=now,units=listed.Count,ready=r.Count,boxesGrown=Volatile.Read(ref grown),fires,beams,rpgPasses=passes,lasers=lasers.Count,laserBeams,laserHitsZeroed=laserHits});}
         }
         catch(Exception x){Fail(x);}
+    }
+    // A laser pulse from the game's fire call: queued here, drawn in LateUpdate (the beam objects are made on the main thread).
+    static void LaserFired(in Entity __0)
+    {
+        try
+        {
+            if(!enabled||failed||laserFired.Count>=64||!__0.IsAlive||!__0.Has<WeaponComponent>())return;
+            var info=NativeEcs.Read<WeaponComponent>(__0)?.WeaponInfo;
+            if(info!=null&&(laserIds.Contains(info.Id)||laserNames.Contains(info.HUDName)))laserFired.Enqueue(__0);
+        }
+        catch{}
+    }
+    // One laser beam from the unit's head to the weapon's current target.
+    static void LaserBeam(Entity e,Entity u,ulong uk,float now)
+    {
+        var t=e.Has<TargetComponent>()?NativeEcs.Field<TargetComponent,Entity>(e,"Target"):default;
+        if(!t.IsAlive||!t.Has<TransformComponent>()){if(laserNoTarget++<20)DiagnosticLog.Write("dazzler_laser_no_target",new{t=now,unit=uk.ToString("X16"),hasTarget=e.Has<TargetComponent>()});return;}
+        var head=NativeEcs.Property<TransformComponent,Vector3>(u,"Position")+Vector3.up*headHeight;
+        var at=NativeEcs.Property<TransformComponent,Vector3>(t,"CenterPosition");
+        Beam(head,at,laserBeamSeconds);laserBeams++;
+        if(laserLogs++<3000)
+        try
+        {
+            bool hs=t.Has<StressComponent>();
+            DiagnosticLog.Write("dazzler_laser_shot",new{t=now,unit=uk.ToString("X16"),target=Key(t).ToString("X16"),
+                targetType=t.Has<UnitComponent>()?(int)NativeEcs.Read<UnitComponent>(t).UnitData.Type:-1,distance=Vector3.Distance(head,at),
+                stress=hs?NativeEcs.Field<StressComponent,float>(t,"CurrentStressValue"):-1f,level=hs?(int)NativeEcs.Field<StressComponent,byte>(t,"CurrentStressLevel"):-1});
+        }
+        catch(Exception x){if(laserLogErrors++<5)DiagnosticLog.Write("dazzler_laser_log_failed",new{error=x.Message});}
     }
     // ---------- Beam: two cylinders (white-hot core, red glow) on a copy of the game's HDRP/Unlit border material, faded out.
     sealed class Live{public GameObject Go;public Renderer Core,Glow;public float Born,Life;}

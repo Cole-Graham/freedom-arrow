@@ -189,7 +189,9 @@ with zipfile.ZipFile(base) as z:
             b=None
             if _pat.match(n.rsplit('/',1)[1]):
                 d0,b0=n.rsplit('/',1);new=d0+'/'+_pat.sub(lambda x:_map[x.group(1)],b0,count=1)
-                assert new not in _names,('renamed model file already exists',new)
+                # 0.9.7-dev.18: a later model build stages the seller-named file again while the base Assets already holds the renamed one
+                # (dev.11 renamed them): the newly staged file replaces the base copy. Two staged files that map to one name still stop the build.
+                assert new not in override and not (new in _names and new not in z.namelist()),('renamed model file already exists',new)
                 b=(src.read_bytes() if isinstance(src,Path) else src) if src is not None else z.read(n)
                 if n.endswith('.fam'):b=_fam(b)
                 elif n.endswith(('.json','.txt')):b=_pat.sub(lambda x:_map[x.group(1)],b.decode()).encode()
@@ -236,7 +238,10 @@ with zipfile.ZipFile(base) as z:
     inf=[n for n in whole['sha256'] if n in ('Mods/FAModels.dll','UserData/FAModels/infantry-bodies.json') or n.startswith('UserData/FAModels/pla2_')]
     bc=sum(n.endswith(('_b.fat','_b_n.fat')) for n in inf)
     # 0.9.5-dev.30: or 266 + 0 or 60 with the recon frog-shirt body (Osama 22 Nov "Pla recon snipers use this model").
-    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, or 266 + 0 or 60'
+    # 0.9.7: or 287 + 0 or 66 with the SF NVG gear atlas too (woodland + desert, 3 LODs x diffuse + normal, 2 battle copies each).
+    # 0.9.7: or 290 + 0 or 66 with the no-NVG goggles-up desert body for the Medium CAB (3 meshes, existing textures; Osama 25 Nov).
+    # 0.9.7: or 275 + 0 or 62 with the Fictional 1 airborne body (Osama 25 Nov "Fictional 1 soldier body no?", "please apply this model to all the PLAAF").
+    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60),(275,0),(275,62),(287,0),(287,66),(290,0),(290,66)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, 266 + 0 or 60, 275 + 0 or 62, 287 + 0 or 66, or 290 + 0 or 66'
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(target.resolve())],check=True)
     if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(target.resolve()),*retired_scenarios],check=True)

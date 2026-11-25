@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.7-dev.9';PREV='0.9.3'
+V='0.9.7-dev.21';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -928,12 +928,69 @@ import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
 import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
 # ---------- Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST). See lynx_nlos_csk_1125.py.
 import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
+# ---------- Audit fixes after dev.11: Lynx NLOS on the CTL-181's Tigr body and mount (it was hidden), Lynx Cargo 2500 (Osama 25 Nov 2026). See lynx_nlos_body_1125.py.
+import lynx_nlos_body_1125;lynx_nlos_body_1125.apply(t,g,ok,rec)
+# ---------- Lynx Cargo icon from its own model, crewman removed (Osama 25 Nov 2026 10:0x: "lynx cargo make icon (try to remove the person)").
+# See lynx_cargo_icon_1125.py.
+import lynx_cargo_icon_1125;lynx_cargo_icon_1125.apply(t,g,ok,rec)
 # ---------- ZSD-89A out of PLAN Naval/Special Forces (Osama 25 Nov 2026 01:5x PST). See zsd89a_plan_removed_1125.py.
 import zsd89a_plan_removed_1125;zsd89a_plan_removed_1125.apply(t,g,ok,rec)
 # ---------- VN-3 30 -> 35 pts (Osama 25 Nov 2026 01:5x PST). See vn3_cost_1125.py.
 import vn3_cost_1125;vn3_cost_1125.apply(t,g,ok,rec)
+# ---------- Falcons: 4 QMK, the QJY-201 gunner's own gun (Osama 25 Nov 2026 02:3x PST). See falcons_qjy_1125.py.
+import falcons_qjy_1125;falcons_qjy_1125.apply(t,g,ok,rec)
+# ---------- Lynx Howitzer 80 pts / 3600 m / Hawkeye dispersion / 40 kg; Lynx 120 mm Mortar 8 smoke, 65 pts (Osama 25 Nov 2026 03:1x PST).
+# See lynx_arty_1125.py. Creates rows: before the test-spec check, which stays last among the spec sections.
+import lynx_arty_1125;lynx_arty_1125.apply(t,g,ok,rec)
+# ---------- Lynx 81 mm Mortar: Hawkeye MWS range and dispersion, 60 pts (Osama 25 Nov 2026 03:2x PST). See lynx_m81_1125.py.
+import lynx_m81_1125;lynx_m81_1125.apply(t,g,ok,rec)
+# ---------- Lynx MRL: one 12-rocket salvo, 24 rockets, 2800 m, HE base + smoke-only loadout +20 (Osama 25 Nov 2026 03:2x PST). See lynx_mrl_1125.py.
+import lynx_mrl_1125;lynx_mrl_1125.apply(t,g,ok,rec)
+# ---------- ZBD-251 for every Airborne team (Osama 25 Nov 2026 10:0x PST). See zbd251_airborne_1125.py.
+import zbd251_airborne_1125;zbd251_airborne_1125.apply(t,g,ok,rec)
+# ---------- FK-3000 into the hidden China test spec 26 (Osama 25 Nov 2026 11:4x PST). See fk3000_hidden_1125.py.
+# Restored 25 Nov 14:1x (Osama "Make sure glass is tinted and we can add to the release candidate"): Shawn's fixed model (work/fk3000-shawn-1125)
+# replaces the tipped-cab one, so the card is back in Medium CAB and in the Armory.
+#import fk3000_hidden_1125;fk3000_hidden_1125.apply(t,g,ok,rec)
+# ---------- KF51, KF41, Gepard, MAN HX77, VAB preview cards hidden, models held back (Osama 25 Nov 2026 11:4x PST). See euro_held_1125.py.
+import euro_held_1125;euro_held_1125.apply(t,g,ok,rec)
+# ---------- No shown card in the hidden test specs: PCL-181 out of spec 26 (Osama 25 Nov 2026 03:0x PST). See test_spec_visible_1125.py.
+import test_spec_visible_1125;test_spec_visible_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
 import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
+# ---------- QQ sheet fixes: QBU-203 name, ZBD-86 Recon card out, CSK-181 transport = CTL-181 with a QJZ-89 RWS (Osama 25 Nov 2026 03:4x PST,
+# bugs thread 1573561286803980289). See qq_fixes_1125.py.
+import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
+# ---------- HJ-10 NLOS range = HJ-10 FNF (1600 m) (Osama 25 Nov 2026 10:1x PST, bugs thread). See hj10_nlos_range_1125.py.
+import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
+# ---------- Every APS 2 charges (Osama 25 Nov 2026 12:1x PST, bugs thread; replaces the FEP-only fep_aps_1125.py). See aps_two_charges_1125.py.
+import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
+# ---------- ZTZ-99 LSDW +60; LSDW pulse stress 80 -> 70 (Osama 25 Nov 2026 12:2x PST, bugs thread). See ztz99_lsdw_1125.py.
+import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
+# ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
+import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
+# ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
+# 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
+import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
+# ---------- US Combat Engineers: M-25 CDTE 2 -> 1, 75 -> 70 pts (Lateralus 25 Nov 2026 11:5x). See us_combat_engineers_1125.py.
+import us_combat_engineers_1125;us_combat_engineers_1125.apply(t,g,ok,rec)
+# ---------- Radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM on SA radar (Lateralus 25 Nov 2026 09:17 PST, thread 1568104480459722894:
+# "1. Yes that is what I want 2. (a) 3. HHQ-10 ... and the RIM-116 (SeaRAM) ... should benefit from radar and have SA radar"). Creates one ability row and
+# one link: keep it the last row-creating section. Then the radar groups (new row) and the per-weapon lists are rebuilt, and every radar loadout must
+# carry a radar weapon. See lateralus/radar_loadouts_1125.py.
+import radar_loadouts_1125;print('RADAR LOADOUTS',radar_loadouts_1125.apply(t,g,ok,rec,_HR))
+_heli['radar']=_HR.contract(t)['radar'];radar_weapons_1124.apply(t,ok,rec,_heli)
+radar_loadouts_1125.check(t,ok,rec,_heli['radarWeapons'])
+# ---------- SAM ranges brought into line + AMRAAM burn 3.35 (Lateralus 25 Nov 2026 11:0x PST, thread 1568104480459722894: "1.-6. agreed", "AMRAAM: yes
+# increase the burn", "queue it all"). Data only, existing rows. See lateralus/sam_ranges_1125.py.
+import sam_ranges_1125;print('SAM RANGES',sam_ranges_1125.apply(t,g,ok,rec,_heli))
+# ---------- FB-10 = HQ-17A missile stat clone instead of AMRAAM (Lateralus 25 Nov 2026 11:1x PST, "ok queue it"). Existing row only; after sam_ranges.
+# See lateralus/fb10_hq17a_1125.py.
+import fb10_hq17a_1125;print('FB-10 HQ-17A',fb10_hq17a_1125.apply(t,g,ok,rec,_heli))
+# ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
+# the tripod based weapons"). See crew_weapons_1125.py.
+import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
+
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data

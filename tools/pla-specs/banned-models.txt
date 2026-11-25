@@ -1,3 +1,12 @@
 # Model files that must never be packed (Osama 24 Nov 2026 23:5x: K9 "really does look like a War Thunder rip ... don't pack it in our live build and download that model ever").
 # One file-name prefix per line, matched against UserData/FAModels/<name>. package.py refuses any build that would add one and drops any already in the base.
 m_k9_
+# Osama 25 Nov 2026 11:4x: "For next live build, let's hide the flakpanzer gepard, k41 lynx, kf51 panther, and MAN, and VAB I don't want people to have
+# to download these models". Held back for now (models kept in work/euro-1124; stage EU_HELD); remove these lines to ship them again.
+m_kf51_
+m_kf41_
+m_gepard_
+m_hx77_
+m_vab_
+# 11:5x "and hide the EBRC Jaguar" (it was in live Assets 0.2.94; the next Assets drops it)
+m_fr_jaguar_

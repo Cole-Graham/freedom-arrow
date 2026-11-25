@@ -33,6 +33,12 @@ Add every new hidden or removed card here in the same commit as the data change.
 | AH-64D Longbow Recon | 746 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the AH-64D Longbow Recon" |
 | Ka-226T Razvedchik | 728 | Defense Forces, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-226T, hide it from the mod" |
 | Ka-52K Razvedchik | 748 | Coastal Troops, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-52K Razvedchik, hide it from the mod" |
+| KF51 Panther | 1421 | Germany (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| KF41 Lynx | 1422 | Germany (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| Flakpanzer Gepard | 1426 | Germany (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| MAN HX77 | 1427 | Germany (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| VAB | 1428 | France (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| EBRC Jaguar | 1300 | France (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD; was in live Assets 0.2.94) | `euro_held_1125.py` | Osama 25 Nov 11:5x "and hide the EBRC Jaguar" |
 
 ## Model build only (`codex/batch/osama/models-096`)
 
@@ -86,3 +92,7 @@ battlegroup size 0. (The first version, 21:0x, hid the specs completely; it was 
 - 2026-11-24 21:3x PST (America/Los_Angeles): Previews visible again with no stat card (PreviewCards.cs); K1 and K1A1 hidden (US test spec 27).
 - 2026-11-24 23:5x PST (America/Los_Angeles): Test-spec units hidden from the Armory unless test mode; Blue Dragon (Preview) and the riflemen renamed.
 - 2026-11-24 23:5x PST (America/Los_Angeles): K9 Thunder hidden (US test spec 27); m_k9_* banned from every package.
+- 2026-11-25 11:4x PST (America/Los_Angeles): FK-3000 moved from the Medium CAB to the China test spec 26 (model broken).
+
+- 2026-11-25 11:5x PST (America/Los_Angeles): KF51, KF41, Gepard, MAN HX77 and VAB preview cards hidden; their models held out of every package.
+- 2026-11-25 11:5x PST (America/Los_Angeles): EBRC Jaguar hidden and its model held back with the five Euro previews.

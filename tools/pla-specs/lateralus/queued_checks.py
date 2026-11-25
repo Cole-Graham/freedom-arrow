@@ -99,7 +99,8 @@ if _ge(9,36):
         f=f'UserData/FreedomArrow/scenarios/{name}/{name}.bascr'
         if f not in z.namelist():bad.append(f'PvE map missing: {name}');continue
         waves=[json.loads(next(q['v'] for q in b['props_v2'] if q['k']=='val').replace('\u00a8','"')) for b in SC.load(SC.dec(zipfile.ZipFile(z.open(f)).read('nodes.bam')))['b'] if b['nnKey']=='getSpMultUnData']
-        want=next(len(PVE.WAVES[t]) for p_,_,_,t,_ in PVE.BASES if name in PVE.names(p_,t))
+        # Random Dead Center (24 Nov 2026): at least one opening group per doctrine; fixed maps: one group per wave.
+        want=len(PVE.DOCTRINES) if 'Random' in name else next(len(PVE.WAVES[t]) for p_,_,_,t,_ in PVE.BASES if name in PVE.names(p_,t))
         if len(waves)<want:bad.append(f'{name}: {len(waves)} wave groups (want at least {want} waves)')
         for w in waves:
             for u in w['Units']:

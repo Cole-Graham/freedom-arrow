@@ -212,7 +212,7 @@ Ways to make AA placement easier (not implemented, not tested):
 
 ### 5e. Per-weapon radar use (Lateralus, 24 November 2026)
 
-**Short answer:** on a radar unit, these rounds get **no** radar range bonus: Stinger, Igla-S, QW-2 (PGZ-95 / PGZ-04 / PGZ-04A), RIM-116, HHQ-10 (all heat-seeking) and the Fletcher APKWS (laser). Everything else, including the AIM-9 and the Hellfire SHORAD, keeps the radar. On the unit card, a weapon that uses the radar shows a plain radar icon in its trait row.
+**Short answer:** on a radar unit, these rounds get **no** radar range bonus: Stinger, Igla-S, QW-2 (PGZ-95 / PGZ-04 / PGZ-04A), the Fletcher APKWS (laser) and machine guns (M2 12.7 mm, M240 7.62 mm; Lateralus 25 Nov). Everything else, including the AIM-9, the RIM-116 SeaRAM and HHQ-10 (both on SA radar from 25 Nov), the Hellfire SHORAD, the HJ-10, the LY-1 laser, the SM-6 and the M61 CIWS, keeps the radar. On the unit card, a weapon that uses the radar shows a plain radar icon in its trait row.
 
 ---
 
@@ -223,6 +223,17 @@ Ways to make AA placement easier (not implemented, not tested):
 - **Card:** `HeliRangeCard.WeaponTraitAfter`, a postfix on `UnitInfoCard.OnWeaponButtonSelected` (0x55B140), calls the game's `SetTraitItem` (0x55D4D0) with `InfocardConfig.Radar` and a tooltip with the unit's Low / High / helicopter multipliers. Weapons are matched to rounds by `WeaponListButton.TotalAmmoCount`.
 - **Cost:** the check is one set lookup inside a hook already measured at 0.2–0.5 µs per call (22 Nov logs); the perf log line now also counts `radar-exempt` changes.
 - **Not verified in a game.**
+
+**Card icon wrong in 0.9.7-dev.13 (Lateralus, 25 November 2026).** The range lists were right; the card icon was wrong on 96 of 168 anti-air weapons of the 72 radar units. Two causes, both in the card hook:
+- **The game hides the trait row.** `OnWeaponButtonSelected` (0x55B3F0–0x55B43E, code, 1.2.2.1) calls `_selectedWeaponTraits` (0x1A0) `.gameObject.SetActive(t)`, where `t` = AutoLoaded (0x48) or Silent (0x49) or CQC (0x4B) or IsRadarDependent (0x4C) or not CanShootOnTheMove (0x64). A weapon that fires on the move and has no other trait has a hidden row, so the icon our postfix adds is never seen. This hid it on 93 weapons that should show it (guns, Tor, HQ-17A, FK-2000, Hellfire SHORAD, ship SM-6 / CIWS).
+- **`TotalAmmoCount` is not the selected weapon's rounds.** In the dev.13 log the PAC-3 MSE launcher listed `32,25,26,454,262,497` (Bradley, M-SHORAD and C-RAM rounds from earlier cards), and the M-SHORAD Stinger and M240 buttons listed the same `18,27`. The decision was nearly always "uses radar", so every weapon with a visible row showed the icon: Fletcher, MML Stinger and HHQ-10 (all must stop to fire).
+- **The hook also went quiet** after the second Stryker M-SHORAD card at 09:23:09: no line for the 15 China cards opened afterwards. Its silent early returns (`_activeWeaponListButtons` null, no button matching the clicked object) are the likely place; not confirmed.
+- **Vanilla has an unused per-weapon radar trait.** `Weapons.IsRadarDependent` (0x4C, a `weapons` column, set on 0 of 750 weapons), its own sprite `InfocardConfig.RadarDependent` (0x178) and text `ui_infocard_weapon_radar_dependent` (`TextWeaponIsRadarDependent`). Its getter (0x279250) is shared with 7 other getters and has no direct callers, so whether battle code reads the flag is not known.
+- Full list: `work/radar-weapons-1124/full-audit-dev13.txt` (BA Codex work folder).
+- **Radar only on loadouts with a radar weapon (Lateralus 25 Nov 09:17, queued after 0.9.7-dev.14).** A unit gets its one default ability row plus, per slot Ability1/2/3, the first chosen option's non-default row, so a per-loadout radar sits on the turret options (the M6 Linebacker pattern). Stryker M-SHORAD: SA radar 62 in slot 3 of the Stinger pod / Fletcher / Hellfire turrets, none on the M2 + Stinger turret. C-RAM: Phalanx IR 2021462, SeaRAM SA 62. MML: a new non-default copy of the static IR row on the AIM-9 and Hellfire turrets, none on the Stinger turret. HHQ-10: IR -> SA 60. Build check `radar_loadouts_1125.check`: every radar loadout must carry a radar weapon (it found these 6 loadouts on the dev.14 data).
+- **Fix (0.9.7-dev.14):** the build writes `radarWeapons` (weapon ids) and checks that no weapon on a radar unit mixes radar and exempt rounds; the card decides by the selected weapon's id, switches the trait row on after adding the icon, and logs every early exit (`radar trait ...`, first 80).
+- **Measured in 0.9.7-dev.14 (Lateralus's Skirmish log, 25 Nov):** the per-weapon range works in battle (`FREEDOM_ARROW_HELI_PERF` counted 285 and 372 radar-exempt range corrections per minute); the MML Stinger did not fire at 2465 m on an AH-64D.
+- **Targeting reticle (rangefinder) did not follow it.** `TargetLineSystem.RefreshLocalTargetInfo` (0x4A6000, code, 1.2.2.1) does not call `GetAmmoShootingDistance`: it takes the target level's range (ammo +0xB0 / +0xB4 / +0xB8) x the shooter's radar modifier (+0x14 / +0x18) inline, and marks a round out of range when the distance is greater (0x4A6D89-0x4A6E05). So it ignored both the helicopter range and the radar exemption (MML Stinger: 1000 x 1.25 = 1250, shown as 2500 m, instead of 1000 / 2000 m). Fix queued: `HeliRangeReticle` postfix recomputes each round's max range with `GetAmmoShootingDistance` and resets the out-of-range flag. Rounds are matched by weapon + round name; not yet seen in game.
 
 ### 5c. Which optics value is the big number on the unit card
 
@@ -260,3 +271,7 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-24 20:3x PST (America/Los_Angeles) — Section 5d: radar type shown as letters cut out of the radar icon instead of a text tag (Lateralus).
 - 2026-11-24 22:1x PST (America/Los_Angeles) — Section 5d: AIM-9 / Stinger copies withdrawn (Lateralus).
 - 2026-11-24 22:4x PST (America/Los_Angeles) — Added section 5e: per-weapon radar use and the card's radar trait (Lateralus).
+- 2026-11-25 07:42 PST (America/Los_Angeles) — Section 5e: why the dev.13 card radar icon was wrong (hidden trait row, pooled round list), and the unused vanilla IsRadarDependent trait (Lateralus).
+- 2026-11-25 07:57 PST (America/Los_Angeles) — Section 5e: machine guns exempt from the radar; card fix for 0.9.7-dev.14 (Lateralus).
+- 2026-11-25 08:22 PST (America/Los_Angeles) — Section 5e: dev.14 battle measurement; the targeting reticle computes range inline (fix queued) (Lateralus).
+- 2026-11-25 09:21 PST (America/Los_Angeles) — Section 5e: radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM use SA radar (Lateralus).

@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.7-dev.9", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.7-dev.21", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -95,6 +95,7 @@ public class Runtime : MelonMod
         MenuArt.SceneChanged();
         MemoryCleanup.SceneChanged(sceneName);
         PartySizeWarning.SceneChanged(sceneName);
+        LobbyFlags.SceneChanged(sceneName);
         conquest?.OnSceneWasLoaded(buildIndex,sceneName);
     }
     public override void OnDeinitializeMelon()
@@ -148,9 +149,11 @@ public class Runtime : MelonMod
             int battleCopies=infantryHashes.Count(e=>e.Key.EndsWith("_b.fat",StringComparison.Ordinal)||e.Key.EndsWith("_b_n.fat",StringComparison.Ordinal));
             // 0.9.5-dev.30 (Osama 22 Nov 2026: "Pla recon snipers use this model"): the recon frog-shirt body adds 9 files (3 LODs, diffuse +
             // normal) and 2 battle copies. Packages with the older Assets keep 257 + 0 or 58.
+            // 0.9.7 (Osama 25 Nov 2026: "please apply this model to all the PLAAF"): the Fictional 1 airborne body adds the same 9 + 2.
+            // 0.9.7 (Osama 25 Nov 2026, SF "NVGs always, goggles mixed"): the NVG gear atlas, woodland and desert, adds 12 + 4.
             int armorySet=infantryHashes.Count-battleCopies;
-            if(!(armorySet==257&&(battleCopies==0||battleCopies==58)) && !(armorySet==266&&(battleCopies==0||battleCopies==60)))
-                throw new InvalidDataException($"Expected 257 infantry files with 0 or 58 battle copies, or 266 with 0 or 60 (with the recon frog-shirt body); found {armorySet} with {battleCopies}");
+            if(!(armorySet==257&&(battleCopies==0||battleCopies==58)) && !(armorySet==266&&(battleCopies==0||battleCopies==60)) && !(armorySet==275&&(battleCopies==0||battleCopies==62)) && !(armorySet==287&&(battleCopies==0||battleCopies==66)) && !(armorySet==290&&(battleCopies==0||battleCopies==66)))
+                throw new InvalidDataException($"Expected 257 infantry files with 0 or 58 battle copies, 266 with 0 or 60 (recon frog-shirt body) 275 with 0 or 62 (Fictional 1 airborne body) 287 with 0 or 66 (SF NVG gear) or 290 with 0 or 66 (Medium CAB goggles body without NVG); found {armorySet} with {battleCopies}");
             int infantryFiles=PayloadVerifier.Verify(MelonEnvironment.GameRootDirectory,infantryHashes);
             DisplayLabel=label;
             File.WriteAllText(Path.Combine(Root,"loaded-build.json"),JsonSerializer.Serialize(new { label,version=PackageVersion,process_id=Environment.ProcessId,loaded_at_utc=DateTime.UtcNow,core_files=files,infantry_files=infantryFiles },new JsonSerializerOptions { WriteIndented=true }));
@@ -183,6 +186,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_RANGE_FAILED: not installed. "+e.Message); }
         try { HeliRangeCard.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: not installed. "+e.Message); }
+        try { HeliRangeReticle.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RETICLE_FAILED: not installed. "+e.Message); }
         try { CardStatFit.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_STAT_FIT_FAILED: not installed; vanilla wrapping. "+e.Message); }
         try { PlaneReturnCurve.Install(HarmonyInstance,Root); }
@@ -300,8 +305,6 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RANKED_FAILED: no ranked menu. "+e.Message); }
         try { PartySizeWarning.Install(HarmonyInstance); }   // Osama 22 Nov 2026: warning over Ready when a team is larger than the [NvN] map (0.9.5)
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PARTY_SIZE_FAILED: not installed; no oversized-party warning. "+e.Message); }
-        try { LobbyFlags.Install(HarmonyInstance); }   // Osama 25 Nov 2026: no Eurocorp flag in the lobby for now (Arsenal preview stays)
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOBBY_FLAGS_FAILED: not installed; the Eurocorp flag shows in the lobby. "+e.Message); }
         try { LangNames.Install(HarmonyInstance,Root); }   // Osama 23 Nov 2026: bilingual names show English OR Chinese, by game language
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LANG_NAMES_FAILED: not installed; bilingual names show both languages. "+e.Message); }
     }

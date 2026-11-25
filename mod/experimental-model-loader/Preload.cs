@@ -101,9 +101,15 @@ public partial class Mod
     // after the spawn queue and the level upgrades (UpdateRest), so units being swapped come first. A file whose background read is
     // still running goes to the back of the queue. Levels a spawn already built are skipped.
     static int heavyBuilt; static float heavyT;
+    // 0.3.47 (End 25 Nov: load a level only when it is needed, unload it when it is not): the heavier levels are only read in the
+    // background during deployment (file work done before the battle); LodStreaming.cs builds each on the GPU when a unit needs it.
+    // UserData/FAModels/lod-preload-build.txt brings back 0.3.46: build them all during deployment and never free them in battle.
+    static bool? lodPreloadBuild;
+    static bool LodPreloadBuild => lodPreloadBuild ??= File.Exists(Path.Combine(dir, "lod-preload-build.txt"));
     static void TickPreloadHeavy(long budgetStart)
     {
         if (burst || preloadHeavy.Count == 0) return;
+        if (!LodPreloadBuild) { int n = preloadHeavy.Count; while (preloadHeavy.Count > 0) StreamReady(preloadHeavy.Dequeue()); MelonLogger.Msg($"FAMODELS preload: {n} heavier detail level(s) read in the background, built when a unit needs them"); return; }
         if (heavyBuilt == 0) heavyT = Time.realtimeSinceStartup;
         for (int tries = preloadHeavy.Count; tries > 0 && preloadHeavy.Count > 0; tries--)
         {
