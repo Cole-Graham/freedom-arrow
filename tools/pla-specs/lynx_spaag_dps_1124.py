@@ -2,9 +2,9 @@
 The gun is the PGL-625's six-barrel 25 mm weapon (2009365, shared, not changed) with its own round (lynx_rework_1124.py copy
 'PLA Lynx SPAAG 625 six-barrel 25 mm gun ammunition'). Card DPS = Damage x RateOfFireSecond; 2009365 is in spaag-weapons.json, so the card
 leaves out the magazine reload (SpaagWeapons.cs): 400 rounds, bursts of 11 at 0.2 s, 1.5-2.0 s between bursts = 2.971 shots/s.
-Damage 3.5 (10.4/s) -> 7 / 2.971 = 2.356 (7.0/s). Only the Lynx round changes; the PGL-625 keeps 3.5. Changes one row."""
+Damage 3.5 (10.4/s) -> 6 / 2.971 = 2.019 (6.0/s; was 7 until Osama 25 Nov 00:2x "we'll drop this to 6 dps actually"). Only the Lynx round changes; the PGL-625 keeps 3.5. Changes one row."""
 import json, os
-NAME, TARGET = 'PLA Lynx SPAAG 625 six-barrel 25 mm gun ammunition', 7.0
+NAME, TARGET = 'PLA Lynx SPAAG 625 six-barrel 25 mm gun ammunition', 6.0   # 25 Nov 00:2x "we'll drop this to 6 dps actually"
 CFG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../mod/source/UserData/FreedomArrow/spaag-weapons.json')
 
 

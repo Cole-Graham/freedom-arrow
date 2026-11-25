@@ -907,6 +907,9 @@ import qts11_underbarrel_1124;qts11_underbarrel_1124.apply(t,g,ok,rec)
 # ---------- Lynx unit icons; Lynx Laser weapon "50 kW laser" (Osama 25 Nov 2026 00:1x PST, thread "China cosmetic work"). Creates one weapon row.
 # See lynx_icons_1125.py.
 import lynx_icons_1125;lynx_icons_1125.apply(t,g,ok,rec)
+# ---------- Lynx IFV (Type 100 40 mm CT, 65 pts, no supplies), new Lynx ATV (Troop Carrier with 7 seats), Lynx icons (Osama 25 Nov 2026 00:1x-00:2x
+# PST, thread "China cosmetic work"). Creates rows. See lynx_ifv_atv_1125.py.
+import lynx_ifv_atv_1125;lynx_ifv_atv_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
