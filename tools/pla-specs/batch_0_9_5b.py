@@ -945,6 +945,9 @@ import lynx_mrl_1125;lynx_mrl_1125.apply(t,g,ok,rec)
 import test_spec_visible_1125;test_spec_visible_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
 import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
+# ---------- QQ sheet fixes: QBU-203 name, ZBD-86 Recon card out, CSK-181 transport = CTL-181 with a QJZ-89 RWS (Osama 25 Nov 2026 03:4x PST,
+# bugs thread 1573561286803980289). See qq_fixes_1125.py.
+import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
