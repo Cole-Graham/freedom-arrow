@@ -28,7 +28,7 @@
 - ROC Infantry 2: Mech. Riflemen T112 5039, SF Snipers 5046, SF Snipers M107 5047. The 51k-triangle M1 helmet is cut to about 4k first.
 - ROC Marine: Marine AT 5035, Marine 5038, Reserve Marine 5041.
 - ROC Marine SF: Marine Frogmen CQC 5036, Marine Frogmen 5037.
-- SF Scout 5044: the ROC SF 1 body with the ROC Infantry camo on the uniform (Shawn, 25 Nov). `recamo_sf1.py` finds the large camo areas of SF 1's body texture and keeps the boots (`uv_zmask.py`: faces wholly below 0.20 m). It fills those areas with generated ROC digital camo: the 4 colours and their shares, and real pixels per colour, come from a clean ROC coat patch. The block size is scaled by texel density (ROC coat 1256 px/m, SF 1 1617 px/m). Fold shading comes from SF 1's Black texture. The vest, helmet and gloves are unchanged.
+- SF Scout 5044: the ROC SF 1 body with the ROC Infantry camo on the uniform (Shawn, 25 Nov). `recamo_sf1.py` finds the large camo areas of SF 1's body texture and keeps the boots (`uv_zmask.py`: faces wholly below 0.20 m). Shawn found the first generated pattern odd, so `quilt_roc.py` now fills those areas with real ROC Infantry fabric: 320 px pieces from clean areas of the trousers and coat back, joined along minimum-difference seams (image quilting), with the baked fabric folds flattened. The pieces are scaled by texel density (trousers 1412, coat 1256, SF 1 1617 px/m). Fold shading comes from SF 1's Black texture. The vest, helmet and gloves are unchanged.
 - SF Section 5045: Shawn wants the ROC SF2 body. That file is not in the models folder yet, so the rule points to the plain ROC SF 1 body as a stand-in.
 
 Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `infantry-bodies-*.json` beside `infantry-bodies.json` and approves the ROC block 5000-5999. A bad add-on file is skipped alone, so the PLA rules still load. The pinned `infantry-bodies.json` is not changed. The `roc_` file names are not counted by the `pla2_` payload check.
@@ -40,9 +40,10 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 1. `rig_roc.py KEY roc_bodies.json Ranger.glb OUT`: moves the source arms onto the native Ranger arms (ArmFit), copies the Ranger surface weights and makes head gear and vests rigid. It also renders `landmarks0/1.png` and `rest0/1.png`.
 2. Landmarks: ROC Reservist and ROC SF 1 use their own arm bones. SF 1's bones lie on -Y in the FBX, so `bonerot [-90,0,0]` turns them upright. The other 4 bodies have no skeleton (ROC Infantry's helper empties all sit at 0,0,0). `lm_auto.py` measures the arm joints from the mesh, and the same measurement on the Ranger mesh is the target, so the two biases cancel.
 3. Measured accuracy of `lm_auto.py` against real skeletons (`lm_validate.py`): wrist 1.5-2.8 cm, elbow 4.2-10.9 cm, shoulder 2.9-9.4 cm. Part of the shoulder difference is rig convention: the shoulder bone is at x = 0.149 m on SF 1 and 0.246 m on the Ranger.
-4. The GTA Marine hands hang below ArmFit's z > 0.86 m limit, which stretched them. Each side of the separate hand mesh (`hand_meshes`) now moves whole with the rigid hand transform.
-5. `pipe_body.sh KEY RIGS`: atlas (`roc_` prefix), `decimate_fas.py` LODs, `_0_b` battle texture copies and `.fat` files.
-6. `pose_sheet.sh KEY RIGS`: rest pose plus a test pose (arms, legs, head, spine).
+4. SF 1's mesh has shape keys (`Basis`, `V_None`). With shape keys, Blender keeps the basis key and drops edits to the vertices, so SF 1's arm fit was silently lost and its arms stayed near a T-pose. `rig_roc.py` now clears shape keys first. SF 1 and SF Scout also use measured landmarks now, like the other skeleton-less bodies.
+5. The GTA Marine hands hang below ArmFit's z > 0.86 m limit, which stretched them. Each side of the separate hand mesh (`hand_meshes`) now moves whole with the rigid hand transform.
+6. `pipe_body.sh KEY RIGS`: atlas (`roc_` prefix), `decimate_fas.py` LODs, `_0_b` battle texture copies and `.fat` files.
+7. `pose_sheet.sh KEY RIGS`: rest pose plus a test pose (arms, legs, head, spine).
 
 ## Document change log
 
@@ -50,3 +51,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-25 04:4x PST (America/Los_Angeles) — 16 ROC vehicle/aircraft models converted overnight; pipeline and card links recorded.
 - 2026-11-25 10:4x PST (America/Los_Angeles) — 6 ROC infantry bodies rigged with LODs; add-on body rules and FAModels ROC range recorded.
 - 2026-11-25 11:2x PST (America/Los_Angeles) — SF Scout recoloured to ROC camo; SF Section waits for ROC SF2.
+- 2026-11-25 13:5x PST (America/Los_Angeles) — SF Scout camo rebuilt from real ROC fabric; SF 1 arm-fit fix (shape keys); matte previews.

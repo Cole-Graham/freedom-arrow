@@ -60,6 +60,7 @@ for o in parts:
         if l!=ch:o.data.uv_layers.remove(l)
     ch.name='BA_DiffuseUV';o.data.uv_layers.active_index=0
     for m in list(o.modifiers):o.modifiers.remove(m)
+    if o.data.shape_keys:o.shape_key_clear()   # with shape keys the basis key overrides vertex edits, so the arm fit was lost (SF 1)
     bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o;bpy.ops.object.transform_apply(location=True,rotation=True,scale=True)
     if o.name in C.get('decimate',{}):   # very heavy parts (helmet scans) cut before the body LODs share the budget
         n0=len(o.data.polygons);m=o.modifiers.new('cut','DECIMATE');m.ratio=min(1,C['decimate'][o.name]/max(1,sum(len(p.vertices)-2 for p in o.data.polygons)));bpy.ops.object.modifier_apply(modifier=m.name);print('PRECUT',o.name,n0,'->',len(o.data.polygons))

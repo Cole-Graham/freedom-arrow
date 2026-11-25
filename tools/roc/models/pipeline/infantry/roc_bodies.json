@@ -89,7 +89,8 @@
    -90,
    0,
    0
-  ]
+  ],
+  "landmarks": "auto"
  },
  "infantry": {
   "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry/ROC Infantry/ROC Infantry.blend",
@@ -335,6 +336,7 @@
    -90,
    0,
    0
-  ]
+  ],
+  "landmarks": "auto"
  }
 }

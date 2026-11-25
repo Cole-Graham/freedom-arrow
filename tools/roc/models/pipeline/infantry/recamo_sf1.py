@@ -43,6 +43,9 @@ rc=((ref[:,None]-PAL[None])**2).sum(2).argmin(1);col=np.zeros((G,G,3))
 for k in range(4):
     m_=cls==k;pool=ref[rc==k];col[m_]=pool[rng.integers(0,len(pool),m_.sum())]
 tile=np.asarray(Image.fromarray(col.astype('uint8')).resize((int(G*blk),)*2,Image.NEAREST)).astype(float)[:N,:N]
+import os
+if os.environ.get('QUILT'):   # real ROC fabric quilted by quilt_roc.py replaces the generated pattern (Shawn 25 Nov 11:3x)
+    tile=np.asarray(Image.open(os.environ['QUILT']).convert('RGB').resize((N,N))).astype(float)
 print('shares',[round((cls==k).mean(),3) for k in range(4)])
 b=np.asarray(Bk).astype(float);bb=np.asarray(Bk.filter(ImageFilter.GaussianBlur(24))).astype(float)
 detail=np.clip(b/np.maximum(bb,1),.6,1.4)[...,None]
