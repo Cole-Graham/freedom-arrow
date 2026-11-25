@@ -38,7 +38,15 @@ def names(players,title):
     n=f'[FA] PvE {players}P {FACTION_CODE[enemy]} {where} 0.2';return n,n.replace(' 0.2',' Skirmish 0.2')
 # Retired with the 0.2 names (bot slots on Bravo): runtime-qa Runtime.cs RetiredScenarios lists their GUIDs.
 OLD_NAMES=[f'[FA] [PvE] {t} vs China ({p}P){x} 0.1' for p,t in ((1,'Dead Center'),(2,'Highway of Death'),(3,'Dam')) for x in ('',' Skirmish')]
-ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]
+# Random Dead Center (Osama 24 Nov 2026 03:3x PST, thread "blue dragons": "I really want to give PVE people more replay ability", "Can you
+# make these PVE maps on dead center and make them randomized?"). Each match rolls one of the 9 enemy setups above (DOCTRINES: the opening
+# force of WAVES and the purchase cards of AI_CARDS of every BASES title: 3 China, 3 USA, 3 Russia) with the game's own random node, as
+# vanilla Dead Center rolls its spawns (randomn2 -> compare3 Equal). Only the rolled setup's opening and purchase nodes ever start.
+RANDOM=[(1,dead_center_1v1,dead_center_1v1.NAME),(2,dead_center_2v2,dead_center_2v2.NAME)]
+DOCTRINES=[t for _,_,_,t,_ in BASES]
+def random_names(players):
+    n=f'[FA] PvE {players}P Random Dead Center 0.1';return n,n.replace(' 0.1',' Skirmish 0.1')
+ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]+[x for p,_,_ in RANDOM for x in random_names(p)]
 
 # China units of those specializations, default options (0.9.0-dev.36 data): unitId -> (ucat = CategoryType, [(modification, option)]).
 # Ground only: the waves are capture orders, which aircraft and artillery do not fly or fire well. queued_checks.py checks every id per build.
@@ -382,12 +390,14 @@ def purchase_code(scene,header):
                 ('  ctx.money = (type(money) == "number") and money or 0','  ctx.money = (type(money) == "number") and money or 0\n  if BA_FA_PVE then ctx.money = FA_UNLIMITED and 1000000000 or FA_HUMAN_MONEY() end')):
         assert code.count(a)==1,('BrokenArrowAI ba_purchase changed: '+a[:40]);code=code.replace(a,b)
     return code
-def add_purchase(nodes,objects,scene,players,cards):
+def add_purchase(nodes,objects,scene,players,cards,after=None,doctrine=None):
     """Two buying channels for BP1 (ba_purchase.lua Buy_BP1 / Buy2_BP1), wired as tools/inject_purchase.py does: start -> looped LuaNode,
     static payloads on input_1..5, output_1 -> spawn.UnitInfo, output_2 -> spawn.targetVec, out -> spawn.in, error -> self."""
     owner=next(o['_uid'] for o in objects if o.get('_type')==13 and o['_dname']=='Bravo Player 1')
     start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'][0]
-    code=purchase_code(scene,pve_header(objects,players))
+    header=pve_header(objects,players)
+    if doctrine:header+=f'FA_DOCTRINE = "{doctrine}"   -- Random Dead Center: the setup this match rolled\nprint("[FA PvE] doctrine: " .. FA_DOCTRINE)\n'
+    code=purchase_code(scene,header)
     nid=max(b['id'] for b in nodes['b'])+500
     def node(key,props,x,y):
         nonlocal nid;nid+=1;nodes['b'].append({'v':0,'nnKey':key,'px':x,'py':y,'id':nid,'rtpt':True,'props_v2':props});return nid
@@ -397,7 +407,7 @@ def add_purchase(nodes,objects,scene,players,cards):
     for k,(enter,ids) in enumerate((('Buy_BP1',cards['ch1']),('Buy2_BP1',cards['ch2']))):
         y=8300.0+k*600.0
         lua=node('LuaNode',[p('EnterMethod',enter),p('Loop','True'),p('Code',code),p('hotreload','False')],-2600.0,y)
-        wire(lua,'in',start,'flow');wire(lua,'in',lua,'error')
+        wire(lua,'in',*(after or (start,'flow')));wire(lua,'in',lua,'error')
         for i,uid in enumerate(ids):
             data=node('getSpMultUnData',[p('val',payload({uid:1},players))],-3000.0,y+100+i*60);wire(lua,f'input_{i+1}',data,'out')
         spawn=node('spawnMultiUnits',[p('TargetTag','',1),p('TargetSpawnPoint','',1),p('PlayerOwner','c0',1),p('UnitInfo','',1),
@@ -540,6 +550,47 @@ def configure_slots(objects,meta,players):
     assert len(humans)==players and len(bots)==players and 'Bravo Player 1' in bots,(humans,bots)
     assert all(n.startswith('Alpha') for n in humans) and all(n.startswith('Bravo') for n in bots),(humans,bots)
 
+def add_roll(nodes,entry,n):
+    """randomn2 (0..2n, rounded) -> one compare3 Equal per value; value v starts doctrine v % n. Values 0..2n with both rounding and
+    truncation give every doctrine the same chance (rounding: the two end values have half weight and both map to doctrine 0).
+    Returns one entry node per doctrine (a real-time 0.1 s delay, so it also runs in the deployment pause); its out2 starts that doctrine."""
+    nid=max(b['id'] for b in nodes['b'])+3000
+    def node(key,props,x,y):
+        nonlocal nid;nid+=1;nodes['b'].append({'v':0,'nnKey':key,'px':x,'py':y,'id':nid,'rtpt':True,'props_v2':props});return nid
+    def wire(a,c,b,d):nodes['c'].append({'a':a,'b':b,'c':c,'d':d,'e':b})
+    roll=node('randomn2',[p('MinValue','0',1),p('MaxValue',str(2*n),1),p('Round','True')],-4200.0,2000.0);wire(roll,'in2',*entry)
+    starts=[node('delay',[p('Time','0.1',1),p('igGmSp','True',1)],-3600.0,2000.0+k*300.0) for k in range(n)]
+    for v in range(2*n+1):
+        cmp=node('compare3',[p('a',str(v),1),p('Signal_B','0',1),p('CompareAB','Equal')],-3900.0,2000.0+v*150.0)
+        wire(cmp,'in2',roll,'out2');wire(cmp,'Signal_B',roll,'Random');wire(starts[v%n],'in2',cmp,'true2')
+    return starts
+
+def build_random(game,out,settings):
+    """Random Dead Center: the 1P (1v1 layout) and 2P (2v2 layout) maps, online and Skirmish, built like the fixed PvE maps but with every
+    doctrine's opening and purchase nodes behind add_roll."""
+    for players,mod,base_name in RANDOM:
+        name,skirmish=random_names(players)
+        W=settings['MapZoneWeights'];assert W.get(name)==W[base_name] and W.get(skirmish)==W[mod.SKIRMISH_NAME],(name,'zone weights must equal those of',base_name)
+        with tempfile.TemporaryDirectory() as tmp:
+            mod.build(game,Path(tmp))
+            base={k:C.read_bascr(Path(tmp)/nm,nm) for k,nm in ((2,base_name),(3,mod.SKIRMISH_NAME))}
+        desc=(f'Freedom Arrow PvE, Random: {players} player{"s" if players>1 else ""} on Alpha against AI bots on Bravo. Every match rolls one of '
+              f'{len(DOCTRINES)} enemy forces (China, USA or Russia). '+base[2][0]['desc'])
+        for flavor,kind in ((name,2),(skirmish,3)):
+            h,n,o,m=copy.deepcopy(base[kind])
+            st=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(st)==1
+            starts=add_roll(n,(st[0],'flow'),len(DOCTRINES))
+            for k,title in enumerate(DOCTRINES):
+                add_waves(n,o,players,(starts[k],'out2'),opening(WAVES[title],AI_CARDS[title]),orders=False)
+                add_purchase(n,o,h['map'],players,AI_CARDS[title],after=(starts[k],'out2'),doctrine=title)
+            add_ai(n,h['map'])
+            if kind==2:configure_slots(o,m,players)
+            C.check_spawns(flavor,h,o)
+            C.check_limit(flavor,desc)
+            C.stamp(h,m,flavor,str(uuid.uuid5(uuid.NAMESPACE_URL,flavor)),desc,'Freedom Arrow',kind,kind==2)
+            C.write(out,flavor,h,o,n,m)
+            print(f'{flavor}: {len(DOCTRINES)} doctrines rolled at start, {players} human slot(s)')
+
 def build(game,out):
     settings=C.settings();ai=(AI_SRC/'ai'/'ba_brain.lua').exists()
     print('PvE commander:','BrokenArrowAI Lua' if ai else f'scripted orders ({AI_SRC} not found)')
@@ -570,3 +621,4 @@ def build(game,out):
             C.stamp(h,m,flavor,str(uuid.uuid5(uuid.NAMESPACE_URL,flavor)),desc,'Freedom Arrow',kind,kind==2)
             C.write(out,flavor,h,o,n,m)
             print(f'{flavor}: {waves[0]} waves from {waves[1]} Bravo spawns, {players} human slot(s)')
+    if ai:build_random(game,out,settings)
