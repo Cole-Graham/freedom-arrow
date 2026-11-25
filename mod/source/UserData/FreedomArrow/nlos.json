@@ -1,7 +1,7 @@
 {
   "trait": "NLOS",
   "version": "0.9.7",
-  "note": "0.9.7 (Osama 24 Nov 2026 \"it should just act like a cruise missile\"): no NLOS rounds or units. The HJ-10, QN-502, CTL-181 and CH-901 rounds use vanilla Iskander-M guidance: Fire Position, optional laser (tools/pla-specs/nlos_cruise_1124.py); with an empty list NlosTrait.cs installs no hooks.",
+  "note": "0.9.7 (Osama 24 Nov 2026 \"it should just act like a cruise missile\"): no NLOS rounds or units. The HJ-10, QN-502, CTL-181 and CH-901 rounds use vanilla Iskander-K cruise guidance: Fire Position only (tools/pla-specs/nlos_cruise_1124.py); with an empty list NlosTrait.cs installs no hooks.",
   "ammunition": [],
   "fire_weapons": [],
   "fire_units": [],
