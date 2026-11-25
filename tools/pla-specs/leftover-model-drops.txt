@@ -1380,10 +1380,6 @@ UserData/FAModels/pll05_tex4_n.fat
 UserData/FAModels/pll05_tex5.fat
 UserData/FAModels/pll05_tex5_mask.fat
 UserData/FAModels/pll05_tex5_n.fat
-UserData/FAModels/w_qbb95.fam
-UserData/FAModels/w_qbb95.mat.json
-UserData/FAModels/w_qbb95_lo.fam
-UserData/FAModels/w_qbb95_lo.mat.json
 UserData/FAModels/w_qbu88.fam
 UserData/FAModels/w_qbu88.mat.json
 UserData/FAModels/w_qbu88_lo.fam
