@@ -865,8 +865,6 @@ import sraw_split_1124;sraw_split_1124.apply(t,g,ok,rec)
 # ---------- Lynx placeholder cards for the four received models with no card (Osama 24 Nov 2026 17:5x, bugs thread 1573561286803980289: "please make
 # sure all models have a unit entry so I can at least see"). After the SRAW split so no earlier unit id moves. See lynx_cards_1124.py CARDS_EXTRA.
 lynx_cards_1124.apply_extra(t,g,ok,rec)
-# ---------- HJ-10 FNF round overpressure 0.5 (Osama 24 Nov 2026 21:3x, bugs thread 1573561286803980289). See hj10_fnf_op_1124.py.
-import hj10_fnf_op_1124;hj10_fnf_op_1124.apply(t,g,ok,rec)
 # ---------- SHORAD radar split (Lateralus 24 Nov 2026 15:5x-16:4x PST, thread 1568104480459722894): SA SHORAD rows 58/60/62 Low range + optics
 # 1.25 -> 1.5; gun/IR units on new IR SHORAD rows (range 1.25, optics 1.5); IR rounds of SA units get compensated copies; option B burn times;
 # helicopters stay x1.25; radar icon labels. Adds ability/ammo rows: after the SRAW A unit so its ids stay. See lateralus/shorad_radar_1124.py.
