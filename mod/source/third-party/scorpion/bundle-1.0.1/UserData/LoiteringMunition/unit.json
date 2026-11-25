@@ -1,0 +1,1430 @@
+{
+  "Units": {
+    "columns": [
+      "OriginalName",
+      "OwnerInfantryID",
+      "OriginalCost",
+      "Id",
+      "DisplayInArmory",
+      "IsUnitModification",
+      "HUDName",
+      "Name",
+      "CountryId",
+      "Description",
+      "ModelFileName",
+      "PortraitFileName",
+      "ThumbnailFileName",
+      "AudioPreset",
+      "Cost",
+      "UpkeepMultiplier",
+      "TimeModifierRefund",
+      "TimeModifierResurrect",
+      "Type",
+      "CategoryType",
+      "Role",
+      "Length",
+      "Width",
+      "Height",
+      "Weight",
+      "Stealth",
+      "InfantrySlots",
+      "MaxStress",
+      "WaterDiveOffset",
+      "ContentMembership"
+    ],
+    "rows": [
+      {
+        "source": 447,
+        "id": 11510,
+        "set": {
+          "Name": "巡飞弹",
+          "HUDName": "巡飞弹",
+          "CountryId": 2,
+          "Cost": 55,
+          "Description": "短时侦察。右键敌方单位，进入攻击距离后俯冲撞击。"
+        },
+        "expect": "RQ-7 Shadow",
+        "fallback": {
+          "OriginalName": null,
+          "OwnerInfantryID": 0,
+          "OriginalCost": 0,
+          "Id": 447,
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "HUDName": "RQ-7 Shadow",
+          "Name": "RQ-7 Shadow",
+          "CountryId": 2,
+          "Description": "",
+          "ModelFileName": "US_RQ7",
+          "PortraitFileName": "US\\RQ_7_SHADOW\\RQ_7_SHADOW",
+          "ThumbnailFileName": "US_RQ7-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_Drone_Small_Prop_v1",
+          "Cost": 50,
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": -120.0,
+          "Type": 16,
+          "CategoryType": 0,
+          "Role": 100,
+          "Length": 2.0,
+          "Width": 2.0,
+          "Height": 2.0,
+          "Weight": 200,
+          "Stealth": 0.8,
+          "InfantrySlots": 0,
+          "MaxStress": 0.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1,
+          "CurrentStealth": 0.8
+        },
+        "countryFromSpecialization": 9700
+      },
+      {
+        "source": 11,
+        "id": 11511,
+        "set": {
+          "CountryId": 2,
+          "Name": "巡飞弹发射车",
+          "HUDName": "巡飞弹发射车",
+          "Description": "按 P 指定出发方向。巡飞弹爬升后可右键地面改航向，右键敌方单位下令俯冲。"
+        },
+        "expect": "M142 HIMARS",
+        "fallback": {
+          "OriginalName": null,
+          "OwnerInfantryID": 0,
+          "OriginalCost": 0,
+          "Id": 11,
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "HUDName": "M142 HIMARS",
+          "Name": "M142 HIMARS",
+          "CountryId": 2,
+          "Description": null,
+          "ModelFileName": "US_HIMARS",
+          "PortraitFileName": "US\\HIMARS\\HIMARS",
+          "ThumbnailFileName": "US_HIMARS-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_M142_HIMARS",
+          "Cost": 175,
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 600.0,
+          "TimeModifierResurrect": 360.0,
+          "Type": 4,
+          "CategoryType": 3,
+          "Role": 130,
+          "Length": 8.0,
+          "Width": 2.5,
+          "Height": 3.0,
+          "Weight": 11000,
+          "Stealth": 1.0,
+          "InfantrySlots": 0,
+          "MaxStress": 1000.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1,
+          "CurrentStealth": 1.0
+        },
+        "countryFromSpecialization": 9700
+      },
+      {
+        "source": 447,
+        "id": 11512,
+        "set": {
+          "Name": "电视制导导弹",
+          "HUDName": "电视制导导弹",
+          "CountryId": 2,
+          "Description": "飞行中右键地面改航向，右键敌方单位攻击。射程1800米。",
+          "DisplayInArmory": false,
+          "ThumbnailFileName": "AMMO_HELLFIRE_2",
+          "PortraitFileName": "AMMO_HELLFIRE_2"
+        },
+        "expect": "RQ-7 Shadow",
+        "fallback": {
+          "OriginalName": null,
+          "OwnerInfantryID": 0,
+          "OriginalCost": 0,
+          "Id": 447,
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "HUDName": "RQ-7 Shadow",
+          "Name": "RQ-7 Shadow",
+          "CountryId": 2,
+          "Description": "",
+          "ModelFileName": "US_RQ7",
+          "PortraitFileName": "US\\RQ_7_SHADOW\\RQ_7_SHADOW",
+          "ThumbnailFileName": "US_RQ7-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_Drone_Small_Prop_v1",
+          "Cost": 50,
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": -120.0,
+          "Type": 16,
+          "CategoryType": 0,
+          "Role": 100,
+          "Length": 2.0,
+          "Width": 2.0,
+          "Height": 2.0,
+          "Weight": 200,
+          "Stealth": 0.8,
+          "InfantrySlots": 0,
+          "MaxStress": 0.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1,
+          "CurrentStealth": 0.8
+        },
+        "countryFromSpecialization": 9700
+      },
+      {
+        "source": 11,
+        "id": 11513,
+        "set": {
+          "CountryId": 2,
+          "Name": "电视制导导弹发射车",
+          "HUDName": "电视制导导弹发射车",
+          "Description": "按 P 发射可操控导弹。发射距离1800米，飞行时长5.56秒。"
+        },
+        "expect": "M142 HIMARS",
+        "fallback": {
+          "OriginalName": null,
+          "OwnerInfantryID": 0,
+          "OriginalCost": 0,
+          "Id": 11,
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "HUDName": "M142 HIMARS",
+          "Name": "M142 HIMARS",
+          "CountryId": 2,
+          "Description": null,
+          "ModelFileName": "US_HIMARS",
+          "PortraitFileName": "US\\HIMARS\\HIMARS",
+          "ThumbnailFileName": "US_HIMARS-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_M142_HIMARS",
+          "Cost": 175,
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 600.0,
+          "TimeModifierResurrect": 360.0,
+          "Type": 4,
+          "CategoryType": 3,
+          "Role": 130,
+          "Length": 8.0,
+          "Width": 2.5,
+          "Height": 3.0,
+          "Weight": 11000,
+          "Stealth": 1.0,
+          "InfantrySlots": 0,
+          "MaxStress": 1000.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1,
+          "CurrentStealth": 1.0
+        },
+        "countryFromSpecialization": 9700
+      },
+      {
+        "source": 447,
+        "id": 11514,
+        "set": {
+          "Name": "巡飞弹",
+          "HUDName": "巡飞弹",
+          "CountryId": 2,
+          "Cost": 55,
+          "Description": "短时侦察。右键敌方单位，进入攻击距离后俯冲撞击。",
+          "DisplayInArmory": false
+        },
+        "expect": "RQ-7 Shadow",
+        "fallback": {
+          "OriginalName": null,
+          "OwnerInfantryID": 0,
+          "OriginalCost": 0,
+          "Id": 447,
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "HUDName": "RQ-7 Shadow",
+          "Name": "RQ-7 Shadow",
+          "CountryId": 2,
+          "Description": "",
+          "ModelFileName": "US_RQ7",
+          "PortraitFileName": "US\\RQ_7_SHADOW\\RQ_7_SHADOW",
+          "ThumbnailFileName": "US_RQ7-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_Drone_Small_Prop_v1",
+          "Cost": 50,
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": -120.0,
+          "Type": 16,
+          "CategoryType": 0,
+          "Role": 100,
+          "Length": 2.0,
+          "Width": 2.0,
+          "Height": 2.0,
+          "Weight": 200,
+          "Stealth": 0.8,
+          "InfantrySlots": 0,
+          "MaxStress": 0.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1,
+          "CurrentStealth": 0.8
+        },
+        "countryFromSpecialization": 9700
+      }
+    ]
+  },
+  "PlaneFlyPresets": {
+    "columns": [
+      "Id",
+      "Name",
+      "LowAltitudeIsDefault",
+      "OverrideAltitude",
+      "OverrideAltitideRatio",
+      "MinSpeed",
+      "CornerSpeed",
+      "MaxSpeed",
+      "AfterburnSpeed",
+      "Acceleration",
+      "AfterburnerAcceleration",
+      "Deceleration",
+      "AfterburnerDeceleration",
+      "MinSpeedYaw",
+      "MaxSpeedYaw",
+      "AfterburnYaw",
+      "MinSpeedPitch",
+      "MaxSpeedPitch",
+      "AfterburnPitch",
+      "MaxRoll",
+      "NoiseSpeed",
+      "NoiseSize",
+      "LocalShakingDepth",
+      "LocalShakingSpeed",
+      "NoseLiftStartSpeed",
+      "NoseLiftAngle",
+      "ForceCounterClockwise",
+      "TargetAheadFactor",
+      "StrafeDiveAngle",
+      "StrafeSpeedRatio"
+    ],
+    "rows": [
+      {
+        "source": 14,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION loitering flight",
+          "MinSpeed": 83.6,
+          "CornerSpeed": 101.2,
+          "MaxSpeed": 121.0,
+          "AfterburnSpeed": 121.0
+        },
+        "expect": "Drone Slow Low",
+        "fallback": {
+          "Id": 14,
+          "Name": "Drone Slow Low",
+          "LowAltitudeIsDefault": true,
+          "OverrideAltitude": false,
+          "OverrideAltitideRatio": 0.5,
+          "MinSpeed": 38.0,
+          "CornerSpeed": 46.0,
+          "MaxSpeed": 55.0,
+          "AfterburnSpeed": 55.0,
+          "AfterburnCornerSpeed": 46.0,
+          "Acceleration": 2.0,
+          "AfterburnerAcceleration": 2.0,
+          "Deceleration": 2.0,
+          "AfterburnerDeceleration": 2.0,
+          "MinSpeedYaw": 15.0,
+          "MaxSpeedYaw": 15.0,
+          "AfterburnYaw": 15.0,
+          "CornerSpeedYaw": 15.0,
+          "CornerAfterburnSpeedYaw": 15.0,
+          "MinSpeedPitch": 30.0,
+          "MaxSpeedPitch": 30.0,
+          "AfterburnPitch": 30.0,
+          "MaxRoll": 45.0,
+          "NoiseSpeed": 0.1,
+          "NoiseSize": 5.0,
+          "LocalShakingDepth": 0.1,
+          "LocalShakingSpeed": 0.5,
+          "NoseLiftStartSpeed": 100.0,
+          "NoseLiftAngle": 0.0,
+          "ForceCounterClockwise": false,
+          "TargetAheadFactor": 2.0,
+          "StrafeDiveAngle": 15.0,
+          "StrafeSpeedRatio": 1.0
+        }
+      },
+      {
+        "source": 14,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION TV missile flight",
+          "MinSpeed": 180,
+          "CornerSpeed": 180,
+          "MaxSpeed": 180,
+          "AfterburnSpeed": 180
+        },
+        "expect": "Drone Slow Low",
+        "fallback": {
+          "Id": 14,
+          "Name": "Drone Slow Low",
+          "LowAltitudeIsDefault": true,
+          "OverrideAltitude": false,
+          "OverrideAltitideRatio": 0.5,
+          "MinSpeed": 38.0,
+          "CornerSpeed": 46.0,
+          "MaxSpeed": 55.0,
+          "AfterburnSpeed": 55.0,
+          "AfterburnCornerSpeed": 46.0,
+          "Acceleration": 2.0,
+          "AfterburnerAcceleration": 2.0,
+          "Deceleration": 2.0,
+          "AfterburnerDeceleration": 2.0,
+          "MinSpeedYaw": 15.0,
+          "MaxSpeedYaw": 15.0,
+          "AfterburnYaw": 15.0,
+          "CornerSpeedYaw": 15.0,
+          "CornerAfterburnSpeedYaw": 15.0,
+          "MinSpeedPitch": 30.0,
+          "MaxSpeedPitch": 30.0,
+          "AfterburnPitch": 30.0,
+          "MaxRoll": 45.0,
+          "NoiseSpeed": 0.1,
+          "NoiseSize": 5.0,
+          "LocalShakingDepth": 0.1,
+          "LocalShakingSpeed": 0.5,
+          "NoseLiftStartSpeed": 100.0,
+          "NoseLiftAngle": 0.0,
+          "ForceCounterClockwise": false,
+          "TargetAheadFactor": 2.0,
+          "StrafeDiveAngle": 15.0,
+          "StrafeSpeedRatio": 1.0
+        }
+      }
+    ]
+  },
+  "Mobility": {
+    "columns": [
+      "FlyPreset",
+      "Id",
+      "Name",
+      "ModelFileName",
+      "IsDefault",
+      "IsAmphibious",
+      "IsAirDroppable",
+      "Weight",
+      "HeavyLiftWeight",
+      "TurnRate",
+      "Acceleration",
+      "MaxCrossCountrySpeed",
+      "MaxSpeedRoad",
+      "MaxSpeedReverse",
+      "MaxSpeedWater",
+      "Agility",
+      "ClimbRate",
+      "IsChangeAltitude",
+      "LoiteringTime",
+      "IsAfterburner",
+      "AfterBurningLoiteringTime",
+      "FlyPresetId"
+    ],
+    "rows": [
+      {
+        "source": 225,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION 巡飞弹",
+          "FlyPresetId": 11510,
+          "MaxSpeedRoad": 440,
+          "LoiteringTime": 90,
+          "AfterBurningLoiteringTime": 90
+        },
+        "expect": "Plane RQ7",
+        "fallback": {
+          "FlyPreset": null,
+          "Id": 225,
+          "Name": "Plane RQ7",
+          "ModelFileName": null,
+          "IsDefault": true,
+          "IsAmphibious": false,
+          "IsAirDroppable": false,
+          "Weight": 0,
+          "HeavyLiftWeight": 0,
+          "TurnRate": 0.0,
+          "Acceleration": 0.0,
+          "MaxCrossCountrySpeed": 0.0,
+          "MaxSpeedRoad": 200.0,
+          "MaxSpeedReverse": 0.0,
+          "MaxSpeedWater": 0.0,
+          "Agility": 0.0,
+          "ClimbRate": 0.0,
+          "IsChangeAltitude": false,
+          "LoiteringTime": 900.0,
+          "IsAfterburner": false,
+          "AfterBurningLoiteringTime": 300.0,
+          "FlyPresetId": 14
+        }
+      },
+      {
+        "source": 225,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION 电视制导导弹",
+          "FlyPresetId": 11511,
+          "MaxSpeedRoad": 1296.0,
+          "LoiteringTime": 5.555555555555555,
+          "AfterBurningLoiteringTime": 5.555555555555555
+        },
+        "expect": "Plane RQ7",
+        "fallback": {
+          "FlyPreset": null,
+          "Id": 225,
+          "Name": "Plane RQ7",
+          "ModelFileName": null,
+          "IsDefault": true,
+          "IsAmphibious": false,
+          "IsAirDroppable": false,
+          "Weight": 0,
+          "HeavyLiftWeight": 0,
+          "TurnRate": 0.0,
+          "Acceleration": 0.0,
+          "MaxCrossCountrySpeed": 0.0,
+          "MaxSpeedRoad": 200.0,
+          "MaxSpeedReverse": 0.0,
+          "MaxSpeedWater": 0.0,
+          "Agility": 0.0,
+          "ClimbRate": 0.0,
+          "IsChangeAltitude": false,
+          "LoiteringTime": 900.0,
+          "IsAfterburner": false,
+          "AfterBurningLoiteringTime": 300.0,
+          "FlyPresetId": 14
+        }
+      }
+    ]
+  },
+  "Sensors": {
+    "columns": [
+      "Id",
+      "Name",
+      "IsDefault",
+      "OpticsGround",
+      "OpticsHighAltitude",
+      "OpticsLowAltitude",
+      "ModelFileName"
+    ],
+    "rows": [
+      {
+        "source": 3,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION 巡飞弹光电",
+          "OpticsGround": 550,
+          "OpticsLowAltitude": 625,
+          "OpticsHighAltitude": 500
+        },
+        "expect": "Very Good Optics",
+        "fallback": {
+          "Id": 3,
+          "Name": "Very Good Optics",
+          "IsDefault": true,
+          "OpticsGround": 1000.0,
+          "OpticsHighAltitude": 1000.0,
+          "OpticsLowAltitude": 1250.0,
+          "ModelFileName": null
+        }
+      },
+      {
+        "source": 3,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION 电视制导导弹光电",
+          "OpticsGround": 160,
+          "OpticsLowAltitude": 180,
+          "OpticsHighAltitude": 140
+        },
+        "expect": "Very Good Optics",
+        "fallback": {
+          "Id": 3,
+          "Name": "Very Good Optics",
+          "IsDefault": true,
+          "OpticsGround": 1000.0,
+          "OpticsHighAltitude": 1000.0,
+          "OpticsLowAltitude": 1250.0,
+          "ModelFileName": null
+        }
+      }
+    ]
+  },
+  "UnitArmors": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "ArmorId"
+    ],
+    "rows": [
+      {
+        "source": 789,
+        "id": 11510,
+        "set": {
+          "UnitId": 11510
+        },
+        "fallback": {
+          "Id": 789,
+          "UnitId": 447,
+          "ArmorId": 303
+        }
+      },
+      {
+        "source": 10,
+        "id": 11511,
+        "set": {
+          "UnitId": 11511
+        },
+        "fallback": {
+          "Id": 10,
+          "UnitId": 11,
+          "ArmorId": 11
+        }
+      },
+      {
+        "source": 789,
+        "id": 11512,
+        "set": {
+          "UnitId": 11512
+        },
+        "fallback": {
+          "Id": 789,
+          "UnitId": 447,
+          "ArmorId": 303
+        }
+      },
+      {
+        "source": 10,
+        "id": 11513,
+        "set": {
+          "UnitId": 11513
+        },
+        "fallback": {
+          "Id": 10,
+          "UnitId": 11,
+          "ArmorId": 11
+        }
+      },
+      {
+        "source": 789,
+        "id": 11514,
+        "set": {
+          "UnitId": 11514
+        },
+        "fallback": {
+          "Id": 789,
+          "UnitId": 447,
+          "ArmorId": 303
+        }
+      }
+    ]
+  },
+  "UnitPropulsions": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "MobilityId"
+    ],
+    "rows": [
+      {
+        "source": 829,
+        "id": 11510,
+        "set": {
+          "UnitId": 11510,
+          "MobilityId": 11510
+        },
+        "fallback": {
+          "Id": 829,
+          "UnitId": 447,
+          "MobilityId": 225
+        }
+      },
+      {
+        "source": 216,
+        "id": 11511,
+        "set": {
+          "UnitId": 11511
+        },
+        "fallback": {
+          "Id": 216,
+          "UnitId": 11,
+          "MobilityId": 22
+        }
+      },
+      {
+        "source": 829,
+        "id": 11512,
+        "set": {
+          "UnitId": 11512,
+          "MobilityId": 11511
+        },
+        "fallback": {
+          "Id": 829,
+          "UnitId": 447,
+          "MobilityId": 225
+        }
+      },
+      {
+        "source": 216,
+        "id": 11513,
+        "set": {
+          "UnitId": 11513
+        },
+        "fallback": {
+          "Id": 216,
+          "UnitId": 11,
+          "MobilityId": 22
+        }
+      },
+      {
+        "source": 829,
+        "id": 11514,
+        "set": {
+          "UnitId": 11514,
+          "MobilityId": 11510
+        },
+        "fallback": {
+          "Id": 829,
+          "UnitId": 447,
+          "MobilityId": 225
+        }
+      }
+    ]
+  },
+  "SensorUnits": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "SensorId"
+    ],
+    "rows": [
+      {
+        "source": 879,
+        "id": 11510,
+        "set": {
+          "UnitId": 11510,
+          "SensorId": 11510
+        },
+        "fallback": {
+          "Id": 879,
+          "UnitId": 447,
+          "SensorId": 3
+        }
+      },
+      {
+        "source": 150,
+        "id": 11511,
+        "set": {
+          "UnitId": 11511
+        },
+        "fallback": {
+          "Id": 150,
+          "UnitId": 11,
+          "SensorId": 4
+        }
+      },
+      {
+        "source": 879,
+        "id": 11512,
+        "set": {
+          "UnitId": 11512,
+          "SensorId": 11511
+        },
+        "fallback": {
+          "Id": 879,
+          "UnitId": 447,
+          "SensorId": 3
+        }
+      },
+      {
+        "source": 150,
+        "id": 11513,
+        "set": {
+          "UnitId": 11513
+        },
+        "fallback": {
+          "Id": 150,
+          "UnitId": 11,
+          "SensorId": 4
+        }
+      },
+      {
+        "source": 879,
+        "id": 11514,
+        "set": {
+          "UnitId": 11514,
+          "SensorId": 11510
+        },
+        "fallback": {
+          "Id": 879,
+          "UnitId": 447,
+          "SensorId": 3
+        }
+      }
+    ]
+  },
+  "SpecializationAvailabilities": {
+    "columns": [
+      "Id",
+      "SpecializationId",
+      "UnitId",
+      "MaxAvailabilityXp0",
+      "MaxAvailabilityXp1",
+      "MaxAvailabilityXp2",
+      "MaxAvailabilityXp3"
+    ],
+    "rows": [
+      {
+        "source": 772,
+        "id": 11510,
+        "set": {
+          "UnitId": 11510,
+          "SpecializationId": 9700,
+          "MaxAvailabilityXp0": 2
+        },
+        "fallback": {
+          "Id": 772,
+          "SpecializationId": 6,
+          "UnitId": 447,
+          "MaxAvailabilityXp0": 4,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        },
+        "fallbackSpecialization": 6
+      },
+      {
+        "source": 780,
+        "id": 11511,
+        "set": {
+          "UnitId": 11511,
+          "SpecializationId": 9700,
+          "MaxAvailabilityXp0": 2
+        },
+        "fallback": {
+          "Id": 780,
+          "SpecializationId": 6,
+          "UnitId": 11,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        },
+        "fallbackSpecialization": 6
+      },
+      {
+        "source": 780,
+        "id": 11512,
+        "set": {
+          "UnitId": 11513,
+          "SpecializationId": 9700,
+          "MaxAvailabilityXp0": 2
+        },
+        "fallback": {
+          "Id": 780,
+          "SpecializationId": 6,
+          "UnitId": 11,
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        },
+        "fallbackSpecialization": 6
+      }
+    ]
+  },
+  "Turrets": {
+    "columns": [
+      "Id",
+      "Name",
+      "ModelFileName",
+      "IsDefault",
+      "IsDynamicTurret",
+      "FullRotation",
+      "LeftHorizontalAngle",
+      "RightHorizontalAngle",
+      "HorizontalRotationSpeed"
+    ],
+    "rows": [
+      {
+        "source": 779,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION 巡飞弹发射箱",
+          "IsDefault": true
+        },
+        "expect": "MainTurret HIMARS PrSM",
+        "fallback": {
+          "Id": 779,
+          "Name": "MainTurret HIMARS PrSM",
+          "ModelFileName": null,
+          "IsDefault": false,
+          "IsDynamicTurret": false,
+          "ParentTurretId": null,
+          "FullRotation": false,
+          "LeftHorizontalAngle": -120.0,
+          "RightHorizontalAngle": 120.0,
+          "HorizontalRotationSpeed": 60.0
+        }
+      },
+      {
+        "source": 779,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION 电视制导导弹发射箱",
+          "IsDefault": true
+        },
+        "expect": "MainTurret HIMARS PrSM",
+        "fallback": {
+          "Id": 779,
+          "Name": "MainTurret HIMARS PrSM",
+          "ModelFileName": null,
+          "IsDefault": false,
+          "IsDynamicTurret": false,
+          "ParentTurretId": null,
+          "FullRotation": false,
+          "LeftHorizontalAngle": -120.0,
+          "RightHorizontalAngle": 120.0,
+          "HorizontalRotationSpeed": 60.0
+        }
+      }
+    ]
+  },
+  "Weapons": {
+    "columns": [
+      "WeaponChannel",
+      "WeaponPriority",
+      "Id",
+      "Name",
+      "HUDName",
+      "Type",
+      "HUDIcon",
+      "AudioPreset",
+      "ModelFileName",
+      "AutoLoaded",
+      "Silent",
+      "HasPriorityOnChassis",
+      "CQC",
+      "IsRadarDependent",
+      "IsVerticalLauncher",
+      "IsLowAltDirectWeapon",
+      "IsHighAltDirectWeapon",
+      "IsUnderbarrel",
+      "AimTimeMin",
+      "AimTimeMax",
+      "MultiTargetTracking",
+      "SimultaneousTracking",
+      "CanShootOnTheMove",
+      "StabilizerQuality",
+      "FlashPerShot",
+      "CanBeMerged",
+      "LowerVerticalAngle",
+      "UpperVerticalAngles",
+      "VerticalRotationSpeed",
+      "MagazineSize",
+      "MagazineReloadTimeMin",
+      "MagazineReloadTimeMax",
+      "ShotsPerBurstMin",
+      "ShotsPerBurstMax",
+      "TimeBetweenBurstsMin",
+      "TimeBetweenBurstsMax",
+      "TimeBetweenShotsInBurst",
+      "ShortGroundAttackBurst",
+      "NormalGroundAttackBurst",
+      "LongGroundAttackBurst"
+    ],
+    "rows": [
+      {
+        "source": 569,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION 巡飞弹发射器",
+          "HUDName": "巡飞弹发射器",
+          "AimTimeMin": 3,
+          "AimTimeMax": 3
+        },
+        "expect": "Ballistic PrSM x2",
+        "fallback": {
+          "WeaponChannel": 0,
+          "WeaponPriority": 0,
+          "Id": 569,
+          "Name": "Ballistic PrSM x2",
+          "HUDName": "HIMARS",
+          "Type": 83,
+          "HUDIcon": "HIMARS",
+          "AudioPreset": "WEAPON_SOUND_PRESET_VEH_MLRS_M270",
+          "ModelFileName": null,
+          "AutoLoaded": false,
+          "Silent": false,
+          "HasPriorityOnChassis": true,
+          "CQC": false,
+          "IsRadarDependent": false,
+          "IsVerticalLauncher": false,
+          "IsLowAltDirectWeapon": false,
+          "IsHighAltDirectWeapon": false,
+          "IsUnderbarrel": false,
+          "AimTimeMin": 10.0,
+          "AimTimeMax": 12.0,
+          "MultiTargetTracking": 1,
+          "SimultaneousTracking": 0,
+          "CanShootOnTheMove": false,
+          "StabilizerQuality": 1.0,
+          "FlashPerShot": 1.0,
+          "CanBeMerged": false,
+          "LowerVerticalAngle": 0,
+          "UpperVerticalAngles": 89,
+          "VerticalRotationSpeed": 30,
+          "MagazineSize": 2,
+          "MagazineReloadTimeMin": 0.0,
+          "MagazineReloadTimeMax": 0.0,
+          "ShotsPerBurstMin": 1,
+          "ShotsPerBurstMax": 1,
+          "TimeBetweenBurstsMin": 3.0,
+          "TimeBetweenBurstsMax": 4.0,
+          "TimeBetweenShotsInBurst": 0.0,
+          "ShortGroundAttackBurst": 0,
+          "NormalGroundAttackBurst": 1,
+          "LongGroundAttackBurst": 0
+        }
+      },
+      {
+        "source": 569,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION 电视制导导弹发射器",
+          "HUDName": "电视制导导弹发射器",
+          "AimTimeMin": 3,
+          "AimTimeMax": 3
+        },
+        "expect": "Ballistic PrSM x2",
+        "fallback": {
+          "WeaponChannel": 0,
+          "WeaponPriority": 0,
+          "Id": 569,
+          "Name": "Ballistic PrSM x2",
+          "HUDName": "HIMARS",
+          "Type": 83,
+          "HUDIcon": "HIMARS",
+          "AudioPreset": "WEAPON_SOUND_PRESET_VEH_MLRS_M270",
+          "ModelFileName": null,
+          "AutoLoaded": false,
+          "Silent": false,
+          "HasPriorityOnChassis": true,
+          "CQC": false,
+          "IsRadarDependent": false,
+          "IsVerticalLauncher": false,
+          "IsLowAltDirectWeapon": false,
+          "IsHighAltDirectWeapon": false,
+          "IsUnderbarrel": false,
+          "AimTimeMin": 10.0,
+          "AimTimeMax": 12.0,
+          "MultiTargetTracking": 1,
+          "SimultaneousTracking": 0,
+          "CanShootOnTheMove": false,
+          "StabilizerQuality": 1.0,
+          "FlashPerShot": 1.0,
+          "CanBeMerged": false,
+          "LowerVerticalAngle": 0,
+          "UpperVerticalAngles": 89,
+          "VerticalRotationSpeed": 30,
+          "MagazineSize": 2,
+          "MagazineReloadTimeMin": 0.0,
+          "MagazineReloadTimeMax": 0.0,
+          "ShotsPerBurstMin": 1,
+          "ShotsPerBurstMax": 1,
+          "TimeBetweenBurstsMin": 3.0,
+          "TimeBetweenBurstsMax": 4.0,
+          "TimeBetweenShotsInBurst": 0.0,
+          "ShortGroundAttackBurst": 0,
+          "NormalGroundAttackBurst": 1,
+          "LongGroundAttackBurst": 0
+        }
+      }
+    ]
+  },
+  "TurretUnits": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "TurretId",
+      "Order"
+    ],
+    "rows": [
+      {
+        "source": 1475,
+        "id": 11510,
+        "set": {
+          "UnitId": 11511,
+          "TurretId": 11510
+        },
+        "fallback": {
+          "Id": 1475,
+          "UnitId": 11,
+          "TurretId": 779,
+          "Order": 0
+        }
+      },
+      {
+        "source": 1475,
+        "id": 11511,
+        "set": {
+          "UnitId": 11513,
+          "TurretId": 11511
+        },
+        "fallback": {
+          "Id": 1475,
+          "UnitId": 11,
+          "TurretId": 779,
+          "Order": 0
+        }
+      }
+    ]
+  },
+  "TurretWeapons": {
+    "columns": [
+      "Id",
+      "WeaponId",
+      "TurretId",
+      "Order",
+      "WeaponChannel",
+      "WeaponPriority"
+    ],
+    "rows": [
+      {
+        "source": 1106,
+        "id": 11510,
+        "set": {
+          "TurretId": 11510,
+          "WeaponId": 11510
+        },
+        "fallback": {
+          "Id": 1106,
+          "WeaponId": 569,
+          "TurretId": 779,
+          "Order": 0,
+          "WeaponChannel": 0,
+          "WeaponPriority": 0
+        }
+      },
+      {
+        "source": 1106,
+        "id": 11511,
+        "set": {
+          "TurretId": 11511,
+          "WeaponId": 11511
+        },
+        "fallback": {
+          "Id": 1106,
+          "WeaponId": 569,
+          "TurretId": 779,
+          "Order": 0,
+          "WeaponChannel": 0,
+          "WeaponPriority": 0
+        }
+      }
+    ]
+  },
+  "Ammunitions": {
+    "columns": [
+      "Id",
+      "Name",
+      "HUDName",
+      "HUDIcon",
+      "HUDMultiplier",
+      "UiOptions",
+      "ModelFileName",
+      "AudioPreset",
+      "FXPreset",
+      "VfxCountPerShot",
+      "VfxCountPerShotMax",
+      "Airburst",
+      "SupplyCost",
+      "ResupplyTime",
+      "Damage",
+      "StressDamage",
+      "DamageOverTimeDuration",
+      "IgnoreCover",
+      "TargetType",
+      "ArmorTargeted",
+      "PenetrationAtMinRange",
+      "PenetrationAtGroundRange",
+      "NoDamageFalloff",
+      "TopArmorAttack",
+      "HealthAOERadius",
+      "StressAOERadius",
+      "OverpressureRadius",
+      "RadioFuseDistance",
+      "CriticMultiplier",
+      "CanBeIntercepted",
+      "CanBeTargeted",
+      "TrajectoryType",
+      "MinimalRange",
+      "GroundRange",
+      "LowAltRange",
+      "HighAltRange",
+      "NonSeadProjectileRangeOverride",
+      "SeadProjectileRangeOverride",
+      "OverflyHeight",
+      "MuzzleVelocity",
+      "MaxSpeed",
+      "Acceleration",
+      "DispersionHorizontalRadius",
+      "DispersionVerticalRadius",
+      "DispersionMinimal",
+      "LaunchMarginAngle",
+      "LoftAngle",
+      "LoftHeight",
+      "AimTimeMinOverride",
+      "AimTimeMaxOverride",
+      "GenerateSmoke",
+      "SmokeRadius",
+      "SmokeDuration",
+      "SmokeFadeDuration",
+      "Seeker",
+      "LaserGuided",
+      "SeekerAngle",
+      "MaxSeekerDistance",
+      "CanReaquire",
+      "AimStartDelay",
+      "MainEngineIgnitionDelay",
+      "RotationSpeed",
+      "BurnTime",
+      "PreEgnitionRotationSpeed",
+      "PreventReloadWhileTracked",
+      "StripingIgnore"
+    ],
+    "rows": [
+      {
+        "source": 427,
+        "id": 11510,
+        "set": {
+          "Name": "SCORPION 巡飞弹发射",
+          "HUDName": "巡飞弹",
+          "AimTimeMinOverride": 3,
+          "AimTimeMaxOverride": 3,
+          "SupplyCost": 500.0,
+          "ResupplyTime": 100.0,
+          "Damage": 0,
+          "StressDamage": 0,
+          "HealthAOERadius": 0,
+          "StressAOERadius": 0,
+          "OverpressureRadius": 0,
+          "RadioFuseDistance": 0,
+          "PenetrationAtMinRange": 0,
+          "PenetrationAtGroundRange": 0,
+          "MinimalRange": 0,
+          "CanBeTargeted": false
+        },
+        "expect": "Missile Ballistic 400 PrSM HE Guided",
+        "fallback": {
+          "Id": 427,
+          "Name": "Missile Ballistic 400 PrSM HE Guided",
+          "HUDName": "400mm HE PrSM",
+          "HUDIcon": "AMMO_PRSM",
+          "HUDMultiplier": 1,
+          "UiOptions": 0,
+          "ModelFileName": "Ammo\\ATACMS_LOD",
+          "AudioPreset": "AmmunitionSoundsPreset_SFX_Explosion_Cruise_Ballistic_Bombs_Small",
+          "FXPreset": "AMMUNITION_VFX_PRESET_BALLISTIC_MISSLE_SHOOT_PrSM_HE",
+          "VfxCountPerShot": 1,
+          "VfxCountPerShotMax": 0,
+          "Airburst": false,
+          "SupplyCost": 700.0,
+          "ResupplyTime": 120.0,
+          "Damage": 50.0,
+          "StressDamage": 800.0,
+          "DamageOverTimeDuration": 0.0,
+          "IgnoreCover": 0.4,
+          "TargetType": 1,
+          "ArmorTargeted": 2,
+          "PenetrationAtMinRange": 200.0,
+          "PenetrationAtGroundRange": 200.0,
+          "NoDamageFalloff": false,
+          "TopArmorAttack": false,
+          "HealthAOERadius": 40.0,
+          "StressAOERadius": 40.0,
+          "OverpressureRadius": 10.0,
+          "RadioFuseDistance": 0.0,
+          "CriticMultiplier": 1.0,
+          "CanBeIntercepted": false,
+          "CanBeTargeted": true,
+          "TrajectoryType": 300,
+          "MinimalRange": 500.0,
+          "GroundRange": 5000.0,
+          "LowAltRange": 0.0,
+          "HighAltRange": 0.0,
+          "NonSeadProjectileRangeOverride": 0.0,
+          "SeadProjectileRangeOverride": 0.0,
+          "OverflyHeight": 0,
+          "MuzzleVelocity": 0.0,
+          "MaxSpeed": 800.0,
+          "Acceleration": 100.0,
+          "DispersionHorizontalRadius": 5.0,
+          "DispersionVerticalRadius": 5.0,
+          "DispersionMinimal": 1.0,
+          "LaunchMarginAngle": 180.0,
+          "LoftAngle": 0,
+          "LoftHeight": 0,
+          "AimTimeMinOverride": 0.0,
+          "AimTimeMaxOverride": 0.0,
+          "GenerateSmoke": false,
+          "SmokeRadius": 0.0,
+          "SmokeDuration": 0.0,
+          "SmokeFadeDuration": 0.0,
+          "Seeker": 0,
+          "LaserGuided": true,
+          "SeekerAngle": 30.0,
+          "MaxSeekerDistance": 1000.0,
+          "CanReaquire": true,
+          "AimStartDelay": 0.0,
+          "MainEngineIgnitionDelay": 0.0,
+          "RotationSpeed": 10.0,
+          "BurnTime": 8.0,
+          "PreEgnitionRotationSpeed": 0.0,
+          "PreventReloadWhileTracked": false,
+          "StripingIgnore": false,
+          "IsTopArmorArmorAttack": false
+        }
+      },
+      {
+        "source": 427,
+        "id": 11511,
+        "set": {
+          "Name": "SCORPION 电视制导导弹发射",
+          "HUDName": "电视制导导弹",
+          "AimTimeMinOverride": 3,
+          "AimTimeMaxOverride": 3,
+          "SupplyCost": 500.0,
+          "ResupplyTime": 100.0,
+          "Damage": 0,
+          "StressDamage": 0,
+          "HealthAOERadius": 0,
+          "StressAOERadius": 0,
+          "OverpressureRadius": 0,
+          "RadioFuseDistance": 0,
+          "PenetrationAtMinRange": 0,
+          "PenetrationAtGroundRange": 0,
+          "MinimalRange": 0,
+          "CanBeTargeted": false,
+          "GroundRange": 900,
+          "HUDIcon": "AMMO_HELLFIRE_2"
+        },
+        "expect": "Missile Ballistic 400 PrSM HE Guided",
+        "fallback": {
+          "Id": 427,
+          "Name": "Missile Ballistic 400 PrSM HE Guided",
+          "HUDName": "400mm HE PrSM",
+          "HUDIcon": "AMMO_PRSM",
+          "HUDMultiplier": 1,
+          "UiOptions": 0,
+          "ModelFileName": "Ammo\\ATACMS_LOD",
+          "AudioPreset": "AmmunitionSoundsPreset_SFX_Explosion_Cruise_Ballistic_Bombs_Small",
+          "FXPreset": "AMMUNITION_VFX_PRESET_BALLISTIC_MISSLE_SHOOT_PrSM_HE",
+          "VfxCountPerShot": 1,
+          "VfxCountPerShotMax": 0,
+          "Airburst": false,
+          "SupplyCost": 700.0,
+          "ResupplyTime": 120.0,
+          "Damage": 50.0,
+          "StressDamage": 800.0,
+          "DamageOverTimeDuration": 0.0,
+          "IgnoreCover": 0.4,
+          "TargetType": 1,
+          "ArmorTargeted": 2,
+          "PenetrationAtMinRange": 200.0,
+          "PenetrationAtGroundRange": 200.0,
+          "NoDamageFalloff": false,
+          "TopArmorAttack": false,
+          "HealthAOERadius": 40.0,
+          "StressAOERadius": 40.0,
+          "OverpressureRadius": 10.0,
+          "RadioFuseDistance": 0.0,
+          "CriticMultiplier": 1.0,
+          "CanBeIntercepted": false,
+          "CanBeTargeted": true,
+          "TrajectoryType": 300,
+          "MinimalRange": 500.0,
+          "GroundRange": 5000.0,
+          "LowAltRange": 0.0,
+          "HighAltRange": 0.0,
+          "NonSeadProjectileRangeOverride": 0.0,
+          "SeadProjectileRangeOverride": 0.0,
+          "OverflyHeight": 0,
+          "MuzzleVelocity": 0.0,
+          "MaxSpeed": 800.0,
+          "Acceleration": 100.0,
+          "DispersionHorizontalRadius": 5.0,
+          "DispersionVerticalRadius": 5.0,
+          "DispersionMinimal": 1.0,
+          "LaunchMarginAngle": 180.0,
+          "LoftAngle": 0,
+          "LoftHeight": 0,
+          "AimTimeMinOverride": 0.0,
+          "AimTimeMaxOverride": 0.0,
+          "GenerateSmoke": false,
+          "SmokeRadius": 0.0,
+          "SmokeDuration": 0.0,
+          "SmokeFadeDuration": 0.0,
+          "Seeker": 0,
+          "LaserGuided": true,
+          "SeekerAngle": 30.0,
+          "MaxSeekerDistance": 1000.0,
+          "CanReaquire": true,
+          "AimStartDelay": 0.0,
+          "MainEngineIgnitionDelay": 0.0,
+          "RotationSpeed": 10.0,
+          "BurnTime": 8.0,
+          "PreEgnitionRotationSpeed": 0.0,
+          "PreventReloadWhileTracked": false,
+          "StripingIgnore": false,
+          "IsTopArmorArmorAttack": false
+        }
+      }
+    ]
+  },
+  "WeaponAmmunitions": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "WeaponId",
+      "AmmunitionId",
+      "Order",
+      "Quantity"
+    ],
+    "rows": [
+      {
+        "source": 1938,
+        "id": 11510,
+        "set": {
+          "UnitId": 11511,
+          "WeaponId": 11510,
+          "AmmunitionId": 11510
+        },
+        "fallback": {
+          "Id": 1938,
+          "UnitId": 11,
+          "WeaponId": 569,
+          "AmmunitionId": 427,
+          "Order": 0,
+          "Quantity": 2
+        }
+      },
+      {
+        "source": 1938,
+        "id": 11511,
+        "set": {
+          "UnitId": 11513,
+          "WeaponId": 11511,
+          "AmmunitionId": 11511
+        },
+        "fallback": {
+          "Id": 1938,
+          "UnitId": 11,
+          "WeaponId": 569,
+          "AmmunitionId": 427,
+          "Order": 0,
+          "Quantity": 2
+        }
+      }
+    ]
+  }
+}

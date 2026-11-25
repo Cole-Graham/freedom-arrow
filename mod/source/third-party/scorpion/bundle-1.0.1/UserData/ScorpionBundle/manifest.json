@@ -1,0 +1,19 @@
+{
+  "gameBuild": "1.2.2.1/4e7b9b5b6244",
+  "components": {
+    "EG18": "1.0.3",
+    "SplitPatriot": "1.1.7",
+    "LoiteringMunition": "2.0-net-alpha.3"
+  },
+  "profile": "offline",
+  "files": {
+    "Mods/EG18.dll": "46269d5a79cb16ae16ac4e4e000b0037502c63a01f5918837d4c4c589d3bd696",
+    "Mods/LoiteringMunition.dll": "21cd6aa7d42a9377fda2ac5341dab1c5d42b9bb7712a2e4b5232be0e5dc36917",
+    "Mods/SplitPatriot.dll": "1bd7b02458549e5bc8a4ef14c91a1cc68c8fda2dc41315240b032e6caad09693",
+    "UserData/EG18/card.json": "84e3dda8feaea265dc6a5681aea7f10bc3fac186814798b83de690cc85eb3903",
+    "UserData/LoiteringMunition/network-lab.marker": "c8e7a17ace76fe91cbff120abd7d409460e0b5ae629947ee7a8a1c2a8e57f754",
+    "UserData/LoiteringMunition/network.json": "d91678307184ece1a222382530b63eeae25fb72098e36dcb901db2be3b189315",
+    "UserData/LoiteringMunition/unit.json": "90e9677328e892dd7c95dace7ceeedb0e1a59a71fe3c849aa6b975a747f96bda",
+    "UserData/SplitPatriot/card.json": "744702313ad26db12baeea18296cf693fb3650d61f0cf6e784d524fc25d6fa68"
+  }
+}

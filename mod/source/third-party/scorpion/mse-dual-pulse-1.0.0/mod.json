@@ -1,0 +1,8 @@
+{
+  "id": "scorpion.mse.dualpulse",
+  "name": "PAC-3 MSE 双脉冲",
+  "version": "1.0.0",
+  "type": "mod",
+  "author": "Broken Arrow Mods",
+  "description": "PAC-3 MSE 首段 80%、末段 20%，常规转向 120°/秒。"
+}

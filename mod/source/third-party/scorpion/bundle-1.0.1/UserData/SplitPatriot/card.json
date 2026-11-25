@@ -1,0 +1,409 @@
+{
+  "Sensors": {
+    "columns": [
+      "Id",
+      "Name",
+      "IsDefault",
+      "OpticsGround",
+      "OpticsHighAltitude",
+      "OpticsLowAltitude",
+      "ModelFileName"
+    ],
+    "rows": [
+      {
+        "source": 8,
+        "id": 14200,
+        "set": {
+          "Name": "Patriot launcher",
+          "OpticsGround": 0,
+          "OpticsHighAltitude": 0,
+          "OpticsLowAltitude": 0
+        },
+        "expect": "Optics SAM HA + Bad",
+        "fallback": {
+          "IsDefault": true,
+          "ModelFileName": null
+        }
+      },
+      {
+        "source": 8,
+        "id": 14201,
+        "set": {
+          "Name": "LTAMDS optics",
+          "OpticsGround": 625.0,
+          "OpticsHighAltitude": 2500.0,
+          "OpticsLowAltitude": 2500.0
+        },
+        "expect": "Optics SAM HA + Bad",
+        "fallback": {
+          "IsDefault": true,
+          "ModelFileName": null
+        }
+      }
+    ]
+  },
+  "Abilities": {
+    "columns": [
+      "Id",
+      "Name",
+      "IsDefault",
+      "ModelFileName",
+      "ECMAccuracyMultiplier",
+      "IsRadar",
+      "RadarLowAltOpticsModifier",
+      "RadarHighAltOpticsModifier",
+      "RadarLowAltWeaponRangeModifier",
+      "RadarHighAltWeaponRangeModifier",
+      "RadarSwitchCooldown",
+      "IsRadarStatic",
+      "IsLaserDesignator",
+      "LaserMaxRange",
+      "LaserUsableInMove",
+      "IsInfantrySprint",
+      "SprintDuration",
+      "SprintCooldown",
+      "IsSmoke",
+      "SmokeAmmunitionId",
+      "SmokeAmmunitionQuantity",
+      "SmokeCooldown",
+      "IsAPS",
+      "APSHitboxProportion",
+      "APSQuantity",
+      "APSCooldown",
+      "APSSupplyCost",
+      "APSResupplyTime",
+      "IsDecoy",
+      "DecoyFXPreset",
+      "DecoyQuantity",
+      "DecoyAccuracyMultiplier",
+      "DecoyDuration",
+      "DecoyCooldown",
+      "DecoySupplyCost",
+      "DecoyResupplyTime",
+      "IsResupplyAbility",
+      "ResupplyIconType",
+      "ResupplyRadius",
+      "CanHeal",
+      "CanRepair",
+      "CanResupply",
+      "ResupplyPoints",
+      "CanSelfSupply",
+      "CanWorkOnMove",
+      "SupplyPointCost",
+      "SupplyTargetsMask",
+      "IsSneakAbility",
+      "SneakCoverBonus",
+      "SneakVehicleSpeedMultiplier",
+      "IsArtilleryAutoFire"
+    ],
+    "rows": [
+      {
+        "source": 59,
+        "id": 14200,
+        "set": {
+          "Name": "Patriot radar",
+          "RadarLowAltOpticsModifier": 1.5,
+          "RadarHighAltOpticsModifier": 3.0
+        },
+        "expect": "Radar LongRange Static",
+        "fallback": {
+          "IsDefault": true,
+          "ModelFileName": null,
+          "ECMAccuracyMultiplier": 0.0,
+          "IsRadar": true,
+          "RadarLowAltWeaponRangeModifier": 2.0,
+          "RadarHighAltWeaponRangeModifier": 3.0,
+          "RadarSwitchCooldown": 5.0,
+          "IsRadarStatic": true,
+          "IsLaserDesignator": false,
+          "LaserMaxRange": 0.0,
+          "LaserUsableInMove": false,
+          "IsInfantrySprint": false,
+          "SprintDuration": 0.0,
+          "SprintCooldown": 0.0,
+          "IsSmoke": false,
+          "SmokeAmmunitionId": 0,
+          "SmokeAmmunitionQuantity": 0,
+          "SmokeCooldown": 0.0,
+          "IsAPS": false,
+          "APSHitboxProportion": 0.0,
+          "APSQuantity": 0,
+          "APSCooldown": 0.0,
+          "APSSupplyCost": 0.0,
+          "APSResupplyTime": 0.0,
+          "IsDecoy": false,
+          "DecoyFXPreset": null,
+          "DecoyQuantity": 0,
+          "DecoyAccuracyMultiplier": 0.0,
+          "DecoyDuration": 0.0,
+          "DecoyCooldown": 0.0,
+          "DecoySupplyCost": 0.0,
+          "DecoyResupplyTime": 0.0,
+          "IsResupplyAbility": false,
+          "ResupplyIconType": 0,
+          "ResupplyRadius": 0.0,
+          "CanHeal": false,
+          "CanRepair": false,
+          "CanResupply": false,
+          "ResupplyPoints": 0,
+          "CanSelfSupply": false,
+          "CanWorkOnMove": false,
+          "SupplyPointCost": 1.0,
+          "SupplyTargetsMask": 0,
+          "IsSneakAbility": false,
+          "SneakCoverBonus": 2.0,
+          "SneakVehicleSpeedMultiplier": 1.0,
+          "IsArtilleryAutoFire": false
+        }
+      }
+    ]
+  },
+  "Units": {
+    "columns": [
+      "Id",
+      "DisplayInArmory",
+      "IsUnitModification",
+      "HUDName",
+      "Name",
+      "CountryId",
+      "Description",
+      "ModelFileName",
+      "PortraitFileName",
+      "ThumbnailFileName",
+      "AudioPreset",
+      "Cost",
+      "UpkeepMultiplier",
+      "TimeModifierRefund",
+      "TimeModifierResurrect",
+      "Type",
+      "CategoryType",
+      "Role",
+      "Length",
+      "Width",
+      "Height",
+      "Weight",
+      "Stealth",
+      "InfantrySlots",
+      "MaxStress",
+      "WaterDiveOffset",
+      "ContentMembership"
+    ],
+    "rows": [
+      {
+        "source": 47,
+        "id": 14200,
+        "set": {
+          "Name": "AN/MPQ-65",
+          "HUDName": "AN/MPQ-65",
+          "Description": "爱国者配属雷达 · 3 条共享火控通道",
+          "CategoryType": 3,
+          "Role": 15,
+          "DisplayInArmory": false,
+          "InfantrySlots": 0,
+          "Cost": 108
+        },
+        "expect": "Humvee",
+        "fallback": {
+          "IsUnitModification": false,
+          "CountryId": 2,
+          "ModelFileName": "US_HMMWV_BASE",
+          "PortraitFileName": "US\\HUMVEE\\HUMVEE",
+          "ThumbnailFileName": "US_HUMVEE_PATROL-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_HUMVEE",
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": -210.0,
+          "Type": 4,
+          "Length": 4.9,
+          "Width": 2.2,
+          "Height": 2.3,
+          "Weight": 4000,
+          "Stealth": 1.0,
+          "MaxStress": 1000.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1
+        }
+      },
+      {
+        "source": 47,
+        "id": 14201,
+        "set": {
+          "Name": "LTAMDS 鬼眼",
+          "HUDName": "LTAMDS 鬼眼",
+          "Description": "爱国者配属雷达 · 6 条共享火控通道",
+          "CategoryType": 3,
+          "Role": 15,
+          "DisplayInArmory": false,
+          "InfantrySlots": 0,
+          "Cost": 138
+        },
+        "expect": "Humvee",
+        "fallback": {
+          "IsUnitModification": false,
+          "CountryId": 2,
+          "ModelFileName": "US_HMMWV_BASE",
+          "PortraitFileName": "US\\HUMVEE\\HUMVEE",
+          "ThumbnailFileName": "US_HUMVEE_PATROL-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_HUMVEE",
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": -210.0,
+          "Type": 4,
+          "Length": 4.9,
+          "Width": 2.2,
+          "Height": 2.3,
+          "Weight": 4000,
+          "Stealth": 1.0,
+          "MaxStress": 1000.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1
+        }
+      }
+    ]
+  },
+  "UnitArmors": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "ArmorId"
+    ],
+    "rows": [
+      {
+        "source": 66,
+        "id": 14200,
+        "set": {
+          "UnitId": 14200
+        },
+        "fallback": {
+          "ArmorId": 68
+        }
+      },
+      {
+        "source": 66,
+        "id": 14201,
+        "set": {
+          "UnitId": 14201
+        },
+        "fallback": {
+          "ArmorId": 68
+        }
+      }
+    ]
+  },
+  "UnitPropulsions": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "MobilityId"
+    ],
+    "rows": [
+      {
+        "source": 464,
+        "id": 14200,
+        "set": {
+          "UnitId": 14200
+        },
+        "fallback": {
+          "MobilityId": 20
+        }
+      },
+      {
+        "source": 464,
+        "id": 14201,
+        "set": {
+          "UnitId": 14201
+        },
+        "fallback": {
+          "MobilityId": 20
+        }
+      }
+    ]
+  },
+  "SensorUnits": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "SensorId"
+    ],
+    "rows": [
+      {
+        "source": 351,
+        "id": 14200,
+        "set": {
+          "UnitId": 14200,
+          "SensorId": 8
+        },
+        "fallback": {}
+      },
+      {
+        "source": 351,
+        "id": 14201,
+        "set": {
+          "UnitId": 14201,
+          "SensorId": 14201
+        },
+        "fallback": {}
+      }
+    ]
+  },
+  "UnitAbilities": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "AbilityId"
+    ],
+    "rows": [
+      {
+        "source": 453,
+        "id": 14200,
+        "set": {
+          "UnitId": 14200,
+          "AbilityId": 14200
+        },
+        "fallback": {}
+      },
+      {
+        "source": 453,
+        "id": 14201,
+        "set": {
+          "UnitId": 14201,
+          "AbilityId": 14200
+        },
+        "fallback": {}
+      }
+    ]
+  },
+  "StockBalance": {
+    "launchers": [
+      {
+        "id": 163,
+        "cost": 58
+      },
+      {
+        "id": 251,
+        "cost": 72
+      },
+      {
+        "id": 448,
+        "cost": 64
+      }
+    ],
+    "availabilityXp0": 4,
+    "replaceSensor": {
+      "from": 8,
+      "to": 14200
+    },
+    "removeAbility": 59,
+    "weapons": [
+      236,
+      238,
+      346,
+      347,
+      366,
+      650,
+      651
+    ],
+    "multiTargetTracking": 6,
+    "simultaneousTracking": 6
+  }
+}

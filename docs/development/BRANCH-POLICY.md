@@ -94,6 +94,7 @@ Work that is built on its own branch and merged later gets its own block of row 
 - **Owner rows** are made only inside `g.scope(owner)` with `g.add(...)`, which takes the next free ID in the owner's block. `g.put(table, max(U)+1, ...)` does not work there.
 - **Order:** the owner section runs after every live section and the final checks, then runs those checks again on its own rows. A section added after the hook fails the build. Live IDs therefore do not change when the owner's work is loaded.
 - **ROC** (Osama, 25 Nov 2026): branch `codex/batch/shawn/roc`, code in `tools/roc/`. Units 5000-5999, options 28000-28999, specializations 60-69, country 9, every other table 2900000-2999999. On `codex/development` there is no `tools/roc/roc.py`, so the hook adds nothing.
+- **SCORPION / experimental features** (Osama, 25 Nov 2026): branch `codex/batch/osama/experimental-features` holds focolate's SCORPION mechanics, staged in `mod/source/third-party/scorpion/` and not wired into any build. Units 9600-14299, specialization 9700, every other table 9600-14299. Neither FA nor vanilla has rows there (0.9.7-dev.7 ID survey).
 
 ## Document change log
 
@@ -104,3 +105,4 @@ Work that is built on its own branch and merged later gets its own block of row 
 - 2026-11-19 06:4x PST (America/Los_Angeles) — 0.9.1 designated: `codex/0.9.1-development` created at `bc085f2d`; `codex/0.9-development` frozen; playtests 0.9.1, 0.9.2, … and dev builds 0.9.1-dev.N (Lateralus).
 - 2026-11-24 19:5x PST (America/Los_Angeles) — Two streams (Osama 19:42): gameplay = `codex/development`, models = `codex/models` (created at `f285615d`); `codex/assets-development` superseded.
 - 2026-11-25 00:5x PST (America/Los_Angeles) — Reserved ID blocks (`mod/id-reservations.json`, guard in `pla_graph.Graph` and `roc_hook`); first block for the ROC specialization branch `codex/batch/shawn/roc` (Osama, 25 Nov 00:5x).
+- 2026-11-25 14:15:36 PST (America/Los_Angeles) — Reserved ID block for the experimental-features branch (SCORPION mechanics, Osama 25 Nov).

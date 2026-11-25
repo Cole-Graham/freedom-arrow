@@ -1,0 +1,13 @@
+{
+  "GameBuild": "1.2.2.1/4e7b9b5b6244",
+  "FreedomArrowVersion": "1.1.10+c1e2315762c05f1611eec39cc9f09a4dff024aa3",
+  "ScorpionVersion": "2.0-net-alpha.3",
+  "NetworkSchemaVersion": 1,
+  "MultiplayerEnabled": false,
+  "OfflineControlEnabled": true,
+  "UnitId": 427,
+  "SampleIntervalMs": 200,
+  "PrivateFightId": 0,
+  "PrivateScenarioGuid": "",
+  "UnitOverlaySha256": "90e9677328e892dd7c95dace7ceeedb0e1a59a71fe3c849aa6b975a747f96bda"
+}

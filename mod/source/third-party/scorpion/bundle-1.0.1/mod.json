@@ -1,0 +1,8 @@
+{
+  "id": "scorpion.fa.threemechanics",
+  "name": "SCORPION 三机制整合包",
+  "type": "mod",
+  "version": "1.0.1",
+  "author": "SCORPION",
+  "description": "EG18、分体爱国者、两型可控巡飞弹。请停用旧版同名模块后导入。默认巡飞弹仅离线。"
+}

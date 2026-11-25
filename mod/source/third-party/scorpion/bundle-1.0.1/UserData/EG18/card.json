@@ -1,0 +1,640 @@
+{
+  "Units": {
+    "columns": [
+      "Id",
+      "DisplayInArmory",
+      "IsUnitModification",
+      "HUDName",
+      "Name",
+      "CountryId",
+      "Description",
+      "ModelFileName",
+      "PortraitFileName",
+      "ThumbnailFileName",
+      "AudioPreset",
+      "Cost",
+      "UpkeepMultiplier",
+      "TimeModifierRefund",
+      "TimeModifierResurrect",
+      "Type",
+      "CategoryType",
+      "Role",
+      "Length",
+      "Width",
+      "Height",
+      "Weight",
+      "Stealth",
+      "InfantrySlots",
+      "MaxStress",
+      "WaterDiveOffset",
+      "ContentMembership"
+    ],
+    "rows": [
+      {
+        "source": 292,
+        "id": 13800,
+        "set": {
+          "Name": "EG18",
+          "HUDName": "EG18",
+          "Cost": 500,
+          "Description": "以本机为中心，水平 7000 米内开雷达的敌方重防进入恐慌：导弹命中率上限 40%，发射间隔三倍，视野减半。",
+          "CountryId": 2
+        },
+        "expect": "F/A-18D Hornet ",
+        "fallback": {
+          "DisplayInArmory": true,
+          "IsUnitModification": false,
+          "ModelFileName": "US_FA18D",
+          "PortraitFileName": "US\\FA_18D\\FA_18D",
+          "ThumbnailFileName": "US_FA18D-Label",
+          "AudioPreset": "UNIT_SOUND_PRESET_F-18C_D_Hornet",
+          "UpkeepMultiplier": 1.0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": 0.0,
+          "Type": 16,
+          "CategoryType": 6,
+          "Role": 164,
+          "Length": 16.0,
+          "Width": 3.0,
+          "Height": 3.0,
+          "Weight": 20000,
+          "Stealth": 1.0,
+          "InfantrySlots": 0,
+          "MaxStress": 1000.0,
+          "WaterDiveOffset": 0.0,
+          "ContentMembership": -1
+        }
+      }
+    ]
+  },
+  "UnitAbilities": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "AbilityId"
+    ],
+    "rows": [
+      {
+        "source": 837,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "AbilityId": 100
+        }
+      },
+      {
+        "source": 838,
+        "id": 13801,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "AbilityId": 4
+        }
+      },
+      {
+        "source": 839,
+        "id": 13802,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "AbilityId": 31
+        }
+      }
+    ]
+  },
+  "UnitPropulsions": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "MobilityId"
+    ],
+    "rows": [
+      {
+        "source": 754,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "MobilityId": 210
+        }
+      },
+      {
+        "source": 755,
+        "id": 13801,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "MobilityId": 209
+        }
+      }
+    ]
+  },
+  "SensorUnits": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "SensorId"
+    ],
+    "rows": [
+      {
+        "source": 534,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "SensorId": 6
+        }
+      }
+    ]
+  },
+  "UnitArmors": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "ArmorId"
+    ],
+    "rows": [
+      {
+        "source": 458,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800
+        },
+        "fallback": {
+          "ArmorId": 64
+        }
+      }
+    ]
+  },
+  "SpecializationAvailabilities": {
+    "columns": [
+      "Id",
+      "SpecializationId",
+      "UnitId",
+      "MaxAvailabilityXp0",
+      "MaxAvailabilityXp1",
+      "MaxAvailabilityXp2",
+      "MaxAvailabilityXp3"
+    ],
+    "rows": [
+      {
+        "source": 453,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800,
+          "SpecializationId": 9700
+        },
+        "fallback": {
+          "MaxAvailabilityXp0": 2,
+          "MaxAvailabilityXp1": 0,
+          "MaxAvailabilityXp2": 0,
+          "MaxAvailabilityXp3": 0
+        }
+      }
+    ]
+  },
+  "Turrets": {
+    "columns": [
+      "Id",
+      "Name",
+      "ModelFileName",
+      "IsDefault",
+      "IsDynamicTurret",
+      "FullRotation",
+      "LeftHorizontalAngle",
+      "RightHorizontalAngle",
+      "HorizontalRotationSpeed"
+    ],
+    "rows": [
+      {
+        "source": 160,
+        "id": 13800,
+        "set": {
+          "Name": "EG18 empty nose station",
+          "IsDefault": true
+        },
+        "expect": "Turret Empty",
+        "fallback": {
+          "ModelFileName": null,
+          "IsDynamicTurret": false,
+          "FullRotation": false,
+          "LeftHorizontalAngle": 0.0,
+          "RightHorizontalAngle": 0.0,
+          "HorizontalRotationSpeed": 0.0
+        }
+      },
+      {
+        "source": 554,
+        "id": 13801,
+        "set": {
+          "Name": "EG18 fixed HARM station 1",
+          "IsDefault": true
+        },
+        "expect": "PylonTurret HARM ",
+        "fallback": {
+          "ModelFileName": "Weapon/HARM",
+          "IsDynamicTurret": false,
+          "FullRotation": false,
+          "LeftHorizontalAngle": 0.0,
+          "RightHorizontalAngle": 0.0,
+          "HorizontalRotationSpeed": 0.0
+        }
+      },
+      {
+        "source": 554,
+        "id": 13802,
+        "set": {
+          "Name": "EG18 fixed HARM station 2",
+          "IsDefault": true
+        },
+        "expect": "PylonTurret HARM ",
+        "fallback": {
+          "ModelFileName": "Weapon/HARM",
+          "IsDynamicTurret": false,
+          "FullRotation": false,
+          "LeftHorizontalAngle": 0.0,
+          "RightHorizontalAngle": 0.0,
+          "HorizontalRotationSpeed": 0.0
+        }
+      },
+      {
+        "source": 554,
+        "id": 13803,
+        "set": {
+          "Name": "EG18 fixed HARM station 3",
+          "IsDefault": true
+        },
+        "expect": "PylonTurret HARM ",
+        "fallback": {
+          "ModelFileName": "Weapon/HARM",
+          "IsDynamicTurret": false,
+          "FullRotation": false,
+          "LeftHorizontalAngle": 0.0,
+          "RightHorizontalAngle": 0.0,
+          "HorizontalRotationSpeed": 0.0
+        }
+      },
+      {
+        "source": 554,
+        "id": 13804,
+        "set": {
+          "Name": "EG18 fixed HARM station 4",
+          "IsDefault": true
+        },
+        "expect": "PylonTurret HARM ",
+        "fallback": {
+          "ModelFileName": "Weapon/HARM",
+          "IsDynamicTurret": false,
+          "FullRotation": false,
+          "LeftHorizontalAngle": 0.0,
+          "RightHorizontalAngle": 0.0,
+          "HorizontalRotationSpeed": 0.0
+        }
+      }
+    ]
+  },
+  "TurretUnits": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "TurretId",
+      "Order"
+    ],
+    "rows": [
+      {
+        "source": 939,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800,
+          "TurretId": 13800,
+          "Order": 0
+        },
+        "fallback": {}
+      },
+      {
+        "source": 851,
+        "id": 13801,
+        "set": {
+          "UnitId": 13800,
+          "TurretId": 13801,
+          "Order": 1
+        },
+        "fallback": {}
+      },
+      {
+        "source": 851,
+        "id": 13802,
+        "set": {
+          "UnitId": 13800,
+          "TurretId": 13802,
+          "Order": 2
+        },
+        "fallback": {}
+      },
+      {
+        "source": 851,
+        "id": 13803,
+        "set": {
+          "UnitId": 13800,
+          "TurretId": 13803,
+          "Order": 3
+        },
+        "fallback": {}
+      },
+      {
+        "source": 851,
+        "id": 13804,
+        "set": {
+          "UnitId": 13800,
+          "TurretId": 13804,
+          "Order": 4
+        },
+        "fallback": {}
+      }
+    ]
+  },
+  "TurretWeapons": {
+    "columns": [
+      "Id",
+      "WeaponId",
+      "TurretId",
+      "Order",
+      "WeaponChannel",
+      "WeaponPriority"
+    ],
+    "rows": [
+      {
+        "source": 859,
+        "id": 13800,
+        "set": {
+          "TurretId": 13801
+        },
+        "fallback": {
+          "WeaponId": 395,
+          "Order": 0,
+          "WeaponChannel": 10,
+          "WeaponPriority": 0
+        }
+      },
+      {
+        "source": 859,
+        "id": 13801,
+        "set": {
+          "TurretId": 13802
+        },
+        "fallback": {
+          "WeaponId": 395,
+          "Order": 0,
+          "WeaponChannel": 10,
+          "WeaponPriority": 0
+        }
+      },
+      {
+        "source": 859,
+        "id": 13802,
+        "set": {
+          "TurretId": 13803
+        },
+        "fallback": {
+          "WeaponId": 395,
+          "Order": 0,
+          "WeaponChannel": 10,
+          "WeaponPriority": 0
+        }
+      },
+      {
+        "source": 859,
+        "id": 13803,
+        "set": {
+          "TurretId": 13804
+        },
+        "fallback": {
+          "WeaponId": 395,
+          "Order": 0,
+          "WeaponChannel": 10,
+          "WeaponPriority": 0
+        }
+      }
+    ]
+  },
+  "WeaponAmmunitions": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "WeaponId",
+      "AmmunitionId",
+      "Order",
+      "Quantity"
+    ],
+    "rows": [
+      {
+        "source": 1259,
+        "id": 13800,
+        "set": {
+          "UnitId": 13800,
+          "Quantity": 1
+        },
+        "fallback": {
+          "WeaponId": 395,
+          "AmmunitionId": 298,
+          "Order": 0
+        }
+      }
+    ]
+  },
+  "Modifications": {
+    "columns": [
+      "Id",
+      "UnitId",
+      "Name",
+      "Type",
+      "UIName",
+      "ThumbnailFileName",
+      "Order"
+    ],
+    "rows": [
+      {
+        "source": 538,
+        "id": 13803,
+        "set": {
+          "UnitId": 13800,
+          "Name": "EG18 centerline"
+        },
+        "expect": "Ability FA18D ",
+        "fallback": {
+          "Type": 6,
+          "UIName": "Custom_Slot_Centerline",
+          "ThumbnailFileName": null,
+          "Order": 0
+        }
+      }
+    ]
+  },
+  "Options": {
+    "columns": [
+      "Id",
+      "IsDefault",
+      "ModificationId",
+      "Name",
+      "Order",
+      "UIName",
+      "ConcatenateWithUnitName",
+      "ReplaceUnitName",
+      "ReplaceUnitId",
+      "Cost",
+      "TimeModifierRefund",
+      "TimeModifierResurrect",
+      "OptionPicture",
+      "ThumbnailOverride",
+      "PortraitOverride",
+      "AudioPresetOverride",
+      "ArmorId",
+      "MobilityId",
+      "MainSensorId",
+      "ExtraSensorId",
+      "StealthOverride",
+      "IsDynamicTurretOption",
+      "Ability1Id",
+      "Ability2Id",
+      "Ability3Id",
+      "Turret0Id",
+      "Turret1Id",
+      "Turret2Id",
+      "Turret3Id",
+      "Turret4Id",
+      "Turret5Id",
+      "Turret6Id",
+      "Turret7Id",
+      "Turret8Id",
+      "Turret9Id",
+      "Turret10Id",
+      "Turret11Id",
+      "Turret12Id",
+      "Turret13Id",
+      "Turret14Id",
+      "Turret15Id",
+      "Turret16Id",
+      "Turret17Id",
+      "Turret18Id",
+      "Turret19Id",
+      "Turret20Id"
+    ],
+    "rows": [
+      {
+        "source": 1921,
+        "id": 13818,
+        "set": {
+          "ModificationId": 13803,
+          "Name": "EG18 Ability FA18D Empty",
+          "Cost": 0
+        },
+        "expect": "Ability FA18D Empty",
+        "fallback": {
+          "IsDefault": false,
+          "Order": 0,
+          "UIName": "Custom_Option_Empty",
+          "ConcatenateWithUnitName": null,
+          "ReplaceUnitName": null,
+          "ReplaceUnitId": 0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": 0.0,
+          "OptionPicture": "EMPTY",
+          "ThumbnailOverride": null,
+          "PortraitOverride": null,
+          "AudioPresetOverride": null,
+          "ArmorId": 0,
+          "MobilityId": 0,
+          "MainSensorId": 0,
+          "ExtraSensorId": 0,
+          "StealthOverride": 0.0,
+          "IsDynamicTurretOption": false,
+          "Ability1Id": 4,
+          "Ability2Id": 31,
+          "Ability3Id": 0,
+          "Turret0Id": 0,
+          "Turret1Id": 0,
+          "Turret2Id": 0,
+          "Turret3Id": 0,
+          "Turret4Id": 0,
+          "Turret5Id": 0,
+          "Turret6Id": 0,
+          "Turret7Id": 0,
+          "Turret8Id": 0,
+          "Turret9Id": 0,
+          "Turret10Id": 0,
+          "Turret11Id": 0,
+          "Turret12Id": 0,
+          "Turret13Id": 0,
+          "Turret14Id": 0,
+          "Turret15Id": 0,
+          "Turret16Id": 0,
+          "Turret17Id": 0,
+          "Turret18Id": 0,
+          "Turret19Id": 0,
+          "Turret20Id": 0
+        }
+      },
+      {
+        "source": 1922,
+        "id": 13819,
+        "set": {
+          "ModificationId": 13803,
+          "Name": "EG18 Ability FA18D Laser",
+          "Cost": 0
+        },
+        "expect": "Ability FA18D Laser",
+        "fallback": {
+          "IsDefault": false,
+          "Order": 1,
+          "UIName": "Custom_Option_Designation_pod",
+          "ConcatenateWithUnitName": null,
+          "ReplaceUnitName": null,
+          "ReplaceUnitId": 0,
+          "TimeModifierRefund": 0.0,
+          "TimeModifierResurrect": 0.0,
+          "OptionPicture": "LASER",
+          "ThumbnailOverride": null,
+          "PortraitOverride": null,
+          "AudioPresetOverride": null,
+          "ArmorId": 0,
+          "MobilityId": 0,
+          "MainSensorId": 0,
+          "ExtraSensorId": 0,
+          "StealthOverride": 0.0,
+          "IsDynamicTurretOption": false,
+          "Ability1Id": 100,
+          "Ability2Id": 31,
+          "Ability3Id": 0,
+          "Turret0Id": 0,
+          "Turret1Id": 0,
+          "Turret2Id": 0,
+          "Turret3Id": 0,
+          "Turret4Id": 0,
+          "Turret5Id": 0,
+          "Turret6Id": 0,
+          "Turret7Id": 0,
+          "Turret8Id": 0,
+          "Turret9Id": 0,
+          "Turret10Id": 0,
+          "Turret11Id": 0,
+          "Turret12Id": 0,
+          "Turret13Id": 0,
+          "Turret14Id": 0,
+          "Turret15Id": 0,
+          "Turret16Id": 0,
+          "Turret17Id": 0,
+          "Turret18Id": 0,
+          "Turret19Id": 0,
+          "Turret20Id": 0
+        }
+      }
+    ]
+  }
+}
