@@ -1,8 +1,9 @@
 """FB-10 = AMRAAM stat clone (Lateralus 24 Nov 2026 18:4x PST, thread 1568104480459722894: "Change the FB-10 missile into an AMRAAM stat clone
 (same as the AMRAAM on the SLAMRAAM unit)").
 Round 2009373 "PLA PGL-625 FB-10 ammunition" (PGL-625 920, Lynx 66 SPAAG 1439) takes every value of 464 "Missile AA AMRAAM Ground" (SLAMRAAM,
-NASAMS) except its own name, icon, missile model, sound and impact effect. Runs after shorad_radar_1124.py, so it also takes that module's
-AMRAAM burn time (2.65 s). Before: Seeker 10 (IR) 1200 low / 1200 high / 600 ground, MaxSpeed 700; after: Seeker 50 (active radar) as AMRAAM.
+NASAMS) except its own name, icon, missile model, sound and impact effect. Runs BEFORE shorad_radar_1124.py (Lateralus 18:5x 'queue it', China radar
+proposal): the PGL-625 and Lynx 66 SPAAG then carry a radar-guided missile, so the split puts them on SA SHORAD, and the burn table gives the FB-10 the
+AMRAAM's 2.65 s. Before: Seeker 10 (IR) 1200 low / 1200 high / 600 ground, MaxSpeed 700; after: Seeker 50 (active radar) as AMRAAM.
 Its helicopter range follows the AMRAAM's."""
 FB10, AMRAAM = 2009373, 464
 KEEP = ('Id', 'Name', 'HUDName', 'HUDIcon', 'ModelFileName', 'AudioPreset', 'FXPreset')

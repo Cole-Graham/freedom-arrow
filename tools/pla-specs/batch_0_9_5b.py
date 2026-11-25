@@ -868,11 +868,12 @@ lynx_cards_1124.apply_extra(t,g,ok,rec)
 # ---------- SHORAD radar split (Lateralus 24 Nov 2026 15:5x-16:4x PST, thread 1568104480459722894): SA SHORAD rows 58/60/62 Low range + optics
 # 1.25 -> 1.5; gun/IR units on new IR SHORAD rows (range 1.25, optics 1.5); IR rounds of SA units get compensated copies; option B burn times;
 # helicopters stay x1.25; radar icon labels. Adds ability/ammo rows: after the SRAW A unit so its ids stay. See lateralus/shorad_radar_1124.py.
+# FB-10 = AMRAAM stat clone (Lateralus 24 Nov 2026 18:4x PST); runs BEFORE the SHORAD split so the PGL-625 / Lynx 66 SPAAG count as radar-guided (SA)
+# and the FB-10 takes the AMRAAM burn there (Lateralus 18:5x 'queue it': China radar proposal).
+import fb10_amraam_1124;print('FB-10',fb10_amraam_1124.apply(t,g,ok,rec,_heli)['changed'])
 import shorad_radar_1124;_sr=shorad_radar_1124.apply(t,g,ok,rec,_HR,_heli)
 _heli['radar']=_HR.contract(t)['radar'];_heli['ammo'].update({str(k):v for k,v in _sr['heli_ammo'].items()})
 ok(sum(1 for r in _heli['radar'] if r.get('label'))>=3,'radar groups with an icon label')
-# ---------- FB-10 = AMRAAM stat clone (Lateralus 24 Nov 2026 18:4x PST, thread 1568104480459722894). After the SHORAD split (takes its AMRAAM burn).
-import fb10_amraam_1124;print('FB-10',fb10_amraam_1124.apply(t,g,ok,rec,_heli)['changed'])
 print('SHORAD RADAR',{k:_sr[k] for k in ('ir_rows','china_rows','ir_round_copies','heli_ammo')},[(r['abilities'],r.get('label'),r['lowAltRange'],r['lowAltOptics'],r['helicopterRangeMultiplier'],r['helicopterOpticsMultiplier']) for r in _heli['radar']])
 # ---------- FK-3000 card (FK-2000 copy) + PCL-181 in the Medium CAB (Osama 24 Nov 2026 17:2x/18:0x PST, thread "China cosmetic work").
 # Creates rows: after every other row-creating section. See fk3000_pcl181_1124.py.

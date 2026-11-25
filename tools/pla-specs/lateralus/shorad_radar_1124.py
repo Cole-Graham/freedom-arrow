@@ -27,7 +27,8 @@ BURN = {20: ((700, 350, 2, 0, 50), 2.7), 28: ((600, 300, 2, 0.15, 75), 2.65), 69
         232: ((600, 300, 2, 0, 50), 2.65), 233: ((600, 300, 2, 0, 50), 2.65), 234: ((700, 350, 2, 0, 50), 2.7), 452: ((550, 250, 2, 0, 50), 2.55),
         464: ((600, 300, 2, 0, 50), 2.65), 603: ((700, 350, 2, 0, 50), 2.7), 2009199: ((600, 300, 2, 0.15, 75), 2.65),
         2009449: ((500, 225, 2, 0, 50), 2.5), 2009607: ((700, 350, 2, 0, 50), 2.7), 2010125: ((500, 225, 2, 0, 50), 2.5),
-        2010629: ((700, 350, 2, 0.15, 75), 2.7)}
+        2010629: ((700, 350, 2, 0.15, 75), 2.7),
+        2009373: ((600, 300, 2, 0, 50), 2.65)}   # FB-10 as the AMRAAM clone (fb10_amraam_1124.py runs first): PGL-625 / Lynx 66 SPAAG on SA (Lateralus 18:5x)
 KEYS = ('RadarLowAltWeaponRangeModifier', 'RadarLowAltOpticsModifier', 'RadarLowAltWeaponRangeModifier', 'RadarHighAltWeaponRangeModifier',
         'RadarHighAltOpticsModifier')
 
@@ -64,7 +65,7 @@ def apply(t, g, ok, rec, HR, heli):
         return out
     sa = sorted(u for u in links if 'radar' in air(u))
     ir = sorted(u for u in links if u not in sa)
-    ok(len(sa) == 14 and len(ir) == 14 and {31, 12, 389, 508, 20} <= set(sa) and {188, 221, 27, 393, 250, 1273} <= set(ir), ('SA / IR split', sa, ir))
+    ok(len(sa) == 16 and len(ir) == 12 and {920, 1439} <= set(sa) and {31, 12, 389, 508, 20} <= set(sa) and {188, 221, 27, 393, 250, 1273} <= set(ir), ('SA / IR split', sa, ir))
     # IR SHORAD copies of the rows the IR units use
     new = {}
     for i in sorted({l[3] for u in ir for l in links[u]}):
