@@ -887,6 +887,9 @@ import lynx_rework_1124;lynx_rework_1124.apply(t,g,ok,rec)
 # ---------- Blue Dragon and Eurocorp only in test mode (Osama 24 Nov 2026 21:0x PST: "or hidden if the test mode is off"): specs 23-25 off, Eurocorp
 # country hidden; test-spec.json turns them on (TestSpec.cs). Changes rows only. See test_mode_previews_1124.py.
 import test_mode_previews_1124;test_mode_previews_1124.apply(t,g,ok,rec)
+# ---------- Air-launched fast missiles 600 + MiG-31K / B-52 ARRW / F-35 MAKO prices (Osama 24 Nov 2026 21:1x PST). Changes rows only.
+# See air_hypersonic_600_1124.py.
+import air_hypersonic_600_1124;air_hypersonic_600_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
