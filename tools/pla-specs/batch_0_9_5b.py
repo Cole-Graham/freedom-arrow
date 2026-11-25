@@ -879,6 +879,11 @@ for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,p
 # Type 100 CSV CH-901 round (zbd100.py, Osama 22 Nov 13:5x "Give its CH-901 60mm penetration"): an own copy of 2018448 keeps the NLOS seeker lock
 # only if nlos.json lists it. The previous build's copy id (type100_ch901) is replaced, so a shifted row id never leaves a stale entry.
 _nf=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(_nf.read_text());_old=_nl.get('type100_ch901');_new=rec['zbd100']['ch901_round']
-_nl['ammunition']=[x for x in _nl['ammunition'] if x!=_old]+[_new];_nl['type100_ch901']=_new;_nf.write_text(json.dumps(_nl,indent=2)+'\n')
+# 0.9.7 (nlos_cruise_1124.py, Osama 24 Nov 2026 "it should just act like a cruise missile"): nlos.json stays empty; the Type 100 CH-901 round uses the
+# Iskander-M guidance like the other NLOS rounds, so it is not added back here.
+if 'nlos_cruise_1124' in rec:
+    ok(_nl['ammunition']==[] and 'type100_ch901' not in _nl,('nlos.json stays empty',_nl['ammunition']))
+else:
+    _nl['ammunition']=[x for x in _nl['ammunition'] if x!=_old]+[_new];_nl['type100_ch901']=_new;_nf.write_text(json.dumps(_nl,indent=2)+'\n')
 (SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks)
