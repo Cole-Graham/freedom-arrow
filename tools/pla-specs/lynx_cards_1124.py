@@ -8,10 +8,11 @@ listings_tracker.json). Models are not bought yet: each card keeps its parent's 
   smoke, else dropped); CountryId 4 (China), base game (ContentMembership -1).
 - Osama 16:0x: "Obviously all for airborne", "They can be loaded in the Z-8 helicopter": spec 17 PLAAF Air Force (the airborne spec). The two
   troop carriers are transports (no card of their own), offered to every spec-17 infantry card that already has transports, as the VN-3.
-  Units.Weight 5000: a helicopter carries a vehicle while the weights fit its HeavyLiftWeight (OrderedUnit.TryAddCargo, docs/engine/
-  cargo-capacity.md): Z-8L 16000 takes up to three, CH-47 12500 two, the Z-20 (4000) none.
+  Units.Weight 4000 (16:1x "Z-20 also (unarmed)"): a helicopter carries a vehicle while the weights fit its HeavyLiftWeight
+  (OrderedUnit.TryAddCargo, docs/engine/cargo-capacity.md): Z-8L 16000 takes up to four, the unarmed Z-20 / Z-20J (4000) one,
+  CH-47 12500 three. Armed Z-20s (Z-20KA, Z-20T, Z-20S) have no lift.
 - Prices and card counts are placeholders for Osama."""
-AIRBORNE, CN, WEIGHT = 17, 4, 5000
+AIRBORNE, CN, WEIGHT = 17, 4, 4000
 TRANSPORTS = ('PLA Lynx CS/VP16B Carrier', 'PLA Lynx CS/VP16B Assault')
 SMOKE = ('IsSmoke', 'SmokeAmmunitionId', 'SmokeAmmunitionQuantity', 'SmokeCooldown')
 # Name: (HUDName, parent, cost, cards, CategoryType, InfantrySlots, weapons)
