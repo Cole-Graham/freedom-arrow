@@ -961,8 +961,8 @@ import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
 # ---------- HJ-10 NLOS range = HJ-10 FNF (1600 m) (Osama 25 Nov 2026 10:1x PST, bugs thread). See hj10_nlos_range_1125.py.
 import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
-# ---------- M1A1 FEP Trophy 2 charges, not 4 (Osama 25 Nov 2026 12:1x PST, bugs thread). See fep_aps_1125.py.
-import fep_aps_1125;fep_aps_1125.apply(t,g,ok,rec)
+# ---------- Every APS 2 charges (Osama 25 Nov 2026 12:1x PST, bugs thread; replaces the FEP-only fep_aps_1125.py). See aps_two_charges_1125.py.
+import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
