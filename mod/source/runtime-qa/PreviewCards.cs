@@ -8,7 +8,7 @@ namespace FreedomArrow;
 // Preview factions (Osama 24 Nov 2026 21:2x PST, thread 1567745029781454889: "for the BD and Eurocorp preview factions. I want people to go in and
 // see the spec and look around. But I don't want people to click on it and see the stats"). Specs 23 Blue Dragon, 24 France and 25 Germany stay
 // in the Armory; for their units the Armory info card (UnitInfoCard: stats, weapons, armour, abilities) is made invisible and click-through after
-// Init/Refresh. Other units get the card back. test-spec.json {"show": true} (TestSpec) shows the cards. The unit set comes from the
+// it is filled (SetUnitStatistic, called by Init). Other units get the card back. test-spec.json {"show": true} (TestSpec) shows the cards. The unit set comes from the
 // SpecializationAvailabilities rows this game loads (Runtime.cs), so new preview cards need no code change.
 static class PreviewCards
 {
@@ -30,7 +30,10 @@ static class PreviewCards
         // takes Nullable<bool> isCompactMode by value; the Harmony trampoline for it threw NullReferenceException in Buffer.Memmove on every call
         // (his 21:49 log), so the game's in-battle unit card never filled in and showed the template (Ka-52 Aligator, 1500, "242 Bushmaster super
         // long name"). Same family as the SetMissileDead(ref SeekerComponent) crash: never patch methods with non-blittable struct parameters.
-        h.Patch(AccessTools.Method(typeof(UnitInfoCard), "Refresh"), postfix: after);
+        // Refresh (Osama 24 Nov 2026 22:0x: "I still see the whole unit card on the right") is only Release + Init (1.2.2.1 0x55C1B0), so the first
+        // click, which calls Init directly, never reached it. Init (0x559270) calls SetUnitStatistic(Units) (0x55F870) on every fill, first click and
+        // Refresh alike; it takes one class parameter, so it is safe to patch.
+        h.Patch(AccessTools.Method(typeof(UnitInfoCard), "SetUnitStatistic"), postfix: after);
         MelonLogger.Msg("FREEDOM_ARROW_PREVIEW_CARDS installed: Armory stat card hidden for units of specs 23, 24, 25 (unit list read at database load)");
     }
     static void After(UnitInfoCard __instance, Units __0)
