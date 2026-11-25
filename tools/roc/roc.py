@@ -147,8 +147,10 @@ def apply(t, g, ok, rec):
 # ---------- Stage 2 (25 Nov 03:3x): ROC squads from Shawn's ba-recard card files (work/roc-20261125/cards; SF Scout / SF Section from the card
 # pictures; SF Snipers from the sheet). Every man carries one main gun; launchers, grenade launchers and MANPADS ride on top (vanilla pattern).
 # A ROC gun with no game model of its own is a renamed copy of the closest base-game US gun (no DLC guns), so it looks and shoots like that gun.
-DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2': 362, 'T75': 60, 'T75 SFAW': 53, 'T74': 63, 'M203': 58,
-         'T85': 58, 'MGL-140': 68, 'Kestrel-1': 631, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
+# Shawn 25 Nov 03:3x: "Kestrel-1 is actually Taiwanese version of M72A4, can duplicate the data from M72A4" (the game has no M72A4; vanilla M72A3,
+# FA name M72A7, 66 mm HEAT, base game); "T74 is Taiwan's licensed version of the Belgian FN MAG" (vanilla Ksp 58B = FN MAG, base-game model).
+DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2': 362, 'T75': 60, 'T75 SFAW': 53, 'T74': 643, 'M203': 58,
+         'T85': 58, 'MGL-140': 68, 'Kestrel-1': 1019, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
          'Javelin LWCLU': 659, 'DMS FIM-92K': 65, 'REPR-20': 57, 'AXMC': 640, 'M107': 56, 'M1014': 45, 'Flashbang': 590}
 # name: (men, armour points, [main guns (name, men)], [extra weapons (name, men)], {weapon: rounds for the whole squad, from the card})
 SQUADS = {
