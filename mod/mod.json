@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.19",
+  "version": "0.9.7-dev.20",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.19 (release candidate for 0.9.7, Lateralus 25 Nov 2026): every change queued for 0.9.7 from Lateralus and Osama, including Random Dead Center PvE (1P and 2P). Models: Assets 0.2.101, unchanged. Needs Freedom Arrow — Models and Music 0.2.101.",
+  "description": "Freedom Arrow 0.9.7-dev.20 (release candidate 2 for 0.9.7, 25 Nov 2026): 0.9.7-dev.19 plus the fixed FK-3000 (Shawn's cab fix, seller camo, tinted glass, Armory 65k) back in PLAGF Medium CAB, and a new Models & music package 0.2.102. Needs Freedom Arrow — Models and Music 0.2.102.",
   "repo": "Cole-Graham/freedom-arrow"
 }
