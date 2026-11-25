@@ -27,7 +27,16 @@
 - **No orders:** the player's order path (`MainCommandSystem.AddCommandToQuery`, 0x78C220) has no direct native callers, so it cannot be patched reliably. Instead, stunned air units are taken out of the player's selection every frame and cannot be re-selected while stunned (local UI only, same result on every PC because no order is sent). The unit keeps its last command, so it flies its previous course.
 - **Not checked yet:** which PC applies stress damage to a unit (the owner's or each PC's), whether a plane's own automatic actions (return to base when out of ammo or fuel) should stay allowed, and whether a control-group hotkey re-selects before the filter runs.
 
+## Lateralus's decisions so far (25 Nov 2026, proposal only, not being implemented this patch)
+
+- Helicopters get the same stun as planes (no firing, no orders); no helicopter slowdown.
+- The stun lasts a fixed 3 seconds; it is not tied to stress recovery.
+- The stun trigger is chosen from a missile table: "Air stun (proposal)" tab of the Lateralus 0.9 Changelog sheet.
+- **Why not the stress bar (calculated from 0.9.7-dev.15 data):** one AA hit fills 55-167% of a 1000 stress bar, mostly through the health share (1000 x damage / max HP: planes mostly 20 HP, helicopters 15, all 0 armour), so almost every hit that does not kill would stun. The draft uses separate stun points per missile (100 = one-hit stun).
+- **Hit hook:** `BattleSystemHelpers.CalculateStressDamage` (0x7D3E30) has direct callers (`ShellHitSystem.DealUnitDamage`, close-quarters combat) but no entity arguments; `ShellHitSystem.DealUnitDamage` (0x7FC060) has direct callers but takes `ref HitDamageInfo` (FA crashed the game patching a `ref` struct argument before: see harmony-nonblittable-ref-crash). A stun build needs a safe way to read the hit's ammo and target.
+
 ## Document change log
 
 - 2026-11-25 12:3x PST (America/Los_Angeles) — Created: air stun feasibility against the WARNO model (Lateralus).
 - 2026-11-25 12:4x PST (America/Los_Angeles) — WARNO plane stun effects corrected (no firing, no orders, keeps course) and a BA build plan added (Lateralus).
+- 2026-11-25 12:5x PST (America/Los_Angeles) — Added Lateralus's decisions, why the stress bar cannot trigger the stun, and the hit hook options (proposal only).
