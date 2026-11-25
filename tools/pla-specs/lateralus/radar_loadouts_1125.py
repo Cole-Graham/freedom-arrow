@@ -10,8 +10,12 @@ The game gives a unit its one default ability row plus, per slot Ability1/2/3, t
 - MML (393): default 2021460 (IR static) unlinked; new row = its copy with IsDefault false (no such row exists: checked) on the AIM-9 and Hellfire
   turrets, Ability1. The Stinger turret: no radar.
 - HHQ-10 (1273): 2021461 (IR) -> 60 (SA). RIM-116 560 and HHQ-10 2019358 use the radar (radar_weapons_1124.KEEP_IR).
-Creates one ability row and one unit-ability link: keep this section after every other row-creating section."""
-SA_DEF, SA_OPT, IR_DEF, IR_OPT, IR_STATIC = 60, 62, 2021461, 2021462, 2021460
+Lateralus 25 Nov 2026 12:1x: "MML AIM-9 loadout should use SA radar ability (just for the AIM-9 loadout, the hellfire loadout should stay as IR)
+Stryker M-SHORAD should use IR radar ability for all 3 of its radar-equipped loadouts (instead of SA)". So:
+- MML AIM-9 turret (1819): new row = SA static (58) with IsDefault false (no such row exists: checked); the unit links it too. Hellfire keeps IR static.
+- Stryker M-SHORAD: Stinger pod / Fletcher / Hellfire options and the unit link 62 (SA) -> 2021462 (IR, non-default).
+Creates two ability rows and two unit-ability links: keep this section after every other row-creating section."""
+SA_DEF, SA_OPT, IR_DEF, IR_OPT, IR_STATIC, SA_STATIC = 60, 62, 2021461, 2021462, 2021460, 58
 
 
 def _same(a, b):
@@ -38,9 +42,9 @@ def apply(t, g, ok, rec, HR):
     for i, n in ((1935, 'MainTurret StrykerSHORAD M2'), (1936, 'MainTurret StrykerSHORAD 8xStinger'), (1937, 'MainTurret StrykerSHORAD Fletcher'),
                  (1938, 'MainTurret StrykerSHORAD Hellfire')):opt(i, n)
     ok(not any((o.get('Ability3Id') or 0) for o in O.values() if o and M[o['ModificationId']]['UnitId'] == 20), 'Stryker M-SHORAD slot 3 free')
-    repoint(20, SA_DEF, SA_OPT)
-    for i in (1936, 1937, 1938):g.put('OptionsJson', i, {'Ability3Id': SA_OPT})
-    done[20] = 'Stinger pod / Fletcher / Hellfire: SA radar (62); M2 + Stinger: none'
+    repoint(20, SA_DEF, IR_OPT)   # Lateralus 25 Nov 12:1x: IR, not SA
+    for i in (1936, 1937, 1938):g.put('OptionsJson', i, {'Ability3Id': IR_OPT})
+    done[20] = 'Stinger pod / Fletcher / Hellfire: IR radar (2021462); M2 + Stinger: none'
     # Centurion C-RAM
     opt(2110, 'MainTurret Centurion Phalanx');opt(2111, 'MainTurret Centurion SeRAM')
     ok(not any((o.get('Ability1Id') or 0) for o in O.values() if o and M[o['ModificationId']]['UnitId'] == 250), 'C-RAM slot 1 free')
@@ -52,14 +56,20 @@ def apply(t, g, ok, rec, HR):
     ok(not any((o.get('Ability1Id') or 0) for o in O.values() if o and M[o['ModificationId']]['UnitId'] == 393), 'MML slot 1 free')
     new = g.add('AbilitiesJson', AB[IR_STATIC], {'Name': 'Radar IR SHORAD Static Not Default', 'IsDefault': False})
     repoint(393, IR_STATIC, new)
-    for i in (1819, 1821):g.put('OptionsJson', i, {'Ability1Id': new})
-    done[393] = f'AIM-9 / Hellfire: IR static radar ({new}); Stinger: none'
+    g.put('OptionsJson', 1821, {'Ability1Id': new})
+    ok(AB[SA_STATIC].get('IsRadarStatic') and AB[SA_STATIC].get('IsDefault'), 'SA static row 58')
+    cand = dict(AB[SA_STATIC], IsDefault=False)
+    ok(not any(_same(cand, a) for a in AB.values() if a), 'no non-default static SA row yet')
+    sa_st = g.add('AbilitiesJson', AB[SA_STATIC], {'Name': 'Radar SHORAD Static Not Default', 'IsDefault': False})   # Lateralus 25 Nov 12:1x: MML AIM-9 = SA
+    link(393, sa_st);g.put('OptionsJson', 1819, {'Ability1Id': sa_st})
+    done[393] = f'AIM-9: SA static radar ({sa_st}); Hellfire: IR static radar ({new}); Stinger: none'
     # HHQ-10
     repoint(1273, IR_DEF, SA_DEF)
     done[1273] = 'SA radar (60)'
     HR.EDIT[new] = dict(HR.EDIT[IR_STATIC]);HR.LABEL[new] = HR.LABEL[IR_STATIC]
+    HR.EDIT[sa_st] = dict(HR.EDIT[SA_STATIC]);HR.LABEL[sa_st] = HR.LABEL[SA_STATIC]
     for u in done:ok(sum(1 for a in links(u) if AB[a].get('IsDefault')) <= 1, (u, 'at most one default ability row'))
-    rec['radar_loadouts_1125'] = {'units': {u: str(U[u]['HUDName']).strip() + ': ' + s for u, s in done.items()}, 'new_ability': new}
+    rec['radar_loadouts_1125'] = {'units': {u: str(U[u]['HUDName']).strip() + ': ' + s for u, s in done.items()}, 'new_ability': new, 'new_sa_static': sa_st}
     return rec['radar_loadouts_1125']
 
 
