@@ -919,6 +919,9 @@ import medcab_moves_1125;medcab_moves_1125.apply(t,g,ok,rec)
 # ---------- QN-202: Javelin model, 7 damage, 70 mm penetration, 18 rounds (Osama 25 Nov 2026 00:4x PST, thread "blue dragons").
 # See qn202_javelin_1125.py.
 import qn202_javelin_1125;qn202_javelin_1125.apply(t,g,ok,rec)
+# ---------- ZTD-05: the ZTL-11's 105 mm gun-launched missile, 8 rounds (Osama 25 Nov 2026 00:5x PST, thread 1567745029781454889).
+# See ztd05_glatgm_1125.py.
+import ztd05_glatgm_1125;ztd05_glatgm_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
