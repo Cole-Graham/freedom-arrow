@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.10",
+  "version": "0.9.7-dev.11",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.10 (gameplay dev build, Osama 25 Nov 2026): 0.9.7-dev.9 plus no Test: Hidden Units heading (PCL-181 out of the test spec), Falcons 4 QMK, no High Alt. Range line for rounds that cannot hit planes, Lynx Howitzer / 120 mm Mortar / MRL / 81 mm Mortar changes. Models: Assets 0.2.99, unchanged. Needs Freedom Arrow — Models and Music 0.2.99.",
+  "description": "Freedom Arrow 0.9.7-dev.11 (dev build with models, Osama 25 Nov 2026): every queued gameplay change from all threads plus the current model stage (Lynx family and Lynx Cargo, SR-5, PCL-181, QMK / QBZ-192, QCQ-171, QJY-201, SF NVG and goggles bodies, weapon model rules). Needs Freedom Arrow — Models and Music 0.2.100.",
   "repo": "Cole-Graham/freedom-arrow"
 }
