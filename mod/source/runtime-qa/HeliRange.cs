@@ -23,6 +23,10 @@ static class HeliRange
 {
     const int MaxLog=12;
     internal static readonly Dictionary<int,float> ammoRange=new();
+    // Per-weapon radar use (Lateralus 24 Nov 2026 22:2x, thread 1568104480459722894): rounds in radarExempt get no radar range bonus (IR missiles
+    // except the AIM-9, and the Fletcher); radarAmmo = rounds that use the radar and can engage air targets (card trait icon). helicopter-range.json.
+    internal static readonly HashSet<int> radarExempt=new(),radarAmmo=new();
+    static long exemptChanged;
     internal static readonly Dictionary<(float,float,float,float,float,bool),(float range,float optics)> radar=new();
     // Radar icon label per radar group (SA SHORAD / IR SHORAD / LR SAM; Lateralus 24 Nov 2026), from helicopter-range.json "label"/"labelZh".
     internal static readonly Dictionary<(float,float,float,float,float,bool),(string en,string zh,string title,string titleZh)> radarLabel=new();
@@ -54,6 +58,8 @@ static class HeliRange
         foreach(var r in j["sensors"]?.AsArray()??new JsonArray())
             sensorOptics[(r["ground"].GetValue<float>(),r["low"].GetValue<float>(),r["high"].GetValue<float>())]=r["helicopterOptics"].GetValue<float>();
         foreach(var u in j["heliUnits"]?.AsArray()??new JsonArray())heliUnits.Add(u.GetValue<int>());
+        foreach(var x in j["radarExempt"]?.AsArray()??new JsonArray())radarExempt.Add(x.GetValue<int>());
+        foreach(var x in j["radarAmmo"]?.AsArray()??new JsonArray())radarAmmo.Add(x.GetValue<int>());
         logEvery=Stopwatch.Frequency*(long)(j["perfLogSeconds"]?.GetValue<int>()??60);
         hasHeli=SpottingCap.Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(UnitHelicopterFlag));
         hasRadar=SpottingCap.Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(RadarAbilityComponent));
@@ -92,6 +98,41 @@ static class HeliRange
         if(Interlocked.Increment(ref unknown)<=MaxLog)MelonLogger.Warning($"FREEDOM_ARROW_HELI_RANGE no radar entry for {k}; low-altitude values kept");
         return false;
     }
+    // GetAmmoShootingDistance (1.2.2.1, 0x7D6330; docs/engine/missile-interception-range.md) returns, with the radar on and m = its low (0x14) or
+    // high (0x18) weapon range modifier: aircraft R x m; missiles with no override 1.0 x R x m x m; a fixed override v >= 100: v x m (R = the
+    // round's Low/High range, Ground if 0). For a radar-exempt round the matching value is replaced by the one without radar (R or v). Ground
+    // targets and a switched-off radar are not touched. Helicopters (always Low) get their helicopter range x 1 instead of x the radar row.
+    static readonly float[] cand=new float[12],plain=new float[12];
+    static unsafe bool Exempt(Entity shooter,Entity target,Ammunitions a,ref float r)
+    {
+        byte* c=ActiveRadar(shooter);if(c==null)return false;
+        float mL=*(float*)(c+0x14),mH=*(float*)(c+0x18),g=a.GroundRange,rl=a.LowAltRange>0?a.LowAltRange:g,rh=a.HighAltRange>0?a.HighAltRange:g;
+        float before=r;
+        if(IsHeli(target)&&*((byte*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getAltCode)(&target,getAlt)+0x18)==1)
+            r=ammoRange.TryGetValue(a.Id,out float h)?h:rl;
+        else
+        {
+            int n=0;
+            void Add(float v,float m,float p){cand[n]=v*m;plain[n]=p;n++;}
+            lock(cand)
+            {
+                Add(rl,mL,rl);Add(rl,mL*mL,rl);Add(rh,mH,rh);Add(rh,mH*mH,rh);
+                float sead=a.SeadProjectileRangeOverride,non=a.NonSeadProjectileRangeOverride;
+                if(sead>=100){Add(sead,mL,sead);Add(sead,mH,sead);}
+                if(non>=100){Add(non,mL,non);Add(non,mH,non);}
+                int best=-1;float d=float.MaxValue;
+                for(int i=0;i<n;i++){float e=Math.Abs(r-cand[i]);if(e<d){d=e;best=i;}}
+                if(best<0||d>0.01f*Math.Max(1f,Math.Abs(r)))return true;   // no radar term recognised (ground target): keep the game's value
+                r=plain[best];
+            }
+        }
+        if(r!=before)
+        {
+            Interlocked.Increment(ref exemptChanged);
+            if(Interlocked.Increment(ref logged)<=MaxLog)MelonLogger.Msg($"FREEDOM_ARROW_RADAR_EXEMPT {a.Name}: {before:0.#} -> {r:0.#} (no radar bonus; radar low x{mL:g} high x{mH:g})");
+        }
+        return true;
+    }
     public static unsafe void RangeAfter(Entity __0,Entity __1,Ammunitions __2,ref float __result)
     {
         if(rangeBroken||!Runtime.IsApplied)return;
@@ -99,7 +140,9 @@ static class HeliRange
         try
         {
             Interlocked.Increment(ref rangeCalls);
-            if(__2==null||!IsHeli(__1))return;
+            if(__2==null)return;
+            if(radarExempt.Contains(__2.Id)&&Exempt(__0,__1,__2,ref __result))return;
+            if(!IsHeli(__1))return;
             if(*((byte*)((delegate* unmanaged<Entity*,IntPtr,IntPtr>)getAltCode)(&__1,getAlt)+0x18)!=1)return;   // GlobalAltitudeLevel Low
             bool listed=ammoRange.TryGetValue(__2.Id,out float heli);
             float mod=1;bool changedMod=false;
@@ -150,7 +193,7 @@ static class HeliRange
         double s=(double)(now-last)/Stopwatch.Frequency,us=1e6/Stopwatch.Frequency;
         long rc=Interlocked.Exchange(ref rangeCalls,0),rt=Interlocked.Exchange(ref rangeTicks,0),rx=Interlocked.Exchange(ref rangeChanged,0);
         long oc=Interlocked.Exchange(ref opticsCalls,0),ot=Interlocked.Exchange(ref opticsTicks,0),ox=Interlocked.Exchange(ref opticsChanged,0);
-        MelonLogger.Msg($"FREEDOM_ARROW_HELI_PERF {s:0}s: range {rc/s:0}/s, {(rc>0?rt*us/rc:0):0.00} us/call, {rt*us/s/1000:0.000} ms/s, changed {rx}; "+
+        MelonLogger.Msg($"FREEDOM_ARROW_HELI_PERF {s:0}s: range {rc/s:0}/s, {(rc>0?rt*us/rc:0):0.00} us/call, {rt*us/s/1000:0.000} ms/s, changed {rx}, radar-exempt {Interlocked.Exchange(ref exemptChanged,0)}; "+
                         $"optics {oc/s:0}/s, {(oc>0?ot*us/oc:0):0.00} us/call, {ot*us/s/1000:0.000} ms/s, changed {ox}; sensor matched {Interlocked.Read(ref sensorHits)}, unmatched {Interlocked.Read(ref sensorMisses)}");
     }
 }

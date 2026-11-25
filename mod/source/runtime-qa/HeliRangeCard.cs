@@ -36,6 +36,8 @@ static class HeliRangeCard
         if(HeliRange.ammoRange.Count==0&&HeliRange.radar.Count==0){MelonLogger.Msg("FREEDOM_ARROW_HELI_CARD not installed: no helicopter data");return;}
         h.Patch(AccessTools.Method(typeof(AmmoInfoExpansionPanel),"Init"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AmmoAfter)));
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitAbilities"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(AbilitiesAfter)));
+        try { h.Patch(AccessTools.Method(typeof(UnitInfoCard),"OnWeaponButtonSelected"),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(WeaponTraitAfter))); }
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_RADAR_TRAIT_FAILED: no radar trait icon on weapons. "+e.Message);}
         h.Patch(AccessTools.Method(typeof(UnitInfoCard),"SetUnitStatistic"),prefix:new HarmonyMethod(typeof(HeliRangeCard),nameof(UnitBefore)),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(StatsAfter)));
         try { h.Patch(AccessTools.Method(typeof(FOWToolScript),"SetWeaponRanges"),postfix:new HarmonyMethod(typeof(HeliRangeCard),nameof(CirclesAfter))); }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: range tool circle not installed. "+e.Message);}
@@ -154,6 +156,35 @@ static class HeliRangeCard
             }
         }
         catch(Exception e){labelBroken=true;MelonLogger.Error("FREEDOM_ARROW_RADAR_LABEL_FAILED: radar icon stays vanilla. "+e.Message);}
+    }
+    // Radar trait on the selected weapon (Lateralus 24 Nov 2026 22:0x: "indicate that a weapon benefits from radar with the icon in this location ...
+    // next to the indicator that tells a player a unit has to remain static in order to fire"; 22:1x "plain radar icon is fine"). OnWeaponButtonSelected
+    // (0x55B140) builds the selected weapon's trait row with SetTraitItem (0x55D4D0); this postfix adds one more trait the same way when the unit has a
+    // radar and the weapon carries a round in radarAmmo (rounds in radarExempt, e.g. Stinger, get none).
+    static bool weaponBroken,weaponLogged;
+    public static void WeaponTraitAfter(UnitInfoCard __instance,GameObject __0)
+    {
+        if(weaponBroken||__instance==null||__0==null)return;
+        try
+        {
+            var a=current?.ActiveAbilities;if(a==null||!a.IsRadar)return;
+            var btns=__instance._activeWeaponListButtons;if(btns==null)return;
+            WeaponListButton sel=null;
+            for(int i=0;i<btns.Count;i++){var b=btns[i];if(b==null)continue;if(b.gameObject.Pointer==__0.Pointer||(b.Button!=null&&b.Button.gameObject.Pointer==__0.Pointer)){sel=b;break;}}
+            if(sel==null)return;
+            bool uses=false;var ids=new List<long>();
+            var cnt=sel.TotalAmmoCount;
+            if(cnt!=null)foreach(var kv in cnt){ids.Add(kv.Key);if(HeliRange.radarAmmo.Contains((int)kv.Key))uses=true;}
+            if(!weaponLogged){weaponLogged=true;Log($"radar trait {current.HUDName} / {sel.Weapon?.HUDName}: rounds [{string.Join(",",ids)}] uses radar {uses}");}
+            if(!uses)return;
+            var sprite=__instance._infocardConfig?.Radar;if(sprite==null)return;
+            RadarGroup(a,out var m);float heli=m.range>0?m.range:a.RadarLowAltWeaponRangeModifier;
+            string tip=Chinese()
+                ?$"使用雷达：雷达开启时，射程 低空 {X(a.RadarLowAltWeaponRangeModifier)}，高空 {X(a.RadarHighAltWeaponRangeModifier)}，直升机 {X(heli)}"
+                :$"Uses the radar: while the radar is on, range against low-altitude targets {X(a.RadarLowAltWeaponRangeModifier)}, high-altitude {X(a.RadarHighAltWeaponRangeModifier)}, helicopters {X(heli)}";
+            __instance.SetTraitItem(sprite,tip);
+        }
+        catch(Exception e){weaponBroken=true;MelonLogger.Error("FREEDOM_ARROW_RADAR_TRAIT_FAILED: radar trait icon off. "+e.Message);}
     }
     public static void AbilitiesAfter(UnitInfoCard __instance,Units __0)
     {

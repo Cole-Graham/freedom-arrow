@@ -874,6 +874,9 @@ import fb10_amraam_1124;print('FB-10',fb10_amraam_1124.apply(t,g,ok,rec,_heli)['
 import shorad_radar_1124;_sr=shorad_radar_1124.apply(t,g,ok,rec,_HR,_heli)
 _heli['radar']=_HR.contract(t)['radar'];_heli['ammo'].update({str(k):v for k,v in _sr['heli_ammo'].items()})
 ok(sum(1 for r in _heli['radar'] if r.get('label'))>=3,'radar groups with an icon label')
+# ---------- Per-weapon radar use (Lateralus 24 Nov 2026 22:2x 'Build it'): IR rounds (except AIM-9) and the Fletcher get no radar range bonus; the card
+# shows a radar trait icon on weapons that use it. Lists in helicopter-range.json. See lateralus/radar_weapons_1124.py.
+import radar_weapons_1124;print('RADAR WEAPONS',radar_weapons_1124.apply(t,ok,rec,_heli)['exempt'])
 print('SHORAD RADAR',{k:_sr[k] for k in ('ir_rows','china_rows','ir_round_copies','heli_ammo')},[(r['abilities'],r.get('label'),r['lowAltRange'],r['lowAltOptics'],r['helicopterRangeMultiplier'],r['helicopterOpticsMultiplier']) for r in _heli['radar']])
 # ---------- FK-3000 card (FK-2000 copy) + PCL-181 in the Medium CAB (Osama 24 Nov 2026 17:2x/18:0x PST, thread "China cosmetic work").
 # Creates rows: after every other row-creating section. See fk3000_pcl181_1124.py.

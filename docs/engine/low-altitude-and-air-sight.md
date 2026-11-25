@@ -210,6 +210,20 @@ Ways to make AA placement easier (not implemented, not tested):
 - **Label:** `helicopter-range.json` radar groups carry `label` (SA / IR / LR) and `title` / `titleZh` (`heli_range.LABEL`, `heli_range.TITLE`). `HeliRangeCard.RadarLabel` swaps the card's radar icon (`InfocardConfig.Radar` sprite, `Ability_Radar`) for `FA_PLA_ABILITY_RADAR_SA` / `_IR` / `_LR` (`runtime-qa/icons`, seeded into `IconsLoader._sprites` by `ChinaUi.Seed`): the vanilla glyph with the letters cut out of the dish (Lateralus 24 Nov 20:2x: a text tag was still cut off at the card edge); the radar tooltip's title becomes "SA SHORAD Radar", "IR SHORAD Radar" or "Long-Range SAM Radar" (`TooltipData.TitleLocKey`). Both are picked by the radar values in `ActiveAbilities`. A first version put "SA SHORAD" under the icon; it was too big, ran off the card edge and covered the next ability (Lateralus, 24 Nov 18:4x). Ability rows have no icon field; the LSDW laser icon is done the same way (`Dazzler.cs`). The battle order button has no label yet.
 - **Not verified in a game:** the label's position on the card, and all ranges above.
 
+### 5e. Per-weapon radar use (Lateralus, 24 November 2026)
+
+**Short answer:** on a radar unit, these rounds get **no** radar range bonus: Stinger, Igla-S, QW-2 (PGZ-95 / PGZ-04 / PGZ-04A), RIM-116, HHQ-10 (all heat-seeking) and the Fletcher APKWS (laser). Everything else, including the AIM-9 and the Hellfire SHORAD, keeps the radar. On the unit card, a weapon that uses the radar shows a plain radar icon in its trait row.
+
+---
+
+**Details:**
+- **Lists:** `helicopter-range.json` `radarExempt` and `radarAmmo`, built by `tools/pla-specs/lateralus/radar_weapons_1124.py`. The rule is "every Seeker 10 round on a radar unit, except AIM-9 465, plus Fletcher 501"; the build checks the list is exactly these 8 rounds.
+- **Range:** `HeliRange.Exempt` runs in the existing `GetAmmoShootingDistance` postfix. With the shooter's radar on, it recognises the radar term in the game's value (aircraft R × m; missiles 1.0 × R × m × m; fixed override v × m, e.g. HHQ-10 SEAD 1100) and replaces it with the value without radar. Helicopters get the round's helicopter range × 1. Ground targets and a switched-off radar are untouched.
+- **Search radius:** not hooked. It only bounds the target search; each candidate still passes the per-target range above. So an exempt round may consider targets out to the radar-boosted radius but only fires within its own range.
+- **Card:** `HeliRangeCard.WeaponTraitAfter`, a postfix on `UnitInfoCard.OnWeaponButtonSelected` (0x55B140), calls the game's `SetTraitItem` (0x55D4D0) with `InfocardConfig.Radar` and a tooltip with the unit's Low / High / helicopter multipliers. Weapons are matched to rounds by `WeaponListButton.TotalAmmoCount`.
+- **Cost:** the check is one set lookup inside a hook already measured at 0.2–0.5 µs per call (22 Nov logs); the perf log line now also counts `radar-exempt` changes.
+- **Not verified in a game.**
+
 ### 5c. Which optics value is the big number on the unit card
 
 **Short answer.** The vanilla card shows **ground** optics for every unit except planes, which show **high-altitude** optics. Helicopter cards are no exception. Until 0.9.6 the FA card code showed **low-altitude** optics on helicopter cards, so a helicopter showed a higher number than the recon copy of the same helicopter with the same sensor. For example, the AH-64D Longbow showed 3200 m and the AH-64D Longbow Recon 2400 m (Lateralus, 23 Nov 2026). Fixed for the next build: the FA card now follows the vanilla rule. Helicopters show ground, planes show high altitude, and drones show whatever their category gets.
@@ -245,3 +259,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-24 18:5x PST (America/Los_Angeles) — Section 5d: radar label is now a short SA / IR / LR tag in the icon corner; tooltip titles per radar type (Lateralus).
 - 2026-11-24 20:3x PST (America/Los_Angeles) — Section 5d: radar type shown as letters cut out of the radar icon instead of a text tag (Lateralus).
 - 2026-11-24 22:1x PST (America/Los_Angeles) — Section 5d: AIM-9 / Stinger copies withdrawn (Lateralus).
+- 2026-11-24 22:4x PST (America/Los_Angeles) — Added section 5e: per-weapon radar use and the card's radar trait (Lateralus).
