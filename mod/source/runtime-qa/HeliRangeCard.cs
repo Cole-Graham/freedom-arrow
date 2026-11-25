@@ -68,9 +68,15 @@ static class HeliRangeCard
             c.gameObject.SetActive(false);c.SetParent(null,false);UnityEngine.Object.Destroy(c.gameObject);
         }
     }
+    // Osama 25 Nov 2026 02:5x ("Lynx Laser remove the high alt range"): a round with no high-altitude range and no Aircraft target flag (16)
+    // cannot fire at planes, but the native ammo panel still shows a "High Alt. Range" line (the Lynx Laser pulse, high 0, showed 800 m =
+    // its ground range). That line is hidden for such rounds; the panel's lines are pooled, so the hidden ones are shown again first.
+    static readonly List<GameObject> hiddenHigh=new();
     public static void AmmoBefore(AmmoInfoExpansionPanel __instance)
     {
         if(ammoBroken)return;
+        foreach(var g in hiddenHigh)if(g!=null)g.SetActive(true);
+        hiddenHigh.Clear();
         try{RemoveLine(__instance);}
         catch(Exception e){ammoBroken=true;MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: ammo line off. "+e.Message);}
     }
@@ -80,6 +86,12 @@ static class HeliRangeCard
         try
         {
             RemoveLine(__instance);
+            if(__1!=null&&__1.HighAltRange<=0&&(((long)__1.TargetType)&16)==0&&__instance._activeStatisticItems!=null)
+            {
+                string highTitle=InfoCardLocalization.TextAmmoRangeHighAlt;
+                foreach(var item in __instance._activeStatisticItems)
+                    if(item?.TitleText!=null&&item.TitleText.text==highTitle&&item.gameObject.activeSelf){item.gameObject.SetActive(false);hiddenHigh.Add(item.gameObject);Log($"ammo {__1.Name}: High Alt. Range line hidden (no high-altitude range)");}
+            }
             if(!CanHitHeli(__1)||!HeliRange.ammoRange.TryGetValue(__1.Id,out float heli))return;
             string low=InfoCardLocalization.TextAmmoRangeLowAlt;
             var items=__instance._activeStatisticItems;
