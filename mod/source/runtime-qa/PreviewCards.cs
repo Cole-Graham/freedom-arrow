@@ -26,7 +26,10 @@ static class PreviewCards
     {
         if (TestSpec.Show(root)) { MelonLogger.Msg("FREEDOM_ARROW_PREVIEW_CARDS off: test-spec.json shows the preview stat cards"); return; }
         var after = new HarmonyMethod(typeof(PreviewCards), nameof(After));
-        h.Patch(AccessTools.Method(typeof(UnitInfoCard), "Init"), postfix: after);
+        // Not UnitInfoCard.Init (Osama 24 Nov 2026 21:5x, bugs thread 1573561286803980289: "why is every unit a KA-52 alligator"). Its first overload
+        // takes Nullable<bool> isCompactMode by value; the Harmony trampoline for it threw NullReferenceException in Buffer.Memmove on every call
+        // (his 21:49 log), so the game's in-battle unit card never filled in and showed the template (Ka-52 Aligator, 1500, "242 Bushmaster super
+        // long name"). Same family as the SetMissileDead(ref SeekerComponent) crash: never patch methods with non-blittable struct parameters.
         h.Patch(AccessTools.Method(typeof(UnitInfoCard), "Refresh"), postfix: after);
         MelonLogger.Msg("FREEDOM_ARROW_PREVIEW_CARDS installed: Armory stat card hidden for units of specs 23, 24, 25 (unit list read at database load)");
     }
