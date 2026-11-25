@@ -1,8 +1,8 @@
 # NLOS missiles (HJ-10, CTL-181, QN-502, CH-901)
 
-> **Changed for 0.9.7 (Osama, 24 Nov 2026): the NLOS missiles now act like vanilla cruise missiles, and the NLOS code is off.**
+> **Changed for 0.9.7 (Osama, 24 Nov 2026): the NLOS missiles now use vanilla Iskander-M guidance (Fire Position, optional laser), and the NLOS code is off.**
 > - **Why:** in 0.9.6 every NLOS launch in Osama's log (20 launches, 17:08-17:13) was aimed at a ground spot. The code then locked each missile on the enemy nearest that spot (1-58 away) without checking that anyone saw it, and held the lock. To players, the launcher seemed to find and track targets nobody could see.
-> - **Now:** the rounds use the vanilla Iskander-K cruise guidance (round 219): `Seeker` 0, `SeekerAngle` 0, `MaxSeekerDistance` 0, `CanReaquire` false, `LaserGuided` false, `TargetType` 1 (ground position only). They fire only on Fire Position orders, fly to the spot and dive. There is no automatic fire and no tracking. Damage, penetration, range and flight values did not change. The script is `tools/pla-specs/nlos_cruise_1124.py`.
+> - **Now (Osama's option A, 17:4x):** no vanilla cruise round is laser guided, so the rounds copy the vanilla Iskander-M ballistic round 218: path 300, `LaserGuided` true, `Seeker` 0, `TargetType` 1 (ground position only), speed 800, burn 8 s. The launchers are `Type` 83 (ballistic); a Type 82 launcher does not fire a path-300 round. They fire only on Fire Position orders and land on the spot; a friendly laser on a target near it adds homing, as with the Iskander-M, GMLRS and guided shells. There is no automatic fire without line of sight and no NLOS tracking. Damage, penetration and range did not change. The script is `tools/pla-specs/nlos_cruise_1124.py`. (The first version, 75b4f649, used the Iskander-K cruise guidance without laser.)
 > - `nlos.json` lists no rounds, so `NlosTrait.cs` installs no hooks. The rest of this page describes 0.9.5-0.9.6 and is kept as history.
 > - Not seen in game yet.
 
@@ -96,3 +96,4 @@ The CTL-181 (unit 1054, launcher 2018322, round 2018321) and QN-502 (unit 937, l
 
 - 2026-11-23 04:3x PST (America/Los_Angeles): first version, from 0.9.5 code and data and the 0.9.4-0.9.5 NLOS bug history.
 - 2026-11-24 17:3x PST (America/Los_Angeles): 0.9.7 change at the top: NLOS rounds use vanilla cruise guidance and the NLOS code is off.
+- 2026-11-24 17:5x PST (America/Los_Angeles): option A: Iskander-M guidance with optional laser and Type 83 launchers instead of Iskander-K cruise.
