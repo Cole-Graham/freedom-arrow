@@ -935,6 +935,9 @@ import vn3_cost_1125;vn3_cost_1125.apply(t,g,ok,rec)
 # ---------- Falcons: 4 QMK, the QJY-201 gunner's own gun (Osama 25 Nov 2026 02:3x PST). See falcons_qjy_1125.py.
 import falcons_qjy_1125;falcons_qjy_1125.apply(t,g,ok,rec)
 # ---------- No shown card in the hidden test specs: PCL-181 out of spec 26 (Osama 25 Nov 2026 03:0x PST). See test_spec_visible_1125.py.
+# ---------- Lynx Howitzer 80 pts / 3600 m / Hawkeye dispersion / 40 kg; Lynx 120 mm Mortar 8 smoke, 65 pts (Osama 25 Nov 2026 03:1x PST).
+# See lynx_arty_1125.py. Creates rows: before the test-spec check, which stays last among the spec sections.
+import lynx_arty_1125;lynx_arty_1125.apply(t,g,ok,rec)
 import test_spec_visible_1125;test_spec_visible_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
 import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
