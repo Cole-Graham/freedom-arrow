@@ -14,9 +14,11 @@ m_609673 m_lynx_rfg
 m_612547 m_lynx_drone
 m_626798 m_lynx_vp16bm
 m_796017 m_lynx_laser
-# Seller tags (c5 = the C5 shop; mw):
-m_k2c5 m_k2bp
-m_kf21c5 m_kf21b1
-m_qn506c5 m_qn506b
-m_type16c5 m_type16b
+# Osama 25 Nov 00:3x ("I don't want players redownloading all the models, well do it on a big patch like going to open beta"): a renamed file is
+# downloaded again (the launcher matches files by path). The Lynx models above change from live Assets 0.2.94 anyway and the XQ-58A is new,
+# so renaming them costs players nothing extra. The rest waits for the open beta patch (then rename every model file):
 m_xq58mw m_xq58v
+# open beta: m_k2c5 m_k2bp
+# open beta: m_kf21c5 m_kf21b1
+# open beta: m_qn506c5 m_qn506b
+# open beta: m_type16c5 m_type16b
