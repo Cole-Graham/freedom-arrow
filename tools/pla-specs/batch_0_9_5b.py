@@ -928,6 +928,8 @@ import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
 import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
 # ---------- Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST). See lynx_nlos_csk_1125.py.
 import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
+# ---------- Audit fixes after dev.11: Lynx NLOS on the CTL-181's Tigr body and mount (it was hidden), Lynx Cargo 2500 (Osama 25 Nov 2026). See lynx_nlos_body_1125.py.
+import lynx_nlos_body_1125;lynx_nlos_body_1125.apply(t,g,ok,rec)
 # ---------- ZSD-89A out of PLAN Naval/Special Forces (Osama 25 Nov 2026 01:5x PST). See zsd89a_plan_removed_1125.py.
 import zsd89a_plan_removed_1125;zsd89a_plan_removed_1125.apply(t,g,ok,rec)
 # ---------- VN-3 30 -> 35 pts (Osama 25 Nov 2026 01:5x PST). See vn3_cost_1125.py.
