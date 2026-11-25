@@ -429,10 +429,12 @@
   "radar": [
     {
       "abilities": [
-        58
+        58,
+        2021541
       ],
       "names": [
-        "Radar SHORAD Static"
+        "Radar SHORAD Static",
+        "Radar SHORAD Static Not Default"
       ],
       "lowAltOptics": 1.5,
       "highAltOptics": 2.0,
