@@ -3,7 +3,12 @@ namespace BAModManager.Core;
 /// <summary>Which of the two programs this is (set at build time, see AppFlavor in BAModManager.csproj).</summary>
 public static class AppInfo
 {
-#if FA_DEV45
+#if FA_DEVCHANNEL
+    public const bool IsLauncher = true;
+    /// <summary>Dev launcher (Lateralus 24 Nov 2026): its own settings folder, download cache and single-instance lock.</summary>
+    public const string Id = "FreedomArrowDevLauncher";
+    public const string ShortName = "Freedom Arrow DEV Launcher";
+#elif FA_DEV45
     public const bool IsLauncher = true;
     public const string Id = "FreedomArrowLauncherDev45";
     public const string ShortName = "Freedom Arrow Launcher";

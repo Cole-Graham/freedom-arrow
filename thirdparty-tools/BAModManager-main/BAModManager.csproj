@@ -53,6 +53,19 @@
     <Description>Freedom Arrow launcher with version manifest, verified package downloads, per-file Assets updates and other mods parked during play.</Description>
   </PropertyGroup>
 
+  <!-- Lateralus 24 Nov 2026: "develop a dedicated launcher for internal/dev use only, where I can select various test builds and dev builds, and
+       make sure it uses incremental asset updates as well". FreedomArrowDev.exe = the Freedom Arrow launcher (PinnedFreedomArrow=true) that reads
+       the signed dev list (manifest/dev.signed.json, bin/ba-dev-manifest) and has a build picker. Own settings folder, so it never touches the
+       player launcher's cache or accepted list. Build: build_launcher.py with the dev option. -->
+  <PropertyGroup Condition="'$(DevChannel)' == 'true'">
+    <DefineConstants>$(DefineConstants);FA_DEVCHANNEL</DefineConstants>
+    <AssemblyName>FreedomArrowDev</AssemblyName>
+    <Product>Freedom Arrow Dev Launcher</Product>
+    <AssemblyTitle>Freedom Arrow Dev Launcher</AssemblyTitle>
+    <Version>1.0.0</Version>
+    <Description>Internal Freedom Arrow launcher: pick any dev or test build from the signed dev list; models and music update file by file.</Description>
+  </PropertyGroup>
+
   <!-- Mod Launcher only: the modpack it's built with (build_launcher.bat Speer-BA/ActualArrow). Empty = set up by the modder. -->
   <PropertyGroup>
     <DefaultModPack Condition="'$(DefaultModPack)' == ''"></DefaultModPack>

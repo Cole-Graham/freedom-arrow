@@ -32,6 +32,12 @@ internal sealed class LauncherForm : Form
     private readonly Button _settings;
     private readonly Button _setUp;
     private readonly FlowLayoutPanel _channels;
+#if FA_DEVCHANNEL
+    private ComboBox? _builds;
+    private Label? _buildNote;
+    private List<string?> _buildVersions = new();
+    private bool _fillingBuilds;
+#endif
 
     private string? _gameDir;
     private bool _busy;
@@ -100,6 +106,9 @@ internal sealed class LauncherForm : Form
         header.Resize += (_, _) => _placeHeaderButtons();
         site.Click += (_, _) => LauncherNews.Open(LauncherNews.Site);
         header.Controls.Add(site);
+#if FA_DEVCHANNEL
+        header.Controls.Add(new Label { Text = "DEV LAUNCHER · INTERNAL", AutoSize = true, Location = new Point(14, 12), Font = Theme.Head(14f), ForeColor = Theme.Background, BackColor = Theme.Warn, Padding = new Padding(8, 4, 8, 4) });
+#endif
         var body = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Background, Padding = new Padding(28, 14, 28, 12) };
 #else
         ClientSize = new Size(460, 640);
@@ -206,6 +215,10 @@ internal sealed class LauncherForm : Form
 #else
         body.Controls.Add(Spacer(16));
 #endif
+#if FA_DEVCHANNEL
+        body.Controls.Add(BuildStrip());
+        body.Controls.Add(Spacer(12));
+#endif
         body.Controls.Add(card);
         body.Controls.Add(Spacer(12));
         body.Controls.Add(footer);
@@ -249,6 +262,60 @@ internal sealed class LauncherForm : Form
             if (_busy && e.CloseReason == CloseReason.UserClosing) e.Cancel = true;
         };
     }
+
+#if FA_DEVCHANNEL
+    /// <summary>Dev launcher (Lateralus 24 Nov 2026): pick the dev or test build that PLAY installs. Filled from the signed dev list.</summary>
+    private Control BuildStrip()
+    {
+        var strip = new Panel { Dock = DockStyle.Top, Height = 64, BackColor = Theme.Surface };
+        strip.Paint += (_, e) =>
+        {
+            using var edge = new Pen(Theme.Border);
+            e.Graphics.DrawRectangle(edge, 0, 0, strip.Width - 1, strip.Height - 1);
+            using var bar = new SolidBrush(Theme.Warn);
+            e.Graphics.FillRectangle(bar, 0, 0, Math.Max(3, strip.LogicalToDeviceUnits(4)), strip.Height);
+        };
+        var title = new Label { Text = "DEV / TEST BUILD", AutoSize = true, Location = new Point(16, 6), Font = Theme.Head(10.5f, semi: true), ForeColor = Theme.Warn, BackColor = Theme.Surface };
+        _buildNote = new Label { Text = "Reading the build list…", AutoSize = false, AutoEllipsis = true, Location = new Point(180, 8), Size = new Size(380, 18), ForeColor = Theme.TextMuted, BackColor = Theme.Surface, UseMnemonic = false };
+        _builds = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, FlatStyle = FlatStyle.Flat, Location = new Point(16, 30), Size = new Size(544, 26),
+            BackColor = Theme.Panel, ForeColor = Theme.Text, Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, Enabled = false };
+        _builds.SelectedIndexChanged += (_, _) =>
+        {
+            if (_fillingBuilds || _builds.SelectedIndex < 0) return;
+            HostedDistribution.Chosen = _buildVersions[_builds.SelectedIndex];
+            RefreshCard();
+        };
+        strip.Resize += (_, _) => { _builds.Width = strip.ClientSize.Width - _builds.Left - strip.LogicalToDeviceUnits(12); _buildNote.Width = _builds.Right - _buildNote.Left; };
+        strip.Controls.AddRange(new Control[] { title, _buildNote, _builds });
+        return strip;
+    }
+
+    /// <summary>The builds in the verified dev list, newest first; the first entry follows the newest build.</summary>
+    private void ShowBuilds(DistributionManifest m)
+    {
+        if (_builds == null) return;
+        _fillingBuilds = true;
+        try
+        {
+            _builds.Items.Clear(); _buildVersions.Clear();
+            _builds.Items.Add("Newest build (now " + m.Current + ")"); _buildVersions.Add(null);
+            foreach (var r in m.Releases)
+            {
+                _builds.Items.Add(r.Version + "  ·  " + (r.Note ?? "") + "  ·  Models & music " + r.Assets.Version);
+                _buildVersions.Add(r.Version);
+            }
+            // the open list is as wide as its longest line, so the build notes are not cut off
+            _builds.DropDownWidth = Math.Max(_builds.Width, _builds.Items.Cast<string>().Max(t => TextRenderer.MeasureText(t, _builds.Font).Width) + SystemInformation.VerticalScrollBarWidth + 12);
+            var chosen = HostedDistribution.Chosen;
+            int index = _buildVersions.IndexOf(chosen);
+            if (index < 0) { if (chosen != null) Log("Build " + chosen + " is no longer in the dev list; the newest build is used."); HostedDistribution.Chosen = null; index = 0; }
+            _builds.SelectedIndex = index;
+            _builds.Enabled = !_busy;
+        }
+        finally { _fillingBuilds = false; }
+        RefreshCard();
+    }
+#endif
 
     /// <summary>Linux reminder: the Steam launch options Freedom Arrow needs, with a button that copies them.</summary>
     private Control LinuxStrip(out Label state)
@@ -423,6 +490,9 @@ internal sealed class LauncherForm : Form
             using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
             var progress = new Progress<LaunchProgress>(ShowProgress);
             var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
+#if FA_DEVCHANNEL
+            ShowBuilds(manifest);
+#endif
             if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { if (!quiet) { _panel.Finish(true, ""); SetStatus(""); } return false; }
             Log("Launcher updated to " + manifest.Launcher!.Version + ".");
             Process.Start(new ProcessStartInfo(exe, Loc.RestartArg) { UseShellExecute = false })?.Dispose();
@@ -542,6 +612,15 @@ internal sealed class LauncherForm : Form
             _packVersion.Text = pack?.Info?.Version is string installed
                 ? T("Mod {0}", installed) + (assets != null ? "  ·  " + T("Models & music {0}", assets) : "")
                 : T("Downloads all mod content on PLAY");
+#if FA_DEVCHANNEL
+            // the build PLAY will install, when it is not the installed one
+            if (HostedDistribution.Verified is { } list && HostedDistribution.Select(list) is { } next && next.Version != pack?.Info?.Version)
+            {
+                _packVersion.Text = (pack?.Info?.Version is string from ? T("Mod {0}", from) + "  →  " : "") + next.Version + " on PLAY";
+                if (_buildNote != null) _buildNote.Text = "PLAY installs " + next.Version;
+            }
+            else if (_buildNote != null && HostedDistribution.Verified != null) _buildNote.Text = "Installed";
+#endif
         }
         if (!PinnedFreedomArrow.Enabled && pack != null && LauncherService.InstalledFromOtherRepo())
             _packVersion.Text = T("{0}: installed on next PLAY", T(LauncherService.ActiveChannel));
@@ -903,6 +982,9 @@ internal sealed class LauncherForm : Form
         _settings.Enabled = _setUp.Enabled = !_busy;
         if (_lang != null) _lang.Enabled = !_busy;
         foreach (Control c in _channels.Controls) c.Enabled = !_busy && !_gameRunning;
+#if FA_DEVCHANNEL
+        if (_builds != null) _builds.Enabled = !_busy && _builds.Items.Count > 0;
+#endif
     }
 
     // ───────────────────────── helpers ─────────────────────────

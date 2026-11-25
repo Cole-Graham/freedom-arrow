@@ -12,7 +12,12 @@ namespace BAModManager.Core;
 /// </summary>
 public static class SignedManifest
 {
+#if FA_DEVCHANNEL
+    /// <summary>Dev launcher: the dev/test build list (bin/ba-dev-manifest), signed with the same key; channel "dev", so neither launcher accepts the other's list.</summary>
+    public const string Url = "https://freedomarrow.app/manifest/dev.signed.json";
+#else
     public const string Url = "https://freedomarrow.app/manifest/live.signed.json";
+#endif
     public const int MaxSize = 262144;
     // Signed bytes = Context + manifest bytes, so a signature made for some other purpose can never pass as a version list.
     const string Context = "freedomarrow-manifest-v1\n";

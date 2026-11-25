@@ -36,6 +36,22 @@ GitHub release inventory uses gh release list (which includes the historical pre
 
 ba-hosted-retention.timer runs daily at20:00 America/Los_Angeles with a short randomized delay and catches up after downtime. The service invokes the same helper, so deferred GitHub cleanup continues within its existing caps. The timer/service definitions are included here. The build-post updater also starts it after publication.
 
+## Dev launcher (internal)
+
+Lateralus, 24 November 2026: "develop a dedicated launcher for internal/dev use only, where I can select various test builds and dev builds, and make sure it uses incremental asset updates as well".
+
+**In short:** `FreedomArrowDev.exe` is the Freedom Arrow launcher with a **DEV / TEST BUILD** picker. It reads its own signed list, `https://freedomarrow.app/manifest/dev.signed.json`, and installs the picked build. Models and music always update file by file, also when an older build is picked. The player launcher and its list are not changed.
+
+**Details**
+
+- Build: `python3 tools/distribution/build_launcher.py --dev --out DIR --dotnet DOTNET` (MSBuild property `DevChannel=true`, constant `FA_DEVCHANNEL`). Output: `FreedomArrowDev.exe`, version line 1.x of its own.
+- Own settings folder `%AppData%/FreedomArrowDevLauncher` (download cache, accepted list, picked build in `downloads/dev-build.txt`), so it never touches the player launcher's cache or its accepted live list. Both can be installed side by side.
+- The dev list has channel `dev` and is signed with the same key. The player launcher refuses it (channel `live` only) and the dev launcher refuses the live list. Up to 60 builds. Every build must have a Models + Music/Voices file list; a list entry without one is refused, so the dev launcher never downloads a full Assets package.
+- Picker: "Newest build" (follows the list's newest build) or one exact build. A picked build that leaves the list falls back to the newest.
+- Models + Music/Voices: the picked build's exact files. The player launcher keeps a newer installed Assets version; the dev launcher replaces it with the picked one and downloads only the files that differ.
+- List tool (BA deck): `bin/ba-dev-manifest add BUILD.json` checks the gameplay file on R2 (download, size, SHA-256, mod.json version) and the Assets file list, then signs and uploads the list and reads it back. `list`, `drop VERSION` and `launcher EXE` (self-update entry) are the other commands. `work/build-install/devpost.py` runs `add` for every dev build it posts. A build whose Assets version has no file list needs `publish_assets_index.py ASSETS.bamod` first.
+- Tests: `tools/dev-launcher-tests` (compiled with `FA_DEVCHANNEL`): 14 offline checks (list rules, picker choice, switch to a newer and back to an older Assets version file by file) and `--live` (the real signed dev list, every file list in it, and the download size of each switch).
+
 ## Evidence limits
 
 Manifest/downloader checks:20 offline fixtures plus3 real public network/cache checks passed. Installer checks:24 passed, including fresh asset hashes, existing skin/preference preservation, missing model binding merge and newer asset preservation. Retention planning:6 tests passed. The Windows executable opened in isolated Wine; no game was started. Native Windows game launch remains unverified. No gameplay build or PC installation was changed.
@@ -44,3 +60,4 @@ Manifest/downloader checks:20 offline fixtures plus3 real public network/cache c
 
 - 2026-11-10 19:38:30 PST (America/Los_Angeles) — Added stable manifest distribution, verified cache/download behavior, publisher integration, latest-two-plus-locked retention and daily guarded cleanup.
 - 2026-11-17 13:12 PST (America/Los_Angeles) — Added per-file Assets updates (publish_assets_index.py, manifest assets.index, launcher 1.1.5, tests).
+- 2026-11-24 18:1x PST (America/Los_Angeles) — Added the internal dev launcher FreedomArrowDev.exe and its signed dev build list (Lateralus).

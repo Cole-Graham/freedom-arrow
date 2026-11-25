@@ -160,7 +160,8 @@ public static class AssetsIndexInstall
         var mods = new ModService(new ManagerConfig());
         var manifest = Manifest.Load(gameDir);
         var pack = manifest.Packages.FirstOrDefault(x => x.Info?.Id == p.Id);
-        bool newer = pack?.Info?.Version != null && ModVersion.Compare(pack.Info.Version, p.Version) > 0;
+        // Dev launcher: the picked build's exact files, also when an older version than the installed one was picked.
+        bool newer = !HostedDistribution.DevChannel && pack?.Info?.Version != null && ModVersion.Compare(pack.Info.Version, p.Version) > 0;
         var state = LoadState(gameDir);
         var need = new List<(AssetsIndexFile File, string Path)>();
         int retained = 0, checkedFiles = 0; var shown = DateTime.MinValue;

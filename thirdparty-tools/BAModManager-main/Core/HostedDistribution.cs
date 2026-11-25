@@ -10,7 +10,8 @@ namespace BAModManager.Core;
 public sealed record DistributionPackage(string Id, string Version, string Filename, string Url, long Size, string Sha256, DistributionIndex? Index = null);
 /// <summary>Per-file Assets list (Lateralus 17 Nov 2026): launchers from 1.1.5 download only missing or changed files. Older launchers ignore it.</summary>
 public sealed record DistributionIndex(string Url, long Size, string Sha256);
-public sealed record DistributionRelease(string Version, DistributionPackage Gameplay, DistributionPackage Assets);
+/// <summary>Note: dev list only (bin/ba-dev-manifest), shown in the dev launcher's build picker, e.g. "dev build · 24 Nov 17:13".</summary>
+public sealed record DistributionRelease(string Version, DistributionPackage Gameplay, DistributionPackage Assets, string? Note = null);
 /// <summary>1.1.9 (Lateralus 19 Nov 2026): the launcher replaces itself with this exe when its version is newer than the running one.</summary>
 public sealed record LauncherRelease(string Version, string Url, long Size, string Sha256);
 /// <summary>1.1.9: the MelonLoader zip the Freedom Arrow builds are made for, checked by SHA-256 before it is installed.</summary>
@@ -28,6 +29,15 @@ public static class HostedDistribution
     // 1.1.9 (Lateralus 19 Nov 2026): only the signed list is read (SignedManifest). The unsigned live.json and its Drive copy stay for
     // launchers up to 1.1.8; this launcher no longer reads them.
     private static readonly HttpClient Http = new() { Timeout = TimeSpan.FromMinutes(20) };
+#if FA_DEVCHANNEL
+    /// <summary>Dev launcher (Lateralus 24 Nov 2026): reads the "dev" list, lets the player pick any listed build, and installs that build's
+    /// Models + Music/Voices exactly (also an older version), always file by file.</summary>
+    public const bool DevChannel = true;
+#else
+    public const bool DevChannel = false;
+#endif
+    public const string Channel = DevChannel ? "dev" : "live";
+    const int MaxReleases = DevChannel ? 60 : 20;
     /// <summary>1.1.14: a package body read with no data for this long is retried (same 60 s as AssetsIndexInstall.StallTimeout).</summary>
     internal static TimeSpan StallTimeout = TimeSpan.FromSeconds(60);
     private static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, WriteIndented = true };
@@ -45,12 +55,14 @@ public static class HostedDistribution
     public static DistributionManifest Parse(string text)
     {
         var m=JsonSerializer.Deserialize<DistributionManifest>(text,Json) ?? throw new InvalidDataException("Empty version manifest.");
-        if(m.Schema!=1 || m.Channel!="live" || m.Releases==null || m.Releases.Count==0 || m.Releases.Count>20 || m.Releases.Select(r=>r.Version).Distinct().Count()!=m.Releases.Count)
+        if(m.Schema!=1 || m.Channel!=Channel || m.Releases==null || m.Releases.Count==0 || m.Releases.Count>MaxReleases || m.Releases.Select(r=>r.Version).Distinct().Count()!=m.Releases.Count)
             throw new InvalidDataException("Unsupported or ambiguous version manifest.");
         foreach(var r in m.Releases)
         {
             Validate(r.Gameplay,"freedomarrow.gameplay");Validate(r.Assets,"freedomarrow.assets.live");
             if(r.Version!=r.Gameplay.Version)throw new InvalidDataException("Gameplay version does not match its release.");
+            // Dev launcher: never the full Models + Music/Voices package (10+ GB) for a dev build, only changed files.
+            if(DevChannel && r.Assets.Index==null)throw new InvalidDataException("Dev build "+r.Version+" has no Models + Music/Voices file list.");
         }
         if(!m.Releases.Any(r=>r.Version==m.Current) || !m.Releases.Any(r=>r.Version==(m.LockedVersion??m.Current)))
             throw new InvalidDataException("The current or locked release is missing.");
@@ -114,7 +126,15 @@ public static class HostedDistribution
             { await Task.Delay(TimeSpan.FromSeconds(attempt+1),ct); }
         }
     }
-    public static DistributionRelease Select(DistributionManifest m)=>m.Releases.Single(r=>r.Version==(m.LockedVersion??m.Current));
+    public static DistributionRelease Select(DistributionManifest m)=>
+        (DevChannel && Chosen is string v ? m.Releases.FirstOrDefault(r=>r.Version==v) : null) ?? m.Releases.Single(r=>r.Version==(m.LockedVersion??m.Current));
+    static string ChoiceFile=>Path.Combine(CacheRoot,"dev-build.txt");
+    /// <summary>Dev launcher: the build picked in the launcher; null = the newest build in the list (its "current").</summary>
+    public static string? Chosen
+    {
+        get{try{var v=File.ReadAllText(ChoiceFile).Trim();return v.Length>0?v:null;}catch(IOException){return null;}catch(UnauthorizedAccessException){return null;}}
+        set{Directory.CreateDirectory(CacheRoot);File.WriteAllText(ChoiceFile,value??"");}
+    }
     public static bool ValidFile(string file,DistributionPackage p)=>Matches(file,p.Size,p.Sha256);
 
     internal static async Task<HttpResponseMessage> OpenAsync(HttpClient client,string url,long offset,CancellationToken ct)
@@ -243,7 +263,7 @@ public static class HostedDistribution
     }
 
     /// <summary>The last verified signed list, kept byte for byte so its signature is checked again when it is read.</summary>
-    public static string ManifestFile => Path.Combine(CacheRoot,"live-manifest.signed.json");
+    public static string ManifestFile => Path.Combine(CacheRoot,Channel+"-manifest.signed.json");
     public static async Task PrepareAsync(IProgress<LaunchProgress> progress,CancellationToken ct)
     {
         progress.Report(new(Loc.T("Checking the Freedom Arrow version list…"),Stage:LaunchStage.Mod));
