@@ -459,10 +459,40 @@ static class NlosTrait
     // and with no laser target entity it flew straight and climbed. The dev.43 rounds that hit never switched (dev.43: 119 trace lines with no
     // target on path 600, all on flights that flew off). Locked rounds that switch still hit (target held). So an empty-spot round is held on the cruise path.
     static readonly HashSet<int> laserHold=new();
-    static readonly Dictionary<ulong,float> noLaserSince=new();
-    const float LaserGrace=0.5f;
-    // Postfix on SeekerSystem.InternalUpdate for laser_hold rounds: a round on the laser path (600) with no live seeker target for LaserGrace s goes
-    // back to the cruise path (200, seeker 0) with line of sight and vision off, the proven Fire Position dive (0.9.5-dev.45, 22/22 hits).
+    // Postfix on SeekerSystem.InternalUpdate for laser_hold rounds (Osama 24 Nov 2026 21:3x: "it's not following the laser"). 21:36 test: the game never
+    // handed these Fire Position cruise rounds to its laser path, so nothing followed the laser. Now the round itself follows a friendly laser:
+    // - a unit that a friendly designator is lasing (LaserAbilityComponent.IsDesignating + LaseTarget) within LaserSearch of the round's aim point
+    //   becomes its seeker target; while the laser stays on it the round is held on it (line of sight, vision, last position);
+    // - no laser (or the laser leaves the unit): the target is cleared and the round flies the cruise path to the last lased position / its
+    //   Fire Position spot (line of sight off), as the proven empty-ground dive (0.9.5-dev.45).
+    // Nothing is picked that no friendly unit is lasing: no fire hook, no nearest-enemy lock.
+    const float LaserSearch=300f,LaserRefresh=0.25f;
+    static EntitySet laserSet;static World laserWorld;static float laserAt=-1f;
+    static readonly List<(TeamSide side,Entity target)> lased=new();
+    static readonly Dictionary<ulong,ulong> laserLock=new();
+    static void RefreshLased()
+    {
+        float now=Time.time;if(now-laserAt<LaserRefresh)return;laserAt=now;lased.Clear();
+        var world=ShootingSystem._gameContext;if(world==null)return;
+        if(laserSet==null||laserWorld==null||laserWorld.Pointer!=world.Pointer){laserWorld=world;laserSet=world.GetEntities().With<LaserAbilityComponent>().AsSet();}
+        var arr=laserSet._entities;int n=Math.Min(laserSet.Count,arr?.Length??0);
+        for(int i=0;i<n;i++)
+        {
+            var e=arr![i];if(!e.IsAlive||!e.Has<UnitComponent>())continue;
+            if(!NativeEcs.Field<LaserAbilityComponent,bool>(e,"IsDesignating"))continue;
+            var t=NativeEcs.Field<LaserAbilityComponent,NullableEntity>(e,"LaseTarget");if(t.HasValue==0)continue;
+            var target=FromKey((uint)t.Lo|((ulong)(uint)t.Hi<<32));if(!target.IsAlive||!target.Has<ViewComponent>())continue;
+            var side=NativeEcs.Read<UnitComponent>(e).Owner?.TeamSide;if(side!=null)lased.Add((side.Value,target));
+        }
+    }
+    static TeamSide? ShooterSide(Entity missile)
+    {
+        var weapon=NativeEcs.Field<MissileGuidanceInfoComponent,Entity>(missile,"ShooterWeapon");
+        if(!weapon.IsAlive&&missile.Has<WarheadComponent>())weapon=NativeEcs.Field<WarheadComponent,Entity>(missile,"ShooterWeapon");
+        if(!weapon.IsAlive||!weapon.Has<WeaponComponent>())return null;
+        var su=NativeEcs.Read<WeaponComponent>(weapon)?.GetUnitEntity()??default;
+        return su.IsAlive&&su.Has<UnitComponent>()?NativeEcs.Read<UnitComponent>(su).Owner?.TeamSide:null;
+    }
     public static void LaserHoldAfter(in Entity __0)
     {
         if(broken||!Runtime.IsApplied)return;
@@ -473,11 +503,35 @@ static class NlosTrait
             var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;
             if(info==null||!laserHold.Contains(info.Id))return;
             ulong key=Key(missile);
-            if(NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType")==200){noLaserSince.Remove(key);return;}
-            if(SeekerTarget(missile,out var t)&&t.IsAlive){noLaserSince.Remove(key);return;}   // laser lock on a unit: game guidance
-            float now=Time.time;
-            if(!noLaserSince.TryGetValue(key,out var t0)){if(noLaserSince.Count>Prune)noLaserSince.Clear();noLaserSince[key]=now;return;}
-            if(now-t0<LaserGrace)return;
+            RefreshLased();
+            var side=ShooterSide(missile);
+            var aim=NativeEcs.Field<SeekerComponent,Vector3>(missile,"LastTargetPosition");
+            Entity pick=default;
+            if(side!=null)
+            {
+                // keep the current lased target while the laser stays on it, else the lased enemy nearest the aim point
+                if(laserLock.TryGetValue(key,out var cur))foreach(var l in lased)if(l.side==side.Value&&Key(l.target)==cur){pick=l.target;break;}
+                if(!pick.IsAlive){float bd=LaserSearch;foreach(var l in lased){if(l.side!=side.Value)continue;var tu=l.target.Has<UnitComponent>()?NativeEcs.Read<UnitComponent>(l.target).Owner?.TeamSide:null;if(tu==side.Value)continue;float d=Vector3.Distance(Position(l.target),aim);if(d<bd){bd=d;pick=l.target;}}}
+            }
+            if(pick.IsAlive)
+            {
+                bool had=SeekerTarget(missile,out var curT)&&curT.IsAlive&&Key(curT)==Key(pick);
+                if(!had)MissilesHelper.SetNewTargetToMissile(ref missile,ref pick,true,true);
+                if(!(NativeEcs.Field<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance")>1f)){var mp=Position(missile);var tp=Position(pick);NativeEcs.WriteField<MissileGuidanceInfoComponent,float>(missile,"LaunchHorizontalDistance",new Vector2(tp.x-mp.x,tp.z-mp.z).magnitude);}
+                NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget",true);
+                NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget",true);
+                NativeEcs.WriteField<SeekerComponent,Vector3>(missile,"LastTargetPosition",Position(pick));
+                if(!laserLock.TryGetValue(key,out var prev)||prev!=Key(pick)){if(laserLock.Count>Prune)laserLock.Clear();laserLock[key]=Key(pick);
+                    Log("nlos_laser_lock",$"missile {Id(missile)} (ammo {info.Id}): following friendly laser on {Id(pick)} at {Distance(missile,pick):0} world units",new{missile=Id(missile),ammo=info.Id,target=Id(pick)});}
+                return;
+            }
+            if(laserLock.Remove(key))
+            {
+                NativeEcs.WriteField<SeekerComponent,NullableEntity>(missile,"Target",default);
+                NativeEcs.WriteField<SeekerComponent,Entity>(missile,"OriginalTarget",default);
+                Log("nlos_laser_lost",$"missile {Id(missile)}: laser gone; diving on the last lased position ({aim.x:0},{aim.z:0})",new{missile=Id(missile)});
+            }
+            if(SeekerTarget(missile,out var t2)&&t2.IsAlive)return;   // the game's own seeker has a target: leave it
             NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget",false);
             NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget",false);
             HoldCruise(missile,key);
