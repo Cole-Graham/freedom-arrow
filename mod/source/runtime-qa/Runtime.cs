@@ -452,6 +452,7 @@ public class Runtime : MelonMod
                 var rows=RowPlanner.Apply(JsonNode.Parse(Encoding.UTF8.GetString(plain)).AsArray(),overrides,
                     compatibility["allow_new_rows"]?.GetValue<bool>()==true,
                     (id,field,before,after,added)=>receipt.Add(new {table=table.Key,id,field,before,after,action=added?"add_row":"edit"}));
+                if(table.Key=="Units")TestSpec.ApplyUnits(rows,Root);   // Osama 24 Nov 2026: test-spec units only in test mode
                 if(table.Key=="SpecializationsJson")TestSpec.Apply(rows,Root);   // Osama 23 Nov 2026: hidden test spec toggle
                 if(table.Key=="SpecializationAvailabilitiesJson")PreviewCards.Collect(rows);   // Osama 24 Nov 2026: preview units (no stat card)
                 prospective[table.Key]=rows;

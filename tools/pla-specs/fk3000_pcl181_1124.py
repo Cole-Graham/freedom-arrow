@@ -38,11 +38,12 @@ def apply(t, g, ok, rec):
     av = rows('SpecializationAvailabilitiesJson', UnitId=uid)
     ok([(r['SpecializationId'], r['MaxAvailabilityXp0']) for r in av] == [(SPEC, 4)], ('FK-3000: 4 cards in Medium CAB', av))
     # PCL-181 into the Medium CAB
-    ok(U[PCL]['Name'] == 'PLA Catalogue PCL-181 / SH-15' and U[PCL]['DisplayInArmory'], 'PCL-181 1034')
+    ok(U[PCL]['Name'] == 'PLA Catalogue PCL-181 / SH-15', 'PCL-181 1034')   # hidden test-spec units keep DisplayInArmory False since 24 Nov 23:4x
     pav = rows('SpecializationAvailabilitiesJson', UnitId=PCL)
     ok(not any(r['SpecializationId'] == SPEC for r in pav), 'PCL-181 not yet in Medium CAB')
     g.add('SpecializationAvailabilitiesJson', pav[0], {'SpecializationId': SPEC, 'MaxAvailabilityXp0': 2, 'MaxAvailabilityXp1': 0, 'MaxAvailabilityXp2': 0,
                                                        'MaxAvailabilityXp3': 0})
+    g.put('Units', PCL, {'DisplayInArmory': True})   # back in a normal spec, so shown in the Armory
     pav2 = sorted((r['SpecializationId'], r['MaxAvailabilityXp0']) for r in rows('SpecializationAvailabilitiesJson', UnitId=PCL))
     ok((SPEC, 2) in pav2, ('PCL-181 in Medium CAB, 2 cards', pav2))
     rec['fk3000_pcl181_1124'] = {'fk3000': uid, 'copy_of': SRC, 'cost': U[uid]['Cost'], 'weapons': wnew, 'pcl181_specs': pav2}

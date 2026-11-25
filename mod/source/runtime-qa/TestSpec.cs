@@ -20,6 +20,26 @@ static class TestSpec
         show = on;
         return on;
     }
+    // 24 Nov 2026 23:4x (Osama: "if I don't have developer option on I shouldn't see this"): the test-spec units ship with DisplayInArmory false,
+    // otherwise the Armory shows a "Test: Hidden Units" heading with their cards. In test mode they are shown again. Units load before
+    // SpecializationAvailabilities, so their test-spec rows are read from the packaged constants file.
+    internal static void ApplyUnits(JsonArray units, string root)
+    {
+        if (!Show(root)) return;
+        var ids = new HashSet<int>();
+        try
+        {
+            var sa = JsonNode.Parse(File.ReadAllText(Path.Combine(root, "constants", "specialization_availabilities.json")))?.AsObject();
+            if (sa != null)
+                foreach (var kv in sa)
+                    if (kv.Value?["SpecializationId"] is JsonNode s && System.Array.IndexOf(Specs, s.GetValue<int>()) >= 0 && kv.Value["UnitId"] is JsonNode u) ids.Add(u.GetValue<int>());
+        }
+        catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_TEST_SPEC: test-spec units not read (" + e.Message + ")"); return; }
+        int shown = 0;
+        foreach (var row in units)
+            if (row?["Id"] is JsonNode id && ids.Contains(id.GetValue<int>())) { row["DisplayInArmory"] = true; shown++; }
+        MelonLogger.Msg($"FREEDOM_ARROW_TEST_SPEC: {shown} test-spec units shown in the Armory by test-spec.json");
+    }
     internal static void Apply(JsonArray specs, string root)
     {
         if (!Show(root)) return;

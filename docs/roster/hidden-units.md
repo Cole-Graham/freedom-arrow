@@ -48,6 +48,9 @@ VN-17 and ZSL-92 were transports only and get 2 cards each. The test specs have 
 so the QJZ-89 Team's ZBD-04A, ZSD-89A and Type 100 CSV had shown up in it. These units have `DisplayInArmory` true again, but the test specs
 have `ShowInHangar` false, so the normal Armory and deck creation still do not show them.
 
+Since 24 Nov 23:4x (Osama: "if I don't have developer option on I shouldn't see this") the test-spec units also have `DisplayInArmory`
+false: with true, the Armory showed a "Test: Hidden Units" heading with their cards. Test mode sets it back to true for them.
+
 To switch them on for one PC, create `UserData/FreedomArrow/test-spec.json` with `{"show": true}` and restart the game (`runtime-qa/TestSpec.cs`).
 Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`. A section that hides a card records its old rows in
 `rec['hidden_rows']`, and the card then goes into its nation's test spec automatically.
@@ -80,3 +83,4 @@ battlegroup size 0. (The first version, 21:0x, hid the specs completely; it was 
 - 2026-11-23 19:58 PST (America/Los_Angeles): Type 19 gone entirely on the model build (no test-spec card, no models in the stage).
 - 2026-11-24 21:13 PST (America/Los_Angeles): Blue Dragon (23), France (24), Germany (25) and the Eurocorp country only in test mode.
 - 2026-11-24 21:3x PST (America/Los_Angeles): Previews visible again with no stat card (PreviewCards.cs); K1 and K1A1 hidden (US test spec 27).
+- 2026-11-24 23:5x PST (America/Los_Angeles): Test-spec units hidden from the Armory unless test mode; Blue Dragon (Preview) and the riflemen renamed.

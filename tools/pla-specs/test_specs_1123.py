@@ -8,7 +8,8 @@ toggle for a China test spec", "just leave it as a toggle", "that old spec I thi
   A card gets its old card count (first old row). VN-17 and ZSL-92 were transports only, so they get the VN20 card count (2).
 - No transports: the Armory shows a spec's transports as cards too, so the QJZ-89 Team's ZBD-04A, ZSD-89A and Type 100 CSV showed in the
   China test spec. Infantry cards without transports exist in vanilla, so the infantry here walk.
-- The units get DisplayInArmory True again; they stay out of every normal spec, so the normal Armory and deck creation still do not show them.
+- The units keep DisplayInArmory False (24 Nov 23:4x, Osama: "if I don't have developer option on I shouldn't see this": with True the Armory
+  showed a 'Test: Hidden Units' heading and its cards). TestSpec.cs sets DisplayInArmory True for them with the spec when test mode is on.
 - The toggle is runtime-qa/TestSpec.cs: UserData/FreedomArrow/test-spec.json {"show": true} sets ShowInHangar True for specs 26-28 when the game
   loads its database (restart to change). No file = off. The packaged data is the same for every player."""
 TEMPLATE = 22
@@ -33,7 +34,7 @@ def apply(t, g, ok, rec):
         ok(bool(rows) != (uid in NO_CARD), (U[uid]['HUDName'], 'old card' if uid not in NO_CARD else 'transport only'))
         spec, name, _ = SPECS[U[uid]['CountryId']]
         new = g.add('SpecializationAvailabilitiesJson', rows[0] if rows else hidden[CARD_TEMPLATE][0][0], {'UnitId': uid, 'SpecializationId': spec})
-        g.put('Units', uid, {'DisplayInArmory': True})
+        g.put('Units', uid, {'DisplayInArmory': False})
         out[name][U[uid]['HUDName']] = {'unit': uid, 'cards': SA[new]['MaxAvailabilityXp0']}
     for country, (spec, name, _) in SPECS.items():
         mine = sorted(u for u in hidden if U[u]['CountryId'] == country)

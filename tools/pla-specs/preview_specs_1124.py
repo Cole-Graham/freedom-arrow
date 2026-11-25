@@ -7,6 +7,8 @@ and see the stats. Hide the K-1's too."
 - K1 and K1A1 hidden: their spec 23 rows move to the USA test spec 27 (Test: Hidden Units), as for every hidden card (docs/roster/hidden-units.md)."""
 BD, US_TEST = 23, 27
 SPECS = {23: 'Blue Dragon (Testing Preview)', 24: 'France (Preview)', 25: 'Germany (Preview)'}
+TEST_SPECS = (26, 27, 28)
+RIFLEMEN = {1400: ('Korean Riflemen (Test)', 'Korean Riflemen'), 1401: ('Japanese Riflemen (Test)', 'Japanese Riflemen')}
 K1 = ('K1', 'K1A1')
 
 
@@ -22,5 +24,20 @@ def apply(t, g, ok, rec):
         g.put('SpecializationAvailabilitiesJson', k, {'SpecializationId': US_TEST})
     ok(all(SA[k]['SpecializationId'] == US_TEST for k in rows.values())
        and not any(r and r['SpecializationId'] == BD and r['UnitId'] in uids.values() for r in SA.values()), 'K1 / K1A1 in the US test spec only')
-    rec['preview_specs'] = {'k1_to_test_spec': uids, 'bd_cards': len([r for r in SA.values() if r and r['SpecializationId'] == BD])}
+    # 23:4x (Osama): "BLue Dragons should say preview not testing preview", "Japanese riflemen and korean riflement, remove the test prefix",
+    # "if I don't have developer option on I shouldn't see this" (the Test: Hidden Units heading): every unit whose only specs are the test specs
+    # stays out of the Armory (DisplayInArmory False); TestSpec.cs shows them with the spec in test mode.
+    g.put('SpecializationsJson', BD, {'UIName': 'Blue Dragon (Preview)'})
+    for uid, (old, new) in RIFLEMEN.items():
+        ok(U[uid]['HUDName'] == old, (uid, U[uid]['HUDName']))
+        g.put('Units', uid, {'HUDName': new})
+    specs_of = {}
+    for r in SA.values():
+        if r: specs_of.setdefault(r['UnitId'], set()).add(r['SpecializationId'])
+    test_only = sorted(u for u, sp in specs_of.items() if sp <= set(TEST_SPECS))
+    for u in test_only:
+        if U[u].get('DisplayInArmory'): g.put('Units', u, {'DisplayInArmory': False})
+    ok(test_only and all(not U[u].get('DisplayInArmory') for u in test_only), ('test-spec-only units hidden from the Armory', len(test_only)))
+    ok(S[BD]['UIName'] == 'Blue Dragon (Preview)' and all(U[u]['HUDName'] == n for u, (_, n) in RIFLEMEN.items()), 'BD renames')
+    rec['preview_specs'] = {'test_only_units': len(test_only), 'k1_to_test_spec': uids, 'bd_cards': len([r for r in SA.values() if r and r['SpecializationId'] == BD])}
     print('PREVIEW SPECS', rec['preview_specs'])
