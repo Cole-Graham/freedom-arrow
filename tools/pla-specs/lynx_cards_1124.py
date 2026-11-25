@@ -39,12 +39,27 @@ CARDS = {
     'PLA Lynx CS/VP17 Command': ('CS/VP17 Command', 1057, 30, 4, 0, 0, []),
     'PLA Lynx CS/VP17 Swarm Launcher': ('CS/VP17 Swarm Launcher', 1295, 150, 4, 3, 0, 'CH901'),  # Type 100 CH-901 only (NLOS rounds)
 }
+# Osama 24 Nov 2026 17:5x (bugs thread 1573561286803980289: "please make sure all models have a unit entry so I can at least see"): the four
+# received Lynx models with no card get placeholder cards (stats, prices and weapons to be set by Osama; the laser has no weapon row yet).
+# Made by apply_extra() at the END of the batch, so no unit made after the cards above changes its id (saved decks keep units by id).
+CARDS_EXTRA = {
+    'PLA Lynx CS/VP16B Recon': ('CS/VP16B Recon', 1057, 25, 4, 0, 0, []),                       # model 479577 (mast, cab)
+    'PLA Lynx CS/VP17 Drone Carrier': ('CS/VP17 Drone Carrier', 1057, 30, 4, 0, 0, []),          # model 612547 (closed body)
+    'PLA Lynx CS/VP16B Mortar': ('CS/VP16B Mortar', 926, 50, 4, 3, 0,
+                                 [(285, '81 mm mortar', [(410, 80), (135, 24), (136, 25)])]),    # model 626798; 2B9 82 mm as the CS-SM8
+    'PLA Lynx 6x6 Laser Weapon': ('6x6 Laser Weapon', 1057, 60, 4, 3, 0, []),                   # model 796017 (10 kW laser)
+}
 # Per-weapon ammunition counts on cards that keep their parent's weapons (the Lynx 66 SPAAG carries 4 missiles, the PGL-625 8).
 AMMO = {'PLA Lynx 66 SPAAG': {'FB-10': 4}}
 PARENTS = {1269: 'Shaanxi SX2121', 1057: 'CS/VN3C MG', 1079: 'ZSL-92', 926: 'PLL-05', 963: 'PHL-81', 920: 'PGL-625', 1295: 'Type 100 CSV'}
 
 
-def apply(t, g, ok, rec):
+def apply_extra(t, g, ok, rec):
+    apply(t, g, ok, rec, CARDS_EXTRA, 'lynx_cards_extra_1124')
+
+
+def apply(t, g, ok, rec, cards=None, key='lynx_cards_1124'):
+    cards = CARDS if cards is None else cards
     U, S, SA, AB, W = t['Units'], t['SpecializationsJson'], t['SpecializationAvailabilitiesJson'], t['AbilitiesJson'], t['WeaponsJson']
 
     def rows(tab, **kw):
@@ -73,7 +88,7 @@ def apply(t, g, ok, rec):
            and any(x and x.get('SpecializationAvailabilityId') == r['Id'] for x in TA.values())]
     ok(len(inf) >= 8 and all(U[r['UnitId']].get('Type') == 2 for r in inf), ('airborne infantry cards with transports', len(inf)))
     res, rounds = {}, {}
-    for name, (hud, parent, cost, n, cat, slots, weapons) in CARDS.items():
+    for name, (hud, parent, cost, n, cat, slots, weapons) in cards.items():
         ok(not any(u and name in (u.get('Name'), u.get('HUDName')) for u in U.values()), name + ' name free')
         d = dict(U[parent]); d.pop('Id')
         d.update({'Name': name, 'HUDName': hud, 'Cost': cost, 'OriginalCost': 0, 'CountryId': CN, 'DisplayInArmory': True, 'Description': None,
@@ -151,5 +166,5 @@ def apply(t, g, ok, rec):
         ammo = [(W[r['WeaponId']]['HUDName'], t['AmmunitionsJson'][r['AmmunitionId']]['HUDName'], r['Quantity']) for r in rows('WeaponAmmunitionsJson', UnitId=uid)]
         ok(bool(loadout) == (weapons != []) and all(any(a[0] == w for a in ammo) for _, w in loadout), (name, 'every weapon has ammunition', loadout, ammo))
         res[name] = {'transport_for': len(inf) if name in TRANSPORTS else 0, 'unit': uid, 'hud': hud, 'parent': f'{PARENTS[parent]} ({parent})', 'cost': cost, 'cards': n, 'abilities': abil, 'weapons': loadout, 'ammo': ammo}
-    rec['lynx_cards_1124'] = res
-    print('LYNX', res)
+    rec[key] = res
+    print('LYNX', key, res)
