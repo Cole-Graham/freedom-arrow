@@ -9,7 +9,7 @@ BD, US_TEST = 23, 27
 SPECS = {23: 'Blue Dragon (Testing Preview)', 24: 'France (Preview)', 25: 'Germany (Preview)'}
 TEST_SPECS = (26, 27, 28)
 RIFLEMEN = {1400: ('Korean Riflemen (Test)', 'Korean Riflemen'), 1401: ('Japanese Riflemen (Test)', 'Japanese Riflemen')}
-K1 = ('K1', 'K1A1')
+K1 = ('K1', 'K1A1', 'K9 Thunder')   # 24 Nov 23:5x (Osama): K9 "really does look like a War Thunder rip ... For now we hide it from the game"
 
 
 def apply(t, g, ok, rec):

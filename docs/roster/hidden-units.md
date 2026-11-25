@@ -26,6 +26,7 @@ Add every new hidden or removed card here in the same commit as the data change.
 | F-35B (JASDF) | 1291 | Blue Dragon (Arsenal-only preview), 2 cards | `roster_1123b.py` | Osama 23 Nov 18:4x "F-35 JASDF, let's hide this for now" |
 | K1A1 | 1279 | Blue Dragon (Arsenal-only preview) | `preview_specs_1124.py` | Osama 24 Nov 21:2x "Hide the K-1's too" |
 | K1 | 1280 | Blue Dragon (Arsenal-only preview) | `preview_specs_1124.py` | same |
+| K9 Thunder | 1310 | Blue Dragon (Arsenal-only preview) | `preview_specs_1124.py` | Osama 24 Nov 23:5x "K-9 really does look like a War Thunder rip ... For now we hide it from the game (don't pack it in our live build and download that model ever)"; its model files are refused by `tools/pla-specs/banned-models.txt` |
 | QJZ-89 Team (Armored) | 1157 | PLAGF Armored Force, 4 cards (the PLARF QJZ-89 Team 1170 stays) | `qbz95_qjz89_1123.py` | Osama 23 Nov 18:3x "QJZ-89 PLAGF Armored Force ... hidden" |
 | OH-58D Recon Optronic | 733 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the OH-58D Recon Optronic from the mod (or just disable it/hide it from the menu)" |
 | MH-6 Little Bird Recon | 736 | Special Operations Forces, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the MH-6 Little Bird Recon" |
@@ -84,3 +85,4 @@ battlegroup size 0. (The first version, 21:0x, hid the specs completely; it was 
 - 2026-11-24 21:13 PST (America/Los_Angeles): Blue Dragon (23), France (24), Germany (25) and the Eurocorp country only in test mode.
 - 2026-11-24 21:3x PST (America/Los_Angeles): Previews visible again with no stat card (PreviewCards.cs); K1 and K1A1 hidden (US test spec 27).
 - 2026-11-24 23:5x PST (America/Los_Angeles): Test-spec units hidden from the Armory unless test mode; Blue Dragon (Preview) and the riflemen renamed.
+- 2026-11-24 23:5x PST (America/Los_Angeles): K9 Thunder hidden (US test spec 27); m_k9_* banned from every package.

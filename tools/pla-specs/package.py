@@ -148,6 +148,11 @@ with zipfile.ZipFile(base) as z:
     # Osama 24 Nov 2026 22:1x ("keep this in our storage in case we want to readd them since they're game ready, pull them away"): 1,484 model
     # files no models.json entry uses (75 old models, 1.8 GB) leave with the next Assets version, i.e. any model build. The files are kept, with
     # their former units, in work/model-archive/leftovers-20261124 (index.json). To bring one back, copy it into the stage and remove its lines here.
+    _bm=Path(__file__).with_name('banned-models.txt')
+    _ban=tuple('UserData/FAModels/'+l.strip() for l in _bm.read_text().splitlines() if l.strip() and not l.startswith('#')) if _bm.exists() else ()
+    if _ban:
+        assert not [k for k in override if k.startswith(_ban)],('banned model files (banned-models.txt) in this build',[k for k in override if k.startswith(_ban)][:5])
+        if a.famodels or a.asset:drops=sorted(set(drops)|{n for n in z.namelist() if n.startswith(_ban)})
     _ld=Path(__file__).with_name('leftover-model-drops.txt')
     if (a.famodels or a.asset) and _ld.exists():
         _left={l.strip() for l in _ld.read_text().splitlines() if l.strip()}
