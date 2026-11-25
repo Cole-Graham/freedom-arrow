@@ -924,6 +924,8 @@ import qn202_javelin_1125;qn202_javelin_1125.apply(t,g,ok,rec)
 import ztd05_glatgm_1125;ztd05_glatgm_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 and VN-3 loadout options showed vanilla icons (Osama 25 Nov 2026 01:1x PST). See option_icon_overrides_1125.py.
 import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
+# ---------- Lynx Troop Carrier entirely unarmed, Lynx ATV retired (Osama 25 Nov 2026 01:1x PST). See lynx_tc_unarmed_1125.py.
+import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
