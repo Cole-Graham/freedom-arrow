@@ -872,6 +872,9 @@ import shorad_radar_1124;_sr=shorad_radar_1124.apply(t,g,ok,rec,_HR,_heli)
 _heli['radar']=_HR.contract(t)['radar'];_heli['ammo'].update({str(k):v for k,v in _sr['heli_ammo'].items()})
 ok(sum(1 for r in _heli['radar'] if r.get('label'))>=3,'radar groups with an icon label')
 print('SHORAD RADAR',{k:_sr[k] for k in ('ir_rows','china_rows','ir_round_copies','heli_ammo')},[(r['abilities'],r.get('label'),r['lowAltRange'],r['lowAltOptics'],r['helicopterRangeMultiplier'],r['helicopterOpticsMultiplier']) for r in _heli['radar']])
+# ---------- FK-3000 card (FK-2000 copy) + PCL-181 in the Medium CAB (Osama 24 Nov 2026 17:2x/18:0x PST, thread "China cosmetic work").
+# Creates rows: after every other row-creating section. See fk3000_pcl181_1124.py.
+import fk3000_pcl181_1124;fk3000_pcl181_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 rec['verified']='data checks only'
