@@ -231,6 +231,8 @@ Ways to make AA placement easier (not implemented, not tested):
 - **Vanilla has an unused per-weapon radar trait.** `Weapons.IsRadarDependent` (0x4C, a `weapons` column, set on 0 of 750 weapons), its own sprite `InfocardConfig.RadarDependent` (0x178) and text `ui_infocard_weapon_radar_dependent` (`TextWeaponIsRadarDependent`). Its getter (0x279250) is shared with 7 other getters and has no direct callers, so whether battle code reads the flag is not known.
 - Full list: `work/radar-weapons-1124/full-audit-dev13.txt` (BA Codex work folder).
 - **Fix (0.9.7-dev.14):** the build writes `radarWeapons` (weapon ids) and checks that no weapon on a radar unit mixes radar and exempt rounds; the card decides by the selected weapon's id, switches the trait row on after adding the icon, and logs every early exit (`radar trait ...`, first 80).
+- **Measured in 0.9.7-dev.14 (Lateralus's Skirmish log, 25 Nov):** the per-weapon range works in battle (`FREEDOM_ARROW_HELI_PERF` counted 285 and 372 radar-exempt range corrections per minute); the MML Stinger did not fire at 2465 m on an AH-64D.
+- **Targeting reticle (rangefinder) did not follow it.** `TargetLineSystem.RefreshLocalTargetInfo` (0x4A6000, code, 1.2.2.1) does not call `GetAmmoShootingDistance`: it takes the target level's range (ammo +0xB0 / +0xB4 / +0xB8) x the shooter's radar modifier (+0x14 / +0x18) inline, and marks a round out of range when the distance is greater (0x4A6D89-0x4A6E05). So it ignored both the helicopter range and the radar exemption (MML Stinger: 1000 x 1.25 = 1250, shown as 2500 m, instead of 1000 / 2000 m). Fix queued: `HeliRangeReticle` postfix recomputes each round's max range with `GetAmmoShootingDistance` and resets the out-of-range flag. Rounds are matched by weapon + round name; not yet seen in game.
 
 ### 5c. Which optics value is the big number on the unit card
 
@@ -270,3 +272,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-24 22:4x PST (America/Los_Angeles) — Added section 5e: per-weapon radar use and the card's radar trait (Lateralus).
 - 2026-11-25 07:42 PST (America/Los_Angeles) — Section 5e: why the dev.13 card radar icon was wrong (hidden trait row, pooled round list), and the unused vanilla IsRadarDependent trait (Lateralus).
 - 2026-11-25 07:57 PST (America/Los_Angeles) — Section 5e: machine guns exempt from the radar; card fix for 0.9.7-dev.14 (Lateralus).
+- 2026-11-25 08:22 PST (America/Los_Angeles) — Section 5e: dev.14 battle measurement; the targeting reticle computes range inline (fix queued) (Lateralus).

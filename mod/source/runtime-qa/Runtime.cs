@@ -185,6 +185,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_RANGE_FAILED: not installed. "+e.Message); }
         try { HeliRangeCard.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_CARD_FAILED: not installed. "+e.Message); }
+        try { HeliRangeReticle.Install(HarmonyInstance); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RETICLE_FAILED: not installed. "+e.Message); }
         try { CardStatFit.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_CARD_STAT_FIT_FAILED: not installed; vanilla wrapping. "+e.Message); }
         try { PlaneReturnCurve.Install(HarmonyInstance,Root); }

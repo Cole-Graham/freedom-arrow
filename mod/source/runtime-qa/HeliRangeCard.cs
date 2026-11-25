@@ -186,7 +186,7 @@ static class HeliRangeCard
         try
         {
             var unit=__instance._unit??current;var a=unit?.ActiveAbilities;
-            if(a==null||!a.IsRadar){TraitLog($"{unit?.HUDName}: no radar on the unit");return;}
+            if(a==null||!a.IsRadar)return;   // not logged: dev.14 spent all 80 lines on infantry cards
             WeaponListButton sel=null;var btns=__instance._activeWeaponListButtons;
             if(btns!=null)for(int i=0;i<btns.Count;i++){var b=btns[i];if(b==null)continue;if(b.gameObject.Pointer==__0.Pointer||(b.Button!=null&&b.Button.gameObject.Pointer==__0.Pointer)){sel=b;break;}}
             if(sel==null)sel=__0.GetComponentInParent<WeaponListButton>();
