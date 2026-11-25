@@ -3260,7 +3260,7 @@
       "profile": "VQX191",
       "address": "FA_PLA_WP_VQX191",
       "native_weapon": 210,
-      "basis": "Approved FA_PLA_WP_QBZ192 icon with a short suppressor (25 Nov 2026), work/vqx191-icon/make_vqx191.py; HK416 D10RS stat clone, back pocket"
+      "basis": "Redrawn 25 Nov 2026 13:4x on the approved FA_PLA_WP_QBZ191 outline (work/vqx191-icon/make_vqx191_v2.py): QBZ-192-length handguard, holographic sight, short suppressor; HK416 D10RS stat clone, back pocket"
     },
     {
       "weapon": 2012081,
