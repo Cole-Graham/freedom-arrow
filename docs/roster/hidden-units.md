@@ -33,7 +33,6 @@ Add every new hidden or removed card here in the same commit as the data change.
 | AH-64D Longbow Recon | 746 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the AH-64D Longbow Recon" |
 | Ka-226T Razvedchik | 728 | Defense Forces, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-226T, hide it from the mod" |
 | Ka-52K Razvedchik | 748 | Coastal Troops, 4 cards | `recon_helis_ru_1123.py` | Lateralus 23 Nov 18:5x "Ka-52K Razvedchik, hide it from the mod" |
-| FK-3000 | 1447 | PLAGF Medium CAB, 4 cards (now test spec 26, 4 cards) | `fk3000_hidden_1125.py` | Osama 25 Nov 11:4x "FK-3000 we need to hide in our test mode for now, it's completely fucked as a model" |
 | KF51 Panther | 1421 | Germany (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
 | KF41 Lynx | 1422 | Germany (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
 | Flakpanzer Gepard | 1426 | Germany (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
