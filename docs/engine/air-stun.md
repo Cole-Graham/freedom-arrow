@@ -35,8 +35,17 @@
 - **Why not the stress bar (calculated from 0.9.7-dev.15 data):** one AA hit fills 55-167% of a 1000 stress bar, mostly through the health share (1000 x damage / max HP: planes mostly 20 HP, helicopters 15, all 0 armour), so almost every hit that does not kill would stun. The draft uses separate stun points per missile (100 = one-hit stun).
 - **Hit hook:** `BattleSystemHelpers.CalculateStressDamage` (0x7D3E30) has direct callers (`ShellHitSystem.DealUnitDamage`, close-quarters combat) but no entity arguments; `ShellHitSystem.DealUnitDamage` (0x7FC060) has direct callers but takes `ref HitDamageInfo` (FA crashed the game patching a `ref` struct argument before: see harmony-nonblittable-ref-crash). A stun build needs a safe way to read the hit's ammo and target.
 
+## Trigger from stress gain, any source (Lateralus 25 Nov 12:5x)
+
+- No missile lookup is needed: the stun can trigger on stress gained, whatever caused it.
+- **Do not watch the bar value:** it is clamped to `MaxStress`, so an aircraft already at 900 shows only +100 for a 600 hit.
+- **Read the hit queue instead:** each hit adds its unclamped stress to `StressComponent.PendingDamages` (List<float>, +0x10); `StressSystem.Update` (0x811900, an override called through the system list, so it can be patched) sums and clears that queue. A prefix there can read every pending hit of air units, then stun for 3 s. To verify in game with a log line.
+- **Per-hit gain on a 20-HP plane** (blast + 1000 x damage / 20, calculated): MANPADS 560-640, radar SHORAD 800-1170, medium SAMs 955-1330; AA guns 138-305 per round (FK-2000 30 mm 305, Pantsir 30 mm 260, M61 220), MGs 54-66. On a 15-HP helicopter the damage share is a third higher.
+- **Rule options:** (A) one hit of at least T stuns (T 700: SHORAD and up stun, MANPADS and guns never); (B) stress gained inside a short window of at least T stuns, so gun bursts and MANPADS pairs can stun too.
+
 ## Document change log
 
 - 2026-11-25 12:3x PST (America/Los_Angeles) — Created: air stun feasibility against the WARNO model (Lateralus).
 - 2026-11-25 12:4x PST (America/Los_Angeles) — WARNO plane stun effects corrected (no firing, no orders, keeps course) and a BA build plan added (Lateralus).
 - 2026-11-25 12:5x PST (America/Los_Angeles) — Added Lateralus's decisions, why the stress bar cannot trigger the stun, and the hit hook options (proposal only).
+- 2026-11-25 13:0x PST (America/Los_Angeles) — Trigger from stress gain of any source via the pending hit queue (Lateralus).
