@@ -132,9 +132,9 @@
  {
   "unitId": 5044,
   "lods": [
-   "roc_sf1_0.fas",
-   "roc_sf1_1.fas",
-   "roc_sf1_2.fas"
+   "roc_sfscout_0.fas",
+   "roc_sfscout_1.fas",
+   "roc_sfscout_2.fas"
   ],
   "offset": [
    0,

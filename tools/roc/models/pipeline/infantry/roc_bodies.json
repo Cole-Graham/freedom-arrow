@@ -84,7 +84,7 @@
    "thumb_01_l": "CC_Base_L_Thumb1",
    "thumb_01_r": "CC_Base_R_Thumb1"
   },
-  "units": "ROC SF Scout, ROC SF Section",
+  "units": "spare: SF Section uses ROC SF2 (Shawn 25 Nov)",
   "bonerot": [
    -90,
    0,
@@ -294,6 +294,47 @@
   "hand_mesh": "s_m_y_marine_03_model_007",
   "hand_meshes": [
    "s_m_y_marine_03_model_007"
+  ]
+ },
+ "sfscout": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 1/ROC SF 1/ROC SF1 riged.fbx",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/inf/sfscout",
+  "meshes": [
+   "swat_body"
+  ],
+  "tex": {
+   "_swat_bodydefaultMat": [
+    "Body_Base_color",
+    "Body_Normal_OpenGL"
+   ],
+   "_2_Default": [
+    "HeadGear_Base_color",
+    "HeadGear_Normal_OpenGL"
+   ]
+  },
+  "rigid": {},
+  "fit": [
+   "swat_body"
+  ],
+  "bones": {
+   "upperarm_l": "CC_Base_L_Upperarm",
+   "upperarm_r": "CC_Base_R_Upperarm",
+   "lowerarm_l": "CC_Base_L_Forearm",
+   "lowerarm_r": "CC_Base_R_Forearm",
+   "hand_l": "CC_Base_L_Hand",
+   "hand_r": "CC_Base_R_Hand",
+   "index_01_l": "CC_Base_L_Index1",
+   "index_01_r": "CC_Base_R_Index1",
+   "ring_01_l": "CC_Base_L_Ring1",
+   "ring_01_r": "CC_Base_R_Ring1",
+   "thumb_01_l": "CC_Base_L_Thumb1",
+   "thumb_01_r": "CC_Base_R_Thumb1"
+  },
+  "units": "SF Scout (ROC SF 1 body, ROC Infantry camo on the uniform, Shawn 25 Nov)",
+  "bonerot": [
+   -90,
+   0,
+   0
   ]
  }
 }

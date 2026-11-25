@@ -21,14 +21,15 @@
 
 ## Infantry bodies (25 November 2026)
 
-**All 6 ROC bodies are on the BA 40-bone soldier skeleton, with 3 LODs each (28k / 7k / 3k triangles at most). They cover all 14 ROC infantry cards. They are not yet in a game build.**
+**All 7 ROC bodies (6 sources plus the SF Scout recolour) are on the BA 40-bone soldier skeleton, with 3 LODs each (28k / 7k / 3k triangles at most). They cover all 14 ROC infantry cards. They are not yet in a game build.**
 
 - ROC Reservist: Reserver 5042, Reserver Kestrel 5043.
 - ROC Infantry: DMS Team 5034, Mech. Riflemen 5040.
 - ROC Infantry 2: Mech. Riflemen T112 5039, SF Snipers 5046, SF Snipers M107 5047. The 51k-triangle M1 helmet is cut to about 4k first.
 - ROC Marine: Marine AT 5035, Marine 5038, Reserve Marine 5041.
 - ROC Marine SF: Marine Frogmen CQC 5036, Marine Frogmen 5037.
-- ROC SF 1: SF Scout 5044, SF Section 5045. The sheet names `ROC SF2.zip`; only `ROC SF 1.zip` exists.
+- SF Scout 5044: the ROC SF 1 body with the ROC Infantry camo on the uniform (Shawn, 25 Nov). `recamo_sf1.py` finds the large camo areas of SF 1's body texture and keeps the boots (`uv_zmask.py`: faces wholly below 0.20 m). It fills those areas with generated ROC digital camo: the 4 colours and their shares, and real pixels per colour, come from a clean ROC coat patch. The block size is scaled by texel density (ROC coat 1256 px/m, SF 1 1617 px/m). Fold shading comes from SF 1's Black texture. The vest, helmet and gloves are unchanged.
+- SF Section 5045: Shawn wants the ROC SF2 body. That file is not in the models folder yet, so the rule points to the plain ROC SF 1 body as a stand-in.
 
 Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `infantry-bodies-*.json` beside `infantry-bodies.json` and approves the ROC block 5000-5999. A bad add-on file is skipped alone, so the PLA rules still load. The pinned `infantry-bodies.json` is not changed. The `roc_` file names are not counted by the `pla2_` payload check.
 
@@ -48,3 +49,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
 - 2026-11-25 04:4x PST (America/Los_Angeles) — 16 ROC vehicle/aircraft models converted overnight; pipeline and card links recorded.
 - 2026-11-25 10:4x PST (America/Los_Angeles) — 6 ROC infantry bodies rigged with LODs; add-on body rules and FAModels ROC range recorded.
+- 2026-11-25 11:2x PST (America/Los_Angeles) — SF Scout recoloured to ROC camo; SF Section waits for ROC SF2.
