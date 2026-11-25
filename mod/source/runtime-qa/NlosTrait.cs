@@ -65,6 +65,20 @@ static class NlosTrait
         var path=Path.Combine(root,"nlos.json");
         if(!File.Exists(path)){MelonLogger.Msg("FREEDOM_ARROW_NLOS not installed: no nlos.json");return;}
         foreach(var n in JsonNode.Parse(File.ReadAllText(path))!["ammunition"]!.AsArray())ammo.Add(n!.GetValue<int>());
+        // 0.9.7 (Osama 24 Nov 2026 21:3x, bugs thread 1573561286803980289: "this is fine but now the missile doesn't follow the laser"). The NLOS rounds
+        // fly the vanilla Iskander-K cruise path (nlos_cruise_1124.py) with LaserGuided on. About 3 s after launch the game hands a laser-guided round to
+        // its laser-missile path (600, seeker 300): with a lased unit it homes on it; with no laser target it flies straight and climbs (0.9.5-dev.44).
+        // laser_hold: only that second case is undone (back to the cruise path to the Fire Position spot). No auto fire, no target picking, no tracking.
+        var hold=JsonNode.Parse(File.ReadAllText(path))!["laser_hold"]?.AsArray();
+        if(hold!=null)foreach(var n in hold)laserHold.Add(n!.GetValue<int>());
+        if(ammo.Count==0&&laserHold.Count>0)
+        {
+            var upd=AccessTools.Method(typeof(SeekerSystem),"InternalUpdate")??throw new InvalidOperationException("SeekerSystem.InternalUpdate not found");
+            harmony.Patch(upd,postfix:new HarmonyMethod(typeof(NlosTrait),nameof(LaserHoldAfter)));
+            MelonLogger.Msg($"FREEDOM_ARROW_NLOS laser hold installed: rounds {string.Join(",",laserHold)} keep the cruise path unless a laser target is locked");
+            DiagnosticLog.Write("nlos_laser_hold_installed",new{rounds=laserHold.ToArray()});
+            return;
+        }
         if(ammo.Count==0){MelonLogger.Msg("FREEDOM_ARROW_NLOS not installed: empty ammunition list");return;}
         var update=AccessTools.Method(typeof(SeekerSystem),"InternalUpdate")??throw new InvalidOperationException("SeekerSystem.InternalUpdate not found");
         var drop=AccessTools.Method(typeof(SeekerSystem),nameof(SeekerSystem.DropCurrentTarget))??throw new InvalidOperationException("SeekerSystem.DropCurrentTarget not found");
@@ -444,6 +458,32 @@ static class NlosTrait
     // seeker None 0) to the game's laser-missile path (TrajectoryType LaserMissile 600, SeekerType Laser 300), the handover for LaserGuided rounds,
     // and with no laser target entity it flew straight and climbed. The dev.43 rounds that hit never switched (dev.43: 119 trace lines with no
     // target on path 600, all on flights that flew off). Locked rounds that switch still hit (target held). So an empty-spot round is held on the cruise path.
+    static readonly HashSet<int> laserHold=new();
+    static readonly Dictionary<ulong,float> noLaserSince=new();
+    const float LaserGrace=0.5f;
+    // Postfix on SeekerSystem.InternalUpdate for laser_hold rounds: a round on the laser path (600) with no live seeker target for LaserGrace s goes
+    // back to the cruise path (200, seeker 0) with line of sight and vision off, the proven Fire Position dive (0.9.5-dev.45, 22/22 hits).
+    public static void LaserHoldAfter(in Entity __0)
+    {
+        if(broken||!Runtime.IsApplied)return;
+        try
+        {
+            var missile=__0;
+            if(!missile.IsAlive||!missile.Has<MissileGuidanceInfoComponent>()||!missile.Has<SeekerComponent>())return;
+            var info=NativeEcs.Read<MissileGuidanceInfoComponent>(missile).AmmunitionInfo;
+            if(info==null||!laserHold.Contains(info.Id))return;
+            ulong key=Key(missile);
+            if(NativeEcs.Field<MissileGuidanceInfoComponent,int>(missile,"TrajectoryType")==200){noLaserSince.Remove(key);return;}
+            if(SeekerTarget(missile,out var t)&&t.IsAlive){noLaserSince.Remove(key);return;}   // laser lock on a unit: game guidance
+            float now=Time.time;
+            if(!noLaserSince.TryGetValue(key,out var t0)){if(noLaserSince.Count>Prune)noLaserSince.Clear();noLaserSince[key]=now;return;}
+            if(now-t0<LaserGrace)return;
+            NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasLOSOnCurrentTarget",false);
+            NativeEcs.WriteField<SeekerComponent,bool>(missile,"HasVisionOnCurrentTarget",false);
+            HoldCruise(missile,key);
+        }
+        catch(Exception e){Fail(e);}
+    }
     static readonly HashSet<ulong> heldLogged=new();
     static void HoldCruise(Entity missile,ulong key)
     {
