@@ -1,0 +1,299 @@
+{
+ "reservist": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Reservist/ROC Reservist/ROC Reservist.fbx",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Reservist/ROC Reservist",
+  "meshes": [
+   "head_tw",
+   "SM_CC_Arm",
+   "uniform_tw",
+   "vest_tw"
+  ],
+  "tex": {
+   "Material #70": [
+    "T_twhead_color",
+    "T_twhead_normal"
+   ],
+   "M_CC_Arm": [
+    "CC_Arm_color",
+    "CC_Arm_Normal"
+   ],
+   "M_tw_soldier_uniform": [
+    "T_tw_soldier_uniform_color",
+    "FLAT"
+   ],
+   "M_tw_soldier_vest": [
+    "T_tw_soldier_vest_color",
+    "FLAT"
+   ]
+  },
+  "rigid": {
+   "head_tw": "Head",
+   "vest_tw": "Spine2"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "uniform_tw"
+  ],
+  "bones": {
+   "upperarm_l": "upperarm_l",
+   "lowerarm_l": "lowerarm_l",
+   "hand_l": "hand_l",
+   "index_01_l": "index_01_l",
+   "ring_01_l": "ring_01_l",
+   "thumb_01_l": "thumb_01_l",
+   "upperarm_r": "upperarm_r",
+   "lowerarm_r": "lowerarm_r",
+   "hand_r": "hand_r",
+   "index_01_r": "index_01_r",
+   "ring_01_r": "ring_01_r",
+   "thumb_01_r": "thumb_01_r"
+  },
+  "units": "ROC Reserver, ROC Reserver Kestrel"
+ },
+ "sf1": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 1/ROC SF 1/ROC SF1 riged.fbx",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 1/ROC SF 1/texture/Character/Camo",
+  "meshes": [
+   "swat_body"
+  ],
+  "tex": {
+   "_swat_bodydefaultMat": [
+    "Body_Base_color",
+    "Body_Normal_OpenGL"
+   ],
+   "_2_Default": [
+    "HeadGear_Base_color",
+    "HeadGear_Normal_OpenGL"
+   ]
+  },
+  "rigid": {},
+  "fit": [
+   "swat_body"
+  ],
+  "bones": {
+   "upperarm_l": "CC_Base_L_Upperarm",
+   "upperarm_r": "CC_Base_R_Upperarm",
+   "lowerarm_l": "CC_Base_L_Forearm",
+   "lowerarm_r": "CC_Base_R_Forearm",
+   "hand_l": "CC_Base_L_Hand",
+   "hand_r": "CC_Base_R_Hand",
+   "index_01_l": "CC_Base_L_Index1",
+   "index_01_r": "CC_Base_R_Index1",
+   "ring_01_l": "CC_Base_L_Ring1",
+   "ring_01_r": "CC_Base_R_Ring1",
+   "thumb_01_l": "CC_Base_L_Thumb1",
+   "thumb_01_r": "CC_Base_R_Thumb1"
+  },
+  "units": "ROC SF Scout, ROC SF Section",
+  "bonerot": [
+   -90,
+   0,
+   0
+  ]
+ },
+ "infantry": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry/ROC Infantry/ROC Infantry.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry/ROC Infantry",
+  "scale": 0.01,
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "SM_CC_Arm",
+   "SM_PelvisGear",
+   "SM_PMC_shoes_01",
+   "SM_TWCoat",
+   "SM_twhead",
+   "SM_TWPants",
+   "SM_vestHeadGear",
+   "SM_vestHeadGear.001"
+  ],
+  "tex": {
+   "M_CC_Arm_T_CC_Arm_color": [
+    "T_CC_Arm_color",
+    "T_CC_Arm_Normal"
+   ],
+   "M_PelvisGear_T_PelvisGear_Color": [
+    "T_PelvisGear_Color",
+    "T_PelvisGear_Normal"
+   ],
+   "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
+    "T_PMC_shoes_01_Color",
+    "T_PMC_shoes_01_normal"
+   ],
+   "M_TWCoat_T_TWCoat_Color": [
+    "T_TWCoat_Color",
+    "T_TWCoat_Normal"
+   ],
+   "M_twhead_T_twhead_color": [
+    "T_twhead_color",
+    "T_twhead_normal"
+   ],
+   "M_TWPants_T_TWPants_Color": [
+    "T_TWPants_Color",
+    "T_TWPants_Normal"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color": [
+    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Normal"
+   ]
+  },
+  "rigid": {
+   "SM_twhead": "Head",
+   "SM_vestHeadGear.001": "Head",
+   "SM_vestHeadGear": "Spine2"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "SM_TWCoat"
+  ],
+  "units": "ROC Infantry body (Mech. Riflemen, T112, DMS per Shawn sheet)"
+ },
+ "infantry2": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry 2/ROC Infantry 2/ROC SF 3.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry 2/ROC Infantry 2/textures",
+  "ground": true,
+  "height": 1.8,
+  "landmarks": "auto",
+  "meshes": [
+   "JGSF_soldier_01",
+   "M1"
+  ],
+  "lm_meshes": [
+   "JGSF_soldier_01"
+  ],
+  "decimate": {
+   "M1": 5000
+  },
+  "tex": {
+   "japan_gunner_late_japan_gunner_late_Base_Color": [
+    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Normal"
+   ],
+   "japan_gunner_heads_japan_gunner_heads_Base_Color": [
+    "japan_gunner_heads_Base_Color",
+    "japan_gunner_heads_Normal"
+   ],
+   "TK_M1": [
+    "TK_M1_Diffuse",
+    "TK_M1_Normal"
+   ],
+   "TK_M2": [
+    "TK_M2_Diffuse",
+    "TK_M2_Normal"
+   ]
+  },
+  "rigid": {
+   "M1": "Head"
+  },
+  "fit": [
+   "JGSF_soldier_01"
+  ],
+  "units": "ROC Infantry 2 body (SF Snipers and others per Shawn sheet)"
+ },
+ "marine": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Marine/ROC Marine/ROC Marine.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Marine/ROC Marine",
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "mesh_rep_0_ori_repair_quad",
+   "s_m_y_marine_03_model",
+   "s_m_y_marine_03_model_001",
+   "s_m_y_marine_03_model_005",
+   "s_m_y_marine_03_model_006",
+   "s_m_y_marine_03_model_007"
+  ],
+  "tex": {
+   "Head": [
+    "DefaultMaterial_Base_color",
+    "DefaultMaterial_Normal_OpenGL"
+   ],
+   "lowr_diff_000_a_uni.001": [
+    "lowr_diff_000_a_uni",
+    "lowr_normal_000"
+   ],
+   "accs_diff_000_a_uni.001": [
+    "accs_diff_000_a_uni",
+    "accs_normal_000"
+   ],
+   "hair_diff_001_a_uni.001": [
+    "hair_diff_001_a_uni",
+    "hair_normal_001"
+   ],
+   "uppr_diff_000_a_uni": [
+    "uppr_diff_000_a_uni",
+    "uppr_normal_000"
+   ],
+   "hand_diff_000_a_uni.001": [
+    "hand_diff_000_a_uni",
+    "hand_normal_000"
+   ]
+  },
+  "rigid": {
+   "mesh_rep_0_ori_repair_quad": "Head",
+   "s_m_y_marine_03_model_001": "Spine2",
+   "s_m_y_marine_03_model_005": "Head"
+  },
+  "fit": [
+   "s_m_y_marine_03_model_006"
+  ],
+  "units": "ROC Marine body (Marine, Marine AT, Reserve Marine)",
+  "hand_mesh": "s_m_y_marine_03_model_007",
+  "hand_meshes": [
+   "s_m_y_marine_03_model_007"
+  ]
+ },
+ "marinesf": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Marine SF/ROC Marine SF/ROC Marine SF.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Marine SF/ROC Marine SF",
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "mesh_rep_0_ori_repair_quad",
+   "s_m_y_marine_03_model",
+   "s_m_y_marine_03_model_001",
+   "SM_Hat_FisherMan",
+   "s_m_y_marine_03_model_006",
+   "s_m_y_marine_03_model_007"
+  ],
+  "tex": {
+   "Head": [
+    "DefaultMaterial_Base_color",
+    "DefaultMaterial_Normal_OpenGL"
+   ],
+   "lowr_diff_000_a_uni.001": [
+    "lowr_diff_000_a_uni - Copy",
+    "lowr_normal_000"
+   ],
+   "accs_diff_000_a_uni.001": [
+    "accs_diff_000_a_uni",
+    "accs_normal_000"
+   ],
+   "uppr_diff_000_a_uni": [
+    "uppr_diff_000_a_uni",
+    "uppr_normal_000"
+   ],
+   "hand_diff_000_a_uni.001": [
+    "hand_diff_000_a_uni",
+    "hand_normal_000"
+   ],
+   "M_Hat_FisherMan": [
+    "T_Hat_FisherMan_Color",
+    "T_Hat_FisherMan_Normal"
+   ]
+  },
+  "rigid": {
+   "mesh_rep_0_ori_repair_quad": "Head",
+   "s_m_y_marine_03_model_001": "Spine2",
+   "SM_Hat_FisherMan": "Head"
+  },
+  "fit": [
+   "s_m_y_marine_03_model_006"
+  ],
+  "units": "ROC Marine SF body (Marine Frogmen, Frogmen CQC)",
+  "hand_mesh": "s_m_y_marine_03_model_007",
+  "hand_meshes": [
+   "s_m_y_marine_03_model_007"
+  ]
+ }
+}

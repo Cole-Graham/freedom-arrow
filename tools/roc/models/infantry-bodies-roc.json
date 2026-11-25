@@ -1,0 +1,184 @@
+[
+ {
+  "unitId": 5034,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5035,
+  "lods": [
+   "roc_marine_0.fas",
+   "roc_marine_1.fas",
+   "roc_marine_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5036,
+  "lods": [
+   "roc_marinesf_0.fas",
+   "roc_marinesf_1.fas",
+   "roc_marinesf_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5037,
+  "lods": [
+   "roc_marinesf_0.fas",
+   "roc_marinesf_1.fas",
+   "roc_marinesf_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5038,
+  "lods": [
+   "roc_marine_0.fas",
+   "roc_marine_1.fas",
+   "roc_marine_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5039,
+  "lods": [
+   "roc_infantry2_0.fas",
+   "roc_infantry2_1.fas",
+   "roc_infantry2_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5040,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5041,
+  "lods": [
+   "roc_marine_0.fas",
+   "roc_marine_1.fas",
+   "roc_marine_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5042,
+  "lods": [
+   "roc_reservist_0.fas",
+   "roc_reservist_1.fas",
+   "roc_reservist_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5043,
+  "lods": [
+   "roc_reservist_0.fas",
+   "roc_reservist_1.fas",
+   "roc_reservist_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5044,
+  "lods": [
+   "roc_sf1_0.fas",
+   "roc_sf1_1.fas",
+   "roc_sf1_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5045,
+  "lods": [
+   "roc_sf1_0.fas",
+   "roc_sf1_1.fas",
+   "roc_sf1_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5046,
+  "lods": [
+   "roc_infantry2_0.fas",
+   "roc_infantry2_1.fas",
+   "roc_infantry2_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5047,
+  "lods": [
+   "roc_infantry2_0.fas",
+   "roc_infantry2_1.fas",
+   "roc_infantry2_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ }
+]

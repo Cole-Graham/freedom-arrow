@@ -19,7 +19,32 @@
 - **Not used:** AH-64E, F-16A, Mirage 2000, M60A3 TTS, CM-25 (War Thunder extracts); F-CK-1 (the .max import throws parts out of place); C-130HE (mesh named `SK_West_Transport_C130J_LOD0`, Osama to judge); Hsiung Feng IIE and Chung Xiang II (files not usable / not shared).
 - **Known limits:** helicopter rotors are part of the body (no spin yet); the model files are not in git (work/roc-20261125/stage, 527 MB).
 
+## Infantry bodies (25 November 2026)
+
+**All 6 ROC bodies are on the BA 40-bone soldier skeleton, with 3 LODs each (28k / 7k / 3k triangles at most). They cover all 14 ROC infantry cards. They are not yet in a game build.**
+
+- ROC Reservist: Reserver 5042, Reserver Kestrel 5043.
+- ROC Infantry: DMS Team 5034, Mech. Riflemen 5040.
+- ROC Infantry 2: Mech. Riflemen T112 5039, SF Snipers 5046, SF Snipers M107 5047. The 51k-triangle M1 helmet is cut to about 4k first.
+- ROC Marine: Marine AT 5035, Marine 5038, Reserve Marine 5041.
+- ROC Marine SF: Marine Frogmen CQC 5036, Marine Frogmen 5037.
+- ROC SF 1: SF Scout 5044, SF Section 5045. The sheet names `ROC SF2.zip`; only `ROC SF 1.zip` exists.
+
+Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `infantry-bodies-*.json` beside `infantry-bodies.json` and approves the ROC block 5000-5999. A bad add-on file is skipped alone, so the PLA rules still load. The pinned `infantry-bodies.json` is not changed. The `roc_` file names are not counted by the `pla2_` payload check.
+
+---
+
+**Method** (`pipeline/infantry/`, run from the work folder with Blender 5.2.3):
+
+1. `rig_roc.py KEY roc_bodies.json Ranger.glb OUT`: moves the source arms onto the native Ranger arms (ArmFit), copies the Ranger surface weights and makes head gear and vests rigid. It also renders `landmarks0/1.png` and `rest0/1.png`.
+2. Landmarks: ROC Reservist and ROC SF 1 use their own arm bones. SF 1's bones lie on -Y in the FBX, so `bonerot [-90,0,0]` turns them upright. The other 4 bodies have no skeleton (ROC Infantry's helper empties all sit at 0,0,0). `lm_auto.py` measures the arm joints from the mesh, and the same measurement on the Ranger mesh is the target, so the two biases cancel.
+3. Measured accuracy of `lm_auto.py` against real skeletons (`lm_validate.py`): wrist 1.5-2.8 cm, elbow 4.2-10.9 cm, shoulder 2.9-9.4 cm. Part of the shoulder difference is rig convention: the shoulder bone is at x = 0.149 m on SF 1 and 0.246 m on the Ranger.
+4. The GTA Marine hands hang below ArmFit's z > 0.86 m limit, which stretched them. Each side of the separate hand mesh (`hand_meshes`) now moves whole with the rigid hand transform.
+5. `pipe_body.sh KEY RIGS`: atlas (`roc_` prefix), `decimate_fas.py` LODs, `_0_b` battle texture copies and `.fat` files.
+6. `pose_sheet.sh KEY RIGS`: rest pose plus a test pose (arms, legs, head, spine).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
 - 2026-11-25 04:4x PST (America/Los_Angeles) — 16 ROC vehicle/aircraft models converted overnight; pipeline and card links recorded.
+- 2026-11-25 10:4x PST (America/Los_Angeles) — 6 ROC infantry bodies rigged with LODs; add-on body rules and FAModels ROC range recorded.
