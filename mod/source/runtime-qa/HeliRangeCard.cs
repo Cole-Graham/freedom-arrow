@@ -144,13 +144,18 @@ static class HeliRangeCard
                 var tr=img.transform.Find("FA_RadarLabel");GameObject go;Il2CppTMPro.TextMeshProUGUI t;
                 if(tr==null)
                 {
+                    // Lateralus 24 Nov 18:4x: a line under the icon was too big, ran off the card edge and covered the next ability (smoke).
+                    // Now a short tag (SA / IR / LR) inside the icon's bottom-right corner, where a counted ability shows "x1", at that count's size.
                     go=new GameObject("FA_RadarLabel");go.transform.SetParent(img.transform,false);
-                    var rt=go.AddComponent<RectTransform>();
-                    rt.anchorMin=new Vector2(0.5f,0f);rt.anchorMax=new Vector2(0.5f,0f);rt.pivot=new Vector2(0.5f,1f);rt.anchoredPosition=new Vector2(0f,-1f);rt.sizeDelta=new Vector2(140f,18f);
+                    var rt=go.AddComponent<RectTransform>();var box=img.rectTransform.rect;
+                    rt.anchorMin=new Vector2(1f,0f);rt.anchorMax=new Vector2(1f,0f);rt.pivot=new Vector2(1f,0f);rt.anchoredPosition=Vector2.zero;
+                    rt.sizeDelta=new Vector2(Mathf.Max(box.width,20f),Mathf.Max(box.height*0.45f,8f));
                     t=go.AddComponent<Il2CppTMPro.TextMeshProUGUI>();
-                    var src=it.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true)??card.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true);
-                    if(src!=null){t.font=src.font;t.color=src.color;t.fontSize=Mathf.Clamp(src.fontSize*0.75f,10f,14f);}else t.fontSize=12f;
-                    t.alignment=Il2CppTMPro.TextAlignmentOptions.Top;t.enableWordWrapping=false;t.overflowMode=Il2CppTMPro.TextOverflowModes.Overflow;
+                    var count=it.CountContainer?.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true);
+                    var src=count??it.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true)??card.GetComponentInChildren<Il2CppTMPro.TextMeshProUGUI>(true);
+                    if(src!=null){t.font=src.font;t.color=Color.white;}
+                    t.fontSize=count!=null?count.fontSize:Mathf.Max(box.height*0.32f,7f);
+                    t.alignment=Il2CppTMPro.TextAlignmentOptions.BottomRight;t.enableWordWrapping=false;t.overflowMode=Il2CppTMPro.TextOverflowModes.Overflow;
                     t.raycastTarget=false;t.fontStyle=Il2CppTMPro.FontStyles.Bold;
                     radarLabels.Add(go);
                 }
@@ -188,7 +193,12 @@ static class HeliRangeCard
                     $"{low}: {X(a.RadarLowAltWeaponRangeModifier)}",$"{lowOptics}: {X(a.RadarLowAltOpticsModifier)}","",
                     $"{high}: {X(a.RadarHighAltWeaponRangeModifier)}",$"{highOptics}: {X(a.RadarHighAltOpticsModifier)}"};
                 if(rest.Count>0){block.Add("");block.AddRange(rest);}
-                data.TextLocKey=string.Join("\n",block);tip.Data=data;found=true;
+                data.TextLocKey=string.Join("\n",block);
+                // Tooltip title per radar type (Lateralus 24 Nov 18:4x "change the tooltip title for each one as well"): SA / IR SHORAD, long-range SAM.
+                if(HeliRange.radarLabel.TryGetValue((a.RadarLowAltOpticsModifier,a.RadarHighAltOpticsModifier,a.RadarLowAltWeaponRangeModifier,
+                    a.RadarHighAltWeaponRangeModifier,a.RadarSwitchCooldown,a.IsRadarStatic),out var lab)&&!string.IsNullOrEmpty(lab.title))
+                    data.TitleLocKey=zh&&!string.IsNullOrEmpty(lab.titleZh)?lab.titleZh:lab.title;
+                tip.Data=data;found=true;
                 Log($"radar tooltip {__0.HUDName}: {data.TextLocKey.Replace("\n"," | ")}");
             }
             if(!found)Log($"radar tooltip {__0.HUDName}: no tooltip with a '{low}: x' line");

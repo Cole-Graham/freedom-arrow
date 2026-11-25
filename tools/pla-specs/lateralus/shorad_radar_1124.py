@@ -14,7 +14,8 @@
   override) is x1.25/1.5: with the x1.5 radar they reach what they reach today. Their helicopter range keeps today's value.
 - Option B burn time: every radar-guided round of an SA unit burns longer so its catch range against a jet flying away at 225 grows by the same
   20% as the range (work/shorad-15-20261124/burn.py). Each round is used by SA units only (checked).
-- Helicopters keep x1.25 range and optics on every SHORAD row (heli_range.EDIT); labels for the radar icon on the card (heli_range.LABEL)."""
+- Helicopters keep x1.25 range and optics on every SHORAD row (heli_range.EDIT); labels for the radar icon on the card (heli_range.LABEL).
+  Lateralus 24 Nov 18:4x: "the SHORAD text labels are way too big ... maybe just use 'IR' and 'SA' and make the text smaller": SA / IR / LR."""
 OLD = (1.25, 1.25, 1.25, 1.0, 2.0)  # low range, low optics, ..., high range, high optics: rows 58/60/62 today
 SA_ROWS = (58, 60, 62)
 CHINA_GUN_ROWS = (2009175, 2009943, 2019443)
@@ -124,9 +125,9 @@ def apply(t, g, ok, rec, HR, heli):
     ok(set(burned) == set(BURN), ('burn table = radar-guided rounds of SA units', sorted(set(burned) ^ set(BURN))))
     # helicopters stay x1.25; labels for the card radar icon
     for i in SA_ROWS + CHINA_GUN_ROWS + tuple(new.values()):HR.EDIT[i] = {'helicopterRangeMultiplier': HELI, 'helicopterOpticsMultiplier': HELI}
-    for i in SA_ROWS:HR.LABEL[i] = 'SA SHORAD'
-    for i in CHINA_GUN_ROWS + tuple(new.values()):HR.LABEL[i] = 'IR SHORAD'
-    for i in LR_ROWS:HR.LABEL[i] = 'LR SAM'
+    for i in SA_ROWS:HR.LABEL[i] = 'SA'
+    for i in CHINA_GUN_ROWS + tuple(new.values()):HR.LABEL[i] = 'IR'
+    for i in LR_ROWS:HR.LABEL[i] = 'LR'
     out = {'sa_units': {u: str(U[u].get('HUDName')).strip() for u in sa}, 'ir_units': {u: str(U[u].get('HUDName')).strip() for u in ir},
            'ir_rows': new, 'moved': moved, 'china_rows': china, 'ir_round_copies': copies, 'heli_ammo': heli_ammo,
            'burn': {k: v[1] for k, v in BURN.items()}}

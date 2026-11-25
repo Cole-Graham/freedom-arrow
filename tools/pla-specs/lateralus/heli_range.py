@@ -31,7 +31,9 @@ EDIT={59:{'helicopterRangeMultiplier':1.25,'helicopterOpticsMultiplier':1.25},12
 # Radar icon label on the card (Lateralus 24 Nov 2026, thread 1568104480459722894: "separate radar ability icons that have labels under them, e.g.
 # 'IR SHORAD' 'SA SHORAD'"). Filled by shorad_radar_1124.py: ability row -> label; rows with the same values must have the same label.
 LABEL={}
-LABEL_ZH={'SA SHORAD':'雷达制导近防','IR SHORAD':'红外/火炮近防','LR SAM':'远程防空'}
+LABEL_ZH={}   # SA / IR / LR are shown as they are in every language (Lateralus 24 Nov 18:4x: short tags)
+# Tooltip title per label (Lateralus 24 Nov 18:4x "change the tooltip title for each one as well"): (English, Chinese).
+TITLE={'SA':('SA SHORAD Radar','半主动近程防空雷达'),'IR':('IR SHORAD Radar','红外近程防空雷达'),'LR':('Long-Range SAM Radar','远程防空雷达')}
 def radar_rows(AB):return {i:a for i,a in AB.items() if a and a.get('IsRadar')}
 def key(a):return (float(a['RadarLowAltOpticsModifier']),float(a['RadarHighAltOpticsModifier']),float(a['RadarLowAltWeaponRangeModifier']),
                    float(a['RadarHighAltWeaponRangeModifier']),float(a['RadarSwitchCooldown']),bool(a['IsRadarStatic']))
@@ -72,7 +74,8 @@ def contract(t):
         gr['abilities'].append(i);gr['names'].append(a.get('Name'))
     radar=[{'abilities':gr['abilities'],'names':gr['names'],'lowAltOptics':k[0],'highAltOptics':k[1],'lowAltRange':k[2],'highAltRange':k[3],
             'switchCooldown':k[4],'static':k[5],'helicopterRangeMultiplier':gr['multipliers'][0],'helicopterOpticsMultiplier':gr['multipliers'][1],
-            **({'label':gr['label'],'labelZh':LABEL_ZH.get(gr['label'],gr['label'])} if gr['label'] else {})}
+            **({'label':gr['label'],'labelZh':LABEL_ZH.get(gr['label'],gr['label']),
+                **({'title':TITLE[gr['label']][0],'titleZh':TITLE[gr['label']][1]} if gr['label'] in TITLE else {})} if gr['label'] else {})}
            for k,gr in groups.items()]
     A,WA,S=t['AmmunitionsJson'],t['WeaponAmmunitionsJson'],t['SensorsJson']
     used={r['AmmunitionId'] for r in WA.values() if r}

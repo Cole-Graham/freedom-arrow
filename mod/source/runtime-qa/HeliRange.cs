@@ -25,7 +25,7 @@ static class HeliRange
     internal static readonly Dictionary<int,float> ammoRange=new();
     internal static readonly Dictionary<(float,float,float,float,float,bool),(float range,float optics)> radar=new();
     // Radar icon label per radar group (SA SHORAD / IR SHORAD / LR SAM; Lateralus 24 Nov 2026), from helicopter-range.json "label"/"labelZh".
-    internal static readonly Dictionary<(float,float,float,float,float,bool),(string en,string zh)> radarLabel=new();
+    internal static readonly Dictionary<(float,float,float,float,float,bool),(string en,string zh,string title,string titleZh)> radarLabel=new();
     // Helicopter optics per sensor, matched by the observer's ground/low/high optics (FogOfWarComponent.DistanceGround/LowAlt/HighAlt).
     internal static readonly Dictionary<(float,float,float),float> sensorOptics=new();
     internal static readonly HashSet<int> heliUnits=new();
@@ -49,7 +49,7 @@ static class HeliRange
                      r["switchCooldown"].GetValue<float>(),r["static"].GetValue<bool>());
             radar[key]=(r["helicopterRangeMultiplier"].GetValue<float>(),r["helicopterOpticsMultiplier"].GetValue<float>());
             var label=r["label"]?.GetValue<string>();
-            if(!string.IsNullOrEmpty(label))radarLabel[key]=(label,r["labelZh"]?.GetValue<string>()??label);
+            if(!string.IsNullOrEmpty(label))radarLabel[key]=(label,r["labelZh"]?.GetValue<string>()??label,r["title"]?.GetValue<string>(),r["titleZh"]?.GetValue<string>());
         }
         foreach(var r in j["sensors"]?.AsArray()??new JsonArray())
             sensorOptics[(r["ground"].GetValue<float>(),r["low"].GetValue<float>(),r["high"].GetValue<float>())]=r["helicopterOptics"].GetValue<float>();
