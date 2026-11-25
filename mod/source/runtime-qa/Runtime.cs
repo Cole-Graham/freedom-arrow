@@ -9,7 +9,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.7-dev.7", "Freedom Arrow development")]
+[assembly: MelonInfo(typeof(FreedomArrow.Runtime), "Freedom Arrow", "0.9.7-dev.8", "Freedom Arrow development")]
 [assembly: MelonGame(null, null)]
 [assembly: HarmonyDontPatchAll]
 namespace FreedomArrow;
@@ -300,6 +300,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_RANKED_FAILED: no ranked menu. "+e.Message); }
         try { PartySizeWarning.Install(HarmonyInstance); }   // Osama 22 Nov 2026: warning over Ready when a team is larger than the [NvN] map (0.9.5)
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PARTY_SIZE_FAILED: not installed; no oversized-party warning. "+e.Message); }
+        try { LobbyFlags.Install(HarmonyInstance); }   // Osama 25 Nov 2026: no Eurocorp flag in the lobby for now (Arsenal preview stays)
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOBBY_FLAGS_FAILED: not installed; the Eurocorp flag shows in the lobby. "+e.Message); }
         try { LangNames.Install(HarmonyInstance,Root); }   // Osama 23 Nov 2026: bilingual names show English OR Chinese, by game language
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LANG_NAMES_FAILED: not installed; bilingual names show both languages. "+e.Message); }
     }

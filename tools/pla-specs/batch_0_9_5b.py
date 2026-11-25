@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.7-dev.7';PREV='0.9.3'
+V='0.9.7-dev.8';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -922,6 +922,18 @@ import qn202_javelin_1125;qn202_javelin_1125.apply(t,g,ok,rec)
 # ---------- ZTD-05: the ZTL-11's 105 mm gun-launched missile, 8 rounds (Osama 25 Nov 2026 00:5x PST, thread 1567745029781454889).
 # See ztd05_glatgm_1125.py.
 import ztd05_glatgm_1125;ztd05_glatgm_1125.apply(t,g,ok,rec)
+# ---------- ZBD-05 and VN-3 loadout options showed vanilla icons (Osama 25 Nov 2026 01:1x PST). See option_icon_overrides_1125.py.
+import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
+# ---------- Lynx Troop Carrier: Unarmed default + HMG / AGL options +5 (Osama 25 Nov 01:5x), Lynx ATV retired (01:1x). See lynx_tc_unarmed_1125.py.
+import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
+# ---------- Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST). See lynx_nlos_csk_1125.py.
+import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
+# ---------- ZSD-89A out of PLAN Naval/Special Forces (Osama 25 Nov 2026 01:5x PST). See zsd89a_plan_removed_1125.py.
+import zsd89a_plan_removed_1125;zsd89a_plan_removed_1125.apply(t,g,ok,rec)
+# ---------- VN-3 30 -> 35 pts (Osama 25 Nov 2026 01:5x PST). See vn3_cost_1125.py.
+import vn3_cost_1125;vn3_cost_1125.apply(t,g,ok,rec)
+# ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
+import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
