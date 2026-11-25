@@ -212,7 +212,7 @@ Ways to make AA placement easier (not implemented, not tested):
 
 ### 5e. Per-weapon radar use (Lateralus, 24 November 2026)
 
-**Short answer:** on a radar unit, these rounds get **no** radar range bonus: Stinger, Igla-S, QW-2 (PGZ-95 / PGZ-04 / PGZ-04A), RIM-116, HHQ-10 (all heat-seeking) and the Fletcher APKWS (laser). Everything else, including the AIM-9 and the Hellfire SHORAD, keeps the radar. On the unit card, a weapon that uses the radar shows a plain radar icon in its trait row.
+**Short answer:** on a radar unit, these rounds get **no** radar range bonus: Stinger, Igla-S, QW-2 (PGZ-95 / PGZ-04 / PGZ-04A), RIM-116, HHQ-10 (all heat-seeking), the Fletcher APKWS (laser) and machine guns (M2 12.7 mm, M240 7.62 mm; Lateralus 25 Nov). Everything else, including the AIM-9, the Hellfire SHORAD, the HJ-10, the LY-1 laser, the SM-6 and the M61 CIWS, keeps the radar. On the unit card, a weapon that uses the radar shows a plain radar icon in its trait row.
 
 ---
 
@@ -230,6 +230,7 @@ Ways to make AA placement easier (not implemented, not tested):
 - **The hook also went quiet** after the second Stryker M-SHORAD card at 09:23:09: no line for the 15 China cards opened afterwards. Its silent early returns (`_activeWeaponListButtons` null, no button matching the clicked object) are the likely place; not confirmed.
 - **Vanilla has an unused per-weapon radar trait.** `Weapons.IsRadarDependent` (0x4C, a `weapons` column, set on 0 of 750 weapons), its own sprite `InfocardConfig.RadarDependent` (0x178) and text `ui_infocard_weapon_radar_dependent` (`TextWeaponIsRadarDependent`). Its getter (0x279250) is shared with 7 other getters and has no direct callers, so whether battle code reads the flag is not known.
 - Full list: `work/radar-weapons-1124/full-audit-dev13.txt` (BA Codex work folder).
+- **Fix (0.9.7-dev.14):** the build writes `radarWeapons` (weapon ids) and checks that no weapon on a radar unit mixes radar and exempt rounds; the card decides by the selected weapon's id, switches the trait row on after adding the icon, and logs every early exit (`radar trait ...`, first 80).
 
 ### 5c. Which optics value is the big number on the unit card
 
@@ -268,3 +269,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-24 22:1x PST (America/Los_Angeles) — Section 5d: AIM-9 / Stinger copies withdrawn (Lateralus).
 - 2026-11-24 22:4x PST (America/Los_Angeles) — Added section 5e: per-weapon radar use and the card's radar trait (Lateralus).
 - 2026-11-25 07:42 PST (America/Los_Angeles) — Section 5e: why the dev.13 card radar icon was wrong (hidden trait row, pooled round list), and the unused vanilla IsRadarDependent trait (Lateralus).
+- 2026-11-25 07:57 PST (America/Los_Angeles) — Section 5e: machine guns exempt from the radar; card fix for 0.9.7-dev.14 (Lateralus).
