@@ -1,0 +1,146 @@
+{
+ "ROC CM-34": {
+  "file": "m_roc_cm34_static.fam",
+  "battle": "m_roc_cm34_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm34_lo_static_l1.fam",
+   "m_roc_cm34_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-33": {
+  "file": "m_roc_cm33_static.fam",
+  "battle": "m_roc_cm33_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm33_lo_static_l1.fam",
+   "m_roc_cm33_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-22": {
+  "file": "m_roc_cm22_static.fam",
+  "battle": "m_roc_cm22_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm22_lo_static_l1.fam",
+   "m_roc_cm22_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-11": {
+  "file": "m_roc_cm11_static.fam",
+  "battle": "m_roc_cm11_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm11_lo_static_l1.fam",
+   "m_roc_cm11_lo_static_l2.fam"
+  ]
+ },
+ "ROC Antelope": {
+  "file": "m_roc_antelope_static.fam",
+  "battle": "m_roc_antelope_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_antelope_lo_static_l1.fam",
+   "m_roc_antelope_lo_static_l2.fam"
+  ]
+ },
+ "ROC M41D": {
+  "file": "m_roc_m41d_static.fam",
+  "battle": "m_roc_m41d_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_m41d_lo_static_l1.fam",
+   "m_roc_m41d_lo_static_l2.fam"
+  ]
+ },
+ "ROC Thunderbolt-2000": {
+  "file": "m_roc_tb2000_static.fam",
+  "battle": "m_roc_tb2000_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_tb2000_lo_static_l1.fam",
+   "m_roc_tb2000_lo_static_l2.fam"
+  ]
+ },
+ "ROC Kung Feng VI": {
+  "file": "m_roc_kf6_static.fam",
+  "battle": "m_roc_kf6_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_kf6_lo_static_l1.fam",
+   "m_roc_kf6_lo_static_l2.fam"
+  ]
+ },
+ "ROC Tien Kung III": {
+  "file": "m_roc_tk3_static.fam",
+  "battle": "m_roc_tk3_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_tk3_lo_static_l1.fam",
+   "m_roc_tk3_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-21": {
+  "file": "m_roc_cm21_static.fam",
+  "battle": "m_roc_cm21_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm21_lo_static_l1.fam",
+   "m_roc_cm21_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-32": {
+  "file": "m_roc_cm32_static.fam",
+  "battle": "m_roc_cm32_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm32_lo_static_l1.fam",
+   "m_roc_cm32_lo_static_l2.fam"
+  ]
+ },
+ "ROC Land Sword II": {
+  "file": "m_roc_lsw2_static.fam",
+  "battle": "m_roc_lsw2_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_lsw2_lo_static_l1.fam",
+   "m_roc_lsw2_lo_static_l2.fam"
+  ]
+ },
+ "ROC F-16V": {
+  "file": "m_roc_f16v_static.fam",
+  "battle": "m_roc_f16v_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_f16v_lo_static_l1.fam",
+   "m_roc_f16v_lo_static_l2.fam"
+  ]
+ },
+ "ROC F-5F": {
+  "file": "m_roc_f5f_static.fam",
+  "battle": "m_roc_f5f_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_f5f_lo_static_l1.fam",
+   "m_roc_f5f_lo_static_l2.fam"
+  ]
+ },
+ "ROC M110A2": {
+  "file": "m_roc_m110a2_static.fam",
+  "battle": "m_roc_m110a2_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_m110a2_lo_static_l1.fam",
+   "m_roc_m110a2_lo_static_l2.fam"
+  ]
+ },
+ "ROC UH-60M": {
+  "file": "m_roc_uh60m_static.fam",
+  "battle": "m_roc_uh60m_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_uh60m_lo_static_l1.fam",
+   "m_roc_uh60m_lo_static_l2.fam"
+  ]
+ }
+}

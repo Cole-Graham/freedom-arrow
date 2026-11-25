@@ -12,6 +12,14 @@
 - **Result:** 2,587 triangles, 1024 px, 0.9 m, muzzle +Z like `w_qbz191`.
 - **Hand rules:** every ROC squad carrying T91, T91K1, T91 CQC or T65K2 as its main gun (9 rules in roc3). Weapon IDs are read from the built package, never typed by hand. Offset `[0, -0.19, 0.19]` is a first guess from the QBZ-191 / QCQ-171 grips; adjust from in-game screenshots.
 
+## Vehicles, planes and helicopters (25 November 2026, overnight)
+
+- **Pipeline:** `pipeline/` (copied from work/roc-20261125/tools). FBX: `batch_veh.sh` (fbx2glb + famconv); .blend: `blend2glb.py`; .max: `max2glb.py` + `texlink.py`; jets/helicopters: `plane_prep.py` (drop stores/gear, nose +X, up +Z, `UPSIGN=1` when the guess is upside down); then `finish_one.sh SLUG LENGTH ARMORY_MAX BATTLE_MAX` (armory 2048 px / battle 1024 px .fam, cuts with battle-lod/lod2.py, glass, LOD1 60 % / LOD2 35 %, .fat); `stage_roc.py` builds the ROC-only model set.
+- **Card links:** `roc-models.json` (models.json entries keyed by ROC card Name). 16 cards: CM-34, CM-33, CM-22, CM-11, CM-21, CM-32, M41D, Antelope, Thunderbolt-2000, Kung Feng VI, Tien Kung III, Land Sword II, F-16V, F-5F, M110A2, UH-60M (S-70C file). CM-26 converted, no card.
+- **Not used:** AH-64E, F-16A, Mirage 2000, M60A3 TTS, CM-25 (War Thunder extracts); F-CK-1 (the .max import throws parts out of place); C-130HE (mesh named `SK_West_Transport_C130J_LOD0`, Osama to judge); Hsiung Feng IIE and Chung Xiang II (files not usable / not shared).
+- **Known limits:** helicopter rotors are part of the body (no spin yet); the model files are not in git (work/roc-20261125/stage, 527 MB).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
+- 2026-11-25 04:4x PST (America/Los_Angeles) — 16 ROC vehicle/aircraft models converted overnight; pipeline and card links recorded.
