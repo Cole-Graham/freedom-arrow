@@ -20,6 +20,8 @@ laser-guided round looks for allied laser spots (LaserDesignatorSystem.LaserSpot
 MaxSeekerDistance (GroundRange when Seeker != 0), then ActivateLaserSeeker. The Iskander-K copy had SeekerAngle 0 / MaxSeekerDistance 0 = blind.
 So each round keeps its own pre-change seeker cone (HJ-10 90 deg / 800, QN-502 and CH-901 90 / 700, CTL-181 90 / 900) and laser_hold and the
 custom lock code are gone: pure vanilla laser guidance.
+Undone (Osama 22:1x "the NLOS are flying away after being laser designated"): with a cone the game hands the round to its laser path
+(600) with no target entity and it flies off (as in 0.9.5-dev.44). Back to cone 0/0 + laser_hold + the custom lock (c859f743), which locked at 21:4x.
 Agility (Osama 21:5x "can we increase missile agility?"): RotationSpeed 45 -> 120 deg/s, the vanilla Hellfire 164 value."""
 import json
 from pathlib import Path
@@ -50,10 +52,8 @@ def apply(t, g, ok, rec):
         ok(a['TrajectoryType'] in (200, 300), (name, rid, 'cruise path before'))
         before[rid] = {k: a[k] for k in GUIDANCE}
         rest = {k: x for k, x in a.items() if k not in GUIDANCE}
-        cone = {'SeekerAngle': before[rid]['SeekerAngle'], 'MaxSeekerDistance': before[rid]['MaxSeekerDistance']}
-        ok(cone['SeekerAngle'] > 0 and cone['MaxSeekerDistance'] > 0, (name, 'own seeker cone before', cone))
-        g.put('AmmunitionsJson', rid, {**want, **cone})
-        ok({k: A[rid][k] for k in GUIDANCE} == {**want, **cone} and {k: x for k, x in A[rid].items() if k not in GUIDANCE} == rest, (name, 'Iskander-K cruise guidance and flight, damage/range/everything else unchanged'))
+        g.put('AmmunitionsJson', rid, want)
+        ok({k: A[rid][k] for k in GUIDANCE} == want and {k: x for k, x in A[rid].items() if k not in GUIDANCE} == rest, (name, 'Iskander-K cruise guidance and flight, damage/range/everything else unchanged'))
     n = json.loads(NLOS.read_text())
     ok(sorted(n['ammunition']) == sorted(ROUNDS) or n['ammunition'] == [], ('nlos.json rounds', n['ammunition']))
     if n['ammunition']:
@@ -63,11 +63,11 @@ def apply(t, g, ok, rec):
         n.pop('type100_ch901', None)
         NLOS.write_text(json.dumps(n, indent=2, ensure_ascii=False) + '\n')
     n = json.loads(NLOS.read_text())
-    if 'laser_hold' in n:
-        n.pop('laser_hold')
-        n['note'] = n['note'].split(' 21:3x:')[0] + ' 21:4x: vanilla laser guidance (LaserGuided + each round\'s own seeker cone); no NLOS code.'
+    if sorted(n.get('laser_hold', [])) != sorted(ROUNDS):
+        n['laser_hold'] = sorted(ROUNDS)
+        n['note'] += ' 21:3x: laser_hold = these rounds (LaserGuided; NlosTrait.LaserHoldAfter keeps the cruise path when no laser target is locked).'
         NLOS.write_text(json.dumps(n, indent=2, ensure_ascii=False) + '\n')
     n = json.loads(NLOS.read_text())
-    ok(n['ammunition'] == [] and n['fire_units'] == [] and 'laser_hold' not in n, 'nlos.json: no NLOS rounds, no laser_hold')
+    ok(n['ammunition'] == [] and n['fire_units'] == [] and sorted(n['laser_hold']) == sorted(ROUNDS), 'nlos.json: no NLOS rounds, laser_hold = the 5 rounds')
     rec['nlos_cruise_1124'] = {'rounds': ROUNDS, 'before': before, 'guidance': want}
     print('NLOS ISKANDER-K CRUISE', {r: before[r] for r in ROUNDS})
