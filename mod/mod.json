@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.15",
+  "version": "0.9.7-dev.16",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.15 (gameplay dev build, Lateralus 25 Nov 2026): 0.9.7-dev.14 plus the targeting reticle range fix, radar only on loadouts with a radar weapon (HHQ-10 and SeaRAM on SA radar) and the plane gun values. Models: Assets 0.2.100, unchanged. Needs Freedom Arrow — Models and Music 0.2.100.",
+  "description": "Freedom Arrow 0.9.7-dev.16 (gameplay dev build, Osama 25 Nov 2026): 0.9.7-dev.15 plus the lobby loading-screen fix, Falcons 8 men with 2 QJY-201, ZBD-251 for the Airborne teams, HJ-10 NLOS 1600 m / +40, the Lynx Cargo icon and the China tripod crews. Models: Assets 0.2.100, unchanged. Needs Freedom Arrow — Models and Music 0.2.100.",
   "repo": "Cole-Graham/freedom-arrow"
 }
