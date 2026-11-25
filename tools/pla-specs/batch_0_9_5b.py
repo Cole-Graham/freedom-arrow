@@ -967,6 +967,10 @@ import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
 import radar_loadouts_1125;print('RADAR LOADOUTS',radar_loadouts_1125.apply(t,g,ok,rec,_HR))
 _heli['radar']=_HR.contract(t)['radar'];radar_weapons_1124.apply(t,ok,rec,_heli)
 radar_loadouts_1125.check(t,ok,rec,_heli['radarWeapons'])
+# ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
+# the tripod based weapons"). See crew_weapons_1125.py.
+import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
+
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
