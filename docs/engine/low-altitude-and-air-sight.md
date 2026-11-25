@@ -224,6 +224,13 @@ Ways to make AA placement easier (not implemented, not tested):
 - **Cost:** the check is one set lookup inside a hook already measured at 0.2–0.5 µs per call (22 Nov logs); the perf log line now also counts `radar-exempt` changes.
 - **Not verified in a game.**
 
+**Card icon wrong in 0.9.7-dev.13 (Lateralus, 25 November 2026).** The range lists were right; the card icon was wrong on 96 of 168 anti-air weapons of the 72 radar units. Two causes, both in the card hook:
+- **The game hides the trait row.** `OnWeaponButtonSelected` (0x55B3F0–0x55B43E, code, 1.2.2.1) calls `_selectedWeaponTraits` (0x1A0) `.gameObject.SetActive(t)`, where `t` = AutoLoaded (0x48) or Silent (0x49) or CQC (0x4B) or IsRadarDependent (0x4C) or not CanShootOnTheMove (0x64). A weapon that fires on the move and has no other trait has a hidden row, so the icon our postfix adds is never seen. This hid it on 93 weapons that should show it (guns, Tor, HQ-17A, FK-2000, Hellfire SHORAD, ship SM-6 / CIWS).
+- **`TotalAmmoCount` is not the selected weapon's rounds.** In the dev.13 log the PAC-3 MSE launcher listed `32,25,26,454,262,497` (Bradley, M-SHORAD and C-RAM rounds from earlier cards), and the M-SHORAD Stinger and M240 buttons listed the same `18,27`. The decision was nearly always "uses radar", so every weapon with a visible row showed the icon: Fletcher, MML Stinger and HHQ-10 (all must stop to fire).
+- **The hook also went quiet** after the second Stryker M-SHORAD card at 09:23:09: no line for the 15 China cards opened afterwards. Its silent early returns (`_activeWeaponListButtons` null, no button matching the clicked object) are the likely place; not confirmed.
+- **Vanilla has an unused per-weapon radar trait.** `Weapons.IsRadarDependent` (0x4C, a `weapons` column, set on 0 of 750 weapons), its own sprite `InfocardConfig.RadarDependent` (0x178) and text `ui_infocard_weapon_radar_dependent` (`TextWeaponIsRadarDependent`). Its getter (0x279250) is shared with 7 other getters and has no direct callers, so whether battle code reads the flag is not known.
+- Full list: `work/radar-weapons-1124/full-audit-dev13.txt` (BA Codex work folder).
+
 ### 5c. Which optics value is the big number on the unit card
 
 **Short answer.** The vanilla card shows **ground** optics for every unit except planes, which show **high-altitude** optics. Helicopter cards are no exception. Until 0.9.6 the FA card code showed **low-altitude** optics on helicopter cards, so a helicopter showed a higher number than the recon copy of the same helicopter with the same sensor. For example, the AH-64D Longbow showed 3200 m and the AH-64D Longbow Recon 2400 m (Lateralus, 23 Nov 2026). Fixed for the next build: the FA card now follows the vanilla rule. Helicopters show ground, planes show high altitude, and drones show whatever their category gets.
@@ -260,3 +267,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-24 20:3x PST (America/Los_Angeles) — Section 5d: radar type shown as letters cut out of the radar icon instead of a text tag (Lateralus).
 - 2026-11-24 22:1x PST (America/Los_Angeles) — Section 5d: AIM-9 / Stinger copies withdrawn (Lateralus).
 - 2026-11-24 22:4x PST (America/Los_Angeles) — Added section 5e: per-weapon radar use and the card's radar trait (Lateralus).
+- 2026-11-25 07:42 PST (America/Los_Angeles) — Section 5e: why the dev.13 card radar icon was wrong (hidden trait row, pooled round list), and the unused vanilla IsRadarDependent trait (Lateralus).
