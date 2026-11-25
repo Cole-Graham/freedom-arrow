@@ -924,7 +924,7 @@ import qn202_javelin_1125;qn202_javelin_1125.apply(t,g,ok,rec)
 import ztd05_glatgm_1125;ztd05_glatgm_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 and VN-3 loadout options showed vanilla icons (Osama 25 Nov 2026 01:1x PST). See option_icon_overrides_1125.py.
 import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
-# ---------- Lynx Troop Carrier entirely unarmed, Lynx ATV retired (Osama 25 Nov 2026 01:1x PST). See lynx_tc_unarmed_1125.py.
+# ---------- Lynx Troop Carrier: Unarmed default + HMG / AGL options +5 (Osama 25 Nov 01:5x), Lynx ATV retired (01:1x). See lynx_tc_unarmed_1125.py.
 import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
 # ---------- Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST). See lynx_nlos_csk_1125.py.
 import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
