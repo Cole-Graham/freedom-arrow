@@ -149,7 +149,17 @@ with zipfile.ZipFile(base) as z:
     # files no models.json entry uses (75 old models, 1.8 GB) leave with the next Assets version, i.e. any model build. The files are kept, with
     # their former units, in work/model-archive/leftovers-20261124 (index.json). To bring one back, copy it into the stage and remove its lines here.
     _ld=Path(__file__).with_name('leftover-model-drops.txt')
-    if (a.famodels or a.asset) and _ld.exists():drops=sorted(set(drops)|{l.strip() for l in _ld.read_text().splitlines() if l.strip() and l.strip() in z.namelist()})
+    if (a.famodels or a.asset) and _ld.exists():
+        _left={l.strip() for l in _ld.read_text().splitlines() if l.strip()}
+        # The model stage passes its whole set (--asset for every file), leftovers included: the list wins over the stage.
+        for k in sorted(_left&set(override)):del override[k]
+        drops=sorted(set(drops)|{n for n in _left if n in z.namelist()})
+        # Guard: no unit of the new models.json may use a dropped mesh (file, battle, LODs, variants).
+        _mj=override.get('UserData/FAModels/models.json') or z.read('UserData/FAModels/models.json')
+        _mj=json.loads(_mj.read_bytes() if isinstance(_mj,Path) else _mj);_use=set()
+        for _e in _mj.values():
+            for _x in [_e,*_e.get('variants',[])]:_use|={'UserData/FAModels/'+f for f in [_x.get('file'),_x.get('battle'),*_x.get('lods',[])] if f}
+        assert not _use&set(drops),('models.json uses a dropped leftover model',sorted(_use&set(drops))[:5])
     assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
