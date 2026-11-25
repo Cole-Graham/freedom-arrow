@@ -953,6 +953,13 @@ import qq_fixes_1125;qq_fixes_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
 # 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
 import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
+# ---------- Radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM on SA radar (Lateralus 25 Nov 2026 09:17 PST, thread 1568104480459722894:
+# "1. Yes that is what I want 2. (a) 3. HHQ-10 ... and the RIM-116 (SeaRAM) ... should benefit from radar and have SA radar"). Creates one ability row and
+# one link: keep it the last row-creating section. Then the radar groups (new row) and the per-weapon lists are rebuilt, and every radar loadout must
+# carry a radar weapon. See lateralus/radar_loadouts_1125.py.
+import radar_loadouts_1125;print('RADAR LOADOUTS',radar_loadouts_1125.apply(t,g,ok,rec,_HR))
+_heli['radar']=_HR.contract(t)['radar'];radar_weapons_1124.apply(t,ok,rec,_heli)
+radar_loadouts_1125.check(t,ok,rec,_heli['radarWeapons'])
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data

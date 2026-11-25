@@ -14,15 +14,16 @@ not benefit from radar. Build it". Card: "plain radar icon" in the selected weap
   WeaponListButton.TotalAmmoCount, which the game reuses across cards, so it held other weapons' rounds). No weapon on a radar unit may mix radar and
   exempt rounds (checked)."""
 AIR = 8 | 16 | 256 | 512 | 1024
-EXPECT = {18: 'Stinger', 127: 'Igla-S', 2010683: 'QW-2 (PGZ-95)', 2010649: 'QW-2 (PGZ-04)', 2009565: 'QW-2 (PGZ-04A)', 560: 'RIM-116', 2019358: 'HHQ-10',
+EXPECT = {18: 'Stinger', 127: 'Igla-S', 2010683: 'QW-2 (PGZ-95)', 2010649: 'QW-2 (PGZ-04)', 2009565: 'QW-2 (PGZ-04A)',
           501: 'Fletcher', 19: 'M2 12.7 mm (MG)', 27: 'M240 7.62 mm (MG)'}
 MG = {26, 27, 28, 29}   # WeaponType LightMachineGun, MediumMachineGun, HeavyMachineGun, MiniGun (1.2.2.1)
 # Lateralus' named weapons (thread 1568104480459722894, 25 Nov 07:3x / 07:5x): must use the radar / must not
 WANT = {40: 'M230LF 30mm', 17: 'Hellfire (Stryker M-SHORAD)', 616: 'Hellfire (M6 M-SHORAD)', 345: 'M61 CIWS (C-RAM)', 2010673: 'Four 25 mm (PGZ-95)',
         2010625: 'HQ-17A', 2009599: '2x 30 mm (FK-2000/3000)', 2009605: 'FK-2000 SAM', 2009365: '625 six-barrel', 2010721: 'HJ-10 (AFT-10)',
-        2019445: 'LY-1 laser', 599: 'SM-6', 706: 'M61 CIWS (ships)', 625: 'AIM-9 (MML)', 627: 'Hellfire (MML)'}
+        2019445: 'LY-1 laser', 599: 'SM-6', 706: 'M61 CIWS (ships)', 625: 'AIM-9 (MML)', 627: 'Hellfire (MML)', 732: 'RIM-116 (C-RAM SeaRAM)',
+        2019357: 'HHQ-10'}
 NOT = {654: 'Fletcher', 626: 'FIM-92K Stinger (MML)', 18: 'M2 Browning', 27: 'M240'}
-KEEP_IR = {465}     # AIM-9 ground: uses the radar (Lateralus 22:2x)
+KEEP_IR = {465, 560, 2019358}   # AIM-9 ground (Lateralus 24 Nov 22:2x); RIM-116 SeaRAM and HHQ-10 (25 Nov 09:17 "should benefit from radar")
 ADD = {501}         # Fletcher APKWS: laser, no radar (Lateralus 22:2x)
 
 
