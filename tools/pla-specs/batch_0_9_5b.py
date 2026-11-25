@@ -901,6 +901,9 @@ import air_hypersonic_600_1124;air_hypersonic_600_1124.apply(t,g,ok,rec)
 import zbd03_zsd89a_hidden_1124;zbd03_zsd89a_hidden_1124.apply(t,g,ok,rec)
 # ---------- Lynx SPAAG gun 7 damage/s (Osama 24 Nov 2026 23:4x PST, thread "China cosmetic work"). Changes one row. See lynx_spaag_dps_1124.py.
 import lynx_spaag_dps_1124;lynx_spaag_dps_1124.apply(t,g,ok,rec)
+# ---------- QTS-11 grenade launcher under-barrel (Osama 25 Nov 2026 00:0x PST, thread "blue dragons": a second QTS-11 on every soldier's back).
+# Changes IsUnderbarrel only. See qts11_underbarrel_1124.py.
+import qts11_underbarrel_1124;qts11_underbarrel_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
