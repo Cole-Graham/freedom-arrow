@@ -884,9 +884,9 @@ import engineer_icon_1124;engineer_icon_1124.apply(t,g,ok,rec)
 # SPAAG without radar (QW-2), Rapid-Fire Gun HJ-8H, Recon optics, Troop Carrier 9 seats. Creates rows: after every other row-creating section, so no
 # earlier id moves. See lynx_rework_1124.py.
 import lynx_rework_1124;lynx_rework_1124.apply(t,g,ok,rec)
-# ---------- Blue Dragon and Eurocorp only in test mode (Osama 24 Nov 2026 21:0x PST: "or hidden if the test mode is off"): specs 23-25 off, Eurocorp
-# country hidden; test-spec.json turns them on (TestSpec.cs). Changes rows only. See test_mode_previews_1124.py.
-import test_mode_previews_1124;test_mode_previews_1124.apply(t,g,ok,rec)
+# ---------- Blue Dragon / Eurocorp previews (Osama 24 Nov 2026 21:2x PST: "see the spec and look around ... don't want people to click on it and see the
+# stats. Hide the K-1's too"): K1 / K1A1 to the US test spec; stat cards hidden by PreviewCards.cs. Changes rows only. See preview_specs_1124.py.
+import preview_specs_1124;preview_specs_1124.apply(t,g,ok,rec)
 # ---------- Air-launched fast missiles 600 + MiG-31K / B-52 ARRW / F-35 MAKO prices (Osama 24 Nov 2026 21:1x PST). Changes rows only.
 # See air_hypersonic_600_1124.py.
 import air_hypersonic_600_1124;air_hypersonic_600_1124.apply(t,g,ok,rec)

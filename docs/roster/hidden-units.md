@@ -24,6 +24,8 @@ Add every new hidden or removed card here in the same commit as the data change.
 | Z-19G | 1236 | PLAN Special Forces, 2 cards | `roster_1123b.py` | Osama 23 Nov 18:3x "Z-19G (and the recon) removed/hidden" |
 | Z-19G Recon | 1237 | PLAN Special Forces, 2 cards | `roster_1123b.py` | same |
 | F-35B (JASDF) | 1291 | Blue Dragon (Arsenal-only preview), 2 cards | `roster_1123b.py` | Osama 23 Nov 18:4x "F-35 JASDF, let's hide this for now" |
+| K1A1 | 1279 | Blue Dragon (Arsenal-only preview) | `preview_specs_1124.py` | Osama 24 Nov 21:2x "Hide the K-1's too" |
+| K1 | 1280 | Blue Dragon (Arsenal-only preview) | `preview_specs_1124.py` | same |
 | QJZ-89 Team (Armored) | 1157 | PLAGF Armored Force, 4 cards (the PLARF QJZ-89 Team 1170 stays) | `qbz95_qjz89_1123.py` | Osama 23 Nov 18:3x "QJZ-89 PLAGF Armored Force ... hidden" |
 | OH-58D Recon Optronic | 733 | Air Naval, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the OH-58D Recon Optronic from the mod (or just disable it/hide it from the menu)" |
 | MH-6 Little Bird Recon | 736 | Special Operations Forces, 4 cards | `recon_helis_us_1123.py` | Lateralus 23 Nov 18:3x "remove the MH-6 Little Bird Recon" |
@@ -50,13 +52,13 @@ To switch them on for one PC, create `UserData/FreedomArrow/test-spec.json` with
 Delete the file or set `false` to switch them off. Section: `test_specs_1123.py`. A section that hides a card records its old rows in
 `rec['hidden_rows']`, and the card then goes into its nation's test spec automatically.
 
-## Previews only in test mode (Blue Dragon, Eurocorp; off by default)
+## Preview specs: look around, no stat card (Blue Dragon, Eurocorp)
 
-Osama 24 Nov 21:0x: "can we make it so that the BD and Eurocorp units don't show unit cards when selected?", "or hidden if the test mode is off".
-Specs 23 Blue Dragon (Testing Preview, 23 cards), 24 France (Preview, 6 cards) and 25 Germany (Preview, 12 cards) have `ShowInHangar` false,
-and the Eurocorp country (5) has `Hidden` true, the vanilla switch that hides the Editor country. These cards are in no other spec, so the
-Armory shows none of them. The same `test-spec.json` file as above turns all of them back on (`TestSpec.cs`). Deck creation still hides
-spec 23, and France and Germany keep battlegroup size 0. Section: `test_mode_previews_1124.py`.
+Osama 24 Nov 21:2x: "for the BD and Eurocorp preview factions. I want people to go in and see the spec and look around. But I don't want people to
+click on it and see the stats." Specs 23 Blue Dragon (Testing Preview), 24 France (Preview) and 25 Germany (Preview) and the Eurocorp flag stay in
+the Armory, but clicking one of their units shows no stat card (`runtime-qa/PreviewCards.cs` makes the Armory info card invisible for units of
+those specs). With `test-spec.json` `{"show": true}` the stat cards show. Deck creation still hides spec 23, and France and Germany keep
+battlegroup size 0. (The first version, 21:0x, hid the specs completely; it was undone at 21:2x.)
 
 ## Moved (not hidden)
 
@@ -77,3 +79,4 @@ spec 23, and France and Germany keep battlegroup size 0. Section: `test_mode_pre
 - 2026-11-23 19:45 PST (America/Los_Angeles): Test specs for every nation (27 USA, 28 Russia) with all hidden cards incl. YJ-18; no transports in test specs.
 - 2026-11-23 19:58 PST (America/Los_Angeles): Type 19 gone entirely on the model build (no test-spec card, no models in the stage).
 - 2026-11-24 21:13 PST (America/Los_Angeles): Blue Dragon (23), France (24), Germany (25) and the Eurocorp country only in test mode.
+- 2026-11-24 21:3x PST (America/Los_Angeles): Previews visible again with no stat card (PreviewCards.cs); K1 and K1A1 hidden (US test spec 27).

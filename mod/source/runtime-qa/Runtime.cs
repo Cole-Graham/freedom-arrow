@@ -292,6 +292,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PLAY_MENU_FAILED: "+e.Message); }
         try { ArsenalOnlySpecs.Install(HarmonyInstance); }   // 0.9.4 (Osama 21 Nov 2026): Blue Dragon in the Arsenal only, not in deck creation
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_ARSENAL_ONLY_SPECS_FAILED: not installed; Blue Dragon can be picked in deck creation. "+e.Message); }
+        try { PreviewCards.Install(HarmonyInstance,Root); }   // 0.9.7 (Osama 24 Nov 2026): Blue Dragon / Eurocorp specs visible, stat cards hidden
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PREVIEW_CARDS_FAILED: native card kept. "+e.Message); }
         try { WebsiteButton.Install(HarmonyInstance); }   // Osama 22 Nov 2026: Home tab banner that opens freedomarrow.app
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_WEBSITE_BUTTON_FAILED: no website button. "+e.Message); }
         try { RankedMenu.Install(HarmonyInstance); }   // Lateralus 22 Nov 2026: Ranked card, ranked menu and leaderboard
@@ -451,7 +453,7 @@ public class Runtime : MelonMod
                     compatibility["allow_new_rows"]?.GetValue<bool>()==true,
                     (id,field,before,after,added)=>receipt.Add(new {table=table.Key,id,field,before,after,action=added?"add_row":"edit"}));
                 if(table.Key=="SpecializationsJson")TestSpec.Apply(rows,Root);   // Osama 23 Nov 2026: hidden test spec toggle
-                if(table.Key=="CountriesJson")TestSpec.ApplyCountries(rows,Root);   // Osama 24 Nov 2026: Eurocorp only in test mode
+                if(table.Key=="SpecializationAvailabilitiesJson")PreviewCards.Collect(rows);   // Osama 24 Nov 2026: preview units (no stat card)
                 prospective[table.Key]=rows;
                 patchedTables[table.Key]=overrides;
                 original[property]=cipher;
