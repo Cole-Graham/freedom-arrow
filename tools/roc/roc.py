@@ -123,6 +123,7 @@ def apply(t, g, ok, rec):
             ok(len(rows(tab, UnitId=uid)) == len(rows(tab, UnitId=parent)), (name, tab, 'copied'))
         res[name] = {'unit': uid, 'hud': hud, 'parent': f'{phud} ({parent})', 'cost': U[uid]['Cost'], 'cards': n, 'options': nopt,
                      'men': len(rows('SquadMembersJson', UnitId=uid))}
+    stage2 = squads(t, g, ok, res, rows)
     # Transports: every ROC infantry card may ride in every ROC ground vehicle or helicopter whose seats fit the squad.
     carriers = {r['UnitId'] for r in TA.values() if r}                            # units the game already uses as transports
     cars = [v['unit'] for v in res.values() if U[v['unit']].get('InfantrySlots', 0) > 0 and U[v['unit']]['Type'] != 2
@@ -138,6 +139,77 @@ def apply(t, g, ok, rec):
     ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == spec) == sorted(v['unit'] for v in res.values()), 'ROC spec = the ROC cards')
     ok(all(v['transports'] for v in res.values() if U[v['unit']]['Type'] == 2), ('every ROC squad has a transport', [k for k, v in res.items() if U[v['unit']]['Type'] == 2 and not v['transports']]))
     rec['roc'] = {'spec': spec, 'cards': res, 'transports': [U[c]['HUDName'] for c in cars], 'transport_links': links,
-                  'dropped_swap_options': dropped, 'skipped_squad_weapons_without_ammo': unarmed, 'zero_round_rows': zero, 'live_edits': []}
+                  'dropped_swap_options': dropped, 'skipped_squad_weapons_without_ammo': unarmed, 'zero_round_rows': zero, 'stage2': stage2, 'live_edits': []}
     print('ROC', len(res), 'cards; units', min(v['unit'] for v in res.values()), '-', max(v['unit'] for v in res.values()),
           '; transport links', links, '; dropped swap options', len(dropped))
+
+
+# ---------- Stage 2 (25 Nov 03:3x): ROC squads from Shawn's ba-recard card files (work/roc-20261125/cards; SF Scout / SF Section from the card
+# pictures; SF Snipers from the sheet). Every man carries one main gun; launchers, grenade launchers and MANPADS ride on top (vanilla pattern).
+# A ROC gun with no game model of its own is a renamed copy of the closest base-game US gun (no DLC guns), so it looks and shoots like that gun.
+DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2': 362, 'T75': 60, 'T75 SFAW': 53, 'T74': 63, 'M203': 58,
+         'T85': 58, 'MGL-140': 68, 'Kestrel-1': 631, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
+         'Javelin LWCLU': 659, 'DMS FIM-92K': 65, 'REPR-20': 57, 'AXMC': 640, 'M107': 56, 'M1014': 45, 'Flashbang': 590}
+# name: (men, armour points, [main guns (name, men)], [extra weapons (name, men)], {weapon: rounds for the whole squad, from the card})
+SQUADS = {
+    'ROC DMS Team': (4, 8, [('M4A1', 4)], [('DMS FIM-92K', 1)], {'M4A1': 1800, 'DMS FIM-92K': 8}),
+    'ROC Marine AT': (9, 8, [('M4A1', 6), ('T75', 3)], [('M203', 2), ('Kestrel-1', 3), ('Javelin', 1)],
+                      {'M4A1': 3600, 'T75': 3600, 'M203': 96, 'Kestrel-1': 3, 'Javelin': 2}),
+    # the card lists T91 CQC x6 and M1014 x2 on 6 men: as the vanilla parent, 4 rifles + 2 shotguns; the flashbang takes one LAW slot
+    'ROC Marine Frogmen CQC': (6, 10, [('T91 CQC', 4), ('M1014', 2)], [('M72A10 LAW', 5), ('Flashbang', 1)],
+                               {'T91 CQC': 1920, 'M1014': 80, 'M72A10 LAW': 5, 'Flashbang': 1}),
+    'ROC Marine Frogmen': (6, 8, [('T91K1', 3), ('REPR-20', 2), ('M107', 1)], [('APILAS', 3)],
+                           {'T91K1': 1440, 'REPR-20': 200, 'M107': 60, 'APILAS': 3}),
+    'ROC Marine': (9, 8, [('M4A1', 6), ('T75', 3)], [('M203', 2), ('Kestrel-1', 6)], {'M4A1': 3600, 'T75': 3600, 'M203': 96, 'Kestrel-1': 6}),
+    'ROC Mech. Riflemen T112': (6, 8, [('T-112', 4), ('T75', 1), ('T74', 1)], [('MGL-140', 1), ('Kestrel-1', 4)],
+                                {'T-112': 2400, 'T75': 1200, 'T74': 1200, 'MGL-140': 120, 'Kestrel-1': 4}),
+    'ROC Mech. Riflemen': (6, 8, [('T91', 4), ('T75', 2)], [('T85', 2), ('M72A4 LAW', 4)], {'T91': 2400, 'T75': 2400, 'T85': 96, 'M72A4 LAW': 4}),
+    'ROC Reserve Marine': (10, 6, [('M4A1', 7), ('T74', 3)], [('M72A3 LAW', 3)], {'M4A1': 3600, 'T74': 3600, 'M72A3 LAW': 3}),
+    'ROC Reserver': (9, 6, [('T65K2', 6), ('T75', 3)], [('M72A3 LAW', 3), ('T85', 3)], {'T65K2': 3600, 'T75': 3600, 'M72A3 LAW': 3, 'T85': 144}),
+    'ROC Reserver Kestrel': (9, 6, [('T65K2', 6), ('T75', 3)], [('Kestrel-1', 3), ('T85', 3)], {'T65K2': 3600, 'T75': 3600, 'Kestrel-1': 3, 'T85': 144}),
+    'ROC SF Scout': (3, 8, [('T91K1', 3)], [('Javelin LWCLU', 1)], {'T91K1': 1440, 'Javelin LWCLU': 3}),
+    'ROC SF Section': (6, 10, [('T91 CQC', 4), ('T75 SFAW', 1), ('AXMC', 1)], [('APILAS', 4), ('M1014', 1)],
+                       {'T91 CQC': 1920, 'T75 SFAW': 1200, 'AXMC': 60, 'APILAS': 4, 'M1014': 80}),
+    'ROC SF Snipers': (3, 8, [('T91K1', 1), ('REPR-20', 1), ('AXMC', 1)], [], {}),
+    'ROC SF Snipers M107': (3, 8, [('T91K1', 1), ('REPR-20', 1), ('M107', 1)], [], {}),
+}
+
+
+def squads(t, g, ok, res, rows):
+    W, WA = t['WeaponsJson'], t['WeaponAmmunitionsJson']
+    made, out = {}, {}
+
+    def weapon(name):
+        donor = DONOR[name]
+        if name not in made:
+            made[name] = donor if W[donor]['HUDName'].strip() == name else g.add('WeaponsJson', W[donor], {'Name': 'ROC ' + name, 'HUDName': name})
+        return made[name], donor
+    for card, (men, armour, mains, extras, rounds) in SQUADS.items():
+        uid = res[card]['unit']
+        ok(sum(n for _, n in mains) == men and all(n <= men for _, n in extras) and sum(n for _, n in extras) <= men, (card, 'men vs weapons'))
+        tmpl = rows('SquadMembersJson', UnitId=uid)[0]
+        for tab in ('SquadMembersJson', 'SquadWeaponsJson', 'WeaponAmmunitionsJson'):
+            for r in rows(tab, UnitId=uid): g.remove(tab, r['Id'])
+        members = [{**tmpl, 'UnitId': uid, 'PrimaryWeaponId': 0, 'SpecialWeaponId': 0} for _ in range(men)]
+        i = 0
+        for name, n in mains:
+            for m in members[i:i + n]: m['PrimaryWeaponId'] = weapon(name)[0]
+            i += n
+        i = 0
+        for name, n in extras:
+            for m in members[i:i + n]: m['SpecialWeaponId'] = weapon(name)[0]
+            i += n
+        for m in members: m.pop('Id', None); g.add('SquadMembersJson', m)
+        sw = next(iter(t['SquadWeaponsJson'].values()))
+        for order, (name, n) in enumerate(mains + extras):
+            wid, donor = weapon(name)
+            g.add('SquadWeaponsJson', sw, {'UnitId': uid, 'WeaponId': wid, 'Order': order})
+            src = min(r['UnitId'] for r in WA.values() if r and r['WeaponId'] == donor)      # the donor gun's own ammo rows, as the PLA designer
+            for r in sorted(rows('WeaponAmmunitionsJson', UnitId=src, WeaponId=donor), key=lambda r: (r['Order'], r['Id'])):
+                q = max(1, round(rounds[name] / n)) if name in rounds else r['Quantity']
+                g.add('WeaponAmmunitionsJson', r, {'UnitId': uid, 'WeaponId': wid, 'Quantity': q})
+        for ua in rows('UnitArmorsJson', UnitId=uid):
+            g.put('ArmorsJson', ua['ArmorId'], {'MaxHealthPoints': men * 5, 'ArmorValue': armour})
+        res[card]['men'] = men
+        out[card] = {'men': men, 'hp': men * 5, 'armour': armour, 'weapons': [f'{x} x{n}' for x, n in mains + extras]}
+    return {'squads': out, 'weapons': {k: v for k, v in made.items()}}
