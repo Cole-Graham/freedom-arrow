@@ -27,3 +27,10 @@ def open_package(arg):
     """A single .bamod path, or several joined with '+'."""
     parts = str(arg).split('+')
     return zipfile.ZipFile(parts[0]) if len(parts) == 1 else Union(parts)
+
+
+def leftover_drops():
+    """Model files that leave the Assets package (leftover-model-drops.txt beside this file); check_model_carry.py no longer requires them."""
+    from pathlib import Path
+    f = Path(__file__).with_name('leftover-model-drops.txt')
+    return {l.strip() for l in f.read_text().splitlines() if l.strip()} if f.exists() else set()

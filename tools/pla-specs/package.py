@@ -145,6 +145,11 @@ with zipfile.ZipFile(base) as z:
     # version, i.e. any build that changes models (--famodels / --asset). Gameplay-only hotfixes keep the current Assets untouched.
     _gd=Path(__file__).with_name('voice-grunt-drops.txt')
     if (a.famodels or a.asset) and _gd.exists():drops=sorted(set(drops)|{l.strip() for l in _gd.read_text().splitlines() if l.strip() and l.strip() in z.namelist()})
+    # Osama 24 Nov 2026 22:1x ("keep this in our storage in case we want to readd them since they're game ready, pull them away"): 1,484 model
+    # files no models.json entry uses (75 old models, 1.8 GB) leave with the next Assets version, i.e. any model build. The files are kept, with
+    # their former units, in work/model-archive/leftovers-20261124 (index.json). To bring one back, copy it into the stage and remove its lines here.
+    _ld=Path(__file__).with_name('leftover-model-drops.txt')
+    if (a.famodels or a.asset) and _ld.exists():drops=sorted(set(drops)|{l.strip() for l in _ld.read_text().splitlines() if l.strip() and l.strip() in z.namelist()})
     assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:
         fa=json.loads(z.read('UserData/FAAssets/manifest.json'))
