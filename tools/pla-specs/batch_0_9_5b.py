@@ -926,6 +926,8 @@ import ztd05_glatgm_1125;ztd05_glatgm_1125.apply(t,g,ok,rec)
 import option_icon_overrides_1125;option_icon_overrides_1125.apply(t,g,ok,rec)
 # ---------- Lynx Troop Carrier entirely unarmed, Lynx ATV retired (Osama 25 Nov 2026 01:1x PST). See lynx_tc_unarmed_1125.py.
 import lynx_tc_unarmed_1125;lynx_tc_unarmed_1125.apply(t,g,ok,rec)
+# ---------- Lynx NLOS, CSK-131 out of Airborne, Lynx Laser APS symbol (Osama 25 Nov 2026 01:4x-01:5x PST). See lynx_nlos_csk_1125.py.
+import lynx_nlos_csk_1125;lynx_nlos_csk_1125.apply(t,g,ok,rec)
 # ---------- ZBD-05 family swims at 50 (Osama 25 Nov 2026 01:2x PST, thread "China cosmetic work"). May add mobility rows. See zbd05_swim_1125.py.
 import zbd05_swim_1125;zbd05_swim_1125.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
