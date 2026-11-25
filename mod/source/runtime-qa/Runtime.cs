@@ -199,6 +199,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_NLOS_FAILED: not installed; NLOS missiles use vanilla seekers. "+e.Message); }
         try { ProjectileHealth.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_PROJECTILE_HEALTH_FAILED: not installed; projectiles keep 1 HP. "+e.Message); }
+        try { Mrsi.Install(HarmonyInstance,Root); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MRSI_FAILED: not installed; MRSI guns fire normal shells. "+e.Message); }
         try { SameUnitClaim.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SAME_UNIT_CLAIM_FAILED: not installed; native targeting. "+e.Message); }
         try { TurretDiag.Install(HarmonyInstance,Root); }

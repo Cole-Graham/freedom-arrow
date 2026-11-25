@@ -14,7 +14,9 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - [Cargo capacity](cargo-capacity.md) explains why a truck's supply and a helicopter's lift are `MobilityJson.HeavyLiftWeight` on the mobility row the unit actually uses (armory options with `MobilityId` replace it), why the HMV3 Cargo 15000 change failed three times, and how to change cargo safely.
 - [Menu fly-in animation](ui-fly-in-animation.md) explains why a GalaxyUI card ends where it was before the layout ran (FlyFadeIn saves, flies, snaps back), and how the Play tab keeps layout and resting position together.
 - [FAModels model loading](model-loading.md) explains when FAModels swaps a unit's model, how its detail levels (LOD0 most detailed) switch, and the 0.3.45 lightest-level-first loading with a 6 ms per-frame limit.
+- [Artillery MRSI](artillery-mrsi.md) explains the batch-only MRSI loadout: one `WeaponForceFire` postfix that every PC runs for the same shot slows and lofts each shell so 3 land together.
 
 ## Document change log
 
 - 2026-11-24 13:50 PST (America/Los_Angeles) — Added the FAModels model loading page.
+- 2026-11-24 22:45 PST (America/Los_Angeles) — Added the Artillery MRSI page (batch branch).

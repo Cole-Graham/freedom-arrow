@@ -893,6 +893,10 @@ import preview_specs_1124;preview_specs_1124.apply(t,g,ok,rec)
 # ---------- Air-launched fast missiles 600 + MiG-31K / B-52 ARRW / F-35 MAKO prices (Osama 24 Nov 2026 21:1x PST). Changes rows only.
 # See air_hypersonic_600_1124.py.
 import air_hypersonic_600_1124;air_hypersonic_600_1124.apply(t,g,ok,rec)
+# ---------- MRSI loadout for PzH 2000 and M109A6 (Osama 24 Nov 2026 22:3x PST, thread 1575024642593398836: "build it as best as you can to be multiplayer
+# friendly ... Dont put it into the build yet"). Batch branch codex/batch/osama/mrsi only. Creates rows: after every other row-creating section.
+# See mrsi_1124.py; the runtime half is Mrsi.cs (reads mrsi.json).
+import mrsi_1124;_mrsi=mrsi_1124.apply(t,g,ok,rec)
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
 # The game's WeaponCoverage rule on the patches this build writes: one weapon row without an ammo row and the game applies NO Freedom Arrow data
@@ -912,5 +916,5 @@ if 'nlos_cruise_1124' in rec:
     ok(_nl['ammunition']==[] and 'type100_ch901' not in _nl,('nlos.json stays empty',_nl['ammunition']))
 else:
     _nl['ammunition']=[x for x in _nl['ammunition'] if x!=_old]+[_new];_nl['type100_ch901']=_new;_nf.write_text(json.dumps(_nl,indent=2)+'\n')
-(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
+(SRC/_HR.FILE).write_text(json.dumps(_heli,indent=2)+'\n');(SRC/mrsi_1124.FILE).write_text(json.dumps(_mrsi,indent=2)+'\n');save(f'UserData/FreedomArrow/pla-{V}.json',rec);(ROOT/f'tools/pla-specs/{V}-checks.json').write_text(json.dumps(rec,indent=2,ensure_ascii=False)+'\n')
 print('checks',checks)
