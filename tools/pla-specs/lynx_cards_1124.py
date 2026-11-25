@@ -8,15 +8,11 @@ listings_tracker.json). Models are not bought yet: each card keeps its parent's 
   smoke, else dropped); CountryId 4 (China), base game (ContentMembership -1).
 - Osama 16:0x: "Obviously all for airborne", "They can be loaded in the Z-8 helicopter": spec 17 PLAAF Air Force (the airborne spec). The two
   troop carriers are transports (no card of their own), offered to every spec-17 infantry card that already has transports, as the VN-3.
-  16:1x "Z-20 also (unarmed)", "No no they should be about 1 each. Lynx should take up the entire Z-20", "Z-8 can hold one and maybe some
-  infantry": a helicopter carries vehicles while their Units.Weight fits its HeavyLiftWeight (OrderedUnit.TryAddCargo, docs/engine/
-  cargo-capacity.md); there is no vehicle-count field. 16:1x "Actually nevermind there's footage of them fitting 2 in a Z-8": Lynx 8000;
-  unarmed Z-20 / Z-20J lift 4000 -> 8000 (= one Lynx, also their supply limit); Z-8L 16000 = two Lynx (+ its 30 seats); CH-47 12500 one.
-  Armed Z-20s (Z-20KA, Z-20T, Z-20S) have no lift.
+  Units.Weight 4000 (16:1x "Z-20 also (unarmed)"): a helicopter carries a vehicle while the weights fit its HeavyLiftWeight
+  (OrderedUnit.TryAddCargo, docs/engine/cargo-capacity.md): Z-8L 16000 takes up to four, the unarmed Z-20 / Z-20J (4000) one,
+  CH-47 12500 three. Armed Z-20s (Z-20KA, Z-20T, Z-20S) have no lift.
 - Prices and card counts are placeholders for Osama."""
-AIRBORNE, CN, WEIGHT = 17, 4, 8000
-# Unarmed Z-20 (PLAGF Z-20 1244) and Z-20J (1238): own mobility rows, lift 4000 -> 8000 so each takes one Lynx.
-Z20_LIFT = {1244: (2016194, 'Z-20'), 1238: (2015984, 'Z-20J')}
+AIRBORNE, CN, WEIGHT = 17, 4, 4000
 TRANSPORTS = ('PLA Lynx CS/VP16B Carrier', 'PLA Lynx CS/VP16B Assault')
 SMOKE = ('IsSmoke', 'SmokeAmmunitionId', 'SmokeAmmunitionQuantity', 'SmokeCooldown')
 # Name: (HUDName, parent, cost, cards, CategoryType, InfantrySlots, weapons)
@@ -70,12 +66,6 @@ def apply(t, g, ok, rec):
            and any(x and x.get('SpecializationAvailabilityId') == r['Id'] for x in TA.values())]
     ok(len(inf) >= 8 and all(U[r['UnitId']].get('Type') == 2 for r in inf), ('airborne infantry cards with transports', len(inf)))
     res, rounds = {}, {}
-    for hid, (mid, hud) in Z20_LIFT.items():
-        ok(U[hid]['HUDName'] == hud and [r['MobilityId'] for r in rows('UnitPropulsionsJson', UnitId=hid)] == [mid] and t['MobilityJson'][mid]['HeavyLiftWeight'] == 4000
-           and [r['UnitId'] for r in rows('UnitPropulsionsJson', MobilityId=mid)] == [hid] and not any(o and o.get('MobilityId') == mid for o in t['OptionsJson'].values()), (hud, 'own lift row 4000'))
-        g.put('MobilityJson', mid, {'HeavyLiftWeight': WEIGHT})
-    z8 = [r['MobilityId'] for r in rows('UnitPropulsionsJson', UnitId=1106)]
-    ok(U[1106]['HUDName'] == 'Z-8L' and [t['MobilityJson'][m]['HeavyLiftWeight'] for m in z8] == [16000] and 2 * WEIGHT <= 16000 < 3 * WEIGHT, 'Z-8L takes exactly two Lynx')
     for name, (hud, parent, cost, n, cat, slots, weapons) in CARDS.items():
         ok(not any(u and name in (u.get('Name'), u.get('HUDName')) for u in U.values()), name + ' name free')
         d = dict(U[parent]); d.pop('Id')
