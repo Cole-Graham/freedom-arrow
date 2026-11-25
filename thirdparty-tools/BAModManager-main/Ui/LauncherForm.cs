@@ -37,6 +37,10 @@ internal sealed class LauncherForm : Form
     private Label? _buildNote;
     private List<string?> _buildVersions = new();
     private bool _fillingBuilds;
+    private DateTime _buildsRead = DateTime.MinValue;
+    // Lateralus 24 Nov 2026: "make sure the launcher doesn't have to be restarted to pick up new dev builds, or add a refresh button":
+    // the list is read again every 2 minutes, when the window comes back to the front (at most every 30 s), and with the ↻ button.
+    private readonly System.Windows.Forms.Timer _buildsTimer = new() { Interval = 2 * 60 * 1000 };
 #endif
 
     private string? _gameDir;
@@ -285,9 +289,42 @@ internal sealed class LauncherForm : Form
             HostedDistribution.Chosen = _buildVersions[_builds.SelectedIndex];
             RefreshCard();
         };
-        strip.Resize += (_, _) => { _builds.Width = strip.ClientSize.Width - _builds.Left - strip.LogicalToDeviceUnits(12); _buildNote.Width = _builds.Right - _buildNote.Left; };
-        strip.Controls.AddRange(new Control[] { title, _buildNote, _builds });
+        var refresh = Theme.MakeButton("↻", ButtonKind.Secondary);
+        refresh.AutoSize = false; refresh.Size = new Size(34, 26); refresh.MinimumSize = new Size(0, 0); refresh.Padding = new Padding(0); refresh.Margin = new Padding(0);
+        refresh.Location = new Point(_builds.Right + 6, 30); refresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        new ToolTip().SetToolTip(refresh, "Read the build list again");
+        refresh.Click += async (_, _) => await RefreshBuilds(force: true);
+        strip.Resize += (_, _) =>
+        {
+            refresh.Left = strip.ClientSize.Width - refresh.Width - strip.LogicalToDeviceUnits(12);
+            _builds.Width = refresh.Left - _builds.Left - strip.LogicalToDeviceUnits(6);
+            _buildNote.Width = refresh.Right - _buildNote.Left;
+        };
+        strip.Controls.AddRange(new Control[] { title, _buildNote, _builds, refresh });
+        _buildsTimer.Tick += async (_, _) => await RefreshBuilds();
+        Shown += (_, _) => _buildsTimer.Start();
+        Activated += async (_, _) => { if ((DateTime.UtcNow - _buildsRead).TotalSeconds >= 30) await RefreshBuilds(); };
+        FormClosed += (_, _) => _buildsTimer.Dispose();
         return strip;
+    }
+
+    /// <summary>Reads the signed dev list again and updates the picker; never while PLAY or the game is running. Offline keeps the shown list.</summary>
+    private async Task RefreshBuilds(bool force = false)
+    {
+        if (_builds == null || _busy || _builds.DroppedDown || (_gameRunning && !force)) return;
+        _buildsRead = DateTime.UtcNow;
+        try
+        {
+            Directory.CreateDirectory(HostedDistribution.CacheRoot);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
+            if (!_busy) ShowBuilds(manifest);
+        }
+        catch (Exception ex)
+        {
+            Log("Build list not read: " + ex.Message);
+            if (force && _buildNote != null) _buildNote.Text = "Build list not read: " + ex.Message;
+        }
     }
 
     /// <summary>The builds in the verified dev list, newest first; the first entry follows the newest build.</summary>
@@ -492,6 +529,7 @@ internal sealed class LauncherForm : Form
             var (manifest, _) = await HostedDistribution.ReadManifestAsync(HostedDistribution.Client, SignedManifest.Url, HostedDistribution.ManifestFile, null, cts.Token);
 #if FA_DEVCHANNEL
             ShowBuilds(manifest);
+            _buildsRead = DateTime.UtcNow;
 #endif
             if (!await SelfUpdate.ApplyAsync(manifest.Launcher, exe, HostedDistribution.Client, progress, cts.Token)) { if (!quiet) { _panel.Finish(true, ""); SetStatus(""); } return false; }
             Log("Launcher updated to " + manifest.Launcher!.Version + ".");
