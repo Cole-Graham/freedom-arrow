@@ -13,13 +13,20 @@ listings_tracker.json). Models are not bought yet: each card keeps its parent's 
   CH-47 12500 three. Armed Z-20s (Z-20KA, Z-20T, Z-20S) have no lift.
 - Prices and card counts are placeholders for Osama."""
 AIRBORNE, CN, WEIGHT = 17, 4, 4000
-TRANSPORTS = ('PLA Lynx CS/VP16B Carrier', 'PLA Lynx CS/VP16B Assault')
+TRANSPORTS = ('PLA Lynx CS/VP16B',)
+# Osama 16:1x "collapse the lynx transports into one card that starts with unarmed and then the hmg one swaps the model and then the agl option
+# uses the hmg model? +5 pts to arm it", "I think they hold 8 people": one transport, 8 seats, loadout slot Unarmed (default, an empty mount) /
+# QJZ-89 12.7 mm (+5) / QLZ-87 35 mm AGL (+5, the ZSD-05's). Model swap: FAModels option variants once the Lynx models are bought.
+LOADOUT = [('Unarmed', 0, None), ('QJZ-89 12.7 mm', 5, 'HMG'), ('QLZ-87 35 mm AGL', 5, 'AGL')]
+AGL_FROM = 'PLA ZSD-05'   # its QLZ-87 35 mm AGL (ids are made in this batch, so found by name)
+# "Cargo should maybe be 3000 supply?", "Cargo variant": supply vehicle (listing 715118) = Shaanxi SX2121 copy, own mobility HeavyLiftWeight 3000.
+MOBILITY = {'PLA Lynx Cargo': {'HeavyLiftWeight': 3000}}
 SMOKE = ('IsSmoke', 'SmokeAmmunitionId', 'SmokeAmmunitionQuantity', 'SmokeCooldown')
 # Name: (HUDName, parent, cost, cards, CategoryType, InfantrySlots, weapons)
 #   weapons None = keep the parent's; [] = no weapon; else [(weapon id, new weapon HUDName or None, [(ammunition id, quantity)])]
 CARDS = {
-    'PLA Lynx CS/VP16B Carrier': ('CS/VP16B Carrier', 1057, 20, 4, 2, 6, []),
-    'PLA Lynx CS/VP16B Assault': ('CS/VP16B Assault', 1057, 30, 4, 2, 6, None),                  # QJZ-89 12.7 mm RWS
+    'PLA Lynx CS/VP16B': ('CS/VP16B', 1057, 20, 4, 2, 8, 'LOADOUT'),
+    'PLA Lynx Cargo': ('Lynx Cargo', 1269, 25, 4, 3, 0, []),
     'PLA Lynx CS/VP17 Rapid-Fire Gun': ('CS/VP17 Rapid-Fire Gun', 1079, 45, 4, 2, 4, None),     # 30 mm autocannon + Type 86 7.62 mm
     'PLA Lynx CS-SM8 81 mm Mortar': ('CS-SM8 81 mm Mortar', 926, 50, 4, 3, 0,
                                      [(285, '81 mm rapid-fire mortar', [(410, 80), (135, 24), (136, 25)])]),   # 2B9 82 mm (MT-LB Mortar)
@@ -34,7 +41,7 @@ CARDS = {
 }
 # Per-weapon ammunition counts on cards that keep their parent's weapons (the Lynx 66 SPAAG carries 4 missiles, the PGL-625 8).
 AMMO = {'PLA Lynx 66 SPAAG': {'FB-10': 4}}
-PARENTS = {1057: 'CS/VN3C MG', 1079: 'ZSL-92', 926: 'PLL-05', 963: 'PHL-81', 920: 'PGL-625', 1295: 'Type 100 CSV'}
+PARENTS = {1269: 'Shaanxi SX2121', 1057: 'CS/VN3C MG', 1079: 'ZSL-92', 926: 'PLL-05', 963: 'PHL-81', 920: 'PGL-625', 1295: 'Type 100 CSV'}
 
 
 def apply(t, g, ok, rec):
@@ -79,7 +86,7 @@ def apply(t, g, ok, rec):
         for r in rows('UnitPropulsionsJson', UnitId=parent):
             g.add('UnitPropulsionsJson', r, {'UnitId': uid, 'MobilityId': g.add('MobilityJson', t['MobilityJson'][r['MobilityId']], {
                 'Name': f'Wheels {name}', 'MaxSpeedRoad': 90.0, 'MaxCrossCountrySpeed': 40.0, 'TurnRate': 120.0, 'Acceleration': 15.0,
-                'IsAmphibious': True, 'IsAirDroppable': True})})
+                'IsAmphibious': True, 'IsAirDroppable': True, **MOBILITY.get(name, {})})})
         for r in rows('UnitAbilitiesJson', UnitId=parent):
             a = no_smoke(r['AbilityId'])
             if a is not None: g.add('UnitAbilitiesJson', r, {'UnitId': uid, 'AbilityId': a})
@@ -89,6 +96,29 @@ def apply(t, g, ok, rec):
             for r in tu: g.add('TurretUnitsJson', r, {'UnitId': uid})
             for r in rows('WeaponAmmunitionsJson', UnitId=parent):
                 g.add('WeaponAmmunitionsJson', r, {'UnitId': uid, 'Quantity': AMMO.get(name, {}).get(W[r['WeaponId']]['HUDName'], r['Quantity'])})
+        elif weapons == 'LOADOUT':   # three mounts on slot 0, one per option; the unarmed one has no weapon
+            tw0 = rows('TurretWeaponsJson', TurretId=tu[0]['TurretId']); ok(len(tw0) == 1 and W[tw0[0]['WeaponId']]['HUDName'] == 'QJZ-89 12.7 mm RWS', 'CS/VN3C HMG mount')
+            vmod = rows('ModificationsJson', UnitId=1402)[0]; vopt = rows('OptionsJson', ModificationId=vmod['Id'])[0]
+            mod = g.add('ModificationsJson', vmod, {'UnitId': uid, 'Name': f'Weapons {name}'})
+            sensor = rows('SensorUnitsJson', UnitId=parent)[0]['SensorId']
+            AGL_UNIT = next(i for i, u in U.items() if u and u.get('Name') == AGL_FROM)
+            AGL = [x['WeaponId'] for r in rows('TurretUnitsJson', UnitId=AGL_UNIT) for x in rows('TurretWeaponsJson', TurretId=r['TurretId']) if 'QLZ-87' in W[x['WeaponId']]['HUDName']]
+            ok(len(set(AGL)) == 1 and rows('WeaponAmmunitionsJson', UnitId=AGL_UNIT, WeaponId=AGL[0]), ('ZSD-05 QLZ-87 AGL', AGL)); AGL = AGL[0]
+            for o, (ui, extra, kind) in enumerate(LOADOUT):
+                mount = g.add('TurretsJson', t['TurretsJson'][tu[0]['TurretId']], {'Name': f'{name} mount {ui}'})
+                g.add('TurretUnitsJson', tu[0], {'UnitId': uid, 'TurretId': mount})
+                if kind == 'HMG':
+                    g.add('TurretWeaponsJson', tw0[0], {'TurretId': mount})
+                    for r in rows('WeaponAmmunitionsJson', UnitId=parent): g.add('WeaponAmmunitionsJson', r, {'UnitId': uid})
+                elif kind == 'AGL':
+                    g.add('TurretWeaponsJson', tw0[0], {'TurretId': mount, 'WeaponId': AGL, 'Order': 0})
+                    for r in rows('WeaponAmmunitionsJson', UnitId=AGL_UNIT, WeaponId=AGL): g.add('WeaponAmmunitionsJson', r, {'UnitId': uid})
+                g.add('OptionsJson', vopt, {'ModificationId': mod, 'Name': f'{name} {ui}', 'UIName': ui, 'Order': o, 'Cost': extra, 'IsDefault': o == 0,
+                                            'ConcatenateWithUnitName': None if o == 0 else f' {kind}', 'OptionPicture': None, 'ThumbnailOverride': None,
+                                            'MainSensorId': sensor, 'Ability1Id': 0, 'Turret0Id': mount})
+            opts = rows('OptionsJson', ModificationId=mod)
+            ok([(x['UIName'], x['Cost'], x['IsDefault']) for x in opts] == [('Unarmed', 0, True), ('QJZ-89 12.7 mm', 5, False), ('QLZ-87 35 mm AGL', 5, False)]
+               and all(x['Turret0Id'] for x in opts), (name, 'loadout options'))
         elif weapons:         # one new mount on the parent's first turret slot, weapons at Order 0..n-1
             if weapons == 'CH901':
                 weapons = [(tw901[0]['WeaponId'], None, [(ch901, q['Quantity']) for q in rows('WeaponAmmunitionsJson', UnitId=1295) if q['WeaponId'] == tw901[0]['WeaponId']])]
@@ -115,6 +145,7 @@ def apply(t, g, ok, rec):
         arm = t['ArmorsJson'][rows('UnitArmorsJson', UnitId=uid)[0]['ArmorId']]; mob = t['MobilityJson'][rows('UnitPropulsionsJson', UnitId=uid)[0]['MobilityId']]
         ok(arm['MaxHealthPoints'] == 8 and arm['KinArmorFront'] == arm['HeatArmorTop'] == 10 and mob['IsAmphibious'] and mob['IsAirDroppable']
            and (mob['MaxSpeedRoad'], mob['MaxCrossCountrySpeed']) == (90.0, 40.0), (name, 'common stats'))
+        ok(mob['HeavyLiftWeight'] == MOBILITY.get(name, {}).get('HeavyLiftWeight', mob['HeavyLiftWeight']) and (name != 'PLA Lynx Cargo' or mob['HeavyLiftWeight'] == 3000), (name, 'cargo'))
         loadout = [(x['Order'], W[x['WeaponId']]['HUDName']) for r in rows('TurretUnitsJson', UnitId=uid) for x in rows('TurretWeaponsJson', TurretId=r['TurretId'])]
         ammo = [(W[r['WeaponId']]['HUDName'], t['AmmunitionsJson'][r['AmmunitionId']]['HUDName'], r['Quantity']) for r in rows('WeaponAmmunitionsJson', UnitId=uid)]
         ok(bool(loadout) == (weapons != []) and all(any(a[0] == w for a in ammo) for _, w in loadout), (name, 'every weapon has ammunition', loadout, ammo))
