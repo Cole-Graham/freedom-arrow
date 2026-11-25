@@ -22,6 +22,15 @@ ASSET=('Mods/FAModels.dll','Mods/FAMusic.dll','UserData/FAModels/','UserData/FAM
 p=argparse.ArgumentParser(description=__doc__)
 for x in('prev','version','base','outdir','zip'):p.add_argument('--'+x,required=x!='zip',default='zip' if x=='zip' else None)
 p.add_argument('--drop-assets',help='file listing asset paths to remove from the package (0.9.0-dev.4: PNGs replaced by FAModels 0.3.26 .fat textures)');p.add_argument('--assets',help='assets .bamod that the gameplay package pairs with (default: the one in the previous receipt)');p.add_argument('--complete-only',action='store_true',help=argparse.SUPPRESS);p.add_argument('--game-dir',default='/home/sam/tars/work/ba-dev/replicas/codex/work/ba-tool-verification-20261102/baseline-vengeance',help='Broken Arrow folder with the pinned native missions the scenario builder reads');p.add_argument('--build',type=int,required=True);p.add_argument('--famodels',help='new Mods/FAModels.dll for the complete package only (launcher assets package unchanged)');p.add_argument('--asset',action='append',default=[],help='PKGPATH=LOCALFILE model/texture file for the complete package only');a=p.parse_args()
+# Lateralus 24 Nov 2026 ("in the future don't let models be re-staged while another thread is building a dev build"): 0.9.7-dev.3's first run read
+# work/model-rework-096/stage while another thread rebuilt it (FileNotFoundError on a .fas). The packager holds this lock (shared) until it exits;
+# every model stage.py takes it exclusively and stops while it is held. A stage that is already running is waited for.
+import fcntl
+_STAGE_LOCK=Path('/home/sam/tars/work/ba-dev/replicas/codex/work/.model-stage.lock')
+if _STAGE_LOCK.parent.is_dir():
+    _stage_lock=_STAGE_LOCK.open('a')
+    try:fcntl.flock(_stage_lock,fcntl.LOCK_SH|fcntl.LOCK_NB)
+    except BlockingIOError:print('A model stage is running; waiting for it to finish before packaging.',flush=True);fcntl.flock(_stage_lock,fcntl.LOCK_SH)
 if a.complete_only:raise SystemExit('--complete-only is retired (Lateralus 13 Nov 2026: gameplay and assets are always available separately). A new assets version is made automatically.')
 base=Path(a.base);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);V=a.version
 # Repo cleanup step 1 (Lateralus 22 Nov 2026, docs/development/REPO-CLEANUP-PLAN.md): out/receipts is the one record of builds. It replaced
