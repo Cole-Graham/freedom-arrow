@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.1",
+  "version": "0.9.7-dev.2",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.1 (dev build for the next patch, Lateralus 24 Nov 2026): everything queued since 0.9.6 from Osama and Lateralus: SHORAD radar split (SA x1.5 / IR SHORAD), SRAW A/B, infantry launcher and China balance, Delta Force, J-11BHG Heavy CAP, Lynx airborne previews, AKD-10 names, music volume first start only, native Ranked card, FAModels 0.3.46 LOD streaming. Needs Freedom Arrow — Models and Music 0.2.95.",
+  "description": "Freedom Arrow 0.9.7-dev.2 (dev build for Osama, 24 Nov 2026): 0.9.7-dev.1 plus the NLOS change (HJ-10, QN-502, CTL-181 and CH-901 rounds use the vanilla Iskander-M guidance: Fire Position, optional laser homing; NLOS code off), the 6 Lynx card models, and the Arsenal textures at 1.5x for the support units, older China models and ZBL-08. Needs Freedom Arrow — Models and Music 0.2.96.",
   "repo": "Cole-Graham/freedom-arrow"
 }
