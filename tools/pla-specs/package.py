@@ -236,7 +236,8 @@ with zipfile.ZipFile(base) as z:
     inf=[n for n in whole['sha256'] if n in ('Mods/FAModels.dll','UserData/FAModels/infantry-bodies.json') or n.startswith('UserData/FAModels/pla2_')]
     bc=sum(n.endswith(('_b.fat','_b_n.fat')) for n in inf)
     # 0.9.5-dev.30: or 266 + 0 or 60 with the recon frog-shirt body (Osama 22 Nov "Pla recon snipers use this model").
-    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, or 266 + 0 or 60'
+    # 0.9.7: or 275 + 0 or 62 with the Fictional 1 airborne body (Osama 25 Nov "Fictional 1 soldier body no?", "please apply this model to all the PLAAF").
+    assert (len(inf)-bc,bc) in ((257,0),(257,58),(266,0),(266,60),(275,0),(275,62)),f'infantry files {len(inf)} with {bc} battle copies; the runtime expects 257 + 0 or 58, 266 + 0 or 60, or 275 + 0 or 62'
     override['UserData/FreedomArrow/pla-package-manifest.json']=enc(whole)
     subprocess.run(['cp','--reflink=auto',str(base.resolve()),str(target.resolve())],check=True)
     if retired_scenarios:subprocess.run([a.zip,'-q','-nw','-d',str(target.resolve()),*retired_scenarios],check=True)
