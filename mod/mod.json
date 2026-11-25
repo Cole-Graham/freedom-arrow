@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.4",
+  "version": "0.9.7-dev.5",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.4 (dev build, Lateralus 24 Nov 2026): 0.9.7-dev.3 plus SA / IR / LR radar tags and tooltip titles, FB-10 as an AMRAAM clone with PGL-625 and Lynx 66 SPAAG on SA SHORAD, and the model stage as of now (Lynx texture fixes, FK-3000 / PCL-181 models). Needs Freedom Arrow — Models and Music 0.2.98.",
+  "description": "Freedom Arrow 0.9.7-dev.5 (gameplay dev build, Lateralus 24 Nov 2026): dev.4 plus radar icons with SA / IR / LR cut into the dish, Lynx rework, Combat Engineers icon, air-launched fast missiles 600 and prices, NLOS rounds on Iskander-K cruise guidance, Blue Dragon and Eurocorp test-only. Models & music unchanged (0.2.98). Needs Freedom Arrow — Models and Music 0.2.98.",
   "repo": "Cole-Graham/freedom-arrow"
 }
