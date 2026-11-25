@@ -966,6 +966,8 @@ import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
 # 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
 import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
+# ---------- US Combat Engineers: M-25 CDTE 2 -> 1, 75 -> 70 pts (Lateralus 25 Nov 2026 11:5x). See us_combat_engineers_1125.py.
+import us_combat_engineers_1125;us_combat_engineers_1125.apply(t,g,ok,rec)
 # ---------- Radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM on SA radar (Lateralus 25 Nov 2026 09:17 PST, thread 1568104480459722894:
 # "1. Yes that is what I want 2. (a) 3. HHQ-10 ... and the RIM-116 (SeaRAM) ... should benefit from radar and have SA radar"). Creates one ability row and
 # one link: keep it the last row-creating section. Then the radar groups (new row) and the per-weapon lists are rebuilt, and every radar loadout must
