@@ -1,9 +1,9 @@
 """Five Euro preview cards hidden, their models held back (Osama 25 Nov 2026 11:4x PST, thread 1567745029781454889: "For next live build, let's hide
 the flakpanzer gepard, k41 lynx, kf51 panther, and MAN, and VAB I don't want people to have to download these models. So for now make sure the models
-aren't loaded on to the live build"). Each card's one availability row leaves its preview spec (Germany 25, France 24) and the unit is hidden in the
+aren't loaded on to the live build"; 11:5x "and hide the EBRC Jaguar"). Each card's one availability row leaves its preview spec (Germany 25, France 24) and the unit is hidden in the
 Armory. No transport links. Unit, weapon and ammunition rows stay, so the cards come back by deleting this section. The model files: banned-models.txt
 (package.py) and EU_HELD in work/model-rework-096/stage.py."""
-CARDS = {1421: ('DE KF51 Panther', 25), 1422: ('DE KF41 Lynx', 25), 1426: ('DE Flakpanzer Gepard', 25), 1427: ('DE MAN HX77', 25), 1428: ('FR VAB', 24)}
+CARDS = {1421: ('DE KF51 Panther', 25), 1422: ('DE KF41 Lynx', 25), 1426: ('DE Flakpanzer Gepard', 25), 1427: ('DE MAN HX77', 25), 1428: ('FR VAB', 24), 1300: ('FR EBRC Jaguar', 24)}
 
 
 def apply(t, g, ok, rec):

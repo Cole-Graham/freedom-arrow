@@ -39,6 +39,7 @@ Add every new hidden or removed card here in the same commit as the data change.
 | Flakpanzer Gepard | 1426 | Germany (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
 | MAN HX77 | 1427 | Germany (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
 | VAB | 1428 | France (Preview), 4 cards; model held back (banned-models.txt, stage EU_HELD) | `euro_held_1125.py` | Osama 25 Nov 11:4x "hide ... I don't want people to have to download these models" |
+| EBRC Jaguar | 1300 | France (Preview), 2 cards; model held back (banned-models.txt, stage EU_HELD; was in live Assets 0.2.94) | `euro_held_1125.py` | Osama 25 Nov 11:5x "and hide the EBRC Jaguar" |
 
 ## Model build only (`codex/batch/osama/models-096`)
 
@@ -95,3 +96,4 @@ battlegroup size 0. (The first version, 21:0x, hid the specs completely; it was 
 - 2026-11-25 11:4x PST (America/Los_Angeles): FK-3000 moved from the Medium CAB to the China test spec 26 (model broken).
 
 - 2026-11-25 11:5x PST (America/Los_Angeles): KF51, KF41, Gepard, MAN HX77 and VAB preview cards hidden; their models held out of every package.
+- 2026-11-25 11:5x PST (America/Los_Angeles): EBRC Jaguar hidden and its model held back with the five Euro previews.

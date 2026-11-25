@@ -8,3 +8,5 @@ m_kf41_
 m_gepard_
 m_hx77_
 m_vab_
+# 11:5x "and hide the EBRC Jaguar" (it was in live Assets 0.2.94; the next Assets drops it)
+m_fr_jaguar_
