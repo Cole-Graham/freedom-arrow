@@ -9,28 +9,33 @@ vanilla weapon of the same kind and tier, so every stat is that weapon's; only t
   HK416 D10RS T3 (210). Icon FA_PLA_WP_VQX191 (work/vqx191-icon/make_vqx191.py: the approved QBZ-192 icon with a short can).
 - QBU-202 (8.6 mm .338 sniper): "there's a 338 ... sniper in the game ... maybe the mk22. Just copy a vanilla weapon" -> copy of the
   MK 22 ASR (674, .338 LM). Keeps the MK 22's icon until we draw one.
-When a squad gets one, give it the donor's ammunition row (PKM 75 7.62x54mm, HK416A5 358 / D10RS 469 5.56x45mm, MK 22 389 .338 LM) or a
-China-named copy, as the QBU-201 did."""
+Ammunition (Osama 25 Nov 16:2x "don't forget to change the caliber to match Chinese equivalent"): each weapon gets its own copy of the donor's
+round with the China calibre name, as the QBU-201 did ('7.62 mm precision ammunition'): QJY-88 '7.62 mm ammunition' (PKM 75, the name the
+QJY-201 uses), QBZ-192 MLOK and VQX191 '5.8 mm ammunition' (HK416A5 358 / D10RS 469, the name every QBZ round uses), QBU-202 '8.6 mm
+precision ammunition' (MK 22 389). Stats unchanged. When a squad gets one of these weapons, link it to that round (rec ammo ids)."""
 import os
 DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'mod', 'source', 'runtime-qa', 'icons')
-NEW = [  # (donor, donor HUDName, Name, HUDName, icon or None)
-    (158, 'PKM', 'PLA infantry QJY-88 T1', 'QJY-88', 'FA_PLA_WP_QJY88'),
-    (767, 'HK 416A5', 'PLA infantry QBZ-192 MLOK T4', 'QBZ-192 MLOK', 'FA_PLA_WP_QBZ192_MLOK'),
-    (210, 'HK 416 D10RS', 'PLA infantry QBZ-192 VQX191 T4', 'VQX191', 'FA_PLA_WP_VQX191'),
-    (674, 'MK 22 ASR', 'PLA infantry QBU-202 T3', 'QBU-202', None),
+NEW = [  # (donor, donor HUDName, Name, HUDName, icon or None, donor round, donor round HUDName, China round HUDName)
+    (158, 'PKM', 'PLA infantry QJY-88 T1', 'QJY-88', 'FA_PLA_WP_QJY88', 75, '7.62x54mm', '7.62 mm ammunition'),
+    (767, 'HK 416A5', 'PLA infantry QBZ-192 MLOK T4', 'QBZ-192 MLOK', 'FA_PLA_WP_QBZ192_MLOK', 358, '5.56x45mm', '5.8 mm ammunition'),
+    (210, 'HK 416 D10RS', 'PLA infantry QBZ-192 VQX191 T4', 'VQX191', 'FA_PLA_WP_VQX191', 469, '5.56x45mm', '5.8 mm ammunition'),
+    (674, 'MK 22 ASR', 'PLA infantry QBU-202 T3', 'QBU-202', None, 389, '.338 LM', '8.6 mm precision ammunition'),
 ]
 
 
 def apply(t, g, ok, rec):
-    W, SM = t['WeaponsJson'], t['SquadMembersJson']
+    W, SM, A = t['WeaponsJson'], t['SquadMembersJson'], t['AmmunitionsJson']
     out = {}
-    for donor, dname, name, hud, icon in NEW:
+    for donor, dname, name, hud, icon, ra, rname, rhud in NEW:
+        ok(A[ra]['HUDName'] == rname, ('donor round', ra, A[ra]['HUDName']))
         ok(W[donor]['HUDName'] == dname, ('donor', donor, W[donor]['HUDName']))
         ok(not any(w and w.get('HUDName') == hud for w in W.values()), (hud, 'name free'))
         if icon: ok(all(os.path.isfile(os.path.join(DIR, icon + s + '.png')) for s in ('', '_OUTLINE')), icon + ' + outline in runtime-qa/icons')
         nw = g.add('WeaponsJson', W[donor], {'Name': name, 'HUDName': hud, **({'HUDIcon': icon} if icon else {})})
         used = [r['UnitId'] for r in SM.values() if r and nw in (r.get('PrimaryWeaponId'), r.get('SpecialWeaponId'))]
         ok(W[nw]['HUDName'] == hud and not used, (hud, 'added, carried by no squad', nw, used))
-        out[hud] = {'weapon': nw, 'copy_of': donor, 'icon': icon or W[donor]['HUDIcon']}
+        na = g.add('AmmunitionsJson', A[ra], {'Name': f'PLA infantry {hud} ammunition', 'HUDName': rhud})
+        ok(A[na]['HUDName'] == rhud and A[na]['Damage'] == A[ra]['Damage'], (hud, 'round', na))
+        out[hud] = {'weapon': nw, 'copy_of': donor, 'icon': icon or W[donor]['HUDIcon'], 'ammo': na, 'ammo_name': rhud, 'ammo_copy_of': ra}
     rec['backpocket_weapons_1125'] = out
     print('BACKPOCKET', out)

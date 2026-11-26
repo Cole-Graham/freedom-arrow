@@ -3243,7 +3243,7 @@
       "basis": "Osama-supplied QJY-88 photo (25 Nov 2026), work/qjy88-icon/make_qjy88.py; PKM T1 stat clone, back pocket (no squad)"
     },
     {
-      "weapon": 2021544,
+      "weapon": 2021545,
       "name": "QBZ-192 MLOK",
       "scope": "INFANTRY",
       "mode": "custom",
@@ -3253,7 +3253,7 @@
       "basis": "Osama-supplied QBZ-192 MLOK photo (25 Nov 2026), work/qbz192-mlok-icon/make_mlok.py on the approved QBZ191 outline; HK416A5 stat clone (T4 placeholder), back pocket"
     },
     {
-      "weapon": 2021545,
+      "weapon": 2021547,
       "name": "VQX191",
       "scope": "INFANTRY",
       "mode": "custom",
