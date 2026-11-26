@@ -6,7 +6,11 @@
   first ground-vehicle row). New rows come from the 'plb' reserved block.
 - Z-10U (1270, card row 2019264): PLAN (20) -> Light CAB ("Z-10U goes to Light CAB", 02:2x).
 - 02:3x "Z-20 given to light CAB and Z-18": Light CAB cards for the Z-20 (1244, as its Heavy CAB row: 2 cards) and the Z-18 (1271, as its PLAN row:
-  2 cards); both keep their current cards. Light CAB infantry already ride the Z-20J."""
+  2 cards); both keep their current cards. Light CAB infantry already ride the Z-20J.
+- 02:4x "Z-11WB copied to light CAB, Z-19 recon moved to Light cab recon tab. CSK-131 recon given to Light cab (*this is available for everyone). Z-20J
+  and Z-20T are both copied to Light CAB": Light CAB cards (copies of an existing card row, same count) for Z-11WB (942, 4), CSK-131 Recon (1265, 4),
+  Z-20J (1238, 2), Z-20T (1245, 2). Z-19 Recon (1134 'PLA Recon Z-19', Recon tab, 75 pts) had no card in any 0.9 build: it gets a Light CAB card
+  with the Z-19's count (2, copy of the Z-19 1103 row) and DisplayInArmory on; the Medium CAB attack Z-19 card stays."""
 MOTO, MOTO_ROW, ZBL08, WZ551, PLAN, MEDIUM, Z10U, Z10U_ROW = 1196, 2013580, 903, 962, 20, 21, 1270, 2019264
 
 
@@ -40,5 +44,14 @@ def apply(t, g, ok, rec):
         src = rows('SpecializationAvailabilitiesJson', UnitId=uid)
         ok(U[uid]['HUDName'] == hud and len(src) == 1 and src[0]['SpecializationId'] == frm, (hud, 'one card row in', frm))
         g.add('SpecializationAvailabilitiesJson', src[0], {'SpecializationId': light}); heli.append((hud, src[0]['MaxAvailabilityXp0']))
+    for uid, hud, frm in ((942, 'Z-11WB', MEDIUM), (1265, 'CSK-131 Recon', PLAN), (1238, 'Z-20J', PLAN), (1245, 'Z-20T', PLAN)):
+        src = [r for r in rows('SpecializationAvailabilitiesJson', UnitId=uid) if r['SpecializationId'] == frm]
+        ok(U[uid]['HUDName'] == hud and len(src) == 1 and not rows('SpecializationAvailabilitiesJson', UnitId=uid, SpecializationId=light), (hud, 'card in', frm))
+        g.add('SpecializationAvailabilitiesJson', src[0], {'SpecializationId': light}); heli.append((hud, src[0]['MaxAvailabilityXp0']))
+    z19 = rows('SpecializationAvailabilitiesJson', UnitId=1103)
+    ok(U[1134]['HUDName'] == 'Z-19 Recon' and U[1134].get('CategoryType', 0) == 0 and not rows('SpecializationAvailabilitiesJson', UnitId=1134) and len(z19) == 1,
+       'Z-19 Recon 1134 (Recon tab, no card), Z-19 1103 card')
+    g.add('SpecializationAvailabilitiesJson', z19[0], {'UnitId': 1134, 'SpecializationId': light}); g.put('Units', 1134, {'DisplayInArmory': True})
+    heli.append(('Z-19 Recon', z19[0]['MaxAvailabilityXp0']))
     rec['pla_light_brigade_transports_1126'] = {'moto_riflemen_spec': light, 'zbl08_plan': zbl_cards, 'wz551_light_cab': wz_cards, 'light_cab_helicopters': heli}
     print('PLA LIGHT BRIGADE TRANSPORTS', rec['pla_light_brigade_transports_1126'])
