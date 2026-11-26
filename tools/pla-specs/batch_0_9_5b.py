@@ -1019,6 +1019,8 @@ import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
 import pla_light_brigade_mg_1126;pla_light_brigade_mg_1126.apply(t,g,ok,rec)
 # ---------- PLA Light Brigade: Troopers AA one M240L -> M4A1, mixed loadout one M-25 man fewer; Troopers 70, Moto. Riflemen 75 (Osama 26 Nov 01:3x).
 import pla_light_brigade_troopers_1126;pla_light_brigade_troopers_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: ZTQ-15 + ZTL-11 Medium CAB -> China marines (PLAN 20); ZTQ-15 Recon Heavy -> Medium CAB (Osama 26 Nov 01:4x).
+import pla_light_brigade_specs_1126;pla_light_brigade_specs_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
