@@ -987,6 +987,9 @@ import sam_ranges_1125;print('SAM RANGES',sam_ranges_1125.apply(t,g,ok,rec,_heli
 # ---------- FB-10 = HQ-17A missile stat clone instead of AMRAAM (Lateralus 25 Nov 2026 11:1x PST, "ok queue it"). Existing row only; after sam_ranges.
 # See lateralus/fb10_hq17a_1125.py.
 import fb10_hq17a_1125;print('FB-10 HQ-17A',fb10_hq17a_1125.apply(t,g,ok,rec,_heli))
+# ---------- Plane fire-and-forget / terminal-guidance missiles ignore shooter stress in hit chance (Lateralus 25 Nov 2026 16:1x PST, "Queue up just the
+# low risk missile accuracy debuff removal"). Lists in helicopter-range.json; runtime MissileHitChance.cs. See lateralus/plane_missile_stress_1125.py.
+import plane_missile_stress_1125;print('PLANE MISSILE STRESS',plane_missile_stress_1125.apply(t,ok,rec,_heli))
 # ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
 # the tripod based weapons"). See crew_weapons_1125.py.
 import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
