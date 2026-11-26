@@ -9,6 +9,10 @@ codex/batch/osama/pla-light-brigade only; inside g.scope('plb'), after the names
     (470) as '37 mm less-lethal': Damage 2.0 -> 0.1, penetration 20 -> 0, health radius 6 -> 0; stress 20 -> 500 in a 6 -> 10 m radius (world;
     card 20 m), so one close hit shocks (500) and two panic (800 of 1000); range 15-150 world = 30-300 on the card (ranges show twice the world
     value, docs/engine/stress.md). Starting values to tune.
+  - 04:4x "the gl on the flying tigers is a bit weak, not really panicking. It should full panick an infantry in 5 seconds": with one shot per
+    6-8 s reload and falloff over a 10 m spread it averaged ~250 stress per 9-11 s. Now a 5-round revolver like the real ARWEN: magazine 5, one burst
+    of 5 shots 1.0 s apart, aim 1.0-1.5 s (was 2-3), reload 8-10 s; each round 200 stress with no falloff inside the 10 m radius (NoDamageFalloff),
+    so 4 hits = 800 = panicked, about 4.5-5 s after the order (aim + 3 s). 25 rounds per carrier (5 reloads). Calculated, not yet measured in game.
   - Kit (6 men, as before): leader SIG 516 + ARWEN 37; SIG 516 + SPAS-12 (shotgun as the special weapon, the vanilla M1014 pattern of Delta / Green
     Berets / Pararescue); SIG 516; 2 SPAS-12; MP5SD. The flashbang goes (not in the list). Ammo per carrier: SIG 160 (Rangers RRC HK 416), SPAS 96
     (M1014), MP5SD 160 (KNT), ARWEN 20. Armour, price (55), stealth, ability and cards unchanged. Card icon FA_PLA_INF_FLYING_TIGERS.
@@ -31,10 +35,12 @@ def apply(t, g, ok, rec):
     ok(not any(w and w.get('HUDName') in ('SIG 516', 'SPAS-12', 'ARWEN 37') for w in W.values()), 'new weapon names free')
     sig = g.add('WeaponsJson', W[HK416], {'Name': 'PLA infantry SIG 516', 'HUDName': 'SIG 516'})
     spas = g.add('WeaponsJson', W[M1014], {'Name': 'PLA infantry SPAS-12', 'HUDName': 'SPAS-12'})
-    arwen = g.add('WeaponsJson', W[M320], {'Name': 'PLA infantry ARWEN 37', 'HUDName': 'ARWEN 37', 'HUDIcon': ARBALET_ICON})
+    ARWEN_FIRE = {'MagazineSize': 5, 'ShotsPerBurstMin': 5, 'ShotsPerBurstMax': 5, 'TimeBetweenShotsInBurst': 1.0, 'AimTimeMin': 1.0, 'AimTimeMax': 1.5,
+                  'MagazineReloadTimeMin': 8.0, 'MagazineReloadTimeMax': 10.0}
+    arwen = g.add('WeaponsJson', W[M320], {'Name': 'PLA infantry ARWEN 37', 'HUDName': 'ARWEN 37', 'HUDIcon': ARBALET_ICON, **ARWEN_FIRE})
     arwen_a = g.add('AmmunitionsJson', A[M320_A], {'Name': 'PLA infantry ARWEN 37 less-lethal', 'HUDName': '37 mm less-lethal', 'Damage': 0.1,
                                                    'PenetrationAtGroundRange': 0.0, 'PenetrationAtMinRange': 0.0, 'HealthAOERadius': 0.0,
-                                                   'StressDamage': 500.0, 'StressAOERadius': 10.0, 'MinimalRange': 15.0, 'GroundRange': 150.0})
+                                                   'StressDamage': 200.0, 'StressAOERadius': 10.0, 'NoDamageFalloff': True, 'MinimalRange': 15.0, 'GroundRange': 150.0})
     # Flying Tigers kit
     men = rows('SquadMembersJson', UnitId=FT)
     ok(U[FT]['HUDName'] == 'Flying Tigers' and len(men) == 6 and U[FT]['Cost'] == 55, 'Flying Tigers 1187: 6 men, 55 pts')
@@ -43,7 +49,7 @@ def apply(t, g, ok, rec):
     sw0, wa0 = rows('SquadWeaponsJson', UnitId=FT)[0], rows('WeaponAmmunitionsJson', UnitId=FT)[0]
     for tab in ('SquadWeaponsJson', 'WeaponAmmunitionsJson'):
         for r in rows(tab, UnitId=FT): g.remove(tab, r['Id'])
-    for n, (w, a, q) in enumerate([(sig, HK_A, 160), (spas, M1014_A, 96), (MP5SD, MP5_A, 160), (arwen, arwen_a, 20)], 1):
+    for n, (w, a, q) in enumerate([(sig, HK_A, 160), (spas, M1014_A, 96), (MP5SD, MP5_A, 160), (arwen, arwen_a, 25)], 1):
         g.add('SquadWeaponsJson', sw0, {'UnitId': FT, 'WeaponId': w, 'Order': n})
         g.add('WeaponAmmunitionsJson', wa0, {'UnitId': FT, 'WeaponId': w, 'AmmunitionId': a, 'Quantity': q, 'Order': 0})
     g.put('Units', FT, {'ThumbnailFileName': 'FA_PLA_INF_FLYING_TIGERS'})
@@ -70,8 +76,9 @@ def apply(t, g, ok, rec):
     for u in (FT, ms):
         carried = {w for r in rows('SquadMembersJson', UnitId=u) for w in (r['PrimaryWeaponId'], r['SpecialWeaponId']) if w}
         ok({r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=u)} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=u)}, ('card + ammo = carried', u))
-    same = lambda x, y: all(x.get(k) == y[k] for k in y if k not in ('Id', 'Name', 'HUDName', 'HUDIcon'))
-    ok(same(W[sig], W[HK416]) and same(W[spas], W[M1014]) and same(W[arwen], W[M320]), 'SIG 516 / SPAS-12 / ARWEN 37 = donor stats')
+    same = lambda x, y, skip=(): all(x.get(k) == y[k] for k in y if k not in ('Id', 'Name', 'HUDName', 'HUDIcon', *skip))
+    ok(same(W[sig], W[HK416]) and same(W[spas], W[M1014]) and same(W[arwen], W[M320], tuple(ARWEN_FIRE)), 'SIG 516 / SPAS-12 = donor stats; ARWEN 37 = M320 but fire rate')
+    ok(4 * A[arwen_a]['StressDamage'] >= 800 and A[arwen_a]['NoDamageFalloff'] and W[arwen]['MagazineSize'] == 5, 'ARWEN: 4 hits panic (800 of 1000)')
     import os
     icons = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'mod', 'source', 'runtime-qa', 'icons')
     ok(all(os.path.isfile(os.path.join(icons, n + s + '.png')) for n in ('FA_PLA_INF_FLYING_TIGERS', 'FA_PLA_INF_LINE_MARINE_SCOUT') for s in ('', '_OUTLINE')), 'card icons in runtime-qa/icons')
