@@ -531,6 +531,9 @@ class Catalog:
                         in_game.add(replace)
         users: dict[tuple[int, int], set[int]] = defaultdict(set)
         for (unit_id, weapon_id), choices in self.ammo_by_unit_weapon.items():
+            carried = self.member_weapon_counts.get(unit_id)
+            if carried and weapon_id not in carried:  # vanilla keeps ammo rows for weapons no soldier has (Spetsnaz Alpha RPL-7)
+                continue
             for choice in choices:
                 users[(weapon_id, choice.ammunition_id)].add(unit_id)
 
