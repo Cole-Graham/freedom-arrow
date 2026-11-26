@@ -615,7 +615,11 @@ static partial class RankedMenu
             Img(x,y,44,44,Avatar[(ini==default(char)?0:ini)%Avatar.Length]);
             if(pic!=null)Pic(x,y,44,44,pic,false);else Txt(x,y,44,44,ini==default(char)?"?":char.ToUpperInvariant(ini).ToString(),18,Color.white,true,TextAlignmentOptions.Center);
             Img(x+54,y+10,8,8,stColor);
-            Txt(x+68,y+1,420,24,name+(id==me?" (you)":"")+(friend?"  <size=12><color=#E8BE55>friend</color></size>":"")+$"  <size=13><color=#{ColorUtility.ToHtmlStringRGB(stColor)}>{stText}</color></size>",16,sb?Color.white:dim,true);
+            // Labels have rich text off (player names are shown as typed), so the state and "friend" are their own coloured labels
+            // (Lateralus 25 Nov 2026: the row showed "<size=13><color=#6BCC61>in the menu" as text).
+            Txt(x+68,y+1,340,24,name+(id==me?" (you)":""),16,sb?Color.white:dim,true);
+            Txt(x+418,y+1,100,24,stText,13,stColor);
+            if(friend)Txt(x+520,y+1,90,24,"friend",12,new Color(0.91f,0.75f,0.33f));
             var sub=string.Join(" · ",new[]{P(o,"ver").Length>0?"v"+P(o,"ver"):"",P(o,"pack"),P(o,"code")}.Where(t=>t.Length>0));
             Txt(x+68,y+23,480,18,sb?sub:sub+" · other build",13,sb?Green:new Color(1f,0.48f,0.42f));
             if(id!=me&&sb&&!inParty&&GroupCount()<MaxGroup)Choice(x+ColW-110,y+8,100,28,"Invite",false,14,()=>{mInvite.Invoke(null,new object[]{o,Time.unscaledTime});note="Invitation sent to "+name+".";noteUntil=Time.unscaledTime+6f;MelonLogger.Msg("FREEDOM_ARROW_RANKED group invite (online tab) "+name);});
