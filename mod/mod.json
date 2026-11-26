@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.22",
+  "version": "0.9.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.22 (release candidate 4 for 0.9.7, 25 Nov 2026): 0.9.7-dev.21 plus every change queued since: FAModels 0.3.49 (armory shows only the full model; no first-zoom hitch), Armory models cut to the 300k showpiece cap, ZTZ-98 model held back, QBB-95 back, squad, price, damage and menu fixes. New Models & music package. Needs Freedom Arrow — Models and Music 0.2.104.",
+  "description": "Freedom Arrow 0.9.7 (25 Nov 2026): release of 0.9.7-dev.22 (release candidate 4) plus the MTL-30 name and icon for the XM25. See the 0.9.7 patch notes. Needs Freedom Arrow — Models and Music 0.2.104.",
   "repo": "Cole-Graham/freedom-arrow"
 }
