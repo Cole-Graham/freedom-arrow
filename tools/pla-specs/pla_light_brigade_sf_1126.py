@@ -18,7 +18,7 @@ codex/batch/osama/pla-light-brigade only; inside g.scope('plb'), after the names
     (M1014), MP5SD 160 (KNT), ARWEN 20. Armour, price (55), stealth, ability and cards unchanged. Card icon FA_PLA_INF_FLYING_TIGERS.
 - 03:3x "PLAN gets Marine Scouts (their icon is a target crosshair instead of the binos in front of the marine icon). They are a 3 man unit. 1x QMK,
   1xQBU-191, QBU-203, 75 points": new unit = copy of Marine Recon (1224: PLAN Recon tab, stealth 0.4 = card 2.5, its card row: 4 cards and 5
-  transports) with 3 men (QMK leader, QBU-191, QBU-203 (the QBU-201 row, shown as QBU-203)), armour 'Armor Infantry Shock 3Men' (279: 8, 15 HP),
+  transports) with 3 men (QMK leader, QBU-202 (was QBU-191, 26 Nov 11:1x), QBU-203 (the QBU-201 row, shown as QBU-203)), armour 'Armor Infantry Shock 3Men' (279: 8, 15 HP),
   75 pts, card icon FA_PLA_INF_LINE_MARINE_SCOUT (tools/icons-src/make_marine_scouts.py). No sniper rifle (Type 4), so card stealth 2.5 by the
   China recon rule."""
 FT, HK416, M1014, MP5SD, M320, M320_A = 1187, 210, 45, 508, 533, 470
@@ -66,7 +66,13 @@ def apply(t, g, ok, rec):
     for p, dp in ((QMK, 1), (QBU191, 2), (QBU203, 2)):
         g.add('SquadMembersJson', man, {'UnitId': ms, 'PrimaryWeaponId': p, 'SpecialWeaponId': 0, 'DeathPriority': dp})
     sw0, wa0 = rows('SquadWeaponsJson', UnitId=MRECON)[0], rows('WeaponAmmunitionsJson', UnitId=MRECON)[0]
-    for n, (w, a, q) in enumerate([(QMK, QMK_A, 160), (QBU191, QBU191_A, 100), (QBU203, QBU203_A, 60)], 1):
+    # 26 Nov 11:1x "we're going to give the qbu202 to the Marine Scouts it replaces the qbu 191": the back-pocket QBU-202 (Mk 22 ASR copy, Type 3
+    # marksman like the Mk 22, round '8.6 mm precision ammunition') in place of the QBU-191; 40 rounds, the Green Berets' Mk 22 count.
+    qb = rec['backpocket_weapons_1125']['QBU-202']; QBU202, QBU202_A = qb['weapon'], qb['ammo']
+    ok(W[QBU202]['HUDName'] == 'QBU-202' and W[QBU202]['Type'] == 3, 'QBU-202 back-pocket row')
+    for m in rows('SquadMembersJson', UnitId=ms):
+        if m['PrimaryWeaponId'] == QBU191: g.put('SquadMembersJson', m['Id'], {'PrimaryWeaponId': QBU202})
+    for n, (w, a, q) in enumerate([(QMK, QMK_A, 160), (QBU202, QBU202_A, 40), (QBU203, QBU203_A, 60)], 1):
         g.add('SquadWeaponsJson', sw0, {'UnitId': ms, 'WeaponId': w, 'Order': n})
         g.add('WeaponAmmunitionsJson', wa0, {'UnitId': ms, 'WeaponId': w, 'AmmunitionId': a, 'Quantity': q, 'Order': 0})
     (mc,) = rows('SpecializationAvailabilitiesJson', UnitId=MRECON)
