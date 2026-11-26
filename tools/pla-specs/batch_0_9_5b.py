@@ -1045,6 +1045,8 @@ import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pt
 with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec)
 # ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
+# PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
+import pla_light_brigade_qlz87_tripod_1126;pla_light_brigade_qlz87_tripod_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
