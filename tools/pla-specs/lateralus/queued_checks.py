@@ -24,7 +24,8 @@ def merged(tab,fn):
     return t
 # Later decisions over the SPAAG list, from the version that made them: Osama 24 Nov 2026 (QQ feedback FA-101, pgl625_lsdw_1124.py 6ed18eb4):
 # PGL-625 gun round 2009369 damage 4.9 -> 3.5 from 0.9.7-dev.1.
-_SPA_LATER={('2009369','Damage'):3.5} if m>=key('0.9.7-dev.1') else {}
+# Osama 25 Nov 2026 23:0x (pgl625_dps_1125.py 892694c2, "7 DPS"): 3.5 -> 2.356 in builds after 0.9.7.
+_SPA_LATER={('2009369','Damage'):(2.356 if m>key('0.9.7') else 3.5)} if m>=key('0.9.7-dev.1') else {}
 for tab,fn,spec in (('WeaponsJson.json','weapons.json',S.SPW),('AmmunitionsJson.json','ammunitions.json',S.SPA)):
     t=merged(tab,fn)
     bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {_SPA_LATER.get((i,k),n)})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=_SPA_LATER.get((i,k),n)]
