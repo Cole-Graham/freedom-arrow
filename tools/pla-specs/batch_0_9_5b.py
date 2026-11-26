@@ -1029,8 +1029,9 @@ import pla_light_brigade_units_1126
 import pla_light_brigade_jiaolong_1126
 # Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
 import pla_light_brigade_transports_1126   # Moto. Riflemen -> Light CAB, ZBL-08 for PLAN, WZ-551 for Light CAB (Osama 26 Nov 02:2x)
+import pla_light_brigade_tiger_1126   # Marines Assault 80 pts, PLAN = Tiger Brigade 猛虎旅, PTL-02 + CSK-131/CSK-181 to Light CAB (Osama 26 Nov 02:3x-02:4x)
 import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pts (Osama 26 Nov 02:1x)
-with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec)
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec)
 # ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
