@@ -253,6 +253,8 @@ if m>=key('0.9.5-dev.34'):
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.22'):_want.pop('2015311',None)
         # PLA Light Brigade branch (Osama 26 Nov 2026 02:0x, pla_light_brigade_jiaolong_1126.py, checked there): Sea Dragons 1191 re-kitted as Jiaolong CQC.
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7l-dev.1'):[_want.pop(str(i),None) for i in range(2015385,2015393)]
+        # PLA Light Brigade branch (Osama 26 Nov 2026 03:2x, pla_light_brigade_sf_1126.py, checked there): Flying Tigers 1187 re-kitted (SIG 516 / SPAS-12 / MP5SD / ARWEN 37); its card rows are new.
+        if m>=key('0.9.7l-dev.2'):[_want.pop(str(i),None) for i in range(2015373,2015385)]
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
