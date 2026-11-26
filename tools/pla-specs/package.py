@@ -81,7 +81,7 @@ with zipfile.ZipFile(base) as z:
     # preview.png (Osama 23 Nov 2026: the launcher card showed an F-22 texture): BAModManager stores a root preview.* as the pack's picture
     # (ModService, PreviewNames) and installs nothing into the game for it, so it stays out of the payload lists below.
     override={'mod.json':(REL/'mod.json').read_bytes(),'README.md':(ROOT/'README.md').read_bytes(),'preview.png':(REL/'preview.png').read_bytes(),'Mods/FreedomArrow.Runtime.dll':(SRC/'runtime-qa/bin/Release/net6.0/FreedomArrow.Runtime.dll').read_bytes()}
-    dll=override['Mods/FreedomArrow.Runtime.dll'];assert [dll[m.end():m.end()+m.group(1)[0]].decode() for m in re.finditer(rb'\x0dFreedom Arrow(.)',dll)]==[V]
+    dll=override['Mods/FreedomArrow.Runtime.dll'];assert [dll[m.end():m.end()+m.group(1)[0]].decode() for m in re.finditer(rb'\x0dFreedom Arrow(.)',dll,re.S)]==[V]   # re.S: a 10-character version has length byte 0x0a (newline)
     for f in (SRC/'UserData/FreedomArrow/constants').glob('*.json'):
         k=f.relative_to(SRC).as_posix()
         if f.read_bytes()!=z.read(k):override[k]=f.read_bytes()
