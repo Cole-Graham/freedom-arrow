@@ -18,6 +18,19 @@
   - Equal `Quantity` means equal ammo per carrier. Card numbers are equal only when the carrier count and the HUDMultiplier are also equal.
   - Not checked: whether the in-battle HUD also multiplies by `HUDMultiplier`, and how many rounds one ammo unit fires.
 
+## When a carrier dies or is healed
+
+**Short answer.** The squad's pool for a weapon is shared, not split into personal shares. When a carrier dies, the pool's maximum drops to `Quantity × carriers still alive`. Ammunition already in the pool is kept, except that anything above the new maximum is cut off. Read from the 1.2.2.1 code; not measured in a game.
+
+*Details (code):* `InfantryDeathHealSystem.RecalculateSoldierWeaponAmmo` (`0x40DA10`, called when a soldier dies or is healed):
+
+1. It counts the squad's living soldiers who carry the weapon (primary or special list).
+2. New maximum = `Quantity × that count` (`imul` at `0x40DCB1`), written to the weapon's ammunition container.
+3. If the current amount is above the new maximum it is set to the maximum (`0x40DD10`–`0x40DD21`); otherwise it stays.
+4. The rounds loaded in the weapon are then limited to that amount and the magazine size.
+
+Example, Shturmoviki (2 RPG-7V carriers × 10 = 20 OG-7V): one carrier dies with 15 left → the maximum is 10, so 10 are kept and 5 are lost. With 8 left → all 8 are kept. A healed carrier raises the maximum again but adds no rounds; the squad needs resupply for those.
+
 ## Rate of fire on the card
 
 - **Formula (code).** `WeaponHelper.RateOfFireSecond` (`0x2BCE50`) gives rounds per second. The card shows it × 60. Calculate a cycle time for the minimum values and one for the maximum values, then use the average of the two: `MagazineSize ÷ ShotsPerBurstMax − 1` gaps × `TimeBetweenBursts` + `(MagazineSize − MagazineSize ÷ ShotsPerBurstMax)` × `TimeBetweenShotsInBurst` + `MagazineReloadTime`. The rate is `MagazineSize ÷` that average cycle.
@@ -28,3 +41,4 @@
 
 - 2026-11-22 17:4x PST (America/Los_Angeles) — New doc (Lateralus asked whether ammo is per soldier or per weapon). Battle pool, card formula and HUDMultiplier, with RVAs.
 - 2026-11-22 17:5x PST (America/Los_Angeles) — Added the card rate-of-fire formula (Lateralus: DXL-4 / OSV-96 rate of fire).
+- 2026-11-26 15:4x PST (America/Los_Angeles) — Added what happens to the pool when a carrier dies or is healed (Lateralus: are 2-launcher squads' rounds split, and does a death lose them?).
