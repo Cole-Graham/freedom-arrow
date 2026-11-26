@@ -11,14 +11,20 @@ All new rows take IDs from the 'plb' block in mod/id-reservations.json (run insi
 - Moves into the Light CAB, each card row keeping its count; the deck tab comes from the unit's CategoryType, unchanged (01:4x-01:5x):
   from the Medium CAB "SR-5, HQ-7B, PCL-181, PLL-05, and HQ-11 moved away from medium cab"; from PLAN "LY-1 goes to Light CAB" and "Beijing Swords,
   Mountain Leopards, Whistling Arrows, WZ-8 go to Light CAB Recon" (all four are Recon-tab units).
-- FK-2000: Medium CAB -> PLAN ("FK-2000 goes to PLAN")."""
+- FK-2000: Medium CAB -> PLAN ("FK-2000 goes to PLAN").
+- 01:5x "Blood Wolves, falcons, godswords, PAP snow leopards go to Light CAB, Sea Dragons currently will get swapped for another kit, but they are copied to
+  Light cab but call the new one (test SF). Sea Draongs will be made into SF stand off and cqc": the four squads move PLAN -> Light CAB; Test SF = a copy
+  of Sea Dragons 蛟龙 (1191: squad, card count 3 and its 4 transports) in the Light CAB. Sea Dragons stay in PLAN until their SF Stand-off / CQC kits."""
 HQ9A, J50, SX2121, PLAN, MEDIUM = 1233, 944, 1269, 20, 21
 LIGHT = 'light'
 MOVES = [  # (card row, unit, HUDName, from spec, to spec)
     (2014522, 934, 'SR-5', MEDIUM, LIGHT), (2008208, 925, 'HQ-7B', MEDIUM, LIGHT), (2021476, 1034, 'PCL-181', MEDIUM, LIGHT),
     (2008210, 926, 'PLL-05', MEDIUM, LIGHT), (2008891, 1046, 'HQ-11', MEDIUM, LIGHT), (2019451, 1275, 'LY-1', PLAN, LIGHT),
     (2013297, 1187, 'Beijing Swords 蓝剑', PLAN, LIGHT), (2013270, 1186, 'Mountain Leopards 高原雪豹', PLAN, LIGHT),
-    (2013204, 1184, 'Whistling Arrows 响箭', PLAN, LIGHT), (2008264, 1252, 'WZ-8', PLAN, LIGHT), (2008222, 935, 'FK-2000', MEDIUM, PLAN)]
+    (2013204, 1184, 'Whistling Arrows 响箭', PLAN, LIGHT), (2008264, 1252, 'WZ-8', PLAN, LIGHT), (2008222, 935, 'FK-2000', MEDIUM, PLAN),
+    (2013175, 1183, 'Blood Wolves 朱日和之狼', PLAN, LIGHT), (2013239, 1185, 'Falcons 猎鹰', PLAN, LIGHT), (2013107, 1181, 'Godswords 东方神剑', PLAN, LIGHT),
+    (2013140, 1182, 'PAP Snow Leopards 雪豹', PLAN, LIGHT)]
+SEA_DRAGONS = 1191
 LIGHT_UI = 'PLAGF Light Combined Arms Brigade 陆军轻型合成旅'
 
 
@@ -64,9 +70,21 @@ def apply(t, g, ok, rec):
         g.put('SpecializationAvailabilitiesJson', row, {'SpecializationId': to})
         moved.append((hud, frm, to, r['MaxAvailabilityXp0'], U[unit].get('CategoryType', 0)))
     ok(all(c == 0 for h, f, to, n, c in moved if h.startswith(('Beijing', 'Mountain', 'Whistling', 'WZ-8'))), ('Recon-tab units', moved))
+    # Test SF = copy of Sea Dragons in the Light CAB
+    sd = U[SEA_DRAGONS]; ok(sd['HUDName'] == 'Sea Dragons 蛟龙' and not rows('ModificationsJson', UnitId=SEA_DRAGONS), 'Sea Dragons 1191, no loadouts')
+    ok(not any(u and 'Test SF' in (u.get('Name', ''), u.get('HUDName', '')) for u in U.values()), 'Test SF name free')
+    tsf = g.add('Units', sd, {'Name': 'PLA Test SF', 'HUDName': 'Test SF', 'OriginalCost': 0, 'Description': None, 'OriginalName': None})
+    for tab in ('SquadMembersJson', 'SquadWeaponsJson', 'WeaponAmmunitionsJson', 'UnitArmorsJson', 'UnitPropulsionsJson', 'UnitAbilitiesJson', 'SensorUnitsJson'):
+        for r in rows(tab, UnitId=SEA_DRAGONS): g.add(tab, r, {'UnitId': tsf})
+        ok(len(rows(tab, UnitId=tsf)) == len(rows(tab, UnitId=SEA_DRAGONS)), ('Test SF', tab, 'copied'))
+    sdc = rows('SpecializationAvailabilitiesJson', UnitId=SEA_DRAGONS); ok(len(sdc) == 1 and sdc[0]['SpecializationId'] == PLAN, 'Sea Dragons: one PLAN card row')
+    nc = g.add('SpecializationAvailabilitiesJson', sdc[0], {'UnitId': tsf, 'SpecializationId': light})
+    for r in rows('TransportAvailabilitiesJson', SpecializationAvailabilityId=sdc[0]['Id']): g.add('TransportAvailabilitiesJson', r, {'SpecializationAvailabilityId': nc})
+    ok(sorted(r['UnitId'] for r in rows('TransportAvailabilitiesJson', SpecializationAvailabilityId=nc)) == sorted(r['UnitId'] for r in rows('TransportAvailabilitiesJson', SpecializationAvailabilityId=sdc[0]['Id'])),
+       'Test SF transports = Sea Dragons')
     got = {U[r['UnitId']]['HUDName']: (r['SpecializationId'], r['MaxAvailabilityXp0']) for r in rows('SpecializationAvailabilitiesJson')
-           if r['UnitId'] in (uid, J50, SX2121) and r['SpecializationId'] in (PLAN, light)}
+           if r['UnitId'] in (uid, J50, SX2121, tsf) and r['SpecializationId'] in (PLAN, light)}
     ok(got.get('HQ-22') == (PLAN, 2) and got.get('J-50') == (PLAN, 2) and SA and any(r['UnitId'] == SX2121 and r['SpecializationId'] == light for r in rows('SpecializationAvailabilitiesJson')),
        ('cards placed', got))
-    rec['pla_light_brigade_units_1126'] = {'hq22': uid, 'light_cab_spec': light, 'cards': got, 'moved': moved}
+    rec['pla_light_brigade_units_1126'] = {'hq22': uid, 'test_sf': tsf, 'light_cab_spec': light, 'cards': got, 'moved': moved}
     print('PLA LIGHT BRIGADE UNITS', rec['pla_light_brigade_units_1126'])
