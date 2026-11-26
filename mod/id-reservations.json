@@ -1,19 +1,59 @@
 {
-  "about": "Row IDs reserved for work that is built on its own branch and merged later. The live batch may not create rows in these blocks (pla_graph.Graph and roc_hook.py refuse it); only the owner, inside g.scope(owner), may. '*' is every table not listed. See docs/development/BRANCH-POLICY.md, 'Reserved ID blocks'.",
-  "blocks": [
-    {
-      "owner": "roc",
-      "what": "ROC specialization (Shawn1989 with Osama)",
-      "branch": "codex/batch/shawn/roc",
-      "requested": "https://discord.com/channels/1566969627743879208/1575071006240931931",
-      "reserved": "2026-11-25",
-      "tables": {
-        "Units": [5000, 5999],
-        "OptionsJson": [28000, 28999],
-        "SpecializationsJson": [60, 69],
-        "CountriesJson": [9, 9],
-        "*": [2900000, 2999999]
-      }
-    }
-  ]
+ "about": "Row IDs reserved for work that is built on its own branch and merged later. The live batch may not create rows in these blocks (pla_graph.Graph and roc_hook.py refuse it); only the owner, inside g.scope(owner), may. '*' is every table not listed. See docs/development/BRANCH-POLICY.md, 'Reserved ID blocks'.",
+ "blocks": [
+  {
+   "owner": "roc",
+   "what": "ROC specialization (Shawn1989 with Osama)",
+   "branch": "codex/batch/shawn/roc",
+   "requested": "https://discord.com/channels/1566969627743879208/1575071006240931931",
+   "reserved": "2026-11-25",
+   "tables": {
+    "Units": [
+     5000,
+     5999
+    ],
+    "OptionsJson": [
+     28000,
+     28999
+    ],
+    "SpecializationsJson": [
+     60,
+     69
+    ],
+    "CountriesJson": [
+     9,
+     9
+    ],
+    "*": [
+     2900000,
+     2999999
+    ]
+   }
+  },
+  {
+   "owner": "plb",
+   "what": "PLA Light Brigade build (China / SOF split, PLAGF Light CAB; Osama)",
+   "branch": "codex/batch/osama/pla-light-brigade",
+   "requested": "https://discord.com/channels/1566969627743879208/1567745029781454889",
+   "reserved": "2026-11-26",
+   "tables": {
+    "Units": [
+     6000,
+     6999
+    ],
+    "OptionsJson": [
+     29000,
+     29999
+    ],
+    "SpecializationsJson": [
+     70,
+     79
+    ],
+    "*": [
+     3000000,
+     3099999
+    ]
+   }
+  }
+ ]
 }
