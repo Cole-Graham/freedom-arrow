@@ -8,6 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using Il2CppBrokenArrow.Shared.Ecs.BattleSystem;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Shared.Ecs.Components;
+using Il2CppBrokenArrow.Client.Ecs.Infantry.Components;
 
 namespace FreedomArrow.Conquest;
 // 0.5 dev.35 (Lateralus): infantry disposable launchers fire at 12.16 x carriers^(1/3) per minute per squad.
@@ -15,8 +16,16 @@ namespace FreedomArrow.Conquest;
 // so each squad's weapon gets reload = 60 x carriers / rate. The per-squad values come from squad-reload.json (build time).
 // On the first shot of a squad's launcher the reload is written and the weapon is remembered; each later reload roll of
 // that weapon is overwritten with the same value (GenerateRandomMagazineReloadTime and SetRandomParams). The unit card's rate of fire uses the same formula.
+// Lateralus 26 Nov 2026 (thread 1568104480459722894): "reusable launchers ... a fixed rate of fire depending on the number of launchers,
+// 10 r/m for 1 launcher and 15 r/m for 2 launchers". Before, this lived in each weapon row's reload (6 s, or 8 s on the rows only 2-launcher
+// squads use), so a squad that lost one of its two carriers fell to 7.5 per minute. Now every shot of a reusable launcher (type 62,
+// magazine 1) sets the reload from the carriers still alive (InfantryWeaponComponent.UsingAliveSoldierCount): reload = 60 x carriers / rate,
+// because the game reloads the shared weapon carriers times faster. Other carrier counts keep the data reload. The unit card shows the same rate.
 public sealed partial class Prototype
 {
+    const int reusableType=62;
+    static readonly Dictionary<int,float> reusableRate=new(){{1,10f},{2,15f}};
+    static bool infantryWeaponReadable;
     static Dictionary<string,float> squadReload;
     static float rofK,rofExp;static int rofType=-1;
     static readonly ConcurrentDictionary<IntPtr,float> reloadByWeapon=new();
@@ -32,11 +41,14 @@ public sealed partial class Prototype
         // dev.36: SetRandomParams rolls aim, burst and reload itself (inlined) and writes the reload field directly.
         Patch(typeof(WeaponComponent),"SetRandomParams",null,nameof(SquadReloadRolled));
         Patch(typeof(WeaponHelper),"RateOfFire",null,nameof(SquadCardRate));
+        infantryWeaponReadable=NativeEcs.Compiled<InfantryWeaponComponent>();
+        MelonLogger.Msg($"FREEDOM_ARROW_REUSABLE_LAUNCHER installed: 1 carrier {reusableRate[1]}/min, 2 carriers {reusableRate[2]}/min (carrier count readable: {infantryWeaponReadable})");
         MelonLogger.Msg($"FREEDOM_ARROW_SQUAD_RELOAD installed: {squadReload.Count} squad launchers, rate {rofK} x carriers^{rofExp:0.###}");
     }
     // Called from CountShot after a real shot, when the weapon and its unit are fully set up.
-    static void SquadReloadShot(WeaponComponent w)
+    static void SquadReloadShot(Entity weapon,WeaponComponent w)
     {
+        if(w.WeaponInfo!=null&&(int)w.WeaponInfo.Type==reusableType&&w.WeaponInfo.MagazineSize==1){ReusableReloadShot(weapon,w);return;}
         if(squadReload==null||w.WeaponInfo==null||(int)w.WeaponInfo.Type!=rofType)return;
         // dev.37: the game puts the data reload back after each reload by a path neither hook below sees
         // (dev.36 editor test: first gap 2.89 s, then 1.41 s again), so a registered weapon is rewritten on every shot.
@@ -49,6 +61,17 @@ public sealed partial class Prototype
         w._magazineReloadTime=new GFloat(reload);
         if(++squadReloadLogged<=50)MelonLogger.Msg($"FREEDOM_ARROW_SQUAD_RELOAD unit {uid} weapon {w.WeaponInfo.Id} reload {reload:0.##} s");
         ShotLine("squad_reload",new{unit=uid,weaponId=w.WeaponInfo.Id,reload});
+    }
+    static int reusableLogged;
+    static void ReusableReloadShot(Entity weapon,WeaponComponent w)
+    {
+        if(!infantryWeaponReadable||!weapon.IsAlive||!weapon.Has<InfantryWeaponComponent>())return;
+        int n=NativeEcs.Field<InfantryWeaponComponent,int>(weapon,"UsingAliveSoldierCount");
+        if(!reusableRate.TryGetValue(n,out float rate)){reloadByWeapon.TryRemove(w.Pointer,out _);return;}
+        float reload=60f*n/rate;
+        reloadByWeapon[w.Pointer]=reload;
+        w._magazineReloadTime=new GFloat(reload);
+        if(++reusableLogged<=50)MelonLogger.Msg($"FREEDOM_ARROW_REUSABLE_LAUNCHER weapon {w.WeaponInfo.Id} carriers {n} reload {reload:0.##} s ({rate}/min)");
     }
     // Only weapons already registered by a shot are touched; nothing else is read here.
     public static void SquadReloadRolled(WeaponComponent __instance)

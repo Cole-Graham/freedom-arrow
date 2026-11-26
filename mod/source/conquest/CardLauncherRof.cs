@@ -56,6 +56,7 @@ public sealed partial class Prototype
         if(cardWeapon==null||cardCount<1)return false;
         int n=cardCount;cardCount=0;
         if(cardRealType==rofType){rate=rofK*MathF.Pow(n,rofExp);return true;}
+        if(cardRealType==reusableType&&reusableRate.TryGetValue(n,out float fixedRate)){rate=fixedRate;return true;}   // SquadReload.cs
         if(per<=0)return false;
         rate=per*n;return true;
     }

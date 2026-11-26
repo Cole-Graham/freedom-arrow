@@ -50,6 +50,14 @@ no sharing (DPM today): Mk18 176.5/min, M1014 105.1/min
 
 The calculated rates are 12 × 15 = 180 and 4 × 26.7 = 106.7. The small gap is the 0.01 s time step.
 
+## Freedom Arrow launcher rates (Lateralus)
+
+Rule 2 above makes a launcher squad fire carriers times faster. Freedom Arrow sets the squad's rate instead (runtime `mod/source/conquest/SquadReload.cs`, read on every shot):
+
+- **Disposable launchers** (weapon type 63, 0.5 dev.35): 12.16 × carriers^(1/3) per minute, from `squad-reload.json` (carrier count at build time).
+- **Reusable launchers** (type 62, magazine 1; 26 Nov 2026): **10 per minute with 1 carrier, 15 with 2**, from the carriers alive at that shot (`UsingAliveSoldierCount`): reload = 60 × carriers ÷ rate, so 6 s and 8 s. A two-launcher squad that loses one carrier fires 10 per minute (with the old per-row 8 s reload it fell to 7.5). Other carrier counts keep the data reload; no squad in the decks has 3 or more. The unit card shows the same rate (`CardLauncherRof.cs`).
+- Calculated from the code, not yet measured in a game. A carrier who dies during a reload changes the speed of that reload only from the next shot on.
+
 ## ⚠️ Limits
 
 - The time-to-next-shot helper (`0x41B520`) was read only in outline. The simulation assumes one queued soldier per upcoming shot and leaves out the aim time.
@@ -61,3 +69,4 @@ The calculated rates are 12 × 15 = 180 and 4 × 26.7 = 106.7. The small gap is 
 
 - 2026-11-26 10:1x PST (America/Los_Angeles) — New doc (Lateralus: Marine Raiders CQC has more guns than men; is there a shotgun switch, and does the DPM visualizer account for it).
 - 2026-11-26 09:4x PST (America/Los_Angeles) — Added shocked/panicked effect on shared soldiers (Lateralus: is stress worse for squads that share soldiers?).
+- 2026-11-26 15:2x PST (America/Los_Angeles) — Added Freedom Arrow launcher rates: disposables 12.16 × n^(1/3), reusables fixed 10 / 15 per minute by live carriers (Lateralus).
