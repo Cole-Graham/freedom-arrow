@@ -9,11 +9,14 @@
 - Name (02:4x "猛虎旅 we just call them Tiger Brigade actually"; 02:4x "No, the Marines assault is called Tiger Brigade, the PLAN spec is still the
   same"): card name 'Tiger Brigade' (Name 'PLA Tiger Brigade'). The PLAN spec name does not change.
 - 02:4x "PTL-02 goes to loght CAB": card row 2008907 (6 cards) Medium CAB (21) -> Light CAB.
+- 02:4x "CTL-181 NLOS, QN-506, ZRZ-100 should be moved to Light CAB": their one card row each, PLAN (20) -> Light CAB, same counts
+  (CTL-181 NLOS 1054: 2, QN-506 937: 4, ZRZ-100 1410: 6).
 - 02:4x "Light CAB gets CSK-131 and CSK-181 transports": CSK-131 (1266 'PLA CSK-181 4x4', card name CSK-131) and the CSK-181 transport (1230
   'PLA CSK-181 Transport', card name CTL-181 since the 25 Nov QQ fix) on every Light CAB infantry card that rides a ground vehicle, where missing."""
 MARINES, SHOCK8, PLAN, MEDIUM = 1192, 291, 20, 21
 QLZ87, QLZ87_A, QBZ192, QBZ192_A, QJY201, QJY201_A, PF98, PF98_A, QBU, QBU_A = 2012157, 2012158, 2013087, 2013088, 2012411, 2012412, 2011832, 2011833, 2020834, 2020835
 PTL02, PTL02_ROW, CSK131, CSK181 = 1059, 2008907, 1266, 1230
+PLAN_MOVES = [(2015785, 1054, 'CTL-181 NLOS', 2), (2014509, 937, 'QN-506', 4), (2020666, 1410, 'ZRZ-100', 6)]   # (card row, unit, HUDName, cards)
 TIGER = 'Tiger Brigade'
 
 
@@ -50,6 +53,10 @@ def apply(t, g, ok, rec):
     ok(U[PTL02]['HUDName'] == 'PTL-02' and SA[PTL02_ROW]['UnitId'] == PTL02 and SA[PTL02_ROW]['SpecializationId'] == MEDIUM and len(rows('SpecializationAvailabilitiesJson', UnitId=PTL02)) == 1,
        'PTL-02: one card row, Medium CAB')
     g.put('SpecializationAvailabilitiesJson', PTL02_ROW, {'SpecializationId': light})
+    for row, unit, hud, n in PLAN_MOVES:
+        ok(U[unit]['HUDName'] == hud and SA[row]['UnitId'] == unit and SA[row]['SpecializationId'] == PLAN and SA[row]['MaxAvailabilityXp0'] == n
+           and len(rows('SpecializationAvailabilitiesJson', UnitId=unit)) == 1, (hud, 'one PLAN card row'))
+        g.put('SpecializationAvailabilitiesJson', row, {'SpecializationId': light})
     # CSK-131 + CSK-181 transports
     ok(U[CSK131]['HUDName'] == 'CSK-131' and U[CSK181]['Name'] == 'PLA CSK-181 Transport' and U[CSK181]['HUDName'] == 'CTL-181', 'CSK-131 (1266), CSK-181 transport (1230)')
     ground = lambda uid: U[uid].get('Type') == 4
@@ -67,8 +74,8 @@ def apply(t, g, ok, rec):
     got = sorted((wn(r['PrimaryWeaponId']), wn(r['SpecialWeaponId']), r['DeathPriority']) for r in men)
     ok(len(men) == 8 and U[ma]['Cost'] == 80 and sum(r['PrimaryWeaponId'] == QBZ192 for r in men) == 4 and sum(r['PrimaryWeaponId'] == QJY201 for r in men) == 2, ('Tiger Brigade kit', got))
     lc = {r['UnitId'] for r in rows('SpecializationAvailabilitiesJson', SpecializationId=light)}
-    ok(PTL02 in lc and S[PLAN]['UIName'].startswith('PLAN Naval/Special Forces') and added, ('PTL-02, PLAN name unchanged, CSK transports', added))
+    ok(PTL02 in lc and all(u in lc for r, u, h, n in PLAN_MOVES) and S[PLAN]['UIName'].startswith('PLAN Naval/Special Forces') and added, ('PTL-02, PLAN name unchanged, CSK transports', added))
     rec['pla_light_brigade_tiger_1126'] = {'tiger_brigade': ma, 'kit': got, 'cost': 80, 'cards': mc[0]['MaxAvailabilityXp0'],
                                            'transports': [U[r['UnitId']]['HUDName'] for r in rows('TransportAvailabilitiesJson', SpecializationAvailabilityId=nc)],
-                                           'ptl02': 'Light CAB', 'csk_added': added}
+                                           'ptl02': 'Light CAB', 'plan_to_light': [h for r, u, h, n in PLAN_MOVES], 'csk_added': added}
     print('PLA LIGHT BRIGADE TIGER', rec['pla_light_brigade_tiger_1126'])
