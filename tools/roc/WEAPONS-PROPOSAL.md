@@ -1,8 +1,27 @@
-# ROC vehicle and aircraft weapons: proposal, 25 November 2026
+# ROC vehicle and aircraft weapons, 25-26 November 2026
 
-**The 34 ROC vehicle and aircraft cards still fire their parent US unit's weapons. This proposal replaces them with the weapons in Shawn's sheet. Each new ROC weapon is a renamed copy of the nearest vanilla weapon, with the vanilla values, unless Shawn gives values. Nothing is built yet: Shawn and Osama confirm first.**
+**Done in the data (stage 3 of `roc.py`, not yet in a test build). Shawn answered the four questions on 26 November 00:5x: MQ-9B unarmed and a bit cheaper; Wan Chien copies the AGM-154 JSOW; the 76 mm gun and the rockets change only their round counts; the missiles keep their copied ranges.**
 
-Source: Shawn's deck sheet (weapon columns 1-6) and the vanilla tables (parent weapons and ammunition). New rows use the ROC block (weapons and ammunition 2900000-2999999). Missiles are checked against the team's SAM and AAM sheets before they are queued (Lateralus's rule).
+Each new ROC weapon is a renamed copy of the nearest vanilla weapon, with the vanilla values. The ROC cards shared their parents' turret rows, so every turret that changes is copied for the ROC card first; the live US units keep their rows. Checked: 6,403 batch checks; audit_mp_equipment 0 new faults; field types, swap prices, slot and mount checks 0; live rows identical with and without ROC (1,390 ROC rows).
+
+## ✅ Result per card (built)
+
+- **F-CK-1:** M61, TC-1, TC-2, Wan Chien (2 on the middle pylons, the F-16V's JSOW pylon), Mk82 and Mk82 Snakeye. Maverick, Rockeye and Mk84 removed.
+- **F-5F:** M39A2 20 mm, AIM-9, Maverick, Mk82. AMRAAM, Rockeye and Mk84 removed.
+- **F-16A:** M61, AIM-9, AIM-7 Sparrow (copy of the F-15C's AIM-7M in the AMRAAM slots), Mk82. Maverick, Rockeye and Mk84 removed.
+- **Mirage 2000-5:** DEFA 554 30 mm (copy of GSh-30-1), MICA EM, MICA IR, Magic II on the wingtips. All air-to-ground options removed.
+- **Antelope:** 4x TC-1L (copy of the SLAMRAAM's ground AIM-9) and the M3P. One pod option.
+- **Land Sword II:** 4x or 6x TC-2. The AIM-9 option removed.
+- **Tien Kung III:** TK-III (copy of PAC-3), plus the Patriot's MG and AGL options.
+- **Kung Feng VI:** 45x 117 mm HE or 45x 117 mm WP (Grad copies). Cluster and incendiary removed.
+- **Thunderbolt-2000:** 12x MK45 230 mm, 60x MK15 117 mm or 27x MK30 180 mm (in place of 227 mm HE, cluster and ATACMS).
+- **M41D:** M32K1 76 mm (copy of the M68E1 105 mm): 42 HE, 21 AP. The Shillelagh option removed.
+- **M110A2:** M201 203 mm HE. The guided-round option removed.
+- **CM-11, CM-12, M60A3 TTS:** the M135 165 mm demolition-gun option removed.
+- **CM-32:** T91 40 mm AGL (default) or M2. **CM-33:** T91 40 mm AGL. **CM-34:** Mk44 Bushmaster with the T74 coax (default). Javelin options removed.
+- **Chung Hsiang II, MQ-9B:** unarmed. MQ-9B price 100 → 80.
+
+## 📋 The proposal (25 November)
 
 ## ⚠️ Wrong now (parent loadouts that do not fit)
 
@@ -48,7 +67,7 @@ Source: Shawn's deck sheet (weapon columns 1-6) and the vanilla tables (parent w
 
 AH-64E, F-16V, CM-21, CM-25, M1167, JLTV, M1A2T, M109A5, M109A7, OH-58D, CH-47SD, M142 HIMARS, UH-60M, C-130HE.
 
-## ❓ Questions
+## ❓ Questions (answered 26 November, see the top)
 
 1. MQ-9B: unarmed, or keep the Reaper weapons?
 2. Wan Chien: which vanilla glide weapon to copy?
@@ -58,3 +77,4 @@ AH-64E, F-16V, CM-21, CM-25, M1167, JLTV, M1A2T, M109A5, M109A7, OH-58D, CH-47SD
 ## Document change log
 
 - 2026-11-25 14:5x PST (America/Los_Angeles) — First proposal, from Shawn's sheet and the vanilla parent weapons. Not built.
+- 2026-11-26 01:04 PST (America/Los_Angeles) — Shawn's answers applied; stage 3 built in the data and checked.
