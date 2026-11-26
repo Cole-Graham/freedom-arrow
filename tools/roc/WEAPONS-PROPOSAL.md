@@ -19,7 +19,8 @@ Each new ROC weapon is a renamed copy of the nearest vanilla weapon, with the va
 - **M110A2:** M201 203 mm HE. The guided-round option removed.
 - **CM-11, CM-12, M60A3 TTS:** the M135 165 mm demolition-gun option removed.
 - **CM-32:** T91 40 mm AGL (default) or M2. **CM-33:** T91 40 mm AGL. **CM-34:** Mk44 Bushmaster with the T74 coax (default). Javelin options removed.
-- **Chung Hsiang II, MQ-9B:** unarmed. MQ-9B price 100 → 80.
+- **Chung Hsiang II, MQ-9B:** unarmed. MQ-9B price 100 → 80; Chung Hsiang II keeps 50 (Shawn 26 Nov: both prices OK).
+- **CM-22:** M30 107 mm in place of the M121 120 mm, with the 120 mm data. 107 mm HE damage 9.0 → 7.2 (−20 %, Shawn 26 Nov); smoke unchanged. Options: 35x 107mm smoke + 35x 107mm HE, or 70x 107mm smoke.
 
 ## 📋 The proposal (25 November)
 
@@ -78,3 +79,4 @@ AH-64E, F-16V, CM-21, CM-25, M1167, JLTV, M1A2T, M109A5, M109A7, OH-58D, CH-47SD
 
 - 2026-11-25 14:5x PST (America/Los_Angeles) — First proposal, from Shawn's sheet and the vanilla parent weapons. Not built.
 - 2026-11-26 01:04 PST (America/Los_Angeles) — Shawn's answers applied; stage 3 built in the data and checked.
+- 2026-11-26 02:47 PST (America/Los_Angeles) — CM-22 107 mm (−20 % HE damage) done; MQ-9B and Chung Hsiang II prices confirmed by Shawn.
