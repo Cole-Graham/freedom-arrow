@@ -16,7 +16,7 @@
 
 - **Pipeline:** `pipeline/` (copied from work/roc-20261125/tools). FBX: `batch_veh.sh` (fbx2glb + famconv); .blend: `blend2glb.py`; .max: `max2glb.py` + `texlink.py`; jets/helicopters: `plane_prep.py` (drop stores/gear, nose +X, up +Z, `UPSIGN=1` when the guess is upside down); then `finish_one.sh SLUG LENGTH ARMORY_MAX BATTLE_MAX` (armory 2048 px / battle 1024 px .fam, cuts with battle-lod/lod2.py, glass, LOD1 60 % / LOD2 35 %, .fat); `stage_roc.py` builds the ROC-only model set.
 - **Card links:** `roc-models.json` (models.json entries keyed by ROC card Name). 16 cards: CM-34, CM-33, CM-22, CM-11, CM-21, CM-32, M41D, Antelope, Thunderbolt-2000, Kung Feng VI, Tien Kung III, Land Sword II, F-16V, F-5F, M110A2, UH-60M (S-70C file). CM-26 converted, no card.
-- **Not used:** AH-64E, F-16A, Mirage 2000, M60A3 TTS, CM-25 (War Thunder extracts); F-CK-1 (the .max import throws parts out of place); C-130HE (mesh named `SK_West_Transport_C130J_LOD0`, Osama to judge); Hsiung Feng IIE and Chung Xiang II (files not usable / not shared).
+- **Not used:** AH-64E, F-16A, Mirage 2000, M60A3 TTS, CM-25 (War Thunder extracts; AH-64E, F-16A, Mirage and M60A3 were later converted from Shawn's own files, CM-25 stays vanilla); F-CK-1 (the .max import throws parts out of place); C-130HE (mesh named `SK_West_Transport_C130J_LOD0`, Osama to judge); Hsiung Feng IIE and Chung Xiang II (files not usable / not shared).
 - **Known limits:** helicopter rotors are part of the body (no spin yet); the model files are not in git (work/roc-20261125/stage, 527 MB).
 
 ## Infantry bodies (25 November 2026)
@@ -81,6 +81,17 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - Substance exports name files `<part>_Base_color.png` / `_Normal_DirectX.png`: copy them to `<material>_BaseColor.png` / `_Normal.png` and flip the normal's green channel (DirectX → OpenGL).
 - `glass.py` now also handles untextured (colour-keyed) glass materials and Chinese names, and leaves coloured light lenses alone.
 
+## F-16A and Mirage 2000-5, with 2 Mirage paint schemes (26 November 2026, afternoon)
+
+**The F-16A and the Mirage 2000-5 have ROC models (23 cards now). The Mirage has 2 skins on the Arsenal paint button. CM-25 stays on its vanilla model (Shawn). Not yet in a game build; the paint add-on needs the ROC FAModels DLL.**
+
+- **F-16A:** from Shawn's new FBX (modelled about 10x too large; scaled to 15.06 m). Arsenal 111k triangles (cut from 160k), battle 53.9k, LODs 32.2k / 19.1k. The 9 missiles are dropped; the landing gear stays, as on the F-16V and F-CK-1.
+- **Mirage 2000-5:** 31.1k triangles (LODs 19.0k / 11.5k), 14.36 m. The MICA, fuel tanks, racks and ground plane are dropped. The file is upside down for `plane_prep.py`: `UPSIGN=1`.
+- **Mirage skins (Shawn: "2 basecolor skins for Mirage 2000, make them options for the unit in game"):** Default = ROC_Mirage_01 (blue-grey), Grey camo = ROC_Mirage_02. Only the colour map changes. `m_roc_mirage_{static,lo_static}_tex0@GreyCamo.fat` is the second skin, made with the same LANCZOS resize famconv uses (the default matched its source exactly). The battle LODs share the battle texture, so they change with it.
+- **Paint add-on:** `paint-schemes-roc.json` (here and in the stage) lists the ROC units with schemes. The ROC-branch FAModels reads `paint-schemes-*.json` add-ons next to the live `paint-schemes.json`; a bad add-on is skipped alone. Swatches are `paint/ROC_Mirage_2000_5@{Default,GreyCamo}.png`. The choice is local, as for the live schemes.
+- **Glass:** both canopies use `clearGlass`. The F-16A's targeting-system material shares the interior texture, so that texture is stored twice (tex0 and tex4, 5.6 MB in the Arsenal); not fixed.
+- Recipe: `pipeline/new6_raw.sh`, `pipeline/new6_finish.sh`, `pipeline/stage_roc.py` (paint section).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -90,3 +101,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-25 13:5x PST (America/Los_Angeles) — SF Scout camo rebuilt from real ROC fabric; SF 1 arm-fit fix (shape keys); matte previews.
 - 2026-11-26 02:51 PST (America/Los_Angeles) — AH-64E, F-CK-1, C-130HE and Chung Hsiang II converted; Antelope textures replaced; stage includes infantry and T91.
 - 2026-11-26 03:11 PST (America/Los_Angeles) — M60A3 TTS converted; canopy glass fixed on 4 aircraft; LOD material files; Armory texture budget on 13 models.
+- 2026-11-26 12:54 PST (America/Los_Angeles) — F-16A and Mirage 2000-5 converted; Mirage second skin as a paint scheme through a ROC paint add-on file.

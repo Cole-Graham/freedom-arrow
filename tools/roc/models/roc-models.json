@@ -187,5 +187,23 @@
    "m_roc_chx2_lo_static_l1.fam",
    "m_roc_chx2_lo_static_l2.fam"
   ]
+ },
+ "ROC F-16A": {
+  "file": "m_roc_f16a_static.fam",
+  "battle": "m_roc_f16a_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_f16a_lo_static_l1.fam",
+   "m_roc_f16a_lo_static_l2.fam"
+  ]
+ },
+ "ROC Mirage 2000-5": {
+  "file": "m_roc_mirage_static.fam",
+  "battle": "m_roc_mirage_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_mirage_lo_static_l1.fam",
+   "m_roc_mirage_lo_static_l2.fam"
+  ]
  }
 }

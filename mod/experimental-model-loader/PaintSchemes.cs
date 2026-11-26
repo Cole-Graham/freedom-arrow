@@ -31,6 +31,7 @@ public partial class Mod
         ["Mix"] = "Mixed camo", ["dig"] = "Digital", ["Yellow"] = "Yellow", ["YellowMix"] = "Yellow mix", ["Yellowmix"] = "Yellow mix",
         ["Green"] = "Green", ["Navy"] = "Navy grey", ["Black"] = "Black", ["Army"] = "Army green", ["Grey"] = "Grey", ["GreenMix"] = "Green mix",
         ["Camo1"] = "Camo 1", ["Camo2"] = "Camo 2", ["Mix1"] = "Mix 1", ["Mix2"] = "Mix 2",
+        ["GreyCamo"] = "Grey camo",   // ROC Mirage 2000-5 second skin (Shawn 26 Nov 2026)
     };
     static string PaintLabel(string s) => s == "" ? "Default" : PaintNames.TryGetValue(s, out var n) ? n : s;
     static string ChoicesFile => Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FAModels-paint-choices.json");
@@ -38,8 +39,15 @@ public partial class Mod
     static void InstallPaintSchemes(HarmonyLib.Harmony h)
     {
         var f = Path.Combine(dir, "paint-schemes.json");
-        if (!File.Exists(f)) { MelonLogger.Msg("FAMODELS_PAINT off: no paint-schemes.json"); return; }
-        paintSchemes = JsonSerializer.Deserialize<Dictionary<string, string[]>>(File.ReadAllText(f)) ?? new();
+        var extras = Directory.Exists(dir) ? Directory.GetFiles(dir, "paint-schemes-*.json").OrderBy(x => x, StringComparer.Ordinal).ToArray() : new string[0];
+        if (!File.Exists(f) && extras.Length == 0) { MelonLogger.Msg("FAMODELS_PAINT off: no paint-schemes.json"); return; }
+        if (File.Exists(f)) paintSchemes = JsonSerializer.Deserialize<Dictionary<string, string[]>>(File.ReadAllText(f)) ?? new();
+        // Add-on packs (ROC, 26 Nov 2026) bring their own paint-schemes-<pack>.json. A bad add-on file is skipped alone.
+        foreach (var extra in extras)
+        {
+            try { var add = JsonSerializer.Deserialize<Dictionary<string, string[]>>(File.ReadAllText(extra)) ?? new(); foreach (var kv in add) paintSchemes[kv.Key] = kv.Value; MelonLogger.Msg($"FAMODELS_PAINT add-on {Path.GetFileName(extra)}: {add.Count} unit(s)"); }
+            catch (Exception ex) { MelonLogger.Warning($"FAMODELS_PAINT add-on {Path.GetFileName(extra)} skipped: " + ex.Message); }
+        }
         var df = Path.Combine(dir, "paint-defaults.json");
         try { if (File.Exists(df)) paintDefaults = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(df)) ?? new(); }
         catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT defaults unreadable, base colours: " + ex.Message); }
