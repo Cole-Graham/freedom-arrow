@@ -4,7 +4,9 @@
 - ZBL-08 (903, transport only): offered as a transport on every PLAN (20) infantry card that offers the ZBD-05 (copy of that row).
 - WZ-551 (962, unused before): offered as a transport on every Light CAB infantry card that already rides a ground vehicle (copy of that card's
   first ground-vehicle row). New rows come from the 'plb' reserved block.
-- Z-10U (1270, card row 2019264): PLAN (20) -> Light CAB ("Z-10U goes to Light CAB", 02:2x)."""
+- Z-10U (1270, card row 2019264): PLAN (20) -> Light CAB ("Z-10U goes to Light CAB", 02:2x).
+- 02:3x "Z-20 given to light CAB and Z-18": Light CAB cards for the Z-20 (1244, as its Heavy CAB row: 2 cards) and the Z-18 (1271, as its PLAN row:
+  2 cards); both keep their current cards. Light CAB infantry already ride the Z-20J."""
 MOTO, MOTO_ROW, ZBL08, WZ551, PLAN, MEDIUM, Z10U, Z10U_ROW = 1196, 2013580, 903, 962, 20, 21, 1270, 2019264
 
 
@@ -33,5 +35,10 @@ def apply(t, g, ok, rec):
         if tr and not any(r['UnitId'] == WZ551 for r in tr):
             g.add('TransportAvailabilitiesJson', tr[0], {'UnitId': WZ551}); wz_cards.append(U[c['UnitId']]['HUDName'])
     ok(zbl_cards and wz_cards, ('transports added', zbl_cards, wz_cards))
-    rec['pla_light_brigade_transports_1126'] = {'moto_riflemen_spec': light, 'zbl08_plan': zbl_cards, 'wz551_light_cab': wz_cards}
+    heli = []
+    for uid, hud, frm in ((1244, 'Z-20', 18), (1271, 'Z-18', PLAN)):
+        src = rows('SpecializationAvailabilitiesJson', UnitId=uid)
+        ok(U[uid]['HUDName'] == hud and len(src) == 1 and src[0]['SpecializationId'] == frm, (hud, 'one card row in', frm))
+        g.add('SpecializationAvailabilitiesJson', src[0], {'SpecializationId': light}); heli.append((hud, src[0]['MaxAvailabilityXp0']))
+    rec['pla_light_brigade_transports_1126'] = {'moto_riflemen_spec': light, 'zbl08_plan': zbl_cards, 'wz551_light_cab': wz_cards, 'light_cab_helicopters': heli}
     print('PLA LIGHT BRIGADE TRANSPORTS', rec['pla_light_brigade_transports_1126'])
