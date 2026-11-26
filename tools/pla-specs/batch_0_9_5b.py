@@ -975,6 +975,8 @@ import snow_leopards_qbs_1125;snow_leopards_qbs_1125.apply(t,g,ok,rec)
 import mtl30_1125;mtl30_1125.apply(t,g,ok,rec)
 # ---------- PGL-625 main gun 7 damage/s (Osama 25 Nov 2026 23:0x PST, bugs thread). See pgl625_dps_1125.py.
 import pgl625_dps_1125;pgl625_dps_1125.apply(t,g,ok,rec)
+# ---------- PGZ-95 QW-2 on the guns' turret, slot 0 (Osama 26 Nov 2026 10:5x PST, bugs thread). See pgz95_missiles_1126.py.
+import pgz95_missiles_1126;pgz95_missiles_1126.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
