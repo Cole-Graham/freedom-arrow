@@ -32,7 +32,9 @@ def apply(t, g, ok, rec):
     ok('pla_light_brigade_mg_1126' in rec, 'MG section first (QJY-201 = PKP-M stats)')
     ok(t['ArmorsJson'][SHOCK8]['Name'] == 'Armor Infantry Shock 8Men' and [r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=MARINES)] == [SHOCK8], 'Marines: Shock 8Men armour')
     ok(not any(u and TIGER in (u.get('Name', ''), u.get('HUDName', '')) for u in U.values()), 'Tiger Brigade name free')
-    ma = g.add('Units', U[MARINES], {'Name': 'PLA ' + TIGER, 'HUDName': TIGER, 'Cost': 80, 'OriginalCost': 0, 'Description': None, 'OriginalName': None})
+    ma = g.add('Units', U[MARINES], {'Name': 'PLA ' + TIGER, 'HUDName': TIGER, 'Cost': 80, 'OriginalCost': 0, 'Description': None, 'OriginalName': None,
+                                    # 26 Nov 10:5x 'tiger brigade is SF': SF role, SF death timer (0, Marines -240) and SF sound preset, as Falcons
+                                    'Role': 36, 'TimeModifierResurrect': 0.0, 'AudioPreset': 'UNIT_SOUND_PRESET_RU_SF_SSO'})
     for tab in ('UnitArmorsJson', 'UnitPropulsionsJson', 'UnitAbilitiesJson', 'SensorUnitsJson'):
         for r in rows(tab, UnitId=MARINES): g.add(tab, r, {'UnitId': ma})
         ok(len(rows(tab, UnitId=ma)) == len(rows(tab, UnitId=MARINES)), (TIGER, tab, 'copied'))

@@ -646,6 +646,9 @@
   },
   "6001": {
    "set": "Infantry/SF"
+  },
+  "6002": {
+   "set": "Infantry/SF"
   }
  },
  "fallback": {
